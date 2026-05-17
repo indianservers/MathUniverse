@@ -17,7 +17,10 @@ export default function LinearAlgebra() {
   return (
     <div className="space-y-6" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} formula={{ title: "Matrix Transform", formula: "\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}\\begin{bmatrix}x\\\\y\\end{bmatrix}" }} />
-      <Link to="/calculator" className="action-secondary w-fit">Open Scientific Calculator</Link>
+      <div className="flex flex-wrap gap-3">
+        <Link to="/calculator" className="action-secondary w-fit">Open Scientific Calculator</Link>
+        <Link to="/matrix-sandbox" className="action-secondary w-fit">Open Matrix Operations Sandbox</Link>
+      </div>
       <VectorVisualizer />
       <MatrixTransformationVisualizer />
       <EigenvectorVisualizer />

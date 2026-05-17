@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Math Universe</title>
+  <desc id="desc">A sigma symbol orbiting through a bright mathematical universe.</desc>
+  <defs>
+    <linearGradient id="space" x1="64" x2="448" y1="48" y2="464" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#172554" />
+      <stop offset="0.48" stop-color="#0f766e" />
+      <stop offset="1" stop-color="#7c2d12" />
+    </linearGradient>
+    <linearGradient id="orbit" x1="92" x2="420" y1="112" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fef08a" />
+      <stop offset="0.52" stop-color="#67e8f9" />
+      <stop offset="1" stop-color="#fca5a5" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#space)" />
+  <circle cx="386" cy="118" r="20" fill="#fef3c7" opacity="0.9" />
+  <circle cx="116" cy="370" r="12" fill="#bae6fd" opacity="0.9" />
+  <circle cx="104" cy="142" r="8" fill="#f8fafc" opacity="0.76" />
+  <path
+    d="M98 270c42-100 160-165 263-145 71 14 88 69 34 122-59 58-179 88-261 65-52-15-70-47-36-42Z"
+    fill="none"
+    stroke="url(#orbit)"
+    stroke-linecap="round"
+    stroke-width="20"
+    opacity="0.92"
+  />
+  <path
+    d="M331 149H181l94 104-98 110h163v-52h-71l64-71-62-67h60v-24Z"
+    fill="#f8fafc"
+  />
+  <path
+    d="M173 149h158v38H263l47 52-48 53h78v71H177l98-110-102-113Z"
+    fill="none"
+    stroke="#0f172a"
+    stroke-linejoin="round"
+    stroke-width="14"
+    opacity="0.22"
+  />
+</svg>

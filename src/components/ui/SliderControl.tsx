@@ -1,4 +1,6 @@
+import { useEffect, useRef } from "react";
 import { formatFormulaValue } from "../../utils/format";
+import { readSliderParam, writeSliderParam } from "../../utils/shareableState";
 
 type SliderControlProps = {
   label: string;
@@ -12,6 +14,31 @@ type SliderControlProps = {
 };
 
 export default function SliderControl({ label, value, min, max, step, onChange, unit = "", description }: SliderControlProps) {
+  const hydratedFromUrl = useRef(false);
+  const skipNextUrlWrite = useRef(false);
+
+  useEffect(() => {
+    if (hydratedFromUrl.current) return;
+    hydratedFromUrl.current = true;
+
+    const queryValue = readSliderParam(label);
+    if (queryValue === null) return;
+
+    const clamped = Math.min(max, Math.max(min, queryValue));
+    const snapped = Math.round(clamped / step) * step;
+    skipNextUrlWrite.current = true;
+    onChange(Number(snapped.toFixed(6)));
+  }, [label, max, min, onChange, step]);
+
+  useEffect(() => {
+    if (!hydratedFromUrl.current) return;
+    if (skipNextUrlWrite.current) {
+      skipNextUrlWrite.current = false;
+      return;
+    }
+    writeSliderParam(label, value);
+  }, [label, value]);
+
   return (
     <label className="block rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm transition hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950/40 dark:hover:border-cyan-400/40">
       <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
@@ -24,7 +51,7 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
         </span>
       </div>
       <input
-        className="h-8 w-full cursor-pointer appearance-none rounded-full bg-gradient-to-r from-cyan-300 via-violet-300 to-fuchsia-300 accent-cyan-500 touch-pan-x dark:from-cyan-500/50 dark:via-violet-500/50 dark:to-fuchsia-500/50"
+        className="slider-range w-full cursor-pointer appearance-none bg-transparent accent-cyan-500 touch-pan-x"
         type="range"
         value={value}
         min={min}

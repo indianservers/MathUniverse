@@ -92,6 +92,16 @@ export function symbolicIntegral(expression: string, variable = "x"): SymbolicRe
   };
 }
 
+export function symbolicLatex(expression: string) {
+  try {
+    const converted = (nerdamer as unknown as { convertToLaTeX?: (value: string) => string }).convertToLaTeX?.(expression);
+    if (converted) return converted;
+  } catch {
+    // Fall back to a readable monospaced expression below.
+  }
+  return expression.replace(/\*/g, "\\cdot ");
+}
+
 export function symbolicSolve(equation: string, variable = "x"): SymbolicResult {
   const normalized = normalizeEquation(equation);
   const roots = nerdamer.solve(normalized, variable).toString();

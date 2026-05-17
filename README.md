@@ -15,6 +15,7 @@ Math Universe is a browser-based interactive mathematics learning platform cover
 - Syllabus Navigator for Class 8 through Degree Mathematics
 - Scientific Calculator with safe parsing, DEG/RAD mode, memory, and history
 - Browser-only architecture with no backend and no API key required
+- Offline PWA mode with installable app metadata and service worker caching for visualizations, quizzes, fonts, and routed pages
 
 ## Modules
 
@@ -52,6 +53,10 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+## Offline PWA
+
+The production build registers a service worker that precaches the generated app shell, visualization bundles, quiz data, fonts, and static assets. After the first successful visit, the installed app and routed pages continue to load offline.
 
 ## Folder Structure
 

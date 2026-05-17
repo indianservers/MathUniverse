@@ -20,6 +20,17 @@ export default function Syllabus() {
       />
 
       <SectionCard title="Grade and Board Topics" description="NCERT and school syllabus topics are grouped by class, with direct links to available interactive pages.">
+        <Link to="/math-lab" className="mb-5 block rounded-2xl border border-violet-200 bg-violet-50 p-4 transition hover:-translate-y-0.5 hover:border-violet-400 dark:border-violet-400/20 dark:bg-violet-400/10">
+          <p className="text-xs font-bold uppercase text-violet-700 dark:text-violet-200">Advanced Interactive Math Tools</p>
+          <h2 className="mt-2 text-xl font-black">Math Lab</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">GeoGebra-style visual tools and WolframAlpha-style solving workspace.</p>
+          <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Graphing Calculator, Equation Solver, CAS Solver, Geometry Lab, Calculus Visualizer, Statistics Lab, Probability Simulator, Linear Algebra Lab, 3D Graphing, and Smart Math Query.</p>
+        </Link>
+        <Link to="/matrices" className="mb-5 block rounded-2xl border border-cyan-200 bg-cyan-50 p-4 transition hover:-translate-y-0.5 hover:border-cyan-400 dark:border-cyan-400/20 dark:bg-cyan-400/10">
+          <p className="text-xs font-bold uppercase text-cyan-700 dark:text-cyan-200">New Matrix Section</p>
+          <h2 className="mt-2 text-xl font-black">Matrices and Linear Algebra</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">Matrix Basics, Addition, Subtraction, Scalar Multiplication, Multiplication, Transpose, Determinant, Inverse, Rank, Row Operations, Linear Equations, Eigenvalues and Eigenvectors, and 2D Transformations.</p>
+        </Link>
         <div className="mb-5 flex flex-wrap gap-2">
           <Link to="/syllabus" className="action-secondary">All</Link>
           {syllabusLevels.map((level) => <Link key={level.id} to={`/syllabus/${level.id}`} className="action-secondary">{level.title.replace(" Mathematics", "")}</Link>)}

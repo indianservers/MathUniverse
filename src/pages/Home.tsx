@@ -26,6 +26,14 @@ export default function Home() {
   const labs = topics.reduce((sum, topic) => sum + topic.labCount, 0);
   const extraCards = [
     {
+      title: "Math Lab",
+      description: "GeoGebra-style visual tools and WolframAlpha-style solving workspace for graphing, solving, symbolic algebra, calculus, statistics, probability, geometry, linear algebra, and 3D graphs.",
+      concepts: ["Graphing", "Solving", "CAS", "3D graphs"],
+      icon: FlaskConical,
+      route: "/math-lab",
+      colorGradient: "from-slate-950 to-cyan-600",
+    },
+    {
       title: "Math Workspace",
       description: "GeoGebra and Wolfram-style workspace with command input, graphing, result cards, and geometry construction.",
       concepts: ["Graphing", "Commands", "Geometry", "Measurements"],

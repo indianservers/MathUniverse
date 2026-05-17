@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import katex from "katex";
 import { Link } from "react-router-dom";
 import CalculatorDisplay from "../components/calculator/CalculatorDisplay";
 import CalculatorHistory from "../components/calculator/CalculatorHistory";
@@ -10,6 +11,7 @@ import { calculatorExamples } from "../data/calculatorExamples";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { evaluateExpression } from "../utils/calculator";
 import type { AngleMode } from "../utils/calculator";
+import { symbolicDerivative, symbolicIntegral, symbolicLatex, trySymbolic } from "../utils/symbolic";
 
 const MAX_HISTORY = 20;
 
@@ -20,8 +22,18 @@ export default function ScientificCalculator() {
   const [angleMode, setAngleMode] = useLocalStorage<AngleMode>("math-universe-angle-mode", "DEG");
   const [memory, setMemory] = useLocalStorage<number>("math-universe-calculator-memory", 0);
   const [history, setHistory] = useLocalStorage<HistoryItem[]>("math-universe-calculator-history", []);
+  const [symbolicVariable, setSymbolicVariable] = useState("x");
 
   const displayExpression = useMemo(() => expression || "0", [expression]);
+  const symbolic = useMemo(() => {
+    if (!expression.trim()) return null;
+    const variable = symbolicVariable.trim() || "x";
+    return {
+      derivative: trySymbolic(() => symbolicDerivative(expression, variable)),
+      integral: trySymbolic(() => symbolicIntegral(expression, variable)),
+      variable,
+    };
+  }, [expression, symbolicVariable]);
 
   const append = (value: string) => {
     setError("");
@@ -130,7 +142,39 @@ export default function ScientificCalculator() {
       </div>
 
       <SectionCard title="Supported Expressions" description="Examples: 2+3*4, sin(30), cos(60), sqrt(25), log(100), ln(e), 2^8, factorial(5), and pi*2. Trigonometric functions respect the DEG/RAD switch." />
+      <SectionCard title="Symbolic Differentiation & Integration" description="Nerdamer reads the current expression symbolically and renders exact derivative and antiderivative forms.">
+        <div className="grid gap-4 lg:grid-cols-[180px_minmax(0,1fr)_minmax(0,1fr)]">
+          <label className="block rounded-2xl border border-slate-200 bg-white/75 p-4 dark:border-white/10 dark:bg-slate-950/40">
+            <span className="text-sm font-semibold">Variable</span>
+            <input className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-mono dark:border-white/10 dark:bg-slate-900" value={symbolicVariable} onChange={(event) => setSymbolicVariable(event.target.value.replace(/[^a-zA-Z]/g, "").slice(0, 1) || "x")} />
+          </label>
+          <SymbolicResultCard title={`d/d${symbolic?.variable ?? "x"}`} value={symbolic?.derivative?.result} fallback="Enter an expression using x, such as x^3+sin(x)." />
+          <SymbolicResultCard title={`∫ f(${symbolic?.variable ?? "x"}) d${symbolic?.variable ?? "x"}`} value={symbolic?.integral?.result} fallback="Nerdamer will show supported antiderivatives here." />
+        </div>
+      </SectionCard>
       <Link to="/syllabus" className="action-secondary w-fit">Open Syllabus Navigator</Link>
+    </div>
+  );
+}
+
+function SymbolicResultCard({ title, value, fallback }: { title: string; value?: string; fallback: string }) {
+  const html = useMemo(() => {
+    if (!value) return "";
+    try {
+      return katex.renderToString(symbolicLatex(value), { displayMode: true, throwOnError: false });
+    } catch {
+      return "";
+    }
+  }, [value]);
+
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/75 p-4 dark:border-white/10 dark:bg-slate-950/40">
+      <h3 className="text-sm font-black text-slate-600 dark:text-slate-300">{title}</h3>
+      {value ? (
+        html ? <div className="mt-3 overflow-x-auto text-lg [&_.katex-display]:my-0" dangerouslySetInnerHTML={{ __html: html }} /> : <p className="mt-3 font-mono">{value}</p>
+      ) : (
+        <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">{fallback}</p>
+      )}
     </div>
   );
 }

@@ -53,20 +53,29 @@ body {
     font-size: 16px;
   }
 
-  input[type="range"]::-webkit-slider-thumb {
-    @apply h-7 w-7 appearance-none rounded-full border-2 border-white bg-cyan-500 shadow-lg shadow-cyan-500/30;
+  .slider-range {
+    height: 32px;
   }
 
-  input[type="range"]::-moz-range-thumb {
+  .slider-range::-webkit-slider-runnable-track {
+    @apply h-3 rounded-full bg-gradient-to-r from-cyan-300 via-violet-300 to-fuchsia-300 dark:from-cyan-500/50 dark:via-violet-500/50 dark:to-fuchsia-500/50;
+  }
+
+  .slider-range::-moz-range-track {
+    @apply h-3 rounded-full bg-gradient-to-r from-cyan-300 via-violet-300 to-fuchsia-300 dark:from-cyan-500/50 dark:via-violet-500/50 dark:to-fuchsia-500/50;
+  }
+
+  .slider-range::-webkit-slider-thumb {
+    @apply h-7 w-7 appearance-none rounded-full border-2 border-white bg-cyan-500 shadow-lg shadow-cyan-500/30;
+    margin-top: -8px;
+  }
+
+  .slider-range::-moz-range-thumb {
     @apply h-7 w-7 rounded-full border-2 border-white bg-cyan-500 shadow-lg shadow-cyan-500/30;
   }
 
-  input[type="range"]::-webkit-slider-runnable-track {
-    @apply h-3 rounded-full;
-  }
-
-  input[type="range"]::-moz-range-track {
-    @apply h-3 rounded-full;
+  .slider-range:focus-visible::-webkit-slider-thumb {
+    @apply ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-50 dark:ring-offset-slate-950;
   }
 }
 
@@ -97,6 +106,10 @@ body {
 
   .math-tool-button-danger {
     @apply inline-flex h-11 w-11 items-center justify-center rounded-xl bg-rose-100 text-rose-700 transition hover:bg-rose-200 dark:bg-rose-400/15 dark:text-rose-100 dark:hover:bg-rose-400/25;
+  }
+
+  .tool-button {
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white/85 px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:text-cyan-700 active:translate-y-0 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:border-cyan-400/40 dark:hover:text-cyan-100;
   }
 
   .mobile-safe-scroll {

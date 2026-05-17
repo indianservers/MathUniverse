@@ -103,6 +103,18 @@ export const topics: Topic[] = [
     labCount: 8,
   },
   {
+    id: "matrices",
+    title: "Matrices and Linear Algebra",
+    route: "/matrices",
+    iconName: "Grid3X3",
+    description: "Master matrix basics, arithmetic, determinants, inverse, rank, row operations, systems, eigenvectors, and transformations.",
+    concepts: ["Matrix basics", "Operations", "Determinants", "Linear systems"],
+    difficulty: "Advanced",
+    estimatedMinutes: 75,
+    colorGradient: "from-cyan-500 to-violet-600",
+    labCount: 14,
+  },
+  {
     id: "ai",
     title: "Math in AI & Real Life",
     route: "/ai-applications",

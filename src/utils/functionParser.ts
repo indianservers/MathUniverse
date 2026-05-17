@@ -25,11 +25,13 @@ export function compileTwoVariableExpression(input: string) {
 function normalize(input: string) {
   const expression = input
     .trim()
+    .replace(/^y\s*=/i, "")
     .replace(/\u00f7/g, "/")
     .replace(/\u00d7/g, "*")
     .replace(/\u03c0/g, "pi")
     .replace(/\s+/g, "")
-    .toLowerCase();
+    .toLowerCase()
+    .replace(/(\d|\)|x|y|pi|e)(?=(x|y|pi|e|sin|cos|tan|asin|acos|atan|ln|log|exp|sqrt|cbrt|abs|floor|ceil|\())/g, "$1*");
   const forbidden = /(window|document|globalthis|process|fetch|eval|function|constructor|import|=>|;|=|\{|\}|\[|\])/i;
   if (!expression) throw new Error("Enter a function of x");
   if (forbidden.test(expression)) throw new Error("Unsupported expression");
@@ -141,7 +143,8 @@ function applyFunction(name: string, value: number) {
   if (name === "asin") return Math.asin(value);
   if (name === "acos") return Math.acos(value);
   if (name === "atan") return Math.atan(value);
-  if (name === "ln" || name === "log") return Math.log(value);
+  if (name === "ln") return Math.log(value);
+  if (name === "log") return Math.log10(value);
   if (name === "exp") return Math.exp(value);
   if (name === "sqrt") return Math.sqrt(value);
   if (name === "cbrt") return Math.cbrt(value);
