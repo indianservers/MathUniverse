@@ -138,13 +138,14 @@ function ModeButton({ active, title, onClick, children }: { active: boolean; tit
   return (
     <button
       className={clsx(
-        "inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-600 transition hover:bg-cyan-100 hover:text-cyan-700 dark:text-slate-200 dark:hover:bg-cyan-400/15 dark:hover:text-cyan-100",
+        "tooltip-icon inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-600 transition hover:bg-cyan-100 hover:text-cyan-700 dark:text-slate-200 dark:hover:bg-cyan-400/15 dark:hover:text-cyan-100",
         active && "bg-cyan-600 text-white hover:bg-cyan-600 hover:text-white dark:bg-cyan-400 dark:text-slate-950",
       )}
       type="button"
       onClick={onClick}
       title={title}
       aria-label={title}
+      data-tooltip={title}
     >
       {children}
     </button>

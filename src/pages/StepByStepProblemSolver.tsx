@@ -2,7 +2,10 @@ import katex from "katex";
 import { useMemo, useState } from "react";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
+import { CopyResultButton, PresetChips, PrintWorksheetButton, RelatedToolLinks, ResetExampleButton } from "../components/ui/UiFeedback";
 import { symbolicLatex, symbolicSimplify, symbolicSolve, trySymbolic } from "../utils/symbolic";
+
+const examples = ["2*x+5=11", "x^2-5*x+6=0", "-2*x+4=8", "x^3+2*x^2"];
 
 export default function StepByStepProblemSolver() {
   const [equation, setEquation] = useState("2*x+5=17");
@@ -13,8 +16,15 @@ export default function StepByStepProblemSolver() {
   return (
     <div className="space-y-6">
       <TopicHeader title="Step-by-Step Problem Solver" subtitle="Enter an equation and inspect the algebraic path with Nerdamer-backed exact math." difficulty="Algebra Tool" estimatedMinutes={7} />
-      <SectionCard title="Equation Input">
+      <SectionCard title="Equation Input" description="Use Ctrl/Cmd+Enter in keyboard-enabled inputs elsewhere; here the solver updates as you type.">
+        <div className="sticky top-20 z-20 mb-4 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/90">
+          <CopyResultButton value={solution?.result} />
+          <ResetExampleButton onClick={() => setEquation("2*x+5=11")} />
+          <PrintWorksheetButton />
+          <RelatedToolLinks links={[{ label: "Calculator", route: "/calculator" }, { label: "Equation Solver", route: "/math-lab/equation-solver" }]} />
+        </div>
         <input className="w-full rounded-2xl border border-slate-200 bg-white p-4 font-mono text-lg dark:border-white/10 dark:bg-slate-950/60" value={equation} onChange={(event) => setEquation(event.target.value)} />
+        <div className="mt-4"><PresetChips examples={examples} onSelect={setEquation} /></div>
       </SectionCard>
       <SectionCard title="Animated Algebra Steps">
         <div className="space-y-3">

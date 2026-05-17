@@ -1,6 +1,9 @@
-import { Clock, Gauge } from "lucide-react";
+import { ArrowLeft, Clock, Gauge } from "lucide-react";
+import { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import FormulaBlock from "./FormulaBlock";
 import ProgressBadge from "./ProgressBadge";
+import { ShareSetupButton } from "./UiFeedback";
 
 type TopicHeaderProps = {
   title: string;
@@ -12,12 +15,43 @@ type TopicHeaderProps = {
 };
 
 export default function TopicHeader({ title, subtitle, difficulty, estimatedMinutes, formula, progress = 0 }: TopicHeaderProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const segments = location.pathname.split("/").filter(Boolean);
+  useEffect(() => {
+    document.title = `${title} | Math Universe`;
+  }, [title]);
   return (
     <div className="space-y-6">
+      {segments.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400">
+          <Link to="/" className="hover:text-cyan-600">Math Universe</Link>
+          {segments.map((segment, index) => {
+            const path = `/${segments.slice(0, index + 1).join("/")}`;
+            const label = segment.replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+            const last = index === segments.length - 1;
+            return (
+              <span key={path} className="flex items-center gap-2">
+                <span>/</span>
+                {last ? <span className="text-cyan-700 dark:text-cyan-200">{label}</span> : <Link to={path} className="hover:text-cyan-600">{label}</Link>}
+              </span>
+            );
+          })}
+        </div>
+      )}
       <div className="relative overflow-hidden rounded-2xl border border-white/60 bg-gradient-to-br from-white via-cyan-50 to-violet-100 p-6 shadow-glow dark:border-white/10 dark:from-slate-900 dark:via-slate-900 dark:to-violet-950 md:p-8">
         <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-cyan-300/20 blur-3xl" />
         <div className="relative">
           <ProgressBadge progress={progress} />
+          <div className="mt-4 flex flex-wrap gap-2">
+            {segments.length > 0 && (
+              <button type="button" className="action-secondary min-h-10 px-3 py-2" onClick={() => navigate(-1)} title="Back to previous page">
+                <ArrowLeft className="h-4 w-4" />
+                Back
+              </button>
+            )}
+            {segments.length > 0 && <ShareSetupButton />}
+          </div>
           <h1 className="mt-4 max-w-5xl text-3xl font-bold tracking-tight text-slate-950 md:text-5xl dark:text-white">{title}</h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600 md:text-lg dark:text-slate-300">{subtitle}</p>
           <div className="mt-5 flex flex-wrap gap-3 text-sm text-slate-600 dark:text-slate-300">

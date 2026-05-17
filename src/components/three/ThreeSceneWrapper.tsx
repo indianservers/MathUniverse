@@ -1,5 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Component, CSSProperties, ReactNode, Suspense } from "react";
+import { LoadingSkeleton } from "../ui/UiFeedback";
 
 type ThreeSceneWrapperProps = {
   children: ReactNode;
@@ -10,8 +11,8 @@ type ThreeSceneWrapperProps = {
 
 function ThreeFallback() {
   return (
-    <div className="flex h-full items-center justify-center rounded-2xl bg-slate-950/70 text-sm text-cyan-100">
-      Loading 3D scene...
+    <div className="h-full rounded-2xl bg-slate-950/70 p-4 text-cyan-100">
+      <LoadingSkeleton label="Loading 3D scene..." />
     </div>
   );
 }

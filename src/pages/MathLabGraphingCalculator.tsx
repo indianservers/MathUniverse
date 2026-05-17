@@ -1,8 +1,9 @@
-import { Eye, EyeOff, Grid3X3, LocateFixed, Minus, MoveHorizontal, MoveVertical, Plus, RotateCcw, Table2, Trash2, ZoomIn, ZoomOut } from "lucide-react";
+import { Dices, Eye, EyeOff, Grid3X3, LocateFixed, MoveHorizontal, MoveVertical, Plus, RotateCcw, Table2, Trash2, ZoomIn, ZoomOut } from "lucide-react";
 import { useMemo, useState } from "react";
 import FunctionGraphCanvas, { FunctionGraphView } from "../components/math-lab/FunctionGraphCanvas";
 import { FormulaBlock, MathErrorBox, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
+import { ApproxBadge, CopyResultButton, EmptyState, ExportImageButton, FullscreenButton, InfoCallout, LoadingSkeleton, PresetChips, ResetExampleButton } from "../components/ui/UiFeedback";
 import {
   approximateRoots,
   approximateVisibleRange,
@@ -36,6 +37,7 @@ export default function MathLabGraphingCalculator() {
   const [tableStart, setTableStart] = useState(-5);
   const [tableEnd, setTableEnd] = useState(5);
   const [tableStep, setTableStep] = useState(1);
+  const [showFormula, setShowFormula] = useState(false);
 
   const plotted = useMemo(() => functions.map((item) => {
     const sampled = sampleFunction(item.input, view.xMin, view.xMax, 900);
@@ -49,6 +51,14 @@ export default function MathLabGraphingCalculator() {
   const yIntercept = selectedFunction ? approximateYIntercept(selectedFunction.input) : { y: null };
   const visibleRange = selectedFunction ? approximateVisibleRange(selectedFunction.input, view.xMin, view.xMax) : { min: null, max: null };
   const discontinuities = selected ? detectDiscontinuities(selected.points) : [];
+  const selectedSummary = selectedFunction
+    ? [
+      `Function: ${selectedFunction.input}`,
+      `Y-intercept: ${typeof yIntercept.y === "number" ? `(0, ${formatNumber(yIntercept.y)})` : "undefined"}`,
+      `Approx roots: ${roots.roots.length ? roots.roots.map(formatNumber).join(", ") : "none visible"}`,
+      `Approx visible range: ${visibleRange.min !== null && visibleRange.max !== null ? `${formatNumber(visibleRange.min)} to ${formatNumber(visibleRange.max)}` : "no real visible values"}`,
+    ].join("\n")
+    : "";
 
   const notes = (
     <>
@@ -58,14 +68,14 @@ export default function MathLabGraphingCalculator() {
           <p>Numeric analysis is approximate over the current visible window.</p>
         </div>
       </SectionCard>
-      <SectionCard title="Common Mistakes">
-        <ul className="space-y-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+      <InfoCallout title="Common mistakes" tone="warning">
+        <ul className="space-y-2">
           <li>Use <span className="font-mono">2*x</span> or <span className="font-mono">2x</span> for multiplication.</li>
           <li><span className="font-mono">sqrt(x)</span> is only real for x greater than or equal to 0.</li>
           <li>x-intercepts are roots; the y-intercept is where x = 0.</li>
           <li><span className="font-mono">tan(x)</span> has repeating vertical breaks.</li>
         </ul>
-      </SectionCard>
+      </InfoCallout>
     </>
   );
 
@@ -77,6 +87,12 @@ export default function MathLabGraphingCalculator() {
     >
       <div className="grid gap-6 xl:grid-cols-[340px_minmax(0,1fr)]">
         <SectionCard title="Functions" description="Add several functions and compare them on the same live SVG graph.">
+          <div className="sticky top-20 z-20 mb-4 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/90">
+            <ResetExampleButton onClick={resetExample} />
+            <button type="button" className="tool-button" onClick={() => setFunctions([])} title="Clear every plotted function"><Trash2 className="h-4 w-4" />Clear all</button>
+            <button type="button" className="tool-button" onClick={tryRandom}><Dices className="h-4 w-4" />Try random</button>
+            <CopyResultButton value={selectedSummary} />
+          </div>
           <div className="space-y-4">
             {functions.map((item, index) => {
               const plottedItem = plotted.find((plot) => plot.id === item.id);
@@ -88,7 +104,7 @@ export default function MathLabGraphingCalculator() {
                     <button type="button" className="ml-auto rounded-lg p-2 hover:bg-slate-100 dark:hover:bg-white/10" title={item.visible ? "Hide function" : "Show function"} onClick={() => updateFunction(item.id, { visible: !item.visible })}>
                       {item.visible ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
                     </button>
-                    <button type="button" className="rounded-lg p-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-400/10" title="Delete function" onClick={() => removeFunction(item.id)} disabled={functions.length === 1}>
+                    <button type="button" className="rounded-lg p-2 text-rose-500 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-40 dark:hover:bg-rose-400/10" title={functions.length === 1 ? "Keep at least one function on the graph" : "Delete function"} onClick={() => removeFunction(item.id)} disabled={functions.length === 1}>
                       <Trash2 className="h-4 w-4" />
                     </button>
                   </div>
@@ -105,8 +121,8 @@ export default function MathLabGraphingCalculator() {
             })}
             <div className="flex flex-wrap gap-2">
               <button type="button" className="action-primary" onClick={addFunction}><Plus className="h-4 w-4" />Add Function</button>
-              {EXAMPLES.slice(0, 6).map((example) => <button key={example} type="button" className="mini-chip" onClick={() => setSelectedExample(example)}>{example}</button>)}
             </div>
+            <PresetChips examples={EXAMPLES} onSelect={setSelectedExample} />
           </div>
         </SectionCard>
 
@@ -121,16 +137,29 @@ export default function MathLabGraphingCalculator() {
             <button type="button" className="tool-button" onClick={() => setView({ xMin: -10, xMax: 10, yMin: -10, yMax: 10 })}><RotateCcw className="h-4 w-4" />Reset</button>
             <button type="button" className={showGrid ? "action-primary" : "tool-button"} onClick={() => setShowGrid((value) => !value)}><Grid3X3 className="h-4 w-4" />Grid</button>
             <button type="button" className={showAxes ? "action-primary" : "tool-button"} onClick={() => setShowAxes((value) => !value)}><LocateFixed className="h-4 w-4" />Axes</button>
+            <FullscreenButton targetId="graphing-canvas-panel" />
+            <ExportImageButton targetId="graphing-canvas-panel" filename="graphing-calculator.png" />
+            <button type="button" className="tool-button" onClick={() => setShowFormula((value) => !value)}>{showFormula ? "Hide formula" : "Show formula"}</button>
           </div>
-          <FunctionGraphCanvas
-            series={plotted.map((item) => ({ id: item.id, label: item.input || "function", color: item.color, points: item.points, visible: item.visible && !item.error }))}
-            view={view}
-            showGrid={showGrid}
-            showAxes={showAxes}
-            selectedSeriesId={selectedId}
-            traceX={traceMode ? traceX : undefined}
-            onTraceChange={traceMode ? setTraceX : undefined}
-          />
+          <div id="graphing-canvas-panel" className="rounded-2xl bg-white p-2 dark:bg-slate-950">
+            <div className="mb-2 flex flex-wrap gap-2">
+              {plotted.filter((item) => item.visible && !item.error).map((item) => <span key={item.id} className="mini-chip"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full" style={{ backgroundColor: item.color }} />{item.input}</span>)}
+            </div>
+            {plotted.some((item) => item.visible && !item.error && item.points.length) ? (
+              <FunctionGraphCanvas
+                series={plotted.map((item) => ({ id: item.id, label: item.input || "function", color: item.color, points: item.points, visible: item.visible && !item.error }))}
+                view={view}
+                showGrid={showGrid}
+                showAxes={showAxes}
+                selectedSeriesId={selectedId}
+                traceX={traceMode ? traceX : undefined}
+                onTraceChange={traceMode ? setTraceX : undefined}
+              />
+            ) : (
+              <LoadingSkeleton label="Waiting for a valid function to plot" />
+            )}
+          </div>
+          {showFormula && <div className="mt-4"><FormulaBlock title="Graph formula" formula={"y=f(x)"} /></div>}
           <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_220px]">
             <label className="rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10">
               Trace x: {formatNumber(traceX)}
@@ -143,6 +172,7 @@ export default function MathLabGraphingCalculator() {
 
       <div className="grid gap-6 xl:grid-cols-2">
         <SectionCard title="Function Analysis" description="Results are numerical estimates from samples in the visible x-window.">
+          <ApproxBadge />
           {selectedFunction ? (
             <div className="grid gap-3 md:grid-cols-2">
               <AnalysisTile label="Selected function" value={selectedFunction.input} />
@@ -161,14 +191,18 @@ export default function MathLabGraphingCalculator() {
             <NumberInput label="End" value={tableEnd} onChange={setTableEnd} />
             <NumberInput label="Step" value={tableStep} onChange={setTableStep} />
           </div>
-          <div className="mt-4 max-h-80 overflow-auto rounded-2xl border border-slate-200 dark:border-white/10">
-            <table className="w-full text-left text-sm">
-              <thead className="sticky top-0 bg-slate-100 dark:bg-slate-900"><tr><th className="p-3">x</th><th className="p-3">y</th></tr></thead>
-              <tbody>
-                {table.rows.slice(0, 80).map((row) => <tr key={row.x} className="border-t border-slate-100 dark:border-white/10"><td className="p-3 font-mono">{formatNumber(row.x)}</td><td className="p-3 font-mono">{row.valid && row.y !== null ? formatNumber(row.y) : "undefined"}</td></tr>)}
-              </tbody>
-            </table>
-          </div>
+          {table.rows.length ? (
+            <div className="mt-4 max-h-80 overflow-auto rounded-2xl border border-slate-200 dark:border-white/10">
+              <table className="w-full text-left text-sm">
+                <thead className="sticky top-0 bg-slate-100 dark:bg-slate-900"><tr><th className="p-3">x</th><th className="p-3">y</th></tr></thead>
+                <tbody>
+                  {table.rows.slice(0, 80).map((row) => <tr key={row.x} className="border-t border-slate-100 dark:border-white/10"><td className="p-3 font-mono">{formatNumber(row.x)}</td><td className="p-3 font-mono">{row.valid && row.y !== null ? formatNumber(row.y) : "undefined"}</td></tr>)}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="mt-4"><EmptyState title="No table values yet" message="Select a valid function and table range to generate values." /></div>
+          )}
           <p className="mt-3 flex items-center gap-2 text-xs font-semibold text-slate-500"><Table2 className="h-4 w-4" />Up to 80 rows shown to keep the page responsive.</p>
         </SectionCard>
       </div>
@@ -179,7 +213,7 @@ export default function MathLabGraphingCalculator() {
         { title: "Analyze visible behavior", explanation: "Roots, range, discontinuities, and table values are numerical approximations over the current view.", result: "Use zoom and pan to inspect a different window." },
       ]} />
 
-      <ResultCard title="What This Tool Does" result={<p className="font-semibold">This is a live multi-function graphing calculator for real-valued functions. It supports polynomial, trigonometric, exponential, logarithmic, radical, absolute value, and rational examples without static fake graphs.</p>} />
+      <ResultCard title="What This Tool Does" result={<p className="font-semibold">This is a live multi-function graphing calculator for real-valued functions. It supports polynomial, trigonometric, exponential, logarithmic, radical, absolute value, and rational examples without static fake graphs.</p>} relatedTools={[{ label: "Function Explorer", route: "/math-lab/function-explorer" }, { label: "3D Graphing", route: "/math-lab/3d-graphing" }, { label: "Calculator", route: "/calculator" }]} />
       <FormulaBlock title="Supported Transformation Of Input" formula={"\\text{input } x^2-4 \\;\\text{or}\\; y=x^2-4 \\Rightarrow f(x)=x^2-4"} />
     </MathLabLayout>
   );
@@ -194,6 +228,13 @@ export default function MathLabGraphingCalculator() {
     setSelectedId(id);
   }
 
+  function tryRandom() {
+    const example = EXAMPLES[Math.floor(Math.random() * EXAMPLES.length)];
+    const id = `f${Date.now()}`;
+    setFunctions((items) => [...items, { id, input: example, color: COLORS[items.length % COLORS.length], visible: true }]);
+    setSelectedId(id);
+  }
+
   function removeFunction(id: string) {
     setFunctions((items) => {
       const next = items.filter((item) => item.id !== id);
@@ -205,6 +246,16 @@ export default function MathLabGraphingCalculator() {
   function setSelectedExample(example: string) {
     if (!selectedFunction) return;
     updateFunction(selectedFunction.id, { input: example });
+  }
+
+  function resetExample() {
+    setFunctions([
+      { id: "f1", input: "x^2 - 4", color: COLORS[0], visible: true },
+      { id: "f2", input: "sin(x)", color: COLORS[1], visible: true },
+    ]);
+    setSelectedId("f1");
+    setView({ xMin: -10, xMax: 10, yMin: -10, yMax: 10 });
+    setTraceX(0);
   }
 
   function zoom(factor: number) {

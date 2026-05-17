@@ -26,12 +26,16 @@ export default function MatrixGrid({ matrix, label, editable = false, highlights
       {label && <p className="text-sm font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</p>}
       <div className="flex items-stretch gap-2">
         <div className="w-2 rounded-l-2xl border-y-4 border-l-4 border-slate-400 dark:border-slate-500" />
-        <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${Math.max(cols, 1)}, minmax(48px, 1fr))` }}>
+        <div className="grid gap-2" style={{ gridTemplateColumns: `auto repeat(${Math.max(cols, 1)}, minmax(56px, 1fr))` }}>
+          <span />
+          {Array.from({ length: cols }, (_, col) => <span key={`col-${col}`} className="text-center text-xs font-black text-slate-400">C{col + 1}</span>)}
           {matrix.flatMap((row, r) => row.map((value, c) => (
+            [
+            c === 0 ? <span key={`row-${r}`} className="flex items-center justify-center text-xs font-black text-slate-400">R{r + 1}</span> : null,
             <div
               key={`${r}-${c}`}
               className={clsx(
-                "flex min-h-12 min-w-12 items-center justify-center rounded-xl border px-2 text-center font-mono text-base font-black transition duration-300",
+                "result-pop flex min-h-14 min-w-14 items-center justify-center rounded-xl border px-2 text-center font-mono text-base font-black transition duration-300 sm:min-h-12 sm:min-w-12",
                 colorClass(color),
                 isHighlighted(r, c) && "scale-105 ring-4 ring-offset-2 ring-offset-white dark:ring-offset-slate-950",
                 isHighlighted(r, c) && highlightClass(color),
@@ -48,6 +52,7 @@ export default function MatrixGrid({ matrix, label, editable = false, highlights
                 formatNumber(value)
               )}
             </div>
+            ]
           )))}
         </div>
         <div className="w-2 rounded-r-2xl border-y-4 border-r-4 border-slate-400 dark:border-slate-500" />

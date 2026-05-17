@@ -1,5 +1,6 @@
 import { Menu } from "lucide-react";
 import ThemeToggle from "../ui/ThemeToggle";
+import { TeacherModeToggle } from "../ui/UiFeedback";
 
 type HeaderProps = {
   onMenuClick: () => void;
@@ -12,8 +13,9 @@ export default function Header({ onMenuClick }: HeaderProps) {
         <button
           type="button"
           onClick={onMenuClick}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 dark:border-white/10 dark:bg-white/10 dark:text-white lg:hidden"
+          className="tooltip-icon inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 dark:border-white/10 dark:bg-white/10 dark:text-white lg:hidden"
           aria-label="Open navigation"
+          data-tooltip="Open navigation"
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -21,7 +23,10 @@ export default function Header({ onMenuClick }: HeaderProps) {
           <p className="text-sm font-semibold text-cyan-600 dark:text-cyan-300">Interactive math lab</p>
           <p className="hidden truncate text-xs text-slate-500 dark:text-slate-400 sm:block">Visual explanations, simulations, and quizzes</p>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <div className="hidden sm:block"><TeacherModeToggle /></div>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

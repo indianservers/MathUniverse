@@ -1,9 +1,10 @@
-import { Eye, EyeOff, RotateCcw, Sigma } from "lucide-react";
+import { Dices, Eye, EyeOff, RotateCcw, Sigma } from "lucide-react";
 import { useMemo, useState } from "react";
 import FunctionGraphCanvas, { FunctionGraphView } from "../components/math-lab/FunctionGraphCanvas";
 import { FormulaBlock, MathErrorBox, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
+import { ApproxBadge, CopyResultButton, EmptyState, ExportImageButton, FullscreenButton, InfoCallout, LoadingSkeleton, PresetChips, ResetExampleButton } from "../components/ui/UiFeedback";
 import { GraphSample, approximateRoots, approximateVisibleRange, compileFunction, generateTableValues, sampleFunction } from "../utils/mathEngine/graphSampler";
 
 const DEFAULT_VIEW: FunctionGraphView = { xMin: -10, xMax: 10, yMin: -10, yMax: 10 };
@@ -27,22 +28,29 @@ export default function MathLabFunctionExplorer() {
   const roots = approximateRoots(base, view.xMin, view.xMax);
   const visibleRange = approximateVisibleRange(base, view.xMin, view.xMax);
   const symmetry = detectSymmetry(base);
+  const behaviorSummary = [
+    `Base function: ${base}`,
+    `Transformation: g(x) = ${formatCoefficient(a)} f(${formatCoefficient(b)}(x - ${formatNumber(h)})) + ${formatNumber(k)}`,
+    `Approx roots: ${roots.roots.length ? roots.roots.map(formatNumber).join(", ") : "none visible"}`,
+    `Approx visible range: ${visibleRange.min !== null && visibleRange.max !== null ? `${formatNumber(visibleRange.min)} to ${formatNumber(visibleRange.max)}` : "no real visible values"}`,
+    `Symmetry: ${symmetry}`,
+  ].join("\n");
 
   const notes = (
     <>
-      <SectionCard title="Transformation Meaning">
+      <InfoCallout title="Transformation meaning">
         <div className="space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
           <p><strong>h</strong> shifts the graph horizontally. Positive h moves the graph right.</p>
           <p><strong>k</strong> shifts the graph vertically.</p>
           <p><strong>a</strong> stretches, compresses, or reflects the graph vertically.</p>
           <p><strong>b</strong> stretches or compresses the graph horizontally.</p>
         </div>
-      </SectionCard>
-      <SectionCard title="Real-World Use">
+      </InfoCallout>
+      <InfoCallout title="Real-world use" tone="success">
         <div className="flex flex-wrap gap-2">
           {["physics motion", "economics curves", "signal processing", "engineering design"].map((item) => <span key={item} className="mini-chip">{item}</span>)}
         </div>
-      </SectionCard>
+      </InfoCallout>
     </>
   );
 
@@ -54,6 +62,11 @@ export default function MathLabFunctionExplorer() {
     >
       <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
         <SectionCard title="Base Function" description="Enter f(x), then transform it with the sliders.">
+          <div className="sticky top-20 z-20 mb-4 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/90">
+            <ResetExampleButton onClick={() => { setBase("x^2"); reset(); }} />
+            <button type="button" className="tool-button" onClick={tryRandom}><Dices className="h-4 w-4" />Try random</button>
+            <CopyResultButton value={behaviorSummary} />
+          </div>
           <label className="text-sm font-bold text-slate-600 dark:text-slate-300">
             f(x)
             <input
@@ -63,9 +76,7 @@ export default function MathLabFunctionExplorer() {
             />
           </label>
           <MathErrorBox error={original.error ?? transformed.error} />
-          <div className="mt-4 flex flex-wrap gap-2">
-            {EXAMPLES.map((example) => <button key={example} type="button" className="mini-chip" onClick={() => setBase(example)}>{example}</button>)}
-          </div>
+          <div className="mt-4"><PresetChips examples={EXAMPLES} onSelect={setBase} /></div>
           <div className="mt-6 space-y-4">
             <SliderControl label="Vertical stretch a" min={-3} max={3} step={0.1} value={a} onChange={setA} />
             <SliderControl label="Horizontal factor b" min={-3} max={3} step={0.1} value={b} onChange={(value) => setB(value === 0 ? 0.1 : value)} />
@@ -80,18 +91,30 @@ export default function MathLabFunctionExplorer() {
         </SectionCard>
 
         <SectionCard title="Original And Transformed Graph" description="Blue is f(x). Orange is g(x). Move across the graph or slider to trace the transformed curve.">
-          <FunctionGraphCanvas
-            view={view}
-            showGrid
-            showAxes
-            traceX={traceX}
-            selectedSeriesId="transformed"
-            onTraceChange={setTraceX}
-            series={[
-              { id: "original", label: `f(x) = ${base}`, color: "#06b6d4", visible: showOriginal && !original.error, points: original.points },
-              { id: "transformed", label: "g(x)", color: "#f97316", visible: showTransformed && !transformed.error, points: transformed.points },
-            ]}
-          />
+          <div className="mb-4 flex flex-wrap gap-2">
+            <span className="mini-chip"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full bg-cyan-500" />Original f(x)</span>
+            <span className="mini-chip"><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full bg-orange-500" />Transformed g(x)</span>
+            <FullscreenButton targetId="function-explorer-graph" />
+            <ExportImageButton targetId="function-explorer-graph" filename="function-explorer.png" />
+          </div>
+          <div id="function-explorer-graph">
+          {original.error || transformed.error ? (
+            <LoadingSkeleton label="Waiting for a valid base function" />
+          ) : (
+            <FunctionGraphCanvas
+              view={view}
+              showGrid
+              showAxes
+              traceX={traceX}
+              selectedSeriesId="transformed"
+              onTraceChange={setTraceX}
+              series={[
+                { id: "original", label: `f(x) = ${base}`, color: "#06b6d4", visible: showOriginal && !original.error, points: original.points },
+                { id: "transformed", label: "g(x)", color: "#f97316", visible: showTransformed && !transformed.error, points: transformed.points },
+              ]}
+            />
+          )}
+          </div>
           <label className="mt-4 block rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10">
             Trace x: {formatNumber(traceX)}
             <input className="slider-range mt-3 w-full" type="range" min={view.xMin} max={view.xMax} step={(view.xMax - view.xMin) / 400} value={traceX} onChange={(event) => setTraceX(Number(event.target.value))} />
@@ -111,6 +134,7 @@ export default function MathLabFunctionExplorer() {
         </SectionCard>
 
         <SectionCard title="Function Behavior" description="Analysis is approximate and uses real-valued samples in the visible window.">
+          <ApproxBadge />
           <div className="grid gap-3 md:grid-cols-2">
             <AnalysisTile label="Original roots" value={roots.roots.length ? roots.roots.map(formatNumber).join(", ") : "No visible root found"} />
             <AnalysisTile label="Visible range" value={visibleRange.min !== null && visibleRange.max !== null ? `${formatNumber(visibleRange.min)} to ${formatNumber(visibleRange.max)}` : "No real values visible"} />
@@ -135,7 +159,7 @@ export default function MathLabFunctionExplorer() {
         { title: "Transform the output", explanation: "The a and k controls stretch, reflect, and shift the output after f is evaluated.", formula: "g(x)=a f(b(x-h))+k" },
       ]} />
 
-      <ResultCard title="Explorer Summary" result={<p className="font-semibold">This page uses real sampling of the entered function and transformed function. Intercepts, range, and symmetry are shown as numeric checks, so the labels stay honest when exact symbolic facts are not available.</p>} verification={<p className="text-sm leading-6 text-slate-600 dark:text-slate-300">Try <span className="font-mono">x^2</span> with h = 2 and k = -4 to see a vertex shift to the right and down.</p>} />
+      <ResultCard title="Explorer Summary" result={<p className="font-semibold">This page uses real sampling of the entered function and transformed function. Intercepts, range, and symmetry are shown as numeric checks, so the labels stay honest when exact symbolic facts are not available.</p>} verification={<p className="text-sm leading-6 text-slate-600 dark:text-slate-300">Try <span className="font-mono">x^2</span> with h = 2 and k = -4 to see a vertex shift to the right and down.</p>} relatedTools={[{ label: "Graphing Calculator", route: "/math-lab/graphing-calculator" }, { label: "Calculus", route: "/math-lab/calculus" }]} />
     </MathLabLayout>
   );
 
@@ -145,6 +169,11 @@ export default function MathLabFunctionExplorer() {
     setH(0);
     setK(0);
     setTraceX(1);
+  }
+
+  function tryRandom() {
+    setBase(EXAMPLES[Math.floor(Math.random() * EXAMPLES.length)]);
+    reset();
   }
 }
 
@@ -189,6 +218,7 @@ function detectSymmetry(input: string) {
 }
 
 function ValueTable({ rows }: { rows: GraphSample[] }) {
+  if (!rows.length) return <EmptyState title="No table values" message="Enter a valid function to populate this table." />;
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10">
       <table className="w-full text-left text-sm">

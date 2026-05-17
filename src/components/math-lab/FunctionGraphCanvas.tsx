@@ -62,6 +62,8 @@ export default function FunctionGraphCanvas({
       onPointerMove={handlePointerMove}
     >
       <rect width={WIDTH} height={HEIGHT} fill="currentColor" className="text-white dark:text-slate-950" />
+      <text x="694" y="222" fill="#64748b" fontSize="13" fontWeight="800">x</text>
+      <text x="364" y="22" fill="#64748b" fontSize="13" fontWeight="800">y</text>
       {showGrid && <Grid view={view} toScreen={toScreen} />}
       {showAxes && <Axes view={view} toScreen={toScreen} />}
       {series.filter((item) => item.visible).map((item) => (
@@ -102,11 +104,11 @@ function Grid({ view, toScreen }: { view: FunctionGraphView; toScreen: (x: numbe
     <g>
       {xTicks.map((tick) => {
         const x = toScreen(tick, 0).x;
-        return <line key={`x-${tick}`} x1={x} x2={x} y1="0" y2={HEIGHT} stroke="#94a3b8" opacity="0.18" />;
+        return <line key={`x-${tick}`} x1={x} x2={x} y1="0" y2={HEIGHT} stroke="#94a3b8" opacity="0.28" />;
       })}
       {yTicks.map((tick) => {
         const y = toScreen(0, tick).y;
-        return <line key={`y-${tick}`} x1="0" x2={WIDTH} y1={y} y2={y} stroke="#94a3b8" opacity="0.18" />;
+        return <line key={`y-${tick}`} x1="0" x2={WIDTH} y1={y} y2={y} stroke="#94a3b8" opacity="0.28" />;
       })}
       {xTicks.map((tick) => {
         const point = toScreen(tick, 0);

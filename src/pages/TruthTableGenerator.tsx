@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
+import { CopyResultButton, FriendlyErrorBox, PresetChips, RelatedToolLinks, ResetExampleButton } from "../components/ui/UiFeedback";
 
 type Token = { type: "var" | "op" | "left" | "right"; value: string };
 
 const precedence: Record<string, number> = { "!": 4, "&": 3, "|": 2, ">": 1, "=": 0 };
+const examples = ["P & Q", "P | Q", "P -> Q", "(P & Q) -> R", "P <-> Q"];
 
 export default function TruthTableGenerator() {
   const [expression, setExpression] = useState("(P & Q) -> R");
@@ -14,14 +16,20 @@ export default function TruthTableGenerator() {
     <div className="space-y-6">
       <TopicHeader title="Truth Table Generator" subtitle="Enter propositional logic and generate every valuation automatically." difficulty="Logic Tool" estimatedMinutes={8} />
       <SectionCard title="Expression" description="Use ! for NOT, & for AND, | for OR, -> for implication, <-> for biconditional, and parentheses.">
+        <div className="sticky top-20 z-20 mb-4 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/90">
+          <CopyResultButton value={!parsed.error ? JSON.stringify(parsed.rows) : ""} label="Copy table" />
+          <ResetExampleButton onClick={() => setExpression("(P & Q) -> R")} />
+          <RelatedToolLinks links={[{ label: "Logic Tools", route: "/syllabus-lab/truth-table-generator" }, { label: "Math Lab", route: "/math-lab" }]} />
+        </div>
         <input className="w-full rounded-2xl border border-slate-200 bg-white p-4 font-mono text-lg dark:border-white/10 dark:bg-slate-950/60" value={expression} onChange={(event) => setExpression(event.target.value)} />
+        <div className="mt-4"><PresetChips examples={examples} onSelect={setExpression} /></div>
         <div className="mt-4 rounded-2xl bg-slate-100 p-4 font-mono text-sm dark:bg-white/10">
           {highlight(expression).map((part, index) => <span key={`${part.text}-${index}`} className={part.className}>{part.text}</span>)}
         </div>
       </SectionCard>
       <SectionCard title="Truth Table">
         {parsed.error ? (
-          <p className="rounded-2xl bg-rose-50 p-4 font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{parsed.error}</p>
+          <FriendlyErrorBox message={parsed.error} />
         ) : (
           <div className="mobile-safe-scroll">
             <table className="min-w-full overflow-hidden rounded-2xl text-sm">

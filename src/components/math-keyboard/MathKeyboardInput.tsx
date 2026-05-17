@@ -195,14 +195,14 @@ export default function MathKeyboardInput({
         </label>
         <div className="mobile-safe-scroll flex gap-2 pb-1 md:flex-wrap md:overflow-visible md:pb-0">
           {extraActions}
-          <button type="button" onClick={() => setCompact((value) => !value)} className="math-tool-button md:hidden" title={compact ? "Expand keyboard" : "Compact keyboard"} aria-label={compact ? "Expand keyboard" : "Compact keyboard"}>
+          <button type="button" onClick={() => setCompact((value) => !value)} className="math-tool-button tooltip-icon md:hidden" title={compact ? "Expand keyboard" : "Compact keyboard"} aria-label={compact ? "Expand keyboard" : "Compact keyboard"} data-tooltip={compact ? "Expand keyboard" : "Compact keyboard"}>
             {compact ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </button>
-          <button type="button" onClick={() => moveCaret(-1)} className="math-tool-button" title="Move cursor left" aria-label="Move cursor left"><ArrowLeft className="h-4 w-4" /></button>
-          <button type="button" onClick={() => moveCaret(1)} className="math-tool-button" title="Move cursor right" aria-label="Move cursor right"><ArrowRight className="h-4 w-4" /></button>
-          <button type="button" onClick={onBackspace ?? deleteLeft} className="math-tool-button" title="Backspace" aria-label="Backspace"><Delete className="h-4 w-4" /></button>
-          <button type="button" onClick={clearValue} className="math-tool-button-danger" title="Clear" aria-label="Clear"><Eraser className="h-4 w-4" /></button>
-          {onSubmit && <button type="button" onClick={onSubmit} className="action-primary py-2"><CornerDownLeft className="h-4 w-4" />Run</button>}
+          <button type="button" onClick={() => moveCaret(-1)} className="math-tool-button tooltip-icon" title="Move cursor left" aria-label="Move cursor left" data-tooltip="Move cursor left"><ArrowLeft className="h-4 w-4" /></button>
+          <button type="button" onClick={() => moveCaret(1)} className="math-tool-button tooltip-icon" title="Move cursor right" aria-label="Move cursor right" data-tooltip="Move cursor right"><ArrowRight className="h-4 w-4" /></button>
+          <button type="button" onClick={onBackspace ?? deleteLeft} className="math-tool-button tooltip-icon" title="Backspace" aria-label="Backspace" data-tooltip="Backspace"><Delete className="h-4 w-4" /></button>
+          <button type="button" onClick={clearValue} className="math-tool-button-danger tooltip-icon" title="Clear" aria-label="Clear" data-tooltip="Clear input"><Eraser className="h-4 w-4" /></button>
+          {onSubmit && <button type="button" onClick={onSubmit} className="action-primary py-2" title="Run calculation (Ctrl/Cmd+Enter)"><CornerDownLeft className="h-4 w-4" />Run</button>}
         </div>
       </div>
 

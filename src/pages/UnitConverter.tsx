@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
+import { CopyResultButton, ExampleValuesButton, RelatedToolLinks, ResetValuesButton, TermTooltip } from "../components/ui/UiFeedback";
 
 type Unit = { key: string; label: string; dimension: string; toBase: number; chain: string };
 
@@ -29,6 +30,11 @@ export default function UnitConverter() {
     <div className="space-y-6">
       <TopicHeader title="Unit Converter with Dimensional Analysis" subtitle="Convert SI and imperial units while seeing the unit-cancellation chain." difficulty="Tool" estimatedMinutes={6} />
       <SectionCard title="Converter">
+        <div className="sticky top-20 z-20 mb-4 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/90">
+          <CopyResultButton value={`${value} ${source.key} = ${round(result)} ${target.key}`} />
+          <ResetValuesButton onClick={() => { setValue(0); setFrom("mph"); setTo("mps"); }} />
+          <ExampleValuesButton onClick={() => { setValue(60); setFrom("mph"); setTo("mps"); }} />
+        </div>
         <div className="grid gap-5 lg:grid-cols-[1fr_240px_240px]">
           <SliderControl label="Input value" value={value} min={0} max={500} step={0.1} onChange={setValue} />
           <UnitSelect label="From" value={from} units={units} onChange={(next) => { setFrom(next); const nextUnit = units.find((unit) => unit.key === next)!; setTo(units.find((unit) => unit.dimension === nextUnit.dimension && unit.key !== next)?.key ?? next); }} />
@@ -38,10 +44,14 @@ export default function UnitConverter() {
       <SectionCard title="Dimensional Chain">
         <div className="space-y-4">
           <p className="text-3xl font-black text-cyan-700 dark:text-cyan-200">{value} {source.key} = {round(result)} {target.key}</p>
+          <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
+            <TermTooltip term="Dimensional analysis" tip="A method of converting units by multiplying ratios that cancel old units and leave the desired unit." /> checks that the units cancel correctly before trusting the number.
+          </p>
           <div className="rounded-2xl bg-slate-100 p-4 font-mono text-sm leading-7 dark:bg-white/10">
             {value} x ({source.chain}) x base-unit bridge x 1 / ({target.chain}) = {round(result)} {target.label}
           </div>
           <p className="text-sm text-slate-600 dark:text-slate-300">Dimension check: {source.dimension} cancels to {target.dimension}, so the conversion is valid.</p>
+          <RelatedToolLinks links={[{ label: "Calculator", route: "/calculator" }, { label: "Math Lab", route: "/math-lab" }]} />
         </div>
       </SectionCard>
     </div>

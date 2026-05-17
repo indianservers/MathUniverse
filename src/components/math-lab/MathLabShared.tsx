@@ -1,8 +1,17 @@
 import katex from "katex";
-import { ArrowLeft, ChevronLeft, ChevronRight, LucideIcon } from "lucide-react";
-import { ReactNode, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight, LucideIcon } from "lucide-react";
+import { ReactNode, useEffect, useMemo, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import SectionCard from "../ui/SectionCard";
+import { BookmarkToolButton, CollapsibleTheorySection, FriendlyErrorBox, MiniTableOfContents, PracticeModeToggle, RelatedToolLinks, ShareSetupButton } from "../ui/UiFeedback";
+
+const exploredToolsKey = "math-universe-explored-tools";
+const defaultRelatedTools = [
+  { label: "Graphing Calculator", route: "/math-lab/graphing-calculator" },
+  { label: "Function Explorer", route: "/math-lab/function-explorer" },
+  { label: "Matrix Operations", route: "/matrices" },
+  { label: "Math Lab", route: "/math-lab" },
+];
 
 export function MathLabLayout({
   title,
@@ -15,6 +24,27 @@ export function MathLabLayout({
   children: ReactNode;
   notes?: ReactNode;
 }) {
+  const [notesOpen, setNotesOpen] = useState(true);
+  const location = useLocation();
+  const tocItems = [
+    { label: "Overview", id: "tool-overview" },
+    { label: "Workspace", id: "tool-workspace" },
+    { label: "Related tools", id: "related-tools" },
+  ];
+
+  useEffect(() => {
+    document.title = `${title} | Math Universe`;
+    try {
+      const current = JSON.parse(localStorage.getItem(exploredToolsKey) ?? "[]");
+      const list = Array.isArray(current) ? current.filter((item): item is string => typeof item === "string") : [];
+      if (!list.includes(location.pathname)) {
+        localStorage.setItem(exploredToolsKey, JSON.stringify([location.pathname, ...list]));
+      }
+    } catch {
+      localStorage.setItem(exploredToolsKey, JSON.stringify([location.pathname]));
+    }
+  }, [location.pathname, title]);
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
@@ -24,8 +54,13 @@ export function MathLabLayout({
         <span>/</span>
         <span className="text-cyan-700 dark:text-cyan-200">{title}</span>
       </div>
-      <Link to="/math-lab" className="action-secondary w-fit"><ArrowLeft className="h-4 w-4" />Back to Math Lab</Link>
-      <SectionCard className="overflow-hidden">
+      <div className="sticky top-20 z-20 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/85">
+        <Link to="/math-lab" className="action-secondary w-fit"><ArrowLeft className="h-4 w-4" />Back to Math Lab</Link>
+        <ShareSetupButton />
+        <BookmarkToolButton id={location.pathname} title={title} />
+        <PracticeModeToggle />
+      </div>
+      <SectionCard id="tool-overview" className="overflow-hidden !p-4 md:!p-5">
         <div className="rounded-2xl bg-gradient-to-br from-slate-950 via-cyan-700 to-violet-700 p-6 text-white md:p-8">
           <p className="text-sm font-black uppercase text-cyan-100/80">Advanced Interactive Math Tools</p>
           <h1 className="mt-3 text-3xl font-black md:text-5xl">{title}</h1>
@@ -33,8 +68,26 @@ export function MathLabLayout({
         </div>
       </SectionCard>
       <div className={notes ? "grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]" : ""}>
-        <div className="min-w-0 space-y-6">{children}</div>
-        {notes && <aside className="space-y-6">{notes}</aside>}
+        <div id="tool-workspace" className="min-w-0 space-y-6">
+          {children}
+          <SectionCard id="related-tools" title="Related Tools">
+            <RelatedToolLinks links={defaultRelatedTools.filter((tool) => tool.route !== location.pathname)} />
+          </SectionCard>
+        </div>
+        {notes && (
+          <aside className="space-y-4 xl:sticky xl:top-36 xl:self-start">
+            <MiniTableOfContents items={tocItems} />
+            <button type="button" className="tool-button w-full justify-between" onClick={() => setNotesOpen((value) => !value)}>
+              Educational notes
+              <ChevronDown className={`h-4 w-4 transition ${notesOpen ? "rotate-180" : ""}`} />
+            </button>
+            {notesOpen && (
+              <CollapsibleTheorySection title="Theory and guidance" defaultOpen>
+                <div className="space-y-6">{notes}</div>
+              </CollapsibleTheorySection>
+            )}
+          </aside>
+        )}
       </div>
     </div>
   );
@@ -56,20 +109,25 @@ export function MathToolCard({
   route: string;
 }) {
   return (
-    <Link to={route} className="group rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm transition hover:-translate-y-1 hover:border-cyan-300 hover:shadow-xl hover:shadow-cyan-500/10 dark:border-white/10 dark:bg-white/5">
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-100 text-cyan-700 transition group-hover:scale-105 dark:bg-cyan-400/15 dark:text-cyan-200">
-          <Icon className="h-6 w-6" />
+    <div className="group rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm transition hover:-translate-y-1 hover:border-cyan-300 hover:shadow-xl hover:shadow-cyan-500/10 dark:border-white/10 dark:bg-white/5">
+      <Link to={route} className="block">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-100 text-cyan-700 transition group-hover:scale-105 dark:bg-cyan-400/15 dark:text-cyan-200">
+            <Icon className="h-6 w-6" />
+          </div>
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-600 dark:bg-white/10 dark:text-slate-300">{difficulty}</span>
         </div>
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-600 dark:bg-white/10 dark:text-slate-300">{difficulty}</span>
+        <h2 className="mt-4 text-xl font-black">{title}</h2>
+        <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{description}</p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {useCases.slice(0, 4).map((item) => <span key={item} className="mini-chip">{item}</span>)}
+        </div>
+        <span className="mt-5 inline-flex rounded-2xl bg-slate-950 px-4 py-3 text-sm font-bold text-white transition group-hover:bg-cyan-600 dark:bg-white dark:text-slate-950">Open</span>
+      </Link>
+      <div className="mt-4 border-t border-slate-200 pt-4 dark:border-white/10">
+        <BookmarkToolButton id={route} title={title} />
       </div>
-      <h2 className="mt-4 text-xl font-black">{title}</h2>
-      <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{description}</p>
-      <div className="mt-4 flex flex-wrap gap-2">
-        {useCases.slice(0, 4).map((item) => <span key={item} className="mini-chip">{item}</span>)}
-      </div>
-      <span className="mt-5 inline-flex rounded-2xl bg-slate-950 px-4 py-3 text-sm font-bold text-white transition group-hover:bg-cyan-600 dark:bg-white dark:text-slate-950">Open</span>
-    </Link>
+    </div>
   );
 }
 
@@ -104,18 +162,19 @@ export function StepPanel({ steps }: { steps: Array<{ title: string; explanation
   );
 }
 
-export function ResultCard({ title = "Result", result, verification }: { title?: string; result: ReactNode; verification?: ReactNode }) {
+export function ResultCard({ title = "Result", result, verification, relatedTools = [] }: { title?: string; result: ReactNode; verification?: ReactNode; relatedTools?: Array<{ label: string; route: string }> }) {
   return (
     <SectionCard title={title}>
-      <div className="rounded-2xl bg-emerald-50 p-4 text-emerald-900 dark:bg-emerald-400/10 dark:text-emerald-100">{result}</div>
+      <div className="result-pop rounded-2xl bg-emerald-50 p-4 text-emerald-900 dark:bg-emerald-400/10 dark:text-emerald-100">{result}</div>
       {verification && <div className="mt-4 rounded-2xl bg-slate-100 p-4 dark:bg-white/10">{verification}</div>}
+      <div className="mt-4"><RelatedToolLinks links={relatedTools} /></div>
     </SectionCard>
   );
 }
 
 export function MathErrorBox({ error }: { error?: string }) {
   if (!error) return null;
-  return <div className="rounded-2xl border border-rose-300 bg-rose-50 p-4 font-semibold text-rose-700 dark:border-rose-400/30 dark:bg-rose-400/10 dark:text-rose-100">{error}</div>;
+  return <FriendlyErrorBox message={error} />;
 }
 
 export function ModuleShell({ title, purpose, planned }: { title: string; purpose: string; planned: string[] }) {

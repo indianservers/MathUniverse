@@ -7,6 +7,7 @@ import type { HistoryItem } from "../components/calculator/CalculatorHistory";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
+import { CopyResultButton, ExampleValuesButton, RelatedToolLinks, ResetValuesButton, TermTooltip } from "../components/ui/UiFeedback";
 import { calculatorExamples } from "../data/calculatorExamples";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { evaluateExpression } from "../utils/calculator";
@@ -44,6 +45,20 @@ export default function ScientificCalculator() {
     setExpression("");
     setResult("");
     setError("");
+  };
+
+  const resetValues = () => {
+    setExpression("");
+    setResult("");
+    setError("");
+    setSymbolicVariable("x");
+  };
+
+  const setExampleValues = () => {
+    setExpression("sin(30)+sqrt(144)");
+    setResult("");
+    setError("");
+    setSymbolicVariable("x");
   };
 
   const backspace = () => {
@@ -96,17 +111,22 @@ export default function ScientificCalculator() {
                 Expressions are parsed by a restricted evaluator with approved math functions only.
               </p>
             </div>
-            <div className="flex w-fit rounded-2xl bg-slate-100 p-1 dark:bg-white/10">
-              {(["DEG", "RAD"] as AngleMode[]).map((mode) => (
-                <button
-                  key={mode}
-                  type="button"
-                  className={`rounded-xl px-4 py-2 text-sm font-bold transition ${angleMode === mode ? "bg-cyan-500 text-white shadow" : "text-slate-600 hover:bg-white dark:text-slate-300 dark:hover:bg-white/10"}`}
-                  onClick={() => setAngleMode(mode)}
-                >
-                  {mode}
-                </button>
-              ))}
+            <div className="sticky top-20 z-20 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/90">
+              <div className="flex w-fit rounded-2xl bg-slate-100 p-1 dark:bg-white/10">
+                {(["DEG", "RAD"] as AngleMode[]).map((mode) => (
+                  <button
+                    key={mode}
+                    type="button"
+                    className={`rounded-xl px-4 py-2 text-sm font-bold transition ${angleMode === mode ? "bg-cyan-500 text-white shadow" : "text-slate-600 hover:bg-white dark:text-slate-300 dark:hover:bg-white/10"}`}
+                    onClick={() => setAngleMode(mode)}
+                  >
+                    {mode}
+                  </button>
+                ))}
+              </div>
+              <CopyResultButton value={result} />
+              <ResetValuesButton onClick={resetValues} />
+              <ExampleValuesButton onClick={setExampleValues} />
             </div>
           </div>
 
@@ -143,6 +163,9 @@ export default function ScientificCalculator() {
 
       <SectionCard title="Supported Expressions" description="Examples: 2+3*4, sin(30), cos(60), sqrt(25), log(100), ln(e), 2^8, factorial(5), and pi*2. Trigonometric functions respect the DEG/RAD switch." />
       <SectionCard title="Symbolic Differentiation & Integration" description="Nerdamer reads the current expression symbolically and renders exact derivative and antiderivative forms.">
+        <p className="mb-4 text-sm leading-6 text-slate-600 dark:text-slate-300">
+          <TermTooltip term="Symbolic" tip="Exact algebraic manipulation, not just decimal approximation." /> results keep formulas like x^2 instead of only numbers. An <TermTooltip term="antiderivative" tip="A function whose derivative gives the original function." /> is the reverse idea of a derivative.
+        </p>
         <div className="grid gap-4 lg:grid-cols-[180px_minmax(0,1fr)_minmax(0,1fr)]">
           <label className="block rounded-2xl border border-slate-200 bg-white/75 p-4 dark:border-white/10 dark:bg-slate-950/40">
             <span className="text-sm font-semibold">Variable</span>
@@ -150,6 +173,9 @@ export default function ScientificCalculator() {
           </label>
           <SymbolicResultCard title={`d/d${symbolic?.variable ?? "x"}`} value={symbolic?.derivative?.result} fallback="Enter an expression using x, such as x^3+sin(x)." />
           <SymbolicResultCard title={`∫ f(${symbolic?.variable ?? "x"}) d${symbolic?.variable ?? "x"}`} value={symbolic?.integral?.result} fallback="Nerdamer will show supported antiderivatives here." />
+        </div>
+        <div className="mt-4">
+          <RelatedToolLinks links={[{ label: "Step Solver", route: "/problem-solver" }, { label: "CAS Solver", route: "/math-lab/cas-solver" }, { label: "Graph It", route: "/math-lab/graphing-calculator" }]} />
         </div>
       </SectionCard>
       <Link to="/syllabus" className="action-secondary w-fit">Open Syllabus Navigator</Link>

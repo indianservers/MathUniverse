@@ -2,15 +2,16 @@ import { ReactNode } from "react";
 import { clsx } from "clsx";
 
 type SectionCardProps = {
+  id?: string;
   title?: string;
   description?: string;
   children?: ReactNode;
   className?: string;
 };
 
-export default function SectionCard({ title, description, children, className }: SectionCardProps) {
+export default function SectionCard({ id, title, description, children, className }: SectionCardProps) {
   return (
-    <section className={clsx("glass-card group/section relative overflow-hidden rounded-2xl p-5 md:p-6 hover:border-cyan-200/80 dark:hover:border-cyan-400/25", className)}>
+    <section id={id} className={clsx("glass-card group/section relative overflow-hidden rounded-2xl p-5 md:p-6 hover:border-cyan-200/80 dark:hover:border-cyan-400/25", className)}>
       <div className="gradient-line absolute left-0 top-0 w-full" />
       {(title || description) && (
         <div className="mb-5 flex items-start gap-3">

@@ -1,11 +1,12 @@
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { useMemo, useState } from "react";
-import { Box, Grid3X3, RotateCcw, ScanSearch } from "lucide-react";
+import { Box, Dices, Grid3X3, RotateCcw, ScanSearch } from "lucide-react";
 import { FormulaBlock, MathErrorBox, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
+import { ApproxBadge, CopyResultButton, EmptyState, ExportImageButton, FullscreenButton, InfoCallout, LoadingSkeleton, PresetChips, ResetExampleButton } from "../components/ui/UiFeedback";
 import { SurfaceSampleResult, generateSurfaceMeshData, sampleSurface } from "../utils/mathEngine/graph3dUtils";
 
 const examples = [
@@ -27,22 +28,29 @@ export default function MathLab3DGraphing() {
 
   const surface = useMemo(() => sampleSurface(expression, -xRange, xRange, -yRange, yRange, resolution), [expression, xRange, yRange, resolution]);
   const sampleRows = useMemo(() => surface.grid.flatMap((row, rowIndex) => row.filter((_, colIndex) => rowIndex % Math.max(1, Math.floor(surface.grid.length / 4)) === 0 && colIndex % Math.max(1, Math.floor(row.length / 4)) === 0)).slice(0, 16), [surface.grid]);
+  const surfaceSummary = [
+    `Surface: z = ${expression}`,
+    `Domain: x in [${-xRange}, ${xRange}], y in [${-yRange}, ${yRange}]`,
+    `Resolution: ${resolution} x ${resolution}`,
+    `Minimum z: ${surface.minZ === null ? "no real values" : format(surface.minZ)}`,
+    `Maximum z: ${surface.maxZ === null ? "no real values" : format(surface.maxZ)}`,
+  ].join("\n");
 
   const notes = (
     <>
-      <SectionCard title="Common Mistakes">
-        <ul className="space-y-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+      <InfoCallout title="Common mistakes" tone="warning">
+        <ul className="space-y-2">
           <li>Use z = f(x,y), not y = f(x).</li>
           <li>High resolution creates smoother meshes but can slow older devices.</li>
           <li>A saddle surface rises in one direction and falls in another.</li>
           <li>Color represents height, not temperature or density.</li>
         </ul>
-      </SectionCard>
-      <SectionCard title="Real-World Use">
+      </InfoCallout>
+      <InfoCallout title="Real-world use" tone="success">
         <div className="flex flex-wrap gap-2">
           {["multivariable calculus", "physics fields", "optimization", "machine learning loss surfaces", "engineering surfaces"].map((item) => <span key={item} className="mini-chip">{item}</span>)}
         </div>
-      </SectionCard>
+      </InfoCallout>
     </>
   );
 
@@ -54,6 +62,11 @@ export default function MathLab3DGraphing() {
     >
       <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
         <SectionCard title="Surface Input" description="Enter a two-variable expression. You can include sin, cos, tan, sqrt, abs, ln, log, exp, pi, and e.">
+          <div className="sticky top-20 z-20 mb-4 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/90">
+            <ResetExampleButton onClick={() => { setExpression("sin(x) * cos(y)"); setXRange(3); setYRange(3); setResolution(44); setCameraKey((value) => value + 1); }} />
+            <button type="button" className="tool-button" onClick={tryRandom}><Dices className="h-4 w-4" />Try random</button>
+            <CopyResultButton value={surface.error ? "" : surfaceSummary} />
+          </div>
           <label className="text-sm font-bold text-slate-600 dark:text-slate-300">
             z =
             <input
@@ -63,9 +76,7 @@ export default function MathLab3DGraphing() {
             />
           </label>
           <MathErrorBox error={surface.error} />
-          <div className="mt-4 flex flex-wrap gap-2">
-            {examples.map((example) => <button key={example} type="button" className="mini-chip" onClick={() => setExpression(example)}>{example}</button>)}
-          </div>
+          <div className="mt-4"><PresetChips examples={examples} onSelect={setExpression} /></div>
           <div className="mt-5 space-y-4">
             <SliderControl label="3D x range" min={1} max={8} step={0.25} value={xRange} onChange={setXRange} />
             <SliderControl label="3D y range" min={1} max={8} step={0.25} value={yRange} onChange={setYRange} />
@@ -80,22 +91,32 @@ export default function MathLab3DGraphing() {
             <button type="button" className={showAxes ? "action-primary" : "tool-button"} onClick={() => setShowAxes((value) => !value)}><ScanSearch className="h-4 w-4" />Axes</button>
             <button type="button" className={showPoints ? "action-primary" : "tool-button"} onClick={() => setShowPoints((value) => !value)}><Box className="h-4 w-4" />Sample Points</button>
             <button type="button" className="tool-button" onClick={() => setCameraKey((value) => value + 1)}><RotateCcw className="h-4 w-4" />Reset Camera</button>
+            <FullscreenButton targetId="surface-3d-panel" />
+            <ExportImageButton targetId="surface-3d-panel" filename="3d-surface.png" />
           </div>
-          <ThreeSceneWrapper key={cameraKey} height="620px" mobileHeight="520px" interactionLabel="Drag rotate - scroll zoom">
-            <color attach="background" args={["#020617"]} />
-            <ambientLight intensity={0.72} />
-            <directionalLight position={[5, 8, 6]} intensity={1.35} />
-            <SurfaceMesh samples={surface} />
-            {showPoints && <SamplePointCloud samples={surface} />}
-            {showGrid && <gridHelper args={[Math.max(xRange, yRange) * 2.2, 18, "#38bdf8", "#334155"]} />}
-            {showAxes && <axesHelper args={[Math.max(xRange, yRange) * 1.25]} />}
-            <OrbitControls enableDamping dampingFactor={0.08} />
-          </ThreeSceneWrapper>
+          <div id="surface-3d-panel">
+            {surface.error ? (
+              <LoadingSkeleton label="Waiting for a valid z = f(x,y) surface" />
+            ) : (
+              <ThreeSceneWrapper key={cameraKey} height="620px" mobileHeight="520px" interactionLabel="Drag rotate - scroll zoom">
+                <color attach="background" args={["#020617"]} />
+                <ambientLight intensity={0.72} />
+                <directionalLight position={[5, 8, 6]} intensity={1.35} />
+                <SurfaceMesh samples={surface} />
+                {showPoints && <SamplePointCloud samples={surface} />}
+                {showGrid && <gridHelper args={[Math.max(xRange, yRange) * 2.2, 18, "#38bdf8", "#334155"]} />}
+                {showAxes && <axesHelper args={[Math.max(xRange, yRange) * 1.25]} />}
+                <AxisLabels scale={Math.max(xRange, yRange) * 1.25} />
+                <OrbitControls enableDamping dampingFactor={0.08} />
+              </ThreeSceneWrapper>
+            )}
+          </div>
         </SectionCard>
       </div>
 
       <div className="grid gap-6 xl:grid-cols-2">
         <SectionCard title="Surface Explanation">
+          <ApproxBadge />
           <FormulaBlock title="Entered Surface" formula={`z=${expression.replace(/\*/g, "\\cdot ")}`} />
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <Metric label="Domain window" value={`x in [${-xRange}, ${xRange}], y in [${-yRange}, ${yRange}]`} />
@@ -107,20 +128,24 @@ export default function MathLab3DGraphing() {
         </SectionCard>
 
         <SectionCard title="Sample Points Table" description="Selected points from the current surface sampling grid.">
-          <div className="max-h-96 overflow-auto rounded-2xl border border-slate-200 dark:border-white/10">
-            <table className="w-full text-left text-sm">
-              <thead className="sticky top-0 bg-slate-100 dark:bg-slate-900"><tr><th className="p-3">x</th><th className="p-3">y</th><th className="p-3">z</th></tr></thead>
-              <tbody>
-                {sampleRows.map((point) => (
-                  <tr key={`${point.x}-${point.y}`} className="border-t border-slate-100 dark:border-white/10">
-                    <td className="p-3 font-mono">{format(point.x)}</td>
-                    <td className="p-3 font-mono">{format(point.y)}</td>
-                    <td className="p-3 font-mono">{point.valid && point.z !== null ? format(point.z) : "undefined"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {sampleRows.length ? (
+            <div className="max-h-96 overflow-auto rounded-2xl border border-slate-200 dark:border-white/10">
+              <table className="w-full text-left text-sm">
+                <thead className="sticky top-0 bg-slate-100 dark:bg-slate-900"><tr><th className="p-3">x</th><th className="p-3">y</th><th className="p-3">z</th></tr></thead>
+                <tbody>
+                  {sampleRows.map((point) => (
+                    <tr key={`${point.x}-${point.y}`} className="border-t border-slate-100 dark:border-white/10">
+                      <td className="p-3 font-mono">{format(point.x)}</td>
+                      <td className="p-3 font-mono">{format(point.y)}</td>
+                      <td className="p-3 font-mono">{point.valid && point.z !== null ? format(point.z) : "undefined"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <EmptyState title="No surface samples" message="Enter a valid z = f(x,y) expression to fill the sample table." />
+          )}
         </SectionCard>
       </div>
 
@@ -130,9 +155,14 @@ export default function MathLab3DGraphing() {
         { title: "Build a height mesh", explanation: "Neighboring sample points become triangles, with vertex color mapped to height.", result: "Drag, zoom, and adjust resolution to study the surface." },
       ]} />
 
-      <ResultCard title="3D Graphing Status" result={<p className="font-semibold">This is an interactive Three.js surface graph, not a static image. Rotate, zoom, change ranges, change resolution, and inspect the numeric sample table.</p>} />
+      <ResultCard title="3D Graphing Status" result={<p className="font-semibold">This is an interactive Three.js surface graph, not a static image. Rotate, zoom, change ranges, change resolution, and inspect the numeric sample table.</p>} relatedTools={[{ label: "Graphing Calculator", route: "/math-lab/graphing-calculator" }, { label: "Linear Algebra Lab", route: "/math-lab/linear-algebra" }]} />
     </MathLabLayout>
   );
+
+  function tryRandom() {
+    setExpression(examples[Math.floor(Math.random() * examples.length)]);
+    setCameraKey((value) => value + 1);
+  }
 }
 
 function SurfaceMesh({ samples }: { samples: SurfaceSampleResult }) {
@@ -166,6 +196,33 @@ function SamplePointCloud({ samples }: { samples: SurfaceSampleResult }) {
       ))}
     </group>
   );
+}
+
+function AxisLabels({ scale }: { scale: number }) {
+  return (
+    <group>
+      <TextSprite text="x" position={[scale, 0, 0]} color="#67e8f9" />
+      <TextSprite text="y" position={[0, 0, scale]} color="#c4b5fd" />
+      <TextSprite text="z" position={[0, scale, 0]} color="#86efac" />
+    </group>
+  );
+}
+
+function TextSprite({ text, position, color }: { text: string; position: [number, number, number]; color: string }) {
+  const canvas = useMemo(() => {
+    const element = document.createElement("canvas");
+    element.width = 128;
+    element.height = 64;
+    const ctx = element.getContext("2d");
+    if (ctx) {
+      ctx.fillStyle = color;
+      ctx.font = "bold 44px sans-serif";
+      ctx.fillText(text, 40, 46);
+    }
+    return element;
+  }, [color, text]);
+  const texture = useMemo(() => new THREE.CanvasTexture(canvas), [canvas]);
+  return <sprite position={position} scale={[0.5, 0.25, 1]}><spriteMaterial map={texture} transparent /></sprite>;
 }
 
 function verticalScale(samples: SurfaceSampleResult) {

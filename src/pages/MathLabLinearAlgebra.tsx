@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { FormulaBlock, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
+import { ResetExampleButton } from "../components/ui/UiFeedback";
 import {
   Vector2,
   Vector3,
@@ -105,6 +106,9 @@ export default function MathLabLinearAlgebra() {
 
       <div className="grid gap-6 xl:grid-cols-[390px_minmax(0,1fr)]">
         <SectionCard title="Vector Inputs" description="Default v = [3,4], so its magnitude is 5.">
+          <div className="sticky top-20 z-20 mb-4 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/90 p-2 backdrop-blur dark:border-white/10 dark:bg-slate-950/90">
+            <ResetExampleButton onClick={() => { setU([3, 4]); setV([5, 0]); setA(1); setB(1); }} />
+          </div>
           <Vector2Input label="u" value={u} onChange={setU} />
           <Vector2Input label="v" value={v} onChange={setV} />
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
