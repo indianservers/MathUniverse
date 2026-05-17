@@ -9,7 +9,7 @@ type StatCardProps = {
 
 export default function StatCard({ label, value, icon: Icon, accent }: StatCardProps) {
   return (
-    <div className="glass-card rounded-2xl p-5">
+    <div className="glass-card rounded-2xl p-5 hover:-translate-y-0.5 hover:border-cyan-200/80 dark:hover:border-cyan-400/25">
       <div className="flex items-center gap-4">
         <div className={`rounded-2xl bg-gradient-to-br ${accent} p-3 text-white shadow-lg`}>
           <Icon className="h-5 w-5" />

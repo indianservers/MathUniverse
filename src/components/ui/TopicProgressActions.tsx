@@ -14,7 +14,7 @@ export default function TopicProgressActions({ topicId }: TopicProgressActionsPr
       <button
         type="button"
         onClick={() => markTopicCompleted(topicId)}
-        className="inline-flex items-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 dark:bg-white dark:text-slate-950"
+        className="action-primary"
       >
         <CheckCircle2 className="h-4 w-4" />
         {progress >= 100 ? "Completed" : "Mark as Complete"}

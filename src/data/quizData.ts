@@ -12,7 +12,7 @@ export type QuizQuestion = {
 
 const q = (topic: string, id: string, question: string, options: string[], correctAnswerIndex: number, explanation: string, difficulty: QuizDifficulty = "Easy"): QuizQuestion => ({ id, topic, question, options, correctAnswerIndex, explanation, difficulty });
 
-export const quizTopics = ["Algebra", "Geometry", "Trigonometry", "Calculus", "Complex Numbers", "Statistics", "Linear Algebra", "AI Applications"];
+export const quizTopics = ["Algebra", "Geometry", "Trigonometry", "Calculus", "Complex Numbers", "Linear Algebra", "AI Applications"];
 
 export const quizData: QuizQuestion[] = [
   q("Algebra", "alg-1", "In y = mx + c, what does m represent?", ["Slope", "Area", "Radius", "Root"], 0, "m is the slope or rate of change."),
@@ -40,11 +40,6 @@ export const quizData: QuizQuestion[] = [
   q("Complex Numbers", "cx-3", "Euler formula is", ["e^(iθ)=cosθ+i sinθ", "a²+b²=c²", "y=mx+c", "V=s³"], 0, "Euler links complex exponentials to rotation."),
   q("Complex Numbers", "cx-4", "Euler identity is", ["e^(iπ)+1=0", "sin²+cos²=2", "i²=1", "πr²=0"], 0, "It connects e, i, π, 1, and 0."),
   q("Complex Numbers", "cx-5", "Complex multiplication usually", ["Rotates and scales", "Only translates", "Only counts", "Sorts data"], 0, "Angles add and magnitudes multiply."),
-  q("Statistics", "stat-1", "Mean is", ["Middle value", "Most frequent", "Average", "Spread"], 2, "Mean is sum divided by count."),
-  q("Statistics", "stat-2", "Median is", ["Middle of sorted data", "Largest value", "Smallest value", "Noise"], 0, "Median is the central sorted value."),
-  q("Statistics", "stat-3", "Mode is", ["Most frequent value", "Average", "Range", "Slope"], 0, "Mode is the value appearing most often."),
-  q("Statistics", "stat-4", "Standard deviation measures", ["Spread", "Angle", "Area", "Encryption"], 0, "It measures typical distance from the mean."),
-  q("Statistics", "stat-5", "Correlation measures", ["Relationship strength", "Triangle area", "Derivative", "Volume"], 0, "Correlation summarizes linear association."),
   q("Linear Algebra", "lin-1", "Magnitude of [x, y] is", ["x+y", "sqrt(x²+y²)", "xy", "x-y"], 1, "Vector length comes from Pythagoras."),
   q("Linear Algebra", "lin-2", "A matrix transformation can", ["Move vectors/shapes", "Only roll dice", "Only encrypt letters", "Only compute mean"], 0, "Matrices transform coordinates."),
   q("Linear Algebra", "lin-3", "2x2 determinant ad-bc indicates", ["Area scaling/orientation", "Frequency", "Median", "Radius only"], 0, "Determinant shows area scale and flips."),

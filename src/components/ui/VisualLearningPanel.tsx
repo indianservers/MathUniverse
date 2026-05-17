@@ -12,7 +12,7 @@ type VisualLearningPanelProps = {
 
 export default function VisualLearningPanel({ concept, formula, changes, realWorldUse, steps, tasks, warning }: VisualLearningPanelProps) {
   return (
-    <SectionCard title="Visual Learning Mode">
+    <SectionCard title="Visual Learning Mode" className="border-cyan-200/80 dark:border-cyan-400/20">
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="space-y-3">
           <Info label="Concept" value={concept} />

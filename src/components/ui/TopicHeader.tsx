@@ -14,11 +14,11 @@ type TopicHeaderProps = {
 export default function TopicHeader({ title, subtitle, difficulty, estimatedMinutes, formula, progress = 0 }: TopicHeaderProps) {
   return (
     <div className="space-y-6">
-      <div className="relative overflow-hidden rounded-2xl border border-white/60 bg-gradient-to-br from-white via-cyan-50 to-violet-100 p-6 shadow-glow dark:border-white/10 dark:from-slate-900 dark:via-slate-900 dark:to-violet-950">
+      <div className="relative overflow-hidden rounded-2xl border border-white/60 bg-gradient-to-br from-white via-cyan-50 to-violet-100 p-6 shadow-glow dark:border-white/10 dark:from-slate-900 dark:via-slate-900 dark:to-violet-950 md:p-8">
         <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-cyan-300/20 blur-3xl" />
         <div className="relative">
           <ProgressBadge progress={progress} />
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 md:text-5xl dark:text-white">{title}</h1>
+          <h1 className="mt-4 max-w-5xl text-3xl font-bold tracking-tight text-slate-950 md:text-5xl dark:text-white">{title}</h1>
           <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600 md:text-lg dark:text-slate-300">{subtitle}</p>
           <div className="mt-5 flex flex-wrap gap-3 text-sm text-slate-600 dark:text-slate-300">
             {difficulty && (
@@ -33,6 +33,9 @@ export default function TopicHeader({ title, subtitle, difficulty, estimatedMinu
                 {estimatedMinutes} min
               </span>
             )}
+          </div>
+          <div className="mt-6 h-1.5 max-w-sm overflow-hidden rounded-full bg-white/70 dark:bg-white/10">
+            <div className="h-full w-2/3 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500" />
           </div>
         </div>
       </div>

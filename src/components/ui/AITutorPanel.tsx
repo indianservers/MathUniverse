@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import SectionCard from "./SectionCard";
 
-const topics = ["Algebra", "Geometry", "Trigonometry", "Calculus", "Complex Numbers", "Statistics", "Linear Algebra", "AI Applications"];
+const topics = ["Algebra", "Geometry", "Trigonometry", "Calculus", "Complex Numbers", "Linear Algebra", "AI Applications"];
 
 function answerFor(question: string, topic: string) {
   const q = question.toLowerCase();
@@ -9,7 +9,7 @@ function answerFor(question: string, topic: string) {
   if (q.includes("derivative")) return "A derivative measures instantaneous rate of change. For x^2, the derivative is 2x, so the slope changes with position.";
   if (q.includes("integral")) return "An integral adds tiny pieces of area or accumulation. Visually, it is the limiting sum of many thin rectangles.";
   if (q.includes("euler") || q.includes("complex")) return "Euler's formula e^(i theta) = cos theta + i sin theta connects complex exponentials to circular motion.";
-  if (q.includes("mean")) return "The mean is the arithmetic balance point: add all values and divide by how many values there are.";
+  if (q.includes("mean")) return "Statistics questions now live in the dedicated Anveshak app: https://www.aimersociety.com/anveshak/";
   if (q.includes("vector")) return "A vector stores magnitude and direction. In 2D, [x, y] has length sqrt(x^2 + y^2).";
   if (q.includes("matrix")) return "A matrix transforms vectors and shapes. In AI, matrices efficiently apply many weighted sums at once.";
   if (q.includes("gradient")) return "Gradient descent moves parameters downhill on a loss curve using x_new = x - learning_rate * gradient.";
@@ -41,7 +41,7 @@ export default function AITutorPanel() {
           <textarea className="mt-2 min-h-24 w-full rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder="Ask about slope, derivative, Euler, matrix, gradient..." />
         </label>
       </div>
-      <button className="mt-4 rounded-2xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white dark:bg-white dark:text-slate-950" onClick={() => setSubmitted(question.trim())}>Ask Tutor</button>
+      <button className="action-primary mt-4" onClick={() => setSubmitted(question.trim())} disabled={!question.trim()}>Ask Tutor</button>
       {response && <div className="mt-4 rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">{response}</div>}
       <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">Future API connection point: send topic and question to a secured backend route that calls OpenAI, Gemini, or Groq. No API keys are used in this browser-only demo.</p>
     </SectionCard>

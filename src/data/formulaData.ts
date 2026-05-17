@@ -17,8 +17,6 @@ export const formulaData: FormulaItem[] = [
   { id: "definite-integral", title: "Definite Integral", formula: "\\int_a^b f(x)\\,dx", explanation: "Accumulated signed area under a curve between a and b.", topicId: "calculus" },
   { id: "euler", title: "Euler Formula", formula: "e^{i\\theta} = \\cos\\theta + i\\sin\\theta", explanation: "Complex exponentials trace rotations on the unit circle.", topicId: "complex" },
   { id: "euler-identity", title: "Euler Identity", formula: "e^{i\\pi} + 1 = 0", explanation: "A compact bridge between five fundamental constants.", topicId: "complex" },
-  { id: "mean", title: "Mean", formula: "\\bar{x}=\\frac{1}{n}\\sum_{i=1}^{n}x_i", explanation: "The arithmetic center of a dataset.", topicId: "statistics" },
-  { id: "std-dev", title: "Standard Deviation", formula: "\\sigma=\\sqrt{\\frac{1}{n}\\sum_{i=1}^{n}(x_i-\\mu)^2}", explanation: "Typical distance from the mean.", topicId: "statistics" },
   { id: "vector-mag", title: "Vector Magnitude", formula: "\\lVert v\\rVert=\\sqrt{x^2+y^2}", explanation: "The length of a vector from its components.", topicId: "linear-algebra" },
   { id: "matrix-multiply", title: "Matrix Multiplication", formula: "(AB)_{ij}=\\sum_k A_{ik}B_{kj}", explanation: "Rows from A combine with columns from B.", topicId: "linear-algebra" },
 ];

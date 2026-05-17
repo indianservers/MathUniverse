@@ -21,7 +21,7 @@ export default function QuizCard({ question, selected, onSelect }: QuizCardProps
           const correct = answered && index === question.correctAnswerIndex;
           const wrong = answered && selected === index && index !== question.correctAnswerIndex;
           return (
-            <button key={option} type="button" disabled={answered} onClick={() => onSelect(index)} className={`rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition ${correct ? "border-emerald-400 bg-emerald-50 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100" : wrong ? "border-rose-400 bg-rose-50 text-rose-800 dark:bg-rose-400/15 dark:text-rose-100" : "border-slate-200 bg-white/70 hover:border-cyan-400 dark:border-white/10 dark:bg-white/5"}`}>
+            <button key={option} type="button" disabled={answered} onClick={() => onSelect(index)} className={`rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition disabled:cursor-default ${correct ? "border-emerald-400 bg-emerald-50 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100" : wrong ? "border-rose-400 bg-rose-50 text-rose-800 dark:bg-rose-400/15 dark:text-rose-100" : "border-slate-200 bg-white/70 hover:-translate-y-0.5 hover:border-cyan-400 hover:shadow-md dark:border-white/10 dark:bg-white/5"}`}>
               {option}
             </button>
           );

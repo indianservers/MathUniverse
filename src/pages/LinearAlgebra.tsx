@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import { topics } from "../data/topics";
@@ -16,6 +17,7 @@ export default function LinearAlgebra() {
   return (
     <div className="space-y-6" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} formula={{ title: "Matrix Transform", formula: "\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}\\begin{bmatrix}x\\\\y\\end{bmatrix}" }} />
+      <Link to="/calculator" className="action-secondary w-fit">Open Scientific Calculator</Link>
       <VectorVisualizer />
       <MatrixTransformationVisualizer />
       <EigenvectorVisualizer />

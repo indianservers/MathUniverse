@@ -7,7 +7,7 @@ type HeaderProps = {
 
 export default function Header({ onMenuClick }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 border-b border-white/60 bg-slate-50/80 px-4 py-3 backdrop-blur-xl dark:border-white/10 dark:bg-[#07111f]/80 md:px-8">
+    <header className="sticky top-0 z-30 border-b border-white/60 bg-slate-50/82 px-4 py-3 backdrop-blur-xl dark:border-white/10 dark:bg-[#07111f]/82 md:px-8">
       <div className="flex items-center justify-between">
         <button
           type="button"
@@ -17,8 +17,9 @@ export default function Header({ onMenuClick }: HeaderProps) {
         >
           <Menu className="h-5 w-5" />
         </button>
-        <div className="hidden lg:block">
+        <div className="min-w-0 px-3 lg:px-0">
           <p className="text-sm font-semibold text-cyan-600 dark:text-cyan-300">Interactive math lab</p>
+          <p className="hidden truncate text-xs text-slate-500 dark:text-slate-400 sm:block">Visual explanations, simulations, and quizzes</p>
         </div>
         <ThemeToggle />
       </div>

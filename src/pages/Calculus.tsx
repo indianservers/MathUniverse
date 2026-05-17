@@ -1,5 +1,6 @@
 import SectionCard from "../components/ui/SectionCard";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import { topics } from "../data/topics";
@@ -16,6 +17,7 @@ export default function Calculus() {
   return (
     <div className="space-y-6" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
+      <Link to="/calculator" className="action-secondary w-fit">Open Scientific Calculator</Link>
       <LimitsVisualizer />
       <DerivativeSlopeVisualizer />
       <IntegrationAreaVisualizer />

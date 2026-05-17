@@ -1,0 +1,68 @@
+export type NCERTVisualType =
+  | "integer-line"
+  | "fraction-decimal"
+  | "comparing-quantities"
+  | "rational-line"
+  | "exponents"
+  | "roots"
+  | "number-system"
+  | "euclid-geometry"
+  | "heron"
+  | "euclid-algorithm"
+  | "ap"
+  | "section-formula"
+  | "height-distance";
+
+export type NCERTConcept = {
+  id: string;
+  classLevel: "Class 7" | "Class 8" | "Class 9" | "Class 10";
+  title: string;
+  unit: string;
+  summary: string;
+  formula: string;
+  visual: NCERTVisualType;
+  sliderA: string;
+  sliderB: string;
+  sliderC?: string;
+  minA: number;
+  maxA: number;
+  stepA: number;
+  minB: number;
+  maxB: number;
+  stepB: number;
+  minC?: number;
+  maxC?: number;
+  stepC?: number;
+  defaultA: number;
+  defaultB: number;
+  defaultC?: number;
+  outcomes: string[];
+  tasks: string[];
+};
+
+export const ncertConcepts: NCERTConcept[] = [
+  { id: "class-7-integers", classLevel: "Class 7", title: "Integers", unit: "Number System", summary: "Add, subtract, multiply, and compare positive and negative numbers on a number line.", formula: "a + b, a - b, sign rules", visual: "integer-line", sliderA: "Start integer", sliderB: "Move by", minA: -12, maxA: 12, stepA: 1, minB: -12, maxB: 12, stepB: 1, defaultA: -3, defaultB: 7, outcomes: ["Read integers on a number line", "Model addition as movement", "Connect direction with sign"], tasks: ["Move right with a positive number.", "Move left with a negative number.", "Predict the final integer first."] },
+  { id: "class-7-fractions-decimals", classLevel: "Class 7", title: "Fractions and Decimals", unit: "Number System", summary: "See fractions as shaded parts and decimals as the same value on a 0 to 1 scale.", formula: "fraction = numerator/denominator = decimal", visual: "fraction-decimal", sliderA: "Numerator", sliderB: "Denominator", minA: 1, maxA: 12, stepA: 1, minB: 2, maxB: 12, stepB: 1, defaultA: 3, defaultB: 8, outcomes: ["Compare fraction and decimal forms", "Visualize part-whole meaning", "Estimate position on a number line"], tasks: ["Make one half.", "Make a fraction greater than one half.", "Convert to decimal."] },
+  { id: "class-7-comparing-quantities", classLevel: "Class 7", title: "Comparing Quantities", unit: "Arithmetic", summary: "Model percentage, discount, profit/loss, and simple interest through changing quantities.", formula: "percent = part/whole * 100, SI = PRT/100", visual: "comparing-quantities", sliderA: "Original value", sliderB: "Percent", sliderC: "Time / multiplier", minA: 100, maxA: 2000, stepA: 50, minB: -50, maxB: 50, stepB: 1, minC: 1, maxC: 5, stepC: 1, defaultA: 1000, defaultB: 12, defaultC: 2, outcomes: ["Calculate percent change", "Distinguish increase and decrease", "Connect simple interest to repeated rate"], tasks: ["Try a discount.", "Try a profit.", "Double the time and compare interest."] },
+  { id: "class-7-rational-numbers", classLevel: "Class 7", title: "Rational Numbers", unit: "Number System", summary: "Place positive and negative rational numbers on a number line and compare them.", formula: "p/q where q != 0", visual: "rational-line", sliderA: "Numerator p", sliderB: "Denominator q", minA: -12, maxA: 12, stepA: 1, minB: 1, maxB: 12, stepB: 1, defaultA: -5, defaultB: 4, outcomes: ["Read p/q as division", "Order rational numbers", "Understand negative fractions"], tasks: ["Make -1/2.", "Make a value between 0 and 1.", "Compare with zero."] },
+  { id: "class-7-exponents", classLevel: "Class 7", title: "Exponents and Powers", unit: "Number System", summary: "Build powers as repeated multiplication and see exponent laws as grouping.", formula: "a^m * a^n = a^(m+n)", visual: "exponents", sliderA: "Base a", sliderB: "Power m", sliderC: "Power n", minA: 2, maxA: 8, stepA: 1, minB: 1, maxB: 6, stepB: 1, minC: 1, maxC: 6, stepC: 1, defaultA: 2, defaultB: 3, defaultC: 2, outcomes: ["Interpret powers", "Use product law", "Connect powers to growth"], tasks: ["Set same base powers.", "Add exponents.", "Compare a^m and a^(m+n)."] },
+  { id: "class-8-rational-numbers", classLevel: "Class 8", title: "Rational Numbers", unit: "Number System", summary: "Explore closure, commutativity, associativity, and distributivity with rational numbers.", formula: "a(b+c)=ab+ac", visual: "rational-line", sliderA: "Numerator p", sliderB: "Denominator q", minA: -16, maxA: 16, stepA: 1, minB: 1, maxB: 16, stepB: 1, defaultA: 7, defaultB: 5, outcomes: ["Place rationals accurately", "Compare operations", "Test rational properties"], tasks: ["Create an improper fraction.", "Move to its decimal position.", "Write equivalent forms."] },
+  { id: "class-8-square-cube-roots", classLevel: "Class 8", title: "Squares, Cubes, Square Roots and Cube Roots", unit: "Number System", summary: "Connect square roots with square grids and cube roots with 3D blocks.", formula: "sqrt(n^2)=n, cbrt(n^3)=n", visual: "roots", sliderA: "Number n", sliderB: "Root type", minA: 1, maxA: 12, stepA: 1, minB: 2, maxB: 3, stepB: 1, defaultA: 5, defaultB: 2, outcomes: ["Recognize perfect squares", "Recognize perfect cubes", "Connect root to side length"], tasks: ["Make a 5 by 5 square.", "Switch to cube.", "Predict the root from the picture."] },
+  { id: "class-8-comparing-quantities", classLevel: "Class 8", title: "Comparing Quantities", unit: "Arithmetic", summary: "Extend percent ideas into discount, tax, compound comparison, and interest.", formula: "amount = principal * (1 + r/100)^t", visual: "comparing-quantities", sliderA: "Principal", sliderB: "Rate percent", sliderC: "Years", minA: 100, maxA: 3000, stepA: 50, minB: 1, maxB: 30, stepB: 1, minC: 1, maxC: 6, stepC: 1, defaultA: 1200, defaultB: 10, defaultC: 3, outcomes: ["Compare simple and compound growth", "Read percent bars", "Apply rate over time"], tasks: ["Increase rate.", "Increase years.", "Compare simple vs compound amount."] },
+  { id: "class-8-exponents", classLevel: "Class 8", title: "Exponents and Powers", unit: "Number System", summary: "Use exponent laws and standard form to understand very large and very small quantities.", formula: "a^m/a^n = a^(m-n), (a^m)^n=a^(mn)", visual: "exponents", sliderA: "Base a", sliderB: "Power m", sliderC: "Power n", minA: 2, maxA: 10, stepA: 1, minB: -4, maxB: 6, stepB: 1, minC: 1, maxC: 5, stepC: 1, defaultA: 10, defaultB: 3, defaultC: 2, outcomes: ["Use negative exponents", "Compare exponent laws", "Read standard form"], tasks: ["Set base 10.", "Try a negative power.", "Use power of a power."] },
+  { id: "class-9-number-systems", classLevel: "Class 9", title: "Number Systems", unit: "Number System", summary: "Classify natural, whole, integer, rational, irrational, and real numbers; place roots on the line.", formula: "Real numbers = rational + irrational", visual: "number-system", sliderA: "Number selector", sliderB: "Root value", minA: 1, maxA: 6, stepA: 1, minB: 2, maxB: 30, stepB: 1, defaultA: 4, defaultB: 10, outcomes: ["Classify number types", "Identify irrational roots", "Place roots approximately"], tasks: ["Choose a rational number.", "Choose sqrt(10).", "Compare decimal behavior."] },
+  { id: "class-9-euclid-geometry", classLevel: "Class 9", title: "Introduction to Euclid's Geometry", unit: "Geometry", summary: "Explore undefined terms, axioms, postulates, and proof flow with visual cards.", formula: "Axiom -> Postulate -> Theorem -> Proof", visual: "euclid-geometry", sliderA: "Axiom card", sliderB: "Proof step", minA: 1, maxA: 5, stepA: 1, minB: 1, maxB: 4, stepB: 1, defaultA: 1, defaultB: 1, outcomes: ["Distinguish axiom and theorem", "Sequence proof ideas", "Connect diagrams to statements"], tasks: ["Pick an axiom.", "Advance proof steps.", "Explain why equal things remain equal."] },
+  { id: "class-9-heron", classLevel: "Class 9", title: "Heron's Formula Workflow", unit: "Geometry", summary: "Build a triangle from three sides, check validity, compute semiperimeter, then area.", formula: "s=(a+b+c)/2, Area=sqrt(s(s-a)(s-b)(s-c))", visual: "heron", sliderA: "Side a", sliderB: "Side b", sliderC: "Side c", minA: 2, maxA: 18, stepA: 0.5, minB: 2, maxB: 18, stepB: 0.5, minC: 2, maxC: 18, stepC: 0.5, defaultA: 8, defaultB: 10, defaultC: 12, outcomes: ["Check triangle inequality", "Compute semiperimeter", "Use Heron's formula step by step"], tasks: ["Make an invalid triangle.", "Make a scalene triangle.", "Compare Heron area with base-height intuition."] },
+  { id: "class-10-real-numbers", classLevel: "Class 10", title: "Real Numbers", unit: "Number System", summary: "Visualize Euclid's algorithm, HCF, LCM, and prime factorization.", formula: "a=bq+r, HCF(a,b)=HCF(b,r)", visual: "euclid-algorithm", sliderA: "Number a", sliderB: "Number b", minA: 12, maxA: 240, stepA: 1, minB: 6, maxB: 180, stepB: 1, defaultA: 84, defaultB: 36, outcomes: ["Run Euclid algorithm", "Find HCF", "Connect prime factors with LCM"], tasks: ["Choose two multiples.", "Run remainder steps.", "Compare HCF and LCM."] },
+  { id: "class-10-arithmetic-progressions", classLevel: "Class 10", title: "Arithmetic Progressions", unit: "Algebra", summary: "Build AP terms as equal jumps and visualize sum as paired blocks.", formula: "a_n=a+(n-1)d, S_n=n/2[2a+(n-1)d]", visual: "ap", sliderA: "First term a", sliderB: "Common difference d", sliderC: "Terms n", minA: -10, maxA: 20, stepA: 1, minB: -5, maxB: 10, stepB: 1, minC: 2, maxC: 16, stepC: 1, defaultA: 3, defaultB: 2, defaultC: 8, outcomes: ["Generate AP terms", "Read common difference", "Visualize AP sum"], tasks: ["Make an increasing AP.", "Make a decreasing AP.", "Pair first and last terms."] },
+  { id: "class-10-section-formula", classLevel: "Class 10", title: "Section Formula", unit: "Coordinate Geometry", summary: "Divide a line segment internally in a given ratio and read the point coordinates.", formula: "P=((mx2+nx1)/(m+n), (my2+ny1)/(m+n))", visual: "section-formula", sliderA: "Ratio m", sliderB: "Ratio n", minA: 1, maxA: 10, stepA: 1, minB: 1, maxB: 10, stepB: 1, defaultA: 2, defaultB: 3, outcomes: ["Interpret internal division", "Calculate coordinates", "See ratio as distance split"], tasks: ["Set m:n = 1:1.", "Move toward B.", "Compare segment lengths."] },
+  { id: "class-10-heights-distances", classLevel: "Class 10", title: "Heights and Distances", unit: "Trigonometry", summary: "Use angle of elevation and distance to find heights with tangent.", formula: "height = distance * tan(theta)", visual: "height-distance", sliderA: "Angle theta", sliderB: "Ground distance", minA: 5, maxA: 80, stepA: 1, minB: 20, maxB: 220, stepB: 5, defaultA: 35, defaultB: 120, outcomes: ["Model angle of elevation", "Use tangent ratio", "Solve real measurement problems"], tasks: ["Increase angle.", "Increase distance.", "Estimate a tower height."] },
+];
+
+export function getNCERTConcept(id?: string) {
+  return ncertConcepts.find((concept) => concept.id === id);
+}
+
+export function ncertRoute(id: string) {
+  return `/ncert/${id}`;
+}

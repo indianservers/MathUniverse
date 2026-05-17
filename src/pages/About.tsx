@@ -1,7 +1,7 @@
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 
-const coverage = ["Algebra", "Geometry", "Trigonometry", "Calculus", "Complex numbers", "Statistics", "Linear algebra", "AI applications"];
+const coverage = ["Algebra", "Geometry", "Trigonometry", "Calculus", "Complex numbers", "Linear algebra", "AI applications"];
 const tech = ["React", "TypeScript", "Tailwind CSS", "Recharts", "Three.js", "KaTeX", "localStorage"];
 const future = ["AI tutor API integration", "More 3D models", "Voice explanations", "Teacher dashboard", "Exportable worksheets", "More quizzes"];
 

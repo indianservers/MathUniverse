@@ -1,9 +1,12 @@
 import {
   Atom,
   BarChart3,
+  BookOpen,
   BrainCircuit,
   Calculator,
   CircleHelp,
+  Cuboid,
+  FileText,
   Grid3X3,
   Home,
   Info,
@@ -11,13 +14,17 @@ import {
   Sigma,
   Waves,
 } from "lucide-react";
+import { ANVESHAK_STATISTICS_URL } from "../../data/externalLinks";
 
 export const iconMap = {
   Atom,
   BarChart3,
+  BookOpen,
   BrainCircuit,
   Calculator,
   CircleHelp,
+  Cuboid,
+  FileText,
   Grid3X3,
   Home,
   Info,
@@ -28,14 +35,20 @@ export const iconMap = {
 
 export const navItems = [
   { title: "Home", route: "/", icon: Home },
+  { title: "Math Workspace", route: "/workspace", icon: Calculator },
   { title: "Algebra", route: "/algebra", icon: Calculator },
   { title: "Geometry", route: "/geometry", icon: Shapes },
+  { title: "2D/3D Shapes", route: "/shapes", icon: Cuboid },
   { title: "Trigonometry", route: "/trigonometry", icon: Waves },
   { title: "Calculus", route: "/calculus", icon: Sigma },
   { title: "Complex Numbers", route: "/complex-numbers", icon: Atom },
-  { title: "Statistics", route: "/statistics", icon: BarChart3 },
+  { title: "Statistics", route: ANVESHAK_STATISTICS_URL, icon: BarChart3, isExternal: true },
   { title: "Linear Algebra", route: "/linear-algebra", icon: Grid3X3 },
   { title: "AI Applications", route: "/ai-applications", icon: BrainCircuit },
+  { title: "Learning Hub", route: "/learn", icon: BookOpen },
+  { title: "Syllabus", route: "/syllabus", icon: BookOpen },
+  { title: "Scientific Calculator", route: "/calculator", icon: Calculator },
   { title: "Quiz", route: "/quiz", icon: CircleHelp },
+  { title: "Documentation", route: "/documentation", icon: FileText },
   { title: "About", route: "/about", icon: Info },
 ];
