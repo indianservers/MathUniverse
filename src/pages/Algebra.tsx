@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
+import TopicTabs from "../components/ui/TopicTabs";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import LinearEquationVisualizer from "../visualizations/algebra/LinearEquationVisualizer";
@@ -19,9 +20,11 @@ export default function Algebra() {
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
       <Link to="/calculator" className="action-secondary w-fit">Open Scientific Calculator</Link>
       <SectionCard title="Concept Intro" description="Algebra turns relationships into symbols. The visual layer lets you see how coefficients reshape lines, parabolas, and systems." />
-      <LinearEquationVisualizer />
-      <QuadraticEquationVisualizer />
-      <SimultaneousEquationsVisualizer />
+      <TopicTabs tabs={[
+        { id: "linear", label: "Linear", content: <LinearEquationVisualizer /> },
+        { id: "quadratic", label: "Quadratic", content: <QuadraticEquationVisualizer /> },
+        { id: "systems", label: "Systems", content: <SimultaneousEquationsVisualizer /> },
+      ]} />
       <div className="grid gap-4 md:grid-cols-2">
         <FormulaBlock title="Line" formula="y=mx+c" />
         <FormulaBlock title="Quadratic" formula="y=ax^2+bx+c" />

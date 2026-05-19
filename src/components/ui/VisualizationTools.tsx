@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Download, Eraser, FileText, Link2, Pencil, Trash2, Type } from "lucide-react";
+import { Download, Eraser, Expand, FileText, Grid2X2, Link2, Pencil, SkipForward, Trash2, Type } from "lucide-react";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { clsx } from "clsx";
@@ -21,6 +21,12 @@ export default function VisualizationTools({ title, targetRef, children }: Visua
   const [mode, setMode] = useState<AnnotationMode>("draw");
   const [annotations, setAnnotations] = useState<Annotation[]>(() => loadAnnotations(storageKey));
   const [copied, setCopied] = useState(false);
+  const [showGrid, setShowGrid] = useState(true);
+  const [trace, setTrace] = useState(false);
+  const [speed, setSpeed] = useState(1);
+  const [step, setStep] = useState(0);
+  const [xZoom, setXZoom] = useState(1);
+  const [yZoom, setYZoom] = useState(1);
 
   useEffect(() => {
     setAnnotations(loadAnnotations(storageKey));
@@ -95,6 +101,12 @@ export default function VisualizationTools({ title, targetRef, children }: Visua
     }
   }
 
+  async function openFullscreen() {
+    if (!targetRef.current) return;
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await targetRef.current.requestFullscreen?.();
+  }
+
   return (
     <div className="space-y-3">
       <div className="visualization-tools flex flex-wrap items-center gap-2">
@@ -109,6 +121,33 @@ export default function VisualizationTools({ title, targetRef, children }: Visua
         <button className="tool-button" type="button" onClick={() => void exportSheet("pdf")} title="Export PDF sheet">
           <FileText className="h-4 w-4" />
           <span>PDF</span>
+        </button>
+        <button className="tool-button" type="button" onClick={() => void openFullscreen()} title="Use browser full-screen mode">
+          <Expand className="h-4 w-4" />
+          <span>Full</span>
+        </button>
+        <button className={showGrid ? "tool-button bg-cyan-50 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100" : "tool-button"} type="button" onClick={() => setShowGrid((value) => !value)} title="Show or hide coordinate grid">
+          <Grid2X2 className="h-4 w-4" />
+          <span>Grid</span>
+        </button>
+        <button className={trace ? "tool-button bg-cyan-50 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100" : "tool-button"} type="button" onClick={() => setTrace((value) => !value)} title="Keep a faint ghost trail while parameters change">
+          <span>Trace</span>
+        </button>
+        <label className="flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-3 py-2 text-xs font-black dark:border-white/10 dark:bg-white/10">
+          {speed.toFixed(2)}x
+          <input className="w-24 accent-cyan-500" type="range" min={0.25} max={2} step={0.25} value={speed} onChange={(event) => setSpeed(Number(event.target.value))} />
+        </label>
+        <label className="flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-3 py-2 text-xs font-black dark:border-white/10 dark:bg-white/10">
+          X {xZoom.toFixed(1)}
+          <input className="w-20 accent-cyan-500" type="range" min={0.5} max={3} step={0.1} value={xZoom} onChange={(event) => setXZoom(Number(event.target.value))} />
+        </label>
+        <label className="flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-3 py-2 text-xs font-black dark:border-white/10 dark:bg-white/10">
+          Y {yZoom.toFixed(1)}
+          <input className="w-20 accent-cyan-500" type="range" min={0.5} max={3} step={0.1} value={yZoom} onChange={(event) => setYZoom(Number(event.target.value))} />
+        </label>
+        <button className="tool-button" type="button" onClick={() => setStep((value) => value + 1)} title="Advance one explanatory step">
+          <SkipForward className="h-4 w-4" />
+          Step {step}
         </button>
         <div className="ml-0 flex items-center gap-1 rounded-full border border-slate-200 bg-white/80 p-1 dark:border-white/10 dark:bg-white/10 sm:ml-2">
           <ModeButton active={mode === "draw"} title="Draw notes" onClick={() => setMode("draw")}>
@@ -126,10 +165,37 @@ export default function VisualizationTools({ title, targetRef, children }: Visua
           <span>Clear</span>
         </button>
       </div>
-      <div className="relative">
-        {children}
+      <div className="relative" data-visualizer-speed={speed} data-step={step} data-x-zoom={xZoom} data-y-zoom={yZoom}>
+        <div style={{ transform: `scale(${xZoom}, ${yZoom})`, transformOrigin: "center" }}>
+          {children}
+        </div>
+        {showGrid && <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-40 [background-image:linear-gradient(rgba(14,165,233,.18)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,.18)_1px,transparent_1px)] [background-size:32px_32px]" />}
+        {trace && <div className="pointer-events-none absolute inset-0 rounded-2xl bg-cyan-400/5 ring-4 ring-inset ring-cyan-400/10" />}
+        <CrosshairHud />
         <AnnotationLayer mode={mode} annotations={annotations} onChange={setAnnotations} />
       </div>
+    </div>
+  );
+}
+
+function CrosshairHud() {
+  const [point, setPoint] = useState<Point | null>(null);
+  return (
+    <div
+      className="absolute inset-0 z-[9] cursor-crosshair rounded-2xl"
+      onPointerMove={(event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        setPoint({ x: (event.clientX - rect.left) / rect.width, y: (event.clientY - rect.top) / rect.height });
+      }}
+      onPointerLeave={() => setPoint(null)}
+    >
+      {point && (
+        <>
+          <div className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-slate-950 px-3 py-1 text-xs font-black text-white dark:bg-white dark:text-slate-950">x {point.x.toFixed(3)} · y {(1 - point.y).toFixed(3)}</div>
+          <div className="pointer-events-none absolute top-0 h-full w-px bg-cyan-400/70" style={{ left: `${point.x * 100}%` }} />
+          <div className="pointer-events-none absolute left-0 h-px w-full bg-cyan-400/70" style={{ top: `${point.y * 100}%` }} />
+        </>
+      )}
     </div>
   );
 }

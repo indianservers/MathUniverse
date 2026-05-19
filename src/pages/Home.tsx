@@ -8,6 +8,7 @@ import { allSyllabusTopics } from "../data/syllabus";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import InquirySimulationLabs from "../components/inquiry/InquirySimulationLabs";
+import { recentRouteItems } from "../components/layout/GlobalUx";
 
 const demoFlow = [
   "Algebra line graph",
@@ -23,6 +24,7 @@ const demoFlow = [
 
 export default function Home() {
   const { getTopicProgress, getOverallProgress } = useProgress();
+  const recentItems = recentRouteItems(5);
   const labs = topics.reduce((sum, topic) => sum + topic.labCount, 0);
   const extraCards = [
     {
@@ -92,6 +94,16 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      {recentItems.length > 0 && (
+        <section className="flex flex-wrap items-center gap-2">
+          <span className="text-sm font-black uppercase text-slate-500 dark:text-slate-400">Recently visited</span>
+          {recentItems.map((item) => (
+            <Link key={item.route} to={item.route} className="mini-chip transition hover:bg-cyan-100 hover:text-cyan-700 dark:hover:bg-cyan-400/15 dark:hover:text-cyan-100">
+              {item.title}
+            </Link>
+          ))}
+        </section>
+      )}
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Total Topics" value={topics.length} icon={BookOpen} accent="from-cyan-500 to-blue-600" />
         <StatCard label="Interactive Labs" value={labs} icon={FlaskConical} accent="from-violet-500 to-fuchsia-600" />
@@ -106,7 +118,7 @@ export default function Home() {
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {topics.map((topic) => {
           const Icon = iconMap[topic.iconName as keyof typeof iconMap] ?? BookOpen;
-          return <DashboardCard key={topic.id} title={topic.title} description={topic.description} concepts={topic.concepts} icon={Icon} route={topic.route} isExternal={topic.isExternal} progress={getTopicProgress(topic.id)} colorGradient={topic.colorGradient} />;
+          return <DashboardCard key={topic.id} title={topic.title} description={topic.description} concepts={topic.concepts} icon={Icon} route={topic.route} isExternal={topic.isExternal} progress={getTopicProgress(topic.id)} colorGradient={topic.colorGradient} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} isNew={topic.id === "matrices"} />;
         })}
         {extraCards.map((card) => <DashboardCard key={card.title} title={card.title} description={card.description} concepts={card.concepts} icon={card.icon} route={card.route} progress={0} colorGradient={card.colorGradient} />)}
       </div>

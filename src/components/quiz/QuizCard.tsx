@@ -5,9 +5,11 @@ type QuizCardProps = {
   question: QuizQuestion;
   selected: number | null;
   onSelect: (index: number) => void;
+  assisted?: boolean;
+  onHint?: () => void;
 };
 
-export default function QuizCard({ question, selected, onSelect }: QuizCardProps) {
+export default function QuizCard({ question, selected, onSelect, assisted = false, onHint }: QuizCardProps) {
   const answered = selected !== null;
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="glass-card rounded-2xl p-5">
@@ -16,6 +18,12 @@ export default function QuizCard({ question, selected, onSelect }: QuizCardProps
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold dark:bg-white/10">{question.difficulty}</span>
       </div>
       <h3 className="mt-4 text-xl font-bold">{question.question}</h3>
+      <div className="mt-3">
+        <button type="button" className="tool-button" onClick={onHint} disabled={answered || assisted}>
+          {assisted ? "Hint used" : "Use hint (-5 XP)"}
+        </button>
+        {assisted && <p className="mt-3 rounded-2xl bg-amber-50 p-3 text-sm font-semibold text-amber-900 dark:bg-amber-400/10 dark:text-amber-100">Hint: eliminate answers that do not match {question.topic.toLowerCase()} definitions, then check the units or graph behavior.</p>}
+      </div>
       <div className="mt-5 grid gap-3">
         {question.options.map((option, index) => {
           const correct = answered && index === question.correctAnswerIndex;

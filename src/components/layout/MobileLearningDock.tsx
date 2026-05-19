@@ -1,5 +1,6 @@
 import { BookOpen, Calculator, Cuboid, Home, Keyboard } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { getPendingQuizCount } from "./GlobalUx";
 
 const dockItems = [
   { title: "Home", route: "/", icon: Home },
@@ -11,6 +12,7 @@ const dockItems = [
 
 export default function MobileLearningDock() {
   const location = useLocation();
+  const learnCount = getPendingQuizCount();
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2 shadow-2xl shadow-slate-900/15 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/95 lg:hidden" aria-label="Mobile learning shortcuts">
@@ -19,7 +21,8 @@ export default function MobileLearningDock() {
           const active = item.route === "/" ? location.pathname === "/" : location.pathname.startsWith(item.route);
           const Icon = item.icon;
           return (
-            <Link key={item.route} to={item.route} className={`flex min-h-14 flex-col items-center justify-center gap-1 rounded-2xl px-2 text-[11px] font-bold transition ${active ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10"}`}>
+            <Link key={item.route} to={item.route} className={`relative flex min-h-14 flex-col items-center justify-center gap-1 rounded-2xl px-2 text-[11px] font-bold transition ${active ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10"}`}>
+              {item.route === "/learn" && learnCount > 0 && <span className="absolute right-3 top-1 grid h-5 min-w-5 place-items-center rounded-full bg-rose-500 px-1 text-[10px] font-black text-white">{learnCount}</span>}
               <Icon className="h-4 w-4" />
               {item.title}
             </Link>

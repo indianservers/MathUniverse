@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import katex from "katex";
 import { Link } from "react-router-dom";
+import { ChartSpline, Ruler } from "lucide-react";
 import CalculatorDisplay from "../components/calculator/CalculatorDisplay";
 import CalculatorHistory from "../components/calculator/CalculatorHistory";
 import type { HistoryItem } from "../components/calculator/CalculatorHistory";
@@ -24,6 +25,13 @@ export default function ScientificCalculator() {
   const [memory, setMemory] = useLocalStorage<number>("math-universe-calculator-memory", 0);
   const [history, setHistory] = useLocalStorage<HistoryItem[]>("math-universe-calculator-history", []);
   const [symbolicVariable, setSymbolicVariable] = useState("x");
+  const [unitValue, setUnitValue] = useState(1);
+  const unitRows = [
+    ["cm", "in", unitValue / 2.54],
+    ["in", "cm", unitValue * 2.54],
+    ["rad", "deg", unitValue * 180 / Math.PI],
+    ["deg", "rad", unitValue * Math.PI / 180],
+  ] as const;
 
   const displayExpression = useMemo(() => expression || "0", [expression]);
   const symbolic = useMemo(() => {
@@ -125,6 +133,10 @@ export default function ScientificCalculator() {
                 ))}
               </div>
               <CopyResultButton value={result} />
+              <Link className="tool-button" to={`/math-lab/graphing-calculator?expr=${encodeURIComponent(expression || result || "x^2")}`}>
+                <ChartSpline className="h-4 w-4" />
+                Graph
+              </Link>
               <ResetValuesButton onClick={resetValues} />
               <ExampleValuesButton onClick={setExampleValues} />
             </div>
@@ -160,6 +172,23 @@ export default function ScientificCalculator() {
 
         <CalculatorHistory history={Array.isArray(history) ? history : []} onUse={(item) => { setExpression(item); setError(""); }} onClear={() => setHistory([])} />
       </div>
+
+      <SectionCard title="Unit Converter" description="Lightweight conversions for common classroom values.">
+        <div className="grid gap-4 md:grid-cols-[220px_minmax(0,1fr)]">
+          <label className="block rounded-2xl border border-slate-200 bg-white/75 p-4 dark:border-white/10 dark:bg-white/5">
+            <span className="flex items-center gap-2 text-sm font-black"><Ruler className="h-4 w-4 text-cyan-500" />Input value</span>
+            <input className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 dark:border-white/10 dark:bg-slate-900" type="number" value={unitValue} onChange={(event) => setUnitValue(Number(event.target.value))} />
+          </label>
+          <div className="grid gap-3 md:grid-cols-2">
+            {unitRows.map(([from, to, converted]) => (
+              <div key={`${from}-${to}`} className="rounded-2xl border border-slate-200 bg-white/75 p-4 font-semibold dark:border-white/10 dark:bg-white/5">
+                <p className="text-xs uppercase text-slate-500">{from} to {to}</p>
+                <p className="mt-2 font-mono text-lg">{Number(converted.toFixed(6))}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </SectionCard>
 
       <SectionCard title="Supported Expressions" description="Examples: 2+3*4, sin(30), cos(60), sqrt(25), log(100), ln(e), 2^8, factorial(5), and pi*2. Trigonometric functions respect the DEG/RAD switch." />
       <SectionCard title="Symbolic Differentiation & Integration" description="Nerdamer reads the current expression symbolically and renders exact derivative and antiderivative forms.">

@@ -4,6 +4,7 @@ import { Cuboid } from "lucide-react";
 import { Link } from "react-router-dom";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
+import TopicTabs from "../components/ui/TopicTabs";
 import { topics } from "../data/topics";
 import { geometryConcepts } from "../data/geometryConcepts";
 import { useProgress } from "../hooks/useProgress";
@@ -41,11 +42,13 @@ export default function Geometry() {
           ))}
         </div>
       </SectionCard>
-      <TriangleExplorer />
-      <PythagorasVisualizer />
-      <GeometryTheoremVisualizers />
-      <CircleExplorer />
-      <Shape3DExplorer />
+      <TopicTabs tabs={[
+        { id: "triangle", label: "Triangles", content: <TriangleExplorer /> },
+        { id: "pythagoras", label: "Pythagoras", content: <PythagorasVisualizer /> },
+        { id: "theorems", label: "Theorems", content: <GeometryTheoremVisualizers /> },
+        { id: "circles", label: "Circles", content: <CircleExplorer /> },
+        { id: "solids", label: "3D Solids", content: <Shape3DExplorer /> },
+      ]} />
       <SectionCard title="Applications">
         <div className="grid gap-3 md:grid-cols-5">{["Architecture", "Engineering", "Game design", "Robotics", "AR/VR"].map((item) => <div key={item} className="rounded-2xl bg-slate-100 p-4 font-semibold dark:bg-white/10">{item}</div>)}</div>
       </SectionCard>

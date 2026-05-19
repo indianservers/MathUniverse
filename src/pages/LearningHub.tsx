@@ -26,6 +26,17 @@ export default function LearningHub() {
   }, [grade, kind, query]);
 
   const shareUrl = typeof window === "undefined" ? "/learn" : `${window.location.origin}/learn`;
+  const heatmap = useMemo(() => {
+    try {
+      return JSON.parse(localStorage.getItem("math-universe-quiz-heatmap") ?? "{}") as Record<string, number>;
+    } catch {
+      return {};
+    }
+  }, []);
+  const heatmapDays = Array.from({ length: 35 }, (_, index) => {
+    const date = new Date(Date.now() - (34 - index) * 86400000).toISOString().slice(0, 10);
+    return { date, value: heatmap[date] ?? 0 };
+  });
 
   return (
     <div className="space-y-6">
@@ -36,6 +47,14 @@ export default function LearningHub() {
         <ModeCard title="Teacher Mode" icon={<GraduationCap className="h-5 w-5" />} text="Assignments, progress checks, lesson launch links, worksheet prompts, and classroom projection notes." />
         <ModeCard title="Mobile Mode" icon={<Megaphone className="h-5 w-5" />} text="Bottom quick actions, compact keyboards, large sliders, and touch-first geometry/3D controls." />
       </section>
+
+      <SectionCard title="Progress Heatmap" description="Daily quiz activity stored locally in this browser.">
+        <div className="grid grid-cols-7 gap-2">
+          {heatmapDays.map((day) => (
+            <div key={day.date} title={`${day.date}: ${day.value} quiz actions`} className={`aspect-square rounded-md border border-slate-200 dark:border-white/10 ${day.value === 0 ? "bg-slate-100 dark:bg-white/5" : day.value < 2 ? "bg-cyan-200 dark:bg-cyan-400/30" : day.value < 4 ? "bg-cyan-400" : "bg-cyan-700"}`} />
+          ))}
+        </div>
+      </SectionCard>
 
       <SectionCard title="Searchable Content Library" description="Filter lessons, worksheets, activities, and assignments by grade, topic, or tag.">
         <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_220px_220px]">

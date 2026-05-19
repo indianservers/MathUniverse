@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
+import TopicTabs from "../components/ui/TopicTabs";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import DerivativeSlopeVisualizer from "../visualizations/calculus/DerivativeSlopeVisualizer";
@@ -18,10 +19,12 @@ export default function Calculus() {
     <div className="space-y-6" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
       <Link to="/calculator" className="action-secondary w-fit">Open Scientific Calculator</Link>
-      <LimitsVisualizer />
-      <DerivativeSlopeVisualizer />
-      <IntegrationAreaVisualizer />
-      <MotionVisualizer />
+      <TopicTabs tabs={[
+        { id: "limits", label: "Limits", content: <LimitsVisualizer /> },
+        { id: "derivatives", label: "Derivatives", content: <DerivativeSlopeVisualizer /> },
+        { id: "integrals", label: "Integrals", content: <IntegrationAreaVisualizer /> },
+        { id: "motion", label: "Motion", content: <MotionVisualizer /> },
+      ]} />
       <SectionCard title="Applications">
         <div className="grid gap-3 md:grid-cols-5">{["Physics", "Optimization", "Economics", "AI training", "Engineering"].map((item) => <div key={item} className="rounded-2xl bg-slate-100 p-4 font-semibold dark:bg-white/10">{item}</div>)}</div>
       </SectionCard>

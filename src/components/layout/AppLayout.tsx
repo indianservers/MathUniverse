@@ -6,6 +6,7 @@ import MobileLearningDock from "./MobileLearningDock";
 import Sidebar from "./Sidebar";
 import { BackToPreviousButton } from "../ui/UiFeedback";
 import { navItems } from "./navItems";
+import { BackToTopButton, BreadcrumbTrail } from "./GlobalUx";
 
 const recentToolsKey = "math-universe-recent-tools";
 
@@ -35,6 +36,7 @@ export default function AppLayout() {
           <Header onMenuClick={() => setMobileOpen(true)} />
           <main id="main-content" className="mx-auto w-full max-w-7xl px-4 pb-28 pt-6 sm:px-5 md:px-8 md:py-8">
             <div key={location.pathname} className="page-transition space-y-4">
+              <BreadcrumbTrail />
               {showBack && <BackToPreviousButton label="Back" />}
               <Outlet />
             </div>
@@ -43,6 +45,7 @@ export default function AppLayout() {
       </div>
       <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
       <MobileLearningDock />
+      <BackToTopButton />
     </div>
   );
 }
