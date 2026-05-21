@@ -152,6 +152,27 @@ function renderVisual(visual: AdvancedLabVisual, a: number, b: number) {
   if (visual === "numerical-integration") return <NumericalIntegration intervals={Math.round(a)} method={Math.round(b)} />;
   if (visual === "euler-rk4") return <EulerRK4 steps={Math.round(a)} growth={b} />;
   if (visual === "linear-system-solver") return <LinearSystemSolver iteration={Math.round(a)} relaxation={b} />;
+  if (visual === "cayley-hamilton") return <CayleyHamilton trace={a} determinant={b} />;
+  if (visual === "de-moivre") return <DeMoivre n={Math.round(a)} angle={b} />;
+  if (visual === "complex-log") return <ComplexLog angle={a} branch={Math.round(b)} />;
+  if (visual === "complex-trig") return <ComplexTrig real={a} imaginary={b} />;
+  if (visual === "jacobian") return <Jacobian stretch={a} shear={b} />;
+  if (visual === "lagrange-multiplier") return <LagrangeMultiplier radius={a} tilt={b} />;
+  if (visual === "asymptote-tracing") return <AsymptoteTracing shift={a} asymptote={b} />;
+  if (visual === "higher-order-ode") return <HigherOrderODE damping={a} stiffness={b} />;
+  if (visual === "cauchy-euler") return <CauchyEuler coeffA={a} coeffB={b} />;
+  if (visual === "laplace-transform") return <LaplaceTransform decay={a} s={b} />;
+  if (visual === "step-impulse") return <StepImpulse delay={a} strength={b} />;
+  if (visual === "convolution") return <Convolution shift={a} width={b} />;
+  if (visual === "fourier-transform") return <FourierTransformSpectrum width={a} marker={b} />;
+  if (visual === "mobius-map") return <MobiusMap pole={a} rotation={b} />;
+  if (visual === "complex-line-integral") return <ComplexLineIntegral radius={a} swirl={b} />;
+  if (visual === "cauchy-integral") return <CauchyIntegral pointRadius={a} contourRadius={b} />;
+  if (visual === "fixed-point") return <FixedPointIteration initial={a} contraction={b} />;
+  if (visual === "secant-method") return <SecantMethod x0={a} x1={b} />;
+  if (visual === "divided-differences") return <DividedDifferences count={Math.round(a)} evaluation={b} />;
+  if (visual === "finite-difference-interpolation") return <FiniteDifferenceInterpolation index={Math.round(a)} step={b} />;
+  if (visual === "gaussian-quadrature") return <GaussianQuadrature nodes={Math.round(a)} bend={b} />;
   return <PartialSurface x={a} y={b} />;
 }
 
@@ -640,6 +661,129 @@ function LinearSystemSolver({ iteration, relaxation }: { iteration: number; rela
   return <Graph>{curvePath(line1, -3, 3, "#06b6d4")}{curvePath(line2, -3, 3, "#8b5cf6")}<PointGraph x={solution.x} y={solution.y} label="solution" color="#10b981" /><Arrow x1={gx(-2.4)} y1={gy(-1.4)} x2={gx(guess.x)} y2={gy(guess.y)} color="#f59e0b" /><PointGraph x={guess.x} y={guess.y} label={`x${iteration}`} color="#ef4444" /><Label x="90" y="75" text={`Iterative correction moves guesses toward Ax=b intersection.`} /></Graph>;
 }
 
+function CayleyHamilton({ trace, determinant }: { trace: number; determinant: number }) {
+  const discriminant = trace * trace - 4 * determinant;
+  const rootText = discriminant >= 0 ? `roots ${roundTo((trace + Math.sqrt(discriminant)) / 2, 2)}, ${roundTo((trace - Math.sqrt(discriminant)) / 2, 2)}` : "complex eigen pair";
+  return <g><Label x="80" y="70" text={`p(lambda)=lambda^2 - (${roundTo(trace, 2)})lambda + (${roundTo(determinant, 2)})`} /><rect x="120" y="125" width="155" height="115" rx="16" fill="#06b6d4" opacity="0.22" stroke="#06b6d4" strokeWidth="4" /><Label x="145" y="170" text="A" /><text x="320" y="185" fill="#0f172a" fontSize="24" fontWeight="900">satisfies</text><rect x="470" y="120" width="190" height="130" rx="16" fill="#f59e0b" opacity="0.22" stroke="#f59e0b" strokeWidth="4" /><Label x="492" y="170" text="A^2 - tr(A)A + det(A)I = 0" /><Arrow x1={198} y1={285} x2={520} y2={285} color="#8b5cf6" /><Label x="120" y="335" text={rootText} /><Label x="120" y="385" text={Math.abs(determinant) > 0.05 ? "Inverse follows from A^-1=(tr(A)I-A)/det(A)." : "Near singular: inverse expression becomes unstable."} /></g>;
+}
+
+function DeMoivre({ n, angle }: { n: number; angle: number }) {
+  const theta = angle * Math.PI / 180;
+  const powerAngle = n * theta;
+  const points = Array.from({ length: n }, (_, k) => ({ a: (theta + 2 * Math.PI * k) / n, k }));
+  return <ComplexPlane><circle cx="380" cy="230" r="130" fill="none" stroke="#94a3b8" strokeWidth="3" /><Arrow x1={380} y1={230} x2={380 + Math.cos(theta) * 130} y2={230 - Math.sin(theta) * 130} color="#06b6d4" /><Arrow x1={380} y1={230} x2={380 + Math.cos(powerAngle) * 155} y2={230 - Math.sin(powerAngle) * 155} color="#f59e0b" />{points.map((p) => <circle key={p.k} cx={380 + Math.cos(p.a) * 88} cy={230 - Math.sin(p.a) * 88} r="7" fill="#8b5cf6" />)}<Label x="90" y="75" text={`n=${n}: powers multiply angles; roots divide and spread evenly.`} /></ComplexPlane>;
+}
+
+function ComplexLog({ angle, branch }: { angle: number; branch: number }) {
+  const principal = angle * Math.PI / 180;
+  const branchAngle = principal + 2 * Math.PI * branch;
+  const x = Math.cos(principal) * 145;
+  const y = Math.sin(principal) * 145;
+  return <ComplexPlane><circle cx="380" cy="230" r="145" fill="none" stroke="#06b6d4" strokeWidth="4" /><line x1="80" y1="230" x2="380" y2="230" stroke="#ef4444" strokeWidth="5" strokeDasharray="10 8" /><Arrow x1={380} y1={230} x2={380 + x} y2={230 - y} color="#f59e0b" /><Label x="90" y="75" text={`Log z = ln r + i(${roundTo(branchAngle, 2)}); branch k=${branch}`} /><Label x="95" y="410" text="The red ray marks the branch cut; changing k adds 2pi i." /></ComplexPlane>;
+}
+
+function ComplexTrig({ real, imaginary }: { real: number; imaginary: number }) {
+  const sinMag = Math.hypot(Math.sin(real) * Math.cosh(imaginary), Math.cos(real) * Math.sinh(imaginary));
+  const cosh = Math.cosh(imaginary);
+  return <Graph>{curvePath((x) => Math.sin(x) * cosh, -3, 3, "#06b6d4")}{curvePath((x) => Math.sinh(imaginary) * Math.cos(x), -3, 3, "#f59e0b")}<PointGraph x={real} y={Math.min(4, sinMag)} label={`|sin z| ${roundTo(sinMag, 2)}`} /><Label x="90" y="75" text="Imaginary input turns trig oscillation into hyperbolic growth." /></Graph>;
+}
+
+function Jacobian({ stretch, shear }: { stretch: number; shear: number }) {
+  const base = [{ x: 120, y: 155 }, { x: 230, y: 155 }, { x: 230, y: 265 }, { x: 120, y: 265 }];
+  const mapped = base.map((p) => ({ x: 430 + (p.x - 120) * stretch + (p.y - 155) * shear, y: 155 + (p.y - 155) / Math.max(0.4, stretch) }));
+  const det = stretch / Math.max(0.4, stretch);
+  return <g><Label x="80" y="70" text={`Local area scale |J| approx ${roundTo(det, 2)}; shear changes shape without alone changing area.`} /><polygon points={base.map((p) => `${p.x},${p.y}`).join(" ")} fill="#06b6d4" opacity="0.24" stroke="#06b6d4" strokeWidth="4" /><polygon points={mapped.map((p) => `${p.x},${p.y}`).join(" ")} fill="#f59e0b" opacity="0.26" stroke="#f59e0b" strokeWidth="4" /><Arrow x1={265} y1={210} x2={400} y2={210} color="#8b5cf6" /><Label x="120" y="310" text="du dv patch" /><Label x="470" y="310" text="warped dx dy patch" /></g>;
+}
+
+function LagrangeMultiplier({ radius, tilt }: { radius: number; tilt: number }) {
+  const contact = { x: radius / Math.sqrt(2), y: radius / Math.sqrt(2) };
+  return <Graph>{[0.7, 1.3, 1.9, 2.5].map((r) => <ellipse key={r} cx={gx(tilt * 0.35)} cy={gy(0)} rx={r * 80} ry={r * 42} fill="none" stroke="#06b6d4" strokeWidth="3" opacity="0.65" />)}<circle cx={gx(0)} cy={gy(0)} r={radius * 42} fill="none" stroke="#f59e0b" strokeWidth="5" /><PointGraph x={contact.x} y={contact.y} label="gradients parallel" color="#ef4444" /><Arrow x1={gx(contact.x)} y1={gy(contact.y)} x2={gx(contact.x + 0.65)} y2={gy(contact.y + 0.65 + tilt * 0.25)} color="#8b5cf6" /><Label x="90" y="75" text="Optimum occurs where the constraint is tangent to a level curve." /></Graph>;
+}
+
+function AsymptoteTracing({ shift, asymptote }: { shift: number; asymptote: number }) {
+  const f = (x: number) => shift + 1 / (x - asymptote);
+  return <Graph>{curvePath((x) => Math.abs(x - asymptote) < 0.06 ? NaN : f(x), -3, 3, "#06b6d4")}<line x1={gx(asymptote)} x2={gx(asymptote)} y1="60" y2="400" stroke="#ef4444" strokeWidth="4" strokeDasharray="8 7" /><line x1="80" x2="680" y1={gy(shift)} y2={gy(shift)} stroke="#f59e0b" strokeWidth="4" strokeDasharray="8 7" /><Label x="90" y="75" text={`Vertical asymptote x=${roundTo(asymptote, 2)}, horizontal asymptote y=${roundTo(shift, 2)}`} /></Graph>;
+}
+
+function HigherOrderODE({ damping, stiffness }: { damping: number; stiffness: number }) {
+  const disc = damping * damping - 4 * stiffness;
+  const mode = disc > 0.05 ? "real roots" : disc < -0.05 ? "complex roots" : "repeated root";
+  const omega = Math.sqrt(Math.max(0.05, stiffness - damping * damping / 4));
+  return <Graph>{curvePath((x) => x < 0 ? NaN : Math.exp(-damping * x / 4) * (disc < 0 ? Math.cos(omega * x) : Math.exp(-Math.abs(damping) * x / 12)), 0, 5, "#06b6d4")}<Label x="90" y="75" text={`${mode}: r^2 + ${roundTo(damping, 2)}r + ${roundTo(stiffness, 2)}=0`} /></Graph>;
+}
+
+function CauchyEuler({ coeffA, coeffB }: { coeffA: number; coeffB: number }) {
+  const disc = (coeffA - 1) ** 2 - 4 * coeffB;
+  const m = disc >= 0 ? (1 - coeffA + Math.sqrt(disc)) / 2 : (1 - coeffA) / 2;
+  return <Graph>{curvePath((x) => x <= 0 ? NaN : Math.pow(x, m), 0.2, 5, "#06b6d4")}<Label x="90" y="75" text={`m(m-1)+${roundTo(coeffA, 2)}m+${roundTo(coeffB, 2)}=0; shown y=x^m`} /></Graph>;
+}
+
+function LaplaceTransform({ decay, s }: { decay: number; s: number }) {
+  const f = (t: number) => Math.exp(-decay * t) * Math.cos(2 * t);
+  const transform = (value: number) => (value + decay) / ((value + decay) ** 2 + 4);
+  return <g><Label x="80" y="70" text={`Time-domain f(t) maps to F(s); F(${roundTo(s, 2)})=${roundTo(transform(s), 3)}`} /><g transform="translate(0 0)">{curvePath((x) => x < 0 ? NaN : f(x), 0, 5, "#06b6d4")}</g><path d={Array.from({ length: 140 }).map((_, i) => { const x = 0.3 + i * 4.7 / 139; return `${i ? "L" : "M"}${90 + x * 110},${390 - transform(x) * 360}`; }).join(" ")} fill="none" stroke="#f59e0b" strokeWidth="5" /><line x1={90 + s * 110} y1="235" x2={90 + s * 110} y2="395" stroke="#8b5cf6" strokeWidth="4" strokeDasharray="8 7" /></g>;
+}
+
+function StepImpulse({ delay, strength }: { delay: number; strength: number }) {
+  const x = 110 + delay * 95;
+  return <g><Label x="80" y="70" text={`u(t-${roundTo(delay, 2)}) and ${roundTo(strength, 2)}delta(t-${roundTo(delay, 2)})`} /><line x1="90" x2="670" y1="330" y2="330" stroke="#94a3b8" /><path d={`M90,330 L${x},330 L${x},210 L670,210`} fill="none" stroke="#06b6d4" strokeWidth="6" /><Arrow x1={x} y1={330} x2={x} y2={330 - strength * 70} color="#f59e0b" /><Label x="100" y="400" text="Delay in time multiplies transforms by an exponential shift factor." /></g>;
+}
+
+function Convolution({ shift, width }: { shift: number; width: number }) {
+  const left = 120 + shift * 80;
+  const overlap = Math.max(0, Math.min(260, left + width * 80) - Math.max(260, left - width * 80));
+  return <g><Label x="80" y="70" text={`Overlap area approx ${roundTo(overlap / 80, 2)} drives (f*g)(t).`} /><rect x="260" y="170" width="180" height="110" fill="#06b6d4" opacity="0.28" stroke="#06b6d4" strokeWidth="4" /><rect x={left - width * 80} y="205" width={width * 160} height="110" fill="#f59e0b" opacity="0.28" stroke="#f59e0b" strokeWidth="4" /><rect x={Math.max(260, left - width * 80)} y="215" width={overlap} height="90" fill="#8b5cf6" opacity="0.46" /><Label x="105" y="410" text="The sliding overlap is the geometric heart of convolution." /></g>;
+}
+
+function FourierTransformSpectrum({ width, marker }: { width: number; marker: number }) {
+  const pulse = (t: number) => Math.exp(-(t * t) / (width * width));
+  const spectrum = (w: number) => width * Math.exp(-(width * width * w * w) / 4);
+  return <g><Label x="80" y="70" text="Wider time pulse means narrower frequency spectrum." /><path d={Array.from({ length: 140 }).map((_, i) => { const t = -3 + i * 6 / 139; return `${i ? "L" : "M"}${95 + (t + 3) * 92},${205 - pulse(t) * 90}`; }).join(" ")} fill="none" stroke="#06b6d4" strokeWidth="5" /><path d={Array.from({ length: 140 }).map((_, i) => { const w = -5 + i * 10 / 139; return `${i ? "L" : "M"}${95 + (w + 5) * 55},${365 - spectrum(w) * 70}`; }).join(" ")} fill="none" stroke="#f59e0b" strokeWidth="5" /><line x1={95 + (marker + 5) * 55} y1="275" x2={95 + (marker + 5) * 55} y2="390" stroke="#8b5cf6" strokeWidth="4" strokeDasharray="8 7" /></g>;
+}
+
+function MobiusMap({ pole, rotation }: { pole: number; rotation: number }) {
+  return <ConformalMap strength={pole} rotation={rotation} />;
+}
+
+function ComplexLineIntegral({ radius, swirl }: { radius: number; swirl: number }) {
+  const r = radius * 45;
+  return <ComplexPlane><circle cx="380" cy="230" r={r} fill="#06b6d4" opacity="0.12" stroke="#06b6d4" strokeWidth="5" /><path d={`M${380 + r},230 A${r},${r} 0 1 1 ${380 - r},230 A${r},${r} 0 1 1 ${380 + r},230`} fill="none" stroke="#f59e0b" strokeWidth="5" /><Arrow x1={380 + r * 0.7} y1={230 - r * 0.7} x2={380 + r * 0.7 - swirl * 25} y2={230 - r * 0.7 - 35} color="#8b5cf6" /><Label x="90" y="75" text="Sample vectors accumulate along the oriented contour." /></ComplexPlane>;
+}
+
+function CauchyIntegral({ pointRadius, contourRadius }: { pointRadius: number; contourRadius: number }) {
+  const inside = pointRadius < contourRadius;
+  return <ComplexPlane><circle cx="380" cy="230" r={contourRadius * 45} fill="none" stroke="#06b6d4" strokeWidth="5" /><circle cx={380 + pointRadius * 45} cy="230" r="9" fill={inside ? "#10b981" : "#ef4444"} /><Label x="90" y="75" text={inside ? "Point a is inside C: integral recovers f(a)." : "Point a is outside C: formula conditions fail."} /></ComplexPlane>;
+}
+
+function FixedPointIteration({ initial, contraction }: { initial: number; contraction: number }) {
+  const g = (x: number) => contraction * Math.cos(x);
+  const points = [initial];
+  for (let i = 0; i < 8; i += 1) points.push(g(points.at(-1)!));
+  return <Graph>{curvePath((x) => x, -3, 3, "#94a3b8")}{curvePath(g, -3, 3, "#06b6d4")}{points.slice(0, -1).map((x, i) => <path key={i} d={`M${gx(x)},${gy(x)} L${gx(x)},${gy(g(x))} L${gx(g(x))},${gy(g(x))}`} fill="none" stroke="#f59e0b" strokeWidth="3" opacity="0.75" />)}<Label x="90" y="75" text={`Cobweb iteration for x=g(x), contraction=${roundTo(contraction, 2)}`} /></Graph>;
+}
+
+function SecantMethod({ x0, x1 }: { x0: number; x1: number }) {
+  const f = (x: number) => x * x * x - x - 1;
+  const x2 = x1 - f(x1) * (x1 - x0) / ((f(x1) - f(x0)) || 0.001);
+  return <Graph>{curvePath(f, -3, 3, "#06b6d4")}<line x1={gx(x0)} y1={gy(f(x0))} x2={gx(x1)} y2={gy(f(x1))} stroke="#f59e0b" strokeWidth="5" /><PointGraph x={x0} y={f(x0)} label="x0" /><PointGraph x={x1} y={f(x1)} label="x1" /><PointGraph x={x2} y={0} label="next" color="#10b981" /><Label x="90" y="75" text={`Next secant estimate x=${roundTo(x2, 4)}`} /></Graph>;
+}
+
+function DividedDifferences({ count, evaluation }: { count: number; evaluation: number }) {
+  const pts = Array.from({ length: count }, (_, i) => ({ x: -2.5 + i * 5 / (count - 1), y: Math.sin(i * 1.1) + i * 0.12 }));
+  return <Graph>{pathToSvg(pts, "#f59e0b", 5)}{pts.map((p, i) => <PointGraph key={i} x={p.x} y={p.y} label={`x${i}`} color="#06b6d4" />)}<PointGraph x={evaluation} y={Math.sin((evaluation + 2.5) * 1.1) + 0.2} label="eval" color="#ef4444" /><Label x="90" y="75" text={`${count} points build nested Newton coefficients.`} /></Graph>;
+}
+
+function FiniteDifferenceInterpolation({ index, step }: { index: number; step: number }) {
+  const rows = Array.from({ length: 6 }, (_, i) => Math.sin(i * step) + i * 0.2);
+  return <g><Label x="80" y="70" text={`Equally spaced table with h=${roundTo(step, 2)}; focus index ${index}`} />{rows.map((value, i) => <g key={i}><rect x={120 + i * 86} y="145" width="68" height="44" rx="10" fill={i === index ? "#f59e0b" : "#06b6d4"} opacity="0.28" stroke={i === index ? "#f59e0b" : "#06b6d4"} strokeWidth="3" /><Label x={135 + i * 86} y="173" text={roundTo(value, 2).toString()} />{i < rows.length - 1 && <Label x={143 + i * 86} y="235" text={`D ${roundTo(rows[i + 1] - value, 2)}`} />}</g>)}<Label x="105" y="410" text="Forward/backward formulas choose the nearest table end and reuse finite differences." /></g>;
+}
+
+function GaussianQuadrature({ nodes, bend }: { nodes: number; bend: number }) {
+  const xs = nodes === 2 ? [-0.577, 0.577] : nodes === 3 ? [-0.775, 0, 0.775] : Array.from({ length: nodes }, (_, i) => -0.85 + i * 1.7 / (nodes - 1));
+  const f = (x: number) => 1 + bend * (x * x + 0.25 * Math.sin(3 * x));
+  return <Graph>{curvePath(f, -1.4, 1.4, "#06b6d4")}{xs.map((x, i) => <g key={i}><line x1={gx(x)} y1={gy(0)} x2={gx(x)} y2={gy(f(x))} stroke="#f59e0b" strokeWidth="4" /><PointGraph x={x} y={f(x)} label={`w${i + 1}`} color="#8b5cf6" /></g>)}<Label x="90" y="75" text={`${nodes} optimized nodes sample the curve more efficiently than equal spacing.`} /></Graph>;
+}
+
 function Graph({ children }: { children: ReactNode }) {
   return <g><line x1="80" x2="680" y1="230" y2="230" stroke="#94a3b8" /><line x1="380" x2="380" y1="60" y2="400" stroke="#94a3b8" />{children}</g>;
 }
@@ -653,11 +797,18 @@ function Grid() {
 }
 
 function curvePath(f: (x: number) => number, from: number, to: number, color: string) {
+  let drawing = false;
   const d = Array.from({ length: 220 }).map((_, i) => {
     const x = from + (i / 219) * (to - from);
     const y = f(x);
-    return `${i ? "L" : "M"}${gx(x)},${gy(Math.max(-5, Math.min(5, y)))}`;
-  }).join(" ");
+    if (!Number.isFinite(y)) {
+      drawing = false;
+      return "";
+    }
+    const command = drawing ? "L" : "M";
+    drawing = true;
+    return `${command}${gx(x)},${gy(Math.max(-5, Math.min(5, y)))}`;
+  }).filter(Boolean).join(" ");
   return <path d={d} fill="none" stroke={color} strokeWidth="4" />;
 }
 
