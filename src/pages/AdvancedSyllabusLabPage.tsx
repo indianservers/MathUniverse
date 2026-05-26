@@ -1,4 +1,3 @@
-import { ArrowLeft } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
@@ -31,7 +30,6 @@ function AdvancedSyllabusLabDetail({ lab }: { lab: AdvancedSyllabusLab }) {
 
   return (
     <div className="space-y-6">
-      <Link to="/syllabus" className="action-secondary w-fit"><ArrowLeft className="h-4 w-4" />Syllabus</Link>
       <TopicHeader title={lab.title} subtitle={lab.summary} difficulty={`${lab.category} / ${lab.subcategory}`} estimatedMinutes={15} />
 
       <SectionCard title="Interactive Concept Lab" description="Move the controls, watch the diagram update, and connect the visual pattern to the formula.">
@@ -173,7 +171,84 @@ function renderVisual(visual: AdvancedLabVisual, a: number, b: number) {
   if (visual === "divided-differences") return <DividedDifferences count={Math.round(a)} evaluation={b} />;
   if (visual === "finite-difference-interpolation") return <FiniteDifferenceInterpolation index={Math.round(a)} step={b} />;
   if (visual === "gaussian-quadrature") return <GaussianQuadrature nodes={Math.round(a)} bend={b} />;
+  if (visual === "graph-theory") return <GraphTheory nodeCount={Math.round(a)} density={b} />;
+  if (visual === "operations-research") return <OperationsResearch c1={a} c2={b} />;
   return <PartialSurface x={a} y={b} />;
+}
+
+function GraphTheory({ nodeCount, density }: { nodeCount: number; density: number }) {
+  const n = Math.max(4, Math.min(nodeCount, 9));
+  const positions = Array.from({ length: n }, (_, i) => ({
+    x: 380 + 155 * Math.cos(-Math.PI / 2 + 2 * Math.PI * i / n),
+    y: 230 + 155 * Math.sin(-Math.PI / 2 + 2 * Math.PI * i / n),
+  }));
+  const edges: [number, number][] = [];
+  for (let i = 0; i < n; i++) {
+    for (let j = i + 1; j < n; j++) {
+      const seed = (i * 31 + j * 17 + Math.floor(density * 100)) % 100;
+      if (seed / 100 < density) edges.push([i, j]);
+    }
+  }
+  const degrees = Array.from({ length: n }, (_, i) => edges.filter(([a, b]) => a === i || b === i).length);
+  const degSum = degrees.reduce((s, d) => s + d, 0);
+  const degSeq = [...degrees].sort((a, b) => b - a).join(", ");
+  return (
+    <g>
+      <Label x="80" y="65" text={`n=${n} nodes, ${edges.length} edges, degree sum=${degSum} = 2|E|`} />
+      {edges.map(([a, b]) => (
+        <line key={`${a}-${b}`} x1={positions[a].x} y1={positions[a].y} x2={positions[b].x} y2={positions[b].y} stroke="#06b6d4" strokeWidth="3" opacity="0.65" />
+      ))}
+      {positions.map((p, i) => (
+        <g key={i}>
+          <circle cx={p.x} cy={p.y} r="20" fill="#8b5cf6" stroke="#0f172a" strokeWidth="2" />
+          <text x={p.x - 5} y={p.y + 6} fill="white" fontSize="14" fontWeight="900">{i}</text>
+          <text x={p.x + 24} y={p.y + 5} fill="#0f172a" fontSize="12" fontWeight="700">d={degrees[i]}</text>
+        </g>
+      ))}
+      <Label x="80" y="415" text={`Degree sequence: ${degSeq}. Handshaking: sum(deg) = 2 * edges.`} />
+    </g>
+  );
+}
+
+function OperationsResearch({ c1, c2 }: { c1: number; c2: number }) {
+  const corners = [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 5 }];
+  const gx = (v: number) => 105 + v * 108;
+  const gy = (v: number) => 400 - v * 58;
+  const zValues = corners.map((p) => ({ ...p, z: roundTo(c1 * p.x + c2 * p.y, 2) }));
+  const maxZ = Math.max(...zValues.map((p) => p.z));
+  const optimal = zValues.find((p) => p.z === maxZ);
+  const polyPts = corners.map((p) => `${gx(p.x)},${gy(p.y)}`).join(" ");
+  const constraints = [
+    { x1: 0, y1: 5, x2: 4, y2: 0 },
+    { x1: 0, y1: 3, x2: 4, y2: 3 },
+  ];
+  return (
+    <g>
+      <Label x="80" y="55" text={`Maximize Z = ${roundTo(c1, 1)}x + ${roundTo(c2, 1)}y over feasible region`} />
+      <line x1="80" x2="660" y1={gy(0)} y2={gy(0)} stroke="#0f172a" strokeWidth="2" />
+      <line x1={gx(0)} y1="50" x2={gx(0)} y2="420" stroke="#0f172a" strokeWidth="2" />
+      {[0, 1, 2, 3, 4].map((v) => (
+        <g key={v}>
+          <text x={gx(v) - 5} y={gy(0) + 20} fill="#334155" fontSize="13" fontWeight="700">{v}</text>
+          <text x={gx(0) - 20} y={gy(v) + 5} fill="#334155" fontSize="13" fontWeight="700">{v}</text>
+        </g>
+      ))}
+      {constraints.map((c, i) => (
+        <line key={i} x1={gx(c.x1)} y1={gy(c.y1)} x2={gx(c.x2)} y2={gy(c.y2)} stroke="#8b5cf6" strokeWidth="2.5" strokeDasharray="8 5" opacity="0.7" />
+      ))}
+      <polygon points={polyPts} fill="#06b6d4" opacity="0.18" stroke="#06b6d4" strokeWidth="3" />
+      {zValues.map((p) => (
+        <g key={`${p.x}-${p.y}`}>
+          <circle cx={gx(p.x)} cy={gy(p.y)} r={p.z === maxZ ? 12 : 7} fill={p.z === maxZ ? "#f59e0b" : "#ef4444"} stroke="#0f172a" strokeWidth="2" />
+          <text x={gx(p.x) + 15} y={gy(p.y) - 4} fill="#0f172a" fontSize="12" fontWeight="800">Z={p.z}</text>
+        </g>
+      ))}
+      {optimal && (
+        <text x={gx(optimal.x) + 15} y={gy(optimal.y) + 16} fill="#f59e0b" fontSize="11" fontWeight="900">optimal ({optimal.x},{optimal.y})</text>
+      )}
+      <Label x="80" y="430" text={`Max Z = ${maxZ}. Check all corner points — the simplex method moves between adjacent ones.`} />
+    </g>
+  );
 }
 
 function Venn({ a, b }: { a: number; b: number }) {

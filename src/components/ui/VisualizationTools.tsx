@@ -74,7 +74,7 @@ export default function VisualizationTools({ title, targetRef, children }: Visua
       const margin = 36;
       const imageWidth = pageWidth - margin * 2;
       const imageHeight = (canvas.height * imageWidth) / canvas.width;
-      let y = margin;
+      const y = margin;
 
       if (imageHeight <= pageHeight - margin * 2) {
         pdf.addImage(canvas.toDataURL("image/png"), "PNG", margin, y, imageWidth, imageHeight);

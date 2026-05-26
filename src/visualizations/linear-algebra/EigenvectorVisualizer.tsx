@@ -2,7 +2,6 @@ import { useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
 import { Matrix2x2, matrixVectorMultiply2D } from "../../utils/linearAlgebra";
-import { roundTo } from "../../utils/math";
 
 type Preset = {
   name: string;

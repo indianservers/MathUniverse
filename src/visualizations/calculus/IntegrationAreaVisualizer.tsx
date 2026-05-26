@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
 import SliderControl from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
@@ -16,8 +16,8 @@ export default function IntegrationAreaVisualizer() {
   const [mode, setMode] = useState<Mode>("Midpoint");
   const start = Math.min(a, b), end = Math.max(a, b);
   const dx = (end - start) / n;
-  const sampleX = (i: number) => mode === "Left" ? start + i * dx : mode === "Right" ? start + (i + 1) * dx : start + (i + 0.5) * dx;
-  const area = useMemo(() => Array.from({ length: n }, (_, i) => f(sampleX(i)) * dx).reduce((s, v) => s + v, 0), [start, dx, n, mode]);
+  const sampleX = useCallback((i: number) => mode === "Left" ? start + i * dx : mode === "Right" ? start + (i + 1) * dx : start + (i + 0.5) * dx, [dx, mode, start]);
+  const area = useMemo(() => Array.from({ length: n }, (_, i) => f(sampleX(i)) * dx).reduce((s, v) => s + v, 0), [dx, n, sampleX]);
   const exact = (end ** 3 / 3 + end) - (start ** 3 / 3 + start);
   const path = useMemo(() => Array.from({ length: 160 }, (_, i) => {
     const x = (i / 159) * 5;

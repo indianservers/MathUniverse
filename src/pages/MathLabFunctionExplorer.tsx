@@ -1,4 +1,4 @@
-import { Dices, Eye, EyeOff, RotateCcw, Sigma } from "lucide-react";
+import { Dices, Eye, EyeOff, RotateCcw } from "lucide-react";
 import { useMemo, useState } from "react";
 import FunctionGraphCanvas, { FunctionGraphView } from "../components/math-lab/FunctionGraphCanvas";
 import { FormulaBlock, MathErrorBox, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";

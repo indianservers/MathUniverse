@@ -69,11 +69,6 @@ export default function ScientificCalculator() {
     setSymbolicVariable("x");
   };
 
-  const backspace = () => {
-    setError("");
-    setExpression((current) => current.slice(0, -1));
-  };
-
   const calculate = () => {
     if (!expression.trim()) return;
     try {

@@ -1,4 +1,4 @@
-import { BookOpen, Compass, FlaskConical, RadioTower, Ruler, Sigma, Waves } from "lucide-react";
+import { Compass, FlaskConical, RadioTower, Ruler, Sigma, Waves } from "lucide-react";
 import { useMemo, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
 

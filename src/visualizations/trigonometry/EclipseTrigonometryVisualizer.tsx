@@ -177,7 +177,7 @@ function SolarDiagram({ offsetPixels, moonRadius, shadowWidth, nearMiss, alignme
   );
 }
 
-function LunarDiagram({ offsetPixels, shadowWidth, nearMiss, alignment }: { offsetPixels: number; shadowWidth: number; nearMiss: boolean; alignment: number }) {
+function LunarDiagram({ offsetPixels, shadowWidth, nearMiss }: { offsetPixels: number; shadowWidth: number; nearMiss: boolean; alignment: number }) {
   const sun = { x: 125, y: 260, r: 76 };
   const earth = { x: 385, y: 260, r: 64 };
   const moon = { x: 715, y: 260 + offsetPixels * 0.78, r: 48 };

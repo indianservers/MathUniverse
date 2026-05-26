@@ -8,7 +8,6 @@ import {
   MatrixBreadcrumb,
   MatrixBackLink,
   MatrixErrorBox,
-  MatrixFormulaBlock,
   MatrixOperationLayout,
   MatrixPracticeCard,
   MatrixResult,
@@ -22,12 +21,10 @@ import {
   adjointMatrix,
   allCells,
   cloneMatrix,
-  cofactorMatrix,
   determinantSteps,
   eigen2x2,
   formatNumber,
   inverse2x2,
-  matrixOrder,
   multiplyMatrices,
   rankMatrix,
   rowAddMultiple,
@@ -36,7 +33,6 @@ import {
   scalarMultiply,
   solve2x2System,
   subtractMatrices,
-  toRowEchelon,
   transposeMatrix,
 } from "../utils/matrixOperations";
 import type { Matrix, MatrixStepResult } from "../utils/matrixOperations";

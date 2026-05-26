@@ -86,7 +86,9 @@ export type AdvancedLabVisual =
   | "secant-method"
   | "divided-differences"
   | "finite-difference-interpolation"
-  | "gaussian-quadrature";
+  | "gaussian-quadrature"
+  | "graph-theory"
+  | "operations-research";
 
 export type AdvancedSyllabusLab = {
   id: string;
@@ -203,6 +205,8 @@ export const advancedSyllabusLabs: AdvancedSyllabusLab[] = [
   { id: "newton-divided-differences-lab", title: "Newton Divided Differences Lab", category: "B.Tech M2", subcategory: "Numerical Methods", summary: "Build interpolation coefficients from nested divided differences.", formula: "P_n(x)=a_0+a_1(x-x_0)+a_2(x-x_0)(x-x_1)+...", visual: "divided-differences", sliderA: "Point count", sliderB: "Evaluation x", minA: 3, maxA: 7, stepA: 1, minB: -3, maxB: 3, stepB: 0.1, defaultA: 5, defaultB: 1.2, tasks: ["Change point count.", "Move x.", "Read the nested polynomial path."] },
   { id: "forward-backward-interpolation-lab", title: "Forward and Backward Interpolation Lab", category: "B.Tech M2", subcategory: "Numerical Methods", summary: "Compare table-based forward and backward differences on equally spaced data.", formula: "Newton forward/backward difference formulas", visual: "finite-difference-interpolation", sliderA: "Table index", sliderB: "Step h", minA: 0, maxA: 5, stepA: 1, minB: 0.4, maxB: 1.6, stepB: 0.05, defaultA: 2, defaultB: 1, tasks: ["Move table index.", "Change h.", "Compare forward and backward focus."] },
   { id: "gaussian-quadrature-lab", title: "Gaussian Quadrature Lab", category: "B.Tech M2", subcategory: "Numerical Methods", summary: "Place optimal sample nodes and compare weighted area against ordinary rules.", formula: "integral_-1^1 f(x)dx approx sum w_i f(x_i)", visual: "gaussian-quadrature", sliderA: "Node count", sliderB: "Curve bend", minA: 2, maxA: 5, stepA: 1, minB: 0, maxB: 2, stepB: 0.05, defaultA: 3, defaultB: 0.8, tasks: ["Change node count.", "Bend the curve.", "Compare weighted samples."] },
+  { id: "graph-theory-basics", title: "Graph Theory Explorer", category: "Discrete Mathematics", subcategory: "Graph Theory", summary: "Build an undirected graph, inspect degree sequence, and trace BFS layer-by-layer.", formula: "sum deg(v) = 2|E| (handshaking lemma)", visual: "graph-theory", sliderA: "Node count", sliderB: "Edge density", minA: 4, maxA: 9, stepA: 1, minB: 0.2, maxB: 0.9, stepB: 0.05, defaultA: 6, defaultB: 0.5, tasks: ["Increase nodes.", "Change edge density.", "Count degrees and verify handshaking lemma."] },
+  { id: "operations-research-lp", title: "Linear Programming Feasible Region", category: "Discrete Mathematics", subcategory: "Operations Research", summary: "Maximize an objective function over a polygon feasible region and identify the optimal corner.", formula: "max Z = c1*x + c2*y subject to Ax <= b, x,y >= 0", visual: "operations-research", sliderA: "Objective c1", sliderB: "Objective c2", minA: 0.5, maxA: 5, stepA: 0.5, minB: 0.5, maxB: 5, stepB: 0.5, defaultA: 3, defaultB: 2, tasks: ["Change c1 and watch optimal corner move.", "Set equal coefficients.", "Find minimum instead of maximum."] },
 ];
 
 export function getAdvancedSyllabusLab(id?: string) {

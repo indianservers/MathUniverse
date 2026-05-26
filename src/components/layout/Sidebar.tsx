@@ -7,7 +7,10 @@ const recentToolsKey = "math-universe-recent-tools";
 
 export default function Sidebar() {
   const location = useLocation();
-  const activeSections = navSections.filter((section) => section.items.some((item) => isActiveRoute(location.pathname, item.route))).map((section) => section.title);
+  const activeSections = useMemo(
+    () => navSections.filter((section) => section.items.some((item) => isActiveRoute(location.pathname, item.route))).map((section) => section.title),
+    [location.pathname],
+  );
   const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Main", ...activeSections])));
   const [query, setQuery] = useState("");
   const [recentRoutes, setRecentRoutes] = useState<string[]>([]);
@@ -26,7 +29,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     setOpenSections((current) => Array.from(new Set([...current, ...activeSections])));
-  }, [location.pathname]);
+  }, [activeSections, location.pathname]);
 
   useEffect(() => {
     try {

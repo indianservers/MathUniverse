@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowRight, Calculator, Grid3X3 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";

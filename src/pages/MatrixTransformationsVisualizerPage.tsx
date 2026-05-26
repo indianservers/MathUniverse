@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Pause, Play, RotateCcw } from "lucide-react";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";

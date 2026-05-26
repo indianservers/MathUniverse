@@ -13,7 +13,10 @@ const recentToolsKey = "math-universe-recent-tools";
 
 export default function MobileNav({ open, onClose }: MobileNavProps) {
   const location = useLocation();
-  const activeSections = navSections.filter((section) => section.items.some((item) => isActiveRoute(location.pathname, item.route))).map((section) => section.title);
+  const activeSections = useMemo(
+    () => navSections.filter((section) => section.items.some((item) => isActiveRoute(location.pathname, item.route))).map((section) => section.title),
+    [location.pathname],
+  );
   const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Main", ...activeSections])));
   const [query, setQuery] = useState("");
   const [recentRoutes, setRecentRoutes] = useState<string[]>([]);
@@ -38,7 +41,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
     } catch {
       setRecentRoutes([]);
     }
-  }, [open, location.pathname]);
+  }, [activeSections, open, location.pathname]);
 
   const toggleSection = (title: string) => {
     setOpenSections((current) => current.includes(title) ? current.filter((item) => item !== title) : [...current, title]);

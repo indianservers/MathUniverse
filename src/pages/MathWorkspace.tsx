@@ -1,6 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Box, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut } from "lucide-react";
+import { Circle, Download, Eraser, LineChart, Magnet, MousePointer2, Move, Pentagon, Plus, Presentation, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut } from "lucide-react";
 import { KeyboardEvent, PointerEvent, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
@@ -516,7 +516,7 @@ function evaluateMathExpression(expression: string, x: number) {
     .replace(/\bln\b/gi, "Math.log")
     .replace(/\blog\b/gi, "Math.log10")
     .replace(/\bexp\b/gi, "Math.exp");
-  if (!/^[0-9x+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}\[\]'"]/.test(safe)) throw new Error("Unsupported expression");
+  if (!/^[0-9x+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}'"]/.test(safe) || safe.includes("[") || safe.includes("]")) throw new Error("Unsupported expression");
   return Function("x", `"use strict"; return (${safe});`)(x) as number;
 }
 
@@ -765,11 +765,11 @@ function GraphPanel({ plots, onChange }: { plots: PlotItem[]; onChange: (plots: 
   const [sliderA, setSliderA] = useState(1);
   const [sliderB, setSliderB] = useState(0);
   const visiblePlots = plots.filter((plot) => plot.visible !== false);
-  const viewport = { xMin, xMax, yMin, yMax, width: 640, height: 360 };
-  const paths = useMemo(() => visiblePlots.map((plot) => ({ ...plot, path: graphPath(stripInequality(applyGraphParameters(plot.expression, sliderA, sliderB)), viewport) })), [visiblePlots, sliderA, sliderB, xMin, xMax, yMin, yMax]);
+  const viewport = useMemo(() => ({ xMin, xMax, yMin, yMax, width: 640, height: 360 }), [xMin, xMax, yMin, yMax]);
+  const paths = useMemo(() => visiblePlots.map((plot) => ({ ...plot, path: graphPath(stripInequality(applyGraphParameters(plot.expression, sliderA, sliderB)), viewport) })), [visiblePlots, sliderA, sliderB, viewport]);
   const tableRows = useMemo(() => visiblePlots.slice(0, 3).flatMap((plot) => sampleTable(applyGraphParameters(plot.expression, sliderA, sliderB), plot.expression).slice(0, 7)), [visiblePlots, sliderA, sliderB]);
   const regression = useMemo(() => linearRegression(regressionSeed), []);
-  const inequalityRegions = useMemo(() => visiblePlots.filter((plot) => (plot.kind ?? inferPlotKind(plot.expression)) === "inequality").map((plot) => inequalityRegion(applyGraphParameters(plot.expression, sliderA, sliderB), viewport, plot.color)), [visiblePlots, sliderA, sliderB, xMin, xMax, yMin, yMax]);
+  const inequalityRegions = useMemo(() => visiblePlots.filter((plot) => (plot.kind ?? inferPlotKind(plot.expression)) === "inequality").map((plot) => inequalityRegion(applyGraphParameters(plot.expression, sliderA, sliderB), viewport)), [visiblePlots, sliderA, sliderB, viewport]);
   const addPlot = (expression: string, kind: PlotKind = inferPlotKind(expression)) => onChange([{ id: crypto.randomUUID(), expression, color: colors[plots.length % colors.length], kind, visible: true }, ...plots].slice(0, 10));
   const updatePlot = (id: string, patch: Partial<PlotItem>) => onChange(plots.map((plot) => plot.id === id ? { ...plot, ...patch } : plot));
   const removePlot = (id: string) => onChange(plots.filter((plot) => plot.id !== id));
@@ -906,7 +906,7 @@ function stripInequality(expression: string) {
   return expression.replace(/^y\s*=\s*/i, "");
 }
 
-function inequalityRegion(expression: string, viewport: GraphViewport, color: string) {
+function inequalityRegion(expression: string, viewport: GraphViewport) {
   const boundary = stripInequality(expression);
   const path = graphPath(boundary, viewport);
   if (!path) return "";
