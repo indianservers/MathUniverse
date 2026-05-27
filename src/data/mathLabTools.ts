@@ -1,4 +1,4 @@
-import { Atom, BarChart3, BrainCircuit, Calculator, Cuboid, FunctionSquare, Grid3X3, Landmark, LineChart, Sigma, Sparkles, Triangle } from "lucide-react";
+import { Atom, BarChart3, BrainCircuit, Calculator, Cuboid, FunctionSquare, Grid3X3, Landmark, LineChart, Sigma, Sparkles, Triangle, Workflow } from "lucide-react";
 
 export const mathLabTools = [
   {
@@ -80,6 +80,14 @@ export const mathLabTools = [
     difficulty: "Advanced",
     description: "Render surfaces z = f(x, y) and inspect them with interactive 3D controls.",
     useCases: ["surfaces", "z=f(x,y)", "mesh", "height maps"],
+  },
+  {
+    title: "Discrete Math and Automata World",
+    route: "/discrete-world",
+    icon: Workflow,
+    difficulty: "Advanced",
+    description: "Open the integrated browser-only lab for automata, grammars, Turing machines, and canonical discrete math modules.",
+    useCases: ["DFA", "NFA", "grammars", "Turing machines"],
   },
   {
     title: "Step-by-Step Problem Solver",

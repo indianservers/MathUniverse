@@ -14,6 +14,7 @@ const ConceptDependencyGraph = lazy(() => import("./pages/ConceptDependencyGraph
 const DailyChallenge = lazy(() => import("./pages/DailyChallenge"));
 const DerivativesTangentVisualizer = lazy(() => import("./pages/DerivativesTangentVisualizer"));
 const Documentation = lazy(() => import("./pages/Documentation"));
+const DiscreteWorld = lazy(() => import("./pages/DiscreteWorld"));
 const EigenvectorsVisualizerPage = lazy(() => import("./pages/EigenvectorsVisualizerPage"));
 const FourierSeriesAnimator = lazy(() => import("./pages/FourierSeriesAnimator"));
 const FourierSeriesVisualizerPage = lazy(() => import("./pages/FourierSeriesVisualizerPage"));
@@ -156,6 +157,7 @@ export default function App() {
             <Route path="daily-challenge" element={<DailyChallenge />} />
             <Route path="worked-examples" element={<WorkedExamplesLibrary />} />
             <Route path="graph-comparison" element={<GraphComparisonMode />} />
+            <Route path="discrete-world" element={<DiscreteWorld />} />
             <Route path="parametric-curves" element={<ParametricCurveExplorer />} />
             <Route path="surface-plotter" element={<SurfacePlotter3D />} />
             <Route path="fourier-animator" element={<FourierSeriesAnimator />} />

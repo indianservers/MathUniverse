@@ -78,6 +78,18 @@ export const topics: Topic[] = [
     labCount: 6,
   },
   {
+    id: "discrete-world",
+    title: "Discrete Mathematics and Automata World",
+    route: "/discrete-world",
+    iconName: "Workflow",
+    description: "Connect logic, sets, combinatorics, graph theory, automata, grammars, and Turing machines in one browser-only lab.",
+    concepts: ["Automata", "Grammars", "Turing machines", "Discrete structures"],
+    difficulty: "Advanced",
+    estimatedMinutes: 95,
+    colorGradient: "from-cyan-500 to-violet-600",
+    labCount: 7,
+  },
+  {
     id: "statistics",
     title: "Statistics with Anveshak",
     route: ANVESHAK_STATISTICS_URL,
