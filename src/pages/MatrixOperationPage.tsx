@@ -24,7 +24,7 @@ import {
   determinantSteps,
   eigen2x2,
   formatNumber,
-  inverse2x2,
+  inverse,
   multiplyMatrices,
   rankMatrix,
   rowAddMultiple,
@@ -134,7 +134,7 @@ function compute(id: MatrixOperationId, a: Matrix, b: Matrix, scalar: number, re
   if (id === "multiplication") return compareBA ? multiplyMatrices(b, a) : multiplyMatrices(a, b);
   if (id === "transpose") return transposeMatrix(a);
   if (id === "determinant") return determinantSteps(a);
-  if (id === "inverse") return inverse2x2(a);
+  if (id === "inverse") return inverse(a);
   if (id === "adjoint-cofactor") return adjointMatrix(a);
   if (id === "rank") return rankMatrix(a);
   if (id === "row-operations") {
