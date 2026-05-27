@@ -16,6 +16,7 @@ export type MatrixStepResult = {
   result: Matrix;
   steps: MatrixStep[];
   error?: string;
+  value?: number;
 };
 
 export function cloneMatrix(matrix: Matrix): Matrix {
@@ -172,16 +173,27 @@ export function determinant3x3(a: Matrix) {
   return p1 + p2 + p3 - n1 - n2 - n3;
 }
 
-export function determinant(a: Matrix) {
+export function determinant(a: Matrix): number {
   if (!isSquare(a)) throw new Error("Determinant exists only for square matrices.");
   if (a.length === 1) return a[0][0];
   if (a.length === 2) return determinant2x2(a);
   if (a.length === 3) return determinant3x3(a);
-  throw new Error("Advanced determinant calculation coming soon.");
+  return a[0].reduce((sum, value, col) => {
+    const sign = col % 2 === 0 ? 1 : -1;
+    return sum + sign * value * determinant(getMinor(a, 0, col));
+  }, 0);
 }
 
-export function determinantSteps(a: Matrix): MatrixStepResult & { value?: number } {
+export function determinantSteps(a: Matrix): MatrixStepResult {
   if (!isSquare(a)) return { result: [], steps: [], error: "Determinant exists only for square matrices." };
+  if (a.length === 1) {
+    const value = a[0][0];
+    return {
+      value,
+      result: [[value]],
+      steps: [{ title: "Read 1x1 determinant", formula: "det([a]) = a", calculation: `det(A) = ${formatNumber(value)}`, result: [[value]], highlightA: [[0, 0]] }],
+    };
+  }
   if (a.length === 2) {
     const value = determinant2x2(a);
     return {
@@ -204,36 +216,105 @@ export function determinantSteps(a: Matrix): MatrixStepResult & { value?: number
       ],
     };
   }
-  if (a.length === 3) {
-    const value = determinant3x3(a);
+  if (a.length >= 3) {
+    const terms = a[0].map((value, col) => {
+      const sign = col % 2 === 0 ? 1 : -1;
+      const minorDet = determinant(getMinor(a, 0, col));
+      return { value, col, sign, minorDet, term: sign * value * minorDet };
+    });
+    const value = terms.reduce((sum, term) => sum + term.term, 0);
+    const formula = `det(A) = ${a[0].map((_, col) => `${col % 2 === 0 ? "+" : "-"} a1${col + 1} det(M1${col + 1})`).join(" ")}`;
     return {
       value,
       result: [[value]],
       steps: [
-        { title: "Use Sarrus rule", formula: "positive diagonals - negative diagonals", calculation: "Copy the first two columns mentally to the right." },
-        { title: "Compute determinant", formula: "aei + bfg + cdh - ceg - afh - bdi", calculation: `det(A) = ${formatNumber(value)}`, result: [[value]] },
+        ...terms.map((term) => ({
+          title: "Cofactor Expansion along Row 1",
+          formula,
+          calculation: `${term.sign > 0 ? "+" : "-"} ${formatNumber(term.value)} x det(M1${term.col + 1}) = ${term.sign > 0 ? "+" : "-"} ${formatNumber(term.value)} x ${formatNumber(term.minorDet)} = ${formatNumber(term.term)}`,
+          matrix: getMinor(a, 0, term.col),
+          highlightA: [[0, term.col]] as Cell[],
+        })),
+        {
+          title: "Sum cofactors",
+          formula,
+          calculation: terms.map((term) => formatNumber(term.term)).join(" + ") + ` = ${formatNumber(value)}`,
+          result: [[value]],
+        },
       ],
     };
   }
-  return { result: [], steps: [], error: "Advanced determinant calculation coming soon." };
+  return { result: [], steps: [], error: "Determinant requires at least one row and one column." };
+}
+
+export function inverse(a: Matrix): MatrixStepResult {
+  if (!isSquare(a)) return { result: [], steps: [], error: "Inverse exists only for square matrices." };
+  if (a.length === 1) {
+    if (Math.abs(a[0][0]) < 1e-10) return { result: [], steps: [], error: "Inverse does not exist because determinant is zero." };
+    return {
+      result: [[1 / a[0][0]]],
+      steps: [{ title: "Invert 1x1 matrix", formula: "A^-1 = [1/a]", calculation: `1/${formatNumber(a[0][0])} = ${formatNumber(1 / a[0][0])}`, result: [[1 / a[0][0]]] }],
+    };
+  }
+  if (a.length <= 3) return inverseByAdjugate(a);
+  return inverseByGaussJordan(a);
 }
 
 export function inverse2x2(a: Matrix): MatrixStepResult {
-  if (matrixOrder(a).rows !== 2 || matrixOrder(a).cols !== 2) return { result: [], steps: [], error: "This visualizer currently supports 2x2 inverse." };
-  const det = determinant2x2(a);
+  return inverse(a);
+}
+
+function inverseByAdjugate(a: Matrix): MatrixStepResult {
+  const det = determinant(a);
   if (Math.abs(det) < 1e-10) return { result: [], steps: [], error: "Inverse does not exist because determinant is zero." };
-  const swapped = [[a[1][1], a[0][1]], [a[1][0], a[0][0]]];
-  const adj = [[a[1][1], -a[0][1]], [-a[1][0], a[0][0]]];
+  const adjoint = adjointMatrix(a);
+  if (adjoint.error) return adjoint;
+  const adj = adjoint.result;
   const result = adj.map((row) => row.map((value) => value / det));
-  return {
-    result,
-    steps: [
-      { title: "Find determinant", formula: "det(A)=ad-bc", calculation: `${formatNumber(a[0][0])}x${formatNumber(a[1][1])} - ${formatNumber(a[0][1])}x${formatNumber(a[1][0])} = ${formatNumber(det)}`, highlightA: [[0, 0], [1, 1], [0, 1], [1, 0]] },
+  const steps: MatrixStep[] = [
+    { title: "Find determinant", formula: "det(A)", calculation: `det(A) = ${formatNumber(det)}`, result: [[det]], highlightA: allCells(a) },
+  ];
+  if (a.length === 2) {
+    const swapped = [[a[1][1], a[0][1]], [a[1][0], a[0][0]]];
+    steps.push(
       { title: "Swap a and d", formula: "[[d,b],[c,a]]", calculation: "Move diagonal entries into each other's places.", result: swapped, highlightResult: [[0, 0], [1, 1]] },
       { title: "Change signs of b and c", formula: "[[d,-b],[-c,a]]", calculation: "Negate the off-diagonal entries.", result: adj, highlightResult: [[0, 1], [1, 0]] },
-      { title: "Multiply by reciprocal determinant", formula: "A^-1=(1/det(A)) adj(A)", calculation: `Multiply every entry by 1/${formatNumber(det)}.`, result, highlightResult: allCells(result) },
-    ],
-  };
+    );
+  } else {
+    steps.push(...adjoint.steps);
+  }
+  steps.push({ title: "Multiply by reciprocal determinant", formula: "A^-1=(1/det(A)) adj(A)", calculation: `Multiply every entry by 1/${formatNumber(det)}.`, result, highlightResult: allCells(result) });
+  return { result, steps };
+}
+
+function inverseByGaussJordan(a: Matrix): MatrixStepResult {
+  const n = a.length;
+  const augmented = a.map((row, i) => [...row, ...Array.from({ length: n }, (_, j) => i === j ? 1 : 0)]);
+  const steps: MatrixStep[] = [{ title: "Augment with identity", formula: "[A | I]", calculation: "Attach the identity matrix to the right of A.", result: cloneMatrix(augmented) }];
+
+  for (let col = 0; col < n; col += 1) {
+    let pivotRow = col;
+    for (let row = col + 1; row < n; row += 1) if (Math.abs(augmented[row][col]) > Math.abs(augmented[pivotRow][col])) pivotRow = row;
+    if (Math.abs(augmented[pivotRow][col]) < 1e-10) return { result: [], steps, error: "Inverse does not exist because a pivot is zero." };
+    if (pivotRow !== col) {
+      [augmented[col], augmented[pivotRow]] = [augmented[pivotRow], augmented[col]];
+      steps.push({ title: "Swap pivot row", formula: `R${col + 1} <-> R${pivotRow + 1}`, calculation: "Move the largest available pivot into place.", result: cloneMatrix(augmented), highlightResult: augmented[col].map((_, j) => [col, j] as Cell) });
+    }
+    const pivot = augmented[col][col];
+    augmented[col] = augmented[col].map((value) => value / pivot);
+    steps.push({ title: "Scale pivot row", formula: `R${col + 1} -> R${col + 1}/${formatNumber(pivot)}`, calculation: "Make the pivot equal to 1.", result: cloneMatrix(augmented), highlightResult: [[col, col]] });
+    for (let row = 0; row < n; row += 1) {
+      if (row === col) continue;
+      const factor = augmented[row][col];
+      if (Math.abs(factor) < 1e-10) continue;
+      augmented[row] = augmented[row].map((value, j) => value - factor * augmented[col][j]);
+      steps.push({ title: "Eliminate column entry", formula: `R${row + 1} -> R${row + 1} - (${formatNumber(factor)})R${col + 1}`, calculation: `Create a zero in column ${col + 1}.`, result: cloneMatrix(augmented), highlightResult: [[row, col]] });
+    }
+  }
+
+  const result = augmented.map((row) => row.slice(n).map((value) => Math.abs(value) < 1e-10 ? 0 : value));
+  steps.push({ title: "Read inverse", formula: "[I | A^-1]", calculation: "The right half is the inverse matrix.", result, highlightResult: allCells(result) });
+  return { result, steps };
 }
 
 export function getMinor(a: Matrix, row: number, col: number): Matrix {
@@ -241,7 +322,7 @@ export function getMinor(a: Matrix, row: number, col: number): Matrix {
 }
 
 export function cofactorMatrix(a: Matrix): MatrixStepResult {
-  if (!isSquare(a) || a.length < 2 || a.length > 3) return { result: [], steps: [], error: "Cofactor visualizer supports 2x2 and 3x3 square matrices." };
+  if (!isSquare(a) || a.length < 2) return { result: [], steps: [], error: "Cofactor matrix exists for square matrices of order at least 2." };
   const result = createMatrix(a.length, a.length);
   const steps: MatrixStep[] = [];
   for (let i = 0; i < a.length; i += 1) {

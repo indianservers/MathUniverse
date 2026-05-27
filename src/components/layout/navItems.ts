@@ -13,6 +13,7 @@ import {
   Info,
   Shapes,
   Sigma,
+  Workflow,
   Waves,
   Wrench,
 } from "lucide-react";
@@ -33,6 +34,7 @@ export const iconMap = {
   Info,
   Shapes,
   Sigma,
+  Workflow,
   Waves,
   Wrench,
 };
@@ -89,6 +91,7 @@ export const navSections: NavSection[] = [
     items: [
       { title: "Graphing Calculator", route: "/math-lab/graphing-calculator", icon: "ChartSpline" },
       { title: "Function Explorer", route: "/math-lab/function-explorer", icon: "Waves" },
+      { title: "Discrete World", route: "/discrete-world", icon: "Workflow" },
       { title: "Graph Compare", route: "/graph-comparison", icon: "Waves" },
       { title: "Parametric Curves", route: "/parametric-curves", icon: "Waves" },
       { title: "Polar Visualizer", route: "/polar-visualizer", icon: "Waves" },
@@ -174,6 +177,7 @@ export const legacyNavItems = [
   { title: "Scientific Calculator", route: "/calculator", icon: Calculator },
   { title: "Unit Converter", route: "/unit-converter", icon: Calculator },
   { title: "Truth Tables", route: "/truth-table", icon: Sigma },
+  { title: "Discrete World", route: "/discrete-world", icon: Workflow },
   { title: "Graph Compare", route: "/graph-comparison", icon: Waves },
   { title: "Parametric Curves", route: "/parametric-curves", icon: Waves },
   { title: "3D Surface Plotter", route: "/surface-plotter", icon: Cuboid },

@@ -6,6 +6,7 @@ export {
   transposeMatrix,
   determinant2x2,
   determinant3x3,
+  inverse,
   inverse2x2,
   getMinor,
   cofactorMatrix,
