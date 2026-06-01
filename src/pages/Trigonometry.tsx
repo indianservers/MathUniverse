@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
+import ContinueCard from "../components/ui/ContinueCard";
 import { topics } from "../data/topics";
 import { trigonometryConcepts } from "../data/trigonometryConcepts";
 import { useProgress } from "../hooks/useProgress";
@@ -13,11 +14,12 @@ export default function Trigonometry() {
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
   return (
-    <div className="space-y-6" onPointerDown={() => markTopicInteracted(topic.id)}>
+    <div className="space-y-5" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
+      <ContinueCard routePrefix="/trigonometry" />
       <div className="flex flex-wrap gap-3">
-        <Link to="/calculator" className="action-secondary w-fit">Open Scientific Calculator</Link>
-        <Link to="/trigonometry/unit-circle" className="action-primary w-fit">Start Unit Circle</Link>
+        <Link to="/calculator" className="action-secondary">Open Scientific Calculator</Link>
+        <Link to="/trigonometry/unit-circle" className="action-primary">Start Unit Circle</Link>
       </div>
       <SectionCard title="Trigonometry Concept Pages" description={`${trigonometryConcepts.length} focused subpages. Each page keeps one concept, one formula, and one visual lab so the topic does not become one huge scrolling page.`}>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">

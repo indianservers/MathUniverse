@@ -1,4 +1,4 @@
-import { Atom, BarChart3, BrainCircuit, Calculator, Cuboid, FunctionSquare, Grid3X3, Landmark, LineChart, Sigma, Sparkles, Triangle, Workflow } from "lucide-react";
+import { Atom, BarChart3, Binary, BrainCircuit, Calculator, Cuboid, FunctionSquare, GitFork, Grid3X3, Landmark, LineChart, Network, Sigma, Sparkles, Triangle, Workflow } from "lucide-react";
 
 export const mathLabTools = [
   {
@@ -82,12 +82,52 @@ export const mathLabTools = [
     useCases: ["surfaces", "z=f(x,y)", "mesh", "height maps"],
   },
   {
+    title: "Mathematical Logic Lab",
+    route: "/mathematical-logic",
+    icon: Binary,
+    difficulty: "Advanced",
+    description: "Build statements, generate truth tables, convert CNF/DNF, and animate inference and predicates.",
+    useCases: ["truth tables", "logic gates", "CNF", "predicate calculus"],
+  },
+  {
+    title: "Set Theory Lab",
+    route: "/set-theory",
+    icon: Network,
+    difficulty: "Advanced",
+    description: "Explore sets, Venn diagrams, relation matrices, Hasse diagrams, functions, and discrete structures.",
+    useCases: ["sets", "relations", "venn", "partial orders"],
+  },
+  {
+    title: "Graph Theory Lab",
+    route: "/graph-theory",
+    icon: Network,
+    difficulty: "Advanced",
+    description: "Edit graphs and animate BFS, DFS, Dijkstra, MSTs, topological sort, planarity, circuits, and coloring.",
+    useCases: ["graphs", "BFS", "Dijkstra", "coloring"],
+  },
+  {
     title: "Discrete Math and Automata World",
     route: "/discrete-world",
     icon: Workflow,
     difficulty: "Advanced",
     description: "Open the integrated browser-only lab for automata, grammars, Turing machines, and canonical discrete math modules.",
     useCases: ["DFA", "NFA", "grammars", "Turing machines"],
+  },
+  {
+    title: "Algebraic Structures Lab",
+    route: "/algebraic-structures",
+    icon: GitFork,
+    difficulty: "Advanced",
+    description: "Validate binary operations, semigroups, monoids, posets, lattices, Boolean laws, and logic gates.",
+    useCases: ["cayley tables", "monoids", "boolean algebra", "logic gates"],
+  },
+  {
+    title: "Combinatorics Lab",
+    route: "/combinatorics",
+    icon: Grid3X3,
+    difficulty: "Advanced",
+    description: "Visualize counting trees, permutations, combinations, Pascal rows, multinomial terms, and inclusion-exclusion.",
+    useCases: ["permutations", "combinations", "binomial theorem", "inclusion-exclusion"],
   },
   {
     title: "Step-by-Step Problem Solver",

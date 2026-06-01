@@ -1,9 +1,107 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUp, Flame, Gauge, Search, Settings, Star, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { ArrowUp, CheckCircle2, Flame, Gauge, HelpCircle, Keyboard, Search, Settings, Star, X } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { navItems } from "./navItems";
 import { useTheme } from "../../hooks/useTheme";
+
+type UndoToastPayload = { message: string; onUndo: () => void };
+const undoListeners = new Set<(p: UndoToastPayload) => void>();
+export function showUndoToast(message: string, onUndo: () => void) {
+  undoListeners.forEach((fn) => fn({ message, onUndo }));
+}
+
+export function UndoToastHost() {
+  const [toast, setToast] = useState<UndoToastPayload | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const handler = (p: UndoToastPayload) => {
+      setToast(p);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => setToast(null), 5000);
+    };
+    undoListeners.add(handler);
+    return () => { undoListeners.delete(handler); if (timerRef.current) clearTimeout(timerRef.current); };
+  }, []);
+
+  const dismiss = useCallback(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    setToast(null);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {toast && (
+        <motion.div
+          initial={{ y: 40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 40, opacity: 0 }}
+          className="fixed bottom-28 left-1/2 z-[100] flex -translate-x-1/2 items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-2xl dark:border-white/10 dark:bg-slate-950 lg:bottom-8"
+        >
+          <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500" />
+          <span className="text-sm font-semibold">{toast.message}</span>
+          <button type="button" className="rounded-xl bg-slate-100 px-3 py-1.5 text-xs font-black text-cyan-700 transition hover:bg-cyan-100 dark:bg-white/10 dark:text-cyan-200" onClick={() => { toast.onUndo(); dismiss(); }}>Undo</button>
+          <button type="button" className="ml-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" onClick={dismiss} aria-label="Dismiss"><X className="h-3.5 w-3.5" /></button>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+const SHORTCUTS = [
+  { keys: "Ctrl+K", description: "Open command palette" },
+  { keys: "?", description: "Show keyboard shortcuts" },
+  { keys: "/", description: "Focus search (Math Lab)" },
+  { keys: "Ctrl+Z", description: "Undo last slider change" },
+  { keys: "Esc", description: "Close any open overlay" },
+  { keys: "←/→", description: "Previous/Next in quiz" },
+  { keys: "P", description: "Toggle parameter panel (visualizers)" },
+  { keys: "T", description: "Cycle through topic tabs" },
+];
+
+export function KeyboardShortcutsPanel() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      const target = e.target as HTMLElement;
+      const typing = target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable;
+      if (e.key === "?" && !typing && !e.ctrlKey && !e.metaKey) { e.preventDefault(); setOpen((v) => !v); }
+      if (e.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  return (
+    <>
+      <button type="button" className="tooltip-icon inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/80 text-slate-700 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-slate-100" data-tooltip="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts" onClick={() => setOpen((v) => !v)}>
+        <Keyboard className="h-5 w-5" />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div className="fixed inset-0 z-[90] bg-slate-950/50 p-4 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)}>
+            <motion.div className="mx-auto mt-24 max-w-md overflow-hidden rounded-2xl border border-white/20 bg-white shadow-2xl dark:bg-slate-950" initial={{ y: 12, scale: 0.97 }} animate={{ y: 0, scale: 1 }} exit={{ y: 12, scale: 0.97 }} onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4 dark:border-white/10">
+                <div className="flex items-center gap-2 font-black"><HelpCircle className="h-5 w-5 text-cyan-500" />Keyboard Shortcuts</div>
+                <button type="button" className="math-tool-button h-8 w-8 rounded-full" onClick={() => setOpen(false)}><X className="h-4 w-4" /></button>
+              </div>
+              <div className="divide-y divide-slate-100 dark:divide-white/5">
+                {SHORTCUTS.map(({ keys, description }) => (
+                  <div key={keys} className="flex items-center justify-between px-5 py-3">
+                    <span className="text-sm font-semibold text-slate-700 dark:text-slate-200">{description}</span>
+                    <kbd className="rounded-lg bg-slate-100 px-2.5 py-1 font-mono text-xs font-black text-slate-700 dark:bg-white/10 dark:text-slate-200">{keys}</kbd>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
 
 const recentToolsKey = "math-universe-recent-tools";
 const quizXpKey = "math-universe-quiz-xp";

@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from "recharts";
 import GraphCard from "../components/ui/GraphCard";
@@ -5,24 +6,79 @@ import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 
+type WaveType = "square" | "triangle";
+
+const PRESETS: Array<{ label: string; harmonics: number; time: number; wave: WaveType }> = [
+  { label: "Square wave (9 harmonics)", harmonics: 9, time: 0, wave: "square" },
+  { label: "Triangle wave (9 harmonics)", harmonics: 9, time: 0, wave: "triangle" },
+  { label: "Square — max convergence", harmonics: 25, time: 0, wave: "square" },
+  { label: "Triangle — max convergence", harmonics: 25, time: 0, wave: "triangle" },
+  { label: "Square — single harmonic", harmonics: 1, time: 0, wave: "square" },
+  { label: "Animated square (mid)", harmonics: 9, time: Math.PI, wave: "square" },
+];
+
 export default function FourierSeriesAnimator() {
   const [harmonics, setHarmonics] = useState(9);
   const [time, setTime] = useState(0);
-  const [wave, setWave] = useState<"square" | "triangle">("square");
+  const [wave, setWave] = useState<WaveType>("square");
+  const [presetOpen, setPresetOpen] = useState(false);
   const data = useMemo(() => seriesData(wave, Math.round(harmonics)), [wave, harmonics]);
   const circles = useMemo(() => harmonicCircles(wave, Math.round(harmonics), time), [wave, harmonics, time]);
 
+  function applyPreset(preset: typeof PRESETS[0]) {
+    setHarmonics(preset.harmonics);
+    setTime(preset.time);
+    setWave(preset.wave);
+    setPresetOpen(false);
+  }
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <TopicHeader title="Fourier Series Animator" subtitle="Decompose square and triangle waves into spinning harmonic circles and convergence curves." difficulty="Visualizer" estimatedMinutes={10} />
+
       <SectionCard title="Harmonic Controls">
-        <div className="grid gap-4 md:grid-cols-[1fr_1fr_auto]">
+        <div className="mb-4 flex flex-wrap items-center gap-3">
+          <div className="relative">
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-bold transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5"
+              onClick={() => setPresetOpen((v) => !v)}
+            >
+              Presets
+              <ChevronDown className={`h-4 w-4 transition ${presetOpen ? "rotate-180" : ""}`} />
+            </button>
+            {presetOpen && (
+              <div className="absolute left-0 top-12 z-30 min-w-[260px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl dark:border-white/10 dark:bg-slate-950">
+                {PRESETS.map((p) => (
+                  <button key={p.label} type="button" className="block w-full px-4 py-2.5 text-left text-sm font-semibold text-slate-700 transition hover:bg-cyan-50 dark:text-slate-200 dark:hover:bg-cyan-400/10" onClick={() => applyPreset(p)}>
+                    {p.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <button
+            className={`rounded-2xl border px-4 py-2.5 text-sm font-bold transition ${wave === "square" ? "border-cyan-300 bg-cyan-50 text-cyan-700 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-200" : "border-slate-200 bg-white/80 text-slate-600 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"}`}
+            type="button"
+            onClick={() => setWave("square")}
+          >
+            Square
+          </button>
+          <button
+            className={`rounded-2xl border px-4 py-2.5 text-sm font-bold transition ${wave === "triangle" ? "border-cyan-300 bg-cyan-50 text-cyan-700 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-200" : "border-slate-200 bg-white/80 text-slate-600 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"}`}
+            type="button"
+            onClick={() => setWave("triangle")}
+          >
+            Triangle
+          </button>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
           <SliderControl label="Harmonics" value={harmonics} min={1} max={25} step={2} onChange={setHarmonics} />
           <SliderControl label="Animation time" value={time} min={0} max={Math.PI * 2} step={0.03} onChange={setTime} />
-          <button className="action-secondary" type="button" onClick={() => setWave(wave === "square" ? "triangle" : "square")}>{wave}</button>
         </div>
       </SectionCard>
-      <div className="grid gap-6 lg:grid-cols-2">
+
+      <div className="grid gap-5 lg:grid-cols-2">
         <GraphCard title="Spinning Harmonic Circles"><EpicycleView circles={circles} /></GraphCard>
         <GraphCard title="Fourier Convergence"><ResponsiveLineChart data={data} /></GraphCard>
       </div>
@@ -50,7 +106,7 @@ function CircleSvg({ x, y, r }: { x: number; y: number; r: number }) {
   return <><circle cx={x} cy={y} r={r} fill="none" stroke="rgba(6,182,212,.35)" /><circle cx={x} cy={y} r="4" fill="#f97316" /></>;
 }
 
-function harmonicCircles(wave: "square" | "triangle", n: number, t: number) {
+function harmonicCircles(wave: WaveType, n: number, t: number) {
   const points = [{ x: 0, y: 0, r: 0 }];
   let x = 0;
   let y = 0;
@@ -63,7 +119,7 @@ function harmonicCircles(wave: "square" | "triangle", n: number, t: number) {
   return points;
 }
 
-function seriesData(wave: "square" | "triangle", n: number) {
+function seriesData(wave: WaveType, n: number) {
   return Array.from({ length: 240 }, (_, index) => {
     const x = -Math.PI + (index / 239) * Math.PI * 2;
     let y = 0;

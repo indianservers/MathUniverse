@@ -5,6 +5,7 @@ import TopicProgressActions from "../components/ui/TopicProgressActions";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicTabs from "../components/ui/TopicTabs";
+import ContinueCard from "../components/ui/ContinueCard";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import LinearEquationVisualizer from "../visualizations/algebra/LinearEquationVisualizer";
@@ -16,9 +17,12 @@ export default function Algebra() {
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
   return (
-    <div className="space-y-6" onPointerDown={() => markTopicInteracted(topic.id)}>
+    <div className="space-y-5" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
-      <Link to="/calculator" className="action-secondary w-fit">Open Scientific Calculator</Link>
+      <ContinueCard routePrefix="/algebra" />
+      <div className="flex flex-wrap gap-2">
+        <Link to="/calculator" className="action-secondary">Open Scientific Calculator</Link>
+      </div>
       <SectionCard title="Concept Intro" description="Algebra turns relationships into symbols. The visual layer lets you see how coefficients reshape lines, parabolas, and systems." />
       <TopicTabs tabs={[
         { id: "linear", label: "Linear", content: <LinearEquationVisualizer /> },

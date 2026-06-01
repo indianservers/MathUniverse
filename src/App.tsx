@@ -6,9 +6,11 @@ import { ANVESHAK_STATISTICS_URL } from "./data/externalLinks";
 
 const About = lazy(() => import("./pages/About"));
 const AdvancedSyllabusLabPage = lazy(() => import("./pages/AdvancedSyllabusLabPage"));
+const AlgebraicStructures = lazy(() => import("./pages/AlgebraicStructures"));
 const AIApplications = lazy(() => import("./pages/AIApplications"));
 const Algebra = lazy(() => import("./pages/Algebra"));
 const Calculus = lazy(() => import("./pages/Calculus"));
+const Combinatorics = lazy(() => import("./pages/Combinatorics"));
 const ComplexNumbers = lazy(() => import("./pages/ComplexNumbers"));
 const ConceptDependencyGraph = lazy(() => import("./pages/ConceptDependencyGraph"));
 const DailyChallenge = lazy(() => import("./pages/DailyChallenge"));
@@ -22,6 +24,7 @@ const FunctionsGraphsVisualizer = lazy(() => import("./pages/FunctionsGraphsVisu
 const Geometry = lazy(() => import("./pages/Geometry"));
 const GeometryConceptPage = lazy(() => import("./pages/GeometryConceptPage"));
 const GraphComparisonMode = lazy(() => import("./pages/GraphComparisonMode"));
+const GraphTheory = lazy(() => import("./pages/GraphTheory"));
 const Home = lazy(() => import("./pages/Home"));
 const IntegrationAreaVisualizerPage = lazy(() => import("./pages/IntegrationAreaVisualizerPage"));
 const LearningHub = lazy(() => import("./pages/LearningHub"));
@@ -45,6 +48,7 @@ const PolarCoordinatesVisualizer = lazy(() => import("./pages/PolarCoordinatesVi
 const ProbabilityStatistics = lazy(() => import("./pages/ProbabilityStatistics"));
 const Quiz = lazy(() => import("./pages/Quiz"));
 const ScientificCalculator = lazy(() => import("./pages/ScientificCalculator"));
+const SetTheory = lazy(() => import("./pages/SetTheory"));
 const ShapesExplorer = lazy(() => import("./pages/ShapesExplorer"));
 const Sitemap = lazy(() => import("./pages/Sitemap"));
 const SlopeFieldsVisualizerPage = lazy(() => import("./pages/SlopeFieldsVisualizerPage"));
@@ -130,6 +134,7 @@ export default function App() {
           <Route element={<AppLayout />}>
             <Route index element={<Home />} />
             <Route path="algebra" element={<Algebra />} />
+            <Route path="algebraic-structures" element={<AlgebraicStructures />} />
             <Route path="math-lab" element={<MathLab />} />
             <Route path="math-lab/graphing-calculator" element={<MathLabGraphingCalculator />} />
             <Route path="math-lab/function-explorer" element={<MathLabFunctionExplorer />} />
@@ -143,7 +148,9 @@ export default function App() {
             <Route path="trigonometry" element={<Trigonometry />} />
             <Route path="trigonometry/:conceptId" element={<TrigonometryConceptPage />} />
             <Route path="calculus" element={<Calculus />} />
+            <Route path="combinatorics" element={<Combinatorics />} />
             <Route path="complex-numbers" element={<ComplexNumbers />} />
+            <Route path="set-theory" element={<SetTheory />} />
             <Route path="statistics" element={<ExternalStatisticsRedirect />} />
             <Route path="linear-algebra" element={<LinearAlgebra />} />
             <Route path="matrices" element={<MatrixOperations />} />
@@ -157,6 +164,7 @@ export default function App() {
             <Route path="daily-challenge" element={<DailyChallenge />} />
             <Route path="worked-examples" element={<WorkedExamplesLibrary />} />
             <Route path="graph-comparison" element={<GraphComparisonMode />} />
+            <Route path="graph-theory" element={<GraphTheory />} />
             <Route path="discrete-world" element={<DiscreteWorld />} />
             <Route path="parametric-curves" element={<ParametricCurveExplorer />} />
             <Route path="surface-plotter" element={<SurfacePlotter3D />} />
@@ -164,6 +172,7 @@ export default function App() {
             <Route path="polar-visualizer" element={<PolarCoordinatesVisualizer />} />
             <Route path="unit-converter" element={<UnitConverter />} />
             <Route path="probability-statistics" element={<ProbabilityStatistics />} />
+            <Route path="mathematical-logic" element={<TruthTableGenerator />} />
             <Route path="truth-table" element={<TruthTableGenerator />} />
             <Route path="math/functions-graphs" element={<FunctionsGraphsVisualizer />} />
             <Route path="math/limits-continuity" element={<LimitsContinuityVisualizer />} />

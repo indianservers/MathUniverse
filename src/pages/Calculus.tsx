@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import TopicTabs from "../components/ui/TopicTabs";
+import ContinueCard from "../components/ui/ContinueCard";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import DerivativeSlopeVisualizer from "../visualizations/calculus/DerivativeSlopeVisualizer";
@@ -16,8 +17,9 @@ export default function Calculus() {
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
   return (
-    <div className="space-y-6" onPointerDown={() => markTopicInteracted(topic.id)}>
+    <div className="space-y-5" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
+      <ContinueCard routePrefix="/calculus" />
       <Link to="/calculator" className="action-secondary w-fit">Open Scientific Calculator</Link>
       <TopicTabs tabs={[
         { id: "limits", label: "Limits", content: <LimitsVisualizer /> },

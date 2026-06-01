@@ -131,6 +131,40 @@ export function MathToolCard({
   );
 }
 
+export function MathToolRow({
+  icon: Icon,
+  title,
+  description,
+  difficulty,
+  useCases,
+  route,
+}: {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  difficulty: string;
+  useCases: string[];
+  route: string;
+}) {
+  return (
+    <Link to={route} className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 shadow-sm transition hover:border-cyan-300 hover:shadow-md dark:border-white/10 dark:bg-white/5">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-100 text-cyan-700 transition group-hover:scale-105 dark:bg-cyan-400/15 dark:text-cyan-200">
+        <Icon className="h-5 w-5" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="font-black">{title}</span>
+          <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-black text-slate-600 dark:bg-white/10 dark:text-slate-300">{difficulty}</span>
+        </div>
+        <p className="mt-0.5 line-clamp-1 text-xs text-slate-500 dark:text-slate-400">{description}</p>
+      </div>
+      <div className="hidden flex-wrap gap-1.5 md:flex">
+        {useCases.slice(0, 3).map((item) => <span key={item} className="mini-chip text-[11px]">{item}</span>)}
+      </div>
+    </Link>
+  );
+}
+
 export function FormulaBlock({ formula, title = "Formula" }: { formula: string; title?: string }) {
   const html = useMemo(() => katex.renderToString(formula, { displayMode: true, throwOnError: false }), [formula]);
   return (

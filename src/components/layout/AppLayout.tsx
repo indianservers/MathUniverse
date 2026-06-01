@@ -1,12 +1,28 @@
 import { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import MobileNav from "./MobileNav";
 import MobileLearningDock from "./MobileLearningDock";
 import Sidebar from "./Sidebar";
-import { BackToPreviousButton } from "../ui/UiFeedback";
 import { navItems } from "./navItems";
-import { BackToTopButton, BreadcrumbTrail } from "./GlobalUx";
+import { BackToTopButton, BreadcrumbTrail, UndoToastHost } from "./GlobalUx";
+import { ArrowLeft } from "lucide-react";
+
+function InlinePageNav({ showBack }: { showBack: boolean }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  if (location.pathname === "/") return null;
+  return (
+    <div className="flex items-center gap-2">
+      {showBack && (
+        <button type="button" onClick={() => navigate(-1)} className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300" aria-label="Go back">
+          <ArrowLeft className="h-3.5 w-3.5" />
+        </button>
+      )}
+      <BreadcrumbTrail />
+    </div>
+  );
+}
 
 const recentToolsKey = "math-universe-recent-tools";
 
@@ -34,10 +50,9 @@ export default function AppLayout() {
         <Sidebar />
         <div className="min-w-0 flex-1">
           <Header onMenuClick={() => setMobileOpen(true)} />
-          <main id="main-content" className="mx-auto w-full max-w-7xl px-4 pb-28 pt-6 sm:px-5 md:px-8 md:py-8">
-            <div key={location.pathname} className="page-transition space-y-4">
-              <BreadcrumbTrail />
-              {showBack && <BackToPreviousButton label="Back" />}
+          <main id="main-content" className="mx-auto w-full max-w-7xl px-3 pb-24 pt-4 sm:px-5 md:px-7 md:py-6">
+            <div key={location.pathname} className="page-transition space-y-3">
+              <InlinePageNav showBack={showBack} />
               <Outlet />
             </div>
           </main>
@@ -46,6 +61,7 @@ export default function AppLayout() {
       <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
       <MobileLearningDock />
       <BackToTopButton />
+      <UndoToastHost />
     </div>
   );
 }

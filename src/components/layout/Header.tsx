@@ -1,7 +1,7 @@
 import { Menu } from "lucide-react";
 import ThemeToggle from "../ui/ThemeToggle";
 import { TeacherModeToggle } from "../ui/UiFeedback";
-import { AccessibilitySettings, CommandPalette, HeaderStats } from "./GlobalUx";
+import { AccessibilitySettings, CommandPalette, HeaderStats, KeyboardShortcutsPanel } from "./GlobalUx";
 
 type HeaderProps = {
   onMenuClick: () => void;
@@ -24,10 +24,11 @@ export default function Header({ onMenuClick }: HeaderProps) {
           <p className="text-sm font-semibold text-cyan-600 dark:text-cyan-300">Interactive math lab</p>
           <p className="hidden truncate text-xs text-slate-500 dark:text-slate-400 sm:block">Visual explanations, simulations, and quizzes</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           <CommandPalette />
           <HeaderStats />
           <div className="hidden sm:block"><TeacherModeToggle /></div>
+          <KeyboardShortcutsPanel />
           <AccessibilitySettings />
           <ThemeToggle />
         </div>

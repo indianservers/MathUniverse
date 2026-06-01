@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import katex from "katex";
 import { Link } from "react-router-dom";
-import { ChartSpline, Ruler } from "lucide-react";
+import { ChartSpline, ChevronRight, Ruler } from "lucide-react";
 import CalculatorDisplay from "../components/calculator/CalculatorDisplay";
 import CalculatorHistory from "../components/calculator/CalculatorHistory";
 import type { HistoryItem } from "../components/calculator/CalculatorHistory";
@@ -105,7 +105,7 @@ export default function ScientificCalculator() {
         estimatedMinutes={5}
       />
 
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
         <section className="glass-card rounded-2xl p-5 md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
@@ -165,7 +165,10 @@ export default function ScientificCalculator() {
           </div>
         </section>
 
-        <CalculatorHistory history={Array.isArray(history) ? history : []} onUse={(item) => { setExpression(item); setError(""); }} onClear={() => setHistory([])} />
+        <div className="space-y-4">
+          <CalculatorHistory history={Array.isArray(history) ? history : []} onUse={(item) => { setExpression(item); setError(""); }} onClear={() => setHistory([])} />
+          <StepBreakdownPanel expression={expression} result={result} />
+        </div>
       </div>
 
       <SectionCard title="Unit Converter" description="Lightweight conversions for common classroom values.">
@@ -232,4 +235,46 @@ function SymbolicResultCard({ title, value, fallback }: { title: string; value?:
 function formatMemory(value: number) {
   if (!Number.isFinite(value)) return "0";
   return Number(value.toFixed(10)).toString();
+}
+
+function parseSteps(expression: string, result: string): Array<{ label: string; value: string }> {
+  if (!expression.trim() || !result) return [];
+  const steps: Array<{ label: string; value: string }> = [];
+
+  steps.push({ label: "Expression", value: expression.trim() });
+
+  const funcMatches = expression.match(/\b(sin|cos|tan|sqrt|log|ln|abs|factorial)\s*\([^)]+\)/g);
+  if (funcMatches) {
+    for (const match of funcMatches) {
+      steps.push({ label: `Evaluate ${match}`, value: `part of expression` });
+    }
+  }
+
+  if (/[+\-*/^]/.test(expression)) {
+    steps.push({ label: "Apply operations", value: "left to right, respecting precedence" });
+  }
+
+  steps.push({ label: "Result", value: result });
+  return steps;
+}
+
+function StepBreakdownPanel({ expression, result }: { expression: string; result: string }) {
+  const steps = useMemo(() => parseSteps(expression, result), [expression, result]);
+  if (!steps.length) return null;
+  return (
+    <div className="glass-card rounded-2xl p-4">
+      <p className="text-sm font-black text-slate-800 dark:text-slate-100">Step-by-step</p>
+      <div className="mt-3 space-y-2">
+        {steps.map((step, i) => (
+          <div key={i} className="flex items-start gap-2 text-sm">
+            <ChevronRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-500" />
+            <div className="min-w-0">
+              <span className="font-bold text-slate-700 dark:text-slate-200">{step.label}: </span>
+              <span className="font-mono text-slate-600 dark:text-slate-300">{step.value}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
