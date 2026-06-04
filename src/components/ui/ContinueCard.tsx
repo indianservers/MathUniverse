@@ -19,12 +19,12 @@ export default function ContinueCard({ routePrefix }: { routePrefix: string }) {
   return (
     <Link
       to={last.route}
-      className="flex items-center gap-3 rounded-2xl border border-cyan-200 bg-cyan-50 px-4 py-3 transition hover:border-cyan-400 hover:shadow-md dark:border-cyan-400/20 dark:bg-cyan-400/10"
+      className="flex items-center gap-3 rounded-xl border border-cyan-200 bg-cyan-50 px-3 py-2.5 transition hover:border-cyan-400 hover:shadow-md dark:border-cyan-400/20 dark:bg-cyan-400/10"
     >
       <PlayCircle className="h-5 w-5 shrink-0 text-cyan-600 dark:text-cyan-300" />
       <span className="min-w-0 flex-1">
         <span className="block text-xs font-black uppercase text-cyan-600 dark:text-cyan-400">Continue where you left off</span>
-        <span className="block text-sm font-bold text-slate-900 dark:text-white">{last.title}</span>
+        <span className="block truncate text-sm font-bold text-slate-900 dark:text-white">{last.title}</span>
       </span>
       <ArrowRight className="h-4 w-4 shrink-0 text-cyan-600 dark:text-cyan-300" />
     </Link>

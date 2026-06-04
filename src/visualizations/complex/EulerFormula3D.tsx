@@ -25,19 +25,19 @@ export default function EulerFormula3D() {
   const sin = Math.sin(theta);
 
   return (
-    <SectionCard title="Euler Formula 3D Helix" description="A complex rotation stretched along theta becomes a helix. Its shadows are sine and cosine waves.">
-      <div className="grid gap-6 xl:grid-cols-[340px_1fr]">
-        <div className="space-y-4">
+    <SectionCard title="Euler Formula 3D Helix" description="A complex rotation stretched along theta becomes a helix. Its shadows are sine and cosine waves." compact>
+      <div className="grid gap-3 xl:grid-cols-[320px_1fr]">
+        <div className="space-y-3">
           <SliderControl label="theta" value={theta} min={0} max={maxTheta} step={0.01} onChange={setTheta} unit="rad" />
           <SliderControl label="speed" value={speed} min={0.25} max={3} step={0.25} onChange={setSpeed} />
           <div className="grid grid-cols-2 gap-2">
-            <button className="rounded-2xl bg-slate-950 px-4 py-3 text-white dark:bg-white dark:text-slate-950" onClick={() => setPlaying((value) => !value)}>{playing ? "Pause" : "Play"}</button>
-            <button className="rounded-2xl bg-slate-100 px-4 py-3 font-semibold dark:bg-white/10" onClick={() => setTheta(0)}>Reset</button>
+            <button type="button" className="action-primary" onClick={() => setPlaying((value) => !value)}>{playing ? "Pause" : "Play"}</button>
+            <button type="button" className="action-secondary" onClick={() => setTheta(0)}>Reset</button>
           </div>
           <div className="grid gap-2 text-sm">
-            <label className="flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><input type="checkbox" checked={showHelix} onChange={(e) => setShowHelix(e.target.checked)} /> Helix</label>
-            <label className="flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><input type="checkbox" checked={showCosine} onChange={(e) => setShowCosine(e.target.checked)} /> Cosine projection</label>
-            <label className="flex items-center gap-3 rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><input type="checkbox" checked={showSine} onChange={(e) => setShowSine(e.target.checked)} /> Sine projection</label>
+            <label className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 dark:bg-white/10"><input type="checkbox" checked={showHelix} onChange={(e) => setShowHelix(e.target.checked)} /> Helix</label>
+            <label className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 dark:bg-white/10"><input type="checkbox" checked={showCosine} onChange={(e) => setShowCosine(e.target.checked)} /> Cosine projection</label>
+            <label className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 dark:bg-white/10"><input type="checkbox" checked={showSine} onChange={(e) => setShowSine(e.target.checked)} /> Sine projection</label>
           </div>
           <div className="grid grid-cols-2 gap-2 text-sm">
             <Metric label="theta" value={theta} />
@@ -45,11 +45,11 @@ export default function EulerFormula3D() {
             <Metric label="sin theta" value={sin} />
             <Metric label="e^(i theta)" value={`${roundTo(cos, 3)} ${sin >= 0 ? "+" : "-"} ${Math.abs(roundTo(sin, 3))}i`} />
           </div>
-          <p className="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
+          <p className="rounded-xl bg-slate-100 p-3 text-sm leading-5 text-slate-600 dark:bg-white/10 dark:text-slate-300">
             As theta increases, e^(i theta) moves around the unit circle. When theta is stretched along a separate axis, the circular motion becomes a helix. Its projections are the sine and cosine waves.
           </p>
         </div>
-        <ThreeSceneWrapper height="520px">
+        <ThreeSceneWrapper height="560px" cameraPosition={[5, 3.8, 6.2]} fov={44} quality="high">
           <EulerScene theta={theta} showHelix={showHelix} showCosine={showCosine} showSine={showSine} />
         </ThreeSceneWrapper>
       </div>
@@ -107,5 +107,5 @@ function Marker({ position, color }: { position: THREE.Vector3; color: string })
 }
 
 function Metric({ label, value }: { label: string; value: number | string }) {
-  return <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs text-slate-500">{label}</p><p className="font-bold">{typeof value === "number" ? roundTo(value, 3) : value}</p></div>;
+  return <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs text-slate-500">{label}</p><p className="font-bold">{typeof value === "number" ? roundTo(value, 3) : value}</p></div>;
 }

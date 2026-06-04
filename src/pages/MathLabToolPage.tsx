@@ -2,7 +2,6 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { ModuleShell, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
 import { mathLabTools } from "../data/mathLabTools";
-import { routeQuery } from "../utils/mathEngine/queryRouter";
 
 const implementedLinks: Record<string, Array<{ label: string; route: string; note: string }>> = {
   "graphing-calculator": [
@@ -13,10 +12,6 @@ const implementedLinks: Record<string, Array<{ label: string; route: string; not
   geometry: [
     { label: "Open Geometry Universe", route: "/geometry", note: "Existing triangle, circle, Pythagoras, and theorem visualizers." },
     { label: "Open 2D/3D Shapes", route: "/shapes", note: "Existing shape measurements, area, volume, and solids." },
-  ],
-  "cas-solver": [
-    { label: "Open Scientific Calculator", route: "/calculator", note: "Existing Nerdamer-backed symbolic derivative and integral display." },
-    { label: "Open Step Solver", route: "/problem-solver", note: "Existing Nerdamer equation solving steps." },
   ],
   "equation-solver": [
     { label: "Open Step Solver", route: "/problem-solver", note: "Existing equation solving workflow." },
@@ -48,28 +43,11 @@ const implementedLinks: Record<string, Array<{ label: string; route: string; not
   ],
 };
 
-const shells: Record<string, { title: string; purpose: string; planned: string[] }> = {
-  probability: {
-    title: "Probability Simulator",
-    purpose: "Simulate random experiments and compare empirical outcomes with theoretical probability.",
-    planned: ["Coin toss simulation", "Dice distribution simulation", "Card drawing without replacement", "Binomial and normal distribution experiments", "Law of large numbers visual trace"],
-  },
-  query: {
-    title: "Smart Math Query",
-    purpose: "Type a natural math question and route it to the best graphing, solving, CAS, geometry, or statistics tool.",
-    planned: ["Intent detection", "Expression extraction", "Recommended tool routing", "Saved query history", "Explain why a tool was chosen"],
-  },
-};
-
 export default function MathLabToolPage() {
   const { toolId } = useParams();
   if (!toolId) return <Navigate to="/math-lab" replace />;
   const tool = mathLabTools.find((item) => item.route.endsWith(`/${toolId}`));
   if (!tool) return <Navigate to="/math-lab" replace />;
-
-  if (shells[toolId]) return <ModuleShell {...shells[toolId]} />;
-
-  if (toolId === "query") return <SmartQueryShell />;
 
   const links = implementedLinks[toolId] ?? [];
   if (!links.length) return <ModuleShell title={tool.title} purpose={tool.description} planned={tool.useCases} />;
@@ -97,25 +75,6 @@ export default function MathLabToolPage() {
         { title: "Return to Math Lab", explanation: "The Math Lab hub remains the central index for advanced tools.", result: "Connected workspace ready." },
       ]} />
       <ResultCard result={<p className="font-semibold">This route is active and connected to working app modules.</p>} />
-    </MathLabLayout>
-  );
-}
-
-function SmartQueryShell() {
-  const sample = "solve x^2-5x+6=0";
-  const routed = routeQuery(sample);
-  return (
-    <MathLabLayout title="Smart Math Query" subtitle="Type a math question and route it to the right Math Lab tool.">
-      <SectionCard title="Routing Preview">
-        <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">Example query: <span className="font-mono font-bold">{sample}</span></p>
-        <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Suggested route: <Link className="font-bold text-cyan-700 dark:text-cyan-200" to={routed.route}>{routed.label}</Link></p>
-        <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Reason: {routed.reason}</p>
-      </SectionCard>
-      <SectionCard title="Planned Feature List">
-        <div className="grid gap-3 md:grid-cols-2">
-          {shells.query.planned.map((item) => <div key={item} className="rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10">{item}</div>)}
-        </div>
-      </SectionCard>
     </MathLabLayout>
   );
 }

@@ -78,7 +78,7 @@ export default function MathLab() {
   }, [query, filter, favorites]);
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-3">
       <TopicHeader
         title="Math Lab"
         subtitle="Graph, solve, visualize, calculate, and explore mathematics interactively."
@@ -86,20 +86,9 @@ export default function MathLab() {
         estimatedMinutes={60}
       />
 
-      {recentTools.length > 0 && (
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-black uppercase text-slate-400">Recent tools</span>
-          {recentTools.map((t) => (
-            <Link key={t.route} to={t.route} className="mini-chip transition hover:bg-cyan-100 hover:text-cyan-700 dark:hover:bg-cyan-400/15 dark:hover:text-cyan-100">
-              {t.title}
-            </Link>
-          ))}
-        </div>
-      )}
-
-      <SectionCard>
-        <div className="flex flex-wrap gap-3">
-          <label className="flex min-h-10 flex-1 items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 shadow-sm focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-300/40 dark:border-white/10 dark:bg-white/5">
+      <div className="grid gap-3 xl:grid-cols-[320px_minmax(0,1fr)]">
+        <aside className="desktop-sidebar-panel scroll-panel space-y-3 xl:sticky xl:top-24">
+          <label className="flex min-h-10 items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 shadow-sm focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-300/40 dark:border-white/10 dark:bg-white/5">
             <Search className="h-4 w-4 shrink-0 text-slate-400" />
             <input
               ref={searchRef}
@@ -109,40 +98,55 @@ export default function MathLab() {
               className="min-w-0 flex-1 bg-transparent text-sm font-semibold outline-none placeholder:text-slate-400"
             />
             {query && <button type="button" className="text-xs font-bold text-slate-400 hover:text-slate-600" onClick={() => setQuery("")}>Clear</button>}
-            <span className="rounded-lg bg-slate-100 px-2 py-1 text-xs font-black text-slate-500 dark:bg-white/10 dark:text-slate-300">/ to search</span>
           </label>
-          <button
-            type="button"
-            onClick={() => setFilter((v) => v === "favorites" ? "all" : "favorites")}
-            className={`inline-flex items-center gap-2 rounded-2xl border px-4 py-2 text-sm font-bold transition ${filter === "favorites" ? "border-amber-300 bg-amber-100 text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/15 dark:text-amber-100" : "border-slate-200 bg-white text-slate-600 hover:border-amber-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"}`}
-          >
-            <Star className={`h-4 w-4 ${filter === "favorites" ? "fill-current" : ""}`} />
-            Favorites
-          </button>
-          <div className="flex overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-white/5">
-            <button type="button" onClick={() => setViewMode("grid")} className={`p-2.5 transition ${viewMode === "grid" ? "bg-cyan-500 text-white" : "text-slate-500 hover:bg-slate-100 dark:hover:bg-white/10"}`} aria-label="Grid view"><LayoutGrid className="h-4 w-4" /></button>
-            <button type="button" onClick={() => setViewMode("list")} className={`p-2.5 transition ${viewMode === "list" ? "bg-cyan-500 text-white" : "text-slate-500 hover:bg-slate-100 dark:hover:bg-white/10"}`} aria-label="List view"><LayoutList className="h-4 w-4" /></button>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => setFilter((v) => v === "favorites" ? "all" : "favorites")}
+              className={`inline-flex min-h-9 items-center justify-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-bold transition ${filter === "favorites" ? "border-amber-300 bg-amber-100 text-amber-700 dark:border-amber-400/30 dark:bg-amber-400/15 dark:text-amber-100" : "border-slate-200 bg-white text-slate-600 hover:border-amber-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"}`}
+            >
+              <Star className={`h-4 w-4 ${filter === "favorites" ? "fill-current" : ""}`} />
+              Favorites
+            </button>
+            <div className="flex overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-white/5">
+              <button type="button" onClick={() => setViewMode("grid")} className={`flex-1 p-2 transition ${viewMode === "grid" ? "bg-cyan-500 text-white" : "text-slate-500 hover:bg-slate-100 dark:hover:bg-white/10"}`} aria-label="Grid view"><LayoutGrid className="mx-auto h-4 w-4" /></button>
+              <button type="button" onClick={() => setViewMode("list")} className={`flex-1 p-2 transition ${viewMode === "list" ? "bg-cyan-500 text-white" : "text-slate-500 hover:bg-slate-100 dark:hover:bg-white/10"}`} aria-label="List view"><LayoutList className="mx-auto h-4 w-4" /></button>
+            </div>
           </div>
           <ToolProgressIndicator explored={exploredCount} total={60} />
-        </div>
-      </SectionCard>
+          {recentTools.length > 0 && (
+            <SectionCard title="Recent Tools" compact>
+              <div className="flex flex-wrap gap-2">
+                {recentTools.map((t) => (
+                  <Link key={t.route} to={t.route} className="mini-chip transition hover:bg-cyan-100 hover:text-cyan-700 dark:hover:bg-cyan-400/15 dark:hover:text-cyan-100">
+                    {t.title}
+                  </Link>
+                ))}
+              </div>
+            </SectionCard>
+          )}
+          <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">Press `/` to focus search. Use list view for a denser desktop directory.</p>
+        </aside>
 
-      {viewMode === "grid" ? (
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {visibleTools.map((tool) => <MathToolCard key={tool.route} {...tool} />)}
-        </div>
-      ) : (
-        <div className="space-y-2">
-          {visibleTools.map((tool) => <MathToolRow key={tool.route} {...tool} />)}
-        </div>
-      )}
+        <section className="min-w-0">
+          {viewMode === "grid" ? (
+            <div className="grid gap-3 md:grid-cols-2 2xl:grid-cols-3">
+              {visibleTools.map((tool) => <MathToolCard key={tool.route} {...tool} />)}
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {visibleTools.map((tool) => <MathToolRow key={tool.route} {...tool} />)}
+            </div>
+          )}
 
-      {visibleTools.length === 0 && (
-        <EmptyState
-          title="No tools match those filters"
-          message="Try a broader keyword like graph, solver, matrix, vector, geometry, or calculus."
-        />
-      )}
+          {visibleTools.length === 0 && (
+            <EmptyState
+              title="No tools match those filters"
+              message="Try a broader keyword like graph, solver, matrix, vector, geometry, or calculus."
+            />
+          )}
+        </section>
+      </div>
     </div>
   );
 }

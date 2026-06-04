@@ -13,17 +13,17 @@ export default function TopicTabs({ tabs, initialId }: { tabs: TopicTab[]; initi
   if (!active) return null;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <div className="mobile-safe-scroll">
-        <div className="inline-flex min-w-full gap-2 rounded-2xl border border-slate-200 bg-white/80 p-1 dark:border-white/10 dark:bg-white/5 md:min-w-0">
+        <div className="inline-flex min-w-full gap-1.5 rounded-xl border border-slate-200 bg-white/80 p-1 dark:border-white/10 dark:bg-white/5 md:min-w-0">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               type="button"
-              className={`relative min-h-10 rounded-xl px-4 py-2 text-sm font-black transition ${active.id === tab.id ? "text-slate-950 dark:text-white" : "text-slate-500 hover:text-cyan-700 dark:text-slate-300 dark:hover:text-cyan-100"}`}
+              className={`relative min-h-9 rounded-lg px-3 py-1.5 text-sm font-black transition ${active.id === tab.id ? "text-slate-950 dark:text-white" : "text-slate-500 hover:text-cyan-700 dark:text-slate-300 dark:hover:text-cyan-100"}`}
               onClick={() => setActiveId(tab.id)}
             >
-              {active.id === tab.id && <motion.span layoutId="topic-tab-pill" className="absolute inset-0 rounded-xl bg-cyan-100 dark:bg-cyan-400/15" />}
+              {active.id === tab.id && <motion.span layoutId="topic-tab-pill" className="absolute inset-0 rounded-lg bg-cyan-100 dark:bg-cyan-400/15" />}
               <span className="relative">{tab.label}</span>
             </button>
           ))}

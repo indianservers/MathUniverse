@@ -1,5 +1,6 @@
 import { Dices, Eye, EyeOff, Grid3X3, LocateFixed, MoveHorizontal, MoveVertical, Plus, RotateCcw, Table2, Trash2, ZoomIn, ZoomOut } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import FunctionGraphCanvas, { FunctionGraphView } from "../components/math-lab/FunctionGraphCanvas";
 import { FormulaBlock, MathErrorBox, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
@@ -24,7 +25,11 @@ const COLORS = ["#06b6d4", "#f97316", "#8b5cf6", "#10b981", "#ef4444", "#eab308"
 const EXAMPLES = ["x", "2x + 3", "x^2 - 4", "sin(x)", "cos(x)", "tan(x)", "1/x", "sqrt(x)", "abs(x)", "ln(x)", "e^x"];
 
 export default function MathLabGraphingCalculator() {
-  const [functions, setFunctions] = useState<FunctionRow[]>([
+  const [searchParams] = useSearchParams();
+  const prefilledFunction = searchParams.get("q")?.trim();
+  const [functions, setFunctions] = useState<FunctionRow[]>(() => prefilledFunction ? [
+    { id: "f1", input: prefilledFunction, color: COLORS[0], visible: true },
+  ] : [
     { id: "f1", input: "x^2 - 4", color: COLORS[0], visible: true },
     { id: "f2", input: "sin(x)", color: COLORS[1], visible: true },
   ]);

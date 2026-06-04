@@ -19,40 +19,42 @@ export default function Geometry() {
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
   return (
-    <div className="space-y-6" onPointerDown={() => markTopicInteracted(topic.id)}>
+    <div className="space-y-3" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
-      <Link to="/shapes" className="action-secondary w-fit">
-        <Cuboid className="h-4 w-4" />
-        Open 2D/3D Shapes Explorer
-      </Link>
-      <SectionCard title="Geometry Concept Pages" description={`${geometryConcepts.length} dedicated subpages with focused visualizations, formulas, measurements, and guided tasks.`}>
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {geometryConcepts.map((concept) => (
-            <Link key={concept.id} to={`/geometry/${concept.id}`} className="group rounded-2xl border border-slate-200 bg-white/75 p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-500/10 dark:border-white/10 dark:bg-white/5">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{concept.category}</p>
-                  <h2 className="mt-2 text-lg font-bold group-hover:text-cyan-600 dark:group-hover:text-cyan-300">{concept.title}</h2>
-                </div>
-                <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">Lab</span>
-              </div>
-              <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{concept.summary}</p>
-              <p className="mt-3 rounded-xl bg-slate-100 p-2 font-mono text-xs text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">{concept.formula}</p>
-            </Link>
-          ))}
+      <div className="grid gap-3 xl:grid-cols-[300px_minmax(0,1fr)_240px]">
+        <aside className="desktop-sidebar-panel scroll-panel space-y-3 xl:sticky xl:top-24">
+          <Link to="/shapes" className="action-secondary w-full">
+            <Cuboid className="h-4 w-4" />
+            2D/3D Shapes
+          </Link>
+          <SectionCard title="Concept Pages" description={`${geometryConcepts.length} focused pages.`} compact>
+            <div className="grid gap-2">
+              {geometryConcepts.map((concept) => (
+                <Link key={concept.id} to={`/geometry/${concept.id}`} className="group rounded-lg border border-slate-200 bg-white/75 p-2.5 transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
+                  <p className="text-[11px] font-bold uppercase text-cyan-600 dark:text-cyan-300">{concept.category}</p>
+                  <h2 className="mt-1 line-clamp-1 text-sm font-bold group-hover:text-cyan-600 dark:group-hover:text-cyan-300">{concept.title}</h2>
+                  <p className="mt-1 line-clamp-2 text-xs leading-4 text-slate-600 dark:text-slate-300">{concept.summary}</p>
+                </Link>
+              ))}
+            </div>
+          </SectionCard>
+        </aside>
+        <div className="min-w-0">
+          <TopicTabs tabs={[
+            { id: "triangle", label: "Triangles", content: <TriangleExplorer /> },
+            { id: "pythagoras", label: "Pythagoras", content: <PythagorasVisualizer /> },
+            { id: "theorems", label: "Theorems", content: <GeometryTheoremVisualizers /> },
+            { id: "circles", label: "Circles", content: <CircleExplorer /> },
+            { id: "solids", label: "3D Solids", content: <Shape3DExplorer /> },
+          ]} />
         </div>
-      </SectionCard>
-      <TopicTabs tabs={[
-        { id: "triangle", label: "Triangles", content: <TriangleExplorer /> },
-        { id: "pythagoras", label: "Pythagoras", content: <PythagorasVisualizer /> },
-        { id: "theorems", label: "Theorems", content: <GeometryTheoremVisualizers /> },
-        { id: "circles", label: "Circles", content: <CircleExplorer /> },
-        { id: "solids", label: "3D Solids", content: <Shape3DExplorer /> },
-      ]} />
-      <SectionCard title="Applications">
-        <div className="grid gap-3 md:grid-cols-5">{["Architecture", "Engineering", "Game design", "Robotics", "AR/VR"].map((item) => <div key={item} className="rounded-2xl bg-slate-100 p-4 font-semibold dark:bg-white/10">{item}</div>)}</div>
-      </SectionCard>
-      <TopicProgressActions topicId={topic.id} />
+        <aside className="desktop-sidebar-panel scroll-panel space-y-3 xl:sticky xl:top-24">
+          <SectionCard title="Applications" compact>
+            <div className="flex flex-wrap gap-2">{["Architecture", "Engineering", "Game design", "Robotics", "AR/VR"].map((item) => <span key={item} className="mini-chip">{item}</span>)}</div>
+          </SectionCard>
+          <TopicProgressActions topicId={topic.id} />
+        </aside>
+      </div>
     </div>
   );
 }

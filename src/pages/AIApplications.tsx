@@ -237,31 +237,36 @@ export default function AIApplications() {
   const active = MODULES.find((m) => m.id === activeId) ?? MODULES[0];
 
   return (
-    <div className="space-y-5" onPointerDown={() => markTopicInteracted(topic.id)}>
+    <div className="space-y-3" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
-      <SectionCard title="Math Powers Modern Intelligence" description="AI systems are built from algebra, calculus, probability, geometry, signals, and linear algebra." />
-      <AITutorPanel />
 
-      <div className="grid gap-4 xl:grid-cols-[220px_minmax(0,1fr)]">
-        <nav className="flex flex-row flex-wrap gap-1.5 xl:flex-col xl:flex-nowrap">
-          {MODULES.map((m) => (
-            <button
-              key={m.id}
-              type="button"
-              onClick={() => setActiveId(m.id)}
-              className={`rounded-xl px-4 py-2.5 text-left text-sm font-bold transition ${
-                m.id === activeId
-                  ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950"
-                  : "bg-white/80 text-slate-700 hover:bg-slate-100 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
-              } border border-slate-200 dark:border-white/10`}
-            >
-              {m.label}
-            </button>
-          ))}
-        </nav>
+      <div className="grid gap-3 xl:grid-cols-[240px_minmax(0,1fr)_300px]">
+        <aside className="desktop-sidebar-panel scroll-panel xl:sticky xl:top-24">
+          <p className="mb-2 text-xs font-black uppercase text-slate-400">Modules</p>
+          <nav className="grid gap-1.5">
+            {MODULES.map((m) => (
+              <button
+                key={m.id}
+                type="button"
+                onClick={() => setActiveId(m.id)}
+                className={`rounded-lg px-3 py-2 text-left text-sm font-bold transition ${
+                  m.id === activeId
+                    ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950"
+                    : "bg-white/80 text-slate-700 hover:bg-slate-100 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
+                } border border-slate-200 dark:border-white/10`}
+              >
+                {m.label}
+              </button>
+            ))}
+          </nav>
+        </aside>
         <div className="min-w-0">
           {active.component}
         </div>
+        <aside className="desktop-sidebar-panel scroll-panel space-y-3 xl:sticky xl:top-24">
+          <SectionCard title="Math Powers Modern Intelligence" description="AI systems are built from algebra, calculus, probability, geometry, signals, and linear algebra." compact />
+          <AITutorPanel />
+        </aside>
       </div>
 
       <TopicProgressActions topicId={topic.id} />

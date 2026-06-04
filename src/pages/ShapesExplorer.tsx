@@ -72,6 +72,7 @@ export default function ShapesExplorer() {
   const [viewZoom, setViewZoom] = useState(1);
   const [viewRotation, setViewRotation] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
+  const [studioOpen, setStudioOpen] = useState(false);
 
   useEffect(() => markTopicVisited("shapes"), [markTopicVisited]);
 
@@ -97,16 +98,19 @@ export default function ShapesExplorer() {
   };
 
   return (
-    <div className="space-y-6" onPointerDown={() => markTopicInteracted("shapes")}>
+    <div className="space-y-3" onPointerDown={() => markTopicInteracted("shapes")}>
       <TopicHeader
         title="2D and 3D Shapes Explorer"
         subtitle="Explore common plane figures and solid shapes visually with formulas, dimensions, surface area, volume, perimeter, and real-world uses."
         difficulty="Foundational"
         estimatedMinutes={35}
       />
-      <KidsShapeStudio shapes={shapes} selected={selected} onSelect={selectShape} />
+      <button type="button" className="tool-button w-fit" onClick={() => setStudioOpen((value) => !value)}>
+        {studioOpen ? "Hide Kids Studio" : "Open Kids Studio"}
+      </button>
+      {studioOpen && <KidsShapeStudio shapes={shapes} selected={selected} onSelect={selectShape} />}
 
-      <SectionCard title="Shape Library" description={`${shapes.length} shapes grouped by 2D and 3D families.`}>
+      <SectionCard title="Shape Library" description={`${shapes.length} shapes grouped by 2D and 3D families.`} compact>
         <div className="flex flex-wrap gap-2">
           {categories.map((item) => (
             <button
@@ -121,7 +125,7 @@ export default function ShapesExplorer() {
             </button>
           ))}
         </div>
-        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-3 grid gap-2 md:grid-cols-2 xl:grid-cols-4">
           {visibleShapes.map((shape) => {
             const Icon = shape.kind === "3d" ? Box : shape.id.includes("triangle") ? Triangle : shape.id === "circle" ? Circle : Shapes;
             const active = selected.id === shape.id;
@@ -130,7 +134,7 @@ export default function ShapesExplorer() {
                 key={shape.id}
                 type="button"
                 onClick={() => selectShape(shape)}
-                className={`min-h-[132px] rounded-2xl border p-4 text-left transition hover:-translate-y-1 ${
+                className={`min-h-[108px] rounded-xl border p-3 text-left transition hover:-translate-y-0.5 ${
                   active ? "border-cyan-400 bg-cyan-50 shadow-lg shadow-cyan-500/10 dark:bg-cyan-400/10" : "border-slate-200 bg-white/70 dark:border-white/10 dark:bg-white/5"
                 }`}
               >
@@ -139,18 +143,18 @@ export default function ShapesExplorer() {
                   <span className="font-bold">{shape.name}</span>
                 </div>
                 <p className="mt-2 text-xs font-semibold text-slate-500 dark:text-slate-400">{shape.category}</p>
-                <p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{shape.description}</p>
+                <p className="mt-2 line-clamp-2 text-xs leading-4 text-slate-600 dark:text-slate-300">{shape.description}</p>
               </button>
             );
           })}
         </div>
       </SectionCard>
 
-      <SectionCard title={selected.name} description={selected.description}>
-        <div className="grid gap-6 xl:grid-cols-[340px_1fr]">
-          <div className="space-y-4">
+      <SectionCard title={selected.name} description={selected.description} compact>
+        <div className="grid gap-3 xl:grid-cols-[320px_1fr]">
+          <div className="scroll-panel space-y-3 xl:max-h-[calc(100vh-12rem)]">
             <FormulaBlock title={`${selected.name} Formulas`} formula={selected.formula} />
-            <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">
+            <div className="rounded-xl bg-cyan-50 p-3 text-sm leading-5 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">
               <p className="font-bold">Visual formula guide</p>
               <p className="mt-2">{formulaExplanation(selected.id, a, b, c, sides, angle)}</p>
             </div>
@@ -160,7 +164,7 @@ export default function ShapesExplorer() {
             {selected.id === "regular-polygon" && <SliderControl label="Number of sides" value={sides} min={3} max={12} step={1} onChange={(value) => setSides(Math.round(value))} />}
             {selected.id === "sector" && <SliderControl label="Central angle" value={angle} min={5} max={360} step={1} onChange={setAngle} unit="deg" />}
             {selected.kind === "3d" && (
-              <label className="flex items-center gap-3 rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10">
+              <label className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
                 <input type="checkbox" checked={wireframe} onChange={(event) => setWireframe(event.target.checked)} />
                 Wireframe
               </label>
@@ -172,7 +176,7 @@ export default function ShapesExplorer() {
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             <ShapeViewControls
               kind={selected.kind}
               zoom={viewZoom}
@@ -186,14 +190,15 @@ export default function ShapesExplorer() {
               onToggleAutoRotate={() => setAutoRotate((value) => !value)}
             />
             {selected.kind === "2d" ? (
-              <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60 sm:p-4">
+              <div className="rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
                 <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} />
               </div>
             ) : (
-              <ThreeSceneWrapper height="520px" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate • pinch zoom">
+              <ThreeSceneWrapper height="520px" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom" cameraPosition={[3.8, 3, 5.8]} fov={46} quality="high">
                 <ambientLight intensity={0.75} />
                 <directionalLight position={[4, 5, 4]} intensity={1.35} />
                 <RotatingSolid shape={selected.id} a={a} b={b} c={c} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} />
+                <gridHelper args={[8, 16, "#38bdf8", "#334155"]} position={[0, -3, 0]} />
                 <OrbitControls enablePan={false} enableZoom enableDamping />
               </ThreeSceneWrapper>
             )}

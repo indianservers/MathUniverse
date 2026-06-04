@@ -68,6 +68,7 @@ export default function Home() {
   const { getTopicProgress, getOverallProgress } = useProgress();
   const recentItems = recentRouteItems(5);
   const [tourOpen, setTourOpen] = useState(false);
+  const [homeFilter, setHomeFilter] = useState<"all" | "core" | "tools" | "practice" | "advanced">("all");
   const labs = topics.reduce((sum, topic) => sum + topic.labCount, 0);
   const extraCards = [
     {
@@ -119,12 +120,22 @@ export default function Home() {
       colorGradient: "from-slate-900 to-cyan-600",
     },
   ];
+  const topicCards = topics.map((topic) => ({ type: "core" as const, topic }));
+  const toolCards = extraCards.map((card) => ({ type: "tools" as const, card }));
+  const visibleTopicCards = topicCards.filter(({ topic }) => {
+    if (homeFilter === "all") return true;
+    if (homeFilter === "core") return ["algebra", "geometry", "trigonometry", "calculus", "complex", "linear-algebra"].includes(topic.id);
+    if (homeFilter === "practice") return ["quiz"].includes(topic.id);
+    if (homeFilter === "advanced") return !["algebra", "geometry", "trigonometry", "calculus", "complex", "linear-algebra"].includes(topic.id);
+    return false;
+  });
+  const visibleToolCards = homeFilter === "all" || homeFilter === "tools" ? toolCards : [];
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-3">
       <GuidedTourOverlay open={tourOpen} onClose={() => setTourOpen(false)} />
 
-      <section className="flex flex-wrap items-center gap-3 rounded-2xl border border-white/60 bg-gradient-to-r from-white via-cyan-50/60 to-violet-50 px-5 py-4 shadow-sm dark:border-white/10 dark:from-slate-900 dark:via-slate-900/60 dark:to-violet-950/60">
+      <section className="flex flex-wrap items-center gap-3 rounded-xl border border-white/60 bg-white/85 px-4 py-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-900/75">
         <div className="min-w-0 flex-1">
           <h1 className="text-2xl font-bold tracking-tight">Math Universe</h1>
           <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Visual mathematics — equations, geometry, calculus, AI, and waves.</p>
@@ -166,15 +177,34 @@ export default function Home() {
         ))}
       </div>
 
-      <InquirySimulationLabs />
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {topics.map((topic) => {
+      <div className="flex flex-wrap items-center gap-2">
+        {[
+          ["all", "All"],
+          ["core", "Core"],
+          ["tools", "Tools"],
+          ["practice", "Practice"],
+          ["advanced", "Advanced"],
+        ].map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            className={homeFilter === id ? "action-primary" : "tool-button"}
+            onClick={() => setHomeFilter(id as typeof homeFilter)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {homeFilter === "all" || homeFilter === "practice" ? <InquirySimulationLabs /> : null}
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+        {visibleTopicCards.map(({ topic }) => {
           const Icon = iconMap[topic.iconName as keyof typeof iconMap] ?? BookOpen;
           return <DashboardCard key={topic.id} title={topic.title} description={topic.description} concepts={topic.concepts} icon={Icon} route={topic.route} isExternal={topic.isExternal} progress={getTopicProgress(topic.id)} colorGradient={topic.colorGradient} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} isNew={topic.id === "matrices"} />;
         })}
-        {extraCards.map((card) => <DashboardCard key={card.title} title={card.title} description={card.description} concepts={card.concepts} icon={card.icon} route={card.route} progress={0} colorGradient={card.colorGradient} />)}
+        {visibleToolCards.map(({ card }) => <DashboardCard key={card.title} title={card.title} description={card.description} concepts={card.concepts} icon={card.icon} route={card.route} progress={0} colorGradient={card.colorGradient} />)}
       </div>
-      <AITutorPanel />
+      {homeFilter === "all" && <AITutorPanel />}
     </div>
   );
 }

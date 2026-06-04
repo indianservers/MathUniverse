@@ -68,15 +68,15 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
   ];
 
   return (
-    <label className="block rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm transition hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950/40 dark:hover:border-cyan-400/40">
-      <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+    <label className="block rounded-xl border border-slate-200 bg-white/75 p-3 shadow-sm transition hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950/40 dark:hover:border-cyan-400/40">
+      <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
         <div className="min-w-0">
           <span className="text-sm font-semibold text-slate-900 dark:text-white">{label}</span>
           {description && <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">{description}</p>}
         </div>
         <div className="flex items-center gap-2">
           <input
-            className="w-24 rounded-full border border-slate-200 bg-white px-3 py-1 text-right text-sm font-semibold text-slate-700 dark:border-white/10 dark:bg-slate-900 dark:text-cyan-100"
+            className="w-20 rounded-lg border border-slate-200 bg-white px-2 py-1 text-right text-sm font-semibold text-slate-700 dark:border-white/10 dark:bg-slate-900 dark:text-cyan-100"
             type="number"
             value={Number(value.toFixed(6))}
             min={min}
@@ -85,7 +85,7 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
             onChange={(event) => commit(Number(event.target.value))}
             aria-label={`${label} exact value`}
           />
-          <span className="w-fit rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-cyan-100">
+          <span className="w-fit rounded-lg bg-slate-100 px-2 py-1 text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-cyan-100">
             {formatFormulaValue(value, unit)}
           </span>
         </div>
@@ -106,7 +106,7 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
         </button>
         <span>{max}</span>
       </div>
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mt-2 flex flex-wrap gap-2">
         {presets.map((preset) => (
           <button key={preset.label} type="button" className="mini-chip transition hover:bg-cyan-100 hover:text-cyan-700 dark:hover:bg-cyan-400/15 dark:hover:text-cyan-100" onClick={() => commit(preset.value)}>
             {preset.label}

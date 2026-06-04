@@ -50,8 +50,8 @@ export default function AppLayout() {
         <Sidebar />
         <div className="min-w-0 flex-1">
           <Header onMenuClick={() => setMobileOpen(true)} />
-          <main id="main-content" className="mx-auto w-full max-w-7xl px-3 pb-24 pt-4 sm:px-5 md:px-7 md:py-6">
-            <div key={location.pathname} className="page-transition space-y-3">
+          <main id="main-content" className="mx-auto w-full max-w-[1440px] px-3 pb-20 pt-3 sm:px-4 md:px-5 md:pb-5 md:pt-4">
+            <div key={location.pathname} className="page-transition space-y-2.5">
               <InlinePageNav showBack={showBack} />
               <Outlet />
             </div>

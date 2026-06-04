@@ -32,9 +32,12 @@ const LinearAlgebra = lazy(() => import("./pages/LinearAlgebra"));
 const LimitsContinuityVisualizer = lazy(() => import("./pages/LimitsContinuityVisualizer"));
 const MathLab = lazy(() => import("./pages/MathLab"));
 const MathLab3DGraphing = lazy(() => import("./pages/MathLab3DGraphing"));
+const MathLabCasNotebook = lazy(() => import("./pages/MathLabCasNotebook"));
 const MathLabFunctionExplorer = lazy(() => import("./pages/MathLabFunctionExplorer"));
 const MathLabGraphingCalculator = lazy(() => import("./pages/MathLabGraphingCalculator"));
 const MathLabLinearAlgebra = lazy(() => import("./pages/MathLabLinearAlgebra"));
+const MathLabProbability = lazy(() => import("./pages/MathLabProbability"));
+const MathLabSmartQuery = lazy(() => import("./pages/MathLabSmartQuery"));
 const MathLabToolPage = lazy(() => import("./pages/MathLabToolPage"));
 const MathVisualizationPage = lazy(() => import("./pages/MathVisualizationPage"));
 const MathWorkspace = lazy(() => import("./pages/MathWorkspace"));
@@ -140,6 +143,9 @@ export default function App() {
             <Route path="math-lab/function-explorer" element={<MathLabFunctionExplorer />} />
             <Route path="math-lab/linear-algebra" element={<MathLabLinearAlgebra />} />
             <Route path="math-lab/3d-graphing" element={<MathLab3DGraphing />} />
+            <Route path="math-lab/probability" element={<MathLabProbability />} />
+            <Route path="math-lab/cas-solver" element={<MathLabCasNotebook />} />
+            <Route path="math-lab/query" element={<MathLabSmartQuery />} />
             <Route path="math-lab/:toolId" element={<MathLabToolPage />} />
             <Route path="workspace" element={<MathWorkspace />} />
             <Route path="geometry" element={<Geometry />} />

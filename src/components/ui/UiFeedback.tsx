@@ -27,12 +27,12 @@ export function BackToPreviousButton({ label = "Back" }: { label?: string }) {
 export function FriendlyErrorBox({ title = "Check the input", message }: { title?: string; message?: ReactNode }) {
   if (!message) return null;
   return (
-    <div className="rounded-2xl border border-rose-300 bg-rose-50 p-4 text-rose-800 dark:border-rose-400/30 dark:bg-rose-400/10 dark:text-rose-100">
+    <div className="rounded-xl border border-rose-300 bg-rose-50 p-3 text-rose-800 dark:border-rose-400/30 dark:bg-rose-400/10 dark:text-rose-100">
       <div className="flex items-start gap-3">
         <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />
         <div>
           <p className="font-black">{title}</p>
-          <p className="mt-1 text-sm font-semibold leading-6">{message}</p>
+          <p className="mt-1 text-sm font-semibold leading-5">{message}</p>
         </div>
       </div>
     </div>
@@ -41,19 +41,19 @@ export function FriendlyErrorBox({ title = "Check the input", message }: { title
 
 export function EmptyState({ title = "Nothing to show yet", message = "Add input or change the settings to generate results." }: { title?: string; message?: string }) {
   return (
-    <div className="flex min-h-32 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-6 text-center dark:border-white/15 dark:bg-white/5">
+    <div className="flex min-h-28 flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center dark:border-white/15 dark:bg-white/5">
       <Inbox className="h-7 w-7 text-slate-400" />
       <p className="mt-3 font-black text-slate-800 dark:text-slate-100">{title}</p>
-      <p className="mt-1 max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">{message}</p>
+      <p className="mt-1 max-w-md text-sm leading-5 text-slate-500 dark:text-slate-400">{message}</p>
     </div>
   );
 }
 
 export function LoadingSkeleton({ label = "Loading interactive view" }: { label?: string }) {
   return (
-    <div className="space-y-3 rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-white/5" aria-live="polite">
+    <div className="space-y-3 rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5" aria-live="polite">
       <p className="text-sm font-bold text-slate-500 dark:text-slate-300">{label}</p>
-      <div className="skeleton-soft h-56" />
+      <div className="skeleton-soft h-44" />
       <div className="grid gap-3 sm:grid-cols-3">
         <div className="skeleton-soft h-12" />
         <div className="skeleton-soft h-12" />
@@ -199,7 +199,7 @@ export function BookmarkToolButton({ id, title, label = "Bookmark tool" }: { id:
 export function ToolProgressIndicator({ explored, total = 60 }: { explored: number; total?: number }) {
   const percent = Math.max(0, Math.min(100, (explored / total) * 100));
   return (
-    <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-4 text-cyan-900 dark:border-cyan-400/20 dark:bg-cyan-400/10 dark:text-cyan-100">
+    <div className="rounded-xl border border-cyan-200 bg-cyan-50 p-3 text-cyan-900 dark:border-cyan-400/20 dark:bg-cyan-400/10 dark:text-cyan-100">
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2 font-black">
           <Target className="h-4 w-4" />
@@ -233,12 +233,12 @@ export function PracticeModeToggle() {
 export function MiniTableOfContents({ items }: { items: Array<{ label: string; id: string }> }) {
   if (!items.length) return null;
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+    <div className="rounded-xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
       <div className="flex items-center gap-2 text-sm font-black text-slate-800 dark:text-slate-100">
         <List className="h-4 w-4 text-cyan-600" />
         On this page
       </div>
-      <div className="mt-3 grid gap-2">
+      <div className="mt-2 grid gap-1.5">
         {items.map((item) => (
           <a key={item.id} href={`#${item.id}`} className="text-sm font-semibold text-slate-600 transition hover:text-cyan-700 dark:text-slate-300 dark:hover:text-cyan-200">
             {item.label}
@@ -252,12 +252,12 @@ export function MiniTableOfContents({ items }: { items: Array<{ label: string; i
 export function CollapsibleTheorySection({ title, children, defaultOpen = false }: { title: string; children: ReactNode; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div data-theory className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+    <div data-theory className="rounded-xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
       <button type="button" className="flex w-full items-center justify-between gap-3 text-left font-black" onClick={() => setOpen((value) => !value)}>
         {title}
         <span className="text-cyan-600">{open ? "Hide" : "Show"}</span>
       </button>
-      {open && <div className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{children}</div>}
+      {open && <div className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{children}</div>}
     </div>
   );
 }
@@ -385,9 +385,9 @@ export function InfoCallout({ title, children, tone = "info" }: { title: string;
       ? "border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-100"
       : "border-cyan-300 bg-cyan-50 text-cyan-900 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-100";
   return (
-    <div className={`rounded-2xl border p-4 ${toneClass}`}>
+    <div className={`rounded-xl border p-3 ${toneClass}`}>
       <p className="font-black">{title}</p>
-      <div className="mt-2 text-sm font-semibold leading-6">{children}</div>
+      <div className="mt-2 text-sm font-semibold leading-5">{children}</div>
     </div>
   );
 }

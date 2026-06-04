@@ -74,7 +74,7 @@ export default function DashboardCard({ title, description, concepts, icon: Icon
         whileHover={{ y: -4 }}
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
         onContextMenu={handleContextMenu}
-        className={`glass-card group relative flex min-h-[220px] flex-col overflow-hidden rounded-2xl border-l-4 ${strip} p-4 hover:shadow-glow`}
+        className={`glass-card group relative flex min-h-[190px] flex-col overflow-hidden rounded-xl border-l-4 ${strip} p-3 hover:shadow-glow`}
       >
         {(isNew || progress > 65) && <div className="absolute -right-10 top-4 rotate-45 bg-cyan-500 px-10 py-1 text-xs font-black uppercase text-white shadow-lg">{isNew ? "New" : "Updated"}</div>}
         <div className="flex items-start justify-between gap-3">
@@ -108,9 +108,9 @@ export default function DashboardCard({ title, description, concepts, icon: Icon
             <ProgressRing progress={progress} size={40} />
           </div>
         </div>
-        <h2 className="mt-3 text-base font-bold text-slate-950 dark:text-white">{title}</h2>
-        <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{description}</p>
-        <div className="mt-3 flex flex-wrap gap-1.5">
+        <h2 className="mt-2.5 text-base font-bold text-slate-950 dark:text-white">{title}</h2>
+        <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{description}</p>
+        <div className="mt-2 flex flex-wrap gap-1.5">
           {concepts.slice(0, 4).map((concept) => (
             <span key={concept} className="mini-chip text-[11px]">
               {concept}
@@ -122,7 +122,7 @@ export default function DashboardCard({ title, description, concepts, icon: Icon
           <span className="mini-chip text-[11px]">{difficulty}</span>
         </div>
         {isExternal ? (
-          <a href={route} aria-label={`Open ${title}`} className="action-primary mt-auto w-full py-2 text-sm">
+          <a href={route} aria-label={`Open ${title}`} className="action-primary mt-auto w-full py-1.5 text-sm">
             {actionLabel}
             <ArrowRight className="h-4 w-4" />
           </a>
@@ -130,7 +130,7 @@ export default function DashboardCard({ title, description, concepts, icon: Icon
           <Link
             to={route}
             aria-label={`Launch ${title}`}
-            className="action-primary mt-auto w-full py-2 text-sm"
+            className="action-primary mt-auto w-full py-1.5 text-sm"
           >
             {actionLabel}
             <ArrowRight className="h-4 w-4" />

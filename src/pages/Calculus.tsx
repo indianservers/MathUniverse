@@ -17,19 +17,25 @@ export default function Calculus() {
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
   return (
-    <div className="space-y-5" onPointerDown={() => markTopicInteracted(topic.id)}>
+    <div className="space-y-3" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
-      <ContinueCard routePrefix="/calculus" />
-      <Link to="/calculator" className="action-secondary w-fit">Open Scientific Calculator</Link>
-      <TopicTabs tabs={[
-        { id: "limits", label: "Limits", content: <LimitsVisualizer /> },
-        { id: "derivatives", label: "Derivatives", content: <DerivativeSlopeVisualizer /> },
-        { id: "integrals", label: "Integrals", content: <IntegrationAreaVisualizer /> },
-        { id: "motion", label: "Motion", content: <MotionVisualizer /> },
-      ]} />
-      <SectionCard title="Applications">
-        <div className="grid gap-3 md:grid-cols-5">{["Physics", "Optimization", "Economics", "AI training", "Engineering"].map((item) => <div key={item} className="rounded-2xl bg-slate-100 p-4 font-semibold dark:bg-white/10">{item}</div>)}</div>
-      </SectionCard>
+      <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_280px]">
+        <div className="min-w-0">
+          <TopicTabs tabs={[
+            { id: "limits", label: "Limits", content: <LimitsVisualizer /> },
+            { id: "derivatives", label: "Derivatives", content: <DerivativeSlopeVisualizer /> },
+            { id: "integrals", label: "Integrals", content: <IntegrationAreaVisualizer /> },
+            { id: "motion", label: "Motion", content: <MotionVisualizer /> },
+          ]} />
+        </div>
+        <aside className="desktop-sidebar-panel scroll-panel space-y-3 xl:sticky xl:top-24">
+          <ContinueCard routePrefix="/calculus" />
+          <Link to="/calculator" className="action-secondary w-full">Open Scientific Calculator</Link>
+          <SectionCard title="Applications" compact>
+            <div className="flex flex-wrap gap-2">{["Physics", "Optimization", "Economics", "AI training", "Engineering"].map((item) => <span key={item} className="mini-chip">{item}</span>)}</div>
+          </SectionCard>
+        </aside>
+      </div>
       <TopicProgressActions topicId={topic.id} />
     </div>
   );
