@@ -92,7 +92,7 @@ export default function MathLab3DGraphing() {
         </SectionCard>
         </aside>
 
-        <SectionCard title="Interactive 3D Surface" description="Drag to rotate. Scroll or pinch to zoom. The mesh is colored by height." compact>
+        <SectionCard title="Interactive 3D Surface" description="Drag to rotate. Scroll or pinch to zoom. The mesh is colored by height." compact tone="spotlight">
           <div className="mb-3 flex flex-wrap gap-2">
             <button type="button" className={showGrid ? "action-primary" : "tool-button"} onClick={() => setShowGrid((value) => !value)}><Grid3X3 className="h-4 w-4" />Grid</button>
             <button type="button" className={showAxes ? "action-primary" : "tool-button"} onClick={() => setShowAxes((value) => !value)}><ScanSearch className="h-4 w-4" />Axes</button>
@@ -116,7 +116,7 @@ export default function MathLab3DGraphing() {
             {surface.error ? (
               <LoadingSkeleton label="Waiting for a valid z = f(x,y) surface" />
             ) : (
-              <ThreeSceneWrapper key={cameraKey} height="calc(100vh - 250px)" mobileHeight="520px" interactionLabel="Drag rotate - scroll zoom" cameraPosition={[4, 3.2, 6]} fov={46} quality="high">
+              <ThreeSceneWrapper key={cameraKey} height="calc(100vh - 250px)" mobileHeight="520px" interactionLabel="Drag rotate - scroll zoom" cameraPosition={[4, 3.2, 6]} fov={46} quality="high" chrome="cinematic" sceneLabel="3D graphing cinema">
                 <color attach="background" args={["#020617"]} />
                 <ambientLight intensity={0.72} />
                 <directionalLight position={[5, 8, 6]} intensity={1.35} />

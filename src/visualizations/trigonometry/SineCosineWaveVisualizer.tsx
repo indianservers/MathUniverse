@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { CartesianGrid, Line, LineChart, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import GraphCard from "../../components/ui/GraphCard";
 import SectionCard from "../../components/ui/SectionCard";
 import SliderControl from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
@@ -43,33 +42,36 @@ export default function SineCosineWaveVisualizer() {
     <SectionCard title="Sine and Cosine Wave Visualizer" description="Amplitude sets height, frequency sets cycles, and phase shifts the wave horizontally.">
       <div className="grid gap-6 xl:grid-cols-[340px_1fr]">
         <div className="space-y-4">
-          <div className="rounded-2xl bg-gradient-to-br from-violet-500 to-cyan-500 p-4 text-white"><p className="font-bold">y = A sin(fx + φ)</p><p className="text-sm opacity-90">A={roundTo(amplitude, 2)}, f={roundTo(frequency, 2)}, φ={roundTo(phase, 2)}</p></div>
+          <div className="rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 p-4 text-white"><p className="font-bold">y = A sin(fx + phi)</p><p className="text-sm opacity-90">A={roundTo(amplitude, 2)}, f={roundTo(frequency, 2)}, phi={roundTo(phase, 2)}</p></div>
           <SliderControl label="Amplitude A" value={amplitude} min={0.5} max={5} step={0.1} onChange={setAmplitude} />
           <SliderControl label="Frequency f" value={frequency} min={0.5} max={5} step={0.1} onChange={setFrequency} />
-          <SliderControl label="Phase φ" value={phase} min={-Math.PI} max={Math.PI} step={0.05} onChange={setPhase} />
+          <SliderControl label="Phase phi" value={phase} min={-Math.PI} max={Math.PI} step={0.05} onChange={setPhase} />
           <SliderControl label="Selected x" value={xPos} min={0} max={Math.PI * 4} step={0.05} onChange={setXPos} />
           <label className="flex items-center gap-3 rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10"><input type="checkbox" checked={showTangent} onChange={(e) => setShowTangent(e.target.checked)} /> Show tangent wave</label>
           <label className="block rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10">Real-world use<select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={useCase} onChange={(e) => setUseCase(e.target.value)}>{Object.keys(useExplanation).map((item) => <option key={item}>{item}</option>)}</select></label>
-          <button className="w-full rounded-2xl bg-slate-950 px-4 py-3 text-white dark:bg-white dark:text-slate-950" onClick={() => setPlaying(!playing)}>{playing ? "Pause" : "Play"}</button>
+          <button className="action-primary w-full" onClick={() => setPlaying(!playing)}>{playing ? "Pause" : "Play"}</button>
           <div className="grid grid-cols-2 gap-2 text-sm"><Metric label="sine" value={sine} /><Metric label="cosine" value={cosine} /><Metric label="period" value={period} /><Metric label="phase" value={phase} /></div>
           <p className="rounded-2xl bg-slate-100 p-4 text-sm dark:bg-white/10">{useExplanation[useCase]}</p>
         </div>
-        <GraphCard title="Wave Graph">
+        <SectionCard title="Wave Graph" description="Sine and cosine move as a recording-friendly glowing waveform." compact tone="spotlight">
+          <div className="cinematic-graph-stage p-2">
           <div className="hidden" />
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data} margin={{ top: 20, right: 20, bottom: 10, left: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,.28)" /><XAxis dataKey="x" stroke="#94a3b8" /><YAxis stroke="#94a3b8" /><Tooltip contentStyle={{ borderRadius: 16, border: "1px solid rgba(148,163,184,.3)", background: "rgba(15,23,42,.92)", color: "#f8fafc" }} labelStyle={{ color: "#e2e8f0" }} />
-              <Line dataKey="sine" stroke="#06b6d4" strokeWidth={3} dot={false} /><Line dataKey="cosine" stroke="#f43f5e" strokeWidth={3} dot={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(103,232,249,.2)" /><XAxis dataKey="x" stroke="#bae6fd" tick={{ fill: "#bae6fd", fontSize: 11 }} /><YAxis stroke="#bae6fd" tick={{ fill: "#bae6fd", fontSize: 11 }} /><Tooltip contentStyle={{ borderRadius: 16, border: "1px solid rgba(103,232,249,.25)", background: "rgba(2,6,23,.94)", color: "#f8fafc" }} labelStyle={{ color: "#e2e8f0" }} />
+              <Line dataKey="sine" stroke="#22d3ee" strokeWidth={4} dot={false} /><Line dataKey="cosine" stroke="#fb7185" strokeWidth={4} dot={false} />
               {showTangent && <Line dataKey="tangent" stroke="#f59e0b" strokeWidth={2} dot={false} connectNulls={false} />}
-              <ReferenceDot x={xPos} y={sine} r={6} fill="#06b6d4" stroke="#0f172a" /><ReferenceDot x={xPos} y={cosine} r={6} fill="#f43f5e" stroke="#0f172a" />
+              <ReferenceDot x={xPos} y={sine} r={6} fill="#22d3ee" stroke="#020617" /><ReferenceDot x={xPos} y={cosine} r={6} fill="#fb7185" stroke="#020617" />
             </LineChart>
           </ResponsiveContainer>
-        </GraphCard>
+          </div>
+        </SectionCard>
       </div>
-      <div className="mt-4 rounded-2xl bg-white p-4 dark:bg-slate-950/60">
+      <div className="mt-4 rounded-xl bg-slate-950 p-4 shadow-inner shadow-cyan-950/30">
         <svg viewBox="0 0 160 160" className="mx-auto h-40 max-w-full">
-          <circle cx="80" cy="80" r="48" fill="rgba(34,211,238,.08)" stroke="#06b6d4" strokeWidth="3" />
-          <line x1="80" y1="80" x2={circleX} y2={circleY} stroke="#8b5cf6" strokeWidth="4" />
+          <defs><filter id="wave-circle-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
+          <circle cx="80" cy="80" r="48" fill="rgba(34,211,238,.08)" stroke="#67e8f9" strokeWidth="3" />
+          <line x1="80" y1="80" x2={circleX} y2={circleY} stroke="#c084fc" strokeWidth="4" filter="url(#wave-circle-glow)" />
           <circle cx={circleX} cy={circleY} r="6" fill="#f59e0b" />
         </svg>
       </div>
@@ -87,4 +89,4 @@ export default function SineCosineWaveVisualizer() {
     </SectionCard>
   );
 }
-function Metric({ label, value }: { label: string; value: number }) { return <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs text-slate-500">{label}</p><p className="font-bold">{roundTo(value, 3)}</p></div>; }
+function Metric({ label, value }: { label: string; value: number }) { return <div className="cinematic-stat"><p className="cinematic-stat-label">{label}</p><p className="cinematic-stat-value">{roundTo(value, 3)}</p></div>; }

@@ -49,7 +49,7 @@ export default function EulerFormula3D() {
             As theta increases, e^(i theta) moves around the unit circle. When theta is stretched along a separate axis, the circular motion becomes a helix. Its projections are the sine and cosine waves.
           </p>
         </div>
-        <ThreeSceneWrapper height="560px" cameraPosition={[5, 3.8, 6.2]} fov={44} quality="high">
+        <ThreeSceneWrapper height="560px" cameraPosition={[5, 3.8, 6.2]} fov={44} quality="high" chrome="cinematic" sceneLabel="Euler helix cinema">
           <EulerScene theta={theta} showHelix={showHelix} showCosine={showCosine} showSine={showSine} />
         </ThreeSceneWrapper>
       </div>

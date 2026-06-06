@@ -1,4 +1,4 @@
-import { BookOpen, Calculator, Cuboid, FlaskConical, LibraryBig, Trophy, Route, X, HelpCircle, ArrowRight } from "lucide-react";
+import { BookOpen, Calculator, Cuboid, FlaskConical, LibraryBig, Trophy, Route, X, HelpCircle, ArrowRight, Sparkles } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -71,6 +71,14 @@ export default function Home() {
   const [homeFilter, setHomeFilter] = useState<"all" | "core" | "tools" | "practice" | "advanced">("all");
   const labs = topics.reduce((sum, topic) => sum + topic.labCount, 0);
   const extraCards = [
+    {
+      title: "Visual Showcase",
+      description: "A cinematic launchpad for the 18 flagship math visuals, built for product demos, lessons, and screen-recorded walkthroughs.",
+      concepts: ["Cinematic", "3D", "AI", "Calculus"],
+      icon: Sparkles,
+      route: "/visual-showcase",
+      colorGradient: "from-slate-950 to-cyan-500",
+    },
     {
       title: "Math Lab",
       description: "GeoGebra-style visual tools and WolframAlpha-style solving workspace for graphing, solving, symbolic algebra, calculus, statistics, probability, geometry, linear algebra, and 3D graphs.",

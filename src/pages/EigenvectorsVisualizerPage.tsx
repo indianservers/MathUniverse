@@ -57,7 +57,7 @@ export default function EigenvectorsVisualizerPage() {
           </div>
         </SectionCard>
 
-        <SectionCard title="Eigenvector Directions" description="Grey vectors show ordinary directions. Highlighted lines are real eigenvector directions when they exist.">
+        <SectionCard title="Eigenvector Directions" description="Grey vectors show ordinary directions. Highlighted lines are real eigenvector directions when they exist." tone="spotlight">
           <EigenGraph matrix={matrix} info={info} t={t} />
         </SectionCard>
       </div>
@@ -65,7 +65,7 @@ export default function EigenvectorsVisualizerPage() {
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
         <SectionCard title="Presets">
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            {presets.map((preset) => <button key={preset.name} type="button" onClick={() => { setMatrix(preset.matrix); setPlaying(true); }} className="rounded-2xl border border-slate-200 bg-white p-3 text-left text-sm font-black transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">{preset.name}</button>)}
+            {presets.map((preset) => <button key={preset.name} type="button" onClick={() => { setMatrix(preset.matrix); setPlaying(true); }} className="cinematic-preset-button">{preset.name}</button>)}
           </div>
         </SectionCard>
 
@@ -83,7 +83,7 @@ export default function EigenvectorsVisualizerPage() {
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           <Metric label="Characteristic equation" value={`lambda^2 - ${roundTo(info.trace, 3)}lambda + ${roundTo(info.det, 3)} = 0`} />
           <Metric label="det(A - lambda I)" value={`(${matrix.a}-lambda)(${matrix.d}-lambda)-(${matrix.b})(${matrix.c})`} />
-          <Metric label="Eigenvalues" value={info.real ? info.eigenvalues.map((v) => roundTo(v, 4)).join(", ") : `${roundTo(info.trace / 2, 3)} ± ${roundTo(Math.sqrt(-info.discriminant) / 2, 3)}i`} />
+          <Metric label="Eigenvalues" value={info.real ? info.eigenvalues.map((v) => roundTo(v, 4)).join(", ") : `${roundTo(info.trace / 2, 3)} +/- ${roundTo(Math.sqrt(-info.discriminant) / 2, 3)}i`} />
           <Metric label="Eigenvectors" value={info.real ? info.eigenvectors.map((v) => `<${roundTo(v.x, 3)}, ${roundTo(v.y, 3)}>`).join("  ") : "none in real plane"} />
         </div>
       </SectionCard>
@@ -97,7 +97,22 @@ function EigenGraph({ matrix, info, t }: { matrix: Matrix; info: ReturnType<type
     return { x: Math.cos(angle) * 2.2, y: Math.sin(angle) * 2.2 };
   });
   return (
-    <svg viewBox="0 0 760 520" className="h-[360px] w-full rounded-2xl bg-slate-50 dark:bg-slate-950 sm:h-[520px]">
+    <svg viewBox="0 0 760 520" className="cinematic-svg-stage">
+      <defs>
+        <radialGradient id="eigen-bg" cx="50%" cy="44%" r="72%">
+          <stop offset="0%" stopColor="#172554" stopOpacity="0.72" />
+          <stop offset="54%" stopColor="#07182d" stopOpacity="0.94" />
+          <stop offset="100%" stopColor="#020617" />
+        </radialGradient>
+        <filter id="eigen-glow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <rect x="0" y="0" width="760" height="520" fill="url(#eigen-bg)" />
       <Axes />
       {directions.map((v, i) => {
         const av = multiply(matrix, v);
@@ -109,7 +124,7 @@ function EigenGraph({ matrix, info, t }: { matrix: Matrix; info: ReturnType<type
         const scaled = lerp(v, { x: v.x * lambda, y: v.y * lambda }, t);
         return <g key={i}><line x1={sx(-v.x * 5)} y1={sy(-v.y * 5)} x2={sx(v.x * 5)} y2={sy(v.y * 5)} stroke={i === 0 ? "#f59e0b" : "#06b6d4"} strokeWidth="4" strokeDasharray="8 7" /><Arrow from={{ x: 0, y: 0 }} to={scaled} color={i === 0 ? "#f59e0b" : "#06b6d4"} label={`lambda ${roundTo(lambda, 2)}`} opacity={1} /></g>;
       })}
-      {!info.real && <text x="120" y="250" fontSize="20" fontWeight="900" fill="#ef4444">Complex eigenvalues: no real eigenvector directions to draw.</text>}
+      {!info.real && <text x="120" y="250" fontSize="20" fontWeight="900" fill="#fecaca">Complex eigenvalues: no real eigenvector directions to draw.</text>}
     </svg>
   );
 }
@@ -137,19 +152,19 @@ function normalize(v: Vec): Vec {
 }
 
 function Axes() {
-  return <g><line x1={sx(-5.5)} x2={sx(5.5)} y1={sy(0)} y2={sy(0)} stroke="#0f172a" strokeWidth="2" /><line x1={sx(0)} x2={sx(0)} y1={sy(-5)} y2={sy(5)} stroke="#0f172a" strokeWidth="2" />{Array.from({ length: 11 }).map((_, i) => <line key={`v-${i}`} x1={sx(-5 + i)} y1={sy(-5)} x2={sx(-5 + i)} y2={sy(5)} stroke="#cbd5e1" opacity="0.55" />)}{Array.from({ length: 11 }).map((_, i) => <line key={`h-${i}`} x1={sx(-5.5)} y1={sy(-5 + i)} x2={sx(5.5)} y2={sy(-5 + i)} stroke="#cbd5e1" opacity="0.55" />)}</g>;
+  return <g><line x1={sx(-5.5)} x2={sx(5.5)} y1={sy(0)} y2={sy(0)} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="2" /><line x1={sx(0)} x2={sx(0)} y1={sy(-5)} y2={sy(5)} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="2" />{Array.from({ length: 11 }).map((_, i) => <line key={`v-${i}`} x1={sx(-5 + i)} y1={sy(-5)} x2={sx(-5 + i)} y2={sy(5)} stroke="#64748b" opacity="0.32" />)}{Array.from({ length: 11 }).map((_, i) => <line key={`h-${i}`} x1={sx(-5.5)} y1={sy(-5 + i)} x2={sx(5.5)} y2={sy(-5 + i)} stroke="#64748b" opacity="0.32" />)}</g>;
 }
 
 function Arrow({ from, to, color, label, opacity }: { from: Vec; to: Vec; color: string; label: string; opacity: number }) {
-  return <g opacity={opacity}><line x1={sx(from.x)} y1={sy(from.y)} x2={sx(to.x)} y2={sy(to.y)} stroke={color} strokeWidth="5" markerEnd="url(#eigen-arrow)" /><circle cx={sx(to.x)} cy={sy(to.y)} r="6" fill={color} /><text x={sx(to.x) + 8} y={sy(to.y) - 8} fontSize="14" fontWeight="900" fill="#0f172a">{label}</text><defs><marker id="eigen-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill={color} /></marker></defs></g>;
+  return <g opacity={opacity} filter="url(#eigen-glow)"><line x1={sx(from.x)} y1={sy(from.y)} x2={sx(to.x)} y2={sy(to.y)} stroke={color} strokeWidth="5" markerEnd="url(#eigen-arrow)" /><circle cx={sx(to.x)} cy={sy(to.y)} r="6" fill={color} /><text x={sx(to.x) + 8} y={sy(to.y) - 8} fontSize="14" fontWeight="900" fill="#f8fafc">{label}</text><defs><marker id="eigen-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill={color} /></marker></defs></g>;
 }
 
 function NumberBox({ label, value, onChange }: { label: string; value: number; onChange: (value: number) => void }) {
-  return <label><span className="text-xs font-black uppercase text-slate-500">{label}</span><input type="number" step="0.1" value={roundTo(value, 4)} onChange={(event) => onChange(Number(event.target.value))} className="mt-1 min-h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-bold outline-none dark:border-white/10 dark:bg-slate-950" /></label>;
+  return <label><span className="text-xs font-black uppercase text-slate-500">{label}</span><input type="number" step="0.1" value={roundTo(value, 4)} onChange={(event) => onChange(Number(event.target.value))} className="premium-input mt-1 min-h-10" /></label>;
 }
 
 function Metric({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{label}</p><p className="mt-1 break-words font-mono text-sm font-bold">{value}</p></div>;
+  return <div className="cinematic-stat"><p className="cinematic-stat-label">{label}</p><p className="cinematic-stat-value">{value}</p></div>;
 }
 
 function multiply(m: Matrix, v: Vec): Vec { return { x: m.a * v.x + m.b * v.y, y: m.c * v.x + m.d * v.y }; }

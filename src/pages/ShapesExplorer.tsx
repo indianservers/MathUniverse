@@ -1,5 +1,5 @@
 import { Award, Box, Camera, Circle, Cuboid, Download, ExternalLink, Eye, Heart, Mic, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
-import { OrbitControls, Text } from "@react-three/drei";
+import { ContactShadows, OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
@@ -189,19 +189,38 @@ export default function ShapesExplorer() {
               onReset={resetView}
               onToggleAutoRotate={() => setAutoRotate((value) => !value)}
             />
-            {selected.kind === "2d" ? (
-              <div className="rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
-                <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} />
+            <div className="grid gap-3 xl:grid-cols-2">
+              <div className="overflow-hidden rounded-2xl border border-cyan-300/30 bg-slate-950 p-3 shadow-2xl shadow-cyan-950/20">
+                <div className="mb-2 flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-wide text-cyan-200">2D pane</p>
+                    <p className="text-sm text-slate-300">{selected.kind === "2d" ? "Exact plane figure with live dimensions." : "Projection, net, or cross-section view."}</p>
+                  </div>
+                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-white">{selected.kind === "2d" ? "Flat geometry" : "2D projection"}</span>
+                </div>
+                <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} cinematic />
               </div>
-            ) : (
-              <ThreeSceneWrapper height="520px" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom" cameraPosition={[3.8, 3, 5.8]} fov={46} quality="high">
-                <ambientLight intensity={0.75} />
-                <directionalLight position={[4, 5, 4]} intensity={1.35} />
-                <RotatingSolid shape={selected.id} a={a} b={b} c={c} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} />
-                <gridHelper args={[8, 16, "#38bdf8", "#334155"]} position={[0, -3, 0]} />
+
+              <div className="overflow-hidden rounded-2xl border border-violet-300/25 bg-slate-950 p-3 shadow-2xl shadow-violet-950/20">
+                <div className="mb-2 flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-wide text-violet-200">3D pane</p>
+                    <p className="text-sm text-slate-300">{selected.kind === "2d" ? "Real beveled extrusion from the 2D outline." : "True interactive solid with depth and shadows."}</p>
+                  </div>
+                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-white">{selected.kind === "2d" ? "Extruded 3D" : "Solid model"}</span>
+                </div>
+                <ThreeSceneWrapper chrome="cinematic" sceneLabel={selected.name} height="520px" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom" cameraPosition={[4.4, 3.4, 6.2]} fov={43} quality="high">
+                <ambientLight intensity={0.48} />
+                <directionalLight position={[4, 6, 5]} intensity={1.85} castShadow />
+                <pointLight position={[-3.5, 2.4, 2.5]} intensity={1.1} color="#8b5cf6" />
+                <pointLight position={[2.8, -1, -3.5]} intensity={0.65} color="#22d3ee" />
+                <RotatingSolid shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} />
+                <ContactShadows position={[0, -3, 0]} opacity={0.38} scale={8} blur={2.4} far={7} />
+                <gridHelper args={[8, 16, "#38bdf8", "#334155"]} position={[0, -3.02, 0]} />
                 <OrbitControls enablePan={false} enableZoom enableDamping />
-              </ThreeSceneWrapper>
-            )}
+                </ThreeSceneWrapper>
+              </div>
+            </div>
 
             <div className="grid gap-3 md:grid-cols-3">
               <InfoTile label="Dimensions" value={selected.dimensions.join(", ")} />
@@ -846,7 +865,7 @@ function getMetrics(id: ShapeId, a: number, b: number, c: number, n: number, ang
   }
 }
 
-function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation }: { shape: ShapeId; a: number; b: number; c: number; sides: number; angle: number; zoom: number; rotation: number }) {
+function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation, cinematic = false }: { shape: ShapeId; a: number; b: number; c: number; sides: number; angle: number; zoom: number; rotation: number; cinematic?: boolean }) {
   const scale = 18;
   const cx = 240;
   const cy = 180;
@@ -870,8 +889,20 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation }: { shape: Sha
           <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.35" />
           <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.3" />
         </linearGradient>
+        <radialGradient id="shapeStageGlow" cx="50%" cy="42%" r="68%">
+          <stop offset="0%" stopColor="#164e63" stopOpacity="0.95" />
+          <stop offset="54%" stopColor="#111827" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#020617" stopOpacity="1" />
+        </radialGradient>
+        <linearGradient id="projectionFill" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stopColor="#67e8f9" stopOpacity="0.78" />
+          <stop offset="55%" stopColor="#8b5cf6" stopOpacity="0.45" />
+          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.5" />
+        </linearGradient>
       </defs>
+      {cinematic && <rect width="480" height="360" rx="22" fill="url(#shapeStageGlow)" />}
       <g transform={`translate(${cx} ${cy}) rotate(${rotation}) scale(${zoom}) translate(${-cx} ${-cy})`}>
+        {isSolidShape(shape) && <ShapeProjectionSvg shape={shape} cx={cx} cy={cy} size={radius} second={Math.min(b * scale, 130)} third={Math.min((c || b) * scale, 130)} />}
         {shape === "circle" && <circle cx={cx} cy={cy} r={radius} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "semicircle" && <path d={`M ${cx - radius} ${cy} A ${radius} ${radius} 0 0 1 ${cx + radius} ${cy} L ${cx - radius} ${cy}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "sector" && <path d={`M ${cx} ${cy} L ${cx + radius} ${cy} A ${radius} ${radius} 0 ${angle > 180 ? 1 : 0} 0 ${sectorX} ${sectorY} Z`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
@@ -885,15 +916,32 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation }: { shape: Sha
         {shape === "trapezium" && <polygon points={`${cx - top / 2},${cy - height / 2} ${cx + top / 2},${cy - height / 2} ${cx + w / 2},${cy + height / 2} ${cx - w / 2},${cy + height / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "kite" && <polygon points={`${cx},${cy - h / 2} ${cx + w / 2},${cy - 10} ${cx},${cy + h / 2} ${cx - w / 2},${cy - 10}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "regular-polygon" && <polygon points={polygonPoints} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
-        <line x1="80" y1="310" x2="400" y2="310" stroke="#94a3b8" strokeDasharray="6 6" />
-        <DimensionGuides2D shape={shape} cx={cx} cy={cy} radius={radius} w={w} h={h} top={top} height={height} sectorX={sectorX} sectorY={sectorY} />
+        <line x1="80" y1="310" x2="400" y2="310" stroke={cinematic ? "#475569" : "#94a3b8"} strokeDasharray="6 6" />
+        <DimensionGuides2D shape={shape} cx={cx} cy={cy} radius={radius} w={w} h={h} top={top} height={height} sectorX={sectorX} sectorY={sectorY} cinematic={cinematic} />
       </g>
     </svg>
   );
 }
 
-function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, sectorY }: { shape: ShapeId; cx: number; cy: number; radius: number; w: number; h: number; top: number; height: number; sectorX: number; sectorY: number }) {
-  const label = (x: number, y: number, text: string, color = "#0f172a") => <text x={x} y={y} fill={color} fontSize="15" fontWeight="700">{text}</text>;
+function ShapeProjectionSvg({ shape, cx, cy, size, second, third }: { shape: ShapeId; cx: number; cy: number; size: number; second: number; third: number }) {
+  const r = Math.min(size, 118);
+  const w = Math.min(size * 1.55, 190);
+  const h = Math.min(second * 1.15, 145);
+  const d = Math.min(third * 0.48, 72);
+  if (shape === "sphere") return <><circle cx={cx} cy={cy} r={r} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy} rx={r} ry={r * 0.32} fill="none" stroke="#f8fafc" strokeOpacity="0.5" strokeWidth="2" /><ellipse cx={cx} cy={cy} rx={r * 0.38} ry={r} fill="none" stroke="#f8fafc" strokeOpacity="0.28" strokeWidth="2" /></>;
+  if (shape === "hemisphere") return <><path d={`M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy} L ${cx - r} ${cy}`} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy} rx={r} ry={r * 0.22} fill="none" stroke="#f59e0b" strokeWidth="3" /></>;
+  if (shape === "cylinder") return <><rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy - h / 2} rx={w / 2} ry="24" fill="#0f172a" fillOpacity="0.35" stroke="#f59e0b" strokeWidth="3" /><ellipse cx={cx} cy={cy + h / 2} rx={w / 2} ry="24" fill="none" stroke="#f59e0b" strokeWidth="3" /></>;
+  if (shape === "cone") return <><path d={`M ${cx} ${cy - h / 1.25} L ${cx + w / 2} ${cy + h / 2} L ${cx - w / 2} ${cy + h / 2} Z`} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy + h / 2} rx={w / 2} ry="24" fill="none" stroke="#f59e0b" strokeWidth="3" /></>;
+  if (shape === "frustum") return <><path d={`M ${cx - w * 0.28} ${cy - h / 2} L ${cx + w * 0.28} ${cy - h / 2} L ${cx + w / 2} ${cy + h / 2} L ${cx - w / 2} ${cy + h / 2} Z`} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy - h / 2} rx={w * 0.28} ry="15" fill="none" stroke="#f59e0b" strokeWidth="3" /><ellipse cx={cx} cy={cy + h / 2} rx={w / 2} ry="24" fill="none" stroke="#f59e0b" strokeWidth="3" /></>;
+  if (shape === "square-pyramid") return <><polygon points={`${cx},${cy - h / 1.35} ${cx + w / 2},${cy + h / 3} ${cx},${cy + h / 1.65} ${cx - w / 2},${cy + h / 3}`} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><line x1={cx} y1={cy - h / 1.35} x2={cx} y2={cy + h / 1.65} stroke="#f8fafc" strokeOpacity="0.45" strokeWidth="2" /></>;
+  if (shape === "triangular-prism") return <><polygon points={`${cx - w / 2},${cy + h / 2} ${cx - w / 2 + 70},${cy - h / 2} ${cx - w / 2 + 140},${cy + h / 2}`} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><polygon points={`${cx - w / 2 + d},${cy + h / 2 - d} ${cx - w / 2 + 70 + d},${cy - h / 2 - d} ${cx - w / 2 + 140 + d},${cy + h / 2 - d}`} fill="#0f172a" fillOpacity="0.2" stroke="#f59e0b" strokeWidth="3" /><line x1={cx - w / 2} y1={cy + h / 2} x2={cx - w / 2 + d} y2={cy + h / 2 - d} stroke="#f59e0b" strokeWidth="3" /><line x1={cx - w / 2 + 70} y1={cy - h / 2} x2={cx - w / 2 + 70 + d} y2={cy - h / 2 - d} stroke="#f59e0b" strokeWidth="3" /><line x1={cx - w / 2 + 140} y1={cy + h / 2} x2={cx - w / 2 + 140 + d} y2={cy + h / 2 - d} stroke="#f59e0b" strokeWidth="3" /></>;
+  if (shape === "torus") return <><ellipse cx={cx} cy={cy} rx={r * 1.08} ry={r * 0.64} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy} rx={r * 0.48} ry={r * 0.24} fill="#020617" stroke="#f59e0b" strokeWidth="4" /></>;
+  return <><polygon points={`${cx - w / 2},${cy - h / 2} ${cx + w / 2},${cy - h / 2} ${cx + w / 2 + d},${cy - h / 2 - d} ${cx - w / 2 + d},${cy - h / 2 - d}`} fill="#67e8f9" fillOpacity="0.55" stroke="#67e8f9" strokeWidth="3" /><polygon points={`${cx + w / 2},${cy - h / 2} ${cx + w / 2},${cy + h / 2} ${cx + w / 2 + d},${cy + h / 2 - d} ${cx + w / 2 + d},${cy - h / 2 - d}`} fill="#8b5cf6" fillOpacity="0.38" stroke="#a78bfa" strokeWidth="3" /><rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /></>;
+}
+
+function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, sectorY, cinematic = false }: { shape: ShapeId; cx: number; cy: number; radius: number; w: number; h: number; top: number; height: number; sectorX: number; sectorY: number; cinematic?: boolean }) {
+  const defaultLabel = cinematic ? "#f8fafc" : "#0f172a";
+  const label = (x: number, y: number, text: string, color = defaultLabel) => <text x={x} y={y} fill={color} fontSize="15" fontWeight="700">{text}</text>;
   const guide = (x1: number, y1: number, x2: number, y2: number, color = "#f59e0b") => <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth="3" strokeDasharray="7 5" />;
   if (["circle", "semicircle"].includes(shape)) return <>{guide(cx, cy, cx + radius, cy)}{label(cx + radius / 2 - 5, cy - 10, "r", "#f59e0b")}{guide(cx - radius, cy + 26, cx + radius, cy + 26, "#8b5cf6")}{label(cx - 8, cy + 48, "d=2r", "#8b5cf6")}</>;
   if (shape === "sector") return <>{guide(cx, cy, cx + radius, cy)}{guide(cx, cy, sectorX, sectorY)}{label(cx + radius / 2, cy - 10, "r", "#f59e0b")}{label(cx + 18, cy - 22, "theta", "#8b5cf6")}</>;
@@ -909,8 +957,8 @@ function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, 
   return null;
 }
 
-function RotatingSolid({ shape, a, b, c, wireframe, zoom, rotation, autoRotate }: { shape: ShapeId; a: number; b: number; c: number; wireframe: boolean; zoom: number; rotation: number; autoRotate: boolean }) {
-  const ref = useRef<THREE.Mesh>(null);
+function RotatingSolid({ shape, a, b, c, sides, angle, wireframe, zoom, rotation, autoRotate }: { shape: ShapeId; a: number; b: number; c: number; sides: number; angle: number; wireframe: boolean; zoom: number; rotation: number; autoRotate: boolean }) {
+  const ref = useRef<THREE.Group>(null);
   const guideRef = useRef<THREE.Group>(null);
   useEffect(() => {
     if (ref.current) ref.current.rotation.y = (rotation * Math.PI) / 180;
@@ -928,22 +976,35 @@ function RotatingSolid({ shape, a, b, c, wireframe, zoom, rotation, autoRotate }
   const size = Math.min(a, 5);
   const second = Math.min(b, 5);
   const third = Math.min(c, 6);
+  const solid = isSolidShape(shape);
+  const materialColor = solid ? "#22d3ee" : "#38bdf8";
+  const emissiveColor = solid ? "#083344" : "#0f172a";
 
   return (
     <group scale={zoom}>
-      <mesh ref={ref}>
-        {shape === "cube" && <boxGeometry args={[size, size, size]} />}
-        {shape === "cuboid" && <boxGeometry args={[size, second, third]} />}
-        {shape === "sphere" && <sphereGeometry args={[size, 64, 36]} />}
-        {shape === "hemisphere" && <sphereGeometry args={[size, 64, 24, 0, Math.PI * 2, 0, Math.PI / 2]} />}
-        {shape === "cylinder" && <cylinderGeometry args={[size, size, second, 64]} />}
-        {shape === "cone" && <coneGeometry args={[size, second, 64]} />}
-        {shape === "frustum" && <cylinderGeometry args={[second, size, third, 64]} />}
-        {shape === "square-pyramid" && <coneGeometry args={[size, second, 4]} />}
-        {shape === "triangular-prism" && <cylinderGeometry args={[size, size, third, 3]} />}
-        {shape === "torus" && <torusGeometry args={[size, second, 24, 96]} />}
-        <meshStandardMaterial color="#22d3ee" roughness={0.3} metalness={0.16} wireframe={wireframe} transparent opacity={wireframe ? 1 : 0.82} />
-      </mesh>
+      <group ref={ref}>
+        <mesh castShadow receiveShadow>
+          <ShapeGeometry3D shape={shape} size={size} second={second} third={third} sides={sides} angle={angle} />
+          <meshPhysicalMaterial
+            color={materialColor}
+            emissive={emissiveColor}
+            emissiveIntensity={solid ? 0.1 : 0.16}
+            roughness={0.18}
+            metalness={0.22}
+            clearcoat={0.7}
+            clearcoatRoughness={0.16}
+            wireframe={wireframe}
+            transparent
+            opacity={wireframe ? 1 : 0.9}
+          />
+        </mesh>
+        {!wireframe && (
+          <mesh scale={1.006}>
+            <ShapeGeometry3D shape={shape} size={size} second={second} third={third} sides={sides} angle={angle} />
+            <meshBasicMaterial color="#e0f2fe" wireframe transparent opacity={0.13} />
+          </mesh>
+        )}
+      </group>
       <group ref={guideRef}>
         <DimensionGuides3D shape={shape} size={size} second={second} third={third} />
       </group>
@@ -951,7 +1012,99 @@ function RotatingSolid({ shape, a, b, c, wireframe, zoom, rotation, autoRotate }
   );
 }
 
+function ShapeGeometry3D({ shape, size, second, third, sides, angle }: { shape: ShapeId; size: number; second: number; third: number; sides: number; angle: number }) {
+  const extrudedShape = useMemo(() => createExtrudedShape(shape, size, second, sides, angle), [shape, size, second, sides, angle]);
+  if (shape === "cube") return <boxGeometry args={[size, size, size]} />;
+  if (shape === "cuboid") return <boxGeometry args={[size, second, third]} />;
+  if (shape === "sphere") return <sphereGeometry args={[size, 80, 48]} />;
+  if (shape === "hemisphere") return <sphereGeometry args={[size, 80, 28, 0, Math.PI * 2, 0, Math.PI / 2]} />;
+  if (shape === "cylinder") return <cylinderGeometry args={[size, size, second, 96]} />;
+  if (shape === "cone") return <coneGeometry args={[size, second, 96]} />;
+  if (shape === "frustum") return <cylinderGeometry args={[second, size, third, 96]} />;
+  if (shape === "square-pyramid") return <coneGeometry args={[size, second, 4]} />;
+  if (shape === "triangular-prism") return <cylinderGeometry args={[size, size, third, 3]} />;
+  if (shape === "torus") return <torusGeometry args={[size, second, 32, 128]} />;
+  return <extrudeGeometry args={[extrudedShape, { depth: 0.42, bevelEnabled: true, bevelSize: 0.055, bevelThickness: 0.06, bevelSegments: 5, curveSegments: 48 }]} />;
+}
+
+function createExtrudedShape(shapeId: ShapeId, size: number, second: number, sides: number, angle: number) {
+  const shape = new THREE.Shape();
+  const radius = Math.max(0.45, size);
+  const halfW = Math.max(0.45, size);
+  const halfH = Math.max(0.45, second);
+  if (shapeId === "circle") {
+    shape.absellipse(0, 0, radius, radius, 0, Math.PI * 2, false, 0);
+  } else if (shapeId === "semicircle") {
+    shape.moveTo(-radius, 0);
+    shape.absarc(0, 0, radius, Math.PI, 0, false);
+    shape.lineTo(-radius, 0);
+  } else if (shapeId === "sector") {
+    const theta = THREE.MathUtils.degToRad(angle);
+    shape.moveTo(0, 0);
+    shape.lineTo(radius, 0);
+    shape.absarc(0, 0, radius, 0, theta, false);
+    shape.lineTo(0, 0);
+  } else if (shapeId === "ellipse") {
+    shape.absellipse(0, 0, halfW, halfH, 0, Math.PI * 2, false, 0);
+  } else if (shapeId === "triangle") {
+    shape.moveTo(-halfW, -halfH * 0.72);
+    shape.lineTo(halfW, -halfH * 0.72);
+    shape.lineTo(0, halfH);
+    shape.lineTo(-halfW, -halfH * 0.72);
+  } else if (shapeId === "right-triangle") {
+    shape.moveTo(-halfW, -halfH);
+    shape.lineTo(halfW, -halfH);
+    shape.lineTo(-halfW, halfH);
+    shape.lineTo(-halfW, -halfH);
+  } else if (shapeId === "square") {
+    shape.moveTo(-radius, -radius);
+    shape.lineTo(radius, -radius);
+    shape.lineTo(radius, radius);
+    shape.lineTo(-radius, radius);
+    shape.lineTo(-radius, -radius);
+  } else if (shapeId === "rectangle") {
+    shape.moveTo(-halfW, -halfH);
+    shape.lineTo(halfW, -halfH);
+    shape.lineTo(halfW, halfH);
+    shape.lineTo(-halfW, halfH);
+    shape.lineTo(-halfW, -halfH);
+  } else if (shapeId === "parallelogram") {
+    shape.moveTo(-halfW + halfW * 0.35, halfH);
+    shape.lineTo(halfW, halfH);
+    shape.lineTo(halfW - halfW * 0.35, -halfH);
+    shape.lineTo(-halfW, -halfH);
+    shape.lineTo(-halfW + halfW * 0.35, halfH);
+  } else if (shapeId === "rhombus" || shapeId === "kite") {
+    shape.moveTo(0, halfH);
+    shape.lineTo(halfW, shapeId === "kite" ? halfH * 0.12 : 0);
+    shape.lineTo(0, -halfH);
+    shape.lineTo(-halfW, shapeId === "kite" ? halfH * 0.12 : 0);
+    shape.lineTo(0, halfH);
+  } else if (shapeId === "trapezium") {
+    shape.moveTo(-second * 0.5, halfH);
+    shape.lineTo(second * 0.5, halfH);
+    shape.lineTo(halfW, -halfH);
+    shape.lineTo(-halfW, -halfH);
+    shape.lineTo(-second * 0.5, halfH);
+  } else {
+    const count = Math.max(3, Math.round(sides));
+    for (let index = 0; index <= count; index += 1) {
+      const theta = -Math.PI / 2 + (index * Math.PI * 2) / count;
+      const x = radius * Math.cos(theta);
+      const y = radius * Math.sin(theta);
+      if (index === 0) shape.moveTo(x, y);
+      else shape.lineTo(x, y);
+    }
+  }
+  return shape;
+}
+
+function isSolidShape(shape: ShapeId) {
+  return ["cube", "cuboid", "sphere", "hemisphere", "cylinder", "cone", "frustum", "square-pyramid", "triangular-prism", "torus"].includes(shape);
+}
+
 function DimensionGuides3D({ shape, size, second, third }: { shape: ShapeId; size: number; second: number; third: number }) {
+  if (!isSolidShape(shape)) return <ExtrudedShapeGuides size={size} second={second} />;
   const half = size / 2;
   if (shape === "cube") return <><GuideLine start={[-half, -half - 0.25, half]} end={[half, -half - 0.25, half]} color="#f59e0b" /><GuideLabel position={[0, -half - 0.45, half]} text="s" /></>;
   if (shape === "cuboid") return <><GuideLine start={[-size / 2, -second / 2 - 0.3, third / 2]} end={[size / 2, -second / 2 - 0.3, third / 2]} color="#f59e0b" /><GuideLine start={[-size / 2 - 0.3, -second / 2, -third / 2]} end={[-size / 2 - 0.3, second / 2, -third / 2]} color="#8b5cf6" /><GuideLine start={[size / 2 + 0.3, -second / 2, -third / 2]} end={[size / 2 + 0.3, -second / 2, third / 2]} color="#ef4444" /><GuideLabel position={[0, -second / 2 - 0.5, third / 2]} text="l" /><GuideLabel position={[-size / 2 - 0.55, 0, -third / 2]} text="b" /><GuideLabel position={[size / 2 + 0.45, -second / 2, 0]} text="h" /></>;
@@ -962,6 +1115,18 @@ function DimensionGuides3D({ shape, size, second, third }: { shape: ShapeId; siz
   if (shape === "square-pyramid") return <><GuideLine start={[-size / 2, -second / 2 - 0.2, size / 2]} end={[size / 2, -second / 2 - 0.2, size / 2]} color="#f59e0b" /><GuideLine start={[0, -second / 2, 0]} end={[0, second / 2, 0]} color="#8b5cf6" /><GuideLabel position={[0, -second / 2 - 0.42, size / 2]} text="s" /><GuideLabel position={[0.15, 0, 0]} text="h" /></>;
   if (shape === "triangular-prism") return <><GuideLine start={[-size, -0.25, third / 2]} end={[size, -0.25, third / 2]} color="#f59e0b" /><GuideLine start={[-size - 0.3, -0.25, -third / 2]} end={[-size - 0.3, second, -third / 2]} color="#8b5cf6" /><GuideLine start={[size + 0.25, -0.25, -third / 2]} end={[size + 0.25, -0.25, third / 2]} color="#ef4444" /><GuideLabel position={[0, -0.45, third / 2]} text="b" /><GuideLabel position={[-size - 0.55, second / 2, -third / 2]} text="h" /><GuideLabel position={[size + 0.45, -0.25, 0]} text="L" /></>;
   return <><GuideLine start={[0, 0, 0]} end={[size, 0, 0]} color="#f59e0b" /><GuideLine start={[size, 0, 0]} end={[size + second, 0, 0]} color="#8b5cf6" /><GuideLabel position={[size / 2, 0.2, 0]} text="R" /><GuideLabel position={[size + second / 2, 0.25, 0]} text="r" /></>;
+}
+
+function ExtrudedShapeGuides({ size, second }: { size: number; second: number }) {
+  const span = Math.max(size, second);
+  return (
+    <>
+      <GuideLine start={[-span, -span - 0.25, 0.46]} end={[span, -span - 0.25, 0.46]} color="#f59e0b" />
+      <GuideLine start={[span + 0.24, -span, 0]} end={[span + 0.24, -span, 0.42]} color="#8b5cf6" />
+      <GuideLabel position={[0, -span - 0.48, 0.46]} text="outline" />
+      <GuideLabel position={[span + 0.38, -span, 0.24]} text="depth" />
+    </>
+  );
 }
 
 function GuideLine({ start, end, color }: { start: [number, number, number]; end: [number, number, number]; color: string }) {

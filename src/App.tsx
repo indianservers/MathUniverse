@@ -63,6 +63,7 @@ const Trigonometry = lazy(() => import("./pages/Trigonometry"));
 const TrigonometryConceptPage = lazy(() => import("./pages/TrigonometryConceptPage"));
 const TruthTableGenerator = lazy(() => import("./pages/TruthTableGenerator"));
 const UnitConverter = lazy(() => import("./pages/UnitConverter"));
+const VisualShowcase = lazy(() => import("./pages/VisualShowcase"));
 const WorkedExamplesLibrary = lazy(() => import("./pages/WorkedExamplesLibrary"));
 
 type AppErrorBoundaryProps = {
@@ -148,6 +149,7 @@ export default function App() {
             <Route path="math-lab/query" element={<MathLabSmartQuery />} />
             <Route path="math-lab/:toolId" element={<MathLabToolPage />} />
             <Route path="workspace" element={<MathWorkspace />} />
+            <Route path="visual-showcase" element={<VisualShowcase />} />
             <Route path="geometry" element={<Geometry />} />
             <Route path="geometry/:conceptId" element={<GeometryConceptPage />} />
             <Route path="shapes" element={<ShapesExplorer />} />

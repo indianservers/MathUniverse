@@ -241,7 +241,7 @@ export default function AIApplications() {
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
 
       <div className="grid gap-3 xl:grid-cols-[240px_minmax(0,1fr)_300px]">
-        <aside className="desktop-sidebar-panel scroll-panel xl:sticky xl:top-24">
+        <aside className="cinematic-control-panel scroll-panel xl:sticky xl:top-24">
           <p className="mb-2 text-xs font-black uppercase text-slate-400">Modules</p>
           <nav className="grid gap-1.5">
             {MODULES.map((m) => (
@@ -251,7 +251,7 @@ export default function AIApplications() {
                 onClick={() => setActiveId(m.id)}
                 className={`rounded-lg px-3 py-2 text-left text-sm font-bold transition ${
                   m.id === activeId
-                    ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950"
+                    ? "bg-slate-950 text-white shadow-lg shadow-cyan-950/10 dark:bg-cyan-300 dark:text-slate-950"
                     : "bg-white/80 text-slate-700 hover:bg-slate-100 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
                 } border border-slate-200 dark:border-white/10`}
               >

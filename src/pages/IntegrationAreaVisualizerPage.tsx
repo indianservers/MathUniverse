@@ -101,7 +101,7 @@ export default function IntegrationAreaVisualizerPage() {
           </div>
         </SectionCard>
 
-        <SectionCard title="Graph and Area" description="Blue is f(x), violet is g(x) when enabled, orange shading shows the area being accumulated.">
+        <SectionCard title="Graph and Area" description="Blue is f(x), violet is g(x) when enabled, orange shading shows the area being accumulated." tone="spotlight">
           <IntegralGraph f={graphData.f} g={graphData.g} fn={compiled.fn} gn={useSecondCurve ? compiledSecond.fn : null} lower={left} upper={right} n={n} method={method} useSecondCurve={useSecondCurve} />
         </SectionCard>
       </div>
@@ -133,7 +133,7 @@ export default function IntegrationAreaVisualizerPage() {
       <SectionCard title="Preset Examples" description="Load a common function and explore its accumulated area.">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {presets.map((preset) => (
-            <button key={preset} type="button" onClick={() => { setDraft(preset); setExpression(preset); }} className="rounded-2xl border border-slate-200 bg-white p-4 text-left font-mono font-bold transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-500/10 dark:border-white/10 dark:bg-white/5">{preset}</button>
+            <button key={preset} type="button" onClick={() => { setDraft(preset); setExpression(preset); }} className="cinematic-preset-button font-mono">{preset}</button>
           ))}
         </div>
       </SectionCard>
@@ -160,19 +160,28 @@ function IntegralGraph({ f, g, fn, gn, lower, upper, n, method, useSecondCurve }
     return <rect key={i} x={sx(x0)} y={sy(Math.max(0, ys))} width={Math.max(1, sx(x1) - sx(x0))} height={Math.abs(sy(ys) - sy(0))} fill="#f59e0b" opacity="0.22" stroke="#f59e0b" />;
   }) : [];
   return (
-    <svg viewBox="0 0 760 460" className="h-[340px] w-full rounded-2xl bg-slate-50 dark:bg-slate-950 sm:h-[460px]">
+    <svg viewBox="0 0 760 460" className="cinematic-svg-stage sm:h-[460px]">
+      <defs>
+        <radialGradient id="integral-bg" cx="50%" cy="45%" r="72%">
+          <stop offset="0%" stopColor="#12395a" stopOpacity="0.72" />
+          <stop offset="56%" stopColor="#07182d" stopOpacity="0.94" />
+          <stop offset="100%" stopColor="#020617" />
+        </radialGradient>
+        <filter id="integral-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+      </defs>
+      <rect x="0" y="0" width="760" height="460" fill="url(#integral-bg)" />
       {grid(width, height, pad)}
-      <line x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} stroke="#0f172a" strokeWidth="2" />
-      <line x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} stroke="#0f172a" strokeWidth="2" />
+      <line x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="2" />
+      <line x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="2" />
       {areaShapes}
       <line x1={sx(lower)} x2={sx(lower)} y1={pad} y2={height - pad} stroke="#ef4444" strokeWidth="3" strokeDasharray="8 7" />
       <line x1={sx(upper)} x2={sx(upper)} y1={pad} y2={height - pad} stroke="#ef4444" strokeWidth="3" strokeDasharray="8 7" />
       <text x={sx(lower) + 5} y={pad + 18} fontSize="13" fontWeight="900" fill="#ef4444">a</text>
       <text x={sx(upper) + 5} y={pad + 18} fontSize="13" fontWeight="900" fill="#ef4444">b</text>
-      <path d={path(f, sx, sy, yMin, yMax)} fill="none" stroke="#0891b2" strokeWidth="4" />
-      {useSecondCurve && <path d={path(g, sx, sy, yMin, yMax)} fill="none" stroke="#8b5cf6" strokeWidth="4" />}
-      <text x="58" y="28" fontSize="13" fontWeight="900" fill="#0891b2">f(x)</text>
-      {useSecondCurve && <text x="112" y="28" fontSize="13" fontWeight="900" fill="#8b5cf6">g(x)</text>}
+      <path d={path(f, sx, sy, yMin, yMax)} fill="none" stroke="#22d3ee" strokeWidth="4" filter="url(#integral-glow)" />
+      {useSecondCurve && <path d={path(g, sx, sy, yMin, yMax)} fill="none" stroke="#c084fc" strokeWidth="4" filter="url(#integral-glow)" />}
+      <text x="58" y="28" fontSize="13" fontWeight="900" fill="#67e8f9">f(x)</text>
+      {useSecondCurve && <text x="112" y="28" fontSize="13" fontWeight="900" fill="#d8b4fe">g(x)</text>}
     </svg>
   );
 }
@@ -226,7 +235,7 @@ function FunctionInput({ label, draft, setDraft, apply, error }: { label: string
     <label className="block">
       <span className="text-sm font-bold">{label}</span>
       <div className="mt-2 flex gap-2">
-        <input value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") apply(); }} className="min-h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 font-mono text-sm outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-950" />
+        <input value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") apply(); }} className="premium-input min-h-11" />
         <button type="button" className="action-primary px-4" onClick={apply}>Plot</button>
       </div>
       {error && <ErrorBox message={error} />}
@@ -235,7 +244,7 @@ function FunctionInput({ label, draft, setDraft, apply, error }: { label: string
 }
 
 function NumberInput({ label, value, onChange }: { label: string; value: number; onChange: (value: number) => void }) {
-  return <label className="block"><span className="text-xs font-black uppercase text-slate-500">{label}</span><input type="number" value={value} onChange={(event) => onChange(Number(event.target.value))} className="mt-1 min-h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-bold outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-950" /></label>;
+  return <label className="block"><span className="text-xs font-black uppercase text-slate-500">{label}</span><input type="number" value={value} onChange={(event) => onChange(Number(event.target.value))} className="premium-input mt-1 min-h-10" /></label>;
 }
 
 function safe(fn: (x: number) => number, x: number) {
@@ -261,11 +270,11 @@ function path(points: Point[], sx: (x: number) => number, sy: (y: number) => num
 }
 
 function grid(width: number, height: number, pad: number) {
-  return <g>{Array.from({ length: 11 }).map((_, i) => <line key={`v-${i}`} x1={pad + i * (width - pad * 2) / 10} x2={pad + i * (width - pad * 2) / 10} y1={pad} y2={height - pad} stroke="#cbd5e1" opacity="0.65" />)}{Array.from({ length: 9 }).map((_, i) => <line key={`h-${i}`} x1={pad} x2={width - pad} y1={pad + i * (height - pad * 2) / 8} y2={pad + i * (height - pad * 2) / 8} stroke="#cbd5e1" opacity="0.65" />)}</g>;
+  return <g>{Array.from({ length: 11 }).map((_, i) => <line key={`v-${i}`} x1={pad + i * (width - pad * 2) / 10} x2={pad + i * (width - pad * 2) / 10} y1={pad} y2={height - pad} stroke="#67e8f9" opacity="0.16" />)}{Array.from({ length: 9 }).map((_, i) => <line key={`h-${i}`} x1={pad} x2={width - pad} y1={pad + i * (height - pad * 2) / 8} y2={pad + i * (height - pad * 2) / 8} stroke="#67e8f9" opacity="0.16" />)}</g>;
 }
 
 function Metric({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{label}</p><p className="mt-1 break-words font-mono text-sm font-bold">{value}</p></div>;
+  return <div className="cinematic-stat"><p className="cinematic-stat-label">{label}</p><p className="cinematic-stat-value">{value}</p></div>;
 }
 
 function ErrorBox({ message }: { message: string }) {

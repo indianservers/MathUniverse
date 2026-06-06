@@ -44,7 +44,7 @@ export default function Shape3DExplorer() {
             <p className="mt-3 text-slate-600 dark:text-slate-300">Area ~= {roundTo(values.area, 2)}; Volume ~= {roundTo(values.volume, 2)}</p>
           </div>
         </div>
-        <ThreeSceneWrapper height="500px" cameraPosition={[3.8, 2.8, 5.6]} fov={46} quality="high">
+        <ThreeSceneWrapper height="500px" cameraPosition={[3.8, 2.8, 5.6]} fov={46} quality="high" chrome="cinematic" sceneLabel="3D shape studio">
           <ambientLight intensity={0.7} />
           <directionalLight position={[4, 5, 4]} intensity={1.3} />
           <RotatingShape shape={shape} size={size} height={height} wireframe={wireframe} autoRotate={autoRotate} />

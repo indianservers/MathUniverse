@@ -5,11 +5,11 @@ import SliderControl from "../../components/ui/SliderControl";
 
 const steps = [
   { title: "Start at 1", text: "Begin at the multiplicative identity on the real axis.", angle: 0, add: false },
-  { title: "Multiply by e^(iπ)", text: "The factor e^(iπ) means rotate by π radians.", angle: Math.PI * 0.35, add: false },
-  { title: "Rotate 180°", text: "A π-radian rotation is exactly 180 degrees.", angle: Math.PI * 0.75, add: false },
+  { title: "Multiply by e^(i*pi)", text: "The factor e^(i*pi) means rotate by pi radians.", angle: Math.PI * 0.35, add: false },
+  { title: "Rotate 180 deg", text: "A pi-radian rotation is exactly 180 degrees.", angle: Math.PI * 0.75, add: false },
   { title: "Reach -1", text: "The rotation lands at -1.", angle: Math.PI, add: false },
   { title: "Add +1", text: "Move one unit right by adding 1.", angle: Math.PI, add: true },
-  { title: "Reach 0", text: "The expression e^(iπ) + 1 equals 0.", angle: Math.PI, add: true, done: true },
+  { title: "Reach 0", text: "The expression e^(i*pi) + 1 equals 0.", angle: Math.PI, add: true, done: true },
 ];
 
 export default function EulerIdentityAnimation() {
@@ -35,29 +35,41 @@ export default function EulerIdentityAnimation() {
           <FormulaBlock title="Identity" formula={"e^{i\\pi}+1=0"} />
           <SliderControl label="Step" value={step + 1} min={1} max={steps.length} step={1} onChange={(value) => setStep(value - 1)} />
           <div className="grid grid-cols-2 gap-2">
-            <button className="rounded-2xl bg-slate-950 px-4 py-3 text-white dark:bg-white dark:text-slate-950" onClick={() => setPlaying((value) => !value)}>{playing ? "Pause" : "Play"}</button>
-            <button className="rounded-2xl bg-slate-100 px-4 py-3 font-semibold dark:bg-white/10" onClick={() => { setPlaying(false); setStep(0); }}>Reset</button>
-            <button className="rounded-2xl bg-slate-100 px-4 py-3 font-semibold dark:bg-white/10" onClick={() => setStep((value) => Math.max(0, value - 1))}>Back</button>
-            <button className="rounded-2xl bg-slate-100 px-4 py-3 font-semibold dark:bg-white/10" onClick={() => setStep((value) => Math.min(steps.length - 1, value + 1))}>Forward</button>
+            <button className="action-primary" onClick={() => setPlaying((value) => !value)}>{playing ? "Pause" : "Play"}</button>
+            <button className="action-secondary" onClick={() => { setPlaying(false); setStep(0); }}>Reset</button>
+            <button className="action-secondary" onClick={() => setStep((value) => Math.max(0, value - 1))}>Back</button>
+            <button className="action-secondary" onClick={() => setStep((value) => Math.min(steps.length - 1, value + 1))}>Forward</button>
           </div>
           <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
             <p className="font-bold">{current.title}</p>
             <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{current.text}</p>
-            <p className="mt-3 font-mono text-sm">{step < 4 ? "e^(iπ)" : "e^(iπ) + 1"} {current.done ? "= 0" : ""}</p>
+            <p className="mt-3 font-mono text-sm">{step < 4 ? "e^(i*pi)" : "e^(i*pi) + 1"} {current.done ? "= 0" : ""}</p>
           </div>
           <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">e represents natural growth, i the imaginary direction, pi circular rotation, 1 multiplicative identity, and 0 additive identity.</p>
         </div>
-        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/60">
+        <div className="rounded-xl bg-slate-950 p-3 shadow-inner shadow-cyan-950/30">
           <svg viewBox="0 0 360 360" className="h-[360px] w-full">
-            <circle cx="180" cy="180" r="110" fill="rgba(34,211,238,.08)" stroke="#06b6d4" strokeWidth="3" />
-            <line x1="40" x2="320" y1="180" y2="180" stroke="#64748b" /><line x1="180" x2="180" y1="40" y2="320" stroke="#64748b" />
+            <defs>
+              <radialGradient id="identity-bg" cx="50%" cy="45%" r="70%">
+                <stop offset="0%" stopColor="#12395a" stopOpacity="0.72" />
+                <stop offset="58%" stopColor="#07182d" stopOpacity="0.94" />
+                <stop offset="100%" stopColor="#020617" />
+              </radialGradient>
+              <filter id="identity-glow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="2.8" result="blur" />
+                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+            <rect x="0" y="0" width="360" height="360" fill="url(#identity-bg)" />
+            <circle cx="180" cy="180" r="110" fill="rgba(34,211,238,.08)" stroke="#67e8f9" strokeWidth="3" />
+            <line x1="40" x2="320" y1="180" y2="180" stroke="#e2e8f0" strokeOpacity="0.66" /><line x1="180" x2="180" y1="40" y2="320" stroke="#e2e8f0" strokeOpacity="0.66" />
             <path d="M 290 180 A 110 110 0 0 0 70 180" fill="none" stroke="#f59e0b" strokeWidth="5" strokeDasharray={step < 2 ? "8 7" : "none"} />
-            <line x1="180" y1="180" x2={px} y2={py} stroke="#22d3ee" strokeWidth="4" />
-            {current.add && <line x1={px} y1={py} x2="180" y2="180" stroke="#a78bfa" strokeWidth="4" markerEnd="url(#identity-arrow)" />}
+            <line x1="180" y1="180" x2={px} y2={py} stroke="#22d3ee" strokeWidth="4" filter="url(#identity-glow)" />
+            {current.add && <line x1={px} y1={py} x2="180" y2="180" stroke="#a78bfa" strokeWidth="4" markerEnd="url(#identity-arrow)" filter="url(#identity-glow)" />}
             <defs><marker id="identity-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#a78bfa" /></marker></defs>
             <circle cx="290" cy="180" r="7" fill="#22c55e" /><text x="296" y="172" fill="#22c55e">1</text>
             <circle cx="70" cy="180" r="7" fill="#f43f5e" /><text x="42" y="172" fill="#f43f5e">-1</text>
-            <circle cx={finalX} cy={finalY} r="9" fill="#f59e0b" />
+            <circle cx={finalX} cy={finalY} r="9" fill="#f59e0b" filter="url(#identity-glow)" />
           </svg>
         </div>
       </div>

@@ -14,8 +14,8 @@ const presets: Preset[] = [
   { name: "Scaling", matrix: { a: 1.6, b: 0, c: 0, d: 0.7 } },
   { name: "Reflection across x-axis", matrix: { a: 1, b: 0, c: 0, d: -1 } },
   { name: "Reflection across y-axis", matrix: { a: -1, b: 0, c: 0, d: 1 } },
-  { name: "Rotation 45°", matrix: rotation(Math.PI / 4) },
-  { name: "Rotation 90°", matrix: rotation(Math.PI / 2) },
+  { name: "Rotation 45 deg", matrix: rotation(Math.PI / 4) },
+  { name: "Rotation 90 deg", matrix: rotation(Math.PI / 2) },
   { name: "Shear x", matrix: { a: 1, b: 1, c: 0, d: 1 } },
   { name: "Shear y", matrix: { a: 1, b: 0, c: 1, d: 1 } },
   { name: "Projection", matrix: { a: 1, b: 0, c: 0, d: 0 } },
@@ -67,7 +67,7 @@ export default function MatrixTransformationsVisualizerPage() {
           </div>
         </SectionCard>
 
-        <SectionCard title="Grid, Basis, Vector, and Shape Transformation" description="Grey shows original structure; colored elements show transformed space.">
+        <SectionCard title="Grid, Basis, Vector, and Shape Transformation" description="Grey shows original structure; colored elements show transformed space." tone="spotlight">
           <TransformGraph matrix={matrix} vector={vector} t={t} />
         </SectionCard>
       </div>
@@ -75,7 +75,7 @@ export default function MatrixTransformationsVisualizerPage() {
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
         <SectionCard title="Matrix Presets">
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
-            {presets.map((preset) => <button key={preset.name} type="button" onClick={() => { setMatrix(preset.matrix); setPlaying(true); }} className="rounded-2xl border border-slate-200 bg-white p-3 text-left text-sm font-black transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">{preset.name}</button>)}
+            {presets.map((preset) => <button key={preset.name} type="button" onClick={() => { setMatrix(preset.matrix); setPlaying(true); }} className="cinematic-preset-button">{preset.name}</button>)}
           </div>
         </SectionCard>
 
@@ -98,9 +98,24 @@ function TransformGraph({ matrix, vector, t }: { matrix: Matrix; vector: Vec; t:
   const triangle = [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 2.5, y: 1 }];
   const tv = morph(vector);
   return (
-    <svg viewBox="0 0 760 520" className="h-[360px] w-full rounded-2xl bg-slate-50 dark:bg-slate-950 sm:h-[520px]">
-      <PlaneGrid transform={(p) => p} color="#cbd5e1" opacity={0.55} />
-      <PlaneGrid transform={morph} color="#06b6d4" opacity={0.75} />
+    <svg viewBox="0 0 760 520" className="cinematic-svg-stage">
+      <defs>
+        <radialGradient id="matrix-bg" cx="50%" cy="42%" r="70%">
+          <stop offset="0%" stopColor="#12395a" stopOpacity="0.72" />
+          <stop offset="52%" stopColor="#07182d" stopOpacity="0.92" />
+          <stop offset="100%" stopColor="#020617" />
+        </radialGradient>
+        <filter id="matrix-glow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <rect x="0" y="0" width="760" height="520" fill="url(#matrix-bg)" />
+      <PlaneGrid transform={(p) => p} color="#64748b" opacity={0.32} />
+      <PlaneGrid transform={morph} color="#22d3ee" opacity={0.82} />
       <Axes />
       <Arrow from={{ x: 0, y: 0 }} to={{ x: 1, y: 0 }} color="#94a3b8" label="i" />
       <Arrow from={{ x: 0, y: 0 }} to={{ x: 0, y: 1 }} color="#94a3b8" label="j" />
@@ -126,11 +141,11 @@ function PlaneGrid({ transform, color, opacity }: { transform: (v: Vec) => Vec; 
 }
 
 function Axes() {
-  return <g><line x1={sx(-5.5)} x2={sx(5.5)} y1={sy(0)} y2={sy(0)} stroke="#0f172a" strokeWidth="2" /><line x1={sx(0)} x2={sx(0)} y1={sy(-5)} y2={sy(5)} stroke="#0f172a" strokeWidth="2" /></g>;
+  return <g><line x1={sx(-5.5)} x2={sx(5.5)} y1={sy(0)} y2={sy(0)} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="2" /><line x1={sx(0)} x2={sx(0)} y1={sy(-5)} y2={sy(5)} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="2" /></g>;
 }
 
 function Arrow({ from, to, color, label }: { from: Vec; to: Vec; color: string; label: string }) {
-  return <g><line x1={sx(from.x)} y1={sy(from.y)} x2={sx(to.x)} y2={sy(to.y)} stroke={color} strokeWidth="5" markerEnd="url(#arrow)" /><circle cx={sx(to.x)} cy={sy(to.y)} r="6" fill={color} /><text x={sx(to.x) + 8} y={sy(to.y) - 8} fontSize="14" fontWeight="900" fill="#0f172a">{label}</text><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill={color} /></marker></defs></g>;
+  return <g filter="url(#matrix-glow)"><line x1={sx(from.x)} y1={sy(from.y)} x2={sx(to.x)} y2={sy(to.y)} stroke={color} strokeWidth="5" markerEnd="url(#arrow)" /><circle cx={sx(to.x)} cy={sy(to.y)} r="6" fill={color} /><text x={sx(to.x) + 8} y={sy(to.y) - 8} fontSize="14" fontWeight="900" fill="#f8fafc">{label}</text><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill={color} /></marker></defs></g>;
 }
 
 function Polygon({ points, color, opacity }: { points: Vec[]; color: string; opacity: number }) {
@@ -138,11 +153,11 @@ function Polygon({ points, color, opacity }: { points: Vec[]; color: string; opa
 }
 
 function NumberBox({ label, value, onChange }: { label: string; value: number; onChange: (value: number) => void }) {
-  return <label><span className="text-xs font-black uppercase text-slate-500">{label}</span><input type="number" step="0.1" value={roundTo(value, 4)} onChange={(event) => onChange(Number(event.target.value))} className="mt-1 min-h-10 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm font-bold outline-none dark:border-white/10 dark:bg-slate-950" /></label>;
+  return <label><span className="text-xs font-black uppercase text-slate-500">{label}</span><input type="number" step="0.1" value={roundTo(value, 4)} onChange={(event) => onChange(Number(event.target.value))} className="premium-input mt-1 min-h-10" /></label>;
 }
 
 function Metric({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{label}</p><p className="mt-1 break-words font-mono text-sm font-bold">{value}</p></div>;
+  return <div className="cinematic-stat"><p className="cinematic-stat-label">{label}</p><p className="cinematic-stat-value">{value}</p></div>;
 }
 
 function multiply(m: Matrix, v: Vec): Vec { return { x: m.a * v.x + m.b * v.y, y: m.c * v.x + m.d * v.y }; }

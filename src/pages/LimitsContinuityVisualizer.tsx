@@ -60,7 +60,7 @@ export default function LimitsContinuityVisualizer() {
             <label className="block">
               <span className="text-sm font-bold">f(x)</span>
               <div className="mt-2 flex gap-2">
-                <input value={draft} onChange={(event) => { setDraft(event.target.value); setKind("input"); }} onKeyDown={(event) => { if (event.key === "Enter") setExpression(draft); }} className="min-h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 font-mono text-sm outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-950" />
+                <input value={draft} onChange={(event) => { setDraft(event.target.value); setKind("input"); }} onKeyDown={(event) => { if (event.key === "Enter") setExpression(draft); }} className="premium-input min-h-11" />
                 <button type="button" className="action-primary px-4" onClick={() => { setKind("input"); setExpression(draft); }}>Plot</button>
               </div>
               {compiled.error && <p className="mt-2 rounded-xl bg-rose-50 p-3 text-sm font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{compiled.error}</p>}
@@ -74,7 +74,7 @@ export default function LimitsContinuityVisualizer() {
           </div>
         </SectionCard>
 
-        <SectionCard title="Limit Graph" description="Blue is the graph, orange and violet points approach x = a from left and right.">
+        <SectionCard title="Limit Graph" description="Blue is the graph, orange and violet points approach x = a from left and right." tone="spotlight">
           <LimitGraph samples={samples} a={a} leftPoint={leftPoint} rightPoint={rightPoint} atPoint={atPoint} />
         </SectionCard>
       </div>
@@ -105,7 +105,7 @@ export default function LimitsContinuityVisualizer() {
       <SectionCard title="Presets" description="Click a card to load common continuity examples.">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {presets.map((preset) => (
-            <button key={preset.title} type="button" onClick={() => setPreset(preset)} className="rounded-2xl border border-slate-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-500/10 dark:border-white/10 dark:bg-white/5">
+            <button key={preset.title} type="button" onClick={() => setPreset(preset)} className="cinematic-preset-button">
               <h3 className="font-black">{preset.title}</h3>
               <p className="mt-2 font-mono text-sm text-cyan-700 dark:text-cyan-300">{preset.expression}</p>
               <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{preset.description}</p>
@@ -122,13 +122,22 @@ function LimitGraph({ samples, a, leftPoint, rightPoint, atPoint }: { samples: S
   const sx = (x: number) => pad + ((x - xMin) / (xMax - xMin)) * (width - pad * 2);
   const sy = (y: number) => height - pad - ((y - yMin) / (yMax - yMin)) * (height - pad * 2);
   return (
-    <svg viewBox="0 0 760 460" className="h-[340px] w-full rounded-2xl bg-slate-50 dark:bg-slate-950 sm:h-[460px]">
+    <svg viewBox="0 0 760 460" className="cinematic-svg-stage sm:h-[460px]">
+      <defs>
+        <radialGradient id="limit-bg" cx="50%" cy="45%" r="72%">
+          <stop offset="0%" stopColor="#12395a" stopOpacity="0.72" />
+          <stop offset="56%" stopColor="#07182d" stopOpacity="0.94" />
+          <stop offset="100%" stopColor="#020617" />
+        </radialGradient>
+        <filter id="limit-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+      </defs>
+      <rect x="0" y="0" width="760" height="460" fill="url(#limit-bg)" />
       {gridLines(width, height, pad)}
-      <line x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} stroke="#0f172a" strokeWidth="2" />
-      <line x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} stroke="#0f172a" strokeWidth="2" />
+      <line x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="2" />
+      <line x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="2" />
       <line x1={sx(a)} x2={sx(a)} y1={pad} y2={height - pad} stroke="#ef4444" strokeWidth="3" strokeDasharray="8 7" />
-      <text x={sx(a) + 6} y={pad + 18} fontSize="13" fontWeight="900" fill="#ef4444">x = a</text>
-      <path d={pointsToPath(samples, sx, sy, yMin, yMax)} fill="none" stroke="#0891b2" strokeWidth="4" />
+      <text x={sx(a) + 6} y={pad + 18} fontSize="13" fontWeight="900" fill="#fecaca">x = a</text>
+      <path d={pointsToPath(samples, sx, sy, yMin, yMax)} fill="none" stroke="#22d3ee" strokeWidth="4" filter="url(#limit-glow)" />
       {leftPoint?.defined && <GraphPoint x={sx(leftPoint.x)} y={sy(leftPoint.y)} label="left" color="#f59e0b" />}
       {rightPoint?.defined && <GraphPoint x={sx(rightPoint.x)} y={sy(rightPoint.y)} label="right" color="#8b5cf6" />}
       {atPoint?.defined && <GraphPoint x={sx(atPoint.x)} y={sy(atPoint.y)} label="f(a)" color="#ef4444" />}
@@ -194,15 +203,15 @@ function pointsToPath(points: SamplePoint[], sx: (x: number) => number, sy: (y: 
 }
 
 function gridLines(width: number, height: number, pad: number) {
-  return <g>{Array.from({ length: 11 }).map((_, i) => <line key={`v-${i}`} x1={pad + i * (width - pad * 2) / 10} x2={pad + i * (width - pad * 2) / 10} y1={pad} y2={height - pad} stroke="#cbd5e1" opacity="0.65" />)}{Array.from({ length: 9 }).map((_, i) => <line key={`h-${i}`} x1={pad} x2={width - pad} y1={pad + i * (height - pad * 2) / 8} y2={pad + i * (height - pad * 2) / 8} stroke="#cbd5e1" opacity="0.65" />)}</g>;
+  return <g>{Array.from({ length: 11 }).map((_, i) => <line key={`v-${i}`} x1={pad + i * (width - pad * 2) / 10} x2={pad + i * (width - pad * 2) / 10} y1={pad} y2={height - pad} stroke="#67e8f9" opacity="0.16" />)}{Array.from({ length: 9 }).map((_, i) => <line key={`h-${i}`} x1={pad} x2={width - pad} y1={pad + i * (height - pad * 2) / 8} y2={pad + i * (height - pad * 2) / 8} stroke="#67e8f9" opacity="0.16" />)}</g>;
 }
 
 function GraphPoint({ x, y, label, color }: { x: number; y: number; label: string; color: string }) {
-  return <g><circle cx={x} cy={y} r="8" fill={color} stroke="#0f172a" strokeWidth="2" /><text x={x + 12} y={y - 10} fontSize="13" fontWeight="900" fill="#0f172a">{label}</text></g>;
+  return <g filter="url(#limit-glow)"><circle cx={x} cy={y} r="8" fill={color} stroke="#020617" strokeWidth="2" /><text x={x + 12} y={y - 10} fontSize="13" fontWeight="900" fill="#f8fafc">{label}</text></g>;
 }
 
 function Metric({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{label}</p><p className="mt-1 break-words font-mono text-sm font-bold">{value}</p></div>;
+  return <div className="cinematic-stat"><p className="cinematic-stat-label">{label}</p><p className="cinematic-stat-value">{value}</p></div>;
 }
 
 function formatValue(value?: number) {

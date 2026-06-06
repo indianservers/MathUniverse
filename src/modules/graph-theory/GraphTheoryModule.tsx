@@ -131,13 +131,13 @@ function GraphEditor({ project, activeStep, coloring, onNodes, onEdges, onAddNod
     }));
   };
   return (
-    <SectionCard title="Graph Editor" description="Create nodes, connect weighted edges, drag nodes, zoom, pan, and switch directed mode.">
+    <SectionCard title="Graph Editor" description="Create nodes, connect weighted edges, drag nodes, zoom, pan, and switch directed mode." tone="spotlight">
       <div className="mb-3 flex flex-wrap gap-2">
         <button className="tool-button" type="button" onClick={onAddNode}><Plus className="h-4 w-4" /> Node</button>
         <button className="tool-button" type="button" onClick={() => project.nodes.length >= 2 && onAddEdge(project.nodes.at(-2)!.id, project.nodes.at(-1)!.id)}><GitBranch className="h-4 w-4" /> Edge last two</button>
         <button className="tool-button" type="button" onClick={() => onDirected(!directed)}><Network className="h-4 w-4" /> {directed ? "Directed" : "Undirected"}</button>
       </div>
-      <div className="h-[430px] overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10">
+      <div className="h-[430px] overflow-hidden rounded-xl border border-cyan-200/15 bg-slate-950 shadow-inner shadow-cyan-950/30">
         <ReactFlow nodes={rfNodes} edges={rfEdges} onNodesChange={handleNodeChanges} fitView>
           <Background />
           <Controls />

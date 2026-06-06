@@ -16,6 +16,7 @@ import {
   Network,
   Shapes,
   Sigma,
+  Sparkles,
   Workflow,
   Waves,
   Wrench,
@@ -40,6 +41,7 @@ export const iconMap = {
   Network,
   Shapes,
   Sigma,
+  Sparkles,
   Workflow,
   Waves,
   Wrench,
@@ -65,6 +67,7 @@ export const navSections: NavSection[] = [
     items: [
       { title: "Home", route: "/", icon: "Home" },
       { title: "Math Lab", route: "/math-lab", icon: "BrainCircuit" },
+      { title: "Visual Showcase", route: "/visual-showcase", icon: "Sparkles" },
       { title: "Math Workspace", route: "/workspace", icon: "Calculator" },
       { title: "Syllabus", route: "/syllabus", icon: "BookOpen" },
     ],
@@ -165,6 +168,7 @@ export const navItems = navSections.flatMap((section) => section.items.map((item
 export const legacyNavItems = [
   { title: "Home", route: "/", icon: Home },
   { title: "Math Lab", route: "/math-lab", icon: BrainCircuit },
+  { title: "Visual Showcase", route: "/visual-showcase", icon: Sparkles },
   { title: "Math Workspace", route: "/workspace", icon: Calculator },
   { title: "Algebra", route: "/algebra", icon: Calculator },
   { title: "Algebraic Structures", route: "/algebraic-structures", icon: GitFork },

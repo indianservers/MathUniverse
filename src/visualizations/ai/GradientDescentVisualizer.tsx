@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { CartesianGrid, Line, LineChart, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import GraphCard from "../../components/ui/GraphCard";
 import SectionCard from "../../components/ui/SectionCard";
 import SliderControl from "../../components/ui/SliderControl";
 import { generateRange } from "../../utils/graph";
@@ -28,26 +27,28 @@ export default function GradientDescentVisualizer() {
         <div className="space-y-4">
           <SliderControl label="Learning rate" value={lr} min={0.01} max={0.5} step={0.01} onChange={setLr} />
           <div className="grid grid-cols-2 gap-2">
-            <button className="rounded-2xl bg-slate-950 px-4 py-3 text-white dark:bg-white dark:text-slate-950" onClick={step}>Step</button>
-            <button className="rounded-2xl bg-slate-100 px-4 py-3 font-semibold dark:bg-white/10" onClick={() => setAuto((value) => !value)}>{auto ? "Pause" : "Auto Run"}</button>
-            <button className="col-span-2 rounded-2xl bg-slate-100 px-4 py-3 font-semibold dark:bg-white/10" onClick={() => { setX(-4); setSteps(0); setAuto(false); }}>Reset</button>
+            <button className="action-primary" onClick={step}>Step</button>
+            <button className="action-secondary" onClick={() => setAuto((value) => !value)}>{auto ? "Pause" : "Auto Run"}</button>
+            <button className="action-secondary col-span-2" onClick={() => { setX(-4); setSteps(0); setAuto(false); }}>Reset</button>
           </div>
           <div className="grid grid-cols-2 gap-2 text-sm"><Metric label="x" value={x} /><Metric label="loss" value={loss(x)} /><Metric label="gradient" value={gradient(x)} /><Metric label="steps" value={steps} /></div>
         </div>
-        <GraphCard title="Loss Curve">
+        <SectionCard title="Loss Curve" description="The optimization point walks downhill on the glowing loss landscape." compact tone="spotlight">
+          <div className="cinematic-graph-stage p-2">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data} margin={{ top: 20, right: 20, bottom: 10, left: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,.28)" /><XAxis dataKey="x" stroke="#94a3b8" /><YAxis stroke="#94a3b8" /><Tooltip contentStyle={{ borderRadius: 16, border: "1px solid rgba(148,163,184,.3)", background: "rgba(15,23,42,.92)", color: "#f8fafc" }} labelStyle={{ color: "#e2e8f0" }} />
-              <Line dataKey="y" stroke="#8b5cf6" strokeWidth={3} dot={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(196,181,253,.22)" /><XAxis dataKey="x" stroke="#ddd6fe" tick={{ fill: "#ddd6fe", fontSize: 11 }} /><YAxis stroke="#ddd6fe" tick={{ fill: "#ddd6fe", fontSize: 11 }} /><Tooltip contentStyle={{ borderRadius: 16, border: "1px solid rgba(196,181,253,.25)", background: "rgba(2,6,23,.94)", color: "#f8fafc" }} labelStyle={{ color: "#ede9fe" }} />
+              <Line dataKey="y" stroke="#c084fc" strokeWidth={4} dot={false} />
               <ReferenceDot x={x} y={loss(x)} r={7} fill="#f59e0b" stroke="#0f172a" />
             </LineChart>
           </ResponsiveContainer>
-        </GraphCard>
+          </div>
+        </SectionCard>
       </div>
     </SectionCard>
   );
 }
 
 function Metric({ label, value }: { label: string; value: number }) {
-  return <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs text-slate-500">{label}</p><p className="font-bold">{roundTo(value, 4)}</p></div>;
+  return <div className="cinematic-stat"><p className="cinematic-stat-label">{label}</p><p className="cinematic-stat-value">{roundTo(value, 4)}</p></div>;
 }

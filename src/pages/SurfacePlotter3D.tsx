@@ -51,8 +51,8 @@ export default function SurfacePlotter3D() {
             </div>
           </SectionCard>
         </aside>
-        <SectionCard title="Interactive Mesh" compact>
-          <ThreeSceneWrapper height="calc(100vh - 190px)" mobileHeight="460px" interactionLabel="Drag rotate - scroll zoom" cameraPosition={[4, 3.4, 6]} fov={46} quality="high">
+        <SectionCard title="Interactive Mesh" description="A premium 3D stage tuned for demos, lessons, and screen-recorded walkthroughs." compact tone="spotlight">
+          <ThreeSceneWrapper height="calc(100vh - 190px)" mobileHeight="460px" interactionLabel="Drag rotate - scroll zoom" cameraPosition={[4, 3.4, 6]} fov={46} quality="high" chrome="cinematic" sceneLabel="Surface cinema">
             <ambientLight intensity={0.8} />
             <directionalLight position={[4, 8, 6]} intensity={1.4} />
             <SurfaceMesh expression={expr} wireframe={wireframe} palette={palette} />

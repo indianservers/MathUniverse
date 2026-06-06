@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { ChevronDown, ChevronsLeft, ChevronsRight, Clock3, Orbit, Search } from "lucide-react";
+import { ChevronDown, ChevronsLeft, ChevronsRight, Clock3, Menu, Orbit, Search } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { iconMap, navItems, navSections } from "./navItems";
 
@@ -52,11 +52,17 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className={`hidden h-screen shrink-0 overflow-y-auto border-r border-white/60 bg-white/78 p-4 backdrop-blur-xl transition-[width] dark:border-white/10 dark:bg-slate-950/72 lg:sticky lg:top-0 lg:block ${collapsed ? "w-20" : "w-72"}`}>
+    <aside className={`hidden h-screen shrink-0 overflow-y-auto border-r border-white/60 bg-white/78 backdrop-blur-xl transition-[width] dark:border-white/10 dark:bg-slate-950/72 lg:sticky lg:top-0 lg:block ${collapsed ? "w-24 p-3" : "w-72 p-4"}`}>
       <div className="mb-6 flex items-center gap-3">
-        <div className="rounded-2xl bg-gradient-to-br from-cyan-400 to-violet-600 p-3 text-white shadow-glow">
+        <button
+          type="button"
+          onClick={() => collapsed && toggleCollapsed()}
+          className={`rounded-2xl bg-gradient-to-br from-cyan-400 to-violet-600 p-3 text-white shadow-glow transition ${collapsed ? "cursor-pointer hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-300" : "cursor-default"}`}
+          aria-label={collapsed ? "Open main menu" : "Math Universe"}
+          data-tooltip={collapsed ? "Open main menu" : undefined}
+        >
           <Orbit className="h-6 w-6" />
-        </div>
+        </button>
         {!collapsed && <div>
           <p className="text-lg font-bold text-slate-950 dark:text-white">Math Universe</p>
           <p className="text-xs text-slate-500 dark:text-slate-400">Complete Visualizations</p>
@@ -65,6 +71,17 @@ export default function Sidebar() {
           {collapsed ? <ChevronsRight className="h-4 w-4" /> : <ChevronsLeft className="h-4 w-4" />}
         </button>
       </div>
+      {collapsed && (
+        <button
+          type="button"
+          onClick={toggleCollapsed}
+          className="mb-4 flex w-full flex-col items-center justify-center gap-1 rounded-2xl border border-cyan-300/60 bg-cyan-500 px-2 py-3 text-white shadow-lg shadow-cyan-500/20 transition hover:-translate-y-0.5 hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-300"
+          aria-label="Open main menu"
+        >
+          <Menu className="h-5 w-5" />
+          <span className="text-[11px] font-black uppercase leading-none">Menu</span>
+        </button>
+      )}
       {!collapsed && <label className="mb-4 flex min-h-11 items-center gap-2 rounded-2xl border border-slate-200 bg-white px-3 text-sm font-semibold shadow-sm focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-300/40 dark:border-white/10 dark:bg-white/5">
         <Search className="h-4 w-4 text-slate-400" />
         <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search tools..." className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-slate-400" />
@@ -97,10 +114,10 @@ export default function Sidebar() {
             <div key={section.title} className={collapsed ? "space-y-1" : "rounded-2xl border border-slate-200/70 bg-white/55 p-1 dark:border-white/10 dark:bg-white/[0.03]"}>
               <button
                 type="button"
-                onClick={() => toggleSection(section.title)}
+                onClick={() => collapsed ? toggleCollapsed() : toggleSection(section.title)}
                 className={`tooltip-icon flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-black transition ${collapsed ? "justify-center" : ""} ${active ? "text-cyan-700 dark:text-cyan-200" : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10"}`}
                 aria-expanded={open}
-                data-tooltip={section.title}
+                data-tooltip={collapsed ? `Open menu: ${section.title}` : section.title}
               >
                 <SectionIcon className="h-4 w-4" />
                 {!collapsed && <span className="min-w-0 flex-1 truncate">{section.title}</span>}
