@@ -60,6 +60,8 @@ export default defineConfig({
         ],
       },
       workbox: {
+        clientsClaim: true,
+        skipWaiting: true,
         cleanupOutdatedCaches: true,
         navigateFallback: "/index.html",
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2,ttf,json}"],
@@ -67,7 +69,20 @@ export default defineConfig({
         runtimeCaching: [
           {
             urlPattern: ({ request, url }) =>
-              request.method === "GET" && url.origin === self.location.origin,
+              request.method === "GET" && request.mode === "navigate" && url.origin === self.location.origin,
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "math-universe-pages",
+              networkTimeoutSeconds: 3,
+              expiration: {
+                maxEntries: 40,
+                maxAgeSeconds: 60 * 60 * 24 * 7,
+              },
+            },
+          },
+          {
+            urlPattern: ({ request, url }) =>
+              request.method === "GET" && request.destination !== "document" && url.origin === self.location.origin,
             handler: "StaleWhileRevalidate",
             options: {
               cacheName: "math-universe-runtime",

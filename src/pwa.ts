@@ -1,7 +1,10 @@
 import { registerSW } from "virtual:pwa-register";
 
-registerSW({
+const updateSW = registerSW({
   immediate: true,
+  onNeedRefresh() {
+    void updateSW(true);
+  },
   onRegisteredSW(_swUrl, registration) {
     if (!registration) return;
 
