@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { ModuleShell, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
 import { mathLabTools } from "../data/mathLabTools";
+import TrigonometryMathLab from "../visualizations/trigonometry/TrigonometryMathLab";
 
 const implementedLinks: Record<string, Array<{ label: string; route: string; note: string }>> = {
   "graphing-calculator": [
@@ -48,6 +49,17 @@ export default function MathLabToolPage() {
   if (!toolId) return <Navigate to="/math-lab" replace />;
   const tool = mathLabTools.find((item) => item.route.endsWith(`/${toolId}`));
   if (!tool) return <Navigate to="/math-lab" replace />;
+  if (toolId === "trigonometry") {
+    return (
+      <MathLabLayout
+        title={tool.title}
+        subtitle={tool.description}
+        notes={<SectionCard title="Use Cases"><div className="flex flex-wrap gap-2">{tool.useCases.map((item) => <span key={item} className="mini-chip">{item}</span>)}</div></SectionCard>}
+      >
+        <TrigonometryMathLab />
+      </MathLabLayout>
+    );
+  }
 
   const links = implementedLinks[toolId] ?? [];
   if (!links.length) return <ModuleShell title={tool.title} purpose={tool.description} planned={tool.useCases} />;

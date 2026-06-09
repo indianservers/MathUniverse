@@ -17,7 +17,8 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
     () => navSections.filter((section) => section.items.some((item) => itemHasActiveRoute(item, location.pathname))).map((section) => section.title),
     [location.pathname],
   );
-  const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Main", ...activeSections])));
+  const activeNavKeys = useMemo(() => navSections.flatMap((section) => section.items.flatMap((item) => activeItemKeys(item, location.pathname))), [location.pathname]);
+  const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Home", ...activeSections, ...activeNavKeys])));
   const [query, setQuery] = useState("");
   const [recentRoutes, setRecentRoutes] = useState<string[]>([]);
   const recentTools = useMemo(() => recentRoutes.map((route) => navItems.find((item) => item.route === route)).filter((item): item is NonNullable<typeof item> => Boolean(item)).slice(0, 4), [recentRoutes]);
@@ -34,14 +35,32 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
 
   useEffect(() => {
     if (!open) return;
-    setOpenSections((current) => Array.from(new Set([...current, ...activeSections])));
+    setOpenSections((current) => Array.from(new Set([...current, ...activeSections, ...activeNavKeys])));
     try {
       const current = JSON.parse(localStorage.getItem(recentToolsKey) ?? "[]");
       setRecentRoutes(Array.isArray(current) ? current.filter((item): item is string => typeof item === "string") : []);
     } catch {
       setRecentRoutes([]);
     }
-  }, [activeSections, open, location.pathname]);
+  }, [activeNavKeys, activeSections, open, location.pathname]);
+
+  useEffect(() => {
+    if (!open) {
+      setQuery("");
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") onClose();
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose, open]);
 
   const toggleSection = (title: string) => {
     setOpenSections((current) => current.includes(title) ? current.filter((item) => item !== title) : [...current, title]);
@@ -51,13 +70,15 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
     <AnimatePresence>
       {open && (
         <motion.div className="fixed inset-0 z-50 lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <button className="absolute inset-0 bg-slate-950/60" type="button" aria-label="Close navigation" onClick={onClose} />
+          <button className="absolute inset-0 z-0 bg-slate-950/60" type="button" aria-label="Close navigation" onClick={onClose} />
           <motion.aside
+            id="mobile-navigation"
             initial={{ x: -320 }}
             animate={{ x: 0 }}
             exit={{ x: -320 }}
             transition={{ type: "spring", stiffness: 260, damping: 28 }}
-            className="relative h-full w-80 max-w-[86vw] overflow-y-auto bg-white p-5 pb-8 shadow-2xl dark:bg-slate-950"
+            className="relative z-10 h-full w-80 max-w-[86vw] overflow-y-auto bg-white p-5 pb-8 shadow-2xl dark:bg-slate-950"
+            aria-label="Mobile navigation"
           >
             <div className="mb-6 flex items-center justify-between">
               <div>
@@ -152,7 +173,7 @@ function MobileNavItem({
   const key = navItemKey(item);
   const hasChildren = Boolean(item.children?.length);
   const active = itemHasActiveRoute(item, pathname);
-  const open = hasChildren && (openKeys.includes(key) || active);
+  const open = hasChildren && openKeys.includes(key);
   const indent = depth === 0 ? "" : depth === 1 ? "ml-4" : "ml-7";
 
   if (hasChildren) {
@@ -229,4 +250,10 @@ function filterNavItems(items: NavItem[], value: string, sectionTitle: string): 
 
 function navItemKey(item: NavItem) {
   return `${item.title}:${item.route}`;
+}
+
+function activeItemKeys(item: NavItem, pathname: string): string[] {
+  if (!item.children?.length) return [];
+  const childKeys = item.children.flatMap((child) => activeItemKeys(child, pathname));
+  return itemHasActiveRoute(item, pathname) ? [navItemKey(item), ...childKeys] : childKeys;
 }

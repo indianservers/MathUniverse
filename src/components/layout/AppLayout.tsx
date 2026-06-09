@@ -32,6 +32,10 @@ export default function AppLayout() {
   const showBack = location.pathname.split("/").filter(Boolean).length > 1;
 
   useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
     const currentRoute = navItems.find((item) => !item.isExternal && item.route === location.pathname)?.route;
     if (!currentRoute) return;
     try {
@@ -49,7 +53,7 @@ export default function AppLayout() {
       <div className="flex min-h-screen">
         <Sidebar />
         <div className="min-w-0 flex-1">
-          <Header onMenuClick={() => setMobileOpen(true)} />
+          <Header mobileMenuOpen={mobileOpen} onMenuClick={() => setMobileOpen((value) => !value)} />
           <main id="main-content" className="mx-auto w-full max-w-[1440px] px-3 pb-20 pt-3 sm:px-4 md:px-5 md:pb-5 md:pt-4">
             <div key={location.pathname} className="page-transition space-y-2.5">
               <InlinePageNav showBack={showBack} />

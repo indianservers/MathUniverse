@@ -33,6 +33,7 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
 
   const metrics = useMemo(() => trigMetrics(concept.visual, a, b), [a, b, concept.visual]);
   const related = trigonometryConcepts.filter((item) => item.category === concept.category && item.id !== concept.id).slice(0, 4);
+  const categoryFormulas = trigonometryConcepts.filter((item) => item.category === concept.category);
   const fullPage = fullVisualizer(concept.visual);
 
   return (
@@ -93,6 +94,26 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
         steps={learningSteps(concept, a, b)}
         tasks={concept.tasks}
       />
+
+      <SectionCard title={`${concept.category} Formula Set`} description="All formulas for this concept group, linked to their respective interactive pages.">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {categoryFormulas.map((item) => (
+            <Link
+              key={item.id}
+              to={`/trigonometry/${item.id}`}
+              className={`min-w-0 rounded-2xl border p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 ${
+                item.id === concept.id
+                  ? "border-cyan-300 bg-cyan-50 dark:border-cyan-300/40 dark:bg-cyan-400/10"
+                  : "border-slate-200 bg-white/70 dark:border-white/10 dark:bg-white/5"
+              }`}
+            >
+              <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{item.category}</p>
+              <p className="mt-2 font-bold">{item.title}</p>
+              <p className="mt-2 whitespace-normal break-words rounded-xl bg-slate-100 p-2 font-mono text-xs leading-5 text-slate-700 dark:bg-slate-950/70 dark:text-slate-200">{item.formula}</p>
+            </Link>
+          ))}
+        </div>
+      </SectionCard>
 
       {related.length > 0 && (
         <SectionCard title={`More ${concept.category} Pages`}>

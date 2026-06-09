@@ -1,6 +1,7 @@
 import { Compass, FlaskConical, RadioTower, Ruler, Sigma, Waves } from "lucide-react";
 import { useMemo, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
+import TrigonometryMathLab from "./TrigonometryMathLab";
 
 type Experiment = {
   title: string;
@@ -249,80 +250,90 @@ export default function TrigonometryExperimentCatalog() {
   );
 
   return (
-    <SectionCard
-      title={`${totalExperiments} Trigonometry Experiments`}
-      description="Choose a category, then work through focused subcategories that move from visual intuition to applied problem solving."
-    >
-      <div className="flex flex-wrap gap-2">
-        {["All", ...categories.map((category) => category.title)].map((category) => (
-          <button
-            key={category}
-            type="button"
-            onClick={() => setSelectedCategory(category)}
-            className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-              selectedCategory === category
-                ? "bg-slate-950 text-white shadow-lg shadow-slate-900/10 dark:bg-white dark:text-slate-950"
-                : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/15"
-            }`}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+    <div className="space-y-4">
+      <TrigonometryMathLab compact />
+      <SectionCard
+        title={`${totalExperiments} Trigonometry Experiments`}
+        description="Choose a category, then launch the interactive lab above and test the variables listed on each card."
+      >
+        <div className="flex flex-wrap gap-2">
+          {["All", ...categories.map((category) => category.title)].map((category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => setSelectedCategory(category)}
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                selectedCategory === category
+                  ? "bg-slate-950 text-white shadow-lg shadow-slate-900/10 dark:bg-white dark:text-slate-950"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/15"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
 
-      <div className="mt-6 space-y-6">
-        {visibleCategories.map((category) => {
-          const Icon = category.icon;
-          const categoryCount = category.subcategories.reduce((count, subcategory) => count + subcategory.experiments.length, 0);
-          return (
-            <section key={category.title} className="rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-white/5">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <div className="flex items-start gap-3">
-                  <span className="rounded-2xl bg-cyan-100 p-3 text-cyan-700 dark:bg-cyan-300/10 dark:text-cyan-200">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-950 dark:text-white">{category.title}</h3>
-                    <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">{category.description}</p>
+        <div className="mt-6 space-y-6">
+          {visibleCategories.map((category) => {
+            const Icon = category.icon;
+            const categoryCount = category.subcategories.reduce((count, subcategory) => count + subcategory.experiments.length, 0);
+            return (
+              <section key={category.title} className="rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-white/5">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="flex items-start gap-3">
+                    <span className="rounded-2xl bg-cyan-100 p-3 text-cyan-700 dark:bg-cyan-300/10 dark:text-cyan-200">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-950 dark:text-white">{category.title}</h3>
+                      <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">{category.description}</p>
+                    </div>
                   </div>
+                  <span className="mini-chip w-fit">{categoryCount} experiments</span>
                 </div>
-                <span className="mini-chip w-fit">{categoryCount} experiments</span>
-              </div>
 
-              <div className="mt-5 space-y-5">
-                {category.subcategories.map((subcategory) => (
-                  <div key={subcategory.title}>
-                    <div className="mb-3 flex items-center justify-between gap-3 border-b border-slate-200 pb-2 dark:border-white/10">
-                      <h4 className="text-sm font-bold uppercase text-slate-600 dark:text-slate-300">{subcategory.title}</h4>
-                      <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">{subcategory.experiments.length} labs</span>
-                    </div>
-                    <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-                      {subcategory.experiments.map((experiment, index) => (
-                        <article key={experiment.title} className="min-h-[178px] rounded-xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/40">
-                          <div className="flex items-start justify-between gap-3">
-                            <h5 className="font-semibold leading-6 text-slate-950 dark:text-white">{experiment.title}</h5>
-                            <span className="rounded-full bg-slate-100 px-2 py-1 text-[11px] font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">
-                              {String(index + 1).padStart(2, "0")}
-                            </span>
-                          </div>
-                          <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{experiment.prompt}</p>
-                          <div className="mt-3 flex flex-wrap gap-2">
-                            {experiment.variables.map((variable) => (
-                              <span key={variable} className="mini-chip">
-                                {variable}
+                <div className="mt-5 space-y-5">
+                  {category.subcategories.map((subcategory) => (
+                    <div key={subcategory.title}>
+                      <div className="mb-3 flex items-center justify-between gap-3 border-b border-slate-200 pb-2 dark:border-white/10">
+                        <h4 className="text-sm font-bold uppercase text-slate-600 dark:text-slate-300">{subcategory.title}</h4>
+                        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">{subcategory.experiments.length} labs</span>
+                      </div>
+                      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                        {subcategory.experiments.map((experiment, index) => (
+                          <article key={experiment.title} className="min-h-[188px] rounded-xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/40">
+                            <div className="flex items-start justify-between gap-3">
+                              <h5 className="font-semibold leading-6 text-slate-950 dark:text-white">{experiment.title}</h5>
+                              <span className="rounded-full bg-slate-100 px-2 py-1 text-[11px] font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">
+                                {String(index + 1).padStart(2, "0")}
                               </span>
-                            ))}
-                          </div>
-                        </article>
-                      ))}
+                            </div>
+                            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{experiment.prompt}</p>
+                            <div className="mt-3 flex flex-wrap gap-2">
+                              {experiment.variables.map((variable) => (
+                                <span key={variable} className="mini-chip">
+                                  {variable}
+                                </span>
+                              ))}
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                              className="mt-3 rounded-xl border border-cyan-300 bg-cyan-50 px-3 py-2 text-xs font-black text-cyan-700 transition hover:bg-cyan-100 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-100"
+                            >
+                              Open in lab above
+                            </button>
+                          </article>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })}
-      </div>
-    </SectionCard>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      </SectionCard>
+    </div>
   );
 }

@@ -265,12 +265,12 @@ export default function MathWorkspace() {
   };
 
   return (
-    <div className="space-y-6" onKeyDown={handleWorkspaceKeyDown}>
+    <div className="min-w-0 max-w-full space-y-6 overflow-x-hidden" onKeyDown={handleWorkspaceKeyDown}>
       <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />
 
       <SectionCard title="Stage 5: Workspace Tools" description="Save, export, teach, search formulas, and launch guided examples. Shortcuts: Ctrl+S save, Ctrl+O load, Ctrl+Enter run.">
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
-          <div className="space-y-4">
+        <div className="grid min-w-0 gap-5 2xl:grid-cols-[minmax(0,1fr)_340px]">
+          <div className="min-w-0 space-y-4">
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={saveWorkspace} className="action-secondary"><Save className="h-4 w-4" />Save workspace</button>
               <button type="button" onClick={loadWorkspace} className="action-secondary"><Download className="h-4 w-4" />Load workspace</button>
@@ -287,12 +287,12 @@ export default function MathWorkspace() {
             )}
             <div>
               <h3 className="font-bold">Guided Examples</h3>
-              <div className="mt-3 grid gap-2 md:grid-cols-2">
+              <div className="mt-3 grid min-w-0 gap-2 md:grid-cols-2">
                 {guidedExamples.map((example) => <button key={example.title} type="button" onClick={() => runGuidedExample(example.command)} className="rounded-2xl border border-slate-200 bg-white/70 p-4 text-left transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5"><p className="font-semibold">{example.title}</p><p className="mt-1 font-mono text-xs text-slate-500 dark:text-slate-400">{example.command}</p></button>)}
               </div>
             </div>
           </div>
-          <div>
+          <div className="min-w-0">
             <label className="block">
               <span className="flex items-center gap-2 text-sm font-semibold"><Search className="h-4 w-4 text-cyan-500" />Formula Library</span>
               <input value={formulaSearch} onChange={(event) => setFormulaSearch(event.target.value)} className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm dark:border-white/10 dark:bg-slate-950" placeholder="Search formula, topic, command..." />
@@ -311,8 +311,8 @@ export default function MathWorkspace() {
       </SectionCard>
 
       <SectionCard title="Stage 1 + 3: Unified Math Input and CAS Answers" description="Type a calculation or command such as plot, solve, factor, derivative, integral, table, roots, extrema, or intersection.">
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
-          <div className="space-y-4">
+        <div className="grid min-w-0 gap-5 2xl:grid-cols-[minmax(0,1fr)_340px]">
+          <div className="min-w-0 space-y-4">
             <MathKeyboardInput
               value={input}
               onChange={setInput}
@@ -323,11 +323,11 @@ export default function MathWorkspace() {
               examples={examples}
               onExample={setInput}
             />
-            <div ref={graphExportRef}>
+            <div ref={graphExportRef} className="min-w-0">
               <GraphPanel plots={plots} onChange={setPlots} />
             </div>
           </div>
-          <div className="space-y-3">
+          <div className="min-w-0 space-y-3">
             <div className="flex items-center justify-between">
               <h2 className="font-bold">Results</h2>
               <button type="button" onClick={() => setResults([])} className="rounded-full bg-slate-100 p-2 dark:bg-white/10" title="Clear results" aria-label="Clear results"><Trash2 className="h-4 w-4" /></button>
@@ -338,8 +338,8 @@ export default function MathWorkspace() {
       </SectionCard>
 
       <SectionCard title="Stage 4: 3D Graphing and Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls.">
-        <div className="grid gap-5 xl:grid-cols-[330px_minmax(0,1fr)]">
-          <div className="space-y-4">
+        <div className="grid min-w-0 gap-5 2xl:grid-cols-[320px_minmax(0,1fr)]">
+          <div className="min-w-0 space-y-4">
             <label className="block rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-950/40">
               <span className="text-sm font-semibold">Surface</span>
               <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={surface} onChange={(event) => setSurface(event.target.value as SurfaceKind)}>
@@ -381,7 +381,7 @@ export default function MathWorkspace() {
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="min-w-0 space-y-3 overflow-hidden">
             <ThreeSceneWrapper height="560px" mobileHeight="min(70vh, 420px)" interactionLabel="Drag rotate • pinch zoom">
               <ambientLight intensity={0.75} />
               <directionalLight position={[5, 6, 4]} intensity={1.2} />
@@ -398,8 +398,8 @@ export default function MathWorkspace() {
       </SectionCard>
 
       <SectionCard title="Stage 2: Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements.">
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
-          <div className="space-y-3">
+        <div className="grid min-w-0 gap-5 2xl:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="min-w-0 space-y-3">
             <div className="mobile-safe-scroll flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
               <ToolButton active={tool === "select"} label="Select / Drag" onClick={() => setTool("select")} icon={<MousePointer2 className="h-4 w-4" />} />
               <ToolButton active={tool === "point"} label="Point" onClick={() => setTool("point")} icon={<Plus className="h-4 w-4" />} />
@@ -425,7 +425,7 @@ export default function MathWorkspace() {
               onPointerMove={handleBoardPointerMove}
               onPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); setDragPointId(null); }}
               onPointerLeave={() => setDragPointId(null)}
-              className="h-[min(420px,68vh)] min-h-[320px] w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950 sm:h-[420px]"
+              className="h-[min(420px,68vh)] min-h-[300px] w-full max-w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950 sm:h-[420px]"
             >
               <title>Math Universe Geometry Construction</title>
               <GeometryGrid />
@@ -446,7 +446,7 @@ export default function MathWorkspace() {
             </p>
             <HiddenGeometryExport refSetter={(node) => { geometryExportRef.current = node; }} construction={construction} />
           </div>
-          <div className="space-y-3">
+          <div className="min-w-0 space-y-3">
             <ConstructionHelp tool={tool} />
             <Measurements construction={construction} />
             <ConstraintPanel construction={construction} />
@@ -775,7 +775,7 @@ function GraphPanel({ plots, onChange }: { plots: PlotItem[]; onChange: (plots: 
   const removePlot = (id: string) => onChange(plots.filter((plot) => plot.id !== id));
   const addRegression = () => onChange([{ id: crypto.randomUUID(), expression: regression.expression, color: "#ec4899", kind: "regression" as PlotKind, points: regressionSeed, visible: true }, ...plots].slice(0, 10));
   return (
-    <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/60">
+    <div className="min-w-0 max-w-full space-y-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60 sm:p-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="flex items-center gap-2 font-bold"><LineChart className="h-4 w-4 text-cyan-500" /> Desmos-style Graphing Lab</h2>
         <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-500">
@@ -783,12 +783,12 @@ function GraphPanel({ plots, onChange }: { plots: PlotItem[]; onChange: (plots: 
         </div>
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)]">
-        <div className="space-y-3">
+      <div className="grid min-w-0 gap-4 2xl:grid-cols-[280px_minmax(0,1fr)]">
+        <div className="min-w-0 space-y-3">
           <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
             <label className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Expression</label>
             <input value={draft} onChange={(event) => setDraft(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-900" placeholder="sin(x), x^2, y < x+2" />
-            <div className="mt-2 grid grid-cols-2 gap-2">
+            <div className="mt-2 grid min-w-0 gap-2 sm:grid-cols-2">
               <button type="button" onClick={() => addPlot(draft)} className="action-primary py-2">Add graph</button>
               <button type="button" onClick={() => addRegression()} className="action-secondary py-2">Regression</button>
             </div>
@@ -796,7 +796,7 @@ function GraphPanel({ plots, onChange }: { plots: PlotItem[]; onChange: (plots: 
 
           <div className="space-y-2">
             {plots.map((plot) => (
-              <div key={plot.id} className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-white/5">
+              <div key={plot.id} className="min-w-0 rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-white/5">
                 <div className="flex items-center gap-2">
                   <input type="checkbox" checked={plot.visible !== false} onChange={(event) => updatePlot(plot.id, { visible: event.target.checked })} />
                   <span className="h-3 w-3 rounded-full" style={{ background: plot.color }} />
@@ -808,7 +808,7 @@ function GraphPanel({ plots, onChange }: { plots: PlotItem[]; onChange: (plots: 
             ))}
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid min-w-0 grid-cols-2 gap-2">
             <MiniNumber label="x min" value={xMin} onChange={setXMin} />
             <MiniNumber label="x max" value={xMax} onChange={setXMax} />
             <MiniNumber label="y min" value={yMin} onChange={setYMin} />
@@ -816,23 +816,23 @@ function GraphPanel({ plots, onChange }: { plots: PlotItem[]; onChange: (plots: 
           </div>
         </div>
 
-        <div className="space-y-3">
-          <svg viewBox="0 0 640 360" className="h-[280px] w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[360px]">
+        <div className="min-w-0 space-y-3 overflow-hidden">
+          <svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" className="h-[260px] w-full max-w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[340px] xl:h-[360px]">
             <GraphGrid viewport={viewport} />
             {inequalityRegions.map((region, index) => <path key={`ineq-${index}`} d={region} fill={visiblePlots[index]?.color ?? "#06b6d4"} opacity="0.16" />)}
             {paths.map((plot) => (plot.kind ?? inferPlotKind(plot.expression)) !== "inequality" && <path key={plot.id} d={plot.path} fill="none" stroke={plot.color} strokeWidth="3" />)}
             {visiblePlots.filter((plot) => plot.kind === "scatter" || plot.kind === "regression").flatMap((plot) => plot.points ?? []).map((point, index) => <circle key={`${point.x}-${point.y}-${index}`} cx={scaleX(point.x, viewport)} cy={scaleY(point.y, viewport)} r="5" fill="#ec4899" stroke="#0f172a" />)}
           </svg>
 
-          <div className="grid gap-3 lg:grid-cols-2">
-            <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+          <div className="grid min-w-0 gap-3 xl:grid-cols-2">
+            <div className="min-w-0 rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
               <p className="text-sm font-bold">Parameter sliders</p>
               <SliderControl label="a" value={sliderA} min={-5} max={5} step={0.1} onChange={setSliderA} />
               <SliderControl label="b" value={sliderB} min={-10} max={10} step={0.1} onChange={setSliderB} />
               <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">Use expressions like a*x+b or a*sin(x)+b.</p>
             </div>
-            <div className="mobile-safe-scroll rounded-2xl border border-slate-200 dark:border-white/10">
-              <table className="w-full text-left text-xs">
+            <div className="mobile-safe-scroll min-w-0 rounded-2xl border border-slate-200 dark:border-white/10">
+              <table className="w-full min-w-[260px] text-left text-xs">
                 <thead className="bg-slate-100 text-slate-500 dark:bg-white/10 dark:text-slate-300"><tr><th className="p-2">expr</th><th className="p-2">x</th><th className="p-2">y</th></tr></thead>
                 <tbody>{tableRows.map((row, index) => <tr key={`${row.x}-${row.y}-${index}`} className="border-t border-slate-200 dark:border-white/10"><td className="p-2 font-mono">{row.label}</td><td className="p-2 font-mono">{row.x}</td><td className="p-2 font-mono">{row.y}</td></tr>)}</tbody>
               </table>

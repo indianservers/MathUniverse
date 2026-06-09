@@ -8,6 +8,7 @@ import ContinueCard from "../components/ui/ContinueCard";
 import { topics } from "../data/topics";
 import { trigonometryConcepts } from "../data/trigonometryConcepts";
 import { useProgress } from "../hooks/useProgress";
+import TrigonometryMathLab from "../visualizations/trigonometry/TrigonometryMathLab";
 
 export default function Trigonometry() {
   const topic = topics.find((item) => item.id === "trigonometry")!;
@@ -18,15 +19,37 @@ export default function Trigonometry() {
     { label: "Degree", categories: ["Advanced", "Degree", "Wave Parameters"] },
     { label: "PG", categories: ["PG", "Applications"] },
   ];
+  const formulaGroups = Array.from(new Set(trigonometryConcepts.map((concept) => concept.category))).map((category) => ({
+    category,
+    concepts: trigonometryConcepts.filter((concept) => concept.category === category),
+  }));
   return (
     <div className="space-y-3" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
       <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_320px]">
         <div className="space-y-3">
+          <TrigonometryMathLab compact />
           <SectionCard title="Trigonometry Concept Pages" description={`${trigonometryConcepts.length} focused subpages. Standard concepts include 2D and 3D visual tabs.`} compact>
             <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
               {trigonometryConcepts.map((concept) => (
                 <ConceptLink key={concept.id} concept={concept} />
+              ))}
+            </div>
+          </SectionCard>
+          <SectionCard title="All Concept Formulas" description="Every trigonometry concept with its respective formula, grouped for quick revision." compact>
+            <div className="grid gap-3 lg:grid-cols-2">
+              {formulaGroups.map((group) => (
+                <div key={group.category} className="min-w-0 rounded-lg border border-slate-200 bg-white/75 p-3 dark:border-white/10 dark:bg-white/5">
+                  <h2 className="text-sm font-black text-slate-950 dark:text-white">{group.category}</h2>
+                  <div className="mt-2 space-y-2">
+                    {group.concepts.map((concept) => (
+                      <Link key={concept.id} to={`/trigonometry/${concept.id}`} className="block rounded-lg bg-slate-100 p-2 transition hover:bg-cyan-50 hover:text-cyan-800 dark:bg-slate-950/60 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100">
+                        <p className="text-xs font-bold">{concept.title}</p>
+                        <p className="mt-1 whitespace-normal break-words font-mono text-[11px] leading-4 text-slate-600 dark:text-slate-300">{concept.formula}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </SectionCard>
@@ -72,7 +95,7 @@ function ConceptLink({ concept }: { concept: (typeof trigonometryConcepts)[numbe
       </div>
       <h2 className="mt-1 line-clamp-1 text-sm font-bold group-hover:text-cyan-600 dark:group-hover:text-cyan-300">{concept.title}</h2>
       <p className="mt-1 line-clamp-2 text-xs leading-4 text-slate-600 dark:text-slate-300">{concept.summary}</p>
-      <p className="mt-2 truncate rounded-lg bg-slate-100 p-1.5 font-mono text-[11px] text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">{concept.formula}</p>
+      <p className="mt-2 whitespace-normal break-words rounded-lg bg-slate-100 p-1.5 font-mono text-[11px] leading-4 text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">{concept.formula}</p>
     </Link>
   );
 }

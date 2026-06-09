@@ -1,4 +1,4 @@
-import { Atom, BarChart3, Binary, BrainCircuit, Calculator, Cuboid, FunctionSquare, GitFork, Grid3X3, Landmark, LineChart, Network, Sigma, Sparkles, Triangle, Workflow } from "lucide-react";
+import { Atom, BarChart3, Binary, BrainCircuit, Calculator, Cuboid, FunctionSquare, GitFork, Grid3X3, Landmark, LineChart, Network, Sigma, Sparkles, Triangle, Waves, Workflow } from "lucide-react";
 
 export const mathLabTools = [
   {
@@ -40,6 +40,14 @@ export const mathLabTools = [
     difficulty: "Intermediate",
     description: "Explore domain, range, transformations, symmetry, and behavior of functions.",
     useCases: ["domain", "range", "transformations", "symmetry"],
+  },
+  {
+    title: "Trigonometry Math Lab",
+    route: "/math-lab/trigonometry",
+    icon: Waves,
+    difficulty: "Intermediate",
+    description: "Interact with unit circles, triangle ratios, waves, identities, inverse trig, heights, and 3D trig scenes.",
+    useCases: ["unit circle", "trig ratios", "waves", "heights"],
   },
   {
     title: "Calculus Visualizer",

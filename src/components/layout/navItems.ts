@@ -220,6 +220,7 @@ export const navSections: NavSection[] = [
         children: [
           { title: "Graphing Calculator", route: "/math-lab/graphing-calculator", icon: "ChartSpline" },
           { title: "Function Explorer", route: "/math-lab/function-explorer", icon: "Waves" },
+          { title: "Trigonometry Lab", route: "/math-lab/trigonometry", icon: "Waves" },
           { title: "3D Graphing Lab", route: "/math-lab/3d-graphing", icon: "Cuboid" },
           { title: "CAS Solver", route: "/math-lab/cas-solver", icon: "Sigma" },
           { title: "Probability", route: "/math-lab/probability", icon: "CircleHelp" },

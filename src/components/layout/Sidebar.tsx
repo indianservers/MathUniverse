@@ -11,7 +11,8 @@ export default function Sidebar() {
     () => navSections.filter((section) => section.items.some((item) => itemHasActiveRoute(item, location.pathname))).map((section) => section.title),
     [location.pathname],
   );
-  const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Main", ...activeSections])));
+  const activeNavKeys = useMemo(() => navSections.flatMap((section) => section.items.flatMap((item) => activeItemKeys(item, location.pathname))), [location.pathname]);
+  const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Home", ...activeSections, ...activeNavKeys])));
   const [query, setQuery] = useState("");
   const [recentRoutes, setRecentRoutes] = useState<string[]>([]);
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem("math-universe-sidebar-collapsed") === "true");
@@ -28,8 +29,8 @@ export default function Sidebar() {
   }, [query]);
 
   useEffect(() => {
-    setOpenSections((current) => Array.from(new Set([...current, ...activeSections])));
-  }, [activeSections, location.pathname]);
+    setOpenSections((current) => Array.from(new Set([...current, ...activeSections, ...activeNavKeys])));
+  }, [activeNavKeys, activeSections, location.pathname]);
 
   useEffect(() => {
     try {
@@ -52,7 +53,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className={`hidden h-screen shrink-0 overflow-y-auto border-r border-white/60 bg-white/78 backdrop-blur-xl transition-[width] dark:border-white/10 dark:bg-slate-950/72 lg:sticky lg:top-0 lg:block ${collapsed ? "w-24 p-3" : "w-72 p-4"}`}>
+    <aside className={`hidden h-screen shrink-0 overflow-x-hidden overflow-y-auto border-r border-white/60 bg-white/78 backdrop-blur-xl transition-[width] dark:border-white/10 dark:bg-slate-950/72 lg:sticky lg:top-0 lg:block ${collapsed ? "w-24 p-3" : "w-72 p-4"}`}>
       <div className="mb-6 flex items-center gap-3">
         <button
           type="button"
@@ -92,15 +93,15 @@ export default function Sidebar() {
           {recentTools.map((item) => {
             const Icon = item.icon;
             return (
-              <NavLink key={item.route} to={item.route} className="flex items-center gap-2 rounded-xl px-2 py-2 text-sm font-bold text-cyan-900 hover:bg-white/70 dark:text-cyan-100 dark:hover:bg-white/10">
-                <Icon className="h-4 w-4" />
-                <span className="truncate">{item.title}</span>
+              <NavLink key={item.route} to={item.route} className="flex min-w-0 items-center gap-2 rounded-xl px-2 py-2 text-sm font-bold text-cyan-900 hover:bg-white/70 dark:text-cyan-100 dark:hover:bg-white/10">
+                <Icon className="h-4 w-4 shrink-0" />
+                <span className="min-w-0 truncate">{item.title}</span>
               </NavLink>
             );
           })}
         </div>
       )}
-      <nav className="space-y-2" aria-label="Primary navigation">
+      <nav className="min-w-0 space-y-2" aria-label="Primary navigation">
         {filteredSections.length === 0 && (
           <div className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm font-semibold text-slate-500 dark:border-white/15 dark:text-slate-400">
             No tools found. Try graph, matrix, solver, or quiz.
@@ -111,20 +112,20 @@ export default function Sidebar() {
           const open = openSections.includes(section.title);
           const active = activeSections.includes(section.title);
           return (
-            <div key={section.title} className={collapsed ? "space-y-1" : "rounded-2xl border border-slate-200/70 bg-white/55 p-1 dark:border-white/10 dark:bg-white/[0.03]"}>
+            <div key={section.title} className={collapsed ? "min-w-0 space-y-1" : "min-w-0 rounded-2xl border border-slate-200/70 bg-white/55 p-1 dark:border-white/10 dark:bg-white/[0.03]"}>
               <button
                 type="button"
                 onClick={() => collapsed ? toggleCollapsed() : toggleSection(section.title)}
-                className={`tooltip-icon flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-black transition ${collapsed ? "justify-center" : ""} ${active ? "text-cyan-700 dark:text-cyan-200" : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10"}`}
+                className={`tooltip-icon flex w-full min-w-0 items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-black transition ${collapsed ? "justify-center" : ""} ${active ? "text-cyan-700 dark:text-cyan-200" : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10"}`}
                 aria-expanded={open}
                 data-tooltip={collapsed ? `Open menu: ${section.title}` : section.title}
               >
-                <SectionIcon className="h-4 w-4" />
+                <SectionIcon className="h-4 w-4 shrink-0" />
                 {!collapsed && <span className="min-w-0 flex-1 truncate">{section.title}</span>}
                 {!collapsed && <ChevronDown className={`h-4 w-4 transition ${open ? "rotate-180" : ""}`} />}
               </button>
               {(open || collapsed) && (
-                <div className="mt-1 space-y-1 pb-1">
+                <div className="mt-1 min-w-0 space-y-1 pb-1">
                   {section.items.map((item) => (
                     <SidebarNavItem key={`${item.title}-${item.route}`} item={item} collapsed={collapsed} pathname={location.pathname} openKeys={openSections} onToggle={toggleSection} />
                   ))}
@@ -157,27 +158,27 @@ function SidebarNavItem({
   const key = navItemKey(item);
   const hasChildren = Boolean(item.children?.length);
   const active = itemHasActiveRoute(item, pathname);
-  const open = hasChildren && (openKeys.includes(key) || active);
+  const open = hasChildren && openKeys.includes(key);
   const indent = collapsed ? "" : depth === 0 ? "" : depth === 1 ? "ml-4" : "ml-7";
 
   if (hasChildren) {
     return (
-      <div className={`${indent} space-y-1`}>
+      <div className={`${indent} min-w-0 space-y-1`}>
         <button
           type="button"
           onClick={() => collapsed ? undefined : onToggle(key)}
-          className={`tooltip-icon flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition ${collapsed ? "justify-center" : ""} ${
+          className={`tooltip-icon flex w-full min-w-0 items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition ${collapsed ? "justify-center" : ""} ${
             active ? "bg-cyan-50 text-cyan-800 dark:bg-cyan-400/10 dark:text-cyan-100" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10"
           }`}
           aria-expanded={open}
           data-tooltip={item.title}
         >
-          <Icon className="h-4 w-4" />
+          <Icon className="h-4 w-4 shrink-0" />
           {!collapsed && <span className="min-w-0 flex-1 truncate">{item.title}</span>}
           {!collapsed && <ChevronDown className={`h-3.5 w-3.5 transition ${open ? "rotate-180" : ""}`} />}
         </button>
         {open && !collapsed && (
-          <div className="space-y-1">
+          <div className="min-w-0 space-y-1">
             {item.children?.map((child) => (
               <SidebarNavItem key={`${child.title}-${child.route}`} item={child} collapsed={collapsed} pathname={pathname} openKeys={openKeys} onToggle={onToggle} depth={depth + 1} />
             ))}
@@ -193,10 +194,10 @@ function SidebarNavItem({
         href={item.route}
         title={item.title}
         data-tooltip={item.title}
-        className={`tooltip-icon flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10 ${collapsed ? "justify-center" : `hover:translate-x-1 ${indent}`}`}
+        className={`tooltip-icon flex min-w-0 items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10 ${collapsed ? "justify-center" : `hover:translate-x-1 ${indent}`}`}
       >
-        <Icon className="h-4 w-4" />
-        {!collapsed && <span className="truncate">{item.title}</span>}
+        <Icon className="h-4 w-4 shrink-0" />
+        {!collapsed && <span className="min-w-0 truncate">{item.title}</span>}
       </a>
     );
   }
@@ -207,7 +208,7 @@ function SidebarNavItem({
       title={item.title}
       end={item.route === "/"}
       className={({ isActive }) =>
-        `tooltip-icon flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition ${collapsed ? "justify-center" : `hover:translate-x-1 ${indent}`} ${
+        `tooltip-icon flex min-w-0 items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold transition ${collapsed ? "justify-center" : `hover:translate-x-1 ${indent}`} ${
           isActive
             ? "bg-slate-950 text-white shadow-lg dark:bg-white dark:text-slate-950"
             : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10"
@@ -215,8 +216,8 @@ function SidebarNavItem({
       }
       data-tooltip={item.title}
     >
-      <Icon className="h-4 w-4" />
-      {!collapsed && <span className="truncate">{item.title}</span>}
+      <Icon className="h-4 w-4 shrink-0" />
+      {!collapsed && <span className="min-w-0 truncate">{item.title}</span>}
     </NavLink>
   );
 }
@@ -243,4 +244,10 @@ function filterNavItems(items: NavItem[], value: string, sectionTitle: string): 
 
 function navItemKey(item: NavItem) {
   return `${item.title}:${item.route}`;
+}
+
+function activeItemKeys(item: NavItem, pathname: string): string[] {
+  if (!item.children?.length) return [];
+  const childKeys = item.children.flatMap((child) => activeItemKeys(child, pathname));
+  return itemHasActiveRoute(item, pathname) ? [navItemKey(item), ...childKeys] : childKeys;
 }

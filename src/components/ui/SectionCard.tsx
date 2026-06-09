@@ -18,7 +18,7 @@ export default function SectionCard({ id, title, description, children, classNam
     <section
       id={id}
       className={clsx(
-        "group/section relative overflow-hidden rounded-xl p-3",
+        "group/section relative min-w-0 max-w-full overflow-hidden rounded-xl p-3",
         spotlight
           ? "spotlight-card border border-cyan-200/30 bg-slate-950 text-white shadow-2xl shadow-cyan-950/20"
           : "glass-card hover:border-cyan-200/80 dark:hover:border-cyan-400/25",
