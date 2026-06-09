@@ -1,5 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import { Pause, Play } from "lucide-react";
 import { useRef, useState } from "react";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../../components/three/ThreeSceneWrapper";
@@ -31,7 +32,10 @@ export default function Shape3DExplorer() {
           <SliderControl label="Size / radius" value={size} min={0.5} max={5} step={0.1} onChange={setSize} />
           {(shape === "cylinder" || shape === "cone") && <SliderControl label="Height" value={height} min={1} max={8} step={0.1} onChange={setHeight} />}
           <label className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10"><input type="checkbox" checked={wireframe} onChange={(e) => setWireframe(e.target.checked)} /> Wireframe overlay</label>
-          <label className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10"><input type="checkbox" checked={autoRotate} onChange={(e) => setAutoRotate(e.target.checked)} /> Auto rotate</label>
+          <button type="button" className={autoRotate ? "action-primary w-full justify-center" : "tool-button w-full justify-center"} onClick={() => setAutoRotate((value) => !value)}>
+            {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            {autoRotate ? "Pause rotation" : "Start rotation"}
+          </button>
           <div className="flex flex-wrap gap-2">
             <button type="button" className="mini-chip" onClick={() => { setShape("cube"); setSize(1); }}>Unit cube</button>
             <button type="button" className="mini-chip" onClick={() => { setShape("cylinder"); setSize(1.2); setHeight(6); }}>Tall cylinder</button>
@@ -44,7 +48,20 @@ export default function Shape3DExplorer() {
             <p className="mt-3 text-slate-600 dark:text-slate-300">Area ~= {roundTo(values.area, 2)}; Volume ~= {roundTo(values.volume, 2)}</p>
           </div>
         </div>
-        <ThreeSceneWrapper height="500px" cameraPosition={[3.8, 2.8, 5.6]} fov={46} quality="high" chrome="cinematic" sceneLabel="3D shape studio">
+        <ThreeSceneWrapper
+          height="500px"
+          cameraPosition={[3.8, 2.8, 5.6]}
+          fov={46}
+          quality="high"
+          chrome="cinematic"
+          sceneLabel={autoRotate ? "3D shape studio - rotating" : "3D shape studio - paused"}
+          toolbar={(
+            <button type="button" className={autoRotate ? "action-primary" : "tool-button"} onClick={() => setAutoRotate((value) => !value)}>
+              {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+              {autoRotate ? "Pause" : "Start"}
+            </button>
+          )}
+        >
           <ambientLight intensity={0.7} />
           <directionalLight position={[4, 5, 4]} intensity={1.3} />
           <RotatingShape shape={shape} size={size} height={height} wireframe={wireframe} autoRotate={autoRotate} />

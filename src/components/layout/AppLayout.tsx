@@ -7,6 +7,7 @@ import Sidebar from "./Sidebar";
 import { navItems } from "./navItems";
 import { BackToTopButton, BreadcrumbTrail, UndoToastHost } from "./GlobalUx";
 import { ArrowLeft } from "lucide-react";
+import { APP_VERSION } from "../../appVersion";
 
 function InlinePageNav({ showBack }: { showBack: boolean }) {
   const navigate = useNavigate();
@@ -64,6 +65,9 @@ export default function AppLayout() {
       </div>
       <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
       <MobileLearningDock />
+      <div className="fixed bottom-3 left-3 z-40 rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[11px] font-black text-slate-500 shadow-lg backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300 lg:bottom-4">
+        v{APP_VERSION}
+      </div>
       <BackToTopButton />
       <UndoToastHost />
     </div>

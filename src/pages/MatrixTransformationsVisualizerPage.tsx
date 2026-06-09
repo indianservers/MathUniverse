@@ -1,3 +1,5 @@
+import { Canvas } from "@react-three/fiber";
+import { Line, OrbitControls, Text } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import { Pause, Play, RotateCcw } from "lucide-react";
 import SectionCard from "../components/ui/SectionCard";
@@ -6,7 +8,9 @@ import TopicHeader from "../components/ui/TopicHeader";
 import { roundTo } from "../utils/math";
 
 type Matrix = { a: number; b: number; c: number; d: number };
+type Matrix3 = [[number, number, number], [number, number, number], [number, number, number]];
 type Vec = { x: number; y: number };
+type Vec3 = [number, number, number];
 type Preset = { name: string; matrix: Matrix };
 
 const presets: Preset[] = [
@@ -27,6 +31,8 @@ export default function MatrixTransformationsVisualizerPage() {
   const [vector, setVector] = useState<Vec>({ x: 2, y: 1 });
   const [t, setT] = useState(1);
   const [playing, setPlaying] = useState(false);
+  const [powerStep, setPowerStep] = useState(0);
+  const [powerPlaying, setPowerPlaying] = useState(true);
   const det = matrix.a * matrix.d - matrix.b * matrix.c;
   const av = multiply(matrix, vector);
 
@@ -41,6 +47,12 @@ export default function MatrixTransformationsVisualizerPage() {
     }, 30);
     return () => window.clearInterval(id);
   }, [playing]);
+
+  useEffect(() => {
+    if (!powerPlaying) return;
+    const id = window.setInterval(() => setPowerStep((value) => (value >= 5 ? 0 : value + 1)), 900);
+    return () => window.clearInterval(id);
+  }, [powerPlaying]);
 
   return (
     <div className="space-y-6">
@@ -71,6 +83,38 @@ export default function MatrixTransformationsVisualizerPage() {
           <TransformGraph matrix={matrix} vector={vector} t={t} />
         </SectionCard>
       </div>
+
+      <SectionCard title="3D A^5 Spatial Transformation" description="Orbit the scene. The cyan grid compounds A five times while the amber ghost grid evaluates 149A - 385I; the final states overlap for this Cayley-polynomial matrix." tone="spotlight">
+        <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="h-[460px] overflow-hidden rounded-xl border border-white/10 bg-slate-950">
+            <MatrixPowerScene step={powerStep} />
+          </div>
+          <div className="space-y-3">
+            <div className="flex flex-wrap gap-2">
+              <button type="button" className={powerPlaying ? "action-primary" : "action-secondary"} onClick={() => setPowerPlaying((value) => !value)}>
+                {powerPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                {powerPlaying ? "Pause" : "Play"}
+              </button>
+              <button type="button" className="action-secondary" onClick={() => { setPowerStep(0); setPowerPlaying(false); }}>
+                <RotateCcw className="h-4 w-4" />Reset
+              </button>
+            </div>
+            <label className="block rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
+              Compound step A^n
+              <input className="mt-3 w-full accent-cyan-500" type="range" min={0} max={5} step={1} value={powerStep} onChange={(event) => { setPowerStep(Number(event.target.value)); setPowerPlaying(false); }} />
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              <Metric label="cyan state" value={`A^${powerStep}`} />
+              <Metric label="ghost state" value="149A - 385I" />
+              <Metric label="proof frame" value={powerStep === 5 ? "overlap" : "animating"} />
+              <Metric label="camera" value="orbit/zoom" />
+            </div>
+            <div className="rounded-xl bg-slate-100 p-3 text-sm leading-6 dark:bg-white/10">
+              The demo uses a real 3D block matrix whose eigenvalues satisfy λ^5 - 149λ + 385 = 0. Therefore the same polynomial applied to A gives A^5 = 149A - 385I.
+            </div>
+          </div>
+        </div>
+      </SectionCard>
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
         <SectionCard title="Matrix Presets">
@@ -158,6 +202,129 @@ function NumberBox({ label, value, onChange }: { label: string; value: number; o
 
 function Metric({ label, value }: { label: string; value: string }) {
   return <div className="cinematic-stat"><p className="cinematic-stat-label">{label}</p><p className="cinematic-stat-value">{value}</p></div>;
+}
+
+function MatrixPowerScene({ step }: { step: number }) {
+  const a = cayleyMatrix();
+  const aStep = matrixPower3(a, step);
+  const a5 = matrixPower3(a, 5);
+  const rhs = subtract3(scale3(a, 149), scale3(identity3(), 385));
+  const grid = cubeGridLines();
+  const t = step / 5;
+  const denominator = Math.max(1, maxMatrixAbs(aStep), maxMatrixAbs(rhs) * t);
+  const cyanLines = grid.map(([from, to]) => [fitVec(transform3(aStep, from), denominator), fitVec(transform3(aStep, to), denominator)] as [Vec3, Vec3]);
+  const ghostLines = grid.map(([from, to]) => [
+    fitVec(lerp3(from, transform3(rhs, from), t), denominator),
+    fitVec(lerp3(to, transform3(rhs, to), t), denominator),
+  ] as [Vec3, Vec3]);
+  const overlapError = maxMatrixDelta(a5, rhs);
+
+  return (
+    <Canvas camera={{ position: [5.5, 4.2, 6], fov: 48 }}>
+      <ambientLight intensity={0.55} />
+      <directionalLight position={[4, 6, 5]} intensity={1.2} />
+      <OrbitControls enablePan enableZoom enableDamping makeDefault />
+      <group>
+        <Grid3D lines={grid} color="#64748b" opacity={0.22} />
+        <Grid3D lines={cyanLines} color="#22d3ee" opacity={0.95} />
+        <Grid3D lines={ghostLines} color="#f59e0b" opacity={0.78} />
+        <Axis3D />
+        <Text position={[-2.6, 2.5, 0]} fontSize={0.18} color="#e2e8f0" anchorX="left">
+          {`A^${step}  |  max error A^5-(149A-385I): ${overlapError.toExponential(1)}`}
+        </Text>
+        <Text position={[-2.6, 2.2, 0]} fontSize={0.16} color="#67e8f9" anchorX="left">
+          cyan: compounded A, amber: 149A - 385I ghost
+        </Text>
+      </group>
+    </Canvas>
+  );
+}
+
+function Grid3D({ lines, color, opacity }: { lines: Array<[Vec3, Vec3]>; color: string; opacity: number }) {
+  return (
+    <group>
+      {lines.map(([start, end], index) => (
+        <Line key={index} points={[start, end]} color={color} transparent opacity={opacity} lineWidth={2} />
+      ))}
+    </group>
+  );
+}
+
+function Axis3D() {
+  return (
+    <group>
+      <Line points={[[-2.5, 0, 0], [2.5, 0, 0]]} color="#f8fafc" transparent opacity={0.75} />
+      <Line points={[[0, -2.5, 0], [0, 2.5, 0]]} color="#f8fafc" transparent opacity={0.75} />
+      <Line points={[[0, 0, -2.5], [0, 0, 2.5]]} color="#f8fafc" transparent opacity={0.75} />
+      <Text position={[2.7, 0, 0]} fontSize={0.18} color="#f8fafc">x</Text>
+      <Text position={[0, 2.7, 0]} fontSize={0.18} color="#f8fafc">y</Text>
+      <Text position={[0, 0, 2.7]} fontSize={0.18} color="#f8fafc">z</Text>
+    </group>
+  );
+}
+
+function cubeGridLines(): Array<[Vec3, Vec3]> {
+  const lines: Array<[Vec3, Vec3]> = [];
+  const values = [-1, -0.5, 0, 0.5, 1];
+  for (const y of values) for (const z of values) lines.push([[-1, y, z], [1, y, z]]);
+  for (const x of values) for (const z of values) lines.push([[x, -1, z], [x, 1, z]]);
+  for (const x of values) for (const y of values) lines.push([[x, y, -1], [x, y, 1]]);
+  return lines;
+}
+
+function cayleyMatrix(): Matrix3 {
+  return [
+    [-3.9611340293775505, 0, 0],
+    [0, 2.5, -0.8660254037844395],
+    [0, 0.8660254037844395, 2.5],
+  ];
+}
+
+function identity3(): Matrix3 {
+  return [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
+}
+
+function matrixPower3(matrix: Matrix3, power: number): Matrix3 {
+  let result = identity3();
+  for (let i = 0; i < power; i += 1) result = multiply3(result, matrix);
+  return result;
+}
+
+function multiply3(left: Matrix3, right: Matrix3): Matrix3 {
+  return [0, 1, 2].map((row) => [0, 1, 2].map((column) => left[row][0] * right[0][column] + left[row][1] * right[1][column] + left[row][2] * right[2][column])) as Matrix3;
+}
+
+function scale3(matrix: Matrix3, scalar: number): Matrix3 {
+  return matrix.map((row) => row.map((value) => value * scalar)) as Matrix3;
+}
+
+function subtract3(left: Matrix3, right: Matrix3): Matrix3 {
+  return left.map((row, rowIndex) => row.map((value, columnIndex) => value - right[rowIndex][columnIndex])) as Matrix3;
+}
+
+function transform3(matrix: Matrix3, vector: Vec3): Vec3 {
+  return [
+    matrix[0][0] * vector[0] + matrix[0][1] * vector[1] + matrix[0][2] * vector[2],
+    matrix[1][0] * vector[0] + matrix[1][1] * vector[1] + matrix[1][2] * vector[2],
+    matrix[2][0] * vector[0] + matrix[2][1] * vector[1] + matrix[2][2] * vector[2],
+  ];
+}
+
+function fitVec(vector: Vec3, denominator: number): Vec3 {
+  const scale = 2.1 / denominator;
+  return [vector[0] * scale, vector[1] * scale, vector[2] * scale];
+}
+
+function lerp3(from: Vec3, to: Vec3, t: number): Vec3 {
+  return [from[0] + (to[0] - from[0]) * t, from[1] + (to[1] - from[1]) * t, from[2] + (to[2] - from[2]) * t];
+}
+
+function maxMatrixDelta(left: Matrix3, right: Matrix3) {
+  return Math.max(...left.flatMap((row, rowIndex) => row.map((value, columnIndex) => Math.abs(value - right[rowIndex][columnIndex]))));
+}
+
+function maxMatrixAbs(matrix: Matrix3) {
+  return Math.max(...matrix.flatMap((row) => row.map((value) => Math.abs(value))));
 }
 
 function multiply(m: Matrix, v: Vec): Vec { return { x: m.a * v.x + m.b * v.y, y: m.c * v.x + m.d * v.y }; }

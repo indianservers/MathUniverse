@@ -1,17 +1,19 @@
 import { useMemo, useState } from "react";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Text } from "@react-three/drei";
 import * as THREE from "three";
 import SectionCard from "../components/ui/SectionCard";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import TopicHeader from "../components/ui/TopicHeader";
 import { compileTwoVariableExpression } from "../utils/functionParser";
-import { Box, FunctionSquare, Grid3X3, Palette } from "lucide-react";
+import { Box, FunctionSquare, Grid3X3, Palette, Pause, Play, Tags } from "lucide-react";
 
 type PlotPalette = "height" | "thermal" | "violet";
 
 export default function SurfacePlotter3D() {
   const [expr, setExpr] = useState("sin(x)*cos(y)");
   const [wireframe, setWireframe] = useState(false);
+  const [autoRotate, setAutoRotate] = useState(false);
+  const [showLabels, setShowLabels] = useState(true);
   const [palette, setPalette] = useState<PlotPalette>("height");
   return (
     <div className="space-y-3">
@@ -34,6 +36,11 @@ export default function SurfacePlotter3D() {
           <SectionCard title="View" compact>
             <div className="grid gap-2">
               <button type="button" className={wireframe ? "action-primary" : "tool-button"} onClick={() => setWireframe((value) => !value)}><Grid3X3 className="h-4 w-4" />Wireframe</button>
+              <button type="button" className={showLabels ? "action-primary" : "tool-button"} onClick={() => setShowLabels((value) => !value)}><Tags className="h-4 w-4" />Labels</button>
+              <button type="button" className={autoRotate ? "action-primary" : "tool-button"} onClick={() => setAutoRotate((value) => !value)}>
+                {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                {autoRotate ? "Pause rotation" : "Start rotation"}
+              </button>
               <label className="tool-button justify-start">
                 <Palette className="h-4 w-4" />
                 <select className="min-w-0 bg-transparent text-sm font-bold outline-none" value={palette} onChange={(event) => setPalette(event.target.value as PlotPalette)}>
@@ -52,16 +59,37 @@ export default function SurfacePlotter3D() {
           </SectionCard>
         </aside>
         <SectionCard title="Interactive Mesh" description="A premium 3D stage tuned for demos, lessons, and screen-recorded walkthroughs." compact tone="spotlight">
-          <ThreeSceneWrapper height="calc(100vh - 190px)" mobileHeight="460px" interactionLabel="Drag rotate - scroll zoom" cameraPosition={[4, 3.4, 6]} fov={46} quality="high" chrome="cinematic" sceneLabel="Surface cinema">
+          <ThreeSceneWrapper height="calc(100vh - 190px)" mobileHeight="460px" interactionLabel="Left drag rotate - wheel/pinch zoom - right drag pan" cameraPosition={[4, 3.4, 6]} fov={46} quality="high" chrome="cinematic" sceneLabel={autoRotate ? "Surface cinema - rotating" : "Surface cinema - paused"}>
             <ambientLight intensity={0.8} />
             <directionalLight position={[4, 8, 6]} intensity={1.4} />
             <SurfaceMesh expression={expr} wireframe={wireframe} palette={palette} />
             <gridHelper args={[8, 16, "#38bdf8", "#334155"]} />
-            <OrbitControls enableDamping />
+            {showLabels && <SurfaceLabels expression={expr} />}
+            <OrbitControls enablePan enableZoom enableDamping autoRotate={autoRotate} autoRotateSpeed={0.7} />
           </ThreeSceneWrapper>
         </SectionCard>
       </div>
     </div>
+  );
+}
+
+function SurfaceLabels({ expression }: { expression: string }) {
+  return (
+    <group>
+      <SceneText text="+x" position={[4.45, 0.12, 0]} color="#fecaca" size={0.22} />
+      <SceneText text="+y" position={[0.15, 0.12, 4.45]} color="#bbf7d0" size={0.22} />
+      <SceneText text="+z height" position={[0.15, 3.2, 0]} color="#bae6fd" size={0.22} />
+      <SceneText text={`z = ${expression}`} position={[-2.75, 2.55, -2.9]} color="#e0f2fe" size={0.19} />
+      <SceneText text="slope changes across x-y" position={[2.4, 1.1, -2.7]} color="#fde68a" size={0.17} />
+    </group>
+  );
+}
+
+function SceneText({ text, position, color, size }: { text: string; position: [number, number, number]; color: string; size: number }) {
+  return (
+    <Text position={position} fontSize={size} color={color} anchorX="center" anchorY="middle" outlineColor="#020617" outlineWidth={0.012}>
+      {text}
+    </Text>
   );
 }
 

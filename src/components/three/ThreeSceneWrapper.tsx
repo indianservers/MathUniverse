@@ -45,7 +45,7 @@ export default function ThreeSceneWrapper({
   children,
   height = "420px",
   mobileHeight = "min(72vh, 420px)",
-  interactionLabel = "Drag rotate - pinch zoom",
+  interactionLabel = "Left drag rotate - wheel/pinch zoom",
   cameraPosition = [3, 3, 5],
   fov = 50,
   showHint = true,

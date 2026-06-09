@@ -216,6 +216,37 @@ body {
     -webkit-overflow-scrolling: touch;
   }
 
+  .thin-scrollbar,
+  .mobile-safe-scroll,
+  .scroll-panel,
+  .desktop-sidebar-panel {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(148 163 184 / 0.45) transparent;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar,
+  .mobile-safe-scroll::-webkit-scrollbar,
+  .scroll-panel::-webkit-scrollbar,
+  .desktop-sidebar-panel::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar-track,
+  .mobile-safe-scroll::-webkit-scrollbar-track,
+  .scroll-panel::-webkit-scrollbar-track,
+  .desktop-sidebar-panel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .thin-scrollbar::-webkit-scrollbar-thumb,
+  .mobile-safe-scroll::-webkit-scrollbar-thumb,
+  .scroll-panel::-webkit-scrollbar-thumb,
+  .desktop-sidebar-panel::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgb(148 163 184 / 0.45);
+  }
+
   .gradient-line {
     @apply h-1 bg-gradient-to-r from-cyan-400 via-violet-500 to-fuchsia-500;
   }
@@ -226,6 +257,35 @@ body {
 
   .desktop-workbench {
     @apply grid gap-3 xl:grid-cols-[300px_minmax(0,1fr)_320px];
+  }
+
+  .desktop-page-shell {
+    @apply flex min-h-0 max-w-full flex-col gap-2 overflow-hidden;
+    height: calc(100vh - 5.75rem);
+  }
+
+  .desktop-page-header {
+    @apply shrink-0;
+  }
+
+  .desktop-page-tabs {
+    @apply flex shrink-0 gap-1.5 rounded-xl border border-slate-200 bg-white/80 p-1.5 dark:border-white/10 dark:bg-slate-950/60;
+  }
+
+  .desktop-tab-button {
+    @apply min-h-9 shrink-0 rounded-lg px-3 py-1.5 text-sm font-black text-slate-600 transition hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white;
+  }
+
+  .desktop-tab-button-active {
+    @apply bg-slate-950 text-white shadow-sm shadow-slate-950/10 hover:bg-slate-950 hover:text-white dark:bg-white dark:text-slate-950 dark:hover:bg-white dark:hover:text-slate-950;
+  }
+
+  .desktop-tab-surface {
+    @apply min-h-0 flex-1 overflow-hidden;
+  }
+
+  .desktop-page-scroll {
+    @apply min-h-0 max-w-full overflow-auto overscroll-contain pr-1;
   }
 
   .desktop-main-panel {
@@ -252,6 +312,13 @@ body {
     .scroll-panel,
     .desktop-sidebar-panel {
       max-height: calc(100vh - 7rem);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .desktop-page-shell {
+      height: auto;
+      overflow: visible;
     }
   }
 

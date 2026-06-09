@@ -13,8 +13,8 @@ export default function TopicTabs({ tabs, initialId }: { tabs: TopicTab[]; initi
   if (!active) return null;
 
   return (
-    <div className="space-y-3">
-      <div className="mobile-safe-scroll">
+    <div className="flex min-h-0 flex-col gap-3">
+      <div className="mobile-safe-scroll thin-scrollbar shrink-0">
         <div className="inline-flex min-w-full gap-1.5 rounded-xl border border-slate-200 bg-white/80 p-1 dark:border-white/10 dark:bg-white/5 md:min-w-0">
           {tabs.map((tab) => (
             <button
@@ -30,7 +30,14 @@ export default function TopicTabs({ tabs, initialId }: { tabs: TopicTab[]; initi
         </div>
       </div>
       <AnimatePresence mode="wait">
-        <motion.div key={active.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.18 }}>
+        <motion.div
+          key={active.id}
+          className="thin-scrollbar min-h-0 overflow-auto pr-1 md:max-h-[calc(100vh-14rem)]"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.18 }}
+        >
           {active.content}
         </motion.div>
       </AnimatePresence>

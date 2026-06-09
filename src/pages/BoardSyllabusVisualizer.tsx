@@ -1,6 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { ArrowLeft, Box, Layers3, Network, Shapes } from "lucide-react";
+import { ArrowLeft, Box, Layers3, Network, Pause, Play, Shapes } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import * as THREE from "three";
@@ -80,10 +80,10 @@ export default function BoardSyllabusVisualizer() {
             </div>
             <SliderControl label="2D spread" value={spread} min={0.6} max={1.6} step={0.1} onChange={setSpread} />
             <SliderControl label="3D depth" value={depth} min={0.5} max={3} step={0.1} onChange={setDepth} />
-            <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white/75 p-3 text-sm font-semibold dark:border-white/10 dark:bg-slate-950/40">
-              <input type="checkbox" checked={animate} onChange={(event) => setAnimate(event.target.checked)} />
-              Animate 3D model
-            </label>
+            <button type="button" className={animate ? "action-primary w-full justify-center" : "tool-button w-full justify-center"} onClick={() => setAnimate((value) => !value)}>
+              {animate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+              {animate ? "Pause 3D rotation" : "Start 3D rotation"}
+            </button>
             <div className="rounded-xl bg-slate-100 p-3 text-sm leading-6 dark:bg-white/10">
               <p className="font-bold">2D visual</p>
               <p className="text-slate-600 dark:text-slate-300">{topic.visual2D}</p>
@@ -104,7 +104,21 @@ export default function BoardSyllabusVisualizer() {
               <Syllabus2DCanvas mode={mode} nodes={nodes} accent={colorFor(topic.strand + topic.title)} spread={spread} />
             </div>
 
-            <ThreeSceneWrapper height="520px" mobileHeight="430px" cameraPosition={[4.2, 3.2, 6]} fov={45} quality="high" chrome="cinematic" sceneLabel="3D syllabus model">
+            <ThreeSceneWrapper
+              height="520px"
+              mobileHeight="430px"
+              cameraPosition={[4.2, 3.2, 6]}
+              fov={45}
+              quality="high"
+              chrome="cinematic"
+              sceneLabel={animate ? "3D syllabus model - rotating" : "3D syllabus model - paused"}
+              toolbar={(
+                <button type="button" className={animate ? "action-primary" : "tool-button"} onClick={() => setAnimate((value) => !value)}>
+                  {animate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                  {animate ? "Pause" : "Start"}
+                </button>
+              )}
+            >
               <Syllabus3DScene nodes={nodes} accent={colorFor(topic.strand + topic.title)} depth={depth} animate={animate} />
               <OrbitControls enablePan={false} />
             </ThreeSceneWrapper>

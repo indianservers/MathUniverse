@@ -3,7 +3,7 @@ import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight, LucideIcon } from "l
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SectionCard from "../ui/SectionCard";
-import { BookmarkToolButton, CollapsibleTheorySection, FriendlyErrorBox, MiniTableOfContents, PracticeModeToggle, RelatedToolLinks, ShareSetupButton } from "../ui/UiFeedback";
+import { BookmarkToolButton, CollapsibleTheorySection, FriendlyErrorBox, PracticeModeToggle, RelatedToolLinks, ShareSetupButton } from "../ui/UiFeedback";
 
 const exploredToolsKey = "math-universe-explored-tools";
 const defaultRelatedTools = [
@@ -12,26 +12,30 @@ const defaultRelatedTools = [
   { label: "Matrix Operations", route: "/matrices" },
   { label: "Math Lab", route: "/math-lab" },
 ];
+type LabPanel = "workspace" | "notes" | "related";
 
 export function MathLabLayout({
   title,
   subtitle,
   children,
   notes,
+  compactHeader = false,
 }: {
   title: string;
   subtitle: string;
   children: ReactNode;
   notes?: ReactNode;
+  compactHeader?: boolean;
 }) {
   const [notesOpen, setNotesOpen] = useState(true);
+  const [activePanel, setActivePanel] = useState<LabPanel>("workspace");
   const location = useLocation();
-  const tocItems = [
-    { label: "Overview", id: "tool-overview" },
-    { label: "Workspace", id: "tool-workspace" },
-    { label: "Related tools", id: "related-tools" },
+  const relatedTools = defaultRelatedTools.filter((tool) => tool.route !== location.pathname);
+  const panels: Array<{ id: LabPanel; label: string }> = [
+    { id: "workspace", label: "Workspace" },
+    ...(notes ? [{ id: "notes" as const, label: "Notes" }] : []),
+    { id: "related", label: "Related" },
   ];
-
   useEffect(() => {
     document.title = `${title} | Math Universe`;
     try {
@@ -46,8 +50,9 @@ export function MathLabLayout({
   }, [location.pathname, title]);
 
   return (
-    <div className="space-y-3">
-      <section id="tool-overview" className="rounded-xl border border-white/60 bg-white/85 p-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-900/75">
+    <div className="desktop-page-shell">
+      {!compactHeader && (
+      <section id="tool-overview" className="desktop-page-header rounded-xl border border-white/60 bg-white/85 p-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-900/75">
         <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
           <Link to="/" className="hover:text-cyan-600">Math Universe</Link>
           <span>/</span>
@@ -69,16 +74,39 @@ export function MathLabLayout({
           </div>
         </div>
       </section>
-      <div className={notes ? "grid gap-3 xl:grid-cols-[minmax(0,1fr)_300px]" : ""}>
-        <div id="tool-workspace" className="min-w-0 space-y-3">
-          {children}
-          <SectionCard id="related-tools" title="Related Tools" compact>
-            <RelatedToolLinks links={defaultRelatedTools.filter((tool) => tool.route !== location.pathname)} />
-          </SectionCard>
-        </div>
-        {notes && (
-          <aside className="desktop-sidebar-panel space-y-3 xl:sticky xl:top-24 xl:self-start">
-            <MiniTableOfContents items={tocItems} />
+      )}
+
+      <div className="desktop-page-tabs mobile-safe-scroll thin-scrollbar">
+        {compactHeader && (
+          <div className="mr-2 flex shrink-0 items-center gap-2 px-2">
+            <Link to="/math-lab" className="tool-button min-h-8 px-2" aria-label="Back to Math Lab"><ArrowLeft className="h-4 w-4" /></Link>
+            <div className="min-w-0">
+              <p className="truncate text-sm font-black text-cyan-700 dark:text-cyan-200">{title}</p>
+              <p className="hidden truncate text-xs text-slate-500 dark:text-slate-400 lg:block">{subtitle}</p>
+            </div>
+          </div>
+        )}
+        {panels.map((panel) => (
+          <button
+            key={panel.id}
+            type="button"
+            onClick={() => setActivePanel(panel.id)}
+            className={`desktop-tab-button ${activePanel === panel.id ? "desktop-tab-button-active" : ""}`}
+          >
+            {panel.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="desktop-tab-surface">
+        {activePanel === "workspace" && (
+          <div id="tool-workspace" className="desktop-page-scroll thin-scrollbar min-w-0 space-y-3">
+            {children}
+          </div>
+        )}
+
+        {activePanel === "notes" && notes && (
+          <aside className="desktop-page-scroll thin-scrollbar desktop-sidebar-panel space-y-3">
             <button type="button" className="tool-button w-full justify-between" onClick={() => setNotesOpen((value) => !value)}>
               Educational notes
               <ChevronDown className={`h-4 w-4 transition ${notesOpen ? "rotate-180" : ""}`} />
@@ -90,6 +118,17 @@ export function MathLabLayout({
             )}
           </aside>
         )}
+
+        {activePanel === "related" && (
+          <SectionCard id="related-tools" title="Related Tools" className="desktop-page-scroll thin-scrollbar h-full" compact>
+            <RelatedToolLinks links={relatedTools} />
+          </SectionCard>
+        )}
+      </div>
+
+      <div className="hidden" aria-hidden>
+        <div id="related-tools-anchor" />
+        <div id="tool-workspace-anchor" />
       </div>
     </div>
   );

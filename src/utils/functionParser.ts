@@ -79,7 +79,7 @@ function toRpn(tokens: Token[]) {
   const output: Token[] = [];
   const operators: Token[] = [];
   tokens.forEach((token) => {
-    if (token.type === "number" || token.type === "constant" || token.type === "variable") output.push(token);
+    if (token.type === "number" || token.type === "constant" || token.type === "variable" || token.type === "variableY") output.push(token);
     else if (token.type === "function") operators.push(token);
     else if (token.type === "operator") {
       while (operators.length) {

@@ -1,8 +1,9 @@
 import { Line, OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Calculator, CircleDot, Mountain, RadioTower, Triangle, Waves } from "lucide-react";
+import { Calculator, CircleDot, Mountain, Pause, Play, RadioTower, RotateCcw, RotateCw, Triangle, Waves, ZoomIn, ZoomOut } from "lucide-react";
 import { type PointerEvent } from "react";
 import { useMemo, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../../components/three/ThreeSceneWrapper";
 import SectionCard from "../../components/ui/SectionCard";
@@ -23,15 +24,24 @@ const modes: Array<{ id: LabMode; label: string; icon: typeof CircleDot }> = [
 ];
 
 export default function TrigonometryMathLab({ compact = false }: { compact?: boolean }) {
+  const [searchParams] = useSearchParams();
+  const initialAngle = clamp(Number(searchParams.get("v_angle_theta") ?? 45), -360, 360);
+  const initialRadius = clamp(Number(searchParams.get("v_radius_scale") ?? 120), 70, 180);
   const [mode, setMode] = useState<LabMode>("unit-circle");
   const [fn, setFn] = useState<TrigFn>("sin");
-  const [angle, setAngle] = useState(45);
-  const [radius, setRadius] = useState(120);
+  const [angle, setAngle] = useState(initialAngle);
+  const [radius, setRadius] = useState(initialRadius);
   const [amplitude, setAmplitude] = useState(2);
   const [frequency, setFrequency] = useState(1);
   const [phase, setPhase] = useState(0);
   const [distance, setDistance] = useState(160);
+  const [animate2d, setAnimate2d] = useState(false);
   const [animate3d, setAnimate3d] = useState(true);
+  const [diagramZoom, setDiagramZoom] = useState(1.25);
+  const [diagramRotation, setDiagramRotation] = useState(0);
+  const [graphZoom, setGraphZoom] = useState(1.15);
+  const [graphRotation, setGraphRotation] = useState(0);
+  const [zoom3d, setZoom3d] = useState(1);
 
   const theta = degreesToRadians(angle);
   const values = computeValues(theta, radius, amplitude, frequency, phase, distance, fn);
@@ -81,31 +91,73 @@ export default function TrigonometryMathLab({ compact = false }: { compact?: boo
             </>
           )}
           {(mode === "triangle" || mode === "navigation") && <SliderControl label="Distance / hypotenuse" value={distance} min={80} max={260} step={5} onChange={setDistance} />}
-          <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white/75 p-3 text-sm font-semibold dark:border-white/10 dark:bg-slate-950/40">
-            <input type="checkbox" checked={animate3d} onChange={(event) => setAnimate3d(event.target.checked)} />
-            Animate 3D model
-          </label>
           <MetricGrid mode={mode} values={values} fn={fn} />
         </div>
 
         <div className="min-w-0 space-y-3">
-          <div className="grid min-w-0 gap-3 xl:grid-cols-2">
+          <div className="grid min-w-0 gap-3 2xl:grid-cols-2">
             <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-950">
               <div className="mb-2 flex flex-wrap items-center justify-between gap-2 px-1">
                 <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">2D interactive diagram</p>
                 <span className="mini-chip">drag/tap theta</span>
               </div>
-              <TrigLabSvg mode={mode} fn={fn} angle={angle} theta={theta} radius={radius} amplitude={amplitude} frequency={frequency} phase={phase} distance={distance} onAngleChange={setAngle} />
+              <ViewControlBar
+                label="2D"
+                zoom={diagramZoom}
+                rotation={diagramRotation}
+                playing={animate2d}
+                onZoomIn={() => setDiagramZoom((value) => clamp(roundTo(value + 0.1, 2), 0.55, 2.25))}
+                onZoomOut={() => setDiagramZoom((value) => clamp(roundTo(value - 0.1, 2), 0.55, 2.25))}
+                onRotateLeft={() => setDiagramRotation((value) => value - 15)}
+                onRotateRight={() => setDiagramRotation((value) => value + 15)}
+                onReset={() => {
+                  setDiagramZoom(1.25);
+                  setDiagramRotation(0);
+                  setAnimate2d(false);
+                }}
+                onTogglePlay={() => setAnimate2d((value) => !value)}
+              />
+              <TrigLabSvg mode={mode} fn={fn} angle={angle} theta={theta} radius={radius} amplitude={amplitude} frequency={frequency} phase={phase} distance={distance} zoom={diagramZoom} rotation={diagramRotation} animate={animate2d} onAngleChange={setAngle} />
             </div>
             <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-950">
               <div className="mb-2 flex flex-wrap items-center justify-between gap-2 px-1">
                 <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Live function graph</p>
                 <span className="mini-chip">marker follows theta</span>
               </div>
-              <GraphSvg fn={fn} angle={angle} amplitude={amplitude} frequency={frequency} phase={phase} />
+              <ViewControlBar
+                label="Graph"
+                zoom={graphZoom}
+                rotation={graphRotation}
+                playing={animate2d}
+                onZoomIn={() => setGraphZoom((value) => clamp(roundTo(value + 0.1, 2), 0.55, 2.25))}
+                onZoomOut={() => setGraphZoom((value) => clamp(roundTo(value - 0.1, 2), 0.55, 2.25))}
+                onRotateLeft={() => setGraphRotation((value) => value - 15)}
+                onRotateRight={() => setGraphRotation((value) => value + 15)}
+                onReset={() => {
+                  setGraphZoom(1.15);
+                  setGraphRotation(0);
+                }}
+                onTogglePlay={() => setAnimate2d((value) => !value)}
+              />
+              <GraphSvg fn={fn} angle={angle} amplitude={amplitude} frequency={frequency} phase={phase} zoom={graphZoom} rotation={graphRotation} animate={animate2d} />
             </div>
           </div>
-          <TrigLab3D mode={mode} fn={fn} angle={angle} amplitude={amplitude} frequency={frequency} phase={phase} distance={distance} animate={animate3d} />
+          <ViewControlBar
+            label="3D"
+            zoom={zoom3d}
+            rotation={0}
+            playing={animate3d}
+            onZoomIn={() => setZoom3d((value) => clamp(roundTo(value + 0.1, 2), 0.55, 2.25))}
+            onZoomOut={() => setZoom3d((value) => clamp(roundTo(value - 0.1, 2), 0.55, 2.25))}
+            onRotateLeft={() => setAngle((value) => value - 15)}
+            onRotateRight={() => setAngle((value) => value + 15)}
+            onReset={() => {
+              setZoom3d(1);
+              setAnimate3d(false);
+            }}
+            onTogglePlay={() => setAnimate3d((value) => !value)}
+          />
+          <TrigLab3D mode={mode} fn={fn} angle={angle} amplitude={amplitude} frequency={frequency} phase={phase} distance={distance} animate={animate3d} zoom={zoom3d} onToggleAnimate={() => setAnimate3d((value) => !value)} />
         </div>
       </div>
       {!compact && (
@@ -139,6 +191,9 @@ function TrigLabSvg({
   frequency,
   phase,
   distance,
+  zoom,
+  rotation,
+  animate,
   onAngleChange,
 }: {
   mode: LabMode;
@@ -150,8 +205,12 @@ function TrigLabSvg({
   frequency: number;
   phase: number;
   distance: number;
+  zoom: number;
+  rotation: number;
+  animate: boolean;
   onAngleChange: (angle: number) => void;
 }) {
+  const animatedRotation = animate ? rotation + angle : rotation;
   const handlePointer = (event: PointerEvent<SVGSVGElement>) => {
     if (mode === "wave") return;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -166,7 +225,7 @@ function TrigLabSvg({
   return (
     <svg
       viewBox="0 0 760 460"
-      className="h-[320px] w-full touch-none sm:h-[420px]"
+      className="h-[460px] w-full touch-none sm:h-[540px]"
       role="application"
       aria-label="Interactive trigonometry diagram"
       onPointerDown={(event) => {
@@ -180,9 +239,11 @@ function TrigLabSvg({
     >
       <rect width="760" height="460" rx="18" fill="#020617" />
       <Grid />
-      {mode === "wave" ? <WaveDiagram amplitude={amplitude} frequency={frequency} phase={phase} /> : null}
-      {mode === "triangle" || mode === "navigation" ? <TriangleDiagram angle={angle} distance={distance} navigation={mode === "navigation"} /> : null}
-      {mode === "unit-circle" || mode === "identity" || mode === "inverse" ? <CircleDiagram fn={fn} angle={angle} theta={theta} radius={radius} identity={mode === "identity"} inverse={mode === "inverse"} /> : null}
+      <g transform={`translate(380 230) rotate(${animatedRotation}) scale(${zoom}) translate(-380 -230)`}>
+        {mode === "wave" ? <WaveDiagram amplitude={amplitude} frequency={frequency} phase={phase} /> : null}
+        {mode === "triangle" || mode === "navigation" ? <TriangleDiagram angle={angle} distance={distance} navigation={mode === "navigation"} /> : null}
+        {mode === "unit-circle" || mode === "identity" || mode === "inverse" ? <CircleDiagram fn={fn} angle={angle} theta={theta} radius={radius} identity={mode === "identity"} inverse={mode === "inverse"} /> : null}
+      </g>
     </svg>
   );
 }
@@ -218,11 +279,11 @@ function CircleDiagram({ fn, angle, theta, radius, identity, inverse }: { fn: Tr
 
 function TriangleDiagram({ angle, distance, navigation }: { angle: number; distance: number; navigation: boolean }) {
   const theta = degreesToRadians(angle);
-  const x0 = 150;
-  const y0 = 355;
+  const x0 = 105;
+  const y0 = 372;
   const adjacent = navigation ? distance : distance * Math.cos(theta);
   const opposite = navigation ? distance * Math.tan(theta) : distance * Math.sin(theta);
-  const scale = Math.min(1, 450 / Math.max(adjacent, opposite, 1));
+  const scale = Math.min(1.75, 560 / Math.max(adjacent, opposite, 1));
   const adj = adjacent * scale;
   const opp = opposite * scale;
   return (
@@ -263,7 +324,7 @@ function WaveDiagram({ amplitude, frequency, phase }: { amplitude: number; frequ
   );
 }
 
-function GraphSvg({ fn, angle, amplitude, frequency, phase }: { fn: TrigFn; angle: number; amplitude: number; frequency: number; phase: number }) {
+function GraphSvg({ fn, angle, amplitude, frequency, phase, zoom, rotation, animate }: { fn: TrigFn; angle: number; amplitude: number; frequency: number; phase: number; zoom: number; rotation: number; animate: boolean }) {
   const width = 760;
   const height = 360;
   const phaseRad = degreesToRadians(phase);
@@ -273,13 +334,15 @@ function GraphSvg({ fn, angle, amplitude, frequency, phase }: { fn: TrigFn; angl
   const markerY = Number.isFinite(markerRaw) && Math.abs(markerRaw) <= 4 ? height / 2 - markerRaw * amplitude * 30 : null;
   const paths = graphSegments(fn, width, height, amplitude, frequency, phaseRad);
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} className="h-[300px] w-full sm:h-[360px]">
+    <svg viewBox={`0 0 ${width} ${height}`} className="h-[360px] w-full sm:h-[430px]">
       <rect width={width} height={height} rx="18" fill="#020617" />
-      <Grid width={width} height={height} />
-      <line x1="0" x2={width} y1={height / 2} y2={height / 2} stroke="#94a3b8" />
-      {paths.map((path, index) => <path key={`${fn}-${index}`} d={path} fill="none" stroke={fn === "sin" ? "#22d3ee" : fn === "cos" ? "#fb7185" : "#f59e0b"} strokeWidth="4" />)}
-      <line x1={markerX} x2={markerX} y1="24" y2={height - 24} stroke="#e2e8f0" strokeDasharray="6 6" opacity="0.7" />
-      {markerY !== null && <circle cx={markerX} cy={markerY} r="7" fill="#ffffff" stroke={fn === "sin" ? "#22d3ee" : fn === "cos" ? "#fb7185" : "#f59e0b"} strokeWidth="4" />}
+      <g transform={`translate(${width / 2} ${height / 2}) rotate(${animate ? rotation + angle : rotation}) scale(${zoom}) translate(${-width / 2} ${-height / 2})`}>
+        <Grid width={width} height={height} />
+        <line x1="0" x2={width} y1={height / 2} y2={height / 2} stroke="#94a3b8" />
+        {paths.map((path, index) => <path key={`${fn}-${index}`} d={path} fill="none" stroke={fn === "sin" ? "#22d3ee" : fn === "cos" ? "#fb7185" : "#f59e0b"} strokeWidth="4" />)}
+        <line x1={markerX} x2={markerX} y1="24" y2={height - 24} stroke="#e2e8f0" strokeDasharray="6 6" opacity="0.7" />
+        {markerY !== null && <circle cx={markerX} cy={markerY} r="7" fill="#ffffff" stroke={fn === "sin" ? "#22d3ee" : fn === "cos" ? "#fb7185" : "#f59e0b"} strokeWidth="4" />}
+      </g>
       <SvgLabel x={24} y={34} text={`y = ${roundTo(amplitude, 1)} ${fn}(${roundTo(frequency, 1)}x + ${roundTo(phase, 0)}deg)`} />
     </svg>
   );
@@ -320,28 +383,83 @@ function wrapRadians(value: number) {
   return result;
 }
 
-function TrigLab3D({ mode, fn, angle, amplitude, frequency, phase, distance, animate }: { mode: LabMode; fn: TrigFn; angle: number; amplitude: number; frequency: number; phase: number; distance: number; animate: boolean }) {
+function TrigLab3D({ mode, fn, angle, amplitude, frequency, phase, distance, animate, zoom, onToggleAnimate }: { mode: LabMode; fn: TrigFn; angle: number; amplitude: number; frequency: number; phase: number; distance: number; animate: boolean; zoom: number; onToggleAnimate: () => void }) {
   return (
-    <ThreeSceneWrapper height="520px" mobileHeight="420px" cameraPosition={[4.8, 3.7, 6.5]} fov={44} quality="high" chrome="cinematic" sceneLabel="trigonometry 3D lab">
-      <Trig3DScene mode={mode} fn={fn} angle={angle} amplitude={amplitude} frequency={frequency} phase={phase} distance={distance} animate={animate} />
-      <OrbitControls enableDamping />
+    <ThreeSceneWrapper
+      height="520px"
+      mobileHeight="420px"
+      cameraPosition={[4.8, 3.7, 6.5]}
+      fov={44}
+      quality="high"
+      chrome="cinematic"
+      sceneLabel={animate ? "trigonometry 3D lab - rotating" : "trigonometry 3D lab - paused"}
+      interactionLabel="Left drag rotate - wheel/pinch zoom - right drag pan"
+      toolbar={(
+        <button type="button" className={animate ? "action-primary" : "tool-button"} onClick={onToggleAnimate}>
+          {animate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+          {animate ? "Pause" : "Start"}
+        </button>
+      )}
+    >
+      <Trig3DScene mode={mode} fn={fn} angle={angle} amplitude={amplitude} frequency={frequency} phase={phase} distance={distance} animate={animate} zoom={zoom} />
+      <OrbitControls enablePan enableZoom enableDamping autoRotate={animate} autoRotateSpeed={0.55} />
     </ThreeSceneWrapper>
   );
 }
 
-function Trig3DScene({ mode, fn, angle, amplitude, frequency, phase, distance, animate }: { mode: LabMode; fn: TrigFn; angle: number; amplitude: number; frequency: number; phase: number; distance: number; animate: boolean }) {
+function Trig3DScene({ mode, fn, angle, amplitude, frequency, phase, distance, animate, zoom }: { mode: LabMode; fn: TrigFn; angle: number; amplitude: number; frequency: number; phase: number; distance: number; animate: boolean; zoom: number }) {
   const ref = useRef<THREE.Group>(null);
   useFrame((_, delta) => {
     if (ref.current && animate) ref.current.rotation.y += delta * 0.22;
   });
   return (
-    <group ref={ref}>
+    <group ref={ref} scale={zoom}>
       <gridHelper args={[8, 16, "#38bdf8", "#334155"]} position={[0, -1.6, 0]} />
       {mode === "triangle" || mode === "navigation" ? <Triangle3D angle={angle} distance={distance} /> : <Surface3D fn={fn} amplitude={amplitude} frequency={frequency} phase={phase} />}
       <Text position={[-3.4, 2.1, -2.8]} fontSize={0.16} color="#e0f2fe" anchorX="left">
         {modeConcept(mode)}
       </Text>
     </group>
+  );
+}
+
+function ViewControlBar({
+  label,
+  zoom,
+  rotation,
+  playing,
+  onZoomIn,
+  onZoomOut,
+  onRotateLeft,
+  onRotateRight,
+  onReset,
+  onTogglePlay,
+}: {
+  label: string;
+  zoom: number;
+  rotation: number;
+  playing: boolean;
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+  onRotateLeft: () => void;
+  onRotateRight: () => void;
+  onReset: () => void;
+  onTogglePlay: () => void;
+}) {
+  return (
+    <div className="mobile-safe-scroll thin-scrollbar mb-2 flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 p-1.5 dark:border-white/10 dark:bg-white/5">
+      <span className="mini-chip shrink-0">{label}</span>
+      <button type="button" className="math-tool-button h-9 w-9 rounded-lg" onClick={onZoomOut} aria-label={`${label} zoom out`}><ZoomOut className="h-4 w-4" /></button>
+      <button type="button" className="math-tool-button h-9 w-9 rounded-lg" onClick={onZoomIn} aria-label={`${label} zoom in`}><ZoomIn className="h-4 w-4" /></button>
+      <button type="button" className="math-tool-button h-9 w-9 rounded-lg" onClick={onRotateLeft} aria-label={`${label} rotate left`}><RotateCcw className="h-4 w-4" /></button>
+      <button type="button" className="math-tool-button h-9 w-9 rounded-lg" onClick={onRotateRight} aria-label={`${label} rotate right`}><RotateCw className="h-4 w-4" /></button>
+      <button type="button" className={playing ? "action-primary h-9 min-h-9 rounded-lg px-2" : "tool-button h-9 min-h-9 rounded-lg px-2"} onClick={onTogglePlay} aria-label={playing ? `${label} pause animation` : `${label} play animation`}>
+        {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+      </button>
+      <button type="button" className="tool-button h-9 min-h-9 rounded-lg px-2" onClick={onReset}>Reset</button>
+      <span className="mini-chip shrink-0">Zoom {roundTo(zoom * 100, 0)}%</span>
+      <span className="mini-chip shrink-0">Rot {roundTo(rotation, 0)} deg</span>
+    </div>
   );
 }
 

@@ -1,4 +1,4 @@
-import { Award, Box, Camera, Circle, Cuboid, Download, ExternalLink, Eye, Heart, Mic, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
+import { Award, Box, Camera, Circle, Cuboid, Download, ExternalLink, Eye, Heart, Mic, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Trash2, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
 import { ContactShadows, OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
@@ -30,6 +30,16 @@ type ShapeDefinition = {
 };
 
 type Metrics = Record<string, number>;
+type SavedShapeSize = {
+  id: string;
+  name: string;
+  shapeId: ShapeId;
+  a: number;
+  b: number;
+  c: number;
+  sides: number;
+  angle: number;
+};
 
 const shapes: ShapeDefinition[] = [
   { id: "circle", name: "Circle", kind: "2d", category: "2D Curved", formula: "C = 2 pi r, A = pi r^2", description: "All points at a fixed distance from the center.", dimensions: ["radius"], use: "Wheels, clocks, lenses, gears." },
@@ -58,6 +68,7 @@ const shapes: ShapeDefinition[] = [
 ];
 
 const categories = ["All", "2D Basic", "2D Curved", "2D Polygons", "3D Solids", "3D Curved Solids"] as const;
+const savedShapeStorageKey = "math-universe-saved-shape-sizes";
 
 export default function ShapesExplorer() {
   const { markTopicVisited, markTopicInteracted } = useProgress();
@@ -69,15 +80,25 @@ export default function ShapesExplorer() {
   const [sides, setSides] = useState(6);
   const [angle, setAngle] = useState(90);
   const [wireframe, setWireframe] = useState(false);
+  const [show3DBase, setShow3DBase] = useState(true);
+  const [show3DCoordinates, setShow3DCoordinates] = useState(true);
+  const [show3DLabels, setShow3DLabels] = useState(true);
   const [viewZoom, setViewZoom] = useState(1);
   const [viewRotation, setViewRotation] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
   const [studioOpen, setStudioOpen] = useState(false);
+  const [savedShapes, setSavedShapes] = useState<SavedShapeSize[]>(() => loadSavedShapeSizes());
+  const [activeSavedShapeId, setActiveSavedShapeId] = useState<string | null>(null);
+  const [savedShapeName, setSavedShapeName] = useState("My shape");
 
   useEffect(() => markTopicVisited("shapes"), [markTopicVisited]);
+  useEffect(() => {
+    localStorage.setItem(savedShapeStorageKey, JSON.stringify(savedShapes));
+  }, [savedShapes]);
 
   const selected = shapes.find((shape) => shape.id === selectedId) ?? shapes[0];
   const visibleShapes = useMemo(() => shapes.filter((shape) => category === "All" || shape.category === category), [category]);
+  const savedForSelectedShape = useMemo(() => savedShapes.filter((shape) => shape.shapeId === selected.id), [savedShapes, selected.id]);
   const metrics = getMetrics(selected.id, a, b, c, sides, angle);
 
   const selectShape = (shape: ShapeDefinition) => {
@@ -95,6 +116,43 @@ export default function ShapesExplorer() {
     setViewZoom(1);
     setViewRotation(0);
     setAutoRotate(true);
+  };
+  const currentSavedShape = () => ({
+    name: savedShapeName.trim() || `${selected.name} ${savedForSelectedShape.length + 1}`,
+    shapeId: selected.id,
+    a,
+    b,
+    c,
+    sides,
+    angle,
+  });
+  const addSavedShape = () => {
+    const shape = currentSavedShape();
+    const item: SavedShapeSize = { ...shape, id: `saved-${Date.now()}` };
+    setSavedShapes((items) => [item, ...items]);
+    setActiveSavedShapeId(item.id);
+    setSavedShapeName(item.name);
+  };
+  const updateSavedShape = () => {
+    if (!activeSavedShapeId) return;
+    const next = currentSavedShape();
+    setSavedShapes((items) => items.map((item) => item.id === activeSavedShapeId ? { ...item, ...next } : item));
+  };
+  const applySavedShape = (item: SavedShapeSize) => {
+    setSelectedId(item.shapeId);
+    setA(item.a);
+    setB(item.b);
+    setC(item.c);
+    setSides(item.sides);
+    setAngle(item.angle);
+    setSavedShapeName(item.name);
+    setActiveSavedShapeId(item.id);
+    setViewZoom(1);
+    setViewRotation(0);
+  };
+  const removeSavedShape = (id: string) => {
+    setSavedShapes((items) => items.filter((item) => item.id !== id));
+    if (activeSavedShapeId === id) setActiveSavedShapeId(null);
   };
 
   return (
@@ -169,6 +227,44 @@ export default function ShapesExplorer() {
                 Wireframe
               </label>
             )}
+            <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/50">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-sm font-bold">Custom Shapes and Sizes</p>
+                  <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">Save, apply, modify, or remove shape variants.</p>
+                </div>
+                <span className="rounded-full bg-slate-100 px-2 py-1 text-xs font-bold dark:bg-white/10">{savedForSelectedShape.length}</span>
+              </div>
+              <label className="mt-3 block text-xs font-black uppercase text-slate-500">
+                Name
+                <input
+                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-2 text-sm font-semibold normal-case outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-900"
+                  value={savedShapeName}
+                  onChange={(event) => setSavedShapeName(event.target.value)}
+                />
+              </label>
+              <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                <button type="button" className="action-primary justify-center" onClick={addSavedShape}>Add current</button>
+                <button type="button" className="action-secondary justify-center disabled:opacity-45" disabled={!activeSavedShapeId} onClick={updateSavedShape}>Modify selected</button>
+              </div>
+              <div className="thin-scrollbar mt-3 max-h-56 space-y-2 overflow-auto pr-1">
+                {savedForSelectedShape.length === 0 ? (
+                  <p className="rounded-xl bg-slate-100 p-3 text-xs font-semibold text-slate-500 dark:bg-white/10 dark:text-slate-400">No saved variants for {selected.name} yet.</p>
+                ) : savedForSelectedShape.map((item) => (
+                  <div key={item.id} className={`rounded-xl border p-3 ${activeSavedShapeId === item.id ? "border-cyan-400 bg-cyan-50 dark:bg-cyan-400/10" : "border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/5"}`}>
+                    <div className="flex items-start justify-between gap-2">
+                      <button type="button" className="min-w-0 text-left" onClick={() => applySavedShape(item)}>
+                        <span className="block truncate text-sm font-bold">{item.name}</span>
+                        <span className="mt-1 block text-xs font-semibold text-slate-500 dark:text-slate-400">{savedShapeSummary(item)}</span>
+                      </button>
+                      <button type="button" className="rounded-full bg-white p-2 text-rose-500 shadow-sm dark:bg-slate-950" onClick={() => removeSavedShape(item.id)} aria-label={`Remove ${item.name}`}>
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="grid grid-cols-2 gap-2">
               {Object.entries(metrics).map(([label, value]) => (
                 <Metric key={label} label={label} value={value} />
@@ -209,14 +305,21 @@ export default function ShapesExplorer() {
                   </div>
                   <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-white">{selected.kind === "2d" ? "Extruded 3D" : "Solid model"}</span>
                 </div>
+                <div className="mb-2 flex flex-wrap gap-2">
+                  <ShapeSceneCheckbox label="Base" checked={show3DBase} onChange={setShow3DBase} />
+                  <ShapeSceneCheckbox label="Coordinates" checked={show3DCoordinates} onChange={setShow3DCoordinates} />
+                  <ShapeSceneCheckbox label="Labels" checked={show3DLabels} onChange={setShow3DLabels} />
+                </div>
                 <ThreeSceneWrapper chrome="cinematic" sceneLabel={selected.name} height="520px" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom" cameraPosition={[4.4, 3.4, 6.2]} fov={43} quality="high">
                 <ambientLight intensity={0.48} />
                 <directionalLight position={[4, 6, 5]} intensity={1.85} castShadow />
                 <pointLight position={[-3.5, 2.4, 2.5]} intensity={1.1} color="#8b5cf6" />
                 <pointLight position={[2.8, -1, -3.5]} intensity={0.65} color="#22d3ee" />
-                <RotatingSolid shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} />
-                <ContactShadows position={[0, -3, 0]} opacity={0.38} scale={8} blur={2.4} far={7} />
-                <gridHelper args={[8, 16, "#38bdf8", "#334155"]} position={[0, -3.02, 0]} />
+                <RotatingSolid shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} showLabels={show3DLabels} />
+                {show3DBase && <ContactShadows position={[0, -3, 0]} opacity={0.38} scale={8} blur={2.4} far={7} />}
+                {show3DBase && <gridHelper args={[8, 16, "#38bdf8", "#334155"]} position={[0, -3.02, 0]} />}
+                {show3DCoordinates && <axesHelper args={[3.4]} />}
+                {show3DCoordinates && <ShapeCoordinateLabels />}
                 <OrbitControls enablePan={false} enableZoom enableDamping />
                 </ThreeSceneWrapper>
               </div>
@@ -503,7 +606,7 @@ function KidsShapeStudio({ shapes, selected, onSelect }: { shapes: ShapeDefiniti
               </StudioPanel>
 
               <StudioPanel title="Shape comparison and property checklist" icon={<Search className="h-5 w-5" />}>
-                <div className="max-h-72 overflow-y-auto rounded-2xl border border-slate-200 dark:border-white/10">
+                <div className="thin-scrollbar max-h-72 overflow-y-auto rounded-2xl border border-slate-200 dark:border-white/10">
                   <table className="w-full text-left text-sm">
                     <thead className="bg-slate-100 dark:bg-white/10"><tr><th className="p-2">Shape</th><th className="p-2">Type</th><th className="p-2">Sides/Faces</th><th className="p-2">Symmetry</th></tr></thead>
                     <tbody>{filtered.slice(0, 12).map((shape) => <tr key={shape.id} className="border-t border-slate-200 dark:border-white/10"><td className="p-2 font-bold">{shape.name}</td><td className="p-2">{shape.kind}</td><td className="p-2">{propertyOf(shape, "sides") || propertyOf(shape, "faces")}</td><td className="p-2">{propertyOf(shape, "symmetry")}</td></tr>)}</tbody>
@@ -760,7 +863,7 @@ type ShapeViewControlsProps = {
 function ShapeViewControls({ kind, zoom, rotation, autoRotate, onZoomIn, onZoomOut, onRotateLeft, onRotateRight, onReset, onToggleAutoRotate }: ShapeViewControlsProps) {
   return (
     <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/60 sm:flex-row sm:items-center sm:justify-between">
-      <div className="mobile-safe-scroll flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+      <div className="mobile-safe-scroll thin-scrollbar flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
         <IconButton label="Zoom out" onClick={onZoomOut} disabled={zoom <= 0.55}>
           <ZoomOut className="h-4 w-4" />
         </IconButton>
@@ -957,7 +1060,27 @@ function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, 
   return null;
 }
 
-function RotatingSolid({ shape, a, b, c, sides, angle, wireframe, zoom, rotation, autoRotate }: { shape: ShapeId; a: number; b: number; c: number; sides: number; angle: number; wireframe: boolean; zoom: number; rotation: number; autoRotate: boolean }) {
+function ShapeSceneCheckbox({ label, checked, onChange }: { label: string; checked: boolean; onChange: (value: boolean) => void }) {
+  return (
+    <label className={checked ? "action-primary min-h-8 cursor-pointer px-3 py-1 text-xs" : "tool-button min-h-8 cursor-pointer px-3 py-1 text-xs"}>
+      <input className="h-3.5 w-3.5 accent-cyan-400" type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />
+      {label}
+    </label>
+  );
+}
+
+function ShapeCoordinateLabels() {
+  return (
+    <group>
+      <Text position={[3.6, 0, 0]} fontSize={0.28} color="#67e8f9" anchorX="center" outlineWidth={0.018} outlineColor="#020617">x</Text>
+      <Text position={[0, 3.6, 0]} fontSize={0.28} color="#86efac" anchorX="center" outlineWidth={0.018} outlineColor="#020617">y</Text>
+      <Text position={[0, 0, 3.6]} fontSize={0.28} color="#c4b5fd" anchorX="center" outlineWidth={0.018} outlineColor="#020617">z</Text>
+      <Text position={[0.34, 0.2, 0.34]} fontSize={0.16} color="#f8fafc" anchorX="left" outlineWidth={0.014} outlineColor="#020617">origin</Text>
+    </group>
+  );
+}
+
+function RotatingSolid({ shape, a, b, c, sides, angle, wireframe, zoom, rotation, autoRotate, showLabels }: { shape: ShapeId; a: number; b: number; c: number; sides: number; angle: number; wireframe: boolean; zoom: number; rotation: number; autoRotate: boolean; showLabels: boolean }) {
   const ref = useRef<THREE.Group>(null);
   const guideRef = useRef<THREE.Group>(null);
   useEffect(() => {
@@ -1005,9 +1128,9 @@ function RotatingSolid({ shape, a, b, c, sides, angle, wireframe, zoom, rotation
           </mesh>
         )}
       </group>
-      <group ref={guideRef}>
+      {showLabels && <group ref={guideRef}>
         <DimensionGuides3D shape={shape} size={size} second={second} third={third} />
-      </group>
+      </group>}
     </group>
   );
 }
@@ -1101,6 +1224,38 @@ function createExtrudedShape(shapeId: ShapeId, size: number, second: number, sid
 
 function isSolidShape(shape: ShapeId) {
   return ["cube", "cuboid", "sphere", "hemisphere", "cylinder", "cone", "frustum", "square-pyramid", "triangular-prism", "torus"].includes(shape);
+}
+
+function loadSavedShapeSizes(): SavedShapeSize[] {
+  try {
+    const raw = localStorage.getItem(savedShapeStorageKey);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(isSavedShapeSize);
+  } catch {
+    return [];
+  }
+}
+
+function isSavedShapeSize(value: unknown): value is SavedShapeSize {
+  if (!value || typeof value !== "object") return false;
+  const item = value as Partial<SavedShapeSize>;
+  return (
+    typeof item.id === "string" &&
+    typeof item.name === "string" &&
+    typeof item.shapeId === "string" &&
+    shapes.some((shape) => shape.id === item.shapeId) &&
+    typeof item.a === "number" &&
+    typeof item.b === "number" &&
+    typeof item.c === "number" &&
+    typeof item.sides === "number" &&
+    typeof item.angle === "number"
+  );
+}
+
+function savedShapeSummary(item: SavedShapeSize) {
+  return `a=${roundTo(item.a, 2)}, b=${roundTo(item.b, 2)}, c=${roundTo(item.c, 2)}, sides=${item.sides}, angle=${roundTo(item.angle, 0)} deg`;
 }
 
 function DimensionGuides3D({ shape, size, second, third }: { shape: ShapeId; size: number; second: number; third: number }) {

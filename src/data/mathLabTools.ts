@@ -1,4 +1,4 @@
-import { Atom, BarChart3, Binary, BrainCircuit, Calculator, Cuboid, FunctionSquare, GitFork, Grid3X3, Landmark, LineChart, Network, Sigma, Sparkles, Triangle, Waves, Workflow } from "lucide-react";
+import { Atom, BarChart3, Binary, BrainCircuit, Calculator, Cone, Cuboid, FunctionSquare, GitFork, Grid3X3, Landmark, LineChart, Network, Sigma, Sparkles, Triangle, Waves, Workflow } from "lucide-react";
 
 export const mathLabTools = [
   {
@@ -48,6 +48,14 @@ export const mathLabTools = [
     difficulty: "Intermediate",
     description: "Interact with unit circles, triangle ratios, waves, identities, inverse trig, heights, and 3D trig scenes.",
     useCases: ["unit circle", "trig ratios", "waves", "heights"],
+  },
+  {
+    title: "Conic Solver and Visualizer",
+    route: "/math-lab/conics",
+    icon: Cone,
+    difficulty: "Advanced",
+    description: "Solve and visualize parabola tangents, ellipse focus-directrix equations, and hyperbola tangent relations.",
+    useCases: ["parabola", "ellipse", "hyperbola", "tangents"],
   },
   {
     title: "Calculus Visualizer",
