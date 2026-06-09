@@ -5,13 +5,14 @@ import FormulaBlock from "../components/ui/FormulaBlock";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
+import TopicTabs from "../components/ui/TopicTabs";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
 import { getTrigonometryConcept, trigonometryConcepts, type TrigonometryConcept, type TrigonometryVisualType } from "../data/trigonometryConcepts";
 import { degreesToRadians, roundTo } from "../utils/math";
 import EclipseTrigonometryVisualizer from "../visualizations/trigonometry/EclipseTrigonometryVisualizer";
-import SineCosineWaveVisualizer from "../visualizations/trigonometry/SineCosineWaveVisualizer";
+import TrigConcept3DView from "../visualizations/trigonometry/TrigConcept3DView";
+import TrigonometricFunctionsVisualizer from "../visualizations/trigonometry/TrigonometricFunctionsVisualizer";
 import TrigonometryExperimentCatalog from "../visualizations/trigonometry/TrigonometryExperimentCatalog";
-import UnitCircleVisualizer from "../visualizations/trigonometry/UnitCircleVisualizer";
 import WaveApplications from "../visualizations/trigonometry/WaveApplications";
 
 export default function TrigonometryConceptPage() {
@@ -56,9 +57,24 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
               </div>
             </div>
             <div className="space-y-4">
-              <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950">
-                <TrigConceptSvg visual={concept.visual} a={a} b={b} title={concept.title} />
-              </div>
+              <TopicTabs
+                tabs={[
+                  {
+                    id: "view-2d",
+                    label: "2D View",
+                    content: (
+                      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-950">
+                        <TrigConceptSvg visual={concept.visual} a={a} b={b} title={concept.title} />
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "view-3d",
+                    label: "3D View",
+                    content: <TrigConcept3DView visual={concept.visual} a={a} b={b} title={concept.title} />,
+                  },
+                ]}
+              />
               <div className="grid gap-3 md:grid-cols-3">
                 <Info label="Concept" value={concept.summary} />
                 <Info label="What changes" value={changeText(concept.visual, concept.sliderA, concept.sliderB)} />
@@ -96,11 +112,10 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
 }
 
 function fullVisualizer(visual: TrigonometryVisualType) {
-  if (visual === "unit-circle") return <UnitCircleVisualizer />;
-  if (visual === "sine-cosine-wave") return <SineCosineWaveVisualizer />;
   if (visual === "eclipse") return <EclipseTrigonometryVisualizer />;
   if (visual === "wave-applications") return <WaveApplications />;
   if (visual === "experiment-catalog") return <TrigonometryExperimentCatalog />;
+  if (visual === "trig-functions") return <TrigonometricFunctionsVisualizer />;
   return null;
 }
 
@@ -108,7 +123,7 @@ function TrigConceptSvg({ visual, a, b, title }: { visual: TrigonometryVisualTyp
   return (
     <svg viewBox="0 0 720 440" className="h-[320px] w-full sm:h-[440px]">
       <title>{title}</title>
-      <rect width="720" height="440" rx="24" fill="#f8fafc" />
+      <rect width="720" height="440" rx="24" className="fill-slate-50 dark:fill-slate-900" />
       <Grid />
       {renderVisual(visual, a, b)}
     </svg>
@@ -161,14 +176,13 @@ function CircleTrig({ angle, radius, visual }: { angle: number; radius: number; 
   );
 }
 
-function WaveTransform({ a, b, visual }: { a: number; b: number; visual: TrigonometryVisualType }) {
+function WaveTransform({ a, b }: { a: number; b: number; visual: TrigonometryVisualType }) {
   const amp = a;
   const freq = b;
-  const phase = visual === "graph-transform" && Math.abs(a) > 10 ? degreesToRadians(a) : 0;
   const points = Array.from({ length: 240 }, (_, i) => {
     const x = 70 + i * 2.45;
     const t = (i / 240) * Math.PI * 4;
-    const y = 220 - Math.sin(freq * t + phase) * amp * 34;
+    const y = 220 - Math.sin(freq * t) * amp * 34;
     return `${i ? "L" : "M"}${x},${y}`;
   }).join(" ");
   return <g><line x1="55" x2="665" y1="220" y2="220" stroke="#94a3b8" /><path d={points} fill="none" stroke="#06b6d4" strokeWidth="5" /><Label x="80" y="80" text={`A=${roundTo(amp, 2)}, f=${roundTo(freq, 2)}`} /></g>;
@@ -201,7 +215,7 @@ function Point({ x, y, label }: { x: number; y: number; label: string }) {
 }
 
 function Label({ x, y, text }: { x: number | string; y: number | string; text: string }) {
-  return <text x={x} y={y} fill="#0f172a" fontSize="16" fontWeight="800">{text}</text>;
+  return <text x={x} y={y} className="fill-slate-900 dark:fill-slate-100" fontSize="16" fontWeight="800">{text}</text>;
 }
 
 function Metric({ label, value }: { label: string; value: string }) {

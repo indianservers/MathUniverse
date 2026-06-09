@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Clock3, Search, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { iconMap, navItems, navSections } from "./navItems";
+import { iconMap, navItems, navSections, type NavItem } from "./navItems";
 
 type MobileNavProps = {
   open: boolean;
@@ -14,7 +14,7 @@ const recentToolsKey = "math-universe-recent-tools";
 export default function MobileNav({ open, onClose }: MobileNavProps) {
   const location = useLocation();
   const activeSections = useMemo(
-    () => navSections.filter((section) => section.items.some((item) => isActiveRoute(location.pathname, item.route))).map((section) => section.title),
+    () => navSections.filter((section) => section.items.some((item) => itemHasActiveRoute(item, location.pathname))).map((section) => section.title),
     [location.pathname],
   );
   const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Main", ...activeSections])));
@@ -27,7 +27,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
     return navSections
       .map((section) => ({
         ...section,
-        items: section.items.filter((item) => `${item.title} ${section.title}`.toLowerCase().includes(value)),
+        items: filterNavItems(section.items, value, section.title),
       }))
       .filter((section) => section.items.length);
   }, [query]);
@@ -70,7 +70,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             </div>
             <label className="mb-4 flex min-h-11 items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-3 text-sm font-semibold focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-300/40 dark:border-white/10 dark:bg-white/5">
               <Search className="h-4 w-4 text-slate-400" />
-              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search tools..." className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-slate-400" />
+              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search menu, formula, topic..." className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-slate-400" />
             </label>
             {!query && recentTools.length > 0 && (
               <div className="mb-4 rounded-2xl border border-cyan-200 bg-cyan-50 p-2 dark:border-cyan-400/20 dark:bg-cyan-400/10">
@@ -110,35 +110,16 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                     </button>
                     {sectionOpen && (
                       <div className="mt-1 space-y-1 pb-1">
-                        {section.items.map(({ title, route, icon, isExternal }) => {
-                          const Icon = iconMap[icon];
-                          return isExternal ? (
-                            <a
-                              key={route}
-                              href={route}
-                              onClick={onClose}
-                              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition dark:text-slate-300"
-                            >
-                              <Icon className="h-4 w-4" />
-                              <span className="truncate">{title}</span>
-                            </a>
-                          ) : (
-                            <NavLink
-                              key={route}
-                              to={route}
-                              end={route === "/"}
-                              onClick={onClose}
-                              className={({ isActive }) =>
-                                `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition ${
-                                  isActive ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "text-slate-600 dark:text-slate-300"
-                                }`
-                              }
-                            >
-                              <Icon className="h-4 w-4" />
-                              <span className="truncate">{title}</span>
-                            </NavLink>
-                          );
-                        })}
+                        {section.items.map((item) => (
+                          <MobileNavItem
+                            key={`${item.title}-${item.route}`}
+                            item={item}
+                            pathname={location.pathname}
+                            openKeys={openSections}
+                            onToggle={toggleSection}
+                            onClose={onClose}
+                          />
+                        ))}
                       </div>
                     )}
                   </div>
@@ -152,8 +133,100 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
   );
 }
 
+function MobileNavItem({
+  item,
+  pathname,
+  openKeys,
+  onToggle,
+  onClose,
+  depth = 0,
+}: {
+  item: NavItem;
+  pathname: string;
+  openKeys: string[];
+  onToggle: (title: string) => void;
+  onClose: () => void;
+  depth?: number;
+}) {
+  const Icon = iconMap[item.icon];
+  const key = navItemKey(item);
+  const hasChildren = Boolean(item.children?.length);
+  const active = itemHasActiveRoute(item, pathname);
+  const open = hasChildren && (openKeys.includes(key) || active);
+  const indent = depth === 0 ? "" : depth === 1 ? "ml-4" : "ml-7";
+
+  if (hasChildren) {
+    return (
+      <div className={`${indent} space-y-1`}>
+        <button
+          type="button"
+          onClick={() => onToggle(key)}
+          className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
+            active ? "bg-cyan-50 text-cyan-800 dark:bg-cyan-400/10 dark:text-cyan-100" : "text-slate-600 dark:text-slate-300"
+          }`}
+          aria-expanded={open}
+        >
+          <Icon className="h-4 w-4" />
+          <span className="min-w-0 flex-1 truncate">{item.title}</span>
+          <ChevronDown className={`h-3.5 w-3.5 transition ${open ? "rotate-180" : ""}`} />
+        </button>
+        {open && (
+          <div className="space-y-1">
+            {item.children?.map((child) => (
+              <MobileNavItem key={`${child.title}-${child.route}`} item={child} pathname={pathname} openKeys={openKeys} onToggle={onToggle} onClose={onClose} depth={depth + 1} />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (item.isExternal) {
+    return (
+      <a href={item.route} onClick={onClose} className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition dark:text-slate-300 ${indent}`}>
+        <Icon className="h-4 w-4" />
+        <span className="truncate">{item.title}</span>
+      </a>
+    );
+  }
+
+  return (
+    <NavLink
+      to={item.route}
+      end={item.route === "/"}
+      onClick={onClose}
+      className={({ isActive }) =>
+        `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition ${indent} ${
+          isActive ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "text-slate-600 dark:text-slate-300"
+        }`
+      }
+    >
+      <Icon className="h-4 w-4" />
+      <span className="truncate">{item.title}</span>
+    </NavLink>
+  );
+}
+
 function isActiveRoute(pathname: string, route: string) {
   if (/^https?:\/\//.test(route)) return false;
   if (route === "/") return pathname === "/";
   return pathname === route || pathname.startsWith(`${route}/`);
+}
+
+function itemHasActiveRoute(item: NavItem, pathname: string): boolean {
+  if (item.children?.length) return pathname === item.route || item.children.some((child) => itemHasActiveRoute(child, pathname));
+  return isActiveRoute(pathname, item.route);
+}
+
+function filterNavItems(items: NavItem[], value: string, sectionTitle: string): NavItem[] {
+  return items.reduce<NavItem[]>((matches, item) => {
+    const children = filterNavItems(item.children ?? [], value, sectionTitle);
+    const match = `${item.title} ${sectionTitle}`.toLowerCase().includes(value);
+    if (match || children.length > 0) matches.push({ ...item, children });
+    return matches;
+  }, []);
+}
+
+function navItemKey(item: NavItem) {
+  return `${item.title}:${item.route}`;
 }

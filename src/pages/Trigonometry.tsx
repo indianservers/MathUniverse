@@ -13,22 +13,43 @@ export default function Trigonometry() {
   const topic = topics.find((item) => item.id === "trigonometry")!;
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
+  const syllabusGroups = [
+    { label: "JEE", categories: ["Identities", "Equations", "Triangle Solving", "Calculus"] },
+    { label: "Degree", categories: ["Advanced", "Degree", "Wave Parameters"] },
+    { label: "PG", categories: ["PG", "Applications"] },
+  ];
   return (
     <div className="space-y-3" onPointerDown={() => markTopicInteracted(topic.id)}>
       <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
       <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_320px]">
-        <SectionCard title="Trigonometry Concept Pages" description={`${trigonometryConcepts.length} focused subpages. Each page keeps one concept, one formula, and one visual lab.`} compact>
-          <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
-            {trigonometryConcepts.map((concept) => (
-              <Link key={concept.id} to={`/trigonometry/${concept.id}`} className="group rounded-lg border border-slate-200 bg-white/75 p-2.5 transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
-                <p className="text-[11px] font-bold uppercase text-cyan-600 dark:text-cyan-300">{concept.category}</p>
-                <h2 className="mt-1 line-clamp-1 text-sm font-bold group-hover:text-cyan-600 dark:group-hover:text-cyan-300">{concept.title}</h2>
-                <p className="mt-1 line-clamp-2 text-xs leading-4 text-slate-600 dark:text-slate-300">{concept.summary}</p>
-                <p className="mt-2 truncate rounded-lg bg-slate-100 p-1.5 font-mono text-[11px] text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">{concept.formula}</p>
-              </Link>
-            ))}
-          </div>
-        </SectionCard>
+        <div className="space-y-3">
+          <SectionCard title="Trigonometry Concept Pages" description={`${trigonometryConcepts.length} focused subpages. Standard concepts include 2D and 3D visual tabs.`} compact>
+            <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
+              {trigonometryConcepts.map((concept) => (
+                <ConceptLink key={concept.id} concept={concept} />
+              ))}
+            </div>
+          </SectionCard>
+          <SectionCard title="Syllabus Coverage" description="Extra concepts are grouped so JEE, degree, and PG topics stay findable without clutter." compact>
+            <div className="grid gap-3 md:grid-cols-3">
+              {syllabusGroups.map((group) => {
+                const concepts = trigonometryConcepts.filter((concept) => group.categories.includes(concept.category)).slice(0, 8);
+                return (
+                  <div key={group.label} className="rounded-lg border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
+                    <h2 className="text-sm font-black">{group.label}</h2>
+                    <div className="mt-2 grid gap-1.5">
+                      {concepts.map((concept) => (
+                        <Link key={concept.id} to={`/trigonometry/${concept.id}`} className="rounded-md px-2 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-cyan-50 hover:text-cyan-700 dark:text-slate-300 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100">
+                          {concept.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </SectionCard>
+        </div>
         <aside className="desktop-sidebar-panel scroll-panel space-y-3 xl:sticky xl:top-24">
           <ContinueCard routePrefix="/trigonometry" />
           <Link to="/trigonometry/unit-circle" className="action-primary w-full">Start Unit Circle</Link>
@@ -38,5 +59,20 @@ export default function Trigonometry() {
         </aside>
       </div>
     </div>
+  );
+}
+
+function ConceptLink({ concept }: { concept: (typeof trigonometryConcepts)[number] }) {
+  const has3d = !["eclipse", "wave-applications", "experiment-catalog"].includes(concept.visual);
+  return (
+    <Link key={concept.id} to={`/trigonometry/${concept.id}`} className="group rounded-lg border border-slate-200 bg-white/75 p-2.5 transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-start justify-between gap-2">
+        <p className="text-[11px] font-bold uppercase text-cyan-600 dark:text-cyan-300">{concept.category}</p>
+        {has3d && <span className="mini-chip text-[10px]">2D+3D</span>}
+      </div>
+      <h2 className="mt-1 line-clamp-1 text-sm font-bold group-hover:text-cyan-600 dark:group-hover:text-cyan-300">{concept.title}</h2>
+      <p className="mt-1 line-clamp-2 text-xs leading-4 text-slate-600 dark:text-slate-300">{concept.summary}</p>
+      <p className="mt-2 truncate rounded-lg bg-slate-100 p-1.5 font-mono text-[11px] text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">{concept.formula}</p>
+    </Link>
   );
 }

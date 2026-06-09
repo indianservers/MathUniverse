@@ -1,9 +1,10 @@
-import { BookOpen, ClipboardList, ExternalLink, GraduationCap, Link as LinkIcon, Megaphone, Search, Sparkles } from "lucide-react";
+import { BookOpen, ClipboardList, ExternalLink, GraduationCap, Link as LinkIcon, Megaphone, Route, Search, Sparkles, Target } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import { assignmentTemplates, contentLibrary, LibraryItem } from "../data/contentLibrary";
+import { learningFeatures } from "../data/mathCoverageBlueprint";
 import { useProgress } from "../hooks/useProgress";
 
 const kindLabels = ["all", "lesson", "worksheet", "activity", "assignment"] as const;
@@ -37,6 +38,14 @@ export default function LearningHub() {
     const date = new Date(Date.now() - (34 - index) * 86400000).toISOString().slice(0, 10);
     return { date, value: heatmap[date] ?? 0 };
   });
+  const bestScores = useMemo(() => {
+    try {
+      return JSON.parse(localStorage.getItem("math-universe-quiz-best") ?? "{}") as Record<string, number>;
+    } catch {
+      return {};
+    }
+  }, []);
+  const journey = buildJourney(bestScores);
 
   return (
     <div className="space-y-6">
@@ -52,6 +61,45 @@ export default function LearningHub() {
         <div className="grid grid-cols-7 gap-2">
           {heatmapDays.map((day) => (
             <div key={day.date} title={`${day.date}: ${day.value} quiz actions`} className={`aspect-square rounded-md border border-slate-200 dark:border-white/10 ${day.value === 0 ? "bg-slate-100 dark:bg-white/5" : day.value < 2 ? "bg-cyan-200 dark:bg-cyan-400/30" : day.value < 4 ? "bg-cyan-400" : "bg-cyan-700"}`} />
+          ))}
+        </div>
+      </SectionCard>
+
+      <SectionCard title="Adaptive Chapter Journey" description="A BYJU'S-style learning layer that reads local practice signals and turns them into next actions.">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="grid gap-3 md:grid-cols-3">
+            <JourneyColumn title="Strengths" items={journey.strengths} tone="emerald" empty="Score 80%+ in any quiz to unlock strengths." />
+            <JourneyColumn title="Needs Practice" items={journey.practice} tone="amber" empty="Scores from 50-79% land here." />
+            <JourneyColumn title="Gaps" items={journey.gaps} tone="rose" empty="Scores below 50% or untouched core topics land here." />
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-white/75 p-4 dark:border-white/10 dark:bg-white/5">
+            <div className="flex items-center gap-2">
+              <Target className="h-5 w-5 text-cyan-500" />
+              <h2 className="font-black">Recommended next step</h2>
+            </div>
+            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{journey.nextStep}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <Link to="/quiz" className="action-primary"><Route className="h-4 w-4" />Adaptive quiz</Link>
+              <Link to="/syllabus" className="action-secondary">Micro-lessons</Link>
+              <Link to="/daily-challenge" className="action-secondary">Daily challenge</Link>
+            </div>
+          </div>
+        </div>
+      </SectionCard>
+
+      <SectionCard title="BYJU'S-Style Learning Features" description="Feature coverage for journeys, games, feedback, mistake diagnosis, revision, and animated micro-lessons.">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {learningFeatures.map((feature) => (
+            <Link key={feature.id} to={feature.route} className="rounded-xl border border-slate-200 bg-white/75 p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
+              <div className="flex items-start justify-between gap-3">
+                <h2 className="text-base font-black">{feature.title}</h2>
+                <span className="mini-chip shrink-0">{feature.status}</span>
+              </div>
+              <p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{feature.description}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {feature.signals.slice(0, 3).map((signal) => <span key={signal} className="mini-chip">{signal}</span>)}
+              </div>
+            </Link>
           ))}
         </div>
       </SectionCard>
@@ -117,6 +165,35 @@ function SelectFilter({ label, value, values, onChange }: { label: string; value
       </select>
     </label>
   );
+}
+
+function JourneyColumn({ title, items, tone, empty }: { title: string; items: string[]; tone: "emerald" | "amber" | "rose"; empty: string }) {
+  const colorClass = tone === "emerald" ? "text-emerald-700 dark:text-emerald-200" : tone === "amber" ? "text-amber-700 dark:text-amber-200" : "text-rose-700 dark:text-rose-200";
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white/75 p-4 dark:border-white/10 dark:bg-white/5">
+      <h2 className={`font-black ${colorClass}`}>{title}</h2>
+      <div className="mt-3 space-y-2">
+        {items.length ? items.map((item) => <div key={item} className="rounded-xl bg-slate-100 p-2 text-sm font-semibold dark:bg-white/10">{item}</div>) : <p className="text-sm leading-5 text-slate-500 dark:text-slate-400">{empty}</p>}
+      </div>
+    </div>
+  );
+}
+
+function buildJourney(bestScores: Record<string, number>) {
+  const entries = Object.entries(bestScores);
+  const strengths = entries.filter(([, score]) => score >= 80).map(([topic]) => topic).slice(0, 4);
+  const practice = entries.filter(([, score]) => score >= 50 && score < 80).map(([topic]) => topic).slice(0, 4);
+  const gaps = entries.filter(([, score]) => score < 50).map(([topic]) => topic).slice(0, 4);
+  const coreFallbacks = ["Number Systems", "Algebra", "Geometry", "Trigonometry"].filter((topic) => !entries.some(([name]) => name === topic));
+  const visibleGaps = [...gaps, ...coreFallbacks].slice(0, 4);
+  const nextStep = visibleGaps.length
+    ? `Start with ${visibleGaps[0]}: open its micro-lesson, then take a short quiz and review mistakes immediately.`
+    : practice.length
+      ? `Push ${practice[0]} from practice into strength with a timed quiz and one visual lab.`
+      : strengths.length
+        ? `You have strong signals in ${strengths[0]}; move to the next linked challenge lane.`
+        : "Begin with Number Systems, Algebra, Geometry, and Trigonometry to seed your journey map.";
+  return { strengths, practice, gaps: visibleGaps, nextStep };
 }
 
 function LibraryCard({ item }: { item: LibraryItem }) {

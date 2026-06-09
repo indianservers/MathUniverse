@@ -9,6 +9,7 @@ const AdvancedSyllabusLabPage = lazy(() => import("./pages/AdvancedSyllabusLabPa
 const AlgebraicStructures = lazy(() => import("./pages/AlgebraicStructures"));
 const AIApplications = lazy(() => import("./pages/AIApplications"));
 const Algebra = lazy(() => import("./pages/Algebra"));
+const BoardSyllabusVisualizer = lazy(() => import("./pages/BoardSyllabusVisualizer"));
 const Calculus = lazy(() => import("./pages/Calculus"));
 const Combinatorics = lazy(() => import("./pages/Combinatorics"));
 const ComplexNumbers = lazy(() => import("./pages/ComplexNumbers"));
@@ -46,6 +47,7 @@ const MatrixOperations = lazy(() => import("./pages/MatrixOperations"));
 const MatrixOperationsSandbox = lazy(() => import("./pages/MatrixOperationsSandbox"));
 const MatrixTransformationsVisualizerPage = lazy(() => import("./pages/MatrixTransformationsVisualizerPage"));
 const NCERTConceptPage = lazy(() => import("./pages/NCERTConceptPage"));
+const NumberSystems = lazy(() => import("./pages/NumberSystems"));
 const ParametricCurveExplorer = lazy(() => import("./pages/ParametricCurveExplorer"));
 const PolarCoordinatesVisualizer = lazy(() => import("./pages/PolarCoordinatesVisualizer"));
 const ProbabilityStatistics = lazy(() => import("./pages/ProbabilityStatistics"));
@@ -153,6 +155,7 @@ export default function App() {
             <Route path="geometry" element={<Geometry />} />
             <Route path="geometry/:conceptId" element={<GeometryConceptPage />} />
             <Route path="shapes" element={<ShapesExplorer />} />
+            <Route path="number-systems" element={<NumberSystems />} />
             <Route path="trigonometry" element={<Trigonometry />} />
             <Route path="trigonometry/:conceptId" element={<TrigonometryConceptPage />} />
             <Route path="calculus" element={<Calculus />} />
@@ -192,6 +195,7 @@ export default function App() {
             <Route path="math/fourier-series" element={<FourierSeriesVisualizerPage />} />
             <Route path="math/:visualizationId" element={<MathVisualizationPage />} />
             <Route path="ncert/:conceptId" element={<NCERTConceptPage />} />
+            <Route path="syllabus-visual/:topicId" element={<BoardSyllabusVisualizer />} />
             <Route path="syllabus-lab/:labId" element={<AdvancedSyllabusLabPage />} />
             <Route path="syllabus" element={<Syllabus />} />
             <Route path="syllabus/:levelId" element={<Syllabus />} />

@@ -8,6 +8,7 @@ import TopicTabs from "../components/ui/TopicTabs";
 import ContinueCard from "../components/ui/ContinueCard";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
+import FormulaVisualizationAtlas from "../visualizations/formulas/FormulaVisualizationAtlas";
 import LinearEquationVisualizer from "../visualizations/algebra/LinearEquationVisualizer";
 import QuadraticEquationVisualizer from "../visualizations/algebra/QuadraticEquationVisualizer";
 import SimultaneousEquationsVisualizer from "../visualizations/algebra/SimultaneousEquationsVisualizer";
@@ -28,6 +29,7 @@ export default function Algebra() {
         { id: "linear", label: "Linear", content: <LinearEquationVisualizer /> },
         { id: "quadratic", label: "Quadratic", content: <QuadraticEquationVisualizer /> },
         { id: "systems", label: "Systems", content: <SimultaneousEquationsVisualizer /> },
+        { id: "formulas", label: "Formula Atlas", content: <FormulaVisualizationAtlas topic="algebra" /> },
       ]} />
       <div className="grid gap-4 md:grid-cols-2">
         <FormulaBlock title="Line" formula="y=mx+c" />

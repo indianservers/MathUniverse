@@ -42,6 +42,18 @@ export const topics: Topic[] = [
     labCount: 7,
   },
   {
+    id: "number-systems",
+    title: "Number Systems",
+    route: "/number-systems",
+    iconName: "Hash",
+    description: "Visualize rational numbers, irrational numbers, real-number hierarchy, decimals, surds, and density on the number line.",
+    concepts: ["Rational numbers", "Irrational numbers", "Real line", "Surds"],
+    difficulty: "Foundational",
+    estimatedMinutes: 35,
+    colorGradient: "from-sky-500 to-emerald-600",
+    labCount: 8,
+  },
+  {
     id: "trigonometry",
     title: "Trigonometry & Waves",
     route: "/trigonometry",

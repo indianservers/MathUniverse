@@ -78,12 +78,20 @@ function TopicSummaryCard({ topic, bestScore, questionCount, onStart }: {
   onStart: () => void;
 }) {
   const difficultyMap: Record<string, string> = {
+    "Number Systems": "Easy",
     Algebra: "Medium",
+    "Functions & Graphs": "Medium",
     Geometry: "Easy",
+    "Coordinate Geometry": "Medium",
     Trigonometry: "Medium",
     Calculus: "Hard",
     "Complex Numbers": "Hard",
     "Linear Algebra": "Hard",
+    Matrices: "Medium",
+    Probability: "Medium",
+    Statistics: "Medium",
+    Combinatorics: "Hard",
+    "Set Theory": "Medium",
     "AI Applications": "Medium",
   };
   const color = difficultyMap[topic] === "Easy" ? "text-emerald-600" : difficultyMap[topic] === "Hard" ? "text-rose-600" : "text-amber-600";

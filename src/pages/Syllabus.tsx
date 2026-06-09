@@ -1,8 +1,11 @@
-import { CheckSquare, ExternalLink } from "lucide-react";
+import { CheckSquare, ExternalLink, MonitorPlay, Route, Wrench } from "lucide-react";
+import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import { advancedLabCategories, advancedSyllabusLabs } from "../data/advancedSyllabusLabs";
+import { boardSyllabusTopics, syllabusBoards } from "../data/boardSyllabus";
+import { coreMathLanes, interactiveMathTools } from "../data/mathCoverageBlueprint";
 import { allSyllabusTopics, syllabusLevels } from "../data/syllabus";
 import { showUndoToast } from "../components/layout/GlobalUx";
 
@@ -22,8 +25,10 @@ function writeComplete(ids: string[]) {
 export default function Syllabus() {
   const navigate = useNavigate();
   const { levelId } = useParams();
+  const [selectedBoard, setSelectedBoard] = useState<string>("All");
   const selectedLevel = syllabusLevels.find((level) => level.id === levelId);
   const topics = selectedLevel ? selectedLevel.topics : allSyllabusTopics;
+  const boardTopics = selectedBoard === "All" ? boardSyllabusTopics : boardSyllabusTopics.filter((topic) => topic.board === selectedBoard);
 
   function markAllComplete(ids: string[]) {
     const prev = readComplete();
@@ -39,10 +44,83 @@ export default function Syllabus() {
     <div className="space-y-5">
       <TopicHeader
         title="Syllabus Universe"
-        subtitle="Browse grade-wise topics and advanced concept labs."
+        subtitle="Browse AP State, CBSE, Cambridge/IGCSE, and IB mathematics coverage from Grade 6 to 12."
         difficulty={selectedLevel ? selectedLevel.title : "All levels"}
         estimatedMinutes={20}
       />
+
+      <SectionCard id="board-coverage" title="Boards Covered From 6th to 12th" description="Each board-grade pack opens a reusable interactive lab with both 2D and 3D visualizations.">
+        <div className="mb-4 flex flex-wrap gap-2">
+          {["All", ...syllabusBoards].map((board) => (
+            <button
+              key={board}
+              type="button"
+              onClick={() => setSelectedBoard(board)}
+              className={`rounded-xl border px-3 py-2 text-sm font-bold transition ${selectedBoard === board ? "border-cyan-400 bg-cyan-500 text-white" : "border-slate-200 bg-white/80 text-slate-600 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"}`}
+            >
+              {board}
+            </button>
+          ))}
+        </div>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {boardTopics.map((topic) => (
+            <Link key={topic.id} to={topic.route} className="rounded-xl border border-slate-200 bg-white/75 p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{topic.board} / {topic.grade}</p>
+                  <h2 className="mt-1.5 text-base font-bold">{topic.strand}</h2>
+                </div>
+                <MonitorPlay className="h-5 w-5 shrink-0 text-cyan-500" />
+              </div>
+              <p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{topic.title}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <span className="mini-chip">2D</span>
+                <span className="mini-chip">3D</span>
+                <span className="mini-chip">{topic.phase}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </SectionCard>
+
+      <SectionCard id="core-math-lanes" title="Core Maths Lanes" description="The Class 6-12 path is grouped into four continuous lanes so students can move from foundations to board-level calculus and vectors.">
+        <div className="grid gap-3 lg:grid-cols-2">
+          {coreMathLanes.map((lane) => (
+            <div key={lane.id} className="rounded-xl border border-slate-200 bg-white/75 p-4 dark:border-white/10 dark:bg-white/5">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-bold uppercase text-emerald-600 dark:text-emerald-300">{lane.gradeBand}</p>
+                  <h2 className="mt-1.5 text-lg font-black">{lane.title}</h2>
+                </div>
+                <span className="mini-chip">{lane.status}</span>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {lane.topics.map((item) => <span key={item} className="mini-chip">{item}</span>)}
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Link to={lane.primaryRoute} className="action-primary"><Route className="h-4 w-4" />Open lane</Link>
+                {lane.labRoutes.slice(0, 3).map((route) => <Link key={route} to={route} className="action-secondary">Lab</Link>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+
+      <SectionCard id="interactive-tools" title="Interactive Maths Tools" description="More than notes and calculators: these are the hands-on visual labs mapped to the missing-tool checklist.">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {interactiveMathTools.map((tool) => (
+            <Link key={tool.id} to={tool.route} className="rounded-xl border border-slate-200 bg-white/75 p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
+              <div className="flex items-start justify-between gap-3">
+                <Wrench className="h-5 w-5 shrink-0 text-cyan-500" />
+                <span className="mini-chip">{tool.dimensions}</span>
+              </div>
+              <h2 className="mt-3 text-base font-black">{tool.title}</h2>
+              <p className="mt-2 text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{tool.gradeBand} / {tool.status}</p>
+              <p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{tool.purpose}</p>
+            </Link>
+          ))}
+        </div>
+      </SectionCard>
 
       <SectionCard id="grade-topics" title="Grade and Board Topics" description="NCERT and school syllabus topics grouped by class, with links to interactive pages.">
         <Link to="/math-lab" className="mb-4 block rounded-2xl border border-violet-200 bg-violet-50 p-4 transition hover:-translate-y-0.5 hover:border-violet-400 dark:border-violet-400/20 dark:bg-violet-400/10">

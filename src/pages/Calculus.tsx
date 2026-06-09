@@ -7,6 +7,8 @@ import TopicTabs from "../components/ui/TopicTabs";
 import ContinueCard from "../components/ui/ContinueCard";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
+import FormulaVisualizationAtlas from "../visualizations/formulas/FormulaVisualizationAtlas";
+import CalculusConceptAtlas from "../visualizations/calculus/CalculusConceptAtlas";
 import DerivativeSlopeVisualizer from "../visualizations/calculus/DerivativeSlopeVisualizer";
 import IntegrationAreaVisualizer from "../visualizations/calculus/IntegrationAreaVisualizer";
 import LimitsVisualizer from "../visualizations/calculus/LimitsVisualizer";
@@ -26,6 +28,8 @@ export default function Calculus() {
             { id: "derivatives", label: "Derivatives", content: <DerivativeSlopeVisualizer /> },
             { id: "integrals", label: "Integrals", content: <IntegrationAreaVisualizer /> },
             { id: "motion", label: "Motion", content: <MotionVisualizer /> },
+            { id: "atlas", label: "Atlas", content: <CalculusConceptAtlas /> },
+            { id: "formulas", label: "Formula Atlas", content: <FormulaVisualizationAtlas topic="calculus" /> },
           ]} />
         </div>
         <aside className="desktop-sidebar-panel scroll-panel space-y-3 xl:sticky xl:top-24">
