@@ -1,21 +1,35 @@
 import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Circle, Download, Eraser, GitBranch, LineChart, Magnet, MousePointer2, Move, PanelLeftClose, PanelLeftOpen, Pause, Pentagon, Play, Plus, Presentation, Radius, RotateCcw, Save, Search, Slash, Square, Target, Trash2, Triangle, ZoomIn, ZoomOut } from "lucide-react";
-import { CSSProperties, KeyboardEvent, PointerEvent, ReactNode, useMemo, useRef, useState } from "react";
+import { ArrowLeftRight, Axis3d, BetweenHorizontalStart, Blend, Brush, Calculator, Circle, CircleDot, ClipboardCopy, Crosshair, Download, Eraser, EyeOff, FlipHorizontal2, GitBranch, Grid2X2, Highlighter, Layers, LineChart, LockKeyhole, Magnet, MousePointer2, MousePointerClick, Move, Move3D, PanelLeftClose, PanelLeftOpen, Pause, PenLine, PencilRuler, Pentagon, Play, Plus, Presentation, Radius, Rotate3D, RotateCcw, Ruler, Save, ScanLine, Scissors, Search, Sigma, Slash, Spline, Square, Target, TextCursorInput, Trash2, Triangle, UnfoldHorizontal, Wand2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
+import { ChangeEvent, CSSProperties, KeyboardEvent, PointerEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
-import TopicHeader from "../components/ui/TopicHeader";
+import WorkspaceShell from "../components/workspace/WorkspaceShell";
+import { runWorkspaceCasQuery } from "../cas/workspaceCas";
+import { appendLocusPoint, locusPath, type LocusTracePoint } from "../geometry-kernel/geometryMeasurements";
+import { circleInsights, triangleInsights } from "../geometry-kernel/theoremHelpers";
+import { distanceFromOrigin, solidMetrics, summarizeSurfaceSamples, vectorComponents, vectorLength, type Space3DMeasurements, type Vector3Tuple } from "../space3d/spaceStudio";
 import { roundTo } from "../utils/math";
 import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicSimplify, symbolicSolve, trySymbolic } from "../utils/symbolic";
+import { createWorkspaceObjectsFromSnapshot } from "../workspace/objectRegistry";
+import { autoPlotExpressions, createCasVisualSyncLinks, type CasVisualSyncLink } from "../workspace/casVisualSync";
+import { animationTargetLabel, orbitalPoint, pingPongValue, type AnimationSnapshot, type AnimationTarget } from "../workspace/animationEngine";
+import { createDefaultLesson, lessonStepKinds, lessonSummary, type ClassroomLesson, type LessonStep, type LessonStepKind } from "../workspace/classroomAuthoring";
+import { createWorkspaceBundle, isWorkspaceBundle, templateLabel, type ConstructionTemplate } from "../workspace/importExportSuite";
+import { computePracticeReport, evaluatePracticeResponse, isAssessableStep, practiceReportText, practiceStatusLabel, type PracticeReport, type PracticeResponse } from "../workspace/practiceAssessment";
+import { computeReleaseHealth, releaseStatusLabel, type ReleaseHealth } from "../workspace/releaseReadiness";
+import type { ParameterValues } from "../workspace/linkedExpressions";
+import { ensureParameterValues, extractParameterNames, substituteParameters, summarizeParameters } from "../workspace/linkedExpressions";
+import { useWorkspaceStore } from "../workspace/workspaceStore";
 
 type ResultTableRow = { x: number; y: number; label?: string };
-type ResultCard = { id: string; input: string; interpretation: string; result: string; detail?: string; steps?: string[]; table?: ResultTableRow[]; related?: string[] };
+type ResultCard = { id: string; input: string; interpretation: string; result: string; detail?: string; steps?: string[]; table?: ResultTableRow[]; related?: string[]; visualSync?: CasVisualSyncLink[]; syncedAt?: number };
 type PlotKind = "function" | "inequality" | "scatter" | "regression";
 type PlotItem = { id: string; expression: string; color: string; kind?: PlotKind; points?: ResultTableRow[]; visible?: boolean };
-type GeometryTool = "select" | "point" | "segment" | "line" | "ray" | "vector" | "circle" | "polygon" | "angle" | "angle-bisector" | "tangent" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "on-circle" | "intersect";
+type GeometryTool = "select" | "point" | "segment" | "line" | "ray" | "vector" | "circle" | "polygon" | "angle" | "angle-bisector" | "tangent" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "on-circle" | "intersect" | "perpendicular-bisector" | "regular-polygon" | "circle-radius" | "circle-3point" | "semicircle" | "arc" | "sector" | "compass" | "distance" | "area" | "slope" | "locus" | "trace" | "hide-show" | "lock-object" | "duplicate" | "freehand" | "text" | "label" | "slider" | "move-canvas" | "zoom-tool" | "mirror-line" | "reflect-point" | "translate" | "rotate-tool" | "dilate-tool" | "intersect-region" | "image";
 type WorkspaceTab = "solve" | "geometry" | "space3d" | "tools";
 type GeoPoint = { id: string; x: number; y: number; label: string; locked?: boolean };
 type GeoLineKind = "segment" | "line" | "ray" | "vector";
@@ -23,11 +37,21 @@ type GeoLine = { id: string; a: string; b: string; kind?: GeoLineKind; locked?: 
 type GeoCircle = { id: string; center: string; edge: string; locked?: boolean };
 type GeoPolygon = { id: string; points: string[]; locked?: boolean };
 type GeoAngle = { id: string; a: string; vertex: string; b: string; locked?: boolean };
+type GeoArcKind = "arc" | "semicircle" | "sector";
+type GeoArc = { id: string; kind: GeoArcKind; center: string; start: string; end: string; locked?: boolean };
+type GeoTextNote = { id: string; point: string; text: string; locked?: boolean };
 type GeoConicKind = "parabola" | "ellipse" | "hyperbola";
 type GeoConic = { id: string; kind: GeoConicKind; center: string; a: number; b: number; locked?: boolean };
-type GeoTransformKind = "reflection" | "rotation" | "dilation";
-type GeoTransform = { id: string; type: GeoTransformKind; sourceKind: "point" | "polygon" | "circle" | "conic"; sourceId: string; resultIds: string[]; center?: string; angle?: number; scale?: number };
-type SelectedGeoObject = { kind: "point" | "line" | "circle" | "polygon" | "angle" | "conic" | "transform" | "constraint"; id: string } | null;
+type GeometryTemplateKind =
+  | "triangle" | "right-triangle" | "isosceles-triangle" | "equilateral-triangle"
+  | "rectangle" | "square" | "parallelogram" | "trapezoid" | "rhombus" | "kite"
+  | "pentagon" | "hexagon" | "octagon" | "star"
+  | "circle" | "two-circles" | "annulus" | "semicircle" | "sector" | "arc"
+  | "angle-shape" | "coordinate-axes"
+  | GeoConicKind;
+type GeoTransformKind = "reflection" | "reflection-line" | "reflection-point" | "translation" | "rotation" | "dilation";
+type GeoTransform = { id: string; type: GeoTransformKind; sourceKind: "point" | "polygon" | "circle" | "conic" | "arc" | "text"; sourceId: string; resultIds: string[]; center?: string; line?: string; vectorLine?: string; angle?: number; scale?: number };
+type SelectedGeoObject = { kind: "point" | "line" | "circle" | "polygon" | "angle" | "arc" | "text" | "conic" | "transform" | "constraint"; id: string } | null;
 type GeoConstraint =
   | { id: string; type: "parallel" | "perpendicular"; sourceLine: string; throughPoint: string; line: string }
   | { id: string; type: "midpoint"; a: string; b: string; point: string }
@@ -36,11 +60,15 @@ type GeoConstraint =
   | { id: string; type: "angle-bisector"; a: string; vertex: string; b: string; line: string }
   | { id: string; type: "tangent"; circle: string; throughPoint: string; tangentPoint: string; line: string }
   | { id: string; type: "intersection"; first: string; second: string; point: string };
-type Construction = { points: GeoPoint[]; lines: GeoLine[]; circles: GeoCircle[]; polygons: GeoPolygon[]; angles: GeoAngle[]; conics: GeoConic[]; transforms: GeoTransform[]; constraints: GeoConstraint[] };
+type Construction = { points: GeoPoint[]; lines: GeoLine[]; circles: GeoCircle[]; polygons: GeoPolygon[]; angles: GeoAngle[]; arcs: GeoArc[]; texts: GeoTextNote[]; conics: GeoConic[]; transforms: GeoTransform[]; constraints: GeoConstraint[] };
 type ConstructionHistoryEntry = { id: string; label: string; timestamp: number; before: Construction };
 type DependencyNode = { id: string; label: string; parents: string[]; children: string[]; status: "free" | "dependent" | "locked" | "warning" };
-type SurfaceKind = "paraboloid" | "saddle" | "wave" | "plane" | "ripple" | "cone-surface";
-type SolidKind = "cube" | "sphere" | "cylinder" | "cone";
+type LocusTrace = { id: string; pointId: string; label: string; points: LocusTracePoint[]; color: string; visible: boolean };
+type SurfaceKind = "paraboloid" | "saddle" | "wave" | "plane" | "ripple" | "cone-surface" | "torus" | "helicoid" | "mobius";
+type SolidKind = "cube" | "box" | "sphere" | "hemisphere" | "cylinder" | "cone" | "pyramid" | "triangular-prism" | "tetrahedron" | "octahedron" | "dodecahedron" | "icosahedron" | "torus-solid";
+type Space3DShapeObject = { id: string; kind: SolidKind; name: string; size: number; position: Vector3Tuple; rotation: Vector3Tuple; color: string; visible: boolean };
+type BuiltinSpace3DObjectId = "surface" | "solid" | "cross-section" | "vector" | "point" | "axes" | "grid";
+type Space3DObjectId = BuiltinSpace3DObjectId | `shape:${string}`;
 type WorkspaceSnapshot = {
   input: string;
   results: ResultCard[];
@@ -51,6 +79,10 @@ type WorkspaceSnapshot = {
   surfaceScale: number;
   height3d: number;
   crossSection: number;
+  surfacePosition3d: Vector3Tuple;
+  surfaceRotation3d: Vector3Tuple;
+  solidPosition3d: Vector3Tuple;
+  solidRotation3d: Vector3Tuple;
   showSurface: boolean;
   showSolid: boolean;
   showAxes3d: boolean;
@@ -60,11 +92,23 @@ type WorkspaceSnapshot = {
   showPoint3d: boolean;
   autoRotate3d: boolean;
   zoom3d: number;
+  surfaceDomain: number;
+  vectorStart3d: Vector3Tuple;
+  vectorEnd3d: Vector3Tuple;
+  point3d: Vector3Tuple;
+  space3dShapes: Space3DShapeObject[];
+  graphParameters: ParameterValues;
+  locusTraces: LocusTrace[];
+  animationSnapshots: AnimationSnapshot[];
+  lesson: ClassroomLesson;
+  practiceResponses: Record<string, PracticeResponse>;
+  releaseHealth: ReleaseHealth;
+  practiceReport: PracticeReport;
 };
 
 const colors = ["#06b6d4", "#8b5cf6", "#f59e0b", "#10b981", "#ef4444", "#ec4899", "#14b8a6"];
 const regressionSeed: ResultTableRow[] = [{ x: -4, y: -5.6 }, { x: -2, y: -2.2 }, { x: 0, y: 0.7 }, { x: 2, y: 4.1 }, { x: 4, y: 7.4 }];
-const initialConstruction: Construction = { points: [], lines: [], circles: [], polygons: [], angles: [], conics: [], transforms: [], constraints: [] };
+const initialConstruction: Construction = { points: [], lines: [], circles: [], polygons: [], angles: [], arcs: [], texts: [], conics: [], transforms: [], constraints: [] };
 const examples = ["plot sin(x)", "solve x^2-5*x+6=0", "factor x^2-5*x+6", "derivative x^3-2*x", "integral 3*x^2", "table sin(x)", "roots x^2-4", "extrema x^2-4*x+1", "intersect x^2 and 2*x+3"];
 const guidedExamples = [
   { title: "Quadratic Roots", command: "solve x^2-5*x+6=0" },
@@ -78,18 +122,6 @@ const workspaceTabs: { id: WorkspaceTab; label: string; summary: string }[] = [
   { id: "space3d", label: "3D Lab", summary: "Surfaces, solids, and camera controls" },
   { id: "tools", label: "Tools", summary: "Save, export, examples, formulas" },
 ];
-const workspacePhases = [
-  { phase: 1, title: "Object Kernel", status: "Done", scope: "Geometry and 3D object browser, properties, edit controls, visibility, and delete/remove behavior." },
-  { phase: 2, title: "Construction Tool Depth", status: "Done", scope: "Segments, rays, infinite lines, vectors, angles, bisectors, tangents, labeled measurements, and named object creation modes." },
-  { phase: 3, title: "Dependency Algebra", status: "Done", scope: "Full dependency tree, parent-child locking, recompute history, undo/redo timeline, and constraint diagnostics." },
-  { phase: 4, title: "Advanced Geometry", status: "Active", scope: "Conics, transformations, reflections, rotations, dilations, coordinate geometry, and theorem helpers." },
-  { phase: 5, title: "3D Object Studio", status: "Planned", scope: "Planes, lines, vectors, polyhedra, parametric surfaces, clipping, measurement tools, and object transforms." },
-  { phase: 6, title: "CAS + Visual Sync", status: "Planned", scope: "Algebra/CAS expressions linked live to graph, geometry, sliders, and symbolic result panels." },
-  { phase: 7, title: "Animation Engine", status: "Planned", scope: "Timelines, keyframes, traces, sliders, play/pause, snapshots, and motion-path exports." },
-  { phase: 8, title: "Classroom Authoring", status: "Planned", scope: "Activity builder, step cards, hints, quizzes, teacher notes, and shareable lessons." },
-  { phase: 9, title: "Import Export Suite", status: "Planned", scope: "JSON, SVG, PNG, CSV, printable sheets, offline files, and construction templates." },
-  { phase: 10, title: "Polish and Scale", status: "Planned", scope: "Performance, keyboard shortcuts, accessibility, mobile gestures, plugin API, and browser-only persistence." },
-];
 const formulaLibrary = [
   { topic: "Algebra", title: "Quadratic Formula", formula: "x = (-b +/- sqrt(b^2-4ac))/(2a)", command: "solve x^2-5*x+6=0" },
   { topic: "Calculus", title: "Power Rule", formula: "d/dx x^n = n*x^(n-1)", command: "derivative x^4" },
@@ -98,12 +130,54 @@ const formulaLibrary = [
   { topic: "Geometry", title: "Circle Area", formula: "A = pi r^2", command: "area circle radius 5" },
   { topic: "3D", title: "Paraboloid", formula: "z = k(x^2+y^2)", command: "plot x^2" },
 ];
+const surfaceOptions: { value: SurfaceKind; label: string }[] = [
+  { value: "paraboloid", label: "Paraboloid" },
+  { value: "saddle", label: "Saddle" },
+  { value: "wave", label: "Wave" },
+  { value: "plane", label: "Plane" },
+  { value: "ripple", label: "Ripple" },
+  { value: "cone-surface", label: "Cone surface" },
+  { value: "torus", label: "Parametric torus" },
+  { value: "helicoid", label: "Parametric helicoid" },
+  { value: "mobius", label: "Mobius strip" },
+];
+const solidOptions: { value: SolidKind; label: string }[] = [
+  { value: "cube", label: "Cube" },
+  { value: "box", label: "Rectangular prism" },
+  { value: "sphere", label: "Sphere" },
+  { value: "hemisphere", label: "Hemisphere" },
+  { value: "cylinder", label: "Cylinder" },
+  { value: "cone", label: "Cone" },
+  { value: "pyramid", label: "Square pyramid" },
+  { value: "triangular-prism", label: "Triangular prism" },
+  { value: "tetrahedron", label: "Tetrahedron" },
+  { value: "octahedron", label: "Octahedron" },
+  { value: "dodecahedron", label: "Dodecahedron" },
+  { value: "icosahedron", label: "Icosahedron" },
+  { value: "torus-solid", label: "Torus solid" },
+];
+const shapePalette3d: { kind: SolidKind; label: string; icon: LucideIcon }[] = [
+  { kind: "cube", label: "Cube", icon: Square },
+  { kind: "box", label: "Prism", icon: Square },
+  { kind: "sphere", label: "Sphere", icon: Circle },
+  { kind: "hemisphere", label: "Hemisphere", icon: CircleDot },
+  { kind: "cylinder", label: "Cylinder", icon: Radius },
+  { kind: "cone", label: "Cone", icon: Triangle },
+  { kind: "pyramid", label: "Pyramid", icon: Triangle },
+  { kind: "triangular-prism", label: "Tri Prism", icon: Pentagon },
+  { kind: "tetrahedron", label: "Tetra", icon: Triangle },
+  { kind: "octahedron", label: "Octa", icon: Axis3d },
+  { kind: "dodecahedron", label: "Dodeca", icon: Pentagon },
+  { kind: "icosahedron", label: "Icosa", icon: Pentagon },
+  { kind: "torus-solid", label: "Torus", icon: CircleDot },
+];
 
 export default function MathWorkspace() {
   const [activeTab, setActiveTab] = useState<WorkspaceTab>("solve");
   const [input, setInput] = useState("plot sin(x)");
   const [results, setResults] = useState<ResultCard[]>([]);
   const [plots, setPlots] = useState<PlotItem[]>([{ id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true }]);
+  const [graphParameters, setGraphParameters] = useState<ParameterValues>({ a: 1, b: 0 });
   const [tool, setTool] = useState<GeometryTool>("select");
   const [construction, setConstruction] = useState<Construction>(initialConstruction);
   const [selectedPointIds, setSelectedPointIds] = useState<string[]>([]);
@@ -113,11 +187,17 @@ export default function MathWorkspace() {
   const [undoStack, setUndoStack] = useState<ConstructionHistoryEntry[]>([]);
   const [redoStack, setRedoStack] = useState<ConstructionHistoryEntry[]>([]);
   const [polygonDraft, setPolygonDraft] = useState<string[]>([]);
+  const [locusTraces, setLocusTraces] = useState<LocusTrace[]>([]);
+  const [activeTracePointId, setActiveTracePointId] = useState<string | null>(null);
   const [surface, setSurface] = useState<SurfaceKind>("paraboloid");
   const [solid, setSolid] = useState<SolidKind>("cube");
   const [surfaceScale, setSurfaceScale] = useState(1);
   const [height3d, setHeight3d] = useState(2.5);
   const [crossSection, setCrossSection] = useState(0);
+  const [surfacePosition3d, setSurfacePosition3d] = useState<Vector3Tuple>([0, 0, 0]);
+  const [surfaceRotation3d, setSurfaceRotation3d] = useState<Vector3Tuple>([0, 0, 0]);
+  const [solidPosition3d, setSolidPosition3d] = useState<Vector3Tuple>([3, 0, 2.6]);
+  const [solidRotation3d, setSolidRotation3d] = useState<Vector3Tuple>([0, 0, 0]);
   const [showSurface, setShowSurface] = useState(true);
   const [showSolid, setShowSolid] = useState(true);
   const [showAxes3d, setShowAxes3d] = useState(true);
@@ -127,20 +207,207 @@ export default function MathWorkspace() {
   const [showPoint3d, setShowPoint3d] = useState(true);
   const [autoRotate3d, setAutoRotate3d] = useState(true);
   const [zoom3d, setZoom3d] = useState(1);
+  const [surfaceDomain, setSurfaceDomain] = useState(2.6);
+  const [vectorStart3d, setVectorStart3d] = useState<Vector3Tuple>([-3, 0.05, -3]);
+  const [vectorEnd3d, setVectorEnd3d] = useState<Vector3Tuple>([2.2, 1.4, 1.8]);
+  const [point3d, setPoint3d] = useState<Vector3Tuple>([2.2, 1.4, 1.8]);
+  const [space3dShapes, setSpace3dShapes] = useState<Space3DShapeObject[]>([]);
+  const [selected3dObject, setSelected3dObject] = useState<Space3DObjectId>("surface");
+  const [dragging3dObject, setDragging3dObject] = useState(false);
+  const [animationPlaying, setAnimationPlaying] = useState(false);
+  const [animationTime, setAnimationTime] = useState(0);
+  const [animationDuration, setAnimationDuration] = useState(6);
+  const [animationTarget, setAnimationTarget] = useState<AnimationTarget>("graph-parameter");
+  const [animationParameter, setAnimationParameter] = useState("a");
+  const [animationMin, setAnimationMin] = useState(-3);
+  const [animationMax, setAnimationMax] = useState(3);
+  const [animationSnapshots, setAnimationSnapshots] = useState<AnimationSnapshot[]>([]);
+  const [lesson, setLesson] = useState<ClassroomLesson>(() => createDefaultLesson());
+  const [practiceResponses, setPracticeResponses] = useState<Record<string, PracticeResponse>>({});
+  const [importStatus, setImportStatus] = useState("No import loaded.");
   const [spaceControlsOpen, setSpaceControlsOpen] = useState(true);
   const [formulaSearch, setFormulaSearch] = useState("");
   const [teachingMode, setTeachingMode] = useState(false);
   const svgRef = useRef<SVGSVGElement>(null);
   const graphExportRef = useRef<HTMLDivElement>(null);
   const geometryExportRef = useRef<SVGSVGElement | null>(null);
+  const importFileRef = useRef<HTMLInputElement | null>(null);
   const selectedPointIdsRef = useRef<string[]>([]);
   const polygonDraftRef = useRef<string[]>([]);
   const selectedCircleIdsRef = useRef<string[]>([]);
+  const upsertWorkspaceObjects = useWorkspaceStore((state) => state.upsertObjects);
+  const recordWorkspaceCommand = useWorkspaceStore((state) => state.recordCommand);
 
   const filteredFormulas = useMemo(() => {
     const query = formulaSearch.trim().toLowerCase();
     return formulaLibrary.filter((item) => !query || [item.topic, item.title, item.formula].join(" ").toLowerCase().includes(query));
   }, [formulaSearch]);
+
+  const space3dMeasurements = useMemo<Space3DMeasurements>(() => {
+    const solidStats = solidMetrics(solid, height3d);
+    const surfaceSamples = summarizeSurfaceSamples((x, y) => surfaceZ(surface, x, y, surfaceScale), surfaceDomain, crossSection);
+    return {
+      vectorLength: vectorLength(vectorStart3d, vectorEnd3d),
+      vectorComponents: vectorComponents(vectorStart3d, vectorEnd3d),
+      pointDistanceFromOrigin: distanceFromOrigin(point3d),
+      solidVolume: solidStats.volume,
+      solidSurfaceArea: solidStats.surfaceArea,
+      surfaceSampleMin: surfaceSamples.min,
+      surfaceSampleMax: surfaceSamples.max,
+      crossSectionSamples: surfaceSamples.crossSectionSamples,
+    };
+  }, [crossSection, height3d, point3d, solid, surface, surfaceDomain, surfaceScale, vectorEnd3d, vectorStart3d]);
+
+  const animationParameterNames = useMemo(() => Object.keys(graphParameters).sort(), [graphParameters]);
+  const activeAnimationParameter = animationParameterNames.includes(animationParameter) ? animationParameter : animationParameterNames[0] ?? animationParameter;
+  const selected3dShapeId = selected3dObject.startsWith("shape:") ? selected3dObject.slice("shape:".length) : null;
+  const selected3dShape = selected3dShapeId ? space3dShapes.find((shape) => shape.id === selected3dShapeId) ?? null : null;
+  const geometryObjectCount = construction.points.length + construction.lines.length + construction.circles.length + construction.polygons.length + construction.angles.length + construction.arcs.length + construction.texts.length + construction.conics.length + construction.constraints.length;
+  const practiceReport = useMemo(() => computePracticeReport(lesson, practiceResponses), [lesson, practiceResponses]);
+  const releaseHealth = useMemo(() => computeReleaseHealth({
+    plots: plots.length,
+    results: results.length,
+    geometryObjects: geometryObjectCount,
+    spaceObjects: 7 + space3dShapes.length,
+    lessonSteps: lesson.steps.length,
+    animationSnapshots: animationSnapshots.length,
+    importExportReady: true,
+  }), [animationSnapshots.length, geometryObjectCount, lesson.steps.length, plots.length, results.length, space3dShapes.length]);
+
+  const deleteSelected3dObject = () => {
+    if (selected3dShapeId) {
+      setSpace3dShapes((shapes) => shapes.filter((shape) => shape.id !== selected3dShapeId));
+      setSelected3dObject("surface");
+      return;
+    }
+    const visibilitySetters: Record<BuiltinSpace3DObjectId, (value: boolean) => void> = {
+      surface: setShowSurface,
+      solid: setShowSolid,
+      "cross-section": setShowCrossSection3d,
+      vector: setShowVector3d,
+      point: setShowPoint3d,
+      axes: setShowAxes3d,
+      grid: setShowGrid3d,
+    };
+    visibilitySetters[selected3dObject as BuiltinSpace3DObjectId]?.(false);
+  };
+
+  const restoreAll3dObjects = () => {
+    setShowSurface(true);
+    setShowSolid(true);
+    setShowAxes3d(true);
+    setShowGrid3d(true);
+    setShowCrossSection3d(true);
+    setShowVector3d(true);
+    setShowPoint3d(true);
+    setSpace3dShapes((shapes) => shapes.map((shape) => ({ ...shape, visible: true })));
+  };
+
+  const add3dObject = (object: Space3DObjectId) => {
+    if (object.startsWith("shape:")) {
+      setSpace3dShapes((shapes) => shapes.map((shape) => shape.id === object.slice("shape:".length) ? { ...shape, visible: true } : shape));
+      setSelected3dObject(object);
+      return;
+    }
+    const visibilitySetters: Record<BuiltinSpace3DObjectId, (value: boolean) => void> = {
+      surface: setShowSurface,
+      solid: setShowSolid,
+      "cross-section": setShowCrossSection3d,
+      vector: setShowVector3d,
+      point: setShowPoint3d,
+      axes: setShowAxes3d,
+      grid: setShowGrid3d,
+    };
+    visibilitySetters[object as BuiltinSpace3DObjectId](true);
+    setSelected3dObject(object);
+  };
+
+  const add3dShape = (kind: SolidKind) => {
+    const id = crypto.randomUUID();
+    const count = space3dShapes.filter((shape) => shape.kind === kind).length + 1;
+    const offset = space3dShapes.length % 5;
+    const shape: Space3DShapeObject = {
+      id,
+      kind,
+      name: `${solidOptions.find((option) => option.value === kind)?.label ?? kind} ${count}`,
+      size: 1.8,
+      position: clampVector3([-2.8 + offset * 1.35, 0, 2.4 - offset * 0.85]),
+      rotation: [0, 0, 0],
+      color: colors[space3dShapes.length % colors.length],
+      visible: true,
+    };
+    setSpace3dShapes((shapes) => [...shapes, shape]);
+    setSelected3dObject(`shape:${id}`);
+  };
+
+  const update3dShape = (id: string, patch: Partial<Space3DShapeObject>) => {
+    setSpace3dShapes((shapes) => shapes.map((shape) => shape.id === id ? { ...shape, ...patch } : shape));
+  };
+
+  const duplicateSelected3dShape = () => {
+    if (!selected3dShape) return;
+    const id = crypto.randomUUID();
+    const duplicate: Space3DShapeObject = {
+      ...selected3dShape,
+      id,
+      name: `${selected3dShape.name} copy`,
+      position: clampVector3([selected3dShape.position[0] + 0.8, selected3dShape.position[1], selected3dShape.position[2] - 0.8]),
+    };
+    setSpace3dShapes((shapes) => [...shapes, duplicate]);
+    setSelected3dObject(`shape:${id}`);
+  };
+
+  useEffect(() => {
+    if (!animationPlaying) return;
+    const startedAt = performance.now() - animationTime * 1000;
+    const id = window.setInterval(() => {
+      const nextTime = (performance.now() - startedAt) / 1000;
+      const value = pingPongValue(nextTime, animationDuration, animationMin, animationMax);
+      setAnimationTime(roundTo(nextTime % animationDuration, 3));
+      if (animationTarget === "graph-parameter") {
+        setGraphParameters((current) => ({ ...current, [activeAnimationParameter]: roundTo(value, 3) }));
+      } else if (animationTarget === "cross-section") {
+        setCrossSection(roundTo(value, 3));
+      } else if (animationTarget === "surface-scale") {
+        setSurfaceScale(roundTo(Math.max(0.2, Math.min(2.5, value)), 3));
+      } else {
+        const angle = pingPongValue(nextTime, animationDuration, 0, Math.PI * 2);
+        setPoint3d(orbitalPoint(angle));
+      }
+    }, 80);
+    return () => window.clearInterval(id);
+  }, [activeAnimationParameter, animationDuration, animationMax, animationMin, animationPlaying, animationTarget]);
+
+  useEffect(() => {
+    upsertWorkspaceObjects(
+      createWorkspaceObjectsFromSnapshot({
+        input,
+        plots,
+        results,
+        construction,
+        activeTool: tool,
+        surface,
+        solid,
+        surfaceScale,
+        height3d,
+        crossSection,
+        surfaceDomain,
+        vectorStart3d,
+        vectorEnd3d,
+        point3d,
+        graphParameters,
+        locusTraces,
+        animationPlaying,
+        animationTime,
+        animationTarget,
+        animationSnapshots,
+        lesson,
+        practiceResponses,
+        practiceReport,
+        releaseHealth,
+      })
+    );
+  }, [animationPlaying, animationSnapshots, animationTarget, animationTime, construction, crossSection, graphParameters, height3d, input, lesson, locusTraces, plots, point3d, practiceReport, practiceResponses, releaseHealth, results, solid, surface, surfaceDomain, surfaceScale, tool, upsertWorkspaceObjects, vectorEnd3d, vectorStart3d]);
 
   const commitConstruction = (label: string, updater: (current: Construction) => Construction, draggedPointId?: string) => {
     setConstruction((current) => {
@@ -164,13 +431,136 @@ export default function MathWorkspace() {
   const runInput = () => {
     const raw = input.trim();
     if (!raw) return;
-    const analysis = interpretInput(raw);
+    const analysis = enrichResultWithVisualSync(interpretInput(raw));
+    recordWorkspaceCommand(`Ran command: ${raw}`);
     setResults((current) => [analysis, ...current].slice(0, 12));
-    if (analysis.interpretation === "2D plot") {
-      const expression = normalizePlotExpression(raw);
-      setPlots((current) => [{ id: crypto.randomUUID(), expression, color: colors[current.length % colors.length], kind: inferPlotKind(expression), visible: true }, ...current].slice(0, 8));
-    }
+    syncResultToVisuals(analysis, raw);
   };
+
+  const enrichResultWithVisualSync = (result: ResultCard): ResultCard => {
+    const visualSync = createCasVisualSyncLinks(result);
+    return visualSync.length ? { ...result, visualSync } : result;
+  };
+
+  const addPlotExpression = (expression: string, options?: { source?: string; force?: boolean }) => {
+    const normalized = normalizePlotExpression(expression);
+    if (!normalized) return;
+    setPlots((current) => {
+      if (!options?.force && current.some((plot) => plot.expression.replace(/\s+/g, "") === normalized.replace(/\s+/g, ""))) return current;
+      return [{ id: crypto.randomUUID(), expression: normalized, color: colors[current.length % colors.length], kind: inferPlotKind(normalized), visible: true }, ...current].slice(0, 10);
+    });
+    if (options?.source) recordWorkspaceCommand(`Synced graph from ${options.source}: ${normalized}`);
+  };
+
+  const syncResultToVisuals = (analysis: ResultCard, rawCommand: string) => {
+    if (analysis.interpretation === "2D plot") {
+      addPlotExpression(rawCommand, { source: "plot command", force: true });
+      return;
+    }
+    const expressions = autoPlotExpressions(analysis.visualSync ?? []);
+    expressions.forEach((expression) => addPlotExpression(expression, { source: analysis.interpretation }));
+  };
+
+  const runVisualSyncLink = (link: CasVisualSyncLink) => {
+    if (link.kind === "plot" && link.expression) {
+      addPlotExpression(link.expression, { source: "CAS visual link", force: true });
+      setActiveTab("solve");
+      return;
+    }
+    const command = link.command ?? (link.kind === "table" && link.expression ? `table ${link.expression}` : "");
+    if (!command) return;
+    setInput(command);
+    const analysis = enrichResultWithVisualSync(interpretInput(command));
+    recordWorkspaceCommand(`Ran visual sync link: ${command}`);
+    setResults((current) => [analysis, ...current].slice(0, 12));
+    syncResultToVisuals(analysis, command);
+    setActiveTab("solve");
+  };
+
+  const captureAnimationSnapshot = () => {
+    const snapshot: AnimationSnapshot = {
+      id: crypto.randomUUID(),
+      label: `${animationTargetLabel(animationTarget)} @ ${roundTo(animationTime, 2)}s`,
+      timestamp: Date.now(),
+      time: animationTime,
+      target: animationTarget,
+      parameters: graphParameters,
+      crossSection,
+      surfaceScale,
+      point3d,
+    };
+    setAnimationSnapshots((current) => [snapshot, ...current].slice(0, 12));
+    recordWorkspaceCommand(`Captured animation snapshot: ${snapshot.label}`);
+  };
+
+  const applyAnimationSnapshot = (item: AnimationSnapshot) => {
+    setGraphParameters(item.parameters);
+    setCrossSection(item.crossSection);
+    setSurfaceScale(item.surfaceScale);
+    setPoint3d(item.point3d);
+    setAnimationTime(item.time);
+    setAnimationTarget(item.target);
+    setAnimationPlaying(false);
+  };
+
+  const exportMotionJson = () => downloadText("math-workspace-motion.json", JSON.stringify(animationSnapshots, null, 2), "application/json");
+
+  const touchLesson = (patch: Partial<ClassroomLesson>) => setLesson((current) => ({ ...current, ...patch, updatedAt: Date.now() }));
+  const updateLessonStep = (id: string, patch: Partial<LessonStep>) => {
+    setLesson((current) => ({
+      ...current,
+      updatedAt: Date.now(),
+      steps: current.steps.map((step) => step.id === id ? { ...step, ...patch } : step),
+    }));
+  };
+  const addLessonStep = (kind: LessonStepKind = "question") => {
+    const step: LessonStep = {
+      id: crypto.randomUUID(),
+      kind,
+      title: kind === "teacher-note" ? "Teacher note" : "New lesson step",
+      prompt: kind === "check" ? "What should students verify before moving on?" : "Write the student prompt here.",
+      command: kind === "explore" ? input : undefined,
+      expected: kind === "check" ? "Expected observation or answer." : undefined,
+    };
+    setLesson((current) => ({ ...current, updatedAt: Date.now(), steps: [...current.steps, step] }));
+  };
+  const deleteLessonStep = (id: string) => {
+    setLesson((current) => ({ ...current, updatedAt: Date.now(), steps: current.steps.filter((step) => step.id !== id) }));
+    setPracticeResponses((current) => {
+      const next = { ...current };
+      delete next[id];
+      return next;
+    });
+  };
+  const moveLessonStep = (id: string, direction: -1 | 1) => {
+    setLesson((current) => {
+      const index = current.steps.findIndex((step) => step.id === id);
+      const nextIndex = index + direction;
+      if (index < 0 || nextIndex < 0 || nextIndex >= current.steps.length) return current;
+      const steps = [...current.steps];
+      [steps[index], steps[nextIndex]] = [steps[nextIndex], steps[index]];
+      return { ...current, updatedAt: Date.now(), steps };
+    });
+  };
+  const runLessonStep = (step: LessonStep) => {
+    if (!step.command) return;
+    setInput(step.command);
+    const analysis = enrichResultWithVisualSync(interpretInput(step.command));
+    recordWorkspaceCommand(`Ran lesson step: ${step.title}`);
+    setResults((current) => [analysis, ...current].slice(0, 12));
+    syncResultToVisuals(analysis, step.command);
+    setActiveTab("solve");
+  };
+  const exportLessonJson = () => downloadText("math-universe-lesson.json", JSON.stringify({ lesson, workspace: snapshot() }, null, 2), "application/json");
+  const exportLessonWorksheet = () => downloadText("math-universe-lesson-worksheet.txt", lessonToWorksheet(lesson), "text/plain");
+  const updatePracticeAnswer = (stepId: string, answer: string) => {
+    setPracticeResponses((current) => ({ ...current, [stepId]: { ...current[stepId], stepId, answer, score: undefined, feedback: undefined, checkedAt: undefined } }));
+  };
+  const checkPracticeStep = (step: LessonStep) => {
+    const answer = practiceResponses[step.id]?.answer ?? "";
+    setPracticeResponses((current) => ({ ...current, [step.id]: evaluatePracticeResponse(step, answer) }));
+  };
+  const exportPracticeReport = () => downloadText("math-universe-practice-report.txt", practiceReportText(lesson, practiceResponses, practiceReport), "text/plain");
 
   const addPoint = (x: number, y: number) => {
     const id = crypto.randomUUID();
@@ -232,7 +622,14 @@ export default function MathWorkspace() {
       addPoint(point.x, point.y);
       return;
     }
-    if (["segment", "line", "ray", "vector", "circle", "polygon", "angle", "angle-bisector", "tangent", "parallel", "perpendicular", "midpoint", "fixed-length", "on-circle"].includes(tool)) {
+    if (tool === "text" || tool === "image") {
+      const notePointId = queuePoint(point);
+      const noteId = crypto.randomUUID();
+      commitConstruction(tool === "image" ? "Add image anchor" : "Add text note", (current) => ({ ...current, texts: [...current.texts, { id: noteId, point: notePointId, text: tool === "image" ? "Image" : "Text" }] }));
+      setSelectedGeoObject({ kind: "text", id: noteId });
+      return;
+    }
+    if (["segment", "line", "ray", "vector", "circle", "polygon", "angle", "angle-bisector", "tangent", "parallel", "perpendicular", "midpoint", "fixed-length", "on-circle", "perpendicular-bisector", "regular-polygon", "circle-radius", "circle-3point", "semicircle", "arc", "sector", "compass"].includes(tool)) {
       handlePointPick(queuePoint(point));
     }
   };
@@ -246,11 +643,51 @@ export default function MathWorkspace() {
         setPendingPointIds([]);
       }
     }
-    if (tool === "circle") {
+    if (tool === "circle" || tool === "circle-radius") {
       const next = [...selectedPointIdsRef.current, pointId].slice(-2);
       setPendingPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
         commitConstruction("Add circle", (current) => ({ ...current, circles: [...current.circles, { id: crypto.randomUUID(), center: next[0], edge: next[1] }] }));
+        setPendingPointIds([]);
+      }
+    }
+    if (tool === "circle-3point") {
+      const next = [...selectedPointIdsRef.current, pointId].slice(-3);
+      setPendingPointIds(next);
+      if (next.length === 3 && new Set(next).size === 3) {
+        commitConstruction("Add circle through 3 points", (current) => addCircleThroughThreePoints(current, next[0], next[1], next[2]));
+        setPendingPointIds([]);
+      }
+    }
+    if (tool === "semicircle") {
+      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
+      setPendingPointIds(next);
+      if (next.length === 2 && next[0] !== next[1]) {
+        commitConstruction("Add semicircle", (current) => addSemicircleConstruction(current, next[0], next[1]));
+        setPendingPointIds([]);
+      }
+    }
+    if (tool === "arc" || tool === "sector") {
+      const next = [...selectedPointIdsRef.current, pointId].slice(-3);
+      setPendingPointIds(next);
+      if (next.length === 3 && new Set(next).size === 3) {
+        commitConstruction(tool === "arc" ? "Add arc" : "Add sector", (current) => ({ ...current, arcs: [...current.arcs, { id: crypto.randomUUID(), kind: tool, center: next[0], start: next[1], end: next[2] }] }));
+        setPendingPointIds([]);
+      }
+    }
+    if (tool === "regular-polygon") {
+      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
+      setPendingPointIds(next);
+      if (next.length === 2 && next[0] !== next[1]) {
+        commitConstruction("Add regular polygon", (current) => addRegularPolygonConstruction(current, next[0], next[1], 6));
+        setPendingPointIds([]);
+      }
+    }
+    if (tool === "compass") {
+      const next = [...selectedPointIdsRef.current, pointId].slice(-3);
+      setPendingPointIds(next);
+      if (next.length === 3 && new Set(next).size === 3) {
+        commitConstruction("Copy length with compass", (current) => addCompassCircleConstruction(current, next[0], next[1], next[2]));
         setPendingPointIds([]);
       }
     }
@@ -302,6 +739,49 @@ export default function MathWorkspace() {
       commitConstruction("Add intersection", addIntersectionConstraint);
       setPendingPointIds([]);
     }
+    if (tool === "distance") {
+      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
+      setPendingPointIds(next);
+      setSelectedGeoObject({ kind: "point", id: pointId });
+    }
+    if (tool === "text" || tool === "image") {
+      const noteId = crypto.randomUUID();
+      commitConstruction(tool === "image" ? "Add image anchor" : "Add text note", (current) => ({
+        ...current,
+        texts: [...current.texts, { id: noteId, point: pointId, text: tool === "image" ? "Image" : "Text" }],
+      }));
+      setPendingPointIds([]);
+      setSelectedGeoObject({ kind: "text", id: noteId });
+      return;
+    }
+    if (tool === "reflect-point" || tool === "rotate-tool" || tool === "dilate-tool") {
+      if (selectedGeoObject && selectedGeoObject.kind !== "point" && selectedGeoObject.kind !== "line" && selectedGeoObject.kind !== "angle" && selectedGeoObject.kind !== "constraint" && selectedGeoObject.kind !== "transform") {
+        const transformKind = tool === "reflect-point" ? "reflection-point" : tool === "rotate-tool" ? "rotation" : "dilation";
+        commitConstruction(`Apply ${transformKind}`, (current) => addTransformConstruction(current, selectedGeoObject, transformKind, { centerPointId: pointId }));
+        setPendingPointIds([]);
+        return;
+      }
+    }
+    if (tool === "translate") {
+      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
+      setPendingPointIds(next);
+      if (selectedGeoObject && selectedGeoObject.kind !== "point" && selectedGeoObject.kind !== "line" && selectedGeoObject.kind !== "angle" && selectedGeoObject.kind !== "constraint" && selectedGeoObject.kind !== "transform" && next.length === 2 && next[0] !== next[1]) {
+        commitConstruction("Translate selected object", (current) => addTransformConstruction(current, selectedGeoObject, "translation", { vectorPointIds: [next[0], next[1]] }));
+        setPendingPointIds([]);
+      }
+      return;
+    }
+    if (["area", "slope", "locus", "trace", "hide-show", "lock-object", "duplicate", "freehand", "label", "slider", "move-canvas", "zoom-tool", "mirror-line", "intersect-region"].includes(tool)) {
+      setPendingPointIds([pointId]);
+      setSelectedGeoObject({ kind: "point", id: pointId });
+    }
+  };
+  const handleLinePick = (lineId: string) => {
+    if (tool === "mirror-line" && selectedGeoObject && selectedGeoObject.kind !== "line" && selectedGeoObject.kind !== "angle" && selectedGeoObject.kind !== "constraint" && selectedGeoObject.kind !== "transform") {
+      commitConstruction("Reflect selected object about line", (current) => addTransformConstruction(current, selectedGeoObject, "reflection-line", { lineId }));
+      return;
+    }
+    setSelectedGeoObject({ kind: "line", id: lineId });
   };
   const handleCirclePick = (circleId: string) => {
     if (tool !== "tangent") {
@@ -328,6 +808,8 @@ export default function MathWorkspace() {
       circles: current.circles.filter((circle) => !selected.has(circle.center) && !selected.has(circle.edge)),
       polygons: current.polygons.map((polygon) => ({ ...polygon, points: polygon.points.filter((id) => !selected.has(id)) })).filter((polygon) => polygon.points.length >= 3),
       angles: current.angles.filter((angle) => !selected.has(angle.a) && !selected.has(angle.vertex) && !selected.has(angle.b)),
+      arcs: current.arcs.filter((arc) => !selected.has(arc.center) && !selected.has(arc.start) && !selected.has(arc.end)),
+      texts: current.texts.filter((note) => !selected.has(note.point)),
       conics: current.conics.filter((conic) => !selected.has(conic.center)),
       transforms: current.transforms.filter((transform) => transform.resultIds.every((id) => !selected.has(id))),
       constraints: current.constraints.filter((constraint) => constraintPointIds(constraint).every((id) => !selected.has(id))),
@@ -373,6 +855,18 @@ export default function MathWorkspace() {
       angles: current.angles.map((angle) => angle.id === id ? { ...angle, ...patch } : angle),
     }));
   };
+  const updateGeometryArc = (id: string, patch: Partial<Pick<GeoArc, "kind" | "center" | "start" | "end">>) => {
+    commitConstruction("Edit arc", (current) => ({
+      ...current,
+      arcs: current.arcs.map((arc) => arc.id === id ? { ...arc, ...patch } : arc),
+    }));
+  };
+  const updateGeometryText = (id: string, patch: Partial<Pick<GeoTextNote, "point" | "text">>) => {
+    commitConstruction("Edit text", (current) => ({
+      ...current,
+      texts: current.texts.map((note) => note.id === id ? { ...note, ...patch } : note),
+    }));
+  };
   const updateGeometryConic = (id: string, patch: Partial<Pick<GeoConic, "kind" | "center" | "a" | "b">>) => {
     commitConstruction("Edit conic", (current) => ({
       ...current,
@@ -382,23 +876,65 @@ export default function MathWorkspace() {
   const toggleGeometryLock = (kind: Exclude<NonNullable<SelectedGeoObject>["kind"], "constraint" | "transform">, id: string) => {
     commitConstruction(`Toggle ${kind} lock`, (current) => toggleObjectLock(current, kind, id));
   };
-  const addGeometryTemplate = (kind: "triangle" | "rectangle" | "circle" | GeoConicKind) => {
+  const addGeometryTemplate = (kind: GeometryTemplateKind) => {
     setPendingPointIds([]);
     setPendingPolygonDraft([]);
     commitConstruction(`Add ${kind} template`, (current) => {
       const start = current.points.length;
-      const makePoint = (x: number, y: number, index: number): GeoPoint => ({ id: crypto.randomUUID(), x, y, label: pointLabelForIndex(start + index) });
-      if (kind === "triangle") {
-        const points = [makePoint(220, 300, 0), makePoint(420, 300, 1), makePoint(320, 150, 2)];
-        const angle: GeoAngle = { id: crypto.randomUUID(), a: points[0].id, vertex: points[2].id, b: points[1].id };
-        return { ...current, points: [...current.points, ...points], polygons: [...current.polygons, { id: crypto.randomUUID(), points: points.map((point) => point.id) }], angles: [...current.angles, angle] };
+      const offset = (start % 7) * 16;
+      const makePoint = (x: number, y: number, index: number): GeoPoint => ({ id: crypto.randomUUID(), x: x + offset, y: y + offset / 2, label: pointLabelForIndex(start + index) });
+      const polygonFromCoords = (coords: Array<[number, number]>, withAngle = false) => {
+        const points = coords.map(([x, y], index) => makePoint(x, y, index));
+        const polygon: GeoPolygon = { id: crypto.randomUUID(), points: points.map((point) => point.id) };
+        const angle = withAngle && points.length >= 3 ? [{ id: crypto.randomUUID(), a: points[0].id, vertex: points[2].id, b: points[1].id }] : [];
+        return { ...current, points: [...current.points, ...points], polygons: [...current.polygons, polygon], angles: [...current.angles, ...angle] };
+      };
+      const regularCoords = (sides: number, radius: number, centerX = 330, centerY = 220, startAngle = -Math.PI / 2) =>
+        Array.from({ length: sides }, (_, index): [number, number] => [centerX + Math.cos(startAngle + index * Math.PI * 2 / sides) * radius, centerY + Math.sin(startAngle + index * Math.PI * 2 / sides) * radius]);
+      if (kind === "triangle") return polygonFromCoords([[220, 300], [420, 300], [320, 150]], true);
+      if (kind === "right-triangle") return polygonFromCoords([[230, 310], [430, 310], [230, 150]], true);
+      if (kind === "isosceles-triangle") return polygonFromCoords([[220, 310], [440, 310], [330, 130]], true);
+      if (kind === "equilateral-triangle") return polygonFromCoords(regularCoords(3, 112, 330, 238), true);
+      if (kind === "rectangle") return polygonFromCoords([[210, 130], [440, 130], [440, 300], [210, 300]]);
+      if (kind === "square") return polygonFromCoords([[240, 140], [400, 140], [400, 300], [240, 300]]);
+      if (kind === "parallelogram") return polygonFromCoords([[230, 300], [430, 300], [380, 145], [180, 145]]);
+      if (kind === "trapezoid") return polygonFromCoords([[210, 310], [450, 310], [390, 155], [270, 155]]);
+      if (kind === "rhombus") return polygonFromCoords([[330, 120], [470, 220], [330, 320], [190, 220]]);
+      if (kind === "kite") return polygonFromCoords([[330, 110], [430, 235], [330, 330], [240, 235]]);
+      if (kind === "pentagon") return polygonFromCoords(regularCoords(5, 105));
+      if (kind === "hexagon") return polygonFromCoords(regularCoords(6, 105, 330, 220, Math.PI / 6));
+      if (kind === "octagon") return polygonFromCoords(regularCoords(8, 105, 330, 220, Math.PI / 8));
+      if (kind === "star") return polygonFromCoords(Array.from({ length: 10 }, (_, index): [number, number] => {
+        const radius = index % 2 === 0 ? 112 : 48;
+        const angle = -Math.PI / 2 + index * Math.PI / 5;
+        return [330 + Math.cos(angle) * radius, 220 + Math.sin(angle) * radius];
+      }));
+      const points = [makePoint(320, 210, 0), makePoint(440, 210, 1), makePoint(320, 90, 2)];
+      if (kind === "circle") return { ...current, points: [...current.points, points[0], points[1]], circles: [...current.circles, { id: crypto.randomUUID(), center: points[0].id, edge: points[1].id }] };
+      if (kind === "two-circles") {
+        const leftCenter = makePoint(260, 210, 0), leftEdge = makePoint(360, 210, 1), rightCenter = makePoint(410, 210, 2), rightEdge = makePoint(510, 210, 3);
+        return { ...current, points: [...current.points, leftCenter, leftEdge, rightCenter, rightEdge], circles: [...current.circles, { id: crypto.randomUUID(), center: leftCenter.id, edge: leftEdge.id }, { id: crypto.randomUUID(), center: rightCenter.id, edge: rightEdge.id }] };
       }
-      if (kind === "rectangle") {
-        const points = [makePoint(210, 130, 0), makePoint(440, 130, 1), makePoint(440, 300, 2), makePoint(210, 300, 3)];
-        return { ...current, points: [...current.points, ...points], polygons: [...current.polygons, { id: crypto.randomUUID(), points: points.map((point) => point.id) }] };
+      if (kind === "annulus") {
+        const center = makePoint(320, 210, 0), outer = makePoint(455, 210, 1), inner = makePoint(390, 210, 2);
+        return { ...current, points: [...current.points, center, outer, inner], circles: [...current.circles, { id: crypto.randomUUID(), center: center.id, edge: outer.id }, { id: crypto.randomUUID(), center: center.id, edge: inner.id }] };
       }
-      const points = [makePoint(320, 210, 0), makePoint(440, 210, 1)];
-      if (kind === "circle") return { ...current, points: [...current.points, ...points], circles: [...current.circles, { id: crypto.randomUUID(), center: points[0].id, edge: points[1].id }] };
+      if (kind === "semicircle") {
+        const a = makePoint(220, 260, 0), b = makePoint(440, 260, 1), center = makePoint(330, 260, 2);
+        return { ...current, points: [...current.points, a, b, center], arcs: [...current.arcs, { id: crypto.randomUUID(), kind: "semicircle", center: center.id, start: a.id, end: b.id }] };
+      }
+      if (kind === "sector" || kind === "arc") {
+        const center = makePoint(320, 230, 0), startPoint = makePoint(445, 230, 1), endPoint = makePoint(350, 100, 2);
+        return { ...current, points: [...current.points, center, startPoint, endPoint], arcs: [...current.arcs, { id: crypto.randomUUID(), kind, center: center.id, start: startPoint.id, end: endPoint.id }] };
+      }
+      if (kind === "angle-shape") {
+        const points = [makePoint(250, 290, 0), makePoint(330, 220, 1), makePoint(470, 250, 2)];
+        return { ...current, points: [...current.points, ...points], lines: [...current.lines, { id: crypto.randomUUID(), a: points[1].id, b: points[0].id, kind: "ray" }, { id: crypto.randomUUID(), a: points[1].id, b: points[2].id, kind: "ray" }], angles: [...current.angles, { id: crypto.randomUUID(), a: points[0].id, vertex: points[1].id, b: points[2].id }] };
+      }
+      if (kind === "coordinate-axes") {
+        const points = [makePoint(120, 220, 0), makePoint(540, 220, 1), makePoint(330, 370, 2), makePoint(330, 70, 3)];
+        return { ...current, points: [...current.points, ...points], lines: [...current.lines, { id: crypto.randomUUID(), a: points[0].id, b: points[1].id, kind: "line" }, { id: crypto.randomUUID(), a: points[2].id, b: points[3].id, kind: "line" }] };
+      }
       const center = makePoint(kind === "parabola" ? 210 : kind === "ellipse" ? 320 : 450, 210, 0);
       const conic: GeoConic = { id: crypto.randomUUID(), kind, center: center.id, a: kind === "parabola" ? 70 : 92, b: kind === "hyperbola" ? 52 : 62 };
       return { ...current, points: [...current.points, center], conics: [...current.conics, conic] };
@@ -407,6 +943,25 @@ export default function MathWorkspace() {
   const applyGeometryTransform = (type: GeoTransformKind) => {
     if (!selectedGeoObject || selectedGeoObject.kind === "line" || selectedGeoObject.kind === "angle" || selectedGeoObject.kind === "constraint" || selectedGeoObject.kind === "transform") return;
     commitConstruction(`Apply ${type}`, (current) => addTransformConstruction(current, selectedGeoObject, type));
+  };
+  const traceSelectedPoint = () => {
+    if (selectedGeoObject?.kind !== "point") return;
+    const point = pointById(construction.points, selectedGeoObject.id);
+    if (!point) return;
+    setActiveTracePointId(point.id);
+    setLocusTraces((current) => {
+      const existing = current.find((trace) => trace.pointId === point.id);
+      if (existing) return current.map((trace) => trace.pointId === point.id ? { ...trace, visible: true, points: appendLocusPoint(trace.points, point) } : trace);
+      return [
+        ...current,
+        { id: crypto.randomUUID(), pointId: point.id, label: `Trace ${point.label}`, points: [{ x: point.x, y: point.y }], color: colors[current.length % colors.length], visible: true },
+      ];
+    });
+  };
+  const stopTrace = () => setActiveTracePointId(null);
+  const clearLocusTraces = () => {
+    setActiveTracePointId(null);
+    setLocusTraces([]);
   };
 
   const handleBoardPointerMove = (event: PointerEvent<SVGSVGElement>) => {
@@ -417,10 +972,17 @@ export default function MathWorkspace() {
     setConstruction((current) => {
       const dragged = pointById(current.points, dragPointId);
       if (dragged?.locked) return current;
-      return solveConstruction({
-      ...current,
-      points: current.points.map((item) => item.id === dragPointId ? { ...item, x: point.x, y: point.y } : item),
+      const next = solveConstruction({
+        ...current,
+        points: current.points.map((item) => item.id === dragPointId ? { ...item, x: point.x, y: point.y } : item),
       }, dragPointId);
+      if (activeTracePointId) {
+        const tracedPoint = pointById(next.points, activeTracePointId);
+        if (tracedPoint) {
+          setLocusTraces((traces) => traces.map((trace) => trace.pointId === activeTracePointId ? { ...trace, points: appendLocusPoint(trace.points, tracedPoint) } : trace));
+        }
+      }
+      return next;
     });
   };
 
@@ -466,15 +1028,15 @@ export default function MathWorkspace() {
       setRedoStack([]);
     }
   };
-  const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, surface, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, showAxes3d, showGrid3d, showCrossSection3d, showVector3d, showPoint3d, autoRotate3d, zoom3d });
+  const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, surface, solid, surfaceScale, height3d, crossSection, surfacePosition3d, surfaceRotation3d, solidPosition3d, solidRotation3d, showSurface, showSolid, showAxes3d, showGrid3d, showCrossSection3d, showVector3d, showPoint3d, autoRotate3d, zoom3d, surfaceDomain, vectorStart3d, vectorEnd3d, point3d, space3dShapes, graphParameters, locusTraces, animationSnapshots, lesson, practiceResponses, releaseHealth, practiceReport });
   const saveWorkspace = () => localStorage.setItem("math-universe-workspace-full", JSON.stringify(snapshot()));
-  const loadWorkspace = () => {
-    const saved = localStorage.getItem("math-universe-workspace-full");
-    if (!saved) return;
-    const data = JSON.parse(saved) as WorkspaceSnapshot;
-    setInput(data.input);
+  const restoreWorkspaceSnapshot = (data: Partial<WorkspaceSnapshot>) => {
+    setInput(data.input ?? "plot sin(x)");
     setResults(data.results ?? []);
     setPlots(data.plots ?? []);
+    setGraphParameters(data.graphParameters ?? { a: 1, b: 0 });
+    setLocusTraces(data.locusTraces ?? []);
+    setActiveTracePointId(null);
     restoreConstruction(normalizeConstruction(data.construction ?? initialConstruction));
     setUndoStack([]);
     setRedoStack([]);
@@ -483,6 +1045,10 @@ export default function MathWorkspace() {
     setSurfaceScale(data.surfaceScale ?? 1);
     setHeight3d(data.height3d ?? 2.5);
     setCrossSection(data.crossSection ?? 0);
+    setSurfacePosition3d(data.surfacePosition3d ?? [0, 0, 0]);
+    setSurfaceRotation3d(data.surfaceRotation3d ?? [0, 0, 0]);
+    setSolidPosition3d(data.solidPosition3d ?? [3, 0, 2.6]);
+    setSolidRotation3d(data.solidRotation3d ?? [0, 0, 0]);
     setShowSurface(data.showSurface ?? true);
     setShowSolid(data.showSolid ?? true);
     setShowAxes3d(data.showAxes3d ?? true);
@@ -492,24 +1058,78 @@ export default function MathWorkspace() {
     setShowPoint3d(data.showPoint3d ?? true);
     setAutoRotate3d(data.autoRotate3d ?? true);
     setZoom3d(data.zoom3d ?? 1);
+    setSurfaceDomain(data.surfaceDomain ?? 2.6);
+    setVectorStart3d(data.vectorStart3d ?? [-3, 0.05, -3]);
+    setVectorEnd3d(data.vectorEnd3d ?? [2.2, 1.4, 1.8]);
+    setPoint3d(data.point3d ?? [2.2, 1.4, 1.8]);
+    setSpace3dShapes(data.space3dShapes ?? []);
+    setAnimationSnapshots(data.animationSnapshots ?? []);
+    setLesson(data.lesson ?? createDefaultLesson());
+    setPracticeResponses(data.practiceResponses ?? {});
+    setAnimationPlaying(false);
+  };
+  const loadWorkspace = () => {
+    const saved = localStorage.getItem("math-universe-workspace-full");
+    if (!saved) return;
+    const data = JSON.parse(saved) as WorkspaceSnapshot;
+    restoreWorkspaceSnapshot(data);
+    setImportStatus("Loaded workspace from browser storage.");
   };
   const exportWorkspaceJson = () => downloadText("math-workspace.json", JSON.stringify(snapshot(), null, 2), "application/json");
   const exportResultsCsv = () => downloadText("math-workspace-results.csv", resultsToCsv(results), "text/csv");
+  const exportGraphSvg = () => {
+    const svg = graphExportRef.current?.querySelector("svg");
+    if (!svg) return;
+    downloadText("math-workspace-graph.svg", svg.outerHTML, "image/svg+xml");
+  };
   const exportGeometrySvg = () => {
     const svg = geometryExportRef.current;
     if (!svg) return;
     downloadText("geometry-construction.svg", svg.outerHTML, "image/svg+xml");
   };
+  const exportProjectBundle = () => downloadText("math-universe-project-bundle.json", JSON.stringify(createWorkspaceBundle(snapshot(), lesson), null, 2), "application/json");
+  const importWorkspaceFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    file.text().then((text) => {
+      const parsed = JSON.parse(text) as unknown;
+      if (isWorkspaceBundle(parsed)) {
+        restoreWorkspaceSnapshot(parsed.workspace as Partial<WorkspaceSnapshot>);
+        if (parsed.lesson) setLesson(parsed.lesson as ClassroomLesson);
+        setImportStatus(`Imported project bundle: ${file.name}`);
+      } else if (parsed && typeof parsed === "object" && "workspace" in parsed && "lesson" in parsed) {
+        const lessonImport = parsed as { workspace?: Partial<WorkspaceSnapshot>; lesson?: ClassroomLesson };
+        restoreWorkspaceSnapshot(lessonImport.workspace ?? {});
+        if (lessonImport.lesson) setLesson(lessonImport.lesson);
+        setImportStatus(`Imported lesson package: ${file.name}`);
+      } else {
+        restoreWorkspaceSnapshot(parsed as Partial<WorkspaceSnapshot>);
+        setImportStatus(`Imported workspace JSON: ${file.name}`);
+      }
+    }).catch((error: unknown) => setImportStatus(`Import failed: ${error instanceof Error ? error.message : "Invalid file"}`));
+    event.target.value = "";
+  };
+  const applyConstructionTemplate = (template: ConstructionTemplate) => {
+    const next = constructionTemplate(template);
+    restoreConstruction(next);
+    setUndoStack([]);
+    setRedoStack([]);
+    setImportStatus(`Loaded template: ${templateLabel(template)}`);
+    recordWorkspaceCommand(`Loaded construction template: ${templateLabel(template)}`);
+  };
   const runGuidedExample = (command: string) => {
     setInput(command);
-    const analysis = interpretInput(command);
+    const analysis = enrichResultWithVisualSync(interpretInput(command));
+    recordWorkspaceCommand(`Ran guided example: ${command}`);
     setResults((current) => [analysis, ...current].slice(0, 12));
-    if (analysis.interpretation === "2D plot") {
-      const expression = normalizePlotExpression(command);
-      setPlots((current) => [{ id: crypto.randomUUID(), expression, color: colors[current.length % colors.length], kind: inferPlotKind(expression), visible: true }, ...current].slice(0, 8));
-    }
+    syncResultToVisuals(analysis, command);
   };
   const handleWorkspaceKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Escape") {
+      setAnimationPlaying(false);
+      setDragPointId(null);
+      return;
+    }
     if (!(event.ctrlKey || event.metaKey)) return;
     if (event.key.toLowerCase() === "s") {
       event.preventDefault();
@@ -523,43 +1143,71 @@ export default function MathWorkspace() {
       event.preventDefault();
       runInput();
     }
+    if (event.key.toLowerCase() === "e" && event.shiftKey) {
+      event.preventDefault();
+      exportProjectBundle();
+    }
+    const tabIndex = Number(event.key);
+    if (tabIndex >= 1 && tabIndex <= workspaceTabs.length) {
+      event.preventDefault();
+      setActiveTab(workspaceTabs[tabIndex - 1].id);
+    }
   };
 
   return (
-    <div className="flex h-[calc(100vh-5.5rem)] min-w-0 max-w-full flex-col gap-3 overflow-hidden" onKeyDown={handleWorkspaceKeyDown}>
-      <div className="shrink-0">
-        <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />
-      </div>
-
-      <div className="mobile-safe-scroll thin-scrollbar flex shrink-0 gap-2 rounded-2xl border border-slate-200 bg-white/80 p-1.5 dark:border-white/10 dark:bg-slate-950/60 sm:flex-wrap sm:overflow-visible">
-        {workspaceTabs.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            onClick={() => setActiveTab(tab.id)}
-            className={`min-h-10 shrink-0 rounded-xl px-4 py-1.5 text-left transition ${
-              activeTab === tab.id ? "bg-slate-950 text-white shadow-lg shadow-slate-950/10 dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200"
-            }`}
-          >
-            <span className="block text-sm font-black">{tab.label}</span>
-            <span className="block text-[11px] font-semibold opacity-75">{tab.summary}</span>
-          </button>
-        ))}
-      </div>
+    <WorkspaceShell
+      title="Math Workspace"
+      subtitle="A unified GeoGebra and Wolfram-style workspace for graphing, commands, results, geometry, and 3D scenes."
+      views={workspaceTabs}
+      activeView={activeTab}
+      commandValue={input}
+      onCommandChange={setInput}
+      onCommandRun={runInput}
+      onViewChange={(viewId) => setActiveTab(viewId as WorkspaceTab)}
+      onKeyDown={handleWorkspaceKeyDown}
+    >
 
       {activeTab === "tools" && (
-      <SectionCard title="Stage 5: Workspace Tools" description="Save, export, teach, search formulas, and launch guided examples. Shortcuts: Ctrl+S save, Ctrl+O load, Ctrl+Enter run." className="flex min-h-0 flex-1 flex-col" compact>
-        <div className="grid min-h-0 min-w-0 flex-1 gap-4 overflow-hidden 2xl:grid-cols-[minmax(0,1fr)_340px]">
+      <SectionCard title="Workspace Tools" description="Save, export, teach, search formulas, and launch guided examples." className="workspace-stage-card flex flex-col" compact>
+        <div className="grid min-h-0 min-w-0 flex-1 gap-3 overflow-hidden 2xl:grid-cols-[minmax(0,1fr)_320px]">
           <div className="thin-scrollbar min-h-0 min-w-0 space-y-4 overflow-auto pr-1">
-            <WorkspacePhaseRoadmap />
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={saveWorkspace} className="action-secondary"><Save className="h-4 w-4" />Save workspace</button>
               <button type="button" onClick={loadWorkspace} className="action-secondary"><Download className="h-4 w-4" />Load workspace</button>
               <button type="button" onClick={exportWorkspaceJson} className="action-secondary"><Download className="h-4 w-4" />Export JSON</button>
+              <button type="button" onClick={exportProjectBundle} className="action-secondary"><Download className="h-4 w-4" />Project bundle</button>
+              <button type="button" onClick={() => importFileRef.current?.click()} className="action-secondary"><Download className="h-4 w-4" />Import JSON</button>
               <button type="button" onClick={exportResultsCsv} className="action-secondary"><Download className="h-4 w-4" />Export CSV</button>
+              <button type="button" onClick={exportGraphSvg} className="action-secondary"><Download className="h-4 w-4" />Export graph SVG</button>
               <button type="button" onClick={exportGeometrySvg} className="action-secondary"><Download className="h-4 w-4" />Export geometry SVG</button>
+              <button type="button" onClick={exportLessonJson} className="action-secondary"><Download className="h-4 w-4" />Export lesson</button>
+              <button type="button" onClick={exportLessonWorksheet} className="action-secondary"><Download className="h-4 w-4" />Worksheet</button>
+              <button type="button" onClick={exportPracticeReport} className="action-secondary"><Download className="h-4 w-4" />Practice report</button>
               <button type="button" onClick={() => setTeachingMode((value) => !value)} className={teachingMode ? "action-primary" : "action-secondary"}><Presentation className="h-4 w-4" />Teaching mode</button>
             </div>
+            <input ref={importFileRef} type="file" accept="application/json,.json" className="hidden" onChange={importWorkspaceFile} />
+            <ReleaseReadinessPanel health={releaseHealth} />
+            <ImportExportSuitePanel importStatus={importStatus} onTemplate={applyConstructionTemplate} />
+            <ClassroomAuthoringPanel
+              lesson={lesson}
+              onLessonChange={touchLesson}
+              onStepChange={updateLessonStep}
+              onAddStep={addLessonStep}
+              onDeleteStep={deleteLessonStep}
+              onMoveStep={moveLessonStep}
+              onRunStep={runLessonStep}
+              onReset={() => setLesson(createDefaultLesson())}
+            />
+            <PracticeAssessmentPanel
+              lesson={lesson}
+              responses={practiceResponses}
+              report={practiceReport}
+              onAnswer={updatePracticeAnswer}
+              onCheck={checkPracticeStep}
+              onRunStep={runLessonStep}
+              onReset={() => setPracticeResponses({})}
+              onExport={exportPracticeReport}
+            />
             {teachingMode && (
               <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">
                 <p className="font-bold">Teaching mode is active</p>
@@ -593,8 +1241,8 @@ export default function MathWorkspace() {
       )}
 
       {activeTab === "solve" && (
-      <SectionCard title="Stage 1 + 3: Unified Math Input and CAS Answers" description="Type a calculation or command such as plot, solve, factor, derivative, integral, table, roots, extrema, or intersection." className="flex min-h-0 flex-1 flex-col" compact>
-        <div className="grid min-h-0 min-w-0 flex-1 gap-4 overflow-hidden 2xl:grid-cols-[minmax(0,1fr)_340px]">
+      <SectionCard title="CAS and Graphing" description="Run calculations, graph functions, inspect results, and sync visual outputs." className="workspace-stage-card flex flex-col" compact>
+        <div className="grid min-h-0 min-w-0 flex-1 gap-3 overflow-hidden 2xl:grid-cols-[minmax(0,1fr)_320px]">
           <div className="thin-scrollbar min-h-0 min-w-0 space-y-3 overflow-auto pr-1">
             <MathKeyboardInput
               value={input}
@@ -607,22 +1255,44 @@ export default function MathWorkspace() {
               onExample={setInput}
             />
             <div ref={graphExportRef} className="min-w-0">
-              <GraphPanel plots={plots} onChange={setPlots} />
+              <GraphPanel plots={plots} onChange={setPlots} parameters={graphParameters} onParametersChange={setGraphParameters} />
             </div>
+            <AnimationStudio
+              playing={animationPlaying}
+              time={animationTime}
+              duration={animationDuration}
+              target={animationTarget}
+              parameter={activeAnimationParameter}
+              parameterNames={animationParameterNames}
+              min={animationMin}
+              max={animationMax}
+              snapshots={animationSnapshots}
+              onPlaying={setAnimationPlaying}
+              onTime={setAnimationTime}
+              onDuration={setAnimationDuration}
+              onTarget={setAnimationTarget}
+              onParameter={setAnimationParameter}
+              onMin={setAnimationMin}
+              onMax={setAnimationMax}
+              onCapture={captureAnimationSnapshot}
+              onApplySnapshot={applyAnimationSnapshot}
+              onClearSnapshots={() => setAnimationSnapshots([])}
+              onExport={exportMotionJson}
+            />
           </div>
           <div className="thin-scrollbar min-h-0 min-w-0 space-y-3 overflow-auto pr-1">
             <div className="flex items-center justify-between">
               <h2 className="font-bold">Results</h2>
               <button type="button" onClick={() => setResults([])} className="rounded-full bg-slate-100 p-2 dark:bg-white/10" title="Clear results" aria-label="Clear results"><Trash2 className="h-4 w-4" /></button>
             </div>
-            {results.length === 0 ? <EmptyPanel text="Run a command to see interpretation, exact result, numeric checks, and related output." /> : results.map((result) => <ResultCardView key={result.id} result={result} />)}
+            {results.length === 0 ? <EmptyPanel text="Run a command to see interpretation, exact result, numeric checks, and related output." /> : results.map((result) => <ResultCardView key={result.id} result={result} onVisualSync={runVisualSyncLink} />)}
           </div>
         </div>
       </SectionCard>
       )}
 
       {activeTab === "space3d" && (
-      <SectionCard title="Stage 4: 3D Graphing and Solids Lab" className="flex min-h-0 flex-1 flex-col overflow-visible [&>div:first-of-type]:mb-1" compact>
+      <SectionCard title="3D Graphing and Solids" className="workspace-stage-card flex flex-col [&>div:first-of-type]:mb-1" compact>
         <div
           className="grid min-h-0 min-w-0 flex-1 gap-3 overflow-hidden 2xl:grid-cols-[var(--space-controls)_minmax(0,1fr)]"
           style={{ "--space-controls": spaceControlsOpen ? "320px" : "56px" } as CSSProperties}
@@ -642,24 +1312,47 @@ export default function MathWorkspace() {
             <label className="block rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-950/40">
               <span className="text-sm font-semibold">Surface</span>
               <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={surface} onChange={(event) => setSurface(event.target.value as SurfaceKind)}>
-                <option value="paraboloid">z = scale(x^2 + y^2)</option>
-                <option value="saddle">z = scale(x^2 - y^2)</option>
-                <option value="wave">z = scale sin(x) cos(y)</option>
-                <option value="plane">z = scale(x + y)</option>
-                <option value="ripple">z = scale sin(x^2+y^2)</option>
-                <option value="cone-surface">z = scale sqrt(x^2+y^2)</option>
+                {surfaceOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
               </select>
             </label>
             <label className="block rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-950/40">
               <span className="text-sm font-semibold">Solid</span>
               <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={solid} onChange={(event) => setSolid(event.target.value as SolidKind)}>
-                <option value="cube">Cube</option>
-                <option value="sphere">Sphere</option>
-                <option value="cylinder">Cylinder</option>
-                <option value="cone">Cone</option>
+                {solidOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
               </select>
+              <button type="button" onClick={() => add3dShape(solid)} className="action-primary mt-2 w-full justify-center">
+                <Plus className="h-4 w-4" />Add selected solid
+              </button>
             </label>
+            <div className="rounded-2xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-slate-950/40">
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-sm font-semibold">3D shape palette</p>
+                <span className="mini-chip">{space3dShapes.length} added</span>
+              </div>
+              <div className="mt-2 grid grid-cols-3 gap-2">
+                {shapePalette3d.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <button key={item.kind} type="button" onClick={() => add3dShape(item.kind)} className="tool-button min-h-[58px] flex-col justify-center gap-1 px-2 py-2 text-[11px]">
+                      <Icon className="h-4 w-4" />{item.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-slate-950/40">
+              <p className="text-sm font-semibold">Scene objects</p>
+              <div className="mt-2 grid grid-cols-2 gap-2">
+                {(["surface", "solid", "cross-section", "vector", "point", "axes", "grid"] as BuiltinSpace3DObjectId[]).map((object) => (
+                  <button key={object} type="button" onClick={() => add3dObject(object)} className={selected3dObject === object ? "action-primary justify-center capitalize" : "tool-button justify-center capitalize"}>
+                    <Plus className="h-4 w-4" />{object.replace("-", " ")}
+                  </button>
+                ))}
+                {selected3dShape && <button type="button" onClick={duplicateSelected3dShape} className="tool-button justify-center"><ClipboardCopy className="h-4 w-4" />Duplicate</button>}
+              </div>
+            </div>
             <SliderControl label="Surface scale" value={surfaceScale} min={0.2} max={2.5} step={0.1} onChange={setSurfaceScale} />
+            <SliderControl label="Surface domain / clip" value={surfaceDomain} min={1.2} max={3.5} step={0.1} onChange={setSurfaceDomain} />
             <SliderControl label="Solid height / radius" value={height3d} min={0.8} max={5} step={0.1} onChange={setHeight3d} />
             <SliderControl label="Cross-section z" value={crossSection} min={-3} max={3} step={0.1} onChange={setCrossSection} />
             <div className="grid grid-cols-2 gap-2">
@@ -669,20 +1362,24 @@ export default function MathWorkspace() {
               <Toggle checked={showGrid3d} label="Grid" onChange={setShowGrid3d} />
               <Toggle checked={showCrossSection3d} label="Slice" onChange={setShowCrossSection3d} />
               <Toggle checked={showVector3d} label="Vector" onChange={setShowVector3d} />
+              <Toggle checked={showPoint3d} label="Point" onChange={setShowPoint3d} />
               <button type="button" onClick={() => setAutoRotate3d((value) => !value)} className={autoRotate3d ? "action-primary justify-center" : "tool-button justify-center"}>
                 {autoRotate3d ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
                 {autoRotate3d ? "Pause rotation" : "Start rotation"}
               </button>
-              <button type="button" onClick={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); setAutoRotate3d(false); setShowSurface(true); setShowSolid(true); setShowAxes3d(true); setShowGrid3d(true); setShowCrossSection3d(true); setShowVector3d(true); setShowPoint3d(true); }} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset</button>
+              <button type="button" onClick={() => { setZoom3d(1); setSurfaceScale(1); setSurfaceDomain(2.6); setCrossSection(0); setSurfacePosition3d([0, 0, 0]); setSurfaceRotation3d([0, 0, 0]); setSolidPosition3d([3, 0, 2.6]); setSolidRotation3d([0, 0, 0]); setVectorStart3d([-3, 0.05, -3]); setVectorEnd3d([2.2, 1.4, 1.8]); setPoint3d([2.2, 1.4, 1.8]); setSpace3dShapes([]); setAutoRotate3d(false); restoreAll3dObjects(); setSelected3dObject("surface"); }} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset</button>
             </div>
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))} className="action-secondary"><ZoomOut className="h-4 w-4" />Zoom out</button>
               <button type="button" onClick={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))} className="action-secondary"><ZoomIn className="h-4 w-4" />Zoom in</button>
+              <button type="button" onClick={deleteSelected3dObject} className="math-tool-button-danger px-3"><Trash2 className="h-4 w-4" />Delete selected</button>
             </div>
             <div className="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
               <p className="font-bold text-slate-900 dark:text-white">3D Readout</p>
               <p>Surface: {surfaceFormula(surface, surfaceScale)}</p>
               <p>Cross-section plane: z = {roundTo(crossSection, 2)}</p>
+              <p>Surface range: {roundTo(space3dMeasurements.surfaceSampleMin, 2)} to {roundTo(space3dMeasurements.surfaceSampleMax, 2)}</p>
+              <p>Vector length: {roundTo(space3dMeasurements.vectorLength, 2)}</p>
               <p>Camera zoom: {roundTo(zoom3d * 100, 0)}%</p>
             </div>
             </>
@@ -700,15 +1397,52 @@ export default function MathWorkspace() {
 
           <div className="thin-scrollbar min-h-0 min-w-0 space-y-2 overflow-auto pr-1">
             <ThreeSceneWrapper
-              height="clamp(240px, 32vh, 300px)"
+              height="clamp(420px, calc(100vh - 260px), 620px)"
               mobileHeight="280px"
               interactionLabel="Left drag rotate - wheel/pinch zoom - right drag pan"
               sceneLabel={autoRotate3d ? "Workspace 3D - rotating" : "Workspace 3D - paused"}
             >
               <ambientLight intensity={0.75} />
               <directionalLight position={[5, 6, 4]} intensity={1.2} />
-              <Workspace3DScene surface={surface} solid={solid} surfaceScale={surfaceScale} solidSize={height3d} crossSection={crossSection} showSurface={showSurface} showSolid={showSolid} showAxes={showAxes3d} showGrid={showGrid3d} showCrossSection={showCrossSection3d} showVector={showVector3d} showPoint={showPoint3d} autoRotate={autoRotate3d} zoom={zoom3d} />
-              <OrbitControls enablePan enableZoom enableDamping autoRotate={autoRotate3d} autoRotateSpeed={0.6} />
+              <Workspace3DScene
+                surface={surface}
+                solid={solid}
+                surfaceScale={surfaceScale}
+                solidSize={height3d}
+                crossSection={crossSection}
+                surfaceDomain={surfaceDomain}
+                surfacePosition={surfacePosition3d}
+                surfaceRotation={surfaceRotation3d}
+                solidPosition={solidPosition3d}
+                solidRotation={solidRotation3d}
+                vectorStart={vectorStart3d}
+                vectorEnd={vectorEnd3d}
+                point={point3d}
+                shapes={space3dShapes}
+                showSurface={showSurface}
+                showSolid={showSolid}
+                showAxes={showAxes3d}
+                showGrid={showGrid3d}
+                showCrossSection={showCrossSection3d}
+                showVector={showVector3d}
+                showPoint={showPoint3d}
+                autoRotate={autoRotate3d}
+                zoom={zoom3d}
+                selectedObject={selected3dObject}
+                onSelect={setSelected3dObject}
+                onVectorStart={setVectorStart3d}
+                onVectorEnd={setVectorEnd3d}
+                onPoint={setPoint3d}
+                onSurfacePosition={setSurfacePosition3d}
+                onSolidPosition={setSolidPosition3d}
+                onShapeChange={update3dShape}
+                onSurfaceScale={setSurfaceScale}
+                onSurfaceDomain={setSurfaceDomain}
+                onSolidSize={setHeight3d}
+                onCrossSection={setCrossSection}
+                onDragActive={setDragging3dObject}
+              />
+              <OrbitControls enablePan enableZoom enableDamping enabled={!dragging3dObject} autoRotate={autoRotate3d && !dragging3dObject} autoRotateSpeed={0.6} />
             </ThreeSceneWrapper>
             <Workspace3DInspector
               surface={surface}
@@ -716,6 +1450,17 @@ export default function MathWorkspace() {
               surfaceScale={surfaceScale}
               solidSize={height3d}
               crossSection={crossSection}
+              surfaceDomain={surfaceDomain}
+              surfacePosition={surfacePosition3d}
+              surfaceRotation={surfaceRotation3d}
+              solidPosition={solidPosition3d}
+              solidRotation={solidRotation3d}
+              vectorStart={vectorStart3d}
+              vectorEnd={vectorEnd3d}
+              point={point3d}
+              shapes={space3dShapes}
+              selectedShape={selected3dShape}
+              measurements={space3dMeasurements}
               showSurface={showSurface}
               showSolid={showSolid}
               showAxes={showAxes3d}
@@ -725,11 +1470,23 @@ export default function MathWorkspace() {
               showPoint={showPoint3d}
               autoRotate={autoRotate3d}
               zoom={zoom3d}
+              selectedObject={selected3dObject}
               onSurface={setSurface}
               onSolid={setSolid}
               onSurfaceScale={setSurfaceScale}
               onSolidSize={setHeight3d}
               onCrossSection={setCrossSection}
+              onSurfaceDomain={setSurfaceDomain}
+              onSurfacePosition={setSurfacePosition3d}
+              onSurfaceRotation={setSurfaceRotation3d}
+              onSolidPosition={setSolidPosition3d}
+              onSolidRotation={setSolidRotation3d}
+              onVectorStart={setVectorStart3d}
+              onVectorEnd={setVectorEnd3d}
+              onPoint={setPoint3d}
+              onAddShape={add3dShape}
+              onShapeChange={update3dShape}
+              onDuplicateShape={duplicateSelected3dShape}
               onShowSurface={setShowSurface}
               onShowSolid={setShowSolid}
               onShowAxes={setShowAxes3d}
@@ -739,6 +1496,9 @@ export default function MathWorkspace() {
               onShowPoint={setShowPoint3d}
               onAutoRotate={setAutoRotate3d}
               onZoom={setZoom3d}
+              onSelect={setSelected3dObject}
+              onDeleteSelected={deleteSelected3dObject}
+              onRestoreAll={restoreAll3dObjects}
             />
             <div className="grid gap-2 md:grid-cols-3">
               <InfoPill title="Axes" text="X, Y, and Z directions are shown with colored vectors." />
@@ -751,77 +1511,63 @@ export default function MathWorkspace() {
       )}
 
       {activeTab === "geometry" && (
-      <SectionCard title="Stage 2: Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements." className="flex min-h-0 flex-1 flex-col" compact>
-        <div className="grid min-h-0 min-w-0 flex-1 gap-4 overflow-hidden 2xl:grid-cols-[minmax(0,1fr)_420px]">
-          <div className="min-h-0 min-w-0 space-y-2 overflow-hidden">
-            <div className="mobile-safe-scroll thin-scrollbar flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
-              <ToolButton active={tool === "select"} label="Select / Drag" onClick={() => chooseGeometryTool("select")} icon={<MousePointer2 className="h-4 w-4" />} />
-              <ToolButton active={tool === "point"} label="Point" onClick={() => chooseGeometryTool("point")} icon={<Plus className="h-4 w-4" />} />
-              <ToolButton active={tool === "segment"} label="Segment" onClick={() => chooseGeometryTool("segment")} icon={<Move className="h-4 w-4" />} />
-              <ToolButton active={tool === "line"} label="Line" onClick={() => chooseGeometryTool("line")} icon={<Move className="h-4 w-4" />} />
-              <ToolButton active={tool === "ray"} label="Ray" onClick={() => chooseGeometryTool("ray")} icon={<GitBranch className="h-4 w-4" />} />
-              <ToolButton active={tool === "vector"} label="Vector" onClick={() => chooseGeometryTool("vector")} icon={<Target className="h-4 w-4" />} />
-              <ToolButton active={tool === "circle"} label="Circle" onClick={() => chooseGeometryTool("circle")} icon={<Circle className="h-4 w-4" />} />
-              <ToolButton active={tool === "polygon"} label="Polygon" onClick={() => chooseGeometryTool("polygon")} icon={<Pentagon className="h-4 w-4" />} />
-              <ToolButton active={tool === "angle"} label="Angle" onClick={() => chooseGeometryTool("angle")} icon={<Radius className="h-4 w-4" />} />
-              <ToolButton active={tool === "angle-bisector"} label="Angle Bisector" onClick={() => chooseGeometryTool("angle-bisector")} icon={<Slash className="h-4 w-4" />} />
-              <ToolButton active={tool === "tangent"} label="Tangents" onClick={() => chooseGeometryTool("tangent")} icon={<Circle className="h-4 w-4" />} />
-              <ToolButton active={tool === "parallel"} label="Parallel" onClick={() => chooseGeometryTool("parallel")} icon={<Slash className="h-4 w-4" />} />
-              <ToolButton active={tool === "perpendicular"} label="Perpendicular" onClick={() => chooseGeometryTool("perpendicular")} icon={<Plus className="h-4 w-4" />} />
-              <ToolButton active={tool === "midpoint"} label="Midpoint" onClick={() => chooseGeometryTool("midpoint")} icon={<Magnet className="h-4 w-4" />} />
-              <ToolButton active={tool === "fixed-length"} label="Fixed Length" onClick={() => chooseGeometryTool("fixed-length")} icon={<Magnet className="h-4 w-4" />} />
-              <ToolButton active={tool === "on-circle"} label="Point on Circle" onClick={() => chooseGeometryTool("on-circle")} icon={<Circle className="h-4 w-4" />} />
-              <ToolButton active={tool === "intersect"} label="Intersect" onClick={() => chooseGeometryTool("intersect")} icon={<Plus className="h-4 w-4" />} />
-              <ToolButton label="Delete selected" onClick={deleteSelectedGeometry} icon={<Trash2 className="h-4 w-4" />} />
-              <ToolButton label="Undo" onClick={undoConstruction} icon={<RotateCcw className="h-4 w-4" />} />
-              <ToolButton label="Redo" onClick={redoConstruction} icon={<RotateCcw className="h-4 w-4" />} />
-              <ToolButton label="Reset" onClick={() => { commitConstruction("Reset construction", () => initialConstruction); setPendingPointIds([]); setPendingPolygonDraft([]); setPendingCircleIds([]); setSelectedGeoObject(null); }} icon={<Eraser className="h-4 w-4" />} />
-              <ToolButton label="Save" onClick={saveConstruction} icon={<Save className="h-4 w-4" />} />
-              <ToolButton label="Load" onClick={loadConstruction} icon={<Download className="h-4 w-4" />} />
+      <SectionCard title="Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements." className="workspace-stage-card flex flex-col" compact>
+        <div className="grid min-h-0 min-w-0 flex-1 gap-3 overflow-hidden 2xl:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="grid min-h-0 min-w-0 gap-2 overflow-hidden lg:grid-cols-[238px_minmax(0,1fr)]">
+            <GeometryToolPalette
+              activeTool={tool}
+              onTool={chooseGeometryTool}
+              onDelete={deleteSelectedGeometry}
+              onUndo={undoConstruction}
+              onRedo={redoConstruction}
+              onReset={() => { commitConstruction("Reset construction", () => initialConstruction); setPendingPointIds([]); setPendingPolygonDraft([]); setPendingCircleIds([]); setSelectedGeoObject(null); }}
+              onSave={saveConstruction}
+              onLoad={loadConstruction}
+              onTemplate={addGeometryTemplate}
+              onTransform={applyGeometryTransform}
+              onTrace={traceSelectedPoint}
+              onStopTrace={stopTrace}
+              onClearTrace={clearLocusTraces}
+              tracing={Boolean(activeTracePointId)}
+            />
+            <div className="grid min-h-0 min-w-0 grid-rows-[minmax(0,1fr)_auto] gap-2 overflow-hidden">
+              <svg
+                ref={svgRef}
+                data-export="geometry"
+                viewBox="0 0 640 420"
+                onPointerDown={handleBoardPointerDown}
+                onPointerMove={handleBoardPointerMove}
+                onPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); setDragPointId(null); }}
+                onPointerLeave={() => setDragPointId(null)}
+                className="workspace-canvas w-full max-w-full touch-none rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"
+              >
+                <title>Math Universe Geometry Construction</title>
+                <GeometryGrid />
+                <LocusTraceOverlay traces={locusTraces} />
+                <ConstraintOverlays construction={construction} />
+                {construction.polygons.map((polygon) => <GeometryPolygon key={polygon.id} polygon={polygon} points={construction.points} selected={selectedGeoObject?.kind === "polygon" && selectedGeoObject.id === polygon.id} onSelect={() => setSelectedGeoObject({ kind: "polygon", id: polygon.id })} />)}
+                {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} selected={selectedGeoObject?.kind === "arc" && selectedGeoObject.id === arc.id} onSelect={() => setSelectedGeoObject({ kind: "arc", id: arc.id })} />)}
+                {construction.conics.map((conic) => <GeometryConic key={conic.id} conic={conic} points={construction.points} selected={selectedGeoObject?.kind === "conic" && selectedGeoObject.id === conic.id} onSelect={() => setSelectedGeoObject({ kind: "conic", id: conic.id })} />)}
+                {construction.angles.map((angle) => <GeometryAngle key={angle.id} angle={angle} points={construction.points} selected={selectedGeoObject?.kind === "angle" && selectedGeoObject.id === angle.id} onSelect={() => setSelectedGeoObject({ kind: "angle", id: angle.id })} />)}
+                {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} selected={selectedGeoObject?.kind === "line" && selectedGeoObject.id === line.id} onSelect={() => handleLinePick(line.id)} />)}
+                {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} selected={(selectedGeoObject?.kind === "circle" && selectedGeoObject.id === circle.id) || selectedCircleIds.includes(circle.id)} onSelect={() => handleCirclePick(circle.id)} />)}
+                {construction.texts.map((note) => <GeometryTextNote key={note.id} note={note} points={construction.points} selected={selectedGeoObject?.kind === "text" && selectedGeoObject.id === note.id} onSelect={() => setSelectedGeoObject({ kind: "text", id: note.id })} />)}
+                {polygonDraft.length > 1 && <polyline points={polygonDraft.map((id) => pointById(construction.points, id)).filter(Boolean).map((point) => `${point!.x},${point!.y}`).join(" ")} fill="none" stroke="#f59e0b" strokeDasharray="8 6" strokeWidth="3" />}
+                {construction.points.map((point) => (
+                  <g key={point.id} data-point-id={point.id} className="cursor-pointer">
+                    <circle cx={point.x} cy={point.y} r={selectedGeoObject?.kind === "point" && selectedGeoObject.id === point.id ? "12" : "9"} fill={selectedPointIds.includes(point.id) || polygonDraft.includes(point.id) || selectedGeoObject?.id === point.id ? "#f59e0b" : "#06b6d4"} stroke="#0f172a" strokeWidth="2" />
+                    <text x={point.x + 12} y={point.y - 10} fill="#0f172a" className="select-none text-xs font-bold dark:fill-slate-100">{point.label}</text>
+                  </g>
+                ))}
+              </svg>
+              <p className="rounded-2xl bg-cyan-50 p-3 text-xs font-semibold leading-5 text-cyan-900 dark:bg-cyan-400/10 dark:text-cyan-100">
+                Touch mode: choose a tool, tap to place points, then drag existing points. Use the page outside the board to scroll.
+              </p>
+              <HiddenGeometryExport refSetter={(node) => { geometryExportRef.current = node; }} construction={construction} />
             </div>
-            <div className="mobile-safe-scroll thin-scrollbar flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
-              <button type="button" onClick={() => addGeometryTemplate("triangle")} className="tool-button"><Triangle className="h-4 w-4" />Triangle</button>
-              <button type="button" onClick={() => addGeometryTemplate("rectangle")} className="tool-button"><Square className="h-4 w-4" />Rectangle</button>
-              <button type="button" onClick={() => addGeometryTemplate("circle")} className="tool-button"><Circle className="h-4 w-4" />Circle</button>
-              <button type="button" onClick={() => addGeometryTemplate("parabola")} className="tool-button"><LineChart className="h-4 w-4" />Parabola</button>
-              <button type="button" onClick={() => addGeometryTemplate("ellipse")} className="tool-button"><Circle className="h-4 w-4" />Ellipse</button>
-              <button type="button" onClick={() => addGeometryTemplate("hyperbola")} className="tool-button"><GitBranch className="h-4 w-4" />Hyperbola</button>
-              <button type="button" onClick={() => applyGeometryTransform("reflection")} className="tool-button"><Slash className="h-4 w-4" />Reflect selected</button>
-              <button type="button" onClick={() => applyGeometryTransform("rotation")} className="tool-button"><RotateCcw className="h-4 w-4" />Rotate selected</button>
-              <button type="button" onClick={() => applyGeometryTransform("dilation")} className="tool-button"><ZoomIn className="h-4 w-4" />Dilate selected</button>
-            </div>
-            <svg
-              ref={svgRef}
-              data-export="geometry"
-              viewBox="0 0 640 420"
-              onPointerDown={handleBoardPointerDown}
-              onPointerMove={handleBoardPointerMove}
-              onPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); setDragPointId(null); }}
-              onPointerLeave={() => setDragPointId(null)}
-              className="h-[min(42vh,320px)] min-h-[220px] w-full max-w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"
-            >
-              <title>Math Universe Geometry Construction</title>
-              <GeometryGrid />
-              <ConstraintOverlays construction={construction} />
-              {construction.polygons.map((polygon) => <GeometryPolygon key={polygon.id} polygon={polygon} points={construction.points} selected={selectedGeoObject?.kind === "polygon" && selectedGeoObject.id === polygon.id} onSelect={() => setSelectedGeoObject({ kind: "polygon", id: polygon.id })} />)}
-              {construction.conics.map((conic) => <GeometryConic key={conic.id} conic={conic} points={construction.points} selected={selectedGeoObject?.kind === "conic" && selectedGeoObject.id === conic.id} onSelect={() => setSelectedGeoObject({ kind: "conic", id: conic.id })} />)}
-              {construction.angles.map((angle) => <GeometryAngle key={angle.id} angle={angle} points={construction.points} selected={selectedGeoObject?.kind === "angle" && selectedGeoObject.id === angle.id} onSelect={() => setSelectedGeoObject({ kind: "angle", id: angle.id })} />)}
-              {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} selected={selectedGeoObject?.kind === "line" && selectedGeoObject.id === line.id} onSelect={() => setSelectedGeoObject({ kind: "line", id: line.id })} />)}
-              {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} selected={(selectedGeoObject?.kind === "circle" && selectedGeoObject.id === circle.id) || selectedCircleIds.includes(circle.id)} onSelect={() => handleCirclePick(circle.id)} />)}
-              {polygonDraft.length > 1 && <polyline points={polygonDraft.map((id) => pointById(construction.points, id)).filter(Boolean).map((point) => `${point!.x},${point!.y}`).join(" ")} fill="none" stroke="#f59e0b" strokeDasharray="8 6" strokeWidth="3" />}
-              {construction.points.map((point) => (
-                <g key={point.id} data-point-id={point.id} className="cursor-pointer">
-                  <circle cx={point.x} cy={point.y} r={selectedGeoObject?.kind === "point" && selectedGeoObject.id === point.id ? "12" : "9"} fill={selectedPointIds.includes(point.id) || polygonDraft.includes(point.id) || selectedGeoObject?.id === point.id ? "#f59e0b" : "#06b6d4"} stroke="#0f172a" strokeWidth="2" />
-                  <text x={point.x + 12} y={point.y - 10} fill="#0f172a" className="select-none text-xs font-bold dark:fill-slate-100">{point.label}</text>
-                </g>
-              ))}
-            </svg>
-            <p className="rounded-2xl bg-cyan-50 p-3 text-xs font-semibold leading-5 text-cyan-900 dark:bg-cyan-400/10 dark:text-cyan-100">
-              Touch mode: choose a tool, tap to place points, then drag existing points. Use the page outside the board to scroll.
-            </p>
-            <HiddenGeometryExport refSetter={(node) => { geometryExportRef.current = node; }} construction={construction} />
           </div>
           <div className="thin-scrollbar min-h-0 min-w-0 space-y-3 overflow-auto pr-1">
+            <GeometryLabResults construction={construction} selected={selectedGeoObject} selectedPointIds={selectedPointIds} activeTool={tool} />
             <ConstructionHelp tool={tool} />
             <GeometryObjectInspector
               construction={construction}
@@ -832,18 +1578,31 @@ export default function MathWorkspace() {
               onUpdateCircle={updateGeometryCircle}
               onUpdatePolygon={updateGeometryPolygon}
               onUpdateAngle={updateGeometryAngle}
+              onUpdateArc={updateGeometryArc}
+              onUpdateText={updateGeometryText}
               onUpdateConic={updateGeometryConic}
               onToggleLock={toggleGeometryLock}
               onDelete={deleteGeometryObject}
             />
             <Measurements construction={construction} />
+            <GeometryKernelPanel
+              construction={construction}
+              selected={selectedGeoObject}
+              traces={locusTraces}
+              activeTracePointId={activeTracePointId}
+              onTraceSelected={traceSelectedPoint}
+              onStopTrace={stopTrace}
+              onClearTraces={clearLocusTraces}
+              onToggleTrace={(traceId) => setLocusTraces((current) => current.map((trace) => trace.id === traceId ? { ...trace, visible: !trace.visible } : trace))}
+              onDeleteTrace={(traceId) => setLocusTraces((current) => current.filter((trace) => trace.id !== traceId))}
+            />
             <DependencyPanel construction={construction} selected={selectedGeoObject} onSelect={setSelectedGeoObject} />
             <ConstraintPanel construction={construction} undoStack={undoStack} redoStack={redoStack} onUndo={undoConstruction} onRedo={redoConstruction} />
           </div>
         </div>
       </SectionCard>
       )}
-    </div>
+    </WorkspaceShell>
   );
 }
 
@@ -877,6 +1636,18 @@ function interpretInput(input: string): ResultCard {
     if (/^area\s+circle\s+radius\s+/i.test(normalized)) {
       const radius = Number(normalized.replace(/^area\s+circle\s+radius\s+/i, ""));
       return { id: crypto.randomUUID(), input, interpretation: "Circle area", result: `Area = ${roundTo(Math.PI * radius * radius, 4)}`, detail: `Formula: A = pi r^2 with r = ${radius}.`, steps: [`Use A = pi r^2.`, `Substitute r = ${radius}.`, `A = pi * ${radius}^2 = ${roundTo(Math.PI * radius * radius, 4)}.`] };
+    }
+    const routed = runWorkspaceCasQuery(normalized);
+    if (routed) {
+      return {
+        id: crypto.randomUUID(),
+        input,
+        interpretation: routed.query.intent === "external-data-tool" ? "External data tool handoff" : `Workspace ${routed.query.intent}`,
+        result: routed.result ?? routed.symbolic?.result ?? routed.query.expression,
+        detail: routed.detail,
+        steps: routed.steps,
+        related: routed.related,
+      };
     }
     const value = evaluateMathExpression(normalized, 0);
     return { id: crypto.randomUUID(), input, interpretation: "Calculator", result: `${roundTo(value, 10)}`, detail: "Numeric evaluation with constants, trig, logs, powers, roots, and arithmetic." };
@@ -1146,24 +1917,41 @@ function bisect(f: (x: number) => number, left: number, right: number) {
   return (lo + hi) / 2;
 }
 
-function GraphPanel({ plots, onChange }: { plots: PlotItem[]; onChange: (plots: PlotItem[]) => void }) {
+function GraphPanel({
+  plots,
+  onChange,
+  parameters,
+  onParametersChange,
+}: {
+  plots: PlotItem[];
+  onChange: (plots: PlotItem[]) => void;
+  parameters: ParameterValues;
+  onParametersChange: (parameters: ParameterValues) => void;
+}) {
   const [draft, setDraft] = useState("cos(x)");
   const [xMin, setXMin] = useState(-10);
   const [xMax, setXMax] = useState(10);
   const [yMin, setYMin] = useState(-10);
   const [yMax, setYMax] = useState(10);
-  const [sliderA, setSliderA] = useState(1);
-  const [sliderB, setSliderB] = useState(0);
   const visiblePlots = plots.filter((plot) => plot.visible !== false);
   const viewport = useMemo(() => ({ xMin, xMax, yMin, yMax, width: 640, height: 360 }), [xMin, xMax, yMin, yMax]);
-  const paths = useMemo(() => visiblePlots.map((plot) => ({ ...plot, path: graphPath(stripInequality(applyGraphParameters(plot.expression, sliderA, sliderB)), viewport) })), [visiblePlots, sliderA, sliderB, viewport]);
-  const tableRows = useMemo(() => visiblePlots.slice(0, 3).flatMap((plot) => sampleTable(applyGraphParameters(plot.expression, sliderA, sliderB), plot.expression).slice(0, 7)), [visiblePlots, sliderA, sliderB]);
+  const parameterNames = useMemo(() => extractParameterNames([...plots.map((plot) => plot.expression), draft]), [draft, plots]);
+  const activeParameters = useMemo(() => ensureParameterValues(parameterNames, parameters), [parameterNames, parameters]);
+  useEffect(() => {
+    const current = JSON.stringify(parameters);
+    const next = JSON.stringify(activeParameters);
+    if (current !== next) onParametersChange(activeParameters);
+  }, [activeParameters, onParametersChange, parameters]);
+  const resolveExpression = (expression: string) => substituteParameters(expression, activeParameters);
+  const paths = useMemo(() => visiblePlots.map((plot) => ({ ...plot, path: graphPath(stripInequality(resolveExpression(plot.expression)), viewport) })), [activeParameters, visiblePlots, viewport]);
+  const tableRows = useMemo(() => visiblePlots.slice(0, 3).flatMap((plot) => sampleTable(resolveExpression(plot.expression), plot.expression).slice(0, 7)), [activeParameters, visiblePlots]);
   const regression = useMemo(() => linearRegression(regressionSeed), []);
-  const inequalityRegions = useMemo(() => visiblePlots.filter((plot) => (plot.kind ?? inferPlotKind(plot.expression)) === "inequality").map((plot) => inequalityRegion(applyGraphParameters(plot.expression, sliderA, sliderB), viewport)), [visiblePlots, sliderA, sliderB, viewport]);
+  const inequalityRegions = useMemo(() => visiblePlots.filter((plot) => (plot.kind ?? inferPlotKind(plot.expression)) === "inequality").map((plot) => inequalityRegion(resolveExpression(plot.expression), viewport)), [activeParameters, visiblePlots, viewport]);
   const addPlot = (expression: string, kind: PlotKind = inferPlotKind(expression)) => onChange([{ id: crypto.randomUUID(), expression, color: colors[plots.length % colors.length], kind, visible: true }, ...plots].slice(0, 10));
   const updatePlot = (id: string, patch: Partial<PlotItem>) => onChange(plots.map((plot) => plot.id === id ? { ...plot, ...patch } : plot));
   const removePlot = (id: string) => onChange(plots.filter((plot) => plot.id !== id));
   const addRegression = () => onChange([{ id: crypto.randomUUID(), expression: regression.expression, color: "#ec4899", kind: "regression" as PlotKind, points: regressionSeed, visible: true }, ...plots].slice(0, 10));
+  const updateParameter = (name: string, value: number) => onParametersChange({ ...activeParameters, [name]: value });
   return (
     <div className="min-w-0 max-w-full space-y-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60 sm:p-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -1216,10 +2004,22 @@ function GraphPanel({ plots, onChange }: { plots: PlotItem[]; onChange: (plots: 
 
           <div className="grid min-w-0 gap-3 xl:grid-cols-2">
             <div className="min-w-0 rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
-              <p className="text-sm font-bold">Parameter sliders</p>
-              <SliderControl label="a" value={sliderA} min={-5} max={5} step={0.1} onChange={setSliderA} />
-              <SliderControl label="b" value={sliderB} min={-10} max={10} step={0.1} onChange={setSliderB} />
-              <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">Use expressions like a*x+b or a*sin(x)+b.</p>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-sm font-bold">Linked parameter sliders</p>
+                <span className="mini-chip">{parameterNames.length} active</span>
+              </div>
+              {parameterNames.length === 0 ? (
+                <p className="mt-3 rounded-xl bg-white/70 p-3 text-xs font-semibold leading-5 text-slate-500 dark:bg-slate-950/50 dark:text-slate-400">
+                  Add a parameter such as `a`, `b`, or `k` in an expression to create a live slider.
+                </p>
+              ) : (
+                <div className="mt-2 space-y-2">
+                  {parameterNames.map((name) => (
+                    <SliderControl key={name} label={name} value={activeParameters[name] ?? 1} min={-10} max={10} step={0.1} onChange={(value) => updateParameter(name, value)} />
+                  ))}
+                </div>
+              )}
+              <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">Current binding: {summarizeParameters(activeParameters)}.</p>
             </div>
             <div className="mobile-safe-scroll thin-scrollbar min-w-0 rounded-2xl border border-slate-200 dark:border-white/10">
               <table className="w-full min-w-[260px] text-left text-xs">
@@ -1269,6 +2069,458 @@ function MiniNumber({ label, value, onChange }: { label: string; value: number; 
       <input type="number" value={value} onChange={(event) => onChange(Number(event.target.value))} className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 font-mono dark:border-white/10 dark:bg-slate-900" />
     </label>
   );
+}
+
+function AnimationStudio({
+  playing,
+  time,
+  duration,
+  target,
+  parameter,
+  parameterNames,
+  min,
+  max,
+  snapshots,
+  onPlaying,
+  onTime,
+  onDuration,
+  onTarget,
+  onParameter,
+  onMin,
+  onMax,
+  onCapture,
+  onApplySnapshot,
+  onClearSnapshots,
+  onExport,
+}: {
+  playing: boolean;
+  time: number;
+  duration: number;
+  target: AnimationTarget;
+  parameter: string;
+  parameterNames: string[];
+  min: number;
+  max: number;
+  snapshots: AnimationSnapshot[];
+  onPlaying: (value: boolean) => void;
+  onTime: (value: number) => void;
+  onDuration: (value: number) => void;
+  onTarget: (value: AnimationTarget) => void;
+  onParameter: (value: string) => void;
+  onMin: (value: number) => void;
+  onMax: (value: number) => void;
+  onCapture: () => void;
+  onApplySnapshot: (snapshot: AnimationSnapshot) => void;
+  onClearSnapshots: () => void;
+  onExport: () => void;
+}) {
+  return (
+    <div className="rounded-2xl border border-cyan-200 bg-cyan-50/80 p-4 dark:border-cyan-300/20 dark:bg-cyan-300/10">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-[11px] font-black uppercase text-cyan-700 dark:text-cyan-200">Animation tools</p>
+          <h3 className="text-base font-black text-slate-950 dark:text-white">Timeline, keyframes, traces, snapshots</h3>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={() => onPlaying(!playing)} className={playing ? "action-primary py-2" : "action-secondary py-2"}>
+            {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            {playing ? "Pause" : "Play"}
+          </button>
+          <button type="button" onClick={onCapture} className="action-secondary py-2"><Save className="h-4 w-4" />Snapshot</button>
+          <button type="button" onClick={onExport} disabled={!snapshots.length} className="action-secondary py-2 disabled:opacity-50"><Download className="h-4 w-4" />Motion JSON</button>
+        </div>
+      </div>
+
+      <div className="mt-3 grid gap-3 lg:grid-cols-[minmax(0,1fr)_280px]">
+        <div className="space-y-3">
+          <div className="rounded-2xl bg-white/80 p-3 dark:bg-slate-950/40">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-black">{animationTargetLabel(target)}</p>
+              <span className="mini-chip">{roundTo(time, 2)}s / {roundTo(duration, 1)}s</span>
+            </div>
+            <input
+              className="mt-3 w-full accent-cyan-500"
+              type="range"
+              min={0}
+              max={duration}
+              step={0.05}
+              value={Math.min(duration, time)}
+              onChange={(event) => {
+                onPlaying(false);
+                onTime(Number(event.target.value));
+              }}
+            />
+          </div>
+
+          <div className="grid gap-2 md:grid-cols-4">
+            <label className="rounded-xl bg-white/80 p-3 text-xs font-bold dark:bg-slate-950/40">
+              Target
+              <select className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={target} onChange={(event) => onTarget(event.target.value as AnimationTarget)}>
+                <option value="graph-parameter">Graph parameter</option>
+                <option value="cross-section">3D cross-section</option>
+                <option value="surface-scale">Surface scale</option>
+                <option value="point-orbit">Point P orbit</option>
+              </select>
+            </label>
+            <label className="rounded-xl bg-white/80 p-3 text-xs font-bold dark:bg-slate-950/40">
+              Parameter
+              <select className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={parameter} onChange={(event) => onParameter(event.target.value)} disabled={!parameterNames.length || target !== "graph-parameter"}>
+                {(parameterNames.length ? parameterNames : [parameter]).map((name) => <option key={name} value={name}>{name}</option>)}
+              </select>
+            </label>
+            <MiniNumber label="Duration" value={duration} onChange={(value) => onDuration(Math.max(0.5, value))} />
+            <MiniNumber label="Min" value={min} onChange={onMin} />
+            <MiniNumber label="Max" value={max} onChange={onMax} />
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <button type="button" className="mini-chip" onClick={() => { onTarget("graph-parameter"); onMin(-4); onMax(4); onDuration(5); }}>Slider sweep</button>
+            <button type="button" className="mini-chip" onClick={() => { onTarget("cross-section"); onMin(-2); onMax(2); onDuration(6); }}>Slice scan</button>
+            <button type="button" className="mini-chip" onClick={() => { onTarget("surface-scale"); onMin(0.4); onMax(2.3); onDuration(7); }}>Surface pulse</button>
+            <button type="button" className="mini-chip" onClick={() => { onTarget("point-orbit"); onDuration(8); }}>Point orbit</button>
+          </div>
+        </div>
+
+        <div className="rounded-2xl bg-white/80 p-3 dark:bg-slate-950/40">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-sm font-black">Motion snapshots</p>
+            <button type="button" className="mini-chip" onClick={onClearSnapshots}>Clear</button>
+          </div>
+          <div className="thin-scrollbar mt-2 max-h-48 space-y-2 overflow-auto pr-1">
+            {snapshots.length === 0 ? (
+              <p className="rounded-xl bg-slate-100 p-3 text-xs font-semibold leading-5 text-slate-500 dark:bg-white/10 dark:text-slate-300">Capture frames while animating to build a small motion path export.</p>
+            ) : snapshots.map((item) => (
+              <button key={item.id} type="button" onClick={() => onApplySnapshot(item)} className="w-full rounded-xl bg-slate-100 p-3 text-left text-xs dark:bg-white/10">
+                <span className="block font-black">{item.label}</span>
+                <span className="mt-1 block text-slate-500 dark:text-slate-300">{animationTargetLabel(item.target)} saved with {Object.keys(item.parameters).length} graph parameter(s).</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ClassroomAuthoringPanel({
+  lesson,
+  onLessonChange,
+  onStepChange,
+  onAddStep,
+  onDeleteStep,
+  onMoveStep,
+  onRunStep,
+  onReset,
+}: {
+  lesson: ClassroomLesson;
+  onLessonChange: (patch: Partial<ClassroomLesson>) => void;
+  onStepChange: (id: string, patch: Partial<LessonStep>) => void;
+  onAddStep: (kind?: LessonStepKind) => void;
+  onDeleteStep: (id: string) => void;
+  onMoveStep: (id: string, direction: -1 | 1) => void;
+  onRunStep: (step: LessonStep) => void;
+  onReset: () => void;
+}) {
+  return (
+    <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-4 dark:border-amber-300/20 dark:bg-amber-300/10">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-[11px] font-black uppercase text-amber-700 dark:text-amber-200">Classroom authoring</p>
+          <h3 className="text-base font-black text-slate-950 dark:text-white">Activity builder</h3>
+          <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">{lessonSummary(lesson)}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {lessonStepKinds.map((kind) => <button key={kind} type="button" onClick={() => onAddStep(kind)} className="mini-chip">{kind}</button>)}
+          <button type="button" onClick={onReset} className="mini-chip">Reset</button>
+        </div>
+      </div>
+
+      <div className="mt-3 grid gap-3 md:grid-cols-2">
+        <label className="text-xs font-bold">
+          Lesson title
+          <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-slate-900" value={lesson.title} onChange={(event) => onLessonChange({ title: event.target.value })} />
+        </label>
+        <label className="text-xs font-bold">
+          Audience
+          <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-slate-900" value={lesson.audience} onChange={(event) => onLessonChange({ audience: event.target.value })} />
+        </label>
+        <label className="text-xs font-bold md:col-span-2">
+          Objective
+          <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-slate-900" value={lesson.objective} onChange={(event) => onLessonChange({ objective: event.target.value })} />
+        </label>
+        <label className="text-xs font-bold md:col-span-2">
+          Teacher notes
+          <textarea className="mt-1 min-h-20 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-slate-900" value={lesson.teacherNotes} onChange={(event) => onLessonChange({ teacherNotes: event.target.value })} />
+        </label>
+      </div>
+
+      <div className="mt-4 space-y-3">
+        {lesson.steps.map((step, index) => (
+          <div key={step.id} className="rounded-2xl bg-white/80 p-3 dark:bg-slate-950/40">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="mini-chip">Step {index + 1}: {step.kind}</span>
+              <div className="flex flex-wrap gap-2">
+                <button type="button" className="mini-chip" onClick={() => onMoveStep(step.id, -1)}>Up</button>
+                <button type="button" className="mini-chip" onClick={() => onMoveStep(step.id, 1)}>Down</button>
+                {step.command && <button type="button" className="mini-chip" onClick={() => onRunStep(step)}>Run</button>}
+                <button type="button" className="mini-chip" onClick={() => onDeleteStep(step.id)}>Delete</button>
+              </div>
+            </div>
+            <div className="mt-3 grid gap-2 md:grid-cols-2">
+              <label className="text-xs font-bold">
+                Kind
+                <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={step.kind} onChange={(event) => onStepChange(step.id, { kind: event.target.value as LessonStepKind })}>
+                  {lessonStepKinds.map((kind) => <option key={kind} value={kind}>{kind}</option>)}
+                </select>
+              </label>
+              <label className="text-xs font-bold">
+                Title
+                <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 text-sm dark:border-white/10 dark:bg-slate-900" value={step.title} onChange={(event) => onStepChange(step.id, { title: event.target.value })} />
+              </label>
+              <label className="text-xs font-bold md:col-span-2">
+                Student prompt
+                <textarea className="mt-1 min-h-16 w-full rounded-xl border border-slate-200 bg-white p-2 text-sm dark:border-white/10 dark:bg-slate-900" value={step.prompt} onChange={(event) => onStepChange(step.id, { prompt: event.target.value })} />
+              </label>
+              <label className="text-xs font-bold">
+                Workspace command
+                <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 font-mono text-sm dark:border-white/10 dark:bg-slate-900" value={step.command ?? ""} onChange={(event) => onStepChange(step.id, { command: event.target.value || undefined })} />
+              </label>
+              <label className="text-xs font-bold">
+                Expected answer
+                <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 text-sm dark:border-white/10 dark:bg-slate-900" value={step.expected ?? ""} onChange={(event) => onStepChange(step.id, { expected: event.target.value || undefined })} />
+              </label>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PracticeAssessmentPanel({
+  lesson,
+  responses,
+  report,
+  onAnswer,
+  onCheck,
+  onRunStep,
+  onReset,
+  onExport,
+}: {
+  lesson: ClassroomLesson;
+  responses: Record<string, PracticeResponse>;
+  report: PracticeReport;
+  onAnswer: (stepId: string, answer: string) => void;
+  onCheck: (step: LessonStep) => void;
+  onRunStep: (step: LessonStep) => void;
+  onReset: () => void;
+  onExport: () => void;
+}) {
+  const assessableSteps = lesson.steps.filter(isAssessableStep);
+  return (
+    <div className="rounded-2xl border border-indigo-200 bg-indigo-50/80 p-4 dark:border-indigo-300/20 dark:bg-indigo-300/10">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-[11px] font-black uppercase text-indigo-700 dark:text-indigo-200">Practice assessment</p>
+          <h3 className="text-base font-black text-slate-950 dark:text-white">{practiceStatusLabel(report.status)}</h3>
+          <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">{report.answered}/{report.totalChecks} answered, {report.correct} mastery check(s) passed</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className={`rounded-full px-3 py-1 text-xs font-black ${report.status === "mastered" ? "bg-emerald-500 text-white" : report.status === "in-progress" ? "bg-indigo-500 text-white" : "bg-slate-200 text-slate-700 dark:bg-white/10 dark:text-slate-200"}`}>{report.score}%</span>
+          <button type="button" onClick={onExport} className="mini-chip">Export</button>
+          <button type="button" onClick={onReset} className="mini-chip">Reset</button>
+        </div>
+      </div>
+
+      {assessableSteps.length === 0 ? (
+        <div className="mt-3 rounded-2xl bg-white/80 p-3 text-sm font-semibold text-slate-600 dark:bg-slate-950/40 dark:text-slate-300">
+          Add a question or check step in the activity builder to create student practice items.
+        </div>
+      ) : (
+        <div className="mt-3 space-y-3">
+          {assessableSteps.map((step, index) => {
+            const response = responses[step.id];
+            const score = response?.score ?? 0;
+            return (
+              <div key={step.id} className="rounded-2xl bg-white/85 p-3 dark:bg-slate-950/45">
+                <div className="flex flex-wrap items-start justify-between gap-2">
+                  <div>
+                    <span className="mini-chip">Item {index + 1}: {step.kind}</span>
+                    <h4 className="mt-2 text-sm font-black text-slate-950 dark:text-white">{step.title}</h4>
+                    <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">{step.prompt}</p>
+                  </div>
+                  <span className={`rounded-full px-2 py-1 text-[10px] font-black uppercase ${score >= 70 ? "bg-emerald-500 text-white" : response?.checkedAt ? "bg-amber-300 text-slate-950" : "bg-slate-200 text-slate-600 dark:bg-white/10 dark:text-slate-300"}`}>{response?.checkedAt ? `${score}%` : "open"}</span>
+                </div>
+                <textarea
+                  value={response?.answer ?? ""}
+                  onChange={(event) => onAnswer(step.id, event.target.value)}
+                  className="mt-3 min-h-20 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-slate-900"
+                  placeholder="Student response..."
+                />
+                <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+                  <p className="min-w-0 flex-1 text-xs leading-5 text-slate-600 dark:text-slate-300">{response?.feedback ?? "Check the response when the student is ready."}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {step.command && <button type="button" onClick={() => onRunStep(step)} className="mini-chip">Run command</button>}
+                    <button type="button" onClick={() => onCheck(step)} className="mini-chip">Check</button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ImportExportSuitePanel({ importStatus, onTemplate }: { importStatus: string; onTemplate: (template: ConstructionTemplate) => void }) {
+  const templates: ConstructionTemplate[] = ["triangle", "circle-theorem", "parabola-locus"];
+  return (
+    <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4 dark:border-emerald-300/20 dark:bg-emerald-300/10">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-[11px] font-black uppercase text-emerald-700 dark:text-emerald-200">Import and export</p>
+          <h3 className="text-base font-black text-slate-950 dark:text-white">Portable workspace files</h3>
+          <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">{importStatus}</p>
+        </div>
+        <span className="mini-chip">JSON SVG CSV worksheet bundle</span>
+      </div>
+      <div className="mt-3 grid gap-2 md:grid-cols-3">
+        {templates.map((template) => (
+          <button key={template} type="button" onClick={() => onTemplate(template)} className="rounded-2xl bg-white/80 p-3 text-left transition hover:bg-emerald-100 dark:bg-slate-950/40 dark:hover:bg-emerald-300/15">
+            <p className="font-black">{templateLabel(template)}</p>
+            <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">Load a ready construction and continue editing in Geometry.</p>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ReleaseReadinessPanel({ health }: { health: ReleaseHealth }) {
+  const shortcuts = [
+    "Ctrl+Enter run",
+    "Ctrl+S save",
+    "Ctrl+O load",
+    "Ctrl+Shift+E bundle",
+    "Ctrl+1-4 switch views",
+    "Esc pause",
+  ];
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/85 p-4 dark:border-white/10 dark:bg-slate-950/55">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">Release health</p>
+          <h3 className="text-base font-black text-slate-950 dark:text-white">{releaseStatusLabel(health.status)}</h3>
+        </div>
+        <span className={`rounded-full px-3 py-1 text-xs font-black ${health.status === "release-ready" ? "bg-emerald-500 text-white" : health.status === "good" ? "bg-cyan-500 text-white" : "bg-amber-400 text-slate-950"}`}>{health.score}%</span>
+      </div>
+      <div className="mt-3 grid gap-2 md:grid-cols-2">
+        {health.checks.map((check) => (
+          <div key={check.id} className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-xs font-black">{check.label}</p>
+              <span className={`rounded-full px-2 py-0.5 text-[10px] font-black uppercase ${check.passed ? "bg-emerald-500 text-white" : "bg-amber-300 text-slate-950"}`}>{check.passed ? "ok" : "todo"}</span>
+            </div>
+            <p className="mt-1 text-[11px] leading-4 text-slate-600 dark:text-slate-300">{check.detail}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {shortcuts.map((shortcut) => <span key={shortcut} className="mini-chip">{shortcut}</span>)}
+      </div>
+    </div>
+  );
+}
+
+function constructionTemplate(template: ConstructionTemplate): Construction {
+  if (template === "circle-theorem") {
+    const points: GeoPoint[] = [
+      { id: "ct-o", x: 320, y: 210, label: "O" },
+      { id: "ct-a", x: 440, y: 210, label: "A" },
+      { id: "ct-b", x: 260, y: 110, label: "B" },
+      { id: "ct-c", x: 230, y: 300, label: "C" },
+    ];
+    return {
+      points,
+      lines: [
+        { id: "ct-ab", a: "ct-a", b: "ct-b", kind: "segment" },
+        { id: "ct-ac", a: "ct-a", b: "ct-c", kind: "segment" },
+        { id: "ct-bc", a: "ct-b", b: "ct-c", kind: "segment" },
+      ],
+      circles: [{ id: "ct-circle", center: "ct-o", edge: "ct-a" }],
+      polygons: [],
+      angles: [{ id: "ct-angle", a: "ct-b", vertex: "ct-a", b: "ct-c" }],
+      arcs: [],
+      texts: [],
+      conics: [],
+      transforms: [],
+      constraints: [],
+    };
+  }
+  if (template === "parabola-locus") {
+    const points: GeoPoint[] = [
+      { id: "pl-v", x: 320, y: 250, label: "V" },
+      { id: "pl-f", x: 320, y: 170, label: "F" },
+      { id: "pl-a", x: 220, y: 250, label: "A" },
+      { id: "pl-b", x: 420, y: 250, label: "B" },
+    ];
+    return {
+      points,
+      lines: [
+        { id: "pl-directrix", a: "pl-a", b: "pl-b", kind: "line" },
+        { id: "pl-axis", a: "pl-v", b: "pl-f", kind: "ray" },
+      ],
+      circles: [],
+      polygons: [],
+      angles: [],
+      arcs: [],
+      texts: [],
+      conics: [{ id: "pl-conic", kind: "parabola", center: "pl-v", a: 90, b: 60 }],
+      transforms: [],
+      constraints: [],
+    };
+  }
+  const points: GeoPoint[] = [
+    { id: "tr-a", x: 180, y: 310, label: "A" },
+    { id: "tr-b", x: 460, y: 310, label: "B" },
+    { id: "tr-c", x: 310, y: 100, label: "C" },
+  ];
+  return {
+    points,
+    lines: [
+      { id: "tr-ab", a: "tr-a", b: "tr-b", kind: "segment" },
+      { id: "tr-bc", a: "tr-b", b: "tr-c", kind: "segment" },
+      { id: "tr-ca", a: "tr-c", b: "tr-a", kind: "segment" },
+    ],
+    circles: [],
+    polygons: [{ id: "tr-poly", points: ["tr-a", "tr-b", "tr-c"] }],
+    angles: [{ id: "tr-angle", a: "tr-a", vertex: "tr-c", b: "tr-b" }],
+    arcs: [],
+    texts: [],
+    conics: [],
+    transforms: [],
+    constraints: [],
+  };
+}
+
+function lessonToWorksheet(lesson: ClassroomLesson) {
+  return [
+    lesson.title,
+    `Audience: ${lesson.audience}`,
+    `Objective: ${lesson.objective}`,
+    "",
+    "Student Activity",
+    ...lesson.steps.map((step, index) => [
+      `${index + 1}. ${step.title} [${step.kind}]`,
+      step.prompt,
+      step.command ? `Command: ${step.command}` : "",
+      step.expected ? `Expected: ${step.expected}` : "",
+    ].filter(Boolean).join("\n")),
+    "",
+    "Teacher Notes",
+    lesson.teacherNotes,
+  ].join("\n\n");
 }
 
 function inferPlotKind(expression: string): PlotKind {
@@ -1324,7 +2576,7 @@ function linearRegression(points: ResultTableRow[]) {
   return { slope, intercept, expression: `${roundTo(slope, 4)}*x${intercept >= 0 ? "+" : ""}${roundTo(intercept, 4)}` };
 }
 
-function ResultCardView({ result }: { result: ResultCard }) {
+function ResultCardView({ result, onVisualSync }: { result: ResultCard; onVisualSync: (link: CasVisualSyncLink) => void }) {
   return (
     <article className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{result.interpretation}</p>
@@ -1342,6 +2594,18 @@ function ResultCardView({ result }: { result: ResultCard }) {
             <thead className="bg-slate-100 text-xs uppercase text-slate-500 dark:bg-white/10 dark:text-slate-400"><tr><th className="px-3 py-2">x</th><th className="px-3 py-2">y</th></tr></thead>
             <tbody>{result.table.map((row, index) => <tr key={`${row.x}-${index}`} className="border-t border-slate-200 dark:border-white/10"><td className="px-3 py-2 font-mono">{row.x}</td><td className="px-3 py-2 font-mono">{row.y}</td></tr>)}</tbody>
           </table>
+        </div>
+      )}
+      {result.visualSync && result.visualSync.length > 0 && (
+        <div className="mt-3 rounded-2xl border border-cyan-200 bg-cyan-50 p-3 dark:border-cyan-300/20 dark:bg-cyan-300/10">
+          <p className="text-[11px] font-black uppercase text-cyan-700 dark:text-cyan-200">Visual sync</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {result.visualSync.map((link) => (
+              <button key={link.id} type="button" onClick={() => onVisualSync(link)} className={link.auto ? "action-primary py-2 text-xs" : "action-secondary py-2 text-xs"}>
+                {link.label}
+              </button>
+            ))}
+          </div>
         </div>
       )}
       {result.related && (
@@ -1378,10 +2642,12 @@ function HiddenGeometryExport({ construction, refSetter }: { construction: Const
       <rect width="640" height="420" fill="#ffffff" />
       <GeometryGrid />
       {construction.polygons.map((polygon) => <GeometryPolygon key={polygon.id} polygon={polygon} points={construction.points} />)}
+      {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} />)}
       {construction.conics.map((conic) => <GeometryConic key={conic.id} conic={conic} points={construction.points} />)}
       {construction.angles.map((angle) => <GeometryAngle key={angle.id} angle={angle} points={construction.points} />)}
       {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} />)}
       {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} />)}
+      {construction.texts.map((note) => <GeometryTextNote key={note.id} note={note} points={construction.points} />)}
       {construction.points.map((point) => (
         <g key={point.id}>
           <circle cx={point.x} cy={point.y} r="9" fill="#06b6d4" stroke="#0f172a" strokeWidth="2" />
@@ -1405,37 +2671,23 @@ function InfoPill({ title, text }: { title: string; text: string }) {
   return <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-sm font-bold">{title}</p><p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">{text}</p></div>;
 }
 
-function WorkspacePhaseRoadmap() {
-  return (
-    <div className="rounded-2xl border border-cyan-200/60 bg-cyan-50/80 p-4 dark:border-cyan-400/20 dark:bg-cyan-400/10">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">GeoGebra challenger roadmap</p>
-          <h3 className="mt-1 text-lg font-black text-slate-950 dark:text-white">10-phase pure-browser Math Workspace</h3>
-        </div>
-        <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-black text-white dark:bg-white dark:text-slate-950">Phase 1 active</span>
-      </div>
-      <div className="mt-4 grid gap-2 md:grid-cols-2">
-        {workspacePhases.map((item) => (
-          <div key={item.phase} className={`rounded-xl p-3 ${item.phase === 1 ? "bg-white shadow-sm dark:bg-slate-950/70" : "bg-white/60 dark:bg-white/10"}`}>
-            <div className="flex items-start justify-between gap-2">
-              <p className="text-sm font-black">Phase {item.phase}: {item.title}</p>
-              <span className={`rounded-full px-2 py-0.5 text-[10px] font-black uppercase ${item.phase === 1 ? "bg-cyan-500 text-white" : item.status === "Next" ? "bg-amber-400/20 text-amber-700 dark:text-amber-100" : "bg-slate-200 text-slate-600 dark:bg-white/10 dark:text-slate-300"}`}>{item.status}</span>
-            </div>
-            <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{item.scope}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function Workspace3DInspector({
   surface,
   solid,
   surfaceScale,
   solidSize,
   crossSection,
+  surfaceDomain,
+  surfacePosition,
+  surfaceRotation,
+  solidPosition,
+  solidRotation,
+  vectorStart,
+  vectorEnd,
+  point,
+  shapes,
+  selectedShape,
+  measurements,
   showSurface,
   showSolid,
   showAxes,
@@ -1445,11 +2697,23 @@ function Workspace3DInspector({
   showPoint,
   autoRotate,
   zoom,
+  selectedObject,
   onSurface,
   onSolid,
   onSurfaceScale,
   onSolidSize,
   onCrossSection,
+  onSurfaceDomain,
+  onSurfacePosition,
+  onSurfaceRotation,
+  onSolidPosition,
+  onSolidRotation,
+  onVectorStart,
+  onVectorEnd,
+  onPoint,
+  onAddShape,
+  onShapeChange,
+  onDuplicateShape,
   onShowSurface,
   onShowSolid,
   onShowAxes,
@@ -1459,12 +2723,26 @@ function Workspace3DInspector({
   onShowPoint,
   onAutoRotate,
   onZoom,
+  onSelect,
+  onDeleteSelected,
+  onRestoreAll,
 }: {
   surface: SurfaceKind;
   solid: SolidKind;
   surfaceScale: number;
   solidSize: number;
   crossSection: number;
+  surfaceDomain: number;
+  surfacePosition: Vector3Tuple;
+  surfaceRotation: Vector3Tuple;
+  solidPosition: Vector3Tuple;
+  solidRotation: Vector3Tuple;
+  vectorStart: Vector3Tuple;
+  vectorEnd: Vector3Tuple;
+  point: Vector3Tuple;
+  shapes: Space3DShapeObject[];
+  selectedShape: Space3DShapeObject | null;
+  measurements: Space3DMeasurements;
   showSurface: boolean;
   showSolid: boolean;
   showAxes: boolean;
@@ -1474,11 +2752,23 @@ function Workspace3DInspector({
   showPoint: boolean;
   autoRotate: boolean;
   zoom: number;
+  selectedObject: Space3DObjectId;
   onSurface: (value: SurfaceKind) => void;
   onSolid: (value: SolidKind) => void;
   onSurfaceScale: (value: number) => void;
   onSolidSize: (value: number) => void;
   onCrossSection: (value: number) => void;
+  onSurfaceDomain: (value: number) => void;
+  onSurfacePosition: (value: Vector3Tuple) => void;
+  onSurfaceRotation: (value: Vector3Tuple) => void;
+  onSolidPosition: (value: Vector3Tuple) => void;
+  onSolidRotation: (value: Vector3Tuple) => void;
+  onVectorStart: (value: Vector3Tuple) => void;
+  onVectorEnd: (value: Vector3Tuple) => void;
+  onPoint: (value: Vector3Tuple) => void;
+  onAddShape: (kind: SolidKind) => void;
+  onShapeChange: (id: string, patch: Partial<Space3DShapeObject>) => void;
+  onDuplicateShape: () => void;
   onShowSurface: (value: boolean) => void;
   onShowSolid: (value: boolean) => void;
   onShowAxes: (value: boolean) => void;
@@ -1488,67 +2778,312 @@ function Workspace3DInspector({
   onShowPoint: (value: boolean) => void;
   onAutoRotate: (value: boolean) => void;
   onZoom: (value: number) => void;
+  onSelect: (value: Space3DObjectId) => void;
+  onDeleteSelected: () => void;
+  onRestoreAll: () => void;
 }) {
-  const objects = [
+  const objects: { id: Space3DObjectId; name: string; visible: boolean; onVisible: (value: boolean) => void; details: string }[] = [
+    ...shapes.map((shape) => ({
+      id: `shape:${shape.id}` as const,
+      name: shape.name,
+      visible: shape.visible,
+      onVisible: (value: boolean) => onShapeChange(shape.id, { visible: value }),
+      details: `${solidOptions.find((option) => option.value === shape.kind)?.label ?? shape.kind}; size ${roundTo(shape.size, 2)}; pos (${shape.position.map((value) => roundTo(value, 1)).join(", ")})`,
+    })),
+    { id: "surface", name: "Surface mesh", visible: showSurface, onVisible: onShowSurface, details: `${surfaceFormula(surface, surfaceScale)}; pos (${surfacePosition.map((value) => roundTo(value, 1)).join(", ")})` },
+    { id: "solid", name: "Preview solid", visible: showSolid, onVisible: onShowSolid, details: `${solidOptions.find((option) => option.value === solid)?.label ?? solid}, size ${roundTo(solidSize, 2)}; use Add selected solid for copies` },
+    { id: "cross-section", name: "Cross-section plane", visible: showCrossSection, onVisible: onShowCrossSection, details: `z = ${roundTo(crossSection, 2)}; ${measurements.crossSectionSamples} contour samples` },
+    { id: "vector", name: "Vector ray", visible: showVector, onVisible: onShowVector, details: `<${measurements.vectorComponents.map((value) => roundTo(value, 2)).join(", ")}>, |v|=${roundTo(measurements.vectorLength, 2)}` },
+    { id: "point", name: "Point P", visible: showPoint, onVisible: onShowPoint, details: `(${point.map((value) => roundTo(value, 2)).join(", ")}), distance ${roundTo(measurements.pointDistanceFromOrigin, 2)}` },
     { id: "axes", name: "Coordinate axes", visible: showAxes, onVisible: onShowAxes, details: "+x, +y, +z labels and origin marker" },
     { id: "grid", name: "Base grid", visible: showGrid, onVisible: onShowGrid, details: "10 x 10 reference floor" },
-    { id: "surface", name: "Surface mesh", visible: showSurface, onVisible: onShowSurface, details: surfaceFormula(surface, surfaceScale) },
-    { id: "solid", name: "Solid object", visible: showSolid, onVisible: onShowSolid, details: `${solid}, size ${roundTo(solidSize, 2)}` },
-    { id: "cross-section", name: "Cross-section plane", visible: showCrossSection, onVisible: onShowCrossSection, details: `z = ${roundTo(crossSection, 2)}` },
-    { id: "vector", name: "Vector ray", visible: showVector, onVisible: onShowVector, details: "orange vector from (-3, 0.05, -3) to P" },
-    { id: "point", name: "Point P", visible: showPoint, onVisible: onShowPoint, details: "P(x,y,z) sample marker" },
   ];
+  const selectedMeta = objects.find((object) => object.id === selectedObject) ?? objects[0];
+  const selectedShapeMetrics = selectedShape ? solidMetrics(selectedShape.kind, selectedShape.size) : null;
 
   return (
     <div className="grid gap-2 lg:grid-cols-[minmax(0,1fr)_minmax(260px,340px)]">
       <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
-        <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Phase 1 object kernel</p>
-        <h3 className="text-sm font-black">3D Scene Objects</h3>
+        <div className="flex items-start justify-between gap-2">
+          <div>
+            <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Selectable object kernel</p>
+            <h3 className="text-sm font-black">3D Scene Objects</h3>
+          </div>
+          <button type="button" className="mini-chip" onClick={onRestoreAll}>Restore all</button>
+        </div>
         <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
           {objects.map((object) => (
-            <div key={object.id} className="rounded-xl bg-slate-100 p-2 dark:bg-white/10">
+            <div key={object.id} className={`rounded-xl border p-2 transition ${selectedObject === object.id ? "border-cyan-300 bg-cyan-50 dark:border-cyan-300/40 dark:bg-cyan-300/10" : "border-transparent bg-slate-100 dark:bg-white/10"}`}>
               <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0">
+                <button type="button" className="min-w-0 flex-1 text-left" onClick={() => onSelect(object.id as Space3DObjectId)}>
                   <p className="text-xs font-black">{object.name}</p>
                   <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-slate-600 dark:text-slate-300">{object.details}</p>
-                </div>
+                </button>
                 <input className="mt-1 h-4 w-4 accent-cyan-400" type="checkbox" checked={object.visible} onChange={(event) => object.onVisible(event.target.checked)} aria-label={`Toggle ${object.name}`} />
               </div>
-              <button type="button" className="mini-chip mt-2 w-full justify-center" onClick={() => object.onVisible(false)}>Remove from view</button>
+              <div className="mt-2 grid grid-cols-2 gap-1">
+                <button type="button" className="mini-chip justify-center" onClick={() => { onSelect(object.id as Space3DObjectId); object.onVisible(true); }}>Select</button>
+                <button type="button" className="mini-chip justify-center" onClick={() => { onSelect(object.id as Space3DObjectId); object.onVisible(false); }}>Delete</button>
+              </div>
             </div>
           ))}
         </div>
       </div>
       <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
-        <h3 className="text-sm font-black">3D Properties</h3>
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0">
+            <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Selected object</p>
+            <h3 className="truncate text-sm font-black">{selectedMeta.name}</h3>
+          </div>
+          <button type="button" onClick={onDeleteSelected} className="math-tool-button-danger h-8 w-8 rounded-lg" aria-label={`Delete ${selectedMeta.name}`}>
+            <Trash2 className="h-3.5 w-3.5" />
+          </button>
+        </div>
+        <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">{selectedMeta.details}</p>
         <div className="mt-2 grid gap-2">
-          <label className="text-xs font-bold">
-            Surface type
-            <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={surface} onChange={(event) => onSurface(event.target.value as SurfaceKind)}>
-              <option value="paraboloid">Paraboloid</option>
-              <option value="saddle">Saddle</option>
-              <option value="wave">Wave</option>
-              <option value="plane">Plane</option>
-              <option value="ripple">Ripple</option>
-              <option value="cone-surface">Cone surface</option>
-            </select>
-          </label>
-          <label className="text-xs font-bold">
-            Solid type
-            <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={solid} onChange={(event) => onSolid(event.target.value as SolidKind)}>
-              <option value="cube">Cube</option>
-              <option value="sphere">Sphere</option>
-              <option value="cylinder">Cylinder</option>
-              <option value="cone">Cone</option>
-            </select>
-          </label>
-          <NumberField label="Surface scale" value={surfaceScale} min={0.2} max={2.5} step={0.1} onChange={onSurfaceScale} />
-          <NumberField label="Solid size" value={solidSize} min={0.8} max={5} step={0.1} onChange={onSolidSize} />
-          <NumberField label="Cross-section z" value={crossSection} min={-3} max={3} step={0.1} onChange={onCrossSection} />
+          <div className="grid grid-cols-3 gap-2">
+            {shapePalette3d.slice(0, 9).map((item) => {
+              const Icon = item.icon;
+              return (
+                <button key={`palette-${item.kind}`} type="button" className="mini-chip justify-center" onClick={() => onAddShape(item.kind)}>
+                  <Icon className="h-3.5 w-3.5" />{item.label}
+                </button>
+              );
+            })}
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            {objects.map((object) => (
+              <button
+                key={`add-${object.id}`}
+                type="button"
+                className={selectedObject === object.id ? "action-primary justify-center capitalize" : "tool-button justify-center capitalize"}
+                onClick={() => { onSelect(object.id as Space3DObjectId); object.onVisible(true); }}
+              >
+                <Plus className="h-4 w-4" />{object.id.replace("-", " ")}
+              </button>
+            ))}
+          </div>
+          {selectedShape && (
+            <>
+              <label className="text-xs font-bold">
+                Object name
+                <input
+                  className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 font-mono text-sm dark:border-white/10 dark:bg-slate-900"
+                  value={selectedShape.name}
+                  onChange={(event) => onShapeChange(selectedShape.id, { name: event.target.value })}
+                />
+              </label>
+              <label className="text-xs font-bold">
+                Shape type
+                <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={selectedShape.kind} onChange={(event) => onShapeChange(selectedShape.id, { kind: event.target.value as SolidKind })}>
+                  {solidOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                </select>
+              </label>
+              <NumberField label="Shape size" value={selectedShape.size} min={0.4} max={5} step={0.1} onChange={(value) => onShapeChange(selectedShape.id, { size: value })} />
+              <VectorField label="Shape position" value={selectedShape.position} onChange={(value) => onShapeChange(selectedShape.id, { position: value })} />
+              <RotationField label="Shape rotation" value={selectedShape.rotation} onChange={(value) => onShapeChange(selectedShape.id, { rotation: value })} />
+              <label className="text-xs font-bold">
+                Color
+                <input
+                  className="mt-1 h-10 w-full rounded-xl border border-slate-200 bg-white p-1 dark:border-white/10 dark:bg-slate-900"
+                  type="color"
+                  value={selectedShape.color}
+                  onChange={(event) => onShapeChange(selectedShape.id, { color: event.target.value })}
+                />
+              </label>
+              {selectedShapeMetrics && (
+                <div className="grid grid-cols-2 gap-2">
+                  <MetricTile label="Volume" value={roundTo(selectedShapeMetrics.volume, 2).toString()} />
+                  <MetricTile label="Area" value={roundTo(selectedShapeMetrics.surfaceArea, 2).toString()} />
+                </div>
+              )}
+              <div className="grid grid-cols-2 gap-2">
+                <Toggle checked={selectedShape.visible} label="Visible" onChange={(value) => onShapeChange(selectedShape.id, { visible: value })} />
+                <button type="button" className="tool-button justify-center" onClick={onDuplicateShape}><ClipboardCopy className="h-4 w-4" />Duplicate</button>
+              </div>
+              <TransformNudges
+                onCenter={() => onShapeChange(selectedShape.id, { position: [0, 0, 0] })}
+                onLift={() => onShapeChange(selectedShape.id, { position: clampVector3([selectedShape.position[0], selectedShape.position[1] + 0.25, selectedShape.position[2]]) })}
+                onLower={() => onShapeChange(selectedShape.id, { position: clampVector3([selectedShape.position[0], selectedShape.position[1] - 0.25, selectedShape.position[2]]) })}
+                onRotateX={() => onShapeChange(selectedShape.id, { rotation: clampRotationVector([selectedShape.rotation[0] + 15, selectedShape.rotation[1], selectedShape.rotation[2]]) })}
+                onRotateY={() => onShapeChange(selectedShape.id, { rotation: clampRotationVector([selectedShape.rotation[0], selectedShape.rotation[1] + 15, selectedShape.rotation[2]]) })}
+                onRotateZ={() => onShapeChange(selectedShape.id, { rotation: clampRotationVector([selectedShape.rotation[0], selectedShape.rotation[1], selectedShape.rotation[2] + 15]) })}
+                onScaleUp={() => onShapeChange(selectedShape.id, { size: clampNumber(roundTo(selectedShape.size + 0.2, 2), 0.4, 5) })}
+                onScaleDown={() => onShapeChange(selectedShape.id, { size: clampNumber(roundTo(selectedShape.size - 0.2, 2), 0.4, 5) })}
+              />
+            </>
+          )}
+          {(selectedObject === "surface" || selectedObject === "axes" || selectedObject === "grid") && (
+            <>
+              <label className="text-xs font-bold">
+                Surface type
+                <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={surface} onChange={(event) => { onSurface(event.target.value as SurfaceKind); onShowSurface(true); onSelect("surface"); }}>
+                  {surfaceOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                </select>
+              </label>
+              <NumberField label="Surface scale" value={surfaceScale} min={0.2} max={2.5} step={0.1} onChange={onSurfaceScale} />
+              <NumberField label="Domain / clipping radius" value={surfaceDomain} min={1.2} max={3.5} step={0.1} onChange={onSurfaceDomain} />
+              <VectorField label="Surface position" value={surfacePosition} onChange={onSurfacePosition} />
+              <RotationField label="Surface rotation" value={surfaceRotation} onChange={onSurfaceRotation} />
+              <TransformNudges
+                onCenter={() => onSurfacePosition([0, 0, 0])}
+                onLift={() => onSurfacePosition(clampVector3([surfacePosition[0], surfacePosition[1] + 0.25, surfacePosition[2]]))}
+                onLower={() => onSurfacePosition(clampVector3([surfacePosition[0], surfacePosition[1] - 0.25, surfacePosition[2]]))}
+                onRotateX={() => onSurfaceRotation(clampRotationVector([surfaceRotation[0] + 15, surfaceRotation[1], surfaceRotation[2]]))}
+                onRotateY={() => onSurfaceRotation(clampRotationVector([surfaceRotation[0], surfaceRotation[1] + 15, surfaceRotation[2]]))}
+                onRotateZ={() => onSurfaceRotation(clampRotationVector([surfaceRotation[0], surfaceRotation[1], surfaceRotation[2] + 15]))}
+              />
+            </>
+          )}
+          {selectedObject === "solid" && (
+            <>
+              <label className="text-xs font-bold">
+                Solid type
+                <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={solid} onChange={(event) => { onSolid(event.target.value as SolidKind); onShowSolid(true); }}>
+                  {solidOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                </select>
+              </label>
+              <NumberField label="Solid size" value={solidSize} min={0.8} max={5} step={0.1} onChange={onSolidSize} />
+              <VectorField label="Solid position" value={solidPosition} onChange={onSolidPosition} />
+              <RotationField label="Solid rotation" value={solidRotation} onChange={onSolidRotation} />
+              <TransformNudges
+                onCenter={() => onSolidPosition([0, 0, 0])}
+                onLift={() => onSolidPosition(clampVector3([solidPosition[0], solidPosition[1] + 0.25, solidPosition[2]]))}
+                onLower={() => onSolidPosition(clampVector3([solidPosition[0], solidPosition[1] - 0.25, solidPosition[2]]))}
+                onRotateX={() => onSolidRotation(clampRotationVector([solidRotation[0] + 15, solidRotation[1], solidRotation[2]]))}
+                onRotateY={() => onSolidRotation(clampRotationVector([solidRotation[0], solidRotation[1] + 15, solidRotation[2]]))}
+                onRotateZ={() => onSolidRotation(clampRotationVector([solidRotation[0], solidRotation[1], solidRotation[2] + 15]))}
+                onScaleUp={() => onSolidSize(clampNumber(roundTo(solidSize + 0.2, 2), 0.8, 5))}
+                onScaleDown={() => onSolidSize(clampNumber(roundTo(solidSize - 0.2, 2), 0.8, 5))}
+              />
+            </>
+          )}
+          {selectedObject === "cross-section" && <NumberField label="Cross-section z" value={crossSection} min={-3} max={3} step={0.1} onChange={onCrossSection} />}
+          {selectedObject === "vector" && (
+            <div className="grid gap-2">
+              <VectorField label="Vector start" value={vectorStart} onChange={onVectorStart} />
+              <VectorField label="Vector end" value={vectorEnd} onChange={onVectorEnd} />
+            </div>
+          )}
+          {selectedObject === "point" && <VectorField label="Point P" value={point} onChange={onPoint} />}
           <NumberField label="Camera zoom" value={zoom} min={0.6} max={1.8} step={0.1} onChange={onZoom} />
           <Toggle checked={autoRotate} label="Auto rotate" onChange={onAutoRotate} />
         </div>
       </div>
+      <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5 lg:col-span-2">
+        <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">3D measurements</p>
+        <div className="mt-2 grid gap-2 md:grid-cols-4">
+          <MetricTile label="Surface z range" value={`${roundTo(measurements.surfaceSampleMin, 2)} to ${roundTo(measurements.surfaceSampleMax, 2)}`} />
+          <MetricTile label="Slice contour" value={`${measurements.crossSectionSamples} samples`} />
+          <MetricTile label="Solid volume" value={roundTo(measurements.solidVolume, 2).toString()} />
+          <MetricTile label="Solid area" value={roundTo(measurements.solidSurfaceArea, 2).toString()} />
+        </div>
+        <div className="mt-3 grid gap-2 md:grid-cols-3">
+          <VectorField label="Vector start" value={vectorStart} onChange={onVectorStart} />
+          <VectorField label="Vector end" value={vectorEnd} onChange={onVectorEnd} />
+          <VectorField label="Point P" value={point} onChange={onPoint} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MetricTile({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+      <p className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">{label}</p>
+      <p className="mt-1 font-mono text-sm font-black text-slate-950 dark:text-white">{value}</p>
+    </div>
+  );
+}
+
+function VectorField({ label, value, onChange }: { label: string; value: Vector3Tuple; onChange: (value: Vector3Tuple) => void }) {
+  const update = (index: number, nextValue: number) => {
+    const next: Vector3Tuple = [...value] as Vector3Tuple;
+    next[index] = Math.max(-5, Math.min(5, nextValue));
+    onChange(next);
+  };
+  return (
+    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+      <p className="text-xs font-black">{label}</p>
+      <div className="mt-2 grid grid-cols-3 gap-2">
+        {(["x", "y", "z"] as const).map((axis, index) => (
+          <label key={axis} className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
+            {axis}
+            <input
+              className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 font-mono text-xs dark:border-white/10 dark:bg-slate-900"
+              type="number"
+              value={Number(value[index].toFixed(3))}
+              min={-5}
+              max={5}
+              step={0.1}
+              onChange={(event) => update(index, Number(event.target.value))}
+            />
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function RotationField({ label, value, onChange }: { label: string; value: Vector3Tuple; onChange: (value: Vector3Tuple) => void }) {
+  const update = (index: number, nextValue: number) => {
+    const next: Vector3Tuple = [...value] as Vector3Tuple;
+    next[index] = clampNumber(nextValue, -180, 180);
+    onChange(next);
+  };
+  return (
+    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+      <p className="text-xs font-black">{label}</p>
+      <div className="mt-2 grid grid-cols-3 gap-2">
+        {(["x", "y", "z"] as const).map((axis, index) => (
+          <label key={axis} className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
+            {axis} deg
+            <input
+              className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 font-mono text-xs dark:border-white/10 dark:bg-slate-900"
+              type="number"
+              value={Number(value[index].toFixed(1))}
+              min={-180}
+              max={180}
+              step={5}
+              onChange={(event) => update(index, Number(event.target.value))}
+            />
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TransformNudges({
+  onCenter,
+  onLift,
+  onLower,
+  onRotateX,
+  onRotateY,
+  onRotateZ,
+  onScaleUp,
+  onScaleDown,
+}: {
+  onCenter: () => void;
+  onLift: () => void;
+  onLower: () => void;
+  onRotateX: () => void;
+  onRotateY: () => void;
+  onRotateZ: () => void;
+  onScaleUp?: () => void;
+  onScaleDown?: () => void;
+}) {
+  return (
+    <div className="grid grid-cols-3 gap-2">
+      <button type="button" className="mini-chip justify-center" onClick={onCenter}><Crosshair className="h-3.5 w-3.5" />Center</button>
+      <button type="button" className="mini-chip justify-center" onClick={onLift}><Move3D className="h-3.5 w-3.5" />Lift</button>
+      <button type="button" className="mini-chip justify-center" onClick={onLower}><Move3D className="h-3.5 w-3.5" />Lower</button>
+      <button type="button" className="mini-chip justify-center" onClick={onRotateX}><Rotate3D className="h-3.5 w-3.5" />Rot X</button>
+      <button type="button" className="mini-chip justify-center" onClick={onRotateY}><Rotate3D className="h-3.5 w-3.5" />Rot Y</button>
+      <button type="button" className="mini-chip justify-center" onClick={onRotateZ}><Rotate3D className="h-3.5 w-3.5" />Rot Z</button>
+      {onScaleUp && <button type="button" className="mini-chip justify-center" onClick={onScaleUp}><ZoomIn className="h-3.5 w-3.5" />Bigger</button>}
+      {onScaleDown && <button type="button" className="mini-chip justify-center" onClick={onScaleDown}><ZoomOut className="h-3.5 w-3.5" />Smaller</button>}
     </div>
   );
 }
@@ -1570,7 +3105,81 @@ function NumberField({ label, value, min, max, step, onChange }: { label: string
   );
 }
 
-function Workspace3DScene({ surface, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, showAxes, showGrid, showCrossSection, showVector, showPoint, autoRotate, zoom }: { surface: SurfaceKind; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; showAxes: boolean; showGrid: boolean; showCrossSection: boolean; showVector: boolean; showPoint: boolean; autoRotate: boolean; zoom: number }) {
+function Workspace3DScene({
+  surface,
+  solid,
+  surfaceScale,
+  solidSize,
+  crossSection,
+  surfaceDomain,
+  surfacePosition,
+  surfaceRotation,
+  solidPosition,
+  solidRotation,
+  vectorStart,
+  vectorEnd,
+  point,
+  shapes,
+  showSurface,
+  showSolid,
+  showAxes,
+  showGrid,
+  showCrossSection,
+  showVector,
+  showPoint,
+  autoRotate,
+  zoom,
+  selectedObject,
+  onSelect,
+  onVectorStart,
+  onVectorEnd,
+  onPoint,
+  onSurfacePosition,
+  onSolidPosition,
+  onShapeChange,
+  onSurfaceScale,
+  onSurfaceDomain,
+  onSolidSize,
+  onCrossSection,
+  onDragActive,
+}: {
+  surface: SurfaceKind;
+  solid: SolidKind;
+  surfaceScale: number;
+  solidSize: number;
+  crossSection: number;
+  surfaceDomain: number;
+  surfacePosition: Vector3Tuple;
+  surfaceRotation: Vector3Tuple;
+  solidPosition: Vector3Tuple;
+  solidRotation: Vector3Tuple;
+  vectorStart: Vector3Tuple;
+  vectorEnd: Vector3Tuple;
+  point: Vector3Tuple;
+  shapes: Space3DShapeObject[];
+  showSurface: boolean;
+  showSolid: boolean;
+  showAxes: boolean;
+  showGrid: boolean;
+  showCrossSection: boolean;
+  showVector: boolean;
+  showPoint: boolean;
+  autoRotate: boolean;
+  zoom: number;
+  selectedObject: Space3DObjectId;
+  onSelect: (value: Space3DObjectId) => void;
+  onVectorStart: (value: Vector3Tuple) => void;
+  onVectorEnd: (value: Vector3Tuple) => void;
+  onPoint: (value: Vector3Tuple) => void;
+  onSurfacePosition: (value: Vector3Tuple) => void;
+  onSolidPosition: (value: Vector3Tuple) => void;
+  onShapeChange: (id: string, patch: Partial<Space3DShapeObject>) => void;
+  onSurfaceScale: (value: number) => void;
+  onSurfaceDomain: (value: number) => void;
+  onSolidSize: (value: number) => void;
+  onCrossSection: (value: number) => void;
+  onDragActive: (value: boolean) => void;
+}) {
   const groupRef = useRef<THREE.Group>(null);
   useFrame((_, delta) => {
     if (groupRef.current && autoRotate) groupRef.current.rotation.y += delta * 0.22;
@@ -1578,29 +3187,297 @@ function Workspace3DScene({ surface, solid, surfaceScale, solidSize, crossSectio
 
   return (
     <group ref={groupRef} scale={zoom}>
-      {showAxes && <Axes3D />}
-      {showGrid && <gridHelper args={[10, 10, "#334155", "#1e293b"]} rotation={[0, 0, 0]} />}
-      {showSurface && <SurfaceMesh surface={surface} scaleValue={surfaceScale} />}
-      {showSolid && <SolidMesh solid={solid} size={solidSize} autoRotate={autoRotate} />}
-      {showCrossSection && <CrossSectionPlane z={crossSection} />}
-      {showVector && <VectorArrow start={[-3, 0.05, -3]} end={[2.2, 1.4, 1.8]} color="#f59e0b" />}
-      {showPoint && <Point3D position={[2.2, 1.4, 1.8]} label="P" />}
+      {showAxes && (
+        <group onClick={(event) => { event.stopPropagation(); onSelect("axes"); }}>
+          <Axes3D selected={selectedObject === "axes"} />
+        </group>
+      )}
+      {showGrid && (
+        <group onClick={(event) => { event.stopPropagation(); onSelect("grid"); }}>
+          <gridHelper args={[10, 10, selectedObject === "grid" ? "#22d3ee" : "#334155", "#1e293b"]} rotation={[0, 0, 0]} />
+          {selectedObject === "grid" && <SelectionHalo position={[0, 0.02, 0]} radius={3.4} />}
+        </group>
+      )}
+      {showSurface && <SurfaceMesh surface={surface} scaleValue={surfaceScale} domainRadius={surfaceDomain} position={surfacePosition} rotation={surfaceRotation} selected={selectedObject === "surface"} onSelect={() => onSelect("surface")} />}
+      {showSolid && <SolidMesh solid={solid} size={solidSize} position={solidPosition} rotation={solidRotation} autoRotate={autoRotate} selected={selectedObject === "solid"} onSelect={() => onSelect("solid")} />}
+      {shapes.filter((shape) => shape.visible).map((shape) => {
+        const selected = selectedObject === `shape:${shape.id}`;
+        return (
+          <group key={shape.id}>
+            <SolidMesh solid={shape.kind} size={shape.size} position={shape.position} rotation={shape.rotation} autoRotate={false} selected={selected} color={shape.color} label={shape.name} onSelect={() => onSelect(`shape:${shape.id}`)} />
+            {selected && (
+              <>
+                <Draggable3DHandle
+                  position={shape.position}
+                  label="Move"
+                  color={shape.color}
+                  onSelect={() => onSelect(`shape:${shape.id}`)}
+                  onDrag={(delta) => onShapeChange(shape.id, { position: clampVector3([shape.position[0] + delta.x, shape.position[1] + delta.y, shape.position[2] + delta.z]) })}
+                  onDragActive={onDragActive}
+                />
+                <Vertical3DHandle
+                  position={[shape.position[0] + 0.48, shape.position[1] + shape.size + 0.25, shape.position[2] - 0.48]}
+                  label="Size"
+                  color="#fb7185"
+                  onSelect={() => onSelect(`shape:${shape.id}`)}
+                  onDrag={(deltaY) => onShapeChange(shape.id, { size: clampNumber(shape.size + deltaY, 0.4, 5) })}
+                  onDragActive={onDragActive}
+                />
+              </>
+            )}
+          </group>
+        );
+      })}
+      {showCrossSection && <CrossSectionPlane z={crossSection} surface={surface} scaleValue={surfaceScale} domainRadius={surfaceDomain} selected={selectedObject === "cross-section"} onSelect={() => onSelect("cross-section")} />}
+      {showVector && <VectorArrow start={vectorStart} end={vectorEnd} color={selectedObject === "vector" ? "#22d3ee" : "#f59e0b"} selected={selectedObject === "vector"} onSelect={() => onSelect("vector")} />}
+      {showPoint && <Point3D position={point} label="P" selected={selectedObject === "point"} onSelect={() => onSelect("point")} />}
+      {showPoint && (
+        <Draggable3DHandle
+          position={point}
+          label="Drag P"
+          color="#22d3ee"
+          onSelect={() => onSelect("point")}
+          onDrag={(delta) => onPoint(clampVector3([point[0] + delta.x, point[1] + delta.y, point[2] + delta.z]))}
+          onDragActive={onDragActive}
+        />
+      )}
+      {showVector && (
+        <>
+          <Draggable3DHandle
+            position={vectorStart}
+            label="Tail"
+            color="#a78bfa"
+            onSelect={() => onSelect("vector")}
+            onDrag={(delta) => onVectorStart(clampVector3([vectorStart[0] + delta.x, vectorStart[1] + delta.y, vectorStart[2] + delta.z]))}
+            onDragActive={onDragActive}
+          />
+          <Draggable3DHandle
+            position={vectorEnd}
+            label="Head"
+            color="#f59e0b"
+            onSelect={() => onSelect("vector")}
+            onDrag={(delta) => onVectorEnd(clampVector3([vectorEnd[0] + delta.x, vectorEnd[1] + delta.y, vectorEnd[2] + delta.z]))}
+            onDragActive={onDragActive}
+          />
+        </>
+      )}
+      {showCrossSection && (
+        <Vertical3DHandle
+          position={[surfaceDomain + 0.45, crossSection, surfaceDomain + 0.45]}
+          label="Slice"
+          color="#facc15"
+          onSelect={() => onSelect("cross-section")}
+          onDrag={(deltaY) => onCrossSection(clampNumber(crossSection + deltaY, -3, 3))}
+          onDragActive={onDragActive}
+        />
+      )}
+      {showSolid && (
+        <>
+          <Draggable3DHandle
+            position={solidPosition}
+            label="Move solid"
+            color="#c4b5fd"
+            onSelect={() => onSelect("solid")}
+            onDrag={(delta) => onSolidPosition(clampVector3([solidPosition[0] + delta.x, solidPosition[1] + delta.y, solidPosition[2] + delta.z]))}
+            onDragActive={onDragActive}
+          />
+          <Vertical3DHandle
+            position={[solidPosition[0] + 0.48, solidPosition[1] + solidSize + 0.25, solidPosition[2] - 0.48]}
+            label="Size"
+            color="#fb7185"
+            onSelect={() => onSelect("solid")}
+            onDrag={(deltaY) => onSolidSize(clampNumber(solidSize + deltaY, 0.8, 5))}
+            onDragActive={onDragActive}
+          />
+        </>
+      )}
+      {showSurface && (
+        <>
+          <Draggable3DHandle
+            position={surfacePosition}
+            label="Move surface"
+            color="#38bdf8"
+            onSelect={() => onSelect("surface")}
+            onDrag={(delta) => onSurfacePosition(clampVector3([surfacePosition[0] + delta.x, surfacePosition[1] + delta.y, surfacePosition[2] + delta.z]))}
+            onDragActive={onDragActive}
+          />
+          <Vertical3DHandle
+            position={[surfacePosition[0] - surfaceDomain - 0.45, surfacePosition[1] + surfaceScale * 1.25 + 0.3, surfacePosition[2] - surfaceDomain - 0.45]}
+            label="Scale"
+            color="#38bdf8"
+            onSelect={() => onSelect("surface")}
+            onDrag={(deltaY) => onSurfaceScale(clampNumber(surfaceScale + deltaY * 0.55, 0.2, 2.5))}
+            onDragActive={onDragActive}
+          />
+          <Draggable3DHandle
+            position={[surfacePosition[0] + surfaceDomain, surfacePosition[1] + 0.18, surfacePosition[2] - surfaceDomain]}
+            label="Clip"
+            color="#2dd4bf"
+            onSelect={() => onSelect("surface")}
+            onDrag={(delta) => onSurfaceDomain(clampNumber(surfaceDomain + (delta.x - delta.z) * 0.3, 1.2, 3.5))}
+            onDragActive={onDragActive}
+          />
+        </>
+      )}
     </group>
   );
 }
 
-function Axes3D() {
+function Axes3D({ selected = false }: { selected?: boolean }) {
   return (
     <group>
-      <VectorArrow start={[-5, 0, 0]} end={[5, 0, 0]} color="#ef4444" />
-      <VectorArrow start={[0, -0.01, -5]} end={[0, -0.01, 5]} color="#22c55e" />
-      <VectorArrow start={[0, -3, 0]} end={[0, 3, 0]} color="#38bdf8" />
+      <VectorArrow start={[-5, 0, 0]} end={[5, 0, 0]} color={selected ? "#facc15" : "#ef4444"} />
+      <VectorArrow start={[0, -0.01, -5]} end={[0, -0.01, 5]} color={selected ? "#facc15" : "#22c55e"} />
+      <VectorArrow start={[0, -3, 0]} end={[0, 3, 0]} color={selected ? "#facc15" : "#38bdf8"} />
       <SceneLabel position={[5.35, 0.15, 0]} text="+x" color="#fecaca" />
       <SceneLabel position={[0.25, 0.1, 5.35]} text="+y" color="#bbf7d0" />
       <SceneLabel position={[0.25, 3.25, 0]} text="+z height" color="#bae6fd" />
       <SceneLabel position={[0.1, 0.25, 0.35]} text="origin" color="#e2e8f0" size={0.18} />
+      {selected && <SelectionHalo position={[0, 0, 0]} radius={2.2} />}
     </group>
   );
+}
+
+type DragDelta3D = { x: number; y: number; z: number };
+
+function Draggable3DHandle({
+  position,
+  label,
+  color,
+  onSelect,
+  onDrag,
+  onDragActive,
+}: {
+  position: Vector3Tuple;
+  label: string;
+  color: string;
+  onSelect: () => void;
+  onDrag: (delta: DragDelta3D) => void;
+  onDragActive: (value: boolean) => void;
+}) {
+  const [dragging, setDragging] = useState(false);
+  const stop = () => {
+    setDragging(false);
+    onDragActive(false);
+  };
+  return (
+    <group
+      position={position}
+      onPointerDown={(event) => {
+        event.stopPropagation();
+        onSelect();
+        setDragging(true);
+        onDragActive(true);
+        (event.nativeEvent.target as Element | null)?.setPointerCapture?.(event.pointerId);
+      }}
+      onPointerMove={(event) => {
+        if (!dragging) return;
+        event.stopPropagation();
+        const nativeEvent = event.nativeEvent as globalThis.PointerEvent;
+        onDrag({
+          x: nativeEvent.movementX * 0.025,
+          y: nativeEvent.shiftKey ? -nativeEvent.movementY * 0.025 : 0,
+          z: nativeEvent.shiftKey ? 0 : nativeEvent.movementY * 0.025,
+        });
+      }}
+      onPointerUp={(event) => {
+        event.stopPropagation();
+        (event.nativeEvent.target as Element | null)?.releasePointerCapture?.(event.pointerId);
+        stop();
+      }}
+      onPointerLeave={() => {
+        if (dragging) stop();
+      }}
+    >
+      <mesh>
+        <sphereGeometry args={[dragging ? 0.24 : 0.18, 24, 16]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={dragging ? 0.75 : 0.35} />
+      </mesh>
+      <mesh>
+        <torusGeometry args={[0.28, 0.012, 10, 36]} />
+        <meshStandardMaterial color="#f8fafc" emissive="#0e7490" emissiveIntensity={0.35} />
+      </mesh>
+      <SceneLabel position={[0, 0.42, 0]} text={label} color="#f8fafc" size={0.16} />
+    </group>
+  );
+}
+
+function Vertical3DHandle({
+  position,
+  label,
+  color,
+  onSelect,
+  onDrag,
+  onDragActive,
+}: {
+  position: Vector3Tuple;
+  label: string;
+  color: string;
+  onSelect: () => void;
+  onDrag: (deltaY: number) => void;
+  onDragActive: (value: boolean) => void;
+}) {
+  const [dragging, setDragging] = useState(false);
+  const stop = () => {
+    setDragging(false);
+    onDragActive(false);
+  };
+  return (
+    <group
+      position={position}
+      onPointerDown={(event) => {
+        event.stopPropagation();
+        onSelect();
+        setDragging(true);
+        onDragActive(true);
+        (event.nativeEvent.target as Element | null)?.setPointerCapture?.(event.pointerId);
+      }}
+      onPointerMove={(event) => {
+        if (!dragging) return;
+        event.stopPropagation();
+        const nativeEvent = event.nativeEvent as globalThis.PointerEvent;
+        onDrag(-nativeEvent.movementY * 0.025);
+      }}
+      onPointerUp={(event) => {
+        event.stopPropagation();
+        (event.nativeEvent.target as Element | null)?.releasePointerCapture?.(event.pointerId);
+        stop();
+      }}
+      onPointerLeave={() => {
+        if (dragging) stop();
+      }}
+    >
+      <mesh>
+        <cylinderGeometry args={[0.025, 0.025, 1.1, 12]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.3} />
+      </mesh>
+      <mesh position={[0, 0.62, 0]}>
+        <coneGeometry args={[dragging ? 0.18 : 0.13, 0.28, 16]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={dragging ? 0.75 : 0.35} />
+      </mesh>
+      <mesh position={[0, -0.62, 0]} rotation={[Math.PI, 0, 0]}>
+        <coneGeometry args={[dragging ? 0.18 : 0.13, 0.28, 16]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={dragging ? 0.75 : 0.35} />
+      </mesh>
+      <SceneLabel position={[0.42, 0.08, 0]} text={label} color="#f8fafc" size={0.16} />
+    </group>
+  );
+}
+
+function clampNumber(value: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function clampVector3(value: Vector3Tuple): Vector3Tuple {
+  return value.map((item) => clampNumber(roundTo(item, 3), -5, 5)) as Vector3Tuple;
+}
+
+function clampRotationVector(value: Vector3Tuple): Vector3Tuple {
+  return value.map((item) => clampNumber(roundTo(item, 1), -180, 180)) as Vector3Tuple;
+}
+
+function degreesToRadians(value: Vector3Tuple): [number, number, number] {
+  return value.map((item) => (item * Math.PI) / 180) as [number, number, number];
 }
 
 function SceneLabel({ position, text, color, size = 0.22 }: { position: [number, number, number]; text: string; color: string; size?: number }) {
@@ -1611,7 +3488,7 @@ function SceneLabel({ position, text, color, size = 0.22 }: { position: [number,
   );
 }
 
-function VectorArrow({ start, end, color }: { start: [number, number, number]; end: [number, number, number]; color: string }) {
+function VectorArrow({ start, end, color, selected = false, onSelect }: { start: [number, number, number]; end: [number, number, number]; color: string; selected?: boolean; onSelect?: () => void }) {
   const startVector = new THREE.Vector3(...start);
   const endVector = new THREE.Vector3(...end);
   const direction = endVector.clone().sub(startVector);
@@ -1620,58 +3497,60 @@ function VectorArrow({ start, end, color }: { start: [number, number, number]; e
   const quaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.clone().normalize());
 
   return (
-    <group position={midpoint} quaternion={quaternion}>
+    <group position={midpoint} quaternion={quaternion} onClick={onSelect ? (event) => { event.stopPropagation(); onSelect(); } : undefined}>
       <mesh>
-        <cylinderGeometry args={[0.025, 0.025, length, 12]} />
-        <meshStandardMaterial color={color} />
+        <cylinderGeometry args={[selected ? 0.045 : 0.025, selected ? 0.045 : 0.025, length, 12]} />
+        <meshStandardMaterial color={color} emissive={selected ? "#0e7490" : "#000000"} emissiveIntensity={selected ? 0.45 : 0} />
       </mesh>
       <mesh position={[0, length / 2, 0]}>
-        <coneGeometry args={[0.09, 0.25, 16]} />
-        <meshStandardMaterial color={color} />
+        <coneGeometry args={[selected ? 0.14 : 0.09, selected ? 0.32 : 0.25, 16]} />
+        <meshStandardMaterial color={color} emissive={selected ? "#0e7490" : "#000000"} emissiveIntensity={selected ? 0.45 : 0} />
       </mesh>
     </group>
   );
 }
 
-function Point3D({ position, label }: { position: [number, number, number]; label: string }) {
+function Point3D({ position, label, selected = false, onSelect }: { position: [number, number, number]; label: string; selected?: boolean; onSelect?: () => void }) {
   return (
-    <group position={position}>
+    <group position={position} onClick={onSelect ? (event) => { event.stopPropagation(); onSelect(); } : undefined}>
       <mesh>
-        <sphereGeometry args={[0.12, 24, 16]} />
-        <meshStandardMaterial color="#f59e0b" emissive="#7c2d12" emissiveIntensity={0.2} />
+        <sphereGeometry args={[selected ? 0.18 : 0.12, 24, 16]} />
+        <meshStandardMaterial color={selected ? "#22d3ee" : "#f59e0b"} emissive={selected ? "#0891b2" : "#7c2d12"} emissiveIntensity={selected ? 0.55 : 0.2} />
       </mesh>
       <mesh position={[0.18, 0.18, 0]}>
         <sphereGeometry args={[0.04, 12, 8]} />
         <meshStandardMaterial color={label ? "#f8fafc" : "#f59e0b"} />
       </mesh>
       <SceneLabel position={[0.42, 0.36, 0]} text={`${label}(x,y,z)`} color="#fde68a" size={0.18} />
+      {selected && <SelectionHalo position={[0, 0, 0]} radius={0.45} vertical />}
     </group>
   );
 }
 
-function SurfaceMesh({ surface, scaleValue }: { surface: SurfaceKind; scaleValue: number }) {
-  const geometry = useMemo(() => createSurfaceGeometry(surface, scaleValue), [surface, scaleValue]);
+function SurfaceMesh({ surface, scaleValue, domainRadius, position, rotation, selected, onSelect }: { surface: SurfaceKind; scaleValue: number; domainRadius: number; position: Vector3Tuple; rotation: Vector3Tuple; selected: boolean; onSelect: () => void }) {
+  const geometry = useMemo(() => createSurfaceGeometry(surface, scaleValue, domainRadius), [domainRadius, surface, scaleValue]);
   return (
-    <group>
-      <mesh geometry={geometry} position={[0, 0, 0]}>
-        <meshStandardMaterial color="#22d3ee" transparent opacity={0.45} side={THREE.DoubleSide} roughness={0.35} metalness={0.08} />
+    <group position={position} rotation={degreesToRadians(rotation)}>
+      <mesh geometry={geometry} position={[0, 0, 0]} onClick={(event) => { event.stopPropagation(); onSelect(); }}>
+        <meshStandardMaterial color={selected ? "#67e8f9" : "#22d3ee"} transparent opacity={selected ? 0.68 : 0.45} side={THREE.DoubleSide} roughness={0.35} metalness={0.08} emissive={selected ? "#0891b2" : "#000000"} emissiveIntensity={selected ? 0.18 : 0} />
       </mesh>
+      {selected && <SelectionHalo position={[0, 0.15, 0]} radius={domainRadius} />}
       <SceneLabel position={[-3.9, 2.8, -3.7]} text={surfaceFormula(surface, scaleValue)} color="#a5f3fc" size={0.18} />
       <SceneLabel position={[2.4, 1.15, -2.9]} text="slope / height changes" color="#fef3c7" size={0.17} />
     </group>
   );
 }
 
-function createSurfaceGeometry(surface: SurfaceKind, scaleValue: number) {
-  const size = 5;
+function createSurfaceGeometry(surface: SurfaceKind, scaleValue: number, domainRadius = 2.6) {
+  if (surface === "torus" || surface === "helicoid" || surface === "mobius") return createParametricSurfaceGeometry(surface, scaleValue, domainRadius);
   const segments = 36;
   const geometry = new THREE.BufferGeometry();
   const vertices: number[] = [];
   const indices: number[] = [];
   for (let iy = 0; iy <= segments; iy += 1) {
-    const y = -size / 2 + (iy / segments) * size;
+    const y = -domainRadius + (iy / segments) * domainRadius * 2;
     for (let ix = 0; ix <= segments; ix += 1) {
-      const x = -size / 2 + (ix / segments) * size;
+      const x = -domainRadius + (ix / segments) * domainRadius * 2;
       const z = surfaceZ(surface, x, y, scaleValue);
       vertices.push(x, z, y);
     }
@@ -1682,6 +3561,11 @@ function createSurfaceGeometry(surface: SurfaceKind, scaleValue: number) {
       const b = a + 1;
       const c = a + segments + 1;
       const d = c + 1;
+      const ax = vertices[a * 3], ay = vertices[a * 3 + 2];
+      const bx = vertices[b * 3], by = vertices[b * 3 + 2];
+      const cx = vertices[c * 3], cy = vertices[c * 3 + 2];
+      const dx = vertices[d * 3], dy = vertices[d * 3 + 2];
+      if ([Math.hypot(ax, ay), Math.hypot(bx, by), Math.hypot(cx, cy), Math.hypot(dx, dy)].some((distance) => distance > domainRadius)) continue;
       indices.push(a, c, b, b, c, d);
     }
   }
@@ -1689,6 +3573,51 @@ function createSurfaceGeometry(surface: SurfaceKind, scaleValue: number) {
   geometry.setIndex(indices);
   geometry.computeVertexNormals();
   return geometry;
+}
+
+function createParametricSurfaceGeometry(surface: SurfaceKind, scaleValue: number, domainRadius: number) {
+  const uSegments = 56;
+  const vSegments = 18;
+  const geometry = new THREE.BufferGeometry();
+  const vertices: number[] = [];
+  const indices: number[] = [];
+  for (let iv = 0; iv <= vSegments; iv += 1) {
+    for (let iu = 0; iu <= uSegments; iu += 1) {
+      const u = (iu / uSegments) * Math.PI * 2;
+      const v = iv / vSegments;
+      const [x, z, y] = parametricPoint(surface, u, v, scaleValue, domainRadius);
+      vertices.push(x, z, y);
+    }
+  }
+  for (let iv = 0; iv < vSegments; iv += 1) {
+    for (let iu = 0; iu < uSegments; iu += 1) {
+      const a = iv * (uSegments + 1) + iu;
+      const b = a + 1;
+      const c = a + uSegments + 1;
+      const d = c + 1;
+      indices.push(a, c, b, b, c, d);
+    }
+  }
+  geometry.setAttribute("position", new THREE.Float32BufferAttribute(vertices, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  return geometry;
+}
+
+function parametricPoint(surface: SurfaceKind, u: number, v01: number, scaleValue: number, domainRadius: number): Vector3Tuple {
+  if (surface === "torus") {
+    const major = 1.25 * scaleValue;
+    const minor = 0.36 * domainRadius;
+    const v = v01 * Math.PI * 2;
+    return [(major + minor * Math.cos(v)) * Math.cos(u), minor * Math.sin(v), (major + minor * Math.cos(v)) * Math.sin(u)];
+  }
+  if (surface === "mobius") {
+    const width = (v01 - 0.5) * domainRadius * 0.9;
+    const radius = 1.5 * scaleValue;
+    return [(radius + width * Math.cos(u / 2)) * Math.cos(u), width * Math.sin(u / 2), (radius + width * Math.cos(u / 2)) * Math.sin(u)];
+  }
+  const v = (v01 - 0.5) * domainRadius * 2;
+  return [v * Math.cos(u), scaleValue * (u - Math.PI) * 0.42, v * Math.sin(u)];
 }
 
 function surfaceZ(surface: SurfaceKind, x: number, y: number, scaleValue: number) {
@@ -1700,35 +3629,80 @@ function surfaceZ(surface: SurfaceKind, x: number, y: number, scaleValue: number
   return scaleValue * 0.35 * (x + y);
 }
 
-function SolidMesh({ solid, size, autoRotate }: { solid: SolidKind; size: number; autoRotate: boolean }) {
+function SelectionHalo({ position, radius, vertical = false }: { position: Vector3Tuple; radius: number; vertical?: boolean }) {
+  return (
+    <mesh position={position} rotation={vertical ? [0, Math.PI / 2, 0] : [-Math.PI / 2, 0, 0]}>
+      <torusGeometry args={[radius, Math.max(0.012, radius * 0.018), 12, 72]} />
+      <meshStandardMaterial color="#22d3ee" emissive="#0891b2" emissiveIntensity={0.6} transparent opacity={0.85} />
+    </mesh>
+  );
+}
+
+function SolidMesh({ solid, size, position, rotation, autoRotate, selected, onSelect, color, label }: { solid: SolidKind; size: number; position: Vector3Tuple; rotation: Vector3Tuple; autoRotate: boolean; selected: boolean; onSelect: () => void; color?: string; label?: string }) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame((_, delta) => {
     if (ref.current && autoRotate) ref.current.rotation.y += delta * 0.18;
   });
+  const displayLabel = label ?? solidOptions.find((option) => option.value === solid)?.label ?? solid;
+  const meshColor = color ?? "#8b5cf6";
   return (
-    <group>
-      <mesh ref={ref} position={[3, size / 4, 2.6]}>
+    <group position={position} rotation={degreesToRadians(rotation)}>
+      <mesh ref={ref} position={[0, size / 2, 0]} onClick={(event) => { event.stopPropagation(); onSelect(); }}>
         {solid === "cube" && <boxGeometry args={[size, size, size]} />}
+        {solid === "box" && <boxGeometry args={[size * 1.35, size * 0.72, size]} />}
         {solid === "sphere" && <sphereGeometry args={[size / 2, 48, 28]} />}
+        {solid === "hemisphere" && <sphereGeometry args={[size / 2, 48, 18, 0, Math.PI * 2, 0, Math.PI / 2]} />}
         {solid === "cylinder" && <cylinderGeometry args={[size / 2, size / 2, size, 48]} />}
         {solid === "cone" && <coneGeometry args={[size / 2, size, 48]} />}
-        <meshStandardMaterial color="#8b5cf6" transparent opacity={0.78} roughness={0.28} metalness={0.14} />
+        {solid === "pyramid" && <coneGeometry args={[size / 1.35, size, 4]} />}
+        {solid === "triangular-prism" && <cylinderGeometry args={[size / 1.4, size / 1.4, size, 3]} />}
+        {solid === "tetrahedron" && <tetrahedronGeometry args={[size * 0.72, 0]} />}
+        {solid === "octahedron" && <octahedronGeometry args={[size * 0.62, 0]} />}
+        {solid === "dodecahedron" && <dodecahedronGeometry args={[size * 0.58, 0]} />}
+        {solid === "icosahedron" && <icosahedronGeometry args={[size * 0.58, 0]} />}
+        {solid === "torus-solid" && <torusGeometry args={[size * 0.36, size * 0.12, 24, 72]} />}
+        <meshStandardMaterial color={selected ? "#c4b5fd" : meshColor} transparent opacity={selected ? 0.9 : 0.78} roughness={0.28} metalness={0.14} emissive={selected ? meshColor : "#000000"} emissiveIntensity={selected ? 0.25 : 0} />
       </mesh>
-      <SceneLabel position={[3, size + 0.55, 2.6]} text={`${solid}: size=${roundTo(size, 1)}`} color="#ddd6fe" size={0.18} />
+      {selected && <SelectionHalo position={[0, 0.06, 0]} radius={Math.max(0.72, size * 0.72)} />}
+      <SceneLabel position={[0, size + 0.55, 0]} text={`${displayLabel}: size=${roundTo(size, 1)}`} color="#ddd6fe" size={0.18} />
     </group>
   );
 }
 
-function CrossSectionPlane({ z }: { z: number }) {
+function CrossSectionPlane({ z, surface, scaleValue, domainRadius, selected, onSelect }: { z: number; surface: SurfaceKind; scaleValue: number; domainRadius: number; selected: boolean; onSelect: () => void }) {
+  const contour = useMemo(() => createCrossSectionContour(surface, scaleValue, z, domainRadius), [domainRadius, scaleValue, surface, z]);
   return (
     <group>
-      <mesh position={[0, z, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh position={[0, z, 0]} rotation={[-Math.PI / 2, 0, 0]} onClick={(event) => { event.stopPropagation(); onSelect(); }}>
         <planeGeometry args={[5.5, 5.5]} />
-        <meshStandardMaterial color="#f59e0b" transparent opacity={0.22} side={THREE.DoubleSide} />
+        <meshStandardMaterial color={selected ? "#22d3ee" : "#f59e0b"} transparent opacity={selected ? 0.36 : 0.22} side={THREE.DoubleSide} emissive={selected ? "#0891b2" : "#000000"} emissiveIntensity={selected ? 0.2 : 0} />
       </mesh>
+      {contour.map((point, index) => (
+        <mesh key={`${point[0]}-${point[2]}-${index}`} position={point}>
+          <sphereGeometry args={[0.025, 8, 6]} />
+          <meshStandardMaterial color="#fbbf24" emissive="#78350f" emissiveIntensity={0.25} />
+        </mesh>
+      ))}
+      {selected && <SelectionHalo position={[0, z + 0.04, 0]} radius={domainRadius} />}
       <SceneLabel position={[-2.9, z + 0.12, 2.9]} text={`cross-section: z=${roundTo(z, 2)}`} color="#fed7aa" size={0.17} />
     </group>
   );
+}
+
+function createCrossSectionContour(surface: SurfaceKind, scaleValue: number, z: number, domainRadius: number): Vector3Tuple[] {
+  if (surface === "torus" || surface === "mobius" || surface === "helicoid") return [];
+  const points: Vector3Tuple[] = [];
+  const steps = 46;
+  const tolerance = 0.055 + domainRadius * 0.012;
+  for (let iy = 0; iy <= steps; iy += 1) {
+    const y = -domainRadius + (iy / steps) * domainRadius * 2;
+    for (let ix = 0; ix <= steps; ix += 1) {
+      const x = -domainRadius + (ix / steps) * domainRadius * 2;
+      if (Math.hypot(x, y) > domainRadius) continue;
+      if (Math.abs(surfaceZ(surface, x, y, scaleValue) - z) <= tolerance) points.push([x, z + 0.018, y]);
+    }
+  }
+  return points.slice(0, 260);
 }
 
 function surfaceFormula(surface: SurfaceKind, scaleValue: number) {
@@ -1737,7 +3711,366 @@ function surfaceFormula(surface: SurfaceKind, scaleValue: number) {
   if (surface === "wave") return `z = ${roundTo(scaleValue, 2)} sin(1.4x) cos(1.4y)`;
   if (surface === "ripple") return `z = ${roundTo(scaleValue, 2)} sin(1.2(x^2+y^2))`;
   if (surface === "cone-surface") return `z = ${roundTo(scaleValue, 2)} sqrt(x^2+y^2)`;
+  if (surface === "torus") return `parametric torus, R=${roundTo(1.25 * scaleValue, 2)}`;
+  if (surface === "helicoid") return `parametric helicoid, twist=${roundTo(scaleValue, 2)}`;
+  if (surface === "mobius") return `parametric Mobius strip, R=${roundTo(1.5 * scaleValue, 2)}`;
   return `z = ${roundTo(scaleValue, 2)}(x+y)/3`;
+}
+
+type GeometryToolItem = { id: GeometryTool; label: string; icon: LucideIcon };
+type GeometryActionItem = { id: string; label: string; icon: LucideIcon; action: () => void; active?: boolean };
+type GeometryToolGroup = { title: string; tools: GeometryToolItem[] };
+
+const geometryToolGroups: GeometryToolGroup[] = [
+  {
+    title: "Basic Tools",
+    tools: [
+      { id: "select", label: "Move", icon: MousePointer2 },
+      { id: "point", label: "Point", icon: Plus },
+      { id: "segment", label: "Segment", icon: Move },
+      { id: "line", label: "Line", icon: Slash },
+      { id: "ray", label: "Ray", icon: GitBranch },
+      { id: "vector", label: "Vector", icon: Target },
+      { id: "circle", label: "Circle", icon: Circle },
+      { id: "polygon", label: "Polygon", icon: Pentagon },
+      { id: "angle", label: "Angle", icon: Radius },
+    ],
+  },
+  {
+    title: "Construct",
+    tools: [
+      { id: "parallel", label: "Parallel", icon: UnfoldHorizontal },
+      { id: "perpendicular", label: "Perpendicular", icon: Crosshair },
+      { id: "perpendicular-bisector", label: "Perp. Bisector", icon: BetweenHorizontalStart },
+      { id: "angle-bisector", label: "Angle Bisector", icon: Scissors },
+      { id: "midpoint", label: "Midpoint", icon: Magnet },
+      { id: "intersect", label: "Intersect", icon: CircleDot },
+      { id: "tangent", label: "Tangent", icon: Circle },
+      { id: "on-circle", label: "Point on Object", icon: MousePointerClick },
+      { id: "fixed-length", label: "Fixed Length", icon: Ruler },
+      { id: "regular-polygon", label: "Regular Polygon", icon: Sigma },
+      { id: "compass", label: "Compass", icon: PencilRuler },
+      { id: "circle-radius", label: "Circle Radius", icon: CircleDot },
+      { id: "circle-3point", label: "Circle 3 Points", icon: ScanLine },
+      { id: "semicircle", label: "Semicircle", icon: CircleDot },
+      { id: "arc", label: "Arc", icon: Spline },
+      { id: "sector", label: "Sector", icon: Blend },
+      { id: "intersect-region", label: "Region Intersect", icon: Layers },
+    ],
+  },
+  {
+    title: "Measure",
+    tools: [
+      { id: "distance", label: "Distance", icon: Ruler },
+      { id: "area", label: "Area", icon: Calculator },
+      { id: "slope", label: "Slope", icon: LineChart },
+      { id: "locus", label: "Locus", icon: Spline },
+      { id: "trace", label: "Trace", icon: Highlighter },
+      { id: "label", label: "Label", icon: TextCursorInput },
+      { id: "slider", label: "Slider", icon: ArrowLeftRight },
+    ],
+  },
+  {
+    title: "Transform",
+    tools: [
+      { id: "mirror-line", label: "Reflect Line", icon: FlipHorizontal2 },
+      { id: "reflect-point", label: "Reflect Point", icon: Target },
+      { id: "translate", label: "Translate", icon: Move3D },
+      { id: "rotate-tool", label: "Rotate", icon: Rotate3D },
+      { id: "dilate-tool", label: "Dilate", icon: ZoomIn },
+      { id: "duplicate", label: "Duplicate", icon: ClipboardCopy },
+    ],
+  },
+  {
+    title: "Edit",
+    tools: [
+      { id: "hide-show", label: "Show / Hide", icon: EyeOff },
+      { id: "lock-object", label: "Lock", icon: LockKeyhole },
+      { id: "freehand", label: "Freehand", icon: Brush },
+      { id: "text", label: "Text", icon: PenLine },
+      { id: "image", label: "Image", icon: Presentation },
+      { id: "move-canvas", label: "Move Canvas", icon: Axis3d },
+      { id: "zoom-tool", label: "Zoom", icon: ZoomIn },
+    ],
+  },
+];
+
+function GeometryToolPalette({
+  activeTool,
+  onTool,
+  onDelete,
+  onUndo,
+  onRedo,
+  onReset,
+  onSave,
+  onLoad,
+  onTemplate,
+  onTransform,
+  onTrace,
+  onStopTrace,
+  onClearTrace,
+  tracing,
+}: {
+  activeTool: GeometryTool;
+  onTool: (tool: GeometryTool) => void;
+  onDelete: () => void;
+  onUndo: () => void;
+  onRedo: () => void;
+  onReset: () => void;
+  onSave: () => void;
+  onLoad: () => void;
+  onTemplate: (kind: GeometryTemplateKind) => void;
+  onTransform: (type: GeoTransformKind) => void;
+  onTrace: () => void;
+  onStopTrace: () => void;
+  onClearTrace: () => void;
+  tracing: boolean;
+}) {
+  const templateActions: GeometryActionItem[] = [
+    { id: "template-triangle", label: "Triangle", icon: Triangle, action: () => onTemplate("triangle") },
+    { id: "template-right-triangle", label: "Right Tri.", icon: Triangle, action: () => onTemplate("right-triangle") },
+    { id: "template-isosceles-triangle", label: "Isosceles", icon: Triangle, action: () => onTemplate("isosceles-triangle") },
+    { id: "template-equilateral-triangle", label: "Equilateral", icon: Triangle, action: () => onTemplate("equilateral-triangle") },
+    { id: "template-rectangle", label: "Rectangle", icon: Square, action: () => onTemplate("rectangle") },
+    { id: "template-square", label: "Square", icon: Square, action: () => onTemplate("square") },
+    { id: "template-parallelogram", label: "Parallelogram", icon: Slash, action: () => onTemplate("parallelogram") },
+    { id: "template-trapezoid", label: "Trapezoid", icon: Pentagon, action: () => onTemplate("trapezoid") },
+    { id: "template-rhombus", label: "Rhombus", icon: Target, action: () => onTemplate("rhombus") },
+    { id: "template-kite", label: "Kite", icon: Move, action: () => onTemplate("kite") },
+    { id: "template-pentagon", label: "Pentagon", icon: Pentagon, action: () => onTemplate("pentagon") },
+    { id: "template-hexagon", label: "Hexagon", icon: Sigma, action: () => onTemplate("hexagon") },
+    { id: "template-octagon", label: "Octagon", icon: CircleDot, action: () => onTemplate("octagon") },
+    { id: "template-star", label: "Star", icon: Wand2, action: () => onTemplate("star") },
+    { id: "template-circle", label: "Circle", icon: Circle, action: () => onTemplate("circle") },
+    { id: "template-two-circles", label: "2 Circles", icon: Blend, action: () => onTemplate("two-circles") },
+    { id: "template-annulus", label: "Annulus", icon: CircleDot, action: () => onTemplate("annulus") },
+    { id: "template-semicircle", label: "Semicircle", icon: CircleDot, action: () => onTemplate("semicircle") },
+    { id: "template-sector", label: "Sector", icon: Blend, action: () => onTemplate("sector") },
+    { id: "template-arc", label: "Arc", icon: Spline, action: () => onTemplate("arc") },
+    { id: "template-parabola", label: "Parabola", icon: LineChart, action: () => onTemplate("parabola") },
+    { id: "template-ellipse", label: "Ellipse", icon: Circle, action: () => onTemplate("ellipse") },
+    { id: "template-hyperbola", label: "Hyperbola", icon: GitBranch, action: () => onTemplate("hyperbola") },
+    { id: "template-angle", label: "Angle", icon: Radius, action: () => onTemplate("angle-shape") },
+    { id: "template-axes", label: "Axes", icon: Crosshair, action: () => onTemplate("coordinate-axes") },
+  ];
+  const operationActions: GeometryActionItem[] = [
+    { id: "reflect-selected", label: "Reflect", icon: FlipHorizontal2, action: () => onTransform("reflection") },
+    { id: "rotate-selected", label: "Rotate", icon: RotateCcw, action: () => onTransform("rotation") },
+    { id: "dilate-selected", label: "Dilate", icon: ZoomIn, action: () => onTransform("dilation") },
+    { id: "trace-selected", label: tracing ? "Trace On" : "Trace", icon: Highlighter, action: onTrace, active: tracing },
+    { id: "stop-trace", label: "Stop Trace", icon: Pause, action: onStopTrace },
+    { id: "clear-trace", label: "Clear Trace", icon: Eraser, action: onClearTrace },
+  ];
+  const fileActions: GeometryActionItem[] = [
+    { id: "delete", label: "Delete", icon: Trash2, action: onDelete },
+    { id: "undo", label: "Undo", icon: RotateCcw, action: onUndo },
+    { id: "redo", label: "Redo", icon: RotateCcw, action: onRedo },
+    { id: "reset", label: "Reset", icon: Eraser, action: onReset },
+    { id: "save", label: "Save", icon: Save, action: onSave },
+    { id: "load", label: "Load", icon: Download, action: onLoad },
+  ];
+
+  return (
+    <aside className="geometry-left-tools thin-scrollbar min-h-0 overflow-auto rounded-xl border border-slate-200 bg-white/90 p-2 dark:border-white/10 dark:bg-slate-950/70">
+      {geometryToolGroups.map((group) => (
+        <GeometryPaletteSection key={group.title} title={group.title}>
+          {group.tools.map((item) => (
+            <GeometryPaletteTool key={item.id} item={item} active={activeTool === item.id} onClick={() => onTool(item.id)} />
+          ))}
+        </GeometryPaletteSection>
+      ))}
+      <GeometryPaletteSection title="Shapes">
+        {templateActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+      </GeometryPaletteSection>
+      <GeometryPaletteSection title="Selected Object">
+        {operationActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+      </GeometryPaletteSection>
+      <GeometryPaletteSection title="File">
+        {fileActions.map((item) => <GeometryPaletteAction key={item.id} item={item} danger={item.id === "delete"} />)}
+      </GeometryPaletteSection>
+    </aside>
+  );
+}
+
+function GeometryPaletteSection({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="mb-3 last:mb-0">
+      <h4 className="mb-1.5 px-1 text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{title}</h4>
+      <div className="grid grid-cols-3 gap-1.5">{children}</div>
+    </section>
+  );
+}
+
+function GeometryPaletteTool({ item, active, onClick }: { item: GeometryToolItem; active: boolean; onClick: () => void }) {
+  const Icon = item.icon;
+  return (
+    <button type="button" onClick={onClick} title={item.label} className={`geometry-palette-button ${active ? "geometry-palette-button-active" : ""}`}>
+      <Icon className="h-4 w-4" />
+      <span>{item.label}</span>
+    </button>
+  );
+}
+
+function GeometryPaletteAction({ item, danger }: { item: GeometryActionItem; danger?: boolean }) {
+  const Icon = item.icon;
+  return (
+    <button type="button" onClick={item.action} title={item.label} className={`geometry-palette-button ${item.active ? "geometry-palette-button-active" : ""} ${danger ? "geometry-palette-button-danger" : ""}`}>
+      <Icon className="h-4 w-4" />
+      <span>{item.label}</span>
+    </button>
+  );
+}
+
+function GeometryLabResults({ construction, selected, selectedPointIds, activeTool }: { construction: Construction; selected: SelectedGeoObject; selectedPointIds: string[]; activeTool: GeometryTool }) {
+  const selectedPoint = selected?.kind === "point" ? pointById(construction.points, selected.id) : null;
+  const selectedLine = selected?.kind === "line" ? construction.lines.find((line) => line.id === selected.id) : null;
+  const selectedCircle = selected?.kind === "circle" ? construction.circles.find((circle) => circle.id === selected.id) : null;
+  const selectedPolygon = selected?.kind === "polygon" ? construction.polygons.find((polygon) => polygon.id === selected.id) : null;
+  const selectedAngle = selected?.kind === "angle" ? construction.angles.find((angle) => angle.id === selected.id) : null;
+  const selectedArc = selected?.kind === "arc" ? construction.arcs.find((arc) => arc.id === selected.id) : null;
+  const selectedText = selected?.kind === "text" ? construction.texts.find((note) => note.id === selected.id) : null;
+  const selectedConic = selected?.kind === "conic" ? construction.conics.find((conic) => conic.id === selected.id) : null;
+  const distancePoints = selectedPointIds.slice(-2).map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
+  const entries: Array<{ label: string; value: string }> = [];
+  const titleParts: string[] = [];
+
+  if (activeTool === "distance" && distancePoints.length === 2) {
+    titleParts.push(`Distance ${distancePoints[0].label}${distancePoints[1].label}`);
+    entries.push(...distanceMetrics(distancePoints[0], distancePoints[1]));
+  } else if (selectedPoint) {
+    titleParts.push(`Point ${selectedPoint.label}`);
+    entries.push(
+      { label: "Coordinate", value: `(${boardUnit(selectedPoint.x)}, ${boardUnit(selectedPoint.y)})` },
+      { label: "Raw canvas", value: `(${roundTo(selectedPoint.x, 1)}, ${roundTo(selectedPoint.y, 1)})` },
+      { label: "Distance from origin", value: `${roundTo(Math.hypot(boardUnitNumber(selectedPoint.x), boardUnitNumber(selectedPoint.y)), 3)} units` },
+    );
+  } else if (selectedLine) {
+    const a = pointById(construction.points, selectedLine.a);
+    const b = pointById(construction.points, selectedLine.b);
+    if (a && b) {
+      titleParts.push(`${lineKindLabel(selectedLine.kind ?? "segment")} ${a.label}${b.label}`);
+      entries.push(...distanceMetrics(a, b));
+      entries.push(
+        { label: "Slope", value: slopeLabel(a, b) },
+        { label: "Direction", value: `${roundTo(directionDegrees(a, b), 2)} deg` },
+        { label: "Midpoint", value: `(${boardUnit((a.x + b.x) / 2)}, ${boardUnit((a.y + b.y) / 2)})` },
+        { label: "Equation", value: lineEquationLabel(a, b) },
+      );
+    }
+  } else if (selectedCircle) {
+    const center = pointById(construction.points, selectedCircle.center);
+    const edge = pointById(construction.points, selectedCircle.edge);
+    if (center && edge) {
+      const r = distance(center, edge) / 40;
+      titleParts.push(`Circle center ${center.label}`);
+      entries.push(
+        { label: "Center", value: `(${boardUnit(center.x)}, ${boardUnit(center.y)})` },
+        { label: "Radius", value: `${roundTo(r, 3)} units` },
+        { label: "Diameter", value: `${roundTo(2 * r, 3)} units` },
+        { label: "Circumference", value: `${roundTo(2 * Math.PI * r, 3)} units` },
+        { label: "Area", value: `${roundTo(Math.PI * r * r, 3)} sq units` },
+        { label: "Equation", value: `(x-${boardUnit(center.x)})^2+(y-${boardUnit(center.y)})^2=${roundTo(r * r, 3)}` },
+      );
+    }
+  } else if (selectedPolygon) {
+    const points = selectedPolygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
+    if (points.length >= 3) {
+      const lengths = polygonSideLengths(points);
+      const centroid = polygonCentroid(points);
+      titleParts.push(`${points.length}-sided polygon`);
+      entries.push(
+        { label: "Side lengths", value: lengths.map((length) => roundTo(length, 3)).join(", ") },
+        { label: "Perimeter", value: `${roundTo(lengths.reduce((sum, item) => sum + item, 0), 3)} units` },
+        { label: "Area", value: `${roundTo(polygonArea(points) / 1600, 3)} sq units` },
+        { label: "Centroid", value: `(${boardUnit(centroid.x)}, ${boardUnit(centroid.y)})` },
+        { label: "Interior angle sum", value: `${(points.length - 2) * 180} deg` },
+      );
+    }
+  } else if (selectedAngle) {
+    const a = pointById(construction.points, selectedAngle.a);
+    const vertex = pointById(construction.points, selectedAngle.vertex);
+    const b = pointById(construction.points, selectedAngle.b);
+    if (a && vertex && b) {
+      const theta = angleDegrees(a, vertex, b);
+      titleParts.push(`Angle ${a.label}${vertex.label}${b.label}`);
+      entries.push(
+        { label: "Angle", value: `${roundTo(theta, 3)} deg` },
+        { label: "Radians", value: `${roundTo(theta * Math.PI / 180, 4)} rad` },
+        { label: "Complement", value: theta <= 90 ? `${roundTo(90 - theta, 3)} deg` : "not acute" },
+        { label: "Supplement", value: `${roundTo(180 - theta, 3)} deg` },
+        { label: "Ray lengths", value: `${roundTo(distance(vertex, a) / 40, 3)}, ${roundTo(distance(vertex, b) / 40, 3)} units` },
+      );
+    }
+  } else if (selectedArc) {
+    const center = pointById(construction.points, selectedArc.center);
+    const start = pointById(construction.points, selectedArc.start);
+    const end = pointById(construction.points, selectedArc.end);
+    if (center && start && end) {
+      const radius = distance(center, start) / 40;
+      const theta = arcCentralAngle(center, start, end, selectedArc.kind === "semicircle");
+      titleParts.push(`${selectedArc.kind} ${center.label}${start.label}${end.label}`);
+      entries.push(
+        { label: "Radius", value: `${roundTo(radius, 4)} units` },
+        { label: "Central angle", value: `${roundTo(theta, 3)} deg` },
+        { label: "Arc length", value: `${roundTo((Math.PI * radius * theta) / 180, 4)} units` },
+        { label: "Sector area", value: `${roundTo((Math.PI * radius * radius * theta) / 360, 4)} sq units` },
+      );
+    }
+  } else if (selectedText) {
+    const anchor = pointById(construction.points, selectedText.point);
+    titleParts.push(selectedText.text === "Image" ? "Image anchor" : "Text note");
+    entries.push(
+      { label: "Content", value: selectedText.text },
+      { label: "Anchor", value: anchor ? `${anchor.label} (${boardUnit(anchor.x)}, ${boardUnit(anchor.y)})` : "missing" },
+    );
+  } else if (selectedConic) {
+    const center = pointById(construction.points, selectedConic.center);
+    if (center) {
+      titleParts.push(`${selectedConic.kind} conic`);
+      entries.push(
+        { label: "Center / vertex", value: `(${boardUnit(center.x)}, ${boardUnit(center.y)})` },
+        { label: "Equation", value: conicEquation(selectedConic) },
+        { label: "a", value: `${roundTo(selectedConic.a / 40, 3)} units` },
+        { label: "b", value: `${roundTo(selectedConic.b / 40, 3)} units` },
+      );
+    }
+  }
+
+  if (!entries.length) {
+    const quickCounts = [
+      { label: "Points", value: construction.points.length.toString() },
+      { label: "Lines", value: construction.lines.length.toString() },
+      { label: "Circles", value: construction.circles.length.toString() },
+      { label: "Polygons", value: construction.polygons.length.toString() },
+      { label: "Arcs", value: construction.arcs.length.toString() },
+      { label: "Notes", value: construction.texts.length.toString() },
+    ];
+    return (
+      <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-3 dark:border-cyan-300/20 dark:bg-cyan-300/10">
+        <p className="text-[11px] font-black uppercase text-cyan-700 dark:text-cyan-200">Geometry Lab Results</p>
+        <h3 className="mt-1 text-sm font-black">Select an object to measure</h3>
+        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">Pick a line for length/slope, polygon for perimeter/area, circle for radius/area, angle for degrees, or use Distance and pick two points.</p>
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          {quickCounts.map((entry) => <MetricTile key={entry.label} label={entry.label} value={entry.value} />)}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-3 dark:border-cyan-300/20 dark:bg-cyan-300/10">
+      <p className="text-[11px] font-black uppercase text-cyan-700 dark:text-cyan-200">Geometry Lab Results</p>
+      <h3 className="mt-1 text-sm font-black">{titleParts[0] ?? "Selected measurement"}</h3>
+      <div className="order-3 grid gap-2">
+        {entries.map((entry) => (
+          <div key={entry.label} className="grid grid-cols-[110px_minmax(0,1fr)] gap-2 rounded-xl bg-white/75 p-2 text-xs dark:bg-slate-950/50">
+            <span className="font-black uppercase text-slate-500 dark:text-slate-400">{entry.label}</span>
+            <span className="min-w-0 [overflow-wrap:anywhere] font-mono font-black text-slate-950 dark:text-white">{entry.value}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function ToolButton({ active, label, onClick, icon }: { active?: boolean; label: string; onClick: () => void; icon: JSX.Element }) {
@@ -1764,6 +4097,9 @@ function GeometryLine({ line, points, selected, onSelect }: { line: GeoLine; poi
   const draw = lineDrawPoints(line, points);
   const midpoint = { x: (draw.x1 + draw.x2) / 2, y: (draw.y1 + draw.y2) / 2 };
   const stroke = kind === "vector" ? "#10b981" : kind === "ray" ? "#ec4899" : kind === "line" ? "#8b5cf6" : "#06b6d4";
+  const metricLabel = kind === "line"
+    ? `m=${slopeLabel(a, b)}`
+    : `${lineKindLabel(kind)} ${roundTo(distance(a, b) / 40, 2)}u`;
   return (
     <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(); }}>
       <defs>
@@ -1781,7 +4117,7 @@ function GeometryLine({ line, points, selected, onSelect }: { line: GeoLine; poi
         strokeDasharray={kind === "line" ? "10 7" : undefined}
         markerEnd={kind === "ray" || kind === "vector" ? `url(#arrow-${line.id})` : undefined}
       />
-      <text x={midpoint.x + 8} y={midpoint.y - 8} fill={selected ? "#b45309" : stroke} className="select-none text-xs font-black">{lineKindLabel(kind)}</text>
+      <text x={midpoint.x + 8} y={midpoint.y - 8} fill={selected ? "#b45309" : stroke} className="select-none text-xs font-black">{metricLabel}</text>
     </g>
   );
 }
@@ -1789,13 +4125,66 @@ function GeometryLine({ line, points, selected, onSelect }: { line: GeoLine; poi
 function GeometryCircle({ circle, points, selected, onSelect }: { circle: GeoCircle; points: GeoPoint[]; selected?: boolean; onSelect?: () => void }) {
   const center = pointById(points, circle.center), edge = pointById(points, circle.edge);
   if (!center || !edge) return null;
-  return <circle cx={center.x} cy={center.y} r={distance(center, edge)} fill="rgba(34,211,238,.12)" stroke={selected ? "#f59e0b" : "#06b6d4"} strokeWidth={selected ? "7" : "4"} className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(); }} />;
+  const radius = distance(center, edge);
+  return (
+    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(); }}>
+      <circle cx={center.x} cy={center.y} r={radius} fill="rgba(34,211,238,.12)" stroke={selected ? "#f59e0b" : "#06b6d4"} strokeWidth={selected ? "7" : "4"} />
+      <line x1={center.x} y1={center.y} x2={edge.x} y2={edge.y} stroke={selected ? "#f59e0b" : "#06b6d4"} strokeWidth="2" strokeDasharray="4 4" />
+      <text x={center.x + radius + 8} y={center.y} fill={selected ? "#b45309" : "#06b6d4"} className="select-none text-xs font-black">
+        r={roundTo(radius / 40, 2)}u
+      </text>
+    </g>
+  );
 }
 
 function GeometryPolygon({ polygon, points, selected, onSelect }: { polygon: GeoPolygon; points: GeoPoint[]; selected?: boolean; onSelect?: () => void }) {
   const polygonPoints = polygon.points.map((id) => pointById(points, id)).filter(Boolean) as GeoPoint[];
   if (polygonPoints.length < 3) return null;
-  return <polygon points={polygonPoints.map((point) => `${point.x},${point.y}`).join(" ")} fill={selected ? "rgba(245,158,11,.28)" : "rgba(245,158,11,.16)"} stroke="#f59e0b" strokeWidth={selected ? "7" : "4"} className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(); }} />;
+  const centroid = polygonCentroid(polygonPoints);
+  return (
+    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(); }}>
+      <polygon points={polygonPoints.map((point) => `${point.x},${point.y}`).join(" ")} fill={selected ? "rgba(245,158,11,.28)" : "rgba(245,158,11,.16)"} stroke="#f59e0b" strokeWidth={selected ? "7" : "4"} />
+      <text x={centroid.x + 8} y={centroid.y} fill="#fbbf24" className="select-none text-xs font-black">
+        A={roundTo(polygonArea(polygonPoints) / 1600, 2)}u^2
+      </text>
+    </g>
+  );
+}
+
+function GeometryArc({ arc, points, selected, onSelect }: { arc: GeoArc; points: GeoPoint[]; selected?: boolean; onSelect?: () => void }) {
+  const center = pointById(points, arc.center), start = pointById(points, arc.start), end = pointById(points, arc.end);
+  if (!center || !start || !end) return null;
+  const path = arcPath(center, start, end, arc.kind === "semicircle");
+  const radius = distance(center, start);
+  const midAngle = normalizedArcMidAngle(center, start, end, arc.kind === "semicircle");
+  const labelPoint = { x: center.x + Math.cos(midAngle) * (radius + 16), y: center.y + Math.sin(midAngle) * (radius + 16) };
+  const fill = arc.kind === "sector" ? (selected ? "rgba(20,184,166,.24)" : "rgba(20,184,166,.14)") : "none";
+  return (
+    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(); }}>
+      {arc.kind === "sector" && <path d={`M ${center.x} ${center.y} L ${start.x} ${start.y} ${path.replace(/^M [^A]+/, "")} Z`} fill={fill} stroke="none" />}
+      <path d={path} fill="none" stroke={selected ? "#f59e0b" : "#14b8a6"} strokeWidth={selected ? "7" : "4"} />
+      {(arc.kind === "sector" || arc.kind === "semicircle") && (
+        <>
+          <line x1={center.x} y1={center.y} x2={start.x} y2={start.y} stroke="#14b8a6" strokeDasharray="5 5" opacity="0.55" />
+          <line x1={center.x} y1={center.y} x2={end.x} y2={end.y} stroke="#14b8a6" strokeDasharray="5 5" opacity="0.55" />
+        </>
+      )}
+      <text x={labelPoint.x} y={labelPoint.y} fill={selected ? "#b45309" : "#0f766e"} className="select-none text-xs font-black">
+        {arc.kind} {roundTo(arcCentralAngle(center, start, end, arc.kind === "semicircle"), 1)} deg
+      </text>
+    </g>
+  );
+}
+
+function GeometryTextNote({ note, points, selected, onSelect }: { note: GeoTextNote; points: GeoPoint[]; selected?: boolean; onSelect?: () => void }) {
+  const anchor = pointById(points, note.point);
+  if (!anchor) return null;
+  return (
+    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(); }}>
+      <rect x={anchor.x + 10} y={anchor.y - 34} width={Math.max(54, note.text.length * 8 + 18)} height="28" rx="7" fill={selected ? "rgba(245,158,11,.24)" : "rgba(15,23,42,.82)"} stroke={selected ? "#f59e0b" : "#38bdf8"} />
+      <text x={anchor.x + 20} y={anchor.y - 15} fill="#ffffff" className="select-none text-xs font-black">{note.text}</text>
+    </g>
+  );
 }
 
 function GeometryConic({ conic, points, selected, onSelect }: { conic: GeoConic; points: GeoPoint[]; selected?: boolean; onSelect?: () => void }) {
@@ -1857,6 +4246,8 @@ function GeometryObjectInspector({
   onUpdateCircle,
   onUpdatePolygon,
   onUpdateAngle,
+  onUpdateArc,
+  onUpdateText,
   onUpdateConic,
   onToggleLock,
   onDelete,
@@ -1869,6 +4260,8 @@ function GeometryObjectInspector({
   onUpdateCircle: (id: string, patch: Partial<Pick<GeoCircle, "center" | "edge">>) => void;
   onUpdatePolygon: (id: string, points: string[]) => void;
   onUpdateAngle: (id: string, patch: Partial<Pick<GeoAngle, "a" | "vertex" | "b">>) => void;
+  onUpdateArc: (id: string, patch: Partial<Pick<GeoArc, "kind" | "center" | "start" | "end">>) => void;
+  onUpdateText: (id: string, patch: Partial<Pick<GeoTextNote, "point" | "text">>) => void;
   onUpdateConic: (id: string, patch: Partial<Pick<GeoConic, "kind" | "center" | "a" | "b">>) => void;
   onToggleLock: (kind: Exclude<NonNullable<SelectedGeoObject>["kind"], "constraint" | "transform">, id: string) => void;
   onDelete: (kind: NonNullable<SelectedGeoObject>["kind"], id: string) => void;
@@ -1878,16 +4271,86 @@ function GeometryObjectInspector({
   const selectedCircle = selected?.kind === "circle" ? construction.circles.find((circle) => circle.id === selected.id) : null;
   const selectedPolygon = selected?.kind === "polygon" ? construction.polygons.find((polygon) => polygon.id === selected.id) : null;
   const selectedAngle = selected?.kind === "angle" ? construction.angles.find((angle) => angle.id === selected.id) : null;
+  const selectedArc = selected?.kind === "arc" ? construction.arcs.find((arc) => arc.id === selected.id) : null;
+  const selectedText = selected?.kind === "text" ? construction.texts.find((note) => note.id === selected.id) : null;
   const selectedConic = selected?.kind === "conic" ? construction.conics.find((conic) => conic.id === selected.id) : null;
   const selectedTransform = selected?.kind === "transform" ? construction.transforms.find((transform) => transform.id === selected.id) : null;
   const selectedConstraint = selected?.kind === "constraint" ? construction.constraints.find((constraint) => constraint.id === selected.id) : null;
-  const objectCount = construction.points.length + construction.lines.length + construction.circles.length + construction.polygons.length + construction.angles.length + construction.conics.length + construction.transforms.length + construction.constraints.length;
+  const objectCount = construction.points.length + construction.lines.length + construction.circles.length + construction.polygons.length + construction.angles.length + construction.arcs.length + construction.texts.length + construction.conics.length + construction.transforms.length + construction.constraints.length;
+  const selectedLinePoints = selectedLine ? [pointById(construction.points, selectedLine.a), pointById(construction.points, selectedLine.b)] as const : null;
+  const selectedCirclePoints = selectedCircle ? [pointById(construction.points, selectedCircle.center), pointById(construction.points, selectedCircle.edge)] as const : null;
+  const selectedPolygonPoints = selectedPolygon ? selectedPolygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[] : [];
+  const selectedAnglePoints = selectedAngle ? [pointById(construction.points, selectedAngle.a), pointById(construction.points, selectedAngle.vertex), pointById(construction.points, selectedAngle.b)] as const : null;
+  const selectedArcPoints = selectedArc ? [pointById(construction.points, selectedArc.center), pointById(construction.points, selectedArc.start), pointById(construction.points, selectedArc.end)] as const : null;
+
+  const editPoint = (id: string, patch: Partial<Pick<GeoPoint, "label" | "x" | "y">>) => onUpdatePoint(id, patch);
+  const setLineLength = (line: GeoLine, units: number) => {
+    const a = pointById(construction.points, line.a), b = pointById(construction.points, line.b);
+    if (!a || !b) return;
+    const vector = normalize(b.x - a.x, b.y - a.y);
+    editPoint(line.b, { x: a.x + vector.x * units * 40, y: a.y + vector.y * units * 40 });
+  };
+  const setLineAngle = (line: GeoLine, degrees: number) => {
+    const a = pointById(construction.points, line.a), b = pointById(construction.points, line.b);
+    if (!a || !b) return;
+    const length = distance(a, b) || 80;
+    const radians = -degrees * Math.PI / 180;
+    editPoint(line.b, { x: a.x + Math.cos(radians) * length, y: a.y + Math.sin(radians) * length });
+  };
+  const setCircleRadius = (circle: GeoCircle, units: number) => {
+    const center = pointById(construction.points, circle.center), edge = pointById(construction.points, circle.edge);
+    if (!center || !edge) return;
+    const vector = normalize(edge.x - center.x, edge.y - center.y);
+    editPoint(circle.edge, { x: center.x + vector.x * units * 40, y: center.y + vector.y * units * 40 });
+  };
+  const moveCircleCenter = (circle: GeoCircle, axis: "x" | "y", units: number) => {
+    const center = pointById(construction.points, circle.center), edge = pointById(construction.points, circle.edge);
+    if (!center || !edge) return;
+    const nextValue = axis === "x" ? units * 40 : 420 - units * 40;
+    const dx = axis === "x" ? nextValue - center.x : 0;
+    const dy = axis === "y" ? nextValue - center.y : 0;
+    editPoint(circle.center, axis === "x" ? { x: nextValue } : { y: nextValue });
+    editPoint(circle.edge, { x: edge.x + dx, y: edge.y + dy });
+  };
+  const scalePolygon = (polygon: GeoPolygon, scale: number) => {
+    const points = polygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
+    if (points.length < 3) return;
+    const centroid = polygonCentroid(points);
+    points.forEach((point) => editPoint(point.id, { x: centroid.x + (point.x - centroid.x) * scale, y: centroid.y + (point.y - centroid.y) * scale }));
+  };
+  const rotatePolygon = (polygon: GeoPolygon, degrees: number) => {
+    const points = polygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
+    if (points.length < 3) return;
+    const centroid = polygonCentroid(points);
+    const radians = degrees * Math.PI / 180;
+    points.forEach((point) => {
+      const dx = point.x - centroid.x, dy = point.y - centroid.y;
+      editPoint(point.id, { x: centroid.x + dx * Math.cos(radians) - dy * Math.sin(radians), y: centroid.y + dx * Math.sin(radians) + dy * Math.cos(radians) });
+    });
+  };
+  const setAngleDegrees = (angle: GeoAngle, degrees: number) => {
+    const a = pointById(construction.points, angle.a), vertex = pointById(construction.points, angle.vertex), b = pointById(construction.points, angle.b);
+    if (!a || !vertex || !b) return;
+    const base = Math.atan2(a.y - vertex.y, a.x - vertex.x);
+    const length = distance(vertex, b) || 80;
+    const next = base - degrees * Math.PI / 180;
+    editPoint(angle.b, { x: vertex.x + Math.cos(next) * length, y: vertex.y + Math.sin(next) * length });
+  };
+  const setArcRadius = (arc: GeoArc, units: number) => {
+    const center = pointById(construction.points, arc.center), start = pointById(construction.points, arc.start), end = pointById(construction.points, arc.end);
+    if (!center || !start || !end) return;
+    const radius = units * 40;
+    const startVector = normalize(start.x - center.x, start.y - center.y);
+    const endVector = normalize(end.x - center.x, end.y - center.y);
+    editPoint(arc.start, { x: center.x + startVector.x * radius, y: center.y + startVector.y * radius });
+    editPoint(arc.end, { x: center.x + endVector.x * radius, y: center.y + endVector.y * radius });
+  };
 
   return (
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Phase 4 advanced geometry</p>
+          <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Advanced geometry</p>
           <h3 className="font-bold">Object Properties</h3>
           <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">{objectCount} objects in construction</p>
         </div>
@@ -1920,6 +4383,16 @@ function GeometryObjectInspector({
             <ObjectRow key={angle.id} active={selected?.kind === "angle" && selected.id === angle.id} label={`Angle ${index + 1}: ${labelForPoint(construction, angle.a)}${labelForPoint(construction, angle.vertex)}${labelForPoint(construction, angle.b)}`} onClick={() => onSelect({ kind: "angle", id: angle.id })} onDelete={() => onDelete("angle", angle.id)} />
           ))}
         </ObjectGroup>
+        <ObjectGroup title="Arcs / Sectors">
+          {construction.arcs.map((arc, index) => (
+            <ObjectRow key={arc.id} active={selected?.kind === "arc" && selected.id === arc.id} label={`${arc.kind} ${index + 1}: ${labelForPoint(construction, arc.center)}-${labelForPoint(construction, arc.start)}-${labelForPoint(construction, arc.end)}`} onClick={() => onSelect({ kind: "arc", id: arc.id })} onDelete={() => onDelete("arc", arc.id)} />
+          ))}
+        </ObjectGroup>
+        <ObjectGroup title="Media / Text">
+          {construction.texts.map((note, index) => (
+            <ObjectRow key={note.id} active={selected?.kind === "text" && selected.id === note.id} label={`${note.text} ${index + 1}: ${labelForPoint(construction, note.point)}`} onClick={() => onSelect({ kind: "text", id: note.id })} onDelete={() => onDelete("text", note.id)} />
+          ))}
+        </ObjectGroup>
         <ObjectGroup title="Conics">
           {construction.conics.map((conic, index) => (
             <ObjectRow key={conic.id} active={selected?.kind === "conic" && selected.id === conic.id} label={`${conic.kind} ${index + 1}: ${labelForPoint(construction, conic.center)}`} onClick={() => onSelect({ kind: "conic", id: conic.id })} onDelete={() => onDelete("conic", conic.id)} />
@@ -1937,7 +4410,7 @@ function GeometryObjectInspector({
         </ObjectGroup>
       </div>
 
-      <div className="mt-4 rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+      <div className="order-2 rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
         {!selected && <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">Select an object on the board or in the object list to edit its properties.</p>}
         {selectedPoint && (
           <div className="grid gap-2">
@@ -1952,6 +4425,22 @@ function GeometryObjectInspector({
           <div className="grid gap-2">
             <p className="text-sm font-black">{lineKindLabel(selectedLine.kind ?? "segment")}</p>
             <button type="button" className={selectedLine.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("line", selectedLine.id)}>{selectedLine.locked ? "Unlock object" : "Lock object"}</button>
+            {selectedLinePoints?.[0] && selectedLinePoints[1] && (
+              <SelectedPropertyGrid
+                items={[
+                  ["Length", `${roundTo(distance(selectedLinePoints[0], selectedLinePoints[1]) / 40, 3)} u`],
+                  ["Slope", slopeLabel(selectedLinePoints[0], selectedLinePoints[1])],
+                  ["Angle", `${roundTo(directionDegrees(selectedLinePoints[0], selectedLinePoints[1]), 2)} deg`],
+                  ["Equation", lineEquationLabel(selectedLinePoints[0], selectedLinePoints[1])],
+                ]}
+              />
+            )}
+            {selectedLinePoints?.[0] && selectedLinePoints[1] && (
+              <>
+                <NumberField label="Length" value={roundTo(distance(selectedLinePoints[0], selectedLinePoints[1]) / 40, 3)} min={0.1} max={20} step={0.1} onChange={(value) => setLineLength(selectedLine, value)} />
+                <NumberField label="Angle from x-axis" value={roundTo(directionDegrees(selectedLinePoints[0], selectedLinePoints[1]), 2)} min={0} max={360} step={1} onChange={(value) => setLineAngle(selectedLine, value)} />
+              </>
+            )}
             <label className="text-xs font-bold">
               Object type
               <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={selectedLine.kind ?? "segment"} onChange={(event) => onUpdateLine(selectedLine.id, { kind: event.target.value as GeoLineKind })}>
@@ -1969,14 +4458,43 @@ function GeometryObjectInspector({
           <div className="grid gap-2">
             <p className="text-sm font-black">Circle</p>
             <button type="button" className={selectedCircle.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("circle", selectedCircle.id)}>{selectedCircle.locked ? "Unlock object" : "Lock object"}</button>
+            {selectedCirclePoints?.[0] && selectedCirclePoints[1] && (
+              <>
+                <SelectedPropertyGrid
+                  items={[
+                    ["Radius", `${roundTo(distance(selectedCirclePoints[0], selectedCirclePoints[1]) / 40, 3)} u`],
+                    ["Diameter", `${roundTo(distance(selectedCirclePoints[0], selectedCirclePoints[1]) / 20, 3)} u`],
+                    ["Area", `${roundTo(Math.PI * (distance(selectedCirclePoints[0], selectedCirclePoints[1]) / 40) ** 2, 3)} u^2`],
+                    ["Circumference", `${roundTo(2 * Math.PI * distance(selectedCirclePoints[0], selectedCirclePoints[1]) / 40, 3)} u`],
+                  ]}
+                />
+                <NumberField label="Radius" value={roundTo(distance(selectedCirclePoints[0], selectedCirclePoints[1]) / 40, 3)} min={0.1} max={12} step={0.1} onChange={(value) => setCircleRadius(selectedCircle, value)} />
+                <NumberField label="Center x" value={roundTo(selectedCirclePoints[0].x / 40, 3)} min={0} max={16} step={0.05} onChange={(value) => moveCircleCenter(selectedCircle, "x", value)} />
+                <NumberField label="Center y" value={roundTo((420 - selectedCirclePoints[0].y) / 40, 3)} min={0} max={10.5} step={0.05} onChange={(value) => moveCircleCenter(selectedCircle, "y", value)} />
+              </>
+            )}
             <PointSelect label="Center" value={selectedCircle.center} points={construction.points} onChange={(value) => onUpdateCircle(selectedCircle.id, { center: value })} />
             <PointSelect label="Radius point" value={selectedCircle.edge} points={construction.points} onChange={(value) => onUpdateCircle(selectedCircle.id, { edge: value })} />
           </div>
         )}
         {selectedPolygon && (
           <div className="grid gap-2">
-            <p className="text-sm font-black">Polygon vertices</p>
+            <p className="text-sm font-black">{selectedPolygon.points.length === 3 ? "Triangle" : "Polygon"} properties</p>
             <button type="button" className={selectedPolygon.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("polygon", selectedPolygon.id)}>{selectedPolygon.locked ? "Unlock object" : "Lock object"}</button>
+            {selectedPolygonPoints.length >= 3 && (
+              <>
+                <SelectedPropertyGrid
+                  items={[
+                    ["Vertices", selectedPolygonPoints.map((point) => point.label).join(", ")],
+                    ["Side lengths", polygonSideLengths(selectedPolygonPoints).map((length) => roundTo(length, 2)).join(", ")],
+                    ["Perimeter", `${roundTo(polygonSideLengths(selectedPolygonPoints).reduce((sum, value) => sum + value, 0), 3)} u`],
+                    ["Area", `${roundTo(polygonArea(selectedPolygonPoints) / 1600, 3)} u^2`],
+                  ]}
+                />
+                <NumberField label="Scale from centroid" value={1} min={0.2} max={3} step={0.1} onChange={(value) => scalePolygon(selectedPolygon, value)} />
+                <NumberField label="Rotate by degrees" value={0} min={-180} max={180} step={5} onChange={(value) => rotatePolygon(selectedPolygon, value)} />
+              </>
+            )}
             {selectedPolygon.points.map((pointId, index) => (
               <PointSelect key={`${pointId}-${index}`} label={`Vertex ${index + 1}`} value={pointId} points={construction.points} onChange={(value) => onUpdatePolygon(selectedPolygon.id, selectedPolygon.points.map((id, pointIndex) => pointIndex === index ? value : id))} />
             ))}
@@ -1987,9 +4505,59 @@ function GeometryObjectInspector({
           <div className="grid gap-2">
             <p className="text-sm font-black">Angle {labelForPoint(construction, selectedAngle.a)}{labelForPoint(construction, selectedAngle.vertex)}{labelForPoint(construction, selectedAngle.b)}</p>
             <button type="button" className={selectedAngle.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("angle", selectedAngle.id)}>{selectedAngle.locked ? "Unlock object" : "Lock object"}</button>
+            {selectedAnglePoints?.[0] && selectedAnglePoints[1] && selectedAnglePoints[2] && (
+              <>
+                <SelectedPropertyGrid
+                  items={[
+                    ["Angle", `${roundTo(angleDegrees(selectedAnglePoints[0], selectedAnglePoints[1], selectedAnglePoints[2]), 3)} deg`],
+                    ["Radians", `${roundTo(angleDegrees(selectedAnglePoints[0], selectedAnglePoints[1], selectedAnglePoints[2]) * Math.PI / 180, 4)}`],
+                    ["Ray 1", `${roundTo(distance(selectedAnglePoints[1], selectedAnglePoints[0]) / 40, 3)} u`],
+                    ["Ray 2", `${roundTo(distance(selectedAnglePoints[1], selectedAnglePoints[2]) / 40, 3)} u`],
+                  ]}
+                />
+                <NumberField label="Angle degrees" value={roundTo(angleDegrees(selectedAnglePoints[0], selectedAnglePoints[1], selectedAnglePoints[2]), 2)} min={0} max={180} step={1} onChange={(value) => setAngleDegrees(selectedAngle, value)} />
+              </>
+            )}
             <PointSelect label="First ray point" value={selectedAngle.a} points={construction.points} onChange={(value) => onUpdateAngle(selectedAngle.id, { a: value })} />
             <PointSelect label="Vertex" value={selectedAngle.vertex} points={construction.points} onChange={(value) => onUpdateAngle(selectedAngle.id, { vertex: value })} />
             <PointSelect label="Second ray point" value={selectedAngle.b} points={construction.points} onChange={(value) => onUpdateAngle(selectedAngle.id, { b: value })} />
+          </div>
+        )}
+        {selectedArc && (
+          <div className="grid gap-2">
+            <p className="text-sm font-black">{selectedArc.kind} properties</p>
+            <button type="button" className={selectedArc.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("arc", selectedArc.id)}>{selectedArc.locked ? "Unlock object" : "Lock object"}</button>
+            {selectedArcPoints?.[0] && selectedArcPoints[1] && selectedArcPoints[2] && (
+              <>
+                <SelectedPropertyGrid
+                  items={[
+                    ["Radius", `${roundTo(distance(selectedArcPoints[0], selectedArcPoints[1]) / 40, 3)} u`],
+                    ["Central angle", `${roundTo(arcCentralAngle(selectedArcPoints[0], selectedArcPoints[1], selectedArcPoints[2], selectedArc.kind === "semicircle"), 2)} deg`],
+                    ["Arc length", `${roundTo((Math.PI * distance(selectedArcPoints[0], selectedArcPoints[1]) / 40 * arcCentralAngle(selectedArcPoints[0], selectedArcPoints[1], selectedArcPoints[2], selectedArc.kind === "semicircle")) / 180, 3)} u`],
+                  ]}
+                />
+                <NumberField label="Radius" value={roundTo(distance(selectedArcPoints[0], selectedArcPoints[1]) / 40, 3)} min={0.1} max={12} step={0.1} onChange={(value) => setArcRadius(selectedArc, value)} />
+              </>
+            )}
+            <label className="text-xs font-bold">
+              Arc type
+              <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={selectedArc.kind} onChange={(event) => onUpdateArc(selectedArc.id, { kind: event.target.value as GeoArcKind })}>
+                <option value="arc">Arc</option>
+                <option value="semicircle">Semicircle</option>
+                <option value="sector">Sector</option>
+              </select>
+            </label>
+            <PointSelect label="Center" value={selectedArc.center} points={construction.points} onChange={(value) => onUpdateArc(selectedArc.id, { center: value })} />
+            <PointSelect label="Start" value={selectedArc.start} points={construction.points} onChange={(value) => onUpdateArc(selectedArc.id, { start: value })} />
+            <PointSelect label="End" value={selectedArc.end} points={construction.points} onChange={(value) => onUpdateArc(selectedArc.id, { end: value })} />
+          </div>
+        )}
+        {selectedText && (
+          <div className="grid gap-2">
+            <p className="text-sm font-black">{selectedText.text === "Image" ? "Image anchor" : "Text note"}</p>
+            <button type="button" className={selectedText.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("text", selectedText.id)}>{selectedText.locked ? "Unlock object" : "Lock object"}</button>
+            <label className="text-xs font-bold">Content<input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={selectedText.text} onChange={(event) => onUpdateText(selectedText.id, { text: event.target.value })} /></label>
+            <PointSelect label="Anchor point" value={selectedText.point} points={construction.points} onChange={(value) => onUpdateText(selectedText.id, { point: value })} />
           </div>
         )}
         {selectedConic && (
@@ -2042,6 +4610,19 @@ function ObjectRow({ label, active, onClick, onDelete }: { label: string; active
     <div className={`grid grid-cols-[minmax(0,1fr)_32px] items-center gap-1 rounded-xl p-1 ${active ? "bg-cyan-100 dark:bg-cyan-400/15" : "bg-slate-100 dark:bg-white/10"}`}>
       <button type="button" className="min-w-0 truncate px-2 py-1 text-left text-xs font-bold" onClick={onClick}>{label}</button>
       <button type="button" className="grid h-8 w-8 place-items-center rounded-lg hover:bg-rose-500/15" onClick={onDelete} aria-label={`Delete ${label}`}><Trash2 className="h-3.5 w-3.5" /></button>
+    </div>
+  );
+}
+
+function SelectedPropertyGrid({ items }: { items: Array<[string, string]> }) {
+  return (
+    <div className="grid gap-1 rounded-xl bg-white/80 p-2 dark:bg-slate-950/50">
+      {items.map(([label, value]) => (
+        <div key={label} className="grid grid-cols-[92px_minmax(0,1fr)] gap-2 text-xs">
+          <span className="font-black uppercase text-slate-500 dark:text-slate-400">{label}</span>
+          <span className="min-w-0 [overflow-wrap:anywhere] font-mono font-black text-slate-900 dark:text-white">{value}</span>
+        </div>
+      ))}
     </div>
   );
 }
@@ -2101,6 +4682,123 @@ function ConstraintOverlays({ construction }: { construction: Construction }) {
   );
 }
 
+function LocusTraceOverlay({ traces }: { traces: LocusTrace[] }) {
+  return (
+    <g>
+      {traces.filter((trace) => trace.visible && trace.points.length > 1).map((trace) => (
+        <g key={trace.id}>
+          <path d={locusPath(trace.points)} fill="none" stroke={trace.color} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity="0.72" />
+          {trace.points.length > 0 && (
+            <text x={trace.points[trace.points.length - 1].x + 10} y={trace.points[trace.points.length - 1].y - 10} fill={trace.color} className="select-none text-xs font-black">
+              {trace.label}
+            </text>
+          )}
+        </g>
+      ))}
+    </g>
+  );
+}
+
+function GeometryKernelPanel({
+  construction,
+  selected,
+  traces,
+  activeTracePointId,
+  onTraceSelected,
+  onStopTrace,
+  onClearTraces,
+  onToggleTrace,
+  onDeleteTrace,
+}: {
+  construction: Construction;
+  selected: SelectedGeoObject;
+  traces: LocusTrace[];
+  activeTracePointId: string | null;
+  onTraceSelected: () => void;
+  onStopTrace: () => void;
+  onClearTraces: () => void;
+  onToggleTrace: (traceId: string) => void;
+  onDeleteTrace: (traceId: string) => void;
+}) {
+  const selectedPoint = selected?.kind === "point" ? pointById(construction.points, selected.id) : null;
+  const insights = geometryInsights(construction);
+  return (
+    <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Geometry kernel</p>
+          <h3 className="font-bold">Locus and Theorem Studio</h3>
+        </div>
+        <span className="mini-chip">{traces.length} trace{traces.length === 1 ? "" : "s"}</span>
+      </div>
+
+      <div className="mt-3 grid gap-2">
+        <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+          <p className="text-sm font-black">Locus tracing</p>
+          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
+            Select a point, start tracing, then drag source points. The selected point's path becomes a visible locus curve.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button type="button" className="action-primary" onClick={onTraceSelected} disabled={!selectedPoint}>
+              <Radius className="h-4 w-4" />
+              Trace selected
+            </button>
+            <button type="button" className="action-secondary" onClick={onStopTrace} disabled={!activeTracePointId}>Stop</button>
+            <button type="button" className="action-secondary" onClick={onClearTraces} disabled={!traces.length}>Clear traces</button>
+          </div>
+          <p className="mt-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+            Active trace: {activeTracePointId ? labelForPoint(construction, activeTracePointId) : "none"}
+          </p>
+        </div>
+
+        {traces.length > 0 && (
+          <div className="grid gap-1">
+            {traces.map((trace) => (
+              <div key={trace.id} className="grid grid-cols-[14px_minmax(0,1fr)_auto_auto] items-center gap-2 rounded-xl bg-slate-100 p-2 dark:bg-white/10">
+                <span className="h-3.5 w-3.5 rounded-full" style={{ background: trace.color }} />
+                <span className="truncate text-xs font-bold">{trace.label}: {trace.points.length} samples</span>
+                <button type="button" className="mini-chip" onClick={() => onToggleTrace(trace.id)}>{trace.visible ? "Hide" : "Show"}</button>
+                <button type="button" className="mini-chip" onClick={() => onDeleteTrace(trace.id)}>Delete</button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+          <p className="text-sm font-black">Theorem insights</p>
+          {insights.length ? (
+            <div className="mt-2 grid gap-2">
+              {insights.map((insight) => (
+                <div key={`${insight.title}-${insight.result}`} className="rounded-xl bg-white/75 p-3 dark:bg-slate-950/50">
+                  <div className="flex items-start justify-between gap-2">
+                    <p className="text-xs font-black uppercase text-cyan-600 dark:text-cyan-300">{insight.title}</p>
+                    <span className="mini-chip">{insight.confidence}</span>
+                  </div>
+                  <p className="mt-1 text-sm font-black text-slate-900 dark:text-white">{insight.result}</p>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">{insight.detail}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">Add a triangle, polygon, or circle to see live theorem-style insights.</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function geometryInsights(construction: Construction) {
+  const polygonInsights = construction.polygons.flatMap((polygon) => {
+    const points = polygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
+    return triangleInsights(points, 40);
+  });
+  const circleTheorems = construction.circles.flatMap((circle) => {
+    return circleInsights(pointById(construction.points, circle.center) ?? null, pointById(construction.points, circle.edge) ?? null, 40);
+  });
+  return [...polygonInsights, ...circleTheorems].slice(0, 8);
+}
+
 function DependencyPanel({ construction, selected, onSelect }: { construction: Construction; selected: SelectedGeoObject; onSelect: (value: SelectedGeoObject) => void }) {
   const nodes = buildDependencyGraph(construction);
   const diagnostics = constructionDiagnostics(construction, nodes);
@@ -2108,7 +4806,7 @@ function DependencyPanel({ construction, selected, onSelect }: { construction: C
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Phase 3 dependency algebra</p>
+          <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Dependency algebra</p>
           <h3 className="font-bold">Dependency Tree</h3>
         </div>
         <span className="mini-chip">{nodes.filter((node) => node.status !== "free").length} linked</span>
@@ -2189,6 +4887,35 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     "fixed-length": "Click an anchor point and a second point. The second point keeps its current distance from the anchor while dragged.",
     "on-circle": "Click a point. It snaps to the first circle and stays on that circle.",
     intersect: "Create at least two lines, then click Intersect to add a live intersection point.",
+    "perpendicular-bisector": "Select two points to prepare a perpendicular bisector construction.",
+    "regular-polygon": "Place or select vertices for a regular polygon construction.",
+    "circle-radius": "Place a center and set a radius-driven circle.",
+    "circle-3point": "Pick three points to define a circle through them.",
+    semicircle: "Pick two endpoints to create a semicircle.",
+    arc: "Pick points on a circle path to create an arc.",
+    sector: "Pick a center and two boundary points to create a sector.",
+    compass: "Copy a length from one pair of points to another location.",
+    distance: "Select points or objects to inspect distance and length measurements.",
+    area: "Select a polygon or closed region to inspect area.",
+    slope: "Select a line, ray, segment, or vector to inspect slope.",
+    locus: "Select a dependent point to review its path as drivers move.",
+    trace: "Select a point and use Trace in the left tool panel to record motion.",
+    "hide-show": "Select an object to prepare visibility changes.",
+    "lock-object": "Select an object, then lock or unlock it in the inspector.",
+    duplicate: "Select an object to prepare a copied construction.",
+    freehand: "Sketch an annotation path over the construction area.",
+    text: "Place a text note near the construction.",
+    label: "Select an object to prepare label editing.",
+    slider: "Create a parameter slider for linked numeric constructions.",
+    "move-canvas": "Drag the construction view without changing objects.",
+    "zoom-tool": "Zoom into a region of the construction board.",
+    "mirror-line": "Select an object and mirror line, or use Reflect under Selected Object.",
+    "reflect-point": "Select an object, then click the center point to reflect it through that point.",
+    translate: "Select an object and a vector to translate it.",
+    "rotate-tool": "Select an object and center, or use Rotate under Selected Object.",
+    "dilate-tool": "Select an object and center, or use Dilate under Selected Object.",
+    "intersect-region": "Select two closed objects to prepare their shared region.",
+    image: "Click the board to reserve an image anchor for diagrams and annotations.",
   };
   return <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50"><p className="font-bold">Current tool: {tool}</p><p className="mt-2">{instructions[tool]}</p></div>;
 }
@@ -2238,6 +4965,47 @@ function distance(a: { x: number; y: number }, b: { x: number; y: number }) {
   return Math.hypot(a.x - b.x, a.y - b.y);
 }
 
+function boardUnitNumber(value: number) {
+  return roundTo(value / 40, 4);
+}
+
+function boardUnit(value: number) {
+  return boardUnitNumber(value).toString();
+}
+
+function distanceMetrics(a: GeoPoint, b: GeoPoint) {
+  const dx = (b.x - a.x) / 40;
+  const dy = (b.y - a.y) / 40;
+  const length = Math.hypot(dx, dy);
+  return [
+    { label: "Length", value: `${roundTo(length, 4)} units` },
+    { label: "Delta x", value: `${roundTo(dx, 4)} units` },
+    { label: "Delta y", value: `${roundTo(dy, 4)} units` },
+  ];
+}
+
+function polygonSideLengths(points: GeoPoint[]) {
+  return points.map((point, index) => distance(point, points[(index + 1) % points.length]) / 40);
+}
+
+function polygonCentroid(points: GeoPoint[]) {
+  return {
+    x: points.reduce((sum, point) => sum + point.x, 0) / Math.max(1, points.length),
+    y: points.reduce((sum, point) => sum + point.y, 0) / Math.max(1, points.length),
+  };
+}
+
+function lineEquationLabel(a: GeoPoint, b: GeoPoint) {
+  const x1 = a.x / 40;
+  const y1 = a.y / 40;
+  const x2 = b.x / 40;
+  const y2 = b.y / 40;
+  if (Math.abs(x2 - x1) < 0.0001) return `x = ${roundTo(x1, 3)}`;
+  const m = (y2 - y1) / (x2 - x1);
+  const c = y1 - m * x1;
+  return `y = ${roundTo(m, 3)}x ${c >= 0 ? "+" : "-"} ${roundTo(Math.abs(c), 3)}`;
+}
+
 function normalizeConstruction(value: Partial<Construction>): Construction {
   return solveConstruction({
     points: value.points ?? [],
@@ -2245,6 +5013,8 @@ function normalizeConstruction(value: Partial<Construction>): Construction {
     circles: value.circles ?? [],
     polygons: value.polygons ?? [],
     angles: value.angles ?? [],
+    arcs: value.arcs ?? [],
+    texts: value.texts ?? [],
     conics: value.conics ?? [],
     transforms: value.transforms ?? [],
     constraints: value.constraints ?? [],
@@ -2261,6 +5031,8 @@ function toggleObjectLock(construction: Construction, kind: Exclude<NonNullable<
   if (kind === "circle") return { ...construction, circles: construction.circles.map((circle) => circle.id === id ? { ...circle, locked: !circle.locked } : circle) };
   if (kind === "polygon") return { ...construction, polygons: construction.polygons.map((polygon) => polygon.id === id ? { ...polygon, locked: !polygon.locked } : polygon) };
   if (kind === "angle") return { ...construction, angles: construction.angles.map((angle) => angle.id === id ? { ...angle, locked: !angle.locked } : angle) };
+  if (kind === "arc") return { ...construction, arcs: construction.arcs.map((arc) => arc.id === id ? { ...arc, locked: !arc.locked } : arc) };
+  if (kind === "text") return { ...construction, texts: construction.texts.map((note) => note.id === id ? { ...note, locked: !note.locked } : note) };
   return { ...construction, conics: construction.conics.map((conic) => conic.id === id ? { ...conic, locked: !conic.locked } : conic) };
 }
 
@@ -2296,6 +5068,8 @@ function buildDependencyGraph(construction: Construction): DependencyNode[] {
   construction.circles.forEach((circle, index) => addNode(objectKey("circle", circle.id), `Circle ${index + 1}`, circle.locked));
   construction.polygons.forEach((polygon, index) => addNode(objectKey("polygon", polygon.id), `Polygon ${index + 1}`, polygon.locked));
   construction.angles.forEach((angle, index) => addNode(objectKey("angle", angle.id), `Angle ${index + 1}`, angle.locked));
+  construction.arcs.forEach((arc, index) => addNode(objectKey("arc", arc.id), `${arc.kind} ${index + 1}`, arc.locked));
+  construction.texts.forEach((note, index) => addNode(objectKey("text", note.id), `Text ${index + 1}`, note.locked));
   construction.conics.forEach((conic, index) => addNode(objectKey("conic", conic.id), `${conic.kind} ${index + 1}`, conic.locked));
   construction.transforms.forEach((transform, index) => addNode(objectKey("transform", transform.id), `${transform.type} ${index + 1}`));
   construction.constraints.forEach((constraint, index) => addNode(objectKey("constraint", constraint.id), `${constraint.type} ${index + 1}`));
@@ -2314,6 +5088,12 @@ function buildDependencyGraph(construction: Construction): DependencyNode[] {
     link(objectKey("point", angle.vertex), objectKey("angle", angle.id));
     link(objectKey("point", angle.b), objectKey("angle", angle.id));
   });
+  construction.arcs.forEach((arc) => {
+    link(objectKey("point", arc.center), objectKey("arc", arc.id));
+    link(objectKey("point", arc.start), objectKey("arc", arc.id));
+    link(objectKey("point", arc.end), objectKey("arc", arc.id));
+  });
+  construction.texts.forEach((note) => link(objectKey("point", note.point), objectKey("text", note.id)));
   construction.conics.forEach((conic) => link(objectKey("point", conic.center), objectKey("conic", conic.id)));
   construction.transforms.forEach((transform) => {
     const transformId = objectKey("transform", transform.id);
@@ -2323,6 +5103,8 @@ function buildDependencyGraph(construction: Construction): DependencyNode[] {
       if (construction.points.some((point) => point.id === resultId)) link(transformId, objectKey("point", resultId));
       if (construction.polygons.some((polygon) => polygon.id === resultId)) link(transformId, objectKey("polygon", resultId));
       if (construction.circles.some((circle) => circle.id === resultId)) link(transformId, objectKey("circle", resultId));
+      if (construction.arcs.some((arc) => arc.id === resultId)) link(transformId, objectKey("arc", resultId));
+      if (construction.texts.some((note) => note.id === resultId)) link(transformId, objectKey("text", resultId));
       if (construction.conics.some((conic) => conic.id === resultId)) link(transformId, objectKey("conic", resultId));
     });
   });
@@ -2377,6 +5159,8 @@ function removeGeometryObject(construction: Construction, kind: NonNullable<Sele
         .map((polygon) => ({ ...polygon, points: polygon.points.filter((pointId) => !selected.has(pointId)) }))
         .filter((polygon) => polygon.points.length >= 3),
       angles: construction.angles.filter((angle) => !selected.has(angle.a) && !selected.has(angle.vertex) && !selected.has(angle.b)),
+      arcs: construction.arcs.filter((arc) => !selected.has(arc.center) && !selected.has(arc.start) && !selected.has(arc.end)),
+      texts: construction.texts.filter((note) => !selected.has(note.point)),
       conics: construction.conics.filter((conic) => !selected.has(conic.center)),
       transforms: construction.transforms.filter((transform) => transform.sourceKind !== "point" || transform.sourceId !== id),
       constraints: construction.constraints.filter((constraint) => constraintPointIds(constraint).every((pointId) => !selected.has(pointId))),
@@ -2412,6 +5196,8 @@ function removeGeometryObject(construction: Construction, kind: NonNullable<Sele
       constraints: construction.constraints.filter((constraint) => constraint.type !== "angle-bisector" || ![constraint.a, constraint.vertex, constraint.b].includes(id)),
     };
   }
+  if (kind === "arc") return { ...construction, arcs: construction.arcs.filter((arc) => arc.id !== id), transforms: construction.transforms.filter((transform) => !(transform.sourceKind === "arc" && transform.sourceId === id) && !transform.resultIds.includes(id)) };
+  if (kind === "text") return { ...construction, texts: construction.texts.filter((note) => note.id !== id), transforms: construction.transforms.filter((transform) => !(transform.sourceKind === "text" && transform.sourceId === id) && !transform.resultIds.includes(id)) };
   if (kind === "conic") return { ...construction, conics: construction.conics.filter((conic) => conic.id !== id), transforms: construction.transforms.filter((transform) => !(transform.sourceKind === "conic" && transform.sourceId === id) && !transform.resultIds.includes(id)) };
   if (kind === "transform") return { ...construction, transforms: construction.transforms.filter((transform) => transform.id !== id) };
   return { ...construction, constraints: construction.constraints.filter((constraint) => constraint.id !== id) };
@@ -2468,6 +5254,50 @@ function addAngleBisectorConstraint(construction: Construction, aId: string, ver
   });
 }
 
+function addCircleThroughThreePoints(construction: Construction, aId: string, bId: string, cId: string) {
+  const a = pointById(construction.points, aId), b = pointById(construction.points, bId), c = pointById(construction.points, cId);
+  if (!a || !b || !c) return construction;
+  const center = circumcenter(a, b, c);
+  if (!center) return construction;
+  const centerPoint: GeoPoint = { id: crypto.randomUUID(), x: center.x, y: center.y, label: nextPointLabel(construction.points) };
+  return solveConstruction({ ...construction, points: [...construction.points, centerPoint], circles: [...construction.circles, { id: crypto.randomUUID(), center: centerPoint.id, edge: aId }] });
+}
+
+function addSemicircleConstruction(construction: Construction, aId: string, bId: string) {
+  const a = pointById(construction.points, aId), b = pointById(construction.points, bId);
+  if (!a || !b) return construction;
+  const centerPoint: GeoPoint = { id: crypto.randomUUID(), x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, label: nextPointLabel(construction.points) };
+  return solveConstruction({ ...construction, points: [...construction.points, centerPoint], arcs: [...construction.arcs, { id: crypto.randomUUID(), kind: "semicircle", center: centerPoint.id, start: aId, end: bId }] });
+}
+
+function addRegularPolygonConstruction(construction: Construction, aId: string, bId: string, sides: number) {
+  const a = pointById(construction.points, aId), b = pointById(construction.points, bId);
+  if (!a || !b || sides < 3) return construction;
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const length = Math.hypot(dx, dy);
+  if (length < 1) return construction;
+  const angle = Math.atan2(dy, dx);
+  const turn = (Math.PI * 2) / sides;
+  const newPoints: GeoPoint[] = [];
+  let current = { x: b.x, y: b.y };
+  let direction = angle;
+  for (let index = 2; index < sides; index += 1) {
+    direction += turn;
+    current = { x: current.x + Math.cos(direction) * length, y: current.y + Math.sin(direction) * length };
+    newPoints.push({ id: crypto.randomUUID(), x: current.x, y: current.y, label: nextPointLabel([...construction.points, ...newPoints]) });
+  }
+  return solveConstruction({ ...construction, points: [...construction.points, ...newPoints], polygons: [...construction.polygons, { id: crypto.randomUUID(), points: [aId, bId, ...newPoints.map((point) => point.id)] }] });
+}
+
+function addCompassCircleConstruction(construction: Construction, fromAId: string, fromBId: string, centerId: string) {
+  const a = pointById(construction.points, fromAId), b = pointById(construction.points, fromBId), center = pointById(construction.points, centerId);
+  if (!a || !b || !center) return construction;
+  const length = distance(a, b);
+  const edgePoint: GeoPoint = { id: crypto.randomUUID(), x: center.x + length, y: center.y, label: nextPointLabel(construction.points) };
+  return solveConstruction({ ...construction, points: [...construction.points, edgePoint], circles: [...construction.circles, { id: crypto.randomUUID(), center: centerId, edge: edgePoint.id }] });
+}
+
 function addTangentConstruction(construction: Construction, circleId: string, throughPointId: string) {
   const circle = construction.circles.find((item) => item.id === circleId);
   const through = pointById(construction.points, throughPointId);
@@ -2491,18 +5321,25 @@ function addTangentConstruction(construction: Construction, circleId: string, th
   });
 }
 
-function addTransformConstruction(construction: Construction, selected: NonNullable<SelectedGeoObject>, type: GeoTransformKind) {
-  if (selected.kind !== "point" && selected.kind !== "polygon" && selected.kind !== "circle" && selected.kind !== "conic") return construction;
-  const center = construction.points[0] ?? { id: "", x: 320, y: 210, label: "O" };
+function addTransformConstruction(construction: Construction, selected: NonNullable<SelectedGeoObject>, type: GeoTransformKind, options: { centerPointId?: string; lineId?: string; vectorPointIds?: [string, string] } = {}) {
+  if (selected.kind !== "point" && selected.kind !== "polygon" && selected.kind !== "circle" && selected.kind !== "conic" && selected.kind !== "arc" && selected.kind !== "text") return construction;
+  const center = (options.centerPointId ? pointById(construction.points, options.centerPointId) : null) ?? construction.points[0] ?? { id: "", x: 320, y: 210, label: "O" };
+  const reflectionLine = options.lineId ? construction.lines.find((line) => line.id === options.lineId) : null;
+  const vectorA = options.vectorPointIds ? pointById(construction.points, options.vectorPointIds[0]) : null;
+  const vectorB = options.vectorPointIds ? pointById(construction.points, options.vectorPointIds[1]) : null;
   const transformPoint = (point: GeoPoint, index: number): GeoPoint => {
-    const next = transformCoordinates(point, center, type);
+    const next = transformCoordinates(point, center, type, {
+      line: reflectionLine,
+      points: construction.points,
+      vector: vectorA && vectorB ? { x: vectorB.x - vectorA.x, y: vectorB.y - vectorA.y } : undefined,
+    });
     return { id: crypto.randomUUID(), x: next.x, y: next.y, label: pointLabelForIndex(construction.points.length + index), locked: false };
   };
   const sourcePoints = sourcePointIdsForSelection(construction, selected).map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
   if (!sourcePoints.length) return construction;
   const newPoints = sourcePoints.map(transformPoint);
   const pointMap = new Map(sourcePoints.map((point, index) => [point.id, newPoints[index].id]));
-  const transform: GeoTransform = { id: crypto.randomUUID(), type, sourceKind: selected.kind, sourceId: selected.id, resultIds: [], center: center.id || undefined, angle: type === "rotation" ? 45 : undefined, scale: type === "dilation" ? 1.35 : undefined };
+  const transform: GeoTransform = { id: crypto.randomUUID(), type, sourceKind: selected.kind, sourceId: selected.id, resultIds: [], center: center.id || undefined, line: options.lineId, vectorLine: options.vectorPointIds?.join(":"), angle: type === "rotation" ? 45 : undefined, scale: type === "dilation" ? 1.35 : undefined };
   const next: Construction = { ...construction, points: [...construction.points, ...newPoints], transforms: construction.transforms };
 
   if (selected.kind === "point") {
@@ -2522,6 +5359,20 @@ function addTransformConstruction(construction: Construction, selected: NonNulla
     const result: GeoCircle = { id: crypto.randomUUID(), center: pointMap.get(circle.center) ?? newPoints[0].id, edge: pointMap.get(circle.edge) ?? newPoints[1]?.id ?? newPoints[0].id };
     transform.resultIds = [result.id];
     return { ...next, circles: [...construction.circles, result], transforms: [...construction.transforms, transform] };
+  }
+  if (selected.kind === "arc") {
+    const arc = construction.arcs.find((item) => item.id === selected.id);
+    if (!arc) return construction;
+    const result: GeoArc = { ...arc, id: crypto.randomUUID(), center: pointMap.get(arc.center) ?? arc.center, start: pointMap.get(arc.start) ?? arc.start, end: pointMap.get(arc.end) ?? arc.end };
+    transform.resultIds = [result.id];
+    return { ...next, arcs: [...construction.arcs, result], transforms: [...construction.transforms, transform] };
+  }
+  if (selected.kind === "text") {
+    const note = construction.texts.find((item) => item.id === selected.id);
+    if (!note) return construction;
+    const result: GeoTextNote = { ...note, id: crypto.randomUUID(), point: pointMap.get(note.point) ?? note.point, text: `${note.text}'` };
+    transform.resultIds = [result.id];
+    return { ...next, texts: [...construction.texts, result], transforms: [...construction.transforms, transform] };
   }
   const conic = construction.conics.find((item) => item.id === selected.id);
   if (!conic) return construction;
@@ -2652,10 +5503,21 @@ function sourcePointIdsForSelection(construction: Construction, selected: Pick<N
     const conic = construction.conics.find((item) => item.id === selected.id);
     return conic ? [conic.center] : [];
   }
+  if (selected.kind === "arc") {
+    const arc = construction.arcs.find((item) => item.id === selected.id);
+    return arc ? [arc.center, arc.start, arc.end] : [];
+  }
+  if (selected.kind === "text") {
+    const note = construction.texts.find((item) => item.id === selected.id);
+    return note ? [note.point] : [];
+  }
   return [];
 }
 
-function transformCoordinates(point: { x: number; y: number }, center: { x: number; y: number }, type: GeoTransformKind) {
+function transformCoordinates(point: { x: number; y: number }, center: { x: number; y: number }, type: GeoTransformKind, options: { line?: GeoLine | null; points?: GeoPoint[]; vector?: { x: number; y: number } } = {}) {
+  if (type === "translation") return { x: point.x + (options.vector?.x ?? 120), y: point.y + (options.vector?.y ?? 0) };
+  if (type === "reflection-line" && options.line && options.points) return reflectPointAcrossLine(point, options.line, options.points);
+  if (type === "reflection-point") return { x: center.x * 2 - point.x, y: center.y * 2 - point.y };
   if (type === "reflection") return { x: point.x, y: center.y * 2 - point.y };
   if (type === "dilation") return { x: center.x + (point.x - center.x) * 1.35, y: center.y + (point.y - center.y) * 1.35 };
   const angle = Math.PI / 4;
@@ -2755,6 +5617,52 @@ function lineIntersection(first: GeoLine, second: GeoLine, points: GeoPoint[]) {
   const px = ((a.x * b.y - a.y * b.x) * (c.x - d.x) - (a.x - b.x) * (c.x * d.y - c.y * d.x)) / denominator;
   const py = ((a.x * b.y - a.y * b.x) * (c.y - d.y) - (a.y - b.y) * (c.x * d.y - c.y * d.x)) / denominator;
   return { x: px, y: py };
+}
+
+function circumcenter(a: GeoPoint, b: GeoPoint, c: GeoPoint) {
+  const d = 2 * (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y));
+  if (Math.abs(d) < 0.001) return null;
+  const ux = ((a.x * a.x + a.y * a.y) * (b.y - c.y) + (b.x * b.x + b.y * b.y) * (c.y - a.y) + (c.x * c.x + c.y * c.y) * (a.y - b.y)) / d;
+  const uy = ((a.x * a.x + a.y * a.y) * (c.x - b.x) + (b.x * b.x + b.y * b.y) * (a.x - c.x) + (c.x * c.x + c.y * c.y) * (b.x - a.x)) / d;
+  return { x: ux, y: uy };
+}
+
+function reflectPointAcrossLine(point: { x: number; y: number }, line: GeoLine, points: GeoPoint[]) {
+  const a = pointById(points, line.a), b = pointById(points, line.b);
+  if (!a || !b) return point;
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const lengthSq = dx * dx + dy * dy || 1;
+  const t = ((point.x - a.x) * dx + (point.y - a.y) * dy) / lengthSq;
+  const projection = { x: a.x + t * dx, y: a.y + t * dy };
+  return { x: projection.x * 2 - point.x, y: projection.y * 2 - point.y };
+}
+
+function arcAngles(center: GeoPoint, start: GeoPoint, end: GeoPoint, semicircle = false) {
+  const startAngle = Math.atan2(start.y - center.y, start.x - center.x);
+  let endAngle = Math.atan2(end.y - center.y, end.x - center.x);
+  let delta = endAngle - startAngle;
+  while (delta <= 0) delta += Math.PI * 2;
+  if (!semicircle && delta > Math.PI * 2) delta %= Math.PI * 2;
+  if (semicircle) delta = Math.PI;
+  endAngle = startAngle + delta;
+  return { startAngle, endAngle, delta };
+}
+
+function arcPath(center: GeoPoint, start: GeoPoint, end: GeoPoint, semicircle = false) {
+  const radius = distance(center, start);
+  const { endAngle, delta } = arcAngles(center, start, end, semicircle);
+  const actualEnd = semicircle ? { x: center.x + Math.cos(endAngle) * radius, y: center.y + Math.sin(endAngle) * radius } : end;
+  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${delta > Math.PI ? 1 : 0} 1 ${actualEnd.x} ${actualEnd.y}`;
+}
+
+function normalizedArcMidAngle(center: GeoPoint, start: GeoPoint, end: GeoPoint, semicircle = false) {
+  const { startAngle, delta } = arcAngles(center, start, end, semicircle);
+  return startAngle + delta / 2;
+}
+
+function arcCentralAngle(center: GeoPoint, start: GeoPoint, end: GeoPoint, semicircle = false) {
+  return arcAngles(center, start, end, semicircle).delta * 180 / Math.PI;
 }
 
 function nextPointLabel(points: GeoPoint[], offset = 0) {

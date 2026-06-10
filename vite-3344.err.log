@@ -1,0 +1,78 @@
+warnings
+  One of the glob patterns doesn't match any files. Please remove or fix the following: {
+  "globDirectory": "C:/Users/Sai Satish/Documents/GitHub/MathUniverse/dev-dist",
+  "globPattern": "**/*.{js,css,html,ico,png,svg,woff,woff2,ttf,json}",
+  "globIgnores": [
+    "**/node_modules/**/*",
+    "sw.js",
+    "workbox-*.js"
+  ]
+}
+
+[2m8:38:58 pm[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\Users\Sai Satish\Documents\GitHub\MathUniverse\src\pages\MathWorkspace.tsx: Expected corresponding JSX closing tag for <WorkspaceShell>. (860:4)
+
+[0m [90m 858 |[31m       [33m<[31m[33m/[31m[33mSectionCard[31m[33m>[31m
+ [90m 859 |[31m       )}
+[31m[1m>[22m[31m[90m 860 |[31m     [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m     |[31m     [31m[1m^[22m[31m
+ [90m 861 |[31m   )[33m;[31m
+ [90m 862 |[31m }
+ [90m 863 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/Users/Sai Satish/Documents/GitHub/MathUniverse/src/pages/MathWorkspace.tsx[39m:860:4
+[33m  872|      if (/^roots\s+/i.test(normalized)) return rootsCommand(normalized.replace(/^roots\s+/i, ""), input);
+  873|      if (/^extrema\s+/i.test(normalized)) return extremaCommand(normalized.replace(/^extrema\s+/i, ""), input);
+  874|      if (/^intersect\s+/i.test(normalized)) return intersectCommand(normalized.replace(/^intersect\s+/i, ""), input);
+     |                                                                                ^
+  875|      if (/^table\s+/i.test(normalized)) return tableCommand(normalized.replace(/^table\s+/i, ""), input);
+  876|      if (/^simplify\s+/i.test(normalized)) return simplifyCommand(normalized.replace(/^simplify\s+/i, ""), input);[39m
+      at constructor (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:4739:16)
+      at TypeScriptParserMixin.jsxParseElement (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:4761:17)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:4771:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10848:21)
+      at C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:9792:39
+      at TypeScriptParserMixin.tryParse (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:6924:20)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:9792:18)
+      at C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10817:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:12443:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10817:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:12510:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:11692:28)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:11348:23)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:4776:20)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:9803:20)
+      at TypeScriptParserMixin.parseExpressionBase (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10801:23)
+      at C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10797:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:12438:16)
+      at TypeScriptParserMixin.parseExpression (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:10797:17)
+      at TypeScriptParserMixin.parseReturnStatement (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:13159:28)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:12815:21)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:12784:17)
+      at TypeScriptParserMixin.parseStatementListItem (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:12764:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:13333:61)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:13326:10)
+      at TypeScriptParserMixin.parseBlock (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:13314:10)
+      at TypeScriptParserMixin.parseFunctionBody (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:12117:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:12103:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:9189:18)
+      at C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:13462:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:12420:14)
+      at TypeScriptParserMixin.parseFunction (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:13461:10)

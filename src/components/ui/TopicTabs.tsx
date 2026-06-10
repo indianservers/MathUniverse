@@ -32,7 +32,7 @@ export default function TopicTabs({ tabs, initialId }: { tabs: TopicTab[]; initi
       <AnimatePresence mode="wait">
         <motion.div
           key={active.id}
-          className="thin-scrollbar min-h-0 overflow-auto pr-1 md:max-h-[calc(100vh-14rem)]"
+          className="min-h-0 overflow-visible"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}

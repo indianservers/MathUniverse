@@ -72,6 +72,7 @@ export const navSections: NavSection[] = [
     items: [
       { title: "Dashboard", route: "/", icon: "Home" },
       { title: "Syllabus", route: "/syllabus", icon: "BookOpen" },
+      { title: "Formulas", route: "/formulas", icon: "Sigma" },
       { title: "Visual Showcase", route: "/visual-showcase", icon: "Sparkles" },
       { title: "Learning Hub", route: "/learn", icon: "BookOpen" },
     ],
@@ -230,6 +231,7 @@ export const navSections: NavSection[] = [
         ],
       },
       { title: "Math Workspace", route: "/workspace", icon: "Calculator" },
+      { title: "Formulas", route: "/formulas", icon: "Sigma" },
       { title: "Scientific Calculator", route: "/calculator", icon: "Calculator" },
       { title: "Problem Solver", route: "/problem-solver", icon: "Sigma" },
       { title: "Unit Converter", route: "/unit-converter", icon: "Calculator" },
@@ -291,6 +293,7 @@ export const legacyNavItems = [
   { title: "Daily Challenge", route: "/daily-challenge", icon: CircleHelp },
   { title: "Worked Examples", route: "/worked-examples", icon: BookOpen },
   { title: "Syllabus", route: "/syllabus", icon: BookOpen },
+  { title: "Formulas", route: "/formulas", icon: Sigma },
   { title: "Scientific Calculator", route: "/calculator", icon: Calculator },
   { title: "Unit Converter", route: "/unit-converter", icon: Calculator },
   { title: "Truth Tables", route: "/truth-table", icon: Sigma },

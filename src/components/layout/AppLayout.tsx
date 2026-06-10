@@ -6,7 +6,7 @@ import MobileLearningDock from "./MobileLearningDock";
 import Sidebar from "./Sidebar";
 import { navItems } from "./navItems";
 import { BackToTopButton, BreadcrumbTrail, UndoToastHost } from "./GlobalUx";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Github, Mail, Map, Sparkles } from "lucide-react";
 import { APP_VERSION } from "../../appVersion";
 
 function InlinePageNav({ showBack }: { showBack: boolean }) {
@@ -27,10 +27,41 @@ function InlinePageNav({ showBack }: { showBack: boolean }) {
 
 const recentToolsKey = "math-universe-recent-tools";
 
+function AppFooter() {
+  const year = new Date().getFullYear();
+  return (
+    <footer className="mx-auto w-full max-w-[1440px] px-3 pb-24 pt-3 sm:px-4 md:px-5 md:pb-8" aria-label="Site footer">
+      <div className="rounded-xl border border-slate-200 bg-white/78 p-4 text-sm shadow-xl shadow-slate-200/45 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/60 dark:shadow-black/20">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="min-w-0">
+            <p className="flex items-center gap-2 font-black text-slate-950 dark:text-white">
+              <Sparkles className="h-4 w-4 text-cyan-500" />
+              Math Universe
+            </p>
+            <p className="mt-1 max-w-2xl text-xs leading-5 text-slate-600 dark:text-slate-300">
+              Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <a className="action-secondary" href="/sitemap"><Map className="h-4 w-4" />Sitemap</a>
+            <a className="action-secondary" href="/documentation"><Github className="h-4 w-4" />Docs</a>
+            <a className="action-secondary" href="/about"><Mail className="h-4 w-4" />About</a>
+          </div>
+        </div>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-3 text-[11px] font-bold uppercase text-slate-500 dark:border-white/10 dark:text-slate-400">
+          <span>Version {APP_VERSION}</span>
+          <span>&copy; {year} Math Universe</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default function AppLayout() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const showBack = location.pathname.split("/").filter(Boolean).length > 1;
+  const isWorkspaceRoute = location.pathname === "/workspace";
 
   useEffect(() => {
     setMobileOpen(false);
@@ -53,22 +84,30 @@ export default function AppLayout() {
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-2xl focus:bg-slate-950 focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white dark:focus:bg-white dark:focus:text-slate-950">Skip to content</a>
       <div className="flex min-h-screen">
         <Sidebar />
-        <div className="min-w-0 flex-1">
+        <div className="flex min-w-0 flex-1 flex-col">
           <Header mobileMenuOpen={mobileOpen} onMenuClick={() => setMobileOpen((value) => !value)} />
-          <main id="main-content" className="mx-auto w-full max-w-[1440px] px-3 pb-20 pt-3 sm:px-4 md:px-5 md:pb-5 md:pt-4">
-            <div key={location.pathname} className="page-transition space-y-2.5">
-              <InlinePageNav showBack={showBack} />
+          <main
+            id="main-content"
+            className={
+              isWorkspaceRoute
+                ? "w-full flex-1 overflow-hidden px-2 pb-2 pt-2"
+                : "mx-auto w-full max-w-[1440px] flex-1 px-3 pb-6 pt-3 sm:px-4 md:px-5 md:pt-4"
+            }
+          >
+            <div key={location.pathname} className={isWorkspaceRoute ? "page-transition h-full min-h-0" : "page-transition space-y-2.5"}>
+              {!isWorkspaceRoute && <InlinePageNav showBack={showBack} />}
               <Outlet />
             </div>
           </main>
+          {!isWorkspaceRoute && <AppFooter />}
         </div>
       </div>
       <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
-      <MobileLearningDock />
-      <div className="fixed bottom-3 left-3 z-40 rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[11px] font-black text-slate-500 shadow-lg backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300 lg:bottom-4">
+      {!isWorkspaceRoute && <MobileLearningDock />}
+      {!isWorkspaceRoute && <div className="fixed bottom-3 left-3 z-40 rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[11px] font-black text-slate-500 shadow-lg backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300 lg:bottom-4">
         v{APP_VERSION}
-      </div>
-      <BackToTopButton />
+      </div>}
+      {!isWorkspaceRoute && <BackToTopButton />}
       <UndoToastHost />
     </div>
   );

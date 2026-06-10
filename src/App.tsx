@@ -21,6 +21,7 @@ const DiscreteWorld = lazy(() => import("./pages/DiscreteWorld"));
 const EigenvectorsVisualizerPage = lazy(() => import("./pages/EigenvectorsVisualizerPage"));
 const FourierSeriesAnimator = lazy(() => import("./pages/FourierSeriesAnimator"));
 const FourierSeriesVisualizerPage = lazy(() => import("./pages/FourierSeriesVisualizerPage"));
+const Formulas = lazy(() => import("./pages/Formulas"));
 const FunctionsGraphsVisualizer = lazy(() => import("./pages/FunctionsGraphsVisualizer"));
 const Geometry = lazy(() => import("./pages/Geometry"));
 const GeometryConceptPage = lazy(() => import("./pages/GeometryConceptPage"));
@@ -153,6 +154,7 @@ export default function App() {
             <Route path="math-lab/query" element={<MathLabSmartQuery />} />
             <Route path="math-lab/:toolId" element={<MathLabToolPage />} />
             <Route path="workspace" element={<MathWorkspace />} />
+            <Route path="formulas" element={<Formulas />} />
             <Route path="visual-showcase" element={<VisualShowcase />} />
             <Route path="geometry" element={<Geometry />} />
             <Route path="geometry/:conceptId" element={<GeometryConceptPage />} />
