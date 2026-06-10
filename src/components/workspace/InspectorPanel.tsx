@@ -1,12 +1,16 @@
-import { Link2, Lock, Unlock } from "lucide-react";
-import type { MathObject } from "../../workspace/types";
+import { Link2, Lock, RotateCcw, Unlock } from "lucide-react";
+import type { MathObject, MathObjectInteractivity, MathObjectStyle, MathTransform, MathVec3 } from "../../workspace/types";
 import { objectDependencyCount } from "../../workspace/dependencyGraph";
+import { useWorkspaceStore } from "../../workspace/workspaceStore";
 
 type InspectorPanelProps = {
   object: MathObject | null;
+  onObjectChange?: (object: MathObject, patch: Partial<MathObject>) => void;
 };
 
-export default function InspectorPanel({ object }: InspectorPanelProps) {
+export default function InspectorPanel({ object, onObjectChange }: InspectorPanelProps) {
+  const updateObject = useWorkspaceStore((state) => state.updateObject);
+
   if (!object) {
     return (
       <section className="rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
@@ -17,6 +21,36 @@ export default function InspectorPanel({ object }: InspectorPanelProps) {
       </section>
     );
   }
+
+  const applyPatch = (patch: Partial<MathObject>, label = "Edited workspace object") => {
+    updateObject(object.id, patch, label);
+    onObjectChange?.(object, patch);
+  };
+  const updateTransform = (section: keyof MathTransform, axis: keyof MathVec3, value: number) => {
+    if (!object.transform || section === "origin") return;
+    applyPatch({
+      transform: {
+        ...object.transform,
+        [section]: { ...(object.transform[section] as MathVec3), [axis]: finiteOrZero(value) },
+      },
+    }, `Edited ${object.label} transform`);
+  };
+  const updateStyle = (patch: Partial<MathObjectStyle>) => {
+    applyPatch({ style: { ...object.style, ...patch } }, `Edited ${object.label} style`);
+  };
+  const updateInteractivity = (patch: Partial<MathObjectInteractivity>) => {
+    if (!object.interactivity) return;
+    applyPatch({ interactivity: { ...object.interactivity, ...patch } }, `Edited ${object.label} interaction`);
+  };
+  const resetTransform = () => {
+    applyPatch({
+      transform: {
+        position: { x: 0, y: 0, z: 0 },
+        rotation: { x: 0, y: 0, z: 0 },
+        scale: { x: 1, y: 1, z: 1 },
+      },
+    }, `Reset ${object.label} transform`);
+  };
 
   return (
     <section className="rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
@@ -32,7 +66,28 @@ export default function InspectorPanel({ object }: InspectorPanelProps) {
 
       <div className="mt-3 rounded-xl bg-slate-100 p-3 dark:bg-slate-950/70">
         <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Value</p>
-        <p className="mt-1 break-words font-mono text-xs font-semibold text-slate-900 dark:text-cyan-50">{object.value}</p>
+        <input
+          className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 font-mono text-xs font-semibold text-slate-900 dark:border-white/10 dark:bg-slate-900 dark:text-cyan-50"
+          value={object.value}
+          disabled={object.locked}
+          onChange={(event) => applyPatch({ value: event.target.value }, `Edited ${object.label} value`)}
+        />
+      </div>
+
+      <div className="mt-3 grid gap-2">
+        <label className="text-xs font-bold text-slate-600 dark:text-slate-300">
+          Label
+          <input
+            className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-sm font-bold dark:border-white/10 dark:bg-slate-900"
+            value={object.label}
+            disabled={object.locked}
+            onChange={(event) => applyPatch({ label: event.target.value || object.label }, `Renamed ${object.label}`)}
+          />
+        </label>
+        <div className="grid grid-cols-2 gap-2">
+          <ToggleEdit label="Visible" checked={object.visible} onChange={(checked) => applyPatch({ visible: checked, status: checked ? "ready" : "hidden" }, checked ? `Show ${object.label}` : `Hide ${object.label}`)} />
+          <ToggleEdit label="Locked" checked={Boolean(object.locked)} onChange={(checked) => applyPatch({ locked: checked }, checked ? `Locked ${object.label}` : `Unlocked ${object.label}`)} />
+        </div>
       </div>
 
       {object.summary && <p className="mt-3 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">{object.summary}</p>}
@@ -40,7 +95,85 @@ export default function InspectorPanel({ object }: InspectorPanelProps) {
       <div className="mt-3 grid grid-cols-2 gap-2">
         <Info label="Status" value={object.status} />
         <Info label="Deps" value={`${objectDependencyCount(object)}`} />
+        <Info label="Dimension" value={object.dimension ?? "abstract"} />
+        <Info label="Role" value={object.role ?? "construction"} />
       </div>
+
+      {object.transform && (
+        <div className="mt-3 rounded-xl bg-slate-100 p-3 dark:bg-slate-950/70">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Transform</p>
+            <button type="button" onClick={resetTransform} className="mini-chip" disabled={object.locked}>
+              <RotateCcw className="h-3 w-3" />Reset
+            </button>
+          </div>
+          <TransformEditor title="Position" values={object.transform.position} disabled={Boolean(object.locked)} onChange={(axis, value) => updateTransform("position", axis, value)} />
+          <TransformEditor title="Rotation" values={object.transform.rotation} disabled={Boolean(object.locked)} onChange={(axis, value) => updateTransform("rotation", axis, value)} />
+          <TransformEditor title="Scale" values={object.transform.scale} disabled={Boolean(object.locked)} min={0.05} onChange={(axis, value) => updateTransform("scale", axis, value)} />
+        </div>
+      )}
+
+      <div className="mt-3 rounded-xl bg-slate-100 p-3 dark:bg-slate-950/70">
+        <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Style</p>
+        <div className="mt-2 grid grid-cols-2 gap-2">
+          <label className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
+            Color
+            <input
+              className="mt-1 h-9 w-full rounded-lg border border-slate-200 bg-white p-1 dark:border-white/10 dark:bg-slate-900"
+              type="color"
+              value={object.style?.color ?? object.style?.stroke ?? "#06b6d4"}
+              disabled={object.locked}
+              onChange={(event) => updateStyle({ color: event.target.value, stroke: event.target.value })}
+            />
+          </label>
+          <NumberEdit label="Opacity" value={object.style?.opacity ?? 1} min={0.05} max={1} step={0.05} disabled={Boolean(object.locked)} onChange={(value) => updateStyle({ opacity: value })} />
+          <NumberEdit label="Stroke" value={object.style?.strokeWidth ?? 2} min={0.5} max={12} step={0.5} disabled={Boolean(object.locked)} onChange={(value) => updateStyle({ strokeWidth: value })} />
+          <ToggleEdit label="Labels" checked={object.style?.labelVisible ?? true} disabled={Boolean(object.locked)} onChange={(checked) => updateStyle({ labelVisible: checked })} />
+        </div>
+        {object.dimension === "3d" && (
+          <label className="mt-2 block text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
+            Material
+            <select
+              className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-xs font-bold dark:border-white/10 dark:bg-slate-900"
+              value={object.style?.material ?? "matte"}
+              disabled={object.locked}
+              onChange={(event) => updateStyle({ material: event.target.value as MathObjectStyle["material"] })}
+            >
+              <option value="matte">Matte</option>
+              <option value="glossy">Glossy</option>
+              <option value="glass">Glass</option>
+              <option value="wireframe">Wireframe</option>
+            </select>
+          </label>
+        )}
+      </div>
+
+      {object.dependencies && object.dependencies.length > 0 && (
+        <div className="mt-3">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Dependencies</p>
+          <div className="mt-2 grid gap-1">
+            {object.dependencies.slice(0, 8).map((dependency) => (
+              <div key={`${dependency.id}-${dependency.role}`} className="rounded-lg bg-slate-100 px-2 py-1 dark:bg-white/10">
+                <p className="truncate text-xs font-bold text-slate-800 dark:text-slate-100">{dependency.label}</p>
+                <p className="truncate text-[10px] font-semibold uppercase text-slate-500 dark:text-slate-400">{dependency.role ?? "dependency"}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {object.interactivity && (
+        <div className="mt-3">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Interaction</p>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            <ToggleEdit label="Selectable" checked={object.interactivity.selectable} disabled={Boolean(object.locked)} onChange={(checked) => updateInteractivity({ selectable: checked })} compact />
+            <ToggleEdit label="Draggable" checked={object.interactivity.draggable} disabled={Boolean(object.locked)} onChange={(checked) => updateInteractivity({ draggable: checked })} compact />
+            <ToggleEdit label="Editable" checked={object.interactivity.editable} disabled={Boolean(object.locked)} onChange={(checked) => updateInteractivity({ editable: checked })} compact />
+            <ToggleEdit label="Resizable" checked={object.interactivity.resizable} disabled={Boolean(object.locked)} onChange={(checked) => updateInteractivity({ resizable: checked })} compact />
+            <ToggleEdit label="Rotatable" checked={object.interactivity.rotatable} disabled={Boolean(object.locked)} onChange={(checked) => updateInteractivity({ rotatable: checked })} compact />
+          </div>
+        </div>
+      )}
 
       <div className="mt-3">
         <p className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
@@ -82,3 +215,67 @@ function Info({ label, value }: { label: string; value: string }) {
   );
 }
 
+function formatNumber(value: number) {
+  return Number.isInteger(value) ? String(value) : value.toFixed(2);
+}
+
+function TransformEditor({
+  disabled,
+  min = -999,
+  onChange,
+  title,
+  values,
+}: {
+  disabled: boolean;
+  min?: number;
+  onChange: (axis: keyof MathVec3, value: number) => void;
+  title: string;
+  values: MathVec3;
+}) {
+  return (
+    <div className="mt-2">
+      <p className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">{title}</p>
+      <div className="mt-1 grid grid-cols-3 gap-1.5">
+        {(["x", "y", "z"] as const).map((axis) => (
+          <NumberEdit key={axis} label={axis} value={values[axis]} min={min} max={999} step={0.1} disabled={disabled} onChange={(value) => onChange(axis, value)} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function NumberEdit({ disabled = false, label, max, min, onChange, step, value }: { disabled?: boolean; label: string; max: number; min: number; onChange: (value: number) => void; step: number; value: number }) {
+  return (
+    <label className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
+      {label}
+      <input
+        className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-1.5 font-mono text-xs font-bold text-slate-900 dark:border-white/10 dark:bg-slate-900 dark:text-white"
+        type="number"
+        value={formatNumber(value)}
+        min={min}
+        max={max}
+        step={step}
+        disabled={disabled}
+        onChange={(event) => onChange(clamp(Number(event.target.value), min, max))}
+      />
+    </label>
+  );
+}
+
+function ToggleEdit({ checked, compact = false, disabled = false, label, onChange }: { checked: boolean; compact?: boolean; disabled?: boolean; label: string; onChange: (checked: boolean) => void }) {
+  return (
+    <label className={compact ? "mini-chip cursor-pointer" : "flex items-center gap-2 rounded-lg bg-slate-100 px-2 py-2 text-xs font-bold dark:bg-white/10"}>
+      <input type="checkbox" checked={checked} disabled={disabled} onChange={(event) => onChange(event.target.checked)} />
+      {label}
+    </label>
+  );
+}
+
+function clamp(value: number, min: number, max: number) {
+  if (!Number.isFinite(value)) return min;
+  return Math.max(min, Math.min(max, value));
+}
+
+function finiteOrZero(value: number) {
+  return Number.isFinite(value) ? value : 0;
+}

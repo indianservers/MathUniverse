@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUp, CheckCircle2, Flame, Gauge, HelpCircle, Keyboard, Search, Settings, Star, X } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ArrowUp, Calculator, CheckCircle2, Command, Download, Eye, Flame, Gauge, HelpCircle, Keyboard, Layers3, MousePointer2, Search, Settings, Sigma, Star, Wand2, X, Zap } from "lucide-react";
+import { type ComponentType, type KeyboardEvent as ReactKeyboardEvent, type SVGProps, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { navItems } from "./navItems";
 import { useTheme } from "../../hooks/useTheme";
@@ -52,10 +52,12 @@ export function UndoToastHost() {
 const SHORTCUTS = [
   { keys: "Ctrl+K", description: "Open command palette" },
   { keys: "?", description: "Show keyboard shortcuts" },
+  { keys: "Ctrl+Enter", description: "Run workspace command" },
+  { keys: "1-4", description: "Switch workspace panes" },
   { keys: "/", description: "Focus search (Math Lab)" },
   { keys: "Ctrl+Z", description: "Undo last slider change" },
   { keys: "Esc", description: "Close any open overlay" },
-  { keys: "←/→", description: "Previous/Next in quiz" },
+  { keys: "Left/Right", description: "Previous/Next in quiz" },
   { keys: "P", description: "Toggle parameter panel (visualizers)" },
   { keys: "T", description: "Cycle through topic tabs" },
 ];
@@ -70,8 +72,15 @@ export function KeyboardShortcutsPanel() {
       if (e.key === "?" && !typing && !e.ctrlKey && !e.metaKey) { e.preventDefault(); setOpen((v) => !v); }
       if (e.key === "Escape") setOpen(false);
     }
+    function openFromCommandCenter() {
+      setOpen(true);
+    }
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener("math-universe-open-shortcuts", openFromCommandCenter);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("math-universe-open-shortcuts", openFromCommandCenter);
+    };
   }, []);
 
   return (
@@ -135,15 +144,27 @@ export function BreadcrumbTrail() {
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const commandItems = useMemo(() => buildCommandItems(), []);
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase();
-    return navItems
-      .filter((item) => !item.isExternal)
-      .filter((item) => !needle || item.title.toLowerCase().includes(needle) || item.route.toLowerCase().includes(needle))
-      .slice(0, 12);
-  }, [query]);
+    const recentRoutes = recentRouteItems(5).map((item) => item.route);
+    return commandItems
+      .map((item) => ({
+        ...item,
+        score: scoreCommandItem(item, needle, recentRoutes),
+      }))
+      .filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title))
+      .slice(0, 18);
+  }, [commandItems, query]);
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [query, open]);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -157,11 +178,33 @@ export function CommandPalette() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  function launch(route: string) {
-    navigate(route);
+  function launch(item: CommandItem) {
+    if (item.kind === "action") {
+      item.run();
+    } else {
+      navigate(item.route);
+    }
     setOpen(false);
     setQuery("");
   }
+
+  function handlePaletteKeyDown(event: ReactKeyboardEvent<HTMLInputElement>) {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setActiveIndex((index) => Math.min(filtered.length - 1, index + 1));
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setActiveIndex((index) => Math.max(0, index - 1));
+    } else if (event.key === "Enter" && filtered[activeIndex]) {
+      event.preventDefault();
+      launch(filtered[activeIndex]);
+    }
+  }
+
+  useEffect(() => {
+    if (!open) return;
+    window.setTimeout(() => inputRef.current?.focus(), 0);
+  }, [open]);
 
   return (
     <>
@@ -171,27 +214,44 @@ export function CommandPalette() {
       </button>
       <AnimatePresence>
         {open && (
-          <motion.div className="fixed inset-0 z-[90] bg-slate-950/55 p-4 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <motion.div className="mx-auto mt-20 max-w-2xl overflow-hidden rounded-2xl border border-white/20 bg-white shadow-2xl dark:bg-slate-950" initial={{ y: 16, scale: 0.98 }} animate={{ y: 0, scale: 1 }} exit={{ y: 16, scale: 0.98 }}>
+          <motion.div className="fixed inset-0 z-[90] bg-slate-950/55 p-4 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setOpen(false)}>
+            <motion.div className="mx-auto mt-14 max-w-3xl overflow-hidden rounded-2xl border border-white/20 bg-white shadow-2xl dark:bg-slate-950" initial={{ y: 16, scale: 0.98 }} animate={{ y: 0, scale: 1 }} exit={{ y: 16, scale: 0.98 }} onClick={(event) => event.stopPropagation()}>
               <div className="flex items-center gap-3 border-b border-slate-200 px-4 py-3 dark:border-white/10">
-                <Search className="h-5 w-5 text-cyan-500" />
-                <input autoFocus value={query} onChange={(event) => setQuery(event.target.value)} className="min-w-0 flex-1 bg-transparent text-base font-semibold outline-none" placeholder="Launch a visualizer, quiz, or topic..." />
+                <Command className="h-5 w-5 text-cyan-500" />
+                <input ref={inputRef} autoFocus value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={handlePaletteKeyDown} className="min-w-0 flex-1 bg-transparent text-base font-semibold outline-none" placeholder="Search tools, formulas, workspace commands, exports..." />
+                <kbd className="hidden rounded-lg bg-slate-100 px-2 py-1 font-mono text-[11px] font-black text-slate-500 dark:bg-white/10 dark:text-slate-300 sm:inline">Enter</kbd>
                 <button type="button" className="math-tool-button h-9 w-9 rounded-full" onClick={() => setOpen(false)} aria-label="Close command palette"><X className="h-4 w-4" /></button>
               </div>
-              <div className="max-h-[60vh] overflow-y-auto p-2">
-                {filtered.map((item) => {
+              <div className="grid gap-0 md:grid-cols-[1fr_240px]">
+                <div className="max-h-[62vh] overflow-y-auto p-2 thin-scrollbar">
+                {filtered.map((item, index) => {
                   const Icon = item.icon;
+                  const active = index === activeIndex;
                   return (
-                    <button key={item.route} type="button" onClick={() => launch(item.route)} className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition hover:bg-cyan-50 dark:hover:bg-cyan-400/10">
+                    <button key={item.id} type="button" onMouseEnter={() => setActiveIndex(index)} onClick={() => launch(item)} className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition ${active ? "bg-cyan-50 ring-1 ring-cyan-200 dark:bg-cyan-400/10 dark:ring-cyan-400/30" : "hover:bg-cyan-50 dark:hover:bg-cyan-400/10"}`}>
                       <Icon className="h-4 w-4 text-cyan-600 dark:text-cyan-200" />
                       <span className="min-w-0 flex-1">
                         <span className="block font-black">{item.title}</span>
-                        <span className="block text-xs font-semibold text-slate-500 dark:text-slate-400">{item.route}</span>
+                        <span className="block truncate text-xs font-semibold text-slate-500 dark:text-slate-400">{item.subtitle}</span>
                       </span>
+                      <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] font-black uppercase text-slate-500 dark:bg-white/10 dark:text-slate-300">{item.group}</span>
                     </button>
                   );
                 })}
                 {filtered.length === 0 && <p className="p-5 text-sm font-semibold text-slate-500">No matching tools.</p>}
+                </div>
+                <aside className="hidden border-l border-slate-200 bg-slate-50/70 p-4 dark:border-white/10 dark:bg-white/[0.03] md:block">
+                  <p className="text-xs font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">Command Center</p>
+                  <div className="mt-3 space-y-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+                    <p>Type a topic, command, object, export, or workspace mode.</p>
+                    <p>Use arrow keys to move. Press Enter to launch.</p>
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {["workspace", "circle", "solve", "3d", "export", "teacher"].map((chip) => (
+                      <button key={chip} type="button" onClick={() => setQuery(chip)} className="mini-chip">{chip}</button>
+                    ))}
+                  </div>
+                </aside>
               </div>
             </motion.div>
           </motion.div>
@@ -199,6 +259,67 @@ export function CommandPalette() {
       </AnimatePresence>
     </>
   );
+}
+
+type CommandItem =
+  | { id: string; kind: "route"; title: string; subtitle: string; group: string; route: string; keywords: string; icon: ComponentType<SVGProps<SVGSVGElement>> }
+  | { id: string; kind: "action"; title: string; subtitle: string; group: string; keywords: string; icon: ComponentType<SVGProps<SVGSVGElement>>; run: () => void };
+
+function buildCommandItems(): CommandItem[] {
+  const routeItems: CommandItem[] = navItems
+    .filter((item) => !item.isExternal)
+    .map((item) => ({
+      id: `route:${item.route}:${item.title}`,
+      kind: "route",
+      title: item.title,
+      subtitle: item.route,
+      group: routeGroup(item.route),
+      route: item.route,
+      keywords: `${item.title} ${item.route}`,
+      icon: item.icon,
+    }));
+
+  const actions: CommandItem[] = [
+    { id: "action:workspace-polynomial", kind: "route", title: "Open Polynomial Workspace", subtitle: "Template with graph, algebra and guided controls", group: "Template", route: "/workspace?template=polynomials", keywords: "polynomial template graph roots workspace", icon: Sigma },
+    { id: "action:workspace-3d", kind: "route", title: "Open 3D Workspace", subtitle: "Surface, solid and vector tools", group: "Template", route: "/workspace?mode=3d", keywords: "3d surface solid vector workspace", icon: Layers3 },
+    { id: "action:workspace-geometry", kind: "route", title: "Open Geometry Constructor", subtitle: "2D construction tools and object inspector", group: "Template", route: "/workspace?mode=geometry", keywords: "geometry constructor point line circle polygon", icon: MousePointer2 },
+    { id: "action:formula-circles", kind: "route", title: "Circle Formulas", subtitle: "Jump to formula library for circle and sector formulas", group: "Formula", route: "/formulas?category=geometry&formula=geometry-0-0-circle-area#formula-geometry-0-0-circle-area", keywords: "circle formulas area circumference sector", icon: Sigma },
+    { id: "action:export-help", kind: "route", title: "Export Tools", subtitle: "Open workspace export panel", group: "Export", route: "/workspace?panel=export", keywords: "export png svg pdf json share url", icon: Download },
+    { id: "action:teacher", kind: "action", title: "Toggle Teacher Mode", subtitle: "Switch classroom presentation controls", group: "Action", keywords: "teacher presentation lock reveal classroom", icon: Eye, run: () => window.dispatchEvent(new Event("math-universe-toggle-teacher-mode")) },
+    { id: "action:shortcuts", kind: "action", title: "Show Keyboard Shortcuts", subtitle: "Open the keyboard reference", group: "Help", keywords: "keyboard shortcut help", icon: Keyboard, run: () => window.dispatchEvent(new Event("math-universe-open-shortcuts")) },
+    { id: "action:focus-search", kind: "action", title: "Focus Page Search", subtitle: "Focus the first search field on this page", group: "Action", keywords: "search focus find page", icon: Search, run: () => focusFirstSearchInput() },
+    { id: "action:solve", kind: "route", title: "Solve Command", subtitle: "Open workspace with solve command examples", group: "Command", route: "/workspace?command=solve%20x%5E2-4%3D0", keywords: "solve equation command cas", icon: Calculator },
+    { id: "action:graph", kind: "route", title: "Graph Function", subtitle: "Open workspace with graph command examples", group: "Command", route: "/workspace?command=graph%20y%3Dx%5E2-4", keywords: "graph function plot command", icon: Zap },
+    { id: "action:guided", kind: "route", title: "Guided Activity Mode", subtitle: "Prediction, manipulation, check, reflection", group: "Teaching", route: "/workspace?mode=guided", keywords: "guided activity predict manipulate check reflect", icon: Wand2 },
+  ];
+
+  return [...actions, ...routeItems];
+}
+
+function scoreCommandItem(item: CommandItem, needle: string, recentRoutes: string[]) {
+  const recentBoost = item.kind === "route" && recentRoutes.includes(item.route) ? 25 : 0;
+  if (!needle) return 50 + recentBoost;
+  const haystack = `${item.title} ${item.subtitle} ${item.group} ${item.keywords}`.toLowerCase();
+  const terms = needle.split(/\s+/).filter(Boolean);
+  if (!terms.every((term) => haystack.includes(term))) return 0;
+  const titleBoost = item.title.toLowerCase().includes(needle) ? 45 : 0;
+  const groupBoost = item.group.toLowerCase().includes(needle) ? 12 : 0;
+  return 20 + titleBoost + groupBoost + recentBoost - Math.min(15, item.title.length / 10);
+}
+
+function routeGroup(route: string) {
+  if (route === "/workspace") return "Workspace";
+  if (route.includes("formula")) return "Formula";
+  if (route.includes("syllabus") || route.includes("ncert")) return "Syllabus";
+  if (route.includes("math-lab") || route.includes("calculator")) return "Tool";
+  if (route.includes("quiz") || route.includes("challenge") || route.includes("worked")) return "Practice";
+  return "Topic";
+}
+
+function focusFirstSearchInput() {
+  const input = document.querySelector<HTMLInputElement>("input[type='search'], input[placeholder*='Search'], input[placeholder*='search']");
+  input?.focus();
+  input?.select();
 }
 
 export function BackToTopButton() {

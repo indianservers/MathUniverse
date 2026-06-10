@@ -1,7 +1,8 @@
-import { Award, Box, Camera, Circle, Cuboid, Download, ExternalLink, Eye, Heart, Mic, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Trash2, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
+import { Award, Box, Camera, Circle, Cuboid, Download, Eye, Heart, Maximize2, Mic, Minimize2, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Trash2, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
 import { ContactShadows, OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import FormulaBlock from "../components/ui/FormulaBlock";
@@ -69,11 +70,17 @@ const shapes: ShapeDefinition[] = [
 
 const categories = ["All", "2D Basic", "2D Curved", "2D Polygons", "3D Solids", "3D Curved Solids"] as const;
 const savedShapeStorageKey = "math-universe-saved-shape-sizes";
+const shapeCategoryTree = [
+  { title: "2D Shapes", categories: ["2D Basic", "2D Curved", "2D Polygons"] as ShapeCategory[] },
+  { title: "3D Shapes", categories: ["3D Solids", "3D Curved Solids"] as ShapeCategory[] },
+];
 
 export default function ShapesExplorer() {
   const { markTopicVisited, markTopicInteracted } = useProgress();
+  const [searchParams] = useSearchParams();
+  const shapeParam = searchParams.get("shape");
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
-  const [selectedId, setSelectedId] = useState<ShapeId>("circle");
+  const [selectedId, setSelectedId] = useState<ShapeId>(() => parseShapeId(shapeParam) ?? "circle");
   const [a, setA] = useState(4);
   const [b, setB] = useState(3);
   const [c, setC] = useState(5);
@@ -93,11 +100,21 @@ export default function ShapesExplorer() {
 
   useEffect(() => markTopicVisited("shapes"), [markTopicVisited]);
   useEffect(() => {
+    const nextShapeId = parseShapeId(shapeParam);
+    if (!nextShapeId) return;
+    setSelectedId(nextShapeId);
+    setCategory(shapes.find((shape) => shape.id === nextShapeId)?.category ?? "All");
+  }, [shapeParam]);
+  useEffect(() => {
     localStorage.setItem(savedShapeStorageKey, JSON.stringify(savedShapes));
   }, [savedShapes]);
 
   const selected = shapes.find((shape) => shape.id === selectedId) ?? shapes[0];
-  const visibleShapes = useMemo(() => shapes.filter((shape) => category === "All" || shape.category === category), [category]);
+  const groupedShapes = useMemo(() => {
+    const groups = new Map<ShapeCategory, ShapeDefinition[]>();
+    shapes.forEach((shape) => groups.set(shape.category, [...(groups.get(shape.category) ?? []), shape]));
+    return groups;
+  }, []);
   const savedForSelectedShape = useMemo(() => savedShapes.filter((shape) => shape.shapeId === selected.id), [savedShapes, selected.id]);
   const metrics = getMetrics(selected.id, a, b, c, sides, angle);
 
@@ -168,48 +185,29 @@ export default function ShapesExplorer() {
       </button>
       {studioOpen && <KidsShapeStudio shapes={shapes} selected={selected} onSelect={selectShape} />}
 
-      <SectionCard title="Shape Library" description={`${shapes.length} shapes grouped by 2D and 3D families.`} compact>
-        <div className="flex flex-wrap gap-2">
-          {categories.map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() => setCategory(item)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                category === item ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200"
-              }`}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
-        <div className="mt-3 grid gap-2 md:grid-cols-2 xl:grid-cols-4">
-          {visibleShapes.map((shape) => {
-            const Icon = shape.kind === "3d" ? Box : shape.id.includes("triangle") ? Triangle : shape.id === "circle" ? Circle : Shapes;
-            const active = selected.id === shape.id;
-            return (
-              <button
-                key={shape.id}
-                type="button"
-                onClick={() => selectShape(shape)}
-                className={`min-h-[108px] rounded-xl border p-3 text-left transition hover:-translate-y-0.5 ${
-                  active ? "border-cyan-400 bg-cyan-50 shadow-lg shadow-cyan-500/10 dark:bg-cyan-400/10" : "border-slate-200 bg-white/70 dark:border-white/10 dark:bg-white/5"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <Icon className="h-5 w-5 text-cyan-500" />
-                  <span className="font-bold">{shape.name}</span>
-                </div>
-                <p className="mt-2 text-xs font-semibold text-slate-500 dark:text-slate-400">{shape.category}</p>
-                <p className="mt-2 line-clamp-2 text-xs leading-4 text-slate-600 dark:text-slate-300">{shape.description}</p>
-              </button>
-            );
-          })}
-        </div>
-      </SectionCard>
-
-      <SectionCard title={selected.name} description={selected.description} compact>
-        <div className="grid gap-3 xl:grid-cols-[320px_1fr]">
+      <SectionCard title="Shape Explorer" description={`${shapes.length} shapes in a compact nested menu. Select any shape to update the live visualization immediately.`} compact>
+        <div className="grid gap-3 xl:grid-cols-[300px_minmax(0,1fr)]">
+          <ShapeNavigationMenu
+            groupedShapes={groupedShapes}
+            category={category}
+            selected={selected}
+            onCategory={setCategory}
+            onSelect={selectShape}
+          />
+          <div className="min-w-0 space-y-3">
+            <div className="flex flex-col gap-3 rounded-2xl border border-cyan-300/30 bg-slate-950 p-4 text-white md:flex-row md:items-start md:justify-between">
+              <div className="min-w-0">
+                <p className="text-xs font-black uppercase tracking-wide text-cyan-200">{selected.category}</p>
+                <h2 className="mt-1 text-2xl font-black">{selected.name}</h2>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">{selected.description}</p>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs font-bold sm:min-w-72">
+                <span className="rounded-xl bg-white/10 p-2">{selected.kind === "2d" ? "Plane shape" : "Solid shape"}</span>
+                <span className="rounded-xl bg-white/10 p-2">{selected.dimensions.length} dimension{selected.dimensions.length === 1 ? "" : "s"}</span>
+                <span className="col-span-2 rounded-xl bg-white/10 p-2 font-mono">{selected.formula}</span>
+              </div>
+            </div>
+            <div className="grid gap-3 xl:grid-cols-[300px_minmax(0,1fr)]">
           <div className="scroll-panel space-y-3 xl:max-h-[calc(100vh-12rem)]">
             <FormulaBlock title={`${selected.name} Formulas`} formula={selected.formula} />
             <div className="rounded-xl bg-cyan-50 p-3 text-sm leading-5 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">
@@ -285,7 +283,7 @@ export default function ShapesExplorer() {
               onToggleAutoRotate={() => setAutoRotate((value) => !value)}
             />
             <div className="grid gap-3 xl:grid-cols-2">
-              <div className="overflow-hidden rounded-2xl border border-cyan-300/30 bg-slate-950 p-3 shadow-2xl shadow-cyan-950/20">
+              <FullscreenPane className="overflow-hidden rounded-2xl border border-cyan-300/30 bg-slate-950 p-3 shadow-2xl shadow-cyan-950/20" title="2D pane">
                 <div className="mb-2 flex items-center justify-between gap-3">
                   <div>
                     <p className="text-xs font-black uppercase tracking-wide text-cyan-200">2D pane</p>
@@ -294,9 +292,9 @@ export default function ShapesExplorer() {
                   <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-white">{selected.kind === "2d" ? "Flat geometry" : "2D projection"}</span>
                 </div>
                 <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} cinematic />
-              </div>
+              </FullscreenPane>
 
-              <div className="overflow-hidden rounded-2xl border border-violet-300/25 bg-slate-950 p-3 shadow-2xl shadow-violet-950/20">
+              <FullscreenPane className="overflow-hidden rounded-2xl border border-violet-300/25 bg-slate-950 p-3 shadow-2xl shadow-violet-950/20" title="3D pane">
                 <div className="mb-2 flex items-center justify-between gap-3">
                   <div>
                     <p className="text-xs font-black uppercase tracking-wide text-violet-200">3D pane</p>
@@ -325,7 +323,7 @@ export default function ShapesExplorer() {
                 {show3DCoordinates && <ShapeCoordinateLabels />}
                 <OrbitControls enablePan={false} enableZoom enableDamping autoRotate={autoRotate} autoRotateSpeed={0.7} />
                 </ThreeSceneWrapper>
-              </div>
+              </FullscreenPane>
             </div>
 
             <div className="grid gap-3 md:grid-cols-3">
@@ -336,22 +334,133 @@ export default function ShapesExplorer() {
             </div>
           </div>
         </div>
-      </SectionCard>
-
-      <SectionCard title="Formula Map">
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {shapes.map((shape) => (
-            <button key={shape.id} type="button" onClick={() => selectShape(shape)} className="rounded-2xl border border-slate-200 bg-white/70 p-4 text-left transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
-              <div className="flex items-center justify-between gap-3">
-                <h3 className="font-bold">{shape.name}</h3>
-                <ExternalLink className="h-4 w-4 text-cyan-500" />
-              </div>
-              <p className="mt-2 font-mono text-xs leading-5 text-slate-600 dark:text-slate-300">{shape.formula}</p>
-            </button>
-          ))}
+          </div>
         </div>
       </SectionCard>
     </div>
+  );
+}
+
+function parseShapeId(value: string | null): ShapeId | null {
+  return shapes.some((shape) => shape.id === value) ? value as ShapeId : null;
+}
+
+function FullscreenPane({ children, className, title }: { children: ReactNode; className: string; title: string }) {
+  const paneRef = useRef<HTMLDivElement>(null);
+  const [fullscreen, setFullscreen] = useState(false);
+
+  useEffect(() => {
+    const onFullscreenChange = () => setFullscreen(document.fullscreenElement === paneRef.current);
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
+
+  async function toggleFullscreen() {
+    if (!paneRef.current) return;
+    if (fullscreen) {
+      if (document.fullscreenElement === paneRef.current) await document.exitFullscreen();
+      setFullscreen(false);
+      return;
+    }
+    setFullscreen(true);
+    try {
+      await paneRef.current.requestFullscreen();
+    } catch {
+      setFullscreen(true);
+    }
+  }
+
+  return (
+    <div ref={paneRef} className={`${className} relative ${fullscreen ? "h-screen w-screen rounded-none p-4" : ""}`}>
+      <button
+        type="button"
+        className="absolute right-4 top-4 z-20 rounded-full bg-white/90 p-2 text-slate-950 shadow-lg transition hover:bg-cyan-100 dark:bg-slate-900/90 dark:text-white dark:hover:bg-slate-800"
+        onClick={toggleFullscreen}
+        title={fullscreen ? `Exit full screen for ${title}` : `Open ${title} full screen`}
+        aria-label={fullscreen ? `Exit full screen for ${title}` : `Open ${title} full screen`}
+      >
+        {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+      </button>
+      {children}
+    </div>
+  );
+}
+
+function ShapeNavigationMenu({
+  groupedShapes,
+  category,
+  selected,
+  onCategory,
+  onSelect,
+}: {
+  groupedShapes: Map<ShapeCategory, ShapeDefinition[]>;
+  category: (typeof categories)[number];
+  selected: ShapeDefinition;
+  onCategory: (category: (typeof categories)[number]) => void;
+  onSelect: (shape: ShapeDefinition) => void;
+}) {
+  return (
+    <aside className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/60 xl:sticky xl:top-24 xl:self-start">
+      <div className="flex items-start justify-between gap-2">
+        <div>
+          <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Main menu</p>
+          <h3 className="text-sm font-black">Shapes</h3>
+        </div>
+        <button
+          type="button"
+          onClick={() => onCategory("All")}
+          className={`rounded-full px-3 py-1.5 text-xs font-black ${category === "All" ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-300"}`}
+        >
+          All
+        </button>
+      </div>
+      <div className="mt-3 space-y-3">
+        {shapeCategoryTree.map((group) => (
+          <div key={group.title} className="rounded-xl bg-slate-100 p-2 dark:bg-white/10">
+            <p className="px-2 py-1 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">{group.title}</p>
+            <div className="space-y-2">
+              {group.categories.map((item) => {
+                const items = groupedShapes.get(item) ?? [];
+                const activeCategory = category === item;
+                return (
+                  <details key={item} open={activeCategory || items.some((shape) => shape.id === selected.id)} className="group rounded-lg bg-white/70 dark:bg-slate-950/45">
+                    <summary
+                      className={`flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg px-2 py-2 text-xs font-black ${activeCategory ? "text-cyan-700 dark:text-cyan-200" : "text-slate-700 dark:text-slate-200"}`}
+                      onClick={() => onCategory(item)}
+                    >
+                      <span>{item}</span>
+                      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] dark:bg-white/10">{items.length}</span>
+                    </summary>
+                    <div className="grid gap-1 px-1 pb-2">
+                      {items.map((shape) => {
+                        const active = shape.id === selected.id;
+                        const Icon = shape.kind === "3d" ? Box : shape.id.includes("triangle") ? Triangle : shape.id === "circle" ? Circle : Shapes;
+                        return (
+                          <button
+                            key={shape.id}
+                            type="button"
+                            onClick={() => {
+                              onCategory(shape.category);
+                              onSelect(shape);
+                            }}
+                            className={`grid grid-cols-[20px_minmax(0,1fr)] items-center gap-2 rounded-lg px-2 py-2 text-left text-xs transition ${
+                              active ? "bg-cyan-500 text-white shadow-sm" : "text-slate-600 hover:bg-cyan-50 hover:text-cyan-800 dark:text-slate-300 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100"
+                            }`}
+                          >
+                            <Icon className="h-4 w-4" />
+                            <span className="truncate font-bold">{shape.name}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+    </aside>
   );
 }
 

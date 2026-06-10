@@ -242,6 +242,26 @@ body {
     @apply gap-3 pb-24 lg:pb-4;
   }
 
+  .formula-loading-shell {
+    @apply flex min-h-[72vh] items-center justify-center p-4;
+  }
+
+  .formula-loading-card {
+    @apply w-full max-w-2xl rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-xl shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/90 sm:p-6;
+  }
+
+  .formula-loading-track {
+    @apply h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10;
+  }
+
+  .formula-loading-bar {
+    @apply h-full rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-fuchsia-500 transition-[width] duration-300;
+  }
+
+  .formula-render-progress {
+    @apply flex flex-wrap items-center gap-3 rounded-xl border border-cyan-200 bg-cyan-50/80 p-3 shadow-sm dark:border-cyan-400/20 dark:bg-cyan-400/10;
+  }
+
   .formula-mobile-hero {
     @apply rounded-xl p-3 sm:p-4;
   }
@@ -607,6 +627,34 @@ body {
     @apply grid min-h-0 flex-1 gap-2 overflow-hidden xl:grid-cols-[52px_minmax(0,1fr)_var(--workspace-inspector,48px)];
   }
 
+  .workspace-view-tabs {
+    @apply flex gap-1.5 overflow-x-auto rounded-xl border border-slate-200 bg-white/80 p-1 dark:border-white/10 dark:bg-slate-950/60 xl:h-full xl:flex-col xl:overflow-visible;
+  }
+
+  .workspace-view-tab {
+    @apply inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-lg px-3 text-xs font-black transition xl:w-full xl:justify-start;
+  }
+
+  .workspace-view-tab-label {
+    @apply hidden whitespace-nowrap xl:inline;
+  }
+
+  .workspace-view-tab-active {
+    @apply bg-slate-950 text-white shadow-lg shadow-slate-950/10 dark:bg-white dark:text-slate-950;
+  }
+
+  .workspace-view-tab-idle {
+    @apply bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-950 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/15 dark:hover:text-white;
+  }
+
+  .workspace-command-center {
+    @apply min-w-0 rounded-xl border border-slate-200 bg-white/85 p-1 shadow-sm dark:border-white/10 dark:bg-slate-950/70;
+  }
+
+  .workspace-command-suggestions {
+    @apply mt-1 hidden min-w-0 items-center gap-1.5 overflow-x-auto px-2 pb-1 thin-scrollbar lg:flex;
+  }
+
   .workspace-stage-card {
     @apply h-full min-h-0 overflow-hidden rounded-xl p-2 md:p-2;
   }
@@ -619,13 +667,25 @@ body {
     @apply shrink-0 rounded-xl border border-slate-200 bg-white/70 p-2 dark:border-white/10 dark:bg-white/5;
   }
 
-  .workspace-inspector > *:first-child {
-    @apply min-h-0 flex-1;
+  .workspace-inspector > section,
+  .workspace-inspector > div:has(.thin-scrollbar) {
+    @apply min-h-0;
   }
 
-  .workspace-inspector > *:first-child > .thin-scrollbar {
+  .workspace-inspector > * > .thin-scrollbar {
     max-height: none;
-    height: calc(100% - 2.25rem);
+  }
+
+  .workspace-inspector-tabs {
+    @apply grid grid-cols-3 gap-1 bg-slate-100/80 dark:bg-white/10;
+  }
+
+  .workspace-inspector-tab {
+    @apply inline-flex min-h-9 items-center justify-center gap-1 rounded-lg px-2 py-1 text-[11px] font-black text-slate-600 transition hover:bg-white hover:text-slate-950 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white;
+  }
+
+  .workspace-inspector-tab-active {
+    @apply bg-white text-cyan-700 shadow-sm dark:bg-slate-950 dark:text-cyan-100;
   }
 
   .workspace-inspector .mini-chip {
@@ -662,7 +722,7 @@ body {
   }
 
   .workspace-context-menu {
-    @apply fixed z-50 min-w-48 overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-2xl shadow-slate-950/20 dark:border-white/10 dark:bg-slate-950 dark:shadow-black/40;
+    @apply fixed z-50 min-w-48 overflow-y-auto rounded-xl border border-slate-200 bg-white p-1.5 shadow-2xl shadow-slate-950/20 dark:border-white/10 dark:bg-slate-950 dark:shadow-black/40;
   }
 
   .workspace-context-title {

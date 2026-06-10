@@ -70,6 +70,7 @@ export const navSections: NavSection[] = [
     title: "Home",
     icon: "Home",
     items: [
+      { title: "Math Workspace", route: "/workspace", icon: "Calculator" },
       { title: "Dashboard", route: "/", icon: "Home" },
       { title: "Syllabus", route: "/syllabus", icon: "BookOpen" },
       { title: "Formulas", route: "/formulas", icon: "Sigma" },
@@ -242,7 +243,6 @@ export const navSections: NavSection[] = [
           { title: "Probability", route: "/math-lab/probability", icon: "CircleHelp" },
         ],
       },
-      { title: "Math Workspace", route: "/workspace", icon: "Calculator" },
       { title: "Formulas", route: "/formulas", icon: "Sigma" },
       { title: "Scientific Calculator", route: "/calculator", icon: "Calculator" },
       { title: "Problem Solver", route: "/problem-solver", icon: "Sigma" },

@@ -35,7 +35,7 @@ const algebraFormulas: FormulaVisual[] = [
   { id: "cube-identity", title: "Cube Identity", group: "Identities", level: "JEE", formula: "a^3+b^3=(a+b)(a^2-ab+b^2)", summary: "Cubic expressions factor through structured volume terms.", kind: "identity" },
   { id: "linear-system", title: "Pair of Linear Equations", group: "Systems", level: "School", formula: "a1x+b1y+c1=0, a2x+b2y+c2=0", summary: "Two lines meet, stay parallel, or overlap.", kind: "system" },
   { id: "ap-nth", title: "Arithmetic Progression", group: "Sequences", level: "School", formula: "a_n=a+(n-1)d", summary: "Equal jumps create a linear sequence.", kind: "sequence" },
-  { id: "ap-sum", title: "AP Sum", group: "Sequences", level: "School", formula: "S_n=n/2[2a+(n-1)d]", summary: "Pairing first and last terms gives the sum.", kind: "sequence" },
+  { id: "ap-sum", title: "Arithmetic Progression Sum", group: "Sequences", level: "School", formula: "S_n=n/2[2a+(n-1)d]", summary: "Pairing first and last terms gives the sum.", kind: "sequence" },
   { id: "gp-nth", title: "Geometric Progression", group: "Sequences", level: "JEE", formula: "a_n=ar^(n-1)", summary: "Equal ratios create exponential growth or decay.", kind: "sequence" },
   { id: "gp-sum", title: "GP Sum", group: "Sequences", level: "JEE", formula: "S_n=a(r^n-1)/(r-1)", summary: "Finite geometric sums collect repeated scaling.", kind: "sequence" },
   { id: "rational-expression", title: "Rational Function", group: "Functions", level: "JEE", formula: "f(x)=(ax+b)/(cx+d)", summary: "Asymptotes appear where the denominator approaches zero.", kind: "rational" },

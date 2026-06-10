@@ -65,8 +65,36 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         navigateFallback: "/index.html",
         globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2,ttf,json}"],
-        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
+        maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
         runtimeCaching: [
+          {
+            urlPattern: ({ request, url }) =>
+              request.method === "GET" &&
+              url.origin === self.location.origin &&
+              ["script", "style", "worker"].includes(request.destination),
+            handler: "CacheFirst",
+            options: {
+              cacheName: "math-universe-code-cache",
+              expiration: {
+                maxEntries: 320,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+            },
+          },
+          {
+            urlPattern: ({ request, url }) =>
+              request.method === "GET" &&
+              url.origin === self.location.origin &&
+              ["font", "image", "manifest"].includes(request.destination),
+            handler: "CacheFirst",
+            options: {
+              cacheName: "math-universe-asset-cache",
+              expiration: {
+                maxEntries: 500,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+            },
+          },
           {
             urlPattern: ({ request, url }) =>
               request.method === "GET" && request.mode === "navigate" && url.origin === self.location.origin,

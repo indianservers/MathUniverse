@@ -301,3 +301,229 @@ files generated
 [2m2:33:56 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/layout/GlobalUx.tsx, /src/components/ui/ThemeToggle.tsx, /src/modules/mathematical-logic/MathematicalLogicModule.tsx[22m
 [2m2:33:56 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/components/layout/GlobalUx.tsx[22m Could not Fast Refresh ("addQuizXp" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
 [2m2:33:56 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/layout/AppLayout.tsx, /src/components/layout/MobileLearningDock.tsx, /src/components/layout/Header.tsx, /src/pages/Home.tsx, /src/pages/Syllabus.tsx[22m
+[2m3:07:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:07:26 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:07:55 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:08:26 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:08:53 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:09:14 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:09:49 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:10:05 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:10:12 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:10:38 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:11:49 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:11:57 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:12:05 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:12:13 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:12:22 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:12:30 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:12:38 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:13:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:13:27 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:13:43 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:13:59 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:14:54 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:15:07 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:15:31 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:22:22 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:24:15 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:27:00 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:27:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:28:57 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:29:04 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:29:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:29:37 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:29:44 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:29:51 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:30:36 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:30:46 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:33:27 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:33:43 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:33:51 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:34:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:34:33 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:34:40 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[2m3:37:15 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:40:14 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m3:40:40 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m3:40:52 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m3:41:39 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m3:51:49 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/workspace/types.ts[22m
+[2m3:53:22 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/MathWorkspace.tsx, /src/components/workspace/WorkspaceShell.tsx, /src/components/workspace/ObjectList.tsx[22m
+[2m3:53:31 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/MathWorkspace.tsx, /src/components/workspace/WorkspaceShell.tsx, /src/components/workspace/ObjectList.tsx[22m
+[2m3:53:47 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/workspace/types.ts[22m
+[2m3:53:55 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/MathWorkspace.tsx, /src/components/workspace/WorkspaceShell.tsx, /src/components/workspace/ObjectList.tsx[22m
+[2m3:54:42 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/MathWorkspace.tsx, /src/components/workspace/WorkspaceShell.tsx, /src/components/workspace/ObjectList.tsx[22m
+[2m3:55:17 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/MathWorkspace.tsx, /src/components/workspace/WorkspaceShell.tsx, /src/components/workspace/ObjectList.tsx[22m
+[2m3:55:32 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/InspectorPanel.tsx, /src/index.css[22m
+[2m3:55:41 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/ObjectList.tsx, /src/index.css[22m
+[2m3:57:47 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/workspace/types.ts[22m
+[2m3:57:54 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/MathWorkspace.tsx, /src/components/workspace/WorkspaceShell.tsx, /src/components/workspace/ObjectList.tsx[22m
+[2m3:58:02 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/ObjectList.tsx, /src/index.css[22m
+[2m3:58:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:58:16 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:58:30 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:58:39 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:58:51 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:58:57 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m3:59:36 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:00:07 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:00:16 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:00:24 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:00:55 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:01:06 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:04:03 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:04:38 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:05:05 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:09:10 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:09:46 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:13:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/WorkspaceShell.tsx, /src/index.css[22m
+[2m4:14:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/InspectorPanel.tsx, /src/index.css[22m
+[2m4:14:43 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:14:57 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:15:28 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/InspectorPanel.tsx, /src/index.css[22m
+[2m4:15:39 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:18:46 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/ObjectList.tsx, /src/index.css[22m
+[2m4:18:56 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/WorkspaceShell.tsx, /src/index.css[22m
+[2m4:19:06 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:19:20 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:19:35 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:20:17 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:20:27 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:22:41 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/ObjectList.tsx, /src/index.css[22m
+[2m4:22:49 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/WorkspaceShell.tsx, /src/index.css[22m
+[2m4:23:14 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/ObjectList.tsx, /src/index.css[22m
+[2m4:25:12 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/ObjectList.tsx, /src/index.css[22m
+[2m4:25:19 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/ObjectList.tsx, /src/index.css[22m
+[2m4:28:31 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/ResultTimeline.tsx, /src/index.css[22m
+[2m4:28:45 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/workspace/WorkspaceShell.tsx, /src/index.css[22m
+[2m4:28:52 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:34:03 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:34:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:34:17 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:34:24 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:34:33 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:34:48 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:34:57 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:35:05 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:35:29 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:36:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:38:09 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:38:15 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:38:28 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:38:35 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:38:54 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:39:02 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:39:07 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:41:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/MathWorkspace.tsx[22m
+[2m4:41:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:41:37 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:41:52 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:42:36 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:43:00 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:43:25 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:43:39 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m4:46:36 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/SectionCard.tsx, /src/index.css[22m
+[2m4:47:12 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Syllabus.tsx, /src/pages/BoardSyllabusVisualizer.tsx[22m
+[2m4:47:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/Syllabus.tsx, /src/index.css[22m
+[2m4:47:56 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m4:49:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/visualizations/formulas/FormulaVisualizationAtlas.tsx, /src/index.css[22m
+[2m4:49:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/components/syllabus/NCERTGapAnalysis.tsx[22m
+[2m4:49:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Home.tsx, /src/pages/Syllabus.tsx[22m
+[2m4:49:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/data/quizData.ts[22m
+[2m4:49:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/data/ncertGapAnalysis.ts[22m
+[2m4:49:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/seo/SeoMetadata.tsx, /src/pages/Sitemap.tsx, /src/pages/NCERTConceptPage.tsx[22m
+[2m4:49:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/MathLabToolPage.tsx, /src/pages/MathLab.tsx[22m
+[2m4:49:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/NCERTConceptPage.tsx, /src/index.css[22m
+[2m4:49:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Syllabus.tsx, /src/pages/BoardSyllabusVisualizer.tsx[22m
+[2m4:51:06 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/SectionCard.tsx, /src/index.css[22m
+[2m4:51:15 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m4:52:35 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/SectionCard.tsx, /src/index.css[22m
+[2m4:52:44 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m4:54:45 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/SectionCard.tsx, /src/index.css[22m
+[2m4:54:57 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m4:55:59 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/SectionCard.tsx, /src/index.css[22m
+[2m4:56:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m5:00:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m5:02:10 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/layout/AppLayout.tsx, /src/components/layout/MobileNav.tsx, /src/components/layout/Sidebar.tsx, /src/components/layout/GlobalUx.tsx, /src/pages/Home.tsx, /src/components/ui/ContinueCard.tsx[22m
+[2m5:02:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/components/layout/GlobalUx.tsx[22m Could not Fast Refresh ("addQuizXp" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m5:02:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/layout/AppLayout.tsx, /src/components/layout/MobileLearningDock.tsx, /src/components/layout/Header.tsx, /src/pages/Home.tsx, /src/pages/Syllabus.tsx[22m
+[2m5:57:16 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m5:57:33 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m5:57:46 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m5:57:56 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m5:58:30 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m5:58:42 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m5:58:54 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m5:59:54 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:05:37 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:06:01 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:06:46 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:06:55 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:07:08 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:07:27 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:08:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:08:34 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:08:44 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:08:58 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:09:27 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:09:52 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:10:05 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:10:37 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:10:54 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:11:05 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:11:39 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:12:13 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:12:29 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:13:04 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css, /src/pages/MathWorkspace.tsx?check=1781093879080, /src/pages/MathWorkspace.tsx?rawcheck=1781094335660[22m
+[2m6:18:33 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ShapesExplorer.tsx, /src/index.css[22m
+[2m6:18:56 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ShapesExplorer.tsx, /src/index.css[22m
+[2m6:19:34 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ShapesExplorer.tsx, /src/index.css[22m
+[2m6:21:28 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ShapesExplorer.tsx, /src/index.css[22m
+[2m6:25:01 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/TrigonometryConceptPage.tsx, /src/index.css[22m
+[2m6:25:16 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ShapesExplorer.tsx, /src/index.css[22m
+[2m6:27:58 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/GeometryConceptPage.tsx, /src/index.css[22m
+[2m6:28:33 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/GeometryConceptPage.tsx, /src/index.css[22m
+[2m6:28:42 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/GeometryConceptPage.tsx, /src/index.css[22m
+[2m6:43:22 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/SyllabusUnitConceptPage.tsx, /src/index.css[22m
+[2m6:43:35 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/SyllabusUnitConceptPage.tsx, /src/index.css[22m
+[2m6:45:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/SyllabusUnitConceptPage.tsx, /src/index.css[22m
+[2m6:45:36 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/NCERTConceptPage.tsx, /src/index.css[22m
+[2m6:46:01 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/NCERTConceptPage.tsx, /src/index.css[22m
+[2m6:49:12 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/SectionCard.tsx, /src/index.css[22m
+[2m6:49:29 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ShapesExplorer.tsx, /src/index.css[22m
+[2m6:49:44 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ShapesExplorer.tsx, /src/index.css[22m
+[2m6:51:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/BoardSyllabusVisualizer.tsx, /src/index.css[22m
+[2m6:55:01 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/Formulas.tsx, /src/index.css[22m
+[2m6:56:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/FormulasWorkspace.tsx[22m
+[2m6:56:39 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/Formulas.tsx[22m
+[2m6:56:51 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/FormulasWorkspace.tsx[22m
+[2m6:57:06 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/FormulasWorkspace.tsx, /src/index.css[22m
+[2m6:57:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[2m6:57:32 pm[22m [36m[1m[vite][22m[39m [32mvite.config.ts changed, restarting server...[39m
+[2m6:57:32 pm[22m [36m[1m[vite][22m[39m server restarted.
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m3344[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.56.1:[1m3344[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.28.128.1:[1m3344[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.51.167.80:[1m3344[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.51.167.204:[1m3344[22m/[39m
+[2m6:57:58 pm[22m [36m[1m[vite][22m[39m [32mvite.config.js changed, restarting server...[39m
+[2m6:57:58 pm[22m [36m[1m[vite][22m[39m server restarted.
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m3344[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.56.1:[1m3344[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.28.128.1:[1m3344[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.51.167.204:[1m3344[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.51.167.80:[1m3344[22m/[39m
+[2m6:59:49 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/FormulasWorkspace.tsx[22m
+[2m7:02:39 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/layout/GlobalUx.tsx, /src/index.css[22m
+[2m7:03:10 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/layout/GlobalUx.tsx, /src/index.css[22m
+[2m7:03:36 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/UiFeedback.tsx, /src/index.css[22m
+[2m7:03:55 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/components/workspace/CommandBar.tsx[22m
+[2m7:04:13 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/components/workspace/ToolRail.tsx[22m
+[2m7:04:38 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/components/workspace/WorkspaceShell.tsx[22m
+[2m7:04:48 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/components/workspace/WorkspaceShell.tsx[22m
+[2m7:05:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[2m7:05:59 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/layout/GlobalUx.tsx, /src/index.css[22m
+[2m7:07:00 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/components/workspace/CommandBar.tsx[22m

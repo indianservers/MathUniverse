@@ -73,7 +73,7 @@ export default function NCERTGapAnalysis() {
           <span className="rounded-2xl bg-white/10 p-3"><Hammer className="h-5 w-5 text-amber-300" /></span>
           <div>
             <p className="font-bold">Highest priority missing builds</p>
-            <p className="mt-2 text-sm leading-6 text-slate-300">Number system labs for Classes 7-10, comparing quantities, exponents, square/cube roots, AP, Euclid algorithm, Heron's formula workflow, and heights-and-distances trigonometry.</p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">Number system labs for Classes 7-10, comparing quantities, exponents, square/cube roots, arithmetic progressions, Euclid algorithm, Heron's formula workflow, and heights-and-distances trigonometry.</p>
           </div>
         </div>
       </div>

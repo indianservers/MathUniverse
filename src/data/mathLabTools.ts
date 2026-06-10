@@ -95,7 +95,7 @@ export const mathLabTools = [
     icon: Variable,
     difficulty: "Advanced",
     description: "Arithmetic and geometric sequences, convergence, partial sums, convergence tests, and Taylor-style approximations.",
-    useCases: ["AP", "GP", "partial sums", "convergence"],
+    useCases: ["arithmetic progressions", "geometric progressions", "partial sums", "convergence"],
   },
   {
     title: "Transformations",

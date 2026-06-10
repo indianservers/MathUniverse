@@ -7,7 +7,7 @@ import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicTabs from "../components/ui/TopicTabs";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
-import { getTrigonometryConcept, trigonometryConcepts, type TrigonometryConcept, type TrigonometryVisualType } from "../data/trigonometryConcepts";
+import { getTrigonometryConcept, type TrigonometryConcept, type TrigonometryVisualType } from "../data/trigonometryConcepts";
 import { degreesToRadians, roundTo } from "../utils/math";
 import EclipseTrigonometryVisualizer from "../visualizations/trigonometry/EclipseTrigonometryVisualizer";
 import TrigConcept3DView from "../visualizations/trigonometry/TrigConcept3DView";
@@ -32,8 +32,7 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
   }, [concept]);
 
   const metrics = useMemo(() => trigMetrics(concept.visual, a, b), [a, b, concept.visual]);
-  const related = trigonometryConcepts.filter((item) => item.category === concept.category && item.id !== concept.id).slice(0, 4);
-  const categoryFormulas = trigonometryConcepts.filter((item) => item.category === concept.category);
+  const shapeLinks = shapeLinksForConcept(concept);
   const fullPage = fullVisualizer(concept.visual);
 
   return (
@@ -95,39 +94,22 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
         tasks={concept.tasks}
       />
 
-      <SectionCard title={`${concept.category} Formula Set`} description="All formulas for this concept group, linked to their respective interactive pages.">
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {categoryFormulas.map((item) => (
-            <Link
-              key={item.id}
-              to={`/trigonometry/${item.id}`}
-              className={`min-w-0 rounded-2xl border p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 ${
-                item.id === concept.id
-                  ? "border-cyan-300 bg-cyan-50 dark:border-cyan-300/40 dark:bg-cyan-400/10"
-                  : "border-slate-200 bg-white/70 dark:border-white/10 dark:bg-white/5"
-              }`}
-            >
-              <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{item.category}</p>
-              <p className="mt-2 font-bold">{item.title}</p>
-              <p className="mt-2 whitespace-normal break-words rounded-xl bg-slate-100 p-2 font-mono text-xs leading-5 text-slate-700 dark:bg-slate-950/70 dark:text-slate-200">{item.formula}</p>
-            </Link>
-          ))}
+      <SectionCard title={`${concept.title} Visual Resources`} description="Only this unit's formula, live model, and matching shape tools are shown here.">
+        <div className="grid gap-3 md:grid-cols-3">
+          <Info label="Formula" value={concept.formula} />
+          <Info label="Visualization" value={visualResourceText(concept.visual)} />
+          <Info label="Interactive task" value={concept.tasks[0] ?? "Move the controls and explain what changes."} />
         </div>
-      </SectionCard>
-
-      {related.length > 0 && (
-        <SectionCard title={`More ${concept.category} Pages`}>
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {related.map((item) => (
-              <Link key={item.id} to={`/trigonometry/${item.id}`} className="rounded-2xl border border-slate-200 bg-white/70 p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
-                <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{item.category}</p>
-                <p className="mt-2 font-bold">{item.title}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{item.summary}</p>
+        {shapeLinks.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {shapeLinks.map((link) => (
+              <Link key={link.to} to={link.to} className="action-secondary">
+                Open {link.label}
               </Link>
             ))}
           </div>
-        </SectionCard>
-      )}
+        )}
+      </SectionCard>
     </div>
   );
 }
@@ -152,12 +134,50 @@ function TrigConceptSvg({ visual, a, b, title }: { visual: TrigonometryVisualTyp
 }
 
 function renderVisual(visual: TrigonometryVisualType, a: number, b: number) {
+  if (visual === "unit-circle") return <UnitCircleTrig angle={a} radius={b} />;
   if (visual === "right-triangle" || visual === "ratio" || visual === "height-distance") return <TriangleTrig angle={a} size={b} visual={visual} />;
   if (visual === "angle-measure" || visual === "identity" || visual === "polar") return <CircleTrig angle={a} radius={b} visual={visual} />;
   if (visual === "inverse") return <InverseTrig ratio={a} scale={b} />;
   if (visual === "law") return <TriangleLaw a={a} b={b} />;
   if (visual === "bearing") return <BearingVisual angle={a} distance={b} />;
   return <WaveTransform a={a} b={b} visual={visual} />;
+}
+
+function UnitCircleTrig({ angle, radius }: { angle: number; radius: number }) {
+  const cx = 360;
+  const cy = 220;
+  const r = 135;
+  const rad = degreesToRadians(angle);
+  const cos = Math.cos(rad);
+  const sin = Math.sin(rad);
+  const x = cx + r * cos;
+  const y = cy - r * sin;
+  const coordX = roundTo(radius * cos, 3);
+  const coordY = roundTo(radius * sin, 3);
+  const largeArc = angle > 180 ? 1 : 0;
+  const arcX = cx + 46 * Math.cos(rad);
+  const arcY = cy - 46 * Math.sin(rad);
+
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r={r} fill="#22d3ee" opacity="0.1" stroke="#06b6d4" strokeWidth="5" />
+      <line x1={cx - r - 34} y1={cy} x2={cx + r + 34} y2={cy} stroke="#94a3b8" strokeWidth="3" />
+      <line x1={cx} y1={cy + r + 34} x2={cx} y2={cy - r - 34} stroke="#94a3b8" strokeWidth="3" />
+      <path d={`M${cx + 46},${cy} A46,46 0 ${largeArc} 0 ${arcX},${arcY}`} fill="none" stroke="#f59e0b" strokeWidth="5" />
+      <line x1={cx} y1={cy} x2={x} y2={y} stroke="#f59e0b" strokeWidth="5" />
+      <line x1={x} y1={cy} x2={x} y2={y} stroke="#10b981" strokeDasharray="8 8" strokeWidth="4" />
+      <line x1={cx} y1={cy} x2={x} y2={cy} stroke="#8b5cf6" strokeDasharray="8 8" strokeWidth="4" />
+      <Point x={x} y={y} label={`P(${coordX}, ${coordY})`} />
+      <Label x={cx + r + 12} y={cy + 24} text="(1, 0)" />
+      <Label x={cx - r - 60} y={cy + 24} text="(-1, 0)" />
+      <Label x={cx + 12} y={cy - r - 12} text="(0, 1)" />
+      <Label x={cx + 12} y={cy + r + 28} text="(0, -1)" />
+      <Label x={cx + 58} y={cy - 16} text={`${roundTo(angle, 1)} deg`} />
+      <Label x={(cx + x) / 2 - 34} y={cy + 34} text="cos theta" />
+      <Label x={x + 14} y={(cy + y) / 2} text="sin theta" />
+      <Label x="72" y="78" text="unit circle: x = cos(theta), y = sin(theta)" />
+    </g>
+  );
 }
 
 function TriangleTrig({ angle, size, visual }: { angle: number; size: number; visual: TrigonometryVisualType }) {
@@ -249,6 +269,16 @@ function Info({ label, value }: { label: string; value: string }) {
 
 function trigMetrics(visual: TrigonometryVisualType, a: number, b: number) {
   const rad = degreesToRadians(a);
+  if (visual === "unit-circle") {
+    const sin = Math.sin(rad);
+    const cos = Math.cos(rad);
+    return [
+      { label: "point", value: `(${roundTo(b * cos, 3)}, ${roundTo(b * sin, 3)})` },
+      { label: "sin", value: `${roundTo(sin, 3)}` },
+      { label: "cos", value: `${roundTo(cos, 3)}` },
+      { label: "quadrant", value: quadrantForAngle(a) },
+    ];
+  }
   if (visual === "inverse") {
     const clamped = Math.max(-1, Math.min(1, a));
     return [{ label: "theta", value: `${roundTo(Math.asin(clamped) * 180 / Math.PI, 2)} deg` }, { label: "ratio", value: `${roundTo(clamped, 3)}` }];
@@ -258,16 +288,56 @@ function trigMetrics(visual: TrigonometryVisualType, a: number, b: number) {
 }
 
 function changeText(visual: TrigonometryVisualType, sliderA: string, sliderB: string) {
+  if (visual === "unit-circle") return `${sliderA} rotates the point around the circle; ${sliderB} keeps the unit scale for exact sine and cosine coordinates.`;
   if (visual === "graph-transform") return `${sliderA} and ${sliderB} reshape the wave without changing the basic repeating pattern.`;
   if (visual === "height-distance") return `${sliderA} changes steepness; ${sliderB} changes the baseline measurement.`;
   return `${sliderA} changes the angle or input; ${sliderB} changes the scale or comparison value.`;
 }
 
 function learningSteps(concept: TrigonometryConcept, a: number, b: number) {
+  if (concept.visual === "unit-circle") {
+    const rad = degreesToRadians(a);
+    return [
+      "Start on the circle, not on a wave graph.",
+      `At ${roundTo(a, 2)} degrees, the point is (${roundTo(b * Math.cos(rad), 3)}, ${roundTo(b * Math.sin(rad), 3)}).`,
+      "Read cosine from the horizontal projection and sine from the vertical projection.",
+      "Move through all four quadrants and predict the signs before checking.",
+    ];
+  }
   return [
     `Start with ${concept.formula}.`,
     `Set ${concept.sliderA} to ${roundTo(a, 2)} and ${concept.sliderB} to ${roundTo(b, 2)}.`,
     "Read the visual measurement before calculating.",
     "Compare the diagram with the formula result.",
   ];
+}
+
+function quadrantForAngle(angle: number) {
+  const normalized = ((angle % 360) + 360) % 360;
+  if (normalized === 0 || normalized === 90 || normalized === 180 || normalized === 270) return "axis";
+  if (normalized < 90) return "QI";
+  if (normalized < 180) return "QII";
+  if (normalized < 270) return "QIII";
+  return "QIV";
+}
+
+function visualResourceText(visual: TrigonometryVisualType) {
+  if (visual === "unit-circle") return "Circle, rotating point, sine/cosine projections, quadrant signs, and coordinate readout.";
+  if (visual === "right-triangle" || visual === "ratio" || visual === "height-distance") return "Right triangle with live opposite, adjacent, hypotenuse, angle, and measurement changes.";
+  if (visual === "angle-measure" || visual === "identity" || visual === "polar") return "Circle or arc model with radius, angle, coordinate, and identity connections.";
+  if (visual === "law") return "Triangle-solving diagram with changing sides, angles, and measurements.";
+  if (visual === "bearing") return "Compass and direction model for north-based navigation angles.";
+  if (visual === "inverse") return "Inverse-ratio triangle showing how an input value recovers an angle.";
+  return "Graph visualization with live controls for amplitude, frequency, scale, or comparison values.";
+}
+
+function shapeLinksForConcept(concept: TrigonometryConcept) {
+  if (concept.visual === "unit-circle" || concept.visual === "angle-measure" || concept.visual === "identity" || concept.visual === "polar") {
+    return [{ label: "Circle in Shapes", to: "/shapes?shape=circle" }];
+  }
+  if (concept.visual === "right-triangle" || concept.visual === "ratio" || concept.visual === "height-distance" || concept.visual === "inverse") {
+    return [{ label: "Right Triangle in Shapes", to: "/shapes?shape=right-triangle" }];
+  }
+  if (concept.visual === "law") return [{ label: "Triangle in Shapes", to: "/shapes?shape=triangle" }];
+  return [];
 }

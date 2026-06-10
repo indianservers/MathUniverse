@@ -6,7 +6,7 @@ import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
-import { getGeometryConcept, geometryConcepts, type GeometryConcept, type GeometryVisualType } from "../data/geometryConcepts";
+import { getGeometryConcept, type GeometryConcept, type GeometryVisualType } from "../data/geometryConcepts";
 import { degreesToRadians, roundTo } from "../utils/math";
 
 export default function GeometryConceptPage() {
@@ -26,7 +26,7 @@ function GeometryConceptDetail({ concept }: { concept: GeometryConcept }) {
   }, [concept]);
 
   const metrics = useMemo(() => geometryMetrics(concept.visual, a, b), [a, b, concept.visual]);
-  const related = geometryConcepts.filter((item) => item.category === concept.category && item.id !== concept.id).slice(0, 4);
+  const shapeLinks = shapeLinksForGeometryConcept(concept);
 
   return (
     <div className="space-y-6">
@@ -69,19 +69,22 @@ function GeometryConceptDetail({ concept }: { concept: GeometryConcept }) {
         tasks={concept.tasks}
       />
 
-      {related.length > 0 && (
-        <SectionCard title={`More ${concept.category} Pages`}>
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {related.map((item) => (
-              <Link key={item.id} to={`/geometry/${item.id}`} className="rounded-2xl border border-slate-200 bg-white/70 p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
-                <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{item.category}</p>
-                <p className="mt-2 font-bold">{item.title}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{item.summary}</p>
+      <SectionCard title={`${concept.title} Visual Resources`} description="Only this unit's formula, live model, and matching shape tools are shown here.">
+        <div className="grid gap-3 md:grid-cols-3">
+          <Info label="Formula" value={concept.formula} />
+          <Info label="Visualization" value={geometryResourceText(concept.visual)} />
+          <Info label="Interactive task" value={concept.tasks[0] ?? "Move the controls and explain what changes."} />
+        </div>
+        {shapeLinks.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {shapeLinks.map((link) => (
+              <Link key={link.to} to={link.to} className="action-secondary">
+                Open {link.label}
               </Link>
             ))}
           </div>
-        </SectionCard>
-      )}
+        )}
+      </SectionCard>
     </div>
   );
 }
@@ -283,4 +286,30 @@ function learningSteps(concept: GeometryConcept, a: number, b: number) {
     `Apply ${concept.formula}.`,
     `Read the live check: ${metrics.map((metric) => `${metric.label} = ${metric.value}`).join(", ")}.`,
   ];
+}
+
+function geometryResourceText(visual: GeometryVisualType) {
+  if (visual === "circle" || visual === "arc" || visual === "tangent" || visual === "locus") return "Circle-linked model with radius, arc, sector, tangent, or locus behavior.";
+  if (visual === "triangle" || visual === "pythagoras" || visual === "similarity" || visual === "trig") return "Triangle model with live sides, angles, area, ratio, or proof measurements.";
+  if (visual === "quadrilateral" || visual === "polygon") return "Polygon model with live dimensions, sides, area, and structural relationships.";
+  if (visual === "coordinate") return "Coordinate plane model with draggable-style point values, distance, and slope readings.";
+  if (visual === "solid") return "3D measurement model focused on volume, base area, and height changes.";
+  if (visual === "construction") return "Compass-straightedge style construction model with circles, intersections, and bisectors.";
+  if (visual === "transform" || visual === "symmetry") return "Transformation model showing rotation, dilation, reflection, and matching points.";
+  return "Geometry model with live controls, labels, measurements, and formula checks.";
+}
+
+function shapeLinksForGeometryConcept(concept: GeometryConcept) {
+  if (concept.id === "arcs-sectors") return [{ label: "Sector in Shapes", to: "/shapes?shape=sector" }];
+  if (concept.visual === "circle" || concept.visual === "arc" || concept.visual === "tangent" || concept.visual === "locus") {
+    return [{ label: "Circle in Shapes", to: "/shapes?shape=circle" }];
+  }
+  if (concept.visual === "triangle" || concept.visual === "pythagoras" || concept.visual === "similarity" || concept.visual === "trig") {
+    return [{ label: concept.visual === "pythagoras" || concept.visual === "trig" ? "Right Triangle in Shapes" : "Triangle in Shapes", to: concept.visual === "pythagoras" || concept.visual === "trig" ? "/shapes?shape=right-triangle" : "/shapes?shape=triangle" }];
+  }
+  if (concept.visual === "quadrilateral") return [{ label: "Parallelogram in Shapes", to: "/shapes?shape=parallelogram" }];
+  if (concept.visual === "polygon") return [{ label: "Regular Polygon in Shapes", to: "/shapes?shape=regular-polygon" }];
+  if (concept.id === "surface-area-volume") return [{ label: "Cylinder in Shapes", to: "/shapes?shape=cylinder" }];
+  if (concept.visual === "solid") return [{ label: "Cuboid in Shapes", to: "/shapes?shape=cuboid" }];
+  return [];
 }

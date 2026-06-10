@@ -1,14 +1,16 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { ArrowLeft, Box, Layers3, Network, Pause, Play, Shapes } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { ArrowLeft, Box, Layers3, Maximize2, Minimize2, Network, Pause, Play, Shapes } from "lucide-react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import { getBoardSyllabusTopic } from "../data/boardSyllabus";
+import { getSyllabusUnitConcept, syllabusUnitRoute } from "../data/syllabusUnitConcepts";
+import SyllabusUnitConceptPage from "./SyllabusUnitConceptPage";
 
 type ViewMode = "concept-map" | "graph" | "measurement";
 
@@ -31,7 +33,10 @@ function colorFor(text: string) {
 
 export default function BoardSyllabusVisualizer() {
   const { topicId } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const topic = getBoardSyllabusTopic(topicId);
+  const unitConcept = getSyllabusUnitConcept(topicId);
   const [mode, setMode] = useState<ViewMode>("concept-map");
   const [depth, setDepth] = useState(1.4);
   const [spread, setSpread] = useState(1);
@@ -39,7 +44,14 @@ export default function BoardSyllabusVisualizer() {
 
   const nodes = useMemo(() => topic?.topics.slice(0, 10) ?? [], [topic]);
 
+  useEffect(() => {
+    if (topic && topicId !== topic.id) {
+      navigate(`${topic.route}${location.search}`, { replace: true });
+    }
+  }, [location.search, navigate, topic, topicId]);
+
   if (!topic) {
+    if (topicId) return <SyllabusUnitConceptPage concept={unitConcept} conceptId={topicId} />;
     return (
       <div className="space-y-4">
         <Link className="mini-chip w-fit" to="/syllabus"><ArrowLeft className="h-3.5 w-3.5" /> Back to syllabus</Link>
@@ -93,7 +105,11 @@ export default function BoardSyllabusVisualizer() {
           </div>
 
           <div className="grid gap-4 lg:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/40">
+            <FullscreenCardFrame
+              className="rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/40"
+              title={`${mode.replace("-", " ")} 2D map`}
+              allowFullscreen
+            >
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">2D map</p>
@@ -102,7 +118,7 @@ export default function BoardSyllabusVisualizer() {
                 <Box className="h-5 w-5 text-slate-400" />
               </div>
               <Syllabus2DCanvas mode={mode} nodes={nodes} accent={colorFor(topic.strand + topic.title)} spread={spread} />
-            </div>
+            </FullscreenCardFrame>
 
             <ThreeSceneWrapper
               height="520px"
@@ -162,39 +178,139 @@ export default function BoardSyllabusVisualizer() {
 function StrandVisualizationCard({ title, index, accent, spread, depth }: { title: string; index: number; accent: string; spread: number; depth: number }) {
   const kind = visualKindForTitle(title);
   const note = strandNote(kind);
+  const [level, setLevel] = useState(45 + (index % 4) * 12);
+  const [phase, setPhase] = useState(index % 3);
   return (
-    <div className="min-w-0 rounded-xl border border-slate-200 bg-white/78 p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
+    <FullscreenCardFrame className="min-w-0 rounded-xl border border-slate-200 bg-white/78 p-3 shadow-sm dark:border-white/10 dark:bg-white/5" title={title}>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">Visual {index + 1}</p>
           <h3 className="mt-1 line-clamp-2 font-black text-slate-950 dark:text-white">{title}</h3>
+          <Link className="mt-2 inline-flex text-xs font-black text-cyan-600 hover:text-cyan-500 dark:text-cyan-300" to={syllabusUnitRoute(title)}>Open interactive page</Link>
         </div>
         <span className="h-3 w-3 shrink-0 rounded-full" style={{ background: accent }} />
       </div>
-      <StrandMiniSvg kind={kind} accent={accent} spread={spread} depth={depth} seed={index + 1} />
+      <StrandMiniSvg kind={kind} accent={accent} spread={spread} depth={depth} seed={index + 1} level={level} phase={phase} />
+      <div className="mt-3 rounded-lg border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-slate-950/40">
+        <div className="flex items-center justify-between gap-2">
+          <label className="min-w-0 flex-1 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">
+            {toolLabel(kind)}
+            <input className="mt-1 w-full accent-cyan-400" type="range" min="0" max="100" value={level} onChange={(event) => setLevel(Number(event.target.value))} />
+          </label>
+          <button type="button" className="mini-chip shrink-0" onClick={() => setPhase((value) => (value + 1) % 3)}>{phaseLabel(kind, phase)}</button>
+        </div>
+        <p className="mt-1 text-xs font-bold leading-5 text-slate-700 dark:text-slate-200">{toolReadout(kind, level, phase)}</p>
+      </div>
       <p className="mt-3 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">{note}</p>
-    </div>
+    </FullscreenCardFrame>
   );
 }
 
 function CoverageVisualUnit({ title, index, accent, spread, depth }: { title: string; index: number; accent: string; spread: number; depth: number }) {
   const kind = visualKindForTitle(title);
   return (
-    <div className="min-w-0 rounded-xl border border-slate-200 bg-white/75 p-3 dark:border-white/10 dark:bg-white/5">
+    <FullscreenCardFrame className="min-w-0 rounded-xl border border-slate-200 bg-white/75 p-3 dark:border-white/10 dark:bg-white/5" title={title}>
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Unit {index + 1}</p>
-          <h3 className="mt-1 font-black">{title}</h3>
+          <Link className="mt-1 block font-black text-slate-950 hover:text-cyan-600 dark:text-white dark:hover:text-cyan-300" to={syllabusUnitRoute(title)}>{title}</Link>
         </div>
         <span className="rounded-full px-2 py-1 text-[10px] font-black uppercase text-white" style={{ background: accent }}>{kind.replace("-", " ")}</span>
       </div>
       <StrandMiniSvg kind={kind} accent={accent} spread={spread} depth={depth} seed={index + 1} />
+    </FullscreenCardFrame>
+  );
+}
+
+function FullscreenCardFrame({ children, className, title, allowFullscreen = false }: { children: ReactNode; className: string; title: string; allowFullscreen?: boolean }) {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [fullscreenOffset, setFullscreenOffset] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (!allowFullscreen) return undefined;
+    const handleFullscreenChange = () => {
+      const isNativeFullscreen = document.fullscreenElement === frameRef.current;
+      setFullscreen(isNativeFullscreen);
+      if (isNativeFullscreen) setFullscreenOffset({ x: 0, y: 0 });
+    };
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, [allowFullscreen]);
+
+  useEffect(() => {
+    if (!fullscreen) return undefined;
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && document.fullscreenElement !== frameRef.current) setFullscreen(false);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [fullscreen]);
+
+  useEffect(() => {
+    if (!fullscreen || document.fullscreenElement === frameRef.current) return undefined;
+    const frame = requestAnimationFrame(() => {
+      const rect = frameRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      if (Math.abs(rect.x) > 1 || Math.abs(rect.y) > 1) {
+        setFullscreenOffset((offset) => ({ x: offset.x - rect.x, y: offset.y - rect.y }));
+      }
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [fullscreen, fullscreenOffset.x, fullscreenOffset.y]);
+
+  async function toggleFullscreen() {
+    if (!allowFullscreen) return;
+    if (!frameRef.current) return;
+    if (fullscreen) {
+      if (document.fullscreenElement === frameRef.current) await document.exitFullscreen();
+      setFullscreen(false);
+      setFullscreenOffset({ x: 0, y: 0 });
+      return;
+    }
+    setFullscreenOffset({ x: 0, y: 0 });
+    setFullscreen(true);
+    try {
+      await frameRef.current.requestFullscreen();
+      if (document.fullscreenElement === frameRef.current) setFullscreenOffset({ x: 0, y: 0 });
+    } catch {
+      setFullscreen(true);
+    }
+  }
+
+  return (
+    <div
+      ref={frameRef}
+      style={fullscreen ? { position: "fixed", inset: 0, zIndex: 80, transform: `translate(${fullscreenOffset.x}px, ${fullscreenOffset.y}px)` } : undefined}
+      className={`${className} relative ${fullscreen ? "h-screen w-screen overflow-auto rounded-none bg-slate-950 p-4 md:p-6" : ""}`}
+    >
+      {allowFullscreen && (
+        <button
+          type="button"
+          className="tool-button absolute right-3 top-3 z-20 h-9 w-9 justify-center p-0 shadow-lg"
+          onClick={toggleFullscreen}
+          title={fullscreen ? "Exit full screen" : "Full screen"}
+          aria-label={fullscreen ? `Exit full screen for ${title}` : `Open ${title} full screen`}
+        >
+          {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+        </button>
+      )}
+      {children}
     </div>
   );
 }
 
 function visualKindForTitle(title: string) {
   const lower = title.toLowerCase();
+  if (lower.includes("real number") || lower.includes("number system") || lower === "number" || lower.includes("number systems")) return "real-numbers";
+  if (lower.includes("polynomial")) return "polynomial";
+  if (lower.includes("coordinate")) return "coordinate";
+  if (lower.includes("linear equation") || lower.includes("linear pairs") || lower.includes("pair of linear")) return "linear-equation";
+  if (lower.includes("euclid")) return "euclid";
+  if (lower.includes("triangle") || lower.includes("heron")) return "triangle";
+  if (lower.includes("quadrilateral") || lower.includes("parallelogram") || lower.includes("rhombus") || lower.includes("trapezoid")) return "quadrilateral";
+  if (lower.includes("circle")) return "circle";
+  if (lower.includes("statistics") || lower.includes("data")) return "data";
   if (lower.includes("relation") || lower.includes("function")) return "relations";
   if (lower.includes("inverse trig")) return "inverse-trig";
   if (lower.includes("matrix") || lower.includes("matrices")) return "matrix";
@@ -217,6 +333,14 @@ function visualKindForTitle(title: string) {
 }
 
 function strandNote(kind: string) {
+  if (kind === "real-numbers") return "Zoom a number line and compare rational positions with irrational square-root locations.";
+  if (kind === "polynomial") return "Move the coefficient/root control and see how zeros, intercepts, and curve shape change.";
+  if (kind === "coordinate") return "Drag a point by coordinates and connect ordered pairs to exact grid positions.";
+  if (kind === "linear-equation") return "Change slope/intercept and watch a line satisfy many ordered-pair solutions.";
+  if (kind === "euclid") return "Test an axiom visually: equal radii, straight lines, and common constructions preserve equality.";
+  if (kind === "triangle") return "Move a triangle vertex and observe angle sum, altitude, and area relationships.";
+  if (kind === "quadrilateral") return "Slide a vertex to compare sides, diagonals, parallel edges, and area behavior.";
+  if (kind === "circle") return "Change radius/angle and connect radius, chord, tangent, arc, and sector measures.";
   if (kind === "relations") return "Map inputs to outputs and inspect when each input has exactly one image.";
   if (kind === "inverse-trig") return "Restrict a trigonometric graph so the inverse relation becomes a function.";
   if (kind === "matrix") return "Read rows and columns as an organized transformation grid.";
@@ -238,7 +362,63 @@ function strandNote(kind: string) {
   return "Connect the topic to a visible model and a short mathematical action.";
 }
 
-function StrandMiniSvg({ kind, accent, spread, depth, seed }: { kind: string; accent: string; spread: number; depth: number; seed: number }) {
+function toolLabel(kind: string) {
+  const labels: Record<string, string> = {
+    "real-numbers": "number zoom",
+    polynomial: "coefficient",
+    coordinate: "point position",
+    "linear-equation": "slope",
+    euclid: "construction size",
+    triangle: "vertex drag",
+    quadrilateral: "shape skew",
+    circle: "radius / arc",
+    data: "data value",
+    relations: "mapping offset",
+    matrix: "cell scale",
+    determinant: "area scale",
+    derivative: "secant gap",
+    integral: "rectangle count",
+    vector: "vector length",
+    space3d: "depth",
+    measurement: "dimension",
+  };
+  return labels[kind] ?? "model control";
+}
+
+function phaseLabel(kind: string, phase: number) {
+  const labels: Record<string, string[]> = {
+    "real-numbers": ["sqrt", "decimal", "fraction"],
+    polynomial: ["roots", "turn", "value"],
+    coordinate: ["Q1", "Q2", "Q4"],
+    "linear-equation": ["line", "table", "intercept"],
+    euclid: ["axiom", "copy", "bisect"],
+    triangle: ["angles", "area", "altitude"],
+    quadrilateral: ["diagonal", "parallel", "area"],
+    circle: ["sector", "chord", "tangent"],
+    data: ["bars", "mean", "median"],
+  };
+  return labels[kind]?.[phase] ?? ["try 1", "try 2", "try 3"][phase];
+}
+
+function toolReadout(kind: string, level: number, phase: number) {
+  const t = level / 100;
+  if (kind === "real-numbers") return `Marker: ${round1(-4 + t * 8)}. Mode: ${phaseLabel(kind, phase)}.`;
+  if (kind === "polynomial") return `a = ${round1(0.4 + t * 1.8)}, roots shift by ${phase - 1}.`;
+  if (kind === "coordinate") return `P(${round1(-5 + t * 10)}, ${phase === 0 ? 3 : phase === 1 ? 1 : -3})`;
+  if (kind === "linear-equation") return `Line family: y = ${round1(-2 + t * 4)}x + ${phase - 1}.`;
+  if (kind === "euclid") return `Compass radius ${Math.round(24 + t * 54)} px; equality is preserved by construction.`;
+  if (kind === "triangle") return `Vertex moved ${Math.round(t * 100)}%; angle sum remains 180 deg.`;
+  if (kind === "quadrilateral") return `Skew ${Math.round((t - 0.5) * 80)}%; diagonals and area update together.`;
+  if (kind === "circle") return `Radius ${Math.round(32 + t * 58)}; central angle ${60 + phase * 45} deg.`;
+  if (kind === "data") return `Selected bar changes to ${Math.round(25 + t * 95)}; center line updates.`;
+  return `Control value ${Math.round(level)} changes the model; ${phaseLabel(kind, phase)} switches the representation.`;
+}
+
+function round1(value: number) {
+  return Math.round(value * 10) / 10;
+}
+
+function StrandMiniSvg({ kind, accent, spread, depth, seed, level = 50, phase = 0 }: { kind: string; accent: string; spread: number; depth: number; seed: number; level?: number; phase?: number }) {
   const width = 420;
   const height = 230;
   const scale = Math.max(0.7, Math.min(1.7, spread));
@@ -247,6 +427,14 @@ function StrandMiniSvg({ kind, accent, spread, depth, seed }: { kind: string; ac
     <svg className="mt-3 h-56 w-full rounded-xl bg-slate-950" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${kind} strand visualization`}>
       <rect width={width} height={height} rx="18" fill="#020617" />
       <GridLines width={width} height={height} />
+      {kind === "real-numbers" && <RealNumbersVisual accent={accent} level={level} phase={phase} />}
+      {kind === "polynomial" && <PolynomialVisual accent={accent} level={level} phase={phase} />}
+      {kind === "coordinate" && <CoordinateVisual accent={accent} level={level} phase={phase} />}
+      {kind === "linear-equation" && <LinearEquationVisual accent={accent} level={level} phase={phase} />}
+      {kind === "euclid" && <EuclidVisual accent={accent} level={level} phase={phase} />}
+      {kind === "triangle" && <TriangleInteractiveVisual accent={accent} level={level} phase={phase} />}
+      {kind === "quadrilateral" && <QuadrilateralVisual accent={accent} level={level} phase={phase} />}
+      {kind === "circle" && <CircleInteractiveVisual accent={accent} level={level} phase={phase} />}
       {kind === "pattern" && <PatternVisual accent={accent} scale={scale} seed={seed} />}
       {kind === "operations" && <OperationsVisual accent={accent} seed={seed} />}
       {kind === "variables" && <VariablesVisual accent={accent} seed={seed} />}
@@ -265,7 +453,7 @@ function StrandMiniSvg({ kind, accent, spread, depth, seed }: { kind: string; ac
       {kind === "vector" && <VectorVisual accent={accent} depthShift={depthShift} />}
       {kind === "space3d" && <Space3DVisual accent={accent} depthShift={depthShift} />}
       {kind === "linear-programming" && <LinearProgrammingVisual accent={accent} />}
-      {kind === "concept" && <ConceptVisual accent={accent} scale={scale} />}
+      {kind === "concept" && <ConceptVisual accent={accent} scale={scale + (level - 50) / 180} />}
     </svg>
   );
 }
@@ -275,6 +463,159 @@ function GridLines({ width, height }: { width: number; height: number }) {
     <g opacity="0.28">
       {Array.from({ length: 8 }).map((_, index) => <line key={`x-${index}`} x1={30 + index * 52} y1="24" x2={30 + index * 52} y2={height - 24} stroke="#1e293b" />)}
       {Array.from({ length: 4 }).map((_, index) => <line key={`y-${index}`} x1="24" y1={42 + index * 42} x2={width - 24} y2={42 + index * 42} stroke="#1e293b" />)}
+    </g>
+  );
+}
+
+function RealNumbersVisual({ accent, level, phase }: { accent: string; level: number; phase: number }) {
+  const marker = 52 + (level / 100) * 316;
+  const rootN = 2 + phase + Math.round(level / 34);
+  const rootX = 210 + Math.sqrt(rootN) * 32;
+  return (
+    <g>
+      <text x="26" y="34" fill="#e0f2fe" fontSize="15" fontWeight="900">real number line explorer</text>
+      <line x1="52" y1="126" x2="368" y2="126" stroke="#e2e8f0" strokeWidth="4" />
+      {Array.from({ length: 9 }).map((_, index) => {
+        const x = 52 + index * 39.5;
+        return <g key={index}><line x1={x} y1="112" x2={x} y2="140" stroke="#94a3b8" strokeWidth="2" /><text x={x - 7} y="164" fill="#cbd5e1" fontSize="11">{index - 4}</text></g>;
+      })}
+      <rect x={marker - 26} y="84" width="52" height="28" rx="10" fill={accent} opacity="0.22" stroke={accent} strokeWidth="2" />
+      <line x1={marker} y1="86" x2={marker} y2="142" stroke={accent} strokeWidth="5" strokeLinecap="round" />
+      <circle cx={rootX} cy="126" r="8" fill="#f59e0b" />
+      <path d={`M210 126 A${Math.sqrt(rootN) * 32} ${Math.sqrt(rootN) * 32} 0 0 1 ${rootX} 126`} fill="none" stroke="#f59e0b" strokeWidth="3" strokeDasharray="7 6" />
+      <text x="66" y="206" fill="#f8fafc" fontSize="14" fontWeight="900">rational marker and sqrt({rootN}) live on the same line</text>
+    </g>
+  );
+}
+
+function PolynomialVisual({ accent, level, phase }: { accent: string; level: number; phase: number }) {
+  const a = 0.004 + (level / 100) * 0.012;
+  const shift = (phase - 1) * 26;
+  const points = Array.from({ length: 90 }).map((_, index) => {
+    const x = -150 + (index / 89) * 300;
+    const y = a * (x + 70 - shift) * (x - 70 - shift);
+    return `${210 + x},${132 + y}`;
+  }).join(" ");
+  const r1 = 210 - 70 + shift;
+  const r2 = 210 + 70 + shift;
+  return (
+    <g>
+      <text x="26" y="34" fill="#e0f2fe" fontSize="15" fontWeight="900">polynomial roots and shape</text>
+      <line x1="50" y1="132" x2="370" y2="132" stroke="#64748b" strokeWidth="2" />
+      <line x1="210" y1="48" x2="210" y2="190" stroke="#64748b" strokeWidth="2" />
+      <polyline points={points} fill="none" stroke={accent} strokeWidth="5" strokeLinecap="round" />
+      {[r1, r2].map((x, index) => <circle key={index} cx={x} cy="132" r="8" fill="#f59e0b" />)}
+      <text x="112" y="210" fill="#cbd5e1" fontSize="13" fontWeight="900">zeros are x-intercepts</text>
+    </g>
+  );
+}
+
+function CoordinateVisual({ accent, level, phase }: { accent: string; level: number; phase: number }) {
+  const xValue = -5 + (level / 100) * 10;
+  const yValue = phase === 0 ? 3 : phase === 1 ? 1 : -3;
+  const px = 210 + xValue * 25;
+  const py = 126 - yValue * 25;
+  return (
+    <g>
+      <text x="26" y="34" fill="#e0f2fe" fontSize="15" fontWeight="900">coordinate point locator</text>
+      <line x1="64" y1="126" x2="356" y2="126" stroke="#94a3b8" strokeWidth="3" />
+      <line x1="210" y1="48" x2="210" y2="196" stroke="#94a3b8" strokeWidth="3" />
+      <line x1={px} y1="126" x2={px} y2={py} stroke="#f59e0b" strokeWidth="3" strokeDasharray="7 5" />
+      <line x1="210" y1={py} x2={px} y2={py} stroke="#f59e0b" strokeWidth="3" strokeDasharray="7 5" />
+      <circle cx={px} cy={py} r="12" fill={accent} stroke="#f8fafc" strokeWidth="3" />
+      <text x={px + 14} y={py - 10} fill="#f8fafc" fontSize="13" fontWeight="900">P({round1(xValue)}, {yValue})</text>
+      <text x="110" y="212" fill="#cbd5e1" fontSize="13" fontWeight="900">ordered pair = horizontal, then vertical</text>
+    </g>
+  );
+}
+
+function LinearEquationVisual({ accent, level, phase }: { accent: string; level: number; phase: number }) {
+  const m = -2 + (level / 100) * 4;
+  const b = phase - 1;
+  const yAt = (x: number) => 126 - (m * x + b * 28);
+  return (
+    <g>
+      <text x="26" y="34" fill="#e0f2fe" fontSize="15" fontWeight="900">linear equation machine</text>
+      <line x1="60" y1="126" x2="360" y2="126" stroke="#64748b" strokeWidth="2" />
+      <line x1="210" y1="50" x2="210" y2="190" stroke="#64748b" strokeWidth="2" />
+      <line x1="82" y1={yAt(-128)} x2="338" y2={yAt(128)} stroke={accent} strokeWidth="5" strokeLinecap="round" />
+      {[-2, 0, 2].map((x) => <circle key={x} cx={210 + x * 42} cy={126 - (m * x * 42 + b * 28)} r="6" fill="#f59e0b" />)}
+      <text x="104" y="210" fill="#f8fafc" fontSize="14" fontWeight="900">y = {round1(m)}x {b >= 0 ? "+" : "-"} {Math.abs(b)}</text>
+    </g>
+  );
+}
+
+function EuclidVisual({ accent, level, phase }: { accent: string; level: number; phase: number }) {
+  const r = 28 + (level / 100) * 52;
+  const cx1 = 156;
+  const cx2 = 238 + phase * 16;
+  return (
+    <g>
+      <text x="26" y="34" fill="#e0f2fe" fontSize="15" fontWeight="900">Euclid construction lab</text>
+      <line x1="72" y1="150" x2="350" y2="150" stroke="#e2e8f0" strokeWidth="4" />
+      <circle cx={cx1} cy="150" r={r} fill="none" stroke={accent} strokeWidth="4" />
+      <circle cx={cx2} cy="150" r={r} fill="none" stroke="#f59e0b" strokeWidth="4" />
+      <line x1={cx1} y1="150" x2={cx1 + r} y2="150" stroke={accent} strokeWidth="3" />
+      <line x1={cx2} y1="150" x2={cx2 + r} y2="150" stroke="#f59e0b" strokeWidth="3" />
+      <text x="82" y="210" fill="#cbd5e1" fontSize="13" fontWeight="900">equal radii copy equal lengths</text>
+    </g>
+  );
+}
+
+function TriangleInteractiveVisual({ accent, level, phase }: { accent: string; level: number; phase: number }) {
+  const ax = 88;
+  const ay = 174;
+  const bx = 332;
+  const by = 174;
+  const cx = 138 + (level / 100) * 144;
+  const cy = phase === 0 ? 58 : phase === 1 ? 82 : 44;
+  return (
+    <g>
+      <text x="26" y="34" fill="#e0f2fe" fontSize="15" fontWeight="900">triangle angle and area lab</text>
+      <polygon points={`${ax},${ay} ${bx},${by} ${cx},${cy}`} fill={accent} opacity="0.18" stroke={accent} strokeWidth="4" />
+      <line x1={cx} y1={cy} x2={cx} y2={ay} stroke="#f59e0b" strokeWidth="3" strokeDasharray="7 6" />
+      <path d={`M${ax + 34} ${ay} A34 34 0 0 1 ${ax + 18} ${ay - 30}`} fill="none" stroke="#f59e0b" strokeWidth="4" />
+      <path d={`M${bx - 34} ${by} A34 34 0 0 0 ${bx - 18} ${by - 30}`} fill="none" stroke="#f59e0b" strokeWidth="4" />
+      <path d={`M${cx - 20} ${cy + 30} A36 36 0 0 0 ${cx + 20} ${cy + 30}`} fill="none" stroke="#f59e0b" strokeWidth="4" />
+      <circle cx={cx} cy={cy} r="8" fill="#f8fafc" />
+      <text x="132" y="210" fill="#f8fafc" fontSize="14" fontWeight="900">angles total 180 deg</text>
+    </g>
+  );
+}
+
+function QuadrilateralVisual({ accent, level, phase }: { accent: string; level: number; phase: number }) {
+  const skew = (level - 50) * 1.2;
+  const top = phase === 0 ? 84 : phase === 1 ? 104 : 72;
+  const points = `${106 + skew},${top} 302,${top} ${338 - skew},172 82,172`;
+  return (
+    <g>
+      <text x="26" y="34" fill="#e0f2fe" fontSize="15" fontWeight="900">quadrilateral explorer</text>
+      <polygon points={points} fill={accent} opacity="0.18" stroke={accent} strokeWidth="4" />
+      <line x1={106 + skew} y1={top} x2={338 - skew} y2="172" stroke="#f59e0b" strokeWidth="3" />
+      <line x1="302" y1={top} x2="82" y2="172" stroke="#f59e0b" strokeWidth="3" />
+      <line x1={106 + skew} y1={top - 14} x2="302" y2={top - 14} stroke="#e2e8f0" strokeWidth="3" />
+      <line x1="82" y1="188" x2={338 - skew} y2="188" stroke="#e2e8f0" strokeWidth="3" />
+      <text x="96" y="214" fill="#cbd5e1" fontSize="13" fontWeight="900">opposite sides and diagonals reveal properties</text>
+    </g>
+  );
+}
+
+function CircleInteractiveVisual({ accent, level, phase }: { accent: string; level: number; phase: number }) {
+  const r = 34 + (level / 100) * 58;
+  const angle = (60 + phase * 45) * (Math.PI / 180);
+  const cx = 210;
+  const cy = 122;
+  const x = cx + Math.cos(angle) * r;
+  const y = cy - Math.sin(angle) * r;
+  return (
+    <g>
+      <text x="26" y="34" fill="#e0f2fe" fontSize="15" fontWeight="900">circle radius, chord, tangent</text>
+      <circle cx={cx} cy={cy} r={r} fill={accent} opacity="0.14" stroke={accent} strokeWidth="4" />
+      <line x1={cx} y1={cy} x2={x} y2={y} stroke="#f59e0b" strokeWidth="4" />
+      <line x1={cx + r} y1={cy} x2={x} y2={y} stroke="#f8fafc" strokeWidth="3" />
+      <line x1={cx + r} y1={cy - 44} x2={cx + r} y2={cy + 44} stroke="#f59e0b" strokeWidth="3" strokeDasharray="8 6" />
+      <path d={`M${cx + r} ${cy} A${r} ${r} 0 0 0 ${x} ${y}`} fill="none" stroke="#38bdf8" strokeWidth="5" />
+      <text x="126" y="214" fill="#cbd5e1" fontSize="13" fontWeight="900">radius controls circumference and area</text>
     </g>
   );
 }

@@ -370,6 +370,12 @@ export function TeacherModeToggle() {
     localStorage.setItem("math-universe-teacher-mode", String(enabled));
   }, [enabled]);
 
+  useEffect(() => {
+    const toggle = () => setEnabled((value) => !value);
+    window.addEventListener("math-universe-toggle-teacher-mode", toggle);
+    return () => window.removeEventListener("math-universe-toggle-teacher-mode", toggle);
+  }, []);
+
   return (
     <button type="button" className={enabled ? "action-primary min-h-10 px-3 py-2" : "tool-button"} onClick={() => setEnabled((value) => !value)} title="Toggle larger classroom text">
       <Sparkles className="h-4 w-4" />

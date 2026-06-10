@@ -44,7 +44,7 @@ export default function Syllabus() {
     <div className="space-y-5">
       <TopicHeader
         title="Syllabus Universe"
-        subtitle="Browse AP State, CBSE, Cambridge/IGCSE, and IB mathematics coverage from Grade 6 to 12."
+        subtitle="Browse international, CBSE, Cambridge/IGCSE, and IB mathematics coverage from Grade 6 to 12."
         difficulty={selectedLevel ? selectedLevel.title : "All levels"}
         estimatedMinutes={20}
       />

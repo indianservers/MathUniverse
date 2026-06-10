@@ -5,7 +5,7 @@ import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
-import { getNCERTConcept, ncertConcepts, type NCERTConcept, type NCERTVisualType } from "../data/ncertConcepts";
+import { getNCERTConcept, type NCERTConcept, type NCERTVisualType } from "../data/ncertConcepts";
 import { degreesToRadians, roundTo } from "../utils/math";
 
 export default function NCERTConceptPage() {
@@ -27,7 +27,7 @@ function NCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
   }, [concept]);
 
   const metrics = useMemo(() => ncertMetrics(concept.visual, a, b, c), [concept.visual, a, b, c]);
-  const related = ncertConcepts.filter((item) => item.classLevel === concept.classLevel && item.id !== concept.id).slice(0, 4);
+  const resources = ncertResourceLinks(concept);
 
   return (
     <div className="space-y-6">
@@ -59,19 +59,22 @@ function NCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
 
       <VisualLearningPanel concept={concept.summary} formula={concept.formula} changes={changeText(concept.visual, concept.sliderA, concept.sliderB)} realWorldUse={concept.unit} steps={learningSteps(concept, a, b, c)} tasks={concept.tasks} />
 
-      {related.length > 0 && (
-        <SectionCard title={`More ${concept.classLevel} NCERT Labs`}>
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {related.map((item) => (
-              <Link key={item.id} to={`/ncert/${item.id}`} className="rounded-2xl border border-slate-200 bg-white/70 p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
-                <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{item.unit}</p>
-                <p className="mt-2 font-bold">{item.title}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{item.summary}</p>
+      <SectionCard title={`${concept.title} Visual Resources`} description="Only this concept's formula, outcomes, activity, and matching tools are shown here.">
+        <div className="grid gap-3 md:grid-cols-3">
+          <Info label="Formula" value={concept.formula} />
+          <Info label="Visualization" value={ncertResourceText(concept.visual)} />
+          <Info label="Interactive task" value={concept.tasks[0] ?? "Move the controls and explain what changes."} />
+        </div>
+        {resources.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {resources.map((resource) => (
+              <Link key={resource.to} to={resource.to} className="action-secondary">
+                Open {resource.label}
               </Link>
             ))}
           </div>
-        </SectionCard>
-      )}
+        )}
+      </SectionCard>
     </div>
   );
 }
@@ -358,7 +361,7 @@ function EuclidAlgorithm({ a, b }: { a: number; b: number }) {
 function APVisual({ first, diff, n }: { first: number; diff: number; n: number }) {
   const terms = Array.from({ length: n }, (_, i) => first + i * diff);
   const sum = terms.reduce((total, value) => total + value, 0);
-  return <g><Label x="80" y="70" text={`AP: ${terms.slice(0, 6).map((x) => roundTo(x, 1)).join(", ")}${terms.length > 6 ? "..." : ""}`} />{terms.map((term, i) => <rect key={i} x={70 + i * 40} y={330 - Math.max(8, Math.abs(term) * 8)} width="26" height={Math.max(8, Math.abs(term) * 8)} fill={term >= 0 ? "#06b6d4" : "#f59e0b"} opacity="0.72" />)}<Label x="80" y="410" text={`a_n=${roundTo(terms.at(-1) ?? 0, 2)}, S_n=${roundTo(sum, 2)}`} /></g>;
+  return <g><Label x="80" y="70" text={`Progression: ${terms.slice(0, 6).map((x) => roundTo(x, 1)).join(", ")}${terms.length > 6 ? "..." : ""}`} />{terms.map((term, i) => <rect key={i} x={70 + i * 40} y={330 - Math.max(8, Math.abs(term) * 8)} width="26" height={Math.max(8, Math.abs(term) * 8)} fill={term >= 0 ? "#06b6d4" : "#f59e0b"} opacity="0.72" />)}<Label x="80" y="410" text={`a_n=${roundTo(terms.at(-1) ?? 0, 2)}, S_n=${roundTo(sum, 2)}`} /></g>;
 }
 
 function SectionFormula({ m, n }: { m: number; n: number }) {
@@ -737,4 +740,23 @@ function InverseTrigGraph({ fn, xVal }: { fn: number; xVal: number }) {
       <Label x="80" y="420" text={`Principal branch guarantees one output per input. f(f⁻¹(x)) = x.`} />
     </g>
   );
+}
+
+function ncertResourceText(visual: NCERTVisualType) {
+  if (visual.includes("line") || visual.includes("graph") || visual === "section-formula") return "Coordinate or graph model with live points, traces, equations, and measurement readouts.";
+  if (visual.includes("triangle") || visual === "heron" || visual === "height-distance") return "Triangle model with side lengths, angle/height relationships, and formula checks.";
+  if (visual.includes("polynomial") || visual.includes("quadratic") || visual.includes("identity")) return "Algebra model linking symbolic form, graph shape, factors, roots, and checks.";
+  if (visual.includes("euclid")) return "Construction/proof model with exact steps, equal lengths, and visual reasoning.";
+  if (visual.includes("conic")) return "Conic model with shape-specific parameters, focus/center cues, and equation links.";
+  if (visual.includes("permutation") || visual.includes("pascal")) return "Counting model with visible arrangements, coefficients, and combinatorial structure.";
+  return "Concept-specific model with live controls, formula values, outcomes, and guided checks.";
+}
+
+function ncertResourceLinks(concept: NCERTConcept) {
+  if (concept.visual === "polynomial-graph" || concept.visual === "quadratic-roots") return [{ label: "Polynomial Workspace", to: "/workspace?template=polynomials" }];
+  if (concept.visual === "section-formula" || concept.visual === "conic-section") return [{ label: "Coordinate Geometry Lab", to: "/geometry/coordinate-geometry" }];
+  if (concept.visual === "heron" || concept.visual === "height-distance") return [{ label: "Triangle Shape Explorer", to: "/shapes?shape=triangle" }];
+  if (concept.visual === "euclid-geometry") return [{ label: "Geometry Construction Lab", to: "/geometry/geometric-constructions" }];
+  if (concept.visual === "linear-pair" || concept.visual === "linear-inequality" || concept.visual === "balance-equation") return [{ label: "Linear Equation Workspace", to: "/workspace?template=linear-equations" }];
+  return [];
 }

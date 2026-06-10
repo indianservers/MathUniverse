@@ -6,7 +6,7 @@ import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
-import { advancedSyllabusLabs, getAdvancedSyllabusLab, type AdvancedLabVisual, type AdvancedSyllabusLab } from "../data/advancedSyllabusLabs";
+import { getAdvancedSyllabusLab, type AdvancedLabVisual, type AdvancedSyllabusLab } from "../data/advancedSyllabusLabs";
 import { roundTo } from "../utils/math";
 
 export default function AdvancedSyllabusLabPage() {
@@ -26,7 +26,6 @@ function AdvancedSyllabusLabDetail({ lab }: { lab: AdvancedSyllabusLab }) {
   }, [lab]);
 
   const metrics = useMemo(() => labMetrics(lab.visual, a, b), [lab.visual, a, b]);
-  const related = advancedSyllabusLabs.filter((item) => item.category === lab.category && item.id !== lab.id).slice(0, 4);
 
   return (
     <div className="space-y-6">
@@ -55,19 +54,13 @@ function AdvancedSyllabusLabDetail({ lab }: { lab: AdvancedSyllabusLab }) {
 
       <VisualLearningPanel concept={lab.summary} formula={lab.formula} changes={`${lab.sliderA} and ${lab.sliderB} control the visual model and the readout.`} realWorldUse={lab.category} steps={learningSteps(lab, a, b)} tasks={lab.tasks} />
 
-      {related.length > 0 && (
-        <SectionCard title={`More ${lab.category} Labs`}>
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {related.map((item) => (
-              <Link key={item.id} to={`/syllabus-lab/${item.id}`} className="rounded-2xl border border-slate-200 bg-white/70 p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
-                <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{item.subcategory}</p>
-                <p className="mt-2 font-bold">{item.title}</p>
-                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{item.summary}</p>
-              </Link>
-            ))}
-          </div>
-        </SectionCard>
-      )}
+      <SectionCard title={`${lab.title} Visual Resources`} description="Only this lab's formula, controls, measurements, and activity prompts are shown here.">
+        <div className="grid gap-3 md:grid-cols-3">
+          <Info label="Formula" value={lab.formula} />
+          <Info label="Visualization" value={noticeText(lab.visual)} />
+          <Info label="Interactive task" value={lab.tasks[0] ?? "Move the controls and explain what changes."} />
+        </div>
+      </SectionCard>
     </div>
   );
 }
