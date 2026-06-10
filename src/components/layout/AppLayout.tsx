@@ -99,11 +99,12 @@ export default function AppLayout() {
     return (
       <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.14),transparent_30%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.12),transparent_34%)]">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-2xl focus:bg-slate-950 focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white dark:focus:bg-white dark:focus:text-slate-950">Skip to content</a>
-        <main ref={mainContentRef} id="main-content" className="app-fullscreen-target h-screen w-full overflow-hidden p-2">
-          <div key={location.pathname} className="page-transition h-full min-h-0">
+        <main ref={mainContentRef} id="main-content" className="app-fullscreen-target min-h-screen w-full p-2">
+          <div key={location.pathname} className="page-transition min-h-screen">
             <Outlet />
           </div>
         </main>
+        <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
         <UndoToastHost />
       </div>
     );

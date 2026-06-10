@@ -581,9 +581,55 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       if (point) createQuickGeometryObject(tool, point.x, point.y);
       return;
     }
-    if (tool !== "point") return;
     const point = clientToBoard(event);
-    if (point) addPoint(point.x, point.y);
+    if (!point) return;
+    if (tool === "point") {
+      addPoint(point.x, point.y);
+      return;
+    }
+    createDefaultGeometryToolObject(tool, point.x, point.y);
+  };
+
+  const createDefaultGeometryToolObject = (activeTool: GeometryTool, x: number, y: number) => {
+    const supportedTools: GeometryTool[] = [
+      "segment",
+      "line",
+      "ray",
+      "vector",
+      "circle",
+      "polygon",
+      "angle",
+      "parallel",
+      "perpendicular",
+      "midpoint",
+      "fixed-length",
+      "circle-radius",
+      "circle-3-points",
+      "on-circle",
+      "intersect",
+      "perpendicular-bisector",
+      "angle-bisector",
+      "tangent",
+      "polar",
+      "locus",
+      "regular-polygon",
+      "arc",
+      "sector",
+      "compass",
+      "mirror",
+      "rotate",
+      "dilate",
+      "translate",
+      "freehand",
+      "move-canvas",
+      "zoom",
+    ];
+    if (!supportedTools.includes(activeTool)) return;
+    recordWorkspaceStep("Create geometry tool object", `${activeTool} added from the board.`);
+    setConstruction((current) => createGeometryObjectForTool(current, activeTool, x, y));
+    setSelectedPointIds([]);
+    setPolygonDraft([]);
+    if (!["move-canvas", "zoom"].includes(activeTool)) setTool("select");
   };
 
   const createQuickGeometryObject = (shapeTool: GeometryTool, x: number, y: number) => {
@@ -778,11 +824,13 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const clientToBoard = (event: PointerEvent<SVGSVGElement>) => {
     const svg = svgRef.current;
     if (!svg) return null;
-    const rect = svg.getBoundingClientRect();
-    return {
-      x: ((event.clientX - rect.left) / rect.width) * 640,
-      y: ((event.clientY - rect.top) / rect.height) * 420,
-    };
+    const matrix = svg.getScreenCTM();
+    if (!matrix) return null;
+    const point = svg.createSVGPoint();
+    point.x = event.clientX;
+    point.y = event.clientY;
+    const transformed = point.matrixTransform(matrix.inverse());
+    return { x: transformed.x, y: transformed.y };
   };
 
   const undoConstruction = () => {
@@ -1323,9 +1371,9 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   return (
-    <div ref={workspaceRef} className="space-y-6 pt-24 xl:pt-16" onKeyDown={handleWorkspaceKeyDown}>
+    <div ref={workspaceRef} className="space-y-3 pt-20 xl:pt-14" onKeyDown={handleWorkspaceKeyDown}>
       <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} />
-      <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />
+      {!singleView && <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 
       {!singleView && <WorkspaceModeTabs active={workspaceView} onChange={setWorkspaceView} />}
       <CompactWorkspaceBar
@@ -1492,8 +1540,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       </SectionCard>}
 
       {workspaceView === "3d" && <SectionCard title="3D Graphing And Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls.">
-        <div className="grid gap-5 xl:grid-cols-[330px_minmax(0,1fr)]">
-          <div className="space-y-4">
+        <div className="grid items-start gap-3 lg:grid-cols-[260px_minmax(380px,1fr)_280px] 2xl:grid-cols-[320px_minmax(560px,1fr)_340px]">
+          <div className="space-y-3 lg:sticky lg:top-24">
             <Space3DToolPalette
               activeObject={selected3d}
               activeSurface={surface}
@@ -1588,19 +1636,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               <button type="button" onClick={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))} className="action-secondary"><ZoomOut className="h-4 w-4" />Zoom out</button>
               <button type="button" onClick={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))} className="action-secondary"><ZoomIn className="h-4 w-4" />Zoom in</button>
             </div>
-            <ObjectList3D selected={selected3d} transforms={transforms3d} addedObjects={added3dObjects} onSelect={setSelected3d} onRestore={restore3dObject} onDelete={delete3dObject} />
-            <Properties3DPanel selected={selected3d} transform={selected3dTransform} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
-            <div className="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
-              <p className="font-bold text-slate-900 dark:text-white">3D Readout</p>
-              <p>Surface: {surfaceFormula(surface, surfaceScale)}</p>
-              <p>Cross-section plane: z = {roundTo(crossSection, 2)}</p>
-              <p>Camera zoom: {roundTo(zoom3d * 100, 0)}%</p>
-            </div>
-            <GizmoReadout3D selected={selected3d} transform={selected3dTransform} />
           </div>
 
-          <div className="space-y-3">
-            <ThreeSceneWrapper height="560px" mobileHeight="min(70vh, 420px)" interactionLabel="Drag rotate - pinch zoom">
+          <div className="min-w-0 space-y-3">
+            <ThreeSceneWrapper height="min(54vh, 500px)" mobileHeight="min(58vh, 400px)" interactionLabel="Drag rotate - pinch zoom">
               <ambientLight intensity={0.75} />
               <directionalLight position={[5, 6, 4]} intensity={1.2} />
               <Workspace3DScene
@@ -1638,11 +1677,23 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               <InfoPill title="Cross-section" text="The amber plane slices the surface at a chosen z-level." />
             </div>
           </div>
+
+          <aside className="space-y-3 lg:sticky lg:top-24">
+            <ObjectList3D selected={selected3d} transforms={transforms3d} addedObjects={added3dObjects} onSelect={setSelected3d} onRestore={restore3dObject} onDelete={delete3dObject} />
+            <Properties3DPanel selected={selected3d} transform={selected3dTransform} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
+            <div className="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
+              <p className="font-bold text-slate-900 dark:text-white">3D Readout</p>
+              <p>Surface: {surfaceFormula(surface, surfaceScale)}</p>
+              <p>Cross-section plane: z = {roundTo(crossSection, 2)}</p>
+              <p>Camera zoom: {roundTo(zoom3d * 100, 0)}%</p>
+            </div>
+            <GizmoReadout3D selected={selected3d} transform={selected3dTransform} />
+          </aside>
         </div>
       </SectionCard>}
 
       {workspaceView === "geometry" && <SectionCard title="Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements.">
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_300px] 2xl:grid-cols-[minmax(0,1fr)_340px]">
           <div className="grid min-h-0 gap-3 lg:grid-cols-[250px_minmax(0,1fr)]">
             <div className="min-h-0">
               <input ref={imageInputRef} type="file" accept="image/*" className="hidden" onChange={(event) => handleImageUpload(event.target.files)} />
@@ -1731,7 +1782,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             <HiddenGeometryExport refSetter={(node) => { geometryExportRef.current = node; }} construction={construction} images={workspaceImages} />
             </div>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-3 lg:sticky lg:top-24">
             <ConstructionHelp tool={tool} />
             <GeometryObjectPanel
               selected={selectedGeometry}
@@ -4421,7 +4472,7 @@ function ObjectList3D({ selected, transforms, addedObjects, onSelect, onRestore,
         <h3 className="font-bold">3D Scene Objects</h3>
         <button type="button" onClick={() => { threeBaseIds.forEach(onRestore); addedObjects.forEach((object) => onRestore(object.id)); }} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold dark:bg-white/10">Restore all</button>
       </div>
-      <div className="mt-3 space-y-2">
+      <div className="mt-3 max-h-[28vh] space-y-2 overflow-y-auto pr-1">
         {threeBaseIds.map((id) => (
           <div key={id} className={`rounded-xl border p-3 ${selected === id ? "border-cyan-400 bg-cyan-50 dark:bg-cyan-400/10" : "border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-slate-900/50"}`}>
             <button type="button" onClick={() => onSelect(id)} className="w-full text-left">
@@ -5338,7 +5389,50 @@ function GeometryLine({ line, points, selected = false }: { line: GeoLine; point
   const a = pointById(points, line.a), b = pointById(points, line.b);
   if (!a || !b) return null;
   if (line.style?.visible === false) return null;
-  return <g><line data-object-type="line" data-object-id={line.id} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke={line.style?.color ?? "#8b5cf6"} strokeWidth={selected ? Math.max(7, line.style?.strokeWidth ?? 4) : line.style?.strokeWidth ?? 4} opacity={selected ? 0.95 : line.style?.opacity ?? 1} className="cursor-move" />{line.style?.trace && <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke={line.style?.color ?? "#8b5cf6"} strokeWidth="12" strokeDasharray="4 10" opacity="0.22" />}</g>;
+  const kind = line.style?.label ?? "line";
+  const color = line.style?.color ?? "#8b5cf6";
+  const strokeWidth = selected ? Math.max(7, line.style?.strokeWidth ?? 4) : line.style?.strokeWidth ?? 4;
+  const endpoints = linearDisplayEndpoints(a, b, kind);
+  const arrow = kind === "ray" || kind === "vector" ? arrowHeadPoints(endpoints.x1, endpoints.y1, endpoints.x2, endpoints.y2, kind === "vector" ? 14 : 11) : null;
+  const dash = kind === "line" ? "10 8" : undefined;
+  return (
+    <g>
+      <line
+        data-object-type="line"
+        data-object-id={line.id}
+        x1={endpoints.x1}
+        y1={endpoints.y1}
+        x2={endpoints.x2}
+        y2={endpoints.y2}
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeDasharray={dash}
+        opacity={selected ? 0.95 : line.style?.opacity ?? 1}
+        className="cursor-move"
+      />
+      {arrow && <polygon points={arrow} fill={color} opacity={selected ? 0.95 : line.style?.opacity ?? 1} pointerEvents="none" />}
+      {kind !== "line" && <text x={(a.x + b.x) / 2 + 8} y={(a.y + b.y) / 2 - 8} fill={color} className="pointer-events-none select-none text-[10px] font-black uppercase">{kind}</text>}
+      {line.style?.trace && <line x1={endpoints.x1} y1={endpoints.y1} x2={endpoints.x2} y2={endpoints.y2} stroke={color} strokeWidth="12" strokeDasharray="4 10" opacity="0.22" />}
+    </g>
+  );
+}
+
+function linearDisplayEndpoints(a: GeoPoint, b: GeoPoint, kind: string) {
+  if (kind === "segment" || kind === "vector") return { x1: a.x, y1: a.y, x2: b.x, y2: b.y };
+  const vector = normalize(b.x - a.x, b.y - a.y);
+  if (kind === "ray") return { x1: a.x, y1: a.y, x2: a.x + vector.x * 900, y2: a.y + vector.y * 900 };
+  return { x1: a.x - vector.x * 900, y1: a.y - vector.y * 900, x2: a.x + vector.x * 900, y2: a.y + vector.y * 900 };
+}
+
+function arrowHeadPoints(x1: number, y1: number, x2: number, y2: number, size: number) {
+  const vector = normalize(x2 - x1, y2 - y1);
+  const normal = { x: -vector.y, y: vector.x };
+  const base = { x: x2 - vector.x * size, y: y2 - vector.y * size };
+  return [
+    `${x2},${y2}`,
+    `${base.x + normal.x * size * 0.46},${base.y + normal.y * size * 0.46}`,
+    `${base.x - normal.x * size * 0.46},${base.y - normal.y * size * 0.46}`,
+  ].join(" ");
 }
 
 function GeometryCircle({ circle, points, selected = false }: { circle: GeoCircle; points: GeoPoint[]; selected?: boolean }) {
@@ -5551,6 +5645,139 @@ function snapBoardPoint(point: { x: number; y: number }, construction: Construct
     if (score < best.score && score < 18) best = { ...candidate, score };
   }
   return { x: best.x, y: best.y };
+}
+
+function createGeometryObjectForTool(construction: Construction, tool: GeometryTool, x: number, y: number) {
+  const base = construction.points.length;
+  const makePoint = (dx: number, dy: number, offset: number, style?: GeoStyle): GeoPoint => ({
+    id: crypto.randomUUID(),
+    x: roundTo(x + dx, 2),
+    y: roundTo(y + dy, 2),
+    label: nextPointLabel(construction.points, offset),
+    style,
+  });
+  const withPoints = (...points: GeoPoint[]) => ({ ...construction, points: [...construction.points, ...points] });
+  const labelOffset = (index: number) => base + index - construction.points.length;
+
+  if (tool === "move-canvas" || tool === "zoom") return construction;
+  if (tool === "freehand") {
+    const points = Array.from({ length: 22 }, (_, index) => {
+      const t = index / 21;
+      return { x: x - 110 + t * 220, y: y + Math.sin(t * Math.PI * 3) * 28 };
+    });
+    return { ...construction, loci: [...construction.loci, { id: crypto.randomUUID(), label: "freehand", points, style: { color: "#f97316", strokeWidth: 4 } }] };
+  }
+  if (tool === "segment" || tool === "line" || tool === "ray" || tool === "vector") {
+    const a = makePoint(-72, 0, labelOffset(0));
+    const b = makePoint(72, 0, labelOffset(1));
+    const style: GeoStyle = tool === "segment" ? { label: "segment", color: "#22d3ee" } : tool === "ray" ? { label: "ray", color: "#a78bfa" } : tool === "vector" ? { label: "vector", color: "#10b981", strokeWidth: 5 } : { label: "line", color: "#8b5cf6" };
+    return solveConstruction({ ...withPoints(a, b), lines: [...construction.lines, { id: crypto.randomUUID(), a: a.id, b: b.id, style }] });
+  }
+  if (tool === "circle" || tool === "circle-radius") {
+    const center = makePoint(0, 0, labelOffset(0));
+    const edge = makePoint(78, 0, labelOffset(1));
+    return solveConstruction({ ...withPoints(center, edge), circles: [...construction.circles, { id: crypto.randomUUID(), center: center.id, edge: edge.id }] });
+  }
+  if (tool === "polygon") {
+    const points = [makePoint(0, -74, labelOffset(0)), makePoint(-78, 54, labelOffset(1)), makePoint(82, 54, labelOffset(2))];
+    return solveConstruction({ ...withPoints(...points), polygons: [...construction.polygons, { id: crypto.randomUUID(), points: points.map((point) => point.id) }] });
+  }
+  if (tool === "angle") {
+    const a = makePoint(-86, -18, labelOffset(0));
+    const vertex = makePoint(0, 42, labelOffset(1));
+    const c = makePoint(82, -48, labelOffset(2));
+    return solveConstruction(addArcOrSector(withPoints(a, vertex, c), vertex.id, a.id, c.id, false));
+  }
+  if (tool === "parallel" || tool === "perpendicular") {
+    const a = makePoint(-92, 34, labelOffset(0));
+    const b = makePoint(46, -36, labelOffset(1));
+    const through = makePoint(12, 54, labelOffset(2), { color: "#f59e0b" });
+    return addParallelPerpendicularConstraint(withPoints(a, b, through), tool, a.id, b.id, through.id);
+  }
+  if (tool === "midpoint" || tool === "fixed-length") {
+    const a = makePoint(-84, 0, labelOffset(0));
+    const b = makePoint(84, 0, labelOffset(1));
+    return tool === "midpoint" ? addMidpointConstraint(withPoints(a, b), a.id, b.id) : addFixedLengthConstraint(withPoints(a, b), a.id, b.id);
+  }
+  if (tool === "circle-3-points") {
+    const a = makePoint(-76, 26, labelOffset(0));
+    const b = makePoint(2, -82, labelOffset(1));
+    const c = makePoint(84, 34, labelOffset(2));
+    return addCircleThrough3Points(withPoints(a, b, c), a.id, b.id, c.id);
+  }
+  if (tool === "on-circle") {
+    const center = makePoint(0, 0, labelOffset(0));
+    const edge = makePoint(86, 0, labelOffset(1));
+    const point = makePoint(44, 44, labelOffset(2), { color: "#8b5cf6" });
+    const circle: GeoCircle = { id: crypto.randomUUID(), center: center.id, edge: edge.id };
+    return addPointOnCircleConstraint(solveConstruction({ ...withPoints(center, edge, point), circles: [...construction.circles, circle] }), point.id);
+  }
+  if (tool === "intersect") {
+    const a = makePoint(-92, -62, labelOffset(0));
+    const b = makePoint(92, 62, labelOffset(1));
+    const c = makePoint(-92, 62, labelOffset(2));
+    const d = makePoint(92, -62, labelOffset(3));
+    const lineOne: GeoLine = { id: crypto.randomUUID(), a: a.id, b: b.id };
+    const lineTwo: GeoLine = { id: crypto.randomUUID(), a: c.id, b: d.id };
+    return addIntersectionConstraint(solveConstruction({ ...withPoints(a, b, c, d), lines: [...construction.lines, lineOne, lineTwo] }));
+  }
+  if (tool === "perpendicular-bisector") {
+    const a = makePoint(-82, 0, labelOffset(0));
+    const b = makePoint(82, 0, labelOffset(1));
+    return addPerpendicularBisector(withPoints(a, b), a.id, b.id);
+  }
+  if (tool === "angle-bisector") {
+    const a = makePoint(-78, -22, labelOffset(0));
+    const vertex = makePoint(0, 52, labelOffset(1));
+    const c = makePoint(82, -54, labelOffset(2));
+    return addAngleBisector(addArcOrSector(withPoints(a, vertex, c), vertex.id, a.id, c.id, false), a.id, vertex.id, c.id);
+  }
+  if (tool === "tangent" || tool === "polar") {
+    const center = makePoint(0, 0, labelOffset(0));
+    const edge = makePoint(70, 0, labelOffset(1));
+    const point = makePoint(tool === "tangent" ? 70 : 128, tool === "tangent" ? 0 : -48, labelOffset(2), { color: "#f97316" });
+    const next = solveConstruction({ ...withPoints(center, edge, point), circles: [...construction.circles, { id: crypto.randomUUID(), center: center.id, edge: edge.id }] });
+    return tool === "tangent" ? addTangentAtPoint(next, point.id) : addPolarLine(next, point.id);
+  }
+  if (tool === "locus") {
+    const point = makePoint(0, 0, labelOffset(0), { color: "#ec4899", trace: true });
+    return addLocusForPoint(withPoints(point), point.id);
+  }
+  if (tool === "regular-polygon") {
+    const a = makePoint(-58, 38, labelOffset(0));
+    const b = makePoint(42, 38, labelOffset(1));
+    return addRegularPolygon(withPoints(a, b), a.id, b.id, 5);
+  }
+  if (tool === "arc" || tool === "sector") {
+    const center = makePoint(0, 0, labelOffset(0));
+    const start = makePoint(82, 0, labelOffset(1));
+    const end = makePoint(16, -82, labelOffset(2));
+    return solveConstruction(addArcOrSector(withPoints(center, start, end), center.id, start.id, end.id, tool === "sector"));
+  }
+  if (tool === "compass") {
+    const a = makePoint(-90, 58, labelOffset(0));
+    const b = makePoint(-18, 58, labelOffset(1));
+    const center = makePoint(24, -18, labelOffset(2));
+    return addCompassCircle(withPoints(a, b, center), a.id, b.id, center.id);
+  }
+  if (tool === "mirror") {
+    const point = makePoint(54, -48, labelOffset(0), { color: "#ec4899" });
+    const a = makePoint(-56, -70, labelOffset(1));
+    const b = makePoint(-56, 72, labelOffset(2));
+    return mirrorPointAcrossLine(withPoints(point, a, b), point.id, a.id, b.id);
+  }
+  if (tool === "rotate" || tool === "dilate") {
+    const center = makePoint(-36, 40, labelOffset(0), { color: "#f59e0b" });
+    const point = makePoint(72, -44, labelOffset(1));
+    return tool === "rotate" ? rotatePoint(withPoints(center, point), point.id, center.id, 45) : dilatePoint(withPoints(center, point), point.id, center.id, 1.5);
+  }
+  if (tool === "translate") {
+    const from = makePoint(-86, 52, labelOffset(0));
+    const to = makePoint(-18, 4, labelOffset(1));
+    const point = makePoint(64, -42, labelOffset(2));
+    return translatePointByVector(withPoints(from, to, point), from.id, to.id, point.id);
+  }
+  return construction;
 }
 
 function addPerpendicularBisector(construction: Construction, aId: string, bId: string) {

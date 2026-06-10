@@ -11,12 +11,14 @@ describe("PWA assets", () => {
     expect(manifest.icons.some((icon) => icon.src === "/math-universe-icon.svg")).toBe(true);
   });
 
-  it("caches the app shell and asset chunks in the service worker", () => {
+  it("keeps the temporary no-cache service worker contract", () => {
     const serviceWorker = readFileSync(resolve("public/sw.js"), "utf8");
 
-    expect(serviceWorker).toContain("math-universe-v3-2026-06-10");
-    expect(serviceWorker).toContain("/manifest.webmanifest");
-    expect(serviceWorker).toContain("/assets/");
-    expect(serviceWorker).toContain("request.mode === \"navigate\"");
+    expect(serviceWorker).toContain("caches.delete");
+    expect(serviceWorker).toContain("self.registration.unregister");
+    expect(serviceWorker).toContain("client.navigate(client.url)");
+    expect(serviceWorker).toContain("self.addEventListener(\"fetch\"");
+    expect(serviceWorker).not.toContain("math-universe-v3-2026-06-10");
+    expect(serviceWorker).not.toContain("request.mode === \"navigate\"");
   });
 });

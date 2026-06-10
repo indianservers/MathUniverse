@@ -2,17 +2,13 @@ import { clsx } from "clsx";
 import katex from "katex";
 import {
   Atom,
-  BookMarked,
   BookOpen,
   Bookmark,
   BookmarkCheck,
   Brain,
   Calculator,
-  ChevronDown,
-  Copy,
   Download,
   Eye,
-  FileText,
   Filter,
   FlaskConical,
   GraduationCap,
@@ -21,14 +17,12 @@ import {
   Layers3,
   LayoutList,
   Lightbulb,
-  Link as LinkIcon,
   List,
   Maximize,
   Minimize,
   Printer,
   RotateCcw,
   Search,
-  Share2,
   Shuffle,
   Sigma,
   Sparkles,
@@ -1126,13 +1120,6 @@ function FormulaLibraryCard({
       )}
 
       <div className="mt-3 flex flex-wrap gap-2">
-        <SmallAction icon={Copy} label="Copy" onClick={() => copyValue(record.formula)} />
-        <SmallAction icon={FileText} label="LaTeX" onClick={() => copyValue(record.formula)} />
-        <SmallAction icon={BookMarked} label="Plain" onClick={() => copyValue(toPlainText(record.formula))} />
-        <SmallAction icon={Share2} label="Share" onClick={() => copyValue(`${window.location.origin}/formulas?category=${record.category.id}&formula=${record.id}#formula-${encodeURIComponent(record.id)}`)} />
-        <SmallAction icon={ChevronDown} label={isOpen ? "Less" : "More"} onClick={onToggleDetails} />
-      </div>
-      <div className="mt-3 flex flex-wrap gap-2">
         <StudyStateButton active={progress === "mastered"} label="Understood" onClick={() => setProgress("mastered")} />
         <StudyStateButton active={progress === "revision"} label="Review" onClick={() => setProgress("revision")} />
         <StudyStateButton active={progress === "viewed"} label="Viewed" onClick={() => setProgress("viewed")} />
@@ -1182,11 +1169,7 @@ function FormulaDetailPane({ bookmarks, copyValue, familyRecords, onToggleBookma
         <FormulaLine formula={record.formula} />
         <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{record.item.note}</p>
         <FormulaDetails record={record} familyRecords={familyRecords} relatedRecords={relatedRecords} setQuery={setQuery} />
-        <div className="flex flex-wrap gap-2">
-          <SmallAction icon={Copy} label="Copy" onClick={() => copyValue(record.formula)} />
-          <SmallAction icon={LinkIcon} label="URL" onClick={() => copyValue(`${window.location.origin}/formulas?category=${record.category.id}&formula=${record.id}#formula-${encodeURIComponent(record.id)}`)} />
-          <Link to={`/workspace?formula=${encodeURIComponent(record.formula)}`} className="formula-small-action"><Zap className="h-3.5 w-3.5" /> Workspace</Link>
-        </div>
+        <Link to={`/workspace?formula=${encodeURIComponent(record.formula)}`} className="formula-small-action w-fit"><Zap className="h-3.5 w-3.5" /> Workspace</Link>
         <div className="flex flex-wrap gap-2">
           <Chip active={progress === "mastered"} label="Understood" onClick={() => setProgress("mastered")} />
           <Chip active={progress === "revision"} label="Review" onClick={() => setProgress("revision")} />
@@ -1427,8 +1410,6 @@ function MobileFormulaDetailDrawer({
           <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{record.item.note}</p>
           <FormulaDetails record={record} familyRecords={familyRecords} relatedRecords={relatedRecords} setQuery={setQuery} />
           <div className="flex flex-wrap gap-2">
-            <SmallAction icon={Copy} label="Copy" onClick={() => copyValue(record.formula)} />
-            <SmallAction icon={LinkIcon} label="URL" onClick={() => copyValue(`${window.location.origin}/formulas?category=${record.category.id}&formula=${record.id}#formula-${encodeURIComponent(record.id)}`)} />
             <button type="button" onClick={onToggleBookmark} className="formula-small-action">
               {bookmarks.includes(record.id) ? <BookmarkCheck className="h-3.5 w-3.5" /> : <Bookmark className="h-3.5 w-3.5" />} Save
             </button>

@@ -19,8 +19,17 @@ const examples = [
 
 type SurfacePalette = "height" | "thermal" | "contour" | "mono";
 type ObjectPosition = { x: number; y: number; z: number };
+type BeautifulSurfacePreset = {
+  name: string;
+  expression: string;
+  xRange: number;
+  yRange: number;
+  resolution: number;
+  palette: SurfacePalette;
+};
 
 const initialObjectPosition: ObjectPosition = { x: 0, y: 0, z: 0 };
+const beautifulSurfacePresets = buildBeautifulSurfacePresets();
 
 export default function MathLab3DGraphing() {
   const [expression, setExpression] = useState("sin(x) * cos(y)");
@@ -42,6 +51,7 @@ export default function MathLab3DGraphing() {
   const [analysisOpen, setAnalysisOpen] = useState(true);
   const [surfaceExplanationOpen, setSurfaceExplanationOpen] = useState(true);
   const [sampleTableOpen, setSampleTableOpen] = useState(false);
+  const [randomSurfaceName, setRandomSurfaceName] = useState("Classic sine lattice");
 
   const surface = useMemo(() => sampleSurface(expression, -xRange, xRange, -yRange, yRange, resolution), [expression, xRange, yRange, resolution]);
   const sampleRows = useMemo(() => surface.grid.flatMap((row, rowIndex) => row.filter((_, colIndex) => rowIndex % Math.max(1, Math.floor(surface.grid.length / 4)) === 0 && colIndex % Math.max(1, Math.floor(row.length / 4)) === 0)).slice(0, 16), [surface.grid]);
@@ -96,7 +106,7 @@ export default function MathLab3DGraphing() {
         <SectionCard title="Surface Input" description="Enter a two-variable expression. You can include sin, cos, tan, sqrt, abs, ln, log, exp, pi, and e." compact>
           <div className="mb-3 flex flex-wrap gap-2 rounded-xl border border-slate-200 bg-white/90 p-1.5 backdrop-blur dark:border-white/10 dark:bg-slate-950/90">
             <ResetExampleButton onClick={() => { setExpression("sin(x) * cos(y)"); setXRange(3); setYRange(3); setResolution(44); setCameraKey((value) => value + 1); }} />
-            <button type="button" className="tool-button" onClick={tryRandom}><Dices className="h-4 w-4" />Try random</button>
+            <button type="button" className="tool-button" onClick={tryRandom} title={`${beautifulSurfacePresets.length} beautiful surface formulas`}><Dices className="h-4 w-4" />Random beauty</button>
             <CopyResultButton value={surface.error ? "" : surfaceSummary} />
           </div>
           <label className="text-sm font-bold text-slate-600 dark:text-slate-300">
@@ -109,6 +119,10 @@ export default function MathLab3DGraphing() {
           </label>
           <MathErrorBox error={surface.error} />
           <div className="mt-4"><PresetChips examples={examples} onSelect={setExpression} /></div>
+          <div className="mt-4 rounded-2xl border border-cyan-300/40 bg-cyan-400/10 p-3 text-sm leading-5 text-cyan-950 dark:text-cyan-50">
+            <p className="font-black">{beautifulSurfacePresets.length}+ beautiful formulas ready</p>
+            <p className="mt-1">Current random pick: <span className="font-mono font-bold">{randomSurfaceName}</span></p>
+          </div>
           <div className="mt-5 space-y-4">
             <SliderControl label="3D x range" min={1} max={8} step={0.25} value={xRange} onChange={setXRange} />
             <SliderControl label="3D y range" min={1} max={8} step={0.25} value={yRange} onChange={setYRange} />
@@ -285,9 +299,102 @@ export default function MathLab3DGraphing() {
   );
 
   function tryRandom() {
-    setExpression(examples[Math.floor(Math.random() * examples.length)]);
+    const preset = beautifulSurfacePresets[Math.floor(Math.random() * beautifulSurfacePresets.length)];
+    setExpression(preset.expression);
+    setXRange(preset.xRange);
+    setYRange(preset.yRange);
+    setResolution(preset.resolution);
+    setPalette(preset.palette);
+    setRandomSurfaceName(preset.name);
+    setShowWireframe(["contour", "mono"].includes(preset.palette));
+    setShowPoints(false);
+    setShowBase(true);
+    setShowGrid(true);
+    setShowAxes(true);
+    setShowLabels(true);
     setCameraKey((value) => value + 1);
   }
+}
+
+function buildBeautifulSurfacePresets(): BeautifulSurfacePreset[] {
+  const preset = (name: string, expression: string, xRange = 4, yRange = xRange, resolution = 52, palette: SurfacePalette = "height"): BeautifulSurfacePreset => ({
+    name,
+    expression,
+    xRange,
+    yRange,
+    resolution,
+    palette,
+  });
+  const radial = [0.8, 1, 1.2, 1.5, 1.8, 2, 2.4, 2.8, 3, 3.4, 3.8, 4].map((k) =>
+    preset(`Radial ripple ${k}`, `sin(${k}*sqrt(x^2 + y^2))/(1 + 0.08*(x^2 + y^2))`, 5, 5, 58, "contour")
+  );
+  const flower = [3, 4, 5, 6, 7, 8, 9, 10].flatMap((k) => [
+    preset(`Flower lattice ${k}A`, `sin(${k}*x)*cos(${k}*y)/(1 + 0.12*(x^2 + y^2))`, 3.2, 3.2, 58, "height"),
+    preset(`Flower lattice ${k}B`, `(sin(${k}*x) + cos(${k}*y))/(1 + 0.18*(x^2 + y^2))`, 3.2, 3.2, 56, "thermal"),
+  ]);
+  const waves = [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 3].flatMap((k) => [
+    preset(`Wave braid ${k}A`, `sin(${k}*x + y) + cos(x - ${k}*y)`, 4, 4, 50, "height"),
+    preset(`Wave braid ${k}B`, `sin(${k}*x)*sin(y) + cos(x)*cos(${k}*y)`, 4, 4, 50, "contour"),
+  ]);
+  const gaussians = [
+    preset("Twin emerald hills", `2*exp(-((x-1.4)^2 + (y-1.4)^2)) + 1.5*exp(-((x+1.2)^2 + (y+1.2)^2))`, 4, 4, 56, "height"),
+    preset("Crater lake", `2*exp(-(x^2 + y^2)) - 1.6*exp(-4*(x^2 + y^2))`, 3, 3, 58, "thermal"),
+    preset("Four glowing peaks", `exp(-((x-1.5)^2+(y-1.5)^2)) + exp(-((x+1.5)^2+(y-1.5)^2)) + exp(-((x-1.5)^2+(y+1.5)^2)) + exp(-((x+1.5)^2+(y+1.5)^2))`, 4, 4, 58, "height"),
+    preset("Gaussian ribbon", `exp(-x^2)*sin(3*y)`, 4, 4, 58, "mono"),
+    preset("Soft saddle hill", `(x^2 - y^2)*exp(-0.35*(x^2 + y^2))`, 4, 4, 56, "thermal"),
+    preset("Volcanic ridge", `(3 - x^2 - y^2)*exp(-0.4*(x^2 + y^2))`, 4, 4, 56, "thermal"),
+  ];
+  const polynomial = [
+    preset("Classic paraboloid", `0.25*(x^2 + y^2)`, 5, 5, 46, "height"),
+    preset("Saddle valley", `0.35*(x^2 - y^2)`, 4, 4, 46, "contour"),
+    preset("Monkey saddle", `0.08*(x^3 - 3*x*y^2)`, 4, 4, 54, "thermal"),
+    preset("Quartic bowl", `0.03*(x^4 + y^4) - 0.4*(x^2 + y^2)`, 4, 4, 54, "height"),
+    preset("Diamond roof", `abs(x) + abs(y)`, 4, 4, 38, "mono"),
+    preset("Crystal pyramid", `abs(x-y) + 0.5*abs(x+y)`, 4, 4, 42, "mono"),
+    preset("Folded saddle", `abs(x^2 - y^2)`, 4, 4, 44, "thermal"),
+    preset("Cubic ribbon", `0.08*x^3 - 0.35*x*y`, 4, 4, 50, "height"),
+  ];
+  const trigMix = [
+    preset("Classic sine lattice", `sin(x)*cos(y)`, 4, 4, 52, "height"),
+    preset("Cosine lace", `cos(x*y)`, 4, 4, 54, "contour"),
+    preset("Nested waves", `sin(x + sin(y))`, 5, 5, 54, "height"),
+    preset("Interference field", `sin(x^2 + y^2) + 0.5*cos(3*x)`, 4, 4, 58, "thermal"),
+    preset("Checker wave", `sin(2*x)*sin(2*y)`, 4, 4, 52, "contour"),
+    preset("Ocean swell", `sin(x) + 0.5*sin(2*y) + 0.25*cos(x-y)`, 5, 5, 52, "height"),
+    preset("Moire surface", `sin(2*x + y) * cos(x - 2*y)`, 4, 4, 58, "contour"),
+    preset("Standing wave dome", `cos(sqrt(x^2 + y^2))*exp(-0.08*(x^2+y^2))`, 5, 5, 58, "height"),
+    preset("Rippled saddle", `(x^2 - y^2)*0.08 + sin(3*x)*cos(3*y)*0.5`, 4, 4, 56, "thermal"),
+    preset("Star waves", `sin(x)*cos(y) + sin(2*x+2*y)*0.4`, 4, 4, 56, "height"),
+  ];
+  const special = [
+    preset("Log canyon", `ln(1 + x^2 + y^2)`, 5, 5, 46, "mono"),
+    preset("Sqrt cone", `sqrt(x^2 + y^2)`, 5, 5, 44, "height"),
+    preset("Inverted cone", `-sqrt(x^2 + y^2)`, 5, 5, 44, "thermal"),
+    preset("Soft absolute ridge", `abs(sin(x) + cos(y))`, 4, 4, 50, "contour"),
+    preset("Cubed root sheet", `cbrt(x*y)`, 5, 5, 48, "mono"),
+    preset("Arctan curtain", `atan(x*y)`, 5, 5, 50, "thermal"),
+    preset("Tangent fabric", `0.3*tan(0.4*x)*cos(y)`, 3, 3, 54, "thermal"),
+    preset("Log wave", `ln(1 + abs(sin(x*y)))`, 4, 4, 52, "contour"),
+  ];
+  const harmonic = [1, 2, 3, 4, 5, 6].flatMap((k) => [
+    preset(`Harmonic weave ${k}A`, `sin(${k}*x)/(1 + y^2) + cos(${k}*y)/(1 + x^2)`, 5, 5, 54, "height"),
+    preset(`Harmonic weave ${k}B`, `(sin(${k}*x) + sin(${k}*y))/(1 + 0.05*(x^2+y^2))`, 5, 5, 54, "thermal"),
+  ]);
+  const landscapes = [0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8].flatMap((k) => [
+    preset(`Landscape ${k} ridge`, `${k}*sin(x)*exp(-0.12*y^2) + 0.35*cos(2*y)`, 5, 5, 54, "height"),
+    preset(`Landscape ${k} basin`, `${k}*cos(y)*exp(-0.12*x^2) - 0.12*(x^2+y^2)`, 5, 5, 54, "thermal"),
+  ]);
+  const gems = [
+    preset("Peacock shell", `sin(3*sqrt(x^2+y^2)) + 0.35*cos(5*x)*sin(5*y)`, 4.5, 4.5, 62, "contour"),
+    preset("Aurora sheet", `sin(x) + sin(1.6*y) + sin(0.7*x + 1.2*y)`, 5, 5, 54, "height"),
+    preset("Glass flower", `cos(4*x)*cos(4*y)*exp(-0.08*(x^2+y^2))`, 4.5, 4.5, 62, "mono"),
+    preset("Solar flare", `sin(5*sqrt(x^2+y^2))/(0.8 + sqrt(x^2+y^2))`, 5, 5, 62, "thermal"),
+    preset("Cathedral vault", `cos(x) + cos(y) + 0.25*cos(x+y)`, 4, 4, 52, "height"),
+    preset("Braided saddle", `sin(x*y) + 0.12*(x^2-y^2)`, 4, 4, 58, "contour"),
+    preset("Crystal field", `floor(abs(sin(x)*cos(y))*5)/5`, 4, 4, 46, "mono"),
+    preset("Smooth crystal field", `abs(sin(2*x)*cos(2*y))`, 4, 4, 52, "contour"),
+  ];
+  return [...trigMix, ...radial, ...flower, ...waves, ...gaussians, ...polynomial, ...special, ...harmonic, ...landscapes, ...gems];
 }
 
 function SurfaceMesh({ samples, palette, wireframe }: { samples: SurfaceSampleResult; palette: SurfacePalette; wireframe: boolean }) {
