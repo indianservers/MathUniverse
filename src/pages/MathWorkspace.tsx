@@ -1,7 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Box, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
-import { KeyboardEvent, MouseEvent as ReactMouseEvent, PointerEvent, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { MouseEvent as ReactMouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
@@ -1325,17 +1325,70 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     else deleteGeometryObject({ type: ref.kind as GeometryObjectType, id: ref.id });
   };
 
+  const clearWorkspaceSelection = useCallback(() => {
+    setTool("select");
+    setSelectedGeometry(null);
+    setSelectedImageId(null);
+    setSelectedAlgebra(null);
+    setSelectedPointIds([]);
+    setPolygonDraft([]);
+    setDragPointId(null);
+    setDragImageId(null);
+    setDragGeometry(null);
+    setDrag3d(null);
+    setSelected3d("");
+    setContextMenu(null);
+    setProjectStatus("Selection cleared. Tool returned to Select.");
+  }, []);
+
+  const deleteSelectedWorkspaceItems = useCallback(() => {
+    if (selectedImageId) {
+      deleteSelectedImage();
+      setProjectStatus("Selected image deleted.");
+      return true;
+    }
+    if (selectedGeometry) {
+      deleteGeometryObject(selectedGeometry);
+      setProjectStatus("Selected geometry object deleted.");
+      return true;
+    }
+    if (selectedPointIds.length) {
+      recordWorkspaceStep("Delete selected points", `${selectedPointIds.length} point${selectedPointIds.length === 1 ? "" : "s"} removed.`);
+      setConstruction((current) => selectedPointIds.reduce((next, id) => deleteGeometryObjectFromConstruction(next, { type: "point", id }), current));
+      setSelectedPointIds([]);
+      setSelectedGeometry(null);
+      setProjectStatus("Selected points deleted.");
+      return true;
+    }
+    if (selectedAlgebra) {
+      deleteWorkspaceObject(selectedAlgebra);
+      setSelectedAlgebra(null);
+      setProjectStatus("Selected algebra object deleted.");
+      return true;
+    }
+    if (selected3d) {
+      delete3dObject(selected3d);
+      setSelected3d("");
+      setProjectStatus(isBase3dId(selected3d) ? "Selected 3D object hidden." : "Selected 3D object deleted.");
+      return true;
+    }
+    return false;
+  }, [deleteSelectedImage, selectedGeometry, selectedPointIds, selectedAlgebra, selected3d, selectedImageId]);
+
   const replayConstructionStep = (step: ConstructionStep) => {
     restoreProtocolSnapshot(step);
     setProjectStatus(`Replayed: ${step.label}`);
   };
-  const handleWorkspaceKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+  const runWorkspaceShortcut = useCallback((event: Pick<KeyboardEvent, "key" | "ctrlKey" | "metaKey" | "shiftKey" | "preventDefault">) => {
     if (event.key === "Escape") {
-      setTool("select");
-      setSelectedGeometry(null);
-      setSelectedPointIds([]);
-      setPolygonDraft([]);
-      setContextMenu(null);
+      event.preventDefault();
+      clearWorkspaceSelection();
+      return;
+    }
+    if (event.key === "Delete" || event.key === "Backspace") {
+      const deleted = deleteSelectedWorkspaceItems();
+      event.preventDefault();
+      if (!deleted) setProjectStatus("No selected object to delete.");
       return;
     }
     if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key) && selectedGeometry?.type === "point") {
@@ -1368,10 +1421,19 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       event.preventDefault();
       runInput();
     }
-  };
+  }, [clearWorkspaceSelection, deleteSelectedWorkspaceItems, loadWorkspace, redoWorkspace, runInput, saveWorkspace, selectedGeometry, undoWorkspace, updateSelectedPointByDelta]);
+
+  useEffect(() => {
+    const onDocumentKeyDown = (event: globalThis.KeyboardEvent) => {
+      if (isTypingTarget(event.target)) return;
+      runWorkspaceShortcut(event);
+    };
+    document.addEventListener("keydown", onDocumentKeyDown);
+    return () => document.removeEventListener("keydown", onDocumentKeyDown);
+  }, [runWorkspaceShortcut]);
 
   return (
-    <div ref={workspaceRef} className="space-y-3 pt-20 xl:pt-14" onKeyDown={handleWorkspaceKeyDown}>
+    <div ref={workspaceRef} className="space-y-3 pt-20 xl:pt-14">
       <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} />
       {!singleView && <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 
@@ -1396,6 +1458,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         onRunQa={runQaNow}
         onPerformance={setPerformanceMode}
       />
+      <WorkspaceShortcutStrip />
 
       {workspaceView === "teach" && <SectionCard title="Teaching, Library, And Export" description="Launch syllabus workspaces, guide students, present steps, and manage browser-only projects.">
         <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
@@ -1567,6 +1630,11 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               onToggleSurface={setShowSurface}
               onToggleSolid={setShowSolid}
               onToggleRotate={setAutoRotate3d}
+              onSelectTool={() => {
+                setSelected3d("");
+                setDrag3d(null);
+                setProjectStatus("3D Select tool ready. Click an object in the scene or object list.");
+              }}
               onZoomIn={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))}
               onZoomOut={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))}
               onReset={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); setCameraPreset3d("isometric"); }}
@@ -1639,6 +1707,17 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           </div>
 
           <div className="min-w-0 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
+              <div className="flex flex-wrap gap-2">
+                <button type="button" onClick={() => { setSelected3d(""); setDrag3d(null); setProjectStatus("3D Select tool ready. Click an object in the scene or object list."); }} className="action-secondary">
+                  <MousePointer2 className="h-4 w-4" /> Select
+                </button>
+                <button type="button" onClick={() => setAutoRotate3d((value) => !value)} className={autoRotate3d ? "action-primary" : "action-secondary"}>
+                  <RotateCcw className="h-4 w-4" /> {autoRotate3d ? "Pause rotation" : "Start rotation"}
+                </button>
+              </div>
+              <p className="px-2 text-xs font-bold text-slate-500 dark:text-slate-400">Esc deselects. Delete removes selected object.</p>
+            </div>
             <ThreeSceneWrapper height="min(54vh, 500px)" mobileHeight="min(58vh, 400px)" interactionLabel="Drag rotate - pinch zoom">
               <ambientLight intensity={0.75} />
               <directionalLight position={[5, 6, 4]} intensity={1.2} />
@@ -3333,6 +3412,33 @@ function WorkspaceMainMenu({ active, onChange }: { active: WorkspaceView; onChan
   );
 }
 
+function isTypingTarget(target: EventTarget | null) {
+  if (!(target instanceof HTMLElement)) return false;
+  const tag = target.tagName;
+  return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || target.isContentEditable;
+}
+
+function WorkspaceShortcutStrip() {
+  const shortcuts = [
+    ["Esc", "deselect"],
+    ["Delete", "delete selected"],
+    ["Arrow keys", "nudge 2D point"],
+    ["Shift+Arrow", "fast nudge"],
+    ["Ctrl+Z / Y", "undo / redo"],
+    ["Ctrl+Enter", "run command"],
+  ];
+  return (
+    <div className="flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/70 p-2 text-xs font-bold text-slate-600 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-slate-300">
+      {shortcuts.map(([key, label]) => (
+        <span key={key} className="inline-flex items-center gap-2 rounded-xl bg-slate-100 px-3 py-2 dark:bg-white/10">
+          <kbd className="rounded-md bg-white px-2 py-1 font-black text-slate-900 shadow-sm dark:bg-slate-950 dark:text-white">{key}</kbd>
+          <span>{label}</span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function WorkspaceModeTabs({ active, onChange }: { active: WorkspaceView; onChange: (view: WorkspaceView) => void }) {
   const views: { id: WorkspaceView; label: string; icon: JSX.Element }[] = [
     { id: "graph", label: "Graph + Algebra", icon: <FunctionSquare className="h-4 w-4" /> },
@@ -3626,6 +3732,7 @@ function Space3DToolPalette({
   onToggleSurface,
   onToggleSolid,
   onToggleRotate,
+  onSelectTool,
   onZoomIn,
   onZoomOut,
   onReset,
@@ -3654,6 +3761,7 @@ function Space3DToolPalette({
   onToggleSurface: (value: boolean) => void;
   onToggleSolid: (value: boolean) => void;
   onToggleRotate: (value: boolean) => void;
+  onSelectTool: () => void;
   onZoomIn: () => void;
   onZoomOut: () => void;
   onReset: () => void;
@@ -3701,9 +3809,16 @@ function Space3DToolPalette({
     { id: "zoom-out", label: "Zoom Out", icon: ZoomOut, action: onZoomOut },
     { id: "reset", label: "Reset", icon: Eraser, action: onReset, danger: true },
   ];
+  const mainActions: GeometryPaletteActionItem[] = [
+    { id: "select", label: "Select", icon: MousePointer2, action: onSelectTool },
+    { id: "pause-rotation", label: autoRotate ? "Pause Rotation" : "Start Rotation", icon: RotateCcw, action: () => onToggleRotate(!autoRotate) },
+  ];
 
   return (
     <aside className="space3d-tool-palette thin-scrollbar max-h-[clamp(18rem,46vh,32.5rem)] overflow-auto rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-xl shadow-slate-200/40 dark:border-white/10 dark:bg-slate-950/70 dark:shadow-black/20">
+      <Space3DPaletteSection title="Main Tools">
+        {mainActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+      </Space3DPaletteSection>
       <Space3DPaletteSection title="Surfaces">
         {space3dSurfacePalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeSurface === item.id || (activeObject === "surface" && activeSurface === item.id)} onClick={() => onSurface(item.id)} />)}
       </Space3DPaletteSection>
@@ -4506,6 +4621,18 @@ function ObjectList3D({ selected, transforms, addedObjects, onSelect, onRestore,
 }
 
 function Properties3DPanel({ selected, transform, onTransform, onVector, onRestore, onDelete }: { selected: string; transform: Transform3D; onTransform: (id: string, patch: Partial<Transform3D>) => void; onVector: (id: string, key: "position" | "rotation", index: number, value: number) => void; onRestore: (id: string) => void; onDelete: (id: string) => void }) {
+  if (!selected) {
+    return (
+      <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="font-bold">Selected Object</h3>
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600 dark:bg-white/10 dark:text-slate-300">none</span>
+        </div>
+        <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Select a 3D object to edit position, rotation, scale, material, opacity, or dimensions. Press Escape to stay deselected.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <div className="flex items-center justify-between gap-2">

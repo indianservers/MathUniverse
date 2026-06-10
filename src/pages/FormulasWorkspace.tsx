@@ -298,13 +298,6 @@ const PRIORITY_TAGS = [
   "units",
 ];
 
-const EXAM_PRESETS: Record<string, string[]> = {
-  "Board Sheet": ["algebra", "trigonometry", "geometry", "coordinate-geometry", "statistics", "probability"],
-  "JEE Core": ["algebra", "trigonometry", "limits-continuity", "derivatives", "integrals", "coordinate-geometry", "vectors", "three-d-geometry", "matrices", "determinants"],
-  "Applied Core": ["calculus", "linear-algebra", "differential-equations", "vectors", "probability-distributions", "complex-numbers"],
-  "Research": ["abstract-algebra", "real-analysis", "complex-analysis", "topology", "measure-theory", "functional-analysis"],
-};
-
 const SEARCH_SYNONYMS: Record<string, string[]> = {
   "area circle": ["circle area", "pi r^2", "πr²"],
   "circumference circle": ["circle circumference", "2 pi r", "perimeter circle"],
@@ -691,7 +684,6 @@ export default function Formulas() {
 
           <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
             <div className="min-w-0 space-y-4">
-              <ExamPresetBar setActiveCategoryId={setActiveCategoryId} />
               <FormulaTagPicker
                 selectedTags={selectedTags}
                 tagCounts={visibleTagCounts}
@@ -1511,20 +1503,6 @@ function FormulaLine({ formula }: { formula: string }) {
     <div className="formula-line-render min-w-0 overflow-x-auto rounded-xl border border-cyan-200/70 bg-cyan-50 px-3 py-3 text-center dark:border-cyan-400/20 dark:bg-cyan-400/10">
       {html ? <div className="formula-katex [&_.katex-display]:my-0" dangerouslySetInnerHTML={{ __html: html }} /> : <p className="formula-plain whitespace-nowrap font-mono text-sm font-bold">{formula}</p>}
     </div>
-  );
-}
-
-function ExamPresetBar({ setActiveCategoryId }: { setActiveCategoryId: (id: string) => void }) {
-  return (
-    <SectionCard title="Exam Formula Sheet Presets" description="Jump into common collections." compact>
-      <div className="flex gap-2 overflow-x-auto pb-1 thin-scrollbar">
-        {Object.entries(EXAM_PRESETS).map(([name, categories]) => (
-          <button key={name} type="button" onClick={() => setActiveCategoryId(categories[0] ?? "all")} className="min-w-fit rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-700 hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-100">
-            {name}
-          </button>
-        ))}
-      </div>
-    </SectionCard>
   );
 }
 

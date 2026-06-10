@@ -1,5 +1,5 @@
 import { Lock, Unlock } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { formatFormulaValue } from "../../utils/format";
 import { readSliderParam, writeSliderParam } from "../../utils/shareableState";
 
@@ -66,6 +66,8 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
     { label: "Classic", value: Math.min(max, Math.max(min, (min + max) / 2)) },
     { label: "Extreme", value: max },
   ];
+  const progress = max === min ? 0 : Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
+  const rangeStyle = { "--slider-progress": `${progress}%` } as CSSProperties;
 
   return (
     <label className="block rounded-xl border border-slate-200 bg-white/75 p-3 shadow-sm transition hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950/40 dark:hover:border-cyan-400/40">
@@ -91,7 +93,8 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
         </div>
       </div>
       <input
-        className="slider-range w-full cursor-pointer appearance-none bg-transparent accent-cyan-500 touch-pan-x"
+        className="slider-range w-full cursor-pointer appearance-none accent-cyan-500 touch-pan-x"
+        style={rangeStyle}
         type="range"
         value={value}
         min={min}

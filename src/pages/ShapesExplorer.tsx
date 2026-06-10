@@ -243,7 +243,17 @@ export default function ShapesExplorer() {
                 onPointerDown={(event) => startPaneResize(event, viewsRef, setViewPaneSplit, 30, 70)}
               />
 
-              <VisualizationPane title="3D Pane" description={selected.kind === "2d" ? "Extruded model from the 2D outline." : "Real solid with dimension guides."} badge={selected.kind === "2d" ? "extruded 3D" : "solid 3D"}>
+              <VisualizationPane
+                title="3D Pane"
+                description={selected.kind === "2d" ? "Extruded model from the 2D outline." : "Real solid with dimension guides."}
+                badge={selected.kind === "2d" ? "extruded 3D" : "solid 3D"}
+                action={
+                  <button type="button" onClick={() => setAutoRotate((value) => !value)} className={autoRotate ? "action-primary px-3 py-2 text-xs" : "action-secondary px-3 py-2 text-xs"}>
+                    {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                    {autoRotate ? "Pause rotation" : "Start rotation"}
+                  </button>
+                }
+              >
                 <ThreeSceneWrapper height="100%" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom">
                   <ambientLight intensity={0.75} />
                   <directionalLight position={[4, 5, 4]} intensity={1.35} />
@@ -842,6 +852,10 @@ function ShapeViewControls({ kind, zoom, rotation, autoRotate, onZoomIn, onZoomO
         </IconButton>
       </div>
       <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+        <button type="button" onClick={onToggleAutoRotate} className={autoRotate ? "action-primary px-3 py-2 text-xs" : "action-secondary px-3 py-2 text-xs"}>
+          {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+          {autoRotate ? "Pause rotation" : "Start rotation"}
+        </button>
         <span className="mini-chip">Zoom {roundTo(zoom * 100, 0)}%</span>
         <span className="mini-chip">Rotate {rotation} deg</span>
         <span className="mini-chip">{kind === "2d" ? "2D + extruded 3D" : "solid 3D"}</span>
@@ -865,7 +879,7 @@ function IconButton({ label, onClick, disabled, children }: { label: string; onC
   );
 }
 
-function VisualizationPane({ title, description, badge, children }: { title: string; description: string; badge: string; children: ReactNode }) {
+function VisualizationPane({ title, description, badge, action, children }: { title: string; description: string; badge: string; action?: ReactNode; children: ReactNode }) {
   return (
     <div className="flex min-h-[390px] flex-col rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60 xl:min-h-[640px]">
       <div className="mb-3 flex items-start justify-between gap-3">
@@ -873,7 +887,10 @@ function VisualizationPane({ title, description, badge, children }: { title: str
           <p className="text-xs font-black uppercase text-cyan-600 dark:text-cyan-300">{title}</p>
           <p className="mt-1 text-sm leading-5 text-slate-600 dark:text-slate-300">{description}</p>
         </div>
-        <span className="shrink-0 rounded-full bg-slate-100 px-3 py-2 text-xs font-black text-slate-700 dark:bg-white/10 dark:text-slate-100">{badge}</span>
+        <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+          {action}
+          <span className="rounded-full bg-slate-100 px-3 py-2 text-xs font-black text-slate-700 dark:bg-white/10 dark:text-slate-100">{badge}</span>
+        </div>
       </div>
       <div className="min-h-0 flex-1 overflow-hidden rounded-2xl bg-slate-50 dark:bg-slate-950">
         {children}

@@ -332,8 +332,56 @@ function RootVisual({ n, type }: { n: number; type: number }) {
 }
 
 function NumberSystem({ selector, root }: { selector: number; root: number }) {
-  const labels = ["Natural", "Whole", "Integer", "Rational", "Irrational", "Real"];
-  return <g>{labels.map((label, i) => <rect key={label} x={90 + i * 95} y={150 - i * 10} width={150 + i * 12} height={190 + i * 15} rx="20" fill="none" stroke={Math.round(selector) - 1 === i ? "#f59e0b" : "#06b6d4"} strokeWidth={Math.round(selector) - 1 === i ? 6 : 3} opacity="0.9" />)}{labels.map((label, i) => <Label key={label} x={110 + i * 95} y={180 - i * 10} text={label} />)}<Label x="90" y="410" text={`sqrt(${root}) approx ${roundTo(Math.sqrt(root), 4)} ${isPerfectSquare(root) ? "is rational" : "is usually irrational"}`} /></g>;
+  const selected = Math.max(1, Math.min(6, Math.round(selector)));
+  const roundedRoot = Math.max(0, Math.round(root));
+  const rootValue = Math.sqrt(roundedRoot);
+  const perfectSquare = isPerfectSquare(roundedRoot);
+  const rootX = mapLine(Math.min(8, rootValue), 0, 8);
+  const rationalHighlight = selected >= 1 && selected <= 4;
+  const irrationalHighlight = selected === 5 || !perfectSquare;
+  const realHighlight = selected === 6;
+  const strokeFor = (active: boolean) => active ? "#f59e0b" : "#06b6d4";
+  const widthFor = (active: boolean) => active ? 6 : 3;
+
+  return (
+    <g>
+      <rect x="70" y="62" width="620" height="300" rx="30" fill="#e0f2fe" opacity="0.45" stroke={strokeFor(realHighlight)} strokeWidth={widthFor(realHighlight)} />
+      <Label x="592" y="96" text="Real R" />
+
+      <rect x="100" y="110" width="360" height="205" rx="26" fill="#ecfeff" opacity="0.82" stroke={strokeFor(selected === 4 || rationalHighlight)} strokeWidth={widthFor(selected === 4)} />
+      <Label x="355" y="145" text="Rational Q" />
+
+      <rect x="485" y="110" width="165" height="205" rx="26" fill="#fff7ed" opacity="0.88" stroke={strokeFor(irrationalHighlight)} strokeWidth={widthFor(selected === 5 || !perfectSquare)} />
+      <Label x="515" y="145" text="Irrational R\\Q" />
+
+      <rect x="130" y="150" width="285" height="138" rx="22" fill="#f8fafc" opacity="0.95" stroke={strokeFor(selected === 3)} strokeWidth={widthFor(selected === 3)} />
+      <Label x="325" y="180" text="Integer Z" />
+
+      <rect x="155" y="185" width="200" height="78" rx="18" fill="#fefce8" opacity="0.95" stroke={strokeFor(selected === 2)} strokeWidth={widthFor(selected === 2)} />
+      <Label x="252" y="215" text="Whole W" />
+
+      <rect x="175" y="212" width="115" height="34" rx="14" fill="#dcfce7" opacity="0.96" stroke={strokeFor(selected === 1)} strokeWidth={widthFor(selected === 1)} />
+      <Label x="190" y="236" text="Natural N" />
+
+      <text x="113" y="342" fill="#0f172a" fontSize="15" fontWeight="900">N subset W subset Z subset Q subset R</text>
+      <text x="486" y="342" fill="#9a3412" fontSize="15" fontWeight="900">Irrationals are in R, not in Q</text>
+
+      <line x1="95" x2="665" y1="392" y2="392" stroke="#0f172a" strokeWidth="4" strokeLinecap="round" />
+      {Array.from({ length: 9 }, (_, i) => (
+        <g key={i}>
+          <line x1={mapLine(i, 0, 8)} x2={mapLine(i, 0, 8)} y1="382" y2="402" stroke="#0f172a" strokeWidth="2" />
+          <text x={mapLine(i, 0, 8) - 5} y="423" fill="#334155" fontSize="12" fontWeight="800">{i}</text>
+        </g>
+      ))}
+      <circle cx={rootX} cy="392" r="9" fill={perfectSquare ? "#06b6d4" : "#f59e0b"} stroke="#0f172a" strokeWidth="3" />
+      <text x={Math.min(590, rootX + 14)} y="382" fill="#0f172a" fontSize="14" fontWeight="900">
+        sqrt({roundedRoot}) = {roundTo(rootValue, 4)}
+      </text>
+      <text x="95" y="452" fill="#0f172a" fontSize="16" fontWeight="900">
+        sqrt({roundedRoot}) {perfectSquare ? "is rational because the root is an integer." : "is irrational because "}{!perfectSquare ? `${roundedRoot} is not a perfect square.` : ""}
+      </text>
+    </g>
+  );
 }
 
 function EuclidGeometry({ card, step }: { card: number; step: number }) {
