@@ -1,7 +1,8 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Box, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut } from "lucide-react";
-import { KeyboardEvent, MouseEvent as ReactMouseEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
+import { Box, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
+import { KeyboardEvent, MouseEvent as ReactMouseEvent, PointerEvent, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
@@ -62,7 +63,7 @@ type ResultCard = { id: string; input: string; interpretation: string; result: s
 type PlotKind = "function" | "inequality" | "scatter" | "regression";
 type PlotItem = { id: string; expression: string; color: string; name?: string; kind?: PlotKind; points?: ResultTableRow[]; visible?: boolean; locked?: boolean; trace?: boolean };
 type SpreadsheetCellGrid = string[][];
-type GeometryTool = "select" | "point" | "line" | "circle" | "polygon" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "on-circle" | "intersect" | "perpendicular-bisector" | "angle-bisector" | "tangent" | "polar" | "locus" | "regular-polygon" | "sector" | "arc" | "compass" | "mirror" | "rotate" | "dilate" | "translate";
+type GeometryTool = "select" | "point" | "segment" | "ray" | "vector" | "line" | "circle" | "polygon" | "angle" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "circle-radius" | "circle-3-points" | "on-circle" | "intersect" | "perpendicular-bisector" | "angle-bisector" | "tangent" | "polar" | "locus" | "regular-polygon" | "sector" | "arc" | "compass" | "mirror" | "rotate" | "dilate" | "translate" | "show-hide" | "lock" | "freehand" | "text" | "image" | "move-canvas" | "zoom" | "triangle" | "rectangle" | "shape-circle" | "parabola" | "ellipse" | "hyperbola" | "reflect" | "trace" | "stop-trace" | "clear-trace" | "delete" | "redo" | "reset" | "save" | "load";
 type GeoStyle = { color?: string; fill?: string; strokeWidth?: number; size?: number; visible?: boolean; trace?: boolean; label?: string; opacity?: number; labelMode?: "name" | "value" | "both" | "hidden" };
 type GeoPoint = { id: string; x: number; y: number; label: string; style?: GeoStyle };
 type GeoLine = { id: string; a: string; b: string; style?: GeoStyle };
@@ -81,15 +82,17 @@ type Construction = { points: GeoPoint[]; lines: GeoLine[]; circles: GeoCircle[]
 type GeometryObjectType = "point" | "line" | "circle" | "polygon" | "arc" | "locus";
 type SelectedGeometryObject = { type: GeometryObjectType; id: string };
 type SurfaceKind = "paraboloid" | "saddle" | "wave" | "plane" | "ripple" | "cone-surface" | "custom-z" | "parametric" | "implicit";
-type SolidKind = "cube" | "sphere" | "cylinder" | "cone" | "prism" | "pyramid" | "polyhedron";
+type SolidKind = "cube" | "cuboid" | "sphere" | "ellipsoid" | "hemisphere" | "cylinder" | "cone" | "frustum" | "torus" | "tube" | "capsule" | "prism" | "pyramid" | "tetrahedron" | "octahedron" | "dodecahedron" | "wedge" | "polyhedron";
 type ThreeObjectId = "surface" | "solid" | "slice" | "point" | "vector" | "line3d" | "plane3d" | "sphere3d" | "cone3d" | "cylinder3d" | "prism3d" | "pyramid3d" | "polyhedron3d";
 type Transform3D = { position: [number, number, number]; rotation: [number, number, number]; scale: number; visible: boolean; color: string; name?: string; locked?: boolean; trace?: boolean; dimensions?: [number, number, number]; opacity?: number; material?: "matte" | "glass" | "wireframe" };
+type Added3DRenderKind = "surface" | "solid" | "slice" | "point" | "vector" | "line3d" | "plane3d";
+type Added3DObject = { id: string; label: string; baseId: ThreeObjectId; render: Added3DRenderKind; solid?: SolidKind; surface?: SurfaceKind; transform: Transform3D };
 type CameraPreset3D = "free" | "top" | "front" | "right" | "isometric";
 type AlgebraObjectKind = "function" | "point" | "line" | "circle" | "polygon" | "arc" | "locus" | "3d";
 type AlgebraObjectRef = { kind: AlgebraObjectKind; id: string };
-type ContextMenuState = { x: number; y: number; target: SelectedGeometryObject | { type: "3d"; id: ThreeObjectId } | { type: "algebra"; ref: AlgebraObjectRef } };
+type ContextMenuState = { x: number; y: number; target: SelectedGeometryObject | { type: "3d"; id: string } | { type: "algebra"; ref: AlgebraObjectRef } };
 type WorkspaceView = "graph" | "geometry" | "3d" | "data" | "teach";
-type ConstructionStep = { id: string; label: string; detail: string; createdAt: number; snapshot: Pick<WorkspaceSnapshot, "plots" | "construction" | "transforms3d"> };
+type ConstructionStep = { id: string; label: string; detail: string; createdAt: number; snapshot: Pick<WorkspaceSnapshot, "plots" | "construction" | "transforms3d" | "added3dObjects"> };
 type ActivityJournalEntry = { templateId: string; phase: GuidedActivityPhase; response: string; selfCheck: "not-started" | "revisit" | "got-it"; confidence: number; updatedAt: number };
 type WorkspaceSnapshot = {
   input: string;
@@ -110,6 +113,7 @@ type WorkspaceSnapshot = {
   autoRotate3d: boolean;
   zoom3d: number;
   transforms3d: Record<ThreeObjectId, Transform3D>;
+  added3dObjects?: Added3DObject[];
   images?: WorkspaceImage[];
   spreadsheet?: SpreadsheetCellGrid;
   tableRange?: { start: number; end: number; step: number };
@@ -150,6 +154,19 @@ const defaultTransforms3d: Record<ThreeObjectId, Transform3D> = {
   prism3d: { name: "prism", position: [-2.6, 0.9, 1], rotation: [0, 20, 0], scale: 1, visible: false, color: "#10b981", dimensions: [1.8, 1.5, 1.8], opacity: 0.8, material: "glass" },
   pyramid3d: { name: "pyramid", position: [2.6, 0.9, 1], rotation: [0, -20, 0], scale: 1, visible: false, color: "#eab308", dimensions: [1.8, 1.8, 1.8], opacity: 0.82, material: "glass" },
   polyhedron3d: { name: "polyhedron", position: [0, 1.2, 2.8], rotation: [20, 20, 0], scale: 1, visible: false, color: "#ec4899", dimensions: [1.4, 1.4, 1.4], opacity: 0.82, material: "wireframe" },
+};
+const threeObjectLabels: Record<ThreeObjectId, string> = { surface: "Surface mesh", solid: "Solid shape", slice: "Cross-section", point: "Point", vector: "Vector", line3d: "Line", plane3d: "Plane", sphere3d: "Sphere", cone3d: "Cone", cylinder3d: "Cylinder", prism3d: "Prism", pyramid3d: "Pyramid", polyhedron3d: "Polyhedron" };
+const threeObjectSolidMap: Partial<Record<ThreeObjectId, SolidKind>> = { solid: "cube", sphere3d: "sphere", cone3d: "cone", cylinder3d: "cylinder", prism3d: "prism", pyramid3d: "pyramid", polyhedron3d: "polyhedron" };
+const threeBaseIds = Object.keys(defaultTransforms3d) as ThreeObjectId[];
+const isBase3dId = (id: string): id is ThreeObjectId => id in defaultTransforms3d;
+const addedRenderKindForBase = (id: ThreeObjectId): Added3DRenderKind => {
+  if (id === "surface") return "surface";
+  if (id === "slice") return "slice";
+  if (id === "point") return "point";
+  if (id === "vector") return "vector";
+  if (id === "line3d") return "line3d";
+  if (id === "plane3d") return "plane3d";
+  return "solid";
 };
 const geometryDefaultColor: Record<GeometryObjectType, string> = { point: "#06b6d4", line: "#8b5cf6", circle: "#06b6d4", polygon: "#f59e0b", arc: "#14b8a6", locus: "#ec4899" };
 const examples = ["plot sin(x)", "Root[x^2-4]", "Extremum[x^2-4*x+1]", "Intersect[x^2, 2*x+3]", "Derivative[x^3-2*x]", "Integral[3*x^2]", "Factor[x^2-5*x+6]", "Expand[(x+2)(x+3)]", "Solve[x^2-5*x+6=0]", "Substitute[x^2+a, a=3]", "Sequence[n^2, n, 1, 6]", "Table[sin(x), -3, 3, 0.5]"];
@@ -195,9 +212,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [sceneAnimationSpeed, setSceneAnimationSpeed] = useState(0.18);
   const [cameraPreset3d, setCameraPreset3d] = useState<CameraPreset3D>("isometric");
   const [zoom3d, setZoom3d] = useState(1);
-  const [selected3d, setSelected3d] = useState<ThreeObjectId>("solid");
+  const [selected3d, setSelected3d] = useState<string>("solid");
   const [transforms3d, setTransforms3d] = useState<Record<ThreeObjectId, Transform3D>>(defaultTransforms3d);
-  const [drag3d, setDrag3d] = useState<ThreeObjectId | null>(null);
+  const [added3dObjects, setAdded3dObjects] = useState<Added3DObject[]>([]);
+  const [drag3d, setDrag3d] = useState<string | null>(null);
   const [contextMenu, setContextMenu] = useState<ContextMenuState | null>(null);
   const [formulaSearch, setFormulaSearch] = useState("");
   const [workspaceView, setWorkspaceView] = useState<WorkspaceView>(initialView);
@@ -254,7 +272,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     return formulaLibrary.filter((item) => !query || [item.topic, item.title, item.formula].join(" ").toLowerCase().includes(query));
   }, [formulaSearch]);
 
-  const workspaceObjects = useMemo(() => buildAlgebraObjects(plots, construction, transforms3d, lockedGeometryIds), [plots, construction, transforms3d, lockedGeometryIds]);
+  const workspaceObjects = useMemo(() => buildAlgebraObjects(plots, construction, transforms3d, lockedGeometryIds, added3dObjects), [plots, construction, transforms3d, lockedGeometryIds, added3dObjects]);
+  const selected3dTransform = useMemo(() => isBase3dId(selected3d) ? transforms3d[selected3d] : added3dObjects.find((object) => object.id === selected3d)?.transform ?? transforms3d.solid, [added3dObjects, selected3d, transforms3d]);
   const dynamicGraph = useMemo(() => buildDynamicObjectGraph(workspaceObjects.map((object) => ({
     id: `${object.ref.kind}:${object.ref.id}`,
     name: object.name,
@@ -304,20 +323,21 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     label,
     detail,
     createdAt: Date.now(),
-    snapshot: { plots, construction, transforms3d },
+    snapshot: { plots, construction, transforms3d, added3dObjects },
   });
 
   const recordWorkspaceStep = (label: string, detail: string) => {
     const step = captureStep(label, detail);
     setUndoStack((current) => [step, ...current].slice(0, 80));
     setRedoStack([]);
-    setProtocol((current) => [{ ...step, snapshot: { plots, construction, transforms3d } }, ...current].slice(0, 120));
+    setProtocol((current) => [{ ...step, snapshot: { plots, construction, transforms3d, added3dObjects } }, ...current].slice(0, 120));
   };
 
   const restoreProtocolSnapshot = (step: ConstructionStep) => {
     setPlots(step.snapshot.plots ?? []);
     setConstruction(normalizeConstruction(step.snapshot.construction ?? initialConstruction));
     setTransforms3d({ ...defaultTransforms3d, ...(step.snapshot.transforms3d ?? {}) });
+    setAdded3dObjects(step.snapshot.added3dObjects ?? []);
   };
 
   const undoWorkspace = () => {
@@ -554,9 +574,54 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       }
       return;
     }
+    if (["image", "delete", "redo", "reset", "save", "load"].includes(tool)) return;
+    const quickCreateTools: GeometryTool[] = ["text", "triangle", "rectangle", "shape-circle", "parabola", "ellipse", "hyperbola"];
+    if (quickCreateTools.includes(tool)) {
+      const point = clientToBoard(event);
+      if (point) createQuickGeometryObject(tool, point.x, point.y);
+      return;
+    }
     if (tool !== "point") return;
     const point = clientToBoard(event);
     if (point) addPoint(point.x, point.y);
+  };
+
+  const createQuickGeometryObject = (shapeTool: GeometryTool, x: number, y: number) => {
+    recordWorkspaceStep("Create geometry tool object", `${shapeTool} added from tool plate.`);
+    setConstruction((current) => {
+      const base = current.points.length;
+      const makePoint = (px: number, py: number, offset: number, style?: GeoStyle): GeoPoint => ({
+        id: crypto.randomUUID(),
+        x: roundTo(px, 2),
+        y: roundTo(py, 2),
+        label: shapeTool === "text" ? "Text" : nextPointLabel(current.points, base + offset - current.points.length),
+        style,
+      });
+      if (shapeTool === "text") {
+        return solveConstruction({ ...current, points: [...current.points, makePoint(x, y, 0, { label: "Text", color: "#f59e0b", size: 10 })] });
+      }
+      if (shapeTool === "triangle") {
+        const points = [makePoint(x, y - 58, 0), makePoint(x - 64, y + 52, 1), makePoint(x + 64, y + 52, 2)];
+        return solveConstruction({ ...current, points: [...current.points, ...points], polygons: [...current.polygons, { id: crypto.randomUUID(), points: points.map((point) => point.id) }] });
+      }
+      if (shapeTool === "rectangle") {
+        const points = [makePoint(x - 70, y - 45, 0), makePoint(x + 70, y - 45, 1), makePoint(x + 70, y + 45, 2), makePoint(x - 70, y + 45, 3)];
+        return solveConstruction({ ...current, points: [...current.points, ...points], polygons: [...current.polygons, { id: crypto.randomUUID(), points: points.map((point) => point.id), style: { fill: "rgba(14,165,233,.16)", color: "#22d3ee" } }] });
+      }
+      if (shapeTool === "shape-circle") {
+        const center = makePoint(x, y, 0);
+        const edge = makePoint(x + 72, y, 1);
+        return solveConstruction({ ...current, points: [...current.points, center, edge], circles: [...current.circles, { id: crypto.randomUUID(), center: center.id, edge: edge.id }] });
+      }
+      const curvePoints = Array.from({ length: 48 }, (_, index) => {
+        const t = ((index / 47) * 2 - 1);
+        if (shapeTool === "parabola") return { x: x + t * 120, y: y + t * t * 90 - 60 };
+        if (shapeTool === "ellipse") return { x: x + Math.cos(index / 47 * Math.PI * 2) * 110, y: y + Math.sin(index / 47 * Math.PI * 2) * 62 };
+        return { x: x + t * 125, y: y + (t === 0 ? 0 : 42 / t) };
+      });
+      return solveConstruction({ ...current, loci: [...current.loci, { id: crypto.randomUUID(), label: shapeTool, points: curvePoints, style: { color: shapeTool === "ellipse" ? "#22d3ee" : shapeTool === "hyperbola" ? "#f97316" : "#a78bfa", strokeWidth: 4 } }] });
+    });
+    setTool("select");
   };
 
   const handleGeometryContextMenu = (event: PointerEvent<SVGSVGElement>) => {
@@ -573,21 +638,31 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const handlePointPick = (pointId: string) => {
-    if (tool === "line") {
+    if (tool === "line" || tool === "segment" || tool === "ray" || tool === "vector") {
       const next = [...selectedPointIds, pointId].slice(-2);
       setSelectedPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
-        recordWorkspaceStep("Create line", `${labelForPoint(construction, next[0])}${labelForPoint(construction, next[1])}`);
-        setConstruction((current) => ({ ...current, lines: [...current.lines, { id: crypto.randomUUID(), a: next[0], b: next[1] }] }));
+        recordWorkspaceStep(`Create ${tool}`, `${labelForPoint(construction, next[0])}${labelForPoint(construction, next[1])}`);
+        const style: GeoStyle = tool === "segment" ? { label: "segment", color: "#22d3ee" } : tool === "ray" ? { label: "ray", color: "#a78bfa" } : tool === "vector" ? { label: "vector", color: "#10b981", strokeWidth: 5 } : {};
+        setConstruction((current) => ({ ...current, lines: [...current.lines, { id: crypto.randomUUID(), a: next[0], b: next[1], style }] }));
         setSelectedPointIds([]);
       }
     }
-    if (tool === "circle") {
+    if (tool === "circle" || tool === "circle-radius") {
       const next = [...selectedPointIds, pointId].slice(-2);
       setSelectedPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
-        recordWorkspaceStep("Create circle", `Center ${labelForPoint(construction, next[0])}, edge ${labelForPoint(construction, next[1])}`);
+        recordWorkspaceStep(tool === "circle-radius" ? "Create circle by radius" : "Create circle", `Center ${labelForPoint(construction, next[0])}, edge ${labelForPoint(construction, next[1])}`);
         setConstruction((current) => ({ ...current, circles: [...current.circles, { id: crypto.randomUUID(), center: next[0], edge: next[1] }] }));
+        setSelectedPointIds([]);
+      }
+    }
+    if (tool === "circle-3-points" || tool === "angle") {
+      const next = [...selectedPointIds, pointId].slice(-3);
+      setSelectedPointIds(next);
+      if (next.length === 3 && new Set(next).size === 3) {
+        recordWorkspaceStep(tool === "angle" ? "Create angle" : "Create circle through 3 points", next.map((id) => labelForPoint(construction, id)).join(", "));
+        setConstruction((current) => tool === "angle" ? addArcOrSector(current, next[1], next[0], next[2], false) : addCircleThrough3Points(current, next[0], next[1], next[2]));
         setSelectedPointIds([]);
       }
     }
@@ -803,36 +878,110 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setContextMenu(null);
   };
 
-  const update3dTransform = (id: ThreeObjectId, patch: Partial<Transform3D>) => {
-    if (transforms3d[id]?.locked && !("locked" in patch)) return;
-    recordWorkspaceStep("Edit 3D object", `${transforms3d[id]?.name ?? id} transform changed.`);
-    setTransforms3d((current) => ({ ...current, [id]: { ...current[id], ...patch } }));
+  const toggleSelectedGeometryVisibility = () => {
+    if (!selectedGeometry) return;
+    const object = geometryObjectBySelection(construction, selectedGeometry);
+    updateSelectedGeometryStyle({ ...(object?.style ?? {}), visible: object?.style?.visible === false });
   };
 
-  const update3dVector = (id: ThreeObjectId, key: "position" | "rotation", index: number, value: number) => {
-    setTransforms3d((current) => {
-      const next = [...current[id][key]] as [number, number, number];
+  const setSelectedGeometryTrace = (enabled: boolean) => {
+    if (!selectedGeometry) return;
+    const object = geometryObjectBySelection(construction, selectedGeometry);
+    updateSelectedGeometryStyle({ ...(object?.style ?? {}), trace: enabled });
+  };
+
+  const clearGeometryTrace = () => {
+    recordWorkspaceStep("Clear geometry trace", "All trace flags removed.");
+    setConstruction((current) => ({
+      ...current,
+      points: current.points.map((point) => ({ ...point, style: { ...(point.style ?? {}), trace: false } })),
+      lines: current.lines.map((line) => ({ ...line, style: { ...(line.style ?? {}), trace: false } })),
+      circles: current.circles.map((circle) => ({ ...circle, style: { ...(circle.style ?? {}), trace: false } })),
+      polygons: current.polygons.map((polygon) => ({ ...polygon, style: { ...(polygon.style ?? {}), trace: false } })),
+      arcs: current.arcs.map((arc) => ({ ...arc, style: { ...(arc.style ?? {}), trace: false } })),
+      loci: current.loci.map((locus) => ({ ...locus, style: { ...(locus.style ?? {}), trace: false } })),
+    }));
+  };
+
+  const add3dSceneObject = (baseId: ThreeObjectId, options: { solid?: SolidKind; surface?: SurfaceKind; label?: string } = {}) => {
+    const render = addedRenderKindForBase(baseId);
+    const count = added3dObjects.length + 1;
+    const id = `scene3d-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+    const baseTransform = defaultTransforms3d[baseId];
+    const label = options.label ?? options.solid ?? options.surface ?? threeObjectLabels[baseId];
+    const offset = ((count - 1) % 5 - 2) * 0.72;
+    const rowOffset = Math.floor((count - 1) / 5) * 0.55;
+    const nextTransform: Transform3D = {
+      ...baseTransform,
+      name: `${label} ${count}`,
+      visible: true,
+      color: colors[count % colors.length],
+      position: [roundTo(baseTransform.position[0] + offset, 2), roundTo(baseTransform.position[1] + 0.1, 2), roundTo(baseTransform.position[2] + rowOffset, 2)],
+      dimensions: baseTransform.dimensions ? [...baseTransform.dimensions] as [number, number, number] : undefined,
+    };
+    const next: Added3DObject = { id, label: nextTransform.name ?? `${label} ${count}`, baseId, render, solid: options.solid ?? threeObjectSolidMap[baseId], surface: options.surface, transform: nextTransform };
+    recordWorkspaceStep("Add 3D object", `${next.label} added to the 3D scene.`);
+    setAdded3dObjects((current) => [...current, next]);
+    setSelected3d(id);
+    setShowSurface((current) => current || render === "surface");
+    setShowSolid((current) => current || render === "solid");
+    return id;
+  };
+
+  const update3dTransform = (id: string, patch: Partial<Transform3D>) => {
+    const currentTransform = isBase3dId(id) ? transforms3d[id] : added3dObjects.find((object) => object.id === id)?.transform;
+    if (!currentTransform || (currentTransform.locked && !("locked" in patch))) return;
+    recordWorkspaceStep("Edit 3D object", `${currentTransform.name ?? id} transform changed.`);
+    if (isBase3dId(id)) setTransforms3d((current) => ({ ...current, [id]: { ...current[id], ...patch } }));
+    else setAdded3dObjects((current) => current.map((object) => object.id === id ? { ...object, label: patch.name ?? object.label, transform: { ...object.transform, ...patch } } : object));
+  };
+
+  const update3dVector = (id: string, key: "position" | "rotation", index: number, value: number) => {
+    if (isBase3dId(id)) {
+      setTransforms3d((current) => {
+        const next = [...current[id][key]] as [number, number, number];
+        next[index] = value;
+        return { ...current, [id]: { ...current[id], [key]: next } };
+      });
+      return;
+    }
+    setAdded3dObjects((current) => current.map((object) => {
+      if (object.id !== id) return object;
+      const next = [...object.transform[key]] as [number, number, number];
       next[index] = value;
-      return { ...current, [id]: { ...current[id], [key]: next } };
-    });
+      return { ...object, transform: { ...object.transform, [key]: next } };
+    }));
   };
 
   const restore3dObject = (id = selected3d) => {
-    recordWorkspaceStep("Restore 3D object", `${transforms3d[id]?.name ?? id} restored.`);
-    setTransforms3d((current) => ({ ...current, [id]: defaultTransforms3d[id] }));
+    const target = isBase3dId(id) ? transforms3d[id] : added3dObjects.find((object) => object.id === id)?.transform;
+    recordWorkspaceStep("Restore 3D object", `${target?.name ?? id} restored.`);
+    if (isBase3dId(id)) setTransforms3d((current) => ({ ...current, [id]: defaultTransforms3d[id] }));
+    else setAdded3dObjects((current) => current.map((object) => object.id === id ? { ...object, transform: { ...defaultTransforms3d[object.baseId], name: object.label, visible: true, color: object.transform.color } } : object));
     setContextMenu(null);
   };
 
   const delete3dObject = (id = selected3d) => {
-    recordWorkspaceStep("Hide 3D object", `${transforms3d[id]?.name ?? id} hidden.`);
-    update3dTransform(id, { visible: false });
+    const target = isBase3dId(id) ? transforms3d[id] : added3dObjects.find((object) => object.id === id)?.transform;
+    recordWorkspaceStep(isBase3dId(id) ? "Hide 3D object" : "Delete 3D object", `${target?.name ?? id} removed from view.`);
+    if (isBase3dId(id)) setTransforms3d((current) => ({ ...current, [id]: { ...current[id], visible: false } }));
+    else {
+      setAdded3dObjects((current) => current.filter((object) => object.id !== id));
+      setSelected3d("solid");
+    }
     setContextMenu(null);
   };
 
   const duplicate3dObject = (id = selected3d) => {
-    recordWorkspaceStep("Duplicate 3D object", `${transforms3d[id]?.name ?? id} duplicated.`);
-    const next = transforms3d[id];
-    setTransforms3d((current) => ({ ...current, [id]: { ...next, position: [next.position[0] + 0.45, next.position[1] + 0.25, next.position[2] + 0.45], visible: true } }));
+    const existing = isBase3dId(id) ? { baseId: id, render: addedRenderKindForBase(id), solid: threeObjectSolidMap[id], surface: id === "surface" ? surface : undefined, label: transforms3d[id].name ?? threeObjectLabels[id], transform: transforms3d[id] } : added3dObjects.find((object) => object.id === id);
+    if (!existing) return;
+    recordWorkspaceStep("Duplicate 3D object", `${existing.transform.name ?? existing.label} duplicated.`);
+    const count = added3dObjects.length + 1;
+    const nextId = `scene3d-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+    const nextTransform: Transform3D = { ...existing.transform, name: `${existing.label ?? "Object"} copy`, visible: true, position: [roundTo(existing.transform.position[0] + 0.55, 2), roundTo(existing.transform.position[1] + 0.25, 2), roundTo(existing.transform.position[2] + 0.55, 2)], dimensions: existing.transform.dimensions ? [...existing.transform.dimensions] as [number, number, number] : undefined };
+    const next: Added3DObject = { id: nextId, label: nextTransform.name ?? `Object ${count}`, baseId: existing.baseId, render: existing.render, solid: existing.solid, surface: existing.surface, transform: nextTransform };
+    setAdded3dObjects((current) => [...current, next]);
+    setSelected3d(nextId);
     setContextMenu(null);
   };
 
@@ -841,7 +990,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     const saved = localStorage.getItem("math-universe-workspace-construction");
     if (saved) setConstruction(normalizeConstruction(JSON.parse(saved) as Partial<Construction>));
   };
-  const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, lockedGeometryIds, surface, surfaceExpression, cameraPreset3d, sceneAnimationSpeed, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, autoRotate3d, zoom3d, transforms3d, images: workspaceImages, spreadsheet, tableRange: { start: tableStart, end: tableEnd, step: tableStep }, guidedMode, guidedPhase, teachingMode, revealStep, controlsLocked, highContrastMode, performanceMode, protocol, activityJournal, presentationNotes });
+  const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, lockedGeometryIds, surface, surfaceExpression, cameraPreset3d, sceneAnimationSpeed, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, autoRotate3d, zoom3d, transforms3d, added3dObjects, images: workspaceImages, spreadsheet, tableRange: { start: tableStart, end: tableEnd, step: tableStep }, guidedMode, guidedPhase, teachingMode, revealStep, controlsLocked, highContrastMode, performanceMode, protocol, activityJournal, presentationNotes });
   const saveWorkspace = () => localStorage.setItem("math-universe-workspace-full", JSON.stringify(snapshot()));
   const restoreWorkspaceSnapshot = (data: WorkspaceSnapshot) => {
     setInput(data.input);
@@ -862,6 +1011,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setAutoRotate3d(data.autoRotate3d ?? true);
     setZoom3d(data.zoom3d ?? 1);
     setTransforms3d({ ...defaultTransforms3d, ...(data.transforms3d ?? {}) });
+    setAdded3dObjects(data.added3dObjects ?? []);
+    setSelected3d("solid");
     setWorkspaceImages(data.images ?? []);
     setSelectedImageId(null);
     setSpreadsheet(data.spreadsheet ?? initialSpreadsheet);
@@ -1054,7 +1205,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const selectWorkspaceObject = (ref: AlgebraObjectRef) => {
     setSelectedAlgebra(ref);
     if (ref.kind === "point" || ref.kind === "line" || ref.kind === "circle" || ref.kind === "polygon") setSelectedGeometry({ type: ref.kind, id: ref.id });
-    if (ref.kind === "3d") setSelected3d(ref.id as ThreeObjectId);
+    if (ref.kind === "3d" && (isBase3dId(ref.id) || added3dObjects.some((object) => object.id === ref.id))) setSelected3d(ref.id);
   };
 
   const renameWorkspaceObject = (ref: AlgebraObjectRef, name: string) => {
@@ -1062,7 +1213,11 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     if (!clean) return;
     recordWorkspaceStep("Rename object", `${objectDisplayName(workspaceObjects, ref)} renamed to ${clean}.`);
     if (ref.kind === "function") setPlots((current) => current.map((plot) => plot.id === ref.id ? { ...plot, name: clean } : plot));
-    else if (ref.kind === "3d") setTransforms3d((current) => ({ ...current, [ref.id as ThreeObjectId]: { ...current[ref.id as ThreeObjectId], name: clean } }));
+    else if (ref.kind === "3d" && isBase3dId(ref.id)) {
+      const id = ref.id;
+      setTransforms3d((current) => ({ ...current, [id]: { ...current[id], name: clean } }));
+    }
+    else if (ref.kind === "3d") setAdded3dObjects((current) => current.map((object) => object.id === ref.id ? { ...object, label: clean, transform: { ...object.transform, name: clean } } : object));
     else setConstruction((current) => renameGeometryObject(current, ref, clean));
   };
 
@@ -1082,14 +1237,22 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       if (circle) setConstruction((current) => updateCircleFromDefinition(current, ref.id, circle));
     } else if (ref.kind === "3d") {
       const transform = parse3dDefinition(definition);
-      if (transform) setTransforms3d((current) => ({ ...current, [ref.id as ThreeObjectId]: { ...current[ref.id as ThreeObjectId], ...transform } }));
+      if (transform && isBase3dId(ref.id)) {
+        const id = ref.id;
+        setTransforms3d((current) => ({ ...current, [id]: { ...current[id], ...transform } }));
+      }
+      else if (transform) setAdded3dObjects((current) => current.map((object) => object.id === ref.id ? { ...object, transform: { ...object.transform, ...transform } } : object));
     }
   };
 
   const patchWorkspaceObject = (ref: AlgebraObjectRef, patch: { visible?: boolean; locked?: boolean; trace?: boolean }) => {
     recordWorkspaceStep("Edit object flags", `${objectDisplayName(workspaceObjects, ref)} flags changed.`);
     if (ref.kind === "function") setPlots((current) => current.map((plot) => plot.id === ref.id ? { ...plot, ...patch } : plot));
-    else if (ref.kind === "3d") setTransforms3d((current) => ({ ...current, [ref.id as ThreeObjectId]: { ...current[ref.id as ThreeObjectId], ...patch } }));
+    else if (ref.kind === "3d" && isBase3dId(ref.id)) {
+      const id = ref.id;
+      setTransforms3d((current) => ({ ...current, [id]: { ...current[id], ...patch } }));
+    }
+    else if (ref.kind === "3d") setAdded3dObjects((current) => current.map((object) => object.id === ref.id ? { ...object, transform: { ...object.transform, ...patch } } : object));
     else {
       setConstruction((current) => patchGeometryObject(current, { type: ref.kind as GeometryObjectType, id: ref.id }, { style: { ...(geometryObjectBySelection(current, { type: ref.kind as GeometryObjectType, id: ref.id })?.style ?? {}), visible: patch.visible, trace: patch.trace } }));
       if (typeof patch.locked === "boolean") setLockedGeometryIds((current) => patch.locked ? Array.from(new Set([...current, ref.id])) : current.filter((id) => id !== ref.id));
@@ -1102,7 +1265,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       if (!plot) return;
       recordWorkspaceStep("Duplicate function", plot.name ?? plot.expression);
       setPlots((current) => [{ ...plot, id: crypto.randomUUID(), name: nextFunctionName(current), expression: plot.expression, color: colors[current.length % colors.length] }, ...current]);
-    } else if (ref.kind === "3d") duplicate3dObject(ref.id as ThreeObjectId);
+    } else if (ref.kind === "3d") duplicate3dObject(ref.id);
     else duplicateGeometryObject({ type: ref.kind as GeometryObjectType, id: ref.id });
   };
 
@@ -1110,7 +1273,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     if (ref.kind === "function") {
       recordWorkspaceStep("Delete function", objectDisplayName(workspaceObjects, ref));
       setPlots((current) => current.filter((plot) => plot.id !== ref.id));
-    } else if (ref.kind === "3d") delete3dObject(ref.id as ThreeObjectId);
+    } else if (ref.kind === "3d") delete3dObject(ref.id);
     else deleteGeometryObject({ type: ref.kind as GeometryObjectType, id: ref.id });
   };
 
@@ -1160,7 +1323,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   return (
-    <div ref={workspaceRef} className="space-y-6" onKeyDown={handleWorkspaceKeyDown}>
+    <div ref={workspaceRef} className="space-y-6 pt-24 xl:pt-16" onKeyDown={handleWorkspaceKeyDown}>
+      <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} />
       <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />
 
       {!singleView && <WorkspaceModeTabs active={workspaceView} onChange={setWorkspaceView} />}
@@ -1330,6 +1494,45 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       {workspaceView === "3d" && <SectionCard title="3D Graphing And Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls.">
         <div className="grid gap-5 xl:grid-cols-[330px_minmax(0,1fr)]">
           <div className="space-y-4">
+            <Space3DToolPalette
+              activeObject={selected3d}
+              activeSurface={surface}
+              activeSolid={solid}
+              cameraPreset={cameraPreset3d}
+              autoRotate={autoRotate3d}
+              showSurface={showSurface}
+              showSolid={showSolid}
+              onSurface={(value) => {
+                setSurface(value);
+                setShowSurface(true);
+                add3dSceneObject("surface", { surface: value, label: value });
+              }}
+              onSolid={(value) => {
+                setSolid(value);
+                setShowSolid(true);
+                add3dSceneObject("solid", { solid: value, label: value });
+              }}
+              onObject={(id) => {
+                add3dSceneObject(id, { solid: threeObjectSolidMap[id], label: threeObjectLabels[id] });
+              }}
+              onCamera={setCameraPreset3d}
+              onToggleSurface={setShowSurface}
+              onToggleSolid={setShowSolid}
+              onToggleRotate={setAutoRotate3d}
+              onZoomIn={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))}
+              onZoomOut={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))}
+              onReset={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); setCameraPreset3d("isometric"); }}
+              onNudge={(axis, amount) => update3dTransform(selected3d, { position: selected3dTransform.position.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
+              onRotateAxis={(axis, amount) => update3dTransform(selected3d, { rotation: selected3dTransform.rotation.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
+              onScale={(amount) => update3dTransform(selected3d, { scale: Math.max(0.2, roundTo(selected3dTransform.scale + amount, 2)) })}
+              onMaterial={(material) => update3dTransform(selected3d, { material })}
+              onOpacity={(opacity) => update3dTransform(selected3d, { opacity })}
+              onDuplicate={() => duplicate3dObject()}
+              onDelete={() => delete3dObject()}
+              onRestore={() => restore3dObject()}
+              onLock={() => update3dTransform(selected3d, { locked: !selected3dTransform.locked })}
+              onTrace={() => update3dTransform(selected3d, { trace: !selected3dTransform.trace })}
+            />
             <label className="block rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-950/40">
               <span className="text-sm font-semibold">Surface</span>
               <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={surface} onChange={(event) => setSurface(event.target.value as SurfaceKind)}>
@@ -1349,11 +1552,22 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               <span className="text-sm font-semibold">Solid</span>
               <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={solid} onChange={(event) => setSolid(event.target.value as SolidKind)}>
                 <option value="cube">Cube</option>
+                <option value="cuboid">Cuboid</option>
                 <option value="sphere">Sphere</option>
+                <option value="ellipsoid">Ellipsoid</option>
+                <option value="hemisphere">Hemisphere</option>
                 <option value="cylinder">Cylinder</option>
                 <option value="cone">Cone</option>
+                <option value="frustum">Frustum</option>
+                <option value="torus">Torus</option>
+                <option value="tube">Tube</option>
+                <option value="capsule">Capsule</option>
                 <option value="prism">Prism</option>
                 <option value="pyramid">Pyramid</option>
+                <option value="tetrahedron">Tetrahedron</option>
+                <option value="octahedron">Octahedron</option>
+                <option value="dodecahedron">Dodecahedron</option>
+                <option value="wedge">Wedge</option>
                 <option value="polyhedron">Polyhedron</option>
               </select>
             </label>
@@ -1368,21 +1582,21 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               <button type="button" onClick={() => setAutoRotate3d(false)} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Pause rotation</button>
               <button type="button" onClick={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); }} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset</button>
             </div>
-            <ThreeCreationPanel onCreate={(id) => { recordWorkspaceStep("Create 3D object", id); setTransforms3d((current) => ({ ...current, [id]: { ...current[id], visible: true } })); setSelected3d(id); }} />
+            <ThreeCreationPanel onCreate={(id) => add3dSceneObject(id, { solid: threeObjectSolidMap[id], label: threeObjectLabels[id] })} />
             <CameraPresetPanel preset={cameraPreset3d} onPreset={setCameraPreset3d} />
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))} className="action-secondary"><ZoomOut className="h-4 w-4" />Zoom out</button>
               <button type="button" onClick={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))} className="action-secondary"><ZoomIn className="h-4 w-4" />Zoom in</button>
             </div>
-            <ObjectList3D selected={selected3d} transforms={transforms3d} onSelect={setSelected3d} onRestore={restore3dObject} onDelete={delete3dObject} />
-            <Properties3DPanel selected={selected3d} transform={transforms3d[selected3d]} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
+            <ObjectList3D selected={selected3d} transforms={transforms3d} addedObjects={added3dObjects} onSelect={setSelected3d} onRestore={restore3dObject} onDelete={delete3dObject} />
+            <Properties3DPanel selected={selected3d} transform={selected3dTransform} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
             <div className="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
               <p className="font-bold text-slate-900 dark:text-white">3D Readout</p>
               <p>Surface: {surfaceFormula(surface, surfaceScale)}</p>
               <p>Cross-section plane: z = {roundTo(crossSection, 2)}</p>
               <p>Camera zoom: {roundTo(zoom3d * 100, 0)}%</p>
             </div>
-            <GizmoReadout3D selected={selected3d} transform={transforms3d[selected3d]} />
+            <GizmoReadout3D selected={selected3d} transform={selected3dTransform} />
           </div>
 
           <div className="space-y-3">
@@ -1405,6 +1619,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                 cameraPreset={cameraPreset3d}
                 selected={selected3d}
                 transforms={transforms3d}
+                addedObjects={added3dObjects}
                 dragging={drag3d}
                 onSelect={setSelected3d}
                 onDrag={setDrag3d}
@@ -1428,43 +1643,31 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
 
       {workspaceView === "geometry" && <SectionCard title="Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements.">
         <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
-          <div className="space-y-3">
-            <div className="mobile-safe-scroll flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
-              <ToolButton active={tool === "select"} label="Select / Drag" onClick={() => setTool("select")} icon={<MousePointer2 className="h-4 w-4" />} />
-              <ToolButton active={tool === "point"} label="Point" onClick={() => setTool("point")} icon={<Plus className="h-4 w-4" />} />
-              <ToolButton active={tool === "line"} label="Line" onClick={() => setTool("line")} icon={<Move className="h-4 w-4" />} />
-              <ToolButton active={tool === "circle"} label="Circle" onClick={() => setTool("circle")} icon={<Circle className="h-4 w-4" />} />
-              <ToolButton active={tool === "polygon"} label="Polygon" onClick={() => setTool("polygon")} icon={<Pentagon className="h-4 w-4" />} />
-              <ToolButton active={tool === "parallel"} label="Parallel" onClick={() => setTool("parallel")} icon={<Slash className="h-4 w-4" />} />
-              <ToolButton active={tool === "perpendicular"} label="Perpendicular" onClick={() => setTool("perpendicular")} icon={<Plus className="h-4 w-4" />} />
-              <ToolButton active={tool === "midpoint"} label="Midpoint" onClick={() => setTool("midpoint")} icon={<Magnet className="h-4 w-4" />} />
-              <ToolButton active={tool === "fixed-length"} label="Fixed Length" onClick={() => setTool("fixed-length")} icon={<Magnet className="h-4 w-4" />} />
-              <ToolButton active={tool === "on-circle"} label="Point on Circle" onClick={() => setTool("on-circle")} icon={<Circle className="h-4 w-4" />} />
-              <ToolButton active={tool === "intersect"} label="Intersect" onClick={() => setTool("intersect")} icon={<Plus className="h-4 w-4" />} />
-              <ToolButton active={tool === "perpendicular-bisector"} label="Perp Bisector" onClick={() => setTool("perpendicular-bisector")} icon={<Slash className="h-4 w-4" />} />
-              <ToolButton active={tool === "angle-bisector"} label="Angle Bisector" onClick={() => setTool("angle-bisector")} icon={<Slash className="h-4 w-4" />} />
-              <ToolButton active={tool === "tangent"} label="Tangent" onClick={() => setTool("tangent")} icon={<Circle className="h-4 w-4" />} />
-              <ToolButton active={tool === "polar"} label="Polar" onClick={() => setTool("polar")} icon={<Move className="h-4 w-4" />} />
-              <ToolButton active={tool === "locus"} label="Locus" onClick={() => setTool("locus")} icon={<LineChart className="h-4 w-4" />} />
-              <ToolButton active={tool === "regular-polygon"} label="Regular Polygon" onClick={() => setTool("regular-polygon")} icon={<Pentagon className="h-4 w-4" />} />
-              <ToolButton active={tool === "arc"} label="Arc" onClick={() => setTool("arc")} icon={<Circle className="h-4 w-4" />} />
-              <ToolButton active={tool === "sector"} label="Sector" onClick={() => setTool("sector")} icon={<Circle className="h-4 w-4" />} />
-              <ToolButton active={tool === "compass"} label="Compass" onClick={() => setTool("compass")} icon={<Magnet className="h-4 w-4" />} />
-              <ToolButton active={tool === "mirror"} label="Mirror" onClick={() => setTool("mirror")} icon={<Slash className="h-4 w-4" />} />
-              <ToolButton active={tool === "rotate"} label="Rotate 45" onClick={() => setTool("rotate")} icon={<RotateCcw className="h-4 w-4" />} />
-              <ToolButton active={tool === "dilate"} label="Dilate 1.5x" onClick={() => setTool("dilate")} icon={<ZoomIn className="h-4 w-4" />} />
-              <ToolButton active={tool === "translate"} label="Translate" onClick={() => setTool("translate")} icon={<Move className="h-4 w-4" />} />
-              <ToolButton label="Select All Points" onClick={() => setSelectedPointIds(construction.points.map((point) => point.id))} icon={<MousePointer2 className="h-4 w-4" />} />
-              <ToolButton label="Move Selected" onClick={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "translate"))} icon={<Move className="h-4 w-4" />} />
-              <ToolButton label="Rotate Selected" onClick={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "rotate"))} icon={<RotateCcw className="h-4 w-4" />} />
-              <ToolButton label="Dilate Selected" onClick={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "dilate"))} icon={<ZoomIn className="h-4 w-4" />} />
-              <ToolButton label="Undo" onClick={undoConstruction} icon={<RotateCcw className="h-4 w-4" />} />
-              <ToolButton label="Reset" onClick={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); }} icon={<Eraser className="h-4 w-4" />} />
-              <ToolButton label="Save" onClick={saveConstruction} icon={<Save className="h-4 w-4" />} />
-              <ToolButton label="Load" onClick={loadConstruction} icon={<Download className="h-4 w-4" />} />
+          <div className="grid min-h-0 gap-3 lg:grid-cols-[250px_minmax(0,1fr)]">
+            <div className="min-h-0">
               <input ref={imageInputRef} type="file" accept="image/*" className="hidden" onChange={(event) => handleImageUpload(event.target.files)} />
-              <ToolButton label="Add Image" onClick={() => imageInputRef.current?.click()} icon={<Plus className="h-4 w-4" />} />
+              <GeometryToolPalette
+                activeTool={tool}
+                onTool={setTool}
+                onSelectAll={() => setSelectedPointIds(construction.points.map((point) => point.id))}
+                onMoveSelected={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "translate"))}
+                onRotateSelected={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "rotate"))}
+                onDilateSelected={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "dilate"))}
+                onUndo={undoConstruction}
+                onRedo={redoWorkspace}
+                onDeleteSelected={() => deleteGeometryObject()}
+                onShowHide={toggleSelectedGeometryVisibility}
+                onLockSelected={() => toggleGeometryLock()}
+                onTraceSelected={() => setSelectedGeometryTrace(true)}
+                onStopTrace={() => setSelectedGeometryTrace(false)}
+                onClearTrace={clearGeometryTrace}
+                onReset={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); }}
+                onSave={saveConstruction}
+                onLoad={loadConstruction}
+                onAddImage={() => imageInputRef.current?.click()}
+              />
             </div>
+            <div className="min-w-0 space-y-3">
             <svg
               ref={svgRef}
               data-export="geometry"
@@ -1526,6 +1729,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               Touch mode: choose a tool, tap to place points, then drag existing points. Use the page outside the board to scroll.
             </p>
             <HiddenGeometryExport refSetter={(node) => { geometryExportRef.current = node; }} construction={construction} images={workspaceImages} />
+            </div>
           </div>
           <div className="space-y-3">
             <ConstructionHelp tool={tool} />
@@ -3027,6 +3231,57 @@ type AlgebraObjectRow = {
   dependencies: string[];
 };
 
+function WorkspaceMainMenu({ active, onChange }: { active: WorkspaceView; onChange: (view: WorkspaceView) => void }) {
+  const modules: Array<{ id: WorkspaceView; label: string; route: string; icon: JSX.Element }> = [
+    { id: "graph", label: "Graph", route: "/workspace/graph", icon: <FunctionSquare className="h-4 w-4" /> },
+    { id: "geometry", label: "Geometry", route: "/workspace/geometry", icon: <Pentagon className="h-4 w-4" /> },
+    { id: "3d", label: "3D", route: "/workspace/3d", icon: <Box className="h-4 w-4" /> },
+    { id: "data", label: "CAS / Data", route: "/workspace/data", icon: <LineChart className="h-4 w-4" /> },
+    { id: "teach", label: "Teacher", route: "/workspace/teach", icon: <Presentation className="h-4 w-4" /> },
+  ];
+  const links = [
+    { label: "All workspace", route: "/workspace" },
+    { label: "Shapes", route: "/shapes" },
+    { label: "Formulas", route: "/formulas" },
+    { label: "Syllabus", route: "/syllabus" },
+    { label: "Home", route: "/" },
+  ];
+
+  return (
+    <nav className="fixed left-3 right-3 top-3 z-50 rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-xl shadow-slate-200/40 backdrop-blur dark:border-white/10 dark:bg-slate-950/95 dark:shadow-black/20" aria-label="Workspace main menu">
+      <div className="flex flex-col gap-2 xl:flex-row xl:items-center xl:justify-between">
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="shrink-0 rounded-xl bg-cyan-500 px-3 py-2 text-xs font-black uppercase tracking-wide text-slate-950 shadow-lg shadow-cyan-500/20">Main Menu</span>
+          <div className="mobile-safe-scroll flex min-w-0 gap-2 overflow-x-auto pb-1 xl:pb-0">
+            {modules.map((module) => (
+              <Link
+                key={module.id}
+                to={module.route}
+                onClick={() => onChange(module.id)}
+                className={`inline-flex min-h-10 shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-black transition ${
+                  active === module.id
+                    ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950"
+                    : "bg-slate-100 text-slate-700 hover:bg-cyan-100 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15"
+                }`}
+              >
+                {module.icon}
+                {module.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="mobile-safe-scroll flex gap-2 overflow-x-auto pb-1 xl:pb-0">
+          {links.map((item) => (
+            <Link key={item.route} to={item.route} className="inline-flex min-h-10 shrink-0 items-center rounded-xl bg-slate-100 px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-cyan-100 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15">
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
+}
+
 function WorkspaceModeTabs({ active, onChange }: { active: WorkspaceView; onChange: (view: WorkspaceView) => void }) {
   const views: { id: WorkspaceView; label: string; icon: JSX.Element }[] = [
     { id: "graph", label: "Graph + Algebra", icon: <FunctionSquare className="h-4 w-4" /> },
@@ -3245,6 +3500,203 @@ function CriticalGapPhasePanel() {
         ))}
       </div>
     </div>
+  );
+}
+
+type Space3DPaletteItem<T extends string> = { id: T; label: string; icon: LucideIcon };
+
+const space3dSurfacePalette: Space3DPaletteItem<SurfaceKind>[] = [
+  { id: "paraboloid", label: "Paraboloid", icon: Circle },
+  { id: "saddle", label: "Saddle", icon: Slash },
+  { id: "wave", label: "Wave", icon: LineChart },
+  { id: "plane", label: "Plane", icon: Slash },
+  { id: "ripple", label: "Ripple", icon: Circle },
+  { id: "cone-surface", label: "Cone Surface", icon: Rotate3D },
+  { id: "custom-z", label: "z=f(x,y)", icon: FunctionSquare },
+  { id: "parametric", label: "Parametric", icon: Rotate3D },
+  { id: "implicit", label: "Implicit", icon: Circle },
+];
+
+const space3dSolidPalette: Space3DPaletteItem<SolidKind>[] = [
+  { id: "cube", label: "Cube", icon: Box },
+  { id: "cuboid", label: "Cuboid", icon: Box },
+  { id: "sphere", label: "Sphere", icon: Circle },
+  { id: "ellipsoid", label: "Ellipsoid", icon: Circle },
+  { id: "hemisphere", label: "Hemisphere", icon: Circle },
+  { id: "cylinder", label: "Cylinder", icon: Rotate3D },
+  { id: "cone", label: "Cone", icon: Rotate3D },
+  { id: "frustum", label: "Frustum", icon: Rotate3D },
+  { id: "torus", label: "Torus", icon: Rotate3D },
+  { id: "tube", label: "Tube", icon: Circle },
+  { id: "capsule", label: "Capsule", icon: Rotate3D },
+  { id: "prism", label: "Prism", icon: Box },
+  { id: "pyramid", label: "Pyramid", icon: Pentagon },
+  { id: "tetrahedron", label: "Tetrahedron", icon: Pentagon },
+  { id: "octahedron", label: "Octahedron", icon: Pentagon },
+  { id: "dodecahedron", label: "Dodecahedron", icon: Pentagon },
+  { id: "wedge", label: "Wedge", icon: Box },
+  { id: "polyhedron", label: "Polyhedron", icon: Box },
+];
+
+const space3dObjectPalette: Space3DPaletteItem<ThreeObjectId>[] = [
+  { id: "point", label: "Point", icon: Plus },
+  { id: "vector", label: "Vector", icon: Move },
+  { id: "line3d", label: "Line", icon: Slash },
+  { id: "plane3d", label: "Plane", icon: Slash },
+  { id: "slice", label: "Slice", icon: LineChart },
+  { id: "sphere3d", label: "Sphere", icon: Circle },
+  { id: "cone3d", label: "Cone", icon: Rotate3D },
+  { id: "cylinder3d", label: "Cylinder", icon: Rotate3D },
+  { id: "prism3d", label: "Prism", icon: Box },
+  { id: "pyramid3d", label: "Pyramid", icon: Pentagon },
+  { id: "polyhedron3d", label: "Polyhedron", icon: Box },
+];
+
+const space3dCameraPalette: Space3DPaletteItem<CameraPreset3D>[] = [
+  { id: "top", label: "Top", icon: Rotate3D },
+  { id: "front", label: "Front", icon: Rotate3D },
+  { id: "right", label: "Right", icon: Rotate3D },
+  { id: "isometric", label: "Iso", icon: Rotate3D },
+  { id: "free", label: "Free", icon: MousePointer2 },
+];
+
+function Space3DToolPalette({
+  activeObject,
+  activeSurface,
+  activeSolid,
+  cameraPreset,
+  autoRotate,
+  showSurface,
+  showSolid,
+  onSurface,
+  onSolid,
+  onObject,
+  onCamera,
+  onToggleSurface,
+  onToggleSolid,
+  onToggleRotate,
+  onZoomIn,
+  onZoomOut,
+  onReset,
+  onNudge,
+  onRotateAxis,
+  onScale,
+  onMaterial,
+  onOpacity,
+  onDuplicate,
+  onDelete,
+  onRestore,
+  onLock,
+  onTrace,
+}: {
+  activeObject: string;
+  activeSurface: SurfaceKind;
+  activeSolid: SolidKind;
+  cameraPreset: CameraPreset3D;
+  autoRotate: boolean;
+  showSurface: boolean;
+  showSolid: boolean;
+  onSurface: (surface: SurfaceKind) => void;
+  onSolid: (solid: SolidKind) => void;
+  onObject: (id: ThreeObjectId) => void;
+  onCamera: (preset: CameraPreset3D) => void;
+  onToggleSurface: (value: boolean) => void;
+  onToggleSolid: (value: boolean) => void;
+  onToggleRotate: (value: boolean) => void;
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+  onReset: () => void;
+  onNudge: (axis: 0 | 1 | 2, amount: number) => void;
+  onRotateAxis: (axis: 0 | 1 | 2, amount: number) => void;
+  onScale: (amount: number) => void;
+  onMaterial: (material: Transform3D["material"]) => void;
+  onOpacity: (opacity: number) => void;
+  onDuplicate: () => void;
+  onDelete: () => void;
+  onRestore: () => void;
+  onLock: () => void;
+  onTrace: () => void;
+}) {
+  const transformActions: GeometryPaletteActionItem[] = [
+    { id: "move-x", label: "Move X", icon: Move, action: () => onNudge(0, 0.25) },
+    { id: "move-y", label: "Move Y", icon: Move, action: () => onNudge(1, 0.25) },
+    { id: "move-z", label: "Move Z", icon: Move, action: () => onNudge(2, 0.25) },
+    { id: "rot-x", label: "Rotate X", icon: Rotate3D, action: () => onRotateAxis(0, 0.18) },
+    { id: "rot-y", label: "Rotate Y", icon: Rotate3D, action: () => onRotateAxis(1, 0.18) },
+    { id: "rot-z", label: "Rotate Z", icon: Rotate3D, action: () => onRotateAxis(2, 0.18) },
+    { id: "scale-up", label: "Scale +", icon: ZoomIn, action: () => onScale(0.15) },
+    { id: "scale-down", label: "Scale -", icon: ZoomOut, action: () => onScale(-0.15) },
+  ];
+  const materialActions: GeometryPaletteActionItem[] = [
+    { id: "matte", label: "Matte", icon: Circle, action: () => onMaterial("matte") },
+    { id: "glass", label: "Glass", icon: Circle, action: () => onMaterial("glass") },
+    { id: "wire", label: "Wireframe", icon: Slash, action: () => onMaterial("wireframe") },
+    { id: "opaque", label: "Opacity 100", icon: Circle, action: () => onOpacity(1) },
+    { id: "translucent", label: "Opacity 55", icon: Circle, action: () => onOpacity(0.55) },
+    { id: "ghost", label: "Opacity 25", icon: Circle, action: () => onOpacity(0.25) },
+  ];
+  const objectActions: GeometryPaletteActionItem[] = [
+    { id: "duplicate", label: "Duplicate", icon: Plus, action: onDuplicate },
+    { id: "lock", label: "Lock", icon: Magnet, action: onLock },
+    { id: "trace", label: "Trace", icon: LineChart, action: onTrace },
+    { id: "restore", label: "Restore", icon: RotateCcw, action: onRestore },
+    { id: "delete", label: "Delete", icon: Trash2, action: onDelete, danger: true },
+  ];
+  const sceneActions: GeometryPaletteActionItem[] = [
+    { id: "toggle-surface", label: showSurface ? "Surface On" : "Surface Off", icon: Circle, action: () => onToggleSurface(!showSurface) },
+    { id: "toggle-solid", label: showSolid ? "Solid On" : "Solid Off", icon: Box, action: () => onToggleSolid(!showSolid) },
+    { id: "rotate", label: autoRotate ? "Pause Rotation" : "Start Rotation", icon: RotateCcw, action: () => onToggleRotate(!autoRotate) },
+    { id: "zoom-in", label: "Zoom In", icon: ZoomIn, action: onZoomIn },
+    { id: "zoom-out", label: "Zoom Out", icon: ZoomOut, action: onZoomOut },
+    { id: "reset", label: "Reset", icon: Eraser, action: onReset, danger: true },
+  ];
+
+  return (
+    <aside className="space3d-tool-palette thin-scrollbar max-h-[clamp(18rem,46vh,32.5rem)] overflow-auto rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-xl shadow-slate-200/40 dark:border-white/10 dark:bg-slate-950/70 dark:shadow-black/20">
+      <Space3DPaletteSection title="Surfaces">
+        {space3dSurfacePalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeSurface === item.id || (activeObject === "surface" && activeSurface === item.id)} onClick={() => onSurface(item.id)} />)}
+      </Space3DPaletteSection>
+      <Space3DPaletteSection title="Solids">
+        {space3dSolidPalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeSolid === item.id && activeObject === "solid"} onClick={() => onSolid(item.id)} />)}
+      </Space3DPaletteSection>
+      <Space3DPaletteSection title="3D Objects">
+        {space3dObjectPalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeObject === item.id} onClick={() => onObject(item.id)} />)}
+      </Space3DPaletteSection>
+      <Space3DPaletteSection title="Camera">
+        {space3dCameraPalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={cameraPreset === item.id} onClick={() => onCamera(item.id)} />)}
+      </Space3DPaletteSection>
+      <Space3DPaletteSection title="Transform Gizmo">
+        {transformActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+      </Space3DPaletteSection>
+      <Space3DPaletteSection title="Material">
+        {materialActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+      </Space3DPaletteSection>
+      <Space3DPaletteSection title="Selected 3D">
+        {objectActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+      </Space3DPaletteSection>
+      <Space3DPaletteSection title="Scene">
+        {sceneActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+      </Space3DPaletteSection>
+    </aside>
+  );
+}
+
+function Space3DPaletteSection({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="mb-3 last:mb-0">
+      <h4 className="mb-1.5 px-1 text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{title}</h4>
+      <div className="grid grid-cols-3 gap-1.5">{children}</div>
+    </section>
+  );
+}
+
+function Space3DPaletteButton<T extends string>({ item, active, onClick }: { item: Space3DPaletteItem<T>; active: boolean; onClick: () => void }) {
+  const Icon = item.icon;
+  return (
+    <button type="button" onClick={onClick} title={item.label} className={`space3d-palette-button ${active ? "space3d-palette-button-active" : ""}`}>
+      <Icon className="h-4 w-4" />
+      <span>{item.label}</span>
+    </button>
   );
 }
 
@@ -3472,7 +3924,7 @@ function ProductionQualityPanel({ highContrast, performanceMode, qaReport, onHig
   );
 }
 
-function GizmoReadout3D({ selected, transform }: { selected: ThreeObjectId; transform: Transform3D }) {
+function GizmoReadout3D({ selected, transform }: { selected: string; transform: Transform3D }) {
   const mode: TransformMode3 = selected === "slice" || selected === "plane3d" ? "rotate" : selected === "solid" || selected.endsWith("3d") ? "scale" : "translate";
   const handles = createTransformGizmo(mode);
   const measurement = object3Measurement(transformToKernelObject(selected, transform));
@@ -3500,13 +3952,14 @@ function GizmoReadout3D({ selected, transform }: { selected: ThreeObjectId; tran
   );
 }
 
-function transformToKernelObject(selected: ThreeObjectId, transform: Transform3D): Object3 {
+function transformToKernelObject(selected: string, transform: Transform3D): Object3 {
   const center = kernelPoint3(transform.position[0], transform.position[1], transform.position[2]);
   const dims = transform.dimensions ?? [transform.scale, transform.scale, transform.scale];
-  if (selected === "sphere3d" || selected === "solid") return kernelSphere3(center, Math.max(dims[0], dims[1], dims[2]) * transform.scale * 0.5);
-  if (selected === "cylinder3d") return kernelCylinder3(center, dims[0] * transform.scale, dims[1] * transform.scale);
-  if (selected === "cone3d") return kernelCone3(center, dims[0] * transform.scale, dims[1] * transform.scale);
-  if (selected === "plane3d" || selected === "slice") return kernelPlane3(center, kernelPoint3(0, 0, 1));
+  const name = `${selected} ${transform.name ?? ""}`.toLowerCase();
+  if (selected === "sphere3d" || selected === "solid" || name.includes("sphere") || name.includes("cube") || name.includes("prism") || name.includes("pyramid") || name.includes("polyhedron")) return kernelSphere3(center, Math.max(dims[0], dims[1], dims[2]) * transform.scale * 0.5);
+  if (selected === "cylinder3d" || name.includes("cylinder")) return kernelCylinder3(center, dims[0] * transform.scale, dims[1] * transform.scale);
+  if (selected === "cone3d" || name.includes("cone")) return kernelCone3(center, dims[0] * transform.scale, dims[1] * transform.scale);
+  if (selected === "plane3d" || selected === "slice" || name.includes("plane") || name.includes("surface")) return kernelPlane3(center, kernelPoint3(0, 0, 1));
   return kernelLine3(center, kernelPoint3(dims[0] || 1, dims[1] || 0, dims[2] || 0));
 }
 
@@ -3599,7 +4052,7 @@ function simplePdf(lines: string[]) {
   return body;
 }
 
-function buildAlgebraObjects(plots: PlotItem[], construction: Construction, transforms3d: Record<ThreeObjectId, Transform3D>, lockedGeometryIds: string[]): AlgebraObjectRow[] {
+function buildAlgebraObjects(plots: PlotItem[], construction: Construction, transforms3d: Record<ThreeObjectId, Transform3D>, lockedGeometryIds: string[], added3dObjects: Added3DObject[] = []): AlgebraObjectRow[] {
   const pointName = (id: string) => pointById(construction.points, id)?.label ?? id.slice(0, 4);
   const rows: AlgebraObjectRow[] = plots.map((plot, index) => ({
     ref: { kind: "function", id: plot.id },
@@ -3672,6 +4125,15 @@ function buildAlgebraObjects(plots: PlotItem[], construction: Construction, tran
     locked: transforms3d[id].locked === true,
     trace: transforms3d[id].trace === true,
     dependencies: id === "vector" ? [transforms3d.point.name ?? "P"] : [],
+  })));
+  rows.push(...added3dObjects.map((object) => ({
+    ref: { kind: "3d" as const, id: object.id },
+    name: object.transform.name ?? object.label,
+    definition: transformDefinition(object.transform),
+    visible: object.transform.visible,
+    locked: object.transform.locked === true,
+    trace: object.transform.trace === true,
+    dependencies: [object.baseId],
   })));
   return rows;
 }
@@ -3952,19 +4414,18 @@ function CameraPresetPanel({ preset, onPreset }: { preset: CameraPreset3D; onPre
   );
 }
 
-function ObjectList3D({ selected, transforms, onSelect, onRestore, onDelete }: { selected: ThreeObjectId; transforms: Record<ThreeObjectId, Transform3D>; onSelect: (id: ThreeObjectId) => void; onRestore: (id: ThreeObjectId) => void; onDelete: (id: ThreeObjectId) => void }) {
-  const labels: Record<ThreeObjectId, string> = { surface: "Surface mesh", solid: "Solid shape", slice: "Cross-section", point: "Point P", vector: "Vector", line3d: "Line", plane3d: "Plane", sphere3d: "Sphere", cone3d: "Cone", cylinder3d: "Cylinder", prism3d: "Prism", pyramid3d: "Pyramid", polyhedron3d: "Polyhedron" };
+function ObjectList3D({ selected, transforms, addedObjects, onSelect, onRestore, onDelete }: { selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; onSelect: (id: string) => void; onRestore: (id: string) => void; onDelete: (id: string) => void }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <div className="flex items-center justify-between gap-2">
         <h3 className="font-bold">3D Scene Objects</h3>
-        <button type="button" onClick={() => (Object.keys(transforms) as ThreeObjectId[]).forEach(onRestore)} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold dark:bg-white/10">Restore all</button>
+        <button type="button" onClick={() => { threeBaseIds.forEach(onRestore); addedObjects.forEach((object) => onRestore(object.id)); }} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold dark:bg-white/10">Restore all</button>
       </div>
       <div className="mt-3 space-y-2">
-        {(Object.keys(transforms) as ThreeObjectId[]).map((id) => (
+        {threeBaseIds.map((id) => (
           <div key={id} className={`rounded-xl border p-3 ${selected === id ? "border-cyan-400 bg-cyan-50 dark:bg-cyan-400/10" : "border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-slate-900/50"}`}>
             <button type="button" onClick={() => onSelect(id)} className="w-full text-left">
-              <p className="text-sm font-bold">{labels[id]}</p>
+              <p className="text-sm font-bold">{threeObjectLabels[id]}</p>
               <p className="mt-1 font-mono text-xs text-slate-500 dark:text-slate-400">pos ({transforms[id].position.map((value) => roundTo(value, 2)).join(", ")}), scale {roundTo(transforms[id].scale, 2)}</p>
             </button>
             <div className="mt-2 flex gap-2">
@@ -3973,12 +4434,27 @@ function ObjectList3D({ selected, transforms, onSelect, onRestore, onDelete }: {
             </div>
           </div>
         ))}
+        {addedObjects.map((object) => (
+          <div key={object.id} className={`rounded-xl border p-3 ${selected === object.id ? "border-cyan-400 bg-cyan-50 dark:bg-cyan-400/10" : "border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-slate-900/50"}`}>
+            <button type="button" onClick={() => onSelect(object.id)} className="w-full text-left">
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-sm font-bold">{object.transform.name ?? object.label}</p>
+                <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-black uppercase text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100">Added</span>
+              </div>
+              <p className="mt-1 font-mono text-xs text-slate-500 dark:text-slate-400">pos ({object.transform.position.map((value) => roundTo(value, 2)).join(", ")}), scale {roundTo(object.transform.scale, 2)}</p>
+            </button>
+            <div className="mt-2 flex gap-2">
+              <button type="button" onClick={() => onRestore(object.id)} className="rounded-full bg-white px-3 py-1 text-xs font-bold dark:bg-white/10">Restore</button>
+              <button type="button" onClick={() => onDelete(object.id)} className="rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">Delete</button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-function Properties3DPanel({ selected, transform, onTransform, onVector, onRestore, onDelete }: { selected: ThreeObjectId; transform: Transform3D; onTransform: (id: ThreeObjectId, patch: Partial<Transform3D>) => void; onVector: (id: ThreeObjectId, key: "position" | "rotation", index: number, value: number) => void; onRestore: (id: ThreeObjectId) => void; onDelete: (id: ThreeObjectId) => void }) {
+function Properties3DPanel({ selected, transform, onTransform, onVector, onRestore, onDelete }: { selected: string; transform: Transform3D; onTransform: (id: string, patch: Partial<Transform3D>) => void; onVector: (id: string, key: "position" | "rotation", index: number, value: number) => void; onRestore: (id: string) => void; onDelete: (id: string) => void }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <div className="flex items-center justify-between gap-2">
@@ -4134,7 +4610,7 @@ function workflowTypeForContextTarget(target: ContextMenuState["target"]): Workf
   return target.type;
 }
 
-function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, dragging, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: ThreeObjectId; transforms: Record<ThreeObjectId, Transform3D>; dragging: ThreeObjectId | null; onSelect: (id: ThreeObjectId) => void; onDrag: (id: ThreeObjectId | null) => void; onTransform: (id: ThreeObjectId, patch: Partial<Transform3D>) => void; onContextMenu: (event: any, id: ThreeObjectId) => void }) {
+function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, addedObjects, dragging, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; dragging: string | null; onSelect: (id: string) => void; onDrag: (id: string | null) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onContextMenu: (event: any, id: string) => void }) {
   const groupRef = useRef<THREE.Group>(null);
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -4142,7 +4618,8 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
     groupRef.current.rotation.set(...baseRotation);
     if (autoRotate) groupRef.current.rotation.y = baseRotation[1] + state.clock.getElapsedTime() * animationSpeed;
   });
-  const selectProps = (id: ThreeObjectId) => ({
+  const transformForId = (id: string) => isBase3dId(id) ? transforms[id] : addedObjects.find((object) => object.id === id)?.transform;
+  const selectProps = (id: string) => ({
     onClick: (event: any) => { event.stopPropagation(); onSelect(id); },
     onContextMenu: (event: any) => onContextMenu(event, id),
     onPointerDown: (event: any) => { event.stopPropagation(); onSelect(id); onDrag(id); },
@@ -4150,7 +4627,8 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
     onPointerMove: (event: any) => {
       if (dragging !== id || id === "vector") return;
       event.stopPropagation();
-      const current = transforms[id];
+      const current = transformForId(id);
+      if (!current) return;
       onTransform(id, { position: [roundTo(event.point.x, 2), current.position[1], roundTo(event.point.z, 2)] });
     },
   });
@@ -4172,10 +4650,22 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
       {transforms.prism3d.visible && <TransformGroup3D transform={transforms.prism3d} selected={selected === "prism3d"}><ConstructedSolid3D kind="prism" transform={transforms.prism3d} eventProps={selectProps("prism3d")} /></TransformGroup3D>}
       {transforms.pyramid3d.visible && <TransformGroup3D transform={transforms.pyramid3d} selected={selected === "pyramid3d"}><ConstructedSolid3D kind="pyramid" transform={transforms.pyramid3d} eventProps={selectProps("pyramid3d")} /></TransformGroup3D>}
       {transforms.polyhedron3d.visible && <TransformGroup3D transform={transforms.polyhedron3d} selected={selected === "polyhedron3d"}><ConstructedSolid3D kind="polyhedron" transform={transforms.polyhedron3d} eventProps={selectProps("polyhedron3d")} /></TransformGroup3D>}
+      {addedObjects.map((object) => <AddedSceneObject3D key={object.id} object={object} selected={selected === object.id} surfaceScale={surfaceScale} solidSize={solidSize} crossSection={crossSection} performanceMode={performanceMode} eventProps={selectProps(object.id)} />)}
       <IntersectionOverlays3D transforms={transforms} crossSection={crossSection} />
       <MeasurementOverlays3D transforms={transforms} />
     </group>
   );
+}
+
+function AddedSceneObject3D({ object, selected, surfaceScale, solidSize, crossSection, performanceMode, eventProps }: { object: Added3DObject; selected: boolean; surfaceScale: number; solidSize: number; crossSection: number; performanceMode: boolean; eventProps: Record<string, unknown> }) {
+  if (!object.transform.visible) return null;
+  if (object.render === "surface") return <TransformGroup3D transform={object.transform} selected={selected}><SurfaceMesh surface={object.surface ?? "paraboloid"} expression="sin(x) * cos(y)" scaleValue={surfaceScale} transform={object.transform} performanceMode={performanceMode} eventProps={eventProps} /></TransformGroup3D>;
+  if (object.render === "slice") return <TransformGroup3D transform={{ ...object.transform, position: [object.transform.position[0], crossSection + object.transform.position[1], object.transform.position[2]] }} selected={selected}><CrossSectionPlane color={object.transform.color} eventProps={eventProps} /></TransformGroup3D>;
+  if (object.render === "point") return <TransformGroup3D transform={object.transform} selected={selected}><Point3D label={object.transform.name ?? object.label} color={object.transform.color} eventProps={eventProps} /></TransformGroup3D>;
+  if (object.render === "vector") return <TransformGroup3D transform={object.transform} selected={selected}><VectorArrow start={[-2, 0.05, -2]} end={[2, 1.2, 1.5]} color={object.transform.color} eventProps={eventProps} /></TransformGroup3D>;
+  if (object.render === "line3d") return <TransformGroup3D transform={object.transform} selected={selected}><Line3D transform={object.transform} eventProps={eventProps} /></TransformGroup3D>;
+  if (object.render === "plane3d") return <TransformGroup3D transform={object.transform} selected={selected}><Plane3D transform={object.transform} eventProps={eventProps} /></TransformGroup3D>;
+  return <TransformGroup3D transform={object.transform} selected={selected} yOffset={solidSize / 4}><SolidMesh solid={object.solid ?? "cube"} size={object.transform.dimensions?.[0] ?? solidSize} transform={object.transform} eventProps={eventProps} /></TransformGroup3D>;
 }
 
 function TransformGroup3D({ transform, selected, yOffset = 0, children }: { transform: Transform3D; selected: boolean; yOffset?: number; children: JSX.Element }) {
@@ -4355,13 +4845,24 @@ function SolidMesh({ solid, size, transform, eventProps }: { solid: SolidKind; s
     if (ref.current) ref.current.rotation.y += delta * 0.18;
   });
   return (
-    <mesh ref={ref} {...eventProps}>
+    <mesh ref={ref} scale={solid === "ellipsoid" ? [1.45, 0.72, 0.95] : [1, 1, 1]} {...eventProps}>
       {solid === "cube" && <boxGeometry args={[size, size, size]} />}
+      {solid === "cuboid" && <boxGeometry args={[size * 1.45, size * 0.78, size]} />}
       {solid === "sphere" && <sphereGeometry args={[size / 2, 48, 28]} />}
+      {solid === "ellipsoid" && <sphereGeometry args={[size / 2, 48, 28]} />}
+      {solid === "hemisphere" && <sphereGeometry args={[size / 2, 48, 18, 0, Math.PI * 2, 0, Math.PI / 2]} />}
       {solid === "cylinder" && <cylinderGeometry args={[size / 2, size / 2, size, 48]} />}
       {solid === "cone" && <coneGeometry args={[size / 2, size, 48]} />}
+      {solid === "frustum" && <cylinderGeometry args={[size * 0.32, size * 0.55, size, 48]} />}
+      {solid === "torus" && <torusGeometry args={[size * 0.34, size * 0.12, 18, 64]} />}
+      {solid === "tube" && <torusGeometry args={[size * 0.4, size * 0.06, 16, 64]} />}
+      {solid === "capsule" && <capsuleGeometry args={[size * 0.26, size * 0.62, 10, 24]} />}
       {solid === "prism" && <cylinderGeometry args={[size / 2, size / 2, size, 3]} />}
       {solid === "pyramid" && <coneGeometry args={[size / 2, size, 4]} />}
+      {solid === "tetrahedron" && <tetrahedronGeometry args={[size * 0.58, 0]} />}
+      {solid === "octahedron" && <octahedronGeometry args={[size * 0.58, 0]} />}
+      {solid === "dodecahedron" && <dodecahedronGeometry args={[size * 0.5, 0]} />}
+      {solid === "wedge" && <polyhedronGeometry args={[[0, 0, 0, size, 0, 0, size, 0, size, 0, 0, size, 0, size * 0.75, 0, size, size * 0.75, 0], [0, 1, 2, 0, 2, 3, 0, 4, 5, 0, 5, 1, 1, 5, 2, 3, 2, 5, 3, 5, 4, 0, 3, 4], 0.5, 0]} />}
       {solid === "polyhedron" && <icosahedronGeometry args={[size / 2, 0]} />}
       <ObjectMaterial transform={transform} />
     </mesh>
@@ -4401,12 +4902,24 @@ function Plane3D({ transform, eventProps }: { transform: Transform3D; eventProps
 function ConstructedSolid3D({ kind, transform, eventProps }: { kind: SolidKind; transform: Transform3D; eventProps?: Record<string, unknown> }) {
   const dims = transform.dimensions ?? [1.5, 1.5, 1.5];
   return (
-    <mesh scale={[dims[0], dims[1], dims[2]]} {...eventProps}>
+    <mesh scale={kind === "ellipsoid" ? [dims[0] * 1.45, dims[1] * 0.72, dims[2] * 0.95] : [dims[0], dims[1], dims[2]]} {...eventProps}>
+      {kind === "cube" && <boxGeometry args={[1, 1, 1]} />}
+      {kind === "cuboid" && <boxGeometry args={[1.45, 0.78, 1]} />}
       {kind === "sphere" && <sphereGeometry args={[0.5, 48, 28]} />}
+      {kind === "ellipsoid" && <sphereGeometry args={[0.5, 48, 28]} />}
+      {kind === "hemisphere" && <sphereGeometry args={[0.5, 48, 18, 0, Math.PI * 2, 0, Math.PI / 2]} />}
       {kind === "cone" && <coneGeometry args={[0.5, 1, 48]} />}
       {kind === "cylinder" && <cylinderGeometry args={[0.5, 0.5, 1, 48]} />}
+      {kind === "frustum" && <cylinderGeometry args={[0.32, 0.55, 1, 48]} />}
+      {kind === "torus" && <torusGeometry args={[0.34, 0.12, 18, 64]} />}
+      {kind === "tube" && <torusGeometry args={[0.4, 0.06, 16, 64]} />}
+      {kind === "capsule" && <capsuleGeometry args={[0.26, 0.62, 10, 24]} />}
       {kind === "prism" && <cylinderGeometry args={[0.58, 0.58, 1, 3]} />}
       {kind === "pyramid" && <coneGeometry args={[0.62, 1, 4]} />}
+      {kind === "tetrahedron" && <tetrahedronGeometry args={[0.58, 0]} />}
+      {kind === "octahedron" && <octahedronGeometry args={[0.58, 0]} />}
+      {kind === "dodecahedron" && <dodecahedronGeometry args={[0.5, 0]} />}
+      {kind === "wedge" && <polyhedronGeometry args={[[0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0.75, 0, 1, 0.75, 0], [0, 1, 2, 0, 2, 3, 0, 4, 5, 0, 5, 1, 1, 5, 2, 3, 2, 5, 3, 5, 4, 0, 3, 4], 0.5, 0]} />}
       {kind === "polyhedron" && <icosahedronGeometry args={[0.65, 0]} />}
       <ObjectMaterial transform={transform} />
     </mesh>
@@ -4507,6 +5020,192 @@ function surfaceFormula(surface: SurfaceKind, scaleValue: number) {
   if (surface === "ripple") return `z = ${roundTo(scaleValue, 2)} sin(1.2(x^2+y^2))`;
   if (surface === "cone-surface") return `z = ${roundTo(scaleValue, 2)} sqrt(x^2+y^2)`;
   return `z = ${roundTo(scaleValue, 2)}(x+y)/3`;
+}
+
+type GeometryPaletteToolItem = { id: GeometryTool; label: string; icon: LucideIcon };
+type GeometryPaletteActionItem = { id: string; label: string; icon: LucideIcon; action: () => void; danger?: boolean };
+
+const geometryPaletteGroups: Array<{ title: string; tools: GeometryPaletteToolItem[] }> = [
+  {
+    title: "Basic Tools",
+    tools: [
+      { id: "select", label: "Move", icon: MousePointer2 },
+      { id: "point", label: "Point", icon: Plus },
+      { id: "segment", label: "Segment", icon: Move },
+      { id: "line", label: "Line", icon: Slash },
+      { id: "ray", label: "Ray", icon: LineChart },
+      { id: "vector", label: "Vector", icon: Move },
+      { id: "circle", label: "Circle", icon: Circle },
+      { id: "polygon", label: "Polygon", icon: Pentagon },
+      { id: "angle", label: "Angle", icon: Circle },
+    ],
+  },
+  {
+    title: "Edit",
+    tools: [
+      { id: "freehand", label: "Freehand", icon: Slash },
+      { id: "text", label: "Text", icon: Slash },
+      { id: "image", label: "Image", icon: Box },
+      { id: "move-canvas", label: "Move Canvas", icon: Move },
+      { id: "zoom", label: "Zoom", icon: ZoomIn },
+    ],
+  },
+  {
+    title: "Construct",
+    tools: [
+      { id: "parallel", label: "Parallel", icon: Slash },
+      { id: "perpendicular", label: "Perp.", icon: Plus },
+      { id: "perpendicular-bisector", label: "Perp. Bisector", icon: Slash },
+      { id: "angle-bisector", label: "Angle Bisector", icon: Slash },
+      { id: "midpoint", label: "Midpoint", icon: Magnet },
+      { id: "intersect", label: "Intersect", icon: Plus },
+      { id: "fixed-length", label: "Fixed Length", icon: Magnet },
+      { id: "on-circle", label: "Point on Circle", icon: Circle },
+      { id: "circle-radius", label: "Circle Radius", icon: Circle },
+      { id: "circle-3-points", label: "Circle 3 Points", icon: Circle },
+    ],
+  },
+  {
+    title: "Shapes",
+    tools: [
+      { id: "triangle", label: "Triangle", icon: Pentagon },
+      { id: "rectangle", label: "Rectangle", icon: Box },
+      { id: "shape-circle", label: "Circle Shape", icon: Circle },
+      { id: "parabola", label: "Parabola", icon: LineChart },
+      { id: "ellipse", label: "Ellipse", icon: Circle },
+      { id: "hyperbola", label: "Hyperbola", icon: LineChart },
+    ],
+  },
+  {
+    title: "Curves",
+    tools: [
+      { id: "tangent", label: "Tangent", icon: Circle },
+      { id: "polar", label: "Polar", icon: Move },
+      { id: "locus", label: "Locus", icon: LineChart },
+      { id: "regular-polygon", label: "Regular Polygon", icon: Pentagon },
+      { id: "arc", label: "Arc", icon: Circle },
+      { id: "sector", label: "Sector", icon: Circle },
+      { id: "compass", label: "Compass", icon: Magnet },
+    ],
+  },
+  {
+    title: "Transform",
+    tools: [
+      { id: "mirror", label: "Mirror", icon: Slash },
+      { id: "rotate", label: "Rotate 45", icon: RotateCcw },
+      { id: "dilate", label: "Dilate 1.5x", icon: ZoomIn },
+      { id: "translate", label: "Translate", icon: Move },
+    ],
+  },
+];
+
+function GeometryToolPalette({
+  activeTool,
+  onTool,
+  onSelectAll,
+  onMoveSelected,
+  onRotateSelected,
+  onDilateSelected,
+  onUndo,
+  onRedo,
+  onDeleteSelected,
+  onShowHide,
+  onLockSelected,
+  onTraceSelected,
+  onStopTrace,
+  onClearTrace,
+  onReset,
+  onSave,
+  onLoad,
+  onAddImage,
+}: {
+  activeTool: GeometryTool;
+  onTool: (tool: GeometryTool) => void;
+  onSelectAll: () => void;
+  onMoveSelected: () => void;
+  onRotateSelected: () => void;
+  onDilateSelected: () => void;
+  onUndo: () => void;
+  onRedo: () => void;
+  onDeleteSelected: () => void;
+  onShowHide: () => void;
+  onLockSelected: () => void;
+  onTraceSelected: () => void;
+  onStopTrace: () => void;
+  onClearTrace: () => void;
+  onReset: () => void;
+  onSave: () => void;
+  onLoad: () => void;
+  onAddImage: () => void;
+}) {
+  const selectionActions: GeometryPaletteActionItem[] = [
+    { id: "select-all", label: "Select All Points", icon: MousePointer2, action: onSelectAll },
+    { id: "move-selected", label: "Move Selected", icon: Move, action: onMoveSelected },
+    { id: "rotate-selected", label: "Rotate Selected", icon: RotateCcw, action: onRotateSelected },
+    { id: "dilate-selected", label: "Dilate Selected", icon: ZoomIn, action: onDilateSelected },
+    { id: "show-hide", label: "Show / Hide", icon: Circle, action: onShowHide },
+    { id: "lock", label: "Lock", icon: Magnet, action: onLockSelected },
+    { id: "reflect", label: "Reflect", icon: Slash, action: () => onTool("mirror") },
+    { id: "trace", label: "Trace", icon: LineChart, action: onTraceSelected },
+    { id: "stop-trace", label: "Stop Trace", icon: RotateCcw, action: onStopTrace },
+    { id: "clear-trace", label: "Clear Trace", icon: Eraser, action: onClearTrace },
+  ];
+  const fileActions: GeometryPaletteActionItem[] = [
+    { id: "delete", label: "Delete", icon: Trash2, action: onDeleteSelected, danger: true },
+    { id: "undo", label: "Undo", icon: RotateCcw, action: onUndo },
+    { id: "redo", label: "Redo", icon: RotateCcw, action: onRedo },
+    { id: "reset", label: "Reset", icon: Eraser, action: onReset, danger: true },
+    { id: "save", label: "Save", icon: Save, action: onSave },
+    { id: "load", label: "Load", icon: Download, action: onLoad },
+    { id: "add-image", label: "Add Image", icon: Plus, action: onAddImage },
+  ];
+
+  return (
+    <aside className="geometry-left-tools thin-scrollbar max-h-[min(66vh,560px)] overflow-auto rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-xl shadow-slate-200/40 dark:border-white/10 dark:bg-slate-950/70 dark:shadow-black/20">
+      {geometryPaletteGroups.map((group) => (
+        <GeometryPaletteSection key={group.title} title={group.title}>
+          {group.tools.map((item) => (
+            <GeometryPaletteTool key={item.id} item={item} active={activeTool === item.id} onClick={() => item.id === "image" ? onAddImage() : onTool(item.id)} />
+          ))}
+        </GeometryPaletteSection>
+      ))}
+      <GeometryPaletteSection title="Selection">
+        {selectionActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+      </GeometryPaletteSection>
+      <GeometryPaletteSection title="File / Image">
+        {fileActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+      </GeometryPaletteSection>
+    </aside>
+  );
+}
+
+function GeometryPaletteSection({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="mb-3 last:mb-0">
+      <h4 className="mb-1.5 px-1 text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{title}</h4>
+      <div className="grid grid-cols-3 gap-1.5">{children}</div>
+    </section>
+  );
+}
+
+function GeometryPaletteTool({ item, active, onClick }: { item: GeometryPaletteToolItem; active: boolean; onClick: () => void }) {
+  const Icon = item.icon;
+  return (
+    <button type="button" onClick={onClick} title={item.label} className={`geometry-palette-button ${active ? "geometry-palette-button-active" : ""}`}>
+      <Icon className="h-4 w-4" />
+      <span>{item.label}</span>
+    </button>
+  );
+}
+
+function GeometryPaletteAction({ item }: { item: GeometryPaletteActionItem }) {
+  const Icon = item.icon;
+  return (
+    <button type="button" onClick={item.action} title={item.label} className={`geometry-palette-button ${item.danger ? "geometry-palette-button-danger" : ""}`}>
+      <Icon className="h-4 w-4" />
+      <span>{item.label}</span>
+    </button>
+  );
 }
 
 function ToolButton({ active, label, onClick, icon }: { active?: boolean; label: string; onClick: () => void; icon: JSX.Element }) {
@@ -4726,13 +5425,32 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
   const instructions: Record<GeometryTool, string> = {
     select: "Drag existing points to update every connected line, circle, and polygon.",
     point: "Click the board to create labeled points.",
+    segment: "Click two points to create a measured segment.",
+    ray: "Click start point, then a direction point to create a ray-style object.",
+    vector: "Click tail point, then head point to create a vector-style object.",
     line: "Click two points to create a segment.",
     circle: "Click a center point, then a radius point.",
     polygon: "Click three or more points; the polygon is created after the third point.",
+    angle: "Click side point, vertex, side point to create a visible angle arc.",
+    "show-hide": "Use the selected-object section to show or hide the selected object.",
+    lock: "Use the selected-object section to lock or unlock the selected object.",
+    freehand: "Sketch helper mode for marking an idea before converting it to construction objects.",
+    text: "Click the board to place a draggable text note point.",
+    image: "Opens the image picker and places the image on the geometry board.",
+    "move-canvas": "Move-canvas mode keeps construction objects unchanged while you inspect the board.",
+    zoom: "Zoom mode is available from the plate and keeps the current construction selected.",
+    triangle: "Click the board to insert an editable triangle.",
+    rectangle: "Click the board to insert an editable rectangle.",
+    "shape-circle": "Click the board to insert a ready circle with center and edge points.",
+    parabola: "Click the board to insert a parabola visualization curve.",
+    ellipse: "Click the board to insert an ellipse visualization curve.",
+    hyperbola: "Click the board to insert a hyperbola visualization curve.",
     parallel: "Click two points for a source direction, then a third point. A constrained parallel line is created through the third point.",
     perpendicular: "Click two points for a source direction, then a third point. A constrained perpendicular line is created through the third point.",
     midpoint: "Click two points. A midpoint is created and stays locked halfway between them.",
     "fixed-length": "Click an anchor point and a second point. The second point keeps its current distance from the anchor while dragged.",
+    "circle-radius": "Click center and edge points to create a radius-driven circle.",
+    "circle-3-points": "Click three points to create the circle passing through them.",
     "on-circle": "Click a point. It snaps to the first circle and stays on that circle.",
     intersect: "Create lines and circles, then click any point to add all current line-line, line-circle, and circle-circle intersections.",
     "perpendicular-bisector": "Click two points to create their midpoint and a perpendicular bisector.",
@@ -4745,9 +5463,18 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     sector: "Click center, start, and end points to create a sector.",
     compass: "Click two points for radius, then a center point for a compass circle.",
     mirror: "Click point to mirror, then two points defining the mirror line.",
+    reflect: "Reflect uses the mirror construction: point to reflect, then two line points.",
     rotate: "Click a point to rotate it 45 degrees around the first point.",
     dilate: "Click a point to dilate it 1.5x from the first point.",
     translate: "Click vector start, vector end, then point to translate.",
+    trace: "Turns trace on for the selected object from the plate.",
+    "stop-trace": "Turns trace off for the selected object.",
+    "clear-trace": "Clears trace flags from every geometry object.",
+    delete: "Deletes the selected geometry object.",
+    redo: "Reapplies the last undone workspace change.",
+    reset: "Resets the current geometry construction.",
+    save: "Saves the current construction in browser storage.",
+    load: "Loads the saved browser construction.",
   };
   return <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50"><p className="font-bold">Current tool: {tool}</p><p className="mt-2">{instructions[tool]}</p></div>;
 }
@@ -4907,6 +5634,17 @@ function addCompassCircle(construction: Construction, aId: string, bId: string, 
   const radius = distance(a, b);
   const edge: GeoPoint = { id: crypto.randomUUID(), x: center.x + radius, y: center.y, label: nextPointLabel(construction.points) };
   return solveConstruction({ ...construction, points: [...construction.points, edge], circles: [...construction.circles, { id: crypto.randomUUID(), center: centerId, edge: edge.id }] });
+}
+
+function addCircleThrough3Points(construction: Construction, aId: string, bId: string, cId: string) {
+  const a = pointById(construction.points, aId), b = pointById(construction.points, bId), c = pointById(construction.points, cId);
+  if (!a || !b || !c) return construction;
+  const d = 2 * (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y));
+  if (Math.abs(d) < 0.001) return construction;
+  const ux = ((a.x ** 2 + a.y ** 2) * (b.y - c.y) + (b.x ** 2 + b.y ** 2) * (c.y - a.y) + (c.x ** 2 + c.y ** 2) * (a.y - b.y)) / d;
+  const uy = ((a.x ** 2 + a.y ** 2) * (c.x - b.x) + (b.x ** 2 + b.y ** 2) * (a.x - c.x) + (c.x ** 2 + c.y ** 2) * (b.x - a.x)) / d;
+  const center: GeoPoint = { id: crypto.randomUUID(), x: ux, y: uy, label: nextPointLabel(construction.points), style: { color: "#f97316" } };
+  return solveConstruction({ ...construction, points: [...construction.points, center], circles: [...construction.circles, { id: crypto.randomUUID(), center: center.id, edge: aId, style: { color: "#f97316" } }] });
 }
 
 function mirrorPointAcrossLine(construction: Construction, pointId: string, aId: string, bId: string) {

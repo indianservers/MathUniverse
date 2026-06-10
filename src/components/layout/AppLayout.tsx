@@ -63,7 +63,7 @@ export default function AppLayout() {
   const mainContentRef = useRef<HTMLElement | null>(null);
   const location = useLocation();
   const showBack = location.pathname.split("/").filter(Boolean).length > 1;
-  const isWorkspaceRoute = location.pathname === "/workspace";
+  const isWorkspaceRoute = location.pathname === "/workspace" || location.pathname.startsWith("/workspace/");
 
   useEffect(() => {
     setMobileOpen(false);
@@ -95,6 +95,20 @@ export default function AppLayout() {
     }
   }, [location.pathname]);
 
+  if (isWorkspaceRoute) {
+    return (
+      <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.14),transparent_30%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.12),transparent_34%)]">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-2xl focus:bg-slate-950 focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white dark:focus:bg-white dark:focus:text-slate-950">Skip to content</a>
+        <main ref={mainContentRef} id="main-content" className="app-fullscreen-target h-screen w-full overflow-hidden p-2">
+          <div key={location.pathname} className="page-transition h-full min-h-0">
+            <Outlet />
+          </div>
+        </main>
+        <UndoToastHost />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.14),transparent_30%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.12),transparent_34%)]">
       <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-2xl focus:bg-slate-950 focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white dark:focus:bg-white dark:focus:text-slate-950">Skip to content</a>
@@ -105,11 +119,7 @@ export default function AppLayout() {
           <main
             ref={mainContentRef}
             id="main-content"
-            className={
-              isWorkspaceRoute
-                ? "app-fullscreen-target w-full flex-1 overflow-hidden px-2 pb-2 pt-2"
-                : "app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 px-3 pb-6 pt-3 sm:px-4 md:px-5 md:pt-4"
-            }
+            className="app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 px-3 pb-6 pt-3 sm:px-4 md:px-5 md:pt-4"
           >
             <button
               type="button"
@@ -121,20 +131,20 @@ export default function AppLayout() {
               {mainFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
               <span>{mainFullscreen ? "Exit" : "Full"}</span>
             </button>
-            <div key={location.pathname} className={isWorkspaceRoute ? "page-transition h-full min-h-0" : "page-transition space-y-2.5"}>
-              {!isWorkspaceRoute && <InlinePageNav showBack={showBack} />}
+            <div key={location.pathname} className="page-transition space-y-2.5">
+              <InlinePageNav showBack={showBack} />
               <Outlet />
             </div>
           </main>
-          {!isWorkspaceRoute && <AppFooter />}
+          <AppFooter />
         </div>
       </div>
       <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
-      {!isWorkspaceRoute && <MobileLearningDock />}
-      {!isWorkspaceRoute && <div className="fixed bottom-3 left-3 z-40 rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[11px] font-black text-slate-500 shadow-lg backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300 lg:bottom-4">
+      <MobileLearningDock />
+      <div className="fixed bottom-3 left-3 z-40 rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[11px] font-black text-slate-500 shadow-lg backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300 lg:bottom-4">
         v{APP_VERSION}
-      </div>}
-      {!isWorkspaceRoute && <BackToTopButton />}
+      </div>
+      <BackToTopButton />
       <UndoToastHost />
     </div>
   );
