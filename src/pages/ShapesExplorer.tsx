@@ -1,8 +1,7 @@
-import { Award, Box, Camera, Circle, Cuboid, Download, Eye, Heart, Maximize2, Mic, Minimize2, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Trash2, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
-import { ContactShadows, OrbitControls, Text } from "@react-three/drei";
+import { Award, Box, Camera, Circle, Cuboid, Download, ExternalLink, Eye, Heart, Mic, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
+import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent, type RefObject } from "react";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import FormulaBlock from "../components/ui/FormulaBlock";
@@ -16,8 +15,11 @@ type ShapeKind = "2d" | "3d";
 type ShapeCategory = "2D Basic" | "2D Curved" | "2D Polygons" | "3D Solids" | "3D Curved Solids";
 type ShapeId =
   | "circle" | "semicircle" | "sector" | "ellipse" | "triangle" | "right-triangle" | "square" | "rectangle"
-  | "parallelogram" | "rhombus" | "trapezium" | "kite" | "regular-polygon"
-  | "cube" | "cuboid" | "sphere" | "hemisphere" | "cylinder" | "cone" | "frustum" | "square-pyramid" | "triangular-prism" | "torus";
+  | "parallelogram" | "rhombus" | "trapezium" | "kite" | "pentagon" | "hexagon" | "heptagon" | "octagon" | "decagon" | "regular-polygon"
+  | "annulus" | "quadrant" | "segment" | "crescent" | "star" | "cross"
+  | "cube" | "cuboid" | "sphere" | "hemisphere" | "cylinder" | "hollow-cylinder" | "capsule" | "ellipsoid" | "cone" | "frustum" | "torus"
+  | "tetrahedron" | "octahedron" | "dodecahedron" | "icosahedron" | "square-pyramid" | "triangular-pyramid" | "rectangular-pyramid"
+  | "triangular-prism" | "pentagonal-prism" | "hexagonal-prism";
 
 type ShapeDefinition = {
   id: ShapeId;
@@ -31,16 +33,6 @@ type ShapeDefinition = {
 };
 
 type Metrics = Record<string, number>;
-type SavedShapeSize = {
-  id: string;
-  name: string;
-  shapeId: ShapeId;
-  a: number;
-  b: number;
-  c: number;
-  sides: number;
-  angle: number;
-};
 
 const shapes: ShapeDefinition[] = [
   { id: "circle", name: "Circle", kind: "2d", category: "2D Curved", formula: "C = 2 pi r, A = pi r^2", description: "All points at a fixed distance from the center.", dimensions: ["radius"], use: "Wheels, clocks, lenses, gears." },
@@ -55,67 +47,65 @@ const shapes: ShapeDefinition[] = [
   { id: "rhombus", name: "Rhombus", kind: "2d", category: "2D Polygons", formula: "A = d1 d2 / 2, P = 4s", description: "A parallelogram with four equal sides.", dimensions: ["diagonal 1", "diagonal 2"], use: "Patterns, crystals, lattice geometry." },
   { id: "trapezium", name: "Trapezium", kind: "2d", category: "2D Polygons", formula: "A = 1/2 (a+b)h", description: "A quadrilateral with one pair of parallel sides.", dimensions: ["base", "top", "height"], use: "Bridges, ramps, cross-sections." },
   { id: "kite", name: "Kite", kind: "2d", category: "2D Polygons", formula: "A = d1 d2 / 2", description: "Two pairs of adjacent equal sides.", dimensions: ["diagonal 1", "diagonal 2"], use: "Kites, decorative panels, symmetry studies." },
+  { id: "pentagon", name: "Pentagon", kind: "2d", category: "2D Polygons", formula: "A = 5s^2/(4 tan(pi/5)), P = 5s", description: "A five-sided polygon.", dimensions: ["side"], use: "Badges, architecture, tiling studies." },
+  { id: "hexagon", name: "Hexagon", kind: "2d", category: "2D Polygons", formula: "A = 3sqrt(3)s^2/2, P = 6s", description: "A six-sided polygon common in efficient packing.", dimensions: ["side"], use: "Honeycombs, bolts, grid maps." },
+  { id: "heptagon", name: "Heptagon", kind: "2d", category: "2D Polygons", formula: "A = 7s^2/(4 tan(pi/7)), P = 7s", description: "A seven-sided polygon.", dimensions: ["side"], use: "Coins, decorative geometry, polygon classification." },
+  { id: "octagon", name: "Octagon", kind: "2d", category: "2D Polygons", formula: "A = 2(1+sqrt(2))s^2, P = 8s", description: "An eight-sided polygon.", dimensions: ["side"], use: "Stop signs, floor patterns, design frames." },
+  { id: "decagon", name: "Decagon", kind: "2d", category: "2D Polygons", formula: "A = 10s^2/(4 tan(pi/10)), P = 10s", description: "A ten-sided polygon.", dimensions: ["side"], use: "Circular approximations, ornaments, game tokens." },
   { id: "regular-polygon", name: "Regular Polygon", kind: "2d", category: "2D Polygons", formula: "A = n s^2 / (4 tan(pi/n)), P = ns", description: "All sides and angles are equal.", dimensions: ["side", "sides"], use: "Tiling, icons, nuts and bolts, meshes." },
+  { id: "annulus", name: "Annulus", kind: "2d", category: "2D Curved", formula: "A = pi(R^2-r^2)", description: "A ring-shaped region between two concentric circles.", dimensions: ["outer radius", "inner radius"], use: "Washers, rings, tracks, gaskets." },
+  { id: "quadrant", name: "Quadrant", kind: "2d", category: "2D Curved", formula: "A = 1/4 pi r^2, arc = 1/2 pi r", description: "One quarter of a circle.", dimensions: ["radius"], use: "Coordinate planes, rounded corners, quarter turns." },
+  { id: "segment", name: "Circular Segment", kind: "2d", category: "2D Curved", formula: "A = sector area - triangle area", description: "A region cut from a circle by a chord.", dimensions: ["radius", "angle"], use: "Lenses, bridge arches, tank fill levels." },
+  { id: "crescent", name: "Crescent", kind: "2d", category: "2D Curved", formula: "A = area(big circle) - overlap", description: "A moon-like shape made from two offset circular arcs.", dimensions: ["outer radius", "inner radius"], use: "Astronomy icons, logos, moon phases." },
+  { id: "star", name: "Star Polygon", kind: "2d", category: "2D Polygons", formula: "A from alternating outer/inner radii", description: "A self-pointing polygon with alternating radii.", dimensions: ["outer radius", "inner radius"], use: "Flags, ratings, decorative geometry." },
+  { id: "cross", name: "Cross Shape", kind: "2d", category: "2D Polygons", formula: "A = vertical rectangle + horizontal rectangle - overlap", description: "Two rectangles crossing at right angles.", dimensions: ["arm length", "arm width"], use: "Symbols, floor plans, structural layouts." },
   { id: "cube", name: "Cube", kind: "3d", category: "3D Solids", formula: "SA = 6s^2, V = s^3", description: "A solid with six equal square faces.", dimensions: ["side"], use: "Dice, voxels, packaging, 3D grids." },
   { id: "cuboid", name: "Cuboid", kind: "3d", category: "3D Solids", formula: "SA = 2(lw+lh+wh), V = lwh", description: "A rectangular box with length, width, and height.", dimensions: ["length", "width", "height"], use: "Rooms, cartons, tanks, containers." },
   { id: "sphere", name: "Sphere", kind: "3d", category: "3D Curved Solids", formula: "SA = 4 pi r^2, V = 4/3 pi r^3", description: "All surface points are the same distance from the center.", dimensions: ["radius"], use: "Planets, balls, bubbles, atoms." },
   { id: "hemisphere", name: "Hemisphere", kind: "3d", category: "3D Curved Solids", formula: "CSA = 2 pi r^2, TSA = 3 pi r^2, V = 2/3 pi r^3", description: "Half of a sphere with a circular base.", dimensions: ["radius"], use: "Domes, bowls, observatories." },
   { id: "cylinder", name: "Cylinder", kind: "3d", category: "3D Curved Solids", formula: "SA = 2 pi r(r+h), V = pi r^2 h", description: "Two circular bases connected by a curved surface.", dimensions: ["radius", "height"], use: "Cans, pipes, tanks, pistons." },
+  { id: "hollow-cylinder", name: "Hollow Cylinder", kind: "3d", category: "3D Curved Solids", formula: "V = pi h(R^2-r^2)", description: "A tube with outer and inner circular radii.", dimensions: ["outer radius", "inner radius", "height"], use: "Pipes, sleeves, washers, ducts." },
+  { id: "capsule", name: "Capsule", kind: "3d", category: "3D Curved Solids", formula: "V = pi r^2 h + 4/3 pi r^3", description: "A cylinder capped by two hemispheres.", dimensions: ["radius", "cylinder length"], use: "Pills, pressure vessels, game colliders." },
+  { id: "ellipsoid", name: "Ellipsoid", kind: "3d", category: "3D Curved Solids", formula: "V = 4/3 pi abc", description: "A sphere stretched along three axes.", dimensions: ["axis a", "axis b", "axis c"], use: "Planets, lenses, probability clouds." },
   { id: "cone", name: "Cone", kind: "3d", category: "3D Curved Solids", formula: "SA = pi r(r+l), V = 1/3 pi r^2 h", description: "A circular base tapering to one point.", dimensions: ["radius", "height"], use: "Funnels, traffic cones, nozzles." },
   { id: "frustum", name: "Frustum", kind: "3d", category: "3D Curved Solids", formula: "V = 1/3 pi h(R^2 + Rr + r^2)", description: "A cone with its top cut off parallel to the base.", dimensions: ["radius", "top radius", "height"], use: "Buckets, lampshades, tapered columns." },
+  { id: "tetrahedron", name: "Tetrahedron", kind: "3d", category: "3D Solids", formula: "V = s^3/(6sqrt(2))", description: "A polyhedron with four triangular faces.", dimensions: ["side"], use: "Molecular geometry, dice, meshes." },
+  { id: "octahedron", name: "Octahedron", kind: "3d", category: "3D Solids", formula: "V = sqrt(2)s^3/3", description: "A polyhedron with eight triangular faces.", dimensions: ["side"], use: "Crystals, dice, symmetric models." },
+  { id: "dodecahedron", name: "Dodecahedron", kind: "3d", category: "3D Solids", formula: "12 regular pentagonal faces", description: "A Platonic solid with twelve pentagonal faces.", dimensions: ["side"], use: "Dice, topology, symmetry studies." },
+  { id: "icosahedron", name: "Icosahedron", kind: "3d", category: "3D Solids", formula: "20 equilateral triangular faces", description: "A Platonic solid with twenty triangular faces.", dimensions: ["side"], use: "Geodesic models, dice, meshes." },
   { id: "square-pyramid", name: "Square Pyramid", kind: "3d", category: "3D Solids", formula: "V = 1/3 s^2 h", description: "A square base rising to one apex.", dimensions: ["side", "height"], use: "Pyramids, roofs, monuments." },
+  { id: "triangular-pyramid", name: "Triangular Pyramid", kind: "3d", category: "3D Solids", formula: "V = 1/3 Bh", description: "A pyramid with a triangular base.", dimensions: ["base side", "height"], use: "Tetrahedral models, roof geometry." },
+  { id: "rectangular-pyramid", name: "Rectangular Pyramid", kind: "3d", category: "3D Solids", formula: "V = 1/3 lwh", description: "A rectangular base rising to one apex.", dimensions: ["length", "width", "height"], use: "Roofs, monuments, packaging." },
   { id: "triangular-prism", name: "Triangular Prism", kind: "3d", category: "3D Solids", formula: "V = 1/2 bhL", description: "A triangular face extruded through a length.", dimensions: ["base", "height", "length"], use: "Roof forms, wedges, optical prisms." },
+  { id: "pentagonal-prism", name: "Pentagonal Prism", kind: "3d", category: "3D Solids", formula: "V = pentagon area * length", description: "A pentagonal face extruded through a length.", dimensions: ["side", "length"], use: "Columns, packaging, architecture." },
+  { id: "hexagonal-prism", name: "Hexagonal Prism", kind: "3d", category: "3D Solids", formula: "V = 3sqrt(3)/2 s^2 h", description: "A hexagonal face extruded through a length.", dimensions: ["side", "length"], use: "Pencils, honeycomb cells, bolts." },
   { id: "torus", name: "Torus", kind: "3d", category: "3D Curved Solids", formula: "SA = 4 pi^2 Rr, V = 2 pi^2 Rr^2", description: "A doughnut-shaped solid with major and minor radii.", dimensions: ["major radius", "minor radius"], use: "Tires, O-rings, magnetic coils." },
 ];
 
 const categories = ["All", "2D Basic", "2D Curved", "2D Polygons", "3D Solids", "3D Curved Solids"] as const;
-const savedShapeStorageKey = "math-universe-saved-shape-sizes";
-const shapeCategoryTree = [
-  { title: "2D Shapes", categories: ["2D Basic", "2D Curved", "2D Polygons"] as ShapeCategory[] },
-  { title: "3D Shapes", categories: ["3D Solids", "3D Curved Solids"] as ShapeCategory[] },
-];
 
 export default function ShapesExplorer() {
   const { markTopicVisited, markTopicInteracted } = useProgress();
-  const [searchParams] = useSearchParams();
-  const shapeParam = searchParams.get("shape");
   const [category, setCategory] = useState<(typeof categories)[number]>("All");
-  const [selectedId, setSelectedId] = useState<ShapeId>(() => parseShapeId(shapeParam) ?? "circle");
+  const [selectedId, setSelectedId] = useState<ShapeId>("circle");
   const [a, setA] = useState(4);
   const [b, setB] = useState(3);
   const [c, setC] = useState(5);
   const [sides, setSides] = useState(6);
   const [angle, setAngle] = useState(90);
   const [wireframe, setWireframe] = useState(false);
-  const [show3DBase, setShow3DBase] = useState(true);
-  const [show3DCoordinates, setShow3DCoordinates] = useState(true);
-  const [show3DLabels, setShow3DLabels] = useState(true);
   const [viewZoom, setViewZoom] = useState(1);
   const [viewRotation, setViewRotation] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
-  const [studioOpen, setStudioOpen] = useState(false);
-  const [savedShapes, setSavedShapes] = useState<SavedShapeSize[]>(() => loadSavedShapeSizes());
-  const [activeSavedShapeId, setActiveSavedShapeId] = useState<string | null>(null);
-  const [savedShapeName, setSavedShapeName] = useState("My shape");
+  const [controlPaneWidth, setControlPaneWidth] = useState(30);
+  const [viewPaneSplit, setViewPaneSplit] = useState(50);
+  const workspaceRef = useRef<HTMLDivElement>(null);
+  const viewsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => markTopicVisited("shapes"), [markTopicVisited]);
-  useEffect(() => {
-    const nextShapeId = parseShapeId(shapeParam);
-    if (!nextShapeId) return;
-    setSelectedId(nextShapeId);
-    setCategory(shapes.find((shape) => shape.id === nextShapeId)?.category ?? "All");
-  }, [shapeParam]);
-  useEffect(() => {
-    localStorage.setItem(savedShapeStorageKey, JSON.stringify(savedShapes));
-  }, [savedShapes]);
 
   const selected = shapes.find((shape) => shape.id === selectedId) ?? shapes[0];
-  const groupedShapes = useMemo(() => {
-    const groups = new Map<ShapeCategory, ShapeDefinition[]>();
-    shapes.forEach((shape) => groups.set(shape.category, [...(groups.get(shape.category) ?? []), shape]));
-    return groups;
-  }, []);
-  const savedForSelectedShape = useMemo(() => savedShapes.filter((shape) => shape.shapeId === selected.id), [savedShapes, selected.id]);
+  const visibleShapes = useMemo(() => shapes.filter((shape) => category === "All" || shape.category === category), [category]);
   const metrics = getMetrics(selected.id, a, b, c, sides, angle);
 
   const selectShape = (shape: ShapeDefinition) => {
@@ -134,83 +124,66 @@ export default function ShapesExplorer() {
     setViewRotation(0);
     setAutoRotate(true);
   };
-  const currentSavedShape = () => ({
-    name: savedShapeName.trim() || `${selected.name} ${savedForSelectedShape.length + 1}`,
-    shapeId: selected.id,
-    a,
-    b,
-    c,
-    sides,
-    angle,
-  });
-  const addSavedShape = () => {
-    const shape = currentSavedShape();
-    const item: SavedShapeSize = { ...shape, id: `saved-${Date.now()}` };
-    setSavedShapes((items) => [item, ...items]);
-    setActiveSavedShapeId(item.id);
-    setSavedShapeName(item.name);
-  };
-  const updateSavedShape = () => {
-    if (!activeSavedShapeId) return;
-    const next = currentSavedShape();
-    setSavedShapes((items) => items.map((item) => item.id === activeSavedShapeId ? { ...item, ...next } : item));
-  };
-  const applySavedShape = (item: SavedShapeSize) => {
-    setSelectedId(item.shapeId);
-    setA(item.a);
-    setB(item.b);
-    setC(item.c);
-    setSides(item.sides);
-    setAngle(item.angle);
-    setSavedShapeName(item.name);
-    setActiveSavedShapeId(item.id);
-    setViewZoom(1);
-    setViewRotation(0);
-  };
-  const removeSavedShape = (id: string) => {
-    setSavedShapes((items) => items.filter((item) => item.id !== id));
-    if (activeSavedShapeId === id) setActiveSavedShapeId(null);
-  };
 
   return (
-    <div className="space-y-3" onPointerDown={() => markTopicInteracted("shapes")}>
+    <div className="space-y-6" onPointerDown={() => markTopicInteracted("shapes")}>
       <TopicHeader
         title="2D and 3D Shapes Explorer"
         subtitle="Explore common plane figures and solid shapes visually with formulas, dimensions, surface area, volume, perimeter, and real-world uses."
         difficulty="Foundational"
         estimatedMinutes={35}
       />
-      <button type="button" className="tool-button w-fit" onClick={() => setStudioOpen((value) => !value)}>
-        {studioOpen ? "Hide Kids Studio" : "Open Kids Studio"}
-      </button>
-      {studioOpen && <KidsShapeStudio shapes={shapes} selected={selected} onSelect={selectShape} />}
+      <KidsShapeStudio shapes={shapes} selected={selected} onSelect={selectShape} />
 
-      <SectionCard title="Shape Explorer" description={`${shapes.length} shapes in a compact nested menu. Select any shape to update the live visualization immediately.`} compact>
-        <div className="grid gap-3 xl:grid-cols-[300px_minmax(0,1fr)]">
-          <ShapeNavigationMenu
-            groupedShapes={groupedShapes}
-            category={category}
-            selected={selected}
-            onCategory={setCategory}
-            onSelect={selectShape}
-          />
-          <div className="min-w-0 space-y-3">
-            <div className="flex flex-col gap-3 rounded-2xl border border-cyan-300/30 bg-slate-950 p-4 text-white md:flex-row md:items-start md:justify-between">
-              <div className="min-w-0">
-                <p className="text-xs font-black uppercase tracking-wide text-cyan-200">{selected.category}</p>
-                <h2 className="mt-1 text-2xl font-black">{selected.name}</h2>
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">{selected.description}</p>
-              </div>
-              <div className="grid grid-cols-2 gap-2 text-xs font-bold sm:min-w-72">
-                <span className="rounded-xl bg-white/10 p-2">{selected.kind === "2d" ? "Plane shape" : "Solid shape"}</span>
-                <span className="rounded-xl bg-white/10 p-2">{selected.dimensions.length} dimension{selected.dimensions.length === 1 ? "" : "s"}</span>
-                <span className="col-span-2 rounded-xl bg-white/10 p-2 font-mono">{selected.formula}</span>
-              </div>
-            </div>
-            <div className="grid gap-3 xl:grid-cols-[300px_minmax(0,1fr)]">
-          <div className="scroll-panel space-y-3 xl:max-h-[calc(100vh-12rem)]">
+      <SectionCard title="Shape Library" description={`${shapes.length} shapes grouped by 2D and 3D families.`}>
+        <div className="flex flex-wrap gap-2">
+          {categories.map((item) => (
+            <button
+              key={item}
+              type="button"
+              onClick={() => setCategory(item)}
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                category === item ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200"
+              }`}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {visibleShapes.map((shape) => {
+            const Icon = shape.kind === "3d" ? Box : shape.id.includes("triangle") ? Triangle : shape.id === "circle" ? Circle : Shapes;
+            const active = selected.id === shape.id;
+            return (
+              <button
+                key={shape.id}
+                type="button"
+                onClick={() => selectShape(shape)}
+                className={`min-h-[132px] rounded-2xl border p-4 text-left transition hover:-translate-y-1 ${
+                  active ? "border-cyan-400 bg-cyan-50 shadow-lg shadow-cyan-500/10 dark:bg-cyan-400/10" : "border-slate-200 bg-white/70 dark:border-white/10 dark:bg-white/5"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <Icon className="h-5 w-5 text-cyan-500" />
+                  <span className="font-bold">{shape.name}</span>
+                </div>
+                <p className="mt-2 text-xs font-semibold text-slate-500 dark:text-slate-400">{shape.category}</p>
+                <p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{shape.description}</p>
+              </button>
+            );
+          })}
+        </div>
+      </SectionCard>
+
+      <SectionCard title={selected.name} description={selected.description}>
+        <div
+          ref={workspaceRef}
+          className="grid gap-3 xl:min-h-[720px] xl:items-stretch"
+          style={{ gridTemplateColumns: `minmax(280px, ${controlPaneWidth}%) 14px minmax(50%, 1fr)` }}
+        >
+          <div className="space-y-4 overflow-y-auto pr-1 xl:max-h-[78vh]">
             <FormulaBlock title={`${selected.name} Formulas`} formula={selected.formula} />
-            <div className="rounded-xl bg-cyan-50 p-3 text-sm leading-5 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">
+            <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">
               <p className="font-bold">Visual formula guide</p>
               <p className="mt-2">{formulaExplanation(selected.id, a, b, c, sides, angle)}</p>
             </div>
@@ -220,49 +193,11 @@ export default function ShapesExplorer() {
             {selected.id === "regular-polygon" && <SliderControl label="Number of sides" value={sides} min={3} max={12} step={1} onChange={(value) => setSides(Math.round(value))} />}
             {selected.id === "sector" && <SliderControl label="Central angle" value={angle} min={5} max={360} step={1} onChange={setAngle} unit="deg" />}
             {selected.kind === "3d" && (
-              <label className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
+              <label className="flex items-center gap-3 rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10">
                 <input type="checkbox" checked={wireframe} onChange={(event) => setWireframe(event.target.checked)} />
                 Wireframe
               </label>
             )}
-            <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/50">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-sm font-bold">Custom Shapes and Sizes</p>
-                  <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">Save, apply, modify, or remove shape variants.</p>
-                </div>
-                <span className="rounded-full bg-slate-100 px-2 py-1 text-xs font-bold dark:bg-white/10">{savedForSelectedShape.length}</span>
-              </div>
-              <label className="mt-3 block text-xs font-black uppercase text-slate-500">
-                Name
-                <input
-                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-2 text-sm font-semibold normal-case outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-900"
-                  value={savedShapeName}
-                  onChange={(event) => setSavedShapeName(event.target.value)}
-                />
-              </label>
-              <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                <button type="button" className="action-primary justify-center" onClick={addSavedShape}>Add current</button>
-                <button type="button" className="action-secondary justify-center disabled:opacity-45" disabled={!activeSavedShapeId} onClick={updateSavedShape}>Modify selected</button>
-              </div>
-              <div className="thin-scrollbar mt-3 max-h-56 space-y-2 overflow-auto pr-1">
-                {savedForSelectedShape.length === 0 ? (
-                  <p className="rounded-xl bg-slate-100 p-3 text-xs font-semibold text-slate-500 dark:bg-white/10 dark:text-slate-400">No saved variants for {selected.name} yet.</p>
-                ) : savedForSelectedShape.map((item) => (
-                  <div key={item.id} className={`rounded-xl border p-3 ${activeSavedShapeId === item.id ? "border-cyan-400 bg-cyan-50 dark:bg-cyan-400/10" : "border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/5"}`}>
-                    <div className="flex items-start justify-between gap-2">
-                      <button type="button" className="min-w-0 text-left" onClick={() => applySavedShape(item)}>
-                        <span className="block truncate text-sm font-bold">{item.name}</span>
-                        <span className="mt-1 block text-xs font-semibold text-slate-500 dark:text-slate-400">{savedShapeSummary(item)}</span>
-                      </button>
-                      <button type="button" className="rounded-full bg-white p-2 text-rose-500 shadow-sm dark:bg-slate-950" onClick={() => removeSavedShape(item.id)} aria-label={`Remove ${item.name}`}>
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
             <div className="grid grid-cols-2 gap-2">
               {Object.entries(metrics).map(([label, value]) => (
                 <Metric key={label} label={label} value={value} />
@@ -270,8 +205,17 @@ export default function ShapesExplorer() {
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div
+            role="separator"
+            aria-orientation="vertical"
+            aria-label="Resize controls and visualization panes"
+            className="hidden cursor-col-resize rounded-full bg-slate-200 transition hover:bg-cyan-400 dark:bg-white/10 dark:hover:bg-cyan-400 xl:block"
+            onPointerDown={(event) => startPaneResize(event, workspaceRef, setControlPaneWidth, 20, 48)}
+          />
+
+          <div className="space-y-4">
             <ShapeViewControls
+              kind={selected.kind}
               zoom={viewZoom}
               rotation={viewRotation}
               autoRotate={autoRotate}
@@ -282,49 +226,52 @@ export default function ShapesExplorer() {
               onReset={resetView}
               onToggleAutoRotate={() => setAutoRotate((value) => !value)}
             />
-            <div className="grid gap-3 xl:grid-cols-2">
-              <FullscreenPane className="overflow-hidden rounded-2xl border border-cyan-300/30 bg-slate-950 p-3 shadow-2xl shadow-cyan-950/20" title="2D pane">
-                <div className="mb-2 flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-wide text-cyan-200">2D pane</p>
-                    <p className="text-sm text-slate-300">{selected.kind === "2d" ? "Exact plane figure with live dimensions." : "Projection, net, or cross-section view."}</p>
-                  </div>
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-white">{selected.kind === "2d" ? "Flat geometry" : "2D projection"}</span>
-                </div>
-                <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} cinematic />
-              </FullscreenPane>
+            <div
+              ref={viewsRef}
+              className="grid gap-3 xl:min-h-[640px] xl:items-stretch"
+              style={{ gridTemplateColumns: `minmax(280px, ${viewPaneSplit}%) 14px minmax(280px, 1fr)` }}
+            >
+              <VisualizationPane title="2D Pane" description="Exact plane view with live dimensions." badge={selected.kind === "2d" ? "native 2D" : "shadow view"}>
+                <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} />
+              </VisualizationPane>
 
-              <FullscreenPane className="overflow-hidden rounded-2xl border border-violet-300/25 bg-slate-950 p-3 shadow-2xl shadow-violet-950/20" title="3D pane">
-                <div className="mb-2 flex items-center justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-wide text-violet-200">3D pane</p>
-                    <p className="text-sm text-slate-300">{selected.kind === "2d" ? "Real beveled extrusion from the 2D outline." : "True interactive solid with depth and shadows."}</p>
-                  </div>
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-white">{selected.kind === "2d" ? "Extruded 3D" : "Solid model"}</span>
-                </div>
-                <div className="mb-2 flex flex-wrap gap-2">
-                  <button type="button" className={autoRotate ? "action-primary" : "tool-button"} onClick={() => setAutoRotate((value) => !value)}>
-                    {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                    {autoRotate ? "Pause rotation" : "Start rotation"}
-                  </button>
-                  <ShapeSceneCheckbox label="Base" checked={show3DBase} onChange={setShow3DBase} />
-                  <ShapeSceneCheckbox label="Coordinates" checked={show3DCoordinates} onChange={setShow3DCoordinates} />
-                  <ShapeSceneCheckbox label="Labels" checked={show3DLabels} onChange={setShow3DLabels} />
-                </div>
-                <ThreeSceneWrapper chrome="cinematic" sceneLabel={`${selected.name} - ${autoRotate ? "rotating" : "paused"}`} height="520px" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom" cameraPosition={[4.4, 3.4, 6.2]} fov={43} quality="high">
-                <ambientLight intensity={0.48} />
-                <directionalLight position={[4, 6, 5]} intensity={1.85} castShadow />
-                <pointLight position={[-3.5, 2.4, 2.5]} intensity={1.1} color="#8b5cf6" />
-                <pointLight position={[2.8, -1, -3.5]} intensity={0.65} color="#22d3ee" />
-                <RotatingSolid shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} showLabels={show3DLabels} />
-                {show3DBase && <ContactShadows position={[0, -3, 0]} opacity={0.38} scale={8} blur={2.4} far={7} />}
-                {show3DBase && <gridHelper args={[8, 16, "#38bdf8", "#334155"]} position={[0, -3.02, 0]} />}
-                {show3DCoordinates && <axesHelper args={[3.4]} />}
-                {show3DCoordinates && <ShapeCoordinateLabels />}
-                <OrbitControls enablePan={false} enableZoom enableDamping autoRotate={autoRotate} autoRotateSpeed={0.7} />
+              <div
+                role="separator"
+                aria-orientation="vertical"
+                aria-label="Resize 2D and 3D panes"
+                className="hidden cursor-col-resize rounded-full bg-slate-200 transition hover:bg-cyan-400 dark:bg-white/10 dark:hover:bg-cyan-400 xl:block"
+                onPointerDown={(event) => startPaneResize(event, viewsRef, setViewPaneSplit, 30, 70)}
+              />
+
+              <VisualizationPane title="3D Pane" description={selected.kind === "2d" ? "Extruded model from the 2D outline." : "Real solid with dimension guides."} badge={selected.kind === "2d" ? "extruded 3D" : "solid 3D"}>
+                <ThreeSceneWrapper height="100%" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom">
+                  <ambientLight intensity={0.75} />
+                  <directionalLight position={[4, 5, 4]} intensity={1.35} />
+                  <RotatingSolid shape={selected.id} a={a} b={b} c={c} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} sides={sides} />
+                  <OrbitControls enablePan={false} enableZoom enableDamping />
                 </ThreeSceneWrapper>
-              </FullscreenPane>
+              </VisualizationPane>
             </div>
+
+            <div className="rounded-2xl border border-dashed border-cyan-300/60 bg-cyan-50/70 p-3 text-xs font-bold text-cyan-900 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-100">
+              Drag the vertical handles to resize. The visual workspace starts above 50% of this shape area, and the 2D/3D panes start at an equal split.
+            </div>
+
+            {false && <div className="hidden">
+            {selected.kind === "2d" ? (
+              <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60 sm:p-4">
+                <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} />
+              </div>
+            ) : (
+              <ThreeSceneWrapper height="520px" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate • pinch zoom">
+                <ambientLight intensity={0.75} />
+                <directionalLight position={[4, 5, 4]} intensity={1.35} />
+                <RotatingSolid shape={selected.id} a={a} b={b} c={c} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} />
+                <OrbitControls enablePan={false} enableZoom enableDamping />
+              </ThreeSceneWrapper>
+            )}
+
+            </div>}
 
             <div className="grid gap-3 md:grid-cols-3">
               <InfoTile label="Dimensions" value={selected.dimensions.join(", ")} />
@@ -334,133 +281,22 @@ export default function ShapesExplorer() {
             </div>
           </div>
         </div>
-          </div>
+      </SectionCard>
+
+      <SectionCard title="Formula Map">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {shapes.map((shape) => (
+            <button key={shape.id} type="button" onClick={() => selectShape(shape)} className="rounded-2xl border border-slate-200 bg-white/70 p-4 text-left transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="font-bold">{shape.name}</h3>
+                <ExternalLink className="h-4 w-4 text-cyan-500" />
+              </div>
+              <p className="mt-2 font-mono text-xs leading-5 text-slate-600 dark:text-slate-300">{shape.formula}</p>
+            </button>
+          ))}
         </div>
       </SectionCard>
     </div>
-  );
-}
-
-function parseShapeId(value: string | null): ShapeId | null {
-  return shapes.some((shape) => shape.id === value) ? value as ShapeId : null;
-}
-
-function FullscreenPane({ children, className, title }: { children: ReactNode; className: string; title: string }) {
-  const paneRef = useRef<HTMLDivElement>(null);
-  const [fullscreen, setFullscreen] = useState(false);
-
-  useEffect(() => {
-    const onFullscreenChange = () => setFullscreen(document.fullscreenElement === paneRef.current);
-    document.addEventListener("fullscreenchange", onFullscreenChange);
-    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
-  }, []);
-
-  async function toggleFullscreen() {
-    if (!paneRef.current) return;
-    if (fullscreen) {
-      if (document.fullscreenElement === paneRef.current) await document.exitFullscreen();
-      setFullscreen(false);
-      return;
-    }
-    setFullscreen(true);
-    try {
-      await paneRef.current.requestFullscreen();
-    } catch {
-      setFullscreen(true);
-    }
-  }
-
-  return (
-    <div ref={paneRef} className={`${className} relative ${fullscreen ? "h-screen w-screen rounded-none p-4" : ""}`}>
-      <button
-        type="button"
-        className="absolute right-4 top-4 z-20 rounded-full bg-white/90 p-2 text-slate-950 shadow-lg transition hover:bg-cyan-100 dark:bg-slate-900/90 dark:text-white dark:hover:bg-slate-800"
-        onClick={toggleFullscreen}
-        title={fullscreen ? `Exit full screen for ${title}` : `Open ${title} full screen`}
-        aria-label={fullscreen ? `Exit full screen for ${title}` : `Open ${title} full screen`}
-      >
-        {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-      </button>
-      {children}
-    </div>
-  );
-}
-
-function ShapeNavigationMenu({
-  groupedShapes,
-  category,
-  selected,
-  onCategory,
-  onSelect,
-}: {
-  groupedShapes: Map<ShapeCategory, ShapeDefinition[]>;
-  category: (typeof categories)[number];
-  selected: ShapeDefinition;
-  onCategory: (category: (typeof categories)[number]) => void;
-  onSelect: (shape: ShapeDefinition) => void;
-}) {
-  return (
-    <aside className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/60 xl:sticky xl:top-24 xl:self-start">
-      <div className="flex items-start justify-between gap-2">
-        <div>
-          <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Main menu</p>
-          <h3 className="text-sm font-black">Shapes</h3>
-        </div>
-        <button
-          type="button"
-          onClick={() => onCategory("All")}
-          className={`rounded-full px-3 py-1.5 text-xs font-black ${category === "All" ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-300"}`}
-        >
-          All
-        </button>
-      </div>
-      <div className="mt-3 space-y-3">
-        {shapeCategoryTree.map((group) => (
-          <div key={group.title} className="rounded-xl bg-slate-100 p-2 dark:bg-white/10">
-            <p className="px-2 py-1 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">{group.title}</p>
-            <div className="space-y-2">
-              {group.categories.map((item) => {
-                const items = groupedShapes.get(item) ?? [];
-                const activeCategory = category === item;
-                return (
-                  <details key={item} open={activeCategory || items.some((shape) => shape.id === selected.id)} className="group rounded-lg bg-white/70 dark:bg-slate-950/45">
-                    <summary
-                      className={`flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg px-2 py-2 text-xs font-black ${activeCategory ? "text-cyan-700 dark:text-cyan-200" : "text-slate-700 dark:text-slate-200"}`}
-                      onClick={() => onCategory(item)}
-                    >
-                      <span>{item}</span>
-                      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] dark:bg-white/10">{items.length}</span>
-                    </summary>
-                    <div className="grid gap-1 px-1 pb-2">
-                      {items.map((shape) => {
-                        const active = shape.id === selected.id;
-                        const Icon = shape.kind === "3d" ? Box : shape.id.includes("triangle") ? Triangle : shape.id === "circle" ? Circle : Shapes;
-                        return (
-                          <button
-                            key={shape.id}
-                            type="button"
-                            onClick={() => {
-                              onCategory(shape.category);
-                              onSelect(shape);
-                            }}
-                            className={`grid grid-cols-[20px_minmax(0,1fr)] items-center gap-2 rounded-lg px-2 py-2 text-left text-xs transition ${
-                              active ? "bg-cyan-500 text-white shadow-sm" : "text-slate-600 hover:bg-cyan-50 hover:text-cyan-800 dark:text-slate-300 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100"
-                            }`}
-                          >
-                            <Icon className="h-4 w-4" />
-                            <span className="truncate font-bold">{shape.name}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </details>
-                );
-              })}
-            </div>
-          </div>
-        ))}
-      </div>
-    </aside>
   );
 }
 
@@ -477,6 +313,9 @@ const objectMatches = [
   { object: "Ice-cream cone", shape: "cone" as ShapeId },
   { object: "Can", shape: "cylinder" as ShapeId },
   { object: "Roof wedge", shape: "triangular-prism" as ShapeId },
+  { object: "Washer", shape: "annulus" as ShapeId },
+  { object: "Pencil", shape: "hexagonal-prism" as ShapeId },
+  { object: "Pill", shape: "capsule" as ShapeId },
 ];
 const questSteps = ["Pick safe playground tiles", "Build a slide ramp", "Choose a tunnel shape", "Paint surface area", "Share the design with teacher"];
 const languageLabels = {
@@ -659,7 +498,7 @@ function KidsShapeStudio({ shapes, selected, onSelect }: { shapes: ShapeDefiniti
                   {Array.from({ length: 36 }).map((_, index) => <MiniShape key={index} id={collage[index % collage.length]} />)}
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {(["triangle", "square", "circle", "rectangle", "regular-polygon"] as ShapeId[]).map((shapeId) => <button key={shapeId} type="button" className="mini-chip" onClick={() => setCollage((items) => [...items, shapeId].slice(-6))}>Add {shapeName(shapeId)}</button>)}
+                  {(["triangle", "square", "circle", "rectangle", "hexagon", "star"] as ShapeId[]).map((shapeId) => <button key={shapeId} type="button" className="mini-chip" onClick={() => setCollage((items) => [...items, shapeId].slice(-6))}>Add {shapeName(shapeId)}</button>)}
                   <button type="button" className="mini-chip" onClick={() => setCollage(["triangle", "triangle", "square", "parallelogram", "rhombus"])}>Tangram</button>
                   <button type="button" className="mini-chip" onClick={() => setCollage(["triangle", "rectangle", "circle", "cone"])}>Rocket</button>
                   <button type="button" className="mini-chip" onClick={() => setCollage(["circle", "ellipse", "triangle", "rectangle"])}>Animal</button>
@@ -718,7 +557,7 @@ function KidsShapeStudio({ shapes, selected, onSelect }: { shapes: ShapeDefiniti
               </StudioPanel>
 
               <StudioPanel title="Shape comparison and property checklist" icon={<Search className="h-5 w-5" />}>
-                <div className="thin-scrollbar max-h-72 overflow-y-auto rounded-2xl border border-slate-200 dark:border-white/10">
+                <div className="max-h-72 overflow-y-auto rounded-2xl border border-slate-200 dark:border-white/10">
                   <table className="w-full text-left text-sm">
                     <thead className="bg-slate-100 dark:bg-white/10"><tr><th className="p-2">Shape</th><th className="p-2">Type</th><th className="p-2">Sides/Faces</th><th className="p-2">Symmetry</th></tr></thead>
                     <tbody>{filtered.slice(0, 12).map((shape) => <tr key={shape.id} className="border-t border-slate-200 dark:border-white/10"><td className="p-2 font-bold">{shape.name}</td><td className="p-2">{shape.kind}</td><td className="p-2">{propertyOf(shape, "sides") || propertyOf(shape, "faces")}</td><td className="p-2">{propertyOf(shape, "symmetry")}</td></tr>)}</tbody>
@@ -794,7 +633,7 @@ function KidsShapeStudio({ shapes, selected, onSelect }: { shapes: ShapeDefiniti
               </StudioPanel>
 
               <StudioPanel title="Cube, cylinder, cone, pyramid and prism net explorers" icon={<Box className="h-5 w-5" />}>
-                <div className="grid gap-2 md:grid-cols-5">{(["cube", "cylinder", "cone", "square-pyramid", "triangular-prism"] as ShapeId[]).map((shapeId) => <button key={shapeId} type="button" onClick={() => selectAndTrack(shapeById(shapes, shapeId))} className="rounded-xl bg-slate-100 p-3 text-xs font-bold dark:bg-white/10">{shapeName(shapeId)}</button>)}</div>
+                <div className="grid gap-2 md:grid-cols-5">{(["cube", "cylinder", "cone", "square-pyramid", "triangular-prism", "tetrahedron", "hexagonal-prism", "capsule", "ellipsoid", "torus"] as ShapeId[]).map((shapeId) => <button key={shapeId} type="button" onClick={() => selectAndTrack(shapeById(shapes, shapeId))} className="rounded-xl bg-slate-100 p-3 text-xs font-bold dark:bg-white/10">{shapeName(shapeId)}</button>)}</div>
               </StudioPanel>
             </div>
           )}
@@ -849,11 +688,11 @@ function sortValue(shape: ShapeDefinition, mode: SortMode) {
 
 function shapeProperties(shape: ShapeDefinition): Record<SortMode, number> {
   const curved = ["circle", "semicircle", "sector", "ellipse", "sphere", "hemisphere", "cylinder", "cone", "frustum", "torus"].includes(shape.id) ? 1 : 0;
-  const sides: Partial<Record<ShapeId, number>> = { triangle: 3, "right-triangle": 3, square: 4, rectangle: 4, parallelogram: 4, rhombus: 4, trapezium: 4, kite: 4, "regular-polygon": 6 };
-  const faces: Partial<Record<ShapeId, number>> = { cube: 6, cuboid: 6, cylinder: 3, cone: 2, "square-pyramid": 5, "triangular-prism": 5, frustum: 3, sphere: 1, hemisphere: 2, torus: 1 };
-  const edges: Partial<Record<ShapeId, number>> = { cube: 12, cuboid: 12, cylinder: 2, cone: 1, "square-pyramid": 8, "triangular-prism": 9, frustum: 2 };
-  const vertices: Partial<Record<ShapeId, number>> = { cube: 8, cuboid: 8, cone: 1, "square-pyramid": 5, "triangular-prism": 6 };
-  return { "2D/3D": shape.kind === "2d" ? 0 : 1, sides: sides[shape.id] ?? 0, corners: sides[shape.id] ?? vertices[shape.id] ?? 0, "curved edges": curved, symmetry: ["circle", "square", "rectangle", "sphere", "cube"].includes(shape.id) ? 4 : 1, faces: faces[shape.id] ?? 0, vertices: vertices[shape.id] ?? 0, edges: edges[shape.id] ?? sides[shape.id] ?? 0 };
+  const sides: Partial<Record<ShapeId, number>> = { triangle: 3, "right-triangle": 3, square: 4, rectangle: 4, parallelogram: 4, rhombus: 4, trapezium: 4, kite: 4, pentagon: 5, hexagon: 6, heptagon: 7, octagon: 8, decagon: 10, "regular-polygon": 6, star: 10, cross: 12 };
+  const faces: Partial<Record<ShapeId, number>> = { cube: 6, cuboid: 6, cylinder: 3, "hollow-cylinder": 3, capsule: 3, cone: 2, "square-pyramid": 5, "triangular-pyramid": 4, "rectangular-pyramid": 5, "triangular-prism": 5, "pentagonal-prism": 7, "hexagonal-prism": 8, frustum: 3, sphere: 1, ellipsoid: 1, hemisphere: 2, torus: 1, tetrahedron: 4, octahedron: 8, dodecahedron: 12, icosahedron: 20 };
+  const edges: Partial<Record<ShapeId, number>> = { cube: 12, cuboid: 12, cylinder: 2, "hollow-cylinder": 4, cone: 1, "square-pyramid": 8, "triangular-pyramid": 6, "rectangular-pyramid": 8, "triangular-prism": 9, "pentagonal-prism": 15, "hexagonal-prism": 18, frustum: 2, tetrahedron: 6, octahedron: 12, dodecahedron: 30, icosahedron: 30 };
+  const vertices: Partial<Record<ShapeId, number>> = { cube: 8, cuboid: 8, cone: 1, "square-pyramid": 5, "triangular-pyramid": 4, "rectangular-pyramid": 5, "triangular-prism": 6, "pentagonal-prism": 10, "hexagonal-prism": 12, tetrahedron: 4, octahedron: 6, dodecahedron: 20, icosahedron: 12 };
+  return { "2D/3D": shape.kind === "2d" ? 0 : 1, sides: sides[shape.id] ?? 0, corners: sides[shape.id] ?? vertices[shape.id] ?? 0, "curved edges": curved, symmetry: ["circle", "annulus", "square", "rectangle", "hexagon", "sphere", "cube", "torus"].includes(shape.id) ? 4 : 1, faces: faces[shape.id] ?? 0, vertices: vertices[shape.id] ?? 0, edges: edges[shape.id] ?? sides[shape.id] ?? 0 };
 }
 
 function propertyOf(shape: ShapeDefinition, mode: SortMode) {
@@ -928,38 +767,46 @@ function formulaExplanation(id: ShapeId, a: number, b: number, c: number, sides:
   if (id === "parallelogram") return `Base b=${roundTo(a, 2)} times perpendicular height h=${roundTo(b, 2)} gives area; the slanted side controls perimeter.`;
   if (id === "rhombus" || id === "kite") return `The diagonals d1=${roundTo(a, 2)} and d2=${roundTo(b, 2)} cross. Their rectangle is twice the shape area, so A=d1*d2/2.`;
   if (id === "trapezium") return `Parallel sides a=${roundTo(a, 2)} and b=${roundTo(b, 2)} are averaged, then multiplied by height h=${roundTo(c, 2)}.`;
-  if (id === "regular-polygon") return `${sides} equal sides of length s=${roundTo(a, 2)} form the perimeter. Area can be split into equal center triangles.`;
+  if (isFixedRegularPolygon(id) || id === "regular-polygon") return `${polygonSideCount(id, sides)} equal sides of length s=${roundTo(a, 2)} form the perimeter. Area can be split into equal center triangles.`;
+  if (id === "annulus") return `The outer radius R=${roundTo(a, 2)} and inner radius r=${roundTo(b, 2)} make a ring area by subtracting two circle areas.`;
+  if (id === "quadrant") return `A quadrant is one-fourth of a full circle, so both area and arc length are one-fourth of their circle values.`;
+  if (id === "segment") return `The chord cuts off a circular segment. Its area equals sector area minus the isosceles triangle area.`;
+  if (id === "crescent") return `Two offset circular arcs make a crescent. Compare the larger disk with the overlapping smaller disk.`;
+  if (id === "star") return `Outer radius R=${roundTo(a, 2)} and inner radius r=${roundTo(b, 2)} alternate around the center to form triangular spikes.`;
+  if (id === "cross") return `A vertical rectangle and horizontal rectangle overlap at the center; subtract the overlap once to get area.`;
   if (id === "cube") return `Side s=${roundTo(a, 2)} builds 6 identical square faces and volume s*s*s.`;
   if (id === "cuboid") return `Length l=${roundTo(a, 2)}, breadth b=${roundTo(b, 2)}, and height h=${roundTo(c, 2)} multiply for volume.`;
-  if (id === "sphere" || id === "hemisphere") return `Radius r=${roundTo(a, 2)} runs from center to surface. Surface area and volume grow with r^2 and r^3.`;
-  if (id === "cylinder") return `Circular radius r=${roundTo(a, 2)} builds the base area pi*r^2, then height h=${roundTo(b, 2)} stacks that base into volume.`;
+  if (id === "sphere" || id === "hemisphere" || id === "ellipsoid") return `Radius or axes run from center to surface. Surface area and volume respond strongly to squared and cubed dimensions.`;
+  if (id === "cylinder" || id === "hollow-cylinder" || id === "capsule") return `Circular radius r=${roundTo(a, 2)} builds the base area, then height or length h=${roundTo(b, 2)} extends it through space.`;
   if (id === "cone") return `Radius r=${roundTo(a, 2)}, height h=${roundTo(b, 2)}, and slant l=${roundTo(Math.hypot(a, b), 2)} define the curved surface and one-third cylinder volume.`;
   if (id === "frustum") return `Bottom radius R=${roundTo(a, 2)}, top radius r=${roundTo(b, 2)}, and height h=${roundTo(c, 2)} describe a sliced cone.`;
-  if (id === "square-pyramid") return `Square side s=${roundTo(a, 2)} and height h=${roundTo(b, 2)} give one-third of the matching prism volume.`;
-  if (id === "triangular-prism") return `Triangle base b=${roundTo(a, 2)} and height h=${roundTo(b, 2)} form the front area, then length L=${roundTo(c, 2)} extrudes it.`;
+  if (id.includes("pyramid") || isPlatonicSolid(id)) return `The base area and height create a pyramid-style volume, while triangular faces reveal the solid's symmetry.`;
+  if (id.includes("prism")) return `The base polygon area is extruded through length L=${roundTo(c, 2)} to create volume.`;
   return `Major radius R=${roundTo(a, 2)} goes around the ring; minor radius r=${roundTo(b, 2)} controls the tube thickness.`;
 }
 
 function symbolSummary(id: ShapeId, a: number, b: number, c: number, sides: number, angle: number) {
-  if (["circle", "semicircle", "sphere", "hemisphere"].includes(id)) return `r=${roundTo(a, 2)}`;
-  if (id === "sector") return `r=${roundTo(a, 2)}, theta=${roundTo(angle, 0)} deg`;
+  if (["circle", "semicircle", "sphere", "hemisphere", "quadrant", "tetrahedron", "octahedron", "dodecahedron", "icosahedron"].includes(id)) return `r/s=${roundTo(a, 2)}`;
+  if (id === "sector" || id === "segment") return `r=${roundTo(a, 2)}, theta=${roundTo(angle, 0)} deg`;
   if (id === "ellipse") return `a=${roundTo(a, 2)}, b=${roundTo(b, 2)}`;
-  if (id === "rectangle") return `l=${roundTo(a, 2)}, b=${roundTo(b, 2)}`;
+  if (id === "annulus" || id === "crescent" || id === "star" || id === "torus" || id === "hollow-cylinder") return `R=${roundTo(a, 2)}, r=${roundTo(b, 2)}`;
+  if (id === "rectangle" || id === "cross") return `l=${roundTo(a, 2)}, b=${roundTo(b, 2)}`;
   if (id === "triangle" || id === "right-triangle" || id === "parallelogram") return `b=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
-  if (id === "square" || id === "cube") return `s=${roundTo(a, 2)}`;
+  if (id === "square" || id === "cube" || isFixedRegularPolygon(id)) return `s=${roundTo(a, 2)}`;
   if (id === "rhombus" || id === "kite") return `d1=${roundTo(a, 2)}, d2=${roundTo(b, 2)}`;
   if (id === "trapezium") return `a=${roundTo(a, 2)}, b=${roundTo(b, 2)}, h=${roundTo(c, 2)}`;
   if (id === "regular-polygon") return `n=${sides}, s=${roundTo(a, 2)}`;
-  if (id === "cuboid") return `l=${roundTo(a, 2)}, b=${roundTo(b, 2)}, h=${roundTo(c, 2)}`;
-  if (id === "cylinder") return `r=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
+  if (id === "cuboid" || id === "ellipsoid" || id === "rectangular-pyramid") return `l/a=${roundTo(a, 2)}, b=${roundTo(b, 2)}, h/c=${roundTo(c, 2)}`;
+  if (id === "cylinder" || id === "capsule") return `r=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
   if (id === "cone") return `r=${roundTo(a, 2)}, h=${roundTo(b, 2)}, l=${roundTo(Math.hypot(a, b), 2)}`;
   if (id === "frustum") return `R=${roundTo(a, 2)}, r=${roundTo(b, 2)}, h=${roundTo(c, 2)}`;
-  if (id === "square-pyramid") return `s=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
-  if (id === "triangular-prism") return `b=${roundTo(a, 2)}, h=${roundTo(b, 2)}, L=${roundTo(c, 2)}`;
+  if (id === "square-pyramid" || id === "triangular-pyramid") return `s=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
+  if (id.includes("prism")) return `s/b=${roundTo(a, 2)}, h=${roundTo(b, 2)}, L=${roundTo(c, 2)}`;
   return `R=${roundTo(a, 2)}, r=${roundTo(b, 2)}`;
 }
 
 type ShapeViewControlsProps = {
+  kind: ShapeKind;
   zoom: number;
   rotation: number;
   autoRotate: boolean;
@@ -971,10 +818,10 @@ type ShapeViewControlsProps = {
   onToggleAutoRotate: () => void;
 };
 
-function ShapeViewControls({ zoom, rotation, autoRotate, onZoomIn, onZoomOut, onRotateLeft, onRotateRight, onReset, onToggleAutoRotate }: ShapeViewControlsProps) {
+function ShapeViewControls({ kind, zoom, rotation, autoRotate, onZoomIn, onZoomOut, onRotateLeft, onRotateRight, onReset, onToggleAutoRotate }: ShapeViewControlsProps) {
   return (
     <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/60 sm:flex-row sm:items-center sm:justify-between">
-      <div className="mobile-safe-scroll thin-scrollbar flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+      <div className="mobile-safe-scroll flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
         <IconButton label="Zoom out" onClick={onZoomOut} disabled={zoom <= 0.55}>
           <ZoomOut className="h-4 w-4" />
         </IconButton>
@@ -997,7 +844,7 @@ function ShapeViewControls({ zoom, rotation, autoRotate, onZoomIn, onZoomOut, on
       <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
         <span className="mini-chip">Zoom {roundTo(zoom * 100, 0)}%</span>
         <span className="mini-chip">Rotate {rotation} deg</span>
-        <span className="mini-chip">{autoRotate ? "Auto rotation on" : "Rotation paused"}</span>
+        <span className="mini-chip">{kind === "2d" ? "2D + extruded 3D" : "solid 3D"}</span>
       </div>
     </div>
   );
@@ -1018,19 +865,60 @@ function IconButton({ label, onClick, disabled, children }: { label: string; onC
   );
 }
 
+function VisualizationPane({ title, description, badge, children }: { title: string; description: string; badge: string; children: ReactNode }) {
+  return (
+    <div className="flex min-h-[390px] flex-col rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60 xl:min-h-[640px]">
+      <div className="mb-3 flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-xs font-black uppercase text-cyan-600 dark:text-cyan-300">{title}</p>
+          <p className="mt-1 text-sm leading-5 text-slate-600 dark:text-slate-300">{description}</p>
+        </div>
+        <span className="shrink-0 rounded-full bg-slate-100 px-3 py-2 text-xs font-black text-slate-700 dark:bg-white/10 dark:text-slate-100">{badge}</span>
+      </div>
+      <div className="min-h-0 flex-1 overflow-hidden rounded-2xl bg-slate-50 dark:bg-slate-950">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function startPaneResize(event: PointerEvent<HTMLDivElement>, containerRef: RefObject<HTMLDivElement | null>, setValue: (value: number) => void, min: number, max: number) {
+  event.preventDefault();
+  const container = containerRef.current;
+  if (!container) return;
+  const rect = container.getBoundingClientRect();
+  const pointerId = event.pointerId;
+  event.currentTarget.setPointerCapture(pointerId);
+
+  const handleMove = (moveEvent: globalThis.PointerEvent) => {
+    const percent = ((moveEvent.clientX - rect.left) / Math.max(1, rect.width)) * 100;
+    setValue(roundTo(Math.min(max, Math.max(min, percent)), 1));
+  };
+
+  const cleanup = () => {
+    window.removeEventListener("pointermove", handleMove);
+    window.removeEventListener("pointerup", cleanup);
+    window.removeEventListener("pointercancel", cleanup);
+  };
+
+  window.addEventListener("pointermove", handleMove);
+  window.addEventListener("pointerup", cleanup);
+  window.addEventListener("pointercancel", cleanup);
+}
+
 function primaryLabel(shape: ShapeDefinition) {
-  if (shape.id === "ellipse") return "Semi-major axis a";
+  if (shape.id === "ellipse" || shape.id === "ellipsoid") return "Semi-major axis a";
   if (shape.id === "cuboid") return "Length";
-  if (shape.id === "torus") return "Major radius R";
-  if (shape.id === "regular-polygon" || shape.id === "square" || shape.id === "cube" || shape.id === "square-pyramid") return "Side";
-  if (shape.id === "triangle" || shape.id === "right-triangle" || shape.id === "parallelogram" || shape.id === "trapezium" || shape.id === "triangular-prism") return "Base";
+  if (["torus", "annulus", "crescent", "star", "hollow-cylinder"].includes(shape.id)) return "Outer / major radius R";
+  if (shape.id === "regular-polygon" || isFixedRegularPolygon(shape.id) || isPlatonicSolid(shape.id) || shape.id === "square" || shape.id === "cube" || shape.id.includes("pyramid")) return "Side";
+  if (shape.id === "triangle" || shape.id === "right-triangle" || shape.id === "parallelogram" || shape.id === "trapezium" || shape.id.includes("prism")) return "Base / side";
   return "Radius";
 }
 
 function secondLabel(shape: ShapeDefinition) {
-  if (shape.id === "ellipse" || shape.id === "rhombus" || shape.id === "kite") return "Second dimension";
+  if (shape.id === "ellipse" || shape.id === "ellipsoid" || shape.id === "rhombus" || shape.id === "kite") return "Second dimension";
   if (shape.id === "cuboid") return "Width";
-  if (shape.id === "torus") return "Minor radius r";
+  if (["torus", "annulus", "crescent", "star", "hollow-cylinder"].includes(shape.id)) return "Inner / minor radius r";
   if (shape.id === "trapezium" || shape.id === "frustum") return "Top radius / top base";
   return "Height";
 }
@@ -1042,19 +930,26 @@ function thirdLabel(shape: ShapeDefinition) {
 }
 
 function needsSecond(id: ShapeId) {
-  return !["circle", "semicircle", "square", "cube", "sphere", "hemisphere"].includes(id);
+  return !["circle", "semicircle", "quadrant", "square", "pentagon", "hexagon", "heptagon", "octagon", "decagon", "cube", "sphere", "hemisphere", "tetrahedron", "octahedron", "dodecahedron", "icosahedron"].includes(id);
 }
 
 function needsThird(id: ShapeId) {
-  return ["parallelogram", "trapezium", "cuboid", "frustum", "triangular-prism"].includes(id);
+  return ["parallelogram", "trapezium", "cuboid", "frustum", "ellipsoid", "hollow-cylinder", "rectangular-pyramid", "triangular-prism", "pentagonal-prism", "hexagonal-prism"].includes(id);
 }
 
 function getMetrics(id: ShapeId, a: number, b: number, c: number, n: number, angle: number): Metrics {
+  const fixedSides = polygonSideCount(id, n);
   switch (id) {
     case "circle": return { Circumference: 2 * Math.PI * a, Area: Math.PI * a * a };
     case "semicircle": return { "Arc length": Math.PI * a, Perimeter: Math.PI * a + 2 * a, Area: Math.PI * a * a / 2 };
     case "sector": return { "Arc length": angle / 360 * 2 * Math.PI * a, Area: angle / 360 * Math.PI * a * a };
+    case "quadrant": return { "Arc length": Math.PI * a / 2, Area: Math.PI * a * a / 4, Perimeter: Math.PI * a / 2 + 2 * a };
+    case "segment": return { "Arc length": angle / 360 * 2 * Math.PI * a, Area: (a * a / 2) * (((angle * Math.PI) / 180) - Math.sin((angle * Math.PI) / 180)) };
     case "ellipse": return { Area: Math.PI * a * b, "Approx perimeter": Math.PI * (3 * (a + b) - Math.sqrt((3 * a + b) * (a + 3 * b))) };
+    case "annulus": return { Area: Math.PI * (a * a - b * b), "Outer circumference": 2 * Math.PI * a, "Inner circumference": 2 * Math.PI * b };
+    case "crescent": return { "Approx area": Math.max(0, Math.PI * (a * a - b * b * 0.72)), "Outer arc": Math.PI * a, "Inner arc": Math.PI * b };
+    case "star": return { "Approx area": 5 * a * b * Math.sin((72 * Math.PI) / 180), Points: 5 };
+    case "cross": return { Area: 2 * a * b - b * b, Perimeter: 4 * a + 8 * b };
     case "triangle": return { Area: a * b / 2, "Shown base": a, "Shown height": b };
     case "right-triangle": return { Area: a * b / 2, Hypotenuse: Math.hypot(a, b), Perimeter: a + b + Math.hypot(a, b) };
     case "square": return { Area: a * a, Perimeter: 4 * a, Diagonal: a * Math.SQRT2 };
@@ -1063,22 +958,51 @@ function getMetrics(id: ShapeId, a: number, b: number, c: number, n: number, ang
     case "rhombus": return { Area: a * b / 2, Side: Math.hypot(a / 2, b / 2), Perimeter: 4 * Math.hypot(a / 2, b / 2) };
     case "trapezium": return { Area: (a + b) * c / 2, "Midline": (a + b) / 2 };
     case "kite": return { Area: a * b / 2 };
-    case "regular-polygon": return { Perimeter: n * a, Area: n * a * a / (4 * Math.tan(Math.PI / n)), Apothem: a / (2 * Math.tan(Math.PI / n)) };
+    case "regular-polygon":
+    case "pentagon":
+    case "hexagon":
+    case "heptagon":
+    case "octagon":
+    case "decagon": return { Perimeter: fixedSides * a, Area: fixedSides * a * a / (4 * Math.tan(Math.PI / fixedSides)), Apothem: a / (2 * Math.tan(Math.PI / fixedSides)) };
     case "cube": return { "Surface area": 6 * a * a, Volume: a ** 3, Diagonal: a * Math.sqrt(3) };
     case "cuboid": return { "Surface area": 2 * (a * b + a * c + b * c), Volume: a * b * c, Diagonal: Math.hypot(a, b, c) };
     case "sphere": return { "Surface area": 4 * Math.PI * a * a, Volume: 4 / 3 * Math.PI * a ** 3 };
     case "hemisphere": return { "Curved area": 2 * Math.PI * a * a, "Total area": 3 * Math.PI * a * a, Volume: 2 / 3 * Math.PI * a ** 3 };
     case "cylinder": return { "Surface area": 2 * Math.PI * a * (a + b), Volume: Math.PI * a * a * b };
+    case "hollow-cylinder": return { "Material volume": Math.PI * c * (a * a - b * b), "Outer area": 2 * Math.PI * a * c, "Inner area": 2 * Math.PI * b * c };
+    case "capsule": return { "Surface area": 2 * Math.PI * a * b + 4 * Math.PI * a * a, Volume: Math.PI * a * a * b + 4 / 3 * Math.PI * a ** 3 };
+    case "ellipsoid": return { Volume: 4 / 3 * Math.PI * a * b * c, "Mean radius": (a + b + c) / 3 };
     case "cone": return { "Slant height": Math.hypot(a, b), "Surface area": Math.PI * a * (a + Math.hypot(a, b)), Volume: Math.PI * a * a * b / 3 };
     case "frustum": return { "Slant height": Math.hypot(a - b, c), "Surface area": Math.PI * (a + b) * Math.hypot(a - b, c) + Math.PI * (a * a + b * b), Volume: Math.PI * c * (a * a + a * b + b * b) / 3 };
+    case "tetrahedron": return { "Surface area": Math.sqrt(3) * a * a, Volume: a ** 3 / (6 * Math.sqrt(2)), Faces: 4 };
+    case "octahedron": return { "Surface area": 2 * Math.sqrt(3) * a * a, Volume: Math.sqrt(2) * a ** 3 / 3, Faces: 8 };
+    case "dodecahedron": return { Faces: 12, Edges: 30, Vertices: 20 };
+    case "icosahedron": return { Faces: 20, Edges: 30, Vertices: 12 };
     case "square-pyramid": return { "Slant height": Math.hypot(a / 2, b), "Surface area": a * a + 2 * a * Math.hypot(a / 2, b), Volume: a * a * b / 3 };
+    case "triangular-pyramid": return { "Base area": Math.sqrt(3) * a * a / 4, Volume: (Math.sqrt(3) * a * a / 4) * b / 3 };
+    case "rectangular-pyramid": return { "Base area": a * b, Volume: a * b * c / 3 };
     case "triangular-prism": return { "Base area": a * b / 2, Volume: a * b * c / 2 };
+    case "pentagonal-prism": return { "Base area": 5 * a * a / (4 * Math.tan(Math.PI / 5)), Volume: 5 * a * a * c / (4 * Math.tan(Math.PI / 5)) };
+    case "hexagonal-prism": return { "Base area": 3 * Math.sqrt(3) * a * a / 2, Volume: 3 * Math.sqrt(3) * a * a * c / 2 };
     case "torus": return { "Surface area": 4 * Math.PI * Math.PI * a * b, Volume: 2 * Math.PI * Math.PI * a * b * b };
     default: return {};
   }
 }
 
-function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation, cinematic = false }: { shape: ShapeId; a: number; b: number; c: number; sides: number; angle: number; zoom: number; rotation: number; cinematic?: boolean }) {
+function isFixedRegularPolygon(id: ShapeId) {
+  return ["pentagon", "hexagon", "heptagon", "octagon", "decagon"].includes(id);
+}
+
+function polygonSideCount(id: ShapeId, fallback: number) {
+  const counts: Partial<Record<ShapeId, number>> = { pentagon: 5, hexagon: 6, heptagon: 7, octagon: 8, decagon: 10 };
+  return counts[id] ?? fallback;
+}
+
+function isPlatonicSolid(id: ShapeId) {
+  return ["tetrahedron", "octahedron", "dodecahedron", "icosahedron"].includes(id);
+}
+
+function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation }: { shape: ShapeId; a: number; b: number; c: number; sides: number; angle: number; zoom: number; rotation: number }) {
   const scale = 18;
   const cx = 240;
   const cy = 180;
@@ -1090,9 +1014,15 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation, cinematic = fa
   const sectorTheta = (angle * Math.PI) / 180;
   const sectorX = cx + radius * Math.cos(sectorTheta);
   const sectorY = cy - radius * Math.sin(sectorTheta);
-  const polygonPoints = Array.from({ length: sides }, (_, index) => {
-    const theta = -Math.PI / 2 + (index * 2 * Math.PI) / sides;
+  const displaySides = polygonSideCount(shape, sides);
+  const polygonPoints = Array.from({ length: displaySides }, (_, index) => {
+    const theta = -Math.PI / 2 + (index * 2 * Math.PI) / displaySides;
     return `${cx + radius * Math.cos(theta)},${cy + radius * Math.sin(theta)}`;
+  }).join(" ");
+  const starPoints = Array.from({ length: 10 }, (_, index) => {
+    const theta = -Math.PI / 2 + (index * Math.PI) / 5;
+    const r = index % 2 === 0 ? radius : Math.max(24, Math.min(b * scale, radius * 0.62));
+    return `${cx + r * Math.cos(theta)},${cy + r * Math.sin(theta)}`;
   }).join(" ");
 
   return (
@@ -1102,24 +1032,16 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation, cinematic = fa
           <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.35" />
           <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.3" />
         </linearGradient>
-        <radialGradient id="shapeStageGlow" cx="50%" cy="42%" r="68%">
-          <stop offset="0%" stopColor="#164e63" stopOpacity="0.95" />
-          <stop offset="54%" stopColor="#111827" stopOpacity="0.95" />
-          <stop offset="100%" stopColor="#020617" stopOpacity="1" />
-        </radialGradient>
-        <linearGradient id="projectionFill" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0%" stopColor="#67e8f9" stopOpacity="0.78" />
-          <stop offset="55%" stopColor="#8b5cf6" stopOpacity="0.45" />
-          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.5" />
-        </linearGradient>
       </defs>
-      {cinematic && <rect width="480" height="360" rx="22" fill="url(#shapeStageGlow)" />}
       <g transform={`translate(${cx} ${cy}) rotate(${rotation}) scale(${zoom}) translate(${-cx} ${-cy})`}>
-        {isSolidShape(shape) && <ShapeProjectionSvg shape={shape} cx={cx} cy={cy} size={radius} second={Math.min(b * scale, 130)} third={Math.min((c || b) * scale, 130)} />}
         {shape === "circle" && <circle cx={cx} cy={cy} r={radius} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "semicircle" && <path d={`M ${cx - radius} ${cy} A ${radius} ${radius} 0 0 1 ${cx + radius} ${cy} L ${cx - radius} ${cy}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "sector" && <path d={`M ${cx} ${cy} L ${cx + radius} ${cy} A ${radius} ${radius} 0 ${angle > 180 ? 1 : 0} 0 ${sectorX} ${sectorY} Z`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "quadrant" && <path d={`M ${cx} ${cy} L ${cx + radius} ${cy} A ${radius} ${radius} 0 0 0 ${cx} ${cy - radius} Z`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "segment" && <path d={`M ${cx + radius} ${cy} A ${radius} ${radius} 0 ${angle > 180 ? 1 : 0} 0 ${sectorX} ${sectorY} L ${cx + radius} ${cy}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "ellipse" && <ellipse cx={cx} cy={cy} rx={Math.min(a * scale, 170)} ry={Math.min(b * scale, 120)} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "annulus" && <path d={`${ringPath(cx, cy, radius, Math.max(18, Math.min(b * scale, radius - 12)))}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" fillRule="evenodd" />}
+        {shape === "crescent" && <path d={`M ${cx - radius * 0.35} ${cy - radius} A ${radius} ${radius} 0 1 0 ${cx - radius * 0.35} ${cy + radius} A ${Math.max(20, b * scale)} ${Math.max(20, b * scale)} 0 1 1 ${cx - radius * 0.35} ${cy - radius} Z`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${cx},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "right-triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${cx - w / 2},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "square" && <rect x={cx - radius} y={cy - radius} width={radius * 2} height={radius * 2} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
@@ -1128,33 +1050,22 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation, cinematic = fa
         {shape === "rhombus" && <polygon points={`${cx},${cy - h / 2} ${cx + w / 2},${cy} ${cx},${cy + h / 2} ${cx - w / 2},${cy}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "trapezium" && <polygon points={`${cx - top / 2},${cy - height / 2} ${cx + top / 2},${cy - height / 2} ${cx + w / 2},${cy + height / 2} ${cx - w / 2},${cy + height / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "kite" && <polygon points={`${cx},${cy - h / 2} ${cx + w / 2},${cy - 10} ${cx},${cy + h / 2} ${cx - w / 2},${cy - 10}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
-        {shape === "regular-polygon" && <polygon points={polygonPoints} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
-        <line x1="80" y1="310" x2="400" y2="310" stroke={cinematic ? "#475569" : "#94a3b8"} strokeDasharray="6 6" />
-        <DimensionGuides2D shape={shape} cx={cx} cy={cy} radius={radius} w={w} h={h} top={top} height={height} sectorX={sectorX} sectorY={sectorY} cinematic={cinematic} />
+        {(shape === "regular-polygon" || isFixedRegularPolygon(shape)) && <polygon points={polygonPoints} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "star" && <polygon points={starPoints} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "cross" && <path d={`M ${cx - b * scale / 2} ${cy - radius} H ${cx + b * scale / 2} V ${cy - b * scale / 2} H ${cx + radius} V ${cy + b * scale / 2} H ${cx + b * scale / 2} V ${cy + radius} H ${cx - b * scale / 2} V ${cy + b * scale / 2} H ${cx - radius} V ${cy - b * scale / 2} H ${cx - b * scale / 2} Z`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        <line x1="80" y1="310" x2="400" y2="310" stroke="#94a3b8" strokeDasharray="6 6" />
+        <DimensionGuides2D shape={shape} cx={cx} cy={cy} radius={radius} w={w} h={h} top={top} height={height} sectorX={sectorX} sectorY={sectorY} />
       </g>
     </svg>
   );
 }
 
-function ShapeProjectionSvg({ shape, cx, cy, size, second, third }: { shape: ShapeId; cx: number; cy: number; size: number; second: number; third: number }) {
-  const r = Math.min(size, 118);
-  const w = Math.min(size * 1.55, 190);
-  const h = Math.min(second * 1.15, 145);
-  const d = Math.min(third * 0.48, 72);
-  if (shape === "sphere") return <><circle cx={cx} cy={cy} r={r} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy} rx={r} ry={r * 0.32} fill="none" stroke="#f8fafc" strokeOpacity="0.5" strokeWidth="2" /><ellipse cx={cx} cy={cy} rx={r * 0.38} ry={r} fill="none" stroke="#f8fafc" strokeOpacity="0.28" strokeWidth="2" /></>;
-  if (shape === "hemisphere") return <><path d={`M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy} L ${cx - r} ${cy}`} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy} rx={r} ry={r * 0.22} fill="none" stroke="#f59e0b" strokeWidth="3" /></>;
-  if (shape === "cylinder") return <><rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy - h / 2} rx={w / 2} ry="24" fill="#0f172a" fillOpacity="0.35" stroke="#f59e0b" strokeWidth="3" /><ellipse cx={cx} cy={cy + h / 2} rx={w / 2} ry="24" fill="none" stroke="#f59e0b" strokeWidth="3" /></>;
-  if (shape === "cone") return <><path d={`M ${cx} ${cy - h / 1.25} L ${cx + w / 2} ${cy + h / 2} L ${cx - w / 2} ${cy + h / 2} Z`} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy + h / 2} rx={w / 2} ry="24" fill="none" stroke="#f59e0b" strokeWidth="3" /></>;
-  if (shape === "frustum") return <><path d={`M ${cx - w * 0.28} ${cy - h / 2} L ${cx + w * 0.28} ${cy - h / 2} L ${cx + w / 2} ${cy + h / 2} L ${cx - w / 2} ${cy + h / 2} Z`} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy - h / 2} rx={w * 0.28} ry="15" fill="none" stroke="#f59e0b" strokeWidth="3" /><ellipse cx={cx} cy={cy + h / 2} rx={w / 2} ry="24" fill="none" stroke="#f59e0b" strokeWidth="3" /></>;
-  if (shape === "square-pyramid") return <><polygon points={`${cx},${cy - h / 1.35} ${cx + w / 2},${cy + h / 3} ${cx},${cy + h / 1.65} ${cx - w / 2},${cy + h / 3}`} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><line x1={cx} y1={cy - h / 1.35} x2={cx} y2={cy + h / 1.65} stroke="#f8fafc" strokeOpacity="0.45" strokeWidth="2" /></>;
-  if (shape === "triangular-prism") return <><polygon points={`${cx - w / 2},${cy + h / 2} ${cx - w / 2 + 70},${cy - h / 2} ${cx - w / 2 + 140},${cy + h / 2}`} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><polygon points={`${cx - w / 2 + d},${cy + h / 2 - d} ${cx - w / 2 + 70 + d},${cy - h / 2 - d} ${cx - w / 2 + 140 + d},${cy + h / 2 - d}`} fill="#0f172a" fillOpacity="0.2" stroke="#f59e0b" strokeWidth="3" /><line x1={cx - w / 2} y1={cy + h / 2} x2={cx - w / 2 + d} y2={cy + h / 2 - d} stroke="#f59e0b" strokeWidth="3" /><line x1={cx - w / 2 + 70} y1={cy - h / 2} x2={cx - w / 2 + 70 + d} y2={cy - h / 2 - d} stroke="#f59e0b" strokeWidth="3" /><line x1={cx - w / 2 + 140} y1={cy + h / 2} x2={cx - w / 2 + 140 + d} y2={cy + h / 2 - d} stroke="#f59e0b" strokeWidth="3" /></>;
-  if (shape === "torus") return <><ellipse cx={cx} cy={cy} rx={r * 1.08} ry={r * 0.64} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /><ellipse cx={cx} cy={cy} rx={r * 0.48} ry={r * 0.24} fill="#020617" stroke="#f59e0b" strokeWidth="4" /></>;
-  return <><polygon points={`${cx - w / 2},${cy - h / 2} ${cx + w / 2},${cy - h / 2} ${cx + w / 2 + d},${cy - h / 2 - d} ${cx - w / 2 + d},${cy - h / 2 - d}`} fill="#67e8f9" fillOpacity="0.55" stroke="#67e8f9" strokeWidth="3" /><polygon points={`${cx + w / 2},${cy - h / 2} ${cx + w / 2},${cy + h / 2} ${cx + w / 2 + d},${cy + h / 2 - d} ${cx + w / 2 + d},${cy - h / 2 - d}`} fill="#8b5cf6" fillOpacity="0.38" stroke="#a78bfa" strokeWidth="3" /><rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} fill="url(#projectionFill)" stroke="#67e8f9" strokeWidth="4" /></>;
+function ringPath(cx: number, cy: number, outer: number, inner: number) {
+  return `M ${cx - outer} ${cy} A ${outer} ${outer} 0 1 0 ${cx + outer} ${cy} A ${outer} ${outer} 0 1 0 ${cx - outer} ${cy} M ${cx - inner} ${cy} A ${inner} ${inner} 0 1 1 ${cx + inner} ${cy} A ${inner} ${inner} 0 1 1 ${cx - inner} ${cy}`;
 }
 
-function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, sectorY, cinematic = false }: { shape: ShapeId; cx: number; cy: number; radius: number; w: number; h: number; top: number; height: number; sectorX: number; sectorY: number; cinematic?: boolean }) {
-  const defaultLabel = cinematic ? "#f8fafc" : "#0f172a";
-  const label = (x: number, y: number, text: string, color = defaultLabel) => <text x={x} y={y} fill={color} fontSize="15" fontWeight="700">{text}</text>;
+function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, sectorY }: { shape: ShapeId; cx: number; cy: number; radius: number; w: number; h: number; top: number; height: number; sectorX: number; sectorY: number }) {
+  const label = (x: number, y: number, text: string, color = "#0f172a") => <text x={x} y={y} fill={color} fontSize="15" fontWeight="700">{text}</text>;
   const guide = (x1: number, y1: number, x2: number, y2: number, color = "#f59e0b") => <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth="3" strokeDasharray="7 5" />;
   if (["circle", "semicircle"].includes(shape)) return <>{guide(cx, cy, cx + radius, cy)}{label(cx + radius / 2 - 5, cy - 10, "r", "#f59e0b")}{guide(cx - radius, cy + 26, cx + radius, cy + 26, "#8b5cf6")}{label(cx - 8, cy + 48, "d=2r", "#8b5cf6")}</>;
   if (shape === "sector") return <>{guide(cx, cy, cx + radius, cy)}{guide(cx, cy, sectorX, sectorY)}{label(cx + radius / 2, cy - 10, "r", "#f59e0b")}{label(cx + 18, cy - 22, "theta", "#8b5cf6")}</>;
@@ -1170,28 +1081,8 @@ function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, 
   return null;
 }
 
-function ShapeSceneCheckbox({ label, checked, onChange }: { label: string; checked: boolean; onChange: (value: boolean) => void }) {
-  return (
-    <label className={checked ? "action-primary min-h-8 cursor-pointer px-3 py-1 text-xs" : "tool-button min-h-8 cursor-pointer px-3 py-1 text-xs"}>
-      <input className="h-3.5 w-3.5 accent-cyan-400" type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />
-      {label}
-    </label>
-  );
-}
-
-function ShapeCoordinateLabels() {
-  return (
-    <group>
-      <Text position={[3.6, 0, 0]} fontSize={0.28} color="#67e8f9" anchorX="center" outlineWidth={0.018} outlineColor="#020617">x</Text>
-      <Text position={[0, 3.6, 0]} fontSize={0.28} color="#86efac" anchorX="center" outlineWidth={0.018} outlineColor="#020617">y</Text>
-      <Text position={[0, 0, 3.6]} fontSize={0.28} color="#c4b5fd" anchorX="center" outlineWidth={0.018} outlineColor="#020617">z</Text>
-      <Text position={[0.34, 0.2, 0.34]} fontSize={0.16} color="#f8fafc" anchorX="left" outlineWidth={0.014} outlineColor="#020617">origin</Text>
-    </group>
-  );
-}
-
-function RotatingSolid({ shape, a, b, c, sides, angle, wireframe, zoom, rotation, autoRotate, showLabels }: { shape: ShapeId; a: number; b: number; c: number; sides: number; angle: number; wireframe: boolean; zoom: number; rotation: number; autoRotate: boolean; showLabels: boolean }) {
-  const ref = useRef<THREE.Group>(null);
+function RotatingSolid({ shape, a, b, c, wireframe, zoom, rotation, autoRotate, sides }: { shape: ShapeId; a: number; b: number; c: number; wireframe: boolean; zoom: number; rotation: number; autoRotate: boolean; sides?: number }) {
+  const ref = useRef<THREE.Mesh>(null);
   const guideRef = useRef<THREE.Group>(null);
   useEffect(() => {
     if (ref.current) ref.current.rotation.y = (rotation * Math.PI) / 180;
@@ -1209,167 +1100,64 @@ function RotatingSolid({ shape, a, b, c, sides, angle, wireframe, zoom, rotation
   const size = Math.min(a, 5);
   const second = Math.min(b, 5);
   const third = Math.min(c, 6);
-  const solid = isSolidShape(shape);
-  const materialColor = solid ? "#22d3ee" : "#38bdf8";
-  const emissiveColor = solid ? "#083344" : "#0f172a";
+  const meshScale: [number, number, number] = shape === "ellipsoid" ? [size, second, third] : [1, 1, 1];
+  const extrudeDepth = Math.max(0.35, Math.min(1.4, third * 0.25));
+  const polygonSides = polygonSideCount(shape, sides ?? 6);
+  const is2DPolygon = shape === "regular-polygon" || isFixedRegularPolygon(shape);
 
   return (
     <group scale={zoom}>
-      <group ref={ref}>
-        <mesh castShadow receiveShadow>
-          <ShapeGeometry3D shape={shape} size={size} second={second} third={third} sides={sides} angle={angle} />
-          <meshPhysicalMaterial
-            color={materialColor}
-            emissive={emissiveColor}
-            emissiveIntensity={solid ? 0.1 : 0.16}
-            roughness={0.18}
-            metalness={0.22}
-            clearcoat={0.7}
-            clearcoatRoughness={0.16}
-            wireframe={wireframe}
-            transparent
-            opacity={wireframe ? 1 : 0.9}
-          />
-        </mesh>
-        {!wireframe && (
-          <mesh scale={1.006}>
-            <ShapeGeometry3D shape={shape} size={size} second={second} third={third} sides={sides} angle={angle} />
-            <meshBasicMaterial color="#e0f2fe" wireframe transparent opacity={0.13} />
-          </mesh>
-        )}
-      </group>
-      {showLabels && <group ref={guideRef}>
+      <mesh ref={ref} scale={meshScale}>
+        {shape === "circle" && <cylinderGeometry args={[size, size, extrudeDepth, 72]} />}
+        {shape === "semicircle" && <cylinderGeometry args={[size, size, extrudeDepth, 36, 1, false, 0, Math.PI]} />}
+        {shape === "sector" && <cylinderGeometry args={[size, size, extrudeDepth, 48, 1, false, 0, Math.max(0.2, Math.min(Math.PI * 2, (Math.PI * 2 * 90) / 360))]} />}
+        {shape === "ellipse" && <cylinderGeometry args={[1, 1, extrudeDepth, 72]} />}
+        {shape === "annulus" && <torusGeometry args={[Math.max(0.2, size * 0.7), Math.max(0.08, Math.min(second, size) * 0.18), 18, 72]} />}
+        {shape === "quadrant" && <cylinderGeometry args={[size, size, extrudeDepth, 24, 1, false, 0, Math.PI / 2]} />}
+        {shape === "segment" && <cylinderGeometry args={[size, size, extrudeDepth, 32, 1, false, 0, Math.PI * 0.75]} />}
+        {shape === "crescent" && <torusGeometry args={[Math.max(0.2, size * 0.72), Math.max(0.08, Math.min(second, size) * 0.14), 16, 72, Math.PI * 1.35]} />}
+        {shape === "triangle" && <cylinderGeometry args={[size, size, extrudeDepth, 3]} />}
+        {shape === "right-triangle" && <cylinderGeometry args={[size, size, extrudeDepth, 3]} />}
+        {shape === "square" && <boxGeometry args={[size, size, extrudeDepth]} />}
+        {shape === "rectangle" && <boxGeometry args={[size, second, extrudeDepth]} />}
+        {shape === "parallelogram" && <boxGeometry args={[size, second, extrudeDepth]} />}
+        {shape === "rhombus" && <octahedronGeometry args={[size, 0]} />}
+        {shape === "trapezium" && <cylinderGeometry args={[Math.max(second, 0.2), size, extrudeDepth, 4]} />}
+        {shape === "kite" && <octahedronGeometry args={[size, 0]} />}
+        {is2DPolygon && <cylinderGeometry args={[size, size, extrudeDepth, polygonSides]} />}
+        {shape === "star" && <torusKnotGeometry args={[Math.max(0.6, size * 0.5), Math.max(0.05, second * 0.08), 80, 8, 5, 2]} />}
+        {shape === "cross" && <boxGeometry args={[size, Math.max(0.4, second * 0.45), extrudeDepth]} />}
+        {shape === "cube" && <boxGeometry args={[size, size, size]} />}
+        {shape === "cuboid" && <boxGeometry args={[size, second, third]} />}
+        {shape === "sphere" && <sphereGeometry args={[size, 64, 36]} />}
+        {shape === "hemisphere" && <sphereGeometry args={[size, 64, 24, 0, Math.PI * 2, 0, Math.PI / 2]} />}
+        {shape === "cylinder" && <cylinderGeometry args={[size, size, second, 64]} />}
+        {shape === "hollow-cylinder" && <cylinderGeometry args={[size, size, third, 64, 1, true]} />}
+        {shape === "capsule" && <capsuleGeometry args={[size, second, 16, 32]} />}
+        {shape === "ellipsoid" && <sphereGeometry args={[1, 64, 36]} />}
+        {shape === "cone" && <coneGeometry args={[size, second, 64]} />}
+        {shape === "frustum" && <cylinderGeometry args={[second, size, third, 64]} />}
+        {shape === "tetrahedron" && <tetrahedronGeometry args={[size, 0]} />}
+        {shape === "octahedron" && <octahedronGeometry args={[size, 0]} />}
+        {shape === "dodecahedron" && <dodecahedronGeometry args={[size, 0]} />}
+        {shape === "icosahedron" && <icosahedronGeometry args={[size, 0]} />}
+        {shape === "square-pyramid" && <coneGeometry args={[size, second, 4]} />}
+        {shape === "triangular-pyramid" && <coneGeometry args={[size, second, 3]} />}
+        {shape === "rectangular-pyramid" && <coneGeometry args={[size, third, 4]} />}
+        {shape === "triangular-prism" && <cylinderGeometry args={[size, size, third, 3]} />}
+        {shape === "pentagonal-prism" && <cylinderGeometry args={[size, size, third, 5]} />}
+        {shape === "hexagonal-prism" && <cylinderGeometry args={[size, size, third, 6]} />}
+        {shape === "torus" && <torusGeometry args={[size, second, 24, 96]} />}
+        <meshStandardMaterial color="#22d3ee" roughness={0.3} metalness={0.16} wireframe={wireframe} transparent opacity={wireframe ? 1 : 0.82} />
+      </mesh>
+      <group ref={guideRef}>
         <DimensionGuides3D shape={shape} size={size} second={second} third={third} />
-      </group>}
+      </group>
     </group>
   );
 }
 
-function ShapeGeometry3D({ shape, size, second, third, sides, angle }: { shape: ShapeId; size: number; second: number; third: number; sides: number; angle: number }) {
-  const extrudedShape = useMemo(() => createExtrudedShape(shape, size, second, sides, angle), [shape, size, second, sides, angle]);
-  if (shape === "cube") return <boxGeometry args={[size, size, size]} />;
-  if (shape === "cuboid") return <boxGeometry args={[size, second, third]} />;
-  if (shape === "sphere") return <sphereGeometry args={[size, 80, 48]} />;
-  if (shape === "hemisphere") return <sphereGeometry args={[size, 80, 28, 0, Math.PI * 2, 0, Math.PI / 2]} />;
-  if (shape === "cylinder") return <cylinderGeometry args={[size, size, second, 96]} />;
-  if (shape === "cone") return <coneGeometry args={[size, second, 96]} />;
-  if (shape === "frustum") return <cylinderGeometry args={[second, size, third, 96]} />;
-  if (shape === "square-pyramid") return <coneGeometry args={[size, second, 4]} />;
-  if (shape === "triangular-prism") return <cylinderGeometry args={[size, size, third, 3]} />;
-  if (shape === "torus") return <torusGeometry args={[size, second, 32, 128]} />;
-  return <extrudeGeometry args={[extrudedShape, { depth: 0.42, bevelEnabled: true, bevelSize: 0.055, bevelThickness: 0.06, bevelSegments: 5, curveSegments: 48 }]} />;
-}
-
-function createExtrudedShape(shapeId: ShapeId, size: number, second: number, sides: number, angle: number) {
-  const shape = new THREE.Shape();
-  const radius = Math.max(0.45, size);
-  const halfW = Math.max(0.45, size);
-  const halfH = Math.max(0.45, second);
-  if (shapeId === "circle") {
-    shape.absellipse(0, 0, radius, radius, 0, Math.PI * 2, false, 0);
-  } else if (shapeId === "semicircle") {
-    shape.moveTo(-radius, 0);
-    shape.absarc(0, 0, radius, Math.PI, 0, false);
-    shape.lineTo(-radius, 0);
-  } else if (shapeId === "sector") {
-    const theta = THREE.MathUtils.degToRad(angle);
-    shape.moveTo(0, 0);
-    shape.lineTo(radius, 0);
-    shape.absarc(0, 0, radius, 0, theta, false);
-    shape.lineTo(0, 0);
-  } else if (shapeId === "ellipse") {
-    shape.absellipse(0, 0, halfW, halfH, 0, Math.PI * 2, false, 0);
-  } else if (shapeId === "triangle") {
-    shape.moveTo(-halfW, -halfH * 0.72);
-    shape.lineTo(halfW, -halfH * 0.72);
-    shape.lineTo(0, halfH);
-    shape.lineTo(-halfW, -halfH * 0.72);
-  } else if (shapeId === "right-triangle") {
-    shape.moveTo(-halfW, -halfH);
-    shape.lineTo(halfW, -halfH);
-    shape.lineTo(-halfW, halfH);
-    shape.lineTo(-halfW, -halfH);
-  } else if (shapeId === "square") {
-    shape.moveTo(-radius, -radius);
-    shape.lineTo(radius, -radius);
-    shape.lineTo(radius, radius);
-    shape.lineTo(-radius, radius);
-    shape.lineTo(-radius, -radius);
-  } else if (shapeId === "rectangle") {
-    shape.moveTo(-halfW, -halfH);
-    shape.lineTo(halfW, -halfH);
-    shape.lineTo(halfW, halfH);
-    shape.lineTo(-halfW, halfH);
-    shape.lineTo(-halfW, -halfH);
-  } else if (shapeId === "parallelogram") {
-    shape.moveTo(-halfW + halfW * 0.35, halfH);
-    shape.lineTo(halfW, halfH);
-    shape.lineTo(halfW - halfW * 0.35, -halfH);
-    shape.lineTo(-halfW, -halfH);
-    shape.lineTo(-halfW + halfW * 0.35, halfH);
-  } else if (shapeId === "rhombus" || shapeId === "kite") {
-    shape.moveTo(0, halfH);
-    shape.lineTo(halfW, shapeId === "kite" ? halfH * 0.12 : 0);
-    shape.lineTo(0, -halfH);
-    shape.lineTo(-halfW, shapeId === "kite" ? halfH * 0.12 : 0);
-    shape.lineTo(0, halfH);
-  } else if (shapeId === "trapezium") {
-    shape.moveTo(-second * 0.5, halfH);
-    shape.lineTo(second * 0.5, halfH);
-    shape.lineTo(halfW, -halfH);
-    shape.lineTo(-halfW, -halfH);
-    shape.lineTo(-second * 0.5, halfH);
-  } else {
-    const count = Math.max(3, Math.round(sides));
-    for (let index = 0; index <= count; index += 1) {
-      const theta = -Math.PI / 2 + (index * Math.PI * 2) / count;
-      const x = radius * Math.cos(theta);
-      const y = radius * Math.sin(theta);
-      if (index === 0) shape.moveTo(x, y);
-      else shape.lineTo(x, y);
-    }
-  }
-  return shape;
-}
-
-function isSolidShape(shape: ShapeId) {
-  return ["cube", "cuboid", "sphere", "hemisphere", "cylinder", "cone", "frustum", "square-pyramid", "triangular-prism", "torus"].includes(shape);
-}
-
-function loadSavedShapeSizes(): SavedShapeSize[] {
-  try {
-    const raw = localStorage.getItem(savedShapeStorageKey);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return parsed.filter(isSavedShapeSize);
-  } catch {
-    return [];
-  }
-}
-
-function isSavedShapeSize(value: unknown): value is SavedShapeSize {
-  if (!value || typeof value !== "object") return false;
-  const item = value as Partial<SavedShapeSize>;
-  return (
-    typeof item.id === "string" &&
-    typeof item.name === "string" &&
-    typeof item.shapeId === "string" &&
-    shapes.some((shape) => shape.id === item.shapeId) &&
-    typeof item.a === "number" &&
-    typeof item.b === "number" &&
-    typeof item.c === "number" &&
-    typeof item.sides === "number" &&
-    typeof item.angle === "number"
-  );
-}
-
-function savedShapeSummary(item: SavedShapeSize) {
-  return `a=${roundTo(item.a, 2)}, b=${roundTo(item.b, 2)}, c=${roundTo(item.c, 2)}, sides=${item.sides}, angle=${roundTo(item.angle, 0)} deg`;
-}
-
 function DimensionGuides3D({ shape, size, second, third }: { shape: ShapeId; size: number; second: number; third: number }) {
-  if (!isSolidShape(shape)) return <ExtrudedShapeGuides size={size} second={second} />;
   const half = size / 2;
   if (shape === "cube") return <><GuideLine start={[-half, -half - 0.25, half]} end={[half, -half - 0.25, half]} color="#f59e0b" /><GuideLabel position={[0, -half - 0.45, half]} text="s" /></>;
   if (shape === "cuboid") return <><GuideLine start={[-size / 2, -second / 2 - 0.3, third / 2]} end={[size / 2, -second / 2 - 0.3, third / 2]} color="#f59e0b" /><GuideLine start={[-size / 2 - 0.3, -second / 2, -third / 2]} end={[-size / 2 - 0.3, second / 2, -third / 2]} color="#8b5cf6" /><GuideLine start={[size / 2 + 0.3, -second / 2, -third / 2]} end={[size / 2 + 0.3, -second / 2, third / 2]} color="#ef4444" /><GuideLabel position={[0, -second / 2 - 0.5, third / 2]} text="l" /><GuideLabel position={[-size / 2 - 0.55, 0, -third / 2]} text="b" /><GuideLabel position={[size / 2 + 0.45, -second / 2, 0]} text="h" /></>;
@@ -1380,18 +1168,6 @@ function DimensionGuides3D({ shape, size, second, third }: { shape: ShapeId; siz
   if (shape === "square-pyramid") return <><GuideLine start={[-size / 2, -second / 2 - 0.2, size / 2]} end={[size / 2, -second / 2 - 0.2, size / 2]} color="#f59e0b" /><GuideLine start={[0, -second / 2, 0]} end={[0, second / 2, 0]} color="#8b5cf6" /><GuideLabel position={[0, -second / 2 - 0.42, size / 2]} text="s" /><GuideLabel position={[0.15, 0, 0]} text="h" /></>;
   if (shape === "triangular-prism") return <><GuideLine start={[-size, -0.25, third / 2]} end={[size, -0.25, third / 2]} color="#f59e0b" /><GuideLine start={[-size - 0.3, -0.25, -third / 2]} end={[-size - 0.3, second, -third / 2]} color="#8b5cf6" /><GuideLine start={[size + 0.25, -0.25, -third / 2]} end={[size + 0.25, -0.25, third / 2]} color="#ef4444" /><GuideLabel position={[0, -0.45, third / 2]} text="b" /><GuideLabel position={[-size - 0.55, second / 2, -third / 2]} text="h" /><GuideLabel position={[size + 0.45, -0.25, 0]} text="L" /></>;
   return <><GuideLine start={[0, 0, 0]} end={[size, 0, 0]} color="#f59e0b" /><GuideLine start={[size, 0, 0]} end={[size + second, 0, 0]} color="#8b5cf6" /><GuideLabel position={[size / 2, 0.2, 0]} text="R" /><GuideLabel position={[size + second / 2, 0.25, 0]} text="r" /></>;
-}
-
-function ExtrudedShapeGuides({ size, second }: { size: number; second: number }) {
-  const span = Math.max(size, second);
-  return (
-    <>
-      <GuideLine start={[-span, -span - 0.25, 0.46]} end={[span, -span - 0.25, 0.46]} color="#f59e0b" />
-      <GuideLine start={[span + 0.24, -span, 0]} end={[span + 0.24, -span, 0.42]} color="#8b5cf6" />
-      <GuideLabel position={[0, -span - 0.48, 0.46]} text="outline" />
-      <GuideLabel position={[span + 0.38, -span, 0.24]} text="depth" />
-    </>
-  );
 }
 
 function GuideLine({ start, end, color }: { start: [number, number, number]; end: [number, number, number]; color: string }) {

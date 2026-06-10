@@ -73,6 +73,16 @@ export default function Documentation() {
                     </span>
                   ))}
                 </div>
+                {item.details && item.details.length > 0 && (
+                  <div className="mt-4 rounded-2xl bg-slate-100 p-3 dark:bg-slate-950/60">
+                    <p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Details</p>
+                    <ul className="mt-2 grid gap-1 text-sm leading-6 text-slate-700 dark:text-slate-200 sm:grid-cols-2">
+                      {item.details.slice(0, 8).map((detail) => (
+                        <li key={detail}>• {detail}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 {item.isExternal ? (
                   <a className="action-secondary mt-4" href={item.path} target="_blank" rel="noreferrer">
                     Open link
@@ -90,4 +100,3 @@ export default function Documentation() {
     </div>
   );
 }
-

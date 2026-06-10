@@ -1,144 +1,163 @@
-import { OrbitControls, Text } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { ArrowLeftRight, Axis3d, BetweenHorizontalStart, Blend, Brush, Calculator, Circle, CircleDot, ClipboardCopy, Crosshair, Download, Eraser, EyeOff, FlipHorizontal2, GitBranch, Grid2X2, Highlighter, Layers, LineChart, LockKeyhole, Magnet, MousePointer2, MousePointerClick, Move, Move3D, PanelLeftClose, PanelLeftOpen, Pause, PenLine, PencilRuler, Pentagon, Play, Plus, Presentation, Radius, Rotate3D, RotateCcw, Ruler, Save, ScanLine, Scissors, Search, Sigma, Slash, Spline, Square, Target, TextCursorInput, Trash2, Triangle, UnfoldHorizontal, Wand2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
-import { ChangeEvent, CSSProperties, KeyboardEvent, MouseEvent, PointerEvent, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Box, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut } from "lucide-react";
+import { KeyboardEvent, MouseEvent as ReactMouseEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
-import WorkspaceShell from "../components/workspace/WorkspaceShell";
-import type { ObjectListAction } from "../components/workspace/ObjectList";
-import { runWorkspaceCasQuery } from "../cas/workspaceCas";
-import { appendLocusPoint, locusPath, type LocusTracePoint } from "../geometry-kernel/geometryMeasurements";
-import { circleInsights, triangleInsights } from "../geometry-kernel/theoremHelpers";
-import { distanceFromOrigin, solidMetrics, summarizeSurfaceSamples, vectorComponents, vectorLength, type Space3DMeasurements, type Vector3Tuple } from "../space3d/spaceStudio";
+import TopicHeader from "../components/ui/TopicHeader";
 import { roundTo } from "../utils/math";
 import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicSimplify, symbolicSolve, trySymbolic } from "../utils/symbolic";
-import { createWorkspaceObjectsFromSnapshot } from "../workspace/objectRegistry";
-import { autoPlotExpressions, createCasVisualSyncLinks, type CasVisualSyncLink } from "../workspace/casVisualSync";
-import { animationTargetLabel, orbitalPoint, pingPongValue, type AnimationSnapshot, type AnimationTarget } from "../workspace/animationEngine";
-import { clearManualProjectRecoverySlots, LIVE_WORKSPACE_STORAGE_KEY, readProjectRecoverySlots, removeProjectRecoverySlot, saveProjectRecoverySlot, summarizeWorkspaceSnapshot, validateWorkspaceImport, type ProjectRecoverySlot } from "../workspace/browserProjectCenter";
-import { createWorkspaceShareCapsule, createWorkspaceShareUrl, isWorkspaceShareCapsule, MAX_INLINE_SHARE_URL_LENGTH, readWorkspaceShareCapsuleFromHash, shareSizeLabel } from "../workspace/browserShareLinks";
-import { createDefaultLesson, lessonStepKinds, lessonSummary, type ClassroomLesson, type LessonStep, type LessonStepKind } from "../workspace/classroomAuthoring";
-import { createWorkspaceBundle, isWorkspaceBundle, templateLabel, type ConstructionTemplate } from "../workspace/importExportSuite";
-import { computePracticeReport, evaluatePracticeResponse, isAssessableStep, practiceReportText, practiceStatusLabel, type PracticeReport, type PracticeResponse } from "../workspace/practiceAssessment";
-import { computeReleaseHealth, releaseStatusLabel, type ReleaseHealth } from "../workspace/releaseReadiness";
-import type { ParameterValues } from "../workspace/linkedExpressions";
-import { ensureParameterValues, extractParameterNames, substituteParameters, summarizeParameters } from "../workspace/linkedExpressions";
-import { createMathObject } from "../workspace/coreObjects";
-import type { MathConstraint, MathObject as WorkspaceMathObject, MathObjectKind } from "../workspace/types";
-import { useWorkspaceStore } from "../workspace/workspaceStore";
+import { commandExamplesFor, commandRegistrySummary, normalizeCommandName, resolveCommandSpec } from "../workspace/commandRegistry";
+import { createAnimationAction, describeTransformAction, parseStyleAction, parseTransformCommand } from "../workspace/actionCommandKernel";
+import { assessConstruction, buildBeyondGeoGebraUnitPackages, commandDocsForPackages, objectAwareTutorResponse, productionReadinessPlan, validateGuidedTaskResponse, type UnitLabPackage } from "../workspace/beyondGeoGebraKernel";
+import { criticalGapImplementationPhases } from "../workspace/criticalGapPhases";
+import { buildDynamicObjectGraph, graphHealthSummary, type DynamicObjectGraph, type DynamicObjectKind } from "../workspace/dynamicObjectKernel";
+import { contextMenuForObject, createProtocolPlaybackPlan, createSliderObject, exportPresets, imageWorkflowSpec, rankSnapCandidates, styleBarForObject, tabletControlSpec, type ExportPreset, type ImageWorkflowSpec, type ProtocolPlaybackPlan, type SliderObject, type SnapCandidate, type StyleBarControl, type TabletControlSpec, type WorkflowObjectType } from "../workspace/highPriorityWorkflowKernel";
+import {
+  circle as kernelCircle,
+  distanceBetween as kernelDistance,
+  intersectObjects as kernelIntersectObjects,
+  line as kernelLine,
+  parseConicEquation,
+  parseKernelPoint,
+  point as kernelPoint,
+  polygonArea as kernelPolygonArea,
+  polygonPerimeter as kernelPolygonPerimeter,
+  proofHintsForRelation,
+  ray as kernelRay,
+  relationBetween,
+  segment as kernelSegment,
+  vector as kernelVector,
+  type KernelObject,
+  type KernelPoint,
+} from "../workspace/geometry2dKernel";
+import {
+  cone3 as kernelCone3,
+  createTransformGizmo,
+  cylinder3 as kernelCylinder3,
+  intersect3,
+  line3 as kernelLine3,
+  object3Measurement,
+  parsePlaneEquation,
+  parsePoint3,
+  parseVector3,
+  plane3 as kernelPlane3,
+  point3 as kernelPoint3,
+  sphere3 as kernelSphere3,
+  type Object3,
+  type Point3,
+  type TransformMode3,
+} from "../workspace/geometry3dKernel";
+import { createCasCard, createDynamicTable, createListObject } from "../workspace/casTableKernel";
+import { clearOfflineProjectLibrary, readOfflineProjectLibrary, removeOfflineProject, saveOfflineProject, type OfflineProjectEntry } from "../workspace/offlineProjectLibrary";
+import { evaluateSpreadsheetGrid, fillDownFormula, rangeToCsv } from "../workspace/spreadsheetKernel";
+import { syllabusWorkspaceTemplates, type GuidedActivityPhase, type SyllabusWorkspaceTemplate } from "../workspace/syllabusWorkspaceTemplates";
+import { runWorkspaceQaSuite, type WorkspaceQaReport } from "../workspace/workspaceQaSuite";
 
 type ResultTableRow = { x: number; y: number; label?: string };
-type ResultCard = { id: string; input: string; interpretation: string; result: string; detail?: string; steps?: string[]; table?: ResultTableRow[]; related?: string[]; visualSync?: CasVisualSyncLink[]; syncedAt?: number };
+type ResultCard = { id: string; input: string; interpretation: string; result: string; detail?: string; steps?: string[]; table?: ResultTableRow[]; related?: string[]; graphExpression?: string };
 type PlotKind = "function" | "inequality" | "scatter" | "regression";
-type PlotItem = { id: string; expression: string; color: string; kind?: PlotKind; points?: ResultTableRow[]; visible?: boolean };
-type GeometryTool = "select" | "point" | "segment" | "line" | "ray" | "vector" | "circle" | "polygon" | "angle" | "angle-bisector" | "tangent" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "on-circle" | "intersect" | "perpendicular-bisector" | "regular-polygon" | "circle-radius" | "circle-3point" | "semicircle" | "arc" | "sector" | "compass" | "distance" | "area" | "slope" | "locus" | "trace" | "hide-show" | "lock-object" | "duplicate" | "freehand" | "text" | "label" | "slider" | "move-canvas" | "zoom-tool" | "mirror-line" | "reflect-point" | "translate" | "rotate-tool" | "dilate-tool" | "intersect-region" | "image";
-type WorkspaceTab = "solve" | "geometry" | "space3d" | "tools";
-type GeoPoint = { id: string; x: number; y: number; label: string; locked?: boolean; color?: string };
-type GeoLineKind = "segment" | "line" | "ray" | "vector";
-type GeoLine = { id: string; a: string; b: string; kind?: GeoLineKind; locked?: boolean; color?: string };
-type GeoCircle = { id: string; center: string; edge: string; locked?: boolean; color?: string; fill?: string };
-type GeoPolygon = { id: string; points: string[]; locked?: boolean; color?: string; fill?: string };
-type GeoAngle = { id: string; a: string; vertex: string; b: string; locked?: boolean; color?: string };
-type GeoArcKind = "arc" | "semicircle" | "sector";
-type GeoArc = { id: string; kind: GeoArcKind; center: string; start: string; end: string; locked?: boolean; color?: string; fill?: string };
-type GeoTextNote = { id: string; point: string; text: string; locked?: boolean; imageSrc?: string; width?: number; height?: number; opacity?: number; color?: string };
-type GeoConicKind = "parabola" | "ellipse" | "hyperbola";
-type GeoConic = { id: string; kind: GeoConicKind; center: string; a: number; b: number; locked?: boolean; color?: string; fill?: string };
-type GeometryTemplateKind =
-  | "triangle" | "right-triangle" | "isosceles-triangle" | "equilateral-triangle"
-  | "rectangle" | "square" | "parallelogram" | "trapezoid" | "rhombus" | "kite"
-  | "pentagon" | "hexagon" | "octagon" | "star"
-  | "circle" | "two-circles" | "annulus" | "semicircle" | "sector" | "arc"
-  | "angle-shape" | "coordinate-axes"
-  | GeoConicKind;
-type GeoTransformKind = "reflection" | "reflection-line" | "reflection-point" | "translation" | "rotation" | "dilation";
-type GeoTransform = { id: string; type: GeoTransformKind; sourceKind: "point" | "polygon" | "circle" | "conic" | "arc" | "text"; sourceId: string; resultIds: string[]; center?: string; line?: string; vectorLine?: string; angle?: number; scale?: number };
-type SelectedGeoObject = { kind: "point" | "line" | "circle" | "polygon" | "angle" | "arc" | "text" | "conic" | "transform" | "constraint"; id: string } | null;
+type PlotItem = { id: string; expression: string; color: string; name?: string; kind?: PlotKind; points?: ResultTableRow[]; visible?: boolean; locked?: boolean; trace?: boolean };
+type SpreadsheetCellGrid = string[][];
+type GeometryTool = "select" | "point" | "line" | "circle" | "polygon" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "on-circle" | "intersect" | "perpendicular-bisector" | "angle-bisector" | "tangent" | "polar" | "locus" | "regular-polygon" | "sector" | "arc" | "compass" | "mirror" | "rotate" | "dilate" | "translate";
+type GeoStyle = { color?: string; fill?: string; strokeWidth?: number; size?: number; visible?: boolean; trace?: boolean; label?: string; opacity?: number; labelMode?: "name" | "value" | "both" | "hidden" };
+type GeoPoint = { id: string; x: number; y: number; label: string; style?: GeoStyle };
+type GeoLine = { id: string; a: string; b: string; style?: GeoStyle };
+type GeoCircle = { id: string; center: string; edge: string; style?: GeoStyle };
+type GeoPolygon = { id: string; points: string[]; style?: GeoStyle };
+type GeoArc = { id: string; center: string; start: string; end: string; sector?: boolean; style?: GeoStyle };
+type GeoLocus = { id: string; label: string; points: { x: number; y: number }[]; style?: GeoStyle };
+type WorkspaceImage = { id: string; name: string; src: string; x: number; y: number; width: number; height: number; opacity: number; locked?: boolean; visible?: boolean };
 type GeoConstraint =
   | { id: string; type: "parallel" | "perpendicular"; sourceLine: string; throughPoint: string; line: string }
   | { id: string; type: "midpoint"; a: string; b: string; point: string }
   | { id: string; type: "fixed-length"; anchor: string; point: string; length: number }
   | { id: string; type: "on-circle"; point: string; circle: string }
-  | { id: string; type: "angle-bisector"; a: string; vertex: string; b: string; line: string }
-  | { id: string; type: "tangent"; circle: string; throughPoint: string; tangentPoint: string; line: string }
   | { id: string; type: "intersection"; first: string; second: string; point: string };
-type Construction = { points: GeoPoint[]; lines: GeoLine[]; circles: GeoCircle[]; polygons: GeoPolygon[]; angles: GeoAngle[]; arcs: GeoArc[]; texts: GeoTextNote[]; conics: GeoConic[]; transforms: GeoTransform[]; constraints: GeoConstraint[] };
-type ConstructionHistoryEntry = { id: string; label: string; timestamp: number; before: Construction };
-type DependencyNode = { id: string; label: string; parents: string[]; children: string[]; status: "free" | "dependent" | "locked" | "warning" };
-type LocusTrace = { id: string; pointId: string; label: string; points: LocusTracePoint[]; color: string; visible: boolean };
-type SurfaceKind = "paraboloid" | "saddle" | "wave" | "plane" | "ripple" | "cone-surface" | "torus" | "helicoid" | "mobius";
-type SolidKind = "cube" | "box" | "sphere" | "hemisphere" | "cylinder" | "cone" | "pyramid" | "triangular-prism" | "tetrahedron" | "octahedron" | "dodecahedron" | "icosahedron" | "torus-solid";
-type Space3DShapeObject = { id: string; kind: SolidKind; name: string; size: number; position: Vector3Tuple; rotation: Vector3Tuple; color: string; visible: boolean };
-type BuiltinSpace3DObjectId = "surface" | "solid" | "cross-section" | "vector" | "point" | "axes" | "grid";
-type Space3DColorMap = Record<BuiltinSpace3DObjectId, string>;
-type Space3DObjectId = BuiltinSpace3DObjectId | `shape:${string}`;
-type SelectedSpace3DObject = Space3DObjectId | null;
-type WorkspaceContextMenu = { x: number; y: number; scope: "geometry" | "space3d"; title: string; geometryTarget?: NonNullable<SelectedGeoObject>; spaceTarget?: Space3DObjectId } | null;
+type Construction = { points: GeoPoint[]; lines: GeoLine[]; circles: GeoCircle[]; polygons: GeoPolygon[]; arcs: GeoArc[]; loci: GeoLocus[]; constraints: GeoConstraint[] };
+type GeometryObjectType = "point" | "line" | "circle" | "polygon" | "arc" | "locus";
+type SelectedGeometryObject = { type: GeometryObjectType; id: string };
+type SurfaceKind = "paraboloid" | "saddle" | "wave" | "plane" | "ripple" | "cone-surface" | "custom-z" | "parametric" | "implicit";
+type SolidKind = "cube" | "sphere" | "cylinder" | "cone" | "prism" | "pyramid" | "polyhedron";
+type ThreeObjectId = "surface" | "solid" | "slice" | "point" | "vector" | "line3d" | "plane3d" | "sphere3d" | "cone3d" | "cylinder3d" | "prism3d" | "pyramid3d" | "polyhedron3d";
+type Transform3D = { position: [number, number, number]; rotation: [number, number, number]; scale: number; visible: boolean; color: string; name?: string; locked?: boolean; trace?: boolean; dimensions?: [number, number, number]; opacity?: number; material?: "matte" | "glass" | "wireframe" };
+type CameraPreset3D = "free" | "top" | "front" | "right" | "isometric";
+type AlgebraObjectKind = "function" | "point" | "line" | "circle" | "polygon" | "arc" | "locus" | "3d";
+type AlgebraObjectRef = { kind: AlgebraObjectKind; id: string };
+type ContextMenuState = { x: number; y: number; target: SelectedGeometryObject | { type: "3d"; id: ThreeObjectId } | { type: "algebra"; ref: AlgebraObjectRef } };
+type WorkspaceView = "graph" | "geometry" | "3d" | "data" | "teach";
+type ConstructionStep = { id: string; label: string; detail: string; createdAt: number; snapshot: Pick<WorkspaceSnapshot, "plots" | "construction" | "transforms3d"> };
+type ActivityJournalEntry = { templateId: string; phase: GuidedActivityPhase; response: string; selfCheck: "not-started" | "revisit" | "got-it"; confidence: number; updatedAt: number };
 type WorkspaceSnapshot = {
   input: string;
   results: ResultCard[];
   plots: PlotItem[];
   construction: Construction;
+  lockedGeometryIds?: string[];
   surface: SurfaceKind;
+  surfaceExpression?: string;
+  cameraPreset3d?: CameraPreset3D;
+  sceneAnimationSpeed?: number;
   solid: SolidKind;
   surfaceScale: number;
   height3d: number;
   crossSection: number;
-  surfacePosition3d: Vector3Tuple;
-  surfaceRotation3d: Vector3Tuple;
-  solidPosition3d: Vector3Tuple;
-  solidRotation3d: Vector3Tuple;
   showSurface: boolean;
   showSolid: boolean;
-  showAxes3d: boolean;
-  showGrid3d: boolean;
-  showCrossSection3d: boolean;
-  showVector3d: boolean;
-  showPoint3d: boolean;
   autoRotate3d: boolean;
   zoom3d: number;
-  surfaceDomain: number;
-  vectorStart3d: Vector3Tuple;
-  vectorEnd3d: Vector3Tuple;
-  point3d: Vector3Tuple;
-  space3dColors: Space3DColorMap;
-  space3dShapes: Space3DShapeObject[];
-  graphParameters: ParameterValues;
-  locusTraces: LocusTrace[];
-  animationSnapshots: AnimationSnapshot[];
-  lesson: ClassroomLesson;
-  practiceResponses: Record<string, PracticeResponse>;
-  releaseHealth: ReleaseHealth;
-  practiceReport: PracticeReport;
+  transforms3d: Record<ThreeObjectId, Transform3D>;
+  images?: WorkspaceImage[];
+  spreadsheet?: SpreadsheetCellGrid;
+  tableRange?: { start: number; end: number; step: number };
+  guidedMode?: boolean;
+  guidedPhase?: GuidedActivityPhase;
+  teachingMode?: boolean;
+  revealStep?: number;
+  controlsLocked?: boolean;
+  highContrastMode?: boolean;
+  performanceMode?: boolean;
+  protocol?: ConstructionStep[];
+  activityJournal?: Record<string, ActivityJournalEntry>;
+  presentationNotes?: string;
 };
 
 const colors = ["#06b6d4", "#8b5cf6", "#f59e0b", "#10b981", "#ef4444", "#ec4899", "#14b8a6"];
-const defaultSpace3dColors: Space3DColorMap = {
-  surface: "#22d3ee",
-  solid: "#8b5cf6",
-  "cross-section": "#f59e0b",
-  vector: "#f59e0b",
-  point: "#f59e0b",
-  axes: "#38bdf8",
-  grid: "#334155",
-};
 const regressionSeed: ResultTableRow[] = [{ x: -4, y: -5.6 }, { x: -2, y: -2.2 }, { x: 0, y: 0.7 }, { x: 2, y: 4.1 }, { x: 4, y: 7.4 }];
-const initialConstruction: Construction = { points: [], lines: [], circles: [], polygons: [], angles: [], arcs: [], texts: [], conics: [], transforms: [], constraints: [] };
-const examples = ["plot sin(x)", "solve x^2-5*x+6=0", "factor x^2-5*x+6", "derivative x^3-2*x", "integral 3*x^2", "table sin(x)", "roots x^2-4", "extrema x^2-4*x+1", "intersect x^2 and 2*x+3"];
+const initialSpreadsheet: SpreadsheetCellGrid = [
+  ["x", "y", "note", ""],
+  ["-4", "-5.6", "sample", ""],
+  ["-2", "-2.2", "", ""],
+  ["0", "0.7", "", ""],
+  ["2", "4.1", "", ""],
+  ["4", "7.4", "=A2+B2", ""],
+];
+const initialConstruction: Construction = { points: [], lines: [], circles: [], polygons: [], arcs: [], loci: [], constraints: [] };
+const defaultTransforms3d: Record<ThreeObjectId, Transform3D> = {
+  surface: { name: "surface", position: [0, 0, 0], rotation: [0, 0, 0], scale: 1, visible: true, color: "#22d3ee", opacity: 0.45, material: "glass" },
+  solid: { name: "solid", position: [3, 0, 2.6], rotation: [0, 0, 0], scale: 1, visible: true, color: "#8b5cf6", dimensions: [2.5, 2.5, 2.5], opacity: 0.78, material: "glass" },
+  slice: { name: "slice", position: [0, 0, 0], rotation: [-90, 0, 0], scale: 1, visible: true, color: "#f59e0b", dimensions: [5.5, 5.5, 0.02], opacity: 0.22, material: "glass" },
+  point: { name: "P", position: [2.2, 1.4, 1.8], rotation: [0, 0, 0], scale: 1, visible: true, color: "#f59e0b", dimensions: [0.24, 0.24, 0.24], opacity: 1, material: "matte" },
+  vector: { name: "v", position: [0, 0, 0], rotation: [0, 0, 0], scale: 1, visible: true, color: "#f59e0b", dimensions: [1, 1, 1], opacity: 1, material: "matte" },
+  line3d: { name: "l", position: [-1.8, 0.4, 1.8], rotation: [0, 35, 0], scale: 1, visible: false, color: "#38bdf8", dimensions: [4, 0.04, 0.04], opacity: 1, material: "matte" },
+  plane3d: { name: "plane", position: [0, 0.8, 0], rotation: [-20, 0, 0], scale: 1, visible: false, color: "#22c55e", dimensions: [4, 4, 0.02], opacity: 0.28, material: "glass" },
+  sphere3d: { name: "sphere", position: [-2.4, 1.2, -1.8], rotation: [0, 0, 0], scale: 1, visible: false, color: "#06b6d4", dimensions: [1.4, 1.4, 1.4], opacity: 0.72, material: "glass" },
+  cone3d: { name: "cone", position: [2.4, 1, -1.8], rotation: [0, 0, 0], scale: 1, visible: false, color: "#f97316", dimensions: [1.4, 2.2, 1.4], opacity: 0.78, material: "glass" },
+  cylinder3d: { name: "cylinder", position: [0, 1, -2.4], rotation: [0, 0, 0], scale: 1, visible: false, color: "#a855f7", dimensions: [1.2, 2.2, 1.2], opacity: 0.78, material: "glass" },
+  prism3d: { name: "prism", position: [-2.6, 0.9, 1], rotation: [0, 20, 0], scale: 1, visible: false, color: "#10b981", dimensions: [1.8, 1.5, 1.8], opacity: 0.8, material: "glass" },
+  pyramid3d: { name: "pyramid", position: [2.6, 0.9, 1], rotation: [0, -20, 0], scale: 1, visible: false, color: "#eab308", dimensions: [1.8, 1.8, 1.8], opacity: 0.82, material: "glass" },
+  polyhedron3d: { name: "polyhedron", position: [0, 1.2, 2.8], rotation: [20, 20, 0], scale: 1, visible: false, color: "#ec4899", dimensions: [1.4, 1.4, 1.4], opacity: 0.82, material: "wireframe" },
+};
+const geometryDefaultColor: Record<GeometryObjectType, string> = { point: "#06b6d4", line: "#8b5cf6", circle: "#06b6d4", polygon: "#f59e0b", arc: "#14b8a6", locus: "#ec4899" };
+const examples = ["plot sin(x)", "Root[x^2-4]", "Extremum[x^2-4*x+1]", "Intersect[x^2, 2*x+3]", "Derivative[x^3-2*x]", "Integral[3*x^2]", "Factor[x^2-5*x+6]", "Expand[(x+2)(x+3)]", "Solve[x^2-5*x+6=0]", "Substitute[x^2+a, a=3]", "Sequence[n^2, n, 1, 6]", "Table[sin(x), -3, 3, 0.5]"];
 const guidedExamples = [
   { title: "Quadratic Roots", command: "solve x^2-5*x+6=0" },
   { title: "Derivative Check", command: "derivative x^3-2*x" },
   { title: "Function Table", command: "table sin(x)" },
   { title: "Intersections", command: "intersect x^2 and 2*x+3" },
-];
-const workspaceTabs: { id: WorkspaceTab; label: string; summary: string }[] = [
-  { id: "solve", label: "Solve & Graph", summary: "CAS input, graphing, and results" },
-  { id: "geometry", label: "Geometry", summary: "Constructor, constraints, and measurements" },
-  { id: "space3d", label: "3D Lab", summary: "Surfaces, solids, and camera controls" },
-  { id: "tools", label: "Tools", summary: "Save, export, examples, formulas" },
 ];
 const formulaLibrary = [
   { topic: "Algebra", title: "Quadratic Formula", formula: "x = (-b +/- sqrt(b^2-4ac))/(2a)", command: "solve x^2-5*x+6=0" },
@@ -148,1781 +167,983 @@ const formulaLibrary = [
   { topic: "Geometry", title: "Circle Area", formula: "A = pi r^2", command: "area circle radius 5" },
   { topic: "3D", title: "Paraboloid", formula: "z = k(x^2+y^2)", command: "plot x^2" },
 ];
-const surfaceOptions: { value: SurfaceKind; label: string }[] = [
-  { value: "paraboloid", label: "Paraboloid" },
-  { value: "saddle", label: "Saddle" },
-  { value: "wave", label: "Wave" },
-  { value: "plane", label: "Plane" },
-  { value: "ripple", label: "Ripple" },
-  { value: "cone-surface", label: "Cone surface" },
-  { value: "torus", label: "Parametric torus" },
-  { value: "helicoid", label: "Parametric helicoid" },
-  { value: "mobius", label: "Mobius strip" },
-];
-const solidOptions: { value: SolidKind; label: string }[] = [
-  { value: "cube", label: "Cube" },
-  { value: "box", label: "Rectangular prism" },
-  { value: "sphere", label: "Sphere" },
-  { value: "hemisphere", label: "Hemisphere" },
-  { value: "cylinder", label: "Cylinder" },
-  { value: "cone", label: "Cone" },
-  { value: "pyramid", label: "Square pyramid" },
-  { value: "triangular-prism", label: "Triangular prism" },
-  { value: "tetrahedron", label: "Tetrahedron" },
-  { value: "octahedron", label: "Octahedron" },
-  { value: "dodecahedron", label: "Dodecahedron" },
-  { value: "icosahedron", label: "Icosahedron" },
-  { value: "torus-solid", label: "Torus solid" },
-];
-const shapePalette3d: { kind: SolidKind; label: string; icon: LucideIcon }[] = [
-  { kind: "cube", label: "Cube", icon: Square },
-  { kind: "box", label: "Prism", icon: Square },
-  { kind: "sphere", label: "Sphere", icon: Circle },
-  { kind: "hemisphere", label: "Hemisphere", icon: CircleDot },
-  { kind: "cylinder", label: "Cylinder", icon: Radius },
-  { kind: "cone", label: "Cone", icon: Triangle },
-  { kind: "pyramid", label: "Pyramid", icon: Triangle },
-  { kind: "triangular-prism", label: "Tri Prism", icon: Pentagon },
-  { kind: "tetrahedron", label: "Tetra", icon: Triangle },
-  { kind: "octahedron", label: "Octa", icon: Axis3d },
-  { kind: "dodecahedron", label: "Dodeca", icon: Pentagon },
-  { kind: "icosahedron", label: "Icosa", icon: Pentagon },
-  { kind: "torus-solid", label: "Torus", icon: CircleDot },
-];
 
-export default function MathWorkspace() {
-  const [activeTab, setActiveTab] = useState<WorkspaceTab>("solve");
+export default function MathWorkspace({ initialView = "graph", singleView = false }: { initialView?: WorkspaceView; singleView?: boolean }) {
   const [input, setInput] = useState("plot sin(x)");
   const [results, setResults] = useState<ResultCard[]>([]);
   const [plots, setPlots] = useState<PlotItem[]>([{ id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true }]);
-  const [graphParameters, setGraphParameters] = useState<ParameterValues>({ a: 1, b: 0 });
   const [tool, setTool] = useState<GeometryTool>("select");
   const [construction, setConstruction] = useState<Construction>(initialConstruction);
+  const [selectedGeometry, setSelectedGeometry] = useState<SelectedGeometryObject | null>(null);
+  const [workspaceImages, setWorkspaceImages] = useState<WorkspaceImage[]>([]);
+  const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
   const [selectedPointIds, setSelectedPointIds] = useState<string[]>([]);
-  const [selectedCircleIds, setSelectedCircleIds] = useState<string[]>([]);
-  const [selectedGeoObject, setSelectedGeoObject] = useState<SelectedGeoObject>(null);
   const [dragPointId, setDragPointId] = useState<string | null>(null);
-  const [dragGeometryObject, setDragGeometryObject] = useState<{ target: NonNullable<SelectedGeoObject>; last: { x: number; y: number } } | null>(null);
-  const [snapGeometryToGrid, setSnapGeometryToGrid] = useState(true);
-  const [undoStack, setUndoStack] = useState<ConstructionHistoryEntry[]>([]);
-  const [redoStack, setRedoStack] = useState<ConstructionHistoryEntry[]>([]);
+  const [dragImageId, setDragImageId] = useState<string | null>(null);
+  const [dragGeometry, setDragGeometry] = useState<{ object: SelectedGeometryObject; last: { x: number; y: number } } | null>(null);
+  const [lockedGeometryIds, setLockedGeometryIds] = useState<string[]>([]);
   const [polygonDraft, setPolygonDraft] = useState<string[]>([]);
-  const [locusTraces, setLocusTraces] = useState<LocusTrace[]>([]);
-  const [activeTracePointId, setActiveTracePointId] = useState<string | null>(null);
   const [surface, setSurface] = useState<SurfaceKind>("paraboloid");
+  const [surfaceExpression, setSurfaceExpression] = useState("sin(x) * cos(y)");
   const [solid, setSolid] = useState<SolidKind>("cube");
   const [surfaceScale, setSurfaceScale] = useState(1);
   const [height3d, setHeight3d] = useState(2.5);
   const [crossSection, setCrossSection] = useState(0);
-  const [surfacePosition3d, setSurfacePosition3d] = useState<Vector3Tuple>([0, 0, 0]);
-  const [surfaceRotation3d, setSurfaceRotation3d] = useState<Vector3Tuple>([0, 0, 0]);
-  const [solidPosition3d, setSolidPosition3d] = useState<Vector3Tuple>([3, 0, 2.6]);
-  const [solidRotation3d, setSolidRotation3d] = useState<Vector3Tuple>([0, 0, 0]);
   const [showSurface, setShowSurface] = useState(true);
   const [showSolid, setShowSolid] = useState(true);
-  const [showAxes3d, setShowAxes3d] = useState(true);
-  const [showGrid3d, setShowGrid3d] = useState(true);
-  const [showCrossSection3d, setShowCrossSection3d] = useState(true);
-  const [showVector3d, setShowVector3d] = useState(true);
-  const [showPoint3d, setShowPoint3d] = useState(true);
   const [autoRotate3d, setAutoRotate3d] = useState(true);
+  const [sceneAnimationSpeed, setSceneAnimationSpeed] = useState(0.18);
+  const [cameraPreset3d, setCameraPreset3d] = useState<CameraPreset3D>("isometric");
   const [zoom3d, setZoom3d] = useState(1);
-  const [surfaceDomain, setSurfaceDomain] = useState(2.6);
-  const [vectorStart3d, setVectorStart3d] = useState<Vector3Tuple>([-3, 0.05, -3]);
-  const [vectorEnd3d, setVectorEnd3d] = useState<Vector3Tuple>([2.2, 1.4, 1.8]);
-  const [point3d, setPoint3d] = useState<Vector3Tuple>([2.2, 1.4, 1.8]);
-  const [space3dColors, setSpace3dColors] = useState<Space3DColorMap>(defaultSpace3dColors);
-  const [space3dShapes, setSpace3dShapes] = useState<Space3DShapeObject[]>([]);
-  const [selected3dObject, setSelected3dObject] = useState<SelectedSpace3DObject>("surface");
-  const [dragging3dObject, setDragging3dObject] = useState(false);
-  const [animationPlaying, setAnimationPlaying] = useState(false);
-  const [animationTime, setAnimationTime] = useState(0);
-  const [animationDuration, setAnimationDuration] = useState(6);
-  const [animationTarget, setAnimationTarget] = useState<AnimationTarget>("graph-parameter");
-  const [animationParameter, setAnimationParameter] = useState("a");
-  const [animationMin, setAnimationMin] = useState(-3);
-  const [animationMax, setAnimationMax] = useState(3);
-  const [animationSnapshots, setAnimationSnapshots] = useState<AnimationSnapshot[]>([]);
-  const [lesson, setLesson] = useState<ClassroomLesson>(() => createDefaultLesson());
-  const [practiceResponses, setPracticeResponses] = useState<Record<string, PracticeResponse>>({});
-  const [importStatus, setImportStatus] = useState("No import loaded.");
-  const [projectCenterStatus, setProjectCenterStatus] = useState("Browser project center ready.");
-  const [shareStatus, setShareStatus] = useState("No share capsule loaded.");
-  const [projectRecoverySlots, setProjectRecoverySlots] = useState<ProjectRecoverySlot<WorkspaceSnapshot>[]>([]);
-  const [lastAutosaveAt, setLastAutosaveAt] = useState<number | null>(null);
-  const [spaceControlsOpen, setSpaceControlsOpen] = useState(true);
+  const [selected3d, setSelected3d] = useState<ThreeObjectId>("solid");
+  const [transforms3d, setTransforms3d] = useState<Record<ThreeObjectId, Transform3D>>(defaultTransforms3d);
+  const [drag3d, setDrag3d] = useState<ThreeObjectId | null>(null);
+  const [contextMenu, setContextMenu] = useState<ContextMenuState | null>(null);
   const [formulaSearch, setFormulaSearch] = useState("");
+  const [workspaceView, setWorkspaceView] = useState<WorkspaceView>(initialView);
   const [teachingMode, setTeachingMode] = useState(false);
-  const [contextMenu, setContextMenu] = useState<WorkspaceContextMenu>(null);
+  const [guidedMode, setGuidedMode] = useState(false);
+  const [guidedPhase, setGuidedPhase] = useState<GuidedActivityPhase>("predict");
+  const [activeTemplate, setActiveTemplate] = useState<SyllabusWorkspaceTemplate>(syllabusWorkspaceTemplates[0]);
+  const [activityJournal, setActivityJournal] = useState<Record<string, ActivityJournalEntry>>({});
+  const [presentationNotes, setPresentationNotes] = useState("");
+  const [revealStep, setRevealStep] = useState(1);
+  const [controlsLocked, setControlsLocked] = useState(false);
+  const [highContrastMode, setHighContrastMode] = useState(false);
+  const [performanceMode, setPerformanceMode] = useState(false);
+  const [qaReport, setQaReport] = useState<WorkspaceQaReport>(() => runWorkspaceQaSuite());
+  const [projectLibrary, setProjectLibrary] = useState<OfflineProjectEntry<WorkspaceSnapshot>[]>(() => readOfflineProjectLibrary<WorkspaceSnapshot>());
+  const [projectStatus, setProjectStatus] = useState("Offline project library ready.");
+  const [protocol, setProtocol] = useState<ConstructionStep[]>([]);
+  const [undoStack, setUndoStack] = useState<ConstructionStep[]>([]);
+  const [redoStack, setRedoStack] = useState<ConstructionStep[]>([]);
+  const [selectedAlgebra, setSelectedAlgebra] = useState<AlgebraObjectRef | null>(null);
+  const [spreadsheet, setSpreadsheet] = useState<SpreadsheetCellGrid>(initialSpreadsheet);
+  const [tableStart, setTableStart] = useState(-4);
+  const [tableEnd, setTableEnd] = useState(4);
+  const [tableStep, setTableStep] = useState(1);
   const svgRef = useRef<SVGSVGElement>(null);
   const graphExportRef = useRef<HTMLDivElement>(null);
   const geometryExportRef = useRef<SVGSVGElement | null>(null);
-  const importFileRef = useRef<HTMLInputElement | null>(null);
-  const imageFileRef = useRef<HTMLInputElement | null>(null);
-  const pendingImageAnchorRef = useRef<{ x: number; y: number; pointId?: string } | null>(null);
-  const selectedPointIdsRef = useRef<string[]>([]);
-  const polygonDraftRef = useRef<string[]>([]);
-  const selectedCircleIdsRef = useRef<string[]>([]);
-  const workspaceObjects = useWorkspaceStore((state) => state.objects);
-  const workspaceHistory = useWorkspaceStore((state) => state.history);
-  const workspaceRedoHistory = useWorkspaceStore((state) => state.redoHistory);
-  const upsertWorkspaceObjects = useWorkspaceStore((state) => state.upsertObjects);
-  const recordWorkspaceCommand = useWorkspaceStore((state) => state.recordCommand);
-  const selectWorkspaceObjects = useWorkspaceStore((state) => state.selectObjects);
-  const undoWorkspace = useWorkspaceStore((state) => state.undo);
-  const redoWorkspace = useWorkspaceStore((state) => state.redo);
+  const workspaceRef = useRef<HTMLDivElement>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const routeStateAppliedRef = useRef("");
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("workspace-high-contrast", highContrastMode);
+    return () => document.documentElement.classList.remove("workspace-high-contrast");
+  }, [highContrastMode]);
+
+  useEffect(() => {
+    setWorkspaceView(initialView);
+  }, [initialView]);
+
+  useEffect(() => {
+    const match = window.location.hash.match(/project=([^&]+)/);
+    if (!match) return;
+    try {
+      restoreWorkspaceSnapshot(JSON.parse(decodeURIComponent(escape(atob(match[1])))) as WorkspaceSnapshot);
+      setProjectStatus("Share URL project loaded.");
+    } catch {
+      setProjectStatus("Could not load share URL project.");
+    }
+  }, []);
 
   const filteredFormulas = useMemo(() => {
     const query = formulaSearch.trim().toLowerCase();
     return formulaLibrary.filter((item) => !query || [item.topic, item.title, item.formula].join(" ").toLowerCase().includes(query));
   }, [formulaSearch]);
 
-  const space3dMeasurements = useMemo<Space3DMeasurements>(() => {
-    const solidStats = solidMetrics(solid, height3d);
-    const surfaceSamples = summarizeSurfaceSamples((x, y) => surfaceZ(surface, x, y, surfaceScale), surfaceDomain, crossSection);
-    return {
-      vectorLength: vectorLength(vectorStart3d, vectorEnd3d),
-      vectorComponents: vectorComponents(vectorStart3d, vectorEnd3d),
-      pointDistanceFromOrigin: distanceFromOrigin(point3d),
-      solidVolume: solidStats.volume,
-      solidSurfaceArea: solidStats.surfaceArea,
-      surfaceSampleMin: surfaceSamples.min,
-      surfaceSampleMax: surfaceSamples.max,
-      crossSectionSamples: surfaceSamples.crossSectionSamples,
-    };
-  }, [crossSection, height3d, point3d, solid, surface, surfaceDomain, surfaceScale, vectorEnd3d, vectorStart3d]);
+  const workspaceObjects = useMemo(() => buildAlgebraObjects(plots, construction, transforms3d, lockedGeometryIds), [plots, construction, transforms3d, lockedGeometryIds]);
+  const dynamicGraph = useMemo(() => buildDynamicObjectGraph(workspaceObjects.map((object) => ({
+    id: `${object.ref.kind}:${object.ref.id}`,
+    name: object.name,
+    kind: objectKindForKernel(object.ref.kind),
+    definition: object.definition,
+    visible: object.visible,
+    locked: object.locked,
+    trace: object.trace,
+    dependencies: object.dependencies,
+  }))), [workspaceObjects]);
+  const dynamicHealth = useMemo(() => graphHealthSummary(dynamicGraph), [dynamicGraph]);
+  const commandSummary = useMemo(() => commandRegistrySummary(), []);
+  const selectedWorkflowType = useMemo<WorkflowObjectType>(() => {
+    if (selectedImageId) return "image";
+    if (selectedGeometry) return selectedGeometry.type;
+    if (selectedAlgebra) return selectedAlgebra.kind === "3d" ? "3d" : selectedAlgebra.kind === "point" || selectedAlgebra.kind === "line" || selectedAlgebra.kind === "circle" || selectedAlgebra.kind === "polygon" || selectedAlgebra.kind === "arc" || selectedAlgebra.kind === "locus" ? selectedAlgebra.kind : "algebra";
+    return "algebra";
+  }, [selectedAlgebra, selectedGeometry, selectedImageId]);
+  const protocolPlan = useMemo(() => createProtocolPlaybackPlan(protocol.map((step) => ({
+    id: step.id,
+    label: step.label,
+    detail: step.detail,
+    createdAt: step.createdAt,
+    visible: true,
+  })), { cursor: Math.max(0, Math.min(protocol.length - 1, 5)), hiddenColumns: ["createdAt"] }), [protocol]);
+  const workflowStyleControls = useMemo(() => styleBarForObject(selectedWorkflowType), [selectedWorkflowType]);
+  const exportPresetList = useMemo(() => exportPresets(), []);
+  const imageWorkflow = useMemo(() => imageWorkflowSpec(), []);
+  const tabletWorkflow = useMemo(() => tabletControlSpec("touch"), []);
+  const sliderPreview = useMemo(() => createSliderObject("a", { value: sceneAnimationSpeed, min: 0.1, max: 3, step: 0.1, playing: autoRotate3d, boundObjects: ["surface", "solid", "slice"] }), [autoRotate3d, sceneAnimationSpeed]);
+  const snapPreview = useMemo(() => rankSnapCandidates({ x: 320, y: 210 }, [
+    ...construction.points.slice(0, 8).map((item) => ({ id: item.id, label: item.label, priority: 80, x: item.x, y: item.y, constraint: "point" as const })),
+    { id: "grid-origin", label: "Grid origin", priority: 40, x: 320, y: 210, constraint: "grid" as const },
+  ]), [construction.points]);
+  const beyondPackages = useMemo(() => buildBeyondGeoGebraUnitPackages(syllabusWorkspaceTemplates), []);
+  const activeBeyondPackage = useMemo(() => beyondPackages.find((item) => item.templateId === activeTemplate.id) ?? beyondPackages[0], [activeTemplate.id, beyondPackages]);
+  const readinessPlan = useMemo(() => productionReadinessPlan(), []);
+  const commandDocs = useMemo(() => commandDocsForPackages(beyondPackages), [beyondPackages]);
+  const activeTask = useMemo(() => activeBeyondPackage.guidedTasks.find((task) => task.phase === guidedPhase) ?? activeBeyondPackage.guidedTasks[0], [activeBeyondPackage, guidedPhase]);
+  const activeTaskEntry = activityJournal[activityJournalKey(activeTemplate.id, guidedPhase)] ?? defaultActivityJournalEntry(activeTemplate.id, guidedPhase);
+  const activeTaskValidation = useMemo(() => validateGuidedTaskResponse(activeTask, activeTaskEntry.response), [activeTask, activeTaskEntry.response]);
+  const assessmentPreview = useMemo(() => assessConstruction(activeBeyondPackage, workspaceObjects.map((object) => ({ kind: object.ref.kind, definition: object.definition, visible: object.visible }))), [activeBeyondPackage, workspaceObjects]);
+  const tutorPreview = useMemo(() => objectAwareTutorResponse(activeBeyondPackage, "why did this move", workspaceObjects[0]?.definition ?? activeBeyondPackage.interactiveLab), [activeBeyondPackage, workspaceObjects]);
 
-  const animationParameterNames = useMemo(() => Object.keys(graphParameters).sort(), [graphParameters]);
-  const activeAnimationParameter = animationParameterNames.includes(animationParameter) ? animationParameter : animationParameterNames[0] ?? animationParameter;
-  const selected3dShapeId = selected3dObject?.startsWith("shape:") ? selected3dObject.slice("shape:".length) : null;
-  const selected3dShape = selected3dShapeId ? space3dShapes.find((shape) => shape.id === selected3dShapeId) ?? null : null;
-  const geometryObjectCount = construction.points.length + construction.lines.length + construction.circles.length + construction.polygons.length + construction.angles.length + construction.arcs.length + construction.texts.length + construction.conics.length + construction.constraints.length;
-  const practiceReport = useMemo(() => computePracticeReport(lesson, practiceResponses), [lesson, practiceResponses]);
-  const undoableWorkspaceActions = useMemo(() => workspaceHistory.filter((entry) => entry.before && entry.after).length, [workspaceHistory]);
-  const redoableWorkspaceActions = useMemo(() => workspaceRedoHistory.filter((entry) => entry.before && entry.after).length, [workspaceRedoHistory]);
-  const geometryToolCount = useMemo(() => geometryToolGroups.reduce((total, group) => total + group.tools.length, 0), []);
-  const algebraLinkCount = plots.length + results.filter((result) => (result.visualSync?.length ?? 0) > 0).length + Object.keys(graphParameters).length;
-  const beyondGeoGebraDifferentiators = [
-    lesson.steps.length > 0,
-    Object.keys(practiceResponses).length > 0 || practiceReport.totalChecks > 0,
-    animationSnapshots.length > 0 || animationTarget !== "graph-parameter",
-    projectRecoverySlots.length > 0,
-    shareStatus !== "No share capsule loaded.",
-  ].filter(Boolean).length;
-  const releaseHealth = useMemo(() => computeReleaseHealth({
-    plots: plots.length,
-    results: results.length,
-    objectCount: workspaceObjects.length,
-    undoableActions: undoableWorkspaceActions,
-    redoActions: redoableWorkspaceActions,
-    algebraLinks: algebraLinkCount,
-    geometryObjects: geometryObjectCount,
-    geometryToolCount,
-    spaceObjects: 7 + space3dShapes.length,
-    selectedSpaceObject: Boolean(selected3dObject),
-    lessonSteps: lesson.steps.length,
-    teachingMode,
-    animationSnapshots: animationSnapshots.length,
-    simulationsReady: animationPlaying || animationTarget !== "graph-parameter",
-    importExportReady: true,
-    shareReady: true,
-    offlineReady: true,
-    qaReady: true,
-    performanceReady: workspaceObjects.length < 250,
-    accessibilityReady: true,
-    syllabusReady: lesson.steps.length > 0 || geometryObjectCount > 0 || plots.length > 0,
-    differentiatorCount: beyondGeoGebraDifferentiators,
-  }), [algebraLinkCount, animationPlaying, animationSnapshots.length, animationTarget, beyondGeoGebraDifferentiators, geometryObjectCount, geometryToolCount, lesson.steps.length, plots.length, redoableWorkspaceActions, results.length, selected3dObject, space3dShapes.length, teachingMode, undoableWorkspaceActions, workspaceObjects.length]);
-  const snapshot = useCallback((): WorkspaceSnapshot => ({ input, results, plots, construction, surface, solid, surfaceScale, height3d, crossSection, surfacePosition3d, surfaceRotation3d, solidPosition3d, solidRotation3d, showSurface, showSolid, showAxes3d, showGrid3d, showCrossSection3d, showVector3d, showPoint3d, autoRotate3d, zoom3d, surfaceDomain, vectorStart3d, vectorEnd3d, point3d, space3dColors, space3dShapes, graphParameters, locusTraces, animationSnapshots, lesson, practiceResponses, releaseHealth, practiceReport }), [animationSnapshots, autoRotate3d, construction, crossSection, graphParameters, height3d, input, lesson, locusTraces, plots, point3d, practiceReport, practiceResponses, releaseHealth, results, showAxes3d, showCrossSection3d, showGrid3d, showPoint3d, showSolid, showSurface, showVector3d, solid, solidPosition3d, solidRotation3d, space3dColors, space3dShapes, surface, surfaceDomain, surfacePosition3d, surfaceRotation3d, surfaceScale, vectorEnd3d, vectorStart3d, zoom3d]);
-  const currentProjectSummary = useMemo(() => summarizeWorkspaceSnapshot(snapshot()), [snapshot]);
+  const captureStep = (label: string, detail: string): ConstructionStep => ({
+    id: crypto.randomUUID(),
+    label,
+    detail,
+    createdAt: Date.now(),
+    snapshot: { plots, construction, transforms3d },
+  });
 
-  const deleteSelected3dObjectById = (target: SelectedSpace3DObject) => {
-    if (!target) return;
-    if (target.startsWith("shape:")) {
-      const shapeId = target.slice("shape:".length);
-      setSpace3dShapes((shapes) => shapes.filter((shape) => shape.id !== shapeId));
-      setSelected3dObject((current) => current === target ? null : current);
-      return;
+  const recordWorkspaceStep = (label: string, detail: string) => {
+    const step = captureStep(label, detail);
+    setUndoStack((current) => [step, ...current].slice(0, 80));
+    setRedoStack([]);
+    setProtocol((current) => [{ ...step, snapshot: { plots, construction, transforms3d } }, ...current].slice(0, 120));
+  };
+
+  const restoreProtocolSnapshot = (step: ConstructionStep) => {
+    setPlots(step.snapshot.plots ?? []);
+    setConstruction(normalizeConstruction(step.snapshot.construction ?? initialConstruction));
+    setTransforms3d({ ...defaultTransforms3d, ...(step.snapshot.transforms3d ?? {}) });
+  };
+
+  const undoWorkspace = () => {
+    const [step, ...rest] = undoStack;
+    if (!step) return undoConstruction();
+    const currentStep = captureStep(`Redo ${step.label}`, "State before undo.");
+    setRedoStack((current) => [currentStep, ...current]);
+    setUndoStack(rest);
+    restoreProtocolSnapshot(step);
+  };
+
+  const redoWorkspace = () => {
+    const [step, ...rest] = redoStack;
+    if (!step) return;
+    const currentStep = captureStep(`Undo ${step.label}`, "State before redo.");
+    setUndoStack((current) => [currentStep, ...current]);
+    setRedoStack(rest);
+    restoreProtocolSnapshot(step);
+  };
+
+  const addResultCard = (analysis: ResultCard) => setResults((current) => [analysis, ...current].slice(0, 12));
+
+  const applyDirectDefinitionCommand = (raw: string) => {
+    const functionMatch = raw.match(/^([a-z]\w*)\s*\(\s*x\s*\)\s*=\s*(.+)$/i);
+    if (functionMatch) {
+      const [, name, expression] = functionMatch;
+      recordWorkspaceStep("Define function", `${name}(x) = ${expression}`);
+      setPlots((current) => [{ id: crypto.randomUUID(), expression: expression.trim(), name, color: colors[current.length % colors.length], kind: inferPlotKind(expression), visible: true }, ...current].slice(0, 10));
+      addResultCard({
+        id: crypto.randomUUID(),
+        input: raw,
+        interpretation: "Live function definition",
+        result: `${name}(x) = ${expression.trim()}`,
+        detail: "The function was added to the graph and algebra object list with an editable definition.",
+        related: [`Derivative[${expression.trim()}]`, `Table[${expression.trim()}, -5, 5, 1]`],
+      });
+      setProjectStatus(`${name}(x) linked to graph, algebra panel, inspector, and export state.`);
+      return true;
     }
-    const visibilitySetters: Record<BuiltinSpace3DObjectId, (value: boolean) => void> = {
-      surface: setShowSurface,
-      solid: setShowSolid,
-      "cross-section": setShowCrossSection3d,
-      vector: setShowVector3d,
-      point: setShowPoint3d,
-      axes: setShowAxes3d,
-      grid: setShowGrid3d,
-    };
-    visibilitySetters[target as BuiltinSpace3DObjectId]?.(false);
-  };
 
-  const deleteSelected3dObject = () => {
-    deleteSelected3dObjectById(selected3dObject);
-  };
-
-  const set3dObjectVisibility = (target: SelectedSpace3DObject, visible: boolean) => {
-    if (!target) return;
-    if (target.startsWith("shape:")) {
-      const shapeId = target.slice("shape:".length);
-      setSpace3dShapes((shapes) => shapes.map((shape) => shape.id === shapeId ? { ...shape, visible } : shape));
-      return;
+    const point3dMatch = raw.match(/^([A-Z]\w*)\s*=\s*\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)$/);
+    if (point3dMatch) {
+      const [, name, xRaw, yRaw, zRaw] = point3dMatch;
+      const position: [number, number, number] = [Number(xRaw), Number(yRaw), Number(zRaw)];
+      recordWorkspaceStep("Define 3D point", `${name}=(${position.join(", ")})`);
+      setSelected3d("point");
+      setShowSurface(true);
+      setTransforms3d((current) => ({ ...current, point: { ...current.point, name, position, visible: true } }));
+      addResultCard({
+        id: crypto.randomUUID(),
+        input: raw,
+        interpretation: "Live 3D point definition",
+        result: `${name}=(${position.join(", ")})`,
+        detail: "The 3D point is now selectable, draggable, editable, and linked to the 3D inspector.",
+      });
+      setProjectStatus(`${name} created as a live 3D object.`);
+      return true;
     }
-    const visibilitySetters: Record<BuiltinSpace3DObjectId, (value: boolean) => void> = {
-      surface: setShowSurface,
-      solid: setShowSolid,
-      "cross-section": setShowCrossSection3d,
-      vector: setShowVector3d,
-      point: setShowPoint3d,
-      axes: setShowAxes3d,
-      grid: setShowGrid3d,
-    };
-    visibilitySetters[target as BuiltinSpace3DObjectId]?.(visible);
-  };
 
-  const reset3dScene = () => {
-    setZoom3d(1);
-    setSurfaceScale(1);
-    setSurfaceDomain(2.6);
-    setCrossSection(0);
-    setSurfacePosition3d([0, 0, 0]);
-    setSurfaceRotation3d([0, 0, 0]);
-    setSolidPosition3d([3, 0, 2.6]);
-    setSolidRotation3d([0, 0, 0]);
-    setVectorStart3d([-3, 0.05, -3]);
-    setVectorEnd3d([2.2, 1.4, 1.8]);
-    setPoint3d([2.2, 1.4, 1.8]);
-    setSpace3dShapes([]);
-    setAutoRotate3d(false);
-    restoreAll3dObjects();
-    setSelected3dObject("surface");
-  };
-
-  const restoreAll3dObjects = () => {
-    setShowSurface(true);
-    setShowSolid(true);
-    setShowAxes3d(true);
-    setShowGrid3d(true);
-    setShowCrossSection3d(true);
-    setShowVector3d(true);
-    setShowPoint3d(true);
-    setSpace3dShapes((shapes) => shapes.map((shape) => ({ ...shape, visible: true })));
-  };
-
-  const add3dObject = (object: Space3DObjectId) => {
-    if (object.startsWith("shape:")) {
-      setSpace3dShapes((shapes) => shapes.map((shape) => shape.id === object.slice("shape:".length) ? { ...shape, visible: true } : shape));
-      setSelected3dObject(object);
-      return;
-    }
-    const visibilitySetters: Record<BuiltinSpace3DObjectId, (value: boolean) => void> = {
-      surface: setShowSurface,
-      solid: setShowSolid,
-      "cross-section": setShowCrossSection3d,
-      vector: setShowVector3d,
-      point: setShowPoint3d,
-      axes: setShowAxes3d,
-      grid: setShowGrid3d,
-    };
-    visibilitySetters[object as BuiltinSpace3DObjectId](true);
-    setSelected3dObject(object);
-  };
-
-  const add3dShape = (kind: SolidKind) => {
-    const id = crypto.randomUUID();
-    const count = space3dShapes.filter((shape) => shape.kind === kind).length + 1;
-    const offset = space3dShapes.length % 5;
-    const shape: Space3DShapeObject = {
-      id,
-      kind,
-      name: `${solidOptions.find((option) => option.value === kind)?.label ?? kind} ${count}`,
-      size: 1.8,
-      position: clampVector3([-2.8 + offset * 1.35, 0, 2.4 - offset * 0.85]),
-      rotation: [0, 0, 0],
-      color: colors[space3dShapes.length % colors.length],
-      visible: true,
-    };
-    setSpace3dShapes((shapes) => [...shapes, shape]);
-    setSelected3dObject(`shape:${id}`);
-  };
-
-  const update3dShape = (id: string, patch: Partial<Space3DShapeObject>) => {
-    setSpace3dShapes((shapes) => shapes.map((shape) => shape.id === id ? { ...shape, ...patch } : shape));
-  };
-
-  const duplicateSelected3dShape = () => {
-    if (!selected3dShape) return;
-    const id = crypto.randomUUID();
-    const duplicate: Space3DShapeObject = {
-      ...selected3dShape,
-      id,
-      name: `${selected3dShape.name} copy`,
-      position: clampVector3([selected3dShape.position[0] + 0.8, selected3dShape.position[1], selected3dShape.position[2] - 0.8]),
-    };
-    setSpace3dShapes((shapes) => [...shapes, duplicate]);
-    setSelected3dObject(`shape:${id}`);
-  };
-
-  const duplicateSelected3dObject = (target: SelectedSpace3DObject = selected3dObject) => {
-    if (!target) return;
-    if (target.startsWith("shape:")) {
-      const shapeId = target.slice("shape:".length);
-      const source = space3dShapes.find((shape) => shape.id === shapeId);
-      if (!source) return;
+    const point2dMatch = raw.match(/^([A-Z]\w*)\s*=\s*\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)$/);
+    if (point2dMatch) {
+      const [, label, xRaw, yRaw] = point2dMatch;
+      const math = { x: Number(xRaw), y: Number(yRaw) };
+      const board = mathToBoardPoint(math.x, math.y);
       const id = crypto.randomUUID();
-      setSpace3dShapes((shapes) => [...shapes, { ...source, id, name: `${source.name} copy`, position: clampVector3([source.position[0] + 0.8, source.position[1], source.position[2] - 0.8]) }]);
-      setSelected3dObject(`shape:${id}`);
-      return;
+      recordWorkspaceStep("Define point", `${label}=(${math.x}, ${math.y})`);
+      setConstruction((current) => solveConstruction({ ...current, points: [...current.points, { id, ...board, label }] }, id));
+      setSelectedGeometry({ type: "point", id });
+      addResultCard({
+        id: crypto.randomUUID(),
+        input: raw,
+        interpretation: "Live point definition",
+        result: `${label}=(${math.x}, ${math.y})`,
+        detail: "The point was placed on the geometry board and can be edited from the algebra panel or inspector.",
+      });
+      setProjectStatus(`${label} created as a live geometry point.`);
+      return true;
     }
-    if (target === "solid") {
-      const id = crypto.randomUUID();
-      setSpace3dShapes((shapes) => [...shapes, { id, kind: solid, name: `${solidOptions.find((option) => option.value === solid)?.label ?? solid} copy`, size: height3d, position: clampVector3([solidPosition3d[0] + 0.85, solidPosition3d[1], solidPosition3d[2] - 0.85]), rotation: solidRotation3d, color: colors[shapes.length % colors.length], visible: true }]);
-      setSelected3dObject(`shape:${id}`);
-      return;
+
+    const circleEquationMatch = raw.match(/^([a-z]\w*)\s*:\s*x\^2\s*\+\s*y\^2\s*=\s*(\d+(?:\.\d+)?)$/i);
+    if (circleEquationMatch) {
+      const [, name, radiusSquaredRaw] = circleEquationMatch;
+      const radius = Math.sqrt(Number(radiusSquaredRaw));
+      const center = crypto.randomUUID();
+      const edge = crypto.randomUUID();
+      const circle = crypto.randomUUID();
+      recordWorkspaceStep("Define circle equation", `${name}: x^2+y^2=${radiusSquaredRaw}`);
+      setConstruction((current) => solveConstruction({
+        ...current,
+        points: [
+          ...current.points,
+          { id: center, ...mathToBoardPoint(0, 0), label: "O" },
+          { id: edge, ...mathToBoardPoint(radius, 0), label: "R" },
+        ],
+        circles: [...current.circles, { id: circle, center, edge, style: { label: name } }],
+      }));
+      setSelectedGeometry({ type: "circle", id: circle });
+      addResultCard({
+        id: crypto.randomUUID(),
+        input: raw,
+        interpretation: "Live circle definition",
+        result: `${name}: center=(0,0), r=${roundTo(radius, 4)}`,
+        detail: "The equation became a selectable circle with editable radius, style, and algebra definition.",
+      });
+      setProjectStatus(`${name} created as a live circle object.`);
+      return true;
     }
-    if (target === "point") {
-      const id = crypto.randomUUID();
-      setSpace3dShapes((shapes) => [...shapes, { id, kind: "sphere", name: "Point marker copy", size: 0.45, position: clampVector3([point3d[0] + 0.45, point3d[1], point3d[2] - 0.45]), rotation: [0, 0, 0], color: "#f59e0b", visible: true }]);
-      setSelected3dObject(`shape:${id}`);
-      return;
+
+    const surfaceMatch = raw.match(/^(?:surface\s+)?z\s*=\s*(.+)$/i);
+    if (surfaceMatch) {
+      const expression = surfaceMatch[1].trim();
+      recordWorkspaceStep("Define 3D surface", `z = ${expression}`);
+      setSurface("custom-z");
+      setSurfaceExpression(expression);
+      setShowSurface(true);
+      setSelected3d("surface");
+      addResultCard({
+        id: crypto.randomUUID(),
+        input: raw,
+        interpretation: "Live 3D surface definition",
+        result: `z = ${expression}`,
+        detail: "The expression is rendered as an editable browser-only 3D surface.",
+      });
+      setProjectStatus("Custom 3D surface linked to the 3D scene and inspector.");
+      return true;
     }
-    add3dObject(target);
+
+    return false;
   };
 
-  const restoreSelected3dObject = (target: SelectedSpace3DObject = selected3dObject) => {
-    if (!target) return;
-    if (target.startsWith("shape:")) {
-      const shapeId = target.slice("shape:".length);
-      setSpace3dShapes((shapes) => shapes.map((shape) => shape.id === shapeId ? { ...shape, size: 1.8, rotation: [0, 0, 0], visible: true } : shape));
-      return;
-    }
-    add3dObject(target);
-    if (target === "surface") {
-      setSurfacePosition3d([0, 0, 0]);
-      setSurfaceRotation3d([0, 0, 0]);
-      setSurfaceScale(1);
-      setSurfaceDomain(2.6);
-    }
-    if (target === "solid") {
-      setSolidPosition3d([3, 0, 2.6]);
-      setSolidRotation3d([0, 0, 0]);
-      setHeight3d(2.5);
-    }
-    if (target === "cross-section") setCrossSection(0);
-    if (target === "vector") {
-      setVectorStart3d([-3, 0.05, -3]);
-      setVectorEnd3d([2.2, 1.4, 1.8]);
-    }
-    if (target === "point") setPoint3d([2.2, 1.4, 1.8]);
-    if (target === "axes") setShowAxes3d(true);
-    if (target === "grid") setShowGrid3d(true);
-  };
-
-  useEffect(() => {
-    if (!animationPlaying) return;
-    const startedAt = performance.now() - animationTime * 1000;
-    const id = window.setInterval(() => {
-      const nextTime = (performance.now() - startedAt) / 1000;
-      const value = pingPongValue(nextTime, animationDuration, animationMin, animationMax);
-      setAnimationTime(roundTo(nextTime % animationDuration, 3));
-      if (animationTarget === "graph-parameter") {
-        setGraphParameters((current) => ({ ...current, [activeAnimationParameter]: roundTo(value, 3) }));
-      } else if (animationTarget === "cross-section") {
-        setCrossSection(roundTo(value, 3));
-      } else if (animationTarget === "surface-scale") {
-        setSurfaceScale(roundTo(Math.max(0.2, Math.min(2.5, value)), 3));
-      } else {
-        const angle = pingPongValue(nextTime, animationDuration, 0, Math.PI * 2);
-        setPoint3d(orbitalPoint(angle));
-      }
-    }, 80);
-    return () => window.clearInterval(id);
-  }, [activeAnimationParameter, animationDuration, animationMax, animationMin, animationPlaying, animationTarget]);
-
-  useEffect(() => {
-    upsertWorkspaceObjects(
-      [
-        ...createWorkspaceObjectsFromSnapshot({
-          input,
-          plots,
-          results,
-          construction,
-          activeTool: tool,
-          surface,
-          solid,
-          surfaceScale,
-          height3d,
-          crossSection,
-          surfaceDomain,
-          vectorStart3d,
-          vectorEnd3d,
-          point3d,
-          graphParameters,
-          locusTraces,
-          animationPlaying,
-          animationTime,
-          animationTarget,
-          animationSnapshots,
-          lesson,
-          practiceResponses,
-          practiceReport,
-          releaseHealth,
-        }),
-        ...createAlgebraWorkspaceObjects({ input, plots, results, graphParameters }),
-        ...createGeometryWorkspaceObjects(construction, tool),
-        ...createSpace3DWorkspaceObjects({
-          surface,
-          solid,
-          surfaceScale,
-          height3d,
-          crossSection,
-          surfaceDomain,
-          surfacePosition3d,
-          surfaceRotation3d,
-          solidPosition3d,
-          solidRotation3d,
-          showSurface,
-          showSolid,
-          showAxes3d,
-          showGrid3d,
-          showCrossSection3d,
-          showVector3d,
-          showPoint3d,
-          vectorStart3d,
-          vectorEnd3d,
-          point3d,
-          space3dColors,
-          space3dShapes,
-          autoRotate3d,
-          zoom3d,
-        }),
-      ]
-    );
-  }, [animationPlaying, animationSnapshots, animationTarget, animationTime, autoRotate3d, construction, crossSection, graphParameters, height3d, input, lesson, locusTraces, plots, point3d, practiceReport, practiceResponses, releaseHealth, results, showAxes3d, showCrossSection3d, showGrid3d, showPoint3d, showSolid, showSurface, showVector3d, solid, solidPosition3d, solidRotation3d, space3dColors, space3dShapes, surface, surfaceDomain, surfacePosition3d, surfaceRotation3d, surfaceScale, tool, upsertWorkspaceObjects, vectorEnd3d, vectorStart3d, zoom3d]);
-
-  useEffect(() => {
-    if (activeTab !== "geometry") return;
-    const selection = selectedGeoObject
-      ? [workspaceGeometryObjectId(selectedGeoObject.kind, selectedGeoObject.id)]
-      : selectedPointIds.map((id) => workspaceGeometryObjectId("point", id));
-    selectWorkspaceObjects(selection);
-  }, [activeTab, selectWorkspaceObjects, selectedGeoObject, selectedPointIds]);
-
-  useEffect(() => {
-    if (activeTab !== "space3d") return;
-    selectWorkspaceObjects(selected3dObject ? [workspaceSpace3DObjectId(selected3dObject)] : []);
-  }, [activeTab, selectWorkspaceObjects, selected3dObject]);
-
-  useEffect(() => {
-    setProjectRecoverySlots(readProjectRecoverySlots<WorkspaceSnapshot>());
-  }, []);
-
-  useEffect(() => {
-    const id = window.setTimeout(() => {
-      const current = snapshot();
-      localStorage.setItem(LIVE_WORKSPACE_STORAGE_KEY, JSON.stringify(current));
-      saveProjectRecoverySlot(current, "autosave", "Latest browser autosave", "autosave");
-      setProjectRecoverySlots(readProjectRecoverySlots<WorkspaceSnapshot>());
-      setLastAutosaveAt(Date.now());
-      setProjectCenterStatus("Autosaved to this browser.");
-    }, 1600);
-    return () => window.clearTimeout(id);
-  }, [snapshot]);
-
-  const commitConstruction = (label: string, updater: (current: Construction) => Construction, draggedPointId?: string) => {
-    setConstruction((current) => {
-      const next = solveConstruction(updater(current), draggedPointId);
-      if (constructionSignature(current) !== constructionSignature(next)) {
-        setUndoStack((stack) => [{ id: crypto.randomUUID(), label, timestamp: Date.now(), before: current }, ...stack].slice(0, 30));
-        setRedoStack([]);
-      }
-      return next;
-    });
-  };
-
-  const restoreConstruction = (next: Construction) => {
-    setConstruction(solveConstruction(next));
-    setPendingPointIds([]);
-    setPendingPolygonDraft([]);
-    setPendingCircleIds([]);
-    setSelectedGeoObject(null);
-  };
-
-  const runInput = () => {
-    const raw = input.trim();
+  const executeWorkspaceCommand = (rawInput: string) => {
+    const raw = rawInput.trim();
     if (!raw) return;
-    const analysis = enrichResultWithVisualSync(interpretInput(raw));
-    recordWorkspaceCommand(`Ran command: ${raw}`);
-    setResults((current) => [analysis, ...current].slice(0, 12));
-    syncResultToVisuals(analysis, raw);
-  };
-
-  const enrichResultWithVisualSync = (result: ResultCard): ResultCard => {
-    const visualSync = createCasVisualSyncLinks(result);
-    return visualSync.length ? { ...result, visualSync } : result;
-  };
-
-  const addPlotExpression = (expression: string, options?: { source?: string; force?: boolean }) => {
-    const normalized = normalizePlotExpression(expression);
-    if (!normalized) return;
-    setPlots((current) => {
-      if (!options?.force && current.some((plot) => plot.expression.replace(/\s+/g, "") === normalized.replace(/\s+/g, ""))) return current;
-      return [{ id: crypto.randomUUID(), expression: normalized, color: colors[current.length % colors.length], kind: inferPlotKind(normalized), visible: true }, ...current].slice(0, 10);
-    });
-    if (options?.source) recordWorkspaceCommand(`Synced graph from ${options.source}: ${normalized}`);
-  };
-
-  const syncResultToVisuals = (analysis: ResultCard, rawCommand: string) => {
+    if (applyDirectDefinitionCommand(raw)) return;
+    const analysis = interpretInput(raw);
+    addResultCard(analysis);
     if (analysis.interpretation === "2D plot") {
-      addPlotExpression(rawCommand, { source: "plot command", force: true });
-      return;
+      recordWorkspaceStep("Add function", raw);
+      const expression = normalizePlotExpression(raw);
+      setPlots((current) => [{ id: crypto.randomUUID(), expression, name: nextFunctionName(current), color: colors[current.length % colors.length], kind: inferPlotKind(expression), visible: true }, ...current].slice(0, 8));
     }
-    const expressions = autoPlotExpressions(analysis.visualSync ?? []);
-    expressions.forEach((expression) => addPlotExpression(expression, { source: analysis.interpretation }));
-  };
-
-  const runVisualSyncLink = (link: CasVisualSyncLink) => {
-    if (link.kind === "plot" && link.expression) {
-      addPlotExpression(link.expression, { source: "CAS visual link", force: true });
-      setActiveTab("solve");
-      return;
+    if (analysis.graphExpression) {
+      recordWorkspaceStep("Add CAS graph link", analysis.graphExpression);
+      setPlots((current) => [{ id: crypto.randomUUID(), expression: analysis.graphExpression!, name: nextFunctionName(current), color: colors[current.length % colors.length], kind: inferPlotKind(analysis.graphExpression!), visible: true }, ...current].slice(0, 10));
     }
-    const command = link.command ?? (link.kind === "table" && link.expression ? `table ${link.expression}` : "");
-    if (!command) return;
-    setInput(command);
-    const analysis = enrichResultWithVisualSync(interpretInput(command));
-    recordWorkspaceCommand(`Ran visual sync link: ${command}`);
-    setResults((current) => [analysis, ...current].slice(0, 12));
-    syncResultToVisuals(analysis, command);
-    setActiveTab("solve");
   };
 
-  const captureAnimationSnapshot = () => {
-    const snapshot: AnimationSnapshot = {
-      id: crypto.randomUUID(),
-      label: `${animationTargetLabel(animationTarget)} @ ${roundTo(animationTime, 2)}s`,
-      timestamp: Date.now(),
-      time: animationTime,
-      target: animationTarget,
-      parameters: graphParameters,
-      crossSection,
-      surfaceScale,
-      point3d,
-    };
-    setAnimationSnapshots((current) => [snapshot, ...current].slice(0, 12));
-    recordWorkspaceCommand(`Captured animation snapshot: ${snapshot.label}`);
-  };
-
-  const applyAnimationSnapshot = (item: AnimationSnapshot) => {
-    setGraphParameters(item.parameters);
-    setCrossSection(item.crossSection);
-    setSurfaceScale(item.surfaceScale);
-    setPoint3d(item.point3d);
-    setAnimationTime(item.time);
-    setAnimationTarget(item.target);
-    setAnimationPlaying(false);
-  };
-
-  const exportMotionJson = () => downloadText("math-workspace-motion.json", JSON.stringify(animationSnapshots, null, 2), "application/json");
-
-  const touchLesson = (patch: Partial<ClassroomLesson>) => setLesson((current) => ({ ...current, ...patch, updatedAt: Date.now() }));
-  const updateLessonStep = (id: string, patch: Partial<LessonStep>) => {
-    setLesson((current) => ({
-      ...current,
-      updatedAt: Date.now(),
-      steps: current.steps.map((step) => step.id === id ? { ...step, ...patch } : step),
-    }));
-  };
-  const addLessonStep = (kind: LessonStepKind = "question") => {
-    const step: LessonStep = {
-      id: crypto.randomUUID(),
-      kind,
-      title: kind === "teacher-note" ? "Teacher note" : "New lesson step",
-      prompt: kind === "check" ? "What should students verify before moving on?" : "Write the student prompt here.",
-      command: kind === "explore" ? input : undefined,
-      expected: kind === "check" ? "Expected observation or answer." : undefined,
-    };
-    setLesson((current) => ({ ...current, updatedAt: Date.now(), steps: [...current.steps, step] }));
-  };
-  const deleteLessonStep = (id: string) => {
-    setLesson((current) => ({ ...current, updatedAt: Date.now(), steps: current.steps.filter((step) => step.id !== id) }));
-    setPracticeResponses((current) => {
-      const next = { ...current };
-      delete next[id];
-      return next;
-    });
-  };
-  const moveLessonStep = (id: string, direction: -1 | 1) => {
-    setLesson((current) => {
-      const index = current.steps.findIndex((step) => step.id === id);
-      const nextIndex = index + direction;
-      if (index < 0 || nextIndex < 0 || nextIndex >= current.steps.length) return current;
-      const steps = [...current.steps];
-      [steps[index], steps[nextIndex]] = [steps[nextIndex], steps[index]];
-      return { ...current, updatedAt: Date.now(), steps };
-    });
-  };
-  const runLessonStep = (step: LessonStep) => {
-    if (!step.command) return;
-    setInput(step.command);
-    const analysis = enrichResultWithVisualSync(interpretInput(step.command));
-    recordWorkspaceCommand(`Ran lesson step: ${step.title}`);
-    setResults((current) => [analysis, ...current].slice(0, 12));
-    syncResultToVisuals(analysis, step.command);
-    setActiveTab("solve");
-  };
-  const exportLessonJson = () => downloadText("math-universe-lesson.json", JSON.stringify({ lesson, workspace: snapshot() }, null, 2), "application/json");
-  const exportLessonWorksheet = () => downloadText("math-universe-lesson-worksheet.txt", lessonToWorksheet(lesson), "text/plain");
-  const updatePracticeAnswer = (stepId: string, answer: string) => {
-    setPracticeResponses((current) => ({ ...current, [stepId]: { ...current[stepId], stepId, answer, score: undefined, feedback: undefined, checkedAt: undefined } }));
-  };
-  const checkPracticeStep = (step: LessonStep) => {
-    const answer = practiceResponses[step.id]?.answer ?? "";
-    setPracticeResponses((current) => ({ ...current, [step.id]: evaluatePracticeResponse(step, answer) }));
-  };
-  const exportPracticeReport = () => downloadText("math-universe-practice-report.txt", practiceReportText(lesson, practiceResponses, practiceReport), "text/plain");
+  const runInput = () => executeWorkspaceCommand(input);
 
   const addPoint = (x: number, y: number) => {
     const id = crypto.randomUUID();
-    const point: GeoPoint = { id, x, y, label: nextPointLabel(construction.points) };
-    commitConstruction("Add point", (current) => ({ ...current, points: [...current.points, point] }));
+    const snapped = snapBoardPoint({ x, y }, construction);
+    const point: GeoPoint = { id, x: snapped.x, y: snapped.y, label: String.fromCharCode(65 + construction.points.length) };
+    recordWorkspaceStep("Create point", `${point.label} = (${roundTo(point.x, 1)}, ${roundTo(point.y, 1)})`);
+    setConstruction((current) => solveConstruction({ ...current, points: [...current.points, point] }));
     return id;
   };
-  const requestImageImport = (anchor: { x: number; y: number; pointId?: string }) => {
-    pendingImageAnchorRef.current = anchor;
-    imageFileRef.current?.click();
-  };
-  const importGeometryImage = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    event.target.value = "";
+
+  const handleImageUpload = (fileList: FileList | null) => {
+    const file = fileList?.[0];
     if (!file) return;
     if (!file.type.startsWith("image/")) {
-      setImportStatus("Choose an image file: PNG, JPG, SVG, GIF, or WebP.");
+      setProjectStatus("Choose a PNG, JPG, GIF, SVG, or WebP image.");
       return;
     }
-    const anchor = pendingImageAnchorRef.current;
-    if (!anchor) return;
     const reader = new FileReader();
     reader.onload = () => {
       const src = String(reader.result ?? "");
-      const probe = new Image();
-      probe.onload = () => {
-        const ratio = probe.width > 0 ? probe.height / probe.width : 0.65;
-        const width = Math.min(260, Math.max(120, probe.width || 180));
-        const height = Math.max(80, width * ratio);
-        const pointId = anchor.pointId ?? crypto.randomUUID();
-        const noteId = crypto.randomUUID();
-        commitConstruction("Add image", (current) => ({
-          ...current,
-          points: anchor.pointId ? current.points : [...current.points, { id: pointId, x: anchor.x, y: anchor.y, label: nextPointLabel(current.points) }],
-          texts: [...current.texts, { id: noteId, point: pointId, text: file.name.replace(/\.[^.]+$/, "") || "Image", imageSrc: src, width, height, opacity: 0.95 }],
-        }));
-        setSelectedGeoObject({ kind: "text", id: noteId });
-        setImportStatus(`${file.name} added to the geometry board.`);
+      const image = new Image();
+      image.onload = () => {
+        const maxWidth = 240;
+        const ratio = image.width > 0 ? image.height / image.width : 0.65;
+        const width = Math.min(maxWidth, Math.max(120, image.width || maxWidth));
+        const next: WorkspaceImage = {
+          id: crypto.randomUUID(),
+          name: file.name.replace(/\.[^.]+$/, "") || "Image",
+          src,
+          x: 200,
+          y: 120,
+          width,
+          height: Math.max(80, width * ratio),
+          opacity: 0.92,
+          visible: true,
+        };
+        recordWorkspaceStep("Add image", `${next.name} added to geometry board.`);
+        setWorkspaceImages((current) => [next, ...current]);
+        setSelectedImageId(next.id);
+        setSelectedGeometry(null);
+        setProjectStatus(`${next.name} added to the geometry board.`);
       };
-      probe.onerror = () => setImportStatus("Could not read that image.");
-      probe.src = src;
+      image.onerror = () => setProjectStatus("Could not read that image file.");
+      image.src = src;
     };
     reader.readAsDataURL(file);
-  };
-  const setPendingPointIds = (ids: string[]) => {
-    selectedPointIdsRef.current = ids;
-    setSelectedPointIds(ids);
-  };
-  const setPendingPolygonDraft = (ids: string[]) => {
-    polygonDraftRef.current = ids;
-    setPolygonDraft(ids);
-  };
-  const setPendingCircleIds = (ids: string[]) => {
-    selectedCircleIdsRef.current = ids;
-    setSelectedCircleIds(ids);
-  };
-  const queuePoint = (point: { x: number; y: number }) => {
-    const id = crypto.randomUUID();
-    commitConstruction("Add construction point", (current) => {
-      const newPoint: GeoPoint = { id, x: point.x, y: point.y, label: nextPointLabel(current.points) };
-      return { ...current, points: [...current.points, newPoint] };
-    });
-    return id;
-  };
-  const chooseGeometryTool = (nextTool: GeometryTool) => {
-    setTool(nextTool);
-    setPendingPointIds([]);
-    setPendingPolygonDraft([]);
-    setPendingCircleIds([]);
-    if (nextTool === "intersect") commitConstruction("Add intersection", addIntersectionConstraint);
+    if (imageInputRef.current) imageInputRef.current.value = "";
   };
 
   const handleBoardPointerDown = (event: PointerEvent<SVGSVGElement>) => {
+    if (controlsLocked) return;
+    setContextMenu(null);
     event.currentTarget.setPointerCapture(event.pointerId);
     if (event.pointerType === "touch") event.preventDefault();
     const target = event.target as Element;
-    const pointId = target.closest("[data-point-id]")?.getAttribute("data-point-id");
+    const imageId = target.getAttribute("data-image-id");
+    if (imageId) {
+      setSelectedImageId(imageId);
+      setSelectedGeometry(null);
+      const image = workspaceImages.find((item) => item.id === imageId);
+      if (image?.locked) return;
+      recordWorkspaceStep("Move image", `${image?.name ?? "Image"} dragged on geometry board.`);
+      setDragImageId(imageId);
+      return;
+    }
+    const pointId = target.getAttribute("data-point-id");
     if (pointId) {
+      setSelectedGeometry({ type: "point", id: pointId });
+      if (lockedGeometryIds.includes(pointId)) return;
       if (tool === "select") {
-        setPendingPointIds([pointId]);
-        setSelectedGeoObject({ kind: "point", id: pointId });
-        const picked = pointById(construction.points, pointId);
-        if (!picked?.locked) setDragPointId(pointId);
+        recordWorkspaceStep("Move point", `${labelForPoint(construction, pointId)} dragged on geometry board.`);
+        setDragPointId(pointId);
       }
       else handlePointPick(pointId);
       return;
     }
+    const objectType = target.getAttribute("data-object-type") as GeometryObjectType | null;
+    const objectId = target.getAttribute("data-object-id");
+    if (objectType && objectId && tool === "select") {
+      const object = { type: objectType, id: objectId };
+      setSelectedGeometry(object);
+      const point = clientToBoard(event);
+      if (point && !lockedGeometryIds.includes(objectId)) {
+        recordWorkspaceStep("Move object", `${objectType} moved on geometry board.`);
+        setDragGeometry({ object, last: point });
+      }
+      return;
+    }
+    if (tool !== "point") return;
     const point = clientToBoard(event);
-    if (!point) return;
-    if (tool === "select") {
-      setPendingPointIds([]);
-      setSelectedGeoObject(null);
-      return;
-    }
-    if (tool === "point") {
-      addPoint(point.x, point.y);
-      return;
-    }
-    if (tool === "image") {
-      requestImageImport(point);
-      return;
-    }
-    if (tool === "text") {
-      const notePointId = queuePoint(point);
-      const noteId = crypto.randomUUID();
-      commitConstruction("Add text note", (current) => ({ ...current, texts: [...current.texts, { id: noteId, point: notePointId, text: "Text" }] }));
-      setSelectedGeoObject({ kind: "text", id: noteId });
-      return;
-    }
-    if (["segment", "line", "ray", "vector", "circle", "polygon", "angle", "angle-bisector", "tangent", "parallel", "perpendicular", "midpoint", "fixed-length", "on-circle", "perpendicular-bisector", "regular-polygon", "circle-radius", "circle-3point", "semicircle", "arc", "sector", "compass"].includes(tool)) {
-      handlePointPick(queuePoint(point));
-    }
+    if (point) addPoint(point.x, point.y);
+  };
+
+  const handleGeometryContextMenu = (event: PointerEvent<SVGSVGElement>) => {
+    if (controlsLocked) return;
+    const target = event.target as Element;
+    const pointId = target.getAttribute("data-point-id");
+    const objectType = (target.getAttribute("data-object-type") as GeometryObjectType | null) ?? (pointId ? "point" : null);
+    const objectId = target.getAttribute("data-object-id") ?? pointId;
+    if (!objectType || !objectId) return;
+    event.preventDefault();
+    const targetObject = { type: objectType, id: objectId };
+    setSelectedGeometry(targetObject);
+    setContextMenu({ x: event.clientX, y: event.clientY, target: targetObject });
   };
 
   const handlePointPick = (pointId: string) => {
-    if (tool === "segment" || tool === "line" || tool === "ray" || tool === "vector") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
-      setPendingPointIds(next);
+    if (tool === "line") {
+      const next = [...selectedPointIds, pointId].slice(-2);
+      setSelectedPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
-        commitConstruction(`Add ${lineKindLabel(tool)}`, (current) => ({ ...current, lines: [...current.lines, { id: crypto.randomUUID(), a: next[0], b: next[1], kind: tool }] }));
-        setPendingPointIds([]);
+        recordWorkspaceStep("Create line", `${labelForPoint(construction, next[0])}${labelForPoint(construction, next[1])}`);
+        setConstruction((current) => ({ ...current, lines: [...current.lines, { id: crypto.randomUUID(), a: next[0], b: next[1] }] }));
+        setSelectedPointIds([]);
       }
     }
-    if (tool === "circle" || tool === "circle-radius") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
-      setPendingPointIds(next);
+    if (tool === "circle") {
+      const next = [...selectedPointIds, pointId].slice(-2);
+      setSelectedPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
-        commitConstruction("Add circle", (current) => ({ ...current, circles: [...current.circles, { id: crypto.randomUUID(), center: next[0], edge: next[1] }] }));
-        setPendingPointIds([]);
-      }
-    }
-    if (tool === "circle-3point") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-3);
-      setPendingPointIds(next);
-      if (next.length === 3 && new Set(next).size === 3) {
-        commitConstruction("Add circle through 3 points", (current) => addCircleThroughThreePoints(current, next[0], next[1], next[2]));
-        setPendingPointIds([]);
-      }
-    }
-    if (tool === "semicircle") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
-      setPendingPointIds(next);
-      if (next.length === 2 && next[0] !== next[1]) {
-        commitConstruction("Add semicircle", (current) => addSemicircleConstruction(current, next[0], next[1]));
-        setPendingPointIds([]);
-      }
-    }
-    if (tool === "arc" || tool === "sector") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-3);
-      setPendingPointIds(next);
-      if (next.length === 3 && new Set(next).size === 3) {
-        commitConstruction(tool === "arc" ? "Add arc" : "Add sector", (current) => ({ ...current, arcs: [...current.arcs, { id: crypto.randomUUID(), kind: tool, center: next[0], start: next[1], end: next[2] }] }));
-        setPendingPointIds([]);
-      }
-    }
-    if (tool === "regular-polygon") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
-      setPendingPointIds(next);
-      if (next.length === 2 && next[0] !== next[1]) {
-        commitConstruction("Add regular polygon", (current) => addRegularPolygonConstruction(current, next[0], next[1], 6));
-        setPendingPointIds([]);
-      }
-    }
-    if (tool === "compass") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-3);
-      setPendingPointIds(next);
-      if (next.length === 3 && new Set(next).size === 3) {
-        commitConstruction("Copy length with compass", (current) => addCompassCircleConstruction(current, next[0], next[1], next[2]));
-        setPendingPointIds([]);
+        recordWorkspaceStep("Create circle", `Center ${labelForPoint(construction, next[0])}, edge ${labelForPoint(construction, next[1])}`);
+        setConstruction((current) => ({ ...current, circles: [...current.circles, { id: crypto.randomUUID(), center: next[0], edge: next[1] }] }));
+        setSelectedPointIds([]);
       }
     }
     if (tool === "polygon") {
-      const next = polygonDraftRef.current.includes(pointId) ? polygonDraftRef.current : [...polygonDraftRef.current, pointId];
+      const next = polygonDraft.includes(pointId) ? polygonDraft : [...polygonDraft, pointId];
       if (next.length >= 3) {
-        commitConstruction("Add polygon", (current) => ({ ...current, polygons: [...current.polygons, { id: crypto.randomUUID(), points: next }] }));
-        setPendingPolygonDraft([]);
-      } else setPendingPolygonDraft(next);
-    }
-    if (tool === "angle" || tool === "angle-bisector") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-3);
-      setPendingPointIds(next);
-      if (next.length === 3 && new Set(next).size === 3) {
-        commitConstruction(tool === "angle" ? "Add angle" : "Add angle bisector", (current) => tool === "angle" ? addAngleObject(current, next[0], next[1], next[2]) : addAngleBisectorConstraint(current, next[0], next[1], next[2]));
-        setPendingPointIds([]);
-      }
-    }
-    if (tool === "tangent") {
-      const next = [...selectedPointIdsRef.current.filter((id) => id !== pointId), pointId].slice(-1);
-      setPendingPointIds(next);
-      if (selectedCircleIdsRef.current[0]) {
-        commitConstruction("Add tangents", (current) => addTangentConstruction(current, selectedCircleIdsRef.current[0], pointId));
-        setPendingPointIds([]);
-        setPendingCircleIds([]);
-      }
+        recordWorkspaceStep("Create polygon", `${next.length} vertices`);
+        setConstruction((current) => solveConstruction({ ...current, polygons: [...current.polygons, { id: crypto.randomUUID(), points: next }] }));
+        setPolygonDraft([]);
+      } else setPolygonDraft(next);
     }
     if (tool === "parallel" || tool === "perpendicular") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-3);
-      setPendingPointIds(next);
+      const next = [...selectedPointIds, pointId].slice(-3);
+      setSelectedPointIds(next);
       if (next.length === 3 && next[0] !== next[1] && next[2] !== next[0] && next[2] !== next[1]) {
-        commitConstruction(`Add ${tool} line`, (current) => addParallelPerpendicularConstraint(current, tool, next[0], next[1], next[2]));
-        setPendingPointIds([]);
+        recordWorkspaceStep(`Create ${tool}`, `Through ${labelForPoint(construction, next[2])}`);
+        setConstruction((current) => addParallelPerpendicularConstraint(current, tool, next[0], next[1], next[2]));
+        setSelectedPointIds([]);
       }
     }
     if (tool === "midpoint" || tool === "fixed-length") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
-      setPendingPointIds(next);
+      const next = [...selectedPointIds, pointId].slice(-2);
+      setSelectedPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
-        commitConstruction(tool === "midpoint" ? "Add midpoint" : "Add fixed length", (current) => tool === "midpoint" ? addMidpointConstraint(current, next[0], next[1]) : addFixedLengthConstraint(current, next[0], next[1]));
-        setPendingPointIds([]);
+        recordWorkspaceStep(tool === "midpoint" ? "Create midpoint" : "Fix length", `${labelForPoint(construction, next[0])}${labelForPoint(construction, next[1])}`);
+        setConstruction((current) => tool === "midpoint" ? addMidpointConstraint(current, next[0], next[1]) : addFixedLengthConstraint(current, next[0], next[1]));
+        setSelectedPointIds([]);
       }
     }
     if (tool === "on-circle") {
-      commitConstruction("Constrain point to circle", (current) => addPointOnCircleConstraint(current, pointId));
-      setPendingPointIds([]);
+      recordWorkspaceStep("Constrain point to circle", labelForPoint(construction, pointId));
+      setConstruction((current) => addPointOnCircleConstraint(current, pointId));
+      setSelectedPointIds([]);
     }
     if (tool === "intersect") {
-      commitConstruction("Add intersection", addIntersectionConstraint);
-      setPendingPointIds([]);
-    }
-    if (tool === "distance") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
-      setPendingPointIds(next);
-      setSelectedGeoObject({ kind: "point", id: pointId });
-    }
-    if (tool === "image") {
-      const anchor = pointById(construction.points, pointId);
-      requestImageImport({ x: anchor?.x ?? 320, y: anchor?.y ?? 210, pointId });
-      setPendingPointIds([]);
-      return;
-    }
-    if (tool === "text") {
-      const noteId = crypto.randomUUID();
-      commitConstruction("Add text note", (current) => ({
-        ...current,
-        texts: [...current.texts, { id: noteId, point: pointId, text: "Text" }],
-      }));
-      setPendingPointIds([]);
-      setSelectedGeoObject({ kind: "text", id: noteId });
-      return;
-    }
-    if (tool === "reflect-point" || tool === "rotate-tool" || tool === "dilate-tool") {
-      if (selectedGeoObject && selectedGeoObject.kind !== "point" && selectedGeoObject.kind !== "line" && selectedGeoObject.kind !== "angle" && selectedGeoObject.kind !== "constraint" && selectedGeoObject.kind !== "transform") {
-        const transformKind = tool === "reflect-point" ? "reflection-point" : tool === "rotate-tool" ? "rotation" : "dilation";
-        commitConstruction(`Apply ${transformKind}`, (current) => addTransformConstruction(current, selectedGeoObject, transformKind, { centerPointId: pointId }));
-        setPendingPointIds([]);
-        return;
-      }
-    }
-    if (tool === "translate") {
-      const next = [...selectedPointIdsRef.current, pointId].slice(-2);
-      setPendingPointIds(next);
-      if (selectedGeoObject && selectedGeoObject.kind !== "point" && selectedGeoObject.kind !== "line" && selectedGeoObject.kind !== "angle" && selectedGeoObject.kind !== "constraint" && selectedGeoObject.kind !== "transform" && next.length === 2 && next[0] !== next[1]) {
-        commitConstruction("Translate selected object", (current) => addTransformConstruction(current, selectedGeoObject, "translation", { vectorPointIds: [next[0], next[1]] }));
-        setPendingPointIds([]);
-      }
-      return;
-    }
-    if (["area", "slope", "locus", "trace", "hide-show", "lock-object", "duplicate", "freehand", "label", "slider", "move-canvas", "zoom-tool", "mirror-line", "intersect-region"].includes(tool)) {
-      setPendingPointIds([pointId]);
-      setSelectedGeoObject({ kind: "point", id: pointId });
-    }
-  };
-  const handleLinePick = (lineId: string) => {
-    if (tool === "mirror-line" && selectedGeoObject && selectedGeoObject.kind !== "line" && selectedGeoObject.kind !== "angle" && selectedGeoObject.kind !== "constraint" && selectedGeoObject.kind !== "transform") {
-      commitConstruction("Reflect selected object about line", (current) => addTransformConstruction(current, selectedGeoObject, "reflection-line", { lineId }));
-      return;
-    }
-    setSelectedGeoObject({ kind: "line", id: lineId });
-  };
-  const handleCirclePick = (circleId: string) => {
-    if (tool !== "tangent") {
-      setSelectedGeoObject({ kind: "circle", id: circleId });
-      return;
-    }
-    setPendingCircleIds([circleId]);
-    if (selectedPointIdsRef.current[0]) {
-      commitConstruction("Add tangents", (current) => addTangentConstruction(current, circleId, selectedPointIdsRef.current[0]));
-      setPendingPointIds([]);
-      setPendingCircleIds([]);
-    }
-  };
-  const beginGeometryObjectDrag = (event: PointerEvent<SVGGElement>, target: NonNullable<SelectedGeoObject>) => {
-    setSelectedGeoObject(target);
-    if (tool !== "select" || target.kind === "constraint" || target.kind === "transform") return;
-    const point = clientToBoard(event);
-    if (!point || isGeometryObjectLocked(construction, target)) return;
-    setDragGeometryObject({ target, last: point });
-  };
-  const deleteSelectedGeometry = () => {
-    if (selectedGeoObject) {
-      deleteGeometryObject(selectedGeoObject.kind, selectedGeoObject.id);
-      return;
-    }
-    if (!selectedPointIds.length) return;
-    const selected = new Set(selectedPointIds);
-    commitConstruction("Delete selected objects", (current) => ({
-      points: current.points.filter((point) => !selected.has(point.id)),
-      lines: current.lines.filter((line) => !selected.has(line.a) && !selected.has(line.b)),
-      circles: current.circles.filter((circle) => !selected.has(circle.center) && !selected.has(circle.edge)),
-      polygons: current.polygons.map((polygon) => ({ ...polygon, points: polygon.points.filter((id) => !selected.has(id)) })).filter((polygon) => polygon.points.length >= 3),
-      angles: current.angles.filter((angle) => !selected.has(angle.a) && !selected.has(angle.vertex) && !selected.has(angle.b)),
-      arcs: current.arcs.filter((arc) => !selected.has(arc.center) && !selected.has(arc.start) && !selected.has(arc.end)),
-      texts: current.texts.filter((note) => !selected.has(note.point)),
-      conics: current.conics.filter((conic) => !selected.has(conic.center)),
-      transforms: current.transforms.filter((transform) => transform.resultIds.every((id) => !selected.has(id))),
-      constraints: current.constraints.filter((constraint) => constraintPointIds(constraint).every((id) => !selected.has(id))),
-    }));
-    setPendingPointIds([]);
-    setSelectedGeoObject(null);
-    setPendingPolygonDraft(polygonDraftRef.current.filter((id) => !selected.has(id)));
-  };
-  const deleteGeometryObject = (kind: NonNullable<SelectedGeoObject>["kind"], id: string) => {
-    commitConstruction(`Delete ${kind}`, (current) => removeGeometryObject(current, kind, id));
-    setPendingPointIds(kind === "point" ? selectedPointIdsRef.current.filter((pointId) => pointId !== id) : selectedPointIdsRef.current);
-    setPendingPolygonDraft(kind === "point" ? polygonDraftRef.current.filter((pointId) => pointId !== id) : polygonDraftRef.current);
-    setPendingCircleIds(kind === "circle" ? selectedCircleIdsRef.current.filter((circleId) => circleId !== id) : selectedCircleIdsRef.current);
-    setSelectedGeoObject(null);
-  };
-  const duplicateGeometryObject = (target = selectedGeoObject) => {
-    if (!target || target.kind === "constraint" || target.kind === "transform") return;
-    const selectDuplicate = (selection: NonNullable<SelectedGeoObject>) => {
-      setSelectedGeoObject(selection);
-    };
-    commitConstruction(`Duplicate ${target.kind}`, (current) => {
-      const ids = pointIdsForGeoObject(current, target);
-      const idMap = new Map<string, string>();
-      const copiedPoints = ids.map((id, index) => {
-        const point = pointById(current.points, id);
-        if (!point) return null;
-        const nextId = crypto.randomUUID();
-        idMap.set(id, nextId);
-        return { ...point, id: nextId, x: point.x + 32, y: point.y + 32, label: pointLabelForIndex(current.points.length + index), locked: false };
-      }).filter(Boolean) as GeoPoint[];
-      if (target.kind === "point") {
-        selectDuplicate({ kind: "point", id: copiedPoints[0]?.id ?? target.id });
-        return { ...current, points: [...current.points, ...copiedPoints] };
-      }
-      if (target.kind === "line") {
-        const line = current.lines.find((item) => item.id === target.id);
-        if (!line) return current;
-        const id = crypto.randomUUID();
-        selectDuplicate({ kind: "line", id });
-        return { ...current, points: [...current.points, ...copiedPoints], lines: [...current.lines, { ...line, id, a: idMap.get(line.a) ?? line.a, b: idMap.get(line.b) ?? line.b, locked: false }] };
-      }
-      if (target.kind === "circle") {
-        const circle = current.circles.find((item) => item.id === target.id);
-        if (!circle) return current;
-        const id = crypto.randomUUID();
-        selectDuplicate({ kind: "circle", id });
-        return { ...current, points: [...current.points, ...copiedPoints], circles: [...current.circles, { ...circle, id, center: idMap.get(circle.center) ?? circle.center, edge: idMap.get(circle.edge) ?? circle.edge, locked: false }] };
-      }
-      if (target.kind === "polygon") {
-        const polygon = current.polygons.find((item) => item.id === target.id);
-        if (!polygon) return current;
-        const id = crypto.randomUUID();
-        selectDuplicate({ kind: "polygon", id });
-        return { ...current, points: [...current.points, ...copiedPoints], polygons: [...current.polygons, { ...polygon, id, points: polygon.points.map((pointId) => idMap.get(pointId) ?? pointId), locked: false }] };
-      }
-      if (target.kind === "angle") {
-        const angle = current.angles.find((item) => item.id === target.id);
-        if (!angle) return current;
-        const id = crypto.randomUUID();
-        selectDuplicate({ kind: "angle", id });
-        return { ...current, points: [...current.points, ...copiedPoints], angles: [...current.angles, { ...angle, id, a: idMap.get(angle.a) ?? angle.a, vertex: idMap.get(angle.vertex) ?? angle.vertex, b: idMap.get(angle.b) ?? angle.b, locked: false }] };
-      }
-      if (target.kind === "arc") {
-        const arc = current.arcs.find((item) => item.id === target.id);
-        if (!arc) return current;
-        const id = crypto.randomUUID();
-        selectDuplicate({ kind: "arc", id });
-        return { ...current, points: [...current.points, ...copiedPoints], arcs: [...current.arcs, { ...arc, id, center: idMap.get(arc.center) ?? arc.center, start: idMap.get(arc.start) ?? arc.start, end: idMap.get(arc.end) ?? arc.end, locked: false }] };
-      }
-      if (target.kind === "text") {
-        const note = current.texts.find((item) => item.id === target.id);
-        if (!note) return current;
-        const id = crypto.randomUUID();
-        selectDuplicate({ kind: "text", id });
-        return { ...current, points: [...current.points, ...copiedPoints], texts: [...current.texts, { ...note, id, point: idMap.get(note.point) ?? note.point, text: `${note.text} copy`, locked: false }] };
-      }
-      if (target.kind === "conic") {
-        const conic = current.conics.find((item) => item.id === target.id);
-        if (!conic) return current;
-        const id = crypto.randomUUID();
-        selectDuplicate({ kind: "conic", id });
-        return { ...current, points: [...current.points, ...copiedPoints], conics: [...current.conics, { ...conic, id, center: idMap.get(conic.center) ?? conic.center, locked: false }] };
-      }
-      return current;
-    });
-  };
-  const restoreGeometryObject = (target = selectedGeoObject) => {
-    if (!target || target.kind === "constraint" || target.kind === "transform") return;
-    const kind = target.kind;
-    commitConstruction(`Restore ${kind}`, (current) => unlockObject(current, kind, target.id));
-  };
-  const addPointAtContextMenu = () => {
-    if (!contextMenu || contextMenu.scope !== "geometry") return;
-    const point = clientCoordinatesToBoard(contextMenu.x, contextMenu.y);
-    if (!point) return;
-    const pointId = crypto.randomUUID();
-    commitConstruction("Add point from context menu", (current) => ({
-      ...current,
-      points: [...current.points, { id: pointId, x: point.x, y: point.y, label: pointLabelForIndex(current.points.length) }],
-    }));
-    setSelectedGeoObject({ kind: "point", id: pointId });
-    setTool("select");
-  };
-  const resetGeometryConstruction = () => {
-    commitConstruction("Reset construction", () => initialConstruction);
-    setPendingPointIds([]);
-    setPendingPolygonDraft([]);
-    setPendingCircleIds([]);
-    setSelectedGeoObject(null);
-  };
-  const openWorkspaceContextMenu = (event: MouseEvent<HTMLElement | SVGSVGElement>, scope: "geometry" | "space3d") => {
-    event.preventDefault();
-    event.stopPropagation();
-    const title = scope === "geometry" ? geometryContextTitle(selectedGeoObject, selectedPointIds.length) : space3dContextTitle(selected3dObject, selected3dShape);
-    setContextMenu({ x: event.clientX, y: event.clientY, scope, title, geometryTarget: selectedGeoObject ?? undefined, spaceTarget: scope === "space3d" ? selected3dObject ?? undefined : undefined });
-  };
-  const closeWorkspaceContextMenu = () => setContextMenu(null);
-  const runContextDelete = () => {
-    if (contextMenu?.scope === "geometry") contextMenu.geometryTarget ? deleteGeometryObject(contextMenu.geometryTarget.kind, contextMenu.geometryTarget.id) : deleteSelectedGeometry();
-    if (contextMenu?.scope === "space3d") deleteSelected3dObject();
-    closeWorkspaceContextMenu();
-  };
-  const runContextDuplicate = () => {
-    if (contextMenu?.scope === "geometry") duplicateGeometryObject(contextMenu.geometryTarget ?? selectedGeoObject);
-    if (contextMenu?.scope === "space3d") duplicateSelected3dObject(contextMenu.spaceTarget ?? selected3dObject);
-    closeWorkspaceContextMenu();
-  };
-  const runContextRestore = () => {
-    if (contextMenu?.scope === "geometry") restoreGeometryObject(contextMenu.geometryTarget ?? selectedGeoObject);
-    if (contextMenu?.scope === "space3d") restoreSelected3dObject(contextMenu.spaceTarget ?? selected3dObject);
-    closeWorkspaceContextMenu();
-  };
-  const runContextLock = () => {
-    const target = contextMenu?.geometryTarget ?? selectedGeoObject;
-    if (contextMenu?.scope === "geometry" && target && target.kind !== "constraint" && target.kind !== "transform") toggleGeometryLock(target.kind, target.id);
-    closeWorkspaceContextMenu();
-  };
-  const runContextInspect = () => {
-    if (contextMenu?.scope === "geometry" && contextMenu.geometryTarget) {
-      setSelectedGeoObject(contextMenu.geometryTarget);
-      setTool("select");
-    }
-    if (contextMenu?.scope === "space3d") {
-      const target = contextMenu.spaceTarget ?? selected3dObject;
-      if (target) {
-        setSelected3dObject(target);
-        set3dObjectVisibility(target, true);
-      }
-    }
-    closeWorkspaceContextMenu();
-  };
-  const runContextDeselect = () => {
-    if (contextMenu?.scope === "geometry") {
-      setSelectedGeoObject(null);
+      recordWorkspaceStep("Create intersection", "Intersection of latest two lines.");
+      setConstruction((current) => addIntersectionConstraint(current));
       setSelectedPointIds([]);
-      setPendingPointIds([]);
-      setPendingPolygonDraft([]);
-      setPendingCircleIds([]);
-      setTool("select");
     }
-    if (contextMenu?.scope === "space3d") {
-      setSelected3dObject(null);
-      setDragging3dObject(false);
+    if (tool === "perpendicular-bisector") {
+      const next = [...selectedPointIds, pointId].slice(-2);
+      setSelectedPointIds(next);
+      if (next.length === 2 && next[0] !== next[1]) {
+        recordWorkspaceStep("Create perpendicular bisector", `${labelForPoint(construction, next[0])}${labelForPoint(construction, next[1])}`);
+        setConstruction((current) => addPerpendicularBisector(current, next[0], next[1]));
+        setSelectedPointIds([]);
+      }
     }
-    closeWorkspaceContextMenu();
-  };
-  const runContextMoveTool = () => {
-    setTool("select");
-    closeWorkspaceContextMenu();
-  };
-  const runContextAddPoint = () => {
-    addPointAtContextMenu();
-    closeWorkspaceContextMenu();
-  };
-  const runContextToggle3dVisibility = () => {
-    const target = contextMenu?.scope === "space3d" ? contextMenu.spaceTarget ?? selected3dObject : null;
-    if (!target) return closeWorkspaceContextMenu();
-    const hidden = is3dObjectHidden(target, {
-      showSurface,
-      showSolid,
-      showCrossSection: showCrossSection3d,
-      showVector: showVector3d,
-      showPoint: showPoint3d,
-      showAxes: showAxes3d,
-      showGrid: showGrid3d,
-      shapes: space3dShapes,
-    });
-    set3dObjectVisibility(target, hidden);
-    setSelected3dObject(target);
-    closeWorkspaceContextMenu();
-  };
-  const runContextShowAll3d = () => {
-    restoreAll3dObjects();
-    closeWorkspaceContextMenu();
-  };
-  const runContextReset = () => {
-    if (contextMenu?.scope === "geometry") resetGeometryConstruction();
-    if (contextMenu?.scope === "space3d") reset3dScene();
-    closeWorkspaceContextMenu();
-  };
-  const updateGeometryPoint = (id: string, patch: Partial<Pick<GeoPoint, "label" | "x" | "y" | "color">>) => {
-    commitConstruction("Edit point", (current) => ({
-      ...current,
-      points: current.points.map((point) => point.id === id ? { ...point, ...patch } : point),
-    }), id);
-  };
-  const updateGeometryLine = (id: string, patch: Partial<Pick<GeoLine, "a" | "b" | "kind" | "color">>) => {
-    commitConstruction("Edit line", (current) => ({
-      ...current,
-      lines: current.lines.map((line) => line.id === id ? { ...line, ...patch } : line),
-    }));
-  };
-  const updateGeometryCircle = (id: string, patch: Partial<Pick<GeoCircle, "center" | "edge" | "color" | "fill">>) => {
-    commitConstruction("Edit circle", (current) => ({
-      ...current,
-      circles: current.circles.map((circle) => circle.id === id ? { ...circle, ...patch } : circle),
-    }));
-  };
-  const updateGeometryPolygon = (id: string, points: string[]) => {
-    commitConstruction("Edit polygon", (current) => ({
-      ...current,
-      polygons: current.polygons.map((polygon) => polygon.id === id ? { ...polygon, points } : polygon),
-    }));
-  };
-  const updateGeometryPolygonStyle = (id: string, patch: Partial<Pick<GeoPolygon, "color" | "fill">>) => {
-    commitConstruction("Edit polygon style", (current) => ({
-      ...current,
-      polygons: current.polygons.map((polygon) => polygon.id === id ? { ...polygon, ...patch } : polygon),
-    }));
-  };
-  const updateGeometryAngle = (id: string, patch: Partial<Pick<GeoAngle, "a" | "vertex" | "b" | "color">>) => {
-    commitConstruction("Edit angle", (current) => ({
-      ...current,
-      angles: current.angles.map((angle) => angle.id === id ? { ...angle, ...patch } : angle),
-    }));
-  };
-  const updateGeometryArc = (id: string, patch: Partial<Pick<GeoArc, "kind" | "center" | "start" | "end" | "color" | "fill">>) => {
-    commitConstruction("Edit arc", (current) => ({
-      ...current,
-      arcs: current.arcs.map((arc) => arc.id === id ? { ...arc, ...patch } : arc),
-    }));
-  };
-  const updateGeometryText = (id: string, patch: Partial<Pick<GeoTextNote, "point" | "text" | "width" | "height" | "opacity" | "locked" | "color">>) => {
-    commitConstruction("Edit text/image", (current) => ({
-      ...current,
-      texts: current.texts.map((note) => note.id === id ? { ...note, ...patch } : note),
-    }));
-  };
-  const updateGeometryConic = (id: string, patch: Partial<Pick<GeoConic, "kind" | "center" | "a" | "b" | "color" | "fill">>) => {
-    commitConstruction("Edit conic", (current) => ({
-      ...current,
-      conics: current.conics.map((conic) => conic.id === id ? { ...conic, ...patch } : conic),
-    }));
-  };
-  const toggleGeometryLock = (kind: Exclude<NonNullable<SelectedGeoObject>["kind"], "constraint" | "transform">, id: string) => {
-    commitConstruction(`Toggle ${kind} lock`, (current) => toggleObjectLock(current, kind, id));
-  };
-  const addGeometryTemplate = (kind: GeometryTemplateKind) => {
-    setPendingPointIds([]);
-    setPendingPolygonDraft([]);
-    commitConstruction(`Add ${kind} template`, (current) => {
-      const start = current.points.length;
-      const offset = (start % 7) * 16;
-      const makePoint = (x: number, y: number, index: number): GeoPoint => ({ id: crypto.randomUUID(), x: x + offset, y: y + offset / 2, label: pointLabelForIndex(start + index) });
-      const polygonFromCoords = (coords: Array<[number, number]>, withAngle = false) => {
-        const points = coords.map(([x, y], index) => makePoint(x, y, index));
-        const polygon: GeoPolygon = { id: crypto.randomUUID(), points: points.map((point) => point.id) };
-        const angle = withAngle && points.length >= 3 ? [{ id: crypto.randomUUID(), a: points[0].id, vertex: points[2].id, b: points[1].id }] : [];
-        return { ...current, points: [...current.points, ...points], polygons: [...current.polygons, polygon], angles: [...current.angles, ...angle] };
-      };
-      const regularCoords = (sides: number, radius: number, centerX = 330, centerY = 220, startAngle = -Math.PI / 2) =>
-        Array.from({ length: sides }, (_, index): [number, number] => [centerX + Math.cos(startAngle + index * Math.PI * 2 / sides) * radius, centerY + Math.sin(startAngle + index * Math.PI * 2 / sides) * radius]);
-      if (kind === "triangle") return polygonFromCoords([[220, 300], [420, 300], [320, 150]], true);
-      if (kind === "right-triangle") return polygonFromCoords([[230, 310], [430, 310], [230, 150]], true);
-      if (kind === "isosceles-triangle") return polygonFromCoords([[220, 310], [440, 310], [330, 130]], true);
-      if (kind === "equilateral-triangle") return polygonFromCoords(regularCoords(3, 112, 330, 238), true);
-      if (kind === "rectangle") return polygonFromCoords([[210, 130], [440, 130], [440, 300], [210, 300]]);
-      if (kind === "square") return polygonFromCoords([[240, 140], [400, 140], [400, 300], [240, 300]]);
-      if (kind === "parallelogram") return polygonFromCoords([[230, 300], [430, 300], [380, 145], [180, 145]]);
-      if (kind === "trapezoid") return polygonFromCoords([[210, 310], [450, 310], [390, 155], [270, 155]]);
-      if (kind === "rhombus") return polygonFromCoords([[330, 120], [470, 220], [330, 320], [190, 220]]);
-      if (kind === "kite") return polygonFromCoords([[330, 110], [430, 235], [330, 330], [240, 235]]);
-      if (kind === "pentagon") return polygonFromCoords(regularCoords(5, 105));
-      if (kind === "hexagon") return polygonFromCoords(regularCoords(6, 105, 330, 220, Math.PI / 6));
-      if (kind === "octagon") return polygonFromCoords(regularCoords(8, 105, 330, 220, Math.PI / 8));
-      if (kind === "star") return polygonFromCoords(Array.from({ length: 10 }, (_, index): [number, number] => {
-        const radius = index % 2 === 0 ? 112 : 48;
-        const angle = -Math.PI / 2 + index * Math.PI / 5;
-        return [330 + Math.cos(angle) * radius, 220 + Math.sin(angle) * radius];
-      }));
-      const points = [makePoint(320, 210, 0), makePoint(440, 210, 1), makePoint(320, 90, 2)];
-      if (kind === "circle") return { ...current, points: [...current.points, points[0], points[1]], circles: [...current.circles, { id: crypto.randomUUID(), center: points[0].id, edge: points[1].id }] };
-      if (kind === "two-circles") {
-        const leftCenter = makePoint(260, 210, 0), leftEdge = makePoint(360, 210, 1), rightCenter = makePoint(410, 210, 2), rightEdge = makePoint(510, 210, 3);
-        return { ...current, points: [...current.points, leftCenter, leftEdge, rightCenter, rightEdge], circles: [...current.circles, { id: crypto.randomUUID(), center: leftCenter.id, edge: leftEdge.id }, { id: crypto.randomUUID(), center: rightCenter.id, edge: rightEdge.id }] };
+    if (tool === "angle-bisector" || tool === "arc" || tool === "sector" || tool === "compass" || tool === "mirror" || tool === "translate") {
+      const needed = tool === "arc" || tool === "sector" || tool === "angle-bisector" || tool === "compass" || tool === "mirror" || tool === "translate" ? 3 : 2;
+      const next = [...selectedPointIds, pointId].slice(-needed);
+      setSelectedPointIds(next);
+      if (next.length === needed && new Set(next).size === needed) {
+        recordWorkspaceStep(`Create ${tool}`, next.map((id) => labelForPoint(construction, id)).join(", "));
+        setConstruction((current) => {
+          if (tool === "angle-bisector") return addAngleBisector(current, next[0], next[1], next[2]);
+          if (tool === "arc" || tool === "sector") return addArcOrSector(current, next[0], next[1], next[2], tool === "sector");
+          if (tool === "compass") return addCompassCircle(current, next[0], next[1], next[2]);
+          if (tool === "mirror") return mirrorPointAcrossLine(current, next[0], next[1], next[2]);
+          return translatePointByVector(current, next[0], next[1], next[2]);
+        });
+        setSelectedPointIds([]);
       }
-      if (kind === "annulus") {
-        const center = makePoint(320, 210, 0), outer = makePoint(455, 210, 1), inner = makePoint(390, 210, 2);
-        return { ...current, points: [...current.points, center, outer, inner], circles: [...current.circles, { id: crypto.randomUUID(), center: center.id, edge: outer.id }, { id: crypto.randomUUID(), center: center.id, edge: inner.id }] };
+    }
+    if (tool === "tangent" || tool === "polar" || tool === "locus" || tool === "rotate" || tool === "dilate") {
+      recordWorkspaceStep(`Create ${tool}`, labelForPoint(construction, pointId));
+      setConstruction((current) => {
+        if (tool === "tangent") return addTangentAtPoint(current, pointId);
+        if (tool === "polar") return addPolarLine(current, pointId);
+        if (tool === "locus") return addLocusForPoint(current, pointId);
+        if (tool === "rotate") return rotatePoint(current, pointId, current.points[0]?.id ?? pointId, 45);
+        return dilatePoint(current, pointId, current.points[0]?.id ?? pointId, 1.5);
+      });
+      setSelectedPointIds([]);
+    }
+    if (tool === "regular-polygon") {
+      const next = [...selectedPointIds, pointId].slice(-2);
+      setSelectedPointIds(next);
+      if (next.length === 2 && next[0] !== next[1]) {
+        recordWorkspaceStep("Create regular polygon", `${labelForPoint(construction, next[0])}${labelForPoint(construction, next[1])}`);
+        setConstruction((current) => addRegularPolygon(current, next[0], next[1], 5));
+        setSelectedPointIds([]);
       }
-      if (kind === "semicircle") {
-        const a = makePoint(220, 260, 0), b = makePoint(440, 260, 1), center = makePoint(330, 260, 2);
-        return { ...current, points: [...current.points, a, b, center], arcs: [...current.arcs, { id: crypto.randomUUID(), kind: "semicircle", center: center.id, start: a.id, end: b.id }] };
-      }
-      if (kind === "sector" || kind === "arc") {
-        const center = makePoint(320, 230, 0), startPoint = makePoint(445, 230, 1), endPoint = makePoint(350, 100, 2);
-        return { ...current, points: [...current.points, center, startPoint, endPoint], arcs: [...current.arcs, { id: crypto.randomUUID(), kind, center: center.id, start: startPoint.id, end: endPoint.id }] };
-      }
-      if (kind === "angle-shape") {
-        const points = [makePoint(250, 290, 0), makePoint(330, 220, 1), makePoint(470, 250, 2)];
-        return { ...current, points: [...current.points, ...points], lines: [...current.lines, { id: crypto.randomUUID(), a: points[1].id, b: points[0].id, kind: "ray" }, { id: crypto.randomUUID(), a: points[1].id, b: points[2].id, kind: "ray" }], angles: [...current.angles, { id: crypto.randomUUID(), a: points[0].id, vertex: points[1].id, b: points[2].id }] };
-      }
-      if (kind === "coordinate-axes") {
-        const points = [makePoint(120, 220, 0), makePoint(540, 220, 1), makePoint(330, 370, 2), makePoint(330, 70, 3)];
-        return { ...current, points: [...current.points, ...points], lines: [...current.lines, { id: crypto.randomUUID(), a: points[0].id, b: points[1].id, kind: "line" }, { id: crypto.randomUUID(), a: points[2].id, b: points[3].id, kind: "line" }] };
-      }
-      const center = makePoint(kind === "parabola" ? 210 : kind === "ellipse" ? 320 : 450, 210, 0);
-      const conic: GeoConic = { id: crypto.randomUUID(), kind, center: center.id, a: kind === "parabola" ? 70 : 92, b: kind === "hyperbola" ? 52 : 62 };
-      return { ...current, points: [...current.points, center], conics: [...current.conics, conic] };
-    });
-  };
-  const applyGeometryTransform = (type: GeoTransformKind) => {
-    if (!selectedGeoObject || selectedGeoObject.kind === "line" || selectedGeoObject.kind === "angle" || selectedGeoObject.kind === "constraint" || selectedGeoObject.kind === "transform") return;
-    commitConstruction(`Apply ${type}`, (current) => addTransformConstruction(current, selectedGeoObject, type));
-  };
-  const traceSelectedPoint = () => {
-    if (selectedGeoObject?.kind !== "point") return;
-    const point = pointById(construction.points, selectedGeoObject.id);
-    if (!point) return;
-    setActiveTracePointId(point.id);
-    setLocusTraces((current) => {
-      const existing = current.find((trace) => trace.pointId === point.id);
-      if (existing) return current.map((trace) => trace.pointId === point.id ? { ...trace, visible: true, points: appendLocusPoint(trace.points, point) } : trace);
-      return [
-        ...current,
-        { id: crypto.randomUUID(), pointId: point.id, label: `Trace ${point.label}`, points: [{ x: point.x, y: point.y }], color: colors[current.length % colors.length], visible: true },
-      ];
-    });
-  };
-  const stopTrace = () => setActiveTracePointId(null);
-  const clearLocusTraces = () => {
-    setActiveTracePointId(null);
-    setLocusTraces([]);
+    }
   };
 
   const handleBoardPointerMove = (event: PointerEvent<SVGSVGElement>) => {
-    const activeDragPointId = dragPointId;
-    if (!activeDragPointId && !dragGeometryObject) return;
+    if (!dragPointId && !dragGeometry && !dragImageId) return;
     if (event.pointerType === "touch") event.preventDefault();
     const point = clientToBoard(event);
     if (!point) return;
-    if (dragGeometryObject) {
-      const dx = point.x - dragGeometryObject.last.x;
-      const dy = point.y - dragGeometryObject.last.y;
-      const target = dragGeometryObject.target;
-      setConstruction((current) => {
-        if (isGeometryObjectLocked(current, target)) return current;
-        const ids = new Set(pointIdsForGeoObject(current, target));
-        const next = solveConstruction({
-          ...current,
-          points: current.points.map((item) => ids.has(item.id) && !item.locked ? { ...item, x: item.x + dx, y: item.y + dy } : item),
-        });
-        if (activeTracePointId) {
-          const tracedPoint = pointById(next.points, activeTracePointId);
-          if (tracedPoint) setLocusTraces((traces) => traces.map((trace) => trace.pointId === activeTracePointId ? { ...trace, points: appendLocusPoint(trace.points, tracedPoint) } : trace));
-        }
-        return next;
-      });
-      setDragGeometryObject({ target, last: point });
-      return;
+    if (dragImageId) {
+      setWorkspaceImages((current) => current.map((image) => image.id === dragImageId ? { ...image, x: roundTo(point.x - image.width / 2, 2), y: roundTo(point.y - image.height / 2, 2) } : image));
     }
-    if (!activeDragPointId) return;
-    setConstruction((current) => {
-      const dragged = pointById(current.points, activeDragPointId);
-      if (dragged?.locked) return current;
-      const next = solveConstruction({
+    if (dragPointId) {
+      setConstruction((current) => solveConstruction({
         ...current,
-        points: current.points.map((item) => item.id === activeDragPointId ? { ...item, x: point.x, y: point.y } : item),
-      }, activeDragPointId);
-      if (activeTracePointId) {
-        const tracedPoint = pointById(next.points, activeTracePointId);
-        if (tracedPoint) {
-          setLocusTraces((traces) => traces.map((trace) => trace.pointId === activeTracePointId ? { ...trace, points: appendLocusPoint(trace.points, tracedPoint) } : trace));
-        }
-      }
-      return next;
-    });
+        points: current.points.map((item) => item.id === dragPointId ? { ...item, x: point.x, y: point.y } : item),
+      }, dragPointId));
+    }
+    if (dragGeometry) {
+      const dx = point.x - dragGeometry.last.x;
+      const dy = point.y - dragGeometry.last.y;
+      const pointIds = pointIdsForObject(construction, dragGeometry.object);
+      setConstruction((current) => solveConstruction({
+        ...current,
+        points: current.points.map((item) => pointIds.includes(item.id) ? { ...item, x: item.x + dx, y: item.y + dy } : item),
+      }));
+      setDragGeometry({ ...dragGeometry, last: point });
+    }
   };
 
-  const clientToBoard = (event: PointerEvent<Element>) => {
-    return clientCoordinatesToBoard(event.clientX, event.clientY);
-  };
-
-  const clientCoordinatesToBoard = (clientX: number, clientY: number) => {
+  const clientToBoard = (event: PointerEvent<SVGSVGElement>) => {
     const svg = svgRef.current;
     if (!svg) return null;
     const rect = svg.getBoundingClientRect();
-    const raw = {
-      x: ((clientX - rect.left) / rect.width) * 640,
-      y: ((clientY - rect.top) / rect.height) * 420,
+    return {
+      x: ((event.clientX - rect.left) / rect.width) * 640,
+      y: ((event.clientY - rect.top) / rect.height) * 420,
     };
-    return snapGeometryToGrid ? snapBoardPoint(raw) : raw;
   };
 
   const undoConstruction = () => {
-    setUndoStack((stack) => {
-      const [entry, ...rest] = stack;
-      if (!entry) return stack;
-      setConstruction((current) => {
-        setRedoStack((redo) => [{ id: crypto.randomUUID(), label: `Redo ${entry.label}`, timestamp: Date.now(), before: current }, ...redo].slice(0, 30));
-        return solveConstruction(entry.before);
-      });
-      return rest;
+    setConstruction((current) => {
+      if (current.polygons.length) return { ...current, polygons: current.polygons.slice(0, -1) };
+      if (current.circles.length) return { ...current, circles: current.circles.slice(0, -1) };
+      if (current.lines.length) return { ...current, lines: current.lines.slice(0, -1) };
+      if (current.points.length) return { ...current, points: current.points.slice(0, -1) };
+      return current;
     });
   };
-  const redoConstruction = () => {
-    setRedoStack((stack) => {
-      const [entry, ...rest] = stack;
-      if (!entry) return stack;
-      setConstruction((current) => {
-        setUndoStack((undo) => [{ id: crypto.randomUUID(), label: `Undo ${entry.label.replace(/^Redo\s+/, "")}`, timestamp: Date.now(), before: current }, ...undo].slice(0, 30));
-        return solveConstruction(entry.before);
+
+  const handlePlotsChange = (nextPlots: PlotItem[]) => {
+    recordWorkspaceStep("Edit graph object", "Graph list changed from graph panel.");
+    setPlots(nextPlots);
+  };
+
+  const updateSelectedGeometryStyle = (patch: GeoStyle) => {
+    if (!selectedGeometry) return;
+    recordWorkspaceStep("Edit geometry style", `${selectedGeometry.type} properties changed.`);
+    setConstruction((current) => patchGeometryObject(current, selectedGeometry, { style: patch }));
+  };
+
+  const updateSelectedPoint = (patch: Partial<GeoPoint>) => {
+    if (!selectedGeometry || selectedGeometry.type !== "point") return;
+    recordWorkspaceStep("Edit point definition", `${labelForPoint(construction, selectedGeometry.id)} changed.`);
+    setConstruction((current) => solveConstruction({ ...current, points: current.points.map((point) => point.id === selectedGeometry.id ? { ...point, ...patch } : point) }, selectedGeometry.id));
+  };
+
+  const updateSelectedPointByDelta = (pointId: string, dx: number, dy: number) => {
+    if (lockedGeometryIds.includes(pointId)) return;
+    setConstruction((current) => solveConstruction({
+      ...current,
+      points: current.points.map((point) => point.id === pointId ? { ...point, x: point.x + dx, y: point.y + dy } : point),
+    }, pointId));
+  };
+
+  const updateSelectedImage = (patch: Partial<WorkspaceImage>) => {
+    if (!selectedImageId) return;
+    recordWorkspaceStep("Edit image", `${workspaceImages.find((image) => image.id === selectedImageId)?.name ?? "Image"} properties changed.`);
+    setWorkspaceImages((current) => current.map((image) => image.id === selectedImageId ? { ...image, ...patch } : image));
+  };
+
+  const deleteSelectedImage = () => {
+    if (!selectedImageId) return;
+    recordWorkspaceStep("Delete image", `${workspaceImages.find((image) => image.id === selectedImageId)?.name ?? "Image"} removed.`);
+    setWorkspaceImages((current) => current.filter((image) => image.id !== selectedImageId));
+    setSelectedImageId(null);
+  };
+
+  const updateSelectedCircleRadius = (radiusUnits: number) => {
+    if (!selectedGeometry || selectedGeometry.type !== "circle") return;
+    recordWorkspaceStep("Edit circle definition", `Radius set to ${radiusUnits}.`);
+    setConstruction((current) => {
+      const circle = current.circles.find((item) => item.id === selectedGeometry.id);
+      const center = circle ? pointById(current.points, circle.center) : null;
+      const edge = circle ? pointById(current.points, circle.edge) : null;
+      if (!circle || !center || !edge) return current;
+      const vector = normalize(edge.x - center.x, edge.y - center.y);
+      return solveConstruction({
+        ...current,
+        points: current.points.map((point) => point.id === edge.id ? { ...point, x: center.x + vector.x * radiusUnits * 40, y: center.y + vector.y * radiusUnits * 40 } : point),
       });
-      return rest;
     });
+  };
+
+  const deleteGeometryObject = (object = selectedGeometry) => {
+    if (!object) return;
+    recordWorkspaceStep("Delete geometry object", `${object.type} removed.`);
+    setConstruction((current) => deleteGeometryObjectFromConstruction(current, object));
+    setSelectedGeometry(null);
+    setContextMenu(null);
+  };
+
+  const duplicateGeometryObject = (object = selectedGeometry) => {
+    if (!object) return;
+    recordWorkspaceStep("Duplicate geometry object", `${object.type} duplicated.`);
+    setConstruction((current) => duplicateGeometryObjectInConstruction(current, object));
+    setContextMenu(null);
+  };
+
+  const restoreGeometryObject = (object = selectedGeometry) => {
+    if (!object) return;
+    recordWorkspaceStep("Restore geometry object", `${object.type} style restored.`);
+    setConstruction((current) => patchGeometryObject(current, object, { style: {} }));
+    setContextMenu(null);
+  };
+
+  const toggleGeometryLock = (object = selectedGeometry) => {
+    if (!object) return;
+    recordWorkspaceStep("Toggle geometry lock", `${object.type} lock changed.`);
+    setLockedGeometryIds((current) => current.includes(object.id) ? current.filter((id) => id !== object.id) : [...current, object.id]);
+    setContextMenu(null);
+  };
+
+  const update3dTransform = (id: ThreeObjectId, patch: Partial<Transform3D>) => {
+    if (transforms3d[id]?.locked && !("locked" in patch)) return;
+    recordWorkspaceStep("Edit 3D object", `${transforms3d[id]?.name ?? id} transform changed.`);
+    setTransforms3d((current) => ({ ...current, [id]: { ...current[id], ...patch } }));
+  };
+
+  const update3dVector = (id: ThreeObjectId, key: "position" | "rotation", index: number, value: number) => {
+    setTransforms3d((current) => {
+      const next = [...current[id][key]] as [number, number, number];
+      next[index] = value;
+      return { ...current, [id]: { ...current[id], [key]: next } };
+    });
+  };
+
+  const restore3dObject = (id = selected3d) => {
+    recordWorkspaceStep("Restore 3D object", `${transforms3d[id]?.name ?? id} restored.`);
+    setTransforms3d((current) => ({ ...current, [id]: defaultTransforms3d[id] }));
+    setContextMenu(null);
+  };
+
+  const delete3dObject = (id = selected3d) => {
+    recordWorkspaceStep("Hide 3D object", `${transforms3d[id]?.name ?? id} hidden.`);
+    update3dTransform(id, { visible: false });
+    setContextMenu(null);
+  };
+
+  const duplicate3dObject = (id = selected3d) => {
+    recordWorkspaceStep("Duplicate 3D object", `${transforms3d[id]?.name ?? id} duplicated.`);
+    const next = transforms3d[id];
+    setTransforms3d((current) => ({ ...current, [id]: { ...next, position: [next.position[0] + 0.45, next.position[1] + 0.25, next.position[2] + 0.45], visible: true } }));
+    setContextMenu(null);
   };
 
   const saveConstruction = () => localStorage.setItem("math-universe-workspace-construction", JSON.stringify(construction));
   const loadConstruction = () => {
     const saved = localStorage.getItem("math-universe-workspace-construction");
-    if (saved) {
-      restoreConstruction(normalizeConstruction(JSON.parse(saved) as Partial<Construction>));
-      setUndoStack([]);
-      setRedoStack([]);
-    }
+    if (saved) setConstruction(normalizeConstruction(JSON.parse(saved) as Partial<Construction>));
   };
-  const restoreWorkspaceSnapshot = (data: Partial<WorkspaceSnapshot>) => {
-    setInput(data.input ?? "plot sin(x)");
+  const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, lockedGeometryIds, surface, surfaceExpression, cameraPreset3d, sceneAnimationSpeed, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, autoRotate3d, zoom3d, transforms3d, images: workspaceImages, spreadsheet, tableRange: { start: tableStart, end: tableEnd, step: tableStep }, guidedMode, guidedPhase, teachingMode, revealStep, controlsLocked, highContrastMode, performanceMode, protocol, activityJournal, presentationNotes });
+  const saveWorkspace = () => localStorage.setItem("math-universe-workspace-full", JSON.stringify(snapshot()));
+  const restoreWorkspaceSnapshot = (data: WorkspaceSnapshot) => {
+    setInput(data.input);
     setResults(data.results ?? []);
     setPlots(data.plots ?? []);
-    setGraphParameters(data.graphParameters ?? { a: 1, b: 0 });
-    setLocusTraces(data.locusTraces ?? []);
-    setActiveTracePointId(null);
-    restoreConstruction(normalizeConstruction(data.construction ?? initialConstruction));
-    setUndoStack([]);
-    setRedoStack([]);
+    setConstruction(normalizeConstruction(data.construction ?? initialConstruction));
+    setLockedGeometryIds(data.lockedGeometryIds ?? []);
     setSurface(data.surface ?? "paraboloid");
+    setSurfaceExpression(data.surfaceExpression ?? "sin(x) * cos(y)");
+    setCameraPreset3d(data.cameraPreset3d ?? "isometric");
+    setSceneAnimationSpeed(data.sceneAnimationSpeed ?? 0.18);
     setSolid(data.solid ?? "cube");
     setSurfaceScale(data.surfaceScale ?? 1);
     setHeight3d(data.height3d ?? 2.5);
     setCrossSection(data.crossSection ?? 0);
-    setSurfacePosition3d(data.surfacePosition3d ?? [0, 0, 0]);
-    setSurfaceRotation3d(data.surfaceRotation3d ?? [0, 0, 0]);
-    setSolidPosition3d(data.solidPosition3d ?? [3, 0, 2.6]);
-    setSolidRotation3d(data.solidRotation3d ?? [0, 0, 0]);
     setShowSurface(data.showSurface ?? true);
     setShowSolid(data.showSolid ?? true);
-    setShowAxes3d(data.showAxes3d ?? true);
-    setShowGrid3d(data.showGrid3d ?? true);
-    setShowCrossSection3d(data.showCrossSection3d ?? true);
-    setShowVector3d(data.showVector3d ?? true);
-    setShowPoint3d(data.showPoint3d ?? true);
     setAutoRotate3d(data.autoRotate3d ?? true);
     setZoom3d(data.zoom3d ?? 1);
-    setSurfaceDomain(data.surfaceDomain ?? 2.6);
-    setVectorStart3d(data.vectorStart3d ?? [-3, 0.05, -3]);
-    setVectorEnd3d(data.vectorEnd3d ?? [2.2, 1.4, 1.8]);
-    setPoint3d(data.point3d ?? [2.2, 1.4, 1.8]);
-    setSpace3dColors({ ...defaultSpace3dColors, ...(data.space3dColors ?? {}) });
-    setSpace3dShapes(data.space3dShapes ?? []);
-    setAnimationSnapshots(data.animationSnapshots ?? []);
-    setLesson(data.lesson ?? createDefaultLesson());
-    setPracticeResponses(data.practiceResponses ?? {});
-    setAnimationPlaying(false);
-  };
-  const refreshProjectRecoverySlots = () => setProjectRecoverySlots(readProjectRecoverySlots<WorkspaceSnapshot>());
-  const saveWorkspace = () => {
-    const current = snapshot();
-    localStorage.setItem(LIVE_WORKSPACE_STORAGE_KEY, JSON.stringify(current));
-    saveProjectRecoverySlot(current, "manual", "Manual save point");
-    refreshProjectRecoverySlots();
-    setLastAutosaveAt(Date.now());
-    setProjectCenterStatus("Saved workspace and created a recovery point.");
-  };
-  const createManualRecoveryPoint = () => {
-    saveProjectRecoverySlot(snapshot(), "manual", "Manual recovery point");
-    refreshProjectRecoverySlots();
-    setProjectCenterStatus("Created manual recovery point.");
-  };
-  const restoreProjectRecoverySlot = (slot: ProjectRecoverySlot<WorkspaceSnapshot>) => {
-    restoreWorkspaceSnapshot(slot.workspace);
-    setProjectCenterStatus(`Restored recovery point: ${slot.label}.`);
-    setImportStatus(`Restored recovery point from ${new Date(slot.timestamp).toLocaleString()}.`);
-  };
-  const deleteProjectRecoverySlot = (slotId: string) => {
-    setProjectRecoverySlots(removeProjectRecoverySlot(slotId) as ProjectRecoverySlot<WorkspaceSnapshot>[]);
-    setProjectCenterStatus("Removed recovery point.");
-  };
-  const clearProjectRecoverySlots = () => {
-    setProjectRecoverySlots(clearManualProjectRecoverySlots() as ProjectRecoverySlot<WorkspaceSnapshot>[]);
-    setProjectCenterStatus("Cleared recovery points; latest autosave was kept.");
+    setTransforms3d({ ...defaultTransforms3d, ...(data.transforms3d ?? {}) });
+    setWorkspaceImages(data.images ?? []);
+    setSelectedImageId(null);
+    setSpreadsheet(data.spreadsheet ?? initialSpreadsheet);
+    setTableStart(data.tableRange?.start ?? -4);
+    setTableEnd(data.tableRange?.end ?? 4);
+    setTableStep(data.tableRange?.step ?? 1);
+    setGuidedMode(data.guidedMode ?? false);
+    setGuidedPhase(data.guidedPhase ?? "predict");
+    setTeachingMode(data.teachingMode ?? false);
+    setRevealStep(data.revealStep ?? 1);
+    setControlsLocked(data.controlsLocked ?? false);
+    setHighContrastMode(data.highContrastMode ?? false);
+    setPerformanceMode(data.performanceMode ?? false);
+    setProtocol(data.protocol ?? []);
+    setActivityJournal(data.activityJournal ?? {});
+    setPresentationNotes(data.presentationNotes ?? "");
+    setUndoStack([]);
+    setRedoStack([]);
   };
   const loadWorkspace = () => {
-    const saved = localStorage.getItem(LIVE_WORKSPACE_STORAGE_KEY);
+    const saved = localStorage.getItem("math-universe-workspace-full");
     if (!saved) return;
-    const data = JSON.parse(saved) as WorkspaceSnapshot;
-    restoreWorkspaceSnapshot(data);
-    setImportStatus("Loaded latest workspace from browser storage.");
-    setProjectCenterStatus("Loaded latest browser workspace.");
+    restoreWorkspaceSnapshot(JSON.parse(saved) as WorkspaceSnapshot);
   };
   const exportWorkspaceJson = () => downloadText("math-workspace.json", JSON.stringify(snapshot(), null, 2), "application/json");
   const exportResultsCsv = () => downloadText("math-workspace-results.csv", resultsToCsv(results), "text/csv");
-  const exportGraphSvg = () => {
-    const svg = graphExportRef.current?.querySelector("svg");
-    if (!svg) return;
-    downloadText("math-workspace-graph.svg", svg.outerHTML, "image/svg+xml");
+  const exportShareUrl = async () => {
+    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(snapshot()))));
+    const url = `${window.location.origin}${window.location.pathname}#project=${encoded}`;
+    await navigator.clipboard?.writeText(url);
+    setProjectStatus("Shareable URL copied to clipboard.");
+  };
+  const exportWorksheetPdf = () => downloadText("math-workspace-worksheet.pdf", createWorksheetPdf(activeTemplate, results), "application/pdf");
+  const exportLessonPack = () => downloadText("math-universe-lesson-pack.json", JSON.stringify(createLessonPack(activeTemplate, snapshot(), activityJournal, results, presentationNotes), null, 2), "application/json");
+  const exportActivityJournal = () => downloadText("math-universe-activity-journal.csv", activityJournalToCsv(activityJournal), "text/csv");
+  const copyTeacherPresentationUrl = async () => {
+    const url = `${window.location.origin}${window.location.pathname}?template=${encodeURIComponent(activeTemplate.id)}&mode=guided&teacher=1`;
+    await navigator.clipboard?.writeText(url);
+    setProjectStatus("Teacher presentation URL copied.");
   };
   const exportGeometrySvg = () => {
     const svg = geometryExportRef.current;
     if (!svg) return;
     downloadText("geometry-construction.svg", svg.outerHTML, "image/svg+xml");
   };
-  const exportProjectBundle = () => downloadText("math-universe-project-bundle.json", JSON.stringify(createWorkspaceBundle(snapshot(), lesson), null, 2), "application/json");
-  const createCurrentShareCapsule = () => createWorkspaceShareCapsule(snapshot(), lesson, currentProjectSummary);
-  const copyShareLink = async () => {
-    const shareUrl = createWorkspaceShareUrl(createCurrentShareCapsule());
-    if (shareUrl.length > MAX_INLINE_SHARE_URL_LENGTH) {
-      exportShareCapsule();
-      setShareStatus(`Project is large (${shareSizeLabel(shareUrl.length)}); exported a share capsule file instead.`);
-      return;
+  const exportGeometryPng = () => {
+    const svg = geometryExportRef.current;
+    if (!svg) return;
+    const image = new Image();
+    const svgUrl = URL.createObjectURL(new Blob([svg.outerHTML], { type: "image/svg+xml" }));
+    image.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 1280;
+      canvas.height = 840;
+      const context = canvas.getContext("2d");
+      if (!context) return;
+      context.fillStyle = "#ffffff";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(svgUrl);
+      canvas.toBlob((blob) => blob && downloadBlob("geometry-construction.png", blob), "image/png");
+    };
+    image.src = svgUrl;
+  };
+  const saveProjectToLibrary = () => {
+    const title = `${activeTemplate.unit} workspace`;
+    const entry: OfflineProjectEntry<WorkspaceSnapshot> = {
+      id: crypto.randomUUID(),
+      title,
+      unit: activeTemplate.unit,
+      savedAt: Date.now(),
+      summary: `${construction.points.length} points, ${plots.length} plots, ${results.length} results`,
+      snapshot: snapshot(),
+    };
+    setProjectLibrary(saveOfflineProject(entry));
+    setProjectStatus(`${title} saved offline in this browser.`);
+  };
+  const restoreProject = (entry: OfflineProjectEntry<WorkspaceSnapshot>) => {
+    restoreWorkspaceSnapshot(entry.snapshot);
+    setProjectStatus(`${entry.title} restored.`);
+  };
+  const deleteProject = (id: string) => {
+    setProjectLibrary(removeOfflineProject<WorkspaceSnapshot>(id));
+    setProjectStatus("Project removed from offline library.");
+  };
+  const clearProjects = () => {
+    clearOfflineProjectLibrary();
+    setProjectLibrary([]);
+    setProjectStatus("Offline project library cleared.");
+  };
+  const applyTemplate = (template: SyllabusWorkspaceTemplate) => {
+    setActiveTemplate(template);
+    setInput(template.command);
+    setTeachingMode(true);
+    setGuidedMode(true);
+    setGuidedPhase("predict");
+    setRevealStep(1);
+    if (template.focus === "3d") {
+      setSurface("paraboloid");
+      setSolid("cylinder");
+      setShowSurface(true);
+      setShowSolid(true);
+      setAutoRotate3d(false);
+      setCrossSection(0.6);
     }
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      setShareStatus(`Copied browser-only share link (${shareSizeLabel(shareUrl.length)}).`);
-      setProjectCenterStatus("Copied share link to clipboard.");
-    } catch {
-      downloadText("math-universe-share-link.txt", shareUrl, "text/plain");
-      setShareStatus("Clipboard unavailable; downloaded the share link as a text file.");
-    }
+    if (template.focus === "geometry") setConstruction(templateConstruction(template.id));
+    runGuidedExample(template.command);
+    setProjectStatus(`${template.unit} template loaded with guided activity mode.`);
   };
-  const exportShareCapsule = () => {
-    downloadText("math-universe-share-capsule.json", JSON.stringify(createCurrentShareCapsule(), null, 2), "application/json");
-    setShareStatus("Exported share capsule JSON.");
+  const runQaNow = () => setQaReport(runWorkspaceQaSuite());
+  const updateGuidedActivityEntry = (patch: Partial<ActivityJournalEntry>) => {
+    const key = activityJournalKey(activeTemplate.id, guidedPhase);
+    setActivityJournal((current) => ({
+      ...current,
+      [key]: {
+        ...defaultActivityJournalEntry(activeTemplate.id, guidedPhase),
+        ...(current[key] ?? {}),
+        ...patch,
+        templateId: activeTemplate.id,
+        phase: guidedPhase,
+        updatedAt: Date.now(),
+      },
+    }));
   };
-  const loadShareLinkFromUrl = () => {
-    const capsule = readWorkspaceShareCapsuleFromHash<WorkspaceSnapshot, ClassroomLesson>();
-    if (!capsule) {
-      setShareStatus("No Math Universe share capsule found in the current URL.");
-      return;
-    }
-    restoreWorkspaceSnapshot(capsule.workspace);
-    setLesson(capsule.lesson);
-    saveProjectRecoverySlot(capsule.workspace, "import", "Loaded share link");
-    refreshProjectRecoverySlots();
-    setShareStatus(`Loaded share capsule from ${new Date(capsule.createdAt).toLocaleString()}.`);
-    setProjectCenterStatus("Loaded browser-only share link.");
-    setImportStatus("Loaded project from URL share capsule.");
+
+  const markGuidedPhaseComplete = () => {
+    updateGuidedActivityEntry({ selfCheck: "got-it", confidence: Math.max(activityJournal[activityJournalKey(activeTemplate.id, guidedPhase)]?.confidence ?? 50, 80) });
+    const order: GuidedActivityPhase[] = ["predict", "manipulate", "check", "reflect"];
+    const next = order[Math.min(order.length - 1, order.indexOf(guidedPhase) + 1)];
+    setGuidedPhase(next);
+    setRevealStep(Math.max(revealStep, order.indexOf(next) + 1));
   };
-  const importWorkspaceFile = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    file.text().then((text) => {
-      const parsed = JSON.parse(text) as unknown;
-      if (isWorkspaceShareCapsule(parsed)) {
-        restoreWorkspaceSnapshot(parsed.workspace as Partial<WorkspaceSnapshot>);
-        if (parsed.lesson) setLesson(parsed.lesson as ClassroomLesson);
-        saveProjectRecoverySlot(parsed.workspace as Partial<WorkspaceSnapshot>, "import", `Share capsule ${file.name}`);
-        refreshProjectRecoverySlots();
-        setShareStatus(`Imported share capsule: ${file.name}.`);
-        setProjectCenterStatus(`Validated and imported share capsule ${file.name}.`);
-        setImportStatus(`Imported share capsule: ${file.name}`);
-        return;
-      }
-      const validation = validateWorkspaceImport(parsed);
-      if (!validation.valid) {
-        setImportStatus(`Import failed: ${validation.label}. ${validation.warnings.join(" ")}`);
-        return;
-      }
-      if (isWorkspaceBundle(parsed)) {
-        restoreWorkspaceSnapshot(parsed.workspace as Partial<WorkspaceSnapshot>);
-        if (parsed.lesson) setLesson(parsed.lesson as ClassroomLesson);
-        saveProjectRecoverySlot(parsed.workspace as Partial<WorkspaceSnapshot>, "import", `Imported ${file.name}`);
-        refreshProjectRecoverySlots();
-        setImportStatus(`Imported ${validation.label}: ${file.name}${validation.warnings.length ? ` (${validation.warnings.join(" ")})` : ""}`);
-      } else if (parsed && typeof parsed === "object" && "workspace" in parsed && "lesson" in parsed) {
-        const lessonImport = parsed as { workspace?: Partial<WorkspaceSnapshot>; lesson?: ClassroomLesson };
-        restoreWorkspaceSnapshot(lessonImport.workspace ?? {});
-        if (lessonImport.lesson) setLesson(lessonImport.lesson);
-        saveProjectRecoverySlot(lessonImport.workspace ?? {}, "import", `Imported ${file.name}`);
-        refreshProjectRecoverySlots();
-        setImportStatus(`Imported ${validation.label}: ${file.name}${validation.warnings.length ? ` (${validation.warnings.join(" ")})` : ""}`);
-      } else {
-        restoreWorkspaceSnapshot(parsed as Partial<WorkspaceSnapshot>);
-        saveProjectRecoverySlot(parsed as Partial<WorkspaceSnapshot>, "import", `Imported ${file.name}`);
-        refreshProjectRecoverySlots();
-        setImportStatus(`Imported ${validation.label}: ${file.name}${validation.warnings.length ? ` (${validation.warnings.join(" ")})` : ""}`);
-      }
-      setProjectCenterStatus(`Validated and imported ${file.name}.`);
-    }).catch((error: unknown) => setImportStatus(`Import failed: ${error instanceof Error ? error.message : "Invalid file"}`));
-    event.target.value = "";
-  };
-  const applyConstructionTemplate = (template: ConstructionTemplate) => {
-    const next = constructionTemplate(template);
-    restoreConstruction(next);
-    setUndoStack([]);
-    setRedoStack([]);
-    saveProjectRecoverySlot({ ...snapshot(), construction: next }, "template", `Template: ${templateLabel(template)}`);
-    refreshProjectRecoverySlots();
-    setImportStatus(`Loaded template: ${templateLabel(template)}`);
-    setProjectCenterStatus(`Created recovery point for template: ${templateLabel(template)}.`);
-    recordWorkspaceCommand(`Loaded construction template: ${templateLabel(template)}`);
-  };
+
   const runGuidedExample = (command: string) => {
     setInput(command);
-    const analysis = enrichResultWithVisualSync(interpretInput(command));
-    recordWorkspaceCommand(`Ran guided example: ${command}`);
+    const analysis = interpretInput(command);
     setResults((current) => [analysis, ...current].slice(0, 12));
-    syncResultToVisuals(analysis, command);
-  };
-  const seedSyllabusTeachingActivity = () => {
-    const focus = inferSyllabusFocus({
-      plots: plots.length,
-      results: results.length,
-      geometryObjects: geometryObjectCount,
-      spaceObjects: 7 + space3dShapes.length,
-      activeTool: tool,
-    });
-    const command = plots[0]?.expression ? `plot ${plots[0].expression}` : input || "plot a*x^2 + b";
-    const seededSteps = createSyllabusActivitySteps(focus, command);
-    setLesson((current) => ({
-      ...current,
-      title: `${focus} visual investigation`,
-      objective: `Students connect ${focus.toLowerCase()} across algebra, construction, simulation, and explanation.`,
-      teacherNotes: "Use the visible workspace first, ask students to predict a change, then let them test and justify with evidence.",
-      updatedAt: Date.now(),
-      steps: [...seededSteps, ...current.steps.filter((step) => !step.id.startsWith("dod-"))].slice(0, 12),
-    }));
-    setTeachingMode(true);
-    setProjectCenterStatus(`Seeded syllabus activity for ${focus}.`);
-    setImportStatus(`Syllabus intelligence created a ${focus} activity.`);
-    recordWorkspaceCommand(`Seeded syllabus activity: ${focus}`);
-  };
-  const applyWorkspaceObjectPatch = (object: WorkspaceMathObject, patch: Partial<WorkspaceMathObject>) => {
-    if (object.id.startsWith("geometry:")) {
-      applyGeometryWorkspacePatch(object, patch);
-      return;
-    }
-    if (object.id.startsWith("space3d:")) {
-      applySpace3DWorkspacePatch(object, patch);
+    if (analysis.interpretation === "2D plot") {
+      recordWorkspaceStep("Run guided graph", command);
+      const expression = normalizePlotExpression(command);
+      setPlots((current) => [{ id: crypto.randomUUID(), expression, name: nextFunctionName(current), color: colors[current.length % colors.length], kind: inferPlotKind(expression), visible: true }, ...current].slice(0, 8));
     }
   };
-  const runWorkspaceObjectAction = (action: ObjectListAction, object: WorkspaceMathObject) => {
-    if (runAlgebraWorkspaceObjectAction(action, object)) return;
-    if (action === "show" || action === "hide") {
-      applyWorkspaceObjectPatch(object, { visible: action === "show", status: action === "show" ? "ready" : "hidden" });
-      return;
-    }
-    if (object.id.startsWith("geometry:")) {
-      const target = geometrySelectionFromWorkspaceObjectId(object.id);
-      if (!target) return;
-      setActiveTab("geometry");
-      setSelectedGeoObject(target);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const routeKey = params.toString();
+    if (!routeKey || routeStateAppliedRef.current === routeKey) return;
+    routeStateAppliedRef.current = routeKey;
+
+    const templateId = normalizeTemplateRouteParam(params.get("template") ?? params.get("unit") ?? "");
+    const template = syllabusWorkspaceTemplates.find((item) => item.id === templateId);
+    if (template) applyTemplate(template);
+
+    const mode = (params.get("mode") ?? "").toLowerCase();
+    if (mode === "3d" || mode === "space3d") {
+      setSurface("custom-z");
+      setSurfaceExpression(params.get("surface") ?? surfaceExpression);
+      setShowSurface(true);
+      setShowSolid(true);
+      setAutoRotate3d(false);
+      setSelected3d("surface");
+      setProjectStatus("3D workspace mode loaded from URL.");
+    } else if (mode === "geometry" || mode === "2d") {
       setTool("select");
-      if (action === "duplicate") duplicateGeometryObject(target);
-      if (action === "restore") restoreGeometryObject(target);
-      if (action === "remove") deleteGeometryObject(target.kind, target.id);
-      return;
+      setProjectStatus("Geometry workspace mode loaded from URL.");
+    } else if (mode === "guided") {
+      setGuidedMode(true);
+      setTeachingMode(true);
+      setGuidedPhase("predict");
+      setProjectStatus("Guided activity mode loaded from URL.");
     }
-    if (object.id.startsWith("space3d:")) {
-      const target = space3DSelectionFromWorkspaceObjectId(object.id);
-      if (!target) return;
-      setActiveTab("space3d");
-      setSelected3dObject(target);
-      if (action === "duplicate") duplicateSelected3dObject(target);
-      if (action === "restore") restoreSelected3dObject(target);
-      if (action === "remove") deleteSelected3dObjectById(target);
+
+    if (params.get("teacher") === "1" || params.get("panel") === "teacher") {
+      setTeachingMode(true);
+      setControlsLocked(true);
+      setRevealStep(1);
+    }
+    if (params.get("panel") === "export") setProjectStatus("Export tools are ready in Stage 5.");
+    if (params.get("highContrast") === "1") setHighContrastMode(true);
+
+    const command = params.get("command");
+    if (command) {
+      const decoded = decodeURIComponent(command);
+      setInput(decoded);
+      executeWorkspaceCommand(decoded);
+    }
+  }, []);
+
+  const selectWorkspaceObject = (ref: AlgebraObjectRef) => {
+    setSelectedAlgebra(ref);
+    if (ref.kind === "point" || ref.kind === "line" || ref.kind === "circle" || ref.kind === "polygon") setSelectedGeometry({ type: ref.kind, id: ref.id });
+    if (ref.kind === "3d") setSelected3d(ref.id as ThreeObjectId);
+  };
+
+  const renameWorkspaceObject = (ref: AlgebraObjectRef, name: string) => {
+    const clean = name.trim().slice(0, 18);
+    if (!clean) return;
+    recordWorkspaceStep("Rename object", `${objectDisplayName(workspaceObjects, ref)} renamed to ${clean}.`);
+    if (ref.kind === "function") setPlots((current) => current.map((plot) => plot.id === ref.id ? { ...plot, name: clean } : plot));
+    else if (ref.kind === "3d") setTransforms3d((current) => ({ ...current, [ref.id as ThreeObjectId]: { ...current[ref.id as ThreeObjectId], name: clean } }));
+    else setConstruction((current) => renameGeometryObject(current, ref, clean));
+  };
+
+  const editWorkspaceDefinition = (ref: AlgebraObjectRef, definition: string) => {
+    recordWorkspaceStep("Edit object definition", `${objectDisplayName(workspaceObjects, ref)} = ${definition}`);
+    if (ref.kind === "function") {
+      const expression = normalizeFunctionDefinition(definition);
+      setPlots((current) => current.map((plot) => plot.id === ref.id && !plot.locked ? { ...plot, expression, kind: inferPlotKind(expression) } : plot));
+    } else if (ref.kind === "point") {
+      const coords = parsePointDefinition(definition);
+      if (coords) setConstruction((current) => solveConstruction({ ...current, points: current.points.map((point) => point.id === ref.id ? { ...point, x: coords.x, y: coords.y } : point) }, ref.id));
+    } else if (ref.kind === "line") {
+      const line = parseLineDefinition(definition);
+      if (line) setConstruction((current) => updateLineFromEquation(current, ref.id, line.m, line.b));
+    } else if (ref.kind === "circle") {
+      const circle = parseCircleDefinition(definition);
+      if (circle) setConstruction((current) => updateCircleFromDefinition(current, ref.id, circle));
+    } else if (ref.kind === "3d") {
+      const transform = parse3dDefinition(definition);
+      if (transform) setTransforms3d((current) => ({ ...current, [ref.id as ThreeObjectId]: { ...current[ref.id as ThreeObjectId], ...transform } }));
     }
   };
-  const runAlgebraWorkspaceObjectAction = (action: ObjectListAction, object: WorkspaceMathObject) => {
-    const plotId = graphPlotIdFromWorkspaceObjectId(object.id);
-    if (plotId) {
-      if (action === "show" || action === "hide") setPlots((current) => current.map((plot) => plot.id === plotId ? { ...plot, visible: action === "show" } : plot));
-      if (action === "remove") setPlots((current) => current.filter((plot) => plot.id !== plotId));
-      if (action === "duplicate") {
-        setPlots((current) => {
-          const source = current.find((plot) => plot.id === plotId);
-          if (!source) return current;
-          return [{ ...source, id: crypto.randomUUID(), expression: `${source.expression}`, color: colors[current.length % colors.length], visible: true }, ...current].slice(0, 10);
-        });
-      }
-      if (action === "restore") setPlots((current) => current.map((plot) => plot.id === plotId ? { ...plot, visible: true, kind: inferPlotKind(plot.expression) } : plot));
-      setActiveTab("solve");
-      return true;
-    }
-    const resultId = algebraResultIdFromWorkspaceObjectId(object.id);
-    if (resultId) {
-      if (action === "remove") setResults((current) => current.filter((result) => result.id !== resultId));
-      if (action === "duplicate") {
-        setResults((current) => {
-          const source = current.find((result) => result.id === resultId);
-          return source ? [{ ...source, id: crypto.randomUUID(), syncedAt: undefined }, ...current].slice(0, 12) : current;
-        });
-      }
-      if (action === "restore") setResults((current) => current.map((result) => result.id === resultId ? enrichResultWithVisualSync({ ...result, visualSync: undefined, syncedAt: undefined }) : result));
-      setActiveTab("solve");
-      return action !== "show" && action !== "hide";
-    }
-    const parameterName = algebraParameterNameFromWorkspaceObjectId(object.id);
-    if (parameterName) {
-      if (action === "restore") setGraphParameters((current) => ({ ...current, [parameterName]: parameterName === "b" ? 0 : 1 }));
-      if (action === "remove") setGraphParameters((current) => {
-        const { [parameterName]: _removed, ...rest } = current;
-        return rest;
-      });
-      setActiveTab("solve");
-      return action === "restore" || action === "remove";
-    }
-    if (object.id === "workspace-command" || object.id === "algebra:expression:current") {
-      if (action === "remove") setInput("");
-      if (action === "restore") setInput(object.value);
-      if (action === "duplicate") setResults((current) => [enrichResultWithVisualSync(interpretInput(object.value)), ...current].slice(0, 12));
-      setActiveTab("solve");
-      return action !== "show" && action !== "hide";
-    }
-    return false;
-  };
-  const applyGeometryWorkspacePatch = (object: WorkspaceMathObject, patch: Partial<WorkspaceMathObject>) => {
-    const [, kind, ...idParts] = object.id.split(":");
-    const id = idParts.join(":");
-    if (!kind || !id) return;
-    const target = { kind: kind as NonNullable<SelectedGeoObject>["kind"], id };
-    setSelectedGeoObject(target);
-    setTool("select");
-    if (patch.locked !== undefined && target.kind !== "constraint" && target.kind !== "transform") {
-      const editableKind = target.kind as Exclude<NonNullable<SelectedGeoObject>["kind"], "constraint" | "transform">;
-      commitConstruction(`Set ${editableKind} lock`, (current) => setGeometryObjectLocked(current, editableKind, target.id, Boolean(patch.locked)));
-    }
-    if (target.kind === "point") {
-      const pointPatch: Partial<Pick<GeoPoint, "label" | "x" | "y">> = {};
-      if (patch.label) pointPatch.label = patch.label.replace(/^Point\s+/i, "").slice(0, 8) || patch.label;
-      if (patch.transform?.position) {
-        pointPatch.x = clampNumber(roundTo(patch.transform.position.x, 2), 0, 640);
-        pointPatch.y = clampNumber(roundTo(patch.transform.position.y, 2), 0, 420);
-      }
-      if (Object.keys(pointPatch).length) updateGeometryPoint(target.id, pointPatch);
-    }
-    if (target.kind === "text") {
-      const nextText = patch.value ?? patch.label;
-      commitConstruction("Edit text from workspace inspector", (current) => ({
-        ...current,
-        points: patch.transform?.position
-          ? current.points.map((point) => {
-              const note = current.texts.find((item) => item.id === target.id);
-              return note?.point === point.id ? { ...point, x: clampNumber(patch.transform!.position.x, 0, 640), y: clampNumber(patch.transform!.position.y, 0, 420) } : point;
-            })
-          : current.points,
-        texts: current.texts.map((note) => note.id === target.id ? { ...note, text: nextText ?? note.text } : note),
-      }));
-    }
-    if (target.kind === "conic") {
-      commitConstruction("Edit conic from workspace inspector", (current) => ({
-        ...current,
-        points: patch.transform?.position
-          ? current.points.map((point) => {
-              const conic = current.conics.find((item) => item.id === target.id);
-              return conic?.center === point.id ? { ...point, x: clampNumber(patch.transform!.position.x, 0, 640), y: clampNumber(patch.transform!.position.y, 0, 420) } : point;
-            })
-          : current.points,
-        conics: patch.transform?.scale
-          ? current.conics.map((conic) => conic.id === target.id ? { ...conic, a: clampNumber(patch.transform!.scale.x, 0.2, 8) * 40, b: clampNumber(patch.transform!.scale.y, 0.2, 8) * 40 } : conic)
-          : current.conics,
-      }));
+
+  const patchWorkspaceObject = (ref: AlgebraObjectRef, patch: { visible?: boolean; locked?: boolean; trace?: boolean }) => {
+    recordWorkspaceStep("Edit object flags", `${objectDisplayName(workspaceObjects, ref)} flags changed.`);
+    if (ref.kind === "function") setPlots((current) => current.map((plot) => plot.id === ref.id ? { ...plot, ...patch } : plot));
+    else if (ref.kind === "3d") setTransforms3d((current) => ({ ...current, [ref.id as ThreeObjectId]: { ...current[ref.id as ThreeObjectId], ...patch } }));
+    else {
+      setConstruction((current) => patchGeometryObject(current, { type: ref.kind as GeometryObjectType, id: ref.id }, { style: { ...(geometryObjectBySelection(current, { type: ref.kind as GeometryObjectType, id: ref.id })?.style ?? {}), visible: patch.visible, trace: patch.trace } }));
+      if (typeof patch.locked === "boolean") setLockedGeometryIds((current) => patch.locked ? Array.from(new Set([...current, ref.id])) : current.filter((id) => id !== ref.id));
     }
   };
-  const applySpace3DWorkspacePatch = (object: WorkspaceMathObject, patch: Partial<WorkspaceMathObject>) => {
-    const target = object.id.replace(/^space3d:/, "") as Space3DObjectId;
-    setSelected3dObject(target);
-    if (patch.visible !== undefined) set3dObjectVisibility(target, patch.visible);
-    const transform = patch.transform;
-    const position = transform?.position ? clampVector3([transform.position.x, transform.position.y, transform.position.z]) : null;
-    const rotation = transform?.rotation ? clampRotationVector([transform.rotation.x, transform.rotation.y, transform.rotation.z]) : null;
-    const scale = transform?.scale ? clampNumber(roundTo((transform.scale.x + transform.scale.y + transform.scale.z) / 3, 3), 0.05, 8) : null;
-    if (target.startsWith("shape:")) {
-      const shapeId = target.slice("shape:".length);
-      update3dShape(shapeId, {
-        ...(patch.label ? { name: patch.label } : {}),
-        ...(patch.style?.color ? { color: patch.style.color } : {}),
-        ...(position ? { position } : {}),
-        ...(rotation ? { rotation } : {}),
-        ...(scale !== null ? { size: clampNumber(scale, 0.4, 5) } : {}),
-        ...(patch.visible !== undefined ? { visible: patch.visible } : {}),
-      });
-      return;
-    }
-    if (target === "surface") {
-      if (position) setSurfacePosition3d(position);
-      if (rotation) setSurfaceRotation3d(rotation);
-      if (scale !== null) setSurfaceScale(clampNumber(scale, 0.2, 2.5));
-    }
-    if (target === "solid") {
-      if (position) setSolidPosition3d(position);
-      if (rotation) setSolidRotation3d(rotation);
-      if (scale !== null) setHeight3d(clampNumber(scale, 0.8, 5));
-    }
-    if (target === "cross-section" && position) setCrossSection(clampNumber(position[1], -3, 3));
-    if (target === "point" && position) setPoint3d(position);
+
+  const duplicateWorkspaceObject = (ref: AlgebraObjectRef) => {
+    if (ref.kind === "function") {
+      const plot = plots.find((item) => item.id === ref.id);
+      if (!plot) return;
+      recordWorkspaceStep("Duplicate function", plot.name ?? plot.expression);
+      setPlots((current) => [{ ...plot, id: crypto.randomUUID(), name: nextFunctionName(current), expression: plot.expression, color: colors[current.length % colors.length] }, ...current]);
+    } else if (ref.kind === "3d") duplicate3dObject(ref.id as ThreeObjectId);
+    else duplicateGeometryObject({ type: ref.kind as GeometryObjectType, id: ref.id });
+  };
+
+  const deleteWorkspaceObject = (ref: AlgebraObjectRef) => {
+    if (ref.kind === "function") {
+      recordWorkspaceStep("Delete function", objectDisplayName(workspaceObjects, ref));
+      setPlots((current) => current.filter((plot) => plot.id !== ref.id));
+    } else if (ref.kind === "3d") delete3dObject(ref.id as ThreeObjectId);
+    else deleteGeometryObject({ type: ref.kind as GeometryObjectType, id: ref.id });
+  };
+
+  const replayConstructionStep = (step: ConstructionStep) => {
+    restoreProtocolSnapshot(step);
+    setProjectStatus(`Replayed: ${step.label}`);
   };
   const handleWorkspaceKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Escape") {
+      setTool("select");
+      setSelectedGeometry(null);
+      setSelectedPointIds([]);
+      setPolygonDraft([]);
+      setContextMenu(null);
+      return;
+    }
+    if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(event.key) && selectedGeometry?.type === "point") {
       event.preventDefault();
-      setAnimationPlaying(false);
-      setDragPointId(null);
-      setDragGeometryObject(null);
-      setDragging3dObject(false);
-      setPendingPointIds([]);
-      setPendingPolygonDraft([]);
-      setPendingCircleIds([]);
-      if (activeTab === "geometry") {
-        setTool("select");
-        setSelectedGeoObject(null);
-      }
-      if (activeTab === "space3d") setSelected3dObject(null);
-      closeWorkspaceContextMenu();
+      const delta = event.shiftKey ? 10 : 2;
+      const dx = event.key === "ArrowLeft" ? -delta : event.key === "ArrowRight" ? delta : 0;
+      const dy = event.key === "ArrowUp" ? -delta : event.key === "ArrowDown" ? delta : 0;
+      updateSelectedPointByDelta(selectedGeometry.id, dx, dy);
       return;
     }
     if (!(event.ctrlKey || event.metaKey)) return;
-    if (event.key.toLowerCase() === "z" && event.shiftKey) {
-      event.preventDefault();
-      redoWorkspace();
-      return;
-    }
     if (event.key.toLowerCase() === "z") {
       event.preventDefault();
-      undoWorkspace();
-      return;
+      if (event.shiftKey) redoWorkspace();
+      else undoWorkspace();
     }
     if (event.key.toLowerCase() === "y") {
       event.preventDefault();
       redoWorkspace();
-      return;
     }
     if (event.key.toLowerCase() === "s") {
       event.preventDefault();
@@ -1936,114 +1157,78 @@ export default function MathWorkspace() {
       event.preventDefault();
       runInput();
     }
-    if (event.key.toLowerCase() === "e" && event.shiftKey) {
-      event.preventDefault();
-      exportProjectBundle();
-    }
-    if (event.key.toLowerCase() === "l" && event.shiftKey) {
-      event.preventDefault();
-      void copyShareLink();
-    }
-    const tabIndex = Number(event.key);
-    if (tabIndex >= 1 && tabIndex <= workspaceTabs.length) {
-      event.preventDefault();
-      setActiveTab(workspaceTabs[tabIndex - 1].id);
-    }
   };
 
   return (
-    <WorkspaceShell
-      title="Math Workspace"
-      subtitle="A unified GeoGebra and Wolfram-style workspace for graphing, commands, results, geometry, and 3D scenes."
-      views={workspaceTabs}
-      activeView={activeTab}
-      commandValue={input}
-      onCommandChange={setInput}
-      onCommandRun={runInput}
-      onViewChange={(viewId) => setActiveTab(viewId as WorkspaceTab)}
-      onKeyDown={handleWorkspaceKeyDown}
-      onObjectChange={applyWorkspaceObjectPatch}
-      onObjectAction={runWorkspaceObjectAction}
-    >
-      <input ref={imageFileRef} type="file" accept="image/*" className="hidden" onChange={importGeometryImage} />
+    <div ref={workspaceRef} className="space-y-6" onKeyDown={handleWorkspaceKeyDown}>
+      <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />
 
-      {activeTab === "tools" && (
-      <SectionCard title="Workspace Tools" description="Save, export, teach, search formulas, and launch guided examples." className="workspace-stage-card flex flex-col" compact>
-        <div className="grid min-h-0 min-w-0 flex-1 gap-3 overflow-hidden 2xl:grid-cols-[minmax(0,1fr)_320px]">
-          <div className="thin-scrollbar min-h-0 min-w-0 space-y-4 overflow-auto pr-1">
+      {!singleView && <WorkspaceModeTabs active={workspaceView} onChange={setWorkspaceView} />}
+      <CompactWorkspaceBar
+        activeTemplate={activeTemplate}
+        dynamicHealth={dynamicHealth}
+        qaReport={qaReport}
+        teachingMode={teachingMode}
+        performanceMode={performanceMode}
+        onSave={saveWorkspace}
+        onLoad={loadWorkspace}
+        onUndo={undoWorkspace}
+        onRedo={redoWorkspace}
+        onExportJson={exportWorkspaceJson}
+        onExportPng={exportGeometryPng}
+        onShare={exportShareUrl}
+        onToggleTeach={() => {
+          setTeachingMode((value) => !value);
+          setWorkspaceView("teach");
+        }}
+        onRunQa={runQaNow}
+        onPerformance={setPerformanceMode}
+      />
+
+      {workspaceView === "teach" && <SectionCard title="Teaching, Library, And Export" description="Launch syllabus workspaces, guide students, present steps, and manage browser-only projects.">
+        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
+          <div className="space-y-4">
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={saveWorkspace} className="action-secondary"><Save className="h-4 w-4" />Save workspace</button>
               <button type="button" onClick={loadWorkspace} className="action-secondary"><Download className="h-4 w-4" />Load workspace</button>
+              <button type="button" onClick={saveProjectToLibrary} className="action-secondary"><Save className="h-4 w-4" />Save offline</button>
               <button type="button" onClick={exportWorkspaceJson} className="action-secondary"><Download className="h-4 w-4" />Export JSON</button>
-              <button type="button" onClick={exportProjectBundle} className="action-secondary"><Download className="h-4 w-4" />Project bundle</button>
-              <button type="button" onClick={() => importFileRef.current?.click()} className="action-secondary"><Download className="h-4 w-4" />Import JSON</button>
               <button type="button" onClick={exportResultsCsv} className="action-secondary"><Download className="h-4 w-4" />Export CSV</button>
-              <button type="button" onClick={exportGraphSvg} className="action-secondary"><Download className="h-4 w-4" />Export graph SVG</button>
+              <button type="button" onClick={exportGeometryPng} className="action-secondary"><Download className="h-4 w-4" />Export PNG</button>
               <button type="button" onClick={exportGeometrySvg} className="action-secondary"><Download className="h-4 w-4" />Export geometry SVG</button>
-              <button type="button" onClick={exportLessonJson} className="action-secondary"><Download className="h-4 w-4" />Export lesson</button>
-              <button type="button" onClick={exportLessonWorksheet} className="action-secondary"><Download className="h-4 w-4" />Worksheet</button>
-              <button type="button" onClick={exportPracticeReport} className="action-secondary"><Download className="h-4 w-4" />Practice report</button>
+              <button type="button" onClick={exportWorksheetPdf} className="action-secondary"><Download className="h-4 w-4" />Worksheet PDF</button>
+              <button type="button" onClick={exportLessonPack} className="action-secondary"><Download className="h-4 w-4" />Lesson pack</button>
+              <button type="button" onClick={exportActivityJournal} className="action-secondary"><Download className="h-4 w-4" />Journal CSV</button>
+              <button type="button" onClick={exportShareUrl} className="action-secondary"><Download className="h-4 w-4" />Share URL</button>
+              <button type="button" onClick={copyTeacherPresentationUrl} className="action-secondary"><Presentation className="h-4 w-4" />Teacher link</button>
               <button type="button" onClick={() => setTeachingMode((value) => !value)} className={teachingMode ? "action-primary" : "action-secondary"}><Presentation className="h-4 w-4" />Teaching mode</button>
+              <button type="button" onClick={undoWorkspace} className="action-secondary"><RotateCcw className="h-4 w-4" />Undo {undoStack[0]?.label ?? "change"}</button>
+              <button type="button" onClick={redoWorkspace} className="action-secondary"><RotateCcw className="h-4 w-4" />Redo {redoStack[0]?.label ?? "change"}</button>
             </div>
-            <input ref={importFileRef} type="file" accept="application/json,.json" className="hidden" onChange={importWorkspaceFile} />
-            <ReleaseReadinessPanel health={releaseHealth} onSeedSyllabusActivity={seedSyllabusTeachingActivity} onEnableTeachingMode={() => setTeachingMode(true)} />
-            <BrowserProjectCenterPanel
-              status={projectCenterStatus}
-              shareStatus={shareStatus}
-              summary={currentProjectSummary}
-              slots={projectRecoverySlots}
-              lastAutosaveAt={lastAutosaveAt}
-              onSave={saveWorkspace}
-              onCreateRecoveryPoint={createManualRecoveryPoint}
-              onRestore={restoreProjectRecoverySlot}
-              onDelete={deleteProjectRecoverySlot}
-              onClear={clearProjectRecoverySlots}
-              onExportBundle={exportProjectBundle}
-              onImport={() => importFileRef.current?.click()}
-              onCopyShareLink={() => void copyShareLink()}
-              onExportShareCapsule={exportShareCapsule}
-              onLoadShareLink={loadShareLinkFromUrl}
-            />
-            <ImportExportSuitePanel importStatus={importStatus} onTemplate={applyConstructionTemplate} />
-            <ClassroomAuthoringPanel
-              lesson={lesson}
-              onLessonChange={touchLesson}
-              onStepChange={updateLessonStep}
-              onAddStep={addLessonStep}
-              onDeleteStep={deleteLessonStep}
-              onMoveStep={moveLessonStep}
-              onRunStep={runLessonStep}
-              onReset={() => setLesson(createDefaultLesson())}
-            />
-            <PracticeAssessmentPanel
-              lesson={lesson}
-              responses={practiceResponses}
-              report={practiceReport}
-              onAnswer={updatePracticeAnswer}
-              onCheck={checkPracticeStep}
-              onRunStep={runLessonStep}
-              onReset={() => setPracticeResponses({})}
-              onExport={exportPracticeReport}
-            />
+            <SyllabusTemplatePanel templates={syllabusWorkspaceTemplates} active={activeTemplate.id} onApply={applyTemplate} />
+            <GuidedActivityPanel active={guidedMode} phase={guidedPhase} template={activeTemplate} journal={activityJournal} onToggle={() => setGuidedMode((value) => !value)} onPhase={setGuidedPhase} onJournal={updateGuidedActivityEntry} onCompletePhase={markGuidedPhaseComplete} />
+            <TeacherPresentationPanel active={teachingMode} locked={controlsLocked} revealStep={revealStep} template={activeTemplate} notes={presentationNotes} journal={activityJournal} onToggle={setTeachingMode} onLock={setControlsLocked} onReveal={setRevealStep} onNotes={setPresentationNotes} onCopyLink={copyTeacherPresentationUrl} />
+            <OfflineProjectLibraryPanel projects={projectLibrary} status={projectStatus} onSave={saveProjectToLibrary} onRestore={restoreProject} onDelete={deleteProject} onClear={clearProjects} />
+            <ProductionQualityPanel highContrast={highContrastMode} performanceMode={performanceMode} qaReport={qaReport} onHighContrast={setHighContrastMode} onPerformance={setPerformanceMode} onRunQa={runQaNow} />
             {teachingMode && (
               <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">
-                <p className="font-bold">Teaching mode is active</p>
-                <p>Use guided examples, keep result steps visible, and export the construction or results after the demo.</p>
+                <p className="font-bold">Teacher presentation mode is active</p>
+                <p>{controlsLocked ? "Student-facing controls are locked for explanation and reveal steps." : "Controls are open for live manipulation and discussion."}</p>
               </div>
             )}
             <div>
               <h3 className="font-bold">Guided Examples</h3>
-              <div className="mt-3 grid min-w-0 gap-2 md:grid-cols-2">
+              <div className="mt-3 grid gap-2 md:grid-cols-2">
                 {guidedExamples.map((example) => <button key={example.title} type="button" onClick={() => runGuidedExample(example.command)} className="rounded-2xl border border-slate-200 bg-white/70 p-4 text-left transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5"><p className="font-semibold">{example.title}</p><p className="mt-1 font-mono text-xs text-slate-500 dark:text-slate-400">{example.command}</p></button>)}
               </div>
             </div>
           </div>
-          <div className="thin-scrollbar min-h-0 min-w-0 overflow-auto pr-1">
+          <div>
             <label className="block">
               <span className="flex items-center gap-2 text-sm font-semibold"><Search className="h-4 w-4 text-cyan-500" />Formula Library</span>
               <input value={formulaSearch} onChange={(event) => setFormulaSearch(event.target.value)} className="mt-2 w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm dark:border-white/10 dark:bg-slate-950" placeholder="Search formula, topic, command..." />
             </label>
-            <div className="thin-scrollbar mt-3 max-h-[360px] space-y-2 overflow-y-auto pr-1">
+            <div className="mt-3 max-h-[360px] space-y-2 overflow-y-auto pr-1">
               {filteredFormulas.map((item) => (
                 <button key={item.title} type="button" onClick={() => setInput(item.command)} className="w-full rounded-2xl bg-slate-100 p-3 text-left transition hover:bg-cyan-100 dark:bg-white/10 dark:hover:bg-cyan-300/15">
                   <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{item.topic}</p>
@@ -2054,13 +1239,11 @@ export default function MathWorkspace() {
             </div>
           </div>
         </div>
-      </SectionCard>
-      )}
+      </SectionCard>}
 
-      {activeTab === "solve" && (
-      <SectionCard title="CAS and Graphing" description="Run calculations, graph functions, inspect results, and sync visual outputs." className="workspace-stage-card flex flex-col" compact>
-        <div className="grid min-h-0 min-w-0 flex-1 gap-3 overflow-hidden 2xl:grid-cols-[minmax(0,1fr)_320px]">
-          <div className="thin-scrollbar min-h-0 min-w-0 space-y-3 overflow-auto pr-1">
+      {workspaceView === "graph" && <SectionCard title="Graph, CAS, And Algebra" description="Type a calculation or command such as plot, solve, factor, derivative, integral, table, roots, extrema, or intersection.">
+        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
+          <div className="space-y-4">
             <MathKeyboardInput
               value={input}
               onChange={setInput}
@@ -2071,591 +1254,504 @@ export default function MathWorkspace() {
               examples={examples}
               onExample={setInput}
             />
-            <div ref={graphExportRef} className="min-w-0">
-              <GraphPanel plots={plots} onChange={setPlots} parameters={graphParameters} onParametersChange={setGraphParameters} />
+            <div ref={graphExportRef}>
+              <GraphPanel
+                plots={plots}
+                onChange={handlePlotsChange}
+                tableRange={{ start: tableStart, end: tableEnd, step: tableStep }}
+                onTableRangeChange={({ start, end, step }) => {
+                  setTableStart(start);
+                  setTableEnd(end);
+                  setTableStep(step);
+                }}
+              />
             </div>
-            <AnimationStudio
-              playing={animationPlaying}
-              time={animationTime}
-              duration={animationDuration}
-              target={animationTarget}
-              parameter={activeAnimationParameter}
-              parameterNames={animationParameterNames}
-              min={animationMin}
-              max={animationMax}
-              snapshots={animationSnapshots}
-              onPlaying={setAnimationPlaying}
-              onTime={setAnimationTime}
-              onDuration={setAnimationDuration}
-              onTarget={setAnimationTarget}
-              onParameter={setAnimationParameter}
-              onMin={setAnimationMin}
-              onMax={setAnimationMax}
-              onCapture={captureAnimationSnapshot}
-              onApplySnapshot={applyAnimationSnapshot}
-              onClearSnapshots={() => setAnimationSnapshots([])}
-              onExport={exportMotionJson}
-            />
           </div>
-          <div className="thin-scrollbar min-h-0 min-w-0 space-y-3 overflow-auto pr-1">
+          <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h2 className="font-bold">Results</h2>
               <button type="button" onClick={() => setResults([])} className="rounded-full bg-slate-100 p-2 dark:bg-white/10" title="Clear results" aria-label="Clear results"><Trash2 className="h-4 w-4" /></button>
             </div>
-            {results.length === 0 ? <EmptyPanel text="Run a command to see interpretation, exact result, numeric checks, and related output." /> : results.map((result) => <ResultCardView key={result.id} result={result} onVisualSync={runVisualSyncLink} />)}
+            {results.length === 0 ? <EmptyPanel text="Run a command to see interpretation, exact result, numeric checks, and related output." /> : results.map((result) => <ResultCardView key={result.id} result={result} />)}
           </div>
         </div>
-      </SectionCard>
-      )}
+        <div className="mt-5">
+          <AlgebraObjectsPanel
+            objects={workspaceObjects}
+            selected={selectedAlgebra}
+            protocol={protocol}
+            graph={dynamicGraph}
+            graphHealth={dynamicHealth}
+            commandSummary={commandSummary}
+            onSelect={selectWorkspaceObject}
+            onRename={renameWorkspaceObject}
+            onEditDefinition={editWorkspaceDefinition}
+            onPatch={patchWorkspaceObject}
+            onDuplicate={duplicateWorkspaceObject}
+            onDelete={deleteWorkspaceObject}
+            onReplay={replayConstructionStep}
+            onContextMenu={(event, ref) => {
+              event.preventDefault();
+              setSelectedAlgebra(ref);
+              setContextMenu({ x: event.clientX, y: event.clientY, target: { type: "algebra", ref } });
+            }}
+          />
+        </div>
+      </SectionCard>}
 
-      {activeTab === "space3d" && (
-      <SectionCard title="3D Graphing and Solids" className="workspace-stage-card flex flex-col [&>div:first-of-type]:mb-1" compact>
-        <div className="mb-2 flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/80 px-3 py-2 dark:border-white/10 dark:bg-slate-950/50">
-          <div className="min-w-0">
-            <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">3D viewport</p>
-            <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-              {autoRotate3d ? "Rotation is running" : "Rotation is paused"} · 3D scene graph: {7 + space3dShapes.length} objects
-            </p>
-          </div>
-          <button type="button" onClick={() => setAutoRotate3d((value) => !value)} className={autoRotate3d ? "action-primary justify-center" : "tool-button justify-center"}>
-            {autoRotate3d ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-            {autoRotate3d ? "Pause rotation" : "Start rotation"}
-          </button>
+      {workspaceView === "data" && <SectionCard title="CAS, Spreadsheet, Tables, And Commands" description="Use GeoGebra-style commands, editable value tables, spreadsheet formulas, regression models, and live function analysis.">
+        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px]">
+          <SpreadsheetPanel
+            grid={spreadsheet}
+            onChange={setSpreadsheet}
+            onScatter={(points) => {
+              recordWorkspaceStep("Add spreadsheet scatter", `${points.length} spreadsheet points linked to graph.`);
+              setPlots((current) => [{ id: crypto.randomUUID(), expression: "spreadsheet data", color: "#ec4899", kind: "scatter" as PlotKind, points, visible: true }, ...current].slice(0, 10));
+            }}
+            onRegression={(model, points) => {
+              const regression = regressionModel(points, model);
+              recordWorkspaceStep("Add spreadsheet regression", `${model} regression from spreadsheet.`);
+              setPlots((current) => [{ id: crypto.randomUUID(), expression: regression.expression, color: "#14b8a6", kind: "regression" as PlotKind, points, visible: true }, ...current].slice(0, 10));
+              setResults((current) => [{ id: crypto.randomUUID(), input: `${model} regression`, interpretation: "Spreadsheet regression", result: regression.expression, detail: regression.detail, table: points.slice(0, 12), graphExpression: regression.expression }, ...current].slice(0, 12));
+            }}
+          />
+          <FunctionAnalysisPanel
+            plot={plots.find((plot) => plot.visible !== false && (plot.kind ?? inferPlotKind(plot.expression)) === "function") ?? plots[0]}
+            onCommand={(command) => {
+              setInput(command);
+              const analysis = interpretInput(command);
+              setResults((current) => [analysis, ...current].slice(0, 12));
+              if (analysis.graphExpression) setPlots((current) => [{ id: crypto.randomUUID(), expression: analysis.graphExpression!, color: colors[current.length % colors.length], kind: "function" as PlotKind, visible: true }, ...current].slice(0, 10));
+            }}
+          />
         </div>
-        <div
-          className="grid min-h-0 min-w-0 flex-1 gap-3 overflow-hidden 2xl:grid-cols-[var(--space-controls)_minmax(0,1fr)]"
-          style={{ "--space-controls": spaceControlsOpen ? "320px" : "56px" } as CSSProperties}
-        >
-          <div className="thin-scrollbar min-h-0 min-w-0 space-y-3 overflow-auto pr-1">
-            <button
-              type="button"
-              className="tool-button w-full justify-between"
-              onClick={() => setSpaceControlsOpen((value) => !value)}
-              aria-label={spaceControlsOpen ? "Collapse 3D controls" : "Expand 3D controls"}
-            >
-              {spaceControlsOpen ? <PanelLeftClose className="h-4 w-4" /> : <PanelLeftOpen className="h-4 w-4" />}
-              {spaceControlsOpen && <span>3D controls</span>}
-            </button>
-            {spaceControlsOpen ? (
-            <>
+      </SectionCard>}
+
+      {workspaceView === "3d" && <SectionCard title="3D Graphing And Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls.">
+        <div className="grid gap-5 xl:grid-cols-[330px_minmax(0,1fr)]">
+          <div className="space-y-4">
             <label className="block rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-950/40">
               <span className="text-sm font-semibold">Surface</span>
               <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={surface} onChange={(event) => setSurface(event.target.value as SurfaceKind)}>
-                {surfaceOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                <option value="paraboloid">z = scale(x^2 + y^2)</option>
+                <option value="saddle">z = scale(x^2 - y^2)</option>
+                <option value="wave">z = scale sin(x) cos(y)</option>
+                <option value="plane">z = scale(x + y)</option>
+                <option value="ripple">z = scale sin(x^2+y^2)</option>
+                <option value="cone-surface">z = scale sqrt(x^2+y^2)</option>
+                <option value="custom-z">Custom z=f(x,y)</option>
+                <option value="parametric">Parametric torus preset</option>
+                <option value="implicit">Implicit sphere preset</option>
               </select>
+              <input value={surfaceExpression} onChange={(event) => setSurfaceExpression(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-900" placeholder="sin(x) * cos(y)" />
             </label>
             <label className="block rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-950/40">
               <span className="text-sm font-semibold">Solid</span>
               <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={solid} onChange={(event) => setSolid(event.target.value as SolidKind)}>
-                {solidOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                <option value="cube">Cube</option>
+                <option value="sphere">Sphere</option>
+                <option value="cylinder">Cylinder</option>
+                <option value="cone">Cone</option>
+                <option value="prism">Prism</option>
+                <option value="pyramid">Pyramid</option>
+                <option value="polyhedron">Polyhedron</option>
               </select>
-              <button type="button" onClick={() => add3dShape(solid)} className="action-primary mt-2 w-full justify-center">
-                <Plus className="h-4 w-4" />Add selected solid
-              </button>
             </label>
-            <div className="rounded-2xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-slate-950/40">
-              <div className="flex items-center justify-between gap-2">
-                <p className="text-sm font-semibold">3D shape palette</p>
-                <span className="mini-chip">{space3dShapes.length} added</span>
-              </div>
-              <div className="mt-2 grid grid-cols-3 gap-2">
-                {shapePalette3d.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <button key={item.kind} type="button" onClick={() => add3dShape(item.kind)} className="tool-button min-h-[58px] flex-col justify-center gap-1 px-2 py-2 text-[11px]">
-                      <Icon className="h-4 w-4" />{item.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-slate-950/40">
-              <p className="text-sm font-semibold">Scene objects</p>
-              <div className="mt-2 grid grid-cols-2 gap-2">
-                {(["surface", "solid", "cross-section", "vector", "point", "axes", "grid"] as BuiltinSpace3DObjectId[]).map((object) => (
-                  <button key={object} type="button" onClick={() => add3dObject(object)} className={selected3dObject === object ? "action-primary justify-center capitalize" : "tool-button justify-center capitalize"}>
-                    <Plus className="h-4 w-4" />{object.replace("-", " ")}
-                  </button>
-                ))}
-                {selected3dShape && <button type="button" onClick={duplicateSelected3dShape} className="tool-button justify-center"><ClipboardCopy className="h-4 w-4" />Duplicate</button>}
-              </div>
-            </div>
             <SliderControl label="Surface scale" value={surfaceScale} min={0.2} max={2.5} step={0.1} onChange={setSurfaceScale} />
-            <SliderControl label="Surface domain / clip" value={surfaceDomain} min={1.2} max={3.5} step={0.1} onChange={setSurfaceDomain} />
             <SliderControl label="Solid height / radius" value={height3d} min={0.8} max={5} step={0.1} onChange={setHeight3d} />
             <SliderControl label="Cross-section z" value={crossSection} min={-3} max={3} step={0.1} onChange={setCrossSection} />
+            <SliderControl label="Scene animation speed" value={sceneAnimationSpeed} min={0} max={0.6} step={0.02} onChange={setSceneAnimationSpeed} />
             <div className="grid grid-cols-2 gap-2">
               <Toggle checked={showSurface} label="Surface" onChange={setShowSurface} />
               <Toggle checked={showSolid} label="Solid" onChange={setShowSolid} />
-              <Toggle checked={showAxes3d} label="Axes" onChange={setShowAxes3d} />
-              <Toggle checked={showGrid3d} label="Grid" onChange={setShowGrid3d} />
-              <Toggle checked={showCrossSection3d} label="Slice" onChange={setShowCrossSection3d} />
-              <Toggle checked={showVector3d} label="Vector" onChange={setShowVector3d} />
-              <Toggle checked={showPoint3d} label="Point" onChange={setShowPoint3d} />
-              <button type="button" onClick={() => setAutoRotate3d((value) => !value)} className={autoRotate3d ? "action-primary justify-center" : "tool-button justify-center"}>
-                {autoRotate3d ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                {autoRotate3d ? "Pause rotation" : "Start rotation"}
-              </button>
-              <button type="button" onClick={reset3dScene} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset</button>
+              <Toggle checked={autoRotate3d} label="Auto rotate" onChange={setAutoRotate3d} />
+              <button type="button" onClick={() => setAutoRotate3d(false)} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Pause rotation</button>
+              <button type="button" onClick={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); }} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset</button>
             </div>
+            <ThreeCreationPanel onCreate={(id) => { recordWorkspaceStep("Create 3D object", id); setTransforms3d((current) => ({ ...current, [id]: { ...current[id], visible: true } })); setSelected3d(id); }} />
+            <CameraPresetPanel preset={cameraPreset3d} onPreset={setCameraPreset3d} />
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))} className="action-secondary"><ZoomOut className="h-4 w-4" />Zoom out</button>
               <button type="button" onClick={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))} className="action-secondary"><ZoomIn className="h-4 w-4" />Zoom in</button>
-              <button type="button" onClick={deleteSelected3dObject} className="math-tool-button-danger px-3"><Trash2 className="h-4 w-4" />Delete selected</button>
             </div>
+            <ObjectList3D selected={selected3d} transforms={transforms3d} onSelect={setSelected3d} onRestore={restore3dObject} onDelete={delete3dObject} />
+            <Properties3DPanel selected={selected3d} transform={transforms3d[selected3d]} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
             <div className="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
               <p className="font-bold text-slate-900 dark:text-white">3D Readout</p>
               <p>Surface: {surfaceFormula(surface, surfaceScale)}</p>
               <p>Cross-section plane: z = {roundTo(crossSection, 2)}</p>
-              <p>Surface range: {roundTo(space3dMeasurements.surfaceSampleMin, 2)} to {roundTo(space3dMeasurements.surfaceSampleMax, 2)}</p>
-              <p>Vector length: {roundTo(space3dMeasurements.vectorLength, 2)}</p>
               <p>Camera zoom: {roundTo(zoom3d * 100, 0)}%</p>
             </div>
-            </>
-            ) : (
-              <div className="flex flex-col items-center gap-2">
-                <button type="button" onClick={() => setAutoRotate3d((value) => !value)} className={autoRotate3d ? "action-primary aspect-square w-full p-0" : "tool-button aspect-square w-full p-0"} aria-label={autoRotate3d ? "Pause rotation" : "Start rotation"}>
-                  {autoRotate3d ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                </button>
-                <button type="button" onClick={() => setZoom3d(1)} className="tool-button aspect-square w-full p-0" aria-label="Reset 3D zoom">
-                  <RotateCcw className="h-4 w-4" />
-                </button>
-              </div>
-            )}
+            <GizmoReadout3D selected={selected3d} transform={transforms3d[selected3d]} />
           </div>
 
-          <div className="thin-scrollbar min-h-0 min-w-0 space-y-2 overflow-auto pr-1">
-            <div onContextMenu={(event) => openWorkspaceContextMenu(event, "space3d")}>
-            <ThreeSceneWrapper
-              height="clamp(420px, calc(100vh - 260px), 620px)"
-              mobileHeight="280px"
-              interactionLabel="Left drag rotate - wheel/pinch zoom - right-click menu"
-              sceneLabel={autoRotate3d ? "Workspace 3D - rotating" : "Workspace 3D - paused"}
-            >
+          <div className="space-y-3">
+            <ThreeSceneWrapper height="560px" mobileHeight="min(70vh, 420px)" interactionLabel="Drag rotate - pinch zoom">
               <ambientLight intensity={0.75} />
               <directionalLight position={[5, 6, 4]} intensity={1.2} />
               <Workspace3DScene
                 surface={surface}
+                surfaceExpression={surfaceExpression}
                 solid={solid}
                 surfaceScale={surfaceScale}
                 solidSize={height3d}
                 crossSection={crossSection}
-                surfaceDomain={surfaceDomain}
-                surfacePosition={surfacePosition3d}
-                surfaceRotation={surfaceRotation3d}
-                solidPosition={solidPosition3d}
-                solidRotation={solidRotation3d}
-                vectorStart={vectorStart3d}
-                vectorEnd={vectorEnd3d}
-                point={point3d}
-                colors={space3dColors}
-                shapes={space3dShapes}
                 showSurface={showSurface}
                 showSolid={showSolid}
-                showAxes={showAxes3d}
-                showGrid={showGrid3d}
-                showCrossSection={showCrossSection3d}
-                showVector={showVector3d}
-                showPoint={showPoint3d}
                 autoRotate={autoRotate3d}
+                animationSpeed={sceneAnimationSpeed}
                 zoom={zoom3d}
-                selectedObject={selected3dObject}
-                onSelect={setSelected3dObject}
-                onVectorStart={setVectorStart3d}
-                onVectorEnd={setVectorEnd3d}
-                onPoint={setPoint3d}
-                onSurfacePosition={setSurfacePosition3d}
-                onSolidPosition={setSolidPosition3d}
-                onShapeChange={update3dShape}
-                onSurfaceScale={setSurfaceScale}
-                onSurfaceDomain={setSurfaceDomain}
-                onSolidSize={setHeight3d}
-                onCrossSection={setCrossSection}
-                onDragActive={setDragging3dObject}
+                performanceMode={performanceMode}
+                cameraPreset={cameraPreset3d}
+                selected={selected3d}
+                transforms={transforms3d}
+                dragging={drag3d}
+                onSelect={setSelected3d}
+                onDrag={setDrag3d}
+                onTransform={update3dTransform}
+                onContextMenu={(event, id) => {
+                  event.stopPropagation();
+                  setSelected3d(id);
+                  setContextMenu({ x: event.nativeEvent.clientX, y: event.nativeEvent.clientY, target: { type: "3d", id } });
+                }}
               />
-              <OrbitControls enablePan enableZoom enableDamping enabled={!dragging3dObject} autoRotate={autoRotate3d && !dragging3dObject} autoRotateSpeed={0.6} />
+              <OrbitControls enablePan enableZoom enableDamping />
             </ThreeSceneWrapper>
-            </div>
-            <Workspace3DInspector
-              surface={surface}
-              solid={solid}
-              surfaceScale={surfaceScale}
-              solidSize={height3d}
-              crossSection={crossSection}
-              surfaceDomain={surfaceDomain}
-              surfacePosition={surfacePosition3d}
-              surfaceRotation={surfaceRotation3d}
-              solidPosition={solidPosition3d}
-              solidRotation={solidRotation3d}
-              vectorStart={vectorStart3d}
-              vectorEnd={vectorEnd3d}
-              point={point3d}
-              colors={space3dColors}
-              shapes={space3dShapes}
-              selectedShape={selected3dShape}
-              measurements={space3dMeasurements}
-              showSurface={showSurface}
-              showSolid={showSolid}
-              showAxes={showAxes3d}
-              showGrid={showGrid3d}
-              showCrossSection={showCrossSection3d}
-              showVector={showVector3d}
-              showPoint={showPoint3d}
-              autoRotate={autoRotate3d}
-              zoom={zoom3d}
-              selectedObject={selected3dObject}
-              onSurface={setSurface}
-              onSolid={setSolid}
-              onSurfaceScale={setSurfaceScale}
-              onSolidSize={setHeight3d}
-              onCrossSection={setCrossSection}
-              onSurfaceDomain={setSurfaceDomain}
-              onSurfacePosition={setSurfacePosition3d}
-              onSurfaceRotation={setSurfaceRotation3d}
-              onSolidPosition={setSolidPosition3d}
-              onSolidRotation={setSolidRotation3d}
-              onVectorStart={setVectorStart3d}
-              onVectorEnd={setVectorEnd3d}
-              onPoint={setPoint3d}
-              onColor={(id, color) => setSpace3dColors((current) => ({ ...current, [id]: color }))}
-              onAddShape={add3dShape}
-              onShapeChange={update3dShape}
-              onDuplicateShape={duplicateSelected3dShape}
-              onShowSurface={setShowSurface}
-              onShowSolid={setShowSolid}
-              onShowAxes={setShowAxes3d}
-              onShowGrid={setShowGrid3d}
-              onShowCrossSection={setShowCrossSection3d}
-              onShowVector={setShowVector3d}
-              onShowPoint={setShowPoint3d}
-              onAutoRotate={setAutoRotate3d}
-              onZoom={setZoom3d}
-              onSelect={setSelected3dObject}
-              onDeleteSelected={deleteSelected3dObject}
-              onRestoreAll={restoreAll3dObjects}
-            />
-            <div className="grid gap-2 md:grid-cols-3">
+            <div className="grid gap-3 md:grid-cols-3">
               <InfoPill title="Axes" text="X, Y, and Z directions are shown with colored vectors." />
               <InfoPill title="Surface" text="The mesh updates from the selected z=f(x,y) function." />
               <InfoPill title="Cross-section" text="The amber plane slices the surface at a chosen z-level." />
             </div>
           </div>
         </div>
-      </SectionCard>
-      )}
+      </SectionCard>}
 
-      {activeTab === "geometry" && (
-      <SectionCard title="Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements." className="workspace-stage-card flex flex-col" compact>
-        <div className="grid min-h-0 min-w-0 flex-1 gap-3 overflow-hidden 2xl:grid-cols-[minmax(0,1fr)_320px]">
-          <div className="grid min-h-0 min-w-0 gap-2 overflow-hidden lg:grid-cols-[238px_minmax(0,1fr)]">
-            <GeometryToolPalette
-              activeTool={tool}
-              onTool={chooseGeometryTool}
-              onDelete={deleteSelectedGeometry}
-              onUndo={undoConstruction}
-              onRedo={redoConstruction}
-              onReset={resetGeometryConstruction}
-              onSave={saveConstruction}
-              onLoad={loadConstruction}
-              onTemplate={addGeometryTemplate}
-              onTransform={applyGeometryTransform}
-              onTrace={traceSelectedPoint}
-              onStopTrace={stopTrace}
-              onClearTrace={clearLocusTraces}
-              tracing={Boolean(activeTracePointId)}
-            />
-            <div className="grid min-h-0 min-w-0 grid-rows-[auto_minmax(0,1fr)_auto] gap-2 overflow-hidden">
-              <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/90 px-3 py-2 text-xs font-bold text-slate-700 dark:border-white/10 dark:bg-slate-950/70 dark:text-slate-200">
-                <span>2D scene graph: {construction.points.length + construction.lines.length + construction.circles.length + construction.polygons.length + construction.angles.length + construction.arcs.length + construction.texts.length + construction.conics.length} objects</span>
-                <div className="flex flex-wrap gap-2">
-                  <button type="button" className="mini-chip bg-cyan-100 text-cyan-800 dark:bg-cyan-400/20 dark:text-cyan-100" onClick={() => requestImageImport({ x: 320, y: 210 })}>
-                    Add image
-                  </button>
-                  <button type="button" className={snapGeometryToGrid ? "mini-chip bg-cyan-100 text-cyan-800 dark:bg-cyan-400/20 dark:text-cyan-100" : "mini-chip"} onClick={() => setSnapGeometryToGrid((value) => !value)}>
-                    Grid snap {snapGeometryToGrid ? "on" : "off"}
-                  </button>
-                </div>
-              </div>
-              <svg
-                ref={svgRef}
-                data-export="geometry"
-                viewBox="0 0 640 420"
-                onPointerDown={handleBoardPointerDown}
-                onPointerMove={handleBoardPointerMove}
-                onPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); setDragPointId(null); setDragGeometryObject(null); }}
-                onPointerLeave={() => { setDragPointId(null); setDragGeometryObject(null); }}
-                onContextMenu={(event) => openWorkspaceContextMenu(event, "geometry")}
-                className="workspace-canvas w-full max-w-full touch-none rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"
-              >
-                <title>Math Universe Geometry Construction</title>
-                <GeometryGrid />
-                <LocusTraceOverlay traces={locusTraces} />
-                <ConstraintOverlays construction={construction} />
-                {construction.polygons.map((polygon) => <GeometryPolygon key={polygon.id} polygon={polygon} points={construction.points} selected={selectedGeoObject?.kind === "polygon" && selectedGeoObject.id === polygon.id} onSelect={(event) => beginGeometryObjectDrag(event, { kind: "polygon", id: polygon.id })} />)}
-                {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} selected={selectedGeoObject?.kind === "arc" && selectedGeoObject.id === arc.id} onSelect={(event) => beginGeometryObjectDrag(event, { kind: "arc", id: arc.id })} />)}
-                {construction.conics.map((conic) => <GeometryConic key={conic.id} conic={conic} points={construction.points} selected={selectedGeoObject?.kind === "conic" && selectedGeoObject.id === conic.id} onSelect={(event) => beginGeometryObjectDrag(event, { kind: "conic", id: conic.id })} />)}
-                {construction.angles.map((angle) => <GeometryAngle key={angle.id} angle={angle} points={construction.points} selected={selectedGeoObject?.kind === "angle" && selectedGeoObject.id === angle.id} onSelect={(event) => beginGeometryObjectDrag(event, { kind: "angle", id: angle.id })} />)}
-                {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} selected={selectedGeoObject?.kind === "line" && selectedGeoObject.id === line.id} onSelect={(event) => { handleLinePick(line.id); beginGeometryObjectDrag(event, { kind: "line", id: line.id }); }} />)}
-                {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} selected={(selectedGeoObject?.kind === "circle" && selectedGeoObject.id === circle.id) || selectedCircleIds.includes(circle.id)} onSelect={(event) => { handleCirclePick(circle.id); beginGeometryObjectDrag(event, { kind: "circle", id: circle.id }); }} />)}
-                {construction.texts.map((note) => <GeometryTextNote key={note.id} note={note} points={construction.points} selected={selectedGeoObject?.kind === "text" && selectedGeoObject.id === note.id} onSelect={(event) => beginGeometryObjectDrag(event, { kind: "text", id: note.id })} />)}
-                {polygonDraft.length > 1 && <polyline points={polygonDraft.map((id) => pointById(construction.points, id)).filter(Boolean).map((point) => `${point!.x},${point!.y}`).join(" ")} fill="none" stroke="#f59e0b" strokeDasharray="8 6" strokeWidth="3" />}
-                {construction.points.map((point) => (
-                  <g key={point.id} data-point-id={point.id} className="cursor-pointer">
-                    <circle cx={point.x} cy={point.y} r={selectedGeoObject?.kind === "point" && selectedGeoObject.id === point.id ? "12" : "9"} fill={point.color ?? "#06b6d4"} stroke={selectedPointIds.includes(point.id) || polygonDraft.includes(point.id) || selectedGeoObject?.id === point.id ? "#f59e0b" : "#0f172a"} strokeWidth={selectedPointIds.includes(point.id) || polygonDraft.includes(point.id) || selectedGeoObject?.id === point.id ? "4" : "2"} />
-                    <text x={point.x + 12} y={point.y - 10} fill="#0f172a" className="select-none text-xs font-bold dark:fill-slate-100">{point.label}</text>
-                  </g>
-                ))}
-              </svg>
-              <p className="rounded-2xl bg-cyan-50 p-3 text-xs font-semibold leading-5 text-cyan-900 dark:bg-cyan-400/10 dark:text-cyan-100">
-                Touch mode: choose a tool, tap to place points, then drag existing points. Use the page outside the board to scroll.
-              </p>
-              <HiddenGeometryExport refSetter={(node) => { geometryExportRef.current = node; }} construction={construction} />
+      {workspaceView === "geometry" && <SectionCard title="Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements.">
+        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_340px]">
+          <div className="space-y-3">
+            <div className="mobile-safe-scroll flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+              <ToolButton active={tool === "select"} label="Select / Drag" onClick={() => setTool("select")} icon={<MousePointer2 className="h-4 w-4" />} />
+              <ToolButton active={tool === "point"} label="Point" onClick={() => setTool("point")} icon={<Plus className="h-4 w-4" />} />
+              <ToolButton active={tool === "line"} label="Line" onClick={() => setTool("line")} icon={<Move className="h-4 w-4" />} />
+              <ToolButton active={tool === "circle"} label="Circle" onClick={() => setTool("circle")} icon={<Circle className="h-4 w-4" />} />
+              <ToolButton active={tool === "polygon"} label="Polygon" onClick={() => setTool("polygon")} icon={<Pentagon className="h-4 w-4" />} />
+              <ToolButton active={tool === "parallel"} label="Parallel" onClick={() => setTool("parallel")} icon={<Slash className="h-4 w-4" />} />
+              <ToolButton active={tool === "perpendicular"} label="Perpendicular" onClick={() => setTool("perpendicular")} icon={<Plus className="h-4 w-4" />} />
+              <ToolButton active={tool === "midpoint"} label="Midpoint" onClick={() => setTool("midpoint")} icon={<Magnet className="h-4 w-4" />} />
+              <ToolButton active={tool === "fixed-length"} label="Fixed Length" onClick={() => setTool("fixed-length")} icon={<Magnet className="h-4 w-4" />} />
+              <ToolButton active={tool === "on-circle"} label="Point on Circle" onClick={() => setTool("on-circle")} icon={<Circle className="h-4 w-4" />} />
+              <ToolButton active={tool === "intersect"} label="Intersect" onClick={() => setTool("intersect")} icon={<Plus className="h-4 w-4" />} />
+              <ToolButton active={tool === "perpendicular-bisector"} label="Perp Bisector" onClick={() => setTool("perpendicular-bisector")} icon={<Slash className="h-4 w-4" />} />
+              <ToolButton active={tool === "angle-bisector"} label="Angle Bisector" onClick={() => setTool("angle-bisector")} icon={<Slash className="h-4 w-4" />} />
+              <ToolButton active={tool === "tangent"} label="Tangent" onClick={() => setTool("tangent")} icon={<Circle className="h-4 w-4" />} />
+              <ToolButton active={tool === "polar"} label="Polar" onClick={() => setTool("polar")} icon={<Move className="h-4 w-4" />} />
+              <ToolButton active={tool === "locus"} label="Locus" onClick={() => setTool("locus")} icon={<LineChart className="h-4 w-4" />} />
+              <ToolButton active={tool === "regular-polygon"} label="Regular Polygon" onClick={() => setTool("regular-polygon")} icon={<Pentagon className="h-4 w-4" />} />
+              <ToolButton active={tool === "arc"} label="Arc" onClick={() => setTool("arc")} icon={<Circle className="h-4 w-4" />} />
+              <ToolButton active={tool === "sector"} label="Sector" onClick={() => setTool("sector")} icon={<Circle className="h-4 w-4" />} />
+              <ToolButton active={tool === "compass"} label="Compass" onClick={() => setTool("compass")} icon={<Magnet className="h-4 w-4" />} />
+              <ToolButton active={tool === "mirror"} label="Mirror" onClick={() => setTool("mirror")} icon={<Slash className="h-4 w-4" />} />
+              <ToolButton active={tool === "rotate"} label="Rotate 45" onClick={() => setTool("rotate")} icon={<RotateCcw className="h-4 w-4" />} />
+              <ToolButton active={tool === "dilate"} label="Dilate 1.5x" onClick={() => setTool("dilate")} icon={<ZoomIn className="h-4 w-4" />} />
+              <ToolButton active={tool === "translate"} label="Translate" onClick={() => setTool("translate")} icon={<Move className="h-4 w-4" />} />
+              <ToolButton label="Select All Points" onClick={() => setSelectedPointIds(construction.points.map((point) => point.id))} icon={<MousePointer2 className="h-4 w-4" />} />
+              <ToolButton label="Move Selected" onClick={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "translate"))} icon={<Move className="h-4 w-4" />} />
+              <ToolButton label="Rotate Selected" onClick={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "rotate"))} icon={<RotateCcw className="h-4 w-4" />} />
+              <ToolButton label="Dilate Selected" onClick={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "dilate"))} icon={<ZoomIn className="h-4 w-4" />} />
+              <ToolButton label="Undo" onClick={undoConstruction} icon={<RotateCcw className="h-4 w-4" />} />
+              <ToolButton label="Reset" onClick={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); }} icon={<Eraser className="h-4 w-4" />} />
+              <ToolButton label="Save" onClick={saveConstruction} icon={<Save className="h-4 w-4" />} />
+              <ToolButton label="Load" onClick={loadConstruction} icon={<Download className="h-4 w-4" />} />
+              <input ref={imageInputRef} type="file" accept="image/*" className="hidden" onChange={(event) => handleImageUpload(event.target.files)} />
+              <ToolButton label="Add Image" onClick={() => imageInputRef.current?.click()} icon={<Plus className="h-4 w-4" />} />
             </div>
+            <svg
+              ref={svgRef}
+              data-export="geometry"
+              viewBox="0 0 640 420"
+              role="application"
+              tabIndex={0}
+              aria-label="Geometry constructor. Select a point and use arrow keys to nudge it. Press Escape to return to select mode."
+              onPointerDown={handleBoardPointerDown}
+              onPointerMove={handleBoardPointerMove}
+              onContextMenu={handleGeometryContextMenu}
+              onPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+              onPointerLeave={() => { setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+              className="h-[min(420px,68vh)] min-h-[320px] w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950 sm:h-[420px]"
+            >
+              <title>Math Universe Geometry Construction</title>
+              <GeometryGrid />
+              {workspaceImages.filter((image) => image.visible !== false).map((image) => (
+                <g key={image.id}>
+                  <image
+                    data-image-id={image.id}
+                    href={image.src}
+                    x={image.x}
+                    y={image.y}
+                    width={image.width}
+                    height={image.height}
+                    opacity={image.opacity}
+                    preserveAspectRatio="xMidYMid meet"
+                    className="cursor-move"
+                  />
+                  {selectedImageId === image.id && <rect x={image.x} y={image.y} width={image.width} height={image.height} fill="none" stroke="#f97316" strokeWidth="3" strokeDasharray="8 6" pointerEvents="none" />}
+                </g>
+              ))}
+              <ConstraintOverlays construction={construction} />
+              {construction.loci.map((locus) => <GeometryLocus key={locus.id} locus={locus} />)}
+              {construction.polygons.map((polygon) => <GeometryPolygon key={polygon.id} polygon={polygon} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "polygon", polygon.id)} />)}
+              {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "arc", arc.id)} />)}
+              {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "line", line.id)} />)}
+              {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "circle", circle.id)} />)}
+              {polygonDraft.length > 1 && <polyline points={polygonDraft.map((id) => pointById(construction.points, id)).filter(Boolean).map((point) => `${point!.x},${point!.y}`).join(" ")} fill="none" stroke="#f59e0b" strokeDasharray="8 6" strokeWidth="3" />}
+              {construction.points.filter((point) => point.style?.visible !== false).map((point) => (
+                <g key={point.id}>
+                  {point.style?.trace && <circle cx={point.x} cy={point.y} r={(point.style?.size ?? 9) + 12} fill="none" stroke={point.style?.color ?? "#06b6d4"} strokeDasharray="4 8" strokeWidth="4" opacity="0.28" />}
+                  <circle
+                    data-point-id={point.id}
+                    cx={point.x}
+                    cy={point.y}
+                    r={point.style?.size ?? 9}
+                    fill={selectedPointIds.includes(point.id) || polygonDraft.includes(point.id) ? "#f59e0b" : point.style?.color ?? "#06b6d4"}
+                    stroke={isSelectedGeometry(selectedGeometry, "point", point.id) ? "#f97316" : "#0f172a"}
+                    strokeWidth={isSelectedGeometry(selectedGeometry, "point", point.id) ? 4 : 2}
+                    opacity={point.style?.opacity ?? 1}
+                    className="cursor-pointer"
+                  />
+                  {point.style?.labelMode !== "hidden" && <text x={point.x + 12} y={point.y - 10} fill="#0f172a" className="select-none text-xs font-bold dark:fill-slate-100">{pointLabelText(point)}</text>}
+                </g>
+              ))}
+            </svg>
+            <p className="rounded-2xl bg-cyan-50 p-3 text-xs font-semibold leading-5 text-cyan-900 dark:bg-cyan-400/10 dark:text-cyan-100">
+              Touch mode: choose a tool, tap to place points, then drag existing points. Use the page outside the board to scroll.
+            </p>
+            <HiddenGeometryExport refSetter={(node) => { geometryExportRef.current = node; }} construction={construction} images={workspaceImages} />
           </div>
-          <div className="thin-scrollbar min-h-0 min-w-0 space-y-3 overflow-auto pr-1">
-            <GeometryLabResults construction={construction} selected={selectedGeoObject} selectedPointIds={selectedPointIds} activeTool={tool} />
+          <div className="space-y-3">
             <ConstructionHelp tool={tool} />
-            <GeometryObjectInspector
+            <GeometryObjectPanel
+              selected={selectedGeometry}
               construction={construction}
-              selected={selectedGeoObject}
-              onSelect={setSelectedGeoObject}
-              onUpdatePoint={updateGeometryPoint}
-              onUpdateLine={updateGeometryLine}
-              onUpdateCircle={updateGeometryCircle}
-              onUpdatePolygon={updateGeometryPolygon}
-              onUpdatePolygonStyle={updateGeometryPolygonStyle}
-              onUpdateAngle={updateGeometryAngle}
-              onUpdateArc={updateGeometryArc}
-              onUpdateText={updateGeometryText}
-              onUpdateConic={updateGeometryConic}
-              onToggleLock={toggleGeometryLock}
+              locked={selectedGeometry ? lockedGeometryIds.includes(selectedGeometry.id) : false}
+              onPointChange={updateSelectedPoint}
+              onStyleChange={updateSelectedGeometryStyle}
+              onRadiusChange={updateSelectedCircleRadius}
+              onDuplicate={duplicateGeometryObject}
               onDelete={deleteGeometryObject}
+              onRestore={restoreGeometryObject}
+              onToggleLock={toggleGeometryLock}
+            />
+            <ImageObjectPanel
+              image={workspaceImages.find((image) => image.id === selectedImageId) ?? null}
+              onChange={updateSelectedImage}
+              onDelete={deleteSelectedImage}
             />
             <Measurements construction={construction} />
-            <GeometryKernelPanel
-              construction={construction}
-              selected={selectedGeoObject}
-              traces={locusTraces}
-              activeTracePointId={activeTracePointId}
-              onTraceSelected={traceSelectedPoint}
-              onStopTrace={stopTrace}
-              onClearTraces={clearLocusTraces}
-              onToggleTrace={(traceId) => setLocusTraces((current) => current.map((trace) => trace.id === traceId ? { ...trace, visible: !trace.visible } : trace))}
-              onDeleteTrace={(traceId) => setLocusTraces((current) => current.filter((trace) => trace.id !== traceId))}
-            />
-            <DependencyPanel construction={construction} selected={selectedGeoObject} onSelect={setSelectedGeoObject} />
-            <ConstraintPanel construction={construction} undoStack={undoStack} redoStack={redoStack} onUndo={undoConstruction} onRedo={redoConstruction} />
+            <ConstraintPanel construction={construction} />
           </div>
         </div>
-      </SectionCard>
+      </SectionCard>}
+      {contextMenu && (
+        <ObjectContextMenu
+          state={contextMenu}
+          onClose={() => setContextMenu(null)}
+          onDuplicate={() => contextMenu.target.type === "algebra" ? duplicateWorkspaceObject(contextMenu.target.ref) : contextMenu.target.type === "3d" ? duplicate3dObject(contextMenu.target.id) : duplicateGeometryObject(contextMenu.target)}
+          onDelete={() => contextMenu.target.type === "algebra" ? deleteWorkspaceObject(contextMenu.target.ref) : contextMenu.target.type === "3d" ? delete3dObject(contextMenu.target.id) : deleteGeometryObject(contextMenu.target)}
+          onRestore={() => contextMenu.target.type === "algebra" ? patchWorkspaceObject(contextMenu.target.ref, { visible: true, trace: false }) : contextMenu.target.type === "3d" ? restore3dObject(contextMenu.target.id) : restoreGeometryObject(contextMenu.target)}
+          onLock={() => contextMenu.target.type === "algebra" ? patchWorkspaceObject(contextMenu.target.ref, { locked: true }) : contextMenu.target.type !== "3d" && toggleGeometryLock(contextMenu.target)}
+          onRename={() => {
+            const target = contextMenu.target;
+            const ref = target.type === "algebra" ? target.ref : target.type === "3d" ? { kind: "3d" as const, id: target.id } : { kind: target.type, id: target.id };
+            const next = window.prompt("Rename object", objectDisplayName(workspaceObjects, ref));
+            if (next) renameWorkspaceObject(ref, next);
+            setContextMenu(null);
+          }}
+          onTrace={() => {
+            const target = contextMenu.target;
+            const ref = target.type === "algebra" ? target.ref : target.type === "3d" ? { kind: "3d" as const, id: target.id } : { kind: target.type, id: target.id };
+            patchWorkspaceObject(ref, { trace: true });
+          }}
+        />
       )}
-      <WorkspaceRightClickMenu
-        menu={contextMenu}
-        canDelete={contextMenu?.scope === "geometry" ? Boolean(selectedGeoObject || selectedPointIds.length) : Boolean(selected3dObject)}
-        canLock={contextMenu?.scope === "geometry" && Boolean(contextMenu.geometryTarget ?? selectedGeoObject)}
-        onClose={closeWorkspaceContextMenu}
-        onInspect={runContextInspect}
-        onDeselect={runContextDeselect}
-        onMoveTool={runContextMoveTool}
-        onAddPoint={runContextAddPoint}
-        onToggle3dVisibility={runContextToggle3dVisibility}
-        onShowAll3d={runContextShowAll3d}
-        onDuplicate={runContextDuplicate}
-        onRestore={runContextRestore}
-        onLock={runContextLock}
-        onDelete={runContextDelete}
-        onReset={runContextReset}
-      />
-    </WorkspaceShell>
+    </div>
   );
-}
-
-function WorkspaceRightClickMenu({
-  canDelete,
-  canLock,
-  menu,
-  onClose,
-  onInspect,
-  onDeselect,
-  onMoveTool,
-  onAddPoint,
-  onToggle3dVisibility,
-  onShowAll3d,
-  onDuplicate,
-  onRestore,
-  onLock,
-  onDelete,
-  onReset,
-}: {
-  canDelete: boolean;
-  canLock: boolean;
-  menu: WorkspaceContextMenu;
-  onClose: () => void;
-  onInspect: () => void;
-  onDeselect: () => void;
-  onMoveTool: () => void;
-  onAddPoint: () => void;
-  onToggle3dVisibility: () => void;
-  onShowAll3d: () => void;
-  onDuplicate: () => void;
-  onRestore: () => void;
-  onLock: () => void;
-  onDelete: () => void;
-  onReset: () => void;
-}) {
-  if (!menu) return null;
-  const viewportWidth = typeof window === "undefined" ? 1280 : window.innerWidth;
-  const viewportHeight = typeof window === "undefined" ? 720 : window.innerHeight;
-  const contentBounds = typeof document === "undefined" ? null : document.getElementById("main-content")?.getBoundingClientRect();
-  const containingLeft = (contentBounds?.left ?? 0) + 8;
-  const containingTop = (contentBounds?.top ?? 0) + 8;
-  const menuWidth = 208;
-  const menuLeft = Math.max(8, Math.min(menu.x, viewportWidth - menuWidth - 8));
-  const menuTop = Math.max(8, Math.min(menu.y, viewportHeight - 72));
-  const menuMaxHeight = Math.max(180, viewportHeight - menuTop - 8);
-
-  return (
-    <>
-      <button type="button" className="workspace-context-backdrop" aria-label="Close workspace context menu" onClick={onClose} />
-      <div className="workspace-context-menu" style={{ left: menuLeft - containingLeft, top: menuTop - containingTop, maxHeight: menuMaxHeight }}>
-        <p className="workspace-context-title">{menu.title}</p>
-        <button type="button" className="workspace-context-item" onClick={onInspect}>
-          <MousePointerClick className="h-4 w-4" />
-          Inspect / edit
-        </button>
-        <button type="button" className="workspace-context-item" onClick={onDeselect}>
-          <MousePointer2 className="h-4 w-4" />
-          Deselect
-        </button>
-        {menu.scope === "geometry" && (
-          <>
-            <button type="button" className="workspace-context-item" onClick={onMoveTool}>
-              <Move className="h-4 w-4" />
-              Switch to Move
-            </button>
-            <button type="button" className="workspace-context-item" onClick={onAddPoint}>
-              <Plus className="h-4 w-4" />
-              Add point here
-            </button>
-          </>
-        )}
-        <button type="button" className="workspace-context-item" onClick={onDuplicate}>
-          <ClipboardCopy className="h-4 w-4" />
-          Duplicate object
-        </button>
-        <button type="button" className="workspace-context-item" onClick={onRestore}>
-          <RotateCcw className="h-4 w-4" />
-          Restore selected
-        </button>
-        {menu.scope === "geometry" && (
-          <button type="button" className="workspace-context-item" onClick={onLock} disabled={!canLock}>
-            <LockKeyhole className="h-4 w-4" />
-            Lock / unlock
-          </button>
-        )}
-        {menu.scope === "space3d" && (
-          <>
-            <button type="button" className="workspace-context-item" onClick={onToggle3dVisibility}>
-              <EyeOff className="h-4 w-4" />
-              Show / hide object
-            </button>
-            <button type="button" className="workspace-context-item" onClick={onShowAll3d}>
-              <EyeOff className="h-4 w-4" />
-              Show all objects
-            </button>
-          </>
-        )}
-        <button type="button" className="workspace-context-item danger" onClick={onDelete} disabled={!canDelete}>
-          <Trash2 className="h-4 w-4" />
-          {menu.scope === "space3d" ? "Hide / delete" : "Delete"}
-        </button>
-        <button type="button" className="workspace-context-item" onClick={onReset}>
-          <RotateCcw className="h-4 w-4" />
-          Reset {menu.scope === "geometry" ? "2D geometry" : "3D scene"}
-        </button>
-      </div>
-    </>
-  );
-}
-
-function geometryContextTitle(selected: SelectedGeoObject, selectedPointCount: number) {
-  if (selected) return `Selected ${selected.kind}`;
-  if (selectedPointCount) return `${selectedPointCount} selected point${selectedPointCount === 1 ? "" : "s"}`;
-  return "Geometry canvas";
-}
-
-function space3dContextTitle(selected: SelectedSpace3DObject, selectedShape: Space3DShapeObject | null) {
-  if (selectedShape) return selectedShape.name;
-  if (!selected) return "3D scene";
-  return `3D ${selected.replace("shape:", "").replace("-", " ")}`;
-}
-
-function is3dObjectHidden(target: Space3DObjectId, state: { showSurface: boolean; showSolid: boolean; showCrossSection: boolean; showVector: boolean; showPoint: boolean; showAxes: boolean; showGrid: boolean; shapes: Space3DShapeObject[] }) {
-  if (target.startsWith("shape:")) return !state.shapes.find((shape) => shape.id === target.slice("shape:".length))?.visible;
-  const visibleByTarget: Record<BuiltinSpace3DObjectId, boolean> = {
-    surface: state.showSurface,
-    solid: state.showSolid,
-    "cross-section": state.showCrossSection,
-    vector: state.showVector,
-    point: state.showPoint,
-    axes: state.showAxes,
-    grid: state.showGrid,
-  };
-  return !visibleByTarget[target as BuiltinSpace3DObjectId];
 }
 
 function interpretInput(input: string): ResultCard {
   const normalized = input.trim();
   try {
-    if (/^plot\s+/i.test(normalized)) {
-      const expression = normalizePlotExpression(normalized);
+    const command = parseWorkspaceCommand(normalized);
+    if (command.name === "plot") {
+      const expression = normalizePlotExpression(command.args.join(", ") || normalized);
       return { id: crypto.randomUUID(), input, interpretation: "2D plot", result: `Added y = ${expression}`, detail: "The expression is plotted over x from -10 to 10." };
     }
-    if (/^solve\s+/i.test(normalized)) return solveCommand(normalized.replace(/^solve\s+/i, ""), input);
-    if (/^roots\s+/i.test(normalized)) return rootsCommand(normalized.replace(/^roots\s+/i, ""), input);
-    if (/^extrema\s+/i.test(normalized)) return extremaCommand(normalized.replace(/^extrema\s+/i, ""), input);
-    if (/^intersect\s+/i.test(normalized)) return intersectCommand(normalized.replace(/^intersect\s+/i, ""), input);
-    if (/^table\s+/i.test(normalized)) return tableCommand(normalized.replace(/^table\s+/i, ""), input);
-    if (/^simplify\s+/i.test(normalized)) return simplifyCommand(normalized.replace(/^simplify\s+/i, ""), input);
-    if (/^expand\s+/i.test(normalized)) return expandCommand(normalized.replace(/^expand\s+/i, ""), input);
-    if (/^derivative\s+/i.test(normalized)) {
-      const expression = normalized.replace(/^derivative\s+/i, "");
+    if (command.name === "solve") return solveCommand(command.args[0] ?? "", input);
+    if (command.name === "root") return rootsCommand(command.args[0] ?? "", input);
+    if (command.name === "extremum") return extremaCommand(command.args[0] ?? "", input);
+    if (command.name === "intersect") return intersectCommand(command.args.join(" and "), input);
+    if (command.name === "relation") return relationCommand(command.args, input);
+    if (command.name === "distance") return distanceCommand(command.args, input);
+    if (command.name === "angle") return angleCommand(command.args, input);
+    if (command.name === "conic") return conicCommand(command.args.join(","), input);
+    if (command.name === "line" || command.name === "segment" || command.name === "ray") return linearObjectCommand(command.name, command.args, input);
+    if (command.name === "tangent") return tangentCommand(command.args, input);
+    if (command.name === "locus") return locusCommand(command.args, input);
+    if (command.name === "table") return tableCommand(command.args, input);
+    if (command.name === "dynamictable") return dynamicTableCommand(command.args, input);
+    if (command.name === "sequence") return sequenceCommand(command.args, input);
+    if (command.name === "list") return listCommand(command.args, input);
+    if (command.name === "filldown") return fillDownCommand(command.args, input);
+    if (command.name === "rangecsv") return rangeCsvCommand(command.args, input);
+    if (command.name === "cas") return casLinkedCommand(command.args, input);
+    if (command.name === "substitute") return substituteCommand(command.args, input);
+    if (command.name === "simplify") return simplifyCommand(command.args[0] ?? "", input);
+    if (command.name === "expand") return expandCommand(command.args[0] ?? "", input);
+    if (command.name === "limit") return limitCommand(command.args, input);
+    if (command.name === "series") return seriesCommand(command.args, input);
+    if (command.name === "matrix") return matrixCommand(command.args.join(","), input);
+    if (command.name === "determinant") return determinantCommand(command.args.join(","), input);
+    if (command.name === "transpose") return transposeCommand(command.args.join(","), input);
+    if (command.name === "inverse") return inverseCommand(command.args.join(","), input);
+    if (command.name === "plane") return plane3dCommand(command.args, input);
+    if (command.name === "sphere" || command.name === "cone" || command.name === "cylinder") return solid3dCommand(command.name, command.args, input);
+    if (command.name === "slice") return slice3dCommand(command.args, input);
+    if (command.name === "gizmo") return gizmoCommand(command.args, input);
+    if (command.name === "measure3d") return measure3dCommand(command.args, input);
+    if (command.name === "rotate" || command.name === "translate" || command.name === "dilate" || command.name === "mirror") return transformActionCommand(command.name, command.args, input);
+    if (command.name === "setcolor" || command.name === "showlabel" || command.name === "setvisible" || command.name === "settrace" || command.name === "setopacity") return styleActionCommand(command.name, command.args, input);
+    if (command.name === "startanimation" || command.name === "stopanimation") return animationActionCommand(command.name, command.args, input);
+    if (command.name === "point") return definitionCommandCard(input, "2D point definition", "Use A=(x,y) in the input bar to create a live draggable point.");
+    if (command.name === "vector") return vectorCommand(command.args, input);
+    if (command.name === "circle") return definitionCommandCard(input, "Circle definition", "Use c: x^2+y^2=16 or the circle tool to create a live circle.");
+    if (command.name === "surface") return definitionCommandCard(input, "3D surface definition", "Use z=sin(x)*cos(y) or mode=3d to create a live surface.");
+    if (command.name === "slider") return definitionCommandCard(input, "Slider definition", "Slider objects are registered in the dynamic kernel and will drive animation bindings in Phase 4.");
+    if (command.name === "derivative") {
+      const expression = command.args[0] ?? "";
       const symbolic = trySymbolic(() => symbolicDerivative(expression));
       const derivative = symbolic?.result ?? derivativeText(expression);
-      return { id: crypto.randomUUID(), input, interpretation: symbolic ? "Symbolic derivative" : "Derivative", result: derivative, detail: symbolic?.detail ?? "Symbolic support for common polynomial, sine, and cosine expressions.", steps: symbolic?.steps ?? derivativeSteps(expression, derivative), related: [`plot ${expression}`, `plot ${derivative}`] };
+      return { id: crypto.randomUUID(), input, interpretation: symbolic ? "Symbolic derivative" : "Derivative", result: derivative, detail: symbolic?.detail ?? "Symbolic support for common polynomial, sine, and cosine expressions.", steps: symbolic?.steps ?? derivativeSteps(expression, derivative), related: [`plot ${expression}`, `plot ${derivative}`], graphExpression: derivative };
     }
-    if (/^integral\s+/i.test(normalized)) {
-      const expression = normalized.replace(/^integral\s+/i, "");
+    if (command.name === "integral") {
+      const expression = command.args[0] ?? "";
       const symbolic = trySymbolic(() => symbolicIntegral(expression));
       const integral = symbolic?.result ?? integralText(expression);
-      return { id: crypto.randomUUID(), input, interpretation: symbolic ? "Symbolic integral" : "Indefinite integral", result: integral, detail: symbolic?.detail ?? "Power-rule antiderivative support for common polynomial terms.", steps: symbolic?.steps ?? integralSteps(expression, integral), related: [`derivative ${integral.replace(/\s*\+\s*C$/, "")}`] };
+      const graphExpression = integral.replace(/\s*\+\s*C$/, "");
+      return { id: crypto.randomUUID(), input, interpretation: symbolic ? "Symbolic integral" : "Indefinite integral", result: integral, detail: symbolic?.detail ?? "Power-rule antiderivative support for common polynomial terms.", steps: symbolic?.steps ?? integralSteps(expression, integral), related: [`derivative ${graphExpression}`, `plot ${graphExpression}`], graphExpression };
     }
-    if (/^factor\s+/i.test(normalized)) return factorCommand(normalized.replace(/^factor\s+/i, ""), input);
+    if (command.name === "factor") return factorCommand(command.args[0] ?? "", input);
     if (/^area\s+circle\s+radius\s+/i.test(normalized)) {
       const radius = Number(normalized.replace(/^area\s+circle\s+radius\s+/i, ""));
       return { id: crypto.randomUUID(), input, interpretation: "Circle area", result: `Area = ${roundTo(Math.PI * radius * radius, 4)}`, detail: `Formula: A = pi r^2 with r = ${radius}.`, steps: [`Use A = pi r^2.`, `Substitute r = ${radius}.`, `A = pi * ${radius}^2 = ${roundTo(Math.PI * radius * radius, 4)}.`] };
     }
-    const routed = runWorkspaceCasQuery(normalized);
-    if (routed) {
-      return {
-        id: crypto.randomUUID(),
-        input,
-        interpretation: routed.query.intent === "external-data-tool" ? "External data tool handoff" : `Workspace ${routed.query.intent}`,
-        result: routed.result ?? routed.symbolic?.result ?? routed.query.expression,
-        detail: routed.detail,
-        steps: routed.steps,
-        related: routed.related,
-      };
-    }
     const value = evaluateMathExpression(normalized, 0);
     return { id: crypto.randomUUID(), input, interpretation: "Calculator", result: `${roundTo(value, 10)}`, detail: "Numeric evaluation with constants, trig, logs, powers, roots, and arithmetic." };
   } catch (error) {
-    return { id: crypto.randomUUID(), input, interpretation: "Could not compute", result: error instanceof Error ? error.message : "Unsupported input", detail: "Try examples like plot sin(x), solve x^2-5*x+6=0, derivative x^3, or area circle radius 5." };
+    return parserErrorCard(input, error);
   }
+}
+
+function parseWorkspaceCommand(input: string): { name: string; args: string[] } {
+  const bracket = input.match(/^([a-z]+)\s*[\[(](.*)[\])]$/i);
+  if (bracket) return { name: commandAlias(bracket[1]), args: splitCommandArgs(bracket[2]) };
+  const word = input.match(/^([a-z]+)\s+(.+)$/i);
+  if (word) {
+    const name = commandAlias(word[1]);
+    if (name === "table") return { name, args: splitLooseTableArgs(word[2]) };
+    if (name === "intersect") return { name, args: word[2].split(/\s+and\s+|,/i).map((part) => part.trim()).filter(Boolean) };
+    if (name === "sequence") return { name, args: splitLooseSequenceArgs(word[2]) };
+    if (name === "substitute") return { name, args: splitLooseSubstituteArgs(word[2]) };
+    return { name, args: [word[2].trim()] };
+  }
+  return { name: "calculator", args: [input] };
+}
+
+function commandAlias(name: string) {
+  const compact = name.toLowerCase();
+  const resolved = normalizeCommandName(compact);
+  if (!resolved) throw new Error(`Unknown command "${name}".`);
+  return resolved;
+}
+
+function splitCommandArgs(value: string) {
+  const args: string[] = [];
+  let current = "";
+  let depth = 0;
+  for (const char of value) {
+    if (char === "(" || char === "[") depth += 1;
+    if (char === ")" || char === "]") depth -= 1;
+    if (char === "," && depth === 0) {
+      args.push(current.trim());
+      current = "";
+    } else current += char;
+  }
+  if (current.trim()) args.push(current.trim());
+  return args;
+}
+
+function splitLooseTableArgs(value: string) {
+  const commaArgs = splitCommandArgs(value);
+  if (commaArgs.length > 1) return commaArgs;
+  const natural = value.match(/^(.+?)\s+from\s+(-?\d+(?:\.\d+)?)\s+to\s+(-?\d+(?:\.\d+)?)(?:\s+step\s+(-?\d+(?:\.\d+)?))?$/i);
+  if (natural) return [natural[1], natural[2], natural[3], natural[4] ?? "1"];
+  const named = value.match(/^(.+?)\s+start\s*=\s*(-?\d+(?:\.\d+)?)\s+end\s*=\s*(-?\d+(?:\.\d+)?)(?:\s+step\s*=\s*(-?\d+(?:\.\d+)?))?$/i);
+  if (named) return [named[1], named[2], named[3], named[4] ?? "1"];
+  const match = value.match(/^(.+?)\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)$/);
+  return match ? [match[1], match[2], match[3], match[4]] : [value.trim()];
+}
+
+function splitLooseSequenceArgs(value: string) {
+  const commaArgs = splitCommandArgs(value);
+  if (commaArgs.length > 1) return commaArgs;
+  const range = value.match(/^(.+?)\s+([a-z]\w*)\s*=\s*(-?\d+(?:\.\d+)?)\s*\.\.\s*(-?\d+(?:\.\d+)?)(?:\s+step\s+(-?\d+(?:\.\d+)?))?$/i);
+  if (range) return [range[1], range[2], range[3], range[4], range[5] ?? "1"];
+  const natural = value.match(/^(.+?)\s+for\s+([a-z]\w*)\s+from\s+(-?\d+(?:\.\d+)?)\s+to\s+(-?\d+(?:\.\d+)?)(?:\s+step\s+(-?\d+(?:\.\d+)?))?$/i);
+  if (natural) return [natural[1], natural[2], natural[3], natural[4], natural[5] ?? "1"];
+  return [value.trim(), "n", "1", "10", "1"];
+}
+
+function splitLooseSubstituteArgs(value: string) {
+  const commaArgs = splitCommandArgs(value);
+  if (commaArgs.length > 1) return commaArgs;
+  const natural = value.split(/\s+with\s+/i);
+  if (natural.length < 2) return [value.trim()];
+  const assignments = natural.slice(1).join(" with ").split(/\s*,\s*|\s+and\s+/i).map((part) => part.trim()).filter(Boolean);
+  return [natural[0].trim(), ...assignments];
+}
+
+function parserErrorCard(input: string, error: unknown): ResultCard {
+  const message = error instanceof Error ? error.message : "Unsupported input";
+  const suggestions = suggestCommands(input);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Parser suggestion",
+    result: message,
+    detail: `Try: ${suggestions.join("  |  ")}`,
+    steps: ["Use Command[arguments] or command arguments.", "Separate multiple arguments with commas.", "Use * for multiplication when the expression is ambiguous."],
+  };
+}
+
+function suggestCommands(input: string) {
+  const lower = input.toLowerCase();
+  const registryExamples = commandExamplesFor(lower, 4);
+  if (registryExamples.length) return registryExamples;
+  if (lower.includes("der")) return ["Derivative[x^3-2*x]", "plot 3*x^2-2"];
+  if (lower.includes("int")) return ["Integral[3*x^2]", "Table[x^2, -3, 3, 1]"];
+  if (lower.includes("inter")) return ["Intersect[x^2, 2*x+3]"];
+  if (lower.includes("table")) return ["Table[sin(x), -3, 3, 0.5]"];
+  return ["Root[x^2-4]", "Solve[x^2-5*x+6=0]", "Sequence[n^2, n, 1, 6]"];
+}
+
+function normalizeTemplateRouteParam(value: string) {
+  return value.trim().toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-");
 }
 
 function normalizePlotExpression(input: string) {
   return input.replace(/^plot\s+/i, "").replace(/^y\s*=\s*/i, "").trim();
+}
+
+function mathToBoardPoint(x: number, y: number) {
+  return { x: 320 + x * 40, y: 210 - y * 40 };
 }
 
 function evaluateMathExpression(expression: string, x: number) {
@@ -2675,7 +1771,7 @@ function evaluateMathExpression(expression: string, x: number) {
     .replace(/\bln\b/gi, "Math.log")
     .replace(/\blog\b/gi, "Math.log10")
     .replace(/\bexp\b/gi, "Math.exp");
-  if (!/^[0-9x+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}'"]/.test(safe) || safe.includes("[") || safe.includes("]")) throw new Error("Unsupported expression");
+  if (!/^[0-9x+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}\[\]'"]/.test(safe)) throw new Error("Unsupported expression");
   return Function("x", `"use strict"; return (${safe});`)(x) as number;
 }
 
@@ -2732,6 +1828,19 @@ function extremaCommand(expression: string, input: string): ResultCard {
 function intersectCommand(body: string, input: string): ResultCard {
   const parts = body.split(/\s+and\s+|,/i).map((part) => part.trim()).filter(Boolean);
   if (parts.length !== 2) throw new Error("Use: intersect expression1 and expression2");
+  const kernelObjects = parseTwoKernelObjects(parts);
+  if (kernelObjects) {
+    const hits = kernelIntersectObjects(kernelObjects[0], kernelObjects[1]);
+    return {
+      id: crypto.randomUUID(),
+      input,
+      interpretation: "Kernel intersection",
+      result: hits.length ? hits.map((hit) => `(${roundTo(hit.x, 5)}, ${roundTo(hit.y, 5)})${hit.multiplicity === 2 ? " tangent" : ""}`).join(", ") : "No supported intersections",
+      detail: hits.length ? `${hits[0].source} solver with boundary checks and multiplicity.` : "No intersection found for the supported object pair.",
+      table: hits.map((hit) => ({ x: roundTo(hit.x, 5), y: roundTo(hit.y, 5), label: hit.source })),
+      steps: ["Parse both objects into the 2D kernel.", "Solve the correct intersection system.", "Filter by segment/ray boundaries and dedupe points."],
+    };
+  }
   const [left, right] = parts;
   const f = (x: number) => evaluateMathExpression(left, x) - evaluateMathExpression(right, x);
   const intersections: ResultTableRow[] = [];
@@ -2747,12 +1856,238 @@ function intersectCommand(body: string, input: string): ResultCard {
   return { id: crypto.randomUUID(), input, interpretation: "Intersection", result: unique.length ? unique.map((point) => `(${point.x}, ${point.y})`).join(", ") : "No intersections found in [-20, 20]", detail: "Solves expression1 - expression2 = 0 numerically.", steps: [`Set ${left} = ${right}.`, `Solve ${left} - (${right}) = 0.`, "Evaluate either expression at each solution."], table: unique, related: [`plot ${left}`, `plot ${right}`] };
 }
 
-function tableCommand(expression: string, input: string): ResultCard {
-  const table = Array.from({ length: 9 }, (_, index) => {
-    const x = index - 4;
-    return { x, y: roundTo(evaluateMathExpression(expression, x), 5) };
+function relationCommand(args: string[], input: string): ResultCard {
+  const objects = parseTwoKernelObjects(args);
+  if (!objects) throw new Error("Use Relation[Line[(0,0),(1,1)], Line[(0,1),(1,2)]] or Relation[x^2+y^2=9, Line[(-3,0),(3,0)]].");
+  const result = relationBetween(objects[0], objects[1]);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Geometry relation",
+    result: `${result.relation} (${Math.round(result.confidence * 100)}%)`,
+    detail: result.detail,
+    steps: proofHintsForRelation(result),
+  };
+}
+
+function distanceCommand(args: string[], input: string): ResultCard {
+  const points = args.map(parsePointArgument).filter(Boolean) as KernelPoint[];
+  if (points.length < 2) throw new Error("Use Distance[(0,0), (3,4)].");
+  const value = kernelDistance(points[0], points[1]);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Distance",
+    result: `${roundTo(value, 6)}`,
+    detail: "Distance kernel uses sqrt((x2-x1)^2 + (y2-y1)^2).",
+    steps: [`dx = ${roundTo(points[1].x - points[0].x, 6)}.`, `dy = ${roundTo(points[1].y - points[0].y, 6)}.`, `distance = ${roundTo(value, 6)}.`],
+  };
+}
+
+function angleCommand(args: string[], input: string): ResultCard {
+  const points = args.map(parsePointArgument).filter(Boolean) as KernelPoint[];
+  if (points.length < 3) throw new Error("Use Angle[(1,0), (0,0), (0,1)].");
+  const a = points[0], vertex = points[1], b = points[2];
+  const va = kernelVector(vertex, a);
+  const vb = kernelVector(vertex, b);
+  const dot = va.x * vb.x + va.y * vb.y;
+  const magnitude = Math.hypot(va.x, va.y) * Math.hypot(vb.x, vb.y) || 1;
+  const degrees = THREE.MathUtils.radToDeg(Math.acos(Math.max(-1, Math.min(1, dot / magnitude))));
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Angle",
+    result: `${roundTo(degrees, 4)} deg`,
+    detail: "Angle kernel uses vector dot product around the middle point.",
+    steps: ["Build vectors from the vertex.", "Compute dot product and magnitudes.", "Apply arccos(dot / |a||b|)."],
+  };
+}
+
+function conicCommand(body: string, input: string): ResultCard {
+  const item = parseConicEquation(body);
+  if (!item) throw new Error("Use Conic[x^2/9+y^2/4=1], Conic[x^2+y^2=16], or Conic[y=x^2].");
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Conic",
+    result: `${item.type}: ${formatConicCoefficients(item.coefficients)}`,
+    detail: "Conic registered as Ax^2 + Bxy + Cy^2 + Dx + Ey + F = 0 for intersection and relation tools.",
+    steps: ["Normalize the equation.", "Classify by discriminant B^2 - 4AC.", "Store coefficients for line/conic intersections."],
+  };
+}
+
+function linearObjectCommand(name: string, args: string[], input: string): ResultCard {
+  const points = args.map(parsePointArgument).filter(Boolean) as KernelPoint[];
+  if (points.length < 2) throw new Error(`Use ${name}[pointA, pointB], for example ${name}[(0,0),(4,3)].`);
+  const object = name === "segment" ? kernelSegment(points[0], points[1]) : name === "ray" ? kernelRay(points[0], points[1]) : kernelLine(points[0], points[1]);
+  const length = kernelDistance(object.a, object.b);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: `${name[0].toUpperCase()}${name.slice(1)} object`,
+    result: `${name} through (${object.a.x}, ${object.a.y}) and (${object.b.x}, ${object.b.y})`,
+    detail: `${name} length/vector magnitude reference: ${roundTo(length, 6)}.`,
+    steps: ["Parse two coordinate points.", "Create a boundary-aware linear object.", "Expose it to intersection and relation commands."],
+  };
+}
+
+function vectorCommand(args: string[], input: string): ResultCard {
+  const points = args.map(parsePointArgument).filter(Boolean) as KernelPoint[];
+  if (points.length < 2) throw new Error("Use Vector[(0,0), (3,2)].");
+  const value = kernelVector(points[0], points[1]);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Vector",
+    result: `<${roundTo(value.x, 6)}, ${roundTo(value.y, 6)}>`,
+    detail: `Magnitude = ${roundTo(Math.hypot(value.x, value.y), 6)}.`,
+    steps: ["Subtract start coordinates from end coordinates.", "Use the result as translation direction or slope evidence."],
+  };
+}
+
+function tangentCommand(args: string[], input: string): ResultCard {
+  const pointArg = parsePointArgument(args[0] ?? "");
+  const conicArg = parseKernelObject(args[1] ?? "");
+  if (!pointArg || !conicArg) throw new Error("Use Tangent[(3,0), x^2+y^2=9].");
+  const probe = kernelLine(kernelPoint(pointArg.x - 1, pointArg.y), kernelPoint(pointArg.x + 1, pointArg.y));
+  const relation = relationBetween(probe, conicArg);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Tangent helper",
+    result: relation.relation === "tangent" ? "horizontal tangent candidate" : "tangent construction registered",
+    detail: "Phase 2 exposes tangent checks through the relation/intersection kernel; canvas construction uses the Tangent tool.",
+    steps: ["Parse point and conic.", "Probe tangent multiplicity.", ...proofHintsForRelation(relation).slice(0, 2)],
+  };
+}
+
+function locusCommand(args: string[], input: string): ResultCard {
+  const center = parsePointArgument(args[0] ?? "") ?? kernelPoint(0, 0);
+  const radius = 2;
+  const table = Array.from({ length: 24 }, (_, index) => {
+    const theta = (index / 24) * Math.PI * 2;
+    return { x: roundTo(center.x + Math.cos(theta) * radius, 4), y: roundTo(center.y + Math.sin(theta) * radius, 4), label: "locus" };
   });
-  return { id: crypto.randomUUID(), input, interpretation: "Value table", result: `Generated ${table.length} rows`, detail: "Integer x-values from -4 to 4.", table, related: [`plot ${expression}`] };
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Locus",
+    result: `${table.length} sample points`,
+    detail: "Browser-only locus sampling registered for trace/proof workflows.",
+    steps: ["Choose a driving parameter.", "Sample positions around the path.", "Dedupe and render as a trace object."],
+    table,
+  };
+}
+
+function tableCommand(args: string[] | string, input: string): ResultCard {
+  const parts = Array.isArray(args) ? args : [args];
+  const expression = parts[0] ?? "x";
+  const start = Number(parts[1] ?? -4);
+  const end = Number(parts[2] ?? 4);
+  const step = Math.abs(Number(parts[3] ?? 1)) || 1;
+  const table = generateValueTable(expression, start, end, step);
+  return { id: crypto.randomUUID(), input, interpretation: "Editable value table", result: `Generated ${table.length} rows`, detail: `x from ${start} to ${end} by ${step}. Change the table range controls in the graph panel for live tables.`, table, related: [`plot ${expression}`], graphExpression: expression };
+}
+
+function dynamicTableCommand(args: string[], input: string): ResultCard {
+  const numericTail = args.slice(-3).map(Number);
+  const hasRange = numericTail.every((value) => Number.isFinite(value));
+  const expressions = (hasRange ? args.slice(0, -3) : args).map((item) => item.trim()).filter(Boolean);
+  const [start, end, step] = hasRange ? numericTail : [-4, 4, 1];
+  const dynamic = createDynamicTable(expressions.length ? expressions : ["x"], start, end, step, evaluateMathExpression);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Dynamic table view",
+    result: `${dynamic.rows.length} rows for ${dynamic.expressions.join(", ")}`,
+    detail: `Highlights roots/intercepts and exports ${dynamic.exportCsv.length} CSV characters.`,
+    table: dynamic.rows.map((row) => ({ x: row.x, y: row.values[dynamic.expressions[0]], label: row.highlight ? "highlight" : "" })),
+    related: dynamic.expressions.map((expression) => `plot ${expression}`),
+    graphExpression: dynamic.expressions[0],
+    steps: dynamic.classroomTasks,
+  };
+}
+
+function sequenceCommand(args: string[], input: string): ResultCard {
+  const [expression = "n", variable = "n", startRaw = "1", endRaw = "10", stepRaw = "1"] = args;
+  const start = Number(startRaw);
+  const end = Number(endRaw);
+  const step = Math.abs(Number(stepRaw)) || 1;
+  const rows: ResultTableRow[] = [];
+  for (let value = start; value <= end && rows.length < 120; value += step) {
+    const xExpression = expression.replace(new RegExp(`\\b${variable}\\b`, "g"), `(${value})`);
+    rows.push({ x: value, y: roundTo(evaluateMathExpression(xExpression, value), 6), label: variable });
+  }
+  return { id: crypto.randomUUID(), input, interpretation: "Sequence", result: rows.map((row) => row.y).join(", "), detail: `${expression}, ${variable} = ${start}...${end}`, table: rows };
+}
+
+function listCommand(args: string[], input: string): ResultCard {
+  const list = createListObject(args);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "List object",
+    result: `[${list.values.join(", ")}]`,
+    detail: `n=${list.length}, sum=${roundTo(list.sum, 6)}, mean=${roundTo(list.mean, 6)}, min=${list.min}, max=${list.max}`,
+    steps: ["Parse numeric list entries.", "Store as a reusable list object.", "Expose summary values for spreadsheet and table workflows."],
+  };
+}
+
+function fillDownCommand(args: string[], input: string): ResultCard {
+  const [source = "D6", range = "D7:D12"] = args;
+  const preview = fillDownFormula(initialSpreadsheet, source, range);
+  const evaluated = evaluateSpreadsheetGrid(preview);
+  const csv = rangeToCsv(evaluated.values, range);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Spreadsheet fill down",
+    result: `${source} filled into ${range}`,
+    detail: evaluated.errors.length ? evaluated.errors.map((error) => `${error.cell}: ${error.message}`).join("; ") : "Formula references were shifted relative to each destination cell.",
+    steps: ["Read the source formula.", "Shift cell references by row/column offset.", "Evaluate the filled range and prepare CSV export."],
+    table: csv.split("\n").map((line, index) => ({ x: index + 1, y: line.length, label: "csv" })),
+  };
+}
+
+function rangeCsvCommand(args: string[], input: string): ResultCard {
+  const range = args[0] ?? "A1:C6";
+  const evaluated = evaluateSpreadsheetGrid(initialSpreadsheet);
+  const csv = rangeToCsv(evaluated.values, range);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Spreadsheet range CSV",
+    result: `${csv.split("\n").filter(Boolean).length} rows exported`,
+    detail: csv || "No valid range data.",
+    steps: ["Evaluate spreadsheet formulas.", `Read range ${range}.`, "Return CSV-ready text for export."],
+  };
+}
+
+function casLinkedCommand(args: string[], input: string): ResultCard {
+  const [command = "Simplify", expression = "x"] = args;
+  const card = createCasCard(command, expression);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Linked CAS card",
+    result: card.result,
+    detail: card.detail,
+    steps: [...card.steps, ...card.verificationPrompts],
+    related: card.linkedGraphExpressions.map((expression) => `plot ${expression}`),
+    graphExpression: card.linkedGraphExpressions[0],
+  };
+}
+
+function substituteCommand(args: string[], input: string): ResultCard {
+  const [expression = "", ...assignments] = args;
+  let substituted = expression;
+  assignments.forEach((assignment) => {
+    const [name, value] = assignment.split("=").map((part) => part.trim());
+    if (name && value) substituted = substituted.replace(new RegExp(`\\b${escapeRegExp(name)}\\b`, "g"), `(${value})`);
+  });
+  const symbolic = trySymbolic(() => symbolicSimplify(substituted));
+  const result = symbolic?.result ?? `${roundTo(evaluateMathExpression(substituted, 0), 10)}`;
+  return { id: crypto.randomUUID(), input, interpretation: "Substitute", result, detail: `${expression} -> ${substituted}`, steps: [`Start with ${expression}.`, `Apply ${assignments.join(", ")}.`, `Simplify/evaluate ${substituted}.`] };
 }
 
 function simplifyCommand(expression: string, input: string): ResultCard {
@@ -2777,6 +2112,357 @@ function expandCommand(expression: string, input: string): ResultCard {
   const b = Number(match[2]);
   const result = `x^2 ${signed(a + b)}*x ${signed(a * b)}`;
   return { id: crypto.randomUUID(), input, interpretation: "Expand", result, steps: [`Use (x+a)(x+b)=x^2+(a+b)x+ab.`, `a=${a}, b=${b}.`, `a+b=${roundTo(a + b, 4)}, ab=${roundTo(a * b, 4)}.`], related: [`factor ${result}`] };
+}
+
+function limitCommand(args: string[], input: string): ResultCard {
+  const [expression = "sin(x)/x", variable = "x", targetRaw = "0"] = args;
+  const target = Number(targetRaw);
+  const offsets = [1e-1, 1e-2, 1e-3, 1e-4];
+  const table = offsets.map((offset) => {
+    const left = evaluateMathExpression(expression.replace(new RegExp(`\\b${escapeRegExp(variable)}\\b`, "g"), `(${target - offset})`), target - offset);
+    const right = evaluateMathExpression(expression.replace(new RegExp(`\\b${escapeRegExp(variable)}\\b`, "g"), `(${target + offset})`), target + offset);
+    return { x: offset, y: roundTo((left + right) / 2, 8), label: `h=${offset}` };
+  });
+  const estimate = table.at(-1)?.y ?? NaN;
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Limit",
+    result: Number.isFinite(estimate) ? `lim ${variable}->${target} ${expression} = ${estimate}` : "Limit estimate unavailable",
+    detail: "Two-sided numeric limit estimate. Exact symbolic limits are queued for the CAS expansion phase.",
+    steps: [`Approach ${target} from the left and right.`, "Average the two finite estimates for each shrinking step.", "Compare the rows to see whether the values stabilize."],
+    table,
+    graphExpression: expression,
+  };
+}
+
+function seriesCommand(args: string[], input: string): ResultCard {
+  const [expression = "sin(x)", variable = "x", centerRaw = "0", orderRaw = "5"] = args;
+  const center = Number(centerRaw);
+  const order = Math.max(1, Math.min(8, Math.round(Number(orderRaw) || 5)));
+  const compact = expression.replace(/\s+/g, "").toLowerCase();
+  let result = `${expression} near ${variable}=${center}`;
+  if (center === 0 && compact === "sin(x)") result = Array.from({ length: Math.ceil(order / 2) }, (_, index) => {
+    const n = index * 2 + 1;
+    return `${index % 2 ? "-" : "+"} x^${n}/${factorial(n)}`;
+  }).join(" ").replace(/^\+\s*/, "");
+  else if (center === 0 && compact === "cos(x)") result = Array.from({ length: Math.ceil((order + 1) / 2) }, (_, index) => {
+    const n = index * 2;
+    return `${index % 2 ? "-" : "+"} x^${n}/${factorial(n)}`;
+  }).join(" ").replace(/^\+\s*/, "");
+  else if (center === 0 && compact === "e^x") result = Array.from({ length: order + 1 }, (_, n) => `x^${n}/${factorial(n)}`).join(" + ");
+  else result = "Series template registered; exact expansion for this expression lands in the CAS expansion phase.";
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Series",
+    result,
+    detail: `Taylor-style approximation request for ${expression} around ${center} to order ${order}.`,
+    steps: ["Choose the expansion center.", "Use derivatives at the center as coefficients.", "Build polynomial terms up to the requested order."],
+    related: [`plot ${expression}`],
+  };
+}
+
+function matrixCommand(body: string, input: string): ResultCard {
+  const matrix = parseMatrixLiteral(body);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Matrix",
+    result: formatMatrix(matrix),
+    detail: `${matrix.length} by ${matrix[0]?.length ?? 0} matrix object parsed for CAS/spreadsheet linking.`,
+    steps: ["Read rows inside brackets.", "Convert every entry to a numeric cell.", "Register the matrix as an algebra object in the dynamic kernel."],
+  };
+}
+
+function determinantCommand(body: string, input: string): ResultCard {
+  const matrix = parseMatrixLiteral(body);
+  const value = determinant(matrix);
+  return { id: crypto.randomUUID(), input, interpretation: "Determinant", result: `${roundTo(value, 8)}`, detail: `det(${formatMatrix(matrix)})`, steps: ["Check the matrix is square.", "Apply recursive expansion for small matrices.", "Return the signed area/volume scaling factor."] };
+}
+
+function transposeCommand(body: string, input: string): ResultCard {
+  const matrix = parseMatrixLiteral(body);
+  const transposed = matrix[0].map((_, column) => matrix.map((row) => row[column]));
+  return { id: crypto.randomUUID(), input, interpretation: "Transpose", result: formatMatrix(transposed), detail: "Rows and columns swapped.", steps: ["Read each column of the original matrix.", "Write it as a row in the new matrix."] };
+}
+
+function inverseCommand(body: string, input: string): ResultCard {
+  const matrix = parseMatrixLiteral(body);
+  if (matrix.length !== 2 || matrix[0].length !== 2 || matrix[1].length !== 2) throw new Error("Inverse currently supports 2 by 2 matrices.");
+  const det = determinant(matrix);
+  if (Math.abs(det) < 1e-9) throw new Error("Matrix is singular; determinant is zero.");
+  const [[a, b], [c, d]] = matrix;
+  const inverse = [[d / det, -b / det], [-c / det, a / det]];
+  return { id: crypto.randomUUID(), input, interpretation: "Inverse", result: formatMatrix(inverse), detail: `1/det with det=${roundTo(det, 8)}.`, steps: ["For [[a,b],[c,d]], inverse is 1/(ad-bc) * [[d,-b],[-c,a]].", `det=${roundTo(det, 8)}.`, "Scale the adjugate matrix."] };
+}
+
+function plane3dCommand(args: string[], input: string): ResultCard {
+  const plane = parsePlane3dArgs(args);
+  if (!plane) throw new Error("Use Plane[(0,0,1), (0,0,1)] or Plane[z=1].");
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "3D plane",
+    result: `point=(${formatPoint3(plane.point)}), normal=<${formatPoint3(plane.normal)}>`,
+    detail: "Plane registered in the 3D kernel for slicing, intersections, and transform overlays.",
+    steps: ["Parse a point and normal vector.", "Normalize the normal.", "Store plane as point-normal form."],
+  };
+}
+
+function solid3dCommand(name: string, args: string[], input: string): ResultCard {
+  const object = parseSolid3d(name, args);
+  const measurement = object3Measurement(object);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "3D solid",
+    result: `${measurement.label}: V=${roundTo(measurement.volume, 5)}, SA=${roundTo(measurement.surfaceArea, 5)}`,
+    detail: measurement.detail,
+    steps: ["Parse center/radius/height parameters.", "Create a true 3D object in kernel form.", "Compute volume and surface area for overlays."],
+  };
+}
+
+function slice3dCommand(args: string[], input: string): ResultCard {
+  const [solidText = "Sphere[(0,0,0),3]", planeText = "z=0"] = args.length >= 2 ? args : splitKernelObjectPair(args.join(","));
+  const solid = parseObject3(solidText);
+  const plane = parseObject3(planeText);
+  if (!solid || !plane) throw new Error("Use Slice[Sphere[(0,0,0), 3], z=1].");
+  const hits = intersect3(solid, plane);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "3D slice",
+    result: hits.length ? hits.map(formatIntersection3).join("; ") : "No 3D intersection",
+    detail: "3D kernel slice using line-plane, plane-plane, or sphere-plane intersection rules.",
+    steps: ["Parse 3D objects.", "Select the correct intersection solver.", "Return point, line, or circular cross-section overlay."],
+  };
+}
+
+function gizmoCommand(args: string[], input: string): ResultCard {
+  const mode = ((args[0] ?? "translate").toLowerCase() as TransformMode3);
+  if (!["translate", "rotate", "scale"].includes(mode)) throw new Error("Use Gizmo[translate], Gizmo[rotate], or Gizmo[scale].");
+  const handles = createTransformGizmo(mode);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "3D transform gizmo",
+    result: handles.map((handle) => `${handle.label} snap=${handle.snapStep}`).join(", "),
+    detail: "Axis/ring/scale handle metadata for the selected 3D object. Visual handles are represented in the 3D readout and ready for canvas binding.",
+    steps: ["Choose transform mode.", "Create axis-specific handles.", "Apply snap increments for precise classroom manipulation."],
+  };
+}
+
+function measure3dCommand(args: string[], input: string): ResultCard {
+  const object = parseObject3(args.join(","));
+  if (!object) throw new Error("Use Measure3D[Sphere[(0,0,0), 3]] or Measure3D[Cylinder[(0,0,0), 2, 5]].");
+  const measurement = object3Measurement(object);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "3D measurement",
+    result: `${measurement.label}: V=${roundTo(measurement.volume, 5)}, SA=${roundTo(measurement.surfaceArea, 5)}`,
+    detail: measurement.detail,
+    steps: ["Recognize object type.", "Apply the matching 3D measurement formula.", "Expose result for labels and overlays."],
+  };
+}
+
+function transformActionCommand(name: string, args: string[], input: string): ResultCard {
+  const action = parseTransformCommand(name, args);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Dynamic transform action",
+    result: describeTransformAction(action),
+    detail: "Transformation commands now produce exact before/after coordinates and are ready for selected-object binding in Geometry and Algebra views.",
+    table: [
+      { x: roundTo(action.source.x, 6), y: roundTo(action.source.y, 6), label: "source" },
+      { x: roundTo(action.result.x, 6), y: roundTo(action.result.y, 6), label: action.kind },
+    ],
+    steps: transformSteps(action.kind),
+  };
+}
+
+function styleActionCommand(name: string, args: string[], input: string): ResultCard {
+  const action = parseStyleAction(name, args);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Object style action",
+    result: `${action.objectName}: ${Object.entries(action.patch).map(([key, value]) => `${key}=${value}`).join(", ")}`,
+    detail: "The same style action shape is used by Geometry, 3D, Algebra, and the Inspector so object menus stay consistent.",
+    steps: ["Resolve the object by name.", "Validate the requested style value.", "Apply the patch through the unified object/inspector action channel."],
+  };
+}
+
+function animationActionCommand(name: string, args: string[], input: string): ResultCard {
+  const action = createAnimationAction(name, args);
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation: "Animation action",
+    result: `${action.target}: ${action.playing ? "playing" : "paused"} at ${action.speed}x`,
+    detail: action.detail,
+    steps: ["Resolve the target slider or scene.", "Set playback state.", "Keep the action browser-only so it can run offline in a saved project."],
+  };
+}
+
+function transformSteps(kind: "rotate" | "translate" | "dilate" | "mirror") {
+  const steps = {
+    rotate: ["Move the point into center-relative coordinates.", "Apply the 2D rotation matrix.", "Move the result back to the original center."],
+    translate: ["Read the movement vector.", "Add dx to x and dy to y.", "Return the translated coordinate."],
+    dilate: ["Measure the point from the center.", "Multiply the center-relative vector by the scale factor.", "Return the scaled coordinate."],
+    mirror: ["Project the point onto the mirror axis.", "Double the projection and subtract the original point.", "Return the reflected coordinate."],
+  };
+  return steps[kind];
+}
+
+function definitionCommandCard(input: string, interpretation: string, detail: string): ResultCard {
+  const specName = input.match(/^([a-z]+)/i)?.[1] ?? "";
+  const spec = specName ? resolveCommandSpec(specName) : null;
+  return {
+    id: crypto.randomUUID(),
+    input,
+    interpretation,
+    result: spec?.signature ?? "Registered constructor",
+    detail,
+    steps: spec ? [`${spec.name} is registered in the ${spec.group} command group.`, spec.description, `Example: ${spec.examples[0] ?? spec.signature}`] : undefined,
+  };
+}
+
+function parseTwoKernelObjects(args: string[]) {
+  const pair = args.length >= 2 ? args : splitKernelObjectPair(args.join(","));
+  if (pair.length < 2) return null;
+  const first = parseKernelObject(pair[0]);
+  const second = parseKernelObject(pair[1]);
+  return first && second ? [first, second] as [KernelObject, KernelObject] : null;
+}
+
+function splitKernelObjectPair(value: string) {
+  const output: string[] = [];
+  let current = "";
+  let depth = 0;
+  for (const char of value) {
+    if (char === "[" || char === "(") depth += 1;
+    if (char === "]" || char === ")") depth -= 1;
+    if (char === "," && depth === 0) {
+      output.push(current.trim());
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  if (current.trim()) output.push(current.trim());
+  return output;
+}
+
+function parseKernelObject(value: string): KernelObject | null {
+  const trimmed = value.trim();
+  const linear = trimmed.match(/^(line|segment|ray)\s*[\[(](.*)[\])]$/i);
+  if (linear) {
+    const points = splitKernelObjectPair(linear[2]).map(parsePointArgument).filter(Boolean) as KernelPoint[];
+    if (points.length < 2) return null;
+    if (linear[1].toLowerCase() === "segment") return kernelSegment(points[0], points[1]);
+    if (linear[1].toLowerCase() === "ray") return kernelRay(points[0], points[1]);
+    return kernelLine(points[0], points[1]);
+  }
+  const circleMatch = trimmed.match(/^circle\s*[\[(](.*)[\])]$/i);
+  if (circleMatch) {
+    const parts = splitKernelObjectPair(circleMatch[1]);
+    const center = parsePointArgument(parts[0] ?? "");
+    const radius = Number(parts[1]);
+    if (center && Number.isFinite(radius)) return kernelCircle(center, radius);
+  }
+  const conicBody = trimmed.match(/^conic\s*[\[(](.*)[\])]$/i)?.[1] ?? trimmed;
+  const parsedConic = parseConicEquation(conicBody);
+  if (parsedConic) return parsedConic;
+  return null;
+}
+
+function parsePointArgument(value: string) {
+  return parseKernelPoint(value.replace(/^point\s*[\[(](.*)[\])]$/i, "$1"));
+}
+
+function formatConicCoefficients(coefficients: [number, number, number, number, number, number]) {
+  const labels = ["A", "B", "C", "D", "E", "F"];
+  return coefficients.map((value, index) => `${labels[index]}=${roundTo(value, 6)}`).join(", ");
+}
+
+function parsePlane3dArgs(args: string[]) {
+  const body = args.join(",");
+  const equationPlane = parsePlaneEquation(body);
+  if (equationPlane) return equationPlane;
+  const parts = args.length >= 2 ? args : splitKernelObjectPair(body);
+  const point = parsePoint3(parts[0] ?? "");
+  const normal = parseVector3(parts[1] ?? "");
+  return point && normal ? kernelPlane3(point, normal) : null;
+}
+
+function parseObject3(value: string): Object3 | null {
+  const trimmed = value.trim();
+  const planeMatch = trimmed.match(/^plane\s*[\[(](.*)[\])]$/i);
+  if (planeMatch) return parsePlane3dArgs(splitKernelObjectPair(planeMatch[1]));
+  const lineMatch = trimmed.match(/^line3?d?\s*[\[(](.*)[\])]$/i);
+  if (lineMatch) {
+    const parts = splitKernelObjectPair(lineMatch[1]);
+    const origin = parsePoint3(parts[0] ?? "");
+    const direction = parseVector3(parts[1] ?? "");
+    return origin && direction ? kernelLine3(origin, direction) : null;
+  }
+  const solidMatch = trimmed.match(/^(sphere|cylinder|cone)\s*[\[(](.*)[\])]$/i);
+  if (solidMatch) return parseSolid3d(solidMatch[1].toLowerCase(), splitKernelObjectPair(solidMatch[2]));
+  return parsePlaneEquation(trimmed);
+}
+
+function parseSolid3d(name: string, args: string[]): Object3 {
+  const center = parsePoint3(args[0] ?? "") ?? kernelPoint3(0, 0, 0);
+  const radius = Number(args[1] ?? 1);
+  const height = Number(args[2] ?? radius * 2);
+  if (!Number.isFinite(radius)) throw new Error("3D solid radius must be numeric.");
+  if (name === "sphere") return kernelSphere3(center, radius);
+  if (!Number.isFinite(height)) throw new Error("3D solid height must be numeric.");
+  if (name === "cylinder") return kernelCylinder3(center, radius, height);
+  if (name === "cone") return kernelCone3(center, radius, height);
+  throw new Error(`Unsupported 3D solid "${name}".`);
+}
+
+function formatPoint3(point: Point3) {
+  return `${roundTo(point.x, 4)}, ${roundTo(point.y, 4)}, ${roundTo(point.z, 4)}`;
+}
+
+function formatIntersection3(hit: ReturnType<typeof intersect3>[number]) {
+  if (hit.kind === "point") return `point (${formatPoint3(hit.point)})`;
+  if (hit.kind === "line") return `line point=(${formatPoint3(hit.line.point)}), dir=<${formatPoint3(hit.line.direction)}>`;
+  return `circle center=(${formatPoint3(hit.center)}), r=${roundTo(hit.radius, 5)}`;
+}
+
+function parseMatrixLiteral(body: string) {
+  const normalized = body.trim().replace(/^Matrix/i, "");
+  const rowMatches = Array.from(normalized.matchAll(/\[([^\[\]]+)\]/g)).map((match) => match[1]);
+  const rows = rowMatches.length ? rowMatches : normalized.replace(/^\[|\]$/g, "").split(/\s*;\s*/);
+  const matrix = rows.map((row) => row.split(/\s*,\s*/).map((cell) => Number(cell.trim()))).filter((row) => row.length > 0);
+  if (!matrix.length || matrix.some((row) => row.some((value) => !Number.isFinite(value)))) throw new Error("Use a numeric matrix like [[1,2],[3,4]].");
+  const width = matrix[0].length;
+  if (matrix.some((row) => row.length !== width)) throw new Error("Every matrix row must have the same length.");
+  return matrix;
+}
+
+function formatMatrix(matrix: number[][]) {
+  return `[${matrix.map((row) => `[${row.map((value) => roundTo(value, 6)).join(", ")}]`).join(", ")}]`;
+}
+
+function determinant(matrix: number[][]): number {
+  if (matrix.length !== matrix[0]?.length) throw new Error("Determinant requires a square matrix.");
+  if (matrix.length === 1) return matrix[0][0];
+  if (matrix.length === 2) return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+  return matrix[0].reduce((sum, value, column) => {
+    const minor = matrix.slice(1).map((row) => row.filter((_, index) => index !== column));
+    return sum + (column % 2 ? -1 : 1) * value * determinant(minor);
+  }, 0);
+}
+
+function factorial(n: number): number {
+  return n <= 1 ? 1 : n * factorial(n - 1);
 }
 
 function derivativeText(expression: string) {
@@ -2915,65 +2601,56 @@ function bisect(f: (x: number) => number, left: number, right: number) {
   return (lo + hi) / 2;
 }
 
-function GraphPanel({
-  plots,
-  onChange,
-  parameters,
-  onParametersChange,
-}: {
-  plots: PlotItem[];
-  onChange: (plots: PlotItem[]) => void;
-  parameters: ParameterValues;
-  onParametersChange: (parameters: ParameterValues) => void;
-}) {
+function GraphPanel({ plots, onChange, tableRange, onTableRangeChange }: { plots: PlotItem[]; onChange: (plots: PlotItem[]) => void; tableRange: { start: number; end: number; step: number }; onTableRangeChange: (range: { start: number; end: number; step: number }) => void }) {
   const [draft, setDraft] = useState("cos(x)");
   const [xMin, setXMin] = useState(-10);
   const [xMax, setXMax] = useState(10);
   const [yMin, setYMin] = useState(-10);
   const [yMax, setYMax] = useState(10);
+  const [sliderA, setSliderA] = useState(1);
+  const [sliderB, setSliderB] = useState(0);
   const visiblePlots = plots.filter((plot) => plot.visible !== false);
-  const viewport = useMemo(() => ({ xMin, xMax, yMin, yMax, width: 640, height: 360 }), [xMin, xMax, yMin, yMax]);
-  const parameterNames = useMemo(() => extractParameterNames([...plots.map((plot) => plot.expression), draft]), [draft, plots]);
-  const activeParameters = useMemo(() => ensureParameterValues(parameterNames, parameters), [parameterNames, parameters]);
-  const algebraLinkCount = useMemo(() => plots.reduce((sum, plot) => sum + extractParameterNames([plot.expression]).length, 0), [plots]);
-  useEffect(() => {
-    const current = JSON.stringify(parameters);
-    const next = JSON.stringify(activeParameters);
-    if (current !== next) onParametersChange(activeParameters);
-  }, [activeParameters, onParametersChange, parameters]);
-  const resolveExpression = (expression: string) => substituteParameters(expression, activeParameters);
-  const paths = useMemo(() => visiblePlots.map((plot) => ({ ...plot, path: graphPath(stripInequality(resolveExpression(plot.expression)), viewport) })), [activeParameters, visiblePlots, viewport]);
-  const tableRows = useMemo(() => visiblePlots.slice(0, 3).flatMap((plot) => sampleTable(resolveExpression(plot.expression), plot.expression).slice(0, 7)), [activeParameters, visiblePlots]);
-  const regression = useMemo(() => linearRegression(regressionSeed), []);
-  const inequalityRegions = useMemo(() => visiblePlots.filter((plot) => (plot.kind ?? inferPlotKind(plot.expression)) === "inequality").map((plot) => inequalityRegion(resolveExpression(plot.expression), viewport)), [activeParameters, visiblePlots, viewport]);
+  const viewport = { xMin, xMax, yMin, yMax, width: 640, height: 360 };
+  const paths = useMemo(() => visiblePlots.map((plot) => ({ ...plot, path: graphPath(stripInequality(applyGraphParameters(plot.expression, sliderA, sliderB)), viewport) })), [visiblePlots, sliderA, sliderB, xMin, xMax, yMin, yMax]);
+  const tableRows = useMemo(() => visiblePlots.slice(0, 3).flatMap((plot) => sampleTable(applyGraphParameters(plot.expression, sliderA, sliderB), plot.expression, tableRange.start, tableRange.end, tableRange.step)), [visiblePlots, sliderA, sliderB, tableRange.start, tableRange.end, tableRange.step]);
+  const regression = useMemo(() => regressionModel(regressionSeed, "linear"), []);
+  const inequalityRegions = useMemo(() => visiblePlots.filter((plot) => (plot.kind ?? inferPlotKind(plot.expression)) === "inequality").map((plot) => inequalityRegion(applyGraphParameters(plot.expression, sliderA, sliderB), viewport, plot.color)), [visiblePlots, sliderA, sliderB, xMin, xMax, yMin, yMax]);
   const addPlot = (expression: string, kind: PlotKind = inferPlotKind(expression)) => onChange([{ id: crypto.randomUUID(), expression, color: colors[plots.length % colors.length], kind, visible: true }, ...plots].slice(0, 10));
   const updatePlot = (id: string, patch: Partial<PlotItem>) => onChange(plots.map((plot) => plot.id === id ? { ...plot, ...patch } : plot));
   const removePlot = (id: string) => onChange(plots.filter((plot) => plot.id !== id));
   const addRegression = () => onChange([{ id: crypto.randomUUID(), expression: regression.expression, color: "#ec4899", kind: "regression" as PlotKind, points: regressionSeed, visible: true }, ...plots].slice(0, 10));
-  const updateParameter = (name: string, value: number) => onParametersChange({ ...activeParameters, [name]: value });
   return (
-    <div className="min-w-0 max-w-full space-y-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60 sm:p-4">
+    <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/60">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="flex items-center gap-2 font-bold"><LineChart className="h-4 w-4 text-cyan-500" /> Desmos-style Graphing Lab</h2>
         <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-500">
-          <span className="mini-chip">Functions</span><span className="mini-chip">Inequalities</span><span className="mini-chip">Tables</span><span className="mini-chip">Regression</span><span className="mini-chip">{algebraLinkCount} algebra links</span>
+          <span className="mini-chip">Functions</span><span className="mini-chip">Inequalities</span><span className="mini-chip">Tables</span><span className="mini-chip">Regression</span>
         </div>
       </div>
 
-      <div className="grid min-w-0 gap-4 2xl:grid-cols-[280px_minmax(0,1fr)]">
-        <div className="min-w-0 space-y-3">
+      <div className="grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)]">
+        <div className="space-y-3">
           <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
             <label className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Expression</label>
             <input value={draft} onChange={(event) => setDraft(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-900" placeholder="sin(x), x^2, y < x+2" />
-            <div className="mt-2 grid min-w-0 gap-2 sm:grid-cols-2">
+            <div className="mt-2 grid grid-cols-2 gap-2">
               <button type="button" onClick={() => addPlot(draft)} className="action-primary py-2">Add graph</button>
               <button type="button" onClick={() => addRegression()} className="action-secondary py-2">Regression</button>
             </div>
           </div>
 
+          <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+            <p className="text-sm font-bold">Editable value table range</p>
+            <div className="mt-2 grid grid-cols-3 gap-2">
+              <MiniNumber label="start" value={tableRange.start} onChange={(start) => onTableRangeChange({ ...tableRange, start })} />
+              <MiniNumber label="end" value={tableRange.end} onChange={(end) => onTableRangeChange({ ...tableRange, end })} />
+              <MiniNumber label="step" value={tableRange.step} onChange={(step) => onTableRangeChange({ ...tableRange, step: step || 1 })} />
+            </div>
+          </div>
+
           <div className="space-y-2">
             {plots.map((plot) => (
-              <div key={plot.id} className="min-w-0 rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-white/5">
+              <div key={plot.id} className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-white/5">
                 <div className="flex items-center gap-2">
                   <input type="checkbox" checked={plot.visible !== false} onChange={(event) => updatePlot(plot.id, { visible: event.target.checked })} />
                   <span className="h-3 w-3 rounded-full" style={{ background: plot.color }} />
@@ -2985,7 +2662,7 @@ function GraphPanel({
             ))}
           </div>
 
-          <div className="grid min-w-0 grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2">
             <MiniNumber label="x min" value={xMin} onChange={setXMin} />
             <MiniNumber label="x max" value={xMax} onChange={setXMax} />
             <MiniNumber label="y min" value={yMin} onChange={setYMin} />
@@ -2993,35 +2670,23 @@ function GraphPanel({
           </div>
         </div>
 
-        <div className="min-w-0 space-y-3 overflow-hidden">
-          <svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet" className="h-[260px] w-full max-w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[340px] xl:h-[360px]">
+        <div className="space-y-3">
+          <svg viewBox="0 0 640 360" className="h-[280px] w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[360px]">
             <GraphGrid viewport={viewport} />
             {inequalityRegions.map((region, index) => <path key={`ineq-${index}`} d={region} fill={visiblePlots[index]?.color ?? "#06b6d4"} opacity="0.16" />)}
             {paths.map((plot) => (plot.kind ?? inferPlotKind(plot.expression)) !== "inequality" && <path key={plot.id} d={plot.path} fill="none" stroke={plot.color} strokeWidth="3" />)}
             {visiblePlots.filter((plot) => plot.kind === "scatter" || plot.kind === "regression").flatMap((plot) => plot.points ?? []).map((point, index) => <circle key={`${point.x}-${point.y}-${index}`} cx={scaleX(point.x, viewport)} cy={scaleY(point.y, viewport)} r="5" fill="#ec4899" stroke="#0f172a" />)}
           </svg>
 
-          <div className="grid min-w-0 gap-3 xl:grid-cols-2">
-            <div className="min-w-0 rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <p className="text-sm font-bold">Linked parameter sliders</p>
-                <span className="mini-chip">{parameterNames.length} active</span>
-              </div>
-              {parameterNames.length === 0 ? (
-                <p className="mt-3 rounded-xl bg-white/70 p-3 text-xs font-semibold leading-5 text-slate-500 dark:bg-slate-950/50 dark:text-slate-400">
-                  Add a parameter such as `a`, `b`, or `k` in an expression to create a live slider.
-                </p>
-              ) : (
-                <div className="mt-2 space-y-2">
-                  {parameterNames.map((name) => (
-                    <SliderControl key={name} label={name} value={activeParameters[name] ?? 1} min={-10} max={10} step={0.1} onChange={(value) => updateParameter(name, value)} />
-                  ))}
-                </div>
-              )}
-              <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">Current binding: {summarizeParameters(activeParameters)}.</p>
+          <div className="grid gap-3 lg:grid-cols-2">
+            <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+              <p className="text-sm font-bold">Parameter sliders</p>
+              <SliderControl label="a" value={sliderA} min={-5} max={5} step={0.1} onChange={setSliderA} />
+              <SliderControl label="b" value={sliderB} min={-10} max={10} step={0.1} onChange={setSliderB} />
+              <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">Use expressions like a*x+b or a*sin(x)+b.</p>
             </div>
-            <div className="mobile-safe-scroll thin-scrollbar min-w-0 rounded-2xl border border-slate-200 dark:border-white/10">
-              <table className="w-full min-w-[260px] text-left text-xs">
+            <div className="mobile-safe-scroll rounded-2xl border border-slate-200 dark:border-white/10">
+              <table className="w-full text-left text-xs">
                 <thead className="bg-slate-100 text-slate-500 dark:bg-white/10 dark:text-slate-300"><tr><th className="p-2">expr</th><th className="p-2">x</th><th className="p-2">y</th></tr></thead>
                 <tbody>{tableRows.map((row, index) => <tr key={`${row.x}-${row.y}-${index}`} className="border-t border-slate-200 dark:border-white/10"><td className="p-2 font-mono">{row.label}</td><td className="p-2 font-mono">{row.x}</td><td className="p-2 font-mono">{row.y}</td></tr>)}</tbody>
               </table>
@@ -3070,642 +2735,6 @@ function MiniNumber({ label, value, onChange }: { label: string; value: number; 
   );
 }
 
-function AnimationStudio({
-  playing,
-  time,
-  duration,
-  target,
-  parameter,
-  parameterNames,
-  min,
-  max,
-  snapshots,
-  onPlaying,
-  onTime,
-  onDuration,
-  onTarget,
-  onParameter,
-  onMin,
-  onMax,
-  onCapture,
-  onApplySnapshot,
-  onClearSnapshots,
-  onExport,
-}: {
-  playing: boolean;
-  time: number;
-  duration: number;
-  target: AnimationTarget;
-  parameter: string;
-  parameterNames: string[];
-  min: number;
-  max: number;
-  snapshots: AnimationSnapshot[];
-  onPlaying: (value: boolean) => void;
-  onTime: (value: number) => void;
-  onDuration: (value: number) => void;
-  onTarget: (value: AnimationTarget) => void;
-  onParameter: (value: string) => void;
-  onMin: (value: number) => void;
-  onMax: (value: number) => void;
-  onCapture: () => void;
-  onApplySnapshot: (snapshot: AnimationSnapshot) => void;
-  onClearSnapshots: () => void;
-  onExport: () => void;
-}) {
-  return (
-    <div className="rounded-2xl border border-cyan-200 bg-cyan-50/80 p-4 dark:border-cyan-300/20 dark:bg-cyan-300/10">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-black uppercase text-cyan-700 dark:text-cyan-200">Animation tools</p>
-          <h3 className="text-base font-black text-slate-950 dark:text-white">Timeline, keyframes, traces, snapshots</h3>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <button type="button" onClick={() => onPlaying(!playing)} className={playing ? "action-primary py-2" : "action-secondary py-2"}>
-            {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-            {playing ? "Pause" : "Play"}
-          </button>
-          <button type="button" onClick={onCapture} className="action-secondary py-2"><Save className="h-4 w-4" />Snapshot</button>
-          <button type="button" onClick={onExport} disabled={!snapshots.length} className="action-secondary py-2 disabled:opacity-50"><Download className="h-4 w-4" />Motion JSON</button>
-        </div>
-      </div>
-
-      <div className="mt-3 grid gap-3 lg:grid-cols-[minmax(0,1fr)_280px]">
-        <div className="space-y-3">
-          <div className="rounded-2xl bg-white/80 p-3 dark:bg-slate-950/40">
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-sm font-black">{animationTargetLabel(target)}</p>
-              <span className="mini-chip">{roundTo(time, 2)}s / {roundTo(duration, 1)}s</span>
-            </div>
-            <input
-              className="mt-3 w-full accent-cyan-500"
-              type="range"
-              min={0}
-              max={duration}
-              step={0.05}
-              value={Math.min(duration, time)}
-              onChange={(event) => {
-                onPlaying(false);
-                onTime(Number(event.target.value));
-              }}
-            />
-          </div>
-
-          <div className="grid gap-2 md:grid-cols-4">
-            <label className="rounded-xl bg-white/80 p-3 text-xs font-bold dark:bg-slate-950/40">
-              Target
-              <select className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={target} onChange={(event) => onTarget(event.target.value as AnimationTarget)}>
-                <option value="graph-parameter">Graph parameter</option>
-                <option value="cross-section">3D cross-section</option>
-                <option value="surface-scale">Surface scale</option>
-                <option value="point-orbit">Point P orbit</option>
-              </select>
-            </label>
-            <label className="rounded-xl bg-white/80 p-3 text-xs font-bold dark:bg-slate-950/40">
-              Parameter
-              <select className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={parameter} onChange={(event) => onParameter(event.target.value)} disabled={!parameterNames.length || target !== "graph-parameter"}>
-                {(parameterNames.length ? parameterNames : [parameter]).map((name) => <option key={name} value={name}>{name}</option>)}
-              </select>
-            </label>
-            <MiniNumber label="Duration" value={duration} onChange={(value) => onDuration(Math.max(0.5, value))} />
-            <MiniNumber label="Min" value={min} onChange={onMin} />
-            <MiniNumber label="Max" value={max} onChange={onMax} />
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            <button type="button" className="mini-chip" onClick={() => { onTarget("graph-parameter"); onMin(-4); onMax(4); onDuration(5); }}>Slider sweep</button>
-            <button type="button" className="mini-chip" onClick={() => { onTarget("cross-section"); onMin(-2); onMax(2); onDuration(6); }}>Slice scan</button>
-            <button type="button" className="mini-chip" onClick={() => { onTarget("surface-scale"); onMin(0.4); onMax(2.3); onDuration(7); }}>Surface pulse</button>
-            <button type="button" className="mini-chip" onClick={() => { onTarget("point-orbit"); onDuration(8); }}>Point orbit</button>
-          </div>
-        </div>
-
-        <div className="rounded-2xl bg-white/80 p-3 dark:bg-slate-950/40">
-          <div className="flex items-center justify-between gap-2">
-            <p className="text-sm font-black">Motion snapshots</p>
-            <button type="button" className="mini-chip" onClick={onClearSnapshots}>Clear</button>
-          </div>
-          <div className="thin-scrollbar mt-2 max-h-48 space-y-2 overflow-auto pr-1">
-            {snapshots.length === 0 ? (
-              <p className="rounded-xl bg-slate-100 p-3 text-xs font-semibold leading-5 text-slate-500 dark:bg-white/10 dark:text-slate-300">Capture frames while animating to build a small motion path export.</p>
-            ) : snapshots.map((item) => (
-              <button key={item.id} type="button" onClick={() => onApplySnapshot(item)} className="w-full rounded-xl bg-slate-100 p-3 text-left text-xs dark:bg-white/10">
-                <span className="block font-black">{item.label}</span>
-                <span className="mt-1 block text-slate-500 dark:text-slate-300">{animationTargetLabel(item.target)} saved with {Object.keys(item.parameters).length} graph parameter(s).</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ClassroomAuthoringPanel({
-  lesson,
-  onLessonChange,
-  onStepChange,
-  onAddStep,
-  onDeleteStep,
-  onMoveStep,
-  onRunStep,
-  onReset,
-}: {
-  lesson: ClassroomLesson;
-  onLessonChange: (patch: Partial<ClassroomLesson>) => void;
-  onStepChange: (id: string, patch: Partial<LessonStep>) => void;
-  onAddStep: (kind?: LessonStepKind) => void;
-  onDeleteStep: (id: string) => void;
-  onMoveStep: (id: string, direction: -1 | 1) => void;
-  onRunStep: (step: LessonStep) => void;
-  onReset: () => void;
-}) {
-  return (
-    <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-4 dark:border-amber-300/20 dark:bg-amber-300/10">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-black uppercase text-amber-700 dark:text-amber-200">Classroom authoring</p>
-          <h3 className="text-base font-black text-slate-950 dark:text-white">Activity builder</h3>
-          <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">{lessonSummary(lesson)}</p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {lessonStepKinds.map((kind) => <button key={kind} type="button" onClick={() => onAddStep(kind)} className="mini-chip">{kind}</button>)}
-          <button type="button" onClick={onReset} className="mini-chip">Reset</button>
-        </div>
-      </div>
-
-      <div className="mt-3 grid gap-3 md:grid-cols-2">
-        <label className="text-xs font-bold">
-          Lesson title
-          <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-slate-900" value={lesson.title} onChange={(event) => onLessonChange({ title: event.target.value })} />
-        </label>
-        <label className="text-xs font-bold">
-          Audience
-          <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-slate-900" value={lesson.audience} onChange={(event) => onLessonChange({ audience: event.target.value })} />
-        </label>
-        <label className="text-xs font-bold md:col-span-2">
-          Objective
-          <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-slate-900" value={lesson.objective} onChange={(event) => onLessonChange({ objective: event.target.value })} />
-        </label>
-        <label className="text-xs font-bold md:col-span-2">
-          Teacher notes
-          <textarea className="mt-1 min-h-20 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-slate-900" value={lesson.teacherNotes} onChange={(event) => onLessonChange({ teacherNotes: event.target.value })} />
-        </label>
-      </div>
-
-      <div className="mt-4 space-y-3">
-        {lesson.steps.map((step, index) => (
-          <div key={step.id} className="rounded-2xl bg-white/80 p-3 dark:bg-slate-950/40">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="mini-chip">Step {index + 1}: {step.kind}</span>
-              <div className="flex flex-wrap gap-2">
-                <button type="button" className="mini-chip" onClick={() => onMoveStep(step.id, -1)}>Up</button>
-                <button type="button" className="mini-chip" onClick={() => onMoveStep(step.id, 1)}>Down</button>
-                {step.command && <button type="button" className="mini-chip" onClick={() => onRunStep(step)}>Run</button>}
-                <button type="button" className="mini-chip" onClick={() => onDeleteStep(step.id)}>Delete</button>
-              </div>
-            </div>
-            <div className="mt-3 grid gap-2 md:grid-cols-2">
-              <label className="text-xs font-bold">
-                Kind
-                <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={step.kind} onChange={(event) => onStepChange(step.id, { kind: event.target.value as LessonStepKind })}>
-                  {lessonStepKinds.map((kind) => <option key={kind} value={kind}>{kind}</option>)}
-                </select>
-              </label>
-              <label className="text-xs font-bold">
-                Title
-                <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 text-sm dark:border-white/10 dark:bg-slate-900" value={step.title} onChange={(event) => onStepChange(step.id, { title: event.target.value })} />
-              </label>
-              <label className="text-xs font-bold md:col-span-2">
-                Student prompt
-                <textarea className="mt-1 min-h-16 w-full rounded-xl border border-slate-200 bg-white p-2 text-sm dark:border-white/10 dark:bg-slate-900" value={step.prompt} onChange={(event) => onStepChange(step.id, { prompt: event.target.value })} />
-              </label>
-              <label className="text-xs font-bold">
-                Workspace command
-                <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 font-mono text-sm dark:border-white/10 dark:bg-slate-900" value={step.command ?? ""} onChange={(event) => onStepChange(step.id, { command: event.target.value || undefined })} />
-              </label>
-              <label className="text-xs font-bold">
-                Expected answer
-                <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 text-sm dark:border-white/10 dark:bg-slate-900" value={step.expected ?? ""} onChange={(event) => onStepChange(step.id, { expected: event.target.value || undefined })} />
-              </label>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function PracticeAssessmentPanel({
-  lesson,
-  responses,
-  report,
-  onAnswer,
-  onCheck,
-  onRunStep,
-  onReset,
-  onExport,
-}: {
-  lesson: ClassroomLesson;
-  responses: Record<string, PracticeResponse>;
-  report: PracticeReport;
-  onAnswer: (stepId: string, answer: string) => void;
-  onCheck: (step: LessonStep) => void;
-  onRunStep: (step: LessonStep) => void;
-  onReset: () => void;
-  onExport: () => void;
-}) {
-  const assessableSteps = lesson.steps.filter(isAssessableStep);
-  return (
-    <div className="rounded-2xl border border-indigo-200 bg-indigo-50/80 p-4 dark:border-indigo-300/20 dark:bg-indigo-300/10">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-black uppercase text-indigo-700 dark:text-indigo-200">Practice assessment</p>
-          <h3 className="text-base font-black text-slate-950 dark:text-white">{practiceStatusLabel(report.status)}</h3>
-          <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">{report.answered}/{report.totalChecks} answered, {report.correct} mastery check(s) passed</p>
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <span className={`rounded-full px-3 py-1 text-xs font-black ${report.status === "mastered" ? "bg-emerald-500 text-white" : report.status === "in-progress" ? "bg-indigo-500 text-white" : "bg-slate-200 text-slate-700 dark:bg-white/10 dark:text-slate-200"}`}>{report.score}%</span>
-          <button type="button" onClick={onExport} className="mini-chip">Export</button>
-          <button type="button" onClick={onReset} className="mini-chip">Reset</button>
-        </div>
-      </div>
-
-      {assessableSteps.length === 0 ? (
-        <div className="mt-3 rounded-2xl bg-white/80 p-3 text-sm font-semibold text-slate-600 dark:bg-slate-950/40 dark:text-slate-300">
-          Add a question or check step in the activity builder to create student practice items.
-        </div>
-      ) : (
-        <div className="mt-3 space-y-3">
-          {assessableSteps.map((step, index) => {
-            const response = responses[step.id];
-            const score = response?.score ?? 0;
-            return (
-              <div key={step.id} className="rounded-2xl bg-white/85 p-3 dark:bg-slate-950/45">
-                <div className="flex flex-wrap items-start justify-between gap-2">
-                  <div>
-                    <span className="mini-chip">Item {index + 1}: {step.kind}</span>
-                    <h4 className="mt-2 text-sm font-black text-slate-950 dark:text-white">{step.title}</h4>
-                    <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">{step.prompt}</p>
-                  </div>
-                  <span className={`rounded-full px-2 py-1 text-[10px] font-black uppercase ${score >= 70 ? "bg-emerald-500 text-white" : response?.checkedAt ? "bg-amber-300 text-slate-950" : "bg-slate-200 text-slate-600 dark:bg-white/10 dark:text-slate-300"}`}>{response?.checkedAt ? `${score}%` : "open"}</span>
-                </div>
-                <textarea
-                  value={response?.answer ?? ""}
-                  onChange={(event) => onAnswer(step.id, event.target.value)}
-                  className="mt-3 min-h-20 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-slate-900"
-                  placeholder="Student response..."
-                />
-                <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-                  <p className="min-w-0 flex-1 text-xs leading-5 text-slate-600 dark:text-slate-300">{response?.feedback ?? "Check the response when the student is ready."}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {step.command && <button type="button" onClick={() => onRunStep(step)} className="mini-chip">Run command</button>}
-                    <button type="button" onClick={() => onCheck(step)} className="mini-chip">Check</button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function ImportExportSuitePanel({ importStatus, onTemplate }: { importStatus: string; onTemplate: (template: ConstructionTemplate) => void }) {
-  const templates: ConstructionTemplate[] = ["triangle", "circle-theorem", "parabola-locus"];
-  return (
-    <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4 dark:border-emerald-300/20 dark:bg-emerald-300/10">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-black uppercase text-emerald-700 dark:text-emerald-200">Import and export</p>
-          <h3 className="text-base font-black text-slate-950 dark:text-white">Portable workspace files</h3>
-          <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">{importStatus}</p>
-        </div>
-        <span className="mini-chip">JSON SVG CSV worksheet bundle</span>
-      </div>
-      <div className="mt-3 grid gap-2 md:grid-cols-3">
-        {templates.map((template) => (
-          <button key={template} type="button" onClick={() => onTemplate(template)} className="rounded-2xl bg-white/80 p-3 text-left transition hover:bg-emerald-100 dark:bg-slate-950/40 dark:hover:bg-emerald-300/15">
-            <p className="font-black">{templateLabel(template)}</p>
-            <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">Load a ready construction and continue editing in Geometry.</p>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function BrowserProjectCenterPanel({
-  status,
-  shareStatus,
-  summary,
-  slots,
-  lastAutosaveAt,
-  onSave,
-  onCreateRecoveryPoint,
-  onRestore,
-  onDelete,
-  onClear,
-  onExportBundle,
-  onImport,
-  onCopyShareLink,
-  onExportShareCapsule,
-  onLoadShareLink,
-}: {
-  status: string;
-  shareStatus: string;
-  summary: ReturnType<typeof summarizeWorkspaceSnapshot>;
-  slots: ProjectRecoverySlot<WorkspaceSnapshot>[];
-  lastAutosaveAt: number | null;
-  onSave: () => void;
-  onCreateRecoveryPoint: () => void;
-  onRestore: (slot: ProjectRecoverySlot<WorkspaceSnapshot>) => void;
-  onDelete: (slotId: string) => void;
-  onClear: () => void;
-  onExportBundle: () => void;
-  onImport: () => void;
-  onCopyShareLink: () => void;
-  onExportShareCapsule: () => void;
-  onLoadShareLink: () => void;
-}) {
-  const summaryItems = [
-    { label: "Graphs", value: summary.plots },
-    { label: "Results", value: summary.results },
-    { label: "Geometry", value: summary.geometryObjects },
-    { label: "3D", value: summary.spaceObjects },
-    { label: "Lessons", value: summary.lessonSteps },
-    { label: "Motion", value: summary.animationSnapshots },
-  ];
-  return (
-    <div className="rounded-2xl border border-cyan-200 bg-cyan-50/75 p-4 dark:border-cyan-300/20 dark:bg-cyan-300/10">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-black uppercase text-cyan-700 dark:text-cyan-200">Browser project center</p>
-          <h3 className="text-base font-black text-slate-950 dark:text-white">Local save, recovery, import validation</h3>
-          <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">{status}</p>
-          <p className="mt-1 text-xs font-semibold text-cyan-700 dark:text-cyan-100">{shareStatus}</p>
-        </div>
-        <span className="mini-chip">No server required</span>
-      </div>
-
-      <div className="mt-3 grid gap-2 sm:grid-cols-3 lg:grid-cols-6">
-        {summaryItems.map((item) => (
-          <div key={item.label} className="rounded-xl bg-white/85 p-3 text-center dark:bg-slate-950/45">
-            <p className="text-lg font-black text-slate-950 dark:text-white">{item.value}</p>
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{item.label}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-3 flex flex-wrap gap-2">
-        <button type="button" onClick={onSave} className="action-secondary"><Save className="h-4 w-4" />Save point</button>
-        <button type="button" onClick={onCreateRecoveryPoint} className="action-secondary"><RotateCcw className="h-4 w-4" />Recovery point</button>
-        <button type="button" onClick={onExportBundle} className="action-secondary"><Download className="h-4 w-4" />Export bundle</button>
-        <button type="button" onClick={onImport} className="action-secondary"><Download className="h-4 w-4" />Import and validate</button>
-        <button type="button" onClick={onCopyShareLink} className="action-secondary"><ClipboardCopy className="h-4 w-4" />Copy share link</button>
-        <button type="button" onClick={onExportShareCapsule} className="action-secondary"><Download className="h-4 w-4" />Share capsule</button>
-        <button type="button" onClick={onLoadShareLink} className="action-secondary"><ArrowLeftRight className="h-4 w-4" />Load URL share</button>
-        <button type="button" onClick={onClear} className="action-secondary"><Trash2 className="h-4 w-4" />Clear points</button>
-        <span className="mini-chip">Autosave {lastAutosaveAt ? formatProjectTime(lastAutosaveAt) : "waiting"}</span>
-      </div>
-
-      <div className="mt-3 grid gap-2 xl:grid-cols-2">
-        {slots.length === 0 ? (
-          <div className="rounded-xl bg-white/80 p-3 text-xs font-semibold text-slate-600 dark:bg-slate-950/45 dark:text-slate-300">Recovery points will appear after autosave, manual save, imports, or templates.</div>
-        ) : (
-          slots.slice(0, 6).map((slot) => (
-            <div key={slot.id} className="rounded-xl bg-white/85 p-3 dark:bg-slate-950/45">
-              <div className="flex flex-wrap items-start justify-between gap-2">
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-black text-slate-950 dark:text-white">{slot.label}</p>
-                  <p className="mt-0.5 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{slot.reason} - {formatProjectTime(slot.timestamp)}</p>
-                </div>
-                <span className="mini-chip">{slot.summary.geometryObjects} geo</span>
-              </div>
-              <div className="mt-2 flex flex-wrap gap-1 text-[10px] font-semibold text-slate-600 dark:text-slate-300">
-                <span>{slot.summary.plots} graphs</span>
-                <span>-</span>
-                <span>{slot.summary.results} results</span>
-                <span>-</span>
-                <span>{slot.summary.spaceObjects} 3D</span>
-                <span>-</span>
-                <span>{slot.summary.lessonSteps} lesson</span>
-              </div>
-              <div className="mt-2 flex flex-wrap gap-2">
-                <button type="button" onClick={() => onRestore(slot)} className="mini-chip"><RotateCcw className="h-3.5 w-3.5" />Restore</button>
-                <button type="button" onClick={() => onDelete(slot.id)} className="mini-chip"><Trash2 className="h-3.5 w-3.5" />Delete</button>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
-    </div>
-  );
-}
-
-function ReleaseReadinessPanel({ health, onSeedSyllabusActivity, onEnableTeachingMode }: { health: ReleaseHealth; onSeedSyllabusActivity: () => void; onEnableTeachingMode: () => void }) {
-  const shortcuts = [
-    "Ctrl+Enter run",
-    "Ctrl+S save",
-    "Ctrl+O load",
-    "Ctrl+Shift+E bundle",
-    "Ctrl+Shift+L share",
-    "Ctrl+1-4 switch views",
-    "Esc pause",
-  ];
-  const groupedChecks = releaseReadinessGroups.map((group) => ({
-    ...group,
-    checks: health.checks.filter((check) => check.group === group.id),
-  }));
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white/85 p-4 dark:border-white/10 dark:bg-slate-950/55">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">Definition of Done</p>
-          <h3 className="text-base font-black text-slate-950 dark:text-white">{releaseStatusLabel(health.status)} for GeoGebra+ teaching</h3>
-          <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">Live checklist for object model, 2D/3D tools, algebra links, teaching overlays, simulations, offline export, QA, accessibility, and syllabus intelligence.</p>
-        </div>
-        <span className={`rounded-full px-3 py-1 text-xs font-black ${health.status === "release-ready" ? "bg-emerald-500 text-white" : health.status === "good" ? "bg-cyan-500 text-white" : "bg-amber-400 text-slate-950"}`}>{health.score}%</span>
-      </div>
-      <div className="mt-3 flex flex-wrap gap-2">
-        <button type="button" onClick={onSeedSyllabusActivity} className="action-secondary"><Wand2 className="h-4 w-4" />Seed syllabus activity</button>
-        <button type="button" onClick={onEnableTeachingMode} className="action-secondary"><Presentation className="h-4 w-4" />Enable overlays</button>
-      </div>
-      <div className="mt-3 grid gap-3 xl:grid-cols-2">
-        {groupedChecks.map((group) => (
-          <div key={group.id} className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <div>
-                <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{group.label}</p>
-                <p className="text-[11px] font-semibold text-slate-600 dark:text-slate-300">{group.summary}</p>
-              </div>
-              <span className="mini-chip">{group.checks.filter((check) => check.passed).length}/{group.checks.length}</span>
-            </div>
-            <div className="mt-2 space-y-2">
-              {group.checks.map((check) => (
-                <div key={check.id} className="rounded-lg bg-white/80 p-2 dark:bg-slate-950/45">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="text-xs font-black">{check.label}</p>
-                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-black uppercase ${check.passed ? "bg-emerald-500 text-white" : "bg-amber-300 text-slate-950"}`}>{check.passed ? "ok" : "todo"}</span>
-                  </div>
-                  <p className="mt-1 text-[11px] leading-4 text-slate-600 dark:text-slate-300">{check.detail}</p>
-                  {!check.passed && <p className="mt-1 text-[11px] font-semibold leading-4 text-amber-700 dark:text-amber-200">{check.action}</p>}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-3 flex flex-wrap gap-2">
-        {shortcuts.map((shortcut) => <span key={shortcut} className="mini-chip">{shortcut}</span>)}
-      </div>
-    </div>
-  );
-}
-
-const releaseReadinessGroups = [
-  { id: "foundation", label: "Core workspace", summary: "Objects, undo/redo, algebra links, inspector, and right-click." },
-  { id: "construction", label: "2D and 3D construction", summary: "GeoGebra-like 2D plus stronger 3D selection and properties." },
-  { id: "teaching", label: "Teaching layer", summary: "Overlays, lesson flow, animation, simulations, and practice." },
-  { id: "production", label: "Production layer", summary: "Offline PWA, persistence, sharing, QA, performance, and accessibility." },
-  { id: "beyond-geogebra", label: "Beyond GeoGebra", summary: "Syllabus intelligence and classroom-first differentiators." },
-] as const;
-
-function formatProjectTime(timestamp: number) {
-  return new Date(timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-}
-
-function inferSyllabusFocus(input: { plots: number; results: number; geometryObjects: number; spaceObjects: number; activeTool: GeometryTool }) {
-  if (input.geometryObjects >= 3 || ["polygon", "angle", "circle", "tangent", "parallel", "perpendicular", "midpoint"].includes(input.activeTool)) return "Euclidean geometry";
-  if (input.spaceObjects > 7) return "3D geometry and measurement";
-  if (input.results > 0 && input.plots > 0) return "Algebra and functions";
-  if (input.plots > 0) return "Coordinate geometry";
-  return "Integrated math modelling";
-}
-
-function createSyllabusActivitySteps(focus: string, command: string): LessonStep[] {
-  return [
-    {
-      id: `dod-${crypto.randomUUID()}`,
-      kind: "teacher-note",
-      title: "Teaching overlay launch",
-      prompt: `Frame this as a ${focus} investigation. Keep the object list and inspector visible while students predict, test, and explain.`,
-    },
-    {
-      id: `dod-${crypto.randomUUID()}`,
-      kind: "explore",
-      title: "Manipulate the live model",
-      prompt: "Change one visible object, parameter, or 3D property. Record what stays invariant and what changes.",
-      command,
-    },
-    {
-      id: `dod-${crypto.randomUUID()}`,
-      kind: "question",
-      title: "Connect representations",
-      prompt: "Which algebra, graph, construction, or 3D object is controlling the visible change? Use evidence from at least two panels.",
-      expected: "A strong answer names the controlling object or parameter and compares two linked views.",
-    },
-    {
-      id: `dod-${crypto.randomUUID()}`,
-      kind: "check",
-      title: "Explain like a syllabus answer",
-      prompt: `Write a final ${focus.toLowerCase()} explanation using a formula, construction fact, measurement, or visual invariant from the workspace.`,
-      expected: "The explanation should include a mathematical reason and a reference to the visual model.",
-    },
-  ];
-}
-
-function constructionTemplate(template: ConstructionTemplate): Construction {
-  if (template === "circle-theorem") {
-    const points: GeoPoint[] = [
-      { id: "ct-o", x: 320, y: 210, label: "O" },
-      { id: "ct-a", x: 440, y: 210, label: "A" },
-      { id: "ct-b", x: 260, y: 110, label: "B" },
-      { id: "ct-c", x: 230, y: 300, label: "C" },
-    ];
-    return {
-      points,
-      lines: [
-        { id: "ct-ab", a: "ct-a", b: "ct-b", kind: "segment" },
-        { id: "ct-ac", a: "ct-a", b: "ct-c", kind: "segment" },
-        { id: "ct-bc", a: "ct-b", b: "ct-c", kind: "segment" },
-      ],
-      circles: [{ id: "ct-circle", center: "ct-o", edge: "ct-a" }],
-      polygons: [],
-      angles: [{ id: "ct-angle", a: "ct-b", vertex: "ct-a", b: "ct-c" }],
-      arcs: [],
-      texts: [],
-      conics: [],
-      transforms: [],
-      constraints: [],
-    };
-  }
-  if (template === "parabola-locus") {
-    const points: GeoPoint[] = [
-      { id: "pl-v", x: 320, y: 250, label: "V" },
-      { id: "pl-f", x: 320, y: 170, label: "F" },
-      { id: "pl-a", x: 220, y: 250, label: "A" },
-      { id: "pl-b", x: 420, y: 250, label: "B" },
-    ];
-    return {
-      points,
-      lines: [
-        { id: "pl-directrix", a: "pl-a", b: "pl-b", kind: "line" },
-        { id: "pl-axis", a: "pl-v", b: "pl-f", kind: "ray" },
-      ],
-      circles: [],
-      polygons: [],
-      angles: [],
-      arcs: [],
-      texts: [],
-      conics: [{ id: "pl-conic", kind: "parabola", center: "pl-v", a: 90, b: 60 }],
-      transforms: [],
-      constraints: [],
-    };
-  }
-  const points: GeoPoint[] = [
-    { id: "tr-a", x: 180, y: 310, label: "A" },
-    { id: "tr-b", x: 460, y: 310, label: "B" },
-    { id: "tr-c", x: 310, y: 100, label: "C" },
-  ];
-  return {
-    points,
-    lines: [
-      { id: "tr-ab", a: "tr-a", b: "tr-b", kind: "segment" },
-      { id: "tr-bc", a: "tr-b", b: "tr-c", kind: "segment" },
-      { id: "tr-ca", a: "tr-c", b: "tr-a", kind: "segment" },
-    ],
-    circles: [],
-    polygons: [{ id: "tr-poly", points: ["tr-a", "tr-b", "tr-c"] }],
-    angles: [{ id: "tr-angle", a: "tr-a", vertex: "tr-c", b: "tr-b" }],
-    arcs: [],
-    texts: [],
-    conics: [],
-    transforms: [],
-    constraints: [],
-  };
-}
-
-function lessonToWorksheet(lesson: ClassroomLesson) {
-  return [
-    lesson.title,
-    `Audience: ${lesson.audience}`,
-    `Objective: ${lesson.objective}`,
-    "",
-    "Student Activity",
-    ...lesson.steps.map((step, index) => [
-      `${index + 1}. ${step.title} [${step.kind}]`,
-      step.prompt,
-      step.command ? `Command: ${step.command}` : "",
-      step.expected ? `Expected: ${step.expected}` : "",
-    ].filter(Boolean).join("\n")),
-    "",
-    "Teacher Notes",
-    lesson.teacherNotes,
-  ].join("\n\n");
-}
-
 function inferPlotKind(expression: string): PlotKind {
   if (/[<>]=?/.test(expression)) return "inequality";
   return "function";
@@ -3715,14 +2744,23 @@ function applyGraphParameters(expression: string, a: number, b: number) {
   return expression.replace(/\ba\b/g, `(${a})`).replace(/\bb\b/g, `(${b})`);
 }
 
-function sampleTable(expression: string, label: string) {
-  return [-3, -2, -1, 0, 1, 2, 3].map((x) => {
+function sampleTable(expression: string, label: string, start = -3, end = 3, step = 1) {
+  return generateValueTable(expression, start, end, step).map((row) => ({ ...row, label })).filter((row) => Number.isFinite(row.y));
+}
+
+function generateValueTable(expression: string, start: number, end: number, step: number) {
+  const rows: ResultTableRow[] = [];
+  const direction = start <= end ? 1 : -1;
+  const safeStep = Math.max(Math.abs(step), 0.0001) * direction;
+  for (let x = start; direction > 0 ? x <= end + 1e-9 : x >= end - 1e-9; x += safeStep) {
     try {
-      return { x, y: roundTo(evaluateMathExpression(stripInequality(expression), x), 4), label };
+      rows.push({ x: roundTo(x, 6), y: roundTo(evaluateMathExpression(stripInequality(expression), x), 6) });
     } catch {
-      return { x, y: Number.NaN, label };
+      rows.push({ x: roundTo(x, 6), y: Number.NaN });
     }
-  }).filter((row) => Number.isFinite(row.y));
+    if (rows.length >= 160) break;
+  }
+  return rows.filter((row) => Number.isFinite(row.y));
 }
 
 function stripInequality(expression: string) {
@@ -3731,7 +2769,7 @@ function stripInequality(expression: string) {
   return expression.replace(/^y\s*=\s*/i, "");
 }
 
-function inequalityRegion(expression: string, viewport: GraphViewport) {
+function inequalityRegion(expression: string, viewport: GraphViewport, color: string) {
   const boundary = stripInequality(expression);
   const path = graphPath(boundary, viewport);
   if (!path) return "";
@@ -3759,7 +2797,189 @@ function linearRegression(points: ResultTableRow[]) {
   return { slope, intercept, expression: `${roundTo(slope, 4)}*x${intercept >= 0 ? "+" : ""}${roundTo(intercept, 4)}` };
 }
 
-function ResultCardView({ result, onVisualSync }: { result: ResultCard; onVisualSync: (link: CasVisualSyncLink) => void }) {
+type RegressionModel = "linear" | "quadratic" | "exponential" | "polynomial";
+
+function regressionModel(points: ResultTableRow[], model: RegressionModel) {
+  const clean = points.filter((point) => Number.isFinite(point.x) && Number.isFinite(point.y));
+  if (model === "linear") {
+    const fit = linearRegression(clean);
+    return { expression: fit.expression, detail: `Linear least-squares fit y = ${fit.expression}.` };
+  }
+  if (model === "exponential") {
+    const positive = clean.filter((point) => point.y > 0);
+    const fit = linearRegression(positive.map((point) => ({ x: point.x, y: Math.log(point.y) })));
+    const a = Math.exp(fit.intercept);
+    const b = fit.slope;
+    return { expression: `${roundTo(a, 5)}*exp(${roundTo(b, 5)}*x)`, detail: "Exponential regression by fitting ln(y)=ln(a)+b*x." };
+  }
+  const degree = model === "quadratic" ? 2 : 3;
+  const coeffs = polynomialRegression(clean, degree);
+  const expression = coeffs.map((coeff, index) => {
+    const power = degree - index;
+    const rounded = roundTo(coeff, 5);
+    if (Math.abs(rounded) < 1e-9) return "";
+    if (power === 0) return `${rounded}`;
+    if (power === 1) return `${rounded}*x`;
+    return `${rounded}*x^${power}`;
+  }).filter(Boolean).join("+").replace(/\+\-/g, "-");
+  return { expression: expression || "0", detail: `${model === "quadratic" ? "Quadratic" : "Cubic polynomial"} least-squares regression.` };
+}
+
+function polynomialRegression(points: ResultTableRow[], degree: number) {
+  const size = degree + 1;
+  const matrix = Array.from({ length: size }, (_, row) => Array.from({ length: size }, (_, col) => points.reduce((sum, point) => sum + point.x ** (row + col), 0)));
+  const vector = Array.from({ length: size }, (_, row) => points.reduce((sum, point) => sum + point.y * point.x ** row, 0));
+  const solved = solveLinearSystem(matrix, vector);
+  return solved.reverse();
+}
+
+function solveLinearSystem(matrix: number[][], vector: number[]) {
+  const n = vector.length;
+  const augmented = matrix.map((row, index) => [...row, vector[index]]);
+  for (let pivot = 0; pivot < n; pivot += 1) {
+    let best = pivot;
+    for (let row = pivot + 1; row < n; row += 1) if (Math.abs(augmented[row][pivot]) > Math.abs(augmented[best][pivot])) best = row;
+    [augmented[pivot], augmented[best]] = [augmented[best], augmented[pivot]];
+    const divisor = augmented[pivot][pivot] || 1;
+    for (let col = pivot; col <= n; col += 1) augmented[pivot][col] /= divisor;
+    for (let row = 0; row < n; row += 1) {
+      if (row === pivot) continue;
+      const factor = augmented[row][pivot];
+      for (let col = pivot; col <= n; col += 1) augmented[row][col] -= factor * augmented[pivot][col];
+    }
+  }
+  return augmented.map((row) => row[n]);
+}
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function SpreadsheetPanel({ grid, onChange, onScatter, onRegression }: { grid: SpreadsheetCellGrid; onChange: (grid: SpreadsheetCellGrid) => void; onScatter: (points: ResultTableRow[]) => void; onRegression: (model: RegressionModel, points: ResultTableRow[]) => void }) {
+  const evaluated = useMemo(() => evaluateSpreadsheetGrid(grid), [grid]);
+  const points = useMemo(() => spreadsheetPoints(evaluated.values), [evaluated]);
+  const updateCell = (row: number, col: number, value: string) => {
+    onChange(grid.map((cells, rowIndex) => rowIndex === row ? cells.map((cell, colIndex) => colIndex === col ? value : cell) : cells));
+  };
+  const addRow = () => onChange([...grid, Array.from({ length: grid[0]?.length ?? 4 }, () => "")]);
+  const addColumn = () => onChange(grid.map((row) => [...row, ""]));
+
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/60">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h3 className="font-bold">Spreadsheet grid</h3>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={addRow} className="action-secondary py-2">Add row</button>
+          <button type="button" onClick={addColumn} className="action-secondary py-2">Add column</button>
+          <button type="button" onClick={() => onScatter(points)} className="action-primary py-2">Plot data</button>
+        </div>
+      </div>
+      <div className="mobile-safe-scroll mt-3 overflow-auto rounded-2xl border border-slate-200 dark:border-white/10">
+        <table className="min-w-[620px] w-full text-left text-xs">
+          <thead className="bg-slate-100 text-slate-500 dark:bg-white/10 dark:text-slate-300">
+            <tr><th className="p-2">#</th>{grid[0]?.map((_, index) => <th key={index} className="p-2">{columnName(index)}</th>)}</tr>
+          </thead>
+          <tbody>
+            {grid.map((row, rowIndex) => (
+              <tr key={rowIndex} className="border-t border-slate-200 dark:border-white/10">
+                <td className="bg-slate-50 p-2 font-bold text-slate-500 dark:bg-white/5">{rowIndex + 1}</td>
+                {row.map((cell, colIndex) => (
+                  <td key={colIndex} className="p-1 align-top">
+                    <input aria-label={`${columnName(colIndex)}${rowIndex + 1}`} value={cell} onChange={(event) => updateCell(rowIndex, colIndex, event.target.value)} className="w-full rounded-lg border border-slate-200 bg-white px-2 py-1 font-mono dark:border-white/10 dark:bg-slate-900" />
+                    {cell.startsWith("=") && <p className="mt-1 truncate px-1 font-mono text-[11px] text-cyan-600 dark:text-cyan-300">{evaluated.values[rowIndex]?.[colIndex] ?? ""}</p>}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {(["linear", "quadratic", "exponential", "polynomial"] as RegressionModel[]).map((model) => <button key={model} type="button" onClick={() => onRegression(model, points)} className="rounded-xl bg-slate-100 px-3 py-2 text-xs font-bold capitalize dark:bg-white/10">{model}</button>)}
+      </div>
+      {evaluated.errors.length > 0 && <p className="mt-3 rounded-xl bg-amber-50 p-2 text-xs font-bold text-amber-800 dark:bg-amber-400/10 dark:text-amber-100">{evaluated.errors.map((error) => `${error.cell}: ${error.message}`).join("; ")}</p>}
+      <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Formulas start with = and can reference cells like A2+B2. First two numeric columns become graph/regression data.</p>
+    </div>
+  );
+}
+
+function FunctionAnalysisPanel({ plot, onCommand }: { plot?: PlotItem; onCommand: (command: string) => void }) {
+  const expression = stripInequality(plot?.expression ?? "x^2-4");
+  const analysis = useMemo(() => analyzeFunction(expression), [expression]);
+  return (
+    <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/60">
+      <h3 className="font-bold">Function analysis</h3>
+      <p className="font-mono text-sm text-slate-500 dark:text-slate-400">f(x) = {expression}</p>
+      <div className="grid gap-2">
+        <InfoPill title="Roots" text={analysis.roots || "No real roots found in [-20,20]."} />
+        <InfoPill title="Intercepts" text={analysis.intercepts} />
+        <InfoPill title="Extrema" text={analysis.extrema || "No local extrema found in [-10,10]."} />
+        <InfoPill title="Domain hint" text={analysis.domainHint} />
+        <InfoPill title="Derivative" text={analysis.derivative} />
+        <InfoPill title="Integral" text={analysis.integral} />
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <button type="button" onClick={() => onCommand(`Derivative[${expression}]`)} className="action-secondary py-2">Derivative</button>
+        <button type="button" onClick={() => onCommand(`Integral[${expression}]`)} className="action-secondary py-2">Integral</button>
+        <button type="button" onClick={() => onCommand(`Root[${expression}]`)} className="action-secondary py-2">Roots</button>
+        <button type="button" onClick={() => onCommand(`Table[${expression}, -4, 4, 1]`)} className="action-secondary py-2">Table</button>
+      </div>
+    </div>
+  );
+}
+
+function spreadsheetPoints(grid: SpreadsheetCellGrid) {
+  return grid.slice(1).map((row) => ({ x: Number(row[0]), y: Number(row[1]) })).filter((point) => Number.isFinite(point.x) && Number.isFinite(point.y));
+}
+
+function columnName(index: number) {
+  let name = "";
+  let current = index + 1;
+  while (current > 0) {
+    const rem = (current - 1) % 26;
+    name = String.fromCharCode(65 + rem) + name;
+    current = Math.floor((current - 1) / 26);
+  }
+  return name;
+}
+
+function columnIndex(name: string) {
+  return name.split("").reduce((sum, char) => sum * 26 + char.charCodeAt(0) - 64, 0) - 1;
+}
+
+function analyzeFunction(expression: string) {
+  const roots = solveCommand(`${expression}=0`, `Root[${expression}]`).result;
+  const extrema = extremaCommand(expression, `Extremum[${expression}]`).result;
+  const yIntercept = safeEvaluate(expression, 0);
+  const derivative = trySymbolic(() => symbolicDerivative(expression))?.result ?? derivativeText(expression);
+  const integral = trySymbolic(() => symbolicIntegral(expression))?.result ?? integralText(expression);
+  return {
+    roots,
+    extrema,
+    intercepts: `y-intercept ${Number.isFinite(yIntercept) ? roundTo(yIntercept, 5) : "undefined"}`,
+    domainHint: domainHint(expression),
+    derivative,
+    integral,
+  };
+}
+
+function safeEvaluate(expression: string, x: number) {
+  try {
+    return evaluateMathExpression(expression, x);
+  } catch {
+    return Number.NaN;
+  }
+}
+
+function domainHint(expression: string) {
+  const hints: string[] = [];
+  if (/sqrt\s*\(/i.test(expression)) hints.push("square-root radicand must be nonnegative");
+  if (/log|ln/i.test(expression)) hints.push("log input must be positive");
+  if (/\//.test(expression)) hints.push("denominators cannot be zero");
+  return hints.length ? hints.join("; ") : "all real x unless a hidden denominator/domain restriction appears";
+}
+
+function ResultCardView({ result }: { result: ResultCard }) {
   return (
     <article className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{result.interpretation}</p>
@@ -3779,18 +2999,6 @@ function ResultCardView({ result, onVisualSync }: { result: ResultCard; onVisual
           </table>
         </div>
       )}
-      {result.visualSync && result.visualSync.length > 0 && (
-        <div className="mt-3 rounded-2xl border border-cyan-200 bg-cyan-50 p-3 dark:border-cyan-300/20 dark:bg-cyan-300/10">
-          <p className="text-[11px] font-black uppercase text-cyan-700 dark:text-cyan-200">Visual sync</p>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {result.visualSync.map((link) => (
-              <button key={link.id} type="button" onClick={() => onVisualSync(link)} className={link.auto ? "action-primary py-2 text-xs" : "action-secondary py-2 text-xs"}>
-                {link.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
       {result.related && (
         <div className="mt-3 flex flex-wrap gap-2">
           {result.related.map((item) => <span key={item} className="mini-chip">{item}</span>)}
@@ -3804,8 +3012,510 @@ function EmptyPanel({ text }: { text: string }) {
   return <div className="rounded-2xl bg-slate-100 p-5 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">{text}</div>;
 }
 
+function normalizeColor(value?: string) {
+  const match = value?.match(/^#[0-9a-f]{6}/i);
+  return match?.[0] ?? null;
+}
+
+type AlgebraObjectRow = {
+  ref: AlgebraObjectRef;
+  name: string;
+  definition: string;
+  visible: boolean;
+  locked: boolean;
+  trace: boolean;
+  dependencies: string[];
+};
+
+function WorkspaceModeTabs({ active, onChange }: { active: WorkspaceView; onChange: (view: WorkspaceView) => void }) {
+  const views: { id: WorkspaceView; label: string; icon: JSX.Element }[] = [
+    { id: "graph", label: "Graph + Algebra", icon: <FunctionSquare className="h-4 w-4" /> },
+    { id: "geometry", label: "2D Geometry", icon: <Pentagon className="h-4 w-4" /> },
+    { id: "3d", label: "3D", icon: <Box className="h-4 w-4" /> },
+    { id: "data", label: "CAS + Tables", icon: <LineChart className="h-4 w-4" /> },
+    { id: "teach", label: "Teach", icon: <Presentation className="h-4 w-4" /> },
+  ];
+  return (
+    <div className="sticky top-16 z-20 rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/95">
+      <div className="mobile-safe-scroll flex gap-2 overflow-x-auto pb-1 sm:pb-0">
+        {views.map((view) => (
+          <button
+            key={view.id}
+            type="button"
+            onClick={() => onChange(view.id)}
+            className={`flex shrink-0 items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition ${active === view.id ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-700 hover:bg-cyan-100 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15"}`}
+          >
+            {view.icon}
+            {view.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CompactWorkspaceBar({ activeTemplate, dynamicHealth, qaReport, teachingMode, performanceMode, onSave, onLoad, onUndo, onRedo, onExportJson, onExportPng, onShare, onToggleTeach, onRunQa, onPerformance }: { activeTemplate: SyllabusWorkspaceTemplate; dynamicHealth: ReturnType<typeof graphHealthSummary>; qaReport: WorkspaceQaReport; teachingMode: boolean; performanceMode: boolean; onSave: () => void; onLoad: () => void; onUndo: () => void; onRedo: () => void; onExportJson: () => void; onExportPng: () => void; onShare: () => void; onToggleTeach: () => void; onRunQa: () => void; onPerformance: (value: boolean) => void }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className={`rounded-full px-3 py-1.5 text-xs font-black ${dynamicHealth.ready ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100" : "bg-amber-100 text-amber-900 dark:bg-amber-400/15 dark:text-amber-100"}`}>Kernel {dynamicHealth.ready ? "ready" : "needs attention"}</span>
+          <span className="mini-chip">{dynamicHealth.total} objects</span>
+          <span className="mini-chip">{activeTemplate.unit}</span>
+          <span className={`rounded-full px-3 py-1.5 text-xs font-black ${qaReport.failed ? "bg-rose-100 text-rose-800 dark:bg-rose-400/15 dark:text-rose-100" : "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100"}`}>QA {qaReport.passed}/{qaReport.passed + qaReport.failed}</span>
+        </div>
+        <div className="mobile-safe-scroll flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+          <button type="button" onClick={onSave} className="action-secondary py-2"><Save className="h-4 w-4" />Save</button>
+          <button type="button" onClick={onLoad} className="action-secondary py-2"><Download className="h-4 w-4" />Load</button>
+          <button type="button" onClick={onUndo} className="action-secondary py-2"><RotateCcw className="h-4 w-4" />Undo</button>
+          <button type="button" onClick={onRedo} className="action-secondary py-2"><RotateCcw className="h-4 w-4" />Redo</button>
+          <button type="button" onClick={onExportJson} className="action-secondary py-2"><Download className="h-4 w-4" />JSON</button>
+          <button type="button" onClick={onExportPng} className="action-secondary py-2"><Download className="h-4 w-4" />PNG</button>
+          <button type="button" onClick={onShare} className="action-secondary py-2"><Download className="h-4 w-4" />URL</button>
+          <button type="button" onClick={() => onPerformance(!performanceMode)} className={performanceMode ? "action-primary py-2" : "action-secondary py-2"}>Performance</button>
+          <button type="button" onClick={onRunQa} className="action-secondary py-2">Run QA</button>
+          <button type="button" onClick={onToggleTeach} className={teachingMode ? "action-primary py-2" : "action-secondary py-2"}><Presentation className="h-4 w-4" />Teach</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HighPriorityWorkflowBar({ selectedType, styleControls, protocolPlan, slider, snapCandidates, imageWorkflow, exportPresets, tablet, onAddImage, onPauseAnimation, onPlayAnimation }: { selectedType: WorkflowObjectType; styleControls: StyleBarControl[]; protocolPlan: ProtocolPlaybackPlan; slider: SliderObject; snapCandidates: (SnapCandidate & { distance: number })[]; imageWorkflow: ImageWorkflowSpec; exportPresets: ExportPreset[]; tablet: TabletControlSpec; onAddImage: () => void; onPauseAnimation: () => void; onPlayAnimation: () => void }) {
+  return (
+    <div className="rounded-2xl border border-cyan-200 bg-cyan-50/70 p-4 dark:border-cyan-300/20 dark:bg-cyan-400/10">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h3 className="font-bold">High Priority Workflow Layer</h3>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">Contextual style bar, protocol replay, sliders, snapping, image workflow, export presets, offline library, and tablet controls are tracked as one production workflow.</p>
+        </div>
+        <span className="mini-chip">{selectedType} selected</span>
+      </div>
+      <div className="mt-3 grid gap-3 xl:grid-cols-4">
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-cyan-700 dark:text-cyan-200">Style Bar</p>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {styleControls.map((control) => <span key={control} className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold dark:bg-white/10">{control}</span>)}
+          </div>
+        </div>
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-cyan-700 dark:text-cyan-200">Protocol</p>
+          <p className="mt-2 text-sm font-bold">{protocolPlan.steps.length} steps, cursor {protocolPlan.cursor + 1}</p>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{protocolPlan.canReorder ? "Dependency-safe reorder available" : protocolPlan.blockedReorders[0] ?? "Replay ready"}</p>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Columns: {protocolPlan.columns.join(", ")}</p>
+        </div>
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-cyan-700 dark:text-cyan-200">Global Slider</p>
+          <p className="mt-2 text-sm font-bold">{slider.name} = {roundTo(slider.value, 2)} ({slider.playing ? "playing" : "paused"})</p>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Bound: {slider.boundObjects.join(", ") || "none"}</p>
+          <div className="mt-2 flex gap-2">
+            <button type="button" onClick={onPlayAnimation} className="rounded-full bg-slate-950 px-3 py-1 text-xs font-bold text-white dark:bg-white dark:text-slate-950">Play</button>
+            <button type="button" onClick={onPauseAnimation} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold dark:bg-white/10">Pause</button>
+          </div>
+        </div>
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-cyan-700 dark:text-cyan-200">Snap Preview</p>
+          <p className="mt-2 text-sm font-bold">{snapCandidates[0]?.label ?? "Grid"} priority {snapCandidates[0]?.priority ?? 0}</p>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Touch handle {tablet.touchHandleSize}px, long press {tablet.longPressContextMenuMs}ms</p>
+        </div>
+      </div>
+      <div className="mt-3 grid gap-3 xl:grid-cols-3">
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-cyan-700 dark:text-cyan-200">Images</p>
+          <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{imageWorkflow.actions.join(", ")}</p>
+          <button type="button" onClick={onAddImage} className="action-secondary mt-2 py-2">Add image</button>
+        </div>
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-cyan-700 dark:text-cyan-200">Export Quality</p>
+          <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{exportPresets.map((preset) => preset.label).join(", ")}</p>
+        </div>
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-cyan-700 dark:text-cyan-200">Right-Click Menu</p>
+          <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{contextMenuForObject(selectedType).join(", ")}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AlgebraObjectsPanel({ objects, selected, protocol, graph, graphHealth, commandSummary, onSelect, onRename, onEditDefinition, onPatch, onDuplicate, onDelete, onReplay, onContextMenu }: { objects: AlgebraObjectRow[]; selected: AlgebraObjectRef | null; protocol: ConstructionStep[]; graph: DynamicObjectGraph; graphHealth: ReturnType<typeof graphHealthSummary>; commandSummary: ReturnType<typeof commandRegistrySummary>; onSelect: (ref: AlgebraObjectRef) => void; onRename: (ref: AlgebraObjectRef, name: string) => void; onEditDefinition: (ref: AlgebraObjectRef, definition: string) => void; onPatch: (ref: AlgebraObjectRef, patch: { visible?: boolean; locked?: boolean; trace?: boolean }) => void; onDuplicate: (ref: AlgebraObjectRef) => void; onDelete: (ref: AlgebraObjectRef) => void; onReplay: (step: ConstructionStep) => void; onContextMenu: (event: ReactMouseEvent, ref: AlgebraObjectRef) => void }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h3 className="font-bold">Unified Algebra And Object Panel</h3>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Edit definitions once and see graph, geometry, 3D, inspector, and protocol stay linked.</p>
+        </div>
+        <span className="mini-chip">{objects.length} objects</span>
+      </div>
+      <div className="mt-4 grid gap-3 md:grid-cols-4">
+        <KernelMetric label="Kernel" value={graphHealth.ready ? "Ready" : "Needs fix"} tone={graphHealth.ready ? "good" : "bad"} />
+        <KernelMetric label="Dynamic links" value={`${graphHealth.dynamic}`} />
+        <KernelMetric label="Dirty chain" value={`${graphHealth.dirty}`} />
+        <KernelMetric label="Commands" value={`${commandSummary.implemented}/${commandSummary.total}`} />
+      </div>
+      <p className="mt-3 rounded-xl bg-slate-100 p-3 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">{graphHealth.text}</p>
+      {(graph.cycles.length > 0 || graph.missingDependencies.length > 0) && (
+        <div className="mt-3 rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-900 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-100">
+          {graph.cycles.map((cycle) => <p key={cycle.join("-")}>Circular dependency: {cycle.join(" -> ")}</p>)}
+          {graph.missingDependencies.map((item) => <p key={`${item.object}-${item.dependency}`}>{item.object} needs missing object {item.dependency}</p>)}
+        </div>
+      )}
+      <div className="mt-4 grid gap-2 md:grid-cols-3">
+        {Object.entries(commandSummary.byGroup).slice(0, 6).map(([group, item]) => (
+          <div key={group} className="rounded-xl bg-slate-100 p-3 text-xs dark:bg-white/10">
+            <p className="font-bold">{group}</p>
+            <p className="mt-1 text-slate-500 dark:text-slate-400">{item.implemented} live, {item.total - item.implemented} planned</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 grid gap-3 xl:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="max-h-[520px] space-y-2 overflow-y-auto pr-1">
+          {objects.length === 0 ? <p className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10">Create a graph, point, line, circle, polygon, or 3D object to see it here.</p> : objects.map((object) => (
+            <div key={`${object.ref.kind}-${object.ref.id}`} onContextMenu={(event) => onContextMenu(event, object.ref)} className={`rounded-xl border p-3 ${sameRef(selected, object.ref) ? "border-cyan-400 bg-cyan-50 dark:bg-cyan-400/10" : "border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-slate-900/50"}`}>
+              <div className="grid gap-2 lg:grid-cols-[150px_minmax(0,1fr)]">
+                <label className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+                  Name
+                  <input value={object.name} onFocus={() => onSelect(object.ref)} onChange={(event) => onRename(object.ref, event.target.value)} className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 text-sm normal-case dark:border-white/10 dark:bg-slate-950" />
+                </label>
+                <label className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+                  Definition
+                  <input defaultValue={object.definition} onFocus={() => onSelect(object.ref)} onBlur={(event) => onEditDefinition(object.ref, event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") event.currentTarget.blur(); }} className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 font-mono text-sm normal-case dark:border-white/10 dark:bg-slate-950" />
+                </label>
+              </div>
+              <div className="mt-2 flex flex-wrap items-center gap-2">
+                <button type="button" onClick={() => onSelect(object.ref)} className="rounded-full bg-white px-3 py-1 text-xs font-bold dark:bg-slate-950">Select</button>
+                <button type="button" onClick={() => onPatch(object.ref, { visible: !object.visible })} className="rounded-full bg-white px-3 py-1 text-xs font-bold dark:bg-slate-950">{object.visible ? "Hide" : "Show"}</button>
+                <button type="button" onClick={() => onPatch(object.ref, { locked: !object.locked })} className="rounded-full bg-white px-3 py-1 text-xs font-bold dark:bg-slate-950">{object.locked ? "Unlock" : "Lock"}</button>
+                <button type="button" onClick={() => onPatch(object.ref, { trace: !object.trace })} className="rounded-full bg-white px-3 py-1 text-xs font-bold dark:bg-slate-950">{object.trace ? "Trace on" : "Trace"}</button>
+                <button type="button" onClick={() => onDuplicate(object.ref)} className="rounded-full bg-white px-3 py-1 text-xs font-bold dark:bg-slate-950">Duplicate</button>
+                <button type="button" onClick={() => onDelete(object.ref)} className="rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">Delete</button>
+                <span className="mini-chip">{object.ref.kind}</span>
+              </div>
+              <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Depends on: {object.dependencies.length ? object.dependencies.join(", ") : "none"}</p>
+            </div>
+          ))}
+        </div>
+        <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+          <h4 className="font-bold">Construction Protocol</h4>
+          <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Replay any creation/edit step to inspect how the workspace was built.</p>
+          <div className="mt-3 max-h-[420px] space-y-2 overflow-y-auto">
+            {protocol.length === 0 ? <p className="text-sm text-slate-500 dark:text-slate-400">No protocol steps yet.</p> : protocol.map((step, index) => (
+              <button key={step.id} type="button" onClick={() => onReplay(step)} className="w-full rounded-xl bg-white p-3 text-left text-sm dark:bg-slate-950">
+                <p className="font-bold">{protocol.length - index}. {step.label}</p>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{step.detail}</p>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function KernelMetric({ label, value, tone = "neutral" }: { label: string; value: string; tone?: "neutral" | "good" | "bad" }) {
+  const toneClass = tone === "good" ? "text-emerald-600 dark:text-emerald-300" : tone === "bad" ? "text-amber-700 dark:text-amber-200" : "text-cyan-600 dark:text-cyan-300";
+  return (
+    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+      <p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{label}</p>
+      <p className={`mt-1 text-lg font-black ${toneClass}`}>{value}</p>
+    </div>
+  );
+}
+
+function CriticalGapPhasePanel() {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h3 className="font-bold">Critical Gap Implementation Phases</h3>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Four production phases that close the GeoGebra-level core gaps while keeping the app browser-only.</p>
+        </div>
+        <span className="mini-chip">{criticalGapImplementationPhases.length} phases</span>
+      </div>
+      <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        {criticalGapImplementationPhases.map((phase) => (
+          <div key={phase.id} className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
+            <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">Phase {phase.id}</p>
+            <h4 className="mt-1 font-bold">{phase.title}</h4>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{phase.goal}</p>
+            <p className="mt-3 text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Deliverables</p>
+            <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">{phase.deliverables.join(", ")}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SyllabusTemplatePanel({ templates, active, onApply }: { templates: SyllabusWorkspaceTemplate[]; active: string; onApply: (template: SyllabusWorkspaceTemplate) => void }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="font-bold">Syllabus-Aware Workspace Templates</h3>
+        <span className="mini-chip">browser only</span>
+      </div>
+      <div className="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        {templates.map((template) => (
+          <button key={template.id} type="button" onClick={() => onApply(template)} className={`rounded-2xl border p-4 text-left transition hover:-translate-y-0.5 ${active === template.id ? "border-cyan-400 bg-cyan-50 dark:bg-cyan-400/10" : "border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-slate-900/50"}`}>
+            <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{template.unit}</p>
+            <p className="mt-1 font-bold">{template.title}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{template.description}</p>
+            <p className="mt-3 font-mono text-xs text-slate-500 dark:text-slate-400">{template.command}</p>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function GuidedActivityPanel({ active, phase, template, journal, onToggle, onPhase, onJournal, onCompletePhase }: { active: boolean; phase: GuidedActivityPhase; template: SyllabusWorkspaceTemplate; journal: Record<string, ActivityJournalEntry>; onToggle: () => void; onPhase: (phase: GuidedActivityPhase) => void; onJournal: (patch: Partial<ActivityJournalEntry>) => void; onCompletePhase: () => void }) {
+  const phases: GuidedActivityPhase[] = ["predict", "manipulate", "check", "reflect"];
+  const current = template.steps.find((step) => step.phase === phase) ?? template.steps[0];
+  const currentEntry = journal[activityJournalKey(template.id, phase)] ?? defaultActivityJournalEntry(template.id, phase);
+  const completedCount = phases.filter((item) => journal[activityJournalKey(template.id, item)]?.selfCheck === "got-it").length;
+  const progress = Math.round((completedCount / phases.length) * 100);
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h3 className="font-bold">Guided Activity Mode</h3>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Prediction, manipulation, check, and reflection stay attached to this browser project.</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="mini-chip">{progress}% complete</span>
+          <button type="button" onClick={onToggle} className={active ? "action-primary py-2" : "action-secondary py-2"}>{active ? "Guidance on" : "Guidance off"}</button>
+        </div>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {phases.map((item) => {
+          const entry = journal[activityJournalKey(template.id, item)];
+          return <button key={item} type="button" onClick={() => onPhase(item)} className={`rounded-full px-3 py-2 text-xs font-bold uppercase ${phase === item ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : entry?.selfCheck === "got-it" ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100" : "bg-slate-100 text-slate-700 dark:bg-white/10 dark:text-slate-200"}`}>{item}</button>;
+        })}
+      </div>
+      {active && (
+        <div className="mt-3 grid gap-3 xl:grid-cols-[minmax(0,1fr)_260px]">
+          <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
+            <p className="text-sm font-bold">{current.title}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{current.prompt}</p>
+            <label className="mt-4 block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+              Student response
+              <textarea value={currentEntry.response} onChange={(event) => onJournal({ response: event.target.value })} rows={4} className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-white p-3 text-sm normal-case leading-6 dark:border-white/10 dark:bg-slate-950" placeholder="Write prediction, observation, calculation, or reflection..." />
+            </label>
+            <div className="mt-3 rounded-xl bg-white p-3 text-sm font-semibold text-slate-700 dark:bg-slate-950 dark:text-slate-100">{current.reveal}</div>
+          </div>
+          <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
+            <p className="text-sm font-bold">Self Check</p>
+            <div className="mt-3 grid gap-2">
+              {(["not-started", "revisit", "got-it"] as ActivityJournalEntry["selfCheck"][]).map((item) => <button key={item} type="button" onClick={() => onJournal({ selfCheck: item })} className={`rounded-xl px-3 py-2 text-left text-xs font-bold uppercase ${currentEntry.selfCheck === item ? "bg-cyan-600 text-white" : "bg-white dark:bg-slate-950"}`}>{item.replace("-", " ")}</button>)}
+            </div>
+            <label className="mt-4 block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+              Confidence {currentEntry.confidence}%
+              <input type="range" min="0" max="100" value={currentEntry.confidence} onChange={(event) => onJournal({ confidence: Number(event.target.value) })} className="mt-2 w-full accent-cyan-500" />
+            </label>
+            <button type="button" onClick={onCompletePhase} className="action-primary mt-4 w-full py-2">Mark and continue</button>
+            <p className="mt-3 text-xs leading-5 text-slate-500 dark:text-slate-400">Last saved: {currentEntry.updatedAt ? new Date(currentEntry.updatedAt).toLocaleTimeString() : "not yet"}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function BeyondGeoGebraCockpit({ packageSpec, packages, validation, assessment, tutor, readiness, commandDocs }: { packageSpec: UnitLabPackage; packages: UnitLabPackage[]; validation: ReturnType<typeof validateGuidedTaskResponse>; assessment: ReturnType<typeof assessConstruction>; tutor: ReturnType<typeof objectAwareTutorResponse>; readiness: ReturnType<typeof productionReadinessPlan>; commandDocs: ReturnType<typeof commandDocsForPackages> }) {
+  return (
+    <div className="rounded-2xl border border-violet-200 bg-violet-50/70 p-4 dark:border-violet-300/20 dark:bg-violet-400/10">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h3 className="font-bold">Beyond GeoGebra Teaching Intelligence</h3>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{packages.length} unit labs with guided validation, teacher reveal, assessment, tutor prompts, production readiness, and command discovery.</p>
+        </div>
+        <span className="mini-chip">{packageSpec.unit}</span>
+      </div>
+      <div className="mt-3 grid gap-3 xl:grid-cols-4">
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-violet-700 dark:text-violet-200">Unit Lab</p>
+          <p className="mt-2 font-bold">{packageSpec.title}</p>
+          <p className="mt-1 font-mono text-xs text-slate-500 dark:text-slate-400">{packageSpec.interactiveLab}</p>
+          <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{packageSpec.formulas.slice(0, 3).join(" | ")}</p>
+        </div>
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-violet-700 dark:text-violet-200">Guided Validation</p>
+          <p className={`mt-2 text-lg font-black ${validation.passed ? "text-emerald-600 dark:text-emerald-300" : "text-amber-700 dark:text-amber-200"}`}>{validation.score}%</p>
+          <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">{validation.feedback}</p>
+        </div>
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-violet-700 dark:text-violet-200">Assessment</p>
+          <p className={`mt-2 text-lg font-black ${assessment.passed ? "text-emerald-600 dark:text-emerald-300" : "text-amber-700 dark:text-amber-200"}`}>{assessment.score}%</p>
+          <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">{packageSpec.assessment.constructionGoal}</p>
+        </div>
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-violet-700 dark:text-violet-200">Smart Tutor</p>
+          <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{tutor.explanation}</p>
+          <p className="mt-2 text-xs font-bold text-violet-700 dark:text-violet-200">{tutor.nextChallenge}</p>
+        </div>
+      </div>
+      <div className="mt-3 grid gap-3 xl:grid-cols-3">
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-violet-700 dark:text-violet-200">Teacher Presentation</p>
+          <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">Lock: {packageSpec.teacherPresentation.lockWorkspace ? "yes" : "no"}; spotlight: {packageSpec.teacherPresentation.spotlightObject}; share: {packageSpec.teacherPresentation.shareModes.join(", ")}</p>
+          <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">{packageSpec.teacherPresentation.studentPrompt}</p>
+        </div>
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-violet-700 dark:text-violet-200">Production Plan</p>
+          <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">Performance: {readiness.performance.slice(0, 2).join(", ")}</p>
+          <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">Accessibility: {readiness.accessibility.slice(0, 2).join(", ")}</p>
+          <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">UI: {readiness.uiPolish.slice(0, 2).join(", ")}</p>
+        </div>
+        <div className="rounded-2xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-violet-700 dark:text-violet-200">Command Discovery</p>
+          <div className="mt-2 max-h-28 space-y-1 overflow-auto pr-1">
+            {commandDocs.map((doc) => <p key={`${doc.unit}-${doc.tool}`} className="text-xs leading-5 text-slate-500 dark:text-slate-400"><span className="font-bold text-slate-700 dark:text-slate-200">{doc.tool}</span> - {doc.unit}: {doc.example}</p>)}
+          </div>
+        </div>
+      </div>
+      <div className="mt-3 grid gap-2 md:grid-cols-3">
+        {packageSpec.misconceptions.slice(0, 3).map((item) => <div key={item} className="rounded-xl bg-white p-2 text-xs font-semibold text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">Watch for: {item}</div>)}
+      </div>
+    </div>
+  );
+}
+
+function TeacherPresentationPanel({ active, locked, revealStep, template, notes, journal, onToggle, onLock, onReveal, onNotes, onCopyLink }: { active: boolean; locked: boolean; revealStep: number; template: SyllabusWorkspaceTemplate; notes: string; journal: Record<string, ActivityJournalEntry>; onToggle: (value: boolean) => void; onLock: (value: boolean) => void; onReveal: (value: number) => void; onNotes: (notes: string) => void; onCopyLink: () => void }) {
+  const visibleSteps = template.steps.slice(0, revealStep);
+  const phaseSummary = template.steps.map((step) => journal[activityJournalKey(template.id, step.phase)] ?? defaultActivityJournalEntry(template.id, step.phase));
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h3 className="font-bold">Teacher Presentation Mode</h3>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={() => onToggle(!active)} className={active ? "action-primary py-2" : "action-secondary py-2"}>{active ? "Presenting" : "Start"}</button>
+          <button type="button" onClick={() => onLock(!locked)} className={locked ? "action-primary py-2" : "action-secondary py-2"}>{locked ? "Locked" : "Unlocked"}</button>
+          <button type="button" onClick={onCopyLink} className="action-secondary py-2">Copy teacher link</button>
+        </div>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <button type="button" onClick={() => onReveal(Math.max(1, revealStep - 1))} className="action-secondary py-2">Previous reveal</button>
+        <button type="button" onClick={() => onReveal(Math.min(template.steps.length, revealStep + 1))} className="action-secondary py-2">Next reveal</button>
+        <span className="mini-chip">Reveal {revealStep}/{template.steps.length}</span>
+      </div>
+      <div className="mt-3 grid gap-3 xl:grid-cols-[minmax(0,1fr)_280px]">
+        <ol className="space-y-2">
+          {visibleSteps.map((step, index) => <li key={step.phase} className="rounded-xl bg-slate-100 p-3 text-sm leading-6 dark:bg-white/10"><span className="font-bold text-cyan-600 dark:text-cyan-300">{index + 1}. {step.title}</span> {step.prompt}</li>)}
+        </ol>
+        <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+          <h4 className="font-bold">Classroom Pulse</h4>
+          <div className="mt-3 space-y-2">
+            {phaseSummary.map((entry) => <div key={entry.phase} className="rounded-xl bg-white p-2 text-xs dark:bg-slate-950"><p className="font-bold uppercase">{entry.phase}</p><p>Check: {entry.selfCheck.replace("-", " ")}</p><p>Confidence: {entry.confidence}%</p></div>)}
+          </div>
+        </div>
+      </div>
+      <label className="mt-3 block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+        Teacher notes
+        <textarea value={notes} onChange={(event) => onNotes(event.target.value)} rows={3} className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-white p-3 text-sm normal-case leading-6 dark:border-white/10 dark:bg-slate-950" placeholder="Board prompts, misconceptions, extension questions..." />
+      </label>
+    </div>
+  );
+}
+
+function OfflineProjectLibraryPanel({ projects, status, onSave, onRestore, onDelete, onClear }: { projects: OfflineProjectEntry<WorkspaceSnapshot>[]; status: string; onSave: () => void; onRestore: (entry: OfflineProjectEntry<WorkspaceSnapshot>) => void; onDelete: (id: string) => void; onClear: () => void }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h3 className="font-bold">Offline-First Project Library</h3>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{status}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={onSave} className="action-secondary py-2">Save current</button>
+          <button type="button" onClick={onClear} className="action-secondary py-2">Clear</button>
+        </div>
+      </div>
+      <div className="mt-3 grid gap-2 md:grid-cols-2">
+        {projects.length === 0 ? <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">Saved projects stay in browser storage and can be restored offline.</p> : projects.map((project) => (
+          <div key={project.id} className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+            <p className="font-bold">{project.title}</p>
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{new Date(project.savedAt).toLocaleString()} - {project.summary}</p>
+            <div className="mt-2 flex gap-2">
+              <button type="button" onClick={() => onRestore(project)} className="rounded-full bg-white px-3 py-1 text-xs font-bold dark:bg-slate-950">Restore</button>
+              <button type="button" onClick={() => onDelete(project.id)} className="rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">Delete</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProductionQualityPanel({ highContrast, performanceMode, qaReport, onHighContrast, onPerformance, onRunQa }: { highContrast: boolean; performanceMode: boolean; qaReport: WorkspaceQaReport; onHighContrast: (value: boolean) => void; onPerformance: (value: boolean) => void; onRunQa: () => void }) {
+  const [showDetails, setShowDetails] = useState(false);
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h3 className="font-bold">QA, Performance, Accessibility</h3>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={onRunQa} className="action-secondary py-2">Run QA</button>
+          <button type="button" onClick={() => setShowDetails((value) => !value)} className="action-secondary py-2">{showDetails ? "Hide details" : "Show details"}</button>
+        </div>
+      </div>
+      <div className="mt-3 grid gap-2 md:grid-cols-3">
+        <Toggle checked={highContrast} label="High contrast" onChange={onHighContrast} />
+        <Toggle checked={performanceMode} label="Performance mode" onChange={onPerformance} />
+        <div className={`rounded-2xl p-3 text-sm font-bold ${qaReport.failed ? "bg-rose-100 text-rose-800 dark:bg-rose-400/15 dark:text-rose-100" : "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100"}`}>QA: {qaReport.passed} passed, {qaReport.failed} failed</div>
+      </div>
+      {showDetails && (
+        <div className="mt-3 grid gap-2 md:grid-cols-2">
+          {qaReport.checks.map((check) => <div key={check.id} className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10"><p className="font-bold">{check.passed ? "Pass" : "Fail"} - {check.label}</p><p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{check.area}: {check.detail}</p></div>)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function GizmoReadout3D({ selected, transform }: { selected: ThreeObjectId; transform: Transform3D }) {
+  const mode: TransformMode3 = selected === "slice" || selected === "plane3d" ? "rotate" : selected === "solid" || selected.endsWith("3d") ? "scale" : "translate";
+  const handles = createTransformGizmo(mode);
+  const measurement = object3Measurement(transformToKernelObject(selected, transform));
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 text-sm dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="font-bold">3D Gizmo And Measurement</p>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{transform.name ?? selected} uses {mode} handles with snap-ready axes.</p>
+        </div>
+        <span className="mini-chip">{handles.length} handles</span>
+      </div>
+      <div className="mt-3 grid gap-2">
+        {handles.map((handle) => (
+          <div key={handle.id} className="flex items-center justify-between rounded-xl bg-slate-100 p-2 dark:bg-white/10">
+            <span className="font-bold" style={{ color: handle.color }}>{handle.label}</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">snap {handle.snapStep}</span>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-xs leading-5 text-slate-500 dark:text-slate-400">
+        {measurement.detail}; V={roundTo(measurement.volume, 3)}, SA={roundTo(measurement.surfaceArea, 3)}
+      </p>
+    </div>
+  );
+}
+
+function transformToKernelObject(selected: ThreeObjectId, transform: Transform3D): Object3 {
+  const center = kernelPoint3(transform.position[0], transform.position[1], transform.position[2]);
+  const dims = transform.dimensions ?? [transform.scale, transform.scale, transform.scale];
+  if (selected === "sphere3d" || selected === "solid") return kernelSphere3(center, Math.max(dims[0], dims[1], dims[2]) * transform.scale * 0.5);
+  if (selected === "cylinder3d") return kernelCylinder3(center, dims[0] * transform.scale, dims[1] * transform.scale);
+  if (selected === "cone3d") return kernelCone3(center, dims[0] * transform.scale, dims[1] * transform.scale);
+  if (selected === "plane3d" || selected === "slice") return kernelPlane3(center, kernelPoint3(0, 0, 1));
+  return kernelLine3(center, kernelPoint3(dims[0] || 1, dims[1] || 0, dims[2] || 0));
+}
+
 function downloadText(filename: string, content: string, type: string) {
   const blob = new Blob([content], { type });
+  downloadBlob(filename, blob);
+}
+
+function downloadBlob(filename: string, blob: Blob) {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
@@ -3814,26 +3524,343 @@ function downloadText(filename: string, content: string, type: string) {
   URL.revokeObjectURL(url);
 }
 
+function activityJournalKey(templateId: string, phase: GuidedActivityPhase) {
+  return `${templateId}:${phase}`;
+}
+
+function defaultActivityJournalEntry(templateId: string, phase: GuidedActivityPhase): ActivityJournalEntry {
+  return { templateId, phase, response: "", selfCheck: "not-started", confidence: 50, updatedAt: 0 };
+}
+
+function createLessonPack(template: SyllabusWorkspaceTemplate, snapshot: WorkspaceSnapshot, journal: Record<string, ActivityJournalEntry>, results: ResultCard[], notes: string) {
+  return {
+    app: "Math Universe",
+    version: "browser-only-lesson-pack",
+    exportedAt: new Date().toISOString(),
+    template: {
+      id: template.id,
+      unit: template.unit,
+      title: template.title,
+      description: template.description,
+      command: template.command,
+      outcomes: template.outcomes,
+      steps: template.steps,
+    },
+    teacherNotes: notes,
+    guidedJournal: Object.values(journal).filter((entry) => entry.templateId === template.id),
+    recentResults: results.slice(0, 12).map((result) => ({ input: result.input, interpretation: result.interpretation, result: result.result, detail: result.detail })),
+    workspaceSnapshot: snapshot,
+  };
+}
+
+function activityJournalToCsv(journal: Record<string, ActivityJournalEntry>) {
+  const rows = [["Template", "Phase", "Self check", "Confidence", "Response", "Updated"]];
+  Object.values(journal).forEach((entry) => rows.push([entry.templateId, entry.phase, entry.selfCheck, String(entry.confidence), entry.response, entry.updatedAt ? new Date(entry.updatedAt).toISOString() : ""]));
+  return rows.map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
+}
+
+function createWorksheetPdf(template: SyllabusWorkspaceTemplate, results: ResultCard[]) {
+  const lines = [
+    `Math Universe Worksheet: ${template.unit}`,
+    template.title,
+    "",
+    "Learning outcomes:",
+    ...template.outcomes.map((outcome) => `- ${outcome}`),
+    "",
+    "Guided activity:",
+    ...template.steps.flatMap((step, index) => [`${index + 1}. ${step.title}`, `Prompt: ${step.prompt}`, `Reveal: ${step.reveal}`]),
+    "",
+    "Recent workspace results:",
+    ...(results.length ? results.slice(0, 6).map((result) => `${result.input}: ${result.result}`) : ["No results exported yet."]),
+  ];
+  return simplePdf(lines);
+}
+
+function simplePdf(lines: string[]) {
+  const escapedLines = lines.map((line) => line.replace(/[()\\]/g, "\\$&"));
+  const content = escapedLines.map((line, index) => `BT /F1 11 Tf 56 ${780 - index * 18} Td (${line}) Tj ET`).join("\n");
+  const objects = [
+    "<< /Type /Catalog /Pages 2 0 R >>",
+    "<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+    "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>",
+    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
+    `<< /Length ${content.length} >>\nstream\n${content}\nendstream`,
+  ];
+  let body = "%PDF-1.4\n";
+  const offsets = [0];
+  objects.forEach((object, index) => {
+    offsets.push(body.length);
+    body += `${index + 1} 0 obj\n${object}\nendobj\n`;
+  });
+  const xref = body.length;
+  body += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
+  offsets.slice(1).forEach((offset) => { body += `${String(offset).padStart(10, "0")} 00000 n \n`; });
+  body += `trailer << /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`;
+  return body;
+}
+
+function buildAlgebraObjects(plots: PlotItem[], construction: Construction, transforms3d: Record<ThreeObjectId, Transform3D>, lockedGeometryIds: string[]): AlgebraObjectRow[] {
+  const pointName = (id: string) => pointById(construction.points, id)?.label ?? id.slice(0, 4);
+  const rows: AlgebraObjectRow[] = plots.map((plot, index) => ({
+    ref: { kind: "function", id: plot.id },
+    name: plot.name ?? String.fromCharCode(102 + index),
+    definition: `${plot.name ?? String.fromCharCode(102 + index)}(x) = ${plot.expression}`,
+    visible: plot.visible !== false,
+    locked: plot.locked === true,
+    trace: plot.trace === true,
+    dependencies: dependenciesForExpression(plot.expression),
+  }));
+  rows.push(...construction.points.map((point) => ({
+    ref: { kind: "point" as const, id: point.id },
+    name: point.label,
+    definition: `${point.label} = (${roundTo(point.x, 2)}, ${roundTo(point.y, 2)})`,
+    visible: point.style?.visible !== false,
+    locked: lockedGeometryIds.includes(point.id),
+    trace: point.style?.trace === true,
+    dependencies: [],
+  })));
+  rows.push(...construction.lines.map((line, index) => ({
+    ref: { kind: "line" as const, id: line.id },
+    name: lineName(line, construction, index),
+    definition: lineEquation(line, construction),
+    visible: line.style?.visible !== false,
+    locked: lockedGeometryIds.includes(line.id),
+    trace: line.style?.trace === true,
+    dependencies: [pointName(line.a), pointName(line.b)],
+  })));
+  rows.push(...construction.circles.map((circle, index) => ({
+    ref: { kind: "circle" as const, id: circle.id },
+    name: circleName(circle, construction, index),
+    definition: circleEquation(circle, construction),
+    visible: circle.style?.visible !== false,
+    locked: lockedGeometryIds.includes(circle.id),
+    trace: circle.style?.trace === true,
+    dependencies: [pointName(circle.center), pointName(circle.edge)],
+  })));
+  rows.push(...construction.polygons.map((polygon, index) => ({
+    ref: { kind: "polygon" as const, id: polygon.id },
+    name: polygonName(polygon, construction, index),
+    definition: `Polygon(${polygon.points.map(pointName).join(", ")})`,
+    visible: polygon.style?.visible !== false,
+    locked: lockedGeometryIds.includes(polygon.id),
+    trace: polygon.style?.trace === true,
+    dependencies: polygon.points.map(pointName),
+  })));
+  rows.push(...construction.arcs.map((arc, index) => ({
+    ref: { kind: "arc" as const, id: arc.id },
+    name: (arc.style?.label ?? `${arc.sector ? "sector" : "arc"}${index + 1}`),
+    definition: `${arc.sector ? "Sector" : "Arc"}(${pointName(arc.center)}, ${pointName(arc.start)}, ${pointName(arc.end)})`,
+    visible: arc.style?.visible !== false,
+    locked: lockedGeometryIds.includes(arc.id),
+    trace: arc.style?.trace === true,
+    dependencies: [pointName(arc.center), pointName(arc.start), pointName(arc.end)],
+  })));
+  rows.push(...construction.loci.map((locus) => ({
+    ref: { kind: "locus" as const, id: locus.id },
+    name: locus.label,
+    definition: `Locus(${locus.points.length} points)`,
+    visible: locus.style?.visible !== false,
+    locked: lockedGeometryIds.includes(locus.id),
+    trace: true,
+    dependencies: [],
+  })));
+  rows.push(...(Object.keys(transforms3d) as ThreeObjectId[]).map((id) => ({
+    ref: { kind: "3d" as const, id },
+    name: transforms3d[id].name ?? id,
+    definition: transformDefinition(transforms3d[id]),
+    visible: transforms3d[id].visible,
+    locked: transforms3d[id].locked === true,
+    trace: transforms3d[id].trace === true,
+    dependencies: id === "vector" ? [transforms3d.point.name ?? "P"] : [],
+  })));
+  return rows;
+}
+
+function objectKindForKernel(kind: AlgebraObjectKind): DynamicObjectKind {
+  if (kind === "3d") return "solid";
+  return kind;
+}
+
+function sameRef(a: AlgebraObjectRef | null, b: AlgebraObjectRef) {
+  return a?.kind === b.kind && a.id === b.id;
+}
+
+function objectDisplayName(objects: AlgebraObjectRow[], ref: AlgebraObjectRef) {
+  return objects.find((object) => sameRef(object.ref, ref))?.name ?? ref.id;
+}
+
+function nextFunctionName(plots: PlotItem[]) {
+  const used = new Set(plots.map((plot) => plot.name).filter(Boolean));
+  for (const name of ["f", "g", "h", "p", "q", "r"]) if (!used.has(name)) return name;
+  return `f${plots.length + 1}`;
+}
+
+function normalizeFunctionDefinition(definition: string) {
+  return definition.replace(/^\s*[a-z]\s*\(\s*x\s*\)\s*=\s*/i, "").replace(/^y\s*=\s*/i, "").trim();
+}
+
+function dependenciesForExpression(expression: string) {
+  return Array.from(new Set((expression.match(/\b[a-z]\b/gi) ?? []).filter((token) => token.toLowerCase() !== "x")));
+}
+
+function parsePointDefinition(definition: string) {
+  const match = definition.match(/\(?\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)?/);
+  return match ? { x: Number(match[1]), y: Number(match[2]) } : null;
+}
+
+function parseLineDefinition(definition: string) {
+  const compact = definition.replace(/\s+/g, "");
+  const match = compact.match(/^y=([-+]?\d*\.?\d*)\*?x([-+]\d+(?:\.\d+)?)?$/i);
+  if (!match) return null;
+  const rawM = match[1];
+  const m = rawM === "" || rawM === "+" ? 1 : rawM === "-" ? -1 : Number(rawM);
+  return { m, b: Number(match[2] ?? 0) };
+}
+
+function parseCircleDefinition(definition: string) {
+  const match = definition.match(/center\s*=\s*\(?\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)?\s*,?\s*r\s*=\s*(\d+(?:\.\d+)?)/i);
+  return match ? { x: Number(match[1]), y: Number(match[2]), r: Number(match[3]) } : null;
+}
+
+function parse3dDefinition(definition: string): Partial<Transform3D> | null {
+  const numbers = definition.match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
+  if (numbers.length < 7) return null;
+  return { position: [numbers[0], numbers[1], numbers[2]], rotation: [numbers[3], numbers[4], numbers[5]], scale: numbers[6] };
+}
+
+function renameGeometryObject(construction: Construction, ref: AlgebraObjectRef, name: string): Construction {
+  if (ref.kind === "point") return { ...construction, points: construction.points.map((point) => point.id === ref.id ? { ...point, label: name.slice(0, 3) } : point) };
+  const patch = { style: { ...(geometryObjectBySelection(construction, { type: ref.kind as GeometryObjectType, id: ref.id })?.style ?? {}), label: name } as GeoStyle };
+  return patchGeometryObject(construction, { type: ref.kind as GeometryObjectType, id: ref.id }, patch);
+}
+
+function updateLineFromEquation(construction: Construction, lineId: string, m: number, b: number) {
+  const line = construction.lines.find((item) => item.id === lineId);
+  if (!line) return construction;
+  const x1 = 100;
+  const x2 = 540;
+  const y1 = 210 - (m * ((x1 - 320) / 40) + b) * 40;
+  const y2 = 210 - (m * ((x2 - 320) / 40) + b) * 40;
+  return solveConstruction({ ...construction, points: construction.points.map((point) => point.id === line.a ? { ...point, x: x1, y: y1 } : point.id === line.b ? { ...point, x: x2, y: y2 } : point) });
+}
+
+function updateCircleFromDefinition(construction: Construction, circleId: string, next: { x: number; y: number; r: number }) {
+  const circle = construction.circles.find((item) => item.id === circleId);
+  if (!circle) return construction;
+  return solveConstruction({
+    ...construction,
+    points: construction.points.map((point) => {
+      if (point.id === circle.center) return { ...point, x: next.x, y: next.y };
+      if (point.id === circle.edge) return { ...point, x: next.x + next.r * 40, y: next.y };
+      return point;
+    }),
+  });
+}
+
+function lineName(line: GeoLine, construction: Construction, index: number) {
+  const label = (line.style as GeoStyle & { label?: string })?.label;
+  const endpointName = `${labelForPoint(construction, line.a)}${labelForPoint(construction, line.b)}`;
+  return label ?? (endpointName || `line${index + 1}`);
+}
+
+function circleName(circle: GeoCircle, construction: Construction, index: number) {
+  const label = (circle.style as GeoStyle & { label?: string })?.label;
+  return label ?? `c${index + 1}_${labelForPoint(construction, circle.center)}`;
+}
+
+function polygonName(polygon: GeoPolygon, construction: Construction, index: number) {
+  const label = (polygon.style as GeoStyle & { label?: string })?.label;
+  return label ?? (polygon.points.map((id) => labelForPoint(construction, id)).join("") || `poly${index + 1}`);
+}
+
+function lineEquation(line: GeoLine, construction: Construction) {
+  const a = pointById(construction.points, line.a), b = pointById(construction.points, line.b);
+  if (!a || !b) return "Line(undefined)";
+  const x1 = (a.x - 320) / 40;
+  const y1 = (210 - a.y) / 40;
+  const x2 = (b.x - 320) / 40;
+  const y2 = (210 - b.y) / 40;
+  if (Math.abs(x2 - x1) < 0.001) return `x = ${roundTo(x1, 2)}`;
+  const m = (y2 - y1) / (x2 - x1);
+  const intercept = y1 - m * x1;
+  return `y = ${roundTo(m, 3)}*x ${intercept < 0 ? "-" : "+"} ${roundTo(Math.abs(intercept), 3)}`;
+}
+
+function circleEquation(circle: GeoCircle, construction: Construction) {
+  const center = pointById(construction.points, circle.center), edge = pointById(construction.points, circle.edge);
+  if (!center || !edge) return "Circle(undefined)";
+  return `center=(${roundTo(center.x, 2)}, ${roundTo(center.y, 2)}), r=${roundTo(distance(center, edge) / 40, 2)}`;
+}
+
+function transformDefinition(transform: Transform3D) {
+  return `pos=(${transform.position.map((value) => roundTo(value, 2)).join(", ")}), rot=(${transform.rotation.map((value) => roundTo(value, 1)).join(", ")}), scale=${roundTo(transform.scale, 2)}`;
+}
+
+function templateConstruction(templateId: string): Construction {
+  const point = (id: string, x: number, y: number, label: string): GeoPoint => ({ id, x, y, label });
+  if (templateId === "circles") {
+    return normalizeConstruction({
+      points: [point("a", 320, 210, "O"), point("b", 430, 210, "A"), point("c", 395, 292, "P")],
+      lines: [{ id: "r", a: "a", b: "b" }],
+      circles: [{ id: "circle", center: "a", edge: "b" }],
+      polygons: [],
+      arcs: [],
+      loci: [],
+      constraints: [{ id: "on-circle", type: "on-circle", point: "c", circle: "circle" }],
+    });
+  }
+  if (templateId === "quadrilaterals") {
+    return normalizeConstruction({
+      points: [point("a", 190, 145, "A"), point("b", 420, 145, "B"), point("c", 490, 300, "C"), point("d", 260, 300, "D")],
+      lines: [{ id: "ab", a: "a", b: "b" }, { id: "bc", a: "b", b: "c" }, { id: "cd", a: "c", b: "d" }, { id: "da", a: "d", b: "a" }],
+      circles: [],
+      polygons: [{ id: "quad", points: ["a", "b", "c", "d"], style: { fill: "rgba(6,182,212,.16)", color: "#06b6d4" } }],
+      arcs: [],
+      loci: [],
+      constraints: [],
+    });
+  }
+  if (templateId === "coordinate-geometry") {
+    return normalizeConstruction({
+      points: [point("a", 240, 260, "A"), point("b", 420, 140, "B")],
+      lines: [{ id: "ab", a: "a", b: "b" }],
+      circles: [],
+      polygons: [],
+      arcs: [],
+      loci: [],
+      constraints: [],
+    });
+  }
+  return normalizeConstruction({
+    points: [point("a", 220, 300, "A"), point("b", 420, 300, "B"), point("c", 330, 130, "C")],
+    lines: [{ id: "ab", a: "a", b: "b" }, { id: "bc", a: "b", b: "c" }, { id: "ca", a: "c", b: "a" }],
+    circles: [],
+    polygons: [{ id: "poly", points: ["a", "b", "c"] }],
+    arcs: [],
+    loci: [],
+    constraints: [],
+  });
+}
+
 function resultsToCsv(results: ResultCard[]) {
   const rows = [["Input", "Interpretation", "Result", "Detail"], ...results.map((result) => [result.input, result.interpretation, result.result, result.detail ?? ""])];
   return rows.map((row) => row.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(",")).join("\n");
 }
 
-function HiddenGeometryExport({ construction, refSetter }: { construction: Construction; refSetter: (node: SVGSVGElement | null) => void }) {
+function HiddenGeometryExport({ construction, images, refSetter }: { construction: Construction; images: WorkspaceImage[]; refSetter: (node: SVGSVGElement | null) => void }) {
   return (
     <svg ref={refSetter} viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" className="hidden">
       <rect width="640" height="420" fill="#ffffff" />
       <GeometryGrid />
+      {images.filter((image) => image.visible !== false).map((image) => <image key={image.id} href={image.src} x={image.x} y={image.y} width={image.width} height={image.height} opacity={image.opacity} preserveAspectRatio="xMidYMid meet" />)}
+      {construction.loci.map((locus) => <GeometryLocus key={locus.id} locus={locus} />)}
       {construction.polygons.map((polygon) => <GeometryPolygon key={polygon.id} polygon={polygon} points={construction.points} />)}
       {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} />)}
-      {construction.conics.map((conic) => <GeometryConic key={conic.id} conic={conic} points={construction.points} />)}
-      {construction.angles.map((angle) => <GeometryAngle key={angle.id} angle={angle} points={construction.points} />)}
       {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} />)}
       {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} />)}
-      {construction.texts.map((note) => <GeometryTextNote key={note.id} note={note} points={construction.points} />)}
       {construction.points.map((point) => (
         <g key={point.id}>
-          <circle cx={point.x} cy={point.y} r="9" fill={point.color ?? "#06b6d4"} stroke="#0f172a" strokeWidth="2" />
+          <circle cx={point.x} cy={point.y} r="9" fill="#06b6d4" stroke="#0f172a" strokeWidth="2" />
           <text x={point.x + 12} y={point.y - 10} fill="#0f172a" fontSize="13" fontWeight="700">{point.label}</text>
         </g>
       ))}
@@ -3851,853 +3878,329 @@ function Toggle({ checked, label, onChange }: { checked: boolean; label: string;
 }
 
 function InfoPill({ title, text }: { title: string; text: string }) {
-  return <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-sm font-bold">{title}</p><p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">{text}</p></div>;
+  return <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10"><p className="text-sm font-bold">{title}</p><p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{text}</p></div>;
 }
 
-function Workspace3DInspector({
-  surface,
-  solid,
-  surfaceScale,
-  solidSize,
-  crossSection,
-  surfaceDomain,
-  surfacePosition,
-  surfaceRotation,
-  solidPosition,
-  solidRotation,
-  vectorStart,
-  vectorEnd,
-  point,
-  colors,
-  shapes,
-  selectedShape,
-  measurements,
-  showSurface,
-  showSolid,
-  showAxes,
-  showGrid,
-  showCrossSection,
-  showVector,
-  showPoint,
-  autoRotate,
-  zoom,
-  selectedObject,
-  onSurface,
-  onSolid,
-  onSurfaceScale,
-  onSolidSize,
-  onCrossSection,
-  onSurfaceDomain,
-  onSurfacePosition,
-  onSurfaceRotation,
-  onSolidPosition,
-  onSolidRotation,
-  onVectorStart,
-  onVectorEnd,
-  onPoint,
-  onColor,
-  onAddShape,
-  onShapeChange,
-  onDuplicateShape,
-  onShowSurface,
-  onShowSolid,
-  onShowAxes,
-  onShowGrid,
-  onShowCrossSection,
-  onShowVector,
-  onShowPoint,
-  onAutoRotate,
-  onZoom,
-  onSelect,
-  onDeleteSelected,
-  onRestoreAll,
-}: {
-  surface: SurfaceKind;
-  solid: SolidKind;
-  surfaceScale: number;
-  solidSize: number;
-  crossSection: number;
-  surfaceDomain: number;
-  surfacePosition: Vector3Tuple;
-  surfaceRotation: Vector3Tuple;
-  solidPosition: Vector3Tuple;
-  solidRotation: Vector3Tuple;
-  vectorStart: Vector3Tuple;
-  vectorEnd: Vector3Tuple;
-  point: Vector3Tuple;
-  colors: Space3DColorMap;
-  shapes: Space3DShapeObject[];
-  selectedShape: Space3DShapeObject | null;
-  measurements: Space3DMeasurements;
-  showSurface: boolean;
-  showSolid: boolean;
-  showAxes: boolean;
-  showGrid: boolean;
-  showCrossSection: boolean;
-  showVector: boolean;
-  showPoint: boolean;
-  autoRotate: boolean;
-  zoom: number;
-  selectedObject: SelectedSpace3DObject;
-  onSurface: (value: SurfaceKind) => void;
-  onSolid: (value: SolidKind) => void;
-  onSurfaceScale: (value: number) => void;
-  onSolidSize: (value: number) => void;
-  onCrossSection: (value: number) => void;
-  onSurfaceDomain: (value: number) => void;
-  onSurfacePosition: (value: Vector3Tuple) => void;
-  onSurfaceRotation: (value: Vector3Tuple) => void;
-  onSolidPosition: (value: Vector3Tuple) => void;
-  onSolidRotation: (value: Vector3Tuple) => void;
-  onVectorStart: (value: Vector3Tuple) => void;
-  onVectorEnd: (value: Vector3Tuple) => void;
-  onPoint: (value: Vector3Tuple) => void;
-  onColor: (id: BuiltinSpace3DObjectId, color: string) => void;
-  onAddShape: (kind: SolidKind) => void;
-  onShapeChange: (id: string, patch: Partial<Space3DShapeObject>) => void;
-  onDuplicateShape: () => void;
-  onShowSurface: (value: boolean) => void;
-  onShowSolid: (value: boolean) => void;
-  onShowAxes: (value: boolean) => void;
-  onShowGrid: (value: boolean) => void;
-  onShowCrossSection: (value: boolean) => void;
-  onShowVector: (value: boolean) => void;
-  onShowPoint: (value: boolean) => void;
-  onAutoRotate: (value: boolean) => void;
-  onZoom: (value: number) => void;
-  onSelect: (value: Space3DObjectId) => void;
-  onDeleteSelected: () => void;
-  onRestoreAll: () => void;
-}) {
-  const objects: { id: Space3DObjectId; name: string; visible: boolean; onVisible: (value: boolean) => void; details: string }[] = [
-    ...shapes.map((shape) => ({
-      id: `shape:${shape.id}` as const,
-      name: shape.name,
-      visible: shape.visible,
-      onVisible: (value: boolean) => onShapeChange(shape.id, { visible: value }),
-      details: `${solidOptions.find((option) => option.value === shape.kind)?.label ?? shape.kind}; size ${roundTo(shape.size, 2)}; pos (${shape.position.map((value) => roundTo(value, 1)).join(", ")})`,
-    })),
-    { id: "surface", name: "Surface mesh", visible: showSurface, onVisible: onShowSurface, details: `${surfaceFormula(surface, surfaceScale)}; pos (${surfacePosition.map((value) => roundTo(value, 1)).join(", ")})` },
-    { id: "solid", name: "Preview solid", visible: showSolid, onVisible: onShowSolid, details: `${solidOptions.find((option) => option.value === solid)?.label ?? solid}, size ${roundTo(solidSize, 2)}; use Add selected solid for copies` },
-    { id: "cross-section", name: "Cross-section plane", visible: showCrossSection, onVisible: onShowCrossSection, details: `z = ${roundTo(crossSection, 2)}; ${measurements.crossSectionSamples} contour samples` },
-    { id: "vector", name: "Vector ray", visible: showVector, onVisible: onShowVector, details: `<${measurements.vectorComponents.map((value) => roundTo(value, 2)).join(", ")}>, |v|=${roundTo(measurements.vectorLength, 2)}` },
-    { id: "point", name: "Point P", visible: showPoint, onVisible: onShowPoint, details: `(${point.map((value) => roundTo(value, 2)).join(", ")}), distance ${roundTo(measurements.pointDistanceFromOrigin, 2)}` },
-    { id: "axes", name: "Coordinate axes", visible: showAxes, onVisible: onShowAxes, details: "+x, +y, +z labels and origin marker" },
-    { id: "grid", name: "Base grid", visible: showGrid, onVisible: onShowGrid, details: "10 x 10 reference floor" },
+function ImageObjectPanel({ image, onChange, onDelete }: { image: WorkspaceImage | null; onChange: (patch: Partial<WorkspaceImage>) => void; onDelete: () => void }) {
+  if (!image) {
+    return (
+      <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+        <h3 className="font-bold">Image Layer</h3>
+        <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Use Add Image to place a picture on the geometry board. Click an image to edit size, opacity, and lock state.</p>
+      </div>
+    );
+  }
+  return (
+    <div className="rounded-2xl border border-cyan-300 bg-cyan-50/70 p-4 dark:border-cyan-300/40 dark:bg-cyan-400/10">
+      <div className="flex items-center justify-between gap-2">
+        <h3 className="font-bold">Selected Image</h3>
+        <button type="button" onClick={onDelete} className="rounded-full bg-rose-100 px-3 py-1.5 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">Delete</button>
+      </div>
+      <label className="mt-3 block text-xs font-bold uppercase text-slate-500 dark:text-slate-300">
+        Name
+        <input value={image.name} onChange={(event) => onChange({ name: event.target.value })} className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 font-semibold normal-case dark:border-white/10 dark:bg-slate-900" />
+      </label>
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        <MiniNumber label="x" value={roundTo(image.x, 1)} onChange={(x) => onChange({ x })} />
+        <MiniNumber label="y" value={roundTo(image.y, 1)} onChange={(y) => onChange({ y })} />
+        <MiniNumber label="width" value={roundTo(image.width, 1)} onChange={(width) => onChange({ width: Math.max(20, width) })} />
+        <MiniNumber label="height" value={roundTo(image.height, 1)} onChange={(height) => onChange({ height: Math.max(20, height) })} />
+      </div>
+      <div className="mt-3">
+        <SliderControl label="Opacity" value={image.opacity} min={0.1} max={1} step={0.05} onChange={(opacity) => onChange({ opacity })} />
+      </div>
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        <Toggle checked={image.visible !== false} label="Visible" onChange={(visible) => onChange({ visible })} />
+        <Toggle checked={image.locked === true} label="Locked" onChange={(locked) => onChange({ locked })} />
+      </div>
+    </div>
+  );
+}
+
+function ThreeCreationPanel({ onCreate }: { onCreate: (id: ThreeObjectId) => void }) {
+  const tools: { id: ThreeObjectId; label: string }[] = [
+    { id: "point", label: "Point" },
+    { id: "vector", label: "Vector" },
+    { id: "line3d", label: "Line" },
+    { id: "plane3d", label: "Plane" },
+    { id: "sphere3d", label: "Sphere" },
+    { id: "cone3d", label: "Cone" },
+    { id: "cylinder3d", label: "Cylinder" },
+    { id: "prism3d", label: "Prism" },
+    { id: "pyramid3d", label: "Pyramid" },
+    { id: "polyhedron3d", label: "Polyhedron" },
   ];
-  const selectedMeta = objects.find((object) => object.id === selectedObject) ?? null;
-  const selectedName = selectedMeta?.name ?? "No object selected";
-  const selectedDetails = selectedMeta?.details ?? "Select a scene object to edit its position, size, visibility, and restore actions.";
-  const selectedShapeMetrics = selectedShape ? solidMetrics(selectedShape.kind, selectedShape.size) : null;
-  const selectedBuiltinId = selectedObject && !selectedObject.startsWith("shape:") ? selectedObject as BuiltinSpace3DObjectId : null;
-
   return (
-    <div className="grid gap-2 lg:grid-cols-[minmax(0,1fr)_minmax(260px,340px)]">
-      <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Selectable object kernel</p>
-            <h3 className="text-sm font-black">3D Scene Objects</h3>
-          </div>
-          <button type="button" className="mini-chip" onClick={onRestoreAll}>Restore all</button>
-        </div>
-        <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-          {objects.map((object) => (
-            <div key={object.id} className={`rounded-xl border p-2 transition ${selectedObject === object.id ? "border-cyan-300 bg-cyan-50 dark:border-cyan-300/40 dark:bg-cyan-300/10" : "border-transparent bg-slate-100 dark:bg-white/10"}`}>
-              <div className="flex items-start justify-between gap-2">
-                <button type="button" className="min-w-0 flex-1 text-left" onClick={() => onSelect(object.id as Space3DObjectId)}>
-                  <p className="text-xs font-black">{object.name}</p>
-                  <p className="mt-1 line-clamp-2 text-[11px] leading-4 text-slate-600 dark:text-slate-300">{object.details}</p>
-                </button>
-                <input className="mt-1 h-4 w-4 accent-cyan-400" type="checkbox" checked={object.visible} onChange={(event) => object.onVisible(event.target.checked)} aria-label={`Toggle ${object.name}`} />
-              </div>
-              <div className="mt-2 grid grid-cols-2 gap-1">
-                <button type="button" className="mini-chip justify-center" onClick={() => { onSelect(object.id as Space3DObjectId); object.onVisible(true); }}>Select</button>
-                <button type="button" className="mini-chip justify-center" onClick={() => { onSelect(object.id as Space3DObjectId); object.onVisible(false); }}>Delete</button>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-950/40">
+      <h3 className="font-bold">3D construction tools</h3>
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        {tools.map((tool) => <button key={tool.id} type="button" onClick={() => onCreate(tool.id)} className="rounded-2xl bg-slate-100 px-3 py-2 text-sm font-semibold dark:bg-white/10">{tool.label}</button>)}
       </div>
-      <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
-        <div className="flex items-start justify-between gap-2">
-          <div className="min-w-0">
-            <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Selected object</p>
-            <h3 className="truncate text-sm font-black">{selectedName}</h3>
+    </div>
+  );
+}
+
+function CameraPresetPanel({ preset, onPreset }: { preset: CameraPreset3D; onPreset: (preset: CameraPreset3D) => void }) {
+  const presets: CameraPreset3D[] = ["top", "front", "right", "isometric", "free"];
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-950/40">
+      <h3 className="font-bold">Camera presets</h3>
+      <div className="mt-3 grid grid-cols-3 gap-2">
+        {presets.map((item) => <button key={item} type="button" onClick={() => onPreset(item)} className={`rounded-2xl px-3 py-2 text-xs font-bold uppercase ${preset === item ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 dark:bg-white/10"}`}>{item}</button>)}
+      </div>
+    </div>
+  );
+}
+
+function ObjectList3D({ selected, transforms, onSelect, onRestore, onDelete }: { selected: ThreeObjectId; transforms: Record<ThreeObjectId, Transform3D>; onSelect: (id: ThreeObjectId) => void; onRestore: (id: ThreeObjectId) => void; onDelete: (id: ThreeObjectId) => void }) {
+  const labels: Record<ThreeObjectId, string> = { surface: "Surface mesh", solid: "Solid shape", slice: "Cross-section", point: "Point P", vector: "Vector", line3d: "Line", plane3d: "Plane", sphere3d: "Sphere", cone3d: "Cone", cylinder3d: "Cylinder", prism3d: "Prism", pyramid3d: "Pyramid", polyhedron3d: "Polyhedron" };
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-center justify-between gap-2">
+        <h3 className="font-bold">3D Scene Objects</h3>
+        <button type="button" onClick={() => (Object.keys(transforms) as ThreeObjectId[]).forEach(onRestore)} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold dark:bg-white/10">Restore all</button>
+      </div>
+      <div className="mt-3 space-y-2">
+        {(Object.keys(transforms) as ThreeObjectId[]).map((id) => (
+          <div key={id} className={`rounded-xl border p-3 ${selected === id ? "border-cyan-400 bg-cyan-50 dark:bg-cyan-400/10" : "border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-slate-900/50"}`}>
+            <button type="button" onClick={() => onSelect(id)} className="w-full text-left">
+              <p className="text-sm font-bold">{labels[id]}</p>
+              <p className="mt-1 font-mono text-xs text-slate-500 dark:text-slate-400">pos ({transforms[id].position.map((value) => roundTo(value, 2)).join(", ")}), scale {roundTo(transforms[id].scale, 2)}</p>
+            </button>
+            <div className="mt-2 flex gap-2">
+              <button type="button" onClick={() => onRestore(id)} className="rounded-full bg-white px-3 py-1 text-xs font-bold dark:bg-white/10">Restore</button>
+              <button type="button" onClick={() => onDelete(id)} className="rounded-full bg-rose-100 px-3 py-1 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">{transforms[id].visible ? "Hide" : "Hide"}</button>
+            </div>
           </div>
-          <button type="button" onClick={onDeleteSelected} className="math-tool-button-danger h-8 w-8 rounded-lg" aria-label={`Delete ${selectedName}`} disabled={!selectedObject}>
-            <Trash2 className="h-3.5 w-3.5" />
-          </button>
-        </div>
-        <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">{selectedDetails}</p>
-        <div className="mt-2 grid gap-2">
-          <div className="grid grid-cols-3 gap-2">
-            {shapePalette3d.slice(0, 9).map((item) => {
-              const Icon = item.icon;
-              return (
-                <button key={`palette-${item.kind}`} type="button" className="mini-chip justify-center" onClick={() => onAddShape(item.kind)}>
-                  <Icon className="h-3.5 w-3.5" />{item.label}
-                </button>
-              );
-            })}
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            {objects.map((object) => (
-              <button
-                key={`add-${object.id}`}
-                type="button"
-                className={selectedObject === object.id ? "action-primary justify-center capitalize" : "tool-button justify-center capitalize"}
-                onClick={() => { onSelect(object.id as Space3DObjectId); object.onVisible(true); }}
-              >
-                <Plus className="h-4 w-4" />{object.id.replace("-", " ")}
-              </button>
-            ))}
-          </div>
-          {selectedShape && (
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Properties3DPanel({ selected, transform, onTransform, onVector, onRestore, onDelete }: { selected: ThreeObjectId; transform: Transform3D; onTransform: (id: ThreeObjectId, patch: Partial<Transform3D>) => void; onVector: (id: ThreeObjectId, key: "position" | "rotation", index: number, value: number) => void; onRestore: (id: ThreeObjectId) => void; onDelete: (id: ThreeObjectId) => void }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-center justify-between gap-2">
+        <h3 className="font-bold">Selected Object</h3>
+        <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-bold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100">{selected}</span>
+      </div>
+      <div className="mt-3 grid grid-cols-3 gap-2">
+        {(["x", "y", "z"] as const).map((axis, index) => <MiniNumber key={`pos-${axis}`} label={axis} value={roundTo(transform.position[index], 2)} onChange={(value) => onVector(selected, "position", index, value)} />)}
+      </div>
+      <p className="mt-4 text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Rotation</p>
+      <div className="mt-2 grid grid-cols-3 gap-2">
+        {(["x deg", "y deg", "z deg"] as const).map((axis, index) => <MiniNumber key={`rot-${axis}`} label={axis} value={roundTo(transform.rotation[index], 1)} onChange={(value) => onVector(selected, "rotation", index, value)} />)}
+      </div>
+      <div className="mt-4 grid grid-cols-[1fr_92px] gap-3">
+        <SliderControl label="Size" value={transform.scale} min={0.2} max={3} step={0.05} onChange={(value) => onTransform(selected, { scale: value })} />
+        <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+          Color
+          <input type="color" value={transform.color} onChange={(event) => onTransform(selected, { color: event.target.value })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
+        </label>
+      </div>
+      <div className="mt-3 grid grid-cols-3 gap-2">
+        {(["width", "height", "depth"] as const).map((axis, index) => <MiniNumber key={`dim-${axis}`} label={axis} value={roundTo(transform.dimensions?.[index] ?? 1, 2)} onChange={(value) => {
+          const next = [...(transform.dimensions ?? [1, 1, 1])] as [number, number, number];
+          next[index] = value;
+          onTransform(selected, { dimensions: next });
+        }} />)}
+      </div>
+      <div className="mt-4 grid grid-cols-[1fr_130px] gap-3">
+        <SliderControl label="Opacity" value={transform.opacity ?? 0.8} min={0.1} max={1} step={0.05} onChange={(value) => onTransform(selected, { opacity: value })} />
+        <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+          Material
+          <select value={transform.material ?? "glass"} onChange={(event) => onTransform(selected, { material: event.target.value as Transform3D["material"] })} className="mt-2 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900">
+            <option value="matte">Matte</option>
+            <option value="glass">Glass</option>
+            <option value="wireframe">Wireframe</option>
+          </select>
+        </label>
+      </div>
+      <div className="mt-3 grid grid-cols-3 gap-2">
+        <button type="button" onClick={() => onVector(selected, "position", 0, roundTo(transform.position[0] + 0.25, 2))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">+X</button>
+        <button type="button" onClick={() => onVector(selected, "position", 1, roundTo(transform.position[1] + 0.25, 2))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">+Y</button>
+        <button type="button" onClick={() => onVector(selected, "position", 2, roundTo(transform.position[2] + 0.25, 2))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">+Z</button>
+        <button type="button" onClick={() => onVector(selected, "rotation", 1, roundTo(transform.rotation[1] + 15, 1))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Rot Y</button>
+        <button type="button" onClick={() => onTransform(selected, { scale: roundTo(transform.scale + 0.1, 2) })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Scale +</button>
+        <button type="button" onClick={() => onTransform(selected, { scale: Math.max(0.1, roundTo(transform.scale - 0.1, 2)) })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Scale -</button>
+      </div>
+      <div className="mt-3 grid grid-cols-3 gap-2">
+        <button type="button" onClick={() => onTransform(selected, { visible: !transform.visible })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">{transform.visible ? "Hide" : "Show"}</button>
+        <button type="button" onClick={() => onRestore(selected)} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Restore</button>
+        <button type="button" onClick={() => onDelete(selected)} className="rounded-2xl bg-rose-100 px-3 py-2 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">Delete</button>
+      </div>
+      <p className="mt-3 text-xs leading-5 text-slate-500 dark:text-slate-400">Select an object in the scene, then drag it. Right-click an object for quick actions.</p>
+    </div>
+  );
+}
+
+function GeometryObjectPanel({ selected, construction, locked, onPointChange, onStyleChange, onRadiusChange, onDuplicate, onDelete, onRestore, onToggleLock }: { selected: SelectedGeometryObject | null; construction: Construction; locked: boolean; onPointChange: (patch: Partial<GeoPoint>) => void; onStyleChange: (patch: GeoStyle) => void; onRadiusChange: (radiusUnits: number) => void; onDuplicate: () => void; onDelete: () => void; onRestore: () => void; onToggleLock: () => void }) {
+  const object = selected ? geometryObjectBySelection(construction, selected) : null;
+  const style = object?.style ?? {};
+  const point = selected?.type === "point" ? pointById(construction.points, selected.id) : null;
+  const radius = selected?.type === "circle" ? circleRadiusUnits(construction, selected.id) : null;
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-center justify-between gap-2">
+        <h3 className="font-bold">Object Properties</h3>
+        {selected && <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-bold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100">{selected.type}</span>}
+      </div>
+      {!selected || !object ? (
+        <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Select a point, line, circle, or polygon to modify x/y, size, color, visibility, lock, duplicate, restore, or delete.</p>
+      ) : (
+        <div className="mt-3 space-y-3">
+          {point && (
             <>
-              <label className="text-xs font-bold">
-                Object name
-                <input
-                  className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 font-mono text-sm dark:border-white/10 dark:bg-slate-900"
-                  value={selectedShape.name}
-                  onChange={(event) => onShapeChange(selectedShape.id, { name: event.target.value })}
-                />
+              <label className="block rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+                Label
+                <input value={point.label} onChange={(event) => onPointChange({ label: event.target.value.slice(0, 3) || point.label })} className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" />
               </label>
-              <label className="text-xs font-bold">
-                Shape type
-                <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={selectedShape.kind} onChange={(event) => onShapeChange(selectedShape.id, { kind: event.target.value as SolidKind })}>
-                  {solidOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
-                </select>
-              </label>
-              <NumberField label="Shape size" value={selectedShape.size} min={0.4} max={5} step={0.1} onChange={(value) => onShapeChange(selectedShape.id, { size: value })} />
-              <VectorField label="Shape position" value={selectedShape.position} onChange={(value) => onShapeChange(selectedShape.id, { position: value })} />
-              <RotationField label="Shape rotation" value={selectedShape.rotation} onChange={(value) => onShapeChange(selectedShape.id, { rotation: value })} />
-              <ColorField label="Color" value={selectedShape.color} onChange={(color) => onShapeChange(selectedShape.id, { color })} />
-              {selectedShapeMetrics && (
-                <div className="grid grid-cols-2 gap-2">
-                  <MetricTile label="Volume" value={roundTo(selectedShapeMetrics.volume, 2).toString()} />
-                  <MetricTile label="Area" value={roundTo(selectedShapeMetrics.surfaceArea, 2).toString()} />
-                </div>
-              )}
               <div className="grid grid-cols-2 gap-2">
-                <Toggle checked={selectedShape.visible} label="Visible" onChange={(value) => onShapeChange(selectedShape.id, { visible: value })} />
-                <button type="button" className="tool-button justify-center" onClick={onDuplicateShape}><ClipboardCopy className="h-4 w-4" />Duplicate</button>
+                <MiniNumber label="x" value={roundTo(point.x, 1)} onChange={(value) => onPointChange({ x: value })} />
+                <MiniNumber label="y" value={roundTo(point.y, 1)} onChange={(value) => onPointChange({ y: value })} />
               </div>
-              <TransformNudges
-                onCenter={() => onShapeChange(selectedShape.id, { position: [0, 0, 0] })}
-                onLift={() => onShapeChange(selectedShape.id, { position: clampVector3([selectedShape.position[0], selectedShape.position[1] + 0.25, selectedShape.position[2]]) })}
-                onLower={() => onShapeChange(selectedShape.id, { position: clampVector3([selectedShape.position[0], selectedShape.position[1] - 0.25, selectedShape.position[2]]) })}
-                onRotateX={() => onShapeChange(selectedShape.id, { rotation: clampRotationVector([selectedShape.rotation[0] + 15, selectedShape.rotation[1], selectedShape.rotation[2]]) })}
-                onRotateY={() => onShapeChange(selectedShape.id, { rotation: clampRotationVector([selectedShape.rotation[0], selectedShape.rotation[1] + 15, selectedShape.rotation[2]]) })}
-                onRotateZ={() => onShapeChange(selectedShape.id, { rotation: clampRotationVector([selectedShape.rotation[0], selectedShape.rotation[1], selectedShape.rotation[2] + 15]) })}
-                onScaleUp={() => onShapeChange(selectedShape.id, { size: clampNumber(roundTo(selectedShape.size + 0.2, 2), 0.4, 5) })}
-                onScaleDown={() => onShapeChange(selectedShape.id, { size: clampNumber(roundTo(selectedShape.size - 0.2, 2), 0.4, 5) })}
-              />
             </>
           )}
-          {selectedBuiltinId && (
-            <ColorField
-              label={`${selectedName} color`}
-              value={colors[selectedBuiltinId]}
-              onChange={(color) => onColor(selectedBuiltinId, color)}
-            />
-          )}
-          {(selectedObject === "surface" || selectedObject === "axes" || selectedObject === "grid") && (
-            <>
-              <label className="text-xs font-bold">
-                Surface type
-                <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={surface} onChange={(event) => { onSurface(event.target.value as SurfaceKind); onShowSurface(true); onSelect("surface"); }}>
-                  {surfaceOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
-                </select>
-              </label>
-              <NumberField label="Surface scale" value={surfaceScale} min={0.2} max={2.5} step={0.1} onChange={onSurfaceScale} />
-              <NumberField label="Domain / clipping radius" value={surfaceDomain} min={1.2} max={3.5} step={0.1} onChange={onSurfaceDomain} />
-              <VectorField label="Surface position" value={surfacePosition} onChange={onSurfacePosition} />
-              <RotationField label="Surface rotation" value={surfaceRotation} onChange={onSurfaceRotation} />
-              <TransformNudges
-                onCenter={() => onSurfacePosition([0, 0, 0])}
-                onLift={() => onSurfacePosition(clampVector3([surfacePosition[0], surfacePosition[1] + 0.25, surfacePosition[2]]))}
-                onLower={() => onSurfacePosition(clampVector3([surfacePosition[0], surfacePosition[1] - 0.25, surfacePosition[2]]))}
-                onRotateX={() => onSurfaceRotation(clampRotationVector([surfaceRotation[0] + 15, surfaceRotation[1], surfaceRotation[2]]))}
-                onRotateY={() => onSurfaceRotation(clampRotationVector([surfaceRotation[0], surfaceRotation[1] + 15, surfaceRotation[2]]))}
-                onRotateZ={() => onSurfaceRotation(clampRotationVector([surfaceRotation[0], surfaceRotation[1], surfaceRotation[2] + 15]))}
-              />
-            </>
-          )}
-          {selectedObject === "solid" && (
-            <>
-              <label className="text-xs font-bold">
-                Solid type
-                <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={solid} onChange={(event) => { onSolid(event.target.value as SolidKind); onShowSolid(true); }}>
-                  {solidOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
-                </select>
-              </label>
-              <NumberField label="Solid size" value={solidSize} min={0.8} max={5} step={0.1} onChange={onSolidSize} />
-              <VectorField label="Solid position" value={solidPosition} onChange={onSolidPosition} />
-              <RotationField label="Solid rotation" value={solidRotation} onChange={onSolidRotation} />
-              <TransformNudges
-                onCenter={() => onSolidPosition([0, 0, 0])}
-                onLift={() => onSolidPosition(clampVector3([solidPosition[0], solidPosition[1] + 0.25, solidPosition[2]]))}
-                onLower={() => onSolidPosition(clampVector3([solidPosition[0], solidPosition[1] - 0.25, solidPosition[2]]))}
-                onRotateX={() => onSolidRotation(clampRotationVector([solidRotation[0] + 15, solidRotation[1], solidRotation[2]]))}
-                onRotateY={() => onSolidRotation(clampRotationVector([solidRotation[0], solidRotation[1] + 15, solidRotation[2]]))}
-                onRotateZ={() => onSolidRotation(clampRotationVector([solidRotation[0], solidRotation[1], solidRotation[2] + 15]))}
-                onScaleUp={() => onSolidSize(clampNumber(roundTo(solidSize + 0.2, 2), 0.8, 5))}
-                onScaleDown={() => onSolidSize(clampNumber(roundTo(solidSize - 0.2, 2), 0.8, 5))}
-              />
-            </>
-          )}
-          {selectedObject === "cross-section" && <NumberField label="Cross-section z" value={crossSection} min={-3} max={3} step={0.1} onChange={onCrossSection} />}
-          {selectedObject === "vector" && (
-            <div className="grid gap-2">
-              <VectorField label="Vector start" value={vectorStart} onChange={onVectorStart} />
-              <VectorField label="Vector end" value={vectorEnd} onChange={onVectorEnd} />
-            </div>
-          )}
-          {selectedObject === "point" && <VectorField label="Point P" value={point} onChange={onPoint} />}
-          <NumberField label="Camera zoom" value={zoom} min={0.6} max={1.8} step={0.1} onChange={onZoom} />
-          <Toggle checked={autoRotate} label="Auto rotate" onChange={onAutoRotate} />
-        </div>
-      </div>
-      <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5 lg:col-span-2">
-        <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">3D measurements</p>
-        <div className="mt-2 grid gap-2 md:grid-cols-4">
-          <MetricTile label="Surface z range" value={`${roundTo(measurements.surfaceSampleMin, 2)} to ${roundTo(measurements.surfaceSampleMax, 2)}`} />
-          <MetricTile label="Slice contour" value={`${measurements.crossSectionSamples} samples`} />
-          <MetricTile label="Solid volume" value={roundTo(measurements.solidVolume, 2).toString()} />
-          <MetricTile label="Solid area" value={roundTo(measurements.solidSurfaceArea, 2).toString()} />
-        </div>
-        <div className="mt-3 grid gap-2 md:grid-cols-3">
-          <VectorField label="Vector start" value={vectorStart} onChange={onVectorStart} />
-          <VectorField label="Vector end" value={vectorEnd} onChange={onVectorEnd} />
-          <VectorField label="Point P" value={point} onChange={onPoint} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MetricTile({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
-      <p className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">{label}</p>
-      <p className="mt-1 font-mono text-sm font-black text-slate-950 dark:text-white">{value}</p>
-    </div>
-  );
-}
-
-function VectorField({ label, value, onChange }: { label: string; value: Vector3Tuple; onChange: (value: Vector3Tuple) => void }) {
-  const update = (index: number, nextValue: number) => {
-    const next: Vector3Tuple = [...value] as Vector3Tuple;
-    next[index] = Math.max(-5, Math.min(5, nextValue));
-    onChange(next);
-  };
-  return (
-    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
-      <p className="text-xs font-black">{label}</p>
-      <div className="mt-2 grid grid-cols-3 gap-2">
-        {(["x", "y", "z"] as const).map((axis, index) => (
-          <label key={axis} className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
-            {axis}
-            <input
-              className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 font-mono text-xs dark:border-white/10 dark:bg-slate-900"
-              type="number"
-              value={Number(value[index].toFixed(3))}
-              min={-5}
-              max={5}
-              step={0.1}
-              onChange={(event) => update(index, Number(event.target.value))}
-            />
+          {radius !== null && <SliderControl label="Radius" value={radius} min={0.25} max={8} step={0.05} onChange={onRadiusChange} />}
+          <div className="grid grid-cols-[1fr_92px] gap-3">
+            <SliderControl label="Size / stroke" value={style.size ?? style.strokeWidth ?? 9} min={2} max={24} step={1} onChange={(value) => onStyleChange(selected.type === "point" ? { ...style, size: value } : { ...style, strokeWidth: value })} />
+            <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+              Color
+              <input type="color" value={style.color ?? geometryDefaultColor[selected.type]} onChange={(event) => onStyleChange({ ...style, color: event.target.value })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
+            </label>
+          </div>
+          <div className="grid grid-cols-[1fr_92px] gap-3">
+            <SliderControl label="Opacity" value={style.opacity ?? 1} min={0.1} max={1} step={0.05} onChange={(value) => onStyleChange({ ...style, opacity: value })} />
+            <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+              Fill
+              <input type="color" value={normalizeColor(style.fill) ?? "#bae6fd"} onChange={(event) => onStyleChange({ ...style, fill: `${event.target.value}55` })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
+            </label>
+          </div>
+          <label className="block rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+            Label mode
+            <select value={style.labelMode ?? "name"} onChange={(event) => onStyleChange({ ...style, labelMode: event.target.value as GeoStyle["labelMode"] })} className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900">
+              <option value="name">Name</option>
+              <option value="value">Value</option>
+              <option value="both">Name and value</option>
+              <option value="hidden">Hidden</option>
+            </select>
           </label>
-        ))}
+          <div className="grid grid-cols-2 gap-2">
+            <button type="button" onClick={() => onStyleChange({ ...style, visible: style.visible === false })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">{style.visible === false ? "Show" : "Hide"}</button>
+            <button type="button" onClick={onToggleLock} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">{locked ? "Unlock" : "Lock"}</button>
+            <button type="button" onClick={() => onStyleChange({ ...style, trace: !style.trace })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">{style.trace ? "Trace on" : "Trace"}</button>
+            <button type="button" onClick={onDuplicate} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Duplicate</button>
+            <button type="button" onClick={onRestore} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Restore</button>
+            <button type="button" onClick={onDelete} className="col-span-2 rounded-2xl bg-rose-100 px-3 py-2 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">Delete</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ObjectContextMenu({ state, onClose, onDuplicate, onDelete, onRestore, onLock, onRename, onTrace }: { state: ContextMenuState; onClose: () => void; onDuplicate: () => void; onDelete: () => void; onRestore: () => void; onLock: () => void; onRename: () => void; onTrace: () => void }) {
+  const is3d = state.target.type === "3d";
+  const workflowType = workflowTypeForContextTarget(state.target);
+  const menuActions = contextMenuForObject(workflowType);
+  return (
+    <div className="fixed inset-0 z-50" onClick={onClose} onContextMenu={(event) => event.preventDefault()}>
+      <div className="absolute min-w-48 rounded-xl border border-slate-200 bg-white p-2 text-sm shadow-2xl shadow-slate-950/20 dark:border-white/10 dark:bg-slate-950" style={{ left: state.x, top: state.y }}>
+        <button type="button" onClick={onRename} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Rename</button>
+        {menuActions.includes("edit-definition") && <button type="button" onClick={onClose} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Edit definition</button>}
+        {menuActions.includes("properties") && <button type="button" onClick={onClose} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Properties</button>}
+        <button type="button" onClick={onDuplicate} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Duplicate</button>
+        <button type="button" onClick={onRestore} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Restore defaults</button>
+        <button type="button" onClick={onLock} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">{is3d ? "Lock object" : "Lock / unlock"}</button>
+        {menuActions.includes("trace") && <button type="button" onClick={onTrace} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Trace on</button>}
+        {menuActions.includes("animation") && <button type="button" onClick={onClose} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Animate</button>}
+        {menuActions.includes("measure") && <button type="button" onClick={onClose} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Measure</button>}
+        {menuActions.includes("create-locus") && <button type="button" onClick={onClose} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Create locus</button>}
+        {menuActions.includes("attach-note") && <button type="button" onClick={onClose} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Attach note</button>}
+        {menuActions.includes("export-selected") && <button type="button" onClick={onClose} className="block w-full rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">Export selected</button>}
+        <button type="button" onClick={onDelete} className="block w-full rounded-lg px-3 py-2 text-left font-semibold text-rose-700 hover:bg-rose-50 dark:text-rose-100 dark:hover:bg-rose-400/15">Delete / hide</button>
       </div>
     </div>
   );
 }
 
-function RotationField({ label, value, onChange }: { label: string; value: Vector3Tuple; onChange: (value: Vector3Tuple) => void }) {
-  const update = (index: number, nextValue: number) => {
-    const next: Vector3Tuple = [...value] as Vector3Tuple;
-    next[index] = clampNumber(nextValue, -180, 180);
-    onChange(next);
-  };
-  return (
-    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
-      <p className="text-xs font-black">{label}</p>
-      <div className="mt-2 grid grid-cols-3 gap-2">
-        {(["x", "y", "z"] as const).map((axis, index) => (
-          <label key={axis} className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
-            {axis} deg
-            <input
-              className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 font-mono text-xs dark:border-white/10 dark:bg-slate-900"
-              type="number"
-              value={Number(value[index].toFixed(1))}
-              min={-180}
-              max={180}
-              step={5}
-              onChange={(event) => update(index, Number(event.target.value))}
-            />
-          </label>
-        ))}
-      </div>
-    </div>
-  );
+function workflowTypeForContextTarget(target: ContextMenuState["target"]): WorkflowObjectType {
+  if (target.type === "3d") return "3d";
+  if (target.type === "algebra") {
+    const kind = target.ref.kind;
+    return kind === "3d" ? "3d" : kind === "point" || kind === "line" || kind === "circle" || kind === "polygon" || kind === "arc" || kind === "locus" ? kind : "algebra";
+  }
+  return target.type;
 }
 
-function TransformNudges({
-  onCenter,
-  onLift,
-  onLower,
-  onRotateX,
-  onRotateY,
-  onRotateZ,
-  onScaleUp,
-  onScaleDown,
-}: {
-  onCenter: () => void;
-  onLift: () => void;
-  onLower: () => void;
-  onRotateX: () => void;
-  onRotateY: () => void;
-  onRotateZ: () => void;
-  onScaleUp?: () => void;
-  onScaleDown?: () => void;
-}) {
-  return (
-    <div className="grid grid-cols-3 gap-2">
-      <button type="button" className="mini-chip justify-center" onClick={onCenter}><Crosshair className="h-3.5 w-3.5" />Center</button>
-      <button type="button" className="mini-chip justify-center" onClick={onLift}><Move3D className="h-3.5 w-3.5" />Lift</button>
-      <button type="button" className="mini-chip justify-center" onClick={onLower}><Move3D className="h-3.5 w-3.5" />Lower</button>
-      <button type="button" className="mini-chip justify-center" onClick={onRotateX}><Rotate3D className="h-3.5 w-3.5" />Rot X</button>
-      <button type="button" className="mini-chip justify-center" onClick={onRotateY}><Rotate3D className="h-3.5 w-3.5" />Rot Y</button>
-      <button type="button" className="mini-chip justify-center" onClick={onRotateZ}><Rotate3D className="h-3.5 w-3.5" />Rot Z</button>
-      {onScaleUp && <button type="button" className="mini-chip justify-center" onClick={onScaleUp}><ZoomIn className="h-3.5 w-3.5" />Bigger</button>}
-      {onScaleDown && <button type="button" className="mini-chip justify-center" onClick={onScaleDown}><ZoomOut className="h-3.5 w-3.5" />Smaller</button>}
-    </div>
-  );
-}
-
-function NumberField({ label, value, min, max, step, onChange }: { label: string; value: number; min: number; max: number; step: number; onChange: (value: number) => void }) {
-  return (
-    <label className="text-xs font-bold">
-      {label}
-      <input
-        className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 font-mono text-sm dark:border-white/10 dark:bg-slate-900"
-        type="number"
-        value={Number(value.toFixed(4))}
-        min={min}
-        max={max}
-        step={step}
-        onChange={(event) => onChange(Math.min(max, Math.max(min, Number(event.target.value))))}
-      />
-    </label>
-  );
-}
-
-function ColorField({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
-  return (
-    <label className="text-xs font-bold">
-      {label}
-      <span className="mt-1 grid grid-cols-[44px_minmax(0,1fr)] items-center gap-2 rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900">
-        <input
-          className="h-8 w-10 rounded-lg border border-slate-200 bg-transparent p-0.5 dark:border-white/10"
-          type="color"
-          value={value}
-          onChange={(event) => onChange(event.target.value)}
-          aria-label={label}
-        />
-        <span className="font-mono text-xs font-black uppercase text-slate-600 dark:text-slate-300">{value}</span>
-      </span>
-    </label>
-  );
-}
-
-function Workspace3DScene({
-  surface,
-  solid,
-  surfaceScale,
-  solidSize,
-  crossSection,
-  surfaceDomain,
-  surfacePosition,
-  surfaceRotation,
-  solidPosition,
-  solidRotation,
-  vectorStart,
-  vectorEnd,
-  point,
-  colors,
-  shapes,
-  showSurface,
-  showSolid,
-  showAxes,
-  showGrid,
-  showCrossSection,
-  showVector,
-  showPoint,
-  autoRotate,
-  zoom,
-  selectedObject,
-  onSelect,
-  onVectorStart,
-  onVectorEnd,
-  onPoint,
-  onSurfacePosition,
-  onSolidPosition,
-  onShapeChange,
-  onSurfaceScale,
-  onSurfaceDomain,
-  onSolidSize,
-  onCrossSection,
-  onDragActive,
-}: {
-  surface: SurfaceKind;
-  solid: SolidKind;
-  surfaceScale: number;
-  solidSize: number;
-  crossSection: number;
-  surfaceDomain: number;
-  surfacePosition: Vector3Tuple;
-  surfaceRotation: Vector3Tuple;
-  solidPosition: Vector3Tuple;
-  solidRotation: Vector3Tuple;
-  vectorStart: Vector3Tuple;
-  vectorEnd: Vector3Tuple;
-  point: Vector3Tuple;
-  colors: Space3DColorMap;
-  shapes: Space3DShapeObject[];
-  showSurface: boolean;
-  showSolid: boolean;
-  showAxes: boolean;
-  showGrid: boolean;
-  showCrossSection: boolean;
-  showVector: boolean;
-  showPoint: boolean;
-  autoRotate: boolean;
-  zoom: number;
-  selectedObject: SelectedSpace3DObject;
-  onSelect: (value: Space3DObjectId) => void;
-  onVectorStart: (value: Vector3Tuple) => void;
-  onVectorEnd: (value: Vector3Tuple) => void;
-  onPoint: (value: Vector3Tuple) => void;
-  onSurfacePosition: (value: Vector3Tuple) => void;
-  onSolidPosition: (value: Vector3Tuple) => void;
-  onShapeChange: (id: string, patch: Partial<Space3DShapeObject>) => void;
-  onSurfaceScale: (value: number) => void;
-  onSurfaceDomain: (value: number) => void;
-  onSolidSize: (value: number) => void;
-  onCrossSection: (value: number) => void;
-  onDragActive: (value: boolean) => void;
-}) {
+function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, dragging, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: ThreeObjectId; transforms: Record<ThreeObjectId, Transform3D>; dragging: ThreeObjectId | null; onSelect: (id: ThreeObjectId) => void; onDrag: (id: ThreeObjectId | null) => void; onTransform: (id: ThreeObjectId, patch: Partial<Transform3D>) => void; onContextMenu: (event: any, id: ThreeObjectId) => void }) {
   const groupRef = useRef<THREE.Group>(null);
-  useFrame((_, delta) => {
-    if (groupRef.current && autoRotate) groupRef.current.rotation.y += delta * 0.22;
+  useFrame((state) => {
+    if (!groupRef.current) return;
+    const baseRotation = cameraPresetRotation(cameraPreset);
+    groupRef.current.rotation.set(...baseRotation);
+    if (autoRotate) groupRef.current.rotation.y = baseRotation[1] + state.clock.getElapsedTime() * animationSpeed;
+  });
+  const selectProps = (id: ThreeObjectId) => ({
+    onClick: (event: any) => { event.stopPropagation(); onSelect(id); },
+    onContextMenu: (event: any) => onContextMenu(event, id),
+    onPointerDown: (event: any) => { event.stopPropagation(); onSelect(id); onDrag(id); },
+    onPointerUp: (event: any) => { event.stopPropagation(); onDrag(null); },
+    onPointerMove: (event: any) => {
+      if (dragging !== id || id === "vector") return;
+      event.stopPropagation();
+      const current = transforms[id];
+      onTransform(id, { position: [roundTo(event.point.x, 2), current.position[1], roundTo(event.point.z, 2)] });
+    },
   });
 
   return (
     <group ref={groupRef} scale={zoom}>
-      {showAxes && (
-        <group onClick={(event) => { event.stopPropagation(); onSelect("axes"); }}>
-          <Axes3D selected={selectedObject === "axes"} color={colors.axes} />
-        </group>
-      )}
-      {showGrid && (
-        <group onClick={(event) => { event.stopPropagation(); onSelect("grid"); }}>
-          <gridHelper args={[10, 10, selectedObject === "grid" ? "#22d3ee" : colors.grid, "#1e293b"]} rotation={[0, 0, 0]} />
-          {selectedObject === "grid" && <SelectionHalo position={[0, 0.02, 0]} radius={3.4} />}
-        </group>
-      )}
-      {showSurface && <SurfaceMesh surface={surface} scaleValue={surfaceScale} domainRadius={surfaceDomain} position={surfacePosition} rotation={surfaceRotation} selected={selectedObject === "surface"} color={colors.surface} onSelect={() => onSelect("surface")} />}
-      {showSolid && <SolidMesh solid={solid} size={solidSize} position={solidPosition} rotation={solidRotation} autoRotate={autoRotate} selected={selectedObject === "solid"} color={colors.solid} onSelect={() => onSelect("solid")} />}
-      {shapes.filter((shape) => shape.visible).map((shape) => {
-        const selected = selectedObject === `shape:${shape.id}`;
-        return (
-          <group key={shape.id}>
-            <SolidMesh solid={shape.kind} size={shape.size} position={shape.position} rotation={shape.rotation} autoRotate={false} selected={selected} color={shape.color} label={shape.name} onSelect={() => onSelect(`shape:${shape.id}`)} />
-            {selected && (
-              <>
-                <Draggable3DHandle
-                  position={shape.position}
-                  label="Move"
-                  color={shape.color}
-                  onSelect={() => onSelect(`shape:${shape.id}`)}
-                  onDrag={(delta) => onShapeChange(shape.id, { position: clampVector3([shape.position[0] + delta.x, shape.position[1] + delta.y, shape.position[2] + delta.z]) })}
-                  onDragActive={onDragActive}
-                />
-                <Vertical3DHandle
-                  position={[shape.position[0] + 0.48, shape.position[1] + shape.size + 0.25, shape.position[2] - 0.48]}
-                  label="Size"
-                  color="#fb7185"
-                  onSelect={() => onSelect(`shape:${shape.id}`)}
-                  onDrag={(deltaY) => onShapeChange(shape.id, { size: clampNumber(shape.size + deltaY, 0.4, 5) })}
-                  onDragActive={onDragActive}
-                />
-              </>
-            )}
-          </group>
-        );
-      })}
-      {showCrossSection && <CrossSectionPlane z={crossSection} surface={surface} scaleValue={surfaceScale} domainRadius={surfaceDomain} selected={selectedObject === "cross-section"} color={colors["cross-section"]} onSelect={() => onSelect("cross-section")} />}
-      {showVector && <VectorArrow start={vectorStart} end={vectorEnd} color={selectedObject === "vector" ? "#22d3ee" : colors.vector} selected={selectedObject === "vector"} onSelect={() => onSelect("vector")} />}
-      {showPoint && <Point3D position={point} label="P" color={colors.point} selected={selectedObject === "point"} onSelect={() => onSelect("point")} />}
-      {showPoint && selectedObject === "point" && (
-        <Draggable3DHandle
-          position={point}
-          label="Drag P"
-          color="#22d3ee"
-          onSelect={() => onSelect("point")}
-          onDrag={(delta) => onPoint(clampVector3([point[0] + delta.x, point[1] + delta.y, point[2] + delta.z]))}
-          onDragActive={onDragActive}
-        />
-      )}
-      {showVector && selectedObject === "vector" && (
-        <>
-          <Draggable3DHandle
-            position={vectorStart}
-            label="Tail"
-            color="#a78bfa"
-            onSelect={() => onSelect("vector")}
-            onDrag={(delta) => onVectorStart(clampVector3([vectorStart[0] + delta.x, vectorStart[1] + delta.y, vectorStart[2] + delta.z]))}
-            onDragActive={onDragActive}
-          />
-          <Draggable3DHandle
-            position={vectorEnd}
-            label="Head"
-            color="#f59e0b"
-            onSelect={() => onSelect("vector")}
-            onDrag={(delta) => onVectorEnd(clampVector3([vectorEnd[0] + delta.x, vectorEnd[1] + delta.y, vectorEnd[2] + delta.z]))}
-            onDragActive={onDragActive}
-          />
-        </>
-      )}
-      {showCrossSection && selectedObject === "cross-section" && (
-        <Vertical3DHandle
-          position={[surfaceDomain + 0.45, crossSection, surfaceDomain + 0.45]}
-          label="Slice"
-          color="#facc15"
-          onSelect={() => onSelect("cross-section")}
-          onDrag={(deltaY) => onCrossSection(clampNumber(crossSection + deltaY, -3, 3))}
-          onDragActive={onDragActive}
-        />
-      )}
-      {showSolid && selectedObject === "solid" && (
-        <>
-          <Draggable3DHandle
-            position={solidPosition}
-            label="Move solid"
-            color="#c4b5fd"
-            onSelect={() => onSelect("solid")}
-            onDrag={(delta) => onSolidPosition(clampVector3([solidPosition[0] + delta.x, solidPosition[1] + delta.y, solidPosition[2] + delta.z]))}
-            onDragActive={onDragActive}
-          />
-          <Vertical3DHandle
-            position={[solidPosition[0] + 0.48, solidPosition[1] + solidSize + 0.25, solidPosition[2] - 0.48]}
-            label="Size"
-            color="#fb7185"
-            onSelect={() => onSelect("solid")}
-            onDrag={(deltaY) => onSolidSize(clampNumber(solidSize + deltaY, 0.8, 5))}
-            onDragActive={onDragActive}
-          />
-        </>
-      )}
-      {showSurface && selectedObject === "surface" && (
-        <>
-          <Draggable3DHandle
-            position={surfacePosition}
-            label="Move surface"
-            color="#38bdf8"
-            onSelect={() => onSelect("surface")}
-            onDrag={(delta) => onSurfacePosition(clampVector3([surfacePosition[0] + delta.x, surfacePosition[1] + delta.y, surfacePosition[2] + delta.z]))}
-            onDragActive={onDragActive}
-          />
-          <Vertical3DHandle
-            position={[surfacePosition[0] - surfaceDomain - 0.45, surfacePosition[1] + surfaceScale * 1.25 + 0.3, surfacePosition[2] - surfaceDomain - 0.45]}
-            label="Scale"
-            color="#38bdf8"
-            onSelect={() => onSelect("surface")}
-            onDrag={(deltaY) => onSurfaceScale(clampNumber(surfaceScale + deltaY * 0.55, 0.2, 2.5))}
-            onDragActive={onDragActive}
-          />
-          <Draggable3DHandle
-            position={[surfacePosition[0] + surfaceDomain, surfacePosition[1] + 0.18, surfacePosition[2] - surfaceDomain]}
-            label="Clip"
-            color="#2dd4bf"
-            onSelect={() => onSelect("surface")}
-            onDrag={(delta) => onSurfaceDomain(clampNumber(surfaceDomain + (delta.x - delta.z) * 0.3, 1.2, 3.5))}
-            onDragActive={onDragActive}
-          />
-        </>
-      )}
+      <Axes3D />
+      <gridHelper args={[10, 10, "#334155", "#1e293b"]} rotation={[0, 0, 0]} />
+      {showSurface && transforms.surface.visible && <TransformGroup3D transform={transforms.surface} selected={selected === "surface"}><SurfaceMesh surface={surface} expression={surfaceExpression} scaleValue={surfaceScale} transform={transforms.surface} performanceMode={performanceMode} eventProps={selectProps("surface")} /></TransformGroup3D>}
+      {showSolid && transforms.solid.visible && <TransformGroup3D transform={transforms.solid} selected={selected === "solid"} yOffset={solidSize / 4}><SolidMesh solid={solid} size={solidSize} transform={transforms.solid} eventProps={selectProps("solid")} /></TransformGroup3D>}
+      {transforms.slice.visible && <TransformGroup3D transform={{ ...transforms.slice, position: [transforms.slice.position[0], crossSection + transforms.slice.position[1], transforms.slice.position[2]] }} selected={selected === "slice"}><CrossSectionPlane color={transforms.slice.color} eventProps={selectProps("slice")} /></TransformGroup3D>}
+      {transforms.vector.visible && <TransformGroup3D transform={transforms.vector} selected={selected === "vector"}><VectorArrow start={[-3, 0.05, -3]} end={transforms.point.position} color={transforms.vector.color} eventProps={selectProps("vector")} /></TransformGroup3D>}
+      {transforms.point.visible && <TransformGroup3D transform={transforms.point} selected={selected === "point"}><Point3D label="P" color={transforms.point.color} eventProps={selectProps("point")} /></TransformGroup3D>}
+      {transforms.line3d.visible && <TransformGroup3D transform={transforms.line3d} selected={selected === "line3d"}><Line3D transform={transforms.line3d} eventProps={selectProps("line3d")} /></TransformGroup3D>}
+      {transforms.plane3d.visible && <TransformGroup3D transform={transforms.plane3d} selected={selected === "plane3d"}><Plane3D transform={transforms.plane3d} eventProps={selectProps("plane3d")} /></TransformGroup3D>}
+      {transforms.sphere3d.visible && <TransformGroup3D transform={transforms.sphere3d} selected={selected === "sphere3d"}><ConstructedSolid3D kind="sphere" transform={transforms.sphere3d} eventProps={selectProps("sphere3d")} /></TransformGroup3D>}
+      {transforms.cone3d.visible && <TransformGroup3D transform={transforms.cone3d} selected={selected === "cone3d"}><ConstructedSolid3D kind="cone" transform={transforms.cone3d} eventProps={selectProps("cone3d")} /></TransformGroup3D>}
+      {transforms.cylinder3d.visible && <TransformGroup3D transform={transforms.cylinder3d} selected={selected === "cylinder3d"}><ConstructedSolid3D kind="cylinder" transform={transforms.cylinder3d} eventProps={selectProps("cylinder3d")} /></TransformGroup3D>}
+      {transforms.prism3d.visible && <TransformGroup3D transform={transforms.prism3d} selected={selected === "prism3d"}><ConstructedSolid3D kind="prism" transform={transforms.prism3d} eventProps={selectProps("prism3d")} /></TransformGroup3D>}
+      {transforms.pyramid3d.visible && <TransformGroup3D transform={transforms.pyramid3d} selected={selected === "pyramid3d"}><ConstructedSolid3D kind="pyramid" transform={transforms.pyramid3d} eventProps={selectProps("pyramid3d")} /></TransformGroup3D>}
+      {transforms.polyhedron3d.visible && <TransformGroup3D transform={transforms.polyhedron3d} selected={selected === "polyhedron3d"}><ConstructedSolid3D kind="polyhedron" transform={transforms.polyhedron3d} eventProps={selectProps("polyhedron3d")} /></TransformGroup3D>}
+      <IntersectionOverlays3D transforms={transforms} crossSection={crossSection} />
+      <MeasurementOverlays3D transforms={transforms} />
     </group>
   );
 }
 
-function Axes3D({ selected = false, color = defaultSpace3dColors.axes }: { selected?: boolean; color?: string }) {
+function TransformGroup3D({ transform, selected, yOffset = 0, children }: { transform: Transform3D; selected: boolean; yOffset?: number; children: JSX.Element }) {
+  return (
+    <group position={[transform.position[0], transform.position[1] + yOffset, transform.position[2]]} rotation={transform.rotation.map((value) => THREE.MathUtils.degToRad(value)) as [number, number, number]} scale={transform.scale}>
+      {children}
+      {selected && <mesh>
+        <sphereGeometry args={[0.16, 16, 12]} />
+        <meshBasicMaterial color="#f97316" wireframe />
+      </mesh>}
+    </group>
+  );
+}
+
+function Axes3D() {
   return (
     <group>
-      <VectorArrow start={[-5, 0, 0]} end={[5, 0, 0]} color={selected ? "#facc15" : color} />
-      <VectorArrow start={[0, -0.01, -5]} end={[0, -0.01, 5]} color={selected ? "#facc15" : color} />
-      <VectorArrow start={[0, -3, 0]} end={[0, 3, 0]} color={selected ? "#facc15" : color} />
-      <SceneLabel position={[5.35, 0.15, 0]} text="+x" color="#fecaca" />
-      <SceneLabel position={[0.25, 0.1, 5.35]} text="+y" color="#bbf7d0" />
-      <SceneLabel position={[0.25, 3.25, 0]} text="+z height" color="#bae6fd" />
-      <SceneLabel position={[0.1, 0.25, 0.35]} text="origin" color="#e2e8f0" size={0.18} />
-      {selected && <SelectionHalo position={[0, 0, 0]} radius={2.2} />}
+      <VectorArrow start={[-5, 0, 0]} end={[5, 0, 0]} color="#ef4444" />
+      <VectorArrow start={[0, -0.01, -5]} end={[0, -0.01, 5]} color="#22c55e" />
+      <VectorArrow start={[0, -3, 0]} end={[0, 3, 0]} color="#38bdf8" />
     </group>
   );
 }
 
-type DragDelta3D = { x: number; y: number; z: number };
-
-function Draggable3DHandle({
-  position,
-  label,
-  color,
-  onSelect,
-  onDrag,
-  onDragActive,
-}: {
-  position: Vector3Tuple;
-  label: string;
-  color: string;
-  onSelect: () => void;
-  onDrag: (delta: DragDelta3D) => void;
-  onDragActive: (value: boolean) => void;
-}) {
-  const [dragging, setDragging] = useState(false);
-  const stop = () => {
-    setDragging(false);
-    onDragActive(false);
-  };
-  return (
-    <group
-      position={position}
-      onPointerDown={(event) => {
-        event.stopPropagation();
-        onSelect();
-        setDragging(true);
-        onDragActive(true);
-        (event.nativeEvent.target as Element | null)?.setPointerCapture?.(event.pointerId);
-      }}
-      onPointerMove={(event) => {
-        if (!dragging) return;
-        event.stopPropagation();
-        const nativeEvent = event.nativeEvent as globalThis.PointerEvent;
-        onDrag({
-          x: nativeEvent.movementX * 0.025,
-          y: nativeEvent.shiftKey ? -nativeEvent.movementY * 0.025 : 0,
-          z: nativeEvent.shiftKey ? 0 : nativeEvent.movementY * 0.025,
-        });
-      }}
-      onPointerUp={(event) => {
-        event.stopPropagation();
-        (event.nativeEvent.target as Element | null)?.releasePointerCapture?.(event.pointerId);
-        stop();
-      }}
-      onPointerLeave={() => {
-        if (dragging) stop();
-      }}
-    >
-      <mesh>
-        <sphereGeometry args={[dragging ? 0.24 : 0.18, 24, 16]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={dragging ? 0.75 : 0.35} />
-      </mesh>
-      <mesh>
-        <torusGeometry args={[0.28, 0.012, 10, 36]} />
-        <meshStandardMaterial color="#f8fafc" emissive="#0e7490" emissiveIntensity={0.35} />
-      </mesh>
-      <SceneLabel position={[0, 0.42, 0]} text={label} color="#f8fafc" size={0.16} />
-    </group>
-  );
-}
-
-function Vertical3DHandle({
-  position,
-  label,
-  color,
-  onSelect,
-  onDrag,
-  onDragActive,
-}: {
-  position: Vector3Tuple;
-  label: string;
-  color: string;
-  onSelect: () => void;
-  onDrag: (deltaY: number) => void;
-  onDragActive: (value: boolean) => void;
-}) {
-  const [dragging, setDragging] = useState(false);
-  const stop = () => {
-    setDragging(false);
-    onDragActive(false);
-  };
-  return (
-    <group
-      position={position}
-      onPointerDown={(event) => {
-        event.stopPropagation();
-        onSelect();
-        setDragging(true);
-        onDragActive(true);
-        (event.nativeEvent.target as Element | null)?.setPointerCapture?.(event.pointerId);
-      }}
-      onPointerMove={(event) => {
-        if (!dragging) return;
-        event.stopPropagation();
-        const nativeEvent = event.nativeEvent as globalThis.PointerEvent;
-        onDrag(-nativeEvent.movementY * 0.025);
-      }}
-      onPointerUp={(event) => {
-        event.stopPropagation();
-        (event.nativeEvent.target as Element | null)?.releasePointerCapture?.(event.pointerId);
-        stop();
-      }}
-      onPointerLeave={() => {
-        if (dragging) stop();
-      }}
-    >
-      <mesh>
-        <cylinderGeometry args={[0.025, 0.025, 1.1, 12]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.3} />
-      </mesh>
-      <mesh position={[0, 0.62, 0]}>
-        <coneGeometry args={[dragging ? 0.18 : 0.13, 0.28, 16]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={dragging ? 0.75 : 0.35} />
-      </mesh>
-      <mesh position={[0, -0.62, 0]} rotation={[Math.PI, 0, 0]}>
-        <coneGeometry args={[dragging ? 0.18 : 0.13, 0.28, 16]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={dragging ? 0.75 : 0.35} />
-      </mesh>
-      <SceneLabel position={[0.42, 0.08, 0]} text={label} color="#f8fafc" size={0.16} />
-    </group>
-  );
-}
-
-function clampNumber(value: number, min: number, max: number) {
-  return Math.max(min, Math.min(max, value));
-}
-
-function clampVector3(value: Vector3Tuple): Vector3Tuple {
-  return value.map((item) => clampNumber(roundTo(item, 3), -5, 5)) as Vector3Tuple;
-}
-
-function clampRotationVector(value: Vector3Tuple): Vector3Tuple {
-  return value.map((item) => clampNumber(roundTo(item, 1), -180, 180)) as Vector3Tuple;
-}
-
-function degreesToRadians(value: Vector3Tuple): [number, number, number] {
-  return value.map((item) => (item * Math.PI) / 180) as [number, number, number];
-}
-
-function SceneLabel({ position, text, color, size = 0.22 }: { position: [number, number, number]; text: string; color: string; size?: number }) {
-  return (
-    <Text position={position} fontSize={size} color={color} anchorX="center" anchorY="middle" outlineColor="#020617" outlineWidth={0.012}>
-      {text}
-    </Text>
-  );
-}
-
-function VectorArrow({ start, end, color, selected = false, onSelect }: { start: [number, number, number]; end: [number, number, number]; color: string; selected?: boolean; onSelect?: () => void }) {
+function VectorArrow({ start, end, color, eventProps }: { start: [number, number, number]; end: [number, number, number]; color: string; eventProps?: Record<string, unknown> }) {
   const startVector = new THREE.Vector3(...start);
   const endVector = new THREE.Vector3(...end);
   const direction = endVector.clone().sub(startVector);
@@ -4706,61 +4209,60 @@ function VectorArrow({ start, end, color, selected = false, onSelect }: { start:
   const quaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.clone().normalize());
 
   return (
-    <group position={midpoint} quaternion={quaternion} onClick={onSelect ? (event) => { event.stopPropagation(); onSelect(); } : undefined}>
+    <group position={midpoint} quaternion={quaternion} {...eventProps}>
       <mesh>
-        <cylinderGeometry args={[selected ? 0.045 : 0.025, selected ? 0.045 : 0.025, length, 12]} />
-        <meshStandardMaterial color={color} emissive={selected ? "#0e7490" : "#000000"} emissiveIntensity={selected ? 0.45 : 0} />
+        <cylinderGeometry args={[0.025, 0.025, length, 12]} />
+        <meshStandardMaterial color={color} />
       </mesh>
       <mesh position={[0, length / 2, 0]}>
-        <coneGeometry args={[selected ? 0.14 : 0.09, selected ? 0.32 : 0.25, 16]} />
-        <meshStandardMaterial color={color} emissive={selected ? "#0e7490" : "#000000"} emissiveIntensity={selected ? 0.45 : 0} />
+        <coneGeometry args={[0.09, 0.25, 16]} />
+        <meshStandardMaterial color={color} />
       </mesh>
     </group>
   );
 }
 
-function Point3D({ position, label, color = defaultSpace3dColors.point, selected = false, onSelect }: { position: [number, number, number]; label: string; color?: string; selected?: boolean; onSelect?: () => void }) {
+function Point3D({ label, color, eventProps }: { label: string; color: string; eventProps?: Record<string, unknown> }) {
   return (
-    <group position={position} onClick={onSelect ? (event) => { event.stopPropagation(); onSelect(); } : undefined}>
+    <group {...eventProps}>
       <mesh>
-        <sphereGeometry args={[selected ? 0.18 : 0.12, 24, 16]} />
-        <meshStandardMaterial color={selected ? "#22d3ee" : color} emissive={selected ? color : color} emissiveIntensity={selected ? 0.55 : 0.2} />
+        <sphereGeometry args={[0.12, 24, 16]} />
+        <meshStandardMaterial color={color} emissive="#7c2d12" emissiveIntensity={0.2} />
       </mesh>
       <mesh position={[0.18, 0.18, 0]}>
         <sphereGeometry args={[0.04, 12, 8]} />
-        <meshStandardMaterial color={label ? "#f8fafc" : color} />
+        <meshStandardMaterial color={label ? "#f8fafc" : "#f59e0b"} />
       </mesh>
-      <SceneLabel position={[0.42, 0.36, 0]} text={`${label}(x,y,z)`} color="#fde68a" size={0.18} />
-      {selected && <SelectionHalo position={[0, 0, 0]} radius={0.45} vertical />}
     </group>
   );
 }
 
-function SurfaceMesh({ surface, scaleValue, domainRadius, position, rotation, selected, color = defaultSpace3dColors.surface, onSelect }: { surface: SurfaceKind; scaleValue: number; domainRadius: number; position: Vector3Tuple; rotation: Vector3Tuple; selected: boolean; color?: string; onSelect: () => void }) {
-  const geometry = useMemo(() => createSurfaceGeometry(surface, scaleValue, domainRadius), [domainRadius, surface, scaleValue]);
+function SurfaceMesh({ surface, expression, scaleValue, transform, performanceMode, eventProps }: { surface: SurfaceKind; expression: string; scaleValue: number; transform: Transform3D; performanceMode: boolean; eventProps?: Record<string, unknown> }) {
+  const geometry = useMemo(() => createSurfaceGeometry(surface, scaleValue, performanceMode, expression), [surface, scaleValue, performanceMode, expression]);
   return (
-    <group position={position} rotation={degreesToRadians(rotation)}>
-      <mesh geometry={geometry} position={[0, 0, 0]} onClick={(event) => { event.stopPropagation(); onSelect(); }}>
-        <meshStandardMaterial color={selected ? "#67e8f9" : color} transparent opacity={selected ? 0.68 : 0.45} side={THREE.DoubleSide} roughness={0.35} metalness={0.08} emissive={selected ? color : "#000000"} emissiveIntensity={selected ? 0.18 : 0} />
-      </mesh>
-      {selected && <SelectionHalo position={[0, 0.15, 0]} radius={domainRadius} />}
-      <SceneLabel position={[-3.9, 2.8, -3.7]} text={surfaceFormula(surface, scaleValue)} color="#a5f3fc" size={0.18} />
-      <SceneLabel position={[2.4, 1.15, -2.9]} text="slope / height changes" color="#fef3c7" size={0.17} />
-    </group>
+    <mesh geometry={geometry} position={[0, 0, 0]} {...eventProps}>
+      <ObjectMaterial transform={transform} />
+    </mesh>
   );
 }
 
-function createSurfaceGeometry(surface: SurfaceKind, scaleValue: number, domainRadius = 2.6) {
-  if (surface === "torus" || surface === "helicoid" || surface === "mobius") return createParametricSurfaceGeometry(surface, scaleValue, domainRadius);
-  const segments = 36;
+function createSurfaceGeometry(surface: SurfaceKind, scaleValue: number, performanceMode = false, expression = "sin(x)*cos(y)") {
+  const size = 5;
+  const segments = performanceMode ? 18 : 36;
   const geometry = new THREE.BufferGeometry();
   const vertices: number[] = [];
   const indices: number[] = [];
+  if (surface === "parametric") return createParametricSurfaceGeometry(segments);
+  if (surface === "implicit") {
+    const sphere = new THREE.SphereGeometry(2.1, segments, Math.max(12, Math.floor(segments / 2)));
+    sphere.computeVertexNormals();
+    return sphere;
+  }
   for (let iy = 0; iy <= segments; iy += 1) {
-    const y = -domainRadius + (iy / segments) * domainRadius * 2;
+    const y = -size / 2 + (iy / segments) * size;
     for (let ix = 0; ix <= segments; ix += 1) {
-      const x = -domainRadius + (ix / segments) * domainRadius * 2;
-      const z = surfaceZ(surface, x, y, scaleValue);
+      const x = -size / 2 + (ix / segments) * size;
+      const z = surfaceZ(surface, x, y, scaleValue, expression);
       vertices.push(x, z, y);
     }
   }
@@ -4770,11 +4272,6 @@ function createSurfaceGeometry(surface: SurfaceKind, scaleValue: number, domainR
       const b = a + 1;
       const c = a + segments + 1;
       const d = c + 1;
-      const ax = vertices[a * 3], ay = vertices[a * 3 + 2];
-      const bx = vertices[b * 3], by = vertices[b * 3 + 2];
-      const cx = vertices[c * 3], cy = vertices[c * 3 + 2];
-      const dx = vertices[d * 3], dy = vertices[d * 3 + 2];
-      if ([Math.hypot(ax, ay), Math.hypot(bx, by), Math.hypot(cx, cy), Math.hypot(dx, dy)].some((distance) => distance > domainRadius)) continue;
       indices.push(a, c, b, b, c, d);
     }
   }
@@ -4784,25 +4281,56 @@ function createSurfaceGeometry(surface: SurfaceKind, scaleValue: number, domainR
   return geometry;
 }
 
-function createParametricSurfaceGeometry(surface: SurfaceKind, scaleValue: number, domainRadius: number) {
-  const uSegments = 56;
-  const vSegments = 18;
+function surfaceZ(surface: SurfaceKind, x: number, y: number, scaleValue: number, expression = "") {
+  if (surface === "custom-z") return scaleValue * evaluateSurfaceExpression(expression, x, y);
+  if (surface === "paraboloid") return scaleValue * 0.25 * (x * x + y * y);
+  if (surface === "saddle") return scaleValue * 0.3 * (x * x - y * y);
+  if (surface === "wave") return scaleValue * Math.sin(x * 1.4) * Math.cos(y * 1.4);
+  if (surface === "ripple") return scaleValue * Math.sin((x * x + y * y) * 1.2);
+  if (surface === "cone-surface") return scaleValue * 0.55 * Math.hypot(x, y);
+  return scaleValue * 0.35 * (x + y);
+}
+
+function evaluateSurfaceExpression(expression: string, x: number, y: number) {
+  const safe = expression
+    .replace(/\^/g, "**")
+    .replace(/\bpi\b/gi, "Math.PI")
+    .replace(/\be\b/g, "Math.E")
+    .replace(/\bsin\b/gi, "Math.sin")
+    .replace(/\bcos\b/gi, "Math.cos")
+    .replace(/\btan\b/gi, "Math.tan")
+    .replace(/\bsqrt\b/gi, "Math.sqrt")
+    .replace(/\babs\b/gi, "Math.abs")
+    .replace(/\bln\b/gi, "Math.log")
+    .replace(/\blog\b/gi, "Math.log10")
+    .replace(/\bexp\b/gi, "Math.exp");
+  if (!/^[0-9xy+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}\[\]'"]/.test(safe)) return 0;
+  try {
+    const value = Function("x", "y", `"use strict"; return (${safe});`)(x, y) as number;
+    return Number.isFinite(value) ? Math.max(-4, Math.min(4, value)) : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function createParametricSurfaceGeometry(segments: number) {
   const geometry = new THREE.BufferGeometry();
   const vertices: number[] = [];
   const indices: number[] = [];
-  for (let iv = 0; iv <= vSegments; iv += 1) {
-    for (let iu = 0; iu <= uSegments; iu += 1) {
-      const u = (iu / uSegments) * Math.PI * 2;
-      const v = iv / vSegments;
-      const [x, z, y] = parametricPoint(surface, u, v, scaleValue, domainRadius);
-      vertices.push(x, z, y);
+  for (let iv = 0; iv <= segments; iv += 1) {
+    const v = (iv / segments) * Math.PI * 2;
+    for (let iu = 0; iu <= segments; iu += 1) {
+      const u = (iu / segments) * Math.PI * 2;
+      const major = 1.7;
+      const minor = 0.55;
+      vertices.push((major + minor * Math.cos(v)) * Math.cos(u), minor * Math.sin(v), (major + minor * Math.cos(v)) * Math.sin(u));
     }
   }
-  for (let iv = 0; iv < vSegments; iv += 1) {
-    for (let iu = 0; iu < uSegments; iu += 1) {
-      const a = iv * (uSegments + 1) + iu;
+  for (let iv = 0; iv < segments; iv += 1) {
+    for (let iu = 0; iu < segments; iu += 1) {
+      const a = iv * (segments + 1) + iu;
       const b = a + 1;
-      const c = a + uSegments + 1;
+      const c = a + segments + 1;
       const d = c + 1;
       indices.push(a, c, b, b, c, d);
     }
@@ -4813,473 +4341,172 @@ function createParametricSurfaceGeometry(surface: SurfaceKind, scaleValue: numbe
   return geometry;
 }
 
-function parametricPoint(surface: SurfaceKind, u: number, v01: number, scaleValue: number, domainRadius: number): Vector3Tuple {
-  if (surface === "torus") {
-    const major = 1.25 * scaleValue;
-    const minor = 0.36 * domainRadius;
-    const v = v01 * Math.PI * 2;
-    return [(major + minor * Math.cos(v)) * Math.cos(u), minor * Math.sin(v), (major + minor * Math.cos(v)) * Math.sin(u)];
-  }
-  if (surface === "mobius") {
-    const width = (v01 - 0.5) * domainRadius * 0.9;
-    const radius = 1.5 * scaleValue;
-    return [(radius + width * Math.cos(u / 2)) * Math.cos(u), width * Math.sin(u / 2), (radius + width * Math.cos(u / 2)) * Math.sin(u)];
-  }
-  const v = (v01 - 0.5) * domainRadius * 2;
-  return [v * Math.cos(u), scaleValue * (u - Math.PI) * 0.42, v * Math.sin(u)];
+function cameraPresetRotation(preset: CameraPreset3D): [number, number, number] {
+  if (preset === "top") return [-Math.PI / 2, 0, 0];
+  if (preset === "front") return [0, 0, 0];
+  if (preset === "right") return [0, -Math.PI / 2, 0];
+  if (preset === "isometric") return [-0.52, 0.72, 0];
+  return [0, 0, 0];
 }
 
-function surfaceZ(surface: SurfaceKind, x: number, y: number, scaleValue: number) {
-  if (surface === "paraboloid") return scaleValue * 0.25 * (x * x + y * y);
-  if (surface === "saddle") return scaleValue * 0.3 * (x * x - y * y);
-  if (surface === "wave") return scaleValue * Math.sin(x * 1.4) * Math.cos(y * 1.4);
-  if (surface === "ripple") return scaleValue * Math.sin((x * x + y * y) * 1.2);
-  if (surface === "cone-surface") return scaleValue * 0.55 * Math.hypot(x, y);
-  return scaleValue * 0.35 * (x + y);
-}
-
-function SelectionHalo({ position, radius, vertical = false }: { position: Vector3Tuple; radius: number; vertical?: boolean }) {
+function SolidMesh({ solid, size, transform, eventProps }: { solid: SolidKind; size: number; transform: Transform3D; eventProps?: Record<string, unknown> }) {
+  const ref = useRef<THREE.Mesh>(null);
+  useFrame((_, delta) => {
+    if (ref.current) ref.current.rotation.y += delta * 0.18;
+  });
   return (
-    <mesh position={position} rotation={vertical ? [0, Math.PI / 2, 0] : [-Math.PI / 2, 0, 0]}>
-      <torusGeometry args={[radius, Math.max(0.012, radius * 0.018), 12, 72]} />
-      <meshStandardMaterial color="#22d3ee" emissive="#0891b2" emissiveIntensity={0.6} transparent opacity={0.85} />
+    <mesh ref={ref} {...eventProps}>
+      {solid === "cube" && <boxGeometry args={[size, size, size]} />}
+      {solid === "sphere" && <sphereGeometry args={[size / 2, 48, 28]} />}
+      {solid === "cylinder" && <cylinderGeometry args={[size / 2, size / 2, size, 48]} />}
+      {solid === "cone" && <coneGeometry args={[size / 2, size, 48]} />}
+      {solid === "prism" && <cylinderGeometry args={[size / 2, size / 2, size, 3]} />}
+      {solid === "pyramid" && <coneGeometry args={[size / 2, size, 4]} />}
+      {solid === "polyhedron" && <icosahedronGeometry args={[size / 2, 0]} />}
+      <ObjectMaterial transform={transform} />
     </mesh>
   );
 }
 
-function SolidMesh({ solid, size, position, rotation, autoRotate, selected, onSelect, color, label }: { solid: SolidKind; size: number; position: Vector3Tuple; rotation: Vector3Tuple; autoRotate: boolean; selected: boolean; onSelect: () => void; color?: string; label?: string }) {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame((_, delta) => {
-    if (ref.current && autoRotate) ref.current.rotation.y += delta * 0.18;
-  });
-  const displayLabel = label ?? solidOptions.find((option) => option.value === solid)?.label ?? solid;
-  const meshColor = color ?? "#8b5cf6";
+function CrossSectionPlane({ color, eventProps }: { color: string; eventProps?: Record<string, unknown> }) {
   return (
-    <group position={position} rotation={degreesToRadians(rotation)}>
-      <mesh ref={ref} position={[0, size / 2, 0]} onClick={(event) => { event.stopPropagation(); onSelect(); }}>
-        {solid === "cube" && <boxGeometry args={[size, size, size]} />}
-        {solid === "box" && <boxGeometry args={[size * 1.35, size * 0.72, size]} />}
-        {solid === "sphere" && <sphereGeometry args={[size / 2, 48, 28]} />}
-        {solid === "hemisphere" && <sphereGeometry args={[size / 2, 48, 18, 0, Math.PI * 2, 0, Math.PI / 2]} />}
-        {solid === "cylinder" && <cylinderGeometry args={[size / 2, size / 2, size, 48]} />}
-        {solid === "cone" && <coneGeometry args={[size / 2, size, 48]} />}
-        {solid === "pyramid" && <coneGeometry args={[size / 1.35, size, 4]} />}
-        {solid === "triangular-prism" && <cylinderGeometry args={[size / 1.4, size / 1.4, size, 3]} />}
-        {solid === "tetrahedron" && <tetrahedronGeometry args={[size * 0.72, 0]} />}
-        {solid === "octahedron" && <octahedronGeometry args={[size * 0.62, 0]} />}
-        {solid === "dodecahedron" && <dodecahedronGeometry args={[size * 0.58, 0]} />}
-        {solid === "icosahedron" && <icosahedronGeometry args={[size * 0.58, 0]} />}
-        {solid === "torus-solid" && <torusGeometry args={[size * 0.36, size * 0.12, 24, 72]} />}
-        <meshStandardMaterial color={selected ? "#c4b5fd" : meshColor} transparent opacity={selected ? 0.9 : 0.78} roughness={0.28} metalness={0.14} emissive={selected ? meshColor : "#000000"} emissiveIntensity={selected ? 0.25 : 0} />
+    <mesh {...eventProps}>
+      <planeGeometry args={[5.5, 5.5]} />
+      <meshStandardMaterial color={color} transparent opacity={0.22} side={THREE.DoubleSide} />
+    </mesh>
+  );
+}
+
+function Line3D({ transform, eventProps }: { transform: Transform3D; eventProps?: Record<string, unknown> }) {
+  const length = transform.dimensions?.[0] ?? 4;
+  return (
+    <group {...eventProps}>
+      <mesh rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.035, 0.035, length, 12]} />
+        <ObjectMaterial transform={transform} />
       </mesh>
-      {selected && <SelectionHalo position={[0, 0.06, 0]} radius={Math.max(0.72, size * 0.72)} />}
-      <SceneLabel position={[0, size + 0.55, 0]} text={`${displayLabel}: size=${roundTo(size, 1)}`} color="#ddd6fe" size={0.18} />
     </group>
   );
 }
 
-function CrossSectionPlane({ z, surface, scaleValue, domainRadius, selected, color = defaultSpace3dColors["cross-section"], onSelect }: { z: number; surface: SurfaceKind; scaleValue: number; domainRadius: number; selected: boolean; color?: string; onSelect: () => void }) {
-  const contour = useMemo(() => createCrossSectionContour(surface, scaleValue, z, domainRadius), [domainRadius, scaleValue, surface, z]);
+function Plane3D({ transform, eventProps }: { transform: Transform3D; eventProps?: Record<string, unknown> }) {
+  return (
+    <mesh {...eventProps}>
+      <planeGeometry args={[transform.dimensions?.[0] ?? 4, transform.dimensions?.[1] ?? 4]} />
+      <ObjectMaterial transform={transform} />
+    </mesh>
+  );
+}
+
+function ConstructedSolid3D({ kind, transform, eventProps }: { kind: SolidKind; transform: Transform3D; eventProps?: Record<string, unknown> }) {
+  const dims = transform.dimensions ?? [1.5, 1.5, 1.5];
+  return (
+    <mesh scale={[dims[0], dims[1], dims[2]]} {...eventProps}>
+      {kind === "sphere" && <sphereGeometry args={[0.5, 48, 28]} />}
+      {kind === "cone" && <coneGeometry args={[0.5, 1, 48]} />}
+      {kind === "cylinder" && <cylinderGeometry args={[0.5, 0.5, 1, 48]} />}
+      {kind === "prism" && <cylinderGeometry args={[0.58, 0.58, 1, 3]} />}
+      {kind === "pyramid" && <coneGeometry args={[0.62, 1, 4]} />}
+      {kind === "polyhedron" && <icosahedronGeometry args={[0.65, 0]} />}
+      <ObjectMaterial transform={transform} />
+    </mesh>
+  );
+}
+
+function ObjectMaterial({ transform }: { transform: Transform3D }) {
+  return <meshStandardMaterial color={transform.color} transparent opacity={transform.opacity ?? 0.8} roughness={transform.material === "glass" ? 0.12 : 0.42} metalness={transform.material === "glass" ? 0.18 : 0.05} wireframe={transform.material === "wireframe"} side={THREE.DoubleSide} />;
+}
+
+function IntersectionOverlays3D({ transforms, crossSection }: { transforms: Record<ThreeObjectId, Transform3D>; crossSection: number }) {
+  const sphere = transforms.sphere3d;
+  const plane = transforms.plane3d;
+  const line = transforms.line3d;
+  const sphereRadius = ((sphere.dimensions?.[0] ?? 1.4) * sphere.scale) / 2;
+  const planeDistance = Math.abs(plane.position[1] - sphere.position[1]);
+  const spherePlaneRadius = Math.sqrt(Math.max(0.04, sphereRadius * sphereRadius - planeDistance * planeDistance));
+  const linePlanePoint: [number, number, number] = [line.position[0], plane.position[1], line.position[2]];
+
   return (
     <group>
-      <mesh position={[0, z, 0]} rotation={[-Math.PI / 2, 0, 0]} onClick={(event) => { event.stopPropagation(); onSelect(); }}>
-        <planeGeometry args={[5.5, 5.5]} />
-        <meshStandardMaterial color={selected ? "#22d3ee" : color} transparent opacity={selected ? 0.36 : 0.22} side={THREE.DoubleSide} emissive={selected ? color : "#000000"} emissiveIntensity={selected ? 0.2 : 0} />
-      </mesh>
-      {contour.map((point, index) => (
-        <mesh key={`${point[0]}-${point[2]}-${index}`} position={point}>
-          <sphereGeometry args={[0.025, 8, 6]} />
-          <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.25} />
+      {sphere.visible && plane.visible && planeDistance <= sphereRadius + 0.02 && (
+        <group position={[sphere.position[0], plane.position[1], sphere.position[2]]} rotation={[Math.PI / 2, 0, 0]}>
+          <mesh>
+            <torusGeometry args={[spherePlaneRadius, 0.018, 10, 96]} />
+            <meshBasicMaterial color="#f8fafc" />
+          </mesh>
+        </group>
+      )}
+      {line.visible && plane.visible && (
+        <mesh position={linePlanePoint}>
+          <sphereGeometry args={[0.09, 18, 12]} />
+          <meshBasicMaterial color="#fb7185" />
         </mesh>
-      ))}
-      {selected && <SelectionHalo position={[0, z + 0.04, 0]} radius={domainRadius} />}
-      <SceneLabel position={[-2.9, z + 0.12, 2.9]} text={`cross-section: z=${roundTo(z, 2)}`} color="#fed7aa" size={0.17} />
+      )}
+      {plane.visible && transforms.slice.visible && (
+        <mesh position={[0, (plane.position[1] + crossSection) / 2, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.018, 0.018, 5.5, 10]} />
+          <meshBasicMaterial color="#fde68a" />
+        </mesh>
+      )}
+      {transforms.surface.visible && transforms.slice.visible && (
+        <group position={[0, crossSection, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <mesh>
+            <torusGeometry args={[2.05, 0.012, 8, 128]} />
+            <meshBasicMaterial color="#f59e0b" />
+          </mesh>
+        </group>
+      )}
     </group>
   );
 }
 
-function createCrossSectionContour(surface: SurfaceKind, scaleValue: number, z: number, domainRadius: number): Vector3Tuple[] {
-  if (surface === "torus" || surface === "mobius" || surface === "helicoid") return [];
-  const points: Vector3Tuple[] = [];
-  const steps = 46;
-  const tolerance = 0.055 + domainRadius * 0.012;
-  for (let iy = 0; iy <= steps; iy += 1) {
-    const y = -domainRadius + (iy / steps) * domainRadius * 2;
-    for (let ix = 0; ix <= steps; ix += 1) {
-      const x = -domainRadius + (ix / steps) * domainRadius * 2;
-      if (Math.hypot(x, y) > domainRadius) continue;
-      if (Math.abs(surfaceZ(surface, x, y, scaleValue) - z) <= tolerance) points.push([x, z + 0.018, y]);
+function MeasurementOverlays3D({ transforms }: { transforms: Record<ThreeObjectId, Transform3D> }) {
+  const point = transforms.point.position;
+  const vectorLength = Math.hypot(point[0] + 3, point[1] - 0.05, point[2] + 3);
+  return (
+    <group>
+      <TextSprite position={[point[0] + 0.25, point[1] + 0.25, point[2]]} text={`${transforms.point.name ?? "P"} (${point.map((value) => roundTo(value, 1)).join(", ")})`} />
+      <TextSprite position={[-1.5, 0.35, -1.8]} text={`|v|=${roundTo(vectorLength, 2)}`} />
+      {transforms.plane3d.visible && transforms.sphere3d.visible && <TextSprite position={[0, 2.8, 0]} text="sphere-plane slice available" />}
+      {transforms.line3d.visible && transforms.plane3d.visible && <TextSprite position={[1.2, 2.4, 0]} text="line-plane intersection" />}
+    </group>
+  );
+}
+
+function TextSprite({ position, text }: { position: [number, number, number]; text: string }) {
+  const texture = useMemo(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 512;
+    canvas.height = 96;
+    const context = canvas.getContext("2d");
+    if (context) {
+      context.fillStyle = "rgba(15,23,42,.82)";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.fillStyle = "#f8fafc";
+      context.font = "700 32px sans-serif";
+      context.fillText(text, 24, 58);
     }
-  }
-  return points.slice(0, 260);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
+    return texture;
+  }, [text]);
+  return (
+    <sprite position={position} scale={[1.8, 0.34, 1]}>
+      <spriteMaterial map={texture} transparent />
+    </sprite>
+  );
 }
 
 function surfaceFormula(surface: SurfaceKind, scaleValue: number) {
+  if (surface === "custom-z") return `z = ${roundTo(scaleValue, 2)} * f(x,y)`;
+  if (surface === "parametric") return "parametric torus: r(u,v)";
+  if (surface === "implicit") return "implicit sphere: x^2+y^2+z^2=r^2";
   if (surface === "paraboloid") return `z = ${roundTo(scaleValue, 2)}(x^2 + y^2)/4`;
   if (surface === "saddle") return `z = ${roundTo(scaleValue, 2)}(x^2 - y^2)/3`;
   if (surface === "wave") return `z = ${roundTo(scaleValue, 2)} sin(1.4x) cos(1.4y)`;
   if (surface === "ripple") return `z = ${roundTo(scaleValue, 2)} sin(1.2(x^2+y^2))`;
   if (surface === "cone-surface") return `z = ${roundTo(scaleValue, 2)} sqrt(x^2+y^2)`;
-  if (surface === "torus") return `parametric torus, R=${roundTo(1.25 * scaleValue, 2)}`;
-  if (surface === "helicoid") return `parametric helicoid, twist=${roundTo(scaleValue, 2)}`;
-  if (surface === "mobius") return `parametric Mobius strip, R=${roundTo(1.5 * scaleValue, 2)}`;
   return `z = ${roundTo(scaleValue, 2)}(x+y)/3`;
-}
-
-type GeometryToolItem = { id: GeometryTool; label: string; icon: LucideIcon };
-type GeometryActionItem = { id: string; label: string; icon: LucideIcon; action: () => void; active?: boolean };
-type GeometryToolGroup = { title: string; tools: GeometryToolItem[] };
-
-const geometryToolGroups: GeometryToolGroup[] = [
-  {
-    title: "Basic Tools",
-    tools: [
-      { id: "select", label: "Move", icon: MousePointer2 },
-      { id: "point", label: "Point", icon: Plus },
-      { id: "segment", label: "Segment", icon: Move },
-      { id: "line", label: "Line", icon: Slash },
-      { id: "ray", label: "Ray", icon: GitBranch },
-      { id: "vector", label: "Vector", icon: Target },
-      { id: "circle", label: "Circle", icon: Circle },
-      { id: "polygon", label: "Polygon", icon: Pentagon },
-      { id: "angle", label: "Angle", icon: Radius },
-    ],
-  },
-  {
-    title: "Construct",
-    tools: [
-      { id: "parallel", label: "Parallel", icon: UnfoldHorizontal },
-      { id: "perpendicular", label: "Perpendicular", icon: Crosshair },
-      { id: "perpendicular-bisector", label: "Perp. Bisector", icon: BetweenHorizontalStart },
-      { id: "angle-bisector", label: "Angle Bisector", icon: Scissors },
-      { id: "midpoint", label: "Midpoint", icon: Magnet },
-      { id: "intersect", label: "Intersect", icon: CircleDot },
-      { id: "tangent", label: "Tangent", icon: Circle },
-      { id: "on-circle", label: "Point on Object", icon: MousePointerClick },
-      { id: "fixed-length", label: "Fixed Length", icon: Ruler },
-      { id: "regular-polygon", label: "Regular Polygon", icon: Sigma },
-      { id: "compass", label: "Compass", icon: PencilRuler },
-      { id: "circle-radius", label: "Circle Radius", icon: CircleDot },
-      { id: "circle-3point", label: "Circle 3 Points", icon: ScanLine },
-      { id: "semicircle", label: "Semicircle", icon: CircleDot },
-      { id: "arc", label: "Arc", icon: Spline },
-      { id: "sector", label: "Sector", icon: Blend },
-      { id: "intersect-region", label: "Region Intersect", icon: Layers },
-    ],
-  },
-  {
-    title: "Measure",
-    tools: [
-      { id: "distance", label: "Distance", icon: Ruler },
-      { id: "area", label: "Area", icon: Calculator },
-      { id: "slope", label: "Slope", icon: LineChart },
-      { id: "locus", label: "Locus", icon: Spline },
-      { id: "trace", label: "Trace", icon: Highlighter },
-      { id: "label", label: "Label", icon: TextCursorInput },
-      { id: "slider", label: "Slider", icon: ArrowLeftRight },
-    ],
-  },
-  {
-    title: "Transform",
-    tools: [
-      { id: "mirror-line", label: "Reflect Line", icon: FlipHorizontal2 },
-      { id: "reflect-point", label: "Reflect Point", icon: Target },
-      { id: "translate", label: "Translate", icon: Move3D },
-      { id: "rotate-tool", label: "Rotate", icon: Rotate3D },
-      { id: "dilate-tool", label: "Dilate", icon: ZoomIn },
-      { id: "duplicate", label: "Duplicate", icon: ClipboardCopy },
-    ],
-  },
-  {
-    title: "Edit",
-    tools: [
-      { id: "hide-show", label: "Show / Hide", icon: EyeOff },
-      { id: "lock-object", label: "Lock", icon: LockKeyhole },
-      { id: "freehand", label: "Freehand", icon: Brush },
-      { id: "text", label: "Text", icon: PenLine },
-      { id: "image", label: "Image", icon: Presentation },
-      { id: "move-canvas", label: "Move Canvas", icon: Axis3d },
-      { id: "zoom-tool", label: "Zoom", icon: ZoomIn },
-    ],
-  },
-];
-
-function GeometryToolPalette({
-  activeTool,
-  onTool,
-  onDelete,
-  onUndo,
-  onRedo,
-  onReset,
-  onSave,
-  onLoad,
-  onTemplate,
-  onTransform,
-  onTrace,
-  onStopTrace,
-  onClearTrace,
-  tracing,
-}: {
-  activeTool: GeometryTool;
-  onTool: (tool: GeometryTool) => void;
-  onDelete: () => void;
-  onUndo: () => void;
-  onRedo: () => void;
-  onReset: () => void;
-  onSave: () => void;
-  onLoad: () => void;
-  onTemplate: (kind: GeometryTemplateKind) => void;
-  onTransform: (type: GeoTransformKind) => void;
-  onTrace: () => void;
-  onStopTrace: () => void;
-  onClearTrace: () => void;
-  tracing: boolean;
-}) {
-  const templateActions: GeometryActionItem[] = [
-    { id: "template-triangle", label: "Triangle", icon: Triangle, action: () => onTemplate("triangle") },
-    { id: "template-right-triangle", label: "Right Tri.", icon: Triangle, action: () => onTemplate("right-triangle") },
-    { id: "template-isosceles-triangle", label: "Isosceles", icon: Triangle, action: () => onTemplate("isosceles-triangle") },
-    { id: "template-equilateral-triangle", label: "Equilateral", icon: Triangle, action: () => onTemplate("equilateral-triangle") },
-    { id: "template-rectangle", label: "Rectangle", icon: Square, action: () => onTemplate("rectangle") },
-    { id: "template-square", label: "Square", icon: Square, action: () => onTemplate("square") },
-    { id: "template-parallelogram", label: "Parallelogram", icon: Slash, action: () => onTemplate("parallelogram") },
-    { id: "template-trapezoid", label: "Trapezoid", icon: Pentagon, action: () => onTemplate("trapezoid") },
-    { id: "template-rhombus", label: "Rhombus", icon: Target, action: () => onTemplate("rhombus") },
-    { id: "template-kite", label: "Kite", icon: Move, action: () => onTemplate("kite") },
-    { id: "template-pentagon", label: "Pentagon", icon: Pentagon, action: () => onTemplate("pentagon") },
-    { id: "template-hexagon", label: "Hexagon", icon: Sigma, action: () => onTemplate("hexagon") },
-    { id: "template-octagon", label: "Octagon", icon: CircleDot, action: () => onTemplate("octagon") },
-    { id: "template-star", label: "Star", icon: Wand2, action: () => onTemplate("star") },
-    { id: "template-circle", label: "Circle", icon: Circle, action: () => onTemplate("circle") },
-    { id: "template-two-circles", label: "2 Circles", icon: Blend, action: () => onTemplate("two-circles") },
-    { id: "template-annulus", label: "Annulus", icon: CircleDot, action: () => onTemplate("annulus") },
-    { id: "template-semicircle", label: "Semicircle", icon: CircleDot, action: () => onTemplate("semicircle") },
-    { id: "template-sector", label: "Sector", icon: Blend, action: () => onTemplate("sector") },
-    { id: "template-arc", label: "Arc", icon: Spline, action: () => onTemplate("arc") },
-    { id: "template-parabola", label: "Parabola", icon: LineChart, action: () => onTemplate("parabola") },
-    { id: "template-ellipse", label: "Ellipse", icon: Circle, action: () => onTemplate("ellipse") },
-    { id: "template-hyperbola", label: "Hyperbola", icon: GitBranch, action: () => onTemplate("hyperbola") },
-    { id: "template-angle", label: "Angle", icon: Radius, action: () => onTemplate("angle-shape") },
-    { id: "template-axes", label: "Axes", icon: Crosshair, action: () => onTemplate("coordinate-axes") },
-  ];
-  const operationActions: GeometryActionItem[] = [
-    { id: "reflect-selected", label: "Reflect", icon: FlipHorizontal2, action: () => onTransform("reflection") },
-    { id: "rotate-selected", label: "Rotate", icon: RotateCcw, action: () => onTransform("rotation") },
-    { id: "dilate-selected", label: "Dilate", icon: ZoomIn, action: () => onTransform("dilation") },
-    { id: "trace-selected", label: tracing ? "Trace On" : "Trace", icon: Highlighter, action: onTrace, active: tracing },
-    { id: "stop-trace", label: "Stop Trace", icon: Pause, action: onStopTrace },
-    { id: "clear-trace", label: "Clear Trace", icon: Eraser, action: onClearTrace },
-  ];
-  const fileActions: GeometryActionItem[] = [
-    { id: "delete", label: "Delete", icon: Trash2, action: onDelete },
-    { id: "undo", label: "Undo", icon: RotateCcw, action: onUndo },
-    { id: "redo", label: "Redo", icon: RotateCcw, action: onRedo },
-    { id: "reset", label: "Reset", icon: Eraser, action: onReset },
-    { id: "save", label: "Save", icon: Save, action: onSave },
-    { id: "load", label: "Load", icon: Download, action: onLoad },
-  ];
-
-  return (
-    <aside className="geometry-left-tools thin-scrollbar min-h-0 overflow-auto rounded-xl border border-slate-200 bg-white/90 p-2 dark:border-white/10 dark:bg-slate-950/70">
-      {geometryToolGroups.map((group) => (
-        <GeometryPaletteSection key={group.title} title={group.title}>
-          {group.tools.map((item) => (
-            <GeometryPaletteTool key={item.id} item={item} active={activeTool === item.id} onClick={() => onTool(item.id)} />
-          ))}
-        </GeometryPaletteSection>
-      ))}
-      <GeometryPaletteSection title="Shapes">
-        {templateActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
-      </GeometryPaletteSection>
-      <GeometryPaletteSection title="Selected Object">
-        {operationActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
-      </GeometryPaletteSection>
-      <GeometryPaletteSection title="File">
-        {fileActions.map((item) => <GeometryPaletteAction key={item.id} item={item} danger={item.id === "delete"} />)}
-      </GeometryPaletteSection>
-    </aside>
-  );
-}
-
-function GeometryPaletteSection({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <section className="mb-3 last:mb-0">
-      <h4 className="mb-1.5 px-1 text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{title}</h4>
-      <div className="grid grid-cols-3 gap-1.5">{children}</div>
-    </section>
-  );
-}
-
-function GeometryPaletteTool({ item, active, onClick }: { item: GeometryToolItem; active: boolean; onClick: () => void }) {
-  const Icon = item.icon;
-  return (
-    <button type="button" onClick={onClick} title={item.label} className={`geometry-palette-button ${active ? "geometry-palette-button-active" : ""}`}>
-      <Icon className="h-4 w-4" />
-      <span>{item.label}</span>
-    </button>
-  );
-}
-
-function GeometryPaletteAction({ item, danger }: { item: GeometryActionItem; danger?: boolean }) {
-  const Icon = item.icon;
-  return (
-    <button type="button" onClick={item.action} title={item.label} className={`geometry-palette-button ${item.active ? "geometry-palette-button-active" : ""} ${danger ? "geometry-palette-button-danger" : ""}`}>
-      <Icon className="h-4 w-4" />
-      <span>{item.label}</span>
-    </button>
-  );
-}
-
-function GeometryLabResults({ construction, selected, selectedPointIds, activeTool }: { construction: Construction; selected: SelectedGeoObject; selectedPointIds: string[]; activeTool: GeometryTool }) {
-  const selectedPoint = selected?.kind === "point" ? pointById(construction.points, selected.id) : null;
-  const selectedLine = selected?.kind === "line" ? construction.lines.find((line) => line.id === selected.id) : null;
-  const selectedCircle = selected?.kind === "circle" ? construction.circles.find((circle) => circle.id === selected.id) : null;
-  const selectedPolygon = selected?.kind === "polygon" ? construction.polygons.find((polygon) => polygon.id === selected.id) : null;
-  const selectedAngle = selected?.kind === "angle" ? construction.angles.find((angle) => angle.id === selected.id) : null;
-  const selectedArc = selected?.kind === "arc" ? construction.arcs.find((arc) => arc.id === selected.id) : null;
-  const selectedText = selected?.kind === "text" ? construction.texts.find((note) => note.id === selected.id) : null;
-  const selectedConic = selected?.kind === "conic" ? construction.conics.find((conic) => conic.id === selected.id) : null;
-  const distancePoints = selectedPointIds.slice(-2).map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
-  const entries: Array<{ label: string; value: string }> = [];
-  const titleParts: string[] = [];
-
-  if (activeTool === "distance" && distancePoints.length === 2) {
-    titleParts.push(`Distance ${distancePoints[0].label}${distancePoints[1].label}`);
-    entries.push(...distanceMetrics(distancePoints[0], distancePoints[1]));
-  } else if (selectedPoint) {
-    titleParts.push(`Point ${selectedPoint.label}`);
-    entries.push(
-      { label: "Coordinate", value: `(${boardUnit(selectedPoint.x)}, ${boardUnit(selectedPoint.y)})` },
-      { label: "Raw canvas", value: `(${roundTo(selectedPoint.x, 1)}, ${roundTo(selectedPoint.y, 1)})` },
-      { label: "Distance from origin", value: `${roundTo(Math.hypot(boardUnitNumber(selectedPoint.x), boardUnitNumber(selectedPoint.y)), 3)} units` },
-    );
-  } else if (selectedLine) {
-    const a = pointById(construction.points, selectedLine.a);
-    const b = pointById(construction.points, selectedLine.b);
-    if (a && b) {
-      titleParts.push(`${lineKindLabel(selectedLine.kind ?? "segment")} ${a.label}${b.label}`);
-      entries.push(...distanceMetrics(a, b));
-      entries.push(
-        { label: "Slope", value: slopeLabel(a, b) },
-        { label: "Direction", value: `${roundTo(directionDegrees(a, b), 2)} deg` },
-        { label: "Midpoint", value: `(${boardUnit((a.x + b.x) / 2)}, ${boardUnit((a.y + b.y) / 2)})` },
-        { label: "Equation", value: lineEquationLabel(a, b) },
-      );
-    }
-  } else if (selectedCircle) {
-    const center = pointById(construction.points, selectedCircle.center);
-    const edge = pointById(construction.points, selectedCircle.edge);
-    if (center && edge) {
-      const r = distance(center, edge) / 40;
-      titleParts.push(`Circle center ${center.label}`);
-      entries.push(
-        { label: "Center", value: `(${boardUnit(center.x)}, ${boardUnit(center.y)})` },
-        { label: "Radius", value: `${roundTo(r, 3)} units` },
-        { label: "Diameter", value: `${roundTo(2 * r, 3)} units` },
-        { label: "Circumference", value: `${roundTo(2 * Math.PI * r, 3)} units` },
-        { label: "Area", value: `${roundTo(Math.PI * r * r, 3)} sq units` },
-        { label: "Equation", value: `(x-${boardUnit(center.x)})^2+(y-${boardUnit(center.y)})^2=${roundTo(r * r, 3)}` },
-      );
-    }
-  } else if (selectedPolygon) {
-    const points = selectedPolygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
-    if (points.length >= 3) {
-      const lengths = polygonSideLengths(points);
-      const centroid = polygonCentroid(points);
-      titleParts.push(`${points.length}-sided polygon`);
-      entries.push(
-        { label: "Side lengths", value: lengths.map((length) => roundTo(length, 3)).join(", ") },
-        { label: "Perimeter", value: `${roundTo(lengths.reduce((sum, item) => sum + item, 0), 3)} units` },
-        { label: "Area", value: `${roundTo(polygonArea(points) / 1600, 3)} sq units` },
-        { label: "Centroid", value: `(${boardUnit(centroid.x)}, ${boardUnit(centroid.y)})` },
-        { label: "Interior angle sum", value: `${(points.length - 2) * 180} deg` },
-      );
-    }
-  } else if (selectedAngle) {
-    const a = pointById(construction.points, selectedAngle.a);
-    const vertex = pointById(construction.points, selectedAngle.vertex);
-    const b = pointById(construction.points, selectedAngle.b);
-    if (a && vertex && b) {
-      const theta = angleDegrees(a, vertex, b);
-      titleParts.push(`Angle ${a.label}${vertex.label}${b.label}`);
-      entries.push(
-        { label: "Angle", value: `${roundTo(theta, 3)} deg` },
-        { label: "Radians", value: `${roundTo(theta * Math.PI / 180, 4)} rad` },
-        { label: "Complement", value: theta <= 90 ? `${roundTo(90 - theta, 3)} deg` : "not acute" },
-        { label: "Supplement", value: `${roundTo(180 - theta, 3)} deg` },
-        { label: "Ray lengths", value: `${roundTo(distance(vertex, a) / 40, 3)}, ${roundTo(distance(vertex, b) / 40, 3)} units` },
-      );
-    }
-  } else if (selectedArc) {
-    const center = pointById(construction.points, selectedArc.center);
-    const start = pointById(construction.points, selectedArc.start);
-    const end = pointById(construction.points, selectedArc.end);
-    if (center && start && end) {
-      const radius = distance(center, start) / 40;
-      const theta = arcCentralAngle(center, start, end, selectedArc.kind === "semicircle");
-      titleParts.push(`${selectedArc.kind} ${center.label}${start.label}${end.label}`);
-      entries.push(
-        { label: "Radius", value: `${roundTo(radius, 4)} units` },
-        { label: "Central angle", value: `${roundTo(theta, 3)} deg` },
-        { label: "Arc length", value: `${roundTo((Math.PI * radius * theta) / 180, 4)} units` },
-        { label: "Sector area", value: `${roundTo((Math.PI * radius * radius * theta) / 360, 4)} sq units` },
-      );
-    }
-  } else if (selectedText) {
-    const anchor = pointById(construction.points, selectedText.point);
-    titleParts.push(selectedText.text === "Image" ? "Image anchor" : "Text note");
-    entries.push(
-      { label: "Content", value: selectedText.text },
-      { label: "Anchor", value: anchor ? `${anchor.label} (${boardUnit(anchor.x)}, ${boardUnit(anchor.y)})` : "missing" },
-    );
-  } else if (selectedConic) {
-    const center = pointById(construction.points, selectedConic.center);
-    if (center) {
-      titleParts.push(`${selectedConic.kind} conic`);
-      entries.push(
-        { label: "Center / vertex", value: `(${boardUnit(center.x)}, ${boardUnit(center.y)})` },
-        { label: "Equation", value: conicEquation(selectedConic) },
-        { label: "a", value: `${roundTo(selectedConic.a / 40, 3)} units` },
-        { label: "b", value: `${roundTo(selectedConic.b / 40, 3)} units` },
-      );
-    }
-  }
-
-  if (!entries.length) {
-    const quickCounts = [
-      { label: "Points", value: construction.points.length.toString() },
-      { label: "Lines", value: construction.lines.length.toString() },
-      { label: "Circles", value: construction.circles.length.toString() },
-      { label: "Polygons", value: construction.polygons.length.toString() },
-      { label: "Arcs", value: construction.arcs.length.toString() },
-      { label: "Notes", value: construction.texts.length.toString() },
-    ];
-    return (
-      <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-3 dark:border-cyan-300/20 dark:bg-cyan-300/10">
-        <p className="text-[11px] font-black uppercase text-cyan-700 dark:text-cyan-200">Geometry Lab Results</p>
-        <h3 className="mt-1 text-sm font-black">Select an object to measure</h3>
-        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">Pick a line for length/slope, polygon for perimeter/area, circle for radius/area, angle for degrees, or use Distance and pick two points.</p>
-        <div className="mt-3 grid grid-cols-2 gap-2">
-          {quickCounts.map((entry) => <MetricTile key={entry.label} label={entry.label} value={entry.value} />)}
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-3 dark:border-cyan-300/20 dark:bg-cyan-300/10">
-      <p className="text-[11px] font-black uppercase text-cyan-700 dark:text-cyan-200">Geometry Lab Results</p>
-      <h3 className="mt-1 text-sm font-black">{titleParts[0] ?? "Selected measurement"}</h3>
-      <div className="order-3 grid gap-2">
-        {entries.map((entry) => (
-          <div key={entry.label} className="grid grid-cols-[110px_minmax(0,1fr)] gap-2 rounded-xl bg-white/75 p-2 text-xs dark:bg-slate-950/50">
-            <span className="font-black uppercase text-slate-500 dark:text-slate-400">{entry.label}</span>
-            <span className="min-w-0 [overflow-wrap:anywhere] font-mono font-black text-slate-950 dark:text-white">{entry.value}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
 }
 
 function ToolButton({ active, label, onClick, icon }: { active?: boolean; label: string; onClick: () => void; icon: JSX.Element }) {
@@ -5295,611 +4522,156 @@ function GeometryGrid() {
   );
 }
 
+function isSelectedGeometry(selected: SelectedGeometryObject | null, type: GeometryObjectType, id: string) {
+  return selected?.type === type && selected.id === id;
+}
+
 function pointById(points: GeoPoint[], id: string) {
   return points.find((point) => point.id === id);
 }
 
-function colorWithAlpha(color: string, alpha: number) {
-  const match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-  if (!match) return color;
-  const [, r, g, b] = match;
-  return `rgba(${parseInt(r, 16)},${parseInt(g, 16)},${parseInt(b, 16)},${alpha})`;
+function pointLabelText(point: GeoPoint) {
+  if (point.style?.labelMode === "value") return `(${roundTo(point.x, 0)}, ${roundTo(point.y, 0)})`;
+  if (point.style?.labelMode === "both") return `${point.label} (${roundTo(point.x, 0)}, ${roundTo(point.y, 0)})`;
+  return point.label;
 }
 
-function defaultLineColor(kind: GeoLineKind) {
-  return kind === "vector" ? "#10b981" : kind === "ray" ? "#ec4899" : kind === "line" ? "#8b5cf6" : "#06b6d4";
+function pointIdsForObject(construction: Construction, object: SelectedGeometryObject) {
+  if (object.type === "point") return [object.id];
+  if (object.type === "line") {
+    const line = construction.lines.find((item) => item.id === object.id);
+    return line ? [line.a, line.b] : [];
+  }
+  if (object.type === "circle") {
+    const circle = construction.circles.find((item) => item.id === object.id);
+    return circle ? [circle.center, circle.edge] : [];
+  }
+  if (object.type === "arc") {
+    const arc = construction.arcs.find((item) => item.id === object.id);
+    return arc ? [arc.center, arc.start, arc.end] : [];
+  }
+  if (object.type === "locus") return [];
+  const polygon = construction.polygons.find((item) => item.id === object.id);
+  return polygon?.points ?? [];
 }
 
-function defaultConicColor(kind: GeoConicKind) {
-  return kind === "parabola" ? "#10b981" : kind === "ellipse" ? "#8b5cf6" : "#ec4899";
+function geometryObjectBySelection(construction: Construction, object: SelectedGeometryObject): { style?: GeoStyle } | null {
+  if (object.type === "point") return construction.points.find((item) => item.id === object.id) ?? null;
+  if (object.type === "line") return construction.lines.find((item) => item.id === object.id) ?? null;
+  if (object.type === "circle") return construction.circles.find((item) => item.id === object.id) ?? null;
+  if (object.type === "arc") return construction.arcs.find((item) => item.id === object.id) ?? null;
+  if (object.type === "locus") return construction.loci.find((item) => item.id === object.id) ?? null;
+  return construction.polygons.find((item) => item.id === object.id) ?? null;
 }
 
-function GeometryLine({ line, points, selected, onSelect }: { line: GeoLine; points: GeoPoint[]; selected?: boolean; onSelect?: (event: PointerEvent<SVGGElement>) => void }) {
+function patchGeometryObject(construction: Construction, object: SelectedGeometryObject, patch: { style?: GeoStyle }) {
+  const mergeStyle = <T extends { id: string; style?: GeoStyle }>(item: T) => item.id === object.id ? { ...item, style: patch.style && Object.keys(patch.style).length === 0 ? {} : { ...(item.style ?? {}), ...(patch.style ?? {}) } } : item;
+  if (object.type === "point") return { ...construction, points: construction.points.map(mergeStyle) };
+  if (object.type === "line") return { ...construction, lines: construction.lines.map(mergeStyle) };
+  if (object.type === "circle") return { ...construction, circles: construction.circles.map(mergeStyle) };
+  if (object.type === "arc") return { ...construction, arcs: construction.arcs.map(mergeStyle) };
+  if (object.type === "locus") return { ...construction, loci: construction.loci.map(mergeStyle) };
+  return { ...construction, polygons: construction.polygons.map(mergeStyle) };
+}
+
+function deleteGeometryObjectFromConstruction(construction: Construction, object: SelectedGeometryObject) {
+  if (object.type === "point") {
+    return {
+      points: construction.points.filter((point) => point.id !== object.id),
+      lines: construction.lines.filter((line) => line.a !== object.id && line.b !== object.id),
+      circles: construction.circles.filter((circle) => circle.center !== object.id && circle.edge !== object.id),
+      polygons: construction.polygons.map((polygon) => ({ ...polygon, points: polygon.points.filter((id) => id !== object.id) })).filter((polygon) => polygon.points.length >= 3),
+      arcs: construction.arcs.filter((arc) => arc.center !== object.id && arc.start !== object.id && arc.end !== object.id),
+      loci: construction.loci,
+      constraints: construction.constraints.filter((constraint) => !JSON.stringify(constraint).includes(object.id)),
+    };
+  }
+  if (object.type === "line") return { ...construction, lines: construction.lines.filter((line) => line.id !== object.id), constraints: construction.constraints.filter((constraint) => !JSON.stringify(constraint).includes(object.id)) };
+  if (object.type === "circle") return { ...construction, circles: construction.circles.filter((circle) => circle.id !== object.id), constraints: construction.constraints.filter((constraint) => !JSON.stringify(constraint).includes(object.id)) };
+  if (object.type === "arc") return { ...construction, arcs: construction.arcs.filter((arc) => arc.id !== object.id) };
+  if (object.type === "locus") return { ...construction, loci: construction.loci.filter((locus) => locus.id !== object.id) };
+  return { ...construction, polygons: construction.polygons.filter((polygon) => polygon.id !== object.id) };
+}
+
+function duplicateGeometryObjectInConstruction(construction: Construction, object: SelectedGeometryObject) {
+  const sourcePointIds = pointIdsForObject(construction, object);
+  const pointMap = new Map<string, string>();
+  const copiedPoints = sourcePointIds.map((id, index) => {
+    const point = pointById(construction.points, id);
+    if (!point) return null;
+    const nextId = crypto.randomUUID();
+    pointMap.set(id, nextId);
+    return { ...point, id: nextId, x: point.x + 28, y: point.y + 28, label: nextPointLabel(construction.points, index), style: { ...(point.style ?? {}) } };
+  }).filter(Boolean) as GeoPoint[];
+  if (object.type === "point") return solveConstruction({ ...construction, points: [...construction.points, ...copiedPoints] });
+  if (object.type === "line") {
+    const line = construction.lines.find((item) => item.id === object.id);
+    if (!line) return construction;
+    return solveConstruction({ ...construction, points: [...construction.points, ...copiedPoints], lines: [...construction.lines, { ...line, id: crypto.randomUUID(), a: pointMap.get(line.a) ?? line.a, b: pointMap.get(line.b) ?? line.b, style: { ...(line.style ?? {}) } }] });
+  }
+  if (object.type === "circle") {
+    const circle = construction.circles.find((item) => item.id === object.id);
+    if (!circle) return construction;
+    return solveConstruction({ ...construction, points: [...construction.points, ...copiedPoints], circles: [...construction.circles, { ...circle, id: crypto.randomUUID(), center: pointMap.get(circle.center) ?? circle.center, edge: pointMap.get(circle.edge) ?? circle.edge, style: { ...(circle.style ?? {}) } }] });
+  }
+  if (object.type === "arc") {
+    const arc = construction.arcs.find((item) => item.id === object.id);
+    if (!arc) return construction;
+    return solveConstruction({ ...construction, points: [...construction.points, ...copiedPoints], arcs: [...construction.arcs, { ...arc, id: crypto.randomUUID(), center: pointMap.get(arc.center) ?? arc.center, start: pointMap.get(arc.start) ?? arc.start, end: pointMap.get(arc.end) ?? arc.end, style: { ...(arc.style ?? {}) } }] });
+  }
+  if (object.type === "locus") {
+    const locus = construction.loci.find((item) => item.id === object.id);
+    return locus ? { ...construction, loci: [...construction.loci, { ...locus, id: crypto.randomUUID(), label: `${locus.label}'`, points: locus.points.map((point) => ({ x: point.x + 24, y: point.y + 24 })) }] } : construction;
+  }
+  const polygon = construction.polygons.find((item) => item.id === object.id);
+  if (!polygon) return construction;
+  return solveConstruction({ ...construction, points: [...construction.points, ...copiedPoints], polygons: [...construction.polygons, { ...polygon, id: crypto.randomUUID(), points: polygon.points.map((id) => pointMap.get(id) ?? id), style: { ...(polygon.style ?? {}) } }] });
+}
+
+function circleRadiusUnits(construction: Construction, circleId: string) {
+  const circle = construction.circles.find((item) => item.id === circleId);
+  const center = circle ? pointById(construction.points, circle.center) : null;
+  const edge = circle ? pointById(construction.points, circle.edge) : null;
+  return center && edge ? roundTo(distance(center, edge) / 40, 2) : null;
+}
+
+function GeometryLine({ line, points, selected = false }: { line: GeoLine; points: GeoPoint[]; selected?: boolean }) {
   const a = pointById(points, line.a), b = pointById(points, line.b);
   if (!a || !b) return null;
-  const kind = line.kind ?? "segment";
-  const draw = lineDrawPoints(line, points);
-  const midpoint = { x: (draw.x1 + draw.x2) / 2, y: (draw.y1 + draw.y2) / 2 };
-  const stroke = line.color ?? defaultLineColor(kind);
-  const metricLabel = kind === "line"
-    ? `m=${slopeLabel(a, b)}`
-    : `${lineKindLabel(kind)} ${roundTo(distance(a, b) / 40, 2)}u`;
-  return (
-    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(event); }}>
-      <defs>
-        <marker id={`arrow-${line.id}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill={stroke} />
-        </marker>
-      </defs>
-      <line
-        x1={draw.x1}
-        y1={draw.y1}
-        x2={draw.x2}
-        y2={draw.y2}
-        stroke={stroke}
-        strokeWidth={selected ? "7" : "4"}
-        strokeDasharray={kind === "line" ? "10 7" : undefined}
-        markerEnd={kind === "ray" || kind === "vector" ? `url(#arrow-${line.id})` : undefined}
-      />
-      <text x={midpoint.x + 8} y={midpoint.y - 8} fill={stroke} className="select-none text-xs font-black">{metricLabel}</text>
-    </g>
-  );
+  if (line.style?.visible === false) return null;
+  return <g><line data-object-type="line" data-object-id={line.id} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke={line.style?.color ?? "#8b5cf6"} strokeWidth={selected ? Math.max(7, line.style?.strokeWidth ?? 4) : line.style?.strokeWidth ?? 4} opacity={selected ? 0.95 : line.style?.opacity ?? 1} className="cursor-move" />{line.style?.trace && <line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke={line.style?.color ?? "#8b5cf6"} strokeWidth="12" strokeDasharray="4 10" opacity="0.22" />}</g>;
 }
 
-function GeometryCircle({ circle, points, selected, onSelect }: { circle: GeoCircle; points: GeoPoint[]; selected?: boolean; onSelect?: (event: PointerEvent<SVGGElement>) => void }) {
+function GeometryCircle({ circle, points, selected = false }: { circle: GeoCircle; points: GeoPoint[]; selected?: boolean }) {
   const center = pointById(points, circle.center), edge = pointById(points, circle.edge);
   if (!center || !edge) return null;
+  if (circle.style?.visible === false) return null;
   const radius = distance(center, edge);
-  const stroke = circle.color ?? "#06b6d4";
-  const fill = circle.fill ?? colorWithAlpha(stroke, selected ? 0.24 : 0.12);
-  return (
-    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(event); }}>
-      <circle cx={center.x} cy={center.y} r={radius} fill={fill} stroke={stroke} strokeWidth={selected ? "7" : "4"} />
-      <line x1={center.x} y1={center.y} x2={edge.x} y2={edge.y} stroke={stroke} strokeWidth="2" strokeDasharray="4 4" />
-      <text x={center.x + radius + 8} y={center.y} fill={stroke} className="select-none text-xs font-black">
-        r={roundTo(radius / 40, 2)}u
-      </text>
-    </g>
-  );
+  return <g><circle data-object-type="circle" data-object-id={circle.id} cx={center.x} cy={center.y} r={radius} fill={circle.style?.fill ?? "rgba(34,211,238,.12)"} stroke={circle.style?.color ?? "#06b6d4"} strokeWidth={selected ? Math.max(7, circle.style?.strokeWidth ?? 4) : circle.style?.strokeWidth ?? 4} opacity={circle.style?.opacity ?? 1} className="cursor-move" />{circle.style?.trace && <circle cx={center.x} cy={center.y} r={radius} fill="none" stroke={circle.style?.color ?? "#06b6d4"} strokeWidth="10" strokeDasharray="6 10" opacity="0.24" />}</g>;
 }
 
-function GeometryPolygon({ polygon, points, selected, onSelect }: { polygon: GeoPolygon; points: GeoPoint[]; selected?: boolean; onSelect?: (event: PointerEvent<SVGGElement>) => void }) {
+function GeometryPolygon({ polygon, points, selected = false }: { polygon: GeoPolygon; points: GeoPoint[]; selected?: boolean }) {
   const polygonPoints = polygon.points.map((id) => pointById(points, id)).filter(Boolean) as GeoPoint[];
   if (polygonPoints.length < 3) return null;
-  const centroid = polygonCentroid(polygonPoints);
-  const stroke = polygon.color ?? "#f59e0b";
-  const fill = polygon.fill ?? colorWithAlpha(stroke, selected ? 0.28 : 0.16);
-  return (
-    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(event); }}>
-      <polygon points={polygonPoints.map((point) => `${point.x},${point.y}`).join(" ")} fill={fill} stroke={stroke} strokeWidth={selected ? "7" : "4"} />
-      <text x={centroid.x + 8} y={centroid.y} fill={stroke} className="select-none text-xs font-black">
-        A={roundTo(polygonArea(polygonPoints) / 1600, 2)}u^2
-      </text>
-    </g>
-  );
+  if (polygon.style?.visible === false) return null;
+  const pointsText = polygonPoints.map((point) => `${point.x},${point.y}`).join(" ");
+  return <g><polygon data-object-type="polygon" data-object-id={polygon.id} points={pointsText} fill={polygon.style?.fill ?? "rgba(245,158,11,.16)"} stroke={polygon.style?.color ?? "#f59e0b"} strokeWidth={selected ? Math.max(7, polygon.style?.strokeWidth ?? 4) : polygon.style?.strokeWidth ?? 4} opacity={polygon.style?.opacity ?? 1} className="cursor-move" />{polygon.style?.trace && <polygon points={pointsText} fill="none" stroke={polygon.style?.color ?? "#f59e0b"} strokeWidth="10" strokeDasharray="6 10" opacity="0.22" />}</g>;
 }
 
-function GeometryArc({ arc, points, selected, onSelect }: { arc: GeoArc; points: GeoPoint[]; selected?: boolean; onSelect?: (event: PointerEvent<SVGGElement>) => void }) {
+function GeometryArc({ arc, points, selected = false }: { arc: GeoArc; points: GeoPoint[]; selected?: boolean }) {
   const center = pointById(points, arc.center), start = pointById(points, arc.start), end = pointById(points, arc.end);
-  if (!center || !start || !end) return null;
-  const path = arcPath(center, start, end, arc.kind === "semicircle");
-  const radius = distance(center, start);
-  const midAngle = normalizedArcMidAngle(center, start, end, arc.kind === "semicircle");
-  const labelPoint = { x: center.x + Math.cos(midAngle) * (radius + 16), y: center.y + Math.sin(midAngle) * (radius + 16) };
-  const stroke = arc.color ?? "#14b8a6";
-  const fill = arc.kind === "sector" ? (arc.fill ?? colorWithAlpha(stroke, selected ? 0.24 : 0.14)) : "none";
-  return (
-    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(event); }}>
-      {arc.kind === "sector" && <path d={`M ${center.x} ${center.y} L ${start.x} ${start.y} ${path.replace(/^M [^A]+/, "")} Z`} fill={fill} stroke="none" />}
-      <path d={path} fill="none" stroke={stroke} strokeWidth={selected ? "7" : "4"} />
-      {(arc.kind === "sector" || arc.kind === "semicircle") && (
-        <>
-          <line x1={center.x} y1={center.y} x2={start.x} y2={start.y} stroke={stroke} strokeDasharray="5 5" opacity="0.55" />
-          <line x1={center.x} y1={center.y} x2={end.x} y2={end.y} stroke={stroke} strokeDasharray="5 5" opacity="0.55" />
-        </>
-      )}
-      <text x={labelPoint.x} y={labelPoint.y} fill={stroke} className="select-none text-xs font-black">
-        {arc.kind} {roundTo(arcCentralAngle(center, start, end, arc.kind === "semicircle"), 1)} deg
-      </text>
-    </g>
-  );
+  if (!center || !start || !end || arc.style?.visible === false) return null;
+  const path = arcPath(center, start, end);
+  const stroke = arc.style?.color ?? "#14b8a6";
+  const fill = arc.sector ? arc.style?.fill ?? "rgba(20,184,166,.18)" : "none";
+  const sectorLine = arc.sector ? ` L ${center.x} ${center.y} Z` : "";
+  return <path data-object-type="arc" data-object-id={arc.id} d={`${path}${sectorLine}`} fill={fill} stroke={stroke} strokeWidth={selected ? Math.max(7, arc.style?.strokeWidth ?? 4) : arc.style?.strokeWidth ?? 4} opacity={arc.style?.opacity ?? 1} className="cursor-move" />;
 }
 
-function GeometryTextNote({ note, points, selected, onSelect }: { note: GeoTextNote; points: GeoPoint[]; selected?: boolean; onSelect?: (event: PointerEvent<SVGGElement>) => void }) {
-  const anchor = pointById(points, note.point);
-  if (!anchor) return null;
-  const color = note.color ?? "#38bdf8";
-  if (note.imageSrc) {
-    const width = note.width ?? 180;
-    const height = note.height ?? 120;
-    return (
-      <g className="cursor-move" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(event); }}>
-        <image href={note.imageSrc} x={anchor.x} y={anchor.y} width={width} height={height} opacity={note.opacity ?? 0.95} preserveAspectRatio="xMidYMid meet" />
-        {selected && <rect x={anchor.x} y={anchor.y} width={width} height={height} fill="none" stroke={color} strokeWidth="4" strokeDasharray="8 6" pointerEvents="none" />}
-        <text x={anchor.x + 8} y={anchor.y - 8} fill={color} className="select-none text-xs font-black">{note.text}</text>
-      </g>
-    );
-  }
-  return (
-    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(event); }}>
-      <rect x={anchor.x + 10} y={anchor.y - 34} width={Math.max(54, note.text.length * 8 + 18)} height="28" rx="7" fill={selected ? colorWithAlpha(color, 0.24) : "rgba(15,23,42,.82)"} stroke={color} />
-      <text x={anchor.x + 20} y={anchor.y - 15} fill="#ffffff" className="select-none text-xs font-black">{note.text}</text>
-    </g>
-  );
-}
-
-function GeometryConic({ conic, points, selected, onSelect }: { conic: GeoConic; points: GeoPoint[]; selected?: boolean; onSelect?: (event: PointerEvent<SVGGElement>) => void }) {
-  const center = pointById(points, conic.center);
-  if (!center) return null;
-  const stroke = conic.color ?? defaultConicColor(conic.kind);
-  const fill = conic.fill ?? colorWithAlpha(stroke, 0.12);
-  const label = `${conic.kind}: ${conicEquation(conic)}`;
-  if (conic.kind === "ellipse") {
-    return (
-      <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(event); }}>
-        <ellipse cx={center.x} cy={center.y} rx={conic.a} ry={conic.b} fill={fill} stroke={stroke} strokeWidth={selected ? "7" : "4"} />
-        <line x1={center.x - conic.a} y1={center.y} x2={center.x + conic.a} y2={center.y} stroke={stroke} strokeDasharray="5 5" opacity="0.45" />
-        <text x={center.x - conic.a} y={center.y - conic.b - 10} fill={stroke} className="select-none text-xs font-black">{label}</text>
-      </g>
-    );
-  }
-  if (conic.kind === "hyperbola") {
-    const left = conicPath(conic, center, -1);
-    const right = conicPath(conic, center, 1);
-    return (
-      <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(event); }}>
-        <path d={left} fill="none" stroke={stroke} strokeWidth={selected ? "7" : "4"} />
-        <path d={right} fill="none" stroke={stroke} strokeWidth={selected ? "7" : "4"} />
-        <line x1={center.x - conic.a * 2.2} y1={center.y + conic.b * 2.2} x2={center.x + conic.a * 2.2} y2={center.y - conic.b * 2.2} stroke={stroke} strokeDasharray="6 6" opacity="0.35" />
-        <line x1={center.x - conic.a * 2.2} y1={center.y - conic.b * 2.2} x2={center.x + conic.a * 2.2} y2={center.y + conic.b * 2.2} stroke={stroke} strokeDasharray="6 6" opacity="0.35" />
-        <text x={center.x - conic.a} y={center.y - conic.b - 12} fill={stroke} className="select-none text-xs font-black">{label}</text>
-      </g>
-    );
-  }
-  return (
-    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(event); }}>
-      <path d={conicPath(conic, center, 1)} fill="none" stroke={stroke} strokeWidth={selected ? "7" : "4"} />
-      <line x1={center.x} y1={center.y - conic.b} x2={center.x} y2={center.y + conic.b} stroke={stroke} strokeDasharray="5 5" opacity="0.45" />
-      <text x={center.x + 12} y={center.y - conic.b - 10} fill={stroke} className="select-none text-xs font-black">{label}</text>
-    </g>
-  );
-}
-
-function GeometryAngle({ angle, points, selected, onSelect }: { angle: GeoAngle; points: GeoPoint[]; selected?: boolean; onSelect?: (event: PointerEvent<SVGGElement>) => void }) {
-  const a = pointById(points, angle.a), vertex = pointById(points, angle.vertex), b = pointById(points, angle.b);
-  if (!a || !vertex || !b) return null;
-  const arc = angleArcPath(a, vertex, b, 42);
-  const mid = angleBisectorEndpoint(a, vertex, b, 58);
-  const stroke = angle.color ?? "#ef4444";
-  return (
-    <g className="cursor-pointer" onPointerDown={(event) => { event.stopPropagation(); onSelect?.(event); }}>
-      <path d={arc} fill="none" stroke={stroke} strokeWidth={selected ? "7" : "4"} />
-      <line x1={vertex.x} y1={vertex.y} x2={mid.x} y2={mid.y} stroke={stroke} strokeWidth="2" strokeDasharray="5 5" opacity="0.75" />
-      <text x={mid.x + 8} y={mid.y} fill={stroke} className="select-none text-xs font-black">{roundTo(angleDegrees(a, vertex, b), 1)} deg</text>
-    </g>
-  );
-}
-
-function GeometryObjectInspector({
-  construction,
-  selected,
-  onSelect,
-  onUpdatePoint,
-  onUpdateLine,
-  onUpdateCircle,
-  onUpdatePolygon,
-  onUpdatePolygonStyle,
-  onUpdateAngle,
-  onUpdateArc,
-  onUpdateText,
-  onUpdateConic,
-  onToggleLock,
-  onDelete,
-}: {
-  construction: Construction;
-  selected: SelectedGeoObject;
-  onSelect: (value: SelectedGeoObject) => void;
-  onUpdatePoint: (id: string, patch: Partial<Pick<GeoPoint, "label" | "x" | "y" | "color">>) => void;
-  onUpdateLine: (id: string, patch: Partial<Pick<GeoLine, "a" | "b" | "kind" | "color">>) => void;
-  onUpdateCircle: (id: string, patch: Partial<Pick<GeoCircle, "center" | "edge" | "color" | "fill">>) => void;
-  onUpdatePolygon: (id: string, points: string[]) => void;
-  onUpdatePolygonStyle: (id: string, patch: Partial<Pick<GeoPolygon, "color" | "fill">>) => void;
-  onUpdateAngle: (id: string, patch: Partial<Pick<GeoAngle, "a" | "vertex" | "b" | "color">>) => void;
-  onUpdateArc: (id: string, patch: Partial<Pick<GeoArc, "kind" | "center" | "start" | "end" | "color" | "fill">>) => void;
-  onUpdateText: (id: string, patch: Partial<Pick<GeoTextNote, "point" | "text" | "width" | "height" | "opacity" | "locked" | "color">>) => void;
-  onUpdateConic: (id: string, patch: Partial<Pick<GeoConic, "kind" | "center" | "a" | "b" | "color" | "fill">>) => void;
-  onToggleLock: (kind: Exclude<NonNullable<SelectedGeoObject>["kind"], "constraint" | "transform">, id: string) => void;
-  onDelete: (kind: NonNullable<SelectedGeoObject>["kind"], id: string) => void;
-}) {
-  const selectedPoint = selected?.kind === "point" ? pointById(construction.points, selected.id) : null;
-  const selectedLine = selected?.kind === "line" ? construction.lines.find((line) => line.id === selected.id) : null;
-  const selectedCircle = selected?.kind === "circle" ? construction.circles.find((circle) => circle.id === selected.id) : null;
-  const selectedPolygon = selected?.kind === "polygon" ? construction.polygons.find((polygon) => polygon.id === selected.id) : null;
-  const selectedAngle = selected?.kind === "angle" ? construction.angles.find((angle) => angle.id === selected.id) : null;
-  const selectedArc = selected?.kind === "arc" ? construction.arcs.find((arc) => arc.id === selected.id) : null;
-  const selectedText = selected?.kind === "text" ? construction.texts.find((note) => note.id === selected.id) : null;
-  const selectedConic = selected?.kind === "conic" ? construction.conics.find((conic) => conic.id === selected.id) : null;
-  const selectedTransform = selected?.kind === "transform" ? construction.transforms.find((transform) => transform.id === selected.id) : null;
-  const selectedConstraint = selected?.kind === "constraint" ? construction.constraints.find((constraint) => constraint.id === selected.id) : null;
-  const objectCount = construction.points.length + construction.lines.length + construction.circles.length + construction.polygons.length + construction.angles.length + construction.arcs.length + construction.texts.length + construction.conics.length + construction.transforms.length + construction.constraints.length;
-  const selectedLinePoints = selectedLine ? [pointById(construction.points, selectedLine.a), pointById(construction.points, selectedLine.b)] as const : null;
-  const selectedCirclePoints = selectedCircle ? [pointById(construction.points, selectedCircle.center), pointById(construction.points, selectedCircle.edge)] as const : null;
-  const selectedPolygonPoints = selectedPolygon ? selectedPolygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[] : [];
-  const selectedAnglePoints = selectedAngle ? [pointById(construction.points, selectedAngle.a), pointById(construction.points, selectedAngle.vertex), pointById(construction.points, selectedAngle.b)] as const : null;
-  const selectedArcPoints = selectedArc ? [pointById(construction.points, selectedArc.center), pointById(construction.points, selectedArc.start), pointById(construction.points, selectedArc.end)] as const : null;
-
-  const editPoint = (id: string, patch: Partial<Pick<GeoPoint, "label" | "x" | "y" | "color">>) => onUpdatePoint(id, patch);
-  const setLineLength = (line: GeoLine, units: number) => {
-    const a = pointById(construction.points, line.a), b = pointById(construction.points, line.b);
-    if (!a || !b) return;
-    const vector = normalize(b.x - a.x, b.y - a.y);
-    editPoint(line.b, { x: a.x + vector.x * units * 40, y: a.y + vector.y * units * 40 });
-  };
-  const setLineAngle = (line: GeoLine, degrees: number) => {
-    const a = pointById(construction.points, line.a), b = pointById(construction.points, line.b);
-    if (!a || !b) return;
-    const length = distance(a, b) || 80;
-    const radians = -degrees * Math.PI / 180;
-    editPoint(line.b, { x: a.x + Math.cos(radians) * length, y: a.y + Math.sin(radians) * length });
-  };
-  const setCircleRadius = (circle: GeoCircle, units: number) => {
-    const center = pointById(construction.points, circle.center), edge = pointById(construction.points, circle.edge);
-    if (!center || !edge) return;
-    const vector = normalize(edge.x - center.x, edge.y - center.y);
-    editPoint(circle.edge, { x: center.x + vector.x * units * 40, y: center.y + vector.y * units * 40 });
-  };
-  const moveCircleCenter = (circle: GeoCircle, axis: "x" | "y", units: number) => {
-    const center = pointById(construction.points, circle.center), edge = pointById(construction.points, circle.edge);
-    if (!center || !edge) return;
-    const nextValue = axis === "x" ? units * 40 : 420 - units * 40;
-    const dx = axis === "x" ? nextValue - center.x : 0;
-    const dy = axis === "y" ? nextValue - center.y : 0;
-    editPoint(circle.center, axis === "x" ? { x: nextValue } : { y: nextValue });
-    editPoint(circle.edge, { x: edge.x + dx, y: edge.y + dy });
-  };
-  const scalePolygon = (polygon: GeoPolygon, scale: number) => {
-    const points = polygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
-    if (points.length < 3) return;
-    const centroid = polygonCentroid(points);
-    points.forEach((point) => editPoint(point.id, { x: centroid.x + (point.x - centroid.x) * scale, y: centroid.y + (point.y - centroid.y) * scale }));
-  };
-  const rotatePolygon = (polygon: GeoPolygon, degrees: number) => {
-    const points = polygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
-    if (points.length < 3) return;
-    const centroid = polygonCentroid(points);
-    const radians = degrees * Math.PI / 180;
-    points.forEach((point) => {
-      const dx = point.x - centroid.x, dy = point.y - centroid.y;
-      editPoint(point.id, { x: centroid.x + dx * Math.cos(radians) - dy * Math.sin(radians), y: centroid.y + dx * Math.sin(radians) + dy * Math.cos(radians) });
-    });
-  };
-  const setAngleDegrees = (angle: GeoAngle, degrees: number) => {
-    const a = pointById(construction.points, angle.a), vertex = pointById(construction.points, angle.vertex), b = pointById(construction.points, angle.b);
-    if (!a || !vertex || !b) return;
-    const base = Math.atan2(a.y - vertex.y, a.x - vertex.x);
-    const length = distance(vertex, b) || 80;
-    const next = base - degrees * Math.PI / 180;
-    editPoint(angle.b, { x: vertex.x + Math.cos(next) * length, y: vertex.y + Math.sin(next) * length });
-  };
-  const setArcRadius = (arc: GeoArc, units: number) => {
-    const center = pointById(construction.points, arc.center), start = pointById(construction.points, arc.start), end = pointById(construction.points, arc.end);
-    if (!center || !start || !end) return;
-    const radius = units * 40;
-    const startVector = normalize(start.x - center.x, start.y - center.y);
-    const endVector = normalize(end.x - center.x, end.y - center.y);
-    editPoint(arc.start, { x: center.x + startVector.x * radius, y: center.y + startVector.y * radius });
-    editPoint(arc.end, { x: center.x + endVector.x * radius, y: center.y + endVector.y * radius });
-  };
-
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Advanced geometry</p>
-          <h3 className="font-bold">Object Properties</h3>
-          <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">{objectCount} objects in construction</p>
-        </div>
-        {selected && <button type="button" className="mini-chip" onClick={() => onDelete(selected.kind, selected.id)}><Trash2 className="h-3 w-3" />Delete</button>}
-      </div>
-
-      <div className="mt-3 grid gap-2">
-        <ObjectGroup title="Points">
-          {construction.points.map((point) => (
-            <ObjectRow key={point.id} active={selected?.kind === "point" && selected.id === point.id} label={`${point.label} (${roundTo(point.x / 40, 2)}, ${roundTo((420 - point.y) / 40, 2)})`} onClick={() => onSelect({ kind: "point", id: point.id })} onDelete={() => onDelete("point", point.id)} />
-          ))}
-        </ObjectGroup>
-        <ObjectGroup title="Lines">
-          {construction.lines.map((line, index) => (
-            <ObjectRow key={line.id} active={selected?.kind === "line" && selected.id === line.id} label={`${lineKindLabel(line.kind ?? "segment")} ${index + 1}: ${labelForPoint(construction, line.a)}${labelForPoint(construction, line.b)}`} onClick={() => onSelect({ kind: "line", id: line.id })} onDelete={() => onDelete("line", line.id)} />
-          ))}
-        </ObjectGroup>
-        <ObjectGroup title="Circles">
-          {construction.circles.map((circle, index) => (
-            <ObjectRow key={circle.id} active={selected?.kind === "circle" && selected.id === circle.id} label={`Circle ${index + 1}: center ${labelForPoint(construction, circle.center)}`} onClick={() => onSelect({ kind: "circle", id: circle.id })} onDelete={() => onDelete("circle", circle.id)} />
-          ))}
-        </ObjectGroup>
-        <ObjectGroup title="Polygons">
-          {construction.polygons.map((polygon, index) => (
-            <ObjectRow key={polygon.id} active={selected?.kind === "polygon" && selected.id === polygon.id} label={`Polygon ${index + 1}: ${polygon.points.map((id) => labelForPoint(construction, id)).join("")}`} onClick={() => onSelect({ kind: "polygon", id: polygon.id })} onDelete={() => onDelete("polygon", polygon.id)} />
-          ))}
-        </ObjectGroup>
-        <ObjectGroup title="Angles">
-          {construction.angles.map((angle, index) => (
-            <ObjectRow key={angle.id} active={selected?.kind === "angle" && selected.id === angle.id} label={`Angle ${index + 1}: ${labelForPoint(construction, angle.a)}${labelForPoint(construction, angle.vertex)}${labelForPoint(construction, angle.b)}`} onClick={() => onSelect({ kind: "angle", id: angle.id })} onDelete={() => onDelete("angle", angle.id)} />
-          ))}
-        </ObjectGroup>
-        <ObjectGroup title="Arcs / Sectors">
-          {construction.arcs.map((arc, index) => (
-            <ObjectRow key={arc.id} active={selected?.kind === "arc" && selected.id === arc.id} label={`${arc.kind} ${index + 1}: ${labelForPoint(construction, arc.center)}-${labelForPoint(construction, arc.start)}-${labelForPoint(construction, arc.end)}`} onClick={() => onSelect({ kind: "arc", id: arc.id })} onDelete={() => onDelete("arc", arc.id)} />
-          ))}
-        </ObjectGroup>
-        <ObjectGroup title="Media / Text">
-          {construction.texts.map((note, index) => (
-            <ObjectRow key={note.id} active={selected?.kind === "text" && selected.id === note.id} label={`${note.text} ${index + 1}: ${labelForPoint(construction, note.point)}`} onClick={() => onSelect({ kind: "text", id: note.id })} onDelete={() => onDelete("text", note.id)} />
-          ))}
-        </ObjectGroup>
-        <ObjectGroup title="Conics">
-          {construction.conics.map((conic, index) => (
-            <ObjectRow key={conic.id} active={selected?.kind === "conic" && selected.id === conic.id} label={`${conic.kind} ${index + 1}: ${labelForPoint(construction, conic.center)}`} onClick={() => onSelect({ kind: "conic", id: conic.id })} onDelete={() => onDelete("conic", conic.id)} />
-          ))}
-        </ObjectGroup>
-        <ObjectGroup title="Transforms">
-          {construction.transforms.map((transform, index) => (
-            <ObjectRow key={transform.id} active={selected?.kind === "transform" && selected.id === transform.id} label={`${transform.type} ${index + 1}: ${transform.resultIds.length} result object(s)`} onClick={() => onSelect({ kind: "transform", id: transform.id })} onDelete={() => onDelete("transform", transform.id)} />
-          ))}
-        </ObjectGroup>
-        <ObjectGroup title="Constraints">
-          {construction.constraints.map((constraint) => (
-            <ObjectRow key={constraint.id} active={selected?.kind === "constraint" && selected.id === constraint.id} label={constraintLabel(constraint, construction)} onClick={() => onSelect({ kind: "constraint", id: constraint.id })} onDelete={() => onDelete("constraint", constraint.id)} />
-          ))}
-        </ObjectGroup>
-      </div>
-
-      <div className="order-2 rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
-        {!selected && <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">Select an object on the board or in the object list to edit its properties.</p>}
-        {selectedPoint && (
-          <div className="grid gap-2">
-            <p className="text-sm font-black">Point {selectedPoint.label}</p>
-            <button type="button" className={selectedPoint.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("point", selectedPoint.id)}>{selectedPoint.locked ? "Unlock point" : "Lock point"}</button>
-            <ColorField label="Point color" value={selectedPoint.color ?? "#06b6d4"} onChange={(color) => onUpdatePoint(selectedPoint.id, { color })} />
-            <label className="text-xs font-bold">Label<input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={selectedPoint.label} maxLength={8} onChange={(event) => onUpdatePoint(selectedPoint.id, { label: event.target.value || selectedPoint.label })} /></label>
-            <NumberField label="x coordinate" value={roundTo(selectedPoint.x / 40, 3)} min={0} max={16} step={0.05} onChange={(value) => onUpdatePoint(selectedPoint.id, { x: value * 40 })} />
-            <NumberField label="y coordinate" value={roundTo((420 - selectedPoint.y) / 40, 3)} min={0} max={10.5} step={0.05} onChange={(value) => onUpdatePoint(selectedPoint.id, { y: 420 - value * 40 })} />
-          </div>
-        )}
-        {selectedLine && (
-          <div className="grid gap-2">
-            <p className="text-sm font-black">{lineKindLabel(selectedLine.kind ?? "segment")}</p>
-            <button type="button" className={selectedLine.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("line", selectedLine.id)}>{selectedLine.locked ? "Unlock object" : "Lock object"}</button>
-            <ColorField label="Line color" value={selectedLine.color ?? defaultLineColor(selectedLine.kind ?? "segment")} onChange={(color) => onUpdateLine(selectedLine.id, { color })} />
-            {selectedLinePoints?.[0] && selectedLinePoints[1] && (
-              <SelectedPropertyGrid
-                items={[
-                  ["Length", `${roundTo(distance(selectedLinePoints[0], selectedLinePoints[1]) / 40, 3)} u`],
-                  ["Slope", slopeLabel(selectedLinePoints[0], selectedLinePoints[1])],
-                  ["Angle", `${roundTo(directionDegrees(selectedLinePoints[0], selectedLinePoints[1]), 2)} deg`],
-                  ["Equation", lineEquationLabel(selectedLinePoints[0], selectedLinePoints[1])],
-                ]}
-              />
-            )}
-            {selectedLinePoints?.[0] && selectedLinePoints[1] && (
-              <>
-                <NumberField label="Length" value={roundTo(distance(selectedLinePoints[0], selectedLinePoints[1]) / 40, 3)} min={0.1} max={20} step={0.1} onChange={(value) => setLineLength(selectedLine, value)} />
-                <NumberField label="Angle from x-axis" value={roundTo(directionDegrees(selectedLinePoints[0], selectedLinePoints[1]), 2)} min={0} max={360} step={1} onChange={(value) => setLineAngle(selectedLine, value)} />
-              </>
-            )}
-            <label className="text-xs font-bold">
-              Object type
-              <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={selectedLine.kind ?? "segment"} onChange={(event) => onUpdateLine(selectedLine.id, { kind: event.target.value as GeoLineKind })}>
-                <option value="segment">Segment</option>
-                <option value="line">Infinite line</option>
-                <option value="ray">Ray</option>
-                <option value="vector">Vector</option>
-              </select>
-            </label>
-            <PointSelect label="Point A" value={selectedLine.a} points={construction.points} onChange={(value) => onUpdateLine(selectedLine.id, { a: value })} />
-            <PointSelect label="Point B" value={selectedLine.b} points={construction.points} onChange={(value) => onUpdateLine(selectedLine.id, { b: value })} />
-          </div>
-        )}
-        {selectedCircle && (
-          <div className="grid gap-2">
-            <p className="text-sm font-black">Circle</p>
-            <button type="button" className={selectedCircle.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("circle", selectedCircle.id)}>{selectedCircle.locked ? "Unlock object" : "Lock object"}</button>
-            <ColorField label="Circle outline" value={selectedCircle.color ?? "#06b6d4"} onChange={(color) => onUpdateCircle(selectedCircle.id, { color })} />
-            <ColorField label="Circle fill" value={selectedCircle.fill ?? "#a5f3fc"} onChange={(fill) => onUpdateCircle(selectedCircle.id, { fill })} />
-            {selectedCirclePoints?.[0] && selectedCirclePoints[1] && (
-              <>
-                <SelectedPropertyGrid
-                  items={[
-                    ["Radius", `${roundTo(distance(selectedCirclePoints[0], selectedCirclePoints[1]) / 40, 3)} u`],
-                    ["Diameter", `${roundTo(distance(selectedCirclePoints[0], selectedCirclePoints[1]) / 20, 3)} u`],
-                    ["Area", `${roundTo(Math.PI * (distance(selectedCirclePoints[0], selectedCirclePoints[1]) / 40) ** 2, 3)} u^2`],
-                    ["Circumference", `${roundTo(2 * Math.PI * distance(selectedCirclePoints[0], selectedCirclePoints[1]) / 40, 3)} u`],
-                  ]}
-                />
-                <NumberField label="Radius" value={roundTo(distance(selectedCirclePoints[0], selectedCirclePoints[1]) / 40, 3)} min={0.1} max={12} step={0.1} onChange={(value) => setCircleRadius(selectedCircle, value)} />
-                <NumberField label="Center x" value={roundTo(selectedCirclePoints[0].x / 40, 3)} min={0} max={16} step={0.05} onChange={(value) => moveCircleCenter(selectedCircle, "x", value)} />
-                <NumberField label="Center y" value={roundTo((420 - selectedCirclePoints[0].y) / 40, 3)} min={0} max={10.5} step={0.05} onChange={(value) => moveCircleCenter(selectedCircle, "y", value)} />
-              </>
-            )}
-            <PointSelect label="Center" value={selectedCircle.center} points={construction.points} onChange={(value) => onUpdateCircle(selectedCircle.id, { center: value })} />
-            <PointSelect label="Radius point" value={selectedCircle.edge} points={construction.points} onChange={(value) => onUpdateCircle(selectedCircle.id, { edge: value })} />
-          </div>
-        )}
-        {selectedPolygon && (
-          <div className="grid gap-2">
-            <p className="text-sm font-black">{selectedPolygon.points.length === 3 ? "Triangle" : "Polygon"} properties</p>
-            <button type="button" className={selectedPolygon.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("polygon", selectedPolygon.id)}>{selectedPolygon.locked ? "Unlock object" : "Lock object"}</button>
-            <ColorField label="Polygon outline" value={selectedPolygon.color ?? "#f59e0b"} onChange={(color) => onUpdatePolygonStyle(selectedPolygon.id, { color })} />
-            <ColorField label="Polygon fill" value={selectedPolygon.fill ?? "#fde68a"} onChange={(fill) => onUpdatePolygonStyle(selectedPolygon.id, { fill })} />
-            {selectedPolygonPoints.length >= 3 && (
-              <>
-                <SelectedPropertyGrid
-                  items={[
-                    ["Vertices", selectedPolygonPoints.map((point) => point.label).join(", ")],
-                    ["Side lengths", polygonSideLengths(selectedPolygonPoints).map((length) => roundTo(length, 2)).join(", ")],
-                    ["Perimeter", `${roundTo(polygonSideLengths(selectedPolygonPoints).reduce((sum, value) => sum + value, 0), 3)} u`],
-                    ["Area", `${roundTo(polygonArea(selectedPolygonPoints) / 1600, 3)} u^2`],
-                  ]}
-                />
-                <NumberField label="Scale from centroid" value={1} min={0.2} max={3} step={0.1} onChange={(value) => scalePolygon(selectedPolygon, value)} />
-                <NumberField label="Rotate by degrees" value={0} min={-180} max={180} step={5} onChange={(value) => rotatePolygon(selectedPolygon, value)} />
-              </>
-            )}
-            {selectedPolygon.points.map((pointId, index) => (
-              <PointSelect key={`${pointId}-${index}`} label={`Vertex ${index + 1}`} value={pointId} points={construction.points} onChange={(value) => onUpdatePolygon(selectedPolygon.id, selectedPolygon.points.map((id, pointIndex) => pointIndex === index ? value : id))} />
-            ))}
-            {selectedPolygon.points.length > 3 && <button type="button" className="tool-button justify-center" onClick={() => onUpdatePolygon(selectedPolygon.id, selectedPolygon.points.slice(0, -1))}>Remove last vertex</button>}
-          </div>
-        )}
-        {selectedAngle && (
-          <div className="grid gap-2">
-            <p className="text-sm font-black">Angle {labelForPoint(construction, selectedAngle.a)}{labelForPoint(construction, selectedAngle.vertex)}{labelForPoint(construction, selectedAngle.b)}</p>
-            <button type="button" className={selectedAngle.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("angle", selectedAngle.id)}>{selectedAngle.locked ? "Unlock object" : "Lock object"}</button>
-            <ColorField label="Angle color" value={selectedAngle.color ?? "#ef4444"} onChange={(color) => onUpdateAngle(selectedAngle.id, { color })} />
-            {selectedAnglePoints?.[0] && selectedAnglePoints[1] && selectedAnglePoints[2] && (
-              <>
-                <SelectedPropertyGrid
-                  items={[
-                    ["Angle", `${roundTo(angleDegrees(selectedAnglePoints[0], selectedAnglePoints[1], selectedAnglePoints[2]), 3)} deg`],
-                    ["Radians", `${roundTo(angleDegrees(selectedAnglePoints[0], selectedAnglePoints[1], selectedAnglePoints[2]) * Math.PI / 180, 4)}`],
-                    ["Ray 1", `${roundTo(distance(selectedAnglePoints[1], selectedAnglePoints[0]) / 40, 3)} u`],
-                    ["Ray 2", `${roundTo(distance(selectedAnglePoints[1], selectedAnglePoints[2]) / 40, 3)} u`],
-                  ]}
-                />
-                <NumberField label="Angle degrees" value={roundTo(angleDegrees(selectedAnglePoints[0], selectedAnglePoints[1], selectedAnglePoints[2]), 2)} min={0} max={180} step={1} onChange={(value) => setAngleDegrees(selectedAngle, value)} />
-              </>
-            )}
-            <PointSelect label="First ray point" value={selectedAngle.a} points={construction.points} onChange={(value) => onUpdateAngle(selectedAngle.id, { a: value })} />
-            <PointSelect label="Vertex" value={selectedAngle.vertex} points={construction.points} onChange={(value) => onUpdateAngle(selectedAngle.id, { vertex: value })} />
-            <PointSelect label="Second ray point" value={selectedAngle.b} points={construction.points} onChange={(value) => onUpdateAngle(selectedAngle.id, { b: value })} />
-          </div>
-        )}
-        {selectedArc && (
-          <div className="grid gap-2">
-            <p className="text-sm font-black">{selectedArc.kind} properties</p>
-            <button type="button" className={selectedArc.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("arc", selectedArc.id)}>{selectedArc.locked ? "Unlock object" : "Lock object"}</button>
-            <ColorField label="Arc outline" value={selectedArc.color ?? "#14b8a6"} onChange={(color) => onUpdateArc(selectedArc.id, { color })} />
-            {selectedArc.kind === "sector" && <ColorField label="Sector fill" value={selectedArc.fill ?? "#99f6e4"} onChange={(fill) => onUpdateArc(selectedArc.id, { fill })} />}
-            {selectedArcPoints?.[0] && selectedArcPoints[1] && selectedArcPoints[2] && (
-              <>
-                <SelectedPropertyGrid
-                  items={[
-                    ["Radius", `${roundTo(distance(selectedArcPoints[0], selectedArcPoints[1]) / 40, 3)} u`],
-                    ["Central angle", `${roundTo(arcCentralAngle(selectedArcPoints[0], selectedArcPoints[1], selectedArcPoints[2], selectedArc.kind === "semicircle"), 2)} deg`],
-                    ["Arc length", `${roundTo((Math.PI * distance(selectedArcPoints[0], selectedArcPoints[1]) / 40 * arcCentralAngle(selectedArcPoints[0], selectedArcPoints[1], selectedArcPoints[2], selectedArc.kind === "semicircle")) / 180, 3)} u`],
-                  ]}
-                />
-                <NumberField label="Radius" value={roundTo(distance(selectedArcPoints[0], selectedArcPoints[1]) / 40, 3)} min={0.1} max={12} step={0.1} onChange={(value) => setArcRadius(selectedArc, value)} />
-              </>
-            )}
-            <label className="text-xs font-bold">
-              Arc type
-              <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={selectedArc.kind} onChange={(event) => onUpdateArc(selectedArc.id, { kind: event.target.value as GeoArcKind })}>
-                <option value="arc">Arc</option>
-                <option value="semicircle">Semicircle</option>
-                <option value="sector">Sector</option>
-              </select>
-            </label>
-            <PointSelect label="Center" value={selectedArc.center} points={construction.points} onChange={(value) => onUpdateArc(selectedArc.id, { center: value })} />
-            <PointSelect label="Start" value={selectedArc.start} points={construction.points} onChange={(value) => onUpdateArc(selectedArc.id, { start: value })} />
-            <PointSelect label="End" value={selectedArc.end} points={construction.points} onChange={(value) => onUpdateArc(selectedArc.id, { end: value })} />
-          </div>
-        )}
-        {selectedText && (
-          <div className="grid gap-2">
-            <p className="text-sm font-black">{selectedText.imageSrc ? "Image" : "Text note"}</p>
-            <button type="button" className={selectedText.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("text", selectedText.id)}>{selectedText.locked ? "Unlock object" : "Lock object"}</button>
-            <ColorField label={selectedText.imageSrc ? "Image label color" : "Text border color"} value={selectedText.color ?? "#38bdf8"} onChange={(color) => onUpdateText(selectedText.id, { color })} />
-            <label className="text-xs font-bold">{selectedText.imageSrc ? "Image label" : "Content"}<input className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={selectedText.text} onChange={(event) => onUpdateText(selectedText.id, { text: event.target.value })} /></label>
-            <PointSelect label="Anchor point" value={selectedText.point} points={construction.points} onChange={(value) => onUpdateText(selectedText.id, { point: value })} />
-            {selectedText.imageSrc && (
-              <>
-                <MiniNumber label="Width" value={roundTo(selectedText.width ?? 180, 1)} onChange={(width) => onUpdateText(selectedText.id, { width: Math.max(20, width) })} />
-                <MiniNumber label="Height" value={roundTo(selectedText.height ?? 120, 1)} onChange={(height) => onUpdateText(selectedText.id, { height: Math.max(20, height) })} />
-                <SliderControl label="Opacity" value={selectedText.opacity ?? 0.95} min={0.1} max={1} step={0.05} onChange={(opacity) => onUpdateText(selectedText.id, { opacity })} />
-              </>
-            )}
-          </div>
-        )}
-        {selectedConic && (
-          <div className="grid gap-2">
-            <p className="text-sm font-black">{selectedConic.kind} conic</p>
-            <button type="button" className={selectedConic.locked ? "action-primary justify-center" : "tool-button justify-center"} onClick={() => onToggleLock("conic", selectedConic.id)}>{selectedConic.locked ? "Unlock object" : "Lock object"}</button>
-            <ColorField label="Conic outline" value={selectedConic.color ?? defaultConicColor(selectedConic.kind)} onChange={(color) => onUpdateConic(selectedConic.id, { color })} />
-            {selectedConic.kind === "ellipse" && <ColorField label="Conic fill" value={selectedConic.fill ?? "#ddd6fe"} onChange={(fill) => onUpdateConic(selectedConic.id, { fill })} />}
-            <label className="text-xs font-bold">
-              Conic type
-              <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={selectedConic.kind} onChange={(event) => onUpdateConic(selectedConic.id, { kind: event.target.value as GeoConicKind })}>
-                <option value="parabola">Parabola</option>
-                <option value="ellipse">Ellipse</option>
-                <option value="hyperbola">Hyperbola</option>
-              </select>
-            </label>
-            <PointSelect label="Center / vertex" value={selectedConic.center} points={construction.points} onChange={(value) => onUpdateConic(selectedConic.id, { center: value })} />
-            <NumberField label="a size" value={roundTo(selectedConic.a / 40, 2)} min={0.5} max={5} step={0.1} onChange={(value) => onUpdateConic(selectedConic.id, { a: value * 40 })} />
-            <NumberField label="b size" value={roundTo(selectedConic.b / 40, 2)} min={0.5} max={5} step={0.1} onChange={(value) => onUpdateConic(selectedConic.id, { b: value * 40 })} />
-          </div>
-        )}
-        {selectedTransform && (
-          <div className="grid gap-2">
-            <p className="text-sm font-black">{selectedTransform.type} transform</p>
-            <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">Source: {selectedTransform.sourceKind}. Results: {selectedTransform.resultIds.length}. {selectedTransform.angle ? `Angle: ${selectedTransform.angle} deg.` : ""} {selectedTransform.scale ? `Scale: ${selectedTransform.scale}.` : ""}</p>
-            <button type="button" className="tool-button justify-center" onClick={() => onDelete("transform", selectedTransform.id)}>Remove transform record</button>
-          </div>
-        )}
-        {selectedConstraint && (
-          <div className="grid gap-2">
-            <p className="text-sm font-black">Constraint</p>
-            <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{constraintLabel(selectedConstraint, construction)}</p>
-            <button type="button" className="tool-button justify-center" onClick={() => onDelete("constraint", selectedConstraint.id)}>Remove constraint</button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function ObjectGroup({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div>
-      <p className="mb-1 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">{title}</p>
-      <div className="grid gap-1">{children}</div>
-    </div>
-  );
-}
-
-function ObjectRow({ label, active, onClick, onDelete }: { label: string; active: boolean; onClick: () => void; onDelete: () => void }) {
-  return (
-    <div className={`grid grid-cols-[minmax(0,1fr)_32px] items-center gap-1 rounded-xl p-1 ${active ? "bg-cyan-100 dark:bg-cyan-400/15" : "bg-slate-100 dark:bg-white/10"}`}>
-      <button type="button" className="min-w-0 truncate px-2 py-1 text-left text-xs font-bold" onClick={onClick}>{label}</button>
-      <button type="button" className="grid h-8 w-8 place-items-center rounded-lg hover:bg-rose-500/15" onClick={onDelete} aria-label={`Delete ${label}`}><Trash2 className="h-3.5 w-3.5" /></button>
-    </div>
-  );
-}
-
-function SelectedPropertyGrid({ items }: { items: Array<[string, string]> }) {
-  return (
-    <div className="grid gap-1 rounded-xl bg-white/80 p-2 dark:bg-slate-950/50">
-      {items.map(([label, value]) => (
-        <div key={label} className="grid grid-cols-[92px_minmax(0,1fr)] gap-2 text-xs">
-          <span className="font-black uppercase text-slate-500 dark:text-slate-400">{label}</span>
-          <span className="min-w-0 [overflow-wrap:anywhere] font-mono font-black text-slate-900 dark:text-white">{value}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function PointSelect({ label, value, points, onChange }: { label: string; value: string; points: GeoPoint[]; onChange: (value: string) => void }) {
-  return (
-    <label className="text-xs font-bold">
-      {label}
-      <select className="mt-1 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={value} onChange={(event) => onChange(event.target.value)}>
-        {points.map((point) => <option key={point.id} value={point.id}>{point.label}</option>)}
-      </select>
-    </label>
-  );
+function GeometryLocus({ locus }: { locus: GeoLocus }) {
+  if (locus.style?.visible === false || locus.points.length < 2) return null;
+  const path = locus.points.map((point, index) => `${index ? "L" : "M"}${point.x.toFixed(2)},${point.y.toFixed(2)}`).join(" ");
+  return <path data-object-type="locus" data-object-id={locus.id} d={path} fill="none" stroke={locus.style?.color ?? "#ec4899"} strokeWidth={locus.style?.strokeWidth ?? 3} strokeDasharray="6 6" opacity={locus.style?.opacity ?? 0.8} />;
 }
 
 function ConstraintOverlays({ construction }: { construction: Construction }) {
@@ -5926,16 +4698,6 @@ function ConstraintOverlays({ construction }: { construction: Construction }) {
           const b = pointById(construction.points, constraint.point);
           return a && b ? <line key={constraint.id} x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#f97316" strokeWidth="2" strokeDasharray="5 5" /> : null;
         }
-        if (constraint.type === "angle-bisector") {
-          const line = construction.lines.find((item) => item.id === constraint.line);
-          const a = line ? pointById(construction.points, line.a) : null;
-          const b = line ? pointById(construction.points, line.b) : null;
-          return a && b ? <g key={constraint.id}><line x1={a.x} y1={a.y} x2={b.x} y2={b.y} stroke="#f59e0b" strokeWidth="8" opacity="0.2" /><text x={(a.x + b.x) / 2 + 8} y={(a.y + b.y) / 2 - 8} fill="#b45309" className="text-xs font-bold">angle bisector</text></g> : null;
-        }
-        if (constraint.type === "tangent") {
-          const p = pointById(construction.points, constraint.tangentPoint);
-          return p ? <g key={constraint.id}><circle cx={p.x} cy={p.y} r="18" fill="none" stroke="#ec4899" strokeDasharray="5 4" strokeWidth="3" /><text x={p.x + 12} y={p.y + 20} fill="#be185d" className="text-xs font-bold">tangent point</text></g> : null;
-        }
         if (constraint.type === "intersection") {
           const p = pointById(construction.points, constraint.point);
           return p ? <circle key={constraint.id} cx={p.x} cy={p.y} r="18" fill="none" stroke="#06b6d4" strokeDasharray="3 4" strokeWidth="3" /> : null;
@@ -5946,188 +4708,16 @@ function ConstraintOverlays({ construction }: { construction: Construction }) {
   );
 }
 
-function LocusTraceOverlay({ traces }: { traces: LocusTrace[] }) {
-  return (
-    <g>
-      {traces.filter((trace) => trace.visible && trace.points.length > 1).map((trace) => (
-        <g key={trace.id}>
-          <path d={locusPath(trace.points)} fill="none" stroke={trace.color} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity="0.72" />
-          {trace.points.length > 0 && (
-            <text x={trace.points[trace.points.length - 1].x + 10} y={trace.points[trace.points.length - 1].y - 10} fill={trace.color} className="select-none text-xs font-black">
-              {trace.label}
-            </text>
-          )}
-        </g>
-      ))}
-    </g>
-  );
-}
-
-function GeometryKernelPanel({
-  construction,
-  selected,
-  traces,
-  activeTracePointId,
-  onTraceSelected,
-  onStopTrace,
-  onClearTraces,
-  onToggleTrace,
-  onDeleteTrace,
-}: {
-  construction: Construction;
-  selected: SelectedGeoObject;
-  traces: LocusTrace[];
-  activeTracePointId: string | null;
-  onTraceSelected: () => void;
-  onStopTrace: () => void;
-  onClearTraces: () => void;
-  onToggleTrace: (traceId: string) => void;
-  onDeleteTrace: (traceId: string) => void;
-}) {
-  const selectedPoint = selected?.kind === "point" ? pointById(construction.points, selected.id) : null;
-  const insights = geometryInsights(construction);
-  return (
-    <div className="grid gap-3 rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Geometry kernel</p>
-          <h3 className="font-bold">Locus and Theorem Studio</h3>
-        </div>
-        <span className="mini-chip">{traces.length} trace{traces.length === 1 ? "" : "s"}</span>
-      </div>
-
-      <div className="mt-3 grid gap-2">
-        <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
-          <p className="text-sm font-black">Locus tracing</p>
-          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
-            Select a point, start tracing, then drag source points. The selected point's path becomes a visible locus curve.
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <button type="button" className="action-primary" onClick={onTraceSelected} disabled={!selectedPoint}>
-              <Radius className="h-4 w-4" />
-              Trace selected
-            </button>
-            <button type="button" className="action-secondary" onClick={onStopTrace} disabled={!activeTracePointId}>Stop</button>
-            <button type="button" className="action-secondary" onClick={onClearTraces} disabled={!traces.length}>Clear traces</button>
-          </div>
-          <p className="mt-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
-            Active trace: {activeTracePointId ? labelForPoint(construction, activeTracePointId) : "none"}
-          </p>
-        </div>
-
-        {traces.length > 0 && (
-          <div className="grid gap-1">
-            {traces.map((trace) => (
-              <div key={trace.id} className="grid grid-cols-[14px_minmax(0,1fr)_auto_auto] items-center gap-2 rounded-xl bg-slate-100 p-2 dark:bg-white/10">
-                <span className="h-3.5 w-3.5 rounded-full" style={{ background: trace.color }} />
-                <span className="truncate text-xs font-bold">{trace.label}: {trace.points.length} samples</span>
-                <button type="button" className="mini-chip" onClick={() => onToggleTrace(trace.id)}>{trace.visible ? "Hide" : "Show"}</button>
-                <button type="button" className="mini-chip" onClick={() => onDeleteTrace(trace.id)}>Delete</button>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
-          <p className="text-sm font-black">Theorem insights</p>
-          {insights.length ? (
-            <div className="mt-2 grid gap-2">
-              {insights.map((insight) => (
-                <div key={`${insight.title}-${insight.result}`} className="rounded-xl bg-white/75 p-3 dark:bg-slate-950/50">
-                  <div className="flex items-start justify-between gap-2">
-                    <p className="text-xs font-black uppercase text-cyan-600 dark:text-cyan-300">{insight.title}</p>
-                    <span className="mini-chip">{insight.confidence}</span>
-                  </div>
-                  <p className="mt-1 text-sm font-black text-slate-900 dark:text-white">{insight.result}</p>
-                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">{insight.detail}</p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">Add a triangle, polygon, or circle to see live theorem-style insights.</p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function geometryInsights(construction: Construction) {
-  const polygonInsights = construction.polygons.flatMap((polygon) => {
-    const points = polygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
-    return triangleInsights(points, 40);
-  });
-  const circleTheorems = construction.circles.flatMap((circle) => {
-    return circleInsights(pointById(construction.points, circle.center) ?? null, pointById(construction.points, circle.edge) ?? null, 40);
-  });
-  return [...polygonInsights, ...circleTheorems].slice(0, 8);
-}
-
-function DependencyPanel({ construction, selected, onSelect }: { construction: Construction; selected: SelectedGeoObject; onSelect: (value: SelectedGeoObject) => void }) {
-  const nodes = buildDependencyGraph(construction);
-  const diagnostics = constructionDiagnostics(construction, nodes);
+function ConstraintPanel({ construction }: { construction: Construction }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] font-black uppercase text-cyan-600 dark:text-cyan-300">Dependency algebra</p>
-          <h3 className="font-bold">Dependency Tree</h3>
-        </div>
-        <span className="mini-chip">{nodes.filter((node) => node.status !== "free").length} linked</span>
-      </div>
-      <div className="mt-3 grid gap-2">
-        {nodes.length ? nodes.map((node) => (
-          <button
-            key={node.id}
-            type="button"
-            className={`rounded-xl p-3 text-left text-xs transition ${selected && objectKey(selected.kind, selected.id) === node.id ? "bg-cyan-100 dark:bg-cyan-400/15" : "bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/15"}`}
-            onClick={() => onSelect(selectionFromObjectKey(node.id))}
-          >
-            <div className="flex items-center justify-between gap-2">
-              <span className="font-black">{node.label}</span>
-              <span className={`rounded-full px-2 py-0.5 font-black uppercase ${node.status === "warning" ? "bg-rose-500/15 text-rose-600 dark:text-rose-200" : node.status === "locked" ? "bg-amber-500/15 text-amber-700 dark:text-amber-200" : node.status === "dependent" ? "bg-cyan-500/15 text-cyan-700 dark:text-cyan-200" : "bg-slate-500/15 text-slate-500"}`}>{node.status}</span>
-            </div>
-            <p className="mt-1 text-slate-500 dark:text-slate-400">Parents: {node.parents.length ? node.parents.map((id) => nodeLabelById(nodes, id)).join(", ") : "none"}</p>
-            <p className="mt-1 text-slate-500 dark:text-slate-400">Children: {node.children.length ? node.children.map((id) => nodeLabelById(nodes, id)).join(", ") : "none"}</p>
-          </button>
-        )) : <p className="text-sm text-slate-500 dark:text-slate-400">Add geometry objects to see dependencies.</p>}
-      </div>
-      <div className="mt-3 rounded-xl bg-slate-100 p-3 dark:bg-white/10">
-        <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Diagnostics</p>
-        {diagnostics.length ? (
-          <ul className="mt-2 space-y-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
-            {diagnostics.map((item) => <li key={item}>{item}</li>)}
-          </ul>
-        ) : <p className="mt-2 text-xs font-semibold text-emerald-600 dark:text-emerald-300">No dependency conflicts detected.</p>}
-      </div>
-    </div>
-  );
-}
-
-function ConstraintPanel({ construction, undoStack, redoStack, onUndo, onRedo }: { construction: Construction; undoStack: ConstructionHistoryEntry[]; redoStack: ConstructionHistoryEntry[]; onUndo: () => void; onRedo: () => void }) {
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
-      <div className="flex items-center justify-between gap-2">
-        <h3 className="font-bold">Constraint Engine</h3>
-        <div className="flex gap-1">
-          <button type="button" className="mini-chip" onClick={onUndo} disabled={!undoStack.length}>Undo</button>
-          <button type="button" className="mini-chip" onClick={onRedo} disabled={!redoStack.length}>Redo</button>
-        </div>
-      </div>
-      <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Draggable points now recompute dependent objects: parallel, perpendicular, midpoint, fixed length, point-on-circle, angle bisectors, tangents, and line intersections.</p>
+      <h3 className="font-bold">Constraint Engine</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Draggable points now recompute dependent objects: parallel, perpendicular, midpoint, fixed length, point-on-circle, and line intersections.</p>
       {construction.constraints.length ? (
         <ul className="mt-3 space-y-2 text-sm text-slate-600 dark:text-slate-300">
           {construction.constraints.map((constraint) => <li key={constraint.id} className="rounded-xl bg-slate-100 p-2 dark:bg-white/10">{constraintLabel(constraint, construction)}</li>)}
         </ul>
       ) : <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">Add a constraint tool to see live dependencies here.</p>}
-      <div className="mt-3 rounded-xl bg-slate-100 p-3 dark:bg-white/10">
-        <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Undo / redo timeline</p>
-        {undoStack.length ? (
-          <ol className="mt-2 space-y-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
-            {undoStack.slice(0, 6).map((entry) => <li key={entry.id}>{entry.label}</li>)}
-          </ol>
-        ) : <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">No construction edits recorded yet.</p>}
-      </div>
     </div>
   );
 }
@@ -6136,50 +4726,28 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
   const instructions: Record<GeometryTool, string> = {
     select: "Drag existing points to update every connected line, circle, and polygon.",
     point: "Click the board to create labeled points.",
-    segment: "Click two points to create a finite segment with live length.",
-    line: "Click two points to create an infinite construction line through them.",
-    ray: "Click a start point, then a direction point. The ray extends from the first point through the second.",
-    vector: "Click a tail point, then a head point. The vector is drawn with an arrow and live magnitude.",
+    line: "Click two points to create a segment.",
     circle: "Click a center point, then a radius point.",
     polygon: "Click three or more points; the polygon is created after the third point.",
-    angle: "Click three points in order: first ray point, vertex, second ray point. The angle arc and degree label stay live.",
-    "angle-bisector": "Click first ray point, vertex, second ray point. A constrained bisector ray is created and updates when points move.",
-    tangent: "Click an external point and a circle, in either order. Two tangent rays are created when the point is outside the circle.",
     parallel: "Click two points for a source direction, then a third point. A constrained parallel line is created through the third point.",
     perpendicular: "Click two points for a source direction, then a third point. A constrained perpendicular line is created through the third point.",
     midpoint: "Click two points. A midpoint is created and stays locked halfway between them.",
     "fixed-length": "Click an anchor point and a second point. The second point keeps its current distance from the anchor while dragged.",
     "on-circle": "Click a point. It snaps to the first circle and stays on that circle.",
-    intersect: "Create at least two lines, then click Intersect to add a live intersection point.",
-    "perpendicular-bisector": "Select two points to prepare a perpendicular bisector construction.",
-    "regular-polygon": "Place or select vertices for a regular polygon construction.",
-    "circle-radius": "Place a center and set a radius-driven circle.",
-    "circle-3point": "Pick three points to define a circle through them.",
-    semicircle: "Pick two endpoints to create a semicircle.",
-    arc: "Pick points on a circle path to create an arc.",
-    sector: "Pick a center and two boundary points to create a sector.",
-    compass: "Copy a length from one pair of points to another location.",
-    distance: "Select points or objects to inspect distance and length measurements.",
-    area: "Select a polygon or closed region to inspect area.",
-    slope: "Select a line, ray, segment, or vector to inspect slope.",
-    locus: "Select a dependent point to review its path as drivers move.",
-    trace: "Select a point and use Trace in the left tool panel to record motion.",
-    "hide-show": "Select an object to prepare visibility changes.",
-    "lock-object": "Select an object, then lock or unlock it in the inspector.",
-    duplicate: "Select an object to prepare a copied construction.",
-    freehand: "Sketch an annotation path over the construction area.",
-    text: "Place a text note near the construction.",
-    label: "Select an object to prepare label editing.",
-    slider: "Create a parameter slider for linked numeric constructions.",
-    "move-canvas": "Drag the construction view without changing objects.",
-    "zoom-tool": "Zoom into a region of the construction board.",
-    "mirror-line": "Select an object and mirror line, or use Reflect under Selected Object.",
-    "reflect-point": "Select an object, then click the center point to reflect it through that point.",
-    translate: "Select an object and a vector to translate it.",
-    "rotate-tool": "Select an object and center, or use Rotate under Selected Object.",
-    "dilate-tool": "Select an object and center, or use Dilate under Selected Object.",
-    "intersect-region": "Select two closed objects to prepare their shared region.",
-    image: "Click the board to reserve an image anchor for diagrams and annotations.",
+    intersect: "Create lines and circles, then click any point to add all current line-line, line-circle, and circle-circle intersections.",
+    "perpendicular-bisector": "Click two points to create their midpoint and a perpendicular bisector.",
+    "angle-bisector": "Click side point, vertex, side point to create an angle bisector ray.",
+    tangent: "Click a point near/on the first circle to create a tangent line at that point.",
+    polar: "Click a point to create its polar line with respect to the first circle.",
+    locus: "Click a point to create a visible locus trace around it.",
+    "regular-polygon": "Click two adjacent vertices to create a regular pentagon.",
+    arc: "Click center, start, and end points to create an arc.",
+    sector: "Click center, start, and end points to create a sector.",
+    compass: "Click two points for radius, then a center point for a compass circle.",
+    mirror: "Click point to mirror, then two points defining the mirror line.",
+    rotate: "Click a point to rotate it 45 degrees around the first point.",
+    dilate: "Click a point to dilate it 1.5x from the first point.",
+    translate: "Click vector start, vector end, then point to translate.",
   };
   return <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50"><p className="font-bold">Current tool: {tool}</p><p className="mt-2">{instructions[tool]}</p></div>;
 }
@@ -6187,36 +4755,32 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
 function Measurements({ construction }: { construction: Construction }) {
   const lineLengths = construction.lines.map((line) => {
     const a = pointById(construction.points, line.a), b = pointById(construction.points, line.b);
-    if (!a || !b) return "";
-    const kind = line.kind ?? "segment";
-    const length = roundTo(distance(a, b) / 40, 2);
-    if (kind === "line") return `Line ${a.label}${b.label}: slope = ${slopeLabel(a, b)}`;
-    if (kind === "ray") return `Ray ${a.label}${b.label}: direction ${roundTo(directionDegrees(a, b), 1)} deg`;
-    if (kind === "vector") return `Vector ${a.label}${b.label}: |v| = ${length}, angle = ${roundTo(directionDegrees(a, b), 1)} deg`;
-    return `Segment ${a.label}${b.label} = ${length}`;
+    return a && b ? `${a.label}${b.label} = ${roundTo(distance(a, b) / 40, 2)}` : "";
+  }).filter(Boolean);
+  const lineEquations = construction.lines.map((line) => `${lineName(line, construction, 0)}: ${lineEquation(line, construction)}`);
+  const lineSlopes = construction.lines.map((line) => {
+    const a = pointById(construction.points, line.a), b = pointById(construction.points, line.b);
+    return a && b ? `slope ${a.label}${b.label} = ${Math.abs(b.x - a.x) < 0.001 ? "undefined" : roundTo((a.y - b.y) / (b.x - a.x), 3)}` : "";
   }).filter(Boolean);
   const circleRadii = construction.circles.map((circle) => {
     const center = pointById(construction.points, circle.center), edge = pointById(construction.points, circle.edge);
-    return center && edge ? `Circle ${center.label}: r = ${roundTo(distance(center, edge) / 40, 2)}` : "";
+    return center && edge ? `Circle ${center.label}: r = ${roundTo(distance(center, edge) / 40, 2)}, ${circleEquation(circle, construction)}` : "";
   }).filter(Boolean);
   const polygonAreas = construction.polygons.map((polygon, index) => {
     const points = polygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
-    return points.length >= 3 ? `Polygon ${index + 1}: area = ${roundTo(polygonArea(points) / 1600, 2)}` : "";
+    return points.length >= 3 ? `Polygon ${index + 1}: area = ${roundTo(polygonArea(points) / 1600, 2)}, perimeter = ${roundTo(polygonPerimeter(points) / 40, 2)}` : "";
   }).filter(Boolean);
-  const angleEntries = construction.angles.map((angle) => {
-    const a = pointById(construction.points, angle.a), vertex = pointById(construction.points, angle.vertex), b = pointById(construction.points, angle.b);
-    return a && vertex && b ? `Angle ${a.label}${vertex.label}${b.label} = ${roundTo(angleDegrees(a, vertex, b), 2)} deg` : "";
+  const angles = construction.polygons.flatMap((polygon) => polygon.points.map((id, index, ids) => {
+    const prev = pointById(construction.points, ids[(index - 1 + ids.length) % ids.length]);
+    const vertex = pointById(construction.points, id);
+    const next = pointById(construction.points, ids[(index + 1) % ids.length]);
+    return prev && vertex && next ? `angle ${vertex.label} = ${roundTo(angleBetween(prev, vertex, next), 1)} deg` : "";
+  })).filter(Boolean);
+  const arcLengths = construction.arcs.map((arc, index) => {
+    const center = pointById(construction.points, arc.center), start = pointById(construction.points, arc.start), end = pointById(construction.points, arc.end);
+    return center && start && end ? `${arc.sector ? "Sector" : "Arc"} ${index + 1}: arc length = ${roundTo(arcLength(center, start, end) / 40, 2)}` : "";
   }).filter(Boolean);
-  const tangentEntries = construction.constraints.filter((constraint) => constraint.type === "tangent").map((constraint) => {
-    const p = pointById(construction.points, constraint.throughPoint), t = pointById(construction.points, constraint.tangentPoint);
-    return p && t ? `Tangent ${p.label}${t.label}: length = ${roundTo(distance(p, t) / 40, 2)}` : "";
-  }).filter(Boolean);
-  const conicEntries = construction.conics.map((conic, index) => {
-    const center = pointById(construction.points, conic.center);
-    return center ? `${conic.kind} ${index + 1}: ${conicEquation(conic)} at ${center.label}` : "";
-  }).filter(Boolean);
-  const transformEntries = construction.transforms.map((transform, index) => `${transform.type} ${index + 1}: ${transform.resultIds.length} result object(s)`);
-  const entries = [...lineLengths, ...circleRadii, ...polygonAreas, ...angleEntries, ...conicEntries, ...tangentEntries, ...transformEntries];
+  const entries = [...lineLengths, ...lineSlopes, ...lineEquations, ...circleRadii, ...polygonAreas, ...angles, ...arcLengths];
   return (
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <h3 className="font-bold">Live Measurements</h3>
@@ -6225,745 +4789,266 @@ function Measurements({ construction }: { construction: Construction }) {
   );
 }
 
-function distance(a: { x: number; y: number }, b: { x: number; y: number }) {
+function distance(a: GeoPoint, b: GeoPoint) {
   return Math.hypot(a.x - b.x, a.y - b.y);
 }
 
-function boardUnitNumber(value: number) {
-  return roundTo(value / 40, 4);
+function polygonPerimeter(points: GeoPoint[]) {
+  return points.reduce((sum, point, index) => sum + distance(point, points[(index + 1) % points.length]), 0);
 }
 
-function boardUnit(value: number) {
-  return boardUnitNumber(value).toString();
+function angleBetween(a: GeoPoint, vertex: GeoPoint, b: GeoPoint) {
+  const va = normalize(a.x - vertex.x, a.y - vertex.y);
+  const vb = normalize(b.x - vertex.x, b.y - vertex.y);
+  return THREE.MathUtils.radToDeg(Math.acos(Math.max(-1, Math.min(1, va.x * vb.x + va.y * vb.y))));
 }
 
-function distanceMetrics(a: GeoPoint, b: GeoPoint) {
-  const dx = (b.x - a.x) / 40;
-  const dy = (b.y - a.y) / 40;
-  const length = Math.hypot(dx, dy);
-  return [
-    { label: "Length", value: `${roundTo(length, 4)} units` },
-    { label: "Delta x", value: `${roundTo(dx, 4)} units` },
-    { label: "Delta y", value: `${roundTo(dy, 4)} units` },
+function arcLength(center: GeoPoint, start: GeoPoint, end: GeoPoint) {
+  const radius = distance(center, start);
+  const a = Math.atan2(start.y - center.y, start.x - center.x);
+  const b = Math.atan2(end.y - center.y, end.x - center.x);
+  return radius * ((b - a + Math.PI * 2) % (Math.PI * 2));
+}
+
+function snapBoardPoint(point: { x: number; y: number }, construction: Construction) {
+  const grid = { x: Math.round(point.x / 40) * 40, y: Math.round(point.y / 40) * 40 };
+  let best = { ...grid, score: Math.hypot(point.x - grid.x, point.y - grid.y) };
+  const candidates = [
+    ...construction.points.map((p) => ({ x: p.x, y: p.y })),
+    ...allIntersections(construction),
+    ...construction.lines.map((line) => projectPointToLine(point, line, construction.points)).filter(Boolean) as { x: number; y: number }[],
+    ...construction.circles.map((circle) => projectPointToCircle(point, circle, construction.points)).filter(Boolean) as { x: number; y: number }[],
   ];
+  for (const candidate of candidates) {
+    const score = Math.hypot(point.x - candidate.x, point.y - candidate.y);
+    if (score < best.score && score < 18) best = { ...candidate, score };
+  }
+  return { x: best.x, y: best.y };
 }
 
-function polygonSideLengths(points: GeoPoint[]) {
-  return points.map((point, index) => distance(point, points[(index + 1) % points.length]) / 40);
+function addPerpendicularBisector(construction: Construction, aId: string, bId: string) {
+  const a = pointById(construction.points, aId), b = pointById(construction.points, bId);
+  if (!a || !b) return construction;
+  const mid: GeoPoint = { id: crypto.randomUUID(), x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, label: nextPointLabel(construction.points) };
+  const vector = unitVector(a, b, true);
+  const end: GeoPoint = { id: crypto.randomUUID(), x: mid.x + vector.x * 140, y: mid.y + vector.y * 140, label: nextPointLabel([...construction.points, mid]) };
+  return solveConstruction({ ...construction, points: [...construction.points, mid, end], lines: [...construction.lines, { id: crypto.randomUUID(), a: mid.id, b: end.id }], constraints: [...construction.constraints, { id: crypto.randomUUID(), type: "midpoint", a: aId, b: bId, point: mid.id }] });
 }
 
-function polygonCentroid(points: GeoPoint[]) {
-  return {
-    x: points.reduce((sum, point) => sum + point.x, 0) / Math.max(1, points.length),
-    y: points.reduce((sum, point) => sum + point.y, 0) / Math.max(1, points.length),
-  };
+function addAngleBisector(construction: Construction, aId: string, vertexId: string, cId: string) {
+  const a = pointById(construction.points, aId), v = pointById(construction.points, vertexId), c = pointById(construction.points, cId);
+  if (!a || !v || !c) return construction;
+  const va = normalize(a.x - v.x, a.y - v.y);
+  const vc = normalize(c.x - v.x, c.y - v.y);
+  const direction = normalize(va.x + vc.x, va.y + vc.y);
+  const end: GeoPoint = { id: crypto.randomUUID(), x: v.x + direction.x * 150, y: v.y + direction.y * 150, label: nextPointLabel(construction.points) };
+  return solveConstruction({ ...construction, points: [...construction.points, end], lines: [...construction.lines, { id: crypto.randomUUID(), a: vertexId, b: end.id }] });
 }
 
-function lineEquationLabel(a: GeoPoint, b: GeoPoint) {
-  const x1 = a.x / 40;
-  const y1 = a.y / 40;
-  const x2 = b.x / 40;
-  const y2 = b.y / 40;
-  if (Math.abs(x2 - x1) < 0.0001) return `x = ${roundTo(x1, 3)}`;
-  const m = (y2 - y1) / (x2 - x1);
-  const c = y1 - m * x1;
-  return `y = ${roundTo(m, 3)}x ${c >= 0 ? "+" : "-"} ${roundTo(Math.abs(c), 3)}`;
+function addTangentAtPoint(construction: Construction, pointId: string) {
+  const circle = construction.circles[0];
+  const point = pointById(construction.points, pointId);
+  const center = circle ? pointById(construction.points, circle.center) : null;
+  if (!circle || !point || !center) return construction;
+  const direction = normalize(-(point.y - center.y), point.x - center.x);
+  const end: GeoPoint = { id: crypto.randomUUID(), x: point.x + direction.x * 150, y: point.y + direction.y * 150, label: nextPointLabel(construction.points) };
+  return solveConstruction({ ...construction, points: [...construction.points, end], lines: [...construction.lines, { id: crypto.randomUUID(), a: pointId, b: end.id }] });
+}
+
+function addPolarLine(construction: Construction, pointId: string) {
+  const circle = construction.circles[0];
+  const point = pointById(construction.points, pointId);
+  const center = circle ? pointById(construction.points, circle.center) : null;
+  const edge = circle ? pointById(construction.points, circle.edge) : null;
+  if (!circle || !point || !center || !edge) return construction;
+  const radius = distance(center, edge);
+  const cp = distance(center, point) || 1;
+  const foot = { x: center.x + ((point.x - center.x) * radius * radius) / (cp * cp), y: center.y + ((point.y - center.y) * radius * radius) / (cp * cp) };
+  const direction = normalize(-(point.y - center.y), point.x - center.x);
+  const a: GeoPoint = { id: crypto.randomUUID(), x: foot.x - direction.x * 100, y: foot.y - direction.y * 100, label: nextPointLabel(construction.points) };
+  const b: GeoPoint = { id: crypto.randomUUID(), x: foot.x + direction.x * 100, y: foot.y + direction.y * 100, label: nextPointLabel([...construction.points, a]) };
+  return solveConstruction({ ...construction, points: [...construction.points, a, b], lines: [...construction.lines, { id: crypto.randomUUID(), a: a.id, b: b.id, style: { color: "#ec4899" } }] });
+}
+
+function addLocusForPoint(construction: Construction, pointId: string) {
+  const point = pointById(construction.points, pointId);
+  if (!point) return construction;
+  const radius = 48;
+  const points = Array.from({ length: 50 }, (_, index) => {
+    const angle = (index / 49) * Math.PI * 2;
+    return { x: point.x + Math.cos(angle) * radius, y: point.y + Math.sin(angle) * radius };
+  });
+  return { ...construction, loci: [...construction.loci, { id: crypto.randomUUID(), label: `locus${construction.loci.length + 1}`, points, style: { color: "#ec4899", trace: true } }] };
+}
+
+function addRegularPolygon(construction: Construction, aId: string, bId: string, sides: number) {
+  const a = pointById(construction.points, aId), b = pointById(construction.points, bId);
+  if (!a || !b) return construction;
+  const angle0 = Math.atan2(b.y - a.y, b.x - a.x);
+  const side = distance(a, b);
+  const radius = side / (2 * Math.sin(Math.PI / sides));
+  const centerAngle = angle0 + Math.PI / 2 - Math.PI / sides;
+  const center = { x: (a.x + b.x) / 2 + Math.cos(centerAngle) * radius * Math.cos(Math.PI / sides), y: (a.y + b.y) / 2 + Math.sin(centerAngle) * radius * Math.cos(Math.PI / sides) };
+  const extra = Array.from({ length: sides - 2 }, (_, index) => {
+    const angle = angle0 + ((index + 2) * Math.PI * 2) / sides;
+    return { id: crypto.randomUUID(), x: center.x + Math.cos(angle) * radius, y: center.y + Math.sin(angle) * radius, label: nextPointLabel(construction.points, index) };
+  });
+  const ids = [aId, bId, ...extra.map((point) => point.id)];
+  return solveConstruction({ ...construction, points: [...construction.points, ...extra], polygons: [...construction.polygons, { id: crypto.randomUUID(), points: ids, style: { fill: "rgba(20,184,166,.14)", color: "#14b8a6" } }] });
+}
+
+function addArcOrSector(construction: Construction, center: string, start: string, end: string, sector: boolean) {
+  return { ...construction, arcs: [...construction.arcs, { id: crypto.randomUUID(), center, start, end, sector, style: { color: sector ? "#f59e0b" : "#14b8a6", fill: sector ? "rgba(245,158,11,.18)" : "none" } }] };
+}
+
+function addCompassCircle(construction: Construction, aId: string, bId: string, centerId: string) {
+  const a = pointById(construction.points, aId), b = pointById(construction.points, bId), center = pointById(construction.points, centerId);
+  if (!a || !b || !center) return construction;
+  const radius = distance(a, b);
+  const edge: GeoPoint = { id: crypto.randomUUID(), x: center.x + radius, y: center.y, label: nextPointLabel(construction.points) };
+  return solveConstruction({ ...construction, points: [...construction.points, edge], circles: [...construction.circles, { id: crypto.randomUUID(), center: centerId, edge: edge.id }] });
+}
+
+function mirrorPointAcrossLine(construction: Construction, pointId: string, aId: string, bId: string) {
+  const point = pointById(construction.points, pointId), a = pointById(construction.points, aId), b = pointById(construction.points, bId);
+  if (!point || !a || !b) return construction;
+  const projection = projectRawPointToLine(point, a, b);
+  const mirrored: GeoPoint = { id: crypto.randomUUID(), x: 2 * projection.x - point.x, y: 2 * projection.y - point.y, label: nextPointLabel(construction.points), style: { color: "#ec4899" } };
+  return solveConstruction({ ...construction, points: [...construction.points, mirrored], lines: [...construction.lines, { id: crypto.randomUUID(), a: pointId, b: mirrored.id, style: { color: "#ec4899", strokeWidth: 2 } }] });
+}
+
+function rotatePoint(construction: Construction, pointId: string, centerId: string, degrees: number) {
+  const point = pointById(construction.points, pointId), center = pointById(construction.points, centerId);
+  if (!point || !center || point.id === center.id) return construction;
+  const angle = THREE.MathUtils.degToRad(degrees);
+  const dx = point.x - center.x, dy = point.y - center.y;
+  const rotated: GeoPoint = { id: crypto.randomUUID(), x: center.x + dx * Math.cos(angle) - dy * Math.sin(angle), y: center.y + dx * Math.sin(angle) + dy * Math.cos(angle), label: nextPointLabel(construction.points), style: { color: "#8b5cf6" } };
+  return solveConstruction({ ...construction, points: [...construction.points, rotated] });
+}
+
+function dilatePoint(construction: Construction, pointId: string, centerId: string, scale: number) {
+  const point = pointById(construction.points, pointId), center = pointById(construction.points, centerId);
+  if (!point || !center || point.id === center.id) return construction;
+  const dilated: GeoPoint = { id: crypto.randomUUID(), x: center.x + (point.x - center.x) * scale, y: center.y + (point.y - center.y) * scale, label: nextPointLabel(construction.points), style: { color: "#10b981" } };
+  return solveConstruction({ ...construction, points: [...construction.points, dilated] });
+}
+
+function translatePointByVector(construction: Construction, fromId: string, toId: string, pointId: string) {
+  const from = pointById(construction.points, fromId), to = pointById(construction.points, toId), point = pointById(construction.points, pointId);
+  if (!from || !to || !point) return construction;
+  const translated: GeoPoint = { id: crypto.randomUUID(), x: point.x + to.x - from.x, y: point.y + to.y - from.y, label: nextPointLabel(construction.points), style: { color: "#06b6d4" } };
+  return solveConstruction({ ...construction, points: [...construction.points, translated] });
+}
+
+function transformSelectedPoints(construction: Construction, ids: string[], mode: "translate" | "rotate" | "dilate") {
+  if (!ids.length) return construction;
+  const points = construction.points.filter((point) => ids.includes(point.id));
+  const center = centroid(points);
+  const angle = THREE.MathUtils.degToRad(20);
+  return solveConstruction({
+    ...construction,
+    points: construction.points.map((point) => {
+      if (!ids.includes(point.id)) return point;
+      if (mode === "translate") return { ...point, x: point.x + 24, y: point.y - 18 };
+      if (mode === "dilate") return { ...point, x: center.x + (point.x - center.x) * 1.15, y: center.y + (point.y - center.y) * 1.15 };
+      const dx = point.x - center.x, dy = point.y - center.y;
+      return { ...point, x: center.x + dx * Math.cos(angle) - dy * Math.sin(angle), y: center.y + dx * Math.sin(angle) + dy * Math.cos(angle) };
+    }),
+  });
+}
+
+function centroid(points: GeoPoint[]) {
+  const count = points.length || 1;
+  return { x: points.reduce((sum, point) => sum + point.x, 0) / count, y: points.reduce((sum, point) => sum + point.y, 0) / count };
+}
+
+function projectPointToLine(point: { x: number; y: number }, line: GeoLine, points: GeoPoint[]) {
+  const a = pointById(points, line.a), b = pointById(points, line.b);
+  return a && b ? projectRawPointToLine(point, a, b) : null;
+}
+
+function projectRawPointToLine(point: { x: number; y: number }, a: GeoPoint, b: GeoPoint) {
+  const dx = b.x - a.x, dy = b.y - a.y;
+  const length2 = dx * dx + dy * dy || 1;
+  const t = ((point.x - a.x) * dx + (point.y - a.y) * dy) / length2;
+  return { x: a.x + t * dx, y: a.y + t * dy };
+}
+
+function projectPointToCircle(point: { x: number; y: number }, circle: GeoCircle, points: GeoPoint[]) {
+  const center = pointById(points, circle.center), edge = pointById(points, circle.edge);
+  if (!center || !edge) return null;
+  const radius = distance(center, edge);
+  const vector = normalize(point.x - center.x, point.y - center.y);
+  return { x: center.x + vector.x * radius, y: center.y + vector.y * radius };
+}
+
+function allIntersections(construction: Construction) {
+  const output: { x: number; y: number }[] = [];
+  for (let i = 0; i < construction.lines.length; i += 1) {
+    for (let j = i + 1; j < construction.lines.length; j += 1) {
+      const hit = lineIntersection(construction.lines[i], construction.lines[j], construction.points);
+      if (hit) output.push(hit);
+    }
+    for (const circle of construction.circles) output.push(...lineCircleIntersections(construction.lines[i], circle, construction.points));
+  }
+  for (let i = 0; i < construction.circles.length; i += 1) {
+    for (let j = i + 1; j < construction.circles.length; j += 1) output.push(...circleCircleIntersections(construction.circles[i], construction.circles[j], construction.points));
+  }
+  return uniqueBoardPoints(output);
+}
+
+function lineCircleIntersections(line: GeoLine, circle: GeoCircle, points: GeoPoint[]) {
+  const a = pointById(points, line.a), b = pointById(points, line.b), center = pointById(points, circle.center), edge = pointById(points, circle.edge);
+  if (!a || !b || !center || !edge) return [];
+  const dx = b.x - a.x, dy = b.y - a.y;
+  const fx = a.x - center.x, fy = a.y - center.y;
+  const radius = distance(center, edge);
+  const qa = dx * dx + dy * dy;
+  const qb = 2 * (fx * dx + fy * dy);
+  const qc = fx * fx + fy * fy - radius * radius;
+  const disc = qb * qb - 4 * qa * qc;
+  if (disc < -0.001) return [];
+  const root = Math.sqrt(Math.max(0, disc));
+  return [(-qb - root) / (2 * qa), (-qb + root) / (2 * qa)].map((t) => ({ x: a.x + t * dx, y: a.y + t * dy }));
+}
+
+function circleCircleIntersections(first: GeoCircle, second: GeoCircle, points: GeoPoint[]) {
+  const c1 = pointById(points, first.center), e1 = pointById(points, first.edge), c2 = pointById(points, second.center), e2 = pointById(points, second.edge);
+  if (!c1 || !e1 || !c2 || !e2) return [];
+  const r1 = distance(c1, e1), r2 = distance(c2, e2), d = distance(c1, c2);
+  if (d > r1 + r2 || d < Math.abs(r1 - r2) || d < 0.001) return [];
+  const a = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
+  const h = Math.sqrt(Math.max(0, r1 * r1 - a * a));
+  const x = c1.x + (a * (c2.x - c1.x)) / d;
+  const y = c1.y + (a * (c2.y - c1.y)) / d;
+  const rx = -(c2.y - c1.y) * (h / d);
+  const ry = (c2.x - c1.x) * (h / d);
+  return [{ x: x + rx, y: y + ry }, { x: x - rx, y: y - ry }];
+}
+
+function uniqueBoardPoints(points: { x: number; y: number }[]) {
+  return points.filter((point, index) => points.findIndex((other) => Math.hypot(other.x - point.x, other.y - point.y) < 2) === index);
+}
+
+function arcPath(center: GeoPoint, start: GeoPoint, end: GeoPoint) {
+  const radius = distance(center, start);
+  const startAngle = Math.atan2(start.y - center.y, start.x - center.x);
+  const endAngle = Math.atan2(end.y - center.y, end.x - center.x);
+  const delta = ((endAngle - startAngle + Math.PI * 2) % (Math.PI * 2));
+  const large = delta > Math.PI ? 1 : 0;
+  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${large} 1 ${end.x} ${end.y}`;
 }
 
 function normalizeConstruction(value: Partial<Construction>): Construction {
   return solveConstruction({
     points: value.points ?? [],
-    lines: (value.lines ?? []).map((line) => ({ ...line, kind: line.kind ?? "segment" })),
+    lines: value.lines ?? [],
     circles: value.circles ?? [],
     polygons: value.polygons ?? [],
-    angles: value.angles ?? [],
     arcs: value.arcs ?? [],
-    texts: value.texts ?? [],
-    conics: value.conics ?? [],
-    transforms: value.transforms ?? [],
+    loci: value.loci ?? [],
     constraints: value.constraints ?? [],
   });
-}
-
-type AlgebraWorkspaceInput = {
-  input: string;
-  plots: PlotItem[];
-  results: ResultCard[];
-  graphParameters: ParameterValues;
-};
-
-function createAlgebraWorkspaceObjects({ input, plots, results, graphParameters }: AlgebraWorkspaceInput): WorkspaceMathObject[] {
-  const objects: WorkspaceMathObject[] = [];
-  const command = input.trim();
-  const commandResult = command ? runWorkspaceCasQuery(command) : null;
-  const commandParameters = command ? extractParameterNames([command]) : [];
-  const commandObjectId = "algebra:expression:current";
-  const baseMetadata = { source: "live-workspace", subsystem: "algebra-cas" };
-  const parameterDependency = (name: string, role = "parameter") => ({
-    id: algebraObjectId("parameter", name),
-    label: `Parameter ${name}`,
-    role,
-  });
-  const plotDependency = (plot: PlotItem, index: number, role = "source") => ({
-    id: algebraObjectId("plot", plot.id),
-    label: `Algebra graph ${index + 1}`,
-    role,
-  });
-
-  if (command) {
-    const dependencies = commandParameters.map((name) => parameterDependency(name));
-    objects.push(createMathObject({
-      id: commandObjectId,
-      kind: algebraResultKind(commandResult?.query.intent ?? "unknown"),
-      dimension: "abstract",
-      label: "Current algebra command",
-      value: commandResult?.query.expression || command,
-      summary: commandResult ? `${commandResult.query.intent} intent (${commandResult.query.confidence} confidence): ${commandResult.detail}` : "Current command is staged for algebra routing.",
-      linkedViews: ["Solve", "CAS", "Graph", "Inspector"],
-      dependencies,
-      metadata: {
-        ...baseMetadata,
-        intent: commandResult?.query.intent ?? "unknown",
-        confidence: commandResult?.query.confidence ?? "low",
-        parameterCount: commandParameters.length,
-        routed: Boolean(commandResult),
-      },
-    }));
-  }
-
-  Object.entries(graphParameters).forEach(([name, value]) => {
-    const dependentPlotCount = plots.filter((plot) => extractParameterNames([plot.expression]).includes(name)).length;
-    objects.push(createMathObject({
-      id: algebraObjectId("parameter", name),
-      kind: "slider",
-      dimension: "abstract",
-      label: `Parameter ${name}`,
-      value: `${name} = ${Number(value.toFixed(3))}`,
-      summary: `Live algebra parameter driving ${dependentPlotCount} graph layer(s).`,
-      linkedViews: ["Graph", "Table", "CAS", "Inspector", "Animation"],
-      metadata: {
-        ...baseMetadata,
-        parameter: name,
-        value: Number(value.toFixed(6)),
-        dependentPlotCount,
-        min: -10,
-        max: 10,
-        step: 0.1,
-      },
-      interactivity: { editable: true, draggable: false, resizable: false },
-    }));
-  });
-
-  plots.forEach((plot, index) => {
-    const parameterNames = extractParameterNames([plot.expression]);
-    const resolvedExpression = substituteParameters(plot.expression, graphParameters);
-    const plotKind = plot.kind ?? inferPlotKind(plot.expression);
-    const visible = plot.visible !== false;
-    objects.push(createMathObject({
-      id: algebraObjectId("plot", plot.id),
-      kind: "function",
-      dimension: "abstract",
-      label: `Algebra graph ${index + 1}`,
-      value: graphValueLabel(plot.expression, plotKind),
-      summary: visible
-        ? `Live ${plotKind} layer with ${parameterNames.length} parameter link(s).`
-        : `Hidden ${plotKind} layer preserved in the algebra graph.`,
-      visible,
-      style: { color: plot.color, opacity: visible ? 1 : 0.35 },
-      linkedViews: ["Graph", "Table", "CAS", "Inspector", "Export"],
-      dependencies: [
-        ...(command ? [{ id: commandObjectId, label: "Current algebra command", role: "input" }] : []),
-        ...parameterNames.map((name) => parameterDependency(name)),
-      ],
-      metadata: {
-        ...baseMetadata,
-        localId: plot.id,
-        plotKind,
-        visible,
-        parameterCount: parameterNames.length,
-        resolvedExpression: resolvedExpression.slice(0, 180),
-      },
-      interactivity: { editable: true, draggable: false, resizable: false },
-    }));
-  });
-
-  if (plots.length > 0) {
-    const visiblePlotCount = plots.filter((plot) => plot.visible !== false).length;
-    objects.push(createMathObject({
-      id: "algebra:graph-table",
-      kind: "table",
-      dimension: "abstract",
-      label: "Dynamic graph table",
-      value: `${visiblePlotCount} visible graph layer(s), ${Object.keys(graphParameters).length} parameter(s)`,
-      summary: "Table samples are linked to graph expressions and slider values.",
-      linkedViews: ["Graph", "Table", "CAS", "Inspector", "Export"],
-      dependencies: [
-        ...plots.map((plot, index) => plotDependency(plot, index)),
-        ...Object.keys(graphParameters).map((name) => parameterDependency(name)),
-      ],
-      metadata: {
-        ...baseMetadata,
-        visiblePlotCount,
-        plotCount: plots.length,
-        parameterCount: Object.keys(graphParameters).length,
-      },
-    }));
-  }
-
-  results.slice(0, 8).forEach((result, index) => {
-    const visualLinks = result.visualSync?.length ? result.visualSync : createCasVisualSyncLinks(result);
-    const resultId = algebraObjectId("result", result.id);
-    const resultParameters = extractParameterNames([result.input, result.result]);
-    const kind = resultObjectKind(result);
-    objects.push(createMathObject({
-      id: resultId,
-      kind,
-      dimension: "abstract",
-      label: `Algebra result ${index + 1}`,
-      value: result.result,
-      summary: `${result.interpretation}: ${result.input}`,
-      linkedViews: ["CAS", "Steps", "Graph", "Table", "Inspector"],
-      dependencies: [
-        ...(command ? [{ id: commandObjectId, label: "Current algebra command", role: "input" }] : []),
-        ...resultParameters.map((name) => parameterDependency(name)),
-      ],
-      metadata: {
-        ...baseMetadata,
-        localId: result.id,
-        interpretation: result.interpretation.slice(0, 80),
-        stepCount: result.steps?.length ?? 0,
-        visualLinkCount: visualLinks.length,
-        syncedAt: result.syncedAt ?? 0,
-      },
-    }));
-
-    visualLinks.forEach((link, linkIndex) => {
-      const expression = link.expression ?? "";
-      const commandText = link.command ?? "";
-      const linkParameters = extractParameterNames([expression, commandText]);
-      objects.push(createMathObject({
-        id: `${resultId}:link:${safeObjectKey(link.id || String(linkIndex))}`,
-        kind: visualSyncObjectKind(link),
-        dimension: "abstract",
-        label: link.label || `Visual link ${linkIndex + 1}`,
-        value: expression || commandText || link.label,
-        summary: `CAS visual sync action for ${link.kind}.`,
-        linkedViews: link.kind === "plot" ? ["CAS", "Graph", "Inspector"] : link.kind === "table" ? ["CAS", "Table", "Inspector"] : ["CAS", "Command", "Inspector"],
-        dependencies: [
-          { id: resultId, label: `Algebra result ${index + 1}`, role: "source" },
-          ...linkParameters.map((name) => parameterDependency(name)),
-        ],
-        metadata: {
-          ...baseMetadata,
-          syncKind: link.kind,
-          auto: Boolean(link.auto),
-          resultId: result.id,
-          expression: expression.slice(0, 120),
-          command: commandText.slice(0, 120),
-          parameterCount: linkParameters.length,
-        },
-      }));
-    });
-  });
-
-  return objects;
-}
-
-function algebraObjectId(kind: "plot" | "parameter" | "result", id: string) {
-  return `algebra:${kind}:${safeObjectKey(id)}`;
-}
-
-function safeObjectKey(value: string) {
-  return value.replace(/[^a-z0-9:_-]+/gi, "-").replace(/^-+|-+$/g, "") || "item";
-}
-
-function algebraResultKind(intent: string): MathObjectKind {
-  if (intent === "plot") return "function";
-  if (intent === "table") return "table";
-  if (intent === "matrix") return "matrix";
-  if (["solve", "simplify", "factor", "expand", "differentiate", "integrate"].includes(intent)) return "equation";
-  return "expression";
-}
-
-function resultObjectKind(result: ResultCard): MathObjectKind {
-  if (/matrix/i.test(result.interpretation)) return "matrix";
-  if (/table/i.test(result.interpretation) || result.table?.length) return "table";
-  if (/plot|graph|function|derivative|integral/i.test(result.interpretation)) return "function";
-  if (/solve|equation|simplify|factor|expand|symbolic/i.test(result.interpretation)) return "equation";
-  return "result";
-}
-
-function visualSyncObjectKind(link: CasVisualSyncLink): MathObjectKind {
-  if (link.kind === "plot") return "function";
-  if (link.kind === "table") return "table";
-  return "transform-helper";
-}
-
-function graphValueLabel(expression: string, kind: PlotKind) {
-  if (kind === "inequality") return expression;
-  if (kind === "scatter") return `scatter ${expression}`;
-  if (kind === "regression") return expression;
-  return `y = ${expression}`;
-}
-
-function graphPlotIdFromWorkspaceObjectId(objectId: string) {
-  return objectId.match(/^plot:(.+)$/)?.[1] ?? objectId.match(/^algebra:plot:(.+)$/)?.[1] ?? null;
-}
-
-function algebraResultIdFromWorkspaceObjectId(objectId: string) {
-  return objectId.match(/^result:(.+)$/)?.[1] ?? objectId.match(/^algebra:result:(.+)$/)?.[1] ?? null;
-}
-
-function algebraParameterNameFromWorkspaceObjectId(objectId: string) {
-  return objectId.match(/^slider:(.+)$/)?.[1] ?? objectId.match(/^algebra:parameter:(.+)$/)?.[1] ?? null;
-}
-
-function createGeometryWorkspaceObjects(construction: Construction, activeTool: GeometryTool): WorkspaceMathObject[] {
-  const objects: WorkspaceMathObject[] = [];
-  const pointMap = new Map(construction.points.map((point) => [point.id, point]));
-  const dependency = (kind: NonNullable<SelectedGeoObject>["kind"], id: string, label: string, role = "parent") => ({
-    id: workspaceGeometryObjectId(kind, id),
-    label,
-    role,
-  });
-  const pointDependency = (id: string, role = "parent") => {
-    const point = pointMap.get(id);
-    return dependency("point", id, point ? `Point ${point.label}` : `Point ${id}`, role);
-  };
-  const baseMetadata = { source: "live-workspace", subsystem: "geometry-2d", activeTool };
-
-  construction.points.forEach((point) => {
-    objects.push(createMathObject({
-      id: workspaceGeometryObjectId("point", point.id),
-      kind: "point",
-      dimension: "2d",
-      label: `Point ${point.label}`,
-      value: `(${roundTo(point.x, 1)}, ${roundTo(point.y, 1)})`,
-      summary: "Free or constrained 2D construction point.",
-      locked: point.locked,
-      style: { color: point.color ?? "#06b6d4", opacity: 1 },
-      transform: { position: { x: point.x, y: point.y, z: 0 } },
-      geometry: { type: "point", position: { x: point.x, y: point.y, z: 0 } },
-      metadata: { ...baseMetadata, localId: point.id, localKind: "point" },
-    }));
-  });
-
-  construction.lines.forEach((line, index) => {
-    const a = pointMap.get(line.a);
-    const b = pointMap.get(line.b);
-    if (!a || !b) return;
-    const kind = line.kind ?? "segment";
-    objects.push(createMathObject({
-      id: workspaceGeometryObjectId("line", line.id),
-      kind: kind === "vector" ? "vector" : kind,
-      dimension: "2d",
-      label: `${lineKindLabel(kind)} ${index + 1}`,
-      value: lineEquationLabel(a, b),
-      summary: `${lineKindLabel(kind)} through ${a.label} and ${b.label}.`,
-      locked: line.locked,
-      style: { color: line.color ?? defaultLineColor(kind), opacity: 1 },
-      geometry: { type: kind === "vector" ? "segment" : kind, start: vecFromPoint(a), end: vecFromPoint(b) },
-      dependencies: [pointDependency(line.a), pointDependency(line.b)],
-      metadata: { ...baseMetadata, localId: line.id, localKind: "line", lineKind: kind, length: roundTo(distance(a, b), 3) },
-    }));
-  });
-
-  construction.circles.forEach((circle, index) => {
-    const center = pointMap.get(circle.center);
-    const edge = pointMap.get(circle.edge);
-    if (!center || !edge) return;
-    const radius = distance(center, edge);
-    objects.push(createMathObject({
-      id: workspaceGeometryObjectId("circle", circle.id),
-      kind: "circle",
-      dimension: "2d",
-      label: `Circle ${index + 1}`,
-      value: `center ${center.label}, r=${roundTo(radius, 2)}`,
-      summary: "Circle by center and radius point.",
-      locked: circle.locked,
-      style: { color: circle.color ?? "#06b6d4", fill: circle.fill, opacity: 1 },
-      geometry: { type: "circle", center: vecFromPoint(center), radius },
-      dependencies: [pointDependency(circle.center, "center"), pointDependency(circle.edge, "radius")],
-      metadata: { ...baseMetadata, localId: circle.id, localKind: "circle", radius: roundTo(radius, 3), area: roundTo(Math.PI * radius * radius, 3) },
-    }));
-  });
-
-  construction.polygons.forEach((polygon, index) => {
-    const points = polygon.points.map((id) => pointMap.get(id)).filter(Boolean) as GeoPoint[];
-    if (points.length < 3) return;
-    objects.push(createMathObject({
-      id: workspaceGeometryObjectId("polygon", polygon.id),
-      kind: "polygon",
-      dimension: "2d",
-      label: `Polygon ${index + 1}`,
-      value: `${points.length} vertices, area=${roundTo(polygonArea(points), 2)}`,
-      summary: "Dependent polygon with live area and side measurements.",
-      locked: polygon.locked,
-      style: { color: polygon.color ?? "#f59e0b", fill: polygon.fill, opacity: 1 },
-      geometry: { type: "polygon", vertices: points.map(vecFromPoint) },
-      dependencies: polygon.points.map((id) => pointDependency(id, "vertex")),
-      metadata: { ...baseMetadata, localId: polygon.id, localKind: "polygon", vertexCount: points.length, perimeter: roundTo(polygonSideLengths(points).reduce((sum, side) => sum + side, 0), 3), area: roundTo(polygonArea(points), 3) },
-    }));
-  });
-
-  construction.angles.forEach((angle, index) => {
-    const a = pointMap.get(angle.a);
-    const vertex = pointMap.get(angle.vertex);
-    const b = pointMap.get(angle.b);
-    if (!a || !vertex || !b) return;
-    objects.push(createMathObject({
-      id: workspaceGeometryObjectId("angle", angle.id),
-      kind: "angle",
-      dimension: "2d",
-      label: `Angle ${index + 1}`,
-      value: `${roundTo(angleDegrees(a, vertex, b), 2)} deg`,
-      summary: `Angle ${a.label}${vertex.label}${b.label}.`,
-      locked: angle.locked,
-      style: { color: angle.color ?? "#ef4444", opacity: 1 },
-      geometry: { type: "angle", vertex: vecFromPoint(vertex), armA: vecFromPoint(a), armB: vecFromPoint(b) },
-      dependencies: [pointDependency(angle.a), pointDependency(angle.vertex, "vertex"), pointDependency(angle.b)],
-      metadata: { ...baseMetadata, localId: angle.id, localKind: "angle", degrees: roundTo(angleDegrees(a, vertex, b), 3) },
-    }));
-  });
-
-  construction.arcs.forEach((arc, index) => {
-    const center = pointMap.get(arc.center);
-    const start = pointMap.get(arc.start);
-    const end = pointMap.get(arc.end);
-    if (!center || !start || !end) return;
-    const radius = distance(center, start);
-    const angles = arcAngles(center, start, end, arc.kind === "semicircle");
-    objects.push(createMathObject({
-      id: workspaceGeometryObjectId("arc", arc.id),
-      kind: "arc",
-      dimension: "2d",
-      label: `${arc.kind} ${index + 1}`,
-      value: `r=${roundTo(radius, 2)}, angle=${roundTo(arcCentralAngle(center, start, end, arc.kind === "semicircle"), 2)} deg`,
-      summary: "Arc or sector driven by center/start/end points.",
-      locked: arc.locked,
-      style: { color: arc.color ?? "#14b8a6", fill: arc.fill, opacity: 1 },
-      geometry: { type: "arc", center: vecFromPoint(center), radius, startAngle: angles.startAngle, endAngle: angles.endAngle },
-      dependencies: [pointDependency(arc.center, "center"), pointDependency(arc.start, "start"), pointDependency(arc.end, "end")],
-      metadata: { ...baseMetadata, localId: arc.id, localKind: "arc", arcKind: arc.kind, radius: roundTo(radius, 3) },
-    }));
-  });
-
-  construction.texts.forEach((note, index) => {
-    const point = pointMap.get(note.point);
-    if (!point) return;
-    objects.push(createMathObject({
-      id: workspaceGeometryObjectId("text", note.id),
-      kind: "text",
-      dimension: "2d",
-      role: "annotation",
-      label: `Text ${index + 1}`,
-      value: note.text,
-      summary: `Annotation anchored to point ${point.label}.`,
-      locked: note.locked,
-      style: { color: note.color ?? "#38bdf8", opacity: note.opacity ?? 1 },
-      transform: { position: vecFromPoint(point) },
-      geometry: { type: "point", position: vecFromPoint(point) },
-      dependencies: [pointDependency(note.point, "anchor")],
-      metadata: { ...baseMetadata, localId: note.id, localKind: "text" },
-    }));
-  });
-
-  construction.conics.forEach((conic, index) => {
-    const center = pointMap.get(conic.center);
-    if (!center) return;
-    objects.push(createMathObject({
-      id: workspaceGeometryObjectId("conic", conic.id),
-      kind: "conic",
-      dimension: "2d",
-      label: `${conic.kind} ${index + 1}`,
-      value: conicEquation(conic),
-      summary: "Editable conic object with center, a, and b parameters.",
-      locked: conic.locked,
-      style: { color: conic.color ?? defaultConicColor(conic.kind), fill: conic.fill, opacity: 1 },
-      transform: { position: vecFromPoint(center) },
-      dependencies: [pointDependency(conic.center, "center")],
-      metadata: { ...baseMetadata, localId: conic.id, localKind: "conic", conicKind: conic.kind, a: conic.a, b: conic.b },
-    }));
-  });
-
-  construction.constraints.forEach((constraint, index) => {
-    objects.push(createMathObject({
-      id: workspaceGeometryObjectId("constraint", constraint.id),
-      kind: "transform-helper",
-      dimension: "2d",
-      role: "helper",
-      label: `${constraint.type} constraint ${index + 1}`,
-      value: constraintLabel(constraint, construction),
-      summary: "Live construction constraint solved whenever parent objects move.",
-      geometry: { type: "none" },
-      constraints: [workspaceConstraintFromGeoConstraint(constraint)],
-      dependencies: constraintPointIds(constraint).map((id) => pointDependency(id)),
-      metadata: { ...baseMetadata, localId: constraint.id, localKind: "constraint", constraintType: constraint.type },
-    }));
-  });
-
-  construction.transforms.forEach((transform, index) => {
-    objects.push(createMathObject({
-      id: workspaceGeometryObjectId("transform", transform.id),
-      kind: "transform-helper",
-      dimension: "2d",
-      role: "helper",
-      label: `${transform.type} transform ${index + 1}`,
-      value: `${transform.sourceKind}:${transform.sourceId} -> ${transform.resultIds.length} result(s)`,
-      summary: "Transform record connecting original and generated construction objects.",
-      geometry: { type: "none" },
-      dependencies: [dependency(transform.sourceKind, transform.sourceId, `${transform.sourceKind} ${transform.sourceId}`, "source")],
-      metadata: { ...baseMetadata, localId: transform.id, localKind: "transform", transformType: transform.type, resultCount: transform.resultIds.length },
-    }));
-  });
-
-  return objects;
-}
-
-function constructionSignature(construction: Construction) {
-  return JSON.stringify(construction);
-}
-
-function toggleObjectLock(construction: Construction, kind: Exclude<NonNullable<SelectedGeoObject>["kind"], "constraint" | "transform">, id: string): Construction {
-  if (kind === "point") return { ...construction, points: construction.points.map((point) => point.id === id ? { ...point, locked: !point.locked } : point) };
-  if (kind === "line") return { ...construction, lines: construction.lines.map((line) => line.id === id ? { ...line, locked: !line.locked } : line) };
-  if (kind === "circle") return { ...construction, circles: construction.circles.map((circle) => circle.id === id ? { ...circle, locked: !circle.locked } : circle) };
-  if (kind === "polygon") return { ...construction, polygons: construction.polygons.map((polygon) => polygon.id === id ? { ...polygon, locked: !polygon.locked } : polygon) };
-  if (kind === "angle") return { ...construction, angles: construction.angles.map((angle) => angle.id === id ? { ...angle, locked: !angle.locked } : angle) };
-  if (kind === "arc") return { ...construction, arcs: construction.arcs.map((arc) => arc.id === id ? { ...arc, locked: !arc.locked } : arc) };
-  if (kind === "text") return { ...construction, texts: construction.texts.map((note) => note.id === id ? { ...note, locked: !note.locked } : note) };
-  return { ...construction, conics: construction.conics.map((conic) => conic.id === id ? { ...conic, locked: !conic.locked } : conic) };
-}
-
-function setGeometryObjectLocked(construction: Construction, kind: Exclude<NonNullable<SelectedGeoObject>["kind"], "constraint" | "transform">, id: string, locked: boolean): Construction {
-  if (kind === "point") return { ...construction, points: construction.points.map((point) => point.id === id ? { ...point, locked } : point) };
-  if (kind === "line") return { ...construction, lines: construction.lines.map((line) => line.id === id ? { ...line, locked } : line) };
-  if (kind === "circle") return { ...construction, circles: construction.circles.map((circle) => circle.id === id ? { ...circle, locked } : circle) };
-  if (kind === "polygon") return { ...construction, polygons: construction.polygons.map((polygon) => polygon.id === id ? { ...polygon, locked } : polygon) };
-  if (kind === "angle") return { ...construction, angles: construction.angles.map((angle) => angle.id === id ? { ...angle, locked } : angle) };
-  if (kind === "arc") return { ...construction, arcs: construction.arcs.map((arc) => arc.id === id ? { ...arc, locked } : arc) };
-  if (kind === "text") return { ...construction, texts: construction.texts.map((note) => note.id === id ? { ...note, locked } : note) };
-  return { ...construction, conics: construction.conics.map((conic) => conic.id === id ? { ...conic, locked } : conic) };
-}
-
-function unlockObject(construction: Construction, kind: Exclude<NonNullable<SelectedGeoObject>["kind"], "constraint" | "transform">, id: string): Construction {
-  if (kind === "point") return { ...construction, points: construction.points.map((point) => point.id === id ? { ...point, locked: false } : point) };
-  if (kind === "line") return { ...construction, lines: construction.lines.map((line) => line.id === id ? { ...line, locked: false } : line) };
-  if (kind === "circle") return { ...construction, circles: construction.circles.map((circle) => circle.id === id ? { ...circle, locked: false } : circle) };
-  if (kind === "polygon") return { ...construction, polygons: construction.polygons.map((polygon) => polygon.id === id ? { ...polygon, locked: false } : polygon) };
-  if (kind === "angle") return { ...construction, angles: construction.angles.map((angle) => angle.id === id ? { ...angle, locked: false } : angle) };
-  if (kind === "arc") return { ...construction, arcs: construction.arcs.map((arc) => arc.id === id ? { ...arc, locked: false } : arc) };
-  if (kind === "text") return { ...construction, texts: construction.texts.map((note) => note.id === id ? { ...note, locked: false } : note) };
-  return { ...construction, conics: construction.conics.map((conic) => conic.id === id ? { ...conic, locked: false } : conic) };
-}
-
-function pointIdsForGeoObject(construction: Construction, target: NonNullable<SelectedGeoObject>) {
-  if (target.kind === "point") return [target.id];
-  if (target.kind === "line") {
-    const line = construction.lines.find((item) => item.id === target.id);
-    return line ? [line.a, line.b] : [];
-  }
-  if (target.kind === "circle") {
-    const circle = construction.circles.find((item) => item.id === target.id);
-    return circle ? [circle.center, circle.edge] : [];
-  }
-  if (target.kind === "polygon") return construction.polygons.find((item) => item.id === target.id)?.points ?? [];
-  if (target.kind === "angle") {
-    const angle = construction.angles.find((item) => item.id === target.id);
-    return angle ? [angle.a, angle.vertex, angle.b] : [];
-  }
-  if (target.kind === "arc") {
-    const arc = construction.arcs.find((item) => item.id === target.id);
-    return arc ? [arc.center, arc.start, arc.end] : [];
-  }
-  if (target.kind === "text") {
-    const note = construction.texts.find((item) => item.id === target.id);
-    return note ? [note.point] : [];
-  }
-  if (target.kind === "conic") {
-    const conic = construction.conics.find((item) => item.id === target.id);
-    return conic ? [conic.center] : [];
-  }
-  return [];
-}
-
-function isGeometryObjectLocked(construction: Construction, target: NonNullable<SelectedGeoObject>) {
-  if (target.kind === "point") return Boolean(construction.points.find((item) => item.id === target.id)?.locked);
-  if (target.kind === "line") return Boolean(construction.lines.find((item) => item.id === target.id)?.locked);
-  if (target.kind === "circle") return Boolean(construction.circles.find((item) => item.id === target.id)?.locked);
-  if (target.kind === "polygon") return Boolean(construction.polygons.find((item) => item.id === target.id)?.locked);
-  if (target.kind === "angle") return Boolean(construction.angles.find((item) => item.id === target.id)?.locked);
-  if (target.kind === "arc") return Boolean(construction.arcs.find((item) => item.id === target.id)?.locked);
-  if (target.kind === "text") return Boolean(construction.texts.find((item) => item.id === target.id)?.locked);
-  if (target.kind === "conic") return Boolean(construction.conics.find((item) => item.id === target.id)?.locked);
-  return false;
-}
-
-function objectKey(kind: NonNullable<SelectedGeoObject>["kind"], id: string) {
-  return `${kind}:${id}`;
-}
-
-function selectionFromObjectKey(key: string): NonNullable<SelectedGeoObject> {
-  const [kind, id] = key.split(":") as [NonNullable<SelectedGeoObject>["kind"], string];
-  return { kind, id };
-}
-
-function nodeLabelById(nodes: DependencyNode[], id: string) {
-  return nodes.find((node) => node.id === id)?.label ?? id;
-}
-
-function buildDependencyGraph(construction: Construction): DependencyNode[] {
-  const nodeMap = new Map<string, DependencyNode>();
-  const addNode = (id: string, label: string, locked?: boolean) => {
-    if (!nodeMap.has(id)) nodeMap.set(id, { id, label, parents: [], children: [], status: locked ? "locked" : "free" });
-  };
-  const link = (parent: string, child: string) => {
-    const parentNode = nodeMap.get(parent);
-    const childNode = nodeMap.get(child);
-    if (!parentNode || !childNode) return;
-    if (!parentNode.children.includes(child)) parentNode.children.push(child);
-    if (!childNode.parents.includes(parent)) childNode.parents.push(parent);
-    if (childNode.status === "free") childNode.status = "dependent";
-  };
-
-  construction.points.forEach((point) => addNode(objectKey("point", point.id), `Point ${point.label}`, point.locked));
-  construction.lines.forEach((line, index) => addNode(objectKey("line", line.id), `${lineKindLabel(line.kind ?? "segment")} ${index + 1}`, line.locked));
-  construction.circles.forEach((circle, index) => addNode(objectKey("circle", circle.id), `Circle ${index + 1}`, circle.locked));
-  construction.polygons.forEach((polygon, index) => addNode(objectKey("polygon", polygon.id), `Polygon ${index + 1}`, polygon.locked));
-  construction.angles.forEach((angle, index) => addNode(objectKey("angle", angle.id), `Angle ${index + 1}`, angle.locked));
-  construction.arcs.forEach((arc, index) => addNode(objectKey("arc", arc.id), `${arc.kind} ${index + 1}`, arc.locked));
-  construction.texts.forEach((note, index) => addNode(objectKey("text", note.id), `Text ${index + 1}`, note.locked));
-  construction.conics.forEach((conic, index) => addNode(objectKey("conic", conic.id), `${conic.kind} ${index + 1}`, conic.locked));
-  construction.transforms.forEach((transform, index) => addNode(objectKey("transform", transform.id), `${transform.type} ${index + 1}`));
-  construction.constraints.forEach((constraint, index) => addNode(objectKey("constraint", constraint.id), `${constraint.type} ${index + 1}`));
-
-  construction.lines.forEach((line) => {
-    link(objectKey("point", line.a), objectKey("line", line.id));
-    link(objectKey("point", line.b), objectKey("line", line.id));
-  });
-  construction.circles.forEach((circle) => {
-    link(objectKey("point", circle.center), objectKey("circle", circle.id));
-    link(objectKey("point", circle.edge), objectKey("circle", circle.id));
-  });
-  construction.polygons.forEach((polygon) => polygon.points.forEach((pointId) => link(objectKey("point", pointId), objectKey("polygon", polygon.id))));
-  construction.angles.forEach((angle) => {
-    link(objectKey("point", angle.a), objectKey("angle", angle.id));
-    link(objectKey("point", angle.vertex), objectKey("angle", angle.id));
-    link(objectKey("point", angle.b), objectKey("angle", angle.id));
-  });
-  construction.arcs.forEach((arc) => {
-    link(objectKey("point", arc.center), objectKey("arc", arc.id));
-    link(objectKey("point", arc.start), objectKey("arc", arc.id));
-    link(objectKey("point", arc.end), objectKey("arc", arc.id));
-  });
-  construction.texts.forEach((note) => link(objectKey("point", note.point), objectKey("text", note.id)));
-  construction.conics.forEach((conic) => link(objectKey("point", conic.center), objectKey("conic", conic.id)));
-  construction.transforms.forEach((transform) => {
-    const transformId = objectKey("transform", transform.id);
-    link(objectKey(transform.sourceKind, transform.sourceId), transformId);
-    if (transform.center) link(objectKey("point", transform.center), transformId);
-    transform.resultIds.forEach((resultId) => {
-      if (construction.points.some((point) => point.id === resultId)) link(transformId, objectKey("point", resultId));
-      if (construction.polygons.some((polygon) => polygon.id === resultId)) link(transformId, objectKey("polygon", resultId));
-      if (construction.circles.some((circle) => circle.id === resultId)) link(transformId, objectKey("circle", resultId));
-      if (construction.arcs.some((arc) => arc.id === resultId)) link(transformId, objectKey("arc", resultId));
-      if (construction.texts.some((note) => note.id === resultId)) link(transformId, objectKey("text", resultId));
-      if (construction.conics.some((conic) => conic.id === resultId)) link(transformId, objectKey("conic", resultId));
-    });
-  });
-  construction.constraints.forEach((constraint) => {
-    const constraintId = objectKey("constraint", constraint.id);
-    constraintPointIds(constraint).forEach((pointId) => link(objectKey("point", pointId), constraintId));
-    if (constraint.type === "parallel" || constraint.type === "perpendicular") {
-      link(objectKey("line", constraint.sourceLine), constraintId);
-      link(constraintId, objectKey("line", constraint.line));
-    }
-    if (constraint.type === "on-circle" || constraint.type === "tangent") link(objectKey("circle", constraint.circle), constraintId);
-    if (constraint.type === "intersection") {
-      link(objectKey("line", constraint.first), constraintId);
-      link(objectKey("line", constraint.second), constraintId);
-    }
-    if (constraint.type === "angle-bisector") link(constraintId, objectKey("line", constraint.line));
-    if (constraint.type === "midpoint" || constraint.type === "intersection" || constraint.type === "tangent") link(constraintId, objectKey("point", constraint.type === "tangent" ? constraint.tangentPoint : constraint.point));
-  });
-
-  return Array.from(nodeMap.values()).map((node) => node.status === "locked" && node.parents.length > 0 ? { ...node, status: "warning" } : node);
-}
-
-function constructionDiagnostics(construction: Construction, nodes: DependencyNode[]) {
-  const messages: string[] = [];
-  const lockedDependent = nodes.filter((node) => node.status === "warning" && node.parents.length > 0);
-  lockedDependent.forEach((node) => messages.push(`${node.label} is locked but has parent dependencies.`));
-  construction.constraints.forEach((constraint) => {
-    if (constraint.type === "tangent") {
-      const circle = construction.circles.find((item) => item.id === constraint.circle);
-      const through = pointById(construction.points, constraint.throughPoint);
-      const center = circle ? pointById(construction.points, circle.center) : null;
-      const edge = circle ? pointById(construction.points, circle.edge) : null;
-      if (through && center && edge && distance(through, center) <= distance(center, edge)) messages.push(`Tangent from ${through.label} is invalid because the point is inside or on the circle.`);
-    }
-    if (constraint.type === "intersection") {
-      const first = construction.lines.find((item) => item.id === constraint.first);
-      const second = construction.lines.find((item) => item.id === constraint.second);
-      if (first && second && !lineIntersection(first, second, construction.points)) messages.push("Line intersection constraint is currently parallel or undefined.");
-    }
-  });
-  return messages;
-}
-
-function removeGeometryObject(construction: Construction, kind: NonNullable<SelectedGeoObject>["kind"], id: string): Construction {
-  if (kind === "point") {
-    const selected = new Set([id]);
-    return {
-      points: construction.points.filter((point) => !selected.has(point.id)),
-      lines: construction.lines.filter((line) => !selected.has(line.a) && !selected.has(line.b)),
-      circles: construction.circles.filter((circle) => !selected.has(circle.center) && !selected.has(circle.edge)),
-      polygons: construction.polygons
-        .map((polygon) => ({ ...polygon, points: polygon.points.filter((pointId) => !selected.has(pointId)) }))
-        .filter((polygon) => polygon.points.length >= 3),
-      angles: construction.angles.filter((angle) => !selected.has(angle.a) && !selected.has(angle.vertex) && !selected.has(angle.b)),
-      arcs: construction.arcs.filter((arc) => !selected.has(arc.center) && !selected.has(arc.start) && !selected.has(arc.end)),
-      texts: construction.texts.filter((note) => !selected.has(note.point)),
-      conics: construction.conics.filter((conic) => !selected.has(conic.center)),
-      transforms: construction.transforms.filter((transform) => transform.sourceKind !== "point" || transform.sourceId !== id),
-      constraints: construction.constraints.filter((constraint) => constraintPointIds(constraint).every((pointId) => !selected.has(pointId))),
-    };
-  }
-  if (kind === "line") {
-    return {
-      ...construction,
-      lines: construction.lines.filter((line) => line.id !== id),
-      constraints: construction.constraints.filter((constraint) => {
-        if (constraint.type === "parallel" || constraint.type === "perpendicular") return constraint.sourceLine !== id && constraint.line !== id;
-        if (constraint.type === "intersection") return constraint.first !== id && constraint.second !== id;
-        if (constraint.type === "angle-bisector" || constraint.type === "tangent") return constraint.line !== id;
-        return true;
-      }),
-    };
-  }
-  if (kind === "circle") {
-    return {
-      ...construction,
-      circles: construction.circles.filter((circle) => circle.id !== id),
-      constraints: construction.constraints.filter((constraint) => {
-        if (constraint.type === "on-circle" || constraint.type === "tangent") return constraint.circle !== id;
-        return true;
-      }),
-    };
-  }
-  if (kind === "polygon") return { ...construction, polygons: construction.polygons.filter((polygon) => polygon.id !== id) };
-  if (kind === "angle") {
-    return {
-      ...construction,
-      angles: construction.angles.filter((angle) => angle.id !== id),
-      constraints: construction.constraints.filter((constraint) => constraint.type !== "angle-bisector" || ![constraint.a, constraint.vertex, constraint.b].includes(id)),
-    };
-  }
-  if (kind === "arc") return { ...construction, arcs: construction.arcs.filter((arc) => arc.id !== id), transforms: construction.transforms.filter((transform) => !(transform.sourceKind === "arc" && transform.sourceId === id) && !transform.resultIds.includes(id)) };
-  if (kind === "text") return { ...construction, texts: construction.texts.filter((note) => note.id !== id), transforms: construction.transforms.filter((transform) => !(transform.sourceKind === "text" && transform.sourceId === id) && !transform.resultIds.includes(id)) };
-  if (kind === "conic") return { ...construction, conics: construction.conics.filter((conic) => conic.id !== id), transforms: construction.transforms.filter((transform) => !(transform.sourceKind === "conic" && transform.sourceId === id) && !transform.resultIds.includes(id)) };
-  if (kind === "transform") return { ...construction, transforms: construction.transforms.filter((transform) => transform.id !== id) };
-  return { ...construction, constraints: construction.constraints.filter((constraint) => constraint.id !== id) };
 }
 
 function addParallelPerpendicularConstraint(construction: Construction, type: "parallel" | "perpendicular", aId: string, bId: string, throughPointId: string) {
@@ -6998,152 +5083,6 @@ function addFixedLengthConstraint(construction: Construction, anchorId: string, 
   return solveConstruction({ ...construction, constraints: [...construction.constraints, { id: crypto.randomUUID(), type: "fixed-length", anchor: anchorId, point: pointId, length: distance(anchor, point) }] });
 }
 
-function addAngleObject(construction: Construction, aId: string, vertexId: string, bId: string) {
-  return solveConstruction({ ...construction, angles: [...construction.angles, { id: crypto.randomUUID(), a: aId, vertex: vertexId, b: bId }] });
-}
-
-function addAngleBisectorConstraint(construction: Construction, aId: string, vertexId: string, bId: string) {
-  const a = pointById(construction.points, aId), vertex = pointById(construction.points, vertexId), b = pointById(construction.points, bId);
-  if (!a || !vertex || !b) return construction;
-  const end = angleBisectorEndpoint(a, vertex, b, 130);
-  const endPoint: GeoPoint = { id: crypto.randomUUID(), x: end.x, y: end.y, label: nextPointLabel(construction.points) };
-  const bisector: GeoLine = { id: crypto.randomUUID(), a: vertexId, b: endPoint.id, kind: "ray" };
-  return solveConstruction({
-    ...construction,
-    points: [...construction.points, endPoint],
-    angles: [...construction.angles, { id: crypto.randomUUID(), a: aId, vertex: vertexId, b: bId }],
-    lines: [...construction.lines, bisector],
-    constraints: [...construction.constraints, { id: crypto.randomUUID(), type: "angle-bisector", a: aId, vertex: vertexId, b: bId, line: bisector.id }],
-  });
-}
-
-function addCircleThroughThreePoints(construction: Construction, aId: string, bId: string, cId: string) {
-  const a = pointById(construction.points, aId), b = pointById(construction.points, bId), c = pointById(construction.points, cId);
-  if (!a || !b || !c) return construction;
-  const center = circumcenter(a, b, c);
-  if (!center) return construction;
-  const centerPoint: GeoPoint = { id: crypto.randomUUID(), x: center.x, y: center.y, label: nextPointLabel(construction.points) };
-  return solveConstruction({ ...construction, points: [...construction.points, centerPoint], circles: [...construction.circles, { id: crypto.randomUUID(), center: centerPoint.id, edge: aId }] });
-}
-
-function addSemicircleConstruction(construction: Construction, aId: string, bId: string) {
-  const a = pointById(construction.points, aId), b = pointById(construction.points, bId);
-  if (!a || !b) return construction;
-  const centerPoint: GeoPoint = { id: crypto.randomUUID(), x: (a.x + b.x) / 2, y: (a.y + b.y) / 2, label: nextPointLabel(construction.points) };
-  return solveConstruction({ ...construction, points: [...construction.points, centerPoint], arcs: [...construction.arcs, { id: crypto.randomUUID(), kind: "semicircle", center: centerPoint.id, start: aId, end: bId }] });
-}
-
-function addRegularPolygonConstruction(construction: Construction, aId: string, bId: string, sides: number) {
-  const a = pointById(construction.points, aId), b = pointById(construction.points, bId);
-  if (!a || !b || sides < 3) return construction;
-  const dx = b.x - a.x;
-  const dy = b.y - a.y;
-  const length = Math.hypot(dx, dy);
-  if (length < 1) return construction;
-  const angle = Math.atan2(dy, dx);
-  const turn = (Math.PI * 2) / sides;
-  const newPoints: GeoPoint[] = [];
-  let current = { x: b.x, y: b.y };
-  let direction = angle;
-  for (let index = 2; index < sides; index += 1) {
-    direction += turn;
-    current = { x: current.x + Math.cos(direction) * length, y: current.y + Math.sin(direction) * length };
-    newPoints.push({ id: crypto.randomUUID(), x: current.x, y: current.y, label: nextPointLabel([...construction.points, ...newPoints]) });
-  }
-  return solveConstruction({ ...construction, points: [...construction.points, ...newPoints], polygons: [...construction.polygons, { id: crypto.randomUUID(), points: [aId, bId, ...newPoints.map((point) => point.id)] }] });
-}
-
-function addCompassCircleConstruction(construction: Construction, fromAId: string, fromBId: string, centerId: string) {
-  const a = pointById(construction.points, fromAId), b = pointById(construction.points, fromBId), center = pointById(construction.points, centerId);
-  if (!a || !b || !center) return construction;
-  const length = distance(a, b);
-  const edgePoint: GeoPoint = { id: crypto.randomUUID(), x: center.x + length, y: center.y, label: nextPointLabel(construction.points) };
-  return solveConstruction({ ...construction, points: [...construction.points, edgePoint], circles: [...construction.circles, { id: crypto.randomUUID(), center: centerId, edge: edgePoint.id }] });
-}
-
-function addTangentConstruction(construction: Construction, circleId: string, throughPointId: string) {
-  const circle = construction.circles.find((item) => item.id === circleId);
-  const through = pointById(construction.points, throughPointId);
-  const center = circle ? pointById(construction.points, circle.center) : null;
-  const edge = circle ? pointById(construction.points, circle.edge) : null;
-  if (!circle || !through || !center || !edge) return construction;
-  const radius = distance(center, edge);
-  const tangentPoints = tangentPointsFromExternalPoint(through, center, radius);
-  if (!tangentPoints.length) return construction;
-  const startIndex = construction.points.length;
-  const newPoints = tangentPoints.map((point, index): GeoPoint => ({ id: crypto.randomUUID(), x: point.x, y: point.y, label: pointLabelForIndex(startIndex + index) }));
-  const tangentLines = newPoints.map((point): GeoLine => ({ id: crypto.randomUUID(), a: throughPointId, b: point.id, kind: "ray" }));
-  return solveConstruction({
-    ...construction,
-    points: [...construction.points, ...newPoints],
-    lines: [...construction.lines, ...tangentLines],
-    constraints: [
-      ...construction.constraints,
-      ...newPoints.map((point, index): GeoConstraint => ({ id: crypto.randomUUID(), type: "tangent", circle: circleId, throughPoint: throughPointId, tangentPoint: point.id, line: tangentLines[index].id })),
-    ],
-  });
-}
-
-function addTransformConstruction(construction: Construction, selected: NonNullable<SelectedGeoObject>, type: GeoTransformKind, options: { centerPointId?: string; lineId?: string; vectorPointIds?: [string, string] } = {}) {
-  if (selected.kind !== "point" && selected.kind !== "polygon" && selected.kind !== "circle" && selected.kind !== "conic" && selected.kind !== "arc" && selected.kind !== "text") return construction;
-  const center = (options.centerPointId ? pointById(construction.points, options.centerPointId) : null) ?? construction.points[0] ?? { id: "", x: 320, y: 210, label: "O" };
-  const reflectionLine = options.lineId ? construction.lines.find((line) => line.id === options.lineId) : null;
-  const vectorA = options.vectorPointIds ? pointById(construction.points, options.vectorPointIds[0]) : null;
-  const vectorB = options.vectorPointIds ? pointById(construction.points, options.vectorPointIds[1]) : null;
-  const transformPoint = (point: GeoPoint, index: number): GeoPoint => {
-    const next = transformCoordinates(point, center, type, {
-      line: reflectionLine,
-      points: construction.points,
-      vector: vectorA && vectorB ? { x: vectorB.x - vectorA.x, y: vectorB.y - vectorA.y } : undefined,
-    });
-    return { id: crypto.randomUUID(), x: next.x, y: next.y, label: pointLabelForIndex(construction.points.length + index), locked: false };
-  };
-  const sourcePoints = sourcePointIdsForSelection(construction, selected).map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
-  if (!sourcePoints.length) return construction;
-  const newPoints = sourcePoints.map(transformPoint);
-  const pointMap = new Map(sourcePoints.map((point, index) => [point.id, newPoints[index].id]));
-  const transform: GeoTransform = { id: crypto.randomUUID(), type, sourceKind: selected.kind, sourceId: selected.id, resultIds: [], center: center.id || undefined, line: options.lineId, vectorLine: options.vectorPointIds?.join(":"), angle: type === "rotation" ? 45 : undefined, scale: type === "dilation" ? 1.35 : undefined };
-  const next: Construction = { ...construction, points: [...construction.points, ...newPoints], transforms: construction.transforms };
-
-  if (selected.kind === "point") {
-    transform.resultIds = [newPoints[0].id];
-    return { ...next, transforms: [...construction.transforms, transform] };
-  }
-  if (selected.kind === "polygon") {
-    const polygon = construction.polygons.find((item) => item.id === selected.id);
-    if (!polygon) return construction;
-    const result: GeoPolygon = { id: crypto.randomUUID(), points: polygon.points.map((id) => pointMap.get(id)).filter(Boolean) as string[] };
-    transform.resultIds = [result.id];
-    return { ...next, polygons: [...construction.polygons, result], transforms: [...construction.transforms, transform] };
-  }
-  if (selected.kind === "circle") {
-    const circle = construction.circles.find((item) => item.id === selected.id);
-    if (!circle) return construction;
-    const result: GeoCircle = { id: crypto.randomUUID(), center: pointMap.get(circle.center) ?? newPoints[0].id, edge: pointMap.get(circle.edge) ?? newPoints[1]?.id ?? newPoints[0].id };
-    transform.resultIds = [result.id];
-    return { ...next, circles: [...construction.circles, result], transforms: [...construction.transforms, transform] };
-  }
-  if (selected.kind === "arc") {
-    const arc = construction.arcs.find((item) => item.id === selected.id);
-    if (!arc) return construction;
-    const result: GeoArc = { ...arc, id: crypto.randomUUID(), center: pointMap.get(arc.center) ?? arc.center, start: pointMap.get(arc.start) ?? arc.start, end: pointMap.get(arc.end) ?? arc.end };
-    transform.resultIds = [result.id];
-    return { ...next, arcs: [...construction.arcs, result], transforms: [...construction.transforms, transform] };
-  }
-  if (selected.kind === "text") {
-    const note = construction.texts.find((item) => item.id === selected.id);
-    if (!note) return construction;
-    const result: GeoTextNote = { ...note, id: crypto.randomUUID(), point: pointMap.get(note.point) ?? note.point, text: `${note.text}'` };
-    transform.resultIds = [result.id];
-    return { ...next, texts: [...construction.texts, result], transforms: [...construction.transforms, transform] };
-  }
-  const conic = construction.conics.find((item) => item.id === selected.id);
-  if (!conic) return construction;
-  const resultConic: GeoConic = { ...conic, id: crypto.randomUUID(), center: pointMap.get(conic.center) ?? newPoints[0].id, a: type === "dilation" ? conic.a * 1.35 : conic.a, b: type === "dilation" ? conic.b * 1.35 : conic.b };
-  transform.resultIds = [resultConic.id];
-  return { ...next, conics: [...construction.conics, resultConic], transforms: [...construction.transforms, transform] };
-}
-
 function addPointOnCircleConstraint(construction: Construction, pointId: string) {
   const circle = construction.circles[0];
   if (!circle) return construction;
@@ -7151,12 +5090,10 @@ function addPointOnCircleConstraint(construction: Construction, pointId: string)
 }
 
 function addIntersectionConstraint(construction: Construction) {
-  if (construction.lines.length < 2) return construction;
-  const [first, second] = construction.lines.slice(-2);
-  const intersection = lineIntersection(first, second, construction.points);
-  if (!intersection) return construction;
-  const point: GeoPoint = { id: crypto.randomUUID(), x: intersection.x, y: intersection.y, label: nextPointLabel(construction.points) };
-  return solveConstruction({ ...construction, points: [...construction.points, point], constraints: [...construction.constraints, { id: crypto.randomUUID(), type: "intersection", first: first.id, second: second.id, point: point.id }] });
+  const hits = allIntersections(construction).filter((hit) => !construction.points.some((point) => Math.hypot(point.x - hit.x, point.y - hit.y) < 4));
+  if (!hits.length) return construction;
+  const points = hits.slice(0, 12).map((hit, index) => ({ id: crypto.randomUUID(), x: hit.x, y: hit.y, label: nextPointLabel(construction.points, index), style: { color: "#f97316" } }));
+  return solveConstruction({ ...construction, points: [...construction.points, ...points] });
 }
 
 function solveConstruction(construction: Construction, draggedPointId?: string): Construction {
@@ -7198,27 +5135,6 @@ function solveConstruction(construction: Construction, draggedPointId?: string):
           points = updatePoint(points, end.id, { x: through.x + vector.x * length, y: through.y + vector.y * length });
         }
       }
-      if (constraint.type === "angle-bisector") {
-        const a = pointById(points, constraint.a), vertex = pointById(points, constraint.vertex), b = pointById(points, constraint.b);
-        const line = construction.lines.find((item) => item.id === constraint.line);
-        const end = line ? pointById(points, line.b) : null;
-        if (a && vertex && b && end) {
-          const next = angleBisectorEndpoint(a, vertex, b, Math.max(80, distance(vertex, end)));
-          points = updatePoint(points, end.id, next);
-        }
-      }
-      if (constraint.type === "tangent") {
-        const circle = construction.circles.find((item) => item.id === constraint.circle);
-        const through = pointById(points, constraint.throughPoint);
-        const tangent = pointById(points, constraint.tangentPoint);
-        const center = circle ? pointById(points, circle.center) : null;
-        const edge = circle ? pointById(points, circle.edge) : null;
-        if (circle && through && tangent && center && edge) {
-          const candidates = tangentPointsFromExternalPoint(through, center, distance(center, edge));
-          const next = candidates.sort((first, second) => distance(first, tangent) - distance(second, tangent))[0];
-          if (next) points = updatePoint(points, tangent.id, next);
-        }
-      }
       if (constraint.type === "intersection") {
         const first = construction.lines.find((item) => item.id === constraint.first);
         const second = construction.lines.find((item) => item.id === constraint.second);
@@ -7231,7 +5147,7 @@ function solveConstruction(construction: Construction, draggedPointId?: string):
 }
 
 function updatePoint(points: GeoPoint[], id: string, next: { x: number; y: number }) {
-  return points.map((point) => point.id === id && !point.locked ? { ...point, x: next.x, y: next.y } : point);
+  return points.map((point) => point.id === id ? { ...point, x: next.x, y: next.y } : point);
 }
 
 function unitVector(a: GeoPoint, b: GeoPoint, perpendicular = false) {
@@ -7244,134 +5160,6 @@ function normalize(x: number, y: number) {
   return { x: x / length, y: y / length };
 }
 
-function directionDegrees(a: { x: number; y: number }, b: { x: number; y: number }) {
-  const degrees = Math.atan2(a.y - b.y, b.x - a.x) * 180 / Math.PI;
-  return degrees < 0 ? degrees + 360 : degrees;
-}
-
-function slopeLabel(a: { x: number; y: number }, b: { x: number; y: number }) {
-  const dx = b.x - a.x;
-  if (Math.abs(dx) < 0.001) return "undefined";
-  return `${roundTo((a.y - b.y) / dx, 3)}`;
-}
-
-function sourcePointIdsForSelection(construction: Construction, selected: Pick<NonNullable<SelectedGeoObject>, "kind" | "id">) {
-  if (selected.kind === "point") return [selected.id];
-  if (selected.kind === "polygon") return construction.polygons.find((polygon) => polygon.id === selected.id)?.points ?? [];
-  if (selected.kind === "circle") {
-    const circle = construction.circles.find((item) => item.id === selected.id);
-    return circle ? [circle.center, circle.edge] : [];
-  }
-  if (selected.kind === "conic") {
-    const conic = construction.conics.find((item) => item.id === selected.id);
-    return conic ? [conic.center] : [];
-  }
-  if (selected.kind === "arc") {
-    const arc = construction.arcs.find((item) => item.id === selected.id);
-    return arc ? [arc.center, arc.start, arc.end] : [];
-  }
-  if (selected.kind === "text") {
-    const note = construction.texts.find((item) => item.id === selected.id);
-    return note ? [note.point] : [];
-  }
-  return [];
-}
-
-function transformCoordinates(point: { x: number; y: number }, center: { x: number; y: number }, type: GeoTransformKind, options: { line?: GeoLine | null; points?: GeoPoint[]; vector?: { x: number; y: number } } = {}) {
-  if (type === "translation") return { x: point.x + (options.vector?.x ?? 120), y: point.y + (options.vector?.y ?? 0) };
-  if (type === "reflection-line" && options.line && options.points) return reflectPointAcrossLine(point, options.line, options.points);
-  if (type === "reflection-point") return { x: center.x * 2 - point.x, y: center.y * 2 - point.y };
-  if (type === "reflection") return { x: point.x, y: center.y * 2 - point.y };
-  if (type === "dilation") return { x: center.x + (point.x - center.x) * 1.35, y: center.y + (point.y - center.y) * 1.35 };
-  const angle = Math.PI / 4;
-  const dx = point.x - center.x;
-  const dy = point.y - center.y;
-  return { x: center.x + dx * Math.cos(angle) - dy * Math.sin(angle), y: center.y + dx * Math.sin(angle) + dy * Math.cos(angle) };
-}
-
-function conicEquation(conic: GeoConic) {
-  const a = roundTo(conic.a / 40, 2);
-  const b = roundTo(conic.b / 40, 2);
-  if (conic.kind === "parabola") return `y^2 = ${roundTo(4 * a, 2)}x`;
-  if (conic.kind === "ellipse") return `x^2/${a}^2 + y^2/${b}^2 = 1`;
-  return `x^2/${a}^2 - y^2/${b}^2 = 1`;
-}
-
-function conicPath(conic: GeoConic, center: GeoPoint, branch: -1 | 1) {
-  const samples: string[] = [];
-  if (conic.kind === "parabola") {
-    for (let y = -conic.b; y <= conic.b; y += conic.b / 24) {
-      const x = center.x + (y * y) / Math.max(12, conic.a);
-      samples.push(`${x},${center.y + y}`);
-    }
-  } else if (conic.kind === "hyperbola") {
-    for (let t = -1.4; t <= 1.4; t += 0.08) {
-      const x = center.x + branch * conic.a * Math.cosh(t);
-      const y = center.y + conic.b * Math.sinh(t);
-      samples.push(`${x},${y}`);
-    }
-  }
-  return samples.length ? `M ${samples.join(" L ")}` : "";
-}
-
-function lineKindLabel(kind: GeoLineKind) {
-  if (kind === "line") return "Line";
-  if (kind === "ray") return "Ray";
-  if (kind === "vector") return "Vector";
-  return "Segment";
-}
-
-function lineDrawPoints(line: GeoLine, points: GeoPoint[]) {
-  const a = pointById(points, line.a), b = pointById(points, line.b);
-  if (!a || !b) return { x1: 0, y1: 0, x2: 0, y2: 0 };
-  const kind = line.kind ?? "segment";
-  if (kind === "segment" || kind === "vector") return { x1: a.x, y1: a.y, x2: b.x, y2: b.y };
-  const vector = normalize(b.x - a.x, b.y - a.y);
-  if (kind === "ray") return { x1: a.x, y1: a.y, x2: a.x + vector.x * 900, y2: a.y + vector.y * 900 };
-  return { x1: a.x - vector.x * 900, y1: a.y - vector.y * 900, x2: a.x + vector.x * 900, y2: a.y + vector.y * 900 };
-}
-
-function angleDegrees(a: GeoPoint, vertex: GeoPoint, b: GeoPoint) {
-  const first = Math.atan2(a.y - vertex.y, a.x - vertex.x);
-  const second = Math.atan2(b.y - vertex.y, b.x - vertex.x);
-  let angle = Math.abs((second - first) * 180 / Math.PI);
-  if (angle > 180) angle = 360 - angle;
-  return angle;
-}
-
-function angleArcPath(a: GeoPoint, vertex: GeoPoint, b: GeoPoint, radius: number) {
-  const startAngle = Math.atan2(a.y - vertex.y, a.x - vertex.x);
-  let endAngle = Math.atan2(b.y - vertex.y, b.x - vertex.x);
-  let delta = endAngle - startAngle;
-  while (delta <= -Math.PI) delta += Math.PI * 2;
-  while (delta > Math.PI) delta -= Math.PI * 2;
-  endAngle = startAngle + delta;
-  const start = { x: vertex.x + Math.cos(startAngle) * radius, y: vertex.y + Math.sin(startAngle) * radius };
-  const end = { x: vertex.x + Math.cos(endAngle) * radius, y: vertex.y + Math.sin(endAngle) * radius };
-  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 0 ${delta > 0 ? 1 : 0} ${end.x} ${end.y}`;
-}
-
-function angleBisectorEndpoint(a: GeoPoint, vertex: GeoPoint, b: GeoPoint, length: number) {
-  const first = normalize(a.x - vertex.x, a.y - vertex.y);
-  const second = normalize(b.x - vertex.x, b.y - vertex.y);
-  let vector = normalize(first.x + second.x, first.y + second.y);
-  if (Math.abs(first.x + second.x) < 0.001 && Math.abs(first.y + second.y) < 0.001) vector = { x: -first.y, y: first.x };
-  return { x: vertex.x + vector.x * length, y: vertex.y + vector.y * length };
-}
-
-function tangentPointsFromExternalPoint(through: GeoPoint, center: GeoPoint, radius: number) {
-  const dx = through.x - center.x;
-  const dy = through.y - center.y;
-  const distanceToCenter = Math.hypot(dx, dy);
-  if (distanceToCenter <= radius + 0.001) return [];
-  const baseAngle = Math.atan2(dy, dx);
-  const offset = Math.acos(radius / distanceToCenter);
-  return [baseAngle + offset, baseAngle - offset].map((angle) => ({
-    x: center.x + radius * Math.cos(angle),
-    y: center.y + radius * Math.sin(angle),
-  }));
-}
-
 function lineIntersection(first: GeoLine, second: GeoLine, points: GeoPoint[]) {
   const a = pointById(points, first.a), b = pointById(points, first.b), c = pointById(points, second.a), d = pointById(points, second.b);
   if (!a || !b || !c || !d) return null;
@@ -7382,60 +5170,8 @@ function lineIntersection(first: GeoLine, second: GeoLine, points: GeoPoint[]) {
   return { x: px, y: py };
 }
 
-function circumcenter(a: GeoPoint, b: GeoPoint, c: GeoPoint) {
-  const d = 2 * (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y));
-  if (Math.abs(d) < 0.001) return null;
-  const ux = ((a.x * a.x + a.y * a.y) * (b.y - c.y) + (b.x * b.x + b.y * b.y) * (c.y - a.y) + (c.x * c.x + c.y * c.y) * (a.y - b.y)) / d;
-  const uy = ((a.x * a.x + a.y * a.y) * (c.x - b.x) + (b.x * b.x + b.y * b.y) * (a.x - c.x) + (c.x * c.x + c.y * c.y) * (b.x - a.x)) / d;
-  return { x: ux, y: uy };
-}
-
-function reflectPointAcrossLine(point: { x: number; y: number }, line: GeoLine, points: GeoPoint[]) {
-  const a = pointById(points, line.a), b = pointById(points, line.b);
-  if (!a || !b) return point;
-  const dx = b.x - a.x;
-  const dy = b.y - a.y;
-  const lengthSq = dx * dx + dy * dy || 1;
-  const t = ((point.x - a.x) * dx + (point.y - a.y) * dy) / lengthSq;
-  const projection = { x: a.x + t * dx, y: a.y + t * dy };
-  return { x: projection.x * 2 - point.x, y: projection.y * 2 - point.y };
-}
-
-function arcAngles(center: GeoPoint, start: GeoPoint, end: GeoPoint, semicircle = false) {
-  const startAngle = Math.atan2(start.y - center.y, start.x - center.x);
-  let endAngle = Math.atan2(end.y - center.y, end.x - center.x);
-  let delta = endAngle - startAngle;
-  while (delta <= 0) delta += Math.PI * 2;
-  if (!semicircle && delta > Math.PI * 2) delta %= Math.PI * 2;
-  if (semicircle) delta = Math.PI;
-  endAngle = startAngle + delta;
-  return { startAngle, endAngle, delta };
-}
-
-function arcPath(center: GeoPoint, start: GeoPoint, end: GeoPoint, semicircle = false) {
-  const radius = distance(center, start);
-  const { endAngle, delta } = arcAngles(center, start, end, semicircle);
-  const actualEnd = semicircle ? { x: center.x + Math.cos(endAngle) * radius, y: center.y + Math.sin(endAngle) * radius } : end;
-  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${delta > Math.PI ? 1 : 0} 1 ${actualEnd.x} ${actualEnd.y}`;
-}
-
-function normalizedArcMidAngle(center: GeoPoint, start: GeoPoint, end: GeoPoint, semicircle = false) {
-  const { startAngle, delta } = arcAngles(center, start, end, semicircle);
-  return startAngle + delta / 2;
-}
-
-function arcCentralAngle(center: GeoPoint, start: GeoPoint, end: GeoPoint, semicircle = false) {
-  return arcAngles(center, start, end, semicircle).delta * 180 / Math.PI;
-}
-
 function nextPointLabel(points: GeoPoint[], offset = 0) {
-  return pointLabelForIndex(points.length + offset);
-}
-
-function pointLabelForIndex(index: number) {
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  if (index < alphabet.length) return alphabet[index];
-  return `P${index + 1}`;
+  return String.fromCharCode(65 + points.length + offset);
 }
 
 function constraintLabel(constraint: GeoConstraint, construction: Construction) {
@@ -7443,248 +5179,7 @@ function constraintLabel(constraint: GeoConstraint, construction: Construction) 
   if (constraint.type === "fixed-length") return `${labelForPoint(construction, constraint.anchor)}${labelForPoint(construction, constraint.point)} fixed at ${roundTo(constraint.length / 40, 2)} units`;
   if (constraint.type === "on-circle") return `${labelForPoint(construction, constraint.point)} stays on first circle`;
   if (constraint.type === "intersection") return `${labelForPoint(construction, constraint.point)} is line intersection`;
-  if (constraint.type === "angle-bisector") return `Bisector of angle ${labelForPoint(construction, constraint.a)}${labelForPoint(construction, constraint.vertex)}${labelForPoint(construction, constraint.b)}`;
-  if (constraint.type === "tangent") return `${labelForPoint(construction, constraint.throughPoint)}${labelForPoint(construction, constraint.tangentPoint)} is tangent to circle`;
   return `${constraint.type} constrained line`;
-}
-
-function constraintPointIds(constraint: GeoConstraint) {
-  if (constraint.type === "midpoint") return [constraint.a, constraint.b, constraint.point];
-  if (constraint.type === "fixed-length") return [constraint.anchor, constraint.point];
-  if (constraint.type === "on-circle") return [constraint.point];
-  if (constraint.type === "parallel" || constraint.type === "perpendicular") return [constraint.throughPoint];
-  if (constraint.type === "intersection") return [constraint.point];
-  if (constraint.type === "angle-bisector") return [constraint.a, constraint.vertex, constraint.b];
-  if (constraint.type === "tangent") return [constraint.throughPoint, constraint.tangentPoint];
-  return [];
-}
-
-function workspaceGeometryObjectId(kind: NonNullable<SelectedGeoObject>["kind"], id: string) {
-  return `geometry:${kind}:${id}`;
-}
-
-function geometrySelectionFromWorkspaceObjectId(objectId: string): NonNullable<SelectedGeoObject> | null {
-  const match = objectId.match(/^geometry:(point|line|circle|polygon|angle|arc|text|conic|transform|constraint):(.+)$/);
-  if (!match) return null;
-  return { kind: match[1] as NonNullable<SelectedGeoObject>["kind"], id: match[2] };
-}
-
-function vecFromPoint(point: GeoPoint) {
-  return { x: point.x, y: point.y, z: 0 };
-}
-
-function snapBoardPoint(point: { x: number; y: number }, step = 20) {
-  return {
-    x: Math.round(point.x / step) * step,
-    y: Math.round(point.y / step) * step,
-  };
-}
-
-function workspaceConstraintFromGeoConstraint(constraint: GeoConstraint): MathConstraint {
-  const targetId = workspaceConstraintTargetId(constraint);
-  if (constraint.type === "fixed-length") {
-    return { id: constraint.id, type: "custom", targetId, expression: `distance(${constraint.anchor}, ${constraint.point}) = ${constraint.length}`, referenceIds: [workspaceGeometryObjectId("point", constraint.anchor), workspaceGeometryObjectId("point", constraint.point)], enabled: true };
-  }
-  if (constraint.type === "parallel" || constraint.type === "perpendicular") {
-    return { id: constraint.id, type: constraint.type, targetId: workspaceGeometryObjectId("line", constraint.line), referenceIds: [workspaceGeometryObjectId("line", constraint.sourceLine), workspaceGeometryObjectId("point", constraint.throughPoint)], enabled: true };
-  }
-  if (constraint.type === "midpoint") {
-    return { id: constraint.id, type: "midpoint", targetId, referenceIds: [workspaceGeometryObjectId("point", constraint.a), workspaceGeometryObjectId("point", constraint.b)], enabled: true };
-  }
-  if (constraint.type === "on-circle") {
-    return { id: constraint.id, type: "on-object", targetId, referenceIds: [workspaceGeometryObjectId("circle", constraint.circle)], enabled: true };
-  }
-  if (constraint.type === "tangent") {
-    return { id: constraint.id, type: "tangent", targetId: workspaceGeometryObjectId("line", constraint.line), referenceIds: [workspaceGeometryObjectId("circle", constraint.circle), workspaceGeometryObjectId("point", constraint.throughPoint), workspaceGeometryObjectId("point", constraint.tangentPoint)], enabled: true };
-  }
-  if (constraint.type === "angle-bisector") {
-    return { id: constraint.id, type: "custom", targetId: workspaceGeometryObjectId("line", constraint.line), expression: "angle bisector", referenceIds: [workspaceGeometryObjectId("point", constraint.a), workspaceGeometryObjectId("point", constraint.vertex), workspaceGeometryObjectId("point", constraint.b)], enabled: true };
-  }
-  return { id: constraint.id, type: "coincident", targetId, referenceIds: constraintPointIds(constraint).map((id) => workspaceGeometryObjectId("point", id)), enabled: true };
-}
-
-function workspaceConstraintTargetId(constraint: GeoConstraint) {
-  if (constraint.type === "parallel" || constraint.type === "perpendicular" || constraint.type === "angle-bisector" || constraint.type === "tangent") return workspaceGeometryObjectId("line", constraint.line);
-  if (constraint.type === "midpoint" || constraint.type === "fixed-length" || constraint.type === "on-circle" || constraint.type === "intersection") return workspaceGeometryObjectId("point", constraint.point);
-  return workspaceGeometryObjectId("constraint", constraint.id);
-}
-
-type Space3DWorkspaceInput = {
-  surface: SurfaceKind;
-  solid: SolidKind;
-  surfaceScale: number;
-  height3d: number;
-  crossSection: number;
-  surfaceDomain: number;
-  surfacePosition3d: Vector3Tuple;
-  surfaceRotation3d: Vector3Tuple;
-  solidPosition3d: Vector3Tuple;
-  solidRotation3d: Vector3Tuple;
-  showSurface: boolean;
-  showSolid: boolean;
-  showAxes3d: boolean;
-  showGrid3d: boolean;
-  showCrossSection3d: boolean;
-  showVector3d: boolean;
-  showPoint3d: boolean;
-  vectorStart3d: Vector3Tuple;
-  vectorEnd3d: Vector3Tuple;
-  point3d: Vector3Tuple;
-  space3dColors: Space3DColorMap;
-  space3dShapes: Space3DShapeObject[];
-  autoRotate3d: boolean;
-  zoom3d: number;
-};
-
-function createSpace3DWorkspaceObjects(input: Space3DWorkspaceInput): WorkspaceMathObject[] {
-  const metrics = solidMetrics(input.solid, input.height3d);
-  const vector = vectorComponents(input.vectorStart3d, input.vectorEnd3d);
-  const baseMetadata = { source: "live-workspace", subsystem: "space-3d", autoRotate: input.autoRotate3d, zoom: roundTo(input.zoom3d, 2) };
-  const objects: WorkspaceMathObject[] = [
-    createMathObject({
-      id: workspaceSpace3DObjectId("surface"),
-      kind: "surface",
-      dimension: "3d",
-      label: "Surface mesh",
-      value: surfaceFormula(input.surface, input.surfaceScale),
-      summary: "Editable 3D surface with position, rotation, scale, and domain clipping.",
-      visible: input.showSurface,
-      style: { color: input.space3dColors.surface, material: "matte", opacity: 0.45 },
-      transform: { position: vecFromTuple(input.surfacePosition3d), rotation: degreesVecFromTuple(input.surfaceRotation3d), scale: { x: input.surfaceScale, y: input.surfaceScale, z: input.surfaceScale } },
-      geometry: { type: "surface", expression: surfaceFormula(input.surface, input.surfaceScale), domain: { u: [-input.surfaceDomain, input.surfaceDomain], v: [-input.surfaceDomain, input.surfaceDomain] } },
-      metadata: { ...baseMetadata, localId: "surface", localKind: "surface", surface: input.surface, domain: input.surfaceDomain },
-    }),
-    createMathObject({
-      id: workspaceSpace3DObjectId("solid"),
-      kind: "solid",
-      dimension: "3d",
-      label: "Preview solid",
-      value: `${solidOptions.find((option) => option.value === input.solid)?.label ?? input.solid}, size ${roundTo(input.height3d, 2)}`,
-      summary: "Editable reference solid with position, rotation, volume, and surface area.",
-      visible: input.showSolid,
-      style: { color: input.space3dColors.solid, material: "matte", opacity: 0.78 },
-      transform: { position: vecFromTuple(input.solidPosition3d), rotation: degreesVecFromTuple(input.solidRotation3d), scale: scaleVec(input.height3d) },
-      geometry: { type: "solid", solid: workspaceSolidKind(input.solid), dimensions: scaleVec(input.height3d), radius: input.height3d / 2 },
-      metadata: { ...baseMetadata, localId: "solid", localKind: "solid", solid: input.solid, volume: roundTo(metrics.volume, 3), surfaceArea: roundTo(metrics.surfaceArea, 3) },
-    }),
-    createMathObject({
-      id: workspaceSpace3DObjectId("cross-section"),
-      kind: "plane",
-      dimension: "3d",
-      label: "Cross-section plane",
-      value: `z = ${roundTo(input.crossSection, 2)}`,
-      summary: "Movable slicing plane for the current 3D surface.",
-      visible: input.showCrossSection3d,
-      style: { color: input.space3dColors["cross-section"], material: "glass", opacity: 0.22 },
-      transform: { position: { x: 0, y: input.crossSection, z: 0 } },
-      geometry: { type: "plane", point: { x: 0, y: input.crossSection, z: 0 }, normal: { x: 0, y: 1, z: 0 }, width: input.surfaceDomain * 2, height: input.surfaceDomain * 2 },
-      dependencies: [{ id: workspaceSpace3DObjectId("surface"), label: "Surface mesh", role: "source" }],
-      metadata: { ...baseMetadata, localId: "cross-section", localKind: "plane", crossSection: input.crossSection },
-    }),
-    createMathObject({
-      id: workspaceSpace3DObjectId("vector"),
-      kind: "vector",
-      dimension: "3d",
-      label: "Vector ray",
-      value: `<${vector.map((value) => roundTo(value, 2)).join(", ")}>, |v|=${roundTo(vectorLength(input.vectorStart3d, input.vectorEnd3d), 2)}`,
-      summary: "Editable 3D vector with draggable start and end handles.",
-      visible: input.showVector3d,
-      style: { color: input.space3dColors.vector, material: "matte", opacity: 1 },
-      geometry: { type: "segment", start: vecFromTuple(input.vectorStart3d), end: vecFromTuple(input.vectorEnd3d) },
-      metadata: { ...baseMetadata, localId: "vector", localKind: "vector", length: roundTo(vectorLength(input.vectorStart3d, input.vectorEnd3d), 3) },
-    }),
-    createMathObject({
-      id: workspaceSpace3DObjectId("point"),
-      kind: "point",
-      dimension: "3d",
-      label: "Point P",
-      value: `(${input.point3d.map((value) => roundTo(value, 2)).join(", ")})`,
-      summary: "Editable 3D point marker.",
-      visible: input.showPoint3d,
-      style: { color: input.space3dColors.point, material: "matte", opacity: 1 },
-      transform: { position: vecFromTuple(input.point3d) },
-      geometry: { type: "point", position: vecFromTuple(input.point3d) },
-      metadata: { ...baseMetadata, localId: "point", localKind: "point", distanceFromOrigin: roundTo(distanceFromOrigin(input.point3d), 3) },
-    }),
-    createMathObject({
-      id: workspaceSpace3DObjectId("axes"),
-      kind: "transform-helper",
-      dimension: "3d",
-      role: "helper",
-      label: "Coordinate axes",
-      value: "+x, +y, +z reference",
-      summary: "3D orientation helper with labeled axes.",
-      visible: input.showAxes3d,
-      style: { color: input.space3dColors.axes, material: "matte", opacity: 1 },
-      geometry: { type: "none" },
-      metadata: { ...baseMetadata, localId: "axes", localKind: "helper" },
-    }),
-    createMathObject({
-      id: workspaceSpace3DObjectId("grid"),
-      kind: "transform-helper",
-      dimension: "3d",
-      role: "helper",
-      label: "Base grid",
-      value: "10 x 10 reference floor",
-      summary: "3D floor grid used for positioning and scale.",
-      visible: input.showGrid3d,
-      style: { color: input.space3dColors.grid, material: "wireframe", opacity: 1 },
-      geometry: { type: "plane", point: { x: 0, y: 0, z: 0 }, normal: { x: 0, y: 1, z: 0 }, width: 10, height: 10 },
-      metadata: { ...baseMetadata, localId: "grid", localKind: "helper" },
-    }),
-  ];
-
-  input.space3dShapes.forEach((shape) => {
-    const shapeMetrics = solidMetrics(shape.kind, shape.size);
-    objects.push(createMathObject({
-      id: workspaceSpace3DObjectId(`shape:${shape.id}`),
-      kind: "solid",
-      dimension: "3d",
-      label: shape.name,
-      value: `${solidOptions.find((option) => option.value === shape.kind)?.label ?? shape.kind}, size ${roundTo(shape.size, 2)}`,
-      summary: "User-created selectable 3D solid.",
-      visible: shape.visible,
-      style: { color: shape.color, material: "matte", opacity: 0.92 },
-      transform: { position: vecFromTuple(shape.position), rotation: degreesVecFromTuple(shape.rotation), scale: scaleVec(shape.size) },
-      geometry: { type: "solid", solid: workspaceSolidKind(shape.kind), dimensions: scaleVec(shape.size), radius: shape.size / 2 },
-      metadata: { ...baseMetadata, localId: shape.id, localKind: "shape", solid: shape.kind, volume: roundTo(shapeMetrics.volume, 3), surfaceArea: roundTo(shapeMetrics.surfaceArea, 3) },
-    }));
-  });
-
-  return objects;
-}
-
-function workspaceSpace3DObjectId(id: Space3DObjectId) {
-  return `space3d:${id}`;
-}
-
-function space3DSelectionFromWorkspaceObjectId(objectId: string): Space3DObjectId | null {
-  const id = objectId.replace(/^space3d:/, "");
-  if (!id || id === objectId) return null;
-  if (id.startsWith("shape:")) return id as Space3DObjectId;
-  if (["surface", "solid", "cross-section", "vector", "point", "axes", "grid"].includes(id)) return id as Space3DObjectId;
-  return null;
-}
-
-function vecFromTuple(tuple: Vector3Tuple) {
-  return { x: tuple[0], y: tuple[1], z: tuple[2] };
-}
-
-function degreesVecFromTuple(tuple: Vector3Tuple) {
-  return { x: tuple[0], y: tuple[1], z: tuple[2] };
-}
-
-function scaleVec(value: number) {
-  return { x: value, y: value, z: value };
-}
-
-function workspaceSolidKind(solid: SolidKind) {
-  if (solid === "box") return "cuboid";
-  if (solid === "triangular-prism") return "prism";
-  if (solid === "torus-solid") return "torus";
-  if (solid === "hemisphere") return "sphere";
-  if (solid === "tetrahedron" || solid === "octahedron" || solid === "dodecahedron" || solid === "icosahedron") return "prism";
-  return solid;
 }
 
 function labelForPoint(construction: Construction, id: string) {

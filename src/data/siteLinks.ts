@@ -12,6 +12,7 @@ export type SiteLink = {
   description: string;
   category: string;
   keywords: string[];
+  details?: string[];
   isExternal?: boolean;
   priority: number;
   changeFrequency: "weekly" | "monthly" | "yearly";
@@ -24,6 +25,7 @@ const baseLinks: SiteLink[] = [
     description: "Interactive mathematics visualizations for algebra, geometry, trigonometry, calculus, complex numbers, linear algebra, AI applications, quizzes, and learning paths.",
     category: "Core",
     keywords: ["math universe", "interactive math", "math visualizations", "learning app"],
+    details: ["Main dashboard", "Topic navigation", "Visual learning entry point"],
     priority: 1,
     changeFrequency: "weekly",
   },
@@ -33,6 +35,7 @@ const baseLinks: SiteLink[] = [
     description: "A working area for exploring expressions, graphs, formulas, and mathematical reasoning.",
     category: "Tools",
     keywords: ["math workspace", "graphs", "formulas", "interactive calculator"],
+    details: ["Graphing workspace", "CAS-style commands", "Geometry construction", "3D exploration"],
     priority: 0.86,
     changeFrequency: "monthly",
   },
@@ -43,6 +46,16 @@ const baseLinks: SiteLink[] = [
     category: "Geometry",
     keywords: ["2D shapes", "3D shapes", "geometry explorer", "mensuration"],
     priority: 0.78,
+    changeFrequency: "monthly",
+  },
+  {
+    title: "Permutations and Combinations",
+    path: "/math/permutations-combinations",
+    description: "Build ordered arrangements and unordered selections with live nPr, nCr, factorial, tree, and group visualizations.",
+    category: "Algebra",
+    keywords: ["permutations", "combinations", "nPr", "nCr", "factorial", "counting", "arrangements", "selections"],
+    details: ["Order matters lab", "Combination groups", "Arrangement tree", "Guided activity"],
+    priority: 0.82,
     changeFrequency: "monthly",
   },
   {
@@ -60,6 +73,7 @@ const baseLinks: SiteLink[] = [
     description: "Navigate school and advanced mathematics syllabus topics with interactive labs and concept coverage.",
     category: "Learning",
     keywords: ["math syllabus", "NCERT math", "advanced mathematics", "course roadmap"],
+    details: ["B.Sc Mathematics navigator", "B.Tech CSE Mathematics navigator", "Priority visualization cards", "Advanced lab index"],
     priority: 0.8,
     changeFrequency: "weekly",
   },
@@ -87,6 +101,7 @@ const baseLinks: SiteLink[] = [
     description: "Complete Math Universe documentation with all internal module links, concept links, and learning details.",
     category: "Reference",
     keywords: ["math universe documentation", "module links", "concept index", "site guide"],
+    details: ["Human-readable route index", "Module descriptions", "Keywords", "Crawl hints"],
     priority: 0.7,
     changeFrequency: "weekly",
   },
@@ -96,6 +111,7 @@ const baseLinks: SiteLink[] = [
     description: "Search-engine friendly sitemap for Math Universe routes, modules, concept pages, and learning tools.",
     category: "Reference",
     keywords: ["math universe sitemap", "site map", "search engine routes"],
+    details: ["Internal URL index", "Route priorities", "Change frequency", "Search engine crawl support"],
     priority: 0.66,
     changeFrequency: "weekly",
   },
@@ -128,6 +144,7 @@ const topicLinks: SiteLink[] = topics
     description: topic.description,
     category: "Modules",
     keywords: [topic.id, topic.title, ...topic.concepts],
+    details: topic.concepts,
     priority: 0.9,
     changeFrequency: "weekly",
   }));
@@ -138,6 +155,7 @@ const geometryLinks: SiteLink[] = geometryConcepts.map((concept) => ({
   description: concept.summary,
   category: `Geometry: ${concept.category}`,
   keywords: ["geometry", concept.category, concept.title, concept.formula, concept.use],
+  details: [concept.category, concept.formula, concept.use],
   priority: 0.68,
   changeFrequency: "monthly",
 }));
@@ -148,6 +166,7 @@ const trigonometryLinks: SiteLink[] = trigonometryConcepts.map((concept) => ({
   description: concept.summary,
   category: `Trigonometry: ${concept.category}`,
   keywords: ["trigonometry", concept.category, concept.title, concept.formula, concept.use],
+  details: [concept.category, concept.formula, concept.use],
   priority: 0.68,
   changeFrequency: "monthly",
 }));
@@ -158,6 +177,7 @@ const ncertLinks: SiteLink[] = ncertConcepts.map((concept) => ({
   description: concept.summary,
   category: `NCERT ${concept.classLevel}`,
   keywords: ["NCERT math", concept.classLevel, concept.unit, concept.title, concept.formula],
+  details: [concept.classLevel, concept.unit, concept.formula],
   priority: 0.62,
   changeFrequency: "monthly",
 }));
@@ -168,6 +188,7 @@ const advancedLabLinks: SiteLink[] = advancedSyllabusLabs.map((lab) => ({
   description: lab.summary,
   category: `Advanced Lab: ${lab.category}`,
   keywords: ["advanced mathematics", lab.category, lab.subcategory, lab.title, lab.formula],
+  details: [lab.category, lab.subcategory, lab.formula, ...lab.tasks],
   priority: 0.58,
   changeFrequency: "monthly",
 }));
@@ -180,6 +201,7 @@ const visualizationLinks: SiteLink[] = Array.from(new Map(allNavigatorCards
     description: card.description,
     category: `Visualization: ${card.category}`,
     keywords: ["math visualization", card.category, card.status, card.title, ...card.topics],
+    details: [card.status, card.category, ...card.topics],
     priority: card.status === "Available" ? 0.66 : 0.46,
     changeFrequency: "monthly",
   }));

@@ -3,128 +3,48 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  build: {
-    chunkSizeWarningLimit: 750,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          "vendor-react": ["react", "react-dom", "react-router-dom"],
-          "vendor-three": ["three"],
-          "vendor-r3f": ["@react-three/fiber", "@react-three/drei"],
-          "vendor-recharts": ["recharts"],
-          "vendor-katex": ["katex"],
-          "vendor-export": ["html2canvas", "jspdf"],
-          "vendor-symbolic": ["nerdamer"],
-          "vendor-motion": ["framer-motion"],
-          "vendor-icons": ["lucide-react", "clsx"],
-        },
-      },
-    },
-  },
   plugins: [
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["pwa-icon.svg", "pwa-192.png", "pwa-512.png"],
+      includeAssets: ["math-universe-icon.svg", "robots.txt", "sitemap.xml"],
       manifest: {
-        name: "Math Universe Visualizations",
+        name: "Math Universe",
         short_name: "Math Universe",
-        description:
-          "Interactive mathematics visualizations, quizzes, calculators, and syllabus labs that work offline.",
-        theme_color: "#0f172a",
-        background_color: "#f8fafc",
+        description: "Browser-only interactive math labs, simulations, and workspaces.",
+        theme_color: "#07111f",
+        background_color: "#07111f",
         display: "standalone",
-        orientation: "any",
-        scope: "/",
         start_url: "/",
-        categories: ["education", "productivity"],
         icons: [
           {
-            src: "/pwa-192.png",
-            sizes: "192x192",
-            type: "image/png",
-            purpose: "any maskable",
-          },
-          {
-            src: "/pwa-512.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable",
-          },
-          {
-            src: "/pwa-icon.svg",
+            src: "/math-universe-icon.svg",
             sizes: "any",
             type: "image/svg+xml",
-            purpose: "any",
+            purpose: "any maskable",
           },
         ],
       },
       workbox: {
-        clientsClaim: true,
-        skipWaiting: true,
-        cleanupOutdatedCaches: true,
-        navigateFallback: "/index.html",
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2,ttf,json}"],
-        maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,
-        runtimeCaching: [
-          {
-            urlPattern: ({ request, url }) =>
-              request.method === "GET" &&
-              url.origin === self.location.origin &&
-              ["script", "style", "worker"].includes(request.destination),
-            handler: "CacheFirst",
-            options: {
-              cacheName: "math-universe-code-cache",
-              expiration: {
-                maxEntries: 320,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
-              },
-            },
-          },
-          {
-            urlPattern: ({ request, url }) =>
-              request.method === "GET" &&
-              url.origin === self.location.origin &&
-              ["font", "image", "manifest"].includes(request.destination),
-            handler: "CacheFirst",
-            options: {
-              cacheName: "math-universe-asset-cache",
-              expiration: {
-                maxEntries: 500,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
-              },
-            },
-          },
-          {
-            urlPattern: ({ request, url }) =>
-              request.method === "GET" && request.mode === "navigate" && url.origin === self.location.origin,
-            handler: "NetworkFirst",
-            options: {
-              cacheName: "math-universe-pages",
-              networkTimeoutSeconds: 3,
-              expiration: {
-                maxEntries: 40,
-                maxAgeSeconds: 60 * 60 * 24 * 7,
-              },
-            },
-          },
-          {
-            urlPattern: ({ request, url }) =>
-              request.method === "GET" && request.destination !== "document" && url.origin === self.location.origin,
-            handler: "StaleWhileRevalidate",
-            options: {
-              cacheName: "math-universe-runtime",
-              expiration: {
-                maxEntries: 200,
-                maxAgeSeconds: 60 * 60 * 24 * 30,
-              },
-            },
-          },
-        ],
-      },
-      devOptions: {
-        enabled: true,
+        globPatterns: ["**/*.{js,css,html,svg,png,woff2}"],
       },
     }),
   ],
+  build: {
+    chunkSizeWarningLimit: 900,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return undefined;
+          if (id.includes("@react-three")) return "vendor-react-3d";
+          if (id.includes("three")) return "vendor-three";
+          if (id.includes("recharts")) return "vendor-charts";
+          if (id.includes("nerdamer")) return "vendor-cas";
+          if (id.includes("katex")) return "vendor-math-rendering";
+          if (id.includes("lucide-react")) return "vendor-icons";
+          return undefined;
+        },
+      },
+    },
+  },
 });

@@ -6,9 +6,9 @@ import { ANVESHAK_STATISTICS_URL } from "./data/externalLinks";
 
 const About = lazy(() => import("./pages/About"));
 const AdvancedSyllabusLabPage = lazy(() => import("./pages/AdvancedSyllabusLabPage"));
+const Algebra = lazy(() => import("./pages/Algebra"));
 const AlgebraicStructures = lazy(() => import("./pages/AlgebraicStructures"));
 const AIApplications = lazy(() => import("./pages/AIApplications"));
-const Algebra = lazy(() => import("./pages/Algebra"));
 const BoardSyllabusVisualizer = lazy(() => import("./pages/BoardSyllabusVisualizer"));
 const Calculus = lazy(() => import("./pages/Calculus"));
 const Combinatorics = lazy(() => import("./pages/Combinatorics"));
@@ -16,12 +16,12 @@ const ComplexNumbers = lazy(() => import("./pages/ComplexNumbers"));
 const ConceptDependencyGraph = lazy(() => import("./pages/ConceptDependencyGraph"));
 const DailyChallenge = lazy(() => import("./pages/DailyChallenge"));
 const DerivativesTangentVisualizer = lazy(() => import("./pages/DerivativesTangentVisualizer"));
-const Documentation = lazy(() => import("./pages/Documentation"));
 const DiscreteWorld = lazy(() => import("./pages/DiscreteWorld"));
+const Documentation = lazy(() => import("./pages/Documentation"));
 const EigenvectorsVisualizerPage = lazy(() => import("./pages/EigenvectorsVisualizerPage"));
+const Formulas = lazy(() => import("./pages/Formulas"));
 const FourierSeriesAnimator = lazy(() => import("./pages/FourierSeriesAnimator"));
 const FourierSeriesVisualizerPage = lazy(() => import("./pages/FourierSeriesVisualizerPage"));
-const Formulas = lazy(() => import("./pages/Formulas"));
 const FunctionsGraphsVisualizer = lazy(() => import("./pages/FunctionsGraphsVisualizer"));
 const Geometry = lazy(() => import("./pages/Geometry"));
 const GeometryConceptPage = lazy(() => import("./pages/GeometryConceptPage"));
@@ -51,6 +51,7 @@ const MatrixTransformationsVisualizerPage = lazy(() => import("./pages/MatrixTra
 const NCERTConceptPage = lazy(() => import("./pages/NCERTConceptPage"));
 const NumberSystems = lazy(() => import("./pages/NumberSystems"));
 const ParametricCurveExplorer = lazy(() => import("./pages/ParametricCurveExplorer"));
+const PermutationsCombinationsVisualizer = lazy(() => import("./pages/PermutationsCombinationsVisualizer"));
 const PolarCoordinatesVisualizer = lazy(() => import("./pages/PolarCoordinatesVisualizer"));
 const ProbabilityStatistics = lazy(() => import("./pages/ProbabilityStatistics"));
 const Quiz = lazy(() => import("./pages/Quiz"));
@@ -63,20 +64,21 @@ const SpacedRepetitionQuiz = lazy(() => import("./pages/SpacedRepetitionQuiz"));
 const StepByStepProblemSolver = lazy(() => import("./pages/StepByStepProblemSolver"));
 const SurfacePlotter3D = lazy(() => import("./pages/SurfacePlotter3D"));
 const Syllabus = lazy(() => import("./pages/Syllabus"));
+const SyllabusVisualPage = lazy(() => import("./pages/SyllabusVisualPage"));
 const Trigonometry = lazy(() => import("./pages/Trigonometry"));
 const TrigonometryConceptPage = lazy(() => import("./pages/TrigonometryConceptPage"));
 const TruthTableGenerator = lazy(() => import("./pages/TruthTableGenerator"));
 const UnitConverter = lazy(() => import("./pages/UnitConverter"));
 const VisualShowcase = lazy(() => import("./pages/VisualShowcase"));
 const WorkedExamplesLibrary = lazy(() => import("./pages/WorkedExamplesLibrary"));
+const Workspace3D = lazy(() => import("./pages/Workspace3D"));
+const WorkspaceData = lazy(() => import("./pages/WorkspaceData"));
+const WorkspaceGeometry = lazy(() => import("./pages/WorkspaceGeometry"));
+const WorkspaceGraph = lazy(() => import("./pages/WorkspaceGraph"));
+const WorkspaceTeach = lazy(() => import("./pages/WorkspaceTeach"));
 
-type AppErrorBoundaryProps = {
-  children: ReactNode;
-};
-
-type AppErrorBoundaryState = {
-  hasError: boolean;
-};
+type AppErrorBoundaryProps = { children: ReactNode };
+type AppErrorBoundaryState = { hasError: boolean };
 
 class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundaryState> {
   state: AppErrorBoundaryState = { hasError: false };
@@ -109,14 +111,6 @@ class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundary
 
     return this.props.children;
   }
-}
-
-function RouteFallback() {
-  return (
-    <div className="flex min-h-[60vh] items-center justify-center p-6">
-      <div className="h-10 w-10 animate-spin rounded-full border-4 border-cyan-200 border-t-cyan-600" aria-label="Loading" />
-    </div>
-  );
 }
 
 function ExternalStatisticsRedirect() {
@@ -154,6 +148,11 @@ export default function App() {
             <Route path="math-lab/query" element={<MathLabSmartQuery />} />
             <Route path="math-lab/:toolId" element={<MathLabToolPage />} />
             <Route path="workspace" element={<MathWorkspace />} />
+            <Route path="workspace/graph" element={<WorkspaceGraph />} />
+            <Route path="workspace/geometry" element={<WorkspaceGeometry />} />
+            <Route path="workspace/3d" element={<Workspace3D />} />
+            <Route path="workspace/data" element={<WorkspaceData />} />
+            <Route path="workspace/teach" element={<WorkspaceTeach />} />
             <Route path="formulas" element={<Formulas />} />
             <Route path="visual-showcase" element={<VisualShowcase />} />
             <Route path="geometry" element={<Geometry />} />
@@ -197,9 +196,11 @@ export default function App() {
             <Route path="math/eigenvectors" element={<EigenvectorsVisualizerPage />} />
             <Route path="math/slope-fields" element={<SlopeFieldsVisualizerPage />} />
             <Route path="math/fourier-series" element={<FourierSeriesVisualizerPage />} />
+            <Route path="math/permutations-combinations" element={<PermutationsCombinationsVisualizer />} />
             <Route path="math/:visualizationId" element={<MathVisualizationPage />} />
             <Route path="ncert/:conceptId" element={<NCERTConceptPage />} />
             <Route path="syllabus-visual/:topicId" element={<BoardSyllabusVisualizer />} />
+            <Route path="syllabus-visual-v2/:slug" element={<SyllabusVisualPage />} />
             <Route path="syllabus-lab/:labId" element={<AdvancedSyllabusLabPage />} />
             <Route path="syllabus" element={<Syllabus />} />
             <Route path="syllabus/:levelId" element={<Syllabus />} />
@@ -213,5 +214,13 @@ export default function App() {
         </Routes>
       </Suspense>
     </AppErrorBoundary>
+  );
+}
+
+function RouteFallback() {
+  return (
+    <div className="flex min-h-[60vh] items-center justify-center p-6">
+      <div className="h-10 w-10 animate-spin rounded-full border-4 border-cyan-200 border-t-cyan-600" aria-label="Loading" />
+    </div>
   );
 }

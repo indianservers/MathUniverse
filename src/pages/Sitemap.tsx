@@ -36,6 +36,7 @@ export default function Sitemap() {
                 <th className="px-4 py-3">Page</th>
                 <th className="px-4 py-3">Route</th>
                 <th className="px-4 py-3">Category</th>
+                <th className="px-4 py-3">Keywords</th>
                 <th className="px-4 py-3">Change</th>
                 <th className="px-4 py-3">Priority</th>
               </tr>
@@ -51,6 +52,7 @@ export default function Sitemap() {
                   </td>
                   <td className="px-4 py-3 font-mono text-xs text-slate-700 dark:text-slate-200">{item.path}</td>
                   <td className="px-4 py-3 text-slate-700 dark:text-slate-200">{item.category}</td>
+                  <td className="px-4 py-3 text-xs leading-5 text-slate-600 dark:text-slate-300">{item.keywords.slice(0, 5).join(", ")}</td>
                   <td className="px-4 py-3 text-slate-700 dark:text-slate-200">{item.changeFrequency}</td>
                   <td className="px-4 py-3 text-slate-700 dark:text-slate-200">{item.priority.toFixed(2)}</td>
                 </tr>
@@ -75,4 +77,3 @@ export default function Sitemap() {
     </div>
   );
 }
-
