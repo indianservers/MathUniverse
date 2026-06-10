@@ -1,5 +1,5 @@
-import { Move3D, RotateCcw, Target } from "lucide-react";
-import { PointerEvent, ReactNode, useMemo, useRef, useState } from "react";
+import { LocateFixed, Move3D, Rotate3D, RotateCcw, Target, ZoomIn, ZoomOut } from "lucide-react";
+import { PointerEvent, ReactNode, WheelEvent, useMemo, useRef, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
 import SliderControl from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
@@ -9,12 +9,18 @@ type Vec3 = [number, number, number];
 type DragTarget = "a-tail" | "a-head" | "b-tail" | "b-head";
 type DragPlane = "xy" | "xz" | "yz";
 type ViewPreset = "front" | "isometric" | "top";
+type ViewState = { yaw: number; pitch: number; zoom: number };
 
 const range = 10;
 const planeCenter = 180;
 const planeScale = 16;
 const sceneCenter = { x: 360, y: 245 };
 const sceneScale = 24;
+const presetViews: Record<ViewPreset, ViewState> = {
+  front: { yaw: 0, pitch: 0, zoom: 1 },
+  isometric: { yaw: -Math.PI / 5, pitch: Math.PI / 5.2, zoom: 1 },
+  top: { yaw: -Math.PI / 4, pitch: Math.PI / 2.9, zoom: 1 },
+};
 
 const defaultState = {
   aTail: [0, 0, 0] as Vec3,
@@ -32,6 +38,7 @@ export default function VectorVisualizer() {
   const [showSecond, setShowSecond] = useState(true);
   const [dragPlane, setDragPlane] = useState<DragPlane>("xy");
   const [viewPreset, setViewPreset] = useState<ViewPreset>("isometric");
+  const [viewState, setViewState] = useState<ViewState>(presetViews.isometric);
   const [showParallelogram, setShowParallelogram] = useState(true);
 
   const a = subtract(aHead, aTail);
@@ -57,6 +64,18 @@ export default function VectorVisualizer() {
     setAHead(defaultState.aHead);
     setBTail(defaultState.bTail);
     setBHead(defaultState.bHead);
+    setViewPreset("isometric");
+    setViewState(presetViews.isometric);
+  };
+
+  const setPreset = (preset: ViewPreset) => {
+    setViewPreset(preset);
+    setViewState(presetViews[preset]);
+  };
+
+  const zoomView = (delta: number) => {
+    setViewPreset("isometric");
+    setViewState((view) => ({ ...view, zoom: clamp(view.zoom + delta, 0.55, 1.85) }));
   };
 
   return (
@@ -71,6 +90,8 @@ export default function VectorVisualizer() {
             <SliderControl label="A x" value={aHead[0]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([value, aHead[1], aHead[2]])} />
             <SliderControl label="A y" value={aHead[1]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([aHead[0], value, aHead[2]])} />
             <SliderControl label="A z" value={aHead[2]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([aHead[0], aHead[1], value])} />
+            <EndpointEditor label="A tail" value={aTail} onChange={setATail} />
+            <EndpointEditor label="A head" value={aHead} onChange={setAHead} />
           </div>
 
           <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-bold dark:border-white/10 dark:bg-white/5">
@@ -87,6 +108,8 @@ export default function VectorVisualizer() {
               <SliderControl label="B x" value={bHead[0]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([value, bHead[1], bHead[2]])} />
               <SliderControl label="B y" value={bHead[1]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([bHead[0], value, bHead[2]])} />
               <SliderControl label="B z" value={bHead[2]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([bHead[0], bHead[1], value])} />
+              <EndpointEditor label="B tail" value={bTail} onChange={setBTail} />
+              <EndpointEditor label="B head" value={bHead} onChange={setBHead} />
             </div>
           )}
 
@@ -115,10 +138,18 @@ export default function VectorVisualizer() {
                 </button>
               ))}
               {(["front", "isometric", "top"] as ViewPreset[]).map((preset) => (
-                <button key={preset} type="button" onClick={() => setViewPreset(preset)} className={toolClass(viewPreset === preset)}>
+                <button key={preset} type="button" onClick={() => setPreset(preset)} className={toolClass(viewPreset === preset)}>
                   {preset}
                 </button>
               ))}
+              <button type="button" onClick={() => zoomView(0.15)} className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-black dark:border-white/10">
+                <ZoomIn className="h-3.5 w-3.5" />
+                Zoom
+              </button>
+              <button type="button" onClick={() => zoomView(-0.15)} className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-black dark:border-white/10">
+                <ZoomOut className="h-3.5 w-3.5" />
+                Out
+              </button>
               <button type="button" onClick={() => setShowParallelogram((value) => !value)} className={toolClass(showParallelogram)}>
                 Parallelogram
               </button>
@@ -141,6 +172,9 @@ export default function VectorVisualizer() {
             cross={cross}
             dragPlane={dragPlane}
             viewPreset={viewPreset}
+            viewState={viewState}
+            onViewStateChange={setViewState}
+            onViewPresetChange={setViewPreset}
             onMovePoint={movePoint}
           />
 
@@ -156,7 +190,7 @@ export default function VectorVisualizer() {
                 {showSecond && <p>B = &lt;{b.map((item) => roundTo(item, 2)).join(", ")}&gt;</p>}
                 {showSecond && <p>Dot product tells alignment: positive same direction, zero perpendicular, negative opposite direction.</p>}
                 {showSecond && <p>Cross product is perpendicular to both vectors. Its length is the parallelogram area.</p>}
-                <p>Drag the colored endpoint handles in the 3D pane. Switch drag plane when you want depth movement.</p>
+                <p>Drag empty space to rotate the 3D pane. Drag colored endpoint handles to move vector tails or heads. Switch drag plane when you want depth movement.</p>
               </div>
             </div>
           </div>
@@ -173,9 +207,9 @@ export default function VectorVisualizer() {
             `Vector A length is ${roundTo(magA, 3)}.`,
             showSecond ? `Vector B length is ${roundTo(magB, 3)}.` : "Enable vector B to compare two directions.",
             showSecond ? `Angle between A and B is ${roundTo(angle, 2)} degrees.` : "The 3D pane still supports dragging vector A.",
-            showSecond ? `Cross product length, the parallelogram area, is ${roundTo(area, 3)}.` : "Use the z slider to move out of the flat plane.",
+            showSecond ? `Cross product length, the parallelogram area, is ${roundTo(area, 3)}.` : "Use the z slider or endpoint editor to move out of the flat plane.",
           ]}
-          tasks={["Drag A into the z direction.", "Make A and B perpendicular.", "Make the cross product point upward.", "Use XZ drag mode to move depth directly."]}
+          tasks={["Drag the empty pane to rotate the camera.", "Drag A head into the z direction.", "Make A and B perpendicular.", "Use XZ drag mode to move depth directly."]}
         />
       </div>
     </SectionCard>
@@ -194,6 +228,9 @@ function VectorScene3D({
   cross,
   dragPlane,
   viewPreset,
+  viewState,
+  onViewStateChange,
+  onViewPresetChange,
   onMovePoint,
 }: {
   aTail: Vec3;
@@ -207,10 +244,13 @@ function VectorScene3D({
   cross: Vec3;
   dragPlane: DragPlane;
   viewPreset: ViewPreset;
+  viewState: ViewState;
+  onViewStateChange: (value: ViewState | ((value: ViewState) => ViewState)) => void;
+  onViewPresetChange: (value: ViewPreset) => void;
   onMovePoint: (target: DragTarget, delta: Vec3) => void;
 }) {
-  const dragRef = useRef<{ target: DragTarget; x: number; y: number } | null>(null);
-  const project = (point: Vec3) => project3d(point, viewPreset);
+  const dragRef = useRef<{ mode: "point"; target: DragTarget; x: number; y: number } | { mode: "view"; x: number; y: number } | null>(null);
+  const project = (point: Vec3) => project3d(point, viewState);
   const o = project([0, 0, 0]);
   const ax = project([range, 0, 0]);
   const ay = project([0, range, 0]);
@@ -227,13 +267,35 @@ function VectorScene3D({
     if (!dragRef.current) return;
     const dx = event.clientX - dragRef.current.x;
     const dy = event.clientY - dragRef.current.y;
+    if (dragRef.current.mode === "point") {
+      dragRef.current = { ...dragRef.current, x: event.clientX, y: event.clientY };
+      onMovePoint(dragRef.current.target, screenDeltaToVector(dx, dy, dragPlane, viewState.zoom));
+      return;
+    }
     dragRef.current = { ...dragRef.current, x: event.clientX, y: event.clientY };
-    onMovePoint(dragRef.current.target, screenDeltaToVector(dx, dy, dragPlane));
+    onViewPresetChange("isometric");
+    onViewStateChange((view) => ({
+      yaw: view.yaw + dx * 0.01,
+      pitch: clamp(view.pitch + dy * 0.008, -1.25, 1.35),
+      zoom: view.zoom,
+    }));
+  };
+
+  const startViewDrag = (event: PointerEvent<SVGSVGElement>) => {
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragRef.current = { mode: "view", x: event.clientX, y: event.clientY };
   };
 
   const startDrag = (target: DragTarget) => (event: PointerEvent<SVGCircleElement>) => {
-    event.currentTarget.setPointerCapture(event.pointerId);
-    dragRef.current = { target, x: event.clientX, y: event.clientY };
+    event.stopPropagation();
+    event.currentTarget.ownerSVGElement?.setPointerCapture(event.pointerId);
+    dragRef.current = { mode: "point", target, x: event.clientX, y: event.clientY };
+  };
+
+  const zoomWithWheel = (event: WheelEvent<SVGSVGElement>) => {
+    event.preventDefault();
+    onViewPresetChange("isometric");
+    onViewStateChange((view) => ({ ...view, zoom: clamp(view.zoom + (event.deltaY < 0 ? 0.08 : -0.08), 0.55, 1.85) }));
   };
 
   return (
@@ -242,8 +304,10 @@ function VectorScene3D({
         viewBox="0 0 720 490"
         className="h-[520px] w-full touch-none select-none rounded-lg bg-[radial-gradient(circle_at_50%_35%,rgba(14,165,233,.18),rgba(2,6,23,.98)_58%)]"
         onPointerMove={onPointerMove}
+        onPointerDown={startViewDrag}
         onPointerUp={() => { dragRef.current = null; }}
         onPointerLeave={() => { dragRef.current = null; }}
+        onWheel={zoomWithWheel}
       >
         <defs>
           <marker id="arrow-cyan" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#22d3ee" /></marker>
@@ -255,6 +319,7 @@ function VectorScene3D({
           <marker id="axis-lime" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#84cc16" /></marker>
         </defs>
 
+        <rect x="0" y="0" width="720" height="490" fill="transparent" className="cursor-grab active:cursor-grabbing" />
         <Grid3D project={project} />
         <Axis from={o} to={ax} color="#ef4444" marker="axis-red" label="x" />
         <Axis from={o} to={ay} color="#84cc16" marker="axis-lime" label="y" />
@@ -287,11 +352,50 @@ function VectorScene3D({
 
         <foreignObject x="18" y="18" width="260" height="74">
           <div className="rounded-xl border border-cyan-400/30 bg-slate-950/80 p-3 text-xs font-bold text-cyan-50">
-            <p>3D interactive vector lab</p>
-            <p className="mt-1 text-cyan-200">Drag handles on {dragPlane.toUpperCase()} plane. View: {viewPreset}.</p>
+            <p className="flex items-center gap-2"><Rotate3D className="h-3.5 w-3.5" /> 3D interactive vector lab</p>
+            <p className="mt-1 text-cyan-200">Drag empty space to rotate. Wheel/pinch zoom. Handles move on {dragPlane.toUpperCase()}.</p>
+          </div>
+        </foreignObject>
+        <foreignObject x="520" y="18" width="178" height="74">
+          <div className="rounded-xl border border-white/10 bg-slate-950/75 p-3 text-xs font-bold text-slate-100">
+            <p>View: {viewPreset}</p>
+            <p className="mt-1 text-slate-300">Zoom {roundTo(viewState.zoom, 2)}x</p>
           </div>
         </foreignObject>
       </svg>
+    </div>
+  );
+}
+
+function EndpointEditor({ label, value, onChange }: { label: string; value: Vec3; onChange: (value: Vec3) => void }) {
+  const update = (index: number, nextValue: number) => {
+    const next = [...value] as Vec3;
+    next[index] = clamp(nextValue, -range, range);
+    onChange(next);
+  };
+
+  return (
+    <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
+      <div className="mb-2 flex items-center gap-2 text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+        <LocateFixed className="h-3.5 w-3.5" />
+        {label}
+      </div>
+      <div className="grid grid-cols-3 gap-2">
+        {(["x", "y", "z"] as const).map((axis, index) => (
+          <label key={axis} className="space-y-1 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">
+            {axis}
+            <input
+              type="number"
+              value={roundTo(value[index], 2)}
+              min={-range}
+              max={range}
+              step={0.25}
+              onChange={(event) => update(index, Number(event.target.value))}
+              className="w-full rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-sm font-black text-slate-950 dark:border-white/10 dark:bg-slate-950 dark:text-white"
+            />
+          </label>
+        ))}
+      </div>
     </div>
   );
 }
@@ -394,32 +498,34 @@ function toolClass(active: boolean) {
 
 function readVectorParams() {
   const params = new URLSearchParams(window.location.search);
-  const get = (name: string, fallback: number) => {
-    const value = Number(params.get(name));
-    return Number.isFinite(value) ? clamp(value, -10, 10) : fallback;
+  const get = (names: string[], fallback: number) => {
+    for (const name of names) {
+      const value = Number(params.get(name));
+      if (Number.isFinite(value)) return clamp(value, -10, 10);
+    }
+    return fallback;
   };
   return {
     aTail: [0, 0, 0] as Vec3,
-    aHead: [get("v_x", 5), get("v_y", 3), get("v_z", 2)] as Vec3,
+    aHead: [get(["v_a_x", "v_x"], 5), get(["v_a_y", "v_y"], 3), get(["v_a_z", "v_z"], 2)] as Vec3,
     bTail: [0, 0, 0] as Vec3,
-    bHead: [get("v_u", -2), get("v_v", 4), get("v_w", -1.5)] as Vec3,
+    bHead: [get(["v_b_x", "v_u"], -2), get(["v_b_y", "v_v"], 4), get(["v_b_z", "v_w"], -1.5)] as Vec3,
   };
 }
 
-function project3d(point: Vec3, preset: ViewPreset) {
+function project3d(point: Vec3, view: ViewState) {
   const [x, y, z] = point;
-  const yaw = preset === "front" ? 0 : preset === "top" ? -Math.PI / 4 : -Math.PI / 5;
-  const pitch = preset === "front" ? 0 : preset === "top" ? Math.PI / 2.9 : Math.PI / 5.2;
+  const { yaw, pitch, zoom } = view;
   const xr = x * Math.cos(yaw) + z * Math.sin(yaw);
   const zr = -x * Math.sin(yaw) + z * Math.cos(yaw);
   return {
-    x: sceneCenter.x + xr * sceneScale,
-    y: sceneCenter.y - y * sceneScale + zr * Math.sin(pitch) * sceneScale,
+    x: sceneCenter.x + xr * sceneScale * zoom,
+    y: sceneCenter.y - y * sceneScale * zoom + zr * Math.sin(pitch) * sceneScale * zoom,
   };
 }
 
-function screenDeltaToVector(dx: number, dy: number, plane: DragPlane): Vec3 {
-  const step = 1 / sceneScale;
+function screenDeltaToVector(dx: number, dy: number, plane: DragPlane, zoom: number): Vec3 {
+  const step = 1 / (sceneScale * zoom);
   if (plane === "xy") return [dx * step, -dy * step, 0];
   if (plane === "xz") return [dx * step, 0, dy * step];
   return [0, -dy * step, dx * step];

@@ -1,5 +1,5 @@
-import { History, Info, ListTree, PanelRightClose, PanelRightOpen } from "lucide-react";
-import { CSSProperties, KeyboardEvent, ReactNode, useMemo, useState } from "react";
+import { History, Info, ListTree, Maximize2, Minimize2, PanelRightClose, PanelRightOpen } from "lucide-react";
+import { CSSProperties, KeyboardEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import type { WorkspaceView } from "../../workspace/types";
 import { useWorkspaceStore } from "../../workspace/workspaceStore";
 import CommandBar from "./CommandBar";
@@ -23,13 +23,29 @@ type WorkspaceShellProps = {
 
 export default function WorkspaceShell({ title, subtitle, views, activeView, commandValue, onCommandChange, onCommandRun, onViewChange, onKeyDown, children }: WorkspaceShellProps) {
   const [inspectorOpen, setInspectorOpen] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
+  const shellRef = useRef<HTMLDivElement | null>(null);
   const objects = useWorkspaceStore((state) => state.objects);
   const selectedObjectId = useWorkspaceStore((state) => state.selectedObjectId);
   const history = useWorkspaceStore((state) => state.history);
   const selectedObject = useMemo(() => objects.find((object) => object.id === selectedObjectId) ?? null, [objects, selectedObjectId]);
 
+  useEffect(() => {
+    const onFullscreenChange = () => setFullscreen(document.fullscreenElement === shellRef.current);
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+      return;
+    }
+    await shellRef.current?.requestFullscreen?.();
+  };
+
   return (
-    <div className="workspace-app-shell" onKeyDown={onKeyDown}>
+    <div ref={shellRef} className="workspace-app-shell" onKeyDown={onKeyDown}>
       <div className="workspace-topbar">
         <div className="min-w-0">
           <p className="text-[11px] font-black uppercase tracking-wide text-cyan-500 dark:text-cyan-300">Interactive math lab</p>
@@ -37,6 +53,10 @@ export default function WorkspaceShell({ title, subtitle, views, activeView, com
           <p className="truncate text-xs font-semibold text-slate-500 dark:text-slate-400">{subtitle}</p>
         </div>
         <div className="hidden shrink-0 items-center gap-2 md:flex">
+          <button type="button" onClick={() => void toggleFullscreen()} className="tool-button min-h-9 rounded-full px-3 py-1.5 text-xs" title={fullscreen ? "Exit full screen" : "Open workspace full screen"}>
+            {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+            {fullscreen ? "Exit full" : "Full screen"}
+          </button>
           <span className="mini-chip">Ctrl+Enter run</span>
           <span className="mini-chip">{objects.length} objects</span>
         </div>

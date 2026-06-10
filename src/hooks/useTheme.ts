@@ -4,7 +4,7 @@ import { useLocalStorage } from "./useLocalStorage";
 export type Theme = "light" | "dark" | "high-contrast";
 
 export function useTheme() {
-  const [theme, setTheme] = useLocalStorage<Theme>("math-universe-theme", "dark");
+  const [theme, setTheme] = useLocalStorage<Theme>("math-universe-theme", "light");
   const [fontScale, setFontScale] = useLocalStorage<"base" | "large" | "xlarge">("math-universe-font-scale", "base");
   const [reducedMotion, setReducedMotion] = useLocalStorage("math-universe-reduced-motion", false);
   const [colorBlindPalette, setColorBlindPalette] = useLocalStorage("math-universe-color-blind-palette", false);

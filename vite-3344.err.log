@@ -76,3 +76,49 @@ warnings
       at C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:13462:12
       at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:12420:14)
       at TypeScriptParserMixin.parseFunction (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\@babel\parser\lib\index.js:13461:10)
+[2m8:00:18 am[22m [31m[1m[vite][22m[39m [31mInternal server error: [postcss] C:/Users/Sai Satish/Documents/GitHub/MathUniverse/src/index.css:250:5: The `text-slate-650` class does not exist. If `text-slate-650` is a custom class, make sure it is defined within a `@layer` directive.[39m
+  Plugin: [35mvite:css[39m
+  File: [36mC:/Users/Sai Satish/Documents/GitHub/MathUniverse/src/index.css[39m:250:4
+[33m  248|  
+  249|    .formula-category-button {
+  250|      @apply flex w-full min-w-0 items-center justify-between gap-2 rounded-lg px-3 py-2 text-left text-xs font-black text-slate-650 transition hover:bg-cyan-50 hover:text-cyan-800 dark:text-slate-200 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100;
+     |      ^
+  251|    }
+  252|  [39m
+      at Input.error (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\postcss\lib\input.js:135:16)
+      at AtRule.error (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\postcss\lib\node.js:146:32)
+      at processApply (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\tailwindcss\lib\lib\expandApplyAtRules.js:380:29)
+      at C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\tailwindcss\lib\lib\expandApplyAtRules.js:551:9
+      at C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\tailwindcss\lib\processTailwindFeatures.js:55:50
+      at async plugins (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\tailwindcss\lib\plugin.js:38:17)
+      at async LazyResult.runAsync (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\postcss\lib\lazy-result.js:293:11)
+      at async runPostCSS (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:43878:21)
+      at async compilePostCSS (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:43848:18)
+      at async compileCSS (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:43703:27)
+      at async TransformPluginContext.handler (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:43019:11)
+      at async EnvironmentPluginContainer.transform (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42348:18)
+      at async loadAndTransform (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:35740:27)
+      at async viteTransformMiddleware (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:37264:24)
+[2m8:08:13 am[22m [31m[1m[vite][22m[39m [31mInternal server error: [postcss] C:/Users/Sai Satish/Documents/GitHub/MathUniverse/src/index.css:326:5: The `text-slate-650` class does not exist. If `text-slate-650` is a custom class, make sure it is defined within a `@layer` directive.[39m
+  Plugin: [35mvite:css[39m
+  File: [36mC:/Users/Sai Satish/Documents/GitHub/MathUniverse/src/index.css[39m:326:4
+[33m  324|  
+  325|    .formula-tag-chip {
+  326|      @apply inline-flex min-h-8 items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-black text-slate-650 transition hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-800 dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100;
+     |      ^
+  327|    }
+  328|  [39m
+      at Input.error (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\postcss\lib\input.js:135:16)
+      at AtRule.error (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\postcss\lib\node.js:146:32)
+      at processApply (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\tailwindcss\lib\lib\expandApplyAtRules.js:380:29)
+      at C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\tailwindcss\lib\lib\expandApplyAtRules.js:551:9
+      at C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\tailwindcss\lib\processTailwindFeatures.js:55:50
+      at async plugins (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\tailwindcss\lib\plugin.js:38:17)
+      at async LazyResult.runAsync (C:\Users\Sai Satish\Documents\GitHub\MathUniverse\node_modules\postcss\lib\lazy-result.js:293:11)
+      at async runPostCSS (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:43878:21)
+      at async compilePostCSS (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:43848:18)
+      at async compileCSS (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:43703:27)
+      at async TransformPluginContext.handler (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:43019:11)
+      at async EnvironmentPluginContainer.transform (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42348:18)
+      at async loadAndTransform (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:35740:27)
+      at async viteTransformMiddleware (file:///C:/Users/Sai%20Satish/Documents/GitHub/MathUniverse/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:37264:24)

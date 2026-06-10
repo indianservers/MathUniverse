@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import MobileNav from "./MobileNav";
@@ -6,7 +6,7 @@ import MobileLearningDock from "./MobileLearningDock";
 import Sidebar from "./Sidebar";
 import { navItems } from "./navItems";
 import { BackToTopButton, BreadcrumbTrail, UndoToastHost } from "./GlobalUx";
-import { ArrowLeft, Github, Mail, Map, Sparkles } from "lucide-react";
+import { ArrowLeft, Github, Mail, Map, Maximize2, Minimize2, Sparkles } from "lucide-react";
 import { APP_VERSION } from "../../appVersion";
 
 function InlinePageNav({ showBack }: { showBack: boolean }) {
@@ -59,6 +59,8 @@ function AppFooter() {
 
 export default function AppLayout() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mainFullscreen, setMainFullscreen] = useState(false);
+  const mainContentRef = useRef<HTMLElement | null>(null);
   const location = useLocation();
   const showBack = location.pathname.split("/").filter(Boolean).length > 1;
   const isWorkspaceRoute = location.pathname === "/workspace";
@@ -66,6 +68,20 @@ export default function AppLayout() {
   useEffect(() => {
     setMobileOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const onFullscreenChange = () => setMainFullscreen(document.fullscreenElement === mainContentRef.current);
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
+
+  const toggleMainFullscreen = async () => {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+      return;
+    }
+    await mainContentRef.current?.requestFullscreen?.();
+  };
 
   useEffect(() => {
     const currentRoute = navItems.find((item) => !item.isExternal && item.route === location.pathname)?.route;
@@ -87,13 +103,24 @@ export default function AppLayout() {
         <div className="flex min-w-0 flex-1 flex-col">
           <Header mobileMenuOpen={mobileOpen} onMenuClick={() => setMobileOpen((value) => !value)} />
           <main
+            ref={mainContentRef}
             id="main-content"
             className={
               isWorkspaceRoute
-                ? "w-full flex-1 overflow-hidden px-2 pb-2 pt-2"
-                : "mx-auto w-full max-w-[1440px] flex-1 px-3 pb-6 pt-3 sm:px-4 md:px-5 md:pt-4"
+                ? "app-fullscreen-target w-full flex-1 overflow-hidden px-2 pb-2 pt-2"
+                : "app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 px-3 pb-6 pt-3 sm:px-4 md:px-5 md:pt-4"
             }
           >
+            <button
+              type="button"
+              onClick={() => void toggleMainFullscreen()}
+              className="app-fullscreen-button"
+              title={mainFullscreen ? "Exit full screen" : "Full screen this module"}
+              aria-label={mainFullscreen ? "Exit full screen" : "Full screen this module"}
+            >
+              {mainFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+              <span>{mainFullscreen ? "Exit" : "Full"}</span>
+            </button>
             <div key={location.pathname} className={isWorkspaceRoute ? "page-transition h-full min-h-0" : "page-transition space-y-2.5"}>
               {!isWorkspaceRoute && <InlinePageNav showBack={showBack} />}
               <Outlet />

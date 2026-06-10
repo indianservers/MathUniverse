@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Line, OrbitControls, Text } from "@react-three/drei";
 import { useEffect, useState } from "react";
-import { Pause, Play, RotateCcw } from "lucide-react";
+import { BookOpen, ChevronDown, Eye, Lightbulb, Pause, Play, RotateCcw } from "lucide-react";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
@@ -33,6 +33,7 @@ export default function MatrixTransformationsVisualizerPage() {
   const [playing, setPlaying] = useState(false);
   const [powerStep, setPowerStep] = useState(0);
   const [powerPlaying, setPowerPlaying] = useState(true);
+  const [guideOpen, setGuideOpen] = useState(true);
   const det = matrix.a * matrix.d - matrix.b * matrix.c;
   const av = multiply(matrix, vector);
 
@@ -57,6 +58,7 @@ export default function MatrixTransformationsVisualizerPage() {
   return (
     <div className="space-y-6">
       <TopicHeader title="Matrix Transformations Visualizer" subtitle="See how a 2x2 matrix moves the whole plane, transforms basis vectors, reshapes grids, and scales area." difficulty="Linear Algebra" estimatedMinutes={22} />
+      <MatrixGuidePanel matrix={matrix} vector={vector} av={av} det={det} open={guideOpen} onToggle={() => setGuideOpen((value) => !value)} />
       <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
         <SectionCard title="Matrix and Vector Controls" description="Edit the matrix entries and selected vector.">
           <div className="space-y-4">
@@ -80,6 +82,7 @@ export default function MatrixTransformationsVisualizerPage() {
         </SectionCard>
 
         <SectionCard title="Grid, Basis, Vector, and Shape Transformation" description="Grey shows original structure; colored elements show transformed space." tone="spotlight">
+          <MatrixPictureGuide matrix={matrix} vector={vector} av={av} det={det} />
           <TransformGraph matrix={matrix} vector={vector} t={t} />
         </SectionCard>
       </div>
@@ -132,6 +135,99 @@ export default function MatrixTransformationsVisualizerPage() {
           </div>
         </SectionCard>
       </div>
+    </div>
+  );
+}
+
+function MatrixGuidePanel({ matrix, vector, av, det, open, onToggle }: { matrix: Matrix; vector: Vec; av: Vec; det: number; open: boolean; onToggle: () => void }) {
+  const basisI = multiply(matrix, { x: 1, y: 0 });
+  const basisJ = multiply(matrix, { x: 0, y: 1 });
+  const determinantState = Math.abs(det) < 0.001 ? "collapses the plane" : det > 0 ? "keeps orientation" : "flips orientation";
+
+  return (
+    <section className="rounded-3xl border border-cyan-400/30 bg-slate-950/80 p-4 shadow-xl shadow-cyan-950/20">
+      <button type="button" onClick={onToggle} className="flex w-full items-center justify-between gap-3 text-left">
+        <span className="flex items-center gap-2 text-base font-black text-white">
+          <BookOpen className="h-5 w-5 text-cyan-300" />
+          Proper guide: how to read this matrix transformation
+        </span>
+        <ChevronDown className={`h-5 w-5 text-cyan-200 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open ? (
+        <div className="mt-4 grid gap-3 lg:grid-cols-[1.15fr_1fr_1fr]">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-black uppercase text-cyan-200">1. Matrix as two destination arrows</p>
+            <div className="mt-3 rounded-xl bg-slate-900 p-3 font-mono text-sm font-bold text-white">
+              A = [[{formatNumber(matrix.a)}, {formatNumber(matrix.b)}], [{formatNumber(matrix.c)}, {formatNumber(matrix.d)}]]
+            </div>
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              Column 1 tells where i goes: <strong className="text-amber-300">Ai = {formatVec(basisI)}</strong>. Column 2 tells where j goes: <strong className="text-violet-300">Aj = {formatVec(basisJ)}</strong>.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-black uppercase text-cyan-200">2. Current vector calculation</p>
+            <div className="mt-3 rounded-xl bg-slate-900 p-3 font-mono text-xs font-bold leading-6 text-white">
+              A{xVec(vector)} = ({formatNumber(matrix.a)}*{formatNumber(vector.x)} + {formatNumber(matrix.b)}*{formatNumber(vector.y)}, {formatNumber(matrix.c)}*{formatNumber(vector.x)} + {formatNumber(matrix.d)}*{formatNumber(vector.y)})
+            </div>
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              So the red transformed vector is <strong className="text-red-300">Av = {formatVec(av)}</strong>.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-xs font-black uppercase text-cyan-200">3. Determinant meaning</p>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              <Metric label="det(A)" value={formatNumber(det)} />
+              <Metric label="area scale" value={formatNumber(Math.abs(det))} />
+            </div>
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              This matrix <strong className="text-cyan-200">{determinantState}</strong>. If det is 0, many points land on the same line and the matrix has no inverse.
+            </p>
+          </div>
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
+function MatrixPictureGuide({ matrix, vector, av, det }: { matrix: Matrix; vector: Vec; av: Vec; det: number }) {
+  return (
+    <div className="mb-4 grid gap-3 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="rounded-2xl border border-cyan-400/20 bg-cyan-950/30 p-4">
+        <div className="flex items-center gap-2 text-sm font-black text-cyan-100">
+          <Eye className="h-4 w-4" />
+          Read the picture from the arrows first
+        </div>
+        <div className="mt-3 grid gap-2 text-xs font-bold text-slate-200 sm:grid-cols-2">
+          <GuidePill color="bg-slate-400" label="grey" value="original grid, i, j, and v" />
+          <GuidePill color="bg-cyan-300" label="cyan" value="where the whole grid moves" />
+          <GuidePill color="bg-amber-400" label="Ai" value={`i becomes ${formatVec({ x: matrix.a, y: matrix.c })}`} />
+          <GuidePill color="bg-violet-400" label="Aj" value={`j becomes ${formatVec({ x: matrix.b, y: matrix.d })}`} />
+          <GuidePill color="bg-red-400" label="Av" value={`${xVec(vector)} becomes ${formatVec(av)}`} />
+          <GuidePill color="bg-white" label="det" value={`${formatNumber(det)} controls area and flip`} />
+        </div>
+      </div>
+      <div className="rounded-2xl border border-amber-300/20 bg-amber-950/20 p-4">
+        <div className="flex items-center gap-2 text-sm font-black text-amber-100">
+          <Lightbulb className="h-4 w-4" />
+          Best way to use it
+        </div>
+        <ol className="mt-3 space-y-2 text-sm leading-6 text-slate-300">
+          <li><strong>1.</strong> Pick a preset like Rotation or Shear.</li>
+          <li><strong>2.</strong> Watch Ai and Aj. They define the whole transformation.</li>
+          <li><strong>3.</strong> Move vector x/y and compare grey v with red Av.</li>
+          <li><strong>4.</strong> Check det(A) to know area scaling and whether the plane flips or collapses.</li>
+        </ol>
+      </div>
+    </div>
+  );
+}
+
+function GuidePill({ color, label, value }: { color: string; label: string; value: string }) {
+  return (
+    <div className="flex min-h-12 items-center gap-2 rounded-xl bg-slate-950/70 px-3 py-2">
+      <span className={`h-3 w-3 shrink-0 rounded-full ${color}`} />
+      <span className="shrink-0 uppercase text-slate-400">{label}</span>
+      <span className="min-w-0 text-slate-100">{value}</span>
     </div>
   );
 }
@@ -330,6 +426,9 @@ function maxMatrixAbs(matrix: Matrix3) {
 function multiply(m: Matrix, v: Vec): Vec { return { x: m.a * v.x + m.b * v.y, y: m.c * v.x + m.d * v.y }; }
 function lerp(v: Vec, w: Vec, t: number): Vec { return { x: v.x + (w.x - v.x) * t, y: v.y + (w.y - v.y) * t }; }
 function rotation(theta: number): Matrix { return { a: Math.cos(theta), b: -Math.sin(theta), c: Math.sin(theta), d: Math.cos(theta) }; }
+function formatNumber(value: number) { return roundTo(value, 3).toString(); }
+function formatVec(vector: Vec) { return `<${formatNumber(vector.x)}, ${formatNumber(vector.y)}>`; }
+function xVec(vector: Vec) { return `<${formatNumber(vector.x)}, ${formatNumber(vector.y)}>`; }
 function sx(x: number) { return 380 + x * 56; }
 function sy(y: number) { return 260 - y * 56; }
 

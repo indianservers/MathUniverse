@@ -238,6 +238,293 @@ body {
     white-space: normal;
   }
 
+  .formula-page-shell {
+    @apply gap-3 pb-24 lg:pb-4;
+  }
+
+  .formula-mobile-hero {
+    @apply rounded-xl p-3 sm:p-4;
+  }
+
+  .formula-mobile-subtitle {
+    @apply line-clamp-2 sm:line-clamp-none;
+  }
+
+  .formula-mobile-stats {
+    @apply grid-cols-3;
+  }
+
+  .formula-mobile-stats > div:nth-child(n+4) {
+    @apply hidden sm:block;
+  }
+
+  .formula-mobile-action-row .tool-button,
+  .formula-mobile-controls .tool-button,
+  .formula-mobile-controls .math-tool-button {
+    @apply min-w-fit shrink-0;
+  }
+
+  .formula-mobile-controls .formula-select {
+    @apply min-w-[160px] shrink-0;
+  }
+
+  .formula-mobile-chip-row > * {
+    @apply shrink-0;
+  }
+
+  .formula-library-grid {
+    @apply grid gap-3 lg:gap-4 lg:grid-cols-[320px_minmax(0,1fr)];
+  }
+
+  .formula-sidebar {
+    @apply sticky top-3 max-h-[calc(100vh-1.5rem)] overflow-auto pr-1 thin-scrollbar;
+  }
+
+  .formula-mobile-filter-drawer .formula-sidebar {
+    @apply static max-h-none overflow-visible pr-0;
+  }
+
+  .formula-category-button {
+    @apply flex w-full min-w-0 items-center justify-between gap-2 rounded-lg px-3 py-2 text-left text-xs font-black text-slate-600 transition hover:bg-cyan-50 hover:text-cyan-800 dark:text-slate-200 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100;
+  }
+
+  .formula-category-button span:nth-child(2) {
+    @apply min-w-0 flex-1 truncate;
+  }
+
+  .formula-category-button span:last-child {
+    @apply rounded-full bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500 dark:bg-white/10 dark:text-slate-300;
+  }
+
+  .formula-category-button.active {
+    @apply bg-cyan-100 text-cyan-900 dark:bg-cyan-400/15 dark:text-cyan-50;
+  }
+
+  .formula-select {
+    @apply min-h-10 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100 dark:border-white/10 dark:bg-slate-950 dark:text-slate-100 dark:focus:ring-cyan-400/10;
+  }
+
+  .formula-results {
+    font-size: calc(1rem * var(--formula-zoom, 1));
+  }
+
+  .formula-results-grid {
+    @apply grid gap-3 xl:grid-cols-2;
+  }
+
+  .formula-results-list {
+    @apply grid gap-3;
+  }
+
+  .formula-results-compact {
+    @apply grid gap-2 sm:grid-cols-2 2xl:grid-cols-3;
+  }
+
+  .formula-library-card {
+    @apply min-w-0 scroll-mt-28 rounded-xl border border-slate-200 bg-white/85 p-3 shadow-sm transition hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/60 dark:hover:border-cyan-400/30 sm:p-4;
+  }
+
+  .formula-library-card.compact-card {
+    @apply p-3;
+  }
+
+  .geometry-mini-preview {
+    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-cyan-200 bg-cyan-50 text-cyan-700 dark:border-cyan-400/20 dark:bg-cyan-400/10 dark:text-cyan-100 sm:h-14 sm:w-14;
+  }
+
+  .geometry-mini-preview.large {
+    @apply h-24 w-full;
+  }
+
+  .geometry-mini-preview svg {
+    @apply h-full w-full;
+  }
+
+  .geometry-mini-preview circle,
+  .geometry-mini-preview ellipse,
+  .geometry-mini-preview line,
+  .geometry-mini-preview path {
+    fill: rgba(6, 182, 212, 0.14);
+    stroke: currentColor;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .geometry-mini-preview line,
+  .geometry-mini-preview path.accent {
+    fill: none;
+  }
+
+  .geometry-mini-preview text {
+    fill: currentColor;
+    font-size: 10px;
+    font-weight: 900;
+  }
+
+  .formula-line-render .formula-katex .katex {
+    font-size: clamp(1rem, 2.4vw, 1.28rem);
+  }
+
+  .formula-level {
+    @apply rounded-full bg-slate-950 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white dark:bg-white dark:text-slate-950;
+  }
+
+  .formula-usage {
+    @apply rounded-full bg-cyan-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100;
+  }
+
+  .formula-progress {
+    @apply rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600 dark:bg-white/10 dark:text-slate-300;
+  }
+
+  .formula-progress.mastered {
+    @apply bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100;
+  }
+
+  .formula-progress.revision {
+    @apply bg-amber-100 text-amber-800 dark:bg-amber-400/15 dark:text-amber-100;
+  }
+
+  .formula-progress.viewed {
+    @apply bg-cyan-100 text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100;
+  }
+
+  .formula-small-action {
+    @apply inline-flex min-h-9 flex-1 items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-black text-slate-700 transition hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:border-cyan-400/40 sm:flex-none;
+  }
+
+  .formula-study-button {
+    @apply inline-flex min-h-9 flex-1 items-center justify-center rounded-lg border border-slate-200 bg-white px-3 py-1 text-xs font-black text-slate-600 transition hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-800 dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100 sm:flex-none;
+  }
+
+  .formula-study-button.active {
+    @apply border-emerald-300 bg-emerald-100 text-emerald-800 dark:border-emerald-400/40 dark:bg-emerald-400/15 dark:text-emerald-100;
+  }
+
+  .formula-family-grid {
+    @apply grid gap-3 lg:grid-cols-2 2xl:grid-cols-3;
+  }
+
+  .formula-family-card {
+    @apply rounded-xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/50;
+  }
+
+  .formula-family-heading {
+    @apply flex w-full min-w-0 items-center gap-3 rounded-xl p-1 text-left transition hover:bg-cyan-50 dark:hover:bg-cyan-400/10;
+  }
+
+  .formula-family-row {
+    @apply flex w-full min-w-0 items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 p-2 text-left transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/5 dark:hover:border-cyan-400/40 dark:hover:bg-cyan-400/10;
+  }
+
+  .formula-family-row .geometry-mini-preview {
+    @apply h-10 w-10 rounded-lg;
+  }
+
+  .formula-tag-chip {
+    @apply inline-flex min-h-8 items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-black text-slate-600 transition hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-800 dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100;
+  }
+
+  .formula-tag-chip span:last-child {
+    @apply rounded-full bg-slate-100 px-2 py-0.5 text-[10px] text-slate-500 dark:bg-white/10 dark:text-slate-300;
+  }
+
+  .formula-tag-chip.active {
+    @apply border-cyan-300 bg-cyan-100 text-cyan-900 dark:border-cyan-400/40 dark:bg-cyan-400/15 dark:text-cyan-50;
+  }
+
+  .formula-inline-tag {
+    @apply rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-black text-slate-600 transition hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-800 dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100;
+  }
+
+  .formula-hidden-card {
+    @apply flex min-h-24 w-full items-center justify-center rounded-xl border border-dashed border-cyan-300 bg-cyan-50 text-sm font-black text-cyan-800 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-100;
+  }
+
+  .formula-detail-block {
+    @apply rounded-xl bg-white/70 p-3 dark:bg-slate-950/50;
+  }
+
+  .formula-detail-block summary {
+    @apply cursor-pointer text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400;
+  }
+
+  .formula-detail-block p {
+    @apply mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300;
+  }
+
+  .formula-contrast-mode .formula-line-render {
+    @apply border-yellow-300 bg-black text-white;
+  }
+
+  .formula-contrast-mode .formula-katex .katex {
+    @apply text-white;
+  }
+
+  .formula-print-mode .formula-sidebar,
+  .formula-print-mode .desktop-page-header,
+  .formula-print-mode .tool-button,
+  .formula-print-mode .math-tool-button,
+  .formula-print-mode .formula-small-action {
+    @apply hidden;
+  }
+
+  .formula-print-mode .formula-library-grid,
+  .formula-print-mode .desktop-tab-surface {
+    @apply block;
+  }
+
+  .formula-mobile-detail-shell {
+    @apply fixed inset-0 z-50;
+  }
+
+  .formula-mobile-detail-backdrop {
+    @apply absolute inset-0 bg-slate-950/60 backdrop-blur-sm;
+  }
+
+  .formula-mobile-detail-drawer {
+    @apply absolute bottom-0 right-0 flex max-h-[88vh] w-full flex-col overflow-auto rounded-t-2xl border border-slate-200 bg-white p-4 shadow-2xl dark:border-white/10 dark:bg-slate-950;
+  }
+
+  .formula-mobile-detail-handle {
+    @apply mx-auto mb-3 h-1.5 w-14 rounded-full bg-slate-300 dark:bg-slate-700;
+  }
+
+  .formula-mobile-bottom-bar {
+    @apply fixed inset-x-3 bottom-3 z-40 grid grid-cols-3 gap-2 rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-2xl backdrop-blur dark:border-white/10 dark:bg-slate-950/95;
+  }
+
+  .formula-mobile-bottom-action {
+    @apply inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl px-2 text-xs font-black text-slate-700 transition hover:bg-cyan-50 hover:text-cyan-800 dark:text-slate-200 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100;
+  }
+
+  .formula-mobile-bottom-action.active {
+    @apply bg-cyan-100 text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100;
+  }
+
+  .formula-mobile-bottom-action.primary {
+    @apply bg-slate-950 text-white hover:bg-slate-800 hover:text-white dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 dark:hover:text-slate-950;
+  }
+
+  @media print {
+    .formula-sidebar,
+    .desktop-page-header,
+    .tool-button,
+    .math-tool-button,
+    .formula-small-action {
+      display: none !important;
+    }
+
+    .formula-library-card {
+      break-inside: avoid;
+      box-shadow: none !important;
+      border-color: #cbd5e1 !important;
+      background: white !important;
+      color: #0f172a !important;
+    }
+  }
+
   .formula-katex .katex-html {
     max-width: 100%;
     white-space: normal;
@@ -304,6 +591,14 @@ body {
     @apply flex h-[calc(100vh-5.75rem)] min-h-0 max-w-full flex-col gap-2 overflow-hidden;
   }
 
+  .app-fullscreen-target {
+    @apply relative;
+  }
+
+  .app-fullscreen-button {
+    @apply fixed right-3 top-20 z-50 inline-flex min-h-9 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3 py-1.5 text-xs font-black text-slate-700 shadow-xl shadow-slate-950/10 backdrop-blur transition hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-800 dark:border-white/10 dark:bg-slate-950/85 dark:text-slate-100 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100;
+  }
+
   .workspace-topbar {
     @apply flex min-h-14 shrink-0 items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white/85 px-4 py-2 shadow-sm dark:border-white/10 dark:bg-slate-950/70;
   }
@@ -360,6 +655,26 @@ body {
   .workspace-canvas {
     height: 100%;
     min-height: 360px;
+  }
+
+  .workspace-context-backdrop {
+    @apply fixed inset-0 z-40 cursor-default bg-transparent;
+  }
+
+  .workspace-context-menu {
+    @apply fixed z-50 min-w-48 overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-2xl shadow-slate-950/20 dark:border-white/10 dark:bg-slate-950 dark:shadow-black/40;
+  }
+
+  .workspace-context-title {
+    @apply px-3 py-2 text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400;
+  }
+
+  .workspace-context-item {
+    @apply flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm font-black text-slate-700 transition hover:bg-cyan-50 hover:text-cyan-800 disabled:pointer-events-none disabled:opacity-45 dark:text-slate-100 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100;
+  }
+
+  .workspace-context-item.danger {
+    @apply text-rose-700 hover:bg-rose-50 hover:text-rose-800 dark:text-rose-100 dark:hover:bg-rose-400/15 dark:hover:text-rose-50;
   }
 
   .workspace-tool-strip .tool-button {
@@ -513,6 +828,38 @@ body {
 
 :fullscreen {
   @apply bg-slate-950 p-4;
+}
+
+.app-fullscreen-target:fullscreen {
+  @apply h-screen max-w-none overflow-auto bg-slate-50 p-3 dark:bg-slate-950;
+}
+
+.app-fullscreen-target:fullscreen .app-fullscreen-button {
+  @apply right-4 top-4;
+}
+
+.app-fullscreen-target:fullscreen .workspace-app-shell,
+.workspace-app-shell:fullscreen {
+  @apply h-full min-h-0 bg-slate-950 p-0;
+}
+
+.workspace-app-shell:fullscreen {
+  @apply gap-2;
+}
+
+.workspace-app-shell:fullscreen .workspace-grid,
+.app-fullscreen-target:fullscreen .workspace-grid {
+  @apply min-h-0 flex-1;
+}
+
+.workspace-app-shell:fullscreen .workspace-topbar,
+.app-fullscreen-target:fullscreen .workspace-topbar {
+  @apply shrink-0;
+}
+
+.workspace-app-shell:fullscreen .workspace-stage-card,
+.app-fullscreen-target:fullscreen .workspace-stage-card {
+  @apply h-full;
 }
 
 @keyframes page-fade-in {

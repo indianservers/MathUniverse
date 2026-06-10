@@ -274,7 +274,6 @@ export default function ShapesExplorer() {
 
           <div className="space-y-3">
             <ShapeViewControls
-              kind={selected.kind}
               zoom={viewZoom}
               rotation={viewRotation}
               autoRotate={autoRotate}
@@ -306,11 +305,15 @@ export default function ShapesExplorer() {
                   <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-white">{selected.kind === "2d" ? "Extruded 3D" : "Solid model"}</span>
                 </div>
                 <div className="mb-2 flex flex-wrap gap-2">
+                  <button type="button" className={autoRotate ? "action-primary" : "tool-button"} onClick={() => setAutoRotate((value) => !value)}>
+                    {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                    {autoRotate ? "Pause rotation" : "Start rotation"}
+                  </button>
                   <ShapeSceneCheckbox label="Base" checked={show3DBase} onChange={setShow3DBase} />
                   <ShapeSceneCheckbox label="Coordinates" checked={show3DCoordinates} onChange={setShow3DCoordinates} />
                   <ShapeSceneCheckbox label="Labels" checked={show3DLabels} onChange={setShow3DLabels} />
                 </div>
-                <ThreeSceneWrapper chrome="cinematic" sceneLabel={selected.name} height="520px" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom" cameraPosition={[4.4, 3.4, 6.2]} fov={43} quality="high">
+                <ThreeSceneWrapper chrome="cinematic" sceneLabel={`${selected.name} - ${autoRotate ? "rotating" : "paused"}`} height="520px" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom" cameraPosition={[4.4, 3.4, 6.2]} fov={43} quality="high">
                 <ambientLight intensity={0.48} />
                 <directionalLight position={[4, 6, 5]} intensity={1.85} castShadow />
                 <pointLight position={[-3.5, 2.4, 2.5]} intensity={1.1} color="#8b5cf6" />
@@ -320,7 +323,7 @@ export default function ShapesExplorer() {
                 {show3DBase && <gridHelper args={[8, 16, "#38bdf8", "#334155"]} position={[0, -3.02, 0]} />}
                 {show3DCoordinates && <axesHelper args={[3.4]} />}
                 {show3DCoordinates && <ShapeCoordinateLabels />}
-                <OrbitControls enablePan={false} enableZoom enableDamping />
+                <OrbitControls enablePan={false} enableZoom enableDamping autoRotate={autoRotate} autoRotateSpeed={0.7} />
                 </ThreeSceneWrapper>
               </div>
             </div>
@@ -848,7 +851,6 @@ function symbolSummary(id: ShapeId, a: number, b: number, c: number, sides: numb
 }
 
 type ShapeViewControlsProps = {
-  kind: ShapeKind;
   zoom: number;
   rotation: number;
   autoRotate: boolean;
@@ -860,7 +862,7 @@ type ShapeViewControlsProps = {
   onToggleAutoRotate: () => void;
 };
 
-function ShapeViewControls({ kind, zoom, rotation, autoRotate, onZoomIn, onZoomOut, onRotateLeft, onRotateRight, onReset, onToggleAutoRotate }: ShapeViewControlsProps) {
+function ShapeViewControls({ zoom, rotation, autoRotate, onZoomIn, onZoomOut, onRotateLeft, onRotateRight, onReset, onToggleAutoRotate }: ShapeViewControlsProps) {
   return (
     <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/60 sm:flex-row sm:items-center sm:justify-between">
       <div className="mobile-safe-scroll thin-scrollbar flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
@@ -876,11 +878,9 @@ function ShapeViewControls({ kind, zoom, rotation, autoRotate, onZoomIn, onZoomO
         <IconButton label="Rotate right" onClick={onRotateRight}>
           <RotateCw className="h-4 w-4" />
         </IconButton>
-        {kind === "3d" && (
-          <IconButton label={autoRotate ? "Pause auto-rotate" : "Play auto-rotate"} onClick={onToggleAutoRotate}>
-            {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-          </IconButton>
-        )}
+        <IconButton label={autoRotate ? "Pause auto-rotate" : "Play auto-rotate"} onClick={onToggleAutoRotate}>
+          {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+        </IconButton>
         <IconButton label="Reset view" onClick={onReset}>
           <RefreshCw className="h-4 w-4" />
         </IconButton>
@@ -888,6 +888,7 @@ function ShapeViewControls({ kind, zoom, rotation, autoRotate, onZoomIn, onZoomO
       <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
         <span className="mini-chip">Zoom {roundTo(zoom * 100, 0)}%</span>
         <span className="mini-chip">Rotate {rotation} deg</span>
+        <span className="mini-chip">{autoRotate ? "Auto rotation on" : "Rotation paused"}</span>
       </div>
     </div>
   );

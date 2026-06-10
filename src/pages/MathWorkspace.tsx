@@ -1,7 +1,7 @@
 import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ArrowLeftRight, Axis3d, BetweenHorizontalStart, Blend, Brush, Calculator, Circle, CircleDot, ClipboardCopy, Crosshair, Download, Eraser, EyeOff, FlipHorizontal2, GitBranch, Grid2X2, Highlighter, Layers, LineChart, LockKeyhole, Magnet, MousePointer2, MousePointerClick, Move, Move3D, PanelLeftClose, PanelLeftOpen, Pause, PenLine, PencilRuler, Pentagon, Play, Plus, Presentation, Radius, Rotate3D, RotateCcw, Ruler, Save, ScanLine, Scissors, Search, Sigma, Slash, Spline, Square, Target, TextCursorInput, Trash2, Triangle, UnfoldHorizontal, Wand2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
-import { ChangeEvent, CSSProperties, KeyboardEvent, PointerEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { ChangeEvent, CSSProperties, KeyboardEvent, MouseEvent, PointerEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
@@ -69,6 +69,7 @@ type SolidKind = "cube" | "box" | "sphere" | "hemisphere" | "cylinder" | "cone" 
 type Space3DShapeObject = { id: string; kind: SolidKind; name: string; size: number; position: Vector3Tuple; rotation: Vector3Tuple; color: string; visible: boolean };
 type BuiltinSpace3DObjectId = "surface" | "solid" | "cross-section" | "vector" | "point" | "axes" | "grid";
 type Space3DObjectId = BuiltinSpace3DObjectId | `shape:${string}`;
+type WorkspaceContextMenu = { x: number; y: number; scope: "geometry" | "space3d"; title: string } | null;
 type WorkspaceSnapshot = {
   input: string;
   results: ResultCard[];
@@ -228,6 +229,7 @@ export default function MathWorkspace() {
   const [spaceControlsOpen, setSpaceControlsOpen] = useState(true);
   const [formulaSearch, setFormulaSearch] = useState("");
   const [teachingMode, setTeachingMode] = useState(false);
+  const [contextMenu, setContextMenu] = useState<WorkspaceContextMenu>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const graphExportRef = useRef<HTMLDivElement>(null);
   const geometryExportRef = useRef<SVGSVGElement | null>(null);
@@ -290,6 +292,24 @@ export default function MathWorkspace() {
       grid: setShowGrid3d,
     };
     visibilitySetters[selected3dObject as BuiltinSpace3DObjectId]?.(false);
+  };
+
+  const reset3dScene = () => {
+    setZoom3d(1);
+    setSurfaceScale(1);
+    setSurfaceDomain(2.6);
+    setCrossSection(0);
+    setSurfacePosition3d([0, 0, 0]);
+    setSurfaceRotation3d([0, 0, 0]);
+    setSolidPosition3d([3, 0, 2.6]);
+    setSolidRotation3d([0, 0, 0]);
+    setVectorStart3d([-3, 0.05, -3]);
+    setVectorEnd3d([2.2, 1.4, 1.8]);
+    setPoint3d([2.2, 1.4, 1.8]);
+    setSpace3dShapes([]);
+    setAutoRotate3d(false);
+    restoreAll3dObjects();
+    setSelected3dObject("surface");
   };
 
   const restoreAll3dObjects = () => {
@@ -825,6 +845,30 @@ export default function MathWorkspace() {
     setPendingCircleIds(kind === "circle" ? selectedCircleIdsRef.current.filter((circleId) => circleId !== id) : selectedCircleIdsRef.current);
     setSelectedGeoObject(null);
   };
+  const resetGeometryConstruction = () => {
+    commitConstruction("Reset construction", () => initialConstruction);
+    setPendingPointIds([]);
+    setPendingPolygonDraft([]);
+    setPendingCircleIds([]);
+    setSelectedGeoObject(null);
+  };
+  const openWorkspaceContextMenu = (event: MouseEvent<HTMLElement | SVGSVGElement>, scope: "geometry" | "space3d") => {
+    event.preventDefault();
+    event.stopPropagation();
+    const title = scope === "geometry" ? geometryContextTitle(selectedGeoObject, selectedPointIds.length) : space3dContextTitle(selected3dObject, selected3dShape);
+    setContextMenu({ x: event.clientX, y: event.clientY, scope, title });
+  };
+  const closeWorkspaceContextMenu = () => setContextMenu(null);
+  const runContextDelete = () => {
+    if (contextMenu?.scope === "geometry") deleteSelectedGeometry();
+    if (contextMenu?.scope === "space3d") deleteSelected3dObject();
+    closeWorkspaceContextMenu();
+  };
+  const runContextReset = () => {
+    if (contextMenu?.scope === "geometry") resetGeometryConstruction();
+    if (contextMenu?.scope === "space3d") reset3dScene();
+    closeWorkspaceContextMenu();
+  };
   const updateGeometryPoint = (id: string, patch: Partial<Pick<GeoPoint, "label" | "x" | "y">>) => {
     commitConstruction("Edit point", (current) => ({
       ...current,
@@ -1128,6 +1172,7 @@ export default function MathWorkspace() {
     if (event.key === "Escape") {
       setAnimationPlaying(false);
       setDragPointId(null);
+      closeWorkspaceContextMenu();
       return;
     }
     if (!(event.ctrlKey || event.metaKey)) return;
@@ -1367,7 +1412,7 @@ export default function MathWorkspace() {
                 {autoRotate3d ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
                 {autoRotate3d ? "Pause rotation" : "Start rotation"}
               </button>
-              <button type="button" onClick={() => { setZoom3d(1); setSurfaceScale(1); setSurfaceDomain(2.6); setCrossSection(0); setSurfacePosition3d([0, 0, 0]); setSurfaceRotation3d([0, 0, 0]); setSolidPosition3d([3, 0, 2.6]); setSolidRotation3d([0, 0, 0]); setVectorStart3d([-3, 0.05, -3]); setVectorEnd3d([2.2, 1.4, 1.8]); setPoint3d([2.2, 1.4, 1.8]); setSpace3dShapes([]); setAutoRotate3d(false); restoreAll3dObjects(); setSelected3dObject("surface"); }} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset</button>
+              <button type="button" onClick={reset3dScene} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset</button>
             </div>
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))} className="action-secondary"><ZoomOut className="h-4 w-4" />Zoom out</button>
@@ -1396,10 +1441,11 @@ export default function MathWorkspace() {
           </div>
 
           <div className="thin-scrollbar min-h-0 min-w-0 space-y-2 overflow-auto pr-1">
+            <div onContextMenu={(event) => openWorkspaceContextMenu(event, "space3d")}>
             <ThreeSceneWrapper
               height="clamp(420px, calc(100vh - 260px), 620px)"
               mobileHeight="280px"
-              interactionLabel="Left drag rotate - wheel/pinch zoom - right drag pan"
+              interactionLabel="Left drag rotate - wheel/pinch zoom - right-click menu"
               sceneLabel={autoRotate3d ? "Workspace 3D - rotating" : "Workspace 3D - paused"}
             >
               <ambientLight intensity={0.75} />
@@ -1444,6 +1490,7 @@ export default function MathWorkspace() {
               />
               <OrbitControls enablePan enableZoom enableDamping enabled={!dragging3dObject} autoRotate={autoRotate3d && !dragging3dObject} autoRotateSpeed={0.6} />
             </ThreeSceneWrapper>
+            </div>
             <Workspace3DInspector
               surface={surface}
               solid={solid}
@@ -1520,7 +1567,7 @@ export default function MathWorkspace() {
               onDelete={deleteSelectedGeometry}
               onUndo={undoConstruction}
               onRedo={redoConstruction}
-              onReset={() => { commitConstruction("Reset construction", () => initialConstruction); setPendingPointIds([]); setPendingPolygonDraft([]); setPendingCircleIds([]); setSelectedGeoObject(null); }}
+              onReset={resetGeometryConstruction}
               onSave={saveConstruction}
               onLoad={loadConstruction}
               onTemplate={addGeometryTemplate}
@@ -1539,6 +1586,7 @@ export default function MathWorkspace() {
                 onPointerMove={handleBoardPointerMove}
                 onPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); setDragPointId(null); }}
                 onPointerLeave={() => setDragPointId(null)}
+                onContextMenu={(event) => openWorkspaceContextMenu(event, "geometry")}
                 className="workspace-canvas w-full max-w-full touch-none rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"
               >
                 <title>Math Universe Geometry Construction</title>
@@ -1602,8 +1650,58 @@ export default function MathWorkspace() {
         </div>
       </SectionCard>
       )}
+      <WorkspaceRightClickMenu
+        menu={contextMenu}
+        canDelete={contextMenu?.scope === "geometry" ? Boolean(selectedGeoObject || selectedPointIds.length) : Boolean(selected3dObject)}
+        onClose={closeWorkspaceContextMenu}
+        onDelete={runContextDelete}
+        onReset={runContextReset}
+      />
     </WorkspaceShell>
   );
+}
+
+function WorkspaceRightClickMenu({
+  canDelete,
+  menu,
+  onClose,
+  onDelete,
+  onReset,
+}: {
+  canDelete: boolean;
+  menu: WorkspaceContextMenu;
+  onClose: () => void;
+  onDelete: () => void;
+  onReset: () => void;
+}) {
+  if (!menu) return null;
+  return (
+    <>
+      <button type="button" className="workspace-context-backdrop" aria-label="Close workspace context menu" onClick={onClose} />
+      <div className="workspace-context-menu" style={{ left: menu.x, top: menu.y }}>
+        <p className="workspace-context-title">{menu.title}</p>
+        <button type="button" className="workspace-context-item danger" onClick={onDelete} disabled={!canDelete}>
+          <Trash2 className="h-4 w-4" />
+          Delete
+        </button>
+        <button type="button" className="workspace-context-item" onClick={onReset}>
+          <RotateCcw className="h-4 w-4" />
+          Reset {menu.scope === "geometry" ? "2D geometry" : "3D scene"}
+        </button>
+      </div>
+    </>
+  );
+}
+
+function geometryContextTitle(selected: SelectedGeoObject, selectedPointCount: number) {
+  if (selected) return `Selected ${selected.kind}`;
+  if (selectedPointCount) return `${selectedPointCount} selected point${selectedPointCount === 1 ? "" : "s"}`;
+  return "Geometry canvas";
+}
+
+function space3dContextTitle(selected: Space3DObjectId, selectedShape: Space3DShapeObject | null) {
+  if (selectedShape) return selectedShape.name;
+  return `3D ${selected.replace("shape:", "").replace("-", " ")}`;
 }
 
 function interpretInput(input: string): ResultCard {
