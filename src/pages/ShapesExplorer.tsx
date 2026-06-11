@@ -1,4 +1,4 @@
-import { Award, Box, Camera, Circle, Cuboid, Download, Eye, Heart, Mic, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
+import { Award, Box, Camera, Circle, Cuboid, Download, Eye, Heart, Mic, PanelLeftClose, PanelLeftOpen, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
 import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent, type RefObject } from "react";
@@ -104,11 +104,11 @@ export default function ShapesExplorer() {
   const [viewZoom, setViewZoom] = useState(1);
   const [viewRotation, setViewRotation] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
+  const [shapeMenuCollapsed, setShapeMenuCollapsed] = useState(false);
   const [controlPaneWidth, setControlPaneWidth] = useState(30);
   const [viewPaneSplit, setViewPaneSplit] = useState(50);
   const workspaceRef = useRef<HTMLDivElement>(null);
   const viewsRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => markTopicVisited("shapes"), [markTopicVisited]);
 
   useEffect(() => {
@@ -156,8 +156,34 @@ export default function ShapesExplorer() {
         estimatedMinutes={35}
       />
       <SectionCard title="Shapes Explorer" description="Use the left menu to choose a 2D shape or 3D object. The selected object opens on the right with live controls.">
-        <div className="grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)]">
-          <ShapeSelectorMenu groupedShapes={groupedShapes} selectedId={selected.id} expandedCategories={expandedCategories} onToggleCategory={toggleCategory} onSelect={selectShape} />
+        <div className={shapeMenuCollapsed ? "grid gap-4" : "grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)]"}>
+          {shapeMenuCollapsed ? (
+            <button
+              type="button"
+              onClick={() => setShapeMenuCollapsed(false)}
+              className="flex min-h-20 w-full items-center justify-between gap-4 rounded-xl border border-cyan-300 bg-cyan-50 px-5 py-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:bg-cyan-100 hover:shadow-md dark:border-cyan-300/30 dark:bg-cyan-300/10 dark:hover:bg-cyan-300/15"
+            >
+              <span className="flex min-w-0 items-center gap-3">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cyan-500 text-white shadow-lg shadow-cyan-500/25">
+                  <PanelLeftOpen className="h-6 w-6" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Main menu hidden</span>
+                  <span className="block text-lg font-black text-slate-950 dark:text-white">Expand Main Menu</span>
+                </span>
+              </span>
+              <span className="mini-chip">show shapes</span>
+            </button>
+          ) : (
+            <ShapeSelectorMenu
+              groupedShapes={groupedShapes}
+              selectedId={selected.id}
+              expandedCategories={expandedCategories}
+              onToggleCategory={toggleCategory}
+              onSelect={selectShape}
+              onCollapse={() => setShapeMenuCollapsed(true)}
+            />
+          )}
           <div className="min-w-0 rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
@@ -168,11 +194,75 @@ export default function ShapesExplorer() {
               <span className="mini-chip">{selected.kind === "3d" ? "3D object" : "2D shape"}</span>
             </div>
             <p className="mt-3 rounded-lg bg-slate-100 p-3 font-mono text-sm font-bold dark:bg-white/10">{selected.formula}</p>
+            <div className="mt-4 grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)]">
+              <div className="space-y-3">
+                <SliderGroup title="Shape controls">
+                  <SliderControl density="compact" label={primaryLabel(selected)} value={a} min={0.5} max={10} step={0.1} onChange={setA} />
+                  {needsSecond(selected.id) && <SliderControl density="compact" label={secondLabel(selected)} value={b} min={0.5} max={10} step={0.1} onChange={setB} />}
+                  {needsThird(selected.id) && <SliderControl density="compact" label={thirdLabel(selected)} value={c} min={0.5} max={12} step={0.1} onChange={setC} />}
+                  {selected.id === "regular-polygon" && <SliderControl density="compact" label="Number of sides" value={sides} min={3} max={12} step={1} onChange={(value) => setSides(Math.round(value))} />}
+                  {selected.id === "sector" && <SliderControl density="compact" label="Central angle" value={angle} min={5} max={360} step={1} onChange={setAngle} unit="deg" />}
+                </SliderGroup>
+                {selected.kind === "3d" && (
+                  <label className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
+                    <input type="checkbox" checked={wireframe} onChange={(event) => setWireframe(event.target.checked)} />
+                    Wireframe
+                  </label>
+                )}
+                <div className="grid grid-cols-2 gap-2">
+                  {Object.entries(metrics).map(([label, value]) => <Metric key={label} label={label} value={value} />)}
+                </div>
+              </div>
+
+              <div className="min-w-0 space-y-3">
+                <ShapeViewControls
+                  kind={selected.kind}
+                  zoom={viewZoom}
+                  rotation={viewRotation}
+                  autoRotate={autoRotate}
+                  onZoomIn={zoomIn}
+                  onZoomOut={zoomOut}
+                  onRotateLeft={rotateLeft}
+                  onRotateRight={rotateRight}
+                  onReset={resetView}
+                  onToggleAutoRotate={() => setAutoRotate((value) => !value)}
+                />
+                <div className="grid gap-3 xl:grid-cols-2">
+                  <VisualizationPane title="2D Pane" description="Exact plane view with live dimensions." badge={selected.kind === "2d" ? "native 2D" : "shadow view"}>
+                    <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} />
+                  </VisualizationPane>
+                  <VisualizationPane
+                    title="3D Pane"
+                    description={selected.kind === "2d" ? "Extruded model from the 2D outline." : "Real solid with dimension guides."}
+                    badge={selected.kind === "2d" ? "extruded 3D" : "solid 3D"}
+                    action={
+                      <button type="button" onClick={() => setAutoRotate((value) => !value)} className={autoRotate ? "action-primary px-3 py-2 text-xs" : "action-secondary px-3 py-2 text-xs"}>
+                        {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                        {autoRotate ? "Pause" : "Rotate"}
+                      </button>
+                    }
+                  >
+                    <ThreeSceneWrapper height="100%" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom">
+                      <ambientLight intensity={0.75} />
+                      <directionalLight position={[4, 5, 4]} intensity={1.35} />
+                      <RotatingSolid shape={selected.id} a={a} b={b} c={c} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} sides={sides} />
+                      <OrbitControls enablePan={false} enableZoom enableDamping />
+                    </ThreeSceneWrapper>
+                  </VisualizationPane>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 grid gap-3 md:grid-cols-4">
+              <InfoTile label="Dimensions" value={selected.dimensions.join(", ")} />
+              <InfoTile label="Current symbols" value={symbolSummary(selected.id, a, b, c, sides, angle)} />
+              <InfoTile label="Type" value={selected.kind === "2d" ? "Plane shape" : "Solid shape"} />
+              <InfoTile label="Used in" value={selected.use} />
+            </div>
           </div>
         </div>
       </SectionCard>
 
-      <SectionCard title={selected.name} description={selected.description}>
+      <SectionCard title={selected.name} description={selected.description} className="hidden">
         <div
           ref={workspaceRef}
           className="grid gap-3 xl:min-h-[720px] xl:items-stretch"
@@ -388,12 +478,42 @@ function FormulaMapCard({ entry, metrics, compact = false }: { entry: ShapeFormu
   );
 }
 
-function ShapeSelectorMenu({ groupedShapes, selectedId, expandedCategories, onToggleCategory, onSelect }: { groupedShapes: { category: ShapeCategory; shapes: ShapeDefinition[] }[]; selectedId: ShapeId; expandedCategories: Set<ShapeCategory>; onToggleCategory: (category: ShapeCategory) => void; onSelect: (shape: ShapeDefinition) => void }) {
+function ShapeSelectorMenu({
+  groupedShapes,
+  selectedId,
+  expandedCategories,
+  onToggleCategory,
+  onSelect,
+  onCollapse,
+}: {
+  groupedShapes: { category: ShapeCategory; shapes: ShapeDefinition[] }[];
+  selectedId: ShapeId;
+  expandedCategories: Set<ShapeCategory>;
+  onToggleCategory: (category: ShapeCategory) => void;
+  onSelect: (shape: ShapeDefinition) => void;
+  onCollapse: () => void;
+}) {
   return (
     <aside className="max-h-[72vh] overflow-auto rounded-xl border border-slate-200 bg-white/85 p-3 dark:border-white/10 dark:bg-slate-950/35">
-      <div className="mb-3">
-        <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Main menu</p>
-        <h3 className="mt-1 text-base font-black">Shape families</h3>
+      <div className="mb-3 space-y-3">
+        <button
+          type="button"
+          onClick={onCollapse}
+          className="flex min-h-16 w-full items-center justify-between gap-3 rounded-xl bg-slate-950 px-4 py-3 text-left text-white shadow-lg shadow-slate-950/10 transition hover:-translate-y-0.5 hover:bg-slate-800 dark:bg-cyan-300 dark:text-slate-950 dark:hover:bg-cyan-200"
+        >
+          <span className="flex min-w-0 items-center gap-3">
+            <PanelLeftClose className="h-6 w-6 shrink-0" />
+            <span className="min-w-0">
+              <span className="block text-xs font-black uppercase opacity-75">Main menu</span>
+              <span className="block text-base font-black">Collapse Menu</span>
+            </span>
+          </span>
+          <span className="rounded-full bg-white/15 px-2 py-1 text-xs font-black dark:bg-slate-950/10">hide</span>
+        </button>
+        <div>
+          <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Main menu</p>
+          <h3 className="mt-1 text-base font-black">Shape families</h3>
+        </div>
       </div>
       <div className="space-y-2">
         {groupedShapes.map(({ category, shapes: categoryShapes }) => {

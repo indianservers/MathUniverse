@@ -1,6 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Box, ChevronDown, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
+import { Box, ChevronDown, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
 import { MouseEvent as ReactMouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
@@ -215,6 +215,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [cameraPreset3d, setCameraPreset3d] = useState<CameraPreset3D>("isometric");
   const [zoom3d, setZoom3d] = useState(1);
   const [selected3d, setSelected3d] = useState<string>("solid");
+  const [controls3dOpen, setControls3dOpen] = useState(true);
+  const [inspector3dOpen, setInspector3dOpen] = useState(true);
   const [transforms3d, setTransforms3d] = useState<Record<ThreeObjectId, Transform3D>>(defaultTransforms3d);
   const [added3dObjects, setAdded3dObjects] = useState<Added3DObject[]>([]);
   const [drag3d, setDrag3d] = useState<string | null>(null);
@@ -1675,104 +1677,141 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       </SectionCard>}
 
       {workspaceView === "3d" && <SectionCard title="3D Graphing And Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls.">
-        <div className="grid items-start gap-3 xl:grid-cols-[minmax(0,1fr)_360px]">
+        <div
+          className="grid items-start gap-3"
+          style={{
+            gridTemplateColumns:
+              controls3dOpen && inspector3dOpen
+                ? "minmax(250px, 300px) minmax(460px, 1fr) minmax(290px, 340px)"
+                : controls3dOpen
+                  ? "minmax(250px, 300px) minmax(520px, 1fr)"
+                  : inspector3dOpen
+                    ? "minmax(520px, 1fr) minmax(290px, 340px)"
+                    : "minmax(0, 1fr)",
+          }}
+        >
+          {controls3dOpen && (
+            <aside className="min-h-0 space-y-3 xl:sticky xl:top-24">
+              <HorizontalPanelHeader title="Controls" side="left" onCollapse={() => setControls3dOpen(false)} />
+              <SceneSetupTabs3D
+                selected3d={selected3d}
+                selected3dTransform={selected3dTransform}
+                surface={surface}
+                solid={solid}
+                surfaceExpression={surfaceExpression}
+                surfaceScale={surfaceScale}
+                height3d={height3d}
+                crossSection={crossSection}
+                sceneAnimationSpeed={sceneAnimationSpeed}
+                showSurface={showSurface}
+                showSolid={showSolid}
+                autoRotate3d={autoRotate3d}
+                cameraPreset3d={cameraPreset3d}
+                onSurface={(value) => {
+                  setSurface(value);
+                  setShowSurface(true);
+                  add3dSceneObject("surface", { surface: value, label: value });
+                }}
+                onSolid={(value) => {
+                  setSolid(value);
+                  setShowSolid(true);
+                  add3dSceneObject("solid", { solid: value, label: value });
+                }}
+                onObject={(id) => add3dSceneObject(id, { solid: threeObjectSolidMap[id], label: threeObjectLabels[id] })}
+                onSurfaceExpression={setSurfaceExpression}
+                onSurfaceScale={setSurfaceScale}
+                onHeight={setHeight3d}
+                onCrossSection={setCrossSection}
+                onAnimationSpeed={setSceneAnimationSpeed}
+                onShowSurface={setShowSurface}
+                onShowSolid={setShowSolid}
+                onAutoRotate={setAutoRotate3d}
+                onCamera={setCameraPreset3d}
+                onZoomIn={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))}
+                onZoomOut={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))}
+                onReset={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); setCameraPreset3d("isometric"); }}
+                onSelectTool={() => {
+                  setSelected3d("");
+                  setDrag3d(null);
+                  setProjectStatus("3D Select tool ready. Click an object in the scene or object list.");
+                }}
+                onNudge={(axis, amount) => update3dTransform(selected3d, { position: selected3dTransform.position.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
+                onRotateAxis={(axis, amount) => update3dTransform(selected3d, { rotation: selected3dTransform.rotation.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
+                onScale={(amount) => update3dTransform(selected3d, { scale: Math.max(0.2, roundTo(selected3dTransform.scale + amount, 2)) })}
+                onMaterial={(material) => update3dTransform(selected3d, { material })}
+                onOpacity={(opacity) => update3dTransform(selected3d, { opacity })}
+                onDuplicate={() => duplicate3dObject()}
+                onDelete={() => delete3dObject()}
+                onRestore={() => restore3dObject()}
+                onLock={() => update3dTransform(selected3d, { locked: !selected3dTransform.locked })}
+                onTrace={() => update3dTransform(selected3d, { trace: !selected3dTransform.trace })}
+              />
+            </aside>
+          )}
+
           <div className="min-w-0 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
               <div className="flex flex-wrap gap-2">
+                {!controls3dOpen && <button type="button" onClick={() => setControls3dOpen(true)} className="action-secondary"><PanelLeftOpen className="h-4 w-4" />Controls</button>}
                 <button type="button" onClick={() => { setSelected3d(""); setDrag3d(null); setProjectStatus("3D Select tool ready. Click an object in the scene or object list."); }} className="action-secondary">
                   <MousePointer2 className="h-4 w-4" /> Select
                 </button>
                 <button type="button" onClick={() => setAutoRotate3d((value) => !value)} className={autoRotate3d ? "action-primary" : "action-secondary"}>
                   <RotateCcw className="h-4 w-4" /> {autoRotate3d ? "Pause rotation" : "Start rotation"}
                 </button>
+                {!inspector3dOpen && <button type="button" onClick={() => setInspector3dOpen(true)} className="action-secondary"><PanelRightOpen className="h-4 w-4" />Objects</button>}
               </div>
               <p className="px-2 text-xs font-bold text-slate-500 dark:text-slate-400">Esc deselects. Delete removes selected object.</p>
             </div>
-            <ThreeSceneWrapper height="min(36vh, 360px)" mobileHeight="min(48vh, 360px)" interactionLabel="Drag rotate - pinch zoom">
-              <ambientLight intensity={0.75} />
-              <directionalLight position={[5, 6, 4]} intensity={1.2} />
-              <Workspace3DScene
+
+            <div className="grid min-h-[min(68vh,720px)] gap-3 2xl:grid-cols-[minmax(260px,32%)_minmax(420px,1fr)]">
+              <Workspace3DProjectionPane
+                selected={selected3d}
+                transform={selected3dTransform}
                 surface={surface}
-                surfaceExpression={surfaceExpression}
-                solid={solid}
                 surfaceScale={surfaceScale}
+                solid={solid}
                 solidSize={height3d}
                 crossSection={crossSection}
                 showSurface={showSurface}
                 showSolid={showSolid}
-                autoRotate={autoRotate3d}
-                animationSpeed={sceneAnimationSpeed}
-                zoom={zoom3d}
-                performanceMode={performanceMode}
-                cameraPreset={cameraPreset3d}
-                selected={selected3d}
-                transforms={transforms3d}
-                addedObjects={added3dObjects}
-                dragging={drag3d}
-                onSelect={setSelected3d}
-                onDrag={setDrag3d}
-                onTransform={update3dTransform}
-                onContextMenu={(event, id) => {
-                  event.stopPropagation();
-                  setSelected3d(id);
-                  setContextMenu({ x: event.nativeEvent.clientX, y: event.nativeEvent.clientY, target: { type: "3d", id } });
-                }}
               />
-              <OrbitControls enablePan enableZoom enableDamping enabled={!drag3d} />
-            </ThreeSceneWrapper>
-            <SceneSetupTabs3D
-              selected3d={selected3d}
-              selected3dTransform={selected3dTransform}
-              surface={surface}
-              solid={solid}
-              surfaceExpression={surfaceExpression}
-              surfaceScale={surfaceScale}
-              height3d={height3d}
-              crossSection={crossSection}
-              sceneAnimationSpeed={sceneAnimationSpeed}
-              showSurface={showSurface}
-              showSolid={showSolid}
-              autoRotate3d={autoRotate3d}
-              cameraPreset3d={cameraPreset3d}
-              onSurface={(value) => {
-                setSurface(value);
-                setShowSurface(true);
-                add3dSceneObject("surface", { surface: value, label: value });
-              }}
-              onSolid={(value) => {
-                setSolid(value);
-                setShowSolid(true);
-                add3dSceneObject("solid", { solid: value, label: value });
-              }}
-              onObject={(id) => add3dSceneObject(id, { solid: threeObjectSolidMap[id], label: threeObjectLabels[id] })}
-              onSurfaceExpression={setSurfaceExpression}
-              onSurfaceScale={setSurfaceScale}
-              onHeight={setHeight3d}
-              onCrossSection={setCrossSection}
-              onAnimationSpeed={setSceneAnimationSpeed}
-              onShowSurface={setShowSurface}
-              onShowSolid={setShowSolid}
-              onAutoRotate={setAutoRotate3d}
-              onCamera={setCameraPreset3d}
-              onZoomIn={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))}
-              onZoomOut={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))}
-              onReset={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); setCameraPreset3d("isometric"); }}
-              onSelectTool={() => {
-                setSelected3d("");
-                setDrag3d(null);
-                setProjectStatus("3D Select tool ready. Click an object in the scene or object list.");
-              }}
-              onNudge={(axis, amount) => update3dTransform(selected3d, { position: selected3dTransform.position.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
-              onRotateAxis={(axis, amount) => update3dTransform(selected3d, { rotation: selected3dTransform.rotation.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
-              onScale={(amount) => update3dTransform(selected3d, { scale: Math.max(0.2, roundTo(selected3dTransform.scale + amount, 2)) })}
-              onMaterial={(material) => update3dTransform(selected3d, { material })}
-              onOpacity={(opacity) => update3dTransform(selected3d, { opacity })}
-              onDuplicate={() => duplicate3dObject()}
-              onDelete={() => delete3dObject()}
-              onRestore={() => restore3dObject()}
-              onLock={() => update3dTransform(selected3d, { locked: !selected3dTransform.locked })}
-              onTrace={() => update3dTransform(selected3d, { trace: !selected3dTransform.trace })}
-            />
+              <div className="min-h-[420px] overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 shadow-sm dark:border-white/10">
+                <ThreeSceneWrapper height="min(68vh, 720px)" mobileHeight="min(56vh, 460px)" interactionLabel="Drag rotate - pinch zoom">
+                  <ambientLight intensity={0.75} />
+                  <directionalLight position={[5, 6, 4]} intensity={1.2} />
+                  <Workspace3DScene
+                    surface={surface}
+                    surfaceExpression={surfaceExpression}
+                    solid={solid}
+                    surfaceScale={surfaceScale}
+                    solidSize={height3d}
+                    crossSection={crossSection}
+                    showSurface={showSurface}
+                    showSolid={showSolid}
+                    autoRotate={autoRotate3d}
+                    animationSpeed={sceneAnimationSpeed}
+                    zoom={zoom3d}
+                    performanceMode={performanceMode}
+                    cameraPreset={cameraPreset3d}
+                    selected={selected3d}
+                    transforms={transforms3d}
+                    addedObjects={added3dObjects}
+                    dragging={drag3d}
+                    onSelect={setSelected3d}
+                    onDrag={setDrag3d}
+                    onTransform={update3dTransform}
+                    onContextMenu={(event, id) => {
+                      event.stopPropagation();
+                      setSelected3d(id);
+                      setContextMenu({ x: event.nativeEvent.clientX, y: event.nativeEvent.clientY, target: { type: "3d", id } });
+                    }}
+                  />
+                  <OrbitControls enablePan enableZoom enableDamping enabled={!drag3d} />
+                </ThreeSceneWrapper>
+              </div>
+            </div>
+
             <div className="grid gap-3 md:grid-cols-3">
               <InfoPill title="Axes" text="X, Y, and Z directions are shown with colored vectors." />
               <InfoPill title="Surface" text="The mesh updates from the selected z=f(x,y) function." />
@@ -1780,16 +1819,19 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             </div>
           </div>
 
-          <aside className="space-y-3 lg:sticky lg:top-24">
-            <InspectorTabs3D selected={selected3d} transform={selected3dTransform} transforms={transforms3d} addedObjects={added3dObjects} onSelect={setSelected3d} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
-            <div className="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
-              <p className="font-bold text-slate-900 dark:text-white">3D Readout</p>
-              <p>Surface: {surfaceFormula(surface, surfaceScale)}</p>
-              <p>Cross-section plane: z = {roundTo(crossSection, 2)}</p>
-              <p>Camera zoom: {roundTo(zoom3d * 100, 0)}%</p>
-            </div>
-            <GizmoReadout3D selected={selected3d} transform={selected3dTransform} />
-          </aside>
+          {inspector3dOpen && (
+            <aside className="min-h-0 space-y-3 xl:sticky xl:top-24">
+              <HorizontalPanelHeader title="Objects" side="right" onCollapse={() => setInspector3dOpen(false)} />
+              <InspectorTabs3D selected={selected3d} transform={selected3dTransform} transforms={transforms3d} addedObjects={added3dObjects} onSelect={setSelected3d} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
+              <div className="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
+                <p className="font-bold text-slate-900 dark:text-white">3D Readout</p>
+                <p>Surface: {surfaceFormula(surface, surfaceScale)}</p>
+                <p>Cross-section plane: z = {roundTo(crossSection, 2)}</p>
+                <p>Camera zoom: {roundTo(zoom3d * 100, 0)}%</p>
+              </div>
+              <GizmoReadout3D selected={selected3d} transform={selected3dTransform} />
+            </aside>
+          )}
         </div>
       </SectionCard>}
 
@@ -4623,6 +4665,97 @@ function InfoPill({ title, text }: { title: string; text: string }) {
   return <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10"><p className="text-sm font-bold">{title}</p><p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{text}</p></div>;
 }
 
+function HorizontalPanelHeader({ title, side, onCollapse }: { title: string; side: "left" | "right"; onCollapse: () => void }) {
+  const Icon = side === "left" ? PanelLeftClose : PanelRightClose;
+  return (
+    <div className="flex items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/85 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
+      <div className="min-w-0 px-2">
+        <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Horizontal panel</p>
+        <h3 className="truncate text-sm font-black">{title}</h3>
+      </div>
+      <button type="button" onClick={onCollapse} className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-cyan-100 hover:text-cyan-800 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15" title={`Collapse ${title}`} aria-label={`Collapse ${title}`}>
+        <Icon className="h-5 w-5" />
+      </button>
+    </div>
+  );
+}
+
+function Workspace3DProjectionPane({ selected, transform, surface, surfaceScale, solid, solidSize, crossSection, showSurface, showSolid }: { selected: string; transform: Transform3D; surface: SurfaceKind; surfaceScale: number; solid: SolidKind; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean }) {
+  const px = 170 + transform.position[0] * 18;
+  const py = 150 - transform.position[1] * 18;
+  const pz = 150 - transform.position[2] * 18;
+  const solidRadius = Math.max(18, Math.min(82, solidSize * 18));
+  const surfaceAmp = Math.max(8, Math.min(42, surfaceScale * 20));
+  return (
+    <div className="grid min-h-[420px] gap-3 lg:grid-cols-2 2xl:grid-cols-1">
+      <section className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">2D Pane</p>
+            <h3 className="text-sm font-black">Top View X-Y</h3>
+          </div>
+          <span className="mini-chip">{selected || "none"}</span>
+        </div>
+        <svg viewBox="0 0 340 250" className="mt-3 h-[min(28vh,260px)] min-h-[210px] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
+          <defs>
+            <pattern id="workspace-3d-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(100,116,139,.28)" strokeWidth="1" />
+            </pattern>
+          </defs>
+          <rect width="340" height="250" fill="url(#workspace-3d-grid)" />
+          <line x1="20" y1="125" x2="320" y2="125" stroke="#ef4444" strokeWidth="3" />
+          <line x1="170" y1="230" x2="170" y2="20" stroke="#22c55e" strokeWidth="3" />
+          <text x="300" y="116" fill="#ef4444" fontSize="14" fontWeight="800">x</text>
+          <text x="178" y="32" fill="#22c55e" fontSize="14" fontWeight="800">y</text>
+          {showSurface && <path d={`M 35 ${125 + surfaceAmp} C 80 ${90 - surfaceAmp}, 125 ${165 + surfaceAmp}, 170 125 S 260 ${85 - surfaceAmp}, 305 ${125 + surfaceAmp}`} fill="none" stroke="#06b6d4" strokeWidth="5" opacity="0.55" />}
+          {showSolid && (solid === "cube" || solid === "cuboid" ? <rect x={170 - solidRadius / 2} y={125 - solidRadius / 2} width={solidRadius} height={solidRadius} fill="#f59e0b" opacity="0.42" stroke="#f59e0b" strokeWidth="3" /> : <circle cx="170" cy="125" r={solidRadius / 2} fill="#f59e0b" opacity="0.38" stroke="#f59e0b" strokeWidth="3" />)}
+          <line x1="20" y1={125 - crossSection * 18} x2="320" y2={125 - crossSection * 18} stroke="#a855f7" strokeWidth="3" strokeDasharray="8 7" />
+          <circle cx={px} cy={py} r="8" fill={transform.color} stroke="#0f172a" strokeWidth="2" />
+        </svg>
+        <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
+          <MiniReadout label="x" value={transform.position[0]} />
+          <MiniReadout label="y" value={transform.position[1]} />
+          <MiniReadout label="scale" value={transform.scale} />
+        </div>
+      </section>
+      <section className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-black uppercase text-violet-700 dark:text-violet-200">2D Pane</p>
+            <h3 className="text-sm font-black">Side View X-Z</h3>
+          </div>
+          <span className="mini-chip">z {roundTo(crossSection, 2)}</span>
+        </div>
+        <svg viewBox="0 0 340 250" className="mt-3 h-[min(28vh,260px)] min-h-[210px] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
+          <rect width="340" height="250" fill="url(#workspace-3d-grid)" />
+          <line x1="20" y1="125" x2="320" y2="125" stroke="#ef4444" strokeWidth="3" />
+          <line x1="170" y1="230" x2="170" y2="20" stroke="#38bdf8" strokeWidth="3" />
+          <text x="300" y="116" fill="#ef4444" fontSize="14" fontWeight="800">x</text>
+          <text x="178" y="32" fill="#38bdf8" fontSize="14" fontWeight="800">z</text>
+          {showSurface && <path d={`M 35 ${125 + surfaceAmp} C 92 ${132 - surfaceAmp}, 130 ${82 + surfaceAmp}, 170 ${125 - surfaceAmp} S 255 ${168 - surfaceAmp}, 305 ${105 + surfaceAmp}`} fill="none" stroke="#06b6d4" strokeWidth="5" opacity="0.55" />}
+          {showSolid && <rect x={170 - solidRadius / 2} y={125 - solidRadius / 2} width={solidRadius} height={solidRadius} rx="10" fill="#f59e0b" opacity="0.38" stroke="#f59e0b" strokeWidth="3" />}
+          <line x1="20" y1={125 - crossSection * 18} x2="320" y2={125 - crossSection * 18} stroke="#a855f7" strokeWidth="3" strokeDasharray="8 7" />
+          <circle cx={px} cy={pz} r="8" fill={transform.color} stroke="#0f172a" strokeWidth="2" />
+        </svg>
+        <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
+          <MiniReadout label="x" value={transform.position[0]} />
+          <MiniReadout label="z" value={transform.position[2]} />
+          <MiniReadout label="size" value={solidSize} />
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function MiniReadout({ label, value }: { label: string; value: number }) {
+  return (
+    <div className="rounded-xl bg-slate-100 p-2 dark:bg-white/10">
+      <p className="font-black uppercase text-slate-500 dark:text-slate-400">{label}</p>
+      <p className="mt-1 font-mono font-black text-slate-950 dark:text-white">{roundTo(value, 2)}</p>
+    </div>
+  );
+}
+
 function ImageObjectPanel({ image, onChange, onDelete }: { image: WorkspaceImage | null; onChange: (patch: Partial<WorkspaceImage>) => void; onDelete: () => void }) {
   if (!image) {
     return (
@@ -4755,9 +4888,9 @@ function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
         </label>
       </AccordionSection>
       <AccordionSection title="3D scene parameters" summary={`scale ${props.surfaceScale}, height ${props.height3d}, z ${props.crossSection}`} open={openSections.parameters} onToggle={() => toggleSection("parameters")}>
-        <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_230px]">
+        <div className="grid gap-3">
           <div className="rounded-xl border border-slate-200 bg-white/75 p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/40">
-            <div className="grid gap-x-4 gap-y-1 2xl:grid-cols-2">
+            <div className="grid gap-x-4 gap-y-1">
               <SliderControl density="compact" label="Surface scale" value={props.surfaceScale} min={0.2} max={2.5} step={0.1} onChange={props.onSurfaceScale} />
               <SliderControl density="compact" label="Solid height / radius" value={props.height3d} min={0.8} max={5} step={0.1} onChange={props.onHeight} />
               <SliderControl density="compact" label="Cross-section z" value={props.crossSection} min={-3} max={3} step={0.1} onChange={props.onCrossSection} />
@@ -4774,7 +4907,7 @@ function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
         </div>
       </AccordionSection>
       <AccordionSection title="3D tools" summary={props.selected3d ? `selected ${props.selected3d}` : "construct and edit"} open={openSections.tools} onToggle={() => toggleSection("tools")}>
-        <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_260px]">
+        <div className="grid gap-3">
           <Space3DToolPalette
             activeObject={props.selected3d}
             selectedTransform={props.selected3dTransform}
@@ -4810,7 +4943,7 @@ function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
         </div>
       </AccordionSection>
       <AccordionSection title="Camera" summary={props.cameraPreset3d} open={openSections.camera} onToggle={() => toggleSection("camera")}>
-        <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_220px]">
+        <div className="grid gap-3">
           <CameraPresetPanel preset={props.cameraPreset3d} onPreset={props.onCamera} />
           <div className="grid content-start gap-2">
             <button type="button" onClick={props.onZoomOut} className="action-secondary"><ZoomOut className="h-4 w-4" />Zoom out</button>
