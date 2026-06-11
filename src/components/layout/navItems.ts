@@ -217,6 +217,7 @@ export const navSections: NavSection[] = [
           },
         ],
       },
+      { title: "Engineering Mathematics", route: "/engineering-math", icon: "Sigma" },
       { title: "Complex Numbers", route: "/complex-numbers", icon: "Atom" },
       {
         title: "Vectors",
@@ -298,6 +299,7 @@ export const legacyNavItems = [
   { title: "2D/3D Shapes", route: "/shapes", icon: Cuboid },
   { title: "Trigonometry", route: "/trigonometry", icon: Waves },
   { title: "Calculus", route: "/calculus", icon: Sigma },
+  { title: "Engineering Mathematics", route: "/engineering-math", icon: Sigma },
   { title: "Combinatorics", route: "/combinatorics", icon: Grid3X3 },
   { title: "Complex Numbers", route: "/complex-numbers", icon: Atom },
   { title: "Set Theory", route: "/set-theory", icon: Network },

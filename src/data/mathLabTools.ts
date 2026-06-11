@@ -66,6 +66,14 @@ export const mathLabTools = [
     useCases: ["limits", "derivatives", "integrals", "slope fields"],
   },
   {
+    title: "Engineering Mathematics",
+    route: "/engineering-math",
+    icon: Sigma,
+    difficulty: "Advanced",
+    description: "B.Tech M1-M4 roadmap for calculus, differential equations, transforms, PDEs, numerical methods, probability, optimization, and field mathematics.",
+    useCases: ["M1", "M2", "M3", "M4", "engineering"],
+  },
+  {
     title: "Matrices",
     route: "/matrices",
     icon: Grid3X3,

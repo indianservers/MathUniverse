@@ -1745,6 +1745,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                 onRestore={() => restore3dObject()}
                 onLock={() => update3dTransform(selected3d, { locked: !selected3dTransform.locked })}
                 onTrace={() => update3dTransform(selected3d, { trace: !selected3dTransform.trace })}
+                onToggleSelectedVisibility={() => update3dTransform(selected3d, { visible: !selected3dTransform.visible })}
               />
             </aside>
           )}
@@ -3888,6 +3889,7 @@ function Space3DToolPalette({
   onRestore,
   onLock,
   onTrace,
+  onToggleSelectedVisibility,
 }: {
   activeObject: string;
   selectedTransform: Transform3D;
@@ -3918,6 +3920,7 @@ function Space3DToolPalette({
   onRestore: () => void;
   onLock: () => void;
   onTrace: () => void;
+  onToggleSelectedVisibility: () => void;
 }) {
   const hasSelectedObject = Boolean(activeObject);
   const selectedMaterial = selectedTransform.material ?? "glass";
@@ -3942,6 +3945,7 @@ function Space3DToolPalette({
   ];
   const objectActions: GeometryPaletteActionItem[] = [
     { id: "duplicate", label: "Duplicate", icon: Plus, action: onDuplicate, disabled: !hasSelectedObject },
+    { id: "show-hide", label: selectedTransform.visible ? "Hide" : "Show", icon: Circle, action: onToggleSelectedVisibility, active: selectedTransform.visible, disabled: !hasSelectedObject },
     { id: "lock", label: selectedTransform.locked ? "Unlock" : "Lock", icon: Magnet, action: onLock, active: Boolean(selectedTransform.locked), disabled: !hasSelectedObject },
     { id: "trace", label: selectedTransform.trace ? "Trace On" : "Trace", icon: LineChart, action: onTrace, active: Boolean(selectedTransform.trace), disabled: !hasSelectedObject },
     { id: "restore", label: "Restore", icon: RotateCcw, action: onRestore, disabled: !hasSelectedObject },
@@ -3962,29 +3966,30 @@ function Space3DToolPalette({
 
   return (
     <aside className="space3d-tool-palette thin-scrollbar max-h-[clamp(18rem,46vh,32.5rem)] overflow-auto rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-xl shadow-slate-200/40 dark:border-white/10 dark:bg-slate-950/70 dark:shadow-black/20">
-      <Space3DPaletteSection title="Main Tools">
+      <Space3DPaletteSection title="Basic Tools">
         {mainActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
+        {space3dObjectPalette.slice(0, 4).map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeObject === item.id} onClick={() => onObject(item.id)} />)}
       </Space3DPaletteSection>
-      <Space3DPaletteSection title="Surfaces">
-        {space3dSurfacePalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeSurface === item.id || (activeObject === "surface" && activeSurface === item.id)} onClick={() => onSurface(item.id)} />)}
+      <Space3DPaletteSection title="Edit">
+        {objectActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
       </Space3DPaletteSection>
-      <Space3DPaletteSection title="Solids">
+      <Space3DPaletteSection title="Construct">
+        {space3dObjectPalette.slice(4).map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeObject === item.id} onClick={() => onObject(item.id)} />)}
+      </Space3DPaletteSection>
+      <Space3DPaletteSection title="Shapes">
         {space3dSolidPalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeSolid === item.id && activeObject === "solid"} onClick={() => onSolid(item.id)} />)}
       </Space3DPaletteSection>
-      <Space3DPaletteSection title="3D Objects">
-        {space3dObjectPalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeObject === item.id} onClick={() => onObject(item.id)} />)}
+      <Space3DPaletteSection title="Curves / Surfaces">
+        {space3dSurfacePalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeSurface === item.id || (activeObject === "surface" && activeSurface === item.id)} onClick={() => onSurface(item.id)} />)}
       </Space3DPaletteSection>
-      <Space3DPaletteSection title="Camera">
-        {space3dCameraPalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={cameraPreset === item.id} onClick={() => onCamera(item.id)} />)}
-      </Space3DPaletteSection>
-      <Space3DPaletteSection title="Transform Gizmo">
+      <Space3DPaletteSection title="Transform">
         {transformActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
       </Space3DPaletteSection>
       <Space3DPaletteSection title="Material">
         {materialActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
       </Space3DPaletteSection>
-      <Space3DPaletteSection title="Selected 3D">
-        {objectActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
+      <Space3DPaletteSection title="Camera">
+        {space3dCameraPalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={cameraPreset === item.id} onClick={() => onCamera(item.id)} />)}
       </Space3DPaletteSection>
       <Space3DPaletteSection title="Scene">
         {sceneActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
@@ -4832,19 +4837,51 @@ type SceneSetupTabs3DProps = {
   onRestore: () => void;
   onLock: () => void;
   onTrace: () => void;
+  onToggleSelectedVisibility: () => void;
 };
 
 function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
-  const [openSections, setOpenSections] = useState<Record<"surface" | "solid" | "parameters" | "tools" | "camera", boolean>>({
-    surface: true,
-    solid: true,
-    parameters: true,
-    tools: false,
+  const [openSections, setOpenSections] = useState<Record<"surface" | "solid" | "parameters" | "camera", boolean>>({
+    surface: false,
+    solid: false,
+    parameters: false,
     camera: false,
   });
   const toggleSection = (section: keyof typeof openSections) => setOpenSections((current) => ({ ...current, [section]: !current[section] }));
   return (
-    <div className="space-y-2 rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
+    <div className="space-y-3">
+      <Space3DToolPalette
+        activeObject={props.selected3d}
+        selectedTransform={props.selected3dTransform}
+        activeSurface={props.surface}
+        activeSolid={props.solid}
+        cameraPreset={props.cameraPreset3d}
+        autoRotate={props.autoRotate3d}
+        showSurface={props.showSurface}
+        showSolid={props.showSolid}
+        onSurface={props.onSurface}
+        onSolid={props.onSolid}
+        onObject={props.onObject}
+        onCamera={props.onCamera}
+        onToggleSurface={props.onShowSurface}
+        onToggleSolid={props.onShowSolid}
+        onToggleRotate={props.onAutoRotate}
+        onSelectTool={props.onSelectTool}
+        onZoomIn={props.onZoomIn}
+        onZoomOut={props.onZoomOut}
+        onReset={props.onReset}
+        onNudge={props.onNudge}
+        onRotateAxis={props.onRotateAxis}
+        onScale={props.onScale}
+        onMaterial={props.onMaterial}
+        onOpacity={props.onOpacity}
+        onDuplicate={props.onDuplicate}
+        onDelete={props.onDelete}
+        onRestore={props.onRestore}
+        onLock={props.onLock}
+        onTrace={props.onTrace}
+        onToggleSelectedVisibility={props.onToggleSelectedVisibility}
+      />
       <AccordionSection title="Surface" summary={surfaceFormula(props.surface, props.surfaceScale)} open={openSections.surface} onToggle={() => toggleSection("surface")}>
         <label className="block rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
           Surface
@@ -4904,42 +4941,6 @@ function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
             <button type="button" onClick={() => props.onAutoRotate(false)} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Pause rotation</button>
             <button type="button" onClick={props.onReset} className="col-span-2 rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset view</button>
           </div>
-        </div>
-      </AccordionSection>
-      <AccordionSection title="3D tools" summary={props.selected3d ? `selected ${props.selected3d}` : "construct and edit"} open={openSections.tools} onToggle={() => toggleSection("tools")}>
-        <div className="grid gap-3">
-          <Space3DToolPalette
-            activeObject={props.selected3d}
-            selectedTransform={props.selected3dTransform}
-            activeSurface={props.surface}
-            activeSolid={props.solid}
-            cameraPreset={props.cameraPreset3d}
-            autoRotate={props.autoRotate3d}
-            showSurface={props.showSurface}
-            showSolid={props.showSolid}
-            onSurface={props.onSurface}
-            onSolid={props.onSolid}
-            onObject={props.onObject}
-            onCamera={props.onCamera}
-            onToggleSurface={props.onShowSurface}
-            onToggleSolid={props.onShowSolid}
-            onToggleRotate={props.onAutoRotate}
-            onSelectTool={props.onSelectTool}
-            onZoomIn={props.onZoomIn}
-            onZoomOut={props.onZoomOut}
-            onReset={props.onReset}
-            onNudge={props.onNudge}
-            onRotateAxis={props.onRotateAxis}
-            onScale={props.onScale}
-            onMaterial={props.onMaterial}
-            onOpacity={props.onOpacity}
-            onDuplicate={props.onDuplicate}
-            onDelete={props.onDelete}
-            onRestore={props.onRestore}
-            onLock={props.onLock}
-            onTrace={props.onTrace}
-          />
-          <ThreeCreationPanel onCreate={props.onObject} />
         </div>
       </AccordionSection>
       <AccordionSection title="Camera" summary={props.cameraPreset3d} open={openSections.camera} onToggle={() => toggleSection("camera")}>
@@ -5101,6 +5102,10 @@ function Properties3DPanel({ selected, transform, onTransform, onVector, onResto
       </div>
       {mode !== "transform" && (
         <>
+          <label className="mt-3 block rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+            Name
+            <input value={transform.name ?? selected} onChange={(event) => onTransform(selected, { name: event.target.value || selected })} className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" />
+          </label>
           <div className="mt-3 grid grid-cols-3 gap-2">
             {(["x", "y", "z"] as const).map((axis, index) => <MiniNumber key={`pos-${axis}`} label={axis} value={roundTo(transform.position[index], 2)} onChange={(value) => onVector(selected, "position", index, value)} />)}
           </div>
@@ -5366,7 +5371,7 @@ function AddedSceneObject3D({ object, selected, surfaceScale, solidSize, crossSe
   if (object.render === "vector") return <TransformGroup3D transform={object.transform} selected={selected}><VectorArrow start={[-2, 0.05, -2]} end={[2, 1.2, 1.5]} color={object.transform.color} eventProps={eventProps} /></TransformGroup3D>;
   if (object.render === "line3d") return <TransformGroup3D transform={object.transform} selected={selected}><Line3D transform={object.transform} eventProps={eventProps} /></TransformGroup3D>;
   if (object.render === "plane3d") return <TransformGroup3D transform={object.transform} selected={selected}><Plane3D transform={object.transform} eventProps={eventProps} /></TransformGroup3D>;
-  return <TransformGroup3D transform={object.transform} selected={selected} yOffset={solidSize / 4}><SolidMesh solid={object.solid ?? "cube"} size={object.transform.dimensions?.[0] ?? solidSize} transform={object.transform} eventProps={eventProps} /></TransformGroup3D>;
+  return <TransformGroup3D transform={object.transform} selected={selected} yOffset={solidSize / 4}><ConstructedSolid3D kind={object.solid ?? "cube"} transform={object.transform} eventProps={eventProps} /></TransformGroup3D>;
 }
 
 function TransformGroup3D({ transform, selected, yOffset = 0, children }: { transform: Transform3D; selected: boolean; yOffset?: number; children: JSX.Element }) {

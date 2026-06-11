@@ -18,6 +18,7 @@ const DerivativesTangentVisualizer = lazy(() => import("./pages/DerivativesTange
 const DiscreteWorld = lazy(() => import("./pages/DiscreteWorld"));
 const Documentation = lazy(() => import("./pages/Documentation"));
 const EigenvectorsVisualizerPage = lazy(() => import("./pages/EigenvectorsVisualizerPage"));
+const EngineeringMath = lazy(() => import("./pages/EngineeringMath"));
 const Formulas = lazy(() => import("./pages/Formulas"));
 const FourierSeriesAnimator = lazy(() => import("./pages/FourierSeriesAnimator"));
 const FourierSeriesVisualizerPage = lazy(() => import("./pages/FourierSeriesVisualizerPage"));
@@ -123,6 +124,7 @@ export default function App() {
             <Route path="algebra" element={<Algebra />} />
             <Route path="algebraic-structures" element={<AlgebraicStructures />} />
             <Route path="math-lab" element={<MathLab />} />
+            <Route path="engineering-math" element={<EngineeringMath />} />
             <Route path="math-lab/graphing-calculator" element={<MathLabGraphingCalculator />} />
             <Route path="math-lab/function-explorer" element={<MathLabFunctionExplorer />} />
             <Route path="math-lab/linear-algebra" element={<MathLabLinearAlgebra />} />
