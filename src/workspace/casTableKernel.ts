@@ -1,4 +1,18 @@
-import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicSimplify, symbolicSolve, trySymbolic, type SymbolicResult } from "../utils/symbolic";
+import {
+  symbolicDerivative,
+  symbolicExpand,
+  symbolicFactor,
+  symbolicIntegral,
+  symbolicLimit,
+  symbolicPartialFractions,
+  symbolicPolynomialDivide,
+  symbolicSimplify,
+  symbolicSolve,
+  symbolicSubstitute,
+  symbolicSystemSolve,
+  trySymbolic,
+  type SymbolicResult,
+} from "../utils/symbolic";
 
 export type DynamicTableRow = {
   x: number;
@@ -82,19 +96,56 @@ export function createListObject(values: string[]) {
 
 function runSymbolicCommand(command: string, expression: string): SymbolicResult | null {
   if (command.includes("solve")) return trySymbolic(() => symbolicSolve(expression));
+  if (command.includes("system")) return trySymbolic(() => symbolicSystemSolve(splitCasExpressions(expression)));
   if (command.includes("factor")) return trySymbolic(() => symbolicFactor(expression));
   if (command.includes("expand")) return trySymbolic(() => symbolicExpand(expression));
   if (command.includes("derivative") || command.includes("diff")) return trySymbolic(() => symbolicDerivative(expression));
   if (command.includes("integral")) return trySymbolic(() => symbolicIntegral(expression));
+  if (command.includes("limit")) {
+    const [body, variable = "x", target = "0"] = splitCasExpressions(expression);
+    return trySymbolic(() => symbolicLimit(body, variable, target));
+  }
+  if (command.includes("partial")) return trySymbolic(() => symbolicPartialFractions(expression));
+  if (command.includes("divide")) {
+    const [dividend = expression, divisor = "1", variable = "x"] = splitCasExpressions(expression);
+    return trySymbolic(() => symbolicPolynomialDivide(dividend, divisor, variable));
+  }
+  if (command.includes("substitute") || command.includes("replace")) {
+    const [body = expression, ...assignments] = splitCasExpressions(expression);
+    return trySymbolic(() => symbolicSubstitute(body, assignments.map(parseAssignment).filter(Boolean) as { name: string; value: string }[]));
+  }
   if (command.includes("simplify")) return trySymbolic(() => symbolicSimplify(expression));
   return null;
 }
 
 function linkedExpressionsFor(command: string, expression: string, result?: string) {
   if (command.includes("derivative") || command.includes("integral")) return [expression, result?.replace(/\+C$/, "") ?? ""].filter(Boolean);
-  if (command.includes("factor") || command.includes("expand") || command.includes("simplify")) return [expression, result ?? ""].filter(Boolean);
-  if (command.includes("solve")) return [expression.includes("=") ? expression.split("=")[0] : expression];
+  if (command.includes("factor") || command.includes("expand") || command.includes("simplify") || command.includes("partial") || command.includes("divide") || command.includes("substitute")) return [expression, result ?? ""].filter(Boolean);
+  if (command.includes("solve") || command.includes("system")) return [expression.includes("=") ? expression.split("=")[0] : expression];
+  if (command.includes("limit")) return [splitCasExpressions(expression)[0] ?? expression];
   return [expression];
+}
+
+function splitCasExpressions(value: string) {
+  const args: string[] = [];
+  let current = "";
+  let depth = 0;
+  for (const char of value) {
+    if (char === "(" || char === "[") depth += 1;
+    if (char === ")" || char === "]") depth -= 1;
+    if ((char === "," || char === ";") && depth === 0) {
+      args.push(current.trim());
+      current = "";
+    } else current += char;
+  }
+  if (current.trim()) args.push(current.trim());
+  return args;
+}
+
+function parseAssignment(value: string) {
+  const [name, ...rest] = value.split("=");
+  const expression = rest.join("=").trim();
+  return name?.trim() && expression ? { name: name.trim(), value: expression } : null;
 }
 
 function tableToCsv(expressions: string[], rows: DynamicTableRow[]) {

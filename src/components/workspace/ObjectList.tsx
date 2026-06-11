@@ -65,6 +65,11 @@ export default function ObjectList({ objects, selectedObjectId, selectedObjectId
       if (!normalizedQuery) return true;
       return [
         object.label,
+        object.metadata?.evaluatedLabel ?? "",
+        object.metadata?.caption ?? "",
+        object.properties?.caption ?? "",
+        object.properties?.conditionalVisibility ?? "",
+        object.properties?.dynamicColor ? Object.values(object.properties.dynamicColor).join(" ") : "",
         object.value,
         object.kind,
         object.role ?? "",
@@ -193,8 +198,9 @@ export default function ObjectList({ objects, selectedObjectId, selectedObjectId
                     <span className="rounded-lg bg-slate-950 px-2 py-1 text-[10px] font-black uppercase text-white dark:bg-white dark:text-slate-950">
                       {kindLabel[object.kind] ?? object.kind}
                     </span>
-                    <span className="min-w-0 flex-1 truncate text-sm font-bold text-slate-900 dark:text-white">{object.label}</span>
+                    <span className="min-w-0 flex-1 truncate text-sm font-bold text-slate-900 dark:text-white">{displayObjectLabel(object)}</span>
                   </div>
+                  {displayObjectCaption(object) && <p className="mt-1 truncate text-xs font-semibold text-cyan-700 dark:text-cyan-200">{displayObjectCaption(object)}</p>}
                   <p className="mt-1 truncate font-mono text-xs text-slate-500 dark:text-slate-400">{object.value}</p>
                 </button>
                 </div>
@@ -234,10 +240,20 @@ const objectFilters: Array<{ id: ObjectListFilter; label: string }> = [
 
 function objectScope(object: MathObject): "algebra" | "geometry" | "space3d" | "measurements" | "other" {
   if (object.role === "measurement" || object.metadata?.source === "engine-measurement") return "measurements";
+  if (object.id.startsWith("algebra:") || object.id.startsWith("plot:") || object.id.startsWith("slider:") || object.id.startsWith("result:") || object.role === "algebra") return "algebra";
   if (object.id.startsWith("geometry:") || object.dimension === "2d") return "geometry";
   if (object.id.startsWith("space3d:") || object.dimension === "3d") return "space3d";
-  if (object.id.startsWith("algebra:") || object.id.startsWith("plot:") || object.id.startsWith("slider:") || object.id.startsWith("result:") || object.role === "algebra") return "algebra";
   return "other";
+}
+
+function displayObjectLabel(object: MathObject) {
+  const evaluated = object.metadata?.evaluatedLabel;
+  return typeof evaluated === "string" && evaluated.trim() ? evaluated : object.label;
+}
+
+function displayObjectCaption(object: MathObject) {
+  const caption = object.metadata?.caption ?? object.properties?.caption;
+  return typeof caption === "string" && caption.trim() ? caption : "";
 }
 
 function countObjectScopes(objects: MathObject[], selectedSet: Set<string>): Record<ObjectListFilter, number> {

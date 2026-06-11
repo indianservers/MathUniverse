@@ -22,6 +22,16 @@ describe("CAS and dynamic table kernel", () => {
     expect(card.verificationPrompts.length).toBe(3);
   });
 
+  it("creates deeper CAS cards for exact limits and systems", () => {
+    const limit = createCasCard("Limit", "sin(x)/x, x, 0");
+    const system = createCasCard("System", "x+y=5, x-y=1");
+
+    expect(limit.result).toBe("1");
+    expect(limit.linkedGraphExpressions).toContain("sin(x)/x");
+    expect(system.result).toContain("x = 3");
+    expect(system.result).toContain("y = 2");
+  });
+
   it("summarizes list objects", () => {
     const list = createListObject(["1", "2", "3", "bad"]);
 

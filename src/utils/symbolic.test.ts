@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicSimplify, symbolicSolve, trySymbolic } from "./symbolic";
+import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicLimit, symbolicPartialFractions, symbolicPolynomialDivide, symbolicSimplify, symbolicSolve, symbolicSubstitute, symbolicSystemSolve, trySymbolic } from "./symbolic";
 
 describe("symbolic math engine", () => {
   it("expands, factors, and simplifies polynomial expressions", () => {
@@ -22,5 +22,13 @@ describe("symbolic math engine", () => {
     expect(solved).toContain("2");
     expect(solved).toContain("3");
     expect(trySymbolic(() => symbolicSolve("x+"))).toBeNull();
+  });
+
+  it("handles deeper CAS operations for limits, systems, substitution, division, and partial fractions", () => {
+    expect(symbolicLimit("sin(x)/x", "x", "0").result).toBe("1");
+    expect(symbolicSystemSolve(["x+y=5", "x-y=1"], ["x", "y"]).result).toContain("x = 3");
+    expect(symbolicSubstitute("x^2+a", [{ name: "a", value: "3" }, { name: "x", value: "2" }]).result).toBe("7");
+    expect(symbolicPolynomialDivide("x^3-1", "x-1").result).toContain("x^2");
+    expect(symbolicPartialFractions("(3*x+5)/((x+1)(x+2))").result).toContain("/(x+");
   });
 });

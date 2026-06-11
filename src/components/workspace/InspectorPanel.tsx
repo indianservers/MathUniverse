@@ -1,4 +1,5 @@
 import { Link2, Lock, RotateCcw, Unlock } from "lucide-react";
+import { useEffect, useState } from "react";
 import type { MathObject, MathObjectInteractivity, MathObjectStyle, MathTransform, MathVec3 } from "../../workspace/types";
 import { objectDependencyCount } from "../../workspace/dependencyGraph";
 import { useWorkspaceStore } from "../../workspace/workspaceStore";
@@ -8,8 +9,28 @@ type InspectorPanelProps = {
   onObjectChange?: (object: MathObject, patch: Partial<MathObject>) => void;
 };
 
+type PropertyDraft = {
+  caption: string;
+  conditionalVisibility: string;
+  dynamicOpacity: string;
+  dynamicRgb: string;
+};
+
 export default function InspectorPanel({ object, onObjectChange }: InspectorPanelProps) {
   const updateObject = useWorkspaceStore((state) => state.updateObject);
+  const [propertyDraft, setPropertyDraft] = useState(() => propertyDraftForObject(object));
+
+  useEffect(() => {
+    setPropertyDraft(propertyDraftForObject(object));
+  }, [
+    object?.id,
+    object?.properties?.caption,
+    object?.properties?.conditionalVisibility,
+    object?.properties?.dynamicStyle?.opacity,
+    object?.properties?.dynamicColor?.red,
+    object?.properties?.dynamicColor?.green,
+    object?.properties?.dynamicColor?.blue,
+  ]);
 
   if (!object) {
     return (
@@ -23,8 +44,8 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
   }
 
   const applyPatch = (patch: Partial<MathObject>, label = "Edited workspace object") => {
-    updateObject(object.id, patch, label);
     onObjectChange?.(object, patch);
+    updateObject(object.id, patch, label);
   };
   const updateTransform = (section: keyof MathTransform, axis: keyof MathVec3, value: number) => {
     if (!object.transform || section === "origin") return;
@@ -41,6 +62,22 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
   const updateProperties = (patch: NonNullable<MathObject["properties"]>) => {
     applyPatch({ properties: { ...object.properties, ...patch } }, `Edited ${object.label} properties`);
   };
+  const commitCaption = (caption: string) => {
+    setPropertyDraft((current) => ({ ...current, caption }));
+    updateProperties({ caption });
+  };
+  const commitConditionalVisibility = (conditionalVisibility: string) => {
+    setPropertyDraft((current) => ({ ...current, conditionalVisibility }));
+    updateProperties({ conditionalVisibility });
+  };
+  const commitDynamicRgb = (dynamicRgb: string) => {
+    setPropertyDraft((current) => ({ ...current, dynamicRgb }));
+    updateProperties({ dynamicColor: parseDynamicColor(dynamicRgb) });
+  };
+  const commitDynamicOpacity = (dynamicOpacity: string) => {
+    setPropertyDraft((current) => ({ ...current, dynamicOpacity }));
+    updateProperties({ dynamicStyle: { ...object.properties?.dynamicStyle, opacity: dynamicOpacity } });
+  };
   const updateInteractivity = (patch: Partial<MathObjectInteractivity>) => {
     if (!object.interactivity) return;
     applyPatch({ interactivity: { ...object.interactivity, ...patch } }, `Edited ${object.label} interaction`);
@@ -56,7 +93,7 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
   };
 
   return (
-    <section className="rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
+    <section className="rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5" data-testid="workspace-inspector">
       <div className="flex min-w-0 items-start gap-2">
         <div className="min-w-0 flex-1">
           <p className="text-[11px] font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">{object.kind}</p>
@@ -67,7 +104,7 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
         </span>
       </div>
 
-      <div className="mt-3 rounded-xl bg-slate-100 p-3 dark:bg-slate-950/70">
+      <div className="mt-3 rounded-xl bg-slate-100 p-3 dark:bg-slate-950/70" data-testid="object-properties-panel">
         <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Value</p>
         {object.metadata?.source === "engine-measurement" && (
           <p className="mt-2 rounded-lg bg-cyan-100 px-2 py-1 text-[11px] font-bold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100">
@@ -103,10 +140,12 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
         <label className="mt-2 block text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
           Caption
           <input
+            data-testid="object-property-caption"
             className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-xs font-bold dark:border-white/10 dark:bg-slate-900"
-            value={object.properties?.caption ?? ""}
+            value={propertyDraft.caption}
             disabled={object.locked}
-            onChange={(event) => updateProperties({ caption: event.target.value })}
+            onInput={(event) => commitCaption(event.currentTarget.value)}
+            onBlur={(event) => commitCaption(event.currentTarget.value)}
           />
         </label>
         <div className="mt-2 grid grid-cols-2 gap-2">
@@ -114,6 +153,7 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
           <label className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
             Label mode
             <select
+              data-testid="object-property-label-mode"
               className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-xs font-bold dark:border-white/10 dark:bg-slate-900"
               value={object.properties?.labelMode ?? "name"}
               disabled={object.locked}
@@ -130,32 +170,38 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
         <label className="mt-2 block text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
           Conditional visibility
           <input
+            data-testid="object-property-conditional-visibility"
             className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 font-mono text-xs font-bold dark:border-white/10 dark:bg-slate-900"
             placeholder="a > 0"
-            value={object.properties?.conditionalVisibility ?? ""}
+            value={propertyDraft.conditionalVisibility}
             disabled={object.locked}
-            onChange={(event) => updateProperties({ conditionalVisibility: event.target.value })}
+            onInput={(event) => commitConditionalVisibility(event.currentTarget.value)}
+            onBlur={(event) => commitConditionalVisibility(event.currentTarget.value)}
           />
         </label>
         <div className="mt-2 grid grid-cols-2 gap-2">
           <label className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
             Dynamic RGB
             <input
+              data-testid="object-property-dynamic-rgb"
               className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 font-mono text-xs font-bold dark:border-white/10 dark:bg-slate-900"
               placeholder="255,0,0"
-              value={formatDynamicColor(object)}
+              value={propertyDraft.dynamicRgb}
               disabled={object.locked}
-              onChange={(event) => updateProperties({ dynamicColor: parseDynamicColor(event.target.value) })}
+              onInput={(event) => commitDynamicRgb(event.currentTarget.value)}
+              onBlur={(event) => commitDynamicRgb(event.currentTarget.value)}
             />
           </label>
           <label className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
             Dynamic opacity
             <input
+              data-testid="object-property-dynamic-opacity"
               className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 font-mono text-xs font-bold dark:border-white/10 dark:bg-slate-900"
               placeholder="0.75"
-              value={object.properties?.dynamicStyle?.opacity ?? ""}
+              value={propertyDraft.dynamicOpacity}
               disabled={object.locked}
-              onChange={(event) => updateProperties({ dynamicStyle: { ...object.properties?.dynamicStyle, opacity: event.target.value } })}
+              onInput={(event) => commitDynamicOpacity(event.currentTarget.value)}
+              onBlur={(event) => commitDynamicOpacity(event.currentTarget.value)}
             />
           </label>
         </div>
@@ -354,6 +400,15 @@ function finiteOrZero(value: number) {
 function formatDynamicColor(object: MathObject) {
   const color = object.properties?.dynamicColor;
   return color ? [color.red, color.green, color.blue].join(",") : "";
+}
+
+function propertyDraftForObject(object: MathObject | null): PropertyDraft {
+  return {
+    caption: object?.properties?.caption ?? "",
+    conditionalVisibility: object?.properties?.conditionalVisibility ?? "",
+    dynamicOpacity: object?.properties?.dynamicStyle?.opacity ?? "",
+    dynamicRgb: object ? formatDynamicColor(object) : "",
+  };
 }
 
 function parseDynamicColor(value: string) {

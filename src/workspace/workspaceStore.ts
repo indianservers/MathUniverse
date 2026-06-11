@@ -34,10 +34,37 @@ type WorkspaceState = {
 };
 
 function mergeObjects(current: MathObject[], incoming: MathObject[], replaceLiveWorkspace = false) {
-  const normalizedIncoming = incoming.map(normalizeMathObject);
+  const normalizedIncoming = incoming.map(normalizeMathObject).map((object) => {
+    if (object.metadata?.source !== "live-workspace") return object;
+    const previous = current.find((item) => item.id === object.id);
+    if (!previous || !hasCustomObjectProperties(previous)) return object;
+    return {
+      ...object,
+      properties: previous.properties,
+      metadata: {
+        ...object.metadata,
+        evaluatedLabel: previous.metadata?.evaluatedLabel ?? object.metadata?.evaluatedLabel,
+        caption: previous.metadata?.caption ?? previous.properties?.caption ?? object.metadata?.caption,
+        layer: previous.metadata?.layer ?? previous.properties?.layer ?? object.metadata?.layer,
+      },
+    };
+  });
   const incomingIds = new Set(normalizedIncoming.map((object) => object.id));
   const preserved = current.filter((object) => !incomingIds.has(object.id) && (!replaceLiveWorkspace || object.metadata?.source !== "live-workspace"));
   return buildRuntimeWorkspaceObjects([...normalizedIncoming, ...preserved.map(normalizeMathObject)]);
+}
+
+function hasCustomObjectProperties(object: MathObject) {
+  const properties = object.properties;
+  if (!properties) return false;
+  return properties.label !== object.label
+    || Boolean(properties.caption?.trim())
+    || (properties.layer ?? 0) !== 0
+    || (properties.labelMode ?? "name") !== "name"
+    || Boolean(properties.conditionalVisibility?.trim())
+    || Boolean(properties.dynamicColor)
+    || Boolean(properties.dynamicStyle?.opacity?.trim())
+    || Boolean(properties.dynamicStyle?.strokeWidth?.trim());
 }
 
 function snapshotFromState(state: Pick<WorkspaceState, "project" | "objects" | "scenes" | "selectedObjectId" | "selectedObjectIds">): WorkspaceSnapshot {
