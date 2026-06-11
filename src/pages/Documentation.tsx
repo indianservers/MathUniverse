@@ -1,8 +1,9 @@
-import { ExternalLink, Link as LinkIcon } from "lucide-react";
+import { ExternalLink, Link as LinkIcon, Smartphone, Terminal } from "lucide-react";
 import { Link } from "react-router-dom";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import { siteLinks } from "../data/siteLinks";
+import { mobileNativeCapabilities, mobileNativeCommandPlan, mobileNativeReadinessScore } from "../mobile/mobileNativeReadiness";
 
 const groupedLinks = siteLinks.reduce<Record<string, typeof siteLinks>>((groups, link) => {
   const group = groups[link.category] ?? [];
@@ -45,6 +46,37 @@ export default function Documentation() {
           <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
             <p className="text-2xl font-bold text-slate-950 dark:text-white">{orderedCategories.length}</p>
             <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">Documentation groups</p>
+          </div>
+        </div>
+      </SectionCard>
+
+      <SectionCard title="Mobile Native Apps" description="Android and iOS packaging status for Math Universe through the Capacitor native shell.">
+        <div className="grid gap-3 lg:grid-cols-[220px_minmax(0,1fr)]">
+          <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
+            <Smartphone className="h-6 w-6 text-cyan-500" />
+            <p className="mt-3 text-3xl font-black text-slate-950 dark:text-white">{mobileNativeReadinessScore()}%</p>
+            <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">Native readiness</p>
+          </div>
+          <div className="grid gap-2 md:grid-cols-2">
+            {mobileNativeCapabilities.map((item) => (
+              <div key={item.id} className="rounded-2xl border border-slate-200 bg-white/75 p-3 dark:border-white/10 dark:bg-white/5">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="text-sm font-black text-slate-950 dark:text-white">{item.title}</h3>
+                  <span className={item.status === "ready" ? "mini-chip bg-emerald-100 text-emerald-700 dark:bg-emerald-400/15 dark:text-emerald-100" : item.status === "partial" ? "mini-chip bg-amber-100 text-amber-700 dark:bg-amber-400/15 dark:text-amber-100" : "mini-chip"}>
+                    {item.status}
+                  </span>
+                </div>
+                <p className="mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">{item.evidence}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-3 rounded-2xl bg-slate-950 p-4 text-cyan-50">
+          <p className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-cyan-200"><Terminal className="h-4 w-4" /> Native command flow</p>
+          <div className="mt-3 grid gap-2 md:grid-cols-2">
+            {mobileNativeCommandPlan().map((command) => (
+              <code key={command} className="rounded-lg bg-white/10 px-3 py-2 text-xs font-bold text-white">{command}</code>
+            ))}
           </div>
         </div>
       </SectionCard>

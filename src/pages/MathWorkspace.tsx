@@ -19,8 +19,9 @@ import { assessConstruction, buildBeyondGeoGebraUnitPackages, commandDocsForPack
 import { criticalGapImplementationPhases } from "../workspace/criticalGapPhases";
 import { createMathObject } from "../workspace/coreObjects";
 import { buildDynamicObjectGraph, graphHealthSummary, type DynamicObjectGraph, type DynamicObjectKind } from "../workspace/dynamicObjectKernel";
-import { sampleGraph } from "../workspace/graphSampler";
+import { parseGraphDescriptor, sampleGraph } from "../workspace/graphSampler";
 import { contextMenuForObject, createProtocolPlaybackPlan, createSliderObject, exportPresets, imageWorkflowSpec, rankSnapCandidates, styleBarForObject, tabletControlSpec, type ExportPreset, type ImageWorkflowSpec, type ProtocolPlaybackPlan, type SliderObject, type SnapCandidate, type StyleBarControl, type TabletControlSpec, type WorkflowObjectType } from "../workspace/highPriorityWorkflowKernel";
+import { DEFAULT_TRACE_MAX_SAMPLES, appendTraceSample, nextTraceLabel, seedTraceSamples, traceDefinition } from "../workspace/locusTraceKernel";
 import { applyObjectProperties, evaluateObjectProperties } from "../workspace/objectProperties";
 import {
   circle as kernelCircle,
@@ -77,7 +78,7 @@ type GeoLine = { id: string; a: string; b: string; style?: GeoStyle };
 type GeoCircle = { id: string; center: string; edge: string; style?: GeoStyle };
 type GeoPolygon = { id: string; points: string[]; style?: GeoStyle };
 type GeoArc = { id: string; center: string; start: string; end: string; sector?: boolean; style?: GeoStyle };
-type GeoLocus = { id: string; label: string; points: { x: number; y: number }[]; style?: GeoStyle };
+type GeoLocus = { id: string; label: string; points: { x: number; y: number }[]; style?: GeoStyle; sourcePointId?: string; mode?: "static" | "trace"; maxSamples?: number };
 type WorkspaceImage = { id: string; name: string; src: string; x: number; y: number; width: number; height: number; opacity: number; locked?: boolean; visible?: boolean };
 type GeoConstraint =
   | { id: string; type: "parallel" | "perpendicular"; sourceLine: string; throughPoint: string; line: string }
@@ -994,19 +995,22 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       setWorkspaceImages((current) => current.map((image) => image.id === dragImageId ? { ...image, x: roundTo(point.x - image.width / 2, 2), y: roundTo(point.y - image.height / 2, 2) } : image));
     }
     if (dragPointId) {
-      setConstruction((current) => solveConstruction({
+      setConstruction((current) => recordTraceSampleForPoint(solveConstruction({
         ...current,
         points: current.points.map((item) => item.id === dragPointId ? { ...item, x: point.x, y: point.y } : item),
-      }, dragPointId));
+      }, dragPointId), dragPointId));
     }
     if (dragGeometry) {
       const dx = point.x - dragGeometry.last.x;
       const dy = point.y - dragGeometry.last.y;
       const pointIds = pointIdsForObject(construction, dragGeometry.object);
-      setConstruction((current) => solveConstruction({
-        ...current,
-        points: current.points.map((item) => pointIds.includes(item.id) ? { ...item, x: item.x + dx, y: item.y + dy } : item),
-      }));
+      setConstruction((current) => {
+        const solved = solveConstruction({
+          ...current,
+          points: current.points.map((item) => pointIds.includes(item.id) ? { ...item, x: item.x + dx, y: item.y + dy } : item),
+        });
+        return pointIds.reduce((next, pointId) => recordTraceSampleForPoint(next, pointId), solved);
+      });
       setDragGeometry({ ...dragGeometry, last: point });
     }
   };
@@ -1047,15 +1051,15 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const updateSelectedPoint = (patch: Partial<GeoPoint>) => {
     if (!selectedGeometry || selectedGeometry.type !== "point") return;
     recordWorkspaceStep("Edit point definition", `${labelForPoint(construction, selectedGeometry.id)} changed.`);
-    setConstruction((current) => solveConstruction({ ...current, points: current.points.map((point) => point.id === selectedGeometry.id ? { ...point, ...patch } : point) }, selectedGeometry.id));
+    setConstruction((current) => recordTraceSampleForPoint(solveConstruction({ ...current, points: current.points.map((point) => point.id === selectedGeometry.id ? { ...point, ...patch } : point) }, selectedGeometry.id), selectedGeometry.id));
   };
 
   const updateSelectedPointByDelta = (pointId: string, dx: number, dy: number) => {
     if (lockedGeometryIds.includes(pointId)) return;
-    setConstruction((current) => solveConstruction({
+    setConstruction((current) => recordTraceSampleForPoint(solveConstruction({
       ...current,
       points: current.points.map((point) => point.id === pointId ? { ...point, x: point.x + dx, y: point.y + dy } : point),
-    }, pointId));
+    }, pointId), pointId));
   };
 
   const updateSelectedImage = (patch: Partial<WorkspaceImage>) => {
@@ -1124,21 +1128,13 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
 
   const setSelectedGeometryTrace = (enabled: boolean) => {
     if (!selectedGeometry) return;
-    const object = geometryObjectBySelection(construction, selectedGeometry);
-    updateSelectedGeometryStyle({ ...(object?.style ?? {}), trace: enabled });
+    recordWorkspaceStep(enabled ? "Start geometry trace" : "Stop geometry trace", `${selectedGeometry.type} trace ${enabled ? "enabled" : "stopped"}.`);
+    setConstruction((current) => setGeometryTrace(current, selectedGeometry, enabled));
   };
 
   const clearGeometryTrace = () => {
-    recordWorkspaceStep("Clear geometry trace", "All trace flags removed.");
-    setConstruction((current) => ({
-      ...current,
-      points: current.points.map((point) => ({ ...point, style: { ...(point.style ?? {}), trace: false } })),
-      lines: current.lines.map((line) => ({ ...line, style: { ...(line.style ?? {}), trace: false } })),
-      circles: current.circles.map((circle) => ({ ...circle, style: { ...(circle.style ?? {}), trace: false } })),
-      polygons: current.polygons.map((polygon) => ({ ...polygon, style: { ...(polygon.style ?? {}), trace: false } })),
-      arcs: current.arcs.map((arc) => ({ ...arc, style: { ...(arc.style ?? {}), trace: false } })),
-      loci: current.loci.map((locus) => ({ ...locus, style: { ...(locus.style ?? {}), trace: false } })),
-    }));
+    recordWorkspaceStep("Clear geometry trace", "Generated trace paths removed and trace flags stopped.");
+    setConstruction(clearTracePaths);
   };
 
   const add3dSceneObject = (baseId: ThreeObjectId, options: { solid?: SolidKind; surface?: SurfaceKind; label?: string } = {}) => {
@@ -1517,7 +1513,12 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     }
     else if (ref.kind === "3d") setAdded3dObjects((current) => current.map((object) => object.id === ref.id ? { ...object, transform: { ...object.transform, ...patch } } : object));
     else {
-      setConstruction((current) => patchGeometryObject(current, { type: ref.kind as GeometryObjectType, id: ref.id }, { style: { ...(geometryObjectBySelection(current, { type: ref.kind as GeometryObjectType, id: ref.id })?.style ?? {}), visible: patch.visible, trace: patch.trace } }));
+      setConstruction((current) => {
+        const target = { type: ref.kind as GeometryObjectType, id: ref.id };
+        const object = geometryObjectBySelection(current, target);
+        const withStyle = patchGeometryObject(current, target, { style: { ...(object?.style ?? {}), visible: patch.visible, trace: patch.trace } });
+        return typeof patch.trace === "boolean" ? setGeometryTrace(withStyle, target, patch.trace) : withStyle;
+      });
       if (typeof patch.locked === "boolean") setLockedGeometryIds((current) => patch.locked ? Array.from(new Set([...current, ref.id])) : current.filter((id) => id !== ref.id));
     }
   };
@@ -3407,6 +3408,13 @@ function bisect(f: (x: number) => number, left: number, right: number) {
   return (lo + hi) / 2;
 }
 
+const graphInputPresets = [
+  { label: "Circle implicit", expression: "x^2 + y^2 = 9" },
+  { label: "Lissajous", expression: "x=3*sin(2*t), y=2*cos(3*t), t=0..2*pi" },
+  { label: "Rose polar", expression: "r=4*sin(3*theta), theta=0..2*pi" },
+  { label: "Piecewise", expression: "if(x<0,-x,x)" },
+];
+
 function GraphPanel({ plots, onChange, tableRange, onTableRangeChange }: { plots: PlotItem[]; onChange: (plots: PlotItem[]) => void; tableRange: { start: number; end: number; step: number }; onTableRangeChange: (range: { start: number; end: number; step: number }) => void }) {
   const [draft, setDraft] = useState("cos(x)");
   const [xMin, setXMin] = useState(-10);
@@ -3429,7 +3437,7 @@ function GraphPanel({ plots, onChange, tableRange, onTableRangeChange }: { plots
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="flex items-center gap-2 font-bold"><LineChart className="h-4 w-4 text-cyan-500" /> Desmos-style Graphing Lab</h2>
         <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-500">
-          <span className="mini-chip">Functions</span><span className="mini-chip">Inequalities</span><span className="mini-chip">Tables</span><span className="mini-chip">Regression</span>
+          <span className="mini-chip">Functions</span><span className="mini-chip">Parametric</span><span className="mini-chip">Implicit</span><span className="mini-chip">Polar</span><span className="mini-chip">Inequalities</span><span className="mini-chip">Tables</span>
         </div>
       </div>
 
@@ -3441,6 +3449,13 @@ function GraphPanel({ plots, onChange, tableRange, onTableRangeChange }: { plots
             <div className="mt-2 grid grid-cols-2 gap-2">
               <button type="button" onClick={() => addPlot(draft)} className="action-primary py-2">Add graph</button>
               <button type="button" onClick={() => addRegression()} className="action-secondary py-2">Regression</button>
+            </div>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {graphInputPresets.map((preset) => (
+                <button key={preset.expression} type="button" onClick={() => setDraft(preset.expression)} className="mini-chip hover:bg-cyan-100 hover:text-cyan-800 dark:hover:bg-cyan-400/20 dark:hover:text-cyan-100">
+                  {preset.label}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -3486,7 +3501,7 @@ function GraphPanel({ plots, onChange, tableRange, onTableRangeChange }: { plots
                 width={Math.max(1, (cell.width / (viewport.xMax - viewport.xMin || 1)) * viewport.width)}
                 height={Math.max(1, (cell.height / (viewport.yMax - viewport.yMin || 1)) * viewport.height)}
                 fill={layer.color}
-                opacity={layer.kind === "inequality" ? 0.12 : 0.72}
+                opacity={layer.kind === "inequality" ? 0.12 : layer.kind === "implicit" ? 0.08 : 0.72}
               />
             )))}
             {sampledLayers.map((layer) => layer.paths.map((path, index) => <path key={`${layer.id}-path-${index}`} d={path} fill="none" stroke={layer.color} strokeWidth={layer.kind === "implicit" ? "2" : "3"} strokeLinecap="round" strokeLinejoin="round" />))}
@@ -3535,6 +3550,15 @@ function samplePlotLayer(plot: PlotItem, viewport: GraphViewport, sliderA: numbe
   }
   try {
     const sample = sampleGraph(expression, viewport, 520);
+    if (sample.kind === "implicit") {
+      return {
+        id: plot.id,
+        color: plot.color,
+        kind: "implicit",
+        paths: sample.segments.map((segment) => graphSegmentPath(segment.points, viewport)).filter(Boolean),
+        cells: sample.cells,
+      };
+    }
     if ("segments" in sample) {
       return {
         id: plot.id,
@@ -3593,12 +3617,8 @@ function MiniNumber({ label, value, onChange }: { label: string; value: number; 
 }
 
 function inferPlotKind(expression: string): PlotKind {
-  if (/^r\s*=/i.test(expression)) return "polar";
-  if (/^if\s*\(/i.test(expression) || /^piecewise\s*\[/i.test(expression) || /{.+}/.test(expression)) return "piecewise";
-  if (/t/.test(expression) && (/\bx\s*=/.test(expression) || /,/.test(expression))) return "parametric";
-  if (/=/.test(expression) && /\by\b/i.test(expression)) return "implicit";
-  if (/[<>]=?/.test(expression)) return "inequality";
-  return "function";
+  const kind = parseGraphDescriptor(expression).kind;
+  return kind === "explicit" ? "function" : kind;
 }
 
 function applyGraphParameters(expression: string, a: number, b: number) {
@@ -3606,7 +3626,18 @@ function applyGraphParameters(expression: string, a: number, b: number) {
 }
 
 function sampleTable(expression: string, label: string, start = -3, end = 3, step = 1) {
-  return generateValueTable(expression, start, end, step).map((row) => ({ ...row, label })).filter((row) => Number.isFinite(row.y));
+  const kind = parseGraphDescriptor(expression).kind;
+  if (kind === "explicit" || kind === "piecewise" || kind === "inequality") {
+    return generateValueTable(expression, start, end, step).map((row) => ({ ...row, label })).filter((row) => Number.isFinite(row.y));
+  }
+  try {
+    const sample = sampleGraph(expression, { xMin: -10, xMax: 10, yMin: -10, yMax: 10 }, 160);
+    const points = "segments" in sample ? sample.segments.flatMap((segment) => segment.points) : sample.cells.map((cell) => ({ x: cell.x + cell.width / 2, y: cell.y + cell.height / 2 }));
+    const stride = Math.max(1, Math.floor(points.length / 80));
+    return points.filter((_, index) => index % stride === 0).slice(0, 80).map((point) => ({ x: roundTo(point.x, 6), y: roundTo(point.y, 6), label }));
+  } catch {
+    return [];
+  }
 }
 
 function generateValueTable(expression: string, start: number, end: number, step: number) {
@@ -5204,11 +5235,11 @@ function buildAlgebraObjects(plots: PlotItem[], construction: Construction, tran
   rows.push(...construction.loci.map((locus) => ({
     ref: { kind: "locus" as const, id: locus.id },
     name: locus.label,
-    definition: `Locus(${locus.points.length} points)`,
+    definition: locus.mode === "trace" ? traceDefinition(locus.points.length, construction.points.find((point) => point.id === locus.sourcePointId)?.label) : `Locus(${locus.points.length} points)`,
     visible: locus.style?.visible !== false,
     locked: lockedGeometryIds.includes(locus.id),
-    trace: true,
-    dependencies: [],
+    trace: locus.style?.trace === true,
+    dependencies: locus.sourcePointId ? [pointName(locus.sourcePointId)] : [],
   })));
   rows.push(...(Object.keys(transforms3d) as ThreeObjectId[]).map((id) => ({
     ref: { kind: "3d" as const, id },
@@ -6799,6 +6830,70 @@ function patchGeometryObject(construction: Construction, object: SelectedGeometr
   return { ...construction, polygons: construction.polygons.map(mergeStyle) };
 }
 
+function setGeometryTrace(construction: Construction, object: SelectedGeometryObject, enabled: boolean): Construction {
+  const styled = patchGeometryObject(construction, object, { style: { ...(geometryObjectBySelection(construction, object)?.style ?? {}), trace: enabled } });
+  if (object.type !== "point") return styled;
+  const point = pointById(styled.points, object.id);
+  if (!point) return styled;
+  if (!enabled) {
+    return {
+      ...styled,
+      loci: styled.loci.map((locus) => locus.sourcePointId === object.id && locus.mode === "trace" ? { ...locus, style: { ...(locus.style ?? {}), trace: false } } : locus),
+    };
+  }
+  const existingIndex = styled.loci.findIndex((locus) => locus.sourcePointId === object.id && locus.mode === "trace");
+  if (existingIndex >= 0) {
+    return {
+      ...styled,
+      loci: styled.loci.map((locus, index) => index === existingIndex ? {
+        ...locus,
+        points: appendTraceSample(locus.points, point, { maxSamples: locus.maxSamples }),
+        style: { ...(locus.style ?? {}), trace: true, visible: true },
+      } : locus),
+    };
+  }
+  const traceLocus: GeoLocus = {
+    id: crypto.randomUUID(),
+    label: nextTraceLabel(styled.loci.filter((locus) => locus.mode === "trace").length, point.label),
+    sourcePointId: point.id,
+    mode: "trace",
+    maxSamples: DEFAULT_TRACE_MAX_SAMPLES,
+    points: seedTraceSamples(point),
+    style: { color: point.style?.color ?? "#ec4899", strokeWidth: 4, trace: true, opacity: 0.82 },
+  };
+  return {
+    ...styled,
+    loci: [...styled.loci, traceLocus],
+  };
+}
+
+function recordTraceSampleForPoint(construction: Construction, pointId: string): Construction {
+  const point = pointById(construction.points, pointId);
+  if (!point?.style?.trace) return construction;
+  const traceExists = construction.loci.some((locus) => locus.sourcePointId === pointId && locus.mode === "trace");
+  const withTrace = traceExists ? construction : setGeometryTrace(construction, { type: "point", id: pointId }, true);
+  return {
+    ...withTrace,
+    loci: withTrace.loci.map((locus) => locus.sourcePointId === pointId && locus.mode === "trace" && locus.style?.trace !== false ? {
+      ...locus,
+      points: appendTraceSample(locus.points, point, { maxSamples: locus.maxSamples }),
+      style: { ...(locus.style ?? {}), visible: true },
+    } : locus),
+  };
+}
+
+function clearTracePaths(construction: Construction): Construction {
+  return {
+    ...construction,
+    points: construction.points.map((point) => ({ ...point, style: { ...(point.style ?? {}), trace: false } })),
+    lines: construction.lines.map((line) => ({ ...line, style: { ...(line.style ?? {}), trace: false } })),
+    circles: construction.circles.map((circle) => ({ ...circle, style: { ...(circle.style ?? {}), trace: false } })),
+    polygons: construction.polygons.map((polygon) => ({ ...polygon, style: { ...(polygon.style ?? {}), trace: false } })),
+    arcs: construction.arcs.map((arc) => ({ ...arc, style: { ...(arc.style ?? {}), trace: false } })),
+    loci: construction.loci.filter((locus) => locus.mode !== "trace").map((locus) => ({ ...locus, style: { ...(locus.style ?? {}), trace: false } })),
+  };
+}
+
 function deleteGeometryObjectFromConstruction(construction: Construction, object: SelectedGeometryObject) {
   if (object.type === "point") {
     return {
@@ -6807,7 +6902,7 @@ function deleteGeometryObjectFromConstruction(construction: Construction, object
       circles: construction.circles.filter((circle) => circle.center !== object.id && circle.edge !== object.id),
       polygons: construction.polygons.map((polygon) => ({ ...polygon, points: polygon.points.filter((id) => id !== object.id) })).filter((polygon) => polygon.points.length >= 3),
       arcs: construction.arcs.filter((arc) => arc.center !== object.id && arc.start !== object.id && arc.end !== object.id),
-      loci: construction.loci,
+      loci: construction.loci.filter((locus) => locus.sourcePointId !== object.id),
       constraints: construction.constraints.filter((constraint) => !JSON.stringify(constraint).includes(object.id)),
     };
   }
@@ -6846,7 +6941,19 @@ function duplicateGeometryObjectInConstruction(construction: Construction, objec
   }
   if (object.type === "locus") {
     const locus = construction.loci.find((item) => item.id === object.id);
-    return locus ? { ...construction, loci: [...construction.loci, { ...locus, id: crypto.randomUUID(), label: `${locus.label}'`, points: locus.points.map((point) => ({ x: point.x + 24, y: point.y + 24 })) }] } : construction;
+    const copiedLocus: GeoLocus | null = locus ? {
+      ...locus,
+      id: crypto.randomUUID(),
+      label: `${locus.label}'`,
+      mode: "static",
+      sourcePointId: undefined,
+      points: locus.points.map((point) => ({ x: point.x + 24, y: point.y + 24 })),
+      style: { ...(locus.style ?? {}), trace: false },
+    } : null;
+    return locus ? {
+      ...construction,
+      loci: copiedLocus ? [...construction.loci, copiedLocus] : construction.loci,
+    } : construction;
   }
   const polygon = construction.polygons.find((item) => item.id === object.id);
   if (!polygon) return construction;
@@ -6954,7 +7061,26 @@ function GeometryArc({ arc, points, selected = false }: { arc: GeoArc; points: G
 function GeometryLocus({ locus }: { locus: GeoLocus }) {
   if (locus.style?.visible === false || locus.points.length < 2) return null;
   const path = locus.points.map((point, index) => `${index ? "L" : "M"}${point.x.toFixed(2)},${point.y.toFixed(2)}`).join(" ");
-  return <path data-object-type="locus" data-object-id={locus.id} d={path} fill="none" stroke={locus.style?.color ?? "#ec4899"} strokeWidth={locus.style?.strokeWidth ?? 3} strokeDasharray="6 6" opacity={locus.style?.opacity ?? 0.8} />;
+  const isTrace = locus.mode === "trace";
+  return (
+    <g>
+      <path
+        data-object-type="locus"
+        data-object-id={locus.id}
+        data-source-point-id={locus.sourcePointId}
+        data-locus-mode={locus.mode ?? "static"}
+        d={path}
+        fill="none"
+        stroke={locus.style?.color ?? "#ec4899"}
+        strokeWidth={locus.style?.strokeWidth ?? (isTrace ? 4 : 3)}
+        strokeDasharray={isTrace ? undefined : "6 6"}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity={locus.style?.opacity ?? (isTrace ? 0.86 : 0.8)}
+      />
+      {isTrace && locus.points.length > 2 && <circle cx={locus.points[locus.points.length - 1].x} cy={locus.points[locus.points.length - 1].y} r="5" fill={locus.style?.color ?? "#ec4899"} opacity="0.78" pointerEvents="none" />}
+    </g>
+  );
 }
 
 function ConstraintOverlays({ construction }: { construction: Construction }) {
@@ -7041,7 +7167,7 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     "angle-bisector": "Click side point, vertex, side point to create an angle bisector ray.",
     tangent: "Pick a circle, then a point near/on it to create the tangent line at that point.",
     polar: "Pick a circle, then a point to create its polar line with respect to that circle.",
-    locus: "Click a point to create a visible locus trace around it.",
+    locus: "Click a point to start a live locus trace; drag the point to record its path.",
     "regular-polygon": "Click two adjacent vertices to create a regular pentagon.",
     arc: "Click center, start, and end points to create an arc.",
     sector: "Click center, start, and end points to create a sector.",
@@ -7051,9 +7177,9 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     rotate: "Click a point to rotate it 45 degrees around the first point.",
     dilate: "Click a point to dilate it 1.5x from the first point.",
     translate: "Click vector start, vector end, then point to translate.",
-    trace: "Turns trace on for the selected object from the plate.",
-    "stop-trace": "Turns trace off for the selected object.",
-    "clear-trace": "Clears trace flags from every geometry object.",
+    trace: "Turns trace on for the selected object and records point motion as a locus.",
+    "stop-trace": "Stops recording while keeping the visible trace path.",
+    "clear-trace": "Removes generated trace paths and clears trace flags.",
     delete: "Deletes the selected geometry object.",
     redo: "Reapplies the last undone workspace change.",
     reset: "Resets the current geometry construction.",
@@ -7352,12 +7478,7 @@ function addPolarLine(construction: Construction, pointId: string, circleId?: st
 function addLocusForPoint(construction: Construction, pointId: string) {
   const point = pointById(construction.points, pointId);
   if (!point) return construction;
-  const radius = 48;
-  const points = Array.from({ length: 50 }, (_, index) => {
-    const angle = (index / 49) * Math.PI * 2;
-    return { x: point.x + Math.cos(angle) * radius, y: point.y + Math.sin(angle) * radius };
-  });
-  return { ...construction, loci: [...construction.loci, { id: crypto.randomUUID(), label: `locus${construction.loci.length + 1}`, points, style: { color: "#ec4899", trace: true } }] };
+  return setGeometryTrace(construction, { type: "point", id: pointId }, true);
 }
 
 function addRegularPolygon(construction: Construction, aId: string, bId: string, sides: number) {

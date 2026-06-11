@@ -5,12 +5,13 @@ export type GraphKind = "explicit" | "implicit" | "parametric" | "polar" | "piec
 export type SamplePoint = { x: number; y: number; move?: boolean };
 export type SegmentSample = { points: SamplePoint[]; reason?: string };
 export type ImplicitCell = { x: number; y: number; width: number; height: number };
+export type ParameterRange = { min: number; max: number };
 
 export type GraphDescriptor =
   | { kind: "explicit"; expression: string }
   | { kind: "implicit"; left: string; right: string }
-  | { kind: "parametric"; xExpression: string; yExpression: string; parameter: string }
-  | { kind: "polar"; rExpression: string; parameter: string }
+  | { kind: "parametric"; xExpression: string; yExpression: string; parameter: string; range?: ParameterRange }
+  | { kind: "polar"; rExpression: string; parameter: string; range?: ParameterRange }
   | { kind: "piecewise"; branches: PiecewiseBranch[] }
   | { kind: "inequality"; left: string; operator: "<" | "<=" | ">" | ">="; right: string };
 
@@ -28,7 +29,8 @@ export type GraphViewport = {
 
 export type GraphSample =
   | { kind: "explicit" | "parametric" | "polar" | "piecewise"; segments: SegmentSample[]; warnings: string[] }
-  | { kind: "implicit" | "inequality"; cells: ImplicitCell[]; warnings: string[] };
+  | { kind: "implicit"; cells: ImplicitCell[]; segments: SegmentSample[]; warnings: string[] }
+  | { kind: "inequality"; cells: ImplicitCell[]; warnings: string[] };
 
 const DEFAULT_VIEWPORT: GraphViewport = { xMin: -10, xMax: 10, yMin: -10, yMax: 10 };
 
@@ -39,7 +41,8 @@ export function parseGraphDescriptor(input: string): GraphDescriptor {
   if (inequality) {
     return { kind: "inequality", left: cleanSide(inequality[1]), operator: inequality[2] as "<" | "<=" | ">" | ">=", right: cleanSide(inequality[3]) };
   }
-  if (/^r\s*=/.test(expression)) return { kind: "polar", rExpression: cleanSide(expression.replace(/^r\s*=/, "")), parameter: "theta" };
+  const polar = parsePolar(expression);
+  if (polar) return polar;
   const parametric = parseParametric(expression);
   if (parametric) return parametric;
   const equality = splitTopLevelEquality(expression);
@@ -56,7 +59,10 @@ export function sampleGraph(input: string | GraphDescriptor, viewport: Partial<G
   if (descriptor.kind === "piecewise") return { kind: "piecewise", segments: samplePiecewise(descriptor.branches, view, samples), warnings: [] };
   if (descriptor.kind === "parametric") return { kind: "parametric", segments: sampleParametric(descriptor, view, samples), warnings: [] };
   if (descriptor.kind === "polar") return { kind: "polar", segments: samplePolar(descriptor, view, samples), warnings: [] };
-  if (descriptor.kind === "implicit") return { kind: "implicit", cells: sampleImplicit(descriptor.left, descriptor.right, view), warnings: [] };
+  if (descriptor.kind === "implicit") {
+    const implicit = sampleImplicit(descriptor.left, descriptor.right, view);
+    return { kind: "implicit", cells: implicit.cells, segments: implicit.segments, warnings: implicit.segments.length ? [] : ["No visible contour found in the current viewport."] };
+  }
   return { kind: "inequality", cells: sampleInequality(descriptor, view), warnings: [] };
 }
 
@@ -109,9 +115,10 @@ function samplePiecewise(branches: PiecewiseBranch[], viewport: GraphViewport, s
 function sampleParametric(descriptor: Extract<GraphDescriptor, { kind: "parametric" }>, viewport: GraphViewport, samples: number) {
   const fx = compileFunctionExpression(rewriteParameter(descriptor.xExpression, descriptor.parameter));
   const fy = compileFunctionExpression(rewriteParameter(descriptor.yExpression, descriptor.parameter));
+  const range = descriptor.range ?? { min: -2 * Math.PI, max: 2 * Math.PI };
   const points: SamplePoint[] = [];
   for (let index = 0; index <= samples; index += 1) {
-    const t = -2 * Math.PI + (4 * Math.PI * index) / samples;
+    const t = range.min + ((range.max - range.min) * index) / samples;
     const x = fx(t);
     const y = fy(t);
     if (Number.isFinite(x) && Number.isFinite(y) && x >= viewport.xMin - 50 && x <= viewport.xMax + 50 && y >= viewport.yMin - 50 && y <= viewport.yMax + 50) points.push({ x, y, move: index === 0 });
@@ -121,9 +128,10 @@ function sampleParametric(descriptor: Extract<GraphDescriptor, { kind: "parametr
 
 function samplePolar(descriptor: Extract<GraphDescriptor, { kind: "polar" }>, viewport: GraphViewport, samples: number) {
   const fr = compileFunctionExpression(rewriteParameter(descriptor.rExpression, descriptor.parameter));
+  const range = descriptor.range ?? { min: -2 * Math.PI, max: 2 * Math.PI };
   const points: SamplePoint[] = [];
   for (let index = 0; index <= samples; index += 1) {
-    const theta = -2 * Math.PI + (4 * Math.PI * index) / samples;
+    const theta = range.min + ((range.max - range.min) * index) / samples;
     const r = fr(theta);
     if (!Number.isFinite(r)) continue;
     const x = r * Math.cos(theta);
@@ -136,17 +144,27 @@ function samplePolar(descriptor: Extract<GraphDescriptor, { kind: "polar" }>, vi
 function sampleImplicit(left: string, right: string, viewport: GraphViewport, grid = 96) {
   const fn = compileTwoVariableExpression(`(${left})-(${right})`);
   const cells: ImplicitCell[] = [];
+  const segments: SegmentSample[] = [];
   const dx = (viewport.xMax - viewport.xMin) / grid;
   const dy = (viewport.yMax - viewport.yMin) / grid;
   for (let ix = 0; ix < grid; ix += 1) {
     for (let iy = 0; iy < grid; iy += 1) {
       const x = viewport.xMin + ix * dx;
       const y = viewport.yMin + iy * dy;
-      const values = [fn(x, y), fn(x + dx, y), fn(x, y + dy), fn(x + dx, y + dy)].filter(Number.isFinite);
-      if (values.length >= 2 && Math.min(...values) <= 0 && Math.max(...values) >= 0) cells.push({ x, y, width: dx, height: dy });
+      const corners = [
+        { x, y, value: fn(x, y) },
+        { x: x + dx, y, value: fn(x + dx, y) },
+        { x: x + dx, y: y + dy, value: fn(x + dx, y + dy) },
+        { x, y: y + dy, value: fn(x, y + dy) },
+      ];
+      const values = corners.map((corner) => corner.value).filter(Number.isFinite);
+      if (values.length >= 2 && Math.min(...values) <= 0 && Math.max(...values) >= 0) {
+        cells.push({ x, y, width: dx, height: dy });
+        segments.push(...contourSegmentsForCell(corners));
+      }
     }
   }
-  return cells;
+  return { cells, segments };
 }
 
 function sampleInequality(descriptor: Extract<GraphDescriptor, { kind: "inequality" }>, viewport: GraphViewport, grid = 80) {
@@ -178,12 +196,93 @@ function splitSegments(points: SamplePoint[]): SegmentSample[] {
   return segments;
 }
 
+function contourSegmentsForCell(corners: Array<{ x: number; y: number; value: number }>): SegmentSample[] {
+  if (corners.some((corner) => !Number.isFinite(corner.value))) return [];
+  const edgePairs: Array<[number, number]> = [[0, 1], [1, 2], [2, 3], [3, 0]];
+  const hits = edgePairs.flatMap(([leftIndex, rightIndex]) => {
+    const left = corners[leftIndex];
+    const right = corners[rightIndex];
+    if (left.value === 0) return [{ x: left.x, y: left.y }];
+    if (right.value === 0) return [{ x: right.x, y: right.y }];
+    if ((left.value < 0 && right.value < 0) || (left.value > 0 && right.value > 0)) return [];
+    const ratio = Math.abs(left.value) / (Math.abs(left.value) + Math.abs(right.value));
+    return [{ x: left.x + (right.x - left.x) * ratio, y: left.y + (right.y - left.y) * ratio }];
+  });
+  const unique = dedupePoints(hits);
+  if (unique.length < 2) return [];
+  if (unique.length === 2) return [{ points: unique }];
+  return [
+    { points: [unique[0], unique[1]] },
+    { points: [unique[2], unique[3] ?? unique[0]] },
+  ];
+}
+
+function dedupePoints(points: SamplePoint[]) {
+  return points.filter((point, index) => points.findIndex((candidate) => Math.hypot(candidate.x - point.x, candidate.y - point.y) < 1e-9) === index);
+}
+
 function parseParametric(expression: string): Extract<GraphDescriptor, { kind: "parametric" }> | null {
   const compact = expression.trim();
-  const pair = compact.match(/^\(?\s*x\s*=\s*(.+?)\s*,\s*y\s*=\s*(.+?)\s*\)?$/i) ?? compact.match(/^\(?\s*(.+?)\s*,\s*(.+?)\s*\)?$/);
-  if (!pair) return null;
-  if (!/[t]/i.test(pair[1] + pair[2])) return null;
-  return { kind: "parametric", xExpression: pair[1].trim(), yExpression: pair[2].trim(), parameter: "t" };
+  const parts = splitTopLevelCommas(trimWrappingParens(compact));
+  if (parts.length < 2) return null;
+  const xPart = parts[0].match(/^x\s*=\s*(.+)$/i)?.[1] ?? parts[0];
+  const yPart = parts[1].match(/^y\s*=\s*(.+)$/i)?.[1] ?? parts[1];
+  const parameter = parameterNameFrom(parts.slice(0, 2).join(","), "t");
+  if (!new RegExp(`\\b${parameter}\\b`, "i").test(xPart + yPart)) return null;
+  return { kind: "parametric", xExpression: xPart.trim(), yExpression: yPart.trim(), parameter, range: parseParameterRange(parts.slice(2).join(","), parameter) };
+}
+
+function parsePolar(expression: string): Extract<GraphDescriptor, { kind: "polar" }> | null {
+  const parts = splitTopLevelCommas(expression);
+  const first = parts[0]?.trim();
+  if (!/^r\s*=/i.test(first)) return null;
+  const parameter = parameterNameFrom(parts.join(","), "theta");
+  return { kind: "polar", rExpression: cleanSide(first.replace(/^r\s*=/i, "")), parameter, range: parseParameterRange(parts.slice(1).join(","), parameter) };
+}
+
+function splitTopLevelCommas(expression: string) {
+  const parts: string[] = [];
+  let depth = 0;
+  let start = 0;
+  for (let index = 0; index < expression.length; index += 1) {
+    const char = expression[index];
+    if (char === "(" || char === "[" || char === "{") depth += 1;
+    if (char === ")" || char === "]" || char === "}") depth -= 1;
+    if (char === "," && depth === 0) {
+      parts.push(expression.slice(start, index).trim());
+      start = index + 1;
+    }
+  }
+  parts.push(expression.slice(start).trim());
+  return parts.filter(Boolean);
+}
+
+function trimWrappingParens(expression: string) {
+  const trimmed = expression.trim();
+  return trimmed.startsWith("(") && trimmed.endsWith(")") ? trimmed.slice(1, -1).trim() : trimmed;
+}
+
+function parameterNameFrom(expression: string, fallback: string) {
+  if (/\btheta\b/i.test(expression)) return "theta";
+  if (/\bt\b/i.test(expression)) return "t";
+  const match = expression.match(/\b([a-z])\b/gi)?.find((token) => !["x", "y", "r"].includes(token.toLowerCase()));
+  return match ? match.toLowerCase() : fallback;
+}
+
+function parseParameterRange(expression: string, parameter: string): ParameterRange | undefined {
+  if (!expression.trim()) return undefined;
+  const compact = expression.trim();
+  const assignment = compact.match(new RegExp(`^${parameter}\\s*=\\s*(.+)$`, "i"))?.[1] ?? compact;
+  const range = assignment.match(/^(.+?)(?:\.\.|:)(.+)$/);
+  if (!range) return undefined;
+  try {
+    const min = compileFunctionExpression(range[1])(0);
+    const max = compileFunctionExpression(range[2])(0);
+    if (!Number.isFinite(min) || !Number.isFinite(max) || min === max) return undefined;
+    return min < max ? { min, max } : { min: max, max: min };
+  } catch {
+    return undefined;
+  }
 }
 
 function isPiecewiseExpression(expression: string) {

@@ -9,10 +9,20 @@
     "lint": "eslint . --max-warnings=0",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "mobile:sync": "npm run build && cap sync",
+    "mobile:add:android": "cap add android",
+    "mobile:add:ios": "cap add ios",
+    "mobile:open:android": "cap open android",
+    "mobile:open:ios": "cap open ios",
     "test": "vitest run",
     "verify": "npm run lint && npm run build"
   },
   "dependencies": {
+    "@capacitor/app": "^8.1.0",
+    "@capacitor/core": "^8.4.0",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/keyboard": "^8.0.3",
+    "@capacitor/status-bar": "^8.0.2",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.17.10",
     "@types/cytoscape": "^3.21.9",
@@ -35,6 +45,9 @@
     "zustand": "^5.0.13"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/cli": "^8.4.0",
+    "@capacitor/ios": "^8.4.0",
     "@eslint/js": "^9.17.0",
     "@types/katex": "^0.16.7",
     "@types/node": "^22.10.5",

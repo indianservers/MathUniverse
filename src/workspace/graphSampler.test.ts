@@ -24,7 +24,19 @@ describe("robust graph sampler", () => {
 
     expect(implicit.kind).toBe("implicit");
     expect("cells" in implicit && implicit.cells.length).toBeGreaterThan(0);
+    expect("segments" in implicit && implicit.segments.length).toBeGreaterThan(12);
     expect(polar.kind).toBe("polar");
     expect("segments" in polar && polar.segments[0].points.length).toBeGreaterThan(10);
+  });
+
+  it("parses parameter domains for parametric and polar graphs", () => {
+    const parametric = parseGraphDescriptor("x=cos(t), y=sin(t), t=0..2*pi");
+    const polar = parseGraphDescriptor("r=2*sin(theta), theta=0..pi");
+
+    expect(parametric.kind).toBe("parametric");
+    expect(parametric.kind === "parametric" ? parametric.range?.min : undefined).toBe(0);
+    expect(parametric.kind === "parametric" ? parametric.range?.max : undefined).toBeCloseTo(2 * Math.PI);
+    expect(polar.kind).toBe("polar");
+    expect(polar.kind === "polar" ? polar.range?.max : undefined).toBeCloseTo(Math.PI);
   });
 });
