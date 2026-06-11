@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import TopicHeader from "../components/ui/TopicHeader";
 import { assessmentSummary, buildEngineeringAssessmentPlans, engineeringExamSprints, sprintReadiness } from "../data/engineeringAssessmentPlanner";
 import { caseStudiesForDomain, caseStudySummary } from "../data/engineeringCaseStudies";
+import { buildEngineeringConceptCoverage, engineeringCoverageSummary } from "../data/engineeringConceptCoverage";
 import { dependenciesForDomain, dependencyGraphSummary, learningPathsForDomain, unlocksForDomain } from "../data/engineeringDependencyGraph";
 import { formulaAtlasSummary, formulasForDomain, type EngineeringFormulaCard } from "../data/engineeringFormulaAtlas";
 import {
@@ -18,6 +19,7 @@ import { launcherCoverageSummary, launchersForDomain } from "../data/engineering
 import { engineeringSolverPresets } from "../data/engineeringMathSolvers";
 import { practiceCoverageSummary, practicePackForDomain } from "../data/engineeringPracticePacks";
 import { projectsForDomain, projectSummary } from "../data/engineeringProjects";
+import { adjustedSimulationSamples, simulationCoverageSummary, simulationsForDomain, type EngineeringSimulationScenario } from "../data/engineeringSimulationScenarios";
 import { workedExamplesForDomain, workedExampleSummary } from "../data/engineeringWorkedExamples";
 
 const semesterFilters = ["All", "M1", "M2", "M3", "M4"] as const;
@@ -70,6 +72,11 @@ export default function EngineeringMath() {
   const projectsSummary = useMemo(() => projectSummary(), []);
   const caseStudies = useMemo(() => caseStudiesForDomain(selected?.id ?? ""), [selected?.id]);
   const caseStudiesSummary = useMemo(() => caseStudySummary(), []);
+  const coverageRows = useMemo(() => buildEngineeringConceptCoverage(), []);
+  const coverageSummary = useMemo(() => engineeringCoverageSummary(), []);
+  const selectedCoverage = useMemo(() => coverageRows.find((row) => row.domainId === selected?.id), [coverageRows, selected?.id]);
+  const simulationScenarios = useMemo(() => simulationsForDomain(selected?.id ?? ""), [selected?.id]);
+  const simulationSummary = useMemo(() => simulationCoverageSummary(), []);
 
   return (
     <div className="space-y-3">
@@ -87,6 +94,8 @@ export default function EngineeringMath() {
         <MetricCard label="Formula families" value={engineeringMathSummary.formulaFamilyCount} />
         <MetricCard label="Worked examples" value={workedSummary.exampleCount} />
         <MetricCard label="Portfolio tasks" value={projectsSummary.projectCount} />
+        <MetricCard label="Coverage score" value={coverageSummary.average} suffix="%" />
+        <MetricCard label="Simulations" value={simulationSummary.scenarioCount} />
       </section>
 
       <section className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_420px]">
@@ -287,6 +296,56 @@ export default function EngineeringMath() {
               ) : (
                 <p className="mt-3 rounded-lg bg-slate-100 p-3 text-sm font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">Solver presets for this domain are scheduled after the current numerical, transforms, PDE, stochastic, and vector-field set.</p>
               )}
+            </section>
+
+            {selectedCoverage && (
+              <section className="mt-4 rounded-lg bg-slate-50 p-3 dark:bg-white/5">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="flex items-center gap-2 text-sm font-black text-slate-950 dark:text-white">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-600 dark:text-cyan-200" />
+                    Concept Coverage Audit
+                  </h3>
+                  <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{selectedCoverage.score}/{selectedCoverage.maxScore} checks</span>
+                </div>
+                <div className="mt-3 grid gap-3 lg:grid-cols-[220px_minmax(0,1fr)]">
+                  <div className="rounded-lg border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/70">
+                    <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Selected Coverage</p>
+                    <p className="mt-2 text-3xl font-black text-slate-950 dark:text-white">{selectedCoverage.percent}%</p>
+                    <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
+                      <div className="h-full bg-cyan-500" style={{ width: `${selectedCoverage.percent}%` }} />
+                    </div>
+                    <p className="mt-2 text-[11px] font-bold leading-4 text-slate-500 dark:text-slate-400">{selectedCoverage.missing.length === 0 ? "No core gaps remain for this domain." : `${selectedCoverage.missing.length} upgrade targets remain.`}</p>
+                  </div>
+                  <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
+                    {Object.entries(selectedCoverage.counts).map(([key, value]) => (
+                      <div key={key} className="rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-950/70">
+                        <p className="text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">{coverageLabel(key)}</p>
+                        <p className="mt-1 text-xl font-black text-slate-950 dark:text-white">{value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-3 grid gap-2 lg:grid-cols-2">
+                  {selectedCoverage.nextActions.map((action) => (
+                    <p key={action} className={`rounded-lg p-2 text-xs font-bold leading-5 ${selectedCoverage.missing.length === 0 ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-100" : "bg-amber-50 text-amber-800 dark:bg-amber-400/10 dark:text-amber-100"}`}>{action}</p>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <section className="mt-4 rounded-lg bg-slate-50 p-3 dark:bg-white/5">
+              <div className="flex items-center justify-between gap-2">
+                <h3 className="flex items-center gap-2 text-sm font-black text-slate-950 dark:text-white">
+                  <FlaskConical className="h-4 w-4 text-cyan-600 dark:text-cyan-200" />
+                  Simulation Studio
+                </h3>
+                <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{simulationScenarios.length} of {simulationSummary.scenarioCount}</span>
+              </div>
+              <div className="mt-3 grid gap-2 lg:grid-cols-2">
+                {simulationScenarios.map((scenario) => (
+                  <SimulationScenarioCard key={scenario.id} scenario={scenario} shape={visualA} forcing={visualB} time={visualT} />
+                ))}
+              </div>
             </section>
 
             <section className="mt-4 rounded-lg bg-slate-50 p-3 dark:bg-white/5">
@@ -577,12 +636,12 @@ export default function EngineeringMath() {
             </div>
           </Panel>
 
-          <Panel title="Coverage Status" icon={<CheckCircle2 className="h-4 w-4" />}>
-            {gaps.length === 0 ? (
-              <p className="text-sm font-semibold leading-6 text-emerald-700 dark:text-emerald-200">Domain has syllabus topics, native route targets, workspace targets, and formula families.</p>
+        <Panel title="Coverage Status" icon={<CheckCircle2 className="h-4 w-4" />}>
+            {selectedCoverage && selectedCoverage.missing.length === 0 ? (
+              <p className="text-sm font-semibold leading-6 text-emerald-700 dark:text-emerald-200">Domain has complete concept coverage across topics, visuals, formulas, launchers, solvers, practice, projects, case studies, and assessment.</p>
             ) : (
               <div className="space-y-2">
-                {gaps.map((gap) => <p key={gap.gap} className="rounded-lg bg-amber-50 p-2 text-sm font-bold text-amber-800 dark:bg-amber-400/10 dark:text-amber-100">{gap.gap}</p>)}
+                {(selectedCoverage?.missing ?? gaps.map((gap) => gap.gap)).map((gap) => <p key={gap} className="rounded-lg bg-amber-50 p-2 text-sm font-bold text-amber-800 dark:bg-amber-400/10 dark:text-amber-100">{gap}</p>)}
               </div>
             )}
           </Panel>
@@ -610,6 +669,8 @@ export default function EngineeringMath() {
                   <th className="p-2">Semester</th>
                   <th className="p-2">Topics</th>
                   <th className="p-2">Launchers</th>
+                  <th className="p-2">Solvers</th>
+                  <th className="p-2">Coverage</th>
                   <th className="p-2">Formula Families</th>
                   <th className="p-2">Primary Applications</th>
                 </tr>
@@ -617,12 +678,21 @@ export default function EngineeringMath() {
               <tbody>
                 {readinessRows.map((row) => (
                   <tr key={row.id} className="border-t border-slate-200 dark:border-white/10">
+                    {(() => {
+                      const coverage = coverageRows.find((item) => item.domainId === row.id);
+                      return (
+                        <>
                     <td className="p-2 font-black text-slate-950 dark:text-white">{row.title}</td>
                     <td className="p-2 font-bold text-slate-500 dark:text-slate-300">{row.semesterBand}</td>
                     <td className="p-2 font-bold">{row.topicCount}</td>
                     <td className="p-2 font-bold">{row.launcherCount}</td>
+                    <td className="p-2 font-bold">{coverage?.counts.solvers ?? 0}</td>
+                    <td className="p-2 font-bold text-cyan-700 dark:text-cyan-200">{coverage?.percent ?? 0}%</td>
                     <td className="p-2 font-bold">{row.formulaCount}</td>
                     <td className="p-2 text-xs font-semibold text-slate-500 dark:text-slate-400">{row.applications}</td>
+                        </>
+                      );
+                    })()}
                   </tr>
                 ))}
               </tbody>
@@ -671,6 +741,12 @@ function MetricCard({ label, value, suffix = "" }: { label: string; value: numbe
   );
 }
 
+function coverageLabel(key: string) {
+  return key
+    .replace(/([A-Z])/g, " $1")
+    .replace(/^./, (value) => value.toUpperCase());
+}
+
 function Badge({ label, tone }: { label: string; tone: "hot" | "cool" | "live" }) {
   const classes = tone === "hot"
     ? "bg-rose-100 text-rose-700 dark:bg-rose-400/15 dark:text-rose-100"
@@ -690,6 +766,50 @@ function Panel({ title, icon, children }: { title: string; icon: ReactNode; chil
       <div className="mt-3">{children}</div>
     </section>
   );
+}
+
+function SimulationScenarioCard({ scenario, shape, forcing, time }: { scenario: EngineeringSimulationScenario; shape: number; forcing: number; time: number }) {
+  const samples = adjustedSimulationSamples(scenario.samples, { shape, forcing, time });
+  const path = sparklinePath(samples, 260, 86);
+  const fillPath = `${path} L260 92 L0 92 Z`;
+  const liveMetric = scenario.metricValue * (0.9 + forcing * 0.05 + time * 0.04);
+  return (
+    <Link to={scenario.route} className="group rounded-lg border border-slate-200 bg-white p-3 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950/70 dark:hover:bg-cyan-300/10">
+      <span className="flex items-center justify-between gap-2 text-sm font-black text-slate-950 dark:text-white">
+        {scenario.title}
+        <ArrowRight className="h-4 w-4 text-cyan-500 transition group-hover:translate-x-0.5" />
+      </span>
+      <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">{scenario.model}</p>
+      <svg viewBox="0 0 260 96" className="mt-3 h-28 w-full rounded-lg bg-slate-950 p-2" role="img" aria-label={`${scenario.title} simulation preview`}>
+        <path d={fillPath} fill="#0891b2" opacity="0.28" />
+        <path d={path} fill="none" stroke="#22d3ee" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+        {samples.map((sample, index) => (
+          <circle key={`${scenario.id}-${index}`} cx={(index / Math.max(1, samples.length - 1)) * 260} cy={86 - sample * 72} r={index === samples.length - 1 ? 5 : 3} fill={index === samples.length - 1 ? "#f59e0b" : "#e0f2fe"} opacity={index === samples.length - 1 ? 1 : 0.72} />
+        ))}
+      </svg>
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <span className="rounded-full bg-cyan-100 px-2 py-1 text-[11px] font-black text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100">{scenario.metricLabel}: {roundDisplay(liveMetric)}{scenario.metricUnit}</span>
+        {scenario.variables.map((variable) => <span key={variable} className="mini-chip">{variable}</span>)}
+      </div>
+      <div className="mt-3 grid gap-2 sm:grid-cols-3">
+        {scenario.exportArtifacts.map((artifact) => (
+          <span key={artifact} className="rounded-lg bg-slate-50 p-2 text-[11px] font-bold leading-4 text-slate-500 dark:bg-white/5 dark:text-slate-300">{artifact}</span>
+        ))}
+      </div>
+    </Link>
+  );
+}
+
+function sparklinePath(samples: number[], width: number, height: number) {
+  return samples.map((sample, index) => {
+    const x = (index / Math.max(1, samples.length - 1)) * width;
+    const y = height - sample * (height - 14);
+    return `${index === 0 ? "M" : "L"}${roundDisplay(x)} ${roundDisplay(y)}`;
+  }).join(" ");
+}
+
+function roundDisplay(value: number) {
+  return Math.round(value * 100) / 100;
 }
 
 function ChipList({ items }: { items: string[] }) {

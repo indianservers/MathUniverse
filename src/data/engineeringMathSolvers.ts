@@ -50,6 +50,32 @@ export type VectorFieldReport = {
   circulationEstimate: number;
 };
 
+export type JacobianAreaReport = {
+  determinant: number;
+  sourceArea: number;
+  mappedArea: number;
+};
+
+export type EigenReport = {
+  trace: number;
+  determinant: number;
+  discriminant: number;
+  eigenvalues: number[];
+};
+
+export type LinearProgrammingReport = {
+  optimum: { x: number; y: number; value: number };
+  feasibleCorners: { x: number; y: number; value: number }[];
+};
+
+export type ControlResponseReport = {
+  naturalFrequency: number;
+  dampingRatio: number;
+  percentOvershoot: number;
+  settlingTime: number;
+  stable: boolean;
+};
+
 export type EngineeringSolverPreset = {
   id: string;
   domainId: string;
@@ -62,6 +88,26 @@ export type EngineeringSolverPreset = {
 };
 
 export const engineeringSolverPresets: EngineeringSolverPreset[] = [
+  {
+    id: "jacobian-area-scale",
+    domainId: "engineering-calculus",
+    title: "Jacobian area scaling preset",
+    route: "/syllabus-lab/double-integral-region",
+    summary: "Maps a unit design region through x=2u+v, y=u+3v and computes the transformed area factor.",
+    formula: "dA = |J| du dv",
+    metricLabel: "mapped area",
+    metricValue: round(runJacobianAreaPreset().mappedArea, 6).toString(),
+  },
+  {
+    id: "eigenvalue-2x2-structure",
+    domainId: "engineering-linear-algebra",
+    title: "Eigenvalue structure preset",
+    route: "/linear-algebra",
+    summary: "Computes trace, determinant, and real eigenvalues for a vibration/stability matrix.",
+    formula: "lambda^2 - tr(A)lambda + det(A)=0",
+    metricLabel: "lambda",
+    metricValue: runEigenPreset().eigenvalues.map((value) => round(value, 4)).join(", "),
+  },
   {
     id: "newton-root-cubic",
     domainId: "numerical-methods",
@@ -132,7 +178,35 @@ export const engineeringSolverPresets: EngineeringSolverPreset[] = [
     metricLabel: "div/curl",
     metricValue: `${round(runVectorFieldPreset().divergence, 3)} / ${round(runVectorFieldPreset().curlZ, 3)}`,
   },
+  {
+    id: "lp-corner-optimum",
+    domainId: "optimization-operations-research",
+    title: "LP corner optimum preset",
+    route: "/syllabus-lab/operations-research-lp",
+    summary: "Evaluates feasible corner points for max Z=40x+30y under engineering resource limits.",
+    formula: "max Z=c1x+c2y",
+    metricLabel: "max Z",
+    metricValue: round(runLinearProgrammingPreset().optimum.value, 4).toString(),
+  },
+  {
+    id: "control-second-order-response",
+    domainId: "complex-special-control",
+    title: "Control response preset",
+    route: "/syllabus-lab/control-system-response-lab",
+    summary: "Classifies a second-order transfer response from natural frequency and damping ratio.",
+    formula: "G(s)=wn^2/(s^2+2zeta wn s+wn^2)",
+    metricLabel: "settling",
+    metricValue: `${round(runControlResponsePreset().settlingTime, 3)}s`,
+  },
 ];
+
+export function runJacobianAreaPreset() {
+  return jacobianAreaScale([[2, 1], [1, 3]], 1);
+}
+
+export function runEigenPreset() {
+  return eigenvalues2x2([[4, 1], [2, 3]]);
+}
 
 export function runNewtonPreset() {
   return newtonRoot((x) => x ** 3 - x - 2, (x) => 3 * x ** 2 - 1, 1.5, 6);
@@ -156,6 +230,39 @@ export function runMarkovQueuePreset() {
 
 export function runVectorFieldPreset() {
   return vectorFieldReport({ a: 1.25, b: -0.4, c: 0.9, d: 0.35 }, 2);
+}
+
+export function runLinearProgrammingPreset() {
+  return linearProgrammingCorners(
+    [
+      { a: 2, b: 1, c: 100 },
+      { a: 1, b: 1, c: 80 },
+      { a: 1, b: 3, c: 120 },
+    ],
+    { x: 40, y: 30 },
+  );
+}
+
+export function runControlResponsePreset() {
+  return secondOrderControlResponse(5, 0.42);
+}
+
+export function jacobianAreaScale(matrix: [[number, number], [number, number]], sourceArea: number): JacobianAreaReport {
+  const determinant = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+  return { determinant, sourceArea, mappedArea: Math.abs(determinant) * sourceArea };
+}
+
+export function eigenvalues2x2(matrix: [[number, number], [number, number]]): EigenReport {
+  const trace = matrix[0][0] + matrix[1][1];
+  const determinant = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+  const discriminant = trace ** 2 - 4 * determinant;
+  const root = Math.sqrt(Math.max(0, discriminant));
+  return {
+    trace,
+    determinant,
+    discriminant,
+    eigenvalues: [round((trace + root) / 2, 10), round((trace - root) / 2, 10)],
+  };
 }
 
 export function newtonRoot(f: (x: number) => number, df: (x: number) => number, initial: number, steps: number): RootFindingReport {
@@ -278,6 +385,46 @@ export function vectorFieldReport(field: { a: number; b: number; c: number; d: n
     curlZ,
     fluxEstimate: divergence * area,
     circulationEstimate: curlZ * circumferenceAreaFactor,
+  };
+}
+
+export function linearProgrammingCorners(constraints: { a: number; b: number; c: number }[], objective: { x: number; y: number }): LinearProgrammingReport {
+  const candidates = [{ x: 0, y: 0 }];
+  for (const constraint of constraints) {
+    if (constraint.a !== 0) candidates.push({ x: constraint.c / constraint.a, y: 0 });
+    if (constraint.b !== 0) candidates.push({ x: 0, y: constraint.c / constraint.b });
+  }
+  for (let i = 0; i < constraints.length; i += 1) {
+    for (let j = i + 1; j < constraints.length; j += 1) {
+      const first = constraints[i];
+      const second = constraints[j];
+      const determinant = first.a * second.b - second.a * first.b;
+      if (Math.abs(determinant) < 1e-12) continue;
+      candidates.push({
+        x: (first.c * second.b - second.c * first.b) / determinant,
+        y: (first.a * second.c - second.a * first.c) / determinant,
+      });
+    }
+  }
+  const feasibleCorners = candidates
+    .filter((point) => point.x >= -1e-9 && point.y >= -1e-9)
+    .filter((point) => constraints.every((constraint) => constraint.a * point.x + constraint.b * point.y <= constraint.c + 1e-9))
+    .map((point) => ({ x: round(point.x, 8), y: round(point.y, 8), value: round(objective.x * point.x + objective.y * point.y, 8) }))
+    .filter((point, index, points) => points.findIndex((other) => Math.abs(other.x - point.x) < 1e-7 && Math.abs(other.y - point.y) < 1e-7) === index)
+    .sort((a, b) => b.value - a.value);
+  return { optimum: feasibleCorners[0], feasibleCorners };
+}
+
+export function secondOrderControlResponse(naturalFrequency: number, dampingRatio: number): ControlResponseReport {
+  if (naturalFrequency <= 0 || dampingRatio <= 0) throw new Error("Second-order response requires positive natural frequency and damping ratio.");
+  const percentOvershoot = dampingRatio < 1 ? Math.exp((-Math.PI * dampingRatio) / Math.sqrt(1 - dampingRatio ** 2)) * 100 : 0;
+  const settlingTime = 4 / (dampingRatio * naturalFrequency);
+  return {
+    naturalFrequency,
+    dampingRatio,
+    percentOvershoot,
+    settlingTime,
+    stable: dampingRatio > 0 && naturalFrequency > 0,
   };
 }
 
