@@ -50,3 +50,50 @@
 [2m3:39:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/visualizations/linear-algebra/MatrixTransformationVisualizer.tsx, /src/index.css[22m
 [2m3:39:28 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/visualizations/complex/ComplexMultiplicationVisualizer.tsx[22m
 [2m3:40:21 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/visualizations/trigonometry/TrigonometryMathLab.tsx[22m
+[2m4:31:06 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m4:31:15 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/seo/SeoMetadata.tsx, /src/pages/Home.tsx, /src/pages/LinearAlgebra.tsx, /src/components/ui/TopicProgressActions.tsx[22m
+[2m4:31:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/layout/AppLayout.tsx, /src/components/layout/Sidebar.tsx, /src/components/layout/MobileNav.tsx, /src/components/layout/GlobalUx.tsx, /src/pages/Home.tsx[22m
+[2m4:31:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/components/layout/GlobalUx.tsx[22m Could not Fast Refresh ("addQuizXp" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m4:31:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/layout/AppLayout.tsx, /src/components/layout/Header.tsx, /src/components/layout/MobileLearningDock.tsx, /src/pages/Home.tsx[22m
+[2m4:31:38 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Home.tsx[22m
+[2m4:34:27 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/data/contentLibrary.ts[22m
+[2m4:34:36 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/seo/SeoMetadata.tsx[22m
+[2m4:34:53 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/data/ncertGapAnalysis.ts[22m
+[2m4:35:11 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/components/syllabus/NCERTGapAnalysis.tsx[22m
+[2m4:35:17 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/AITutorPanel.tsx, /src/index.css[22m
+[2m4:35:33 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/inquiry/InquirySimulationLabs.tsx, /src/index.css[22m
+[2m4:36:10 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/data/syllabusIntelligence.ts[22m
+[2m4:36:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/Home.tsx, /src/index.css[22m
+[2m4:36:29 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/DashboardCard.tsx, /src/index.css[22m
+[2m4:36:38 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Home.tsx[22m
+[2m4:37:24 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/seo/SeoMetadata.tsx, /src/pages/Home.tsx, /src/pages/LinearAlgebra.tsx, /src/components/ui/TopicProgressActions.tsx[22m
+[2m4:43:50 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/visualizations/formulas/FormulaVisualizationAtlas.tsx[22m
+[2m4:43:50 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/visualizations/trigonometry/SineCosineWaveVisualizer.tsx[22m
+[2m4:44:42 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Home.tsx, /src/pages/Syllabus.tsx, /src/components/syllabus/SyllabusRoadmap.tsx, /src/components/syllabus/SyllabusFilterBar.tsx, /src/components/syllabus/SmartSyllabusPlanner.tsx, /src/components/syllabus/UnitUpgradeDashboard.tsx[22m
+[2m4:45:00 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Home.tsx, /src/pages/Syllabus.tsx, /src/components/syllabus/SyllabusRoadmap.tsx, /src/components/syllabus/SyllabusFilterBar.tsx, /src/components/syllabus/SmartSyllabusPlanner.tsx, /src/components/syllabus/UnitUpgradeDashboard.tsx[22m
+[2m4:46:14 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/syllabus/UnitUpgradeDashboard.tsx[22m
+[2m4:46:33 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/data/unitUpgradePlan.test.ts[22m
+[2m4:46:49 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/syllabus/UnitUpgradeDashboard.tsx[22m
+[2m4:47:59 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/seo/SeoMetadata.tsx[22m
+[2m4:51:21 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/syllabus/UnitUpgradeDashboard.tsx, /src/index.css[22m
+[2m4:51:32 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/data/unitUpgradePlan.test.ts[22m
+[2m4:52:52 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/MathWorkspace.tsx[22m
+[2m4:55:27 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/seo/SeoMetadata.tsx, /src/pages/Syllabus.tsx[22m
+[2m4:57:16 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/Home.tsx, /src/pages/Syllabus.tsx, /src/components/syllabus/SyllabusRoadmap.tsx, /src/components/syllabus/SyllabusFilterBar.tsx, /src/components/syllabus/SmartSyllabusPlanner.tsx, /src/components/syllabus/UnitUpgradeDashboard.tsx[22m
+[2m5:01:17 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/SliderControl.tsx, /src/index.css[22m
+[2m5:02:12 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:03:01 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:03:50 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:07:27 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:08:32 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:10:43 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:11:01 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:13:13 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:13:25 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:13:44 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:14:01 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:15:57 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:16:47 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:17:00 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:17:15 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m5:17:43 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m

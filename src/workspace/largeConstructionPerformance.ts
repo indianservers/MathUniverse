@@ -20,21 +20,22 @@ export type LargeConstructionBenchmark = {
 export function generateLargeConstruction(size: number): MathObject[] {
   const safeSize = Math.max(2, Math.min(10000, Math.round(size)));
   const objects: MathObject[] = [];
+  let previousPoint: MathObject | undefined;
   for (let index = 0; index < safeSize; index += 1) {
-    objects.push(createObjectFromDefinition(`P${index}=(${index % 100}, ${Math.floor(index / 100)})`, objects));
-    if (index > 0) {
-      const previous = objects.find((object) => object.label === `P${index - 1}`);
-      const current = objects.find((object) => object.label === `P${index}`);
+    const currentPoint = createObjectFromDefinition(`P${index}=(${index % 100}, ${Math.floor(index / 100)})`, objects);
+    objects.push(currentPoint);
+    if (previousPoint) {
       const segment = createObjectFromDefinition(`s${index}=Segment[P${index - 1},P${index}]`, objects);
       objects.push({
         ...segment,
-        dependencies: [previous, current].filter((object): object is MathObject => Boolean(object)).map((object) => ({ id: object.id, label: object.label, role: "parent" })),
+        dependencies: [previousPoint, currentPoint].map((object) => ({ id: object.id, label: object.label, role: "parent" })),
         definition: {
           ...segment.definition!,
-          parentIds: [previous?.id, current?.id].filter((id): id is string => Boolean(id)),
+          parentIds: [previousPoint.id, currentPoint.id],
         },
       });
     }
+    previousPoint = currentPoint;
   }
   return objects;
 }

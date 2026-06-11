@@ -1,5 +1,3 @@
-import { ANVESHAK_STATISTICS_URL } from "./externalLinks";
-
 export type TopicDifficulty = "Foundational" | "Intermediate" | "Advanced";
 
 export type Topic = {
@@ -163,16 +161,15 @@ export const topics: Topic[] = [
   },
   {
     id: "statistics",
-    title: "Statistics with Anveshak",
-    route: ANVESHAK_STATISTICS_URL,
-    isExternal: true,
+    title: "Statistics and Probability",
+    route: "/probability-statistics",
     iconName: "BarChart3",
-    description: "Open the dedicated Anveshak statistics app for distributions, variation, regression, and uncertainty.",
-    concepts: ["Anveshak", "Statistics", "Probability", "External app"],
+    description: "Explore native statistics, distributions, variation, regression, probability, and uncertainty labs.",
+    concepts: ["Statistics", "Probability", "Distributions", "Regression"],
     difficulty: "Intermediate",
     estimatedMinutes: 45,
     colorGradient: "from-teal-400 to-lime-500",
-    labCount: 0,
+    labCount: 4,
   },
   {
     id: "linear-algebra",

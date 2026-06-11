@@ -1,5 +1,4 @@
 import { advancedSyllabusLabs } from "./advancedSyllabusLabs";
-import { ANVESHAK_STATISTICS_URL } from "./externalLinks";
 import { geometryConcepts } from "./geometryConcepts";
 import { ncertConcepts, ncertRoute } from "./ncertConcepts";
 import { allNavigatorCards } from "./syllabusNavigator";
@@ -125,14 +124,13 @@ const baseLinks: SiteLink[] = [
     changeFrequency: "yearly",
   },
   {
-    title: "Statistics with Anveshak",
-    path: ANVESHAK_STATISTICS_URL,
-    description: "Open the dedicated Anveshak statistics app for distributions, variation, regression, probability, and uncertainty.",
-    category: "External",
-    keywords: ["statistics", "probability", "Anveshak", "data visualization"],
-    isExternal: true,
-    priority: 0.4,
-    changeFrequency: "monthly",
+    title: "Statistics and Probability",
+    path: "/probability-statistics",
+    description: "Explore native distributions, variation, regression, probability, and uncertainty labs.",
+    category: "Modules",
+    keywords: ["statistics", "probability", "data visualization", "regression"],
+    priority: 0.78,
+    changeFrequency: "weekly",
   },
 ];
 

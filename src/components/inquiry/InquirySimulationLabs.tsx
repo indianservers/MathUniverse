@@ -106,7 +106,7 @@ const inquiryLabs: InquiryLab[] = [
     predictionOptions: ["Fluctuation usually decreases", "Fluctuation increases", "Nothing changes"],
     correctPrediction: () => "Fluctuation usually decreases",
     explanation: (value) => `Expected random noise often shrinks roughly like 1/sqrt(n). For n=${value}, a rough noise scale is ${roundTo(1 / Math.sqrt(value), 3)}.`,
-    teacherPrompt: "Use this as a bridge to the external Anveshak statistics app.",
+    teacherPrompt: "Use this as a bridge to the native Statistics and Probability dashboard.",
   },
 ];
 

@@ -26,7 +26,6 @@ import {
   Waves,
   Wrench,
 } from "lucide-react";
-import { ANVESHAK_STATISTICS_URL } from "../../data/externalLinks";
 
 export const iconMap = {
   Atom,
@@ -259,7 +258,7 @@ export const navSections: NavSection[] = [
       { title: "Problem Solver", route: "/problem-solver", icon: "Sigma" },
       { title: "Unit Converter", route: "/unit-converter", icon: "Calculator" },
       { title: "Truth Tables", route: "/truth-table", icon: "Binary" },
-      { title: "Statistics", route: ANVESHAK_STATISTICS_URL, icon: "BarChart3", isExternal: true },
+      { title: "Statistics", route: "/probability-statistics", icon: "BarChart3" },
     ],
   },
   {
@@ -303,7 +302,7 @@ export const legacyNavItems = [
   { title: "Complex Numbers", route: "/complex-numbers", icon: Atom },
   { title: "Set Theory", route: "/set-theory", icon: Network },
   { title: "Mathematical Logic", route: "/mathematical-logic", icon: Binary },
-  { title: "Statistics", route: ANVESHAK_STATISTICS_URL, icon: BarChart3, isExternal: true },
+  { title: "Statistics", route: "/probability-statistics", icon: BarChart3 },
   { title: "Probability Lab", route: "/probability-statistics", icon: BarChart3 },
   { title: "Vectors", route: "/linear-algebra", icon: Grid3X3 },
   { title: "Vector Visualizer", route: "/linear-algebra", icon: Grid3X3 },

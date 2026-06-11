@@ -20,7 +20,7 @@ type DashboardCardProps = {
 const favoriteKey = "math-universe-favorite-cards";
 
 export default function DashboardCard({ title, description, concepts, icon: Icon, route, isExternal, progress, colorGradient, difficulty = "Intermediate", estimatedMinutes = 15, isNew = false }: DashboardCardProps) {
-  const actionLabel = isExternal ? "Open Anveshak" : "Launch";
+  const actionLabel = isExternal ? "Open external lab" : "Launch";
   const [favorite, setFavorite] = useState(false);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const contextRef = useRef<HTMLDivElement>(null);

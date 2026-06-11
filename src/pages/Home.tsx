@@ -20,7 +20,7 @@ const tourSteps = [
   { label: "Linear algebra transformation", route: "/linear-algebra", description: "Apply matrix transformations and watch vectors rotate and scale." },
   { label: "AI gradient descent", route: "/ai-applications", description: "Watch gradient descent converge on a loss surface step by step." },
   { label: "Quiz result", route: "/quiz", description: "Test yourself with timed quizzes and track your best scores." },
-  { label: "Anveshak statistics app", route: "https://anveshak.app", description: "Explore Indian statistical data with interactive charts." },
+  { label: "Statistics dashboard", route: "/probability-statistics", description: "Explore probability, distributions, regression, and data charts." },
 ];
 
 function GuidedTourOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -29,8 +29,7 @@ function GuidedTourOverlay({ open, onClose }: { open: boolean; onClose: () => vo
   const current = tourSteps[step];
 
   function launch() {
-    if (current.route.startsWith("http")) window.open(current.route, "_blank", "noopener,noreferrer");
-    else navigate(current.route);
+    navigate(current.route);
     onClose();
   }
 

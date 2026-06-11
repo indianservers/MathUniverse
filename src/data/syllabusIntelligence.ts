@@ -37,7 +37,6 @@ const routeByTemplate: Record<string, string> = {
 const statusWeight: Record<NCERTGapStatus, number> = {
   missing: 5,
   partial: 4,
-  external: 2,
   strong: 1,
 };
 

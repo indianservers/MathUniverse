@@ -1,5 +1,3 @@
-import { ANVESHAK_STATISTICS_URL } from "./externalLinks";
-
 export type SyllabusStatus = "available" | "mapped" | "future";
 export type SyllabusDifficulty = "Foundation" | "Intermediate" | "Advanced";
 
@@ -41,6 +39,7 @@ export const syllabusLevelOptions = [
   { value: "class-11", label: "Class 11" },
   { value: "class-12", label: "Class 12" },
   { value: "degree", label: "Degree" },
+  { value: "engineering", label: "Engineering Maths" },
 ];
 export const concreteSyllabusLevelOptions = syllabusLevelOptions.filter((option) => option.value !== "All");
 
@@ -84,7 +83,7 @@ function topic(
     description: description ?? `Study ${title.toLowerCase()} through formulas, concepts, and visual connections.`,
     keyFormulas: formulas.length ? formulas : ["Concept definitions", "Worked examples", "Visual model"],
     concepts: concepts.length ? concepts : [title, unit, "Applications"],
-    linkedVisualization: route ? { available: true, label: route.startsWith("http") ? "Open Anveshak" : status === "available" ? "Open Visual Lab" : "Open Related Lab", route, isExternal: route.startsWith("http") } : futureLink,
+    linkedVisualization: route ? { available: true, label: route.startsWith("http") ? "Open External Lab" : status === "available" ? "Open Visual Lab" : "Open Related Lab", route, isExternal: route.startsWith("http") } : futureLink,
     status,
     recommendedVisualization,
     classLevel,
@@ -99,7 +98,7 @@ export const syllabusLevels: SyllabusLevel[] = [
   level("class-7", "Class 7 Mathematics", "NCERT bridge into integers, rational numbers, equations, geometry, symmetry, mensuration, and solid shapes.", "Foundation", [
     topic("Class 7", "Integers", "Number System", "available", "Integer number line and sign-rule operations", "/ncert/class-7-integers", ["a + (-b)", "a x (-b)"], ["Positive numbers", "Negative numbers", "Operations"]),
     topic("Class 7", "Fractions and Decimals", "Number System", "available", "Fraction bars and decimal place-value model", "/ncert/class-7-fractions-decimals", ["a/b", "decimal expansion"], ["Fractions", "Decimals", "Operations"]),
-    topic("Class 7", "Data Handling", "Statistics", "available", "Charts and probability practice in Anveshak", ANVESHAK_STATISTICS_URL, ["mean = sum/n"], ["Mean", "Median", "Mode", "Bar graph"]),
+    topic("Class 7", "Data Handling", "Statistics", "available", "Native charts and probability practice", "/probability-statistics", ["mean = sum/n"], ["Mean", "Median", "Mode", "Bar graph"]),
     topic("Class 7", "Simple Equations", "Algebra", "mapped", "Balance scale solving model", "/algebra", ["ax+b=c"], ["Equation", "Solution", "Inverse operation"]),
     topic("Class 7", "Lines and Angles", "Geometry", "available", "Angles and parallel-line explorer", "/geometry/angles", ["linear pair", "vertically opposite angles"], ["Angles", "Transversal"]),
     topic("Class 7", "Triangle and its Properties", "Geometry", "available", "Triangle and Pythagoras visual labs", "/geometry/triangles", ["A+B+C=180 deg"], ["Median", "Altitude", "Exterior angle"]),
@@ -115,7 +114,7 @@ export const syllabusLevels: SyllabusLevel[] = [
     topic("Class 8", "Rational Numbers", "Number System", "available", "Number line and rational comparison", "/ncert/class-8-rational-numbers", ["a/b, b != 0"], ["Number line", "Comparison", "Operations"]),
     topic("Class 8", "Linear Equations in One Variable", "Algebra", "mapped", "Balance scale solving ax + b = c", "/algebra", ["ax + b = c"], ["Solving", "Inverse operations"]),
     topic("Class 8", "Understanding Quadrilaterals", "Geometry", "mapped", "Polygon angle and property explorer", "/geometry", ["sum of interior angles"], ["Parallelogram", "Rhombus", "Rectangle"]),
-    topic("Class 8", "Data Handling", "Statistics", "available", "Charts and probability simulation", ANVESHAK_STATISTICS_URL, ["mean = sum/n"], ["Bar charts", "Probability"]),
+    topic("Class 8", "Data Handling", "Statistics", "available", "Native charts and probability simulation", "/probability-statistics", ["mean = sum/n"], ["Bar charts", "Probability"]),
     topic("Class 8", "Squares and Square Roots", "Number System", "available", "Square grid and square-root number line", "/ncert/class-8-square-cube-roots", ["n^2", "sqrt(n)"], ["Perfect squares", "Roots"]),
     topic("Class 8", "Cubes and Cube Roots", "Number System", "available", "3D cube blocks", "/ncert/class-8-square-cube-roots", ["n^3", "cbrt(n)"], ["Volume", "Cube roots"]),
     topic("Class 8", "Comparing Quantities", "Arithmetic", "available", "Percentage, profit/loss, discount, simple interest", "/ncert/class-8-comparing-quantities", ["SI = PRT/100"], ["Percent", "Discount"]),
@@ -138,7 +137,7 @@ export const syllabusLevels: SyllabusLevel[] = [
     topic("Class 9", "Circles", "Geometry", "available", "Circle explorer with sector and tangent", "/geometry", ["C=2*pi*r", "A=pi*r^2"]),
     topic("Class 9", "Heron's Formula", "Geometry", "available", "Triangle side-validity and full Heron workflow", "/ncert/class-9-heron", ["sqrt(s(s-a)(s-b)(s-c))"]),
     topic("Class 9", "Surface Areas and Volumes", "Geometry", "available", "3D shape explorer", "/geometry", ["SA", "V"]),
-    topic("Class 9", "Statistics", "Statistics", "available", "Mean, median, mode visualizer", ANVESHAK_STATISTICS_URL, ["mean", "median", "mode"]),
+    topic("Class 9", "Statistics", "Statistics", "available", "Mean, median, mode visualizer", "/probability-statistics", ["mean", "median", "mode"]),
   ]),
   level("class-10", "Class 10 Mathematics", "Board-level foundation for algebra, geometry, trigonometry, mensuration, statistics, and probability.", "Intermediate", [
     topic("Class 10", "Real Numbers", "Number System", "available", "HCF, Euclid algorithm, prime factorisation tree", "/ncert/class-10-real-numbers"),
@@ -153,8 +152,8 @@ export const syllabusLevels: SyllabusLevel[] = [
     topic("Class 10", "Circles", "Geometry", "available", "Circle tangent and sector explorer", "/geometry"),
     topic("Class 10", "Areas Related to Circles", "Geometry", "available", "Sector and arc length visualizer", "/geometry"),
     topic("Class 10", "Surface Areas and Volumes", "Geometry", "available", "3D shape lab", "/geometry"),
-    topic("Class 10", "Statistics", "Statistics", "available", "Statistics visualizer", ANVESHAK_STATISTICS_URL),
-    topic("Class 10", "Probability", "Probability", "available", "Anveshak probability simulator", ANVESHAK_STATISTICS_URL),
+    topic("Class 10", "Statistics", "Statistics", "available", "Statistics visualizer", "/probability-statistics"),
+    topic("Class 10", "Probability", "Probability", "available", "Probability simulator", "/math-lab/probability"),
   ]),
   level("class-11", "Class 11 Mathematics", "Advanced school mathematics connecting functions, trigonometry, analytic geometry, calculus, statistics, and probability.", "Advanced", [
     topic("Class 11", "Sets", "Advanced Mathematics", "future", "Venn diagram builder"),
@@ -169,8 +168,8 @@ export const syllabusLevels: SyllabusLevel[] = [
     topic("Class 11", "Conic Sections", "Geometry", "future", "Ellipse, parabola, hyperbola focus-directrix model"),
     topic("Class 11", "Introduction to Three Dimensional Geometry", "Geometry", "mapped", "3D shape and coordinate explorer", "/geometry"),
     topic("Class 11", "Limits and Derivatives", "Calculus", "available", "Limits and derivative visualizer", "/calculus"),
-    topic("Class 11", "Statistics", "Statistics", "available", "Statistics visualizer", ANVESHAK_STATISTICS_URL),
-    topic("Class 11", "Probability", "Probability", "available", "Probability simulators", ANVESHAK_STATISTICS_URL),
+    topic("Class 11", "Statistics", "Statistics", "available", "Statistics visualizer", "/probability-statistics"),
+    topic("Class 11", "Probability", "Probability", "available", "Probability simulators", "/math-lab/probability"),
   ]),
   level("class-12", "Class 12 Mathematics", "Senior secondary mathematics focused on calculus, matrices, vectors, probability, and optimization.", "Advanced", [
     topic("Class 12", "Relations and Functions", "Advanced Mathematics", "future", "Function composition and inverse function visualizer"),
@@ -185,7 +184,7 @@ export const syllabusLevels: SyllabusLevel[] = [
     topic("Class 12", "Vector Algebra", "Linear Algebra", "available", "Vector visualizer", "/linear-algebra"),
     topic("Class 12", "Three Dimensional Geometry", "Geometry", "mapped", "3D geometry explorer", "/geometry"),
     topic("Class 12", "Linear Programming", "Advanced Mathematics", "future", "Feasible region and corner point optimization"),
-    topic("Class 12", "Probability", "Probability", "available", "Probability and distribution lab", ANVESHAK_STATISTICS_URL),
+    topic("Class 12", "Probability", "Probability", "available", "Probability and distribution lab", "/math-lab/probability"),
   ]),
   level("degree", "Degree Mathematics", "Undergraduate mathematics mapped to available labs and future advanced modules.", "Advanced", [
     topic("Degree", "Foundations and Logic", "Advanced Mathematics", "future", "Truth table generator"),
@@ -198,8 +197,8 @@ export const syllabusLevels: SyllabusLevel[] = [
     topic("Degree", "Real Analysis", "Advanced Mathematics", "future", "Sequence convergence and epsilon neighbourhood"),
     topic("Degree", "Differential Equations", "Calculus", "future", "Slope field and Euler method"),
     topic("Degree", "Numerical Methods", "Advanced Mathematics", "future", "Bisection and Newton-Raphson method"),
-    topic("Degree", "Probability Theory", "Probability", "available", "Probability lab", ANVESHAK_STATISTICS_URL),
-    topic("Degree", "Mathematical Statistics", "Statistics", "available", "Statistics lab", ANVESHAK_STATISTICS_URL),
+    topic("Degree", "Probability Theory", "Probability", "available", "Probability lab", "/math-lab/probability"),
+    topic("Degree", "Mathematical Statistics", "Statistics", "available", "Statistics lab", "/probability-statistics"),
     topic("Degree", "Discrete Mathematics", "Advanced Mathematics", "future", "Recurrence and finite automata"),
     topic("Degree", "Graph Theory", "Advanced Mathematics", "future", "Graph builder, BFS, DFS, shortest path"),
     topic("Degree", "Vector Calculus", "Linear Algebra", "mapped", "Vector field and direction lab", "/linear-algebra"),
@@ -208,6 +207,37 @@ export const syllabusLevels: SyllabusLevel[] = [
     topic("Degree", "Linear Programming and Optimization", "Advanced Mathematics", "mapped", "Gradient descent and optimization lab", "/ai-applications"),
     topic("Degree", "Operations Research", "Advanced Mathematics", "future", "Transportation and assignment problem"),
     topic("Degree", "Mathematical Modelling", "Advanced Mathematics", "mapped", "AI and real-life modelling demos", "/ai-applications"),
+  ]),
+  level("engineering", "Engineering Mathematics", "B.Tech mathematics sequence covering M1, M2, M3, M4, discrete mathematics, probability, numerical methods, transforms, and optimization.", "Advanced", [
+    topic("Engineering", "Matrices and Cayley-Hamilton", "Engineering Linear Algebra", "available", "Cayley-Hamilton theorem, inverse construction, and matrix powers", "/syllabus-lab/cayley-hamilton-theorem-visualizer", ["A^2 - tr(A)A + det(A)I = 0"], ["Characteristic equation", "Matrix inverse", "Cayley-Hamilton"]),
+    topic("Engineering", "Eigenvalues, Eigenvectors and Diagonalization", "Engineering Linear Algebra", "available", "Eigenvector and diagonalization visual workflows", "/math/eigenvectors", ["Av = lambda v", "A = PDP^-1"], ["Eigenvalues", "Eigenvectors", "Diagonalization"]),
+    topic("Engineering", "Infinite Series and Convergence Tests", "Engineering Calculus", "available", "Comparison, ratio, root, Raabe, logarithmic and alternating convergence tests", "/syllabus-lab/comparison-test-lab", ["sum a_n", "lim |a_(n+1)/a_n|"], ["Comparison test", "Ratio test", "Root test"]),
+    topic("Engineering", "Differential Calculus and Curve Tracing", "Engineering Calculus", "available", "Asymptotes, critical points, curvature, and curve tracing", "/syllabus-lab/asymptote-curve-tracing-lab", ["f'(x)=0", "asymptotes"], ["Curve tracing", "Maxima", "Minima"]),
+    topic("Engineering", "Partial Derivatives and Maxima-Minima", "Engineering Calculus", "available", "Surface slices, partial derivatives, and constrained extrema", "/syllabus-lab/partial-derivative-slicer", ["partial f/partial x", "grad f = lambda grad g"], ["Partial derivatives", "Lagrange multipliers"]),
+    topic("Engineering", "Jacobians and Coordinate Transformations", "Engineering Calculus", "available", "Jacobian area scaling and coordinate transformations", "/syllabus-lab/jacobian-area-scaling-lab", ["dA = |J| du dv"], ["Jacobian", "Coordinate transform", "Area scaling"]),
+    topic("Engineering", "Multiple Integrals", "Engineering Calculus", "available", "Double and triple integral regions with volume interpretation", "/syllabus-lab/double-integral-region", ["double integral_R f(x,y)dA", "triple integral_E f(x,y,z)dV"], ["Double integrals", "Triple integrals", "Volume"]),
+    topic("Engineering", "Beta and Gamma Functions", "Engineering Calculus", "available", "Special functions used in engineering probability, transforms, and integral evaluation", "/syllabus-lab/beta-gamma-curves", ["Gamma(n)=(n-1)!", "B(a,b)=Gamma(a)Gamma(b)/Gamma(a+b)"], ["Gamma function", "Beta function"]),
+    topic("Engineering", "First-Order Differential Equations", "Engineering Differential Equations", "available", "Slope fields, separable equations, linear equations, and engineering IVPs", "/math/slope-fields", ["dy/dx=f(x,y)"], ["Slope fields", "Separable ODE", "Initial value problem"]),
+    topic("Engineering", "Higher-Order Linear Differential Equations", "Engineering Differential Equations", "available", "Complementary functions and characteristic roots", "/syllabus-lab/higher-order-ode-characteristic-lab", ["ay''+by'+cy=0"], ["Auxiliary equation", "Repeated roots", "Complex roots"]),
+    topic("Engineering", "Cauchy-Euler Differential Equations", "Engineering Differential Equations", "available", "Power-law ODEs and auxiliary equations", "/syllabus-lab/cauchy-euler-ode-lab", ["x^2y'' + axy' + by = 0"], ["Cauchy-Euler", "Power solutions"]),
+    topic("Engineering", "Laplace Transforms", "Transforms", "available", "Time-domain signals, transform-domain algebra, initial-value problems, unit steps, impulses, and convolution", "/syllabus-lab/laplace-transform-workflow", ["L{f(t)}=F(s)", "L{y'}=sY-y(0)"], ["Laplace transform", "Inverse transform", "Initial conditions"]),
+    topic("Engineering", "Fourier Series and Fourier Transform", "Transforms", "available", "Periodic signal synthesis and spectrum interpretation", "/syllabus-lab/fourier-transform-spectrum-lab", ["F(omega)=integral f(t)e^(-i omega t)dt"], ["Fourier series", "Fourier transform", "Spectrum"]),
+    topic("Engineering", "Z-Transform and Difference Equations", "Transforms", "available", "Z-transform, inverse Z-transform, shifting, and discrete-time recurrence solving", "/syllabus-lab/z-transform-difference-equations", ["Z{x_n}=X(z)", "x_(n+1)=ax_n+b"], ["Z-transform", "Difference equations", "Discrete systems"]),
+    topic("Engineering", "Partial Differential Equations", "Partial Differential Equations", "available", "Heat, wave, and Laplace equation visual labs", "/syllabus-lab/heat-equation-color-map", ["u_t = alpha u_xx", "u_tt=c^2u_xx", "nabla^2u=0"], ["Heat equation", "Wave equation", "Laplace equation"]),
+    topic("Engineering", "Complex Variables and Analytic Functions", "Complex Analysis", "available", "Analytic functions, branch cuts, Mobius maps, and Cauchy-Riemann checks", "/syllabus-lab/mobius-transformation-lab", ["u_x=v_y", "u_y=-v_x", "w=(az+b)/(cz+d)"], ["Analytic functions", "Mobius transforms", "Cauchy-Riemann"]),
+    topic("Engineering", "Complex Integration and Residues", "Complex Analysis", "available", "Contour integrals, Cauchy integral formula, singularities, and residues", "/syllabus-lab/complex-line-integral-lab", ["integral_C f(z) dz", "f(a)=1/(2pi i) integral_C f(z)/(z-a) dz"], ["Contour integration", "Cauchy formula", "Residues"]),
+    topic("Engineering", "Vector Calculus", "Vector Calculus", "available", "Gradient, divergence, curl, line integrals, surface integrals, Green, Gauss, and Stokes theorems", "/syllabus-lab/vector-calculus-field-theorems", ["grad f", "div F", "curl F"], ["Gradient", "Divergence", "Curl", "Stokes theorem"]),
+    topic("Engineering", "Numerical Root-Finding", "Numerical Methods", "available", "Bisection, fixed-point, Newton-Raphson, and secant methods", "/syllabus-lab/newton-raphson-tangent-iteration", ["x_(n+1)=x_n-f(x_n)/f'(x_n)"], ["Bisection", "Newton-Raphson", "Secant method"]),
+    topic("Engineering", "Interpolation and Curve Fitting", "Numerical Methods", "available", "Newton divided differences, forward/backward interpolation, and curve fitting", "/syllabus-lab/newton-divided-differences-lab", ["P_n(x)=a_0+a_1(x-x_0)+..."], ["Interpolation", "Divided differences", "Finite differences"]),
+    topic("Engineering", "Numerical Integration and ODE Solvers", "Numerical Methods", "available", "Trapezoidal, Simpson, Gaussian quadrature, Euler, and RK4 methods", "/syllabus-lab/gaussian-quadrature-lab", ["integral f(x)dx approx sum w_i f(x_i)", "y_(n+1)=y_n+h f(x_n,y_n)"], ["Quadrature", "Euler method", "RK4"]),
+    topic("Engineering", "Probability Distributions", "Engineering Probability and Statistics", "available", "Discrete and continuous distributions, expectation, variance, and random variables", "/probability-statistics", ["E(X)", "Var(X)", "P(A|B)"], ["Random variables", "Distributions", "Expectation"]),
+    topic("Engineering", "Statistical Inference and Regression", "Engineering Probability and Statistics", "available", "Sampling, correlation, regression, confidence intervals, and hypothesis testing", "/probability-statistics", ["r", "y=a+bx"], ["Regression", "Sampling", "Hypothesis testing"]),
+    topic("Engineering", "Discrete Mathematics for CSE", "Discrete Mathematics", "available", "Logic, sets, relations, functions, counting, recurrence, and Boolean algebra", "/discrete-world", ["p -> q", "nCr", "recurrence"], ["Logic", "Relations", "Recurrence"]),
+    topic("Engineering", "Graph Theory and Network Algorithms", "Graph Theory", "available", "Graph representation, traversals, shortest paths, trees, spanning trees, and coloring", "/graph-theory", ["sum deg(v)=2|E|"], ["BFS", "DFS", "Shortest path", "Trees"]),
+    topic("Engineering", "Operations Research and Linear Programming", "Operations Research", "available", "Feasible regions, objective functions, corner-point optimization, transportation, and assignment models", "/syllabus-lab/operations-research-lp", ["max Z=c1x+c2y"], ["Linear programming", "Transportation", "Assignment"]),
+    topic("Engineering", "Optimization Techniques", "Optimization", "available", "Gradient descent, constrained optimization, convexity, and engineering objective functions", "/ai-applications", ["x_new=x-alpha grad f"], ["Gradient descent", "Convexity", "Constraints"]),
+    topic("Engineering", "Number Theory and Cryptography", "Number Theory", "mapped", "Modular arithmetic, Euclid algorithm, Euler theorem, RSA, and hashing ideas", "/number-systems", ["a congruent b (mod n)", "gcd(a,b)"], ["Modular arithmetic", "Primes", "RSA"]),
+    topic("Engineering", "Mathematics for Machine Learning", "Machine Learning Mathematics", "available", "Linear algebra, gradients, probability, regression, and neural-network math", "/ai-applications", ["activation(Wx+b)", "loss(theta)"], ["Vectors", "Gradients", "Regression"]),
   ]),
 ];
 

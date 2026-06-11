@@ -1,4 +1,4 @@
-export type NCERTGapStatus = "strong" | "partial" | "missing" | "external";
+export type NCERTGapStatus = "strong" | "partial" | "missing";
 
 export type NCERTGapItem = {
   classLevel: "Class 7" | "Class 8" | "Class 9" | "Class 10";
@@ -12,7 +12,7 @@ export type NCERTGapItem = {
 export const ncertGapItems: NCERTGapItem[] = [
   { classLevel: "Class 7", chapter: "Integers", status: "strong", currentCoverage: "Interactive integer number-line lab.", recommendedBuild: "Add more word-problem practice sets.", route: "/ncert/class-7-integers" },
   { classLevel: "Class 7", chapter: "Fractions and Decimals", status: "strong", currentCoverage: "Fraction bar, decimal value and number-line conversion lab.", recommendedBuild: "Add operations drill mode.", route: "/ncert/class-7-fractions-decimals" },
-  { classLevel: "Class 7", chapter: "Data Handling", status: "external", currentCoverage: "Linked to Anveshak statistics app.", recommendedBuild: "Keep external link, add launch card and kid-level bridge examples.", route: "https://www.aimersociety.com/anveshak/" },
+  { classLevel: "Class 7", chapter: "Data Handling", status: "strong", currentCoverage: "Native statistics and probability dashboard with charts and classroom data prompts.", recommendedBuild: "Add kid-level bridge examples and printable data cards.", route: "/probability-statistics" },
   { classLevel: "Class 7", chapter: "Simple Equations", status: "partial", currentCoverage: "Algebra page and workspace can solve simple expressions.", recommendedBuild: "Balance-scale equation solver with step-by-step inverse operations.", route: "/algebra" },
   { classLevel: "Class 7", chapter: "Lines and Angles", status: "strong", currentCoverage: "Geometry subpages include angles and parallel lines.", recommendedBuild: "Add exercise-style NCERT questions and theorem checks.", route: "/geometry/angles" },
   { classLevel: "Class 7", chapter: "Triangle and its Properties", status: "strong", currentCoverage: "Triangle, Pythagoras, theorem visualizers, and geometry pages.", recommendedBuild: "Add median, altitude, exterior-angle and congruence drills.", route: "/geometry/triangles" },
@@ -28,7 +28,7 @@ export const ncertGapItems: NCERTGapItem[] = [
   { classLevel: "Class 8", chapter: "Linear Equations in One Variable", status: "partial", currentCoverage: "Algebra/workspace can handle some equations.", recommendedBuild: "Dedicated one-variable equation story and balance model.", route: "/algebra" },
   { classLevel: "Class 8", chapter: "Understanding Quadrilaterals", status: "strong", currentCoverage: "Geometry quadrilateral and polygon pages.", recommendedBuild: "Add angle-sum proof games and property sorting.", route: "/geometry/quadrilaterals" },
   { classLevel: "Class 8", chapter: "Practical Geometry", status: "partial", currentCoverage: "Geometry construction page has construction visuals.", recommendedBuild: "Compass-straightedge step player for quadrilateral construction.", route: "/geometry/geometric-constructions" },
-  { classLevel: "Class 8", chapter: "Data Handling", status: "external", currentCoverage: "Statistics moved to Anveshak.", recommendedBuild: "Direct launch card with NCERT class 8 datasets.", route: "https://www.aimersociety.com/anveshak/" },
+  { classLevel: "Class 8", chapter: "Data Handling", status: "strong", currentCoverage: "Native statistics dashboard with charts, probability, and sample comparisons.", recommendedBuild: "Add NCERT class 8 dataset presets.", route: "/probability-statistics" },
   { classLevel: "Class 8", chapter: "Squares and Square Roots", status: "strong", currentCoverage: "Square/cube root visual tile lab.", recommendedBuild: "Add estimation game.", route: "/ncert/class-8-square-cube-roots" },
   { classLevel: "Class 8", chapter: "Cubes and Cube Roots", status: "strong", currentCoverage: "Square/cube root visual tile lab.", recommendedBuild: "Add 3D cube stacking challenge.", route: "/ncert/class-8-square-cube-roots" },
   { classLevel: "Class 8", chapter: "Comparing Quantities", status: "strong", currentCoverage: "Percent and compound comparison lab.", recommendedBuild: "Add tax/discount worksheet generator.", route: "/ncert/class-8-comparing-quantities" },
@@ -50,7 +50,7 @@ export const ncertGapItems: NCERTGapItem[] = [
   { classLevel: "Class 9", chapter: "Circles", status: "strong", currentCoverage: "Circle, arcs, tangents, theorem visualizers.", recommendedBuild: "Add angle in same segment and cyclic quadrilateral pages.", route: "/geometry/circles" },
   { classLevel: "Class 9", chapter: "Heron's Formula", status: "strong", currentCoverage: "Full Heron workflow with side validity, semiperimeter and area.", recommendedBuild: "Add word-problem bank.", route: "/ncert/class-9-heron" },
   { classLevel: "Class 9", chapter: "Surface Areas and Volumes", status: "strong", currentCoverage: "Shapes and 3D mensuration pages.", recommendedBuild: "Add frustum/composite solids practice.", route: "/shapes" },
-  { classLevel: "Class 9", chapter: "Statistics", status: "external", currentCoverage: "Anveshak statistics app.", recommendedBuild: "Link class 9 mean/median/mode datasets directly.", route: "https://www.aimersociety.com/anveshak/" },
+  { classLevel: "Class 9", chapter: "Statistics", status: "strong", currentCoverage: "Native mean, median, mode, variation, and chart workflows.", recommendedBuild: "Add class 9 grouped datasets and practice prompts.", route: "/probability-statistics" },
 
   { classLevel: "Class 10", chapter: "Real Numbers", status: "strong", currentCoverage: "Euclid algorithm, HCF and LCM visual lab.", recommendedBuild: "Add prime factor tree mode.", route: "/ncert/class-10-real-numbers" },
   { classLevel: "Class 10", chapter: "Polynomials", status: "partial", currentCoverage: "Graphing and basic factoring exist.", recommendedBuild: "Zeros-coefficients relationship and division algorithm lab.", route: "/algebra" },
@@ -64,8 +64,8 @@ export const ncertGapItems: NCERTGapItem[] = [
   { classLevel: "Class 10", chapter: "Circles", status: "strong", currentCoverage: "Tangents and circle visualizations exist.", recommendedBuild: "Add tangent-length theorem proof and exercises.", route: "/geometry/tangents" },
   { classLevel: "Class 10", chapter: "Areas Related to Circles", status: "strong", currentCoverage: "Shapes/geometry sector and arc labs.", recommendedBuild: "Add segment area and composite circle regions.", route: "/geometry/arcs-sectors" },
   { classLevel: "Class 10", chapter: "Surface Areas and Volumes", status: "strong", currentCoverage: "Shapes and 3D mensuration labs.", recommendedBuild: "Add conversion of solids and frustum-focused questions.", route: "/shapes" },
-  { classLevel: "Class 10", chapter: "Statistics", status: "external", currentCoverage: "Anveshak statistics app.", recommendedBuild: "Deep-link grouped-data mean, median and mode labs.", route: "https://www.aimersociety.com/anveshak/" },
-  { classLevel: "Class 10", chapter: "Probability", status: "external", currentCoverage: "Anveshak probability app.", recommendedBuild: "Deep-link dice/card/coin simulations with NCERT examples.", route: "https://www.aimersociety.com/anveshak/" },
+  { classLevel: "Class 10", chapter: "Statistics", status: "strong", currentCoverage: "Native statistics dashboard for grouped data, variation, charts, and regression.", recommendedBuild: "Add grouped-data mean, median, and mode stepper.", route: "/probability-statistics" },
+  { classLevel: "Class 10", chapter: "Probability", status: "strong", currentCoverage: "Native probability simulator for dice, card, coin, and distribution experiments.", recommendedBuild: "Add NCERT example presets with seeded trials.", route: "/math-lab/probability" },
 ];
 
 export const ncertGapSummary = {
@@ -73,5 +73,5 @@ export const ncertGapSummary = {
   strong: ncertGapItems.filter((item) => item.status === "strong").length,
   partial: ncertGapItems.filter((item) => item.status === "partial").length,
   missing: ncertGapItems.filter((item) => item.status === "missing").length,
-  external: ncertGapItems.filter((item) => item.status === "external").length,
+  nativeData: ncertGapItems.filter((item) => ["Data Handling", "Statistics", "Probability"].includes(item.chapter)).length,
 };

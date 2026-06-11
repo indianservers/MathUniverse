@@ -201,6 +201,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [dragGeometry, setDragGeometry] = useState<{ object: SelectedGeometryObject; last: { x: number; y: number } } | null>(null);
   const [lockedGeometryIds, setLockedGeometryIds] = useState<string[]>([]);
   const [polygonDraft, setPolygonDraft] = useState<string[]>([]);
+  const [showGeometryUnits, setShowGeometryUnits] = useState(false);
   const [surface, setSurface] = useState<SurfaceKind>("paraboloid");
   const [surfaceExpression, setSurfaceExpression] = useState("sin(x) * cos(y)");
   const [solid, setSolid] = useState<SolidKind>("cube");
@@ -539,6 +540,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const handleBoardPointerDown = (event: PointerEvent<SVGSVGElement>) => {
     if (controlsLocked) return;
     setContextMenu(null);
+    if (event.button === 2) return;
     event.currentTarget.setPointerCapture(event.pointerId);
     if (event.pointerType === "touch") event.preventDefault();
     const target = event.target as Element;
@@ -766,12 +768,26 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       }
     }
     if (activeTool === "polygon" || activeTool === "triangle") {
-      const next = polygonDraft.includes(pointId) ? polygonDraft : [...polygonDraft, pointId];
-      if (next.length >= 3) {
-        recordWorkspaceStep(activeTool === "triangle" ? "Create triangle" : "Create polygon", `${next.length} vertices`);
-        setConstruction((current) => solveConstruction({ ...current, polygons: [...current.polygons, { id: crypto.randomUUID(), points: next }] }));
+      if (activeTool === "triangle") {
+        const next = polygonDraft.includes(pointId) ? polygonDraft : [...polygonDraft, pointId];
+        if (next.length >= 3) {
+          const trianglePoints = next.slice(0, 3);
+          recordWorkspaceStep("Create triangle", "3 vertices");
+          setConstruction((current) => solveConstruction({ ...current, polygons: [...current.polygons, { id: crypto.randomUUID(), points: trianglePoints }] }));
+          setPolygonDraft([]);
+        } else setPolygonDraft(next);
+        return;
+      }
+
+      const closesPolygon = polygonDraft.length >= 3 && pointId === polygonDraft[0];
+      if (closesPolygon) {
+        recordWorkspaceStep("Create polygon", `${polygonDraft.length} vertices`);
+        setConstruction((current) => solveConstruction({ ...current, polygons: [...current.polygons, { id: crypto.randomUUID(), points: polygonDraft }] }));
         setPolygonDraft([]);
-      } else setPolygonDraft(next);
+        return;
+      }
+      if (polygonDraft.includes(pointId)) return;
+      setPolygonDraft([...polygonDraft, pointId]);
     }
     if (activeTool === "parallel" || activeTool === "perpendicular") {
       const next = [...selectedPointIds, pointId].slice(-3);
@@ -1656,111 +1672,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       </SectionCard>}
 
       {workspaceView === "3d" && <SectionCard title="3D Graphing And Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls.">
-        <div className="grid items-start gap-3 lg:grid-cols-[260px_minmax(380px,1fr)_280px] 2xl:grid-cols-[320px_minmax(560px,1fr)_340px]">
-          <div className="space-y-3 lg:sticky lg:top-24">
-            <Space3DToolPalette
-              activeObject={selected3d}
-              activeSurface={surface}
-              activeSolid={solid}
-              cameraPreset={cameraPreset3d}
-              autoRotate={autoRotate3d}
-              showSurface={showSurface}
-              showSolid={showSolid}
-              onSurface={(value) => {
-                setSurface(value);
-                setShowSurface(true);
-                add3dSceneObject("surface", { surface: value, label: value });
-              }}
-              onSolid={(value) => {
-                setSolid(value);
-                setShowSolid(true);
-                add3dSceneObject("solid", { solid: value, label: value });
-              }}
-              onObject={(id) => {
-                add3dSceneObject(id, { solid: threeObjectSolidMap[id], label: threeObjectLabels[id] });
-              }}
-              onCamera={setCameraPreset3d}
-              onToggleSurface={setShowSurface}
-              onToggleSolid={setShowSolid}
-              onToggleRotate={setAutoRotate3d}
-              onSelectTool={() => {
-                setSelected3d("");
-                setDrag3d(null);
-                setProjectStatus("3D Select tool ready. Click an object in the scene or object list.");
-              }}
-              onZoomIn={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))}
-              onZoomOut={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))}
-              onReset={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); setCameraPreset3d("isometric"); }}
-              onNudge={(axis, amount) => update3dTransform(selected3d, { position: selected3dTransform.position.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
-              onRotateAxis={(axis, amount) => update3dTransform(selected3d, { rotation: selected3dTransform.rotation.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
-              onScale={(amount) => update3dTransform(selected3d, { scale: Math.max(0.2, roundTo(selected3dTransform.scale + amount, 2)) })}
-              onMaterial={(material) => update3dTransform(selected3d, { material })}
-              onOpacity={(opacity) => update3dTransform(selected3d, { opacity })}
-              onDuplicate={() => duplicate3dObject()}
-              onDelete={() => delete3dObject()}
-              onRestore={() => restore3dObject()}
-              onLock={() => update3dTransform(selected3d, { locked: !selected3dTransform.locked })}
-              onTrace={() => update3dTransform(selected3d, { trace: !selected3dTransform.trace })}
-            />
-            <label className="block rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-950/40">
-              <span className="text-sm font-semibold">Surface</span>
-              <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={surface} onChange={(event) => setSurface(event.target.value as SurfaceKind)}>
-                <option value="paraboloid">z = scale(x^2 + y^2)</option>
-                <option value="saddle">z = scale(x^2 - y^2)</option>
-                <option value="wave">z = scale sin(x) cos(y)</option>
-                <option value="plane">z = scale(x + y)</option>
-                <option value="ripple">z = scale sin(x^2+y^2)</option>
-                <option value="cone-surface">z = scale sqrt(x^2+y^2)</option>
-                <option value="custom-z">Custom z=f(x,y)</option>
-                <option value="parametric">Parametric torus preset</option>
-                <option value="implicit">Implicit sphere preset</option>
-              </select>
-              <input value={surfaceExpression} onChange={(event) => setSurfaceExpression(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-900" placeholder="sin(x) * cos(y)" />
-            </label>
-            <label className="block rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-slate-950/40">
-              <span className="text-sm font-semibold">Solid</span>
-              <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={solid} onChange={(event) => setSolid(event.target.value as SolidKind)}>
-                <option value="cube">Cube</option>
-                <option value="cuboid">Cuboid</option>
-                <option value="sphere">Sphere</option>
-                <option value="ellipsoid">Ellipsoid</option>
-                <option value="hemisphere">Hemisphere</option>
-                <option value="cylinder">Cylinder</option>
-                <option value="cone">Cone</option>
-                <option value="frustum">Frustum</option>
-                <option value="torus">Torus</option>
-                <option value="tube">Tube</option>
-                <option value="capsule">Capsule</option>
-                <option value="prism">Prism</option>
-                <option value="pyramid">Pyramid</option>
-                <option value="tetrahedron">Tetrahedron</option>
-                <option value="octahedron">Octahedron</option>
-                <option value="dodecahedron">Dodecahedron</option>
-                <option value="wedge">Wedge</option>
-                <option value="polyhedron">Polyhedron</option>
-              </select>
-            </label>
-            <SliderGroup title="3D scene parameters">
-              <SliderControl density="compact" label="Surface scale" value={surfaceScale} min={0.2} max={2.5} step={0.1} onChange={setSurfaceScale} />
-              <SliderControl density="compact" label="Solid height / radius" value={height3d} min={0.8} max={5} step={0.1} onChange={setHeight3d} />
-              <SliderControl density="compact" label="Cross-section z" value={crossSection} min={-3} max={3} step={0.1} onChange={setCrossSection} />
-              <SliderControl density="compact" label="Scene animation speed" value={sceneAnimationSpeed} min={0} max={0.6} step={0.02} onChange={setSceneAnimationSpeed} />
-            </SliderGroup>
-            <div className="grid grid-cols-2 gap-2">
-              <Toggle checked={showSurface} label="Surface" onChange={setShowSurface} />
-              <Toggle checked={showSolid} label="Solid" onChange={setShowSolid} />
-              <Toggle checked={autoRotate3d} label="Auto rotate" onChange={setAutoRotate3d} />
-              <button type="button" onClick={() => setAutoRotate3d(false)} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Pause rotation</button>
-              <button type="button" onClick={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); }} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset</button>
-            </div>
-            <ThreeCreationPanel onCreate={(id) => add3dSceneObject(id, { solid: threeObjectSolidMap[id], label: threeObjectLabels[id] })} />
-            <CameraPresetPanel preset={cameraPreset3d} onPreset={setCameraPreset3d} />
-            <div className="flex flex-wrap gap-2">
-              <button type="button" onClick={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))} className="action-secondary"><ZoomOut className="h-4 w-4" />Zoom out</button>
-              <button type="button" onClick={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))} className="action-secondary"><ZoomIn className="h-4 w-4" />Zoom in</button>
-            </div>
-          </div>
-
+        <div className="grid items-start gap-3 xl:grid-cols-[minmax(0,1fr)_360px]">
           <div className="min-w-0 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
               <div className="flex flex-wrap gap-2">
@@ -1773,7 +1685,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               </div>
               <p className="px-2 text-xs font-bold text-slate-500 dark:text-slate-400">Esc deselects. Delete removes selected object.</p>
             </div>
-            <ThreeSceneWrapper height="min(54vh, 500px)" mobileHeight="min(58vh, 400px)" interactionLabel="Drag rotate - pinch zoom">
+            <ThreeSceneWrapper height="min(36vh, 360px)" mobileHeight="min(48vh, 360px)" interactionLabel="Drag rotate - pinch zoom">
               <ambientLight intensity={0.75} />
               <directionalLight position={[5, 6, 4]} intensity={1.2} />
               <Workspace3DScene
@@ -1803,8 +1715,61 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                   setContextMenu({ x: event.nativeEvent.clientX, y: event.nativeEvent.clientY, target: { type: "3d", id } });
                 }}
               />
-              <OrbitControls enablePan enableZoom enableDamping />
+              <OrbitControls enablePan enableZoom enableDamping enabled={!drag3d} />
             </ThreeSceneWrapper>
+            <SceneSetupTabs3D
+              selected3d={selected3d}
+              selected3dTransform={selected3dTransform}
+              surface={surface}
+              solid={solid}
+              surfaceExpression={surfaceExpression}
+              surfaceScale={surfaceScale}
+              height3d={height3d}
+              crossSection={crossSection}
+              sceneAnimationSpeed={sceneAnimationSpeed}
+              showSurface={showSurface}
+              showSolid={showSolid}
+              autoRotate3d={autoRotate3d}
+              cameraPreset3d={cameraPreset3d}
+              onSurface={(value) => {
+                setSurface(value);
+                setShowSurface(true);
+                add3dSceneObject("surface", { surface: value, label: value });
+              }}
+              onSolid={(value) => {
+                setSolid(value);
+                setShowSolid(true);
+                add3dSceneObject("solid", { solid: value, label: value });
+              }}
+              onObject={(id) => add3dSceneObject(id, { solid: threeObjectSolidMap[id], label: threeObjectLabels[id] })}
+              onSurfaceExpression={setSurfaceExpression}
+              onSurfaceScale={setSurfaceScale}
+              onHeight={setHeight3d}
+              onCrossSection={setCrossSection}
+              onAnimationSpeed={setSceneAnimationSpeed}
+              onShowSurface={setShowSurface}
+              onShowSolid={setShowSolid}
+              onAutoRotate={setAutoRotate3d}
+              onCamera={setCameraPreset3d}
+              onZoomIn={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))}
+              onZoomOut={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))}
+              onReset={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); setCameraPreset3d("isometric"); }}
+              onSelectTool={() => {
+                setSelected3d("");
+                setDrag3d(null);
+                setProjectStatus("3D Select tool ready. Click an object in the scene or object list.");
+              }}
+              onNudge={(axis, amount) => update3dTransform(selected3d, { position: selected3dTransform.position.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
+              onRotateAxis={(axis, amount) => update3dTransform(selected3d, { rotation: selected3dTransform.rotation.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
+              onScale={(amount) => update3dTransform(selected3d, { scale: Math.max(0.2, roundTo(selected3dTransform.scale + amount, 2)) })}
+              onMaterial={(material) => update3dTransform(selected3d, { material })}
+              onOpacity={(opacity) => update3dTransform(selected3d, { opacity })}
+              onDuplicate={() => duplicate3dObject()}
+              onDelete={() => delete3dObject()}
+              onRestore={() => restore3dObject()}
+              onLock={() => update3dTransform(selected3d, { locked: !selected3dTransform.locked })}
+              onTrace={() => update3dTransform(selected3d, { trace: !selected3dTransform.trace })}
+            />
             <div className="grid gap-3 md:grid-cols-3">
               <InfoPill title="Axes" text="X, Y, and Z directions are shown with colored vectors." />
               <InfoPill title="Surface" text="The mesh updates from the selected z=f(x,y) function." />
@@ -1813,8 +1778,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           </div>
 
           <aside className="space-y-3 lg:sticky lg:top-24">
-            <ObjectList3D selected={selected3d} transforms={transforms3d} addedObjects={added3dObjects} onSelect={setSelected3d} onRestore={restore3dObject} onDelete={delete3dObject} />
-            <Properties3DPanel selected={selected3d} transform={selected3dTransform} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
+            <InspectorTabs3D selected={selected3d} transform={selected3dTransform} transforms={transforms3d} addedObjects={added3dObjects} onSelect={setSelected3d} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
             <div className="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
               <p className="font-bold text-slate-900 dark:text-white">3D Readout</p>
               <p>Surface: {surfaceFormula(surface, surfaceScale)}</p>
@@ -1853,6 +1817,13 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               />
             </div>
             <div className="min-w-0 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-slate-100 px-3 py-2 dark:bg-white/10">
+              <label className="inline-flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200">
+                <input type="checkbox" checked={showGeometryUnits} onChange={(event) => setShowGeometryUnits(event.target.checked)} className="h-4 w-4 accent-cyan-500" />
+                Show graph units
+              </label>
+              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">1 unit = 40 grid pixels, origin at board center</span>
+            </div>
             <svg
               ref={svgRef}
               data-export="geometry"
@@ -1868,7 +1839,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               className="h-[min(420px,68vh)] min-h-[320px] w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950 sm:h-[420px]"
             >
               <title>Math Universe Geometry Construction</title>
-              <GeometryGrid />
+              <GeometryGrid showUnits={showGeometryUnits} />
               {workspaceImages.filter((image) => image.visible !== false).map((image) => (
                 <g key={image.id}>
                   <image
@@ -1891,7 +1862,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "arc", arc.id)} />)}
               {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "line", line.id)} />)}
               {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "circle", circle.id)} />)}
-              {polygonDraft.length > 1 && <polyline points={polygonDraft.map((id) => pointById(construction.points, id)).filter(Boolean).map((point) => `${point!.x},${point!.y}`).join(" ")} fill="none" stroke="#f59e0b" strokeDasharray="8 6" strokeWidth="3" />}
+              {polygonDraft.length > 1 && <PolygonDraftPreview draft={polygonDraft} points={construction.points} />}
               {construction.points.filter((point) => point.style?.visible !== false).map((point) => (
                 <g key={point.id}>
                   {point.style?.trace && <circle cx={point.x} cy={point.y} r={(point.style?.size ?? 9) + 12} fill="none" stroke={point.style?.color ?? "#06b6d4"} strokeDasharray="4 8" strokeWidth="4" opacity="0.28" />}
@@ -1913,7 +1884,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             <p className="rounded-2xl bg-cyan-50 p-3 text-xs font-semibold leading-5 text-cyan-900 dark:bg-cyan-400/10 dark:text-cyan-100">
               Touch mode: choose a tool, tap to place points, then drag existing points. Use the page outside the board to scroll.
             </p>
-            <HiddenGeometryExport refSetter={(node) => { geometryExportRef.current = node; }} construction={construction} images={workspaceImages} />
+            <HiddenGeometryExport refSetter={(node) => { geometryExportRef.current = node; }} construction={construction} images={workspaceImages} showUnits={showGeometryUnits} />
             </div>
           </div>
           <div className="space-y-3 lg:sticky lg:top-24">
@@ -1944,10 +1915,24 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         <ObjectContextMenu
           state={contextMenu}
           onClose={() => setContextMenu(null)}
-          onDuplicate={() => contextMenu.target.type === "algebra" ? duplicateWorkspaceObject(contextMenu.target.ref) : contextMenu.target.type === "3d" ? duplicate3dObject(contextMenu.target.id) : duplicateGeometryObject(contextMenu.target)}
-          onDelete={() => contextMenu.target.type === "algebra" ? deleteWorkspaceObject(contextMenu.target.ref) : contextMenu.target.type === "3d" ? delete3dObject(contextMenu.target.id) : deleteGeometryObject(contextMenu.target)}
-          onRestore={() => contextMenu.target.type === "algebra" ? patchWorkspaceObject(contextMenu.target.ref, { visible: true, trace: false }) : contextMenu.target.type === "3d" ? restore3dObject(contextMenu.target.id) : restoreGeometryObject(contextMenu.target)}
-          onLock={() => contextMenu.target.type === "algebra" ? patchWorkspaceObject(contextMenu.target.ref, { locked: true }) : contextMenu.target.type !== "3d" && toggleGeometryLock(contextMenu.target)}
+          onDuplicate={() => {
+            contextMenu.target.type === "algebra" ? duplicateWorkspaceObject(contextMenu.target.ref) : contextMenu.target.type === "3d" ? duplicate3dObject(contextMenu.target.id) : duplicateGeometryObject(contextMenu.target);
+            setContextMenu(null);
+          }}
+          onDelete={() => {
+            contextMenu.target.type === "algebra" ? deleteWorkspaceObject(contextMenu.target.ref) : contextMenu.target.type === "3d" ? delete3dObject(contextMenu.target.id) : deleteGeometryObject(contextMenu.target);
+            setContextMenu(null);
+          }}
+          onRestore={() => {
+            contextMenu.target.type === "algebra" ? patchWorkspaceObject(contextMenu.target.ref, { visible: true, trace: false }) : contextMenu.target.type === "3d" ? restore3dObject(contextMenu.target.id) : restoreGeometryObject(contextMenu.target);
+            setContextMenu(null);
+          }}
+          onLock={() => {
+            if (contextMenu.target.type === "algebra") patchWorkspaceObject(contextMenu.target.ref, { locked: true });
+            else if (contextMenu.target.type === "3d") update3dTransform(contextMenu.target.id, { locked: !selected3dTransform.locked });
+            else toggleGeometryLock(contextMenu.target);
+            setContextMenu(null);
+          }}
           onRename={() => {
             const target = contextMenu.target;
             const ref = target.type === "algebra" ? target.ref : target.type === "3d" ? { kind: "3d" as const, id: target.id } : { kind: target.type, id: target.id };
@@ -1959,6 +1944,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             const target = contextMenu.target;
             const ref = target.type === "algebra" ? target.ref : target.type === "3d" ? { kind: "3d" as const, id: target.id } : { kind: target.type, id: target.id };
             patchWorkspaceObject(ref, { trace: true });
+            setContextMenu(null);
           }}
         />
       )}
@@ -4585,11 +4571,11 @@ function resultsToCsv(results: ResultCard[]) {
   return rows.map((row) => row.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(",")).join("\n");
 }
 
-function HiddenGeometryExport({ construction, images, refSetter }: { construction: Construction; images: WorkspaceImage[]; refSetter: (node: SVGSVGElement | null) => void }) {
+function HiddenGeometryExport({ construction, images, refSetter, showUnits = false }: { construction: Construction; images: WorkspaceImage[]; refSetter: (node: SVGSVGElement | null) => void; showUnits?: boolean }) {
   return (
     <svg ref={refSetter} viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" className="hidden">
       <rect width="640" height="420" fill="#ffffff" />
-      <GeometryGrid />
+      <GeometryGrid showUnits={showUnits} />
       {images.filter((image) => image.visible !== false).map((image) => <image key={image.id} href={image.src} x={image.x} y={image.y} width={image.width} height={image.height} opacity={image.opacity} preserveAspectRatio="xMidYMid meet" />)}
       {construction.loci.map((locus) => <GeometryLocus key={locus.id} locus={locus} />)}
       {construction.polygons.map((polygon) => <GeometryPolygon key={polygon.id} polygon={polygon} points={construction.points} />)}
@@ -4651,6 +4637,207 @@ function ImageObjectPanel({ image, onChange, onDelete }: { image: WorkspaceImage
         <Toggle checked={image.visible !== false} label="Visible" onChange={(visible) => onChange({ visible })} />
         <Toggle checked={image.locked === true} label="Locked" onChange={(locked) => onChange({ locked })} />
       </div>
+    </div>
+  );
+}
+
+type SceneSetupTabs3DProps = {
+  selected3d: string;
+  selected3dTransform: Transform3D;
+  surface: SurfaceKind;
+  solid: SolidKind;
+  surfaceExpression: string;
+  surfaceScale: number;
+  height3d: number;
+  crossSection: number;
+  sceneAnimationSpeed: number;
+  showSurface: boolean;
+  showSolid: boolean;
+  autoRotate3d: boolean;
+  cameraPreset3d: CameraPreset3D;
+  onSurface: (value: SurfaceKind) => void;
+  onSolid: (value: SolidKind) => void;
+  onObject: (id: ThreeObjectId) => void;
+  onSurfaceExpression: (value: string) => void;
+  onSurfaceScale: (value: number) => void;
+  onHeight: (value: number) => void;
+  onCrossSection: (value: number) => void;
+  onAnimationSpeed: (value: number) => void;
+  onShowSurface: (value: boolean) => void;
+  onShowSolid: (value: boolean) => void;
+  onAutoRotate: (value: boolean) => void;
+  onCamera: (preset: CameraPreset3D) => void;
+  onZoomIn: () => void;
+  onZoomOut: () => void;
+  onReset: () => void;
+  onSelectTool: () => void;
+  onNudge: (axis: number, amount: number) => void;
+  onRotateAxis: (axis: number, amount: number) => void;
+  onScale: (amount: number) => void;
+  onMaterial: (material: Transform3D["material"]) => void;
+  onOpacity: (opacity: number) => void;
+  onDuplicate: () => void;
+  onDelete: () => void;
+  onRestore: () => void;
+  onLock: () => void;
+  onTrace: () => void;
+};
+
+function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
+  const [tab, setTab] = useState<"tools" | "shape" | "parameters" | "camera">("parameters");
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
+      <PanelTabs
+        active={tab}
+        tabs={[
+          { id: "parameters", label: "Parameters" },
+          { id: "shape", label: "Surface / Solid" },
+          { id: "tools", label: "Tools" },
+          { id: "camera", label: "Camera" },
+        ]}
+        onChange={(value) => setTab(value as typeof tab)}
+      />
+      {tab === "parameters" && (
+        <div className="mt-3 grid gap-3 xl:grid-cols-[minmax(0,1fr)_230px]">
+          <div className="rounded-xl border border-slate-200 bg-white/75 p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/40">
+            <p className="text-sm font-black text-slate-950 dark:text-white">3D scene parameters</p>
+            <div className="mt-2 grid gap-x-4 gap-y-1 2xl:grid-cols-2">
+              <SliderControl density="compact" label="Surface scale" value={props.surfaceScale} min={0.2} max={2.5} step={0.1} onChange={props.onSurfaceScale} />
+              <SliderControl density="compact" label="Solid height / radius" value={props.height3d} min={0.8} max={5} step={0.1} onChange={props.onHeight} />
+              <SliderControl density="compact" label="Cross-section z" value={props.crossSection} min={-3} max={3} step={0.1} onChange={props.onCrossSection} />
+              <SliderControl density="compact" label="Scene animation speed" value={props.sceneAnimationSpeed} min={0} max={0.6} step={0.02} onChange={props.onAnimationSpeed} />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2 content-start">
+            <Toggle checked={props.showSurface} label="Surface" onChange={props.onShowSurface} />
+            <Toggle checked={props.showSolid} label="Solid" onChange={props.onShowSolid} />
+            <Toggle checked={props.autoRotate3d} label="Auto rotate" onChange={props.onAutoRotate} />
+            <button type="button" onClick={() => props.onAutoRotate(false)} className="rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Pause rotation</button>
+            <button type="button" onClick={props.onReset} className="col-span-2 rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset view</button>
+          </div>
+        </div>
+      )}
+      {tab === "shape" && (
+        <div className="mt-3 grid gap-3 lg:grid-cols-2">
+          <label className="block rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
+            Surface
+            <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={props.surface} onChange={(event) => props.onSurface(event.target.value as SurfaceKind)}>
+              <option value="paraboloid">z = scale(x^2 + y^2)</option>
+              <option value="saddle">z = scale(x^2 - y^2)</option>
+              <option value="wave">z = scale sin(x) cos(y)</option>
+              <option value="plane">z = scale(x + y)</option>
+              <option value="ripple">z = scale sin(x^2+y^2)</option>
+              <option value="cone-surface">z = scale sqrt(x^2+y^2)</option>
+              <option value="custom-z">Custom z=f(x,y)</option>
+              <option value="parametric">Parametric torus preset</option>
+              <option value="implicit">Implicit sphere preset</option>
+            </select>
+            <input value={props.surfaceExpression} onChange={(event) => props.onSurfaceExpression(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-900" placeholder="sin(x) * cos(y)" />
+          </label>
+          <label className="block rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
+            Solid
+            <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={props.solid} onChange={(event) => props.onSolid(event.target.value as SolidKind)}>
+              <option value="cube">Cube</option>
+              <option value="cuboid">Cuboid</option>
+              <option value="sphere">Sphere</option>
+              <option value="ellipsoid">Ellipsoid</option>
+              <option value="hemisphere">Hemisphere</option>
+              <option value="cylinder">Cylinder</option>
+              <option value="cone">Cone</option>
+              <option value="frustum">Frustum</option>
+              <option value="torus">Torus</option>
+              <option value="tube">Tube</option>
+              <option value="capsule">Capsule</option>
+              <option value="prism">Prism</option>
+              <option value="pyramid">Pyramid</option>
+              <option value="tetrahedron">Tetrahedron</option>
+              <option value="octahedron">Octahedron</option>
+              <option value="dodecahedron">Dodecahedron</option>
+              <option value="wedge">Wedge</option>
+              <option value="polyhedron">Polyhedron</option>
+            </select>
+          </label>
+        </div>
+      )}
+      {tab === "tools" && (
+        <div className="mt-3 grid gap-3 xl:grid-cols-[minmax(0,1fr)_260px]">
+          <Space3DToolPalette
+            activeObject={props.selected3d}
+            activeSurface={props.surface}
+            activeSolid={props.solid}
+            cameraPreset={props.cameraPreset3d}
+            autoRotate={props.autoRotate3d}
+            showSurface={props.showSurface}
+            showSolid={props.showSolid}
+            onSurface={props.onSurface}
+            onSolid={props.onSolid}
+            onObject={props.onObject}
+            onCamera={props.onCamera}
+            onToggleSurface={props.onShowSurface}
+            onToggleSolid={props.onShowSolid}
+            onToggleRotate={props.onAutoRotate}
+            onSelectTool={props.onSelectTool}
+            onZoomIn={props.onZoomIn}
+            onZoomOut={props.onZoomOut}
+            onReset={props.onReset}
+            onNudge={props.onNudge}
+            onRotateAxis={props.onRotateAxis}
+            onScale={props.onScale}
+            onMaterial={props.onMaterial}
+            onOpacity={props.onOpacity}
+            onDuplicate={props.onDuplicate}
+            onDelete={props.onDelete}
+            onRestore={props.onRestore}
+            onLock={props.onLock}
+            onTrace={props.onTrace}
+          />
+          <ThreeCreationPanel onCreate={props.onObject} />
+        </div>
+      )}
+      {tab === "camera" && (
+        <div className="mt-3 grid gap-3 md:grid-cols-[minmax(0,1fr)_220px]">
+          <CameraPresetPanel preset={props.cameraPreset3d} onPreset={props.onCamera} />
+          <div className="grid content-start gap-2">
+            <button type="button" onClick={props.onZoomOut} className="action-secondary"><ZoomOut className="h-4 w-4" />Zoom out</button>
+            <button type="button" onClick={props.onZoomIn} className="action-secondary"><ZoomIn className="h-4 w-4" />Zoom in</button>
+            <button type="button" onClick={props.onReset} className="action-secondary"><RotateCcw className="h-4 w-4" />Reset</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function InspectorTabs3D({ selected, transform, transforms, addedObjects, onSelect, onTransform, onVector, onRestore, onDelete }: { selected: string; transform: Transform3D; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; onSelect: (id: string) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onVector: (id: string, key: "position" | "rotation", index: number, value: number) => void; onRestore: (id: string) => void; onDelete: (id: string) => void }) {
+  const [tab, setTab] = useState<"object" | "transform" | "objects">("object");
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
+      <PanelTabs
+        active={tab}
+        tabs={[
+          { id: "object", label: "Object" },
+          { id: "transform", label: "Transform" },
+          { id: "objects", label: "Scene" },
+        ]}
+        onChange={(value) => setTab(value as typeof tab)}
+      />
+      <div className="mt-3">
+        {tab === "objects" && <ObjectList3D selected={selected} transforms={transforms} addedObjects={addedObjects} onSelect={onSelect} onRestore={onRestore} onDelete={onDelete} />}
+        {tab === "object" && <Properties3DPanel selected={selected} transform={transform} onTransform={onTransform} onVector={onVector} onRestore={onRestore} onDelete={onDelete} mode="object" />}
+        {tab === "transform" && <Properties3DPanel selected={selected} transform={transform} onTransform={onTransform} onVector={onVector} onRestore={onRestore} onDelete={onDelete} mode="transform" />}
+      </div>
+    </div>
+  );
+}
+
+function PanelTabs<T extends string>({ active, tabs, onChange }: { active: T; tabs: Array<{ id: T; label: string }>; onChange: (id: T) => void }) {
+  return (
+    <div className="flex gap-1 overflow-x-auto rounded-xl bg-slate-100 p-1 dark:bg-white/10">
+      {tabs.map((item) => (
+        <button key={item.id} type="button" onClick={() => onChange(item.id)} className={`whitespace-nowrap rounded-lg px-3 py-2 text-xs font-black transition ${active === item.id ? "bg-white text-slate-950 shadow-sm dark:bg-slate-950 dark:text-white" : "text-slate-600 hover:bg-white/70 dark:text-slate-300 dark:hover:bg-white/10"}`}>
+          {item.label}
+        </button>
+      ))}
     </div>
   );
 }
@@ -4730,7 +4917,7 @@ function ObjectList3D({ selected, transforms, addedObjects, onSelect, onRestore,
   );
 }
 
-function Properties3DPanel({ selected, transform, onTransform, onVector, onRestore, onDelete }: { selected: string; transform: Transform3D; onTransform: (id: string, patch: Partial<Transform3D>) => void; onVector: (id: string, key: "position" | "rotation", index: number, value: number) => void; onRestore: (id: string) => void; onDelete: (id: string) => void }) {
+function Properties3DPanel({ selected, transform, onTransform, onVector, onRestore, onDelete, mode = "full" }: { selected: string; transform: Transform3D; onTransform: (id: string, patch: Partial<Transform3D>) => void; onVector: (id: string, key: "position" | "rotation", index: number, value: number) => void; onRestore: (id: string) => void; onDelete: (id: string) => void; mode?: "full" | "object" | "transform" }) {
   if (!selected) {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
@@ -4749,52 +4936,59 @@ function Properties3DPanel({ selected, transform, onTransform, onVector, onResto
         <h3 className="font-bold">Selected Object</h3>
         <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-bold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100">{selected}</span>
       </div>
-      <div className="mt-3 grid grid-cols-3 gap-2">
-        {(["x", "y", "z"] as const).map((axis, index) => <MiniNumber key={`pos-${axis}`} label={axis} value={roundTo(transform.position[index], 2)} onChange={(value) => onVector(selected, "position", index, value)} />)}
-      </div>
-      <p className="mt-4 text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Rotation</p>
-      <div className="mt-2 grid grid-cols-3 gap-2">
-        {(["x deg", "y deg", "z deg"] as const).map((axis, index) => <MiniNumber key={`rot-${axis}`} label={axis} value={roundTo(transform.rotation[index], 1)} onChange={(value) => onVector(selected, "rotation", index, value)} />)}
-      </div>
-      <div className="mt-4 grid grid-cols-[1fr_92px] gap-3">
-        <SliderControl label="Size" value={transform.scale} min={0.2} max={3} step={0.05} onChange={(value) => onTransform(selected, { scale: value })} />
-        <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
-          Color
-          <input type="color" value={transform.color} onChange={(event) => onTransform(selected, { color: event.target.value })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
-        </label>
-      </div>
-      <div className="mt-3 grid grid-cols-3 gap-2">
-        {(["width", "height", "depth"] as const).map((axis, index) => <MiniNumber key={`dim-${axis}`} label={axis} value={roundTo(transform.dimensions?.[index] ?? 1, 2)} onChange={(value) => {
-          const next = [...(transform.dimensions ?? [1, 1, 1])] as [number, number, number];
-          next[index] = value;
-          onTransform(selected, { dimensions: next });
-        }} />)}
-      </div>
-      <div className="mt-4 grid grid-cols-[1fr_130px] gap-3">
-        <SliderControl label="Opacity" value={transform.opacity ?? 0.8} min={0.1} max={1} step={0.05} onChange={(value) => onTransform(selected, { opacity: value })} />
-        <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
-          Material
-          <select value={transform.material ?? "glass"} onChange={(event) => onTransform(selected, { material: event.target.value as Transform3D["material"] })} className="mt-2 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900">
-            <option value="matte">Matte</option>
-            <option value="glass">Glass</option>
-            <option value="wireframe">Wireframe</option>
-          </select>
-        </label>
-      </div>
-      <div className="mt-3 grid grid-cols-3 gap-2">
-        <button type="button" onClick={() => onVector(selected, "position", 0, roundTo(transform.position[0] + 0.25, 2))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">+X</button>
-        <button type="button" onClick={() => onVector(selected, "position", 1, roundTo(transform.position[1] + 0.25, 2))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">+Y</button>
-        <button type="button" onClick={() => onVector(selected, "position", 2, roundTo(transform.position[2] + 0.25, 2))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">+Z</button>
-        <button type="button" onClick={() => onVector(selected, "rotation", 1, roundTo(transform.rotation[1] + 15, 1))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Rot Y</button>
-        <button type="button" onClick={() => onTransform(selected, { scale: roundTo(transform.scale + 0.1, 2) })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Scale +</button>
-        <button type="button" onClick={() => onTransform(selected, { scale: Math.max(0.1, roundTo(transform.scale - 0.1, 2)) })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Scale -</button>
-      </div>
-      <div className="mt-3 grid grid-cols-3 gap-2">
-        <button type="button" onClick={() => onTransform(selected, { visible: !transform.visible })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">{transform.visible ? "Hide" : "Show"}</button>
-        <button type="button" onClick={() => onRestore(selected)} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Restore</button>
-        <button type="button" onClick={() => onDelete(selected)} className="rounded-2xl bg-rose-100 px-3 py-2 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">Delete</button>
-      </div>
-      <p className="mt-3 text-xs leading-5 text-slate-500 dark:text-slate-400">Select an object in the scene, then drag it. Right-click an object for quick actions.</p>
+      {mode !== "transform" && (
+        <>
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            {(["x", "y", "z"] as const).map((axis, index) => <MiniNumber key={`pos-${axis}`} label={axis} value={roundTo(transform.position[index], 2)} onChange={(value) => onVector(selected, "position", index, value)} />)}
+          </div>
+          <p className="mt-4 text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Rotation</p>
+          <div className="mt-2 grid grid-cols-3 gap-2">
+            {(["x deg", "y deg", "z deg"] as const).map((axis, index) => <MiniNumber key={`rot-${axis}`} label={axis} value={roundTo(transform.rotation[index], 1)} onChange={(value) => onVector(selected, "rotation", index, value)} />)}
+          </div>
+          <label className="mt-3 block rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+            Color
+            <input type="color" value={transform.color} onChange={(event) => onTransform(selected, { color: event.target.value })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
+          </label>
+        </>
+      )}
+      {mode !== "object" && (
+        <>
+          <div className="mt-4">
+            <SliderControl density="compact" label="Size" value={transform.scale} min={0.2} max={3} step={0.05} onChange={(value) => onTransform(selected, { scale: value })} />
+          </div>
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            {(["width", "height", "depth"] as const).map((axis, index) => <MiniNumber key={`dim-${axis}`} label={axis} value={roundTo(transform.dimensions?.[index] ?? 1, 2)} onChange={(value) => {
+              const next = [...(transform.dimensions ?? [1, 1, 1])] as [number, number, number];
+              next[index] = value;
+              onTransform(selected, { dimensions: next });
+            }} />)}
+          </div>
+          <div className="mt-4 grid gap-3">
+            <SliderControl density="compact" label="Opacity" value={transform.opacity ?? 0.8} min={0.1} max={1} step={0.05} onChange={(value) => onTransform(selected, { opacity: value })} />
+            <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+              Material
+              <select value={transform.material ?? "glass"} onChange={(event) => onTransform(selected, { material: event.target.value as Transform3D["material"] })} className="mt-2 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900">
+                <option value="matte">Matte</option>
+                <option value="glass">Glass</option>
+                <option value="wireframe">Wireframe</option>
+              </select>
+            </label>
+          </div>
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            <button type="button" onClick={() => onVector(selected, "position", 0, roundTo(transform.position[0] + 0.25, 2))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">+X</button>
+            <button type="button" onClick={() => onVector(selected, "position", 1, roundTo(transform.position[1] + 0.25, 2))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">+Y</button>
+            <button type="button" onClick={() => onVector(selected, "position", 2, roundTo(transform.position[2] + 0.25, 2))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">+Z</button>
+            <button type="button" onClick={() => onVector(selected, "rotation", 1, roundTo(transform.rotation[1] + 15, 1))} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Rot Y</button>
+            <button type="button" onClick={() => onTransform(selected, { scale: roundTo(transform.scale + 0.1, 2) })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Scale +</button>
+            <button type="button" onClick={() => onTransform(selected, { scale: Math.max(0.1, roundTo(transform.scale - 0.1, 2)) })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Scale -</button>
+          </div>
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            <button type="button" onClick={() => onTransform(selected, { visible: !transform.visible })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">{transform.visible ? "Hide" : "Show"}</button>
+            <button type="button" onClick={() => onRestore(selected)} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Restore</button>
+            <button type="button" onClick={() => onDelete(selected)} className="rounded-2xl bg-rose-100 px-3 py-2 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">Delete</button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -4900,6 +5094,17 @@ function workflowTypeForContextTarget(target: ContextMenuState["target"]): Workf
 
 function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, addedObjects, dragging, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; dragging: string | null; onSelect: (id: string) => void; onDrag: (id: string | null) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onContextMenu: (event: any, id: string) => void }) {
   const groupRef = useRef<THREE.Group>(null);
+  useEffect(() => {
+    const releaseDrag = () => onDrag(null);
+    window.addEventListener("pointerup", releaseDrag);
+    window.addEventListener("pointercancel", releaseDrag);
+    window.addEventListener("blur", releaseDrag);
+    return () => {
+      window.removeEventListener("pointerup", releaseDrag);
+      window.removeEventListener("pointercancel", releaseDrag);
+      window.removeEventListener("blur", releaseDrag);
+    };
+  }, [onDrag]);
   useFrame((state) => {
     if (!groupRef.current) return;
     const baseRotation = cameraPresetRotation(cameraPreset);
@@ -4910,13 +5115,29 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
   const selectProps = (id: string) => ({
     onClick: (event: any) => { event.stopPropagation(); onSelect(id); },
     onContextMenu: (event: any) => onContextMenu(event, id),
-    onPointerDown: (event: any) => { event.stopPropagation(); onSelect(id); onDrag(id); },
+    onPointerDown: (event: any) => {
+      event.stopPropagation();
+      onSelect(id);
+      if (event.button !== 0) return;
+      const current = transformForId(id);
+      if (current?.locked) return;
+      event.target?.setPointerCapture?.(event.pointerId);
+      onDrag(id);
+    },
     onPointerUp: (event: any) => { event.stopPropagation(); onDrag(null); },
+    onPointerCancel: (event: any) => { event.stopPropagation(); onDrag(null); },
+    onPointerLeave: () => {
+      if (dragging === id) onDrag(null);
+    },
     onPointerMove: (event: any) => {
       if (dragging !== id || id === "vector") return;
       event.stopPropagation();
       const current = transformForId(id);
       if (!current) return;
+      if (current.locked || event.buttons !== 1) {
+        onDrag(null);
+        return;
+      }
       onTransform(id, { position: [roundTo(event.point.x, 2), current.position[1], roundTo(event.point.z, 2)] });
     },
   });
@@ -5500,11 +5721,46 @@ function ToolButton({ active, label, onClick, icon }: { active?: boolean; label:
   return <button type="button" onClick={onClick} className={`inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition ${active ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200"}`}>{icon}{label}</button>;
 }
 
-function GeometryGrid() {
+function GeometryGrid({ showUnits = false }: { showUnits?: boolean }) {
+  const width = 640;
+  const height = 420;
+  const unit = 40;
+  const origin = { x: 320, y: 220 };
+  const verticals = Array.from({ length: 17 }, (_, i) => i * unit);
+  const horizontals = Array.from({ length: 12 }, (_, i) => i * unit);
   return (
     <g>
-      {Array.from({ length: 17 }, (_, i) => <line key={`gv-${i}`} x1={i * 40} x2={i * 40} y1="0" y2="420" stroke="rgba(148,163,184,.2)" />)}
-      {Array.from({ length: 12 }, (_, i) => <line key={`gh-${i}`} x1="0" x2="640" y1={i * 40} y2={i * 40} stroke="rgba(148,163,184,.2)" />)}
+      {verticals.map((x) => <line key={`gv-${x}`} x1={x} x2={x} y1="0" y2={height} stroke="rgba(148,163,184,.2)" />)}
+      {horizontals.map((y) => <line key={`gh-${y}`} x1="0" x2={width} y1={y} y2={y} stroke="rgba(148,163,184,.2)" />)}
+      {showUnits && (
+        <g className="select-none">
+          <line x1={0} x2={width} y1={origin.y} y2={origin.y} stroke="#0f172a" strokeWidth="1.8" opacity="0.45" />
+          <line x1={origin.x} x2={origin.x} y1={0} y2={height} stroke="#0f172a" strokeWidth="1.8" opacity="0.45" />
+          {verticals.map((x) => {
+            const value = Math.round((x - origin.x) / unit);
+            if (value === 0 || x < 20 || x > width - 20) return null;
+            return (
+              <g key={`x-unit-${x}`}>
+                <line x1={x} x2={x} y1={origin.y - 5} y2={origin.y + 5} stroke="#0f172a" strokeWidth="1.6" opacity="0.65" />
+                <text x={x} y={origin.y + 18} textAnchor="middle" fill="#334155" fontSize="10" fontWeight="800">{value}</text>
+              </g>
+            );
+          })}
+          {horizontals.map((y) => {
+            const value = Math.round((origin.y - y) / unit);
+            if (value === 0 || y < 20 || y > height - 20) return null;
+            return (
+              <g key={`y-unit-${y}`}>
+                <line x1={origin.x - 5} x2={origin.x + 5} y1={y} y2={y} stroke="#0f172a" strokeWidth="1.6" opacity="0.65" />
+                <text x={origin.x - 10} y={y + 4} textAnchor="end" fill="#334155" fontSize="10" fontWeight="800">{value}</text>
+              </g>
+            );
+          })}
+          <text x={origin.x + 7} y={origin.y + 16} fill="#0f172a" fontSize="10" fontWeight="900">0</text>
+          <text x={width - 18} y={origin.y - 8} fill="#0f172a" fontSize="10" fontWeight="900">x</text>
+          <text x={origin.x + 8} y={18} fill="#0f172a" fontSize="10" fontWeight="900">y</text>
+        </g>
+      )}
     </g>
   );
 }
@@ -5686,6 +5942,21 @@ function GeometryPolygon({ polygon, points, selected = false }: { polygon: GeoPo
   if (polygon.style?.visible === false) return null;
   const pointsText = polygonPoints.map((point) => `${point.x},${point.y}`).join(" ");
   return <g><polygon data-object-type="polygon" data-object-id={polygon.id} points={pointsText} fill={polygon.style?.fill ?? "rgba(245,158,11,.16)"} stroke={polygon.style?.color ?? "#f59e0b"} strokeWidth={selected ? Math.max(7, polygon.style?.strokeWidth ?? 4) : polygon.style?.strokeWidth ?? 4} opacity={polygon.style?.opacity ?? 1} className="cursor-move" />{polygon.style?.trace && <polygon points={pointsText} fill="none" stroke={polygon.style?.color ?? "#f59e0b"} strokeWidth="10" strokeDasharray="6 10" opacity="0.22" />}</g>;
+}
+
+function PolygonDraftPreview({ draft, points }: { draft: string[]; points: GeoPoint[] }) {
+  const polygonPoints = draft.map((id) => pointById(points, id)).filter(Boolean) as GeoPoint[];
+  if (polygonPoints.length < 2) return null;
+  const path = polygonPoints.map((point) => `${point.x},${point.y}`).join(" ");
+  const first = polygonPoints[0];
+  const last = polygonPoints[polygonPoints.length - 1];
+  return (
+    <g pointerEvents="none">
+      <polyline points={path} fill="none" stroke="#f59e0b" strokeDasharray="8 6" strokeWidth="3" />
+      {polygonPoints.length >= 3 && <line x1={last.x} y1={last.y} x2={first.x} y2={first.y} stroke="#f59e0b" strokeDasharray="3 8" strokeWidth="2" opacity="0.7" />}
+      <circle cx={first.x} cy={first.y} r="15" fill="none" stroke="#f97316" strokeDasharray="4 4" strokeWidth="3" />
+    </g>
+  );
 }
 
 function GeometryArc({ arc, points, selected = false }: { arc: GeoArc; points: GeoPoint[]; selected?: boolean }) {

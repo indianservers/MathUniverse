@@ -9,7 +9,7 @@ function answerFor(question: string, topic: string) {
   if (q.includes("derivative")) return "A derivative measures instantaneous rate of change. For x^2, the derivative is 2x, so the slope changes with position.";
   if (q.includes("integral")) return "An integral adds tiny pieces of area or accumulation. Visually, it is the limiting sum of many thin rectangles.";
   if (q.includes("euler") || q.includes("complex")) return "Euler's formula e^(i theta) = cos theta + i sin theta connects complex exponentials to circular motion.";
-  if (q.includes("mean")) return "Statistics questions now live in the dedicated Anveshak app: https://www.aimersociety.com/anveshak/";
+  if (q.includes("mean")) return "Statistics questions now live in the native Statistics and Probability dashboard at /probability-statistics.";
   if (q.includes("vector")) return "A vector stores magnitude and direction. In 2D, [x, y] has length sqrt(x^2 + y^2).";
   if (q.includes("matrix")) return "A matrix transforms vectors and shapes. In AI, matrices efficiently apply many weighted sums at once.";
   if (q.includes("gradient")) return "Gradient descent moves parameters downhill on a loss curve using x_new = x - learning_rate * gradient.";

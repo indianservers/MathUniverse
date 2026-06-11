@@ -158,9 +158,11 @@ function renderVisual(visual: AdvancedLabVisual, a: number, b: number) {
   if (visual === "step-impulse") return <StepImpulse delay={a} strength={b} />;
   if (visual === "convolution") return <Convolution shift={a} width={b} />;
   if (visual === "fourier-transform") return <FourierTransformSpectrum width={a} marker={b} />;
+  if (visual === "z-transform") return <ZTransform poleRadius={a} inputStep={b} />;
   if (visual === "mobius-map") return <MobiusMap pole={a} rotation={b} />;
   if (visual === "complex-line-integral") return <ComplexLineIntegral radius={a} swirl={b} />;
   if (visual === "cauchy-integral") return <CauchyIntegral pointRadius={a} contourRadius={b} />;
+  if (visual === "vector-calculus-field") return <VectorCalculusField swirl={a} source={b} />;
   if (visual === "fixed-point") return <FixedPointIteration initial={a} contraction={b} />;
   if (visual === "secant-method") return <SecantMethod x0={a} x1={b} />;
   if (visual === "divided-differences") return <DividedDifferences count={Math.round(a)} evaluation={b} />;
@@ -242,6 +244,60 @@ function OperationsResearch({ c1, c2 }: { c1: number; c2: number }) {
         <text x={gx(optimal.x) + 15} y={gy(optimal.y) + 16} fill="#f59e0b" fontSize="11" fontWeight="900">optimal ({optimal.x},{optimal.y})</text>
       )}
       <Label x="80" y="430" text={`Max Z = ${maxZ}. Check all corner points — the simplex method moves between adjacent ones.`} />
+    </g>
+  );
+}
+
+function ZTransform({ poleRadius, inputStep }: { poleRadius: number; inputStep: number }) {
+  const radius = Math.max(0.1, Math.min(1.8, poleRadius));
+  const poleX = 380 + radius * 105;
+  const response = Array.from({ length: 22 }, (_, n) => inputStep * Math.pow(radius, n));
+  const stable = radius < 1;
+  return (
+    <g>
+      <Label x="80" y="58" text={`Z-plane pole radius ${roundTo(radius, 2)}: ${stable ? "stable response" : "outside unit circle"}`} />
+      <line x1="105" x2="395" y1="240" y2="240" stroke="#94a3b8" strokeWidth="2" />
+      <line x1="250" x2="250" y1="95" y2="385" stroke="#94a3b8" strokeWidth="2" />
+      <circle cx="250" cy="240" r="105" fill="#06b6d4" opacity="0.08" stroke="#06b6d4" strokeWidth="4" />
+      <circle cx={poleX - 130} cy="240" r="12" fill={stable ? "#10b981" : "#ef4444"} stroke="#0f172a" strokeWidth="2" />
+      <text x="305" y="115" fill="#0f172a" fontSize="13" fontWeight="800">unit circle</text>
+      <path d={response.map((value, n) => {
+        const x = 425 + n * 12;
+        const y = 305 - Math.max(-3, Math.min(3, value)) * 48;
+        return `${n ? "L" : "M"}${x},${y}`;
+      }).join(" ")} fill="none" stroke="#f59e0b" strokeWidth="5" strokeLinecap="round" />
+      <line x1="420" x2="690" y1="305" y2="305" stroke="#94a3b8" strokeWidth="2" />
+      {response.slice(0, 16).map((value, n) => (
+        <circle key={n} cx={425 + n * 12} cy={305 - Math.max(-3, Math.min(3, value)) * 48} r="4" fill="#8b5cf6" />
+      ))}
+      <Label x="420" y="405" text="Right plot: recurrence response x_(n+1)=r*x_n + input." />
+    </g>
+  );
+}
+
+function VectorCalculusField({ swirl, source }: { swirl: number; source: number }) {
+  const points = [-2, -1, 0, 1, 2].flatMap((x) => [-1.5, -0.5, 0.5, 1.5].map((y) => ({ x, y })));
+  const center = { x: 380, y: 230 };
+  const scale = 70;
+  const field = (x: number, y: number) => ({ x: source * x - swirl * y, y: source * y + swirl * x });
+  const curl = 2 * swirl;
+  const divergence = 2 * source;
+  return (
+    <g>
+      <Label x="80" y="58" text={`div F=${roundTo(divergence, 2)}, curl F=${roundTo(curl, 2)} for radial plus swirl field`} />
+      <ellipse cx={center.x} cy={center.y} rx="185" ry="105" fill="#06b6d4" opacity="0.08" stroke="#06b6d4" strokeWidth="4" />
+      {points.map((p, index) => {
+        const v = field(p.x, p.y);
+        const mag = Math.hypot(v.x, v.y) || 1;
+        const x1 = center.x + p.x * scale;
+        const y1 = center.y - p.y * scale;
+        return <Arrow key={index} x1={x1} y1={y1} x2={x1 + v.x / mag * 28} y2={y1 - v.y / mag * 28} color={source >= 0 ? "#06b6d4" : "#f59e0b"} />;
+      })}
+      <path d="M245,230 C245,150 515,150 515,230 C515,310 245,310 245,230" fill="none" stroke="#8b5cf6" strokeWidth="5" strokeDasharray="10 7" />
+      <Arrow x1={520} y1={230} x2={500} y2={swirl >= 0 ? 190 : 270} color="#8b5cf6" />
+      <line x1="380" y1="230" x2="565" y2="230" stroke="#f59e0b" strokeWidth="4" />
+      <text x="570" y="235" fill="#0f172a" fontSize="12" fontWeight="900">flux normal</text>
+      <Label x="100" y="410" text="Boundary circulation links to curl; outward flux links to divergence." />
     </g>
   );
 }
@@ -971,6 +1027,8 @@ function labMetrics(visual: AdvancedLabVisual, a: number, b: number) {
   if (visual === "numerical-integration") return [{ label: "subintervals", value: `${Math.round(a)}` }, { label: "method", value: `${["rect", "trap", "simpson"][Math.round(b)] ?? "rect"}` }];
   if (visual === "euler-rk4") return [{ label: "steps", value: `${Math.round(a)}` }, { label: "growth", value: `${roundTo(b, 2)}` }];
   if (visual === "linear-system-solver") return [{ label: "iteration", value: `${Math.round(a)}` }, { label: "relaxation", value: `${roundTo(b, 2)}` }];
+  if (visual === "z-transform") return [{ label: "stability", value: a < 1 ? "stable" : "unstable" }, { label: "pole radius", value: `${roundTo(a, 2)}` }];
+  if (visual === "vector-calculus-field") return [{ label: "divergence", value: `${roundTo(2 * b, 3)}` }, { label: "curl", value: `${roundTo(2 * a, 3)}` }];
   return [{ label: "Control A", value: `${roundTo(a, 2)}` }, { label: "Control B", value: `${roundTo(b, 2)}` }];
 }
 
@@ -985,6 +1043,8 @@ function noticeText(visual: AdvancedLabVisual) {
   if (["vector-2d-3d", "span-basis", "matrix-grid-warp", "gaussian-elimination", "eigenvector-direction", "diagonalization-flow", "gram-schmidt", "quadratic-form-surface"].includes(visual)) return "Track vectors, bases, matrix actions, pivots, eigen-directions, and orthogonal structure.";
   if (["cayley-table", "group-operation", "symmetry-group", "permutation-cycle", "coset-partition", "homomorphism-map", "ring-operation-table"].includes(visual)) return "Track closure, identity, cycles, cosets, structure-preserving maps, and modular operations.";
   if (["slope-field", "solution-curve", "direction-field", "orthogonal-trajectory", "spring-mass-ode", "heat-equation", "wave-equation", "laplace-potential"].includes(visual)) return "Track local rates of change, trajectories, oscillation, diffusion, waves, and boundary-driven potentials.";
+  if (visual === "z-transform") return "Track poles, the unit circle, region of convergence, and discrete recurrence stability.";
+  if (visual === "vector-calculus-field") return "Track divergence, curl, flux, and boundary circulation in one vector field.";
   if (["root-finding", "newton-raphson", "error-convergence", "interpolation-builder", "numerical-integration", "euler-rk4", "linear-system-solver"].includes(visual)) return "Track approximation, iteration, error decay, fitted curves, numerical area, and solver convergence.";
   if (["venn", "mapping", "relation-matrix", "truth-table", "equivalence"].includes(visual)) return "Look for structure: regions, arrows, matrix patterns, or partitions.";
   return "Move both controls and compare the visual with the formula.";

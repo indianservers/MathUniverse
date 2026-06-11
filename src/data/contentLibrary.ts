@@ -1,5 +1,3 @@
-import { ANVESHAK_STATISTICS_URL } from "./externalLinks";
-
 export type LibraryKind = "lesson" | "worksheet" | "activity" | "assignment";
 export type AudienceMode = "Kid" | "Teacher" | "Both";
 
@@ -85,16 +83,16 @@ export const contentLibrary: LibraryItem[] = [
   },
   {
     id: "statistics-bridge",
-    title: "Statistics Bridge to Anveshak",
+    title: "Statistics and Probability Data Lab",
     kind: "assignment",
     gradeBand: "Class 7-12",
     topic: "Statistics",
-    route: ANVESHAK_STATISTICS_URL,
+    route: "/probability-statistics",
     duration: 35,
     audience: "Teacher",
-    summary: "Launch the dedicated statistics app and connect sampling, variation, regression, and uncertainty back to class work.",
+    summary: "Use native charts, sampling, variation, regression, and uncertainty labs with class datasets.",
     outcomes: ["Collect data", "Compare samples", "Reflect on uncertainty"],
-    tags: ["statistics", "external", "Anveshak"],
+    tags: ["statistics", "probability", "data lab"],
   },
 ];
 

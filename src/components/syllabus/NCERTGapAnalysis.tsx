@@ -7,7 +7,6 @@ const statusMeta: Record<NCERTGapStatus, { label: string; className: string }> =
   strong: { label: "Strong", className: "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-400/20 dark:bg-emerald-400/10 dark:text-emerald-200" },
   partial: { label: "Partial", className: "border-cyan-300 bg-cyan-50 text-cyan-700 dark:border-cyan-400/20 dark:bg-cyan-400/10 dark:text-cyan-200" },
   missing: { label: "Missing", className: "border-rose-300 bg-rose-50 text-rose-700 dark:border-rose-400/20 dark:bg-rose-400/10 dark:text-rose-200" },
-  external: { label: "External", className: "border-violet-300 bg-violet-50 text-violet-700 dark:border-violet-400/20 dark:bg-violet-400/10 dark:text-violet-200" },
 };
 
 const classLevels = ["Class 7", "Class 8", "Class 9", "Class 10"] as const;
@@ -19,7 +18,7 @@ export default function NCERTGapAnalysis() {
         <SummaryTile label="Strong coverage" value={ncertGapSummary.strong} icon={<CheckCircle2 className="h-5 w-5" />} tone="from-emerald-400 to-cyan-500" />
         <SummaryTile label="Partial coverage" value={ncertGapSummary.partial} icon={<Layers className="h-5 w-5" />} tone="from-cyan-400 to-blue-500" />
         <SummaryTile label="Missing modules" value={ncertGapSummary.missing} icon={<AlertTriangle className="h-5 w-5" />} tone="from-rose-400 to-orange-500" />
-        <SummaryTile label="External Anveshak" value={ncertGapSummary.external} icon={<ExternalLink className="h-5 w-5" />} tone="from-violet-400 to-fuchsia-500" />
+        <SummaryTile label="Native data labs" value={ncertGapSummary.nativeData} icon={<ExternalLink className="h-5 w-5" />} tone="from-violet-400 to-fuchsia-500" />
       </div>
 
       <div className="space-y-5">
@@ -34,7 +33,7 @@ export default function NCERTGapAnalysis() {
                   <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{items.length} NCERT chapters mapped</p>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {(["strong", "partial", "missing", "external"] as NCERTGapStatus[]).map((status) => (
+                  {(["strong", "partial", "missing"] as NCERTGapStatus[]).map((status) => (
                     <span key={status} className={`rounded-full border px-3 py-1 text-xs font-bold ${statusMeta[status].className}`}>
                       {statusMeta[status].label}: {items.filter((item) => item.status === status).length}
                     </span>

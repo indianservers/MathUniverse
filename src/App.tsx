@@ -1,8 +1,7 @@
-import { Component, lazy, Suspense, useEffect, type ErrorInfo, type ReactNode } from "react";
+import { Component, lazy, Suspense, type ErrorInfo, type ReactNode } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "./components/layout/AppLayout";
 import SeoMetadata from "./components/seo/SeoMetadata";
-import { ANVESHAK_STATISTICS_URL } from "./data/externalLinks";
 
 const About = lazy(() => import("./pages/About"));
 const AdvancedSyllabusLabPage = lazy(() => import("./pages/AdvancedSyllabusLabPage"));
@@ -113,20 +112,6 @@ class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundary
   }
 }
 
-function ExternalStatisticsRedirect() {
-  useEffect(() => {
-    window.location.replace(ANVESHAK_STATISTICS_URL);
-  }, []);
-
-  return (
-    <div className="p-6">
-      <a className="action-primary" href={ANVESHAK_STATISTICS_URL}>
-        Open Statistics in Anveshak
-      </a>
-    </div>
-  );
-}
-
 export default function App() {
   return (
     <AppErrorBoundary>
@@ -165,7 +150,7 @@ export default function App() {
             <Route path="combinatorics" element={<Combinatorics />} />
             <Route path="complex-numbers" element={<ComplexNumbers />} />
             <Route path="set-theory" element={<SetTheory />} />
-            <Route path="statistics" element={<ExternalStatisticsRedirect />} />
+            <Route path="statistics" element={<ProbabilityStatistics />} />
             <Route path="linear-algebra" element={<LinearAlgebra />} />
             <Route path="matrices" element={<MatrixOperations />} />
             <Route path="matrices/:operationId" element={<MatrixOperationPage />} />
