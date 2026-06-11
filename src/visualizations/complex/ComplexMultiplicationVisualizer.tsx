@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import FormulaBlock from "../../components/ui/FormulaBlock";
 import SectionCard from "../../components/ui/SectionCard";
-import SliderControl from "../../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../../components/ui/SliderControl";
 import { complexAngle, complexMagnitude, complexMultiply } from "../../utils/complex";
 import { radiansToDegrees, roundTo } from "../../utils/math";
 
@@ -24,12 +24,12 @@ export default function ComplexMultiplicationVisualizer() {
     <SectionCard title="Complex Multiplication as Rotation" description="Multiplying complex numbers rotates by the second angle and scales by the second magnitude.">
       <div className="grid gap-6 xl:grid-cols-[360px_1fr]">
         <div className="space-y-3">
-          <div className="grid grid-cols-2 gap-3">
-            <SliderControl label="z1 real a" value={a} min={-3} max={3} step={0.1} onChange={setA} />
-            <SliderControl label="z1 imag b" value={b} min={-3} max={3} step={0.1} onChange={setB} />
-            <SliderControl label="z2 real c" value={c} min={-3} max={3} step={0.1} onChange={setC} />
-            <SliderControl label="z2 imag d" value={d} min={-3} max={3} step={0.1} onChange={setD} />
-          </div>
+          <SliderGroup title="Complex components">
+            <SliderControl density="compact" label="z1 real a" value={a} min={-3} max={3} step={0.1} onChange={setA} />
+            <SliderControl density="compact" label="z1 imag b" value={b} min={-3} max={3} step={0.1} onChange={setB} />
+            <SliderControl density="compact" label="z2 real c" value={c} min={-3} max={3} step={0.1} onChange={setC} />
+            <SliderControl density="compact" label="z2 imag d" value={d} min={-3} max={3} step={0.1} onChange={setD} />
+          </SliderGroup>
           <FormulaBlock title="Multiplication" formula="(a+bi)(c+di)=(ac-bd)+(ad+bc)i" />
           <div className="grid grid-cols-2 gap-2 text-sm">
             <Metric label="|z1|" value={complexMagnitude(a, b)} />

@@ -1,7 +1,7 @@
 import { RotateCcw, Sparkles } from "lucide-react";
 import { useMemo, useState } from "react";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import {
   binomialDistribution,
@@ -101,8 +101,10 @@ export default function MathLabProbability() {
         </SectionCard>
 
         <SectionCard title="Binomial Distribution" description="Model the probability of k successes in n independent trials.">
-          <SliderControl label="Trials n" value={binomialN} min={1} max={50} step={1} onChange={(value) => setBinomialN(clampInteger(value, 1, 50))} />
-          <SliderControl label="Success probability p" value={binomialP} min={0.05} max={0.95} step={0.05} onChange={setBinomialP} />
+          <SliderGroup title="Binomial controls">
+            <SliderControl density="compact" label="Trials n" value={binomialN} min={1} max={50} step={1} onChange={(value) => setBinomialN(clampInteger(value, 1, 50))} />
+            <SliderControl density="compact" label="Success probability p" value={binomialP} min={0.05} max={0.95} step={0.05} onChange={setBinomialP} />
+          </SliderGroup>
           <BarChart bins={binomial} valueLabel="probability" normalize />
         </SectionCard>
       </div>

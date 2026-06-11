@@ -1,7 +1,7 @@
 import { type MouseEvent, useMemo, useState } from "react";
 import { RotateCcw, Search, ZoomIn, ZoomOut } from "lucide-react";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import { compileFunctionExpression } from "../utils/functionParser";
 import { roundTo } from "../utils/math";
@@ -95,11 +95,12 @@ export default function FunctionsGraphsVisualizer() {
             </div>
 
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/5">
-              <p className="mb-3 text-sm font-black">Transformation</p>
-              <SliderControl label="Vertical shift k" value={k} min={-8} max={8} step={0.1} onChange={setK} />
-              <SliderControl label="Horizontal shift h" value={h} min={-8} max={8} step={0.1} onChange={setH} />
-              <SliderControl label="Vertical stretch a" value={a} min={-4} max={4} step={0.1} onChange={setA} />
-              <SliderControl label="Horizontal stretch b" value={b} min={-4} max={4} step={0.1} onChange={setB} />
+              <SliderGroup title="Transformation">
+                <SliderControl density="compact" label="Vertical shift k" value={k} min={-8} max={8} step={0.1} onChange={setK} />
+                <SliderControl density="compact" label="Horizontal shift h" value={h} min={-8} max={8} step={0.1} onChange={setH} />
+                <SliderControl density="compact" label="Vertical stretch a" value={a} min={-4} max={4} step={0.1} onChange={setA} />
+                <SliderControl density="compact" label="Horizontal stretch b" value={b} min={-4} max={4} step={0.1} onChange={setB} />
+              </SliderGroup>
               <p className="mt-3 rounded-xl bg-white p-3 font-mono text-xs font-bold dark:bg-slate-950">y = {roundTo(a, 2)} f({roundTo(b, 2)}(x - {roundTo(h, 2)})) + {roundTo(k, 2)}</p>
             </div>
           </div>

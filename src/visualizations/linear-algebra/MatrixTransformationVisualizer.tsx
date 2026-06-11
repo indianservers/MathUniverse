@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
-import SliderControl from "../../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
 import { Matrix2x2, matrixVectorMultiply2D, reflectionMatrixX, reflectionMatrixY, rotationMatrix, scalingMatrix, shearMatrix } from "../../utils/linearAlgebra";
 import { roundTo } from "../../utils/math";
@@ -34,12 +34,12 @@ export default function MatrixTransformationVisualizer() {
     <SectionCard title="Matrix Transformation Visualizer" description="A 2x2 matrix reshapes the plane. The determinant shows area scaling and orientation flip.">
       <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-3">
-            <SliderControl label="a" value={matrix[0][0]} min={-3} max={3} step={0.1} onChange={(v) => setCell(0, 0, v)} />
-            <SliderControl label="b" value={matrix[0][1]} min={-3} max={3} step={0.1} onChange={(v) => setCell(0, 1, v)} />
-            <SliderControl label="c" value={matrix[1][0]} min={-3} max={3} step={0.1} onChange={(v) => setCell(1, 0, v)} />
-            <SliderControl label="d" value={matrix[1][1]} min={-3} max={3} step={0.1} onChange={(v) => setCell(1, 1, v)} />
-          </div>
+          <SliderGroup title="Matrix entries">
+            <SliderControl density="compact" label="a" value={matrix[0][0]} min={-3} max={3} step={0.1} onChange={(v) => setCell(0, 0, v)} />
+            <SliderControl density="compact" label="b" value={matrix[0][1]} min={-3} max={3} step={0.1} onChange={(v) => setCell(0, 1, v)} />
+            <SliderControl density="compact" label="c" value={matrix[1][0]} min={-3} max={3} step={0.1} onChange={(v) => setCell(1, 0, v)} />
+            <SliderControl density="compact" label="d" value={matrix[1][1]} min={-3} max={3} step={0.1} onChange={(v) => setCell(1, 1, v)} />
+          </SliderGroup>
           <div className="flex flex-wrap gap-2">{presets.map(([name, m]) => <button key={name} className="rounded-full bg-slate-100 px-3 py-2 text-xs font-semibold dark:bg-white/10" onClick={() => setMatrix(m)}>{name}</button>)}</div>
           <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
             <p className="font-mono text-lg">[{roundTo(matrix[0][0], 2)} {roundTo(matrix[0][1], 2)}; {roundTo(matrix[1][0], 2)} {roundTo(matrix[1][1], 2)}]</p>

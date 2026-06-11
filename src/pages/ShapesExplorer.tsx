@@ -6,7 +6,7 @@ import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import FormulaBlock from "../components/ui/FormulaBlock";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import { useProgress } from "../hooks/useProgress";
 import { roundTo } from "../utils/math";
@@ -187,11 +187,13 @@ export default function ShapesExplorer() {
               <p className="font-bold">Visual formula guide</p>
               <p className="mt-2">{formulaExplanation(selected.id, a, b, c, sides, angle)}</p>
             </div>
-            <SliderControl label={primaryLabel(selected)} value={a} min={0.5} max={10} step={0.1} onChange={setA} />
-            {needsSecond(selected.id) && <SliderControl label={secondLabel(selected)} value={b} min={0.5} max={10} step={0.1} onChange={setB} />}
-            {needsThird(selected.id) && <SliderControl label={thirdLabel(selected)} value={c} min={0.5} max={12} step={0.1} onChange={setC} />}
-            {selected.id === "regular-polygon" && <SliderControl label="Number of sides" value={sides} min={3} max={12} step={1} onChange={(value) => setSides(Math.round(value))} />}
-            {selected.id === "sector" && <SliderControl label="Central angle" value={angle} min={5} max={360} step={1} onChange={setAngle} unit="deg" />}
+            <SliderGroup title="Shape controls">
+              <SliderControl density="compact" label={primaryLabel(selected)} value={a} min={0.5} max={10} step={0.1} onChange={setA} />
+              {needsSecond(selected.id) && <SliderControl density="compact" label={secondLabel(selected)} value={b} min={0.5} max={10} step={0.1} onChange={setB} />}
+              {needsThird(selected.id) && <SliderControl density="compact" label={thirdLabel(selected)} value={c} min={0.5} max={12} step={0.1} onChange={setC} />}
+              {selected.id === "regular-polygon" && <SliderControl density="compact" label="Number of sides" value={sides} min={3} max={12} step={1} onChange={(value) => setSides(Math.round(value))} />}
+              {selected.id === "sector" && <SliderControl density="compact" label="Central angle" value={angle} min={5} max={360} step={1} onChange={setAngle} unit="deg" />}
+            </SliderGroup>
             {selected.kind === "3d" && (
               <label className="flex items-center gap-3 rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10">
                 <input type="checkbox" checked={wireframe} onChange={(event) => setWireframe(event.target.checked)} />

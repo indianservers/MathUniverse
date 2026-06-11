@@ -5,7 +5,7 @@ import type { MathObject } from "../../workspace/types";
 import { useWorkspaceStore } from "../../workspace/workspaceStore";
 
 export type ObjectListAction = "show" | "hide" | "duplicate" | "restore" | "remove";
-type ObjectListFilter = "all" | "algebra" | "geometry" | "space3d" | "visible" | "hidden" | "selected";
+type ObjectListFilter = "all" | "algebra" | "geometry" | "space3d" | "measurements" | "visible" | "hidden" | "selected";
 
 type ObjectListProps = {
   objects: MathObject[];
@@ -58,6 +58,7 @@ export default function ObjectList({ objects, selectedObjectId, selectedObjectId
       if (filter === "algebra" && objectScope(object) !== "algebra") return false;
       if (filter === "geometry" && objectScope(object) !== "geometry") return false;
       if (filter === "space3d" && objectScope(object) !== "space3d") return false;
+      if (filter === "measurements" && objectScope(object) !== "measurements") return false;
       if (filter === "visible" && !object.visible) return false;
       if (filter === "hidden" && object.visible) return false;
       if (filter === "selected" && !selectedSet.has(object.id)) return false;
@@ -225,12 +226,14 @@ const objectFilters: Array<{ id: ObjectListFilter; label: string }> = [
   { id: "algebra", label: "Algebra" },
   { id: "geometry", label: "2D" },
   { id: "space3d", label: "3D" },
+  { id: "measurements", label: "Measure" },
   { id: "visible", label: "Shown" },
   { id: "hidden", label: "Hidden" },
   { id: "selected", label: "Selected" },
 ];
 
-function objectScope(object: MathObject): "algebra" | "geometry" | "space3d" | "other" {
+function objectScope(object: MathObject): "algebra" | "geometry" | "space3d" | "measurements" | "other" {
+  if (object.role === "measurement" || object.metadata?.source === "engine-measurement") return "measurements";
   if (object.id.startsWith("geometry:") || object.dimension === "2d") return "geometry";
   if (object.id.startsWith("space3d:") || object.dimension === "3d") return "space3d";
   if (object.id.startsWith("algebra:") || object.id.startsWith("plot:") || object.id.startsWith("slider:") || object.id.startsWith("result:") || object.role === "algebra") return "algebra";
@@ -246,5 +249,5 @@ function countObjectScopes(objects: MathObject[], selectedSet: Set<string>): Rec
     else counts.hidden += 1;
     if (selectedSet.has(object.id)) counts.selected += 1;
     return counts;
-  }, { all: 0, algebra: 0, geometry: 0, space3d: 0, visible: 0, hidden: 0, selected: 0 });
+  }, { all: 0, algebra: 0, geometry: 0, space3d: 0, measurements: 0, visible: 0, hidden: 0, selected: 0 });
 }

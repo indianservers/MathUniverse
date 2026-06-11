@@ -7,7 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../../components/three/ThreeSceneWrapper";
 import SectionCard from "../../components/ui/SectionCard";
-import SliderControl from "../../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
 import { degreesToRadians, roundTo } from "../../utils/math";
 
@@ -81,16 +81,18 @@ export default function TrigonometryMathLab({ compact = false }: { compact?: boo
               </button>
             ))}
           </div>
-          <SliderControl label="Angle theta" value={angle} min={mode === "triangle" || mode === "navigation" ? 5 : -360} max={mode === "triangle" || mode === "navigation" ? 85 : 360} step={1} unit="deg" onChange={setAngle} />
-          {(mode === "unit-circle" || mode === "identity" || mode === "inverse") && <SliderControl label="Radius / scale" value={radius} min={70} max={180} step={5} onChange={setRadius} />}
-          {mode === "wave" && (
-            <>
-              <SliderControl label="Amplitude" value={amplitude} min={0.5} max={5} step={0.1} onChange={setAmplitude} />
-              <SliderControl label="Frequency" value={frequency} min={0.5} max={5} step={0.1} onChange={setFrequency} />
-              <SliderControl label="Phase" value={phase} min={-180} max={180} step={1} unit="deg" onChange={setPhase} />
-            </>
-          )}
-          {(mode === "triangle" || mode === "navigation") && <SliderControl label="Distance / hypotenuse" value={distance} min={80} max={260} step={5} onChange={setDistance} />}
+          <SliderGroup title="Active controls">
+            <SliderControl density="compact" label="Angle theta" value={angle} min={mode === "triangle" || mode === "navigation" ? 5 : -360} max={mode === "triangle" || mode === "navigation" ? 85 : 360} step={1} unit="deg" onChange={setAngle} />
+            {(mode === "unit-circle" || mode === "identity" || mode === "inverse") && <SliderControl density="compact" label="Radius / scale" value={radius} min={70} max={180} step={5} onChange={setRadius} />}
+            {mode === "wave" && (
+              <>
+                <SliderControl density="compact" label="Amplitude" value={amplitude} min={0.5} max={5} step={0.1} onChange={setAmplitude} />
+                <SliderControl density="compact" label="Frequency" value={frequency} min={0.5} max={5} step={0.1} onChange={setFrequency} />
+                <SliderControl density="compact" label="Phase" value={phase} min={-180} max={180} step={1} unit="deg" onChange={setPhase} />
+              </>
+            )}
+            {(mode === "triangle" || mode === "navigation") && <SliderControl density="compact" label="Distance / hypotenuse" value={distance} min={80} max={260} step={5} onChange={setDistance} />}
+          </SliderGroup>
           <MetricGrid mode={mode} values={values} fn={fn} />
         </div>
 

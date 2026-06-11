@@ -38,6 +38,9 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
   const updateStyle = (patch: Partial<MathObjectStyle>) => {
     applyPatch({ style: { ...object.style, ...patch } }, `Edited ${object.label} style`);
   };
+  const updateProperties = (patch: NonNullable<MathObject["properties"]>) => {
+    applyPatch({ properties: { ...object.properties, ...patch } }, `Edited ${object.label} properties`);
+  };
   const updateInteractivity = (patch: Partial<MathObjectInteractivity>) => {
     if (!object.interactivity) return;
     applyPatch({ interactivity: { ...object.interactivity, ...patch } }, `Edited ${object.label} interaction`);
@@ -66,6 +69,11 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
 
       <div className="mt-3 rounded-xl bg-slate-100 p-3 dark:bg-slate-950/70">
         <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Value</p>
+        {object.metadata?.source === "engine-measurement" && (
+          <p className="mt-2 rounded-lg bg-cyan-100 px-2 py-1 text-[11px] font-bold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100">
+            Derived by the shared Graph/2D/3D engine bridge.
+          </p>
+        )}
         <input
           className="mt-2 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 font-mono text-xs font-semibold text-slate-900 dark:border-white/10 dark:bg-slate-900 dark:text-cyan-50"
           value={object.value}
@@ -87,6 +95,69 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
         <div className="grid grid-cols-2 gap-2">
           <ToggleEdit label="Visible" checked={object.visible} onChange={(checked) => applyPatch({ visible: checked, status: checked ? "ready" : "hidden" }, checked ? `Show ${object.label}` : `Hide ${object.label}`)} />
           <ToggleEdit label="Locked" checked={Boolean(object.locked)} onChange={(checked) => applyPatch({ locked: checked }, checked ? `Locked ${object.label}` : `Unlocked ${object.label}`)} />
+        </div>
+      </div>
+
+      <div className="mt-3 rounded-xl bg-slate-100 p-3 dark:bg-slate-950/70">
+        <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Object Properties</p>
+        <label className="mt-2 block text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
+          Caption
+          <input
+            className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-xs font-bold dark:border-white/10 dark:bg-slate-900"
+            value={object.properties?.caption ?? ""}
+            disabled={object.locked}
+            onChange={(event) => updateProperties({ caption: event.target.value })}
+          />
+        </label>
+        <div className="mt-2 grid grid-cols-2 gap-2">
+          <NumberEdit label="Layer" value={object.properties?.layer ?? 0} min={0} max={99} step={1} disabled={Boolean(object.locked)} onChange={(value) => updateProperties({ layer: value })} />
+          <label className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
+            Label mode
+            <select
+              className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-xs font-bold dark:border-white/10 dark:bg-slate-900"
+              value={object.properties?.labelMode ?? "name"}
+              disabled={object.locked}
+              onChange={(event) => updateProperties({ labelMode: event.target.value as NonNullable<MathObject["properties"]>["labelMode"] })}
+            >
+              <option value="name">Name</option>
+              <option value="value">Value</option>
+              <option value="caption">Caption</option>
+              <option value="name-value">Name + value</option>
+              <option value="hidden">Hidden</option>
+            </select>
+          </label>
+        </div>
+        <label className="mt-2 block text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
+          Conditional visibility
+          <input
+            className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 font-mono text-xs font-bold dark:border-white/10 dark:bg-slate-900"
+            placeholder="a > 0"
+            value={object.properties?.conditionalVisibility ?? ""}
+            disabled={object.locked}
+            onChange={(event) => updateProperties({ conditionalVisibility: event.target.value })}
+          />
+        </label>
+        <div className="mt-2 grid grid-cols-2 gap-2">
+          <label className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
+            Dynamic RGB
+            <input
+              className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 font-mono text-xs font-bold dark:border-white/10 dark:bg-slate-900"
+              placeholder="255,0,0"
+              value={formatDynamicColor(object)}
+              disabled={object.locked}
+              onChange={(event) => updateProperties({ dynamicColor: parseDynamicColor(event.target.value) })}
+            />
+          </label>
+          <label className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
+            Dynamic opacity
+            <input
+              className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 font-mono text-xs font-bold dark:border-white/10 dark:bg-slate-900"
+              placeholder="0.75"
+              value={object.properties?.dynamicStyle?.opacity ?? ""}
+              disabled={object.locked}
+              onChange={(event) => updateProperties({ dynamicStyle: { ...object.properties?.dynamicStyle, opacity: event.target.value } })}
+            />
+          </label>
         </div>
       </div>
 
@@ -278,4 +349,15 @@ function clamp(value: number, min: number, max: number) {
 
 function finiteOrZero(value: number) {
   return Number.isFinite(value) ? value : 0;
+}
+
+function formatDynamicColor(object: MathObject) {
+  const color = object.properties?.dynamicColor;
+  return color ? [color.red, color.green, color.blue].join(",") : "";
+}
+
+function parseDynamicColor(value: string) {
+  const [red, green, blue, alpha] = value.split(",").map((part) => part.trim());
+  if (!red && !green && !blue) return undefined;
+  return { red: red || "0", green: green || "0", blue: blue || "0", alpha };
 }

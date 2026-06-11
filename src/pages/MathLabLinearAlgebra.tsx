@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { FormulaBlock, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import { ResetExampleButton } from "../components/ui/UiFeedback";
 import {
   Vector2,
@@ -145,10 +145,10 @@ export default function MathLabLinearAlgebra() {
 
         <SectionCard title="Linear Combination, Span, Basis">
           <FormulaBlock formula={"w=au+bv"} />
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <SliderControl label="combination a" min={-4} max={4} step={0.1} value={a} onChange={setA} />
-            <SliderControl label="combination b" min={-4} max={4} step={0.1} value={b} onChange={setB} />
-          </div>
+          <SliderGroup title="Combination controls" className="mt-4">
+            <SliderControl density="compact" label="combination a" min={-4} max={4} step={0.1} value={a} onChange={setA} />
+            <SliderControl density="compact" label="combination b" min={-4} max={4} step={0.1} value={b} onChange={setB} />
+          </SliderGroup>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <Metric label="w" value={`[${combination.map(format).join(", ")}]`} />
             <Metric label="det([u v])" value={format(basis.determinant)} />

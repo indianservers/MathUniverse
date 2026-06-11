@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import FormulaBlock from "../components/ui/FormulaBlock";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
 import { getGeometryConcept, type GeometryConcept, type GeometryVisualType } from "../data/geometryConcepts";
@@ -40,8 +40,10 @@ function GeometryConceptDetail({ concept }: { concept: GeometryConcept }) {
         <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
           <div className="space-y-4">
             <FormulaBlock title="Core Formula" formula={concept.formula} explanation={concept.summary} />
-            <SliderControl label={concept.sliderA} value={a} min={concept.minA} max={concept.maxA} step={concept.stepA} onChange={setA} />
-            <SliderControl label={concept.sliderB} value={b} min={concept.minB} max={concept.maxB} step={concept.stepB} onChange={setB} />
+            <SliderGroup title="Concept controls">
+              <SliderControl density="compact" label={concept.sliderA} value={a} min={concept.minA} max={concept.maxA} step={concept.stepA} onChange={setA} />
+              <SliderControl density="compact" label={concept.sliderB} value={b} min={concept.minB} max={concept.maxB} step={concept.stepB} onChange={setB} />
+            </SliderGroup>
             <div className="grid grid-cols-2 gap-2">
               {metrics.map((metric) => <Metric key={metric.label} label={metric.label} value={metric.value} />)}
             </div>

@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import GraphCard from "../components/ui/GraphCard";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import ResponsiveBarChart from "../components/charts/ResponsiveBarChart";
 import ResponsiveLineChart from "../components/charts/ResponsiveLineChart";
@@ -26,9 +26,11 @@ export default function ProbabilityStatistics() {
       <div className="grid gap-6 xl:grid-cols-[320px_minmax(0,1fr)]">
         <SectionCard title="Normal Controls">
           <div className="space-y-4">
-            <SliderControl label="Mean mu" value={mean} min={-10} max={10} step={0.1} onChange={setMean} />
-            <SliderControl label="Standard deviation sigma" value={safeSigma} min={0.1} max={6} step={0.1} onChange={setSigma} />
-            <SliderControl label="Observed x" value={x} min={-15} max={15} step={0.1} onChange={setX} />
+            <SliderGroup title="Distribution parameters">
+              <SliderControl density="compact" label="Mean mu" value={mean} min={-10} max={10} step={0.1} onChange={setMean} />
+              <SliderControl density="compact" label="Standard deviation sigma" value={safeSigma} min={0.1} max={6} step={0.1} onChange={setSigma} />
+              <SliderControl density="compact" label="Observed x" value={x} min={-15} max={15} step={0.1} onChange={setX} />
+            </SliderGroup>
             <div className="rounded-2xl bg-cyan-50 p-4 text-sm font-semibold text-cyan-900 dark:bg-cyan-400/10 dark:text-cyan-100">
               z = (x - mu) / sigma = {round(z)}<br />
               {"P(Z <= z) ~= "} {round(normalCdf(z))}

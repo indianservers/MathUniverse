@@ -7,7 +7,7 @@ import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import { roundTo } from "../utils/math";
 import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicSimplify, symbolicSolve, trySymbolic } from "../utils/symbolic";
@@ -16,6 +16,7 @@ import { createAnimationAction, describeTransformAction, parseStyleAction, parse
 import { assessConstruction, buildBeyondGeoGebraUnitPackages, commandDocsForPackages, objectAwareTutorResponse, productionReadinessPlan, validateGuidedTaskResponse, type UnitLabPackage } from "../workspace/beyondGeoGebraKernel";
 import { criticalGapImplementationPhases } from "../workspace/criticalGapPhases";
 import { buildDynamicObjectGraph, graphHealthSummary, type DynamicObjectGraph, type DynamicObjectKind } from "../workspace/dynamicObjectKernel";
+import { sampleGraph } from "../workspace/graphSampler";
 import { contextMenuForObject, createProtocolPlaybackPlan, createSliderObject, exportPresets, imageWorkflowSpec, rankSnapCandidates, styleBarForObject, tabletControlSpec, type ExportPreset, type ImageWorkflowSpec, type ProtocolPlaybackPlan, type SliderObject, type SnapCandidate, type StyleBarControl, type TabletControlSpec, type WorkflowObjectType } from "../workspace/highPriorityWorkflowKernel";
 import {
   circle as kernelCircle,
@@ -60,7 +61,7 @@ import { runWorkspaceQaSuite, type WorkspaceQaReport } from "../workspace/worksp
 
 type ResultTableRow = { x: number; y: number; label?: string };
 type ResultCard = { id: string; input: string; interpretation: string; result: string; detail?: string; steps?: string[]; table?: ResultTableRow[]; related?: string[]; graphExpression?: string };
-type PlotKind = "function" | "inequality" | "scatter" | "regression";
+type PlotKind = "function" | "inequality" | "scatter" | "regression" | "implicit" | "parametric" | "polar" | "piecewise";
 type PlotItem = { id: string; expression: string; color: string; name?: string; kind?: PlotKind; points?: ResultTableRow[]; visible?: boolean; locked?: boolean; trace?: boolean };
 type SpreadsheetCellGrid = string[][];
 type GeometryTool = "select" | "point" | "segment" | "ray" | "vector" | "line" | "circle" | "polygon" | "angle" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "circle-radius" | "circle-3-points" | "on-circle" | "intersect" | "perpendicular-bisector" | "angle-bisector" | "tangent" | "polar" | "locus" | "regular-polygon" | "sector" | "arc" | "compass" | "mirror" | "rotate" | "dilate" | "translate" | "show-hide" | "lock" | "freehand" | "text" | "image" | "move-canvas" | "zoom" | "triangle" | "rectangle" | "shape-circle" | "parabola" | "ellipse" | "hyperbola" | "reflect" | "trace" | "stop-trace" | "clear-trace" | "delete" | "redo" | "reset" | "save" | "load";
@@ -575,7 +576,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       return;
     }
     if (["image", "delete", "redo", "reset", "save", "load"].includes(tool)) return;
-    const quickCreateTools: GeometryTool[] = ["text", "triangle", "rectangle", "shape-circle", "parabola", "ellipse", "hyperbola"];
+    const quickCreateTools: GeometryTool[] = ["text", "rectangle", "shape-circle", "parabola", "ellipse", "hyperbola"];
     if (quickCreateTools.includes(tool)) {
       const point = clientToBoard(event);
       if (point) createQuickGeometryObject(tool, point.x, point.y);
@@ -587,7 +588,55 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       addPoint(point.x, point.y);
       return;
     }
-    createDefaultGeometryToolObject(tool, point.x, point.y);
+    createPointForActiveGeometryTool(tool, point.x, point.y);
+  };
+
+  const createPointForActiveGeometryTool = (activeTool: GeometryTool, x: number, y: number) => {
+    if (activeTool === "freehand" || activeTool === "move-canvas" || activeTool === "zoom") {
+      createDefaultGeometryToolObject(activeTool, x, y);
+      return;
+    }
+    const pickTools: GeometryTool[] = [
+      "segment",
+      "line",
+      "ray",
+      "vector",
+      "circle",
+      "polygon",
+      "triangle",
+      "angle",
+      "parallel",
+      "perpendicular",
+      "midpoint",
+      "fixed-length",
+      "circle-radius",
+      "circle-3-points",
+      "on-circle",
+      "intersect",
+      "perpendicular-bisector",
+      "angle-bisector",
+      "tangent",
+      "polar",
+      "locus",
+      "regular-polygon",
+      "arc",
+      "sector",
+      "compass",
+      "mirror",
+      "rotate",
+      "dilate",
+      "translate",
+    ];
+    if (!pickTools.includes(activeTool)) return;
+    const snapped = snapBoardPoint({ x, y }, construction);
+    const newPoint: GeoPoint = {
+      id: crypto.randomUUID(),
+      x: roundTo(snapped.x, 2),
+      y: roundTo(snapped.y, 2),
+      label: nextPointLabel(construction.points),
+    };
+    setConstruction((current) => solveConstruction({ ...current, points: [...current.points, newPoint] }, newPoint.id));
+    consumeGeometryToolPoint(activeTool, newPoint.id, { ...construction, points: [...construction.points, newPoint] });
   };
 
   const createDefaultGeometryToolObject = (activeTool: GeometryTool, x: number, y: number) => {
@@ -684,111 +733,115 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const handlePointPick = (pointId: string) => {
-    if (tool === "line" || tool === "segment" || tool === "ray" || tool === "vector") {
+    consumeGeometryToolPoint(tool, pointId, construction);
+  };
+
+  const consumeGeometryToolPoint = (activeTool: GeometryTool, pointId: string, constructionContext: Construction) => {
+    if (activeTool === "line" || activeTool === "segment" || activeTool === "ray" || activeTool === "vector") {
       const next = [...selectedPointIds, pointId].slice(-2);
       setSelectedPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
-        recordWorkspaceStep(`Create ${tool}`, `${labelForPoint(construction, next[0])}${labelForPoint(construction, next[1])}`);
-        const style: GeoStyle = tool === "segment" ? { label: "segment", color: "#22d3ee" } : tool === "ray" ? { label: "ray", color: "#a78bfa" } : tool === "vector" ? { label: "vector", color: "#10b981", strokeWidth: 5 } : {};
+        recordWorkspaceStep(`Create ${activeTool}`, `${labelForPoint(constructionContext, next[0])}${labelForPoint(constructionContext, next[1])}`);
+        const style: GeoStyle = activeTool === "segment" ? { label: "segment", color: "#22d3ee" } : activeTool === "ray" ? { label: "ray", color: "#a78bfa" } : activeTool === "vector" ? { label: "vector", color: "#10b981", strokeWidth: 5 } : { label: "line", color: "#8b5cf6" };
         setConstruction((current) => ({ ...current, lines: [...current.lines, { id: crypto.randomUUID(), a: next[0], b: next[1], style }] }));
         setSelectedPointIds([]);
       }
     }
-    if (tool === "circle" || tool === "circle-radius") {
+    if (activeTool === "circle" || activeTool === "circle-radius") {
       const next = [...selectedPointIds, pointId].slice(-2);
       setSelectedPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
-        recordWorkspaceStep(tool === "circle-radius" ? "Create circle by radius" : "Create circle", `Center ${labelForPoint(construction, next[0])}, edge ${labelForPoint(construction, next[1])}`);
+        recordWorkspaceStep(activeTool === "circle-radius" ? "Create circle by radius" : "Create circle", `Center ${labelForPoint(constructionContext, next[0])}, edge ${labelForPoint(constructionContext, next[1])}`);
         setConstruction((current) => ({ ...current, circles: [...current.circles, { id: crypto.randomUUID(), center: next[0], edge: next[1] }] }));
         setSelectedPointIds([]);
       }
     }
-    if (tool === "circle-3-points" || tool === "angle") {
+    if (activeTool === "circle-3-points" || activeTool === "angle") {
       const next = [...selectedPointIds, pointId].slice(-3);
       setSelectedPointIds(next);
       if (next.length === 3 && new Set(next).size === 3) {
-        recordWorkspaceStep(tool === "angle" ? "Create angle" : "Create circle through 3 points", next.map((id) => labelForPoint(construction, id)).join(", "));
-        setConstruction((current) => tool === "angle" ? addArcOrSector(current, next[1], next[0], next[2], false) : addCircleThrough3Points(current, next[0], next[1], next[2]));
+        recordWorkspaceStep(activeTool === "angle" ? "Create angle" : "Create circle through 3 points", next.map((id) => labelForPoint(constructionContext, id)).join(", "));
+        setConstruction((current) => activeTool === "angle" ? addArcOrSector(current, next[1], next[0], next[2], false) : addCircleThrough3Points(current, next[0], next[1], next[2]));
         setSelectedPointIds([]);
       }
     }
-    if (tool === "polygon") {
+    if (activeTool === "polygon" || activeTool === "triangle") {
       const next = polygonDraft.includes(pointId) ? polygonDraft : [...polygonDraft, pointId];
       if (next.length >= 3) {
-        recordWorkspaceStep("Create polygon", `${next.length} vertices`);
+        recordWorkspaceStep(activeTool === "triangle" ? "Create triangle" : "Create polygon", `${next.length} vertices`);
         setConstruction((current) => solveConstruction({ ...current, polygons: [...current.polygons, { id: crypto.randomUUID(), points: next }] }));
         setPolygonDraft([]);
       } else setPolygonDraft(next);
     }
-    if (tool === "parallel" || tool === "perpendicular") {
+    if (activeTool === "parallel" || activeTool === "perpendicular") {
       const next = [...selectedPointIds, pointId].slice(-3);
       setSelectedPointIds(next);
       if (next.length === 3 && next[0] !== next[1] && next[2] !== next[0] && next[2] !== next[1]) {
-        recordWorkspaceStep(`Create ${tool}`, `Through ${labelForPoint(construction, next[2])}`);
-        setConstruction((current) => addParallelPerpendicularConstraint(current, tool, next[0], next[1], next[2]));
+        recordWorkspaceStep(`Create ${activeTool}`, `Through ${labelForPoint(constructionContext, next[2])}`);
+        setConstruction((current) => addParallelPerpendicularConstraint(current, activeTool, next[0], next[1], next[2]));
         setSelectedPointIds([]);
       }
     }
-    if (tool === "midpoint" || tool === "fixed-length") {
+    if (activeTool === "midpoint" || activeTool === "fixed-length") {
       const next = [...selectedPointIds, pointId].slice(-2);
       setSelectedPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
-        recordWorkspaceStep(tool === "midpoint" ? "Create midpoint" : "Fix length", `${labelForPoint(construction, next[0])}${labelForPoint(construction, next[1])}`);
-        setConstruction((current) => tool === "midpoint" ? addMidpointConstraint(current, next[0], next[1]) : addFixedLengthConstraint(current, next[0], next[1]));
+        recordWorkspaceStep(activeTool === "midpoint" ? "Create midpoint" : "Fix length", `${labelForPoint(constructionContext, next[0])}${labelForPoint(constructionContext, next[1])}`);
+        setConstruction((current) => activeTool === "midpoint" ? addMidpointConstraint(current, next[0], next[1]) : addFixedLengthConstraint(current, next[0], next[1]));
         setSelectedPointIds([]);
       }
     }
-    if (tool === "on-circle") {
-      recordWorkspaceStep("Constrain point to circle", labelForPoint(construction, pointId));
+    if (activeTool === "on-circle") {
+      recordWorkspaceStep("Constrain point to circle", labelForPoint(constructionContext, pointId));
       setConstruction((current) => addPointOnCircleConstraint(current, pointId));
       setSelectedPointIds([]);
     }
-    if (tool === "intersect") {
+    if (activeTool === "intersect") {
       recordWorkspaceStep("Create intersection", "Intersection of latest two lines.");
       setConstruction((current) => addIntersectionConstraint(current));
       setSelectedPointIds([]);
     }
-    if (tool === "perpendicular-bisector") {
+    if (activeTool === "perpendicular-bisector") {
       const next = [...selectedPointIds, pointId].slice(-2);
       setSelectedPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
-        recordWorkspaceStep("Create perpendicular bisector", `${labelForPoint(construction, next[0])}${labelForPoint(construction, next[1])}`);
+        recordWorkspaceStep("Create perpendicular bisector", `${labelForPoint(constructionContext, next[0])}${labelForPoint(constructionContext, next[1])}`);
         setConstruction((current) => addPerpendicularBisector(current, next[0], next[1]));
         setSelectedPointIds([]);
       }
     }
-    if (tool === "angle-bisector" || tool === "arc" || tool === "sector" || tool === "compass" || tool === "mirror" || tool === "translate") {
-      const needed = tool === "arc" || tool === "sector" || tool === "angle-bisector" || tool === "compass" || tool === "mirror" || tool === "translate" ? 3 : 2;
+    if (activeTool === "angle-bisector" || activeTool === "arc" || activeTool === "sector" || activeTool === "compass" || activeTool === "mirror" || activeTool === "translate") {
+      const needed = activeTool === "arc" || activeTool === "sector" || activeTool === "angle-bisector" || activeTool === "compass" || activeTool === "mirror" || activeTool === "translate" ? 3 : 2;
       const next = [...selectedPointIds, pointId].slice(-needed);
       setSelectedPointIds(next);
       if (next.length === needed && new Set(next).size === needed) {
-        recordWorkspaceStep(`Create ${tool}`, next.map((id) => labelForPoint(construction, id)).join(", "));
+        recordWorkspaceStep(`Create ${activeTool}`, next.map((id) => labelForPoint(constructionContext, id)).join(", "));
         setConstruction((current) => {
-          if (tool === "angle-bisector") return addAngleBisector(current, next[0], next[1], next[2]);
-          if (tool === "arc" || tool === "sector") return addArcOrSector(current, next[0], next[1], next[2], tool === "sector");
-          if (tool === "compass") return addCompassCircle(current, next[0], next[1], next[2]);
-          if (tool === "mirror") return mirrorPointAcrossLine(current, next[0], next[1], next[2]);
+          if (activeTool === "angle-bisector") return addAngleBisector(current, next[0], next[1], next[2]);
+          if (activeTool === "arc" || activeTool === "sector") return addArcOrSector(current, next[0], next[1], next[2], activeTool === "sector");
+          if (activeTool === "compass") return addCompassCircle(current, next[0], next[1], next[2]);
+          if (activeTool === "mirror") return mirrorPointAcrossLine(current, next[0], next[1], next[2]);
           return translatePointByVector(current, next[0], next[1], next[2]);
         });
         setSelectedPointIds([]);
       }
     }
-    if (tool === "tangent" || tool === "polar" || tool === "locus" || tool === "rotate" || tool === "dilate") {
-      recordWorkspaceStep(`Create ${tool}`, labelForPoint(construction, pointId));
+    if (activeTool === "tangent" || activeTool === "polar" || activeTool === "locus" || activeTool === "rotate" || activeTool === "dilate") {
+      recordWorkspaceStep(`Create ${activeTool}`, labelForPoint(constructionContext, pointId));
       setConstruction((current) => {
-        if (tool === "tangent") return addTangentAtPoint(current, pointId);
-        if (tool === "polar") return addPolarLine(current, pointId);
-        if (tool === "locus") return addLocusForPoint(current, pointId);
-        if (tool === "rotate") return rotatePoint(current, pointId, current.points[0]?.id ?? pointId, 45);
+        if (activeTool === "tangent") return addTangentAtPoint(current, pointId);
+        if (activeTool === "polar") return addPolarLine(current, pointId);
+        if (activeTool === "locus") return addLocusForPoint(current, pointId);
+        if (activeTool === "rotate") return rotatePoint(current, pointId, current.points[0]?.id ?? pointId, 45);
         return dilatePoint(current, pointId, current.points[0]?.id ?? pointId, 1.5);
       });
       setSelectedPointIds([]);
     }
-    if (tool === "regular-polygon") {
+    if (activeTool === "regular-polygon") {
       const next = [...selectedPointIds, pointId].slice(-2);
       setSelectedPointIds(next);
       if (next.length === 2 && next[0] !== next[1]) {
-        recordWorkspaceStep("Create regular polygon", `${labelForPoint(construction, next[0])}${labelForPoint(construction, next[1])}`);
+        recordWorkspaceStep("Create regular polygon", `${labelForPoint(constructionContext, next[0])}${labelForPoint(constructionContext, next[1])}`);
         setConstruction((current) => addRegularPolygon(current, next[0], next[1], 5));
         setSelectedPointIds([]);
       }
@@ -1687,10 +1740,12 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                 <option value="polyhedron">Polyhedron</option>
               </select>
             </label>
-            <SliderControl label="Surface scale" value={surfaceScale} min={0.2} max={2.5} step={0.1} onChange={setSurfaceScale} />
-            <SliderControl label="Solid height / radius" value={height3d} min={0.8} max={5} step={0.1} onChange={setHeight3d} />
-            <SliderControl label="Cross-section z" value={crossSection} min={-3} max={3} step={0.1} onChange={setCrossSection} />
-            <SliderControl label="Scene animation speed" value={sceneAnimationSpeed} min={0} max={0.6} step={0.02} onChange={setSceneAnimationSpeed} />
+            <SliderGroup title="3D scene parameters">
+              <SliderControl density="compact" label="Surface scale" value={surfaceScale} min={0.2} max={2.5} step={0.1} onChange={setSurfaceScale} />
+              <SliderControl density="compact" label="Solid height / radius" value={height3d} min={0.8} max={5} step={0.1} onChange={setHeight3d} />
+              <SliderControl density="compact" label="Cross-section z" value={crossSection} min={-3} max={3} step={0.1} onChange={setCrossSection} />
+              <SliderControl density="compact" label="Scene animation speed" value={sceneAnimationSpeed} min={0} max={0.6} step={0.02} onChange={setSceneAnimationSpeed} />
+            </SliderGroup>
             <div className="grid grid-cols-2 gap-2">
               <Toggle checked={showSurface} label="Surface" onChange={setShowSurface} />
               <Toggle checked={showSolid} label="Solid" onChange={setShowSolid} />
@@ -2945,10 +3000,9 @@ function GraphPanel({ plots, onChange, tableRange, onTableRangeChange }: { plots
   const [sliderB, setSliderB] = useState(0);
   const visiblePlots = plots.filter((plot) => plot.visible !== false);
   const viewport = { xMin, xMax, yMin, yMax, width: 640, height: 360 };
-  const paths = useMemo(() => visiblePlots.map((plot) => ({ ...plot, path: graphPath(stripInequality(applyGraphParameters(plot.expression, sliderA, sliderB)), viewport) })), [visiblePlots, sliderA, sliderB, xMin, xMax, yMin, yMax]);
+  const sampledLayers = useMemo(() => visiblePlots.map((plot) => samplePlotLayer(plot, viewport, sliderA, sliderB)), [visiblePlots, sliderA, sliderB, xMin, xMax, yMin, yMax]);
   const tableRows = useMemo(() => visiblePlots.slice(0, 3).flatMap((plot) => sampleTable(applyGraphParameters(plot.expression, sliderA, sliderB), plot.expression, tableRange.start, tableRange.end, tableRange.step)), [visiblePlots, sliderA, sliderB, tableRange.start, tableRange.end, tableRange.step]);
   const regression = useMemo(() => regressionModel(regressionSeed, "linear"), []);
-  const inequalityRegions = useMemo(() => visiblePlots.filter((plot) => (plot.kind ?? inferPlotKind(plot.expression)) === "inequality").map((plot) => inequalityRegion(applyGraphParameters(plot.expression, sliderA, sliderB), viewport, plot.color)), [visiblePlots, sliderA, sliderB, xMin, xMax, yMin, yMax]);
   const addPlot = (expression: string, kind: PlotKind = inferPlotKind(expression)) => onChange([{ id: crypto.randomUUID(), expression, color: colors[plots.length % colors.length], kind, visible: true }, ...plots].slice(0, 10));
   const updatePlot = (id: string, patch: Partial<PlotItem>) => onChange(plots.map((plot) => plot.id === id ? { ...plot, ...patch } : plot));
   const removePlot = (id: string) => onChange(plots.filter((plot) => plot.id !== id));
@@ -2966,7 +3020,7 @@ function GraphPanel({ plots, onChange, tableRange, onTableRangeChange }: { plots
         <div className="space-y-3">
           <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
             <label className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Expression</label>
-            <input value={draft} onChange={(event) => setDraft(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-900" placeholder="sin(x), x^2, y < x+2" />
+            <input value={draft} onChange={(event) => setDraft(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-900" placeholder="sin(x), x^2+y^2=9, x=cos(t), y=sin(t), r=2*sin(theta)" />
             <div className="mt-2 grid grid-cols-2 gap-2">
               <button type="button" onClick={() => addPlot(draft)} className="action-primary py-2">Add graph</button>
               <button type="button" onClick={() => addRegression()} className="action-secondary py-2">Regression</button>
@@ -3007,17 +3061,31 @@ function GraphPanel({ plots, onChange, tableRange, onTableRangeChange }: { plots
         <div className="space-y-3">
           <svg viewBox="0 0 640 360" className="h-[280px] w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[360px]">
             <GraphGrid viewport={viewport} />
-            {inequalityRegions.map((region, index) => <path key={`ineq-${index}`} d={region} fill={visiblePlots[index]?.color ?? "#06b6d4"} opacity="0.16" />)}
-            {paths.map((plot) => (plot.kind ?? inferPlotKind(plot.expression)) !== "inequality" && <path key={plot.id} d={plot.path} fill="none" stroke={plot.color} strokeWidth="3" />)}
+            {sampledLayers.map((layer) => layer.cells.map((cell, index) => (
+              <rect
+                key={`${layer.id}-cell-${index}`}
+                x={scaleX(cell.x, viewport)}
+                y={scaleY(cell.y + cell.height, viewport)}
+                width={Math.max(1, (cell.width / (viewport.xMax - viewport.xMin || 1)) * viewport.width)}
+                height={Math.max(1, (cell.height / (viewport.yMax - viewport.yMin || 1)) * viewport.height)}
+                fill={layer.color}
+                opacity={layer.kind === "inequality" ? 0.12 : 0.72}
+              />
+            )))}
+            {sampledLayers.map((layer) => layer.paths.map((path, index) => <path key={`${layer.id}-path-${index}`} d={path} fill="none" stroke={layer.color} strokeWidth={layer.kind === "implicit" ? "2" : "3"} strokeLinecap="round" strokeLinejoin="round" />))}
             {visiblePlots.filter((plot) => plot.kind === "scatter" || plot.kind === "regression").flatMap((plot) => plot.points ?? []).map((point, index) => <circle key={`${point.x}-${point.y}-${index}`} cx={scaleX(point.x, viewport)} cy={scaleY(point.y, viewport)} r="5" fill="#ec4899" stroke="#0f172a" />)}
           </svg>
 
           <div className="grid gap-3 lg:grid-cols-2">
             <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
-              <p className="text-sm font-bold">Parameter sliders</p>
-              <SliderControl label="a" value={sliderA} min={-5} max={5} step={0.1} onChange={setSliderA} />
-              <SliderControl label="b" value={sliderB} min={-10} max={10} step={0.1} onChange={setSliderB} />
+              <SliderGroup title="Parameter sliders">
+                <SliderControl density="compact" label="a" value={sliderA} min={-5} max={5} step={0.1} onChange={setSliderA} />
+                <SliderControl density="compact" label="b" value={sliderB} min={-10} max={10} step={0.1} onChange={setSliderB} />
+              </SliderGroup>
               <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">Use expressions like a*x+b or a*sin(x)+b.</p>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {sampledLayers.map((layer) => <span key={layer.id} className="mini-chip">{layer.kind}</span>)}
+              </div>
             </div>
             <div className="mobile-safe-scroll rounded-2xl border border-slate-200 dark:border-white/10">
               <table className="w-full text-left text-xs">
@@ -3033,6 +3101,44 @@ function GraphPanel({ plots, onChange, tableRange, onTableRangeChange }: { plots
 }
 
 type GraphViewport = { xMin: number; xMax: number; yMin: number; yMax: number; width: number; height: number };
+
+type SampledPlotLayer = {
+  id: string;
+  color: string;
+  kind: PlotKind | "error";
+  paths: string[];
+  cells: { x: number; y: number; width: number; height: number }[];
+  error?: string;
+};
+
+function samplePlotLayer(plot: PlotItem, viewport: GraphViewport, sliderA: number, sliderB: number): SampledPlotLayer {
+  const expression = applyGraphParameters(plot.expression, sliderA, sliderB);
+  if (plot.kind === "scatter" || plot.kind === "regression") {
+    return { id: plot.id, color: plot.color, kind: plot.kind, paths: [graphPath(stripInequality(expression), viewport)].filter(Boolean), cells: [] };
+  }
+  try {
+    const sample = sampleGraph(expression, viewport, 520);
+    if ("segments" in sample) {
+      return {
+        id: plot.id,
+        color: plot.color,
+        kind: sample.kind === "explicit" ? "function" : sample.kind,
+        paths: sample.segments.map((segment) => graphSegmentPath(segment.points, viewport)).filter(Boolean),
+        cells: [],
+      };
+    }
+    return { id: plot.id, color: plot.color, kind: sample.kind, paths: [], cells: sample.cells };
+  } catch (error) {
+    return { id: plot.id, color: plot.color, kind: "error", paths: [], cells: [], error: error instanceof Error ? error.message : "Graph sampling failed" };
+  }
+}
+
+function graphSegmentPath(points: { x: number; y: number; move?: boolean }[], viewport: GraphViewport) {
+  return points
+    .filter((point) => Number.isFinite(point.x) && Number.isFinite(point.y))
+    .map((point, index) => `${index === 0 || point.move ? "M" : "L"}${scaleX(point.x, viewport).toFixed(2)},${scaleY(point.y, viewport).toFixed(2)}`)
+    .join(" ");
+}
 
 function graphPath(expression: string, viewport: GraphViewport) {
   const points: string[] = [];
@@ -3070,6 +3176,10 @@ function MiniNumber({ label, value, onChange }: { label: string; value: number; 
 }
 
 function inferPlotKind(expression: string): PlotKind {
+  if (/^r\s*=/i.test(expression)) return "polar";
+  if (/^if\s*\(/i.test(expression) || /^piecewise\s*\[/i.test(expression) || /{.+}/.test(expression)) return "piecewise";
+  if (/t/.test(expression) && (/\bx\s*=/.test(expression) || /,/.test(expression))) return "parametric";
+  if (/=/.test(expression) && /\by\b/i.test(expression)) return "implicit";
   if (/[<>]=?/.test(expression)) return "inequality";
   return "function";
 }
@@ -5649,7 +5759,7 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     segment: "Click two points to create a measured segment.",
     ray: "Click start point, then a direction point to create a ray-style object.",
     vector: "Click tail point, then head point to create a vector-style object.",
-    line: "Click two points to create a segment.",
+    line: "Click two points to create a line.",
     circle: "Click a center point, then a radius point.",
     polygon: "Click three or more points; the polygon is created after the third point.",
     angle: "Click side point, vertex, side point to create a visible angle arc.",
@@ -5660,7 +5770,7 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     image: "Opens the image picker and places the image on the geometry board.",
     "move-canvas": "Move-canvas mode keeps construction objects unchanged while you inspect the board.",
     zoom: "Zoom mode is available from the plate and keeps the current construction selected.",
-    triangle: "Click the board to insert an editable triangle.",
+    triangle: "Click three vertices to draw an editable triangle.",
     rectangle: "Click the board to insert an editable rectangle.",
     "shape-circle": "Click the board to insert a ready circle with center and edge points.",
     parabola: "Click the board to insert a parabola visualization curve.",

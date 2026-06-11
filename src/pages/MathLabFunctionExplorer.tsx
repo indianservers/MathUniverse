@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import FunctionGraphCanvas, { FunctionGraphView } from "../components/math-lab/FunctionGraphCanvas";
 import { FormulaBlock, MathErrorBox, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import { ApproxBadge, CopyResultButton, EmptyState, ExportImageButton, FullscreenButton, InfoCallout, LoadingSkeleton, PresetChips, ResetExampleButton } from "../components/ui/UiFeedback";
 import { GraphSample, approximateRoots, approximateVisibleRange, compileFunction, generateTableValues, sampleFunction } from "../utils/mathEngine/graphSampler";
 
@@ -77,12 +77,12 @@ export default function MathLabFunctionExplorer() {
           </label>
           <MathErrorBox error={original.error ?? transformed.error} />
           <div className="mt-4"><PresetChips examples={EXAMPLES} onSelect={setBase} /></div>
-          <div className="mt-6 space-y-4">
-            <SliderControl label="Vertical stretch a" min={-3} max={3} step={0.1} value={a} onChange={setA} />
-            <SliderControl label="Horizontal factor b" min={-3} max={3} step={0.1} value={b} onChange={(value) => setB(value === 0 ? 0.1 : value)} />
-            <SliderControl label="Horizontal shift h" min={-6} max={6} step={0.1} value={h} onChange={setH} />
-            <SliderControl label="Vertical shift k" min={-6} max={6} step={0.1} value={k} onChange={setK} />
-          </div>
+          <SliderGroup title="Transform controls" className="mt-6">
+            <SliderControl density="compact" label="Vertical stretch a" min={-3} max={3} step={0.1} value={a} onChange={setA} />
+            <SliderControl density="compact" label="Horizontal factor b" min={-3} max={3} step={0.1} value={b} onChange={(value) => setB(value === 0 ? 0.1 : value)} />
+            <SliderControl density="compact" label="Horizontal shift h" min={-6} max={6} step={0.1} value={h} onChange={setH} />
+            <SliderControl density="compact" label="Vertical shift k" min={-6} max={6} step={0.1} value={k} onChange={setK} />
+          </SliderGroup>
           <div className="mt-5 flex flex-wrap gap-2">
             <button type="button" className={showOriginal ? "action-primary" : "tool-button"} onClick={() => setShowOriginal((value) => !value)}>{showOriginal ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}Original</button>
             <button type="button" className={showTransformed ? "action-primary" : "tool-button"} onClick={() => setShowTransformed((value) => !value)}>{showTransformed ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}Transformed</button>

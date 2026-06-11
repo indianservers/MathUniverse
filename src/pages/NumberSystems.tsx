@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicTabs from "../components/ui/TopicTabs";
 import { topics } from "../data/topics";
@@ -81,8 +81,10 @@ function RationalLab({ p, q, setP, setQ, decimal }: { p: number; q: number; setP
     <SectionCard title="Rational Numbers" description="Move p and q to see p/q as a point, fraction, and decimal." compact>
       <div className="grid gap-3 xl:grid-cols-[280px_minmax(0,1fr)]">
         <div className="space-y-3">
-          <SliderControl label="numerator p" value={p} min={-24} max={24} step={1} onChange={setP} />
-          <SliderControl label="denominator q" value={q} min={1} max={24} step={1} onChange={setQ} />
+          <SliderGroup title="Fraction controls">
+            <SliderControl density="compact" label="numerator p" value={p} min={-24} max={24} step={1} onChange={setP} />
+            <SliderControl density="compact" label="denominator q" value={q} min={1} max={24} step={1} onChange={setQ} />
+          </SliderGroup>
           <Metric label="fraction" value={`${p}/${q}`} />
           <Metric label="decimal" value={decimal} />
           <Metric label="value" value={roundTo(value, 5).toString()} />
@@ -100,8 +102,10 @@ function IrrationalLab({ root, setRoot, digits, setDigits }: { root: number; set
     <SectionCard title="Irrational Numbers" description="Roots of non-perfect squares produce decimal values that do not terminate or repeat." compact>
       <div className="grid gap-3 xl:grid-cols-[280px_minmax(0,1fr)]">
         <div className="space-y-3">
-          <SliderControl label="root n in sqrt(n)" value={root} min={2} max={50} step={1} onChange={setRoot} />
-          <SliderControl label="decimal digits" value={digits} min={2} max={14} step={1} onChange={setDigits} />
+          <SliderGroup title="Root controls">
+            <SliderControl density="compact" label="root n in sqrt(n)" value={root} min={2} max={50} step={1} onChange={setRoot} />
+            <SliderControl density="compact" label="decimal digits" value={digits} min={2} max={14} step={1} onChange={setDigits} />
+          </SliderGroup>
           <Metric label="sqrt(n)" value={value.toFixed(Math.round(digits))} />
           <Metric label="classification" value={rational ? "rational perfect square" : "irrational surd"} />
         </div>

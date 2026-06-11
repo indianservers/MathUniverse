@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../../components/three/ThreeSceneWrapper";
 import SectionCard from "../../components/ui/SectionCard";
-import SliderControl from "../../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../../components/ui/SliderControl";
 
 type FormulaTopic = "algebra" | "calculus";
 type FormulaKind = "line" | "parabola" | "cubic" | "identity" | "system" | "sequence" | "rational" | "limit" | "derivative" | "integral" | "series" | "multivariable";
@@ -119,12 +119,12 @@ export default function FormulaVisualizationAtlas({ topic }: { topic: FormulaTop
           </div>
         </div>
         <div className="space-y-3">
-          <div className="grid gap-3 md:grid-cols-4">
-            <SliderControl label="a" value={a} min={-4} max={4} step={0.1} onChange={setA} />
-            <SliderControl label="b" value={b} min={-4} max={4} step={0.1} onChange={setB} />
-            <SliderControl label="c" value={c} min={-5} max={5} step={0.1} onChange={setC} />
-            <SliderControl label="n" value={n} min={1} max={20} step={1} onChange={setN} />
-          </div>
+          <SliderGroup title="Formula parameters">
+            <SliderControl density="compact" label="a" value={a} min={-4} max={4} step={0.1} onChange={setA} />
+            <SliderControl density="compact" label="b" value={b} min={-4} max={4} step={0.1} onChange={setB} />
+            <SliderControl density="compact" label="c" value={c} min={-5} max={5} step={0.1} onChange={setC} />
+            <SliderControl density="compact" label="n" value={n} min={1} max={20} step={1} onChange={setN} />
+          </SliderGroup>
           <div className="flex flex-wrap gap-2">
             <button type="button" onClick={() => setVisualMode("2d")} className={visualMode === "2d" ? "action-primary px-3 py-2 text-xs" : "tool-button px-3 py-2 text-xs"}>2D visual</button>
             <button type="button" onClick={() => setVisualMode("3d")} className={visualMode === "3d" ? "action-primary px-3 py-2 text-xs" : "tool-button px-3 py-2 text-xs"}>3D visual</button>

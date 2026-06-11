@@ -6,6 +6,7 @@ import type {
   MathObjectKind,
   MathObjectRole,
   MathObjectStyle,
+  MathObjectProperties,
   MathTransform,
   MathVec3,
 } from "./types";
@@ -27,6 +28,9 @@ export type CreateMathObjectInput = {
   style?: MathObjectStyle;
   transform?: Partial<MathTransform>;
   geometry?: MathObjectGeometry;
+  definition?: MathObject["definition"];
+  algebra?: MathObject["algebra"];
+  properties?: MathObjectProperties;
   linkedViews?: string[];
   metadata?: MathObject["metadata"];
   dependencies?: MathObject["dependencies"];
@@ -56,8 +60,11 @@ export function createMathObject(input: CreateMathObjectInput): MathObject {
     style: normalizeStyle(input.style),
     transform: normalizeTransform(input.transform),
     geometry: input.geometry ?? { type: "none" },
+    properties: normalizeProperties(input.properties, input.label),
     constraints: input.constraints ?? [],
     dependencies: input.dependencies ?? [],
+    definition: input.definition ?? (input.metadata?.definitionSource && typeof input.metadata.definitionSource === "string" ? { source: input.metadata.definitionSource, parentIds: [] } : undefined),
+    algebra: input.algebra,
     interactivity: normalizeInteractivity(input.kind, locked, selectable, input.interactivity),
     animation: input.animation ?? { enabled: false },
     linkedViews: input.linkedViews ?? defaultLinkedViews(input.kind),
@@ -82,8 +89,11 @@ export function normalizeMathObject(object: MathObject): MathObject {
     style: normalizeStyle(object.style),
     transform: normalizeTransform(object.transform),
     geometry: object.geometry ?? { type: "none" },
+    properties: normalizeProperties(object.properties, object.label),
     constraints: object.constraints ?? [],
     dependencies: object.dependencies ?? [],
+    definition: object.definition,
+    algebra: object.algebra,
     interactivity: normalizeInteractivity(object.kind, locked, selectable, object.interactivity),
     animation: object.animation ?? { enabled: false },
     linkedViews: object.linkedViews ?? defaultLinkedViews(object.kind),
@@ -102,9 +112,22 @@ export function withObjectPatch(object: MathObject, patch: Partial<MathObject>):
     ...patch,
     style: patch.style ? { ...object.style, ...patch.style } : object.style,
     transform: patch.transform ? normalizeTransform({ ...object.transform, ...patch.transform }) : object.transform,
+    properties: patch.properties ? normalizeProperties({ ...object.properties, ...patch.properties }, patch.label ?? object.label) : object.properties,
     interactivity: patch.interactivity ? { ...object.interactivity, ...patch.interactivity } : object.interactivity,
     updatedAt: Date.now(),
   });
+}
+
+function normalizeProperties(properties: MathObjectProperties | undefined, fallbackLabel: string): MathObjectProperties {
+  return {
+    label: properties?.label ?? fallbackLabel,
+    caption: properties?.caption ?? "",
+    layer: Math.max(0, Math.round(properties?.layer ?? 0)),
+    labelMode: properties?.labelMode ?? "name",
+    conditionalVisibility: properties?.conditionalVisibility?.trim() || undefined,
+    dynamicColor: properties?.dynamicColor,
+    dynamicStyle: properties?.dynamicStyle,
+  };
 }
 
 export function inferDimension(kind: MathObjectKind): MathObjectDimension {

@@ -44,10 +44,53 @@ export type MathObjectStyle = {
   material?: "matte" | "glossy" | "glass" | "wireframe";
 };
 
+export type MathObjectProperties = {
+  label?: string;
+  caption?: string;
+  layer?: number;
+  labelMode?: "name" | "value" | "caption" | "name-value" | "hidden";
+  conditionalVisibility?: string;
+  dynamicColor?: {
+    red: string;
+    green: string;
+    blue: string;
+    alpha?: string;
+  };
+  dynamicStyle?: {
+    strokeWidth?: string;
+    opacity?: string;
+    pointSize?: string;
+  };
+};
+
 export type MathObjectDependency = {
   id: string;
   label: string;
   role?: "parent" | "child" | "source" | "constraint" | "measurement" | string;
+};
+
+export type MathObjectDefinition = {
+  source: string;
+  command?: string;
+  expression?: string;
+  category?: "graph" | "geometry2d" | "geometry3d" | "cas" | "spreadsheet" | "statistics" | "scripting" | "teaching" | "unknown";
+  parentIds: string[];
+  parameters?: Record<string, string | number | boolean>;
+};
+
+export type AlgebraObjectModel = {
+  id: string;
+  name: string;
+  definition: string;
+  value: string;
+  kind: MathObjectKind;
+  dimension: MathObjectDimension;
+  free: boolean;
+  auxiliary: boolean;
+  visible: boolean;
+  parentIds: string[];
+  childIds: string[];
+  linkedViews: string[];
 };
 
 export type MathVec2 = {
@@ -173,6 +216,9 @@ export type MathObject = {
   geometry?: MathObjectGeometry;
   constraints?: MathConstraint[];
   dependencies?: MathObjectDependency[];
+  definition?: MathObjectDefinition;
+  algebra?: AlgebraObjectModel;
+  properties?: MathObjectProperties;
   interactivity?: MathObjectInteractivity;
   animation?: MathObjectAnimation;
   linkedViews: string[];

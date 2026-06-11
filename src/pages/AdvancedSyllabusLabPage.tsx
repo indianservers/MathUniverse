@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import FormulaBlock from "../components/ui/FormulaBlock";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
 import { getAdvancedSyllabusLab, type AdvancedLabVisual, type AdvancedSyllabusLab } from "../data/advancedSyllabusLabs";
@@ -35,8 +35,10 @@ function AdvancedSyllabusLabDetail({ lab }: { lab: AdvancedSyllabusLab }) {
         <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
           <div className="space-y-4">
             <FormulaBlock title="Core Idea" formula={lab.formula} explanation={lab.summary} />
-            <SliderControl label={lab.sliderA} value={a} min={lab.minA} max={lab.maxA} step={lab.stepA} onChange={setA} />
-            <SliderControl label={lab.sliderB} value={b} min={lab.minB} max={lab.maxB} step={lab.stepB} onChange={setB} />
+            <SliderGroup title="Concept controls">
+              <SliderControl density="compact" label={lab.sliderA} value={a} min={lab.minA} max={lab.maxA} step={lab.stepA} onChange={setA} />
+              <SliderControl density="compact" label={lab.sliderB} value={b} min={lab.minB} max={lab.maxB} step={lab.stepB} onChange={setB} />
+            </SliderGroup>
             <div className="grid grid-cols-2 gap-2">{metrics.map((metric) => <Metric key={metric.label} label={metric.label} value={metric.value} />)}</div>
           </div>
           <div className="space-y-4">

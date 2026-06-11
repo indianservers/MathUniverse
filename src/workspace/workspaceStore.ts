@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { normalizeMathObject, withObjectPatch } from "./coreObjects";
 import { syncScenesWithObjects } from "./sceneGraph";
+import { buildRuntimeWorkspaceObjects } from "./workspaceRuntimeModel";
 import type { MathObject, MathScene, WorkspaceHistoryEntry, WorkspaceProjectMeta, WorkspaceSnapshot } from "./types";
 import { createHistoryEntry, createUndoableHistoryEntry, invertHistoryEntry, limitHistory } from "./workspaceHistory";
 import { createDefaultWorkspaceState, exportWorkspaceProject, migrateWorkspaceState, normalizeWorkspaceSnapshot, parseWorkspaceProjectExport, WORKSPACE_SCHEMA_VERSION, WORKSPACE_STORAGE_KEY } from "./workspacePersistence";
@@ -36,7 +37,7 @@ function mergeObjects(current: MathObject[], incoming: MathObject[], replaceLive
   const normalizedIncoming = incoming.map(normalizeMathObject);
   const incomingIds = new Set(normalizedIncoming.map((object) => object.id));
   const preserved = current.filter((object) => !incomingIds.has(object.id) && (!replaceLiveWorkspace || object.metadata?.source !== "live-workspace"));
-  return [...normalizedIncoming, ...preserved.map(normalizeMathObject)].sort((first, second) => second.updatedAt - first.updatedAt);
+  return buildRuntimeWorkspaceObjects([...normalizedIncoming, ...preserved.map(normalizeMathObject)]);
 }
 
 function snapshotFromState(state: Pick<WorkspaceState, "project" | "objects" | "scenes" | "selectedObjectId" | "selectedObjectIds">): WorkspaceSnapshot {
@@ -51,10 +52,11 @@ function snapshotFromState(state: Pick<WorkspaceState, "project" | "objects" | "
 
 function applySnapshot(snapshot: WorkspaceSnapshot) {
   const normalized = normalizeWorkspaceSnapshot({ ...snapshot, history: [] });
+  const evaluatedObjects = buildRuntimeWorkspaceObjects(normalized.objects);
   return {
     project: normalized.project,
-    objects: normalized.objects,
-    scenes: normalized.scenes,
+    objects: evaluatedObjects,
+    scenes: syncScenesWithObjects(normalized.scenes, evaluatedObjects),
     selectedObjectId: normalized.selectedObjectId,
     selectedObjectIds: normalized.selectedObjectIds,
   };
@@ -108,7 +110,7 @@ export const useWorkspaceStore = create<WorkspaceState>()(
       updateObject: (objectId, patch, historyLabel) =>
         set((state) => {
           const before = snapshotFromState(state);
-          const objects = state.objects.map((object) => (object.id === objectId ? withObjectPatch(object, patch) : object));
+          const objects = buildRuntimeWorkspaceObjects(state.objects.map((object) => (object.id === objectId ? withObjectPatch(object, patch) : object)));
           const nextState = {
             objects,
             scenes: syncScenesWithObjects(state.scenes, objects),
@@ -123,7 +125,7 @@ export const useWorkspaceStore = create<WorkspaceState>()(
       removeObject: (objectId) =>
         set((state) => {
           const before = snapshotFromState(state);
-          const objects = state.objects.filter((object) => object.id !== objectId);
+          const objects = buildRuntimeWorkspaceObjects(state.objects.filter((object) => object.id !== objectId));
           const selectedObjectIds = state.selectedObjectIds.filter((id) => id !== objectId);
           const nextState = {
             objects,

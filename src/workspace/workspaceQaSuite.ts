@@ -1,6 +1,10 @@
+import { createMathObject } from "./coreObjects";
+import { runLargeConstructionBenchmark } from "./largeConstructionPerformance";
+import { buildSharedWorkspaceModel } from "./workspaceEngineBridge";
+
 export type WorkspaceQaCheck = {
   id: string;
-  area: "geometry" | "parser" | "dependencies" | "performance" | "accessibility" | "offline" | "exports";
+  area: "geometry" | "parser" | "dependencies" | "performance" | "accessibility" | "offline" | "exports" | "engine";
   label: string;
   passed: boolean;
   detail: string;
@@ -26,6 +30,7 @@ export function runWorkspaceQaSuite(): WorkspaceQaReport {
     checkKeyboardAccessibilityContract(),
     checkOfflineAssetContract(),
     checkExportContract(),
+    checkSharedEngineBridge(),
   ];
   return {
     generatedAt: Date.now(),
@@ -94,17 +99,13 @@ function checkParserBlocksPrototypeEscape(): WorkspaceQaCheck {
 }
 
 function checkLargeConstructionBudget(): WorkspaceQaCheck {
-  const objectCount = 800;
-  const start = performance.now();
-  const points = Array.from({ length: objectCount }, (_, index) => ({ x: index % 40, y: Math.floor(index / 40) }));
-  const checksum = points.reduce((sum, point) => sum + point.x + point.y, 0);
-  const elapsed = performance.now() - start;
+  const benchmark = runLargeConstructionBenchmark(250, 750);
   return {
     id: "performance-large-construction",
     area: "performance",
-    label: "Large construction bookkeeping stays within frame budget",
-    passed: elapsed < 16 && checksum > 0,
-    detail: `${objectCount} synthetic points processed in ${round(elapsed)}ms.`,
+    label: "Large construction dynamic engine stays within budget",
+    passed: benchmark.passed,
+    detail: `${benchmark.objectCount} objects, ${benchmark.dependencyCount} dependencies in ${benchmark.timings.totalMs}ms.`,
   };
 }
 
@@ -135,13 +136,34 @@ function checkOfflineAssetContract(): WorkspaceQaCheck {
 }
 
 function checkExportContract(): WorkspaceQaCheck {
-  const exportTypes = ["json", "csv", "png", "svg", "pdf", "url", "lesson-pack"];
+  const exportTypes = ["json", "csv", "png", "svg", "pdf", "url", "lesson-pack", "ismobj"];
   return {
     id: "exports-browser-only-contract",
     area: "exports",
     label: "Workspace export contract stays browser-only",
     passed: exportTypes.length >= 7 && exportTypes.every(Boolean),
     detail: `Supported export paths: ${exportTypes.join(", ")}.`,
+  };
+}
+
+function checkSharedEngineBridge(): WorkspaceQaCheck {
+  const objects = [
+    createMathObject({ id: "A", label: "A", kind: "point", dimension: "2d", geometry: { type: "point", position: { x: 0, y: 0, z: 0 } } }),
+    createMathObject({ id: "B", label: "B", kind: "point", dimension: "2d", geometry: { type: "point", position: { x: 3, y: 4, z: 0 } } }),
+    createMathObject({ id: "s", label: "s", kind: "segment", dimension: "2d", geometry: { type: "segment", start: { x: 0, y: 0, z: 0 }, end: { x: 3, y: 4, z: 0 } } }),
+    createMathObject({ id: "sphere", label: "sphere", kind: "solid", dimension: "3d", geometry: { type: "sphere", center: { x: 0, y: 0, z: 0 }, radius: 2 } }),
+    createMathObject({ id: "plane", label: "plane", kind: "plane", dimension: "3d", geometry: { type: "plane", point: { x: 0, y: 0, z: 1 }, normal: { x: 0, y: 0, z: 1 } } }),
+  ];
+  const model = buildSharedWorkspaceModel(objects);
+  const has2D = model.geometry2d.objects.length >= 3;
+  const has3D = model.geometry3d.objects.length >= 2;
+  const hasMeasurements = model.measurements.some((object) => object.metadata?.source === "engine-measurement");
+  return {
+    id: "engine-shared-bridge",
+    area: "engine",
+    label: "Shared engine bridge materializes 2D, 3D, and measurements",
+    passed: has2D && has3D && hasMeasurements,
+    detail: `${model.geometry2d.objects.length} 2D objects, ${model.geometry3d.objects.length} 3D objects, ${model.measurements.length} measurements.`,
   };
 }
 

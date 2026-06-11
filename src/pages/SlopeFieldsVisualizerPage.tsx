@@ -1,7 +1,7 @@
 import { type MouseEvent, useMemo, useState } from "react";
 import { Plus, Trash2 } from "lucide-react";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import { compileTwoVariableExpression } from "../utils/functionParser";
 import { roundTo } from "../utils/math";
@@ -63,10 +63,12 @@ export default function SlopeFieldsVisualizerPage() {
               {compiled.error && <p className="mt-2 rounded-xl bg-rose-50 p-3 text-sm font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{compiled.error}</p>}
             </label>
 
-            <SliderControl label="initial x0" value={x0} min={-5} max={5} step={0.05} onChange={setX0} />
-            <SliderControl label="initial y0" value={y0} min={-5} max={5} step={0.05} onChange={setY0} />
-            <SliderControl label="step size h" value={stepSize} min={0.02} max={0.25} step={0.01} onChange={setStepSize} />
-            <SliderControl label="number of steps" value={steps} min={20} max={260} step={5} onChange={setSteps} />
+            <SliderGroup title="Solution controls">
+              <SliderControl density="compact" label="initial x0" value={x0} min={-5} max={5} step={0.05} onChange={setX0} />
+              <SliderControl density="compact" label="initial y0" value={y0} min={-5} max={5} step={0.05} onChange={setY0} />
+              <SliderControl density="compact" label="step size h" value={stepSize} min={0.02} max={0.25} step={0.01} onChange={setStepSize} />
+              <SliderControl density="compact" label="number of steps" value={steps} min={20} max={260} step={5} onChange={setSteps} />
+            </SliderGroup>
 
             <div className="grid grid-cols-2 gap-2">
               <Metric label="current slope" value={Number.isFinite(currentSlope) ? roundTo(currentSlope, 4).toString() : "undefined"} />
@@ -183,4 +185,3 @@ function grid(width: number, height: number, pad: number) {
 function Metric({ label, value }: { label: string; value: string }) {
   return <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{label}</p><p className="mt-1 break-words font-mono text-sm font-bold">{value}</p></div>;
 }
-

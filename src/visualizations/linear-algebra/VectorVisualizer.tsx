@@ -1,7 +1,7 @@
 import { LocateFixed, Move3D, Rotate3D, RotateCcw, Target, ZoomIn, ZoomOut } from "lucide-react";
 import { PointerEvent, ReactNode, WheelEvent, useMemo, useRef, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
-import SliderControl from "../../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
 import { roundTo } from "../../utils/math";
 
@@ -87,9 +87,11 @@ export default function VectorVisualizer() {
               <p className="text-sm font-black text-slate-950 dark:text-white">Vector A</p>
               <VectorBadge value={a} color="text-cyan-500" />
             </div>
-            <SliderControl label="A x" value={aHead[0]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([value, aHead[1], aHead[2]])} />
-            <SliderControl label="A y" value={aHead[1]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([aHead[0], value, aHead[2]])} />
-            <SliderControl label="A z" value={aHead[2]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([aHead[0], aHead[1], value])} />
+            <SliderGroup title="Head components">
+              <SliderControl density="compact" label="A x" value={aHead[0]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([value, aHead[1], aHead[2]])} />
+              <SliderControl density="compact" label="A y" value={aHead[1]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([aHead[0], value, aHead[2]])} />
+              <SliderControl density="compact" label="A z" value={aHead[2]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([aHead[0], aHead[1], value])} />
+            </SliderGroup>
             <EndpointEditor label="A tail" value={aTail} onChange={setATail} />
             <EndpointEditor label="A head" value={aHead} onChange={setAHead} />
           </div>
@@ -105,9 +107,11 @@ export default function VectorVisualizer() {
                 <p className="text-sm font-black text-slate-950 dark:text-white">Vector B</p>
                 <VectorBadge value={b} color="text-violet-400" />
               </div>
-              <SliderControl label="B x" value={bHead[0]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([value, bHead[1], bHead[2]])} />
-              <SliderControl label="B y" value={bHead[1]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([bHead[0], value, bHead[2]])} />
-              <SliderControl label="B z" value={bHead[2]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([bHead[0], bHead[1], value])} />
+              <SliderGroup title="Head components">
+                <SliderControl density="compact" label="B x" value={bHead[0]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([value, bHead[1], bHead[2]])} />
+                <SliderControl density="compact" label="B y" value={bHead[1]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([bHead[0], value, bHead[2]])} />
+                <SliderControl density="compact" label="B z" value={bHead[2]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([bHead[0], bHead[1], value])} />
+              </SliderGroup>
               <EndpointEditor label="B tail" value={bTail} onChange={setBTail} />
               <EndpointEditor label="B head" value={bHead} onChange={setBHead} />
             </div>

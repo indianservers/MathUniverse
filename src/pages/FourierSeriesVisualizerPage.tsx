@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Pause, Play, RotateCcw } from "lucide-react";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import { roundTo } from "../utils/math";
 
@@ -65,11 +65,13 @@ export default function FourierSeriesVisualizerPage() {
                 {waveOptions.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
               </select>
             </label>
-            <SliderControl label="Number of harmonics N" value={harmonics} min={1} max={50} step={1} onChange={setHarmonics} />
-            <SliderControl label="Amplitude" value={amplitude} min={0.2} max={3} step={0.1} onChange={setAmplitude} />
-            <SliderControl label="Frequency" value={frequency} min={0.5} max={3} step={0.1} onChange={setFrequency} />
-            <SliderControl label="Phase" value={phase} min={-Math.PI} max={Math.PI} step={0.05} onChange={setPhase} />
-            <SliderControl label="x-range" value={xRange} min={Math.PI} max={Math.PI * 6} step={0.1} onChange={setXRange} />
+            <SliderGroup title="Wave parameters">
+              <SliderControl density="compact" label="Number of harmonics N" value={harmonics} min={1} max={50} step={1} onChange={setHarmonics} />
+              <SliderControl density="compact" label="Amplitude" value={amplitude} min={0.2} max={3} step={0.1} onChange={setAmplitude} />
+              <SliderControl density="compact" label="Frequency" value={frequency} min={0.5} max={3} step={0.1} onChange={setFrequency} />
+              <SliderControl density="compact" label="Phase" value={phase} min={-Math.PI} max={Math.PI} step={0.05} onChange={setPhase} />
+              <SliderControl density="compact" label="x-range" value={xRange} min={Math.PI} max={Math.PI * 6} step={0.1} onChange={setXRange} />
+            </SliderGroup>
             <div className="flex flex-wrap gap-2">
               <button type="button" className={playing ? "action-primary" : "action-secondary"} onClick={() => setPlaying((value) => !value)}>{playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}{playing ? "Pause" : "Animate harmonics"}</button>
               <button type="button" className="action-secondary" onClick={() => { setPlaying(false); setAnimatedN(harmonics); }}><RotateCcw className="h-4 w-4" />Reset</button>
@@ -222,4 +224,3 @@ function Metric({ label, value }: { label: string; value: string }) {
 function Info({ title, text }: { title: string; text: string }) {
   return <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10"><h3 className="font-black">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{text}</p></div>;
 }
-

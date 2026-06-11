@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import FormulaBlock from "../components/ui/FormulaBlock";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
 import { getNCERTConcept, type NCERTConcept, type NCERTVisualType } from "../data/ncertConcepts";
@@ -37,11 +37,13 @@ function NCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
         <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
           <div className="space-y-4">
             <FormulaBlock title="Core NCERT Formula" formula={concept.formula} explanation={concept.summary} />
-            <SliderControl label={concept.sliderA} value={a} min={concept.minA} max={concept.maxA} step={concept.stepA} onChange={setA} />
-            <SliderControl label={concept.sliderB} value={b} min={concept.minB} max={concept.maxB} step={concept.stepB} onChange={setB} />
-            {concept.sliderC && concept.minC !== undefined && concept.maxC !== undefined && concept.stepC !== undefined && (
-              <SliderControl label={concept.sliderC} value={c} min={concept.minC} max={concept.maxC} step={concept.stepC} onChange={setC} />
-            )}
+            <SliderGroup title="Concept controls">
+              <SliderControl density="compact" label={concept.sliderA} value={a} min={concept.minA} max={concept.maxA} step={concept.stepA} onChange={setA} />
+              <SliderControl density="compact" label={concept.sliderB} value={b} min={concept.minB} max={concept.maxB} step={concept.stepB} onChange={setB} />
+              {concept.sliderC && concept.minC !== undefined && concept.maxC !== undefined && concept.stepC !== undefined && (
+                <SliderControl density="compact" label={concept.sliderC} value={c} min={concept.minC} max={concept.maxC} step={concept.stepC} onChange={setC} />
+              )}
+            </SliderGroup>
             <div className="grid grid-cols-2 gap-2">
               {metrics.map((metric) => <Metric key={metric.label} label={metric.label} value={metric.value} />)}
             </div>

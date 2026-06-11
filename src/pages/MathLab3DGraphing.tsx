@@ -5,7 +5,7 @@ import { useMemo, useRef, useState } from "react";
 import { Box, ChevronDown, ChevronsLeft, ChevronsRight, Dices, Grid3X3, Palette, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pause, Play, RotateCcw } from "lucide-react";
 import { FormulaBlock, MathErrorBox, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import { ApproxBadge, CopyResultButton, EmptyState, ExportImageButton, FullscreenButton, InfoCallout, LoadingSkeleton, PresetChips, ResetExampleButton } from "../components/ui/UiFeedback";
 import { SurfaceSampleResult, generateSurfaceMeshData, sampleSurface } from "../utils/mathEngine/graph3dUtils";
@@ -123,22 +123,22 @@ export default function MathLab3DGraphing() {
             <p className="font-black">{beautifulSurfacePresets.length}+ beautiful formulas ready</p>
             <p className="mt-1">Current random pick: <span className="font-mono font-bold">{randomSurfaceName}</span></p>
           </div>
-          <div className="mt-5 space-y-4">
-            <SliderControl label="3D x range" min={1} max={8} step={0.25} value={xRange} onChange={setXRange} />
-            <SliderControl label="3D y range" min={1} max={8} step={0.25} value={yRange} onChange={setYRange} />
-            <SliderControl label="3D resolution" min={12} max={80} step={2} value={resolution} onChange={setResolution} />
-          </div>
+          <SliderGroup title="Surface sampling" className="mt-5">
+            <SliderControl density="compact" label="3D x range" min={1} max={8} step={0.25} value={xRange} onChange={setXRange} />
+            <SliderControl density="compact" label="3D y range" min={1} max={8} step={0.25} value={yRange} onChange={setYRange} />
+            <SliderControl density="compact" label="3D resolution" min={12} max={80} step={2} value={resolution} onChange={setResolution} />
+          </SliderGroup>
           {surface.warning && <p className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm font-semibold text-amber-800 dark:bg-amber-400/10 dark:text-amber-100">{surface.warning}</p>}
         </SectionCard>
         <SectionCard title="Move Surface" description="Shift the whole graph in math coordinates. X moves left/right, Y moves across the base grid, and Z changes height." compact>
           <div className="mb-3 rounded-2xl border border-cyan-300/40 bg-cyan-400/10 p-3 text-sm font-bold text-cyan-900 dark:text-cyan-100">
             Position: x = {format(objectPosition.x)}, y = {format(objectPosition.y)}, z = {format(objectPosition.z)}
           </div>
-          <div className="space-y-4">
-            <SliderControl label="Object x position" min={-6} max={6} step={0.25} value={objectPosition.x} onChange={(value) => setObjectPosition((position) => ({ ...position, x: value }))} />
-            <SliderControl label="Object y position" min={-6} max={6} step={0.25} value={objectPosition.y} onChange={(value) => setObjectPosition((position) => ({ ...position, y: value }))} />
-            <SliderControl label="Object z height" min={-4} max={4} step={0.25} value={objectPosition.z} onChange={(value) => setObjectPosition((position) => ({ ...position, z: value }))} />
-          </div>
+          <SliderGroup title="Position">
+            <SliderControl density="compact" label="Object x position" min={-6} max={6} step={0.25} value={objectPosition.x} onChange={(value) => setObjectPosition((position) => ({ ...position, x: value }))} />
+            <SliderControl density="compact" label="Object y position" min={-6} max={6} step={0.25} value={objectPosition.y} onChange={(value) => setObjectPosition((position) => ({ ...position, y: value }))} />
+            <SliderControl density="compact" label="Object z height" min={-4} max={4} step={0.25} value={objectPosition.z} onChange={(value) => setObjectPosition((position) => ({ ...position, z: value }))} />
+          </SliderGroup>
           <button type="button" className="tool-button mt-4 w-full justify-center" onClick={() => setObjectPosition(initialObjectPosition)}>
             <RotateCcw className="h-4 w-4" />Reset object position
           </button>

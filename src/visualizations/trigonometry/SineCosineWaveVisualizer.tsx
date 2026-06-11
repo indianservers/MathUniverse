@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { CartesianGrid, Line, LineChart, ReferenceDot, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import SectionCard from "../../components/ui/SectionCard";
-import SliderControl from "../../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
 import { generateRange } from "../../utils/graph";
 import { roundTo } from "../../utils/math";
@@ -43,10 +43,12 @@ export default function SineCosineWaveVisualizer() {
       <div className="grid gap-6 xl:grid-cols-[340px_1fr]">
         <div className="space-y-4">
           <div className="rounded-xl bg-gradient-to-br from-violet-500 to-cyan-500 p-4 text-white"><p className="font-bold">y = A sin(fx + phi)</p><p className="text-sm opacity-90">A={roundTo(amplitude, 2)}, f={roundTo(frequency, 2)}, phi={roundTo(phase, 2)}</p></div>
-          <SliderControl label="Amplitude A" value={amplitude} min={0.5} max={5} step={0.1} onChange={setAmplitude} />
-          <SliderControl label="Frequency f" value={frequency} min={0.5} max={5} step={0.1} onChange={setFrequency} />
-          <SliderControl label="Phase phi" value={phase} min={-Math.PI} max={Math.PI} step={0.05} onChange={setPhase} />
-          <SliderControl label="Selected x" value={xPos} min={0} max={Math.PI * 4} step={0.05} onChange={setXPos} />
+          <SliderGroup title="Wave controls">
+            <SliderControl density="compact" label="Amplitude A" value={amplitude} min={0.5} max={5} step={0.1} onChange={setAmplitude} />
+            <SliderControl density="compact" label="Frequency f" value={frequency} min={0.5} max={5} step={0.1} onChange={setFrequency} />
+            <SliderControl density="compact" label="Phase phi" value={phase} min={-Math.PI} max={Math.PI} step={0.05} onChange={setPhase} />
+            <SliderControl density="compact" label="Selected x" value={xPos} min={0} max={Math.PI * 4} step={0.05} onChange={setXPos} />
+          </SliderGroup>
           <label className="flex items-center gap-3 rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10"><input type="checkbox" checked={showTangent} onChange={(e) => setShowTangent(e.target.checked)} /> Show tangent wave</label>
           <label className="block rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10">Real-world use<select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" value={useCase} onChange={(e) => setUseCase(e.target.value)}>{Object.keys(useExplanation).map((item) => <option key={item}>{item}</option>)}</select></label>
           <button className="action-primary w-full" onClick={() => setPlaying(!playing)}>{playing ? "Pause" : "Play"}</button>

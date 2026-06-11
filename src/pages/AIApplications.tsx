@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import AITutorPanel from "../components/ui/AITutorPanel";
 import SectionCard from "../components/ui/SectionCard";
-import SliderControl from "../components/ui/SliderControl";
+import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import { topics } from "../data/topics";
@@ -62,10 +62,12 @@ function ComputerGraphicsVisualizer() {
     <SectionCard title="Matrix Transformations in Graphics" description="2D graphics pipelines rotate, scale, and translate object coordinates through homogeneous matrices.">
       <div className="grid gap-5 lg:grid-cols-[320px_1fr]">
         <div className="space-y-4">
-          <SliderControl label="Rotation angle" value={angle} min={0} max={360} step={1} onChange={setAngle} />
-          <SliderControl label="Scale" value={scale} min={0.5} max={2} step={0.05} onChange={setScale} />
-          <SliderControl label="Translate X" value={tx} min={-100} max={100} step={1} onChange={setTx} />
-          <SliderControl label="Translate Y" value={ty} min={-80} max={80} step={1} onChange={setTy} />
+          <SliderGroup title="Transform controls">
+            <SliderControl density="compact" label="Rotation angle" value={angle} min={0} max={360} step={1} onChange={setAngle} />
+            <SliderControl density="compact" label="Scale" value={scale} min={0.5} max={2} step={0.05} onChange={setScale} />
+            <SliderControl density="compact" label="Translate X" value={tx} min={-100} max={100} step={1} onChange={setTx} />
+            <SliderControl density="compact" label="Translate Y" value={ty} min={-80} max={80} step={1} onChange={setTy} />
+          </SliderGroup>
           <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
             <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Homogeneous matrix</p>
             <div className="mt-2 grid grid-cols-3 gap-1 font-mono text-sm">
@@ -133,8 +135,10 @@ function RadarSystemsVisualizer() {
     <SectionCard title="Signal Detection & CFAR Filtering" description="Radar maps polar range and bearing, then detects targets as the sweep crosses their angle.">
       <div className="grid gap-5 lg:grid-cols-[320px_1fr]">
         <div className="space-y-4">
-          <SliderControl label="Sweep speed" value={speed} min={0.5} max={3} step={0.1} onChange={setSpeed} />
-          <SliderControl label="Range scale" value={rangeScale} min={90} max={180} step={5} onChange={setRangeScale} />
+          <SliderGroup title="Radar sweep">
+            <SliderControl density="compact" label="Sweep speed" value={speed} min={0.5} max={3} step={0.1} onChange={setSpeed} />
+            <SliderControl density="compact" label="Range scale" value={rangeScale} min={90} max={180} step={5} onChange={setRangeScale} />
+          </SliderGroup>
           <label className="flex items-center justify-between rounded-xl bg-slate-100 p-3 text-sm font-bold dark:bg-white/10">
             Clutter
             <input type="checkbox" checked={clutter} onChange={(event) => setClutter(event.target.checked)} className="h-4 w-4 accent-cyan-500" />
@@ -204,9 +208,11 @@ function MedicalImagingVisualizer() {
     <SectionCard title="Windowing & CT Hounsfield Scale" description="CT windowing remaps raw density values into a visible grayscale diagnostic range.">
       <div className="grid gap-5 lg:grid-cols-[320px_1fr]">
         <div className="space-y-4">
-          <SliderControl label="Window center" value={windowCenter} min={0} max={255} step={1} onChange={setWindowCenter} />
-          <SliderControl label="Window width" value={windowWidth} min={1} max={255} step={1} onChange={setWindowWidth} />
-          <SliderControl label="Noise level" value={noiseLevel} min={0} max={35} step={1} onChange={setNoiseLevel} />
+          <SliderGroup title="Windowing">
+            <SliderControl density="compact" label="Window center" value={windowCenter} min={0} max={255} step={1} onChange={setWindowCenter} />
+            <SliderControl density="compact" label="Window width" value={windowWidth} min={1} max={255} step={1} onChange={setWindowWidth} />
+            <SliderControl density="compact" label="Noise level" value={noiseLevel} min={0} max={35} step={1} onChange={setNoiseLevel} />
+          </SliderGroup>
           <div className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10">
             Display range: {(windowCenter - windowWidth / 2).toFixed(0)} to {(windowCenter + windowWidth / 2).toFixed(0)} HU-like units
           </div>

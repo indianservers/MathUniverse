@@ -7,7 +7,7 @@ describe("workspace QA suite", () => {
 
     expect(report.failed).toBe(0);
     expect(report.passed).toBe(report.checks.length);
-    expect(report.checks.map((check) => check.area)).toEqual(expect.arrayContaining(["geometry", "parser", "dependencies", "performance", "accessibility", "offline", "exports"]));
+    expect(report.checks.map((check) => check.area)).toEqual(expect.arrayContaining(["geometry", "parser", "dependencies", "performance", "accessibility", "offline", "exports", "engine"]));
   });
 
   it("keeps each check id unique and actionable", () => {

@@ -1,5 +1,5 @@
 import { Lock, Unlock } from "lucide-react";
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
 import { formatFormulaValue } from "../../utils/format";
 import { readSliderParam, writeSliderParam } from "../../utils/shareableState";
 
@@ -12,9 +12,24 @@ type SliderControlProps = {
   onChange: (value: number) => void;
   unit?: string;
   description?: string;
+  density?: "default" | "compact";
 };
 
-export default function SliderControl({ label, value, min, max, step, onChange, unit = "", description }: SliderControlProps) {
+export function SliderGroup({ title, description, children, className = "" }: { title?: string; description?: string; children: ReactNode; className?: string }) {
+  return (
+    <div className={`rounded-xl border border-slate-200 bg-white/75 p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/40 ${className}`}>
+      {(title || description) && (
+        <div className="mb-3">
+          {title && <p className="text-sm font-black text-slate-950 dark:text-white">{title}</p>}
+          {description && <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">{description}</p>}
+        </div>
+      )}
+      <div className="divide-y divide-slate-200/80 dark:divide-white/10">{children}</div>
+    </div>
+  );
+}
+
+export default function SliderControl({ label, value, min, max, step, onChange, unit = "", description, density = "default" }: SliderControlProps) {
   const hydratedFromUrl = useRef(false);
   const skipNextUrlWrite = useRef(false);
   const history = useRef<number[]>([]);
@@ -69,9 +84,11 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
   const progress = max === min ? 0 : Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
   const rangeStyle = { "--slider-progress": `${progress}%` } as CSSProperties;
 
+  const compact = density === "compact";
+
   return (
-    <label className="block rounded-xl border border-slate-200 bg-white/75 p-3 shadow-sm transition hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950/40 dark:hover:border-cyan-400/40">
-      <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+    <label className={compact ? "block py-3 first:pt-0 last:pb-0" : "block rounded-xl border border-slate-200 bg-white/75 p-3 shadow-sm transition hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950/40 dark:hover:border-cyan-400/40"}>
+      <div className={compact ? "mb-2 grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-start sm:gap-3" : "mb-2 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3"}>
         <div className="min-w-0">
           <span className="text-sm font-semibold text-slate-900 dark:text-white">{label}</span>
           {description && <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">{description}</p>}
@@ -87,7 +104,7 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
             onChange={(event) => commit(Number(event.target.value))}
             aria-label={`${label} exact value`}
           />
-          <span className="w-fit rounded-lg bg-slate-100 px-2 py-1 text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-cyan-100">
+          <span className={compact ? "w-14 rounded-lg bg-slate-100 px-2 py-1 text-center text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-cyan-100" : "w-fit rounded-lg bg-slate-100 px-2 py-1 text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-cyan-100"}>
             {formatFormulaValue(value, unit)}
           </span>
         </div>
@@ -109,7 +126,7 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
         </button>
         <span>{max}</span>
       </div>
-      <div className="mt-2 flex flex-wrap gap-2">
+      <div className={compact ? "mt-2 grid grid-cols-3 gap-2" : "mt-2 flex flex-wrap gap-2"}>
         {presets.map((preset) => (
           <button key={preset.label} type="button" className="mini-chip transition hover:bg-cyan-100 hover:text-cyan-700 dark:hover:bg-cyan-400/15 dark:hover:text-cyan-100" onClick={() => commit(preset.value)}>
             {preset.label}
