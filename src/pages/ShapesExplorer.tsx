@@ -1,4 +1,4 @@
-import { Award, Box, Camera, Circle, Cuboid, Download, ExternalLink, Eye, Heart, Mic, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
+import { Award, Box, Camera, Circle, Cuboid, Download, Eye, Heart, Mic, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
 import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent, type RefObject } from "react";
@@ -33,6 +33,12 @@ type ShapeDefinition = {
 };
 
 type Metrics = Record<string, number>;
+type ShapeFormulaEntry = {
+  title: string;
+  formula: string;
+  note: string;
+  valueLabel?: string;
+};
 
 const shapes: ShapeDefinition[] = [
   { id: "circle", name: "Circle", kind: "2d", category: "2D Curved", formula: "C = 2 pi r, A = pi r^2", description: "All points at a fixed distance from the center.", dimensions: ["radius"], use: "Wheels, clocks, lenses, gears." },
@@ -83,11 +89,12 @@ const shapes: ShapeDefinition[] = [
 ];
 
 const categories = ["All", "2D Basic", "2D Curved", "2D Polygons", "3D Solids", "3D Curved Solids"] as const;
+const shapeMenuCategories = categories.filter((item): item is ShapeCategory => item !== "All");
 
 export default function ShapesExplorer() {
   const { markTopicVisited, markTopicInteracted } = useProgress();
-  const [category, setCategory] = useState<(typeof categories)[number]>("All");
   const [selectedId, setSelectedId] = useState<ShapeId>("circle");
+  const [expandedCategories, setExpandedCategories] = useState<Set<ShapeCategory>>(() => new Set(["2D Basic", "2D Curved", "3D Solids"]));
   const [a, setA] = useState(4);
   const [b, setB] = useState(3);
   const [c, setC] = useState(5);
@@ -104,15 +111,30 @@ export default function ShapesExplorer() {
 
   useEffect(() => markTopicVisited("shapes"), [markTopicVisited]);
 
+  useEffect(() => {
+    const shapeParam = new URLSearchParams(window.location.search).get("shape");
+    if (shapeParam && shapes.some((shape) => shape.id === shapeParam)) setSelectedId(shapeParam as ShapeId);
+  }, []);
+
   const selected = shapes.find((shape) => shape.id === selectedId) ?? shapes[0];
-  const visibleShapes = useMemo(() => shapes.filter((shape) => category === "All" || shape.category === category), [category]);
+  const groupedShapes = useMemo(() => shapeMenuCategories.map((item) => ({ category: item, shapes: shapes.filter((shape) => shape.category === item) })), []);
   const metrics = getMetrics(selected.id, a, b, c, sides, angle);
 
   const selectShape = (shape: ShapeDefinition) => {
     setSelectedId(shape.id);
+    setExpandedCategories((items) => new Set([...items, shape.category]));
     setViewZoom(1);
     setViewRotation(0);
+    window.history.replaceState(null, "", `${window.location.pathname}?shape=${shape.id}`);
     markTopicInteracted("shapes");
+  };
+  const toggleCategory = (item: ShapeCategory) => {
+    setExpandedCategories((current) => {
+      const next = new Set(current);
+      if (next.has(item)) next.delete(item);
+      else next.add(item);
+      return next;
+    });
   };
 
   const zoomIn = () => setViewZoom((value) => Math.min(2, roundTo(value + 0.1, 2)));
@@ -133,45 +155,20 @@ export default function ShapesExplorer() {
         difficulty="Foundational"
         estimatedMinutes={35}
       />
-      <KidsShapeStudio shapes={shapes} selected={selected} onSelect={selectShape} />
-
-      <SectionCard title="Shape Library" description={`${shapes.length} shapes grouped by 2D and 3D families.`}>
-        <div className="flex flex-wrap gap-2">
-          {categories.map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() => setCategory(item)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                category === item ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200"
-              }`}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
-        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-          {visibleShapes.map((shape) => {
-            const Icon = shape.kind === "3d" ? Box : shape.id.includes("triangle") ? Triangle : shape.id === "circle" ? Circle : Shapes;
-            const active = selected.id === shape.id;
-            return (
-              <button
-                key={shape.id}
-                type="button"
-                onClick={() => selectShape(shape)}
-                className={`min-h-[132px] rounded-2xl border p-4 text-left transition hover:-translate-y-1 ${
-                  active ? "border-cyan-400 bg-cyan-50 shadow-lg shadow-cyan-500/10 dark:bg-cyan-400/10" : "border-slate-200 bg-white/70 dark:border-white/10 dark:bg-white/5"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <Icon className="h-5 w-5 text-cyan-500" />
-                  <span className="font-bold">{shape.name}</span>
-                </div>
-                <p className="mt-2 text-xs font-semibold text-slate-500 dark:text-slate-400">{shape.category}</p>
-                <p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{shape.description}</p>
-              </button>
-            );
-          })}
+      <SectionCard title="Shapes Explorer" description="Use the left menu to choose a 2D shape or 3D object. The selected object opens on the right with live controls.">
+        <div className="grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)]">
+          <ShapeSelectorMenu groupedShapes={groupedShapes} selectedId={selected.id} expandedCategories={expandedCategories} onToggleCategory={toggleCategory} onSelect={selectShape} />
+          <div className="min-w-0 rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">{selected.category}</p>
+                <h2 className="mt-1 text-xl font-black">{selected.name}</h2>
+                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{selected.description}</p>
+              </div>
+              <span className="mini-chip">{selected.kind === "3d" ? "3D object" : "2D shape"}</span>
+            </div>
+            <p className="mt-3 rounded-lg bg-slate-100 p-3 font-mono text-sm font-bold dark:bg-white/10">{selected.formula}</p>
+          </div>
         </div>
       </SectionCard>
 
@@ -295,20 +292,150 @@ export default function ShapesExplorer() {
         </div>
       </SectionCard>
 
-      <SectionCard title="Formula Map">
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-          {shapes.map((shape) => (
-            <button key={shape.id} type="button" onClick={() => selectShape(shape)} className="rounded-2xl border border-slate-200 bg-white/70 p-4 text-left transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
-              <div className="flex items-center justify-between gap-3">
-                <h3 className="font-bold">{shape.name}</h3>
-                <ExternalLink className="h-4 w-4 text-cyan-500" />
-              </div>
-              <p className="mt-2 font-mono text-xs leading-5 text-slate-600 dark:text-slate-300">{shape.formula}</p>
-            </button>
-          ))}
-        </div>
-      </SectionCard>
+      <FormulaMapSection selected={selected} metrics={metrics} shapes={shapes} onSelect={selectShape} />
     </div>
+  );
+}
+
+function FormulaMapSection({ selected, metrics, shapes, onSelect }: { selected: ShapeDefinition; metrics: Metrics; shapes: ShapeDefinition[]; onSelect: (shape: ShapeDefinition) => void }) {
+  const selectedFormulaEntries = useMemo(() => getShapeFormulaEntries(selected.id), [selected.id]);
+  const familyShapes = useMemo(() => shapes.filter((shape) => shape.category === selected.category && shape.id !== selected.id).slice(0, 8), [selected.category, selected.id, shapes]);
+  const relatedEntries = useMemo(() => getRelatedFormulaEntries(selected), [selected]);
+  const formulaCount = selectedFormulaEntries.length + relatedEntries.length;
+
+  return (
+    <SectionCard
+      title="Formula Map"
+      description={`Showing ${formulaCount} formulas related to the selected ${selected.kind === "3d" ? "3D object" : "shape"}: ${selected.name}.`}
+      headerAction={<span className="mini-chip">{selected.kind === "3d" ? "3D object" : "2D shape"}</span>}
+    >
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_300px]">
+        <div className="space-y-4">
+          <div className="rounded-xl border border-cyan-200 bg-cyan-50/80 p-4 dark:border-cyan-400/20 dark:bg-cyan-400/10">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Selected formula family</p>
+                <h3 className="mt-1 text-lg font-black text-slate-950 dark:text-white">{selected.name}</h3>
+                <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{selected.description}</p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <span className="mini-chip">{selected.category}</span>
+                <span className="mini-chip">{selected.dimensions.join(", ")}</span>
+              </div>
+            </div>
+            <p className="mt-3 rounded-lg bg-white/80 p-3 font-mono text-sm font-bold text-slate-800 dark:bg-slate-950/50 dark:text-cyan-50">{selected.formula}</p>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-2">
+            {selectedFormulaEntries.map((entry) => (
+              <FormulaMapCard key={entry.title} entry={entry} metrics={metrics} />
+            ))}
+          </div>
+
+          {relatedEntries.length > 0 && (
+            <div className="rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
+              <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Related formulas</p>
+              <div className="mt-3 grid gap-3 md:grid-cols-2">
+                {relatedEntries.map((entry) => <FormulaMapCard key={entry.title} entry={entry} metrics={metrics} compact />)}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <aside className="space-y-3">
+          <div className="rounded-xl border border-slate-200 bg-white/75 p-3 dark:border-white/10 dark:bg-white/5">
+            <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Live values from selected object</p>
+            <div className="mt-3 grid gap-2">
+              {Object.entries(metrics).map(([label, value]) => (
+                <div key={label} className="flex items-center justify-between gap-3 rounded-lg bg-slate-100 px-3 py-2 text-sm dark:bg-white/10">
+                  <span className="font-bold text-slate-600 dark:text-slate-300">{label}</span>
+                  <span className="font-mono font-black text-slate-950 dark:text-white">{roundTo(value, 3)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-slate-200 bg-white/75 p-3 dark:border-white/10 dark:bg-white/5">
+            <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Same family</p>
+            <div className="mt-3 grid gap-2">
+              {familyShapes.map((shape) => (
+                <button key={shape.id} type="button" onClick={() => onSelect(shape)} className="rounded-lg border border-transparent bg-slate-100 px-3 py-2 text-left text-sm transition hover:border-cyan-300 hover:bg-cyan-50 dark:bg-white/10 dark:hover:bg-cyan-300/10">
+                  <span className="font-bold">{shape.name}</span>
+                  <span className="mt-1 block truncate font-mono text-xs text-slate-500 dark:text-slate-400">{shape.formula}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </SectionCard>
+  );
+}
+
+function FormulaMapCard({ entry, metrics, compact = false }: { entry: ShapeFormulaEntry; metrics: Metrics; compact?: boolean }) {
+  const value = entry.valueLabel ? metrics[entry.valueLabel] : undefined;
+  return (
+    <article className="rounded-xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/35">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h4 className="font-black text-slate-950 dark:text-white">{entry.title}</h4>
+          <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">{entry.note}</p>
+        </div>
+        {value !== undefined && Number.isFinite(value) && <span className="rounded-lg bg-cyan-100 px-2 py-1 font-mono text-xs font-black text-cyan-900 dark:bg-cyan-300/15 dark:text-cyan-100">{roundTo(value, 3)}</span>}
+      </div>
+      <p className={`mt-3 rounded-lg bg-slate-100 p-3 font-mono font-bold text-slate-800 dark:bg-white/10 dark:text-slate-100 ${compact ? "text-xs leading-5" : "text-sm leading-6"}`}>{entry.formula}</p>
+    </article>
+  );
+}
+
+function ShapeSelectorMenu({ groupedShapes, selectedId, expandedCategories, onToggleCategory, onSelect }: { groupedShapes: { category: ShapeCategory; shapes: ShapeDefinition[] }[]; selectedId: ShapeId; expandedCategories: Set<ShapeCategory>; onToggleCategory: (category: ShapeCategory) => void; onSelect: (shape: ShapeDefinition) => void }) {
+  return (
+    <aside className="max-h-[72vh] overflow-auto rounded-xl border border-slate-200 bg-white/85 p-3 dark:border-white/10 dark:bg-slate-950/35">
+      <div className="mb-3">
+        <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Main menu</p>
+        <h3 className="mt-1 text-base font-black">Shape families</h3>
+      </div>
+      <div className="space-y-2">
+        {groupedShapes.map(({ category, shapes: categoryShapes }) => {
+          const open = expandedCategories.has(category);
+          const activeInside = categoryShapes.some((shape) => shape.id === selectedId);
+          return (
+            <div key={category} className="rounded-lg border border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/5">
+              <button
+                type="button"
+                onClick={() => onToggleCategory(category)}
+                className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm font-black transition ${activeInside ? "text-cyan-700 dark:text-cyan-200" : "text-slate-700 dark:text-slate-200"}`}
+              >
+                <span>{category}</span>
+                <span className="rounded-full bg-white px-2 py-0.5 text-xs dark:bg-slate-950">{open ? "-" : "+"}</span>
+              </button>
+              {open && (
+                <div className="border-t border-slate-200 p-2 dark:border-white/10">
+                  <p className="mb-2 px-1 text-[11px] font-black uppercase text-slate-400">Sub menu</p>
+                  <div className="grid gap-1">
+                    {categoryShapes.map((shape) => {
+                      const active = shape.id === selectedId;
+                      const Icon = shape.kind === "3d" ? Box : shape.id.includes("triangle") ? Triangle : shape.id === "circle" ? Circle : Shapes;
+                      return (
+                        <button
+                          key={shape.id}
+                          type="button"
+                          onClick={() => onSelect(shape)}
+                          className={`flex min-w-0 items-center gap-2 rounded-md px-2 py-2 text-left text-sm transition ${active ? "bg-cyan-100 text-cyan-950 ring-1 ring-cyan-300 dark:bg-cyan-300/20 dark:text-cyan-50" : "hover:bg-white dark:hover:bg-white/10"}`}
+                        >
+                          <Icon className="h-4 w-4 shrink-0 text-cyan-600 dark:text-cyan-200" />
+                          <span className="min-w-0 flex-1 truncate font-bold">{shape.name}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </aside>
   );
 }
 
@@ -766,6 +893,226 @@ function Metric({ label, value }: { label: string; value: number }) {
 
 function InfoTile({ label, value }: { label: string; value: string }) {
   return <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10"><p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{label}</p><p className="mt-2 text-sm leading-6 text-slate-700 dark:text-slate-200">{value}</p></div>;
+}
+
+function getShapeFormulaEntries(id: ShapeId): ShapeFormulaEntry[] {
+  const polygon = (n: number): ShapeFormulaEntry[] => [
+    { title: "Perimeter", formula: `P=${n}s`, note: `Add all ${n} equal sides.`, valueLabel: "Perimeter" },
+    { title: "Area", formula: `A=${n}s^2/(4 tan(pi/${n}))`, note: "Regular-polygon area from side length.", valueLabel: "Area" },
+    { title: "Apothem", formula: `a_p=s/(2 tan(pi/${n}))`, note: "Distance from center to each side.", valueLabel: "Apothem" },
+  ];
+  const prism = (baseArea: string, perimeter = "P_b"): ShapeFormulaEntry[] => [
+    { title: "Base area", formula: `B=${baseArea}`, note: "Area of one congruent base.", valueLabel: "Base area" },
+    { title: "Volume", formula: "V=B L", note: "Base area times extrusion length.", valueLabel: "Volume" },
+    { title: "Lateral area", formula: `LA=${perimeter}L`, note: "Wrap area from base perimeter times length." },
+    { title: "Total surface area", formula: "TSA=2B+LA", note: "Both bases plus lateral surface." },
+  ];
+
+  const formulas: Partial<Record<ShapeId, ShapeFormulaEntry[]>> = {
+    circle: [
+      { title: "Circumference", formula: "C=2 pi r", note: "Distance around the circle.", valueLabel: "Circumference" },
+      { title: "Area", formula: "A=pi r^2", note: "Region enclosed by the circle.", valueLabel: "Area" },
+      { title: "Diameter", formula: "d=2r", note: "Full width through the center." },
+      { title: "Arc length", formula: "s=r theta", note: "Theta in radians for any circular arc." },
+    ],
+    semicircle: [
+      { title: "Arc length", formula: "L=pi r", note: "Half of the full circumference.", valueLabel: "Arc length" },
+      { title: "Perimeter", formula: "P=pi r+2r", note: "Curved edge plus diameter.", valueLabel: "Perimeter" },
+      { title: "Area", formula: "A=1/2 pi r^2", note: "Half of circle area.", valueLabel: "Area" },
+    ],
+    sector: [
+      { title: "Arc length", formula: "L=(theta/360) 2 pi r", note: "Central angle in degrees.", valueLabel: "Arc length" },
+      { title: "Area", formula: "A=(theta/360) pi r^2", note: "Fraction of circle area.", valueLabel: "Area" },
+      { title: "Perimeter", formula: "P=2r+L", note: "Two radii plus arc length." },
+    ],
+    ellipse: [
+      { title: "Area", formula: "A=pi ab", note: "Semi-major axis a and semi-minor axis b.", valueLabel: "Area" },
+      { title: "Approx perimeter", formula: "P approx pi[3(a+b)-sqrt((3a+b)(a+3b))]", note: "Ramanujan-style approximation.", valueLabel: "Approx perimeter" },
+      { title: "Eccentricity", formula: "e=sqrt(1-b^2/a^2)", note: "For a >= b." },
+    ],
+    annulus: [
+      { title: "Area", formula: "A=pi(R^2-r^2)", note: "Outer circle minus inner circle.", valueLabel: "Area" },
+      { title: "Outer circumference", formula: "C_o=2 pi R", note: "Outer boundary length.", valueLabel: "Outer circumference" },
+      { title: "Inner circumference", formula: "C_i=2 pi r", note: "Inner boundary length.", valueLabel: "Inner circumference" },
+    ],
+    quadrant: [
+      { title: "Arc length", formula: "L=1/2 pi r", note: "Quarter circle arc.", valueLabel: "Arc length" },
+      { title: "Area", formula: "A=1/4 pi r^2", note: "Quarter of circle area.", valueLabel: "Area" },
+      { title: "Perimeter", formula: "P=2r+1/2 pi r", note: "Two radii plus quarter circumference.", valueLabel: "Perimeter" },
+    ],
+    segment: [
+      { title: "Arc length", formula: "L=(theta/360) 2 pi r", note: "Arc cut by the chord.", valueLabel: "Arc length" },
+      { title: "Segment area", formula: "A=(r^2/2)(theta-sin theta)", note: "Theta in radians.", valueLabel: "Area" },
+      { title: "Chord length", formula: "c=2r sin(theta/2)", note: "Straight edge of the segment." },
+    ],
+    crescent: [
+      { title: "Approx area", formula: "A approx pi(R^2-0.72r^2)", note: "Model-specific crescent approximation.", valueLabel: "Approx area" },
+      { title: "Outer arc", formula: "L_o approx pi R", note: "Shown as a major circular arc.", valueLabel: "Outer arc" },
+      { title: "Inner arc", formula: "L_i approx pi r", note: "Shown as an inner circular cut.", valueLabel: "Inner arc" },
+    ],
+    star: [
+      { title: "Approx area", formula: "A approx 5Rr sin72", note: "Five alternating outer/inner triangular wedges.", valueLabel: "Approx area" },
+      { title: "Points", formula: "n=5", note: "Current star model uses five points.", valueLabel: "Points" },
+    ],
+    cross: [
+      { title: "Area", formula: "A=2ab-b^2", note: "Two rectangles minus the overlap square.", valueLabel: "Area" },
+      { title: "Perimeter", formula: "P=4a+8b", note: "Outer boundary of the equal-arm cross.", valueLabel: "Perimeter" },
+    ],
+    triangle: [
+      { title: "Area", formula: "A=1/2 bh", note: "Base times perpendicular height.", valueLabel: "Area" },
+      { title: "Perimeter", formula: "P=a+b+c", note: "Sum of all side lengths." },
+      { title: "Heron's formula", formula: "A=sqrt(s(s-a)(s-b)(s-c)), s=(a+b+c)/2", note: "Area when all three side lengths are known." },
+    ],
+    "right-triangle": [
+      { title: "Area", formula: "A=1/2 ab", note: "Product of perpendicular legs.", valueLabel: "Area" },
+      { title: "Hypotenuse", formula: "c=sqrt(a^2+b^2)", note: "Pythagorean theorem.", valueLabel: "Hypotenuse" },
+      { title: "Perimeter", formula: "P=a+b+c", note: "Both legs plus hypotenuse.", valueLabel: "Perimeter" },
+      { title: "Trig ratios", formula: "sin theta=opposite/hypotenuse, tan theta=opposite/adjacent", note: "Connects the triangle to trigonometry." },
+    ],
+    square: [
+      { title: "Area", formula: "A=s^2", note: "Side squared.", valueLabel: "Area" },
+      { title: "Perimeter", formula: "P=4s", note: "Four equal sides.", valueLabel: "Perimeter" },
+      { title: "Diagonal", formula: "d=s sqrt(2)", note: "From Pythagoras.", valueLabel: "Diagonal" },
+    ],
+    rectangle: [
+      { title: "Area", formula: "A=lw", note: "Length times width.", valueLabel: "Area" },
+      { title: "Perimeter", formula: "P=2(l+w)", note: "Two lengths and two widths.", valueLabel: "Perimeter" },
+      { title: "Diagonal", formula: "d=sqrt(l^2+w^2)", note: "Pythagoras across the rectangle.", valueLabel: "Diagonal" },
+    ],
+    parallelogram: [
+      { title: "Area", formula: "A=bh", note: "Base times perpendicular height.", valueLabel: "Area" },
+      { title: "Perimeter", formula: "P=2(a+b)", note: "Opposite sides are equal.", valueLabel: "Perimeter" },
+      { title: "Vector area", formula: "A=|u x v|", note: "Useful for vector parallelograms." },
+    ],
+    rhombus: [
+      { title: "Area", formula: "A=d1 d2 / 2", note: "Half product of diagonals.", valueLabel: "Area" },
+      { title: "Side", formula: "s=sqrt((d1/2)^2+(d2/2)^2)", note: "Right triangle from half-diagonals.", valueLabel: "Side" },
+      { title: "Perimeter", formula: "P=4s", note: "Four equal sides.", valueLabel: "Perimeter" },
+    ],
+    trapezium: [
+      { title: "Area", formula: "A=1/2(a+b)h", note: "Average of parallel sides times height.", valueLabel: "Area" },
+      { title: "Midline", formula: "m=(a+b)/2", note: "Segment joining leg midpoints.", valueLabel: "Midline" },
+    ],
+    kite: [
+      { title: "Area", formula: "A=d1 d2 / 2", note: "Half product of perpendicular diagonals.", valueLabel: "Area" },
+      { title: "Symmetry diagonal", formula: "d_s perpendicular d_o", note: "One diagonal bisects the other in a classic kite." },
+    ],
+    "regular-polygon": [
+      { title: "Perimeter", formula: "P=ns", note: "n equal sides.", valueLabel: "Perimeter" },
+      { title: "Area", formula: "A=ns^2/(4 tan(pi/n))", note: "Regular polygon from side and side count.", valueLabel: "Area" },
+      { title: "Apothem", formula: "a_p=s/(2 tan(pi/n))", note: "Distance from center to a side.", valueLabel: "Apothem" },
+    ],
+    pentagon: polygon(5),
+    hexagon: polygon(6),
+    heptagon: polygon(7),
+    octagon: polygon(8),
+    decagon: polygon(10),
+    cube: [
+      { title: "Surface area", formula: "SA=6s^2", note: "Six congruent square faces.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=s^3", note: "Side cubed.", valueLabel: "Volume" },
+      { title: "Space diagonal", formula: "d=s sqrt(3)", note: "Diagonal through the cube.", valueLabel: "Diagonal" },
+    ],
+    cuboid: [
+      { title: "Surface area", formula: "SA=2(lw+lh+wh)", note: "Area of all six rectangular faces.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=lwh", note: "Length times width times height.", valueLabel: "Volume" },
+      { title: "Space diagonal", formula: "d=sqrt(l^2+w^2+h^2)", note: "3D Pythagoras.", valueLabel: "Diagonal" },
+    ],
+    sphere: [
+      { title: "Surface area", formula: "SA=4 pi r^2", note: "Area of the spherical surface.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=4/3 pi r^3", note: "Space enclosed by the sphere.", valueLabel: "Volume" },
+      { title: "Great circle", formula: "C=2 pi r", note: "Largest circular cross-section." },
+    ],
+    hemisphere: [
+      { title: "Curved area", formula: "CSA=2 pi r^2", note: "Half of sphere surface.", valueLabel: "Curved area" },
+      { title: "Total area", formula: "TSA=3 pi r^2", note: "Curved surface plus circular base.", valueLabel: "Total area" },
+      { title: "Volume", formula: "V=2/3 pi r^3", note: "Half sphere volume.", valueLabel: "Volume" },
+    ],
+    cylinder: [
+      { title: "Curved surface area", formula: "CSA=2 pi rh", note: "Rectangle wrapped around the side." },
+      { title: "Total surface area", formula: "TSA=2 pi r(r+h)", note: "Curved area plus two circular bases.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=pi r^2h", note: "Base area times height.", valueLabel: "Volume" },
+    ],
+    "hollow-cylinder": [
+      { title: "Material volume", formula: "V=pi h(R^2-r^2)", note: "Outer cylinder minus inner void.", valueLabel: "Material volume" },
+      { title: "Outer curved area", formula: "A_o=2 pi Rh", note: "Outer wall area.", valueLabel: "Outer area" },
+      { title: "Inner curved area", formula: "A_i=2 pi rh", note: "Inner wall area.", valueLabel: "Inner area" },
+    ],
+    capsule: [
+      { title: "Surface area", formula: "SA=2 pi rh+4 pi r^2", note: "Cylinder wall plus full sphere area.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=pi r^2h+4/3 pi r^3", note: "Cylinder plus two hemispheres.", valueLabel: "Volume" },
+    ],
+    ellipsoid: [
+      { title: "Volume", formula: "V=4/3 pi abc", note: "Sphere stretched along three axes.", valueLabel: "Volume" },
+      { title: "Mean radius", formula: "r_bar=(a+b+c)/3", note: "Quick size summary.", valueLabel: "Mean radius" },
+    ],
+    cone: [
+      { title: "Slant height", formula: "l=sqrt(r^2+h^2)", note: "Right triangle from radius and height.", valueLabel: "Slant height" },
+      { title: "Surface area", formula: "SA=pi r(r+l)", note: "Base plus curved surface.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=1/3 pi r^2h", note: "One third of matching cylinder.", valueLabel: "Volume" },
+    ],
+    frustum: [
+      { title: "Slant height", formula: "l=sqrt((R-r)^2+h^2)", note: "Side length of the cut cone.", valueLabel: "Slant height" },
+      { title: "Surface area", formula: "SA=pi(R+r)l+pi(R^2+r^2)", note: "Lateral area plus both circular ends.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=1/3 pi h(R^2+Rr+r^2)", note: "Conical frustum volume.", valueLabel: "Volume" },
+    ],
+    tetrahedron: [
+      { title: "Surface area", formula: "SA=sqrt(3)s^2", note: "Four equilateral triangle faces.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=s^3/(6sqrt(2))", note: "Regular tetrahedron volume.", valueLabel: "Volume" },
+      { title: "Faces", formula: "F=4", note: "Four triangular faces.", valueLabel: "Faces" },
+    ],
+    octahedron: [
+      { title: "Surface area", formula: "SA=2sqrt(3)s^2", note: "Eight equilateral triangle faces.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=sqrt(2)s^3/3", note: "Regular octahedron volume.", valueLabel: "Volume" },
+      { title: "Faces", formula: "F=8", note: "Eight triangular faces.", valueLabel: "Faces" },
+    ],
+    dodecahedron: [
+      { title: "Faces", formula: "F=12", note: "Twelve regular pentagonal faces.", valueLabel: "Faces" },
+      { title: "Edges", formula: "E=30", note: "Edge count.", valueLabel: "Edges" },
+      { title: "Vertices", formula: "V=20", note: "Vertex count.", valueLabel: "Vertices" },
+    ],
+    icosahedron: [
+      { title: "Faces", formula: "F=20", note: "Twenty triangular faces.", valueLabel: "Faces" },
+      { title: "Edges", formula: "E=30", note: "Edge count.", valueLabel: "Edges" },
+      { title: "Vertices", formula: "V=12", note: "Vertex count.", valueLabel: "Vertices" },
+    ],
+    "square-pyramid": [
+      { title: "Slant height", formula: "l=sqrt((s/2)^2+h^2)", note: "Face height from base midpoint to apex.", valueLabel: "Slant height" },
+      { title: "Surface area", formula: "SA=s^2+2sl", note: "Square base plus four triangular faces.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=1/3 s^2h", note: "One third of matching prism.", valueLabel: "Volume" },
+    ],
+    "triangular-pyramid": [
+      { title: "Base area", formula: "B=sqrt(3)s^2/4", note: "Equilateral triangular base.", valueLabel: "Base area" },
+      { title: "Volume", formula: "V=1/3 Bh", note: "Pyramid volume from base area and height.", valueLabel: "Volume" },
+    ],
+    "rectangular-pyramid": [
+      { title: "Base area", formula: "B=lw", note: "Rectangular base area.", valueLabel: "Base area" },
+      { title: "Volume", formula: "V=1/3 lwh", note: "One third of matching cuboid.", valueLabel: "Volume" },
+    ],
+    "triangular-prism": prism("1/2 bh", "a+b+c"),
+    "pentagonal-prism": prism("5s^2/(4 tan(pi/5))", "5s"),
+    "hexagonal-prism": prism("3sqrt(3)s^2/2", "6s"),
+    torus: [
+      { title: "Surface area", formula: "SA=4 pi^2 Rr", note: "Area of a swept circle.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=2 pi^2 Rr^2", note: "Volume of a circle swept around an axis.", valueLabel: "Volume" },
+    ],
+  };
+
+  return formulas[id] ?? [{ title: "Primary formula", formula: "See selected shape formula", note: "Formula map entry from the selected shape definition." }];
+}
+
+function getRelatedFormulaEntries(shape: ShapeDefinition): ShapeFormulaEntry[] {
+  const entries: ShapeFormulaEntry[] = [];
+  if (shape.kind === "2d") {
+    entries.push({ title: "Scale factor for area", formula: "A'=k^2A", note: "When all lengths scale by k, area scales by k squared." });
+    entries.push({ title: "Scale factor for perimeter", formula: "P'=kP", note: "Boundary length scales linearly." });
+  } else {
+    entries.push({ title: "Scale factor for surface area", formula: "SA'=k^2SA", note: "Surface area scales by k squared." });
+    entries.push({ title: "Scale factor for volume", formula: "V'=k^3V", note: "Volume scales by k cubed." });
+  }
+  if (shape.category.includes("Curved")) entries.push({ title: "Circle constant", formula: "pi=C/d", note: "Curved formulas use pi because circular cross-sections are involved." });
+  if (shape.id.includes("prism")) entries.push({ title: "General prism rule", formula: "V=(base area)(length)", note: "All prism volumes follow this structure." });
+  if (shape.id.includes("pyramid") || shape.id === "cone" || shape.id === "frustum") entries.push({ title: "One-third rule", formula: "V_pyramid=1/3 Bh", note: "Pyramids and cones are one third of matching prisms/cylinders." });
+  return entries;
 }
 
 function formulaExplanation(id: ShapeId, a: number, b: number, c: number, sides: number, angle: number) {

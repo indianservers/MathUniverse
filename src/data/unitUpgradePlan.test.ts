@@ -57,11 +57,31 @@ describe("unit upgrade plan", () => {
       "Numerical Methods",
       "Operations Research",
       "Vector Calculus",
+      "Special Functions",
+      "Stochastic Processes",
+      "Control Systems Mathematics",
+    ];
+    const requiredTopics = [
+      "Rank, Consistency and Row Reduction",
+      "Quadratic Forms and Canonical Reduction",
+      "Series Solutions, Bessel and Legendre Functions",
+      "Boundary Value Problems and Sturm-Liouville Theory",
+      "PDE Classification and Characteristics",
+      "Finite Difference Methods for PDEs",
+      "Numerical Linear Algebra",
+      "Power Method and Eigenvalue Iteration",
+      "Reliability, Markov Chains and Queueing",
+      "Time Series and Stochastic Processes",
+      "Control Systems Mathematics",
+      "Network Models, Game Theory and PERT/CPM",
+      "Calculus of Variations",
     ];
 
     expect(engineering).toBeTruthy();
-    expect(engineering?.topics.length).toBeGreaterThan(25);
+    expect(engineering?.topics.length).toBeGreaterThan(40);
     expect(requiredUnits.every((unit) => targets.some((target) => target.unit === unit))).toBe(true);
+    expect(requiredTopics.every((title) => engineering?.topics.some((topic) => topic.title === title))).toBe(true);
+    expect(engineering?.topics.every((topic) => topic.linkedVisualization.route.startsWith("/"))).toBe(true);
     expect(targets.every((target) => target.unit !== "General Mathematics")).toBe(true);
     expect(targets.every((target) => target.modifications.length > 0 && target.upgrades.length > 0)).toBe(true);
   });

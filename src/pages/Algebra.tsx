@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import SectionCard from "../components/ui/SectionCard";
+import ApplicationVisualCard from "../components/ui/ApplicationVisualCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicTabs from "../components/ui/TopicTabs";
 import ContinueCard from "../components/ui/ContinueCard";
@@ -12,6 +13,13 @@ import FormulaVisualizationAtlas from "../visualizations/formulas/FormulaVisuali
 import LinearEquationVisualizer from "../visualizations/algebra/LinearEquationVisualizer";
 import QuadraticEquationVisualizer from "../visualizations/algebra/QuadraticEquationVisualizer";
 import SimultaneousEquationsVisualizer from "../visualizations/algebra/SimultaneousEquationsVisualizer";
+
+const algebraApplications = [
+  { title: "Pricing models", visual: "pricing-models", description: "Linear formulas estimate revenue, discounts, and unit price changes." },
+  { title: "Break-even analysis", visual: "break-even", description: "Systems of equations show where cost and revenue meet." },
+  { title: "Physics motion", visual: "motion-model", description: "Quadratics model projectile height, stopping distance, and acceleration." },
+  { title: "Machine learning linear models", visual: "linear-model", description: "Regression fits a weighted equation to predict outcomes from data." },
+] as const;
 
 export default function Algebra() {
   const topic = topics.find((item) => item.id === "algebra")!;
@@ -36,7 +44,11 @@ export default function Algebra() {
         <FormulaBlock title="Quadratic" formula="y=ax^2+bx+c" />
       </div>
       <SectionCard title="Real-World Applications">
-        <div className="grid gap-3 md:grid-cols-4">{["Pricing models", "Break-even analysis", "Physics motion", "Machine learning linear models"].map((item) => <div key={item} className="rounded-2xl bg-slate-100 p-4 font-semibold dark:bg-white/10">{item}</div>)}</div>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {algebraApplications.map((item) => (
+            <ApplicationVisualCard key={item.title} title={item.title} description={item.description} visual={item.visual} compact />
+          ))}
+        </div>
       </SectionCard>
       <TopicProgressActions topicId={topic.id} />
     </div>

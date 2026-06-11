@@ -16,6 +16,7 @@ const planeCenter = 180;
 const planeScale = 16;
 const sceneCenter = { x: 360, y: 245 };
 const sceneScale = 24;
+const zeroTolerance = 1e-6;
 const presetViews: Record<ViewPreset, ViewState> = {
   front: { yaw: 0, pitch: 0, zoom: 1 },
   isometric: { yaw: -Math.PI / 5, pitch: Math.PI / 5.2, zoom: 1 },
@@ -266,6 +267,12 @@ function VectorScene3D({
   const sumPoint = project(add(aTail, sum));
   const projectionPoint = project(add(aTail, projection));
   const crossPoint = project(scaleToFit(cross, 4));
+  const aVector = subtract(aHead, aTail);
+  const bVector = subtract(bHead, bTail);
+  const hasA = isNonZeroVector(aVector);
+  const hasB = isNonZeroVector(bVector);
+  const hasSum = isNonZeroVector(sum);
+  const hasProjection = hasB && isNonZeroVector(projection);
 
   const onPointerMove = (event: PointerEvent<SVGSVGElement>) => {
     if (!dragRef.current) return;
@@ -329,7 +336,7 @@ function VectorScene3D({
         <Axis from={o} to={ay} color="#84cc16" marker="axis-lime" label="y" />
         <Axis from={o} to={az} color="#38bdf8" marker="axis-blue" label="z" />
 
-        {showSecond && showParallelogram && (
+        {showSecond && showParallelogram && hasA && hasB && (
           <polygon
             points={`${aTailPoint.x},${aTailPoint.y} ${aHeadPoint.x},${aHeadPoint.y} ${sumPoint.x},${sumPoint.y} ${bHeadPoint.x},${bHeadPoint.y}`}
             fill="rgba(245,158,11,.16)"
@@ -339,18 +346,23 @@ function VectorScene3D({
           />
         )}
 
-        <Arrow3D from={aTailPoint} to={aHeadPoint} color="#22d3ee" marker="arrow-cyan" label="A" />
-        <Handle point={aTailPoint} color="#0891b2" label="A tail" onPointerDown={startDrag("a-tail")} />
-        <Handle point={aHeadPoint} color="#22d3ee" label="A head" onPointerDown={startDrag("a-head")} />
+        {hasA ? <Arrow3D from={aTailPoint} to={aHeadPoint} color="#22d3ee" marker="arrow-cyan" label="A" /> : <ZeroVectorMarker point={aHeadPoint} color="#22d3ee" label="A = 0" dy={-36} />}
+        <Handle point={aTailPoint} color="#0891b2" label="A tail" onPointerDown={startDrag("a-tail")} labelDx={12} labelDy={28} />
+        <Handle point={aHeadPoint} color="#22d3ee" label="A head" onPointerDown={startDrag("a-head")} labelDx={12} labelDy={hasA ? 21 : -16} />
 
         {showSecond && (
           <>
-            <Arrow3D from={bTailPoint} to={bHeadPoint} color="#a78bfa" marker="arrow-violet" label="B" />
-            <Handle point={bTailPoint} color="#7c3aed" label="B tail" onPointerDown={startDrag("b-tail")} />
-            <Handle point={bHeadPoint} color="#a78bfa" label="B head" onPointerDown={startDrag("b-head")} />
-            <Arrow3D from={aTailPoint} to={sumPoint} color="#f59e0b" marker="arrow-amber" label="A+B" dashed />
-            <Arrow3D from={aTailPoint} to={projectionPoint} color="#fb7185" marker="arrow-amber" label="proj A on B" dashed />
+            {hasB ? <Arrow3D from={bTailPoint} to={bHeadPoint} color="#a78bfa" marker="arrow-violet" label="B" /> : <ZeroVectorMarker point={bHeadPoint} color="#a78bfa" label="B = 0" dx={78} dy={-18} />}
+            <Handle point={bTailPoint} color="#7c3aed" label="B tail" onPointerDown={startDrag("b-tail")} labelDx={-58} labelDy={28} />
+            <Handle point={bHeadPoint} color="#a78bfa" label="B head" onPointerDown={startDrag("b-head")} labelDx={-58} labelDy={hasB ? 21 : -16} />
+            {hasSum && <Arrow3D from={aTailPoint} to={sumPoint} color="#f59e0b" marker="arrow-amber" label="A+B" dashed />}
+            {hasProjection && <Arrow3D from={aTailPoint} to={projectionPoint} color="#fb7185" marker="arrow-amber" label="proj A on B" dashed />}
             {magnitude(cross) > 0.01 && <Arrow3D from={o} to={crossPoint} color="#34d399" marker="arrow-green" label="A x B" />}
+            {!hasA && !hasB && (
+              <text x={o.x - 86} y={o.y + 58} fill="#cbd5e1" fontSize="13" fontWeight="800">
+                Operations are zero/undefined until a vector has length.
+              </text>
+            )}
           </>
         )}
 
@@ -422,6 +434,10 @@ function VectorPlane2D({ a, b, showSecond, projection, sum }: { a: Vec3; b: Vec3
   const pb = toPlane(b[0], b[1]);
   const ps = toPlane(sum[0], sum[1]);
   const pp = toPlane(projection[0], projection[1]);
+  const hasA = isNonZeroVector(a);
+  const hasB = isNonZeroVector(b);
+  const hasSum = isNonZeroVector(sum);
+  const hasProjection = hasB && isNonZeroVector(projection);
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
       <div className="mb-2 text-sm font-black text-slate-950 dark:text-white">2D XY projection</div>
@@ -437,10 +453,10 @@ function VectorPlane2D({ a, b, showSecond, projection, sum }: { a: Vec3; b: Vec3
         })}
         <line x1="0" x2="360" y1={planeCenter} y2={planeCenter} stroke="#64748b" />
         <line x1={planeCenter} x2={planeCenter} y1="0" y2="260" stroke="#64748b" />
-        <VectorLine2D p={pa} color="#22d3ee" marker="plane-cyan" label="A xy" />
-        {showSecond && <VectorLine2D p={pb} color="#a78bfa" marker="plane-violet" label="B xy" />}
-        {showSecond && <VectorLine2D p={ps} color="#f59e0b" marker="plane-amber" label="A+B" />}
-        {showSecond && <line x1={planeCenter} y1={planeCenter} x2={pp.x} y2={pp.y} stroke="#fb7185" strokeWidth="4" strokeDasharray="6 4" />}
+        {hasA ? <VectorLine2D p={pa} color="#22d3ee" marker="plane-cyan" label="A xy" /> : <ZeroPoint2D label="A=0" color="#22d3ee" dx={12} dy={-18} />}
+        {showSecond && (hasB ? <VectorLine2D p={pb} color="#a78bfa" marker="plane-violet" label="B xy" /> : <ZeroPoint2D label="B=0" color="#a78bfa" dx={12} dy={22} />)}
+        {showSecond && hasSum && <VectorLine2D p={ps} color="#f59e0b" marker="plane-amber" label="A+B" />}
+        {showSecond && hasProjection && <line x1={planeCenter} y1={planeCenter} x2={pp.x} y2={pp.y} stroke="#fb7185" strokeWidth="4" strokeDasharray="6 4" />}
       </svg>
     </div>
   );
@@ -464,11 +480,29 @@ function Axis({ from, to, color, marker, label }: { from: { x: number; y: number
   );
 }
 
-function Handle({ point, color, label, onPointerDown }: { point: { x: number; y: number }; color: string; label: string; onPointerDown: (event: PointerEvent<SVGCircleElement>) => void }) {
+function Handle({ point, color, label, onPointerDown, labelDx = 12, labelDy = 21 }: { point: { x: number; y: number }; color: string; label: string; onPointerDown: (event: PointerEvent<SVGCircleElement>) => void; labelDx?: number; labelDy?: number }) {
   return (
     <g>
       <circle cx={point.x} cy={point.y} r="11" fill={color} stroke="#e0f2fe" strokeWidth="3" className="cursor-grab active:cursor-grabbing" onPointerDown={onPointerDown} />
-      <text x={point.x + 12} y={point.y + 21} fill="#e0f2fe" fontSize="11" fontWeight="800">{label}</text>
+      <text x={point.x + labelDx} y={point.y + labelDy} fill="#e0f2fe" fontSize="11" fontWeight="800">{label}</text>
+    </g>
+  );
+}
+
+function ZeroVectorMarker({ point, color, label, dx = 10, dy = -24 }: { point: { x: number; y: number }; color: string; label: string; dx?: number; dy?: number }) {
+  return (
+    <g>
+      <circle cx={point.x} cy={point.y} r="18" fill="none" stroke={color} strokeWidth="2.5" strokeDasharray="4 4" opacity="0.85" />
+      <text x={point.x + dx} y={point.y + dy} fill={color} fontSize="14" fontWeight="900">{label}</text>
+    </g>
+  );
+}
+
+function ZeroPoint2D({ label, color, dx, dy }: { label: string; color: string; dx: number; dy: number }) {
+  return (
+    <g>
+      <circle cx={planeCenter} cy={planeCenter} r="8" fill="none" stroke={color} strokeWidth="2" strokeDasharray="3 3" />
+      <text x={planeCenter + dx} y={planeCenter + dy} fill={color} fontWeight="800" fontSize="12">{label}</text>
     </g>
   );
 }
@@ -559,6 +593,10 @@ function scaleToFit(a: Vec3, maxLength: number): Vec3 {
 
 function magnitude(a: Vec3) {
   return Math.hypot(a[0], a[1], a[2]);
+}
+
+function isNonZeroVector(a: Vec3) {
+  return magnitude(a) > zeroTolerance;
 }
 
 function dotProduct(a: Vec3, b: Vec3) {

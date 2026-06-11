@@ -118,6 +118,27 @@ const unitRules: Record<string, UpgradeRule> = {
     upgrades: ["Seeded simulations for engineering reliability and ML evaluation", "Spreadsheet-backed regression and hypothesis-test workflows"],
     qualityTargets: ["No engineering stats topic uses an external redirect", "Large datasets remain responsive in chart/table views"],
   },
+  "Special Functions": {
+    unit: "Special Functions",
+    priority: "High",
+    modifications: ["Add power-series solutions, Frobenius method, Bessel functions, Legendre polynomials, and orthogonality targets", "Bridge special functions to PDE boundary-value problems and Fourier modes"],
+    upgrades: ["Series-solution lab with recurrence coefficients", "Boundary-condition presets for Bessel and Legendre engineering examples"],
+    qualityTargets: ["Special-function routes stay native", "Series coefficients and approximation curves remain synchronized"],
+  },
+  "Stochastic Processes": {
+    unit: "Stochastic Processes",
+    priority: "High",
+    modifications: ["Add Markov chains, Poisson processes, queueing models, reliability, and time-series coverage", "Connect stochastic models to probability distributions and engineering simulations"],
+    upgrades: ["Transition-matrix and queue-state visual workflows", "Seeded process simulation with exportable sample paths"],
+    qualityTargets: ["Stochastic simulations are reproducible", "Probability and process routes remain native"],
+  },
+  "Control Systems Mathematics": {
+    unit: "Control Systems Mathematics",
+    priority: "Medium",
+    modifications: ["Add transfer functions, poles, zeros, stability, impulse/step response, and frequency-response coverage", "Connect control examples to Laplace, Fourier, and differential-equation labs"],
+    upgrades: ["Pole-zero and response comparison panel", "Control presets for circuits, mechanical systems, and feedback loops"],
+    qualityTargets: ["Control-system math opens native transform labs", "Pole movement updates response readouts deterministically"],
+  },
   Geometry: {
     unit: "Geometry",
     priority: "High",

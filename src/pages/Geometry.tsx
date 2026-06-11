@@ -2,6 +2,7 @@ import SectionCard from "../components/ui/SectionCard";
 import { CSSProperties, PointerEvent as ReactPointerEvent, useEffect, useRef, useState } from "react";
 import { Cuboid, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen } from "lucide-react";
 import { Link } from "react-router-dom";
+import ApplicationVisualCard from "../components/ui/ApplicationVisualCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import TopicTabs from "../components/ui/TopicTabs";
@@ -13,6 +14,14 @@ import GeometryTheoremVisualizers from "../visualizations/geometry/GeometryTheor
 import PythagorasVisualizer from "../visualizations/geometry/PythagorasVisualizer";
 import Shape3DExplorer from "../visualizations/geometry/Shape3DExplorer";
 import TriangleExplorer from "../visualizations/geometry/TriangleExplorer";
+
+const geometryApplications = [
+  { title: "Architecture", visual: "architecture", description: "Angles, triangles, and solids guide stable spans and roof forms." },
+  { title: "Engineering", visual: "engineering", description: "Geometric constraints shape joints, tolerances, frames, and load paths." },
+  { title: "Game design", visual: "game-design", description: "Collision, paths, cameras, and level spaces depend on geometric models." },
+  { title: "Robotics", visual: "robotics", description: "Pose, reach, and path planning combine coordinate geometry with constraints." },
+  { title: "AR/VR", visual: "ar-vr", description: "Projection and tracking place virtual objects into real spatial scenes." },
+] as const;
 
 export default function Geometry() {
   const topic = topics.find((item) => item.id === "geometry")!;
@@ -104,7 +113,11 @@ export default function Geometry() {
           {rightOpen && (
             <>
               <SectionCard title="Applications" compact>
-                <div className="flex flex-wrap gap-2">{["Architecture", "Engineering", "Game design", "Robotics", "AR/VR"].map((item) => <span key={item} className="mini-chip">{item}</span>)}</div>
+                <div className="grid gap-2">
+                  {geometryApplications.map((item) => (
+                    <ApplicationVisualCard key={item.title} title={item.title} description={item.description} visual={item.visual} compact />
+                  ))}
+                </div>
               </SectionCard>
               <TopicProgressActions topicId={topic.id} />
             </>

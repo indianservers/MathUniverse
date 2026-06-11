@@ -1,6 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Box, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
+import { Box, ChevronDown, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
 import { MouseEvent as ReactMouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
@@ -1047,13 +1047,16 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
 
   const update3dTransform = (id: string, patch: Partial<Transform3D>) => {
     const currentTransform = isBase3dId(id) ? transforms3d[id] : added3dObjects.find((object) => object.id === id)?.transform;
-    if (!currentTransform || (currentTransform.locked && !("locked" in patch))) return;
+    const changesGeometry = "position" in patch || "rotation" in patch || "scale" in patch || "dimensions" in patch;
+    if (!currentTransform || (currentTransform.locked && changesGeometry)) return;
     recordWorkspaceStep("Edit 3D object", `${currentTransform.name ?? id} transform changed.`);
     if (isBase3dId(id)) setTransforms3d((current) => ({ ...current, [id]: { ...current[id], ...patch } }));
     else setAdded3dObjects((current) => current.map((object) => object.id === id ? { ...object, label: patch.name ?? object.label, transform: { ...object.transform, ...patch } } : object));
   };
 
   const update3dVector = (id: string, key: "position" | "rotation", index: number, value: number) => {
+    const currentTransform = isBase3dId(id) ? transforms3d[id] : added3dObjects.find((object) => object.id === id)?.transform;
+    if (!currentTransform || currentTransform.locked) return;
     if (isBase3dId(id)) {
       setTransforms3d((current) => {
         const next = [...current[id][key]] as [number, number, number];
@@ -3815,6 +3818,7 @@ const space3dCameraPalette: Space3DPaletteItem<CameraPreset3D>[] = [
 
 function Space3DToolPalette({
   activeObject,
+  selectedTransform,
   activeSurface,
   activeSolid,
   cameraPreset,
@@ -3844,6 +3848,7 @@ function Space3DToolPalette({
   onTrace,
 }: {
   activeObject: string;
+  selectedTransform: Transform3D;
   activeSurface: SurfaceKind;
   activeSolid: SolidKind;
   cameraPreset: CameraPreset3D;
@@ -3872,48 +3877,51 @@ function Space3DToolPalette({
   onLock: () => void;
   onTrace: () => void;
 }) {
+  const hasSelectedObject = Boolean(activeObject);
+  const selectedMaterial = selectedTransform.material ?? "glass";
+  const selectedOpacity = roundTo(selectedTransform.opacity ?? 0.8, 2);
   const transformActions: GeometryPaletteActionItem[] = [
-    { id: "move-x", label: "Move X", icon: Move, action: () => onNudge(0, 0.25) },
-    { id: "move-y", label: "Move Y", icon: Move, action: () => onNudge(1, 0.25) },
-    { id: "move-z", label: "Move Z", icon: Move, action: () => onNudge(2, 0.25) },
-    { id: "rot-x", label: "Rotate X", icon: Rotate3D, action: () => onRotateAxis(0, 0.18) },
-    { id: "rot-y", label: "Rotate Y", icon: Rotate3D, action: () => onRotateAxis(1, 0.18) },
-    { id: "rot-z", label: "Rotate Z", icon: Rotate3D, action: () => onRotateAxis(2, 0.18) },
-    { id: "scale-up", label: "Scale +", icon: ZoomIn, action: () => onScale(0.15) },
-    { id: "scale-down", label: "Scale -", icon: ZoomOut, action: () => onScale(-0.15) },
+    { id: "move-x", label: "Move X", icon: Move, action: () => onNudge(0, 0.25), disabled: !hasSelectedObject },
+    { id: "move-y", label: "Move Y", icon: Move, action: () => onNudge(1, 0.25), disabled: !hasSelectedObject },
+    { id: "move-z", label: "Move Z", icon: Move, action: () => onNudge(2, 0.25), disabled: !hasSelectedObject },
+    { id: "rot-x", label: "Rotate X", icon: Rotate3D, action: () => onRotateAxis(0, 0.18), disabled: !hasSelectedObject },
+    { id: "rot-y", label: "Rotate Y", icon: Rotate3D, action: () => onRotateAxis(1, 0.18), disabled: !hasSelectedObject },
+    { id: "rot-z", label: "Rotate Z", icon: Rotate3D, action: () => onRotateAxis(2, 0.18), disabled: !hasSelectedObject },
+    { id: "scale-up", label: "Scale +", icon: ZoomIn, action: () => onScale(0.15), disabled: !hasSelectedObject },
+    { id: "scale-down", label: "Scale -", icon: ZoomOut, action: () => onScale(-0.15), disabled: !hasSelectedObject },
   ];
   const materialActions: GeometryPaletteActionItem[] = [
-    { id: "matte", label: "Matte", icon: Circle, action: () => onMaterial("matte") },
-    { id: "glass", label: "Glass", icon: Circle, action: () => onMaterial("glass") },
-    { id: "wire", label: "Wireframe", icon: Slash, action: () => onMaterial("wireframe") },
-    { id: "opaque", label: "Opacity 100", icon: Circle, action: () => onOpacity(1) },
-    { id: "translucent", label: "Opacity 55", icon: Circle, action: () => onOpacity(0.55) },
-    { id: "ghost", label: "Opacity 25", icon: Circle, action: () => onOpacity(0.25) },
+    { id: "matte", label: "Matte", icon: Circle, action: () => onMaterial("matte"), active: selectedMaterial === "matte", disabled: !hasSelectedObject },
+    { id: "glass", label: "Glass", icon: Circle, action: () => onMaterial("glass"), active: selectedMaterial === "glass", disabled: !hasSelectedObject },
+    { id: "wire", label: "Wireframe", icon: Slash, action: () => onMaterial("wireframe"), active: selectedMaterial === "wireframe", disabled: !hasSelectedObject },
+    { id: "opaque", label: "Opacity 100", icon: Circle, action: () => onOpacity(1), active: selectedOpacity === 1, disabled: !hasSelectedObject },
+    { id: "translucent", label: "Opacity 55", icon: Circle, action: () => onOpacity(0.55), active: selectedOpacity === 0.55, disabled: !hasSelectedObject },
+    { id: "ghost", label: "Opacity 25", icon: Circle, action: () => onOpacity(0.25), active: selectedOpacity === 0.25, disabled: !hasSelectedObject },
   ];
   const objectActions: GeometryPaletteActionItem[] = [
-    { id: "duplicate", label: "Duplicate", icon: Plus, action: onDuplicate },
-    { id: "lock", label: "Lock", icon: Magnet, action: onLock },
-    { id: "trace", label: "Trace", icon: LineChart, action: onTrace },
-    { id: "restore", label: "Restore", icon: RotateCcw, action: onRestore },
-    { id: "delete", label: "Delete", icon: Trash2, action: onDelete, danger: true },
+    { id: "duplicate", label: "Duplicate", icon: Plus, action: onDuplicate, disabled: !hasSelectedObject },
+    { id: "lock", label: selectedTransform.locked ? "Unlock" : "Lock", icon: Magnet, action: onLock, active: Boolean(selectedTransform.locked), disabled: !hasSelectedObject },
+    { id: "trace", label: selectedTransform.trace ? "Trace On" : "Trace", icon: LineChart, action: onTrace, active: Boolean(selectedTransform.trace), disabled: !hasSelectedObject },
+    { id: "restore", label: "Restore", icon: RotateCcw, action: onRestore, disabled: !hasSelectedObject },
+    { id: "delete", label: "Delete", icon: Trash2, action: onDelete, danger: true, disabled: !hasSelectedObject },
   ];
   const sceneActions: GeometryPaletteActionItem[] = [
-    { id: "toggle-surface", label: showSurface ? "Surface On" : "Surface Off", icon: Circle, action: () => onToggleSurface(!showSurface) },
-    { id: "toggle-solid", label: showSolid ? "Solid On" : "Solid Off", icon: Box, action: () => onToggleSolid(!showSolid) },
-    { id: "rotate", label: autoRotate ? "Pause Rotation" : "Start Rotation", icon: RotateCcw, action: () => onToggleRotate(!autoRotate) },
+    { id: "toggle-surface", label: showSurface ? "Surface On" : "Surface Off", icon: Circle, action: () => onToggleSurface(!showSurface), active: showSurface },
+    { id: "toggle-solid", label: showSolid ? "Solid On" : "Solid Off", icon: Box, action: () => onToggleSolid(!showSolid), active: showSolid },
+    { id: "rotate", label: autoRotate ? "Pause Rotation" : "Start Rotation", icon: RotateCcw, action: () => onToggleRotate(!autoRotate), active: autoRotate },
     { id: "zoom-in", label: "Zoom In", icon: ZoomIn, action: onZoomIn },
     { id: "zoom-out", label: "Zoom Out", icon: ZoomOut, action: onZoomOut },
     { id: "reset", label: "Reset", icon: Eraser, action: onReset, danger: true },
   ];
   const mainActions: GeometryPaletteActionItem[] = [
-    { id: "select", label: "Select", icon: MousePointer2, action: onSelectTool },
-    { id: "pause-rotation", label: autoRotate ? "Pause Rotation" : "Start Rotation", icon: RotateCcw, action: () => onToggleRotate(!autoRotate) },
+    { id: "select", label: "Select", icon: MousePointer2, action: onSelectTool, active: !activeObject },
+    { id: "pause-rotation", label: autoRotate ? "Pause Rotation" : "Start Rotation", icon: RotateCcw, action: () => onToggleRotate(!autoRotate), active: autoRotate },
   ];
 
   return (
     <aside className="space3d-tool-palette thin-scrollbar max-h-[clamp(18rem,46vh,32.5rem)] overflow-auto rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-xl shadow-slate-200/40 dark:border-white/10 dark:bg-slate-950/70 dark:shadow-black/20">
       <Space3DPaletteSection title="Main Tools">
-        {mainActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+        {mainActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
       </Space3DPaletteSection>
       <Space3DPaletteSection title="Surfaces">
         {space3dSurfacePalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={activeSurface === item.id || (activeObject === "surface" && activeSurface === item.id)} onClick={() => onSurface(item.id)} />)}
@@ -3928,16 +3936,16 @@ function Space3DToolPalette({
         {space3dCameraPalette.map((item) => <Space3DPaletteButton key={item.id} item={item} active={cameraPreset === item.id} onClick={() => onCamera(item.id)} />)}
       </Space3DPaletteSection>
       <Space3DPaletteSection title="Transform Gizmo">
-        {transformActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+        {transformActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
       </Space3DPaletteSection>
       <Space3DPaletteSection title="Material">
-        {materialActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+        {materialActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
       </Space3DPaletteSection>
       <Space3DPaletteSection title="Selected 3D">
-        {objectActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+        {objectActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
       </Space3DPaletteSection>
       <Space3DPaletteSection title="Scene">
-        {sceneActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
+        {sceneActions.map((item) => <Space3DPaletteAction key={item.id} item={item} />)}
       </Space3DPaletteSection>
     </aside>
   );
@@ -3956,6 +3964,16 @@ function Space3DPaletteButton<T extends string>({ item, active, onClick }: { ite
   const Icon = item.icon;
   return (
     <button type="button" onClick={onClick} title={item.label} className={`space3d-palette-button ${active ? "space3d-palette-button-active" : ""}`}>
+      <Icon className="h-4 w-4" />
+      <span>{item.label}</span>
+    </button>
+  );
+}
+
+function Space3DPaletteAction({ item }: { item: GeometryPaletteActionItem }) {
+  const Icon = item.icon;
+  return (
+    <button type="button" onClick={item.action} title={item.disabled ? "Select a 3D object first" : item.label} disabled={item.disabled} className={`space3d-palette-button ${item.active ? "space3d-palette-button-active" : ""} ${item.danger ? "space3d-palette-button-danger" : ""}`}>
       <Icon className="h-4 w-4" />
       <span>{item.label}</span>
     </button>
@@ -4684,24 +4702,62 @@ type SceneSetupTabs3DProps = {
 };
 
 function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
-  const [tab, setTab] = useState<"tools" | "shape" | "parameters" | "camera">("parameters");
+  const [openSections, setOpenSections] = useState<Record<"surface" | "solid" | "parameters" | "tools" | "camera", boolean>>({
+    surface: true,
+    solid: true,
+    parameters: true,
+    tools: false,
+    camera: false,
+  });
+  const toggleSection = (section: keyof typeof openSections) => setOpenSections((current) => ({ ...current, [section]: !current[section] }));
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
-      <PanelTabs
-        active={tab}
-        tabs={[
-          { id: "parameters", label: "Parameters" },
-          { id: "shape", label: "Surface / Solid" },
-          { id: "tools", label: "Tools" },
-          { id: "camera", label: "Camera" },
-        ]}
-        onChange={(value) => setTab(value as typeof tab)}
-      />
-      {tab === "parameters" && (
-        <div className="mt-3 grid gap-3 xl:grid-cols-[minmax(0,1fr)_230px]">
+    <div className="space-y-2 rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
+      <AccordionSection title="Surface" summary={surfaceFormula(props.surface, props.surfaceScale)} open={openSections.surface} onToggle={() => toggleSection("surface")}>
+        <label className="block rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
+          Surface
+          <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={props.surface} onChange={(event) => props.onSurface(event.target.value as SurfaceKind)}>
+            <option value="paraboloid">z = scale(x^2 + y^2)</option>
+            <option value="saddle">z = scale(x^2 - y^2)</option>
+            <option value="wave">z = scale sin(x) cos(y)</option>
+            <option value="plane">z = scale(x + y)</option>
+            <option value="ripple">z = scale sin(x^2+y^2)</option>
+            <option value="cone-surface">z = scale sqrt(x^2+y^2)</option>
+            <option value="custom-z">Custom z=f(x,y)</option>
+            <option value="parametric">Parametric torus preset</option>
+            <option value="implicit">Implicit sphere preset</option>
+          </select>
+          <input value={props.surfaceExpression} onChange={(event) => props.onSurfaceExpression(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-900" placeholder="sin(x) * cos(y)" />
+        </label>
+      </AccordionSection>
+      <AccordionSection title="Solid" summary={props.solid} open={openSections.solid} onToggle={() => toggleSection("solid")}>
+        <label className="block rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
+          Solid
+          <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={props.solid} onChange={(event) => props.onSolid(event.target.value as SolidKind)}>
+            <option value="cube">Cube</option>
+            <option value="cuboid">Cuboid</option>
+            <option value="sphere">Sphere</option>
+            <option value="ellipsoid">Ellipsoid</option>
+            <option value="hemisphere">Hemisphere</option>
+            <option value="cylinder">Cylinder</option>
+            <option value="cone">Cone</option>
+            <option value="frustum">Frustum</option>
+            <option value="torus">Torus</option>
+            <option value="tube">Tube</option>
+            <option value="capsule">Capsule</option>
+            <option value="prism">Prism</option>
+            <option value="pyramid">Pyramid</option>
+            <option value="tetrahedron">Tetrahedron</option>
+            <option value="octahedron">Octahedron</option>
+            <option value="dodecahedron">Dodecahedron</option>
+            <option value="wedge">Wedge</option>
+            <option value="polyhedron">Polyhedron</option>
+          </select>
+        </label>
+      </AccordionSection>
+      <AccordionSection title="3D scene parameters" summary={`scale ${props.surfaceScale}, height ${props.height3d}, z ${props.crossSection}`} open={openSections.parameters} onToggle={() => toggleSection("parameters")}>
+        <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_230px]">
           <div className="rounded-xl border border-slate-200 bg-white/75 p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/40">
-            <p className="text-sm font-black text-slate-950 dark:text-white">3D scene parameters</p>
-            <div className="mt-2 grid gap-x-4 gap-y-1 2xl:grid-cols-2">
+            <div className="grid gap-x-4 gap-y-1 2xl:grid-cols-2">
               <SliderControl density="compact" label="Surface scale" value={props.surfaceScale} min={0.2} max={2.5} step={0.1} onChange={props.onSurfaceScale} />
               <SliderControl density="compact" label="Solid height / radius" value={props.height3d} min={0.8} max={5} step={0.1} onChange={props.onHeight} />
               <SliderControl density="compact" label="Cross-section z" value={props.crossSection} min={-3} max={3} step={0.1} onChange={props.onCrossSection} />
@@ -4716,53 +4772,12 @@ function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
             <button type="button" onClick={props.onReset} className="col-span-2 rounded-2xl bg-slate-100 px-3 py-3 text-sm font-semibold dark:bg-white/10">Reset view</button>
           </div>
         </div>
-      )}
-      {tab === "shape" && (
-        <div className="mt-3 grid gap-3 lg:grid-cols-2">
-          <label className="block rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
-            Surface
-            <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={props.surface} onChange={(event) => props.onSurface(event.target.value as SurfaceKind)}>
-              <option value="paraboloid">z = scale(x^2 + y^2)</option>
-              <option value="saddle">z = scale(x^2 - y^2)</option>
-              <option value="wave">z = scale sin(x) cos(y)</option>
-              <option value="plane">z = scale(x + y)</option>
-              <option value="ripple">z = scale sin(x^2+y^2)</option>
-              <option value="cone-surface">z = scale sqrt(x^2+y^2)</option>
-              <option value="custom-z">Custom z=f(x,y)</option>
-              <option value="parametric">Parametric torus preset</option>
-              <option value="implicit">Implicit sphere preset</option>
-            </select>
-            <input value={props.surfaceExpression} onChange={(event) => props.onSurfaceExpression(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-900" placeholder="sin(x) * cos(y)" />
-          </label>
-          <label className="block rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
-            Solid
-            <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-900" value={props.solid} onChange={(event) => props.onSolid(event.target.value as SolidKind)}>
-              <option value="cube">Cube</option>
-              <option value="cuboid">Cuboid</option>
-              <option value="sphere">Sphere</option>
-              <option value="ellipsoid">Ellipsoid</option>
-              <option value="hemisphere">Hemisphere</option>
-              <option value="cylinder">Cylinder</option>
-              <option value="cone">Cone</option>
-              <option value="frustum">Frustum</option>
-              <option value="torus">Torus</option>
-              <option value="tube">Tube</option>
-              <option value="capsule">Capsule</option>
-              <option value="prism">Prism</option>
-              <option value="pyramid">Pyramid</option>
-              <option value="tetrahedron">Tetrahedron</option>
-              <option value="octahedron">Octahedron</option>
-              <option value="dodecahedron">Dodecahedron</option>
-              <option value="wedge">Wedge</option>
-              <option value="polyhedron">Polyhedron</option>
-            </select>
-          </label>
-        </div>
-      )}
-      {tab === "tools" && (
-        <div className="mt-3 grid gap-3 xl:grid-cols-[minmax(0,1fr)_260px]">
+      </AccordionSection>
+      <AccordionSection title="3D tools" summary={props.selected3d ? `selected ${props.selected3d}` : "construct and edit"} open={openSections.tools} onToggle={() => toggleSection("tools")}>
+        <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_260px]">
           <Space3DToolPalette
             activeObject={props.selected3d}
+            selectedTransform={props.selected3dTransform}
             activeSurface={props.surface}
             activeSolid={props.solid}
             cameraPreset={props.cameraPreset3d}
@@ -4793,9 +4808,9 @@ function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
           />
           <ThreeCreationPanel onCreate={props.onObject} />
         </div>
-      )}
-      {tab === "camera" && (
-        <div className="mt-3 grid gap-3 md:grid-cols-[minmax(0,1fr)_220px]">
+      </AccordionSection>
+      <AccordionSection title="Camera" summary={props.cameraPreset3d} open={openSections.camera} onToggle={() => toggleSection("camera")}>
+        <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_220px]">
           <CameraPresetPanel preset={props.cameraPreset3d} onPreset={props.onCamera} />
           <div className="grid content-start gap-2">
             <button type="button" onClick={props.onZoomOut} className="action-secondary"><ZoomOut className="h-4 w-4" />Zoom out</button>
@@ -4803,30 +4818,45 @@ function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
             <button type="button" onClick={props.onReset} className="action-secondary"><RotateCcw className="h-4 w-4" />Reset</button>
           </div>
         </div>
-      )}
+      </AccordionSection>
     </div>
   );
 }
 
 function InspectorTabs3D({ selected, transform, transforms, addedObjects, onSelect, onTransform, onVector, onRestore, onDelete }: { selected: string; transform: Transform3D; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; onSelect: (id: string) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onVector: (id: string, key: "position" | "rotation", index: number, value: number) => void; onRestore: (id: string) => void; onDelete: (id: string) => void }) {
-  const [tab, setTab] = useState<"object" | "transform" | "objects">("object");
+  const [openSections, setOpenSections] = useState<Record<"object" | "transform" | "objects", boolean>>({
+    object: true,
+    transform: false,
+    objects: true,
+  });
+  const toggleSection = (section: keyof typeof openSections) => setOpenSections((current) => ({ ...current, [section]: !current[section] }));
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
-      <PanelTabs
-        active={tab}
-        tabs={[
-          { id: "object", label: "Object" },
-          { id: "transform", label: "Transform" },
-          { id: "objects", label: "Scene" },
-        ]}
-        onChange={(value) => setTab(value as typeof tab)}
-      />
-      <div className="mt-3">
-        {tab === "objects" && <ObjectList3D selected={selected} transforms={transforms} addedObjects={addedObjects} onSelect={onSelect} onRestore={onRestore} onDelete={onDelete} />}
-        {tab === "object" && <Properties3DPanel selected={selected} transform={transform} onTransform={onTransform} onVector={onVector} onRestore={onRestore} onDelete={onDelete} mode="object" />}
-        {tab === "transform" && <Properties3DPanel selected={selected} transform={transform} onTransform={onTransform} onVector={onVector} onRestore={onRestore} onDelete={onDelete} mode="transform" />}
-      </div>
+    <div className="space-y-2 rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
+      <AccordionSection title="3D scene objects" summary={`${addedObjects.length + 3} objects`} open={openSections.objects} onToggle={() => toggleSection("objects")}>
+        <ObjectList3D selected={selected} transforms={transforms} addedObjects={addedObjects} onSelect={onSelect} onRestore={onRestore} onDelete={onDelete} />
+      </AccordionSection>
+      <AccordionSection title="Selected object" summary={selected || "none"} open={openSections.object} onToggle={() => toggleSection("object")}>
+        <Properties3DPanel selected={selected} transform={transform} onTransform={onTransform} onVector={onVector} onRestore={onRestore} onDelete={onDelete} mode="object" />
+      </AccordionSection>
+      <AccordionSection title="Transform" summary={`x ${transform.position[0]}, y ${transform.position[1]}, z ${transform.position[2]}`} open={openSections.transform} onToggle={() => toggleSection("transform")}>
+        <Properties3DPanel selected={selected} transform={transform} onTransform={onTransform} onVector={onVector} onRestore={onRestore} onDelete={onDelete} mode="transform" />
+      </AccordionSection>
     </div>
+  );
+}
+
+function AccordionSection({ title, summary, open, onToggle, children }: { title: string; summary?: string; open: boolean; onToggle: () => void; children: ReactNode }) {
+  return (
+    <section className="overflow-hidden rounded-xl border border-slate-200 bg-white/75 shadow-sm dark:border-white/10 dark:bg-slate-950/30">
+      <button type="button" onClick={onToggle} className="flex w-full items-center justify-between gap-3 px-3 py-2.5 text-left transition hover:bg-slate-50 dark:hover:bg-white/5" aria-expanded={open}>
+        <span className="min-w-0">
+          <span className="block text-sm font-black text-slate-950 dark:text-white">{title}</span>
+          {summary && <span className="block truncate text-xs font-semibold text-slate-500 dark:text-slate-400">{summary}</span>}
+        </span>
+        <ChevronDown className={`h-4 w-4 shrink-0 text-slate-500 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && <div className="border-t border-slate-200 p-3 dark:border-white/10">{children}</div>}
+    </section>
   );
 }
 
@@ -4949,6 +4979,35 @@ function Properties3DPanel({ selected, transform, onTransform, onVector, onResto
             Color
             <input type="color" value={transform.color} onChange={(event) => onTransform(selected, { color: event.target.value })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
           </label>
+          <div className="mt-3 rounded-xl bg-slate-100 p-2 dark:bg-white/10">
+            <p className="text-xs font-bold text-slate-600 dark:text-slate-300">Appearance</p>
+            <div className="mt-2 grid grid-cols-3 gap-2">
+              {(["matte", "glass", "wireframe"] as const).map((material) => (
+                <button key={material} type="button" onClick={() => onTransform(selected, { material })} className={`rounded-xl px-2 py-2 text-xs font-black capitalize transition ${(transform.material ?? "glass") === material ? "bg-violet-400 text-slate-950 shadow-sm" : "bg-white text-slate-700 hover:bg-violet-50 dark:bg-slate-950/70 dark:text-slate-200 dark:hover:bg-violet-300/10"}`}>
+                  {material}
+                </button>
+              ))}
+            </div>
+            <div className="mt-2 grid grid-cols-3 gap-2">
+              {[
+                { label: "Opacity 100", value: 1 },
+                { label: "Opacity 55", value: 0.55 },
+                { label: "Opacity 25", value: 0.25 },
+              ].map((item) => (
+                <button key={item.label} type="button" onClick={() => onTransform(selected, { opacity: item.value })} className={`rounded-xl px-2 py-2 text-xs font-black transition ${roundTo(transform.opacity ?? 0.8, 2) === item.value ? "bg-violet-400 text-slate-950 shadow-sm" : "bg-white text-slate-700 hover:bg-violet-50 dark:bg-slate-950/70 dark:text-slate-200 dark:hover:bg-violet-300/10"}`}>
+                  {item.label}
+                </button>
+              ))}
+            </div>
+            <div className="mt-2 grid grid-cols-2 gap-2">
+              <button type="button" onClick={() => onTransform(selected, { locked: !transform.locked })} className={`rounded-xl px-2 py-2 text-xs font-black transition ${transform.locked ? "bg-violet-400 text-slate-950 shadow-sm" : "bg-white text-slate-700 hover:bg-violet-50 dark:bg-slate-950/70 dark:text-slate-200 dark:hover:bg-violet-300/10"}`}>
+                {transform.locked ? "Locked" : "Lock"}
+              </button>
+              <button type="button" onClick={() => onTransform(selected, { trace: !transform.trace })} className={`rounded-xl px-2 py-2 text-xs font-black transition ${transform.trace ? "bg-violet-400 text-slate-950 shadow-sm" : "bg-white text-slate-700 hover:bg-violet-50 dark:bg-slate-950/70 dark:text-slate-200 dark:hover:bg-violet-300/10"}`}>
+                {transform.trace ? "Trace on" : "Trace"}
+              </button>
+            </div>
+          </div>
         </>
       )}
       {mode !== "object" && (
@@ -5532,7 +5591,7 @@ function surfaceFormula(surface: SurfaceKind, scaleValue: number) {
 }
 
 type GeometryPaletteToolItem = { id: GeometryTool; label: string; icon: LucideIcon };
-type GeometryPaletteActionItem = { id: string; label: string; icon: LucideIcon; action: () => void; danger?: boolean };
+type GeometryPaletteActionItem = { id: string; label: string; icon: LucideIcon; action: () => void; danger?: boolean; active?: boolean; disabled?: boolean };
 
 const geometryPaletteGroups: Array<{ title: string; tools: GeometryPaletteToolItem[] }> = [
   {

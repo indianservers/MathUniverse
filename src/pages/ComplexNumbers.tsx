@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import ApplicationVisualCard from "../components/ui/ApplicationVisualCard";
 import FormulaBlock from "../components/ui/FormulaBlock";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
@@ -11,6 +12,15 @@ import ComplexPlaneVisualizer from "../visualizations/complex/ComplexPlaneVisual
 import EulerFormula2D from "../visualizations/complex/EulerFormula2D";
 import EulerFormula3D from "../visualizations/complex/EulerFormula3D";
 import EulerIdentityAnimation from "../visualizations/complex/EulerIdentityAnimation";
+
+const complexApplications = [
+  { title: "Signal processing", visual: "signal-processing", description: "Complex exponentials split signals into amplitude and phase." },
+  { title: "Electrical engineering", visual: "electrical", description: "Phasors model AC voltage, current, impedance, and resonance." },
+  { title: "Quantum mechanics", visual: "quantum", description: "Complex probability amplitudes encode phase and interference." },
+  { title: "Waves", visual: "waves", description: "Rotating vectors explain oscillation, resonance, and superposition." },
+  { title: "Graphics rotation", visual: "transform-3d", description: "Complex multiplication rotates and scales 2D geometry." },
+  { title: "Neural frequency analysis", visual: "frequency-analysis", description: "Spectral features reveal repeating patterns in learned signals." },
+] as const;
 
 export default function ComplexNumbers() {
   const topic = topics.find((item) => item.id === "complex")!;
@@ -34,7 +44,11 @@ export default function ComplexNumbers() {
           <SectionCard title="Introduction" description="Complex numbers turn the plane into an arithmetic system. Addition moves points; multiplication rotates and scales; Euler's formula reveals why waves and rotations share the same mathematics." compact />
           <FormulaBlock title="Formula Summary" formula={"z=a+bi,\\quad |z|=\\sqrt{a^2+b^2},\\quad e^{i\\pi}+1=0"} />
           <SectionCard title="Applications" compact>
-            <div className="flex flex-wrap gap-2">{["Signal processing", "Electrical engineering", "Quantum mechanics", "Waves", "Graphics rotation", "Neural frequency analysis"].map((item) => <span key={item} className="mini-chip">{item}</span>)}</div>
+            <div className="grid gap-2">
+              {complexApplications.map((item) => (
+                <ApplicationVisualCard key={item.title} title={item.title} description={item.description} visual={item.visual} compact />
+              ))}
+            </div>
           </SectionCard>
         </aside>
       </div>

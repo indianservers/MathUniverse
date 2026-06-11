@@ -1,6 +1,7 @@
 import SectionCard from "../components/ui/SectionCard";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import ApplicationVisualCard from "../components/ui/ApplicationVisualCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import TopicTabs from "../components/ui/TopicTabs";
@@ -15,6 +16,14 @@ import LimitsVisualizer from "../visualizations/calculus/LimitsVisualizer";
 import MotionVisualizer from "../visualizations/calculus/MotionVisualizer";
 import SeriesBlockAccumulation from "../visualizations/calculus/SeriesBlockAccumulation";
 import CalculusFundamentalsProblems from "../visualizations/calculus/CalculusFundamentalsProblems";
+
+const calculusApplications = [
+  { title: "Physics", visual: "physics", description: "Derivatives connect position, velocity, acceleration, and force." },
+  { title: "Optimization", visual: "optimization", description: "Critical points reveal efficient designs and best operating ranges." },
+  { title: "Economics", visual: "economics", description: "Marginal cost and revenue curves guide production decisions." },
+  { title: "AI training", visual: "gradient-descent", description: "Gradients update model weights to reduce prediction error." },
+  { title: "Engineering", visual: "engineering", description: "Integrals and rates model loads, flow, heat, and control response." },
+] as const;
 
 export default function Calculus() {
   const topic = topics.find((item) => item.id === "calculus")!;
@@ -42,7 +51,11 @@ export default function Calculus() {
           <ContinueCard routePrefix="/calculus" />
           <Link to="/calculator" className="action-secondary w-full">Open Scientific Calculator</Link>
           <SectionCard title="Applications" compact>
-            <div className="flex flex-wrap gap-2">{["Physics", "Optimization", "Economics", "AI training", "Engineering"].map((item) => <span key={item} className="mini-chip">{item}</span>)}</div>
+            <div className="grid gap-2">
+              {calculusApplications.map((item) => (
+                <ApplicationVisualCard key={item.title} title={item.title} description={item.description} visual={item.visual} compact />
+              ))}
+            </div>
           </SectionCard>
           <TopicProgressActions topicId={topic.id} />
         </aside>
