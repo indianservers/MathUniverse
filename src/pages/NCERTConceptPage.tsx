@@ -83,7 +83,7 @@ function NCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
 
 function NCERTSvg({ visual, a, b, c, title }: { visual: NCERTVisualType; a: number; b: number; c: number; title: string }) {
   return (
-    <svg viewBox="0 0 760 460" className="h-[320px] w-full sm:h-[460px]">
+    <svg viewBox="0 0 760 460" role="img" aria-label={`${title} interactive visualization`} className="h-[320px] w-full sm:h-[460px]">
       <title>{title}</title>
       <rect width="760" height="460" rx="24" fill="#f8fafc" />
       <Grid />
@@ -92,9 +92,37 @@ function NCERTSvg({ visual, a, b, c, title }: { visual: NCERTVisualType; a: numb
   );
 }
 
+export const supportedNCERTVisualTypes = new Set<NCERTVisualType>([
+  "integer-line",
+  "fraction-decimal",
+  "comparing-quantities",
+  "rational-line",
+  "exponents",
+  "roots",
+  "number-system",
+  "euclid-geometry",
+  "heron",
+  "euclid-algorithm",
+  "ap",
+  "section-formula",
+  "height-distance",
+  "permutation-tree",
+  "pascal-triangle",
+  "conic-section",
+  "feasible-region",
+  "balance-equation",
+  "identity-tiles",
+  "proportion-graph",
+  "polynomial-graph",
+  "linear-inequality",
+  "inverse-trig-graph",
+  "linear-pair",
+  "quadratic-roots",
+]);
+
 function renderVisual(visual: NCERTVisualType, a: number, b: number, c: number) {
   if (visual === "integer-line") return <IntegerLine start={a} move={b} />;
-  if (visual === "fraction-decimal") return <FractionDecimal numerator={Math.min(a, b)} denominator={Math.max(1, b)} />;
+  if (visual === "fraction-decimal") return <FractionDecimal numerator={Math.round(a)} denominator={Math.max(1, Math.round(b))} />;
   if (visual === "comparing-quantities") return <ComparingQuantities base={a} percent={b} time={c} />;
   if (visual === "rational-line") return <RationalLine p={a} q={Math.max(1, b)} />;
   if (visual === "exponents") return <ExponentBlocks base={a} m={b} n={c} />;
@@ -307,7 +335,31 @@ function IntegerLine({ start, move }: { start: number; move: number }) {
 
 function FractionDecimal({ numerator, denominator }: { numerator: number; denominator: number }) {
   const value = numerator / denominator;
-  return <g><Label x="80" y="80" text={`${numerator}/${denominator} = ${roundTo(value, 4)}`} />{Array.from({ length: denominator }).map((_, i) => <rect key={i} x={90 + i * (560 / denominator)} y="150" width={540 / denominator} height="95" fill={i < numerator ? "#06b6d4" : "#e2e8f0"} opacity="0.75" stroke="#0f172a" />)}<NumberLine min={0} max={1} y={335} /><Point x={mapLine(value, 0, 1)} y={335} label="decimal" /></g>;
+  const wholes = Math.floor(value);
+  const remainder = numerator % denominator;
+  const rows = Math.max(1, Math.min(3, Math.ceil(value)));
+  const lineMax = Math.max(1, rows);
+  const cellWidth = Math.min(52, 540 / denominator);
+  const startX = 95;
+  return (
+    <g>
+      <Label x="80" y="70" text={`${numerator}/${denominator} = ${roundTo(value, 4)}${value >= 1 ? ` = ${wholes} ${remainder}/${denominator}` : ""}`} />
+      {Array.from({ length: rows }).map((_, row) => (
+        <g key={row}>
+          <Label x="80" y={142 + row * 58} text={row < wholes ? "1 whole" : row === wholes && remainder > 0 ? `${remainder}/${denominator}` : "empty"} />
+          {Array.from({ length: denominator }).map((_, i) => {
+            const filled = row < wholes || (row === wholes && i < remainder);
+            return (
+              <rect key={i} x={startX + i * cellWidth} y={120 + row * 58} width={Math.max(12, cellWidth - 4)} height="38" rx="8" fill={filled ? "#06b6d4" : "#e2e8f0"} opacity="0.8" stroke="#0f172a" />
+            );
+          })}
+        </g>
+      ))}
+      <NumberLine min={0} max={lineMax} y={350} />
+      <Point x={mapLine(Math.min(lineMax, value), 0, lineMax)} y={350} label="decimal" />
+      <Label x="80" y="425" text="Same value shown as shaded parts, decimal, and number-line position." />
+    </g>
+  );
 }
 
 function ComparingQuantities({ base, percent, time }: { base: number; percent: number; time: number }) {
@@ -324,13 +376,49 @@ function RationalLine({ p, q }: { p: number; q: number }) {
 function ExponentBlocks({ base, m, n }: { base: number; m: number; n: number }) {
   const valueM = Math.pow(base, m);
   const combined = Math.pow(base, m + n);
-  return <g><Label x="70" y="80" text={`${base}^${m} x ${base}^${n} = ${base}^${m + n}`} /><Bar x={90} y={155} w={Math.min(570, Math.abs(valueM))} label={`${base}^${m}`} color="#06b6d4" /><Bar x={90} y={255} w={Math.min(570, Math.abs(combined) / Math.max(1, base))} label={`${base}^${m + n}`} color="#8b5cf6" /><Label x="90" y="365" text={`Exponent law adds powers when bases match.`} /></g>;
+  const scaleWidth = (value: number) => Math.max(24, Math.min(560, Math.log10(Math.abs(value) + 1) * 95));
+  return (
+    <g>
+      <Label x="70" y="70" text={`${roundTo(base, 2)}^${m} x ${roundTo(base, 2)}^${n} = ${roundTo(base, 2)}^${m + n}`} />
+      <Bar x={90} y={135} w={scaleWidth(valueM)} label={`${roundTo(base, 2)}^${m} = ${formatPowerValue(valueM)}`} color="#06b6d4" />
+      <Bar x={90} y={220} w={scaleWidth(Math.pow(base, n))} label={`${roundTo(base, 2)}^${n} = ${formatPowerValue(Math.pow(base, n))}`} color="#f59e0b" />
+      <Bar x={90} y={305} w={scaleWidth(combined)} label={`combined = ${formatPowerValue(combined)}`} color="#8b5cf6" />
+      <Label x="90" y="405" text={m < 0 || n < 0 ? "Negative exponents shrink values into reciprocals." : "Same base multiplication adds exponents."} />
+    </g>
+  );
 }
 
 function RootVisual({ n, type }: { n: number; type: number }) {
   const value = type === 3 ? n ** 3 : n ** 2;
-  const cells = Math.min(type === 3 ? n * n : n * n, 144);
-  return <g><Label x="80" y="75" text={type === 3 ? `${n}^3 = ${value}, cube root = ${n}` : `${n}^2 = ${value}, square root = ${n}`} />{Array.from({ length: cells }).map((_, i) => <rect key={i} x={95 + (i % 12) * 36} y={130 + Math.floor(i / 12) * 28} width="25" height="20" fill={type === 3 ? "#8b5cf6" : "#06b6d4"} opacity="0.62" stroke="#0f172a" />)}<Label x="80" y="405" text={type === 3 ? "Cube root asks: what side makes this cube?" : "Square root asks: what side makes this square?"} /></g>;
+  if (type === 3) {
+    const layers = Math.min(n, 6);
+    const side = Math.min(n, 6);
+    return (
+      <g>
+        <Label x="80" y="70" text={`${n}^3 = ${value}; cube root = ${n}`} />
+        {Array.from({ length: layers }).map((_, layer) =>
+          Array.from({ length: side }).map((__, row) =>
+            Array.from({ length: side }).map((___, col) => {
+              const x = 170 + col * 34 + layer * 14;
+              const y = 145 + row * 24 - layer * 10;
+              return <rect key={`${layer}-${row}-${col}`} x={x} y={y} width="28" height="20" rx="4" fill="#8b5cf6" opacity={0.28 + layer * 0.08} stroke="#0f172a" strokeWidth="1" />;
+            })
+          )
+        )}
+        <Label x="80" y="410" text={n > 6 ? "Showing first 6 layers; slider value still computes the full cube." : "Cube root asks which side length builds this cube."} />
+      </g>
+    );
+  }
+  const side = Math.min(n, 12);
+  return (
+    <g>
+      <Label x="80" y="75" text={`${n}^2 = ${value}; square root = ${n}`} />
+      {Array.from({ length: side * side }).map((_, i) => (
+        <rect key={i} x={135 + (i % side) * 32} y={115 + Math.floor(i / side) * 24} width="24" height="18" rx="4" fill="#06b6d4" opacity="0.68" stroke="#0f172a" />
+      ))}
+      <Label x="80" y="405" text={n > 12 ? "Showing a 12 by 12 window; slider value still computes the full square." : "Square root asks which side length builds this square."} />
+    </g>
+  );
 }
 
 function NumberSystem({ selector, root }: { selector: number; root: number }) {
@@ -405,7 +493,28 @@ function HeronVisual({ a, b, c }: { a: number; b: number; c: number }) {
 
 function EuclidAlgorithm({ a, b }: { a: number; b: number }) {
   const steps = euclidSteps(a, b);
-  return <g><Label x="80" y="75" text={`Euclid algorithm for ${a} and ${b}`} />{steps.slice(0, 6).map((step, i) => <g key={i}><rect x="95" y={115 + i * 48} width={560 - i * 34} height="32" rx="10" fill={i % 2 ? "#8b5cf6" : "#06b6d4"} opacity="0.22" stroke="#0f172a" /><Label x="110" y={138 + i * 48} text={step} /></g>)}<Label x="80" y="420" text={`HCF = ${gcd(a, b)}`} /></g>;
+  const hcf = gcd(a, b);
+  const lcm = Math.abs(a * b) / hcf;
+  const factorsA = primeFactors(a);
+  const factorsB = primeFactors(b);
+  const common = commonPrimeFactors(factorsA, factorsB);
+  return (
+    <g>
+      <Label x="80" y="60" text={`Euclid algorithm for ${a} and ${b}: HCF=${hcf}, LCM=${lcm}`} />
+      {steps.slice(0, 5).map((step, i) => (
+        <g key={i}>
+          <rect x="95" y={92 + i * 42} width={390 - i * 24} height="30" rx="10" fill={i % 2 ? "#8b5cf6" : "#06b6d4"} opacity="0.22" stroke="#0f172a" />
+          <Label x="110" y={114 + i * 42} text={step} />
+        </g>
+      ))}
+      <FactorRow x={505} y={105} label={`${a}`} factors={factorsA} common={common} />
+      <FactorRow x={505} y={190} label={`${b}`} factors={factorsB} common={common} />
+      <rect x="500" y="275" width="180" height="78" rx="18" fill="#ecfeff" stroke="#06b6d4" strokeWidth="2" />
+      <Label x="520" y="305" text={`Common product = ${hcf}`} />
+      <Label x="520" y="332" text={`a x b = HCF x LCM`} />
+      <Label x="80" y="420" text={`Prime factors connect both methods: common factors multiply to HCF; all factors combine to LCM.`} />
+    </g>
+  );
 }
 
 function APVisual({ first, diff, n }: { first: number; diff: number; n: number }) {
@@ -506,6 +615,56 @@ function gcd(a: number, b: number): number {
   let x = Math.abs(a), y = Math.abs(b);
   while (y) [x, y] = [y, x % y];
   return x || 1;
+}
+
+function formatPowerValue(value: number) {
+  if (!Number.isFinite(value)) return "too large";
+  if (Math.abs(value) >= 100000 || (Math.abs(value) > 0 && Math.abs(value) < 0.001)) return value.toExponential(2);
+  return `${roundTo(value, 4)}`;
+}
+
+function primeFactors(value: number) {
+  const factors: number[] = [];
+  let n = Math.max(1, Math.abs(Math.round(value)));
+  for (let divisor = 2; divisor * divisor <= n; divisor++) {
+    while (n % divisor === 0) {
+      factors.push(divisor);
+      n /= divisor;
+    }
+  }
+  if (n > 1) factors.push(n);
+  return factors.length ? factors : [1];
+}
+
+function commonPrimeFactors(a: number[], b: number[]) {
+  const remaining = [...b];
+  return a.filter((factor) => {
+    const index = remaining.indexOf(factor);
+    if (index === -1) return false;
+    remaining.splice(index, 1);
+    return true;
+  });
+}
+
+function FactorRow({ x, y, label, factors, common }: { x: number; y: number; label: string; factors: number[]; common: number[] }) {
+  const remaining = [...common];
+  return (
+    <g>
+      <Label x={x} y={y - 18} text={`${label} prime factors`} />
+      {factors.slice(0, 8).map((factor, index) => {
+        const commonIndex = remaining.indexOf(factor);
+        const shared = commonIndex !== -1;
+        if (shared) remaining.splice(commonIndex, 1);
+        return (
+          <g key={`${factor}-${index}`}>
+            <circle cx={x + 18 + (index % 4) * 39} cy={y + Math.floor(index / 4) * 36} r="15" fill={shared ? "#f59e0b" : "#06b6d4"} opacity="0.85" stroke="#0f172a" strokeWidth="2" />
+            <text x={x + 12 + (index % 4) * 39} y={y + 5 + Math.floor(index / 4) * 36} fill="#0f172a" fontSize="13" fontWeight="900">{factor}</text>
+          </g>
+        );
+      })}
+      {factors.length > 8 && <Label x={x} y={y + 78} text={`+ ${factors.length - 8} more`} />}
+    </g>
+  );
 }
 
 function euclidSteps(a: number, b: number) {

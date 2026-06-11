@@ -6,7 +6,7 @@ import TopicHeader from "../components/ui/TopicHeader";
 import { assessmentSummary, buildEngineeringAssessmentPlans, engineeringExamSprints, sprintReadiness } from "../data/engineeringAssessmentPlanner";
 import { caseStudiesForDomain, caseStudySummary } from "../data/engineeringCaseStudies";
 import { dependenciesForDomain, dependencyGraphSummary, learningPathsForDomain, unlocksForDomain } from "../data/engineeringDependencyGraph";
-import { formulaAtlasSummary, formulasForDomain } from "../data/engineeringFormulaAtlas";
+import { formulaAtlasSummary, formulasForDomain, type EngineeringFormulaCard } from "../data/engineeringFormulaAtlas";
 import {
   engineeringCoverageGaps,
   engineeringDomainById,
@@ -31,6 +31,9 @@ export default function EngineeringMath() {
   const [semesterFilter, setSemesterFilter] = useState<SemesterFilter>("All");
   const [launcherFilter, setLauncherFilter] = useState<LauncherFilter>("all");
   const [query, setQuery] = useState("");
+  const [visualA, setVisualA] = useState(1.2);
+  const [visualB, setVisualB] = useState(0.8);
+  const [visualT, setVisualT] = useState(0.45);
   const selected = engineeringDomainById(selectedId) ?? engineeringMathDomains[0];
   const gaps = useMemo(() => engineeringCoverageGaps().filter((gap) => gap.domainId === selected?.id), [selected?.id]);
   const launchers = useMemo(() => {
@@ -294,6 +297,17 @@ export default function EngineeringMath() {
                 </h3>
                 <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{formulaCards.length} of {formulaSummary.formulaCount}</span>
               </div>
+              <div className="mt-3 grid gap-3 rounded-lg border border-cyan-200 bg-white p-3 dark:border-cyan-300/20 dark:bg-slate-950/70 lg:grid-cols-[minmax(0,1fr)_260px]">
+                <div>
+                  <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Live Concept Controls</p>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">These controls drive every concept visual below, so each formula card becomes a small interactive lab instead of a static reference.</p>
+                </div>
+                <div className="grid gap-2">
+                  <MiniSlider label="shape" value={visualA} min={0.4} max={2.2} step={0.05} onChange={setVisualA} />
+                  <MiniSlider label="forcing" value={visualB} min={0.1} max={1.8} step={0.05} onChange={setVisualB} />
+                  <MiniSlider label="time" value={visualT} min={0} max={1} step={0.01} onChange={setVisualT} />
+                </div>
+              </div>
               <div className="mt-3 grid gap-2 lg:grid-cols-2">
                 {formulaCards.map((formula) => (
                   <Link key={formula.id} to={formula.route} className="group rounded-lg border border-slate-200 bg-white p-3 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950/70 dark:hover:bg-cyan-300/10">
@@ -301,6 +315,7 @@ export default function EngineeringMath() {
                       {formula.title}
                       <ArrowRight className="h-4 w-4 text-cyan-500 transition group-hover:translate-x-0.5" />
                     </span>
+                    <EngineeringFormulaVisual formula={formula} a={visualA} b={visualB} t={visualT} />
                     <p className="mt-2 rounded-lg bg-slate-50 p-2 font-mono text-xs font-black text-slate-700 dark:bg-white/5 dark:text-slate-200">{formula.formula}</p>
                     <p className="mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">{formula.useCase}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
@@ -683,6 +698,227 @@ function ChipList({ items }: { items: string[] }) {
       {items.map((item) => <span key={item} className="mini-chip">{item}</span>)}
     </div>
   );
+}
+
+function MiniSlider({ label, value, min, max, step, onChange }: { label: string; value: number; min: number; max: number; step: number; onChange: (value: number) => void }) {
+  return (
+    <label className="grid grid-cols-[72px_minmax(0,1fr)_42px] items-center gap-2 text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">
+      <span>{label}</span>
+      <input type="range" value={value} min={min} max={max} step={step} onChange={(event) => onChange(Number(event.target.value))} className="h-2 w-full accent-cyan-500" />
+      <span className="text-right font-mono text-slate-700 dark:text-slate-200">{value.toFixed(2)}</span>
+    </label>
+  );
+}
+
+function EngineeringFormulaVisual({ formula, a, b, t }: { formula: EngineeringFormulaCard; a: number; b: number; t: number }) {
+  const id = formula.id;
+  if (formula.domainId === "engineering-calculus") return <CalculusVisual id={id} a={a} b={b} t={t} />;
+  if (formula.domainId === "engineering-differential-equations") return <OdeVisual id={id} a={a} b={b} t={t} />;
+  if (formula.domainId === "engineering-linear-algebra") return <LinearAlgebraVisual id={id} a={a} b={b} t={t} />;
+  if (formula.domainId === "transforms-signals") return <SignalVisual id={id} a={a} b={b} t={t} />;
+  if (formula.domainId === "partial-differential-equations") return <PdeVisual id={id} a={a} b={b} t={t} />;
+  if (formula.domainId === "numerical-methods") return <NumericalVisual id={id} a={a} b={b} t={t} />;
+  if (formula.domainId === "probability-statistics-stochastic") return <ProbabilityVisual id={id} a={a} b={b} t={t} />;
+  if (formula.domainId === "optimization-operations-research") return <OptimizationVisual id={id} a={a} b={b} t={t} />;
+  if (formula.domainId === "vector-calculus-fields") return <VectorFieldVisual id={id} a={a} b={b} t={t} />;
+  return <ComplexControlVisual id={id} a={a} b={b} t={t} />;
+}
+
+function VisualFrame({ children, metric }: { children: ReactNode; metric: string }) {
+  return (
+    <div className="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-slate-950 dark:border-white/10">
+      <svg viewBox="0 0 320 160" role="img" className="h-40 w-full">
+        <rect width="320" height="160" fill="#020617" />
+        <g opacity="0.28" stroke="#334155" strokeWidth="1">
+          {Array.from({ length: 7 }, (_, index) => <line key={`v-${index}`} x1={index * 54} x2={index * 54} y1="0" y2="160" />)}
+          {Array.from({ length: 5 }, (_, index) => <line key={`h-${index}`} x1="0" x2="320" y1={index * 40} y2={index * 40} />)}
+        </g>
+        {children}
+        <text x="14" y="148" fill="#e2e8f0" fontSize="11" fontWeight="800">{metric}</text>
+      </svg>
+    </div>
+  );
+}
+
+function CalculusVisual({ id, a, b, t }: VisualProps) {
+  const curve = pathFromSamples((x) => 82 - 26 * Math.sin(a * x + t * 4) - 11 * Math.cos(b * x), 0, Math.PI * 2, 84);
+  const sliceX = 55 + t * 210;
+  const jacobianSkew = 22 + a * 9;
+  if (id.includes("jacobian")) {
+    return <VisualFrame metric={`area scale ${(a * b + 0.35).toFixed(2)}x`}><polygon points={`78,108 ${198 + jacobianSkew},100 232,48 ${106 - jacobianSkew / 3},58`} fill="#0891b2" opacity="0.38" stroke="#22d3ee" strokeWidth="3" /><polygon points="90,118 212,118 212,44 90,44" fill="none" stroke="#f59e0b" strokeWidth="2" strokeDasharray="6 5" /><VectorLine x1={90} y1={118} x2={198 + jacobianSkew} y2={100} color="#38bdf8" /><VectorLine x1={90} y1={118} x2={106 - jacobianSkew / 3} y2={58} color="#fbbf24" /></VisualFrame>;
+  }
+  if (id.includes("double-integral")) {
+    const bars = Array.from({ length: 12 }, (_, index) => {
+      const x = 52 + index * 18;
+      const h = 18 + 36 * Math.max(0, Math.sin(index * 0.45 + a + t * 2));
+      return <rect key={index} x={x} y={118 - h} width="12" height={h} fill={index % 2 ? "#22d3ee" : "#f59e0b"} opacity="0.78" />;
+    });
+    return <VisualFrame metric={`sample volume ${(a * 8 + b * 4 + t * 6).toFixed(1)}`}><path d="M48 122 C86 74 142 94 178 58 C214 28 256 64 276 106 C226 132 132 142 48 122Z" fill="#0e7490" opacity="0.35" stroke="#22d3ee" strokeWidth="3" />{bars}</VisualFrame>;
+  }
+  if (id.includes("taylor")) {
+    return <VisualFrame metric={`linear error ${(Math.abs(a - b) * (1 - t)).toFixed(2)}`}><path d={curve} fill="none" stroke="#22d3ee" strokeWidth="4" /><line x1="70" y1={118 - a * 12} x2="260" y2={80 - b * 18} stroke="#f59e0b" strokeWidth="4" /><circle cx={sliceX} cy={80 - 26 * Math.sin(a * t * Math.PI * 2)} r="6" fill="#fb7185" /></VisualFrame>;
+  }
+  return <VisualFrame metric={`slope x ${((a - b) * 1.7).toFixed(2)}`}><path d={curve} fill="none" stroke="#22d3ee" strokeWidth="4" /><line x1={sliceX} x2={sliceX} y1="30" y2="128" stroke="#f59e0b" strokeWidth="3" /><line x1={sliceX - 38} x2={sliceX + 38} y1={92 - a * 10} y2={68 + b * 10} stroke="#fb7185" strokeWidth="4" /><circle cx={sliceX} cy={82 - 26 * Math.sin(a * (sliceX / 320) * Math.PI * 2 + t * 4)} r="6" fill="#f8fafc" /></VisualFrame>;
+}
+
+function OdeVisual({ id, a, b, t }: VisualProps) {
+  const damped = pathFromSamples((x) => 82 - 42 * Math.exp(-b * x / 5) * Math.cos(a * x + t * 4), 0, 7, 90);
+  if (id.includes("separable")) return <VisualFrame metric={`separation k ${(a * b).toFixed(2)}`}><SlopeField a={a} b={b} /><path d={pathFromSamples((x) => 115 - 62 * (1 - Math.exp(-a * x / 5)) + 12 * Math.sin(b * x), 0, 7, 90)} fill="none" stroke="#22d3ee" strokeWidth="4" /></VisualFrame>;
+  if (id.includes("linear-first")) return <VisualFrame metric={`steady state ${(b / (a + 0.2)).toFixed(2)}`}><path d={pathFromSamples((x) => 114 - 58 * (1 - Math.exp(-a * x / 4)) - 8 * Math.sin(t * 6), 0, 7, 90)} fill="none" stroke="#22d3ee" strokeWidth="4" /><line x1="30" y1={68 - b * 8} x2="292" y2={68 - b * 8} stroke="#f59e0b" strokeDasharray="7 5" strokeWidth="3" /></VisualFrame>;
+  if (id.includes("cauchy")) return <VisualFrame metric={`power m ${(a + b).toFixed(2)}`}><path d={pathFromSamples((x) => 126 - 16 * Math.pow(x + 0.35, 0.8 + a * 0.35), 0, 7, 90)} fill="none" stroke="#22d3ee" strokeWidth="4" /><path d={pathFromSamples((x) => 128 - 10 * Math.pow(x + 0.35, 0.8 + b * 0.45), 0, 7, 90)} fill="none" stroke="#f59e0b" strokeWidth="3" /></VisualFrame>;
+  return <VisualFrame metric={`root damping ${b.toFixed(2)}`}><path d={damped} fill="none" stroke="#22d3ee" strokeWidth="4" /><line x1="28" y1="82" x2="292" y2="82" stroke="#64748b" strokeWidth="2" /><circle cx={82 + t * 170} cy={82 - 42 * Math.exp(-b * (t * 7) / 5) * Math.cos(a * t * 7 + t * 4)} r="6" fill="#f59e0b" /></VisualFrame>;
+}
+
+function LinearAlgebraVisual({ id, a, b, t }: VisualProps) {
+  const angle = t * Math.PI * 2;
+  const v1 = { x: 160 + Math.cos(angle) * 70 * a, y: 82 - Math.sin(angle) * 42 * b };
+  const v2 = { x: 160 - Math.sin(angle) * 46 * b, y: 82 - Math.cos(angle) * 68 * a };
+  if (id.includes("rank-nullity")) return <VisualFrame metric={`rank ${Math.max(1, Math.round(a * 2))}, nullity ${Math.max(0, Math.round(3 - a))}`}><MatrixGrid active={Math.round(a * 4)} /><VectorLine x1={50} y1={126} x2={v1.x} y2={v1.y} color="#22d3ee" /><VectorLine x1={50} y1={126} x2={v2.x} y2={v2.y} color="#f59e0b" /></VisualFrame>;
+  if (id.includes("eigen")) return <VisualFrame metric={`lambda ${(a + b).toFixed(2)}`}><VectorLine x1={160} y1={82} x2={v1.x} y2={v1.y} color="#22d3ee" /><VectorLine x1={160} y1={82} x2={160 + (v1.x - 160) * 0.62} y2={82 + (v1.y - 82) * 0.62} color="#f59e0b" /><ellipse cx="160" cy="82" rx={60 * a} ry={28 + 18 * b} fill="none" stroke="#8b5cf6" strokeWidth="3" /></VisualFrame>;
+  if (id.includes("least")) return <VisualFrame metric={`residual ${(Math.abs(a - b) * 3).toFixed(2)}`}><ScatterFit a={a} b={b} t={t} /></VisualFrame>;
+  return <VisualFrame metric={`A powers ${(1 + a * t).toFixed(2)}`}><MatrixGrid active={5} /><path d={`M82 118 C128 ${60 - a * 8} 190 ${104 - b * 16} 250 42`} fill="none" stroke="#22d3ee" strokeWidth="4" /><circle cx={82 + t * 168} cy={118 - t * 70} r="7" fill="#f59e0b" /></VisualFrame>;
+}
+
+function SignalVisual({ id, a, b, t }: VisualProps) {
+  if (id.includes("fourier")) return <VisualFrame metric={`${Math.round(3 + a * 5)} harmonics`}><path d={pathFromSamples((x) => 82 - 34 * Math.sin(x * a + t * 5) - 16 * Math.sin(3 * x + b), 0, Math.PI * 4, 110)} fill="none" stroke="#22d3ee" strokeWidth="4" /><SpectrumBars a={a} b={b} /></VisualFrame>;
+  if (id.includes("convolution")) return <VisualFrame metric={`overlap ${(t * 100).toFixed(0)}%`}><Pulse x={50 + t * 115} color="#22d3ee" /><Pulse x={190 - t * 78} color="#f59e0b" /><path d={pathFromSamples((x) => 122 - 34 * Math.exp(-Math.pow(x - (2 + t * 3), 2) / (0.5 + b)), 0, 7, 90)} fill="none" stroke="#fb7185" strokeWidth="4" /></VisualFrame>;
+  if (id.includes("z-transform")) return <VisualFrame metric={`pole radius ${(0.35 + t * a).toFixed(2)}`}><circle cx="160" cy="80" r="54" fill="none" stroke="#64748b" strokeWidth="3" /><circle cx={160 + Math.cos(t * 6.28) * 54 * a / 2.2} cy={80 - Math.sin(t * 6.28) * 54 * a / 2.2} r="8" fill="#f59e0b" /><VectorLine x1={160} y1={80} x2={160 + Math.cos(t * 6.28) * 54} y2={80 - Math.sin(t * 6.28) * 54} color="#22d3ee" /></VisualFrame>;
+  return <VisualFrame metric={`s gain ${(a * 2 + b).toFixed(2)}`}><path d={pathFromSamples((x) => 120 - 82 * Math.exp(-a * x / 5) * Math.sin(b * x + t * 5), 0, 7, 95)} fill="none" stroke="#22d3ee" strokeWidth="4" /><line x1="34" y1="120" x2="292" y2="120" stroke="#64748b" strokeWidth="2" /></VisualFrame>;
+}
+
+function PdeVisual({ id, a, b, t }: VisualProps) {
+  if (id.includes("classification")) return <VisualFrame metric={`D ${(b * b - 4 * a).toFixed(2)}`}><ConicFamily a={a} b={b} t={t} /></VisualFrame>;
+  if (id.includes("wave")) return <VisualFrame metric={`wave speed ${(1 + a).toFixed(2)}`}><HeatGrid a={a} b={b} t={t} wave /><path d={pathFromSamples((x) => 82 - 32 * Math.sin(a * x + t * 6), 0, Math.PI * 4, 100)} fill="none" stroke="#f8fafc" strokeWidth="3" /></VisualFrame>;
+  if (id.includes("laplace")) return <VisualFrame metric={`potential ${(a + b).toFixed(2)}`}><ContourMap a={a} b={b} t={t} /></VisualFrame>;
+  return <VisualFrame metric={`diffusion ${(t * a).toFixed(2)}`}><HeatGrid a={a} b={b} t={t} /></VisualFrame>;
+}
+
+function NumericalVisual({ id, a, b, t }: VisualProps) {
+  if (id.includes("newton")) return <VisualFrame metric={`x_n ${(1.8 - t * a).toFixed(2)}`}><path d={pathFromSamples((x) => 116 - 9 * Math.pow(x - 3.5, 2) + 12 * b, 0, 7, 90)} fill="none" stroke="#22d3ee" strokeWidth="4" /><line x1={90 + t * 120} y1="124" x2={170 + t * 100} y2="40" stroke="#f59e0b" strokeWidth="3" /><circle cx={90 + t * 120} cy={116 - 9 * Math.pow(t * 3.2 - 1.2, 2)} r="7" fill="#fb7185" /></VisualFrame>;
+  if (id.includes("bisection")) return <VisualFrame metric={`bracket ${((1 - t) * 4).toFixed(2)}`}><path d={pathFromSamples((x) => 82 - 28 * Math.sin(a * x) + 8 * (x - 3.5), 0, 7, 90)} fill="none" stroke="#22d3ee" strokeWidth="4" /><line x1={55 + t * 72} y1="28" x2={55 + t * 72} y2="132" stroke="#f59e0b" strokeWidth="3" /><line x1={270 - t * 72} y1="28" x2={270 - t * 72} y2="132" stroke="#fb7185" strokeWidth="3" /></VisualFrame>;
+  if (id.includes("simpson")) return <VisualFrame metric={`panels ${Math.round(4 + a * 4)}`}><path d={pathFromSamples((x) => 112 - 28 * Math.sin(x * a) - 10 * Math.cos(x * b), 0, 7, 90)} fill="none" stroke="#22d3ee" strokeWidth="4" />{Array.from({ length: 8 }, (_, i) => <rect key={i} x={50 + i * 26} y={78 + (i % 2) * 10} width="22" height={44 - (i % 2) * 10} fill="#f59e0b" opacity="0.3" />)}</VisualFrame>;
+  return <VisualFrame metric={`RK4 error ${(0.12 / (a + t + 0.2)).toFixed(3)}`}><SlopeField a={a} b={b} /><path d={pathFromSamples((x) => 126 - 74 * (1 - Math.exp(-x * a / 5)), 0, 7, 90)} fill="none" stroke="#22d3ee" strokeWidth="4" /></VisualFrame>;
+}
+
+function ProbabilityVisual({ id, a, b, t }: VisualProps) {
+  if (id.includes("markov")) return <VisualFrame metric={`state B ${(t * 100).toFixed(0)}%`}><StateNode x={82} y={82} label="A" active={1 - t} /><StateNode x={238} y={82} label="B" active={t} /><VectorLine x1={104} y1={82} x2={216} y2={82} color="#22d3ee" /><VectorLine x1={216} y1={98} x2={104} y2={98} color="#f59e0b" /></VisualFrame>;
+  if (id.includes("queue")) return <VisualFrame metric={`rho ${(Math.min(0.98, a / (a + b))).toFixed(2)}`}><QueueVisual a={a} b={b} t={t} /></VisualFrame>;
+  if (id.includes("variance")) return <VisualFrame metric={`sigma ${(a + b).toFixed(2)}`}><DistributionVisual a={a} b={b} t={t} spread /></VisualFrame>;
+  return <VisualFrame metric={`E[X] ${(a * 2 + b).toFixed(2)}`}><DistributionVisual a={a} b={b} t={t} /></VisualFrame>;
+}
+
+function OptimizationVisual({ id, a, b, t }: VisualProps) {
+  if (id.includes("pert")) return <VisualFrame metric={`critical ${(10 + a * 4 + b * 2).toFixed(1)} days`}><NetworkVisual t={t} /></VisualFrame>;
+  if (id.includes("euler")) return <VisualFrame metric={`path cost ${(a * 8 + b * 4).toFixed(1)}`}><path d="M40 118 C98 34 192 142 280 42" fill="none" stroke="#64748b" strokeWidth="3" strokeDasharray="6 6" /><path d={`M40 118 C${90 + a * 14} ${82 - b * 20} ${200 - b * 22} ${82 + a * 8} 280 42`} fill="none" stroke="#22d3ee" strokeWidth="5" /></VisualFrame>;
+  if (id.includes("duality")) return <VisualFrame metric={`shadow price ${(a + t).toFixed(2)}`}><FeasibleRegion a={a} b={b} t={t} dual /></VisualFrame>;
+  return <VisualFrame metric={`Z ${(a * 22 + b * 12 + t * 8).toFixed(1)}`}><FeasibleRegion a={a} b={b} t={t} /></VisualFrame>;
+}
+
+function VectorFieldVisual({ id, a, b, t }: VisualProps) {
+  if (id.includes("divergence")) return <VisualFrame metric={`div ${(a - b).toFixed(2)}`}><FieldArrows a={a} b={b} t={t} mode="div" /></VisualFrame>;
+  if (id.includes("curl")) return <VisualFrame metric={`curl ${(a + b).toFixed(2)}`}><FieldArrows a={a} b={b} t={t} mode="curl" /></VisualFrame>;
+  if (id.includes("stokes")) return <VisualFrame metric={`circulation ${(a * b * 2).toFixed(2)}`}><FieldArrows a={a} b={b} t={t} mode="curl" /><ellipse cx="160" cy="82" rx="76" ry="42" fill="none" stroke="#f59e0b" strokeWidth="4" /></VisualFrame>;
+  return <VisualFrame metric={`|grad f| ${(a * 1.6).toFixed(2)}`}><ContourMap a={a} b={b} t={t} /><VectorLine x1={160} y1={82} x2={160 + 70 * a / 2.2} y2={82 - 38 * b / 1.8} color="#f59e0b" /></VisualFrame>;
+}
+
+function ComplexControlVisual({ id, a, b, t }: VisualProps) {
+  if (id.includes("residue") || id.includes("cauchy")) return <VisualFrame metric={`winding ${(1 + Math.round(t * 3)).toFixed(0)}`}><circle cx="160" cy="80" r={44 + a * 14} fill="none" stroke="#22d3ee" strokeWidth="4" /><circle cx={160 + Math.cos(t * 6.28) * 50} cy={80 + Math.sin(t * 6.28) * 38} r="7" fill="#f59e0b" /><circle cx="160" cy="80" r="6" fill="#fb7185" /></VisualFrame>;
+  if (id.includes("bessel")) return <VisualFrame metric={`mode ${Math.round(1 + a * 3)}`}><path d={pathFromSamples((x) => 82 - 42 * Math.sin(a * x + t * 4) / (1 + x * 0.14), 0, 12, 120)} fill="none" stroke="#22d3ee" strokeWidth="4" /><circle cx="160" cy="82" r={34 + b * 12} fill="none" stroke="#f59e0b" strokeWidth="3" /></VisualFrame>;
+  return <VisualFrame metric={`settling ${(4 / (a + 0.4)).toFixed(2)}s`}><path d={pathFromSamples((x) => 122 - 78 * (1 - Math.exp(-a * x / 4) * Math.cos(b * x + t)), 0, 8, 100)} fill="none" stroke="#22d3ee" strokeWidth="4" /><line x1="30" y1="44" x2="292" y2="44" stroke="#f59e0b" strokeDasharray="7 5" strokeWidth="3" /></VisualFrame>;
+}
+
+type VisualProps = { id: string; a: number; b: number; t: number };
+
+function pathFromSamples(fn: (x: number) => number, start: number, end: number, count: number) {
+  return Array.from({ length: count }, (_, index) => {
+    const ratio = index / (count - 1);
+    const x = start + (end - start) * ratio;
+    return `${index === 0 ? "M" : "L"}${30 + ratio * 260} ${Math.max(18, Math.min(136, fn(x)))}`;
+  }).join(" ");
+}
+
+function VectorLine({ x1, y1, x2, y2, color }: { x1: number; y1: number; x2: number; y2: number; color: string }) {
+  return <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth="4" strokeLinecap="round" />;
+}
+
+function SlopeField({ a, b }: { a: number; b: number }) {
+  return <g>{Array.from({ length: 48 }, (_, i) => {
+    const col = i % 8;
+    const row = Math.floor(i / 8);
+    const x = 42 + col * 34;
+    const y = 34 + row * 18;
+    const tilt = Math.sin(col * a + row * b) * 10;
+    return <line key={i} x1={x - 8} y1={y + tilt} x2={x + 8} y2={y - tilt} stroke="#64748b" strokeWidth="2" strokeLinecap="round" />;
+  })}</g>;
+}
+
+function MatrixGrid({ active }: { active: number }) {
+  return <g>{Array.from({ length: 9 }, (_, i) => <rect key={i} x={54 + (i % 3) * 26} y={42 + Math.floor(i / 3) * 26} width="20" height="20" rx="4" fill={i <= active ? "#22d3ee" : "#334155"} opacity="0.85" />)}</g>;
+}
+
+function ScatterFit({ a, b, t }: { a: number; b: number; t: number }) {
+  const points = Array.from({ length: 10 }, (_, i) => ({ x: 48 + i * 24, y: 116 - i * (5 + a) - Math.sin(i * b + t * 5) * 16 }));
+  return <g>{points.map((point, i) => <circle key={i} cx={point.x} cy={point.y} r="5" fill="#f59e0b" />)}<line x1="44" y1={118 - b * 12} x2="278" y2={52 - a * 16} stroke="#22d3ee" strokeWidth="4" /></g>;
+}
+
+function SpectrumBars({ a, b }: { a: number; b: number }) {
+  return <g>{Array.from({ length: 9 }, (_, i) => <rect key={i} x={42 + i * 18} y={132 - (12 + Math.abs(Math.sin(i * a + b)) * 42)} width="10" height={12 + Math.abs(Math.sin(i * a + b)) * 42} fill="#f59e0b" opacity="0.78" />)}</g>;
+}
+
+function Pulse({ x, color }: { x: number; color: string }) {
+  return <path d={`M${x} 124 L${x + 28} 124 L${x + 28} 62 L${x + 78} 62 L${x + 78} 124 L${x + 108} 124`} fill="none" stroke={color} strokeWidth="4" />;
+}
+
+function HeatGrid({ a, b, t, wave = false }: { a: number; b: number; t: number; wave?: boolean }) {
+  return <g>{Array.from({ length: 48 }, (_, i) => {
+    const col = i % 8;
+    const row = Math.floor(i / 8);
+    const heat = wave ? Math.abs(Math.sin(col * a + row * b + t * 6)) : Math.exp(-t * (col + 1) / (2 + a)) * Math.abs(Math.sin(row + b));
+    return <rect key={i} x={48 + col * 24} y={28 + row * 18} width="21" height="15" fill={heat > 0.55 ? "#f59e0b" : heat > 0.3 ? "#22d3ee" : "#1e293b"} opacity="0.9" />;
+  })}</g>;
+}
+
+function ConicFamily({ a, b, t }: { a: number; b: number; t: number }) {
+  return <g><ellipse cx="118" cy="82" rx={28 + a * 16} ry={20 + b * 10} fill="none" stroke="#22d3ee" strokeWidth="4" /><path d={`M178 128 Q${220 + t * 26} ${28 + b * 20} 278 118`} fill="none" stroke="#f59e0b" strokeWidth="4" /><line x1="40" y1="126" x2="288" y2="34" stroke="#fb7185" strokeWidth="3" strokeDasharray="6 6" /></g>;
+}
+
+function ContourMap({ a, b, t }: { a: number; b: number; t: number }) {
+  return <g>{[28, 48, 68].map((r, i) => <ellipse key={r} cx={160 + Math.sin(t * 5 + i) * 10} cy={82} rx={r + a * 8} ry={r * 0.55 + b * 6} fill="none" stroke={i === 1 ? "#22d3ee" : "#64748b"} strokeWidth={i === 1 ? 4 : 2} />)}</g>;
+}
+
+function DistributionVisual({ a, b, t, spread = false }: { a: number; b: number; t: number; spread?: boolean }) {
+  const sigma = spread ? a * 0.8 + b * 0.5 : 0.7 + b * 0.25;
+  return <path d={pathFromSamples((x) => 126 - 76 * Math.exp(-Math.pow(x - (3.5 + (t - 0.5) * 2), 2) / sigma), 0, 7, 100)} fill="none" stroke="#22d3ee" strokeWidth="4" />;
+}
+
+function QueueVisual({ a, b, t }: { a: number; b: number; t: number }) {
+  const count = Math.max(2, Math.min(8, Math.round(2 + a * 2 + t * 4)));
+  return <g>{Array.from({ length: count }, (_, i) => <circle key={i} cx={54 + i * 24} cy="96" r="9" fill="#22d3ee" />)}<rect x="238" y="68" width="42" height="56" rx="8" fill="#f59e0b" opacity={0.8 + b * 0.05} /></g>;
+}
+
+function StateNode({ x, y, label, active }: { x: number; y: number; label: string; active: number }) {
+  return <g><circle cx={x} cy={y} r={26 + active * 12} fill="#0e7490" opacity="0.45" stroke="#22d3ee" strokeWidth="3" /><text x={x - 5} y={y + 5} fill="#f8fafc" fontSize="14" fontWeight="900">{label}</text></g>;
+}
+
+function FeasibleRegion({ a, b, t, dual = false }: { a: number; b: number; t: number; dual?: boolean }) {
+  return <g><polygon points={`62,126 62,72 ${130 + a * 20},42 ${248 - b * 15},92 222,126`} fill="#0e7490" opacity="0.45" stroke="#22d3ee" strokeWidth="3" /><line x1="42" y1={126 - t * 62} x2="282" y2={70 - t * 34} stroke={dual ? "#fb7185" : "#f59e0b"} strokeWidth="4" /><circle cx={222 - t * 90} cy={126 - t * 58} r="7" fill="#f8fafc" /></g>;
+}
+
+function NetworkVisual({ t }: { t: number }) {
+  const nodes = [[62, 92], [128, 48], [132, 118], [212, 66], [256, 112]];
+  return <g>{[[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [2, 4]].map(([from, to], i) => <line key={i} x1={nodes[from][0]} y1={nodes[from][1]} x2={nodes[to][0]} y2={nodes[to][1]} stroke={i < 3 + t * 3 ? "#f59e0b" : "#475569"} strokeWidth="4" />)}{nodes.map(([x, y], i) => <circle key={i} cx={x} cy={y} r="12" fill="#22d3ee" />)}</g>;
+}
+
+function FieldArrows({ a, b, t, mode }: { a: number; b: number; t: number; mode: "div" | "curl" }) {
+  return <g>{Array.from({ length: 35 }, (_, i) => {
+    const col = i % 7;
+    const row = Math.floor(i / 7);
+    const x = 54 + col * 34;
+    const y = 34 + row * 24;
+    const dx = mode === "curl" ? -(y - 82) * 0.15 * b : (x - 160) * 0.07 * a;
+    const dy = mode === "curl" ? (x - 160) * 0.09 * a : (y - 82) * 0.06 * b + Math.sin(t * 6) * 2;
+    return <VectorLine key={i} x1={x} y1={y} x2={x + dx} y2={y + dy} color={i % 2 ? "#22d3ee" : "#f59e0b"} />;
+  })}</g>;
 }
 
 function buildQuickStarts() {
