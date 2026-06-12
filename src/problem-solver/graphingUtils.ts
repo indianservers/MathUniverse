@@ -104,6 +104,9 @@ export function buildVisualVerification(classification: ProblemClassification, r
   if (classification.kind === "simplify" || classification.kind === "factor" || classification.kind === "expand") {
     return expressionVisual(classification.expression ?? classification.normalizedInput, "Expression Visual");
   }
+  if (classification.kind === "evaluate" && /\bx\b/i.test(classification.expression ?? classification.normalizedInput)) {
+    return expressionVisual(classification.expression ?? classification.normalizedInput, "Expression Visual");
+  }
   return null;
 }
 
@@ -144,6 +147,17 @@ export function systemIntersectionData(rawInput: string, result: string) {
 }
 
 function equationVisual(classification: ProblemClassification, result: ProblemSolverResult): ProblemVisualData | null {
+  if (/all real numbers|no solution/i.test(result.result ?? "")) {
+    return {
+      curves: [],
+      description: "Visual verification is not applicable for identity/contradiction equations.",
+      markers: [],
+      table: [],
+      title: "Equation Visual Verification",
+      viewport: defaultViewport,
+      warnings: ["Visual verification is not applicable for identity/contradiction equations."],
+    };
+  }
   const equation = classification.normalizedInput;
   const intersection = equationIntersectionData(equation, result.result ?? "");
   if (!intersection) return null;
@@ -242,6 +256,7 @@ function expressionVisual(expression: string, title: string, description = "Grap
   const fn = compileFunction(expression);
   if (!points.length || !fn) return null;
   const viewport = autoViewport([points], []);
+  const hasPossibleDiscontinuity = /\/.*x|x.*\//i.test(expression);
   return {
     curves: [{ color: sampleColor, expression, label: `y = ${formatForDisplay(expression)}`, points: generateFunctionPoints(expression, viewport) }],
     description,
@@ -249,7 +264,7 @@ function expressionVisual(expression: string, title: string, description = "Grap
     table: generateValueTable(fn),
     title,
     viewport,
-    warnings: [],
+    warnings: hasPossibleDiscontinuity ? ["Graph is approximate and may not show discontinuities perfectly. Undefined table rows mark excluded values."] : [],
   };
 }
 
@@ -342,6 +357,12 @@ function linearToYExpression(equation: LinearEquation) {
 
 function normalizeExpression(value: string) {
   return value.trim()
+    .replace(/Ã—|×|·/g, "*")
+    .replace(/Ã·|÷/g, "/")
+    .replace(/Â²|²/g, "^2")
+    .replace(/Â³|³/g, "^3")
+    .replace(/âˆ’|−/g, "-")
+    .replace(/âˆš\s*\(?\s*([^)\s]+)\s*\)?|√\s*\(?\s*([^)\s]+)\s*\)?/g, (_, mojibakeRadicand: string | undefined, radicand: string | undefined) => `sqrt(${mojibakeRadicand ?? radicand})`)
     .replace(/\s+/g, "")
     .replace(/(\d)([a-zA-Z(])/g, "$1*$2")
     .replace(/([a-zA-Z)])(\d)/g, "$1*$2")

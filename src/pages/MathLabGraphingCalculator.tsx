@@ -5,6 +5,8 @@ import FunctionGraphCanvas, { FunctionGraphView } from "../components/math-lab/F
 import { FormulaBlock, MathErrorBox, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
 import { ApproxBadge, CopyResultButton, EmptyState, ExportImageButton, FullscreenButton, InfoCallout, LoadingSkeleton, PresetChips, ResetExampleButton } from "../components/ui/UiFeedback";
+import { buildGraphingCalculatorWorkspaceObjects } from "../workspace/universalObjectGraph";
+import { useUniversalObjectGraphPublisher } from "../workspace/useUniversalObjectGraphPublisher";
 import {
   approximateRoots,
   approximateVisibleRange,
@@ -51,11 +53,11 @@ export default function MathLabGraphingCalculator() {
 
   const selected = plotted.find((item) => item.id === selectedId) ?? plotted[0];
   const selectedFunction = functions.find((item) => item.id === selected?.id) ?? functions[0];
-  const table = selectedFunction ? generateTableValues(selectedFunction.input, tableStart, tableEnd, tableStep) : { rows: [] };
-  const roots = selectedFunction ? approximateRoots(selectedFunction.input, view.xMin, view.xMax) : { roots: [] };
-  const yIntercept = selectedFunction ? approximateYIntercept(selectedFunction.input) : { y: null };
-  const visibleRange = selectedFunction ? approximateVisibleRange(selectedFunction.input, view.xMin, view.xMax) : { min: null, max: null };
-  const discontinuities = selected ? detectDiscontinuities(selected.points) : [];
+  const table = useMemo(() => selectedFunction ? generateTableValues(selectedFunction.input, tableStart, tableEnd, tableStep) : { rows: [] }, [selectedFunction, tableEnd, tableStart, tableStep]);
+  const roots = useMemo(() => selectedFunction ? approximateRoots(selectedFunction.input, view.xMin, view.xMax) : { roots: [] }, [selectedFunction, view.xMax, view.xMin]);
+  const yIntercept = useMemo(() => selectedFunction ? approximateYIntercept(selectedFunction.input) : { y: null }, [selectedFunction]);
+  const visibleRange = useMemo(() => selectedFunction ? approximateVisibleRange(selectedFunction.input, view.xMin, view.xMax) : { min: null, max: null }, [selectedFunction, view.xMax, view.xMin]);
+  const discontinuities = useMemo(() => selected ? detectDiscontinuities(selected.points) : [], [selected]);
   const selectedSummary = selectedFunction
     ? [
       `Function: ${selectedFunction.input}`,
@@ -64,6 +66,26 @@ export default function MathLabGraphingCalculator() {
       `Approx visible range: ${visibleRange.min !== null && visibleRange.max !== null ? `${formatNumber(visibleRange.min)} to ${formatNumber(visibleRange.max)}` : "no real visible values"}`,
     ].join("\n")
     : "";
+  const workspaceObjects = useMemo(() => buildGraphingCalculatorWorkspaceObjects({
+    functions: plotted.map((item) => ({
+      id: item.id,
+      input: item.input,
+      color: item.color,
+      visible: item.visible,
+      normalized: item.normalized,
+      error: item.error,
+    })),
+    selectedId,
+    tableRows: table.rows,
+    view,
+    analysis: {
+      roots: roots.roots,
+      yIntercept: yIntercept.y,
+      visibleRange,
+      discontinuities,
+    },
+  }), [discontinuities, plotted, roots.roots, selectedId, table.rows, view, visibleRange, yIntercept.y]);
+  useUniversalObjectGraphPublisher("graphing-calculator", workspaceObjects);
 
   const notes = (
     <>

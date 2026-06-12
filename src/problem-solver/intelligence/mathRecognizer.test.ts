@@ -14,9 +14,20 @@ describe("math recognizer subsystem", () => {
   });
 
   it("captures unknown segments in the audit", () => {
-    const result = recognizeMathInput("apple mango x + 2", "Unsupported");
-    expect(result.audit.unknownTokens).toBe(2);
-    expect(result.audit.unmatchedSegments).toEqual(expect.arrayContaining(["apple", "mango"]));
+    const result = recognizeMathInput("apple mango banana", "Unsupported");
+    expect(result.audit.unknownTokens).toBe(3);
+    expect(result.audit.unmatchedSegments).toEqual(expect.arrayContaining(["apple", "mango", "banana"]));
     expect(result.suggestions).toContain("Some words were not recognized as math keywords. Try a clearer mathematical expression.");
+  });
+
+  it("ignores filler words while still warning about real unknown terms", () => {
+    const statistical = recognizeMathInput("mean of 4, 6, 8, 10", "Statistics");
+    expect(statistical.audit.unmatchedSegments).not.toContain("of");
+    expect(statistical.suggestions).not.toContain("Some words were not recognized as math keywords. Try a clearer mathematical expression.");
+
+    const unclear = recognizeMathInput("please solve apple x", "Linear Equation");
+    expect(unclear.audit.unmatchedSegments).toContain("apple");
+    expect(unclear.audit.unmatchedSegments).not.toContain("please");
+    expect(unclear.suggestions).toContain("Some words were not recognized as math keywords. Try a clearer mathematical expression.");
   });
 });

@@ -5,10 +5,12 @@ import {
   createLineObject,
   createPointObject,
   createPolygonObject,
+  dragGeometryPoint,
   generateLocus,
   measureGeometry2D,
   snapPointToGeometry,
   solveGeometry2DScene,
+  solveGeometry2DSceneWithDiagnostics,
   transformGeometryObject,
   type Geometry2DScene,
 } from "./geometry2dWorkspaceEngine";
@@ -41,6 +43,46 @@ describe("geometry 2D workspace engine", () => {
     const midpoint = solved.objects.find((object) => object.id === "M");
     expect(midpoint?.kind).toBe("point");
     if (midpoint?.kind === "point") expect(midpoint.point.x).toBe(2);
+  });
+
+  it("recomputes parent-based objects after point dragging", () => {
+    const a = createPointObject("A", "A", 0, 0);
+    const b = createPointObject("B", "B", 4, 0);
+    const segment = createLineObject("segment-id", "AB", a, b, "segment");
+    const circle = createCircleObject("circle-id", "c", a, b);
+    const polygon = createPolygonObject("poly-id", "tri", [a, b, createPointObject("C", "C", 0, 3)]);
+    const dragged = dragGeometryPoint({ objects: [a, b, segment, circle, polygon], constraints: [] }, "B", { x: 0, y: 4 });
+
+    const nextSegment = dragged.objects.find((object) => object.id === "segment-id");
+    const nextCircle = dragged.objects.find((object) => object.id === "circle-id");
+    const nextPolygon = dragged.objects.find((object) => object.id === "poly-id");
+    expect(dragged.valid).toBe(true);
+    expect(nextSegment?.kind).toBe("segment");
+    if (nextSegment?.kind === "segment") expect(nextSegment.object.b.y).toBe(4);
+    expect(nextCircle?.kind).toBe("circle");
+    if (nextCircle?.kind === "circle") expect(nextCircle.object.radius).toBe(4);
+    expect(nextPolygon?.kind).toBe("polygon");
+    if (nextPolygon?.kind === "polygon") expect(nextPolygon.points[1].y).toBe(4);
+  });
+
+  it("projects points onto supported objects and surfaces diagnostics", () => {
+    const p = createPointObject("P", "P", 4, 0);
+    const center = createPointObject("O", "O", 0, 0);
+    const edge = createPointObject("A", "A", 2, 0);
+    const c = createCircleObject("circle-id", "c", center, edge);
+    const solved = solveGeometry2DSceneWithDiagnostics({
+      objects: [p, center, edge, c],
+      constraints: [
+        { id: "on-circle", type: "on-object", target: "P", object: "circle-id" },
+        { id: "missing", type: "on-line", target: "Q", line: "ghost" },
+      ],
+    }, "P");
+
+    const projected = solved.objects.find((object) => object.id === "P");
+    expect(solved.valid).toBe(false);
+    expect(projected?.kind).toBe("point");
+    if (projected?.kind === "point") expect(projected.point.x).toBeCloseTo(2);
+    expect(solved.diagnostics.some((item) => item.constraintId === "missing")).toBe(true);
   });
 
   it("snaps to points, midpoints, objects, and intersections", () => {

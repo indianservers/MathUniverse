@@ -30,9 +30,32 @@ function solvePolynomialEquation(normalizedEquation: string): AlgebraStepResult 
   const polynomial = equationToPolynomial(normalizedEquation);
   if (!polynomial) return null;
   const [c, b, a] = polynomial;
-  if (isZero(a) && isZero(b)) return null;
+  if (isZero(a) && isZero(b)) return solveDegenerateLinear(normalizedEquation, c);
   if (isZero(a)) return solveLinear(normalizedEquation, b, c);
   return solveQuadratic(normalizedEquation, a, b, c);
+}
+
+function solveDegenerateLinear(normalizedEquation: string, constant: number): AlgebraStepResult {
+  const identity = isZero(constant);
+  const [left, right] = splitEquation(normalizedEquation);
+  const simplifiedLeft = formatNumber(evaluatePolynomial(parsePolynomial(left) ?? [0, 0, 0], 0));
+  const simplifiedRight = formatNumber(evaluatePolynomial(parsePolynomial(right) ?? [0, 0, 0], 0));
+  return {
+    finalAnswer: identity ? "Solution: all real numbers" : "No solution",
+    kind: "linear",
+    method: "Linear isolation",
+    normalizedEquation,
+    restrictions: [],
+    steps: [
+      `Start with: ${formatEquationForDisplay(normalizedEquation)}.`,
+      `Simplify both sides: ${simplifiedLeft} = ${simplifiedRight}.`,
+      identity ? "This statement is always true." : "This statement is false.",
+      identity ? "Therefore every real number satisfies the equation." : "Therefore no value of x satisfies the equation.",
+      identity ? "Final answer: Solution: all real numbers." : "Final answer: No solution.",
+    ],
+    verification: [identity ? "Every substitution gives the true statement." : "No substitution can make a false constant statement true."],
+    warnings: identity ? ["Identity equation: infinitely many solutions."] : ["Contradiction equation: no solution."],
+  };
 }
 
 function solveLinear(normalizedEquation: string, coefficient: number, constant: number): AlgebraStepResult {
@@ -60,8 +83,7 @@ function solveLinear(normalizedEquation: string, coefficient: number, constant: 
 function solveQuadratic(normalizedEquation: string, a: number, b: number, c: number): AlgebraStepResult {
   const factorPair = integerFactorPair(a, b, c);
   if (factorPair) {
-    const [r1, r2] = factorPair.roots;
-    const roots = sortNumbers([r1, r2]);
+    const roots = sortNumbers(factorPair.roots);
     return {
       finalAnswer: `x = ${roots.map(formatNumber).join(", ")}`,
       kind: "quadratic",
@@ -363,6 +385,10 @@ function solvePolynomialRoots([c, b, a]: Polynomial) {
   return quadraticFormulaRoots(a, b, c);
 }
 
+function evaluatePolynomial([c, b, a]: Polynomial, x: number) {
+  return a * x * x + b * x + c;
+}
+
 function quadraticFormulaRoots(a: number, b: number, c: number) {
   const discriminant = b * b - 4 * a * c;
   if (discriminant < -epsilon) return [];
@@ -381,6 +407,10 @@ function integerFactorPair(a: number, b: number, c: number) {
 
 function formatFactoredQuadratic(a: number, roots: number[]) {
   const leading = nearlyEqual(a, 1) ? "" : `${formatNumber(a)}`;
+  if (roots.length === 1) {
+    const root = roots[0];
+    return `${leading}(x${root < 0 ? "+" : "-"}${formatNumber(Math.abs(root))})^2`;
+  }
   return `${leading}${roots.map((root) => `(x${root < 0 ? "+" : "-"}${formatNumber(Math.abs(root))})`).join("")}`;
 }
 
@@ -427,6 +457,8 @@ function verificationText(equation: string, xValue: number) {
 }
 
 function evaluateExpressionAt(expression: string, xValue: number) {
+  const polynomial = parsePolynomial(expression);
+  if (polynomial) return evaluatePolynomial(polynomial, xValue);
   const substituted = normalizeExpression(expression).replace(/\bx\b/g, `(${formatNumber(xValue)})`).replace(/\^/g, "**");
   if (!/^[\d+\-*/().\s*]+$/.test(substituted)) throw new Error("Unsafe numeric expression");
   return Number(Function(`"use strict"; return (${substituted});`)());

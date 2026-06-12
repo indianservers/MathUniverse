@@ -382,7 +382,9 @@ function normalizeCalculusExpression(value: string) {
 }
 
 function normalizeArrows(value: string) {
-  return value.replace(/→|â†’|Ã¢â€ â€™/g, "->").replace(/âˆ«|Ã¢Ë†Â«/g, "\u222b");
+  return value
+    .replace(/\u2192|\u00e2\u2020\u2019|\u00c3\u00a2\u00e2\u20ac\u00a0\u00e2\u20ac\u2122/g, "->")
+    .replace(/\u222b|\u00e2\u2039\u2020\u00c2\u00ab/g, "\u222b");
 }
 
 function evaluateSimpleExpression(expression: string, variable: string, value: number) {

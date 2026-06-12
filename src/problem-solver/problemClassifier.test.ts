@@ -35,4 +35,15 @@ describe("problem solver classifier", () => {
     expect(system.variables).toEqual(["x", "y"]);
     expect(system.normalizedInput).toBe("2*x+y=7; x-y=2");
   });
+
+  it.each([
+    ["lim x→0 sin(x)/x", "limit", "sin(x)/x"],
+    ["2×3 + 10÷2", "evaluate", "2*3+10/2"],
+    ["x² - 5x + 6 = 0", "quadratic-equation", "x^2-5*x+6=0"],
+    ["√16", "evaluate", "sqrt(16)"],
+  ])("normalizes unicode math input %s", (input, expectedKind, expectedNormalized) => {
+    const classification = classifyProblem(input);
+    expect(classification.kind).toBe(expectedKind);
+    expect(classification.normalizedInput).toBe(expectedNormalized);
+  });
 });

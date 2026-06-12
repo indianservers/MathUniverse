@@ -134,6 +134,36 @@ function expandExpression(classification: ProblemClassification): ProblemSolverR
 
 function evaluateExpression(classification: ProblemClassification): ProblemSolverResult | null {
   const expression = classification.expression ?? classification.normalizedInput;
+  const domainIssue = invalidNumericDomain(expression);
+  if (domainIssue) {
+    return expressionResult(classification, {
+      method: "Domain check",
+      result: domainIssue.result,
+      steps: [
+        `Original expression: ${formatDisplay(expression)}.`,
+        domainIssue.reason,
+        "No real-number evaluation was performed.",
+        `Final answer: ${domainIssue.result}.`,
+      ],
+      warnings: domainIssue.warnings,
+      canCopy: false,
+    });
+  }
+  const domain = detectDomainRestrictions(expression);
+  if (domain.length && containsVariable(expression)) {
+    return expressionResult(classification, {
+      method: "Domain analysis",
+      result: `Domain: ${domain.join(", ")}`,
+      restrictions: domain,
+      steps: [
+        `Original expression: ${formatDisplay(expression)}.`,
+        ...domain.map((restriction) => `Domain restriction: ${restriction}.`),
+        "No numeric evaluation is performed because the expression contains a variable.",
+        `Final answer: Domain: ${domain.join(", ")}.`,
+      ],
+      warnings: domain.map((restriction) => `Domain restriction: ${restriction}.`),
+    });
+  }
   const evaluated = evaluateNumericExpression(expression);
   if (!evaluated) return null;
   const assumptions = [...classification.assumptions, ...evaluated.assumptions];
@@ -143,7 +173,7 @@ function evaluateExpression(classification: ProblemClassification): ProblemSolve
     title: "Evaluate",
     normalizedInput: classification.normalizedInput,
     result: evaluated.result,
-    restrictions: [],
+    restrictions: domain,
     steps: [
       `Original expression: ${formatNumericDisplay(expression)}.`,
       evaluated.trig ? "Trigonometric numeric input is interpreted in degrees by default." : "Apply arithmetic order of operations.",
@@ -151,12 +181,12 @@ function evaluateExpression(classification: ProblemClassification): ProblemSolve
       `Final answer: ${evaluated.result}.`,
     ],
     assumptions,
-    warnings: classification.warnings,
+    warnings: [...classification.warnings, ...domain.map((restriction) => `Domain restriction: ${restriction}.`)],
     canCopy: true,
   };
 }
 
-function expressionResult(classification: ProblemClassification, data: { method: string; result: string; restrictions?: string[]; steps: string[]; warnings?: string[] }): ProblemSolverResult {
+function expressionResult(classification: ProblemClassification, data: { canCopy?: boolean; method: string; result: string; restrictions?: string[]; steps: string[]; warnings?: string[] }): ProblemSolverResult {
   return {
     kind: classification.kind,
     method: data.method,
@@ -167,7 +197,7 @@ function expressionResult(classification: ProblemClassification, data: { method:
     steps: data.steps,
     assumptions: classification.assumptions,
     warnings: [...classification.warnings, ...(data.warnings ?? [])],
-    canCopy: true,
+    canCopy: data.canCopy ?? true,
   };
 }
 
@@ -435,16 +465,25 @@ function termText(coefficient: number, symbol: string) {
 }
 
 function evaluateNumericExpression(expression: string) {
-  const normalized = expression.trim().replace(/\s+/g, "");
+  const normalized = normalizeUnicodeMath(expression).trim().replace(/\s+/g, "");
+  const exact = exactNumericEvaluation(normalized);
+  if (exact) return exact;
   const trig = /\b(?:sin|cos|tan)\(/i.test(normalized);
   const jsExpression = normalized
     .replace(/\^/g, "**")
+    .replace(/\bpi\b/gi, "Math.PI")
+    .replace(/\be\b/g, "Math.E")
+    .replace(/log10\(/gi, "Math.log10(")
+    .replace(/log2\(/gi, "Math.log2(")
+    .replace(/log\(/gi, "Math.log10(")
+    .replace(/ln\(/gi, "Math.log(")
+    .replace(/exp\(/gi, "Math.exp(")
     .replace(/sqrt\(/gi, "Math.sqrt(")
     .replace(/abs\(/gi, "Math.abs(")
     .replace(/sin\(([-+]?\d+(?:\.\d+)?)\)/gi, (_, value) => `Math.sin((${value})*Math.PI/180)`)
     .replace(/cos\(([-+]?\d+(?:\.\d+)?)\)/gi, (_, value) => `Math.cos((${value})*Math.PI/180)`)
     .replace(/tan\(([-+]?\d+(?:\.\d+)?)\)/gi, (_, value) => `Math.tan((${value})*Math.PI/180)`);
-  if (!/^[\d+\-*/().,\sMathPIcosintaqrubse]+$/.test(jsExpression)) return null;
+  if (!/^[\d+\-*/().,\sMathPIElogcosintaqrubse]+$/.test(jsExpression)) return null;
   try {
     const value = Number(Function(`"use strict"; return (${jsExpression});`)());
     if (!Number.isFinite(value)) return null;
@@ -456,6 +495,101 @@ function evaluateNumericExpression(expression: string) {
   } catch {
     return null;
   }
+}
+
+function exactNumericEvaluation(expression: string) {
+  const sqrt = expression.match(/^sqrt\(([-+]?\d+(?:\.\d+)?)\)$/i);
+  if (sqrt) {
+    const value = Number(sqrt[1]);
+    if (value < 0) return null;
+    const root = Math.sqrt(value);
+    const result = Number.isInteger(root) ? formatNumber(root) : `Exact: sqrt(${formatNumber(value)}); Approximate: ${formatNumber(root)}`;
+    return { result, trig: false, assumptions: Number.isInteger(root) ? [] : ["Approximate decimal rounded to 6 places."] };
+  }
+  const log = expression.match(/^log\((10(?:0+)?)\)$/i) ?? expression.match(/^log10\((10(?:0+)?)\)$/i);
+  if (log) return { result: formatNumber(Math.log10(Number(log[1]))), trig: false, assumptions: ["log is treated as base 10."] };
+  const log2 = expression.match(/^log2\(([-+]?\d+(?:\.\d+)?)\)$/i);
+  if (log2) return { result: formatNumber(Math.log2(Number(log2[1]))), trig: false, assumptions: ["log2 is treated as base 2."] };
+  if (/^ln\(e\)$/i.test(expression)) return { result: "1", trig: false, assumptions: ["ln uses base e."] };
+  if (/^ln\(e\^2\)$/i.test(expression)) return { result: "2", trig: false, assumptions: ["ln uses base e."] };
+  const exp = expression.match(/^exp\(([-+]?\d+(?:\.\d+)?)\)$/i);
+  if (exp) {
+    const value = Number(exp[1]);
+    return { result: `Exact: e^${formatNumber(value)}; Approximate: ${formatNumber(Math.exp(value))}`, trig: false, assumptions: ["Approximate decimal rounded to 6 places."] };
+  }
+  return null;
+}
+
+function invalidNumericDomain(expression: string) {
+  const normalized = normalizeExpression(normalizeUnicodeMath(expression));
+  const sqrt = normalized.match(/^sqrt\(([-+]?\d+(?:\.\d+)?)\)$/i);
+  if (sqrt && Number(sqrt[1]) < 0) {
+    return {
+      reason: `The square-root argument is ${formatNumber(Number(sqrt[1]))}, which is negative.`,
+      result: "No real value",
+      warnings: ["sqrt of a negative number is not real; complex results are not expanded in this solver."],
+    };
+  }
+  const log = normalized.match(/^(log|ln|log10|log2)\(([-+]?\d+(?:\.\d+)?)\)$/i);
+  if (log && Number(log[2]) <= 0) {
+    return {
+      reason: `The logarithm argument is ${formatNumber(Number(log[2]))}, but logarithms require a positive argument in the real-number system.`,
+      result: "Undefined over the real numbers",
+      warnings: [`${log[1]} requires a positive argument.`],
+    };
+  }
+  return null;
+}
+
+function detectDomainRestrictions(expression: string) {
+  const normalized = normalizeExpression(normalizeUnicodeMath(expression));
+  const restrictions: string[] = [];
+  const sqrt = normalized.match(/^sqrt\((.+)\)$/i);
+  if (sqrt) {
+    const restriction = linearInequalityRestriction(sqrt[1], ">=");
+    if (restriction) restrictions.push(restriction);
+    else if (containsVariable(sqrt[1])) restrictions.push("square-root argument >= 0");
+  }
+  const log = normalized.match(/^(?:log|ln|log10|log2)\((.+)\)$/i);
+  if (log) {
+    const restriction = linearInequalityRestriction(log[1], ">");
+    if (restriction) restrictions.push(restriction);
+    else if (containsVariable(log[1])) restrictions.push("logarithm argument > 0");
+  }
+  const rational = parseFractionExpression(normalized);
+  if (rational) {
+    const denominator = parsePolynomial(rational.denominator);
+    if (denominator) {
+      for (const factor of factorPolynomial(denominator)) restrictions.push(`x != ${formatNumber(-factor.b / factor.a)}`);
+    } else {
+      restrictions.push("denominator != 0");
+    }
+  }
+  return [...new Set(restrictions)];
+}
+
+function linearInequalityRestriction(expression: string, operator: ">=" | ">") {
+  const polynomial = parsePolynomial(expression);
+  if (!polynomial) return null;
+  const [c, b, a] = polynomial;
+  if (!isZero(a) || isZero(b)) return null;
+  const boundary = -c / b;
+  const direction = b > 0 ? operator : operator === ">=" ? "<=" : "<";
+  return `x ${direction} ${formatNumber(boundary)}`;
+}
+
+function containsVariable(expression: string) {
+  return /\bx\b/i.test(normalizeExpression(expression));
+}
+
+function normalizeUnicodeMath(value: string) {
+  return value
+    .replace(/Ã—|×|·/g, "*")
+    .replace(/Ã·|÷/g, "/")
+    .replace(/âˆ’|−/g, "-")
+    .replace(/Â²|²/g, "^2")
+    .replace(/Â³|³/g, "^3")
+    .replace(/âˆš\s*\(?\s*([^)\s]+)\s*\)?|√\s*\(?\s*([^)\s]+)\s*\)?/g, (_, mojibakeRadicand: string | undefined, radicand: string | undefined) => `sqrt(${mojibakeRadicand ?? radicand})`);
 }
 
 function stripOuterParens(value: string): string {

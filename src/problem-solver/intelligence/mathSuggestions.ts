@@ -107,7 +107,9 @@ function addWordProblemHint(tokens: MathRecognizedToken[], lower: string, sugges
 
 function addUnknownWordHint(tokens: MathRecognizedToken[], suggestions: MathSuggestion[]) {
   const unknownCount = tokens.filter((token) => token.category === "unknown").length;
-  if (tokens.length === 0 || (unknownCount < 2 && unknownCount / tokens.length < 0.45)) return;
+  const hasSolverCommand = tokens.some((token) => ["algebra", "calculus", "statistics", "matrix"].includes(token.category));
+  const hasClearMathCategory = tokens.some((token) => !["unknown", "number", "grouping"].includes(token.category));
+  if (tokens.length === 0 || (hasSolverCommand ? unknownCount === 0 : (hasClearMathCategory && unknownCount < 2) || (hasClearMathCategory && unknownCount / tokens.length <= 0.6))) return;
   suggestions.push({ id: "unknown-dominant", message: "Some words were not recognized as math keywords. Try a clearer mathematical expression.", severity: "warning", title: "Unrecognized words" });
 }
 

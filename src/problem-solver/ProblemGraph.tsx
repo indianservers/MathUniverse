@@ -12,12 +12,12 @@ const padding = 42;
 
 export function ProblemGraph({ showTable = true, visual }: ProblemGraphProps) {
   const [open, setOpen] = useState(true);
+  const grid = useMemo(() => Array.from({ length: 11 }, (_, index) => index - 5), []);
   if (!visual) return null;
   const sx = (x: number) => padding + ((x - visual.viewport.xMin) / (visual.viewport.xMax - visual.viewport.xMin)) * (width - padding * 2);
   const sy = (y: number) => height - padding - ((y - visual.viewport.yMin) / (visual.viewport.yMax - visual.viewport.yMin)) * (height - padding * 2);
   const xAxis = visual.viewport.yMin <= 0 && visual.viewport.yMax >= 0 ? sy(0) : height - padding;
   const yAxis = visual.viewport.xMin <= 0 && visual.viewport.xMax >= 0 ? sx(0) : padding;
-  const grid = useMemo(() => Array.from({ length: 11 }, (_, index) => index - 5), []);
 
   return (
     <section className="rounded-2xl border border-cyan-200 bg-white p-4 shadow-sm dark:border-cyan-300/20 dark:bg-white/5">

@@ -16,16 +16,33 @@ describe("algebra step solver", () => {
   });
 
   it.each([
+    ["0x + 5 = 5", "Solution: all real numbers", "identity"],
+    ["0x + 5 = 8", "No solution", "contradiction"],
+  ])("handles degenerate linear equation %s", (equation, expected, warning) => {
+    const result = solveAlgebraSteps(equation);
+    expect(result?.kind).toBe("linear");
+    expect(result?.method).toBe("Linear isolation");
+    expect(result?.finalAnswer).toBe(expected);
+    expect(result?.warnings.join(" ").toLowerCase()).toContain(warning);
+  });
+
+  it.each([
     ["x^2 - 5x + 6 = 0", "x = 2, 3"],
     ["x^2 + 5x + 6 = 0", "x = -3, -2"],
     ["x^2 - 4 = 0", "x = -2, 2"],
     ["2x^2 - 8 = 0", "x = -2, 2"],
+    ["x^2 - 2x + 1 = 0", "x = 1"],
   ])("solves quadratic equation %s", (equation, expected) => {
     const result = solveAlgebraSteps(equation);
     expect(result?.kind).toBe("quadratic");
     expect(result?.finalAnswer).toBe(expected);
     expect(["Factoring", "Quadratic formula"]).toContain(result?.method);
     expect(result?.steps.join(" ")).toContain("standard form");
+  });
+
+  it("shows repeated-root factorization with multiplicity", () => {
+    const result = solveAlgebraSteps("x^2 - 2x + 1 = 0");
+    expect(result?.steps.join(" ")).toContain("(x-1)^2 = 0");
   });
 
   it.each([

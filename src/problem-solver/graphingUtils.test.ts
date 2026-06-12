@@ -61,4 +61,44 @@ describe("graphing utilities", () => {
     const visual = buildVisualVerification(classification, result);
     expect(visual?.curves.length).toBe(2);
   });
+
+  it.each([
+    ["0x + 5 = 5", "Solution: all real numbers"],
+    ["0x + 5 = 8", "No solution"],
+  ])("does not draw misleading graphs for degenerate equations", (input, answer) => {
+    const classification = classifyProblem(input);
+    const result: ProblemSolverResult = {
+      assumptions: [],
+      canCopy: true,
+      kind: "linear-equation",
+      method: "Linear isolation",
+      normalizedInput: classification.normalizedInput,
+      result: answer,
+      steps: [],
+      title: "Linear Equation",
+      warnings: [],
+    };
+    const visual = buildVisualVerification(classification, result);
+    expect(visual?.curves).toEqual([]);
+    expect(visual?.table).toEqual([]);
+    expect(visual?.warnings.join(" ")).toContain("not applicable");
+  });
+
+  it("marks undefined rows in rational value tables", () => {
+    const classification = classifyProblem("simplify 1/(x-1)");
+    const result: ProblemSolverResult = {
+      assumptions: [],
+      canCopy: true,
+      kind: "simplify",
+      method: "Expression simplification",
+      normalizedInput: classification.normalizedInput,
+      result: "1/(x - 1)",
+      steps: [],
+      title: "Simplify Expression",
+      warnings: [],
+    };
+    const visual = buildVisualVerification(classification, result);
+    expect(visual?.table.some((row) => row.x === 1 && row.y === null)).toBe(true);
+    expect(visual?.warnings.join(" ")).toContain("discontinuities");
+  });
 });

@@ -17,6 +17,7 @@ type WorkspaceState = {
   redoHistory: WorkspaceHistoryEntry[];
   upsertObject: (object: MathObject, historyLabel?: string) => void;
   upsertObjects: (objects: MathObject[], historyLabel?: string) => void;
+  replaceObjectScope: (scope: string, objects: MathObject[], historyLabel?: string) => void;
   updateObject: (objectId: string, patch: Partial<MathObject>, historyLabel?: string) => void;
   removeObject: (objectId: string) => void;
   selectObject: (objectId: string | null) => void;
@@ -132,6 +133,33 @@ export const useWorkspaceStore = create<WorkspaceState>()(
           return {
             ...nextState,
             ...(historyLabel ? withUndoEntry(state, before, after, "snapshot", historyLabel, objects.map((object) => object.id)) : {}),
+          };
+        }),
+      replaceObjectScope: (scope, objects, historyLabel) =>
+        set((state) => {
+          const cleanScope = scope.trim();
+          if (!cleanScope) return state;
+          const before = snapshotFromState(state);
+          const scopedObjects = objects
+            .map(normalizeMathObject)
+            .map((object) => ({
+              ...object,
+              metadata: {
+                ...object.metadata,
+                universalScope: cleanScope,
+              },
+            }));
+          const retainedObjects = state.objects.filter((object) => object.metadata?.universalScope !== cleanScope);
+          const mergedObjects = buildRuntimeWorkspaceObjects([...scopedObjects, ...retainedObjects.map(normalizeMathObject)]);
+          const nextState = {
+            objects: mergedObjects,
+            scenes: syncScenesWithObjects(state.scenes, mergedObjects),
+            project: { ...state.project, updatedAt: Date.now() },
+          };
+          const after = snapshotFromState({ ...state, ...nextState });
+          return {
+            ...nextState,
+            ...(historyLabel ? withUndoEntry(state, before, after, "snapshot", historyLabel, scopedObjects.map((object) => object.id)) : {}),
           };
         }),
       updateObject: (objectId, patch, historyLabel) =>

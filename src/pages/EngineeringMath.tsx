@@ -2,6 +2,7 @@ import { ArrowRight, BookOpen, CheckCircle2, ClipboardList, FlaskConical, Layers
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import EngineeringLiveSystemsPanel from "../components/engineering/EngineeringLiveSystemsPanel";
 import TopicHeader from "../components/ui/TopicHeader";
 import { engineeringConceptLabId, engineeringVisualForConcept, type AdvancedLabVisual } from "../data/advancedSyllabusLabs";
 import { assessmentSummary, buildEngineeringAssessmentPlans, engineeringExamSprints, sprintReadiness } from "../data/engineeringAssessmentPlanner";
@@ -23,6 +24,9 @@ import { projectsForDomain, projectSummary } from "../data/engineeringProjects";
 import { adjustedSimulationSamples, simulationCoverageSummary, simulationsForDomain, type EngineeringSimulationScenario } from "../data/engineeringSimulationScenarios";
 import type { SyllabusTopic } from "../data/syllabus";
 import { workedExamplesForDomain, workedExampleSummary } from "../data/engineeringWorkedExamples";
+import { buildEngineeringWorkspaceObjects } from "../workspace/universalObjectGraph";
+import { useUniversalObjectGraphPublisher } from "../workspace/useUniversalObjectGraphPublisher";
+import type { MathObject } from "../workspace/types";
 
 const semesterFilters = ["All", "M1", "M2", "M3", "M4"] as const;
 const launcherFilters = ["all", "concept-lab", "workspace", "formula-map", "practice"] as const;
@@ -38,6 +42,7 @@ export default function EngineeringMath() {
   const [visualA, setVisualA] = useState(1.2);
   const [visualB, setVisualB] = useState(0.8);
   const [visualT, setVisualT] = useState(0.45);
+  const [liveSystemObjects, setLiveSystemObjects] = useState<MathObject[]>([]);
   const selected = engineeringDomainById(selectedId) ?? engineeringMathDomains[0];
   const gaps = useMemo(() => engineeringCoverageGaps().filter((gap) => gap.domainId === selected?.id), [selected?.id]);
   const launchers = useMemo(() => {
@@ -79,6 +84,16 @@ export default function EngineeringMath() {
   const selectedCoverage = useMemo(() => coverageRows.find((row) => row.domainId === selected?.id), [coverageRows, selected?.id]);
   const simulationScenarios = useMemo(() => simulationsForDomain(selected?.id ?? ""), [selected?.id]);
   const simulationSummary = useMemo(() => simulationCoverageSummary(), []);
+  const workspaceObjects = useMemo(() => selected ? buildEngineeringWorkspaceObjects({
+    domain: selected,
+    formulas: formulaCards,
+    simulations: simulationScenarios,
+    coverage: selectedCoverage ? { percent: selectedCoverage.percent, missing: selectedCoverage.missing } : undefined,
+    controls: { shape: visualA, forcing: visualB, time: visualT },
+  }) : [], [formulaCards, selected, selectedCoverage, simulationScenarios, visualA, visualB, visualT]);
+  const liveWorkspaceParent = useMemo(() => selected ? { id: `domain-${selected.id}`, title: selected.title } : undefined, [selected]);
+  const publishedWorkspaceObjects = useMemo(() => [...workspaceObjects, ...liveSystemObjects], [liveSystemObjects, workspaceObjects]);
+  useUniversalObjectGraphPublisher("engineering-math", publishedWorkspaceObjects);
 
   return (
     <div className="space-y-3">
@@ -349,6 +364,10 @@ export default function EngineeringMath() {
                 ))}
               </div>
             </section>
+
+            <div className="mt-4">
+              <EngineeringLiveSystemsPanel onWorkspaceObjectsChange={setLiveSystemObjects} workspaceParent={liveWorkspaceParent} />
+            </div>
 
             <section className="mt-4 rounded-lg bg-slate-50 p-3 dark:bg-white/5">
               <div className="flex items-center justify-between gap-2">

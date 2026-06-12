@@ -42,11 +42,18 @@ describe("expression operation solver", () => {
   it.each([
     ["2 + 3 * 4", "14"],
     ["sqrt(16)", "4"],
+    ["log(100)", "2"],
+    ["ln(e)", "1"],
     ["abs(-5)", "5"],
     ["sin(30)", "0.5"],
     ["cos(60)", "0.5"],
   ])("evaluates %s", (input, expected) => {
     expect(solve(input).result).toBe(expected);
+  });
+
+  it("keeps exact and approximate forms for irrational roots", () => {
+    expect(solve("sqrt(34)").result).toContain("Exact: sqrt(34)");
+    expect(solve("sqrt 34").result).toContain("Approximate:");
   });
 
   it("preserves explicit multiplication in arithmetic steps", () => {
@@ -60,6 +67,8 @@ describe("expression operation solver", () => {
   it.each([
     ["simplify (x^2 - 1)/(x - 1)", "x != 1"],
     ["simplify 1/(x+1)", "x != -1"],
+    ["sqrt(x-2)", "x >= 2"],
+    ["log(x)", "x > 0"],
   ])("detects domain restrictions for %s", (input, expected) => {
     expect(solve(input).restrictions).toContain(expected);
   });

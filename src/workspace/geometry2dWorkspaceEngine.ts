@@ -9,6 +9,7 @@ import {
   point,
   polygonArea,
   polygonPerimeter,
+  ray,
   relationBetween,
   segment,
   type KernelCircle,
@@ -17,7 +18,7 @@ import {
   type KernelObject,
   type KernelPoint,
 } from "./geometry2dKernel";
-import { solveExact2D, type Exact2DConstraint, type Exact2DState } from "./constructionKernels";
+import { solveExact2D, solveExact2DWithDiagnostics, type Exact2DConstraint, type Exact2DState, type ExactConstraintDiagnostic } from "./constructionKernels";
 
 export type Geometry2DObject =
   | { id: string; kind: "point"; label: string; point: KernelPoint; parents?: string[] }
@@ -30,6 +31,11 @@ export type Geometry2DObject =
 export type Geometry2DScene = {
   objects: Geometry2DObject[];
   constraints: Exact2DConstraint[];
+};
+
+export type Geometry2DSolveReport = Geometry2DScene & {
+  diagnostics: ExactConstraintDiagnostic[];
+  valid: boolean;
 };
 
 export type SnapKind = "grid" | "point" | "intersection" | "midpoint" | "object";
@@ -80,6 +86,19 @@ export function solveGeometry2DScene(scene: Geometry2DScene, movingPointId?: str
   const state = toExactState(scene);
   const solved = solveExact2D(state, movingPointId);
   return fromExactState(scene, solved);
+}
+
+export function solveGeometry2DSceneWithDiagnostics(scene: Geometry2DScene, movingPointId?: string): Geometry2DSolveReport {
+  const solved = solveExact2DWithDiagnostics(toExactState(scene), movingPointId);
+  return { ...fromExactState(scene, solved), diagnostics: solved.diagnostics, valid: solved.valid };
+}
+
+export function dragGeometryPoint(scene: Geometry2DScene, pointId: string, nextPoint: KernelPoint): Geometry2DSolveReport {
+  const moved: Geometry2DScene = {
+    ...scene,
+    objects: scene.objects.map((object) => object.kind === "point" && object.id === pointId ? { ...object, point: nextPoint } : object),
+  };
+  return solveGeometry2DSceneWithDiagnostics(moved, pointId);
 }
 
 export function snapPointToGeometry(pointer: KernelPoint, scene: Geometry2DScene, options: { gridSize?: number; threshold?: number } = {}): SnapResult {
@@ -201,6 +220,19 @@ function fromExactState(scene: Geometry2DScene, state: Exact2DState): Geometry2D
     constraints: scene.constraints,
     objects: scene.objects.map((object) => {
       if (object.kind === "point" && state.points[object.id]) return { ...object, point: state.points[object.id] };
+      if ((object.kind === "line" || object.kind === "segment" || object.kind === "ray") && object.parents.length >= 2) {
+        const a = state.points[object.parents[0]] ?? object.object.a;
+        const b = state.points[object.parents[1]] ?? object.object.b;
+        return { ...object, object: object.kind === "segment" ? segment(a, b) : object.kind === "ray" ? ray(a, b) : line(a, b) };
+      }
+      if (object.kind === "circle" && object.parents.length >= 2) {
+        const center = state.points[object.parents[0]] ?? object.object.center;
+        const edge = state.points[object.parents[1]];
+        return { ...object, object: circle(center, edge ? distanceBetween(center, edge) : object.object.radius) };
+      }
+      if (object.kind === "polygon") {
+        return { ...object, points: object.parents.map((id, index) => state.points[id] ?? object.points[index]).filter((item): item is KernelPoint => Boolean(item)) };
+      }
       if ("object" in object && state.objects[object.id]) return { ...object, object: state.objects[object.id] as never };
       return object;
     }),

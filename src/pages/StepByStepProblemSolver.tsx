@@ -17,8 +17,10 @@ import { buildVisualVerification } from "../problem-solver/graphingUtils";
 import { buildProblemResultCards, type ProblemResultCard } from "../problem-solver/resultCards";
 import type { ProblemClassification, ProblemIntentKind, ProblemSolverResult } from "../problem-solver/problemTypes";
 import { symbolicLatex, symbolicSolve, trySymbolic } from "../utils/symbolic";
+import { buildProblemSolverWorkspaceObjects } from "../workspace/universalObjectGraph";
+import { useUniversalObjectGraphPublisher } from "../workspace/useUniversalObjectGraphPublisher";
 
-const examples = ["sqrt(34)", "sqrt(34) + tan(45)", "sqrt 34", "sin 30", "Laplace transform of sin(t)", "Fourier series of x", "Newton Raphson method", "A train travels 60 km in 2 hours", "apple mango x + 2", "sin(30) + cos(60)", "log(100)", "ln(e)", "derivative of sin(x)", "integrate x^2", "limit x->0 sin(x)/x", "mean of 4, 6, 8, 10", "determinant [[1,2],[3,4]]", "2x + 5 = 15", "x^2 - 5x + 6 = 0", "2*x+5=11", "x^2-5*x+6=0", "(x^2 - 1)/(x - 1) = 0", "simplify (x^2 - 1)/(x - 1)", "factor x^2 - 5x + 6", "expand (x+1)^2", "2 + 3 * 4", "sin(30)", "derivative of x^2", "derivative of x^3 + 2x", "differentiate x^2 + 5x + 6", "integrate x from 0 to 2", "integrate 2x", "integral of x^2 + 3x", "limit x->2 x^2 + 1", "lim x->0 sin(x)/x", "solve 2x + y = 7 and x - y = 2", "2x + 3y = 12; x - y = 1", "x + y + z = 6; 2x - y + z = 3; x + 2y - z = 2", "x + y = 2; x + y = 3", "x + y = 2; 2x + 2y = 4", "x^2 + y = 5; x + y = 3", "median of 4, 6, 8, 10", "mode of 2, 3, 3, 5", "variance of 4, 6, 8, 10", "standard deviation of 4, 6, 8, 10", "quartiles of 2, 4, 6, 8, 10", "frequency table of 1, 2, 2, 3, 3, 3", "weighted mean values 80, 90, 100 weights 2, 3, 5", "[[1,2],[3,4]]", "inverse [[1,2],[3,4]]", "transpose [[1,2],[3,4]]", "[[1,2],[3,4]] + [[5,6],[7,8]]", "[[1,2],[3,4]] * [[5,6],[7,8]]", "solve matrix [[2,1,7],[1,-1,2]]"];
+const examples = ["sqrt(34)", "sqrt(34) + tan(45)", "sqrt 34", "sin 30", "Laplace transform of sin(t)", "Fourier series of x", "Newton Raphson method", "A train travels 60 km in 2 hours", "apple mango x + 2", "sin(30) + cos(60)", "log(100)", "ln(e)", "sqrt(-1)", "log(0)", "sqrt(x-2)", "derivative of sin(x)", "integrate x^2", "limit x->0 sin(x)/x", "mean of 4, 6, 8, 10", "determinant [[1,2],[3,4]]", "2x + 5 = 15", "0x + 5 = 5", "0x + 5 = 8", "x + 1 = x + 2", "x^2 - 5x + 6 = 0", "x^2 - 2x + 1 = 0", "2*x+5=11", "x^2-5*x+6=0", "(x^2 - 1)/(x - 1) = 0", "simplify (x^2 - 1)/(x - 1)", "factor x^2 - 5x + 6", "expand (x+1)^2", "2 + 3 * 4", "sin(30)", "derivative of x^2", "derivative of x^3 + 2x", "differentiate x^2 + 5x + 6", "integrate x from 0 to 2", "integrate 2x", "integral of x^2 + 3x", "limit x->2 x^2 + 1", "lim x->0 sin(x)/x", "solve 2x + y = 7 and x - y = 2", "2x + 3y = 12; x - y = 1", "x + y + z = 6; 2x - y + z = 3; x + 2y - z = 2", "x + y = 2; x + y = 3", "x + y = 2; 2x + 2y = 4", "x^2 + y = 5; x + y = 3", "median of 4, 6, 8, 10", "mode of 2, 3, 3, 5", "variance of 4, 6, 8, 10", "sample variance of 4", "standard deviation of 4, 6, 8, 10", "quartiles of 2, 4, 6, 8, 10", "frequency table of 1, 2, 2, 3, 3, 3", "weighted mean values 80, 90, 100 weights 2, 3, 5", "[[1,2],[3,4]]", "inverse [[1,2],[3,4]]", "inverse [[1,2],[2,4]]", "transpose [[1,2],[3,4]]", "[[1,2],[3,4]] + [[5,6],[7,8]]", "[[1,2],[3,4]] * [[5,6],[7,8]]", "solve matrix [[2,1,7],[1,-1,2]]"];
 const equationKinds: ProblemIntentKind[] = ["linear-equation", "quadratic-equation", "polynomial-equation"];
 
 export default function StepByStepProblemSolver() {
@@ -28,6 +30,25 @@ export default function StepByStepProblemSolver() {
   const solverResult = useMemo(() => buildSolverResult(classification), [classification]);
   const visual = useMemo(() => buildVisualVerification(classification, solverResult), [classification, solverResult]);
   const cards = useMemo(() => buildProblemResultCards(classification, solverResult, visual), [classification, solverResult, visual]);
+  const workspaceObjects = useMemo(() => buildProblemSolverWorkspaceObjects({
+    input: equation,
+    problemType: classification.kind,
+    confidence: classification.confidence,
+    method: solverResult.method,
+    finalAnswer: solverResult.result,
+    assumptions: solverResult.assumptions,
+    restrictions: solverResult.restrictions,
+    warnings: solverResult.warnings,
+    steps: solverResult.steps,
+    visual: visual ? {
+      title: visual.title,
+      description: visual.description,
+      curves: visual.curves.map((curve) => ({ expression: curve.expression, label: curve.label, color: curve.color })),
+      markers: visual.markers.map((marker) => ({ label: marker.label, x: marker.x, y: marker.y })),
+      table: visual.table.map((row) => ({ x: row.x, y: row.y })),
+    } : null,
+  }), [classification.confidence, classification.kind, equation, solverResult, visual]);
+  useUniversalObjectGraphPublisher("problem-solver", workspaceObjects);
 
   return (
     <div className="space-y-6">
@@ -40,11 +61,27 @@ export default function StepByStepProblemSolver() {
           <RelatedToolLinks links={[{ label: "Calculator", route: "/calculator" }, { label: "Equation Solver", route: "/math-lab/equation-solver" }]} />
         </div>
         <input className="w-full rounded-2xl border border-slate-200 bg-white p-4 font-mono text-lg dark:border-white/10 dark:bg-slate-950/60" value={equation} onChange={(event) => setEquation(event.target.value)} />
-        <div className="mt-4"><PresetChips examples={examples} onSelect={setEquation} /></div>
-        <MathRecognitionPanel result={recognition} />
       </SectionCard>
       <ResultWorkspace cards={cards} result={solverResult} visual={visual} />
+      <SolverReferencePanels recognition={recognition} onSelectExample={setEquation} />
     </div>
+  );
+}
+
+function SolverReferencePanels({ recognition, onSelectExample }: { recognition: ReturnType<typeof recognizeMathInput>; onSelectExample: (value: string) => void }) {
+  return (
+    <section className="space-y-3">
+      <details className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
+        <summary className="cursor-pointer text-sm font-black text-slate-950 dark:text-white">Examples and recent inputs</summary>
+        <div className="mt-4">
+          <PresetChips examples={examples} onSelect={onSelectExample} />
+        </div>
+      </details>
+      <details className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
+        <summary className="cursor-pointer text-sm font-black text-slate-950 dark:text-white">Recognition, suggestions, and debug audit</summary>
+        <MathRecognitionPanel result={recognition} />
+      </details>
+    </section>
   );
 }
 
@@ -122,63 +159,9 @@ function CardContent({ content }: { content: ProblemResultCard["content"] }) {
   );
 }
 
-function MathStep({ index, text }: { index: number; text: string }) {
-  return <div className="rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm dark:border-white/10 dark:bg-white/5"><p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Step {index}</p><p className="mt-2 text-sm leading-6">{text}</p></div>;
-}
-
-function ResultSummary({ result }: { result: ProblemSolverResult }) {
-  return (
-    <div className="grid gap-3 md:grid-cols-3">
-      <InfoTile label="Problem Type" value={result.title} />
-      <InfoTile label="Method Used" value={result.method ?? "Safe classification"} />
-      <InfoTile label="Final Answer" value={result.result ?? "No final answer yet"} mono />
-      {result.restrictions?.length ? <ListTile title="Domain Restrictions" items={result.restrictions} fallback="No restrictions." warning /> : null}
-      {result.warnings.length ? <ListTile title="Warnings" items={result.warnings} fallback="No warnings." warning /> : null}
-    </div>
-  );
-}
-
 function RenderedMath({ value }: { value: string }) {
   const html = useMemo(() => katex.renderToString(symbolicLatex(value), { displayMode: true, throwOnError: false }), [value]);
   return <div className="overflow-x-auto [&_.katex-display]:my-0" dangerouslySetInnerHTML={{ __html: html }} />;
-}
-
-function ClassificationPanel({ classification }: { classification: ProblemClassification }) {
-  return (
-    <SectionCard title="Detected Problem Type" description="Phase 2 classifies intent before any solver is called.">
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-        <InfoTile label="Type" value={labelForKind(classification.kind)} />
-        <InfoTile label="Confidence" value={classification.confidence} />
-        <InfoTile label="Normalized Input" value={classification.normalizedInput || "none"} mono />
-        <InfoTile label="Reason" value={classification.reason} />
-      </div>
-      <div className="mt-3 grid gap-3 md:grid-cols-2">
-        <ListTile title="Assumptions" items={classification.assumptions} fallback="No special assumptions." />
-        <ListTile title="Warnings" items={classification.warnings} fallback="No warnings." warning />
-      </div>
-    </SectionCard>
-  );
-}
-
-function InfoTile({ label, mono = false, value }: { label: string; mono?: boolean; value: string }) {
-  return (
-    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
-      <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">{label}</p>
-      <p className={`mt-1 break-words text-sm font-bold text-slate-900 dark:text-white ${mono ? "font-mono" : ""}`}>{value}</p>
-    </div>
-  );
-}
-
-function ListTile({ fallback, items, title, warning = false }: { fallback: string; items: string[]; title: string; warning?: boolean }) {
-  const entries = items.length ? items : [fallback];
-  return (
-    <div className={`rounded-xl p-3 ${warning && items.length ? "bg-amber-50 text-amber-900 dark:bg-amber-400/10 dark:text-amber-100" : "bg-slate-100 dark:bg-white/10"}`}>
-      <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">{title}</p>
-      <ul className="mt-2 space-y-1 text-sm font-semibold leading-5">
-        {entries.map((item) => <li key={item}>{item}</li>)}
-      </ul>
-    </div>
-  );
 }
 
 function UnsupportedSuggestions() {

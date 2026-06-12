@@ -35,6 +35,7 @@ describe("result cards", () => {
   it("builds relevant cards for solved problems", () => {
     const cards = buildProblemResultCards(classification(), result(), null);
     expect(cards.map((card) => card.type)).toEqual(expect.arrayContaining(["input-interpretation", "classification", "assumptions", "steps", "final-answer", "verification", "alternative-method", "related-concepts", "practice"]));
+    expect(cards.slice(0, 2).map((card) => card.type)).toEqual(["final-answer", "steps"]);
     expect(cards.some((card) => card.type === "warnings")).toBe(false);
     expect(cards.some((card) => card.type === "domain")).toBe(false);
   });

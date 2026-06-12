@@ -51,6 +51,12 @@ describe("calculus solver", () => {
     expect(result.assumptions.join(" ")).toContain("Approach value");
   });
 
+  it("solves limits with a unicode arrow", () => {
+    const { result } = solve("lim x→0 sin(x)/x");
+    expect(result.result).toBe("1");
+    expect(result.assumptions.join(" ")).toContain("Approach value");
+  });
+
   it.each([
     ["derivative of x^3 + 2x", "derivative"],
     ["integrate 2x", "integral"],

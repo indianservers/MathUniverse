@@ -1,6 +1,8 @@
 import { keywordLookup, normalizeKeyword, phraseKeywords, symbolKeywords, symbolLookup } from "./mathKeywordDictionary";
 import type { MathKeywordDefinition, MathRecognizedToken } from "./mathRecognitionTypes";
 
+const fillerWords = new Set(["of", "the", "a", "an", "to", "from", "by", "with", "and", "please"]);
+
 export function tokenizeMathInput(input: string): MathRecognizedToken[] {
   const tokens: MathRecognizedToken[] = [];
   let index = 0;
@@ -35,7 +37,8 @@ export function tokenizeMathInput(input: string): MathRecognizedToken[] {
 
     const word = matchWord(input, index);
     if (word) {
-      tokens.push(createWordToken(word.text, index, word.end));
+      const token = createWordToken(word.text, index, word.end);
+      if (token) tokens.push(token);
       index = word.end;
       continue;
     }
@@ -92,8 +95,9 @@ function matchWord(input: string, start: number) {
   return { text: match[0], end: start + match[0].length };
 }
 
-function createWordToken(text: string, start: number, end: number): MathRecognizedToken {
+function createWordToken(text: string, start: number, end: number): MathRecognizedToken | null {
   const normalized = normalizeKeyword(text);
+  if (fillerWords.has(normalized)) return null;
   const definition = keywordLookup.get(normalized);
   if (definition) return createToken(text, definition, start, end);
 

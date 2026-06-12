@@ -38,6 +38,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ConceptIconBadge, FormulaImageStrip } from "../components/syllabus/ConceptVisualMedia";
 import SectionCard from "../components/ui/SectionCard";
 import { formulaCategories, formulaCategoryCount, type FormulaCategory, type FormulaLibraryItem } from "../data/formulaLibrary";
+import { buildFormulaLibraryWorkspaceObjects } from "../workspace/universalObjectGraph";
+import { useUniversalObjectGraphPublisher } from "../workspace/useUniversalObjectGraphPublisher";
 
 type FormulaLevel = "KG" | "Primary" | "Middle" | "High School" | "UG" | "PG" | "PhD";
 type FormulaGroup =
@@ -481,6 +483,13 @@ export default function Formulas() {
 
   const activeCategoryTitle = activeCategoryId === "all" ? "All formulas" : formulaCategories.find((category) => category.id === activeCategoryId)?.title ?? "Formulas";
   const relatedRecords = useMemo(() => selectedRecord ? getRelatedRecords(selectedRecord, formulaRecords) : [], [formulaRecords, selectedRecord]);
+  const workspaceObjects = useMemo(() => buildFormulaLibraryWorkspaceObjects({
+    selected: selectedRecord,
+    related: relatedRecords.map((record) => ({ id: record.id, title: record.title, formula: record.formula })),
+    progress: selectedRecord ? progress[selectedRecord.id] ?? "new" : "new",
+    bookmarked: selectedRecord ? bookmarks.includes(selectedRecord.id) : false,
+  }), [bookmarks, progress, relatedRecords, selectedRecord]);
+  useUniversalObjectGraphPublisher("formula-library", workspaceObjects);
   const formulaFamilies = useMemo(() => familiesView ? buildFormulaFamilies(visibleFilteredRecords) : [], [familiesView, visibleFilteredRecords]);
   const selectedFamilyRecords = useMemo(() => selectedRecord ? getFormulaFamilyRecords(selectedRecord, formulaRecords) : [], [formulaRecords, selectedRecord]);
   const geometryShapeSections = useMemo(() => {
@@ -1025,12 +1034,12 @@ function FormulaCategoryNode({
 
 function FormulaLibraryCard({
   bookmarks,
-  copyValue,
+  copyValue: _copyValue,
   highlightQuery,
   isOpen,
   onOpen,
   onToggleBookmark,
-  onToggleDetails,
+  onToggleDetails: _onToggleDetails,
   progress,
   record,
   relatedRecords,
@@ -1136,7 +1145,7 @@ function FormulaLibraryCard({
   );
 }
 
-function FormulaDetailPane({ bookmarks, copyValue, familyRecords, onToggleBookmark, progress, record, relatedRecords, setProgress, setQuery }: {
+function FormulaDetailPane({ bookmarks, copyValue: _copyValue, familyRecords, onToggleBookmark, progress, record, relatedRecords, setProgress, setQuery }: {
   bookmarks: string[];
   copyValue: (value: string) => Promise<void>;
   familyRecords: FormulaLineRecord[];
@@ -1362,7 +1371,7 @@ function FormulaShapeSections({
 
 function MobileFormulaDetailDrawer({
   bookmarks,
-  copyValue,
+  copyValue: _copyValue,
   familyRecords,
   onClose,
   onToggleBookmark,
@@ -1661,15 +1670,6 @@ function SegmentedButton({ active, icon: Icon, label, onClick }: { active: boole
   return (
     <button type="button" onClick={onClick} className={clsx("math-tool-button h-10 w-10", active && "bg-cyan-100 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100")} aria-label={label}>
       <Icon className="h-4 w-4" />
-    </button>
-  );
-}
-
-function SmallAction({ icon: Icon, label, onClick }: { icon: ComponentType<SVGProps<SVGSVGElement>>; label: string; onClick: () => void }) {
-  return (
-    <button type="button" onClick={(event) => { event.stopPropagation(); onClick(); }} className="formula-small-action">
-      <Icon className="h-3.5 w-3.5" />
-      {label}
     </button>
   );
 }
@@ -2016,7 +2016,7 @@ function buildGeometryShapeSections(records: FormulaLineRecord[]) {
   });
   return sections
     .filter((section) => section.records.length)
-    .map(({ keywords, ...section }) => section);
+    .map(({ keywords: _keywords, ...section }) => section);
 }
 
 function getFormulaFamily(record: FormulaLineRecord) {

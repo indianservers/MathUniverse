@@ -1,17 +1,6 @@
 import type { ProblemClassification, ProblemSolverResult } from "./problemTypes";
 
 type Matrix = number[][];
-type MatrixOperation =
-  | "literal"
-  | "add"
-  | "subtract"
-  | "scalar"
-  | "multiply"
-  | "transpose"
-  | "determinant"
-  | "inverse"
-  | "rref"
-  | "solve-matrix";
 
 type ParsedMatrix = {
   matrix: Matrix;

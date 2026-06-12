@@ -41,7 +41,7 @@ const excludedWords = new Set([
   "weights",
 ]);
 
-const supportedFunctions = ["sin", "cos", "tan", "log", "ln", "sqrt", "abs", "exp"];
+const supportedFunctions = ["sin", "cos", "tan", "log", "log10", "log2", "ln", "sqrt", "abs", "exp"];
 
 export function classifyProblem(input: string): ProblemClassification {
   const rawInput = input;
@@ -49,7 +49,6 @@ export function classifyProblem(input: string): ProblemClassification {
   if (!trimmed) return unsupported(rawInput, "No input was provided.", "low", ["Enter a math expression or equation."]);
 
   const normalizedText = normalizeText(trimmed);
-  const lower = normalizedText.toLowerCase();
 
   if (isMatrixLike(normalizedText)) {
     return classification("matrix", rawInput, normalizeExpression(normalizedText), {
@@ -222,6 +221,9 @@ function stripMatrixCommand(value: string) {
 function isEvaluateExpression(value: string) {
   if (/^[\d+\-*/^().,\s]+$/.test(value)) return true;
   if (new RegExp(`^(?:${supportedFunctions.join("|")})\\s*\\(`, "i").test(value)) return true;
+  if (new RegExp(`^(?:${supportedFunctions.join("|")})\\s+-?\\d+(?:\\.\\d+)?$`, "i").test(value)) return true;
+  if (/^1\s*\/\s*\(.+\)$/i.test(value)) return true;
+  if (/^[\dx+\-*/^().,\s]+$/i.test(value) && /x/i.test(value)) return true;
   return false;
 }
 
@@ -242,16 +244,46 @@ function commandExpression(value: string, commands: string[]) {
 }
 
 function normalizeText(value: string) {
-  return value.trim().replace(/\r\n/g, "\n").replace(/[ \t]+/g, " ");
+  return normalizeUnicodeMath(value).trim().replace(/\r\n/g, "\n").replace(/[ \t]+/g, " ");
 }
 
 function normalizeExpression(value: string) {
   return normalizeText(value)
     .replace(/→|â†’/g, "->")
+    .replace(new RegExp(`^(${supportedFunctions.join("|")})\\s+(-?\\d+(?:\\.\\d+)?)$`, "i"), "$1($2)")
     .replace(/\s+/g, "")
     .replace(/(\d)([a-zA-Z(])/g, "$1*$2")
     .replace(/([a-zA-Z)])(\d)/g, "$1*$2")
     .replace(/\)([a-zA-Z(])/g, ")*$1");
+}
+
+function normalizeUnicodeMath(value: string) {
+  const unicodeNormalized = value
+    .replace(/→/g, "->")
+    .replace(/≤/g, "<=")
+    .replace(/≥/g, ">=")
+    .replace(/≠/g, "!=")
+    .replace(/×|·/g, "*")
+    .replace(/÷/g, "/")
+    .replace(/π/g, "pi")
+    .replace(/∞/g, "infinity")
+    .replace(/−/g, "-")
+    .replace(/²/g, "^2")
+    .replace(/³/g, "^3")
+    .replace(/√\s*\(?\s*([^)\s]+)\s*\)?/g, (_, radicand: string) => `sqrt(${radicand})`);
+  return unicodeNormalized
+    .replace(/\u00c3\u00a2\u00e2\u20ac\u00a0\u00e2\u20ac\u2122|\u00e2\u2020\u2019/g, "->")
+    .replace(/â‰¤|≤/g, "<=")
+    .replace(/â‰¥|≥/g, ">=")
+    .replace(/\u00c3\u00a2\u00e2\u20ac\u00b0\u00c2\u00a0|\u00e2\u2030\u00a0/g, "!=")
+    .replace(/Ã—|×|·/g, "*")
+    .replace(/Ã·|÷/g, "/")
+    .replace(/Ï€|π/g, "pi")
+    .replace(/âˆž|∞/g, "infinity")
+    .replace(/âˆ’|−/g, "-")
+    .replace(/Â²|²/g, "^2")
+    .replace(/Â³|³/g, "^3")
+    .replace(/âˆš\s*\(?\s*([^)\s]+)\s*\)?|√\s*\(?\s*([^)\s]+)\s*\)?/g, (_, mojibakeRadicand: string | undefined, radicand: string | undefined) => `sqrt(${mojibakeRadicand ?? radicand})`);
 }
 
 function normalizeNumberList(value: string) {
