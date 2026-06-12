@@ -52,3 +52,19 @@
 [2m8:00:30 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
 [2m8:00:52 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
 [2m8:01:02 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m8:37:39 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/EngineeringMath.tsx, /src/index.css[22m
+[2m8:37:57 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/EngineeringMath.tsx, /src/index.css[22m
+[2m8:38:30 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/data/engineeringConceptCoverage.test.ts[22m
+[2m8:40:06 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/seo/SeoMetadata.tsx, /src/components/layout/Sidebar.tsx, /src/pages/AdvancedSyllabusLabPage.tsx[22m
+[2m8:40:41 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/seo/SeoMetadata.tsx, /src/components/layout/Sidebar.tsx, /src/pages/AdvancedSyllabusLabPage.tsx[22m
+[2m8:40:41 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/components/layout/Sidebar.tsx[22m Could not Fast Refresh ("filterNavItems" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m8:40:41 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/layout/AppLayout.tsx, /src/index.css[22m
+[2m8:40:49 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/EngineeringMath.tsx, /src/index.css[22m
+[2m8:41:15 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/EngineeringMath.tsx, /src/index.css[22m
+[2m8:41:25 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/data/engineeringConceptCoverage.test.ts[22m
+[2m8:41:41 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/EngineeringMath.tsx, /src/index.css[22m
+[2m8:44:23 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/seo/SeoMetadata.tsx, /src/components/layout/Sidebar.tsx, /src/pages/AdvancedSyllabusLabPage.tsx, /src/pages/EngineeringMath.tsx[22m
+[2m8:44:23 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/components/layout/Sidebar.tsx[22m Could not Fast Refresh ("filterNavItems" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m8:44:23 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/layout/AppLayout.tsx, /src/index.css[22m
+[2m8:44:55 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/EngineeringMath.tsx, /src/index.css[22m
+[2m8:45:04 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/EngineeringMath.tsx, /src/index.css[22m

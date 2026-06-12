@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import TopicHeader from "../components/ui/TopicHeader";
+import { engineeringConceptLabId, engineeringVisualForConcept, type AdvancedLabVisual } from "../data/advancedSyllabusLabs";
 import { assessmentSummary, buildEngineeringAssessmentPlans, engineeringExamSprints, sprintReadiness } from "../data/engineeringAssessmentPlanner";
 import { caseStudiesForDomain, caseStudySummary } from "../data/engineeringCaseStudies";
 import { buildEngineeringConceptCoverage, engineeringCoverageSummary } from "../data/engineeringConceptCoverage";
@@ -590,15 +591,9 @@ export default function EngineeringMath() {
                       </span>
                       <span className="mt-1 block text-xs font-semibold text-slate-500 dark:text-slate-400">{topic.linkedVisualization.route}</span>
                     </Link>
-                    <div className="mt-3 flex flex-wrap gap-2">
+                    <div className="mt-3 grid gap-2 sm:grid-cols-2">
                       {topic.concepts.map((concept) => (
-                        <Link
-                          key={`${topic.id}-${concept}`}
-                          to={conceptRouteFor(topic, concept)}
-                          className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-black text-slate-600 transition hover:border-cyan-300 hover:bg-cyan-100 hover:text-cyan-900 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-cyan-300/15"
-                        >
-                          {concept}
-                        </Link>
+                        <EngineeringConceptMiniLab key={`${topic.id}-${concept}`} domainId={selected.id} topic={topic} concept={concept} a={visualA} b={visualB} t={visualT} />
                       ))}
                     </div>
                   </article>
@@ -873,6 +868,118 @@ function EngineeringTopicPreview({ domainId, title, a, b, t }: { domainId: strin
   return <EngineeringFormulaVisual formula={visualFormula} a={a} b={b} t={t} />;
 }
 
+function EngineeringConceptMiniLab({ domainId, topic, concept, a, b, t }: { domainId: string; topic: SyllabusTopic; concept: string; a: number; b: number; t: number }) {
+  const route = conceptRouteFor(topic, concept);
+  const formula = conceptVisualFormula(domainId, topic, concept, route);
+  const visual = engineeringVisualForConcept(`${topic.title} ${topic.unit} ${concept}`);
+  const metric = conceptMetricFor(concept, a, b, t);
+  return (
+    <Link to={route} className="group rounded-lg border border-slate-200 bg-slate-50 p-2 transition hover:border-cyan-300 hover:bg-cyan-100 dark:border-white/10 dark:bg-white/5 dark:hover:bg-cyan-300/15">
+      <EngineeringAdvancedVisualPreview visual={visual} formula={formula} a={a} b={b} t={t} />
+      <span className="mt-2 flex items-start justify-between gap-2 text-[11px] font-black leading-4 text-slate-700 dark:text-slate-100">
+        <span>{concept}</span>
+        <ArrowRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-500 transition group-hover:translate-x-0.5" />
+      </span>
+      <span className="mt-1 block text-[10px] font-bold leading-4 text-slate-500 dark:text-slate-400">{metric}</span>
+    </Link>
+  );
+}
+
+function conceptVisualFormula(domainId: string, topic: SyllabusTopic, concept: string, route: string): EngineeringFormulaCard {
+  const title = `${topic.title} ${concept}`;
+  return {
+    id: visualIdForTopic(title),
+    domainId: visualDomainForTopic(domainId, title),
+    title: concept,
+    formula: topic.keyFormulas[0] ?? concept,
+    symbols: topic.keyFormulas.slice(0, 2),
+    useCase: topic.description,
+    route,
+    prerequisites: [topic.unit],
+  };
+}
+
+function EngineeringAdvancedVisualPreview({ visual, formula, a, b, t }: { visual: AdvancedLabVisual; formula: EngineeringFormulaCard; a: number; b: number; t: number }) {
+  if (visual === "convergence-test") {
+    const bars = Array.from({ length: 12 }, (_, index) => {
+      const n = index + 1;
+      const term = Math.min(56, 46 / Math.pow(n, 0.55 + b * 0.28));
+      return <rect key={n} x={44 + index * 18} y={124 - term} width="11" height={term} fill={index % 3 === 0 ? "#f59e0b" : "#22d3ee"} opacity="0.85" />;
+    });
+    return <VisualFrame metric={`test parameter ${b.toFixed(2)}`}><path d={pathFromSamples((x) => 125 - 76 * (1 - Math.exp(-x / (1.2 + a))), 0, 7, 80)} fill="none" stroke="#fb7185" strokeWidth="3" />{bars}</VisualFrame>;
+  }
+  if (visual === "asymptote-tracing") {
+    const left = pathFromSamples((x) => 82 - 34 / Math.max(0.35, 3.1 - x) + 7 * Math.sin(x + t * 3), 0.2, 2.6, 34);
+    const right = pathFromSamples((x) => 82 + 34 / Math.max(0.35, x - 3.1) + 7 * Math.sin(x + t * 3), 3.6, 6.8, 48);
+    return <VisualFrame metric={`asymptote x=${(1 + b).toFixed(2)}`}><line x1="154" y1="24" x2="154" y2="134" stroke="#f59e0b" strokeDasharray="6 5" strokeWidth="3" /><line x1="34" y1="84" x2="292" y2="48" stroke="#64748b" strokeDasharray="6 5" strokeWidth="2" /><path d={left} fill="none" stroke="#22d3ee" strokeWidth="4" /><path d={right} fill="none" stroke="#22d3ee" strokeWidth="4" /></VisualFrame>;
+  }
+  if (visual === "gaussian-elimination" || visual === "linear-system-solver") {
+    const pivot = Math.max(0, Math.min(8, Math.round(a * 2 + t * 3)));
+    return <VisualFrame metric={`pivot step ${pivot + 1}`}><MatrixGrid active={pivot} /><MatrixGrid active={Math.max(1, 8 - pivot)} transform="translate(128 0)" /><VectorLine x1={130} y1={82} x2={182} y2={82} color="#f59e0b" /></VisualFrame>;
+  }
+  if (visual === "graph-theory" || visual === "relation-matrix") {
+    return <VisualFrame metric={`connectivity ${(0.35 + t * 0.55).toFixed(2)}`}><NetworkVisual t={t} /><MatrixGrid active={Math.round(a * 2)} transform="translate(180 4) scale(.72)" /></VisualFrame>;
+  }
+  if (visual === "operations-research") {
+    return <OptimizationVisual id="duality" a={a} b={b} t={t} />;
+  }
+  if (visual === "vector-calculus-field") {
+    return <VisualFrame metric={`flux ${(a + b + t).toFixed(2)}`}><FieldArrows a={a} b={b} t={t} mode={t > 0.5 ? "curl" : "div"} /><ellipse cx="160" cy="82" rx="72" ry="39" fill="none" stroke="#f59e0b" strokeWidth="3" /></VisualFrame>;
+  }
+  if (visual === "quadratic-form-surface") {
+    return <VisualFrame metric={`definiteness ${(a - b).toFixed(2)}`}><ContourMap a={a} b={b} t={t} /><VectorLine x1={160} y1={82} x2={226} y2={52} color="#f59e0b" /><VectorLine x1={160} y1={82} x2={104} y2={114} color="#22d3ee" /></VisualFrame>;
+  }
+  return <EngineeringFormulaVisual formula={previewFormulaForAdvancedVisual(visual, formula)} a={a} b={b} t={t} />;
+}
+
+function previewFormulaForAdvancedVisual(visual: AdvancedLabVisual, fallback: EngineeringFormulaCard): EngineeringFormulaCard {
+  const mapped: Partial<Record<AdvancedLabVisual, Pick<EngineeringFormulaCard, "domainId" | "id">>> = {
+    "partial": { domainId: "engineering-calculus", id: "taylor" },
+    "jacobian": { domainId: "engineering-calculus", id: "jacobian" },
+    "double-integral": { domainId: "engineering-calculus", id: "double-integral" },
+    "beta-gamma": { domainId: "probability-statistics-stochastic", id: "variance" },
+    "lagrange-multiplier": { domainId: "optimization-operations-research", id: "euler-lagrange" },
+    "slope-field": { domainId: "engineering-differential-equations", id: "separable" },
+    "higher-order-ode": { domainId: "engineering-differential-equations", id: "auxiliary-equation" },
+    "cauchy-euler": { domainId: "engineering-differential-equations", id: "cauchy-euler" },
+    "laplace-transform": { domainId: "transforms-signals", id: "laplace-transform" },
+    "step-impulse": { domainId: "transforms-signals", id: "laplace-transform" },
+    "convolution": { domainId: "transforms-signals", id: "convolution" },
+    "fourier-transform": { domainId: "transforms-signals", id: "fourier-series" },
+    "z-transform": { domainId: "transforms-signals", id: "z-transform" },
+    "eigenvector-direction": { domainId: "engineering-linear-algebra", id: "eigen-equation" },
+    "gram-schmidt": { domainId: "engineering-linear-algebra", id: "least-squares" },
+    "cayley-hamilton": { domainId: "engineering-linear-algebra", id: "cayley-hamilton" },
+    "heat-equation": { domainId: "partial-differential-equations", id: "heat-equation" },
+    "wave-equation": { domainId: "partial-differential-equations", id: "wave-equation" },
+    "laplace-potential": { domainId: "partial-differential-equations", id: "laplace-equation" },
+    "direction-field": { domainId: "partial-differential-equations", id: "pde-discriminant" },
+    "newton-raphson": { domainId: "numerical-methods", id: "newton-raphson" },
+    "fixed-point": { domainId: "numerical-methods", id: "newton-raphson" },
+    "divided-differences": { domainId: "numerical-methods", id: "simpson-rule" },
+    "interpolation-builder": { domainId: "numerical-methods", id: "simpson-rule" },
+    "euler-rk4": { domainId: "numerical-methods", id: "rk4" },
+    "gaussian-quadrature": { domainId: "numerical-methods", id: "simpson-rule" },
+    "mobius-map": { domainId: "complex-special-control", id: "residue" },
+    "complex-line-integral": { domainId: "complex-special-control", id: "residue" },
+    "series-partial-sum": { domainId: "complex-special-control", id: "bessel" },
+  };
+  const visualFormula = mapped[visual];
+  return visualFormula ? { ...fallback, ...visualFormula } : fallback;
+}
+
+function conceptMetricFor(concept: string, a: number, b: number, t: number) {
+  const text = concept.toLowerCase();
+  if (/stability|queue|markov|reliability|control/.test(text)) return `stability ${Math.min(0.99, 0.42 + b * 0.21 + t * 0.18).toFixed(2)}`;
+  if (/error|iteration|newton|bisection|secant|rk4|euler|jacobi|gauss/.test(text)) return `error ${(0.18 / (a + t + 0.25)).toFixed(3)}`;
+  if (/integral|volume|area|flux|surface|stokes|gauss|green/.test(text)) return `accumulation ${(a * 6 + b * 3 + t * 4).toFixed(1)}`;
+  if (/eigen|rank|matrix|orthogonal|projection|least|cayley/.test(text)) return `matrix scale ${(a * b + 0.5).toFixed(2)}`;
+  if (/fourier|laplace|z-transform|spectrum|signal|convolution/.test(text)) return `frequency ${(1 + a * 3 + b).toFixed(1)} Hz`;
+  if (/gradient|divergence|curl|field|vector/.test(text)) return `field strength ${(a + b + t).toFixed(2)}`;
+  if (/probability|variance|distribution|regression|sampling|hypothesis/.test(text)) return `spread ${(0.4 + a * 0.35 + b * 0.25).toFixed(2)}`;
+  return `live parameter ${(a + b + t).toFixed(2)}`;
+}
+
 function visualDomainForTopic(domainId: string, title: string) {
   const text = title.toLowerCase();
   if (/pde|partial differential|finite difference|heat|wave|laplace/.test(text)) return "partial-differential-equations";
@@ -1048,8 +1155,8 @@ function SlopeField({ a, b }: { a: number; b: number }) {
   })}</g>;
 }
 
-function MatrixGrid({ active }: { active: number }) {
-  return <g>{Array.from({ length: 9 }, (_, i) => <rect key={i} x={54 + (i % 3) * 26} y={42 + Math.floor(i / 3) * 26} width="20" height="20" rx="4" fill={i <= active ? "#22d3ee" : "#334155"} opacity="0.85" />)}</g>;
+function MatrixGrid({ active, transform }: { active: number; transform?: string }) {
+  return <g transform={transform}>{Array.from({ length: 9 }, (_, i) => <rect key={i} x={54 + (i % 3) * 26} y={42 + Math.floor(i / 3) * 26} width="20" height="20" rx="4" fill={i <= active ? "#22d3ee" : "#334155"} opacity="0.85" />)}</g>;
 }
 
 function ScatterFit({ a, b, t }: { a: number; b: number; t: number }) {
@@ -1156,61 +1263,7 @@ function conceptVisualCount(topics: SyllabusTopic[]) {
 }
 
 function conceptRouteFor(topic: SyllabusTopic, concept: string) {
-  const text = `${topic.title} ${topic.unit} ${concept}`.toLowerCase();
-  const rules: [RegExp, string][] = [
-    [/machine learning|activation|loss|neural/, "/syllabus-lab/machine-learning-math-lab"],
-    [/cayley|characteristic|matrix inverse|matrix powers/, "/syllabus-lab/cayley-hamilton-theorem-visualizer"],
-    [/rank|echelon|consistency|free variables|row reduction|gauss elimination/, "/syllabus-lab/rank-consistency-row-reduction"],
-    [/eigenvalue|eigenvector|diagonalization|dominant eigenvalue|power method/, "/syllabus-lab/eigenvector-direction-visualizer"],
-    [/quadratic form|canonical|definiteness|principal axes/, "/syllabus-lab/canonical-quadratic-form-lab"],
-    [/orthogonality|projection|least squares|gram-schmidt|qr/, "/syllabus-lab/gram-schmidt-orthogonalization"],
-    [/comparison test|infinite series/, "/syllabus-lab/comparison-test-lab"],
-    [/ratio test|d'alembert/, "/syllabus-lab/ratio-test-lab"],
-    [/root test/, "/syllabus-lab/root-test-lab"],
-    [/alternating|absolute convergence/, "/syllabus-lab/alternating-absolute-convergence-lab"],
-    [/curve tracing|asymptote|maxima|minima|critical point|curvature/, "/syllabus-lab/asymptote-curve-tracing-lab"],
-    [/partial derivative|lagrange multiplier|surface slice|gradient/, "/syllabus-lab/partial-derivative-slicer"],
-    [/jacobian|coordinate transform|area scaling/, "/syllabus-lab/jacobian-area-scaling-lab"],
-    [/double integral|triple integral|volume|multiple integral/, "/syllabus-lab/double-integral-region"],
-    [/gamma|beta function|beta/, "/syllabus-lab/beta-gamma-curves"],
-    [/slope field|separable|initial value|first-order/, "/syllabus-lab/slope-field-generator"],
-    [/auxiliary|repeated roots|complex roots|higher-order/, "/syllabus-lab/higher-order-ode-characteristic-lab"],
-    [/cauchy-euler|power solutions/, "/syllabus-lab/cauchy-euler-ode-lab"],
-    [/bessel|legendre|frobenius|power series|special functions/, "/syllabus-lab/series-solution-special-functions-lab"],
-    [/sturm|boundary condition|eigenfunction|orthogonality/, "/syllabus-lab/sturm-liouville-boundary-lab"],
-    [/laplace transform|inverse transform|initial conditions/, "/syllabus-lab/laplace-transform-workflow"],
-    [/unit step|impulse/, "/syllabus-lab/unit-step-impulse-lab"],
-    [/convolution/, "/syllabus-lab/convolution-integral-lab"],
-    [/fourier|spectrum/, "/syllabus-lab/fourier-transform-spectrum-lab"],
-    [/z-transform|difference equation|discrete system/, "/syllabus-lab/z-transform-difference-equations"],
-    [/heat equation/, "/syllabus-lab/heat-equation-color-map"],
-    [/wave equation/, "/syllabus-lab/wave-equation-string-vibration"],
-    [/laplace equation/, "/syllabus-lab/laplace-equation-potential-surface"],
-    [/pde classification|characteristics|canonical form/, "/syllabus-lab/pde-classification-characteristics-lab"],
-    [/finite difference|stability|grid method/, "/syllabus-lab/finite-difference-method-lab"],
-    [/analytic|mobius|cauchy-riemann/, "/syllabus-lab/mobius-transformation-lab"],
-    [/contour|cauchy formula|residue|singularit/, "/syllabus-lab/complex-line-integral-lab"],
-    [/gradient|divergence|curl|stokes|green|gauss|line integral|surface integral/, "/syllabus-lab/vector-calculus-field-theorems"],
-    [/bisection|newton-raphson|secant|root-finding/, "/syllabus-lab/newton-raphson-tangent-iteration"],
-    [/fixed-point/, "/syllabus-lab/fixed-point-iteration-lab"],
-    [/jacobi|gauss-seidel|relaxation|numerical linear algebra/, "/syllabus-lab/numerical-linear-algebra-iteration-lab"],
-    [/interpolation|divided differences|finite differences|curve fitting/, "/syllabus-lab/newton-divided-differences-lab"],
-    [/rk4|euler method|ode solver/, "/syllabus-lab/euler-vs-rk4-solution-comparison"],
-    [/quadrature|simpson|trapezoidal/, "/syllabus-lab/gaussian-quadrature-lab"],
-    [/random variable|distribution|expectation|variance/, "/syllabus-lab/probability-distribution-expectation-lab"],
-    [/regression|sampling|hypothesis|inference|confidence/, "/syllabus-lab/statistical-inference-regression-lab"],
-    [/reliability|markov|queue|steady state/, "/syllabus-lab/reliability-markov-queueing-lab"],
-    [/time series|stationarity|random walk|autocorrelation/, "/syllabus-lab/stochastic-process-time-series-lab"],
-    [/transfer function|pole|zero|control|stability/, "/syllabus-lab/control-system-response-lab"],
-    [/logic|relation|recurrence|boolean|counting/, "/syllabus-lab/discrete-math-cse-structure-lab"],
-    [/bfs|dfs|shortest path|tree|graph|spanning|coloring/, "/syllabus-lab/graph-theory-basics"],
-    [/linear programming|transportation|assignment|simplex/, "/syllabus-lab/operations-research-lp"],
-    [/pert|cpm|game theory|inventory|minimax/, "/syllabus-lab/network-pert-game-theory-lab"],
-    [/gradient descent|convexity|constraint|optimization/, "/syllabus-lab/optimization-gradient-constraints-lab"],
-    [/functional|euler-lagrange|extremal|variational/, "/syllabus-lab/variational-calculus-lab"],
-    [/modular|prime|rsa|cryptography|number theory/, "/syllabus-lab/number-theory-cryptography-lab"],
-  ];
-  return rules.find(([pattern]) => pattern.test(text))?.[1] ?? topic.linkedVisualization.route;
+  return `/syllabus-lab/${engineeringConceptLabId(topic.id, concept)}`;
 }
 
 function slugId(value: string) {

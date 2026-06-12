@@ -1,3 +1,5 @@
+import { engineeringSyllabusTopics } from "./engineeringMathBlueprint";
+
 export type AdvancedLabVisual =
   | "venn"
   | "mapping"
@@ -113,7 +115,7 @@ export type AdvancedSyllabusLab = {
   tasks: string[];
 };
 
-export const advancedSyllabusLabs: AdvancedSyllabusLab[] = [
+const authoredAdvancedSyllabusLabs: AdvancedSyllabusLab[] = [
   { id: "venn-diagram-builder", title: "Interactive Venn Diagram Builder", category: "Sets, Relations and Logic", subcategory: "Sets", summary: "Build two-set regions and inspect union, intersection, and difference.", formula: "n(A union B)=n(A)+n(B)-n(A intersection B)", visual: "venn", sliderA: "Set A size", sliderB: "Overlap", minA: 10, maxA: 100, stepA: 1, minB: 0, maxB: 70, stepB: 1, defaultA: 60, defaultB: 25, tasks: ["Increase overlap.", "Compare union and intersection.", "Find A minus B."] },
   { id: "function-mapping-arrows", title: "Function Mapping Arrows", category: "Sets, Relations and Logic", subcategory: "Functions", summary: "Map domain elements to codomain elements and test one-one and onto behavior.", formula: "f: A -> B", visual: "mapping", sliderA: "Domain size", sliderB: "Mapping shift", minA: 3, maxA: 7, stepA: 1, minB: 0, maxB: 6, stepB: 1, defaultA: 5, defaultB: 1, tasks: ["Check whether each input has one output.", "Look for repeated outputs.", "Test onto coverage."] },
   { id: "relation-matrix-visualizer", title: "Relation Matrix Visualizer", category: "Sets, Relations and Logic", subcategory: "Relations", summary: "Represent relations as matrix entries and test reflexive, symmetric, and transitive patterns.", formula: "M_ij=1 when (a_i,a_j) is in R", visual: "relation-matrix", sliderA: "Relation rule", sliderB: "Set size", minA: 1, maxA: 4, stepA: 1, minB: 3, maxB: 7, stepB: 1, defaultA: 1, defaultB: 5, tasks: ["Try equality relation.", "Try less-than relation.", "Inspect diagonal entries."] },
@@ -232,8 +234,118 @@ export const advancedSyllabusLabs: AdvancedSyllabusLab[] = [
   { id: "machine-learning-math-lab", title: "Mathematics for Machine Learning Lab", category: "B.Tech M4", subcategory: "Machine Learning Mathematics", summary: "Connect vector iteration, residual error, and convergence used in regression and learning algorithms.", formula: "activation(Wx+b), loss(theta), x^(k+1)=Bx^(k)+c", visual: "error-convergence", sliderA: "Method family", sliderB: "Initial loss", minA: 1, maxA: 3, stepA: 1, minB: 0.1, maxB: 1, stepB: 0.05, defaultA: 2, defaultB: 0.75, tasks: ["Switch convergence type.", "Change initial loss.", "Explain why faster error decay matters."] },
 ];
 
+export const advancedSyllabusLabs: AdvancedSyllabusLab[] = [
+  ...authoredAdvancedSyllabusLabs,
+  ...buildEngineeringConceptLabs(authoredAdvancedSyllabusLabs),
+];
+
 export function getAdvancedSyllabusLab(id?: string) {
   return advancedSyllabusLabs.find((lab) => lab.id === id);
 }
 
 export const advancedLabCategories = Array.from(new Set(advancedSyllabusLabs.map((lab) => lab.category)));
+
+export function engineeringConceptLabId(topicId: string, concept: string) {
+  return `engineering-concept-${topicId}-${slug(concept)}`;
+}
+
+function buildEngineeringConceptLabs(existingLabs: AdvancedSyllabusLab[]): AdvancedSyllabusLab[] {
+  const existingIds = new Set(existingLabs.map((lab) => lab.id));
+  return engineeringSyllabusTopics.flatMap((topic) =>
+    topic.concepts.map((concept, index): AdvancedSyllabusLab | null => {
+      const id = engineeringConceptLabId(topic.id, concept);
+      if (existingIds.has(id)) return null;
+      const visual = engineeringVisualForConcept(`${topic.title} ${topic.unit} ${concept}`);
+      const sliders = sliderPresetForVisual(visual);
+      return {
+        id,
+        title: `${concept} Interactive Lab`,
+        category: topic.classLevel,
+        subcategory: topic.unit,
+        summary: `${concept} from ${topic.title}: ${topic.description}`,
+        formula: topic.keyFormulas[index % Math.max(1, topic.keyFormulas.length)] ?? topic.keyFormulas[0] ?? concept,
+        visual,
+        tasks: [
+          `Move ${sliders.sliderA.toLowerCase()} and describe what changes.`,
+          `Move ${sliders.sliderB.toLowerCase()} and read the live measurement.`,
+          `Connect the diagram back to ${concept}.`,
+        ],
+        ...sliders,
+      };
+    }).filter((lab): lab is AdvancedSyllabusLab => Boolean(lab)),
+  );
+}
+
+export function engineeringVisualForConcept(value: string): AdvancedLabVisual {
+  const text = value.toLowerCase();
+  if (/cayley|matrix inverse|matrix powers/.test(text)) return "cayley-hamilton";
+  if (/rank|echelon|consistency|free variables|row reduction|gauss elimination/.test(text)) return "gaussian-elimination";
+  if (/eigenvalue|eigenvector|diagonalization|dominant eigenvalue|power method/.test(text)) return "eigenvector-direction";
+  if (/quadratic form|canonical|definiteness|principal axes/.test(text)) return "quadratic-form-surface";
+  if (/orthogonality|projection|least squares|gram-schmidt|qr/.test(text)) return "gram-schmidt";
+  if (/comparison|ratio test|root test|alternating|series|convergence/.test(text)) return "convergence-test";
+  if (/curve tracing|asymptote|critical|curvature|maxima|minima/.test(text)) return "asymptote-tracing";
+  if (/lagrange multiplier|constrained extrema/.test(text)) return "lagrange-multiplier";
+  if (/partial derivative|surface slice/.test(text)) return "partial";
+  if (/jacobian|coordinate transform|area scaling/.test(text)) return "jacobian";
+  if (/double integral|triple integral|multiple integral|volume/.test(text)) return "double-integral";
+  if (/gamma|beta/.test(text)) return "beta-gamma";
+  if (/slope field|separable|initial value|first-order/.test(text)) return "slope-field";
+  if (/auxiliary|repeated roots|complex roots|higher-order/.test(text)) return "higher-order-ode";
+  if (/cauchy-euler|power solution/.test(text)) return "cauchy-euler";
+  if (/bessel|legendre|frobenius|special function/.test(text)) return "series-partial-sum";
+  if (/sturm|boundary|eigenfunction/.test(text)) return "wave-equation";
+  if (/laplace transform|inverse transform|initial condition/.test(text)) return "laplace-transform";
+  if (/unit step|impulse/.test(text)) return "step-impulse";
+  if (/convolution/.test(text)) return "convolution";
+  if (/fourier|spectrum/.test(text)) return "fourier-transform";
+  if (/z-transform|difference equation|discrete system/.test(text)) return "z-transform";
+  if (/heat equation|finite difference|grid method|stability/.test(text)) return "heat-equation";
+  if (/wave equation/.test(text)) return "wave-equation";
+  if (/laplace equation|potential/.test(text)) return "laplace-potential";
+  if (/pde classification|characteristic|canonical form/.test(text)) return "direction-field";
+  if (/analytic|mobius|cauchy-riemann/.test(text)) return "mobius-map";
+  if (/contour|residue|singularit|cauchy formula/.test(text)) return "complex-line-integral";
+  if (/gradient|divergence|curl|stokes|green|gauss|line integral|surface integral|vector calculus/.test(text)) return "vector-calculus-field";
+  if (/bisection|newton-raphson|secant|root-finding/.test(text)) return "newton-raphson";
+  if (/fixed-point/.test(text)) return "fixed-point";
+  if (/jacobi|gauss-seidel|relaxation|numerical linear algebra/.test(text)) return "linear-system-solver";
+  if (/interpolation|divided differences|finite differences|curve fitting/.test(text)) return "divided-differences";
+  if (/rk4|euler method|ode solver/.test(text)) return "euler-rk4";
+  if (/quadrature|simpson|trapezoidal/.test(text)) return "gaussian-quadrature";
+  if (/random variable|distribution|expectation|variance|probability/.test(text)) return "beta-gamma";
+  if (/regression|sampling|hypothesis|inference|confidence/.test(text)) return "interpolation-builder";
+  if (/reliability|markov|queue|steady state/.test(text)) return "graph-theory";
+  if (/time series|stationarity|random walk|autocorrelation/.test(text)) return "series-partial-sum";
+  if (/transfer function|pole|zero|control/.test(text)) return "laplace-transform";
+  if (/linear programming|transportation|assignment|simplex|operations/.test(text)) return "operations-research";
+  if (/pert|cpm|game theory|inventory|minimax|network/.test(text)) return "graph-theory";
+  if (/gradient descent|convexity|constraint|optimization/.test(text)) return "operations-research";
+  if (/functional|euler-lagrange|extremal|variational/.test(text)) return "lagrange-multiplier";
+  if (/logic|relation|recurrence|boolean|counting/.test(text)) return "relation-matrix";
+  return "vector-2d-3d";
+}
+
+function sliderPresetForVisual(visual: AdvancedLabVisual) {
+  if (visual === "gaussian-elimination") return sliderPreset("Step", "Pivot scale", 0, 4, 1, 0.5, 2, 0.05, 1, 1);
+  if (visual === "eigenvector-direction") return sliderPreset("Angle", "Stretch", 0, 180, 1, 0.5, 3, 0.1, 35, 1.8);
+  if (visual === "convergence-test") return sliderPreset("Test family", "Parameter", 1, 4, 1, 0.4, 3, 0.1, 2, 1.4);
+  if (visual === "slope-field") return sliderPreset("x coefficient", "y coefficient", -2, 2, 0.05, -2, 2, 0.05, 0.8, -0.4);
+  if (visual === "heat-equation") return sliderPreset("Time", "Diffusion", 0, 5, 0.05, 0.2, 2, 0.05, 1.1, 0.8);
+  if (visual === "wave-equation") return sliderPreset("Time/mode", "Speed", 0, 6.28, 0.05, 0.5, 2.5, 0.05, 1.2, 1);
+  if (visual === "graph-theory") return sliderPreset("Node count", "Density", 4, 9, 1, 0.2, 0.9, 0.05, 6, 0.5);
+  if (visual === "operations-research") return sliderPreset("Objective c1", "Objective c2", 0.5, 5, 0.5, 0.5, 5, 0.5, 3, 2);
+  if (visual === "beta-gamma") return sliderPreset("Shape alpha", "Shape beta", 0.5, 6, 0.1, 0.5, 6, 0.1, 2.2, 3);
+  if (visual === "z-transform") return sliderPreset("Pole radius", "Input step", 0.1, 1.8, 0.05, -2, 2, 0.05, 0.72, 0.8);
+  if (visual === "vector-calculus-field") return sliderPreset("Field swirl", "Flux source", -2, 2, 0.05, -2, 2, 0.05, 0.9, 0.7);
+  if (visual === "laplace-transform") return sliderPreset("Decay/frequency", "s value", 0.2, 3, 0.05, 0.3, 5, 0.05, 1.2, 2);
+  return sliderPreset("Parameter A", "Parameter B", 0.5, 4, 0.05, -2, 4, 0.05, 1.2, 0.8);
+}
+
+function sliderPreset(sliderA: string, sliderB: string, minA: number, maxA: number, stepA: number, minB: number, maxB: number, stepB: number, defaultA: number, defaultB: number) {
+  return { sliderA, sliderB, minA, maxA, stepA, minB, maxB, stepB, defaultA, defaultB };
+}
+
+function slug(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}

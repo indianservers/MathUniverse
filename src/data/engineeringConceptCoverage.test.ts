@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
+import { advancedSyllabusLabs, engineeringConceptLabId } from "./advancedSyllabusLabs";
 import { buildEngineeringConceptCoverage, engineeringCoverageSummary } from "./engineeringConceptCoverage";
 import { engineeringMathDomains } from "./engineeringMathBlueprint";
 
@@ -34,5 +35,16 @@ describe("engineering concept coverage", () => {
     expect(source).toContain("buildEngineeringConceptCoverage");
     expect(source).toContain("conceptVisualCount");
     expect(source).toContain("conceptRouteFor");
+    expect(source).toContain("EngineeringConceptMiniLab");
+    expect(source).toContain("conceptVisualFormula");
+    expect(source).toContain("conceptMetricFor");
+  });
+
+  it("creates a unique interactive lab page for every engineering concept", () => {
+    const labIds = new Set(advancedSyllabusLabs.map((lab) => lab.id));
+    const concepts = engineeringMathDomains.flatMap((domain) => domain.topics.flatMap((topic) => topic.concepts.map((concept) => ({ topic, concept }))));
+
+    expect(concepts.length).toBeGreaterThan(40);
+    expect(concepts.every(({ topic, concept }) => labIds.has(engineeringConceptLabId(topic.id, concept)))).toBe(true);
   });
 });

@@ -1,0 +1,126 @@
+[2m8:41:16 am[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\Users\Sai Satish\Documents\GitHub\Math Universe\src\pages\EngineeringMath.tsx: Missing semicolon. (1195:68)
+
+[0m [90m 1193 |[31m }
+ [90m 1194 |[31m
+[31m[1m>[22m[31m[90m 1195 |[31m [36mfunction[31m conceptRouteFor(topic[33m:[31m [33mSyllabusTopic[31m[33m,[31m concept[33m:[31m string) {[32m`r`[31mn  [36mreturn[31m [32m`/syllabus-lab/${engineeringConceptLabId(topic.id, concept)}`[31m[33m;[31m[32m`r`[31mn}[32m`r`[31mn[32m`r`[31mnfunction slugId(value[33m:[31m string) {
+ [90m      |[31m                                                                     [31m[1m^[22m[31m
+ [90m 1196 |[31m   [36mreturn[31m value[33m.[31mtoLowerCase()[33m.[31mreplace([35m/[^a-z0-9]+/g[31m[33m,[31m [32m"-"[31m)[33m.[31mreplace([35m/^-|-$/g[31m[33m,[31m [32m""[31m)[33m;[31m
+ [90m 1197 |[31m }
+ [90m 1198 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/Users/Sai Satish/Documents/GitHub/Math Universe/src/pages/EngineeringMath.tsx[39m:1195:68
+[33m  1193|  }
+  1194|  
+  1195|  function conceptRouteFor(topic: SyllabusTopic, concept: string) {`r`n  return `/syllabus-lab/${engineeringConceptLabId(topic.id, concept)}`;`r`n}`r`n`r`nfunction slugId(value: string) {
+     |                                                                      ^
+  1196|    return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  1197|  }[39m
+      at constructor (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.semicolon (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:6912:10)
+      at TypeScriptParserMixin.parseExpressionStatement (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13302:10)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12916:19)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12784:17)
+      at TypeScriptParserMixin.parseStatementListItem (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12764:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13333:61)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13326:10)
+      at TypeScriptParserMixin.parseBlock (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13314:10)
+      at TypeScriptParserMixin.parseFunctionBody (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12117:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12103:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:9189:18)
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13462:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12420:14)
+      at TypeScriptParserMixin.parseFunction (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13461:10)
+      at TypeScriptParserMixin.parseFunctionStatement (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13142:17)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12808:21)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12784:17)
+      at TypeScriptParserMixin.parseModuleItem (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12761:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13333:36)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13326:10)
+      at TypeScriptParserMixin.parseProgram (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12639:10)
+      at TypeScriptParserMixin.parseTopLevel (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12629:25)
+      at TypeScriptParserMixin.parse (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:14505:25)
+      at TypeScriptParserMixin.parse (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:10143:18)
+      at parse (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:14539:38)
+      at parser (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:261:32)
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:273:13
+      at async.call.result.err.err (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:223:11)
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:189:28
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\core\lib\gensync-utils\async.js:67:7
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:113:33
+      at step (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:287:14)
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:273:13
+      at async.call.result.err.err (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:223:11)
+[2m8:41:26 am[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\Users\Sai Satish\Documents\GitHub\Math Universe\src\pages\EngineeringMath.tsx: Missing semicolon. (1195:68)
+
+[0m [90m 1193 |[31m }
+ [90m 1194 |[31m
+[31m[1m>[22m[31m[90m 1195 |[31m [36mfunction[31m conceptRouteFor(topic[33m:[31m [33mSyllabusTopic[31m[33m,[31m concept[33m:[31m string) {[32m`r`[31mn  [36mreturn[31m [32m`/syllabus-lab/${engineeringConceptLabId(topic.id, concept)}`[31m[33m;[31m[32m`r`[31mn}[32m`r`[31mn[32m`r`[31mnfunction slugId(value[33m:[31m string) {
+ [90m      |[31m                                                                     [31m[1m^[22m[31m
+ [90m 1196 |[31m   [36mreturn[31m value[33m.[31mtoLowerCase()[33m.[31mreplace([35m/[^a-z0-9]+/g[31m[33m,[31m [32m"-"[31m)[33m.[31mreplace([35m/^-|-$/g[31m[33m,[31m [32m""[31m)[33m;[31m
+ [90m 1197 |[31m }
+ [90m 1198 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/Users/Sai Satish/Documents/GitHub/Math Universe/src/pages/EngineeringMath.tsx[39m:1195:68
+[33m  1193|  }
+  1194|  
+  1195|  function conceptRouteFor(topic: SyllabusTopic, concept: string) {`r`n  return `/syllabus-lab/${engineeringConceptLabId(topic.id, concept)}`;`r`n}`r`n`r`nfunction slugId(value: string) {
+     |                                                                      ^
+  1196|    return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  1197|  }[39m
+      at constructor (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.semicolon (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:6912:10)
+      at TypeScriptParserMixin.parseExpressionStatement (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13302:10)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12916:19)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12784:17)
+      at TypeScriptParserMixin.parseStatementListItem (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12764:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13333:61)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13326:10)
+      at TypeScriptParserMixin.parseBlock (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13314:10)
+      at TypeScriptParserMixin.parseFunctionBody (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12117:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12103:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:9189:18)
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13462:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12420:14)
+      at TypeScriptParserMixin.parseFunction (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13461:10)
+      at TypeScriptParserMixin.parseFunctionStatement (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13142:17)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12808:21)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12784:17)
+      at TypeScriptParserMixin.parseModuleItem (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12761:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13333:36)
+      at TypeScriptParserMixin.parseBlockBody (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:13326:10)
+      at TypeScriptParserMixin.parseProgram (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12639:10)
+      at TypeScriptParserMixin.parseTopLevel (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:12629:25)
+      at TypeScriptParserMixin.parse (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:14505:25)
+      at TypeScriptParserMixin.parse (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:10143:18)
+      at parse (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\parser\lib\index.js:14539:38)
+      at parser (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:261:32)
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:273:13
+      at async.call.result.err.err (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:223:11)
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:189:28
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\@babel\core\lib\gensync-utils\async.js:67:7
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:113:33
+      at step (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:287:14)
+      at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:273:13
+      at async.call.result.err.err (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:223:11)
