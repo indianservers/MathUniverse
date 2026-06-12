@@ -15,6 +15,7 @@ describe("engineering assessment planner", () => {
   it("adds actionable drill routes and evidence", () => {
     const plans = buildEngineeringAssessmentPlans();
     expect(plans.every((plan) => plan.drillRoute.startsWith("/"))).toBe(true);
+    expect(plans.every((plan) => plan.drillRoute.startsWith("/syllabus-lab/"))).toBe(true);
     expect(plans.every((plan) => plan.nextAction.length > 0)).toBe(true);
     expect(plans.every((plan) => plan.evidence.length >= 5)).toBe(true);
   });
@@ -34,6 +35,7 @@ describe("engineering assessment planner", () => {
       expect(readiness.averageScore).toBeGreaterThan(0);
       expect(readiness.weakestDomain.length).toBeGreaterThan(0);
       expect(readiness.route.startsWith("/")).toBe(true);
+      expect(readiness.route.startsWith("/syllabus-lab/")).toBe(true);
     });
   });
 

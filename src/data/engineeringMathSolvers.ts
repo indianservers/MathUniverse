@@ -102,7 +102,7 @@ export const engineeringSolverPresets: EngineeringSolverPreset[] = [
     id: "eigenvalue-2x2-structure",
     domainId: "engineering-linear-algebra",
     title: "Eigenvalue structure preset",
-    route: "/linear-algebra",
+    route: "/syllabus-lab/eigenvector-direction-visualizer",
     summary: "Computes trace, determinant, and real eigenvalues for a vibration/stability matrix.",
     formula: "lambda^2 - tr(A)lambda + det(A)=0",
     metricLabel: "lambda",

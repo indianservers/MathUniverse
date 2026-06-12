@@ -48,7 +48,7 @@ export function buildEngineeringAssessmentPlans(): EngineeringAssessmentPlan[] {
       score,
       band: bandForScore(score),
       nextAction: nextActionFor(score, solverCount, promptCount),
-      drillRoute: examPrompt?.route ?? domain.nativeRoutes[0] ?? "/engineering-math",
+      drillRoute: examPrompt?.route ?? domain.nativeRoutes[0] ?? "/syllabus-lab/partial-derivative-slicer",
       checkpoint: examPrompt?.title ?? `${domain.title} checkpoint`,
       evidence: [
         `${domain.topics.length} mapped topics`,
@@ -80,7 +80,7 @@ export const engineeringExamSprints: EngineeringExamSprint[] = [
     minutes: 60,
     domainIds: ["engineering-calculus", "engineering-differential-equations", "engineering-linear-algebra"],
     objective: "Run one calculus setup, one ODE classification, and one rank/eigen checkpoint.",
-    route: "/engineering-math",
+    route: "/syllabus-lab/partial-derivative-slicer",
   },
   {
     id: "signals-pde-sprint",
@@ -96,7 +96,7 @@ export const engineeringExamSprints: EngineeringExamSprint[] = [
     minutes: 90,
     domainIds: ["numerical-methods", "probability-statistics-stochastic", "optimization-operations-research"],
     objective: "Build iteration tables, probability checks, and optimization decisions with reproducible evidence.",
-    route: "/workspace/data",
+    route: "/syllabus-lab/statistical-inference-regression-lab",
   },
   {
     id: "field-theory-sprint",

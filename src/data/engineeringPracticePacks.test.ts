@@ -23,6 +23,7 @@ describe("engineering practice packs", () => {
     const prompts = engineeringPracticePacks.flatMap((pack) => pack.prompts);
     const levels = new Set(prompts.map((prompt) => prompt.level));
     expect(prompts.every((prompt) => prompt.route.startsWith("/"))).toBe(true);
+    expect(prompts.every((prompt) => prompt.route.startsWith("/syllabus-lab/") || prompt.route.startsWith("/formulas"))).toBe(true);
     expect(levels.has("foundation")).toBe(true);
     expect(levels.has("exam")).toBe(true);
     expect(levels.has("challenge")).toBe(true);

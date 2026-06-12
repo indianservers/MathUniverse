@@ -17,6 +17,7 @@ describe("engineering case studies", () => {
   it("connects every case study to labs, formulas, evidence, and success criteria", () => {
     expect(engineeringCaseStudies.every((caseStudy) => caseStudy.labRoutes.length >= 2)).toBe(true);
     expect(engineeringCaseStudies.every((caseStudy) => caseStudy.labRoutes.every((route) => route.startsWith("/")))).toBe(true);
+    expect(engineeringCaseStudies.flatMap((caseStudy) => caseStudy.labRoutes).every((route) => route.startsWith("/syllabus-lab/"))).toBe(true);
     expect(engineeringCaseStudies.every((caseStudy) => caseStudy.formulaQueries.length >= 2)).toBe(true);
     expect(engineeringCaseStudies.every((caseStudy) => caseStudy.portfolioEvidence.length >= 3)).toBe(true);
     expect(engineeringCaseStudies.every((caseStudy) => caseStudy.successCriteria.length >= 3)).toBe(true);

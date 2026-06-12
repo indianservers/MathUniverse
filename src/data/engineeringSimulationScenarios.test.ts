@@ -14,6 +14,7 @@ describe("engineering simulation scenarios", () => {
     expect(summary.scenarioCount).toBeGreaterThanOrEqual(engineeringMathDomains.length);
     expect(engineeringMathDomains.every((domain) => simulationsForDomain(domain.id).length >= 1)).toBe(true);
     expect(engineeringSimulationScenarios.every((scenario) => scenario.route.startsWith("/"))).toBe(true);
+    expect(engineeringSimulationScenarios.every((scenario) => scenario.route.startsWith("/syllabus-lab/"))).toBe(true);
     expect(engineeringSimulationScenarios.every((scenario) => scenario.exportArtifacts.length >= 3)).toBe(true);
   });
 

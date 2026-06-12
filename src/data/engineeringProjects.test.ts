@@ -16,6 +16,7 @@ describe("engineering portfolio projects", () => {
 
   it("keeps projects route-backed with meaningful assessment artifacts", () => {
     expect(engineeringProjects.every((project) => project.workspaceRoute.startsWith("/"))).toBe(true);
+    expect(engineeringProjects.every((project) => project.workspaceRoute.startsWith("/syllabus-lab/"))).toBe(true);
     expect(engineeringProjects.every((project) => project.deliverables.length >= 3)).toBe(true);
     expect(engineeringProjects.every((project) => project.rubric.length >= 3)).toBe(true);
     expect(engineeringProjects.every((project) => project.evidence.length >= 3)).toBe(true);

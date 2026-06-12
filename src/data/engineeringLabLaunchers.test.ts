@@ -12,23 +12,23 @@ describe("engineering lab launchers", () => {
     expect(engineeringLabLaunchers.every((launcher) => launcher.formulas.length > 0)).toBe(true);
   });
 
-  it("covers concept labs, workspaces, formula maps, and practice-ready routes", () => {
+  it("covers concept labs, formula maps, and practice-ready routes", () => {
     const kinds = new Set(engineeringLabLaunchers.map((launcher) => launcher.kind));
     const summary = launcherCoverageSummary();
 
-    expect(Array.from(kinds)).toEqual(expect.arrayContaining(["concept-lab", "workspace", "formula-map", "practice"]));
+    expect(Array.from(kinds)).toEqual(expect.arrayContaining(["concept-lab", "formula-map", "practice"]));
     expect(summary.coveredDomainCount).toBe(summary.domainCount);
-    expect(summary.workspaceLauncherCount).toBeGreaterThanOrEqual(engineeringMathDomains.length);
+    expect(summary.conceptLabLauncherCount).toBeGreaterThanOrEqual(engineeringMathDomains.length * 3);
     expect(summary.formulaMapLauncherCount).toBeGreaterThan(0);
   });
 
-  it("keeps protected 2D and 3D workspaces as launch targets without rewriting them", () => {
-    const workspaceRoutes = engineeringLabLaunchers.filter((launcher) => launcher.kind === "workspace").map((launcher) => launcher.route);
+  it("opens concept-specific labs instead of broad module placeholders", () => {
+    const allowedUtilityPrefixes = ["/formulas", "/quiz"];
+    const broadRoutes = engineeringLabLaunchers
+      .map((launcher) => launcher.route)
+      .filter((route) => !route.startsWith("/syllabus-lab/") && !allowedUtilityPrefixes.some((prefix) => route.startsWith(prefix)));
 
-    expect(workspaceRoutes.some((route) => route.startsWith("/workspace/3d"))).toBe(true);
-    expect(workspaceRoutes).toContain("/workspace/data");
-    expect(workspaceRoutes).toContain("/linear-algebra");
-    expect(workspaceRoutes.every((route) => route.startsWith("/"))).toBe(true);
+    expect(broadRoutes).toEqual([]);
   });
 
   it("renders launchers on the Engineering Mathematics hub", async () => {

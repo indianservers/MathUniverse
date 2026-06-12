@@ -22,6 +22,7 @@ describe("engineering worked examples", () => {
 
   it("keeps examples route-backed into native app surfaces", () => {
     expect(engineeringWorkedExamples.every((example) => example.route.startsWith("/"))).toBe(true);
+    expect(engineeringWorkedExamples.every((example) => example.route.startsWith("/syllabus-lab/"))).toBe(true);
     expect(workedExampleSummary().routeCount).toBeGreaterThan(8);
     expect(workedExampleSummary().stepCount).toBeGreaterThanOrEqual(engineeringWorkedExamples.length * 3);
   });

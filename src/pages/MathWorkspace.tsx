@@ -85,7 +85,7 @@ type GeoConstraint =
   | { id: string; type: "midpoint"; a: string; b: string; point: string }
   | { id: string; type: "fixed-length"; anchor: string; point: string; length: number }
   | { id: string; type: "on-circle"; point: string; circle: string }
-  | { id: string; type: "intersection"; first: string; second: string; point: string };
+  | { id: string; type: "intersection"; first: string; second: string; point: string; firstType?: "line" | "circle"; secondType?: "line" | "circle"; index?: number };
 type Construction = { points: GeoPoint[]; lines: GeoLine[]; circles: GeoCircle[]; polygons: GeoPolygon[]; arcs: GeoArc[]; loci: GeoLocus[]; constraints: GeoConstraint[] };
 type GeometryObjectType = "point" | "line" | "circle" | "polygon" | "arc" | "locus";
 type SelectedGeometryObject = { type: GeometryObjectType; id: string };
@@ -289,7 +289,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   }, [formulaSearch]);
 
   const workspaceObjects = useMemo(() => buildAlgebraObjects(plots, construction, transforms3d, lockedGeometryIds, added3dObjects), [plots, construction, transforms3d, lockedGeometryIds, added3dObjects]);
-  const liveWorkspaceObjects = useMemo(() => createLiveWorkspaceObjects(workspaceObjects, plots, construction, transforms3d, added3dObjects, objectPropertyOverrides), [added3dObjects, construction, objectPropertyOverrides, plots, transforms3d, workspaceObjects]);
+  const liveWorkspaceObjects = useMemo(() => [
+    ...createLiveWorkspaceObjects(workspaceObjects, plots, construction, transforms3d, added3dObjects, objectPropertyOverrides),
+    ...createSupplementalWorkspaceObjects(results, plots, spreadsheet, { start: tableStart, end: tableEnd, step: tableStep }),
+  ], [added3dObjects, construction, objectPropertyOverrides, plots, results, spreadsheet, tableEnd, tableStart, tableStep, transforms3d, workspaceObjects]);
   const evaluatedLiveWorkspaceObjects = useMemo(() => applyObjectProperties(liveWorkspaceObjects, { variables: workspacePropertyVariables(surfaceScale, height3d, crossSection, sceneAnimationSpeed) }), [crossSection, height3d, liveWorkspaceObjects, sceneAnimationSpeed, surfaceScale]);
   const unifiedWorkspaceObjects = useWorkspaceStore((state) => state.objects);
   const unifiedSelectedObjectId = useWorkspaceStore((state) => state.selectedObjectId);
@@ -686,6 +689,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       "sector",
       "compass",
       "mirror",
+      "reflect",
       "rotate",
       "dilate",
       "translate",
@@ -729,6 +733,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       "sector",
       "compass",
       "mirror",
+      "reflect",
       "rotate",
       "dilate",
       "translate",
@@ -948,30 +953,46 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         setSelectedPointIds([]);
       }
     }
-    if (activeTool === "angle-bisector" || activeTool === "arc" || activeTool === "sector" || activeTool === "compass" || activeTool === "mirror" || activeTool === "translate") {
-      const needed = activeTool === "arc" || activeTool === "sector" || activeTool === "angle-bisector" || activeTool === "compass" || activeTool === "mirror" || activeTool === "translate" ? 3 : 2;
+    if (activeTool === "angle-bisector" || activeTool === "arc" || activeTool === "sector" || activeTool === "compass" || activeTool === "mirror" || activeTool === "reflect" || activeTool === "translate") {
+      const needed = 3;
       const next = [...selectedPointIds, pointId].slice(-needed);
       setSelectedPointIds(next);
       if (next.length === needed && new Set(next).size === needed) {
-        recordWorkspaceStep(`Create ${activeTool}`, next.map((id) => labelForPoint(constructionContext, id)).join(", "));
+        const toolLabel = activeTool === "reflect" ? "mirror" : activeTool;
+        recordWorkspaceStep(`Create ${toolLabel}`, next.map((id) => labelForPoint(constructionContext, id)).join(", "));
         setConstruction((current) => {
           if (activeTool === "angle-bisector") return addAngleBisector(current, next[0], next[1], next[2]);
           if (activeTool === "arc" || activeTool === "sector") return addArcOrSector(current, next[0], next[1], next[2], activeTool === "sector");
           if (activeTool === "compass") return addCompassCircle(current, next[0], next[1], next[2]);
-          if (activeTool === "mirror") return mirrorPointAcrossLine(current, next[0], next[1], next[2]);
-          return translatePointByVector(current, next[0], next[1], next[2]);
+          if (activeTool === "mirror" || activeTool === "reflect") return mirrorPointAcrossLine(current, next[0], next[1], next[2]);
+          return translatePointByVector(current, next[1], next[2], next[0]);
         });
         setSelectedPointIds([]);
+        setProjectStatus(`${geometryToolLabel(toolLabel)} created from ${needed} points.`);
+      } else {
+        setProjectStatus(`${geometryToolLabel(activeTool)}: pick ${needed - next.length} more point${needed - next.length === 1 ? "" : "s"}.`);
       }
     }
-    if (activeTool === "tangent" || activeTool === "polar" || activeTool === "locus" || activeTool === "rotate" || activeTool === "dilate") {
+    if (activeTool === "rotate" || activeTool === "dilate") {
+      const needed = 2;
+      const next = [...selectedPointIds, pointId].slice(-needed);
+      setSelectedPointIds(next);
+      if (next.length === needed && next[0] !== next[1]) {
+        recordWorkspaceStep(`Create ${activeTool}`, `${labelForPoint(constructionContext, next[0])} about ${labelForPoint(constructionContext, next[1])}`);
+        setConstruction((current) => activeTool === "rotate" ? rotatePoint(current, next[0], next[1], 45) : dilatePoint(current, next[0], next[1], 1.5));
+        setSelectedPointIds([]);
+        setProjectStatus(`${geometryToolLabel(activeTool)} created. First point transformed around the second point.`);
+      } else {
+        setProjectStatus(`${geometryToolLabel(activeTool)}: pick the center point.`);
+      }
+    }
+    if (activeTool === "tangent" || activeTool === "polar" || activeTool === "locus") {
       recordWorkspaceStep(`Create ${activeTool}`, labelForPoint(constructionContext, pointId));
       setConstruction((current) => {
         if (activeTool === "tangent") return addTangentAtPoint(current, pointId);
         if (activeTool === "polar") return addPolarLine(current, pointId);
         if (activeTool === "locus") return addLocusForPoint(current, pointId);
-        if (activeTool === "rotate") return rotatePoint(current, pointId, current.points[0]?.id ?? pointId, 45);
-        return dilatePoint(current, pointId, current.points[0]?.id ?? pointId, 1.5);
+        return current;
       });
       setSelectedPointIds([]);
     }
@@ -1764,6 +1785,19 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     return () => document.removeEventListener("keydown", onDocumentKeyDown);
   }, [runWorkspaceShortcut]);
 
+  const transformSelectedGeometryPoints = (mode: "translate" | "rotate" | "dilate") => {
+    const ids = selectedPointIds.length ? selectedPointIds : selectedGeometry ? pointIdsForObject(construction, selectedGeometry) : [];
+    const uniqueIds = Array.from(new Set(ids));
+    if (!uniqueIds.length) {
+      setProjectStatus("Select points or a geometry object before using transform actions.");
+      return;
+    }
+    recordWorkspaceStep(`Transform selected ${mode}`, `${uniqueIds.length} point${uniqueIds.length === 1 ? "" : "s"} updated.`);
+    setConstruction((current) => transformSelectedPoints(current, uniqueIds, mode));
+    setSelectedPointIds(uniqueIds);
+    setProjectStatus(`${geometryToolLabel(mode)} applied to ${uniqueIds.length} point${uniqueIds.length === 1 ? "" : "s"}.`);
+  };
+
   return (
     <div ref={workspaceRef} className="space-y-3 pt-20 xl:pt-14">
       <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} />
@@ -2147,9 +2181,9 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                 activeTool={tool}
                 onTool={selectGeometryTool}
                 onSelectAll={() => setSelectedPointIds(construction.points.map((point) => point.id))}
-                onMoveSelected={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "translate"))}
-                onRotateSelected={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "rotate"))}
-                onDilateSelected={() => setConstruction((current) => transformSelectedPoints(current, selectedPointIds, "dilate"))}
+                onMoveSelected={() => transformSelectedGeometryPoints("translate")}
+                onRotateSelected={() => transformSelectedGeometryPoints("rotate")}
+                onDilateSelected={() => transformSelectedGeometryPoints("dilate")}
                 onUndo={undoConstruction}
                 onRedo={redoWorkspace}
                 onDeleteSelected={() => deleteGeometryObject()}
@@ -2211,6 +2245,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "arc", arc.id)} />)}
               {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "line", line.id)} />)}
               {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "circle", circle.id)} />)}
+              <GeometryMeasurementOverlays construction={construction} />
               {polygonDraft.length > 1 && <PolygonDraftPreview draft={polygonDraft} points={construction.points} />}
               {construction.points.filter((point) => point.style?.visible !== false).map((point) => (
                 <g key={point.id}>
@@ -2255,6 +2290,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               onChange={updateSelectedImage}
               onDelete={deleteSelectedImage}
             />
+            <ConstructionProtocolPanel protocol={protocol} onReplay={restoreProtocolSnapshot} />
             <UnifiedWorkspacePanel
               objects={unifiedWorkspaceObjects}
               selectedObject={unifiedSelectedObject}
@@ -4150,6 +4186,103 @@ function createLiveWorkspaceObjects(rows: AlgebraObjectRow[], plots: PlotItem[],
   }));
 }
 
+function createSupplementalWorkspaceObjects(results: ResultCard[], plots: PlotItem[], spreadsheet: SpreadsheetCellGrid, tableRange: { start: number; end: number; step: number }): MathObject[] {
+  const visibleFunctionPlots = plots
+    .filter((plot) => plot.visible !== false && (plot.kind ?? inferPlotKind(plot.expression)) === "function")
+    .slice(0, 4);
+  const tableObjects = visibleFunctionPlots.map((plot) => {
+    const table = createDynamicTable([plot.expression], tableRange.start, tableRange.end, tableRange.step, safeEvaluate);
+    const linkedPlotId = liveWorkspaceObjectId({ kind: "function", id: plot.id });
+    return createMathObject({
+      id: `workspace-table:${plot.id}`,
+      kind: "table",
+      dimension: "abstract",
+      role: "algebra",
+      label: `${plot.name ?? plot.expression} table`,
+      value: `${table.rows.length} rows from x=${table.start} to ${table.end}`,
+      summary: "Dynamic value table linked to a graph object in the shared workspace model.",
+      visible: plot.visible !== false,
+      definition: { source: `Table[${plot.expression}, ${table.start}, ${table.end}, ${table.step}]`, command: "Table", expression: plot.expression, category: "spreadsheet", parentIds: [linkedPlotId] },
+      dependencies: [{ id: linkedPlotId, label: plot.name ?? plot.expression, role: "source" }],
+      linkedViews: ["Graph", "Table", "Spreadsheet", "Inspector"],
+      metadata: {
+        source: "live-workspace",
+        supplemental: "dynamic-table",
+        rows: table.rows.length,
+        csvPreview: table.exportCsv.split("\n").slice(0, 4).join("\n"),
+      },
+      interactivity: { selectable: true, editable: false, draggable: false, resizable: false, rotatable: false },
+    });
+  });
+
+  const spreadsheetEvaluation = evaluateSpreadsheetGrid(spreadsheet);
+  const spreadsheetObject = createMathObject({
+    id: "workspace-spreadsheet:grid",
+    kind: "dataset",
+    dimension: "abstract",
+    role: "algebra",
+    label: "Spreadsheet grid",
+    value: `${spreadsheet.length} rows x ${Math.max(...spreadsheet.map((row) => row.length), 0)} columns`,
+    summary: spreadsheetEvaluation.errors.length
+      ? `${spreadsheetEvaluation.errors.length} spreadsheet formula issue${spreadsheetEvaluation.errors.length === 1 ? "" : "s"} detected.`
+      : "Spreadsheet cells are evaluated into the same shared object graph as graph and CAS outputs.",
+    visible: true,
+    definition: { source: "Spreadsheet grid", command: "Spreadsheet", category: "spreadsheet", parentIds: [] },
+    linkedViews: ["Spreadsheet", "Table", "Graph", "Inspector"],
+    metadata: {
+      source: "live-workspace",
+      supplemental: "spreadsheet",
+      rows: spreadsheet.length,
+      columns: Math.max(...spreadsheet.map((row) => row.length), 0),
+      errors: spreadsheetEvaluation.errors.length,
+      csvPreview: rangeToCsv(spreadsheetEvaluation.values, `A1:${columnNameForWorkspace(Math.max(...spreadsheet.map((row) => row.length), 1) - 1)}${spreadsheet.length}`).split("\n").slice(0, 6).join("\n"),
+    },
+    interactivity: { selectable: true, editable: true, draggable: false, resizable: false, rotatable: false },
+  });
+
+  const resultObjects = results.slice(0, 8).map((result, index) => createMathObject({
+    id: `workspace-cas-result:${result.id}`,
+    kind: "result",
+    dimension: "abstract",
+    role: "result",
+    label: result.interpretation || `CAS result ${index + 1}`,
+    value: result.result,
+    summary: result.detail,
+    visible: true,
+    definition: { source: result.input, command: result.interpretation, expression: result.graphExpression ?? result.input, category: "cas", parentIds: result.graphExpression ? matchingPlotDependencies(result.graphExpression, plots) : [] },
+    dependencies: result.graphExpression ? matchingPlotDependencies(result.graphExpression, plots).map((id) => ({ id, label: id, role: "source" })) : [],
+    linkedViews: ["CAS", "Algebra", "Graph", "Table", "Inspector"],
+    metadata: {
+      source: "live-workspace",
+      supplemental: "cas-result",
+      resultIndex: index + 1,
+      stepCount: result.steps?.length ?? 0,
+      tableRows: result.table?.length ?? 0,
+    },
+    interactivity: { selectable: true, editable: false, draggable: false, resizable: false, rotatable: false },
+  }));
+
+  return [...tableObjects, spreadsheetObject, ...resultObjects];
+}
+
+function matchingPlotDependencies(expression: string, plots: PlotItem[]) {
+  const normalizedExpression = expression.replace(/\s+/g, "");
+  return plots
+    .filter((plot) => plot.expression.replace(/\s+/g, "") === normalizedExpression)
+    .map((plot) => liveWorkspaceObjectId({ kind: "function", id: plot.id }));
+}
+
+function columnNameForWorkspace(index: number) {
+  let name = "";
+  let value = Math.max(0, index) + 1;
+  while (value > 0) {
+    const remainder = (value - 1) % 26;
+    name = String.fromCharCode(65 + remainder) + name;
+    value = Math.floor((value - 1) / 26);
+  }
+  return name || "A";
+}
+
 function geometryStyleForRef(ref: AlgebraObjectRef, construction: Construction): GeoStyle | undefined {
   if (ref.kind === "point") return pointById(construction.points, ref.id)?.style;
   if (ref.kind === "line") return construction.lines.find((item) => item.id === ref.id)?.style;
@@ -4184,7 +4317,7 @@ function UnifiedWorkspacePanel({
     <div className="space-y-3 rounded-2xl border border-cyan-200/80 bg-white/85 p-3 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/50">
       <div>
         <p className="text-[11px] font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">Unified Dynamic Workspace</p>
-        <h2 className="text-sm font-black text-slate-950 dark:text-white">Graph, 2D, and 3D object registry</h2>
+        <h2 className="text-sm font-black text-slate-950 dark:text-white">Graph, geometry, CAS, tables, spreadsheet, and 3D registry</h2>
       </div>
       <ObjectList objects={objects} selectedObjectId={selectedObjectId} selectedObjectIds={selectedObjectIds} onObjectAction={onObjectAction} />
       <InspectorPanel object={selectedObject} onObjectChange={onObjectChange} />
@@ -7083,6 +7216,55 @@ function GeometryLocus({ locus }: { locus: GeoLocus }) {
   );
 }
 
+function GeometryMeasurementOverlays({ construction }: { construction: Construction }) {
+  const labels = [
+    ...construction.lines.map((line) => {
+      const a = pointById(construction.points, line.a);
+      const b = pointById(construction.points, line.b);
+      if (!a || !b || line.style?.visible === false) return null;
+      return {
+        id: `line-${line.id}`,
+        x: (a.x + b.x) / 2 + 8,
+        y: (a.y + b.y) / 2 + 16,
+        text: `${roundTo(distance(a, b) / 40, 2)} u`,
+      };
+    }),
+    ...construction.circles.map((circle) => {
+      const center = pointById(construction.points, circle.center);
+      const edge = pointById(construction.points, circle.edge);
+      if (!center || !edge || circle.style?.visible === false) return null;
+      const radius = distance(center, edge);
+      return {
+        id: `circle-${circle.id}`,
+        x: center.x + radius / Math.SQRT2,
+        y: center.y - radius / Math.SQRT2,
+        text: `r=${roundTo(radius / 40, 2)}`,
+      };
+    }),
+    ...construction.polygons.map((polygon) => {
+      const points = polygon.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[];
+      if (points.length < 3 || polygon.style?.visible === false) return null;
+      const center = centroid(points);
+      return {
+        id: `polygon-${polygon.id}`,
+        x: center.x,
+        y: center.y,
+        text: `A=${roundTo(polygonArea(points) / 1600, 2)}`,
+      };
+    }),
+  ].filter((label): label is { id: string; x: number; y: number; text: string } => Boolean(label));
+  return (
+    <g pointerEvents="none">
+      {labels.map((label) => (
+        <g key={label.id}>
+          <rect x={label.x - 6} y={label.y - 15} width={Math.max(42, label.text.length * 7 + 12)} height="20" rx="6" fill="rgba(255,255,255,.86)" stroke="rgba(6,182,212,.36)" />
+          <text x={label.x} y={label.y} fill="#0f172a" fontSize="11" fontWeight="900">{label.text}</text>
+        </g>
+      ))}
+    </g>
+  );
+}
+
 function ConstraintOverlays({ construction }: { construction: Construction }) {
   return (
     <g>
@@ -7131,6 +7313,36 @@ function ConstraintPanel({ construction }: { construction: Construction }) {
   );
 }
 
+function ConstructionProtocolPanel({ protocol, onReplay }: { protocol: ConstructionStep[]; onReplay: (step: ConstructionStep) => void }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="font-bold">Construction Protocol</h3>
+        <span className="mini-chip">{protocol.length} steps</span>
+      </div>
+      {protocol.length ? (
+        <ol className="mt-3 max-h-72 space-y-2 overflow-auto pr-1 text-sm text-slate-600 dark:text-slate-300">
+          {protocol.slice(0, 24).map((step, index) => (
+            <li key={step.id} className="rounded-xl bg-slate-100 p-2 dark:bg-white/10">
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <p className="font-bold text-slate-900 dark:text-white">{protocol.length - index}. {step.label}</p>
+                  <p className="mt-1 truncate text-xs">{step.detail}</p>
+                </div>
+                <button type="button" className="mini-chip shrink-0" onClick={() => onReplay(step)}>
+                  Replay
+                </button>
+              </div>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Create or edit objects to build a replayable construction history.</p>
+      )}
+    </div>
+  );
+}
+
 function ConstructionHelp({ tool }: { tool: GeometryTool }) {
   const instructions: Record<GeometryTool, string> = {
     select: "Drag existing points to update every connected line, circle, and polygon.",
@@ -7172,11 +7384,11 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     arc: "Click center, start, and end points to create an arc.",
     sector: "Click center, start, and end points to create a sector.",
     compass: "Click two points for radius, then a center point for a compass circle.",
-    mirror: "Click point to mirror, then two points defining the mirror line.",
-    reflect: "Reflect uses the mirror construction: point to reflect, then two line points.",
-    rotate: "Click a point to rotate it 45 degrees around the first point.",
-    dilate: "Click a point to dilate it 1.5x from the first point.",
-    translate: "Click vector start, vector end, then point to translate.",
+    mirror: "Click the point to mirror, then two points defining the mirror line.",
+    reflect: "Click the point to reflect, then two points defining the mirror line.",
+    rotate: "Click the point to rotate, then the center point. A 45 degree rotated point is created.",
+    dilate: "Click the point to dilate, then the center point. A 1.5x dilated point is created.",
+    translate: "Click the point to translate, then the vector start and vector end points.",
     trace: "Turns trace on for the selected object and records point motion as a locus.",
     "stop-trace": "Stops recording while keeping the visible trace path.",
     "clear-trace": "Removes generated trace paths and clears trace flags.",
@@ -7733,16 +7945,29 @@ function addIntersectionConstraint(construction: Construction) {
 function addIntersectionConstraintForObjects(construction: Construction, first: SelectedGeometryObject, second: SelectedGeometryObject) {
   const hits = intersectionsForSelectedObjects(construction, first, second).filter((hit) => !construction.points.some((point) => Math.hypot(point.x - hit.x, point.y - hit.y) < 4));
   if (!hits.length) return construction;
-  if (first.type === "line" && second.type === "line" && hits[0]) {
-    const point: GeoPoint = { id: crypto.randomUUID(), x: hits[0].x, y: hits[0].y, label: nextPointLabel(construction.points), style: { color: "#f97316" } };
-    return solveConstruction({
-      ...construction,
-      points: [...construction.points, point],
-      constraints: [...construction.constraints, { id: crypto.randomUUID(), type: "intersection", first: first.id, second: second.id, point: point.id }],
-    });
-  }
+  if (!isIntersectionSource(first) || !isIntersectionSource(second)) return construction;
   const points = hits.slice(0, 4).map((hit, index) => ({ id: crypto.randomUUID(), x: hit.x, y: hit.y, label: nextPointLabel(construction.points, index), style: { color: "#f97316" } }));
-  return solveConstruction({ ...construction, points: [...construction.points, ...points] });
+  return solveConstruction({
+    ...construction,
+    points: [...construction.points, ...points],
+    constraints: [
+      ...construction.constraints,
+      ...points.map((point, index) => ({
+        id: crypto.randomUUID(),
+        type: "intersection" as const,
+        first: first.id,
+        second: second.id,
+        point: point.id,
+        firstType: first.type,
+        secondType: second.type,
+        index,
+      })),
+    ],
+  });
+}
+
+function isIntersectionSource(object: SelectedGeometryObject): object is SelectedGeometryObject & { type: "line" | "circle" } {
+  return object.type === "line" || object.type === "circle";
 }
 
 function intersectionsForSelectedObjects(construction: Construction, first: SelectedGeometryObject, second: SelectedGeometryObject) {
@@ -7806,9 +8031,10 @@ function solveConstruction(construction: Construction, draggedPointId?: string):
         }
       }
       if (constraint.type === "intersection") {
-        const first = construction.lines.find((item) => item.id === constraint.first);
-        const second = construction.lines.find((item) => item.id === constraint.second);
-        const intersection = first && second ? lineIntersection(first, second, points) : null;
+        const firstType = constraint.firstType ?? "line";
+        const secondType = constraint.secondType ?? "line";
+        const hits = intersectionsForSelectedObjects({ ...construction, points }, { type: firstType, id: constraint.first }, { type: secondType, id: constraint.second });
+        const intersection = hits[constraint.index ?? 0] ?? null;
         if (intersection) points = updatePoint(points, constraint.point, intersection);
       }
     }

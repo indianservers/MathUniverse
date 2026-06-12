@@ -69,6 +69,7 @@ describe("engineering math solvers", () => {
     const coveredDomains = new Set(engineeringSolverPresets.map((preset) => preset.domainId));
 
     expect(engineeringSolverPresets.length).toBeGreaterThanOrEqual(11);
+    expect(engineeringSolverPresets.every((preset) => preset.route.startsWith("/syllabus-lab/"))).toBe(true);
     expect(Array.from(coveredDomains)).toEqual(expect.arrayContaining([
       "engineering-calculus",
       "engineering-linear-algebra",

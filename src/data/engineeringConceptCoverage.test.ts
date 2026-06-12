@@ -32,5 +32,7 @@ describe("engineering concept coverage", () => {
     expect(source).toContain("Concept Coverage Audit");
     expect(source).toContain("engineeringCoverageSummary");
     expect(source).toContain("buildEngineeringConceptCoverage");
+    expect(source).toContain("conceptVisualCount");
+    expect(source).toContain("conceptRouteFor");
   });
 });

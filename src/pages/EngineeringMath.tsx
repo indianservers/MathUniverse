@@ -20,6 +20,7 @@ import { engineeringSolverPresets } from "../data/engineeringMathSolvers";
 import { practiceCoverageSummary, practicePackForDomain } from "../data/engineeringPracticePacks";
 import { projectsForDomain, projectSummary } from "../data/engineeringProjects";
 import { adjustedSimulationSamples, simulationCoverageSummary, simulationsForDomain, type EngineeringSimulationScenario } from "../data/engineeringSimulationScenarios";
+import type { SyllabusTopic } from "../data/syllabus";
 import { workedExamplesForDomain, workedExampleSummary } from "../data/engineeringWorkedExamples";
 
 const semesterFilters = ["All", "M1", "M2", "M3", "M4"] as const;
@@ -576,17 +577,31 @@ export default function EngineeringMath() {
             <section className="mt-4 rounded-lg bg-slate-50 p-3 dark:bg-white/5">
               <div className="flex items-center justify-between gap-2">
                 <h3 className="text-sm font-black text-slate-950 dark:text-white">Mapped Engineering Topics</h3>
-                <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{selected.topics.length} topics</span>
+                <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{selected.topics.length} topics | {conceptVisualCount(selected.topics)} concept visuals</span>
               </div>
               <div className="mt-3 grid gap-2 md:grid-cols-2">
                 {selected.topics.map((topic) => (
-                  <Link key={topic.id} to={topic.linkedVisualization.route} className="group rounded-lg border border-slate-200 bg-white p-3 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950/70 dark:hover:bg-cyan-300/10">
-                    <span className="flex items-center justify-between gap-2 text-sm font-black text-slate-950 dark:text-white">
-                      {topic.title}
-                      <ArrowRight className="h-4 w-4 text-cyan-500 transition group-hover:translate-x-0.5" />
-                    </span>
-                    <span className="mt-1 block text-xs font-semibold text-slate-500 dark:text-slate-400">{topic.linkedVisualization.route}</span>
-                  </Link>
+                  <article key={topic.id} className="rounded-lg border border-slate-200 bg-white p-3 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950/70 dark:hover:bg-cyan-300/10">
+                    <Link to={topic.linkedVisualization.route} className="group block">
+                      <EngineeringTopicPreview domainId={selected.id} title={topic.title} a={visualA} b={visualB} t={visualT} />
+                      <span className="flex items-center justify-between gap-2 text-sm font-black text-slate-950 dark:text-white">
+                        {topic.title}
+                        <ArrowRight className="h-4 w-4 text-cyan-500 transition group-hover:translate-x-0.5" />
+                      </span>
+                      <span className="mt-1 block text-xs font-semibold text-slate-500 dark:text-slate-400">{topic.linkedVisualization.route}</span>
+                    </Link>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {topic.concepts.map((concept) => (
+                        <Link
+                          key={`${topic.id}-${concept}`}
+                          to={conceptRouteFor(topic, concept)}
+                          className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-black text-slate-600 transition hover:border-cyan-300 hover:bg-cyan-100 hover:text-cyan-900 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-cyan-300/15"
+                        >
+                          {concept}
+                        </Link>
+                      ))}
+                    </div>
+                  </article>
                 ))}
               </div>
             </section>
@@ -844,6 +859,67 @@ function EngineeringFormulaVisual({ formula, a, b, t }: { formula: EngineeringFo
   return <ComplexControlVisual id={id} a={a} b={b} t={t} />;
 }
 
+function EngineeringTopicPreview({ domainId, title, a, b, t }: { domainId: string; title: string; a: number; b: number; t: number }) {
+  const visualFormula: EngineeringFormulaCard = {
+    id: visualIdForTopic(title),
+    domainId: visualDomainForTopic(domainId, title),
+    title,
+    formula: title,
+    symbols: [],
+    useCase: title,
+    route: "",
+    prerequisites: [],
+  };
+  return <EngineeringFormulaVisual formula={visualFormula} a={a} b={b} t={t} />;
+}
+
+function visualDomainForTopic(domainId: string, title: string) {
+  const text = title.toLowerCase();
+  if (/pde|partial differential|finite difference|heat|wave|laplace/.test(text)) return "partial-differential-equations";
+  if (/laplace|fourier|z-transform|signal|control|transfer/.test(text)) return "transforms-signals";
+  if (/root|newton|interpolation|numerical|power method|quadrature|ode solver/.test(text)) return "numerical-methods";
+  if (/probability|regression|reliability|markov|queue|time series|stochastic/.test(text)) return "probability-statistics-stochastic";
+  if (/operations|network|game|pert|linear programming|variations|optimization/.test(text)) return "optimization-operations-research";
+  if (/vector calculus|gradient|divergence|curl|stokes/.test(text)) return "vector-calculus-fields";
+  if (/complex|residue|analytic|bessel|legendre|sturm|control/.test(text)) return "complex-special-control";
+  return domainId;
+}
+
+function visualIdForTopic(title: string) {
+  const text = title.toLowerCase();
+  if (/jacobian|coordinate/.test(text)) return "jacobian";
+  if (/multiple|integral/.test(text)) return "double-integral";
+  if (/taylor|curve|partial|maxima|derivative/.test(text)) return "taylor";
+  if (/higher-order|characteristic/.test(text)) return "auxiliary-equation";
+  if (/cauchy-euler/.test(text)) return "cauchy-euler";
+  if (/laplace|control|transfer/.test(text)) return "laplace-derivative";
+  if (/fourier/.test(text)) return "fourier-series";
+  if (/z-transform/.test(text)) return "z-transform";
+  if (/classification|characteristic/.test(text)) return "pde-discriminant";
+  if (/wave/.test(text)) return "wave-equation";
+  if (/laplace equation|potential/.test(text)) return "laplace-equation";
+  if (/heat|finite difference|pde/.test(text)) return "heat-equation";
+  if (/newton|root|secant/.test(text)) return "newton-raphson";
+  if (/integration|quadrature|simpson/.test(text)) return "simpson-rule";
+  if (/rk4|ode solver/.test(text)) return "rk4";
+  if (/linear algebra|rank|consistency|row/.test(text)) return "rank-nullity";
+  if (/eigen|power method/.test(text)) return "eigen-equation";
+  if (/least|orthogonal|gram/.test(text)) return "least-squares";
+  if (/cayley/.test(text)) return "cayley-hamilton";
+  if (/reliability|markov/.test(text)) return "markov-chain";
+  if (/queue/.test(text)) return "queue-utilization";
+  if (/variance|statistics|regression|probability/.test(text)) return "variance";
+  if (/network|pert|game/.test(text)) return "pert";
+  if (/duality|operations|linear programming/.test(text)) return "duality";
+  if (/variations|euler/.test(text)) return "euler-lagrange";
+  if (/divergence/.test(text)) return "divergence";
+  if (/curl|stokes/.test(text)) return "curl";
+  if (/vector/.test(text)) return "gradient";
+  if (/residue|cauchy|complex integration/.test(text)) return "residue";
+  if (/bessel|legendre|sturm/.test(text)) return "bessel";
+  return slugId(title);
+}
+
 function VisualFrame({ children, metric }: { children: ReactNode; metric: string }) {
   return (
     <div className="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-slate-950 dark:border-white/10">
@@ -1073,4 +1149,70 @@ function buildReadinessRows() {
       recommendation: score === 4 ? "Ready for deeper simulations and assessment packs." : "Needs more route, formula, or launcher coverage.",
     };
   });
+}
+
+function conceptVisualCount(topics: SyllabusTopic[]) {
+  return topics.reduce((sum, topic) => sum + topic.concepts.length, 0);
+}
+
+function conceptRouteFor(topic: SyllabusTopic, concept: string) {
+  const text = `${topic.title} ${topic.unit} ${concept}`.toLowerCase();
+  const rules: [RegExp, string][] = [
+    [/machine learning|activation|loss|neural/, "/syllabus-lab/machine-learning-math-lab"],
+    [/cayley|characteristic|matrix inverse|matrix powers/, "/syllabus-lab/cayley-hamilton-theorem-visualizer"],
+    [/rank|echelon|consistency|free variables|row reduction|gauss elimination/, "/syllabus-lab/rank-consistency-row-reduction"],
+    [/eigenvalue|eigenvector|diagonalization|dominant eigenvalue|power method/, "/syllabus-lab/eigenvector-direction-visualizer"],
+    [/quadratic form|canonical|definiteness|principal axes/, "/syllabus-lab/canonical-quadratic-form-lab"],
+    [/orthogonality|projection|least squares|gram-schmidt|qr/, "/syllabus-lab/gram-schmidt-orthogonalization"],
+    [/comparison test|infinite series/, "/syllabus-lab/comparison-test-lab"],
+    [/ratio test|d'alembert/, "/syllabus-lab/ratio-test-lab"],
+    [/root test/, "/syllabus-lab/root-test-lab"],
+    [/alternating|absolute convergence/, "/syllabus-lab/alternating-absolute-convergence-lab"],
+    [/curve tracing|asymptote|maxima|minima|critical point|curvature/, "/syllabus-lab/asymptote-curve-tracing-lab"],
+    [/partial derivative|lagrange multiplier|surface slice|gradient/, "/syllabus-lab/partial-derivative-slicer"],
+    [/jacobian|coordinate transform|area scaling/, "/syllabus-lab/jacobian-area-scaling-lab"],
+    [/double integral|triple integral|volume|multiple integral/, "/syllabus-lab/double-integral-region"],
+    [/gamma|beta function|beta/, "/syllabus-lab/beta-gamma-curves"],
+    [/slope field|separable|initial value|first-order/, "/syllabus-lab/slope-field-generator"],
+    [/auxiliary|repeated roots|complex roots|higher-order/, "/syllabus-lab/higher-order-ode-characteristic-lab"],
+    [/cauchy-euler|power solutions/, "/syllabus-lab/cauchy-euler-ode-lab"],
+    [/bessel|legendre|frobenius|power series|special functions/, "/syllabus-lab/series-solution-special-functions-lab"],
+    [/sturm|boundary condition|eigenfunction|orthogonality/, "/syllabus-lab/sturm-liouville-boundary-lab"],
+    [/laplace transform|inverse transform|initial conditions/, "/syllabus-lab/laplace-transform-workflow"],
+    [/unit step|impulse/, "/syllabus-lab/unit-step-impulse-lab"],
+    [/convolution/, "/syllabus-lab/convolution-integral-lab"],
+    [/fourier|spectrum/, "/syllabus-lab/fourier-transform-spectrum-lab"],
+    [/z-transform|difference equation|discrete system/, "/syllabus-lab/z-transform-difference-equations"],
+    [/heat equation/, "/syllabus-lab/heat-equation-color-map"],
+    [/wave equation/, "/syllabus-lab/wave-equation-string-vibration"],
+    [/laplace equation/, "/syllabus-lab/laplace-equation-potential-surface"],
+    [/pde classification|characteristics|canonical form/, "/syllabus-lab/pde-classification-characteristics-lab"],
+    [/finite difference|stability|grid method/, "/syllabus-lab/finite-difference-method-lab"],
+    [/analytic|mobius|cauchy-riemann/, "/syllabus-lab/mobius-transformation-lab"],
+    [/contour|cauchy formula|residue|singularit/, "/syllabus-lab/complex-line-integral-lab"],
+    [/gradient|divergence|curl|stokes|green|gauss|line integral|surface integral/, "/syllabus-lab/vector-calculus-field-theorems"],
+    [/bisection|newton-raphson|secant|root-finding/, "/syllabus-lab/newton-raphson-tangent-iteration"],
+    [/fixed-point/, "/syllabus-lab/fixed-point-iteration-lab"],
+    [/jacobi|gauss-seidel|relaxation|numerical linear algebra/, "/syllabus-lab/numerical-linear-algebra-iteration-lab"],
+    [/interpolation|divided differences|finite differences|curve fitting/, "/syllabus-lab/newton-divided-differences-lab"],
+    [/rk4|euler method|ode solver/, "/syllabus-lab/euler-vs-rk4-solution-comparison"],
+    [/quadrature|simpson|trapezoidal/, "/syllabus-lab/gaussian-quadrature-lab"],
+    [/random variable|distribution|expectation|variance/, "/syllabus-lab/probability-distribution-expectation-lab"],
+    [/regression|sampling|hypothesis|inference|confidence/, "/syllabus-lab/statistical-inference-regression-lab"],
+    [/reliability|markov|queue|steady state/, "/syllabus-lab/reliability-markov-queueing-lab"],
+    [/time series|stationarity|random walk|autocorrelation/, "/syllabus-lab/stochastic-process-time-series-lab"],
+    [/transfer function|pole|zero|control|stability/, "/syllabus-lab/control-system-response-lab"],
+    [/logic|relation|recurrence|boolean|counting/, "/syllabus-lab/discrete-math-cse-structure-lab"],
+    [/bfs|dfs|shortest path|tree|graph|spanning|coloring/, "/syllabus-lab/graph-theory-basics"],
+    [/linear programming|transportation|assignment|simplex/, "/syllabus-lab/operations-research-lp"],
+    [/pert|cpm|game theory|inventory|minimax/, "/syllabus-lab/network-pert-game-theory-lab"],
+    [/gradient descent|convexity|constraint|optimization/, "/syllabus-lab/optimization-gradient-constraints-lab"],
+    [/functional|euler-lagrange|extremal|variational/, "/syllabus-lab/variational-calculus-lab"],
+    [/modular|prime|rsa|cryptography|number theory/, "/syllabus-lab/number-theory-cryptography-lab"],
+  ];
+  return rules.find(([pattern]) => pattern.test(text))?.[1] ?? topic.linkedVisualization.route;
+}
+
+function slugId(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
