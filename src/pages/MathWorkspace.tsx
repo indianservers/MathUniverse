@@ -2160,12 +2160,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                 onObjectAction={handleUnifiedObjectAction}
                 onObjectChange={handleUnifiedObjectChange}
               />
-              <div className="rounded-2xl bg-slate-100 p-4 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
-                <p className="font-bold text-slate-900 dark:text-white">3D Readout</p>
-                <p>Surface: {surfaceFormula(surface, surfaceScale)}</p>
-                <p>Cross-section plane: z = {roundTo(crossSection, 2)}</p>
-                <p>Camera zoom: {roundTo(zoom3d * 100, 0)}%</p>
-              </div>
+              <Readout3D surface={surface} surfaceScale={surfaceScale} crossSection={crossSection} zoom={zoom3d} />
               <GizmoReadout3D selected={selected3d} transform={selected3dTransform} />
             </aside>
           )}
@@ -4314,14 +4309,10 @@ function UnifiedWorkspacePanel({
   onObjectChange: (object: MathObject, patch: Partial<MathObject>) => void;
 }) {
   return (
-    <div className="space-y-3 rounded-2xl border border-cyan-200/80 bg-white/85 p-3 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/50">
-      <div>
-        <p className="text-[11px] font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">Unified Dynamic Workspace</p>
-        <h2 className="text-sm font-black text-slate-950 dark:text-white">Graph, geometry, CAS, tables, spreadsheet, and 3D registry</h2>
-      </div>
+    <CollapsibleSideCard id="workspace-unified-registry-panel" title="Unified Dynamic Workspace" subtitle="Graph, geometry, CAS, tables, spreadsheet, and 3D registry" meta={<span className="mini-chip">{objects.length} objects</span>} className="border-cyan-200/80 bg-white/85 dark:border-cyan-300/20 dark:bg-slate-950/50">
       <ObjectList objects={objects} selectedObjectId={selectedObjectId} selectedObjectIds={selectedObjectIds} onObjectAction={onObjectAction} />
       <InspectorPanel object={selectedObject} onObjectChange={onObjectChange} />
-    </div>
+    </CollapsibleSideCard>
   );
 }
 
@@ -5186,14 +5177,7 @@ function GizmoReadout3D({ selected, transform }: { selected: string; transform: 
   const handles = createTransformGizmo(mode);
   const measurement = object3Measurement(transformToKernelObject(selected, transform));
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 text-sm dark:border-white/10 dark:bg-white/5">
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <p className="font-bold">3D Gizmo And Measurement</p>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{transform.name ?? selected} uses {mode} handles with snap-ready axes.</p>
-        </div>
-        <span className="mini-chip">{handles.length} handles</span>
-      </div>
+    <CollapsibleSideCard id="workspace-3d-gizmo-panel" title="3D Gizmo And Measurement" subtitle={`${transform.name ?? selected} uses ${mode} handles with snap-ready axes.`} meta={<span className="mini-chip">{handles.length} handles</span>}>
       <div className="mt-3 grid gap-2">
         {handles.map((handle) => (
           <div key={handle.id} className="flex items-center justify-between rounded-xl bg-slate-100 p-2 dark:bg-white/10">
@@ -5205,7 +5189,19 @@ function GizmoReadout3D({ selected, transform }: { selected: string; transform: 
       <p className="mt-3 text-xs leading-5 text-slate-500 dark:text-slate-400">
         {measurement.detail}; V={roundTo(measurement.volume, 3)}, SA={roundTo(measurement.surfaceArea, 3)}
       </p>
-    </div>
+    </CollapsibleSideCard>
+  );
+}
+
+function Readout3D({ surface, surfaceScale, crossSection, zoom }: { surface: SurfaceKind; surfaceScale: number; crossSection: number; zoom: number }) {
+  return (
+    <CollapsibleSideCard id="workspace-3d-readout-panel" title="3D Readout" meta={<span className="mini-chip">{roundTo(zoom * 100, 0)}%</span>} className="border-transparent bg-slate-100 shadow-none dark:bg-white/10">
+      <div className="space-y-1 leading-6 text-slate-600 dark:text-slate-300">
+        <p>Surface: {surfaceFormula(surface, surfaceScale)}</p>
+        <p>Cross-section plane: z = {roundTo(crossSection, 2)}</p>
+        <p>Camera zoom: {roundTo(zoom * 100, 0)}%</p>
+      </div>
+    </CollapsibleSideCard>
   );
 }
 
@@ -5600,6 +5596,27 @@ function InfoPill({ title, text }: { title: string; text: string }) {
   return <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10"><p className="text-sm font-bold">{title}</p><p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{text}</p></div>;
 }
 
+function CollapsibleSideCard({ children, className = "", defaultOpen = true, id, meta, subtitle, title }: { children: ReactNode; className?: string; defaultOpen?: boolean; id: string; meta?: ReactNode; subtitle?: string; title: string }) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <section className={`rounded-2xl border border-slate-200 bg-white/80 p-3 text-sm shadow-sm dark:border-white/10 dark:bg-white/5 ${className}`}>
+      <button type="button" onClick={() => setOpen((value) => !value)} className="flex w-full items-start justify-between gap-3 rounded-xl text-left transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:hover:bg-white/5" aria-expanded={open} aria-controls={id}>
+        <span className="min-w-0 p-1">
+          <span className="block font-bold text-slate-900 dark:text-white">{title}</span>
+          {subtitle && <span className="mt-1 block text-xs leading-5 text-slate-500 dark:text-slate-400">{subtitle}</span>}
+        </span>
+        <span className="flex shrink-0 items-center gap-2 p-1">
+          {meta}
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-200">
+            <ChevronDown className={`h-4 w-4 transition-transform ${open ? "" : "-rotate-90"}`} />
+          </span>
+        </span>
+      </button>
+      {open && <div id={id} className="mt-3">{children}</div>}
+    </section>
+  );
+}
+
 function HorizontalPanelHeader({ title, side, onCollapse }: { title: string; side: "left" | "right"; onCollapse: () => void }) {
   const Icon = side === "left" ? PanelLeftClose : PanelRightClose;
   return (
@@ -5616,67 +5633,92 @@ function HorizontalPanelHeader({ title, side, onCollapse }: { title: string; sid
 }
 
 function Workspace3DProjectionPane({ selected, transform, surface, surfaceScale, solid, solidSize, crossSection, showSurface, showSolid }: { selected: string; transform: Transform3D; surface: SurfaceKind; surfaceScale: number; solid: SolidKind; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean }) {
+  const [openPanes, setOpenPanes] = useState({ xy: true, xz: true });
   const px = 170 + transform.position[0] * 18;
   const py = 150 - transform.position[1] * 18;
   const pz = 150 - transform.position[2] * 18;
   const solidRadius = Math.max(18, Math.min(82, solidSize * 18));
   const surfaceAmp = Math.max(8, Math.min(42, surfaceScale * 20));
+  const togglePane = (pane: "xy" | "xz") => setOpenPanes((current) => ({ ...current, [pane]: !current[pane] }));
   return (
     <div className="grid min-h-[420px] gap-3 lg:grid-cols-2 2xl:grid-cols-1">
       <section className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
-        <div className="flex items-start justify-between gap-3">
-          <div>
+        <button type="button" onClick={() => togglePane("xy")} className="flex w-full items-start justify-between gap-3 rounded-xl text-left transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:hover:bg-white/5" aria-expanded={openPanes.xy} aria-controls="workspace-xy-projection-pane">
+          <div className="min-w-0 p-1">
             <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">2D Pane</p>
             <h3 className="text-sm font-black">Top View X-Y</h3>
           </div>
-          <span className="mini-chip">{selected || "none"}</span>
-        </div>
-        <svg viewBox="0 0 340 250" className="mt-3 h-[min(28vh,260px)] min-h-[210px] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
-          <defs>
-            <pattern id="workspace-3d-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(100,116,139,.28)" strokeWidth="1" />
-            </pattern>
-          </defs>
-          <rect width="340" height="250" fill="url(#workspace-3d-grid)" />
-          <line x1="20" y1="125" x2="320" y2="125" stroke="#ef4444" strokeWidth="3" />
-          <line x1="170" y1="230" x2="170" y2="20" stroke="#22c55e" strokeWidth="3" />
-          <text x="300" y="116" fill="#ef4444" fontSize="14" fontWeight="800">x</text>
-          <text x="178" y="32" fill="#22c55e" fontSize="14" fontWeight="800">y</text>
-          {showSurface && <path d={`M 35 ${125 + surfaceAmp} C 80 ${90 - surfaceAmp}, 125 ${165 + surfaceAmp}, 170 125 S 260 ${85 - surfaceAmp}, 305 ${125 + surfaceAmp}`} fill="none" stroke="#06b6d4" strokeWidth="5" opacity="0.55" />}
-          {showSolid && (solid === "cube" || solid === "cuboid" ? <rect x={170 - solidRadius / 2} y={125 - solidRadius / 2} width={solidRadius} height={solidRadius} fill="#f59e0b" opacity="0.42" stroke="#f59e0b" strokeWidth="3" /> : <circle cx="170" cy="125" r={solidRadius / 2} fill="#f59e0b" opacity="0.38" stroke="#f59e0b" strokeWidth="3" />)}
-          <line x1="20" y1={125 - crossSection * 18} x2="320" y2={125 - crossSection * 18} stroke="#a855f7" strokeWidth="3" strokeDasharray="8 7" />
-          <circle cx={px} cy={py} r="8" fill={transform.color} stroke="#0f172a" strokeWidth="2" />
-        </svg>
-        <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
-          <MiniReadout label="x" value={transform.position[0]} />
-          <MiniReadout label="y" value={transform.position[1]} />
-          <MiniReadout label="scale" value={transform.scale} />
-        </div>
+          <span className="flex shrink-0 items-center gap-2 p-1">
+            <span className="mini-chip">{selected || "none"}</span>
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-200">
+              <ChevronDown className={`h-4 w-4 transition-transform ${openPanes.xy ? "" : "-rotate-90"}`} />
+            </span>
+          </span>
+        </button>
+        {openPanes.xy && (
+          <div id="workspace-xy-projection-pane">
+            <svg viewBox="0 0 340 250" className="mt-3 h-[min(28vh,260px)] min-h-[210px] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
+              <defs>
+                <pattern id="workspace-3d-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(100,116,139,.28)" strokeWidth="1" />
+                </pattern>
+              </defs>
+              <rect width="340" height="250" fill="url(#workspace-3d-grid)" />
+              <line x1="20" y1="125" x2="320" y2="125" stroke="#ef4444" strokeWidth="3" />
+              <line x1="170" y1="230" x2="170" y2="20" stroke="#22c55e" strokeWidth="3" />
+              <text x="300" y="116" fill="#ef4444" fontSize="14" fontWeight="800">x</text>
+              <text x="178" y="32" fill="#22c55e" fontSize="14" fontWeight="800">y</text>
+              {showSurface && <path d={`M 35 ${125 + surfaceAmp} C 80 ${90 - surfaceAmp}, 125 ${165 + surfaceAmp}, 170 125 S 260 ${85 - surfaceAmp}, 305 ${125 + surfaceAmp}`} fill="none" stroke="#06b6d4" strokeWidth="5" opacity="0.55" />}
+              {showSolid && (solid === "cube" || solid === "cuboid" ? <rect x={170 - solidRadius / 2} y={125 - solidRadius / 2} width={solidRadius} height={solidRadius} fill="#f59e0b" opacity="0.42" stroke="#f59e0b" strokeWidth="3" /> : <circle cx="170" cy="125" r={solidRadius / 2} fill="#f59e0b" opacity="0.38" stroke="#f59e0b" strokeWidth="3" />)}
+              <line x1="20" y1={125 - crossSection * 18} x2="320" y2={125 - crossSection * 18} stroke="#a855f7" strokeWidth="3" strokeDasharray="8 7" />
+              <circle cx={px} cy={py} r="8" fill={transform.color} stroke="#0f172a" strokeWidth="2" />
+            </svg>
+            <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
+              <MiniReadout label="x" value={transform.position[0]} />
+              <MiniReadout label="y" value={transform.position[1]} />
+              <MiniReadout label="scale" value={transform.scale} />
+            </div>
+          </div>
+        )}
       </section>
       <section className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
-        <div className="flex items-start justify-between gap-3">
-          <div>
+        <button type="button" onClick={() => togglePane("xz")} className="flex w-full items-start justify-between gap-3 rounded-xl text-left transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-violet-300 dark:hover:bg-white/5" aria-expanded={openPanes.xz} aria-controls="workspace-xz-projection-pane">
+          <div className="min-w-0 p-1">
             <p className="text-xs font-black uppercase text-violet-700 dark:text-violet-200">2D Pane</p>
             <h3 className="text-sm font-black">Side View X-Z</h3>
           </div>
-          <span className="mini-chip">z {roundTo(crossSection, 2)}</span>
-        </div>
-        <svg viewBox="0 0 340 250" className="mt-3 h-[min(28vh,260px)] min-h-[210px] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
-          <rect width="340" height="250" fill="url(#workspace-3d-grid)" />
-          <line x1="20" y1="125" x2="320" y2="125" stroke="#ef4444" strokeWidth="3" />
-          <line x1="170" y1="230" x2="170" y2="20" stroke="#38bdf8" strokeWidth="3" />
-          <text x="300" y="116" fill="#ef4444" fontSize="14" fontWeight="800">x</text>
-          <text x="178" y="32" fill="#38bdf8" fontSize="14" fontWeight="800">z</text>
-          {showSurface && <path d={`M 35 ${125 + surfaceAmp} C 92 ${132 - surfaceAmp}, 130 ${82 + surfaceAmp}, 170 ${125 - surfaceAmp} S 255 ${168 - surfaceAmp}, 305 ${105 + surfaceAmp}`} fill="none" stroke="#06b6d4" strokeWidth="5" opacity="0.55" />}
-          {showSolid && <rect x={170 - solidRadius / 2} y={125 - solidRadius / 2} width={solidRadius} height={solidRadius} rx="10" fill="#f59e0b" opacity="0.38" stroke="#f59e0b" strokeWidth="3" />}
-          <line x1="20" y1={125 - crossSection * 18} x2="320" y2={125 - crossSection * 18} stroke="#a855f7" strokeWidth="3" strokeDasharray="8 7" />
-          <circle cx={px} cy={pz} r="8" fill={transform.color} stroke="#0f172a" strokeWidth="2" />
-        </svg>
-        <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
-          <MiniReadout label="x" value={transform.position[0]} />
-          <MiniReadout label="z" value={transform.position[2]} />
-          <MiniReadout label="size" value={solidSize} />
-        </div>
+          <span className="flex shrink-0 items-center gap-2 p-1">
+            <span className="mini-chip">z {roundTo(crossSection, 2)}</span>
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-200">
+              <ChevronDown className={`h-4 w-4 transition-transform ${openPanes.xz ? "" : "-rotate-90"}`} />
+            </span>
+          </span>
+        </button>
+        {openPanes.xz && (
+          <div id="workspace-xz-projection-pane">
+            <svg viewBox="0 0 340 250" className="mt-3 h-[min(28vh,260px)] min-h-[210px] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
+              <defs>
+                <pattern id="workspace-3d-grid-xz" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(100,116,139,.28)" strokeWidth="1" />
+                </pattern>
+              </defs>
+              <rect width="340" height="250" fill="url(#workspace-3d-grid-xz)" />
+              <line x1="20" y1="125" x2="320" y2="125" stroke="#ef4444" strokeWidth="3" />
+              <line x1="170" y1="230" x2="170" y2="20" stroke="#38bdf8" strokeWidth="3" />
+              <text x="300" y="116" fill="#ef4444" fontSize="14" fontWeight="800">x</text>
+              <text x="178" y="32" fill="#38bdf8" fontSize="14" fontWeight="800">z</text>
+              {showSurface && <path d={`M 35 ${125 + surfaceAmp} C 92 ${132 - surfaceAmp}, 130 ${82 + surfaceAmp}, 170 ${125 - surfaceAmp} S 255 ${168 - surfaceAmp}, 305 ${105 + surfaceAmp}`} fill="none" stroke="#06b6d4" strokeWidth="5" opacity="0.55" />}
+              {showSolid && <rect x={170 - solidRadius / 2} y={125 - solidRadius / 2} width={solidRadius} height={solidRadius} rx="10" fill="#f59e0b" opacity="0.38" stroke="#f59e0b" strokeWidth="3" />}
+              <line x1="20" y1={125 - crossSection * 18} x2="320" y2={125 - crossSection * 18} stroke="#a855f7" strokeWidth="3" strokeDasharray="8 7" />
+              <circle cx={px} cy={pz} r="8" fill={transform.color} stroke="#0f172a" strokeWidth="2" />
+            </svg>
+            <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
+              <MiniReadout label="x" value={transform.position[0]} />
+              <MiniReadout label="z" value={transform.position[2]} />
+              <MiniReadout label="size" value={solidSize} />
+            </div>
+          </div>
+        )}
       </section>
     </div>
   );

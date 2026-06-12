@@ -68,3 +68,22 @@
 [2m8:44:23 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/layout/AppLayout.tsx, /src/index.css[22m
 [2m8:44:55 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/EngineeringMath.tsx, /src/index.css[22m
 [2m8:45:04 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/EngineeringMath.tsx, /src/index.css[22m
+[2m8:49:08 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/seo/SeoMetadata.tsx, /src/components/layout/Sidebar.tsx, /src/pages/AdvancedSyllabusLabPage.tsx, /src/pages/EngineeringMath.tsx[22m
+[2m8:49:09 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/components/layout/Sidebar.tsx[22m Could not Fast Refresh ("filterNavItems" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m8:49:09 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/layout/AppLayout.tsx, /src/index.css[22m
+[2m8:49:27 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/components/syllabus/SyllabusTopicCard.tsx[22m
+[2m8:51:16 am[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AdvancedSyllabusLabPage.tsx, /src/index.css[22m
+[2m6:47:20 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/FormulaBlock.tsx, /src/index.css[22m
+[2m6:47:45 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/syllabus/SyllabusTopicCard.tsx, /src/index.css[22m
+[2m6:48:04 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/AdvancedSyllabusLabPage.tsx, /src/index.css[22m
+[2m6:52:49 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/pages/FormulasWorkspace.tsx[22m
+[2m6:55:47 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/syllabus/ConceptVisualMedia.tsx, /src/index.css[22m
+[2m6:55:48 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/components/syllabus/ConceptVisualMedia.tsx[22m Could not Fast Refresh ("conceptArtForText" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m6:55:48 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/FormulaBlock.tsx, /src/index.css, /src/pages/AdvancedSyllabusLabPage.tsx, /src/pages/FormulasWorkspace.tsx[22m
+[2m6:56:06 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/ui/FormulaBlock.tsx, /src/index.css[22m
+[2m6:59:53 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m7:00:16 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m7:04:39 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m7:05:03 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m7:05:25 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m
+[2m7:05:50 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/MathWorkspace.tsx, /src/index.css[22m

@@ -35,6 +35,7 @@ import {
 } from "lucide-react";
 import { type ComponentType, type CSSProperties, type Dispatch, type SetStateAction, type SVGProps, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ConceptIconBadge, FormulaImageStrip } from "../components/syllabus/ConceptVisualMedia";
 import SectionCard from "../components/ui/SectionCard";
 import { formulaCategories, formulaCategoryCount, type FormulaCategory, type FormulaLibraryItem } from "../data/formulaLibrary";
 
@@ -1063,8 +1064,10 @@ function FormulaLibraryCard({
 
   return (
     <article id={`formula-${record.id}`} className={clsx("formula-library-card", compact && "compact-card")} onClick={onOpen}>
+      {!compact && <FormulaImageStrip title={record.title} formula={`${record.category.title} ${record.formula}`} />}
       <div className="flex items-start justify-between gap-3">
         {showGeometryPreview && <GeometryMiniPreview record={record} />}
+        {!showGeometryPreview && <ConceptIconBadge text={`${record.group} ${record.title} ${record.formula}`} />}
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <span className="formula-level">{record.level}</span>
@@ -1157,6 +1160,7 @@ function FormulaDetailPane({ bookmarks, copyValue, familyRecords, onToggleBookma
             {bookmarks.includes(record.id) ? <BookmarkCheck className="h-4 w-4 text-cyan-500" /> : <Bookmark className="h-4 w-4" />}
           </button>
         </div>
+        <FormulaImageStrip title={record.title} formula={`${record.category.title} ${record.formula}`} />
         <GeometryMiniPreview record={record} large />
         <FormulaLine formula={record.formula} />
         <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{record.item.note}</p>
@@ -1397,6 +1401,7 @@ function MobileFormulaDetailDrawer({
           </button>
         </div>
         <div className="mt-3 space-y-3">
+          <FormulaImageStrip title={record.title} formula={`${record.category.title} ${record.formula}`} />
           <GeometryMiniPreview record={record} large />
           <FormulaLine formula={record.formula} />
           <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{record.item.note}</p>
@@ -1500,8 +1505,11 @@ function FormulaLine({ formula }: { formula: string }) {
   }, [formula]);
 
   return (
-    <div className="formula-line-render min-w-0 overflow-x-auto rounded-xl border border-cyan-200/70 bg-cyan-50 px-3 py-3 text-center dark:border-cyan-400/20 dark:bg-cyan-400/10">
-      {html ? <div className="formula-katex [&_.katex-display]:my-0" dangerouslySetInnerHTML={{ __html: html }} /> : <p className="formula-plain whitespace-nowrap font-mono text-sm font-bold">{formula}</p>}
+    <div className="formula-line-render flex min-w-0 items-center gap-3 overflow-x-auto rounded-xl border border-cyan-200/70 bg-cyan-50 px-3 py-3 text-center dark:border-cyan-400/20 dark:bg-cyan-400/10">
+      <ConceptIconBadge text={formula} />
+      <div className="min-w-0 flex-1">
+        {html ? <div className="formula-katex [&_.katex-display]:my-0" dangerouslySetInnerHTML={{ __html: html }} /> : <p className="formula-plain whitespace-nowrap font-mono text-sm font-bold">{formula}</p>}
+      </div>
     </div>
   );
 }

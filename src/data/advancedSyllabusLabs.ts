@@ -1,4 +1,5 @@
 import { engineeringSyllabusTopics } from "./engineeringMathBlueprint";
+import { allSyllabusTopics, type SyllabusTopic } from "./syllabus";
 
 export type AdvancedLabVisual =
   | "venn"
@@ -236,6 +237,7 @@ const authoredAdvancedSyllabusLabs: AdvancedSyllabusLab[] = [
 
 export const advancedSyllabusLabs: AdvancedSyllabusLab[] = [
   ...authoredAdvancedSyllabusLabs,
+  ...buildSyllabusConceptLabs(authoredAdvancedSyllabusLabs),
   ...buildEngineeringConceptLabs(authoredAdvancedSyllabusLabs),
 ];
 
@@ -247,6 +249,40 @@ export const advancedLabCategories = Array.from(new Set(advancedSyllabusLabs.map
 
 export function engineeringConceptLabId(topicId: string, concept: string) {
   return `engineering-concept-${topicId}-${slug(concept)}`;
+}
+
+export function syllabusConceptLabId(topicId: string, concept: string) {
+  return `syllabus-concept-${topicId}-${slug(concept)}`;
+}
+
+function buildSyllabusConceptLabs(existingLabs: AdvancedSyllabusLab[]): AdvancedSyllabusLab[] {
+  const existingIds = new Set(existingLabs.map((lab) => lab.id));
+  const engineeringTopicIds = new Set(engineeringSyllabusTopics.map((topic) => topic.id));
+  return allSyllabusTopics
+    .filter((topic) => !engineeringTopicIds.has(topic.id))
+    .flatMap((topic) =>
+      topic.concepts.map((concept, index): AdvancedSyllabusLab | null => {
+        const id = syllabusConceptLabId(topic.id, concept);
+        if (existingIds.has(id)) return null;
+        const visual = syllabusVisualForConcept(topic, concept);
+        const sliders = sliderPresetForVisual(visual);
+        return {
+          id,
+          title: `${concept} Interactive Tool`,
+          category: topic.classLevel,
+          subcategory: topic.unit,
+          summary: `${concept} from ${topic.title}: ${topic.description}`,
+          formula: topic.keyFormulas[index % Math.max(1, topic.keyFormulas.length)] ?? topic.keyFormulas[0] ?? concept,
+          visual,
+          tasks: [
+            `Move ${sliders.sliderA.toLowerCase()} and read the data visualization.`,
+            `Move ${sliders.sliderB.toLowerCase()} and compare the visual state.`,
+            `Explain how the graph, table, or diagram represents ${concept}.`,
+          ],
+          ...sliders,
+        };
+      }).filter((lab): lab is AdvancedSyllabusLab => Boolean(lab)),
+    );
 }
 
 function buildEngineeringConceptLabs(existingLabs: AdvancedSyllabusLab[]): AdvancedSyllabusLab[] {
@@ -274,6 +310,47 @@ function buildEngineeringConceptLabs(existingLabs: AdvancedSyllabusLab[]): Advan
       };
     }).filter((lab): lab is AdvancedSyllabusLab => Boolean(lab)),
   );
+}
+
+export function syllabusVisualForConcept(topic: SyllabusTopic, concept: string): AdvancedLabVisual {
+  const text = `${topic.classLevel} ${topic.unit} ${topic.title} ${concept} ${topic.recommendedVisualization}`.toLowerCase();
+  if (/venn|set\b|union|intersection/.test(text)) return "venn";
+  if (/relation|function|domain|range|mapping|inverse function|composition/.test(text)) return "mapping";
+  if (/logic|statement|connective|predicate|truth/.test(text)) return "truth-table";
+  if (/boolean|recurrence/.test(text)) return "relation-matrix";
+  if (/permutation|combination|counting|factorial|arrangement|selection/.test(text)) return "permutation-cycle";
+  if (/binomial|pascal/.test(text)) return "induction";
+  if (/integer|hcf|lcm|prime|euclid|gcd|modular|rsa|cryptography/.test(text)) return "equivalence";
+  if (/fraction|decimal|rational|irrational|real number|number line|surd|root/.test(text)) return "sequence-convergence";
+  if (/exponent|power|standard form/.test(text)) return "power-series-radius";
+  if (/percent|profit|loss|discount|interest|ratio|proportion/.test(text)) return "area-under-curve";
+  if (/linear equation|simultaneous|slope|intercept|straight line|line graph|coordinates|coordinate|section formula|midpoint|distance/.test(text)) return "root-finding";
+  if (/polynomial|quadratic|parabola|discriminant|factor|identity|algebraic expression/.test(text)) return "tangent";
+  if (/inequalit|linear programming|feasible/.test(text)) return "operations-research";
+  if (/sequence|series|progression|ap\b|arithmetic progression|geometric/.test(text)) return "series-partial-sum";
+  if (/limit|continuity|differentiability/.test(text)) return "continuity";
+  if (/derivative|tangent|maxima|minima|optimization|rate/.test(text)) return "maxima";
+  if (/integral|area accumulation|area under/.test(text)) return "riemann";
+  if (/differential equation|slope field|solution curve/.test(text)) return "slope-field";
+  if (/matrix|matrices|determinant|row|linear algebra/.test(text)) return "matrix-grid-warp";
+  if (/vector|three dimensional|3d|basis|component/.test(text)) return "vector-2d-3d";
+  if (/complex|argand|euler|polar/.test(text)) return "argand-plane";
+  if (/trigonometric|trigonometry|sine|cosine|unit circle|height|distance|inverse trig/.test(text)) return "complex-rotation";
+  if (/circle|arc|sector|tangent|chord|radius|diameter/.test(text)) return "curvature";
+  if (/triangle|heron|pythagoras|similarity|congruence|altitude|median/.test(text)) return "partition-refinement";
+  if (/quadrilateral|parallelogram|rhombus|rectangle|polygon|trapez/.test(text)) return "coordinate-transform";
+  if (/angle|transversal|parallel line|euclid|axiom|postulate|construction/.test(text)) return "cauchy-integral";
+  if (/mensuration|perimeter|area|surface|volume|solid|cube|cuboid|net|shape/.test(text)) return "triple-integral";
+  if (/symmetry|reflection|rotation/.test(text)) return "symmetry-group";
+  if (/data|statistics|mean|median|mode|bar graph|chart|regression/.test(text)) return "interpolation-builder";
+  if (/probability|random|event|distribution/.test(text)) return "beta-gamma";
+  if (/graph theory|bfs|dfs|tree|shortest|spanning|coloring|network/.test(text)) return "graph-theory";
+  if (/abstract algebra|group|monoid|lattice|cayley/.test(text)) return "cayley-table";
+  if (/automata|grammar|turing|finite automata/.test(text)) return "homomorphism-map";
+  if (/numerical|bisection|newton|secant/.test(text)) return "newton-raphson";
+  if (/fourier|wave|signal/.test(text)) return "fourier-transform";
+  if (/modelling|modeling|machine learning|neural|loss|gradient/.test(text)) return "error-convergence";
+  return engineeringVisualForConcept(text);
 }
 
 export function engineeringVisualForConcept(value: string): AdvancedLabVisual {

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import { ConceptImagePanel } from "../components/syllabus/ConceptVisualMedia";
 import FormulaBlock from "../components/ui/FormulaBlock";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
@@ -26,10 +27,12 @@ function AdvancedSyllabusLabDetail({ lab }: { lab: AdvancedSyllabusLab }) {
   }, [lab]);
 
   const metrics = useMemo(() => labMetrics(lab.visual, a, b), [lab.visual, a, b]);
+  const dataRows = useMemo(() => labDataRows(lab.visual, a, b), [lab.visual, a, b]);
 
   return (
     <div className="space-y-6">
       <TopicHeader title={lab.title} subtitle={lab.summary} difficulty={`${lab.category} / ${lab.subcategory}`} estimatedMinutes={15} />
+      <ConceptImagePanel title={lab.title} text={`${lab.summary} ${lab.category} ${lab.subcategory} ${lab.formula}`} />
 
       <SectionCard title="Interactive Concept Lab" description="Move the controls, watch the diagram update, and connect the visual pattern to the formula.">
         <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
@@ -50,6 +53,7 @@ function AdvancedSyllabusLabDetail({ lab }: { lab: AdvancedSyllabusLab }) {
               <Info label="Subcategory" value={lab.subcategory} />
               <Info label="What to notice" value={noticeText(lab.visual)} />
             </div>
+            <DataVisualizationPanel rows={dataRows} visual={lab.visual} />
           </div>
         </div>
       </SectionCard>
@@ -77,6 +81,74 @@ function LabSvg({ visual, a, b, title }: { visual: AdvancedLabVisual; a: number;
       {renderVisual(visual, a, b)}
     </svg>
   );
+}
+
+type LabDataRow = { label: string; input: number; output: number };
+
+function DataVisualizationPanel({ rows, visual }: { rows: LabDataRow[]; visual: AdvancedLabVisual }) {
+  const max = Math.max(...rows.map((row) => Math.abs(row.output)), 1);
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-white/5">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <p className="text-xs font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">Live Data Visualization</p>
+          <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">{noticeText(visual)} as sampled data</p>
+        </div>
+        <span className="mini-chip">{rows.length} samples</span>
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_260px]">
+        <svg viewBox="0 0 420 150" className="h-40 w-full rounded-xl bg-white dark:bg-slate-950" role="img" aria-label={`${visual} live data chart`}>
+          <line x1="28" y1="124" x2="398" y2="124" stroke="#94a3b8" strokeWidth="2" />
+          <line x1="28" y1="18" x2="28" y2="124" stroke="#94a3b8" strokeWidth="2" />
+          {rows.map((row, index) => {
+            const height = Math.max(4, Math.abs(row.output) / max * 86);
+            return (
+              <g key={row.label}>
+                <rect x={48 + index * 53} y={124 - height} width="28" height={height} rx="5" fill={index % 2 ? "#8b5cf6" : "#06b6d4"} opacity="0.82" />
+                <circle cx={62 + index * 53} cy={124 - height} r="4" fill="#f59e0b" />
+                <text x={48 + index * 53} y="142" fill="#475569" fontSize="10" fontWeight="800">{row.label}</text>
+              </g>
+            );
+          })}
+          <polyline points={rows.map((row, index) => `${62 + index * 53},${124 - Math.abs(row.output) / max * 86}`).join(" ")} fill="none" stroke="#f59e0b" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white text-xs dark:border-white/10 dark:bg-slate-950">
+          <div className="grid grid-cols-3 bg-slate-100 px-3 py-2 font-black uppercase text-slate-500 dark:bg-white/10 dark:text-slate-300">
+            <span>Step</span>
+            <span>Input</span>
+            <span>Output</span>
+          </div>
+          {rows.map((row) => (
+            <div key={row.label} className="grid grid-cols-3 border-t border-slate-100 px-3 py-2 font-semibold dark:border-white/10">
+              <span>{row.label}</span>
+              <span>{roundTo(row.input, 2)}</span>
+              <span>{roundTo(row.output, 3)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function labDataRows(visual: AdvancedLabVisual, a: number, b: number): LabDataRow[] {
+  return Array.from({ length: 7 }, (_, index) => {
+    const input = index + 1;
+    const output = sampleLabValue(visual, input, a, b);
+    return { label: `S${index + 1}`, input, output };
+  });
+}
+
+function sampleLabValue(visual: AdvancedLabVisual, input: number, a: number, b: number) {
+  if (/convergence|series|sequence|cauchy|power-series/.test(visual)) return 1 / Math.pow(input + Math.max(0.2, b), Math.max(0.4, a / 2));
+  if (/matrix|gaussian|linear-system|cayley|eigen|gram|quadratic|span|vector/.test(visual)) return Math.sin(input * 0.7 + a) * b + input * 0.18;
+  if (/probability|beta|gamma|statistics|interpolation|distribution/.test(visual)) return Math.exp(-Math.pow(input - (3.2 + a / 4), 2) / Math.max(0.6, b + 1));
+  if (/graph|operation|relation|mapping|truth|venn|permutation|group|symmetry/.test(visual)) return ((input * Math.round(a + 2) + Math.round(b * 3)) % 9) + 1;
+  if (/heat|wave|laplace|field|curl|divergence|pde|slope|ode|spring/.test(visual)) return Math.sin(input * 0.85 + a) * Math.cos(b / 2) + 1.2;
+  if (/fourier|laplace-transform|z-transform|convolution|step|impulse|signal/.test(visual)) return Math.abs(Math.sin(input * Math.max(0.2, a)) * Math.exp(-input / (3 + Math.max(0, b))));
+  if (/root|newton|secant|fixed|error|numerical|quadrature|rk4/.test(visual)) return 1 / (input + Math.max(0.2, a)) + Math.abs(b) * 0.04;
+  if (/circle|curvature|coordinate|transform|triangle|area|integral|riemann|shell|washer|jacobian/.test(visual)) return Math.max(0.1, a * 0.2 + b * 0.12 + Math.sin(input) * 0.8);
+  return Math.abs(Math.sin(input + a) + Math.cos(input * 0.6 + b));
 }
 
 function renderVisual(visual: AdvancedLabVisual, a: number, b: number) {
