@@ -59,6 +59,8 @@ function solveDerivative(classification: ProblemClassification): ProblemSolverRe
 
 function solveIntegral(classification: ProblemClassification): ProblemSolverResult | null {
   const variable = classification.variable ?? "x";
+  const definite = parseDefiniteIntegral(classification.rawInput, variable);
+  if (definite) return solveDefiniteIntegral(classification, definite.expression, variable, definite.from, definite.to);
   const expression = cleanCalculusExpression(classification.expression ?? classification.normalizedInput, variable);
   const deterministic = integralByRules(expression, variable);
   if (deterministic) {
@@ -91,6 +93,40 @@ function solveIntegral(classification: ProblemClassification): ProblemSolverResu
       `Final answer: ${formatExpression(symbolic.result)}.`,
     ],
     warnings: ["CAS-assisted result: detailed textbook derivation is not available for this form yet."],
+  });
+}
+
+function solveDefiniteIntegral(classification: ProblemClassification, expression: string, variable: string, from: number, to: number): ProblemSolverResult | null {
+  const deterministic = integralByRules(expression, variable);
+  if (!deterministic) {
+    return calculusResult(classification, {
+      method: "Definite integral visual support only",
+      result: "Definite integral not solved exactly",
+      steps: [
+        `Integrand: ${formatExpression(expression)}.`,
+        `Bounds: ${variable} = ${formatNumber(from)} to ${variable} = ${formatNumber(to)}.`,
+        "The deterministic Phase 5 integral rules do not fully cover this definite integral.",
+        "No exact definite-integral answer was generated.",
+      ],
+      warnings: ["Definite integral exact solving is limited to simple Phase 5 antiderivative rules."],
+    });
+  }
+  const lower = evaluateSimpleExpression(deterministic.result, variable, from);
+  const upper = evaluateSimpleExpression(deterministic.result, variable, to);
+  if (lower === null || upper === null) return null;
+  const value = upper - lower;
+  return calculusResult(classification, {
+    method: "Definite integral by antiderivative",
+    result: formatNumber(value),
+    assumptions: ["For definite integrals, evaluate F(b) - F(a)."],
+    steps: [
+      `Integrand: ${formatExpression(expression)}.`,
+      `Bounds: ${variable} = ${formatNumber(from)} to ${variable} = ${formatNumber(to)}.`,
+      ...deterministic.steps,
+      `Antiderivative: F(${variable}) = ${deterministic.result}.`,
+      `Evaluate F(${formatNumber(to)}) - F(${formatNumber(from)}).`,
+      `Final answer: ${formatNumber(upper)} - ${formatNumber(lower)} = ${formatNumber(value)}.`,
+    ],
   });
 }
 
@@ -299,6 +335,12 @@ function parseLimitRequest(classification: ProblemClassification): LimitRequest 
   return null;
 }
 
+function parseDefiniteIntegral(rawInput: string, variable: string) {
+  const match = rawInput.match(/^(?:integrate|integral\s+of)\s+(.+?)\s+from\s+([-+]?\d+(?:\.\d+)?)\s+to\s+([-+]?\d+(?:\.\d+)?)$/i);
+  if (!match) return null;
+  return { expression: cleanCalculusExpression(match[1], variable), from: Number(match[2]), to: Number(match[3]) };
+}
+
 function isStandardSineLimit(expression: string, variable: string, target: string) {
   const normalized = normalizeCalculusExpression(expression).toLowerCase();
   return isZero(Number(target)) && (normalized === `sin(${variable})/${variable}` || normalized === `(sin(${variable}))/${variable}`);
@@ -341,6 +383,17 @@ function normalizeCalculusExpression(value: string) {
 
 function normalizeArrows(value: string) {
   return value.replace(/→|â†’|Ã¢â€ â€™/g, "->").replace(/âˆ«|Ã¢Ë†Â«/g, "\u222b");
+}
+
+function evaluateSimpleExpression(expression: string, variable: string, value: number) {
+  const substituted = expression.replace(new RegExp(`\\b${escapeRegExp(variable)}\\b`, "g"), `(${formatNumber(value)})`).replace(/\^/g, "**");
+  if (!/^[\d+\-*/().\s]+$/.test(substituted)) return null;
+  try {
+    const evaluated = Number(Function(`"use strict"; return (${substituted});`)());
+    return Number.isFinite(evaluated) ? evaluated : null;
+  } catch {
+    return null;
+  }
 }
 
 function splitSignedTerms(expression: string) {

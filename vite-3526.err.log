@@ -124,3 +124,4 @@
       at step (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:287:14)
       at C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:273:13
       at async.call.result.err.err (C:\Users\Sai Satish\Documents\GitHub\Math Universe\node_modules\gensync\index.js:223:11)
+[2m9:18:11 pm[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to load url /src/problem-solver/mathKeywordRecognizer.ts (resolved id: C:/Users/Sai Satish/Documents/GitHub/Math Universe/src/problem-solver/mathKeywordRecognizer.ts) in C:/Users/Sai Satish/Documents/GitHub/Math Universe/src/pages/StepByStepProblemSolver.tsx. Does the file exist?

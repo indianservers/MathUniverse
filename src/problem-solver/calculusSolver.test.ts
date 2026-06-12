@@ -34,6 +34,13 @@ describe("calculus solver", () => {
     expect(result.assumptions.join(" ")).toContain("constant of integration");
   });
 
+  it("solves simple definite integrals with bounds", () => {
+    const { result } = solve("integrate x from 0 to 2");
+    expect(result.result).toBe("2");
+    expect(result.method).toBe("Definite integral by antiderivative");
+    expect(result.steps.join(" ")).toContain("F(2) - F(0)");
+  });
+
   it.each([
     ["limit x->2 x^2 + 1", "5"],
     ["lim x->0 sin(x)/x", "1"],
