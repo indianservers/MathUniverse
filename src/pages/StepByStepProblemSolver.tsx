@@ -6,10 +6,9 @@ import { CopyResultButton, PresetChips, PrintWorksheetButton, RelatedToolLinks, 
 import { solveAlgebraSteps } from "../problem-solver/algebraStepSolver";
 import { solveCalculus } from "../problem-solver/calculusSolver";
 import { solveExpressionOperation } from "../problem-solver/expressionOperationSolver";
+import { MathRecognitionPanel } from "../problem-solver/intelligence/MathRecognitionPanel";
+import { recognizeMathInput } from "../problem-solver/intelligence/mathRecognizer";
 import { solveMatrix } from "../problem-solver/matrixSolver";
-import { MathTokenHighlighter } from "../problem-solver/MathTokenHighlighter";
-import { recognizeMathKeywords } from "../problem-solver/mathKeywordRecognizer";
-import { buildMathSuggestions, detectEducationLevel } from "../problem-solver/mathSuggestions";
 import { classifyProblem } from "../problem-solver/problemClassifier";
 import { ProblemGraph, ValueTablePanel } from "../problem-solver/ProblemGraph";
 import { solveStatistics } from "../problem-solver/statisticsSolver";
@@ -25,9 +24,7 @@ const equationKinds: ProblemIntentKind[] = ["linear-equation", "quadratic-equati
 export default function StepByStepProblemSolver() {
   const [equation, setEquation] = useState("2*x+5=17");
   const classification = useMemo(() => classifyProblem(equation), [equation]);
-  const recognizedTokens = useMemo(() => recognizeMathKeywords(equation), [equation]);
-  const mathSuggestions = useMemo(() => buildMathSuggestions(equation, recognizedTokens), [equation, recognizedTokens]);
-  const educationLevel = useMemo(() => detectEducationLevel(recognizedTokens), [recognizedTokens]);
+  const recognition = useMemo(() => recognizeMathInput(equation, labelForKind(classification.kind), classification.assumptions, classification.warnings), [equation, classification]);
   const solverResult = useMemo(() => buildSolverResult(classification), [classification]);
   const visual = useMemo(() => buildVisualVerification(classification, solverResult), [classification, solverResult]);
   const cards = useMemo(() => buildProblemResultCards(classification, solverResult, visual), [classification, solverResult, visual]);
@@ -44,7 +41,7 @@ export default function StepByStepProblemSolver() {
         </div>
         <input className="w-full rounded-2xl border border-slate-200 bg-white p-4 font-mono text-lg dark:border-white/10 dark:bg-slate-950/60" value={equation} onChange={(event) => setEquation(event.target.value)} />
         <div className="mt-4"><PresetChips examples={examples} onSelect={setEquation} /></div>
-        <MathTokenHighlighter tokens={recognizedTokens} classification={classification} suggestions={mathSuggestions} educationLevel={educationLevel} />
+        <MathRecognitionPanel result={recognition} />
       </SectionCard>
       <ResultWorkspace cards={cards} result={solverResult} visual={visual} />
     </div>

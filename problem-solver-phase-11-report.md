@@ -2,24 +2,44 @@
 
 ## 1. Summary
 
-Phase 11 upgrades `/problem-solver` with an offline AI-like math recognition layer. The app now highlights recognized math tokens from school level through engineering mathematics, detects a simple education level, and shows smart suggestions for syntax fixes and clearer solver input. This is a deterministic browser-only intelligence layer; it does not replace the existing classifier or solver pipeline.
+Phase 11 upgrades `/problem-solver` with an offline AI-like math recognition subsystem. The app now highlights recognized math tokens from school level through engineering mathematics, detects a simple education level, shows smart suggestions, and exposes an internal recognition audit for debugging. This is a deterministic browser-only intelligence layer; it does not replace the existing classifier or solver pipeline.
 
 ## 2. Files Added
 
-- `src/problem-solver/mathKeywordRecognizer.ts` - expanded tokenizer and keyword recognizer.
-- `src/problem-solver/MathTokenHighlighter.tsx` - colored token UI, structure preview, warnings, suggestions, and education-level summary.
-- `src/problem-solver/mathSuggestions.ts` - smart suggestions and education-level detection.
+- `src/problem-solver/intelligence/mathRecognitionTypes.ts` - shared token, result, keyword, suggestion, and audit types.
+- `src/problem-solver/intelligence/mathKeywordDictionary.ts` - auditable dictionary of keywords, aliases, categories, descriptions, levels, examples, and symbol mappings.
+- `src/problem-solver/intelligence/mathTokenizer.ts` - deterministic tokenizer for phrases, symbols, numbers, words, variables, and unknowns.
+- `src/problem-solver/intelligence/mathRecognizer.ts` - subsystem orchestrator returning a full `MathRecognitionResult`.
+- `src/problem-solver/intelligence/mathSuggestions.ts` - smart suggestions.
+- `src/problem-solver/intelligence/mathEducationLevel.ts` - education-level detection and formatting.
+- `src/problem-solver/intelligence/mathRecognitionAudit.ts` - audit/debug metrics.
+- `src/problem-solver/intelligence/MathTokenHighlighter.tsx` - reusable token chip renderer.
+- `src/problem-solver/intelligence/MathRecognitionPanel.tsx` - full recognition UI with audit details.
+- `src/problem-solver/intelligence/mathRecognizer.test.ts` - subsystem contract and audit tests.
 - `src/problem-solver/mathKeywordRecognizer.test.ts` - expanded token recognition tests.
 - `src/problem-solver/mathSuggestions.test.ts` - smart suggestion and level tests.
 - `problem-solver-phase-11-report.md` - this report.
 
 ## 3. Files Modified
 
-- `src/pages/StepByStepProblemSolver.tsx` - computes recognized tokens, suggestions, and education level from the existing input and renders the recognition panel below the examples.
+- `src/pages/StepByStepProblemSolver.tsx` - computes a `MathRecognitionResult` from the existing input and renders the recognition panel below the examples.
+- `src/problem-solver/mathKeywordRecognizer.ts` - compatibility adapter for existing imports/tests.
+- `src/problem-solver/mathSuggestions.ts` - compatibility adapter for existing imports/tests.
+- `src/problem-solver/MathTokenHighlighter.tsx` - compatibility adapter that renders the new panel.
 
 ## 4. Math Keyword Recognizer Design
 
-The recognizer scans input left to right and applies deterministic matching in this order:
+The feature is now split into small auditable modules:
+
+- Dictionary: owns supported keywords, aliases, labels, descriptions, levels, examples, and suggestions.
+- Tokenizer: converts raw input to `MathRecognizedToken[]`.
+- Suggestions: generates advisory syntax hints.
+- Education level: determines school/intermediate/engineering level.
+- Audit: computes recognition rate, matched keywords, unknown segments, detected functions/symbols/structures, and confidence counts.
+- Recognizer: combines the above into one `MathRecognitionResult`.
+- UI: separates token chips from the full recognition/audit panel.
+
+The tokenizer scans input left to right and applies deterministic matching in this order:
 
 - Multi-word math phrases such as `standard deviation`, `Laplace transform`, `Newton Raphson`, and `second order differential equation`.
 - Multi-character symbols such as `->`, `<=`, `>=`, `dy/dx`, and `d/dx`.
@@ -28,7 +48,7 @@ The recognizer scans input left to right and applies deterministic matching in t
 - Single-letter and indexed variables such as `x`, `y`, `t`, and `x1`.
 - Unknown words/symbols with low confidence and a suggestion.
 
-Each token includes text, normalized text, category, label, description, source span, confidence, and optional suggestion.
+Each token includes text, normalized text, category, label, description, source span, confidence, education level, and optional suggestion.
 
 ## 5. Supported Categories
 
@@ -93,6 +113,7 @@ The `AI Math Recognition` panel now shows:
 - Classifier confidence.
 - Smart suggestions.
 - Warnings for unknown tokens.
+- Recognition audit/debug details.
 
 ## 9. Classifier Integration
 
@@ -102,8 +123,8 @@ The recognizer stays visual and explanatory. The existing classifier remains aut
 
 Verification:
 
-- `npm test -- mathKeywordRecognizer mathSuggestions resultCards graphingUtils valueTable calculusSolver matrixSolver statisticsSolver systemSolver expressionOperationSolver algebraStepSolver problemClassifier symbolic`
-- Result: 13 test files passed, 142 tests passed.
+- `npm test -- mathRecognizer mathKeywordRecognizer mathSuggestions resultCards graphingUtils valueTable calculusSolver matrixSolver statisticsSolver systemSolver expressionOperationSolver algebraStepSolver problemClassifier symbolic`
+- Result: 14 test files passed, 144 tests passed.
 - `npm run typecheck`
 - Result: passed.
 

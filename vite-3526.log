@@ -130,3 +130,10 @@
 [2m9:22:47 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/problem-solver/mathKeywordRecognizer.test.ts[22m
 [2m9:25:21 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/StepByStepProblemSolver.tsx, /src/index.css[22m
 [2m9:26:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/StepByStepProblemSolver.tsx[22m
+[2m9:32:57 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/StepByStepProblemSolver.tsx, /src/index.css[22m
+[2m9:33:05 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/problem-solver/mathKeywordRecognizer.ts[22m
+[2m9:33:13 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/problem-solver/mathKeywordRecognizer.ts[22m
+[2m9:33:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/problem-solver/mathSuggestions.ts[22m
+[2m9:33:37 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/problem-solver/mathSuggestions.ts[22m
+[2m9:33:43 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/problem-solver/MathTokenHighlighter.tsx, /src/index.css[22m
+[2m9:33:52 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/problem-solver/MathTokenHighlighter.tsx[22m
