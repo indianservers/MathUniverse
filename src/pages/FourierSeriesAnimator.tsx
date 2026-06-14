@@ -17,11 +17,14 @@ const PRESETS: Array<{ label: string; harmonics: number; time: number; wave: Wav
 ];
 
 export default function FourierSeriesAnimator() {
-  const [harmonics, setHarmonics] = useState(9);
-  const [time, setTime] = useState(0);
-  const [wave, setWave] = useState<WaveType>("square");
+  const [initialState] = useState(readFourierUrlState);
+  const [harmonics, setHarmonics] = useState(initialState.harmonics);
+  const [time, setTime] = useState(initialState.time);
+  const [wave, setWave] = useState<WaveType>(initialState.wave);
   const [presetOpen, setPresetOpen] = useState(false);
   const [playing, setPlaying] = useState(true);
+  const [leaveTails, setLeaveTails] = useState(false);
+  const [tailPoints, setTailPoints] = useState<Array<{ x: number; y: number }>>([]);
   const data = useMemo(() => seriesData(wave, Math.round(harmonics)), [wave, harmonics]);
   const circles = useMemo(() => harmonicCircles(wave, Math.round(harmonics), time), [wave, harmonics, time]);
 
@@ -31,11 +34,32 @@ export default function FourierSeriesAnimator() {
     return () => window.clearInterval(id);
   }, [playing]);
 
+  useEffect(() => {
+    if (!leaveTails) return;
+    const endpoint = circles[circles.length - 1];
+    if (!endpoint) return;
+    setTailPoints((points) => {
+      const last = points[points.length - 1];
+      if (last && Math.hypot(last.x - endpoint.x, last.y - endpoint.y) < 0.01) return points;
+      return [...points, { x: endpoint.x, y: endpoint.y }].slice(-900);
+    });
+  }, [circles, leaveTails]);
+
+  useEffect(() => {
+    setTailPoints([]);
+  }, [harmonics, leaveTails, wave]);
+
   function applyPreset(preset: typeof PRESETS[0]) {
     setHarmonics(preset.harmonics);
     setTime(preset.time);
     setWave(preset.wave);
+    setTailPoints([]);
     setPresetOpen(false);
+  }
+
+  function resetPhase() {
+    setTime(0);
+    setTailPoints([]);
   }
 
   return (
@@ -81,10 +105,19 @@ export default function FourierSeriesAnimator() {
             {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
             {playing ? "Pause" : "Play"}
           </button>
-          <button type="button" className="action-secondary" onClick={() => setTime(0)}>
+          <button type="button" className="action-secondary" onClick={resetPhase}>
             <RotateCcw className="h-4 w-4" />
             Reset phase
           </button>
+          <label className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-bold text-slate-700 transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+            <input
+              type="checkbox"
+              checked={leaveTails}
+              onChange={(event) => setLeaveTails(event.target.checked)}
+              className="h-4 w-4 accent-cyan-500"
+            />
+            Leave tails
+          </label>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           <SliderControl label="Harmonics" value={harmonics} min={1} max={25} step={2} onChange={setHarmonics} />
@@ -94,7 +127,7 @@ export default function FourierSeriesAnimator() {
 
       <div className="grid gap-5 lg:grid-cols-2">
         <SectionCard title="Spinning Harmonic Circles" description="Each glowing circle contributes one rotating harmonic." compact tone="spotlight">
-          <div className="cinematic-graph-stage"><EpicycleView circles={circles} /></div>
+          <div className="cinematic-graph-stage"><EpicycleView circles={circles} tailPoints={tailPoints} leaveTails={leaveTails} /></div>
         </SectionCard>
         <SectionCard title="Fourier Convergence" description="The target waveform emerges as harmonic energy accumulates." compact tone="spotlight">
           <div className="cinematic-graph-stage p-2"><ResponsiveLineChart data={data} /></div>
@@ -108,7 +141,7 @@ function ResponsiveLineChart({ data }: { data: { x: number; y: number }[] }) {
   return <ResponsiveContainer width="100%" height="100%"><LineChart data={data} margin={{ top: 18, right: 18, bottom: 10, left: 0 }}><CartesianGrid strokeDasharray="3 3" stroke="rgba(103,232,249,.22)" /><XAxis dataKey="x" stroke="#bae6fd" tick={{ fill: "#bae6fd", fontSize: 11 }} /><YAxis stroke="#bae6fd" tick={{ fill: "#bae6fd", fontSize: 11 }} /><Line type="monotone" dataKey="y" stroke="#22d3ee" dot={false} strokeWidth={4} /></LineChart></ResponsiveContainer>;
 }
 
-function EpicycleView({ circles }: { circles: { x: number; y: number; r: number }[] }) {
+function EpicycleView({ circles, tailPoints, leaveTails }: { circles: { x: number; y: number; r: number }[]; tailPoints: { x: number; y: number }[]; leaveTails: boolean }) {
   const scale = 65;
   return (
     <svg viewBox="-220 -160 440 320" className="h-full w-full">
@@ -129,6 +162,18 @@ function EpicycleView({ circles }: { circles: { x: number; y: number; r: number 
       <rect x="-220" y="-160" width="440" height="320" fill="url(#fourier-bg)" />
       <line x1="-220" x2="220" y1="0" y2="0" stroke="#64748b" strokeOpacity="0.55" />
       <line x1="0" x2="0" y1="-160" y2="160" stroke="#64748b" strokeOpacity="0.55" />
+      {leaveTails && tailPoints.length > 1 && (
+        <polyline
+          points={tailPoints.map((point) => `${point.x * scale},${-point.y * scale}`).join(" ")}
+          fill="none"
+          stroke="#22d3ee"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeOpacity="0.42"
+          filter="url(#fourier-glow)"
+        />
+      )}
       {circles.map((circle, index) => <CircleSvg key={index} x={circle.x * scale} y={-circle.y * scale} r={Math.abs(circle.r) * scale} />)}
       {circles.length > 1 && <polyline points={circles.map((c) => `${c.x * scale},${-c.y * scale}`).join(" ")} fill="none" stroke="#f97316" strokeWidth="4" filter="url(#fourier-glow)" />}
     </svg>
@@ -161,4 +206,21 @@ function seriesData(wave: WaveType, n: number) {
     }
     return { x: Number(x.toFixed(2)), y };
   });
+}
+
+function readFourierUrlState() {
+  if (typeof window === "undefined") return { harmonics: 9, time: 0, wave: "square" as WaveType };
+  const params = new URLSearchParams(window.location.search);
+  const harmonics = Number(params.get("v_harmonics"));
+  const time = Number(params.get("v_animation_time"));
+  const waveParam = params.get("v_wave");
+  return {
+    harmonics: Number.isFinite(harmonics) ? clampNumber(harmonics, 1, 25) : 9,
+    time: Number.isFinite(time) ? ((time % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2) : 0,
+    wave: waveParam === "triangle" ? "triangle" as WaveType : "square" as WaveType,
+  };
+}
+
+function clampNumber(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
 }

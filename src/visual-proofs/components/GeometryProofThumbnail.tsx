@@ -247,6 +247,7 @@ function renderThumbnail(key: VisualProofComponentKey) {
     case "ArithmeticProgressionEqualStepsProof":
       return <SequenceLineThumb />;
     case "SumFirstNNaturalNumbersProof":
+      return <NaturalSumRectangleThumb />;
     case "TriangularNumbersProof":
       return <TriangularSequenceThumb />;
     case "SumFirstNOddNumbersProof":
@@ -256,8 +257,9 @@ function renderThumbnail(key: VisualProofComponentKey) {
       return <SeriesBarsThumb paired />;
     case "GeometricProgressionScalingProof":
     case "FiniteGeometricSeriesSumProof":
-    case "InfiniteGeometricSeriesConvergenceProof":
       return <SeriesBarsThumb paired={false} />;
+    case "InfiniteGeometricSeriesConvergenceProof":
+      return <InfiniteHalvesThumb />;
     case "FibonacciSequenceTilingProof":
     case "FibonacciSpiralApproximationProof":
     case "SumOfFibonacciNumbersProof":
@@ -738,6 +740,27 @@ function TriangularSequenceThumb() {
   );
 }
 
+function NaturalSumRectangleThumb() {
+  const size = 11;
+  const startX = 34;
+  const baseY = 72;
+  const blueCells = Array.from({ length: 5 }).flatMap((_, row) =>
+    Array.from({ length: row + 1 }, (__, col) => ({ x: startX + col * size, y: baseY - (row + 1) * size })),
+  );
+  const pinkCells = Array.from({ length: 5 }).flatMap((_, row) =>
+    Array.from({ length: 5 - row }, (__, col) => ({ x: startX + (row + col) * size, y: baseY - (row + 2) * size })),
+  );
+  return (
+    <>
+      <rect x="26" y="12" width="74" height="70" rx="8" fill="#020617" stroke="#334155" strokeWidth="2" />
+      {pinkCells.map((cell, index) => <rect key={`pink-${index}`} x={cell.x} y={cell.y} width={size} height={size} fill="#dc7580" stroke="#f8fafc" strokeWidth="0.8" />)}
+      {blueCells.map((cell, index) => <rect key={`blue-${index}`} x={cell.x} y={cell.y} width={size} height={size} fill="#4338ca" stroke="#f8fafc" strokeWidth="0.8" />)}
+      <text x="118" y="36" fill="#e0f2fe" textAnchor="middle" fontSize="10" fontWeight="900">1+...+n</text>
+      <text x="118" y="55" fill="#f59e0b" textAnchor="middle" fontSize="10" fontWeight="900">n(n+1)/2</text>
+    </>
+  );
+}
+
 function SquareLayerThumb() {
   return (
     <>
@@ -757,6 +780,20 @@ function SeriesBarsThumb({ paired }: { paired: boolean }) {
       {[46, 58, 70, 44, 30, 20].map((height, index) => <rect key={index} x={28 + index * 18} y={78 - height} width="12" height={height} rx="3" fill={index % 2 ? "#22d3ee" : "#8b5cf6"} />)}
       {paired && <path d="M 34 18 C 60 5, 92 5, 118 18" fill="none" stroke="#f59e0b" strokeWidth="3" />}
       <text x="118" y="82" fill="#e0f2fe" textAnchor="middle" fontSize="10" fontWeight="900">{paired ? "pair" : "sum"}</text>
+    </>
+  );
+}
+
+function InfiniteHalvesThumb() {
+  return (
+    <>
+      <rect x="30" y="16" width="70" height="70" fill="#020617" stroke="#e0f2fe" strokeWidth="2" />
+      <rect x="30" y="16" width="35" height="70" fill="#4338ca" stroke="#8dd3d0" strokeWidth="1" />
+      <rect x="65" y="51" width="35" height="35" fill="#3ba5a0" stroke="#8dd3d0" strokeWidth="1" />
+      <rect x="65" y="16" width="17.5" height="35" fill="#4338ca" stroke="#8dd3d0" strokeWidth="1" />
+      <rect x="82.5" y="33.5" width="17.5" height="17.5" fill="#3ba5a0" stroke="#8dd3d0" strokeWidth="1" />
+      <text x="118" y="38" fill="#e0f2fe" textAnchor="middle" fontSize="10" fontWeight="900">1/2+1/4</text>
+      <text x="118" y="58" fill="#f59e0b" textAnchor="middle" fontSize="12" fontWeight="900">= 1</text>
     </>
   );
 }

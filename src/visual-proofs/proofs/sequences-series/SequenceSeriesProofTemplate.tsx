@@ -140,12 +140,12 @@ function SequenceSeriesVisual({ config, values, activeStep, labelsVisible, toggl
         <rect x="18" y="18" width="864" height="504" rx="18" className="fill-slate-50 stroke-slate-200 dark:fill-slate-900 dark:stroke-white/10" />
         <Title title={titleForKind(config.kind)} subtitle={config.steps[activeStep]?.focusLabel ?? "visual proof"} />
         {config.kind === "apSteps" && <ApSteps values={values} labels={labelsVisible} />}
-        {config.kind === "naturalSum" && <TriangularDots n={values.n ?? 8} labels={labelsVisible} duplicate={toggles["Show duplicate rectangle"] ?? true} />}
+        {config.kind === "naturalSum" && <NaturalSumAnimation n={values.n ?? 8} labels={labelsVisible} duplicate={toggles["Show duplicate rectangle"] ?? true} activeStep={activeStep} />}
         {config.kind === "oddSum" && <SquareLayers n={values.n ?? 7} labels={labelsVisible} />}
         {config.kind === "apSum" && <ApSumBars values={values} labels={labelsVisible} showPairs={toggles["Show pair sums"] ?? true} />}
         {config.kind === "gpScaling" && <GpBars values={values} labels={labelsVisible} />}
         {config.kind === "finiteGp" && <FiniteGpBars values={values} labels={labelsVisible} showAlgebra={toggles["Show algebra cancellation"] ?? true} />}
-        {config.kind === "infiniteGp" && <InfiniteGpModel values={values} labels={labelsVisible} />}
+        {config.kind === "infiniteGp" && <InfiniteGpModel values={values} labels={labelsVisible} activeStep={activeStep} />}
         {config.kind === "triangular" && <TriangularDots n={values.n ?? 9} labels={labelsVisible} duplicate={toggles["Show duplicate rectangle"] ?? true} />}
         {config.kind === "squareLayers" && <SquareLayers n={values.n ?? 8} labels={labelsVisible} />}
         {config.kind === "fibTiling" && <FibonacciTiles n={values.n ?? 8} labels={labelsVisible} spiral={false} />}
@@ -209,6 +209,95 @@ function TriangularDots({ n, labels, duplicate }: { n: number; labels: boolean; 
   );
 }
 
+function NaturalSumAnimation({ n, labels, duplicate, activeStep }: { n: number; labels: boolean; duplicate: boolean; activeStep: number }) {
+  const size = Math.min(28, 330 / Math.max(4, n + 1));
+  const originX = 168;
+  const originY = 412;
+  const showDuplicate = duplicate && activeStep >= 2;
+  const showRectangle = duplicate && activeStep >= 4;
+  const sum = naturalNumberSum(n);
+  const stageLabel = ["intro", "construction", "duplicate", "rearrange", "compare", "derive", "conclude"][activeStep] ?? "derive";
+
+  const blueTriangle = Array.from({ length: n }).flatMap((_, row) =>
+    Array.from({ length: row + 1 }, (__, col) => ({
+      x: originX + col * size,
+      y: originY - (row + 1) * size,
+      key: `blue-${row}-${col}`,
+    })),
+  );
+
+  const pinkTriangle = Array.from({ length: n }).flatMap((_, row) =>
+    Array.from({ length: n - row }, (__, col) => ({
+      x: activeStep >= 3 ? originX + (row + col) * size : originX - 42 + col * size,
+      y: activeStep >= 3 ? originY - (row + 2) * size : originY - (n + 2) * size + row * size,
+      key: `pink-${row}-${col}`,
+    })),
+  );
+
+  return (
+    <>
+      <rect x="32" y="28" width="836" height="486" rx="18" fill="#020617" />
+      <text x="80" y="84" fill="#f8fafc" fontSize="24" fontWeight="800">1 + 2 + 3 + ... + n</text>
+      {activeStep >= 5 && (
+        <text x="420" y="84" fill="#f8fafc" fontSize="24" fontWeight="800">
+          = n(n + 1) / 2
+        </text>
+      )}
+      {activeStep === 0 && (
+        <>
+          <text x="118" y="168" fill="#f8fafc" fontSize="32" fontWeight="900">Visual proof target</text>
+          <text x="118" y="214" fill="#cbd5e1" fontSize="20" fontWeight="700">Turn the staircase sum into half of a rectangle.</text>
+        </>
+      )}
+      {activeStep >= 1 && blueTriangle.map((cell) => <ProofCell key={cell.key} x={cell.x} y={cell.y} size={size} fill="#4338ca" />)}
+      {showDuplicate && pinkTriangle.map((cell) => <ProofCell key={cell.key} x={cell.x} y={cell.y} size={size} fill="#dc7580" />)}
+      {activeStep >= 1 && (
+        <>
+          <Brace x1={originX} x2={originX + n * size} y={originY + 18} label="n" />
+          <SideBrace x={originX + n * size + 16} y1={originY - n * size} y2={originY} label={showRectangle ? "n + 1" : "n"} />
+        </>
+      )}
+      {showRectangle && (
+        <rect x={originX} y={originY - (n + 1) * size} width={n * size} height={(n + 1) * size} fill="none" stroke="#f8fafc" strokeWidth="3" />
+      )}
+      {labels && activeStep >= 1 && (
+        <Info
+          x={560}
+          y={330}
+          lines={[
+            `timeline: ${stageLabel}`,
+            `one staircase = ${sum} squares`,
+            showRectangle ? `rectangle = ${n} x ${n + 1} = ${n * (n + 1)}` : "duplicate makes a matching copy",
+            activeStep >= 5 ? `${sum} = ${n}(${n + 1}) / 2` : "step forward to complete the proof",
+          ]}
+        />
+      )}
+    </>
+  );
+}
+
+function ProofCell({ x, y, size, fill }: { x: number; y: number; size: number; fill: string }) {
+  return <rect x={x} y={y} width={size} height={size} fill={fill} stroke="#cbd5e1" strokeWidth="1.4" />;
+}
+
+function Brace({ x1, x2, y, label }: { x1: number; x2: number; y: number; label: string }) {
+  return (
+    <>
+      <path d={`M ${x1} ${y - 8} Q ${x1} ${y} ${x1 + 12} ${y} L ${x2 - 12} ${y} Q ${x2} ${y} ${x2} ${y - 8}`} fill="none" stroke="#f8fafc" strokeWidth="3" />
+      <text x={(x1 + x2) / 2} y={y + 28} textAnchor="middle" fill="#f8fafc" fontSize="24" fontWeight="900">{label}</text>
+    </>
+  );
+}
+
+function SideBrace({ x, y1, y2, label }: { x: number; y1: number; y2: number; label: string }) {
+  return (
+    <>
+      <path d={`M ${x + 8} ${y1} Q ${x} ${y1} ${x} ${y1 + 12} L ${x} ${y2 - 12} Q ${x} ${y2} ${x + 8} ${y2}`} fill="none" stroke="#f8fafc" strokeWidth="3" />
+      <text x={x + 28} y={(y1 + y2) / 2 + 8} fill="#f8fafc" fontSize="24" fontWeight="900">{label}</text>
+    </>
+  );
+}
+
 function SquareLayers({ n, labels }: { n: number; labels: boolean }) {
   const cell = Math.min(24, 320 / n);
   return (
@@ -261,26 +350,77 @@ function FiniteGpBars({ values, labels, showAlgebra }: { values: Values; labels:
   );
 }
 
-function InfiniteGpModel({ values, labels }: { values: Values; labels: boolean }) {
-  const a = values.a ?? 4;
-  const r = values.r ?? 0.5;
+function InfiniteGpModel({ values, labels, activeStep }: { values: Values; labels: boolean; activeStep: number }) {
   const n = values.n ?? 8;
-  const sum = finiteGeometricSum(a, r, n);
-  const limit = infiniteGeometricSum(a, r);
-  let x = 90;
+  const squareX = 128;
+  const squareY = 146;
+  const squareSize = 310;
+  const terms = buildUnitSquareHalves(Math.min(n, activeStep === 0 ? 0 : Math.max(2, activeStep + 2)));
+  const partialSum = 1 - 1 / 2 ** terms.length;
+  const stageLabel = ["intro", "construction", "transformation", "rearrangement", "comparison", "formula derivation", "conclusion"][activeStep] ?? "formula derivation";
   return (
     <>
-      {Array.from({ length: n }, (_, index) => {
-        const width = Math.max(6, 460 * (geometricTerm(1, r, index + 1) / Math.max(1, a)));
-        const rect = <rect key={index} x={x} y="190" width={width} height="150" rx="8" fill={index % 2 ? "#06b6d4" : "#8b5cf6"} opacity="0.82" />;
-        x += width;
-        return rect;
-      })}
-      <rect x="90" y="370" width="460" height="18" rx="9" fill="#e2e8f0" />
-      <rect x="90" y="370" width={Math.min(460, (sum / limit) * 460)} height="18" rx="9" fill="#22c55e" />
-      {labels && <Info x={585} y={260} lines={[`Partial sum = ${formatNumber(sum)}`, `Limit = ${formatNumber(limit)}`, "The gap shrinks"]} />}
+      <rect x="32" y="28" width="836" height="486" rx="18" fill="#020617" />
+      <text x="82" y="86" fill="#f8fafc" fontSize="27" fontWeight="900">
+        1/2 + 1/4 + 1/8 + ... + 1/2^k + ...
+      </text>
+      {activeStep >= 5 && <text x="642" y="86" fill="#f8fafc" fontSize="27" fontWeight="900">= 1</text>}
+      {activeStep === 0 && (
+        <>
+          <text x="106" y="166" fill="#f8fafc" fontSize="32" fontWeight="900">Visual proof target</text>
+          <text x="106" y="212" fill="#cbd5e1" fontSize="20" fontWeight="700">Keep halving the remaining space inside one unit square.</text>
+        </>
+      )}
+      {activeStep >= 1 && (
+        <>
+          <rect x={squareX} y={squareY} width={squareSize} height={squareSize} fill="#0f172a" stroke="#f8fafc" strokeWidth="3" />
+          {terms.map((term, index) => (
+            <g key={term.label}>
+              <rect x={squareX + term.x * squareSize} y={squareY + term.y * squareSize} width={term.w * squareSize} height={term.h * squareSize} fill={index % 2 === 0 ? "#4338ca" : "#3ba5a0"} stroke="#8dd3d0" strokeWidth="1.2" opacity="0.96" />
+              {term.w * squareSize > 24 && term.h * squareSize > 22 && (
+                <text x={squareX + (term.x + term.w / 2) * squareSize} y={squareY + (term.y + term.h / 2) * squareSize + 8} textAnchor="middle" fill="#f8fafc" fontSize={Math.max(10, Math.min(38, term.w * squareSize * 0.28))} fontWeight="900">
+                  {term.label}
+                </text>
+              )}
+            </g>
+          ))}
+          <Brace x1={squareX} x2={squareX + squareSize} y={squareY + squareSize + 18} label="1" />
+          <SideBrace x={squareX - 28} y1={squareY} y2={squareY + squareSize} label="1" />
+        </>
+      )}
+      {labels && activeStep >= 1 && (
+        <Info
+          x={540}
+          y={248}
+          lines={[
+            `timeline: ${stageLabel}`,
+            `visible sum = ${formatNumber(partialSum)}`,
+            `unfilled gap = 1/2^${terms.length}`,
+            activeStep >= 5 ? "as k grows, the gap tends to 0" : "each new region takes half the gap",
+          ]}
+        />
+      )}
     </>
   );
+}
+
+function buildUnitSquareHalves(count: number) {
+  let x = 0;
+  const y = 0;
+  let w = 1;
+  let h = 1;
+  return Array.from({ length: count }, (_, index) => {
+    const denominator = 2 ** (index + 1);
+    if (index % 2 === 0) {
+      const rect = { x, y, w: w / 2, h, label: `1/${denominator}` };
+      x += w / 2;
+      w /= 2;
+      return rect;
+    }
+    const rect = { x, y: y + h / 2, w, h: h / 2, label: `1/${denominator}` };
+    h /= 2;
+    return rect;
+  });
 }
 
 function Bars({ terms, labels, info }: { terms: number[]; labels: boolean; info: string[] }) {
