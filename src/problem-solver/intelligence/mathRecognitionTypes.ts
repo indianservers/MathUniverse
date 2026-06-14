@@ -56,11 +56,19 @@ export interface MathRecognitionResult {
   tokens: MathRecognizedToken[];
   categories: MathTokenCategory[];
   level: MathRecognitionLevel;
+  operationInsight?: MathOperationInsight;
   possibleProblemType: string;
   assumptions: string[];
   warnings: string[];
   suggestions: string[];
   audit: MathRecognitionAudit;
+}
+
+export interface MathOperationInsight {
+  confidence: MathTokenConfidence;
+  explanation: string;
+  name: string;
+  normalizedExpression?: string;
 }
 
 export interface MathRecognitionAudit {

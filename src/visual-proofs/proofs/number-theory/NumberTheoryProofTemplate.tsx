@@ -63,6 +63,7 @@ export default function NumberTheoryProofTemplate({ category, proof, config }: {
             isPlaying={isPlaying}
             labelsVisible={labelsVisible}
             formulaVisible={formulaVisible}
+            playLabel={`Play ${proof.title}`}
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
             onReset={() => {
@@ -102,7 +103,16 @@ export default function NumberTheoryProofTemplate({ category, proof, config }: {
           </section>
         </div>
       }
-      steps={<StepPanel activeStep={activeStep} steps={config.steps} />}
+      steps={
+        <StepPanel
+          activeStep={activeStep}
+          steps={config.steps}
+          onSelectStep={(step) => {
+            setIsPlaying(false);
+            setActiveStep(step);
+          }}
+        />
+      }
       formula={formulaVisible ? <FormulaPanel formulas={[...config.formulas, ...dynamicFormulas]} /> : <HiddenPanel title="Formula hidden" />}
       conceptNotes={
         <ul className="list-disc space-y-2 pl-5">

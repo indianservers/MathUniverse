@@ -155,6 +155,7 @@ function alternativeMethodFor(classification: ProblemClassification, result: Pro
   if (classification.kind === "system") return "Linear systems can also be solved by substitution, elimination, or matrix row-reduction.";
   if (classification.kind === "statistics") return "For data sets, compare the center with spread measures such as range, variance, and standard deviation.";
   if (classification.kind === "matrix") return "Matrix operations can often be checked by row-reduction or multiplication verification.";
+  if (classification.kind === "word-problem") return "You can also rewrite the sentence as a formula first, then solve that formula directly.";
   return "";
 }
 
@@ -173,6 +174,7 @@ function relatedConceptsFor(kind: string) {
     system: ["Elimination", "Substitution", "Matrix methods"],
     statistics: ["Center", "Spread", "Frequency"],
     matrix: ["Rows and columns", "Determinants", "Row-reduction"],
+    "word-problem": ["Formula translation", "Unit rate", "Percent change"],
   };
   return concepts[kind] ?? [];
 }
@@ -190,6 +192,7 @@ function practiceFor(kind: string) {
     system: ["2x + 3y = 12; x - y = 1", "x + y = 2; x + y = 3"],
     statistics: ["median of 4, 6, 8, 10", "frequency table of 1, 2, 2, 3"],
     matrix: ["determinant [[1,2],[3,4]]", "transpose [[1,2],[3,4]]"],
+    "word-problem": ["A train travels 60 km in 2 hours", "Rectangle length 8 width 5 area"],
   };
   return practice[kind] ?? [];
 }

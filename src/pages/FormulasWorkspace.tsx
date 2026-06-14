@@ -692,7 +692,7 @@ export default function Formulas() {
             />
           )}
 
-          <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
+          <section className="grid gap-4">
             <div className="min-w-0 space-y-4">
               <FormulaTagPicker
                 selectedTags={selectedTags}
@@ -763,20 +763,7 @@ export default function Formulas() {
               )}
             </div>
 
-            <aside className="hidden min-w-0 space-y-4 xl:block">
-              <FormulaDetailPane
-                bookmarks={bookmarks}
-                copyValue={copyValue}
-                onToggleBookmark={() => selectedRecord && toggleBookmark(selectedRecord.id)}
-                progress={selectedRecord ? progress[selectedRecord.id] ?? "new" : "new"}
-                record={selectedRecord}
-                familyRecords={selectedFamilyRecords}
-                relatedRecords={relatedRecords}
-                setProgress={(state) => selectedRecord && setProgress((items) => ({ ...items, [selectedRecord.id]: state }))}
-                setQuery={setQuery}
-              />
-              <RecentAndFavorites bookmarks={bookmarkedRecords} onSelect={updateUrlForRecord} recent={recentRecords} />
-            </aside>
+            <RecentAndFavorites bookmarks={bookmarkedRecords} onSelect={updateUrlForRecord} recent={recentRecords} />
           </section>
         </main>
       </div>
@@ -1145,47 +1132,6 @@ function FormulaLibraryCard({
   );
 }
 
-function FormulaDetailPane({ bookmarks, copyValue: _copyValue, familyRecords, onToggleBookmark, progress, record, relatedRecords, setProgress, setQuery }: {
-  bookmarks: string[];
-  copyValue: (value: string) => Promise<void>;
-  familyRecords: FormulaLineRecord[];
-  onToggleBookmark: () => void;
-  progress: ProgressState;
-  record?: FormulaLineRecord;
-  relatedRecords: FormulaLineRecord[];
-  setProgress: (state: ProgressState) => void;
-  setQuery: (query: string) => void;
-}) {
-  if (!record) return null;
-  return (
-    <SectionCard title="Quick Preview" description="Desktop master/detail panel." compact>
-      <div className="space-y-3">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="text-xs font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">{record.category.title}</p>
-            <h2 className="mt-1 text-lg font-black text-slate-950 dark:text-white">{record.title}</h2>
-          </div>
-          <button type="button" onClick={onToggleBookmark} className="math-tool-button">
-            {bookmarks.includes(record.id) ? <BookmarkCheck className="h-4 w-4 text-cyan-500" /> : <Bookmark className="h-4 w-4" />}
-          </button>
-        </div>
-        <FormulaImageStrip title={record.title} formula={`${record.category.title} ${record.formula}`} />
-        <GeometryMiniPreview record={record} large />
-        <FormulaLine formula={record.formula} />
-        <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{record.item.note}</p>
-        <FormulaDetails record={record} familyRecords={familyRecords} relatedRecords={relatedRecords} setQuery={setQuery} />
-        <Link to={`/workspace?formula=${encodeURIComponent(record.formula)}`} className="formula-small-action w-fit"><Zap className="h-3.5 w-3.5" /> Workspace</Link>
-        <div className="flex flex-wrap gap-2">
-          <Chip active={progress === "mastered"} label="Understood" onClick={() => setProgress("mastered")} />
-          <Chip active={progress === "revision"} label="Review" onClick={() => setProgress("revision")} />
-          <Chip active={progress === "viewed"} label="Viewed" onClick={() => setProgress("viewed")} />
-          <Chip active={progress === "new"} label="Not started" onClick={() => setProgress("new")} />
-        </div>
-      </div>
-    </SectionCard>
-  );
-}
-
 function FormulaDetails({ record, familyRecords = [], relatedRecords, setQuery }: { record: FormulaLineRecord; familyRecords?: FormulaLineRecord[]; relatedRecords: FormulaLineRecord[]; setQuery: (query: string) => void }) {
   return (
     <div className="space-y-3 text-sm">
@@ -1438,29 +1384,29 @@ function GeometryMiniPreview({ record, large = false }: { record?: FormulaLineRe
   if (type === "none") return null;
   return (
     <div className={clsx("geometry-mini-preview", large && "large")} aria-hidden="true">
-      <svg viewBox="0 0 64 64" role="img">
+      <svg viewBox="0 0 64 64" role="img" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
         {type === "circle" && (
           <>
             <circle cx="32" cy="32" r="20" />
             <line x1="32" y1="32" x2="52" y2="32" />
-            <text x="40" y="29">r</text>
+            <text x="40" y="29" stroke="none" fill="currentColor">r</text>
           </>
         )}
         {type === "sector" && (
           <>
-            <path d="M32 32 L52 32 A20 20 0 0 0 42 15 Z" />
+            <path d="M32 32 L52 32 A20 20 0 0 0 42 15 Z" fill="rgba(34, 211, 238, 0.16)" />
             <path d="M40 32 A8 8 0 0 0 36 25" className="accent" />
           </>
         )}
         {type === "triangle" && (
           <>
-            <path d="M12 50 L32 12 L54 50 Z" />
+            <path d="M12 50 L32 12 L54 50 Z" fill="rgba(34, 211, 238, 0.12)" />
             <line x1="32" y1="12" x2="32" y2="50" />
-            <text x="35" y="35">h</text>
+            <text x="35" y="35" stroke="none" fill="currentColor">h</text>
           </>
         )}
-        {type === "quadrilateral" && <path d="M13 18 H51 V47 H13 Z" />}
-        {type === "polygon" && <path d="M32 9 L53 24 L45 51 H19 L11 24 Z" />}
+        {type === "quadrilateral" && <path d="M13 18 H51 V47 H13 Z" fill="rgba(34, 211, 238, 0.12)" />}
+        {type === "polygon" && <path d="M32 9 L53 24 L45 51 H19 L11 24 Z" fill="rgba(34, 211, 238, 0.12)" />}
         {type === "line" && (
           <>
             <line x1="10" y1="50" x2="54" y2="14" />

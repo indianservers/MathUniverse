@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Clock3, Search, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { iconMap, navItems, navSections, type NavItem } from "./navItems";
+import { basicNavItemSearchText, iconMap, navItems, navSections, normalizeNavSearchText, type NavItem } from "./navItems";
 
 type MobileNavProps = {
   open: boolean;
@@ -23,12 +23,12 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
   const [recentRoutes, setRecentRoutes] = useState<string[]>([]);
   const recentTools = useMemo(() => recentRoutes.map((route) => navItems.find((item) => item.route === route)).filter((item): item is NonNullable<typeof item> => Boolean(item)).slice(0, 4), [recentRoutes]);
   const filteredSections = useMemo(() => {
-    const value = query.trim().toLowerCase();
-    if (!value) return navSections;
+    const searchTerms = normalizeNavSearchText(query).split(" ").filter(Boolean);
+    if (!searchTerms.length) return navSections;
     return navSections
       .map((section) => ({
         ...section,
-        items: filterNavItems(section.items, value, section.title),
+        items: filterNavItems(section.items, searchTerms, section.title),
       }))
       .filter((section) => section.items.length);
   }, [query]);
@@ -239,10 +239,10 @@ function itemHasActiveRoute(item: NavItem, pathname: string): boolean {
   return isActiveRoute(pathname, item.route);
 }
 
-function filterNavItems(items: NavItem[], value: string, sectionTitle: string): NavItem[] {
+function filterNavItems(items: NavItem[], searchTerms: string[], sectionTitle: string): NavItem[] {
   return items.reduce<NavItem[]>((matches, item) => {
-    const children = filterNavItems(item.children ?? [], value, sectionTitle);
-    const match = `${item.title} ${sectionTitle}`.toLowerCase().includes(value);
+    const children = filterNavItems(item.children ?? [], searchTerms, sectionTitle);
+    const match = searchTerms.every((term) => basicNavItemSearchText(item, sectionTitle).includes(term));
     if (match || children.length > 0) matches.push({ ...item, children });
     return matches;
   }, []);

@@ -28,4 +28,24 @@ describe("Sidebar menu search", () => {
   ])("finds Class 10 Real Numbers for %s", (query) => {
     expect(searchableTitles(query)).toContain("Class 10 Real Numbers");
   });
+
+  it.each([
+    ["ven", "Interactive Venn Diagrams"],
+    ["venn diagram", "Interactive Venn Diagrams"],
+    ["set theory", "Set Theory and Relations"],
+    ["relations", "Relations and Matrices"],
+    ["hasse", "Hasse Diagram and Partial Orders"],
+    ["truth table", "Truth Tables"],
+    ["permutation", "Permutations and Combinations"],
+    ["graph theory", "Graph Theory"],
+  ])("finds implemented submenu topic %s", (query, expectedTitle) => {
+    expect(searchableTitles(query)).toContain(expectedTitle);
+  });
+
+  it("promotes implemented modules into the main Math Topics menu", () => {
+    expect(searchableTitles("set theory")).toContain("Set Theory and Relations");
+    expect(searchableTitles("mathematical logic")).toContain("Mathematical Logic");
+    expect(searchableTitles("combinatorics")).toContain("Combinatorics");
+    expect(searchableTitles("statistics probability")).toContain("Statistics and Probability");
+  });
 });

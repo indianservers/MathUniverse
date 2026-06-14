@@ -42,6 +42,23 @@ describe("statistics solver", () => {
     expect(result.steps.join(" ")).toContain("sqrt(5)");
   });
 
+  it.each([
+    ["mean(34,34,56,78)", "50.5"],
+    ["AVERAGE(34,34,56,78)", "50.5"],
+    ["MEDIAN(34,34,56,78)", "45"],
+    ["MODE.SNGL(2, 3, 3, 5)", "3"],
+    ["VAR.P(4,6,8,10)", "5"],
+    ["VAR.S(4,6,8,10)", "6.6667"],
+    ["STDEV.P(4,6,8,10)", "2.2361"],
+    ["STDEV.S(4,6,8,10)", "2.582"],
+    ["QUARTILES(2,4,6,8,10)", "Q1 = 3, Q2 = 6, Q3 = 9"],
+  ])("supports Excel-style statistics formula %s", (input, expected) => {
+    const { classification, result } = solve(input);
+    expect(classification.kind).toBe("statistics");
+    expect(result.result).toContain(expected);
+    expect(result.steps.join(" ")).toContain("Final answer");
+  });
+
   it("computes sample variance", () => {
     const { result } = solve("sample variance of 4, 6, 8, 10");
     expect(result.result).toBe("6.6667");

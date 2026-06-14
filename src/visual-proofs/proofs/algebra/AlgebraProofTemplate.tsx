@@ -65,6 +65,7 @@ export default function AlgebraProofTemplate({ category, proof, config }: Algebr
         isPlaying={isPlaying}
         labelsVisible={labelsVisible}
         formulaVisible={formulaVisible}
+        playLabel={`Play ${proof.title}`}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onReset={reset}

@@ -12,6 +12,7 @@ export type ProblemIntentKind =
   | "system"
   | "statistics"
   | "matrix"
+  | "word-problem"
   | "unsupported";
 
 export type ProblemConfidence = "high" | "medium" | "low";

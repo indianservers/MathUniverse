@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Clock3 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock3, MousePointer2, Play, SlidersHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
 import type { VisualProof, VisualProofCategory } from "../data/proofTypes";
@@ -56,6 +56,20 @@ export default function VisualProofLayout({
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
         <main className="min-w-0 space-y-4">
+          <section className="grid gap-2 rounded-xl border border-cyan-200 bg-cyan-50/85 p-3 text-sm font-black text-cyan-950 shadow-sm dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-50 sm:grid-cols-3" aria-label="How to interact with this proof">
+            <div className="flex items-center gap-2 rounded-lg bg-white/75 px-3 py-2 dark:bg-slate-950/35">
+              <Play className="h-4 w-4 shrink-0" aria-hidden="true" />
+              Press Play or step forward.
+            </div>
+            <div className="flex items-center gap-2 rounded-lg bg-white/75 px-3 py-2 dark:bg-slate-950/35">
+              <MousePointer2 className="h-4 w-4 shrink-0" aria-hidden="true" />
+              Drag bright points or pieces when shown.
+            </div>
+            <div className="flex items-center gap-2 rounded-lg bg-white/75 px-3 py-2 dark:bg-slate-950/35">
+              <SlidersHorizontal className="h-4 w-4 shrink-0" aria-hidden="true" />
+              Move sliders and watch values change.
+            </div>
+          </section>
           <section className="overflow-hidden rounded-xl border border-slate-200 bg-white/90 shadow-sm dark:border-white/10 dark:bg-slate-950/50" aria-label="Interactive visual area">
             {visual}
           </section>
@@ -66,6 +80,14 @@ export default function VisualProofLayout({
               <div className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">{conceptNotes}</div>
             </section>
           </div>
+          <section className="rounded-xl border border-cyan-200/70 bg-cyan-50/80 p-4 dark:border-cyan-300/20 dark:bg-cyan-300/10">
+            <h2 className="text-base font-black text-cyan-950 dark:text-cyan-50">Proof check</h2>
+            <div className="mt-3 grid gap-3 text-sm font-bold leading-6 text-cyan-950 dark:text-cyan-100 md:grid-cols-3">
+              <div className="rounded-lg bg-white/75 p-3 dark:bg-slate-950/35">1. The visual starts with the same object the formula names.</div>
+              <div className="rounded-lg bg-white/75 p-3 dark:bg-slate-950/35">2. Each move preserves the count, area, length, or angle being measured.</div>
+              <div className="rounded-lg bg-white/75 p-3 dark:bg-slate-950/35">3. The final shape is easier to count, so the equation follows.</div>
+            </div>
+          </section>
           <section className="rounded-xl border border-slate-200 bg-white/88 p-4 dark:border-white/10 dark:bg-white/[0.05]">
             <h2 className="text-base font-black text-slate-950 dark:text-white">Practice and reflection</h2>
             <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm leading-6 text-slate-600 dark:text-slate-300">

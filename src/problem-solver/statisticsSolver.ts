@@ -333,19 +333,20 @@ function statsResult(classification: ProblemClassification, data: {
 }
 
 function detectOperation(rawInput: string): StatsOperation {
-  const lower = rawInput.trim().toLowerCase();
+  const lower = rawInput.trim().toLowerCase().replace(/^=\s*/, "").replace(/^(?:please\s+|can you\s+|could you\s+|would you\s+)?(?:what is|what's|calculate|compute|evaluate|find)\s+/, "");
+  const functionName = lower.match(/^([a-z][a-z0-9.]*)\s*\(/i)?.[1] ?? "";
   if (/^weighted\s+(mean|average)\b/.test(lower)) return "weighted-mean";
-  if (/^sample\s+standard\s+deviation\b/.test(lower)) return "sample-standard-deviation";
-  if (/^standard\s+deviation\b/.test(lower)) return "standard-deviation";
-  if (/^sample\s+variance\b/.test(lower)) return "sample-variance";
-  if (/^variance\b/.test(lower)) return "variance";
+  if (/^sample\s+standard\s+deviation\b/.test(lower) || functionName === "stdev.s") return "sample-standard-deviation";
+  if (/^standard\s+deviation\b/.test(lower) || ["stdev", "stdev.p", "standarddeviation"].includes(functionName)) return "standard-deviation";
+  if (/^sample\s+variance\b/.test(lower) || ["var.s"].includes(functionName)) return "sample-variance";
+  if (/^variance\b/.test(lower) || ["variance", "var", "var.p"].includes(functionName)) return "variance";
   if (/^five\s+number\s+summary\b/.test(lower)) return "five-number-summary";
-  if (/^frequency\s+table\b/.test(lower)) return "frequency-table";
-  if (/^quartiles\b/.test(lower)) return "quartiles";
-  if (/^median\b/.test(lower)) return "median";
-  if (/^mode\b/.test(lower)) return "mode";
-  if (/^range\b/.test(lower)) return "range";
-  if (/^mean\b/.test(lower)) return "mean";
+  if (/^frequency\s+table\b/.test(lower) || ["frequency", "frequency.table"].includes(functionName)) return "frequency-table";
+  if (/^quartiles\b/.test(lower) || ["quartile", "quartile.inc", "quartiles"].includes(functionName)) return "quartiles";
+  if (/^median\b/.test(lower) || functionName === "median") return "median";
+  if (/^mode\b/.test(lower) || ["mode", "mode.sngl"].includes(functionName)) return "mode";
+  if (/^range\b/.test(lower) || functionName === "range") return "range";
+  if (/^(mean|average)\b/.test(lower) || ["mean", "average"].includes(functionName)) return "mean";
   return "summary";
 }
 

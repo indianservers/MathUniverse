@@ -2,12 +2,12 @@ import { NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, ChevronsLeft, ChevronsRight, Clock3, Menu, Orbit, Search } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { siteLinks } from "../../data/siteLinks";
-import { iconMap, navItems, navSections, type NavItem } from "./navItems";
+import { basicNavItemSearchText, iconMap, navItems, navSections, normalizeNavSearchText, type NavItem } from "./navItems";
 
 const recentToolsKey = "math-universe-recent-tools";
 const siteSearchTextByPath = new Map(siteLinks.map((link) => [
   normalizeRoute(link.path),
-  normalizeSearchText([
+  normalizeNavSearchText([
     link.title,
     link.description,
     link.category,
@@ -29,7 +29,7 @@ export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem("math-universe-sidebar-collapsed") === "true");
   const recentTools = useMemo(() => recentRoutes.map((route) => navItems.find((item) => item.route === route)).filter((item): item is NonNullable<typeof item> => Boolean(item)).slice(0, 5), [recentRoutes]);
   const filteredSections = useMemo(() => {
-    const searchTerms = normalizeSearchText(query).split(" ").filter(Boolean);
+    const searchTerms = normalizeNavSearchText(query).split(" ").filter(Boolean);
     if (!searchTerms.length) return navSections;
     return navSections
       .map((section) => ({
@@ -255,13 +255,7 @@ export function filterNavItems(items: NavItem[], searchTerms: string[], sectionT
 
 function navItemSearchText(item: NavItem, sectionTitle: string) {
   const siteSearchText = siteSearchTextByPath.get(normalizeRoute(item.route)) ?? "";
-  return normalizeSearchText([
-    sectionTitle,
-    item.title,
-    item.route,
-    ...(item.searchTerms ?? []),
-    siteSearchText,
-  ].join(" "));
+  return normalizeNavSearchText([basicNavItemSearchText(item, sectionTitle), siteSearchText].join(" "));
 }
 
 function normalizeRoute(route: string) {
@@ -270,14 +264,7 @@ function normalizeRoute(route: string) {
 }
 
 export function normalizeSearchText(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/\bh[\s._-]*c[\s._-]*f\b/g, "hcf")
-    .replace(/\bg[\s._-]*c[\s._-]*d\b/g, "gcd")
-    .replace(/\bl[\s._-]*c[\s._-]*m\b/g, "lcm")
-    .replace(/&/g, " and ")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
+  return normalizeNavSearchText(value);
 }
 
 function navItemKey(item: NavItem) {

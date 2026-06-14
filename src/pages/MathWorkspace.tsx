@@ -16,6 +16,7 @@ import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, s
 import { commandExamplesFor, commandRegistrySummary, normalizeCommandName, resolveCommandSpec } from "../workspace/commandRegistry";
 import { createAnimationAction, describeTransformAction, parseStyleAction, parseTransformCommand } from "../workspace/actionCommandKernel";
 import { assessConstruction, buildBeyondGeoGebraUnitPackages, commandDocsForPackages, objectAwareTutorResponse, productionReadinessPlan, validateGuidedTaskResponse, type UnitLabPackage } from "../workspace/beyondGeoGebraKernel";
+import { createDefaultLesson, lessonStepKinds, lessonSummary, type ClassroomLesson, type LessonStep } from "../workspace/classroomAuthoring";
 import { criticalGapImplementationPhases } from "../workspace/criticalGapPhases";
 import { createMathObject } from "../workspace/coreObjects";
 import { buildDynamicObjectGraph, graphHealthSummary, type DynamicObjectGraph, type DynamicObjectKind } from "../workspace/dynamicObjectKernel";
@@ -60,6 +61,7 @@ import {
 } from "../workspace/geometry3dKernel";
 import { createCasCard, createDynamicTable, createListObject } from "../workspace/casTableKernel";
 import { clearOfflineProjectLibrary, readOfflineProjectLibrary, removeOfflineProject, saveOfflineProject, type OfflineProjectEntry } from "../workspace/offlineProjectLibrary";
+import { computePracticeReport, evaluatePracticeResponse, isAssessableStep, practiceReportText, practiceStatusLabel, type PracticeResponse } from "../workspace/practiceAssessment";
 import { evaluateSpreadsheetGrid, fillDownFormula, rangeToCsv } from "../workspace/spreadsheetKernel";
 import { syllabusWorkspaceTemplates, type GuidedActivityPhase, type SyllabusWorkspaceTemplate } from "../workspace/syllabusWorkspaceTemplates";
 import type { MathObject, MathObjectKind, MathObjectProperties, MathObjectStyle, MathTransform } from "../workspace/types";
@@ -238,6 +240,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [guidedMode, setGuidedMode] = useState(false);
   const [guidedPhase, setGuidedPhase] = useState<GuidedActivityPhase>("predict");
   const [activeTemplate, setActiveTemplate] = useState<SyllabusWorkspaceTemplate>(syllabusWorkspaceTemplates[0]);
+  const [classroomLesson, setClassroomLesson] = useState<ClassroomLesson>(() => lessonFromTemplate(syllabusWorkspaceTemplates[0]));
+  const [practiceResponses, setPracticeResponses] = useState<Record<string, PracticeResponse>>({});
   const [activityJournal, setActivityJournal] = useState<Record<string, ActivityJournalEntry>>({});
   const [presentationNotes, setPresentationNotes] = useState("");
   const [revealStep, setRevealStep] = useState(1);
@@ -371,6 +375,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const activeTaskValidation = useMemo(() => validateGuidedTaskResponse(activeTask, activeTaskEntry.response), [activeTask, activeTaskEntry.response]);
   const assessmentPreview = useMemo(() => assessConstruction(activeBeyondPackage, workspaceObjects.map((object) => ({ kind: object.ref.kind, definition: object.definition, visible: object.visible }))), [activeBeyondPackage, workspaceObjects]);
   const tutorPreview = useMemo(() => objectAwareTutorResponse(activeBeyondPackage, "why did this move", workspaceObjects[0]?.definition ?? activeBeyondPackage.interactiveLab), [activeBeyondPackage, workspaceObjects]);
+  const practiceReport = useMemo(() => computePracticeReport(classroomLesson, practiceResponses), [classroomLesson, practiceResponses]);
 
   const captureStep = (label: string, detail: string): ConstructionStep => ({
     id: crypto.randomUUID(),
@@ -1324,9 +1329,58 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     await navigator.clipboard?.writeText(url);
     setProjectStatus("Shareable URL copied to clipboard.");
   };
-  const exportWorksheetPdf = () => downloadText("math-workspace-worksheet.pdf", createWorksheetPdf(activeTemplate, results), "application/pdf");
-  const exportLessonPack = () => downloadText("math-universe-lesson-pack.json", JSON.stringify(createLessonPack(activeTemplate, snapshot(), activityJournal, results, presentationNotes), null, 2), "application/json");
+  const exportWorksheetPdf = () => downloadText("math-workspace-worksheet.pdf", createWorksheetPdf(classroomLesson, activeTemplate, results), "application/pdf");
+  const exportLessonPack = () => downloadText("math-universe-lesson-pack.json", JSON.stringify(createLessonPack(activeTemplate, classroomLesson, snapshot(), activityJournal, results, presentationNotes), null, 2), "application/json");
   const exportActivityJournal = () => downloadText("math-universe-activity-journal.csv", activityJournalToCsv(activityJournal), "text/csv");
+  const exportPracticeReport = () => downloadText("math-universe-teacher-assessment.txt", practiceReportText(classroomLesson, practiceResponses, practiceReport), "text/plain");
+  const updateLesson = (patch: Partial<ClassroomLesson>) => setClassroomLesson((current) => ({ ...current, ...patch, updatedAt: Date.now() }));
+  const updateLessonStep = (stepId: string, patch: Partial<LessonStep>) => setClassroomLesson((current) => ({
+    ...current,
+    updatedAt: Date.now(),
+    steps: current.steps.map((step) => step.id === stepId ? { ...step, ...patch } : step),
+  }));
+  const addLessonStep = (kind: LessonStep["kind"] = "question") => setClassroomLesson((current) => ({
+    ...current,
+    updatedAt: Date.now(),
+    steps: [
+      ...current.steps,
+      {
+        id: crypto.randomUUID(),
+        kind,
+        title: kind === "check" ? "Exit ticket check" : "New lesson move",
+        prompt: kind === "teacher-note" ? "Teacher move, board note, or misconception to watch." : "Ask students to explain what they see and why it is true.",
+        command: kind === "explore" ? input : undefined,
+        expected: kind === "question" || kind === "check" ? current.objective : undefined,
+      },
+    ],
+  }));
+  const duplicateLessonStep = (stepId: string) => setClassroomLesson((current) => {
+    const source = current.steps.find((step) => step.id === stepId);
+    if (!source) return current;
+    const index = current.steps.findIndex((step) => step.id === stepId);
+    const copy: LessonStep = { ...source, id: crypto.randomUUID(), title: `${source.title} copy` };
+    return {
+      ...current,
+      updatedAt: Date.now(),
+      steps: [...current.steps.slice(0, index + 1), copy, ...current.steps.slice(index + 1)],
+    };
+  });
+  const removeLessonStep = (stepId: string) => {
+    setClassroomLesson((current) => current.steps.length <= 1 ? current : {
+      ...current,
+      updatedAt: Date.now(),
+      steps: current.steps.filter((step) => step.id !== stepId),
+    });
+    setPracticeResponses((current) => {
+      const next = { ...current };
+      delete next[stepId];
+      return next;
+    });
+  };
+  const checkLessonStep = (step: LessonStep, answer: string) => {
+    const response = evaluatePracticeResponse(step, answer);
+    setPracticeResponses((current) => ({ ...current, [step.id]: response }));
+  };
   const copyTeacherPresentationUrl = async () => {
     const url = `${window.location.origin}${window.location.pathname}?template=${encodeURIComponent(activeTemplate.id)}&mode=guided&teacher=1`;
     await navigator.clipboard?.writeText(url);
@@ -1384,6 +1438,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
   const applyTemplate = (template: SyllabusWorkspaceTemplate) => {
     setActiveTemplate(template);
+    setClassroomLesson(lessonFromTemplate(template));
+    setPracticeResponses({});
     setInput(template.command);
     setTeachingMode(true);
     setGuidedMode(true);
@@ -1470,7 +1526,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       setControlsLocked(true);
       setRevealStep(1);
     }
-    if (params.get("panel") === "export") setProjectStatus("Export tools are ready in Stage 5.");
+    if (params.get("panel") === "export") setProjectStatus("Export tools are ready.");
     if (params.get("highContrast") === "1") setHighContrastMode(true);
 
     const command = params.get("command");
@@ -1848,7 +1904,21 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             </div>
             <SyllabusTemplatePanel templates={syllabusWorkspaceTemplates} active={activeTemplate.id} onApply={applyTemplate} />
             <GuidedActivityPanel active={guidedMode} phase={guidedPhase} template={activeTemplate} journal={activityJournal} onToggle={() => setGuidedMode((value) => !value)} onPhase={setGuidedPhase} onJournal={updateGuidedActivityEntry} onCompletePhase={markGuidedPhaseComplete} />
-            <TeacherPresentationPanel active={teachingMode} locked={controlsLocked} revealStep={revealStep} template={activeTemplate} notes={presentationNotes} journal={activityJournal} onToggle={setTeachingMode} onLock={setControlsLocked} onReveal={setRevealStep} onNotes={setPresentationNotes} onCopyLink={copyTeacherPresentationUrl} />
+            <TeacherLessonStudio
+              lesson={classroomLesson}
+              report={practiceReport}
+              responses={practiceResponses}
+              onLessonChange={updateLesson}
+              onStepChange={updateLessonStep}
+              onResponseChange={(stepId, answer) => setPracticeResponses((current) => ({ ...current, [stepId]: { stepId, answer } }))}
+              onCheck={checkLessonStep}
+              onLaunchCommand={runGuidedExample}
+              onAddStep={addLessonStep}
+              onDuplicateStep={duplicateLessonStep}
+              onRemoveStep={removeLessonStep}
+              onExport={exportPracticeReport}
+            />
+            <TeacherPresentationPanel active={teachingMode} locked={controlsLocked} revealStep={revealStep} lesson={classroomLesson} template={activeTemplate} notes={presentationNotes} responses={practiceResponses} report={practiceReport} journal={activityJournal} onToggle={setTeachingMode} onLock={setControlsLocked} onReveal={setRevealStep} onNotes={setPresentationNotes} onCopyLink={copyTeacherPresentationUrl} />
             <OfflineProjectLibraryPanel projects={projectLibrary} status={projectStatus} onSave={saveProjectToLibrary} onRestore={restoreProject} onDelete={deleteProject} onClear={clearProjects} />
             <ProductionQualityPanel highContrast={highContrastMode} performanceMode={performanceMode} qaReport={qaReport} onHighContrast={setHighContrastMode} onPerformance={setPerformanceMode} onRunQa={runQaNow} />
             {teachingMode && (
@@ -5022,6 +5092,188 @@ function GuidedActivityPanel({ active, phase, template, journal, onToggle, onPha
   );
 }
 
+function TeacherLessonStudio({
+  lesson,
+  report,
+  responses,
+  onLessonChange,
+  onStepChange,
+  onResponseChange,
+  onCheck,
+  onLaunchCommand,
+  onAddStep,
+  onDuplicateStep,
+  onRemoveStep,
+  onExport,
+}: {
+  lesson: ClassroomLesson;
+  report: ReturnType<typeof computePracticeReport>;
+  responses: Record<string, PracticeResponse>;
+  onLessonChange: (patch: Partial<ClassroomLesson>) => void;
+  onStepChange: (stepId: string, patch: Partial<LessonStep>) => void;
+  onResponseChange: (stepId: string, answer: string) => void;
+  onCheck: (step: LessonStep, answer: string) => void;
+  onLaunchCommand: (command: string) => void;
+  onAddStep: (kind?: LessonStep["kind"]) => void;
+  onDuplicateStep: (stepId: string) => void;
+  onRemoveStep: (stepId: string) => void;
+  onExport: () => void;
+}) {
+  const assessableSteps = lesson.steps.filter(isAssessableStep);
+  const launchableCount = lesson.steps.filter((step) => step.command?.trim()).length;
+  return (
+    <div className="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4 dark:border-emerald-300/20 dark:bg-emerald-400/10">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-bold uppercase text-emerald-700 dark:text-emerald-200">Real Teacher Studio</p>
+          <h3 className="text-lg font-black text-slate-950 dark:text-white">{lesson.title}</h3>
+          <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">{lessonSummary(lesson)}</p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <span className="mini-chip">{practiceStatusLabel(report.status)}</span>
+          <span className="mini-chip">{report.score}%</span>
+          <span className="mini-chip">{launchableCount} launchable</span>
+          <button type="button" onClick={() => onAddStep("explore")} className="action-secondary py-2">Add explore</button>
+          <button type="button" onClick={() => onAddStep("check")} className="action-secondary py-2">Add check</button>
+          <button type="button" onClick={onExport} className="action-secondary py-2"><Download className="h-4 w-4" />Assessment report</button>
+        </div>
+      </div>
+
+      <div className="mt-4 grid gap-3 xl:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="grid gap-3 md:grid-cols-2">
+        <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+          Lesson title
+          <input value={lesson.title} onChange={(event) => onLessonChange({ title: event.target.value })} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm normal-case dark:border-white/10 dark:bg-slate-950" />
+        </label>
+        <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+          Audience
+          <input value={lesson.audience} onChange={(event) => onLessonChange({ audience: event.target.value })} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 text-sm normal-case dark:border-white/10 dark:bg-slate-950" />
+        </label>
+        <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400 md:col-span-2">
+          Objective
+          <textarea value={lesson.objective} onChange={(event) => onLessonChange({ objective: event.target.value })} rows={2} className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-white p-3 text-sm normal-case leading-6 dark:border-white/10 dark:bg-slate-950" />
+        </label>
+        </div>
+        <div className="rounded-xl bg-white p-3 dark:bg-slate-950/70">
+          <p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Assessment</p>
+          <div className="mt-2 h-2 rounded-full bg-slate-100 dark:bg-white/10">
+            <div className="h-2 rounded-full bg-emerald-500" style={{ width: `${report.score}%` }} />
+          </div>
+          <p className="mt-2 text-xs font-semibold text-slate-600 dark:text-slate-300">{report.answered}/{report.totalChecks} checked, {report.correct}/{report.totalChecks} passing</p>
+          <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs font-black">
+            <div className="rounded-lg bg-emerald-50 p-2 text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-100">{lesson.steps.length}<br />steps</div>
+            <div className="rounded-lg bg-cyan-50 p-2 text-cyan-800 dark:bg-cyan-400/10 dark:text-cyan-100">{assessableSteps.length}<br />checks</div>
+            <div className="rounded-lg bg-violet-50 p-2 text-violet-800 dark:bg-violet-400/10 dark:text-violet-100">{launchableCount}<br />runs</div>
+          </div>
+        </div>
+      </div>
+
+      <StudentLessonPreview lesson={lesson} responses={responses} onLaunchCommand={onLaunchCommand} />
+
+      <div className="mt-4 grid gap-3">
+        {lesson.steps.map((step, index) => {
+          const response = responses[step.id];
+          const answer = response?.answer ?? "";
+          return (
+            <div key={step.id} className="rounded-2xl bg-white p-4 shadow-sm dark:bg-slate-950/70">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-xs font-black text-emerald-800 dark:bg-emerald-400/20 dark:text-emerald-100">Step {index + 1}</span>
+                  <select value={step.kind} onChange={(event) => onStepChange(step.id, { kind: event.target.value as LessonStep["kind"] })} className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-bold dark:border-white/10 dark:bg-slate-900">
+                    {lessonStepKinds.map((kind) => <option key={kind} value={kind}>{kind}</option>)}
+                  </select>
+                  {response?.score !== undefined ? <span className={`rounded-full px-2.5 py-1 text-xs font-black ${response.score >= 70 ? "bg-cyan-100 text-cyan-800 dark:bg-cyan-400/20 dark:text-cyan-100" : "bg-amber-100 text-amber-800 dark:bg-amber-400/20 dark:text-amber-100"}`}>{response.score}%</span> : null}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {step.command ? <button type="button" onClick={() => onLaunchCommand(step.command!)} className="action-primary py-2"><Presentation className="h-4 w-4" />Launch</button> : null}
+                  <button type="button" onClick={() => onDuplicateStep(step.id)} className="action-secondary py-2">Duplicate</button>
+                  <button type="button" onClick={() => onRemoveStep(step.id)} disabled={lesson.steps.length <= 1} className="action-secondary py-2 disabled:cursor-not-allowed disabled:opacity-50">Remove</button>
+                </div>
+              </div>
+              <div className="mt-3 grid gap-3 lg:grid-cols-2">
+                <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+                  Step title
+                  <input value={step.title} onChange={(event) => onStepChange(step.id, { title: event.target.value })} className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm normal-case dark:border-white/10 dark:bg-slate-900" />
+                </label>
+                <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+                  Command
+                  <input value={step.command ?? ""} onChange={(event) => onStepChange(step.id, { command: event.target.value })} className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 p-3 font-mono text-sm normal-case dark:border-white/10 dark:bg-slate-900" />
+                </label>
+              </div>
+              <label className="mt-3 block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+                Prompt
+                <textarea value={step.prompt} onChange={(event) => onStepChange(step.id, { prompt: event.target.value })} rows={2} className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm normal-case leading-6 dark:border-white/10 dark:bg-slate-900" />
+              </label>
+              {isAssessableStep(step) ? (
+                <div className="mt-3 grid gap-3 lg:grid-cols-2">
+                  <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+                    Expected idea
+                    <textarea value={step.expected ?? ""} onChange={(event) => onStepChange(step.id, { expected: event.target.value })} rows={3} className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm normal-case leading-6 dark:border-white/10 dark:bg-slate-900" />
+                  </label>
+                  <label className="block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+                    Student response
+                    <textarea value={answer} onChange={(event) => onResponseChange(step.id, event.target.value)} rows={3} className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm normal-case leading-6 dark:border-white/10 dark:bg-slate-900" />
+                  </label>
+                  <div className="lg:col-span-2 flex flex-wrap items-center justify-between gap-2 rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+                    <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">{response?.feedback ?? "Enter a response and check it against the expected idea."}</p>
+                    <button type="button" onClick={() => onCheck(step, answer)} className="action-secondary py-2">Check response</button>
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+
+      <label className="mt-4 block text-xs font-bold uppercase text-slate-500 dark:text-slate-400">
+        Teacher notes
+        <textarea value={lesson.teacherNotes} onChange={(event) => onLessonChange({ teacherNotes: event.target.value })} rows={3} className="mt-2 w-full resize-y rounded-xl border border-slate-200 bg-white p-3 text-sm normal-case leading-6 dark:border-white/10 dark:bg-slate-950" />
+      </label>
+      {assessableSteps.length === 0 ? <p className="mt-3 rounded-xl bg-amber-50 p-3 text-sm font-semibold text-amber-900 dark:bg-amber-400/10 dark:text-amber-100">Add at least one question or check step to produce an assessment score.</p> : null}
+    </div>
+  );
+}
+
+function StudentLessonPreview({ lesson, responses, onLaunchCommand }: { lesson: ClassroomLesson; responses: Record<string, PracticeResponse>; onLaunchCommand: (command: string) => void }) {
+  return (
+    <div className="mt-4 rounded-2xl border border-cyan-200 bg-white p-4 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/70">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Live student preview</p>
+          <h4 className="mt-1 text-lg font-black text-slate-950 dark:text-white">{lesson.title}</h4>
+          <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">{lesson.objective}</p>
+        </div>
+        <span className="mini-chip">{lesson.audience}</span>
+      </div>
+      <div className="mt-4 grid gap-3 md:grid-cols-2">
+        {lesson.steps.map((step, index) => {
+          const response = responses[step.id];
+          return (
+            <article key={step.id} className="rounded-2xl bg-slate-50 p-3 dark:bg-white/10">
+              <div className="flex items-center justify-between gap-2">
+                <span className="rounded-full bg-slate-950 px-2.5 py-1 text-xs font-black text-white dark:bg-white dark:text-slate-950">{index + 1}</span>
+                <span className="rounded-full bg-cyan-100 px-2.5 py-1 text-[11px] font-black uppercase text-cyan-800 dark:bg-cyan-300/15 dark:text-cyan-100">{step.kind}</span>
+              </div>
+              <h5 className="mt-3 font-black text-slate-950 dark:text-white">{step.title}</h5>
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{step.prompt}</p>
+              {step.command ? (
+                <button type="button" onClick={() => onLaunchCommand(step.command!)} className="action-secondary mt-3 min-h-9 rounded-lg px-3 py-1.5 text-xs">
+                  Run {step.command}
+                </button>
+              ) : null}
+              {response?.score !== undefined ? (
+                <p className="mt-3 rounded-lg bg-white p-2 text-xs font-bold text-slate-700 dark:bg-slate-950 dark:text-slate-200">
+                  Checked: {response.score}% - {response.feedback}
+                </p>
+              ) : null}
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function BeyondGeoGebraCockpit({ packageSpec, packages, validation, assessment, tutor, readiness, commandDocs }: { packageSpec: UnitLabPackage; packages: UnitLabPackage[]; validation: ReturnType<typeof validateGuidedTaskResponse>; assessment: ReturnType<typeof assessConstruction>; tutor: ReturnType<typeof objectAwareTutorResponse>; readiness: ReturnType<typeof productionReadinessPlan>; commandDocs: ReturnType<typeof commandDocsForPackages> }) {
   return (
     <div className="rounded-2xl border border-violet-200 bg-violet-50/70 p-4 dark:border-violet-300/20 dark:bg-violet-400/10">
@@ -5081,13 +5333,17 @@ function BeyondGeoGebraCockpit({ packageSpec, packages, validation, assessment, 
   );
 }
 
-function TeacherPresentationPanel({ active, locked, revealStep, template, notes, journal, onToggle, onLock, onReveal, onNotes, onCopyLink }: { active: boolean; locked: boolean; revealStep: number; template: SyllabusWorkspaceTemplate; notes: string; journal: Record<string, ActivityJournalEntry>; onToggle: (value: boolean) => void; onLock: (value: boolean) => void; onReveal: (value: number) => void; onNotes: (notes: string) => void; onCopyLink: () => void }) {
-  const visibleSteps = template.steps.slice(0, revealStep);
+function TeacherPresentationPanel({ active, locked, revealStep, lesson, template, notes, responses, report, journal, onToggle, onLock, onReveal, onNotes, onCopyLink }: { active: boolean; locked: boolean; revealStep: number; lesson: ClassroomLesson; template: SyllabusWorkspaceTemplate; notes: string; responses: Record<string, PracticeResponse>; report: ReturnType<typeof computePracticeReport>; journal: Record<string, ActivityJournalEntry>; onToggle: (value: boolean) => void; onLock: (value: boolean) => void; onReveal: (value: number) => void; onNotes: (notes: string) => void; onCopyLink: () => void }) {
+  const visibleSteps = lesson.steps.slice(0, revealStep);
+  const activeSlide = lesson.steps[Math.min(Math.max(revealStep - 1, 0), Math.max(lesson.steps.length - 1, 0))];
   const phaseSummary = template.steps.map((step) => journal[activityJournalKey(template.id, step.phase)] ?? defaultActivityJournalEntry(template.id, step.phase));
   return (
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h3 className="font-bold">Teacher Presentation Mode</h3>
+        <div>
+          <p className="text-xs font-black uppercase text-violet-700 dark:text-violet-200">Teacher Presentation Mode</p>
+          <h3 className="font-bold">{lesson.title}</h3>
+        </div>
         <div className="flex flex-wrap gap-2">
           <button type="button" onClick={() => onToggle(!active)} className={active ? "action-primary py-2" : "action-secondary py-2"}>{active ? "Presenting" : "Start"}</button>
           <button type="button" onClick={() => onLock(!locked)} className={locked ? "action-primary py-2" : "action-secondary py-2"}>{locked ? "Locked" : "Unlocked"}</button>
@@ -5096,16 +5352,37 @@ function TeacherPresentationPanel({ active, locked, revealStep, template, notes,
       </div>
       <div className="mt-3 flex flex-wrap gap-2">
         <button type="button" onClick={() => onReveal(Math.max(1, revealStep - 1))} className="action-secondary py-2">Previous reveal</button>
-        <button type="button" onClick={() => onReveal(Math.min(template.steps.length, revealStep + 1))} className="action-secondary py-2">Next reveal</button>
-        <span className="mini-chip">Reveal {revealStep}/{template.steps.length}</span>
+        <button type="button" onClick={() => onReveal(Math.min(lesson.steps.length, revealStep + 1))} className="action-secondary py-2">Next reveal</button>
+        <span className="mini-chip">Reveal {revealStep}/{lesson.steps.length}</span>
+        <span className="mini-chip">{practiceStatusLabel(report.status)} {report.score}%</span>
       </div>
+      {activeSlide ? (
+        <div className="mt-3 rounded-3xl bg-slate-950 p-5 text-white shadow-xl shadow-slate-900/15">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <span className="rounded-full bg-cyan-300 px-3 py-1 text-xs font-black uppercase text-slate-950">{activeSlide.kind}</span>
+            {activeSlide.command ? <span className="rounded-full bg-white/10 px-3 py-1 font-mono text-xs font-bold text-cyan-50">{activeSlide.command}</span> : null}
+          </div>
+          <h4 className="mt-5 text-2xl font-black">{activeSlide.title}</h4>
+          <p className="mt-3 max-w-3xl text-base leading-7 text-cyan-50/80">{activeSlide.prompt}</p>
+          {activeSlide.expected ? <p className="mt-4 rounded-2xl bg-white/10 p-3 text-sm font-semibold leading-6 text-cyan-50">Teacher reveal: {activeSlide.expected}</p> : null}
+        </div>
+      ) : null}
       <div className="mt-3 grid gap-3 xl:grid-cols-[minmax(0,1fr)_280px]">
         <ol className="space-y-2">
-          {visibleSteps.map((step, index) => <li key={step.phase} className="rounded-xl bg-slate-100 p-3 text-sm leading-6 dark:bg-white/10"><span className="font-bold text-cyan-600 dark:text-cyan-300">{index + 1}. {step.title}</span> {step.prompt}</li>)}
+          {visibleSteps.map((step, index) => <li key={step.id} className="rounded-xl bg-slate-100 p-3 text-sm leading-6 dark:bg-white/10"><span className="font-bold text-cyan-600 dark:text-cyan-300">{index + 1}. {step.title}</span> {step.prompt}</li>)}
         </ol>
         <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
           <h4 className="font-bold">Classroom Pulse</h4>
           <div className="mt-3 space-y-2">
+            {lesson.steps.filter(isAssessableStep).map((step) => {
+              const response = responses[step.id];
+              return (
+                <div key={step.id} className="rounded-xl bg-white p-2 text-xs dark:bg-slate-950">
+                  <p className="font-bold">{step.title}</p>
+                  <p>{response?.score !== undefined ? `${response.score}%` : "not checked"}</p>
+                </div>
+              );
+            })}
             {phaseSummary.map((entry) => <div key={entry.phase} className="rounded-xl bg-white p-2 text-xs dark:bg-slate-950"><p className="font-bold uppercase">{entry.phase}</p><p>Check: {entry.selfCheck.replace("-", " ")}</p><p>Confidence: {entry.confidence}%</p></div>)}
           </div>
         </div>
@@ -5238,7 +5515,28 @@ function defaultActivityJournalEntry(templateId: string, phase: GuidedActivityPh
   return { templateId, phase, response: "", selfCheck: "not-started", confidence: 50, updatedAt: 0 };
 }
 
-function createLessonPack(template: SyllabusWorkspaceTemplate, snapshot: WorkspaceSnapshot, journal: Record<string, ActivityJournalEntry>, results: ResultCard[], notes: string) {
+function lessonFromTemplate(template: SyllabusWorkspaceTemplate): ClassroomLesson {
+  const baseLesson = createDefaultLesson();
+  return {
+    ...baseLesson,
+    id: `lesson-${template.id}`,
+    title: template.title,
+    audience: template.unit,
+    objective: template.outcomes.join(" "),
+    teacherNotes: `Launch "${template.command}" for the live workspace. Use the checks to collect student reasoning before exporting the assessment report.`,
+    updatedAt: Date.now(),
+    steps: template.steps.map((step, index): LessonStep => ({
+      id: `${template.id}-${step.phase}-${index}`,
+      kind: step.phase === "check" || step.phase === "reflect" ? "check" : step.phase === "predict" ? "question" : "explore",
+      title: step.title,
+      prompt: step.prompt,
+      command: index === 0 || step.phase === "manipulate" || step.phase === "check" ? template.command : undefined,
+      expected: step.reveal,
+    })),
+  };
+}
+
+function createLessonPack(template: SyllabusWorkspaceTemplate, lesson: ClassroomLesson, snapshot: WorkspaceSnapshot, journal: Record<string, ActivityJournalEntry>, results: ResultCard[], notes: string) {
   return {
     app: "Math Universe",
     version: "browser-only-lesson-pack",
@@ -5252,6 +5550,7 @@ function createLessonPack(template: SyllabusWorkspaceTemplate, snapshot: Workspa
       outcomes: template.outcomes,
       steps: template.steps,
     },
+    lesson,
     teacherNotes: notes,
     guidedJournal: Object.values(journal).filter((entry) => entry.templateId === template.id),
     recentResults: results.slice(0, 12).map((result) => ({ input: result.input, interpretation: result.interpretation, result: result.result, detail: result.detail })),
@@ -5265,16 +5564,25 @@ function activityJournalToCsv(journal: Record<string, ActivityJournalEntry>) {
   return rows.map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
 }
 
-function createWorksheetPdf(template: SyllabusWorkspaceTemplate, results: ResultCard[]) {
+function createWorksheetPdf(lesson: ClassroomLesson, template: SyllabusWorkspaceTemplate, results: ResultCard[]) {
   const lines = [
-    `Math Universe Worksheet: ${template.unit}`,
-    template.title,
+    `Math Universe Worksheet: ${lesson.audience}`,
+    lesson.title,
+    "",
+    `Objective: ${lesson.objective}`,
     "",
     "Learning outcomes:",
     ...template.outcomes.map((outcome) => `- ${outcome}`),
     "",
-    "Guided activity:",
-    ...template.steps.flatMap((step, index) => [`${index + 1}. ${step.title}`, `Prompt: ${step.prompt}`, `Reveal: ${step.reveal}`]),
+    "Lesson activity:",
+    ...lesson.steps.flatMap((step, index) => [
+      `${index + 1}. ${step.title} (${step.kind})`,
+      `Prompt: ${step.prompt}`,
+      step.command ? `Command: ${step.command}` : "",
+      step.expected ? `Expected idea: ${step.expected}` : "",
+      "Student response: ______________________________",
+      "",
+    ]).filter(Boolean),
     "",
     "Recent workspace results:",
     ...(results.length ? results.slice(0, 6).map((result) => `${result.input}: ${result.result}`) : ["No results exported yet."]),

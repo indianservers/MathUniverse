@@ -43,7 +43,9 @@ const MathLabProbability = lazy(() => import("./pages/MathLabProbability"));
 const MathLabSmartQuery = lazy(() => import("./pages/MathLabSmartQuery"));
 const MathLabToolPage = lazy(() => import("./pages/MathLabToolPage"));
 const MathVisualizationPage = lazy(() => import("./pages/MathVisualizationPage"));
+const MathVisualDictionary = lazy(() => import("./pages/MathVisualDictionary"));
 const MathWorkspace = lazy(() => import("./pages/MathWorkspace"));
+const MagicMaths = lazy(() => import("./pages/MagicMaths"));
 const MatrixOperationPage = lazy(() => import("./pages/MatrixOperationPage"));
 const MatrixOperations = lazy(() => import("./pages/MatrixOperations"));
 const MatrixOperationsSandbox = lazy(() => import("./pages/MatrixOperationsSandbox"));
@@ -137,6 +139,8 @@ export default function App() {
             <Route path="math-lab/cas-solver" element={<MathLabCasNotebook />} />
             <Route path="math-lab/query" element={<MathLabSmartQuery />} />
             <Route path="math-lab/:toolId" element={<MathLabToolPage />} />
+            <Route path="visual-dictionary" element={<MathVisualDictionary />} />
+            <Route path="magic-maths" element={<MagicMaths />} />
             <Route path="workspace" element={<MathWorkspace />} />
             <Route path="workspace/graph" element={<WorkspaceGraph />} />
             <Route path="workspace/geometry" element={<WorkspaceGeometry />} />

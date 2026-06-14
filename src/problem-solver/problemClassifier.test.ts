@@ -17,8 +17,14 @@ const cases: Array<[string, ProblemIntentKind]> = [
   ["mean of 4, 6, 8, 10", "statistics"],
   ["sin(30)", "evaluate"],
   ["2 + 3 * 4", "evaluate"],
+  ["what is 15% of 200", "evaluate"],
+  ["calculate gcd of 48 and 180", "evaluate"],
+  ["solve 2x + 5 = 15", "linear-equation"],
+  ["average of 4, 6, 8, 10", "statistics"],
+  ["A train travels 60 km in 2 hours", "word-problem"],
+  ["Rectangle length 8 width 5 area", "word-problem"],
   ["[[1,2],[3,4]]", "matrix"],
-  ["A train leaves station...", "unsupported"],
+  ["A train leaves station...", "word-problem"],
 ];
 
 describe("problem solver classifier", () => {

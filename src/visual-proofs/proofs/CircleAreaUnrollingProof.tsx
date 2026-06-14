@@ -98,6 +98,7 @@ export default function CircleAreaUnrollingProof({ category, proof }: CircleArea
         isPlaying={isPlaying}
         labelsVisible={labelsVisible}
         formulaVisible={formulaVisible}
+        playLabel={`Play ${proof.title}`}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onReset={reset}

@@ -1,5 +1,6 @@
 import katex from "katex";
 import { useMemo, useState } from "react";
+import SmartMathInput from "../components/math-input/SmartMathInput";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import { CopyResultButton, PresetChips, PrintWorksheetButton, RelatedToolLinks, ResetExampleButton } from "../components/ui/UiFeedback";
@@ -13,6 +14,7 @@ import { classifyProblem } from "../problem-solver/problemClassifier";
 import { ProblemGraph, ValueTablePanel } from "../problem-solver/ProblemGraph";
 import { solveStatistics } from "../problem-solver/statisticsSolver";
 import { solveSystem } from "../problem-solver/systemSolver";
+import { solveWordProblem } from "../problem-solver/wordProblemSolver";
 import { buildVisualVerification } from "../problem-solver/graphingUtils";
 import { buildProblemResultCards, type ProblemResultCard } from "../problem-solver/resultCards";
 import type { ProblemClassification, ProblemIntentKind, ProblemSolverResult } from "../problem-solver/problemTypes";
@@ -20,7 +22,7 @@ import { symbolicLatex, symbolicSolve, trySymbolic } from "../utils/symbolic";
 import { buildProblemSolverWorkspaceObjects } from "../workspace/universalObjectGraph";
 import { useUniversalObjectGraphPublisher } from "../workspace/useUniversalObjectGraphPublisher";
 
-const examples = ["sqrt(34)", "sqrt(34) + tan(45)", "sqrt 34", "sin 30", "Laplace transform of sin(t)", "Fourier series of x", "Newton Raphson method", "A train travels 60 km in 2 hours", "apple mango x + 2", "sin(30) + cos(60)", "log(100)", "ln(e)", "sqrt(-1)", "log(0)", "sqrt(x-2)", "derivative of sin(x)", "integrate x^2", "limit x->0 sin(x)/x", "mean of 4, 6, 8, 10", "determinant [[1,2],[3,4]]", "2x + 5 = 15", "0x + 5 = 5", "0x + 5 = 8", "x + 1 = x + 2", "x^2 - 5x + 6 = 0", "x^2 - 2x + 1 = 0", "2*x+5=11", "x^2-5*x+6=0", "(x^2 - 1)/(x - 1) = 0", "simplify (x^2 - 1)/(x - 1)", "factor x^2 - 5x + 6", "expand (x+1)^2", "2 + 3 * 4", "sin(30)", "derivative of x^2", "derivative of x^3 + 2x", "differentiate x^2 + 5x + 6", "integrate x from 0 to 2", "integrate 2x", "integral of x^2 + 3x", "limit x->2 x^2 + 1", "lim x->0 sin(x)/x", "solve 2x + y = 7 and x - y = 2", "2x + 3y = 12; x - y = 1", "x + y + z = 6; 2x - y + z = 3; x + 2y - z = 2", "x + y = 2; x + y = 3", "x + y = 2; 2x + 2y = 4", "x^2 + y = 5; x + y = 3", "median of 4, 6, 8, 10", "mode of 2, 3, 3, 5", "variance of 4, 6, 8, 10", "sample variance of 4", "standard deviation of 4, 6, 8, 10", "quartiles of 2, 4, 6, 8, 10", "frequency table of 1, 2, 2, 3, 3, 3", "weighted mean values 80, 90, 100 weights 2, 3, 5", "[[1,2],[3,4]]", "inverse [[1,2],[3,4]]", "inverse [[1,2],[2,4]]", "transpose [[1,2],[3,4]]", "[[1,2],[3,4]] + [[5,6],[7,8]]", "[[1,2],[3,4]] * [[5,6],[7,8]]", "solve matrix [[2,1,7],[1,-1,2]]"];
+const examples = ["sqrt(34)", "sqrt(34) + tan(45)", "sqrt 34", "sin 30", "Laplace transform of sin(t)", "Fourier series of x", "Newton Raphson method", "A train travels 60 km in 2 hours", "A car travels at 50 km/h for 3 hours", "Percent increase from 50 to 60", "Rectangle length 8 width 5 area", "Circle radius 7 circumference", "Ratio of 12 to 18", "Simple interest principal 5000 rate 8 time 2 years", "120 for 6 notebooks", "apple mango x + 2", "sin(30) + cos(60)", "log(100)", "ln(e)", "sqrt(-1)", "log(0)", "sqrt(x-2)", "derivative of sin(x)", "integrate x^2", "limit x->0 sin(x)/x", "mean of 4, 6, 8, 10", "determinant [[1,2],[3,4]]", "2x + 5 = 15", "0x + 5 = 5", "0x + 5 = 8", "x + 1 = x + 2", "x^2 - 5x + 6 = 0", "x^2 - 2x + 1 = 0", "2*x+5=11", "x^2-5*x+6=0", "(x^2 - 1)/(x - 1) = 0", "simplify (x^2 - 1)/(x - 1)", "factor x^2 - 5x + 6", "expand (x+1)^2", "2 + 3 * 4", "sum 2, 3, 4", "add 12 18 30", "multiply 7 and 8", "mul 6 9", "subtract 3 from 10", "divide 100 by 4", "mod 17 5", "power 2 to 3", "square 12", "cube 5", "reciprocal 8", "15% of 200", "percent 12.5 of 640", "gcd 48 180", "lcm 12 18", "minimum 9, 4, 12", "maximum 9, 4, 12", "factorial 6", "sin(30)", "derivative of x^2", "derivative of x^3 + 2x", "differentiate x^2 + 5x + 6", "integrate x from 0 to 2", "integrate 2x", "integral of x^2 + 3x", "limit x->2 x^2 + 1", "lim x->0 sin(x)/x", "solve 2x + y = 7 and x - y = 2", "2x + 3y = 12; x - y = 1", "x + y + z = 6; 2x - y + z = 3; x + 2y - z = 2", "x + y = 2; x + y = 3", "x + y = 2; 2x + 2y = 4", "x^2 + y = 5; x + y = 3", "median of 4, 6, 8, 10", "mode of 2, 3, 3, 5", "variance of 4, 6, 8, 10", "sample variance of 4", "standard deviation of 4, 6, 8, 10", "quartiles of 2, 4, 6, 8, 10", "frequency table of 1, 2, 2, 3, 3, 3", "weighted mean values 80, 90, 100 weights 2, 3, 5", "[[1,2],[3,4]]", "inverse [[1,2],[3,4]]", "inverse [[1,2],[2,4]]", "transpose [[1,2],[3,4]]", "[[1,2],[3,4]] + [[5,6],[7,8]]", "[[1,2],[3,4]] * [[5,6],[7,8]]", "solve matrix [[2,1,7],[1,-1,2]]"];
 const equationKinds: ProblemIntentKind[] = ["linear-equation", "quadratic-equation", "polynomial-equation"];
 
 export default function StepByStepProblemSolver() {
@@ -60,7 +62,7 @@ export default function StepByStepProblemSolver() {
           <PrintWorksheetButton />
           <RelatedToolLinks links={[{ label: "Calculator", route: "/calculator" }, { label: "Equation Solver", route: "/math-lab/equation-solver" }]} />
         </div>
-        <input className="w-full rounded-2xl border border-slate-200 bg-white p-4 font-mono text-lg dark:border-white/10 dark:bg-slate-950/60" value={equation} onChange={(event) => setEquation(event.target.value)} />
+        <SmartMathInput ariaLabel="Smart math problem editor" mode="math" placeholder="Type: sum 2, 3, 4 or expand (x+1)^2" value={equation} onChange={setEquation} />
       </SectionCard>
       <ResultWorkspace cards={cards} result={solverResult} visual={visual} />
       <SolverReferencePanels recognition={recognition} onSelectExample={setEquation} />
@@ -248,6 +250,9 @@ function buildSolverResult(classification: ProblemClassification): ProblemSolver
 
   const matrixResult = solveMatrix(classification);
   if (matrixResult) return matrixResult;
+
+  const wordProblemResult = solveWordProblem(classification);
+  if (wordProblemResult) return wordProblemResult;
 
   return safeResult(classification, "This operation will be implemented in the next phase.");
 }

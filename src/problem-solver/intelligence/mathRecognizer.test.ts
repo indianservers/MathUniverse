@@ -30,4 +30,14 @@ describe("math recognizer subsystem", () => {
     expect(unclear.audit.unmatchedSegments).not.toContain("please");
     expect(unclear.suggestions).toContain("Some words were not recognized as math keywords. Try a clearer mathematical expression.");
   });
+
+  it("infers common arithmetic operation intent", () => {
+    const percent = recognizeMathInput("what is 15% of 200", "Evaluate");
+    expect(percent.operationInsight?.name).toBe("Percent Of");
+    expect(percent.operationInsight?.normalizedExpression).toBe("percent(15,200)");
+
+    const gcd = recognizeMathInput("calculate gcd of 48 and 180", "Evaluate");
+    expect(gcd.operationInsight?.name).toBe("Greatest Common Divisor");
+    expect(gcd.suggestions.join(" ")).toContain("gcd 48, 180");
+  });
 });

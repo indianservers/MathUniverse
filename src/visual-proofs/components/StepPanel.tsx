@@ -34,6 +34,11 @@ export default function StepPanel({ steps, activeStep, onSelectStep }: StepPanel
                 </span>
                 <span className="font-black">{step.title}</span>
               </div>
+              {step.focusLabel && (
+                <span className="mt-2 inline-flex rounded-full bg-white/70 px-2 py-1 text-xs font-black uppercase text-cyan-800 dark:bg-white/10 dark:text-cyan-100">
+                  focus: {step.focusLabel}
+                </span>
+              )}
               <p className="mt-2 text-sm leading-6">{step.description}</p>
             </button>
           );

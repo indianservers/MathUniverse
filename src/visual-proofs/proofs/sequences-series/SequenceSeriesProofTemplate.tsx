@@ -59,6 +59,7 @@ export default function SequenceSeriesProofTemplate({ category, proof, config }:
             isPlaying={isPlaying}
             labelsVisible={labelsVisible}
             formulaVisible={formulaVisible}
+            playLabel={`Play ${proof.title}`}
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
             onReset={() => {
@@ -98,7 +99,16 @@ export default function SequenceSeriesProofTemplate({ category, proof, config }:
           </section>
         </div>
       }
-      steps={<StepPanel activeStep={activeStep} steps={config.steps} />}
+      steps={
+        <StepPanel
+          activeStep={activeStep}
+          steps={config.steps}
+          onSelectStep={(step) => {
+            setIsPlaying(false);
+            setActiveStep(step);
+          }}
+        />
+      }
       formula={formulaVisible ? <FormulaPanel formulas={[...config.formulas, ...buildSequenceFormulas(config, values)]} /> : <HiddenPanel title="Formula hidden" />}
       conceptNotes={
         <ul className="list-disc space-y-2 pl-5">
@@ -146,7 +156,7 @@ function SequenceSeriesVisual({ config, values, activeStep, labelsVisible, toggl
         {config.kind === "gpScaling" && <GpBars values={values} labels={labelsVisible} />}
         {config.kind === "finiteGp" && <FiniteGpBars values={values} labels={labelsVisible} showAlgebra={toggles["Show algebra cancellation"] ?? true} />}
         {config.kind === "infiniteGp" && <InfiniteGpModel values={values} labels={labelsVisible} activeStep={activeStep} />}
-        {config.kind === "triangular" && <TriangularDots n={values.n ?? 9} labels={labelsVisible} duplicate={toggles["Show duplicate rectangle"] ?? true} />}
+        {config.kind === "triangular" && <TriangularDots n={values.n ?? 9} labels={labelsVisible} duplicate={toggles["Show duplicate rectangle"] ?? true} activeStep={activeStep} />}
         {config.kind === "squareLayers" && <SquareLayers n={values.n ?? 8} labels={labelsVisible} />}
         {config.kind === "fibTiling" && <FibonacciTiles n={values.n ?? 8} labels={labelsVisible} spiral={false} />}
         {config.kind === "fibSpiral" && <FibonacciTiles n={values.n ?? 8} labels={labelsVisible} spiral />}
@@ -194,17 +204,75 @@ function ApSteps({ values, labels }: { values: Values; labels: boolean }) {
   );
 }
 
-function TriangularDots({ n, labels, duplicate }: { n: number; labels: boolean; duplicate: boolean }) {
-  const dots = [];
-  const step = Math.min(22, 310 / Math.max(n, 1));
-  for (let row = 1; row <= n; row += 1) {
-    for (let col = 0; col < row; col += 1) dots.push({ x: 110 + col * step, y: 140 + row * step });
-  }
+function TriangularDots({ n, labels, duplicate, activeStep }: { n: number; labels: boolean; duplicate: boolean; activeStep: number }) {
+  const gap = Math.min(30, 330 / Math.max(n + 1, 4));
+  const dotRadius = Math.max(4, Math.min(7, gap * 0.24));
+  const originX = 150;
+  const originY = 430;
+  const blueDots = Array.from({ length: n }).flatMap((_, col) =>
+    Array.from({ length: col + 1 }, (__, row) => ({
+      x: originX + col * gap,
+      y: originY - row * gap,
+      key: `blue-${col}-${row}`,
+    })),
+  );
+  const orangeDots = Array.from({ length: n }).flatMap((_, col) =>
+    Array.from({ length: n - col }, (__, index) => {
+      const row = col + 1 + index;
+      return {
+        x: activeStep >= 3 ? originX + col * gap : originX + 390 - col * gap,
+        y: activeStep >= 3 ? originY - row * gap : originY - index * gap,
+        key: `orange-${col}-${row}`,
+      };
+    }),
+  );
+  const sum = triangularNumber(n);
+  const rectangleCount = n * (n + 1);
+  const stageLabel = ["Intro", "Build rows", "Duplicate", "Fit together", "Compare", "Divide by two", "Conclusion"][activeStep] ?? "Conclusion";
+  const showBlue = activeStep >= 1;
+  const showDuplicate = duplicate && activeStep >= 2;
+  const showRectangle = duplicate && activeStep >= 4;
+
   return (
     <>
-      {dots.map((dot, index) => <circle key={index} cx={dot.x} cy={dot.y} r="6" fill="#06b6d4" />)}
-      {duplicate && dots.map((dot, index) => <circle key={`dup-${index}`} cx={520 - (dot.x - 110)} cy={140 + (dot.y - 140)} r="6" fill="#f97316" opacity="0.75" />)}
-      {labels && <Info x={520} y={390} lines={[`1 + 2 + ... + ${n} = ${naturalNumberSum(n)}`, `Two copies form ${n} x ${n + 1}`]} />}
+      <rect x="32" y="28" width="836" height="486" rx="18" fill="#020617" />
+      <text x="78" y="84" fill="#f8fafc" fontSize="25" fontWeight="900">T_n = 1 + 2 + ... + n</text>
+      {activeStep >= 5 && <text x="455" y="84" fill="#f8fafc" fontSize="25" fontWeight="900">= n(n + 1) / 2</text>}
+      {activeStep === 0 && (
+        <>
+          <text x="108" y="168" fill="#f8fafc" fontSize="32" fontWeight="900">Visual proof target</text>
+          <text x="108" y="214" fill="#cbd5e1" fontSize="20" fontWeight="700">Build the triangle, copy it, then count the rectangle it makes.</text>
+        </>
+      )}
+      {showBlue && blueDots.map((dot) => <circle key={dot.key} cx={dot.x} cy={dot.y} r={dotRadius} fill="#22d3ee" />)}
+      {showDuplicate && orangeDots.map((dot) => <circle key={dot.key} cx={dot.x} cy={dot.y} r={dotRadius} fill="#fb923c" opacity="0.9" />)}
+      {showBlue && (
+        <>
+          <Brace x1={originX - dotRadius} x2={originX + (n - 1) * gap + dotRadius} y={originY + 24} label="n columns" />
+          <SideBrace x={originX + n * gap + 24} y1={originY - (showRectangle ? n : n - 1) * gap} y2={originY} label={showRectangle ? "n + 1 rows" : "n rows"} />
+        </>
+      )}
+      {showRectangle && (
+        <>
+          <rect x={originX - gap / 2} y={originY - n * gap - gap / 2} width={n * gap} height={(n + 1) * gap} fill="none" stroke="#f8fafc" strokeWidth="3" />
+          <text x={originX + (n * gap) / 2 - gap / 2} y={originY - n * gap - 28} textAnchor="middle" fill="#bae6fd" fontSize="18" fontWeight="900">
+            two equal triangles fill every dot position
+          </text>
+        </>
+      )}
+      {labels && activeStep >= 1 && (
+        <Info
+          x={548}
+          y={266}
+          lines={[
+            `Stage: ${stageLabel}`,
+            `One triangle has ${sum} dots`,
+            showDuplicate ? `Two copies have ${sum} + ${sum} = ${2 * sum}` : "Next, copy the exact same triangle",
+            showRectangle ? `Rectangle count: ${n} x ${n + 1} = ${rectangleCount}` : "The copy is congruent, so the count is unchanged",
+            activeStep >= 5 ? `So T_${n} = ${rectangleCount} / 2 = ${sum}` : "Advance to compare with a rectangle",
+          ]}
+        />
+      )}
     </>
   );
 }
@@ -216,22 +284,25 @@ function NaturalSumAnimation({ n, labels, duplicate, activeStep }: { n: number; 
   const showDuplicate = duplicate && activeStep >= 2;
   const showRectangle = duplicate && activeStep >= 4;
   const sum = naturalNumberSum(n);
-  const stageLabel = ["intro", "construction", "duplicate", "rearrange", "compare", "derive", "conclude"][activeStep] ?? "derive";
+  const stageLabel = ["Intro", "Construction", "Duplicate", "Rearrangement", "Comparison", "Formula derivation", "Conclusion"][activeStep] ?? "Formula derivation";
 
-  const blueTriangle = Array.from({ length: n }).flatMap((_, row) =>
-    Array.from({ length: row + 1 }, (__, col) => ({
+  const blueTriangle = Array.from({ length: n }).flatMap((_, col) =>
+    Array.from({ length: col + 1 }, (__, row) => ({
       x: originX + col * size,
       y: originY - (row + 1) * size,
-      key: `blue-${row}-${col}`,
+      key: `blue-${col}-${row}`,
     })),
   );
 
-  const pinkTriangle = Array.from({ length: n }).flatMap((_, row) =>
-    Array.from({ length: n - row }, (__, col) => ({
-      x: activeStep >= 3 ? originX + (row + col) * size : originX - 42 + col * size,
-      y: activeStep >= 3 ? originY - (row + 2) * size : originY - (n + 2) * size + row * size,
-      key: `pink-${row}-${col}`,
-    })),
+  const pinkTriangle = Array.from({ length: n }).flatMap((_, col) =>
+    Array.from({ length: n - col }, (__, index) => {
+      const row = col + 1 + index;
+      return {
+        x: activeStep >= 3 ? originX + col * size : originX + 30 + col * size,
+        y: activeStep >= 3 ? originY - (row + 1) * size : originY - (n + 2) * size + index * size,
+        key: `pink-${col}-${row}`,
+      };
+    }),
   );
 
   return (
@@ -254,7 +325,7 @@ function NaturalSumAnimation({ n, labels, duplicate, activeStep }: { n: number; 
       {activeStep >= 1 && (
         <>
           <Brace x1={originX} x2={originX + n * size} y={originY + 18} label="n" />
-          <SideBrace x={originX + n * size + 16} y1={originY - n * size} y2={originY} label={showRectangle ? "n + 1" : "n"} />
+          <SideBrace x={originX + n * size + 16} y1={originY - (showRectangle ? n + 1 : n) * size} y2={originY} label={showRectangle ? "n + 1" : "n"} />
         </>
       )}
       {showRectangle && (
@@ -265,10 +336,10 @@ function NaturalSumAnimation({ n, labels, duplicate, activeStep }: { n: number; 
           x={560}
           y={330}
           lines={[
-            `timeline: ${stageLabel}`,
-            `one staircase = ${sum} squares`,
-            showRectangle ? `rectangle = ${n} x ${n + 1} = ${n * (n + 1)}` : "duplicate makes a matching copy",
-            activeStep >= 5 ? `${sum} = ${n}(${n + 1}) / 2` : "step forward to complete the proof",
+            `Stage: ${stageLabel}`,
+            `Original staircase: ${sum} unit squares`,
+            showRectangle ? `Completed rectangle: ${n} x ${n + 1} = ${n * (n + 1)}` : "A congruent copy will fill the missing cells",
+            activeStep >= 5 ? `Half the rectangle: ${n * (n + 1)} / 2 = ${sum}` : "Advance to complete the rectangle",
           ]}
         />
       )}
@@ -357,7 +428,7 @@ function InfiniteGpModel({ values, labels, activeStep }: { values: Values; label
   const squareSize = 310;
   const terms = buildUnitSquareHalves(Math.min(n, activeStep === 0 ? 0 : Math.max(2, activeStep + 2)));
   const partialSum = 1 - 1 / 2 ** terms.length;
-  const stageLabel = ["intro", "construction", "transformation", "rearrangement", "comparison", "formula derivation", "conclusion"][activeStep] ?? "formula derivation";
+  const stageLabel = ["Intro", "Construction", "Transformation", "Rearrangement", "Comparison", "Formula derivation", "Conclusion"][activeStep] ?? "Formula derivation";
   return (
     <>
       <rect x="32" y="28" width="836" height="486" rx="18" fill="#020617" />
@@ -393,9 +464,9 @@ function InfiniteGpModel({ values, labels, activeStep }: { values: Values; label
           x={540}
           y={248}
           lines={[
-            `timeline: ${stageLabel}`,
-            `visible sum = ${formatNumber(partialSum)}`,
-            `unfilled gap = 1/2^${terms.length}`,
+            `Stage: ${stageLabel}`,
+            `Visible area: ${formatNumber(partialSum)}`,
+            `Remaining gap: 1/2^${terms.length}`,
             activeStep >= 5 ? "as k grows, the gap tends to 0" : "each new region takes half the gap",
           ]}
         />
@@ -556,8 +627,9 @@ function buildSequenceFormulas(config: SequenceSeriesProofConfig, values: Values
     case "apSteps":
       return [`a_${n} = ${arithmeticTerm(a, d, n)}`];
     case "naturalSum":
+      return [`2S_${n} = ${n}(${n + 1}) = ${n * (n + 1)}`, `S_${n} = ${n}(${n + 1}) / 2 = ${naturalNumberSum(n)}`];
     case "triangular":
-      return [`T_${n} = ${triangularNumber(n)}`];
+      return [`2T_${n} = ${n}(${n + 1}) = ${n * (n + 1)}`, `T_${n} = ${n}(${n + 1}) / 2 = ${triangularNumber(n)}`];
     case "oddSum":
     case "squareLayers":
       return [`${n}^2 = ${oddNumberSum(n)}`];

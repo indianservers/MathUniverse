@@ -29,29 +29,45 @@ const emptyValues: GeometryValues = {
 
 export default function GeometryProofTemplate({ category, proof, config }: GeometryProofTemplateProps) {
   const [activeStep, setActiveStep] = useState(0);
+  const [visualProgress, setVisualProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [labelsVisible, setLabelsVisible] = useState(true);
   const [formulaVisible, setFormulaVisible] = useState(true);
   const [secondaryVisible, setSecondaryVisible] = useState(false);
   const [interactionResetKey, setInteractionResetKey] = useState(0);
+  const visualProgressRef = useRef(0);
   const [values, setValues] = useState<GeometryValues>(() => ({
     ...emptyValues,
     ...Object.fromEntries(config.parameters.map((parameter) => [parameter.key, parameter.defaultValue])),
   }));
 
   useEffect(() => {
+    visualProgressRef.current = visualProgress;
+  }, [visualProgress]);
+
+  useEffect(() => {
     if (!isPlaying) return undefined;
-    const timer = window.setInterval(() => {
-      setActiveStep((step) => {
-        if (step >= config.steps.length - 1) {
-          window.clearInterval(timer);
-          setIsPlaying(false);
-          return step;
-        }
-        return step + 1;
-      });
-    }, 1100);
-    return () => window.clearInterval(timer);
+    const maxProgress = config.steps.length - 1;
+    const stepDurationMs = 1250;
+    let frame = 0;
+    let previousTime = performance.now();
+
+    function tick(now: number) {
+      const deltaSteps = (now - previousTime) / stepDurationMs;
+      previousTime = now;
+      const nextProgress = Math.min(maxProgress, visualProgressRef.current + deltaSteps);
+      visualProgressRef.current = nextProgress;
+      setVisualProgress(nextProgress);
+      setActiveStep(Math.min(maxProgress, Math.floor(nextProgress + 0.0001)));
+      if (nextProgress >= maxProgress) {
+        setIsPlaying(false);
+        return;
+      }
+      frame = window.requestAnimationFrame(tick);
+    }
+
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
   }, [config.steps.length, isPlaying]);
 
   const formulas = useMemo(() => dynamicFormulas(config.formulas, config.kind, values), [config.formulas, config.kind, values]);
@@ -59,6 +75,8 @@ export default function GeometryProofTemplate({ category, proof, config }: Geome
   function reset() {
     setIsPlaying(false);
     setActiveStep(0);
+    setVisualProgress(0);
+    visualProgressRef.current = 0;
     setSecondaryVisible(false);
     setLabelsVisible(true);
     setFormulaVisible(true);
@@ -77,16 +95,27 @@ export default function GeometryProofTemplate({ category, proof, config }: Geome
         isPlaying={isPlaying}
         labelsVisible={labelsVisible}
         formulaVisible={formulaVisible}
+        playLabel={`Play ${proof.title}`}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         onReset={reset}
         onPrevious={() => {
           setIsPlaying(false);
-          setActiveStep((step) => Math.max(0, step - 1));
+          setActiveStep((step) => {
+            const nextStep = Math.max(0, step - 1);
+            setVisualProgress(nextStep);
+            visualProgressRef.current = nextStep;
+            return nextStep;
+          });
         }}
         onNext={() => {
           setIsPlaying(false);
-          setActiveStep((step) => Math.min(config.steps.length - 1, step + 1));
+          setActiveStep((step) => {
+            const nextStep = Math.min(config.steps.length - 1, step + 1);
+            setVisualProgress(nextStep);
+            visualProgressRef.current = nextStep;
+            return nextStep;
+          });
         }}
         onToggleLabels={() => setLabelsVisible((value) => !value)}
         onToggleFormula={() => setFormulaVisible((value) => !value)}
@@ -118,9 +147,9 @@ export default function GeometryProofTemplate({ category, proof, config }: Geome
     <VisualProofLayout
       category={category}
       proof={proof}
-      visual={<GeometryVisual kind={config.kind} values={values} activeStep={activeStep} labelsVisible={labelsVisible} secondaryVisible={secondaryVisible} resetKey={interactionResetKey} />}
+      visual={<GeometryVisual kind={config.kind} values={values} activeStep={activeStep} progress={visualProgress} labelsVisible={labelsVisible} secondaryVisible={secondaryVisible} resetKey={interactionResetKey} />}
       controls={controls}
-      steps={<StepPanel steps={config.steps} activeStep={activeStep} onSelectStep={(step) => { setIsPlaying(false); setActiveStep(step); }} />}
+      steps={<StepPanel steps={config.steps} activeStep={activeStep} onSelectStep={(step) => { setIsPlaying(false); setActiveStep(step); setVisualProgress(step); visualProgressRef.current = step; }} />}
       formula={<FormulaPanel visible={formulaVisible} formulas={formulas} />}
       conceptNotes={<p>{config.notes}</p>}
       reflectionQuestions={config.questions}
@@ -132,6 +161,7 @@ function GeometryVisual({
   kind,
   values,
   activeStep,
+  progress,
   labelsVisible,
   secondaryVisible,
   resetKey,
@@ -139,6 +169,7 @@ function GeometryVisual({
   kind: GeometryProofConfig["kind"];
   values: GeometryValues;
   activeStep: number;
+  progress: number;
   labelsVisible: boolean;
   secondaryVisible: boolean;
   resetKey: number;
@@ -155,13 +186,13 @@ function GeometryVisual({
           </marker>
         </defs>
         <rect x="18" y="18" width="864" height="484" rx="18" className="fill-slate-50 stroke-slate-200 dark:fill-slate-900 dark:stroke-white/10" />
-        {renderGeometry(kind, values, activeStep, labelsVisible, secondaryVisible, resetKey)}
+        {renderGeometry(kind, values, activeStep, progress, labelsVisible, secondaryVisible, resetKey)}
       </svg>
     </div>
   );
 }
 
-function renderGeometry(kind: GeometryProofConfig["kind"], values: GeometryValues, step: number, labels: boolean, secondary: boolean, resetKey: number) {
+function renderGeometry(kind: GeometryProofConfig["kind"], values: GeometryValues, step: number, progress: number, labels: boolean, secondary: boolean, resetKey: number) {
   switch (kind) {
     case "PythagoreanAreaRearrangementProof":
       return <PythagoreanSvg values={values} step={step} labels={labels} secondary={secondary} resetKey={resetKey} />;
@@ -174,7 +205,7 @@ function renderGeometry(kind: GeometryProofConfig["kind"], values: GeometryValue
     case "SimilarTrianglesProof":
       return <SimilarTrianglesSvg values={values} step={step} labels={labels} secondary={secondary} />;
     case "CircleCircumferenceUnwrappingProof":
-      return <CircumferenceSvg values={values} step={step} labels={labels} secondary={secondary} />;
+      return <CircumferenceSvg values={values} step={step} progress={progress} labels={labels} secondary={secondary} />;
     case "SectorAreaFormulaProof":
       return <SectorSvg values={values} step={step} labels={labels} secondary={secondary} />;
     case "ParallelogramAreaShearingProof":
@@ -193,60 +224,151 @@ function PythagoreanSvg({ values, step, labels, secondary, resetKey = 0 }: SvgPr
   const useSplit = secondary || step >= 3;
   const drag = useSvgDrag();
   const { setOffsets } = drag;
+  const leftOrigin = { x: 78, y: 150 };
+  const rightOrigin = { x: 488, y: 150 };
+  const outerSide = 250;
+  const unit = outerSide / (a + b);
+  const startPieces = pythagoreanTiltedPieces(a, b, unit, leftOrigin, "start");
+  const rearrangedPieces = pythagoreanSplitPieces(a, b, unit, rightOrigin, "split");
 
   useEffect(() => {
     setOffsets({});
-  }, [a, b, resetKey, secondary, setOffsets]);
+  }, [a, b, resetKey, secondary, step, setOffsets]);
 
   return (
     <g>
-      <Title title="Pythagorean area rearrangement" subtitle={`a = ${a}, b = ${b}, c = ${formatNumber(c)}`} />
-      <rect x="110" y="140" width="250" height="250" fill="#ecfeff" stroke="#0891b2" strokeWidth="3" />
-      {useSplit ? (
+      <Title title="Pythagorean area rearrangement" subtitle={`Drag pieces. Change a or b. The equation updates: ${a}^2 + ${b}^2 = ${formatNumber(c)}^2`} />
+      <PythagoreanBoard
+        title="Same square: one tilted space"
+        subtitle={`leftover area = c^2 = ${formatNumber(c * c)}`}
+        origin={leftOrigin}
+        side={outerSide}
+        active={!useSplit}
+      >
+        {startPieces.map((piece) => <PythagoreanPiece key={piece.id} piece={piece} drag={drag} labels={labels} />)}
+      </PythagoreanBoard>
+      <PythagoreanBoard
+        title="Same square: two straight spaces"
+        subtitle={`leftover area = a^2 + b^2 = ${formatNumber(a * a + b * b)}`}
+        origin={rightOrigin}
+        side={outerSide}
+        active={useSplit}
+      >
+        {rearrangedPieces.map((piece) => <PythagoreanPiece key={piece.id} piece={piece} drag={drag} labels={labels} />)}
+      </PythagoreanBoard>
+      <path d="M 438 148 L 458 148 L 458 402 L 438 402" fill="none" stroke="#94a3b8" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+      <Text x={450} y={455}>same outside square, same four triangles</Text>
+      <Text x={450} y={488}>{`${formatNumber(a * a)} + ${formatNumber(b * b)} = ${formatNumber(c * c)} so a^2 + b^2 = c^2`}</Text>
+      {labels && (
         <>
-          <g {...drag.draggableProps("a-square", "Drag the a squared area block")}>
-            <rect x="150" y="180" width="80" height="80" fill="#bae6fd" stroke="#0369a1" strokeWidth="3" />
-            {labels && <Text x={190} y={225}>a^2</Text>}
-          </g>
-          <g {...drag.draggableProps("b-square", "Drag the b squared area block")}>
-            <rect x="235" y="180" width="110" height="110" fill="#ddd6fe" stroke="#7c3aed" strokeWidth="3" />
-            {labels && <Text x={290} y={240}>b^2</Text>}
-          </g>
-        </>
-      ) : (
-        <>
-          <g {...drag.draggableProps("c-square", "Drag the c squared tilted square")}>
-            <polygon points="235,145 355,265 235,385 115,265" fill="#fef3c7" stroke="#d97706" strokeWidth="3" />
-            {labels && <Text x={235} y={270}>c^2</Text>}
-          </g>
+          <SideLabel x={leftOrigin.x + outerSide / 2} y={leftOrigin.y + outerSide + 30} text="a + b" />
+          <SideLabel x={rightOrigin.x + outerSide / 2} y={rightOrigin.y + outerSide + 30} text="a + b" />
+          <SideLabel x={leftOrigin.x - 28} y={leftOrigin.y + outerSide / 2} text="a + b" rotate />
+          <SideLabel x={rightOrigin.x + outerSide + 28} y={rightOrigin.y + outerSide / 2} text="a + b" rotate />
         </>
       )}
-      <TriangleGroup opacity={step >= 1 ? 0.82 : 0.25} drag={drag} />
-      <path d="M 470 170 L 720 170 L 720 390 L 470 390 Z" fill="none" stroke="#22c55e" strokeWidth="3" strokeDasharray="9 8" />
-      <Text x={595} y={115}>Drag any colored piece to test the rearrangement</Text>
-      <Text x={595} y={150}>same outer square and four triangles</Text>
-      <Text x={595} y={425}>{useSplit ? "leftover = a^2 + b^2" : "leftover = c^2"}</Text>
-      <Text x={595} y={465}>{`Dynamic: ${a}^2 + ${b}^2 = ${formatNumber(c)}^2`}</Text>
     </g>
   );
 }
 
-function TriangleGroup({ opacity, drag }: { opacity: number; drag: DragController }) {
-  const triangles = [
-    { id: "triangle-top-left", points: "110,140 235,140 110,265", label: "Drag top left right triangle" },
-    { id: "triangle-top-right", points: "360,140 360,265 235,140", label: "Drag top right right triangle" },
-    { id: "triangle-bottom-right", points: "360,390 235,390 360,265", label: "Drag bottom right right triangle" },
-    { id: "triangle-bottom-left", points: "110,390 110,265 235,390", label: "Drag bottom left right triangle" },
-  ];
+type PythagoreanPieceData = {
+  fill: string;
+  id: string;
+  label: string;
+  name: string;
+  points: GeometryPoint[];
+  stroke: string;
+};
+
+function PythagoreanBoard({ title, subtitle, origin, side, active, children }: { title: string; subtitle: string; origin: GeometryPoint; side: number; active: boolean; children: ReactNode }) {
   return (
-    <g opacity={opacity}>
-      {triangles.map((triangle, index) => (
-        <g key={triangle.id} {...drag.draggableProps(triangle.id, triangle.label)}>
-          <polygon points={triangle.points} fill={index % 2 ? "#67e8f9" : "#c4b5fd"} stroke="#0f172a" strokeWidth="1.5" />
-        </g>
-      ))}
+    <g>
+      <rect x={origin.x - 16} y={origin.y - 56} width={side + 32} height={side + 102} rx="18" fill={active ? "#ecfeff" : "#f8fafc"} stroke={active ? "#06b6d4" : "#cbd5e1"} strokeWidth={active ? 4 : 2} strokeDasharray={active ? undefined : "8 7"} />
+      <text x={origin.x + side / 2} y={origin.y - 28} textAnchor="middle" className="fill-slate-950 text-[17px] font-black dark:fill-white">{title}</text>
+      <text x={origin.x + side / 2} y={origin.y - 7} textAnchor="middle" className="fill-slate-600 text-[12px] font-black dark:fill-slate-300">{subtitle}</text>
+      <rect x={origin.x} y={origin.y} width={side} height={side} fill="white" stroke="#0f172a" strokeWidth="3" />
+      {children}
+      <circle cx={origin.x + side + 18} cy={origin.y - 14} r="8" fill={active ? "#22c55e" : "#94a3b8"} />
     </g>
   );
+}
+
+function PythagoreanPiece({ piece, drag, labels }: { piece: PythagoreanPieceData; drag: DragController; labels: boolean }) {
+  const center = polygonCentroid(piece.points);
+  return (
+    <g {...drag.draggableProps(piece.id, piece.label)}>
+      <polygon points={polygonPoints(piece.points)} fill={piece.fill} stroke={piece.stroke} strokeWidth="2.5" />
+      <circle cx={center.x} cy={center.y} r="12" fill="#ffffff" stroke={piece.stroke} strokeWidth="3" opacity="0.96" />
+      <path d={`M ${center.x - 5} ${center.y} L ${center.x + 5} ${center.y} M ${center.x} ${center.y - 5} L ${center.x} ${center.y + 5}`} stroke={piece.stroke} strokeWidth="2.5" strokeLinecap="round" />
+      {labels && <text x={center.x} y={center.y + 29} textAnchor="middle" className="fill-slate-950 text-[13px] font-black dark:fill-white">{piece.name}</text>}
+    </g>
+  );
+}
+
+function pythagoreanTiltedPieces(a: number, b: number, unit: number, origin: GeometryPoint, prefix: string): PythagoreanPieceData[] {
+  const point = (x: number, y: number) => ({ x: origin.x + x * unit, y: origin.y + y * unit });
+  return [
+    trianglePiece(`${prefix}-tri-1`, "triangle 1", [point(0, 0), point(b, 0), point(0, a)], "#67e8f9"),
+    trianglePiece(`${prefix}-tri-2`, "triangle 2", [point(b, 0), point(a + b, 0), point(a + b, b)], "#c4b5fd"),
+    trianglePiece(`${prefix}-tri-3`, "triangle 3", [point(a + b, b), point(a + b, a + b), point(a, a + b)], "#67e8f9"),
+    trianglePiece(`${prefix}-tri-4`, "triangle 4", [point(0, a), point(a, a + b), point(0, a + b)], "#c4b5fd"),
+    {
+      fill: "#fef3c7",
+      id: `${prefix}-c-square`,
+      label: "Drag the c squared tilted square",
+      name: "c^2",
+      points: [point(b, 0), point(a + b, b), point(a, a + b), point(0, a)],
+      stroke: "#d97706",
+    },
+  ];
+}
+
+function pythagoreanSplitPieces(a: number, b: number, unit: number, origin: GeometryPoint, prefix: string): PythagoreanPieceData[] {
+  const point = (x: number, y: number) => ({ x: origin.x + x * unit, y: origin.y + y * unit });
+  return [
+    {
+      fill: "#bae6fd",
+      id: `${prefix}-a-square`,
+      label: "Drag the a squared square",
+      name: "a^2",
+      points: [point(0, 0), point(a, 0), point(a, a), point(0, a)],
+      stroke: "#0369a1",
+    },
+    {
+      fill: "#ddd6fe",
+      id: `${prefix}-b-square`,
+      label: "Drag the b squared square",
+      name: "b^2",
+      points: [point(a, a), point(a + b, a), point(a + b, a + b), point(a, a + b)],
+      stroke: "#7c3aed",
+    },
+    trianglePiece(`${prefix}-tri-1`, "triangle 1", [point(a, 0), point(a + b, 0), point(a + b, a)], "#67e8f9"),
+    trianglePiece(`${prefix}-tri-2`, "triangle 2", [point(a, 0), point(a + b, a), point(a, a)], "#c4b5fd"),
+    trianglePiece(`${prefix}-tri-3`, "triangle 3", [point(0, a), point(a, a), point(0, a + b)], "#67e8f9"),
+    trianglePiece(`${prefix}-tri-4`, "triangle 4", [point(a, a), point(a, a + b), point(0, a + b)], "#c4b5fd"),
+  ];
+}
+
+function trianglePiece(id: string, name: string, points: GeometryPoint[], fill: string): PythagoreanPieceData {
+  return {
+    fill,
+    id,
+    label: `Drag ${name}`,
+    name,
+    points,
+    stroke: "#0f172a",
+  };
+}
+
+function polygonCentroid(points: GeometryPoint[]) {
+  return {
+    x: points.reduce((total, point) => total + point.x, 0) / points.length,
+    y: points.reduce((total, point) => total + point.y, 0) / points.length,
+  };
+}
+
+function SideLabel({ x, y, text, rotate = false }: { x: number; y: number; text: string; rotate?: boolean }) {
+  return <text x={x} y={y} textAnchor="middle" transform={rotate ? `rotate(-90 ${x} ${y})` : undefined} className="fill-slate-700 text-[13px] font-black dark:fill-slate-200">{text}</text>;
 }
 
 function TriangleAreaSvg({ values, step, labels, secondary }: SvgProps) {
@@ -275,13 +397,15 @@ function TriangleAreaSvg({ values, step, labels, secondary }: SvgProps) {
   );
 }
 
-function TriangleAngleSvg({ values, labels, secondary, resetKey = 0 }: SvgProps) {
+function TriangleAngleSvg({ values, step, labels, secondary, resetKey = 0 }: SvgProps) {
   const defaultPoints = useMemo(() => defaultTriangleAnglePoints(values), [values]);
   const [points, setPoints] = useState(defaultPoints);
+  const [dragging, setDragging] = useState<"left" | "top" | "right" | null>(null);
   const activeVertex = useRef<"left" | "top" | "right" | null>(null);
 
   useEffect(() => {
     setPoints(defaultPoints);
+    setDragging(null);
   }, [defaultPoints, resetKey]);
 
   const left = points.left;
@@ -293,6 +417,7 @@ function TriangleAngleSvg({ values, labels, secondary, resetKey = 0 }: SvgProps)
     right: angleAt(right, left, top),
   };
   const total = angles.left + angles.top + angles.right;
+  const stripActive = step >= 2 || secondary;
 
   function svgPoint(event: PointerEvent<SVGGElement>) {
     const svg = event.currentTarget.ownerSVGElement;
@@ -310,11 +435,13 @@ function TriangleAngleSvg({ values, labels, secondary, resetKey = 0 }: SvgProps)
       "aria-label": label,
       onPointerCancel: (event: PointerEvent<SVGGElement>) => {
         activeVertex.current = null;
+        setDragging(null);
         event.currentTarget.releasePointerCapture(event.pointerId);
       },
       onPointerDown: (event: PointerEvent<SVGGElement>) => {
         event.preventDefault();
         activeVertex.current = id;
+        setDragging(id);
         event.currentTarget.setPointerCapture(event.pointerId);
       },
       onPointerMove: (event: PointerEvent<SVGGElement>) => {
@@ -330,36 +457,129 @@ function TriangleAngleSvg({ values, labels, secondary, resetKey = 0 }: SvgProps)
       },
       onPointerUp: (event: PointerEvent<SVGGElement>) => {
         activeVertex.current = null;
+        setDragging(null);
         event.currentTarget.releasePointerCapture(event.pointerId);
       },
       role: "button" as const,
-      style: { cursor: "grab", touchAction: "none" },
+      style: { cursor: dragging === id ? "grabbing" : "grab", touchAction: "none" },
       tabIndex: 0,
     };
   }
 
   return (
     <g>
-      <Title title="Triangle angle sum" subtitle="Drag vertices; angle values update live" />
-      <polygon points={polygonPoints([left, top, right])} fill="#ecfeff" stroke="#0891b2" strokeWidth="3" />
+      <Title title="Triangle angle sum" subtitle="Drag A, B, or C. The three angle values update live." />
+      <polygon points={polygonPoints([left, top, right])} fill="#ecfeff" stroke="#0891b2" strokeWidth="3.5" />
+      <line x1={left.x} y1={left.y} x2={right.x} y2={right.y} stroke="#0f172a" strokeWidth="1.5" opacity="0.18" />
       <DynamicAngleArc vertex={left} pointA={top} pointB={right} color="#f59e0b" radius={48} />
       <DynamicAngleArc vertex={top} pointA={left} pointB={right} color="#22c55e" radius={46} />
       <DynamicAngleArc vertex={right} pointA={left} pointB={top} color="#a855f7" radius={48} />
-      <DraggableVertex point={left} fill="#f59e0b" label="A" {...vertexProps("left", "Drag vertex A")} />
-      <DraggableVertex point={top} fill="#22c55e" label="B" {...vertexProps("top", "Drag vertex B")} />
-      <DraggableVertex point={right} fill="#a855f7" label="C" {...vertexProps("right", "Drag vertex C")} />
-      {secondary && <line x1="80" y1={top.y} x2="440" y2={top.y} stroke="#64748b" strokeWidth="2" strokeDasharray="9 8" />}
-      {labels && (
+      <AngleValueLabel point={left} dx={-48} dy={-20} color="#b45309" label={`A ${formatNumber(angles.left, 1)}`} />
+      <AngleValueLabel point={top} dx={0} dy={-38} color="#15803d" label={`B ${formatNumber(angles.top, 1)}`} />
+      <AngleValueLabel point={right} dx={58} dy={-20} color="#7e22ce" label={`C ${formatNumber(angles.right, 1)}`} />
+      <DraggableVertex point={left} fill="#f59e0b" label="A" active={dragging === "left"} {...vertexProps("left", "Drag vertex A")} />
+      <DraggableVertex point={top} fill="#22c55e" label="B" active={dragging === "top"} {...vertexProps("top", "Drag vertex B")} />
+      <DraggableVertex point={right} fill="#a855f7" label="C" active={dragging === "right"} {...vertexProps("right", "Drag vertex C")} />
+      {(secondary || step >= 1) && (
         <>
-          <AngleValueLabel point={left} dx={-44} dy={-18} color="#f59e0b" label={`A = ${formatNumber(angles.left, 1)} deg`} />
-          <AngleValueLabel point={top} dx={0} dy={-34} color="#22c55e" label={`B = ${formatNumber(angles.top, 1)} deg`} />
-          <AngleValueLabel point={right} dx={58} dy={-18} color="#a855f7" label={`C = ${formatNumber(angles.right, 1)} deg`} />
-          <Text x="650" y="205">A = {formatNumber(angles.left, 1)} deg</Text>
-          <Text x="650" y="250">B = {formatNumber(angles.top, 1)} deg</Text>
-          <Text x="650" y="295">C = {formatNumber(angles.right, 1)} deg</Text>
-          <Text x="650" y="355">A + B + C = {formatNumber(total, 1)} degrees</Text>
+          <line x1="78" y1={top.y} x2="492" y2={top.y} stroke="#64748b" strokeWidth="2" strokeDasharray="9 8" />
+          {labels && <Text x="605" y={top.y - 14}>parallel guide</Text>}
         </>
       )}
+      <AngleSumValueCard x={585} y={120} angles={angles} total={total} />
+      <StraightAngleStrip x={560} y={392} angles={angles} active={stripActive} labels={labels} />
+      <Text x="695" y="490">The colored parts always fill one straight angle.</Text>
+    </g>
+  );
+}
+
+function AngleSumValueCard({
+  x,
+  y,
+  angles,
+  total,
+}: {
+  x: number;
+  y: number;
+  angles: { left: number; top: number; right: number };
+  total: number;
+}) {
+  const rows = [
+    { label: "A", value: angles.left, color: "#f59e0b" },
+    { label: "B", value: angles.top, color: "#22c55e" },
+    { label: "C", value: angles.right, color: "#a855f7" },
+  ];
+
+  return (
+    <g aria-label="Live angle values">
+      <rect x={x} y={y} width="260" height="220" rx="18" fill="#0f172a" opacity="0.94" />
+      <text x={x + 20} y={y + 34} fill="#ffffff" fontSize="18" fontWeight="900">Live angle values</text>
+      {rows.map((row, index) => (
+        <g key={row.label} transform={`translate(${x + 20} ${y + 58 + index * 39})`}>
+          <rect x="0" y="0" width="220" height="30" rx="10" fill="#ffffff" opacity="0.09" />
+          <circle cx="18" cy="15" r="8" fill={row.color} />
+          <text x="36" y="20" fill="#ffffff" fontSize="15" fontWeight="900">
+            {row.label} = {formatNumber(row.value, 1)} deg
+          </text>
+        </g>
+      ))}
+      <line x1={x + 20} y1={y + 180} x2={x + 240} y2={y + 180} stroke="#ffffff" strokeWidth="1.5" opacity="0.28" />
+      <text x={x + 130} y={y + 207} textAnchor="middle" fill="#67e8f9" fontSize="18" fontWeight="900">
+        A + B + C = {formatNumber(total, 1)} deg
+      </text>
+    </g>
+  );
+}
+
+function StraightAngleStrip({
+  x,
+  y,
+  angles,
+  active,
+  labels,
+}: {
+  x: number;
+  y: number;
+  angles: { left: number; top: number; right: number };
+  active: boolean;
+  labels: boolean;
+}) {
+  const width = 280;
+  const scale = width / 180;
+  const segments = [
+    { label: "A", value: angles.left, color: "#f59e0b" },
+    { label: "B", value: angles.top, color: "#22c55e" },
+    { label: "C", value: angles.right, color: "#a855f7" },
+  ];
+  let cursor = x;
+
+  return (
+    <g aria-label="Straight angle comparison" opacity={active ? 1 : 0.74}>
+      <text x={x + width / 2} y={y - 22} textAnchor="middle" fill="#0f172a" fontSize="16" fontWeight="900">
+        copied angles on a straight line
+      </text>
+      <line x1={x} y1={y} x2={x + width} y2={y} stroke="#0f172a" strokeWidth="4" strokeLinecap="round" opacity="0.78" />
+      {segments.map((segment) => {
+        const segmentWidth = Math.max(1, segment.value * scale);
+        const start = cursor;
+        cursor += segmentWidth;
+        return (
+          <g key={segment.label}>
+            <rect x={start} y={y - 18} width={segmentWidth} height="36" rx="8" fill={segment.color} opacity="0.88" />
+            <line x1={start} y1={y - 27} x2={start} y2={y + 27} stroke="#ffffff" strokeWidth="2" opacity="0.86" />
+            {labels && segmentWidth > 38 && (
+              <text x={start + segmentWidth / 2} y={y + 6} textAnchor="middle" fill="#ffffff" fontSize="14" fontWeight="900">
+                {segment.label}
+              </text>
+            )}
+          </g>
+        );
+      })}
+      <line x1={x + width} y1={y - 27} x2={x + width} y2={y + 27} stroke="#ffffff" strokeWidth="2" opacity="0.86" />
+      <path d={`M ${x} ${y + 38} Q ${x + width / 2} ${y + 60} ${x + width} ${y + 38}`} fill="none" stroke="#0f172a" strokeWidth="3" strokeLinecap="round" />
+      <text x={x + width / 2} y={y + 82} textAnchor="middle" fill="#0f172a" fontSize="15" fontWeight="900">
+        180 deg
+      </text>
     </g>
   );
 }
@@ -409,30 +629,70 @@ function SimilarTrianglesSvg({ values, step, labels, secondary }: SvgProps) {
   );
 }
 
-function CircumferenceSvg({ values, step, labels, secondary }: SvgProps) {
+function CircumferenceSvg({ values, step, progress = step, labels, secondary }: SvgProps) {
   const r = values.radius || 75;
+  const startX = 120;
+  const groundY = 330;
   const travel = 2 * Math.PI * r;
-  const cx = 150 + Math.min(travel, 450) * Math.min(1, step / 5);
-  const cy = 330 - r;
-  const markerAngle = -90 + 360 * Math.min(1, step / 5);
+  const rollProgress = smoothstep(clamp01((progress - 1) / 2));
+  const distance = travel * rollProgress;
+  const cx = startX + distance;
+  const cy = groundY - r;
+  const markerAngle = -90 + 360 * rollProgress;
   const marker = { x: cx + r * Math.cos(degToRad(markerAngle)), y: cy + r * Math.sin(degToRad(markerAngle)) };
+  const unwrapProgress = secondary ? 1 : smoothstep(clamp01((progress - 3) / 1.5));
+  const unwrappedLength = travel * unwrapProgress;
+  const trail = cycloidPath(startX, cy, r, rollProgress);
+  const circumferenceLabelX = Math.min(startX + travel + 18, 760);
   return (
     <g>
       <Title title="Circle circumference by rolling" subtitle="One full turn travels one circumference" />
-      <line x1="80" y1="330" x2="810" y2="330" stroke="#64748b" strokeWidth="3" />
-      {step >= 2 && <line x1="150" y1="345" x2={cx} y2="345" stroke="#f59e0b" strokeWidth="6" />}
+      <line x1="70" y1={groundY} x2="830" y2={groundY} stroke="#64748b" strokeWidth="3" />
+      <line x1={startX} y1={groundY + 15} x2={startX + travel} y2={groundY + 15} stroke="#f59e0b" strokeWidth="6" strokeLinecap="round" opacity={step >= 2 ? 0.35 : 0} />
+      {step >= 2 && <line x1={startX} y1={groundY + 15} x2={startX + distance} y2={groundY + 15} stroke="#f59e0b" strokeWidth="6" strokeLinecap="round" />}
+      {step >= 1 && <path d={trail} fill="none" stroke="#ef4444" strokeWidth="2.5" strokeDasharray="5 6" opacity="0.5" />}
+      <ellipse cx={cx} cy={groundY + 8} rx={r * 0.82} ry="8" fill="#0f172a" opacity="0.11" />
       <circle cx={cx} cy={cy} r={r} fill="#ecfeff" stroke="#0891b2" strokeWidth="4" />
+      <g transform={`rotate(${360 * rollProgress} ${cx} ${cy})`} opacity="0.58">
+        {Array.from({ length: 8 }, (_, index) => {
+          const angle = index * 45;
+          const end = { x: cx + r * 0.82 * Math.cos(degToRad(angle)), y: cy + r * 0.82 * Math.sin(degToRad(angle)) };
+          return <line key={angle} x1={cx} y1={cy} x2={end.x} y2={end.y} stroke="#0891b2" strokeWidth="1.4" />;
+        })}
+      </g>
       <line x1={cx} y1={cy} x2={marker.x} y2={marker.y} stroke="#ef4444" strokeWidth="3" />
       <circle cx={marker.x} cy={marker.y} r="7" fill="#ef4444" />
-      {(step >= 4 || secondary) && <line x1="500" y1="180" x2="780" y2="180" stroke="#22c55e" strokeWidth="7" />}
+      <circle cx={cx} cy={groundY} r="4" fill="#0f172a" opacity="0.45" />
+      {(step >= 4 || secondary) && (
+        <>
+          <line x1={startX} y1="405" x2={startX + travel} y2="405" stroke="#bbf7d0" strokeWidth="7" strokeLinecap="round" />
+          <line x1={startX} y1="405" x2={startX + unwrappedLength} y2="405" stroke="#22c55e" strokeWidth="7" strokeLinecap="round" />
+          <circle cx={startX + unwrappedLength} cy="405" r="6" fill="#22c55e" />
+        </>
+      )}
       {labels && (
         <>
           <Text x={cx + r / 2} y={cy - 10}>r</Text>
-          <Text x="640" y="215">unwrapped boundary = 2 pi r</Text>
+          {step >= 2 && <Text x={Math.min(cx + 28, 745)} y={groundY - 12}>distance rolled = r theta</Text>}
+          {(step >= 3 || secondary) && <Text x={circumferenceLabelX} y={groundY + 22}>one full turn = 2 pi r</Text>}
+          {(step >= 4 || secondary) && <Text x={startX + 245} y="392">unwrapped boundary = 2 pi r</Text>}
         </>
       )}
     </g>
   );
+}
+
+function cycloidPath(startX: number, cy: number, r: number, progress: number) {
+  if (progress <= 0) return "";
+  const points = Array.from({ length: 40 }, (_, index) => {
+    const t = progress * (index / 39);
+    const angle = degToRad(-90 + 360 * t);
+    return {
+      x: startX + 2 * Math.PI * r * t + r * Math.cos(angle),
+      y: cy + r * Math.sin(angle),
+    };
+  });
+  return points.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ");
 }
 
 function SectorSvg({ values, step, labels, secondary }: SvgProps) {
@@ -534,6 +794,7 @@ function PolygonSvg({ values, step, labels, secondary }: SvgProps) {
 type SvgProps = {
   values: GeometryValues;
   step: number;
+  progress?: number;
   labels: boolean;
   secondary: boolean;
   resetKey?: number;
@@ -644,10 +905,11 @@ function DynamicAngleArc({ vertex, pointA, pointB, color, radius }: { vertex: Ge
   return <path d={`M ${startPoint.x} ${startPoint.y} A ${radius} ${radius} 0 0 1 ${endPoint.x} ${endPoint.y}`} fill="none" stroke={color} strokeWidth="8" strokeLinecap="round" opacity="0.92" />;
 }
 
-function DraggableVertex({ point, fill, label, ...props }: { point: GeometryPoint; fill: string; label: string } & Omit<ReturnType<DragController["draggableProps"]>, "transform">) {
+function DraggableVertex({ point, fill, label, active, ...props }: { point: GeometryPoint; fill: string; label: string; active?: boolean } & Omit<ReturnType<DragController["draggableProps"]>, "transform">) {
   return (
     <g {...props}>
-      <circle cx={point.x} cy={point.y} r="12" fill={fill} stroke="#0f172a" strokeWidth="3" />
+      <circle cx={point.x} cy={point.y} r={active ? 24 : 20} fill={fill} opacity="0.16" />
+      <circle cx={point.x} cy={point.y} r={active ? 15 : 13} fill={fill} stroke="#0f172a" strokeWidth="3" />
       <text x={point.x} y={point.y + 5} textAnchor="middle" className="fill-white text-[12px] font-black">{label}</text>
     </g>
   );
@@ -667,6 +929,15 @@ function normalizeRadians(value: number) {
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
+}
+
+function clamp01(value: number) {
+  return clamp(value, 0, 1);
+}
+
+function smoothstep(value: number) {
+  const t = clamp01(value);
+  return t * t * (3 - 2 * t);
 }
 
 function AngleArc({ cx, cy, start, end, color, show }: { cx: number; cy: number; start: number; end: number; color: string; show: boolean }) {

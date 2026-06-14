@@ -29,6 +29,18 @@ export function MathRecognitionPanel({ result }: { result: MathRecognitionResult
         <SummaryTile label="Recognition rate" value={`${Math.round(result.audit.recognitionRate * 100)}%`} />
       </div>
 
+      {result.operationInsight ? (
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 dark:border-emerald-400/20 dark:bg-emerald-400/10">
+          <p className="text-xs font-black uppercase text-emerald-800 dark:text-emerald-100">Detected Operation</p>
+          <div className="mt-2 grid gap-2 md:grid-cols-3">
+            <SummaryTile label="Operation" value={result.operationInsight.name} />
+            <SummaryTile label="Confidence" value={result.operationInsight.confidence} />
+            <SummaryTile label="Normalized" value={result.operationInsight.normalizedExpression ?? "Direct solver input"} />
+          </div>
+          <p className="mt-2 text-sm font-semibold text-emerald-950 dark:text-emerald-100">{result.operationInsight.explanation}</p>
+        </div>
+      ) : null}
+
       <div>
         <p className="mb-2 text-xs font-black uppercase text-slate-500 dark:text-slate-400">Token Badges</p>
         <MathTokenHighlighter tokens={result.tokens} />

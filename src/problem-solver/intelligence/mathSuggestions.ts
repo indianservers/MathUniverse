@@ -10,6 +10,7 @@ export function buildMathSuggestions(input: string, tokens: MathRecognizedToken[
   addMultiplicationHint(trimmed, suggestions);
   addTrigWarning(tokens, lower, suggestions);
   addStatisticsHint(trimmed, lower, suggestions);
+  addOperationHints(trimmed, lower, suggestions);
   addMatrixHint(trimmed, lower, suggestions);
   addCalculusHints(trimmed, lower, suggestions);
   addEngineeringHint(tokens, suggestions);
@@ -17,6 +18,22 @@ export function buildMathSuggestions(input: string, tokens: MathRecognizedToken[
   addUnknownWordHint(tokens, suggestions);
 
   return uniqueSuggestions(suggestions);
+}
+
+function addOperationHints(input: string, lower: string, suggestions: MathSuggestion[]) {
+  const numbers = input.match(/[-+]?\d*\.?\d+(?:e[-+]?\d+)?/gi) ?? [];
+  if (/%\s+of\b|\bpercent(?:age)?\b/.test(lower) && numbers.length >= 2) {
+    suggestions.push({ id: "percent-operation", message: `Interpreted as ${numbers[0]} percent of ${numbers[1]}.`, replacement: `percent ${numbers[0]} of ${numbers[1]}`, severity: "info", title: "Percent operation" });
+  }
+  if (/\b(gcd|hcf|greatest common divisor)\b/.test(lower) && numbers.length >= 2) {
+    suggestions.push({ id: "gcd-operation", message: `Try gcd ${numbers.join(", ")}.`, replacement: `gcd ${numbers.join(", ")}`, severity: "info", title: "Greatest common divisor" });
+  }
+  if (/\b(lcm|least common multiple)\b/.test(lower) && numbers.length >= 2) {
+    suggestions.push({ id: "lcm-operation", message: `Try lcm ${numbers.join(", ")}.`, replacement: `lcm ${numbers.join(", ")}`, severity: "info", title: "Least common multiple" });
+  }
+  if (/\bfactorial\b/.test(lower) && numbers.length >= 1) {
+    suggestions.push({ id: "factorial-operation", message: `Try factorial ${numbers[0]} or ${numbers[0]}!.`, replacement: `factorial ${numbers[0]}`, severity: "info", title: "Factorial syntax" });
+  }
 }
 
 export function suggestionMessages(suggestions: MathSuggestion[], tokens: MathRecognizedToken[]) {
