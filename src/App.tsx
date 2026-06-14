@@ -70,6 +70,9 @@ const TrigonometryConceptPage = lazy(() => import("./pages/TrigonometryConceptPa
 const TruthTableGenerator = lazy(() => import("./pages/TruthTableGenerator"));
 const UnitConverter = lazy(() => import("./pages/UnitConverter"));
 const VisualShowcase = lazy(() => import("./pages/VisualShowcase"));
+const VisualProofsHomePage = lazy(() => import("./visual-proofs/pages/VisualProofsHomePage"));
+const VisualProofCategoryPage = lazy(() => import("./visual-proofs/pages/VisualProofCategoryPage"));
+const VisualProofPage = lazy(() => import("./visual-proofs/pages/VisualProofPage"));
 const WorkedExamplesLibrary = lazy(() => import("./pages/WorkedExamplesLibrary"));
 const Workspace3D = lazy(() => import("./pages/Workspace3D"));
 const WorkspaceData = lazy(() => import("./pages/WorkspaceData"));
@@ -142,6 +145,9 @@ export default function App() {
             <Route path="workspace/teach" element={<WorkspaceTeach />} />
             <Route path="formulas" element={<Formulas />} />
             <Route path="visual-showcase" element={<VisualShowcase />} />
+            <Route path="visual-proofs" element={<VisualProofsHomePage />} />
+            <Route path="visual-proofs/:categorySlug" element={<VisualProofCategoryPage />} />
+            <Route path="visual-proofs/:categorySlug/:proofSlug" element={<VisualProofPage />} />
             <Route path="geometry" element={<Geometry />} />
             <Route path="geometry/:conceptId" element={<GeometryConceptPage />} />
             <Route path="shapes" element={<ShapesExplorer />} />
