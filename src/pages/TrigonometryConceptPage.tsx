@@ -9,10 +9,16 @@ import TopicTabs from "../components/ui/TopicTabs";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
 import { getTrigonometryConcept, type TrigonometryConcept, type TrigonometryVisualType } from "../data/trigonometryConcepts";
 import { degreesToRadians, roundTo } from "../utils/math";
+import AngleSumDifferenceVisualizer, { type AngleSumDifferenceFormulaId } from "../visualizations/trigonometry/AngleSumDifferenceVisualizer";
+import DoubleHalfAngleVisualizer, { type DoubleHalfFormulaId } from "../visualizations/trigonometry/DoubleHalfAngleVisualizer";
 import EclipseTrigonometryVisualizer from "../visualizations/trigonometry/EclipseTrigonometryVisualizer";
+import CoreIdentityProofVisualizer, { type CoreIdentityId } from "../visualizations/trigonometry/CoreIdentityProofVisualizer";
 import TrigConcept3DView from "../visualizations/trigonometry/TrigConcept3DView";
+import TrigGraphStudio, { type TrigGraphFunction } from "../visualizations/trigonometry/TrigGraphStudio";
 import TrigonometricFunctionsVisualizer from "../visualizations/trigonometry/TrigonometricFunctionsVisualizer";
 import TrigonometryExperimentCatalog from "../visualizations/trigonometry/TrigonometryExperimentCatalog";
+import TriangleCircleRatioVisualizer, { type TriangleCircleRatioFocus } from "../visualizations/trigonometry/TriangleCircleRatioVisualizer";
+import UnitCircleMasterVisualizer, { type UnitCircleMasterFocus } from "../visualizations/trigonometry/UnitCircleMasterVisualizer";
 import WaveApplications from "../visualizations/trigonometry/WaveApplications";
 
 export default function TrigonometryConceptPage() {
@@ -34,6 +40,12 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
   const metrics = useMemo(() => trigMetrics(concept.visual, a, b), [a, b, concept.visual]);
   const shapeLinks = shapeLinksForConcept(concept);
   const fullPage = fullVisualizer(concept.visual);
+  const unitCircleMasterFocus = unitCircleMasterFocusForConcept(concept.id);
+  const triangleCircleFocus = triangleCircleRatioFocusForConcept(concept.id);
+  const coreIdentityFocus = coreIdentityFocusForConcept(concept.id);
+  const angleSumDifferenceFocus = angleSumDifferenceFocusForConcept(concept.id);
+  const doubleHalfFocus = doubleHalfFocusForConcept(concept.id);
+  const graphStudioFocus = graphStudioFocusForConcept(concept.id);
 
   return (
     <div className="space-y-6">
@@ -44,47 +56,42 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
       <TopicHeader title={concept.title} subtitle={concept.summary} difficulty={concept.category} estimatedMinutes={12} />
 
       {fullPage ? (
-        fullPage
+        <>
+          {fullPage}
+          {triangleCircleFocus && <TriangleCircleRatioVisualizer focus={triangleCircleFocus} title={`${concept.title} Triangle + Circle Bridge`} />}
+        </>
+      ) : unitCircleMasterFocus ? (
+        <>
+          <UnitCircleMasterVisualizer focus={unitCircleMasterFocus} title={`${concept.title} Master Visualizer`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
+      ) : triangleCircleFocus ? (
+        <>
+          <TriangleCircleRatioVisualizer focus={triangleCircleFocus} title={`${concept.title} Triangle + Circle Visualizer`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
+      ) : coreIdentityFocus ? (
+        <>
+          <CoreIdentityProofVisualizer defaultIdentity={coreIdentityFocus} title={`${concept.title} Core Proof Visualizer`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
+      ) : angleSumDifferenceFocus ? (
+        <>
+          <AngleSumDifferenceVisualizer defaultFormula={angleSumDifferenceFocus} title={`${concept.title} Visual Derivation Lab`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
+      ) : doubleHalfFocus ? (
+        <>
+          <DoubleHalfAngleVisualizer defaultFormula={doubleHalfFocus} title={`${concept.title} Visual Derivation Lab`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
+      ) : graphStudioFocus ? (
+        <>
+          <TrigGraphStudio defaultFunction={graphStudioFocus.fn} emphasis={graphStudioFocus.emphasis} title={`${concept.title} Graph Studio`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
       ) : (
-        <SectionCard title="Interactive Concept Lab" description="Move the controls and connect the formula to the diagram.">
-          <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
-            <div className="space-y-4">
-              <FormulaBlock title="Core Formula" formula={concept.formula} explanation={concept.summary} />
-              <SliderGroup title="Concept controls">
-                <SliderControl density="compact" label={concept.sliderA} value={a} min={concept.minA} max={concept.maxA} step={concept.stepA} onChange={setA} />
-                <SliderControl density="compact" label={concept.sliderB} value={b} min={concept.minB} max={concept.maxB} step={concept.stepB} onChange={setB} />
-              </SliderGroup>
-              <div className="grid grid-cols-2 gap-2">
-                {metrics.map((metric) => <Metric key={metric.label} label={metric.label} value={metric.value} />)}
-              </div>
-            </div>
-            <div className="space-y-4">
-              <TopicTabs
-                tabs={[
-                  {
-                    id: "view-2d",
-                    label: "2D View",
-                    content: (
-                      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-950">
-                        <TrigConceptSvg visual={concept.visual} a={a} b={b} title={concept.title} />
-                      </div>
-                    ),
-                  },
-                  {
-                    id: "view-3d",
-                    label: "3D View",
-                    content: <TrigConcept3DView visual={concept.visual} a={a} b={b} title={concept.title} />,
-                  },
-                ]}
-              />
-              <div className="grid gap-3 md:grid-cols-3">
-                <Info label="Concept" value={concept.summary} />
-                <Info label="What changes" value={changeText(concept.visual, concept.sliderA, concept.sliderB)} />
-                <Info label="Used in" value={concept.use} />
-              </div>
-            </div>
-          </div>
-        </SectionCard>
+        <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
       )}
 
       <VisualLearningPanel
@@ -116,11 +123,110 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
   );
 }
 
+function ConceptLabSection({
+  concept,
+  a,
+  b,
+  setA,
+  setB,
+  metrics,
+}: {
+  concept: TrigonometryConcept;
+  a: number;
+  b: number;
+  setA: (value: number) => void;
+  setB: (value: number) => void;
+  metrics: Array<{ label: string; value: string }>;
+}) {
+  return (
+    <SectionCard title="Classic Concept Lab" description="The existing 2D and 3D concept views are preserved as a fallback beside the upgraded lesson.">
+      <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
+        <div className="space-y-4">
+          <FormulaBlock title="Core Formula" formula={concept.formula} explanation={concept.summary} />
+          <SliderGroup title="Concept controls">
+            <SliderControl density="compact" label={concept.sliderA} value={a} min={concept.minA} max={concept.maxA} step={concept.stepA} onChange={setA} />
+            <SliderControl density="compact" label={concept.sliderB} value={b} min={concept.minB} max={concept.maxB} step={concept.stepB} onChange={setB} />
+          </SliderGroup>
+          <div className="grid grid-cols-2 gap-2">
+            {metrics.map((metric) => <Metric key={metric.label} label={metric.label} value={metric.value} />)}
+          </div>
+        </div>
+        <div className="space-y-4">
+          <TopicTabs
+            tabs={[
+              {
+                id: "view-2d",
+                label: "2D View",
+                content: (
+                  <div className="overflow-hidden rounded-xl border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-950">
+                    <TrigConceptSvg visual={concept.visual} a={a} b={b} title={concept.title} />
+                  </div>
+                ),
+              },
+              {
+                id: "view-3d",
+                label: "3D View",
+                content: <TrigConcept3DView visual={concept.visual} a={a} b={b} title={concept.title} />,
+              },
+            ]}
+          />
+          <div className="grid gap-3 md:grid-cols-3">
+            <Info label="Concept" value={concept.summary} />
+            <Info label="What changes" value={changeText(concept.visual, concept.sliderA, concept.sliderB)} />
+            <Info label="Used in" value={concept.use} />
+          </div>
+        </div>
+      </div>
+    </SectionCard>
+  );
+}
+
 function fullVisualizer(visual: TrigonometryVisualType) {
   if (visual === "eclipse") return <EclipseTrigonometryVisualizer />;
   if (visual === "wave-applications") return <WaveApplications />;
   if (visual === "experiment-catalog") return <TrigonometryExperimentCatalog />;
   if (visual === "trig-functions") return <TrigonometricFunctionsVisualizer />;
+  return null;
+}
+
+function unitCircleMasterFocusForConcept(conceptId: string): UnitCircleMasterFocus | null {
+  if (conceptId === "unit-circle") return "unit-circle";
+  if (conceptId === "degree-radian") return "degree-radian";
+  if (conceptId === "special-angles") return "special-angles";
+  if (conceptId === "quadrant-signs") return "quadrant-signs";
+  return null;
+}
+
+function triangleCircleRatioFocusForConcept(conceptId: string): TriangleCircleRatioFocus | null {
+  if (conceptId === "right-triangle-ratios") return "basic";
+  if (conceptId === "reciprocal-ratios") return "reciprocal";
+  if (conceptId === "trigonometric-functions") return "functions";
+  return null;
+}
+
+function coreIdentityFocusForConcept(conceptId: string): CoreIdentityId | null {
+  if (conceptId === "pythagorean-identity") return "sin2-plus-cos2";
+  return null;
+}
+
+function angleSumDifferenceFocusForConcept(conceptId: string): AngleSumDifferenceFormulaId | null {
+  if (conceptId === "sum-difference") return "sin-add";
+  return null;
+}
+
+function doubleHalfFocusForConcept(conceptId: string): DoubleHalfFormulaId | null {
+  if (conceptId === "double-angle") return "sin-double";
+  if (conceptId === "half-angle") return "sin-half-square";
+  return null;
+}
+
+function graphStudioFocusForConcept(conceptId: string): { fn: TrigGraphFunction; emphasis: "a" | "b" | "c" | "d" | "parent" } | null {
+  if (conceptId === "sine-graph") return { fn: "sin", emphasis: "parent" };
+  if (conceptId === "cosine-graph") return { fn: "cos", emphasis: "parent" };
+  if (conceptId === "tangent-graph") return { fn: "tan", emphasis: "parent" };
+  if (conceptId === "wave-amplitude" || conceptId === "amplitude") return { fn: "sin", emphasis: "a" };
+  if (conceptId === "wave-period-frequency" || conceptId === "period-frequency") return { fn: "sin", emphasis: "b" };
+  if (conceptId === "phase-shift") return { fn: "sin", emphasis: "c" };
   return null;
 }
 

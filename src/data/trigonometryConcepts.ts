@@ -86,5 +86,9 @@ export const trigonometryConcepts: TrigonometryConcept[] = [
 ];
 
 export function getTrigonometryConcept(id?: string) {
-  return trigonometryConcepts.find((concept) => concept.id === id);
+  const aliases: Record<string, string> = {
+    amplitude: "wave-amplitude",
+    "period-frequency": "wave-period-frequency",
+  };
+  return trigonometryConcepts.find((concept) => concept.id === (id ? aliases[id] ?? id : id));
 }
