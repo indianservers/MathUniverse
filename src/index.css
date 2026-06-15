@@ -143,12 +143,72 @@ body {
     @apply rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-800 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-100;
   }
 
+  .formula-library-card {
+    @apply cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-white/90 p-3 shadow-sm transition hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-950/10 dark:border-white/10 dark:bg-white/[0.05];
+  }
+
+  .formula-library-card.compact-card {
+    @apply p-3;
+  }
+
+  .formula-level {
+    @apply inline-flex items-center rounded-full border border-cyan-200 bg-cyan-50 px-2.5 py-1 text-[11px] font-black uppercase tracking-wide text-cyan-800 dark:border-cyan-300/25 dark:bg-cyan-300/10 dark:text-cyan-100;
+  }
+
+  .formula-usage {
+    @apply inline-flex items-center rounded-full border border-violet-200 bg-violet-50 px-2.5 py-1 text-[11px] font-black uppercase tracking-wide text-violet-800 dark:border-violet-300/25 dark:bg-violet-300/10 dark:text-violet-100;
+  }
+
+  .formula-progress {
+    @apply inline-flex items-center rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[11px] font-black uppercase tracking-wide text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-200;
+  }
+
+  .formula-progress.mastered {
+    @apply border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-300/25 dark:bg-emerald-300/10 dark:text-emerald-100;
+  }
+
+  .formula-progress.revision {
+    @apply border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-300/25 dark:bg-amber-300/10 dark:text-amber-100;
+  }
+
+  .formula-progress.viewed {
+    @apply border-sky-200 bg-sky-50 text-sky-800 dark:border-sky-300/25 dark:bg-sky-300/10 dark:text-sky-100;
+  }
+
+  .formula-inline-tag {
+    @apply inline-flex items-center rounded-full border border-cyan-100 bg-cyan-50 px-2.5 py-1 text-xs font-bold leading-none text-cyan-800 transition hover:border-cyan-300 hover:bg-cyan-100 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-100 dark:hover:bg-cyan-300/15;
+  }
+
+  .formula-study-button {
+    @apply inline-flex min-h-9 items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-black text-slate-700 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/10;
+  }
+
+  .formula-study-button.active {
+    @apply border-cyan-300 bg-cyan-300 text-slate-950 shadow-sm shadow-cyan-300/30 dark:border-cyan-200 dark:bg-cyan-300 dark:text-slate-950;
+  }
+
+  .formula-hidden-card {
+    @apply flex min-h-16 w-full items-center justify-center rounded-xl border border-dashed border-cyan-300 bg-cyan-50 px-4 py-3 text-sm font-black text-cyan-800 transition hover:bg-cyan-100 dark:border-cyan-300/30 dark:bg-cyan-300/10 dark:text-cyan-100 dark:hover:bg-cyan-300/15;
+  }
+
+  .formula-detail-block {
+    @apply rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/50;
+  }
+
+  .formula-detail-block summary {
+    @apply cursor-pointer text-sm font-black text-slate-900 dark:text-white;
+  }
+
+  .formula-detail-block p {
+    @apply mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300;
+  }
+
   .math-tool-button {
     @apply inline-flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-100 bg-white/85 text-slate-700 shadow-sm shadow-cyan-100/40 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15;
   }
 
   .tool-button {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-cyan-100 bg-white/86 px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm shadow-cyan-100/40 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-900 active:translate-y-0 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:border-cyan-300/35 dark:hover:bg-cyan-300/10 dark:hover:text-cyan-50;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-cyan-100 bg-white/85 px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm shadow-cyan-100/40 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-900 active:translate-y-0 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:border-cyan-300/35 dark:hover:bg-cyan-300/10 dark:hover:text-cyan-50;
   }
 
   .math-tool-button-danger {
@@ -274,7 +334,7 @@ body {
   }
 
   .spotlight-card {
-    @apply border border-cyan-200/70 bg-white/90 text-slate-950 shadow-2xl shadow-cyan-100/60 dark:border-cyan-300/20 dark:bg-slate-950/84 dark:text-white dark:shadow-black/30;
+    @apply border border-cyan-200/70 bg-white/90 text-slate-950 shadow-2xl shadow-cyan-100/60 dark:border-cyan-300/20 dark:bg-slate-950/85 dark:text-white dark:shadow-black/30;
     background-image:
       radial-gradient(circle at 16% 18%, rgba(34, 211, 238, 0.24), transparent 14rem),
       radial-gradient(circle at 88% 0%, rgba(244, 114, 182, 0.2), transparent 15rem),

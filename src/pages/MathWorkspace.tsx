@@ -104,6 +104,7 @@ type AlgebraObjectRef = { kind: AlgebraObjectKind; id: string };
 type ObjectPropertyOverrides = Record<string, MathObjectProperties>;
 type ContextMenuState = { x: number; y: number; target: SelectedGeometryObject | { type: "3d"; id: string } | { type: "algebra"; ref: AlgebraObjectRef } };
 type WorkspaceView = "graph" | "geometry" | "3d" | "data" | "teach";
+export type DataWorkspacePage = "overview" | "spreadsheet" | "analysis" | "cas" | "results" | "objects";
 type ConstructionStep = { id: string; label: string; detail: string; createdAt: number; snapshot: Pick<WorkspaceSnapshot, "plots" | "construction" | "transforms3d" | "added3dObjects"> };
 type ActivityJournalEntry = { templateId: string; phase: GuidedActivityPhase; response: string; selfCheck: "not-started" | "revisit" | "got-it"; confidence: number; updatedAt: number };
 type WorkspaceSnapshot = {
@@ -198,7 +199,7 @@ const formulaLibrary = [
   { topic: "3D", title: "Paraboloid", formula: "z = k(x^2+y^2)", command: "plot x^2" },
 ];
 
-export default function MathWorkspace({ initialView = "graph", singleView = false }: { initialView?: WorkspaceView; singleView?: boolean }) {
+export default function MathWorkspace({ initialView = "graph", singleView = false, dataPage = "overview" }: { initialView?: WorkspaceView; singleView?: boolean; dataPage?: DataWorkspacePage }) {
   const [input, setInput] = useState("plot sin(x)");
   const [results, setResults] = useState<ResultCard[]>([]);
   const [plots, setPlots] = useState<PlotItem[]>([{ id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true }]);
@@ -1854,6 +1855,34 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setProjectStatus(`${geometryToolLabel(mode)} applied to ${uniqueIds.length} point${uniqueIds.length === 1 ? "" : "s"}.`);
   };
 
+  const activeFunctionPlot = plots.find((plot) => plot.visible !== false && (plot.kind ?? inferPlotKind(plot.expression)) === "function") ?? plots[0];
+  const activeCasExpression = stripInequality(activeFunctionPlot?.expression ?? "x^2-5*x+6");
+  const runDataCommand = (command: string) => {
+    setInput(command);
+    const analysis = interpretInput(command);
+    setResults((current) => [analysis, ...current].slice(0, 12));
+    if (analysis.graphExpression) {
+      setPlots((current) => [{ id: crypto.randomUUID(), expression: analysis.graphExpression!, color: colors[current.length % colors.length], kind: inferPlotKind(analysis.graphExpression!), visible: true }, ...current].slice(0, 10));
+    }
+  };
+  const addSpreadsheetScatter = (points: ResultTableRow[]) => {
+    recordWorkspaceStep("Add spreadsheet scatter", `${points.length} spreadsheet points linked to graph.`);
+    setPlots((current) => [{ id: crypto.randomUUID(), expression: "spreadsheet data", color: "#ec4899", kind: "scatter" as PlotKind, points, visible: true }, ...current].slice(0, 10));
+  };
+  const addSpreadsheetRegression = (model: RegressionModel, points: ResultTableRow[]) => {
+    const regression = regressionModel(points, model);
+    recordWorkspaceStep("Add spreadsheet regression", `${model} regression from spreadsheet.`);
+    setPlots((current) => [{ id: crypto.randomUUID(), expression: regression.expression, color: "#14b8a6", kind: "regression" as PlotKind, points, visible: true }, ...current].slice(0, 10));
+    setResults((current) => [{ id: crypto.randomUUID(), input: `${model} regression`, interpretation: "Spreadsheet regression", result: regression.expression, detail: regression.detail, table: points.slice(0, 12), graphExpression: regression.expression }, ...current].slice(0, 12));
+  };
+  const dataOverviewCards = [
+    { title: "Spreadsheet", text: "Editable cells, formulas, scatter plots, and regression.", route: "/workspace/data/spreadsheet", meta: `${spreadsheet.length} rows` },
+    { title: "Function Analysis", text: "Roots, extrema, intercepts, derivative, integral, and table commands.", route: "/workspace/data/analysis", meta: activeCasExpression },
+    { title: "CAS Workbench", text: "Exact algebra actions for simplify, factor, solve, limits, substitution, and systems.", route: "/workspace/data/cas", meta: `${casDepthActions.length} actions` },
+    { title: "Results", text: "Command history, exact results, numeric checks, and generated tables.", route: "/workspace/data/results", meta: `${results.length} cards` },
+    { title: "Object Registry", text: "Shared graph, CAS, table, spreadsheet, geometry, and 3D objects.", route: "/workspace/data/objects", meta: `${unifiedWorkspaceObjects.length} objects` },
+  ];
+
   return (
     <div ref={workspaceRef} className="space-y-3 pt-20 xl:pt-14">
       <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} />
@@ -2018,41 +2047,38 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         </div>
       </SectionCard>}
 
-      {workspaceView === "data" && <SectionCard title="CAS, Spreadsheet, Tables, And Commands" description="Use GeoGebra-style commands, editable value tables, spreadsheet formulas, regression models, and live function analysis.">
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px]">
-          <SpreadsheetPanel
-            grid={spreadsheet}
-            onChange={setSpreadsheet}
-            onScatter={(points) => {
-              recordWorkspaceStep("Add spreadsheet scatter", `${points.length} spreadsheet points linked to graph.`);
-              setPlots((current) => [{ id: crypto.randomUUID(), expression: "spreadsheet data", color: "#ec4899", kind: "scatter" as PlotKind, points, visible: true }, ...current].slice(0, 10));
-            }}
-            onRegression={(model, points) => {
-              const regression = regressionModel(points, model);
-              recordWorkspaceStep("Add spreadsheet regression", `${model} regression from spreadsheet.`);
-              setPlots((current) => [{ id: crypto.randomUUID(), expression: regression.expression, color: "#14b8a6", kind: "regression" as PlotKind, points, visible: true }, ...current].slice(0, 10));
-              setResults((current) => [{ id: crypto.randomUUID(), input: `${model} regression`, interpretation: "Spreadsheet regression", result: regression.expression, detail: regression.detail, table: points.slice(0, 12), graphExpression: regression.expression }, ...current].slice(0, 12));
-            }}
-          />
-          <FunctionAnalysisPanel
-            plot={plots.find((plot) => plot.visible !== false && (plot.kind ?? inferPlotKind(plot.expression)) === "function") ?? plots[0]}
-            onCommand={(command) => {
-              setInput(command);
-              const analysis = interpretInput(command);
-              setResults((current) => [analysis, ...current].slice(0, 12));
-              if (analysis.graphExpression) setPlots((current) => [{ id: crypto.randomUUID(), expression: analysis.graphExpression!, color: colors[current.length % colors.length], kind: "function" as PlotKind, visible: true }, ...current].slice(0, 10));
-            }}
-          />
-          <CasDepthPanel
-            expression={stripInequality(plots.find((plot) => plot.visible !== false && (plot.kind ?? inferPlotKind(plot.expression)) === "function")?.expression ?? plots[0]?.expression ?? "x^2-5*x+6")}
-            onCommand={(command) => {
-              setInput(command);
-              const analysis = interpretInput(command);
-              setResults((current) => [analysis, ...current].slice(0, 12));
-              if (analysis.graphExpression) setPlots((current) => [{ id: crypto.randomUUID(), expression: analysis.graphExpression!, color: colors[current.length % colors.length], kind: inferPlotKind(analysis.graphExpression!), visible: true }, ...current].slice(0, 10));
-            }}
-          />
-          <CasResultsPanel results={results} onClear={() => setResults([])} />
+      {workspaceView === "data" && <SectionCard title={dataPage === "overview" ? "Data Workspace" : dataWorkspacePageTitle(dataPage)} description="Spreadsheet, CAS, function analysis, results, and the shared object registry are split into focused pages." headerAction={<DataWorkspaceNav active={dataPage} />}>
+        {dataPage === "overview" && (
+          <div className="space-y-5">
+            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+              {dataOverviewCards.map((card) => (
+                <Link key={card.route} to={card.route} className="rounded-xl border border-slate-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950/60 dark:hover:border-cyan-300/30 dark:hover:bg-cyan-300/10">
+                  <p className="text-xs font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">{card.meta}</p>
+                  <h3 className="mt-2 font-bold text-slate-950 dark:text-white">{card.title}</h3>
+                  <p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{card.text}</p>
+                </Link>
+              ))}
+            </div>
+            <WorldClassMathSoftwareGaps />
+          </div>
+        )}
+        {dataPage === "spreadsheet" && (
+          <SpreadsheetPanel grid={spreadsheet} onChange={setSpreadsheet} onScatter={addSpreadsheetScatter} onRegression={addSpreadsheetRegression} />
+        )}
+        {dataPage === "analysis" && (
+          <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
+            <FunctionAnalysisPanel plot={activeFunctionPlot} onCommand={runDataCommand} />
+            <CasResultsPanel results={results} onClear={() => setResults([])} />
+          </div>
+        )}
+        {dataPage === "cas" && (
+          <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
+            <CasDepthPanel expression={activeCasExpression} onCommand={runDataCommand} />
+            <FunctionAnalysisPanel plot={activeFunctionPlot} onCommand={runDataCommand} />
+          </div>
+        )}
+        {dataPage === "results" && <CasResultsPanel results={results} onClear={() => setResults([])} />}
+        {dataPage === "objects" && (
           <UnifiedWorkspacePanel
             objects={unifiedWorkspaceObjects}
             selectedObject={unifiedSelectedObject}
@@ -2061,7 +2087,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             onObjectAction={handleUnifiedObjectAction}
             onObjectChange={handleUnifiedObjectChange}
           />
-        </div>
+        )}
       </SectionCard>}
 
       {workspaceView === "3d" && <SectionCard title="3D Graphing And Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls.">
@@ -2155,7 +2181,6 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             <Space3DConstructionWorkbench
               selected={selected3d}
               transform={selected3dTransform}
-              onCreate={(id) => add3dSceneObject(id, { solid: threeObjectSolidMap[id], label: threeObjectLabels[id] })}
               onPreset={(preset) => apply3dTransformPreset(preset)}
               onDuplicate={() => duplicate3dObject()}
               onDelete={() => delete3dObject()}
@@ -4491,6 +4516,68 @@ function WorkspaceModeTabs({ active, onChange }: { active: WorkspaceView; onChan
   );
 }
 
+const dataWorkspaceNavItems: { id: DataWorkspacePage; label: string; route: string }[] = [
+  { id: "overview", label: "Overview", route: "/workspace/data" },
+  { id: "spreadsheet", label: "Spreadsheet", route: "/workspace/data/spreadsheet" },
+  { id: "analysis", label: "Analysis", route: "/workspace/data/analysis" },
+  { id: "cas", label: "CAS", route: "/workspace/data/cas" },
+  { id: "results", label: "Results", route: "/workspace/data/results" },
+  { id: "objects", label: "Objects", route: "/workspace/data/objects" },
+];
+
+function dataWorkspacePageTitle(page: DataWorkspacePage) {
+  return dataWorkspaceNavItems.find((item) => item.id === page)?.label ?? "Data Workspace";
+}
+
+function DataWorkspaceNav({ active }: { active: DataWorkspacePage }) {
+  return (
+    <nav className="flex max-w-full flex-wrap gap-1.5" aria-label="Data workspace pages">
+      {dataWorkspaceNavItems.map((item) => (
+        <Link
+          key={item.id}
+          to={item.route}
+          className={`rounded-full px-3 py-2 text-xs font-black uppercase tracking-wide transition ${active === item.id ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-700 hover:bg-cyan-100 hover:text-cyan-900 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15 dark:hover:text-cyan-50"}`}
+        >
+          {item.label}
+        </Link>
+      ))}
+    </nav>
+  );
+}
+
+const worldClassMathSoftwareGaps = [
+  { title: "Native symbolic engine", detail: "Broaden exact CAS coverage to assumptions, domains, piecewise algebra, equation systems, inequalities, and step explanations." },
+  { title: "Dynamic dependency graph", detail: "Make every spreadsheet cell, CAS result, plot, slider, and object reactive with visible dependency tracing and recomputation status." },
+  { title: "Geometry and data fusion", detail: "Let tables generate points, loci, constructions, sliders, statistics, and regression objects without switching mental models." },
+  { title: "Proof and verification layer", detail: "Add theorem-aware checks, counterexamples, units, assumptions, numeric verification, and explainable confidence for each result." },
+  { title: "Professional import/export", detail: "Support CSV/XLSX, GeoGebra files, LaTeX, MathML, SVG/PDF, classroom handouts, and reproducible project bundles." },
+  { title: "Collaboration and classroom mode", detail: "Add shared boards, teacher locks, assignments, student replay, privacy-safe analytics, and versioned construction history." },
+  { title: "Accessibility and internationalization", detail: "Improve keyboard navigation, screen reader math output, high contrast, localization, handwriting, and touch-first workflows." },
+  { title: "Performance at scale", detail: "Use workers, virtualization, cached sampling, robust numeric solvers, and graceful fallbacks for large tables and dense graphs." },
+];
+
+function WorldClassMathSoftwareGaps() {
+  return (
+    <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-300/20 dark:bg-amber-300/10">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="text-xs font-black uppercase tracking-wide text-amber-700 dark:text-amber-200">World-class gaps</p>
+          <h3 className="mt-1 text-lg font-bold text-slate-950 dark:text-white">What is missing versus top maths software</h3>
+        </div>
+        <span className="rounded-full bg-white px-3 py-1.5 text-xs font-black uppercase text-amber-800 shadow-sm dark:bg-slate-950 dark:text-amber-100">{worldClassMathSoftwareGaps.length} priorities</span>
+      </div>
+      <div className="mt-4 grid gap-3 md:grid-cols-2">
+        {worldClassMathSoftwareGaps.map((gap) => (
+          <article key={gap.title} className="rounded-xl bg-white p-3 dark:bg-slate-950/70">
+            <h4 className="font-bold text-slate-950 dark:text-white">{gap.title}</h4>
+            <p className="mt-1 text-sm leading-5 text-slate-600 dark:text-slate-300">{gap.detail}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function CompactWorkspaceBar({ activeTemplate, dynamicHealth, qaReport, teachingMode, performanceMode, onSave, onLoad, onUndo, onRedo, onExportJson, onExportPng, onShare, onToggleTeach, onRunQa, onPerformance }: { activeTemplate: SyllabusWorkspaceTemplate; dynamicHealth: ReturnType<typeof graphHealthSummary>; qaReport: WorkspaceQaReport; teachingMode: boolean; performanceMode: boolean; onSave: () => void; onLoad: () => void; onUndo: () => void; onRedo: () => void; onExportJson: () => void; onExportPng: () => void; onShare: () => void; onToggleTeach: () => void; onRunQa: () => void; onPerformance: (value: boolean) => void }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
@@ -4913,7 +5000,6 @@ function Space3DPaletteAction({ item }: { item: GeometryPaletteActionItem }) {
 function Space3DConstructionWorkbench({
   selected,
   transform,
-  onCreate,
   onPreset,
   onDuplicate,
   onDelete,
@@ -4922,23 +5008,12 @@ function Space3DConstructionWorkbench({
 }: {
   selected: string;
   transform: Transform3D;
-  onCreate: (id: ThreeObjectId) => void;
   onPreset: (preset: Preset3DTransform) => void;
   onDuplicate: () => void;
   onDelete: () => void;
   onRestore: () => void;
   onToggleVisibility: () => void;
 }) {
-  const constructors: Array<{ id: ThreeObjectId; label: string; icon: LucideIcon }> = [
-    { id: "point", label: "Point", icon: Plus },
-    { id: "line3d", label: "Line", icon: Slash },
-    { id: "plane3d", label: "Plane", icon: Box },
-    { id: "sphere3d", label: "Sphere", icon: Circle },
-    { id: "cylinder3d", label: "Cylinder", icon: Rotate3D },
-    { id: "cone3d", label: "Cone", icon: Rotate3D },
-    { id: "prism3d", label: "Prism", icon: Box },
-    { id: "pyramid3d", label: "Pyramid", icon: Pentagon },
-  ];
   const presets: Array<{ id: Preset3DTransform; label: string }> = [
     { id: "center", label: "Center" },
     { id: "ground", label: "Ground" },
@@ -4963,24 +5038,10 @@ function Space3DConstructionWorkbench({
           <button type="button" onClick={onDelete} disabled={!selected} className="mini-chip text-rose-700 dark:text-rose-100">Delete</button>
         </div>
       </div>
-      <div className="mt-3 grid gap-3 xl:grid-cols-[1.2fr_.8fr]">
-        <div>
-          <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Add Objects</p>
-          <div className="mt-2 grid grid-cols-4 gap-1.5 sm:grid-cols-8">
-            {constructors.map((item) => {
-              const Icon = item.icon;
-              return (
-                <button key={item.id} type="button" onClick={() => onCreate(item.id)} className="geometry-palette-button min-h-16" title={`Add ${item.label}`}>
-                  <Icon className="h-4 w-4" />
-                  <span>{item.label}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
+      <div className="mt-3">
         <div>
           <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Modify Selected</p>
-          <div className="mt-2 grid grid-cols-4 gap-1.5">
+          <div className="mt-2 grid grid-cols-2 gap-1.5 sm:grid-cols-4 xl:grid-cols-8">
             {presets.map((item) => (
               <button key={item.id} type="button" onClick={() => onPreset(item.id)} disabled={!selected} className="rounded-lg bg-slate-100 px-2 py-2 text-xs font-black text-slate-700 transition hover:bg-cyan-100 disabled:opacity-45 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-400/15">
                 {item.label}
@@ -5940,6 +6001,57 @@ function HorizontalPanelHeader({ title, side, onCollapse }: { title: string; sid
   );
 }
 
+function ProjectionPaneHeader({
+  controlsId,
+  controls,
+  isOpen,
+  onToggle,
+  title,
+  tone,
+}: {
+  controlsId: string;
+  controls: ReactNode;
+  isOpen: boolean;
+  onToggle: () => void;
+  title: string;
+  tone: "cyan" | "violet";
+}) {
+  const LeftIcon = isOpen ? PanelLeftClose : PanelLeftOpen;
+  const toneClass = tone === "cyan" ? "text-cyan-700 dark:text-cyan-200" : "text-violet-700 dark:text-violet-200";
+  const ringClass = tone === "cyan" ? "focus:ring-cyan-300" : "focus:ring-violet-300";
+  return (
+    <div className={`flex items-start gap-2 rounded-xl p-1 transition hover:bg-slate-50 dark:hover:bg-white/5`}>
+      <button
+        type="button"
+        onClick={onToggle}
+        className={`mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition hover:bg-cyan-100 hover:text-cyan-800 focus:outline-none focus:ring-2 ${ringClass} dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15`}
+        title={`${isOpen ? "Collapse" : "Expand"} ${title} from left`}
+        aria-label={`${isOpen ? "Collapse" : "Expand"} ${title} from left`}
+      >
+        <LeftIcon className="h-4 w-4" />
+      </button>
+      <button
+        type="button"
+        onClick={onToggle}
+        className={`flex min-w-0 flex-1 items-start justify-between gap-3 rounded-lg text-left focus:outline-none focus:ring-2 ${ringClass}`}
+        aria-expanded={isOpen}
+        aria-controls={controlsId}
+      >
+        <div className="min-w-0">
+          <p className={`text-xs font-black uppercase ${toneClass}`}>2D Pane</p>
+          <h3 className="text-sm font-black">{title}</h3>
+        </div>
+        <span className="flex shrink-0 items-center gap-2">
+          {controls}
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-200">
+            <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "" : "-rotate-90"}`} />
+          </span>
+        </span>
+      </button>
+    </div>
+  );
+}
+
 function Workspace3DProjectionPane({ selected, transform, surface, surfaceScale, solid, solidSize, crossSection, showSurface, showSolid }: { selected: string; transform: Transform3D; surface: SurfaceKind; surfaceScale: number; solid: SolidKind; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean }) {
   const [openPanes, setOpenPanes] = useState({ xy: true, xz: true });
   const px = 170 + transform.position[0] * 18;
@@ -5951,18 +6063,14 @@ function Workspace3DProjectionPane({ selected, transform, surface, surfaceScale,
   return (
     <div className="grid min-h-[420px] gap-3 lg:grid-cols-2 2xl:grid-cols-1">
       <section className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
-        <button type="button" onClick={() => togglePane("xy")} className="flex w-full items-start justify-between gap-3 rounded-xl text-left transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:hover:bg-white/5" aria-expanded={openPanes.xy} aria-controls="workspace-xy-projection-pane">
-          <div className="min-w-0 p-1">
-            <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">2D Pane</p>
-            <h3 className="text-sm font-black">Top View X-Y</h3>
-          </div>
-          <span className="flex shrink-0 items-center gap-2 p-1">
-            <span className="mini-chip">{selected || "none"}</span>
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-200">
-              <ChevronDown className={`h-4 w-4 transition-transform ${openPanes.xy ? "" : "-rotate-90"}`} />
-            </span>
-          </span>
-        </button>
+        <ProjectionPaneHeader
+          controlsId="workspace-xy-projection-pane"
+          title="Top View X-Y"
+          tone="cyan"
+          isOpen={openPanes.xy}
+          onToggle={() => togglePane("xy")}
+          controls={<span className="mini-chip">{selected || "none"}</span>}
+        />
         {openPanes.xy && (
           <div id="workspace-xy-projection-pane">
             <svg viewBox="0 0 340 250" className="mt-3 h-[min(28vh,260px)] min-h-[210px] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
@@ -5990,18 +6098,14 @@ function Workspace3DProjectionPane({ selected, transform, surface, surfaceScale,
         )}
       </section>
       <section className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
-        <button type="button" onClick={() => togglePane("xz")} className="flex w-full items-start justify-between gap-3 rounded-xl text-left transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-violet-300 dark:hover:bg-white/5" aria-expanded={openPanes.xz} aria-controls="workspace-xz-projection-pane">
-          <div className="min-w-0 p-1">
-            <p className="text-xs font-black uppercase text-violet-700 dark:text-violet-200">2D Pane</p>
-            <h3 className="text-sm font-black">Side View X-Z</h3>
-          </div>
-          <span className="flex shrink-0 items-center gap-2 p-1">
-            <span className="mini-chip">z {roundTo(crossSection, 2)}</span>
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-200">
-              <ChevronDown className={`h-4 w-4 transition-transform ${openPanes.xz ? "" : "-rotate-90"}`} />
-            </span>
-          </span>
-        </button>
+        <ProjectionPaneHeader
+          controlsId="workspace-xz-projection-pane"
+          title="Side View X-Z"
+          tone="violet"
+          isOpen={openPanes.xz}
+          onToggle={() => togglePane("xz")}
+          controls={<span className="mini-chip">z {roundTo(crossSection, 2)}</span>}
+        />
         {openPanes.xz && (
           <div id="workspace-xz-projection-pane">
             <svg viewBox="0 0 340 250" className="mt-3 h-[min(28vh,260px)] min-h-[210px] w-full rounded-xl bg-slate-50 dark:bg-slate-900">

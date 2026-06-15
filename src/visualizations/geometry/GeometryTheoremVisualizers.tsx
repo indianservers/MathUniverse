@@ -103,6 +103,10 @@ export default function GeometryTheoremVisualizers() {
         </div>
 
         <div className="rounded-2xl bg-white p-4 dark:bg-slate-950/60">
+          <div className="mb-3 rounded-xl border border-cyan-100 bg-cyan-50/80 p-3 dark:border-cyan-300/20 dark:bg-cyan-300/10">
+            <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">What must stay true</p>
+            <p className="mt-1 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-200">{proofIdeaFor(selected.id)}</p>
+          </div>
           <TheoremSvg theorem={selected.id} x={x} y={y} z={z} />
         </div>
       </div>
@@ -115,6 +119,9 @@ export default function GeometryTheoremVisualizers() {
           realWorldUse={selected.realWorldUse}
           steps={stepsFor(selected.id, x, y, z, metrics)}
           tasks={tasksFor(selected.id)}
+          proofIdea={proofIdeaFor(selected.id)}
+          misconception={misconceptionFor(selected.id)}
+          teacherPrompt={teacherPromptFor(selected.id)}
         />
       </div>
     </SectionCard>
@@ -262,16 +269,87 @@ function changeText(id: TheoremId) {
 
 function stepsFor(id: TheoremId, x: number, y: number, z: number, metrics: Record<string, number>) {
   if (id === "angle-sum") return [`Start with angle A = ${roundTo(x, 1)} degrees.`, `Set angle B = ${roundTo(y, 1)} degrees.`, `The third angle becomes ${roundTo(metrics["Angle C"], 1)} degrees.`, `Total stays ${roundTo(metrics.Total, 1)} degrees.`];
+  if (id === "exterior-angle") return [`Look at the outside straight line at the vertex.`, `A straight line measures 180 degrees.`, `The inside angle beside the exterior angle plus the exterior angle makes 180 degrees.`, `The three inside triangle angles also make 180 degrees, so the exterior angle equals the two far inside angles.`];
+  if (id === "midpoint") return [`Mark the middle of the two sides.`, `The small top triangle keeps the same angles as the full triangle.`, `Its side lengths are half of the matching full-triangle sides.`, `So the middle segment is parallel to the base and has half the base length.`];
+  if (id === "basic-proportionality") return [`Draw a line parallel to the base.`, `Parallel lines create equal corresponding angles.`, `The small triangle and large triangle are similar.`, `Matching sides must keep the same ratio, so AD/DB = AE/EC.`];
+  if (id === "similar-triangles") return [`First match equal angles, not side lengths.`, `Equal angles force the two triangles to have the same shape.`, `One triangle is only a scaled copy of the other.`, `Every matching side is multiplied by the same scale factor.`];
+  if (id === "thales") return [`Use the diameter as the longest side.`, `Join the circle center to the point on the circle.`, `Those two center-to-point segments are equal radii.`, `The equal-radius angles force the angle on the circle to become 90 degrees.`];
   if (id === "law-of-cosines") return [`Use sides a=${roundTo(x, 1)} and b=${roundTo(y, 1)}.`, `Use included angle C=${roundTo(z, 1)} degrees.`, `Compute c^2 with the cosine correction term.`, `The opposite side is c=${roundTo(metrics["Side c"], 2)}.`];
   if (id === "law-of-sines") return [`Choose two angles.`, `The third angle is ${roundTo(metrics["Angle C"], 1)} degrees.`, `Each side divided by sine of its opposite angle gives the same constant.`, `This lets you solve missing sides or angles.`];
+  if (id === "inscribed-angle") return [`Pick the same arc for both angles.`, `The center angle opens across the full arc.`, `The angle on the circle sees the same arc from the edge.`, `The edge angle is always half the center angle.`];
+  if (id === "power-of-point") return [`Start from the outside point P.`, `Draw two secants that cut the same circle.`, `The hidden triangles made by the secants are similar.`, `Similarity makes the products PA * PB and PC * PD equal.`];
+  if (id === "tangent-radius") return [`Find the exact touch point.`, `Draw the radius from the center to that point.`, `A tangent cannot cut through the circle.`, `So it must meet the radius at a right angle.`];
+  if (id === "intersecting-chords") return [`Look at the crossing point E inside the circle.`, `The two chords create pairs of equal angles.`, `Those equal angles create similar small triangles.`, `Similarity gives AE * EB = CE * ED.`];
   return [`Select the theorem card.`, `Move the sliders and watch the marked lengths or angles update.`, `Compare the metric cards on the left.`, `The equality remains true even as the diagram changes.`];
 }
 
 function tasksFor(id: TheoremId) {
+  if (id === "angle-sum") return ["Set two angles, then predict the third before reading it.", "Make a skinny triangle and check the total.", "Explain why the total is not 200 degrees."];
+  if (id === "exterior-angle") return ["Cover the inside angle next to the exterior angle.", "Add the two far inside angles.", "Check the outside angle matches their sum."];
+  if (id === "midpoint") return ["Double DE mentally and compare with BC.", "Move the height and check if parallel direction changes.", "Say why midpoint matters."];
+  if (id === "basic-proportionality") return ["Move the parallel line upward.", "Compare the two side ratios.", "Explain what would fail if the line was not parallel."];
   if (id === "law-of-cosines") return ["Set the included angle to 90 degrees.", "Compare the formula with Pythagoras.", "Increase the angle and watch side c grow."];
   if (id === "inscribed-angle") return ["Set central angle to 100 degrees.", "Check the inscribed angle is 50 degrees.", "Try another arc size."];
   if (id === "similar-triangles") return ["Set scale to 2.", "Double the base.", "Confirm every matching side scales together."];
+  if (id === "thales") return ["Move the point around the circle.", "Check the angle stays 90 degrees.", "Explain why the diameter is special."];
+  if (id === "power-of-point") return ["Move the outside point farther away.", "Compare PA * PB with the second secant product.", "Say why the lengths can change but product stays fixed."];
+  if (id === "tangent-radius") return ["Move the touch point.", "Find the radius line.", "Check the tangent remains perpendicular."];
+  if (id === "intersecting-chords") return ["Move E left and right.", "Multiply the two pieces of each chord.", "Check the products stay equal."];
   return ["Move each slider.", "Read the formula card.", "Use the metric cards to verify the theorem."];
+}
+
+function proofIdeaFor(id: TheoremId) {
+  const ideas: Record<TheoremId, string> = {
+    "angle-sum": "A triangle can be folded or compared with a straight line, so its three angles always make 180 degrees.",
+    "exterior-angle": "The outside angle is exactly what remains from the straight line, so it matches the two far inside angles.",
+    midpoint: "Midpoints make a half-size copy of the whole triangle.",
+    "basic-proportionality": "A parallel line creates a smaller similar triangle inside the larger triangle.",
+    "similar-triangles": "Same angles means same shape; only the size changes.",
+    thales: "A diameter splits the circle into right-angle triangles from equal radii.",
+    "law-of-sines": "Each side is tied to the height of the same triangle, so side divided by sine of the opposite angle is constant.",
+    "law-of-cosines": "The cosine term corrects Pythagoras when the angle is not 90 degrees.",
+    "inscribed-angle": "An angle at the circle edge sees half as much turn as the angle at the center.",
+    "power-of-point": "Two secants from the same point form similar triangles, which force equal products.",
+    "tangent-radius": "The shortest line from the center to the tangent is the radius to the touch point, so it is perpendicular.",
+    "intersecting-chords": "Crossing chords make similar triangles, which turn segment ratios into equal products.",
+  };
+  return ideas[id];
+}
+
+function misconceptionFor(id: TheoremId) {
+  const mistakes: Record<TheoremId, string> = {
+    "angle-sum": "Do not add the two given angles and forget the third angle. The theorem is about all three interior angles.",
+    "exterior-angle": "The exterior angle is not added to all three inside angles. It equals only the two remote interior angles.",
+    midpoint: "A segment between any two side points is not enough. The points must be midpoints.",
+    "basic-proportionality": "The ratio theorem needs a line parallel to the third side. Without parallel lines, the ratios may fail.",
+    "similar-triangles": "Similar does not mean equal size. Congruent means equal size; similar means same shape.",
+    thales: "The 90 degree angle happens only when the side is a diameter of the circle.",
+    "law-of-sines": "Match each side with its opposite angle. Mixing adjacent angles gives wrong ratios.",
+    "law-of-cosines": "The angle in the cosine term must be the included angle between sides a and b.",
+    "inscribed-angle": "The center angle and edge angle must stand on the same arc.",
+    "power-of-point": "Use whole secant lengths from P, not only the pieces inside the circle.",
+    "tangent-radius": "A tangent touches once. A line that cuts the circle twice is a secant, not a tangent.",
+    "intersecting-chords": "Multiply the two pieces of the same chord, not neighboring pieces from different chords.",
+  };
+  return mistakes[id];
+}
+
+function teacherPromptFor(id: TheoremId) {
+  const prompts: Record<TheoremId, string> = {
+    "angle-sum": "Can you predict the missing angle without calculating all over again?",
+    "exterior-angle": "Which two inside angles are far away from the exterior angle?",
+    midpoint: "What changed: size, direction, or shape?",
+    "basic-proportionality": "Where do you see the smaller triangle hiding?",
+    "similar-triangles": "Point to matching angles first, then matching sides.",
+    thales: "Where is the diameter, and where is the right angle?",
+    "law-of-sines": "Which side is opposite this angle?",
+    "law-of-cosines": "What happens when the angle becomes 90 degrees?",
+    "inscribed-angle": "Are both angles looking at the same arc?",
+    "power-of-point": "Which lengths start at point P?",
+    "tangent-radius": "Can a tangent lean without cutting the circle?",
+    "intersecting-chords": "Which two pieces belong to one chord?",
+  };
+  return prompts[id];
 }
 
 function deg(value: number) {

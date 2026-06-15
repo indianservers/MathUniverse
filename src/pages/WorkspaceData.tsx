@@ -1,5 +1,5 @@
-import MathWorkspace from "./MathWorkspace";
+import MathWorkspace, { type DataWorkspacePage } from "./MathWorkspace";
 
-export default function WorkspaceData() {
-  return <MathWorkspace initialView="data" singleView />;
+export default function WorkspaceData({ page = "overview" }: { page?: DataWorkspacePage }) {
+  return <MathWorkspace initialView="data" singleView dataPage={page} />;
 }

@@ -19,7 +19,7 @@ export default function TopicHeader({ title, subtitle, difficulty, estimatedMinu
   }, [title]);
   return (
     <div className="space-y-2">
-      <div className="flex flex-wrap items-center gap-3 rounded-xl border border-cyan-100/80 bg-white/88 px-3 py-2.5 shadow-lg shadow-cyan-100/50 backdrop-blur dark:border-white/10 dark:bg-slate-900/78 dark:shadow-black/20">
+      <div className="flex flex-wrap items-center gap-3 rounded-xl border border-cyan-100/80 bg-white/[.88] px-3 py-2.5 shadow-lg shadow-cyan-100/50 backdrop-blur dark:border-white/10 dark:bg-slate-900/[.78] dark:shadow-black/20">
         <ProgressBadge progress={progress} />
         <div className="min-w-0 flex-1">
           <h1 className="truncate text-xl font-bold tracking-tight text-slate-950 dark:text-white">{title}</h1>

@@ -145,6 +145,11 @@ export default function App() {
             <Route path="workspace/geometry" element={<WorkspaceGeometry />} />
             <Route path="workspace/3d" element={<Workspace3D />} />
             <Route path="workspace/data" element={<WorkspaceData />} />
+            <Route path="workspace/data/spreadsheet" element={<WorkspaceData page="spreadsheet" />} />
+            <Route path="workspace/data/analysis" element={<WorkspaceData page="analysis" />} />
+            <Route path="workspace/data/cas" element={<WorkspaceData page="cas" />} />
+            <Route path="workspace/data/results" element={<WorkspaceData page="results" />} />
+            <Route path="workspace/data/objects" element={<WorkspaceData page="objects" />} />
             <Route path="workspace/teach" element={<WorkspaceTeach />} />
             <Route path="formulas" element={<Formulas />} />
             <Route path="visual-showcase" element={<VisualShowcase />} />

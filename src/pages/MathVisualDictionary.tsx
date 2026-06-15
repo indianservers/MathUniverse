@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { BookOpen, Eye, Filter, Search, Sparkles } from "lucide-react";
+import { ChevronDown, Eye, Filter, Search, Sparkles } from "lucide-react";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import {
@@ -123,23 +123,35 @@ const visualKindLabels: Record<VisualDictionaryKind, string> = {
   text: "Symbols",
 };
 
+type DictionaryRange = "A-K" | "L-T" | "U-Z";
+
+const dictionaryRanges: Array<{ id: DictionaryRange; label: string; from: string; to: string }> = [
+  { id: "A-K", label: "A-K", from: "A", to: "K" },
+  { id: "L-T", label: "L-T", from: "L", to: "T" },
+  { id: "U-Z", label: "U-Z", from: "U", to: "Z" },
+];
+
 export default function MathVisualDictionary() {
   const [query, setQuery] = useState("");
+  const [activeRange, setActiveRange] = useState<DictionaryRange>("A-K");
   const [activeLetter, setActiveLetter] = useState("All");
   const [activeCategory, setActiveCategory] = useState<VisualDictionaryCategory | "All">("All");
   const [activeKind, setActiveKind] = useState<VisualDictionaryKind | "All">("All");
-  const [focusedTerm, setFocusedTerm] = useState("Arc");
+  const [expandedTerm, setExpandedTerm] = useState("Arc");
 
   const filteredTerms = useMemo(() => {
     const normalized = query.trim().toLowerCase();
+    const range = dictionaryRanges.find((item) => item.id === activeRange) ?? dictionaryRanges[0];
     return visualDictionaryTerms.filter((entry) => {
+      const firstLetter = entry.term[0].toUpperCase();
       const matchesQuery = !normalized || [entry.term, entry.category, entry.kind, ...entry.keywords].join(" ").toLowerCase().includes(normalized);
+      const matchesRange = !!normalized || (firstLetter >= range.from && firstLetter <= range.to);
       const matchesLetter = activeLetter === "All" || entry.term.toUpperCase().startsWith(activeLetter);
       const matchesCategory = activeCategory === "All" || entry.category === activeCategory;
       const matchesKind = activeKind === "All" || entry.kind === activeKind;
-      return matchesQuery && matchesLetter && matchesCategory && matchesKind;
+      return matchesQuery && matchesRange && matchesLetter && matchesCategory && matchesKind;
     });
-  }, [activeCategory, activeKind, activeLetter, query]);
+  }, [activeCategory, activeKind, activeLetter, activeRange, query]);
 
   const grouped = useMemo(() => {
     return filteredTerms.reduce<Record<string, VisualDictionaryTerm[]>>((groups, term) => {
@@ -149,35 +161,37 @@ export default function MathVisualDictionary() {
     }, {});
   }, [filteredTerms]);
 
-  const categoryCounts = useMemo(() => countBy(visualDictionaryTerms, (term) => term.category), []);
   const letterCounts = useMemo(() => countBy(visualDictionaryTerms, (term) => term.term[0].toUpperCase()), []);
   const kindCounts = useMemo(() => countBy(visualDictionaryTerms, (term) => term.kind), []);
   const visualKinds = useMemo(() => Array.from(new Set(visualDictionaryTerms.map((term) => term.kind))).sort(), []);
-  const focusedEntry = useMemo(
-    () => visualDictionaryTerms.find((entry) => entry.term === focusedTerm) ?? filteredTerms[0] ?? visualDictionaryTerms[0],
-    [filteredTerms, focusedTerm],
-  );
+  const rangeCounts = useMemo(() => Object.fromEntries(dictionaryRanges.map((range) => [range.id, visualDictionaryTerms.filter((entry) => {
+    const firstLetter = entry.term[0].toUpperCase();
+    return firstLetter >= range.from && firstLetter <= range.to;
+  }).length])) as Record<DictionaryRange, number>, []);
 
   function focusTerm(term: string) {
     setQuery(term);
+    setActiveRange("A-K");
     setActiveLetter("All");
     setActiveCategory("All");
     setActiveKind("All");
-    setFocusedTerm(term);
+    setExpandedTerm(term);
   }
 
   function clearFilters() {
     setQuery("");
+    setActiveRange("A-K");
     setActiveLetter("All");
     setActiveCategory("All");
     setActiveKind("All");
+    setExpandedTerm("");
   }
 
   return (
     <div className="space-y-4">
       <TopicHeader
         title="Maths Visual Dictionary"
-        subtitle="A-Z visual dictionary with 200+ math words, color-coded diagrams, plain explanations, and examples."
+        subtitle={`A-Z visual dictionary with ${visualDictionaryTerms.length} math words, color-coded diagrams, plain explanations, and examples.`}
         difficulty="Visual Reference"
         estimatedMinutes={20}
       />
@@ -216,7 +230,7 @@ export default function MathVisualDictionary() {
         </div>
       </SectionCard>
 
-      <SectionCard title="Find a Word" description="Search, choose a category, or jump by first letter." compact>
+      <SectionCard title="Search Dictionary" description="Search any word, then click a list row to expand its explanation and visual." compact>
         <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_260px]">
           <label className="relative block">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-cyan-600" />
@@ -234,6 +248,22 @@ export default function MathVisualDictionary() {
               {visualDictionaryCategories.map((category) => <option key={category} value={category}>{category}</option>)}
             </select>
           </label>
+        </div>
+        <div className="mt-3 grid gap-2 sm:grid-cols-3">
+          {dictionaryRanges.map((range) => (
+            <button
+              key={range.id}
+              type="button"
+              onClick={() => {
+                setActiveRange(range.id);
+                setActiveLetter("All");
+              }}
+              className={`rounded-xl border px-4 py-3 text-left transition ${activeRange === range.id && !query.trim() ? "border-cyan-300 bg-cyan-300 text-slate-950" : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"}`}
+            >
+              <span className="block text-sm font-black">{range.label}</span>
+              <span className="text-xs font-semibold opacity-75">{rangeCounts[range.id]} terms</span>
+            </button>
+          ))}
         </div>
         <div className="mt-3 flex gap-2 overflow-x-auto pb-1 thin-scrollbar">
           {["All", ...visualDictionaryLetters].map((letter) => (
@@ -263,117 +293,79 @@ export default function MathVisualDictionary() {
         </div>
       </SectionCard>
 
-      <FocusedDictionaryEntry entry={focusedEntry} onClear={clearFilters} />
-
-      <div className="grid gap-4 xl:grid-cols-[260px_minmax(0,1fr)]">
-        <aside className="rounded-xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/5 xl:sticky xl:top-24 xl:self-start">
-          <p className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-            <BookOpen className="h-4 w-4 text-cyan-600" /> Categories
-          </p>
-          <div className="mt-3 grid gap-2">
-            {(["All", ...visualDictionaryCategories] as Array<VisualDictionaryCategory | "All">).map((category) => (
-              <button
-                key={category}
-                type="button"
-                onClick={() => setActiveCategory(category)}
-                className={`rounded-lg px-3 py-2 text-left text-sm font-black transition ${activeCategory === category ? "bg-slate-950 text-white dark:bg-cyan-300 dark:text-slate-950" : "bg-slate-100 text-slate-700 hover:bg-cyan-50 dark:bg-white/10 dark:text-slate-200"}`}
-              >
-                <span className="flex items-center justify-between gap-3">
-                  <span>{category}</span>
-                  <span className="rounded-full bg-white/70 px-2 py-0.5 text-[11px] text-slate-600 dark:bg-slate-950/40 dark:text-slate-200">
-                    {category === "All" ? visualDictionaryTerms.length : categoryCounts[category] ?? 0}
-                  </span>
-                </span>
+      <main className="space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/80 px-4 py-3 dark:border-white/10 dark:bg-white/5">
+          <p className="text-sm font-black text-slate-700 dark:text-slate-200">{filteredTerms.length} terms shown</p>
+          <div className="flex flex-wrap gap-2">
+            {activeCategory !== "All" && <span className="mini-chip">{activeCategory}</span>}
+            {activeKind !== "All" && <span className="mini-chip">{visualKindLabels[activeKind]}</span>}
+            {(query || activeLetter !== "All" || activeCategory !== "All" || activeKind !== "All" || activeRange !== "A-K") && (
+              <button type="button" onClick={clearFilters} className="rounded-full border border-slate-200 px-3 py-1 text-xs font-black text-slate-700 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:text-slate-200 dark:hover:bg-cyan-400/10">
+                Clear filters
               </button>
-            ))}
+            )}
           </div>
-        </aside>
-
-        <main className="space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/80 px-4 py-3 dark:border-white/10 dark:bg-white/5">
-            <p className="text-sm font-black text-slate-700 dark:text-slate-200">{filteredTerms.length} terms shown</p>
-            <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">Built as static browser-side data for easy expansion to 2000 terms.</p>
-          </div>
-          {Object.keys(grouped).sort().map((letter) => (
-            <SectionCard key={letter} id={`letter-${letter}`} title={letter} description={`${grouped[letter].length} visual dictionary entries`} compact>
-              <div className="grid gap-3 md:grid-cols-2 2xl:grid-cols-3">
-                {grouped[letter].map((entry) => <DictionaryCard key={entry.term} entry={entry} onFocus={() => setFocusedTerm(entry.term)} isFocused={focusedEntry?.term === entry.term} />)}
-              </div>
-            </SectionCard>
-          ))}
-          {!filteredTerms.length && (
-            <div className="rounded-xl border border-dashed border-slate-300 bg-white/70 p-8 text-center dark:border-white/15 dark:bg-white/5">
-              <Eye className="mx-auto h-8 w-8 text-cyan-600" />
-              <h2 className="mt-3 text-lg font-black">No dictionary term matched.</h2>
-              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Try another word, symbol, category, or clear the filters.</p>
+        </div>
+        {Object.keys(grouped).sort().map((letter) => (
+          <SectionCard key={letter} id={`letter-${letter}`} title={letter} description={`${grouped[letter].length} entries`} compact>
+            <div className="divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200 bg-white dark:divide-white/10 dark:border-white/10 dark:bg-slate-950/50">
+              {grouped[letter].map((entry) => (
+                <DictionaryListItem
+                  key={entry.term}
+                  entry={entry}
+                  isExpanded={expandedTerm === entry.term}
+                  onToggle={() => setExpandedTerm((current) => current === entry.term ? "" : entry.term)}
+                />
+              ))}
             </div>
-          )}
-        </main>
-      </div>
+          </SectionCard>
+        ))}
+        {!filteredTerms.length && (
+          <div className="rounded-xl border border-dashed border-slate-300 bg-white/70 p-8 text-center dark:border-white/15 dark:bg-white/5">
+            <Eye className="mx-auto h-8 w-8 text-cyan-600" />
+            <h2 className="mt-3 text-lg font-black">No dictionary term matched.</h2>
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Try another word, symbol, category, or clear the filters.</p>
+          </div>
+        )}
+      </main>
     </div>
   );
 }
 
-function FocusedDictionaryEntry({ entry, onClear }: { entry: VisualDictionaryTerm; onClear: () => void }) {
+function DictionaryListItem({ entry, isExpanded, onToggle }: { entry: VisualDictionaryTerm; isExpanded: boolean; onToggle: () => void }) {
   const tone = categoryStyles[entry.category];
   const lower = entry.term.toLowerCase();
   const meaning = customMeanings[lower]?.meaning ?? defaultMeaning(entry);
   const example = customMeanings[lower]?.example ?? defaultExample(entry);
   return (
-    <section className="grid gap-4 rounded-xl border border-cyan-200 bg-white/90 p-4 shadow-sm dark:border-cyan-400/20 dark:bg-white/5 lg:grid-cols-[minmax(0,1fr)_420px]">
-      <div className="min-w-0">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className={`rounded-full bg-gradient-to-r px-3 py-1 text-xs font-black text-white ${tone}`}>{entry.category}</span>
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-700 dark:bg-white/10 dark:text-slate-200">{visualKindLabels[entry.kind]}</span>
-        </div>
-        <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 dark:text-white">{entry.term}</h2>
-        <p className="mt-3 max-w-3xl text-base leading-7 text-slate-700 dark:text-slate-200">{meaning}</p>
-        <div className="mt-4 rounded-xl bg-slate-100 p-4 text-sm font-semibold leading-6 text-slate-700 dark:bg-slate-950/70 dark:text-slate-300">
-          <span className="font-black text-slate-950 dark:text-white">Example: </span>{example}
-        </div>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {entry.keywords.slice(0, 8).map((keyword) => (
-            <span key={keyword} className="mini-chip">{keyword}</span>
-          ))}
-          <button type="button" onClick={onClear} className="rounded-full border border-slate-200 px-3 py-1 text-xs font-black text-slate-700 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:text-slate-200 dark:hover:bg-cyan-400/10">
-            Clear filters
-          </button>
-        </div>
-      </div>
-      <div className="rounded-2xl bg-slate-950 p-3">
-        <DictionaryVisual kind={entry.kind} term={entry.term} tone={tone} large />
-      </div>
-    </section>
-  );
-}
-
-function DictionaryCard({ entry, onFocus, isFocused }: { entry: VisualDictionaryTerm; onFocus: () => void; isFocused: boolean }) {
-  const tone = categoryStyles[entry.category];
-  const lower = entry.term.toLowerCase();
-  const meaning = customMeanings[lower]?.meaning ?? defaultMeaning(entry);
-  const example = customMeanings[lower]?.example ?? defaultExample(entry);
-  return (
-    <article className={`overflow-hidden rounded-xl border bg-white/86 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-xl hover:shadow-cyan-950/10 dark:bg-white/5 ${isFocused ? "border-cyan-400 ring-4 ring-cyan-100 dark:border-cyan-300 dark:ring-cyan-400/10" : "border-slate-200 dark:border-white/10"}`}>
-      <div className={`h-2 bg-gradient-to-r ${tone}`} />
-      <div className="p-3">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{entry.category}</p>
-            <h2 className="mt-1 text-lg font-black text-slate-950 dark:text-white">{entry.term}</h2>
+    <article className={`bg-white/80 dark:bg-white/[0.03] ${isExpanded ? "ring-2 ring-inset ring-cyan-200 dark:ring-cyan-300/20" : ""}`}>
+      <button type="button" onClick={onToggle} className="flex w-full items-center gap-3 px-3 py-2.5 text-left transition hover:bg-cyan-50 dark:hover:bg-cyan-300/10" aria-expanded={isExpanded}>
+        <span className={`h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b ${tone}`} />
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-sm font-black text-slate-950 dark:text-white">{entry.term}</span>
+          <span className="mt-0.5 flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <span>{entry.category}</span>
+            <span>{visualKindLabels[entry.kind]}</span>
+          </span>
+        </span>
+        <ChevronDown className={`h-4 w-4 shrink-0 text-slate-500 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+      </button>
+      {isExpanded && (
+        <div className="grid gap-3 px-3 pb-4 pl-6 md:grid-cols-[minmax(0,1fr)_300px]">
+          <div className="min-w-0">
+            <p className="text-sm leading-6 text-slate-700 dark:text-slate-200">{meaning}</p>
+            <div className="mt-3 rounded-xl bg-slate-100 p-3 text-xs font-semibold leading-5 text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">
+              <span className="font-black text-slate-900 dark:text-white">Example: </span>{example}
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {entry.keywords.slice(0, 8).map((keyword) => <span key={keyword} className="mini-chip">{keyword}</span>)}
+            </div>
           </div>
-          <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-black text-slate-600 dark:bg-white/10 dark:text-slate-200">{entry.kind}</span>
+          <div className="rounded-xl bg-slate-950 p-2">
+            <DictionaryVisual kind={entry.kind} term={entry.term} tone={tone} />
+          </div>
         </div>
-        <div className="mt-3 rounded-xl bg-slate-950 p-2 text-white">
-          <DictionaryVisual kind={entry.kind} term={entry.term} tone={tone} />
-        </div>
-        <p className="mt-3 text-sm leading-6 text-slate-700 dark:text-slate-200">{meaning}</p>
-        <div className="mt-3 rounded-lg bg-slate-100 p-3 text-xs font-semibold leading-5 text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">
-          <span className="font-black text-slate-900 dark:text-white">Example: </span>{example}
-        </div>
-        <button type="button" onClick={onFocus} className="mt-3 w-full rounded-xl bg-slate-950 px-3 py-2 text-sm font-black text-white transition hover:bg-cyan-600 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-200">
-          View large visual
-        </button>
-      </div>
+      )}
     </article>
   );
 }
