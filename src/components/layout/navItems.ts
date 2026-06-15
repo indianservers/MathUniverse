@@ -517,7 +517,7 @@ export const navSections: NavSection[] = [
           { title: "Trigonometry Lab", route: "/math-lab/trigonometry", icon: "Waves" },
           { title: "Conic Solver", route: "/math-lab/conics", icon: "Cone" },
           { title: "3D Graphing Lab", route: "/math-lab/3d-graphing", icon: "Cuboid" },
-          { title: "CAS Solver", route: "/math-lab/cas-solver", icon: "Sigma" },
+          { title: "CAS / Algebra Solver", route: "/problem-solver", icon: "Sigma" },
           { title: "Probability", route: "/math-lab/probability", icon: "CircleHelp" },
           { title: "Smart Query Router", route: "/math-lab/query", icon: "BrainCircuit" },
           { title: "Linear Algebra Lab", route: "/math-lab/linear-algebra", icon: "Grid3X3" },

@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
-import { ArrowRight, CheckCircle2, Shuffle, UsersRound } from "lucide-react";
+import { useEffect, useMemo, useState, type DragEvent } from "react";
+import { useSearchParams } from "react-router-dom";
+import { CheckCircle2, Grip, MousePointer2, RotateCcw, Shuffle, UsersRound } from "lucide-react";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
@@ -9,11 +10,14 @@ type Mode = "permutations" | "combinations";
 const labels = "ABCDEFGHIJ".split("");
 
 export default function PermutationsCombinationsVisualizer() {
-  const [n, setN] = useState(5);
-  const [r, setR] = useState(3);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [n, setN] = useState(() => clampNumber(Number(searchParams.get("v_available_objects_n")), 3, 10, 5));
+  const [r, setR] = useState(() => clampNumber(Number(searchParams.get("v_chosen_positions_r")), 1, 10, 3));
   const [mode, setMode] = useState<Mode>("permutations");
   const effectiveR = Math.min(r, n);
   const items = labels.slice(0, n);
+  const [selected, setSelected] = useState<string[]>([]);
+  const activeExample = selected;
 
   const counts = useMemo(() => {
     const nPr = permutationCount(n, effectiveR);
@@ -23,6 +27,47 @@ export default function PermutationsCombinationsVisualizer() {
 
   const permutationSamples = useMemo(() => samplePermutations(items, effectiveR, 18), [effectiveR, items]);
   const combinationSamples = useMemo(() => sampleCombinations(items, effectiveR, 18), [effectiveR, items]);
+
+  useEffect(() => {
+    setSelected((current) => current.filter((item) => items.includes(item)).slice(0, effectiveR));
+  }, [effectiveR, items]);
+
+  function updateN(value: number) {
+    const nextN = clampNumber(value, 3, 10, 5);
+    const nextR = Math.min(r, nextN);
+    setN(nextN);
+    setR((current) => Math.min(current, nextN));
+    updateUrl(setSearchParams, nextN, nextR);
+  }
+
+  function updateR(value: number) {
+    const nextR = clampNumber(value, 1, n, 3);
+    setR(nextR);
+    updateUrl(setSearchParams, n, nextR);
+  }
+
+  function chooseItem(item: string) {
+    setSelected((current) => {
+      if (current.includes(item)) return current.filter((value) => value !== item);
+      const next = current.length >= effectiveR ? [...current.slice(1), item] : [...current, item];
+      return mode === "combinations" ? sortByItemOrder(next, items) : next;
+    });
+  }
+
+  function placeItem(item: string, slotIndex: number) {
+    setSelected((current) => {
+      const withoutItem = current.filter((value) => value !== item);
+      const padded = Array.from({ length: effectiveR }, (_, index) => withoutItem[index]).filter(Boolean) as string[];
+      padded.splice(slotIndex, 0, item);
+      const next = padded.slice(0, effectiveR);
+      return mode === "combinations" ? sortByItemOrder(next, items) : next;
+    });
+  }
+
+  function changeMode(nextMode: Mode) {
+    setMode(nextMode);
+    setSelected((current) => nextMode === "combinations" ? sortByItemOrder(current, items) : current);
+  }
 
   return (
     <div className="space-y-6">
@@ -45,7 +90,7 @@ export default function PermutationsCombinationsVisualizer() {
             <div className="grid grid-cols-2 gap-2 rounded-2xl border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-white/5">
               <button
                 type="button"
-                onClick={() => setMode("permutations")}
+                onClick={() => changeMode("permutations")}
                 className={`rounded-xl px-3 py-3 text-sm font-black transition ${mode === "permutations" ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/20" : "bg-white text-slate-700 hover:bg-cyan-50 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-white/10"}`}
               >
                 <Shuffle className="mr-2 inline h-4 w-4" />
@@ -53,7 +98,7 @@ export default function PermutationsCombinationsVisualizer() {
               </button>
               <button
                 type="button"
-                onClick={() => setMode("combinations")}
+                onClick={() => changeMode("combinations")}
                 className={`rounded-xl px-3 py-3 text-sm font-black transition ${mode === "combinations" ? "bg-violet-500 text-white shadow-lg shadow-violet-500/20" : "bg-white text-slate-700 hover:bg-violet-50 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-white/10"}`}
               >
                 <UsersRound className="mr-2 inline h-4 w-4" />
@@ -61,18 +106,37 @@ export default function PermutationsCombinationsVisualizer() {
               </button>
             </div>
 
-            <SliderControl label="Available objects n" value={n} min={3} max={10} step={1} onChange={(value) => setN(value)} description="Objects labeled A, B, C... that can be chosen." />
-            <SliderControl label="Chosen positions r" value={effectiveR} min={1} max={n} step={1} onChange={(value) => setR(value)} description="Slots filled for nPr or group size for nCr." />
+            <SliderControl label="Available objects n" value={n} min={3} max={10} step={1} onChange={updateN} description="Objects labeled A, B, C... that can be chosen." />
+            <SliderControl label="Chosen positions r" value={effectiveR} min={1} max={n} step={1} onChange={updateR} description="Slots filled for nPr or group size for nCr." />
 
             <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/50">
-              <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Objects</p>
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Objects</p>
+                <button type="button" onClick={() => setSelected([])} className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-700 transition hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200">
+                  <RotateCcw className="h-3.5 w-3.5" />
+                  clear
+                </button>
+              </div>
               <div className="mt-3 flex flex-wrap gap-2">
                 {items.map((item, index) => (
-                  <span key={item} className="grid h-10 w-10 place-items-center rounded-xl border border-cyan-200 bg-cyan-50 font-black text-cyan-800 shadow-sm dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-100" style={{ animationDelay: `${index * 60}ms` }}>
+                  <button
+                    key={item}
+                    type="button"
+                    draggable
+                    onClick={() => chooseItem(item)}
+                    onDragStart={(event) => event.dataTransfer.setData("text/plain", item)}
+                    className={`group grid h-11 w-11 place-items-center rounded-2xl border font-black shadow-sm transition hover:-translate-y-0.5 ${selected.includes(item) ? "border-emerald-300 bg-emerald-100 text-emerald-800 ring-2 ring-emerald-300 dark:border-emerald-300/40 dark:bg-emerald-400/15 dark:text-emerald-100" : "border-cyan-200 bg-cyan-50 text-cyan-800 hover:border-cyan-400 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-100"}`}
+                    style={{ animationDelay: `${index * 60}ms` }}
+                    aria-label={`Choose object ${item}`}
+                  >
                     {item}
-                  </span>
+                  </button>
                 ))}
               </div>
+              <p className="mt-3 flex items-center gap-2 text-xs font-bold text-slate-500 dark:text-slate-400">
+                <MousePointer2 className="h-4 w-4" />
+                Click an object or drag it into a position.
+              </p>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
@@ -87,7 +151,7 @@ export default function PermutationsCombinationsVisualizer() {
         <SectionCard title={mode === "permutations" ? "Permutation Builder" : "Combination Builder"} description={mode === "permutations" ? "Each slot has fewer choices than the previous slot because the same object cannot be reused." : "The same group appears only once because order is ignored."}>
           <div className="grid gap-5 2xl:grid-cols-[minmax(0,1fr)_360px]">
             <div className="space-y-5">
-              <SlotBoard items={items} r={effectiveR} mode={mode} />
+              <OutcomeBuilder items={items} selected={activeExample} selectedCount={selected.length} r={effectiveR} mode={mode} onPlaceItem={placeItem} onRemoveItem={(item) => setSelected((current) => current.filter((value) => value !== item))} />
               <ComparisonBars nPr={counts.nPr} nCr={counts.nCr} />
               {mode === "permutations" ? <PermutationTree items={items} r={effectiveR} /> : <CombinationGrid samples={combinationSamples} />}
             </div>
@@ -131,29 +195,98 @@ export default function PermutationsCombinationsVisualizer() {
   );
 }
 
-function SlotBoard({ items, r, mode }: { items: string[]; r: number; mode: Mode }) {
+function OutcomeBuilder({
+  items,
+  selected,
+  selectedCount,
+  r,
+  mode,
+  onPlaceItem,
+  onRemoveItem,
+}: {
+  items: string[];
+  selected: string[];
+  selectedCount: number;
+  r: number;
+  mode: Mode;
+  onPlaceItem: (item: string, slotIndex: number) => void;
+  onRemoveItem: (item: string) => void;
+}) {
   const choices = Array.from({ length: r }, (_, index) => mode === "permutations" ? items.length - index : index === 0 ? items.length : "filter repeats");
+  const arrangementText = selected.length === 0 ? "Click or drag objects here" : mode === "permutations" ? selected.join(" -> ") : `{ ${sortByItemOrder(selected, items).join(", ")} }`;
+  const readiness = selectedCount === 0 ? "Showing a sample. Choose objects to build your own." : selectedCount < r ? `${r - selectedCount} more needed.` : "Complete outcome.";
+
+  function handleDrop(event: DragEvent<HTMLDivElement>, slotIndex: number) {
+    event.preventDefault();
+    const item = event.dataTransfer.getData("text/plain");
+    if (items.includes(item)) onPlaceItem(item, slotIndex);
+  }
+
   return (
-    <div className="rounded-3xl border border-slate-200 bg-slate-950 p-5 text-white shadow-inner dark:border-white/10">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <p className="text-xs font-black uppercase text-cyan-200">{mode === "permutations" ? "ordered slots" : "unordered group"}</p>
-          <h3 className="mt-1 text-xl font-black">{mode === "permutations" ? "Fill left to right" : "Choose once, then sort"}</h3>
-        </div>
-        <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-black">{r} positions</span>
-      </div>
-      <div className="mt-6 grid gap-3" style={{ gridTemplateColumns: `repeat(${r}, minmax(0, 1fr))` }}>
-        {Array.from({ length: r }, (_, index) => (
-          <div key={index} className="min-h-28 rounded-2xl border border-cyan-300/30 bg-cyan-400/10 p-3">
-            <p className="text-xs font-black uppercase text-cyan-100">slot {index + 1}</p>
-            <div className="mt-4 flex items-center gap-2">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-cyan-300 font-black text-slate-950">{items[index]}</span>
-              {index < r - 1 && <ArrowRight className="h-4 w-4 text-cyan-200" />}
-            </div>
-            <p className="mt-4 text-xs font-bold text-slate-300">{typeof choices[index] === "number" ? `${choices[index]} choices` : choices[index]}</p>
+    <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 text-white shadow-2xl shadow-cyan-950/10 dark:border-white/10">
+      <div className="bg-[radial-gradient(circle_at_20%_15%,rgba(34,211,238,0.24),transparent_34%),radial-gradient(circle_at_80%_0%,rgba(168,85,247,0.24),transparent_30%)] p-5">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-xs font-black uppercase text-cyan-200">{mode === "permutations" ? "ordered positions" : "unordered group"}</p>
+            <h3 className="mt-1 text-2xl font-black">{mode === "permutations" ? "Build an arrangement" : "Build one selection"}</h3>
           </div>
-        ))}
+          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-black">{readiness}</span>
+        </div>
+        <div className="mt-4 rounded-2xl border border-white/10 bg-white/10 p-3">
+          <p className="text-xs font-black uppercase text-cyan-100">Current outcome</p>
+          <p className="mt-1 break-words font-mono text-xl font-black text-white">{arrangementText}</p>
+        </div>
       </div>
+
+      <div className="grid gap-4 p-5" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(118px, 1fr))" }}>
+        {Array.from({ length: r }, (_, index) => {
+          const item = selected[index];
+          return (
+            <div
+              key={index}
+              onDragOver={(event) => event.preventDefault()}
+              onDrop={(event) => handleDrop(event, index)}
+              className={`min-h-36 rounded-3xl border p-3 transition ${item ? "border-cyan-300/60 bg-cyan-400/15" : "border-dashed border-white/25 bg-white/5"}`}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-xs font-black uppercase text-cyan-100">{mode === "permutations" ? `position ${index + 1}` : `member ${index + 1}`}</p>
+                <Grip className="h-4 w-4 text-cyan-100/70" />
+              </div>
+              <button
+                type="button"
+                onClick={() => item && onRemoveItem(item)}
+                className={`mt-5 grid h-16 w-full place-items-center rounded-2xl text-3xl font-black transition ${item ? "bg-white text-slate-950 shadow-xl shadow-cyan-950/20 hover:bg-cyan-50" : "bg-white/10 text-white/35"}`}
+                aria-label={item ? `Remove ${item}` : `Empty ${mode === "permutations" ? "position" : "member"} ${index + 1}`}
+              >
+                {item ?? "+"}
+              </button>
+              <p className="mt-4 text-xs font-bold text-slate-300">{typeof choices[index] === "number" ? `${choices[index]} choices` : choices[index]}</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="border-t border-white/10 bg-white/[0.03] p-5">
+        <div className="grid gap-3 md:grid-cols-3">
+          <ReasonChip title="1. Pick" text={`${items.length} available objects`} tone="cyan" />
+          <ReasonChip title="2. Place" text={`${r} ${mode === "permutations" ? "ordered slots" : "group members"}`} tone="violet" />
+          <ReasonChip title="3. Count" text={mode === "permutations" ? "swaps make new outcomes" : "swaps collapse to one group"} tone="amber" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ReasonChip({ title, text, tone }: { title: string; text: string; tone: "cyan" | "violet" | "amber" }) {
+  const tones = {
+    cyan: "border-cyan-300/30 bg-cyan-400/10 text-cyan-100",
+    violet: "border-violet-300/30 bg-violet-400/10 text-violet-100",
+    amber: "border-amber-300/30 bg-amber-400/10 text-amber-100",
+  };
+  return (
+    <div className={`rounded-2xl border p-3 ${tones[tone]}`}>
+      <p className="text-xs font-black uppercase">{title}</p>
+      <p className="mt-1 text-sm font-bold">{text}</p>
     </div>
   );
 }
@@ -331,4 +464,20 @@ function factorial(value: number) {
 
 function formatNumber(value: number) {
   return Number.isInteger(value) ? value.toLocaleString("en-US") : value.toFixed(2);
+}
+
+function clampNumber(value: number, min: number, max: number, fallback: number) {
+  if (!Number.isFinite(value)) return fallback;
+  return Math.min(max, Math.max(min, Math.round(value)));
+}
+
+function sortByItemOrder(items: string[], order: string[]) {
+  return [...items].sort((left, right) => order.indexOf(left) - order.indexOf(right));
+}
+
+function updateUrl(setSearchParams: (nextInit: URLSearchParams) => void, n: number, r: number) {
+  const params = new URLSearchParams();
+  params.set("v_available_objects_n", String(n));
+  params.set("v_chosen_positions_r", String(r));
+  setSearchParams(params);
 }

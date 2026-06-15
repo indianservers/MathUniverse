@@ -46,8 +46,6 @@ export default function AlgebraicStructuresModule() {
         formula={{ title: "Structure test", formula: String.raw`(S, *) \text{ is a monoid when } * \text{ is closed, associative, and has an identity.}`, explanation: "The module connects Cayley tables, partial orders, lattices, Boolean laws, and logic circuits." }}
       />
 
-      <ImplementationAudit />
-
       <div className="flex flex-wrap gap-2">
         <button type="button" className="tool-button" onClick={() => store.setMode(store.mode === "educational" ? "quiz" : "educational")}><BookOpen className="h-4 w-4" /> {store.mode === "educational" ? "Educational mode" : "Quiz mode"}</button>
         <button type="button" className="tool-button" onClick={() => store.useModularTable(4, "add")}><Table2 className="h-4 w-4" /> Z4 addition</button>
@@ -71,30 +69,6 @@ export default function AlgebraicStructuresModule() {
 
       <BooleanLawVisualizer law={store.law} steps={lawSteps} onLaw={store.setLaw} mode={store.mode} />
     </div>
-  );
-}
-
-function ImplementationAudit() {
-  const rows = [
-    ["Algebraic Systems", "Partially implemented", "Existing syllabus has abstract algebra entries; added canonical module."],
-    ["Binary Operations", "Partially implemented", "Cayley table lab existed; added editable carrier set, operation table, and validation engine."],
-    ["Semigroups", "Missing", "Added associativity-driven semigroup checker."],
-    ["Monoids", "Missing", "Added identity detection and monoid classification."],
-    ["Lattices", "Partially implemented", "Set Theory had lattice preview; added meet/join explorer."],
-    ["Partially Ordered Sets", "Partially implemented", "Set Theory has Hasse covers; added React Flow/D3 poset view here."],
-    ["Boolean Algebra", "Partially implemented", "Logic module handles connectives; added Boolean algebra studio."],
-    ["Boolean Simplification", "Missing", "Added parser, truth-table simplifier, and K-map visualizer."],
-    ["Logic Gate Simulation", "Partially implemented", "Logic module has circuit style output; added sandbox with toggles/wire animation."],
-  ];
-  return (
-    <SectionCard title="Implementation Audit" description="Project scan before this algebraic-structures module was added.">
-      <div className="mobile-safe-scroll">
-        <table className="min-w-full text-sm">
-          <thead className="bg-slate-100 text-left dark:bg-white/10"><tr><th className="px-3 py-2">Topic</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Action</th></tr></thead>
-          <tbody>{rows.map(([topic, status, action]) => <tr key={topic} className="border-t border-slate-200 dark:border-white/10"><td className="px-3 py-2 font-semibold">{topic}</td><td className="px-3 py-2"><span className="mini-chip">{status}</span></td><td className="px-3 py-2 text-slate-600 dark:text-slate-300">{action}</td></tr>)}</tbody>
-        </table>
-      </div>
-    </SectionCard>
   );
 }
 
@@ -135,7 +109,7 @@ function OperationTableEditor({ elements, table, selectedA, selectedB, onSelect,
 function SemigroupMonoidSimulator({ elements, validation }: { elements: string[]; table: OperationTable; validation: ReturnType<typeof validateOperation> }) {
   return (
     <SectionCard title="Semigroup and Monoid Simulator" description="The Cayley table is classified as a magma, semigroup, or monoid by the rule engine.">
-      <div className="rounded-2xl bg-slate-950 p-4 text-white">
+      <div className="visual-stage p-4">
         <div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">
           <Metric label="Closure" value={validation.closed ? "pass" : "fail"} />
           <Metric label="Associative" value={validation.associative ? "pass" : "fail"} />
@@ -143,11 +117,17 @@ function SemigroupMonoidSimulator({ elements, validation }: { elements: string[]
           <Metric label="Structure" value={validation.monoid ? "monoid" : validation.semigroup ? "semigroup" : "magma"} />
         </div>
         <svg viewBox="0 0 520 170" className="mt-4 h-44 w-full">
+          <defs>
+            <linearGradient id="algebra-node-fill" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stopColor="#22d3ee" />
+              <stop offset="100%" stopColor="#a78bfa" />
+            </linearGradient>
+          </defs>
           {elements.map((item, index) => {
             const x = 70 + index * (380 / Math.max(1, elements.length - 1));
-            return <g key={item}><circle cx={x} cy="80" r="24" fill={item === validation.identity ? "#34d399" : "#1e293b"} stroke="#67e8f9" strokeWidth="3" /><text x={x} y="86" textAnchor="middle" fontWeight="900">{item}</text></g>;
+            return <g key={item}><circle cx={x} cy="80" r="24" fill={item === validation.identity ? "#34d399" : "url(#algebra-node-fill)"} stroke="#ffffff" strokeWidth="4" /><text x={x} y="86" textAnchor="middle" fill="#0f172a" fontWeight="900">{item}</text></g>;
           })}
-          <text x="260" y="145" textAnchor="middle" fill="#cbd5e1">{validation.failures[0] ?? "All visible structure checks pass for the current table."}</text>
+          <text x="260" y="145" textAnchor="middle" fill="#334155" fontWeight="800">{validation.failures[0] ?? "All visible structure checks pass for the current table."}</text>
         </svg>
       </div>
       <ValidationBadges validation={validation} />
@@ -157,11 +137,28 @@ function SemigroupMonoidSimulator({ elements, validation }: { elements: string[]
 
 function PosetVisualizer() {
   const covers = useMemo(() => coverRelations(posetElements, divisibilityPairs), []);
-  const nodes = useMemo<Node[]>(() => layoutNodes(posetElements, covers).map((node) => ({ id: node.id, data: { label: node.id }, position: { x: node.x, y: node.y }, className: "rounded-full border border-cyan-300 bg-slate-950 px-3 py-2 text-white" })), [covers]);
-  const edges = useMemo<Edge[]>(() => covers.map(([source, target]) => ({ id: `${source}-${target}`, source, target, animated: true, markerEnd: { type: MarkerType.ArrowClosed } })), [covers]);
+  const nodes = useMemo<Node[]>(() => layoutNodes(posetElements, covers).map((node) => ({
+    id: node.id,
+    data: { label: node.id },
+    position: { x: node.x, y: node.y },
+    className: "algebra-flow-node",
+  })), [covers]);
+  const edges = useMemo<Edge[]>(() => covers.map(([source, target]) => ({
+    id: `${source}-${target}`,
+    source,
+    target,
+    animated: true,
+    markerEnd: { type: MarkerType.ArrowClosed, color: "#0ea5e9" },
+    style: { stroke: "#0ea5e9", strokeWidth: 2.5 },
+  })), [covers]);
   return (
     <SectionCard title="Poset Visualizer" description="Hasse cover graph with physics-based layout and interactive node movement.">
-      <div className="h-80 overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10"><ReactFlow nodes={nodes} edges={edges} fitView><Background /><Controls /></ReactFlow></div>
+      <div className="visual-stage h-80 overflow-hidden">
+        <ReactFlow nodes={nodes} edges={edges} fitView>
+          <Background color="#38bdf8" gap={22} size={1.3} />
+          <Controls />
+        </ReactFlow>
+      </div>
     </SectionCard>
   );
 }
@@ -177,18 +174,24 @@ function LatticeExplorer() {
   return (
     <SectionCard title="Lattice Explorer" description="Compute meet and join for the divisibility poset.">
       <div className="flex flex-wrap gap-2">{posetElements.map((item) => <button key={item} type="button" className={`tool-button ${pair.includes(item) ? "bg-cyan-500 text-white dark:bg-cyan-400 dark:text-slate-950" : ""}`} onClick={() => setPair([pair[1], item])}>{item}</button>)}</div>
-      <svg viewBox="0 0 520 250" className="mt-4 h-64 w-full rounded-2xl bg-slate-950">
+      <svg viewBox="0 0 520 250" className="visual-stage mt-4 h-64 w-full">
+        <defs>
+          <linearGradient id="lattice-node-fill" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor="#67e8f9" />
+            <stop offset="100%" stopColor="#c4b5fd" />
+          </linearGradient>
+        </defs>
         {covers.map(([source, target]) => {
           const start = positions.get(source);
           const end = positions.get(target);
           if (!start || !end) return null;
-          return <line key={`${source}-${target}`} x1={start.x} y1={start.y} x2={end.x} y2={end.y} stroke="#475569" strokeWidth="3" />;
+          return <line key={`${source}-${target}`} x1={start.x} y1={start.y} x2={end.x} y2={end.y} stroke="#38bdf8" strokeWidth="4" strokeLinecap="round" opacity="0.7" />;
         })}
         {posetElements.map((item, index) => {
           const x = positions.get(item)?.x ?? 80 + index * 90;
           const y = positions.get(item)?.y ?? 150;
           const active = item === result.meet || item === result.join || pair.includes(item);
-          return <g key={item}><circle cx={x} cy={y} r="24" fill={active ? "#facc15" : "#1e293b"} stroke="#a78bfa" strokeWidth="3" /><text x={x} y={y + 5} textAnchor="middle" fill={active ? "#0f172a" : "white"} fontWeight="900">{item}</text></g>;
+          return <g key={item}><circle cx={x} cy={y} r="26" fill={active ? "#facc15" : "url(#lattice-node-fill)"} stroke="#ffffff" strokeWidth="4" /><text x={x} y={y + 5} textAnchor="middle" fill="#0f172a" fontWeight="900">{item}</text></g>;
         })}
       </svg>
       <div className="grid gap-2 sm:grid-cols-2"><Metric label="Meet" value={result.meet ?? "none"} /><Metric label="Join" value={result.join ?? "none"} /></div>
@@ -226,13 +229,13 @@ function LogicGateSandbox({ gate, inputA, inputB, onGate, onA, onB }: { gate: "A
   return (
     <SectionCard title="Logic Gate Sandbox" description="Toggle inputs and watch wire animations update the output.">
       <div className="flex flex-wrap gap-2">{(["AND", "OR", "NOT", "XOR"] as const).map((item) => <button key={item} type="button" className={`tool-button ${gate === item ? "bg-cyan-500 text-white dark:bg-cyan-400 dark:text-slate-950" : ""}`} onClick={() => onGate(item)}>{item}</button>)}</div>
-      <svg viewBox="0 0 520 240" className="mt-4 h-64 w-full rounded-2xl bg-slate-950">
+      <svg viewBox="0 0 520 240" className="visual-stage mt-4 h-64 w-full">
         <GateInput x={70} y={75} label="A" value={inputA} onClick={() => onA(!inputA)} />
         <GateInput x={70} y={155} label="B" value={inputB} onClick={() => onB(!inputB)} />
         <motion.path d="M 95 75 C 170 75, 190 115, 250 115" stroke="#22d3ee" strokeWidth="5" fill="none" animate={{ pathLength: [0.2, 1] }} />
         <motion.path d="M 95 155 C 170 155, 190 125, 250 125" stroke="#a78bfa" strokeWidth="5" fill="none" animate={{ pathLength: [0.2, 1] }} />
-        <rect x="250" y="82" width="115" height="78" rx="18" fill="#1e293b" stroke="#67e8f9" strokeWidth="3" />
-        <text x="307" y="127" textAnchor="middle" fill="white" fontWeight="900">{gate}</text>
+        <rect x="250" y="82" width="115" height="78" rx="18" fill="#e0f2fe" stroke="#38bdf8" strokeWidth="4" />
+        <text x="307" y="127" textAnchor="middle" fill="#0f172a" fontWeight="900">{gate}</text>
         <motion.path d="M 365 121 C 410 121, 420 121, 450 121" stroke="#facc15" strokeWidth="5" fill="none" animate={{ pathLength: [0.2, 1] }} />
         <circle cx="475" cy="121" r="26" fill={output ? "#34d399" : "#ef4444"} />
         <text x="475" y="127" textAnchor="middle" fill="white" fontWeight="900">{output ? 1 : 0}</text>

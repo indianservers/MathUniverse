@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import FormulaPanel from "../../components/FormulaPanel";
 import ProofControls from "../../components/ProofControls";
+import SymbolLegendPanel, { buildSymbolMeanings } from "../../components/SymbolLegendPanel";
 import StepPanel from "../../components/StepPanel";
 import VisualProofLayout from "../../components/VisualProofLayout";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
@@ -46,6 +47,19 @@ export default function CalculusProofTemplate({ category, proof, config }: Props
   }, [config.steps.length, isPlaying]);
 
   const formulas = useMemo(() => [...config.formulas, ...dynamicFormulaLines(config.kind, functionId, values, method)], [config.formulas, config.kind, functionId, method, values]);
+  const symbolMeanings = useMemo(
+    () => buildSymbolMeanings({
+      proof,
+      formulas,
+      parameters: config.parameters.map((parameter) => ({
+        key: parameter.key,
+        label: parameter.label,
+        value: values[parameter.key],
+      })),
+      extra: [{ symbol: "f", meaning: `function shown: ${formatExpression(functionId)}` }],
+    }),
+    [config.parameters, formulas, functionId, proof, values],
+  );
 
   function reset() {
     setActiveStep(0);
@@ -115,6 +129,7 @@ export default function CalculusProofTemplate({ category, proof, config }: Props
       visual={<CalculusVisual config={config} values={values} activeStep={activeStep} labelsVisible={labelsVisible} toggles={toggles} functionId={functionId} method={method} />}
       controls={controls}
       steps={<StepPanel steps={config.steps} activeStep={activeStep} onSelectStep={(step) => { setIsPlaying(false); setActiveStep(step); }} />}
+      symbolLegend={<SymbolLegendPanel meanings={symbolMeanings} />}
       formula={<FormulaPanel visible={formulaVisible} title="Formula and numerical substitution" formulas={formulas} />}
       conceptNotes={<p>{config.notes}</p>}
       reflectionQuestions={config.questions}

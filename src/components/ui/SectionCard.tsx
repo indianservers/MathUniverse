@@ -90,10 +90,10 @@ export default function SectionCard({ id, title, description, children, classNam
       className={clsx(
         "group/section relative min-w-0 max-w-full overflow-hidden rounded-xl p-3",
         spotlight
-          ? "spotlight-card border border-cyan-200/30 bg-slate-950 text-white shadow-2xl shadow-cyan-950/20"
+          ? "spotlight-card"
           : "glass-card hover:border-cyan-200/80 dark:hover:border-cyan-400/25",
         compact ? "md:p-3" : "md:p-4",
-        fullscreen && "h-screen w-screen overflow-auto rounded-none bg-slate-950 p-4 md:p-6",
+        fullscreen && "h-screen w-screen overflow-auto rounded-none p-4 md:p-6",
         className
       )}
     >
@@ -102,8 +102,8 @@ export default function SectionCard({ id, title, description, children, classNam
         <div className={clsx("flex items-start gap-3", compact ? "mb-2" : "mb-3")}>
           <span className={clsx("mt-1.5 hidden h-1.5 w-1.5 shrink-0 rounded-full shadow-sm sm:block", spotlight ? "bg-cyan-200 shadow-cyan-200/50" : "bg-cyan-400 shadow-cyan-400/50")} />
           <div className="min-w-0 flex-1">
-            {title && <h2 className={clsx("break-words font-semibold", spotlight ? "text-white" : "text-slate-950 dark:text-white", compact ? "text-base" : "text-lg")}>{title}</h2>}
-            {description && <p className={clsx("mt-0.5 max-w-4xl", spotlight ? "text-cyan-50/80" : "text-slate-600 dark:text-slate-300", compact ? "line-clamp-2 text-xs leading-5" : "text-sm leading-5")}>{description}</p>}
+            {title && <h2 className={clsx("break-words font-semibold", spotlight ? "text-slate-950 dark:text-white" : "text-slate-950 dark:text-white", compact ? "text-base" : "text-lg")}>{title}</h2>}
+            {description && <p className={clsx("mt-0.5 max-w-4xl", spotlight ? "text-slate-600 dark:text-cyan-50/80" : "text-slate-600 dark:text-slate-300", compact ? "line-clamp-2 text-xs leading-5" : "text-sm leading-5")}>{description}</p>}
           </div>
           {(headerAction || fullscreenButton) && <div className="flex shrink-0 items-center gap-2">{headerAction}{fullscreenButton}</div>}
         </div>

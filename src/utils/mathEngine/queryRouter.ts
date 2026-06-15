@@ -23,9 +23,9 @@ export type RoutedQuery = {
 const routes: Record<QueryIntent, Pick<RoutedQuery, "route" | "label">> = {
   plot: { route: "/math-lab/graphing-calculator", label: "Graphing Calculator" },
   solve: { route: "/math-lab/equation-solver", label: "Equation Solver" },
-  cas: { route: "/math-lab/cas-solver", label: "CAS Notebook" },
-  differentiate: { route: "/math-lab/cas-solver", label: "CAS Notebook" },
-  integrate: { route: "/math-lab/cas-solver", label: "CAS Notebook" },
+  cas: { route: "/problem-solver", label: "Step-by-Step Solver" },
+  differentiate: { route: "/problem-solver", label: "Step-by-Step Solver" },
+  integrate: { route: "/problem-solver", label: "Step-by-Step Solver" },
   probability: { route: "/math-lab/probability", label: "Probability Simulator" },
   geometry: { route: "/math-lab/geometry", label: "Geometry Lab" },
   matrix: { route: "/math-lab/linear-algebra", label: "Linear Algebra Lab" },

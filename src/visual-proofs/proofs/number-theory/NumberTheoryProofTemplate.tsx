@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import FormulaPanel from "../../components/FormulaPanel";
 import ProofControls from "../../components/ProofControls";
+import SymbolLegendPanel, { buildSymbolMeanings } from "../../components/SymbolLegendPanel";
 import StepPanel from "../../components/StepPanel";
 import VisualProofLayout from "../../components/VisualProofLayout";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
@@ -49,6 +50,19 @@ export default function NumberTheoryProofTemplate({ category, proof, config }: {
   }, [config.steps.length, isPlaying]);
 
   const dynamicFormulas = buildNumberTheoryFormulas(config, values);
+  const formulas = useMemo(() => [...config.formulas, ...dynamicFormulas], [config.formulas, dynamicFormulas]);
+  const symbolMeanings = useMemo(
+    () => buildSymbolMeanings({
+      proof,
+      formulas,
+      parameters: Object.entries(config.parameters).map(([key, parameter]) => ({
+        key,
+        label: parameter.label,
+        value: values[key as NumberTheoryParameterKey] ?? parameter.defaultValue,
+      })),
+    }),
+    [config.parameters, formulas, proof, values],
+  );
 
   return (
     <VisualProofLayout
@@ -113,7 +127,8 @@ export default function NumberTheoryProofTemplate({ category, proof, config }: {
           }}
         />
       }
-      formula={formulaVisible ? <FormulaPanel formulas={[...config.formulas, ...dynamicFormulas]} /> : <HiddenPanel title="Formula hidden" />}
+      symbolLegend={<SymbolLegendPanel meanings={symbolMeanings} />}
+      formula={formulaVisible ? <FormulaPanel formulas={formulas} /> : <HiddenPanel title="Formula hidden" />}
       conceptNotes={
         <ul className="list-disc space-y-2 pl-5">
           {config.notes.map((note) => (

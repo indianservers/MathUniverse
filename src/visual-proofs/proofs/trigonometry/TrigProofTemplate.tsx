@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import FormulaPanel from "../../components/FormulaPanel";
 import ProofControls from "../../components/ProofControls";
+import SymbolLegendPanel, { buildSymbolMeanings } from "../../components/SymbolLegendPanel";
 import StepPanel from "../../components/StepPanel";
 import VisualProofLayout from "../../components/VisualProofLayout";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
@@ -21,7 +22,7 @@ import {
   unitCirclePoint,
   type AngleMode,
 } from "../../utils/trigMath";
-import type { TrigParameterKey, TrigProofConfig } from "./trigProofConfigs";
+import { trigProofMethods, type TrigParameterKey, type TrigProofConfig, type TrigProofMethod } from "./trigProofConfigs";
 
 type TrigValues = Record<TrigParameterKey, number>;
 
@@ -34,7 +35,9 @@ type Props = {
 const emptyValues: TrigValues = { theta: 0, alpha: 0, beta: 0, radius: 0, scale: 0, a: 0, b: 0, c: 0 };
 
 export default function TrigProofTemplate({ category, proof, config }: Props) {
+  const methods = useMemo(() => trigProofMethods(config.kind), [config.kind]);
   const [activeStep, setActiveStep] = useState(0);
+  const [activeMethodId, setActiveMethodId] = useState(methods[0]?.id ?? "main");
   const [isPlaying, setIsPlaying] = useState(false);
   const [labelsVisible, setLabelsVisible] = useState(true);
   const [formulaVisible, setFormulaVisible] = useState(true);
@@ -44,11 +47,13 @@ export default function TrigProofTemplate({ category, proof, config }: Props) {
     ...emptyValues,
     ...Object.fromEntries(config.parameters.map((parameter) => [parameter.key, parameter.defaultValue])),
   }));
+  const activeMethod = methods.find((method) => method.id === activeMethodId) ?? methods[0];
+  const activeSteps = activeMethod?.steps ?? config.steps;
 
   useEffect(() => {
     if (!isPlaying) return undefined;
     const timer = window.setInterval(() => {
-      setActiveStep((step) => (step >= config.steps.length - 1 ? 0 : step + 1));
+      setActiveStep((step) => (step >= activeSteps.length - 1 ? 0 : step + 1));
       const thetaParam = config.parameters.find((parameter) => parameter.key === "theta");
       if (thetaParam) {
         setValues((current) => ({
@@ -58,12 +63,33 @@ export default function TrigProofTemplate({ category, proof, config }: Props) {
       }
     }, 900);
     return () => window.clearInterval(timer);
-  }, [config.parameters, config.steps.length, isPlaying]);
+  }, [activeSteps.length, config.parameters, isPlaying]);
 
-  const formulas = useMemo(() => [...config.formulas, ...dynamicFormulaLines(config.kind, values)], [config.formulas, config.kind, values]);
+  useEffect(() => {
+    if (!methods.some((method) => method.id === activeMethodId)) {
+      setActiveMethodId(methods[0]?.id ?? "main");
+      setActiveStep(0);
+    }
+  }, [activeMethodId, methods]);
+
+  const formulas = useMemo(() => uniqueLines([...config.formulas, ...(activeMethod?.formulas ?? []), ...dynamicFormulaLines(config.kind, values)]), [activeMethod, config.formulas, config.kind, values]);
+  const symbolMeanings = useMemo(
+    () => buildSymbolMeanings({
+      proof,
+      formulas,
+      parameters: config.parameters.map((parameter) => ({
+        key: parameter.key,
+        label: parameter.label,
+        value: parameter.key === "theta" || parameter.key === "alpha" || parameter.key === "beta" ? formatAngle(values[parameter.key], angleMode) : values[parameter.key].toFixed(1),
+      })),
+      extra: angleMode === "radians" ? [{ symbol: "π", meaning: "pi, the circle constant" }] : [],
+    }),
+    [angleMode, config.parameters, formulas, proof, values],
+  );
 
   function reset() {
     setActiveStep(0);
+    setActiveMethodId(methods[0]?.id ?? "main");
     setIsPlaying(false);
     setLabelsVisible(true);
     setFormulaVisible(true);
@@ -79,7 +105,7 @@ export default function TrigProofTemplate({ category, proof, config }: Props) {
     <div className="space-y-4">
       <ProofControls
         activeStep={activeStep}
-        totalSteps={config.steps.length}
+        totalSteps={activeSteps.length}
         isPlaying={isPlaying}
         labelsVisible={labelsVisible}
         formulaVisible={formulaVisible}
@@ -93,11 +119,33 @@ export default function TrigProofTemplate({ category, proof, config }: Props) {
         }}
         onNext={() => {
           setIsPlaying(false);
-          setActiveStep((step) => Math.min(config.steps.length - 1, step + 1));
+          setActiveStep((step) => Math.min(activeSteps.length - 1, step + 1));
         }}
         onToggleLabels={() => setLabelsVisible((value) => !value)}
         onToggleFormula={() => setFormulaVisible((value) => !value)}
       />
+      {methods.length > 1 && (
+        <section className="rounded-xl border border-slate-200 bg-white/88 p-4 dark:border-white/10 dark:bg-white/[0.05]" aria-label="Proof route selector">
+          <h2 className="text-base font-black text-slate-950 dark:text-white">Proof routes</h2>
+          <div className="mt-3 grid gap-2">
+            {methods.map((method) => (
+              <button
+                key={method.id}
+                type="button"
+                className={`rounded-xl border px-3 py-2 text-left text-sm font-black transition ${activeMethod?.id === method.id ? "border-cyan-400 bg-cyan-50 text-cyan-950 dark:border-cyan-300 dark:bg-cyan-300/15 dark:text-cyan-50" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950/45 dark:text-slate-200"}`}
+                onClick={() => {
+                  setIsPlaying(false);
+                  setActiveMethodId(method.id);
+                  setActiveStep(0);
+                }}
+              >
+                <span className="block">{method.title}</span>
+                <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-300">{method.summary}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
       <section className="rounded-xl border border-slate-200 bg-white/88 p-4 dark:border-white/10 dark:bg-white/[0.05]" aria-label="Trigonometry proof parameters">
         <h2 className="text-base font-black text-slate-950 dark:text-white">Trigonometry controls</h2>
         {config.degreeRadianToggle && (
@@ -138,17 +186,18 @@ export default function TrigProofTemplate({ category, proof, config }: Props) {
     <VisualProofLayout
       category={category}
       proof={proof}
-      visual={<TrigVisual config={config} values={values} activeStep={activeStep} labelsVisible={labelsVisible} angleMode={angleMode} toggles={toggles} />}
+      visual={<TrigVisual config={config} values={values} activeStep={activeStep} labelsVisible={labelsVisible} angleMode={angleMode} toggles={toggles} activeMethod={activeMethod} methods={methods} />}
       controls={controls}
-      steps={<StepPanel steps={config.steps} activeStep={activeStep} onSelectStep={(step) => { setIsPlaying(false); setActiveStep(step); }} />}
+      steps={<StepPanel steps={activeSteps} activeStep={activeStep} onSelectStep={(step) => { setIsPlaying(false); setActiveStep(step); }} />}
+      symbolLegend={<SymbolLegendPanel meanings={symbolMeanings} />}
       formula={<FormulaPanel visible={formulaVisible} title="Formula and visual derivation" formulas={formulas} />}
-      conceptNotes={<p>{config.notes}</p>}
+      conceptNotes={<ConceptNotes configNotes={config.notes} activeMethod={activeMethod} />}
       reflectionQuestions={config.questions}
     />
   );
 }
 
-function TrigVisual({ config, values, activeStep, labelsVisible, angleMode, toggles }: { config: TrigProofConfig; values: TrigValues; activeStep: number; labelsVisible: boolean; angleMode: AngleMode; toggles: Record<string, boolean> }) {
+function TrigVisual({ config, values, activeStep, labelsVisible, angleMode, toggles, activeMethod, methods }: { config: TrigProofConfig; values: TrigValues; activeStep: number; labelsVisible: boolean; angleMode: AngleMode; toggles: Record<string, boolean>; activeMethod?: TrigProofMethod; methods: TrigProofMethod[] }) {
   return (
     <div className="bg-white p-3 dark:bg-slate-950">
       <svg viewBox="0 0 900 540" role="img" aria-label={`${config.kind} trigonometry visual proof`} className="h-[540px] w-full max-w-full">
@@ -161,7 +210,49 @@ function TrigVisual({ config, values, activeStep, labelsVisible, angleMode, togg
         {config.visual === "rotation" && <RotationModel config={config} values={values} step={activeStep} labels={labelsVisible} toggles={toggles} angleMode={angleMode} />}
         {config.visual === "triangle-law" && <TriangleLawModel config={config} values={values} step={activeStep} labels={labelsVisible} toggles={toggles} angleMode={angleMode} />}
         {config.visual === "small-angle" && <SmallAngleModel config={config} values={values} step={activeStep} labels={labelsVisible} toggles={toggles} angleMode={angleMode} />}
+        {activeMethod && <MethodBadge method={activeMethod} count={methods.length} />}
       </svg>
+      {activeMethod && <MethodRoutePanel method={activeMethod} />}
+    </div>
+  );
+}
+
+function MethodBadge({ method, count }: { method: TrigProofMethod; count: number }) {
+  return (
+    <g>
+      <rect x="590" y="42" width="250" height="72" rx="14" fill="#0f172a" opacity="0.92" />
+      <text x="612" y="69" className="fill-cyan-100 text-[13px] font-black uppercase">{count} proof routes</text>
+      <text x="612" y="94" className="fill-white text-[18px] font-black">{method.title}</text>
+    </g>
+  );
+}
+
+function MethodRoutePanel({ method }: { method: TrigProofMethod }) {
+  return (
+    <section className="grid gap-3 border-t border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-slate-900/70 md:grid-cols-[1.1fr_1fr]">
+      <div>
+        <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Selected proof route</p>
+        <h2 className="mt-1 text-lg font-black text-slate-950 dark:text-white">{method.title}</h2>
+        <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">{method.summary}</p>
+      </div>
+      <div className="rounded-xl border border-cyan-200 bg-white p-3 dark:border-cyan-300/20 dark:bg-slate-950/60">
+        <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Why it proves it</p>
+        <p className="mt-2 text-sm font-bold leading-6 text-slate-700 dark:text-slate-200">{method.check}</p>
+      </div>
+    </section>
+  );
+}
+
+function ConceptNotes({ configNotes, activeMethod }: { configNotes: string; activeMethod?: TrigProofMethod }) {
+  return (
+    <div className="space-y-3">
+      <p>{configNotes}</p>
+      {activeMethod && (
+        <div className="rounded-lg bg-cyan-50 p-3 text-cyan-950 dark:bg-cyan-300/10 dark:text-cyan-100">
+          <p className="text-xs font-black uppercase">Current proof route</p>
+          <p className="mt-1 font-bold">{activeMethod.title}: {activeMethod.check}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -561,4 +652,8 @@ function dynamicFormulaLines(kind: string, values: TrigValues) {
   if (kind === "TriangleAreaSineFormulaProof") return [`Current area: 1/2(${a.toFixed(1)})(${b.toFixed(1)})sin(${theta.toFixed(1)} deg) = ${triangleAreaUsingSine(a, b, theta).toFixed(3)}`];
   if (kind === "SmallAngleApproximationProof") return [`Current radians: theta = ${degToRad(theta).toFixed(4)}, sin theta = ${formatTrigValue(sinDeg(theta))}`];
   return [];
+}
+
+function uniqueLines(lines: string[]) {
+  return Array.from(new Set(lines.filter(Boolean)));
 }

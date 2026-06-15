@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import FormulaPanel from "../../components/FormulaPanel";
 import ProofControls from "../../components/ProofControls";
+import SymbolLegendPanel, { buildSymbolMeanings } from "../../components/SymbolLegendPanel";
 import StepPanel from "../../components/StepPanel";
 import VisualProofLayout from "../../components/VisualProofLayout";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
@@ -45,6 +46,20 @@ export default function SequenceSeriesProofTemplate({ category, proof, config }:
     const timer = window.setInterval(() => setActiveStep((step) => (step + 1) % config.steps.length), 1300);
     return () => window.clearInterval(timer);
   }, [config.steps.length, isPlaying]);
+
+  const formulas = useMemo(() => [...config.formulas, ...buildSequenceFormulas(config, values)], [config, values]);
+  const symbolMeanings = useMemo(
+    () => buildSymbolMeanings({
+      proof,
+      formulas,
+      parameters: Object.entries(config.parameters).map(([key, parameter]) => ({
+        key,
+        label: parameter.label,
+        value: values[key as SequenceSeriesParameterKey] ?? parameter.defaultValue,
+      })),
+    }),
+    [config.parameters, formulas, proof, values],
+  );
 
   return (
     <VisualProofLayout
@@ -109,7 +124,8 @@ export default function SequenceSeriesProofTemplate({ category, proof, config }:
           }}
         />
       }
-      formula={formulaVisible ? <FormulaPanel formulas={[...config.formulas, ...buildSequenceFormulas(config, values)]} /> : <HiddenPanel title="Formula hidden" />}
+      symbolLegend={<SymbolLegendPanel meanings={symbolMeanings} />}
+      formula={formulaVisible ? <FormulaPanel formulas={formulas} /> : <HiddenPanel title="Formula hidden" />}
       conceptNotes={
         <ul className="list-disc space-y-2 pl-5">
           {config.notes.map((note) => (

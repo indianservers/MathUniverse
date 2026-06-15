@@ -10,6 +10,7 @@ type VisualProofLayoutProps = {
   visual: ReactNode;
   controls: ReactNode;
   steps: ReactNode;
+  symbolLegend?: ReactNode;
   formula: ReactNode;
   conceptNotes: ReactNode;
   reflectionQuestions: string[];
@@ -21,6 +22,7 @@ export default function VisualProofLayout({
   visual,
   controls,
   steps,
+  symbolLegend,
   formula,
   conceptNotes,
   reflectionQuestions,
@@ -73,6 +75,7 @@ export default function VisualProofLayout({
           <section className="overflow-hidden rounded-xl border border-slate-200 bg-white/90 shadow-sm dark:border-white/10 dark:bg-slate-950/50" aria-label="Interactive visual area">
             {visual}
           </section>
+          {symbolLegend}
           <div className="grid gap-4 lg:grid-cols-2">
             {formula}
             <section className="rounded-xl border border-slate-200 bg-white/88 p-4 dark:border-white/10 dark:bg-white/[0.05]">

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import FormulaPanel from "../../components/FormulaPanel";
 import ProofControls from "../../components/ProofControls";
+import SymbolLegendPanel, { buildSymbolMeanings } from "../../components/SymbolLegendPanel";
 import StepPanel from "../../components/StepPanel";
 import VisualProofLayout from "../../components/VisualProofLayout";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
@@ -58,6 +59,18 @@ export default function CoordinateProofTemplate({ category, proof, config }: Pro
   }, [config.steps.length, isPlaying]);
 
   const formulas = useMemo(() => [...config.formulas, ...dynamicFormulaLines(config.kind, values)], [config.formulas, config.kind, values]);
+  const symbolMeanings = useMemo(
+    () => buildSymbolMeanings({
+      proof,
+      formulas,
+      parameters: config.parameters.map((parameter) => ({
+        key: parameter.key,
+        label: parameter.label,
+        value: values[parameter.key],
+      })),
+    }),
+    [config.parameters, formulas, proof, values],
+  );
 
   function reset() {
     setActiveStep(0);
@@ -121,6 +134,7 @@ export default function CoordinateProofTemplate({ category, proof, config }: Pro
       visual={<CoordinateVisual config={config} values={values} activeStep={activeStep} labelsVisible={labelsVisible} toggles={toggles} />}
       controls={controls}
       steps={<StepPanel steps={config.steps} activeStep={activeStep} onSelectStep={(step) => { setIsPlaying(false); setActiveStep(step); }} />}
+      symbolLegend={<SymbolLegendPanel meanings={symbolMeanings} />}
       formula={<FormulaPanel visible={formulaVisible} title="Formula and coordinate substitution" formulas={formulas} />}
       conceptNotes={<p>{config.notes}</p>}
       reflectionQuestions={config.questions}

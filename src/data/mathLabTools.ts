@@ -18,11 +18,11 @@ export const mathLabTools = [
     useCases: ["construction", "constraints", "measurements", "transforms"],
   },
   {
-    title: "CAS / Algebra",
-    route: "/math-lab/cas-solver",
+    title: "CAS / Algebra Solver",
+    route: "/problem-solver",
     icon: Sparkles,
     difficulty: "Advanced",
-    description: "Solve, factor, expand, simplify, differentiate, integrate, and inspect symbolic step output in the CAS notebook.",
+    description: "Use the main step-by-step solver for solve, factor, expand, simplify, differentiate, integrate, statistics, matrices, and symbolic checks.",
     useCases: ["solve", "factor", "simplify", "steps"],
   },
   {

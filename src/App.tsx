@@ -34,7 +34,6 @@ const LinearAlgebra = lazy(() => import("./pages/LinearAlgebra"));
 const LimitsContinuityVisualizer = lazy(() => import("./pages/LimitsContinuityVisualizer"));
 const MathLab = lazy(() => import("./pages/MathLab"));
 const MathLab3DGraphing = lazy(() => import("./pages/MathLab3DGraphing"));
-const MathLabCasNotebook = lazy(() => import("./pages/MathLabCasNotebook"));
 const MathLabConicSolver = lazy(() => import("./pages/MathLabConicSolver"));
 const MathLabFunctionExplorer = lazy(() => import("./pages/MathLabFunctionExplorer"));
 const MathLabGraphingCalculator = lazy(() => import("./pages/MathLabGraphingCalculator"));
@@ -136,7 +135,7 @@ export default function App() {
             <Route path="math-lab/3d-graphing" element={<MathLab3DGraphing />} />
             <Route path="math-lab/conics" element={<MathLabConicSolver />} />
             <Route path="math-lab/probability" element={<MathLabProbability />} />
-            <Route path="math-lab/cas-solver" element={<MathLabCasNotebook />} />
+            <Route path="math-lab/cas-solver" element={<Navigate to="/problem-solver" replace />} />
             <Route path="math-lab/query" element={<MathLabSmartQuery />} />
             <Route path="math-lab/:toolId" element={<MathLabToolPage />} />
             <Route path="visual-dictionary" element={<MathVisualDictionary />} />

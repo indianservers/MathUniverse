@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import FormulaPanel from "../components/FormulaPanel";
 import MathLabel from "../components/MathLabel";
 import ProofControls from "../components/ProofControls";
+import SymbolLegendPanel, { buildSymbolMeanings } from "../components/SymbolLegendPanel";
 import StepPanel from "../components/StepPanel";
 import VisualProofLayout from "../components/VisualProofLayout";
 import type { ProofStep, VisualProof, VisualProofCategory } from "../data/proofTypes";
@@ -62,32 +63,77 @@ export default function CircleAreaUnrollingProof({ category, proof }: CircleArea
   const [sectorIndex, setSectorIndex] = useState(1);
   const [radius, setRadius] = useState(96);
   const [activeStep, setActiveStep] = useState(0);
+  const [timelineProgress, setTimelineProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [labelsVisible, setLabelsVisible] = useState(true);
   const [formulaVisible, setFormulaVisible] = useState(true);
+  const progressRef = useRef(0);
 
   const sectorCount = sectorOptions[sectorIndex];
+  const formulas = useMemo(
+    () => [
+      "Circumference = 2πr",
+      "Area = 1/2 x base x height",
+      "Area = 1/2 x 2πr x r",
+      "Area = πr²",
+    ],
+    [],
+  );
+  const symbolMeanings = useMemo(
+    () => buildSymbolMeanings({
+      proof,
+      formulas,
+      parameters: [
+        { key: "r", label: "radius of the circle", value: radius },
+        { key: "n", label: "number of equal sectors", value: sectorCount },
+      ],
+      extra: [
+        { symbol: "base", meaning: "unrolled circumference", value: "about 2πr" },
+        { symbol: "height", meaning: "sector radius", value: "r" },
+        { symbol: "A", meaning: "area of the original circle", value: "πr²" },
+      ],
+    }),
+    [formulas, proof, radius, sectorCount],
+  );
 
   useEffect(() => {
     if (!isPlaying) return undefined;
-    const timer = window.setInterval(() => {
-      setActiveStep((step) => {
-        if (step >= proofSteps.length - 1) {
-          window.clearInterval(timer);
+    const maxProgress = proofSteps.length - 1;
+    const stepDurationMs = 1450;
+    let frame = 0;
+    let previousTime = performance.now();
+
+    function tick(now: number) {
+      const deltaSteps = (now - previousTime) / stepDurationMs;
+      previousTime = now;
+      const nextProgress = Math.min(maxProgress, progressRef.current + deltaSteps);
+      progressRef.current = nextProgress;
+      setTimelineProgress(nextProgress);
+      setActiveStep(Math.round(nextProgress));
+      if (nextProgress >= maxProgress) {
           setIsPlaying(false);
-          return step;
-        }
-        return step + 1;
-      });
-    }, 1300);
-    return () => window.clearInterval(timer);
+        return;
+      }
+      frame = window.requestAnimationFrame(tick);
+    }
+
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
   }, [isPlaying]);
 
-  const sectors = useMemo(() => buildSectorPaths(sectorCount, radius, 230, 235, activeStep >= 2 ? 10 : 0), [activeStep, radius, sectorCount]);
+  useEffect(() => {
+    if (isPlaying) return;
+    progressRef.current = activeStep;
+    setTimelineProgress(activeStep);
+  }, [activeStep, isPlaying, radius, sectorCount]);
+
+  const sectors = useMemo(() => buildSectorPaths(sectorCount, radius, 230, 246, smoothstep(clamp01((timelineProgress - 1) / 1.1)) * 13), [radius, sectorCount, timelineProgress]);
 
   function reset() {
     setIsPlaying(false);
     setActiveStep(0);
+    progressRef.current = 0;
+    setTimelineProgress(0);
   }
 
   const controls = (
@@ -104,11 +150,21 @@ export default function CircleAreaUnrollingProof({ category, proof }: CircleArea
         onReset={reset}
         onPrevious={() => {
           setIsPlaying(false);
-          setActiveStep((step) => Math.max(0, step - 1));
+          setActiveStep((step) => {
+            const next = Math.max(0, step - 1);
+            progressRef.current = next;
+            setTimelineProgress(next);
+            return next;
+          });
         }}
         onNext={() => {
           setIsPlaying(false);
-          setActiveStep((step) => Math.min(proofSteps.length - 1, step + 1));
+          setActiveStep((step) => {
+            const next = Math.min(proofSteps.length - 1, step + 1);
+            progressRef.current = next;
+            setTimelineProgress(next);
+            return next;
+          });
         }}
         onToggleLabels={() => setLabelsVisible((value) => !value)}
         onToggleFormula={() => setFormulaVisible((value) => !value)}
@@ -139,20 +195,16 @@ export default function CircleAreaUnrollingProof({ category, proof }: CircleArea
     <VisualProofLayout
       category={category}
       proof={proof}
-      visual={<CircleUnrollingSvg sectors={sectors} sectorCount={sectorCount} radius={radius} activeStep={activeStep} labelsVisible={labelsVisible} />}
+      visual={<CircleUnrollingSvg sectors={sectors} sectorCount={sectorCount} radius={radius} activeStep={activeStep} timelineProgress={timelineProgress} labelsVisible={labelsVisible} />}
       controls={controls}
       steps={<StepPanel steps={proofSteps} activeStep={activeStep} onSelectStep={(step) => { setIsPlaying(false); setActiveStep(step); }} />}
       formula={
         <FormulaPanel
           visible={formulaVisible}
-          formulas={[
-            "Circumference = 2 pi r",
-            "Area = 1/2 x base x height",
-            "Area = 1/2 x 2 pi r x r",
-            "Area = pi r^2",
-          ]}
+          formulas={formulas}
         />
       }
+      symbolLegend={<SymbolLegendPanel meanings={symbolMeanings} />}
       conceptNotes={
         <p>
           Cutting the circle into sectors does not change its area. As the sectors become thinner, their curved outer edges behave more like straight pieces.
@@ -174,23 +226,35 @@ function CircleUnrollingSvg({
   sectorCount,
   radius,
   activeStep,
+  timelineProgress,
   labelsVisible,
 }: {
   sectors: SectorPath[];
   sectorCount: number;
   radius: number;
   activeStep: number;
+  timelineProgress: number;
   labelsVisible: boolean;
 }) {
-  const baseWidth = Math.min(390, radius * Math.PI * 1.32);
-  const baseX = 455;
-  const baseY = 340;
-  const height = Math.min(140, radius * 0.95);
+  const progress = timelineProgress;
+  const circleCutProgress = smoothstep(clamp01((progress - 0.45) / 1.05));
+  const separationProgress = smoothstep(clamp01((progress - 1.3) / 1.25));
+  const unrollProgress = smoothstep(clamp01((progress - 2.15) / 1.85));
+  const compareProgress = smoothstep(clamp01((progress - 3.55) / 1.4));
+  const formulaProgress = smoothstep(clamp01((progress - 5.2) / 0.9));
+  const baseWidth = Math.min(455, Math.max(315, radius * 4.55));
+  const baseX = 414;
+  const baseY = 356;
+  const height = Math.min(145, Math.max(90, radius * 0.96));
   const apex = { x: baseX + baseWidth / 2, y: baseY - height };
-  const showUnrolled = activeStep >= 3;
-  const emphasizeBase = activeStep >= 4;
-  const emphasizeHeight = activeStep >= 5;
-  const emphasizeFormula = activeStep >= 6;
+  const visibleFanCount = Math.min(sectorCount, 72);
+  const emphasizeBase = activeStep >= 4 || compareProgress > 0.35;
+  const emphasizeHeight = activeStep >= 5 || compareProgress > 0.7;
+  const emphasizeFormula = activeStep >= 6 || formulaProgress > 0.2;
+  const circleOpacity = 1 - unrollProgress * 0.22;
+  const modelOpacity = clamp01(unrollProgress * 1.2);
+  const baseDrawWidth = baseWidth * clamp01(compareProgress + unrollProgress * 0.45);
+  const showUnrolled = modelOpacity > 0.01;
 
   return (
     <div className="bg-white p-3 dark:bg-slate-950">
@@ -205,6 +269,10 @@ function CircleUnrollingSvg({
             <stop offset="50%" stopColor="#f59e0b" />
             <stop offset="100%" stopColor="#ef4444" />
           </linearGradient>
+          <linearGradient id="visual-proof-stage" x1="0%" x2="100%" y1="0%" y2="100%">
+            <stop offset="0%" stopColor="#f8fafc" />
+            <stop offset="100%" stopColor="#eef2ff" />
+          </linearGradient>
           <filter id="visual-proof-glow" x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="4" result="blur" />
             <feMerge>
@@ -216,73 +284,80 @@ function CircleUnrollingSvg({
 
         <rect x="18" y="18" width="864" height="484" rx="18" className="fill-slate-50 stroke-slate-200 dark:fill-slate-900 dark:stroke-white/10" />
         <text x="54" y="58" className="fill-slate-900 text-[22px] font-black dark:fill-white">Area of Circle by Unrolling Circumference</text>
-        <text x="54" y="84" className="fill-slate-500 text-[13px] font-bold dark:fill-slate-300">Use sliders and steps to see the circle become an area formula.</text>
+        <text x="54" y="84" className="fill-slate-500 text-[13px] font-bold dark:fill-slate-300">Watch equal sectors unfold into a triangle-like area model.</text>
+        <rect x="48" y="110" width="804" height="336" rx="18" fill="url(#visual-proof-stage)" stroke="#dbeafe" />
 
-        <g className="transition-all duration-700" opacity={showUnrolled ? 0.55 : 1}>
-          {activeStep === 0 ? (
-            <circle cx="230" cy="235" r={radius} fill="url(#visual-proof-circle)" opacity="0.86" className="stroke-cyan-700 dark:stroke-cyan-200" strokeWidth="3" />
+        <g opacity={circleOpacity}>
+          <circle cx="230" cy="246" r={radius} fill="none" stroke="#0f172a" strokeWidth="1.2" opacity="0.18" />
+          {circleCutProgress < 0.2 ? (
+            <circle cx="230" cy="246" r={radius} fill="url(#visual-proof-circle)" opacity="0.86" className="stroke-cyan-700 dark:stroke-cyan-200" strokeWidth="3" />
           ) : (
             sectors.map((sector, index) => (
               <path
                 key={sector.d}
                 d={sector.d}
-                fill={index % 2 === 0 ? "#22d3ee" : "#a78bfa"}
-                opacity="0.82"
-                stroke="rgba(15,23,42,0.32)"
-                strokeWidth="0.7"
+                fill={index % 2 === 0 ? "#8be3ef" : "#c4b5fd"}
+                opacity={0.66 + separationProgress * 0.18}
+                stroke="#ffffff"
+                strokeWidth="1.4"
               />
             ))
           )}
-          <line x1="230" y1="235" x2={230 + radius} y2="235" stroke="#0f172a" strokeWidth="3" className="dark:stroke-white" />
-          <circle cx="230" cy="235" r="4" className="fill-slate-950 dark:fill-white" />
-          {labelsVisible && <MathLabel x={230 + radius / 2} y={222} tone="slate">r</MathLabel>}
+          <line x1="230" y1="246" x2={230 + radius} y2="246" stroke="#0f172a" strokeWidth="3" className="dark:stroke-white" />
+          <circle cx="230" cy="246" r="5" className="fill-slate-950 dark:fill-white" />
+          {labelsVisible && (
+            <>
+              <MathLabel x={230 + radius / 2} y={232} tone="slate">r</MathLabel>
+              <text x="230" y={radius + 298} textAnchor="middle" className="fill-slate-700 text-[13px] font-black dark:fill-slate-300">
+                {sectorCount} equal sectors
+              </text>
+            </>
+          )}
         </g>
 
-        {activeStep >= 1 && labelsVisible && (
-          <text x="230" y={395} textAnchor="middle" className="fill-slate-600 text-[13px] font-black dark:fill-slate-300">
-            {sectorCount} equal sectors
-          </text>
-        )}
-
         {showUnrolled && (
-          <g filter="url(#visual-proof-glow)">
+          <g filter="url(#visual-proof-glow)" opacity={modelOpacity}>
             <path
               d={`M ${baseX} ${baseY} L ${baseX + baseWidth} ${baseY} L ${apex.x} ${apex.y} Z`}
-              fill="url(#visual-proof-unroll)"
-              opacity="0.16"
-              stroke={emphasizeFormula ? "#22c55e" : "#0891b2"}
+              fill="#14b8a6"
+              opacity="0.08"
+              stroke={emphasizeFormula ? "#059669" : "#0891b2"}
               strokeWidth={emphasizeFormula ? 4 : 2}
             />
-            {Array.from({ length: Math.min(sectorCount, 64) }, (_, index) => {
-              const x1 = baseX + index * (baseWidth / Math.min(sectorCount, 64));
-              const x2 = baseX + (index + 1) * (baseWidth / Math.min(sectorCount, 64));
+            {Array.from({ length: visibleFanCount }, (_, index) => {
+              const localProgress = clamp01(unrollProgress * 1.25 - (index / visibleFanCount) * 0.25);
+              const x1 = baseX + index * (baseWidth / visibleFanCount);
+              const x2 = baseX + (index + 1) * (baseWidth / visibleFanCount);
+              const drop = (1 - localProgress) * 52;
+              const lean = (1 - localProgress) * (index - visibleFanCount / 2) * 0.55;
               return (
                 <path
                   key={index}
-                  d={`M ${x1} ${baseY} L ${x2} ${baseY} L ${apex.x} ${apex.y} Z`}
-                  fill={index % 2 === 0 ? "#22d3ee" : "#f59e0b"}
-                  opacity="0.34"
-                  stroke="rgba(15,23,42,0.16)"
-                  strokeWidth="0.5"
+                  d={`M ${x1 + lean} ${baseY + drop} L ${x2 + lean} ${baseY + drop} L ${apex.x} ${apex.y + drop * 0.18} Z`}
+                  fill={index % 2 === 0 ? "#67e8f9" : "#fbbf24"}
+                  opacity={0.16 + localProgress * 0.52}
+                  stroke="#0f172a"
+                  strokeWidth="0.45"
+                  strokeOpacity="0.13"
                 />
               );
             })}
-            {Array.from({ length: Math.min(sectorCount, 64) + 1 }, (_, index) => {
-              const x = baseX + index * (baseWidth / Math.min(sectorCount, 64));
-              return <line key={index} x1={x} y1={baseY} x2={apex.x} y2={apex.y} stroke="rgba(15,23,42,0.16)" strokeWidth="0.45" />;
+            {Array.from({ length: visibleFanCount + 1 }, (_, index) => {
+              const x = baseX + index * (baseWidth / visibleFanCount);
+              return <line key={index} x1={x} y1={baseY} x2={apex.x} y2={apex.y} stroke="rgba(15,23,42,0.16)" strokeWidth="0.55" opacity={modelOpacity} />;
             })}
-            <line x1={baseX} y1={baseY + 18} x2={baseX + baseWidth} y2={baseY + 18} stroke={emphasizeBase ? "#f59e0b" : "#64748b"} strokeWidth={emphasizeBase ? 5 : 3} />
-            <line x1={apex.x} y1={apex.y} x2={apex.x} y2={baseY} stroke={emphasizeHeight ? "#22c55e" : "#64748b"} strokeDasharray="8 7" strokeWidth={emphasizeHeight ? 5 : 3} />
-            <circle cx={apex.x} cy={apex.y} r="5" fill="#22c55e" />
+            <line x1={baseX} y1={baseY + 20} x2={baseX + baseDrawWidth} y2={baseY + 20} stroke={emphasizeBase ? "#f59e0b" : "#64748b"} strokeWidth={emphasizeBase ? 6 : 3} strokeLinecap="round" />
+            <line x1={apex.x} y1={baseY} x2={apex.x} y2={baseY - height * clamp01(compareProgress + 0.35)} stroke={emphasizeHeight ? "#22c55e" : "#64748b"} strokeDasharray="8 7" strokeWidth={emphasizeHeight ? 5 : 3} strokeLinecap="round" />
+            <circle cx={apex.x} cy={apex.y} r={6 + formulaProgress * 3} fill="#22c55e" />
             {labelsVisible && (
               <>
-                <MathLabel x={baseX + baseWidth / 2} y={baseY + 52} tone="amber">base approx 2πr</MathLabel>
+                <MathLabel x={baseX + baseWidth / 2} y={baseY + 56} tone="amber">base approx 2πr</MathLabel>
                 <MathLabel x={apex.x + 42} y={baseY - height / 2} tone="emerald">height r</MathLabel>
                 <MathLabel x={apex.x} y={apex.y - 20} tone="cyan">same area</MathLabel>
               </>
             )}
             {emphasizeFormula && labelsVisible && (
-              <text x={baseX + baseWidth / 2} y="450" textAnchor="middle" className="fill-emerald-700 text-[23px] font-black dark:fill-emerald-100">
+              <text x={baseX + baseWidth / 2} y="430" textAnchor="middle" className="fill-emerald-700 text-[25px] font-black dark:fill-emerald-100" opacity={0.45 + formulaProgress * 0.55}>
                 Area = πr²
               </text>
             )}
@@ -296,9 +371,14 @@ function CircleUnrollingSvg({
         )}
 
         {showUnrolled && labelsVisible && (
-          <text x="648" y="126" textAnchor="middle" className="fill-slate-700 text-[15px] font-black dark:fill-slate-200">
-            As sectors get thinner, the jagged model approaches a clean triangle.
-          </text>
+          <g opacity={0.6 + compareProgress * 0.4}>
+            <text x="648" y="136" textAnchor="middle" className="fill-slate-700 text-[15px] font-black dark:fill-slate-200">
+              Thinner sectors make the jagged model approach a clean triangle.
+            </text>
+            <text x="648" y="462" textAnchor="middle" className="fill-slate-600 text-[13px] font-bold dark:fill-slate-300">
+              1/2 x base x height = 1/2 x 2πr x r
+            </text>
+          </g>
         )}
       </svg>
     </div>
@@ -336,6 +416,15 @@ function polarToCartesian(cx: number, cy: number, radius: number, angle: number)
     x: cx + radius * Math.cos(angle),
     y: cy + radius * Math.sin(angle),
   };
+}
+
+function clamp01(value: number) {
+  return Math.min(1, Math.max(0, value));
+}
+
+function smoothstep(value: number) {
+  const t = clamp01(value);
+  return t * t * (3 - 2 * t);
 }
 
 function Slider({

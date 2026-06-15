@@ -202,7 +202,7 @@ export default function ScientificCalculator() {
           <SymbolicResultCard title={`∫ f(${symbolic?.variable ?? "x"}) d${symbolic?.variable ?? "x"}`} value={symbolic?.integral?.result} fallback="Nerdamer will show supported antiderivatives here." />
         </div>
         <div className="mt-4">
-          <RelatedToolLinks links={[{ label: "Step Solver", route: "/problem-solver" }, { label: "CAS Solver", route: "/math-lab/cas-solver" }, { label: "Graph It", route: "/math-lab/graphing-calculator" }]} />
+          <RelatedToolLinks links={[{ label: "Step Solver", route: "/problem-solver" }, { label: "CAS / Algebra Solver", route: "/problem-solver" }, { label: "Graph It", route: "/math-lab/graphing-calculator" }]} />
         </div>
       </SectionCard>
       <Link to="/syllabus" className="action-secondary w-fit">Open Syllabus Navigator</Link>

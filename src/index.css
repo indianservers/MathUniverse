@@ -47,7 +47,19 @@ body {
   }
 
   body {
-    @apply bg-slate-50 text-slate-950 dark:bg-[#07111f] dark:text-slate-100;
+    @apply bg-[#f7fcff] text-slate-950 dark:bg-[#081122] dark:text-slate-100;
+    background-image:
+      radial-gradient(circle at 8% 10%, rgba(34, 211, 238, 0.18), transparent 30rem),
+      radial-gradient(circle at 88% 8%, rgba(217, 70, 239, 0.14), transparent 28rem),
+      linear-gradient(135deg, rgba(236, 253, 245, 0.86), rgba(240, 249, 255, 0.94) 40%, rgba(250, 245, 255, 0.9));
+    background-attachment: fixed;
+  }
+
+  :root.dark body {
+    background-image:
+      radial-gradient(circle at 10% 8%, rgba(34, 211, 238, 0.18), transparent 28rem),
+      radial-gradient(circle at 86% 14%, rgba(168, 85, 247, 0.17), transparent 30rem),
+      linear-gradient(135deg, #081122, #0f172a 42%, #1e1b4b);
   }
 
   * {
@@ -109,27 +121,34 @@ body {
 
 @layer components {
   .glass-card {
-    @apply border border-white/70 bg-white/[.82] shadow-xl shadow-slate-200/60 backdrop-blur-xl transition duration-200 dark:border-white/10 dark:bg-slate-900/[.74] dark:shadow-black/30;
+    @apply border border-white/80 bg-white/[.88] shadow-xl shadow-cyan-100/60 backdrop-blur-xl transition duration-200 dark:border-white/10 dark:bg-slate-900/[.78] dark:shadow-black/30;
+    background-image:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(236, 254, 255, 0.62) 46%, rgba(250, 245, 255, 0.68)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.46), transparent);
   }
 
   .surface-soft {
-    @apply border border-slate-200 bg-white/75 dark:border-white/10 dark:bg-white/5;
+    @apply border border-cyan-100 bg-white/80 shadow-sm shadow-cyan-100/40 dark:border-white/10 dark:bg-white/5 dark:shadow-black/10;
   }
 
   .action-primary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 transition hover:-translate-y-0.5 hover:bg-cyan-600 active:translate-y-0 dark:bg-white dark:text-slate-950 dark:hover:bg-cyan-200;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 via-sky-500 to-violet-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition hover:-translate-y-0.5 hover:shadow-violet-500/25 active:translate-y-0 dark:from-cyan-300 dark:via-sky-300 dark:to-violet-300 dark:text-slate-950;
   }
 
   .action-secondary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:bg-slate-200 active:translate-y-0 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-cyan-100 bg-white/85 px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm shadow-cyan-100/40 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 active:translate-y-0 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15;
   }
 
   .mini-chip {
-    @apply rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 dark:bg-white/10 dark:text-slate-300;
+    @apply rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1 text-xs font-semibold text-cyan-800 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-100;
   }
 
   .math-tool-button {
-    @apply inline-flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-700 transition hover:bg-slate-200 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15;
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-100 bg-white/85 text-slate-700 shadow-sm shadow-cyan-100/40 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15;
+  }
+
+  .tool-button {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-cyan-100 bg-white/86 px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm shadow-cyan-100/40 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-900 active:translate-y-0 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:border-cyan-300/35 dark:hover:bg-cyan-300/10 dark:hover:text-cyan-50;
   }
 
   .math-tool-button-danger {
@@ -239,7 +258,7 @@ body {
   }
 
   .gradient-line {
-    @apply h-1 bg-gradient-to-r from-cyan-400 via-violet-500 to-fuchsia-500;
+    @apply h-1 bg-gradient-to-r from-cyan-400 via-sky-400 via-violet-500 to-fuchsia-500;
   }
 
   .gradient-line-soft {
@@ -252,6 +271,70 @@ body {
     background: rgba(15, 23, 42, 0.94) !important;
     color: #f8fafc !important;
     box-shadow: 0 18px 45px rgba(15, 23, 42, 0.22) !important;
+  }
+
+  .spotlight-card {
+    @apply border border-cyan-200/70 bg-white/90 text-slate-950 shadow-2xl shadow-cyan-100/60 dark:border-cyan-300/20 dark:bg-slate-950/84 dark:text-white dark:shadow-black/30;
+    background-image:
+      radial-gradient(circle at 16% 18%, rgba(34, 211, 238, 0.24), transparent 14rem),
+      radial-gradient(circle at 88% 0%, rgba(244, 114, 182, 0.2), transparent 15rem),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(236, 253, 245, 0.82) 38%, rgba(245, 243, 255, 0.86));
+  }
+
+  :root.dark .spotlight-card {
+    background-image:
+      radial-gradient(circle at 16% 18%, rgba(34, 211, 238, 0.22), transparent 14rem),
+      radial-gradient(circle at 88% 0%, rgba(244, 114, 182, 0.18), transparent 15rem),
+      linear-gradient(135deg, rgba(8, 13, 32, 0.96), rgba(15, 23, 42, 0.9) 42%, rgba(30, 27, 75, 0.92));
+  }
+
+  .visual-stage {
+    @apply rounded-2xl border border-cyan-100 bg-white shadow-inner shadow-cyan-100/50 dark:border-white/10 dark:bg-slate-950/70 dark:shadow-black/20;
+    background-image:
+      radial-gradient(circle at 18% 18%, rgba(34, 211, 238, 0.12), transparent 12rem),
+      radial-gradient(circle at 82% 24%, rgba(167, 139, 250, 0.14), transparent 13rem),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.92));
+  }
+
+  :root.dark .visual-stage {
+    background-image:
+      radial-gradient(circle at 18% 18%, rgba(34, 211, 238, 0.16), transparent 12rem),
+      radial-gradient(circle at 82% 24%, rgba(167, 139, 250, 0.12), transparent 13rem),
+      linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.92));
+  }
+
+  .react-flow__node-default,
+  .react-flow__node-input,
+  .react-flow__node-output,
+  .react-flow__node-group {
+    border: 1px solid rgba(34, 211, 238, 0.55) !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, #ecfeff, #f5f3ff) !important;
+    color: #0f172a !important;
+    box-shadow: 0 14px 34px rgba(14, 116, 144, 0.16) !important;
+    font-weight: 900 !important;
+  }
+
+  .react-flow__edge-path {
+    stroke: #0ea5e9 !important;
+    stroke-width: 2.5px !important;
+  }
+
+  .react-flow__controls-button {
+    border-color: rgba(103, 232, 249, 0.45) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #0f172a !important;
+  }
+
+  .algebra-flow-node {
+    min-width: 76px !important;
+    border: 3px solid rgba(255, 255, 255, 0.95) !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, #67e8f9, #a78bfa) !important;
+    color: #0f172a !important;
+    box-shadow: 0 16px 34px rgba(14, 116, 144, 0.22) !important;
+    font-weight: 900 !important;
+    text-align: center !important;
   }
 
   .workspace-high-contrast body {

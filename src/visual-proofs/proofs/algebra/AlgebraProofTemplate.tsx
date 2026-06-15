@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import FormulaPanel from "../../components/FormulaPanel";
 import ProofControls from "../../components/ProofControls";
+import SymbolLegendPanel, { buildSymbolMeanings } from "../../components/SymbolLegendPanel";
 import StepPanel from "../../components/StepPanel";
 import VisualProofLayout from "../../components/VisualProofLayout";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
@@ -44,6 +45,18 @@ export default function AlgebraProofTemplate({ category, proof, config }: Algebr
   }, [config.steps.length, isPlaying]);
 
   const formulas = useMemo(() => dynamicFormulas(config.formulas, config.kind, values, secondaryVisible), [config.formulas, config.kind, secondaryVisible, values]);
+  const symbolMeanings = useMemo(
+    () => buildSymbolMeanings({
+      proof,
+      formulas,
+      parameters: config.parameters.map((parameter) => ({
+        key: parameter.key,
+        label: parameter.label,
+        value: values[parameter.key],
+      })),
+    }),
+    [config.parameters, formulas, proof, values],
+  );
 
   function reset() {
     setIsPlaying(false);
@@ -109,6 +122,7 @@ export default function AlgebraProofTemplate({ category, proof, config }: Algebr
       visual={<AlgebraVisual config={config} values={values} activeStep={activeStep} labelsVisible={labelsVisible} secondaryVisible={secondaryVisible} />}
       controls={controls}
       steps={<StepPanel steps={config.steps} activeStep={activeStep} onSelectStep={(step) => { setIsPlaying(false); setActiveStep(step); }} />}
+      symbolLegend={<SymbolLegendPanel meanings={symbolMeanings} />}
       formula={<FormulaPanel visible={formulaVisible} title="Formula and symbolic derivation" formulas={formulas} />}
       conceptNotes={<p>{config.notes}</p>}
       reflectionQuestions={config.questions}
