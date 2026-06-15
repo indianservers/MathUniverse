@@ -9,6 +9,7 @@ import ContinueCard from "../components/ui/ContinueCard";
 import { topics } from "../data/topics";
 import { trigonometryConcepts } from "../data/trigonometryConcepts";
 import { useProgress } from "../hooks/useProgress";
+import TrigIdentityVisualizations from "../visualizations/trigonometry/TrigIdentityVisualizations";
 import TrigonometryMathLab from "../visualizations/trigonometry/TrigonometryMathLab";
 
 export default function Trigonometry() {
@@ -33,6 +34,7 @@ export default function Trigonometry() {
         <div className="min-h-0 min-w-0 overflow-hidden">
           <TopicTabs tabs={[
             { id: "lab", label: "Lab", content: <TrigonometryMathLab compact /> },
+            { id: "visualizations", label: "Visualizations", content: <TrigIdentityVisualizations /> },
             { id: "concepts", label: "Concepts", content: <ConceptPages concepts={trigonometryConcepts} /> },
             { id: "formulas", label: "Formulas", content: <FormulaGroups groups={formulaGroups} /> },
             { id: "syllabus", label: "Syllabus", content: <SyllabusCoverage groups={syllabusGroups} /> },

@@ -30,6 +30,7 @@ const excludedWords = new Set([
   "sin",
   "solve",
   "sqrt",
+  "sum",
   "stats",
   "standard",
   "summary",
@@ -41,7 +42,7 @@ const excludedWords = new Set([
   "weights",
 ]);
 
-const supportedFunctions = ["sin", "cos", "tan", "log", "log10", "log2", "ln", "sqrt", "abs", "exp"];
+const supportedFunctions = ["sin", "cos", "tan", "log", "log10", "log2", "ln", "sqrt", "abs", "exp", "sum", "add"];
 
 export function classifyProblem(input: string): ProblemClassification {
   const rawInput = input;
@@ -172,6 +173,9 @@ function parseCommandIntent(value: string): { kind: ProblemIntentKind; expressio
   const expand = commandExpression(value, ["expand"]);
   if (expand) return { kind: "expand", expression: expand, reason: "Detected expand command." };
 
+  const arithmetic = arithmeticCommandExpression(value);
+  if (arithmetic) return { kind: "evaluate", expression: arithmetic.expression, reason: arithmetic.reason };
+
   const derivativeByOperator = value.match(/^d\/d([a-zA-Z])\s+(.+)$/i) ?? value.match(/^dy\/d([a-zA-Z])\s+(.+)$/i);
   if (derivativeByOperator) return { kind: "derivative", expression: derivativeByOperator[2], variable: derivativeByOperator[1], reason: "Detected derivative operator notation." };
   const derivative = value.match(/^(?:derivative\s+of|differentiate)\s+(.+)$/i);
@@ -219,11 +223,13 @@ function stripMatrixCommand(value: string) {
 }
 
 function isEvaluateExpression(value: string) {
+  const normalized = normalizeExpression(value);
   if (/^[\d+\-*/^().,\s]+$/.test(value)) return true;
   if (new RegExp(`^(?:${supportedFunctions.join("|")})\\s*\\(`, "i").test(value)) return true;
   if (new RegExp(`^(?:${supportedFunctions.join("|")})\\s+-?\\d+(?:\\.\\d+)?$`, "i").test(value)) return true;
   if (/^1\s*\/\s*\(.+\)$/i.test(value)) return true;
   if (/^[\dx+\-*/^().,\s]+$/i.test(value) && /x/i.test(value)) return true;
+  if (/^[\d+\-*/^().,\s]+$/.test(normalized)) return true;
   return false;
 }
 
@@ -243,8 +249,50 @@ function commandExpression(value: string, commands: string[]) {
   return null;
 }
 
+function arithmeticCommandExpression(value: string): { expression: string; reason: string } | null {
+  const trimmed = value.trim();
+  const addition = aggregateExpression(trimmed, ["sum", "add", "total"]);
+  if (addition) return { expression: `sum(${addition.join(",")})`, reason: "Detected addition/sum command." };
+
+  const multiplication = aggregateExpression(trimmed, ["multiply", "product"]);
+  if (multiplication) return { expression: multiplication.map((item) => `(${item})`).join("*"), reason: "Detected multiplication/product command." };
+
+  const subtractFrom = trimmed.match(/^subtract\s+(.+?)\s+from\s+(.+)$/i);
+  if (subtractFrom) return { expression: `(${subtractFrom[2].trim()})-(${subtractFrom[1].trim()})`, reason: "Detected subtraction command." };
+
+  const subtract = trimmed.match(/^(?:subtract|minus)\s+(.+?)(?:\s+and\s+|,)(.+)$/i);
+  if (subtract) return { expression: `(${subtract[1].trim()})-(${subtract[2].trim()})`, reason: "Detected subtraction command." };
+
+  const divide = trimmed.match(/^divide\s+(.+?)\s+by\s+(.+)$/i);
+  if (divide) return { expression: `(${divide[1].trim()})/(${divide[2].trim()})`, reason: "Detected division command." };
+
+  return null;
+}
+
+function aggregateExpression(value: string, commands: string[]) {
+  const trimmed = value.trim();
+  const lower = trimmed.toLowerCase();
+  for (const command of commands) {
+    if (!lower.startsWith(`${command} `)) continue;
+    const expression = trimmed.slice(command.length).trim().replace(/^of\s+/i, "");
+    return normalizeAggregateArguments(expression);
+  }
+  return null;
+}
+
+function normalizeAggregateArguments(value: string) {
+  return value
+    .replace(/\band\b/gi, ",")
+    .replace(/[;|]/g, ",")
+    .replace(/\s*,\s*/g, ",")
+    .trim()
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 function normalizeText(value: string) {
-  return normalizeUnicodeMath(value).trim().replace(/\r\n/g, "\n").replace(/[ \t]+/g, " ");
+  return normalizeArithmeticWords(normalizeUnicodeMath(value)).trim().replace(/\r\n/g, "\n").replace(/[ \t]+/g, " ");
 }
 
 function normalizeExpression(value: string) {
@@ -255,6 +303,16 @@ function normalizeExpression(value: string) {
     .replace(/(\d)([a-zA-Z(])/g, "$1*$2")
     .replace(/([a-zA-Z)])(\d)/g, "$1*$2")
     .replace(/\)([a-zA-Z(])/g, ")*$1");
+}
+
+function normalizeArithmeticWords(value: string) {
+  return value
+    .replace(/\bplus\b/gi, "+")
+    .replace(/\bminus\b/gi, "-")
+    .replace(/\bmultiplied\s+by\b/gi, "*")
+    .replace(/\btimes\b/gi, "*")
+    .replace(/\bdivided\s+by\b/gi, "/")
+    .replace(/\bover\b/gi, "/");
 }
 
 function normalizeUnicodeMath(value: string) {

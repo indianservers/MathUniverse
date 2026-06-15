@@ -1,0 +1,143 @@
+# Phase 04 - Core Identities Visual Proofs
+
+## 1. Phase Objective
+
+Build strong visual proof experiences for the three core Pythagorean identities while preserving the existing identity visualization lab.
+
+## 2. Existing Code / Components to Inspect
+
+- `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx`: `pythagorean`, `tan-sec`, `cot-csc`, proof panel/value logic.
+- `src/pages/TrigonometryConceptPage.tsx`: identity visual fallback.
+- `src/data/trigonometryConcepts.ts`: `pythagorean-identity`, related identities.
+- Existing docs: `docs/trigonometry-visualization-design-plan.md`, `docs/trigonometry-visualization-final-report.md`.
+
+## 3. Existing Features to Preserve
+
+- Current Visualizations tab.
+- Current search/filter/difficulty and teaching mode behavior.
+- Current live numeric checks.
+- Current concept routes.
+
+## 4. Concepts Covered in This Phase
+
+- `sin^2 theta + cos^2 theta = 1`
+- `1 + tan^2 theta = sec^2 theta`
+- `1 + cot^2 theta = cosec^2 theta`
+- Unit circle proof, triangle proof, algebra proof.
+
+## 5. Student Learning Goal
+
+A beginner should understand that these identities are Pythagoras applied to different right triangles, not formulas to memorize blindly.
+
+## 6. Professor-Level Explanation Strategy
+
+Prove the first identity from the unit circle: radius squared equals x squared plus y squared. Then divide by `cos^2 theta` to derive `1 + tan^2 theta = sec^2 theta`, and divide by `sin^2 theta` to derive `1 + cot^2 theta = cosec^2 theta`.
+
+## 7. UI/UX Design Strategy
+
+- Use three dedicated proof cards, each with its own visual.
+- Use area squares for `sin^2` and `cos^2`.
+- Use tangent/secant triangle for `tan/sec`.
+- Use cotangent/cosecant triangle for `cot/cosec`.
+- Add LHS/RHS value panel with match indicator.
+- Add beginner/professor explanation switch.
+
+## 8. Interaction Design
+
+- Sliders: theta, optional proof zoom.
+- Drag handles: draggable unit-circle point.
+- Toggle buttons: unit circle proof, triangle proof, algebra proof, hide measurements.
+- Step-by-step reveal: geometry, substitute, square, add, conclude.
+- Graph movement: optional identity value graph showing constant 1.
+- Unit circle movement: active for all identities.
+- Formula transformation: show division by `cos^2` or `sin^2`.
+- Quiz interactions: fill missing proof step.
+- Challenge mode interactions: try to break identity by changing theta.
+
+## 9. Visualization Requirements
+
+- Unit circle with radius 1, cos leg, sin leg.
+- Area squares for `sin^2`, `cos^2`, and combined area.
+- Tangent line triangle showing secant hypotenuse.
+- Cotangent/cosecant companion model.
+- Numeric LHS/RHS panel with tolerance.
+
+## 10. Formula / Math Correctness Requirements
+
+- Use safe division near zero denominators.
+- `tan/sec` identity undefined where `cos theta = 0`.
+- `cot/cosec` identity undefined where `sin theta = 0`.
+- Do not imply the identity is numerically testable at undefined points.
+- Use tolerance for floating-point equality.
+
+## 11. Beginner-Friendly Explanation Requirements
+
+- "Why this works": it is Pythagoras on a triangle.
+- "Common mistake": squaring `sin theta + cos theta` as `sin^2 theta + cos^2 theta`.
+- "Try it yourself": drag to 60 degrees and compare LHS/RHS.
+- "Real-life meaning": distance from origin, slopes, reciprocal scaling.
+- "Visual memory trick": two small squares fill the radius square.
+
+## 12. Advanced Learner Extension
+
+Add algebraic derivations, reciprocal identity derivations, exact-value checks, and discussion of domain restrictions.
+
+## 13. Implementation Plan
+
+1. Refine or split identity scenes inside the existing identity visualizer.
+2. Add area-square proof for `sin^2 + cos^2`.
+3. Add tangent/secant and cotangent/cosecant proof scenes.
+4. Add reusable `IdentityProofPanel`.
+5. Add step reveal and misconception box.
+6. Verify undefined values and tolerance.
+
+## 14. Component Design Recommendation
+
+- `AreaSquareScene`
+- `IdentityProofPanel`
+- `ProofStepPanel`
+- `TangentSecantScene`
+- `CotangentCosecantScene`
+- `MisconceptionBox`
+
+## 15. Data Structure Recommendation
+
+```ts
+type IdentityProof = {
+  id: string;
+  formula: string;
+  proofModels: Array<"unit-circle" | "triangle" | "algebra" | "area">;
+  undefinedWhen: string[];
+  steps: string[];
+  lhs: (theta: number) => number | null;
+  rhs: (theta: number) => number | null;
+};
+```
+
+## 16. Testing Checklist
+
+- Test theta 0, 30, 45, 60, 90, 180, 270, 360.
+- Confirm undefined states for tan/sec and cot/cosec identities.
+- Confirm no NaN/Infinity.
+- Confirm LHS/RHS match where defined.
+- Confirm area squares scale correctly.
+- Confirm mobile proof panel remains readable.
+
+## 17. Risks / Things Not to Touch
+
+- Do not replace the entire `TrigIdentityVisualizations` file in one step.
+- Do not remove existing formula list or filters.
+- Do not simplify away undefined warnings.
+- Do not add backend/server code.
+
+## 18. Acceptance Criteria
+
+- The three core identities have dedicated visual proof experiences.
+- Students can see why each identity is true.
+- Undefined values are shown honestly.
+- Existing Trigonometry page remains stable.
+
+## 19. Suggested Codex Implementation Prompt for This Phase
+
+Implement only this phase. Do not modify unrelated modules. Do not add backend/server code. Keep it pure browser-based. Preserve existing features. Improve only the core identity visual proof experiences in the existing Trigonometry module. Run the app and verify the Trigonometry page works. Update this MD file with completed items, pending items, and issues found.
+

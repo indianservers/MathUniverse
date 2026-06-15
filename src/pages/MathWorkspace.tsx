@@ -11,7 +11,7 @@ import ObjectList, { type ObjectListAction } from "../components/workspace/Objec
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
-import { roundTo } from "../utils/math";
+import { clamp, roundTo } from "../utils/math";
 import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicLimit, symbolicPartialFractions, symbolicPolynomialDivide, symbolicSimplify, symbolicSolve, symbolicSubstitute, symbolicSystemSolve, trySymbolic } from "../utils/symbolic";
 import { commandExamplesFor, commandRegistrySummary, normalizeCommandName, resolveCommandSpec } from "../workspace/commandRegistry";
 import { createAnimationAction, describeTransformAction, parseStyleAction, parseTransformCommand } from "../workspace/actionCommandKernel";
@@ -79,6 +79,7 @@ type GeoCircle = { id: string; center: string; edge: string; style?: GeoStyle };
 type GeoPolygon = { id: string; points: string[]; style?: GeoStyle };
 type GeoArc = { id: string; center: string; start: string; end: string; sector?: boolean; style?: GeoStyle };
 type GeoLocus = { id: string; label: string; points: { x: number; y: number }[]; style?: GeoStyle; sourcePointId?: string; mode?: "static" | "trace"; maxSamples?: number };
+type GeometryPreview = { tool: "line" | "segment" | "ray" | "vector" | "circle" | "circle-radius"; from: GeoPoint; to: GeoPoint; snappedToPointId?: string };
 type WorkspaceImage = { id: string; name: string; src: string; x: number; y: number; width: number; height: number; opacity: number; locked?: boolean; visible?: boolean };
 type GeoConstraint =
   | { id: string; type: "parallel" | "perpendicular"; sourceLine: string; throughPoint: string; line: string }
@@ -100,7 +101,8 @@ type Preset3DTransform = "center" | "ground" | "unit" | "wide" | "tall" | "xy-pl
 type AlgebraObjectKind = "function" | "point" | "line" | "circle" | "polygon" | "arc" | "locus" | "3d";
 type AlgebraObjectRef = { kind: AlgebraObjectKind; id: string };
 type ObjectPropertyOverrides = Record<string, MathObjectProperties>;
-type ContextMenuState = { x: number; y: number; target: SelectedGeometryObject | { type: "3d"; id: string } | { type: "algebra"; ref: AlgebraObjectRef } };
+type GeometryBoardContextAction = "point" | "text" | "triangle" | "rectangle" | "circle" | "select-tool" | "export-png" | "save" | "clear-selection" | "toggle-units";
+type ContextMenuState = { x: number; y: number; target: SelectedGeometryObject | { type: "geometry-board"; point: { x: number; y: number } } | { type: "3d"; id: string } | { type: "algebra"; ref: AlgebraObjectRef } };
 type WorkspaceView = "graph" | "geometry" | "3d" | "data" | "teach";
 type ConstructionStep = { id: string; label: string; detail: string; createdAt: number; snapshot: Pick<WorkspaceSnapshot, "plots" | "construction" | "transforms3d" | "added3dObjects"> };
 type ActivityJournalEntry = { templateId: string; phase: GuidedActivityPhase; response: string; selfCheck: "not-started" | "revisit" | "got-it"; confidence: number; updatedAt: number };
@@ -207,6 +209,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
   const [selectedPointIds, setSelectedPointIds] = useState<string[]>([]);
   const [geometryObjectPicks, setGeometryObjectPicks] = useState<SelectedGeometryObject[]>([]);
+  const [geometryPreview, setGeometryPreview] = useState<GeometryPreview | null>(null);
   const [dragPointId, setDragPointId] = useState<string | null>(null);
   const [dragImageId, setDragImageId] = useState<string | null>(null);
   const [dragGeometry, setDragGeometry] = useState<{ object: SelectedGeometryObject; last: { x: number; y: number } } | null>(null);
@@ -555,6 +558,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setSelectedPointIds([]);
     setPolygonDraft([]);
     setGeometryObjectPicks([]);
+    setGeometryPreview(null);
     if (nextTool !== "select") setProjectStatus(`${geometryToolLabel(nextTool)} ready.`);
   };
 
@@ -706,6 +710,29 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     consumeGeometryToolPoint(activeTool, newPoint.id, { ...construction, points: [...construction.points, newPoint] });
   };
 
+  const updateGeometryPreviewFromPointer = (event: PointerEvent<SVGSVGElement>, boardPoint?: { x: number; y: number } | null) => {
+    if (!isPreviewableGeometryTool(tool) || selectedPointIds.length !== 1) {
+      setGeometryPreview(null);
+      return;
+    }
+    const from = pointById(construction.points, selectedPointIds[0]);
+    const rawPoint = boardPoint ?? clientToBoard(event);
+    if (!from || !rawPoint) {
+      setGeometryPreview(null);
+      return;
+    }
+    const targetPointId = (event.target as Element).getAttribute("data-point-id");
+    const targetPoint = targetPointId && targetPointId !== from.id ? pointById(construction.points, targetPointId) : null;
+    const snapped = targetPoint ?? snapBoardPoint(rawPoint, construction);
+    const to: GeoPoint = {
+      id: targetPoint?.id ?? "geometry-preview-target",
+      x: roundTo(snapped.x, 2),
+      y: roundTo(snapped.y, 2),
+      label: targetPoint?.label ?? "Preview",
+    };
+    setGeometryPreview({ tool, from, to, snappedToPointId: targetPoint?.id });
+  };
+
   const createDefaultGeometryToolObject = (activeTool: GeometryTool, x: number, y: number) => {
     const supportedTools: GeometryTool[] = [
       "segment",
@@ -789,15 +816,72 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
 
   const handleGeometryContextMenu = (event: PointerEvent<SVGSVGElement>) => {
     if (controlsLocked) return;
+    event.preventDefault();
     const target = event.target as Element;
     const pointId = target.getAttribute("data-point-id");
     const objectType = (target.getAttribute("data-object-type") as GeometryObjectType | null) ?? (pointId ? "point" : null);
     const objectId = target.getAttribute("data-object-id") ?? pointId;
-    if (!objectType || !objectId) return;
-    event.preventDefault();
-    const targetObject = { type: objectType, id: objectId };
+    if (!objectType || !objectId) {
+      const boardPoint = clientToBoard(event);
+      setSelectedGeometry(null);
+      setSelectedImageId(null);
+      setContextMenu({ x: event.clientX, y: event.clientY, target: { type: "geometry-board", point: boardPoint ?? { x: 320, y: 210 } } });
+      return;
+    }
+    const targetObject: SelectedGeometryObject = { type: objectType, id: objectId };
     setSelectedGeometry(targetObject);
+    setSelectedImageId(null);
     setContextMenu({ x: event.clientX, y: event.clientY, target: targetObject });
+  };
+
+  const handleGeometryBoardContextAction = (action: GeometryBoardContextAction, point: { x: number; y: number }) => {
+    setContextMenu(null);
+    const x = clamp(point.x, 24, 616);
+    const y = clamp(point.y, 24, 396);
+    if (action === "point") {
+      addPoint(x, y);
+      setProjectStatus("Point added from right-click menu.");
+      return;
+    }
+    if (action === "text") {
+      createQuickGeometryObject("text", x, y);
+      setProjectStatus("Text note added from right-click menu.");
+      return;
+    }
+    if (action === "triangle" || action === "rectangle" || action === "circle") {
+      const toolForAction: GeometryTool = action === "circle" ? "shape-circle" : action;
+      createQuickGeometryObject(toolForAction, x, y);
+      setProjectStatus(`${geometryToolLabel(toolForAction)} added from right-click menu.`);
+      return;
+    }
+    if (action === "select-tool") {
+      selectGeometryTool("point");
+      setProjectStatus("Point tool ready. Click anywhere on the board.");
+      return;
+    }
+    if (action === "export-png") {
+      exportGeometryPng();
+      return;
+    }
+    if (action === "save") {
+      saveConstruction();
+      setProjectStatus("Geometry construction saved from right-click menu.");
+      return;
+    }
+    if (action === "clear-selection") {
+      setSelectedGeometry(null);
+      setSelectedImageId(null);
+      setSelectedPointIds([]);
+      setGeometryObjectPicks([]);
+      setPolygonDraft([]);
+      setGeometryPreview(null);
+      setProjectStatus("Geometry selection cleared.");
+      return;
+    }
+    if (action === "toggle-units") {
+      setShowGeometryUnits((current) => !current);
+      return;
+    }
   };
 
   const handlePointPick = (pointId: string) => {
@@ -874,6 +958,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         const style: GeoStyle = activeTool === "segment" ? { label: "segment", color: "#22d3ee" } : activeTool === "ray" ? { label: "ray", color: "#a78bfa" } : activeTool === "vector" ? { label: "vector", color: "#10b981", strokeWidth: 5 } : { label: "line", color: "#8b5cf6" };
         setConstruction((current) => ({ ...current, lines: [...current.lines, { id: crypto.randomUUID(), a: next[0], b: next[1], style }] }));
         setSelectedPointIds([]);
+        setGeometryPreview(null);
       }
     }
     if (activeTool === "circle" || activeTool === "circle-radius") {
@@ -883,6 +968,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         recordWorkspaceStep(activeTool === "circle-radius" ? "Create circle by radius" : "Create circle", `Center ${labelForPoint(constructionContext, next[0])}, edge ${labelForPoint(constructionContext, next[1])}`);
         setConstruction((current) => ({ ...current, circles: [...current.circles, { id: crypto.randomUUID(), center: next[0], edge: next[1] }] }));
         setSelectedPointIds([]);
+        setGeometryPreview(null);
       }
     }
     if (activeTool === "circle-3-points" || activeTool === "angle") {
@@ -1008,10 +1094,14 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const handleBoardPointerMove = (event: PointerEvent<SVGSVGElement>) => {
-    if (!dragPointId && !dragGeometry && !dragImageId) return;
     if (event.pointerType === "touch") event.preventDefault();
     const point = clientToBoard(event);
     if (!point) return;
+    if (!dragPointId && !dragGeometry && !dragImageId) {
+      updateGeometryPreviewFromPointer(event, point);
+      return;
+    }
+    setGeometryPreview(null);
     if (dragImageId) {
       setWorkspaceImages((current) => current.map((image) => image.id === dragImageId ? { ...image, x: roundTo(point.x - image.width / 2, 2), y: roundTo(point.y - image.height / 2, 2) } : image));
     }
@@ -1800,7 +1890,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
 
   return (
     <div ref={workspaceRef} className="space-y-3 pt-20 xl:pt-14">
-      <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} />
+      {!singleView && <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} />}
       {!singleView && <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 
       {!singleView && <WorkspaceModeTabs active={workspaceView} onChange={setWorkspaceView} />}
@@ -2069,29 +2159,12 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           )}
 
           <div className="min-w-0 space-y-3">
-            <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
-              <div className="flex flex-wrap gap-2">
+            {(!controls3dOpen || !inspector3dOpen) && (
+              <div className="flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
                 {!controls3dOpen && <button type="button" onClick={() => setControls3dOpen(true)} className="action-secondary"><PanelLeftOpen className="h-4 w-4" />Controls</button>}
-                <button type="button" onClick={() => { setSelected3d(""); setDrag3d(null); setProjectStatus("3D Select tool ready. Click an object in the scene or object list."); }} className="action-secondary">
-                  <MousePointer2 className="h-4 w-4" /> Select
-                </button>
-                <button type="button" onClick={() => setAutoRotate3d((value) => !value)} className={autoRotate3d ? "action-primary" : "action-secondary"}>
-                  <RotateCcw className="h-4 w-4" /> {autoRotate3d ? "Pause rotation" : "Start rotation"}
-                </button>
                 {!inspector3dOpen && <button type="button" onClick={() => setInspector3dOpen(true)} className="action-secondary"><PanelRightOpen className="h-4 w-4" />Objects</button>}
               </div>
-              <p className="px-2 text-xs font-bold text-slate-500 dark:text-slate-400">Esc deselects. Delete removes selected object.</p>
-            </div>
-            <Space3DConstructionWorkbench
-              selected={selected3d}
-              transform={selected3dTransform}
-              onCreate={(id) => add3dSceneObject(id, { solid: threeObjectSolidMap[id], label: threeObjectLabels[id] })}
-              onPreset={(preset) => apply3dTransformPreset(preset)}
-              onDuplicate={() => duplicate3dObject()}
-              onDelete={() => delete3dObject()}
-              onRestore={() => restore3dObject()}
-              onToggleVisibility={() => update3dTransform(selected3d, { visible: !selected3dTransform.visible })}
-            />
+            )}
 
             <div className="grid min-h-[min(68vh,720px)] gap-3 2xl:grid-cols-[minmax(260px,32%)_minmax(420px,1fr)]">
               <Workspace3DProjectionPane
@@ -2187,7 +2260,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                 onTraceSelected={() => setSelectedGeometryTrace(true)}
                 onStopTrace={() => setSelectedGeometryTrace(false)}
                 onClearTrace={clearGeometryTrace}
-                onReset={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
+                onReset={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); setGeometryPreview(null); }}
                 onSave={saveConstruction}
                 onLoad={loadConstruction}
                 onAddImage={() => imageInputRef.current?.click()}
@@ -2201,7 +2274,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               </label>
               <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">1 unit = 40 grid pixels, origin at board center</span>
             </div>
-            <GeometryPendingPickPanel tool={tool} picks={geometryObjectPicks} construction={construction} onClear={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }} />
+            <GeometryPendingPickPanel tool={tool} picks={geometryObjectPicks} construction={construction} onClear={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); setGeometryPreview(null); }} />
             <svg
               ref={svgRef}
               data-export="geometry"
@@ -2213,7 +2286,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               onPointerMove={handleBoardPointerMove}
               onContextMenu={handleGeometryContextMenu}
               onPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
-              onPointerLeave={() => { setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+              onPointerLeave={() => { setDragPointId(null); setDragGeometry(null); setDragImageId(null); setGeometryPreview(null); }}
               className="h-[min(420px,68vh)] min-h-[320px] w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950 sm:h-[420px]"
             >
               <title>Math Universe Geometry Construction</title>
@@ -2240,6 +2313,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "arc", arc.id)} />)}
               {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "line", line.id)} />)}
               {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "circle", circle.id)} />)}
+              {geometryPreview && <GeometryConstructionPreview preview={geometryPreview} />}
               <GeometryMeasurementOverlays construction={construction} />
               {polygonDraft.length > 1 && <PolygonDraftPreview draft={polygonDraft} points={construction.points} />}
               {construction.points.filter((point) => point.style?.visible !== false).map((point) => (
@@ -2304,18 +2378,22 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           state={contextMenu}
           onClose={() => setContextMenu(null)}
           onDuplicate={() => {
+            if (contextMenu.target.type === "geometry-board") return;
             contextMenu.target.type === "algebra" ? duplicateWorkspaceObject(contextMenu.target.ref) : contextMenu.target.type === "3d" ? duplicate3dObject(contextMenu.target.id) : duplicateGeometryObject(contextMenu.target);
             setContextMenu(null);
           }}
           onDelete={() => {
+            if (contextMenu.target.type === "geometry-board") return;
             contextMenu.target.type === "algebra" ? deleteWorkspaceObject(contextMenu.target.ref) : contextMenu.target.type === "3d" ? delete3dObject(contextMenu.target.id) : deleteGeometryObject(contextMenu.target);
             setContextMenu(null);
           }}
           onRestore={() => {
+            if (contextMenu.target.type === "geometry-board") return;
             contextMenu.target.type === "algebra" ? patchWorkspaceObject(contextMenu.target.ref, { visible: true, trace: false }) : contextMenu.target.type === "3d" ? restore3dObject(contextMenu.target.id) : restoreGeometryObject(contextMenu.target);
             setContextMenu(null);
           }}
           onLock={() => {
+            if (contextMenu.target.type === "geometry-board") return;
             if (contextMenu.target.type === "algebra") patchWorkspaceObject(contextMenu.target.ref, { locked: true });
             else if (contextMenu.target.type === "3d") update3dTransform(contextMenu.target.id, { locked: !selected3dTransform.locked });
             else toggleGeometryLock(contextMenu.target);
@@ -2323,6 +2401,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           }}
           onRename={() => {
             const target = contextMenu.target;
+            if (target.type === "geometry-board") return;
             const ref = target.type === "algebra" ? target.ref : target.type === "3d" ? { kind: "3d" as const, id: target.id } : { kind: target.type, id: target.id };
             const next = window.prompt("Rename object", objectDisplayName(workspaceObjects, ref));
             if (next) renameWorkspaceObject(ref, next);
@@ -2330,10 +2409,12 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           }}
           onTrace={() => {
             const target = contextMenu.target;
+            if (target.type === "geometry-board") return;
             const ref = target.type === "algebra" ? target.ref : target.type === "3d" ? { kind: "3d" as const, id: target.id } : { kind: target.type, id: target.id };
             patchWorkspaceObject(ref, { trace: true });
             setContextMenu(null);
           }}
+          onBoardAction={handleGeometryBoardContextAction}
         />
       )}
     </div>
@@ -6181,64 +6262,162 @@ function GeometryPendingPickPanel({ tool, picks, construction, onClear }: { tool
   );
 }
 
+type GeometrySettingsTab = "basic" | "appearance" | "label" | "advanced" | "actions";
+
 function GeometryObjectPanel({ selected, construction, locked, onPointChange, onStyleChange, onRadiusChange, onDuplicate, onDelete, onRestore, onToggleLock }: { selected: SelectedGeometryObject | null; construction: Construction; locked: boolean; onPointChange: (patch: Partial<GeoPoint>) => void; onStyleChange: (patch: GeoStyle) => void; onRadiusChange: (radiusUnits: number) => void; onDuplicate: () => void; onDelete: () => void; onRestore: () => void; onToggleLock: () => void }) {
+  const [tab, setTab] = useState<GeometrySettingsTab>("basic");
   const object = selected ? geometryObjectBySelection(construction, selected) : null;
   const style = object?.style ?? {};
   const point = selected?.type === "point" ? pointById(construction.points, selected.id) : null;
   const radius = selected?.type === "circle" ? circleRadiusUnits(construction, selected.id) : null;
+  const title = selected ? geometrySettingsTitle(selected, construction) : "No object selected";
+  const definition = selected ? geometrySettingsDefinition(selected, construction) : "";
+  const measurements = selected ? geometrySettingsMeasurements(selected, construction) : [];
+  const color = style.color ?? (selected ? geometryDefaultColor[selected.type] : "#06b6d4");
+  const fillColor = normalizeColor(style.fill) ?? "#bae6fd";
+  const tabs: Array<{ id: GeometrySettingsTab; label: string }> = [
+    { id: "basic", label: "Basic" },
+    { id: "appearance", label: "Color" },
+    { id: "label", label: "Label" },
+    { id: "advanced", label: "Advanced" },
+    { id: "actions", label: "Actions" },
+  ];
+
+  const applyPreset = (preset: "classroom" | "proof" | "construction" | "soft" | "bold") => {
+    const presets: Record<typeof preset, GeoStyle> = {
+      classroom: { color: "#2563eb", fill: "rgba(37,99,235,.14)", strokeWidth: 4, size: 9, opacity: 1, labelMode: "name" },
+      proof: { color: "#7c3aed", fill: "rgba(124,58,237,.13)", strokeWidth: 5, size: 10, opacity: 1, labelMode: "both" },
+      construction: { color: "#64748b", fill: "rgba(148,163,184,.10)", strokeWidth: 3, size: 7, opacity: 0.72, labelMode: "name" },
+      soft: { color: "#0891b2", fill: "rgba(34,211,238,.10)", strokeWidth: 3, size: 8, opacity: 0.42, labelMode: style.labelMode ?? "name" },
+      bold: { color: "#f97316", fill: "rgba(249,115,22,.18)", strokeWidth: 7, size: 13, opacity: 1, labelMode: "both" },
+    };
+    onStyleChange({ ...style, ...presets[preset], label: style.label });
+  };
+
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
-      <div className="flex items-center justify-between gap-2">
-        <h3 className="font-bold">Object Properties</h3>
-        {selected && <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-bold text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100">{selected.type}</span>}
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white/90 shadow-sm dark:border-white/10 dark:bg-slate-950/70">
+      <div className="border-b border-slate-200 bg-slate-50/80 p-3 dark:border-white/10 dark:bg-white/5">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-[11px] font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">2D Object Settings</p>
+            <h3 className="mt-1 truncate text-base font-black text-slate-950 dark:text-white">{title}</h3>
+            {selected && <p className="mt-1 truncate font-mono text-[11px] font-semibold text-slate-500 dark:text-slate-400">{definition}</p>}
+          </div>
+          {selected && (
+            <span className="shrink-0 rounded-full px-3 py-1 text-xs font-black text-white" style={{ backgroundColor: color }}>
+              {selected.type}
+            </span>
+          )}
+        </div>
+        {selected && (
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            <GeometrySwitch active={style.visible !== false} label={style.visible === false ? "Hidden" : "Visible"} onClick={() => onStyleChange({ ...style, visible: style.visible === false })} />
+            <GeometrySwitch active={style.labelMode !== "hidden"} label="Label" onClick={() => onStyleChange({ ...style, labelMode: style.labelMode === "hidden" ? "name" : "hidden" })} />
+            <GeometrySwitch active={locked} label={locked ? "Locked" : "Free"} onClick={onToggleLock} />
+          </div>
+        )}
       </div>
       {!selected || !object ? (
-        <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">Select a point, line, circle, or polygon to modify x/y, size, color, visibility, lock, duplicate, restore, or delete.</p>
+        <div className="p-4">
+          <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">Select a point, line, circle, polygon, arc, or locus to edit its definition, label, color, opacity, trace, lock state, and classroom display style.</p>
+        </div>
       ) : (
-        <div className="mt-3 space-y-3">
-          {point && (
-            <>
-              <label className="block rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
-                Label
-                <input value={point.label} onChange={(event) => onPointChange({ label: event.target.value.slice(0, 3) || point.label })} className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" />
-              </label>
+        <div>
+          <div className="flex gap-1 overflow-x-auto border-b border-slate-200 px-2 py-2 dark:border-white/10">
+            {tabs.map((item) => (
+              <button key={item.id} type="button" onClick={() => setTab(item.id)} className={tab === item.id ? "rounded-lg bg-cyan-600 px-3 py-1.5 text-xs font-black text-white" : "rounded-lg px-3 py-1.5 text-xs font-black text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10"}>
+                {item.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-3 p-4">
+            {tab === "basic" && (
+              <>
+                {point && (
+                  <div className="grid grid-cols-2 gap-2">
+                    <MiniNumber label="x" value={roundTo(point.x, 1)} onChange={(value) => onPointChange({ x: value })} />
+                    <MiniNumber label="y" value={roundTo(point.y, 1)} onChange={(value) => onPointChange({ y: value })} />
+                  </div>
+                )}
+                {radius !== null && <SliderControl label="Radius" value={radius} min={0.25} max={8} step={0.05} onChange={onRadiusChange} />}
+                <div className="grid gap-2">
+                  <GeometryReadout label="Definition" value={definition} />
+                  {measurements.map((item) => <GeometryReadout key={item.label} label={item.label} value={item.value} />)}
+                </div>
+              </>
+            )}
+
+            {tab === "appearance" && (
+              <>
+                <div className="grid grid-cols-[1fr_92px] gap-3">
+                  <SliderControl label={selected.type === "point" ? "Point size" : "Stroke width"} value={style.size ?? style.strokeWidth ?? 9} min={2} max={24} step={1} onChange={(value) => onStyleChange(selected.type === "point" ? { ...style, size: value } : { ...style, strokeWidth: value })} />
+                  <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+                    Stroke
+                    <input type="color" value={color} onChange={(event) => onStyleChange({ ...style, color: event.target.value })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
+                  </label>
+                </div>
+                <div className="grid grid-cols-[1fr_92px] gap-3">
+                  <SliderControl label="Opacity" value={style.opacity ?? 1} min={0.1} max={1} step={0.05} onChange={(value) => onStyleChange({ ...style, opacity: value })} />
+                  <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+                    Fill
+                    <input type="color" value={fillColor} onChange={(event) => onStyleChange({ ...style, fill: `${event.target.value}55` })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
+                  </label>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {(["classroom", "proof", "construction", "soft", "bold"] as const).map((preset) => (
+                    <button key={preset} type="button" onClick={() => applyPreset(preset)} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black capitalize text-slate-700 hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+                      {preset}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {tab === "label" && (
+              <>
+                {point && (
+                  <label className="block rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+                    Name
+                    <input value={point.label} onChange={(event) => onPointChange({ label: event.target.value.slice(0, 3) || point.label })} className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900" />
+                  </label>
+                )}
+                <label className="block rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
+                  Label display
+                  <select value={style.labelMode ?? "name"} onChange={(event) => onStyleChange({ ...style, labelMode: event.target.value as GeoStyle["labelMode"] })} className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900">
+                    <option value="name">Name</option>
+                    <option value="value">Value / definition</option>
+                    <option value="both">Name and value</option>
+                    <option value="hidden">Hidden</option>
+                  </select>
+                </label>
+                <div className="rounded-xl bg-slate-100 p-3 text-xs leading-5 text-slate-600 dark:bg-white/10 dark:text-slate-300">
+                  Preview: <span className="font-black text-slate-900 dark:text-white">{geometrySettingsLabelPreview(selected, construction, style)}</span>
+                </div>
+              </>
+            )}
+
+            {tab === "advanced" && (
+              <>
+                <GeometrySwitch active={style.trace === true} label={style.trace ? "Trace recording on" : "Trace recording off"} onClick={() => onStyleChange({ ...style, trace: !style.trace })} />
+                <GeometrySwitch active={locked} label={locked ? "Fixed object" : "Draggable object"} onClick={onToggleLock} />
+                <GeometrySwitch active={style.visible !== false} label={style.visible === false ? "Hidden from board" : "Shown on board"} onClick={() => onStyleChange({ ...style, visible: style.visible === false })} />
+                <div className="rounded-xl bg-slate-100 p-3 text-xs leading-5 text-slate-600 dark:bg-white/10 dark:text-slate-300">
+                  Object id: <span className="font-mono">{selected.id.slice(0, 8)}</span><br />
+                  Dependencies: {pointIdsForObject(construction, selected).map((id) => labelForPoint(construction, id)).join(", ") || "none"}
+                </div>
+              </>
+            )}
+
+            {tab === "actions" && (
               <div className="grid grid-cols-2 gap-2">
-                <MiniNumber label="x" value={roundTo(point.x, 1)} onChange={(value) => onPointChange({ x: value })} />
-                <MiniNumber label="y" value={roundTo(point.y, 1)} onChange={(value) => onPointChange({ y: value })} />
+                <button type="button" onClick={onDuplicate} className="rounded-xl bg-slate-100 px-3 py-2 text-xs font-black text-slate-700 hover:bg-cyan-100 hover:text-cyan-800 dark:bg-white/10 dark:text-slate-100">Duplicate</button>
+                <button type="button" onClick={onRestore} className="rounded-xl bg-slate-100 px-3 py-2 text-xs font-black text-slate-700 hover:bg-cyan-100 hover:text-cyan-800 dark:bg-white/10 dark:text-slate-100">Restore</button>
+                <button type="button" onClick={onToggleLock} className="rounded-xl bg-slate-100 px-3 py-2 text-xs font-black text-slate-700 hover:bg-cyan-100 hover:text-cyan-800 dark:bg-white/10 dark:text-slate-100">{locked ? "Unlock" : "Lock"}</button>
+                <button type="button" onClick={() => onStyleChange({ ...style, visible: style.visible === false })} className="rounded-xl bg-slate-100 px-3 py-2 text-xs font-black text-slate-700 hover:bg-cyan-100 hover:text-cyan-800 dark:bg-white/10 dark:text-slate-100">{style.visible === false ? "Show" : "Hide"}</button>
+                <button type="button" onClick={onDelete} className="col-span-2 rounded-xl bg-rose-100 px-3 py-2 text-xs font-black text-rose-700 hover:bg-rose-200 dark:bg-rose-400/15 dark:text-rose-100">Delete selected object</button>
               </div>
-            </>
-          )}
-          {radius !== null && <SliderControl label="Radius" value={radius} min={0.25} max={8} step={0.05} onChange={onRadiusChange} />}
-          <div className="grid grid-cols-[1fr_92px] gap-3">
-            <SliderControl label="Size / stroke" value={style.size ?? style.strokeWidth ?? 9} min={2} max={24} step={1} onChange={(value) => onStyleChange(selected.type === "point" ? { ...style, size: value } : { ...style, strokeWidth: value })} />
-            <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
-              Color
-              <input type="color" value={style.color ?? geometryDefaultColor[selected.type]} onChange={(event) => onStyleChange({ ...style, color: event.target.value })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
-            </label>
-          </div>
-          <div className="grid grid-cols-[1fr_92px] gap-3">
-            <SliderControl label="Opacity" value={style.opacity ?? 1} min={0.1} max={1} step={0.05} onChange={(value) => onStyleChange({ ...style, opacity: value })} />
-            <label className="rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
-              Fill
-              <input type="color" value={normalizeColor(style.fill) ?? "#bae6fd"} onChange={(event) => onStyleChange({ ...style, fill: `${event.target.value}55` })} className="mt-2 h-10 w-full rounded-lg border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-900" />
-            </label>
-          </div>
-          <label className="block rounded-xl bg-slate-100 p-2 text-xs font-bold dark:bg-white/10">
-            Label mode
-            <select value={style.labelMode ?? "name"} onChange={(event) => onStyleChange({ ...style, labelMode: event.target.value as GeoStyle["labelMode"] })} className="mt-1 w-full rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-900">
-              <option value="name">Name</option>
-              <option value="value">Value</option>
-              <option value="both">Name and value</option>
-              <option value="hidden">Hidden</option>
-            </select>
-          </label>
-          <div className="grid grid-cols-2 gap-2">
-            <button type="button" onClick={() => onStyleChange({ ...style, visible: style.visible === false })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">{style.visible === false ? "Show" : "Hide"}</button>
-            <button type="button" onClick={onToggleLock} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">{locked ? "Unlock" : "Lock"}</button>
-            <button type="button" onClick={() => onStyleChange({ ...style, trace: !style.trace })} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">{style.trace ? "Trace on" : "Trace"}</button>
-            <button type="button" onClick={onDuplicate} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Duplicate</button>
-            <button type="button" onClick={onRestore} className="rounded-2xl bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-white/10">Restore</button>
-            <button type="button" onClick={onDelete} className="col-span-2 rounded-2xl bg-rose-100 px-3 py-2 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">Delete</button>
+            )}
           </div>
         </div>
       )}
@@ -6246,7 +6425,152 @@ function GeometryObjectPanel({ selected, construction, locked, onPointChange, on
   );
 }
 
-function ObjectContextMenu({ state, onClose, onDuplicate, onDelete, onRestore, onLock, onRename, onTrace }: { state: ContextMenuState; onClose: () => void; onDuplicate: () => void; onDelete: () => void; onRestore: () => void; onLock: () => void; onRename: () => void; onTrace: () => void }) {
+function GeometrySwitch({ active, label, onClick }: { active: boolean; label: string; onClick: () => void }) {
+  return (
+    <button type="button" onClick={onClick} className={active ? "rounded-xl bg-cyan-600 px-3 py-2 text-xs font-black text-white" : "rounded-xl bg-slate-100 px-3 py-2 text-xs font-black text-slate-600 dark:bg-white/10 dark:text-slate-300"}>
+      {label}
+    </button>
+  );
+}
+
+function GeometryReadout({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+      <p className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</p>
+      <p className="mt-1 break-words font-mono text-xs font-bold text-slate-800 dark:text-slate-100">{value}</p>
+    </div>
+  );
+}
+
+function geometrySettingsTitle(selected: SelectedGeometryObject, construction: Construction) {
+  if (selected.type === "point") return labelForPoint(construction, selected.id);
+  if (selected.type === "line") return geometryObjectLabel(construction, selected);
+  if (selected.type === "circle") return geometryObjectLabel(construction, selected);
+  if (selected.type === "polygon") return geometryObjectLabel(construction, selected);
+  if (selected.type === "arc") return "Arc";
+  return "Locus";
+}
+
+function geometrySettingsDefinition(selected: SelectedGeometryObject, construction: Construction) {
+  if (selected.type === "point") {
+    const point = pointById(construction.points, selected.id);
+    return point ? `(${roundTo((point.x - 320) / 40, 2)}, ${roundTo((210 - point.y) / 40, 2)})` : "Point(undefined)";
+  }
+  if (selected.type === "line") {
+    const line = construction.lines.find((item) => item.id === selected.id);
+    return line ? lineEquation(line, construction) : "Line(undefined)";
+  }
+  if (selected.type === "circle") {
+    const circle = construction.circles.find((item) => item.id === selected.id);
+    return circle ? circleEquation(circle, construction) : "Circle(undefined)";
+  }
+  if (selected.type === "polygon") {
+    const polygon = construction.polygons.find((item) => item.id === selected.id);
+    return polygon ? polygon.points.map((id) => labelForPoint(construction, id)).join(" -> ") : "Polygon(undefined)";
+  }
+  if (selected.type === "arc") return "Arc(center, start, end)";
+  const locus = construction.loci.find((item) => item.id === selected.id);
+  return locus ? `${locus.points.length} sampled points` : "Locus(undefined)";
+}
+
+function geometrySettingsMeasurements(selected: SelectedGeometryObject, construction: Construction) {
+  if (selected.type === "point") {
+    const point = pointById(construction.points, selected.id);
+    return point ? [
+      { label: "Board x", value: roundTo(point.x, 1).toString() },
+      { label: "Board y", value: roundTo(point.y, 1).toString() },
+    ] : [];
+  }
+  if (selected.type === "line") {
+    const line = construction.lines.find((item) => item.id === selected.id);
+    const a = line ? pointById(construction.points, line.a) : null;
+    const b = line ? pointById(construction.points, line.b) : null;
+    if (!line || !a || !b) return [];
+    return [
+      { label: "Through points", value: `${a.label}, ${b.label}` },
+      { label: "Reference length", value: `${roundTo(distance(a, b) / 40, 2)} units` },
+      { label: "Slope", value: Math.abs(b.x - a.x) < 0.001 ? "undefined" : roundTo((a.y - b.y) / (b.x - a.x), 3).toString() },
+    ];
+  }
+  if (selected.type === "circle") {
+    const circle = construction.circles.find((item) => item.id === selected.id);
+    const center = circle ? pointById(construction.points, circle.center) : null;
+    const edge = circle ? pointById(construction.points, circle.edge) : null;
+    if (!circle || !center || !edge) return [];
+    const radiusUnits = distance(center, edge) / 40;
+    return [
+      { label: "Center", value: center.label },
+      { label: "Radius", value: `${roundTo(radiusUnits, 2)} units` },
+      { label: "Area", value: `${roundTo(Math.PI * radiusUnits * radiusUnits, 2)} sq units` },
+    ];
+  }
+  if (selected.type === "polygon") {
+    const polygon = construction.polygons.find((item) => item.id === selected.id);
+    const points = polygon?.points.map((id) => pointById(construction.points, id)).filter(Boolean) as GeoPoint[] | undefined;
+    return points && points.length >= 3 ? [
+      { label: "Vertices", value: points.map((point) => point.label).join(", ") },
+      { label: "Perimeter", value: `${roundTo(polygonPerimeter(points) / 40, 2)} units` },
+      { label: "Area", value: `${roundTo(polygonArea(points) / 1600, 2)} sq units` },
+    ] : [];
+  }
+  if (selected.type === "arc") {
+    const arc = construction.arcs.find((item) => item.id === selected.id);
+    const center = arc ? pointById(construction.points, arc.center) : null;
+    const start = arc ? pointById(construction.points, arc.start) : null;
+    const end = arc ? pointById(construction.points, arc.end) : null;
+    return arc && center && start && end ? [
+      { label: "Radius", value: `${roundTo(distance(center, start) / 40, 2)} units` },
+      { label: "Arc length", value: `${roundTo(arcLength(center, start, end) / 40, 2)} units` },
+    ] : [];
+  }
+  const locus = construction.loci.find((item) => item.id === selected.id);
+  return locus ? [
+    { label: "Samples", value: locus.points.length.toString() },
+    { label: "Mode", value: locus.mode ?? "static" },
+  ] : [];
+}
+
+function geometrySettingsLabelPreview(selected: SelectedGeometryObject, construction: Construction, style: GeoStyle) {
+  const name = geometrySettingsTitle(selected, construction);
+  const value = geometrySettingsDefinition(selected, construction);
+  if (style.labelMode === "hidden") return "hidden";
+  if (style.labelMode === "value") return value;
+  if (style.labelMode === "both") return `${name}: ${value}`;
+  return name;
+}
+
+function ObjectContextMenu({ state, onClose, onDuplicate, onDelete, onRestore, onLock, onRename, onTrace, onBoardAction }: { state: ContextMenuState; onClose: () => void; onDuplicate: () => void; onDelete: () => void; onRestore: () => void; onLock: () => void; onRename: () => void; onTrace: () => void; onBoardAction: (action: GeometryBoardContextAction, point: { x: number; y: number }) => void }) {
+  if (state.target.type === "geometry-board") {
+    const point = state.target.point;
+    const boardActions: Array<{ label: string; action: GeometryBoardContextAction; detail?: string }> = [
+      { label: "Add point here", action: "point", detail: `(${roundTo(point.x, 1)}, ${roundTo(point.y, 1)})` },
+      { label: "Add text note", action: "text" },
+      { label: "Insert triangle", action: "triangle" },
+      { label: "Insert rectangle", action: "rectangle" },
+      { label: "Insert circle", action: "circle" },
+      { label: "Use Point tool", action: "select-tool" },
+      { label: "Export board as PNG", action: "export-png" },
+      { label: "Save construction", action: "save" },
+      { label: "Toggle graph units", action: "toggle-units" },
+      { label: "Clear selection", action: "clear-selection" },
+    ];
+    return (
+      <div className="fixed inset-0 z-50" onClick={onClose} onContextMenu={(event) => event.preventDefault()}>
+        <div className="absolute min-w-56 rounded-xl border border-slate-200 bg-white p-2 text-sm shadow-2xl shadow-slate-950/20 dark:border-white/10 dark:bg-slate-950" style={{ left: state.x, top: state.y }}>
+          <div className="border-b border-slate-200 px-3 py-2 dark:border-white/10">
+            <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">Geometry board</p>
+            <p className="mt-0.5 text-xs font-semibold text-slate-500 dark:text-slate-400">Right-click actions work anywhere.</p>
+          </div>
+          {boardActions.map((item) => (
+            <button key={item.action} type="button" onClick={() => onBoardAction(item.action, point)} className="flex w-full items-center justify-between gap-4 rounded-lg px-3 py-2 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10">
+              <span>{item.label}</span>
+              {item.detail && <span className="text-xs font-bold text-slate-400">{item.detail}</span>}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
   const is3d = state.target.type === "3d";
   const workflowType = workflowTypeForContextTarget(state.target);
   const menuActions = contextMenuForObject(workflowType);
@@ -6272,6 +6596,7 @@ function ObjectContextMenu({ state, onClose, onDuplicate, onDelete, onRestore, o
 }
 
 function workflowTypeForContextTarget(target: ContextMenuState["target"]): WorkflowObjectType {
+  if (target.type === "geometry-board") return "algebra";
   if (target.type === "3d") return "3d";
   if (target.type === "algebra") {
     const kind = target.ref.kind;
@@ -7172,6 +7497,51 @@ function GeometryLine({ line, points, selected = false }: { line: GeoLine; point
       {line.style?.trace && <line x1={endpoints.x1} y1={endpoints.y1} x2={endpoints.x2} y2={endpoints.y2} stroke={color} strokeWidth="12" strokeDasharray="4 10" opacity="0.22" />}
     </g>
   );
+}
+
+function GeometryConstructionPreview({ preview }: { preview: GeometryPreview }) {
+  const kind = preview.tool === "circle-radius" ? "circle" : preview.tool;
+  const color = constructionPreviewColor(preview.tool);
+  const distanceUnits = roundTo(distance(preview.from, preview.to) / 40, 2);
+  const angleDegrees = roundTo((Math.atan2(preview.from.y - preview.to.y, preview.to.x - preview.from.x) * 180) / Math.PI, 1);
+  const labelX = (preview.from.x + preview.to.x) / 2 + 12;
+  const labelY = (preview.from.y + preview.to.y) / 2 - 14;
+
+  if (preview.tool === "circle" || preview.tool === "circle-radius") {
+    const radius = distance(preview.from, preview.to);
+    return (
+      <g pointerEvents="none" aria-hidden="true">
+        <circle cx={preview.from.x} cy={preview.from.y} r={radius} fill={`${color}18`} stroke={color} strokeWidth="4" strokeDasharray="10 8" opacity="0.74" />
+        <line x1={preview.from.x} y1={preview.from.y} x2={preview.to.x} y2={preview.to.y} stroke={color} strokeWidth="3" strokeDasharray="6 7" opacity="0.82" />
+        <circle cx={preview.to.x} cy={preview.to.y} r="7" fill="#fff7ed" stroke={color} strokeWidth="3" />
+        <text x={labelX} y={labelY} fill={color} className="select-none text-[11px] font-black">preview radius {distanceUnits}u</text>
+      </g>
+    );
+  }
+
+  const endpoints = linearDisplayEndpoints(preview.from, preview.to, kind);
+  const arrow = kind === "ray" || kind === "vector" ? arrowHeadPoints(endpoints.x1, endpoints.y1, endpoints.x2, endpoints.y2, kind === "vector" ? 14 : 11) : null;
+  return (
+    <g pointerEvents="none" aria-hidden="true">
+      <line x1={endpoints.x1} y1={endpoints.y1} x2={endpoints.x2} y2={endpoints.y2} stroke={color} strokeWidth={kind === "vector" ? 5 : 4} strokeDasharray="10 8" opacity="0.72" />
+      <line x1={preview.from.x} y1={preview.from.y} x2={preview.to.x} y2={preview.to.y} stroke="#0f172a" strokeWidth="2" strokeDasharray="4 7" opacity="0.34" />
+      {arrow && <polygon points={arrow} fill={color} opacity="0.78" />}
+      <circle cx={preview.to.x} cy={preview.to.y} r="7" fill="#fff7ed" stroke={color} strokeWidth="3" />
+      <text x={labelX} y={labelY} fill={color} className="select-none text-[11px] font-black">{kind} preview - {distanceUnits}u, {angleDegrees}deg</text>
+    </g>
+  );
+}
+
+function constructionPreviewColor(tool: GeometryPreview["tool"]) {
+  if (tool === "segment") return "#0891b2";
+  if (tool === "ray") return "#7c3aed";
+  if (tool === "vector") return "#059669";
+  if (tool === "circle" || tool === "circle-radius") return "#0284c7";
+  return "#6d28d9";
+}
+
+function isPreviewableGeometryTool(tool: GeometryTool): tool is GeometryPreview["tool"] {
+  return tool === "line" || tool === "segment" || tool === "ray" || tool === "vector" || tool === "circle" || tool === "circle-radius";
 }
 
 function linearDisplayEndpoints(a: GeoPoint, b: GeoPoint, kind: string) {

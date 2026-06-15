@@ -480,12 +480,15 @@ function evaluateNumericExpression(expression: string) {
     .replace(/exp\(/gi, "Math.exp(")
     .replace(/sqrt\(/gi, "Math.sqrt(")
     .replace(/abs\(/gi, "Math.abs(")
+    .replace(/sum\(/gi, "sum(")
+    .replace(/add\(/gi, "sum(")
     .replace(/sin\(([-+]?\d+(?:\.\d+)?)\)/gi, (_, value) => `Math.sin((${value})*Math.PI/180)`)
     .replace(/cos\(([-+]?\d+(?:\.\d+)?)\)/gi, (_, value) => `Math.cos((${value})*Math.PI/180)`)
     .replace(/tan\(([-+]?\d+(?:\.\d+)?)\)/gi, (_, value) => `Math.tan((${value})*Math.PI/180)`);
-  if (!/^[\d+\-*/().,\sMathPIElogcosintaqrubse]+$/.test(jsExpression)) return null;
+  if (!isSafeNumericExpression(jsExpression)) return null;
   try {
-    const value = Number(Function(`"use strict"; return (${jsExpression});`)());
+    const sum = (...values: number[]) => values.reduce((total, value) => total + value, 0);
+    const value = Number(Function("sum", `"use strict"; return (${jsExpression});`)(sum));
     if (!Number.isFinite(value)) return null;
     return {
       result: formatNumber(value),
@@ -495,6 +498,26 @@ function evaluateNumericExpression(expression: string) {
   } catch {
     return null;
   }
+}
+
+function isSafeNumericExpression(expression: string) {
+  if (!/^[\d+\-*/().,\sA-Za-z]+$/.test(expression)) return false;
+  const identifiers = expression.match(/[A-Za-z][A-Za-z0-9]*(?:\.[A-Za-z][A-Za-z0-9]*)?/g) ?? [];
+  const allowed = new Set([
+    "Math.PI",
+    "Math.E",
+    "Math.log10",
+    "Math.log2",
+    "Math.log",
+    "Math.exp",
+    "Math.sqrt",
+    "Math.abs",
+    "Math.sin",
+    "Math.cos",
+    "Math.tan",
+    "sum",
+  ]);
+  return identifiers.every((identifier) => allowed.has(identifier));
 }
 
 function exactNumericEvaluation(expression: string) {

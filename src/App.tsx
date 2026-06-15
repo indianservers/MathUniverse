@@ -54,6 +54,7 @@ const ParametricCurveExplorer = lazy(() => import("./pages/ParametricCurveExplor
 const PermutationsCombinationsVisualizer = lazy(() => import("./pages/PermutationsCombinationsVisualizer"));
 const PolarCoordinatesVisualizer = lazy(() => import("./pages/PolarCoordinatesVisualizer"));
 const ProbabilityStatistics = lazy(() => import("./pages/ProbabilityStatistics"));
+const ProblemSolverDocumentation = lazy(() => import("./pages/ProblemSolverDocumentation"));
 const Quiz = lazy(() => import("./pages/Quiz"));
 const ScientificCalculator = lazy(() => import("./pages/ScientificCalculator"));
 const SetTheory = lazy(() => import("./pages/SetTheory"));
@@ -161,6 +162,7 @@ export default function App() {
             <Route path="learn" element={<LearningHub />} />
             <Route path="spaced-repetition" element={<SpacedRepetitionQuiz />} />
             <Route path="problem-solver" element={<StepByStepProblemSolver />} />
+            <Route path="problem-solver/docs" element={<ProblemSolverDocumentation />} />
             <Route path="concept-graph" element={<ConceptDependencyGraph />} />
             <Route path="daily-challenge" element={<DailyChallenge />} />
             <Route path="worked-examples" element={<WorkedExamplesLibrary />} />

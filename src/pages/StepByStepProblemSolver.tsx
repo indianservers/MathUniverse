@@ -8,6 +8,7 @@ import { solveCalculus } from "../problem-solver/calculusSolver";
 import { solveExpressionOperation } from "../problem-solver/expressionOperationSolver";
 import { MathRecognitionPanel } from "../problem-solver/intelligence/MathRecognitionPanel";
 import { recognizeMathInput } from "../problem-solver/intelligence/mathRecognizer";
+import type { MathRecognizedToken, MathTokenCategory } from "../problem-solver/intelligence/mathRecognitionTypes";
 import { solveMatrix } from "../problem-solver/matrixSolver";
 import { classifyProblem } from "../problem-solver/problemClassifier";
 import { ProblemGraph, ValueTablePanel } from "../problem-solver/ProblemGraph";
@@ -58,14 +59,80 @@ export default function StepByStepProblemSolver() {
           <CopyResultButton value={solverResult.canCopy ? solverResult.result : undefined} />
           <ResetExampleButton onClick={() => setEquation("2*x+5=11")} />
           <PrintWorksheetButton />
-          <RelatedToolLinks links={[{ label: "Calculator", route: "/calculator" }, { label: "Equation Solver", route: "/math-lab/equation-solver" }]} />
+          <RelatedToolLinks links={[{ label: "Calculator", route: "/calculator" }, { label: "Equation Solver", route: "/math-lab/equation-solver" }, { label: "Solver Docs", route: "/problem-solver/docs" }]} />
         </div>
-        <input className="w-full rounded-2xl border border-slate-200 bg-white p-4 font-mono text-lg dark:border-white/10 dark:bg-slate-950/60" value={equation} onChange={(event) => setEquation(event.target.value)} />
+        <MathSyntaxInput value={equation} tokens={recognition.tokens} onChange={setEquation} />
       </SectionCard>
       <ResultWorkspace cards={cards} result={solverResult} visual={visual} />
       <SolverReferencePanels recognition={recognition} onSelectExample={setEquation} />
     </div>
   );
+}
+
+function MathSyntaxInput({ value, tokens, onChange }: { value: string; tokens: MathRecognizedToken[]; onChange: (value: string) => void }) {
+  const segments = useMemo(() => buildSyntaxSegments(value, tokens), [value, tokens]);
+
+  return (
+    <div className="relative min-h-[60px] overflow-hidden rounded-2xl border border-slate-200 bg-white font-mono text-lg leading-7 shadow-inner dark:border-white/10 dark:bg-slate-950/60">
+      <pre aria-hidden className="pointer-events-none m-0 min-h-[60px] overflow-hidden whitespace-pre p-4 text-slate-950 dark:text-white">
+        {segments.map((segment) => (
+          <span key={segment.key} className={segment.category ? tokenColor(segment.category) : "text-slate-950 dark:text-white"} title={segment.label}>
+            {segment.text}
+          </span>
+        ))}
+      </pre>
+      <input
+        aria-label="Math problem input"
+        autoComplete="off"
+        className="absolute inset-0 h-full w-full bg-transparent p-4 font-mono text-lg leading-7 text-transparent caret-cyan-700 outline-none selection:bg-cyan-200/50 dark:caret-cyan-200 dark:selection:bg-cyan-300/30"
+        spellCheck={false}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      />
+    </div>
+  );
+}
+
+function buildSyntaxSegments(value: string, tokens: MathRecognizedToken[]) {
+  const orderedTokens = tokens
+    .filter((token) => token.start < token.end)
+    .sort((left, right) => left.start - right.start || right.end - left.end);
+  const segments: Array<{ key: string; text: string; category?: MathTokenCategory; label?: string }> = [];
+  let cursor = 0;
+
+  for (const token of orderedTokens) {
+    const start = clampIndex(token.start, value.length);
+    const end = clampIndex(token.end, value.length);
+    if (end <= cursor || start >= end) continue;
+    if (start > cursor) {
+      segments.push({ key: `plain-${cursor}-${start}`, text: value.slice(cursor, start) });
+    }
+    segments.push({
+      key: `token-${start}-${end}-${token.category}-${token.text}`,
+      text: value.slice(start, end),
+      category: token.category,
+      label: token.label,
+    });
+    cursor = end;
+  }
+
+  if (cursor < value.length) {
+    segments.push({ key: `plain-${cursor}-${value.length}`, text: value.slice(cursor) });
+  }
+
+  return segments.length > 0 ? segments : [{ key: "empty-input", text: "\u00a0" }];
+}
+
+function clampIndex(index: number, length: number) {
+  return Math.min(Math.max(index, 0), length);
+}
+
+function tokenColor(category: MathTokenCategory) {
+  if (category === "number" || category === "constant") return "font-black text-emerald-700 dark:text-emerald-300";
+  if (category === "variable") return "font-black text-sky-700 dark:text-sky-300";
+  if (category === "arithmetic" || category === "relation" || category === "grouping") return "font-black text-rose-600 dark:text-rose-300";
+  if (category === "unknown") return "font-black text-slate-500 underline decoration-dotted underline-offset-4 dark:text-slate-400";
+  return "font-black text-violet-700 dark:text-violet-300";
 }
 
 function SolverReferencePanels({ recognition, onSelectExample }: { recognition: ReturnType<typeof recognizeMathInput>; onSelectExample: (value: string) => void }) {

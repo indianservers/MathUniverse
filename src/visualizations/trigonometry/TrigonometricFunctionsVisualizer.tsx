@@ -33,7 +33,7 @@ const functions: TrigFunctionInfo[] = [
 
 export default function TrigonometricFunctionsVisualizer() {
   const [selectedId, setSelectedId] = useState<TrigFunctionId>("sin");
-  const [degrees, setDegrees] = useState(45);
+  const [degrees, setDegrees] = useState(readInitialThetaDegrees);
   const selected = functions.find((item) => item.id === selectedId) ?? functions[0];
   const theta = degreesToRadians(degrees);
   const value = selected.evaluate(theta);
@@ -210,10 +210,17 @@ function FunctionPicker({ selectedId, setSelectedId }: { selectedId: TrigFunctio
 function FunctionGraph({ selected, theta, compact = false }: { selected: TrigFunctionInfo; theta: number; compact?: boolean }) {
   const width = 720;
   const height = compact ? 190 : 300;
-  const points = sampledSegments(selected, width, height, 2.3);
+  const graphLimit = 2.3;
+  const yScale = height / (graphLimit * 2.25);
+  const points = sampledSegments(selected, width, height, graphLimit);
   const xMarker = ((theta + Math.PI * 2) / (Math.PI * 4)) * width;
   const markerValue = selected.evaluate(theta);
-  const yMarker = markerValue === null ? null : height / 2 - clamp(markerValue, -2.3, 2.3) * (compact ? 30 : 48);
+  const markerInRange = markerValue !== null && Number.isFinite(markerValue) && Math.abs(markerValue) <= graphLimit;
+  const yMarker = markerInRange ? height / 2 - markerValue * yScale : null;
+  const offScaleValue = markerValue !== null && Number.isFinite(markerValue) && Math.abs(markerValue) > graphLimit ? markerValue : null;
+  const yOffScale = offScaleValue !== null
+    ? height / 2 - Math.sign(offScaleValue) * graphLimit * yScale
+    : null;
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className={`${compact ? "h-[190px]" : "h-[300px]"} w-full`}>
@@ -221,6 +228,12 @@ function FunctionGraph({ selected, theta, compact = false }: { selected: TrigFun
       {points.map((path, index) => <path key={index} d={path} fill="none" stroke={selected.color} strokeWidth="3" />)}
       <line x1={xMarker} x2={xMarker} y1="18" y2={height - 18} stroke="#0f172a" strokeDasharray="5 5" opacity="0.55" />
       {yMarker !== null && <circle cx={xMarker} cy={yMarker} r="6" fill={selected.color} stroke="#0f172a" strokeWidth="2" />}
+      {yOffScale !== null && offScaleValue !== null && (
+        <g>
+          <path d={`M ${xMarker - 7} ${yOffScale} L ${xMarker + 7} ${yOffScale} L ${xMarker} ${yOffScale + (offScaleValue > 0 ? -11 : 11)} Z`} fill={selected.color} stroke="#0f172a" strokeWidth="1.5" />
+          {!compact && <text x={Math.min(width - 118, xMarker + 10)} y={offScaleValue > 0 ? yOffScale + 16 : yOffScale - 8} className="fill-slate-700 text-[12px] font-bold dark:fill-slate-200">off graph: {roundTo(offScaleValue, 2)}</text>}
+        </g>
+      )}
       {!compact && <text x="16" y="28" className="fill-slate-700 text-[13px] font-bold dark:fill-slate-200">y = {selected.id}(theta), theta from -2pi to 2pi</text>}
     </svg>
   );
@@ -386,4 +399,12 @@ function safeNumber(value: number | null) {
 
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
+}
+
+function readInitialThetaDegrees() {
+  if (typeof window === "undefined") return 45;
+  const params = new URLSearchParams(window.location.search);
+  const rawTheta = params.get("v_theta") ?? params.get("v_angle_theta");
+  const parsed = Number(rawTheta);
+  return Number.isFinite(parsed) ? clamp(parsed, -360, 360) : 45;
 }
