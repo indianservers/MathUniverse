@@ -100,3 +100,89 @@ Start with Phase 01. It should establish metadata, shared lesson layout conventi
 - Drag interactions on SVG/canvas must be mobile-safe and keyboard-accessible.
 - The navigation has many Trigonometry links; route stability matters.
 
+## Phase 01 Completion Notes
+
+Phase 01 has been implemented as a foundation-only enhancement. No route rewrites, visualizer replacements, backend code, or new Trigonometry module were added.
+
+Completed:
+
+- Added `src/data/trigonometryLessonExperience.ts` as a typed, browser-safe lesson metadata layer that derives one experience record for every current `trigonometryConcepts` entry.
+- Added metadata for difficulty, future phase owner, visual model, interaction model, formula list, learning sequence, and math safety.
+- Added `validateTrigonometryLessonExperienceMetadata` to check duplicate concept IDs, duplicate experience IDs, orphaned experience records, missing titles, missing categories, and missing experience mappings.
+- Added `src/data/trigonometryLessonExperience.test.ts` with focused Vitest coverage for metadata completeness and safety fields.
+- Added small non-disruptive difficulty/model/phase badges to concept cards on `/trigonometry`.
+- Preserved current route behavior, tab structure, full visualizers, concept detail pages, Math Lab, Visual Showcase links, and URL slider parameters.
+
+Discovered differences from the original audit:
+
+- `TrigIdentityVisualizations.tsx` is already more advanced than a generic identity panel. It includes formula search/filter, categories, beginner/professor mode, animation, angle mode, live values, proof panels, and several dedicated visual scenes.
+- `TrigonometricFunctionsVisualizer.tsx` already reads `v_theta` and `v_angle_theta` and handles undefined reciprocal values with `"undefined"` instead of `NaN` or `Infinity`.
+- Browser route checks showed that slider URL persistence may append query parameters during verification. This is existing behavior from `SliderControl`, not a route regression.
+- The Trigonometry navigation is already broadly merged into the Visualize menu and Math Topics menu, so Phase 01 did not change navigation.
+
+Phase 01 verification:
+
+- `npm run typecheck`: passed.
+- `npx vitest run src/data/trigonometryLessonExperience.test.ts`: passed, 2 tests.
+- `npx eslint src/data/trigonometryLessonExperience.ts src/data/trigonometryLessonExperience.test.ts src/pages/Trigonometry.tsx --max-warnings=0`: passed.
+- `npm run lint`: failed on unrelated existing lint issues outside the Phase 01 files, including service-worker globals, unused symbols, hook warnings, and escape-character warnings.
+- `npm run build`: passed.
+- Browser checks passed for:
+  - `/trigonometry`
+  - `/trigonometry/unit-circle`
+  - `/trigonometry/right-triangle-ratios`
+  - `/trigonometry/pythagorean-identity`
+  - `/trigonometry/trigonometric-functions`
+  - `/math-lab/trigonometry`
+
+Final recommendation before Phase 02:
+
+Start Phase 02 by upgrading the existing `unit-circle` pathway instead of creating a parallel visualizer route. Use `trigonometryLessonExperiences` for lesson intent and keep the current generic concept-page visual as a fallback until the new Unit Circle Master Visualizer is verified across desktop, mobile, degree/radian mode, special angles, quadrant boundaries, and URL parameter hydration.
+
+## Phase 02 Completion Notes
+
+Phase 02 has been implemented as an additive Unit Circle Master Visualizer. No backend code, new Trigonometry module, route rewrite, Math Lab rewrite, visual-showcase rewrite, or Phase 03-10 work was added.
+
+Route/component changes:
+
+- Added `src/visualizations/trigonometry/UnitCircleMasterVisualizer.tsx`.
+- Added `src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts`.
+- Updated `src/pages/TrigonometryConceptPage.tsx` so only these concept IDs use the master visualizer:
+  - `unit-circle`
+  - `degree-radian`
+  - `special-angles`
+  - `quadrant-signs`
+- Preserved the existing classic concept lab, including 2D and 3D tabs, below the master visualizer on those routes.
+- Left `TrigIdentityVisualizations`, `TrigonometricFunctionsVisualizer`, `TrigonometryMathLab`, and existing concept metadata intact.
+
+Unit Circle Master Visualizer capabilities:
+
+- Draggable unit-circle point with pointer events.
+- Existing `SliderControl` angle slider fallback, preserving `v_angle_theta` URL behavior.
+- Snap buttons for 0, 30, 45, 60, 90, 180, 270, and 360 degrees.
+- Live degree/radian display and degree/radian/both toggle.
+- Live `(cos theta, sin theta)` coordinate, sine, cosine, tangent, quadrant, and sign values.
+- Safe tangent handling with `undefined` at 90 and 270 degrees.
+- Quadrant sign table with symbol labels, not color alone.
+- Exact values for special angles, including `360 deg = 2pi`.
+- Beginner and Professor modes.
+- Step-by-step teaching panel, misconception box, visual memory tricks, layer toggles, and optional mini sine-wave strip.
+
+Verification:
+
+- `npm run typecheck`: passed.
+- `npx vitest run src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 6 tests.
+- `npx eslint src/visualizations/trigonometry/UnitCircleMasterVisualizer.tsx src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/pages/TrigonometryConceptPage.tsx --max-warnings=0`: passed.
+- `npm run build`: passed.
+- `npm run lint`: still fails on unrelated existing lint issues outside Phase 02 files.
+- Browser route checks passed for `/trigonometry`, `/trigonometry/unit-circle`, `/trigonometry/degree-radian`, `/trigonometry/special-angles`, `/trigonometry/quadrant-signs`, `/trigonometry/trigonometric-functions`, and `/math-lab/trigonometry`.
+
+Known risks before Phase 03:
+
+- Drag behavior is implemented in the SVG scene, but in-app browser coordinate-drag automation failed during verification. The slider fallback and snap buttons remain reliable and accessible.
+- `TrigonometryConceptPage.tsx` now intentionally shows the master visualizer plus classic fallback on four routes; future phases should avoid stacking too many large panels on one page without a navigation strategy.
+- Full repo lint debt should be resolved separately so future phase verification has a cleaner signal.
+
+Final recommendation before Phase 03:
+
+Start Phase 03 with right-triangle ratios and reciprocal ratios. Reuse the successful pattern from Phase 02: build one focused visualizer, wire it only to the target concept routes, preserve the classic fallback, add helper tests for math safety, and verify routes before expanding scope.

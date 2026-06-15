@@ -159,3 +159,83 @@ type TrigLesson = {
 
 Implement only this phase. Do not modify unrelated modules. Do not add backend/server code. Keep it pure browser-based. Preserve existing features. Inspect the current Trigonometry files and add only safe metadata/types or documentation needed for staged improvement. Run the app and verify the Trigonometry page works. Update this MD file with completed items, pending items, and issues found.
 
+## Phase 01 Implementation Status
+
+Status: Complete for the Phase 01 foundation scope.
+
+Files inspected:
+
+- `src/pages/Trigonometry.tsx`
+- `src/pages/TrigonometryConceptPage.tsx`
+- `src/data/trigonometryConcepts.ts`
+- `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx`
+- `src/visualizations/trigonometry/TrigonometricFunctionsVisualizer.tsx`
+- `src/visualizations/trigonometry/TrigonometryMathLab.tsx`
+- `src/visualizations/trigonometry/TrigConcept3DView.tsx`
+- `src/visualizations/trigonometry/TrigonometryExperimentCatalog.tsx`
+- `src/components/ui/FormulaBlock.tsx`
+- `src/components/ui/SliderControl.tsx`
+- `src/components/ui/VisualLearningPanel.tsx`
+- `src/App.tsx`
+- `src/components/layout/navItems.ts`
+
+Files changed:
+
+- `src/pages/Trigonometry.tsx`: added small lesson metadata badges to existing concept cards without changing routes, tabs, or visualizer behavior.
+- `TRIGONOMETRY_PHASE_01_FOUNDATION_AND_ARCHITECTURE.md`: added this implementation status.
+- `TRIGONOMETRY_INTERACTIVE_REFINEMENT_AUDIT.md`: updated with Phase 01 completion notes.
+
+Files created:
+
+- `src/data/trigonometryLessonExperience.ts`
+- `src/data/trigonometryLessonExperience.test.ts`
+
+Metadata added:
+
+- Added `TrigLessonExperience` metadata for every existing entry in `trigonometryConcepts`.
+- Added typed categories, difficulty, visual model, interaction model, math safety, and phase owner fields.
+- Added helpers: `getTrigonometryLessonExperience`, `getTrigonometryExperiencesByPhase`, and `validateTrigonometryLessonExperienceMetadata`.
+- Added math-safety support for undefined trig values, graph edge cases, inverse trig domains/ranges, degree/radian mode, and numeric tolerance.
+
+Concepts mapped:
+
+- Phase 02: unit circle, degree/radian, special angles, quadrant signs.
+- Phase 03: right triangle ratios, reciprocal ratios, trigonometric functions, and application/triangle-solving foundations.
+- Phase 04: Pythagorean and core identity foundation.
+- Phase 05: sum and difference formulas.
+- Phase 06: double-angle, half-angle, product-to-sum, triple-angle.
+- Phase 07: graph, wave, reciprocal graph, calculus graph, and Fourier graph concepts.
+- Phase 08: inverse trig, principal values, trig equations, general solutions, inequalities.
+- Phase 09: inquiry/practice experiments.
+- Phase 10: advanced/polish topics that need careful re-audit before deep redesign.
+
+Risks found:
+
+- `TrigIdentityVisualizations.tsx` already contains many Phase 03-05 style components, so future phases should extract or upgrade carefully instead of duplicating scenes.
+- Some formulas still rely on generic concept-page visuals; these should remain as fallbacks until dedicated visual scenes are verified.
+- URL parameters are written by `SliderControl`, so route verification may preserve query strings like `v_angle_theta` and `v_radius`; future tests should expect that behavior.
+
+Features preserved:
+
+- `/trigonometry`
+- `/trigonometry/:conceptId`
+- `/trigonometry/trigonometric-functions`
+- `/math-lab/trigonometry`
+- Main Trigonometry tabs: Lab, Visualizations, Concepts, Formulas, Syllabus.
+- Existing 2D and 3D concept tabs.
+- Existing Math Lab, identity visualizer, trigonometric functions visualizer, Visual Showcase links, and URL slider parameters.
+
+Build/run status:
+
+- `npm run typecheck`: passed.
+- `npx vitest run src/data/trigonometryLessonExperience.test.ts`: passed, 2 tests.
+- `npx eslint src/data/trigonometryLessonExperience.ts src/data/trigonometryLessonExperience.test.ts src/pages/Trigonometry.tsx --max-warnings=0`: passed.
+- `npm run lint`: failed on pre-existing unrelated lint issues in files such as `public/sw.js`, `src/pages/MathWorkspace.tsx`, `src/data/formulaLibrary.ts`, and other non-Phase-01 areas.
+- `npm run build`: passed.
+- Browser route checks passed with no app error boundary text on `/trigonometry`, `/trigonometry/unit-circle`, `/trigonometry/right-triangle-ratios`, `/trigonometry/pythagorean-identity`, `/trigonometry/trigonometric-functions`, and `/math-lab/trigonometry`.
+
+Pending items for Phase 02:
+
+- Build the Unit Circle Master Visualizer using the new metadata as the route-safe source of lesson intent.
+- Preserve the current `unit-circle` concept route while upgrading the visual model.
+- Add drag-point interaction, snap buttons, stronger quadrant sign explanation, and exact-value overlays only in Phase 02.

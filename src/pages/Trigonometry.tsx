@@ -7,6 +7,7 @@ import TopicProgressActions from "../components/ui/TopicProgressActions";
 import TopicTabs from "../components/ui/TopicTabs";
 import ContinueCard from "../components/ui/ContinueCard";
 import { topics } from "../data/topics";
+import { getTrigonometryLessonExperience } from "../data/trigonometryLessonExperience";
 import { trigonometryConcepts } from "../data/trigonometryConcepts";
 import { useProgress } from "../hooks/useProgress";
 import TrigIdentityVisualizations from "../visualizations/trigonometry/TrigIdentityVisualizations";
@@ -112,6 +113,7 @@ function SyllabusCoverage({ groups }: { groups: Array<{ label: string; categorie
 
 function ConceptLink({ concept }: { concept: (typeof trigonometryConcepts)[number] }) {
   const has3d = !["eclipse", "wave-applications", "experiment-catalog"].includes(concept.visual);
+  const lessonExperience = getTrigonometryLessonExperience(concept.id);
   return (
     <Link key={concept.id} to={`/trigonometry/${concept.id}`} className="group rounded-lg border border-slate-200 bg-white/75 p-2.5 transition hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
       <div className="flex items-start justify-between gap-2">
@@ -120,6 +122,13 @@ function ConceptLink({ concept }: { concept: (typeof trigonometryConcepts)[numbe
       </div>
       <h2 className="mt-1 line-clamp-1 text-sm font-bold group-hover:text-cyan-600 dark:group-hover:text-cyan-300">{concept.title}</h2>
       <p className="mt-1 line-clamp-2 text-xs leading-4 text-slate-600 dark:text-slate-300">{concept.summary}</p>
+      {lessonExperience && (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          <span className="mini-chip text-[10px] capitalize">{lessonExperience.difficulty}</span>
+          <span className="mini-chip text-[10px] capitalize">{lessonExperience.visualModel.replace("-", " ")}</span>
+          <span className="mini-chip text-[10px] uppercase">{lessonExperience.phaseOwner.replace("phase-", "P")}</span>
+        </div>
+      )}
       <p className="mt-2 whitespace-normal break-words rounded-lg bg-slate-100 p-1.5 font-mono text-[11px] leading-4 text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">{concept.formula}</p>
     </Link>
   );
