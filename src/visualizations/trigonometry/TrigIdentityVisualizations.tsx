@@ -2,6 +2,9 @@ import { Pause, Play, RotateCcw, Sigma } from "lucide-react";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
 import { degreesToRadians, radiansToDegrees, roundTo } from "../../utils/math";
+import AngleSumDifferenceVisualizer from "./AngleSumDifferenceVisualizer";
+import CoreIdentityProofVisualizer from "./CoreIdentityProofVisualizer";
+import DoubleHalfAngleVisualizer from "./DoubleHalfAngleVisualizer";
 
 type AngleMode = "degrees" | "radians";
 type TeachingMode = "standard" | "beginner" | "professor";
@@ -191,6 +194,15 @@ export default function TrigIdentityVisualizations() {
         />
         }
       />
+      <div className="mt-4">
+        <CoreIdentityProofVisualizer title="Core Pythagorean Identity Proofs" />
+      </div>
+      <div className="mt-4">
+        <AngleSumDifferenceVisualizer title="Angle Sum and Difference Derivations" />
+      </div>
+      <div className="mt-4">
+        <DoubleHalfAngleVisualizer title="Double and Half Angle Derivations" />
+      </div>
     </SectionCard>
   );
 }

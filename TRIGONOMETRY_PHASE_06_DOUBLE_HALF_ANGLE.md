@@ -142,3 +142,115 @@ type DerivedIdentity = {
 
 Implement only this phase. Do not modify unrelated modules. Do not add backend/server code. Keep it pure browser-based. Preserve existing features. Improve double-angle and half-angle visual derivations in the existing Trigonometry module. Run the app and verify the Trigonometry page works. Update this MD file with completed items, pending items, and issues found.
 
+## Phase 06 Implementation Status
+
+Phase 06 has been implemented as an additive Double and Half Angle Visual Derivation Lab. Existing routes, tabs, Math Lab, 2D/3D concept fallback views, Phase 03-05 visualizers, and the existing identity visualizer were preserved.
+
+Files inspected:
+
+- `src/pages/TrigonometryConceptPage.tsx`
+- `src/visualizations/trigonometry/AngleSumDifferenceVisualizer.tsx`
+- `src/visualizations/trigonometry/CoreIdentityProofVisualizer.tsx`
+- `src/visualizations/trigonometry/UnitCircleMasterVisualizer.tsx`
+- `src/visualizations/trigonometry/TriangleCircleRatioVisualizer.tsx`
+- `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx`
+- `src/visualizations/trigonometry/TrigonometricFunctionsVisualizer.tsx`
+- `src/visualizations/trigonometry/TrigonometryMathLab.tsx`
+- `src/data/trigonometryConcepts.ts`
+- `src/data/trigonometryLessonExperience.ts`
+- `src/components/ui/SliderControl.tsx`
+
+Files created:
+
+- `src/visualizations/trigonometry/DoubleHalfAngleVisualizer.tsx`
+- `src/visualizations/trigonometry/DoubleHalfAngleVisualizer.test.ts`
+
+Files changed:
+
+- `src/pages/TrigonometryConceptPage.tsx`
+- `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx`
+- `TRIGONOMETRY_PHASE_06_DOUBLE_HALF_ANGLE.md`
+- `TRIGONOMETRY_INTERACTIVE_REFINEMENT_AUDIT.md`
+
+Visualizer integration points:
+
+- `/trigonometry/double-angle` now opens the new lab with `sin-double` selected by default.
+- `/trigonometry/half-angle` now opens the new lab with `sin-half-square` selected by default.
+- The classic concept lab remains below the new lab on both concept routes.
+- The existing Trigonometry Visualizations tab now includes a focused "Double and Half Angle Derivations" section below the Phase 04 and Phase 05 focused labs.
+
+Formulas implemented:
+
+| Formula | Visual Strategy | Safety |
+| --- | --- | --- |
+| `sin(2theta) = 2sin(theta)cos(theta)` | repeated theta rotation from angle addition | direct/expanded tolerance check |
+| `cos(2theta) = cos^2(theta) - sin^2(theta)` | repeated theta rotation and final x-projection | direct/expanded tolerance check |
+| `cos(2theta) = 1 - 2sin^2(theta)` | Pythagorean rewrite of cosine double angle | direct/expanded tolerance check |
+| `cos(2theta) = 2cos^2(theta) - 1` | Pythagorean rewrite of cosine double angle | direct/expanded tolerance check |
+| `tan(2theta) = 2tan(theta)/(1 - tan^2(theta))` | doubled slope with tangent-line warning | undefined if tangent input, final tangent, or denominator fails |
+| `sin^2(theta/2) = (1 - cos(theta))/2` | reverse cosine double-angle derivation | direct/expanded tolerance check |
+| `cos^2(theta/2) = (1 + cos(theta))/2` | reverse cosine double-angle derivation | direct/expanded tolerance check |
+| `tan(theta/2) = sin(theta)/(1 + cos(theta))` | half-angle tangent form | undefined when denominator fails |
+| `tan(theta/2) = (1 - cos(theta))/sin(theta)` | alternate half-angle tangent form | undefined when denominator fails |
+| `tan(theta/2) = +/-sqrt((1 - cos(theta))/(1 + cos(theta)))` | signed radical with quadrant panel | sign note required and denominator checked |
+
+Drag/click interactions implemented:
+
+- Draggable theta arm in both repeated-angle and half-angle scenes.
+- Keyboard-accessible theta slider and numeric input fallback.
+- Snap buttons for `0`, `15`, `30`, `45`, `60`, `90`, `120`, `135`, `150`, `180`, `270`, and `360` degrees.
+- Formula group toggle for Double Angle / Half Angle.
+- Function toggle for Sine / Cosine / Tangent.
+- Display toggles for theta arm, 2theta arm, theta/2 arm, formula steps, values, graph, and challenge.
+- Beginner/professor mode toggle.
+
+Formula builder:
+
+- Implemented as a polished click-to-fill mini challenge.
+- Includes Check and Clear actions plus immediate feedback.
+- Full drag/drop is still pending and can be considered in a later interaction-polish phase.
+
+Direct/expanded verification:
+
+- Every formula computes direct and expanded values through `evaluateDoubleHalfFormula`.
+- Undefined states return `null`, never `NaN` or `Infinity`.
+- Numeric equality uses `1e-6` tolerance.
+- Helper functions are exported for focused tests.
+
+Graph comparison:
+
+- Added a compact graph panel.
+- Double-angle view compares `sin(theta)`, `cos(theta)`, or `tan(theta)` with the corresponding `f(2theta)`.
+- Half-angle view compares `f(theta)` with `f(theta/2)`.
+- Tangent graph safely breaks near undefined values.
+
+Half-angle sign handling:
+
+- Added a sign panel for half-angle formulas.
+- Shows `theta/2`, quadrant, sign prediction, and sign note.
+- Radical tangent form applies the sign from `tan(theta/2)` instead of silently using positive square root.
+
+Undefined handling:
+
+- `tan(2theta)` checks undefined tangent input, final-angle undefined tangent, and `1 - tan^2(theta)` denominator breaks.
+- `tan(theta/2) = sin(theta)/(1 + cos(theta))` checks `1 + cos(theta)`.
+- `tan(theta/2) = (1 - cos(theta))/sin(theta)` checks `sin(theta)`.
+- Radical form checks denominator and sign ambiguity.
+
+Verification completed:
+
+- `npx vitest run src/visualizations/trigonometry/DoubleHalfAngleVisualizer.test.ts src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 44 tests.
+- `npx eslint src/visualizations/trigonometry/DoubleHalfAngleVisualizer.tsx src/visualizations/trigonometry/DoubleHalfAngleVisualizer.test.ts src/visualizations/trigonometry/TrigIdentityVisualizations.tsx src/pages/TrigonometryConceptPage.tsx --max-warnings=0`: passed.
+- `npm run typecheck`: passed.
+- `npm run build`: passed.
+- `npm run lint`: still fails on unrelated existing lint debt outside Phase 06 files.
+
+Pending issues:
+
+- Formula builder is click-to-fill rather than full drag/drop.
+- The visual graph comparison is intentionally compact and not a full graph studio.
+- The Visualizations tab continues to grow because all previous labs are intentionally preserved.
+
+Recommendation for Phase 07:
+
+Move to complementary-angle and cofunction visual derivations. Reuse the half-angle sign/quadrant panel pattern, but center the experience around right-triangle side swapping and quadrant-aware reciprocal relationships.

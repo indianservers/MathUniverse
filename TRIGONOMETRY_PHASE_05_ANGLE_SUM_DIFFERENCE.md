@@ -145,3 +145,76 @@ type AngleFormula = {
 
 Implement only this phase. Do not modify unrelated modules. Do not add backend/server code. Keep it pure browser-based. Preserve existing features. Add rich angle sum and difference visual derivations inside the existing Trigonometry module. Run the app and verify the Trigonometry page works. Update this MD file with completed items, pending items, and issues found.
 
+## 20. Phase 05 Implementation Status
+
+Phase 05 has been implemented as an additive Angle Sum and Difference Derivation Lab. The existing Trigonometry routes, Visualizations submenu, Math Lab route, and earlier Phase 03/04 visualizers were preserved.
+
+Files inspected:
+
+- `src/pages/TrigonometryConceptPage.tsx`
+- `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx`
+- `src/visualizations/trigonometry/CoreIdentityProofVisualizer.tsx`
+- `TRIGONOMETRY_PHASE_05_ANGLE_SUM_DIFFERENCE.md`
+
+Files created:
+
+- `src/visualizations/trigonometry/AngleSumDifferenceVisualizer.tsx`
+- `src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts`
+
+Files updated:
+
+- `src/pages/TrigonometryConceptPage.tsx`
+- `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx`
+- `TRIGONOMETRY_PHASE_05_ANGLE_SUM_DIFFERENCE.md`
+- `TRIGONOMETRY_INTERACTIVE_REFINEMENT_AUDIT.md`
+
+Implemented formulas:
+
+| Formula | Visual Model | Interaction | Safety |
+| --- | --- | --- | --- |
+| `sin(A+B)=sinAcosB+cosAsinB` | Two rotating arms with combined-angle projection | A/B sliders, drag handles, snaps, formula selector | Direct and expanded values compared with tolerance |
+| `sin(A-B)=sinAcosB-cosAsinB` | Subtraction arm and signed projection terms | A/B sliders, drag handles, snaps | Sign table and misconception note |
+| `cos(A+B)=cosAcosB-sinAsinB` | Horizontal projection of combined rotation | A/B sliders, drag handles, snaps | Explicit minus-product highlighting |
+| `cos(A-B)=cosAcosB+sinAsinB` | Difference rotation with x-shadow check | A/B sliders, drag handles, snaps | Direct/expanded proof panel |
+| `tan(A+B)=(tanA+tanB)/(1-tanAtanB)` | Slope/rise interpretation beside rotating arms | A/B sliders, drag handles, snaps | Undefined denominator handling |
+| `tan(A-B)=(tanA-tanB)/(1+tanAtanB)` | Signed slope difference model | A/B sliders, drag handles, snaps | Undefined final angle and denominator handling |
+
+Implemented learning features:
+
+- Formula selector for all six sum/difference identities.
+- Operation toggle for `A+B` and `A-B`.
+- Function toggle for sine, cosine, and tangent.
+- A and B sliders from `-180` to `180` degrees.
+- Draggable endpoint handles for angle A and angle B.
+- Snap buttons for common angles.
+- Projection, term, value, formula-builder, and derivation visibility toggles.
+- Direct value versus expanded value verification panel.
+- Step-by-step derivation for beginner and professor modes.
+- Formula-builder chips that students click to assemble the expansion.
+- Sign prediction panel showing term signs and final match status.
+- Misconception correction for common mistakes such as `sin(A+B)=sinA+sinB`.
+
+Math and edge-case handling:
+
+- Helpers expose `degToRad`, `safeDivide`, `nearZero`, `formatAngleFormulaValue`, and `evaluateAngleFormula` for focused testing.
+- Tangent formulas return `null` for undefined values instead of `NaN` or `Infinity`.
+- Tangent input breaks, expansion denominator breaks, and final-angle breaks are tested.
+- Equality uses tolerance-based comparison.
+
+Verification completed:
+
+- `npx vitest run src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 30 tests.
+- `npx eslint src/visualizations/trigonometry/AngleSumDifferenceVisualizer.tsx src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts src/visualizations/trigonometry/TrigIdentityVisualizations.tsx src/pages/TrigonometryConceptPage.tsx --max-warnings=0`: passed.
+- `npm run typecheck`: passed.
+- `npm run build`: passed.
+- `npm run lint`: still fails on unrelated existing repository lint issues outside the Phase 05 files.
+
+Known limitations:
+
+- Formula builder is click-to-fill, not full drag/drop yet.
+- The angle-composition proof is visual and numeric; a full rotation-matrix proof is recommended for the next advanced layer.
+- The Visualizations tab is becoming long because all labs are preserved additively.
+
+Recommended Phase 06:
+
+Build double-angle visual derivations on top of this component pattern. Reuse the direct/expanded proof panel and angle drag controls, then add a dedicated "theta added to itself" scene for `sin(2theta)`, the three `cos(2theta)` forms, and `tan(2theta)`.

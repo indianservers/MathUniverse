@@ -142,3 +142,100 @@ type TrigRatio = {
 
 Implement only this phase. Do not modify unrelated modules. Do not add backend/server code. Keep it pure browser-based. Preserve existing features. Improve the existing basic ratio visual experience using triangle and unit-circle connections. Run the app and verify the Trigonometry page works. Update this MD file with completed items, pending items, and issues found.
 
+## Phase 03 Implementation Status
+
+Phase 03 has been implemented as an additive triangle + unit-circle ratio lesson. Existing Trigonometry routes, concept tabs, fallback 2D/3D views, Math Lab, and the existing Trigonometric Functions visualizer were preserved.
+
+Files inspected:
+
+- `src/pages/TrigonometryConceptPage.tsx`
+- `src/visualizations/trigonometry/TrigonometricFunctionsVisualizer.tsx`
+- `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx`
+- `src/visualizations/trigonometry/TrigonometryMathLab.tsx`
+- `src/data/trigonometryConcepts.ts`
+- `src/components/ui/SliderControl.tsx`
+- Phase 01/02 Trigonometry planning and visualizer files
+
+Files created:
+
+- `src/visualizations/trigonometry/TriangleCircleRatioVisualizer.tsx`
+- `src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts`
+
+Files changed:
+
+- `src/pages/TrigonometryConceptPage.tsx`
+- `TRIGONOMETRY_PHASE_03_BASIC_RATIOS_TRIANGLE_CIRCLE.md`
+- `TRIGONOMETRY_INTERACTIVE_REFINEMENT_AUDIT.md`
+
+Visualizer integration points:
+
+- `/trigonometry/right-triangle-ratios`: shows the new triangle + unit-circle visualizer with basic ratios by default, then preserves the classic concept lab.
+- `/trigonometry/reciprocal-ratios`: shows the same visualizer with all six ratios and reciprocal panel emphasis, then preserves the classic concept lab.
+- `/trigonometry/trigonometric-functions`: preserves the existing six-function visualizer and adds the triangle + circle bridge below it.
+
+Controls added:
+
+- Angle theta slider from 1 degree to 89 degrees.
+- Hypotenuse slider from 1 to 10.
+- Diagram mode segmented control: Both, Triangle, Circle.
+- Label/challenge toggle.
+- Basic/all-six ratio-card toggle.
+- Beginner/Professor explanation toggle.
+- Normalize to radius 1 button.
+
+Ratio cards added:
+
+- `sin theta = opposite / hypotenuse`
+- `cos theta = adjacent / hypotenuse`
+- `tan theta = opposite / adjacent`
+- `cosec theta = hypotenuse / opposite`
+- `sec theta = hypotenuse / adjacent`
+- `cot theta = adjacent / opposite`
+
+Reciprocal handling added:
+
+- Reciprocal pairs are shown as `sin <-> cosec`, `cos <-> sec`, and `tan <-> cot`.
+- Ratio values use safe division and never render `NaN` or `Infinity`.
+- Undefined values render as `undefined` when a denominator is zero or too close to zero.
+
+Practice and teaching additions:
+
+- Step-by-step panel for side naming, sine, cosine, tangent, unit-circle normalization, reciprocals, and scale invariance.
+- Misconception box for wrong adjacent side, opposite-side confusion, tangent confusion, reciprocal confusion, and size confusion.
+- Lightweight practice prompts for identifying the opposite side, sine, and the cosecant reciprocal example.
+
+Math helpers added:
+
+- `degToRad`
+- `safeDivide`
+- `formatRatioValue`
+- `getTriangleSides`
+- `getTrigRatios`
+
+Tests performed:
+
+- `npx vitest run src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts`: passed, 6 tests.
+- `npx vitest run src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 12 tests.
+- `npx eslint src/visualizations/trigonometry/TriangleCircleRatioVisualizer.tsx src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/pages/TrigonometryConceptPage.tsx --max-warnings=0`: passed.
+- `npm run typecheck`: passed.
+- `npm run build`: passed.
+- `npm run lint`: failed on unrelated existing lint debt outside Phase 03 files.
+
+Routes checked:
+
+- Browser smoke checks passed with no visible crash state for:
+  - `/trigonometry`
+  - `/trigonometry/right-triangle-ratios`
+  - `/trigonometry/reciprocal-ratios`
+  - `/trigonometry/trigonometric-functions`
+  - `/math-lab/trigonometry`
+- Mobile-width browser check passed for `/trigonometry/right-triangle-ratios` with no horizontal overflow.
+
+Pending issues:
+
+- The Phase 03 implementation uses slider interaction as the accessible fallback for changing theta; direct dragging of the acute triangle point is not implemented in this phase.
+- Full repo lint still has known unrelated lint debt from earlier files and should be handled separately.
+
+Recommendation for Phase 04:
+
+Proceed to core identity visual proofs only after browser verification confirms the Phase 03 routes remain stable. Reuse the same additive pattern: one focused visualizer, helper tests for math safety, and classic fallback preservation until each new proof scene is verified.

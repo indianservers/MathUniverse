@@ -146,3 +146,112 @@ type GraphTransformState = {
 
 Implement only this phase. Do not modify unrelated modules. Do not add backend/server code. Keep it pure browser-based. Preserve existing features. Add a Trigonometry Graph Studio to the existing module. Run the app and verify the Trigonometry page works. Update this MD file with completed items, pending items, and issues found.
 
+## Phase 07 Implementation Status
+
+Phase 07 has been implemented as an additive Trigonometry Graph Studio. Existing Trigonometry routes, tabs, concept fallbacks, Math Lab behavior, the six-function `TrigonometricFunctionsVisualizer`, and Phase 02-06 focused visualizers were preserved.
+
+Files inspected:
+
+- `src/pages/TrigonometryConceptPage.tsx`
+- `src/visualizations/trigonometry/TrigonometricFunctionsVisualizer.tsx`
+- `src/visualizations/trigonometry/TrigonometryMathLab.tsx`
+- `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx`
+- `src/visualizations/trigonometry/WaveApplications.tsx`
+- `src/visualizations/trigonometry/UnitCircleMasterVisualizer.tsx`
+- `src/visualizations/trigonometry/DoubleHalfAngleVisualizer.tsx`
+- `src/data/trigonometryConcepts.ts`
+- `src/data/trigonometryLessonExperience.ts`
+- `src/components/ui/SliderControl.tsx`
+
+Files created:
+
+- `src/visualizations/trigonometry/TrigGraphStudio.tsx`
+- `src/visualizations/trigonometry/TrigGraphStudio.test.ts`
+
+Files changed:
+
+- `src/pages/TrigonometryConceptPage.tsx`
+- `src/data/trigonometryConcepts.ts`
+- `TRIGONOMETRY_PHASE_07_GRAPH_STUDIO.md`
+- `TRIGONOMETRY_INTERACTIVE_REFINEMENT_AUDIT.md`
+
+Graph Studio integration points:
+
+- `/trigonometry/sine-graph` opens Graph Studio with sine selected.
+- `/trigonometry/cosine-graph` opens Graph Studio with cosine selected.
+- `/trigonometry/tangent-graph` opens Graph Studio with tangent selected.
+- `/trigonometry/wave-amplitude` opens Graph Studio with sine and `a` emphasized.
+- `/trigonometry/amplitude` is now a safe alias for `/trigonometry/wave-amplitude`.
+- `/trigonometry/wave-period-frequency` opens Graph Studio with sine and `b` emphasized.
+- `/trigonometry/period-frequency` is now a safe alias for `/trigonometry/wave-period-frequency`.
+- `/trigonometry/phase-shift` opens Graph Studio with sine and `c` emphasized.
+- The classic concept lab remains below the new studio on each target concept route.
+- The existing `/trigonometry/trigonometric-functions` full six-function visualizer is preserved.
+- The studio was not added to `TrigIdentityVisualizations.tsx` to avoid making the identity tab unnecessarily long.
+
+Functions implemented:
+
+- `y = a sin(bx + c) + d`
+- `y = a cos(bx + c) + d`
+- `y = a tan(bx + c) + d`
+
+Controls implemented:
+
+- Function selector for sine, cosine, and tangent.
+- Sliders and numeric inputs for `a`, `b`, `c`, `d`, and x scrubber.
+- Explore, Step, and Challenge modes.
+- Beginner/professor explanation toggle.
+- Display toggles for parent overlay, grid, labels, amplitude bounds, midline, period bracket, phase arrow, unit-circle link, and animation.
+- Animation respects `prefers-reduced-motion` by not starting interval animation when reduced motion is requested.
+
+Graph overlays added:
+
+- Parent graph overlay.
+- Transformed graph.
+- Challenge target graph.
+- Moving point and vertical x marker.
+- Radian labels from `-2pi` to `2pi`.
+- Midline `y = d`.
+- Amplitude bounds for sine and cosine.
+- Period bracket.
+- Phase-shift arrow using `-c/b`.
+- Tangent asymptote lines and undefined labels.
+
+Tangent asymptote handling:
+
+- `safeTan` returns `null` near asymptotes.
+- `evaluateTrigGraphPoint` returns `null` for undefined tangent values.
+- `sampleTrigGraph` splits undefined and steep tangent regions into separate segments.
+- Tangent is never connected through asymptotes and never emits `NaN` or `Infinity`.
+
+Unit-circle link status:
+
+- Added a compact unit-circle/wave link panel.
+- Sine shows circle height as the wave source.
+- Cosine shows horizontal projection as the wave source.
+- Tangent shows slope and undefined vertical-ray behavior.
+
+Challenge mode status:
+
+- Added local browser-only match-the-graph mode.
+- Uses safe built-in target parameters.
+- Check button reports height, cycle length, slide, and midline closeness.
+- No backend, login, or persistent scoring was added.
+
+Verification completed:
+
+- `npx vitest run src/visualizations/trigonometry/TrigGraphStudio.test.ts src/visualizations/trigonometry/DoubleHalfAngleVisualizer.test.ts src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 53 tests.
+- `npx eslint src/visualizations/trigonometry/TrigGraphStudio.tsx src/visualizations/trigonometry/TrigGraphStudio.test.ts src/pages/TrigonometryConceptPage.tsx src/data/trigonometryConcepts.ts --max-warnings=0`: passed.
+- `npm run typecheck`: passed.
+- `npm run build`: passed.
+- `npm run lint`: still fails on unrelated existing repository lint debt outside Phase 07 files.
+
+Pending issues:
+
+- Graph dragging is implemented for the x scrubber; direct drag handles for amplitude, phase, and vertical shift remain future polish.
+- Tangent challenge targets are intentionally omitted for safety; challenge targets currently use sine/cosine.
+- The Graph Studio is route-integrated but not added to the large Visualizations tab.
+
+Recommendation for Phase 08:
+
+Build complementary-angle and cofunction visual derivations next, using a right-triangle side-swap model and a compact quadrant/sign panel for reciprocal forms.

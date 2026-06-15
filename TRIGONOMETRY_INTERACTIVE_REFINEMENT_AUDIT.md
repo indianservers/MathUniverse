@@ -186,3 +186,227 @@ Known risks before Phase 03:
 Final recommendation before Phase 03:
 
 Start Phase 03 with right-triangle ratios and reciprocal ratios. Reuse the successful pattern from Phase 02: build one focused visualizer, wire it only to the target concept routes, preserve the classic fallback, add helper tests for math safety, and verify routes before expanding scope.
+
+## Phase 03 Completion Notes
+
+Phase 03 has been implemented as an additive Basic Ratios: Triangle + Circle upgrade. No backend code, new Trigonometry module, route rewrite, Math Lab rewrite, Visual Showcase rewrite, or Phase 04-10 work was added.
+
+Route/component changes:
+
+- Added `src/visualizations/trigonometry/TriangleCircleRatioVisualizer.tsx`.
+- Added `src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts`.
+- Updated `src/pages/TrigonometryConceptPage.tsx` so only these concept IDs use the new visualizer:
+  - `right-triangle-ratios`
+  - `reciprocal-ratios`
+  - `trigonometric-functions`
+- Preserved the existing classic concept lab, including 2D and 3D tabs, below the new visualizer on `right-triangle-ratios` and `reciprocal-ratios`.
+- Preserved the existing `TrigonometricFunctionsVisualizer` on `trigonometric-functions` and added the triangle + circle bridge below it.
+
+Triangle + Circle Ratio Visualizer capabilities:
+
+- Synchronized right triangle and unit-circle mini scene.
+- Angle theta slider constrained to 1-89 degrees for safe right-triangle definitions.
+- Hypotenuse slider from 1 to 10 to show scale invariance.
+- Diagram mode toggle: Both, Triangle, Circle.
+- Label/challenge toggle.
+- Basic/all-six ratio-card toggle.
+- Beginner/Professor explanation toggle.
+- Normalize to radius 1 button.
+- Six live ratio cards for sine, cosine, tangent, cosecant/cosec, secant, and cotangent.
+- Reciprocal pair panel for `sin <-> cosec`, `cos <-> sec`, and `tan <-> cot`.
+- Safe helper functions for division, formatting, triangle sides, and trig ratios.
+- Step-by-step explanation panel, misconception box, and lightweight practice prompts.
+
+Verification so far:
+
+- `npx vitest run src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts`: passed, 6 tests.
+- `npx vitest run src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 12 tests.
+- `npx eslint src/visualizations/trigonometry/TriangleCircleRatioVisualizer.tsx src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/pages/TrigonometryConceptPage.tsx --max-warnings=0`: passed.
+- `npm run typecheck`: passed.
+- `npm run build`: passed.
+- `npm run lint`: still fails on unrelated existing lint issues outside Phase 03 files.
+- Browser route checks passed for `/trigonometry`, `/trigonometry/right-triangle-ratios`, `/trigonometry/reciprocal-ratios`, `/trigonometry/trigonometric-functions`, and `/math-lab/trigonometry`.
+- Mobile-width browser check passed for `/trigonometry/right-triangle-ratios` with no horizontal overflow.
+
+Known risks before Phase 04:
+
+- Direct drag on the triangle point is not implemented in Phase 03; the theta slider is the accessible interaction fallback.
+- The new visualizer intentionally stacks with classic fallback content on two routes. Future phases should watch page length and consider local navigation if too many large panels accumulate.
+- Full repo lint debt remains outside the Phase 03 files and should be resolved separately.
+
+Final recommendation before Phase 04:
+
+Start Phase 04 with one core identity visual proof, likely `sin^2 theta + cos^2 theta = 1`, and reuse this phase's safe helper/test pattern. Keep the new proof additive until browser checks confirm that the main Trigonometry, Math Lab, and concept routes remain stable.
+
+## Phase 04 Completion Notes
+
+Phase 04 has been implemented as an additive Core Identity Proof Lab. No backend code, new Trigonometry module, route rewrite, Math Lab rewrite, Visual Showcase rewrite, or Phase 05-10 work was added.
+
+Route/component changes:
+
+- Added `src/visualizations/trigonometry/CoreIdentityProofVisualizer.tsx`.
+- Added `src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts`.
+- Updated `src/pages/TrigonometryConceptPage.tsx` so `pythagorean-identity` uses the new proof visualizer, with the classic 2D/3D concept lab preserved below it.
+- Updated `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx` to add the focused core proof lab below the existing identity visualization layout.
+- No standalone tan-sec or cot-cosec concept routes exist, so those identities are available through the new visualizer's identity selector.
+
+Core Identity Proof Visualizer capabilities:
+
+- Identity selector for `sin^2 theta + cos^2 theta = 1`, `1 + tan^2 theta = sec^2 theta`, and `1 + cot^2 theta = cosec^2 theta`.
+- Unit-circle square proof with sine, cosine, and radius labels.
+- Tangent/secant triangle proof with undefined warning at `cos theta = 0`.
+- Cotangent/cosecant triangle proof with undefined warning at `sin theta = 0`.
+- Formula transformation ladder for each identity.
+- Live LHS/RHS verification with difference, tolerance, and match status.
+- Angle slider from 0 degrees to 360 degrees plus snap buttons for standard angles.
+- Proof model toggle: Geometry, Algebra, Numeric.
+- Display toggles for squares, triangle, formula steps, and live values.
+- Beginner/Professor mode, misconception correction, and lightweight practice prompts.
+
+Verification so far:
+
+- `npx vitest run src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 20 tests.
+- `npx eslint src/visualizations/trigonometry/CoreIdentityProofVisualizer.tsx src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts src/visualizations/trigonometry/TrigIdentityVisualizations.tsx src/pages/TrigonometryConceptPage.tsx --max-warnings=0`: passed.
+- `npm run typecheck`: passed.
+- `npm run build`: passed.
+- `npm run lint`: still fails on unrelated existing lint issues outside Phase 04 files.
+- Browser route checks passed for `/trigonometry`, `/trigonometry/pythagorean-identity`, `/trigonometry/trigonometric-functions`, `/trigonometry/right-triangle-ratios`, `/trigonometry/reciprocal-ratios`, and `/math-lab/trigonometry`.
+- Browser check of the `/trigonometry` Visualizations tab confirmed both the existing identity lab and the new Core Pythagorean Identity Proofs section.
+- Mobile-width browser check passed for `/trigonometry/pythagorean-identity` with no horizontal overflow.
+
+Known risks before Phase 05:
+
+- The Trigonometry Visualizations tab now contains both the existing large identity lab and the new focused proof lab. This is intentionally safe but may become long as future phase labs are added.
+- Direct point dragging is not implemented for Phase 04; angle slider and snap buttons are the accessible fallback.
+- Full repo lint debt remains outside the Phase 04 files and should be resolved separately.
+
+Final recommendation before Phase 05:
+
+Start Phase 05 with addition and subtraction identities. Build the new proof scenes around direct value versus expanded value, keep A/B sliders independent, test edge cases, and continue preserving the existing identity visualizer until each focused proof scene is verified.
+
+## Phase 05 Completion Notes
+
+Phase 05 has been implemented as an additive Angle Sum and Difference Derivation Lab. No backend code, new Trigonometry module rewrite, route deletion, or existing visualizer removal was introduced.
+
+Route/component changes:
+
+- Added `src/visualizations/trigonometry/AngleSumDifferenceVisualizer.tsx`.
+- Added `src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts`.
+- Updated `src/pages/TrigonometryConceptPage.tsx` so `sum-difference` opens the focused angle-sum/difference lab while preserving the classic concept lab below it.
+- Updated `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx` to add the focused lab beneath the existing visualization and Phase 04 proof sections.
+
+Angle Sum and Difference Visualizer capabilities:
+
+- Formula selector for six identities: sine addition, sine subtraction, cosine addition, cosine subtraction, tangent addition, and tangent subtraction.
+- Two rotating angle arms for A and B, with a combined angle arm for `A+B` or `A-B`.
+- A/B sliders, direct A/B drag handles, reset, and snap-to-common-angle buttons.
+- Function and operation toggles so students can compare sine, cosine, and tangent behavior without losing the visual context.
+- Direct value versus expanded value proof panel with live match status.
+- Formula term breakdown, projection labels, value table, sign prediction, and click-to-fill formula-builder chips.
+- Beginner/professor explanation modes, visual derivation steps, and misconception correction beside the diagram.
+- Safe tangent handling for input breaks, expansion denominator breaks, and final-angle undefined cases.
+
+Verification completed:
+
+- `npx vitest run src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 30 tests.
+- `npx eslint src/visualizations/trigonometry/AngleSumDifferenceVisualizer.tsx src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts src/visualizations/trigonometry/TrigIdentityVisualizations.tsx src/pages/TrigonometryConceptPage.tsx --max-warnings=0`: passed.
+- `npm run typecheck`: passed.
+- `npm run build`: passed.
+- `npm run lint`: still fails on unrelated existing lint debt outside Phase 05 files.
+
+Known risks before Phase 06:
+
+- The formula builder uses click-to-fill chips. Full drag/drop formula assembly is still a future enhancement.
+- The visual proof is classroom-friendly and numeric; an advanced matrix/complex-number derivation layer is still pending.
+- The Trigonometry Visualizations tab now contains several large preserved labs. Future navigation polish should consider sub-tabs or an internal formula finder without deleting any existing path.
+
+Final recommendation before Phase 06:
+
+Implement double-angle identities next. Reuse the Phase 05 angle-composition controls, but present `2theta` as theta added to itself so weak students can see the connection before reading the formulas.
+
+## Phase 06 Completion Notes
+
+Phase 06 has been implemented as an additive Double and Half Angle Visual Derivation Lab. Existing Trigonometry routes, tabs, concept fallbacks, Math Lab behavior, Phase 03-05 visualizers, and Visual Showcase behavior were not removed or rewritten.
+
+Route/component changes:
+
+- Added `src/visualizations/trigonometry/DoubleHalfAngleVisualizer.tsx`.
+- Added `src/visualizations/trigonometry/DoubleHalfAngleVisualizer.test.ts`.
+- Updated `src/pages/TrigonometryConceptPage.tsx` so `double-angle` opens the new lab with `sin-double` selected and `half-angle` opens it with `sin-half-square` selected.
+- Updated `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx` to include the focused lab under the existing Visualizations tab.
+
+Double and Half Angle Visualizer capabilities:
+
+- Formula selector for five double-angle identities and five half-angle identities.
+- Repeated-rotation unit-circle scene showing theta, second theta, and final 2theta arm.
+- Half-angle unit-circle scene showing theta and theta/2 arms.
+- Draggable theta endpoint with slider and numeric input fallback.
+- Snap buttons for common exact-value angles.
+- Formula group and function toggles.
+- Display toggles for theta arm, 2theta arm, theta/2 arm, formula steps, values, graph comparison, and challenge.
+- Direct versus expanded verification panel for every formula.
+- Formula transformation ladder deriving double angle from Phase 05 addition formulas and half angle by reversing cosine double-angle identities.
+- Compact graph comparison for `f(theta)` versus `f(2theta)` or `f(theta/2)`.
+- Click-to-fill formula builder with Check/Clear feedback.
+- Half-angle sign panel explaining quadrant dependence for radical tangent form.
+- Misconception correction for `sin(2theta) = 2sin(theta)`, tangent denominator failures, half-angle output-halving mistakes, and radical sign ambiguity.
+
+Verification completed:
+
+- `npx vitest run src/visualizations/trigonometry/DoubleHalfAngleVisualizer.test.ts src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 44 tests.
+- `npx eslint src/visualizations/trigonometry/DoubleHalfAngleVisualizer.tsx src/visualizations/trigonometry/DoubleHalfAngleVisualizer.test.ts src/visualizations/trigonometry/TrigIdentityVisualizations.tsx src/pages/TrigonometryConceptPage.tsx --max-warnings=0`: passed.
+- `npm run typecheck`: passed.
+- `npm run build`: passed.
+- `npm run lint`: still fails on unrelated existing lint debt outside Phase 06 files.
+
+Known risks before Phase 07:
+
+- The formula builder is click-to-fill only. Full drag/drop formula construction remains a future polish item.
+- The graph comparison is intentionally compact and should not be treated as a full graphing studio.
+- The Visualizations tab is now long because every previous lab is preserved additively.
+
+Final recommendation before Phase 07:
+
+Implement complementary-angle identities next with a right-triangle side-swap model. Keep the same route-preserving pattern and add a focused cofunction sign/quadrant panel for reciprocal forms.
+
+## Phase 07 Completion Notes
+
+Phase 07 has been implemented as an additive Trigonometry Graph Studio. No backend code, route deletion, Math Lab rewrite, Visual Showcase rewrite, or replacement of the existing six-function visualizer was introduced.
+
+Route/component changes:
+
+- Added `src/visualizations/trigonometry/TrigGraphStudio.tsx`.
+- Added `src/visualizations/trigonometry/TrigGraphStudio.test.ts`.
+- Updated `src/pages/TrigonometryConceptPage.tsx` so graph-related concepts open the new Graph Studio while preserving the classic concept lab below it.
+- Updated `src/data/trigonometryConcepts.ts` to add safe aliases from `amplitude` to `wave-amplitude` and `period-frequency` to `wave-period-frequency`.
+- Did not add the Graph Studio to `TrigIdentityVisualizations.tsx`, because that tab is already identity-lab heavy and Phase 07 is graph-route focused.
+
+Graph Studio capabilities:
+
+- Supports sine, cosine, and tangent transformations: `y = a f(bx + c) + d`.
+- Includes sliders and numeric inputs for `a`, `b`, `c`, `d`, and x scrubber.
+- Includes Explore, Step, and Challenge modes.
+- Includes beginner/professor explanation toggle.
+- Formula parameter highlighter explains `a`, `b`, `c`, and `d`.
+- Main SVG graph shows transformed curve, optional parent overlay, optional challenge target, moving point, x marker, radian ticks, midline, amplitude bounds, period bracket, and phase-shift arrow.
+- Unit-circle/wave link connects sine/cosine projections and tangent slope to graph behavior.
+- Match-the-graph challenge gives local feedback on amplitude, period/frequency, phase, and vertical shift.
+- Tangent asymptotes are drawn and undefined values are segmented safely.
+
+Verification completed:
+
+- `npx vitest run src/visualizations/trigonometry/TrigGraphStudio.test.ts src/visualizations/trigonometry/DoubleHalfAngleVisualizer.test.ts src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 53 tests.
+- `npx eslint src/visualizations/trigonometry/TrigGraphStudio.tsx src/visualizations/trigonometry/TrigGraphStudio.test.ts src/pages/TrigonometryConceptPage.tsx src/data/trigonometryConcepts.ts --max-warnings=0`: passed.
+- `npm run typecheck`: passed.
+- `npm run build`: passed.
+- `npm run lint`: still fails on unrelated existing lint debt outside Phase 07 files.
+
+Known risks before Phase 08:
+
+- Direct graph handles for amplitude, phase, and vertical shift are not implemented yet; the x scrubber is draggable and all parameters remain keyboard-accessible through sliders/numeric inputs.
+- Tangent target challenge is intentionally deferred because safe visual matching around asymptotes needs a more specialized challenge design.
+- The graph studio increases the concept-page bundle size; future phases should consider route-level lazy loading if bundle size becomes a priority.
+
+Final recommendation before Phase 08:
+
+Implement complementary-angle and cofunction identities next. Use the existing focused-lab pattern, keep right-triangle side swapping central, and add quadrant-aware reciprocal handling without replacing current identity or graph labs.

@@ -9,10 +9,15 @@ import TopicTabs from "../components/ui/TopicTabs";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
 import { getTrigonometryConcept, type TrigonometryConcept, type TrigonometryVisualType } from "../data/trigonometryConcepts";
 import { degreesToRadians, roundTo } from "../utils/math";
+import AngleSumDifferenceVisualizer, { type AngleSumDifferenceFormulaId } from "../visualizations/trigonometry/AngleSumDifferenceVisualizer";
+import DoubleHalfAngleVisualizer, { type DoubleHalfFormulaId } from "../visualizations/trigonometry/DoubleHalfAngleVisualizer";
 import EclipseTrigonometryVisualizer from "../visualizations/trigonometry/EclipseTrigonometryVisualizer";
+import CoreIdentityProofVisualizer, { type CoreIdentityId } from "../visualizations/trigonometry/CoreIdentityProofVisualizer";
 import TrigConcept3DView from "../visualizations/trigonometry/TrigConcept3DView";
+import TrigGraphStudio, { type TrigGraphFunction } from "../visualizations/trigonometry/TrigGraphStudio";
 import TrigonometricFunctionsVisualizer from "../visualizations/trigonometry/TrigonometricFunctionsVisualizer";
 import TrigonometryExperimentCatalog from "../visualizations/trigonometry/TrigonometryExperimentCatalog";
+import TriangleCircleRatioVisualizer, { type TriangleCircleRatioFocus } from "../visualizations/trigonometry/TriangleCircleRatioVisualizer";
 import UnitCircleMasterVisualizer, { type UnitCircleMasterFocus } from "../visualizations/trigonometry/UnitCircleMasterVisualizer";
 import WaveApplications from "../visualizations/trigonometry/WaveApplications";
 
@@ -36,6 +41,11 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
   const shapeLinks = shapeLinksForConcept(concept);
   const fullPage = fullVisualizer(concept.visual);
   const unitCircleMasterFocus = unitCircleMasterFocusForConcept(concept.id);
+  const triangleCircleFocus = triangleCircleRatioFocusForConcept(concept.id);
+  const coreIdentityFocus = coreIdentityFocusForConcept(concept.id);
+  const angleSumDifferenceFocus = angleSumDifferenceFocusForConcept(concept.id);
+  const doubleHalfFocus = doubleHalfFocusForConcept(concept.id);
+  const graphStudioFocus = graphStudioFocusForConcept(concept.id);
 
   return (
     <div className="space-y-6">
@@ -46,10 +56,38 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
       <TopicHeader title={concept.title} subtitle={concept.summary} difficulty={concept.category} estimatedMinutes={12} />
 
       {fullPage ? (
-        fullPage
+        <>
+          {fullPage}
+          {triangleCircleFocus && <TriangleCircleRatioVisualizer focus={triangleCircleFocus} title={`${concept.title} Triangle + Circle Bridge`} />}
+        </>
       ) : unitCircleMasterFocus ? (
         <>
           <UnitCircleMasterVisualizer focus={unitCircleMasterFocus} title={`${concept.title} Master Visualizer`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
+      ) : triangleCircleFocus ? (
+        <>
+          <TriangleCircleRatioVisualizer focus={triangleCircleFocus} title={`${concept.title} Triangle + Circle Visualizer`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
+      ) : coreIdentityFocus ? (
+        <>
+          <CoreIdentityProofVisualizer defaultIdentity={coreIdentityFocus} title={`${concept.title} Core Proof Visualizer`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
+      ) : angleSumDifferenceFocus ? (
+        <>
+          <AngleSumDifferenceVisualizer defaultFormula={angleSumDifferenceFocus} title={`${concept.title} Visual Derivation Lab`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
+      ) : doubleHalfFocus ? (
+        <>
+          <DoubleHalfAngleVisualizer defaultFormula={doubleHalfFocus} title={`${concept.title} Visual Derivation Lab`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
+      ) : graphStudioFocus ? (
+        <>
+          <TrigGraphStudio defaultFunction={graphStudioFocus.fn} emphasis={graphStudioFocus.emphasis} title={`${concept.title} Graph Studio`} />
           <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
         </>
       ) : (
@@ -156,6 +194,39 @@ function unitCircleMasterFocusForConcept(conceptId: string): UnitCircleMasterFoc
   if (conceptId === "degree-radian") return "degree-radian";
   if (conceptId === "special-angles") return "special-angles";
   if (conceptId === "quadrant-signs") return "quadrant-signs";
+  return null;
+}
+
+function triangleCircleRatioFocusForConcept(conceptId: string): TriangleCircleRatioFocus | null {
+  if (conceptId === "right-triangle-ratios") return "basic";
+  if (conceptId === "reciprocal-ratios") return "reciprocal";
+  if (conceptId === "trigonometric-functions") return "functions";
+  return null;
+}
+
+function coreIdentityFocusForConcept(conceptId: string): CoreIdentityId | null {
+  if (conceptId === "pythagorean-identity") return "sin2-plus-cos2";
+  return null;
+}
+
+function angleSumDifferenceFocusForConcept(conceptId: string): AngleSumDifferenceFormulaId | null {
+  if (conceptId === "sum-difference") return "sin-add";
+  return null;
+}
+
+function doubleHalfFocusForConcept(conceptId: string): DoubleHalfFormulaId | null {
+  if (conceptId === "double-angle") return "sin-double";
+  if (conceptId === "half-angle") return "sin-half-square";
+  return null;
+}
+
+function graphStudioFocusForConcept(conceptId: string): { fn: TrigGraphFunction; emphasis: "a" | "b" | "c" | "d" | "parent" } | null {
+  if (conceptId === "sine-graph") return { fn: "sin", emphasis: "parent" };
+  if (conceptId === "cosine-graph") return { fn: "cos", emphasis: "parent" };
+  if (conceptId === "tangent-graph") return { fn: "tan", emphasis: "parent" };
+  if (conceptId === "wave-amplitude" || conceptId === "amplitude") return { fn: "sin", emphasis: "a" };
+  if (conceptId === "wave-period-frequency" || conceptId === "period-frequency") return { fn: "sin", emphasis: "b" };
+  if (conceptId === "phase-shift") return { fn: "sin", emphasis: "c" };
   return null;
 }
 

@@ -141,3 +141,97 @@ type IdentityProof = {
 
 Implement only this phase. Do not modify unrelated modules. Do not add backend/server code. Keep it pure browser-based. Preserve existing features. Improve only the core identity visual proof experiences in the existing Trigonometry module. Run the app and verify the Trigonometry page works. Update this MD file with completed items, pending items, and issues found.
 
+## Phase 04 Implementation Status
+
+Phase 04 has been implemented as an additive Core Identity Proof Lab. Existing Trigonometry routes, tabs, concept pages, Math Lab, 2D/3D fallback panels, and the existing large `TrigIdentityVisualizations.tsx` experience were preserved.
+
+Files inspected:
+
+- `src/pages/TrigonometryConceptPage.tsx`
+- `src/pages/Trigonometry.tsx`
+- `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx`
+- `src/visualizations/trigonometry/UnitCircleMasterVisualizer.tsx`
+- `src/visualizations/trigonometry/TriangleCircleRatioVisualizer.tsx`
+- `src/visualizations/trigonometry/TrigonometricFunctionsVisualizer.tsx`
+- `src/visualizations/trigonometry/TrigonometryMathLab.tsx`
+- `src/data/trigonometryConcepts.ts`
+- `src/data/trigonometryLessonExperience.ts`
+- Existing Trigonometry visualizer tests
+- `src/components/ui/SliderControl.tsx`
+
+Files created:
+
+- `src/visualizations/trigonometry/CoreIdentityProofVisualizer.tsx`
+- `src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts`
+
+Files changed:
+
+- `src/pages/TrigonometryConceptPage.tsx`
+- `src/visualizations/trigonometry/TrigIdentityVisualizations.tsx`
+- `TRIGONOMETRY_PHASE_04_CORE_IDENTITIES_VISUAL_PROOFS.md`
+- `TRIGONOMETRY_INTERACTIVE_REFINEMENT_AUDIT.md`
+
+Visualizer integration points:
+
+- `/trigonometry/pythagorean-identity`: shows the new Core Identity Proof Visualizer with `sin^2 theta + cos^2 theta = 1` selected by default, then preserves the classic concept lab.
+- `/trigonometry` Visualizations tab: keeps the existing identity visualization lab and adds the focused core identity proof section below it.
+- No separate tan-sec or cot-cosec concept routes exist in `trigonometryConcepts`; both identities are available through the proof lab selector.
+
+Identities implemented:
+
+- `sin^2 theta + cos^2 theta = 1`
+- `1 + tan^2 theta = sec^2 theta`
+- `1 + cot^2 theta = cosec^2 theta`
+
+Proof models implemented:
+
+- Unit-circle and area-square proof for `sin^2 theta + cos^2 theta = 1`.
+- Tangent/secant triangle proof for `1 + tan^2 theta = sec^2 theta`.
+- Cotangent/cosecant companion triangle proof for `1 + cot^2 theta = cosec^2 theta`.
+- Algebra transformation ladders showing division by `cos^2 theta` and `sin^2 theta`.
+- Numeric LHS/RHS verification with tolerance.
+
+Controls added:
+
+- Identity selector.
+- Angle theta slider from 0 degrees to 360 degrees.
+- Snap buttons for 0, 30, 45, 60, 90, 180, 270, and 360 degrees.
+- Proof model toggle: Geometry, Algebra, Numeric.
+- Display toggles for squares, triangle, formula steps, and live values.
+- Beginner/Professor mode toggle.
+
+Undefined handling added:
+
+- `sin^2 theta + cos^2 theta = 1` is defined for all theta.
+- `1 + tan^2 theta = sec^2 theta` is undefined when `cos theta = 0`, including 90 degrees and 270 degrees.
+- `1 + cot^2 theta = cosec^2 theta` is undefined when `sin theta = 0`, including 0, 180, and 360 degrees.
+- Safe helpers return `null` for undefined values and display `undefined`; no `NaN` or `Infinity` is displayed.
+
+Tests performed:
+
+- `npx vitest run src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts src/data/trigonometryLessonExperience.test.ts`: passed, 20 tests.
+- `npx eslint src/visualizations/trigonometry/CoreIdentityProofVisualizer.tsx src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts src/visualizations/trigonometry/TrigIdentityVisualizations.tsx src/pages/TrigonometryConceptPage.tsx --max-warnings=0`: passed.
+- `npm run typecheck`: passed.
+- `npm run build`: passed.
+- `npm run lint`: failed on unrelated existing lint debt outside Phase 04 files.
+
+Routes checked:
+
+- Browser smoke checks passed with no visible crash state for:
+  - `/trigonometry`
+  - `/trigonometry/pythagorean-identity`
+  - `/trigonometry/trigonometric-functions`
+  - `/trigonometry/right-triangle-ratios`
+  - `/trigonometry/reciprocal-ratios`
+  - `/math-lab/trigonometry`
+- `/trigonometry` Visualizations tab was checked directly and contains both the existing identity lab and the new Core Pythagorean Identity Proofs section.
+- Mobile-width browser check passed for `/trigonometry/pythagorean-identity` with no horizontal overflow.
+
+Pending issues:
+
+- The proof lab is intentionally additive and appears below the existing Visualizations tab content. If future phases add more large labs, local navigation or collapsible sections may be needed.
+- Direct drag on the proof point is not implemented in Phase 04; the theta slider and snap buttons provide the keyboard-accessible fallback.
+
+Recommendation for Phase 05:
+
+Proceed to angle addition and subtraction proofs next. Keep the same route-safe pattern: one focused visualizer, formula-specific proof scenes, helper tests for direct/expanded equality, and no wholesale rewrite of `TrigIdentityVisualizations.tsx`.
