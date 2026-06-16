@@ -87,6 +87,14 @@ export default function Home() {
       colorGradient: "from-slate-950 to-cyan-600",
     },
     {
+      title: "Olympyard",
+      description: "Olympiad-style visual maths practice with grade filters, topic tracks, local progress, and a mock-test entry point.",
+      concepts: ["Olympiad", "Topic map", "Mock test", "Visual practice"],
+      icon: Trophy,
+      route: "/olympyard",
+      colorGradient: "from-emerald-500 to-violet-600",
+    },
+    {
       title: "Math Workspace",
       description: "GeoGebra and Wolfram-style workspace with command input, graphing, result cards, and geometry construction.",
       concepts: ["Graphing", "Commands", "Geometry", "Measurements"],

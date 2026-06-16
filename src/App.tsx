@@ -51,6 +51,9 @@ const MatrixOperationsSandbox = lazy(() => import("./pages/MatrixOperationsSandb
 const MatrixTransformationsVisualizerPage = lazy(() => import("./pages/MatrixTransformationsVisualizerPage"));
 const NCERTConceptPage = lazy(() => import("./pages/NCERTConceptPage"));
 const NumberSystems = lazy(() => import("./pages/NumberSystems"));
+const Olympyard = lazy(() => import("./pages/Olympyard"));
+const OlympyardMockTest = lazy(() => import("./pages/OlympyardMockTest"));
+const OlympyardPractice = lazy(() => import("./pages/OlympyardPractice"));
 const ParametricCurveExplorer = lazy(() => import("./pages/ParametricCurveExplorer"));
 const PermutationsCombinationsVisualizer = lazy(() => import("./pages/PermutationsCombinationsVisualizer"));
 const PolarCoordinatesVisualizer = lazy(() => import("./pages/PolarCoordinatesVisualizer"));
@@ -173,6 +176,9 @@ export default function App() {
             <Route path="matrix-sandbox" element={<MatrixOperationsSandbox />} />
             <Route path="ai-applications" element={<AIApplications />} />
             <Route path="learn" element={<LearningHub />} />
+            <Route path="olympyard" element={<Olympyard />} />
+            <Route path="olympyard/mock-test" element={<OlympyardMockTest />} />
+            <Route path="olympyard/practice/:topicId" element={<OlympyardPractice />} />
             <Route path="spaced-repetition" element={<SpacedRepetitionQuiz />} />
             <Route path="problem-solver" element={<StepByStepProblemSolver />} />
             <Route path="concept-graph" element={<ConceptDependencyGraph />} />
