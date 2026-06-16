@@ -1,4 +1,5 @@
 import { AlertTriangle, CheckCircle2, Eye, Lightbulb, Target } from "lucide-react";
+import MathExpression from "./MathExpression";
 import SectionCard from "./SectionCard";
 
 type VisualLearningPanelProps = {
@@ -55,7 +56,9 @@ function Info({ label, value, mono = false }: { label: string; value: string; mo
   return (
     <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
       <p className="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400">{label}</p>
-      <p className={`mt-1.5 text-sm leading-5 text-slate-700 dark:text-slate-200 ${mono ? "font-mono" : ""}`}>{value}</p>
+      <p className="mt-1.5 text-sm leading-5 text-slate-700 dark:text-slate-200">
+        {mono ? <MathExpression value={value} className="text-sm" /> : value}
+      </p>
     </div>
   );
 }

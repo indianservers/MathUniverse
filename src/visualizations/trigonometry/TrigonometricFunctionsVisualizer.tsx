@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../../components/three/ThreeSceneWrapper";
 import FormulaBlock from "../../components/ui/FormulaBlock";
+import MathExpression from "../../components/ui/MathExpression";
 import SectionCard from "../../components/ui/SectionCard";
 import SliderControl from "../../components/ui/SliderControl";
 import TopicTabs from "../../components/ui/TopicTabs";
@@ -23,12 +24,12 @@ type TrigFunctionInfo = {
 };
 
 const functions: TrigFunctionInfo[] = [
-  { id: "sin", name: "Sine", formula: "sin theta = y/r", reciprocal: "csc theta", period: "2pi", domain: "all real theta", range: "[-1, 1]", color: "#06b6d4", evaluate: Math.sin },
-  { id: "cos", name: "Cosine", formula: "cos theta = x/r", reciprocal: "sec theta", period: "2pi", domain: "all real theta", range: "[-1, 1]", color: "#8b5cf6", evaluate: Math.cos },
-  { id: "tan", name: "Tangent", formula: "tan theta = sin theta / cos theta", reciprocal: "cot theta", period: "pi", domain: "cos theta != 0", range: "all real values", color: "#f59e0b", evaluate: (x) => safeDivide(Math.sin(x), Math.cos(x)) },
-  { id: "sec", name: "Secant", formula: "sec theta = 1 / cos theta", reciprocal: "cos theta", period: "2pi", domain: "cos theta != 0", range: "(-inf, -1] U [1, inf)", color: "#ef4444", evaluate: (x) => safeDivide(1, Math.cos(x)) },
-  { id: "csc", name: "Cosecant", formula: "csc theta = 1 / sin theta", reciprocal: "sin theta", period: "2pi", domain: "sin theta != 0", range: "(-inf, -1] U [1, inf)", color: "#10b981", evaluate: (x) => safeDivide(1, Math.sin(x)) },
-  { id: "cot", name: "Cotangent", formula: "cot theta = cos theta / sin theta", reciprocal: "tan theta", period: "pi", domain: "sin theta != 0", range: "all real values", color: "#ec4899", evaluate: (x) => safeDivide(Math.cos(x), Math.sin(x)) },
+  { id: "sin", name: "Sine", formula: "\\sin\\theta=\\frac{y}{r}", reciprocal: "\\csc\\theta", period: "2\\pi", domain: "all real \\theta", range: "[-1, 1]", color: "#06b6d4", evaluate: Math.sin },
+  { id: "cos", name: "Cosine", formula: "\\cos\\theta=\\frac{x}{r}", reciprocal: "\\sec\\theta", period: "2\\pi", domain: "all real \\theta", range: "[-1, 1]", color: "#8b5cf6", evaluate: Math.cos },
+  { id: "tan", name: "Tangent", formula: "\\tan\\theta=\\frac{\\sin\\theta}{\\cos\\theta}", reciprocal: "\\cot\\theta", period: "\\pi", domain: "\\cos\\theta\\ne0", range: "(-\\infty, \\infty)", color: "#f59e0b", evaluate: (x) => safeDivide(Math.sin(x), Math.cos(x)) },
+  { id: "sec", name: "Secant", formula: "\\sec\\theta=\\frac{1}{\\cos\\theta}", reciprocal: "\\cos\\theta", period: "2\\pi", domain: "\\cos\\theta\\ne0", range: "(-\\infty,-1]\\cup[1,\\infty)", color: "#ef4444", evaluate: (x) => safeDivide(1, Math.cos(x)) },
+  { id: "csc", name: "Cosecant", formula: "\\csc\\theta=\\frac{1}{\\sin\\theta}", reciprocal: "\\sin\\theta", period: "2\\pi", domain: "\\sin\\theta\\ne0", range: "(-\\infty,-1]\\cup[1,\\infty)", color: "#10b981", evaluate: (x) => safeDivide(1, Math.sin(x)) },
+  { id: "cot", name: "Cotangent", formula: "\\cot\\theta=\\frac{\\cos\\theta}{\\sin\\theta}", reciprocal: "\\tan\\theta", period: "\\pi", domain: "\\sin\\theta\\ne0", range: "(-\\infty, \\infty)", color: "#ec4899", evaluate: (x) => safeDivide(Math.cos(x), Math.sin(x)) },
 ];
 
 export default function TrigonometricFunctionsVisualizer() {
@@ -66,16 +67,16 @@ function FunctionOverview({ selectedId, onSelect }: { selectedId: TrigFunctionId
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-sm font-black text-slate-950 dark:text-white">{item.name}</p>
-              <p className="mt-1 font-mono text-[12px] text-slate-600 dark:text-slate-300">{item.formula}</p>
+              <p className="mt-1 text-[12px] text-slate-600 dark:text-slate-300"><MathExpression value={item.formula} /></p>
             </div>
             <span className="h-3 w-3 rounded-full" style={{ backgroundColor: item.color }} />
           </div>
           <MiniGraph fn={item} />
           <div className="mt-3 grid grid-cols-2 gap-2 text-[11px]">
-            <MiniFact label="period" value={item.period} />
-            <MiniFact label="reciprocal" value={item.reciprocal} />
-            <MiniFact label="domain" value={item.domain} wide />
-            <MiniFact label="range" value={item.range} wide />
+            <MiniFact label="period" value={item.period} math />
+            <MiniFact label="reciprocal" value={item.reciprocal} math />
+            <MiniFact label="domain" value={item.domain} wide math />
+            <MiniFact label="range" value={item.range} wide math />
           </div>
         </button>
       ))}
@@ -361,11 +362,11 @@ function Grid2D({ width, height }: { width: number; height: number }) {
   );
 }
 
-function MiniFact({ label, value, wide }: { label: string; value: string; wide?: boolean }) {
+function MiniFact({ label, value, wide, math = false }: { label: string; value: string; wide?: boolean; math?: boolean }) {
   return (
     <div className={`rounded-lg bg-slate-100 p-2 dark:bg-white/10 ${wide ? "col-span-2" : ""}`}>
       <p className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">{label}</p>
-      <p className="mt-1 break-words font-mono text-[12px] font-bold text-slate-800 dark:text-slate-100">{value}</p>
+      <p className="mt-1 break-words text-[12px] font-bold text-slate-800 dark:text-slate-100">{math ? <MathExpression value={value} /> : value}</p>
     </div>
   );
 }

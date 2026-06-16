@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import FormulaBlock from "../components/ui/FormulaBlock";
+import MathExpression from "../components/ui/MathExpression";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
@@ -13,8 +14,10 @@ import AngleSumDifferenceVisualizer, { type AngleSumDifferenceFormulaId } from "
 import DoubleHalfAngleVisualizer, { type DoubleHalfFormulaId } from "../visualizations/trigonometry/DoubleHalfAngleVisualizer";
 import EclipseTrigonometryVisualizer from "../visualizations/trigonometry/EclipseTrigonometryVisualizer";
 import CoreIdentityProofVisualizer, { type CoreIdentityId } from "../visualizations/trigonometry/CoreIdentityProofVisualizer";
+import InverseTrigVisualizer, { type InverseTrigId } from "../visualizations/trigonometry/InverseTrigVisualizer";
 import TrigConcept3DView from "../visualizations/trigonometry/TrigConcept3DView";
 import TrigGraphStudio, { type TrigGraphFunction } from "../visualizations/trigonometry/TrigGraphStudio";
+import TrigPracticeChallengeSystem from "../visualizations/trigonometry/TrigPracticeChallengeSystem";
 import TrigonometricFunctionsVisualizer from "../visualizations/trigonometry/TrigonometricFunctionsVisualizer";
 import TrigonometryExperimentCatalog from "../visualizations/trigonometry/TrigonometryExperimentCatalog";
 import TriangleCircleRatioVisualizer, { type TriangleCircleRatioFocus } from "../visualizations/trigonometry/TriangleCircleRatioVisualizer";
@@ -46,6 +49,7 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
   const angleSumDifferenceFocus = angleSumDifferenceFocusForConcept(concept.id);
   const doubleHalfFocus = doubleHalfFocusForConcept(concept.id);
   const graphStudioFocus = graphStudioFocusForConcept(concept.id);
+  const inverseTrigFocus = inverseTrigFocusForConcept(concept.id);
 
   return (
     <div className="space-y-6">
@@ -90,6 +94,11 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
           <TrigGraphStudio defaultFunction={graphStudioFocus.fn} emphasis={graphStudioFocus.emphasis} title={`${concept.title} Graph Studio`} />
           <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
         </>
+      ) : inverseTrigFocus ? (
+        <>
+          <InverseTrigVisualizer defaultFunction={inverseTrigFocus.fn} focus={inverseTrigFocus.focus} title={`${concept.title} Visual Lab`} />
+          <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
+        </>
       ) : (
         <ConceptLabSection concept={concept} a={a} b={b} setA={setA} setB={setB} metrics={metrics} />
       )}
@@ -102,6 +111,8 @@ function TrigonometryConceptDetail({ concept }: { concept: TrigonometryConcept }
         steps={learningSteps(concept, a, b)}
         tasks={concept.tasks}
       />
+
+      <TrigPracticeChallengeSystem conceptId={concept.id} />
 
       <SectionCard title={`${concept.title} Visual Resources`} description="Only this unit's formula, live model, and matching shape tools are shown here.">
         <div className="grid gap-3 md:grid-cols-3">
@@ -230,6 +241,14 @@ function graphStudioFocusForConcept(conceptId: string): { fn: TrigGraphFunction;
   return null;
 }
 
+function inverseTrigFocusForConcept(conceptId: string): { fn: InverseTrigId; focus: "inverse" | "principal" | "equations" | "general" } | null {
+  if (conceptId === "inverse-trig") return { fn: "asin", focus: "inverse" };
+  if (conceptId === "inverse-principal-values") return { fn: "asin", focus: "principal" };
+  if (conceptId === "trig-equations") return { fn: "asin", focus: "equations" };
+  if (conceptId === "general-solutions") return { fn: "asin", focus: "general" };
+  return null;
+}
+
 function TrigConceptSvg({ visual, a, b, title }: { visual: TrigonometryVisualType; a: number; b: number; title: string }) {
   return (
     <svg viewBox="0 0 720 440" className="h-[320px] w-full sm:h-[440px]">
@@ -281,9 +300,9 @@ function UnitCircleTrig({ angle, radius }: { angle: number; radius: number }) {
       <Label x={cx + 12} y={cy - r - 12} text="(0, 1)" />
       <Label x={cx + 12} y={cy + r + 28} text="(0, -1)" />
       <Label x={cx + 58} y={cy - 16} text={`${roundTo(angle, 1)} deg`} />
-      <Label x={(cx + x) / 2 - 34} y={cy + 34} text="cos theta" />
-      <Label x={x + 14} y={(cy + y) / 2} text="sin theta" />
-      <Label x="72" y="78" text="unit circle: x = cos(theta), y = sin(theta)" />
+      <Label x={(cx + x) / 2 - 34} y={cy + 34} text="cos θ" />
+      <Label x={x + 14} y={(cy + y) / 2} text="sin θ" />
+      <Label x="72" y="78" text="unit circle: x = cos θ, y = sin θ" />
     </g>
   );
 }
@@ -319,8 +338,8 @@ function CircleTrig({ angle, radius, visual }: { angle: number; radius: number; 
       <line x1={x} y1={cy} x2={x} y2={y} stroke="#10b981" strokeWidth="4" />
       <Point x={x} y={y} label="P" />
       <Label x={cx + 18} y={cy - 12} text={`${roundTo(angle, 1)} deg`} />
-      <Label x={x - 70} y={cy + 28} text="cos theta" />
-      <Label x={x + 18} y={(y + cy) / 2} text="sin theta" />
+      <Label x={x - 70} y={cy + 28} text="cos θ" />
+      <Label x={x + 18} y={(y + cy) / 2} text="sin θ" />
     </g>
   );
 }
@@ -372,7 +391,13 @@ function Metric({ label, value }: { label: string; value: string }) {
 }
 
 function Info({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10"><p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{label}</p><p className="mt-2 text-sm leading-6">{value}</p></div>;
+  const isFormula = label.toLowerCase().includes("formula");
+  return (
+    <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
+      <p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">{label}</p>
+      <p className="mt-2 text-sm leading-6">{isFormula ? <MathExpression value={value} className="text-sm" /> : value}</p>
+    </div>
+  );
 }
 
 function trigMetrics(visual: TrigonometryVisualType, a: number, b: number) {
@@ -413,7 +438,7 @@ function learningSteps(concept: TrigonometryConcept, a: number, b: number) {
     ];
   }
   return [
-    `Start with ${concept.formula}.`,
+    `Start with the displayed formula.`,
     `Set ${concept.sliderA} to ${roundTo(a, 2)} and ${concept.sliderB} to ${roundTo(b, 2)}.`,
     "Read the visual measurement before calculating.",
     "Compare the diagram with the formula result.",

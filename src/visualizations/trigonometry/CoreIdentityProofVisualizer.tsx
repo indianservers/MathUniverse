@@ -1,5 +1,6 @@
 import { BookOpen, Eye, GraduationCap, HelpCircle, RotateCcw, Sigma, TriangleAlert } from "lucide-react";
 import { type CSSProperties, type ReactNode, useMemo, useState } from "react";
+import MathExpression from "../../components/ui/MathExpression";
 import SectionCard from "../../components/ui/SectionCard";
 import { degreesToRadians, roundTo } from "../../utils/math";
 
@@ -32,19 +33,19 @@ const COLORS = {
 const IDENTITY_CONFIG: Record<CoreIdentityId, { title: string; formula: string; short: string; undefinedRule: string }> = {
   "sin2-plus-cos2": {
     title: "Unit-circle Pythagorean identity",
-    formula: "sin^2 theta + cos^2 theta = 1",
+    formula: "\\sin^2\\theta+\\cos^2\\theta=1",
     short: "The unit-circle triangle has legs sin theta and cos theta, and radius 1.",
     undefinedRule: "Defined for every angle.",
   },
   "one-plus-tan2-sec2": {
     title: "Tangent and secant identity",
-    formula: "1 + tan^2 theta = sec^2 theta",
+    formula: "1+\\tan^2\\theta=\\sec^2\\theta",
     short: "Divide the unit-circle identity by cos^2 theta, or use the tangent triangle.",
     undefinedRule: "Undefined when cos theta = 0.",
   },
   "one-plus-cot2-csc2": {
     title: "Cotangent and cosecant identity",
-    formula: "1 + cot^2 theta = cosec^2 theta",
+    formula: "1+\\cot^2\\theta=\\csc^2\\theta",
     short: "Divide the unit-circle identity by sin^2 theta, or use the cotangent triangle.",
     undefinedRule: "Undefined when sin theta = 0.",
   },
@@ -204,7 +205,7 @@ function IdentitySelector({ selected, onSelect }: { selected: CoreIdentityId; on
       <div className="mt-3 grid gap-2">
         {(Object.keys(IDENTITY_CONFIG) as CoreIdentityId[]).map((id) => (
           <button key={id} type="button" onClick={() => onSelect(id)} className={selected === id ? "rounded-xl border border-cyan-300 bg-cyan-50 p-3 text-left text-cyan-950 dark:border-cyan-300/40 dark:bg-cyan-400/15 dark:text-cyan-50" : "rounded-xl border border-slate-200 bg-slate-50 p-3 text-left text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"}>
-            <p className="text-sm font-black">{IDENTITY_CONFIG[id].formula}</p>
+            <p className="text-sm font-black"><MathExpression value={IDENTITY_CONFIG[id].formula} /></p>
             <p className="mt-1 text-xs leading-5">{IDENTITY_CONFIG[id].short}</p>
             <p className="mt-2 text-[11px] font-bold uppercase text-slate-400">{IDENTITY_CONFIG[id].undefinedRule}</p>
           </button>
@@ -419,7 +420,7 @@ function IdentityLhsRhsPanel({ config, evaluation, thetaDeg }: { config: { title
         <Sigma className="h-4 w-4" />
         <p className="text-sm font-black text-slate-950 dark:text-white">Live LHS / RHS verification</p>
       </div>
-      <p className="mt-2 font-mono text-sm font-black text-slate-950 dark:text-white">{config.formula}</p>
+      <p className="mt-2 text-sm font-black text-slate-950 dark:text-white"><MathExpression value={config.formula} /></p>
       <div className="mt-3 grid gap-2 sm:grid-cols-2">
         <ProofMetric label="LHS" value={formatIdentityValue(evaluation.lhs)} />
         <ProofMetric label="RHS" value={formatIdentityValue(evaluation.rhs)} />
@@ -442,7 +443,7 @@ function FormulaTransformationLadder({ identityId, activeStep, setActiveStep, te
       <div className="mt-3 space-y-2">
         {steps.map((step, index) => (
           <button key={step} type="button" onClick={() => setActiveStep(index)} className={activeStep === index ? "w-full rounded-lg border border-violet-300 bg-violet-50 p-2 text-left font-mono text-xs font-black text-violet-950 dark:border-violet-300/30 dark:bg-violet-400/10 dark:text-violet-50" : "w-full rounded-lg border border-slate-200 bg-slate-50 p-2 text-left font-mono text-xs font-semibold text-slate-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-300"}>
-            Step {index + 1}: {step}
+            Step {index + 1}: <MathExpression value={step} />
           </button>
         ))}
       </div>

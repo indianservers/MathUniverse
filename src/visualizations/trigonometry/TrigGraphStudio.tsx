@@ -1,5 +1,5 @@
 import { BookOpen, CheckCircle2, Eye, GraduationCap, Pause, Play, RotateCcw, Target, TriangleAlert } from "lucide-react";
-import { type CSSProperties, type PointerEvent, useEffect, useRef, useState } from "react";
+import { type CSSProperties, type PointerEvent, useEffect, useMemo, useRef, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
 import { roundTo } from "../../utils/math";
 
@@ -313,10 +313,10 @@ function TrigGraphCanvas({
   const plot = { left: 58, right: 790, top: 28, bottom: 380 };
   const innerW = plot.right - plot.left;
   const innerH = plot.bottom - plot.top;
-  const parentState: GraphTransformState = { ...state, amplitude: 1, frequency: 1, phase: 0, verticalShift: 0 };
-  const transformedSamples = sampleTrigGraph(state, X_MIN, X_MAX, 720);
-  const parentSamples = sampleTrigGraph(parentState, X_MIN, X_MAX, 720);
-  const targetSamples = target ? sampleTrigGraph(target, X_MIN, X_MAX, 720) : [];
+  const parentState = useMemo<GraphTransformState>(() => ({ fn: state.fn, amplitude: 1, frequency: 1, phase: 0, verticalShift: 0 }), [state.fn]);
+  const transformedSamples = useMemo(() => sampleTrigGraph(state, X_MIN, X_MAX, 720), [state]);
+  const parentSamples = useMemo(() => sampleTrigGraph(parentState, X_MIN, X_MAX, 720), [parentState]);
+  const targetSamples = useMemo(() => (target ? sampleTrigGraph(target, X_MIN, X_MAX, 720) : []), [target]);
   const yToPixel = (y: number) => plot.top + (Y_LIMIT - y) / (Y_LIMIT * 2) * innerH;
   const xToPixel = (x: number) => plot.left + (x - X_MIN) / (X_MAX - X_MIN) * innerW;
   const pixelToX = (pixelX: number) => X_MIN + ((pixelX - plot.left) / innerW) * (X_MAX - X_MIN);
@@ -344,7 +344,7 @@ function TrigGraphCanvas({
         </div>
         <span className="mini-chip">x = {formatRadians(xValue)}</span>
       </div>
-      <svg ref={svgRef} viewBox={`0 0 ${width} ${height}`} className="h-[440px] w-full touch-none" role="img" aria-label="Interactive trigonometry graph studio" onPointerDown={handlePointer} onPointerMove={(event) => { if (event.buttons === 1) handlePointer(event); }}>
+      <svg ref={svgRef} viewBox={`0 0 ${width} ${height}`} className="h-[440px] w-full touch-none" role="img" aria-label="Interactive trigonometry graph studio. Use the x scrubber slider below as a keyboard fallback." onPointerDown={handlePointer} onPointerMove={(event) => { if (event.buttons === 1) handlePointer(event); }}>
         <rect width={width} height={height} rx="22" fill="#f8fafc" className="dark:fill-slate-900" />
         {toggles.grid && <GraphGrid plot={plot} xToPixel={xToPixel} yToPixel={yToPixel} />}
         <line x1={plot.left} y1={yToPixel(0)} x2={plot.right} y2={yToPixel(0)} stroke="#64748b" strokeWidth="2" />

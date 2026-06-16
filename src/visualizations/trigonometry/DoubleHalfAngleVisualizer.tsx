@@ -1,5 +1,6 @@
 import { BookOpen, CheckCircle2, Eye, GraduationCap, RotateCcw, Sigma, TriangleAlert } from "lucide-react";
 import { type CSSProperties, type PointerEvent, type ReactNode, useMemo, useRef, useState } from "react";
+import MathExpression from "../../components/ui/MathExpression";
 import SectionCard from "../../components/ui/SectionCard";
 import { degreesToRadians, radiansToDegrees, roundTo } from "../../utils/math";
 
@@ -56,9 +57,9 @@ const FORMULA_CONFIG: Record<DoubleHalfFormulaId, {
     group: "double",
     kind: "sin",
     title: "Double-angle sine",
-    label: "sin(2theta)",
-    directLabel: "sin(2theta)",
-    expandedLabel: "2sin(theta)cos(theta)",
+    label: "\\sin(2\\theta)",
+    directLabel: "\\sin(2\\theta)",
+    expandedLabel: "2\\sin\\theta\\cos\\theta",
     summary: "The same turn is used twice, so sine addition becomes two matching products.",
     correctTiles: ["2", "sin(theta)", "cos(theta)"],
   },
@@ -66,9 +67,9 @@ const FORMULA_CONFIG: Record<DoubleHalfFormulaId, {
     group: "double",
     kind: "cos",
     title: "Double-angle cosine",
-    label: "cos(2theta)",
-    directLabel: "cos(2theta)",
-    expandedLabel: "cos^2(theta) - sin^2(theta)",
+    label: "\\cos(2\\theta)",
+    directLabel: "\\cos(2\\theta)",
+    expandedLabel: "\\cos^2\\theta-\\sin^2\\theta",
     summary: "Cosine reads the final horizontal shadow after theta is added to itself.",
     correctTiles: ["cos^2(theta)", "-", "sin^2(theta)"],
   },
@@ -76,9 +77,9 @@ const FORMULA_CONFIG: Record<DoubleHalfFormulaId, {
     group: "double",
     kind: "cos",
     title: "Cosine double angle: sine form",
-    label: "cos(2theta)",
-    directLabel: "cos(2theta)",
-    expandedLabel: "1 - 2sin^2(theta)",
+    label: "\\cos(2\\theta)",
+    directLabel: "\\cos(2\\theta)",
+    expandedLabel: "1-2\\sin^2\\theta",
     summary: "Use sin^2(theta) + cos^2(theta) = 1 to replace cos squared.",
     correctTiles: ["1", "-", "2sin^2(theta)"],
   },
@@ -86,9 +87,9 @@ const FORMULA_CONFIG: Record<DoubleHalfFormulaId, {
     group: "double",
     kind: "cos",
     title: "Cosine double angle: cosine form",
-    label: "cos(2theta)",
-    directLabel: "cos(2theta)",
-    expandedLabel: "2cos^2(theta) - 1",
+    label: "\\cos(2\\theta)",
+    directLabel: "\\cos(2\\theta)",
+    expandedLabel: "2\\cos^2\\theta-1",
     summary: "Use the same Pythagorean identity to replace sin squared.",
     correctTiles: ["2cos^2(theta)", "-", "1"],
   },
@@ -96,9 +97,9 @@ const FORMULA_CONFIG: Record<DoubleHalfFormulaId, {
     group: "double",
     kind: "tan",
     title: "Double-angle tangent",
-    label: "tan(2theta)",
-    directLabel: "tan(2theta)",
-    expandedLabel: "2tan(theta) / (1 - tan^2(theta))",
+    label: "\\tan(2\\theta)",
+    directLabel: "\\tan(2\\theta)",
+    expandedLabel: "\\frac{2\\tan\\theta}{1-\\tan^2\\theta}",
     summary: "Tangent is a slope, so the denominator must be watched carefully.",
     correctTiles: ["2tan(theta)", "/", "1 - tan^2(theta)"],
   },
@@ -106,9 +107,9 @@ const FORMULA_CONFIG: Record<DoubleHalfFormulaId, {
     group: "half",
     kind: "sin",
     title: "Half-angle sine square",
-    label: "sin^2(theta/2)",
-    directLabel: "sin^2(theta/2)",
-    expandedLabel: "(1 - cos(theta)) / 2",
+    label: "\\sin^2\\left(\\frac{\\theta}{2}\\right)",
+    directLabel: "\\sin^2\\left(\\frac{\\theta}{2}\\right)",
+    expandedLabel: "\\frac{1-\\cos\\theta}{2}",
     summary: "Reverse the cosine double-angle formula and solve for the sine square.",
     correctTiles: ["1 - cos(theta)", "/", "2"],
   },
@@ -116,9 +117,9 @@ const FORMULA_CONFIG: Record<DoubleHalfFormulaId, {
     group: "half",
     kind: "cos",
     title: "Half-angle cosine square",
-    label: "cos^2(theta/2)",
-    directLabel: "cos^2(theta/2)",
-    expandedLabel: "(1 + cos(theta)) / 2",
+    label: "\\cos^2\\left(\\frac{\\theta}{2}\\right)",
+    directLabel: "\\cos^2\\left(\\frac{\\theta}{2}\\right)",
+    expandedLabel: "\\frac{1+\\cos\\theta}{2}",
     summary: "Reverse the cosine double-angle formula and solve for the cosine square.",
     correctTiles: ["1 + cos(theta)", "/", "2"],
   },
@@ -126,9 +127,9 @@ const FORMULA_CONFIG: Record<DoubleHalfFormulaId, {
     group: "half",
     kind: "tan",
     title: "Half-angle tangent: sine over one plus cosine",
-    label: "tan(theta/2)",
-    directLabel: "tan(theta/2)",
-    expandedLabel: "sin(theta) / (1 + cos(theta))",
+    label: "\\tan\\left(\\frac{\\theta}{2}\\right)",
+    directLabel: "\\tan\\left(\\frac{\\theta}{2}\\right)",
+    expandedLabel: "\\frac{\\sin\\theta}{1+\\cos\\theta}",
     summary: "This form is useful unless 1 + cos(theta) becomes zero.",
     correctTiles: ["sin(theta)", "/", "1 + cos(theta)"],
   },
@@ -136,9 +137,9 @@ const FORMULA_CONFIG: Record<DoubleHalfFormulaId, {
     group: "half",
     kind: "tan",
     title: "Half-angle tangent: one minus cosine over sine",
-    label: "tan(theta/2)",
-    directLabel: "tan(theta/2)",
-    expandedLabel: "(1 - cos(theta)) / sin(theta)",
+    label: "\\tan\\left(\\frac{\\theta}{2}\\right)",
+    directLabel: "\\tan\\left(\\frac{\\theta}{2}\\right)",
+    expandedLabel: "\\frac{1-\\cos\\theta}{\\sin\\theta}",
     summary: "This equivalent form is useful unless sin(theta) becomes zero.",
     correctTiles: ["1 - cos(theta)", "/", "sin(theta)"],
   },
@@ -146,9 +147,9 @@ const FORMULA_CONFIG: Record<DoubleHalfFormulaId, {
     group: "half",
     kind: "tan",
     title: "Half-angle tangent: signed radical",
-    label: "tan(theta/2)",
-    directLabel: "tan(theta/2)",
-    expandedLabel: "+/-sqrt((1 - cos(theta)) / (1 + cos(theta)))",
+    label: "\\tan\\left(\\frac{\\theta}{2}\\right)",
+    directLabel: "\\tan\\left(\\frac{\\theta}{2}\\right)",
+    expandedLabel: "\\pm\\sqrt{\\frac{1-\\cos\\theta}{1+\\cos\\theta}}",
     summary: "The radical gives a magnitude; the sign comes from the quadrant of theta/2.",
     correctTiles: ["sign", "sqrt", "(1 - cos(theta))/(1 + cos(theta))"],
   },
@@ -351,8 +352,8 @@ function FormulaSelector({ selected, onSelect }: { selected: DoubleHalfFormulaId
           <div className="mt-2 grid gap-2">
             {(Object.keys(FORMULA_CONFIG) as DoubleHalfFormulaId[]).filter((id) => FORMULA_CONFIG[id].group === group).map((id) => (
               <button key={id} type="button" onClick={() => onSelect(id)} className={id === selected ? "rounded-xl border border-cyan-300 bg-cyan-50 p-3 text-left text-cyan-950 dark:border-cyan-300/40 dark:bg-cyan-400/15 dark:text-cyan-50" : "rounded-xl border border-slate-200 bg-slate-50 p-3 text-left text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"}>
-                <p className="text-sm font-black">{FORMULA_CONFIG[id].label}</p>
-                <p className="mt-1 font-mono text-xs">{FORMULA_CONFIG[id].expandedLabel}</p>
+                <p className="text-sm font-black"><MathExpression value={FORMULA_CONFIG[id].label} /></p>
+                <p className="mt-1 text-xs"><MathExpression value={FORMULA_CONFIG[id].expandedLabel} /></p>
               </button>
             ))}
           </div>
@@ -404,12 +405,12 @@ function RepeatedAngleScene({ formulaId, thetaDeg, setThetaDeg, toggles }: { for
         )}
         <line x1={doublePoint.x} y1={cy} x2={doublePoint.x} y2={doublePoint.y} stroke={COLORS.sin} strokeWidth="5" strokeLinecap="round" />
         <line x1={cx} y1={cy} x2={doublePoint.x} y2={cy} stroke={COLORS.cos} strokeWidth="5" strokeLinecap="round" />
-        <SvgText x={doublePoint.x + 12} y={(cy + doublePoint.y) / 2} fill={COLORS.sin}>sin(2theta)</SvgText>
-        <SvgText x={(cx + doublePoint.x) / 2 - 38} y={cy + 30} fill={COLORS.cos}>cos(2theta)</SvgText>
+        <SvgText x={doublePoint.x + 12} y={(cy + doublePoint.y) / 2} fill={COLORS.sin}>sin(2θ)</SvgText>
+        <SvgText x={(cx + doublePoint.x) / 2 - 38} y={cy + 30} fill={COLORS.cos}>cos(2θ)</SvgText>
         {formulaId === "tan-double" && (
           <>
             <line x1={cx + r} y1="60" x2={cx + r} y2="408" stroke={COLORS.tan} strokeWidth="3" strokeDasharray="7 7" />
-            {tanY === null ? <SvgText x={cx + r + 12} y="88" fill={COLORS.warning}>tan(2theta) undefined</SvgText> : <line x1={cx + r} y1={cy} x2={cx + r} y2={tanY} stroke={COLORS.tan} strokeWidth="6" strokeLinecap="round" />}
+            {tanY === null ? <SvgText x={cx + r + 12} y="88" fill={COLORS.warning}>tan(2θ) undefined</SvgText> : <line x1={cx + r} y1={cy} x2={cx + r} y2={tanY} stroke={COLORS.tan} strokeWidth="6" strokeLinecap="round" />}
           </>
         )}
         <circle cx={doublePoint.x} cy={doublePoint.y} r="8" fill={COLORS.double} stroke="#0f172a" strokeWidth="2" />
@@ -436,7 +437,7 @@ function HalfAngleScene({ thetaDeg, setThetaDeg, toggles }: { formulaId: DoubleH
   }
 
   return (
-    <SceneShell title="Half-angle scene" subtitle="The amber arm is theta/2. Doubling it lands exactly on the cyan theta arm.">
+    <SceneShell title="Half-angle scene" subtitle="The amber arm is θ/2. Doubling it lands exactly on the cyan θ arm.">
       <svg ref={svgRef} viewBox="0 0 720 460" className="h-[460px] w-full touch-none" role="img" aria-label="Unit circle showing theta and theta over two" onPointerMove={(event) => { if (event.buttons === 1) updateTheta(event); }}>
         <rect width="720" height="460" rx="22" fill="#f8fafc" className="dark:fill-slate-900" />
         <Grid />
@@ -445,23 +446,23 @@ function HalfAngleScene({ thetaDeg, setThetaDeg, toggles }: { formulaId: DoubleH
         <circle cx={cx} cy={cy} r={r} fill="#f59e0b" opacity="0.07" stroke="#94a3b8" strokeWidth="2" />
         {toggles.halfArm && (
           <>
-            <AngleArc cx={cx} cy={cy} radius={54} startDeg={0} endDeg={thetaDeg / 2} color={COLORS.half} label="theta/2" />
+            <AngleArc cx={cx} cy={cy} radius={54} startDeg={0} endDeg={thetaDeg / 2} color={COLORS.half} label="θ/2" />
             <line x1={cx} y1={cy} x2={halfPoint.x} y2={halfPoint.y} stroke={COLORS.half} strokeWidth="7" strokeLinecap="round" />
             <circle cx={halfPoint.x} cy={halfPoint.y} r="8" fill={COLORS.half} stroke="#0f172a" strokeWidth="2" />
           </>
         )}
         {toggles.thetaArm && (
           <>
-            <AngleArc cx={cx} cy={cy} radius={92} startDeg={0} endDeg={thetaDeg} color={COLORS.theta} label="theta" />
+            <AngleArc cx={cx} cy={cy} radius={92} startDeg={0} endDeg={thetaDeg} color={COLORS.theta} label="θ" />
             <line x1={cx} y1={cy} x2={thetaPoint.x} y2={thetaPoint.y} stroke={COLORS.theta} strokeWidth="5" strokeLinecap="round" />
             <DragHandle point={thetaPoint} color={COLORS.theta} label="drag theta" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); }} />
           </>
         )}
         <line x1={halfPoint.x} y1={cy} x2={halfPoint.x} y2={halfPoint.y} stroke={COLORS.sin} strokeWidth="5" strokeLinecap="round" />
         <line x1={cx} y1={cy} x2={halfPoint.x} y2={cy} stroke={COLORS.cos} strokeWidth="5" strokeLinecap="round" />
-        <SvgText x={halfPoint.x + 12} y={(cy + halfPoint.y) / 2} fill={COLORS.sin}>sin(theta/2)</SvgText>
-        <SvgText x={(cx + halfPoint.x) / 2 - 42} y={cy + 30} fill={COLORS.cos}>cos(theta/2)</SvgText>
-        <SvgText x="58" y="44" fill="#0f172a">Half-angle formulas come from setting u = theta/2 in double-angle formulas.</SvgText>
+        <SvgText x={halfPoint.x + 12} y={(cy + halfPoint.y) / 2} fill={COLORS.sin}>sin(θ/2)</SvgText>
+        <SvgText x={(cx + halfPoint.x) / 2 - 42} y={cy + 30} fill={COLORS.cos}>cos(θ/2)</SvgText>
+        <SvgText x="58" y="44" fill="#0f172a">Half-angle formulas come from setting u = θ/2 in double-angle formulas.</SvgText>
       </svg>
     </SceneShell>
   );
@@ -494,7 +495,7 @@ function ThetaControlPanel({
   const toggleLabels: Array<[ToggleKey, string]> = [
     ["thetaArm", "theta arm"],
     ["doubleArm", "2theta arm"],
-    ["halfArm", "theta/2 arm"],
+    ["halfArm", "θ/2 arm"],
     ["steps", "formula steps"],
     ["values", "values"],
     ["graph", "graph"],
@@ -543,7 +544,7 @@ function DirectExpandedVerificationPanel({ config, evaluation, thetaDeg }: { con
         <Sigma className="h-4 w-4" />
         <p className="text-sm font-black text-slate-950 dark:text-white">Direct vs expanded</p>
       </div>
-      <p className="mt-2 font-mono text-sm font-black text-slate-950 dark:text-white">{config.directLabel} = {config.expandedLabel}</p>
+      <p className="mt-2 text-sm font-black text-slate-950 dark:text-white"><MathExpression value={`${config.directLabel}=${config.expandedLabel}`} /></p>
       <div className="mt-3 grid gap-2 sm:grid-cols-2">
         <Metric label="Direct" value={formatDoubleHalfValue(evaluation.direct)} />
         <Metric label="Expanded" value={formatDoubleHalfValue(evaluation.expanded)} />
@@ -565,7 +566,7 @@ function FormulaTransformationLadder({ formulaId, teachingMode }: { formulaId: D
       <div className="mt-3 space-y-2">
         {steps.map((step, index) => (
           <p key={`${step}-${index}`} className="rounded-lg bg-slate-100 p-2 font-mono text-xs font-semibold text-slate-700 dark:bg-white/5 dark:text-slate-300">
-            <span className="font-black text-cyan-700 dark:text-cyan-200">Step {index + 1}:</span> {step}
+            <span className="font-black text-cyan-700 dark:text-cyan-200">Step {index + 1}:</span> <MathExpression value={step} />
           </p>
         ))}
       </div>
@@ -591,7 +592,7 @@ function GraphComparisonPanel({ formulaId, thetaDeg }: { formulaId: DoubleHalfFo
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/50">
       <p className="text-sm font-black text-slate-950 dark:text-white">Graph comparison</p>
-      <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">{halfMode ? `Compare ${selected}(theta) with ${selected}(theta/2).` : `Compare ${selected}(theta) with ${selected}(2theta). The doubled graph completes cycles faster.`}</p>
+      <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">{halfMode ? <>Compare <MathExpression value={`${selected}(\\theta)`} /> with <MathExpression value={`${selected}\\left(\\frac{\\theta}{2}\\right)`} />.</> : <>Compare <MathExpression value={`${selected}(\\theta)`} /> with <MathExpression value={`${selected}(2\\theta)`} />. The doubled graph completes cycles faster.</>}</p>
       <svg viewBox={`0 0 ${width} ${height}`} className="mt-2 h-[220px] w-full" role="img" aria-label="Compact graph comparison">
         <rect width={width} height={height} rx="16" fill="#f8fafc" className="dark:fill-slate-900" />
         <line x1="28" y1={midY} x2={width - 24} y2={midY} stroke="#94a3b8" />
@@ -600,8 +601,8 @@ function GraphComparisonPanel({ formulaId, thetaDeg }: { formulaId: DoubleHalfFo
         <path d={derivedSeries} fill="none" stroke={halfMode ? COLORS.half : COLORS.double} strokeWidth="3" />
         {baseY !== null && <circle cx={markerX} cy={baseY} r="5" fill={COLORS.theta} />}
         {derivedY !== null && <circle cx={markerX} cy={derivedY} r="6" fill={halfMode ? COLORS.half : COLORS.double} />}
-        <SvgText x="42" y="32" fill={COLORS.theta}>{selected}(theta)</SvgText>
-        <SvgText x="42" y="54" fill={halfMode ? COLORS.half : COLORS.double}>{halfMode ? `${selected}(theta/2)` : `${selected}(2theta)`}</SvgText>
+        <SvgText x="42" y="32" fill={COLORS.theta}>{selected}(θ)</SvgText>
+        <SvgText x="42" y="54" fill={halfMode ? COLORS.half : COLORS.double}>{halfMode ? `${selected}(θ/2)` : `${selected}(2θ)`}</SvgText>
       </svg>
     </div>
   );
@@ -614,7 +615,7 @@ function HalfAngleSignPanel({ thetaDeg, signGuess, setSignGuess, evaluation }: {
   return (
     <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-amber-950 dark:border-amber-300/20 dark:bg-amber-400/10 dark:text-amber-50">
       <p className="text-sm font-black">Half-angle sign panel</p>
-      <p className="mt-1 text-xs leading-5">theta/2 = {roundTo(halfDeg, 1)} deg, {halfAngleQuadrant(thetaDeg)}. The radical form needs the sign of tan(theta/2), not always plus.</p>
+      <p className="mt-1 text-xs leading-5">θ/2 = {roundTo(halfDeg, 1)} deg, {halfAngleQuadrant(thetaDeg)}. The radical form needs the sign of tan(θ/2), not always plus.</p>
       <div className="mt-3 grid grid-cols-2 gap-2">
         {(["+", "-"] as const).map((sign) => (
           <button key={sign} type="button" className={signGuess === sign ? "rounded-lg bg-amber-600 px-3 py-2 text-lg font-black text-white" : "rounded-lg border border-amber-200 bg-white/70 px-3 py-2 text-lg font-black dark:border-amber-300/20 dark:bg-slate-950/40"} onClick={() => setSignGuess(sign)} aria-pressed={signGuess === sign}>
@@ -638,9 +639,11 @@ function FormulaBuilderMiniChallenge({ config, tiles, setTiles, feedback, setFee
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/50">
       <p className="text-sm font-black text-slate-950 dark:text-white">Click-to-fill formula builder</p>
-      <p className="mt-2 rounded-lg bg-slate-100 p-2 font-mono text-xs font-black text-slate-700 dark:bg-white/5 dark:text-slate-200">{config.directLabel} = {config.correctTiles.map((_, i) => <span key={i} className="mx-1 inline-block min-w-16 rounded bg-white px-2 py-1 dark:bg-slate-950">{tiles[i] ?? "____"}</span>)}</p>
+      <p className="mt-2 rounded-lg bg-slate-100 p-2 text-xs font-black text-slate-700 dark:bg-white/5 dark:text-slate-200">
+        <MathExpression value={config.directLabel} /> = {config.correctTiles.map((_, i) => <span key={i} className="mx-1 inline-block min-w-16 rounded bg-white px-2 py-1 dark:bg-slate-950">{tiles[i] ? <MathExpression value={tiles[i]} /> : "____"}</span>)}
+      </p>
       <div className="mt-3 flex flex-wrap gap-2">
-        {available.map((tile) => <button key={tile} type="button" className="mini-chip" onClick={() => { if (!full) setTiles([...tiles, tile]); }}>{tile}</button>)}
+        {available.map((tile) => <button key={tile} type="button" className="mini-chip" onClick={() => { if (!full) setTiles([...tiles, tile]); }}><MathExpression value={tile} /></button>)}
       </div>
       <div className="mt-3 flex flex-wrap gap-2">
         <button type="button" className="action-primary" onClick={check}>Check formula</button>

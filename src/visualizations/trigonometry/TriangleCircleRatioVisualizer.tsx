@@ -1,6 +1,7 @@
 import { BookOpen, Eye, EyeOff, GraduationCap, HelpCircle, RotateCcw, Scale, TriangleAlert } from "lucide-react";
 import { type CSSProperties } from "react";
 import { useMemo, useState } from "react";
+import MathExpression from "../../components/ui/MathExpression";
 import SectionCard from "../../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../../components/ui/SliderControl";
 import { clamp, degreesToRadians, roundTo } from "../../utils/math";
@@ -39,12 +40,12 @@ const RATIO_DETAILS: Array<{
   reciprocal?: RatioId;
   note: string;
 }> = [
-  { id: "sin", title: "Sine", formula: "sin theta = opposite / hypotenuse", numerator: "opposite", denominator: "hypotenuse", reciprocal: "csc", note: "How high the point is compared with the radius." },
-  { id: "cos", title: "Cosine", formula: "cos theta = adjacent / hypotenuse", numerator: "adjacent", denominator: "hypotenuse", reciprocal: "sec", note: "How far right the point is compared with the radius." },
-  { id: "tan", title: "Tangent", formula: "tan theta = opposite / adjacent", numerator: "opposite", denominator: "adjacent", reciprocal: "cot", note: "Rise divided by run, like slope." },
-  { id: "csc", title: "Cosecant", formula: "cosec theta = hypotenuse / opposite", numerator: "hypotenuse", denominator: "opposite", reciprocal: "sin", note: "The flipped sine ratio." },
-  { id: "sec", title: "Secant", formula: "sec theta = hypotenuse / adjacent", numerator: "hypotenuse", denominator: "adjacent", reciprocal: "cos", note: "The flipped cosine ratio." },
-  { id: "cot", title: "Cotangent", formula: "cot theta = adjacent / opposite", numerator: "adjacent", denominator: "opposite", reciprocal: "tan", note: "The flipped tangent ratio." },
+  { id: "sin", title: "Sine", formula: "\\sin\\theta=\\frac{opposite}{hypotenuse}", numerator: "opposite", denominator: "hypotenuse", reciprocal: "csc", note: "How high the point is compared with the radius." },
+  { id: "cos", title: "Cosine", formula: "\\cos\\theta=\\frac{adjacent}{hypotenuse}", numerator: "adjacent", denominator: "hypotenuse", reciprocal: "sec", note: "How far right the point is compared with the radius." },
+  { id: "tan", title: "Tangent", formula: "\\tan\\theta=\\frac{opposite}{adjacent}", numerator: "opposite", denominator: "adjacent", reciprocal: "cot", note: "Rise divided by run, like slope." },
+  { id: "csc", title: "Cosecant", formula: "\\csc\\theta=\\frac{hypotenuse}{opposite}", numerator: "hypotenuse", denominator: "opposite", reciprocal: "sin", note: "The flipped sine ratio." },
+  { id: "sec", title: "Secant", formula: "\\sec\\theta=\\frac{hypotenuse}{adjacent}", numerator: "hypotenuse", denominator: "adjacent", reciprocal: "cos", note: "The flipped cosine ratio." },
+  { id: "cot", title: "Cotangent", formula: "\\cot\\theta=\\frac{adjacent}{opposite}", numerator: "adjacent", denominator: "opposite", reciprocal: "tan", note: "The flipped tangent ratio." },
 ];
 
 const TEACHING_STEPS = [
@@ -384,7 +385,7 @@ function RatioCardGrid({ ratioDetails, sides, ratios }: { ratioDetails: typeof R
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="text-sm font-black text-slate-950 dark:text-white">{ratio.title}</p>
-                <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">{ratio.formula}</p>
+                <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400"><MathExpression value={ratio.formula} /></p>
               </div>
               <span className={value === null ? "rounded-lg bg-rose-100 px-2 py-1 text-xs font-black text-rose-700 dark:bg-rose-400/15 dark:text-rose-100" : "rounded-lg bg-cyan-100 px-2 py-1 text-xs font-black text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100"}>
                 {formatRatioValue(value)}
