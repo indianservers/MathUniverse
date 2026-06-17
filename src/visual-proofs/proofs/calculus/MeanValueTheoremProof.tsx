@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CalculusProofTemplate from "./CalculusProofTemplate";
-import { calculusProofConfigs } from "./calculusProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { meanValueTheoremPhaseFifteenConfig } from "../phase-fifteen/phaseFifteenProofConfigs";
 
 export default function MeanValueTheoremProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CalculusProofTemplate category={category} proof={proof} config={calculusProofConfigs.MeanValueTheoremProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={meanValueTheoremPhaseFifteenConfig} />;
 }

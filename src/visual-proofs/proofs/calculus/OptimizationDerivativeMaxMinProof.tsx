@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CalculusProofTemplate from "./CalculusProofTemplate";
-import { calculusProofConfigs } from "./calculusProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { optimizationPhaseFifteenConfig } from "../phase-fifteen/phaseFifteenProofConfigs";
 
 export default function OptimizationDerivativeMaxMinProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CalculusProofTemplate category={category} proof={proof} config={calculusProofConfigs.OptimizationDerivativeMaxMinProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={optimizationPhaseFifteenConfig} />;
 }

@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CalculusProofTemplate from "./CalculusProofTemplate";
-import { calculusProofConfigs } from "./calculusProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { integrationByPartsPhaseFifteenConfig } from "../phase-fifteen/phaseFifteenProofConfigs";
 
 export default function IntegrationByPartsVisualProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CalculusProofTemplate category={category} proof={proof} config={calculusProofConfigs.IntegrationByPartsVisualProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={integrationByPartsPhaseFifteenConfig} />;
 }

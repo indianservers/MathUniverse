@@ -7,7 +7,6 @@ import {
   derivativeSlopePhaseFourteenConfig,
   limitApproachesPointPhaseFourteenConfig,
   phaseFourteenConfigs,
-  phaseFourteenLegacyCalculusRouteSlugs,
   phaseFourteenRouteSlugs,
   productRulePhaseFourteenConfig,
   riemannSumsPhaseFourteenConfig,
@@ -48,21 +47,11 @@ describe("Visual Proofs phase fourteen calculus graph-limit upgrade", () => {
     }
   });
 
-  it("keeps the remaining seven calculus routes available but legacy", () => {
+  it("keeps the Phase 14 routes upgraded as part of the calculus category", () => {
     const calculusProofs = getVisualProofsByCategory("calculus").filter((proof) => proof.status === "available");
     expect(calculusProofs).toHaveLength(15);
     expect(calculusProofs.filter((proof) => proof.proofUpgradeStatus === "phase-upgraded").map((proof) => proof.slug)).toEqual(expect.arrayContaining(upgradedCalculusSlugs));
-    expect(calculusProofs.filter((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toHaveLength(8);
-
-    for (const [categorySlug, proofSlug] of phaseFourteenLegacyCalculusRouteSlugs) {
-      const proof = getVisualProof(categorySlug, proofSlug);
-      expect(proof?.status).toBe("available");
-      expect(proof?.proofUpgradeStatus).toBe("legacy");
-      expect(proof?.proofLearningModel).toBe("graph-limit");
-      expect(proof?.hasFormulaTokens).toBe(false);
-      expect(proof?.hasPredictionPrompt).toBe(false);
-      expect(proof?.hasSnapshotSupport).toBe(false);
-    }
+    expect(calculusProofs.filter((proof) => upgradedCalculusSlugs.includes(proof.slug)).every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
   });
 
   it("adds Phase 14 upgraded calculus routes to the route smoke manifest", () => {

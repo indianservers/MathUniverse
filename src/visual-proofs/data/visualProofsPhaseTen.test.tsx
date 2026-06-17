@@ -14,6 +14,7 @@ import { phaseElevenConfigs, phaseElevenRouteSlugs } from "../proofs/phase-eleve
 import { phaseTwelveConfigs, phaseTwelveRouteSlugs } from "../proofs/phase-twelve/phaseTwelveProofConfigs";
 import { phaseThirteenConfigs, phaseThirteenRouteSlugs } from "../proofs/phase-thirteen/phaseThirteenProofConfigs";
 import { phaseFourteenConfigs, phaseFourteenRouteSlugs } from "../proofs/phase-fourteen/phaseFourteenProofConfigs";
+import { phaseFifteenConfigs, phaseFifteenRouteSlugs } from "../proofs/phase-fifteen/phaseFifteenProofConfigs";
 import type { ProofLearningModel } from "./proofTypes";
 import { visualProofsIndex, getVisualProofsByCategory } from "./visualProofsIndex";
 import { coordinateGeometryRouteSmokeManifest, trigonometryRouteSmokeManifest, visualProofsRouteSmokeManifest } from "./visualProofsRouteSmokeManifest";
@@ -48,6 +49,7 @@ const allPhaseRouteGroups = [
   phaseTwelveRouteSlugs,
   phaseThirteenRouteSlugs,
   phaseFourteenRouteSlugs,
+  phaseFifteenRouteSlugs,
 ];
 
 type RouteSlug = readonly [string, string];
@@ -64,6 +66,7 @@ const configEntries: Array<[RouteSlug, PhaseTwoProofConfig]> = [
   ...zip(phaseTwelveRouteSlugs, phaseTwelveConfigs),
   ...zip(phaseThirteenRouteSlugs, phaseThirteenConfigs),
   ...zip(phaseFourteenRouteSlugs, phaseFourteenConfigs),
+  ...zip(phaseFifteenRouteSlugs, phaseFifteenConfigs),
 ];
 
 const configByRoute = new Map(configEntries.map(([[categorySlug, proofSlug], config]) => [`/visual-proofs/${categorySlug}/${proofSlug}`, config]));
@@ -72,7 +75,7 @@ const phaseUpgradedProofs = visualProofsIndex.filter((proof) => proof.proofUpgra
 describe("Visual Proofs phase ten final metadata and smoke audit", () => {
   it("includes every phase-upgraded proof in the route smoke manifest", () => {
     const manifestRoutes = new Set(visualProofsRouteSmokeManifest.map((entry) => entry.route));
-    expect(phaseUpgradedProofs.length).toBeGreaterThanOrEqual(76);
+    expect(phaseUpgradedProofs.length).toBeGreaterThanOrEqual(83);
     for (const proof of phaseUpgradedProofs) {
       expect(manifestRoutes.has(proof.route), proof.route).toBe(true);
     }

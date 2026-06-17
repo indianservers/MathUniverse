@@ -1356,6 +1356,13 @@ const phaseUpgradedProofs = new Set<VisualProofComponentKey>([
   "ChainRuleVisualProof",
   "RiemannSumsAreaUnderCurveProof",
   "DefiniteIntegralAccumulatedAreaProof",
+  "MeanValueTheoremProof",
+  "FundamentalTheoremCalculusProof",
+  "IntegrationByPartsVisualProof",
+  "DerivativeOfSineProof",
+  "DerivativeOfExponentialProof",
+  "TaylorSeriesApproximationProof",
+  "OptimizationDerivativeMaxMinProof",
 ]);
 
 function getLearningModel(categorySlug: string, proof: { componentKey: VisualProofComponentKey; tags: string[] }): ProofLearningModel {
@@ -1411,7 +1418,14 @@ function getLearningModel(categorySlug: string, proof: { componentKey: VisualPro
     proof.componentKey === "ProductRuleVisualProof" ||
     proof.componentKey === "ChainRuleVisualProof" ||
     proof.componentKey === "RiemannSumsAreaUnderCurveProof" ||
-    proof.componentKey === "DefiniteIntegralAccumulatedAreaProof"
+    proof.componentKey === "DefiniteIntegralAccumulatedAreaProof" ||
+    proof.componentKey === "MeanValueTheoremProof" ||
+    proof.componentKey === "FundamentalTheoremCalculusProof" ||
+    proof.componentKey === "IntegrationByPartsVisualProof" ||
+    proof.componentKey === "DerivativeOfSineProof" ||
+    proof.componentKey === "DerivativeOfExponentialProof" ||
+    proof.componentKey === "TaylorSeriesApproximationProof" ||
+    proof.componentKey === "OptimizationDerivativeMaxMinProof"
   ) return "graph-limit";
   if (
     proof.componentKey === "TranslationOfPointsProof" ||
