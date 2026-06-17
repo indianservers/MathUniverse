@@ -1,7 +1,7 @@
 import { olympyardQuestions, type OlympyardQuestion } from "./olympyardQuestions";
 import { olympyardTopicById, type OlympyardDifficulty, type OlympyardGradeBand } from "./olympyardTopics";
 
-export type OlympyardSessionMode = "topic" | "mixed" | "weak" | "speed" | "mock";
+export type OlympyardSessionMode = "topic" | "adaptive" | "mixed" | "weak" | "speed" | "mock";
 
 export type OlympyardTopicProgress = {
   attempted: number;
@@ -131,6 +131,12 @@ export function selectOlympyardQuestions(filters: OlympyardQuestionFilters, prog
     if (!pool.length) pool = olympyardQuestions.filter((question) => question.difficulty !== "speed");
   }
 
+  if (filters.mode === "adaptive") {
+    const adaptiveTopicIds = getAdaptiveOlympyardTopics(safeProgress, 5).map((item) => item.topicId);
+    pool = interleaveByTopic(pool.filter((question) => adaptiveTopicIds.includes(question.topicId)));
+    if (!pool.length) pool = interleaveByTopic(olympyardWarmStartPool());
+  }
+
   if (filters.mode === "speed") {
     pool = pool.filter((question) => question.difficulty === "speed" || (question.estimatedSeconds ?? 999) <= 45);
   }
@@ -186,6 +192,49 @@ export function getWeakOlympyardTopics(progress: OlympyardProgress) {
     .sort((left, right) => left.accuracy - right.accuracy);
 }
 
+export function getAdaptiveOlympyardTopics(progress: OlympyardProgress, limit = 4) {
+  const safe = normalizeOlympyardProgress(progress);
+  const stats = olympyardQuestions.reduce<Record<string, { topicId: string; attempted: number; correct: number; total: number; accuracy: number; priority: number }>>((summary, question) => {
+    const mastery = safe.topicMastery[question.topicId] ?? { attempted: 0, correct: 0 };
+    summary[question.topicId] = summary[question.topicId] ?? {
+      topicId: question.topicId,
+      attempted: mastery.attempted,
+      correct: mastery.correct,
+      total: 0,
+      accuracy: mastery.attempted ? Math.round((mastery.correct / mastery.attempted) * 100) : 0,
+      priority: 0,
+    };
+    summary[question.topicId].total += 1;
+    return summary;
+  }, {});
+
+  return Object.values(stats)
+    .map((item) => ({
+      ...item,
+      priority: adaptivePriority(item.attempted, item.accuracy),
+    }))
+    .sort((left, right) => right.priority - left.priority || left.accuracy - right.accuracy || left.topicId.localeCompare(right.topicId))
+    .slice(0, Math.max(1, limit));
+}
+
+export function summarizeOlympyardMastery(progress: OlympyardProgress) {
+  const safe = normalizeOlympyardProgress(progress);
+  const accuracy = safe.attempted ? Math.round((safe.correct / safe.attempted) * 100) : 0;
+  const weakTopics = getWeakOlympyardTopics(safe);
+  const adaptiveTopics = getAdaptiveOlympyardTopics(safe, 4);
+  const masteredTopicCount = Object.values(safe.topicMastery).filter((item) => item.attempted >= 3 && item.correct / item.attempted >= 0.8).length;
+  return {
+    attempted: safe.attempted,
+    correct: safe.correct,
+    accuracy,
+    streak: safe.streak,
+    weakTopics,
+    adaptiveTopics,
+    masteredTopicCount,
+    hasPracticeSignal: safe.attempted > 0,
+  };
+}
+
 export function formatOlympyardTime(seconds: number) {
   const safe = Math.max(0, Math.round(seconds));
   const minutes = Math.floor(safe / 60);
@@ -237,6 +286,20 @@ function interleaveByTopic(questions: OlympyardQuestion[]) {
     index += 1;
   }
   return result;
+}
+
+function olympyardWarmStartPool() {
+  const warmStartTopics = new Set(["number-sense", "fractions-decimals", "algebraic-thinking", "geometry-reasoning", "patterns-sequences"]);
+  return olympyardQuestions.filter((question) => warmStartTopics.has(question.topicId) && question.difficulty !== "speed");
+}
+
+function adaptivePriority(attempted: number, accuracy: number) {
+  if (attempted === 0) return 80;
+  if (attempted < 3) return 90;
+  if (accuracy < 50) return 100;
+  if (accuracy < 70) return 95;
+  if (accuracy < 85) return 70;
+  return 30;
 }
 
 function recommendOlympyardTopics(topicBreakdown: Record<string, { title: string; attempted: number; correct: number }>) {

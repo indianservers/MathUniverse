@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CoordinateProofTemplate from "./CoordinateProofTemplate";
-import { coordinateProofConfigs } from "./coordinateProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { circleEquationPhaseEightConfig } from "../phase-eight/phaseEightProofConfigs";
 
 export default function CircleEquationProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CoordinateProofTemplate category={category} proof={proof} config={coordinateProofConfigs.CircleEquationProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={circleEquationPhaseEightConfig} />;
 }

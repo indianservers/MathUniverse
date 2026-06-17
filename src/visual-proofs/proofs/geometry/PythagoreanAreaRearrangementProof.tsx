@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import GeometryProofTemplate from "./GeometryProofTemplate";
-import { geometryProofConfigs } from "./geometryProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { pythagoreanPhaseFourConfig } from "../phase-four/phaseFourProofConfigs";
 
 export default function PythagoreanAreaRearrangementProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <GeometryProofTemplate category={category} proof={proof} config={geometryProofConfigs.PythagoreanAreaRearrangementProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={pythagoreanPhaseFourConfig} />;
 }

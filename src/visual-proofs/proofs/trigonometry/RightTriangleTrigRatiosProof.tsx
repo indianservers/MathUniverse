@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import TrigProofTemplate from "./TrigProofTemplate";
-import { trigProofConfigs } from "./trigProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { rightTriangleTrigRatiosPhaseFiveConfig } from "../phase-five/phaseFiveProofConfigs";
 
 export default function RightTriangleTrigRatiosProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <TrigProofTemplate category={category} proof={proof} config={trigProofConfigs.RightTriangleTrigRatiosProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={rightTriangleTrigRatiosPhaseFiveConfig} />;
 }

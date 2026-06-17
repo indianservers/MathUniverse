@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import AlgebraProofTemplate from "./AlgebraProofTemplate";
-import { algebraProofConfigs } from "./algebraProofConfigs";
+import { threeTermSquarePhaseTwelveConfig } from "../phase-twelve/phaseTwelveProofConfigs";
 
 export default function ThreeTermSquareProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <AlgebraProofTemplate category={category} proof={proof} config={algebraProofConfigs.ThreeTermSquareProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={threeTermSquarePhaseTwelveConfig} />;
 }

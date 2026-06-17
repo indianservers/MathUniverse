@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CalculusProofTemplate from "./CalculusProofTemplate";
-import { calculusProofConfigs } from "./calculusProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { productRulePhaseFourteenConfig } from "../phase-fourteen/phaseFourteenProofConfigs";
 
 export default function ProductRuleVisualProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CalculusProofTemplate category={category} proof={proof} config={calculusProofConfigs.ProductRuleVisualProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={productRulePhaseFourteenConfig} />;
 }

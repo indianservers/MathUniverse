@@ -1,4 +1,4 @@
-import { ArrowLeft, BookOpenCheck, CheckCircle2, Clock, Filter, Gauge, Layers3, Route, Target, Trophy } from "lucide-react";
+import { ArrowLeft, BookOpenCheck, CheckCircle2, Clock, Filter, Gauge, Layers3, Route, ShieldCheck, Target, Trophy } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import SectionCard from "../components/ui/SectionCard";
@@ -117,7 +117,8 @@ export default function OlympyardPractice() {
       </SectionCard>
 
       <SectionCard title="Practice Modes" description="Use the route that matches today: slow topic learning, mixed practice, weak areas, speed, or mock test.">
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+          <ModeLink to="/olympyard/mock-test?mode=adaptive" icon={ShieldCheck} title="Adaptive Spine" body="Let local mastery choose what comes next." />
           <ModeLink to={topic ? `/olympyard/practice/${topic.id}` : "/olympyard"} icon={Target} title="Topic Practice" body="Focused, untimed practice for one topic." />
           <ModeLink to="/olympyard/mock-test?mode=mixed" icon={Layers3} title="Mixed Practice" body="Interleaved topics without strict pressure." />
           <ModeLink to="/olympyard/mock-test?mode=weak" icon={Route} title="Weak Area Practice" body="Uses local progress to choose lower-accuracy topics." />

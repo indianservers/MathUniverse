@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import AlgebraProofTemplate from "./AlgebraProofTemplate";
-import { algebraProofConfigs } from "./algebraProofConfigs";
+import { squareOfSumPhaseTwoConfig } from "../phase-two/phaseTwoProofConfigs";
 
 export default function SquareOfSumProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <AlgebraProofTemplate category={category} proof={proof} config={algebraProofConfigs.SquareOfSumProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={squareOfSumPhaseTwoConfig} />;
 }

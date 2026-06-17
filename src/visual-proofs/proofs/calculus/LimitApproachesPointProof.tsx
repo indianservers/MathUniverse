@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CalculusProofTemplate from "./CalculusProofTemplate";
-import { calculusProofConfigs } from "./calculusProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { limitApproachesPointPhaseFourteenConfig } from "../phase-fourteen/phaseFourteenProofConfigs";
 
 export default function LimitApproachesPointProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CalculusProofTemplate category={category} proof={proof} config={calculusProofConfigs.LimitApproachesPointProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={limitApproachesPointPhaseFourteenConfig} />;
 }

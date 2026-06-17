@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CalculusProofTemplate from "./CalculusProofTemplate";
-import { calculusProofConfigs } from "./calculusProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { definiteIntegralPhaseFourteenConfig } from "../phase-fourteen/phaseFourteenProofConfigs";
 
 export default function DefiniteIntegralAccumulatedAreaProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CalculusProofTemplate category={category} proof={proof} config={calculusProofConfigs.DefiniteIntegralAccumulatedAreaProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={definiteIntegralPhaseFourteenConfig} />;
 }

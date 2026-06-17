@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import AlgebraProofTemplate from "./AlgebraProofTemplate";
-import { algebraProofConfigs } from "./algebraProofConfigs";
+import { quadraticFactorizationPhaseTwelveConfig } from "../phase-twelve/phaseTwelveProofConfigs";
 
 export default function QuadraticFactorizationAreaModelProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <AlgebraProofTemplate category={category} proof={proof} config={algebraProofConfigs.QuadraticFactorizationAreaModelProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={quadraticFactorizationPhaseTwelveConfig} />;
 }

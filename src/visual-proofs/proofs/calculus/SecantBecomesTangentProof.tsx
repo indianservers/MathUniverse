@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CalculusProofTemplate from "./CalculusProofTemplate";
-import { calculusProofConfigs } from "./calculusProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { secantBecomesTangentPhaseFourteenConfig } from "../phase-fourteen/phaseFourteenProofConfigs";
 
 export default function SecantBecomesTangentProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CalculusProofTemplate category={category} proof={proof} config={calculusProofConfigs.SecantBecomesTangentProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={secantBecomesTangentPhaseFourteenConfig} />;
 }

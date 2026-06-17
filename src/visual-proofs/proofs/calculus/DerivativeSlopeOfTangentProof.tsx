@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CalculusProofTemplate from "./CalculusProofTemplate";
-import { calculusProofConfigs } from "./calculusProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { derivativeSlopePhaseFourteenConfig } from "../phase-fourteen/phaseFourteenProofConfigs";
 
 export default function DerivativeSlopeOfTangentProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CalculusProofTemplate category={category} proof={proof} config={calculusProofConfigs.DerivativeSlopeOfTangentProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={derivativeSlopePhaseFourteenConfig} />;
 }

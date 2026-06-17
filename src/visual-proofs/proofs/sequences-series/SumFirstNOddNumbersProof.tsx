@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import SequenceSeriesProofTemplate from "./SequenceSeriesProofTemplate";
-import { sequenceSeriesProofConfigs } from "./sequenceSeriesProofConfigs";
+import { oddNumberSumPhaseTwoConfig } from "../phase-two/phaseTwoProofConfigs";
 
 export default function SumFirstNOddNumbersProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <SequenceSeriesProofTemplate category={category} proof={proof} config={sequenceSeriesProofConfigs.SumFirstNOddNumbersProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={oddNumberSumPhaseTwoConfig} />;
 }

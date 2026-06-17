@@ -1,15 +1,17 @@
-import { BookOpen, Calculator, Cuboid, FlaskConical, LibraryBig, Trophy, Route, X, HelpCircle, ArrowRight, Sparkles } from "lucide-react";
+import { BookOpen, Calculator, Cuboid, FlaskConical, LibraryBig, Trophy, Route, X, HelpCircle, ArrowRight, Sparkles, ShieldCheck, Target } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import DashboardCard from "../components/ui/DashboardCard";
 import AITutorPanel from "../components/ui/AITutorPanel";
 import { iconMap } from "../components/layout/navItems";
-import { allSyllabusTopics } from "../data/syllabus";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import InquirySimulationLabs from "../components/inquiry/InquirySimulationLabs";
 import { recentRouteItems } from "../components/layout/GlobalUx";
+import { buildPracticeSpineLite } from "../data/olympyardPracticeSpineLite";
+import { initialOlympyardProgressLite, normalizeOlympyardProgressLite, OLYMPYARD_PROGRESS_STORAGE_KEY, type OlympyardProgressLite } from "../data/olympyardProgressLite";
 
 const tourSteps = [
   { label: "Algebra line graph", route: "/algebra", description: "See how coefficients reshape lines and parabolas in real time." },
@@ -65,10 +67,12 @@ function GuidedTourOverlay({ open, onClose }: { open: boolean; onClose: () => vo
 
 export default function Home() {
   const { getTopicProgress, getOverallProgress } = useProgress();
+  const [olympyardProgress] = useLocalStorage<OlympyardProgressLite>(OLYMPYARD_PROGRESS_STORAGE_KEY, initialOlympyardProgressLite);
   const recentItems = recentRouteItems(5);
   const [tourOpen, setTourOpen] = useState(false);
   const [homeFilter, setHomeFilter] = useState<"all" | "core" | "tools" | "practice" | "advanced">("all");
   const labs = topics.reduce((sum, topic) => sum + topic.labCount, 0);
+  const practiceSpine = buildPracticeSpineLite(normalizeOlympyardProgressLite(olympyardProgress));
   const extraCards = [
     {
       title: "Visual Showcase",
@@ -179,7 +183,7 @@ export default function Home() {
         {[
           { label: "Topics", value: topics.length, icon: BookOpen, color: "text-cyan-600 dark:text-cyan-300" },
           { label: "Labs", value: labs, icon: FlaskConical, color: "text-violet-600 dark:text-violet-300" },
-          { label: "Syllabus", value: allSyllabusTopics.length, icon: LibraryBig, color: "text-amber-600 dark:text-amber-300" },
+          { label: "Syllabus", value: "6 levels", icon: LibraryBig, color: "text-amber-600 dark:text-amber-300" },
           { label: "Progress", value: `${getOverallProgress()}%`, icon: Route, color: "text-emerald-600 dark:text-emerald-300" },
           { label: "Quiz Topics", value: 8, icon: Trophy, color: "text-rose-600 dark:text-rose-300" },
           { label: "Tools", value: 2, icon: Calculator, color: "text-sky-600 dark:text-sky-300" },
@@ -212,6 +216,7 @@ export default function Home() {
       </div>
 
       {homeFilter === "all" || homeFilter === "practice" ? <InquirySimulationLabs /> : null}
+      {homeFilter === "all" || homeFilter === "practice" ? <PracticeSpineStrip spine={practiceSpine} /> : null}
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {visibleTopicCards.map(({ topic }) => {
           const Icon = iconMap[topic.iconName as keyof typeof iconMap] ?? BookOpen;
@@ -221,5 +226,37 @@ export default function Home() {
       </div>
       {homeFilter === "all" && <AITutorPanel />}
     </div>
+  );
+}
+
+function PracticeSpineStrip({ spine }: { spine: ReturnType<typeof buildPracticeSpineLite> }) {
+  const accuracy = spine.mastery.accuracy;
+  return (
+    <section className="grid gap-3 rounded-xl border border-slate-200 bg-white/85 p-4 shadow-sm dark:border-white/10 dark:bg-white/5 lg:grid-cols-[minmax(0,1fr)_auto]">
+      <div className="min-w-0">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="mini-chip bg-cyan-50 text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-100">
+            <ShieldCheck className="h-3.5 w-3.5" />
+            Adaptive practice spine
+          </span>
+          <span className="mini-chip">{spine.mastery.attempted ? `${accuracy}% accuracy` : "No local signal yet"}</span>
+        </div>
+        <h2 className="mt-3 text-xl font-black text-slate-950 dark:text-white">
+          Practice next: {spine.primaryTopic?.title ?? "Number Sense"}
+        </h2>
+        <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
+          Olympyard now connects topic labs, quizzes, visual reasoning, weak-area review, and mock tests into one adaptive queue.
+        </p>
+      </div>
+      <div className="flex flex-wrap items-center gap-2">
+        <Link to={spine.primaryPracticeRoute} className="action-primary">
+          <Target className="h-4 w-4" />
+          Practice next
+        </Link>
+        <Link to={spine.adaptiveRoute} className="action-secondary">
+          Adaptive session
+        </Link>
+      </div>
+    </section>
   );
 }

@@ -99,6 +99,7 @@ type Added3DRenderKind = "surface" | "solid" | "slice" | "point" | "vector" | "l
 type Added3DObject = { id: string; label: string; baseId: ThreeObjectId; render: Added3DRenderKind; solid?: SolidKind; surface?: SurfaceKind; transform: Transform3D };
 type CameraPreset3D = "free" | "top" | "front" | "right" | "isometric";
 type Preset3DTransform = "center" | "ground" | "unit" | "wide" | "tall" | "xy-plane" | "xz-plane" | "yz-plane";
+type Space3DViewTab = "scene" | "xy" | "xz";
 type AlgebraObjectKind = "function" | "point" | "line" | "circle" | "polygon" | "arc" | "locus" | "3d";
 type AlgebraObjectRef = { kind: AlgebraObjectKind; id: string };
 type ObjectPropertyOverrides = Record<string, MathObjectProperties>;
@@ -184,6 +185,11 @@ const addedRenderKindForBase = (id: ThreeObjectId): Added3DRenderKind => {
 };
 const geometryDefaultColor: Record<GeometryObjectType, string> = { point: "#06b6d4", line: "#8b5cf6", circle: "#06b6d4", polygon: "#f59e0b", arc: "#14b8a6", locus: "#ec4899" };
 const examples = ["plot sin(x)", "Root[x^2-4]", "Extremum[x^2-4*x+1]", "Intersect[x^2, 2*x+3]", "Derivative[x^3-2*x]", "Integral[3*x^2]", "Factor[x^2-5*x+6]", "Expand[(x+2)(x+3)]", "Solve[x^2-5*x+6=0]", "Substitute[x^2+a, a=3]", "Sequence[n^2, n, 1, 6]", "Table[sin(x), -3, 3, 0.5]"];
+const space3dViewTabs: Array<{ id: Space3DViewTab; label: string }> = [
+  { id: "scene", label: "3D Scene" },
+  { id: "xy", label: "Top X-Y" },
+  { id: "xz", label: "Side X-Z" },
+];
 const guidedExamples = [
   { title: "Quadratic Roots", command: "solve x^2-5*x+6=0" },
   { title: "Derivative Check", command: "derivative x^3-2*x" },
@@ -229,6 +235,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [cameraPreset3d, setCameraPreset3d] = useState<CameraPreset3D>("isometric");
   const [zoom3d, setZoom3d] = useState(1);
   const [selected3d, setSelected3d] = useState<string>("solid");
+  const [space3dViewTab, setSpace3dViewTab] = useState<Space3DViewTab>("scene");
   const [controls3dOpen, setControls3dOpen] = useState(true);
   const [inspector3dOpen, setInspector3dOpen] = useState(true);
   const [transforms3d, setTransforms3d] = useState<Record<ThreeObjectId, Transform3D>>(defaultTransforms3d);
@@ -2091,6 +2098,19 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       </SectionCard>}
 
       {workspaceView === "3d" && <SectionCard title="3D Graphing And Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls.">
+        <div className="relative">
+          {!inspector3dOpen && (
+            <button
+              type="button"
+              onClick={() => setInspector3dOpen(true)}
+              className="absolute right-0 top-20 z-20 inline-flex -translate-y-1/2 translate-x-2 items-center gap-2 rounded-l-2xl border border-cyan-200 bg-white px-3 py-3 text-sm font-black text-slate-800 shadow-lg transition hover:bg-cyan-50 dark:border-cyan-300/30 dark:bg-slate-950 dark:text-white dark:hover:bg-cyan-300/10"
+              title="Open Objects panel"
+              aria-label="Open Objects panel"
+            >
+              <PanelRightOpen className="h-4 w-4" />
+              Objects
+            </button>
+          )}
         <div
           className="grid items-start gap-3"
           style={{
@@ -2178,6 +2198,9 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               </div>
               <p className="px-2 text-xs font-bold text-slate-500 dark:text-slate-400">Esc deselects. Delete removes selected object.</p>
             </div>
+            <div className="rounded-2xl border border-slate-200 bg-white/85 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
+              <PanelTabs active={space3dViewTab} tabs={space3dViewTabs} onChange={setSpace3dViewTab} />
+            </div>
             <Space3DConstructionWorkbench
               selected={selected3d}
               transform={selected3dTransform}
@@ -2188,52 +2211,69 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               onToggleVisibility={() => update3dTransform(selected3d, { visible: !selected3dTransform.visible })}
             />
 
-            <div className="grid min-h-[min(68vh,720px)] gap-3 2xl:grid-cols-[minmax(260px,32%)_minmax(420px,1fr)]">
-              <Workspace3DProjectionPane
-                selected={selected3d}
-                transform={selected3dTransform}
-                surface={surface}
-                surfaceScale={surfaceScale}
-                solid={solid}
-                solidSize={height3d}
-                crossSection={crossSection}
-                showSurface={showSurface}
-                showSolid={showSolid}
-              />
-              <div className="min-h-[420px] overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 shadow-sm dark:border-white/10">
-                <ThreeSceneWrapper height="min(68vh, 720px)" mobileHeight="min(56vh, 460px)" interactionLabel="Drag rotate - pinch zoom">
-                  <ambientLight intensity={0.75} />
-                  <directionalLight position={[5, 6, 4]} intensity={1.2} />
-                  <Workspace3DScene
-                    surface={surface}
-                    surfaceExpression={surfaceExpression}
-                    solid={solid}
-                    surfaceScale={surfaceScale}
-                    solidSize={height3d}
-                    crossSection={crossSection}
-                    showSurface={showSurface}
-                    showSolid={showSolid}
-                    autoRotate={autoRotate3d}
-                    animationSpeed={sceneAnimationSpeed}
-                    zoom={zoom3d}
-                    performanceMode={performanceMode}
-                    cameraPreset={cameraPreset3d}
-                    selected={selected3d}
-                    transforms={transforms3d}
-                    addedObjects={added3dObjects}
-                    dragging={drag3d}
-                    onSelect={setSelected3d}
-                    onDrag={setDrag3d}
-                    onTransform={update3dTransform}
-                    onContextMenu={(event, id) => {
-                      event.stopPropagation();
-                      setSelected3d(id);
-                      setContextMenu({ x: event.nativeEvent.clientX, y: event.nativeEvent.clientY, target: { type: "3d", id } });
-                    }}
-                  />
-                  <OrbitControls enablePan enableZoom enableDamping enabled={!drag3d} />
-                </ThreeSceneWrapper>
-              </div>
+            <div className="min-h-[min(76vh,860px)]">
+              {space3dViewTab === "scene" && (
+                <div className="min-h-[560px] overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 shadow-sm dark:border-white/10">
+                  <ThreeSceneWrapper height="clamp(560px, calc(100vh - 260px), 860px)" mobileHeight="min(66vh, 560px)" interactionLabel="Drag rotate - pinch zoom">
+                    <ambientLight intensity={0.75} />
+                    <directionalLight position={[5, 6, 4]} intensity={1.2} />
+                    <Workspace3DScene
+                      surface={surface}
+                      surfaceExpression={surfaceExpression}
+                      solid={solid}
+                      surfaceScale={surfaceScale}
+                      solidSize={height3d}
+                      crossSection={crossSection}
+                      showSurface={showSurface}
+                      showSolid={showSolid}
+                      autoRotate={autoRotate3d}
+                      animationSpeed={sceneAnimationSpeed}
+                      zoom={zoom3d}
+                      performanceMode={performanceMode}
+                      cameraPreset={cameraPreset3d}
+                      selected={selected3d}
+                      transforms={transforms3d}
+                      addedObjects={added3dObjects}
+                      dragging={drag3d}
+                      onSelect={setSelected3d}
+                      onDrag={setDrag3d}
+                      onTransform={update3dTransform}
+                      onContextMenu={(event, id) => {
+                        event.stopPropagation();
+                        setSelected3d(id);
+                        setContextMenu({ x: event.nativeEvent.clientX, y: event.nativeEvent.clientY, target: { type: "3d", id } });
+                      }}
+                    />
+                    <OrbitControls enablePan enableZoom enableDamping enabled={!drag3d} />
+                  </ThreeSceneWrapper>
+                </div>
+              )}
+              {space3dViewTab === "xy" && (
+                <Workspace3DProjectionPane
+                  view="xy"
+                  selected={selected3d}
+                  transform={selected3dTransform}
+                  surfaceScale={surfaceScale}
+                  solid={solid}
+                  solidSize={height3d}
+                  crossSection={crossSection}
+                  showSurface={showSurface}
+                  showSolid={showSolid}
+                />
+              )}
+              {space3dViewTab === "xz" && (
+                <Workspace3DProjectionPane
+                  view="xz"
+                  selected={selected3d}
+                  transform={selected3dTransform}
+                  surfaceScale={surfaceScale}
+                  solid={solid}
+                  solidSize={height3d}
+                  crossSection={crossSection}
+                  showSurface={showSurface}
+                  showSolid={showSolid}
+                />
+              )}
             </div>
 
             <div className="grid gap-3 md:grid-cols-3">
@@ -2259,6 +2299,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               <GizmoReadout3D selected={selected3d} transform={selected3dTransform} />
             </aside>
           )}
+        </div>
         </div>
       </SectionCard>}
 
@@ -6001,79 +6042,25 @@ function HorizontalPanelHeader({ title, side, onCollapse }: { title: string; sid
   );
 }
 
-function ProjectionPaneHeader({
-  controlsId,
-  controls,
-  isOpen,
-  onToggle,
-  title,
-  tone,
-}: {
-  controlsId: string;
-  controls: ReactNode;
-  isOpen: boolean;
-  onToggle: () => void;
-  title: string;
-  tone: "cyan" | "violet";
-}) {
-  const LeftIcon = isOpen ? PanelLeftClose : PanelLeftOpen;
-  const toneClass = tone === "cyan" ? "text-cyan-700 dark:text-cyan-200" : "text-violet-700 dark:text-violet-200";
-  const ringClass = tone === "cyan" ? "focus:ring-cyan-300" : "focus:ring-violet-300";
-  return (
-    <div className={`flex items-start gap-2 rounded-xl p-1 transition hover:bg-slate-50 dark:hover:bg-white/5`}>
-      <button
-        type="button"
-        onClick={onToggle}
-        className={`mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition hover:bg-cyan-100 hover:text-cyan-800 focus:outline-none focus:ring-2 ${ringClass} dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15`}
-        title={`${isOpen ? "Collapse" : "Expand"} ${title} from left`}
-        aria-label={`${isOpen ? "Collapse" : "Expand"} ${title} from left`}
-      >
-        <LeftIcon className="h-4 w-4" />
-      </button>
-      <button
-        type="button"
-        onClick={onToggle}
-        className={`flex min-w-0 flex-1 items-start justify-between gap-3 rounded-lg text-left focus:outline-none focus:ring-2 ${ringClass}`}
-        aria-expanded={isOpen}
-        aria-controls={controlsId}
-      >
-        <div className="min-w-0">
-          <p className={`text-xs font-black uppercase ${toneClass}`}>2D Pane</p>
-          <h3 className="text-sm font-black">{title}</h3>
-        </div>
-        <span className="flex shrink-0 items-center gap-2">
-          {controls}
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-200">
-            <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "" : "-rotate-90"}`} />
-          </span>
-        </span>
-      </button>
-    </div>
-  );
-}
-
-function Workspace3DProjectionPane({ selected, transform, surface, surfaceScale, solid, solidSize, crossSection, showSurface, showSolid }: { selected: string; transform: Transform3D; surface: SurfaceKind; surfaceScale: number; solid: SolidKind; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean }) {
-  const [openPanes, setOpenPanes] = useState({ xy: true, xz: true });
+function Workspace3DProjectionPane({ view, selected, transform, surfaceScale, solid, solidSize, crossSection, showSurface, showSolid }: { view: "xy" | "xz"; selected: string; transform: Transform3D; surfaceScale: number; solid: SolidKind; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean }) {
   const px = 170 + transform.position[0] * 18;
   const py = 150 - transform.position[1] * 18;
   const pz = 150 - transform.position[2] * 18;
   const solidRadius = Math.max(18, Math.min(82, solidSize * 18));
   const surfaceAmp = Math.max(8, Math.min(42, surfaceScale * 20));
-  const togglePane = (pane: "xy" | "xz") => setOpenPanes((current) => ({ ...current, [pane]: !current[pane] }));
   return (
-    <div className="grid min-h-[420px] gap-3 lg:grid-cols-2 2xl:grid-cols-1">
-      <section className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
-        <ProjectionPaneHeader
-          controlsId="workspace-xy-projection-pane"
-          title="Top View X-Y"
-          tone="cyan"
-          isOpen={openPanes.xy}
-          onToggle={() => togglePane("xy")}
-          controls={<span className="mini-chip">{selected || "none"}</span>}
-        />
-        {openPanes.xy && (
+    <section className="min-h-[560px] rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
+      {view === "xy" ? (
+        <>
+          <div className="flex items-start justify-between gap-3 rounded-xl bg-slate-50 p-3 dark:bg-white/5">
+            <div className="min-w-0">
+              <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">2D Pane</p>
+              <h3 className="text-sm font-black">Top View X-Y</h3>
+            </div>
+            <span className="mini-chip">{selected || "none"}</span>
+          </div>
           <div id="workspace-xy-projection-pane">
-            <svg viewBox="0 0 340 250" className="mt-3 h-[min(28vh,260px)] min-h-[210px] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
+            <svg viewBox="0 0 340 250" className="mt-3 h-[clamp(440px,calc(100vh-320px),760px)] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
               <defs>
                 <pattern id="workspace-3d-grid" width="20" height="20" patternUnits="userSpaceOnUse">
                   <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(100,116,139,.28)" strokeWidth="1" />
@@ -6095,20 +6082,18 @@ function Workspace3DProjectionPane({ selected, transform, surface, surfaceScale,
               <MiniReadout label="scale" value={transform.scale} />
             </div>
           </div>
-        )}
-      </section>
-      <section className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
-        <ProjectionPaneHeader
-          controlsId="workspace-xz-projection-pane"
-          title="Side View X-Z"
-          tone="violet"
-          isOpen={openPanes.xz}
-          onToggle={() => togglePane("xz")}
-          controls={<span className="mini-chip">z {roundTo(crossSection, 2)}</span>}
-        />
-        {openPanes.xz && (
+        </>
+      ) : (
+        <>
+          <div className="flex items-start justify-between gap-3 rounded-xl bg-slate-50 p-3 dark:bg-white/5">
+            <div className="min-w-0">
+              <p className="text-xs font-black uppercase text-violet-700 dark:text-violet-200">2D Pane</p>
+              <h3 className="text-sm font-black">Side View X-Z</h3>
+            </div>
+            <span className="mini-chip">z {roundTo(crossSection, 2)}</span>
+          </div>
           <div id="workspace-xz-projection-pane">
-            <svg viewBox="0 0 340 250" className="mt-3 h-[min(28vh,260px)] min-h-[210px] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
+            <svg viewBox="0 0 340 250" className="mt-3 h-[clamp(440px,calc(100vh-320px),760px)] w-full rounded-xl bg-slate-50 dark:bg-slate-900">
               <defs>
                 <pattern id="workspace-3d-grid-xz" width="20" height="20" patternUnits="userSpaceOnUse">
                   <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(100,116,139,.28)" strokeWidth="1" />
@@ -6130,9 +6115,9 @@ function Workspace3DProjectionPane({ selected, transform, surface, surfaceScale,
               <MiniReadout label="size" value={solidSize} />
             </div>
           </div>
-        )}
-      </section>
-    </div>
+        </>
+      )}
+    </section>
   );
 }
 

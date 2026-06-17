@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import SequenceSeriesProofTemplate from "./SequenceSeriesProofTemplate";
-import { sequenceSeriesProofConfigs } from "./sequenceSeriesProofConfigs";
+import { fibonacciTilingPhaseThirteenConfig } from "../phase-thirteen/phaseThirteenProofConfigs";
 
 export default function FibonacciSequenceTilingProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <SequenceSeriesProofTemplate category={category} proof={proof} config={sequenceSeriesProofConfigs.FibonacciSequenceTilingProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={fibonacciTilingPhaseThirteenConfig} />;
 }

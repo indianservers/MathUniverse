@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import SequenceSeriesProofTemplate from "./SequenceSeriesProofTemplate";
-import { sequenceSeriesProofConfigs } from "./sequenceSeriesProofConfigs";
+import { naturalNumberSumPhaseTwoConfig } from "../phase-two/phaseTwoProofConfigs";
 
 export default function SumFirstNNaturalNumbersProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <SequenceSeriesProofTemplate category={category} proof={proof} config={sequenceSeriesProofConfigs.SumFirstNNaturalNumbersProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={naturalNumberSumPhaseTwoConfig} />;
 }

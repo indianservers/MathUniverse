@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import TrigProofTemplate from "./TrigProofTemplate";
-import { trigProofConfigs } from "./trigProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { smallAngleApproximationPhaseSevenConfig } from "../phase-seven/phaseSevenProofConfigs";
 
 export default function SmallAngleApproximationProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <TrigProofTemplate category={category} proof={proof} config={trigProofConfigs.SmallAngleApproximationProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={smallAngleApproximationPhaseSevenConfig} />;
 }

@@ -1,17 +1,21 @@
-import { BookOpen, ClipboardList, ExternalLink, GraduationCap, Link as LinkIcon, Megaphone, Route, Search, Sparkles, Target } from "lucide-react";
+import { BookOpen, ClipboardList, ExternalLink, GraduationCap, Link as LinkIcon, Megaphone, Route, Search, ShieldCheck, Sparkles, Target } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import { assignmentTemplates, contentLibrary, LibraryItem } from "../data/contentLibrary";
 import { learningFeatures } from "../data/mathCoverageBlueprint";
+import { buildPracticeSpineLite } from "../data/olympyardPracticeSpineLite";
+import { initialOlympyardProgressLite, normalizeOlympyardProgressLite, OLYMPYARD_PROGRESS_STORAGE_KEY, type OlympyardProgressLite } from "../data/olympyardProgressLite";
 import { useProgress } from "../hooks/useProgress";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const kindLabels = ["all", "lesson", "worksheet", "activity", "assignment"] as const;
 const gradeLabels = ["all", "Class 3-5", "Class 7-10", "Class 8-12", "Class 9-12"] as const;
 
 export default function LearningHub() {
   const { getOverallProgress } = useProgress();
+  const [olympyardProgress] = useLocalStorage<OlympyardProgressLite>(OLYMPYARD_PROGRESS_STORAGE_KEY, initialOlympyardProgressLite);
   const [query, setQuery] = useState("");
   const [kind, setKind] = useState<(typeof kindLabels)[number]>("all");
   const [grade, setGrade] = useState<(typeof gradeLabels)[number]>("all");
@@ -46,6 +50,7 @@ export default function LearningHub() {
     }
   }, []);
   const journey = buildJourney(bestScores);
+  const practiceSpine = buildPracticeSpineLite(normalizeOlympyardProgressLite(olympyardProgress));
 
   return (
     <div className="space-y-6">
@@ -82,6 +87,37 @@ export default function LearningHub() {
               <Link to="/quiz" className="action-primary"><Route className="h-4 w-4" />Adaptive quiz</Link>
               <Link to="/syllabus" className="action-secondary">Micro-lessons</Link>
               <Link to="/daily-challenge" className="action-secondary">Daily challenge</Link>
+            </div>
+          </div>
+        </div>
+      </SectionCard>
+
+      <SectionCard title="Olympyard Practice Spine" description="The shared practice engine for lessons, visual labs, weak-area review, and mock tests.">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {practiceSpine.areaReadiness.map((area) => (
+              <Link key={area.id} to={area.practiceRoute} className="rounded-xl border border-slate-200 bg-white/75 p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5">
+                <div className="flex items-start justify-between gap-3">
+                  <h2 className="text-base font-black">{area.title}</h2>
+                  <span className="mini-chip capitalize">{area.state}</span>
+                </div>
+                <p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{area.description}</p>
+                <p className="mt-3 text-xs font-black uppercase text-slate-500">{area.attempted ? `${area.accuracy}% accuracy from local attempts` : "New lane"}</p>
+              </Link>
+            ))}
+          </div>
+          <div className="rounded-xl bg-cyan-50 p-4 dark:bg-cyan-400/10">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-5 w-5 text-cyan-600 dark:text-cyan-200" />
+              <h2 className="font-black">Recommended practice</h2>
+            </div>
+            <p className="mt-3 text-xl font-black">{practiceSpine.primaryTopic?.title ?? "Number Sense"}</p>
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+              After any lesson or lab, send students here for hints, attempts, solution review, and mastery updates.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <Link to={practiceSpine.primaryPracticeRoute} className="action-primary"><Target className="h-4 w-4" />Practice next</Link>
+              <Link to={practiceSpine.adaptiveRoute} className="action-secondary">Adaptive session</Link>
             </div>
           </div>
         </div>

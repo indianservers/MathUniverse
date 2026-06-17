@@ -220,6 +220,7 @@ function SetupPanel(props: {
     <SectionCard title="Mock Test Setup" description="Choose a mode. Timer is optional and can stay off for beginners.">
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
         <SelectField label="Practice mode" icon={Gauge} value={props.mode} onChange={(value) => props.onMode(readMode(value))}>
+          <option value="adaptive">Adaptive Spine</option>
           <option value="mock">Mock Test</option>
           <option value="mixed">Mixed Practice</option>
           <option value="weak">Weak Area Practice</option>
@@ -389,11 +390,12 @@ function Metric({ icon: Icon, label, value }: { icon: typeof Trophy; label: stri
 }
 
 function readMode(value: string | null): OlympyardSessionMode {
-  if (value === "mixed" || value === "weak" || value === "speed" || value === "mock") return value;
+  if (value === "adaptive" || value === "mixed" || value === "weak" || value === "speed" || value === "mock") return value;
   return "mock";
 }
 
 function modeLabel(mode: OlympyardSessionMode) {
+  if (mode === "adaptive") return "Adaptive Spine";
   if (mode === "mixed") return "Mixed Practice";
   if (mode === "weak") return "Weak Area Practice";
   if (mode === "speed") return "Speed Round";

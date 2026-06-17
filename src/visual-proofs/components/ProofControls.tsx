@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Pause, Play, RotateCcw } from "lucide-react";
+import { ChevronLeft, ChevronRight, Eye, GraduationCap, Pause, Play, RotateCcw, Target } from "lucide-react";
 
 type ProofControlsProps = {
   activeStep: number;
@@ -13,6 +13,9 @@ type ProofControlsProps = {
   onNext: () => void;
   onToggleLabels: () => void;
   onToggleFormula: () => void;
+  onReveal?: () => void;
+  onChallengeMode?: () => void;
+  onTeacherMode?: () => void;
   playLabel?: string;
   labelsToggleLabel?: string;
   formulaToggleLabel?: string;
@@ -31,6 +34,9 @@ export default function ProofControls({
   onNext,
   onToggleLabels,
   onToggleFormula,
+  onReveal,
+  onChallengeMode,
+  onTeacherMode,
   playLabel = "Play proof",
   labelsToggleLabel = "Show labels",
   formulaToggleLabel = "Show formula",
@@ -65,6 +71,28 @@ export default function ProofControls({
           <input type="checkbox" checked={formulaVisible} onChange={onToggleFormula} className="h-5 w-5 accent-cyan-500" />
         </label>
       </div>
+      {(onReveal || onChallengeMode || onTeacherMode) && (
+        <div className="mt-3 grid gap-2 sm:grid-cols-3 xl:grid-cols-1">
+          {onReveal ? (
+            <button type="button" className="action-secondary rounded-xl px-3" onClick={onReveal}>
+              <Eye className="h-4 w-4" aria-hidden="true" />
+              Reveal
+            </button>
+          ) : null}
+          {onChallengeMode ? (
+            <button type="button" className="action-secondary rounded-xl px-3" onClick={onChallengeMode}>
+              <Target className="h-4 w-4" aria-hidden="true" />
+              Challenge
+            </button>
+          ) : null}
+          {onTeacherMode ? (
+            <button type="button" className="action-secondary rounded-xl px-3" onClick={onTeacherMode}>
+              <GraduationCap className="h-4 w-4" aria-hidden="true" />
+              Teacher
+            </button>
+          ) : null}
+        </div>
+      )}
     </section>
   );
 }

@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import GeometryProofTemplate from "./GeometryProofTemplate";
-import { geometryProofConfigs } from "./geometryProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { trapezoidAreaPhaseElevenConfig } from "../phase-eleven/phaseElevenProofConfigs";
 
 export default function TrapezoidAreaDuplicationProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <GeometryProofTemplate category={category} proof={proof} config={geometryProofConfigs.TrapezoidAreaDuplicationProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={trapezoidAreaPhaseElevenConfig} />;
 }

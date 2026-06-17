@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CoordinateProofTemplate from "./CoordinateProofTemplate";
-import { coordinateProofConfigs } from "./coordinateProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { sectionFormulaPhaseNineConfig } from "../phase-nine/phaseNineProofConfigs";
 
 export default function SectionFormulaProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CoordinateProofTemplate category={category} proof={proof} config={coordinateProofConfigs.SectionFormulaProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={sectionFormulaPhaseNineConfig} />;
 }

@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import AlgebraProofTemplate from "./AlgebraProofTemplate";
-import { algebraProofConfigs } from "./algebraProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { productOfBinomialsPhaseFourConfig } from "../phase-four/phaseFourProofConfigs";
 
 export default function ProductOfBinomialsProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <AlgebraProofTemplate category={category} proof={proof} config={algebraProofConfigs.ProductOfBinomialsProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={productOfBinomialsPhaseFourConfig} />;
 }

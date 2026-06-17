@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import AlgebraProofTemplate from "./AlgebraProofTemplate";
-import { algebraProofConfigs } from "./algebraProofConfigs";
+import { cubeOfDifferencePhaseTwelveConfig } from "../phase-twelve/phaseTwelveProofConfigs";
 
 export default function CubeOfDifferenceProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <AlgebraProofTemplate category={category} proof={proof} config={algebraProofConfigs.CubeOfDifferenceProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={cubeOfDifferencePhaseTwelveConfig} />;
 }

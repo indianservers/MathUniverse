@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import SequenceSeriesProofTemplate from "./SequenceSeriesProofTemplate";
-import { sequenceSeriesProofConfigs } from "./sequenceSeriesProofConfigs";
+import { pascalTrianglePhaseThirteenConfig } from "../phase-thirteen/phaseThirteenProofConfigs";
 
 export default function PascalTriangleBinomialCoefficientsProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <SequenceSeriesProofTemplate category={category} proof={proof} config={sequenceSeriesProofConfigs.PascalTriangleBinomialCoefficientsProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={pascalTrianglePhaseThirteenConfig} />;
 }

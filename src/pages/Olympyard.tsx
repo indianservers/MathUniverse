@@ -17,6 +17,7 @@ import {
   Play,
   RotateCcw,
   Route,
+  ShieldCheck,
   Shapes,
   Sparkles,
   Target,
@@ -32,8 +33,10 @@ import {
   initialOlympyardProgress,
   normalizeOlympyardProgress,
   OLYMPYARD_PROGRESS_STORAGE_KEY,
+  summarizeOlympyardMastery,
   type OlympyardProgress,
 } from "../data/olympyardProgress";
+import { buildPracticeSpine } from "../data/olympyardPracticeSpine";
 import {
   filterOlympyardTopics,
   olympyardDifficulties,
@@ -76,6 +79,8 @@ export default function Olympyard() {
   const safeProgress = normalizeOlympyardProgress(progress);
   const visibleTopics = filterOlympyardTopics(olympyardTopicsSorted(), grade, difficulty);
   const lastTopic = olympyardTopicById(safeProgress.lastTopicId);
+  const practiceSpine = buildPracticeSpine(safeProgress);
+  const mastery = summarizeOlympyardMastery(safeProgress);
 
   function rememberTopic(topicId: string) {
     setProgress((current) => ({
@@ -105,7 +110,7 @@ export default function Olympyard() {
               <p className="text-sm font-black uppercase text-cyan-700 dark:text-cyan-200">Contest garden</p>
               <h1 className="mt-2 text-3xl font-black text-slate-950 dark:text-white">Choose a track, then build speed with visual reasoning.</h1>
               <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-                Start with visual-first topics, jump into existing labs for now, and keep your Olympyard practice state local to this browser.
+                Olympyard now powers the app-wide practice spine: learn in any lab, return here for adaptive practice, then review weak areas with hints and solution trails.
               </p>
             </div>
             <OlympyardModeToggle mode={mode} onMode={setMode} />
@@ -124,6 +129,8 @@ export default function Olympyard() {
         <ContinuePracticeCard lastTopic={lastTopic} mode={mode} onRemember={rememberTopic} />
         <MockTestEntry mode={mode} progress={safeProgress} onRemember={() => rememberTopic("mixed-mock-test")} />
       </section>
+
+      <PracticeSpinePanel spine={practiceSpine} mastery={mastery} />
 
       <PracticeModeGrid progress={safeProgress} />
 
@@ -275,11 +282,44 @@ function PracticeModeGrid({ progress }: { progress: OlympyardProgress }) {
   const weakCount = getWeakOlympyardTopics(progress).length;
   return (
     <SectionCard title="Practice Modes" description="Choose a session style. Timers are optional and never required.">
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+        <ModeCard to="/olympyard/mock-test?mode=adaptive" icon={ShieldCheck} title="Adaptive Spine" body="Balances weak, new, and building topics from local mastery." />
         <ModeCard to="/olympyard/practice/number-sense" icon={Target} title="Topic Practice" body="Focused practice inside one topic." />
         <ModeCard to="/olympyard/mock-test?mode=mixed" icon={Grid3X3} title="Mixed Practice" body="Interleaved questions from many topics." />
         <ModeCard to="/olympyard/mock-test?mode=weak" icon={RotateCcw} title="Weak Area Practice" body={weakCount ? `${weakCount} weaker topic(s) detected.` : "Starts broad until local data exists."} />
         <ModeCard to="/olympyard/mock-test?mode=speed&timer=1" icon={Gauge} title="Speed Round" body="Optional timer with short contest items." />
+      </div>
+    </SectionCard>
+  );
+}
+
+function PracticeSpinePanel({ spine, mastery }: { spine: ReturnType<typeof buildPracticeSpine>; mastery: ReturnType<typeof summarizeOlympyardMastery> }) {
+  return (
+    <SectionCard title="Adaptive Practice Spine" description="One practice engine connects the full platform: topic labs, visual proofs, quizzes, mock tests, and weak-area review.">
+      <div className="grid gap-4 xl:grid-cols-[320px_minmax(0,1fr)]">
+        <div className="rounded-xl bg-slate-100 p-4 dark:bg-white/10">
+          <p className="text-xs font-black uppercase text-slate-500">Recommended now</p>
+          <h2 className="mt-2 text-xl font-black">{spine.primaryTopic?.title ?? "Number Sense"}</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+            {mastery.hasPracticeSignal ? "Chosen from local mastery, weak areas, and under-sampled topics." : "Start here to seed the adaptive engine with a few answers."}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Link to={spine.primaryPracticeRoute} className="action-primary">Practice next</Link>
+            <Link to={spine.adaptiveRoute} className="action-secondary">Adaptive session</Link>
+          </div>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {spine.areaReadiness.map((area) => (
+            <Link key={area.id} to={area.practiceRoute} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 dark:border-white/10 dark:bg-white/5">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-sm font-black">{area.title}</h3>
+                <span className="mini-chip capitalize">{area.state}</span>
+              </div>
+              <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{area.description}</p>
+              <p className="mt-3 text-xs font-black uppercase text-slate-500">{area.attempted ? `${area.accuracy}% local accuracy` : "No local signal yet"}</p>
+            </Link>
+          ))}
+        </div>
       </div>
     </SectionCard>
   );

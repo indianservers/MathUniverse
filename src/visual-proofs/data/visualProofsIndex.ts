@@ -1,5 +1,5 @@
 import { visualProofCategories } from "./visualProofCategories";
-import type { VisualProof, VisualProofComponentKey, VisualProofDifficulty } from "./proofTypes";
+import type { ProofLearningModel, VisualProof, VisualProofComponentKey, VisualProofDifficulty } from "./proofTypes";
 
 type GeometryProofSeed = {
   id: string;
@@ -1279,72 +1279,299 @@ const sequenceSeriesProofs: SequenceSeriesProofSeed[] = [
   },
 ];
 
-const geometryAvailableProofs: VisualProof[] = geometryProofs.map((proof) => ({
+const phaseUpgradedProofs = new Set<VisualProofComponentKey>([
+  "SumFirstNNaturalNumbersProof",
+  "SumFirstNOddNumbersProof",
+  "ArithmeticProgressionEqualStepsProof",
+  "SumArithmeticProgressionProof",
+  "GeometricProgressionScalingProof",
+  "FiniteGeometricSeriesSumProof",
+  "InfiniteGeometricSeriesConvergenceProof",
+  "TriangularNumbersProof",
+  "SquareNumbersOddLayersProof",
+  "FibonacciSequenceTilingProof",
+  "FibonacciSpiralApproximationProof",
+  "SumOfFibonacciNumbersProof",
+  "PascalTriangleBinomialCoefficientsProof",
+  "VisualInductionDominoGrowthProof",
+  "HarmonicSeriesGrowthIntuitionProof",
+  "TriangleAreaHalfRectangleProof",
+  "ParallelogramAreaShearingProof",
+  "SquareOfSumProof",
+  "PythagoreanAreaRearrangementProof",
+  "TriangleAngleSumProof",
+  "ExteriorAngleTheoremProof",
+  "SimilarTrianglesProof",
+  "CircleCircumferenceUnwrappingProof",
+  "SectorAreaFormulaProof",
+  "TrapezoidAreaDuplicationProof",
+  "PolygonInteriorAngleSumProof",
+  "CircleAreaUnrollingProof",
+  "DifferenceOfSquaresProof",
+  "SquareOfDifferenceProof",
+  "ProductOfBinomialsProof",
+  "DistributiveLawAreaModelProof",
+  "ThreeTermSquareProof",
+  "CompletingTheSquareProof",
+  "QuadraticFactorizationAreaModelProof",
+  "PerfectSquareTrinomialRecognitionProof",
+  "CubeOfSumProof",
+  "CubeOfDifferenceProof",
+  "SumAndDifferenceProductProof",
+  "RightTriangleTrigRatiosProof",
+  "UnitCircleSineCosineProof",
+  "PythagoreanTrigIdentityProof",
+  "TangentRatioIdentityProof",
+  "RadiansArcRadiusProof",
+  "ArcLengthFormulaProof",
+  "TrigGraphsFromUnitCircleProof",
+  "CosineAngleAdditionProof",
+  "SineAngleAdditionProof",
+  "DoubleAngleIdentitiesProof",
+  "SineRuleProof",
+  "CosineRuleProof",
+  "ComplementaryAngleIdentitiesProof",
+  "TriangleAreaSineFormulaProof",
+  "SmallAngleApproximationProof",
+  "DistanceFormulaProof",
+  "MidpointFormulaProof",
+  "SlopeFormulaProof",
+  "SlopeInterceptLineEquationProof",
+  "ParallelLinesSlopeProof",
+  "PerpendicularLinesSlopeProof",
+  "CircleEquationProof",
+  "TranslationOfPointsProof",
+  "SectionFormulaProof",
+  "PointSlopeLineEquationProof",
+  "TriangleAreaCoordinatesProof",
+  "ReflectionAcrossAxesProof",
+  "RotationAboutOriginProof",
+  "ScalingDilationOriginProof",
+  "CoordinateProofPythagoreanProof",
+  "LimitApproachesPointProof",
+  "DerivativeSlopeOfTangentProof",
+  "SecantBecomesTangentProof",
+  "DerivativePowerRuleProof",
+  "ProductRuleVisualProof",
+  "ChainRuleVisualProof",
+  "RiemannSumsAreaUnderCurveProof",
+  "DefiniteIntegralAccumulatedAreaProof",
+]);
+
+function getLearningModel(categorySlug: string, proof: { componentKey: VisualProofComponentKey; tags: string[] }): ProofLearningModel {
+  if (
+    proof.componentKey === "SumFirstNNaturalNumbersProof" ||
+    proof.componentKey === "SumFirstNOddNumbersProof" ||
+    proof.componentKey === "ArithmeticProgressionEqualStepsProof" ||
+    proof.componentKey === "SumArithmeticProgressionProof" ||
+    proof.componentKey === "GeometricProgressionScalingProof" ||
+    proof.componentKey === "FiniteGeometricSeriesSumProof" ||
+    proof.componentKey === "InfiniteGeometricSeriesConvergenceProof" ||
+    proof.componentKey === "TriangularNumbersProof" ||
+    proof.componentKey === "SquareNumbersOddLayersProof" ||
+    proof.componentKey === "FibonacciSequenceTilingProof" ||
+    proof.componentKey === "FibonacciSpiralApproximationProof" ||
+    proof.componentKey === "SumOfFibonacciNumbersProof" ||
+    proof.componentKey === "PascalTriangleBinomialCoefficientsProof" ||
+    proof.componentKey === "VisualInductionDominoGrowthProof" ||
+    proof.componentKey === "HarmonicSeriesGrowthIntuitionProof"
+  ) return "pattern-model";
+  if (proof.componentKey === "ExteriorAngleTheoremProof") return "angle-model";
+  if (proof.componentKey === "SimilarTrianglesProof") return "angle-model";
+  if (proof.componentKey === "SectorAreaFormulaProof") return "measurement-scene";
+  if (proof.componentKey === "TrapezoidAreaDuplicationProof") return "area-rearrangement";
+  if (proof.componentKey === "PolygonInteriorAngleSumProof") return "angle-model";
+  if (proof.componentKey === "CircleAreaUnrollingProof") return "area-rearrangement";
+  if (
+    proof.componentKey === "SquareOfSumProof" ||
+    proof.componentKey === "SquareOfDifferenceProof" ||
+    proof.componentKey === "DifferenceOfSquaresProof" ||
+    proof.componentKey === "ProductOfBinomialsProof" ||
+    proof.componentKey === "DistributiveLawAreaModelProof" ||
+    proof.componentKey === "ThreeTermSquareProof" ||
+    proof.componentKey === "CompletingTheSquareProof" ||
+    proof.componentKey === "QuadraticFactorizationAreaModelProof" ||
+    proof.componentKey === "PerfectSquareTrinomialRecognitionProof" ||
+    proof.componentKey === "CubeOfSumProof" ||
+    proof.componentKey === "CubeOfDifferenceProof" ||
+    proof.componentKey === "SumAndDifferenceProductProof"
+  ) return "tile-model";
+  if (proof.componentKey === "CircleCircumferenceUnwrappingProof") return "measurement-scene";
+  if (proof.componentKey === "TriangleAngleSumProof") return "angle-model";
+  if (proof.componentKey === "PythagoreanAreaRearrangementProof") return "area-rearrangement";
+  if (proof.componentKey === "RadiansArcRadiusProof") return "measurement-scene";
+  if (proof.componentKey === "ArcLengthFormulaProof") return "measurement-scene";
+  if (proof.componentKey === "SmallAngleApproximationProof") return "measurement-scene";
+  if (proof.componentKey === "TrigGraphsFromUnitCircleProof") return "graph-limit";
+  if (
+    proof.componentKey === "LimitApproachesPointProof" ||
+    proof.componentKey === "DerivativeSlopeOfTangentProof" ||
+    proof.componentKey === "SecantBecomesTangentProof" ||
+    proof.componentKey === "DerivativePowerRuleProof" ||
+    proof.componentKey === "ProductRuleVisualProof" ||
+    proof.componentKey === "ChainRuleVisualProof" ||
+    proof.componentKey === "RiemannSumsAreaUnderCurveProof" ||
+    proof.componentKey === "DefiniteIntegralAccumulatedAreaProof"
+  ) return "graph-limit";
+  if (
+    proof.componentKey === "TranslationOfPointsProof" ||
+    proof.componentKey === "ReflectionAcrossAxesProof" ||
+    proof.componentKey === "RotationAboutOriginProof" ||
+    proof.componentKey === "ScalingDilationOriginProof"
+  ) return "transformation-grid";
+  if (
+    proof.componentKey === "DistanceFormulaProof" ||
+    proof.componentKey === "MidpointFormulaProof" ||
+    proof.componentKey === "SectionFormulaProof" ||
+    proof.componentKey === "SlopeFormulaProof" ||
+    proof.componentKey === "SlopeInterceptLineEquationProof" ||
+    proof.componentKey === "PointSlopeLineEquationProof" ||
+    proof.componentKey === "ParallelLinesSlopeProof" ||
+    proof.componentKey === "PerpendicularLinesSlopeProof" ||
+    proof.componentKey === "TriangleAreaCoordinatesProof" ||
+    proof.componentKey === "CircleEquationProof" ||
+    proof.componentKey === "CoordinateProofPythagoreanProof"
+  ) return "coordinate-grid";
+  if (
+    proof.componentKey === "RightTriangleTrigRatiosProof" ||
+    proof.componentKey === "UnitCircleSineCosineProof" ||
+    proof.componentKey === "PythagoreanTrigIdentityProof" ||
+    proof.componentKey === "TangentRatioIdentityProof" ||
+    proof.componentKey === "CosineAngleAdditionProof" ||
+    proof.componentKey === "SineAngleAdditionProof" ||
+    proof.componentKey === "DoubleAngleIdentitiesProof" ||
+    proof.componentKey === "SineRuleProof" ||
+    proof.componentKey === "CosineRuleProof" ||
+    proof.componentKey === "ComplementaryAngleIdentitiesProof" ||
+    proof.componentKey === "TriangleAreaSineFormulaProof"
+  ) return "angle-model";
+  if (proof.tags.includes("area model") || proof.tags.includes("tiles")) return "tile-model";
+  if (proof.tags.some((tag) => tag.includes("angle"))) return "angle-model";
+  if (proof.tags.includes("transformation")) return "transformation-grid";
+  if (proof.tags.includes("limit") || proof.tags.includes("derivative") || proof.tags.includes("integral")) return "graph-limit";
+
+  switch (categorySlug) {
+    case "geometry":
+      return "area-rearrangement";
+    case "algebraic-identities":
+      return "tile-model";
+    case "trigonometry":
+      return "angle-model";
+    case "coordinate-geometry":
+      return "coordinate-grid";
+    case "calculus":
+      return "graph-limit";
+    case "number-theory":
+      return "number-model";
+    case "sequences-and-series":
+      return "pattern-model";
+    case "probability":
+      return "simulation-board";
+    case "statistics":
+      return "data-display";
+    case "vectors":
+      return "vector-field";
+    case "mensuration":
+      return "measurement-scene";
+    case "transformations-symmetry":
+      return "transformation-grid";
+    case "logarithms-exponents":
+      return "growth-scale";
+    case "engineering-mathematics":
+      return "applied-system";
+    default:
+      return "applied-system";
+  }
+}
+
+function withUpgradeMetadata(proof: VisualProof): VisualProof {
+  const phaseUpgraded = phaseUpgradedProofs.has(proof.componentKey);
+  return {
+    ...proof,
+    proofLearningModel: getLearningModel(proof.categorySlug, proof),
+    proofUpgradeStatus: phaseUpgraded ? "phase-upgraded" : "legacy",
+    misconceptionCheckCount: phaseUpgraded ? 1 : 0,
+    hasTeacherMode: phaseUpgraded,
+    hasKeyboardControls: phaseUpgraded,
+    hasStateInspector: phaseUpgraded,
+    hasOlympyardPracticeExit: phaseUpgraded,
+    hasVisualRegressionTest: false,
+    hasFormulaTokens: phaseUpgraded,
+    hasPredictionPrompt: phaseUpgraded,
+    hasSnapshotSupport: phaseUpgraded,
+    expectedVisualKind: phaseUpgraded ? "svg" : undefined,
+    expectedPrimarySelector: phaseUpgraded ? '[data-testid="visual-proof-primary-visual"] svg' : undefined,
+    expectedMinimumVisualElements: phaseUpgraded ? 3 : undefined,
+    expectedInteractiveControls: phaseUpgraded ? ["previous", "next", "reset", "labels", "formula", "reveal", "challenge", "teacher"] : undefined,
+  };
+}
+
+const geometryAvailableProofs: VisualProof[] = geometryProofs.map((proof): VisualProof => ({
   ...proof,
   categorySlug: "geometry",
   level: "School to Engineering Foundation",
   route: `/visual-proofs/geometry/${proof.slug}`,
   status: "available",
   thumbnailKey: proof.componentKey,
-}));
+})).map(withUpgradeMetadata);
 
-const algebraAvailableProofs: VisualProof[] = algebraProofs.map((proof) => ({
+const algebraAvailableProofs: VisualProof[] = algebraProofs.map((proof): VisualProof => ({
   ...proof,
   categorySlug: "algebraic-identities",
   level: "School to Foundation Algebra",
   route: `/visual-proofs/algebraic-identities/${proof.slug}`,
   status: "available",
   thumbnailKey: proof.componentKey,
-}));
+})).map(withUpgradeMetadata);
 
-const trigonometryAvailableProofs: VisualProof[] = trigonometryProofs.map((proof) => ({
+const trigonometryAvailableProofs: VisualProof[] = trigonometryProofs.map((proof): VisualProof => ({
   ...proof,
   categorySlug: "trigonometry",
   level: "High School to Engineering Foundation",
   route: `/visual-proofs/trigonometry/${proof.slug}`,
   status: "available",
   thumbnailKey: proof.componentKey,
-}));
+})).map(withUpgradeMetadata);
 
-const coordinateAvailableProofs: VisualProof[] = coordinateProofs.map((proof) => ({
+const coordinateAvailableProofs: VisualProof[] = coordinateProofs.map((proof): VisualProof => ({
   ...proof,
   categorySlug: "coordinate-geometry",
   level: "High School to Engineering Foundation",
   route: `/visual-proofs/coordinate-geometry/${proof.slug}`,
   status: "available",
   thumbnailKey: proof.componentKey,
-}));
+})).map(withUpgradeMetadata);
 
-const calculusAvailableProofs: VisualProof[] = calculusProofs.map((proof) => ({
+const calculusAvailableProofs: VisualProof[] = calculusProofs.map((proof): VisualProof => ({
   ...proof,
   categorySlug: "calculus",
   level: "High School to Engineering Mathematics",
   route: `/visual-proofs/calculus/${proof.slug}`,
   status: "available",
   thumbnailKey: proof.componentKey,
-}));
+})).map(withUpgradeMetadata);
 
-const numberTheoryAvailableProofs: VisualProof[] = numberTheoryProofs.map((proof) => ({
+const numberTheoryAvailableProofs: VisualProof[] = numberTheoryProofs.map((proof): VisualProof => ({
   ...proof,
   categorySlug: "number-theory",
   level: "Middle School to Olympiad Foundation",
   route: `/visual-proofs/number-theory/${proof.slug}`,
   status: "available",
   thumbnailKey: proof.componentKey,
-}));
+})).map(withUpgradeMetadata);
 
-const sequenceSeriesAvailableProofs: VisualProof[] = sequenceSeriesProofs.map((proof) => ({
+const sequenceSeriesAvailableProofs: VisualProof[] = sequenceSeriesProofs.map((proof): VisualProof => ({
   ...proof,
   categorySlug: "sequences-and-series",
   level: "High School to Engineering Mathematics",
   route: `/visual-proofs/sequences-and-series/${proof.slug}`,
   status: "available",
   thumbnailKey: proof.componentKey,
-}));
+})).map(withUpgradeMetadata);
 
 const comingSoonProofs: VisualProof[] = visualProofCategories
   .filter((category) => !["geometry", "algebraic-identities", "trigonometry", "coordinate-geometry", "calculus", "number-theory", "sequences-and-series"].includes(category.slug))
-  .map((category) => ({
+  .map((category): VisualProof => ({
     id: `${category.slug}-starter-proof`,
     title: `${category.title} Starter Visual Proof`,
     slug: "starter-visual-proof",
@@ -1361,7 +1588,7 @@ const comingSoonProofs: VisualProof[] = visualProofCategories
     route: `/visual-proofs/${category.slug}/starter-visual-proof`,
     status: "coming-soon",
     componentKey: "ComingSoonProof",
-  }));
+  })).map(withUpgradeMetadata);
 
 export const visualProofsIndex: VisualProof[] = [
   ...geometryAvailableProofs,

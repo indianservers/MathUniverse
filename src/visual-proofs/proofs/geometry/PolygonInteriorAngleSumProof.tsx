@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import GeometryProofTemplate from "./GeometryProofTemplate";
-import { geometryProofConfigs } from "./geometryProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { polygonInteriorAnglePhaseElevenConfig } from "../phase-eleven/phaseElevenProofConfigs";
 
 export default function PolygonInteriorAngleSumProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <GeometryProofTemplate category={category} proof={proof} config={geometryProofConfigs.PolygonInteriorAngleSumProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={polygonInteriorAnglePhaseElevenConfig} />;
 }

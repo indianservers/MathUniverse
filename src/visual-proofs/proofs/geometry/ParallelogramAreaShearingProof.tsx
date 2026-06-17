@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import GeometryProofTemplate from "./GeometryProofTemplate";
-import { geometryProofConfigs } from "./geometryProofConfigs";
+import { parallelogramAreaPhaseTwoConfig } from "../phase-two/phaseTwoProofConfigs";
 
 export default function ParallelogramAreaShearingProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <GeometryProofTemplate category={category} proof={proof} config={geometryProofConfigs.ParallelogramAreaShearingProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={parallelogramAreaPhaseTwoConfig} />;
 }

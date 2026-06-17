@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CoordinateProofTemplate from "./CoordinateProofTemplate";
-import { coordinateProofConfigs } from "./coordinateProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { parallelLinesSlopePhaseEightConfig } from "../phase-eight/phaseEightProofConfigs";
 
 export default function ParallelLinesSlopeProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CoordinateProofTemplate category={category} proof={proof} config={coordinateProofConfigs.ParallelLinesSlopeProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={parallelLinesSlopePhaseEightConfig} />;
 }

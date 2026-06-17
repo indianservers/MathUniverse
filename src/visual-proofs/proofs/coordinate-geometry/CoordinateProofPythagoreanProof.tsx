@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CoordinateProofTemplate from "./CoordinateProofTemplate";
-import { coordinateProofConfigs } from "./coordinateProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { coordinatePythagoreanPhaseNineConfig } from "../phase-nine/phaseNineProofConfigs";
 
 export default function CoordinateProofPythagoreanProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CoordinateProofTemplate category={category} proof={proof} config={coordinateProofConfigs.CoordinateProofPythagoreanProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={coordinatePythagoreanPhaseNineConfig} />;
 }

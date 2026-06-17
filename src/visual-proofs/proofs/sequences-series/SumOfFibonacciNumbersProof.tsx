@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import SequenceSeriesProofTemplate from "./SequenceSeriesProofTemplate";
-import { sequenceSeriesProofConfigs } from "./sequenceSeriesProofConfigs";
+import { fibonacciSumPhaseThirteenConfig } from "../phase-thirteen/phaseThirteenProofConfigs";
 
 export default function SumOfFibonacciNumbersProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <SequenceSeriesProofTemplate category={category} proof={proof} config={sequenceSeriesProofConfigs.SumOfFibonacciNumbersProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={fibonacciSumPhaseThirteenConfig} />;
 }

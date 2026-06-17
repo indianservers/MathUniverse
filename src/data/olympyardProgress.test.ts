@@ -3,12 +3,15 @@ import { olympyardQuestions } from "./olympyardQuestions";
 import {
   formatOlympyardTime,
   getWeakOlympyardTopics,
+  getAdaptiveOlympyardTopics,
   initialOlympyardProgress,
   normalizeOlympyardProgress,
   selectOlympyardQuestions,
+  summarizeOlympyardMastery,
   summarizeOlympyardSession,
   updateOlympyardProgress,
 } from "./olympyardProgress";
+import { buildPracticeSpine } from "./olympyardPracticeSpine";
 
 describe("olympyard progress and mock test helpers", () => {
   it("normalizes legacy progress safely", () => {
@@ -57,6 +60,40 @@ describe("olympyard progress and mock test helpers", () => {
     const weak = getWeakOlympyardTopics(progress);
     expect(weak[0].topicId).toBe("geometry-reasoning");
     expect(selectOlympyardQuestions({ mode: "weak", grade: "all", difficulty: "all", questionCount: 10 }, progress).every((question) => question.topicId === "geometry-reasoning")).toBe(true);
+  });
+
+  it("selects adaptive questions from weak, undersampled, and new topic signals", () => {
+    const progress = updateOlympyardProgress(initialOlympyardProgress, [
+      { questionId: "a", topicId: "geometry-reasoning", correct: false },
+      { questionId: "b", topicId: "geometry-reasoning", correct: false },
+      { questionId: "c", topicId: "number-sense", correct: true },
+      { questionId: "d", topicId: "number-sense", correct: true },
+      { questionId: "e", topicId: "number-sense", correct: true },
+    ]);
+
+    const adaptiveTopics = getAdaptiveOlympyardTopics(progress, 3);
+    const adaptiveQuestions = selectOlympyardQuestions({ mode: "adaptive", grade: "all", difficulty: "all", questionCount: 10 }, progress);
+
+    expect(adaptiveTopics[0].topicId).toBe("geometry-reasoning");
+    expect(adaptiveQuestions.length).toBeGreaterThan(0);
+    expect(adaptiveQuestions.some((question) => question.topicId === "geometry-reasoning")).toBe(true);
+  });
+
+  it("builds the app-wide practice spine from Olympyard progress", () => {
+    const progress = updateOlympyardProgress(initialOlympyardProgress, [
+      { questionId: "a", topicId: "algebraic-thinking", correct: false },
+      { questionId: "b", topicId: "algebraic-thinking", correct: true },
+      { questionId: "c", topicId: "geometry-reasoning", correct: true },
+      { questionId: "d", topicId: "geometry-reasoning", correct: true },
+      { questionId: "e", topicId: "geometry-reasoning", correct: true },
+    ]);
+    const mastery = summarizeOlympyardMastery(progress);
+    const spine = buildPracticeSpine(progress);
+
+    expect(mastery.accuracy).toBe(80);
+    expect(spine.primaryPracticeRoute).toContain("/olympyard/practice/");
+    expect(spine.adaptiveRoute).toBe("/olympyard/mock-test?mode=adaptive");
+    expect(spine.areaReadiness.some((area) => area.id === "algebra" && area.state === "review")).toBe(true);
   });
 
   it("summarizes sessions with topic breakdown and incorrect questions", () => {

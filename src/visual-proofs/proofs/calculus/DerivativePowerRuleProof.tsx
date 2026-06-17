@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CalculusProofTemplate from "./CalculusProofTemplate";
-import { calculusProofConfigs } from "./calculusProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { derivativePowerRulePhaseFourteenConfig } from "../phase-fourteen/phaseFourteenProofConfigs";
 
 export default function DerivativePowerRuleProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CalculusProofTemplate category={category} proof={proof} config={calculusProofConfigs.DerivativePowerRuleProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={derivativePowerRulePhaseFourteenConfig} />;
 }

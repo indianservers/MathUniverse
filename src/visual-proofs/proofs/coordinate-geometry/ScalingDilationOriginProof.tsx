@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import CoordinateProofTemplate from "./CoordinateProofTemplate";
-import { coordinateProofConfigs } from "./coordinateProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { scalingDilationOriginPhaseNineConfig } from "../phase-nine/phaseNineProofConfigs";
 
 export default function ScalingDilationOriginProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <CoordinateProofTemplate category={category} proof={proof} config={coordinateProofConfigs.ScalingDilationOriginProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={scalingDilationOriginPhaseNineConfig} />;
 }

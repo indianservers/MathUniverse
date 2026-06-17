@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import TrigProofTemplate from "./TrigProofTemplate";
-import { trigProofConfigs } from "./trigProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { trigGraphsFromUnitCirclePhaseFiveConfig } from "../phase-five/phaseFiveProofConfigs";
 
 export default function TrigGraphsFromUnitCircleProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <TrigProofTemplate category={category} proof={proof} config={trigProofConfigs.TrigGraphsFromUnitCircleProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={trigGraphsFromUnitCirclePhaseFiveConfig} />;
 }

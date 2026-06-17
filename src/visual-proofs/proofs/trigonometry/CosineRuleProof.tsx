@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import TrigProofTemplate from "./TrigProofTemplate";
-import { trigProofConfigs } from "./trigProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { cosineRulePhaseSixConfig } from "../phase-six/phaseSixProofConfigs";
 
 export default function CosineRuleProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <TrigProofTemplate category={category} proof={proof} config={trigProofConfigs.CosineRuleProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={cosineRulePhaseSixConfig} />;
 }

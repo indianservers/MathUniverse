@@ -1,6 +1,27 @@
+import type { ReactNode } from "react";
+
 export type VisualProofStatus = "available" | "coming-soon";
 
 export type VisualProofDifficulty = "Beginner" | "Intermediate" | "Advanced";
+
+export type ProofLearningModel =
+  | "area-rearrangement"
+  | "tile-model"
+  | "angle-model"
+  | "coordinate-grid"
+  | "graph-limit"
+  | "number-model"
+  | "pattern-model"
+  | "simulation-board"
+  | "data-display"
+  | "vector-field"
+  | "measurement-scene"
+  | "transformation-grid"
+  | "growth-scale"
+  | "applied-system";
+
+export type ProofUpgradeStatus = "legacy" | "shell-ready" | "phase-upgraded" | "premium";
+export type VisualProofExpectedVisualKind = "svg" | "canvas" | "html";
 
 export type VisualProofCategory = {
   title: string;
@@ -128,6 +149,21 @@ export type VisualProof = {
   status: VisualProofStatus;
   componentKey: VisualProofComponentKey;
   thumbnailKey?: VisualProofComponentKey;
+  proofLearningModel?: ProofLearningModel;
+  proofUpgradeStatus?: ProofUpgradeStatus;
+  misconceptionCheckCount?: number;
+  hasTeacherMode?: boolean;
+  hasKeyboardControls?: boolean;
+  hasStateInspector?: boolean;
+  hasOlympyardPracticeExit?: boolean;
+  hasVisualRegressionTest?: boolean;
+  hasFormulaTokens?: boolean;
+  hasPredictionPrompt?: boolean;
+  hasSnapshotSupport?: boolean;
+  expectedVisualKind?: VisualProofExpectedVisualKind;
+  expectedPrimarySelector?: string;
+  expectedMinimumVisualElements?: number;
+  expectedInteractiveControls?: string[];
 };
 
 export type ProofStep = {
@@ -135,4 +171,67 @@ export type ProofStep = {
   title: string;
   description: string;
   focusLabel: string;
+  state?: "completed" | "current" | "locked";
+  formula?: string;
+  insight?: string;
+  challengePrompt?: string;
+};
+
+export type ProofParameter = {
+  id: string;
+  label: string;
+  value: number | string | boolean;
+  unit?: string;
+  exactValue?: string;
+  roundedValue?: string;
+};
+
+export type ProofLiveValue = {
+  id: string;
+  label: string;
+  value: number | string;
+  exactValue?: string;
+  roundedValue?: string;
+  unit?: string;
+  warning?: string;
+};
+
+export type ProofInvariant = {
+  id: string;
+  label: string;
+  holds: boolean;
+  explanation: string;
+};
+
+export type ProofMisconceptionCheck = {
+  id: string;
+  prompt: string;
+  correctAnswer: string;
+  targetedFeedback: string;
+  stepId?: string;
+};
+
+export type ProofSnapshotState = {
+  route: string;
+  activeStep: number;
+  parameters: ProofParameter[];
+  liveValues: ProofLiveValue[];
+  invariants: ProofInvariant[];
+  capturedAt?: string;
+};
+
+export type VisualProofShellProps = {
+  title: string;
+  difficulty: VisualProofDifficulty;
+  category: string;
+  route: string;
+  steps: ProofStep[];
+  activeStep: number;
+  onStepChange?: (stepIndex: number) => void;
+  canvasContent: ReactNode;
+  formulaPanel: ReactNode;
+  controlsContent?: ReactNode;
+  stateInspector?: ReactNode;
+  summary?: string;
+  practiceExit?: ReactNode;
 };

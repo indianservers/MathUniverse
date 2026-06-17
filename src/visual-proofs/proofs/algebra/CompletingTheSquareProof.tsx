@@ -1,7 +1,7 @@
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import AlgebraProofTemplate from "./AlgebraProofTemplate";
-import { algebraProofConfigs } from "./algebraProofConfigs";
+import { completingSquarePhaseTwelveConfig } from "../phase-twelve/phaseTwelveProofConfigs";
 
 export default function CompletingTheSquareProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <AlgebraProofTemplate category={category} proof={proof} config={algebraProofConfigs.CompletingTheSquareProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={completingSquarePhaseTwelveConfig} />;
 }
