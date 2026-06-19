@@ -71,6 +71,7 @@ const Syllabus = lazy(() => import("./pages/Syllabus"));
 const SyllabusVisualPage = lazy(() => import("./pages/SyllabusVisualPage"));
 const Trigonometry = lazy(() => import("./pages/Trigonometry"));
 const TrigonometryConceptPage = lazy(() => import("./pages/TrigonometryConceptPage"));
+const TrigFormulaVisualizerPage = lazy(() => import("./trigonometry/pages/TrigFormulaVisualizerPage"));
 const TruthTableGenerator = lazy(() => import("./pages/TruthTableGenerator"));
 const UnitConverter = lazy(() => import("./pages/UnitConverter"));
 const VisualShowcase = lazy(() => import("./pages/VisualShowcase"));
@@ -155,6 +156,7 @@ export default function App() {
             <Route path="workspace/data/objects" element={<WorkspaceData page="objects" />} />
             <Route path="workspace/teach" element={<WorkspaceTeach />} />
             <Route path="formulas" element={<Formulas />} />
+            <Route path="formulas/:categorySlug" element={<Formulas />} />
             <Route path="visual-showcase" element={<VisualShowcase />} />
             <Route path="visual-proofs" element={<VisualProofsHomePage />} />
             <Route path="visual-proofs/:categorySlug" element={<VisualProofCategoryPage />} />
@@ -164,6 +166,7 @@ export default function App() {
             <Route path="shapes" element={<ShapesExplorer />} />
             <Route path="number-systems" element={<NumberSystems />} />
             <Route path="trigonometry" element={<Trigonometry />} />
+            <Route path="trigonometry/formula-visualizer" element={<TrigFormulaVisualizerPage />} />
             <Route path="trigonometry/:conceptId" element={<TrigonometryConceptPage />} />
             <Route path="calculus" element={<Calculus />} />
             <Route path="combinatorics" element={<Combinatorics />} />

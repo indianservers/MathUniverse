@@ -78,6 +78,42 @@ const customMeanings: Record<string, { meaning: string; example: string }> = {
     meaning: "A vector has size and direction, often drawn as an arrow.",
     example: "A wind velocity vector tells both speed and direction.",
   },
+  mean: {
+    meaning: "Mean is the arithmetic average: add all values and divide by the number of values.",
+    example: "For 2, 4, and 9, the mean is (2 + 4 + 9) / 3 = 5.",
+  },
+  median: {
+    meaning: "Median is the middle value after the data is arranged in order.",
+    example: "For 2, 4, 9, the median is 4.",
+  },
+  mode: {
+    meaning: "Mode is the value that appears most often in a data set.",
+    example: "For 2, 3, 3, 5, the mode is 3.",
+  },
+  range: {
+    meaning: "Range is the spread from the smallest value to the largest value.",
+    example: "For 2, 4, 9, the range is 9 - 2 = 7.",
+  },
+  "standard deviation": {
+    meaning: "Standard deviation measures how far values typically sit from the mean.",
+    example: "A small standard deviation means the data points cluster close to the mean.",
+  },
+  variance: {
+    meaning: "Variance is the average squared distance from the mean.",
+    example: "Variance is large when data points are widely spread out.",
+  },
+  "positive correlation": {
+    meaning: "Positive correlation means two variables tend to increase together.",
+    example: "If study time rises and test score usually rises too, the scatter plot has an upward trend.",
+  },
+  "negative correlation": {
+    meaning: "Negative correlation means one variable tends to decrease when the other increases.",
+    example: "If speed rises and travel time falls for the same distance, the scatter plot has a downward trend.",
+  },
+  "regression line": {
+    meaning: "A regression line is the best-fit straight line summarizing a scatter plot trend.",
+    example: "It predicts y from x by passing through the middle direction of the data cloud.",
+  },
   "venn diagram": {
     meaning: "A Venn diagram uses overlapping circles to show how sets share or exclude elements.",
     example: "The overlap of set A and set B shows A intersection B.",
@@ -131,21 +167,26 @@ const dictionaryRanges: Array<{ id: DictionaryRange; label: string; from: string
   { id: "U-Z", label: "U-Z", from: "U", to: "Z" },
 ];
 
+const initialVisibleTerms = 48;
+const loadMoreTerms = 48;
+
 export default function MathVisualDictionary() {
   const [query, setQuery] = useState("");
-  const [activeRange, setActiveRange] = useState<DictionaryRange>("A-K");
+  const [activeRange, setActiveRange] = useState<DictionaryRange | "All">("A-K");
   const [activeLetter, setActiveLetter] = useState("All");
   const [activeCategory, setActiveCategory] = useState<VisualDictionaryCategory | "All">("All");
   const [activeKind, setActiveKind] = useState<VisualDictionaryKind | "All">("All");
-  const [expandedTerm, setExpandedTerm] = useState("Arc");
+  const [expandedTerm, setExpandedTerm] = useState("");
+  const [hasOpenedDictionary, setHasOpenedDictionary] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(initialVisibleTerms);
 
   const filteredTerms = useMemo(() => {
     const normalized = query.trim().toLowerCase();
-    const range = dictionaryRanges.find((item) => item.id === activeRange) ?? dictionaryRanges[0];
+    const range = activeRange === "All" ? undefined : dictionaryRanges.find((item) => item.id === activeRange) ?? dictionaryRanges[0];
     return visualDictionaryTerms.filter((entry) => {
       const firstLetter = entry.term[0].toUpperCase();
       const matchesQuery = !normalized || [entry.term, entry.category, entry.kind, ...entry.keywords].join(" ").toLowerCase().includes(normalized);
-      const matchesRange = !!normalized || (firstLetter >= range.from && firstLetter <= range.to);
+      const matchesRange = activeRange === "All" || !!normalized || !range || (firstLetter >= range.from && firstLetter <= range.to);
       const matchesLetter = activeLetter === "All" || entry.term.toUpperCase().startsWith(activeLetter);
       const matchesCategory = activeCategory === "All" || entry.category === activeCategory;
       const matchesKind = activeKind === "All" || entry.kind === activeKind;
@@ -153,21 +194,32 @@ export default function MathVisualDictionary() {
     });
   }, [activeCategory, activeKind, activeLetter, activeRange, query]);
 
+  const visibleTerms = useMemo(() => filteredTerms.slice(0, visibleCount), [filteredTerms, visibleCount]);
+
   const grouped = useMemo(() => {
-    return filteredTerms.reduce<Record<string, VisualDictionaryTerm[]>>((groups, term) => {
+    return visibleTerms.reduce<Record<string, VisualDictionaryTerm[]>>((groups, term) => {
       const letter = term.term[0].toUpperCase();
       groups[letter] = [...(groups[letter] ?? []), term];
       return groups;
     }, {});
-  }, [filteredTerms]);
+  }, [visibleTerms]);
 
   const letterCounts = useMemo(() => countBy(visualDictionaryTerms, (term) => term.term[0].toUpperCase()), []);
+  const categoryCounts = useMemo(() => countBy(visualDictionaryTerms, (term) => term.category), []);
   const kindCounts = useMemo(() => countBy(visualDictionaryTerms, (term) => term.kind), []);
   const visualKinds = useMemo(() => Array.from(new Set(visualDictionaryTerms.map((term) => term.kind))).sort(), []);
   const rangeCounts = useMemo(() => Object.fromEntries(dictionaryRanges.map((range) => [range.id, visualDictionaryTerms.filter((entry) => {
     const firstLetter = entry.term[0].toUpperCase();
     return firstLetter >= range.from && firstLetter <= range.to;
   }).length])) as Record<DictionaryRange, number>, []);
+  const shownCount = Math.min(visibleCount, filteredTerms.length);
+  const progressPercent = filteredTerms.length ? Math.round((shownCount / filteredTerms.length) * 100) : 0;
+
+  function openDictionary(nextVisibleCount = initialVisibleTerms) {
+    setHasOpenedDictionary(true);
+    setVisibleCount(nextVisibleCount);
+    setExpandedTerm("");
+  }
 
   function focusTerm(term: string) {
     setQuery(term);
@@ -175,7 +227,23 @@ export default function MathVisualDictionary() {
     setActiveLetter("All");
     setActiveCategory("All");
     setActiveKind("All");
+    setHasOpenedDictionary(true);
+    setVisibleCount(initialVisibleTerms);
     setExpandedTerm(term);
+  }
+
+  function chooseCategory(category: VisualDictionaryCategory | "All") {
+    setQuery("");
+    setActiveCategory(category);
+    setActiveKind("All");
+    setActiveLetter("All");
+    setActiveRange(category === "All" ? "A-K" : "All");
+    openDictionary();
+  }
+
+  function chooseKind(kind: VisualDictionaryKind | "All") {
+    setActiveKind(kind);
+    openDictionary();
   }
 
   function clearFilters() {
@@ -185,6 +253,8 @@ export default function MathVisualDictionary() {
     setActiveCategory("All");
     setActiveKind("All");
     setExpandedTerm("");
+    setHasOpenedDictionary(false);
+    setVisibleCount(initialVisibleTerms);
   }
 
   return (
@@ -215,14 +285,40 @@ export default function MathVisualDictionary() {
         </div>
       </section>
 
-      <SectionCard title="Start With a Visual Word" description="Tap one of these high-value terms to see its diagram and explanation immediately." compact>
-        <div className="flex gap-2 overflow-x-auto pb-1 thin-scrollbar">
+      <SectionCard title="Choose a Category" description="Start here. Terms are shown only after you pick a category, visual type, letter range, or search word." compact>
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          <button
+            type="button"
+            onClick={() => chooseCategory("All")}
+            className={`rounded-xl border p-4 text-left transition hover:-translate-y-0.5 hover:border-cyan-300 ${activeCategory === "All" && hasOpenedDictionary ? "border-cyan-300 bg-cyan-50 shadow-lg shadow-cyan-950/10 dark:bg-cyan-300/10" : "border-slate-200 bg-white dark:border-white/10 dark:bg-white/5"}`}
+          >
+            <span className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">Fast start</span>
+            <span className="mt-1 block text-2xl font-black text-slate-950 dark:text-white">Browse A-K</span>
+            <span className="mt-1 block text-sm font-bold text-slate-500 dark:text-slate-300">{rangeCounts["A-K"]} terms in first batch range</span>
+          </button>
+          {visualDictionaryCategories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => chooseCategory(category)}
+              className={`rounded-xl border p-4 text-left transition hover:-translate-y-0.5 hover:border-cyan-300 ${activeCategory === category ? "border-cyan-300 bg-cyan-50 shadow-lg shadow-cyan-950/10 dark:bg-cyan-300/10" : "border-slate-200 bg-white dark:border-white/10 dark:bg-white/5"}`}
+            >
+              <span className={`mb-3 block h-2 w-16 rounded-full bg-gradient-to-r ${categoryStyles[category]}`} />
+              <span className="block text-lg font-black text-slate-950 dark:text-white">{category}</span>
+              <span className="mt-1 block text-sm font-bold text-slate-500 dark:text-slate-300">{categoryCounts[category] ?? 0} terms</span>
+            </button>
+          ))}
+        </div>
+      </SectionCard>
+
+      <SectionCard title="Quick Visual Words" description="Tap a word to open one exact definition with its visual." compact>
+        <div className="flex flex-wrap gap-2">
           {visualFocusTerms.map((term) => (
             <button
               key={term}
               type="button"
               onClick={() => focusTerm(term)}
-              className="shrink-0 rounded-full border border-cyan-200 bg-cyan-50 px-3 py-2 text-sm font-black text-cyan-800 transition hover:-translate-y-0.5 hover:border-cyan-400 hover:bg-cyan-100 dark:border-cyan-400/20 dark:bg-cyan-400/10 dark:text-cyan-100"
+              className="rounded-full border border-cyan-200 bg-cyan-50 px-3 py-2 text-sm font-black text-cyan-800 transition hover:-translate-y-0.5 hover:border-cyan-400 hover:bg-cyan-100 dark:border-cyan-400/20 dark:bg-cyan-400/10 dark:text-cyan-100"
             >
               {term}
             </button>
@@ -230,20 +326,25 @@ export default function MathVisualDictionary() {
         </div>
       </SectionCard>
 
-      <SectionCard title="Search Dictionary" description="Search any word, then click a list row to expand its explanation and visual." compact>
+      <SectionCard title="Filters" description="Use one filter at a time or combine them. The result list opens only after a filter is selected." compact>
         <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_260px]">
           <label className="relative block">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-cyan-600" />
             <input
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setHasOpenedDictionary(!!event.target.value.trim());
+                setVisibleCount(initialVisibleTerms);
+                setExpandedTerm("");
+              }}
               placeholder="Search arc, tangent, tan, sec, vector, mean..."
               className="w-full rounded-xl border border-slate-200 bg-white px-10 py-3 text-sm font-semibold text-slate-900 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100 dark:border-white/10 dark:bg-slate-950 dark:text-white dark:focus:ring-cyan-400/10"
             />
           </label>
           <label className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-black dark:border-white/10 dark:bg-slate-950">
             <Filter className="h-4 w-4 text-cyan-600" />
-            <select value={activeCategory} onChange={(event) => setActiveCategory(event.target.value as VisualDictionaryCategory | "All")} className="w-full bg-transparent outline-none">
+            <select value={activeCategory} onChange={(event) => chooseCategory(event.target.value as VisualDictionaryCategory | "All")} className="w-full bg-transparent outline-none">
               <option value="All">All categories</option>
               {visualDictionaryCategories.map((category) => <option key={category} value={category}>{category}</option>)}
             </select>
@@ -257,6 +358,7 @@ export default function MathVisualDictionary() {
               onClick={() => {
                 setActiveRange(range.id);
                 setActiveLetter("All");
+                openDictionary();
               }}
               className={`rounded-xl border px-4 py-3 text-left transition ${activeRange === range.id && !query.trim() ? "border-cyan-300 bg-cyan-300 text-slate-950" : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"}`}
             >
@@ -265,12 +367,15 @@ export default function MathVisualDictionary() {
             </button>
           ))}
         </div>
-        <div className="mt-3 flex gap-2 overflow-x-auto pb-1 thin-scrollbar">
+        <div className="mt-3 flex flex-wrap gap-2">
           {["All", ...visualDictionaryLetters].map((letter) => (
             <button
               key={letter}
               type="button"
-              onClick={() => setActiveLetter(letter)}
+              onClick={() => {
+                setActiveLetter(letter);
+                openDictionary();
+              }}
               className={`min-w-10 rounded-full border px-3 py-2 text-sm font-black transition ${activeLetter === letter ? "border-cyan-300 bg-cyan-300 text-slate-950" : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"}`}
             >
               {letter}
@@ -278,13 +383,13 @@ export default function MathVisualDictionary() {
             </button>
           ))}
         </div>
-        <div className="mt-3 flex gap-2 overflow-x-auto pb-1 thin-scrollbar">
+        <div className="mt-3 flex flex-wrap gap-2">
           {(["All", ...visualKinds] as Array<VisualDictionaryKind | "All">).map((kind) => (
             <button
               key={kind}
               type="button"
-              onClick={() => setActiveKind(kind)}
-              className={`shrink-0 rounded-xl border px-3 py-2 text-sm font-black transition ${activeKind === kind ? "border-slate-950 bg-slate-950 text-white dark:border-cyan-300 dark:bg-cyan-300 dark:text-slate-950" : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"}`}
+              onClick={() => chooseKind(kind)}
+              className={`rounded-xl border px-3 py-2 text-sm font-black transition ${activeKind === kind ? "border-slate-950 bg-slate-950 text-white dark:border-cyan-300 dark:bg-cyan-300 dark:text-slate-950" : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"}`}
             >
               {kind === "All" ? "All visuals" : visualKindLabels[kind]}
               {kind !== "All" && <span className="ml-1 text-[10px] opacity-70">{kindCounts[kind] ?? 0}</span>}
@@ -293,41 +398,67 @@ export default function MathVisualDictionary() {
         </div>
       </SectionCard>
 
-      <main className="space-y-3">
-        <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/80 px-4 py-3 dark:border-white/10 dark:bg-white/5">
-          <p className="text-sm font-black text-slate-700 dark:text-slate-200">{filteredTerms.length} terms shown</p>
-          <div className="flex flex-wrap gap-2">
-            {activeCategory !== "All" && <span className="mini-chip">{activeCategory}</span>}
-            {activeKind !== "All" && <span className="mini-chip">{visualKindLabels[activeKind]}</span>}
-            {(query || activeLetter !== "All" || activeCategory !== "All" || activeKind !== "All" || activeRange !== "A-K") && (
-              <button type="button" onClick={clearFilters} className="rounded-full border border-slate-200 px-3 py-1 text-xs font-black text-slate-700 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:text-slate-200 dark:hover:bg-cyan-400/10">
-                Clear filters
-              </button>
-            )}
-          </div>
+      {!hasOpenedDictionary ? (
+        <div className="rounded-xl border border-dashed border-cyan-300 bg-cyan-50/70 p-8 text-center dark:border-cyan-300/30 dark:bg-cyan-300/10">
+          <Eye className="mx-auto h-8 w-8 text-cyan-700 dark:text-cyan-200" />
+          <h2 className="mt-3 text-xl font-black text-slate-950 dark:text-white">Pick a category to begin.</h2>
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
+            The dictionary is not rendering all terms at once. Choose a category, visual type, letter range, or quick word to open a focused batch.
+          </p>
         </div>
-        {Object.keys(grouped).sort().map((letter) => (
-          <SectionCard key={letter} id={`letter-${letter}`} title={letter} description={`${grouped[letter].length} entries`} compact>
-            <div className="divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200 bg-white dark:divide-white/10 dark:border-white/10 dark:bg-slate-950/50">
-              {grouped[letter].map((entry) => (
-                <DictionaryListItem
-                  key={entry.term}
-                  entry={entry}
-                  isExpanded={expandedTerm === entry.term}
-                  onToggle={() => setExpandedTerm((current) => current === entry.term ? "" : entry.term)}
-                />
-              ))}
+      ) : (
+        <main className="space-y-3">
+          <div className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3 dark:border-white/10 dark:bg-white/5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-sm font-black text-slate-700 dark:text-slate-200">
+                Showing {shownCount} of {filteredTerms.length} matching terms
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {activeCategory !== "All" && <span className="mini-chip">{activeCategory}</span>}
+                {activeKind !== "All" && <span className="mini-chip">{visualKindLabels[activeKind]}</span>}
+                {activeLetter !== "All" && <span className="mini-chip">Letter {activeLetter}</span>}
+                {!query.trim() && activeLetter === "All" && <span className="mini-chip">{activeRange}</span>}
+                <button type="button" onClick={clearFilters} className="rounded-full border border-slate-200 px-3 py-1 text-xs font-black text-slate-700 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:text-slate-200 dark:hover:bg-cyan-400/10">
+                  Back to categories
+                </button>
+              </div>
             </div>
-          </SectionCard>
-        ))}
-        {!filteredTerms.length && (
-          <div className="rounded-xl border border-dashed border-slate-300 bg-white/70 p-8 text-center dark:border-white/15 dark:bg-white/5">
-            <Eye className="mx-auto h-8 w-8 text-cyan-600" />
-            <h2 className="mt-3 text-lg font-black">No dictionary term matched.</h2>
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Try another word, symbol, category, or clear the filters.</p>
+            <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800" aria-label={`${progressPercent}% of matching terms shown`}>
+              <div className="h-full rounded-full bg-cyan-500 transition-all" style={{ width: `${progressPercent}%` }} />
+            </div>
           </div>
-        )}
-      </main>
+          {Object.keys(grouped).sort().map((letter) => (
+            <SectionCard key={letter} id={`letter-${letter}`} title={letter} description={`${grouped[letter].length} entries loaded`} compact>
+              <div className="divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200 bg-white dark:divide-white/10 dark:border-white/10 dark:bg-slate-950/50">
+                {grouped[letter].map((entry) => (
+                  <DictionaryListItem
+                    key={entry.term}
+                    entry={entry}
+                    isExpanded={expandedTerm === entry.term}
+                    onToggle={() => setExpandedTerm((current) => current === entry.term ? "" : entry.term)}
+                  />
+                ))}
+              </div>
+            </SectionCard>
+          ))}
+          {shownCount < filteredTerms.length && (
+            <button
+              type="button"
+              onClick={() => setVisibleCount((current) => current + loadMoreTerms)}
+              className="w-full rounded-xl border border-cyan-300 bg-cyan-50 px-4 py-3 text-sm font-black text-cyan-900 transition hover:-translate-y-0.5 hover:bg-cyan-100 dark:bg-cyan-300/10 dark:text-cyan-100"
+            >
+              Load next {Math.min(loadMoreTerms, filteredTerms.length - shownCount)} terms
+            </button>
+          )}
+          {!filteredTerms.length && (
+            <div className="rounded-xl border border-dashed border-slate-300 bg-white/70 p-8 text-center dark:border-white/15 dark:bg-white/5">
+              <Eye className="mx-auto h-8 w-8 text-cyan-600" />
+              <h2 className="mt-3 text-lg font-black">No dictionary term matched.</h2>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Try another word, symbol, category, or clear the filters.</p>
+            </div>
+          )}
+        </main>
+      )}
     </div>
   );
 }
@@ -335,8 +466,8 @@ export default function MathVisualDictionary() {
 function DictionaryListItem({ entry, isExpanded, onToggle }: { entry: VisualDictionaryTerm; isExpanded: boolean; onToggle: () => void }) {
   const tone = categoryStyles[entry.category];
   const lower = entry.term.toLowerCase();
-  const meaning = customMeanings[lower]?.meaning ?? defaultMeaning(entry);
-  const example = customMeanings[lower]?.example ?? defaultExample(entry);
+  const meaning = entry.explanation ?? customMeanings[lower]?.meaning ?? defaultMeaning(entry);
+  const example = entry.representation ?? customMeanings[lower]?.example ?? defaultExample(entry);
   return (
     <article className={`bg-white/80 dark:bg-white/[0.03] ${isExpanded ? "ring-2 ring-inset ring-cyan-200 dark:ring-cyan-300/20" : ""}`}>
       <button type="button" onClick={onToggle} className="flex w-full items-center gap-3 px-3 py-2.5 text-left transition hover:bg-cyan-50 dark:hover:bg-cyan-300/10" aria-expanded={isExpanded}>
@@ -353,9 +484,10 @@ function DictionaryListItem({ entry, isExpanded, onToggle }: { entry: VisualDict
       {isExpanded && (
         <div className="grid gap-3 px-3 pb-4 pl-6 md:grid-cols-[minmax(0,1fr)_300px]">
           <div className="min-w-0">
+            {entry.description ? <p className="mb-2 text-sm font-black text-slate-950 dark:text-white">{entry.description}</p> : null}
             <p className="text-sm leading-6 text-slate-700 dark:text-slate-200">{meaning}</p>
             <div className="mt-3 rounded-xl bg-slate-100 p-3 text-xs font-semibold leading-5 text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">
-              <span className="font-black text-slate-900 dark:text-white">Example: </span>{example}
+              <span className="font-black text-slate-900 dark:text-white">{entry.representation ? "Visual representation: " : "Example: "}</span>{example}
             </div>
             <div className="mt-3 flex flex-wrap gap-2">
               {entry.keywords.slice(0, 8).map((keyword) => <span key={keyword} className="mini-chip">{keyword}</span>)}
@@ -466,6 +598,109 @@ function renderVisual(kind: VisualDictionaryKind, term: string, fill: string, ar
       </g>
     );
   }
+  if (
+    lower.includes("correlation") ||
+    lower === "covariance" ||
+    lower === "bivariate data" ||
+    lower === "least squares" ||
+    lower === "regression line" ||
+    lower === "residual" ||
+    lower === "principal component"
+  ) {
+    const negative = lower.includes("negative");
+    const points = [
+      [74, negative ? 62 : 126],
+      [104, negative ? 72 : 108],
+      [136, negative ? 84 : 98],
+      [170, negative ? 92 : 78],
+      [206, negative ? 112 : 68],
+      [242, negative ? 122 : 50],
+      [276, negative ? 136 : 42],
+    ];
+    return (
+      <g fill="none" strokeLinecap="round">
+        <line x1="54" y1="140" x2="316" y2="140" stroke="#64748b" strokeWidth="4" />
+        <line x1="66" y1="28" x2="66" y2="150" stroke="#64748b" strokeWidth="4" />
+        {points.map(([x, y], index) => <circle key={`${x}-${y}`} cx={x} cy={y} r="7" fill={index === 4 ? "#fbbf24" : "#22d3ee"} stroke="none" />)}
+        <line x1="72" y1={negative ? 58 : 126} x2="288" y2={negative ? 134 : 44} stroke={fill} strokeWidth="5" />
+        {lower === "residual" || lower === "least squares" ? points.slice(1, 6).map(([x, y]) => <line key={`res-${x}`} x1={x} y1={y} x2={x} y2={negative ? x * 0.35 + 32 : 152 - x * 0.34} stroke="#fbbf24" strokeWidth="3" strokeDasharray="5 4" />) : null}
+        <text x="186" y="120" fill="#f8fafc" fontSize="15" fontWeight="900">{negative ? "downward trend" : "upward trend"}</text>
+      </g>
+    );
+  }
+  if (
+    lower.includes("distribution") ||
+    lower.includes("probability mass") ||
+    lower.includes("frequency") ||
+    lower === "chi-square statistic" ||
+    lower === "hypothesis test" ||
+    lower === "critical value" ||
+    lower === "rejection region" ||
+    lower === "quantile" ||
+    lower === "entropy" ||
+    lower === "poisson distribution" ||
+    lower === "geometric distribution" ||
+    lower === "negative binomial distribution" ||
+    lower === "discrete random variable"
+  ) {
+    const curveTerms = ["critical value", "hypothesis test", "rejection region", "quantile", "beta distribution", "normal distribution", "distribution function", "kernel density estimate"];
+    const useCurve = curveTerms.some((termName) => lower.includes(termName));
+    return (
+      <g>
+        <line x1="48" y1="136" x2="318" y2="136" stroke="#64748b" strokeWidth="4" />
+        {useCurve ? (
+          <>
+            <path d="M60 136 C96 134 112 104 140 72 C166 42 212 42 238 72 C266 104 284 134 316 136" fill="rgba(34,211,238,.18)" stroke="#a78bfa" strokeWidth="5" />
+            <path d="M248 78 C268 106 286 132 316 136 L248 136 Z" fill="rgba(251,191,36,.38)" />
+            <line x1="248" y1="52" x2="248" y2="140" stroke="#fbbf24" strokeWidth="4" strokeDasharray="6 5" />
+            <text x="208" y="48" fill="#f8fafc" fontSize="14" fontWeight="900">cutoff / tail</text>
+          </>
+        ) : (
+          <>
+            {[42, 74, 104, 82, 54, 34].map((height, index) => (
+              <rect key={`prob-bar-${index}`} x={70 + index * 38} y={136 - height} width="26" height={height} rx="5" fill={index === 2 ? "#fbbf24" : "#22d3ee"} />
+            ))}
+            {lower === "chi-square statistic" || lower.includes("expected") ? [34, 64, 96, 76, 48, 26].map((height, index) => (
+              <rect key={`expected-${index}`} x={84 + index * 38} y={136 - height} width="10" height={height} rx="3" fill="#a78bfa" />
+            )) : null}
+            <text x="82" y="48" fill="#f8fafc" fontSize="14" fontWeight="900">{lower.includes("expected") || lower === "chi-square statistic" ? "observed vs expected" : "probability bars"}</text>
+          </>
+        )}
+        <text x="80" y="158" fill="#f8fafc" fontSize="13" fontWeight="900">outcomes</text>
+      </g>
+    );
+  }
+  if (lower === "bernoulli trial" || lower.includes("tree") || lower === "conditional expectation" || lower === "law of total expectation") {
+    return (
+      <g fill="none" strokeLinecap="round">
+        <circle cx="94" cy="88" r="16" fill="#22d3ee" stroke="none" />
+        <path d="M110 82 L178 52 M110 94 L178 124" stroke="#e2e8f0" strokeWidth="4" markerEnd={`url(#${arrowId})`} />
+        <circle cx="198" cy="48" r="18" fill="#fbbf24" stroke="none" />
+        <circle cx="198" cy="128" r="18" fill="#a78bfa" stroke="none" />
+        <text x="224" y="54" fill="#f8fafc" fontSize="14" fontWeight="900">success</text>
+        <text x="224" y="134" fill="#f8fafc" fontSize="14" fontWeight="900">failure</text>
+        <text x="90" y="38" fill="#f8fafc" fontSize="14" fontWeight="900">two outcomes</text>
+      </g>
+    );
+  }
+  if (lower === "markov chain" || lower === "markov property") {
+    return (
+      <g fill="none" strokeLinecap="round">
+        {[
+          [82, 92, "A"],
+          [174, 52, "B"],
+          [270, 96, "C"],
+        ].map(([x, y, label]) => (
+          <g key={label}>
+            <circle cx={x} cy={y} r="24" fill={label === "B" ? "#fbbf24" : "#22d3ee"} stroke="none" />
+            <text x={x} y={Number(y) + 6} textAnchor="middle" fill="#0f172a" fontSize="18" fontWeight="900">{label}</text>
+          </g>
+        ))}
+        <path d="M104 82 L150 62 M198 62 L246 84 M252 114 C190 150 118 132 96 112" stroke="#e2e8f0" strokeWidth="4" markerEnd={`url(#${arrowId})`} />
+        <text x="118" y="150" fill="#f8fafc" fontSize="14" fontWeight="900">next depends on current state</text>
+      </g>
+    );
+  }
   if (lower === "permutation" || lower === "combination" || lower === "factorial" || lower === "binomial coefficient") {
     const ordered = lower === "permutation" || lower === "factorial";
     return (
@@ -512,6 +747,87 @@ function renderVisual(kind: VisualDictionaryKind, term: string, fill: string, ar
         <text x="108" y="126" fill="#f8fafc" fontSize="14" fontWeight="900">a^2</text>
         <text x="248" y="84" fill="#f8fafc" fontSize="14" fontWeight="900">b^2</text>
         <text x="156" y="72" fill="#f8fafc" fontSize="14" fontWeight="900">c^2</text>
+      </g>
+    );
+  }
+  if (lower === "lower sum" || lower === "upper sum" || lower === "area under curve" || lower === "definite integral") {
+    const upper = lower === "upper sum";
+    const heights = upper ? [56, 42, 48, 72, 92, 82] : [86, 74, 92, 108, 116, 104];
+    return (
+      <g fill="none" strokeLinecap="round">
+        <line x1="48" y1="136" x2="318" y2="136" stroke="#64748b" strokeWidth="4" />
+        <line x1="66" y1="24" x2="66" y2="150" stroke="#64748b" strokeWidth="4" />
+        {heights.map((top, index) => (
+          <rect
+            key={`${lower}-${index}`}
+            x={78 + index * 36}
+            y={top}
+            width="34"
+            height={136 - top}
+            fill={upper ? "rgba(251,191,36,.28)" : "rgba(34,211,238,.26)"}
+            stroke={upper ? "#fbbf24" : "#22d3ee"}
+            strokeWidth="2"
+          />
+        ))}
+        <path d="M78 124 C108 72 138 58 174 82 C210 110 242 48 294 72" stroke="#f8fafc" strokeWidth="5" />
+        <text x="202" y="42" fill="#f8fafc" fontSize="15" fontWeight="900">{upper ? "rectangles above" : "rectangles under"}</text>
+        <text x="88" y="154" fill="#f8fafc" fontSize="13" fontWeight="900">area estimate</text>
+      </g>
+    );
+  }
+  if (lower === "abel summation" || lower === "cumulative sum") {
+    const bars = [26, 44, 34, 58, 46];
+    let total = 0;
+    const totals = bars.map((bar) => (total += bar));
+    return (
+      <g>
+        <line x1="50" y1="134" x2="314" y2="134" stroke="#64748b" strokeWidth="4" />
+        {bars.map((bar, index) => (
+          <rect key={`bar-${index}`} x={70 + index * 34} y={134 - bar} width="22" height={bar} rx="5" fill={index % 2 ? "#fbbf24" : "#22d3ee"} />
+        ))}
+        <path
+          d={totals.map((sum, index) => `${index === 0 ? "M" : "L"} ${81 + index * 34} ${128 - sum * 0.28}`).join(" ")}
+          fill="none"
+          stroke="#a78bfa"
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <text x="214" y="62" fill="#f8fafc" fontSize="15" fontWeight="900">running totals</text>
+        <text x="78" y="42" fill="#f8fafc" fontSize="14" fontWeight="900">sum by parts</text>
+      </g>
+    );
+  }
+  if (lower === "fractal dimension") {
+    const squares = [
+      [82, 50, 60],
+      [154, 50, 28],
+      [190, 50, 28],
+      [154, 86, 28],
+      [190, 86, 28],
+      [236, 48, 14],
+      [256, 48, 14],
+      [236, 68, 14],
+      [256, 68, 14],
+      [236, 92, 14],
+      [256, 92, 14],
+    ];
+    return (
+      <g>
+        {squares.map(([x, y, size], index) => (
+          <rect
+            key={`${x}-${y}-${size}-${index}`}
+            x={x}
+            y={y}
+            width={size}
+            height={size}
+            fill={index === 0 ? "rgba(34,211,238,.36)" : index < 5 ? "rgba(251,191,36,.34)" : "rgba(167,139,250,.38)"}
+            stroke={index === 0 ? "#22d3ee" : index < 5 ? "#fbbf24" : "#a78bfa"}
+            strokeWidth="3"
+          />
+        ))}
+        <path d="M146 80 H154 M222 80 H236" stroke="#f8fafc" strokeWidth="4" markerEnd={`url(#${arrowId})`} />
+        <text x="78" y="138" fill="#f8fafc" fontSize="14" fontWeight="900">same pattern, smaller scale</text>
       </g>
     );
   }

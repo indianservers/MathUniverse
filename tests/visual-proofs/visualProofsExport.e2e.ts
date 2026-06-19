@@ -5,6 +5,7 @@ import {
   expectProofShell,
   gotoOk,
 } from "./visualProofsBrowserAssertions";
+import { getExpectedSvgPngExportDimensions, inspectDownloadedPngArtifact } from "./visualProofsExportAssertions";
 
 const exportRoutes = [
   "/visual-proofs/geometry/sector-area-formula",
@@ -16,7 +17,7 @@ const exportRoutes = [
 
 test.describe("Visual Proofs export controls", () => {
   for (const route of exportRoutes) {
-    test(`${route} exposes JSON, SVG, and PNG export controls`, async ({ page, context }) => {
+    test(`${route} exposes JSON, SVG, and inspected PNG export controls`, async ({ page, context }, testInfo) => {
       test.setTimeout(60_000);
       await context.grantPermissions(["clipboard-write"]);
       await gotoOk(page, route);
@@ -36,6 +37,8 @@ test.describe("Visual Proofs export controls", () => {
       await expect(svgButton).toBeEnabled();
       await expect(pngButton).toBeEnabled();
 
+      const expectedExportDimensions = await getExpectedSvgPngExportDimensions(page, route);
+
       await jsonButton.click();
       await expect(jsonButton).toContainText("Snapshot copied");
 
@@ -50,6 +53,14 @@ test.describe("Visual Proofs export controls", () => {
       const png = await pngDownload;
       expect(png.suggestedFilename()).toMatch(/\.png$/);
       await expect(page.getByTestId("visual-proof-export-status")).toContainText("PNG downloaded");
+
+      await inspectDownloadedPngArtifact({
+        page,
+        download: png,
+        testInfo,
+        route,
+        expectedDimensions: expectedExportDimensions,
+      });
     });
   }
 });

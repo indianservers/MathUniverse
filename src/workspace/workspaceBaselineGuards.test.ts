@@ -46,6 +46,16 @@ describe("phase 1 workspace baseline guards", () => {
     for (const signal of workspace3d?.protectedSignals ?? []) expect(mathWorkspace).toContain(signal);
   });
 
+  it("keeps the premium angle tool guidance and measured-angle rendering", async () => {
+    const mathWorkspace = await readFile(pageSources.mathWorkspace, "utf8");
+
+    expect(mathWorkspace).toContain("side point, vertex, side point");
+    expect(mathWorkspace).toContain("angle-tool-preview");
+    expect(mathWorkspace).toContain("addAngleMeasurement");
+    expect(mathWorkspace).toContain("reflex");
+    expect(mathWorkspace).toContain("vertex second");
+  });
+
   it("keeps current Shapes Explorer layout signals in source", async () => {
     const shapesExplorer = await readFile(pageSources.shapesExplorer, "utf8");
     const shapes = protectedWorkspaceBaselines.find((item) => item.id === "shapes-explorer");

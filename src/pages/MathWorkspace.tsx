@@ -79,7 +79,7 @@ type GeoPoint = { id: string; x: number; y: number; label: string; style?: GeoSt
 type GeoLine = { id: string; a: string; b: string; style?: GeoStyle };
 type GeoCircle = { id: string; center: string; edge: string; style?: GeoStyle };
 type GeoPolygon = { id: string; points: string[]; style?: GeoStyle };
-type GeoArc = { id: string; center: string; start: string; end: string; sector?: boolean; style?: GeoStyle };
+type GeoArc = { id: string; center: string; start: string; end: string; sector?: boolean; kind?: "arc" | "angle"; style?: GeoStyle };
 type GeoLocus = { id: string; label: string; points: { x: number; y: number }[]; style?: GeoStyle; sourcePointId?: string; mode?: "static" | "trace"; maxSamples?: number };
 type WorkspaceImage = { id: string; name: string; src: string; x: number; y: number; width: number; height: number; opacity: number; locked?: boolean; visible?: boolean };
 type GeoConstraint =
@@ -902,9 +902,13 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       const next = [...selectedPointIds, pointId].slice(-3);
       setSelectedPointIds(next);
       if (next.length === 3 && new Set(next).size === 3) {
-        recordWorkspaceStep(activeTool === "angle" ? "Create angle" : "Create circle through 3 points", next.map((id) => labelForPoint(constructionContext, id)).join(", "));
-        setConstruction((current) => activeTool === "angle" ? addArcOrSector(current, next[1], next[0], next[2], false) : addCircleThrough3Points(current, next[0], next[1], next[2]));
+        const angleDetail = activeTool === "angle"
+          ? `${labelForPoint(constructionContext, next[0])}-${labelForPoint(constructionContext, next[1])}-${labelForPoint(constructionContext, next[2])}: vertex ${labelForPoint(constructionContext, next[1])}`
+          : next.map((id) => labelForPoint(constructionContext, id)).join(", ");
+        recordWorkspaceStep(activeTool === "angle" ? "Create measured angle" : "Create circle through 3 points", angleDetail);
+        setConstruction((current) => activeTool === "angle" ? addAngleMeasurement(current, next[0], next[1], next[2]) : addCircleThrough3Points(current, next[0], next[1], next[2]));
         setSelectedPointIds([]);
+        if (activeTool === "angle") setProjectStatus(`Angle measured: ${angleDetail}. Drag any of the three points to update it live.`);
       }
     }
     if (activeTool === "polygon" || activeTool === "triangle") {
@@ -2377,6 +2381,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "line", line.id)} />)}
               {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "circle", circle.id)} />)}
               <GeometryMeasurementOverlays construction={construction} />
+              {tool === "angle" && <AngleToolPreview selectedPointIds={selectedPointIds} points={construction.points} />}
               {polygonDraft.length > 1 && <PolygonDraftPreview draft={polygonDraft} points={construction.points} />}
               {construction.points.filter((point) => point.style?.visible !== false).map((point) => (
                 <g key={point.id}>
@@ -6561,11 +6566,19 @@ function Properties3DPanel({ selected, transform, onTransform, onVector, onResto
 
 function GeometryPendingPickPanel({ tool, picks, construction, onClear }: { tool: GeometryTool; picks: SelectedGeometryObject[]; construction: Construction; onClear: () => void }) {
   const hint = geometryToolObjectPickHint(tool, picks);
-  if (!hint && picks.length === 0) return null;
+  const showAngleGuide = tool === "angle";
+  if (!hint && picks.length === 0 && !showAngleGuide) return null;
   return (
-    <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-cyan-200 bg-cyan-50 px-3 py-2 text-xs font-bold text-cyan-900 dark:border-cyan-300/20 dark:bg-cyan-400/10 dark:text-cyan-100">
+    <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-cyan-200 bg-cyan-50 px-3 py-2 text-xs font-bold text-cyan-900 dark:border-cyan-300/20 dark:bg-cyan-400/10 dark:text-cyan-100" data-testid="geometry-pick-panel">
       <div className="flex min-w-0 flex-wrap items-center gap-2">
         <span className="rounded-full bg-white px-2 py-1 text-[10px] font-black uppercase text-cyan-700 dark:bg-white/10 dark:text-cyan-100">{geometryToolLabel(tool)}</span>
+        {showAngleGuide && (
+          <>
+            <span className="rounded-full bg-amber-100 px-2 py-1 text-[11px] font-black text-amber-800 dark:bg-amber-300/20 dark:text-amber-50">1 side point</span>
+            <span className="rounded-full bg-teal-100 px-2 py-1 text-[11px] font-black text-teal-800 dark:bg-teal-300/20 dark:text-teal-50">2 vertex</span>
+            <span className="rounded-full bg-violet-100 px-2 py-1 text-[11px] font-black text-violet-800 dark:bg-violet-300/20 dark:text-violet-50">3 side point</span>
+          </>
+        )}
         {picks.map((pick) => (
           <span key={`${pick.type}:${pick.id}`} className="rounded-full bg-cyan-100 px-2 py-1 text-[11px] font-black text-cyan-800 dark:bg-cyan-300/20 dark:text-cyan-50">
             {geometryObjectLabel(construction, pick)}
@@ -7620,14 +7633,54 @@ function PolygonDraftPreview({ draft, points }: { draft: string[]; points: GeoPo
   );
 }
 
+function AngleToolPreview({ selectedPointIds, points }: { selectedPointIds: string[]; points: GeoPoint[] }) {
+  if (selectedPointIds.length === 0) return null;
+  const picked = selectedPointIds.map((id) => pointById(points, id)).filter((point): point is GeoPoint => Boolean(point));
+  if (!picked.length) return null;
+  const [sideA, vertex, sideB] = picked;
+  return (
+    <g pointerEvents="none" data-testid="angle-tool-preview">
+      {sideA && (
+        <g>
+          <circle cx={sideA.x} cy={sideA.y} r="17" fill="rgba(245,158,11,.16)" stroke="#f59e0b" strokeDasharray="4 5" strokeWidth="3" />
+          <text x={sideA.x + 14} y={sideA.y + 24} fill="#92400e" fontSize="11" fontWeight="900">1 side</text>
+        </g>
+      )}
+      {sideA && vertex && (
+        <g>
+          <line x1={vertex.x} y1={vertex.y} x2={sideA.x} y2={sideA.y} stroke="#f59e0b" strokeWidth="4" strokeDasharray="7 5" />
+          <circle cx={vertex.x} cy={vertex.y} r="19" fill="rgba(20,184,166,.16)" stroke="#14b8a6" strokeDasharray="4 5" strokeWidth="3" />
+          <text x={vertex.x + 14} y={vertex.y - 14} fill="#0f766e" fontSize="11" fontWeight="900">2 vertex</text>
+        </g>
+      )}
+      {sideA && vertex && sideB && (
+        <g>
+          <line x1={vertex.x} y1={vertex.y} x2={sideB.x} y2={sideB.y} stroke="#8b5cf6" strokeWidth="4" strokeDasharray="7 5" />
+          <path d={angleArcPath(vertex, sideA, sideB, 44)} fill="none" stroke="#14b8a6" strokeWidth="6" strokeLinecap="round" />
+          <AngleLabel center={vertex} start={sideA} end={sideB} prefix="Preview" />
+        </g>
+      )}
+    </g>
+  );
+}
+
 function GeometryArc({ arc, points, selected = false }: { arc: GeoArc; points: GeoPoint[]; selected?: boolean }) {
   const center = pointById(points, arc.center), start = pointById(points, arc.start), end = pointById(points, arc.end);
   if (!center || !start || !end || arc.style?.visible === false) return null;
-  const path = arcPath(center, start, end);
+  const isAngle = arc.kind === "angle";
+  const path = isAngle ? angleArcPath(center, start, end, 38) : arcPath(center, start, end);
   const stroke = arc.style?.color ?? "#14b8a6";
   const fill = arc.sector ? arc.style?.fill ?? "rgba(20,184,166,.18)" : "none";
   const sectorLine = arc.sector ? ` L ${center.x} ${center.y} Z` : "";
-  return <path data-object-type="arc" data-object-id={arc.id} d={`${path}${sectorLine}`} fill={fill} stroke={stroke} strokeWidth={selected ? Math.max(7, arc.style?.strokeWidth ?? 4) : arc.style?.strokeWidth ?? 4} opacity={arc.style?.opacity ?? 1} className="cursor-move" />;
+  if (!isAngle) return <path data-object-type="arc" data-object-id={arc.id} d={`${path}${sectorLine}`} fill={fill} stroke={stroke} strokeWidth={selected ? Math.max(7, arc.style?.strokeWidth ?? 4) : arc.style?.strokeWidth ?? 4} opacity={arc.style?.opacity ?? 1} className="cursor-move" />;
+  return (
+    <g data-object-type="arc" data-object-id={arc.id} className="cursor-move">
+      <line x1={center.x} y1={center.y} x2={start.x} y2={start.y} stroke="#f59e0b" strokeWidth="3" strokeLinecap="round" opacity="0.72" />
+      <line x1={center.x} y1={center.y} x2={end.x} y2={end.y} stroke="#8b5cf6" strokeWidth="3" strokeLinecap="round" opacity="0.72" />
+      <path d={path} fill="none" stroke={stroke} strokeWidth={selected ? Math.max(8, arc.style?.strokeWidth ?? 6) : arc.style?.strokeWidth ?? 6} opacity={arc.style?.opacity ?? 1} strokeLinecap="round" />
+      <AngleLabel center={center} start={start} end={end} prefix={`∠${start.label}${center.label}${end.label}`} />
+    </g>
+  );
 }
 
 function GeometryLocus({ locus }: { locus: GeoLocus }) {
@@ -7689,6 +7742,20 @@ function GeometryMeasurementOverlays({ construction }: { construction: Construct
         x: center.x,
         y: center.y,
         text: `A=${roundTo(polygonArea(points) / 1600, 2)}`,
+      };
+    }),
+    ...construction.arcs.map((arc, index) => {
+      if (arc.kind !== "angle" || arc.style?.visible === false) return null;
+      const center = pointById(construction.points, arc.center);
+      const start = pointById(construction.points, arc.start);
+      const end = pointById(construction.points, arc.end);
+      if (!center || !start || !end) return null;
+      const labelPoint = angleLabelPoint(center, start, end, 58);
+      return {
+        id: `angle-${arc.id}`,
+        x: labelPoint.x,
+        y: labelPoint.y + 24,
+        text: `∠${start.label}${center.label}${end.label}=${roundTo(directedAngleDegrees(center, start, end), 1)}°`,
       };
     }),
   ].filter((label): label is { id: string; x: number; y: number; text: string } => Boolean(label));
@@ -7792,7 +7859,7 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     line: "Click two points to create a line.",
     circle: "Click a center point, then a radius point.",
     polygon: "Click three or more points; the polygon is created after the third point.",
-    angle: "Click side point, vertex, side point to create a visible angle arc.",
+    angle: "Click side point, vertex, side point. The second click is the vertex; a live preview arc appears before the final click.",
     "show-hide": "Use the selected-object section to show or hide the selected object.",
     lock: "Use the selected-object section to lock or unlock the selected object.",
     freehand: "Sketch helper mode for marking an idea before converting it to construction objects.",
@@ -7837,7 +7904,18 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     save: "Saves the current construction in browser storage.",
     load: "Loads the saved browser construction.",
   };
-  return <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50"><p className="font-bold">Current tool: {tool}</p><p className="mt-2">{instructions[tool]}</p></div>;
+  return (
+    <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">
+      <p className="font-bold">Current tool: {tool}</p>
+      <p className="mt-2">{instructions[tool]}</p>
+      {tool === "angle" && (
+        <div className="mt-3 rounded-xl border border-cyan-200 bg-white/70 p-3 text-xs leading-5 text-cyan-950 dark:border-cyan-300/20 dark:bg-slate-950/40 dark:text-cyan-50" data-testid="angle-tool-geogebra-plus-help">
+          <p className="font-black">Better angle workflow</p>
+          <p className="mt-1">Like GeoGebra, use three points with the vertex second. This workspace also previews the arc, labels ∠ABC live, and shows the reflex complement for teaching orientation.</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function geometryToolLabel(tool: GeometryTool) {
@@ -7853,6 +7931,7 @@ function geometryToolExpectedPick(tool: GeometryTool) {
 
 function geometryToolObjectPickHint(tool: GeometryTool, picks: SelectedGeometryObject[]) {
   if (tool === "select") return null;
+  if (tool === "angle") return "Click three points in order: side point, vertex, side point. The vertex must be the second point.";
   if (tool === "intersect") return picks.length === 0 ? "Pick two existing lines/circles, or tap a point to add all intersections." : "Pick one more line or circle.";
   if (tool === "parallel" || tool === "perpendicular") return picks.length === 0 ? "Pick an existing line, then pick the through-point." : "Pick the through-point.";
   if (tool === "on-circle") return picks.length === 0 ? "Pick a circle, then pick the point to constrain." : "Pick the point to snap onto the circle.";
@@ -7918,6 +7997,17 @@ function angleBetween(a: GeoPoint, vertex: GeoPoint, b: GeoPoint) {
   const va = normalize(a.x - vertex.x, a.y - vertex.y);
   const vb = normalize(b.x - vertex.x, b.y - vertex.y);
   return THREE.MathUtils.radToDeg(Math.acos(Math.max(-1, Math.min(1, va.x * vb.x + va.y * vb.y))));
+}
+
+function directedAngleDegrees(center: GeoPoint, start: GeoPoint, end: GeoPoint) {
+  const startAngle = Math.atan2(start.y - center.y, start.x - center.x);
+  const endAngle = Math.atan2(end.y - center.y, end.x - center.x);
+  return THREE.MathUtils.radToDeg((endAngle - startAngle + Math.PI * 2) % (Math.PI * 2));
+}
+
+function interiorAngleDegrees(center: GeoPoint, start: GeoPoint, end: GeoPoint) {
+  const directed = directedAngleDegrees(center, start, end);
+  return directed > 180 ? 360 - directed : directed;
 }
 
 function arcLength(center: GeoPoint, start: GeoPoint, end: GeoPoint) {
@@ -8152,6 +8242,24 @@ function addArcOrSector(construction: Construction, center: string, start: strin
   return { ...construction, arcs: [...construction.arcs, { id: crypto.randomUUID(), center, start, end, sector, style: { color: sector ? "#f59e0b" : "#14b8a6", fill: sector ? "rgba(245,158,11,.18)" : "none" } }] };
 }
 
+function addAngleMeasurement(construction: Construction, start: string, center: string, end: string) {
+  return {
+    ...construction,
+    arcs: [
+      ...construction.arcs,
+      {
+        id: crypto.randomUUID(),
+        center,
+        start,
+        end,
+        sector: false,
+        kind: "angle" as const,
+        style: { color: "#14b8a6", strokeWidth: 6, fill: "none", labelMode: "both" as const },
+      },
+    ],
+  };
+}
+
 function addCompassCircle(construction: Construction, aId: string, bId: string, centerId: string) {
   const a = pointById(construction.points, aId), b = pointById(construction.points, bId), center = pointById(construction.points, centerId);
   if (!a || !b || !center) return construction;
@@ -8299,6 +8407,39 @@ function arcPath(center: GeoPoint, start: GeoPoint, end: GeoPoint) {
   const delta = ((endAngle - startAngle + Math.PI * 2) % (Math.PI * 2));
   const large = delta > Math.PI ? 1 : 0;
   return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${large} 1 ${end.x} ${end.y}`;
+}
+
+function angleArcPath(center: GeoPoint, start: GeoPoint, end: GeoPoint, radius: number) {
+  const startAngle = Math.atan2(start.y - center.y, start.x - center.x);
+  const endAngle = Math.atan2(end.y - center.y, end.x - center.x);
+  const delta = (endAngle - startAngle + Math.PI * 2) % (Math.PI * 2);
+  const large = delta > Math.PI ? 1 : 0;
+  const startPoint = { x: center.x + Math.cos(startAngle) * radius, y: center.y + Math.sin(startAngle) * radius };
+  const endPoint = { x: center.x + Math.cos(endAngle) * radius, y: center.y + Math.sin(endAngle) * radius };
+  return `M ${startPoint.x} ${startPoint.y} A ${radius} ${radius} 0 ${large} 1 ${endPoint.x} ${endPoint.y}`;
+}
+
+function angleLabelPoint(center: GeoPoint, start: GeoPoint, end: GeoPoint, radius: number) {
+  const startAngle = Math.atan2(start.y - center.y, start.x - center.x);
+  const endAngle = Math.atan2(end.y - center.y, end.x - center.x);
+  const delta = (endAngle - startAngle + Math.PI * 2) % (Math.PI * 2);
+  const mid = startAngle + delta / 2;
+  return { x: center.x + Math.cos(mid) * radius, y: center.y + Math.sin(mid) * radius };
+}
+
+function AngleLabel({ center, start, end, prefix }: { center: GeoPoint; start: GeoPoint; end: GeoPoint; prefix: string }) {
+  const labelPoint = angleLabelPoint(center, start, end, 66);
+  const directed = directedAngleDegrees(center, start, end);
+  const interior = interiorAngleDegrees(center, start, end);
+  const text = `${prefix} ${roundTo(interior, 1)}°`;
+  const note = directed > 180 ? `reflex ${roundTo(directed, 1)}°` : `reflex ${roundTo(360 - directed, 1)}°`;
+  return (
+    <g pointerEvents="none">
+      <rect x={labelPoint.x - 8} y={labelPoint.y - 18} width={Math.max(76, text.length * 7.2)} height="34" rx="9" fill="rgba(255,255,255,.92)" stroke="rgba(20,184,166,.45)" />
+      <text x={labelPoint.x} y={labelPoint.y - 4} fill="#0f172a" fontSize="12" fontWeight="900">{text}</text>
+      <text x={labelPoint.x} y={labelPoint.y + 10} fill="#0f766e" fontSize="9" fontWeight="800">{note}</text>
+    </g>
+  );
 }
 
 function normalizeConstruction(value: Partial<Construction>): Construction {

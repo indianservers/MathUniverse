@@ -88,7 +88,18 @@ export const navSections: NavSection[] = [
       { title: "Teacher Studio", route: "/workspace/teach", icon: "Presentation" },
       { title: "Dashboard", route: "/", icon: "Home" },
       { title: "Syllabus", route: "/syllabus", icon: "BookOpen" },
-      { title: "Formulas", route: "/formulas", icon: "Sigma" },
+      {
+        title: "Formulas",
+        route: "/formulas",
+        icon: "Sigma",
+        children: [
+          { title: "All Formula Cheatsheets", route: "/formulas", icon: "Sigma" },
+          { title: "Trigonometry Cheatsheet", route: "/formulas/trigonometry", icon: "Waves" },
+          { title: "Geometry Cheatsheet", route: "/formulas/geometry", icon: "Shapes" },
+          { title: "Algebra Cheatsheet", route: "/formulas/algebra", icon: "Calculator" },
+          { title: "Calculus Cheatsheet", route: "/formulas/calculus", icon: "Sigma" },
+        ],
+      },
       {
         title: "Maths Visual Dictionary",
         route: "/visual-dictionary",
@@ -310,6 +321,7 @@ export const navSections: NavSection[] = [
             route: "/trigonometry",
             icon: "Waves",
             children: [
+              { title: "Formula Visualizer", route: "/trigonometry/formula-visualizer", icon: "Waves", searchTerms: ["trigono formula visualizer", "sin cos tan visualizer", "unit circle formula lab", "pythagorean identity"] },
               { title: "All Trig Functions", route: "/trigonometry/trigonometric-functions", icon: "Waves" },
               { title: "Unit Circle", route: "/trigonometry/unit-circle", icon: "Waves" },
               { title: "Right Triangle Ratios", route: "/trigonometry/right-triangle-ratios", icon: "Waves" },
@@ -546,7 +558,18 @@ export const navSections: NavSection[] = [
           { title: "Slope Fields", route: "/math/slope-fields", icon: "ChartSpline" },
         ],
       },
-      { title: "Formulas", route: "/formulas", icon: "Sigma" },
+      {
+        title: "Formulas",
+        route: "/formulas",
+        icon: "Sigma",
+        children: [
+          { title: "All Formula Cheatsheets", route: "/formulas", icon: "Sigma" },
+          { title: "Trigonometry Cheatsheet", route: "/formulas/trigonometry", icon: "Waves" },
+          { title: "Geometry Cheatsheet", route: "/formulas/geometry", icon: "Shapes" },
+          { title: "Algebra Cheatsheet", route: "/formulas/algebra", icon: "Calculator" },
+          { title: "Calculus Cheatsheet", route: "/formulas/calculus", icon: "Sigma" },
+        ],
+      },
       { title: "Scientific Calculator", route: "/calculator", icon: "Calculator" },
       { title: "Problem Solver", route: "/problem-solver", icon: "Sigma" },
       { title: "Unit Converter", route: "/unit-converter", icon: "Calculator" },

@@ -40,6 +40,7 @@ export default function Trigonometry() {
         </div>
         <aside className="desktop-sidebar-panel scroll-panel thin-scrollbar space-y-3">
           <ContinueCard routePrefix="/trigonometry" />
+          <Link to="/trigonometry/formula-visualizer" className="action-primary w-full">Open Formula Visualizer</Link>
           <Link to="/trigonometry/unit-circle" className="action-primary w-full">Start Unit Circle</Link>
           <Link to="/calculator" className="action-secondary w-full">Open Scientific Calculator</Link>
           <FormulaBlock title="Formula Summary" formula={"\\sin^2\\theta+\\cos^2\\theta=1,\\quad y=A\\sin(fx+\\phi)"} />
