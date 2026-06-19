@@ -1,7 +1,7 @@
 import type { VisualProof, VisualProofCategory } from "../../data/proofTypes";
-import NumberTheoryProofTemplate from "./NumberTheoryProofTemplate";
-import { numberTheoryProofConfigs } from "./numberTheoryProofConfigs";
+import { PhaseTwoProofExperience } from "../../components/PhaseTwoProofExperience";
+import { factorTreePhaseSixteenConfig } from "../phase-sixteen/phaseSixteenProofConfigs";
 
 export default function FundamentalTheoremArithmeticProof({ category, proof }: { category: VisualProofCategory; proof: VisualProof }) {
-  return <NumberTheoryProofTemplate category={category} proof={proof} config={numberTheoryProofConfigs.FundamentalTheoremArithmeticProof} />;
+  return <PhaseTwoProofExperience category={category} proof={proof} config={factorTreePhaseSixteenConfig} />;
 }

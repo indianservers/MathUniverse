@@ -8,9 +8,9 @@ import { getVisualProof, visualProofsIndex } from "./visualProofsIndex";
 
 describe("Visual Proofs phase architecture metadata", () => {
   it("keeps the documented route inventory intact", () => {
-    expect(visualProofsIndex).toHaveLength(106);
-    expect(visualProofsIndex.filter((proof) => proof.status === "available")).toHaveLength(95);
-    expect(visualProofsIndex.filter((proof) => proof.status === "coming-soon")).toHaveLength(11);
+    expect(visualProofsIndex).toHaveLength(183);
+    expect(visualProofsIndex.filter((proof) => proof.status === "available")).toHaveLength(183);
+    expect(visualProofsIndex.filter((proof) => proof.status === "coming-soon")).toHaveLength(0);
     expect(visualProofCategories).toHaveLength(18);
   });
 

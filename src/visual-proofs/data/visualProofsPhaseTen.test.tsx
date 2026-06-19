@@ -15,6 +15,19 @@ import { phaseTwelveConfigs, phaseTwelveRouteSlugs } from "../proofs/phase-twelv
 import { phaseThirteenConfigs, phaseThirteenRouteSlugs } from "../proofs/phase-thirteen/phaseThirteenProofConfigs";
 import { phaseFourteenConfigs, phaseFourteenRouteSlugs } from "../proofs/phase-fourteen/phaseFourteenProofConfigs";
 import { phaseFifteenConfigs, phaseFifteenRouteSlugs } from "../proofs/phase-fifteen/phaseFifteenProofConfigs";
+import { phaseSixteenConfigs, phaseSixteenRouteSlugs } from "../proofs/phase-sixteen/phaseSixteenProofConfigs";
+import { phaseSeventeenConfigs, phaseSeventeenRouteSlugs } from "../proofs/phase-seventeen/phaseSeventeenProofConfigs";
+import { phaseEighteenConfigs, phaseEighteenRouteSlugs } from "../proofs/phase-eighteen/phaseEighteenProofConfigs";
+import { phaseNineteenConfigs, phaseNineteenRouteSlugs } from "../proofs/phase-nineteen/phaseNineteenProofConfigs";
+import { phaseTwentyConfigs, phaseTwentyRouteSlugs } from "../proofs/phase-twenty/phaseTwentyProofConfigs";
+import { phaseTwentyOneConfigs, phaseTwentyOneRouteSlugs } from "../proofs/phase-twenty-one/phaseTwentyOneProofConfigs";
+import { phaseTwentyTwoConfigs, phaseTwentyTwoRouteSlugs } from "../proofs/phase-twenty-two/phaseTwentyTwoProofConfigs";
+import { phaseTwentyThreeConfigs, phaseTwentyThreeRouteSlugs } from "../proofs/phase-twenty-three/phaseTwentyThreeProofConfigs";
+import { phaseTwentyFourConfigs, phaseTwentyFourRouteSlugs } from "../proofs/phase-twenty-four/phaseTwentyFourProofConfigs";
+import { phaseTwentyFiveConfigs, phaseTwentyFiveRouteSlugs } from "../proofs/phase-twenty-five/phaseTwentyFiveProofConfigs";
+import { phaseTwentySixConfigs, phaseTwentySixRouteSlugs } from "../proofs/phase-twenty-six/phaseTwentySixProofConfigs";
+import { phaseTwentySevenConfigs, phaseTwentySevenRouteSlugs } from "../proofs/phase-twenty-seven/phaseTwentySevenProofConfigs";
+import { getVisualProofComponentLoader } from "../proofs/loadVisualProofComponent";
 import type { ProofLearningModel } from "./proofTypes";
 import { visualProofsIndex, getVisualProofsByCategory } from "./visualProofsIndex";
 import { coordinateGeometryRouteSmokeManifest, trigonometryRouteSmokeManifest, visualProofsRouteSmokeManifest } from "./visualProofsRouteSmokeManifest";
@@ -30,7 +43,9 @@ const supportedLearningModels = new Set<ProofLearningModel>([
   "simulation-board",
   "data-display",
   "vector-field",
+  "complex-plane",
   "measurement-scene",
+  "comparison-model",
   "transformation-grid",
   "growth-scale",
   "applied-system",
@@ -50,6 +65,18 @@ const allPhaseRouteGroups = [
   phaseThirteenRouteSlugs,
   phaseFourteenRouteSlugs,
   phaseFifteenRouteSlugs,
+  phaseSixteenRouteSlugs,
+  phaseSeventeenRouteSlugs,
+  phaseEighteenRouteSlugs,
+  phaseNineteenRouteSlugs,
+  phaseTwentyRouteSlugs,
+  phaseTwentyOneRouteSlugs,
+  phaseTwentyTwoRouteSlugs,
+  phaseTwentyThreeRouteSlugs,
+  phaseTwentyFourRouteSlugs,
+  phaseTwentyFiveRouteSlugs,
+  phaseTwentySixRouteSlugs,
+  phaseTwentySevenRouteSlugs,
 ];
 
 type RouteSlug = readonly [string, string];
@@ -67,6 +94,18 @@ const configEntries: Array<[RouteSlug, PhaseTwoProofConfig]> = [
   ...zip(phaseThirteenRouteSlugs, phaseThirteenConfigs),
   ...zip(phaseFourteenRouteSlugs, phaseFourteenConfigs),
   ...zip(phaseFifteenRouteSlugs, phaseFifteenConfigs),
+  ...zip(phaseSixteenRouteSlugs, phaseSixteenConfigs),
+  ...zip(phaseSeventeenRouteSlugs, phaseSeventeenConfigs),
+  ...zip(phaseEighteenRouteSlugs, phaseEighteenConfigs),
+  ...zip(phaseNineteenRouteSlugs, phaseNineteenConfigs),
+  ...zip(phaseTwentyRouteSlugs, phaseTwentyConfigs),
+  ...zip(phaseTwentyOneRouteSlugs, phaseTwentyOneConfigs),
+  ...zip(phaseTwentyTwoRouteSlugs, phaseTwentyTwoConfigs),
+  ...zip(phaseTwentyThreeRouteSlugs, phaseTwentyThreeConfigs),
+  ...zip(phaseTwentyFourRouteSlugs, phaseTwentyFourConfigs),
+  ...zip(phaseTwentyFiveRouteSlugs, phaseTwentyFiveConfigs),
+  ...zip(phaseTwentySixRouteSlugs, phaseTwentySixConfigs),
+  ...zip(phaseTwentySevenRouteSlugs, phaseTwentySevenConfigs),
 ];
 
 const configByRoute = new Map(configEntries.map(([[categorySlug, proofSlug], config]) => [`/visual-proofs/${categorySlug}/${proofSlug}`, config]));
@@ -75,7 +114,7 @@ const phaseUpgradedProofs = visualProofsIndex.filter((proof) => proof.proofUpgra
 describe("Visual Proofs phase ten final metadata and smoke audit", () => {
   it("includes every phase-upgraded proof in the route smoke manifest", () => {
     const manifestRoutes = new Set(visualProofsRouteSmokeManifest.map((entry) => entry.route));
-    expect(phaseUpgradedProofs.length).toBeGreaterThanOrEqual(83);
+    expect(phaseUpgradedProofs.length).toBeGreaterThanOrEqual(183);
     for (const proof of phaseUpgradedProofs) {
       expect(manifestRoutes.has(proof.route), proof.route).toBe(true);
     }
@@ -129,11 +168,9 @@ describe("Visual Proofs phase ten final metadata and smoke audit", () => {
     }
   });
 
-  it("keeps every phase-upgraded component key mapped in VisualProofPage", () => {
-    const pageSource = readFileSync(fileURLToPath(new URL("../pages/VisualProofPage.tsx", import.meta.url)), "utf8");
-    const mappedKeys = new Set([...pageSource.matchAll(/case "([^"]+)":/g)].map((match) => match[1]));
+  it("keeps every phase-upgraded component key mapped in the lazy proof resolver", () => {
     for (const proof of phaseUpgradedProofs) {
-      expect(mappedKeys.has(proof.componentKey), proof.componentKey).toBe(true);
+      expect(getVisualProofComponentLoader(proof.categorySlug, proof.componentKey), proof.componentKey).toEqual(expect.any(Function));
     }
   });
 
@@ -155,10 +192,10 @@ describe("Visual Proofs phase ten final metadata and smoke audit", () => {
     }
   });
 
-  it("does not claim visual regression coverage without a browser visual test source", () => {
+  it("does not claim route-level visual regression coverage until browser tests are mapped per route", () => {
     const packageJson = readFileSync(fileURLToPath(new URL("../../../package.json", import.meta.url)), "utf8");
     const browserVisualRunnerConfigured = /playwright|cypress/.test(packageJson);
-    expect(browserVisualRunnerConfigured).toBe(false);
+    expect(browserVisualRunnerConfigured).toBe(true);
     expect(phaseUpgradedProofs.some((proof) => proof.hasVisualRegressionTest)).toBe(false);
   });
 
