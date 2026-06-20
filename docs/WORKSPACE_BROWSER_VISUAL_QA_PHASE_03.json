@@ -1,0 +1,75 @@
+{
+  "phase": "Phase 3",
+  "name": "Browser Visual QA and Workspace Rendering Certification",
+  "status": "passed",
+  "runner": "Playwright Chromium via existing playwright.config.ts",
+  "testFile": "tests/workspace/workspaceBrowserVisualSmoke.e2e.ts",
+  "helperFile": "tests/workspace/workspaceBrowserAssertions.ts",
+  "routes": [
+    {
+      "routeId": "workspace-home",
+      "routePath": "/workspace",
+      "visualSurfaceType": "svg",
+      "nonblankMethod": "graph SVG dimensions, visible SVG marks, and non-empty plotted path",
+      "interactionTested": "Run QA button click",
+      "status": "passed",
+      "limitations": []
+    },
+    {
+      "routeId": "workspace-graph",
+      "routePath": "/workspace/graph",
+      "visualSurfaceType": "svg",
+      "nonblankMethod": "graph SVG dimensions, visible SVG marks, and non-empty plotted path before and after adding x^2",
+      "interactionTested": "add valid expression and add invalid expression without blanking route",
+      "status": "passed",
+      "limitations": ["Invalid graph expressions are certified as safe/no-crash, not yet as a dedicated user-facing validation message."]
+    },
+    {
+      "routeId": "workspace-geometry",
+      "routePath": "/workspace/geometry",
+      "visualSurfaceType": "svg",
+      "nonblankMethod": "geometry board SVG dimensions and visible grid/object marks",
+      "interactionTested": "select Point tool, create a point, drag on the board",
+      "status": "passed",
+      "limitations": ["Point drag is smoke-level interaction; it does not yet assert exact coordinate deltas or dependent-measurement recomputation in browser."]
+    },
+    {
+      "routeId": "workspace-3d",
+      "routePath": "/workspace/3d",
+      "visualSurfaceType": "three/canvas",
+      "nonblankMethod": "3D surface dimensions, canvas dimensions, and canvas PNG data URL evidence",
+      "interactionTested": "pause/start rotation control",
+      "status": "passed",
+      "limitations": ["Pixel histogram comparison is not yet implemented; Phase 3 uses canvas data evidence and visible DOM controls."]
+    },
+    {
+      "routeId": "workspace-data",
+      "routePath": "/workspace/data",
+      "visualSurfaceType": "dom",
+      "nonblankMethod": "data surface dimensions and visible spreadsheet/function-analysis navigation cards",
+      "interactionTested": "navigate to spreadsheet subpage",
+      "status": "passed",
+      "limitations": ["Spreadsheet cell editing is left to existing kernel/unit tests and future browser workflow expansion."]
+    },
+    {
+      "routeId": "workspace-teach",
+      "routePath": "/workspace/teach",
+      "visualSurfaceType": "dom",
+      "nonblankMethod": "teacher surface dimensions and visible guided/presentation panels",
+      "interactionTested": "toggle teaching presentation mode",
+      "status": "passed",
+      "limitations": ["Export/download side effects are not asserted in this smoke suite."]
+    }
+  ],
+  "consoleGuard": {
+    "status": "passed",
+    "failsOn": ["uncaught page errors", "unexpected console.error messages", "Vite error overlay", "Internal server error text", "Application error text"],
+    "allowedWarnings": ["THREE.WebGLRenderer: Context Lost"]
+  },
+  "knownLimitations": [
+    "No screenshot-baseline visual regression is claimed.",
+    "3D certification uses canvas size and data URL evidence, not full pixel histogram analysis.",
+    "Unsupported action helper is still not wired through every workspace command path.",
+    "MathWorkspace.tsx remains large and route-shell splitting is still a Phase 4 architecture risk."
+  ]
+}

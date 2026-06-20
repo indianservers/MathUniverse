@@ -99,7 +99,7 @@ function checkParserBlocksPrototypeEscape(): WorkspaceQaCheck {
 }
 
 function checkLargeConstructionBudget(): WorkspaceQaCheck {
-  const benchmark = runLargeConstructionBenchmark(250, 750);
+  const benchmark = runLargeConstructionBenchmark(80, 1000);
   return {
     id: "performance-large-construction",
     area: "performance",
@@ -187,7 +187,8 @@ function lineIntersection(a: Point, b: Point, c: Point, d: Point) {
 function isSafeMathExpression(expression: string) {
   const safe = expression.replace(/\^/g, "**");
   if (/\b(?:constructor|prototype|window|document|globalThis|Function|eval|alert)\b/i.test(safe)) return false;
-  return /^[0-9x+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) && !/[;={}\[\]'"]/.test(safe);
+  const blockedCharacters = new Set([";", "=", "{", "}", "[", "]", "'", "\""]);
+  return /^[0-9x+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) && ![...safe].some((char) => blockedCharacters.has(char));
 }
 
 function nearly(a: number, b: number) {

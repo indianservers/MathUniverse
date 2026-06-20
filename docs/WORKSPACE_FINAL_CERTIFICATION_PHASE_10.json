@@ -1,0 +1,163 @@
+{
+  "phase": 10,
+  "date": "2026-06-20",
+  "name": "Advanced Geometry Construction Builder and Final Workspace Certification",
+  "summary": "Completed the 10-phase workspace hardening cycle by extracting advanced geometry construction, constraint, and transform builders into a typed React-free module while preserving MathWorkspace as the browser/state orchestration layer.",
+  "certification": [
+    {
+      "phase": 1,
+      "name": "Problem Solver Trust Certification",
+      "status": "passed",
+      "evidence": "npm run test -- src/problem-solver/problemSolverTrustCertification.test.ts passed: 113 tests."
+    },
+    {
+      "phase": 2,
+      "name": "Workspace QA Stabilization",
+      "status": "passed",
+      "evidence": "Focused workspace baseline, QA, and full src/workspace suite passed."
+    },
+    {
+      "phase": 3,
+      "name": "Browser Visual QA",
+      "status": "passed",
+      "evidence": "npx playwright test tests/workspace/workspaceBrowserVisualSmoke.e2e.ts --timeout=90000 passed: 6 tests."
+    },
+    {
+      "phase": 4,
+      "name": "Unsupported-Action Safety",
+      "status": "passed",
+      "evidence": "npx playwright test tests/workspace/workspaceUnsupportedActions.e2e.ts --timeout=90000 passed: 4 tests."
+    },
+    {
+      "phase": 5,
+      "name": "GraphWorkspacePanel Extraction",
+      "status": "passed",
+      "evidence": "npm run test -- src/components/workspace/panels/GraphWorkspacePanel.test.tsx passed: 7 tests."
+    },
+    {
+      "phase": 6,
+      "name": "GeometryWorkspacePanel Extraction",
+      "status": "passed",
+      "evidence": "npm run test -- src/components/workspace/panels/GeometryWorkspacePanel.test.tsx passed: 6 tests."
+    },
+    {
+      "phase": 7,
+      "name": "Geometry Command Boundary",
+      "status": "passed",
+      "evidence": "npx playwright test tests/workspace/geometryCommandBoundary.e2e.ts --timeout=90000 passed: 4 tests."
+    },
+    {
+      "phase": 8,
+      "name": "Geometry Command Controller",
+      "status": "passed",
+      "evidence": "npm run test -- src/workspace/geometryCommandController.test.ts passed in the focused workspace batch."
+    },
+    {
+      "phase": 9,
+      "name": "Geometry Construction Builder",
+      "status": "passed",
+      "evidence": "npm run test -- src/workspace/geometryConstructionBuilder.test.ts passed in the focused workspace batch."
+    },
+    {
+      "phase": 10,
+      "name": "Advanced Geometry Construction Builder",
+      "status": "passed",
+      "evidence": "npm run test -- src/workspace/geometryAdvancedConstructionBuilder.test.ts passed: 17 tests."
+    }
+  ],
+  "commandsRun": [
+    {
+      "command": "npm run test -- src/problem-solver/problemSolverTrustCertification.test.ts",
+      "status": "passed",
+      "result": "1 file, 113 tests passed."
+    },
+    {
+      "command": "npm run test -- src/components/workspace/panels/GraphWorkspacePanel.test.tsx",
+      "status": "passed",
+      "result": "1 file, 7 tests passed."
+    },
+    {
+      "command": "npm run test -- src/components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+      "status": "passed",
+      "result": "1 file, 6 tests passed."
+    },
+    {
+      "command": "npm run test -- src/workspace/geometryCommandController.test.ts src/workspace/geometryConstructionBuilder.test.ts src/workspace/geometryAdvancedConstructionBuilder.test.ts src/workspace/geometryWorkflowRegression.test.ts src/workspace/workspaceBaselineGuards.test.ts src/workspace/workspaceQaSuite.test.ts src/workspace/workspaceModeConfig.test.ts",
+      "status": "passed",
+      "result": "7 files, 56 tests passed."
+    },
+    {
+      "command": "npm run test -- src/workspace",
+      "status": "passed",
+      "result": "37 files, 160 tests passed."
+    },
+    {
+      "command": "npx playwright test tests/workspace/workspaceBrowserVisualSmoke.e2e.ts --timeout=90000",
+      "status": "passed",
+      "result": "6 browser tests passed."
+    },
+    {
+      "command": "npx playwright test tests/workspace/workspaceUnsupportedActions.e2e.ts --timeout=90000",
+      "status": "passed",
+      "result": "4 browser tests passed."
+    },
+    {
+      "command": "npx playwright test tests/workspace/geometryCommandBoundary.e2e.ts --timeout=90000",
+      "status": "passed",
+      "result": "4 browser tests passed."
+    },
+    {
+      "command": "npx eslint src/workspace/geometryAdvancedConstructionBuilder.ts src/workspace/geometryAdvancedConstructionBuilder.test.ts --max-warnings=0",
+      "status": "passed",
+      "result": "No lint findings in new advanced builder files."
+    },
+    {
+      "command": "npm run typecheck",
+      "status": "passed",
+      "result": "tsc -b passed."
+    },
+    {
+      "command": "npm run build",
+      "status": "passed",
+      "result": "Production build passed. MathWorkspace-DujUn8Ta.js: 379.38 kB / 105.96 kB gzip."
+    },
+    {
+      "command": "npm run test",
+      "status": "failed-unrelated",
+      "result": "126 files passed, 1 Visual Proofs Phase 11 test file failed. 936 passed, 2 failed."
+    },
+    {
+      "command": "npm run lint",
+      "status": "failed-existing-debt",
+      "result": "80 repo-wide problems: 68 errors, 12 warnings. New advanced builder files passed focused ESLint."
+    },
+    {
+      "command": "npm run test:e2e",
+      "status": "timed-out",
+      "result": "Timed out during the package wrapper after build/test child processes were started."
+    },
+    {
+      "command": "npx playwright test tests/visual-proofs/visualProofsSmoke.e2e.ts --timeout=90000",
+      "status": "timed-out",
+      "result": "Timed out at the outer command limit in this run."
+    }
+  ],
+  "size": {
+    "mathWorkspaceLinesBeforePhase10": 7748,
+    "mathWorkspaceLinesAfterPhase10": 7610,
+    "advancedBuilderLines": 482,
+    "advancedBuilderExportedFunctions": 15,
+    "productionChunk": {
+      "file": "MathWorkspace-DujUn8Ta.js",
+      "uncompressedKb": 379.38,
+      "gzipKb": 105.96,
+      "bundleImprovementClaimed": false
+    }
+  },
+  "knownBlockedRepoWideIssues": [
+    "Full Vitest fails on unrelated Visual Proofs Phase 11 assertions in src/visual-proofs/data/visualProofsPhaseEleven.test.tsx.",
+    "Full ESLint fails on existing repo-wide debt across public/sw.js, MathWorkspace, formula/theorem/trigonometry/visual-proof files, and dynamicWorkspaceEngine.",
+    "Package e2e and direct Visual Proofs smoke timed out in this run, while workspace-specific browser certification suites passed."
+  ],
+  "finalRecommendation": "Close the 10-phase workspace hardening cycle for the scoped architecture work. Next, prioritize route-level workspace chunk splitting, solver extraction, and browser visual regression baselines."
+}

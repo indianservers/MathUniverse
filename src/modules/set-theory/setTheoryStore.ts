@@ -31,7 +31,7 @@ export const useSetTheoryStore = create<SetTheoryState>()(
       setB: ["2", "4", "5", "6"],
       setC: ["1", "4", "6"],
       relationPairs: [["1", "1"], ["1", "2"], ["2", "2"], ["2", "4"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"]],
-      functionPairs: [["1", "a"], ["2", "b"], ["3", "b"], ["5", "c"]],
+      functionPairs: [["1", "2"], ["2", "4"], ["3", "5"], ["5", "6"]],
       operation: "union",
       playbackStep: 0,
       challengeSeed: 1,

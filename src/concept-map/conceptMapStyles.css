@@ -1,0 +1,667 @@
+.concept-map-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 14% 10%, rgba(34, 211, 238, 0.16), transparent 28rem),
+    radial-gradient(circle at 82% 4%, rgba(167, 139, 250, 0.14), transparent 24rem),
+    linear-gradient(180deg, #f8fbff 0%, #eef8fb 58%, #f8fafc 100%);
+  color: #0f172a;
+  padding: 1rem;
+}
+
+.dark .concept-map-page {
+  background:
+    radial-gradient(circle at 14% 10%, rgba(34, 211, 238, 0.16), transparent 28rem),
+    radial-gradient(circle at 82% 4%, rgba(167, 139, 250, 0.12), transparent 24rem),
+    #07111f;
+  color: #e5f3ff;
+}
+
+.concept-hero,
+.concept-panel,
+.concept-view-controls {
+  border: 1px solid rgba(125, 156, 185, 0.28);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.dark .concept-hero,
+.dark .concept-panel,
+.dark .concept-view-controls {
+  border-color: rgba(125, 211, 252, 0.18);
+  background: rgba(15, 23, 42, 0.84);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+}
+
+.concept-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 20px;
+  padding: 1.2rem;
+}
+
+.concept-hero h1 {
+  margin: 0.2rem 0;
+  font-size: clamp(2rem, 4vw, 4.25rem);
+  line-height: 0.95;
+}
+
+.concept-hero p {
+  max-width: 58rem;
+  margin: 0;
+  color: #475569;
+  font-size: 1rem;
+}
+
+.dark .concept-hero p,
+.dark .concept-muted,
+.dark .concept-count {
+  color: #bad2e5;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #007995;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.concept-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(6rem, 1fr));
+  gap: 0.7rem;
+  min-width: min(32rem, 100%);
+}
+
+.concept-hero-stats span {
+  border: 1px solid #d7e5f0;
+  border-radius: 14px;
+  background: #f8fbff;
+  padding: 0.8rem;
+  text-align: center;
+  color: #475569;
+  font-weight: 800;
+}
+
+.concept-hero-stats strong {
+  display: block;
+  color: #020617;
+  font-size: 1.6rem;
+}
+
+.dark .concept-hero-stats span {
+  border-color: rgba(148, 163, 184, 0.24);
+  background: rgba(2, 6, 23, 0.44);
+}
+
+.dark .concept-hero-stats strong {
+  color: #f8fafc;
+}
+
+.concept-view-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0;
+  border-radius: 16px;
+  padding: 0.7rem;
+}
+
+.concept-view-controls button,
+.concept-zoom-controls button,
+.concept-segmented button,
+.concept-chip-list button,
+.concept-clear,
+.concept-mini-links button,
+.concept-path-list button {
+  border: 1px solid #cddfec;
+  border-radius: 11px;
+  background: #fff;
+  color: #26364a;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.concept-view-controls button,
+.concept-zoom-controls button,
+.concept-segmented button,
+.concept-clear {
+  padding: 0.66rem 0.9rem;
+}
+
+.concept-view-controls button.active,
+.concept-segmented button.active,
+.concept-chip-list button.active {
+  border-color: #0891b2;
+  background: #0891b2;
+  color: #fff;
+}
+
+.dark .concept-view-controls button.active,
+.dark .concept-segmented button.active,
+.dark .concept-chip-list button.active {
+  border-color: #22d3ee;
+  background: #0891b2;
+  color: #fff;
+}
+
+.concept-map-layout {
+  display: grid;
+  grid-template-columns: minmax(14rem, 19rem) minmax(0, 1fr) minmax(18rem, 24rem);
+  gap: 1rem;
+  align-items: start;
+}
+
+.concept-panel {
+  border-radius: 18px;
+}
+
+.concept-sidebar,
+.concept-details,
+.concept-path-panel,
+.concept-legend {
+  padding: 1rem;
+}
+
+.concept-sidebar,
+.concept-details {
+  position: sticky;
+  top: 0.75rem;
+  max-height: calc(100vh - 1.5rem);
+  overflow: auto;
+}
+
+.concept-search {
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 900;
+}
+
+.concept-search input,
+.concept-path-controls select {
+  width: 100%;
+  border: 1px solid #cddfec;
+  border-radius: 12px;
+  background: #fff;
+  color: #0f172a;
+  padding: 0.72rem 0.8rem;
+  font: inherit;
+}
+
+.dark .concept-search input,
+.dark .concept-path-controls select,
+.dark .concept-view-controls button,
+.dark .concept-zoom-controls button,
+.dark .concept-segmented button,
+.dark .concept-chip-list button,
+.dark .concept-clear,
+.dark .concept-mini-links button,
+.dark .concept-path-list button {
+  border-color: rgba(148, 163, 184, 0.32);
+  background: rgba(2, 6, 23, 0.58);
+  color: #e5f3ff;
+}
+
+.concept-count,
+.concept-muted {
+  color: #61748b;
+  font-size: 0.92rem;
+}
+
+.concept-sidebar h2,
+.concept-details h3,
+.concept-legend h2 {
+  margin: 1rem 0 0.55rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.concept-segmented {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.concept-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 1rem 0;
+  font-weight: 900;
+}
+
+.concept-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.concept-chip-list button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.86rem;
+}
+
+.concept-chip-list.compact button {
+  text-transform: capitalize;
+}
+
+.concept-chip-list span,
+.concept-legend-grid i {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+}
+
+.concept-clear {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.concept-main-column {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.concept-canvas-card {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.concept-canvas-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1rem 0.75rem;
+}
+
+.concept-canvas-toolbar h2,
+.concept-path-heading h2 {
+  margin: 0.1rem 0 0;
+  font-size: 1.12rem;
+}
+
+.concept-zoom-controls {
+  display: inline-flex;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.concept-canvas-shell {
+  width: 100%;
+  overflow: auto;
+  padding: 0 0.6rem 0.6rem;
+}
+
+.concept-canvas {
+  min-width: 58rem;
+  width: 100%;
+  height: 38rem;
+  border-radius: 14px;
+  background:
+    linear-gradient(rgba(8, 145, 178, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 145, 178, 0.08) 1px, transparent 1px),
+    #f8fbff;
+  background-size: 34px 34px;
+}
+
+.dark .concept-canvas {
+  background:
+    linear-gradient(rgba(125, 211, 252, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 211, 252, 0.08) 1px, transparent 1px),
+    #07111f;
+}
+
+.concept-edge {
+  fill: none;
+  opacity: 0.38;
+  stroke: #64748b;
+  stroke-width: 2;
+}
+
+.concept-edge.prerequisite { stroke: #0891b2; }
+.concept-edge.builds { stroke: #7c3aed; }
+.concept-edge.related { stroke: #94a3b8; stroke-dasharray: 6 5; }
+.concept-edge.formula { stroke: #db2777; }
+.concept-edge.theorem { stroke: #ca8a04; }
+.concept-edge.application { stroke: #059669; }
+.concept-edge.visual-proof { stroke: #06b6d4; stroke-dasharray: 3 4; }
+.concept-edge.path {
+  opacity: 0.9;
+  stroke: #f97316;
+  stroke-width: 4;
+}
+
+.concept-canvas marker path {
+  fill: #64748b;
+}
+
+.concept-node {
+  cursor: pointer;
+  outline: none;
+}
+
+.concept-node circle {
+  filter: drop-shadow(0 7px 12px rgba(15, 23, 42, 0.12));
+}
+
+.concept-node.selected circle:first-child {
+  stroke-width: 5;
+}
+
+.concept-node.focused circle:first-child,
+.concept-node.path circle:first-child {
+  stroke-width: 4;
+}
+
+.concept-node.muted {
+  opacity: 0.32;
+}
+
+.concept-node:focus-visible circle:first-child {
+  stroke: #f97316;
+  stroke-width: 6;
+}
+
+.concept-mastery-ring {
+  fill: none;
+  stroke: #22c55e;
+  stroke-width: 4;
+  transform: rotate(-90deg);
+}
+
+.concept-node-title {
+  fill: #0f172a;
+  font-size: 10px;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.concept-node-meta {
+  fill: #475569;
+  font-size: 8px;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.dark .concept-node-title { fill: #06101f; }
+.dark .concept-node-meta { fill: #1e293b; }
+
+.concept-node-tooltip {
+  border: 1px solid #cddfec;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #0f172a;
+  padding: 0.45rem;
+  text-align: center;
+  font-size: 0.72rem;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.14);
+}
+
+.concept-node-tooltip strong,
+.concept-node-tooltip span {
+  display: block;
+}
+
+.concept-detail-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.concept-detail-header span {
+  border-radius: 999px;
+  background: #e2e8f0;
+  padding: 0.3rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: capitalize;
+}
+
+.concept-details h2 {
+  margin: 0.8rem 0 0.5rem;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.concept-details p {
+  color: #41536a;
+  line-height: 1.55;
+}
+
+.dark .concept-details p {
+  color: #cbd5e1;
+}
+
+.concept-why {
+  border-left: 4px solid #0891b2;
+  padding-left: 0.75rem;
+}
+
+.concept-readiness,
+.concept-warning {
+  border-radius: 14px;
+  padding: 0.75rem;
+}
+
+.concept-readiness {
+  display: grid;
+  gap: 0.25rem;
+  background: #ecfeff;
+  color: #0f5161;
+}
+
+.concept-warning {
+  margin-top: 0.6rem;
+  background: #fff7ed;
+  color: #9a3412;
+  font-weight: 800;
+}
+
+.concept-action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0.9rem 0;
+}
+
+.concept-action-grid a {
+  border: 1px solid #cddfec;
+  border-radius: 12px;
+  padding: 0.6rem;
+  text-align: center;
+  color: #0f3f58;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.concept-action-grid a.concept-primary-link {
+  grid-column: 1 / -1;
+  background: #0891b2;
+  color: #fff;
+}
+
+.concept-mini-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.concept-mini-links button {
+  padding: 0.46rem 0.58rem;
+  text-align: left;
+}
+
+.concept-evidence {
+  border-top: 1px solid #dbe8f1;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+}
+
+.concept-legend {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1rem;
+}
+
+.concept-legend-grid,
+.concept-edge-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.85rem;
+}
+
+.concept-legend-grid span,
+.concept-edge-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.concept-edge-legend i {
+  width: 1.8rem;
+  border-top: 3px solid #64748b;
+}
+
+.concept-edge-legend i.prerequisite { border-color: #0891b2; }
+.concept-edge-legend i.builds { border-color: #7c3aed; }
+.concept-edge-legend i.related { border-color: #94a3b8; border-top-style: dashed; }
+.concept-edge-legend i.formula { border-color: #db2777; }
+.concept-edge-legend i.theorem { border-color: #ca8a04; }
+.concept-edge-legend i.visual-proof { border-color: #06b6d4; border-top-style: dotted; }
+
+.concept-path-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.concept-path-heading span {
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #075985;
+  padding: 0.42rem 0.65rem;
+  font-weight: 900;
+}
+
+.concept-path-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0.85rem 0;
+}
+
+.concept-path-controls label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 900;
+}
+
+.concept-path-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.concept-path-list button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.55rem;
+  padding: 0.55rem;
+  text-align: left;
+}
+
+.concept-path-list span {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: #0891b2;
+  color: #fff;
+}
+
+.concept-map-page.classroom {
+  font-size: 1.08rem;
+}
+
+.concept-map-page.classroom .concept-hide-classroom {
+  display: none;
+}
+
+.concept-map-page.classroom .concept-canvas {
+  height: 42rem;
+}
+
+@media (max-width: 1180px) {
+  .concept-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .concept-map-layout {
+    grid-template-columns: 18rem minmax(0, 1fr);
+  }
+
+  .concept-details {
+    position: static;
+    grid-column: 1 / -1;
+    max-height: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .concept-map-page {
+    padding: 0.65rem;
+  }
+
+  .concept-map-layout,
+  .concept-legend,
+  .concept-path-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .concept-sidebar {
+    position: static;
+    max-height: none;
+  }
+
+  .concept-hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .concept-canvas-toolbar,
+  .concept-path-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .concept-canvas {
+    min-width: 46rem;
+    height: 32rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concept-node circle,
+  .concept-panel {
+    transition: none;
+  }
+}

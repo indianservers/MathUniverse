@@ -90,6 +90,14 @@ export function classifyProblem(input: string): ProblemClassification {
 
   const normalizedText = stripPromptPrefix(normalizeText(trimmed));
 
+  const unsupportedAdvanced = unsupportedAdvancedTopic(normalizedText);
+  if (unsupportedAdvanced) {
+    return unsupported(rawInput, unsupportedAdvanced, "high", [
+      "This topic is recognized but is outside the certified Phase 1 problem-solver scope.",
+      "No deterministic answer will be generated for this input.",
+    ]);
+  }
+
   if (isMatrixLike(normalizedText)) {
     return classification("matrix", rawInput, normalizeExpression(normalizedText), {
       confidence: "high",
@@ -158,6 +166,16 @@ export function classifyProblem(input: string): ProblemClassification {
 function classifyEquation(rawInput: string, equation: string): ProblemClassification {
   const normalizedInput = normalizeExpression(equation);
   const variables = extractVariables(normalizedInput);
+  if (variables.length === 0) {
+    return classification("linear-equation", rawInput, normalizedInput, {
+      confidence: "high",
+      expression: normalizedInput,
+      variable: "x",
+      variables: ["x"],
+      reason: "Detected a variable-free equation; solving reduces to identity or contradiction checking.",
+      assumptions: ["No variable appears, so the solver checks whether the equation is always true or impossible."],
+    });
+  }
   if (variables.length !== 1) {
     return unsupported(rawInput, "Equation does not contain exactly one supported variable.", "medium", ["Use system syntax for multiple equations or a one-variable equation for this solver."]);
   }
@@ -305,6 +323,18 @@ function isPercentChangePrompt(value: string) {
   const hasPercentChangeWords = /\b(?:percent|percentage)?\s*(?:increase|decrease|change)\b/i.test(value);
   const hasOldToNewValues = /\b(?:from|old|original|initial)\s+-?\d+(?:\.\d+)?\s+\b(?:to|new|final)\s+-?\d+(?:\.\d+)?\b/i.test(value);
   return hasPercentChangeWords && hasOldToNewValues;
+}
+
+function unsupportedAdvancedTopic(value: string) {
+  const advancedPatterns: Array<[RegExp, string]> = [
+    [/\b(?:laplace|fourier)\b/i, "Laplace and Fourier transform solving is not certified in this problem solver yet."],
+    [/\b(?:newton\s*raphson|runge\s*kutta|bisection\s*method|euler\s*method)\b/i, "Numerical-method execution is not certified in this problem solver yet."],
+    [/\b(?:differential\s+equation|ode|pde|partial\s+differential)\b/i, "Differential-equation solving is not certified in this problem solver yet."],
+    [/\b(?:navier\s*stokes|bessel|legendre|eigenfunction)\b/i, "Advanced engineering-mathematics solving is not certified in this problem solver yet."],
+    [/\b(?:prove|proof|theorem)\b/i, "Proof generation is not certified in this problem solver yet."],
+    [/\b(?:plot|graph)\b/i, "Graph plotting should use the graphing tools; this solver does not certify plot requests."],
+  ];
+  return advancedPatterns.find(([pattern]) => pattern.test(value))?.[1] ?? "";
 }
 
 function commandExpression(value: string, commands: string[]) {

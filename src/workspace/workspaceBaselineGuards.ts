@@ -8,7 +8,7 @@ export type WorkspaceBaselineRoute = {
 
 export const phase1BackupManifest = {
   branch: "codex/phase-1-baseline-20260611",
-  archive: "C:\\Users\\Sai Satish\\Documents\\GitHub\\Math Universe Backups\\phase-1-baseline-20260611\\math-universe-source-baseline.zip",
+  archive: "docs/workspace/baselines/phase-1-baseline-20260611/math-universe-source-baseline.zip",
   archivedFolders: [
     "src/pages",
     "src/components",

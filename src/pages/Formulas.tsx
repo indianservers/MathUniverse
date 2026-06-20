@@ -1,12 +1,12 @@
 import { lazy, Suspense } from "react";
 import { Sigma } from "lucide-react";
 
-const FormulasCheatsheet = lazy(() => import("./FormulasCheatsheet"));
+const FormulaLibraryPage = lazy(() => import("./FormulaLibraryPage"));
 
 export default function Formulas() {
   return (
     <Suspense fallback={<FormulaSheetFallback />}>
-      <FormulasCheatsheet />
+      <FormulaLibraryPage />
     </Suspense>
   );
 }
@@ -20,7 +20,7 @@ function FormulaSheetFallback() {
             <Sigma className="h-5 w-5" />
           </span>
           <div>
-            <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Formula Cheatsheet</p>
+            <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Formula Library</p>
             <h1 className="text-xl font-black">Loading compact formulas</h1>
           </div>
         </div>

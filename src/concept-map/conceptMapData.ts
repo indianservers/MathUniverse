@@ -1,0 +1,283 @@
+import type { ConceptCategory, ConceptCategoryInfo, ConceptDifficulty, ConceptEdge, ConceptEdgeType, ConceptNode } from "./conceptMapTypes";
+
+export const conceptCategoryInfo: Record<ConceptCategory, ConceptCategoryInfo> = {
+  numbers: { id: "numbers", label: "Numbers", color: "#0891b2", softColor: "#cffafe" },
+  algebra: { id: "algebra", label: "Algebra", color: "#7c3aed", softColor: "#ede9fe" },
+  geometry: { id: "geometry", label: "Geometry", color: "#059669", softColor: "#d1fae5" },
+  trigonometry: { id: "trigonometry", label: "Trigonometry", color: "#0284c7", softColor: "#dbeafe" },
+  "coordinate-geometry": { id: "coordinate-geometry", label: "Coordinate Geometry", color: "#9333ea", softColor: "#f3e8ff" },
+  functions: { id: "functions", label: "Functions and Graphs", color: "#db2777", softColor: "#fce7f3" },
+  calculus: { id: "calculus", label: "Calculus", color: "#e11d48", softColor: "#ffe4e6" },
+  probability: { id: "probability", label: "Probability", color: "#ea580c", softColor: "#ffedd5" },
+  statistics: { id: "statistics", label: "Statistics", color: "#ca8a04", softColor: "#fef3c7" },
+  "sets-logic": { id: "sets-logic", label: "Sets and Logic", color: "#0f766e", softColor: "#ccfbf1" },
+  matrices: { id: "matrices", label: "Matrices", color: "#4f46e5", softColor: "#e0e7ff" },
+  vectors: { id: "vectors", label: "Vectors", color: "#2563eb", softColor: "#dbeafe" },
+  mensuration: { id: "mensuration", label: "Mensuration and 3D", color: "#16a34a", softColor: "#dcfce7" },
+  "visual-proofs": { id: "visual-proofs", label: "Visual Proofs", color: "#06b6d4", softColor: "#cffafe" },
+  olympiad: { id: "olympiad", label: "Olympiad", color: "#c026d3", softColor: "#fae8ff" },
+};
+
+const clusterOrigin: Record<ConceptCategory, { x: number; y: number }> = {
+  numbers: { x: 110, y: 270 },
+  algebra: { x: 355, y: 345 },
+  geometry: { x: 570, y: 130 },
+  trigonometry: { x: 675, y: 345 },
+  "coordinate-geometry": { x: 930, y: 180 },
+  functions: { x: 930, y: 390 },
+  calculus: { x: 1180, y: 330 },
+  probability: { x: 1110, y: 645 },
+  statistics: { x: 1245, y: 710 },
+  "sets-logic": { x: 280, y: 650 },
+  matrices: { x: 820, y: 705 },
+  vectors: { x: 655, y: 720 },
+  mensuration: { x: 570, y: 560 },
+  "visual-proofs": { x: 735, y: 520 },
+  olympiad: { x: 710, y: 70 },
+};
+
+const moduleProfiles = {
+  foundation: { dictionary: true, practice: true },
+  numbers: { dictionary: true, theorem: true, problemSolver: true, practice: true },
+  formulas: { formulaVisualization: true, dictionary: true, theorem: true, problemSolver: true, practice: true },
+  graphs: { formulaVisualization: true, dictionary: true, problemSolver: true, graph: true, visualization2D: true, practice: true },
+  geometry: { dictionary: true, theorem: true, visualization2D: true, visualProof: true, practice: true },
+  trig: { formulaVisualization: true, dictionary: true, theorem: true, graph: true, visualization2D: true, visualProof: true, practice: true },
+  sets: { dictionary: true, theorem: true, venn: true, visualization2D: true, practice: true },
+  threeD: { dictionary: true, formulaVisualization: true, visualization2D: true, visualization3D: true, practice: true },
+  matrix: { dictionary: true, theorem: true, problemSolver: true, visualization2D: true, visualization3D: true, practice: true },
+  olympiad: { dictionary: true, theorem: true, visualProof: true, practice: true, olympiad: true },
+} satisfies Record<string, ConceptNode["availableModules"]>;
+
+type NodeSeed = {
+  id: string;
+  title: string;
+  category: ConceptCategory;
+  difficulty?: ConceptDifficulty;
+  prerequisites?: string[];
+  nextConcepts?: string[];
+  relatedConcepts?: string[];
+  formulas?: string[];
+  theorems?: string[];
+  uses?: string[];
+  route?: string;
+  modules?: keyof typeof moduleProfiles;
+  minutes?: number;
+};
+
+function makeNode(seed: NodeSeed, index: number): ConceptNode {
+  const origin = clusterOrigin[seed.category];
+  const column = index % 4;
+  const row = Math.floor(index / 4);
+  return {
+    id: seed.id,
+    title: seed.title,
+    shortTitle: seed.title.length > 20 ? seed.title.replace("Trigonometric", "Trig").replace("Coordinate", "Coord.") : seed.title,
+    category: seed.category,
+    difficulty: seed.difficulty ?? "basic",
+    description: `${seed.title} is a core idea in ${conceptCategoryInfo[seed.category].label}. It connects earlier skills to formulas, diagrams, problem solving, and later topics.`,
+    whyItMatters: `${seed.title} helps students understand why procedures work and where the concept is used across Math Universe.`,
+    prerequisites: seed.prerequisites ?? [],
+    nextConcepts: seed.nextConcepts ?? [],
+    relatedConcepts: seed.relatedConcepts ?? [],
+    formulas: seed.formulas,
+    theorems: seed.theorems,
+    realLifeUses: seed.uses,
+    availableModules: moduleProfiles[seed.modules ?? "foundation"],
+    route: seed.route,
+    estimatedMinutes: seed.minutes ?? 20,
+    masteryLevel: seed.difficulty === "foundation" ? 65 : seed.difficulty === "basic" ? 35 : 0,
+    x: origin.x + (column - 1.5) * 86 + (row % 2) * 20,
+    y: origin.y + row * 62,
+  };
+}
+
+const rawSeeds = [
+  ["natural-numbers", "Natural Numbers", "numbers", "foundation", [], ["whole-numbers", "factors-multiples"], [], undefined, ["Counting", "Ranks"], "/number-systems", "numbers"],
+  ["whole-numbers", "Whole Numbers", "numbers", "foundation", ["natural-numbers"], ["integers"], ["number-line"], undefined, ["Zero in counting"], "/number-systems", "numbers"],
+  ["integers", "Integers", "numbers", "foundation", ["whole-numbers"], ["rational-numbers"], ["number-line"], undefined, ["Temperatures", "Bank balance"], "/number-systems", "numbers"],
+  ["rational-numbers", "Rational Numbers", "numbers", "basic", ["integers", "fractions"], ["real-numbers"], ["decimals"], ["p/q"], ["Rational representation"], "/number-systems", "numbers"],
+  ["irrational-numbers", "Irrational Numbers", "numbers", "basic", ["radicals"], ["real-numbers"], ["real-numbers"], ["sqrt(2)", "pi"], ["Irrationality of sqrt(2)"], "/number-systems", "numbers"],
+  ["real-numbers", "Real Numbers", "numbers", "basic", ["rational-numbers", "irrational-numbers"], ["number-line", "linear-equations"], ["radicals"], undefined, ["Measurement"], "/number-systems", "numbers"],
+  ["number-line", "Number Line", "numbers", "foundation", ["integers"], ["coordinate-plane"], ["real-numbers"], undefined, ["Comparing values"], "/number-systems", "numbers"],
+  ["factors-multiples", "Factors and Multiples", "numbers", "basic", ["natural-numbers"], ["prime-numbers", "lcm-hcf"], ["number-theory"], undefined, ["Divisibility"], "/number-systems", "numbers"],
+  ["prime-numbers", "Prime Numbers", "numbers", "basic", ["factors-multiples"], ["number-theory", "modular-arithmetic"], ["lcm-hcf"], undefined, ["Cryptography"], "/number-systems", "numbers"],
+  ["lcm-hcf", "LCM and HCF", "numbers", "basic", ["factors-multiples", "prime-numbers"], ["fractions"], ["number-theory"], ["gcd(a,b) x lcm(a,b) = ab"], ["LCM-GCD product theorem"], "/number-systems", "numbers"],
+  ["fractions", "Fractions", "numbers", "foundation", ["whole-numbers"], ["decimals", "percentages", "ratio-proportion"], ["rational-numbers"], ["a/b"], undefined, "/number-systems", "formulas"],
+  ["decimals", "Decimals", "numbers", "foundation", ["fractions"], ["percentages"], ["rational-numbers"], undefined, ["Money", "Measurements"], "/number-systems", "numbers"],
+  ["percentages", "Percentages", "numbers", "basic", ["fractions", "decimals"], ["ratio-proportion", "probability-basics"], ["data-collection"], ["percent = part/whole x 100"], undefined, "/number-systems", "formulas"],
+  ["ratio-proportion", "Ratio and Proportion", "numbers", "basic", ["fractions"], ["right-triangle-trigonometry", "similarity"], ["percentages"], ["a:b = c:d"], ["Basic proportionality theorem"], "/formulas", "formulas"],
+  ["exponents", "Exponents", "numbers", "basic", ["natural-numbers"], ["radicals", "exponential-functions", "logarithmic-functions"], ["algebraic-expressions"], ["a^m a^n = a^(m+n)"], ["Exponent laws theorem"], "/formulas/algebra", "formulas"],
+  ["radicals", "Radicals", "numbers", "basic", ["exponents"], ["irrational-numbers", "quadratic-formula"], ["real-numbers"], ["sqrt(a)sqrt(b)=sqrt(ab)"], undefined, "/formulas/algebra", "formulas"],
+  ["variables", "Variables", "algebra", "foundation", ["real-numbers"], ["algebraic-expressions"], ["function-basics"], undefined, ["Unknowns", "Models"], "/algebra", "formulas"],
+  ["algebraic-expressions", "Algebraic Expressions", "algebra", "basic", ["variables", "exponents"], ["linear-equations", "polynomials"], ["algebraic-identities"], undefined, ["Formula building"], "/algebra", "formulas"],
+  ["linear-equations", "Linear Equations", "algebra", "basic", ["algebraic-expressions"], ["simultaneous-equations", "linear-functions"], ["equation-of-line"], ["ax+b=0"], undefined, "/problem-solver", "formulas"],
+  ["simultaneous-equations", "Simultaneous Equations", "algebra", "intermediate", ["linear-equations"], ["matrices", "intersections-graphs"], ["linear-functions"], undefined, ["Mixture problems"], "/problem-solver", "formulas"],
+  ["inequalities", "Inequalities", "algebra", "intermediate", ["linear-equations"], ["calculus-applications", "olympiad-inequality-reasoning"], ["number-line"], ["|a+b| <= |a|+|b|"], ["Triangle inequality for real numbers"], "/formulas/algebra", "formulas"],
+  ["polynomials", "Polynomials", "algebra", "intermediate", ["algebraic-expressions"], ["factorization", "polynomial-functions"], ["exponents"], undefined, ["Curves"], "/algebra", "formulas"],
+  ["factorization", "Factorization", "algebra", "intermediate", ["polynomials"], ["quadratic-equations"], ["algebraic-identities"], ["p(a)=0 => x-a factor"], ["Factor theorem"], "/formulas/algebra", "formulas"],
+  ["algebraic-identities", "Algebraic Identities", "algebra", "basic", ["algebraic-expressions"], ["factorization"], ["visual-proofs"], ["(a+b)^2=a^2+2ab+b^2"], undefined, "/visual-proofs/algebraic-identities", "formulas"],
+  ["quadratic-equations", "Quadratic Equations", "algebra", "intermediate", ["factorization", "linear-equations"], ["quadratic-formula", "quadratic-functions"], ["parabola-basics"], ["ax^2+bx+c=0"], ["Quadratic discriminant theorem"], "/problem-solver", "graphs"],
+  ["quadratic-formula", "Quadratic Formula", "algebra", "intermediate", ["quadratic-equations", "radicals"], ["completing-square"], ["quadratic-functions"], ["x=(-b +/- sqrt(b^2-4ac))/(2a)"], ["Completing square theorem"], "/formulas/algebra", "formulas"],
+  ["completing-square", "Completing the Square", "algebra", "intermediate", ["quadratic-equations"], ["quadratic-formula"], ["parabola-basics"], undefined, ["Vertex form"], "/visual-proofs/algebraic-identities", "formulas"],
+  ["sequences", "Sequences", "algebra", "basic", ["patterns"], ["arithmetic-progression", "geometric-progression"], ["functions"], undefined, ["Growth patterns"], "/visual-proofs/sequences-and-series", "formulas"],
+  ["arithmetic-progression", "Arithmetic Progression", "algebra", "basic", ["sequences"], ["series"], ["linear-functions"], ["a_n=a+(n-1)d"], undefined, "/visual-proofs/sequences-and-series", "formulas"],
+  ["geometric-progression", "Geometric Progression", "algebra", "intermediate", ["sequences", "exponents"], ["exponential-functions"], ["series"], ["a_n=ar^(n-1)"], undefined, "/visual-proofs/sequences-and-series", "formulas"],
+  ["points-lines-angles", "Points, Lines and Angles", "geometry", "foundation", ["number-line"], ["triangles", "quadrilaterals"], ["logic-statements"], undefined, ["Drawing", "Construction"], "/geometry", "geometry"],
+  ["triangles", "Triangles", "geometry", "basic", ["points-lines-angles"], ["congruence", "similarity", "pythagoras"], ["area"], undefined, ["Bridges", "Roofs"], "/geometry", "geometry"],
+  ["congruence", "Congruence", "geometry", "basic", ["triangles"], ["geometry-chase"], ["similarity"], undefined, ["Exact matching"], "/theorems/geometry", "geometry"],
+  ["similarity", "Similarity", "geometry", "intermediate", ["triangles", "ratio-proportion"], ["right-triangle-trigonometry"], ["coordinate-plane"], undefined, ["Scale drawings"], "/theorems/geometry", "geometry"],
+  ["pythagoras", "Pythagoras Theorem", "geometry", "basic", ["triangles"], ["distance-formula", "right-triangle-trigonometry"], ["radicals"], ["a^2+b^2=c^2"], ["Pythagorean theorem"], "/visual-proofs/geometry/pythagorean-theorem-area-rearrangement", "geometry"],
+  ["quadrilaterals", "Quadrilaterals", "geometry", "basic", ["points-lines-angles"], ["area"], ["similarity"], undefined, ["Floor plans"], "/geometry", "geometry"],
+  ["circles", "Circles", "geometry", "basic", ["points-lines-angles"], ["tangents", "chords", "circle-equation"], ["unit-circle"], ["C=2pi r"], undefined, "/geometry", "geometry"],
+  ["tangents", "Tangents", "geometry", "intermediate", ["circles"], ["circle-equation"], ["derivatives"], undefined, ["Contact lines"], "/theorems/geometry", "geometry"],
+  ["chords", "Chords", "geometry", "intermediate", ["circles"], ["angle-theorems"], ["tangents"], undefined, ["Circle segments"], "/theorems/geometry", "geometry"],
+  ["angle-theorems", "Angle Theorems", "geometry", "intermediate", ["points-lines-angles", "triangles"], ["geometry-chase"], ["circles"], undefined, ["Proof writing"], "/theorems/geometry", "geometry"],
+  ["constructions", "Constructions", "geometry", "basic", ["points-lines-angles"], ["geometry-chase"], ["congruence"], undefined, ["Compass geometry"], "/workspace/geometry", "geometry"],
+  ["coordinate-geometry-basics", "Coordinate Geometry Basics", "geometry", "basic", ["number-line", "points-lines-angles"], ["cartesian-plane"], ["coordinate-plane"], undefined, ["Maps"], "/geometry/coordinate-geometry", "graphs"],
+  ["right-triangle-trigonometry", "Right Triangle Trigonometry", "trigonometry", "basic", ["similarity", "ratio-proportion"], ["sine", "cosine", "tangent"], ["heights-distances"], undefined, ["Surveying"], "/trigonometry", "trig"],
+  ["sine", "Sine", "trigonometry", "basic", ["right-triangle-trigonometry"], ["unit-circle"], ["cosine", "tangent"], ["sin theta=opposite/hypotenuse"], undefined, "/trigonometry/formula-visualizer", "trig"],
+  ["cosine", "Cosine", "trigonometry", "basic", ["right-triangle-trigonometry"], ["unit-circle"], ["sine", "tangent"], ["cos theta=adjacent/hypotenuse"], undefined, "/trigonometry/formula-visualizer", "trig"],
+  ["tangent", "Tangent", "trigonometry", "basic", ["sine", "cosine"], ["trig-quotient-identity"], ["right-triangle-trigonometry"], ["tan theta=opposite/adjacent"], undefined, "/trigonometry/formula-visualizer", "trig"],
+  ["reciprocal-ratios", "Reciprocal Ratios", "trigonometry", "intermediate", ["sine", "cosine", "tangent"], ["trig-identities"], ["unit-circle"], ["sec=1/cos", "cosec=1/sin"], undefined, "/trigonometry/formula-visualizer", "trig"],
+  ["unit-circle", "Unit Circle", "trigonometry", "intermediate", ["coordinate-plane", "right-triangle-trigonometry"], ["trig-identities", "trig-graphs"], ["sine", "cosine"], ["x=cos theta", "y=sin theta"], ["Unit circle coordinate theorem"], "/trigonometry/formula-visualizer", "trig"],
+  ["trig-identities", "Trigonometric Identities", "trigonometry", "intermediate", ["unit-circle", "reciprocal-ratios"], ["compound-angle-formulae", "double-angle-formulae"], ["trig-pythagorean-identity"], undefined, ["Signal simplification"], "/trigonometry/formula-visualizer", "trig"],
+  ["trig-pythagorean-identity", "sin^2 theta + cos^2 theta = 1", "trigonometry", "intermediate", ["unit-circle", "pythagoras"], ["trig-identities"], ["visual-proofs"], ["sin^2 theta + cos^2 theta = 1"], ["Pythagorean identity theorem"], "/visual-proofs/trigonometry/pythagorean-trig-identity", "trig"],
+  ["trig-quotient-identity", "sin theta / cos theta = tan theta", "trigonometry", "intermediate", ["sine", "cosine", "tangent"], ["trig-identities"], ["unit-circle"], ["tan theta=sin theta/cos theta"], ["Tangent quotient theorem"], "/visual-proofs/trigonometry/tangent-ratio-identity", "trig"],
+  ["compound-angle-formulae", "Compound Angle Formulae", "trigonometry", "advanced", ["trig-identities"], ["double-angle-formulae"], ["unit-circle"], ["sin(a+b)", "cos(a+b)"], ["Sine addition theorem"], "/visual-proofs/trigonometry/sine-angle-addition", "trig"],
+  ["double-angle-formulae", "Double Angle Formulae", "trigonometry", "advanced", ["compound-angle-formulae"], ["inverse-trigonometry"], ["trig-graphs"], ["sin 2x=2sin x cos x"], ["Double angle theorem"], "/visual-proofs/trigonometry/double-angle-identities", "trig"],
+  ["trig-graphs", "Trigonometric Graphs", "trigonometry", "intermediate", ["unit-circle", "function-basics"], ["inverse-trigonometry"], ["periodicity"], undefined, ["Waves"], "/visual-proofs/trigonometry/trig-graphs-from-unit-circle", "trig"],
+  ["inverse-trigonometry", "Inverse Trigonometry", "trigonometry", "advanced", ["trig-graphs", "domain-range"], ["calculus-derivatives"], ["function-basics"], undefined, ["Angle recovery"], "/trigonometry", "trig"],
+  ["heights-distances", "Heights and Distances", "trigonometry", "basic", ["right-triangle-trigonometry"], ["vectors"], ["sine", "cosine"], undefined, ["Surveying"], "/trigonometry", "trig"],
+  ["visual-proof-methods", "Visual Proof Methods", "visual-proofs", "basic", ["points-lines-angles", "algebraic-expressions"], ["pythagoras", "algebraic-identities", "trig-pythagorean-identity"], ["geometry-chase"], undefined, ["Teaching proof intuition"], "/visual-proofs", "geometry"],
+  ["function-basics", "Function Basics", "functions", "basic", ["variables"], ["domain-range", "linear-functions"], ["graphs"], undefined, ["Input-output rules"], "/math/functions-graphs", "graphs"],
+  ["domain-range", "Domain and Range", "functions", "basic", ["function-basics"], ["inverse-trigonometry"], ["graph-interpretation"], undefined, ["Valid inputs"], "/math/functions-graphs", "graphs"],
+  ["linear-functions", "Linear Functions", "functions", "basic", ["linear-equations"], ["intersections-graphs"], ["slope"], ["y=mx+c"], undefined, "/math/functions-graphs", "graphs"],
+  ["quadratic-functions", "Quadratic Functions", "functions", "intermediate", ["quadratic-equations"], ["parabola-basics"], ["graph-interpretation"], ["y=ax^2+bx+c"], undefined, "/math/functions-graphs", "graphs"],
+  ["polynomial-functions", "Polynomial Functions", "functions", "intermediate", ["polynomials"], ["calculus-limits"], ["quadratic-functions"], undefined, ["Curve modelling"], "/math/functions-graphs", "graphs"],
+  ["exponential-functions", "Exponential Functions", "functions", "intermediate", ["exponents"], ["logarithmic-functions"], ["geometric-progression"], ["y=a^x"], undefined, "/math/functions-graphs", "graphs"],
+  ["logarithmic-functions", "Logarithmic Functions", "functions", "intermediate", ["exponential-functions"], ["calculus-limits"], ["exponents"], ["log_b(xy)=log_b x+log_b y"], ["Logarithm product theorem"], "/math/functions-graphs", "graphs"],
+  ["graph-transformations", "Transformation of Graphs", "functions", "intermediate", ["function-basics"], ["graph-interpretation"], ["coordinate-plane"], undefined, ["Animation curves"], "/graph-comparison", "graphs"],
+  ["intersections-graphs", "Intersections of Graphs", "functions", "intermediate", ["linear-functions", "quadratic-functions"], ["simultaneous-equations"], ["graph-interpretation"], undefined, ["Break-even points"], "/graph-comparison", "graphs"],
+  ["graph-interpretation", "Graph Interpretation", "functions", "basic", ["domain-range"], ["calculus-limits"], ["statistics-mean"], undefined, ["Data reading"], "/math/functions-graphs", "graphs"],
+  ["cartesian-plane", "Cartesian Plane", "coordinate-geometry", "basic", ["number-line"], ["distance-formula", "coordinate-plane"], ["function-basics"], undefined, ["Maps"], "/geometry/coordinate-geometry", "graphs"],
+  ["coordinate-plane", "Coordinate Plane", "coordinate-geometry", "basic", ["cartesian-plane"], ["unit-circle", "slope"], ["coordinate-geometry-basics"], undefined, ["Navigation"], "/geometry/coordinate-geometry", "graphs"],
+  ["distance-formula", "Distance Formula", "coordinate-geometry", "basic", ["pythagoras", "coordinate-plane"], ["midpoint-formula", "circle-equation"], ["vectors"], ["d=sqrt((x2-x1)^2+(y2-y1)^2)"], ["Distance formula theorem"], "/formulas/coordinate-geometry", "graphs"],
+  ["midpoint-formula", "Midpoint Formula", "coordinate-geometry", "basic", ["coordinate-plane"], ["section-formula"], ["vectors"], undefined, ["Averaging positions"], "/formulas/coordinate-geometry", "graphs"],
+  ["section-formula", "Section Formula", "coordinate-geometry", "intermediate", ["midpoint-formula", "ratio-proportion"], ["vectors"], ["coordinate-plane"], undefined, ["Dividing a route"], "/formulas/coordinate-geometry", "graphs"],
+  ["slope", "Slope", "coordinate-geometry", "basic", ["coordinate-plane", "ratio-proportion"], ["equation-of-line", "linear-functions"], ["derivatives"], ["m=(y2-y1)/(x2-x1)"], undefined, "/geometry/coordinate-geometry", "graphs"],
+  ["equation-of-line", "Equation of a Line", "coordinate-geometry", "basic", ["slope", "linear-equations"], ["intersections-graphs"], ["linear-functions"], ["y=mx+c"], undefined, "/geometry/coordinate-geometry", "graphs"],
+  ["circle-equation", "Circle Equation", "coordinate-geometry", "intermediate", ["distance-formula", "circles"], ["unit-circle"], ["coordinate-plane"], ["(x-h)^2+(y-k)^2=r^2"], undefined, "/formulas/coordinate-geometry", "graphs"],
+  ["parabola-basics", "Parabola Basics", "coordinate-geometry", "intermediate", ["quadratic-functions", "coordinate-plane"], ["calculus-applications"], ["quadratic-equations"], undefined, ["Projectile paths"], "/math-lab/conics", "graphs"],
+  ["area", "Area", "mensuration", "basic", ["quadrilaterals", "triangles"], ["surface-area"], ["integration-area"], undefined, ["Land measurement"], "/shapes", "threeD"],
+  ["perimeter", "Perimeter", "mensuration", "basic", ["points-lines-angles"], ["area"], ["circles"], undefined, ["Fencing"], "/shapes", "threeD"],
+  ["surface-area", "Surface Area", "mensuration", "intermediate", ["area"], ["volume"], ["cube", "cuboid", "cylinder"], undefined, ["Packaging"], "/shapes", "threeD"],
+  ["volume", "Volume", "mensuration", "intermediate", ["area"], ["cube", "cuboid", "cylinder", "cone", "sphere"], ["integration"], undefined, ["Capacity"], "/shapes", "threeD"],
+  ["cube", "Cube", "mensuration", "basic", ["volume"], ["3d-nets"], ["surface-area"], undefined, ["Storage"], "/shapes", "threeD"],
+  ["cuboid", "Cuboid", "mensuration", "basic", ["volume"], ["3d-nets"], ["surface-area"], undefined, ["Rooms"], "/shapes", "threeD"],
+  ["cylinder", "Cylinder", "mensuration", "intermediate", ["circles", "volume"], ["cone"], ["surface-area"], undefined, ["Pipes"], "/shapes", "threeD"],
+  ["cone", "Cone", "mensuration", "intermediate", ["circles", "volume"], ["frustum"], ["surface-area"], undefined, ["Funnels"], "/shapes", "threeD"],
+  ["sphere", "Sphere", "mensuration", "intermediate", ["circles", "volume"], ["cross-sections"], ["surface-area"], undefined, ["Planets"], "/shapes", "threeD"],
+  ["frustum", "Frustum", "mensuration", "advanced", ["cone"], ["cross-sections"], ["volume"], undefined, ["Buckets"], "/shapes", "threeD"],
+  ["3d-nets", "3D Nets", "mensuration", "basic", ["surface-area"], ["cube", "cuboid"], ["visual-proofs"], undefined, ["Packaging design"], "/shapes", "threeD"],
+  ["cross-sections", "Cross Sections", "mensuration", "advanced", ["volume"], ["calculus-integration"], ["cone", "sphere"], undefined, ["Medical scans"], "/shapes", "threeD"],
+  ["sets", "Sets", "sets-logic", "foundation", ["natural-numbers"], ["subsets", "union"], ["venn-diagrams"], undefined, ["Grouping"], "/set-theory", "sets"],
+  ["subsets", "Subsets", "sets-logic", "basic", ["sets"], ["venn-diagrams"], ["logic-statements"], undefined, ["Classification"], "/set-theory", "sets"],
+  ["union", "Union", "sets-logic", "basic", ["sets"], ["inclusion-exclusion"], ["venn-diagrams"], ["A U B"], undefined, "/set-theory", "sets"],
+  ["intersection", "Intersection", "sets-logic", "basic", ["sets"], ["inclusion-exclusion"], ["venn-diagrams"], ["A intersection B"], undefined, "/set-theory", "sets"],
+  ["difference", "Difference", "sets-logic", "basic", ["sets"], ["complement"], ["venn-diagrams"], ["A-B"], undefined, "/set-theory", "sets"],
+  ["complement", "Complement", "sets-logic", "basic", ["sets"], ["inclusion-exclusion"], ["venn-diagrams"], ["A'"], undefined, "/set-theory", "sets"],
+  ["venn-diagrams", "Venn Diagrams", "sets-logic", "basic", ["sets", "union", "intersection"], ["inclusion-exclusion"], ["probability-basics"], undefined, ["Survey data"], "/set-theory/venn-diagram-engine", "sets"],
+  ["inclusion-exclusion", "Inclusion-Exclusion", "sets-logic", "intermediate", ["union", "intersection"], ["probability-basics", "counting-strategies"], ["venn-diagrams"], ["|A U B|=|A|+|B|-|A intersection B|"], ["Inclusion-exclusion theorem"], "/combinatorics", "sets"],
+  ["logic-statements", "Logic Statements", "sets-logic", "foundation", ["sets"], ["implication"], ["truth-table"], undefined, ["Proof language"], "/truth-table", "sets"],
+  ["implication", "Implication", "sets-logic", "basic", ["logic-statements"], ["converse-contrapositive"], ["proofs"], ["p => q"], undefined, "/truth-table", "sets"],
+  ["converse-contrapositive", "Converse and Contrapositive", "sets-logic", "intermediate", ["implication"], ["geometry-chase"], ["logic-statements"], undefined, ["Proof strategy"], "/truth-table", "sets"],
+  ["data-collection", "Data Collection", "statistics", "foundation", ["percentages"], ["statistics-mean"], ["graph-interpretation"], undefined, ["Surveys"], "/probability-statistics", "graphs"],
+  ["statistics-mean", "Mean", "statistics", "basic", ["data-collection"], ["variance"], ["median"], ["mean=sum/n"], undefined, "/probability-statistics", "graphs"],
+  ["median", "Median", "statistics", "basic", ["data-collection"], ["range"], ["statistics-mean"], undefined, ["Middle value"], "/probability-statistics", "graphs"],
+  ["mode", "Mode", "statistics", "basic", ["data-collection"], ["range"], ["median"], undefined, ["Most common"], "/probability-statistics", "graphs"],
+  ["range", "Range", "statistics", "basic", ["data-collection"], ["variance"], ["statistics-mean"], undefined, ["Spread"], "/probability-statistics", "graphs"],
+  ["variance", "Variance", "statistics", "intermediate", ["statistics-mean", "range"], ["standard-deviation"], ["probability-basics"], undefined, ["Risk"], "/probability-statistics", "graphs"],
+  ["standard-deviation", "Standard Deviation", "statistics", "intermediate", ["variance"], ["probability-basics"], ["normal-symmetry"], undefined, ["Consistency"], "/probability-statistics", "graphs"],
+  ["probability-basics", "Probability Basics", "probability", "basic", ["fractions", "percentages"], ["independent-events", "tree-diagrams"], ["venn-diagrams"], ["P(E)=favorable/total"], undefined, "/probability-statistics", "graphs"],
+  ["independent-events", "Independent Events", "probability", "intermediate", ["probability-basics"], ["conditional-probability"], ["multiplication-rule"], undefined, ["Reliability"], "/math-lab/probability", "graphs"],
+  ["conditional-probability", "Conditional Probability", "probability", "intermediate", ["probability-basics"], ["tree-diagrams"], ["bayes"], ["P(A|B)=P(A and B)/P(B)"], ["Bayes theorem"], "/math-lab/probability", "graphs"],
+  ["tree-diagrams", "Tree Diagrams", "probability", "basic", ["probability-basics"], ["conditional-probability"], ["counting-strategies"], undefined, ["Decision paths"], "/probability-statistics", "graphs"],
+  ["combinations", "Combinations", "probability", "intermediate", ["factorization"], ["permutations", "counting-strategies"], ["binomial-theorem"], ["nCr"], ["Binomial counting theorem"], "/math/permutations-combinations", "formulas"],
+  ["permutations", "Permutations", "probability", "intermediate", ["factorization"], ["combinations"], ["counting-strategies"], ["nPr"], undefined, "/math/permutations-combinations", "formulas"],
+  ["calculus-limits", "Limits", "calculus", "intermediate", ["function-basics", "graph-interpretation"], ["continuity"], ["slope"], undefined, ["Instant behavior"], "/math/limits-continuity", "graphs"],
+  ["continuity", "Continuity", "calculus", "intermediate", ["calculus-limits"], ["calculus-derivatives"], ["function-basics"], undefined, ["Smooth change"], "/math/limits-continuity", "graphs"],
+  ["calculus-derivatives", "Derivatives", "calculus", "intermediate", ["calculus-limits", "slope"], ["differentiation-rules", "calculus-applications"], ["tangents"], ["dy/dx"], ["Mean value theorem"], "/math/derivatives", "graphs"],
+  ["differentiation-rules", "Differentiation Rules", "calculus", "intermediate", ["calculus-derivatives"], ["calculus-applications"], ["polynomial-functions"], undefined, ["Rates"], "/math/derivatives", "graphs"],
+  ["calculus-applications", "Applications of Derivatives", "calculus", "advanced", ["differentiation-rules"], ["calculus-integration"], ["optimization"], undefined, ["Max/min"], "/math/derivatives", "graphs"],
+  ["calculus-integration", "Integration", "calculus", "intermediate", ["area", "calculus-derivatives"], ["integration-area", "differential-equations-basics"], ["volume"], undefined, ["Accumulation"], "/math/integration", "graphs"],
+  ["integration-area", "Area Under Curve", "calculus", "intermediate", ["calculus-integration"], ["volume"], ["area"], undefined, ["Total distance"], "/math/integration", "graphs"],
+  ["differential-equations-basics", "Differential Equations Basics", "calculus", "advanced", ["calculus-derivatives", "calculus-integration"], ["slope-fields"], ["functions"], undefined, ["Population models"], "/math/slope-fields", "graphs"],
+  ["scalars-vectors", "Scalars and Vectors", "vectors", "basic", ["real-numbers"], ["vector-addition"], ["coordinate-plane"], undefined, ["Forces"], "/linear-algebra", "matrix"],
+  ["vector-addition", "Vector Addition", "vectors", "basic", ["scalars-vectors"], ["dot-product", "cross-product"], ["parallelogram"], undefined, ["Motion"], "/visual-proofs/vectors/vector-addition-tip-to-tail", "matrix"],
+  ["dot-product", "Dot Product", "vectors", "intermediate", ["vector-addition", "cosine"], ["projections"], ["matrices"], ["a dot b=|a||b|cos theta"], ["Dot product angle theorem"], "/visual-proofs/vectors/dot-product-as-projection", "matrix"],
+  ["cross-product", "Cross Product", "vectors", "advanced", ["vector-addition", "sine"], ["linear-transformations"], ["area"], ["|a x b|=|a||b|sin theta"], ["Cross product area theorem"], "/visual-proofs/vectors/cross-product-area", "matrix"],
+  ["matrices", "Matrices", "matrices", "basic", ["simultaneous-equations"], ["matrix-addition", "matrix-multiplication"], ["linear-transformations"], undefined, ["Data tables"], "/matrices", "matrix"],
+  ["matrix-addition", "Matrix Addition", "matrices", "basic", ["matrices"], ["matrix-multiplication"], ["vectors"], undefined, ["Combining tables"], "/matrices/addition", "matrix"],
+  ["matrix-multiplication", "Matrix Multiplication", "matrices", "intermediate", ["matrices"], ["determinants", "linear-transformations"], ["dot-product"], undefined, ["Transform chains"], "/matrices/multiplication", "matrix"],
+  ["determinants", "Determinants", "matrices", "intermediate", ["matrix-multiplication"], ["inverse-matrix"], ["area"], undefined, ["Area scale"], "/matrices/determinant", "matrix"],
+  ["inverse-matrix", "Inverse Matrix", "matrices", "advanced", ["determinants"], ["linear-transformations"], ["simultaneous-equations"], undefined, ["Undo transforms"], "/matrices/inverse", "matrix"],
+  ["linear-transformations", "Linear Transformations", "matrices", "advanced", ["matrix-multiplication", "vectors"], ["calculus-applications"], ["graph-transformations"], undefined, ["Computer graphics"], "/math/matrix-transformations", "matrix"],
+  ["patterns", "Pattern Recognition", "olympiad", "foundation", ["natural-numbers"], ["olympiad-number-theory", "counting-strategies"], ["sequences"], undefined, ["Contest strategy"], "/olympyard", "olympiad"],
+  ["number-theory", "Number Theory", "olympiad", "intermediate", ["prime-numbers", "factors-multiples"], ["modular-arithmetic"], ["olympiad-number-theory"], undefined, ["Cryptography"], "/theorems/number-theory", "olympiad"],
+  ["modular-arithmetic", "Modular Arithmetic", "olympiad", "intermediate", ["number-theory"], ["pigeonhole-principle"], ["prime-numbers"], ["a = b mod n"], ["Fermat little theorem"], "/visual-proofs/number-theory/modular-arithmetic-clock", "olympiad"],
+  ["counting-strategies", "Counting Strategies", "olympiad", "intermediate", ["combinations", "permutations"], ["pigeonhole-principle"], ["inclusion-exclusion"], undefined, ["Contest counting"], "/combinatorics", "olympiad"],
+  ["pigeonhole-principle", "Pigeonhole Principle", "olympiad", "intermediate", ["counting-strategies"], ["geometry-chase"], ["number-theory"], undefined, ["Existence proofs"], "/theorems/discrete-logic", "olympiad"],
+  ["geometry-chase", "Geometry Chase", "olympiad", "advanced", ["angle-theorems", "congruence"], ["olympiad-inequality-reasoning"], ["similarity"], undefined, ["Proof contests"], "/visual-proofs/geometry", "olympiad"],
+  ["algebraic-manipulation", "Algebraic Manipulation", "olympiad", "intermediate", ["algebraic-identities", "factorization"], ["functional-equations"], ["inequalities"], undefined, ["Simplifying problems"], "/formulas/algebra", "olympiad"],
+  ["functional-equations", "Functional Equations", "olympiad", "advanced", ["function-basics", "algebraic-manipulation"], ["olympiad-inequality-reasoning"], ["logic-statements"], undefined, ["Contest functions"], "/olympyard", "olympiad"],
+  ["olympiad-inequality-reasoning", "Inequality Reasoning", "olympiad", "olympiad", ["inequalities", "algebraic-manipulation"], ["calculus-applications"], ["am-gm"], ["AM-GM", "Cauchy-Schwarz"], ["AM-GM inequality"], "/theorems/algebra", "olympiad"],
+] as const;
+
+const seeds: NodeSeed[] = rawSeeds.map(([id, title, category, difficulty, prerequisites, nextConcepts, relatedConcepts, formulas, uses, route, modules]) => ({
+  id,
+  title,
+  category: category as ConceptCategory,
+  difficulty: difficulty as ConceptDifficulty,
+  prerequisites: [...prerequisites],
+  nextConcepts: [...nextConcepts],
+  relatedConcepts: [...relatedConcepts],
+  formulas: Array.isArray(formulas) ? [...formulas] : undefined,
+  uses: Array.isArray(uses) ? [...uses] : undefined,
+  route,
+  modules: modules as keyof typeof moduleProfiles,
+}) as NodeSeed);
+
+export const conceptNodes: ConceptNode[] = seeds.map((seed, index) => makeNode(seed, index));
+
+const explicitEdges: ConceptEdge[] = [
+  edge("formula-link", "trig-pythagorean-identity", "visual-proofs", "visual proof available", 5),
+  edge("visual-proof-link", "pythagoras", "distance-formula", "visual proof supports formula", 5),
+  edge("application-link", "vectors", "linear-transformations", "used in transformations", 4),
+  edge("theorem-link", "quadratic-formula", "parabola-basics", "theorem to graph", 4),
+  edge("application-link", "sets", "probability-basics", "event models", 4),
+];
+
+function edge(type: ConceptEdgeType, source: string, target: string, label: string, strength = 2): ConceptEdge {
+  return { id: `${type}:${source}->${target}`, source, target, type, label, strength };
+}
+
+function relationshipEdges() {
+  const edges = conceptNodes.flatMap((node) => [
+    ...node.prerequisites.map((source) => edge("prerequisite", source, node.id, "prerequisite", 4)),
+    ...node.nextConcepts.map((target) => edge("builds-into", node.id, target, "builds into", 3)),
+    ...node.relatedConcepts.map((target) => edge("related", node.id, target, "related", 1)),
+    ...(node.formulas?.length ? [edge("formula-link", node.id, node.id, "related formula", 1)] : []),
+    ...(node.theorems?.length ? [edge("theorem-link", node.id, node.id, "theorem available", 1)] : []),
+    ...(node.availableModules.visualProof ? [edge("visual-proof-link", node.id, node.id, "visual proof", 1)] : []),
+  ]);
+  const map = new Map<string, ConceptEdge>();
+  [...edges, ...explicitEdges].forEach((item) => {
+    if (conceptNodes.some((node) => node.id === item.source) && conceptNodes.some((node) => node.id === item.target)) {
+      map.set(item.id, item);
+    }
+  });
+  return Array.from(map.values());
+}
+
+export const conceptEdges: ConceptEdge[] = relationshipEdges();

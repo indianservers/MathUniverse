@@ -167,32 +167,37 @@ export const polygonInteriorAnglePhaseElevenConfig: PhaseTwoProofConfig = {
 };
 
 export const circleAreaUnrollingPhaseElevenConfig: PhaseTwoProofConfig = {
-  steps: ["Split the circle into sectors", "Alternate/rearrange the sectors", "Observe the nearly rectangular shape", "Identify height as r", "Identify base as half circumference pi r", "Conclude area = pi r^2"].map(step),
-  parameters: [{ id: "radius", label: "Radius r", min: 3, max: 8, defaultValue: 5, step: 1 }, { id: "sectors", label: "Sector count", min: 8, max: 48, defaultValue: 24, step: 4 }],
+  steps: [
+    "Start with an unfilled circle — just the boundary line",
+    "Mark the cut point at the top of the circle",
+    "Watch the circle boundary unroll into a straight line",
+    "The straight line has length 2πr — the circumference",
+    "Next: fill the circle with 100 rings and unroll each one",
+    "Stacked lines form a triangle → area = ½ × 2πr × r = πr²",
+  ].map(step),
+  parameters: [{ id: "radius", label: "Radius r", min: 3, max: 5, defaultValue: 5, step: 1 }],
   toggles: [labelsToggle],
   olympyardRoute: areaRoute,
-  prediction: prompt("As the number of sectors increases, what happens to the rearranged shape?", "It looks more like a rectangle/parallelogram with base pi r and height r."),
-  misconception: misconception("Does the circle area formula come from circumference only?", "No. The rearranged sectors use half the circumference as base and the radius as height."),
+  prediction: prompt("When the circle boundary is cut and straightened, how long is the resulting line?", "2πr — the circumference."),
+  misconception: misconception("Is the circle boundary length the same as the diameter?", "No. The circumference 2πr is about 3.14× the diameter 2r, because π ≈ 3.14."),
   formulaTokens: () => [
-    { id: "r", label: "r", visualLabel: "radius/height" },
-    { id: "pi-r", label: "pi r", visualLabel: "half circumference/base" },
-    { id: "area", label: "pi r^2", visualLabel: "final area" },
-    { id: "sectors", label: "sectors", visualLabel: "rearranged pieces" },
+    { id: "r", label: "r", visualLabel: "radius" },
+    { id: "pi-r", label: "2πr", visualLabel: "circumference / unrolled line" },
   ],
-  formula: ({ radius }) => `Area = pi(${radius})^2 = ${round(Math.PI * radius * radius)}`,
-  explanation: ({ sectors }) => `With ${Math.round(sectors)} sectors, the rearranged pieces look closer to a rectangle/parallelogram with base pi r and height r.`,
-  liveValues: ({ radius, sectors }) => [
-    { id: "radius", label: "radius", value: radius },
-    { id: "sectors", label: "sector count", value: Math.round(sectors) },
-    { id: "circumference", label: "circumference", value: round(2 * Math.PI * radius), exactValue: `2 pi ${radius}` },
-    { id: "half", label: "half circumference", value: round(Math.PI * radius), exactValue: `pi ${radius}` },
-    { id: "base", label: "approximate rectangle base", value: round(Math.PI * radius) },
-    { id: "height", label: "approximate rectangle height", value: radius },
-    { id: "area", label: "area", value: round(Math.PI * radius * radius), exactValue: `pi ${radius}^2` },
-    { id: "approximation", label: "approximation insight", value: Math.round(sectors) >= 32 ? "smooth" : "jagged but improving" },
+  formula: ({ radius }) => `C = 2π(${radius}) = ${round(2 * Math.PI * radius)}`,
+  explanation: ({ radius }) => `Cutting the circle at the top and straightening it gives a line of length 2πr = ${round(2 * Math.PI * radius)}. This is the key building block for the area proof.`,
+  liveValues: ({ radius }) => [
+    { id: "radius", label: "radius r", value: radius },
+    { id: "diameter", label: "diameter 2r", value: 2 * radius },
+    { id: "circumference", label: "circumference 2πr", value: round(2 * Math.PI * radius), exactValue: `2π(${radius})` },
   ],
-  invariants: ({ radius }) => [{ id: "circle-area", label: "area = pi r^2", holds: true, explanation: `half circumference x radius = pi(${radius}) x ${radius}.` }],
-  assumptions: ["Sectors preserve area when rearranged.", "More sectors make the approximation smoother.", "The exact formula is reached in the limiting idea."],
+  invariants: ({ radius }) => [
+    { id: "circumference", label: "C = 2πr", holds: true, explanation: `The unrolled line has length 2π(${radius}) = ${round(2 * Math.PI * radius)}.` },
+  ],
+  assumptions: [
+    "Cutting the circle at one point and straightening preserves the total length.",
+    "π is irrational; decimal values shown are rounded.",
+  ],
   renderVisual: CircleAreaUnrollGuide,
 };
 

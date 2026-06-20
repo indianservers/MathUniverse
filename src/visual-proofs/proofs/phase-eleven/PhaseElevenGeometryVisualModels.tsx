@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import { DraggableHandle } from "../../components/DraggableHandle";
 import type { PhaseTwoToggles, PhaseTwoValues } from "../../components/PhaseTwoProofExperience";
 
@@ -146,30 +146,137 @@ export function PolygonTriangulationGuide({ values, toggles, activeStep, activeH
   );
 }
 
-export function CircleAreaUnrollGuide({ values, toggles, activeStep, activeHighlight, onHighlight, onValueChange }: VisualState) {
-  const radius = values.radius;
-  const sectors = Math.round(values.sectors);
-  const cx = 250;
-  const cy = 255;
-  const scale = 24;
-  const r = radius * scale;
-  const base = Math.PI * radius;
-  const showUnroll = activeStep >= 2;
+export function CircleAreaUnrollGuide({ values, toggles, activeStep, activeHighlight, onHighlight }: VisualState) {
+  const radius = Math.round(values.radius);
+  const R = Math.min(radius * 20, 100); // visual radius in px
+
+  // Circle (unfilled, stroke only)
+  const CX = 450;
+  const CY = 215;
+
+  // Straight line target — where the unrolled circumference lands
+  const LINE_Y = CY + R + 70;
+  const LINE_START_X = CX - Math.PI * R; // left end, centered under circle
+
+  // Animation
+  const [vizP, setVizP] = useState(0);
+  const rafRef = useRef<number | undefined>(undefined);
+  const t0Ref = useRef<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (rafRef.current !== undefined) cancelAnimationFrame(rafRef.current);
+    if (activeStep < 2) {
+      setVizP(0);
+      return;
+    }
+    t0Ref.current = undefined;
+    const DURATION = 4000;
+    const tick = (now: number) => {
+      if (t0Ref.current === undefined) t0Ref.current = now;
+      const raw = Math.min((now - t0Ref.current) / DURATION, 1);
+      const p = raw < 0.5 ? 4 * raw * raw * raw : 1 - Math.pow(-2 * raw + 2, 3) / 2;
+      setVizP(p);
+      if (raw < 1) rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current !== undefined) cancelAnimationFrame(rafRef.current);
+    };
+  }, [activeStep, radius]);
+
+  const p = activeStep >= 3 ? 1 : vizP;
+
+  // Polyline that morphs from a circle (p=0) to a straight line (p=1).
+  // Parameterise by φ ∈ [0, 2π], starting from the TOP (cut point), going clockwise.
+  const N_PTS = 120;
+  const polyPoints = Array.from({ length: N_PTS }, (_, i) => {
+    const phi = (i / (N_PTS - 1)) * 2 * Math.PI;
+    // Circle position: clockwise from the top
+    const cx = CX + R * Math.sin(phi);
+    const cy = CY - R * Math.cos(phi);
+    // Straight line position: maps arc length → x
+    const lx = LINE_START_X + R * phi;
+    const ly = LINE_Y;
+    return `${cx + p * (lx - cx)},${cy + p * (ly - cy)}`;
+  }).join(" ");
+
+  const hR = activeHighlight === "r";
+  const hPiR = activeHighlight === "pi-r";
+  const dim = (tok: string) => (activeHighlight === tok ? "#fde68a" : "#f8fafc");
+
   return (
-    <Frame label="Circle area by unrolling sectors visual proof">
-      <circle cx={cx} cy={cy} r={r} fill="#0ea5e9" opacity="0.16" stroke="#bae6fd" strokeWidth="4" />
-      {Array.from({ length: Math.min(sectors, 48) }, (_, index) => {
-        const angle = (index * 360) / sectors;
-        const point = polar(cx, cy, r, angle);
-        return <line key={index} x1={cx} y1={cy} x2={point.x} y2={point.y} stroke="#f8fafc" strokeOpacity="0.35" strokeWidth="1" />;
-      })}
-      <line x1={cx} y1={cy} x2={cx + r} y2={cy} stroke={strokeFor("r", activeHighlight, "#22d3ee")} strokeWidth={widthFor("r", activeHighlight)} onMouseEnter={() => onHighlight("r")} onMouseLeave={() => onHighlight(null)} />
-      {showUnroll ? <UnrolledSectors x={455} y={355} width={Math.min(320, base * 34)} height={r * 0.72} count={sectors} active={activeHighlight === "sectors"} onEnter={() => onHighlight("sectors")} onLeave={() => onHighlight(null)} /> : null}
-      {showUnroll ? <Dimension x1={455} y1={382} x2={455 + Math.min(320, base * 34)} y2={382} token="pi-r" active={activeHighlight} onHighlight={onHighlight} label="pi r base" /> : null}
-      {showUnroll ? <Dimension x1={430} y1={355} x2={430} y2={355 - r * 0.72} token="r" active={activeHighlight} onHighlight={onHighlight} label="height r" /> : null}
-      {activeStep >= 5 ? <FormulaBanner active={activeHighlight === "area"} text="area = pi r x r = pi r^2" /> : null}
-      {toggles.labels ? <Info x={565} y={225} lines={[`radius = ${radius}`, `sectors = ${sectors}`, `circumference = ${round(2 * Math.PI * radius)}`, `half circumference = ${round(Math.PI * radius)}`, `area = ${round(Math.PI * radius * radius)}`, `more sectors -> smoother shape`]} /> : null}
-      <DraggableHandle label="Drag radius" position={{ x: cx + r, y: cy }} axis="x" bounds={{ x: [cx + 3 * scale, cx + 8 * scale] }} snapToGrid={scale} keyboardStep={scale} onChange={(point) => onValueChange("radius", Math.round((point.x - cx) / scale))} />
+    <Frame label="Circle area proof — unrolling the outermost ring into a line">
+      {/* Radius line (always visible) */}
+      <line
+        x1={CX} y1={CY} x2={CX + R} y2={CY}
+        stroke={hR ? "#fde68a" : "#f8fafc"} strokeWidth={hR ? 4 : 2}
+        onMouseEnter={() => onHighlight("r")} onMouseLeave={() => onHighlight(null)}
+      />
+      <text
+        x={CX + R / 2} y={CY - 10}
+        textAnchor="middle" fill={dim("r")}
+        fontSize="17" fontStyle="italic" fontWeight="bold"
+        style={{ pointerEvents: "none" }}
+      >r</text>
+
+      {/* The circle/line — morphs as p goes 0→1 */}
+      <polyline
+        points={polyPoints}
+        fill="none"
+        stroke="#00bfff"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        onMouseEnter={() => onHighlight("pi-r")}
+        onMouseLeave={() => onHighlight(null)}
+      />
+
+      {/* Cut marker at the top of the circle (visible in steps 1 before animation) */}
+      {activeStep >= 1 && p < 0.04 && (
+        <g>
+          <circle cx={CX} cy={CY - R} r={7} fill="#f59e0b" opacity="0.95" />
+          <line x1={CX - 5} y1={CY - R - 5} x2={CX + 5} y2={CY - R + 5}
+            stroke="#020617" strokeWidth="2" strokeLinecap="round" />
+          <line x1={CX + 5} y1={CY - R - 5} x2={CX - 5} y2={CY - R + 5}
+            stroke="#020617" strokeWidth="2" strokeLinecap="round" />
+        </g>
+      )}
+
+      {/* 2πr dimension under the straight line (fades in as line forms) */}
+      {p > 0.85 && (
+        <g
+          opacity={Math.min((p - 0.85) / 0.15, 1)}
+          onMouseEnter={() => onHighlight("pi-r")}
+          onMouseLeave={() => onHighlight(null)}
+        >
+          <line
+            x1={LINE_START_X} y1={LINE_Y + 18}
+            x2={LINE_START_X + 2 * Math.PI * R} y2={LINE_Y + 18}
+            stroke={dim("pi-r")} strokeWidth="2"
+          />
+          <line x1={LINE_START_X} y1={LINE_Y + 12} x2={LINE_START_X} y2={LINE_Y + 24}
+            stroke={dim("pi-r")} strokeWidth="2" />
+          <line
+            x1={LINE_START_X + 2 * Math.PI * R} y1={LINE_Y + 12}
+            x2={LINE_START_X + 2 * Math.PI * R} y2={LINE_Y + 24}
+            stroke={dim("pi-r")} strokeWidth="2"
+          />
+          <text
+            x={CX} y={LINE_Y + 42}
+            textAnchor="middle" fill={dim("pi-r")}
+            fontSize="19" fontWeight="bold" fontStyle="italic"
+          >2πr</text>
+        </g>
+      )}
+
+      {/* Info */}
+      {toggles.labels && (
+        <Info
+          x={60}
+          y={80}
+          lines={[`radius r = ${radius}`, `circumference 2πr = ${round(2 * Math.PI * radius)}`]}
+        />
+      )}
     </Frame>
   );
 }

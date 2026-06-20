@@ -5,6 +5,10 @@ import { phase1BackupManifest, protectedLayoutInvariants, protectedWorkspaceBase
 
 const pageSources = {
   mathWorkspace: new URL("../pages/MathWorkspace.tsx", import.meta.url),
+  geometryCommandController: new URL("./geometryCommandController.ts", import.meta.url),
+  geometryConstructionBuilder: new URL("./geometryConstructionBuilder.ts", import.meta.url),
+  geometryAdvancedConstructionBuilder: new URL("./geometryAdvancedConstructionBuilder.ts", import.meta.url),
+  geometryWorkspacePanel: new URL("../components/workspace/panels/GeometryWorkspacePanel.tsx", import.meta.url),
   shapesExplorer: new URL("../pages/ShapesExplorer.tsx", import.meta.url),
 };
 
@@ -19,11 +23,8 @@ describe("phase 1 workspace baseline guards", () => {
       "src/modules",
       "src/visualizations",
     ]);
-    if (process.env.CI) {
-      expect(phase1BackupManifest.archive).toContain("Math Universe Backups");
-    } else {
-      expect(existsSync(phase1BackupManifest.archive)).toBe(true);
-    }
+    expect(phase1BackupManifest.archive).toContain("phase-1-baseline-20260611");
+    expect(existsSync(phase1BackupManifest.archive)).toBe(true);
   });
 
   it("protects the main smoke routes before future phases expand the app", () => {
@@ -37,23 +38,33 @@ describe("phase 1 workspace baseline guards", () => {
 
   it("keeps current 2D and 3D workspace layout signals in source", async () => {
     const mathWorkspace = await readFile(pageSources.mathWorkspace, "utf8");
+    const geometryCommandController = await readFile(pageSources.geometryCommandController, "utf8");
+    const geometryConstructionBuilder = await readFile(pageSources.geometryConstructionBuilder, "utf8");
+    const geometryAdvancedConstructionBuilder = await readFile(pageSources.geometryAdvancedConstructionBuilder, "utf8");
+    const geometryWorkspacePanel = await readFile(pageSources.geometryWorkspacePanel, "utf8");
+    const geometrySource = `${mathWorkspace}\n${geometryCommandController}\n${geometryConstructionBuilder}\n${geometryAdvancedConstructionBuilder}\n${geometryWorkspacePanel}`;
     const geometry = protectedWorkspaceBaselines.find((item) => item.id === "workspace-geometry-2d");
     const workspace3d = protectedWorkspaceBaselines.find((item) => item.id === "workspace-3d");
 
     expect(geometry).toBeTruthy();
     expect(workspace3d).toBeTruthy();
-    for (const signal of geometry?.protectedSignals ?? []) expect(mathWorkspace).toContain(signal);
+    for (const signal of geometry?.protectedSignals ?? []) expect(geometrySource).toContain(signal);
     for (const signal of workspace3d?.protectedSignals ?? []) expect(mathWorkspace).toContain(signal);
   });
 
   it("keeps the premium angle tool guidance and measured-angle rendering", async () => {
     const mathWorkspace = await readFile(pageSources.mathWorkspace, "utf8");
+    const geometryConstructionBuilder = await readFile(pageSources.geometryConstructionBuilder, "utf8");
+    const geometryAdvancedConstructionBuilder = await readFile(pageSources.geometryAdvancedConstructionBuilder, "utf8");
+    const geometryWorkspacePanel = await readFile(pageSources.geometryWorkspacePanel, "utf8");
+    const geometrySource = `${mathWorkspace}\n${geometryConstructionBuilder}\n${geometryAdvancedConstructionBuilder}\n${geometryWorkspacePanel}`;
 
-    expect(mathWorkspace).toContain("side point, vertex, side point");
-    expect(mathWorkspace).toContain("angle-tool-preview");
-    expect(mathWorkspace).toContain("addAngleMeasurement");
-    expect(mathWorkspace).toContain("reflex");
-    expect(mathWorkspace).toContain("vertex second");
+    expect(geometrySource).toContain("side point, vertex, side point");
+    expect(geometrySource).toContain("AngleToolPreview");
+    expect(geometrySource).toContain("buildAngleFromPoints");
+    expect(geometrySource).toContain("kind: \"angle\"");
+    expect(geometrySource).toContain("stroke=\"#f97316\"");
+    expect(geometrySource).toContain("vertex second");
   });
 
   it("keeps current Shapes Explorer layout signals in source", async () => {

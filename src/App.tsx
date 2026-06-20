@@ -13,6 +13,7 @@ const Calculus = lazy(() => import("./pages/Calculus"));
 const Combinatorics = lazy(() => import("./pages/Combinatorics"));
 const ComplexNumbers = lazy(() => import("./pages/ComplexNumbers"));
 const ConceptDependencyGraph = lazy(() => import("./pages/ConceptDependencyGraph"));
+const ConceptMapPage = lazy(() => import("./concept-map/ConceptMapPage"));
 const DailyChallenge = lazy(() => import("./pages/DailyChallenge"));
 const DerivativesTangentVisualizer = lazy(() => import("./pages/DerivativesTangentVisualizer"));
 const DiscreteWorld = lazy(() => import("./pages/DiscreteWorld"));
@@ -69,6 +70,7 @@ const StepByStepProblemSolver = lazy(() => import("./pages/StepByStepProblemSolv
 const SurfacePlotter3D = lazy(() => import("./pages/SurfacePlotter3D"));
 const Syllabus = lazy(() => import("./pages/Syllabus"));
 const SyllabusVisualPage = lazy(() => import("./pages/SyllabusVisualPage"));
+const Theorems = lazy(() => import("./pages/Theorems"));
 const Trigonometry = lazy(() => import("./pages/Trigonometry"));
 const TrigonometryConceptPage = lazy(() => import("./pages/TrigonometryConceptPage"));
 const TrigFormulaVisualizerPage = lazy(() => import("./trigonometry/pages/TrigFormulaVisualizerPage"));
@@ -157,6 +159,9 @@ export default function App() {
             <Route path="workspace/teach" element={<WorkspaceTeach />} />
             <Route path="formulas" element={<Formulas />} />
             <Route path="formulas/:categorySlug" element={<Formulas />} />
+            <Route path="theorems" element={<Theorems />} />
+            <Route path="theorems/:categorySlug" element={<Theorems />} />
+            <Route path="theorems/:categorySlug/:theoremSlug" element={<Theorems />} />
             <Route path="visual-showcase" element={<VisualShowcase />} />
             <Route path="visual-proofs" element={<VisualProofsHomePage />} />
             <Route path="visual-proofs/:categorySlug" element={<VisualProofCategoryPage />} />
@@ -172,6 +177,7 @@ export default function App() {
             <Route path="combinatorics" element={<Combinatorics />} />
             <Route path="complex-numbers" element={<ComplexNumbers />} />
             <Route path="set-theory" element={<SetTheory />} />
+            <Route path="set-theory/:pageSlug" element={<SetTheory />} />
             <Route path="statistics" element={<ProbabilityStatistics />} />
             <Route path="linear-algebra" element={<LinearAlgebra />} />
             <Route path="matrices" element={<MatrixOperations />} />
@@ -184,6 +190,7 @@ export default function App() {
             <Route path="olympyard/practice/:topicId" element={<OlympyardPractice />} />
             <Route path="spaced-repetition" element={<SpacedRepetitionQuiz />} />
             <Route path="problem-solver" element={<StepByStepProblemSolver />} />
+            <Route path="concept-map" element={<ConceptMapPage />} />
             <Route path="concept-graph" element={<ConceptDependencyGraph />} />
             <Route path="daily-challenge" element={<DailyChallenge />} />
             <Route path="worked-examples" element={<WorkedExamplesLibrary />} />

@@ -4,21 +4,15 @@ import SmartMathInput from "../components/math-input/SmartMathInput";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import { CopyResultButton, PresetChips, PrintWorksheetButton, RelatedToolLinks, ResetExampleButton } from "../components/ui/UiFeedback";
-import { solveAlgebraSteps } from "../problem-solver/algebraStepSolver";
-import { solveCalculus } from "../problem-solver/calculusSolver";
-import { solveExpressionOperation } from "../problem-solver/expressionOperationSolver";
 import { MathRecognitionPanel } from "../problem-solver/intelligence/MathRecognitionPanel";
 import { recognizeMathInput } from "../problem-solver/intelligence/mathRecognizer";
-import { solveMatrix } from "../problem-solver/matrixSolver";
-import { classifyProblem } from "../problem-solver/problemClassifier";
 import { ProblemGraph, ValueTablePanel } from "../problem-solver/ProblemGraph";
-import { solveStatistics } from "../problem-solver/statisticsSolver";
-import { solveSystem } from "../problem-solver/systemSolver";
-import { solveWordProblem } from "../problem-solver/wordProblemSolver";
 import { buildVisualVerification } from "../problem-solver/graphingUtils";
+import { solveProblem } from "../problem-solver/problemSolverEngine";
 import { buildProblemResultCards, type ProblemResultCard } from "../problem-solver/resultCards";
-import type { ProblemClassification, ProblemIntentKind, ProblemSolverResult } from "../problem-solver/problemTypes";
-import { symbolicLatex, symbolicSolve, trySymbolic } from "../utils/symbolic";
+import type { ProblemIntentKind, ProblemSolverResult } from "../problem-solver/problemTypes";
+import type { SolverResult } from "../problem-solver/types/solverResult";
+import { symbolicLatex } from "../utils/symbolic";
 import { buildProblemSolverWorkspaceObjects } from "../workspace/universalObjectGraph";
 import { useUniversalObjectGraphPublisher } from "../workspace/useUniversalObjectGraphPublisher";
 
@@ -27,9 +21,9 @@ const equationKinds: ProblemIntentKind[] = ["linear-equation", "quadratic-equati
 
 export default function StepByStepProblemSolver() {
   const [equation, setEquation] = useState("2*x+5=17");
-  const classification = useMemo(() => classifyProblem(equation), [equation]);
+  const trustedOutput = useMemo(() => solveProblem(equation), [equation]);
+  const { classification, result: solverResult, trust } = trustedOutput;
   const recognition = useMemo(() => recognizeMathInput(equation, labelForKind(classification.kind), classification.assumptions, classification.warnings), [equation, classification]);
-  const solverResult = useMemo(() => buildSolverResult(classification), [classification]);
   const visual = useMemo(() => buildVisualVerification(classification, solverResult), [classification, solverResult]);
   const cards = useMemo(() => buildProblemResultCards(classification, solverResult, visual), [classification, solverResult, visual]);
   const workspaceObjects = useMemo(() => buildProblemSolverWorkspaceObjects({
@@ -64,7 +58,7 @@ export default function StepByStepProblemSolver() {
         </div>
         <SmartMathInput ariaLabel="Smart math problem editor" mode="math" placeholder="Type: sum 2, 3, 4 or expand (x+1)^2" value={equation} onChange={setEquation} />
       </SectionCard>
-      <ResultWorkspace cards={cards} result={solverResult} visual={visual} />
+      <ResultWorkspace cards={cards} result={solverResult} trust={trust} visual={visual} />
       <SolverReferencePanels recognition={recognition} onSelectExample={setEquation} />
     </div>
   );
@@ -87,7 +81,7 @@ function SolverReferencePanels({ recognition, onSelectExample }: { recognition: 
   );
 }
 
-function ResultWorkspace({ cards, result, visual }: { cards: ProblemResultCard[]; result: ProblemSolverResult; visual: ReturnType<typeof buildVisualVerification> }) {
+function ResultWorkspace({ cards, result, trust, visual }: { cards: ProblemResultCard[]; result: ProblemSolverResult; trust: SolverResult; visual: ReturnType<typeof buildVisualVerification> }) {
   return (
     <section className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -95,13 +89,55 @@ function ResultWorkspace({ cards, result, visual }: { cards: ProblemResultCard[]
           <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Wolfram-style Workspace</p>
           <h2 className="text-2xl font-black text-slate-950 dark:text-white">Result Cards</h2>
         </div>
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-600 dark:bg-white/10 dark:text-slate-200">{cards.length} relevant cards</span>
+        <div className="flex flex-wrap items-center gap-2">
+          <TrustBadge trust={trust} />
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-600 dark:bg-white/10 dark:text-slate-200">{cards.length} relevant cards</span>
+        </div>
       </div>
+      <TrustSummary trust={trust} />
       <div className="grid gap-4">
         {cards.map((card) => <ResultCard key={card.id} card={card} result={result} visual={visual} />)}
       </div>
-      {result.kind === "unsupported" && <UnsupportedSuggestions />}
+      {trust.confidence === "unsupported" && <UnsupportedSuggestions reason={trust.unsupportedReason} />}
     </section>
+  );
+}
+
+function TrustBadge({ trust }: { trust: SolverResult }) {
+  const styles: Record<SolverResult["confidence"], string> = {
+    ambiguous: "bg-amber-50 text-amber-800 dark:bg-amber-400/10 dark:text-amber-100",
+    error: "bg-rose-50 text-rose-800 dark:bg-rose-400/10 dark:text-rose-100",
+    "partially-supported": "bg-violet-50 text-violet-800 dark:bg-violet-400/10 dark:text-violet-100",
+    unsupported: "bg-slate-100 text-slate-700 dark:bg-white/10 dark:text-slate-200",
+    verified: "bg-emerald-50 text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-100",
+  };
+  return <span className={`rounded-full px-3 py-1 text-xs font-black uppercase ${styles[trust.confidence]}`}>{trust.confidence.replace(/-/g, " ")}</span>;
+}
+
+function TrustSummary({ trust }: { trust: SolverResult }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
+      <div className="grid gap-3 md:grid-cols-3">
+        <TrustTile label="Trust status" value={trust.confidence.replace(/-/g, " ")} />
+        <TrustTile label="Verification" value={`${trust.verification?.method ?? "Not available"}${trust.verification?.passed ? " passed" : ""}`} />
+        <TrustTile label="Solver family" value={trust.metadata?.solverFamily ?? "Safe gate"} />
+      </div>
+      {trust.unsupportedReason ? <p className="mt-3 text-sm font-semibold text-slate-700 dark:text-slate-200">{trust.unsupportedReason}</p> : null}
+      {trust.verification?.notes?.length ? (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {trust.verification.notes.map((note) => <span key={note} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-700 dark:bg-white/10 dark:text-slate-100">{note}</span>)}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function TrustTile({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl bg-slate-50 p-3 dark:bg-slate-950/40">
+      <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">{label}</p>
+      <p className="mt-1 text-sm font-black capitalize text-slate-900 dark:text-white">{value}</p>
+    </div>
   );
 }
 
@@ -166,114 +202,17 @@ function RenderedMath({ value }: { value: string }) {
   return <div className="overflow-x-auto [&_.katex-display]:my-0" dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
-function UnsupportedSuggestions() {
+function UnsupportedSuggestions({ reason }: { reason?: string }) {
   const suggestions = ["2x + 5 = 15", "simplify (x^2 - 1)/(x - 1)", "derivative of x^3 + 2x", "mean of 4, 6, 8, 10"];
   return (
     <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-300/30 dark:bg-amber-400/10">
       <p className="font-black text-amber-900 dark:text-amber-100">This problem type is not yet supported.</p>
+      {reason ? <p className="mt-2 text-sm font-semibold text-amber-900 dark:text-amber-100">{reason}</p> : null}
       <div className="mt-3 flex flex-wrap gap-2">
         {suggestions.map((suggestion) => <span key={suggestion} className="mini-chip bg-white/80 text-amber-900 dark:bg-white/10 dark:text-amber-100">{suggestion}</span>)}
       </div>
     </div>
   );
-}
-
-function buildSolverResult(classification: ProblemClassification): ProblemSolverResult {
-  if (equationKinds.includes(classification.kind)) {
-    const algebra = solveAlgebraSteps(classification.normalizedInput);
-    if (algebra) {
-      return {
-        kind: classification.kind,
-        method: algebra.method,
-        title: algebra.kind === "rational" ? "Rational Equation" : labelForKind(classification.kind),
-        normalizedInput: classification.normalizedInput,
-        result: algebra.finalAnswer,
-        restrictions: algebra.restrictions,
-        steps: algebra.steps,
-        assumptions: classification.assumptions,
-        verification: algebra.verification,
-        warnings: [...classification.warnings, ...algebra.warnings],
-        canCopy: true,
-      };
-    }
-
-    const solution = trySymbolic(() => symbolicSolve(classification.normalizedInput, classification.variable ?? "x"));
-    if (solution) {
-      return {
-        kind: classification.kind,
-        method: "CAS fallback",
-        title: labelForKind(classification.kind),
-        normalizedInput: classification.normalizedInput,
-        result: solution.result,
-        steps: [
-          "CAS fallback: the deterministic algebra step solver does not yet support this exact equation form.",
-          "The following steps are CAS wrapper steps, not a human derivation.",
-          ...solution.steps,
-        ],
-        assumptions: classification.assumptions,
-        warnings: classification.warnings,
-        canCopy: true,
-      };
-    }
-    return safeResult(classification, "The equation was detected, but the symbolic solver could not produce a safe result.");
-  }
-
-  if (classification.kind === "unsupported") {
-    return {
-      kind: "unsupported",
-      title: "Unsupported Problem Type",
-      normalizedInput: classification.normalizedInput,
-      result: "This problem type is not yet supported.",
-      method: "Safe unsupported handling",
-      steps: [
-        "The input was classified before solving.",
-        classification.reason,
-        "No solver was called because the intent is unclear or not supported in Phase 2.",
-      ],
-      assumptions: classification.assumptions,
-      warnings: classification.warnings,
-      canCopy: false,
-    };
-  }
-
-  const expressionResult = solveExpressionOperation(classification);
-  if (expressionResult) return expressionResult;
-
-  const calculusResult = solveCalculus(classification);
-  if (calculusResult) return calculusResult;
-
-  const systemResult = solveSystem(classification);
-  if (systemResult) return systemResult;
-
-  const statisticsResult = solveStatistics(classification);
-  if (statisticsResult) return statisticsResult;
-
-  const matrixResult = solveMatrix(classification);
-  if (matrixResult) return matrixResult;
-
-  const wordProblemResult = solveWordProblem(classification);
-  if (wordProblemResult) return wordProblemResult;
-
-  return safeResult(classification, "This operation will be implemented in the next phase.");
-}
-
-function safeResult(classification: ProblemClassification, message: string): ProblemSolverResult {
-  return {
-    kind: classification.kind,
-    method: "Safe classification",
-    title: `Detected: ${labelForKind(classification.kind)}`,
-    normalizedInput: classification.normalizedInput,
-    result: `Detected: ${labelForKind(classification.kind)}`,
-    steps: [
-      `Detected: ${labelForKind(classification.kind)}.`,
-      classification.expression ? `Expression: ${classification.expression}.` : `Normalized input: ${classification.normalizedInput}.`,
-      message,
-      "No equation-solving fallback was used.",
-    ],
-    assumptions: classification.assumptions,
-    warnings: classification.warnings,
-    canCopy: false,
-  };
 }
 
 function labelForKind(kind: ProblemIntentKind) {

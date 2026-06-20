@@ -1,8 +1,10 @@
 import katex from "katex";
-import { BookOpen, Copy, Search, Sigma } from "lucide-react";
+import { BookOpen, Copy, Sparkles, Search, Sigma } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { formulaCategories, type FormulaCategory, type FormulaLibraryItem } from "../data/formulaLibrary";
+import { theoremCategories, type TheoremCategory, type TheoremLibraryItem } from "../data/theoremLibrary";
+import { visualProofsIndex } from "../visual-proofs/data/visualProofsIndex";
 
 type FormulaSheetRow = FormulaLibraryItem & {
   category: FormulaCategory;
@@ -123,7 +125,7 @@ const groupedCategoryAliases: Record<string, { title: string; description: strin
   },
 };
 
-export default function FormulasCheatsheet() {
+export default function FormulaLibraryPage() {
   const { categorySlug } = useParams();
   const [query, setQuery] = useState("");
 
@@ -171,11 +173,11 @@ export default function FormulasCheatsheet() {
     );
   }, [query, rows]);
 
-  const pageTitle = activeCategory?.title ?? activeAlias?.title ?? "Formula Cheatsheet";
+  const pageTitle = activeCategory?.title ?? activeAlias?.title ?? "Formula Library";
   const pageDescription =
     activeCategory?.description ??
     activeAlias?.description ??
-    "A grouped formula cheatsheet with 10 main categories and focused subcategory pages for quick revision.";
+    "A grouped formula library with 10 main categories and focused subcategory pages for quick revision.";
 
   return (
     <main className="min-h-screen bg-slate-50 px-3 py-3 text-slate-950 dark:bg-slate-950 dark:text-white sm:px-4 lg:px-6">
@@ -194,7 +196,7 @@ export default function FormulasCheatsheet() {
               <p className="mt-1 max-w-4xl text-sm leading-5 text-slate-600 dark:text-slate-300">{pageDescription}</p>
               {unknownCategory ? (
                 <p className="mt-2 rounded-md border border-amber-300 bg-amber-50 px-2 py-1 text-xs font-bold text-amber-800 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-100">
-                  No exact category named "{categorySlug}" was found, so the full formula cheatsheet is shown.
+                  No exact category named "{categorySlug}" was found, so the full formula library is shown.
                 </p>
               ) : null}
             </div>
@@ -377,6 +379,7 @@ function CategoryChip({ active, children, to }: { active: boolean; children: str
 
 function FormulaCheatCard({ row }: { row: FormulaSheetRow }) {
   const symbolExplanations = useMemo(() => getFormulaSymbolExplanations(row), [row]);
+  const related = useMemo(() => getRelatedFormulaLinks(row), [row]);
 
   return (
     <article className="group flex min-h-[218px] flex-col rounded-lg border border-slate-200 bg-white p-3 shadow-sm transition hover:border-cyan-300 hover:shadow-md dark:border-white/10 dark:bg-slate-900 dark:hover:border-cyan-300/40">
@@ -399,7 +402,46 @@ function FormulaCheatCard({ row }: { row: FormulaSheetRow }) {
       </div>
       <p className="mt-3 line-clamp-2 text-base font-semibold leading-6 text-slate-600 dark:text-slate-300">{row.note}</p>
       {symbolExplanations.length > 0 ? <FormulaSymbolKey symbols={symbolExplanations} /> : null}
+      <FormulaRelatedLinks related={related} />
     </article>
+  );
+}
+
+function FormulaRelatedLinks({
+  related,
+}: {
+  related: {
+    visualProofs: Array<{ title: string; route: string }>;
+    theorems: Array<TheoremLibraryItem & { category: TheoremCategory; route: string }>;
+  };
+}) {
+  if (related.visualProofs.length === 0 && related.theorems.length === 0) return null;
+
+  return (
+    <div className="mt-3 flex flex-wrap gap-2">
+      {related.visualProofs.slice(0, 2).map((proof) => (
+        <Link
+          key={proof.route}
+          className="inline-flex items-center gap-1 rounded-md bg-cyan-50 px-2 py-1 text-xs font-black text-cyan-700 transition hover:bg-cyan-100 dark:bg-cyan-400/10 dark:text-cyan-100"
+          to={proof.route}
+          title={proof.title}
+        >
+          <Sparkles className="h-3.5 w-3.5" />
+          Visual proof
+        </Link>
+      ))}
+      {related.theorems.slice(0, 2).map((theorem) => (
+        <Link
+          key={theorem.route}
+          className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-1 text-xs font-black text-slate-700 transition hover:bg-slate-200 dark:bg-white/10 dark:text-slate-200"
+          to={theorem.route}
+          title={theorem.title}
+        >
+          <BookOpen className="h-3.5 w-3.5" />
+          Theorem
+        </Link>
+      ))}
+    </div>
   );
 }
 
@@ -965,3 +1007,128 @@ const ignoredWords = new Set([
   "previous",
   "next",
 ]);
+
+const formulaToProofCategory: Record<string, string[]> = {
+  algebra: ["algebraic-identities", "inequalities", "logarithms-exponents"],
+  polynomials: ["algebraic-identities"],
+  inequalities: ["inequalities"],
+  trigonometry: ["trigonometry"],
+  geometry: ["geometry", "mensuration"],
+  "euclidean-geometry-theorems": ["geometry"],
+  "coordinate-geometry": ["coordinate-geometry", "conic-sections"],
+  "analytic-geometry-advanced": ["conic-sections", "coordinate-geometry"],
+  "limits-continuity": ["calculus"],
+  derivatives: ["calculus"],
+  integrals: ["calculus", "engineering-mathematics"],
+  "differential-equations": ["engineering-mathematics", "calculus"],
+  matrices: ["matrices-linear-algebra"],
+  determinants: ["matrices-linear-algebra"],
+  vectors: ["vectors"],
+  "complex-numbers": ["complex-numbers"],
+  "sequences-series": ["sequences-and-series"],
+  combinatorics: ["sequences-and-series", "number-theory"],
+  probability: ["probability"],
+  statistics: ["statistics"],
+  "linear-programming": ["engineering-mathematics"],
+  optimization: ["engineering-mathematics", "inequalities"],
+  "fourier-laplace-transforms": ["engineering-mathematics"],
+  "mensuration-units": ["mensuration"],
+};
+
+const formulaToTheoremCategory: Record<string, string[]> = {
+  algebra: ["algebra"],
+  polynomials: ["algebra"],
+  inequalities: ["algebra"],
+  trigonometry: ["trigonometry"],
+  geometry: ["geometry"],
+  "euclidean-geometry-theorems": ["geometry"],
+  "coordinate-geometry": ["coordinate-geometry"],
+  "analytic-geometry-advanced": ["coordinate-geometry"],
+  "limits-continuity": ["calculus-analysis"],
+  derivatives: ["calculus-analysis", "optimization-engineering"],
+  integrals: ["calculus-analysis", "optimization-engineering"],
+  "differential-equations": ["calculus-analysis", "optimization-engineering"],
+  matrices: ["linear-algebra-vectors"],
+  determinants: ["linear-algebra-vectors"],
+  vectors: ["linear-algebra-vectors"],
+  "complex-numbers": ["complex-numbers"],
+  "sequences-series": ["discrete-logic", "calculus-analysis"],
+  combinatorics: ["discrete-logic"],
+  probability: ["probability-statistics"],
+  statistics: ["probability-statistics"],
+  "linear-programming": ["optimization-engineering"],
+  optimization: ["optimization-engineering"],
+  "fourier-laplace-transforms": ["optimization-engineering"],
+  "mensuration-units": ["geometry"],
+};
+
+const learningLinkStopWords = new Set([
+  "formula",
+  "theorem",
+  "identity",
+  "rule",
+  "with",
+  "from",
+  "into",
+  "that",
+  "this",
+  "area",
+  "value",
+  "values",
+  "standard",
+]);
+
+function getRelatedFormulaLinks(row: FormulaSheetRow) {
+  const tokens = getLearningTokens([row.title, row.formula, row.note, row.category.title, row.category.description]);
+  const proofHints = new Set(formulaToProofCategory[row.category.id] ?? []);
+  const theoremHints = new Set(formulaToTheoremCategory[row.category.id] ?? []);
+
+  const visualProofs = visualProofsIndex
+    .filter((proof) => proof.status === "available")
+    .map((proof) => ({
+      proof,
+      score:
+        scoreLearningText(tokens, [proof.title, proof.shortDescription, proof.longDescription, proof.tags.join(" "), proof.prerequisites.join(" ")]) +
+        (proofHints.has(proof.categorySlug) ? 4 : 0),
+    }))
+    .filter((match) => match.score >= 5)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(({ proof }) => ({ title: proof.title, route: proof.route }));
+
+  const theorems = theoremCategories
+    .flatMap((theoremCategory) =>
+      theoremCategory.theorems.map((theorem) => ({
+        ...theorem,
+        category: theoremCategory,
+        route: `/theorems/${theoremCategory.id}/${theorem.slug}`,
+        score:
+          scoreLearningText(tokens, [theorem.title, theorem.subtopic, theorem.statement, theorem.prerequisites.join(" ")]) +
+          (theoremHints.has(theoremCategory.id) ? 3 : 0),
+      })),
+    )
+    .filter((match) => match.score >= 5)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(({ score: _score, ...theorem }) => theorem);
+
+  return { visualProofs, theorems };
+}
+
+function getLearningTokens(parts: string[]) {
+  return Array.from(
+    new Set(
+      parts
+        .join(" ")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .split(/\s+/)
+        .filter((token) => token.length > 3 && !learningLinkStopWords.has(token)),
+    ),
+  );
+}
+
+function scoreLearningText(tokens: string[], parts: string[]) {
+  const haystack = parts.join(" ").toLowerCase();
+  return tokens.reduce((score, token) => score + (haystack.includes(token) ? 1 : 0), 0);
+}

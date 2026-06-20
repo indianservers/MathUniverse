@@ -154,10 +154,17 @@ export function hasseLevels(domain: string[], pairs: OrderedPair[]) {
 }
 
 export function functionProperties(domain: string[], codomain: string[], pairs: OrderedPair[]): FunctionProperties {
+  const domainSet = new Set(domain);
+  const codomainSet = new Set(codomain);
+  const allPairsStayInsideSets = pairs.every(([a, b]) => domainSet.has(a) && codomainSet.has(b));
   const imageByDomain = new Map<string, string[]>();
-  pairs.forEach(([a, b]) => imageByDomain.set(a, [...(imageByDomain.get(a) ?? []), b]));
-  const isFunction = domain.every((item) => (imageByDomain.get(item) ?? []).length === 1);
-  const images = pairs.map(([, b]) => b);
+  pairs.forEach(([a, b]) => {
+    if (domainSet.has(a) && codomainSet.has(b)) {
+      imageByDomain.set(a, [...(imageByDomain.get(a) ?? []), b]);
+    }
+  });
+  const isFunction = allPairsStayInsideSets && domain.every((item) => (imageByDomain.get(item) ?? []).length === 1);
+  const images = domain.flatMap((item) => imageByDomain.get(item) ?? []);
   const injective = isFunction && new Set(images).size === images.length;
   const surjective = isFunction && codomain.every((item) => images.includes(item));
   return { isFunction, injective, surjective, bijective: injective && surjective };

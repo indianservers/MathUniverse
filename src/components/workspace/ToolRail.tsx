@@ -16,7 +16,7 @@ const icons = {
 
 export default function ToolRail({ views, activeView, onViewChange }: ToolRailProps) {
   return (
-    <nav className="workspace-view-tabs" aria-label="Workspace tools">
+    <nav className="workspace-view-tabs" aria-label="Workspace tools" data-testid="workspace-tool-rail">
       {views.map((view) => {
         const Icon = icons[view.id as keyof typeof icons] ?? (view.id.includes("3") ? Box : Braces);
         const active = activeView === view.id;

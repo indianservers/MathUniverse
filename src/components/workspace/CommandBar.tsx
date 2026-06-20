@@ -29,7 +29,7 @@ export default function CommandBar({ value, onChange, onRun }: CommandBarProps) 
   const suggestions = useMemo(() => smartCommandSuggestions(value), [value]);
 
   return (
-    <div className="workspace-command-center">
+    <div className="workspace-command-center" data-testid="workspace-command-bar">
       <div className="flex min-w-0 items-start gap-2">
         <Command className="ml-2 mt-3 h-4 w-4 shrink-0 text-cyan-500" />
         <div className="min-w-0 flex-1">

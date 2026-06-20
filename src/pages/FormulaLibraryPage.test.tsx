@@ -1,24 +1,24 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it } from "vitest";
-import FormulasCheatsheet from "./FormulasCheatsheet";
+import FormulaLibraryPage from "./FormulaLibraryPage";
 
 function renderFormulaRoute(path: string) {
   return renderToStaticMarkup(
     <MemoryRouter initialEntries={[path]}>
       <Routes>
-        <Route path="/formulas" element={<FormulasCheatsheet />} />
-        <Route path="/formulas/:categorySlug" element={<FormulasCheatsheet />} />
+        <Route path="/formulas" element={<FormulaLibraryPage />} />
+        <Route path="/formulas/:categorySlug" element={<FormulaLibraryPage />} />
       </Routes>
     </MemoryRouter>,
   );
 }
 
-describe("FormulasCheatsheet", () => {
-  it("renders a compact all-formulas cheatsheet with category links", () => {
+describe("FormulaLibraryPage", () => {
+  it("renders a compact all-formulas page with category links", () => {
     const html = renderFormulaRoute("/formulas");
 
-    expect(html).toContain("Formula Cheatsheet");
+    expect(html).toContain("Formula Library");
     expect(html).toContain("/formulas/trigonometry");
     expect(html).toContain("/formulas/geometry");
     expect(html).toContain("Search formula, topic, note");
@@ -39,6 +39,8 @@ describe("FormulasCheatsheet", () => {
     expect(html).toContain("Geometry");
     expect(html).toContain("Triangle area");
     expect(html).toContain("Circle area");
+    expect(html).toContain("/visual-proofs/geometry/");
+    expect(html).toContain("/theorems/geometry/");
   });
 
   it("supports grouped calculus category pages", () => {

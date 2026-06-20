@@ -1,5 +1,7 @@
 import { Suspense, lazy, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
+import { formulaCategories } from "../../data/formulaLibrary";
+import { theoremCategories } from "../../data/theoremLibrary";
 import FormulaPanel from "../components/FormulaPanel";
 import StepPanel from "../components/StepPanel";
 import VisualProofLayout from "../components/VisualProofLayout";
@@ -42,7 +44,49 @@ function LazyVisualProofRoute({ category, proof }: { category: NonNullable<Retur
   return (
     <Suspense fallback={<ProofRouteLoadingFallback title={proof.title} />}>
       <LazyProof category={category} proof={proof} />
+      <VisualProofLearningBridge proof={proof} />
     </Suspense>
+  );
+}
+
+function VisualProofLearningBridge({ proof }: { proof: NonNullable<ReturnType<typeof getVisualProof>> }) {
+  const related = useMemo(() => getRelatedProofLinks(proof), [proof]);
+  if (related.formulas.length === 0 && related.theorems.length === 0) return null;
+
+  return (
+    <section className="mx-auto my-4 w-full max-w-7xl rounded-xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-white/10 dark:bg-slate-900/90">
+      <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">Connected learning</p>
+      <div className="mt-3 grid gap-3 md:grid-cols-2">
+        <div className="rounded-lg bg-slate-50 p-3 dark:bg-white/5">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Related Theorems</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {related.theorems.map((theorem) => (
+              <Link
+                key={theorem.route}
+                className="rounded-md bg-white px-2 py-1.5 text-sm font-black text-slate-700 transition hover:text-cyan-700 dark:bg-slate-950/50 dark:text-slate-200 dark:hover:text-cyan-100"
+                to={theorem.route}
+              >
+                {theorem.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-lg bg-slate-50 p-3 dark:bg-white/5">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Related Formulas</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {related.formulas.map((formula) => (
+              <Link
+                key={`${formula.route}-${formula.title}`}
+                className="rounded-md bg-white px-2 py-1.5 text-sm font-black text-slate-700 transition hover:text-cyan-700 dark:bg-slate-950/50 dark:text-slate-200 dark:hover:text-cyan-100"
+                to={formula.route}
+              >
+                {formula.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -102,4 +146,104 @@ function PlaceholderPanel({ title, body }: { title: string; body: string }) {
       <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{body}</p>
     </section>
   );
+}
+
+const proofToFormulaCategory: Record<string, string[]> = {
+  geometry: ["geometry", "euclidean-geometry-theorems", "mensuration-units"],
+  "algebraic-identities": ["algebra", "polynomials"],
+  trigonometry: ["trigonometry"],
+  "coordinate-geometry": ["coordinate-geometry", "analytic-geometry-advanced"],
+  calculus: ["limits-continuity", "derivatives", "integrals"],
+  "number-theory": ["number-systems", "olympiad-number-theory"],
+  probability: ["probability", "probability-distributions"],
+  statistics: ["statistics"],
+  "matrices-linear-algebra": ["matrices", "determinants", "linear-algebra-advanced"],
+  vectors: ["vectors", "three-d-geometry"],
+  "complex-numbers": ["complex-numbers", "complex-analysis"],
+  mensuration: ["geometry", "mensuration-units"],
+  "conic-sections": ["coordinate-geometry", "analytic-geometry-advanced"],
+  inequalities: ["inequalities", "algebra"],
+  "logarithms-exponents": ["number-systems", "precalculus"],
+  "transformations-symmetry": ["geometry", "coordinate-geometry"],
+  "engineering-mathematics": ["linear-programming", "optimization", "fourier-laplace-transforms", "differential-equations"],
+  "sequences-and-series": ["sequences-series", "combinatorics"],
+};
+
+const proofToTheoremCategory: Record<string, string[]> = {
+  geometry: ["geometry"],
+  "algebraic-identities": ["algebra"],
+  trigonometry: ["trigonometry"],
+  "coordinate-geometry": ["coordinate-geometry"],
+  calculus: ["calculus-analysis"],
+  "number-theory": ["number-theory"],
+  probability: ["probability-statistics"],
+  statistics: ["probability-statistics"],
+  "matrices-linear-algebra": ["linear-algebra-vectors"],
+  vectors: ["linear-algebra-vectors"],
+  "complex-numbers": ["complex-numbers"],
+  mensuration: ["geometry"],
+  "conic-sections": ["coordinate-geometry"],
+  inequalities: ["algebra", "optimization-engineering"],
+  "logarithms-exponents": ["algebra"],
+  "transformations-symmetry": ["geometry", "coordinate-geometry"],
+  "engineering-mathematics": ["optimization-engineering", "calculus-analysis"],
+  "sequences-and-series": ["discrete-logic", "calculus-analysis"],
+};
+
+const proofLinkStopWords = new Set(["proof", "visual", "theorem", "formula", "identity", "using", "with", "from", "into", "that", "this"]);
+
+function getRelatedProofLinks(proof: NonNullable<ReturnType<typeof getVisualProof>>) {
+  const tokens = getProofTokens([proof.title, proof.shortDescription, proof.longDescription, proof.tags.join(" "), proof.prerequisites.join(" ")]);
+  const formulaHints = new Set(proofToFormulaCategory[proof.categorySlug] ?? []);
+  const theoremHints = new Set(proofToTheoremCategory[proof.categorySlug] ?? []);
+
+  const formulas = formulaCategories
+    .flatMap((formulaCategory) =>
+      formulaCategory.formulas.map((formula) => ({
+        ...formula,
+        route: `/formulas/${formulaCategory.id}`,
+        score:
+          scoreProofText(tokens, [formula.title, formula.formula, formula.note, formulaCategory.title, formulaCategory.description]) +
+          (formulaHints.has(formulaCategory.id) ? 3 : 0),
+      })),
+    )
+    .filter((match) => match.score >= 5)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
+    .map(({ score: _score, ...formula }) => formula);
+
+  const theorems = theoremCategories
+    .flatMap((theoremCategory) =>
+      theoremCategory.theorems.map((theorem) => ({
+        ...theorem,
+        route: `/theorems/${theoremCategory.id}/${theorem.slug}`,
+        score:
+          scoreProofText(tokens, [theorem.title, theorem.subtopic, theorem.statement, theorem.prerequisites.join(" ")]) +
+          (theoremHints.has(theoremCategory.id) ? 3 : 0),
+      })),
+    )
+    .filter((match) => match.score >= 5)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
+    .map(({ score: _score, ...theorem }) => theorem);
+
+  return { formulas, theorems };
+}
+
+function getProofTokens(parts: string[]) {
+  return Array.from(
+    new Set(
+      parts
+        .join(" ")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .split(/\s+/)
+        .filter((token) => token.length > 3 && !proofLinkStopWords.has(token)),
+    ),
+  );
+}
+
+function scoreProofText(tokens: string[], parts: string[]) {
+  const haystack = parts.join(" ").toLowerCase();
+  return tokens.reduce((score, token) => score + (haystack.includes(token) ? 1 : 0), 0);
 }

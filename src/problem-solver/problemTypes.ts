@@ -1,3 +1,5 @@
+import type { SolverConfidence, SolverResult } from "./types/solverResult";
+
 export type ProblemIntentKind =
   | "linear-equation"
   | "quadratic-equation"
@@ -32,6 +34,9 @@ export interface ProblemClassification {
 
 export interface ProblemSolverResult {
   kind: ProblemIntentKind;
+  trust?: SolverResult;
+  confidenceStatus?: SolverConfidence;
+  unsupportedReason?: string;
   method?: string;
   title: string;
   normalizedInput: string;
