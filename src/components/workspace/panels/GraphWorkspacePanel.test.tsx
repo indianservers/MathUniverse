@@ -28,6 +28,16 @@ describe("GraphWorkspacePanel", () => {
     expect(html).toContain("Desmos-style Graphing Lab");
     expect(html).toContain("sin(x)");
     expect(html).toContain("Functions");
+    expect(html).toContain("Smart graph expression editor");
+  });
+
+  it("uses smart expression rendering for graph plot input", () => {
+    const html = renderPanel([{ id: "plot-1", expression: "A subset B, y<=x^2", color: colors[0], kind: "function", visible: true }]);
+
+    expect(html).toContain("⊂");
+    expect(html).toContain("≤");
+    expect(html).toContain("<sup>");
+    expect(html).toContain("A subset B, y&lt;=x^2");
   });
 
   it("preserves the graph surface test id and renders non-empty graph marks", () => {
@@ -101,4 +111,3 @@ describe("GraphWorkspacePanel", () => {
     expect(next).toEqual([plots[1]]);
   });
 });
-

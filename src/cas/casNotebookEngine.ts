@@ -1,5 +1,6 @@
 import {
   symbolicDerivative,
+  symbolicDefiniteIntegral,
   symbolicExpand,
   symbolicFactor,
   symbolicIntegral,
@@ -10,6 +11,8 @@ import {
   symbolicSolve,
   symbolicSubstitute,
   symbolicSystemSolve,
+  symbolicTangentLine,
+  symbolicVerifyIdentity,
   trySymbolic,
   type SymbolicAssignment,
   type SymbolicResult,
@@ -23,7 +26,10 @@ export type NotebookOperation =
   | "system"
   | "differentiate"
   | "integrate"
+  | "definite-integral"
   | "limit"
+  | "tangent-line"
+  | "verify-identity"
   | "substitute"
   | "partial-fractions"
   | "polynomial-divide"
@@ -81,7 +87,10 @@ export const operationOptions: Array<{ value: NotebookOperation; label: string }
   { value: "system", label: "Equation System" },
   { value: "differentiate", label: "Differentiate" },
   { value: "integrate", label: "Integrate" },
+  { value: "definite-integral", label: "Definite Integral" },
   { value: "limit", label: "Limit" },
+  { value: "tangent-line", label: "Tangent Line" },
+  { value: "verify-identity", label: "Verify Identity" },
   { value: "substitute", label: "Substitute" },
   { value: "partial-fractions", label: "Partial Fractions" },
   { value: "polynomial-divide", label: "Polynomial Divide" },
@@ -96,6 +105,9 @@ export const casNotebookExamples: Array<{ label: string; input: string; operatio
   { label: "Equation system", input: "x+y=5; x-y=1", operation: "system" },
   { label: "Matrix", input: "[[1,2],[3,4]]", operation: "matrix" },
   { label: "Limit", input: "sin(x)/x, x, 0", operation: "limit" },
+  { label: "Definite integral", input: "x^2, 0, 2, x", operation: "definite-integral" },
+  { label: "Tangent line", input: "x^2, 3, x", operation: "tangent-line" },
+  { label: "Verify identity", input: "tan(x), sin(x)/cos(x), x", operation: "verify-identity" },
 ];
 
 export const starterNotebookCells: NotebookCell[] = [
@@ -300,9 +312,21 @@ function runNotebookOperation(operation: NotebookOperation, input: string, assum
   if (operation === "system") return withAssumptions(trySymbolic(() => symbolicSystemSolve(splitTopLevel(input), inferVariables(input))), assumptions);
   if (operation === "differentiate") return withAssumptions(trySymbolic(() => symbolicDerivative(firstArg(input), secondArg(input) ?? inferVariable(input))), assumptions);
   if (operation === "integrate") return withAssumptions(trySymbolic(() => symbolicIntegral(firstArg(input), secondArg(input) ?? inferVariable(input))), assumptions);
+  if (operation === "definite-integral") {
+    const [expression, lower = "0", upper = "1", variable = inferVariable(input)] = splitTopLevel(input);
+    return withAssumptions(trySymbolic(() => symbolicDefiniteIntegral(expression, lower, upper, variable)), assumptions);
+  }
   if (operation === "limit") {
     const [expression, variable = inferVariable(input), target = "0"] = splitTopLevel(input);
     return withAssumptions(trySymbolic(() => symbolicLimit(expression, variable, target)), assumptions);
+  }
+  if (operation === "tangent-line") {
+    const [expression, point = "0", variable = inferVariable(input)] = splitTopLevel(input);
+    return withAssumptions(trySymbolic(() => symbolicTangentLine(expression, point, variable)), assumptions);
+  }
+  if (operation === "verify-identity") {
+    const [left, right = "0", variable = inferVariable(input)] = splitTopLevel(input);
+    return withAssumptions(trySymbolic(() => symbolicVerifyIdentity(left, right, variable)), assumptions);
   }
   if (operation === "substitute") {
     const [expression, ...rawAssignments] = splitTopLevel(input);

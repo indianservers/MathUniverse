@@ -8,6 +8,9 @@ type SmartTokenKind =
   | "keyword"
   | "number"
   | "operator"
+  | "relation"
+  | "set"
+  | "power"
   | "function"
   | "variable"
   | "constant"
@@ -73,6 +76,8 @@ const workspaceKeywords = new Set([
 const geometryWords = new Set(["angle", "arc", "circle", "conic", "cone", "coordinate", "cylinder", "distance", "ellipse", "line", "locus", "parallel", "perpendicular", "plane", "point", "polygon", "ray", "segment", "sphere", "surface", "tangent", "triangle", "vector"]);
 const matrixWords = new Set(["column", "det", "determinant", "inverse", "matrix", "rank", "row", "transpose"]);
 const constants = new Set(["e", "pi", "tau", "infinity", "inf", "true", "false"]);
+const setWords = new Set(["set", "sets", "union", "intersection", "intersect", "empty", "emptyset", "complement", "subset", "subsets", "superset", "supersets", "proper", "element", "belongs", "in"]);
+const relationWords = new Set(["subset", "superset", "subseteq", "superseteq", "notsubset", "notsuperset", "in", "notin"]);
 
 export default function SmartMathInput({
   ariaLabel,
@@ -127,14 +132,17 @@ export default function SmartMathInput({
 
 export function tokenizeSmartMathInput(value: string, mode: SmartMathInputMode = "math"): SmartToken[] {
   const tokens: SmartToken[] = [];
-  const matcher = /\s+|#[0-9a-f]{3,8}|[-+]?\d*\.?\d+(?:e[-+]?\d+)?|[a-zA-Z_][a-zA-Z0-9_.]*|->|<=|>=|!=|==|[+\-*/^%=<>:(),;[\]{}]|./gi;
+  const matcher = /\s+|#[0-9a-f]{3,8}|(?:[a-zA-Z][a-zA-Z0-9_.]*|\d+(?:\.\d+)?|\([^)]{1,24}\))\^-?\d+|[-+]?\d*\.?\d+(?:e[-+]?\d+)?|[a-zA-Z_][a-zA-Z0-9_.]*|->|<=|>=|!=|==|⊆|⊇|⊂|⊃|∈|∉|∪|∩|∅|≤|≥|≠|×|÷|[+\-*/^%=<>:(),;[\]{}]|./gi;
   for (const match of value.matchAll(matcher)) {
     const text = match[0];
     const lower = text.toLowerCase();
     const group = groupByCommand.get(lower);
     if (/^\s+$/.test(text)) tokens.push({ text, kind: "space" });
+    else if (/^(?:[a-zA-Z][a-zA-Z0-9_.]*|\d+(?:\.\d+)?|\([^)]{1,24}\))\^-?\d+$/.test(text)) tokens.push({ text, kind: "power" });
     else if (/^#[0-9a-f]{3,8}$/i.test(text) || /^[-+]?\d*\.?\d+(?:e[-+]?\d+)?$/i.test(text)) tokens.push({ text, kind: "number" });
-    else if (/^(->|<=|>=|!=|==|[+\-*/^%=<>:])$/.test(text)) tokens.push({ text, kind: "operator" });
+    else if (/^(<=|>=|!=|==|<|>|=|⊆|⊇|⊂|⊃|∈|∉|≤|≥|≠)$/.test(text) || relationWords.has(lower)) tokens.push({ text, kind: "relation" });
+    else if (/^(∪|∩|∅)$/.test(text) || setWords.has(lower)) tokens.push({ text, kind: "set" });
+    else if (/^(->|[+\-*/^%:×÷])$/.test(text)) tokens.push({ text, kind: "operator" });
     else if (/^[(),;[\]{}]$/.test(text)) tokens.push({ text, kind: "punctuation" });
     else if (mode === "workspace" && commandNames.has(lower)) tokens.push({ text, kind: group === "Geometry 2D" || group === "Geometry 3D" ? "geometry" : group === "Matrices" ? "matrix" : "command" });
     else if (mode === "workspace" && geometryWords.has(lower)) tokens.push({ text, kind: "geometry" });
@@ -163,6 +171,8 @@ export function analyzeSmartMathInput(value: string, mode: SmartMathInputMode = 
   const closeSquare = (trimmed.match(/\]/g) ?? []).length;
   if (/[a-z]\d|\d[a-z]/i.test(trimmed) && !/[a-z]\*\d|\d\*[a-z]/i.test(trimmed)) hints.push("Use * for clear multiplication");
   if (openRound !== closeRound || openSquare !== closeSquare) hints.push("Close brackets");
+  if (/\b(subset|superset|subseteq|superseteq)\b|[⊂⊃⊆⊇]/i.test(trimmed)) hints.push("Set relation recognized");
+  if (/\^[-+]?\d+/.test(trimmed)) hints.push("Power notation recognized");
 
   if (mode === "workspace") {
     const firstWord = trimmed.match(/^([a-zA-Z_][a-zA-Z0-9_]*)/)?.[1] ?? "";
@@ -190,6 +200,9 @@ function SmartTokenSpan({ token }: { token: SmartToken }) {
     keyword: "text-blue-200",
     number: "text-amber-300",
     operator: "text-rose-300",
+    relation: "text-pink-300",
+    set: "text-teal-300",
+    power: "text-emerald-200",
     function: "text-violet-300",
     variable: "text-emerald-300",
     constant: "text-orange-300",
@@ -199,7 +212,63 @@ function SmartTokenSpan({ token }: { token: SmartToken }) {
     space: "text-slate-100",
     text: "text-slate-100",
   };
-  return <span className={className[token.kind]}>{token.text}</span>;
+  return <span className={className[token.kind]}>{formatTokenText(token)}</span>;
+}
+
+function formatTokenText(token: SmartToken) {
+  if (token.kind === "relation") return relationDisplay(token.text);
+  if (token.kind === "set") return setDisplay(token.text);
+  if (token.kind === "operator") return operatorDisplay(token.text);
+  if (token.kind !== "power") return token.text;
+  const match = token.text.match(/^(.*)\^(-?\d+)$/);
+  if (!match) return token.text;
+  return (
+    <>
+      {match[1]}
+      <sup>{toSuperscript(match[2])}</sup>
+    </>
+  );
+}
+
+function operatorDisplay(text: string) {
+  if (text === "*") return "×";
+  if (text === "/") return "÷";
+  return text;
+}
+
+function relationDisplay(text: string) {
+  const lower = text.toLowerCase();
+  const map: Record<string, string> = {
+    "<=": "≤",
+    ">=": "≥",
+    "!=": "≠",
+    subset: "⊂",
+    superset: "⊃",
+    subseteq: "⊆",
+    superseteq: "⊇",
+    notsubset: "⊄",
+    notsuperset: "⊅",
+    in: "∈",
+    notin: "∉",
+  };
+  return map[lower] ?? map[text] ?? text;
+}
+
+function setDisplay(text: string) {
+  const lower = text.toLowerCase();
+  const map: Record<string, string> = {
+    union: "∪",
+    intersection: "∩",
+    intersect: "∩",
+    empty: "∅",
+    emptyset: "∅",
+  };
+  return map[lower] ?? text;
+}
+
+function toSuperscript(value: string) {
+  const map: Record<string, string> = { "-": "⁻", "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" };
+  return [...value].map((char) => map[char] ?? char).join("");
 }
 
 function SmartInputInsights({ insight }: { insight: SmartInputInsight }) {
@@ -223,8 +292,10 @@ function SmartInputLegend({ mode }: { mode: SmartMathInputMode }) {
       <LegendDot className="bg-blue-300" label="Keywords" />
       <LegendDot className="bg-amber-300" label="Numbers" />
       <LegendDot className="bg-rose-300" label="Operators" />
+      <LegendDot className="bg-pink-300" label="Relations" />
       <LegendDot className="bg-violet-300" label="Functions" />
       <LegendDot className="bg-emerald-300" label="Variables" />
+      <LegendDot className="bg-teal-300" label="Sets" />
       {mode === "workspace" && <LegendDot className="bg-sky-300" label="Geometry" />}
       {mode === "workspace" && <LegendDot className="bg-fuchsia-300" label="Matrices" />}
     </div>

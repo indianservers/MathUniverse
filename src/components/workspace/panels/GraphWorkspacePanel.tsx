@@ -1,5 +1,6 @@
 import { LineChart } from "lucide-react";
 import { useMemo, useState } from "react";
+import SmartMathInput from "../../math-input/SmartMathInput";
 import SliderControl, { SliderGroup } from "../../ui/SliderControl";
 import { isGraphValidationBlocking, validateGraphExpression } from "../../../workspace/graphValidation";
 import type { GraphValidationResult } from "../../../workspace/types/graphValidation";
@@ -72,7 +73,18 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
         <div className="space-y-3">
           <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
             <label className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Expression</label>
-            <input value={draft} onChange={(event) => setDraft(event.target.value)} className="mt-2 w-full rounded-xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-900" placeholder="sin(x), x^2+y^2=9, x=cos(t), y=sin(t), r=2*sin(theta)" />
+            <SmartMathInput
+              ariaLabel="Smart graph expression editor"
+              className="mt-2"
+              compact
+              mode="math"
+              onChange={setDraft}
+              onSubmit={() => addPlot(draft)}
+              placeholder="sin(x), x^2+y^2=9, x=cos(t), y=sin(t), r=2*sin(theta)"
+              rows={1}
+              showLegend={false}
+              value={draft}
+            />
             <div className="mt-2 grid grid-cols-2 gap-2">
               <button type="button" onClick={() => addPlot(draft)} className="action-primary py-2">Add graph</button>
               <button type="button" onClick={() => addRegression()} className="action-secondary py-2">Regression</button>
@@ -107,7 +119,18 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
                 <div className="flex items-center gap-2">
                   <input type="checkbox" checked={plot.visible !== false} onChange={(event) => updatePlot(plot.id, { visible: event.target.checked })} />
                   <span className="h-3 w-3 rounded-full" style={{ background: plot.color }} />
-                  <input value={plot.expression} onChange={(event) => updatePlot(plot.id, { expression: event.target.value, kind: inferPlotKind(event.target.value) })} className="min-w-0 flex-1 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 font-mono text-xs dark:border-white/10 dark:bg-slate-900" />
+                  <SmartMathInput
+                    ariaLabel={`Edit graph expression ${plot.expression}`}
+                    className="min-w-0 flex-1"
+                    compact
+                    mode="math"
+                    onChange={(expression) => updatePlot(plot.id, { expression, kind: inferPlotKind(expression) })}
+                    placeholder="x^2, sin(x), A subset B"
+                    rows={1}
+                    showInsights={false}
+                    showLegend={false}
+                    value={plot.expression}
+                  />
                   <button type="button" onClick={() => removePlot(plot.id)} className="rounded-lg bg-rose-100 px-2 py-1 text-xs font-bold text-rose-700 dark:bg-rose-400/15 dark:text-rose-100">x</button>
                 </div>
                 <p className="mt-2 text-xs font-semibold text-slate-500">{plot.kind ?? inferPlotKind(plot.expression)}</p>

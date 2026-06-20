@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   evaluateNotebookCellInState,
   evaluateNotebookCells,
+  operationOptions,
   serializeCasNotebookMarkdown,
   type NotebookCell,
   type NotebookState,
@@ -72,6 +73,20 @@ describe("casNotebookEngine", () => {
     expect(evaluated.find((item) => item.id === "matrix")?.steps.join(" ")).toContain("RREF");
     expect(evaluated.find((item) => item.id === "list")?.output).toContain("median=7");
     expect(evaluated.find((item) => item.id === "list")?.output).toContain("stdev=");
+  });
+
+  it("exposes stronger symbolic operations through notebook cells", () => {
+    const evaluated = evaluateNotebookCells([
+      cell("definite", "x^2, 0, 2, x", "definite-integral"),
+      cell("tangent", "x^2, 3, x", "tangent-line"),
+      cell("identity", "tan(x), sin(x)/cos(x), x", "verify-identity"),
+    ], "", "exact");
+
+    expect(operationOptions.map((item) => item.value)).toEqual(expect.arrayContaining(["definite-integral", "tangent-line", "verify-identity"]));
+    expect(evaluated.find((item) => item.id === "definite")?.output).toBe("8/3");
+    expect(evaluated.find((item) => item.id === "tangent")?.output).toBe("y = -9+6*x");
+    expect(evaluated.find((item) => item.id === "identity")?.output).toBe("Identity verified");
+    expect(evaluated.find((item) => item.id === "identity")?.steps.join(" ")).toContain("sample values were checked");
   });
 
   it("exports a markdown solution notebook", () => {

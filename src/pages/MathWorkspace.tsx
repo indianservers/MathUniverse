@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
-import GeometryWorkspacePanel from "../components/workspace/panels/GeometryWorkspacePanel";
+import GeometryWorkspacePanel, { type GeometryGraphSettings } from "../components/workspace/panels/GeometryWorkspacePanel";
 import GraphWorkspacePanel, { type PlotItem, type PlotKind, type ResultTableRow } from "../components/workspace/panels/GraphWorkspacePanel";
 import InspectorPanel from "../components/workspace/InspectorPanel";
 import ObjectList, { type ObjectListAction } from "../components/workspace/ObjectList";
@@ -27,6 +27,7 @@ import { generateValueTable, inferPlotKind, regressionModel, stripInequality, ty
 import { contextMenuForObject, createProtocolPlaybackPlan, createSliderObject, exportPresets, imageWorkflowSpec, rankSnapCandidates, styleBarForObject, tabletControlSpec, type ExportPreset, type ImageWorkflowSpec, type ProtocolPlaybackPlan, type SliderObject, type SnapCandidate, type StyleBarControl, type TabletControlSpec, type WorkflowObjectType } from "../workspace/highPriorityWorkflowKernel";
 import { DEFAULT_TRACE_MAX_SAMPLES, appendTraceSample, nextTraceLabel, seedTraceSamples, traceDefinition } from "../workspace/locusTraceKernel";
 import { applyObjectProperties, evaluateObjectProperties } from "../workspace/objectProperties";
+import { certifyGeometryConstruction } from "../workspace/geometryConstructionCertification";
 import {
   circle as kernelCircle,
   distanceBetween as kernelDistance,
@@ -144,6 +145,7 @@ type WorkspaceSnapshot = {
   results: ResultCard[];
   plots: PlotItem[];
   construction: Construction;
+  geometryGraphSettings?: GeometryGraphSettings;
   lockedGeometryIds?: string[];
   surface: SurfaceKind;
   surfaceExpression?: string;
@@ -186,6 +188,16 @@ const initialSpreadsheet: SpreadsheetCellGrid = [
   ["4", "7.4", "=A2+B2", ""],
 ];
 const initialConstruction: Construction = { points: [], lines: [], circles: [], polygons: [], arcs: [], loci: [], constraints: [] };
+const defaultGeometryGraphSettings: GeometryGraphSettings = {
+  showGrid: true,
+  showAxes: false,
+  showUnitLabels: false,
+  showPointLabels: true,
+  showMeasurements: true,
+  highContrastGrid: false,
+  snapToGrid: true,
+  snapToObjects: true,
+};
 const defaultTransforms3d: Record<ThreeObjectId, Transform3D> = {
   surface: { name: "surface", position: [0, 0, 0], rotation: [0, 0, 0], scale: 1, visible: true, color: "#22d3ee", opacity: 0.45, material: "glass" },
   solid: { name: "solid", position: [3, 0, 2.6], rotation: [0, 0, 0], scale: 1, visible: true, color: "#8b5cf6", dimensions: [2.5, 2.5, 2.5], opacity: 0.78, material: "glass" },
@@ -252,7 +264,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [dragGeometry, setDragGeometry] = useState<{ object: SelectedGeometryObject; last: { x: number; y: number } } | null>(null);
   const [lockedGeometryIds, setLockedGeometryIds] = useState<string[]>([]);
   const [polygonDraft, setPolygonDraft] = useState<string[]>([]);
-  const [showGeometryUnits, setShowGeometryUnits] = useState(false);
+  const [geometryGraphSettings, setGeometryGraphSettings] = useState<GeometryGraphSettings>(defaultGeometryGraphSettings);
+  const geometryCertificationReport = useMemo(() => certifyGeometryConstruction(construction, {
+    regularPolygonIds: construction.polygons.filter((polygon) => polygon.style?.label === "regular-polygon").map((polygon) => polygon.id),
+  }), [construction]);
   const [surface, setSurface] = useState<SurfaceKind>("paraboloid");
   const [surfaceExpression, setSurfaceExpression] = useState("sin(x) * cos(y)");
   const [solid, setSolid] = useState<SolidKind>("cube");
@@ -602,7 +617,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const runInput = () => executeWorkspaceCommand(input);
 
   const addPoint = (x: number, y: number) => {
-    const snapped = snapBoardPoint({ x, y }, construction);
+    const snapped = snapBoardPoint({ x, y }, construction, geometryGraphSettings);
     const result = buildPointCreation(construction, snapped);
     const point = result.construction.points[result.construction.points.length - 1];
     recordWorkspaceStep("Create point", `${point.label} = (${roundTo(point.x, 1)}, ${roundTo(point.y, 1)})`);
@@ -755,7 +770,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       "translate",
     ];
     if (!pickTools.includes(activeTool)) return;
-    const snapped = snapBoardPoint({ x, y }, construction);
+    const snapped = snapBoardPoint({ x, y }, construction, geometryGraphSettings);
     const result = buildPointCreation(construction, snapped, { round: (value) => roundTo(value, 2) });
     const newPoint = result.construction.points[result.construction.points.length - 1];
     setConstruction((current) => solveConstruction({ ...current, points: [...current.points, newPoint] }, result.createdPointId));
@@ -1356,18 +1371,26 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setContextMenu(null);
   };
 
-  const saveConstruction = () => localStorage.setItem("math-universe-workspace-construction", JSON.stringify(construction));
+  const saveConstruction = () => localStorage.setItem("math-universe-workspace-construction", JSON.stringify({ construction, geometryGraphSettings }));
   const loadConstruction = () => {
     const saved = localStorage.getItem("math-universe-workspace-construction");
-    if (saved) setConstruction(normalizeConstruction(JSON.parse(saved) as Partial<Construction>));
+    if (!saved) return;
+    const parsed = JSON.parse(saved) as unknown;
+    if (isConstructionSavePayload(parsed)) {
+      setConstruction(normalizeConstruction(parsed.construction ?? initialConstruction));
+      setGeometryGraphSettings({ ...defaultGeometryGraphSettings, ...(parsed.geometryGraphSettings ?? {}) });
+    } else {
+      setConstruction(normalizeConstruction(parsed as Partial<Construction>));
+    }
   };
-  const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, lockedGeometryIds, surface, surfaceExpression, cameraPreset3d, sceneAnimationSpeed, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, autoRotate3d, zoom3d, transforms3d, added3dObjects, images: workspaceImages, spreadsheet, tableRange: { start: tableStart, end: tableEnd, step: tableStep }, guidedMode, guidedPhase, teachingMode, revealStep, controlsLocked, highContrastMode, performanceMode, protocol, activityJournal, presentationNotes, objectProperties: objectPropertyOverrides });
+  const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, geometryGraphSettings, lockedGeometryIds, surface, surfaceExpression, cameraPreset3d, sceneAnimationSpeed, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, autoRotate3d, zoom3d, transforms3d, added3dObjects, images: workspaceImages, spreadsheet, tableRange: { start: tableStart, end: tableEnd, step: tableStep }, guidedMode, guidedPhase, teachingMode, revealStep, controlsLocked, highContrastMode, performanceMode, protocol, activityJournal, presentationNotes, objectProperties: objectPropertyOverrides });
   const saveWorkspace = () => localStorage.setItem("math-universe-workspace-full", JSON.stringify(snapshot()));
   const restoreWorkspaceSnapshot = (data: WorkspaceSnapshot) => {
     setInput(data.input);
     setResults(data.results ?? []);
     setPlots(data.plots ?? []);
     setConstruction(normalizeConstruction(data.construction ?? initialConstruction));
+    setGeometryGraphSettings({ ...defaultGeometryGraphSettings, ...(data.geometryGraphSettings ?? {}) });
     setLockedGeometryIds(data.lockedGeometryIds ?? []);
     setSurface(data.surface ?? "paraboloid");
     setSurfaceExpression(data.surfaceExpression ?? "sin(x) * cos(y)");
@@ -2405,9 +2428,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           selectedPointIds={selectedPointIds}
           polygonDraft={polygonDraft}
           geometryObjectPicks={geometryObjectPicks}
+          constructionAccuracyReport={geometryCertificationReport}
           workspaceImages={workspaceImages}
           selectedImageId={selectedImageId}
-          showGeometryUnits={showGeometryUnits}
+          graphSettings={geometryGraphSettings}
           boardRef={svgRef}
           imageInputRef={imageInputRef}
           onImageUpload={handleImageUpload}
@@ -2427,7 +2451,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onReset={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
           onSave={saveConstruction}
           onLoad={loadConstruction}
-          onShowGeometryUnitsChange={setShowGeometryUnits}
+          onGraphSettingsChange={setGeometryGraphSettings}
           onClearPendingPicks={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
           onBoardPointerDown={handleBoardPointerDown}
           onBoardPointerMove={handleBoardPointerMove}
@@ -7194,19 +7218,20 @@ function arcLength(center: GeoPoint, start: GeoPoint, end: GeoPoint) {
   return radius * ((b - a + Math.PI * 2) % (Math.PI * 2));
 }
 
-function snapBoardPoint(point: { x: number; y: number }, construction: Construction) {
+function snapBoardPoint(point: { x: number; y: number }, construction: Construction, settings: Pick<GeometryGraphSettings, "snapToGrid" | "snapToObjects"> = defaultGeometryGraphSettings) {
   const grid = { x: Math.round(point.x / 40) * 40, y: Math.round(point.y / 40) * 40 };
-  let best = { ...grid, score: Math.hypot(point.x - grid.x, point.y - grid.y) };
-  const candidates = [
+  let best = settings.snapToGrid ? { ...grid, score: Math.hypot(point.x - grid.x, point.y - grid.y) } : { ...point, score: Number.POSITIVE_INFINITY };
+  const candidates = settings.snapToObjects ? [
     ...construction.points.map((p) => ({ x: p.x, y: p.y })),
     ...allIntersections(construction),
     ...construction.lines.map((line) => projectPointToLine(point, line, construction.points)).filter(Boolean) as { x: number; y: number }[],
     ...construction.circles.map((circle) => projectPointToCircle(point, circle, construction.points)).filter(Boolean) as { x: number; y: number }[],
-  ];
+  ] : [];
   for (const candidate of candidates) {
     const score = Math.hypot(point.x - candidate.x, point.y - candidate.y);
     if (score < best.score && score < 18) best = { ...candidate, score };
   }
+  if (!settings.snapToGrid && !settings.snapToObjects) return { x: roundTo(point.x, 2), y: roundTo(point.y, 2) };
   return { x: best.x, y: best.y };
 }
 
@@ -7488,6 +7513,10 @@ function normalizeConstruction(value: Partial<Construction>): Construction {
     loci: value.loci ?? [],
     constraints: value.constraints ?? [],
   });
+}
+
+function isConstructionSavePayload(value: unknown): value is { construction?: Partial<Construction>; geometryGraphSettings?: Partial<GeometryGraphSettings> } {
+  return Boolean(value && typeof value === "object" && "construction" in value);
 }
 
 function intersectionsForSelectedObjects(construction: Construction, first: SelectedGeometryObject, second: SelectedGeometryObject) {

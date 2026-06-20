@@ -62,13 +62,15 @@ export function buildSolverResult(classification: ProblemClassification): Proble
         title: labelForKind(classification.kind),
         normalizedInput: classification.normalizedInput,
         result: solution.result,
+        restrictions: solution.restrictions,
         steps: [
           "CAS fallback: the deterministic algebra step solver does not yet support this exact equation form.",
           "The following steps are CAS wrapper steps, not a human derivation.",
           ...solution.steps,
         ],
         assumptions: classification.assumptions,
-        warnings: classification.warnings,
+        verification: Array.isArray(solution.verification) ? solution.verification : undefined,
+        warnings: [...classification.warnings, ...(solution.warnings ?? [])],
         canCopy: true,
       };
     }

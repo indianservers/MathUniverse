@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { formulaCategories, type FormulaCategory, type FormulaLibraryItem } from "../data/formulaLibrary";
 import { theoremCategories, type TheoremCategory, type TheoremLibraryItem } from "../data/theoremLibrary";
+import { getCuratedFormulaLearningLinks } from "../proof-explanations/proofLearningLinks";
 import { visualProofsIndex } from "../visual-proofs/data/visualProofsIndex";
 
 type FormulaSheetRow = FormulaLibraryItem & {
@@ -1079,11 +1080,12 @@ const learningLinkStopWords = new Set([
 ]);
 
 function getRelatedFormulaLinks(row: FormulaSheetRow) {
+  const curated = getCuratedFormulaLearningLinks(row.category.id, row.title);
   const tokens = getLearningTokens([row.title, row.formula, row.note, row.category.title, row.category.description]);
   const proofHints = new Set(formulaToProofCategory[row.category.id] ?? []);
   const theoremHints = new Set(formulaToTheoremCategory[row.category.id] ?? []);
 
-  const visualProofs = visualProofsIndex
+  const heuristicVisualProofs = visualProofsIndex
     .filter((proof) => proof.status === "available")
     .map((proof) => ({
       proof,
@@ -1096,7 +1098,7 @@ function getRelatedFormulaLinks(row: FormulaSheetRow) {
     .slice(0, 3)
     .map(({ proof }) => ({ title: proof.title, route: proof.route }));
 
-  const theorems = theoremCategories
+  const heuristicTheorems = theoremCategories
     .flatMap((theoremCategory) =>
       theoremCategory.theorems.map((theorem) => ({
         ...theorem,
@@ -1112,7 +1114,14 @@ function getRelatedFormulaLinks(row: FormulaSheetRow) {
     .slice(0, 3)
     .map(({ score: _score, ...theorem }) => theorem);
 
-  return { visualProofs, theorems };
+  return {
+    visualProofs: uniqueRelatedByRoute([...curated.visualProofs, ...heuristicVisualProofs]).slice(0, 3),
+    theorems: uniqueRelatedByRoute([...curated.theorems, ...heuristicTheorems]).slice(0, 3),
+  };
+}
+
+function uniqueRelatedByRoute<T extends { route: string }>(items: T[]) {
+  return Array.from(new Map(items.map((item) => [item.route, item])).values());
 }
 
 function getLearningTokens(parts: string[]) {

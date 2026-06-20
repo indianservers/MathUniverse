@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { type PointerEvent, type ReactNode, type RefObject } from "react";
 import { roundTo } from "../../../utils/math";
+import type { GeometryCertificationReport } from "../../../workspace/geometryConstructionCertification";
 
 export type GeometryTool = "select" | "point" | "segment" | "ray" | "vector" | "line" | "circle" | "polygon" | "angle" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "circle-radius" | "circle-3-points" | "on-circle" | "intersect" | "perpendicular-bisector" | "angle-bisector" | "tangent" | "polar" | "locus" | "regular-polygon" | "sector" | "arc" | "compass" | "mirror" | "rotate" | "dilate" | "translate" | "show-hide" | "lock" | "freehand" | "text" | "image" | "move-canvas" | "zoom" | "triangle" | "rectangle" | "shape-circle" | "parabola" | "ellipse" | "hyperbola" | "reflect" | "trace" | "stop-trace" | "clear-trace" | "delete" | "redo" | "reset" | "save" | "load";
 export type GeoStyle = { color?: string; fill?: string; strokeWidth?: number; size?: number; visible?: boolean; trace?: boolean; label?: string; opacity?: number; labelMode?: "name" | "value" | "both" | "hidden" };
@@ -37,6 +38,16 @@ export type GeoConstraint =
 export type Construction = { points: GeoPoint[]; lines: GeoLine[]; circles: GeoCircle[]; polygons: GeoPolygon[]; arcs: GeoArc[]; loci: GeoLocus[]; constraints: GeoConstraint[] };
 export type GeometryObjectType = "point" | "line" | "circle" | "polygon" | "arc" | "locus";
 export type SelectedGeometryObject = { type: GeometryObjectType; id: string };
+export type GeometryGraphSettings = {
+  showGrid: boolean;
+  showAxes: boolean;
+  showUnitLabels: boolean;
+  showPointLabels: boolean;
+  showMeasurements: boolean;
+  highContrastGrid: boolean;
+  snapToGrid: boolean;
+  snapToObjects: boolean;
+};
 
 interface GeometryWorkspacePanelProps {
   activeTool: GeometryTool;
@@ -45,9 +56,10 @@ interface GeometryWorkspacePanelProps {
   selectedPointIds: string[];
   polygonDraft: string[];
   geometryObjectPicks: SelectedGeometryObject[];
+  constructionAccuracyReport: GeometryCertificationReport;
   workspaceImages: WorkspaceImage[];
   selectedImageId: string | null;
-  showGeometryUnits: boolean;
+  graphSettings: GeometryGraphSettings;
   boardRef: RefObject<SVGSVGElement>;
   imageInputRef: RefObject<HTMLInputElement>;
   sidebar: ReactNode;
@@ -68,7 +80,7 @@ interface GeometryWorkspacePanelProps {
   onReset: () => void;
   onSave: () => void;
   onLoad: () => void;
-  onShowGeometryUnitsChange: (value: boolean) => void;
+  onGraphSettingsChange: (settings: GeometryGraphSettings) => void;
   onClearPendingPicks: () => void;
   onBoardPointerDown: (event: PointerEvent<SVGSVGElement>) => void;
   onBoardPointerMove: (event: PointerEvent<SVGSVGElement>) => void;
@@ -158,9 +170,10 @@ export default function GeometryWorkspacePanel({
   selectedPointIds,
   polygonDraft,
   geometryObjectPicks,
+  constructionAccuracyReport,
   workspaceImages,
   selectedImageId,
-  showGeometryUnits,
+  graphSettings,
   boardRef,
   imageInputRef,
   sidebar,
@@ -181,7 +194,7 @@ export default function GeometryWorkspacePanel({
   onReset,
   onSave,
   onLoad,
-  onShowGeometryUnitsChange,
+  onGraphSettingsChange,
   onClearPendingPicks,
   onBoardPointerDown,
   onBoardPointerMove,
@@ -217,14 +230,9 @@ export default function GeometryWorkspacePanel({
           />
         </div>
         <div className="min-w-0 space-y-3">
-          <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-slate-100 px-3 py-2 dark:bg-white/10">
-            <label className="inline-flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200">
-              <input type="checkbox" checked={showGeometryUnits} onChange={(event) => onShowGeometryUnitsChange(event.target.checked)} className="h-4 w-4 accent-cyan-500" />
-              Show graph units
-            </label>
-            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">1 unit = 40 grid pixels, origin at board center</span>
-          </div>
+          <GeometryGraphSettingsBar settings={graphSettings} onChange={onGraphSettingsChange} />
           <GeometryPendingPickPanel tool={activeTool} picks={geometryObjectPicks} construction={construction} onClear={onClearPendingPicks} />
+          <GeometryAccuracyStrip report={constructionAccuracyReport} selectedGeometry={selectedGeometry} />
           <GeometryBoard
             boardRef={boardRef}
             construction={construction}
@@ -234,7 +242,7 @@ export default function GeometryWorkspacePanel({
             selectedPointIds={selectedPointIds}
             polygonDraft={polygonDraft}
             activeTool={activeTool}
-            showGeometryUnits={showGeometryUnits}
+            graphSettings={graphSettings}
             onPointerDown={onBoardPointerDown}
             onPointerMove={onBoardPointerMove}
             onPointerUp={onBoardPointerUp}
@@ -242,9 +250,9 @@ export default function GeometryWorkspacePanel({
             onContextMenu={onBoardContextMenu}
           />
           <p className="rounded-2xl bg-cyan-50 p-3 text-xs font-semibold leading-5 text-cyan-900 dark:bg-cyan-400/10 dark:text-cyan-100">
-            Touch mode: choose a tool, tap to place points, then drag existing points. Use the page outside the board to scroll.
+            Touch mode: choose a tool, tap to place points, then drag existing points. Keyboard mode: select a point, use arrow keys to nudge it, hold Shift for larger steps, and press Escape to clear selection.
           </p>
-          <HiddenGeometryExport refSetter={onGeometryExportRef} construction={construction} images={workspaceImages} showUnits={showGeometryUnits} />
+          <HiddenGeometryExport refSetter={onGeometryExportRef} construction={construction} images={workspaceImages} graphSettings={graphSettings} />
         </div>
       </div>
       <div className="space-y-3 lg:sticky lg:top-24">{sidebar}</div>
@@ -343,7 +351,7 @@ function GeometryPaletteSection({ title, children }: { title: string; children: 
 
 function GeometryPaletteTool({ item, active, onClick }: { item: GeometryPaletteToolItem; active: boolean; onClick: () => void }) {
   const Icon = item.icon;
-  const testId = item.id === "point" || item.id === "line" || item.id === "circle" ? `workspace-geometry-tool-${item.id}` : undefined;
+  const testId = `workspace-geometry-tool-${item.id}`;
   return (
     <button type="button" data-testid={testId} onClick={onClick} title={item.label} className={`geometry-palette-button ${active ? "geometry-palette-button-active" : ""}`}>
       <Icon className="h-4 w-4" />
@@ -362,6 +370,42 @@ function GeometryPaletteAction({ item }: { item: GeometryPaletteActionItem }) {
   );
 }
 
+function GeometryGraphSettingsBar({ settings, onChange }: { settings: GeometryGraphSettings; onChange: (settings: GeometryGraphSettings) => void }) {
+  const toggle = (key: keyof GeometryGraphSettings) => onChange({ ...settings, [key]: !settings[key] });
+  const items: Array<{ key: keyof GeometryGraphSettings; label: string }> = [
+    { key: "showGrid", label: "Grid" },
+    { key: "showAxes", label: "Axes" },
+    { key: "showUnitLabels", label: "Numbers" },
+    { key: "showPointLabels", label: "Labels" },
+    { key: "showMeasurements", label: "Measures" },
+    { key: "snapToGrid", label: "Grid snap" },
+    { key: "snapToObjects", label: "Object snap" },
+    { key: "highContrastGrid", label: "Contrast" },
+  ];
+  return (
+    <section className="rounded-2xl border border-slate-200 bg-white/85 p-2 dark:border-white/10 dark:bg-white/5" data-testid="workspace-geometry-graph-settings">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">Graph Settings</p>
+        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">1 unit = 40 grid pixels, origin at board center</span>
+      </div>
+      <div className="mt-2 flex flex-wrap gap-1.5">
+        {items.map((item) => (
+          <button
+            key={item.key}
+            type="button"
+            onClick={() => toggle(item.key)}
+            className={`rounded-lg border px-2.5 py-1 text-xs font-black transition ${settings[item.key] ? "border-cyan-300 bg-cyan-500 text-white shadow-sm shadow-cyan-500/20" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-cyan-200 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-cyan-400/10"}`}
+            aria-pressed={settings[item.key]}
+            data-testid={`workspace-geometry-setting-${item.key}`}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function GeometryBoard({
   boardRef,
   construction,
@@ -371,7 +415,7 @@ function GeometryBoard({
   selectedPointIds,
   polygonDraft,
   activeTool,
-  showGeometryUnits,
+  graphSettings,
   onPointerDown,
   onPointerMove,
   onPointerUp,
@@ -386,7 +430,7 @@ function GeometryBoard({
   selectedPointIds: string[];
   polygonDraft: string[];
   activeTool: GeometryTool;
-  showGeometryUnits: boolean;
+  graphSettings: GeometryGraphSettings;
   onPointerDown: (event: PointerEvent<SVGSVGElement>) => void;
   onPointerMove: (event: PointerEvent<SVGSVGElement>) => void;
   onPointerUp: (event: PointerEvent<SVGSVGElement>) => void;
@@ -410,7 +454,7 @@ function GeometryBoard({
       className="h-[min(420px,68vh)] min-h-[320px] w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950 sm:h-[420px]"
     >
       <title>Math Universe Geometry Construction</title>
-      <GeometryGrid showUnits={showGeometryUnits} />
+      <GeometryGrid settings={graphSettings} />
       {workspaceImages.filter((image) => image.visible !== false).map((image) => (
         <g key={image.id}>
           <image data-image-id={image.id} href={image.src} x={image.x} y={image.y} width={image.width} height={image.height} opacity={image.opacity} preserveAspectRatio="xMidYMid meet" className="cursor-move" />
@@ -423,7 +467,7 @@ function GeometryBoard({
       {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "arc", arc.id)} />)}
       {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "line", line.id)} />)}
       {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "circle", circle.id)} />)}
-      <GeometryMeasurementOverlays construction={construction} />
+      {graphSettings.showMeasurements && <GeometryMeasurementOverlays construction={construction} />}
       {activeTool === "angle" && <AngleToolPreview selectedPointIds={selectedPointIds} points={construction.points} />}
       {polygonDraft.length > 1 && <PolygonDraftPreview draft={polygonDraft} points={construction.points} />}
       {construction.points.filter((point) => point.style?.visible !== false).map((point) => (
@@ -440,41 +484,78 @@ function GeometryBoard({
             opacity={point.style?.opacity ?? 1}
             className="cursor-pointer"
           />
-          {point.style?.labelMode !== "hidden" && <text x={point.x + 12} y={point.y - 10} fill="#0f172a" className="select-none text-xs font-bold dark:fill-slate-100">{pointLabelText(point)}</text>}
+          {graphSettings.showPointLabels && point.style?.labelMode !== "hidden" && <text x={point.x + 12} y={point.y - 10} fill="#0f172a" className="select-none text-xs font-bold dark:fill-slate-100">{pointLabelText(point)}</text>}
         </g>
       ))}
     </svg>
   );
 }
 
-function GeometryGrid({ showUnits = false }: { showUnits?: boolean }) {
+function GeometryAccuracyStrip({ report, selectedGeometry }: { report: GeometryCertificationReport; selectedGeometry: SelectedGeometryObject | null }) {
+  const failed = report.checks.filter((check) => check.severity === "fail").length;
+  const warned = report.checks.filter((check) => check.severity === "warn").length;
+  const status = failed ? "fail" : warned ? "warn" : "pass";
+  const statusStyle = status === "pass"
+    ? "border-emerald-200 bg-emerald-50 text-emerald-950 dark:border-emerald-300/20 dark:bg-emerald-400/10 dark:text-emerald-50"
+    : status === "warn"
+      ? "border-amber-200 bg-amber-50 text-amber-950 dark:border-amber-300/20 dark:bg-amber-400/10 dark:text-amber-50"
+      : "border-rose-200 bg-rose-50 text-rose-950 dark:border-rose-300/20 dark:bg-rose-400/10 dark:text-rose-50";
+  const importantChecks = report.checks.filter((check) => check.severity !== "pass").slice(0, 2);
+  const displayedChecks = importantChecks.length ? importantChecks : report.checks.slice(0, 2);
+  return (
+    <section className={`rounded-2xl border px-3 py-2 ${statusStyle}`} data-testid="workspace-geometry-accuracy" aria-live="polite">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-black">Construction Accuracy</p>
+          <p className="text-xs font-semibold opacity-85">{report.summary}</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 text-xs font-black">
+          <span className="rounded-full bg-white/70 px-2.5 py-1 text-slate-900 dark:bg-slate-950/50 dark:text-white">{report.score}%</span>
+          <span className="rounded-full bg-white/70 px-2.5 py-1 text-slate-900 dark:bg-slate-950/50 dark:text-white">max residual {formatResidual(report.maxResidual)}</span>
+          {selectedGeometry ? <span className="rounded-full bg-white/70 px-2.5 py-1 text-slate-900 dark:bg-slate-950/50 dark:text-white">selected {selectedGeometry.type}</span> : null}
+        </div>
+      </div>
+      <div className="mt-2 grid gap-1.5 md:grid-cols-2">
+        {displayedChecks.map((check) => (
+          <p key={check.id} className="rounded-xl bg-white/55 px-2 py-1 text-xs font-semibold text-slate-800 dark:bg-slate-950/35 dark:text-slate-100">
+            <span className="font-black uppercase">{check.severity}</span> · {check.label}
+          </p>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function GeometryGrid({ settings }: { settings: GeometryGraphSettings }) {
   const width = 640;
   const height = 420;
   const unit = 40;
   const origin = { x: 320, y: 220 };
   const verticals = Array.from({ length: 17 }, (_, i) => i * unit);
   const horizontals = Array.from({ length: 12 }, (_, i) => i * unit);
+  const gridStroke = settings.highContrastGrid ? "rgba(14,165,233,.38)" : "rgba(148,163,184,.2)";
+  const axisStroke = settings.highContrastGrid ? "#0891b2" : "#0f172a";
   return (
     <g>
-      {verticals.map((x) => <line key={`gv-${x}`} x1={x} x2={x} y1="0" y2={height} stroke="rgba(148,163,184,.2)" />)}
-      {horizontals.map((y) => <line key={`gh-${y}`} x1="0" x2={width} y1={y} y2={y} stroke="rgba(148,163,184,.2)" />)}
-      {showUnits && (
+      {settings.showGrid && verticals.map((x) => <line key={`gv-${x}`} x1={x} x2={x} y1="0" y2={height} stroke={gridStroke} strokeWidth={settings.highContrastGrid ? 1.4 : 1} />)}
+      {settings.showGrid && horizontals.map((y) => <line key={`gh-${y}`} x1="0" x2={width} y1={y} y2={y} stroke={gridStroke} strokeWidth={settings.highContrastGrid ? 1.4 : 1} />)}
+      {(settings.showAxes || settings.showUnitLabels) && (
         <g className="select-none">
-          <line x1={0} x2={width} y1={origin.y} y2={origin.y} stroke="#0f172a" strokeWidth="1.8" opacity="0.45" />
-          <line x1={origin.x} x2={origin.x} y1={0} y2={height} stroke="#0f172a" strokeWidth="1.8" opacity="0.45" />
-          {verticals.map((x) => {
+          {settings.showAxes && <line x1={0} x2={width} y1={origin.y} y2={origin.y} stroke={axisStroke} strokeWidth={settings.highContrastGrid ? 2.4 : 1.8} opacity={settings.highContrastGrid ? 0.85 : 0.45} />}
+          {settings.showAxes && <line x1={origin.x} x2={origin.x} y1={0} y2={height} stroke={axisStroke} strokeWidth={settings.highContrastGrid ? 2.4 : 1.8} opacity={settings.highContrastGrid ? 0.85 : 0.45} />}
+          {settings.showUnitLabels && verticals.map((x) => {
             const value = Math.round((x - origin.x) / unit);
             if (value === 0 || x < 20 || x > width - 20) return null;
             return <text key={`x-unit-${x}`} x={x} y={origin.y + 18} textAnchor="middle" fill="#334155" fontSize="10" fontWeight="800">{value}</text>;
           })}
-          {horizontals.map((y) => {
+          {settings.showUnitLabels && horizontals.map((y) => {
             const value = Math.round((origin.y - y) / unit);
             if (value === 0 || y < 20 || y > height - 20) return null;
             return <text key={`y-unit-${y}`} x={origin.x - 10} y={y + 4} textAnchor="end" fill="#334155" fontSize="10" fontWeight="800">{value}</text>;
           })}
-          <text x={origin.x + 7} y={origin.y + 16} fill="#0f172a" fontSize="10" fontWeight="900">0</text>
-          <text x={width - 18} y={origin.y - 8} fill="#0f172a" fontSize="10" fontWeight="900">x</text>
-          <text x={origin.x + 8} y={18} fill="#0f172a" fontSize="10" fontWeight="900">y</text>
+          {settings.showUnitLabels && <text x={origin.x + 7} y={origin.y + 16} fill="#0f172a" fontSize="10" fontWeight="900">0</text>}
+          {settings.showAxes && <text x={width - 18} y={origin.y - 8} fill="#0f172a" fontSize="10" fontWeight="900">x</text>}
+          {settings.showAxes && <text x={origin.x + 8} y={18} fill="#0f172a" fontSize="10" fontWeight="900">y</text>}
         </g>
       )}
     </g>
@@ -617,11 +698,11 @@ function GeometryPendingPickPanel({ tool, picks, construction, onClear }: { tool
   );
 }
 
-function HiddenGeometryExport({ construction, images, refSetter, showUnits = false }: { construction: Construction; images: WorkspaceImage[]; refSetter: (node: SVGSVGElement | null) => void; showUnits?: boolean }) {
+function HiddenGeometryExport({ construction, images, refSetter, graphSettings }: { construction: Construction; images: WorkspaceImage[]; refSetter: (node: SVGSVGElement | null) => void; graphSettings: GeometryGraphSettings }) {
   return (
     <svg ref={refSetter} viewBox="0 0 640 420" className="hidden" aria-hidden="true">
       <rect width="640" height="420" fill="#ffffff" />
-      <GeometryGrid showUnits={showUnits} />
+      <GeometryGrid settings={graphSettings} />
       {images.filter((image) => image.visible !== false).map((image) => <image key={image.id} href={image.src} x={image.x} y={image.y} width={image.width} height={image.height} opacity={image.opacity} preserveAspectRatio="xMidYMid meet" />)}
       <ConstraintOverlays construction={construction} />
       {construction.loci.map((locus) => <GeometryLocus key={locus.id} locus={locus} />)}
@@ -629,11 +710,11 @@ function HiddenGeometryExport({ construction, images, refSetter, showUnits = fal
       {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} />)}
       {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} />)}
       {construction.circles.map((circle) => <GeometryCircle key={circle.id} circle={circle} points={construction.points} />)}
-      <GeometryMeasurementOverlays construction={construction} />
+      {graphSettings.showMeasurements && <GeometryMeasurementOverlays construction={construction} />}
       {construction.points.filter((point) => point.style?.visible !== false).map((point) => (
         <g key={point.id}>
           <circle cx={point.x} cy={point.y} r={point.style?.size ?? 9} fill={point.style?.color ?? "#06b6d4"} stroke="#0f172a" strokeWidth="2" />
-          {point.style?.labelMode !== "hidden" && <text x={point.x + 12} y={point.y - 10} fill="#0f172a" fontSize="12" fontWeight="700">{pointLabelText(point)}</text>}
+          {graphSettings.showPointLabels && point.style?.labelMode !== "hidden" && <text x={point.x + 12} y={point.y - 10} fill="#0f172a" fontSize="12" fontWeight="700">{pointLabelText(point)}</text>}
         </g>
       ))}
     </svg>
@@ -706,4 +787,11 @@ function centroid(points: GeoPoint[]) {
 function normalize(x: number, y: number) {
   const length = Math.hypot(x, y) || 1;
   return { x: x / length, y: y / length };
+}
+
+function formatResidual(value: number) {
+  if (!Number.isFinite(value)) return "unbounded";
+  if (value === 0) return "0";
+  if (Math.abs(value) < 0.000001) return value.toExponential(1);
+  return String(roundTo(value, 4));
 }

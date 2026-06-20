@@ -3,6 +3,7 @@ import { useMemo, useState, type ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
 import { formulaCategories, type FormulaCategory, type FormulaLibraryItem } from "../data/formulaLibrary";
 import { theoremCategories, theoremCount, type TheoremCategory, type TheoremLibraryItem } from "../data/theoremLibrary";
+import { getCuratedTheoremLearningLinks } from "../proof-explanations/proofLearningLinks";
 import { visualProofsIndex } from "../visual-proofs/data/visualProofsIndex";
 
 type TheoremSheetRow = TheoremLibraryItem & {
@@ -554,11 +555,12 @@ const stopWords = new Set([
 ]);
 
 function getRelatedLearningLinks(theorem: TheoremLibraryItem, category: TheoremCategory): RelatedLearningLinks {
+  const curated = getCuratedTheoremLearningLinks(category.id, theorem.title);
   const tokens = getSearchTokens([theorem.title, theorem.subtopic, theorem.statement, theorem.prerequisites.join(" ")]);
   const visualCategoryHints = new Set(theoremToProofCategory[category.id] ?? []);
   const formulaCategoryHints = new Set(theoremToFormulaCategory[category.id] ?? []);
 
-  const visualProofs = visualProofsIndex
+  const heuristicVisualProofs = visualProofsIndex
     .filter((proof) => proof.status === "available")
     .map((proof) => ({
       proof,
@@ -571,7 +573,7 @@ function getRelatedLearningLinks(theorem: TheoremLibraryItem, category: TheoremC
     .slice(0, 3)
     .map(({ proof }) => ({ title: proof.title, route: proof.route, categorySlug: proof.categorySlug }));
 
-  const formulas = formulaCategories
+  const heuristicFormulas = formulaCategories
     .flatMap((formulaCategory) =>
       formulaCategory.formulas.map((formula) => ({
         ...formula,
@@ -587,7 +589,7 @@ function getRelatedLearningLinks(theorem: TheoremLibraryItem, category: TheoremC
     .slice(0, 3)
     .map(({ score: _score, ...formula }) => formula);
 
-  const relatedTheorems = theoremCategories
+  const heuristicTheorems = theoremCategories
     .flatMap((theoremCategory) =>
       theoremCategory.theorems.map((candidate) => ({
         ...candidate,
@@ -603,7 +605,15 @@ function getRelatedLearningLinks(theorem: TheoremLibraryItem, category: TheoremC
     .slice(0, 3)
     .map(({ score: _score, ...candidate }) => candidate);
 
-  return { formulas, visualProofs, theorems: relatedTheorems };
+  return {
+    formulas: uniqueRelatedByRoute([...curated.formulas, ...heuristicFormulas]).slice(0, 3),
+    visualProofs: uniqueRelatedByRoute([...curated.visualProofs, ...heuristicVisualProofs]).slice(0, 3),
+    theorems: uniqueRelatedByRoute([...curated.theorems, ...heuristicTheorems]).slice(0, 3),
+  };
+}
+
+function uniqueRelatedByRoute<T extends { route: string }>(items: T[]) {
+  return Array.from(new Map(items.map((item) => [item.route, item])).values());
 }
 
 function getSearchTokens(parts: string[]) {

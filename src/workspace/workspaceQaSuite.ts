@@ -1,4 +1,7 @@
 import { createMathObject } from "./coreObjects";
+import { buildParallelConstruction, buildPerpendicularConstruction } from "./geometryAdvancedConstructionBuilder";
+import { certifyGeometryConstruction } from "./geometryConstructionCertification";
+import type { Construction } from "./geometryCommandController";
 import { runLargeConstructionBenchmark } from "./largeConstructionPerformance";
 import { buildSharedWorkspaceModel } from "./workspaceEngineBridge";
 
@@ -24,6 +27,7 @@ export function runWorkspaceQaSuite(): WorkspaceQaReport {
     checkDistanceKernel(),
     checkLineIntersectionKernel(),
     checkMidpointDependency(),
+    checkGeometryConstructionCertification(),
     checkParserSafety(),
     checkParserBlocksPrototypeEscape(),
     checkLargeConstructionBudget(),
@@ -191,10 +195,41 @@ function isSafeMathExpression(expression: string) {
   return /^[0-9x+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) && ![...safe].some((char) => blockedCharacters.has(char));
 }
 
+function checkGeometryConstructionCertification(): WorkspaceQaCheck {
+  const construction: Construction = {
+    points: [
+      { id: "A", x: 0, y: 0, label: "A" },
+      { id: "B", x: 100, y: 0, label: "B" },
+      { id: "C", x: 0, y: 100, label: "C" },
+    ],
+    lines: [{ id: "line-ab", a: "A", b: "B" }],
+    circles: [],
+    polygons: [],
+    arcs: [],
+    loci: [],
+    constraints: [],
+  };
+  const parallel = buildParallelConstruction(construction, "line-ab", "C", { idFactory: qaIds("parallel") });
+  const perpendicular = buildPerpendicularConstruction(parallel.construction, "line-ab", "C", { idFactory: qaIds("perp") });
+  const report = certifyGeometryConstruction(perpendicular.construction);
+  return {
+    id: "geometry-construction-certification",
+    area: "geometry",
+    label: "Advanced geometry constructions pass numeric certification",
+    passed: report.passed && report.score === 100,
+    detail: `${report.summary} ${report.checks.length} checks; max residual ${round(report.maxResidual)}.`,
+  };
+}
+
 function nearly(a: number, b: number) {
   return Math.abs(a - b) < 0.0001;
 }
 
 function round(value: number) {
   return Math.round(value * 100) / 100;
+}
+
+function qaIds(prefix: string) {
+  let index = 0;
+  return () => `${prefix}-${++index}`;
 }

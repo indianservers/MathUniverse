@@ -135,7 +135,7 @@ const theoremProofDrafts: Record<string, TheoremProofDraft> = {
     "Assume a finite prime list, multiply them all and add 1; the new number avoids divisibility by every listed prime.",
     [
       ["Assume finite primes", "Suppose p1, p2, ..., pk are all primes.", "A closed list of primes."],
-      ["Build the challenger", "Let N = p1p2...pk + 1.", "A product block plus one extra unit."],
+      ["Build the challenger", "Let N = p1p2...pk + 1, one more than the product of every prime on the assumed list.", "A product block plus one extra unit."],
       ["Test listed primes", "Dividing N by any listed prime leaves remainder 1.", "Each prime divides the product part but not the extra 1."],
       ["Find a prime divisor", "Every integer greater than 1 has some prime divisor.", "N must have at least one prime leaf in its factor tree."],
       ["Contradict the list", "That prime divisor is not on the finite list, so the list was incomplete.", "The closed list breaks open."],
@@ -146,7 +146,7 @@ const theoremProofDrafts: Record<string, TheoremProofDraft> = {
   "number-theory:Divisibility by 3 theorem": draft(
     "In base ten, 10 leaves remainder 1 modulo 3, so every power of 10 behaves like 1.",
     [
-      ["Write the number by place value", "N = d0 + 10d1 + 100d2 + ...", "Digits sitting in ones, tens, hundreds, and so on."],
+      ["Write the number by place value", "Write N = d0 + 10d1 + 100d2 + ..., separating each digit with its power-of-ten weight.", "Digits sitting in ones, tens, hundreds, and so on."],
       ["Reduce powers of ten", "Since 10 = 1 mod 3, every 10^k = 1 mod 3.", "Each place-value weight collapses to 1."],
       ["Collapse to digit sum", "Therefore N has the same remainder as d0+d1+d2+... modulo 3.", "The weighted digit row becomes a simple sum."],
       ["Compare divisibility", "N is divisible by 3 exactly when its digit sum is divisible by 3.", "Same remainder means same divisibility result."],
@@ -157,9 +157,9 @@ const theoremProofDrafts: Record<string, TheoremProofDraft> = {
   "number-theory:Divisibility by 9 theorem": draft(
     "In base ten, 10 leaves remainder 1 modulo 9, so the number and its digit sum have the same remainder modulo 9.",
     [
-      ["Expand by decimal places", "N = d0 + 10d1 + 100d2 + ...", "A decimal place-value expansion."],
+      ["Expand by decimal places", "Write N = d0 + 10d1 + 100d2 + ..., so each digit is attached to a decimal place value.", "A decimal place-value expansion."],
       ["Use the key congruence", "Because 10 = 1 mod 9, every 10^k = 1 mod 9.", "All place weights become 1."],
-      ["Replace weighted places", "So N = d0+d1+d2+... mod 9.", "The number reduces to its digit sum."],
+      ["Replace weighted places", "So N has the same remainder as d0+d1+d2+... modulo 9.", "The number reduces to its digit sum."],
       ["Finish the test", "A number is divisible by 9 exactly when that digit sum is divisible by 9.", "Equal remainders decide divisibility."],
     ],
     "Modulo 9, every decimal place is also worth 1.",
@@ -216,7 +216,7 @@ const theoremProofDrafts: Record<string, TheoremProofDraft> = {
   "number-theory:Euler phi product theorem": draft(
     "For coprime moduli, CRT pairs each reduced residue modulo mn with one reduced residue modulo m and one modulo n.",
     [
-      ["Use coprime moduli", "Let gcd(m,n)=1.", "Two independent clocks."],
+      ["Use coprime moduli", "Let gcd(m,n)=1, so the two moduli behave as independent clocks under CRT.", "Two independent clocks."],
       ["Map residues by remainders", "Each residue modulo mn corresponds to a pair of residues modulo m and modulo n.", "CRT creates a two-coordinate address."],
       ["Track coprimality", "A number is coprime to mn exactly when it is coprime to both m and n.", "Good addresses are good in both coordinates."],
       ["Count good pairs", "There are phi(m) choices in the first coordinate and phi(n) in the second.", "A rectangle of valid pairs."],
@@ -279,7 +279,7 @@ const theoremProofDrafts: Record<string, TheoremProofDraft> = {
       ["Assume n is composite", "Write n = ab with 1 < a <= b < n.", "A rectangle with side lengths a and b."],
       ["Compare to square root", "If a were greater than sqrt(n), then b is also greater than sqrt(n).", "Both rectangle sides exceed the square side."],
       ["Contradict the product", "Then ab would be greater than n, impossible because ab = n.", "The rectangle area would be too large."],
-      ["Find a small factor", "So a <= sqrt(n).", "At least one side is no longer than the square-root side."],
+      ["Find a small factor", "So a <= sqrt(n), meaning every composite number has at least one factor no larger than its square root.", "At least one side is no longer than the square-root side."],
       ["Descend to a prime divisor", "If a is not prime, factor it until a prime divisor appears; that prime is also <= sqrt(n).", "A factor tree under the small factor."],
     ],
     "A composite number must reveal a prime factor by sqrt(n).",
@@ -319,7 +319,7 @@ export const theoremCategories: TheoremCategory[] = [
     ["Completing square theorem", "Quadratics", "Every quadratic can be rewritten in vertex form by completing a square.", ["Expansion"]],
     ["AM-GM inequality", "Inequalities", "For non-negative numbers, the arithmetic mean is at least the geometric mean.", ["Averages"]],
     ["Cauchy-Schwarz inequality", "Inequalities", "The square of a dot product is bounded by the product of squared lengths.", ["Vectors"]],
-    ["Triangle inequality for real numbers", "Inequalities", "|a+b| is at most |a|+|b|.", ["Absolute value"]],
+    ["Triangle inequality for real numbers", "Inequalities", "For real numbers a and b, the distance of a+b from zero is at most the two separate distances |a| and |b| added together.", ["Absolute value"]],
     ["Binomial theorem", "Expansions", "(a+b)^n expands using binomial coefficients.", ["Combinations"]],
     ["Pascal identity", "Combinatorics", "Each inner Pascal entry is the sum of the two entries above it.", ["Binomial coefficients"]],
     ["Rational root theorem", "Equations", "Rational roots of an integer polynomial must divide the constant over the leading coefficient.", ["Divisibility"]],
@@ -431,7 +431,7 @@ export const theoremCategories: TheoremCategory[] = [
   ]),
   category("probability-statistics", "Probability & Statistics", "Counting probability, random variables, expectation, distributions, and inference.", "orange", [
     ["Addition rule theorem", "Probability rules", "P(A union B)=P(A)+P(B)-P(A intersection B).", ["Sets"]],
-    ["Multiplication rule theorem", "Probability rules", "P(A and B)=P(A)P(B|A).", ["Conditional probability"]],
+    ["Multiplication rule theorem", "Probability rules", "The probability that both A and B occur equals the probability of A times the probability of B after A is known.", ["Conditional probability"]],
     ["Bayes theorem", "Conditional probability", "Posterior probability is proportional to likelihood times prior.", ["Conditional probability"]],
     ["Law of total probability", "Conditional probability", "A probability can be split across a partition of cases.", ["Partitions"]],
     ["Independence theorem", "Events", "Independent events satisfy P(A and B)=P(A)P(B).", ["Multiplication rule"]],
@@ -476,7 +476,7 @@ export const theoremCategories: TheoremCategory[] = [
     ["De Moivre theorem", "Powers", "Powers of complex numbers in polar form multiply the argument.", ["Trigonometry"]],
     ["nth roots theorem", "Roots", "A non-zero complex number has n equally spaced nth roots.", ["Polar form"]],
     ["Euler formula theorem", "Exponential form", "e^(i theta)=cos theta+i sin theta.", ["Power series"]],
-    ["Triangle inequality complex theorem", "Modulus", "|z+w| is at most |z|+|w|.", ["Distance"]],
+    ["Triangle inequality complex theorem", "Modulus", "For complex numbers z and w, the distance from 0 to z+w is at most the distance to z plus the distance to w.", ["Distance"]],
     ["Cauchy-Riemann theorem", "Analytic functions", "Differentiability of complex functions is linked to Cauchy-Riemann equations.", ["Partial derivatives"]],
     ["Cauchy integral theorem", "Contour integration", "The contour integral of an analytic function over a closed curve is zero.", ["Analyticity"]],
     ["Cauchy integral formula", "Contour integration", "Values of analytic functions are determined by boundary integrals.", ["Cauchy theorem"]],

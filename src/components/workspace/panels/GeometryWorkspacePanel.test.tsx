@@ -1,7 +1,8 @@
 import { createRef } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import GeometryWorkspacePanel, { type Construction, type GeometryTool, type SelectedGeometryObject, type WorkspaceImage } from "./GeometryWorkspacePanel";
+import { certifyGeometryConstruction } from "../../../workspace/geometryConstructionCertification";
+import GeometryWorkspacePanel, { type Construction, type GeometryGraphSettings, type GeometryTool, type SelectedGeometryObject, type WorkspaceImage } from "./GeometryWorkspacePanel";
 
 const construction: Construction = {
   points: [
@@ -28,6 +29,17 @@ const image: WorkspaceImage = {
   opacity: 0.8,
 };
 
+const graphSettings: GeometryGraphSettings = {
+  showGrid: true,
+  showAxes: true,
+  showUnitLabels: true,
+  showPointLabels: true,
+  showMeasurements: true,
+  highContrastGrid: false,
+  snapToGrid: true,
+  snapToObjects: true,
+};
+
 function renderPanel(options: {
   activeTool?: GeometryTool;
   selectedGeometry?: SelectedGeometryObject | null;
@@ -45,9 +57,10 @@ function renderPanel(options: {
       selectedPointIds={options.selectedPointIds ?? []}
       polygonDraft={options.polygonDraft ?? []}
       geometryObjectPicks={options.picks ?? []}
+      constructionAccuracyReport={certifyGeometryConstruction(construction)}
       workspaceImages={options.images ?? []}
       selectedImageId={options.images?.[0]?.id ?? null}
-      showGeometryUnits={true}
+      graphSettings={graphSettings}
       boardRef={createRef<SVGSVGElement>()}
       imageInputRef={createRef<HTMLInputElement>()}
       sidebar={options.sidebar ?? <aside data-testid="workspace-geometry-object-list">Inspector</aside>}
@@ -68,7 +81,7 @@ function renderPanel(options: {
       onReset={() => undefined}
       onSave={() => undefined}
       onLoad={() => undefined}
-      onShowGeometryUnitsChange={() => undefined}
+      onGraphSettingsChange={() => undefined}
       onClearPendingPicks={() => undefined}
       onBoardPointerDown={() => undefined}
       onBoardPointerMove={() => undefined}
@@ -87,6 +100,8 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('data-testid="workspace-geometry-board"');
     expect(html).toContain('role="application"');
     expect(html).toContain("Geometry constructor");
+    expect(html).toContain('data-testid="workspace-geometry-graph-settings"');
+    expect(html).toContain("Graph Settings");
   });
 
   it("renders supported geometry tools and active tool state", () => {
@@ -110,6 +125,56 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('data-object-type="polygon"');
     expect(html).toContain('data-object-type="locus"');
     expect(html).toContain('data-testid="workspace-geometry-measurements"');
+    expect(html).toContain('data-testid="workspace-geometry-accuracy"');
+    expect(html).toContain("Construction Accuracy");
+  });
+
+  it("can hide point labels and measurement overlays through graph settings", () => {
+    const html = renderToStaticMarkup(
+      <GeometryWorkspacePanel
+        activeTool="point"
+        construction={construction}
+        selectedGeometry={null}
+        selectedPointIds={[]}
+        polygonDraft={[]}
+        geometryObjectPicks={[]}
+        constructionAccuracyReport={certifyGeometryConstruction(construction)}
+        workspaceImages={[]}
+        selectedImageId={null}
+        graphSettings={{ ...graphSettings, showPointLabels: false, showMeasurements: false }}
+        boardRef={createRef<SVGSVGElement>()}
+        imageInputRef={createRef<HTMLInputElement>()}
+        sidebar={<aside>Inspector</aside>}
+        onImageUpload={() => undefined}
+        onToolChange={() => undefined}
+        onSelectAll={() => undefined}
+        onMoveSelected={() => undefined}
+        onRotateSelected={() => undefined}
+        onDilateSelected={() => undefined}
+        onUndo={() => undefined}
+        onRedo={() => undefined}
+        onDeleteSelected={() => undefined}
+        onShowHide={() => undefined}
+        onLockSelected={() => undefined}
+        onTraceSelected={() => undefined}
+        onStopTrace={() => undefined}
+        onClearTrace={() => undefined}
+        onReset={() => undefined}
+        onSave={() => undefined}
+        onLoad={() => undefined}
+        onGraphSettingsChange={() => undefined}
+        onClearPendingPicks={() => undefined}
+        onBoardPointerDown={() => undefined}
+        onBoardPointerMove={() => undefined}
+        onBoardPointerUp={() => undefined}
+        onBoardPointerLeave={() => undefined}
+        onBoardContextMenu={() => undefined}
+        onGeometryExportRef={() => undefined}
+      />,
+    );
+
+    expect(html).not.toContain('data-testid="workspace-geometry-measurements"');
+    expect(html).not.toContain(">A</text>");
   });
 
   it("indicates selected objects and pending construction picks", () => {
@@ -149,9 +214,10 @@ describe("GeometryWorkspacePanel", () => {
         selectedPointIds={[]}
         polygonDraft={[]}
         geometryObjectPicks={[]}
+        constructionAccuracyReport={certifyGeometryConstruction(emptyConstruction)}
         workspaceImages={[]}
         selectedImageId={null}
-        showGeometryUnits={false}
+        graphSettings={{ ...graphSettings, showGrid: false, showAxes: false, showUnitLabels: false }}
         boardRef={createRef<SVGSVGElement>()}
         imageInputRef={createRef<HTMLInputElement>()}
         sidebar={<aside>Empty inspector</aside>}
@@ -172,7 +238,7 @@ describe("GeometryWorkspacePanel", () => {
         onReset={() => undefined}
         onSave={() => undefined}
         onLoad={() => undefined}
-        onShowGeometryUnitsChange={() => undefined}
+        onGraphSettingsChange={() => undefined}
         onClearPendingPicks={() => undefined}
         onBoardPointerDown={() => undefined}
         onBoardPointerMove={() => undefined}
@@ -186,5 +252,6 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('data-testid="workspace-geometry-board"');
     expect(html).toContain("Move");
     expect(html).toContain("Touch mode");
+    expect(html).toContain("No construction constraints to certify");
   });
 });

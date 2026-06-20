@@ -184,19 +184,22 @@ export function buildRegularPolygonConstruction(
   const side = distance(a, b);
   if (side <= 0.001) return warning(construction, selectedPointIds, "Regular polygon side length must be greater than zero.");
   const radius = side / (2 * Math.sin(Math.PI / sides));
-  const centerAngle = angle0 + Math.PI / 2 - Math.PI / sides;
+  const apothem = side / (2 * Math.tan(Math.PI / sides));
+  const normal = { x: -Math.sin(angle0), y: Math.cos(angle0) };
   const center = {
-    x: (a.x + b.x) / 2 + Math.cos(centerAngle) * radius * Math.cos(Math.PI / sides),
-    y: (a.y + b.y) / 2 + Math.sin(centerAngle) * radius * Math.cos(Math.PI / sides),
+    x: (a.x + b.x) / 2 + normal.x * apothem,
+    y: (a.y + b.y) / 2 + normal.y * apothem,
   };
+  const startAngle = Math.atan2(a.y - center.y, a.x - center.x);
+  const stepAngle = (Math.PI * 2) / sides;
   const extra = Array.from({ length: sides - 2 }, (_, index) => {
-    const angle = angle0 + ((index + 2) * Math.PI * 2) / sides;
+    const angle = startAngle + (index + 2) * stepAngle;
     return { id: idFactory(), x: center.x + Math.cos(angle) * radius, y: center.y + Math.sin(angle) * radius, label: nextGeometryPointLabel(construction.points, index) };
   });
   return success({
     ...construction,
     points: [...construction.points, ...extra],
-    polygons: [...construction.polygons, { id: idFactory(), points: [aId, bId, ...extra.map((point) => point.id)], style: { fill: "rgba(20,184,166,.14)", color: "#14b8a6" } }],
+    polygons: [...construction.polygons, { id: idFactory(), points: [aId, bId, ...extra.map((point) => point.id)], style: { fill: "rgba(20,184,166,.14)", color: "#14b8a6", label: "regular-polygon" } }],
   }, `${sides}-sided regular polygon created.`);
 }
 

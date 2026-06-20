@@ -64,7 +64,19 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className={`hidden h-screen shrink-0 overflow-x-hidden overflow-y-auto border-r border-white/60 bg-white/78 backdrop-blur-xl transition-[width] dark:border-white/10 dark:bg-slate-950/72 lg:sticky lg:top-0 lg:block ${collapsed ? "w-24 p-3" : "w-72 p-4"}`}>
+    <aside className={`hidden h-screen shrink-0 overflow-x-hidden overflow-y-auto border-r border-white/60 bg-white/78 backdrop-blur-xl transition-[width] dark:border-white/10 dark:bg-slate-950/72 lg:sticky lg:top-0 lg:block ${collapsed ? "w-28 p-3" : "w-72 p-4"}`} data-testid="desktop-sidebar" data-collapsed={collapsed}>
+      {collapsed && (
+        <button
+          type="button"
+          onClick={toggleCollapsed}
+          className="sticky left-0 top-3 z-50 mb-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-cyan-200 bg-white px-3 py-3 text-sm font-black text-cyan-900 shadow-xl shadow-cyan-950/10 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:border-cyan-300/30 dark:bg-slate-900 dark:text-cyan-100 dark:hover:bg-cyan-300/10"
+          aria-label="Open full menu"
+          data-testid="desktop-sidebar-open-menu"
+        >
+          <ChevronsRight className="h-4 w-4" />
+          <span>Open</span>
+        </button>
+      )}
       <div className="mb-6 flex items-center gap-3">
         <button
           type="button"
@@ -89,6 +101,7 @@ export default function Sidebar() {
           onClick={toggleCollapsed}
           className="mb-4 flex w-full flex-col items-center justify-center gap-1 rounded-2xl border border-cyan-300/60 bg-cyan-500 px-2 py-3 text-white shadow-lg shadow-cyan-500/20 transition hover:-translate-y-0.5 hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-300"
           aria-label="Open main menu"
+          data-testid="desktop-sidebar-menu-button"
         >
           <Menu className="h-5 w-5" />
           <span className="text-[11px] font-black uppercase leading-none">Menu</span>
@@ -135,7 +148,7 @@ export default function Sidebar() {
                 {!collapsed && <span className="min-w-0 flex-1 truncate">{section.title}</span>}
                 {!collapsed && <ChevronDown className={`h-4 w-4 transition ${open ? "rotate-180" : ""}`} />}
               </button>
-              {(open || collapsed) && (
+              {open && !collapsed && (
                 <div className="mt-1 min-w-0 space-y-1 pb-1">
                   {section.items.map((item) => (
                     <SidebarNavItem key={`${item.title}-${item.route}`} item={item} collapsed={collapsed} pathname={location.pathname} openKeys={openSections} onToggle={toggleSection} />

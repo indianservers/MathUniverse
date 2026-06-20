@@ -53,7 +53,7 @@ export const geometryProofDrafts = {
   "geometry:Base angle theorem": draft(
     "In an isosceles triangle, draw the angle bisector from the vertex between equal sides; SAS congruence makes the base angles equal.",
     [
-      ["Start with equal sides", "Let AB=AC in triangle ABC.", "Two equal side tick marks from A."],
+      ["Start with equal sides", "Let AB=AC in triangle ABC, so the triangle has two matching sides meeting at vertex A.", "Two equal side tick marks from A."],
       ["Draw the vertex angle bisector", "Draw AD so angle BAD equals angle DAC.", "A segment from the top vertex to the base."],
       ["Compare two triangles", "Triangles ABD and ACD share side AD.", "Two smaller triangles side by side."],
       ["Apply SAS", "AB=AC, angle BAD=angle DAC, and AD=AD, so the two triangles are congruent.", "The matching side-angle-side data is highlighted."],
@@ -116,8 +116,8 @@ export const geometryProofDrafts = {
       ["Draw the parallel line", "In triangle ABC, let DE be parallel to BC with D on AB and E on AC.", "A smaller top triangle cut by a parallel segment."],
       ["Match corresponding angles", "Parallel lines give angle ADE=ABC and angle AED=ACB.", "Alternate/corresponding angles are highlighted."],
       ["Apply AA similarity", "Triangle ADE is similar to triangle ABC.", "The small and large triangles have the same shape."],
-      ["Write side ratios", "AD/AB = AE/AC from similarity.", "Corresponding side ratios are equal."],
-      ["Convert to divided segments", "Using AB=AD+DB and AC=AE+EC gives AD/DB = AE/EC.", "The two cut sides are divided proportionally."],
+      ["Write side ratios", "Similarity gives AD/AB = AE/AC because corresponding sides in similar triangles stay proportional.", "Corresponding side ratios are equal."],
+      ["Convert to divided segments", "Using AB=AD+DB and AC=AE+EC changes the whole-side ratio into AD/DB = AE/EC.", "The two cut sides are divided proportionally."],
     ],
     "A parallel cut preserves triangle shape, so side cuts are proportional.",
     ["Forgetting the line must be parallel.", "Writing ratios with non-corresponding side parts."],
@@ -142,7 +142,7 @@ export const geometryProofDrafts = {
       ["Form two right triangles", "Triangles PMA and PMB are right triangles.", "Two mirror right triangles."],
       ["Compare legs", "PM is common and AM=MB because M is midpoint.", "One shared leg and one equal half-segment."],
       ["Use congruence", "By RHS or SAS for right triangles, triangles PMA and PMB are congruent.", "The mirror triangles overlap."],
-      ["Read distances", "Therefore PA=PB.", "Point P is equally far from A and B."],
+      ["Read distances", "Therefore PA=PB, which means every point on the perpendicular bisector is equally far from A and B.", "Point P is equally far from A and B."],
     ],
     "Perpendicular bisector means equal distance from the two endpoints.",
     ["Using any perpendicular line instead of the perpendicular bisector.", "Forgetting the converse is a separate statement."],
@@ -202,9 +202,9 @@ export const geometryProofDrafts = {
     "Intersecting chords create two pairs of similar triangles; corresponding side ratios multiply into equal segment products.",
     [
       ["Draw intersecting chords", "Let chords AB and CD intersect at P inside the circle.", "Two chords crossing inside a circle."],
-      ["Connect endpoints", "Join A to C and B to D.", "Two triangles appear across the intersection."],
-      ["Match vertical angles", "Angle APC equals angle DPB.", "Opposite angles at P are equal."],
-      ["Match inscribed angles", "Angles made by points on the same arc are equal.", "Circle angles subtending the same arc."],
+      ["Connect endpoints", "Join A to C and B to D so the crossing chords create two triangles sharing the intersection point.", "Two triangles appear across the intersection."],
+      ["Match vertical angles", "Angle APC equals angle DPB because opposite angles formed by intersecting lines are equal.", "Opposite angles at P are equal."],
+      ["Match inscribed angles", "Angles made by points on the same arc are equal, giving the second angle pair for similarity.", "Circle angles subtending the same arc."],
       ["Apply similarity", "Triangles APC and DPB are similar.", "Corresponding triangle corners are paired."],
       ["Multiply ratios", "Similarity gives AP/DP = CP/BP, so AP x BP = CP x DP.", "Products of chord segments match."],
     ],
@@ -214,7 +214,7 @@ export const geometryProofDrafts = {
   "geometry:Power of a point theorem": draft(
     "From one external point, secants and tangents form similar triangles, so the same product measures the point's power relative to the circle.",
     [
-      ["Choose an external point", "Let P be outside a circle.", "A point outside the circle."],
+      ["Choose an external point", "Let P be outside a circle, so every secant or tangent drawn from P starts at the same external point.", "A point outside the circle."],
       ["Draw two secants or a tangent", "A secant meets the circle at A and B; another meets it at C and D, or a tangent touches at T.", "Lines from P cut or touch the circle."],
       ["Create comparison triangles", "Join endpoints so angles on the same arcs can be compared.", "Triangles built from secant endpoints."],
       ["Use equal circle angles", "Inscribed angles subtending the same arcs are equal, giving similar triangles.", "Matching arc-based angles."],

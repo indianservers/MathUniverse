@@ -5,6 +5,7 @@ import { theoremCategories } from "../../data/theoremLibrary";
 import FormulaPanel from "../components/FormulaPanel";
 import StepPanel from "../components/StepPanel";
 import VisualProofLayout from "../components/VisualProofLayout";
+import { getCuratedVisualProofLearningLinks } from "../../proof-explanations/proofLearningLinks";
 import { getVisualProofCategory } from "../data/visualProofCategories";
 import { getVisualProof } from "../data/visualProofsIndex";
 import { loadVisualProofComponent } from "../proofs/loadVisualProofComponent";
@@ -193,11 +194,12 @@ const proofToTheoremCategory: Record<string, string[]> = {
 const proofLinkStopWords = new Set(["proof", "visual", "theorem", "formula", "identity", "using", "with", "from", "into", "that", "this"]);
 
 function getRelatedProofLinks(proof: NonNullable<ReturnType<typeof getVisualProof>>) {
+  const curated = getCuratedVisualProofLearningLinks(proof.route);
   const tokens = getProofTokens([proof.title, proof.shortDescription, proof.longDescription, proof.tags.join(" "), proof.prerequisites.join(" ")]);
   const formulaHints = new Set(proofToFormulaCategory[proof.categorySlug] ?? []);
   const theoremHints = new Set(proofToTheoremCategory[proof.categorySlug] ?? []);
 
-  const formulas = formulaCategories
+  const heuristicFormulas = formulaCategories
     .flatMap((formulaCategory) =>
       formulaCategory.formulas.map((formula) => ({
         ...formula,
@@ -212,7 +214,7 @@ function getRelatedProofLinks(proof: NonNullable<ReturnType<typeof getVisualProo
     .slice(0, 4)
     .map(({ score: _score, ...formula }) => formula);
 
-  const theorems = theoremCategories
+  const heuristicTheorems = theoremCategories
     .flatMap((theoremCategory) =>
       theoremCategory.theorems.map((theorem) => ({
         ...theorem,
@@ -227,7 +229,14 @@ function getRelatedProofLinks(proof: NonNullable<ReturnType<typeof getVisualProo
     .slice(0, 4)
     .map(({ score: _score, ...theorem }) => theorem);
 
-  return { formulas, theorems };
+  return {
+    formulas: uniqueRelatedByRoute([...curated.formulas, ...heuristicFormulas]).slice(0, 4),
+    theorems: uniqueRelatedByRoute([...curated.theorems, ...heuristicTheorems]).slice(0, 4),
+  };
+}
+
+function uniqueRelatedByRoute<T extends { route: string }>(items: T[]) {
+  return Array.from(new Map(items.map((item) => [item.route, item])).values());
 }
 
 function getProofTokens(parts: string[]) {

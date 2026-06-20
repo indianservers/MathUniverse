@@ -2918,10 +2918,44 @@ function getLearningModel(categorySlug: string, proof: { componentKey: VisualPro
   }
 }
 
+const visualProofExplanationContexts: Record<string, string> = {
+  geometry: "The diagram keeps the geometric object visible while students compare equal angles, lengths, or areas step by step.",
+  "algebraic-identities": "The tile model connects each symbolic term to a visible area region, so expansion and factoring feel concrete.",
+  trigonometry: "The angle model links the formula to projections, rotations, triangle sides, or unit-circle motion instead of memorized symbols.",
+  "coordinate-geometry": "The coordinate grid shows how changing points, slopes, or transformations changes the formula in real time.",
+  calculus: "The graph model ties the algebraic rule to motion, slope, accumulated area, or local approximation.",
+  "number-theory": "The number model uses grouping, arrays, clocks, or cycles so the divisibility pattern can be seen before it is generalized.",
+  probability: "The simulation board connects the formula to repeated trials, event regions, and long-run frequency behavior.",
+  statistics: "The data display makes the statistic visible as balance, spread, position, or trend rather than only a computed value.",
+  "matrices-linear-algebra": "The matrix view connects entries, row-column operations, systems, and transformations to visible movement or structure.",
+  vectors: "The vector field keeps direction, length, components, and projection visible while the formula updates.",
+  "complex-numbers": "The complex-plane model shows modulus, argument, rotation, reflection, and scaling as movement in the plane.",
+  mensuration: "The measurement scene connects surface, volume, perimeter, and unit changes to visible parts of the object.",
+  "conic-sections": "The locus view keeps distances, focus, directrix, and eccentricity visible while the curve is formed.",
+  inequalities: "The comparison model shows which side, interval, or region remains valid as the boundary changes.",
+  "logarithms-exponents": "The growth-scale view links repeated multiplication, inverse growth, and logarithmic measurement to visible change.",
+  "transformations-symmetry": "The transformation grid makes invariant distances, angles, orientation, and repeated motion easy to compare.",
+  "engineering-mathematics": "The applied model ties each formula to a system, signal, field, constraint, or numerical method used in engineering.",
+  "sequences-and-series": "The pattern model shows how each term, partial sum, or recursive rule grows from the previous structure.",
+};
+
+function stabilizeVisualProofLongDescription(proof: VisualProof, phaseUpgraded: boolean) {
+  if (!phaseUpgraded || proof.longDescription.trim().length >= 110) {
+    return proof.longDescription;
+  }
+
+  const context =
+    visualProofExplanationContexts[proof.categorySlug] ??
+    "The visual model keeps the mathematical objects visible while students connect the formula to the reason it works.";
+
+  return `${proof.longDescription} ${context}`;
+}
+
 function withUpgradeMetadata(proof: VisualProof): VisualProof {
   const phaseUpgraded = phaseUpgradedProofs.has(proof.componentKey);
   return {
     ...proof,
+    longDescription: stabilizeVisualProofLongDescription(proof, phaseUpgraded),
     proofLearningModel: getLearningModel(proof.categorySlug, proof),
     proofUpgradeStatus: phaseUpgraded ? "phase-upgraded" : "legacy",
     misconceptionCheckCount: phaseUpgraded ? 1 : 0,
