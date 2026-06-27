@@ -429,7 +429,7 @@ export default function MathVisualDictionary() {
           </div>
           {Object.keys(grouped).sort().map((letter) => (
             <SectionCard key={letter} id={`letter-${letter}`} title={letter} description={`${grouped[letter].length} entries loaded`} compact>
-              <div className="divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200 bg-white dark:divide-white/10 dark:border-white/10 dark:bg-slate-950/50">
+              <div className="divide-y divide-slate-200 overflow-hidden rounded-xl border border-slate-200 bg-white">
                 {grouped[letter].map((entry) => (
                   <DictionaryListItem
                     key={entry.term}
@@ -469,7 +469,7 @@ function DictionaryListItem({ entry, isExpanded, onToggle }: { entry: VisualDict
   const meaning = entry.explanation ?? customMeanings[lower]?.meaning ?? defaultMeaning(entry);
   const example = entry.representation ?? customMeanings[lower]?.example ?? defaultExample(entry);
   return (
-    <article className={`bg-white/80 dark:bg-white/[0.03] ${isExpanded ? "ring-2 ring-inset ring-cyan-200 dark:ring-cyan-300/20" : ""}`}>
+    <article className={`bg-white text-slate-800 ${isExpanded ? "ring-2 ring-inset ring-cyan-200" : ""}`}>
       <button type="button" onClick={onToggle} className="flex w-full items-center gap-3 px-3 py-2.5 text-left transition hover:bg-cyan-50 dark:hover:bg-cyan-300/10" aria-expanded={isExpanded}>
         <span className={`h-8 w-1.5 shrink-0 rounded-full bg-gradient-to-b ${tone}`} />
         <span className="min-w-0 flex-1">
@@ -484,10 +484,10 @@ function DictionaryListItem({ entry, isExpanded, onToggle }: { entry: VisualDict
       {isExpanded && (
         <div className="grid gap-3 px-3 pb-4 pl-6 md:grid-cols-[minmax(0,1fr)_300px]">
           <div className="min-w-0">
-            {entry.description ? <p className="mb-2 text-sm font-black text-slate-950 dark:text-white">{entry.description}</p> : null}
-            <p className="text-sm leading-6 text-slate-700 dark:text-slate-200">{meaning}</p>
-            <div className="mt-3 rounded-xl bg-slate-100 p-3 text-xs font-semibold leading-5 text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">
-              <span className="font-black text-slate-900 dark:text-white">{entry.representation ? "Visual representation: " : "Example: "}</span>{example}
+            {entry.description ? <p className="mb-2 text-sm font-black text-slate-950">{entry.description}</p> : null}
+            <p className="text-sm leading-6 text-slate-700">{meaning}</p>
+            <div className="mt-3 rounded-xl bg-slate-100 p-3 text-xs font-semibold leading-5 text-slate-700">
+              <span className="font-black text-slate-950">{entry.representation ? "Visual representation: " : "Example: "}</span>{example}
             </div>
             <div className="mt-3 flex flex-wrap gap-2">
               {entry.keywords.slice(0, 8).map((keyword) => <span key={keyword} className="mini-chip">{keyword}</span>)}
