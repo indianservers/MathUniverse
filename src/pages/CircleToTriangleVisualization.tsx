@@ -10,6 +10,7 @@ const halfCircumference = circumference / 2;
 const cutY = centerY - maxRadius;
 const finalLeftX = centerX - halfCircumference;
 const finalRightX = centerX + halfCircumference;
+const triangleTipY = centerY;
 
 export default function CircleToTriangleVisualization() {
   const [isLine, setIsLine] = useState(false);
@@ -51,7 +52,7 @@ export default function CircleToTriangleVisualization() {
 
   return (
     <section aria-label="Circle to triangle stage" className="h-[clamp(430px,calc(100vh-12rem),640px)] overflow-hidden rounded-xl border border-cyan-200/50 bg-slate-950 shadow-2xl shadow-cyan-950/30">
-      <h1 className="sr-only">360 Degree Line Animation</h1>
+      <h1 className="sr-only">Circle to Triangle Visual Proof</h1>
       <div className="relative flex h-full items-center justify-center">
         <svg viewBox="0 0 600 360" className="h-full w-full" role="img" aria-label="360 degree circular line animation">
           <defs>
@@ -121,6 +122,18 @@ export default function CircleToTriangleVisualization() {
           <circle cx={metrics.leftEnd.x} cy={metrics.leftEnd.y} r="7" fill="#22d3ee" filter="url(#lineGlow)" />
           <circle cx={metrics.topCut.x} cy={metrics.topCut.y} r="6" fill="#f8fafc" filter="url(#lineGlow)" />
           <circle cx={metrics.rightEnd.x} cy={metrics.rightEnd.y} r="7" fill="#fb7185" filter="url(#lineGlow)" />
+
+          <g className="pointer-events-none select-none font-mono text-[10px] font-bold">
+            <line x1={centerX + 16} y1={cutY} x2={centerX + 16} y2={triangleTipY} stroke="#f8fafc" strokeDasharray="3 5" strokeLinecap="round" strokeOpacity="0.72" />
+            <text x={centerX + 22} y={(cutY + triangleTipY) / 2 + 4} fill="#f8fafc">h = r = {formatNumber(maxRadius)}</text>
+
+            <line x1={finalLeftX} y1={cutY - 13} x2={finalRightX} y2={cutY - 13} stroke="#f8fafc" strokeDasharray="4 7" strokeLinecap="round" strokeOpacity={0.3 + completedLineOpacity * 0.6} />
+            <text x={centerX} y={cutY - 20} textAnchor="middle" fill="#e0f2fe">base = 2πr = {formatNumber(circumference)}</text>
+
+            <text x={centerX - 192} y={centerY + 8} fill="#67e8f9">A circle = πr²</text>
+            <text x={centerX + 86} y={centerY + 8} fill="#fda4af">A triangle = 1/2 × base × height</text>
+            <text x={centerX} y={centerY + 30} textAnchor="middle" fill="#ffffff">πr² = 1/2 × (2πr) × r</text>
+          </g>
         </svg>
 
         <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2">

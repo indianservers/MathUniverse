@@ -258,7 +258,7 @@ export default function MathVisualDictionary() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="visual-dictionary-page space-y-4">
       <TopicHeader
         title="Maths Visual Dictionary"
         subtitle={`A-Z visual dictionary with ${visualDictionaryTerms.length} math words, color-coded diagrams, plain explanations, and examples.`}

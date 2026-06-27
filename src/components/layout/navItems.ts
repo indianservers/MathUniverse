@@ -146,6 +146,12 @@ export const navSections: NavSection[] = [
         children: [
           { title: "All Visual Proofs", route: "/visual-proofs", icon: "Sparkles" },
           { title: "Geometry Proofs", route: "/visual-proofs/geometry", icon: "Shapes" },
+          {
+            title: "Circle to Triangle",
+            route: "/visual-proofs/geometry/circle-to-triangle",
+            icon: "Shapes",
+            searchTerms: ["circle to triangle", "circle area proof", "uncurling circle", "area triangle"],
+          },
           { title: "Algebraic Identities", route: "/visual-proofs/algebraic-identities", icon: "Calculator" },
           { title: "Trigonometry Proofs", route: "/visual-proofs/trigonometry", icon: "Waves" },
           { title: "Coordinate Geometry Proofs", route: "/visual-proofs/coordinate-geometry", icon: "Shapes" },

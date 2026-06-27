@@ -178,6 +178,20 @@ const geometryProofs: GeometryProofSeed[] = [
     learningOutcomes: ["Understand why circle area is pi r^2", "Connect circumference 2 pi r with area", "Visualize a circle as many small sectors", "Understand limiting approximation"],
     componentKey: "CircleAreaUnrollingProof",
   },
+  {
+    id: "circle-to-triangle-uncurling",
+    title: "Circle to Triangle Uncurling",
+    slug: "circle-to-triangle",
+    shortDescription: "Uncurl a filled circle into stacked straight lines that form a triangle with matching area.",
+    longDescription:
+      "Fill the circle with concentric circumference lines, keep every midpoint fixed, and uncurl each line into a straight segment so the final stack forms the circle area triangle.",
+    difficulty: "Beginner",
+    tags: ["circle", "triangle", "area", "circumference", "uncurling", "visual proof"],
+    estimatedTime: "8 minutes",
+    prerequisites: ["Circle", "Circumference", "Radius", "Triangle Area"],
+    learningOutcomes: ["See the circle area transform into a triangle", "Compare base 2 pi r with height r", "Track area equality during the animation"],
+    componentKey: "CircleAreaUnrollingProof",
+  },
 ];
 
 const algebraProofs: AlgebraProofSeed[] = [

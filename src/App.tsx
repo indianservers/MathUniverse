@@ -167,6 +167,7 @@ export default function App() {
             <Route path="circle-to-triangle" element={<CircleToTriangleVisualization />} />
             <Route path="visual-proofs" element={<VisualProofsHomePage />} />
             <Route path="visual-proofs/:categorySlug" element={<VisualProofCategoryPage />} />
+            <Route path="visual-proofs/geometry/circle-to-triangle" element={<CircleToTriangleVisualization />} />
             <Route path="visual-proofs/:categorySlug/:proofSlug" element={<VisualProofPage />} />
             <Route path="geometry" element={<Geometry />} />
             <Route path="geometry/:conceptId" element={<GeometryConceptPage />} />

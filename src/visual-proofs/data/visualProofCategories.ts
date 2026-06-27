@@ -8,7 +8,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Advanced",
     targetAudience: "School to Engineering Foundation",
     iconName: "Shapes",
-    proofCount: 11,
+    proofCount: 12,
     status: "available",
   },
   {
