@@ -10,6 +10,7 @@ const AlgebraicStructures = lazy(() => import("./pages/AlgebraicStructures"));
 const AIApplications = lazy(() => import("./pages/AIApplications"));
 const BoardSyllabusVisualizer = lazy(() => import("./pages/BoardSyllabusVisualizer"));
 const Calculus = lazy(() => import("./pages/Calculus"));
+const CircleToTriangleVisualization = lazy(() => import("./pages/CircleToTriangleVisualization"));
 const Combinatorics = lazy(() => import("./pages/Combinatorics"));
 const ComplexNumbers = lazy(() => import("./pages/ComplexNumbers"));
 const ConceptDependencyGraph = lazy(() => import("./pages/ConceptDependencyGraph"));
@@ -163,6 +164,7 @@ export default function App() {
             <Route path="theorems/:categorySlug" element={<Theorems />} />
             <Route path="theorems/:categorySlug/:theoremSlug" element={<Theorems />} />
             <Route path="visual-showcase" element={<VisualShowcase />} />
+            <Route path="circle-to-triangle" element={<CircleToTriangleVisualization />} />
             <Route path="visual-proofs" element={<VisualProofsHomePage />} />
             <Route path="visual-proofs/:categorySlug" element={<VisualProofCategoryPage />} />
             <Route path="visual-proofs/:categorySlug/:proofSlug" element={<VisualProofPage />} />

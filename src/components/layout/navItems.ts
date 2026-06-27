@@ -325,6 +325,12 @@ export const navSections: NavSection[] = [
         icon: "Shapes",
         children: [
           { title: "Geometry Universe", route: "/geometry", icon: "Shapes" },
+          {
+            title: "Circle to Triangle",
+            route: "/circle-to-triangle",
+            icon: "Shapes",
+            searchTerms: ["circle to triangle", "semicircle arc line animation", "180 degree arc", "geometry motion"],
+          },
           { title: "2D/3D Shapes", route: "/shapes", icon: "Cuboid" },
           { title: "Coordinate Geometry", route: "/geometry/coordinate-geometry", icon: "Shapes" },
         ],
@@ -563,6 +569,7 @@ export const navSections: NavSection[] = [
         searchTerms: ["visualizer", "animation", "fourier", "polar", "parametric", "surface", "eigenvector", "matrix transformation"],
         children: [
           { title: "Visual Showcase", route: "/visual-showcase", icon: "Sparkles" },
+          { title: "Circle to Triangle", route: "/circle-to-triangle", icon: "Shapes", searchTerms: ["circle triangle arc line", "semicircle animation", "geometry visualization"] },
           { title: "Fourier Animator", route: "/fourier-animator", icon: "Waves", searchTerms: ["fourier", "harmonics", "tails", "wave"] },
           { title: "Fourier Series Visualizer", route: "/math/fourier-series", icon: "Waves" },
           { title: "Parametric Curves", route: "/parametric-curves", icon: "Waves" },

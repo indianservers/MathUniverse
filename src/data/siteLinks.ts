@@ -48,6 +48,16 @@ const baseLinks: SiteLink[] = [
     changeFrequency: "monthly",
   },
   {
+    title: "Circle to Triangle Visualization",
+    path: "/circle-to-triangle",
+    description: "Animate a 180 degree circular line as it unfolds into a straight line for the first step of a circle-to-triangle geometry visualization.",
+    category: "Geometry",
+    keywords: ["circle to triangle", "semicircle", "arc to line", "180 degree arc", "geometry animation"],
+    details: ["180 degree circular line", "Animated straightening", "Geometry motion"],
+    priority: 0.76,
+    changeFrequency: "monthly",
+  },
+  {
     title: "Permutations and Combinations",
     path: "/math/permutations-combinations",
     description: "Build ordered arrangements and unordered selections with live nPr, nCr, factorial, tree, and group visualizations.",
