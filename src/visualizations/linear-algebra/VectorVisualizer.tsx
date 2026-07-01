@@ -3,6 +3,7 @@ import { PointerEvent, ReactNode, WheelEvent, useMemo, useRef, useState } from "
 import SectionCard from "../../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
+import { DiagramSummary, InvalidMathStateMessage, StudentTaskCard, TeacherNotes } from "../../components/ui/LearningScaffolds";
 import { roundTo } from "../../utils/math";
 
 type Vec3 = [number, number, number];
@@ -10,6 +11,10 @@ type DragTarget = "a-tail" | "a-head" | "b-tail" | "b-head";
 type DragPlane = "xy" | "xz" | "yz";
 type ViewPreset = "front" | "isometric" | "top";
 type ViewState = { yaw: number; pitch: number; zoom: number };
+type ControlTab = "a" | "b" | "results" | "xy" | "explain";
+type SceneOptionKey = "xAxis" | "yAxis" | "zAxis" | "grid" | "units" | "labels" | "resultant" | "projection" | "cross";
+type SceneOptions = Record<SceneOptionKey, boolean>;
+type VectorPreset = "right" | "up" | "diagonal" | "zero" | "opposite";
 
 const range = 10;
 const planeCenter = 180;
@@ -29,6 +34,24 @@ const defaultState = {
   bTail: [0, 0, 0] as Vec3,
   bHead: [-2, 4, -1.5] as Vec3,
 };
+const defaultSceneOptions: SceneOptions = {
+  xAxis: true,
+  yAxis: true,
+  zAxis: true,
+  grid: true,
+  units: true,
+  labels: true,
+  resultant: true,
+  projection: true,
+  cross: true,
+};
+const beginnerPresets: Record<VectorPreset, { label: string; aHead: Vec3; bHead: Vec3 }> = {
+  right: { label: "Right arrow", aHead: [5, 0, 0], bHead: [0, 0, 0] },
+  up: { label: "Up arrow", aHead: [0, 5, 0], bHead: [0, 0, 0] },
+  diagonal: { label: "Diagonal arrow", aHead: [4, 3, 0], bHead: [0, 0, 0] },
+  zero: { label: "Zero vector", aHead: [0, 0, 0], bHead: [0, 0, 0] },
+  opposite: { label: "Opposite pair", aHead: [4, 0, 0], bHead: [-4, 0, 0] },
+};
 
 export default function VectorVisualizer() {
   const initial = useMemo(readVectorParams, []);
@@ -41,6 +64,8 @@ export default function VectorVisualizer() {
   const [viewPreset, setViewPreset] = useState<ViewPreset>("isometric");
   const [viewState, setViewState] = useState<ViewState>(presetViews.isometric);
   const [showParallelogram, setShowParallelogram] = useState(true);
+  const [activePanel, setActivePanel] = useState<ControlTab>("a");
+  const [sceneOptions, setSceneOptions] = useState<SceneOptions>(defaultSceneOptions);
 
   const a = subtract(aHead, aTail);
   const b = subtract(bHead, bTail);
@@ -54,6 +79,7 @@ export default function VectorVisualizer() {
   const projectionScale = magB === 0 ? 0 : dot / (magB * magB);
   const projection = scaleVec(b, projectionScale);
   const area = magnitude(cross);
+  const zeroVectorWarning = magA <= zeroTolerance || (showSecond && magB <= zeroTolerance);
 
   const movePoint = (target: DragTarget, delta: Vec3) => {
     const setter = target === "a-tail" ? setATail : target === "a-head" ? setAHead : target === "b-tail" ? setBTail : setBHead;
@@ -78,90 +104,81 @@ export default function VectorVisualizer() {
     setViewPreset("isometric");
     setViewState((view) => ({ ...view, zoom: clamp(view.zoom + delta, 0.55, 1.85) }));
   };
+  const applyBeginnerPreset = (preset: VectorPreset) => {
+    const next = beginnerPresets[preset];
+    setATail([0, 0, 0]);
+    setBTail([0, 0, 0]);
+    setAHead(next.aHead);
+    setBHead(next.bHead);
+    setShowSecond(preset === "opposite");
+    setDragPlane("xy");
+    setViewPreset("front");
+    setViewState(presetViews.front);
+  };
 
   return (
-    <SectionCard title="Vector Visualizer" description="Explore real 3D vectors with draggable endpoints, projections, dot product, cross product, angle, and resultant.">
-      <div className="grid gap-4 xl:grid-cols-[330px_minmax(0,1fr)]">
-        <div className="space-y-3">
-          <div className="rounded-xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/50">
-            <div className="mb-3 flex items-center justify-between gap-2">
-              <p className="text-sm font-black text-slate-950 dark:text-white">Vector A</p>
-              <VectorBadge value={a} color="text-cyan-500" />
-            </div>
-            <SliderGroup title="Head components">
-              <SliderControl density="compact" label="A x" value={aHead[0]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([value, aHead[1], aHead[2]])} />
-              <SliderControl density="compact" label="A y" value={aHead[1]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([aHead[0], value, aHead[2]])} />
-              <SliderControl density="compact" label="A z" value={aHead[2]} min={-10} max={10} step={0.25} onChange={(value) => setAHead([aHead[0], aHead[1], value])} />
-            </SliderGroup>
-            <EndpointEditor label="A tail" value={aTail} onChange={setATail} />
-            <EndpointEditor label="A head" value={aHead} onChange={setAHead} />
-          </div>
-
-          <label className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-bold dark:border-white/10 dark:bg-white/5">
-            <input type="checkbox" checked={showSecond} onChange={(event) => setShowSecond(event.target.checked)} />
-            Enable second vector and operations
-          </label>
-
-          {showSecond && (
-            <div className="rounded-xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/50">
-              <div className="mb-3 flex items-center justify-between gap-2">
-                <p className="text-sm font-black text-slate-950 dark:text-white">Vector B</p>
-                <VectorBadge value={b} color="text-violet-400" />
+    <SectionCard
+      title="Vector Visualizer"
+      description="Explore 3D vectors, projections, dot product, cross product, angle, and resultant."
+      compact
+      allowFullscreen
+      className="linear-vector-workbench"
+    >
+      <div className="grid min-h-0 gap-3 xl:grid-cols-[minmax(0,1fr)_390px]">
+        <div className="min-w-0 space-y-3">
+          <StudentTaskCard
+            tryFirst="Choose Right arrow, then Up arrow. Watch how x-change and y-change describe the arrow."
+            predict="Which preset has both x-change and y-change?"
+            observe="The arrow length changes when either x or y changes."
+            explain="A vector is an arrow with direction and length. Its x, y, and z changes tell where the arrow points."
+            commonMistake="A zero vector has length 0, so its direction is undefined."
+          />
+          <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/80 p-2.5 dark:border-white/10 dark:bg-slate-950/50">
+            <div className="flex min-w-0 flex-wrap items-center gap-2">
+              <div className="flex items-center gap-2 text-sm font-black text-slate-950 dark:text-white">
+                <Move3D className="h-4 w-4 text-cyan-500" />
+                3D vector pane
               </div>
-              <SliderGroup title="Head components">
-                <SliderControl density="compact" label="B x" value={bHead[0]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([value, bHead[1], bHead[2]])} />
-                <SliderControl density="compact" label="B y" value={bHead[1]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([bHead[0], value, bHead[2]])} />
-                <SliderControl density="compact" label="B z" value={bHead[2]} min={-10} max={10} step={0.25} onChange={(value) => setBHead([bHead[0], bHead[1], value])} />
-              </SliderGroup>
-              <EndpointEditor label="B tail" value={bTail} onChange={setBTail} />
-              <EndpointEditor label="B head" value={bHead} onChange={setBHead} />
+              <VectorBadge value={a} color="text-cyan-500" />
+              {showSecond && <VectorBadge value={b} color="text-violet-400" />}
             </div>
-          )}
-
-          <div className="grid grid-cols-2 gap-2 text-sm">
-            <Metric label="|A|" value={magA} />
-            {showSecond && <Metric label="|B|" value={magB} />}
-            {showSecond && <Metric label="A dot B" value={dot} />}
-            {showSecond && <Metric label="angle" value={`${roundTo(angle, 2)} deg`} />}
-            {showSecond && <Metric label="A cross B" value={`<${cross.map((item) => roundTo(item, 2)).join(", ")}>`} />}
-            {showSecond && <Metric label="area" value={area} />}
-            {showSecond && <Metric label="A + B" value={`<${sum.map((item) => roundTo(item, 2)).join(", ")}>`} />}
-            {showSecond && <Metric label="A - B" value={`<${diff.map((item) => roundTo(item, 2)).join(", ")}>`} />}
+            <div className="mobile-safe-scroll thin-scrollbar max-w-full">
+              <div className="flex w-max gap-1.5">
+                {(["xy", "xz", "yz"] as DragPlane[]).map((plane) => (
+                  <button key={plane} type="button" onClick={() => setDragPlane(plane)} className={toolClass(dragPlane === plane)}>
+                    Drag {plane.toUpperCase()}
+                  </button>
+                ))}
+                {(["front", "isometric", "top"] as ViewPreset[]).map((preset) => (
+                  <button key={preset} type="button" onClick={() => setPreset(preset)} className={toolClass(viewPreset === preset)}>
+                    {preset}
+                  </button>
+                ))}
+                <button type="button" onClick={() => zoomView(0.15)} className="inline-flex min-h-9 items-center gap-1 rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-black dark:border-white/10">
+                  <ZoomIn className="h-3.5 w-3.5" />
+                  Zoom
+                </button>
+                <button type="button" onClick={() => zoomView(-0.15)} className="inline-flex min-h-9 items-center gap-1 rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-black dark:border-white/10">
+                  <ZoomOut className="h-3.5 w-3.5" />
+                  Out
+                </button>
+                <button type="button" onClick={() => setShowParallelogram((value) => !value)} className={toolClass(showParallelogram)}>
+                  Parallelogram
+                </button>
+                <button type="button" onClick={reset} className="inline-flex min-h-9 items-center gap-1 rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-black dark:border-white/10">
+                  <RotateCcw className="h-3.5 w-3.5" />
+                  Reset
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div className="min-w-0 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/50">
-            <div className="flex items-center gap-2 text-sm font-black text-slate-950 dark:text-white">
-              <Move3D className="h-4 w-4 text-cyan-500" />
-              3D vector pane
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {(["xy", "xz", "yz"] as DragPlane[]).map((plane) => (
-                <button key={plane} type="button" onClick={() => setDragPlane(plane)} className={toolClass(dragPlane === plane)}>
-                  Drag {plane.toUpperCase()}
+          <div className="mobile-safe-scroll thin-scrollbar rounded-xl border border-slate-200 bg-white/82 p-2.5 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
+            <div className="flex w-max gap-1.5">
+              {(Object.keys(beginnerPresets) as VectorPreset[]).map((preset) => (
+                <button key={preset} type="button" onClick={() => applyBeginnerPreset(preset)} className="inline-flex min-h-9 items-center rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-black text-slate-700 hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:text-slate-200 dark:hover:border-cyan-300/50">
+                  {beginnerPresets[preset].label}
                 </button>
               ))}
-              {(["front", "isometric", "top"] as ViewPreset[]).map((preset) => (
-                <button key={preset} type="button" onClick={() => setPreset(preset)} className={toolClass(viewPreset === preset)}>
-                  {preset}
-                </button>
-              ))}
-              <button type="button" onClick={() => zoomView(0.15)} className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-black dark:border-white/10">
-                <ZoomIn className="h-3.5 w-3.5" />
-                Zoom
-              </button>
-              <button type="button" onClick={() => zoomView(-0.15)} className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-black dark:border-white/10">
-                <ZoomOut className="h-3.5 w-3.5" />
-                Out
-              </button>
-              <button type="button" onClick={() => setShowParallelogram((value) => !value)} className={toolClass(showParallelogram)}>
-                Parallelogram
-              </button>
-              <button type="button" onClick={reset} className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-black dark:border-white/10">
-                <RotateCcw className="h-3.5 w-3.5" />
-                Reset
-              </button>
             </div>
           </div>
 
@@ -181,43 +198,208 @@ export default function VectorVisualizer() {
             onViewStateChange={setViewState}
             onViewPresetChange={setViewPreset}
             onMovePoint={movePoint}
+            options={sceneOptions}
           />
+          <SceneOptionsPanel options={sceneOptions} onChange={setSceneOptions} />
+        </div>
 
-          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_340px]">
-            <VectorPlane2D a={a} b={b} showSecond={showSecond} projection={projection} sum={sum} />
-            <div className="rounded-xl border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-400/20 dark:bg-cyan-400/10">
-              <div className="flex items-center gap-2 text-sm font-black text-cyan-950 dark:text-cyan-50">
-                <Target className="h-4 w-4" />
-                Live interpretation
-              </div>
-              <div className="mt-3 space-y-2 text-sm leading-6 text-slate-700 dark:text-slate-200">
-                <p>A = &lt;{a.map((item) => roundTo(item, 2)).join(", ")}&gt;</p>
-                {showSecond && <p>B = &lt;{b.map((item) => roundTo(item, 2)).join(", ")}&gt;</p>}
-                {showSecond && <p>Dot product tells alignment: positive same direction, zero perpendicular, negative opposite direction.</p>}
-                {showSecond && <p>Cross product is perpendicular to both vectors. Its length is the parallelogram area.</p>}
-                <p>Drag empty space to rotate the 3D pane. Drag colored endpoint handles to move vector tails or heads. Switch drag plane when you want depth movement.</p>
-              </div>
+        <aside className="min-w-0 rounded-xl border border-slate-200 bg-white/82 p-2.5 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
+          <div className="mobile-safe-scroll thin-scrollbar">
+            <div className="inline-flex min-w-full gap-1 rounded-xl bg-slate-100 p-1 dark:bg-white/10">
+              <PanelTab active={activePanel === "a"} onClick={() => setActivePanel("a")}>A</PanelTab>
+              <PanelTab active={activePanel === "b"} onClick={() => setActivePanel("b")}>B</PanelTab>
+              <PanelTab active={activePanel === "results"} onClick={() => setActivePanel("results")}>Results</PanelTab>
+              <PanelTab active={activePanel === "xy"} onClick={() => setActivePanel("xy")}>XY</PanelTab>
+              <PanelTab active={activePanel === "explain"} onClick={() => setActivePanel("explain")}>Explain</PanelTab>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="mt-5">
-        <VisualLearningPanel
-          concept="A 3D vector stores x, y, and z components, so it can point anywhere in space."
-          formula="A dot B = |A||B|cos(theta), A cross B is perpendicular to A and B"
-          changes="Dragging endpoints or changing sliders updates magnitude, direction, projection, dot product, cross product, resultant, and parallelogram area."
-          realWorldUse="3D graphics, robotics, forces, velocity, game physics, CAD, computer vision, and machine learning embeddings."
-          steps={[
-            `Vector A length is ${roundTo(magA, 3)}.`,
-            showSecond ? `Vector B length is ${roundTo(magB, 3)}.` : "Enable vector B to compare two directions.",
-            showSecond ? `Angle between A and B is ${roundTo(angle, 2)} degrees.` : "The 3D pane still supports dragging vector A.",
-            showSecond ? `Cross product length, the parallelogram area, is ${roundTo(area, 3)}.` : "Use the z slider or endpoint editor to move out of the flat plane.",
-          ]}
-          tasks={["Drag the empty pane to rotate the camera.", "Drag A head into the z direction.", "Make A and B perpendicular.", "Use XZ drag mode to move depth directly."]}
-        />
+          <div className="mt-3 min-h-[360px] xl:min-h-[420px]">
+            {activePanel === "a" && (
+              <VectorControlPanel
+                title="Vector A"
+                badge={<VectorBadge value={a} color="text-cyan-500" />}
+                head={aHead}
+                tail={aTail}
+                onHeadChange={setAHead}
+                onTailChange={setATail}
+                sliderPrefix="A"
+              />
+            )}
+
+            {activePanel === "b" && (
+              <div className="space-y-3">
+                <label className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-bold dark:border-white/10 dark:bg-white/5">
+                  <span>Enable second vector and operations</span>
+                  <input type="checkbox" checked={showSecond} onChange={(event) => setShowSecond(event.target.checked)} />
+                </label>
+                {showSecond ? (
+                  <VectorControlPanel
+                    title="Vector B"
+                    badge={<VectorBadge value={b} color="text-violet-400" />}
+                    head={bHead}
+                    tail={bTail}
+                    onHeadChange={setBHead}
+                    onTailChange={setBTail}
+                    sliderPrefix="B"
+                  />
+                ) : (
+                  <div className="rounded-xl border border-dashed border-slate-300 p-4 text-sm font-semibold text-slate-500 dark:border-white/15 dark:text-slate-300">
+                    Turn on Vector B to unlock dot product, cross product, projection, resultant, and angle.
+                  </div>
+                )}
+              </div>
+            )}
+
+            {activePanel === "results" && (
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <Metric label="|A|" value={magA} />
+                  <Metric label="A x-change" value={a[0]} />
+                  <Metric label="A y-change" value={a[1]} />
+                  {showSecond && <Metric label="|B|" value={magB} />}
+                  {showSecond && <Metric label="A dot B" value={dot} />}
+                  {showSecond && <Metric label="angle" value={`${roundTo(angle, 2)} deg`} />}
+                  {showSecond && <Metric label="A cross B" value={`<${cross.map((item) => roundTo(item, 2)).join(", ")}>`} />}
+                  {showSecond && <Metric label="area" value={area} />}
+                  {showSecond && <Metric label="A + B" value={`<${sum.map((item) => roundTo(item, 2)).join(", ")}>`} />}
+                  {showSecond && <Metric label="A - B" value={`<${diff.map((item) => roundTo(item, 2)).join(", ")}>`} />}
+                </div>
+                {zeroVectorWarning && <InvalidMathStateMessage>Zero vector direction is undefined. Length is 0, so there is no single direction to point toward.</InvalidMathStateMessage>}
+                <LiveInterpretation a={a} b={b} showSecond={showSecond} />
+              </div>
+            )}
+
+            {activePanel === "xy" && <VectorPlane2D a={a} b={b} showSecond={showSecond} projection={projection} sum={sum} />}
+
+            {activePanel === "explain" && (
+              <div className="space-y-3">
+                <VisualLearningPanel
+                  concept="A vector is an arrow with direction and length. A 3D vector stores x, y, and z changes, so it can point anywhere in space."
+                  formula="A dot B = |A||B|cos(theta), A cross B is perpendicular to A and B"
+                  changes="Dragging endpoints or changing sliders updates magnitude, direction, projection, dot product, cross product, resultant, and parallelogram area."
+                  realWorldUse="3D graphics, robotics, forces, velocity, game physics, CAD, computer vision, and machine learning embeddings."
+                  steps={[
+                    `Vector A length is ${roundTo(magA, 3)}.`,
+                    showSecond ? `Vector B length is ${roundTo(magB, 3)}.` : "Enable vector B to compare two directions.",
+                    showSecond ? `Angle between A and B is ${roundTo(angle, 2)} degrees.` : "The 3D pane still supports dragging vector A.",
+                    showSecond ? `Cross product length, the parallelogram area, is ${roundTo(area, 3)}.` : "Use the z slider or endpoint editor to move out of the flat plane.",
+                  ]}
+                  tasks={["Drag the empty pane to rotate the camera.", "Drag A head into the z direction.", "Make A and B perpendicular.", "Use XZ drag mode to move depth directly."]}
+                />
+                <TeacherNotes
+                  objective="Students describe a vector as an arrow with length and direction before using dot or cross products."
+                  prerequisite="Coordinate plane movement: right/left as x-change and up/down as y-change."
+                  prompt="Start with the right, up, and diagonal presets before introducing 3D z-change."
+                  misconception="Students may think a vector is only its endpoint; emphasize tail-to-head change."
+                  extension="Ask students to create two opposite vectors and predict their dot product sign."
+                />
+              </div>
+            )}
+          </div>
+        </aside>
       </div>
     </SectionCard>
+  );
+}
+
+function SceneOptionsPanel({ options, onChange }: { options: SceneOptions; onChange: (options: SceneOptions) => void }) {
+  const toggle = (key: SceneOptionKey) => onChange({ ...options, [key]: !options[key] });
+  const items: Array<{ key: SceneOptionKey; label: string }> = [
+    { key: "xAxis", label: "X axis" },
+    { key: "yAxis", label: "Y axis" },
+    { key: "zAxis", label: "Z axis" },
+    { key: "grid", label: "Grid" },
+    { key: "units", label: "Units" },
+    { key: "labels", label: "Labels" },
+    { key: "resultant", label: "A+B" },
+    { key: "projection", label: "Projection" },
+    { key: "cross", label: "Cross" },
+  ];
+
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white/82 p-2.5 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <div className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">3D pane options</div>
+        <button type="button" onClick={() => onChange(defaultSceneOptions)} className="rounded-lg border border-slate-200 px-2 py-1 text-[11px] font-black text-slate-600 dark:border-white/10 dark:text-slate-300">
+          Show all
+        </button>
+      </div>
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+        {items.map((item) => (
+          <label key={item.key} className="flex min-h-9 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-black text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+            <input type="checkbox" checked={options[item.key]} onChange={() => toggle(item.key)} className="h-4 w-4 accent-cyan-500" />
+            {item.label}
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function VectorControlPanel({
+  title,
+  badge,
+  head,
+  tail,
+  onHeadChange,
+  onTailChange,
+  sliderPrefix,
+}: {
+  title: string;
+  badge: ReactNode;
+  head: Vec3;
+  tail: Vec3;
+  onHeadChange: (value: Vec3) => void;
+  onTailChange: (value: Vec3) => void;
+  sliderPrefix: "A" | "B";
+}) {
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between gap-2">
+        <p className="text-sm font-black text-slate-950 dark:text-white">{title}</p>
+        {badge}
+      </div>
+      <SliderGroup title="Head components" className="p-2.5">
+        <SliderControl density="compact" label={`${sliderPrefix} x`} value={head[0]} min={-10} max={10} step={0.25} onChange={(value) => onHeadChange([value, head[1], head[2]])} />
+        <SliderControl density="compact" label={`${sliderPrefix} y`} value={head[1]} min={-10} max={10} step={0.25} onChange={(value) => onHeadChange([head[0], value, head[2]])} />
+        <SliderControl density="compact" label={`${sliderPrefix} z`} value={head[2]} min={-10} max={10} step={0.25} onChange={(value) => onHeadChange([head[0], head[1], value])} />
+      </SliderGroup>
+      <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-1">
+        <EndpointEditor label={`${sliderPrefix} tail`} value={tail} onChange={onTailChange} />
+        <EndpointEditor label={`${sliderPrefix} head`} value={head} onChange={onHeadChange} />
+      </div>
+    </div>
+  );
+}
+
+function PanelTab({ active, onClick, children }: { active: boolean; onClick: () => void; children: ReactNode }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`min-h-9 flex-1 rounded-lg px-2.5 py-1.5 text-xs font-black transition ${active ? "bg-cyan-400 text-slate-950 shadow-sm shadow-cyan-400/20" : "text-slate-600 hover:bg-white/70 hover:text-cyan-800 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-cyan-100"}`}
+    >
+      {children}
+    </button>
+  );
+}
+
+function LiveInterpretation({ a, b, showSecond }: { a: Vec3; b: Vec3; showSecond: boolean }) {
+  return (
+    <div className="rounded-xl border border-cyan-200 bg-cyan-50 p-3 dark:border-cyan-400/20 dark:bg-cyan-400/10">
+      <div className="flex items-center gap-2 text-sm font-black text-cyan-950 dark:text-cyan-50">
+        <Target className="h-4 w-4" />
+        Live interpretation
+      </div>
+      <div className="mt-2 space-y-1.5 text-sm leading-5 text-slate-700 dark:text-slate-200">
+        <p>A = &lt;{a.map((item) => roundTo(item, 2)).join(", ")}&gt;</p>
+        {showSecond && <p>B = &lt;{b.map((item) => roundTo(item, 2)).join(", ")}&gt;</p>}
+        {showSecond && <p>Dot product: positive same direction, zero perpendicular, negative opposite.</p>}
+        {showSecond && <p>Cross product is perpendicular; its length is parallelogram area.</p>}
+        <p>Drag empty space to rotate. Drag colored handles to move tails or heads.</p>
+      </div>
+    </div>
   );
 }
 
@@ -237,6 +419,7 @@ function VectorScene3D({
   onViewStateChange,
   onViewPresetChange,
   onMovePoint,
+  options,
 }: {
   aTail: Vec3;
   aHead: Vec3;
@@ -253,6 +436,7 @@ function VectorScene3D({
   onViewStateChange: (value: ViewState | ((value: ViewState) => ViewState)) => void;
   onViewPresetChange: (value: ViewPreset) => void;
   onMovePoint: (target: DragTarget, delta: Vec3) => void;
+  options: SceneOptions;
 }) {
   const dragRef = useRef<{ mode: "point"; target: DragTarget; x: number; y: number } | { mode: "view"; x: number; y: number } | null>(null);
   const project = (point: Vec3) => project3d(point, viewState);
@@ -311,9 +495,12 @@ function VectorScene3D({
 
   return (
     <div className="rounded-xl border border-slate-200 bg-slate-950 p-2 shadow-inner dark:border-white/10">
+      <DiagramSummary>
+        3D vector diagram showing vector A from tail to head{showSecond ? ", vector B, and selected operation overlays" : ""}.
+      </DiagramSummary>
       <svg
         viewBox="0 0 720 490"
-        className="h-[520px] w-full touch-none select-none rounded-lg bg-[radial-gradient(circle_at_50%_35%,rgba(14,165,233,.18),rgba(2,6,23,.98)_58%)]"
+        className="h-[min(56vh,500px)] min-h-[380px] w-full touch-none select-none rounded-lg bg-[radial-gradient(circle_at_50%_35%,rgba(14,165,233,.18),rgba(2,6,23,.98)_58%)]"
         onPointerMove={onPointerMove}
         onPointerDown={startViewDrag}
         onPointerUp={() => { dragRef.current = null; }}
@@ -331,10 +518,10 @@ function VectorScene3D({
         </defs>
 
         <rect x="0" y="0" width="720" height="490" fill="transparent" className="cursor-grab active:cursor-grabbing" />
-        <Grid3D project={project} />
-        <Axis from={o} to={ax} color="#ef4444" marker="axis-red" label="x" />
-        <Axis from={o} to={ay} color="#84cc16" marker="axis-lime" label="y" />
-        <Axis from={o} to={az} color="#38bdf8" marker="axis-blue" label="z" />
+        {options.grid && <Grid3D project={project} showUnits={options.units} />}
+        {options.xAxis && <Axis from={o} to={ax} color="#ef4444" marker="axis-red" label="x" showLabel={options.labels} />}
+        {options.yAxis && <Axis from={o} to={ay} color="#84cc16" marker="axis-lime" label="y" showLabel={options.labels} />}
+        {options.zAxis && <Axis from={o} to={az} color="#38bdf8" marker="axis-blue" label="z" showLabel={options.labels} />}
 
         {showSecond && showParallelogram && hasA && hasB && (
           <polygon
@@ -346,18 +533,18 @@ function VectorScene3D({
           />
         )}
 
-        {hasA ? <Arrow3D from={aTailPoint} to={aHeadPoint} color="#22d3ee" marker="arrow-cyan" label="A" /> : <ZeroVectorMarker point={aHeadPoint} color="#22d3ee" label="A = 0" dy={-36} />}
-        <Handle point={aTailPoint} color="#0891b2" label="A tail" onPointerDown={startDrag("a-tail")} labelDx={12} labelDy={28} />
-        <Handle point={aHeadPoint} color="#22d3ee" label="A head" onPointerDown={startDrag("a-head")} labelDx={12} labelDy={hasA ? 21 : -16} />
+        {hasA ? <Arrow3D from={aTailPoint} to={aHeadPoint} color="#22d3ee" marker="arrow-cyan" label="A" showLabel={options.labels} /> : <ZeroVectorMarker point={aHeadPoint} color="#22d3ee" label="A = 0" dy={-36} showLabel={options.labels} />}
+        <Handle point={aTailPoint} color="#0891b2" label="A tail" onPointerDown={startDrag("a-tail")} labelDx={12} labelDy={28} showLabel={options.labels} />
+        <Handle point={aHeadPoint} color="#22d3ee" label="A head" onPointerDown={startDrag("a-head")} labelDx={12} labelDy={hasA ? 21 : -16} showLabel={options.labels} />
 
         {showSecond && (
           <>
-            {hasB ? <Arrow3D from={bTailPoint} to={bHeadPoint} color="#a78bfa" marker="arrow-violet" label="B" /> : <ZeroVectorMarker point={bHeadPoint} color="#a78bfa" label="B = 0" dx={78} dy={-18} />}
-            <Handle point={bTailPoint} color="#7c3aed" label="B tail" onPointerDown={startDrag("b-tail")} labelDx={-58} labelDy={28} />
-            <Handle point={bHeadPoint} color="#a78bfa" label="B head" onPointerDown={startDrag("b-head")} labelDx={-58} labelDy={hasB ? 21 : -16} />
-            {hasSum && <Arrow3D from={aTailPoint} to={sumPoint} color="#f59e0b" marker="arrow-amber" label="A+B" dashed />}
-            {hasProjection && <Arrow3D from={aTailPoint} to={projectionPoint} color="#fb7185" marker="arrow-amber" label="proj A on B" dashed />}
-            {magnitude(cross) > 0.01 && <Arrow3D from={o} to={crossPoint} color="#34d399" marker="arrow-green" label="A x B" />}
+            {hasB ? <Arrow3D from={bTailPoint} to={bHeadPoint} color="#a78bfa" marker="arrow-violet" label="B" showLabel={options.labels} /> : <ZeroVectorMarker point={bHeadPoint} color="#a78bfa" label="B = 0" dx={78} dy={-18} showLabel={options.labels} />}
+            <Handle point={bTailPoint} color="#7c3aed" label="B tail" onPointerDown={startDrag("b-tail")} labelDx={-58} labelDy={28} showLabel={options.labels} />
+            <Handle point={bHeadPoint} color="#a78bfa" label="B head" onPointerDown={startDrag("b-head")} labelDx={-58} labelDy={hasB ? 21 : -16} showLabel={options.labels} />
+            {options.resultant && hasSum && <Arrow3D from={aTailPoint} to={sumPoint} color="#f59e0b" marker="arrow-amber" label="A+B" dashed showLabel={options.labels} />}
+            {options.projection && hasProjection && <Arrow3D from={aTailPoint} to={projectionPoint} color="#fb7185" marker="arrow-amber" label="proj A on B" dashed showLabel={options.labels} />}
+            {options.cross && magnitude(cross) > 0.01 && <Arrow3D from={o} to={crossPoint} color="#34d399" marker="arrow-green" label="A x B" showLabel={options.labels} />}
             {!hasA && !hasB && (
               <text x={o.x - 86} y={o.y + 58} fill="#cbd5e1" fontSize="13" fontWeight="800">
                 Operations are zero/undefined until a vector has length.
@@ -366,14 +553,14 @@ function VectorScene3D({
           </>
         )}
 
-        <foreignObject x="18" y="18" width="260" height="74">
-          <div className="rounded-xl border border-cyan-400/30 bg-slate-950/80 p-3 text-xs font-bold text-cyan-50">
+        <foreignObject x="18" y="18" width="238" height="66">
+          <div className="rounded-xl border border-cyan-400/30 bg-slate-950/80 p-2.5 text-xs font-bold text-cyan-50">
             <p className="flex items-center gap-2"><Rotate3D className="h-3.5 w-3.5" /> 3D interactive vector lab</p>
-            <p className="mt-1 text-cyan-200">Drag empty space to rotate. Wheel/pinch zoom. Handles move on {dragPlane.toUpperCase()}.</p>
+            <p className="mt-1 text-cyan-200">Rotate, zoom, then drag handles on {dragPlane.toUpperCase()}.</p>
           </div>
         </foreignObject>
-        <foreignObject x="520" y="18" width="178" height="74">
-          <div className="rounded-xl border border-white/10 bg-slate-950/75 p-3 text-xs font-bold text-slate-100">
+        <foreignObject x="536" y="18" width="162" height="62">
+          <div className="rounded-xl border border-white/10 bg-slate-950/75 p-2.5 text-xs font-bold text-slate-100">
             <p>View: {viewPreset}</p>
             <p className="mt-1 text-slate-300">Zoom {roundTo(viewState.zoom, 2)}x</p>
           </div>
@@ -416,7 +603,7 @@ function EndpointEditor({ label, value, onChange }: { label: string; value: Vec3
   );
 }
 
-function Grid3D({ project }: { project: (point: Vec3) => { x: number; y: number } }) {
+function Grid3D({ project, showUnits }: { project: (point: Vec3) => { x: number; y: number }; showUnits: boolean }) {
   const lines: ReactNode[] = [];
   for (let i = -range; i <= range; i += 2) {
     const x1 = project([-range, 0, i]);
@@ -425,6 +612,14 @@ function Grid3D({ project }: { project: (point: Vec3) => { x: number; y: number 
     const z2 = project([i, 0, range]);
     lines.push(<line key={`x-${i}`} x1={x1.x} y1={x1.y} x2={x2.x} y2={x2.y} stroke="rgba(148,163,184,.18)" />);
     lines.push(<line key={`z-${i}`} x1={z1.x} y1={z1.y} x2={z2.x} y2={z2.y} stroke="rgba(148,163,184,.18)" />);
+    if (showUnits && i !== 0) {
+      const xTick = project([i, 0, 0]);
+      const zTick = project([0, 0, i]);
+      lines.push(<circle key={`x-dot-${i}`} cx={xTick.x} cy={xTick.y} r="2.5" fill="rgba(239,68,68,.75)" />);
+      lines.push(<text key={`x-label-${i}`} x={xTick.x + 5} y={xTick.y + 13} fill="rgba(254,202,202,.9)" fontSize="10" fontWeight="800">{i}</text>);
+      lines.push(<circle key={`z-dot-${i}`} cx={zTick.x} cy={zTick.y} r="2.5" fill="rgba(56,189,248,.75)" />);
+      lines.push(<text key={`z-label-${i}`} x={zTick.x + 5} y={zTick.y - 6} fill="rgba(186,230,253,.9)" fontSize="10" fontWeight="800">{i}</text>);
+    }
   }
   return <g>{lines}</g>;
 }
@@ -462,38 +657,38 @@ function VectorPlane2D({ a, b, showSecond, projection, sum }: { a: Vec3; b: Vec3
   );
 }
 
-function Arrow3D({ from, to, color, marker, label, dashed = false }: { from: { x: number; y: number }; to: { x: number; y: number }; color: string; marker: string; label: string; dashed?: boolean }) {
+function Arrow3D({ from, to, color, marker, label, dashed = false, showLabel = true }: { from: { x: number; y: number }; to: { x: number; y: number }; color: string; marker: string; label: string; dashed?: boolean; showLabel?: boolean }) {
   return (
     <g>
       <line x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={color} strokeWidth="5" strokeLinecap="round" strokeDasharray={dashed ? "8 6" : undefined} markerEnd={`url(#${marker})`} />
-      <text x={to.x + 10} y={to.y - 10} fill={color} fontWeight="900" fontSize="15">{label}</text>
+      {showLabel && <text x={to.x + 10} y={to.y - 10} fill={color} fontWeight="900" fontSize="15">{label}</text>}
     </g>
   );
 }
 
-function Axis({ from, to, color, marker, label }: { from: { x: number; y: number }; to: { x: number; y: number }; color: string; marker: string; label: string }) {
+function Axis({ from, to, color, marker, label, showLabel = true }: { from: { x: number; y: number }; to: { x: number; y: number }; color: string; marker: string; label: string; showLabel?: boolean }) {
   return (
     <g>
       <line x1={from.x} y1={from.y} x2={to.x} y2={to.y} stroke={color} strokeWidth="3" markerEnd={`url(#${marker})`} />
-      <text x={to.x + 8} y={to.y + 4} fill={color} fontWeight="900">{label}</text>
+      {showLabel && <text x={to.x + 8} y={to.y + 4} fill={color} fontWeight="900">{label}</text>}
     </g>
   );
 }
 
-function Handle({ point, color, label, onPointerDown, labelDx = 12, labelDy = 21 }: { point: { x: number; y: number }; color: string; label: string; onPointerDown: (event: PointerEvent<SVGCircleElement>) => void; labelDx?: number; labelDy?: number }) {
+function Handle({ point, color, label, onPointerDown, labelDx = 12, labelDy = 21, showLabel = true }: { point: { x: number; y: number }; color: string; label: string; onPointerDown: (event: PointerEvent<SVGCircleElement>) => void; labelDx?: number; labelDy?: number; showLabel?: boolean }) {
   return (
     <g>
       <circle cx={point.x} cy={point.y} r="11" fill={color} stroke="#e0f2fe" strokeWidth="3" className="cursor-grab active:cursor-grabbing" onPointerDown={onPointerDown} />
-      <text x={point.x + labelDx} y={point.y + labelDy} fill="#e0f2fe" fontSize="11" fontWeight="800">{label}</text>
+      {showLabel && <text x={point.x + labelDx} y={point.y + labelDy} fill="#e0f2fe" fontSize="11" fontWeight="800">{label}</text>}
     </g>
   );
 }
 
-function ZeroVectorMarker({ point, color, label, dx = 10, dy = -24 }: { point: { x: number; y: number }; color: string; label: string; dx?: number; dy?: number }) {
+function ZeroVectorMarker({ point, color, label, dx = 10, dy = -24, showLabel = true }: { point: { x: number; y: number }; color: string; label: string; dx?: number; dy?: number; showLabel?: boolean }) {
   return (
     <g>
       <circle cx={point.x} cy={point.y} r="18" fill="none" stroke={color} strokeWidth="2.5" strokeDasharray="4 4" opacity="0.85" />
-      <text x={point.x + dx} y={point.y + dy} fill={color} fontSize="14" fontWeight="900">{label}</text>
+      {showLabel && <text x={point.x + dx} y={point.y + dy} fill={color} fontSize="14" fontWeight="900">{label}</text>}
     </g>
   );
 }

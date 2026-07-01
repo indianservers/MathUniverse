@@ -1,5 +1,5 @@
-import { Component, lazy, Suspense, type ErrorInfo, type ReactNode } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Component, lazy, Suspense, useEffect, useState, type ErrorInfo, type ReactNode } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import AppLayout from "./components/layout/AppLayout";
 import SeoMetadata from "./components/seo/SeoMetadata";
 
@@ -128,6 +128,7 @@ export default function App() {
   return (
     <AppErrorBoundary>
       <SeoMetadata />
+      <RouteProgressBar />
       <Suspense fallback={<RouteFallback />}>
         <Routes>
           <Route element={<AppLayout />}>
@@ -147,6 +148,7 @@ export default function App() {
             <Route path="math-lab/:toolId" element={<MathLabToolPage />} />
             <Route path="visual-dictionary" element={<MathVisualDictionary />} />
             <Route path="magic-maths" element={<MagicMaths />} />
+            <Route path="magic-maths/:conceptSlug" element={<MagicMaths />} />
             <Route path="workspace" element={<MathWorkspace />} />
             <Route path="workspace/graph" element={<WorkspaceGraph />} />
             <Route path="workspace/geometry" element={<WorkspaceGeometry />} />
@@ -234,6 +236,37 @@ export default function App() {
         </Routes>
       </Suspense>
     </AppErrorBoundary>
+  );
+}
+
+function RouteProgressBar() {
+  const location = useLocation();
+  const [visible, setVisible] = useState(false);
+  const [progress, setProgress] = useState(100);
+
+  useEffect(() => {
+    setVisible(true);
+    setProgress(18);
+    const timers = [
+      window.setTimeout(() => setProgress(48), 80),
+      window.setTimeout(() => setProgress(78), 220),
+      window.setTimeout(() => setProgress(100), 420),
+      window.setTimeout(() => setVisible(false), 700),
+    ];
+
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
+  }, [location.hash, location.pathname, location.search]);
+
+  return (
+    <div
+      className={`route-progress ${visible ? "route-progress-visible" : ""}`}
+      role="progressbar"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(progress)}
+    >
+      <span style={{ transform: `scaleX(${progress / 100})` }} />
+    </div>
   );
 }
 

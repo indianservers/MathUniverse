@@ -1,7 +1,14 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState, type PointerEvent, type WheelEvent } from "react";
 import { conceptCategoryInfo } from "./conceptMapData";
 import type { ConceptEdge, ConceptNode } from "./conceptMapTypes";
 import { getAvailableModuleCount } from "./conceptMapUtils";
+
+const MAP_WIDTH = 1760;
+const MAP_HEIGHT = 1060;
+const VIEWPORT_WIDTH = 1400;
+const VIEWPORT_HEIGHT = 920;
+const MIN_ZOOM = 0.65;
+const MAX_ZOOM = 2.35;
 
 const edgeClass: Record<ConceptEdge["type"], string> = {
   prerequisite: "prerequisite",
@@ -39,11 +46,76 @@ export default function ConceptMapCanvas({
   selectedId?: string;
   visibleConcepts: ConceptNode[];
 }) {
-  const [zoom, setZoom] = useState(1);
+  const [view, setView] = useState({ x: 0, y: 0, zoom: 1 });
   const [hoveredId, setHoveredId] = useState<string | undefined>();
+  const [isPanning, setIsPanning] = useState(false);
+  const dragRef = useRef<{ pointerId: number; x: number; y: number; viewX: number; viewY: number } | null>(null);
   const conceptById = useMemo(() => new Map(visibleConcepts.map((concept) => [concept.id, concept])), [visibleConcepts]);
 
-  const resetView = () => setZoom(1);
+  const viewWidth = VIEWPORT_WIDTH / view.zoom;
+  const viewHeight = VIEWPORT_HEIGHT / view.zoom;
+
+  const clampView = (nextView: { x: number; y: number; zoom: number }) => {
+    const zoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, Number(nextView.zoom.toFixed(2))));
+    const width = VIEWPORT_WIDTH / zoom;
+    const height = VIEWPORT_HEIGHT / zoom;
+    return {
+      x: Math.min(Math.max(nextView.x, 0), Math.max(0, MAP_WIDTH - width)),
+      y: Math.min(Math.max(nextView.y, 0), Math.max(0, MAP_HEIGHT - height)),
+      zoom,
+    };
+  };
+
+  const zoomAtCenter = (delta: number) => {
+    setView((current) => {
+      const nextZoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, Number((current.zoom + delta).toFixed(2))));
+      const currentWidth = VIEWPORT_WIDTH / current.zoom;
+      const currentHeight = VIEWPORT_HEIGHT / current.zoom;
+      const nextWidth = VIEWPORT_WIDTH / nextZoom;
+      const nextHeight = VIEWPORT_HEIGHT / nextZoom;
+      return clampView({
+        x: current.x + (currentWidth - nextWidth) / 2,
+        y: current.y + (currentHeight - nextHeight) / 2,
+        zoom: nextZoom,
+      });
+    });
+  };
+
+  const panBy = (dx: number, dy: number) => {
+    setView((current) => clampView({ ...current, x: current.x + dx, y: current.y + dy }));
+  };
+
+  const resetView = () => setView({ x: 0, y: 0, zoom: 1 });
+  const fitView = () => setView(clampView({ x: 0, y: 0, zoom: Math.min(VIEWPORT_WIDTH / MAP_WIDTH, VIEWPORT_HEIGHT / MAP_HEIGHT) }));
+
+  const handleWheel = (event: WheelEvent<SVGSVGElement>) => {
+    event.preventDefault();
+    zoomAtCenter(event.deltaY > 0 ? -0.12 : 0.12);
+  };
+
+  const handlePointerDown = (event: PointerEvent<SVGSVGElement>) => {
+    if ((event.target as Element).closest(".concept-node")) return;
+    dragRef.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, viewX: view.x, viewY: view.y };
+    setIsPanning(true);
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: PointerEvent<SVGSVGElement>) => {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const dx = (event.clientX - drag.x) * (viewWidth / rect.width);
+    const dy = (event.clientY - drag.y) * (viewHeight / rect.height);
+    setView((current) => clampView({ ...current, x: drag.viewX - dx, y: drag.viewY - dy }));
+  };
+
+  const endPan = (event: PointerEvent<SVGSVGElement>) => {
+    if (dragRef.current?.pointerId === event.pointerId) {
+      dragRef.current = null;
+      setIsPanning(false);
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
 
   return (
     <section className="concept-panel concept-canvas-card" aria-label="Interactive math concept graph">
@@ -53,20 +125,38 @@ export default function ConceptMapCanvas({
           <h2>Math concepts linked by prerequisites, proofs, formulas, and tools</h2>
         </div>
         <div className="concept-zoom-controls" aria-label="Graph zoom controls">
-          <button type="button" onClick={() => setZoom((value) => Math.max(0.72, Number((value - 0.12).toFixed(2))))}>-</button>
+          <button type="button" aria-label="Zoom out" onClick={() => zoomAtCenter(-0.12)}>-</button>
           <button type="button" onClick={resetView}>Reset</button>
-          <button type="button" onClick={() => setZoom((value) => Math.min(1.38, Number((value + 0.12).toFixed(2))))}>+</button>
+          <button type="button" onClick={fitView}>Fit</button>
+          <button type="button" aria-label="Zoom in" onClick={() => zoomAtCenter(0.12)}>+</button>
+          <span className="concept-zoom-value" aria-live="polite">{Math.round(view.zoom * 100)}%</span>
+          <div className="concept-pan-controls" aria-label="Graph pan controls">
+            <button type="button" aria-label="Pan up" onClick={() => panBy(0, -110)}>↑</button>
+            <button type="button" aria-label="Pan left" onClick={() => panBy(-140, 0)}>←</button>
+            <button type="button" aria-label="Pan right" onClick={() => panBy(140, 0)}>→</button>
+            <button type="button" aria-label="Pan down" onClick={() => panBy(0, 110)}>↓</button>
+          </div>
         </div>
       </div>
 
       <div className="concept-canvas-shell">
-        <svg className="concept-canvas" viewBox="0 0 1400 920" role="img" aria-label="Concept map showing connected math topics">
+        <svg
+          className={`concept-canvas ${isPanning ? "is-panning" : ""}`}
+          viewBox={`${view.x} ${view.y} ${viewWidth} ${viewHeight}`}
+          role="img"
+          aria-label="Concept map showing connected math topics. Drag the background, use the mouse wheel, or use the controls to navigate."
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={endPan}
+          onPointerCancel={endPan}
+          onWheel={handleWheel}
+        >
           <defs>
             <marker id="concept-arrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
               <path d="M 0 0 L 8 4 L 0 8 z" />
             </marker>
           </defs>
-          <g style={{ transform: `scale(${zoom})`, transformOrigin: "700px 460px" }}>
+          <g>
             {edges.map((edge) => {
               const source = conceptById.get(edge.source);
               const target = conceptById.get(edge.target);

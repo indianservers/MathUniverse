@@ -1,4 +1,5 @@
 import { ExternalLink, Link as LinkIcon, Smartphone, Terminal } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
@@ -23,6 +24,8 @@ const orderedCategories = Object.keys(groupedLinks).sort((a, b) => {
 export default function Documentation() {
   const internalCount = siteLinks.filter((link) => !link.isExternal).length;
   const externalCount = siteLinks.length - internalCount;
+  const [activeCategory, setActiveCategory] = useState(orderedCategories[0] ?? "Core");
+  const activeLinks = groupedLinks[activeCategory] ?? [];
 
   return (
     <div className="space-y-6">
@@ -81,10 +84,25 @@ export default function Documentation() {
         </div>
       </SectionCard>
 
-      {orderedCategories.map((category) => (
-        <SectionCard key={category} title={category} description={`${groupedLinks[category].length} documented link${groupedLinks[category].length === 1 ? "" : "s"}.`}>
+      <SectionCard title="Documentation Groups" description="Choose one group at a time to keep this reference page compact and easy to scan.">
+        <div className="mobile-safe-scroll thin-scrollbar flex gap-2 overflow-x-auto pb-2">
+          {orderedCategories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              className={activeCategory === category ? "action-primary shrink-0" : "tool-button shrink-0"}
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+              <span className="ml-1 rounded-full bg-white/20 px-2 py-0.5 text-[11px]">{groupedLinks[category].length}</span>
+            </button>
+          ))}
+        </div>
+      </SectionCard>
+
+      <SectionCard title={activeCategory} description={`${activeLinks.length} documented link${activeLinks.length === 1 ? "" : "s"}.`}>
           <div className="grid gap-3 lg:grid-cols-2">
-            {groupedLinks[category].map((item) => (
+            {activeLinks.map((item) => (
               <div key={`${item.category}-${item.path}`} className="rounded-2xl border border-slate-200 bg-white/70 p-4 dark:border-white/10 dark:bg-white/5">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
@@ -128,7 +146,6 @@ export default function Documentation() {
             ))}
           </div>
         </SectionCard>
-      ))}
     </div>
   );
 }

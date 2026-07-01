@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import EngineeringLiveSystemsPanel from "../components/engineering/EngineeringLiveSystemsPanel";
+import MathExpression from "../components/ui/MathExpression";
 import TopicHeader from "../components/ui/TopicHeader";
 import { engineeringConceptLabId, engineeringVisualForConcept, type AdvancedLabVisual } from "../data/advancedSyllabusLabs";
 import { assessmentSummary, buildEngineeringAssessmentPlans, engineeringExamSprints, sprintReadiness } from "../data/engineeringAssessmentPlanner";
@@ -304,7 +305,7 @@ export default function EngineeringMath() {
                       </span>
                       <p className="mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">{preset.summary}</p>
                       <div className="mt-3 flex items-center justify-between gap-2 rounded-lg bg-slate-50 p-2 dark:bg-white/5">
-                        <span className="font-mono text-[11px] font-black text-slate-500 dark:text-slate-300">{preset.formula}</span>
+                        <span className="text-[11px] font-black text-slate-500 dark:text-slate-300"><MathExpression value={preset.formula} /></span>
                         <span className="rounded-full bg-cyan-100 px-2 py-1 text-[11px] font-black text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100">{preset.metricLabel}: {preset.metricValue}</span>
                       </div>
                     </Link>
@@ -396,7 +397,7 @@ export default function EngineeringMath() {
                       <ArrowRight className="h-4 w-4 text-cyan-500 transition group-hover:translate-x-0.5" />
                     </span>
                     <EngineeringFormulaVisual formula={formula} a={visualA} b={visualB} t={visualT} />
-                    <p className="mt-2 rounded-lg bg-slate-50 p-2 font-mono text-xs font-black text-slate-700 dark:bg-white/5 dark:text-slate-200">{formula.formula}</p>
+                    <p className="mt-2 rounded-lg bg-slate-50 p-2 text-xs font-black text-slate-700 dark:bg-white/5 dark:text-slate-200"><MathExpression value={formula.formula} /></p>
                     <p className="mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">{formula.useCase}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {formula.symbols.map((symbol) => <span key={symbol} className="mini-chip">{symbol}</span>)}

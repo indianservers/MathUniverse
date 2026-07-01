@@ -19,6 +19,7 @@ const expectedModels: Record<string, string> = {
   "trapezoid-area-duplication": "area-rearrangement",
   "polygon-interior-angle-sum": "angle-model",
   "area-of-circle-by-unrolling": "area-rearrangement",
+  "circle-to-triangle": "area-rearrangement",
 };
 
 const expectedGeometrySlugs = [
@@ -33,6 +34,7 @@ const expectedGeometrySlugs = [
   "trapezoid-area-duplication",
   "polygon-interior-angle-sum",
   "area-of-circle-by-unrolling",
+  "circle-to-triangle",
 ];
 
 describe("Visual Proofs phase eleven geometry completion", () => {
@@ -75,7 +77,7 @@ describe("Visual Proofs phase eleven geometry completion", () => {
 
   it("keeps all eleven geometry routes phase-upgraded", () => {
     const geometryProofs = getVisualProofsByCategory("geometry").filter((proof) => proof.status === "available");
-    expect(geometryProofs).toHaveLength(11);
+    expect(geometryProofs).toHaveLength(12);
     expect(geometryProofs.map((proof) => proof.slug)).toEqual(expect.arrayContaining(expectedGeometrySlugs));
     expect(geometryProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
     expect(geometryProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);

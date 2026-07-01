@@ -1,5 +1,6 @@
 import { ArrowRight, Clock3 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { MathText } from "../../components/ui/MathExpression";
 import type { VisualProof } from "../data/proofTypes";
 import GeometryProofThumbnail from "./GeometryProofThumbnail";
 
@@ -24,7 +25,9 @@ export default function ProofCard({ proof }: ProofCardProps) {
             {proof.estimatedTime}
           </span>
         </div>
-        <h3 className="mt-3 text-lg font-black text-slate-950 dark:text-white">{proof.title}</h3>
+        <h3 className="mt-3 text-lg font-black text-slate-950 dark:text-white">
+          <MathText value={proof.title} />
+        </h3>
         <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{proof.shortDescription}</p>
         <div className="mt-3 flex flex-wrap gap-1.5">
           {proof.tags.slice(0, 5).map((tag) => (

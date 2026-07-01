@@ -542,7 +542,7 @@ function evaluateNumeric(expression: string): number | null {
     .replace(/\btan\b/gi, "Math.tan")
     .replace(/\blog\b/gi, "Math.log")
     .replace(/\babs\b/gi, "Math.abs");
-  if (!/^[0-9+\-*/().,\sMathPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}\[\]'"]/.test(safe)) return null;
+  if (!/^[0-9+\-*/().,\sMathPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}\]'"[]/.test(safe)) return null;
   try {
     const value = Function(`"use strict"; return (${safe});`)() as number;
     return Number.isFinite(value) ? value : null;

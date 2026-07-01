@@ -17,6 +17,7 @@ export type VisualProofCategoryLoaderMap = Record<string, CategoryProofLoaders>;
 
 const proofModules = import.meta.glob<VisualProofComponentModule>([
   "./CircleAreaUnrollingProof.tsx",
+  "./CircleToTriangleProof.tsx",
   "./algebra/*.tsx",
   "./calculus/*.tsx",
   "./complex-numbers/*.tsx",

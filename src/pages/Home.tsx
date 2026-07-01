@@ -1,4 +1,4 @@
-import { BookOpen, Calculator, Cuboid, FlaskConical, LibraryBig, Trophy, Route, X, HelpCircle, ArrowRight, Sparkles, ShieldCheck, Target } from "lucide-react";
+import { BookOpen, Calculator, Compass, Cuboid, FlaskConical, LibraryBig, PlayCircle, Trophy, Route, X, HelpCircle, ArrowRight, Sparkles, ShieldCheck, Target } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -70,7 +70,7 @@ export default function Home() {
   const [olympyardProgress] = useLocalStorage<OlympyardProgressLite>(OLYMPYARD_PROGRESS_STORAGE_KEY, initialOlympyardProgressLite);
   const recentItems = recentRouteItems(5);
   const [tourOpen, setTourOpen] = useState(false);
-  const [homeFilter, setHomeFilter] = useState<"all" | "core" | "tools" | "practice" | "advanced">("all");
+  const [homeFilter, setHomeFilter] = useState<"all" | "core" | "tools" | "practice" | "advanced">("core");
   const labs = topics.reduce((sum, topic) => sum + topic.labCount, 0);
   const practiceSpine = buildPracticeSpineLite(normalizeOlympyardProgressLite(olympyardProgress));
   const extraCards = [
@@ -151,20 +151,48 @@ export default function Home() {
   const visibleToolCards = homeFilter === "all" || homeFilter === "tools" ? toolCards : [];
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <GuidedTourOverlay open={tourOpen} onClose={() => setTourOpen(false)} />
 
-      <section className="flex flex-wrap items-center gap-3 rounded-xl border border-white/60 bg-white/85 px-4 py-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-900/75">
+      <section className="relative flex flex-wrap items-center gap-4 overflow-hidden rounded-xl border border-white/70 bg-white/88 px-4 py-4 shadow-xl shadow-cyan-100/45 backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/72 dark:shadow-black/20 md:px-5">
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-500 to-violet-500" aria-hidden="true" />
         <div className="min-w-0 flex-1">
-          <h1 className="text-2xl font-bold tracking-tight">Math Universe</h1>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Visual mathematics — equations, geometry, calculus, AI, and waves.</p>
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            <span className="mini-chip bg-white/80 text-cyan-800 dark:bg-white/10 dark:text-cyan-100">
+              <Sparkles className="h-3.5 w-3.5" />
+              2026 visual math workspace
+            </span>
+            <span className="mini-chip bg-emerald-50 text-emerald-800 dark:bg-emerald-300/10 dark:text-emerald-100">
+              {getOverallProgress()}% progress
+            </span>
+          </div>
+          <h1 className="max-w-4xl text-3xl font-black tracking-tight text-slate-950 dark:text-white md:text-4xl">Math Universe</h1>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300 md:text-base">
+            Visual mathematics for equations, geometry, calculus, AI, graph theory, proofs, and classroom-ready experiments.
+          </p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <Link to="/syllabus" className="action-primary">Open Syllabus</Link>
-          <Link to="/calculator" className="action-secondary"><Calculator className="h-4 w-4" />Calculator</Link>
-          <button type="button" className="action-secondary" onClick={() => setTourOpen(true)}>
-            <HelpCircle className="h-4 w-4" />Guided Tour
+        <div className="grid min-w-[min(100%,22rem)] gap-2 sm:grid-cols-2 xl:max-w-md">
+          <Link to="/math-lab" className="action-primary justify-center">
+            <PlayCircle className="h-4 w-4" />
+            Start Math Lab
+          </Link>
+          <Link to="/syllabus" className="action-secondary justify-center">
+            <Compass className="h-4 w-4" />
+            Open Syllabus
+          </Link>
+          <Link to="/visual-proofs" className="action-secondary justify-center">
+            <Sparkles className="h-4 w-4" />
+            Visual Proofs
+          </Link>
+          <button type="button" className="action-secondary justify-center" onClick={() => setTourOpen(true)}>
+            <HelpCircle className="h-4 w-4" />
+            Guided Tour
           </button>
+        </div>
+        <div className="grid w-full gap-2 sm:grid-cols-3">
+          <WelcomeCue icon={<BookOpen className="h-4 w-4" />} title="Explore" text={`${topics.length} topic worlds`} />
+          <WelcomeCue icon={<FlaskConical className="h-4 w-4" />} title="Experiment" text={`${labs} interactive labs`} />
+          <WelcomeCue icon={<Calculator className="h-4 w-4" />} title="Create" text="Tools, proofs, and practice" />
         </div>
       </section>
 
@@ -179,21 +207,23 @@ export default function Home() {
         </section>
       )}
 
-      <div className="flex gap-3 overflow-x-auto pb-1">
-        {[
-          { label: "Topics", value: topics.length, icon: BookOpen, color: "text-cyan-600 dark:text-cyan-300" },
-          { label: "Labs", value: labs, icon: FlaskConical, color: "text-violet-600 dark:text-violet-300" },
-          { label: "Syllabus", value: "6 levels", icon: LibraryBig, color: "text-amber-600 dark:text-amber-300" },
-          { label: "Progress", value: `${getOverallProgress()}%`, icon: Route, color: "text-emerald-600 dark:text-emerald-300" },
-          { label: "Quiz Topics", value: 8, icon: Trophy, color: "text-rose-600 dark:text-rose-300" },
-          { label: "Tools", value: 2, icon: Calculator, color: "text-sky-600 dark:text-sky-300" },
-        ].map(({ label, value, icon: Icon, color }) => (
-          <div key={label} className="flex shrink-0 items-center gap-2 rounded-2xl border border-slate-200 bg-white/80 px-4 py-2.5 dark:border-white/10 dark:bg-white/5">
-            <Icon className={`h-4 w-4 ${color}`} />
-            <span className="text-sm font-black">{value}</span>
-            <span className="text-xs text-slate-500 dark:text-slate-400">{label}</span>
-          </div>
-        ))}
+      <div className="max-w-full min-w-0 overflow-hidden rounded-xl border border-white/60 bg-white/70 p-2 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/[0.04]">
+        <div className="grid max-w-full min-w-0 grid-cols-2 gap-2 sm:mobile-safe-scroll sm:thin-scrollbar sm:flex sm:overflow-x-auto sm:pb-1">
+          {[
+            { label: "Topics", value: topics.length, icon: BookOpen, color: "text-cyan-600 dark:text-cyan-300" },
+            { label: "Labs", value: labs, icon: FlaskConical, color: "text-violet-600 dark:text-violet-300" },
+            { label: "Syllabus", value: "6 levels", icon: LibraryBig, color: "text-amber-600 dark:text-amber-300" },
+            { label: "Progress", value: `${getOverallProgress()}%`, icon: Route, color: "text-emerald-600 dark:text-emerald-300" },
+            { label: "Quiz Topics", value: 8, icon: Trophy, color: "text-rose-600 dark:text-rose-300" },
+            { label: "Tools", value: 2, icon: Calculator, color: "text-sky-600 dark:text-sky-300" },
+          ].map(({ label, value, icon: Icon, color }) => (
+            <div key={label} className="flex min-w-0 items-center justify-center gap-2 rounded-xl border border-slate-200/80 bg-white/85 px-3 py-2.5 shadow-sm dark:border-white/10 dark:bg-slate-950/35 sm:shrink-0 sm:justify-start sm:px-4">
+              <Icon className={`h-4 w-4 ${color}`} />
+              <span className="text-sm font-black">{value}</span>
+              <span className="min-w-0 truncate text-xs text-slate-500 dark:text-slate-400">{label}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
@@ -207,7 +237,7 @@ export default function Home() {
           <button
             key={id}
             type="button"
-            className={homeFilter === id ? "action-primary" : "tool-button"}
+            className={homeFilter === id ? "action-primary min-h-10 rounded-xl px-4 py-2" : "tool-button min-h-10 rounded-xl px-4 py-2"}
             onClick={() => setHomeFilter(id as typeof homeFilter)}
           >
             {label}
@@ -225,6 +255,18 @@ export default function Home() {
         {visibleToolCards.map(({ card }) => <DashboardCard key={card.title} title={card.title} description={card.description} concepts={card.concepts} icon={card.icon} route={card.route} progress={0} colorGradient={card.colorGradient} />)}
       </div>
       {homeFilter === "all" && <AITutorPanel />}
+    </div>
+  );
+}
+
+function WelcomeCue({ icon, title, text }: { icon: JSX.Element; title: string; text: string }) {
+  return (
+    <div className="rounded-xl border border-slate-200/80 bg-white/78 px-3 py-2.5 shadow-sm dark:border-white/10 dark:bg-white/[0.06]">
+      <p className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">
+        {icon}
+        {title}
+      </p>
+      <p className="mt-1 text-sm font-bold text-slate-700 dark:text-slate-200">{text}</p>
     </div>
   );
 }
@@ -248,7 +290,7 @@ function PracticeSpineStrip({ spine }: { spine: ReturnType<typeof buildPracticeS
           Olympyard now connects topic labs, quizzes, visual reasoning, weak-area review, and mock tests into one adaptive queue.
         </p>
       </div>
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-white/60 bg-white/70 p-2 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/[0.04]">
         <Link to={spine.primaryPracticeRoute} className="action-primary">
           <Target className="h-4 w-4" />
           Practice next

@@ -3,6 +3,7 @@ import katex from "katex";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionCard from "../ui/SectionCard";
+import MathExpression, { normalizeFormulaForKatex } from "../ui/MathExpression";
 import MatrixGrid from "./MatrixGrid";
 import type { MatrixStep } from "../../utils/matrixOperations";
 import type { Matrix } from "../../utils/matrixOperations";
@@ -24,7 +25,7 @@ export function MatrixBackLink() {
 }
 
 export function MatrixFormulaBlock({ formula, title = "Formula" }: { formula: string; title?: string }) {
-  const html = useMemo(() => katex.renderToString(formula, { displayMode: true, throwOnError: false }), [formula]);
+  const html = useMemo(() => katex.renderToString(normalizeFormulaForKatex(formula), { displayMode: true, throwOnError: false }), [formula]);
   return (
     <div className="rounded-2xl border border-cyan-200/70 bg-cyan-50 p-4 dark:border-cyan-400/20 dark:bg-cyan-400/10">
       <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">{title}</p>
@@ -51,7 +52,7 @@ export function StepByStepPanel({ steps, active, onActiveChange }: { steps: Matr
         <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
           <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Step {active + 1} of {steps.length}</p>
           <h3 className="mt-2 text-xl font-black">{step.title}</h3>
-          <p className="mt-2 font-mono text-sm text-slate-700 dark:text-slate-200">{step.formula}</p>
+          <p className="mt-2 text-sm font-semibold text-slate-700 dark:text-slate-200"><MathExpression value={step.formula} /></p>
           <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{step.calculation}</p>
         </div>
         <div className="flex flex-wrap gap-2">

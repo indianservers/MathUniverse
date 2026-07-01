@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Pause, Play, RotateCcw } from "lucide-react";
-import SectionCard from "../components/ui/SectionCard";
+import DualPaneMathLayout from "../components/ui/DualPaneMathLayout";
 import SliderControl from "../components/ui/SliderControl";
-import TopicHeader from "../components/ui/TopicHeader";
 import { compileFunctionExpression } from "../utils/functionParser";
 import { roundTo } from "../utils/math";
 
@@ -68,47 +67,61 @@ export default function IntegrationAreaVisualizerPage() {
   const graphData = useMemo(() => compiled.fn ? sampleCurves(compiled.fn, useSecondCurve ? compiledSecond.fn : null, -8, 8) : { f: [], g: [] }, [compiled.fn, compiledSecond.fn, useSecondCurve]);
 
   return (
-    <div className="space-y-6">
-      <TopicHeader title="Integration and Area Visualizer" subtitle="Explore definite integrals as accumulated area with Riemann sums, trapezoids, Simpson approximation, and area between curves." difficulty="Integral Calculus" estimatedMinutes={22} />
-
-      <div className="grid gap-6 xl:grid-cols-[380px_minmax(0,1fr)]">
-        <SectionCard title="Function Input and Method Controls" description="Enter functions, choose limits, and compare numerical approximation methods.">
-          <div className="space-y-4">
-            <FunctionInput label="f(x)" draft={draft} setDraft={setDraft} apply={() => setExpression(draft)} error={compiled.error} />
-            <label className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm font-bold dark:border-white/10 dark:bg-white/5">
-              <input type="checkbox" checked={useSecondCurve} onChange={(event) => setUseSecondCurve(event.target.checked)} />
-              Area between f(x) and g(x)
-            </label>
-            {useSecondCurve && <FunctionInput label="g(x)" draft={secondDraft} setDraft={setSecondDraft} apply={() => setSecondExpression(secondDraft)} error={compiledSecond.error} />}
-
-            <div className="grid grid-cols-2 gap-3">
-              <NumberInput label="lower limit a" value={lower} onChange={setLower} />
-              <NumberInput label="upper limit b" value={upper} onChange={setUpper} />
-            </div>
-            <SliderControl label="number of partitions n" value={n} min={2} max={100} step={1} onChange={setPartitions} />
-            <label className="block">
-              <span className="text-sm font-bold">Numerical method</span>
-              <select value={method} onChange={(event) => setMethod(event.target.value as Method)} className="mt-2 min-h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-bold outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-950">
-                {Object.entries(methodLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-              </select>
-            </label>
-            <div className="flex flex-wrap gap-2">
-              <button type="button" onClick={() => setAnimating((value) => !value)} className={animating ? "action-primary" : "action-secondary"}>{animating ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}{animating ? "Pause" : "Animate partitions"}</button>
-              <button type="button" onClick={() => { setAnimating(false); setPartitions(12); }} className="action-secondary"><RotateCcw className="h-4 w-4" />Reset n</button>
-            </div>
-            {!intervalValid && <ErrorBox message="Lower and upper limits must be different." />}
-            {simpsonBlocked && <ErrorBox message="Simpson's Rule requires an even number of partitions. Use an even n or choose another method." />}
+    <DualPaneMathLayout
+      title="Integration and Area"
+      subtitle="Explore definite integrals as accumulated area with Riemann sums, trapezoids, Simpson approximation, and area between curves."
+      meta={
+        <>
+          <span className="rounded-full bg-cyan-100 px-3 py-2 text-xs font-black text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-200">Integral Calculus</span>
+          <span className="rounded-full bg-violet-100 px-3 py-2 text-xs font-black text-violet-800 dark:bg-violet-400/15 dark:text-violet-200">22 min</span>
+        </>
+      }
+      controls={
+        <div className="space-y-4">
+          <FunctionInput label="f(x)" draft={draft} setDraft={setDraft} apply={() => setExpression(draft)} error={compiled.error} />
+          <label className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm font-bold dark:border-white/10 dark:bg-white/5">
+            <input type="checkbox" checked={useSecondCurve} onChange={(event) => setUseSecondCurve(event.target.checked)} />
+            Area between f(x) and g(x)
+          </label>
+          {useSecondCurve && <FunctionInput label="g(x)" draft={secondDraft} setDraft={setSecondDraft} apply={() => setSecondExpression(secondDraft)} error={compiledSecond.error} />}
+          <div className="grid grid-cols-2 gap-3">
+            <NumberInput label="lower a" value={lower} onChange={setLower} />
+            <NumberInput label="upper b" value={upper} onChange={setUpper} />
           </div>
-        </SectionCard>
-
-        <SectionCard title="Graph and Area" description="Blue is f(x), violet is g(x) when enabled, orange shading shows the area being accumulated." tone="spotlight">
-          <IntegralGraph f={graphData.f} g={graphData.g} fn={compiled.fn} gn={useSecondCurve ? compiledSecond.fn : null} lower={left} upper={right} n={n} method={method} useSecondCurve={useSecondCurve} />
-        </SectionCard>
-      </div>
-
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
-        <SectionCard title="Numerical Result Panel">
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          <SliderControl density="compact" label="partitions n" value={n} min={2} max={100} step={1} onChange={setPartitions} />
+          <label className="block">
+            <span className="text-sm font-bold">Numerical method</span>
+            <select value={method} onChange={(event) => setMethod(event.target.value as Method)} className="mt-2 min-h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-bold outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-950">
+              {Object.entries(methodLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+            </select>
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            <button type="button" onClick={() => setAnimating((value) => !value)} className={animating ? "action-primary justify-center" : "action-secondary justify-center"}>{animating ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}{animating ? "Pause" : "Animate"}</button>
+            <button type="button" onClick={() => { setAnimating(false); setPartitions(12); }} className="action-secondary justify-center"><RotateCcw className="h-4 w-4" />Reset</button>
+          </div>
+          {!intervalValid && <ErrorBox message="Lower and upper limits must be different." />}
+          {simpsonBlocked && <ErrorBox message="Simpson's Rule requires an even number of partitions." />}
+        </div>
+      }
+      panes={[
+        {
+          id: "2d",
+          label: "2D graph",
+          title: "2D Area Pane",
+          description: "Blue is f(x), violet is g(x) when enabled, orange shading shows accumulated area.",
+          content: <IntegralGraph f={graphData.f} g={graphData.g} fn={compiled.fn} gn={useSecondCurve ? compiledSecond.fn : null} lower={left} upper={right} n={n} method={method} useSecondCurve={useSecondCurve} />,
+        },
+        {
+          id: "3d",
+          label: "3D pane",
+          title: "3D Slice Pane",
+          description: "An isometric slice model shows partitions as thin area blocks, reducing the need for a second page section.",
+          content: <IntegralDepthPane n={n} method={method} approx={result?.approx} />,
+        },
+      ]}
+      insights={
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-2">
             <Metric label="Approx integral" value={format(result?.approx)} />
             <Metric label="Method" value={methodLabels[method]} />
             <Metric label="Partitions" value={n.toString()} />
@@ -116,28 +129,22 @@ export default function IntegrationAreaVisualizerPage() {
             <Metric label="Positive area" value={format(result?.positiveArea)} />
             <Metric label="Negative area" value={format(result?.negativeArea)} />
             <Metric label="Net signed area" value={format(result?.signedArea)} />
-            <Metric label="Area between curves" value={useSecondCurve ? format(result?.betweenArea) : "off"} />
+            <Metric label="Between curves" value={useSecondCurve ? format(result?.betweenArea) : "off"} />
           </div>
-          {result?.undefinedCount ? <ErrorBox message={`${result.undefinedCount} sampled subinterval points were undefined or unstable. Try changing the interval or function.`} /> : null}
-        </SectionCard>
-
-        <SectionCard title="Educational Explanation">
+          {result?.undefinedCount ? <ErrorBox message={`${result.undefinedCount} sampled subinterval points were undefined or unstable.`} /> : null}
           <div className="space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
             <p>A definite integral adds tiny signed slices from <strong>x = a</strong> to <strong>x = b</strong>.</p>
-            <p>Riemann sums use rectangles. Trapezoidal rule uses slanted tops. Simpson's rule uses parabolic arcs and usually becomes very accurate for smooth curves.</p>
-            <p>More partitions make each slice thinner, so the approximation usually improves. Signed area counts region below the x-axis as negative, while geometric area counts all covered area as positive.</p>
+            <p>More partitions make each slice thinner, so the approximation usually improves.</p>
+            <p>Signed area counts region below the x-axis as negative; geometric area counts all covered area as positive.</p>
           </div>
-        </SectionCard>
-      </div>
-
-      <SectionCard title="Preset Examples" description="Load a common function and explore its accumulated area.">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {presets.map((preset) => (
-            <button key={preset} type="button" onClick={() => { setDraft(preset); setExpression(preset); }} className="cinematic-preset-button font-mono">{preset}</button>
-          ))}
+          <div className="grid grid-cols-2 gap-2">
+            {presets.map((preset) => (
+              <button key={preset} type="button" onClick={() => { setDraft(preset); setExpression(preset); }} className="cinematic-preset-button px-3 py-2 font-mono text-xs">{preset}</button>
+            ))}
+          </div>
         </div>
-      </SectionCard>
-    </div>
+      }
+    />
   );
 }
 
@@ -182,6 +189,47 @@ function IntegralGraph({ f, g, fn, gn, lower, upper, n, method, useSecondCurve }
       {useSecondCurve && <path d={path(g, sx, sy, yMin, yMax)} fill="none" stroke="#c084fc" strokeWidth="4" filter="url(#integral-glow)" />}
       <text x="58" y="28" fontSize="13" fontWeight="900" fill="#67e8f9">f(x)</text>
       {useSecondCurve && <text x="112" y="28" fontSize="13" fontWeight="900" fill="#d8b4fe">g(x)</text>}
+    </svg>
+  );
+}
+
+function IntegralDepthPane({ n, method, approx }: { n: number; method: Method; approx?: number }) {
+  const count = Math.min(28, Math.max(6, Math.round(n / 3)));
+  const bars = Array.from({ length: count }, (_, index) => {
+    const t = index / Math.max(1, count - 1);
+    const height = 44 + Math.sin(t * Math.PI * 1.4) * 72 + t * 36;
+    const x = 118 + index * 17;
+    const y = 330 - height;
+    return { x, y, height, shade: 0.35 + t * 0.45 };
+  });
+
+  return (
+    <svg viewBox="0 0 760 460" className="cinematic-svg-stage sm:h-[460px]">
+      <defs>
+        <linearGradient id="integral-depth-bg" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stopColor="#07182d" />
+          <stop offset="58%" stopColor="#0f172a" />
+          <stop offset="100%" stopColor="#020617" />
+        </linearGradient>
+        <linearGradient id="slice-fill" x1="0" x2="1">
+          <stop offset="0%" stopColor="#22d3ee" />
+          <stop offset="100%" stopColor="#f59e0b" />
+        </linearGradient>
+      </defs>
+      <rect width="760" height="460" fill="url(#integral-depth-bg)" />
+      <polygon points="86,350 608,350 674,292 156,292" fill="#0f766e" opacity="0.22" stroke="#67e8f9" strokeWidth="2" />
+      {bars.map((bar, index) => (
+        <g key={index}>
+          <polygon points={`${bar.x},${bar.y} ${bar.x + 14},${bar.y - 10} ${bar.x + 14},330 ${bar.x},340`} fill="url(#slice-fill)" opacity={bar.shade} />
+          <polygon points={`${bar.x + 14},${bar.y - 10} ${bar.x + 28},${bar.y} ${bar.x + 28},340 ${bar.x + 14},330`} fill="#a78bfa" opacity={bar.shade * 0.8} />
+          <polygon points={`${bar.x},${bar.y} ${bar.x + 14},${bar.y - 10} ${bar.x + 28},${bar.y} ${bar.x + 14},${bar.y + 10}`} fill="#fef3c7" opacity={bar.shade} />
+        </g>
+      ))}
+      <path d="M116 318 C210 184 302 188 410 235 C496 272 550 180 610 168" fill="none" stroke="#22d3ee" strokeWidth="6" />
+      <text x="98" y="82" fill="#f8fafc" fontSize="30" fontWeight="900">3D accumulation model</text>
+      <text x="100" y="118" fill="#bae6fd" fontSize="16" fontWeight="700">Partitions become thin depth slices; their volumes represent accumulated area.</text>
+      <text x="100" y="404" fill="#f8fafc" fontSize="18" fontWeight="900">method: {methodLabels[method]}</text>
+      <text x="430" y="404" fill="#fbbf24" fontSize="18" fontWeight="900">approx = {format(approx)}</text>
     </svg>
   );
 }

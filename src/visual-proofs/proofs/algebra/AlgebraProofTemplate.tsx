@@ -162,28 +162,86 @@ function renderAlgebraModel(kind: AlgebraProofConfig["kind"], values: AlgebraVal
 }
 
 function SquareGridModel({ values, step, labels, mode, secondary = false }: { values: AlgebraValues; step: number; labels: boolean; mode: "sum" | "difference" | "minus"; secondary?: boolean }) {
-  const a = values.a || values.x || 5;
-  const b = values.b || 3;
+  const firstKey = values.x ? "x" : "a";
+  const secondKey = values.x ? "a" : "b";
+  const a = firstKey === "x" ? values.x || 5 : values.a || 5;
+  const b = secondKey === "a" ? values.a || 3 : values.b || 3;
   const x = 140;
   const y = 130;
   const size = 280;
+  if (mode === "difference") return <SquareDifferenceModel values={values} step={step} labels={labels} secondary={secondary} />;
+
   const split = (a / (a + b)) * size;
   const negative = mode !== "sum";
+  const leftLabel = firstKey;
+  const rightLabel = secondKey;
   const rects = [
-    { x, y, width: split, height: split, label: mode === "minus" ? "x^2" : "a^2", fill: "#bae6fd" },
-    { x: x + split, y, width: size - split, height: split, label: negative ? "-ab" : "ab", fill: negative ? "url(#algebra-removed)" : "#fde68a" },
-    { x, y: y + split, width: split, height: size - split, label: negative ? "-ab" : "ab", fill: negative ? "url(#algebra-removed)" : "#fcd34d" },
-    { x: x + split, y: y + split, width: size - split, height: size - split, label: mode === "minus" ? "a^2" : "b^2", fill: "#c4b5fd" },
+    { x, y, width: split, height: split, label: `${leftLabel}^2`, fill: "#bae6fd" },
+    { x: x + split, y, width: size - split, height: split, label: negative ? `-${leftLabel}${rightLabel}` : `${leftLabel}${rightLabel}`, fill: negative ? "url(#algebra-removed)" : "#fde68a" },
+    { x, y: y + split, width: split, height: size - split, label: negative ? `-${leftLabel}${rightLabel}` : `${leftLabel}${rightLabel}`, fill: negative ? "url(#algebra-removed)" : "#fcd34d" },
+    { x: x + split, y: y + split, width: size - split, height: size - split, label: `${rightLabel}^2`, fill: "#c4b5fd" },
   ];
   return (
     <g>
       {rects.map((rect, index) => (
         <AreaRect key={rect.label + index} rect={rect} active={step >= Math.min(index + 2, 5)} labels={labels} dashed={negative && (index === 1 || index === 2)} />
       ))}
-      {secondary && labels && <DimensionBraces x={x} y={y} size={size} split={split} left="a" right="b" />}
+      {labels && <DimensionBraces x={x} y={y} size={size} split={split} left={leftLabel} right={rightLabel} topValue={`${leftLabel}=${a}`} bottomValue={`${rightLabel}=${b}`} />}
+      {labels && <DimensionBraces x={x} y={y} size={size} split={split} left={leftLabel} right={rightLabel} orientation="left" topValue={leftLabel} bottomValue={rightLabel} />}
       <Text x="635" y="205">{negative ? "subtract strips, then correct overlap" : "whole square = sum of all regions"}</Text>
-      <Text x="635" y="250">{mode === "minus" ? "x^2 +/- 2ax + a^2" : mode === "difference" ? "(a - b)^2 = a^2 - 2ab + b^2" : "(a + b)^2 = a^2 + 2ab + b^2"}</Text>
-      <NumericExample kind={mode === "sum" ? "sum" : "difference"} values={values} />
+      <Text x="635" y="250">{mode === "minus" ? "x^2 - 2ax + a^2" : values.x ? "x^2 + 2ax + a^2" : "(a + b)^2 = a^2 + 2ab + b^2"}</Text>
+      <NumericExample kind={values.x ? (negative ? "perfectMinus" : "perfectPlus") : mode === "sum" ? "sum" : "difference"} values={values} />
+      <ValueBadge values={values.x ? [["x", a], ["a", b], ["side", `${leftLabel} ${negative ? "-" : "+"} ${rightLabel}`]] : [["a", a], ["b", b], ["side", `${a} + ${b}`]]} />
+    </g>
+  );
+}
+
+function SquareDifferenceModel({ values, step, labels, secondary }: { values: AlgebraValues; step: number; labels: boolean; secondary: boolean }) {
+  const a = values.a || 7;
+  const b = Math.min(values.b || 2, a - 1);
+  const x = 140;
+  const y = 130;
+  const size = 280;
+  const strip = (b / a) * size;
+  const keep = size - strip;
+  const showRemoved = secondary || step >= 2;
+  const showCorrection = secondary || step >= 4;
+
+  return (
+    <g>
+      <rect x={x} y={y} width={size} height={size} fill="#e0f2fe" stroke="#0f172a" strokeWidth="3" />
+      {labels && <Text x={x + keep / 2} y={y + keep / 2}>(a - b)^2</Text>}
+      {showRemoved && (
+        <>
+          <rect x={x + keep} y={y} width={strip} height={size} fill="url(#algebra-removed)" stroke="#ef4444" strokeWidth="3" strokeDasharray="8 6" opacity="0.9" />
+          <rect x={x} y={y + keep} width={size} height={strip} fill="url(#algebra-removed)" stroke="#ef4444" strokeWidth="3" strokeDasharray="8 6" opacity="0.9" />
+          {labels && (
+            <>
+              <Text x={x + keep + strip / 2} y={y + keep / 2}>-ab</Text>
+              <Text x={x + keep / 2} y={y + keep + strip / 2}>-ab</Text>
+            </>
+          )}
+        </>
+      )}
+      {showCorrection && (
+        <>
+          <rect x={x + keep} y={y + keep} width={strip} height={strip} fill="#c4b5fd" stroke="#7c3aed" strokeWidth="3" />
+          {labels && strip > 44 && <Text x={x + keep + strip / 2} y={y + keep + strip / 2 + 5}>+b^2</Text>}
+        </>
+      )}
+      {labels && (
+        <>
+          <DimensionBraces x={x} y={y} size={size} split={keep} left="a - b" right="b" topValue={`a=${a}`} bottomValue={`b=${b}`} />
+          <DimensionBraces x={x} y={y} size={size} split={keep} left="a - b" right="b" orientation="left" topValue="a - b" bottomValue="b" />
+          <OuterDimensionLabel x1={x} y1={y + size + 24} x2={x + size} y2={y + size + 24} label={`whole side a = ${a}`} />
+          <OuterDimensionLabel x1={x - 24} y1={y} x2={x - 24} y2={y + size} label="a" vertical />
+        </>
+      )}
+      <Text x="635" y="205">start with a^2, remove two b-wide strips</Text>
+      <Text x="635" y="250">the corner b^2 was removed twice, so add it back</Text>
+      <Text x="635" y="295">(a - b)^2 = a^2 - 2ab + b^2</Text>
+      <NumericExample kind="difference" values={{ ...values, b }} />
+      <ValueBadge values={[["a", a], ["b", b], ["a - b", a - b]]} />
     </g>
   );
 }
@@ -192,15 +250,24 @@ function RectGridModel({ values, step, labels, widthKeys, heightKeys, terms }: {
   const widthParts = widthKeys.map((key) => values[key] || 2);
   const heightParts = heightKeys.map((key) => values[key] || 2);
   const rects = getAreaModelRects(widthParts, heightParts, 120, 150, 330, 230);
+  const widthSplit = (widthParts[0] / (widthParts[0] + widthParts[1])) * 330;
+  const heightSplit = (heightParts[0] / (heightParts[0] + heightParts[1])) * 230;
   return (
     <g>
       {rects.map((rect, index) => (
         <AreaRect key={`${rect.row}-${rect.column}`} rect={{ ...rect, label: terms[index], fill: ["#bae6fd", "#fde68a", "#c4b5fd", "#bbf7d0"][index % 4] }} active={step >= Math.min(index + 2, 5)} labels={labels} />
       ))}
+      {labels && (
+        <>
+          <DimensionBraces x={120} y={150} size={330} split={widthSplit} left={widthKeys[0]} right={widthKeys[1]} topValue={`${widthKeys[0]}=${widthParts[0]}`} bottomValue={`${widthKeys[1]}=${widthParts[1]}`} />
+          <DimensionBraces x={120} y={150} size={230} split={heightSplit} left={heightKeys[0]} right={heightKeys[1]} orientation="left" topValue={`${heightKeys[0]}=${heightParts[0]}`} bottomValue={`${heightKeys[1]}=${heightParts[1]}`} />
+        </>
+      )}
       <Text x="285" y="420">{widthKeys.join(" + ")} by {heightKeys.join(" + ")}</Text>
       <Text x="640" y="225">Each rectangle is one product term.</Text>
       <Text x="640" y="275">{terms.join(" + ")}</Text>
       <NumericExample kind="binomial" values={values} />
+      <ValueBadge values={[...widthKeys, ...heightKeys].map((key) => [key, values[key] || 2])} />
     </g>
   );
 }
@@ -209,14 +276,19 @@ function GridModel({ values, step, labels, parts }: { values: AlgebraValues; ste
   const partValues = parts.map((key) => values[key] || 2);
   const rects = getAreaModelRects(partValues, partValues, 120, 125, 300, 300);
   const termLabels = ["a^2", "ab", "ac", "ba", "b^2", "bc", "ca", "cb", "c^2"];
+  const firstSplit = (partValues[0] / partValues.reduce((sum, value) => sum + value, 0)) * 300;
+  const secondSplit = firstSplit + (partValues[1] / partValues.reduce((sum, value) => sum + value, 0)) * 300;
   return (
     <g>
       {rects.map((rect, index) => (
         <AreaRect key={index} rect={{ ...rect, label: termLabels[index], fill: index % 2 ? "#fde68a" : "#bae6fd" }} active={step >= Math.min(index + 1, 5)} labels={labels} />
       ))}
+      {labels && <MultiPartGuide x={120} y={125} size={300} splits={[firstSplit, secondSplit]} labels={parts.map((part) => `${part}=${values[part] || 2}`)} />}
+      {labels && <MultiPartGuide x={120} y={125} size={300} splits={[firstSplit, secondSplit]} labels={parts} orientation="left" />}
       <Text x="640" y="230">Pair symmetric regions:</Text>
       <Text x="640" y="275">ab + ba, bc + cb, ca + ac</Text>
       <Text x="640" y="320">a^2 + b^2 + c^2 + 2ab + 2bc + 2ca</Text>
+      <ValueBadge values={parts.map((key) => [key, values[key] || 2])} />
     </g>
   );
 }
@@ -232,8 +304,15 @@ function CompletingSquareModel({ values, step, labels, secondary }: { values: Al
       <AreaRect rect={{ x: x + xSize, y, width: half, height: xSize, label: "(b/2)x", fill: "#fde68a" }} active={step >= 2} labels={labels} />
       <AreaRect rect={{ x, y: y + xSize, width: xSize, height: half, label: "(b/2)x", fill: "#fcd34d" }} active={step >= 2} labels={labels} />
       <AreaRect rect={{ x: x + xSize, y: y + xSize, width: half, height: half, label: "(b/2)^2", fill: secondary || step >= 4 ? "#c4b5fd" : "none" }} active={secondary || step >= 4} labels={labels} dashed />
+      {labels && (
+        <>
+          <DimensionBraces x={x} y={y} size={xSize + half} split={xSize} left="x" right="b/2" topValue={`x=${values.x || 5}`} bottomValue={`b/2=${(values.b || 4) / 2}`} />
+          <DimensionBraces x={x} y={y} size={xSize + half} split={xSize} left="x" right="b/2" orientation="left" topValue="x" bottomValue="b/2" />
+        </>
+      )}
       <Text x="650" y="245">missing corner completes the square</Text>
       <Text x="650" y="295">side = x + b/2</Text>
+      <ValueBadge values={[["x", values.x || 5], ["b", values.b || 4], ["b/2", (values.b || 4) / 2]]} />
     </g>
   );
 }
@@ -253,11 +332,14 @@ function DifferenceSquaresModel({ values, step, labels, secondary, productMode =
         <>
           <Text x={x + size / 2} y={y + size / 2}>a^2</Text>
           <Text x={x + size - small / 2} y={y + size - small / 2}>b^2 removed</Text>
+          <DimensionBraces x={x} y={y} size={size} split={size - small} left="a - b" right="b" topValue={`a=${a}`} bottomValue={`b=${b}`} />
+          <DimensionBraces x={x} y={y} size={size} split={size - small} left="a - b" right="b" orientation="left" topValue="a - b" bottomValue="b" />
         </>
       )}
       {(secondary || step >= 3) && <rect x="520" y="185" width="260" height="110" fill="#fef3c7" stroke="#d97706" strokeWidth="4" />}
       <Text x="650" y="335">{productMode ? "(a + b)(a - b)" : "(a - b)(a + b)"}</Text>
       <NumericExample kind="diffSquares" values={{ ...values, b }} />
+      <ValueBadge values={[["a", a], ["b", b], ["a - b", a - b], ["a + b", a + b]]} />
     </g>
   );
 }
@@ -275,6 +357,7 @@ function CubeModel({ kind, values, step, labels, secondary }: { kind: AlgebraPro
       {blocks.map((block, index) => (
         <IsoBlock key={block.label} block={block} active={step >= index + 1} labels={labels} offset={secondary ? index * 18 : 0} />
       ))}
+      {labels && <ValueBadge values={[["a", values.a || 5], ["b", values.b || 2], [kind === "CubeOfDifferenceProof" ? "edge" : "edge", kind === "CubeOfDifferenceProof" ? `${values.a || 5} - ${values.b || 2}` : `${values.a || 5} + ${values.b || 2}`]]} />}
       <Text x="650" y="220">{minus ? "subtract slabs, correct overlaps" : "volume blocks group as 1, 3, 3, 1"}</Text>
       <Text x="650" y="270">{minus ? "(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3" : "(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3"}</Text>
       <NumericExample kind={minus ? "cubeDiff" : "cubeSum"} values={values} />
@@ -304,13 +387,100 @@ function IsoBlock({ block, active, labels, offset }: { block: { x: number; y: nu
   );
 }
 
-function DimensionBraces({ x, y, size, split, left, right }: { x: number; y: number; size: number; split: number; left: string; right: string }) {
+function DimensionBraces({
+  x,
+  y,
+  size,
+  split,
+  left,
+  right,
+  orientation = "top",
+  topValue,
+  bottomValue,
+}: {
+  x: number;
+  y: number;
+  size: number;
+  split: number;
+  left: string;
+  right: string;
+  orientation?: "top" | "left";
+  topValue?: string;
+  bottomValue?: string;
+}) {
+  if (orientation === "left") {
+    return (
+      <g>
+        <line x1={x - 18} y1={y} x2={x - 18} y2={y + split} stroke="#0891b2" strokeWidth="3" />
+        <line x1={x - 18} y1={y + split} x2={x - 18} y2={y + size} stroke="#d97706" strokeWidth="3" />
+        <circle cx={x - 18} cy={y} r="3" fill="#0891b2" />
+        <circle cx={x - 18} cy={y + split} r="3" fill="#0f172a" />
+        <circle cx={x - 18} cy={y + size} r="3" fill="#d97706" />
+        <RotatedText x={x - 42} y={y + split / 2}>{topValue ?? left}</RotatedText>
+        <RotatedText x={x - 42} y={y + split + (size - split) / 2}>{bottomValue ?? right}</RotatedText>
+      </g>
+    );
+  }
+
   return (
     <g>
       <line x1={x} y1={y - 20} x2={x + split} y2={y - 20} stroke="#0891b2" strokeWidth="3" />
       <line x1={x + split} y1={y - 20} x2={x + size} y2={y - 20} stroke="#d97706" strokeWidth="3" />
-      <Text x={x + split / 2} y={y - 30}>{left}</Text>
-      <Text x={x + split + (size - split) / 2} y={y - 30}>{right}</Text>
+      <circle cx={x} cy={y - 20} r="3" fill="#0891b2" />
+      <circle cx={x + split} cy={y - 20} r="3" fill="#0f172a" />
+      <circle cx={x + size} cy={y - 20} r="3" fill="#d97706" />
+      <Text x={x + split / 2} y={y - 30}>{topValue ?? left}</Text>
+      <Text x={x + split + (size - split) / 2} y={y - 30}>{bottomValue ?? right}</Text>
+    </g>
+  );
+}
+
+function MultiPartGuide({ x, y, size, splits, labels, orientation = "top" }: { x: number; y: number; size: number; splits: number[]; labels: Array<string | number>; orientation?: "top" | "left" }) {
+  const positions = [0, ...splits, size];
+  return (
+    <g>
+      {positions.slice(0, -1).map((start, index) => {
+        const end = positions[index + 1];
+        const midpoint = start + (end - start) / 2;
+        const stroke = ["#0891b2", "#d97706", "#7c3aed"][index % 3];
+        if (orientation === "left") {
+          return (
+            <g key={`${start}-${end}-${index}`}>
+              <line x1={x - 18} y1={y + start} x2={x - 18} y2={y + end} stroke={stroke} strokeWidth="3" />
+              <RotatedText x={x - 42} y={y + midpoint}>{labels[index]}</RotatedText>
+            </g>
+          );
+        }
+        return (
+          <g key={`${start}-${end}-${index}`}>
+            <line x1={x + start} y1={y - 20} x2={x + end} y2={y - 20} stroke={stroke} strokeWidth="3" />
+            <Text x={x + midpoint} y={y - 30}>{labels[index]}</Text>
+          </g>
+        );
+      })}
+    </g>
+  );
+}
+
+function OuterDimensionLabel({ x1, y1, x2, y2, label, vertical = false }: { x1: number; y1: number; x2: number; y2: number; label: string; vertical?: boolean }) {
+  return (
+    <g>
+      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#0f172a" strokeWidth="2.5" />
+      {vertical ? <RotatedText x={x1 - 15} y={(y1 + y2) / 2}>{label}</RotatedText> : <Text x={(x1 + x2) / 2} y={y1 + 18}>{label}</Text>}
+    </g>
+  );
+}
+
+function ValueBadge({ values }: { values: Array<[string | number, string | number]> }) {
+  return (
+    <g>
+      <rect x="545" y="112" width="285" height={Math.max(54, values.length * 26 + 22)} rx="14" fill="#ffffff" stroke="#bae6fd" strokeWidth="2" opacity="0.95" />
+      <text x="565" y="139" className="fill-cyan-700 text-[12px] font-black uppercase dark:fill-cyan-700">Current values</text>
+      {values.map(([label, value], index) => (
+        <text key={`${label}-${index}`} x="565" y={164 + index * 24} className="fill-slate-900 text-[14px] font-black">
+          {label} = {value}
+        </text>
+      ))}
     </g>
   );
 }
@@ -323,6 +493,8 @@ function NumericExample({ kind, values }: { kind: string; values: AlgebraValues 
   const n = values.n || 3;
   let line = `Example: (${a} + ${b})^2 = ${(a + b) ** 2}`;
   if (kind === "difference") line = `Example: (${a} - ${b})^2 = ${(a - b) ** 2}`;
+  if (kind === "perfectPlus") line = `Example: (${x} + ${a})^2 = ${(x + a) ** 2}`;
+  if (kind === "perfectMinus") line = `Example: (${x} - ${a})^2 = ${(x - a) ** 2}`;
   if (kind === "diffSquares") line = `Example: ${a}^2 - ${b}^2 = ${a ** 2 - b ** 2}`;
   if (kind === "binomial") line = `Example: (${x} + ${m || a})(${x} + ${n || b})`;
   if (kind === "cubeSum") line = `Example: (${a} + ${b})^3 = ${(a + b) ** 3}`;
@@ -384,4 +556,8 @@ function Title({ title, subtitle }: { title: string; subtitle: string }) {
 
 function Text({ x, y, children }: { x: number | string; y: number | string; children: ReactNode }) {
   return <text x={x} y={y} textAnchor="middle" className="fill-slate-800 text-[15px] font-black dark:fill-slate-100">{children}</text>;
+}
+
+function RotatedText({ x, y, children }: { x: number | string; y: number | string; children: ReactNode }) {
+  return <text x={x} y={y} textAnchor="middle" dominantBaseline="middle" transform={`rotate(-90 ${x} ${y})`} className="fill-slate-800 text-[13px] font-black dark:fill-slate-100">{children}</text>;
 }

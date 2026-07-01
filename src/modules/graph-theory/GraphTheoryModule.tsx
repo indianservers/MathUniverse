@@ -1,9 +1,7 @@
-import "reactflow/dist/style.css";
 import { forceCenter, forceLink, forceManyBody, forceSimulation } from "d3";
 import { motion } from "framer-motion";
-import { BookOpen, BrainCircuit, Download, GitBranch, Network, Palette, Play, Plus, Save, Shuffle } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
-import ReactFlow, { Background, Controls, MarkerType, MiniMap, type Edge, type Node, type NodeChange, applyNodeChanges } from "reactflow";
+import { BookOpen, BrainCircuit, Download, GitBranch, Network, Palette, Play, Plus, RotateCcw, Save, Shuffle } from "lucide-react";
+import { useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import SectionCard from "../../components/ui/SectionCard";
 import TopicHeader from "../../components/ui/TopicHeader";
 import {
@@ -41,6 +39,10 @@ export default function GraphTheoryModule() {
   const workerColoring = useWorkerColoring(project);
   const fileRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    if (!isUsableGraphProject(project)) store.resetProject();
+  }, [project, store]);
+
   return (
     <div className="space-y-5">
       <TopicHeader
@@ -54,7 +56,7 @@ export default function GraphTheoryModule() {
       <ImplementationAudit />
 
       <div className="grid gap-5 xl:grid-cols-[1.2fr_.8fr]">
-        <GraphEditor project={project} activeStep={activeStep} coloring={workerColoring?.assignment ?? coloring.assignment} onNodes={store.setNodes} onEdges={store.setEdges} onAddNode={store.addNode} onAddEdge={store.addEdge} directed={store.directed} onDirected={store.setDirected} />
+        <GraphEditor project={project} activeStep={activeStep} coloring={workerColoring?.assignment ?? coloring.assignment} onNodes={store.setNodes} onEdges={store.setEdges} onAddNode={store.addNode} onAddEdge={store.addEdge} onReset={store.resetProject} directed={store.directed} onDirected={store.setDirected} />
         <GraphAlgorithmsVisualizer project={project} selected={store.selectedAlgorithm} steps={algorithm} stepIndex={store.stepIndex} onAlgorithm={store.setSelectedAlgorithm} onStep={store.setStepIndex} />
       </div>
 
@@ -107,42 +109,124 @@ function ImplementationAudit() {
   );
 }
 
-function GraphEditor({ project, activeStep, coloring, onNodes, onEdges, onAddNode, onAddEdge, directed, onDirected }: { project: GraphProject; activeStep?: AlgorithmStep; coloring: Record<string, number>; onNodes: (nodes: GraphProject["nodes"]) => void; onEdges: (edges: GraphProject["edges"]) => void; onAddNode: () => void; onAddEdge: (source: string, target: string) => void; directed: boolean; onDirected: (directed: boolean) => void }) {
-  const rfNodes: Node[] = project.nodes.map((node) => ({
-    id: node.id,
-    data: { label: node.label },
-    position: { x: node.x, y: node.y },
-    style: { background: activeStep?.activeNodes.includes(node.id) ? "#facc15" : colors[coloring[node.id] ?? 0], color: "#0f172a", fontWeight: 900, borderRadius: 999, border: "2px solid rgba(15,23,42,.2)" },
-  }));
-  const rfEdges: Edge[] = project.edges.map((edge) => ({
-    id: edge.id,
-    source: edge.source,
-    target: edge.target,
-    label: String(edge.weight),
-    animated: activeStep?.activeEdges.includes(edge.id),
-    markerEnd: directed ? { type: MarkerType.ArrowClosed } : undefined,
-    style: { strokeWidth: activeStep?.activeEdges.includes(edge.id) ? 4 : 2, stroke: activeStep?.activeEdges.includes(edge.id) ? "#facc15" : "#64748b" },
-  }));
-  const handleNodeChanges = (changes: NodeChange[]) => {
-    const changed = applyNodeChanges(changes, rfNodes);
-    onNodes(project.nodes.map((node) => {
-      const next = changed.find((item) => item.id === node.id);
-      return next ? { ...node, x: next.position?.x ?? node.x, y: next.position?.y ?? node.y } : node;
-    }));
+function GraphEditor({ project, activeStep, coloring, onNodes, onEdges, onAddNode, onAddEdge, onReset, directed, onDirected }: { project: GraphProject; activeStep?: AlgorithmStep; coloring: Record<string, number>; onNodes: (nodes: GraphProject["nodes"]) => void; onEdges: (edges: GraphProject["edges"]) => void; onAddNode: () => void; onAddEdge: (source: string, target: string) => void; onReset: () => void; directed: boolean; onDirected: (directed: boolean) => void }) {
+  const [draggingNode, setDraggingNode] = useState<string | null>(null);
+  const [zoom, setZoom] = useState(1);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const activeNodes = activeStep?.activeNodes ?? [];
+  const activeEdges = activeStep?.activeEdges ?? [];
+  const graphNodeById = new Map(project.nodes.map((node) => [node.id, node]));
+  const toGraphPoint = (event: PointerEvent<SVGSVGElement>) => {
+    const rect = svgRef.current?.getBoundingClientRect();
+    if (!rect) return { x: 0, y: 0 };
+    return {
+      x: ((event.clientX - rect.left) * 900) / rect.width / zoom,
+      y: ((event.clientY - rect.top) * 430) / rect.height / zoom,
+    };
+  };
+  const updateNodePosition = (nodeId: string, point: { x: number; y: number }) => {
+    onNodes(project.nodes.map((node) => (node.id === nodeId ? { ...node, x: Math.max(34, Math.min(866, point.x)), y: Math.max(34, Math.min(396, point.y)) } : node)));
+  };
+  const handlePointerMove = (event: PointerEvent<SVGSVGElement>) => {
+    if (!draggingNode) return;
+    updateNodePosition(draggingNode, toGraphPoint(event));
+  };
+  const handlePointerUp = (event: PointerEvent<SVGSVGElement>) => {
+    if (draggingNode) event.currentTarget.releasePointerCapture(event.pointerId);
+    setDraggingNode(null);
   };
   return (
-    <SectionCard title="Graph Editor" description="Create nodes, connect weighted edges, drag nodes, zoom, pan, and switch directed mode." tone="spotlight">
+    <SectionCard title="Graph Editor" description="Create nodes, connect weighted edges, drag nodes, zoom, and switch directed mode." tone="spotlight">
       <div className="mb-3 flex flex-wrap gap-2">
         <button className="tool-button" type="button" onClick={onAddNode}><Plus className="h-4 w-4" /> Node</button>
         <button className="tool-button" type="button" onClick={() => project.nodes.length >= 2 && onAddEdge(project.nodes.at(-2)!.id, project.nodes.at(-1)!.id)}><GitBranch className="h-4 w-4" /> Edge last two</button>
         <button className="tool-button" type="button" onClick={() => onDirected(!directed)}><Network className="h-4 w-4" /> {directed ? "Directed" : "Undirected"}</button>
+        <button className="tool-button" type="button" onClick={onReset}><RotateCcw className="h-4 w-4" /> Reset sample</button>
+        <button className="tool-button" type="button" onClick={() => setZoom((value) => Math.min(1.8, Number((value + 0.15).toFixed(2))))}>+</button>
+        <button className="tool-button" type="button" onClick={() => setZoom((value) => Math.max(0.65, Number((value - 0.15).toFixed(2))))}>-</button>
+        <button className="tool-button" type="button" onClick={() => setZoom(1)}>Fit</button>
       </div>
-      <div className="h-[430px] overflow-hidden rounded-xl border border-cyan-200/15 bg-slate-950 shadow-inner shadow-cyan-950/30">
-        <ReactFlow nodes={rfNodes} edges={rfEdges} onNodesChange={handleNodeChanges} fitView>
-          <Background />
-          <Controls />
-          <MiniMap />
-        </ReactFlow>
+      <div className="relative h-[430px] overflow-hidden rounded-xl border border-cyan-200/15 bg-slate-950 shadow-inner shadow-cyan-950/30">
+        {project.nodes.length === 0 ? (
+          <div className="absolute inset-0 z-10 grid place-items-center p-6 text-center text-white">
+            <div className="rounded-2xl border border-cyan-300/30 bg-slate-900/90 p-5 shadow-xl">
+              <p className="text-lg font-black">No graph nodes yet</p>
+              <p className="mt-2 text-sm text-slate-300">Add a node or restore the sample graph to start editing.</p>
+              <div className="mt-4 flex justify-center gap-2">
+                <button className="action-primary" type="button" onClick={onAddNode}><Plus className="h-4 w-4" /> Add node</button>
+                <button className="tool-button" type="button" onClick={onReset}><RotateCcw className="h-4 w-4" /> Sample</button>
+              </div>
+            </div>
+          </div>
+        ) : null}
+        <svg
+          ref={svgRef}
+          viewBox="0 0 900 430"
+          role="img"
+          aria-label="Editable graph canvas"
+          className="h-full w-full touch-none"
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+        >
+          <defs>
+            <pattern id="graph-grid" width="34" height="34" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="1.4" fill="#94a3b8" opacity="0.55" />
+            </pattern>
+            <marker id="graph-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#67e8f9" />
+            </marker>
+          </defs>
+          <rect width="900" height="430" rx="18" fill="#020617" />
+          <g transform={`scale(${zoom})`}>
+            <rect width={900 / zoom} height={430 / zoom} fill="url(#graph-grid)" />
+            {project.edges.map((edge) => {
+              const source = graphNodeById.get(edge.source);
+              const target = graphNodeById.get(edge.target);
+              if (!source || !target) return null;
+              const active = activeEdges.includes(edge.id);
+              const midX = (source.x + target.x) / 2;
+              const midY = (source.y + target.y) / 2;
+              return (
+                <g key={edge.id}>
+                  <line
+                    x1={source.x}
+                    y1={source.y}
+                    x2={target.x}
+                    y2={target.y}
+                    stroke={active ? "#facc15" : "#67e8f9"}
+                    strokeWidth={active ? 5 : 3}
+                    strokeLinecap="round"
+                    markerEnd={directed ? "url(#graph-arrow)" : undefined}
+                  />
+                  <rect x={midX - 16} y={midY - 14} width="32" height="24" rx="10" fill="#f8fafc" opacity="0.95" />
+                  <text x={midX} y={midY + 5} textAnchor="middle" fill="#0f172a" fontSize="13" fontWeight="900">{edge.weight}</text>
+                </g>
+              );
+            })}
+            {project.nodes.map((node) => {
+              const active = activeNodes.includes(node.id);
+              const fill = active ? "#facc15" : colors[coloring[node.id] ?? 0];
+              return (
+                <g
+                  key={node.id}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Node ${node.label}`}
+                  className="cursor-grab outline-none"
+                  transform={`translate(${node.x} ${node.y})`}
+                  onPointerDown={(event) => {
+                    event.currentTarget.ownerSVGElement?.setPointerCapture(event.pointerId);
+                    setDraggingNode(node.id);
+                  }}
+                >
+                  <circle r="25" fill={fill} stroke={active ? "#f8fafc" : "#0f172a"} strokeWidth={active ? 5 : 3} />
+                  <text y="6" textAnchor="middle" fill="#0f172a" fontSize="18" fontWeight="950">{node.label}</text>
+                </g>
+              );
+            })}
+          </g>
+        </svg>
       </div>
       <div className="mt-3 mobile-safe-scroll">
         <table className="min-w-full text-sm">
@@ -151,6 +235,15 @@ function GraphEditor({ project, activeStep, coloring, onNodes, onEdges, onAddNod
         </table>
       </div>
     </SectionCard>
+  );
+}
+
+function isUsableGraphProject(project: GraphProject) {
+  if (!project.nodes.length) return false;
+  const ids = new Set(project.nodes.map((node) => node.id));
+  return (
+    project.nodes.every((node) => node.id && node.label && Number.isFinite(node.x) && Number.isFinite(node.y)) &&
+    project.edges.every((edge) => edge.id && ids.has(edge.source) && ids.has(edge.target) && Number.isFinite(edge.weight))
   );
 }
 

@@ -5,17 +5,14 @@ import { applyObjectProperties } from "./objectProperties";
 import {
   circle,
   distanceBetween,
-  line,
   parseConicEquation,
   point,
   polygonArea,
   polygonPerimeter,
-  ray,
-  segment,
   vector,
 } from "./geometry2dKernel";
 import { cone3, cylinder3, line3, parsePlaneEquation, plane3, point3, sphere3, vector3 } from "./geometry3dKernel";
-import type { AlgebraObjectModel, MathObject, MathObjectDependency, MathObjectGeometry, MathVec3 } from "./types";
+import type { AlgebraObjectModel, MathObject, MathObjectDependency, MathVec3 } from "./types";
 
 export type DynamicWorkspaceEvaluation = {
   objects: MathObject[];
@@ -184,7 +181,7 @@ function materialize2D(command: ParsedWorkspaceCommand, base: MaterializeBase, i
   return createMathObject({ ...base, kind: "geometry", dimension: "2d", value: `${command.normalizedName}[${command.args.map((arg) => arg.raw).join(", ")}]`, linkedViews: ["Geometry", "Algebra", "Inspector"] });
 }
 
-function materialize3D(command: ParsedWorkspaceCommand, base: MaterializeBase, index: ObjectIndex): MathObject {
+function materialize3D(command: ParsedWorkspaceCommand, base: MaterializeBase, _index: ObjectIndex): MathObject {
   const name = command.normalizedName.toLowerCase();
   if (name === "point3d" || (name === "point" && command.args[0]?.type === "point3")) {
     const p = point3Arg(command.args[0]);

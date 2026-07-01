@@ -148,15 +148,22 @@ export function PolygonTriangulationGuide({ values, toggles, activeStep, activeH
 
 export function CircleAreaUnrollGuide({ values, toggles, activeStep, activeHighlight, onHighlight }: VisualState) {
   const radius = Math.round(values.radius);
+  const sectors = Math.round(values.sectors);
   const R = Math.min(radius * 20, 100); // visual radius in px
 
-  // Circle (unfilled, stroke only)
   const CX = 450;
   const CY = 215;
 
-  // Straight line target — where the unrolled circumference lands
   const LINE_Y = CY + R + 70;
   const LINE_START_X = CX - Math.PI * R; // left end, centered under circle
+  const stackVisible = activeStep >= 4;
+  const triangleVisible = activeStep >= 5;
+  const stripCount = Math.min(12, Math.max(5, Math.round(sectors / 5)));
+  const stackBase = 280;
+  const stackHeight = 112;
+  const stackX = 95;
+  const stackY = 430;
+  const hCircumference = activeHighlight === "circumference";
 
   // Animation
   const [vizP, setVizP] = useState(0);
@@ -187,7 +194,7 @@ export function CircleAreaUnrollGuide({ values, toggles, activeStep, activeHighl
   const p = activeStep >= 3 ? 1 : vizP;
 
   // Polyline that morphs from a circle (p=0) to a straight line (p=1).
-  // Parameterise by φ ∈ [0, 2π], starting from the TOP (cut point), going clockwise.
+  // Parameterise by phi from 0 to 2*pi, starting from the top cut point.
   const N_PTS = 120;
   const polyPoints = Array.from({ length: N_PTS }, (_, i) => {
     const phi = (i / (N_PTS - 1)) * 2 * Math.PI;
@@ -201,7 +208,6 @@ export function CircleAreaUnrollGuide({ values, toggles, activeStep, activeHighl
   }).join(" ");
 
   const hR = activeHighlight === "r";
-  const hPiR = activeHighlight === "pi-r";
   const dim = (tok: string) => (activeHighlight === tok ? "#fde68a" : "#f8fafc");
 
   return (
@@ -223,11 +229,11 @@ export function CircleAreaUnrollGuide({ values, toggles, activeStep, activeHighl
       <polyline
         points={polyPoints}
         fill="none"
-        stroke="#00bfff"
-        strokeWidth="3"
+        stroke={hCircumference ? "#fde68a" : "#00bfff"}
+        strokeWidth={hCircumference ? "5" : "3"}
         strokeLinecap="round"
         strokeLinejoin="round"
-        onMouseEnter={() => onHighlight("pi-r")}
+        onMouseEnter={() => onHighlight("circumference")}
         onMouseLeave={() => onHighlight(null)}
       />
 
@@ -242,39 +248,88 @@ export function CircleAreaUnrollGuide({ values, toggles, activeStep, activeHighl
         </g>
       )}
 
-      {/* 2πr dimension under the straight line (fades in as line forms) */}
+      {/* 2*pi*r dimension under the straight line (fades in as line forms) */}
       {p > 0.85 && (
         <g
           opacity={Math.min((p - 0.85) / 0.15, 1)}
-          onMouseEnter={() => onHighlight("pi-r")}
+          onMouseEnter={() => onHighlight("circumference")}
           onMouseLeave={() => onHighlight(null)}
         >
           <line
             x1={LINE_START_X} y1={LINE_Y + 18}
             x2={LINE_START_X + 2 * Math.PI * R} y2={LINE_Y + 18}
-            stroke={dim("pi-r")} strokeWidth="2"
+            stroke={dim("circumference")} strokeWidth="2"
           />
           <line x1={LINE_START_X} y1={LINE_Y + 12} x2={LINE_START_X} y2={LINE_Y + 24}
-            stroke={dim("pi-r")} strokeWidth="2" />
+            stroke={dim("circumference")} strokeWidth="2" />
           <line
             x1={LINE_START_X + 2 * Math.PI * R} y1={LINE_Y + 12}
             x2={LINE_START_X + 2 * Math.PI * R} y2={LINE_Y + 24}
-            stroke={dim("pi-r")} strokeWidth="2"
+            stroke={dim("circumference")} strokeWidth="2"
           />
           <text
             x={CX} y={LINE_Y + 42}
-            textAnchor="middle" fill={dim("pi-r")}
+            textAnchor="middle" fill={dim("circumference")}
             fontSize="19" fontWeight="bold" fontStyle="italic"
-          >2πr</text>
+          >2*pi*r</text>
         </g>
       )}
+
+      {stackVisible ? (
+        <g onMouseEnter={() => onHighlight("area")} onMouseLeave={() => onHighlight(null)}>
+          <text x={stackX} y={stackY - stackHeight - 22} fill={dim("area")} fontSize="15" fontWeight="900">
+            Stack ring strips from center to edge
+          </text>
+          {Array.from({ length: stripCount }, (_, index) => {
+            const t = (index + 1) / stripCount;
+            const width = stackBase * t;
+            const y = stackY - index * (stackHeight / stripCount);
+            return (
+              <line
+                key={`circle-strip-${index}`}
+                x1={stackX}
+                y1={y}
+                x2={stackX + width}
+                y2={y}
+                stroke={activeHighlight === "area" ? "#fde68a" : "#22d3ee"}
+                strokeWidth="7"
+                strokeLinecap="round"
+                opacity={0.45 + t * 0.5}
+              />
+            );
+          })}
+          {triangleVisible ? (
+            <g>
+              <polygon
+                points={`${stackX},${stackY} ${stackX + stackBase},${stackY} ${stackX},${stackY - stackHeight}`}
+                fill="#22d3ee"
+                opacity="0.14"
+                stroke={dim("area")}
+                strokeWidth="3"
+                strokeDasharray="8 8"
+              />
+              <line x1={stackX} y1={stackY + 18} x2={stackX + stackBase} y2={stackY + 18} stroke={dim("circumference")} strokeWidth="2" />
+              <text x={stackX + stackBase / 2} y={stackY + 42} fill={dim("circumference")} textAnchor="middle" fontSize="15" fontWeight="900">
+                base = 2*pi*r
+              </text>
+              <line x1={stackX - 18} y1={stackY} x2={stackX - 18} y2={stackY - stackHeight} stroke={dim("r")} strokeWidth="2" />
+              <text x={stackX - 34} y={stackY - stackHeight / 2} fill={dim("r")} textAnchor="middle" fontSize="15" fontWeight="900" transform={`rotate(-90 ${stackX - 34} ${stackY - stackHeight / 2})`}>
+                height = r
+              </text>
+              <text x={stackX + stackBase + 42} y={stackY - 44} fill={dim("area")} textAnchor="middle" fontSize="16" fontWeight="900">
+                area = pi*r^2
+              </text>
+            </g>
+          ) : null}
+        </g>
+      ) : null}
 
       {/* Info */}
       {toggles.labels && (
         <Info
           x={60}
           y={80}
-          lines={[`radius r = ${radius}`, `circumference 2πr = ${round(2 * Math.PI * radius)}`]}
+          lines={[`radius r = ${radius}`, `circumference 2*pi*r = ${round(2 * Math.PI * radius)}`, `area pi*r^2 = ${round(Math.PI * radius * radius)}`]}
         />
       )}
     </Frame>
@@ -323,7 +378,7 @@ function FormulaBanner({ active, text }: { active: boolean; text: string }) {
   return <g><rect x="250" y="455" width="410" height="42" rx="16" fill={active ? "#f59e0b" : "#0f172a"} stroke="#f8fafc" opacity="0.94" /><text x="455" y="482" textAnchor="middle" fill="#f8fafc" fontSize="18" fontWeight="900">{text}</text></g>;
 }
 
-function UnrolledSectors({ x, y, width, height, count, active, onEnter, onLeave }: { x: number; y: number; width: number; height: number; count: number; active: boolean; onEnter: () => void; onLeave: () => void }) {
+function _UnrolledSectors({ x, y, width, height, count, active, onEnter, onLeave }: { x: number; y: number; width: number; height: number; count: number; active: boolean; onEnter: () => void; onLeave: () => void }) {
   const visible = Math.min(count, 32);
   return <g onMouseEnter={onEnter} onMouseLeave={onLeave}>{Array.from({ length: visible }, (_, index) => {
     const x1 = x + (index * width) / visible;

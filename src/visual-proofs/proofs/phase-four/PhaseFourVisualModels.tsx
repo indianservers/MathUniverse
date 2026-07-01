@@ -103,9 +103,18 @@ export function DifferenceOfSquaresVisual({ values, toggles, activeStep, activeH
       <rect x={x} y={y} width={as} height={as} fill="#2563eb" opacity="0.34" stroke={strokeFor("a2", activeHighlight, "#bfdbfe")} strokeWidth={widthFor("a2", activeHighlight)} onMouseEnter={() => onHighlight("a2")} onMouseLeave={() => onHighlight(null)} />
       <rect x={x + as - bs} y={y + as - bs} width={bs} height={bs} fill="#020617" stroke={strokeFor("b2", activeHighlight, "#fed7aa")} strokeWidth={widthFor("b2", activeHighlight)} onMouseEnter={() => onHighlight("b2")} onMouseLeave={() => onHighlight(null)} />
       {activeStep >= 4 ? <rect x="520" y="170" width={(a + b) * 22} height={(a - b) * 22} fill="#14b8a6" opacity="0.78" stroke="#ccfbf1" strokeWidth="3" /> : null}
-      {toggles.labels ? <Info x={540} y={335} lines={[`a^2 - b^2 = ${a * a - b * b}`, `rectangle = (${a - b}) x (${a + b})`, `${a * a - b * b} = ${(a - b) * (a + b)}`]} /> : null}
-      <SegmentLabel x={x + as + 28} y={y + as - rem / 2} text={`a - b`} active={activeHighlight === "a-b"} />
-      <SegmentLabel x={610 + (a + b) * 11} y={155} text={`a + b`} active={activeHighlight === "a-plus-b"} />
+      {toggles.labels ? (
+        <>
+          <DimensionGuide x1={x} x2={x + as} y={y - 26} label={`a side = ${a}`} active={activeHighlight === "a2"} onFocus={() => onHighlight("a2")} onBlur={() => onHighlight(null)} />
+          <SideSegmentGuide x={x - 28} y1={y} y2={y + as} label={`a side = ${a}`} active={activeHighlight === "a2"} onFocus={() => onHighlight("a2")} onBlur={() => onHighlight(null)} />
+          <DimensionGuide x1={x + as - bs} x2={x + as} y={y + as + 30} label={`b removed = ${b}`} active={activeHighlight === "b2"} onFocus={() => onHighlight("b2")} onBlur={() => onHighlight(null)} />
+          <SideSegmentGuide x={x + as + 28} y1={y + as - bs} y2={y + as} label={`b removed = ${b}`} active={activeHighlight === "b2"} onFocus={() => onHighlight("b2")} onBlur={() => onHighlight(null)} />
+          <DimensionGuide x1={x} x2={x + rem} y={y + as + 64} label={`remaining side = a - b = ${a - b}`} active={activeHighlight === "a-b"} onFocus={() => onHighlight("a-b")} onBlur={() => onHighlight(null)} />
+          <SegmentLabel x={x + as + 48} y={y + as - rem / 2} text={`a - b = ${a - b}`} active={activeHighlight === "a-b"} />
+          <SegmentLabel x={610 + (a + b) * 11} y={155} text={`a + b = ${a + b}`} active={activeHighlight === "a-plus-b"} />
+          <Info x={540} y={335} lines={[`Current values: a = ${a}, b = ${b}`, `a^2 - b^2 = ${a * a} - ${b * b} = ${a * a - b * b}`, `rectangle = (${a - b}) x (${a + b})`, `${a * a - b * b} = ${(a - b) * (a + b)}`]} />
+        </>
+      ) : null}
       <DraggableHandle label="Drag b split" position={{ x: x + as - bs, y: y + as - bs }} axis="xy" bounds={{ x: [x + scale, x + as - scale], y: [y + scale, y + as - scale] }} snapToGrid={scale} keyboardStep={scale} onChange={(point) => onValueChange("b", Math.max(1, Math.min(a - 1, Math.round((x + as - point.x) / scale))))} />
     </Frame>
   );
@@ -123,11 +132,25 @@ export function SquareOfDifferenceVisual({ values, toggles, activeHighlight, onH
   return (
     <Frame label="Square of a difference tile model">
       <rect x={x} y={y} width={as} height={as} fill="#2563eb" opacity="0.34" stroke={strokeFor("a2", activeHighlight, "#bfdbfe")} strokeWidth={widthFor("a2", activeHighlight)} onMouseEnter={() => onHighlight("a2")} onMouseLeave={() => onHighlight(null)} />
-      <rect x={x + keep} y={y} width={bs} height={as} fill="#ef4444" opacity={activeHighlight === "minus-2ab" ? "0.82" : "0.5"} />
-      <rect x={x} y={y + keep} width={as} height={bs} fill="#ef4444" opacity={activeHighlight === "minus-2ab" ? "0.82" : "0.5"} />
-      <rect x={x + keep} y={y + keep} width={bs} height={bs} fill="#f97316" opacity={activeHighlight === "plus-b2" ? "0.95" : "0.7"} stroke={strokeFor("plus-b2", activeHighlight, "#fed7aa")} strokeWidth={widthFor("plus-b2", activeHighlight)} />
-      <rect x={x} y={y} width={keep} height={keep} fill="#14b8a6" opacity="0.78" stroke={strokeFor("final", activeHighlight, "#ccfbf1")} strokeWidth={widthFor("final", activeHighlight)} />
-      {toggles.labels ? <Info x={560} y={315} lines={[`a^2 - 2ab + b^2`, `${a * a} - ${2 * a * b} + ${b * b}`, `final = ${(a - b) ** 2}`]} /> : null}
+      <rect x={x + keep} y={y} width={bs} height={as} fill="#ef4444" opacity={activeHighlight === "minus-2ab" ? "0.82" : "0.5"} onMouseEnter={() => onHighlight("minus-2ab")} onMouseLeave={() => onHighlight(null)} />
+      <rect x={x} y={y + keep} width={as} height={bs} fill="#ef4444" opacity={activeHighlight === "minus-2ab" ? "0.82" : "0.5"} onMouseEnter={() => onHighlight("minus-2ab")} onMouseLeave={() => onHighlight(null)} />
+      <rect x={x + keep} y={y + keep} width={bs} height={bs} fill="#f97316" opacity={activeHighlight === "plus-b2" ? "0.95" : "0.7"} stroke={strokeFor("plus-b2", activeHighlight, "#fed7aa")} strokeWidth={widthFor("plus-b2", activeHighlight)} onMouseEnter={() => onHighlight("plus-b2")} onMouseLeave={() => onHighlight(null)} />
+      <rect x={x} y={y} width={keep} height={keep} fill="#14b8a6" opacity="0.78" stroke={strokeFor("final", activeHighlight, "#ccfbf1")} strokeWidth={widthFor("final", activeHighlight)} onMouseEnter={() => onHighlight("final")} onMouseLeave={() => onHighlight(null)} />
+      {toggles.labels ? (
+        <>
+          <SegmentLabel x={x + keep / 2} y={y + keep / 2 - 8} text="(a - b)^2" active={activeHighlight === "final"} />
+          <SegmentLabel x={x + keep + bs / 2} y={y + as / 2} text="-ab" active={activeHighlight === "minus-2ab"} />
+          <SegmentLabel x={x + keep / 2} y={y + keep + bs / 2 + 5} text="-ab" active={activeHighlight === "minus-2ab"} />
+          <SegmentLabel x={x + keep + bs / 2} y={y + keep + bs / 2 + 5} text="+b^2" active={activeHighlight === "plus-b2"} />
+          <DimensionGuide x1={x} x2={x + as} y={y - 28} label={`whole side a = ${a}`} active={activeHighlight === "a2"} onFocus={() => onHighlight("a2")} onBlur={() => onHighlight(null)} />
+          <DimensionGuide x1={x} x2={x + keep} y={y - 60} label={`kept side a - b = ${a - b}`} active={activeHighlight === "final"} onFocus={() => onHighlight("final")} onBlur={() => onHighlight(null)} />
+          <DimensionGuide x1={x + keep} x2={x + as} y={y - 60} label={`removed b = ${b}`} active={activeHighlight === "minus-2ab"} onFocus={() => onHighlight("minus-2ab")} onBlur={() => onHighlight(null)} />
+          <SideSegmentGuide x={x - 30} y1={y} y2={y + as} label={`whole side a = ${a}`} active={activeHighlight === "a2"} onFocus={() => onHighlight("a2")} onBlur={() => onHighlight(null)} />
+          <SideSegmentGuide x={x - 64} y1={y} y2={y + keep} label={`kept side a - b = ${a - b}`} active={activeHighlight === "final"} onFocus={() => onHighlight("final")} onBlur={() => onHighlight(null)} />
+          <SideSegmentGuide x={x - 64} y1={y + keep} y2={y + as} label={`removed b = ${b}`} active={activeHighlight === "minus-2ab"} onFocus={() => onHighlight("minus-2ab")} onBlur={() => onHighlight(null)} />
+          <Info x={560} y={285} lines={[`Current values: a = ${a}, b = ${b}`, `kept side: a - b = ${a - b}`, `a^2 - 2ab + b^2`, `${a * a} - ${2 * a * b} + ${b * b} = ${(a - b) ** 2}`]} />
+        </>
+      ) : null}
       <DraggableHandle label="Drag b split" position={{ x: x + keep, y: y + keep }} axis="xy" bounds={{ x: [x + scale, x + as - scale], y: [y + scale, y + as - scale] }} snapToGrid={scale} keyboardStep={scale} onChange={(point) => onValueChange("b", Math.max(1, Math.min(a - 1, Math.round((x + as - point.x) / scale))))} />
     </Frame>
   );
@@ -150,7 +173,17 @@ export function ProductOfBinomialsVisual({ values, toggles, activeHighlight, onH
       <Tile x={x} y={y + xs} w={xs} h={bs} fill="#a855f7" token="bx" active={activeHighlight} onHighlight={onHighlight} label="bx" />
       <Tile x={x + xs} y={y + xs} w={as} h={bs} fill="#f97316" token="ab" active={activeHighlight} onHighlight={onHighlight} label="ab" />
       <rect x={x} y={y} width={xs + as} height={xs + bs} fill="none" stroke="#f8fafc" strokeWidth="4" />
-      {toggles.labels ? <Info x={550} y={315} lines={[`area = (${xVal}+${a})(${xVal}+${b})`, `parts = ${xVal ** 2} + ${a * xVal} + ${b * xVal} + ${a * b}`, `total = ${(xVal + a) * (xVal + b)}`]} /> : null}
+      {toggles.labels ? (
+        <>
+          <DimensionGuide x1={x} x2={x + xs} y={y - 30} label={`x = ${xVal}`} active={activeHighlight === "x2" || activeHighlight === "bx"} onFocus={() => onHighlight("x2")} onBlur={() => onHighlight(null)} />
+          <DimensionGuide x1={x + xs} x2={x + xs + as} y={y - 30} label={`a = ${a}`} active={activeHighlight === "ax" || activeHighlight === "ab"} onFocus={() => onHighlight("ax")} onBlur={() => onHighlight(null)} />
+          <DimensionGuide x1={x} x2={x + xs + as} y={y + xs + bs + 34} label={`width = x + a = ${xVal + a}`} active={activeHighlight === "ax"} onFocus={() => onHighlight("ax")} onBlur={() => onHighlight(null)} />
+          <SideSegmentGuide x={x - 30} y1={y} y2={y + xs} label={`x = ${xVal}`} active={activeHighlight === "x2" || activeHighlight === "ax"} onFocus={() => onHighlight("x2")} onBlur={() => onHighlight(null)} />
+          <SideSegmentGuide x={x - 30} y1={y + xs} y2={y + xs + bs} label={`b = ${b}`} active={activeHighlight === "bx" || activeHighlight === "ab"} onFocus={() => onHighlight("bx")} onBlur={() => onHighlight(null)} />
+          <SideSegmentGuide x={x + xs + as + 30} y1={y} y2={y + xs + bs} label={`height = x + b = ${xVal + b}`} active={activeHighlight === "bx"} onFocus={() => onHighlight("bx")} onBlur={() => onHighlight(null)} />
+          <Info x={550} y={295} lines={[`Current values: x = ${xVal}, a = ${a}, b = ${b}`, `area = (${xVal}+${a})(${xVal}+${b})`, `parts = ${xVal ** 2} + ${a * xVal} + ${b * xVal} + ${a * b}`, `total = ${(xVal + a) * (xVal + b)}`]} />
+        </>
+      ) : null}
       <DraggableHandle label="Drag width split a" position={{ x: x + xs + as, y: y - 28 }} axis="x" bounds={{ x: [x + xs + scale, x + xs + 6 * scale] }} snapToGrid={scale} keyboardStep={scale} onChange={(point) => onValueChange("a", Math.round((point.x - x - xs) / scale))} />
       <DraggableHandle label="Drag height split b" position={{ x: x - 28, y: y + xs + bs }} axis="y" bounds={{ y: [y + xs + scale, y + xs + 6 * scale] }} snapToGrid={scale} keyboardStep={scale} onChange={(point) => onValueChange("b", Math.round((point.y - y - xs) / scale))} />
     </Frame>
@@ -167,6 +200,29 @@ function Tile({ x, y, w, h, fill, token, active, onHighlight, label }: { x: numb
 
 function SegmentLabel({ x, y, text, active = false }: { x: number; y: number; text: string; active?: boolean }) {
   return <text x={x} y={y} textAnchor="middle" fill={active ? "#fde68a" : "#f8fafc"} fontSize="15" fontWeight="900">{text}</text>;
+}
+
+function DimensionGuide({ x1, x2, y, label, active = false, onFocus, onBlur }: { x1: number; x2: number; y: number; label: string; active?: boolean; onFocus?: () => void; onBlur?: () => void }) {
+  return (
+    <g tabIndex={0} onFocus={onFocus} onBlur={onBlur}>
+      <line x1={x1} y1={y} x2={x2} y2={y} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth={active ? "6" : "3"} />
+      <line x1={x1} y1={y - 7} x2={x1} y2={y + 7} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth="3" />
+      <line x1={x2} y1={y - 7} x2={x2} y2={y + 7} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth="3" />
+      <text x={(x1 + x2) / 2} y={y - 10} textAnchor="middle" fill={active ? "#fde68a" : "#f8fafc"} fontSize="14" fontWeight="900">{label}</text>
+    </g>
+  );
+}
+
+function SideSegmentGuide({ x, y1, y2, label, active = false, onFocus, onBlur }: { x: number; y1: number; y2: number; label: string; active?: boolean; onFocus?: () => void; onBlur?: () => void }) {
+  const midY = (y1 + y2) / 2;
+  return (
+    <g tabIndex={0} onFocus={onFocus} onBlur={onBlur}>
+      <line x1={x} y1={y1} x2={x} y2={y2} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth={active ? "6" : "3"} />
+      <line x1={x - 7} y1={y1} x2={x + 7} y2={y1} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth="3" />
+      <line x1={x - 7} y1={y2} x2={x + 7} y2={y2} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth="3" />
+      <text x={x - 12} y={midY + 5} textAnchor="end" fill={active ? "#fde68a" : "#f8fafc"} fontSize="14" fontWeight="900">{label}</text>
+    </g>
+  );
 }
 
 function RightAngleMarker({ x, y }: { x: number; y: number }) {

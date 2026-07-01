@@ -1,3 +1,5 @@
+import MathExpression from "../../components/ui/MathExpression";
+
 type FormulaPanelProps = {
   title?: string;
   formulas: string[];
@@ -20,11 +22,11 @@ export default function FormulaPanel({ title = "Formula derivation", formulas, v
       </div>
       <div className="mt-3 space-y-2">
         {formulas.map((formula, index) => (
-          <div key={`${formula}-${index}`} className="rounded-lg bg-slate-950 px-3 py-2 font-mono text-sm font-bold text-cyan-100 shadow-sm dark:bg-black/50">
+          <div key={`${formula}-${index}`} className="rounded-lg bg-slate-950 px-3 py-2 text-sm font-bold text-cyan-100 shadow-sm dark:bg-black/50">
             <span className="mr-2 rounded bg-cyan-300/15 px-1.5 py-0.5 text-[0.68rem] uppercase tracking-wide text-cyan-200">
               line {index + 1}
             </span>
-            <span>{formula}</span>
+            <MathExpression value={formula} className="font-semibold" />
           </div>
         ))}
       </div>

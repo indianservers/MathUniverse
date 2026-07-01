@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, BarChart3, CircleDot, Grid3X3, Hash, Ruler, Shapes, Sigma } from "lucide-react";
+import MathExpression from "../components/ui/MathExpression";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 
@@ -78,7 +79,7 @@ function UnitLab({ unit, index }: { unit: UnitVisual; index: number }) {
       <div className="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_220px]">
         <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
           <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Formula connection</p>
-          <p className="mt-2 font-mono text-sm font-black">{unit.formula}</p>
+          <p className="mt-2 text-sm font-black"><MathExpression value={unit.formula} /></p>
         </div>
         <div className="rounded-2xl bg-cyan-50 p-4 dark:bg-cyan-400/10">
           <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Try it</p>

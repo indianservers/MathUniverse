@@ -14,7 +14,7 @@
     "mobile:add:ios": "cap add ios",
     "mobile:open:android": "cap open android",
     "mobile:open:ios": "cap open ios",
-    "test": "vitest run",
+    "test": "vitest run --maxWorkers=1 --reporter=dot",
     "test:e2e": "npm run test:e2e:visual-proofs",
     "test:e2e:visual-proofs": "npm run build && playwright test tests/visual-proofs/visualProofsSmoke.e2e.ts",
     "test:e2e:visual-proofs:export": "npm run build && playwright test tests/visual-proofs/visualProofsExport.e2e.ts",

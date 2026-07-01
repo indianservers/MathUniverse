@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { engineeringConceptLabId, syllabusConceptLabId } from "../../data/advancedSyllabusLabs";
 import type { SyllabusTopic } from "../../data/syllabus";
+import MathExpression from "../ui/MathExpression";
 import { ConceptIconBadge, ConceptImagePanel } from "./ConceptVisualMedia";
 import TopicStatusBadge from "./TopicStatusBadge";
 
@@ -37,7 +38,7 @@ export default function SyllabusTopicCard({ topic }: { topic: SyllabusTopic }) {
           {topic.keyFormulas.slice(0, 3).map((formula, index) => (
             <li key={`${formula}-${index}`} className="flex items-start gap-2">
               <ConceptIconBadge text={`${topic.title} ${formula}`} className="mt-0.5 h-5 w-5 [&_svg]:h-3 [&_svg]:w-3" />
-              <span className="min-w-0 break-words font-mono">{formula}</span>
+              <span className="min-w-0 break-words font-semibold"><MathExpression value={formula} /></span>
             </li>
           ))}
         </ul>

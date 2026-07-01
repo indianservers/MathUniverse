@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { renderToStaticMarkup } from "react-dom/server";
 import {
   naturalNumberSumPhaseTwoConfig,
   oddNumberSumPhaseTwoConfig,
@@ -45,5 +46,29 @@ describe("Visual Proofs phase three learning intelligence", () => {
     expect(triangleAreaPhaseTwoConfig.parameters.map((parameter) => parameter.id)).toEqual(["base", "height"]);
     expect(parallelogramAreaPhaseTwoConfig.parameters.map((parameter) => parameter.id)).toContain("slant");
     expect(squareOfSumPhaseTwoConfig.parameters.map((parameter) => parameter.id)).toEqual(["a", "b"]);
+  });
+
+  it("labels square-of-sum side lengths and itemized region values", () => {
+    const values = { a: 5, b: 3 };
+    const html = renderToStaticMarkup(
+      squareOfSumPhaseTwoConfig.renderVisual({
+        values,
+        toggles: { labels: true, highlights: true },
+        activeStep: 5,
+        revealed: true,
+        challengeMode: false,
+        activeHighlight: null,
+        onHighlight: () => undefined,
+        onValueChange: () => undefined,
+      }),
+    );
+    const liveLabels = squareOfSumPhaseTwoConfig.liveValues(values).map((item) => item.label);
+
+    expect(html).toContain("a = 5");
+    expect(html).toContain("b = 3");
+    expect(html).toContain("whole side = a + b = 8");
+    expect(html).toContain("Values in this proof");
+    expect(html).toContain("top ab = 5 x 3 = 15");
+    expect(liveLabels).toEqual(expect.arrayContaining(["Side a", "Side b", "Top ab rectangle", "Left ab rectangle", "Full square area"]));
   });
 });

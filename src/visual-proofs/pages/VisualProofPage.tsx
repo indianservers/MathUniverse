@@ -5,6 +5,7 @@ import { theoremCategories } from "../../data/theoremLibrary";
 import FormulaPanel from "../components/FormulaPanel";
 import StepPanel from "../components/StepPanel";
 import VisualProofLayout from "../components/VisualProofLayout";
+import { MathText } from "../../components/ui/MathExpression";
 import { getCuratedVisualProofLearningLinks } from "../../proof-explanations/proofLearningLinks";
 import { getVisualProofCategory } from "../data/visualProofCategories";
 import { getVisualProof } from "../data/visualProofsIndex";
@@ -132,7 +133,7 @@ function ProofRouteLoadingFallback({ title }: { title: string }) {
   return (
     <section className="rounded-xl border border-slate-200 bg-white/88 p-6 dark:border-white/10 dark:bg-white/[0.05]">
       <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">Loading proof</p>
-      <h1 className="mt-2 text-2xl font-black text-slate-950 dark:text-white">{title}</h1>
+      <h1 className="mt-2 text-2xl font-black text-slate-950 dark:text-white"><MathText value={title} /></h1>
       <div className="mt-5 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-white/10">
         <div className="h-full w-1/3 rounded-full bg-cyan-500" />
       </div>

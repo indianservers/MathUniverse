@@ -74,6 +74,13 @@ export default function CircleToTriangleVisualization() {
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
+            <filter id="microPointGlow" x="-260%" y="-260%" width="620%" height="620%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
 
           <rect width="600" height="420" fill="url(#stageGlow)" />
@@ -122,6 +129,12 @@ export default function CircleToTriangleVisualization() {
           <circle cx={metrics.leftEnd.x} cy={metrics.leftEnd.y} r="7" fill="#22d3ee" filter="url(#lineGlow)" />
           <circle cx={metrics.topCut.x} cy={metrics.topCut.y} r="6" fill="#f8fafc" filter="url(#lineGlow)" />
           <circle cx={metrics.rightEnd.x} cy={metrics.rightEnd.y} r="7" fill="#fb7185" filter="url(#lineGlow)" />
+          <g aria-label="Tiny glowing reference points">
+            <GlowDot x={centerX} y={centerY} color="#facc15" />
+            <GlowDot x={metrics.topCut.x} y={metrics.topCut.y} color="#ffffff" />
+            <GlowDot x={metrics.leftEnd.x} y={metrics.leftEnd.y} color="#67e8f9" />
+            <GlowDot x={metrics.rightEnd.x} y={metrics.rightEnd.y} color="#fb7185" />
+          </g>
 
           <g className="pointer-events-none select-none font-mono text-[10px] font-bold">
             <line x1={centerX + 16} y1={cutY} x2={centerX + 16} y2={triangleTipY} stroke="#f8fafc" strokeDasharray="3 5" strokeLinecap="round" strokeOpacity="0.72" />
@@ -211,6 +224,16 @@ function ValueRow({ label, value }: { label: string; value: string }) {
       <span className="text-cyan-200/70">{label}</span>
       <span className="font-mono text-white">{value}</span>
     </div>
+  );
+}
+
+function GlowDot({ x, y, color }: { x: number; y: number; color: string }) {
+  return (
+    <g>
+      <circle cx={x} cy={y} r="7" fill={color} opacity="0.22" filter="url(#microPointGlow)" />
+      <circle cx={x} cy={y} r="2.8" fill={color} stroke="#020617" strokeWidth="0.9" filter="url(#microPointGlow)" />
+      <circle cx={x} cy={y} r="1.1" fill="#ffffff" opacity="0.95" />
+    </g>
   );
 }
 

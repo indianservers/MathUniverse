@@ -116,7 +116,7 @@ export function hasBalancedCasDelimiters(value: string) {
 }
 
 function parseBracketCommand(raw: string) {
-  const match = raw.match(/^([A-Za-z][A-Za-z0-9_]*)\s*([\[(])(.*)$/);
+  const match = raw.match(/^([A-Za-z][A-Za-z0-9_]*)\s*(\[|\()(.*)$/);
   if (!match) return null;
   const opener = match[2];
   const closer = opener === "[" ? "]" : ")";

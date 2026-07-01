@@ -34,17 +34,20 @@ export default function TheoremLibraryPage() {
 
   const categoriesById = useMemo(() => new Map(theoremCategories.map((category) => [category.id, category])), []);
   const activeCategory = categorySlug ? categoriesById.get(categorySlug) : undefined;
-  const visibleCategories = activeCategory ? [activeCategory] : theoremCategories;
   const rows = useMemo(
-    () =>
+    () => {
+      const visibleCategories = activeCategory ? [activeCategory] : theoremCategories;
+      return (
       visibleCategories.flatMap((category) =>
         category.theorems.map((theorem) => ({
           ...theorem,
           category,
           key: `${category.id}-${theorem.slug}`,
         })),
-      ),
-    [visibleCategories],
+      )
+      );
+    },
+    [activeCategory],
   );
 
   const activeTheorem = useMemo(() => {

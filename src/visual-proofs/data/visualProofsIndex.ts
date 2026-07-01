@@ -190,7 +190,7 @@ const geometryProofs: GeometryProofSeed[] = [
     estimatedTime: "8 minutes",
     prerequisites: ["Circle", "Circumference", "Radius", "Triangle Area"],
     learningOutcomes: ["See the circle area transform into a triangle", "Compare base 2 pi r with height r", "Track area equality during the animation"],
-    componentKey: "CircleAreaUnrollingProof",
+    componentKey: "CircleToTriangleProof",
   },
 ];
 
@@ -2509,6 +2509,7 @@ const phaseUpgradedProofs = new Set<VisualProofComponentKey>([
   "TrapezoidAreaDuplicationProof",
   "PolygonInteriorAngleSumProof",
   "CircleAreaUnrollingProof",
+  "CircleToTriangleProof",
   "DifferenceOfSquaresProof",
   "SquareOfDifferenceProof",
   "ProductOfBinomialsProof",
@@ -2690,7 +2691,7 @@ function getLearningModel(categorySlug: string, proof: { componentKey: VisualPro
   if (proof.componentKey === "SectorAreaFormulaProof") return "measurement-scene";
   if (proof.componentKey === "TrapezoidAreaDuplicationProof") return "area-rearrangement";
   if (proof.componentKey === "PolygonInteriorAngleSumProof") return "angle-model";
-  if (proof.componentKey === "CircleAreaUnrollingProof") return "area-rearrangement";
+  if (proof.componentKey === "CircleAreaUnrollingProof" || proof.componentKey === "CircleToTriangleProof") return "area-rearrangement";
   if (
     proof.componentKey === "SquareOfSumProof" ||
     proof.componentKey === "SquareOfDifferenceProof" ||

@@ -277,14 +277,6 @@ function implemented(name: string, category: CasCommandCategory, signature: stri
   return { name, aliases, category, signature, description, examples, support: "implemented", engine: "symbolic", outputKind };
 }
 
-function partial(name: string, category: CasCommandCategory, signature: string, description: string, examples: string[], aliases: string[], engine: CasCommandEngine, outputKind: CasCommandSpec["outputKind"]): CasCommandSpec {
-  return { name, aliases, category, signature, description, examples, support: "partial", engine, outputKind };
-}
-
-function planned(name: string, category: CasCommandCategory, signature: string, description: string, examples: string[], aliases: string[], outputKind: CasCommandSpec["outputKind"]): CasCommandSpec {
-  return { name, aliases, category, signature, description, examples, support: "planned", engine: "planned", outputKind };
-}
-
 function commandSearchScore(spec: CasCommandSpec, query: string) {
   if (!query) return 1;
   const haystack = [spec.name, spec.category, spec.signature, spec.description, ...spec.aliases, ...spec.examples].join(" ").toLowerCase();

@@ -76,7 +76,7 @@ export default function DashboardCard({ title, description, concepts, icon: Icon
         onContextMenu={handleContextMenu}
         className={`glass-card group relative flex min-h-[190px] flex-col overflow-hidden rounded-xl border-l-4 ${strip} p-3 hover:shadow-glow`}
       >
-        {(isNew || progress > 65) && <div className="absolute -right-10 top-4 rotate-45 bg-cyan-500 px-10 py-1 text-xs font-black uppercase text-white shadow-lg">{isNew ? "New" : "Updated"}</div>}
+        {(isNew || progress > 65) && <div className="absolute right-2 top-3 rounded-full bg-cyan-500 px-2.5 py-1 text-xs font-black uppercase text-white shadow-lg sm:-right-10 sm:top-4 sm:rotate-45 sm:rounded-none sm:px-10">{isNew ? "New" : "Updated"}</div>}
         <div className="flex items-start justify-between gap-3">
           <div className={`rounded-xl bg-gradient-to-br ${colorGradient} p-2.5 text-white shadow-lg transition group-hover:scale-105`}>
             <Icon className="h-5 w-5" />

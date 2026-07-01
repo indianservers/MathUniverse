@@ -42,6 +42,7 @@ export type GeometryGraphSettings = {
   showGrid: boolean;
   showAxes: boolean;
   showUnitLabels: boolean;
+  showUnits?: boolean;
   showPointLabels: boolean;
   showMeasurements: boolean;
   highContrastGrid: boolean;
@@ -527,6 +528,7 @@ function GeometryAccuracyStrip({ report, selectedGeometry }: { report: GeometryC
 }
 
 function GeometryGrid({ settings }: { settings: GeometryGraphSettings }) {
+  const showUnits = settings.showUnitLabels || settings.showUnits;
   const width = 640;
   const height = 420;
   const unit = 40;
@@ -539,21 +541,21 @@ function GeometryGrid({ settings }: { settings: GeometryGraphSettings }) {
     <g>
       {settings.showGrid && verticals.map((x) => <line key={`gv-${x}`} x1={x} x2={x} y1="0" y2={height} stroke={gridStroke} strokeWidth={settings.highContrastGrid ? 1.4 : 1} />)}
       {settings.showGrid && horizontals.map((y) => <line key={`gh-${y}`} x1="0" x2={width} y1={y} y2={y} stroke={gridStroke} strokeWidth={settings.highContrastGrid ? 1.4 : 1} />)}
-      {(settings.showAxes || settings.showUnitLabels) && (
+      {(settings.showAxes || showUnits) && (
         <g className="select-none">
           {settings.showAxes && <line x1={0} x2={width} y1={origin.y} y2={origin.y} stroke={axisStroke} strokeWidth={settings.highContrastGrid ? 2.4 : 1.8} opacity={settings.highContrastGrid ? 0.85 : 0.45} />}
           {settings.showAxes && <line x1={origin.x} x2={origin.x} y1={0} y2={height} stroke={axisStroke} strokeWidth={settings.highContrastGrid ? 2.4 : 1.8} opacity={settings.highContrastGrid ? 0.85 : 0.45} />}
-          {settings.showUnitLabels && verticals.map((x) => {
+          {showUnits && verticals.map((x) => {
             const value = Math.round((x - origin.x) / unit);
             if (value === 0 || x < 20 || x > width - 20) return null;
             return <text key={`x-unit-${x}`} x={x} y={origin.y + 18} textAnchor="middle" fill="#334155" fontSize="10" fontWeight="800">{value}</text>;
           })}
-          {settings.showUnitLabels && horizontals.map((y) => {
+          {showUnits && horizontals.map((y) => {
             const value = Math.round((origin.y - y) / unit);
             if (value === 0 || y < 20 || y > height - 20) return null;
             return <text key={`y-unit-${y}`} x={origin.x - 10} y={y + 4} textAnchor="end" fill="#334155" fontSize="10" fontWeight="800">{value}</text>;
           })}
-          {settings.showUnitLabels && <text x={origin.x + 7} y={origin.y + 16} fill="#0f172a" fontSize="10" fontWeight="900">0</text>}
+          {showUnits && <text x={origin.x + 7} y={origin.y + 16} fill="#0f172a" fontSize="10" fontWeight="900">0</text>}
           {settings.showAxes && <text x={width - 18} y={origin.y - 8} fill="#0f172a" fontSize="10" fontWeight="900">x</text>}
           {settings.showAxes && <text x={origin.x + 8} y={18} fill="#0f172a" fontSize="10" fontWeight="900">y</text>}
         </g>

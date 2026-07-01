@@ -31,10 +31,9 @@ import {
   Trophy,
   Wand2,
   X,
-  Zap,
 } from "lucide-react";
 import { type ComponentType, type CSSProperties, type Dispatch, type SetStateAction, type SVGProps, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ConceptIconBadge, FormulaImageStrip } from "../components/syllabus/ConceptVisualMedia";
 import SectionCard from "../components/ui/SectionCard";
 import { formulaCategories, formulaCategoryCount, type FormulaCategory, type FormulaLibraryItem } from "../data/formulaLibrary";

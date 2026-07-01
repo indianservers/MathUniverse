@@ -6,7 +6,6 @@ import {
   Grid3X3,
   Hash,
   Network,
-  Orbit,
   RadioTower,
   Sigma,
   type LucideIcon,

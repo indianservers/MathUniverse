@@ -16,6 +16,9 @@ export const conceptCategoryInfo: Record<ConceptCategory, ConceptCategoryInfo> =
   mensuration: { id: "mensuration", label: "Mensuration and 3D", color: "#16a34a", softColor: "#dcfce7" },
   "visual-proofs": { id: "visual-proofs", label: "Visual Proofs", color: "#06b6d4", softColor: "#cffafe" },
   olympiad: { id: "olympiad", label: "Olympiad", color: "#c026d3", softColor: "#fae8ff" },
+  computation: { id: "computation", label: "Computation and AI", color: "#475569", softColor: "#e2e8f0" },
+  applied: { id: "applied", label: "Applied Mathematics", color: "#15803d", softColor: "#dcfce7" },
+  "advanced-pure": { id: "advanced-pure", label: "Advanced Pure Mathematics", color: "#be123c", softColor: "#ffe4e6" },
 };
 
 const clusterOrigin: Record<ConceptCategory, { x: number; y: number }> = {
@@ -34,6 +37,9 @@ const clusterOrigin: Record<ConceptCategory, { x: number; y: number }> = {
   mensuration: { x: 570, y: 560 },
   "visual-proofs": { x: 735, y: 520 },
   olympiad: { x: 710, y: 70 },
+  computation: { x: 1460, y: 150 },
+  applied: { x: 1510, y: 565 },
+  "advanced-pure": { x: 250, y: 875 },
 };
 
 const moduleProfiles = {
@@ -47,6 +53,9 @@ const moduleProfiles = {
   threeD: { dictionary: true, formulaVisualization: true, visualization2D: true, visualization3D: true, practice: true },
   matrix: { dictionary: true, theorem: true, problemSolver: true, visualization2D: true, visualization3D: true, practice: true },
   olympiad: { dictionary: true, theorem: true, visualProof: true, practice: true, olympiad: true },
+  computation: { dictionary: true, theorem: true, problemSolver: true, graph: true, visualization2D: true, practice: true },
+  applied: { dictionary: true, formulaVisualization: true, theorem: true, problemSolver: true, graph: true, visualization2D: true, visualization3D: true, practice: true },
+  pureAdvanced: { dictionary: true, theorem: true, visualProof: true, visualization2D: true, practice: true },
 } satisfies Record<string, ConceptNode["availableModules"]>;
 
 type NodeSeed = {
@@ -232,6 +241,30 @@ const rawSeeds = [
   ["algebraic-manipulation", "Algebraic Manipulation", "olympiad", "intermediate", ["algebraic-identities", "factorization"], ["functional-equations"], ["inequalities"], undefined, ["Simplifying problems"], "/formulas/algebra", "olympiad"],
   ["functional-equations", "Functional Equations", "olympiad", "advanced", ["function-basics", "algebraic-manipulation"], ["olympiad-inequality-reasoning"], ["logic-statements"], undefined, ["Contest functions"], "/olympyard", "olympiad"],
   ["olympiad-inequality-reasoning", "Inequality Reasoning", "olympiad", "olympiad", ["inequalities", "algebraic-manipulation"], ["calculus-applications"], ["am-gm"], ["AM-GM", "Cauchy-Schwarz"], ["AM-GM inequality"], "/theorems/algebra", "olympiad"],
+  ["theory-of-computation", "Theory of Computation", "computation", "advanced", ["logic-statements", "sets"], ["algorithms", "computer-science"], ["visual-proof-methods"], undefined, ["Automata", "Decidability"], "/discrete-world", "computation"],
+  ["algorithms", "Algorithms", "computation", "intermediate", ["logic-statements", "counting-strategies"], ["computer-science", "optimization"], ["graph-theory-concepts"], undefined, ["Efficient procedures"], "/discrete-world", "computation"],
+  ["graph-theory-concepts", "Graph Theory", "computation", "intermediate", ["sets", "counting-strategies"], ["algorithms", "network-models"], ["matrices"], undefined, ["Networks", "Routes"], "/graph-theory", "computation"],
+  ["network-models", "Network Models", "computation", "intermediate", ["graph-theory-concepts"], ["data-science", "optimization"], ["algorithms"], undefined, ["Connections", "Flows"], "/graph-theory", "computation"],
+  ["computer-science", "Computer Science", "computation", "advanced", ["algorithms", "matrices"], ["machine-learning", "cryptography"], ["linear-transformations"], undefined, ["Programming", "Systems"], "/ai-applications", "computation"],
+  ["cryptography", "Cryptography", "computation", "advanced", ["prime-numbers", "modular-arithmetic"], ["computer-science"], ["number-theory"], undefined, ["Secure communication"], "/theorems/number-theory", "computation"],
+  ["machine-learning", "Machine Learning", "computation", "advanced", ["statistics-mean", "matrices", "optimization"], ["data-science"], ["linear-transformations"], undefined, ["Prediction", "Classification"], "/ai-applications", "computation"],
+  ["data-science", "Data Science", "applied", "intermediate", ["statistics-mean", "probability-basics", "graph-interpretation"], ["machine-learning"], ["data-collection"], undefined, ["Data modelling"], "/probability-statistics", "applied"],
+  ["optimization", "Optimization", "applied", "advanced", ["calculus-applications", "inequalities"], ["mathematical-finance", "machine-learning"], ["linear-programming"], undefined, ["Best possible choice"], "/math/derivatives", "applied"],
+  ["linear-programming", "Linear Programming", "applied", "advanced", ["linear-equations", "inequalities", "coordinate-plane"], ["optimization", "economics"], ["graph-interpretation"], undefined, ["Constraints", "Feasible region"], "/engineering-math", "applied"],
+  ["mathematical-finance", "Mathematical Finance", "applied", "advanced", ["percentages", "exponential-functions", "statistics-mean"], ["economics"], ["probability-basics"], undefined, ["Risk", "Compound interest"], "/engineering-math", "applied"],
+  ["economics", "Economics", "applied", "intermediate", ["linear-functions", "optimization", "statistics-mean"], ["mathematical-finance"], ["data-science"], undefined, ["Supply and demand"], "/engineering-math", "applied"],
+  ["control-theory", "Control Theory", "applied", "advanced", ["differential-equations-basics", "linear-transformations"], ["engineering-mathematics"], ["dynamical-systems"], undefined, ["Robotics", "Feedback"], "/engineering-math", "applied"],
+  ["engineering-mathematics", "Engineering Mathematics", "applied", "advanced", ["vectors", "matrices", "calculus-integration"], ["control-theory"], ["mathematical-physics"], undefined, ["Design", "Simulation"], "/engineering-math", "applied"],
+  ["mathematical-physics", "Mathematical Physics", "applied", "advanced", ["vectors", "calculus-derivatives", "differential-equations-basics"], ["engineering-mathematics"], ["vector-calculus"], undefined, ["Motion", "Fields"], "/engineering-math", "applied"],
+  ["vector-calculus", "Vector Calculus", "applied", "advanced", ["vectors", "calculus-derivatives", "calculus-integration"], ["mathematical-physics"], ["linear-transformations"], undefined, ["Fields", "Flow"], "/engineering-math", "applied"],
+  ["topology", "Topology", "advanced-pure", "advanced", ["points-lines-angles", "sets"], ["differential-geometry"], ["continuity"], undefined, ["Shape without measurement"], "/theorems", "pureAdvanced"],
+  ["differential-geometry", "Differential Geometry", "advanced-pure", "advanced", ["calculus-derivatives", "points-lines-angles", "vectors"], ["topology"], ["mathematical-physics"], undefined, ["Curved spaces"], "/engineering-math", "pureAdvanced"],
+  ["complex-numbers-concept", "Complex Numbers", "advanced-pure", "intermediate", ["real-numbers", "coordinate-plane"], ["complex-analysis", "fractals"], ["trigonometric-formulae"], ["a + bi"], ["Rotations", "Signal waves"], "/complex-numbers", "pureAdvanced"],
+  ["complex-analysis", "Complex Analysis", "advanced-pure", "advanced", ["complex-numbers-concept", "calculus-derivatives"], ["fractals"], ["function-basics"], undefined, ["Analytic functions"], "/complex-numbers", "pureAdvanced"],
+  ["fractals", "Fractals", "advanced-pure", "advanced", ["sequences", "complex-numbers-concept"], ["chaos-theory"], ["complex-analysis"], undefined, ["Self-similarity"], "/visual-showcase", "pureAdvanced"],
+  ["chaos-theory", "Chaos Theory", "advanced-pure", "advanced", ["differential-equations-basics", "fractals"], ["dynamical-systems"], ["probability-basics"], undefined, ["Sensitive dependence"], "/visual-showcase", "pureAdvanced"],
+  ["dynamical-systems", "Dynamical Systems", "advanced-pure", "advanced", ["differential-equations-basics", "sequences"], ["chaos-theory"], ["control-theory"], undefined, ["Changing systems"], "/math/slope-fields", "pureAdvanced"],
+  ["game-theory", "Game Theory", "applied", "advanced", ["probability-basics", "optimization"], ["economics"], ["logic-statements"], undefined, ["Strategy"], "/discrete-world", "applied"],
 ] as const;
 
 const seeds: NodeSeed[] = rawSeeds.map(([id, title, category, difficulty, prerequisites, nextConcepts, relatedConcepts, formulas, uses, route, modules]) => ({
@@ -256,6 +289,13 @@ const explicitEdges: ConceptEdge[] = [
   edge("application-link", "vectors", "linear-transformations", "used in transformations", 4),
   edge("theorem-link", "quadratic-formula", "parabola-basics", "theorem to graph", 4),
   edge("application-link", "sets", "probability-basics", "event models", 4),
+  edge("application-link", "modular-arithmetic", "cryptography", "secure arithmetic", 5),
+  edge("application-link", "matrices", "machine-learning", "data transforms", 4),
+  edge("application-link", "calculus-applications", "optimization", "max/min methods", 5),
+  edge("application-link", "statistics-mean", "data-science", "summarizes data", 4),
+  edge("application-link", "differential-equations-basics", "control-theory", "system dynamics", 4),
+  edge("application-link", "complex-numbers-concept", "complex-analysis", "extends functions", 4),
+  edge("application-link", "topology", "differential-geometry", "spaces and curvature", 4),
 ];
 
 function edge(type: ConceptEdgeType, source: string, target: string, label: string, strength = 2): ConceptEdge {

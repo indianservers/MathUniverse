@@ -131,11 +131,12 @@ export function ParallelogramShearVisual({ values, toggles, activeStep, activeHi
 export function SquareOfSumVisual({ values, toggles, activeStep, activeHighlight, onHighlight, onValueChange }: VisualState) {
   const a = values.a;
   const b = values.b;
-  const scale = 42;
-  const x = 160;
-  const y = 110;
+  const scale = Math.min(42, 430 / Math.max(1, a + b));
+  const x = 115;
+  const y = 102;
   const as = a * scale;
   const bs = b * scale;
+  const total = as + bs;
   const labelRegions = toggles.labels;
   const showHighlights = toggles.highlights;
   const regionOpacity = (step: number, token: string) => (showHighlights && (activeStep === step || activeHighlight === token || (activeHighlight === "two-ab" && token.startsWith("ab"))) ? 1 : 0.78);
@@ -146,20 +147,42 @@ export function SquareOfSumVisual({ values, toggles, activeStep, activeHighlight
       <rect x={x + as} y={y} width={bs} height={as} fill="#14b8a6" opacity={regionOpacity(4, "ab-top")} stroke={regionStroke("ab-top", "#ccfbf1")} strokeWidth={activeHighlight === "ab-top" || activeHighlight === "two-ab" ? "6" : "3"} onMouseEnter={() => onHighlight("ab-top")} onMouseLeave={() => onHighlight(null)} />
       <rect x={x} y={y + as} width={as} height={bs} fill="#14b8a6" opacity={regionOpacity(4, "ab-left")} stroke={regionStroke("ab-left", "#ccfbf1")} strokeWidth={activeHighlight === "ab-left" || activeHighlight === "two-ab" ? "6" : "3"} onMouseEnter={() => onHighlight("ab-left")} onMouseLeave={() => onHighlight(null)} />
       <rect x={x + as} y={y + as} width={bs} height={bs} fill="#f97316" opacity={regionOpacity(3, "b2")} stroke={regionStroke("b2", "#fed7aa")} strokeWidth={activeHighlight === "b2" ? "6" : "3"} onMouseEnter={() => onHighlight("b2")} onMouseLeave={() => onHighlight(null)} />
-      <rect x={x} y={y} width={as + bs} height={as + bs} fill="none" stroke="#f8fafc" strokeWidth="4" />
-      <line x1={x + as} y1={y} x2={x + as} y2={y + as + bs} stroke="#f8fafc" strokeWidth="3" strokeDasharray="8 6" />
-      <line x1={x} y1={y + as} x2={x + as + bs} y2={y + as} stroke="#f8fafc" strokeWidth="3" strokeDasharray="8 6" />
+      <rect x={x} y={y} width={total} height={total} fill="none" stroke="#f8fafc" strokeWidth="4" />
+      <line x1={x + as} y1={y} x2={x + as} y2={y + total} stroke="#f8fafc" strokeWidth="3" strokeDasharray="8 6" />
+      <line x1={x} y1={y + as} x2={x + total} y2={y + as} stroke="#f8fafc" strokeWidth="3" strokeDasharray="8 6" />
       {labelRegions ? (
         <>
           <Text x={x + as / 2} y={y + as / 2} text="a^2" />
+          <Text x={x + as / 2} y={y + as / 2 + 26} text={`${a} x ${a}`} small />
           <Text x={x + as + bs / 2} y={y + as / 2} text="ab" />
+          <Text x={x + as + bs / 2} y={y + as / 2 + 26} text={`${a} x ${b}`} small />
           <Text x={x + as / 2} y={y + as + bs / 2} text="ab" />
+          <Text x={x + as / 2} y={y + as + bs / 2 + 26} text={`${a} x ${b}`} small />
           <Text x={x + as + bs / 2} y={y + as + bs / 2} text="b^2" />
-          <Info x={575} y={320} lines={[`a = ${a}, b = ${b}`, `full = (${a} + ${b})^2 = ${(a + b) ** 2}`, `parts = ${a ** 2} + ${a * b} + ${a * b} + ${b ** 2}`]} />
+          <Text x={x + as + bs / 2} y={y + as + bs / 2 + 26} text={`${b} x ${b}`} small />
+          <DimensionGuide x1={x} x2={x + as} y={y - 28} label={`a = ${a}`} active={activeHighlight === "a2" || activeHighlight === "ab-left"} onFocus={() => onHighlight("a2")} onBlur={() => onHighlight(null)} />
+          <DimensionGuide x1={x + as} x2={x + total} y={y - 28} label={`b = ${b}`} active={activeHighlight === "b2" || activeHighlight === "ab-top"} onFocus={() => onHighlight("b2")} onBlur={() => onHighlight(null)} />
+          <DimensionGuide x1={x} x2={x + total} y={y + total + 34} label={`whole side = a + b = ${a + b}`} active={activeHighlight === "two-ab"} onFocus={() => onHighlight("two-ab")} onBlur={() => onHighlight(null)} />
+          <SideSegmentGuide x={x - 30} y1={y} y2={y + as} label={`a = ${a}`} active={activeHighlight === "a2" || activeHighlight === "ab-top"} onFocus={() => onHighlight("a2")} onBlur={() => onHighlight(null)} />
+          <SideSegmentGuide x={x - 30} y1={y + as} y2={y + total} label={`b = ${b}`} active={activeHighlight === "b2" || activeHighlight === "ab-left"} onFocus={() => onHighlight("b2")} onBlur={() => onHighlight(null)} />
+          <ValueCard
+            x={610}
+            y={182}
+            title="Values in this proof"
+            lines={[
+              `a side = ${a}; b side = ${b}`,
+              `whole side = a + b = ${a + b}`,
+              `a^2 region = ${a} x ${a} = ${a ** 2}`,
+              `top ab = ${a} x ${b} = ${a * b}`,
+              `left ab = ${a} x ${b} = ${a * b}`,
+              `b^2 region = ${b} x ${b} = ${b ** 2}`,
+              `total area = ${(a + b) ** 2}`,
+            ]}
+          />
         </>
       ) : null}
       <DraggableHandle label="Drag a split" position={{ x: x + as, y: y - 28 }} axis="x" bounds={{ x: [x + 2 * scale, x + 8 * scale] }} snapToGrid={scale} keyboardStep={scale} onChange={(point) => onValueChange("a", Math.round((point.x - x) / scale))} />
-      <DraggableHandle label="Drag b split" position={{ x: x + as + bs, y: y + as + bs + 30 }} axis="x" bounds={{ x: [x + as + 1 * scale, x + as + 6 * scale] }} snapToGrid={scale} keyboardStep={scale} onChange={(point) => onValueChange("b", Math.round((point.x - x - as) / scale))} />
+      <DraggableHandle label="Drag b split" position={{ x: x + total, y: y + total + 30 }} axis="x" bounds={{ x: [x + as + 1 * scale, x + as + 6 * scale] }} snapToGrid={scale} keyboardStep={scale} onChange={(point) => onValueChange("b", Math.round((point.x - x - as) / scale))} />
     </VisualFrame>
   );
 }
@@ -212,6 +235,44 @@ function SideGuide({ x, y1, y2, label, active = false, onFocus, onBlur }: { x: n
     <g tabIndex={0} onFocus={onFocus} onBlur={onBlur}>
       <line x1={x} y1={y1} x2={x} y2={y2} stroke={active ? "#fde68a" : "#22d3ee"} strokeWidth={active ? "7" : "3"} />
       <text x={x + 14} y={(y1 + y2) / 2 + 5} fill="#f8fafc" fontSize="14" fontWeight="900">{label}</text>
+    </g>
+  );
+}
+
+function DimensionGuide({ x1, x2, y, label, active = false, onFocus, onBlur }: { x1: number; x2: number; y: number; label: string; active?: boolean; onFocus?: () => void; onBlur?: () => void }) {
+  return (
+    <g tabIndex={0} onFocus={onFocus} onBlur={onBlur}>
+      <line x1={x1} y1={y} x2={x2} y2={y} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth={active ? "6" : "3"} />
+      <line x1={x1} y1={y - 7} x2={x1} y2={y + 7} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth="3" />
+      <line x1={x2} y1={y - 7} x2={x2} y2={y + 7} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth="3" />
+      <text x={(x1 + x2) / 2} y={y - 10} textAnchor="middle" fill={active ? "#fde68a" : "#f8fafc"} fontSize="14" fontWeight="900">{label}</text>
+    </g>
+  );
+}
+
+function SideSegmentGuide({ x, y1, y2, label, active = false, onFocus, onBlur }: { x: number; y1: number; y2: number; label: string; active?: boolean; onFocus?: () => void; onBlur?: () => void }) {
+  const midY = (y1 + y2) / 2;
+  return (
+    <g tabIndex={0} onFocus={onFocus} onBlur={onBlur}>
+      <line x1={x} y1={y1} x2={x} y2={y2} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth={active ? "6" : "3"} />
+      <line x1={x - 7} y1={y1} x2={x + 7} y2={y1} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth="3" />
+      <line x1={x - 7} y1={y2} x2={x + 7} y2={y2} stroke={active ? "#fde68a" : "#e0f2fe"} strokeWidth="3" />
+      <text x={x - 12} y={midY + 5} textAnchor="end" fill={active ? "#fde68a" : "#f8fafc"} fontSize="14" fontWeight="900">{label}</text>
+    </g>
+  );
+}
+
+function ValueCard({ x, y, title, lines }: { x: number; y: number; title: string; lines: string[] }) {
+  const rowHeight = 25;
+  return (
+    <g>
+      <rect x={x - 18} y={y - 34} width="268" height={Math.max(92, lines.length * rowHeight + 48)} rx="16" fill="#0f172a" opacity="0.94" stroke="#475569" />
+      <text x={x} y={y - 8} fill="#a5f3fc" fontSize="15" fontWeight="900">{title}</text>
+      {lines.map((line, index) => (
+        <text key={line} x={x} y={y + 18 + index * rowHeight} fill="#f8fafc" fontSize="13" fontWeight="800">
+          {line}
+        </text>
+      ))}
     </g>
   );
 }

@@ -104,6 +104,7 @@ export function PhaseTwoProofExperience({ category, proof, config }: { category:
 
   return (
     <VisualProofShell
+      proof={proof}
       title={proof.title}
       difficulty={proof.difficulty}
       category={category.title}

@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
-import SectionCard from "../components/ui/SectionCard";
+import DualPaneMathLayout from "../components/ui/DualPaneMathLayout";
 import SliderControl from "../components/ui/SliderControl";
-import TopicHeader from "../components/ui/TopicHeader";
 import { compileFunctionExpression } from "../utils/functionParser";
 import { roundTo } from "../utils/math";
 
@@ -51,69 +50,75 @@ export default function LimitsContinuityVisualizer() {
   };
 
   return (
-    <div className="space-y-6">
-      <TopicHeader title="Limits and Continuity Visualizer" subtitle="Compare left-hand limits, right-hand limits, two-sided limits, function values, and discontinuity types at a chosen point." difficulty="Calculus Foundations" estimatedMinutes={18} />
-
-      <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
-        <SectionCard title="Function and Limit Controls" description="Choose or type a function, then move the approach point a.">
-          <div className="space-y-4">
-            <label className="block">
-              <span className="text-sm font-bold">f(x)</span>
-              <div className="mt-2 flex gap-2">
-                <input value={draft} onChange={(event) => { setDraft(event.target.value); setKind("input"); }} onKeyDown={(event) => { if (event.key === "Enter") setExpression(draft); }} className="premium-input min-h-11" />
-                <button type="button" className="action-primary px-4" onClick={() => { setKind("input"); setExpression(draft); }}>Plot</button>
-              </div>
-              {compiled.error && <p className="mt-2 rounded-xl bg-rose-50 p-3 text-sm font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{compiled.error}</p>}
-            </label>
-            <SliderControl label="Limit point a" value={a} min={-5} max={5} step={0.05} onChange={setA} />
-            <SliderControl label="Approach distance" value={approach} min={0.05} max={3} step={0.05} onChange={setApproach} />
-            <div className="grid grid-cols-2 gap-2">
-              <Metric label="left x" value={roundTo(leftX, 3).toString()} />
-              <Metric label="right x" value={roundTo(rightX, 3).toString()} />
+    <DualPaneMathLayout
+      title="Limits and Continuity"
+      subtitle="Compare left-hand limits, right-hand limits, two-sided limits, function values, and discontinuity types at a chosen point."
+      meta={
+        <>
+          <span className="rounded-full bg-cyan-100 px-3 py-2 text-xs font-black text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-200">Calculus Foundations</span>
+          <span className="rounded-full bg-violet-100 px-3 py-2 text-xs font-black text-violet-800 dark:bg-violet-400/15 dark:text-violet-200">18 min</span>
+        </>
+      }
+      controls={
+        <div className="space-y-4">
+          <label className="block">
+            <span className="text-sm font-bold">f(x)</span>
+            <div className="mt-2 grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-1">
+              <input value={draft} onChange={(event) => { setDraft(event.target.value); setKind("input"); }} onKeyDown={(event) => { if (event.key === "Enter") setExpression(draft); }} className="premium-input min-h-11" />
+              <button type="button" className="action-primary px-4" onClick={() => { setKind("input"); setExpression(draft); }}>Plot</button>
             </div>
+            {compiled.error && <p className="mt-2 rounded-xl bg-rose-50 p-3 text-sm font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{compiled.error}</p>}
+          </label>
+          <SliderControl density="compact" label="Limit point a" value={a} min={-5} max={5} step={0.05} onChange={setA} />
+          <SliderControl density="compact" label="Approach distance" value={approach} min={0.05} max={3} step={0.05} onChange={setApproach} />
+          <div className="grid grid-cols-2 gap-2">
+            <Metric label="left x" value={roundTo(leftX, 3).toString()} />
+            <Metric label="right x" value={roundTo(rightX, 3).toString()} />
           </div>
-        </SectionCard>
-
-        <SectionCard title="Limit Graph" description="Blue is the graph, orange and violet points approach x = a from left and right." tone="spotlight">
-          <LimitGraph samples={samples} a={a} leftPoint={leftPoint} rightPoint={rightPoint} atPoint={atPoint} />
-        </SectionCard>
-      </div>
-
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
-        <SectionCard title="Continuity Checker">
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            <Metric label="Left-hand limit" value={formatValue(limitInfo?.left)} />
-            <Metric label="Right-hand limit" value={formatValue(limitInfo?.right)} />
+        </div>
+      }
+      panes={[
+        {
+          id: "2d",
+          label: "2D graph",
+          title: "2D Limit Pane",
+          description: "Blue is the graph; orange and violet points approach x = a from left and right.",
+          content: <LimitGraph samples={samples} a={a} leftPoint={leftPoint} rightPoint={rightPoint} atPoint={atPoint} />,
+        },
+        {
+          id: "3d",
+          label: "3D pane",
+          title: "3D Approach Pane",
+          description: "A depth model separates left approach, right approach, and function value so discontinuities are easier to see.",
+          content: <LimitDepthPane a={a} left={limitInfo?.left} right={limitInfo?.right} value={atPoint?.defined ? atPoint.y : undefined} classification={limitInfo?.classification ?? "unknown"} />,
+        },
+      ]}
+      insights={
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-2">
+            <Metric label="Left limit" value={formatValue(limitInfo?.left)} />
+            <Metric label="Right limit" value={formatValue(limitInfo?.right)} />
             <Metric label="f(a) defined" value={limitInfo?.defined ? "yes" : "no"} />
-            <Metric label="Two-sided limit" value={limitInfo?.limitExists ? "exists" : "does not exist"} />
+            <Metric label="Two-sided" value={limitInfo?.limitExists ? "exists" : "does not exist"} />
+            <Metric label="Final status" value={limitInfo?.continuous ? "Continuous" : "Not continuous"} />
+            <Metric label="Class" value={limitInfo?.classification ?? "unknown"} />
           </div>
-          <div className="mt-4 grid gap-3 md:grid-cols-2">
-            <Metric label="Final status" value={limitInfo?.continuous ? "Continuous at x = a" : "Not continuous at x = a"} />
-            <Metric label="Classification" value={limitInfo?.classification ?? "unknown"} />
-          </div>
-        </SectionCard>
-
-        <SectionCard title="Concept Explanation">
           <div className="space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
             <p>A function is continuous at <strong>x = a</strong> if:</p>
             <p className="rounded-2xl bg-slate-100 p-3 font-mono text-xs font-bold dark:bg-slate-950">f(a) exists, lim x-&gt;a f(x) exists, and lim x-&gt;a f(x) = f(a)</p>
-            <p>The left-hand and right-hand limits must approach the same value. If the function value is missing or different, the graph has a discontinuity.</p>
+            <p>The left-hand and right-hand limits must approach the same value.</p>
           </div>
-        </SectionCard>
-      </div>
-
-      <SectionCard title="Presets" description="Click a card to load common continuity examples.">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {presets.map((preset) => (
-            <button key={preset.title} type="button" onClick={() => setPreset(preset)} className="cinematic-preset-button">
-              <h3 className="font-black">{preset.title}</h3>
-              <p className="mt-2 font-mono text-sm text-cyan-700 dark:text-cyan-300">{preset.expression}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{preset.description}</p>
-            </button>
-          ))}
+          <div className="grid grid-cols-1 gap-2">
+            {presets.map((preset) => (
+              <button key={preset.title} type="button" onClick={() => setPreset(preset)} className="cinematic-preset-button px-3 py-2 text-left">
+                <span className="font-black">{preset.title}</span>
+                <span className="ml-2 font-mono text-xs text-cyan-700 dark:text-cyan-300">{preset.expression}</span>
+              </button>
+            ))}
+          </div>
         </div>
-      </SectionCard>
-    </div>
+      }
+    />
   );
 }
 
@@ -141,6 +146,37 @@ function LimitGraph({ samples, a, leftPoint, rightPoint, atPoint }: { samples: S
       {leftPoint?.defined && <GraphPoint x={sx(leftPoint.x)} y={sy(leftPoint.y)} label="left" color="#f59e0b" />}
       {rightPoint?.defined && <GraphPoint x={sx(rightPoint.x)} y={sy(rightPoint.y)} label="right" color="#8b5cf6" />}
       {atPoint?.defined && <GraphPoint x={sx(atPoint.x)} y={sy(atPoint.y)} label="f(a)" color="#ef4444" />}
+    </svg>
+  );
+}
+
+function LimitDepthPane({ a, left, right, value, classification }: { a: number; left?: number; right?: number; value?: number; classification: string }) {
+  const normalize = (input?: number) => Number.isFinite(input) ? 260 - Math.max(-5, Math.min(5, input!)) * 26 : 310;
+  const leftY = normalize(left);
+  const rightY = normalize(right);
+  const valueY = normalize(value);
+
+  return (
+    <svg viewBox="0 0 760 460" className="cinematic-svg-stage sm:h-[460px]">
+      <defs>
+        <linearGradient id="limit-depth-bg" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stopColor="#082f49" />
+          <stop offset="58%" stopColor="#0f172a" />
+          <stop offset="100%" stopColor="#020617" />
+        </linearGradient>
+      </defs>
+      <rect width="760" height="460" fill="url(#limit-depth-bg)" />
+      <polygon points="132,346 590,346 656,294 202,294" fill="#0f766e" opacity="0.22" stroke="#67e8f9" strokeWidth="2" />
+      <line x1="380" x2="380" y1="96" y2="360" stroke="#f87171" strokeWidth="4" strokeDasharray="10 8" />
+      <path d={`M126 320 C210 ${leftY} 300 ${leftY} 370 ${leftY}`} fill="none" stroke="#f59e0b" strokeWidth="7" />
+      <path d={`M634 320 C550 ${rightY} 460 ${rightY} 390 ${rightY}`} fill="none" stroke="#a78bfa" strokeWidth="7" />
+      <circle cx="380" cy={valueY} r="12" fill="#ef4444" stroke="#fff" strokeWidth="3" />
+      <text x="82" y="86" fill="#f8fafc" fontSize="30" fontWeight="900">3D limit approach</text>
+      <text x="84" y="122" fill="#bae6fd" fontSize="16" fontWeight="700">Left path, right path, and f(a) are separated in depth.</text>
+      <text x="164" y="382" fill="#fbbf24" fontSize="18" fontWeight="900">left limit {formatValue(left)}</text>
+      <text x="428" y="382" fill="#d8b4fe" fontSize="18" fontWeight="900">right limit {formatValue(right)}</text>
+      <text x="352" y="82" fill="#fecaca" fontSize="18" fontWeight="900">x = {roundTo(a, 2)}</text>
+      <text x="84" y="414" fill="#f8fafc" fontSize="17" fontWeight="900">classification: {classification}</text>
     </svg>
   );
 }

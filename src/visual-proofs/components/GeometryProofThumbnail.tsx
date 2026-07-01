@@ -97,6 +97,7 @@ function renderThumbnail(key: VisualProofComponentKey) {
       );
     }
     case "CircleAreaUnrollingProof":
+    case "CircleToTriangleProof":
       return (
         <>
           <circle cx="48" cy="46" r="30" fill="none" stroke="#22d3ee" strokeWidth="5" />

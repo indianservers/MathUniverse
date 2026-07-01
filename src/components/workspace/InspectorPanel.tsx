@@ -30,6 +30,7 @@ export default function InspectorPanel({ object, onObjectChange }: InspectorPane
     object?.properties?.dynamicColor?.red,
     object?.properties?.dynamicColor?.green,
     object?.properties?.dynamicColor?.blue,
+    object,
   ]);
 
   if (!object) {

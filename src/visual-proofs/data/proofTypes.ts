@@ -38,6 +38,7 @@ export type VisualProofCategory = {
 
 export type VisualProofComponentKey =
   | "CircleAreaUnrollingProof"
+  | "CircleToTriangleProof"
   | "PythagoreanAreaRearrangementProof"
   | "TriangleAreaHalfRectangleProof"
   | "TriangleAngleSumProof"
@@ -324,4 +325,5 @@ export type VisualProofShellProps = {
   stateInspector?: ReactNode;
   summary?: string;
   practiceExit?: ReactNode;
+  proof?: VisualProof;
 };

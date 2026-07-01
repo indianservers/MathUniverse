@@ -8,6 +8,13 @@ export default tseslint.config(
   {
     ignores: ["dist", "dev-dist", "node_modules", "*.tsbuildinfo", "vite.config.js"],
   },
+  {
+    files: ["public/sw.js"],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.serviceworker,
+    },
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {

@@ -15,7 +15,10 @@ export type ConceptCategory =
   | "vectors"
   | "mensuration"
   | "visual-proofs"
-  | "olympiad";
+  | "olympiad"
+  | "computation"
+  | "applied"
+  | "advanced-pure";
 
 export type LearningMode = "student" | "teacher" | "explorer";
 

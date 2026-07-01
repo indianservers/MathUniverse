@@ -1,6 +1,8 @@
 import { ArrowUpRight, BookOpen, Clock3 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { MathText } from "../../components/ui/MathExpression";
 import type { VisualProofShellProps } from "../data/proofTypes";
+import ProofExplanationPanel from "./ProofExplanationPanel";
 import { ProofStepTimeline } from "./ProofStepTimeline";
 
 export function VisualProofShell({
@@ -17,6 +19,7 @@ export function VisualProofShell({
   stateInspector,
   summary,
   practiceExit,
+  proof,
 }: VisualProofShellProps) {
   return (
     <div className="visual-proof-shell space-y-4" data-testid="visual-proof-shell">
@@ -30,7 +33,9 @@ export function VisualProofShell({
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="min-w-0">
             <p className="text-xs font-black uppercase tracking-wide text-cyan-200">Shell-ready visual proof</p>
-            <h1 className="mt-2 max-w-5xl text-3xl font-black sm:text-4xl">{title}</h1>
+            <h1 className="mt-2 max-w-5xl text-3xl font-black sm:text-4xl">
+              <MathText value={title} mathClassName="text-[0.92em]" />
+            </h1>
             {summary ? <p className="mt-3 max-w-4xl text-sm leading-6 text-cyan-50/75">{summary}</p> : null}
           </div>
           <div className="flex flex-wrap gap-2">
@@ -42,6 +47,8 @@ export function VisualProofShell({
           </div>
         </div>
       </section>
+
+      {proof ? <ProofExplanationPanel proof={proof} /> : null}
 
       <div className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1fr)_390px]">
         <main className="min-w-0 space-y-4">

@@ -10,12 +10,12 @@ type HeaderProps = {
 
 export default function Header({ mobileMenuOpen, onMenuClick }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 border-b border-white/60 bg-slate-50/82 px-4 py-3 backdrop-blur-xl dark:border-white/10 dark:bg-[#07111f]/82 md:px-8">
+    <header className="sticky top-0 z-30 border-b border-white/25 bg-[linear-gradient(90deg,rgba(7,24,39,0.88),rgba(13,38,58,0.84),rgba(42,40,90,0.78))] px-4 py-3 text-white shadow-xl shadow-cyan-950/10 backdrop-blur-2xl dark:border-white/10 md:px-8">
       <div className="flex items-center justify-between">
         <button
           type="button"
           onClick={onMenuClick}
-          className="tooltip-icon inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 dark:border-white/10 dark:bg-white/10 dark:text-white lg:hidden"
+          className="tooltip-icon inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white shadow-sm transition hover:bg-white/15 lg:hidden"
           aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-navigation"
@@ -24,8 +24,8 @@ export default function Header({ mobileMenuOpen, onMenuClick }: HeaderProps) {
           <Menu className="h-5 w-5" />
         </button>
         <div className="min-w-0 px-3 lg:px-0">
-          <p className="text-sm font-semibold text-cyan-600 dark:text-cyan-300">Interactive math lab</p>
-          <p className="hidden truncate text-xs text-slate-500 dark:text-slate-400 sm:block">Visual explanations, simulations, and quizzes</p>
+          <p className="text-sm font-black text-cyan-100">Interactive Math Lab</p>
+          <p className="hidden truncate text-xs font-semibold text-white/65 sm:block">Visual proofs, simulations, graphing, and practice</p>
         </div>
         <div className="flex items-center gap-1.5">
           <CommandPalette />

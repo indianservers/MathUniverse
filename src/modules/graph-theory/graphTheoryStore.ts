@@ -17,6 +17,7 @@ type GraphTheoryState = GraphProject & {
   setStepIndex: (step: number) => void;
   setChallengeMode: (enabled: boolean) => void;
   loadProject: (project: GraphProject) => void;
+  resetProject: () => void;
 };
 
 export const useGraphTheoryStore = create<GraphTheoryState>()(
@@ -40,6 +41,7 @@ export const useGraphTheoryStore = create<GraphTheoryState>()(
       setStepIndex: (stepIndex) => set({ stepIndex }),
       setChallengeMode: (challengeMode) => set({ challengeMode }),
       loadProject: (project) => set({ ...project, stepIndex: 0 }),
+      resetProject: () => set({ ...sampleGraph, stepIndex: 0 }),
     }),
     { name: "math-universe-graph-theory-project" }
   )

@@ -1,9 +1,8 @@
 import { useMemo, useState } from "react";
 import { Line, OrbitControls, Text } from "@react-three/drei";
-import SectionCard from "../components/ui/SectionCard";
+import DualPaneMathLayout from "../components/ui/DualPaneMathLayout";
 import SliderControl from "../components/ui/SliderControl";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
-import TopicHeader from "../components/ui/TopicHeader";
 import { compileFunctionExpression } from "../utils/functionParser";
 import { roundTo } from "../utils/math";
 
@@ -35,75 +34,88 @@ export default function DerivativesTangentVisualizer() {
   const edgeNote = edgeCaseNote(expression, a, fa, derivative);
 
   return (
-    <div className="space-y-6">
-      <TopicHeader title="Derivatives and Tangent Lines Visualizer" subtitle="See the derivative as tangent slope, compare secants approaching tangents, and interpret rate of change numerically and visually." difficulty="Differential Calculus" estimatedMinutes={20} />
+    <DualPaneMathLayout
+      title="Derivatives and Tangent Lines"
+      subtitle="See derivative as tangent slope, compare secants approaching tangents, and switch between clean 2D graphing and a rotatable 3D concept view."
+      meta={
+        <>
+          <span className="rounded-full bg-cyan-100 px-3 py-2 text-xs font-black text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-200">Differential Calculus</span>
+          <span className="rounded-full bg-violet-100 px-3 py-2 text-xs font-black text-violet-800 dark:bg-violet-400/15 dark:text-violet-200">20 min</span>
+        </>
+      }
+      controls={
+        <div className="space-y-4">
+          <label className="block">
+            <span className="text-sm font-bold">f(x)</span>
+            <div className="mt-2 grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-1">
+              <input value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") setExpression(draft); }} className="premium-input min-h-11" />
+              <button type="button" className="action-primary px-4" onClick={() => setExpression(draft)}>Plot</button>
+            </div>
+            {compiled.error && <p className="mt-2 rounded-xl bg-rose-50 p-3 text-sm font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{compiled.error}</p>}
+          </label>
 
-      <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
-        <SectionCard title="Controls" description="Type a function and move the tangent point.">
-          <div className="space-y-4">
-            <label className="block">
-              <span className="text-sm font-bold">f(x)</span>
-              <div className="mt-2 flex gap-2">
-                <input value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") setExpression(draft); }} className="premium-input min-h-11" />
-                <button type="button" className="action-primary px-4" onClick={() => setExpression(draft)}>Plot</button>
-              </div>
-              {compiled.error && <p className="mt-2 rounded-xl bg-rose-50 p-3 text-sm font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{compiled.error}</p>}
-            </label>
-            <SliderControl label="Tangent point x = a" value={a} min={-6} max={6} step={0.05} onChange={setA} />
-            <SliderControl label="Secant distance h" value={h} min={-3} max={3} step={0.05} onChange={setH} />
-            <div className="flex flex-wrap gap-2">
-              <button type="button" onClick={() => setShowSecant((value) => !value)} className={showSecant ? "action-primary" : "action-secondary"}>Secant line</button>
-              <button type="button" onClick={() => setShowDerivative((value) => !value)} className={showDerivative ? "action-primary" : "action-secondary"}>Derivative graph</button>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <Metric label="f(a)" value={formatValue(fa)} />
-              <Metric label="f'(a)" value={formatValue(derivative)} />
-              <Metric label="secant slope" value={formatValue(secantSlope)} />
-              <Metric label="behavior" value={slopeMeaning(derivative)} />
-            </div>
+          <SliderControl density="compact" label="Tangent point x = a" value={a} min={-6} max={6} step={0.05} onChange={setA} />
+          <SliderControl density="compact" label="Secant distance h" value={h} min={-3} max={3} step={0.05} onChange={setH} />
+
+          <div className="grid grid-cols-2 gap-2">
+            <button type="button" onClick={() => setShowSecant((value) => !value)} className={showSecant ? "action-primary justify-center" : "action-secondary justify-center"}>Secant</button>
+            <button type="button" onClick={() => setShowDerivative((value) => !value)} className={showDerivative ? "action-primary justify-center" : "action-secondary justify-center"}>f'(x)</button>
           </div>
-        </SectionCard>
 
-        <SectionCard title="Tangent and Secant Graph" description="Blue is f(x), orange is tangent, violet is secant, green is f'(x) when enabled." tone="spotlight">
-          <DerivativeGraph samples={samples} derivativeSamples={derivativeSamples} fn={compiled.fn} a={a} h={h} derivative={derivative} showSecant={showSecant} showDerivative={showDerivative} />
-        </SectionCard>
-      </div>
-
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
-        <SectionCard title="3D Labelled Tangent View" description="Rotate the same curve in 3D. Labels identify axes, curve, tangent, secant, and local slope.">
-          <ThreeSceneWrapper height="520px" mobileHeight="420px" cameraPosition={[5.2, 4, 6.5]} fov={44} quality="high" chrome="cinematic" sceneLabel="Derivative 3D labels" interactionLabel="Drag rotate - wheel or pinch zoom">
-            <DerivativeScene3D samples={samples} fn={compiled.fn} a={a} h={h} derivative={derivative} showSecant={showSecant} />
-          </ThreeSceneWrapper>
-        </SectionCard>
-
-        <SectionCard title="Secant to Tangent Animation" description="As h becomes small, the secant slope approaches the tangent slope.">
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className="grid grid-cols-2 gap-2">
+            <Metric label="f(a)" value={formatValue(fa)} />
+            <Metric label="f'(a)" value={formatValue(derivative)} />
+            <Metric label="secant" value={formatValue(secantSlope)} />
+            <Metric label="behavior" value={slopeMeaning(derivative)} />
+          </div>
+        </div>
+      }
+      panes={[
+        {
+          id: "2d",
+          label: "2D graph",
+          title: "2D Tangent and Secant Pane",
+          description: "Blue is f(x), orange is tangent, violet is secant, green is f'(x) when enabled.",
+          content: <DerivativeGraph samples={samples} derivativeSamples={derivativeSamples} fn={compiled.fn} a={a} h={h} derivative={derivative} showSecant={showSecant} showDerivative={showDerivative} />,
+        },
+        {
+          id: "3d",
+          label: "3D pane",
+          title: "3D Tangent View",
+          description: "Rotate the same curve in 3D with labelled axes, tangent, secant, and rise/run.",
+          content: (
+            <ThreeSceneWrapper height="520px" mobileHeight="420px" cameraPosition={[5.2, 4, 6.5]} fov={44} quality="high" chrome="cinematic" sceneLabel="Derivative 3D labels" interactionLabel="Drag rotate - wheel or pinch zoom">
+              <DerivativeScene3D samples={samples} fn={compiled.fn} a={a} h={h} derivative={derivative} showSecant={showSecant} />
+            </ThreeSceneWrapper>
+          ),
+        },
+      ]}
+      insights={
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-2">
             <Metric label="a" value={roundTo(a, 3).toString()} />
             <Metric label="a + h" value={roundTo(a + h, 3).toString()} />
-            <Metric label="central difference" value="[f(a+h)-f(a-h)] / 2h" />
           </div>
-          <p className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">{edgeNote}</p>
-        </SectionCard>
-
-        <SectionCard title="Explanation Panel">
+          <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+            <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">central difference</p>
+            <p className="mt-1 break-words font-mono text-xs font-bold">[f(a+h)-f(a-h)] / 2h</p>
+          </div>
+          <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{edgeNote}</p>
           <div className="space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
             <p>At <strong>x = {roundTo(a, 2)}</strong>, the derivative is approximately <strong>{formatValue(derivative)}</strong>.</p>
             <p>{slopeMeaning(derivative) === "increasing" ? "A positive slope means the function is increasing at this point." : slopeMeaning(derivative) === "decreasing" ? "A negative slope means the function is decreasing at this point." : "A near-zero slope can indicate a flat tangent and possible maximum or minimum."}</p>
-            <p>The tangent line uses the local slope. The secant line uses two nearby points. Shrinking <strong>h</strong> makes the secant behave more like the tangent.</p>
+            <p>The tangent line uses local slope. The secant line uses two nearby points. Shrinking <strong>h</strong> makes the secant behave more like the tangent.</p>
           </div>
-        </SectionCard>
-      </div>
-
-      <SectionCard title="Presets" description="Load common functions and inspect tangent behavior.">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {presets.map((preset) => (
-            <button key={preset} type="button" onClick={() => { setDraft(preset); setExpression(preset); }} className="cinematic-preset-button font-mono">
-              {preset}
-            </button>
-          ))}
+          <div className="grid grid-cols-2 gap-2">
+            {presets.map((preset) => (
+              <button key={preset} type="button" onClick={() => { setDraft(preset); setExpression(preset); }} className="cinematic-preset-button px-3 py-2 font-mono text-sm">
+                {preset}
+              </button>
+            ))}
+          </div>
         </div>
-      </SectionCard>
-    </div>
+      }
+    />
   );
 }
 

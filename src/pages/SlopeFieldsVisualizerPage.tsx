@@ -1,8 +1,7 @@
 import { type MouseEvent, useMemo, useState } from "react";
 import { Plus, Trash2 } from "lucide-react";
-import SectionCard from "../components/ui/SectionCard";
+import DualPaneMathLayout from "../components/ui/DualPaneMathLayout";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
-import TopicHeader from "../components/ui/TopicHeader";
 import { compileTwoVariableExpression } from "../utils/functionParser";
 import { roundTo } from "../utils/math";
 
@@ -48,66 +47,75 @@ export default function SlopeFieldsVisualizerPage() {
   };
 
   return (
-    <div className="space-y-6">
-      <TopicHeader title="Differential Equation Slope Fields" subtitle="Visualize first-order differential equations dy/dx = f(x,y), inspect local slopes, and trace RK4 solution curves from initial conditions." difficulty="Differential Equations" estimatedMinutes={24} />
-
-      <div className="grid gap-6 xl:grid-cols-[380px_minmax(0,1fr)]">
-        <SectionCard title="Equation and Initial Conditions" description="Enter the right side of dy/dx = f(x,y), then choose starting points.">
-          <div className="space-y-4">
-            <label className="block">
-              <span className="text-sm font-bold">dy/dx =</span>
-              <div className="mt-2 flex gap-2">
-                <input value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") setExpression(draft); }} className="min-h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 font-mono text-sm outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-950" />
-                <button type="button" className="action-primary px-4" onClick={() => setExpression(draft)}>Plot</button>
-              </div>
-              {compiled.error && <p className="mt-2 rounded-xl bg-rose-50 p-3 text-sm font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{compiled.error}</p>}
-            </label>
-
-            <SliderGroup title="Solution controls">
-              <SliderControl density="compact" label="initial x0" value={x0} min={-5} max={5} step={0.05} onChange={setX0} />
-              <SliderControl density="compact" label="initial y0" value={y0} min={-5} max={5} step={0.05} onChange={setY0} />
-              <SliderControl density="compact" label="step size h" value={stepSize} min={0.02} max={0.25} step={0.01} onChange={setStepSize} />
-              <SliderControl density="compact" label="number of steps" value={steps} min={20} max={260} step={5} onChange={setSteps} />
-            </SliderGroup>
-
-            <div className="grid grid-cols-2 gap-2">
-              <Metric label="current slope" value={Number.isFinite(currentSlope) ? roundTo(currentSlope, 4).toString() : "undefined"} />
-              <Metric label="solutions" value={`${initials.length} / 5`} />
+    <DualPaneMathLayout
+      title="Differential Equation Slope Fields"
+      subtitle="Visualize dy/dx = f(x,y), inspect local slopes, and trace RK4 solution curves from initial conditions."
+      meta={
+        <>
+          <span className="rounded-full bg-cyan-100 px-3 py-2 text-xs font-black text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-200">Differential Equations</span>
+          <span className="rounded-full bg-violet-100 px-3 py-2 text-xs font-black text-violet-800 dark:bg-violet-400/15 dark:text-violet-200">24 min</span>
+        </>
+      }
+      controls={
+        <div className="space-y-4">
+          <label className="block">
+            <span className="text-sm font-bold">dy/dx =</span>
+            <div className="mt-2 grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-1">
+              <input value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") setExpression(draft); }} className="min-h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 font-mono text-sm outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-950" />
+              <button type="button" className="action-primary px-4" onClick={() => setExpression(draft)}>Plot</button>
             </div>
-
-            <div className="flex flex-wrap gap-2">
-              <button type="button" className="action-primary" onClick={addInitial}><Plus className="h-4 w-4" />Add solution</button>
-              <button type="button" className="action-secondary" onClick={() => setInitials([])}><Trash2 className="h-4 w-4" />Clear</button>
-            </div>
+            {compiled.error && <p className="mt-2 rounded-xl bg-rose-50 p-3 text-sm font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{compiled.error}</p>}
+          </label>
+          <SliderGroup title="Solution controls">
+            <SliderControl density="compact" label="initial x0" value={x0} min={-5} max={5} step={0.05} onChange={setX0} />
+            <SliderControl density="compact" label="initial y0" value={y0} min={-5} max={5} step={0.05} onChange={setY0} />
+            <SliderControl density="compact" label="step size h" value={stepSize} min={0.02} max={0.25} step={0.01} onChange={setStepSize} />
+            <SliderControl density="compact" label="steps" value={steps} min={20} max={260} step={5} onChange={setSteps} />
+          </SliderGroup>
+          <div className="grid grid-cols-2 gap-2">
+            <Metric label="current slope" value={Number.isFinite(currentSlope) ? roundTo(currentSlope, 4).toString() : "undefined"} />
+            <Metric label="solutions" value={`${initials.length} / 5`} />
           </div>
-        </SectionCard>
-
-        <SectionCard title="Slope Field and RK4 Solution Curves" description="Click the graph to set a new initial condition. Curves are solved forward and backward from each start point.">
-          <SlopeGraph field={slopeField} curves={curves} onPick={handleGraphClick} />
-        </SectionCard>
-      </div>
-
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
-        <SectionCard title="Preset Equations">
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+          <div className="grid grid-cols-2 gap-2">
+            <button type="button" className="action-primary justify-center" onClick={addInitial}><Plus className="h-4 w-4" />Add</button>
+            <button type="button" className="action-secondary justify-center" onClick={() => setInitials([])}><Trash2 className="h-4 w-4" />Clear</button>
+          </div>
+        </div>
+      }
+      panes={[
+        {
+          id: "2d",
+          label: "2D graph",
+          title: "2D Slope Field Pane",
+          description: "Click the graph to set a new initial condition. Curves solve forward and backward from each start point.",
+          content: <SlopeGraph field={slopeField} curves={curves} onPick={handleGraphClick} />,
+        },
+        {
+          id: "3d",
+          label: "3D pane",
+          title: "3D Direction Surface Pane",
+          description: "Slope segments lift into depth so local direction and solution flow are easier to compare.",
+          content: <SlopeDepthPane field={slopeField} curves={curves} />,
+        },
+      ]}
+      insights={
+        <div className="space-y-4">
+          <div className="space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+            <p>At every point <strong>(x,y)</strong>, the differential equation gives a slope.</p>
+            <p>The small line segment shows the direction a solution would move through that point.</p>
+            <p>A solution curve follows the local slope everywhere. The initial condition selects one curve from the family.</p>
+            <p>RK4 samples several slopes inside each step, so the curve is smoother than basic Euler stepping.</p>
+          </div>
+          <div className="grid grid-cols-1 gap-2">
             {presets.map((preset) => (
-              <button key={preset} type="button" onClick={() => { setDraft(preset); setExpression(preset); }} className="rounded-2xl border border-slate-200 bg-white p-4 text-left font-mono font-bold transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-lg hover:shadow-cyan-500/10 dark:border-white/10 dark:bg-white/5">
+              <button key={preset} type="button" onClick={() => { setDraft(preset); setExpression(preset); }} className="cinematic-preset-button px-3 py-2 text-left font-mono text-xs">
                 dy/dx = {preset}
               </button>
             ))}
           </div>
-        </SectionCard>
-
-        <SectionCard title="Direction Field Explanation">
-          <div className="space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-            <p>At every point <strong>(x,y)</strong>, the differential equation gives a slope.</p>
-            <p>The small line segment shows the direction a solution would move through that point.</p>
-            <p>A solution curve follows the local slope everywhere. The initial condition selects one curve from the whole family of possible solutions.</p>
-            <p>RK4 samples several slopes inside each step, so the curve is smoother and more accurate than basic Euler stepping.</p>
-          </div>
-        </SectionCard>
-      </div>
-    </div>
+        </div>
+      }
+    />
   );
 }
 
@@ -132,6 +140,46 @@ function SlopeGraph({ field, curves, onPick }: { field: { x: number; y: number; 
         return <line key={i} x1={sx(p.x) - Math.cos(angle) * len / 2} y1={sy(p.y) + Math.sin(angle) * len / 2} x2={sx(p.x) + Math.cos(angle) * len / 2} y2={sy(p.y) - Math.sin(angle) * len / 2} stroke="#0891b2" strokeWidth="3" strokeLinecap="round" opacity="0.78" />;
       })}
       {curves.map((curve, i) => <g key={i}><path d={path([...curve.backward].reverse(), sx, sy)} fill="none" stroke={colors[i % colors.length]} strokeWidth="4" /><path d={path(curve.forward, sx, sy)} fill="none" stroke={colors[i % colors.length]} strokeWidth="4" /><circle cx={sx(curve.start.x)} cy={sy(curve.start.y)} r="8" fill={colors[i % colors.length]} stroke="#0f172a" strokeWidth="2" /></g>)}
+    </svg>
+  );
+}
+
+function SlopeDepthPane({ field, curves }: { field: { x: number; y: number; slope: number }[]; curves: { start: Point; forward: Point[]; backward: Point[] }[] }) {
+  const project = (x: number, y: number, z: number) => ({
+    x: 380 + x * 34 + z * 18,
+    y: 245 - y * 24 - z * 16,
+  });
+  const sparseField = field.filter((_, index) => index % 2 === 0);
+  const path3d = (points: Point[]) => points.filter((point) => point.defined).map((point, index) => {
+    const projected = project(point.x, point.y, Math.sin(point.x * 0.6) * 0.4);
+    return `${index ? "L" : "M"}${projected.x},${projected.y}`;
+  }).join(" ");
+
+  return (
+    <svg viewBox="0 0 760 460" className="cinematic-svg-stage sm:h-[460px]">
+      <defs>
+        <linearGradient id="slope-depth-bg" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stopColor="#082f49" />
+          <stop offset="60%" stopColor="#0f172a" />
+          <stop offset="100%" stopColor="#020617" />
+        </linearGradient>
+      </defs>
+      <rect width="760" height="460" fill="url(#slope-depth-bg)" />
+      <polygon points="116,350 590,350 660,292 186,292" fill="#0f766e" opacity="0.2" stroke="#67e8f9" strokeWidth="2" />
+      {sparseField.map((point, index) => {
+        const start = project(point.x, point.y, -0.25);
+        const end = project(point.x + 0.22, point.y + Math.max(-1, Math.min(1, point.slope)) * 0.22, 0.25);
+        return <line key={index} x1={start.x} y1={start.y} x2={end.x} y2={end.y} stroke="#67e8f9" strokeWidth="3" strokeLinecap="round" opacity="0.65" />;
+      })}
+      {curves.map((curve, index) => (
+        <g key={index}>
+          <path d={path3d([...curve.backward].reverse())} fill="none" stroke={colors[index % colors.length]} strokeWidth="5" />
+          <path d={path3d(curve.forward)} fill="none" stroke={colors[index % colors.length]} strokeWidth="5" />
+        </g>
+      ))}
+      <text x="82" y="82" fill="#f8fafc" fontSize="30" fontWeight="900">3D direction field</text>
+      <text x="84" y="118" fill="#bae6fd" fontSize="16" fontWeight="700">Local slope arrows are lifted into depth to reveal solution flow.</text>
+      <text x="84" y="404" fill="#f8fafc" fontSize="18" fontWeight="900">solution curves: {curves.length}</text>
     </svg>
   );
 }

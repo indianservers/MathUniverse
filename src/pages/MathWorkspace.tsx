@@ -1,5 +1,5 @@
 import { OrbitControls } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import { Box, ChevronDown, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
 import { MouseEvent as ReactMouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
@@ -15,18 +15,19 @@ import ObjectList, { type ObjectListAction } from "../components/workspace/Objec
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
+import MathExpression from "../components/ui/MathExpression";
 import { roundTo } from "../utils/math";
 import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicLimit, symbolicPartialFractions, symbolicPolynomialDivide, symbolicSimplify, symbolicSolve, symbolicSubstitute, symbolicSystemSolve, trySymbolic } from "../utils/symbolic";
 import { commandExamplesFor, commandRegistrySummary, normalizeCommandName, resolveCommandSpec } from "../workspace/commandRegistry";
 import { validateGraphExpression, isGraphValidationBlocking } from "../workspace/graphValidation";
 import { createAnimationAction, describeTransformAction, parseStyleAction, parseTransformCommand } from "../workspace/actionCommandKernel";
-import { assessConstruction, buildBeyondGeoGebraUnitPackages, commandDocsForPackages, objectAwareTutorResponse, productionReadinessPlan, validateGuidedTaskResponse, type UnitLabPackage } from "../workspace/beyondGeoGebraKernel";
+import { assessConstruction, commandDocsForPackages, objectAwareTutorResponse, productionReadinessPlan, validateGuidedTaskResponse, type UnitLabPackage } from "../workspace/beyondGeoGebraKernel";
 import { createDefaultLesson, lessonStepKinds, lessonSummary, type ClassroomLesson, type LessonStep } from "../workspace/classroomAuthoring";
 import { criticalGapImplementationPhases } from "../workspace/criticalGapPhases";
 import { createMathObject } from "../workspace/coreObjects";
 import { buildDynamicObjectGraph, graphHealthSummary, type DynamicObjectGraph, type DynamicObjectKind } from "../workspace/dynamicObjectKernel";
 import { generateValueTable, inferPlotKind, regressionModel, stripInequality, type RegressionModel } from "../components/workspace/panels/graphPanelUtils";
-import { contextMenuForObject, createProtocolPlaybackPlan, createSliderObject, exportPresets, imageWorkflowSpec, rankSnapCandidates, styleBarForObject, tabletControlSpec, type ExportPreset, type ImageWorkflowSpec, type ProtocolPlaybackPlan, type SliderObject, type SnapCandidate, type StyleBarControl, type TabletControlSpec, type WorkflowObjectType } from "../workspace/highPriorityWorkflowKernel";
+import { contextMenuForObject, type ExportPreset, type ImageWorkflowSpec, type ProtocolPlaybackPlan, type SliderObject, type SnapCandidate, type StyleBarControl, type TabletControlSpec, type WorkflowObjectType } from "../workspace/highPriorityWorkflowKernel";
 import { DEFAULT_TRACE_MAX_SAMPLES, appendTraceSample, nextTraceLabel, seedTraceSamples, traceDefinition } from "../workspace/locusTraceKernel";
 import { applyObjectProperties, evaluateObjectProperties } from "../workspace/objectProperties";
 import { certifyGeometryConstruction } from "../workspace/geometryConstructionCertification";
@@ -250,7 +251,22 @@ const formulaLibrary = [
   { topic: "3D", title: "Paraboloid", formula: "z = k(x^2+y^2)", command: "plot x^2" },
 ];
 
+function resolveInitialWorkspaceViewFromRoute(fallback: WorkspaceView): WorkspaceView {
+  if (typeof window === "undefined") return fallback;
+  const params = new URLSearchParams(window.location.search);
+  const mode = (params.get("mode") ?? "").toLowerCase();
+  if (mode === "3d" || mode === "space3d") return "3d";
+  if (mode === "geometry" || mode === "2d") return "geometry";
+
+  const templateId = normalizeTemplateRouteParam(params.get("template") ?? params.get("unit") ?? "");
+  const template = syllabusWorkspaceTemplates.find((item) => item.id === templateId);
+  if (template?.focus === "3d") return "3d";
+  if (template?.focus === "geometry") return "geometry";
+  return fallback;
+}
+
 export default function MathWorkspace({ initialView = "graph", singleView = false, dataPage = "overview" }: { initialView?: WorkspaceView; singleView?: boolean; dataPage?: DataWorkspacePage }) {
+  const routeInitialView = useMemo(() => resolveInitialWorkspaceViewFromRoute(initialView), [initialView]);
   const [input, setInput] = useState("plot sin(x)");
   const [results, setResults] = useState<ResultCard[]>([]);
   const [plots, setPlots] = useState<PlotItem[]>([{ id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true }]);
@@ -291,7 +307,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [drag3d, setDrag3d] = useState<string | null>(null);
   const [contextMenu, setContextMenu] = useState<ContextMenuState | null>(null);
   const [formulaSearch, setFormulaSearch] = useState("");
-  const [workspaceView, setWorkspaceView] = useState<WorkspaceView>(initialView);
+  const [workspaceView, setWorkspaceView] = useState<WorkspaceView>(routeInitialView);
   const [teachingMode, setTeachingMode] = useState(false);
   const [guidedMode, setGuidedMode] = useState(false);
   const [guidedPhase, setGuidedPhase] = useState<GuidedActivityPhase>("predict");
@@ -330,8 +346,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   }, [highContrastMode]);
 
   useEffect(() => {
-    setWorkspaceView(initialView);
-  }, [initialView]);
+    setWorkspaceView(routeInitialView);
+  }, [routeInitialView]);
 
   useEffect(() => {
     const match = window.location.hash.match(/project=([^&]+)/);
@@ -342,6 +358,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     } catch {
       setProjectStatus("Could not load share URL project.");
     }
+  // Route hash hydration must run only once on first mount.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filteredFormulas = useMemo(() => {
@@ -401,37 +419,6 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   }, [evaluatedLiveWorkspaceObjects, upsertUnifiedWorkspaceObjects]);
 
   const commandSummary = useMemo(() => commandRegistrySummary(), []);
-  const selectedWorkflowType = useMemo<WorkflowObjectType>(() => {
-    if (selectedImageId) return "image";
-    if (selectedGeometry) return selectedGeometry.type;
-    if (selectedAlgebra) return selectedAlgebra.kind === "3d" ? "3d" : selectedAlgebra.kind === "point" || selectedAlgebra.kind === "line" || selectedAlgebra.kind === "circle" || selectedAlgebra.kind === "polygon" || selectedAlgebra.kind === "arc" || selectedAlgebra.kind === "locus" ? selectedAlgebra.kind : "algebra";
-    return "algebra";
-  }, [selectedAlgebra, selectedGeometry, selectedImageId]);
-  const protocolPlan = useMemo(() => createProtocolPlaybackPlan(protocol.map((step) => ({
-    id: step.id,
-    label: step.label,
-    detail: step.detail,
-    createdAt: step.createdAt,
-    visible: true,
-  })), { cursor: Math.max(0, Math.min(protocol.length - 1, 5)), hiddenColumns: ["createdAt"] }), [protocol]);
-  const workflowStyleControls = useMemo(() => styleBarForObject(selectedWorkflowType), [selectedWorkflowType]);
-  const exportPresetList = useMemo(() => exportPresets(), []);
-  const imageWorkflow = useMemo(() => imageWorkflowSpec(), []);
-  const tabletWorkflow = useMemo(() => tabletControlSpec("touch"), []);
-  const sliderPreview = useMemo(() => createSliderObject("a", { value: sceneAnimationSpeed, min: 0.1, max: 3, step: 0.1, playing: autoRotate3d, boundObjects: ["surface", "solid", "slice"] }), [autoRotate3d, sceneAnimationSpeed]);
-  const snapPreview = useMemo(() => rankSnapCandidates({ x: 320, y: 210 }, [
-    ...construction.points.slice(0, 8).map((item) => ({ id: item.id, label: item.label, priority: 80, x: item.x, y: item.y, constraint: "point" as const })),
-    { id: "grid-origin", label: "Grid origin", priority: 40, x: 320, y: 210, constraint: "grid" as const },
-  ]), [construction.points]);
-  const beyondPackages = useMemo(() => buildBeyondGeoGebraUnitPackages(syllabusWorkspaceTemplates), []);
-  const activeBeyondPackage = useMemo(() => beyondPackages.find((item) => item.templateId === activeTemplate.id) ?? beyondPackages[0], [activeTemplate.id, beyondPackages]);
-  const readinessPlan = useMemo(() => productionReadinessPlan(), []);
-  const commandDocs = useMemo(() => commandDocsForPackages(beyondPackages), [beyondPackages]);
-  const activeTask = useMemo(() => activeBeyondPackage.guidedTasks.find((task) => task.phase === guidedPhase) ?? activeBeyondPackage.guidedTasks[0], [activeBeyondPackage, guidedPhase]);
-  const activeTaskEntry = activityJournal[activityJournalKey(activeTemplate.id, guidedPhase)] ?? defaultActivityJournalEntry(activeTemplate.id, guidedPhase);
-  const activeTaskValidation = useMemo(() => validateGuidedTaskResponse(activeTask, activeTaskEntry.response), [activeTask, activeTaskEntry.response]);
-  const assessmentPreview = useMemo(() => assessConstruction(activeBeyondPackage, workspaceObjects.map((object) => ({ kind: object.ref.kind, definition: object.definition, visible: object.visible }))), [activeBeyondPackage, workspaceObjects]);
-  const tutorPreview = useMemo(() => objectAwareTutorResponse(activeBeyondPackage, "why did this move", workspaceObjects[0]?.definition ?? activeBeyondPackage.interactiveLab), [activeBeyondPackage, workspaceObjects]);
   const practiceReport = useMemo(() => computePracticeReport(classroomLesson, practiceResponses), [classroomLesson, practiceResponses]);
 
   const captureStep = (label: string, detail: string): ConstructionStep => ({
@@ -1583,6 +1570,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setGuidedPhase("predict");
     setRevealStep(1);
     if (template.focus === "3d") {
+      setWorkspaceView("3d");
       setSurface("paraboloid");
       setSolid("cylinder");
       setShowSurface(true);
@@ -1590,7 +1578,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       setAutoRotate3d(false);
       setCrossSection(0.6);
     }
-    if (template.focus === "geometry") setConstruction(templateConstruction(template.id));
+    if (template.focus === "geometry") {
+      setWorkspaceView("geometry");
+      setConstruction(templateConstruction(template.id));
+    }
     runGuidedExample(template.command);
     setProjectStatus(`${template.unit} template loaded with guided activity mode.`);
   };
@@ -1672,6 +1663,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       setInput(decoded);
       executeWorkspaceCommand(decoded);
     }
+  // Query-string hydration must run only once so it does not replay commands after user edits.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const selectWorkspaceObject = (ref: AlgebraObjectRef) => {
@@ -1887,7 +1880,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setProjectStatus("Selection cleared. Tool returned to Select.");
   }, []);
 
-  const deleteSelectedWorkspaceItems = useCallback(() => {
+  const deleteSelectedWorkspaceItems = () => {
     if (selectedImageId) {
       deleteSelectedImage();
       setProjectStatus("Selected image deleted.");
@@ -1919,7 +1912,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       return true;
     }
     return false;
-  }, [deleteSelectedImage, selectedGeometry, selectedPointIds, selectedAlgebra, selected3d, selectedImageId]);
+  };
 
   const replayConstructionStep = (step: ConstructionStep) => {
     restoreProtocolSnapshot(step);
@@ -1970,7 +1963,9 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       event.preventDefault();
       runInput();
     }
-  }, [clearWorkspaceSelection, deleteSelectedWorkspaceItems, loadWorkspace, redoWorkspace, runInput, saveWorkspace, selectedGeometry, undoWorkspace, updateSelectedPointByDelta]);
+  // Legacy workspace actions intentionally close over the current snapshot state.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clearWorkspaceSelection, deleteSelectedWorkspaceItems, selectedGeometry]);
 
   useEffect(() => {
     const onDocumentKeyDown = (event: globalThis.KeyboardEvent) => {
@@ -2026,7 +2021,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   ];
 
   return (
-    <div ref={workspaceRef} className="space-y-3 pt-20 xl:pt-14">
+    <div ref={workspaceRef} className="space-y-2 pt-14 xl:pt-12">
       <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} />
       {!singleView && <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 
@@ -2051,8 +2046,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         onRunQa={runQaNow}
         onPerformance={setPerformanceMode}
       />
-      <WorkspaceShortcutStrip />
-      <div className="rounded-2xl border border-cyan-200 bg-cyan-50 px-3 py-2 text-sm font-bold text-cyan-950 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-50" role="status" aria-live="polite" data-testid="workspace-safety-status">
+      {workspaceView !== "3d" && <WorkspaceShortcutStrip />}
+      <div className="rounded-xl border border-cyan-200 bg-cyan-50 px-3 py-1.5 text-xs font-bold text-cyan-950 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-50" role="status" aria-live="polite" data-testid="workspace-safety-status">
         {projectStatus}
       </div>
 
@@ -2119,7 +2114,9 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                 <button key={item.title} type="button" onClick={() => setInput(item.command)} className="w-full rounded-2xl bg-slate-100 p-3 text-left transition hover:bg-cyan-100 dark:bg-white/10 dark:hover:bg-cyan-300/15">
                   <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{item.topic}</p>
                   <p className="mt-1 font-semibold">{item.title}</p>
-                  <p className="mt-1 font-mono text-xs text-slate-600 dark:text-slate-300">{item.formula}</p>
+                  <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
+                    <MathExpression value={item.formula} />
+                  </p>
                 </button>
               ))}
             </div>
@@ -2241,7 +2238,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         </div>
       </SectionCard>}
 
-      {workspaceView === "3d" && <SectionCard title="3D Graphing And Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls.">
+      {workspaceView === "3d" && <SectionCard title="3D Graphing And Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls." compact>
         <div className="relative" data-testid="workspace-3d-surface">
           {!inspector3dOpen && (
             <button
@@ -2256,20 +2253,20 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             </button>
           )}
         <div
-          className="grid items-start gap-3"
+          className="grid items-start gap-2"
           style={{
             gridTemplateColumns:
               controls3dOpen && inspector3dOpen
-                ? "minmax(250px, 300px) minmax(460px, 1fr) minmax(290px, 340px)"
+                ? "minmax(220px, 268px) minmax(420px, 1fr) minmax(250px, 300px)"
                 : controls3dOpen
-                  ? "minmax(250px, 300px) minmax(520px, 1fr)"
+                  ? "minmax(220px, 268px) minmax(420px, 1fr)"
                   : inspector3dOpen
-                    ? "minmax(520px, 1fr) minmax(290px, 340px)"
+                    ? "minmax(420px, 1fr) minmax(250px, 300px)"
                     : "minmax(0, 1fr)",
           }}
         >
           {controls3dOpen && (
-            <aside className="min-h-0 space-y-3 xl:sticky xl:top-24">
+            <aside className="min-h-0 space-y-2 xl:sticky xl:top-20">
               <HorizontalPanelHeader title="Controls" side="left" onCollapse={() => setControls3dOpen(false)} />
               <SceneSetupTabs3D
                 selected3d={selected3d}
@@ -2328,8 +2325,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             </aside>
           )}
 
-          <div className="min-w-0 space-y-3">
-            <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
+          <div className="min-w-0 space-y-2">
+            <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/80 p-1.5 shadow-sm dark:border-white/10 dark:bg-white/5">
               <div className="flex flex-wrap gap-2">
                 {!controls3dOpen && <button type="button" onClick={() => setControls3dOpen(true)} className="action-secondary"><PanelLeftOpen className="h-4 w-4" />Controls</button>}
                 <button type="button" onClick={() => { setSelected3d(""); setDrag3d(null); setProjectStatus("3D Select tool ready. Click an object in the scene or object list."); }} className="action-secondary">
@@ -2342,7 +2339,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               </div>
               <p className="px-2 text-xs font-bold text-slate-500 dark:text-slate-400">Esc deselects. Delete removes selected object.</p>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-white/85 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
+            <div className="rounded-xl border border-slate-200 bg-white/85 p-1.5 shadow-sm dark:border-white/10 dark:bg-white/5">
               <PanelTabs active={space3dViewTab} tabs={space3dViewTabs} onChange={setSpace3dViewTab} />
             </div>
             <Space3DConstructionWorkbench
@@ -2355,10 +2352,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               onToggleVisibility={() => update3dTransform(selected3d, { visible: !selected3dTransform.visible })}
             />
 
-            <div className="min-h-[min(76vh,860px)]">
+            <div className="min-h-[clamp(360px,calc(100vh-390px),620px)]">
               {space3dViewTab === "scene" && (
-                <div className="min-h-[560px] overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 shadow-sm dark:border-white/10" data-testid="workspace-3d-canvas">
-                  <ThreeSceneWrapper height="clamp(560px, calc(100vh - 260px), 860px)" mobileHeight="min(66vh, 560px)" interactionLabel="Drag rotate - pinch zoom">
+                <div className="min-h-[360px] overflow-hidden rounded-xl border border-slate-200 bg-slate-950 shadow-sm dark:border-white/10" data-testid="workspace-3d-canvas">
+                  <ThreeSceneWrapper height="clamp(360px, calc(100vh - 390px), 620px)" mobileHeight="min(58vh, 430px)" interactionLabel="Drag rotate - pinch zoom">
                     <ambientLight intensity={0.75} />
                     <directionalLight position={[5, 6, 4]} intensity={1.2} />
                     <Workspace3DScene
@@ -2420,7 +2417,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               )}
             </div>
 
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="grid gap-2 md:grid-cols-3">
               <InfoPill title="Axes" text="X, Y, and Z directions are shown with colored vectors." />
               <InfoPill title="Surface" text="The mesh updates from the selected z=f(x,y) function." />
               <InfoPill title="Cross-section" text="The amber plane slices the surface at a chosen z-level." />
@@ -2428,7 +2425,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           </div>
 
           {inspector3dOpen && (
-            <aside className="min-h-0 space-y-3 xl:sticky xl:top-24">
+            <aside className="min-h-0 space-y-2 xl:sticky xl:top-20">
               <HorizontalPanelHeader title="Objects" side="right" onCollapse={() => setInspector3dOpen(false)} />
               <InspectorTabs3D selected={selected3d} transform={selected3dTransform} transforms={transforms3d} addedObjects={added3dObjects} onSelect={setSelected3d} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
               <UnifiedWorkspacePanel
@@ -2526,15 +2523,21 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           state={contextMenu}
           onClose={() => setContextMenu(null)}
           onDuplicate={() => {
-            contextMenu.target.type === "algebra" ? duplicateWorkspaceObject(contextMenu.target.ref) : contextMenu.target.type === "3d" ? duplicate3dObject(contextMenu.target.id) : duplicateGeometryObject(contextMenu.target);
+            if (contextMenu.target.type === "algebra") duplicateWorkspaceObject(contextMenu.target.ref);
+            else if (contextMenu.target.type === "3d") duplicate3dObject(contextMenu.target.id);
+            else duplicateGeometryObject(contextMenu.target);
             setContextMenu(null);
           }}
           onDelete={() => {
-            contextMenu.target.type === "algebra" ? deleteWorkspaceObject(contextMenu.target.ref) : contextMenu.target.type === "3d" ? delete3dObject(contextMenu.target.id) : deleteGeometryObject(contextMenu.target);
+            if (contextMenu.target.type === "algebra") deleteWorkspaceObject(contextMenu.target.ref);
+            else if (contextMenu.target.type === "3d") delete3dObject(contextMenu.target.id);
+            else deleteGeometryObject(contextMenu.target);
             setContextMenu(null);
           }}
           onRestore={() => {
-            contextMenu.target.type === "algebra" ? patchWorkspaceObject(contextMenu.target.ref, { visible: true, trace: false }) : contextMenu.target.type === "3d" ? restore3dObject(contextMenu.target.id) : restoreGeometryObject(contextMenu.target);
+            if (contextMenu.target.type === "algebra") patchWorkspaceObject(contextMenu.target.ref, { visible: true, trace: false });
+            else if (contextMenu.target.type === "3d") restore3dObject(contextMenu.target.id);
+            else restoreGeometryObject(contextMenu.target);
             setContextMenu(null);
           }}
           onLock={() => {
@@ -2639,7 +2642,7 @@ function interpretInput(input: string): ResultCard {
 }
 
 function parseWorkspaceCommand(input: string): { name: string; args: string[] } {
-  const bracket = input.match(/^([a-z]+)\s*[\[(](.*)[\])]$/i);
+  const bracket = input.match(/^([a-z]+)\s*(?:\[|\()(.*)(?:\]|\))$/i);
   if (bracket) return { name: commandAlias(bracket[1]), args: splitCommandArgs(bracket[2]) };
   const word = input.match(/^([a-z]+)\s+(.+)$/i);
   if (word) {
@@ -2768,7 +2771,7 @@ function evaluateMathExpression(expression: string, x: number) {
     .replace(/\bln\b/gi, "Math.log")
     .replace(/\blog\b/gi, "Math.log10")
     .replace(/\bexp\b/gi, "Math.exp");
-  if (!/^[0-9x+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}\[\]'"]/.test(safe)) throw new Error("Unsupported expression");
+  if (!/^[0-9x+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}\]'"[]/.test(safe)) throw new Error("Unsupported expression");
   return Function("x", `"use strict"; return (${safe});`)(x) as number;
 }
 
@@ -3427,7 +3430,7 @@ function splitKernelObjectPair(value: string) {
 
 function parseKernelObject(value: string): KernelObject | null {
   const trimmed = value.trim();
-  const linear = trimmed.match(/^(line|segment|ray)\s*[\[(](.*)[\])]$/i);
+  const linear = trimmed.match(/^(line|segment|ray)\s*(?:\[|\()(.*)(?:\]|\))$/i);
   if (linear) {
     const points = splitKernelObjectPair(linear[2]).map(parsePointArgument).filter(Boolean) as KernelPoint[];
     if (points.length < 2) return null;
@@ -3435,21 +3438,21 @@ function parseKernelObject(value: string): KernelObject | null {
     if (linear[1].toLowerCase() === "ray") return kernelRay(points[0], points[1]);
     return kernelLine(points[0], points[1]);
   }
-  const circleMatch = trimmed.match(/^circle\s*[\[(](.*)[\])]$/i);
+  const circleMatch = trimmed.match(/^circle\s*(?:\[|\()(.*)(?:\]|\))$/i);
   if (circleMatch) {
     const parts = splitKernelObjectPair(circleMatch[1]);
     const center = parsePointArgument(parts[0] ?? "");
     const radius = Number(parts[1]);
     if (center && Number.isFinite(radius)) return kernelCircle(center, radius);
   }
-  const conicBody = trimmed.match(/^conic\s*[\[(](.*)[\])]$/i)?.[1] ?? trimmed;
+  const conicBody = trimmed.match(/^conic\s*(?:\[|\()(.*)(?:\]|\))$/i)?.[1] ?? trimmed;
   const parsedConic = parseConicEquation(conicBody);
   if (parsedConic) return parsedConic;
   return null;
 }
 
 function parsePointArgument(value: string) {
-  return parseKernelPoint(value.replace(/^point\s*[\[(](.*)[\])]$/i, "$1"));
+  return parseKernelPoint(value.replace(/^point\s*(?:\[|\()(.*)(?:\]|\))$/i, "$1"));
 }
 
 function formatConicCoefficients(coefficients: [number, number, number, number, number, number]) {
@@ -3469,16 +3472,16 @@ function parsePlane3dArgs(args: string[]) {
 
 function parseObject3(value: string): Object3 | null {
   const trimmed = value.trim();
-  const planeMatch = trimmed.match(/^plane\s*[\[(](.*)[\])]$/i);
+  const planeMatch = trimmed.match(/^plane\s*(?:\[|\()(.*)(?:\]|\))$/i);
   if (planeMatch) return parsePlane3dArgs(splitKernelObjectPair(planeMatch[1]));
-  const lineMatch = trimmed.match(/^line3?d?\s*[\[(](.*)[\])]$/i);
+  const lineMatch = trimmed.match(/^line3?d?\s*(?:\[|\()(.*)(?:\]|\))$/i);
   if (lineMatch) {
     const parts = splitKernelObjectPair(lineMatch[1]);
     const origin = parsePoint3(parts[0] ?? "");
     const direction = parseVector3(parts[1] ?? "");
     return origin && direction ? kernelLine3(origin, direction) : null;
   }
-  const solidMatch = trimmed.match(/^(sphere|cylinder|cone)\s*[\[(](.*)[\])]$/i);
+  const solidMatch = trimmed.match(/^(sphere|cylinder|cone)\s*(?:\[|\()(.*)(?:\]|\))$/i);
   if (solidMatch) return parseSolid3d(solidMatch[1].toLowerCase(), splitKernelObjectPair(solidMatch[2]));
   return parsePlaneEquation(trimmed);
 }
@@ -3507,7 +3510,7 @@ function formatIntersection3(hit: ReturnType<typeof intersect3>[number]) {
 
 function parseMatrixLiteral(body: string) {
   const normalized = body.trim().replace(/^Matrix/i, "");
-  const rowMatches = Array.from(normalized.matchAll(/\[([^\[\]]+)\]/g)).map((match) => match[1]);
+  const rowMatches = Array.from(normalized.matchAll(/\[([^\][]+)\]/g)).map((match) => match[1]);
   const rows = rowMatches.length ? rowMatches : normalized.replace(/^\[|\]$/g, "").split(/\s*;\s*/);
   const matrix = rows.map((row) => row.split(/\s*,\s*/).map((cell) => Number(cell.trim()))).filter((row) => row.length > 0);
   if (!matrix.length || matrix.some((row) => row.some((value) => !Number.isFinite(value)))) throw new Error("Use a numeric matrix like [[1,2],[3,4]].");
@@ -3883,7 +3886,7 @@ function columnName(index: number) {
   return name;
 }
 
-function columnIndex(name: string) {
+function _columnIndex(name: string) {
   return name.split("").reduce((sum, char) => sum * 26 + char.charCodeAt(0) - 64, 0) - 1;
 }
 
@@ -3923,12 +3926,12 @@ function ResultCardView({ result }: { result: ResultCard }) {
   return (
     <article className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <p className="text-xs font-bold uppercase text-cyan-600 dark:text-cyan-300">{result.interpretation}</p>
-      <p className="mt-2 font-mono text-sm text-slate-500 dark:text-slate-400">{result.input}</p>
-      <p className="mt-3 text-lg font-bold">{result.result}</p>
+      <p className="mt-2 text-sm font-semibold text-slate-500 dark:text-slate-400"><MathExpression value={result.input} /></p>
+      <p className="mt-3 text-lg font-bold"><MathExpression value={result.result} /></p>
       {result.detail && <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{result.detail}</p>}
       {result.steps && (
         <ol className="mt-3 space-y-1 rounded-2xl bg-slate-100 p-3 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
-          {result.steps.map((step, index) => <li key={`${step}-${index}`}><span className="font-bold text-cyan-600 dark:text-cyan-300">{index + 1}.</span> {step}</li>)}
+          {result.steps.map((step, index) => <li key={`${step}-${index}`}><span className="font-bold text-cyan-600 dark:text-cyan-300">{index + 1}.</span> <MathExpression value={step} /></li>)}
         </ol>
       )}
       {result.table && result.table.length > 0 && (
@@ -4282,17 +4285,17 @@ function WorkspaceMainMenu({ active, onChange }: { active: WorkspaceView; onChan
   ];
 
   return (
-    <nav className="fixed left-3 right-3 top-3 z-50 rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-xl shadow-slate-200/40 backdrop-blur dark:border-white/10 dark:bg-slate-950/95 dark:shadow-black/20" aria-label="Workspace main menu" data-testid="workspace-tool-rail">
-      <div className="flex flex-col gap-2 xl:flex-row xl:items-center xl:justify-between">
-        <div className="flex min-w-0 items-center gap-2">
-          <span className="shrink-0 rounded-xl bg-cyan-500 px-3 py-2 text-xs font-black uppercase tracking-wide text-slate-950 shadow-lg shadow-cyan-500/20">Main Menu</span>
-          <div className="mobile-safe-scroll flex min-w-0 gap-2 overflow-x-auto pb-1 xl:pb-0">
+    <nav className="fixed left-3 right-3 top-2 z-50 rounded-xl border border-slate-200 bg-white/95 p-1.5 shadow-xl shadow-slate-200/40 backdrop-blur dark:border-white/10 dark:bg-slate-950/95 dark:shadow-black/20" aria-label="Workspace main menu" data-testid="workspace-tool-rail">
+      <div className="flex min-w-0 items-center justify-between gap-2">
+        <div className="flex min-w-0 flex-1 items-center gap-1.5">
+          <span className="shrink-0 rounded-lg bg-cyan-500 px-2.5 py-1.5 text-[11px] font-black uppercase tracking-wide text-slate-950 shadow-lg shadow-cyan-500/20">Menu</span>
+          <div className="mobile-safe-scroll flex min-w-0 gap-1.5 overflow-x-auto">
             {modules.map((module) => (
               <Link
                 key={module.id}
                 to={module.route}
                 onClick={() => onChange(module.id)}
-                className={`inline-flex min-h-10 shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-black transition ${
+                className={`inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-black transition ${
                   active === module.id
                     ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950"
                     : "bg-slate-100 text-slate-700 hover:bg-cyan-100 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15"
@@ -4304,9 +4307,9 @@ function WorkspaceMainMenu({ active, onChange }: { active: WorkspaceView; onChan
             ))}
           </div>
         </div>
-        <div className="mobile-safe-scroll flex gap-2 overflow-x-auto pb-1 xl:pb-0">
+        <div className="mobile-safe-scroll hidden max-w-[38%] gap-1.5 overflow-x-auto lg:flex">
           {links.map((item) => (
-            <Link key={item.route} to={item.route} className="inline-flex min-h-10 shrink-0 items-center rounded-xl bg-slate-100 px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-cyan-100 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15">
+            <Link key={item.route} to={item.route} className="inline-flex min-h-9 shrink-0 items-center rounded-lg bg-slate-100 px-2.5 py-1.5 text-xs font-bold text-slate-700 transition hover:bg-cyan-100 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15">
               {item.label}
             </Link>
           ))}
@@ -4352,14 +4355,14 @@ function WorkspaceModeTabs({ active, onChange }: { active: WorkspaceView; onChan
     { id: "teach", label: "Teach", icon: <Presentation className="h-4 w-4" /> },
   ];
   return (
-    <div className="sticky top-16 z-20 rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/95">
-      <div className="mobile-safe-scroll flex gap-2 overflow-x-auto pb-1 sm:pb-0">
+    <div className="sticky top-12 z-20 rounded-xl border border-slate-200 bg-white/95 p-1.5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/95">
+      <div className="mobile-safe-scroll flex gap-1.5 overflow-x-auto">
         {views.map((view) => (
           <button
             key={view.id}
             type="button"
             onClick={() => onChange(view.id)}
-            className={`flex shrink-0 items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition ${active === view.id ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-700 hover:bg-cyan-100 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15"}`}
+            className={`flex min-h-9 shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition ${active === view.id ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "bg-slate-100 text-slate-700 hover:bg-cyan-100 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15"}`}
           >
             {view.icon}
             {view.label}
@@ -4459,7 +4462,7 @@ function CompactWorkspaceBar({ activeTemplate, dynamicHealth, qaReport, teaching
   );
 }
 
-function HighPriorityWorkflowBar({ selectedType, styleControls, protocolPlan, slider, snapCandidates, imageWorkflow, exportPresets, tablet, onAddImage, onPauseAnimation, onPlayAnimation }: { selectedType: WorkflowObjectType; styleControls: StyleBarControl[]; protocolPlan: ProtocolPlaybackPlan; slider: SliderObject; snapCandidates: (SnapCandidate & { distance: number })[]; imageWorkflow: ImageWorkflowSpec; exportPresets: ExportPreset[]; tablet: TabletControlSpec; onAddImage: () => void; onPauseAnimation: () => void; onPlayAnimation: () => void }) {
+function _HighPriorityWorkflowBar({ selectedType, styleControls, protocolPlan, slider, snapCandidates, imageWorkflow, exportPresets, tablet, onAddImage, onPauseAnimation, onPlayAnimation }: { selectedType: WorkflowObjectType; styleControls: StyleBarControl[]; protocolPlan: ProtocolPlaybackPlan; slider: SliderObject; snapCandidates: (SnapCandidate & { distance: number })[]; imageWorkflow: ImageWorkflowSpec; exportPresets: ExportPreset[]; tablet: TabletControlSpec; onAddImage: () => void; onPauseAnimation: () => void; onPlayAnimation: () => void }) {
   return (
     <div className="rounded-2xl border border-cyan-200 bg-cyan-50/70 p-4 dark:border-cyan-300/20 dark:bg-cyan-400/10">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -4601,7 +4604,7 @@ function KernelMetric({ label, value, tone = "neutral" }: { label: string; value
   );
 }
 
-function CriticalGapPhasePanel() {
+function _CriticalGapPhasePanel() {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -5189,7 +5192,7 @@ function StudentLessonPreview({ lesson, responses, onLaunchCommand }: { lesson: 
   );
 }
 
-function BeyondGeoGebraCockpit({ packageSpec, packages, validation, assessment, tutor, readiness, commandDocs }: { packageSpec: UnitLabPackage; packages: UnitLabPackage[]; validation: ReturnType<typeof validateGuidedTaskResponse>; assessment: ReturnType<typeof assessConstruction>; tutor: ReturnType<typeof objectAwareTutorResponse>; readiness: ReturnType<typeof productionReadinessPlan>; commandDocs: ReturnType<typeof commandDocsForPackages> }) {
+function _BeyondGeoGebraCockpit({ packageSpec, packages, validation, assessment, tutor, readiness, commandDocs }: { packageSpec: UnitLabPackage; packages: UnitLabPackage[]; validation: ReturnType<typeof validateGuidedTaskResponse>; assessment: ReturnType<typeof assessConstruction>; tutor: ReturnType<typeof objectAwareTutorResponse>; readiness: ReturnType<typeof productionReadinessPlan>; commandDocs: ReturnType<typeof commandDocsForPackages> }) {
   return (
     <div className="rounded-2xl border border-violet-200 bg-violet-50/70 p-4 dark:border-violet-300/20 dark:bg-violet-400/10">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -6182,7 +6185,7 @@ function PanelTabs<T extends string>({ active, tabs, onChange }: { active: T; ta
   );
 }
 
-function ThreeCreationPanel({ onCreate }: { onCreate: (id: ThreeObjectId) => void }) {
+function _ThreeCreationPanel({ onCreate }: { onCreate: (id: ThreeObjectId) => void }) {
   const tools: { id: ThreeObjectId; label: string }[] = [
     { id: "point", label: "Point" },
     { id: "vector", label: "Vector" },
@@ -6465,7 +6468,7 @@ function workflowTypeForContextTarget(target: ContextMenuState["target"]): Workf
   return target.type;
 }
 
-function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, addedObjects, dragging, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; dragging: string | null; onSelect: (id: string) => void; onDrag: (id: string | null) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onContextMenu: (event: any, id: string) => void }) {
+function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, addedObjects, dragging, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; dragging: string | null; onSelect: (id: string) => void; onDrag: (id: string | null) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onContextMenu: (event: ThreeEvent<MouseEvent>, id: string) => void }) {
   const groupRef = useRef<THREE.Group>(null);
   useEffect(() => {
     const releaseDrag = () => onDrag(null);
@@ -6486,23 +6489,25 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
   });
   const transformForId = (id: string) => isBase3dId(id) ? transforms[id] : addedObjects.find((object) => object.id === id)?.transform;
   const selectProps = (id: string) => ({
-    onClick: (event: any) => { event.stopPropagation(); onSelect(id); },
-    onContextMenu: (event: any) => onContextMenu(event, id),
-    onPointerDown: (event: any) => {
+    onClick: (event: ThreeEvent<MouseEvent>) => { event.stopPropagation(); onSelect(id); },
+    onContextMenu: (event: ThreeEvent<MouseEvent>) => onContextMenu(event, id),
+    onPointerDown: (event: ThreeEvent<PointerEvent>) => {
       event.stopPropagation();
       onSelect(id);
       if (event.button !== 0) return;
       const current = transformForId(id);
       if (current?.locked) return;
-      event.target?.setPointerCapture?.(event.pointerId);
+      if (event.target instanceof Element && "setPointerCapture" in event.target) {
+        (event.target as Element & { setPointerCapture: (pointerId: number) => void }).setPointerCapture(event.pointerId);
+      }
       onDrag(id);
     },
-    onPointerUp: (event: any) => { event.stopPropagation(); onDrag(null); },
-    onPointerCancel: (event: any) => { event.stopPropagation(); onDrag(null); },
+    onPointerUp: (event: ThreeEvent<PointerEvent>) => { event.stopPropagation(); onDrag(null); },
+    onPointerCancel: (event: ThreeEvent<PointerEvent>) => { event.stopPropagation(); onDrag(null); },
     onPointerLeave: () => {
       if (dragging === id) onDrag(null);
     },
-    onPointerMove: (event: any) => {
+    onPointerMove: (event: ThreeEvent<PointerEvent>) => {
       if (dragging !== id || id === "vector") return;
       event.stopPropagation();
       const current = transformForId(id);
@@ -6676,7 +6681,7 @@ function evaluateSurfaceExpression(expression: string, x: number, y: number) {
     .replace(/\bln\b/gi, "Math.log")
     .replace(/\blog\b/gi, "Math.log10")
     .replace(/\bexp\b/gi, "Math.exp");
-  if (!/^[0-9xy+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}\[\]'"]/.test(safe)) return 0;
+  if (!/^[0-9xy+\-*/().,\s*MATHPIEabceghilnopqrstxyz]+$/i.test(safe) || /[;={}\]'"[]/.test(safe)) return 0;
   try {
     const value = Function("x", "y", `"use strict"; return (${safe});`)(x, y) as number;
     return Number.isFinite(value) ? Math.max(-4, Math.min(4, value)) : 0;

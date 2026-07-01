@@ -1,8 +1,9 @@
 import katex from "katex";
-import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight, LucideIcon } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, ListChecks, LucideIcon } from "lucide-react";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SectionCard from "../ui/SectionCard";
+import { normalizeFormulaForKatex } from "../ui/MathExpression";
 import { BookmarkToolButton, CollapsibleTheorySection, FriendlyErrorBox, PracticeModeToggle, RelatedToolLinks, ShareSetupButton } from "../ui/UiFeedback";
 
 const exploredToolsKey = "math-universe-explored-tools";
@@ -207,7 +208,7 @@ export function MathToolRow({
 }
 
 export function FormulaBlock({ formula, title = "Formula" }: { formula: string; title?: string }) {
-  const html = useMemo(() => katex.renderToString(formula, { displayMode: true, throwOnError: false }), [formula]);
+  const html = useMemo(() => katex.renderToString(normalizeFormulaForKatex(formula), { displayMode: true, throwOnError: false }), [formula]);
   return (
     <div className="rounded-xl border border-cyan-200 bg-cyan-50 p-3 dark:border-cyan-400/20 dark:bg-cyan-400/10">
       <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">{title}</p>
@@ -218,21 +219,90 @@ export function FormulaBlock({ formula, title = "Formula" }: { formula: string; 
 
 export function StepPanel({ steps }: { steps: Array<{ title: string; explanation: string; formula?: string; result?: string }> }) {
   const [index, setIndex] = useState(0);
-  const step = steps[Math.min(index, steps.length - 1)];
+  const [showAllSteps, setShowAllSteps] = useState(false);
+  const safeIndex = Math.min(Math.max(index, 0), steps.length - 1);
+  const step = steps[safeIndex];
+  const progress = steps.length ? ((safeIndex + 1) / steps.length) * 100 : 0;
   if (!step) return null;
   return (
-    <SectionCard title="Step Panel" compact>
-      <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
-        <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Step {index + 1} of {steps.length}</p>
-        <h3 className="mt-1.5 text-lg font-black">{step.title}</h3>
-        <p className="mt-1.5 text-sm leading-5 text-slate-600 dark:text-slate-300">{step.explanation}</p>
-        {step.formula && <FormulaBlock title="Working" formula={step.formula} />}
-        {step.result && <p className="mt-2 rounded-lg bg-emerald-50 p-2.5 font-mono font-bold text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-100">{step.result}</p>}
+    <SectionCard title="Step timeline" compact>
+      <div className="rounded-xl border border-cyan-200 bg-cyan-50 p-3 dark:border-cyan-300/20 dark:bg-cyan-300/10">
+        <div className="flex items-start gap-3">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-950 text-sm font-black text-white dark:bg-white dark:text-slate-950">
+            {safeIndex + 1}
+          </span>
+          <div className="min-w-0">
+            <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Step {safeIndex + 1} of {steps.length}</p>
+            <h3 className="mt-1 text-lg font-black">{step.title}</h3>
+            <p className="mt-1.5 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">{step.explanation}</p>
+          </div>
+        </div>
+        <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/80 dark:bg-slate-950/45" aria-hidden="true">
+          <div className="h-full rounded-full bg-cyan-500 transition-all" style={{ width: `${progress}%` }} />
+        </div>
+        {step.formula && <div className="mt-3"><FormulaBlock title="Working" formula={step.formula} /></div>}
+        {step.result && <p className="mt-3 rounded-lg bg-emerald-50 p-2.5 font-mono font-bold text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-100">{step.result}</p>}
       </div>
-      <div className="mt-3 flex flex-wrap gap-2">
-        <button className="tool-button" type="button" onClick={() => setIndex(Math.max(0, index - 1))}><ChevronLeft className="h-4 w-4" />Previous</button>
-        <button className="tool-button" type="button" onClick={() => setIndex(Math.min(steps.length - 1, index + 1))}>Next<ChevronRight className="h-4 w-4" /></button>
+
+      <div className="mt-3 grid grid-cols-[auto_1fr_auto] items-center gap-2">
+        <button className="tool-button min-h-10 px-3" type="button" disabled={safeIndex === 0} onClick={() => setIndex(Math.max(0, safeIndex - 1))} aria-label="Previous step"><ChevronLeft className="h-4 w-4" /></button>
+        <div className="flex min-w-0 justify-center gap-1.5 overflow-x-auto px-1 py-1 thin-scrollbar" aria-label="Choose step">
+          {steps.map((item, stepIndex) => (
+            <button
+              key={`${item.title}-${stepIndex}`}
+              type="button"
+              onClick={() => setIndex(stepIndex)}
+              aria-current={stepIndex === safeIndex ? "step" : undefined}
+              title={item.title}
+              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-xs font-black transition ${
+                stepIndex === safeIndex
+                  ? "border-cyan-500 bg-cyan-500 text-white shadow-lg shadow-cyan-500/20"
+                  : stepIndex < safeIndex
+                    ? "border-emerald-300 bg-emerald-50 text-emerald-700 hover:border-cyan-300 dark:border-emerald-300/30 dark:bg-emerald-300/10 dark:text-emerald-100"
+                    : "border-slate-200 bg-white text-slate-600 hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950/50 dark:text-slate-300"
+              }`}
+            >
+              {stepIndex < safeIndex ? <CheckCircle2 className="h-4 w-4" /> : stepIndex + 1}
+            </button>
+          ))}
+        </div>
+        <button className="tool-button min-h-10 px-3" type="button" disabled={safeIndex === steps.length - 1} onClick={() => setIndex(Math.min(steps.length - 1, safeIndex + 1))} aria-label="Next step"><ChevronRight className="h-4 w-4" /></button>
       </div>
+
+      <button type="button" className="mt-3 flex w-full items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-black text-slate-700 transition hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950/35 dark:text-slate-200" onClick={() => setShowAllSteps((value) => !value)} aria-expanded={showAllSteps}>
+        <span className="inline-flex items-center gap-2">
+          <ListChecks className="h-4 w-4 text-cyan-600 dark:text-cyan-200" />
+          {showAllSteps ? "Hide full list" : "Show full list"}
+        </span>
+        <span className="text-xs text-slate-500 dark:text-slate-400">{steps.length} steps</span>
+      </button>
+
+      {showAllSteps ? (
+        <ol className="mt-3 space-y-2">
+          {steps.map((item, stepIndex) => (
+            <li key={`${item.title}-list-${stepIndex}`}>
+              <button
+                type="button"
+                onClick={() => setIndex(stepIndex)}
+                aria-current={stepIndex === safeIndex ? "step" : undefined}
+                className={`w-full rounded-lg border p-3 text-left transition ${
+                  stepIndex === safeIndex
+                    ? "border-cyan-300 bg-cyan-50 text-cyan-950 dark:border-cyan-300/50 dark:bg-cyan-300/15 dark:text-cyan-50"
+                    : "border-slate-200 bg-slate-50 text-slate-700 hover:border-cyan-200 dark:border-white/10 dark:bg-slate-950/40 dark:text-slate-300"
+                }`}
+              >
+                <span className="flex items-center gap-2 font-black">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs text-white dark:bg-white dark:text-slate-950">
+                    {stepIndex + 1}
+                  </span>
+                  {item.title}
+                </span>
+                <span className="mt-2 block text-sm leading-6">{item.explanation}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
+      ) : null}
     </SectionCard>
   );
 }

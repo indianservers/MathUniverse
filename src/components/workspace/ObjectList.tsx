@@ -1,6 +1,7 @@
 import { ClipboardCopy, Eye, EyeOff, RotateCcw, Trash2 } from "lucide-react";
 import type { MouseEvent } from "react";
 import { useMemo, useState } from "react";
+import MathExpression from "../ui/MathExpression";
 import type { MathObject } from "../../workspace/types";
 import { useWorkspaceStore } from "../../workspace/workspaceStore";
 
@@ -49,9 +50,9 @@ export default function ObjectList({ objects, selectedObjectId, selectedObjectId
   const selectObjects = useWorkspaceStore((state) => state.selectObjects);
   const updateObject = useWorkspaceStore((state) => state.updateObject);
   const removeObject = useWorkspaceStore((state) => state.removeObject);
-  const selectedSet = new Set(selectedObjectIds);
+  const selectedSet = useMemo(() => new Set(selectedObjectIds), [selectedObjectIds]);
   const selectedObjects = objects.filter((object) => selectedSet.has(object.id));
-  const scopeCounts = useMemo(() => countObjectScopes(objects, selectedSet), [objects, selectedObjectIds]);
+  const scopeCounts = useMemo(() => countObjectScopes(objects, selectedSet), [objects, selectedSet]);
   const filteredObjects = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     return objects.filter((object) => {
@@ -78,7 +79,7 @@ export default function ObjectList({ objects, selectedObjectId, selectedObjectId
         ...object.linkedViews,
       ].join(" ").toLowerCase().includes(normalizedQuery);
     });
-  }, [filter, objects, query, selectedObjectIds]);
+  }, [filter, objects, query, selectedSet]);
   const handleVisibility = (object: MathObject) => {
     const visible = !object.visible;
     updateObject(object.id, { visible, status: visible ? "ready" : "hidden" }, visible ? `Show ${object.label}` : `Hide ${object.label}`);
@@ -201,7 +202,9 @@ export default function ObjectList({ objects, selectedObjectId, selectedObjectId
                     <span className="min-w-0 flex-1 truncate text-sm font-bold text-slate-900 dark:text-white">{displayObjectLabel(object)}</span>
                   </div>
                   {displayObjectCaption(object) && <p className="mt-1 truncate text-xs font-semibold text-cyan-700 dark:text-cyan-200">{displayObjectCaption(object)}</p>}
-                  <p className="mt-1 truncate font-mono text-xs text-slate-500 dark:text-slate-400">{object.value}</p>
+                  <p className="mt-1 truncate text-xs font-semibold text-slate-500 dark:text-slate-400">
+                    <MathExpression value={object.value} />
+                  </p>
                 </button>
                 </div>
                 <div className="mt-2 flex items-center gap-1">

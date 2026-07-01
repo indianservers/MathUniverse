@@ -2,6 +2,7 @@ import { ArrowLeft, CheckCircle2, FlaskConical, Lightbulb, Link as LinkIcon, Rou
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionCard from "../components/ui/SectionCard";
+import MathExpression from "../components/ui/MathExpression";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import { createFallbackSyllabusUnitConcept, type SyllabusUnitConcept, type SyllabusUnitKind } from "../data/syllabusUnitConcepts";
@@ -35,7 +36,7 @@ export default function SyllabusUnitConceptPage({ concept, conceptId }: Syllabus
           <div className="space-y-3">
             <div className="rounded-2xl border border-cyan-300/30 bg-slate-950 p-4 text-white shadow-2xl shadow-cyan-950/20">
               <p className="text-[11px] font-black uppercase text-cyan-200">Concept formula</p>
-              <p className="mt-2 break-words font-mono text-sm font-black text-cyan-50">{formula}</p>
+              <p className="mt-2 break-words text-sm font-black text-cyan-50"><MathExpression value={formula} /></p>
               <p className="mt-3 text-xs font-semibold leading-5 text-slate-300">{unit.summary}</p>
             </div>
             <SliderControl label={unit.controls.a} value={a} min={0} max={100} step={1} onChange={setA} />

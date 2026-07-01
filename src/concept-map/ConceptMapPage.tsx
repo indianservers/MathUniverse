@@ -4,7 +4,7 @@ import ConceptMapLegend from "./ConceptMapLegend";
 import ConceptMapNodeDetails from "./ConceptMapNodeDetails";
 import ConceptMapPathPanel from "./ConceptMapPathPanel";
 import ConceptMapSidebar from "./ConceptMapSidebar";
-import { conceptEdges, conceptNodes } from "./conceptMapData";
+import { conceptCategoryInfo, conceptEdges, conceptNodes } from "./conceptMapData";
 import type { ConceptMapFilters, LearningMode } from "./conceptMapTypes";
 import {
   filterConcepts,
@@ -34,6 +34,7 @@ export default function ConceptMapPage() {
   const pathIds = useMemo(() => new Set(path.map((concept) => concept.id)), [path]);
   const focusIds = useMemo(() => (selectedId ? getImmediateConnectionIds(selectedId) : new Set<string>()), [selectedId]);
   const filtersActive = Boolean(filters.search || filters.categories?.length || filters.difficulties?.length || filters.modules?.length);
+  const categoryCount = Object.keys(conceptCategoryInfo).length;
 
   const visibleConcepts = useMemo(() => {
     if (!selectedId) return filteredConcepts;
@@ -84,9 +85,14 @@ export default function ConceptMapPage() {
         <div className="concept-hero-stats" aria-label="Concept map coverage">
           <span><strong>{conceptNodes.length}</strong> concepts</span>
           <span><strong>{conceptEdges.length}</strong> links</span>
-          <span><strong>15</strong> categories</span>
+          <span><strong>{categoryCount}</strong> categories</span>
         </div>
       </header>
+
+      <section className="concept-coverage-note" aria-label="Concept map coverage note">
+        <strong>Expanded mathematics coverage:</strong>
+        <span>computation, cryptography, AI, optimization, economics, finance, engineering, topology, fractals, chaos, and mathematical physics.</span>
+      </section>
 
       <section className="concept-view-controls" aria-label="Graph view controls">
         <button type="button" className={showPrerequisites ? "active" : ""} onClick={() => { setShowPrerequisites((value) => !value); setShowNext(false); }}>

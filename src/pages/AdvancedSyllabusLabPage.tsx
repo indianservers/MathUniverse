@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { ConceptImagePanel } from "../components/syllabus/ConceptVisualMedia";
 import FormulaBlock from "../components/ui/FormulaBlock";
 import SectionCard from "../components/ui/SectionCard";

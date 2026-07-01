@@ -16,11 +16,9 @@ import {
   formatAngle,
   formatTrigNumber,
   getFormulaDefinition,
-  getFormulaLiveValue,
   normalizeDegrees,
   snapToSpecialAngle,
   specialAngleMarkers,
-  trigFormulaDefinitions,
 } from "../utils/trigFormulaUtils";
 
 export default function TrigFormulaVisualizerPage() {

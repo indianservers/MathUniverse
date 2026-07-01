@@ -7,7 +7,7 @@ import { visualProofsRouteSmokeManifest } from "./visualProofsRouteSmokeManifest
 import { visualProofsAllSmokeRoutes, visualProofsCategorySmokeRoutes, visualProofsPhaseUpgradedSmokeRoutes, visualProofsRepresentativeSmokeRoutes } from "./visualProofsRouteSmokeList";
 
 const expectedCategoryCounts: Record<string, number> = {
-  "geometry": 11,
+  "geometry": 12,
   "algebraic-identities": 12,
   "trigonometry": 15,
   "coordinate-geometry": 15,
@@ -59,7 +59,7 @@ describe("Visual Proofs phase twenty-eight final metadata and route hardening", 
   });
 
   it("keeps every phase-upgraded proof fully described for premium shell rendering", () => {
-    expect(phaseUpgradedProofs).toHaveLength(183);
+    expect(phaseUpgradedProofs).toHaveLength(184);
     for (const proof of phaseUpgradedProofs) {
       expect(proof.route, proof.id).toBe(`/visual-proofs/${proof.categorySlug}/${proof.slug}`);
       expect(proof.title, proof.route).toBeTruthy();
@@ -116,7 +116,7 @@ describe("Visual Proofs phase twenty-eight final metadata and route hardening", 
 
   it("exports generated route smoke lists for future browser tests", () => {
     expect(visualProofsCategorySmokeRoutes).toHaveLength(18);
-    expect(visualProofsPhaseUpgradedSmokeRoutes).toHaveLength(183);
+    expect(visualProofsPhaseUpgradedSmokeRoutes).toHaveLength(184);
     expect(visualProofsRepresentativeSmokeRoutes).toHaveLength(18);
     expect(visualProofsAllSmokeRoutes).toContain("/visual-proofs");
     expect(visualProofsAllSmokeRoutes).toContain("/visual-proofs/engineering-mathematics/first-order-differential-equation-slope-field");

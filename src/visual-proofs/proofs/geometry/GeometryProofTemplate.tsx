@@ -1216,7 +1216,7 @@ function smoothstep(value: number) {
   return t * t * (3 - 2 * t);
 }
 
-function AngleArc({ cx, cy, start, end, color, show }: { cx: number; cy: number; start: number; end: number; color: string; show: boolean }) {
+function _AngleArc({ cx, cy, start, end, color, show }: { cx: number; cy: number; start: number; end: number; color: string; show: boolean }) {
   if (!show) return null;
   const r = 42;
   const startPoint = { x: cx + r * Math.cos(degToRad(start)), y: cy + r * Math.sin(degToRad(start)) };

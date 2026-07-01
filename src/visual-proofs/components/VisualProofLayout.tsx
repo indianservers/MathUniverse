@@ -1,8 +1,10 @@
 import { ArrowLeft, ArrowRight, CheckCircle2, Clock3, Eye, Lightbulb, MousePointer2, Play, SlidersHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
+import { MathText } from "../../components/ui/MathExpression";
 import type { VisualProof, VisualProofCategory } from "../data/proofTypes";
 import { getAdjacentVisualProofs } from "../data/visualProofsIndex";
+import ProofExplanationPanel from "./ProofExplanationPanel";
 
 type VisualProofLayoutProps = {
   category: VisualProofCategory;
@@ -36,14 +38,16 @@ export default function VisualProofLayout({
         <span>/</span>
         <Link to={`/visual-proofs/${category.slug}`} className="hover:text-cyan-700 dark:hover:text-cyan-200">{category.title}</Link>
         <span>/</span>
-        <span className="text-slate-800 dark:text-slate-100">{proof.title}</span>
+        <span className="text-slate-800 dark:text-slate-100"><MathText value={proof.title} /></span>
       </nav>
 
       <section className="rounded-xl border border-cyan-200/30 bg-slate-950 p-4 text-white shadow-2xl shadow-cyan-950/20 lg:p-5">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-wide text-cyan-200">Interactive visual proof</p>
-            <h1 className="mt-2 max-w-5xl text-3xl font-black sm:text-4xl">{proof.title}</h1>
+            <h1 className="mt-2 max-w-5xl text-3xl font-black sm:text-4xl">
+              <MathText value={proof.title} mathClassName="text-[0.92em]" />
+            </h1>
             <p className="mt-3 max-w-4xl text-sm leading-6 text-cyan-50/75">{proof.longDescription}</p>
             <div className="mt-4 grid gap-2 text-sm font-bold text-slate-950 sm:grid-cols-3">
               <LearningPill icon={<Eye className="h-4 w-4" />} title="First look" text="Name the shape, point, area, or number being shown." />
@@ -60,6 +64,8 @@ export default function VisualProofLayout({
           </div>
         </div>
       </section>
+
+      <ProofExplanationPanel proof={proof} />
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
         <main className="min-w-0 space-y-4">

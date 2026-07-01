@@ -1,4 +1,5 @@
 import FormulaBlock from "../components/ui/FormulaBlock";
+import MathExpression from "../components/ui/MathExpression";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SectionCard from "../components/ui/SectionCard";
@@ -74,7 +75,7 @@ function FormulaGroups({ groups }: { groups: Array<{ category: string; concepts:
               {group.concepts.map((concept) => (
                 <Link key={concept.id} to={`/trigonometry/${concept.id}`} className="block rounded-lg bg-slate-100 p-2 transition hover:bg-cyan-50 hover:text-cyan-800 dark:bg-slate-950/60 dark:hover:bg-cyan-400/10 dark:hover:text-cyan-100">
                   <p className="text-xs font-bold">{concept.title}</p>
-                  <p className="mt-1 whitespace-normal break-words font-mono text-[11px] leading-4 text-slate-600 dark:text-slate-300">{concept.formula}</p>
+                  <p className="mt-1 whitespace-normal break-words text-[11px] font-semibold leading-4 text-slate-600 dark:text-slate-300"><MathExpression value={concept.formula} /></p>
                 </Link>
               ))}
             </div>
@@ -119,7 +120,7 @@ function ConceptLink({ concept }: { concept: (typeof trigonometryConcepts)[numbe
       </div>
       <h2 className="mt-1 line-clamp-1 text-sm font-bold group-hover:text-cyan-600 dark:group-hover:text-cyan-300">{concept.title}</h2>
       <p className="mt-1 line-clamp-2 text-xs leading-4 text-slate-600 dark:text-slate-300">{concept.summary}</p>
-      <p className="mt-2 whitespace-normal break-words rounded-lg bg-slate-100 p-1.5 font-mono text-[11px] leading-4 text-slate-600 dark:bg-slate-950/70 dark:text-slate-300">{concept.formula}</p>
+      <p className="mt-2 whitespace-normal break-words rounded-lg bg-slate-100 p-1.5 text-[11px] font-semibold leading-4 text-slate-600 dark:bg-slate-950/70 dark:text-slate-300"><MathExpression value={concept.formula} /></p>
     </Link>
   );
 }

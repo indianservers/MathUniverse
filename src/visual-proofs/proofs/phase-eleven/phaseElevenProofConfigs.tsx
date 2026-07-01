@@ -168,35 +168,47 @@ export const polygonInteriorAnglePhaseElevenConfig: PhaseTwoProofConfig = {
 
 export const circleAreaUnrollingPhaseElevenConfig: PhaseTwoProofConfig = {
   steps: [
-    "Start with an unfilled circle — just the boundary line",
-    "Mark the cut point at the top of the circle",
-    "Watch the circle boundary unroll into a straight line",
-    "The straight line has length 2πr — the circumference",
-    "Next: fill the circle with 100 rings and unroll each one",
-    "Stacked lines form a triangle → area = ½ × 2πr × r = πr²",
+    "Show the circle and its radius",
+    "Cut the circle into many thin rings",
+    "Unroll each ring into a straight strip",
+    "The outside strip has length 2*pi*r, the circumference",
+    "Stack the strips from shortest to longest",
+    "The stack acts like a triangle with base 2*pi*r and height r",
   ].map(step),
-  parameters: [{ id: "radius", label: "Radius r", min: 3, max: 5, defaultValue: 5, step: 1 }],
+  parameters: [
+    { id: "radius", label: "Radius r", min: 3, max: 5, defaultValue: 5, step: 1 },
+    { id: "sectors", label: "Ring samples", min: 12, max: 60, defaultValue: 40, step: 4 },
+  ],
   toggles: [labelsToggle],
   olympyardRoute: areaRoute,
-  prediction: prompt("When the circle boundary is cut and straightened, how long is the resulting line?", "2πr — the circumference."),
-  misconception: misconception("Is the circle boundary length the same as the diameter?", "No. The circumference 2πr is about 3.14× the diameter 2r, because π ≈ 3.14."),
+  prediction: prompt("When the circle boundary is cut and straightened, how long is the outside strip?", "2*pi*r, the circumference."),
+  misconception: misconception("Is the circle boundary length the same as the diameter?", "No. The circumference is 2*pi*r, which is pi times the diameter 2r."),
   formulaTokens: () => [
     { id: "r", label: "r", visualLabel: "radius" },
-    { id: "pi-r", label: "2πr", visualLabel: "circumference / unrolled line" },
+    { id: "circumference", label: "2*pi*r", visualLabel: "outside strip" },
+    { id: "half", label: "1/2", visualLabel: "triangle area factor" },
+    { id: "pi-r", label: "pi*r", visualLabel: "half of the outside strip" },
+    { id: "area", label: "pi*r^2", visualLabel: "circle area" },
   ],
-  formula: ({ radius }) => `C = 2π(${radius}) = ${round(2 * Math.PI * radius)}`,
-  explanation: ({ radius }) => `Cutting the circle at the top and straightening it gives a line of length 2πr = ${round(2 * Math.PI * radius)}. This is the key building block for the area proof.`,
+  formula: ({ radius }) => `area = 1/2 x 2*pi*${radius} x ${radius} = pi*${radius}^2 = ${round(Math.PI * radius * radius)}`,
+  explanation: ({ radius }) =>
+    `The outside ring unrolls to circumference 2*pi*r = ${round(2 * Math.PI * radius)}. When all rings are stacked, the triangle-style area is 1/2 x base x height = 1/2 x 2*pi*r x r = pi*r^2, so the circle area is ${round(Math.PI * radius * radius)}.`,
   liveValues: ({ radius }) => [
     { id: "radius", label: "radius r", value: radius },
     { id: "diameter", label: "diameter 2r", value: 2 * radius },
-    { id: "circumference", label: "circumference 2πr", value: round(2 * Math.PI * radius), exactValue: `2π(${radius})` },
+    { id: "circumference", label: "circumference 2*pi*r", value: round(2 * Math.PI * radius), exactValue: `2*pi(${radius})` },
+    { id: "half-circumference", label: "half circumference pi*r", value: round(Math.PI * radius), exactValue: `pi(${radius})` },
+    { id: "area", label: "area pi*r^2", value: round(Math.PI * radius * radius), exactValue: `pi(${radius})^2` },
+    { id: "smoothness", label: "uncurling smoothness", value: "smooth with more sectors" },
   ],
   invariants: ({ radius }) => [
-    { id: "circumference", label: "C = 2πr", holds: true, explanation: `The unrolled line has length 2π(${radius}) = ${round(2 * Math.PI * radius)}.` },
+    { id: "circumference", label: "C = 2*pi*r", holds: true, explanation: `The outside strip has length 2*pi*${radius} = ${round(2 * Math.PI * radius)}.` },
+    { id: "area", label: "area = pi*r^2", holds: true, explanation: `1/2 x 2*pi*${radius} x ${radius} = ${round(Math.PI * radius * radius)}.` },
   ],
   assumptions: [
     "Cutting the circle at one point and straightening preserves the total length.",
-    "π is irrational; decimal values shown are rounded.",
+    "The ring strips approximate the circle more closely as the sample count increases.",
+    "pi is irrational; decimal values shown are rounded.",
   ],
   renderVisual: CircleAreaUnrollGuide,
 };
@@ -208,6 +220,7 @@ export const phaseElevenRouteSlugs = [
   ["geometry", "trapezoid-area-duplication"],
   ["geometry", "polygon-interior-angle-sum"],
   ["geometry", "area-of-circle-by-unrolling"],
+  ["geometry", "circle-to-triangle"],
 ] as const;
 
 export const phaseElevenConfigs = [
@@ -216,6 +229,7 @@ export const phaseElevenConfigs = [
   sectorAreaPhaseElevenConfig,
   trapezoidAreaPhaseElevenConfig,
   polygonInteriorAnglePhaseElevenConfig,
+  circleAreaUnrollingPhaseElevenConfig,
   circleAreaUnrollingPhaseElevenConfig,
 ];
 

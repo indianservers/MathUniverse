@@ -6,6 +6,7 @@ import SyllabusFilterBar from "../components/syllabus/SyllabusFilterBar";
 import SyllabusRoadmap from "../components/syllabus/SyllabusRoadmap";
 import SyllabusTopicCard from "../components/syllabus/SyllabusTopicCard";
 import UnitUpgradeDashboard from "../components/syllabus/UnitUpgradeDashboard";
+import MathExpression from "../components/ui/MathExpression";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import { advancedLabCategories, advancedSyllabusLabs } from "../data/advancedSyllabusLabs";
@@ -87,7 +88,7 @@ export default function Syllabus() {
                           <Link key={lab.id} to={`/syllabus-lab/${lab.id}`} className="rounded-2xl border border-slate-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-cyan-300 dark:border-white/10 dark:bg-slate-950">
                             <h3 className="font-bold">{lab.title}</h3>
                             <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{lab.summary}</p>
-                            <p className="mt-3 font-mono text-xs text-slate-500 dark:text-slate-400">{lab.formula}</p>
+                            <p className="mt-3 text-xs font-semibold text-slate-500 dark:text-slate-400"><MathExpression value={lab.formula} /></p>
                           </Link>
                         ))}
                       </div>

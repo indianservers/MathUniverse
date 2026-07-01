@@ -5,6 +5,7 @@ import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent, typ
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import FormulaBlock from "../components/ui/FormulaBlock";
+import MathExpression from "../components/ui/MathExpression";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
@@ -193,7 +194,7 @@ export default function ShapesExplorer() {
               </div>
               <span className="mini-chip">{selected.kind === "3d" ? "3D object" : "2D shape"}</span>
             </div>
-            <p className="mt-3 rounded-lg bg-slate-100 p-3 font-mono text-sm font-bold dark:bg-white/10">{selected.formula}</p>
+            <p className="mt-3 rounded-lg bg-slate-100 p-3 text-sm font-bold dark:bg-white/10"><MathExpression value={selected.formula} /></p>
             <div className="mt-4 grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)]">
               <div className="space-y-3">
                 <SliderGroup title="Shape controls">
@@ -356,22 +357,6 @@ export default function ShapesExplorer() {
               Drag the vertical handles to resize. The visual workspace starts above 50% of this shape area, and the 2D/3D panes start at an equal split.
             </div>
 
-            {false && <div className="hidden">
-            {selected.kind === "2d" ? (
-              <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60 sm:p-4">
-                <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} />
-              </div>
-            ) : (
-              <ThreeSceneWrapper height="520px" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate • pinch zoom">
-                <ambientLight intensity={0.75} />
-                <directionalLight position={[4, 5, 4]} intensity={1.35} />
-                <RotatingSolid shape={selected.id} a={a} b={b} c={c} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} />
-                <OrbitControls enablePan={false} enableZoom enableDamping />
-              </ThreeSceneWrapper>
-            )}
-
-            </div>}
-
             <div className="grid gap-3 md:grid-cols-3">
               <InfoTile label="Dimensions" value={selected.dimensions.join(", ")} />
               <InfoTile label="Current symbols" value={symbolSummary(selected.id, a, b, c, sides, angle)} />
@@ -413,7 +398,7 @@ function FormulaMapSection({ selected, metrics, shapes, onSelect }: { selected: 
                 <span className="mini-chip">{selected.dimensions.join(", ")}</span>
               </div>
             </div>
-            <p className="mt-3 rounded-lg bg-white/80 p-3 font-mono text-sm font-bold text-slate-800 dark:bg-slate-950/50 dark:text-cyan-50">{selected.formula}</p>
+            <p className="mt-3 rounded-lg bg-white/80 p-3 text-sm font-bold text-slate-800 dark:bg-slate-950/50 dark:text-cyan-50"><MathExpression value={selected.formula} /></p>
           </div>
 
           <div className="grid gap-3 md:grid-cols-2">
@@ -451,7 +436,7 @@ function FormulaMapSection({ selected, metrics, shapes, onSelect }: { selected: 
               {familyShapes.map((shape) => (
                 <button key={shape.id} type="button" onClick={() => onSelect(shape)} className="rounded-lg border border-transparent bg-slate-100 px-3 py-2 text-left text-sm transition hover:border-cyan-300 hover:bg-cyan-50 dark:bg-white/10 dark:hover:bg-cyan-300/10">
                   <span className="font-bold">{shape.name}</span>
-                  <span className="mt-1 block truncate font-mono text-xs text-slate-500 dark:text-slate-400">{shape.formula}</span>
+                  <span className="mt-1 block truncate text-xs font-semibold text-slate-500 dark:text-slate-400"><MathExpression value={shape.formula} /></span>
                 </button>
               ))}
             </div>
@@ -473,7 +458,7 @@ function FormulaMapCard({ entry, metrics, compact = false }: { entry: ShapeFormu
         </div>
         {value !== undefined && Number.isFinite(value) && <span className="rounded-lg bg-cyan-100 px-2 py-1 font-mono text-xs font-black text-cyan-900 dark:bg-cyan-300/15 dark:text-cyan-100">{roundTo(value, 3)}</span>}
       </div>
-      <p className={`mt-3 rounded-lg bg-slate-100 p-3 font-mono font-bold text-slate-800 dark:bg-white/10 dark:text-slate-100 ${compact ? "text-xs leading-5" : "text-sm leading-6"}`}>{entry.formula}</p>
+      <p className={`mt-3 rounded-lg bg-slate-100 p-3 font-bold text-slate-800 dark:bg-white/10 dark:text-slate-100 ${compact ? "text-xs leading-5" : "text-sm leading-6"}`}><MathExpression value={entry.formula} /></p>
     </article>
   );
 }
@@ -583,6 +568,7 @@ const languageLabels = {
   Telugu: { circle: "వృత్తం", square: "చదరం", triangle: "త్రిభుజం", cube: "ఘనం" },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function KidsShapeStudio({ shapes, selected, onSelect }: { shapes: ShapeDefinition[]; selected: ShapeDefinition; onSelect: (shape: ShapeDefinition) => void }) {
   const [mode, setMode] = useState<KidMode>("beginner");
   const [grade, setGrade] = useState<(typeof gradeLevels)[number]>("Class 3-5");
@@ -710,7 +696,7 @@ function KidsShapeStudio({ shapes, selected, onSelect }: { shapes: ShapeDefiniti
                   <p className="text-xs font-bold uppercase">Shape flashcard</p>
                   <p className="mt-2 text-3xl font-black">{flashShape.name}</p>
                   <p className="mt-2 text-sm leading-6">{flashShape.description}</p>
-                  <p className="mt-3 font-mono text-sm">{flashShape.formula}</p>
+                  <p className="mt-3 text-sm font-semibold"><MathExpression value={flashShape.formula} /></p>
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
                   <button type="button" className="action-secondary" onClick={() => setActiveFlashcard((value) => value + 1)}>Next card</button>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import MathExpression from "../components/ui/MathExpression";
 import { conceptCategoryInfo } from "./conceptMapData";
 import type { ConceptNode, LearningMode } from "./conceptMapTypes";
 import { getAvailableModuleCount, getConceptReadiness, getNextConcepts, getPrerequisites, getRelatedConcepts } from "./conceptMapUtils";
@@ -118,7 +119,7 @@ export default function ConceptMapNodeDetails({
 
       {(concept.formulas?.length || concept.theorems?.length || concept.realLifeUses?.length) && (
         <section className="concept-evidence">
-          {concept.formulas?.length ? <p><strong>Formulas:</strong> {concept.formulas.join(", ")}</p> : null}
+          {concept.formulas?.length ? <p><strong>Formulas:</strong> {concept.formulas.map((formula, index) => <span key={formula}>{index ? ", " : ""}<MathExpression value={formula} /></span>)}</p> : null}
           {concept.theorems?.length ? <p><strong>Theorems:</strong> {concept.theorems.join(", ")}</p> : null}
           {concept.realLifeUses?.length ? <p><strong>Uses:</strong> {concept.realLifeUses.join(", ")}</p> : null}
         </section>
