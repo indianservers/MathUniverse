@@ -16,9 +16,9 @@ describe("proof explanation stabilization audit", () => {
     expect(report.ready, report.errors.map((issue) => `${issue.id}: ${issue.message}`).join("\n")).toBe(true);
   });
 
-  it("tracks planned theorem proof gaps without blocking Phase 1", () => {
-    expect(report.theoremPlannedCount).toBeGreaterThan(0);
-    expect(report.warnings.some((issue) => issue.message.includes("step-by-step draft"))).toBe(true);
+  it("keeps theorem pages from falling back to planned placeholders", () => {
+    expect(report.theoremPlannedCount).toBe(0);
+    expect(report.warnings.some((issue) => issue.message.includes("step-by-step draft"))).toBe(false);
   });
 
   it("keeps draft-ready theorem proof explanations above the Phase 2 clarity floor", () => {

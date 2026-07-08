@@ -1,6 +1,7 @@
 import { BookOpen, BookOpenCheck, CheckCircle2, ChevronLeft, Link2, Search, Sigma, Sparkles, TriangleAlert } from "lucide-react";
 import { useMemo, useState, type ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
+import MathExpression, { isFormulaLike } from "../components/ui/MathExpression";
 import { formulaCategories, type FormulaCategory, type FormulaLibraryItem } from "../data/formulaLibrary";
 import { theoremCategories, theoremCount, type TheoremCategory, type TheoremLibraryItem } from "../data/theoremLibrary";
 import { getCuratedTheoremLearningLinks } from "../proof-explanations/proofLearningLinks";
@@ -243,7 +244,7 @@ function TheoremCard({ row }: { row: TheoremSheetRow }) {
         </span>
       </div>
       <p className="mt-2 rounded-md bg-slate-50 px-3 py-2 text-base font-bold leading-6 text-slate-800 dark:bg-white/5 dark:text-slate-100">
-        {row.statement}
+        <TheoremStatement value={row.statement} />
       </p>
       <p className="mt-3 text-base font-semibold leading-6 text-slate-600 dark:text-slate-300">{row.whyItMatters}</p>
       <div className="mt-auto pt-3">
@@ -279,7 +280,9 @@ function TheoremDetail({ theorem, category }: { theorem: TheoremLibraryItem; cat
           <h2 className="mt-2 text-3xl font-black leading-tight text-slate-950 dark:text-white">{theorem.title}</h2>
           <div className="mt-4 rounded-lg bg-slate-50 p-4 dark:bg-white/5">
             <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Statement</p>
-            <p className="mt-2 text-xl font-black leading-8 text-slate-900 dark:text-white">{theorem.statement}</p>
+            <p className="mt-2 text-xl font-black leading-8 text-slate-900 dark:text-white">
+              <TheoremStatement value={theorem.statement} mathClassName="text-[0.95em]" />
+            </p>
           </div>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <InfoPanel title="Why It Matters" text={theorem.whyItMatters} />
@@ -318,6 +321,34 @@ function TheoremDetail({ theorem, category }: { theorem: TheoremLibraryItem; cat
       </div>
     </section>
   );
+}
+
+function TheoremStatement({ value, mathClassName = "" }: { value: string; mathClassName?: string }) {
+  const trimmed = value.trim();
+  const sentenceEnd = trimmed.endsWith(".") ? "." : "";
+  const body = sentenceEnd ? trimmed.slice(0, -1) : trimmed;
+  const commaIndex = body.lastIndexOf(",");
+  const formulaCandidate = commaIndex > -1 ? body.slice(commaIndex + 1).trim() : body;
+
+  if (commaIndex > -1 && isFormulaLike(formulaCandidate)) {
+    return (
+      <>
+        {body.slice(0, commaIndex + 1)} <MathExpression value={formulaCandidate} className={mathClassName} />
+        {sentenceEnd}
+      </>
+    );
+  }
+
+  if (isFormulaLike(body) && !/[a-z]{3,}\s+[a-z]{3,}/i.test(body)) {
+    return (
+      <>
+        <MathExpression value={body} className={mathClassName} />
+        {sentenceEnd}
+      </>
+    );
+  }
+
+  return <>{value}</>;
 }
 
 function StepByStepProofPanel({ theorem }: { theorem: TheoremLibraryItem }) {
@@ -496,12 +527,14 @@ function CategoryChip({ active, children, to }: { active: boolean; children: str
 function statusLabel(status: TheoremLibraryItem["proofStatus"]) {
   if (status === "visual-ready") return "Visual ready";
   if (status === "draft-ready") return "Draft proof";
+  if (status === "scaffold-ready") return "Learning scaffold";
   return "Proof planned";
 }
 
 function statusTone(status: TheoremLibraryItem["proofStatus"]) {
   if (status === "visual-ready") return "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-300/10 dark:text-emerald-100";
   if (status === "draft-ready") return "border-cyan-200 bg-cyan-50 text-cyan-700 dark:border-cyan-300/30 dark:bg-cyan-300/10 dark:text-cyan-100";
+  if (status === "scaffold-ready") return "border-violet-200 bg-violet-50 text-violet-700 dark:border-violet-300/30 dark:bg-violet-300/10 dark:text-violet-100";
   return "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-300/30 dark:bg-amber-300/10 dark:text-amber-100";
 }
 

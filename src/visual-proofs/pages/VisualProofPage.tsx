@@ -2,6 +2,7 @@ import { Suspense, lazy, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { formulaCategories } from "../../data/formulaLibrary";
 import { theoremCategories } from "../../data/theoremLibrary";
+import { GuidedScaffoldPanel, TeacherNotes } from "../../components/ui/LearningScaffolds";
 import FormulaPanel from "../components/FormulaPanel";
 import StepPanel from "../components/StepPanel";
 import VisualProofLayout from "../components/VisualProofLayout";
@@ -93,38 +94,102 @@ function VisualProofLearningBridge({ proof }: { proof: NonNullable<ReturnType<ty
 }
 
 function ComingSoonProof({ category, proof }: { category: NonNullable<ReturnType<typeof getVisualProofCategory>>; proof: NonNullable<ReturnType<typeof getVisualProof>> }) {
+  const scaffoldSteps = [
+    {
+      id: "read-claim",
+      title: "Read the proof claim",
+      description: `Start from the title and description. Identify what ${proof.title.toLowerCase()} is trying to prove or make visible.`,
+      focusLabel: "claim",
+    },
+    {
+      id: "name-prerequisites",
+      title: "Name the prerequisite ideas",
+      description: `Use ${proof.prerequisites.join(", ") || "the core definitions"} before expecting the visual to make sense.`,
+      focusLabel: "prerequisites",
+    },
+    {
+      id: "predict-visual",
+      title: "Predict the first diagram",
+      description: "Sketch or describe the diagram you expect: a shape, graph, number pattern, transformation, or measurement scene.",
+      focusLabel: "expected visual",
+    },
+    {
+      id: "connect-formula",
+      title: "Connect to symbols",
+      description: "Match each important object in the diagram to a formula symbol, label, or invariant that should stay true.",
+      focusLabel: "symbols",
+    },
+    {
+      id: "write-next-action",
+      title: "Write the build task",
+      description: "Before the custom interactive proof lands, state the next build action: which control, animation, or comparison would prove the idea most clearly.",
+      focusLabel: "next build",
+    },
+  ];
+
   return (
     <VisualProofLayout
       category={category}
       proof={proof}
       visual={
-        <div className="flex min-h-[360px] items-center justify-center bg-slate-950 p-6 text-center text-white">
-          <div>
-            <p className="text-xs font-black uppercase tracking-wide text-cyan-200">Coming soon</p>
-            <h2 className="mt-3 text-3xl font-black">Dedicated proof route reserved</h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-cyan-50/75">
-              This page is intentionally route-ready so future visual proofs can be added without changing the architecture.
-            </p>
+        <div className="min-h-[360px] bg-slate-950 p-6 text-white">
+          <div className="mx-auto grid h-full max-w-5xl gap-5 md:grid-cols-[minmax(0,1fr)_300px] md:items-center">
+            <div>
+              <p className="text-xs font-black uppercase tracking-wide text-violet-200">Scaffold-ready proof route</p>
+              <h2 className="mt-3 text-3xl font-black leading-tight"><MathText value={proof.title} /></h2>
+              <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-200">
+                A custom animation is still pending, but this route now shows the learning goal, prerequisite ideas, symbol plan, and build-ready proof sequence.
+              </p>
+              <div className="mt-5 grid gap-2 sm:grid-cols-3">
+                {["Claim", "Diagram", "Invariant"].map((label, index) => (
+                  <div key={label} className="rounded-xl border border-white/10 bg-white/10 p-3">
+                    <p className="text-[11px] font-black uppercase tracking-wide text-cyan-200">Step {index + 1}</p>
+                    <p className="mt-1 text-lg font-black">{label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-2xl border border-cyan-300/30 bg-cyan-300/10 p-4">
+              <p className="text-xs font-black uppercase tracking-wide text-cyan-100">What this page needs next</p>
+              <ul className="mt-3 grid gap-2 text-sm font-bold leading-5 text-cyan-50">
+                <li>- A custom animated diagram.</li>
+                <li>- Live labels for each symbol.</li>
+                <li>- A check question after each transformation.</li>
+              </ul>
+            </div>
           </div>
         </div>
       }
-      controls={<PlaceholderPanel title="Controls" body="Interactive controls will appear here when this proof is implemented." />}
+      controls={
+        <GuidedScaffoldPanel
+          title="Before the custom visual is built"
+          goal={`Understand what ${proof.title} should prove and which visual evidence would make it convincing.`}
+          notice={proof.shortDescription}
+          tryIt="Sketch the first diagram and label every known value before reading the formula."
+          explain="Say what should stay unchanged as the diagram moves or rearranges."
+          checks={["The claim is written in plain words.", "Every symbol has a visible meaning.", "The final step explains why the formula follows."]}
+        />
+      }
       steps={
         <StepPanel
           activeStep={0}
-          steps={[
-            {
-              id: "planned",
-              title: "Proof planned",
-              description: "This proof is included in the index and will receive its own SVG or canvas visualization in a later phase.",
-              focusLabel: "planned",
-            },
-          ]}
+          steps={scaffoldSteps}
         />
       }
-      formula={<FormulaPanel formulas={["Detailed derivation coming soon"]} />}
-      conceptNotes={<p>This placeholder keeps the route, metadata, and page layout consistent while the proof library grows.</p>}
-      reflectionQuestions={["Which visual transformation would make this proof easiest to understand?", "What prerequisite idea should be shown first?"]}
+      formula={<FormulaPanel formulas={[proof.title, proof.prerequisites[0] ? `uses ${proof.prerequisites[0]}` : "uses core definitions", "visual evidence -> theorem statement"]} />}
+      conceptNotes={
+        <div className="space-y-3">
+          <p>This scaffold keeps the route useful while the dedicated SVG, canvas, or HTML proof is being built.</p>
+          <TeacherNotes
+            objective={`Prepare students to understand ${proof.title} before the custom interactive visual is available.`}
+            prerequisite={proof.prerequisites.join(", ") || "Core definitions"}
+            prompt="Which part of the statement should be visible first, and what should stay unchanged?"
+            misconception="Students may treat a placeholder as empty; use the scaffold to make them predict the proof structure."
+            extension="Ask learners to propose the first draggable control or animation frame."
+          />
+        </div>
+      }
+      reflectionQuestions={["Which visual transformation would make this proof easiest to understand?", "What prerequisite idea should be shown first?", "What label or value must be visible so the proof is not confusing?"]}
     />
   );
 }
@@ -137,15 +202,6 @@ function ProofRouteLoadingFallback({ title }: { title: string }) {
       <div className="mt-5 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-white/10">
         <div className="h-full w-1/3 rounded-full bg-cyan-500" />
       </div>
-    </section>
-  );
-}
-
-function PlaceholderPanel({ title, body }: { title: string; body: string }) {
-  return (
-    <section className="rounded-xl border border-slate-200 bg-white/88 p-4 dark:border-white/10 dark:bg-white/[0.05]">
-      <h2 className="text-base font-black text-slate-950 dark:text-white">{title}</h2>
-      <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{body}</p>
     </section>
   );
 }

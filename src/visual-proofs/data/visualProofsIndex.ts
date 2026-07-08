@@ -511,6 +511,20 @@ const trigonometryProofs: TrigonometryProofSeed[] = [
     componentKey: "CosineRuleProof",
   },
   {
+    id: "law-of-cosines-circle-construction",
+    title: "Law of Cosines Circle Construction",
+    slug: "law-of-cosines-circle-construction",
+    shortDescription: "Build the law of cosines from a triangle, a circle through the angle joint, and an extended baseline.",
+    longDescription:
+      "A step-by-step construction draws the triangle, places a circle through the included-angle joint, then extends the base line so students can connect the geometry to c^2 = a^2 + b^2 - 2ab cos theta.",
+    difficulty: "Advanced",
+    tags: ["trigonometry", "law of cosines", "cosine rule", "triangle", "circle construction", "chord", "angle"],
+    estimatedTime: "10 minutes",
+    prerequisites: ["Triangle side labels", "Circle radius", "Included angle", "Cosine"],
+    learningOutcomes: ["Name sides a, b, and c on the triangle", "See the circle placed through the a-b joint", "Track the extended line used by the construction"],
+    componentKey: "LawOfCosinesCircleConstructionProof",
+  },
+  {
     id: "complementary-angle-identities",
     title: "Complementary Angle Identities",
     slug: "complementary-angle-identities",
@@ -2533,6 +2547,7 @@ const phaseUpgradedProofs = new Set<VisualProofComponentKey>([
   "DoubleAngleIdentitiesProof",
   "SineRuleProof",
   "CosineRuleProof",
+  "LawOfCosinesCircleConstructionProof",
   "ComplementaryAngleIdentitiesProof",
   "TriangleAreaSineFormulaProof",
   "SmallAngleApproximationProof",
@@ -2887,6 +2902,7 @@ function getLearningModel(categorySlug: string, proof: { componentKey: VisualPro
     proof.componentKey === "DoubleAngleIdentitiesProof" ||
     proof.componentKey === "SineRuleProof" ||
     proof.componentKey === "CosineRuleProof" ||
+    proof.componentKey === "LawOfCosinesCircleConstructionProof" ||
     proof.componentKey === "ComplementaryAngleIdentitiesProof" ||
     proof.componentKey === "TriangleAreaSineFormulaProof"
   ) return "angle-model";

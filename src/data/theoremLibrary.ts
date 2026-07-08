@@ -1,5 +1,7 @@
 import { algebraProofDrafts } from "./theorems/algebraProofDrafts";
+import { coordinateCalculusProofDrafts } from "./theorems/coordinateCalculusProofDrafts";
 import { geometryProofDrafts } from "./theorems/geometryProofDrafts";
+import { linearAlgebraProofDrafts } from "./theorems/linearAlgebraProofDrafts";
 import { trigonometryProofDrafts } from "./theorems/trigonometryProofDrafts";
 
 export type TheoremLibraryItem = {
@@ -9,7 +11,7 @@ export type TheoremLibraryItem = {
   statement: string;
   whyItMatters: string;
   proofPlan: string;
-  proofStatus: "planned" | "draft-ready" | "visual-ready";
+  proofStatus: "scaffold-ready" | "planned" | "draft-ready" | "visual-ready";
   prerequisites: string[];
   proofIdea?: string;
   proofSteps?: TheoremProofStep[];
@@ -54,6 +56,7 @@ function theorem(
   index: number,
 ): TheoremLibraryItem {
   const proofDraft = theoremProofDrafts[`${categoryId}:${title}`];
+  const proofScaffold = proofDraft ?? buildTheoremScaffold(title, subtopic, statement, prerequisites, categoryTitle);
   return {
     slug: `${slugify(title)}-${index + 1}`,
     title,
@@ -62,11 +65,34 @@ function theorem(
     whyItMatters: `${title} is a reusable result for ${subtopic.toLowerCase()} problems in ${categoryTitle}.`,
     proofPlan: proofDraft
       ? "Step-by-step draft proof is available below. A future visual phase can convert each step into an interactive diagram."
-      : "Proof steps will be added here later as a visual, line-by-line explanation.",
-    proofStatus: proofDraft ? "draft-ready" : "planned",
+      : "A guided proof scaffold is available below. It explains the setup, key idea, conclusion, and checks; a future phase can replace it with a fully specialized visual proof.",
+    proofStatus: proofDraft ? "draft-ready" : "scaffold-ready",
     prerequisites,
-    ...proofDraft,
+    ...proofScaffold,
   };
+}
+
+function buildTheoremScaffold(
+  title: string,
+  subtopic: string,
+  statement: string,
+  prerequisites: string[],
+  categoryTitle: string,
+): TheoremProofDraft {
+  const prerequisiteText = prerequisites.length ? prerequisites.join(", ") : "the core definitions";
+  return draft(
+    `${title} connects the definitions in ${subtopic.toLowerCase()} to a reusable result. This scaffold gives students a reliable route through the proof idea before a custom visual proof is built.`,
+    [
+      ["Read the claim", `State the theorem in your own words: ${statement}`, "The statement is split into givens, conditions, and target result."],
+      ["List the needed ideas", `Use ${prerequisiteText} as the toolkit for the argument.`, "Prerequisite ideas are shown as small cards feeding into the proof."],
+      ["Build the setup", `Introduce the objects from the theorem and mark what belongs to ${subtopic.toLowerCase()}.`, "A labeled setup diagram or symbolic workspace is prepared."],
+      ["Use the key relation", `Apply the defining relation or standard identity behind ${title.toLowerCase()} until the target statement appears.`, "The central equality, inclusion, counting step, or transformation is highlighted."],
+      ["Check the conditions", "Verify that the hypotheses were used and that no extra assumption was introduced.", "A checklist confirms domain, dimension, non-zero, continuity, or independence conditions as needed."],
+      ["State the conclusion", `Conclude the result exactly as required for ${categoryTitle}.`, "The final theorem statement is boxed and matched back to the starting claim."],
+    ],
+    `For ${title}, always identify the hypotheses first, then show how they force the conclusion.`,
+    ["Memorizing the statement without checking its hypotheses.", "Using a theorem outside its valid conditions.", "Skipping the step that connects the setup to the final claim."],
+  );
 }
 
 function category(id: string, title: string, description: string, accent: string, seeds: TheoremSeed[]): TheoremCategory {
@@ -81,7 +107,9 @@ function category(id: string, title: string, description: string, accent: string
 
 const theoremProofDrafts: Record<string, TheoremProofDraft> = {
   ...algebraProofDrafts,
+  ...coordinateCalculusProofDrafts,
   ...geometryProofDrafts,
+  ...linearAlgebraProofDrafts,
   ...trigonometryProofDrafts,
   "number-theory:Euclid division lemma": draft(
     "Place multiples of the positive divisor on the number line; every integer lands between two neighboring multiples, and the leftover distance is the remainder.",

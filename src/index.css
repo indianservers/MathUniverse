@@ -748,6 +748,31 @@ body {
     background: #cffafe !important;
     color: #155e75 !important;
   }
+
+  .visual-proof-fullscreen-pane:fullscreen,
+  .math-pane-fullscreen-target:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    border-radius: 0;
+    border: 0;
+    background: #020617;
+    padding: 16px;
+  }
+
+  .visual-proof-fullscreen-pane:fullscreen [data-testid="visual-proof-primary-visual"] {
+    min-height: calc(100vh - 32px);
+    display: grid;
+    place-items: center;
+  }
+
+  .visual-proof-fullscreen-pane:fullscreen svg {
+    max-height: calc(100vh - 48px);
+  }
+
+  .math-pane-fullscreen-target:fullscreen > div:last-child {
+    min-height: calc(100vh - 72px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -776,5 +801,17 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes lawCosinesDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes lawCosinesFadeIn {
+  from {
+    opacity: 0;
   }
 }

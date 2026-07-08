@@ -11,6 +11,7 @@ const cutY = centerY - maxRadius;
 const finalLeftX = centerX - halfCircumference;
 const finalRightX = centerX + halfCircumference;
 const triangleTipY = centerY;
+const triangleTipMarker = { x: centerX, y: triangleTipY };
 
 export default function CircleToTriangleVisualization() {
   const [isLine, setIsLine] = useState(false);
@@ -130,7 +131,7 @@ export default function CircleToTriangleVisualization() {
           <circle cx={metrics.topCut.x} cy={metrics.topCut.y} r="6" fill="#f8fafc" filter="url(#lineGlow)" />
           <circle cx={metrics.rightEnd.x} cy={metrics.rightEnd.y} r="7" fill="#fb7185" filter="url(#lineGlow)" />
           <g aria-label="Tiny glowing reference points">
-            <GlowDot x={centerX} y={centerY} color="#facc15" />
+            <GlowDot x={triangleTipMarker.x} y={triangleTipMarker.y} color="#facc15" size="tip" />
             <GlowDot x={metrics.topCut.x} y={metrics.topCut.y} color="#ffffff" />
             <GlowDot x={metrics.leftEnd.x} y={metrics.leftEnd.y} color="#67e8f9" />
             <GlowDot x={metrics.rightEnd.x} y={metrics.rightEnd.y} color="#fb7185" />
@@ -227,12 +228,16 @@ function ValueRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-function GlowDot({ x, y, color }: { x: number; y: number; color: string }) {
+function GlowDot({ x, y, color, size = "default" }: { x: number; y: number; color: string; size?: "default" | "tip" }) {
+  const haloRadius = size === "tip" ? 4.4 : 7;
+  const dotRadius = size === "tip" ? 1.9 : 2.8;
+  const coreRadius = size === "tip" ? 0.75 : 1.1;
+  const strokeWidth = size === "tip" ? 0.7 : 0.9;
   return (
     <g>
-      <circle cx={x} cy={y} r="7" fill={color} opacity="0.22" filter="url(#microPointGlow)" />
-      <circle cx={x} cy={y} r="2.8" fill={color} stroke="#020617" strokeWidth="0.9" filter="url(#microPointGlow)" />
-      <circle cx={x} cy={y} r="1.1" fill="#ffffff" opacity="0.95" />
+      <circle cx={x} cy={y} r={haloRadius} fill={color} opacity="0.22" filter="url(#microPointGlow)" />
+      <circle cx={x} cy={y} r={dotRadius} fill={color} stroke="#020617" strokeWidth={strokeWidth} filter="url(#microPointGlow)" />
+      <circle cx={x} cy={y} r={coreRadius} fill="#ffffff" opacity="0.95" />
     </g>
   );
 }

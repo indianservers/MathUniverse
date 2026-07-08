@@ -79,6 +79,7 @@ export function normalizeFormulaForKatex(value: string) {
     .replace(/(?<!\\)\bcot\b/g, "\\cot")
     .replace(/(?<!\\)\blog\b/g, "\\log")
     .replace(/(?<!\\)\bln\b/g, "\\ln")
+    .replace(/([A-Za-z0-9]+)\s*\/\s*(\\(?:sin|cos|tan|sec|csc|cot)\s*[A-Za-z])/g, "\\frac{$1}{$2}")
     .replace(/\\theta\s*\/\s*2/g, "\\frac{\\theta}{2}")
     .replace(/\b1\s*\/\s*2\b/g, "\\frac{1}{2}")
     .replace(/\b2\s*pi\b/g, "2\\pi")

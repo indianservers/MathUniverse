@@ -166,6 +166,7 @@ function renderThumbnail(key: VisualProofComponentKey) {
     case "DoubleAngleIdentitiesProof":
       return <RotationThumb label={key === "DoubleAngleIdentitiesProof" ? "2θ" : "α+β"} />;
     case "SineRuleProof":
+    case "LawOfCosinesCircleConstructionProof":
       return <TriangleCircleThumb />;
     case "CosineRuleProof":
     case "TriangleAreaSineFormulaProof":

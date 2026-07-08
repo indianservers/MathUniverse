@@ -1,5 +1,5 @@
 import { Maximize2, Minimize2, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
-import { useState, type CSSProperties, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import SectionCard from "./SectionCard";
 
 type Pane = {
@@ -193,9 +193,11 @@ function PaneToolbar({ activePane, paneLabel, zoom, focusPane, onZoom, onFocusTo
 }
 
 function ZoomablePane({ zoom, label, children }: { zoom: number; label: string; children: ReactNode }) {
+  const paneRef = useRef<HTMLDivElement | null>(null);
+  const [fullscreen, setFullscreen] = useState(false);
   const frameStyle = {
     width: zoom >= 1 ? `${zoom * 100}%` : "100%",
-    minHeight: `${Math.max(430, 430 * zoom)}px`,
+    minHeight: fullscreen ? "100%" : `${Math.max(430, 430 * zoom)}px`,
   } as CSSProperties;
   const contentStyle = {
     transform: `scale(${zoom})`,
@@ -203,8 +205,37 @@ function ZoomablePane({ zoom, label, children }: { zoom: number; label: string; 
     width: zoom >= 1 ? `${100 / zoom}%` : "100%",
   } as CSSProperties;
 
+  useEffect(() => {
+    const onFullscreenChange = () => setFullscreen(document.fullscreenElement === paneRef.current);
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement === paneRef.current) {
+      await document.exitFullscreen();
+      return;
+    }
+    await paneRef.current?.requestFullscreen?.();
+  };
+
   return (
-    <div className="min-h-[430px] overflow-auto rounded-2xl border border-cyan-200/70 bg-slate-950/5 dark:border-white/10 dark:bg-slate-950/40" aria-label={`${label} zoomable workspace`}>
+    <div
+      ref={paneRef}
+      className="math-pane-fullscreen-target relative min-h-[430px] overflow-auto rounded-2xl border border-cyan-200/70 bg-slate-950/5 dark:border-white/10 dark:bg-slate-950/40"
+      aria-label={`${label} zoomable workspace`}
+    >
+      <div className="sticky right-3 top-3 z-20 ml-auto flex w-fit rounded-full border border-cyan-200/70 bg-white/92 p-1 shadow-lg shadow-cyan-500/10 backdrop-blur dark:border-white/10 dark:bg-slate-950/88">
+        <button
+          type="button"
+          onClick={() => void toggleFullscreen()}
+          className="math-pane-tool-button"
+          title={fullscreen ? `Exit full screen ${label}` : `Full screen ${label}`}
+          aria-label={fullscreen ? `Exit full screen ${label}` : `Full screen ${label}`}
+        >
+          {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+        </button>
+      </div>
       <div style={frameStyle}>
         <div style={contentStyle}>{children}</div>
       </div>

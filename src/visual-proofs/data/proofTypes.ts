@@ -73,6 +73,7 @@ export type VisualProofComponentKey =
   | "DoubleAngleIdentitiesProof"
   | "SineRuleProof"
   | "CosineRuleProof"
+  | "LawOfCosinesCircleConstructionProof"
   | "ComplementaryAngleIdentitiesProof"
   | "TriangleAreaSineFormulaProof"
   | "SmallAngleApproximationProof"

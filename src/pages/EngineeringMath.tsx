@@ -31,12 +31,15 @@ import type { MathObject } from "../workspace/types";
 
 const semesterFilters = ["All", "M1", "M2", "M3", "M4"] as const;
 const launcherFilters = ["all", "concept-lab", "workspace", "formula-map", "practice"] as const;
+const pageTabs = ["overview", "domain", "labs", "practice"] as const;
 
 type SemesterFilter = (typeof semesterFilters)[number];
 type LauncherFilter = (typeof launcherFilters)[number];
+type PageTab = (typeof pageTabs)[number];
 
 export default function EngineeringMath() {
   const [selectedId, setSelectedId] = useState(engineeringMathDomains[0]?.id ?? "");
+  const [activeTab, setActiveTab] = useState<PageTab>("overview");
   const [semesterFilter, setSemesterFilter] = useState<SemesterFilter>("All");
   const [launcherFilter, setLauncherFilter] = useState<LauncherFilter>("all");
   const [query, setQuery] = useState("");

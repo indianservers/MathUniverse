@@ -28,7 +28,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Advanced",
     targetAudience: "High school, intermediate mathematics, engineering entrance preparation, first-year engineering mathematics",
     iconName: "Waves",
-    proofCount: 15,
+    proofCount: 16,
     status: "available",
   },
   {

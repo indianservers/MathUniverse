@@ -1,6 +1,6 @@
-import { ArrowLeft, ArrowRight, CheckCircle2, Clock3, Eye, Lightbulb, MousePointer2, Play, SlidersHorizontal } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Clock3, Eye, Lightbulb, Maximize2, Minimize2, MousePointer2, Play, SlidersHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { MathText } from "../../components/ui/MathExpression";
 import type { VisualProof, VisualProofCategory } from "../data/proofTypes";
 import { getAdjacentVisualProofs } from "../data/visualProofsIndex";
@@ -83,9 +83,10 @@ export default function VisualProofLayout({
               Watch what stays equal.
             </div>
           </section>
-          <section className="overflow-hidden rounded-xl border border-slate-200 bg-white/90 shadow-sm dark:border-white/10 dark:bg-slate-950/50" aria-label="Interactive visual area">
-            {visual}
+          <section className="rounded-xl border border-cyan-200/70 bg-white/92 p-3 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/70" aria-label="Proof step controller">
+            {steps}
           </section>
+          <FullscreenVisualPane>{visual}</FullscreenVisualPane>
           {symbolLegend}
           <div className="grid gap-4 lg:grid-cols-2">
             {formula}
@@ -113,7 +114,6 @@ export default function VisualProofLayout({
         </main>
         <aside className="space-y-4 xl:sticky xl:top-4 xl:self-start">
           {controls}
-          {steps}
           <section className="rounded-xl border border-slate-200 bg-white/88 p-4 dark:border-white/10 dark:bg-white/[0.05]">
             <h2 className="text-base font-black text-slate-950 dark:text-white">Next / previous</h2>
             <div className="mt-3 grid gap-2">
@@ -136,6 +136,47 @@ export default function VisualProofLayout({
         </aside>
       </div>
     </div>
+  );
+}
+
+function FullscreenVisualPane({ children }: { children: ReactNode }) {
+  const paneRef = useRef<HTMLElement | null>(null);
+  const [fullscreen, setFullscreen] = useState(false);
+
+  useEffect(() => {
+    const onFullscreenChange = () => setFullscreen(document.fullscreenElement === paneRef.current);
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = async () => {
+    if (document.fullscreenElement === paneRef.current) {
+      await document.exitFullscreen();
+      return;
+    }
+    await paneRef.current?.requestFullscreen?.();
+  };
+
+  return (
+    <section
+      ref={paneRef}
+      className="visual-proof-fullscreen-pane relative overflow-hidden rounded-xl border border-slate-200 bg-white/90 shadow-sm dark:border-white/10 dark:bg-slate-950"
+      aria-label="Interactive visual area"
+    >
+      <div className="absolute right-3 top-3 z-20 flex rounded-full border border-cyan-200/70 bg-white/90 p-1 shadow-lg shadow-cyan-500/10 backdrop-blur dark:border-white/10 dark:bg-slate-950/85">
+        <button
+          type="button"
+          onClick={() => void toggleFullscreen()}
+          className="inline-flex min-h-9 items-center gap-2 rounded-full px-3 py-1.5 text-xs font-black text-cyan-800 transition hover:bg-cyan-50 dark:text-cyan-100 dark:hover:bg-white/10"
+          title={fullscreen ? "Exit full screen visual pane" : "Full screen visual pane"}
+          aria-label={fullscreen ? "Exit full screen visual pane" : "Full screen visual pane"}
+        >
+          {fullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+          <span>{fullscreen ? "Exit" : "Full"}</span>
+        </button>
+      </div>
+      {children}
+    </section>
   );
 }
 
