@@ -82,7 +82,7 @@ export default function TheoremLibraryPage() {
   const pageDescription =
     activeTheorem?.statement ??
     activeCategory?.description ??
-    "A compact theorem library with 12 major categories, 200+ theorem cards, subpages, and proof scaffolds ready for step-by-step visual proofs.";
+    "A compact theorem library with 12 major categories, 200+ theorem cards, subpages, and step-by-step proof drafts ready for future visual animations.";
   const unknownCategory = Boolean(categorySlug && !activeCategory);
 
   return (
@@ -257,7 +257,7 @@ function TheoremCard({ row }: { row: TheoremSheetRow }) {
           ))}
         </div>
         <Link className="inline-flex rounded-md border border-slate-200 px-3 py-2 text-sm font-black text-slate-700 transition hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:text-slate-200 dark:hover:border-cyan-300/50 dark:hover:text-cyan-100" to={`/theorems/${row.category.id}/${row.slug}`}>
-          Open proof scaffold
+          Open proof draft
         </Link>
         <RelatedLinkStrip related={related} compact />
       </div>
@@ -286,7 +286,7 @@ function TheoremDetail({ theorem, category }: { theorem: TheoremLibraryItem; cat
           </div>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <InfoPanel title="Why It Matters" text={theorem.whyItMatters} />
-            <InfoPanel title="Proof Scaffold" text={theorem.proofPlan} />
+            <InfoPanel title="Proof Draft" text={theorem.proofPlan} />
           </div>
           <StepByStepProofPanel theorem={theorem} />
           <RelatedLearningPanel related={related} />
@@ -357,7 +357,7 @@ function StepByStepProofPanel({ theorem }: { theorem: TheoremLibraryItem }) {
       <div className="mt-4 rounded-lg border border-dashed border-slate-300 bg-slate-50 p-4 dark:border-white/15 dark:bg-white/5">
         <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Step Proof Status</p>
         <p className="mt-2 text-base font-semibold leading-6 text-slate-700 dark:text-slate-200">
-          This theorem is still a scaffold. It will receive proof steps in a later theorem-development phase.
+          This theorem does not have step-by-step proof content yet. Add a draft proof before marking it classroom-ready.
         </p>
       </div>
     );
@@ -527,8 +527,8 @@ function CategoryChip({ active, children, to }: { active: boolean; children: str
 function statusLabel(status: TheoremLibraryItem["proofStatus"]) {
   if (status === "visual-ready") return "Visual ready";
   if (status === "draft-ready") return "Draft proof";
-  if (status === "scaffold-ready") return "Learning scaffold";
-  return "Proof planned";
+  if (status === "scaffold-ready") return "Foundation draft";
+  return "Needs proof draft";
 }
 
 function statusTone(status: TheoremLibraryItem["proofStatus"]) {

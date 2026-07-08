@@ -2021,8 +2021,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   ];
 
   return (
-    <div ref={workspaceRef} className="space-y-2 pt-14 xl:pt-12">
-      <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} />
+    <div ref={workspaceRef} className={singleView ? "space-y-2 pt-0" : "space-y-2 pt-14 xl:pt-12"}>
+      <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} docked={singleView} />
       {!singleView && <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 
       {!singleView && <WorkspaceModeTabs active={workspaceView} onChange={setWorkspaceView} />}
@@ -2032,6 +2032,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         qaReport={qaReport}
         teachingMode={teachingMode}
         performanceMode={performanceMode}
+        compact={singleView}
         onSave={saveWorkspace}
         onLoad={loadWorkspace}
         onUndo={undoWorkspace}
@@ -2046,8 +2047,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         onRunQa={runQaNow}
         onPerformance={setPerformanceMode}
       />
-      {workspaceView !== "3d" && <WorkspaceShortcutStrip />}
-      <div className="rounded-xl border border-cyan-200 bg-cyan-50 px-3 py-1.5 text-xs font-bold text-cyan-950 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-50" role="status" aria-live="polite" data-testid="workspace-safety-status">
+      {!singleView && workspaceView !== "3d" && <WorkspaceShortcutStrip />}
+      <div className={singleView ? "rounded-xl border border-cyan-200 bg-cyan-50 px-3 py-1 text-[11px] font-bold text-cyan-950 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-50" : "rounded-xl border border-cyan-200 bg-cyan-50 px-3 py-1.5 text-xs font-bold text-cyan-950 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-50"} role="status" aria-live="polite" data-testid="workspace-safety-status">
         {projectStatus}
       </div>
 
@@ -2126,7 +2127,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       </SectionCard>}
 
       {workspaceView === "graph" && <SectionCard title="Graph, CAS, And Algebra" description="Type a calculation or command such as plot, solve, factor, derivative, integral, table, roots, extrema, or intersection.">
-        <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="grid gap-3 2xl:grid-cols-[minmax(0,1fr)_320px]">
           <div className="space-y-4">
             <MathKeyboardInput
               value={input}
@@ -2137,6 +2138,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               mode="command"
               examples={examples}
               onExample={setInput}
+              defaultCompact={singleView}
             />
             <div ref={graphExportRef}>
               <GraphWorkspacePanel
@@ -2153,7 +2155,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               />
             </div>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-3 2xl:sticky 2xl:top-20">
             <div className="flex items-center justify-between">
               <h2 className="font-bold">Results</h2>
               <button type="button" onClick={() => setResults([])} className="rounded-full bg-slate-100 p-2 dark:bg-white/10" title="Clear results" aria-label="Clear results"><Trash2 className="h-4 w-4" /></button>
@@ -2169,37 +2171,42 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             />
           </div>
         </div>
-        <div className="mt-5">
-          <AlgebraObjectsPanel
-            objects={workspaceObjects}
-            selected={selectedAlgebra}
-            protocol={protocol}
-            graph={dynamicGraph}
-            graphHealth={dynamicHealth}
-            commandSummary={commandSummary}
-            onSelect={selectWorkspaceObject}
-            onRename={renameWorkspaceObject}
-            onEditDefinition={editWorkspaceDefinition}
-            onPatch={patchWorkspaceObject}
-            onDuplicate={duplicateWorkspaceObject}
-            onDelete={deleteWorkspaceObject}
-            onReplay={replayConstructionStep}
-            onContextMenu={(event, ref) => {
-              event.preventDefault();
-              setSelectedAlgebra(ref);
-              setContextMenu({ x: event.clientX, y: event.clientY, target: { type: "algebra", ref } });
-            }}
-          />
-        </div>
+        <details className="mt-3 rounded-xl border border-slate-200 bg-white/70 p-2 dark:border-white/10 dark:bg-white/5" open={!singleView}>
+          <summary className="cursor-pointer rounded-lg px-2 py-2 text-sm font-black text-slate-900 marker:text-cyan-500 dark:text-white">
+            Unified Algebra And Object Panel
+          </summary>
+          <div className="mt-2">
+            <AlgebraObjectsPanel
+              objects={workspaceObjects}
+              selected={selectedAlgebra}
+              protocol={protocol}
+              graph={dynamicGraph}
+              graphHealth={dynamicHealth}
+              commandSummary={commandSummary}
+              onSelect={selectWorkspaceObject}
+              onRename={renameWorkspaceObject}
+              onEditDefinition={editWorkspaceDefinition}
+              onPatch={patchWorkspaceObject}
+              onDuplicate={duplicateWorkspaceObject}
+              onDelete={deleteWorkspaceObject}
+              onReplay={replayConstructionStep}
+              onContextMenu={(event, ref) => {
+                event.preventDefault();
+                setSelectedAlgebra(ref);
+                setContextMenu({ x: event.clientX, y: event.clientY, target: { type: "algebra", ref } });
+              }}
+            />
+          </div>
+        </details>
       </SectionCard>}
 
-      {workspaceView === "data" && <SectionCard title={dataPage === "overview" ? "Data Workspace" : dataWorkspacePageTitle(dataPage)} description="Spreadsheet, CAS, function analysis, results, and the shared object registry are split into focused pages." headerAction={<DataWorkspaceNav active={dataPage} />}>
+      {workspaceView === "data" && <SectionCard title={dataPage === "overview" ? "Data Workspace" : dataWorkspacePageTitle(dataPage)} description="Spreadsheet, CAS, function analysis, results, and the shared object registry are split into focused pages." headerAction={<DataWorkspaceNav active={dataPage} />} compact={singleView}>
         <div data-testid="workspace-data-surface">
         {dataPage === "overview" && (
-          <div className="space-y-5">
-            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+          <div className="space-y-3">
+            <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-5">
               {dataOverviewCards.map((card) => (
-                <Link key={card.route} to={card.route} className="rounded-xl border border-slate-200 bg-white p-4 text-left transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950/60 dark:hover:border-cyan-300/30 dark:hover:bg-cyan-300/10">
+                <Link key={card.route} to={card.route} className="rounded-xl border border-slate-200 bg-white p-3 text-left transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950/60 dark:hover:border-cyan-300/30 dark:hover:bg-cyan-300/10">
                   <p className="text-xs font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">{card.meta}</p>
                   <h3 className="mt-2 font-bold text-slate-950 dark:text-white">{card.title}</h3>
                   <p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{card.text}</p>
@@ -2244,7 +2251,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             <button
               type="button"
               onClick={() => setInspector3dOpen(true)}
-              className="absolute right-0 top-20 z-20 inline-flex -translate-y-1/2 translate-x-2 items-center gap-2 rounded-l-2xl border border-cyan-200 bg-white px-3 py-3 text-sm font-black text-slate-800 shadow-lg transition hover:bg-cyan-50 dark:border-cyan-300/30 dark:bg-slate-950 dark:text-white dark:hover:bg-cyan-300/10"
+              className="absolute right-3 top-3 z-20 hidden items-center gap-2 rounded-2xl border border-cyan-200 bg-white px-3 py-2 text-sm font-black text-slate-800 shadow-lg transition hover:bg-cyan-50 dark:border-cyan-300/30 dark:bg-slate-950 dark:text-white dark:hover:bg-cyan-300/10 xl:inline-flex"
               title="Open Objects panel"
               aria-label="Open Objects panel"
             >
@@ -2253,20 +2260,18 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             </button>
           )}
         <div
-          className="grid items-start gap-2"
-          style={{
-            gridTemplateColumns:
-              controls3dOpen && inspector3dOpen
-                ? "minmax(220px, 268px) minmax(420px, 1fr) minmax(250px, 300px)"
-                : controls3dOpen
-                  ? "minmax(220px, 268px) minmax(420px, 1fr)"
-                  : inspector3dOpen
-                    ? "minmax(420px, 1fr) minmax(250px, 300px)"
-                    : "minmax(0, 1fr)",
-          }}
+          className={`grid grid-cols-1 items-start gap-2 ${
+            controls3dOpen && inspector3dOpen
+              ? "2xl:grid-cols-[minmax(210px,248px)_minmax(360px,1fr)_minmax(230px,280px)]"
+              : controls3dOpen
+                ? "xl:grid-cols-[minmax(210px,248px)_minmax(360px,1fr)]"
+                : inspector3dOpen
+                  ? "xl:grid-cols-[minmax(360px,1fr)_minmax(230px,280px)]"
+                  : ""
+          }`}
         >
           {controls3dOpen && (
-            <aside className="min-h-0 space-y-2 xl:sticky xl:top-20">
+            <aside className="order-2 min-h-0 space-y-2 xl:order-1 2xl:sticky 2xl:top-20">
               <HorizontalPanelHeader title="Controls" side="left" onCollapse={() => setControls3dOpen(false)} />
               <SceneSetupTabs3D
                 selected3d={selected3d}
@@ -2325,7 +2330,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             </aside>
           )}
 
-          <div className="min-w-0 space-y-2">
+          <div className="order-1 min-w-0 space-y-2 xl:order-2">
             <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/80 p-1.5 shadow-sm dark:border-white/10 dark:bg-white/5">
               <div className="flex flex-wrap gap-2">
                 {!controls3dOpen && <button type="button" onClick={() => setControls3dOpen(true)} className="action-secondary"><PanelLeftOpen className="h-4 w-4" />Controls</button>}
@@ -2352,10 +2357,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               onToggleVisibility={() => update3dTransform(selected3d, { visible: !selected3dTransform.visible })}
             />
 
-            <div className="min-h-[clamp(360px,calc(100vh-390px),620px)]">
+            <div className="min-h-[clamp(300px,calc(100vh-360px),520px)]">
               {space3dViewTab === "scene" && (
-                <div className="min-h-[360px] overflow-hidden rounded-xl border border-slate-200 bg-slate-950 shadow-sm dark:border-white/10" data-testid="workspace-3d-canvas">
-                  <ThreeSceneWrapper height="clamp(360px, calc(100vh - 390px), 620px)" mobileHeight="min(58vh, 430px)" interactionLabel="Drag rotate - pinch zoom">
+                <div className="min-h-[320px] overflow-hidden rounded-xl border border-slate-200 bg-slate-950 shadow-sm dark:border-white/10" data-testid="workspace-3d-canvas">
+                  <ThreeSceneWrapper height="clamp(300px, calc(100vh - 360px), 520px)" mobileHeight="min(50vh, 360px)" interactionLabel="Drag rotate - pinch zoom">
                     <ambientLight intensity={0.75} />
                     <directionalLight position={[5, 6, 4]} intensity={1.2} />
                     <Workspace3DScene
@@ -2425,7 +2430,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           </div>
 
           {inspector3dOpen && (
-            <aside className="min-h-0 space-y-2 xl:sticky xl:top-20">
+            <aside className="order-3 min-h-0 space-y-2 2xl:sticky 2xl:top-20">
               <HorizontalPanelHeader title="Objects" side="right" onCollapse={() => setInspector3dOpen(false)} />
               <InspectorTabs3D selected={selected3d} transform={selected3dTransform} transforms={transforms3d} addedObjects={added3dObjects} onSelect={setSelected3d} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
               <UnifiedWorkspacePanel
@@ -4269,7 +4274,7 @@ function UnifiedWorkspacePanel({
   );
 }
 
-function WorkspaceMainMenu({ active, onChange }: { active: WorkspaceView; onChange: (view: WorkspaceView) => void }) {
+function WorkspaceMainMenu({ active, onChange, docked = false }: { active: WorkspaceView; onChange: (view: WorkspaceView) => void; docked?: boolean }) {
   const modules: Array<{ id: WorkspaceView; label: string; route: string; icon: JSX.Element }> = workspaceModeNavigation.map((config) => ({
     id: workspaceViewForMode(config.mode),
     label: config.title,
@@ -4285,7 +4290,7 @@ function WorkspaceMainMenu({ active, onChange }: { active: WorkspaceView; onChan
   ];
 
   return (
-    <nav className="fixed left-3 right-3 top-2 z-50 rounded-xl border border-slate-200 bg-white/95 p-1.5 shadow-xl shadow-slate-200/40 backdrop-blur dark:border-white/10 dark:bg-slate-950/95 dark:shadow-black/20" aria-label="Workspace main menu" data-testid="workspace-tool-rail">
+    <nav className={`${docked ? "sticky top-1 z-30 w-fit max-w-full" : "fixed left-3 right-3 top-2 z-50"} rounded-xl border border-slate-200 bg-white/95 p-1.5 shadow-xl shadow-slate-200/40 backdrop-blur dark:border-white/10 dark:bg-slate-950/95 dark:shadow-black/20`} aria-label="Workspace main menu" data-testid="workspace-tool-rail">
       <div className="flex min-w-0 items-center justify-between gap-2">
         <div className="flex min-w-0 flex-1 items-center gap-1.5">
           <span className="shrink-0 rounded-lg bg-cyan-500 px-2.5 py-1.5 text-[11px] font-black uppercase tracking-wide text-slate-950 shadow-lg shadow-cyan-500/20">Menu</span>
@@ -4435,28 +4440,45 @@ function WorldClassMathSoftwareGaps() {
   );
 }
 
-function CompactWorkspaceBar({ activeTemplate, dynamicHealth, qaReport, teachingMode, performanceMode, onSave, onLoad, onUndo, onRedo, onExportJson, onExportPng, onShare, onToggleTeach, onRunQa, onPerformance }: { activeTemplate: SyllabusWorkspaceTemplate; dynamicHealth: ReturnType<typeof graphHealthSummary>; qaReport: WorkspaceQaReport; teachingMode: boolean; performanceMode: boolean; onSave: () => void; onLoad: () => void; onUndo: () => void; onRedo: () => void; onExportJson: () => void; onExportPng: () => void; onShare: () => void; onToggleTeach: () => void; onRunQa: () => void; onPerformance: (value: boolean) => void }) {
+function CompactWorkspaceBar({ activeTemplate, dynamicHealth, qaReport, teachingMode, performanceMode, compact = false, onSave, onLoad, onUndo, onRedo, onExportJson, onExportPng, onShare, onToggleTeach, onRunQa, onPerformance }: { activeTemplate: SyllabusWorkspaceTemplate; dynamicHealth: ReturnType<typeof graphHealthSummary>; qaReport: WorkspaceQaReport; teachingMode: boolean; performanceMode: boolean; compact?: boolean; onSave: () => void; onLoad: () => void; onUndo: () => void; onRedo: () => void; onExportJson: () => void; onExportPng: () => void; onShare: () => void; onToggleTeach: () => void; onRunQa: () => void; onPerformance: (value: boolean) => void }) {
+  const actionButtons = (
+    <>
+      <button type="button" onClick={onSave} className="action-secondary py-2"><Save className="h-4 w-4" />Save</button>
+      <button type="button" onClick={onLoad} className="action-secondary py-2"><Download className="h-4 w-4" />Load</button>
+      <button type="button" onClick={onUndo} className="action-secondary py-2"><RotateCcw className="h-4 w-4" />Undo</button>
+      <button type="button" onClick={onRedo} className="action-secondary py-2"><RotateCcw className="h-4 w-4" />Redo</button>
+      <button type="button" onClick={onExportJson} className="action-secondary py-2"><Download className="h-4 w-4" />JSON</button>
+      <button type="button" onClick={onExportPng} className="action-secondary py-2"><Download className="h-4 w-4" />PNG</button>
+      <button type="button" onClick={onShare} className="action-secondary py-2"><Download className="h-4 w-4" />URL</button>
+      <button type="button" onClick={() => onPerformance(!performanceMode)} className={performanceMode ? "action-primary py-2" : "action-secondary py-2"}>Performance</button>
+      <button type="button" onClick={onRunQa} className="action-secondary py-2">Run QA</button>
+      <button type="button" onClick={onToggleTeach} className={teachingMode ? "action-primary py-2" : "action-secondary py-2"}><Presentation className="h-4 w-4" />Teach</button>
+    </>
+  );
+
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5" data-testid="workspace-command-bar">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className={compact ? "rounded-xl border border-slate-200 bg-white/80 p-2 dark:border-white/10 dark:bg-white/5" : "rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5"} data-testid="workspace-command-bar">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <span className={`rounded-full px-3 py-1.5 text-xs font-black ${dynamicHealth.ready ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100" : "bg-amber-100 text-amber-900 dark:bg-amber-400/15 dark:text-amber-100"}`}>Kernel {dynamicHealth.ready ? "ready" : "needs attention"}</span>
           <span className="mini-chip">{dynamicHealth.total} objects</span>
           <span className="mini-chip">{activeTemplate.unit}</span>
           <span className={`rounded-full px-3 py-1.5 text-xs font-black ${qaReport.failed ? "bg-rose-100 text-rose-800 dark:bg-rose-400/15 dark:text-rose-100" : "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100"}`}>QA {qaReport.passed}/{qaReport.passed + qaReport.failed}</span>
         </div>
-        <div className="mobile-safe-scroll flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
-          <button type="button" onClick={onSave} className="action-secondary py-2"><Save className="h-4 w-4" />Save</button>
-          <button type="button" onClick={onLoad} className="action-secondary py-2"><Download className="h-4 w-4" />Load</button>
-          <button type="button" onClick={onUndo} className="action-secondary py-2"><RotateCcw className="h-4 w-4" />Undo</button>
-          <button type="button" onClick={onRedo} className="action-secondary py-2"><RotateCcw className="h-4 w-4" />Redo</button>
-          <button type="button" onClick={onExportJson} className="action-secondary py-2"><Download className="h-4 w-4" />JSON</button>
-          <button type="button" onClick={onExportPng} className="action-secondary py-2"><Download className="h-4 w-4" />PNG</button>
-          <button type="button" onClick={onShare} className="action-secondary py-2"><Download className="h-4 w-4" />URL</button>
-          <button type="button" onClick={() => onPerformance(!performanceMode)} className={performanceMode ? "action-primary py-2" : "action-secondary py-2"}>Performance</button>
-          <button type="button" onClick={onRunQa} className="action-secondary py-2">Run QA</button>
-          <button type="button" onClick={onToggleTeach} className={teachingMode ? "action-primary py-2" : "action-secondary py-2"}><Presentation className="h-4 w-4" />Teach</button>
-        </div>
+        {compact ? (
+          <details className="relative ml-auto">
+            <summary className="list-none rounded-xl border border-cyan-100 bg-white/90 px-3 py-2 text-xs font-black text-slate-800 shadow-sm transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/10 dark:text-slate-100">
+              Actions
+            </summary>
+            <div className="absolute right-0 z-30 mt-2 grid w-[min(88vw,360px)] grid-cols-2 gap-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-cyan-950/15 dark:border-white/10 dark:bg-slate-950">
+              {actionButtons}
+            </div>
+          </details>
+        ) : (
+          <div className="mobile-safe-scroll flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+            {actionButtons}
+          </div>
+        )}
       </div>
     </div>
   );

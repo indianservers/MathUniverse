@@ -9,7 +9,7 @@ describe("proof explanation stabilization audit", () => {
     expect(report.visualProofCount).toBeGreaterThan(0);
     expect(report.phaseUpgradedVisualProofCount).toBeGreaterThan(150);
     expect(report.theoremCount).toBeGreaterThan(200);
-    expect(report.theoremDraftReadyCount).toBeGreaterThan(0);
+    expect(report.theoremDraftReadyCount).toBe(report.theoremCount);
   });
 
   it("keeps core proof explanations structurally ready", () => {
@@ -18,6 +18,7 @@ describe("proof explanation stabilization audit", () => {
 
   it("keeps theorem pages from falling back to planned placeholders", () => {
     expect(report.theoremPlannedCount).toBe(0);
+    expect(report.theoremNotDraftReadyCount).toBe(0);
     expect(report.warnings.some((issue) => issue.message.includes("step-by-step draft"))).toBe(false);
   });
 

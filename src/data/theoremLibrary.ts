@@ -1,4 +1,5 @@
 import { algebraProofDrafts } from "./theorems/algebraProofDrafts";
+import { advancedProofDrafts } from "./theorems/advancedProofDrafts";
 import { coordinateCalculusProofDrafts } from "./theorems/coordinateCalculusProofDrafts";
 import { geometryProofDrafts } from "./theorems/geometryProofDrafts";
 import { linearAlgebraProofDrafts } from "./theorems/linearAlgebraProofDrafts";
@@ -65,7 +66,7 @@ function theorem(
     whyItMatters: `${title} is a reusable result for ${subtopic.toLowerCase()} problems in ${categoryTitle}.`,
     proofPlan: proofDraft
       ? "Step-by-step draft proof is available below. A future visual phase can convert each step into an interactive diagram."
-      : "A guided proof scaffold is available below. It explains the setup, key idea, conclusion, and checks; a future phase can replace it with a fully specialized visual proof.",
+      : "A foundation proof draft is available below. It explains the setup, key idea, conclusion, and checks; a future phase can replace it with a fully specialized visual proof.",
     proofStatus: proofDraft ? "draft-ready" : "scaffold-ready",
     prerequisites,
     ...proofScaffold,
@@ -81,7 +82,7 @@ function buildTheoremScaffold(
 ): TheoremProofDraft {
   const prerequisiteText = prerequisites.length ? prerequisites.join(", ") : "the core definitions";
   return draft(
-    `${title} connects the definitions in ${subtopic.toLowerCase()} to a reusable result. This scaffold gives students a reliable route through the proof idea before a custom visual proof is built.`,
+    `${title} connects the definitions in ${subtopic.toLowerCase()} to a reusable result. This foundation draft gives students a reliable route through the proof idea before a custom visual proof is built.`,
     [
       ["Read the claim", `State the theorem in your own words: ${statement}`, "The statement is split into givens, conditions, and target result."],
       ["List the needed ideas", `Use ${prerequisiteText} as the toolkit for the argument.`, "Prerequisite ideas are shown as small cards feeding into the proof."],
@@ -106,6 +107,7 @@ function category(id: string, title: string, description: string, accent: string
 }
 
 const theoremProofDrafts: Record<string, TheoremProofDraft> = {
+  ...advancedProofDrafts,
   ...algebraProofDrafts,
   ...coordinateCalculusProofDrafts,
   ...geometryProofDrafts,
@@ -254,7 +256,7 @@ const theoremProofDrafts: Record<string, TheoremProofDraft> = {
     ["Applying phi(mn)=phi(m)phi(n) when m and n are not coprime.", "Counting all residues instead of only coprime residues."],
   ),
   "number-theory:Quadratic residue theorem": draft(
-    "A quadratic residue is any remainder produced by a square; the proof scaffold compares square pairs x and -x modulo p.",
+    "A quadratic residue is any remainder produced by a square; the proof draft compares square pairs x and -x modulo p.",
     [
       ["Define residues", "Modulo an odd prime p, a is a quadratic residue if x^2 = a mod p has a solution.", "A square machine on a p-hour clock."],
       ["Pair opposite inputs", "x and -x give the same square modulo p.", "Two mirror inputs land on one output."],

@@ -61,7 +61,7 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
   const addRegression = () => onChange([{ id: crypto.randomUUID(), expression: regression.expression, color: "#ec4899", kind: "regression" as PlotKind, points: regressionSeed, visible: true }, ...plots].slice(0, 10));
 
   return (
-    <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/60">
+    <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="flex items-center gap-2 font-bold"><LineChart className="h-4 w-4 text-cyan-500" /> Desmos-style Graphing Lab</h2>
         <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-500">
@@ -69,7 +69,7 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
         </div>
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)]">
+      <div className="grid items-start gap-3 xl:grid-cols-[280px_minmax(0,1fr)]">
         <div className="space-y-3">
           <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
             <label className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Expression</label>
@@ -116,7 +116,7 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
           <div className="space-y-2">
             {plots.map((plot) => (
               <div key={plot.id} className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-white/5">
-                <div className="flex items-center gap-2">
+                <div className="grid grid-cols-[auto_auto_minmax(0,1fr)_auto] items-center gap-2">
                   <input type="checkbox" checked={plot.visible !== false} onChange={(event) => updatePlot(plot.id, { visible: event.target.checked })} />
                   <span className="h-3 w-3 rounded-full" style={{ background: plot.color }} />
                   <SmartMathInput
@@ -147,7 +147,7 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
         </div>
 
         <div className="space-y-3">
-          <svg viewBox="0 0 640 360" className="h-[280px] w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[360px]" data-testid="workspace-graph-surface">
+          <svg viewBox="0 0 640 360" className="h-[240px] w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[300px] 2xl:h-[340px]" data-testid="workspace-graph-surface">
             <GraphGrid viewport={viewport} />
             {sampledLayers.map((layer) => layer.cells.map((cell, index) => (
               <rect
@@ -164,7 +164,7 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
             {visiblePlots.filter((plot) => plot.kind === "scatter" || plot.kind === "regression").flatMap((plot) => plot.points ?? []).map((point, index) => <circle key={`${point.x}-${point.y}-${index}`} cx={scaleX(point.x, viewport)} cy={scaleY(point.y, viewport)} r="5" fill="#ec4899" stroke="#0f172a" />)}
           </svg>
 
-          <div className="grid gap-3 lg:grid-cols-2">
+          <div className="grid items-start gap-3 2xl:grid-cols-[minmax(0,1fr)_minmax(240px,300px)]">
             <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
               <SliderGroup title="Parameter sliders">
                 <SliderControl density="compact" label="a" value={sliderA} min={-5} max={5} step={0.1} onChange={setSliderA} />
@@ -175,8 +175,8 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
                 {sampledLayers.map((layer) => <span key={layer.id} className="mini-chip">{layer.kind}</span>)}
               </div>
             </div>
-            <div className="mobile-safe-scroll rounded-2xl border border-slate-200 dark:border-white/10">
-              <table className="w-full text-left text-xs">
+            <div className="max-h-[260px] overflow-auto rounded-2xl border border-slate-200 dark:border-white/10">
+              <table className="min-w-[260px] w-full text-left text-xs">
                 <thead className="bg-slate-100 text-slate-500 dark:bg-white/10 dark:text-slate-300"><tr><th className="p-2">expr</th><th className="p-2">x</th><th className="p-2">y</th></tr></thead>
                 <tbody>{tableRows.map((row, index) => <tr key={`${row.x}-${row.y}-${index}`} className="border-t border-slate-200 dark:border-white/10"><td className="p-2 font-mono">{row.label}</td><td className="p-2 font-mono">{row.x}</td><td className="p-2 font-mono">{row.y}</td></tr>)}</tbody>
               </table>

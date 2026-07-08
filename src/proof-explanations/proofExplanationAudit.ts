@@ -19,6 +19,7 @@ export type ProofExplanationAuditReport = {
   phaseUpgradedVisualProofCount: number;
   theoremCount: number;
   theoremDraftReadyCount: number;
+  theoremNotDraftReadyCount: number;
   theoremPlannedCount: number;
   issues: ProofExplanationIssue[];
   errors: ProofExplanationIssue[];
@@ -146,9 +147,9 @@ function auditTheoremProof(theorem: TheoremLibraryItem, categoryId: string): Pro
     );
   }
 
-  if (theorem.proofStatus === "planned") {
+  if (theorem.proofStatus === "planned" || theorem.proofStatus === "scaffold-ready") {
     theoremIssues.push(
-      issue("theorem", "warning", theoremId, theorem.title, "Proof is still scaffolded and needs a step-by-step draft."),
+      issue("theorem", "warning", theoremId, theorem.title, "Proof is not draft-ready yet and needs a step-by-step proof draft."),
     );
     return theoremIssues;
   }
@@ -212,7 +213,8 @@ export function buildProofExplanationAuditReport(): ProofExplanationAuditReport 
     visualProofCount: visualProofsIndex.length,
     phaseUpgradedVisualProofCount: visualProofsIndex.filter((proof) => proof.proofUpgradeStatus === "phase-upgraded").length,
     theoremCount: theoremItems.length,
-    theoremDraftReadyCount: theoremItems.filter(({ theorem }) => theorem.proofStatus !== "planned").length,
+    theoremDraftReadyCount: theoremItems.filter(({ theorem }) => theorem.proofStatus === "draft-ready" || theorem.proofStatus === "visual-ready").length,
+    theoremNotDraftReadyCount: theoremItems.filter(({ theorem }) => theorem.proofStatus !== "draft-ready" && theorem.proofStatus !== "visual-ready").length,
     theoremPlannedCount: theoremItems.filter(({ theorem }) => theorem.proofStatus === "planned").length,
     issues,
     errors,

@@ -8,6 +8,7 @@ const AdvancedSyllabusLabPage = lazy(() => import("./pages/AdvancedSyllabusLabPa
 const Algebra = lazy(() => import("./pages/Algebra"));
 const AlgebraicStructures = lazy(() => import("./pages/AlgebraicStructures"));
 const AIApplications = lazy(() => import("./pages/AIApplications"));
+const ARMathLab = lazy(() => import("./pages/ARMathLab"));
 const BoardSyllabusVisualizer = lazy(() => import("./pages/BoardSyllabusVisualizer"));
 const Calculus = lazy(() => import("./pages/Calculus"));
 const CircleToTriangleVisualization = lazy(() => import("./pages/CircleToTriangleVisualization"));
@@ -146,6 +147,7 @@ export default function App() {
             <Route path="math-lab/cas-solver" element={<Navigate to="/problem-solver" replace />} />
             <Route path="math-lab/query" element={<MathLabSmartQuery />} />
             <Route path="math-lab/:toolId" element={<MathLabToolPage />} />
+            <Route path="modules/ar-math-lab" element={<ARMathLab />} />
             <Route path="visual-dictionary" element={<MathVisualDictionary />} />
             <Route path="magic-maths" element={<MagicMaths />} />
             <Route path="magic-maths/:conceptSlug" element={<MagicMaths />} />

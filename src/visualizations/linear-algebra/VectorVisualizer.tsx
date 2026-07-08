@@ -181,6 +181,21 @@ export default function VectorVisualizer() {
               ))}
             </div>
           </div>
+          <SceneControlDock
+            options={sceneOptions}
+            showSecond={showSecond}
+            showParallelogram={showParallelogram}
+            dragPlane={dragPlane}
+            viewPreset={viewPreset}
+            viewState={viewState}
+            onOptionsChange={setSceneOptions}
+            onShowSecond={setShowSecond}
+            onShowParallelogram={setShowParallelogram}
+            onDragPlane={setDragPlane}
+            onViewPreset={setPreset}
+            onViewStateChange={setViewState}
+            onReset={reset}
+          />
 
           <VectorScene3D
             aTail={aTail}
@@ -200,7 +215,6 @@ export default function VectorVisualizer() {
             onMovePoint={movePoint}
             options={sceneOptions}
           />
-          <SceneOptionsPanel options={sceneOptions} onChange={setSceneOptions} />
         </div>
 
         <aside className="min-w-0 rounded-xl border border-slate-200 bg-white/82 p-2.5 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
@@ -303,6 +317,98 @@ export default function VectorVisualizer() {
   );
 }
 
+function SceneControlDock({
+  options,
+  showSecond,
+  showParallelogram,
+  dragPlane,
+  viewPreset,
+  viewState,
+  onOptionsChange,
+  onShowSecond,
+  onShowParallelogram,
+  onDragPlane,
+  onViewPreset,
+  onViewStateChange,
+  onReset,
+}: {
+  options: SceneOptions;
+  showSecond: boolean;
+  showParallelogram: boolean;
+  dragPlane: DragPlane;
+  viewPreset: ViewPreset;
+  viewState: ViewState;
+  onOptionsChange: (options: SceneOptions) => void;
+  onShowSecond: (value: boolean) => void;
+  onShowParallelogram: (value: boolean) => void;
+  onDragPlane: (value: DragPlane) => void;
+  onViewPreset: (value: ViewPreset) => void;
+  onViewStateChange: (value: ViewState | ((value: ViewState) => ViewState)) => void;
+  onReset: () => void;
+}) {
+  const setZoom = (zoom: number) => {
+    onViewPreset("isometric");
+    onViewStateChange((view) => ({ ...view, zoom: clamp(zoom, 0.55, 1.85) }));
+  };
+  const setYaw = (yaw: number) => {
+    onViewPreset("isometric");
+    onViewStateChange((view) => ({ ...view, yaw }));
+  };
+  const setPitch = (pitch: number) => {
+    onViewPreset("isometric");
+    onViewStateChange((view) => ({ ...view, pitch }));
+  };
+
+  return (
+    <div className="rounded-xl border border-cyan-200 bg-white/90 p-3 shadow-sm shadow-cyan-100/50 dark:border-cyan-300/20 dark:bg-slate-950/70 dark:shadow-black/20">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <div className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">3D pane controls</div>
+          <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">Choose axes, labels, overlays, camera angle, zoom, and drag plane before using the pane.</p>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {(["front", "isometric", "top"] as ViewPreset[]).map((preset) => (
+            <button key={preset} type="button" onClick={() => onViewPreset(preset)} className={toolClass(viewPreset === preset)}>
+              {preset}
+            </button>
+          ))}
+          <button type="button" onClick={onReset} className="inline-flex min-h-9 items-center gap-1 rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-black dark:border-white/10">
+            <RotateCcw className="h-3.5 w-3.5" />
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-3 grid gap-3 lg:grid-cols-[minmax(0,1.1fr)_minmax(260px,.9fr)]">
+        <SceneOptionsPanel options={options} onChange={onOptionsChange} />
+        <div className="grid gap-2 sm:grid-cols-2">
+          <CompactRange label="Zoom" value={viewState.zoom} min={0.55} max={1.85} step={0.05} valueLabel={`${roundTo(viewState.zoom, 2)}x`} onChange={setZoom} />
+          <CompactRange label="Yaw" value={viewState.yaw} min={-Math.PI} max={Math.PI} step={0.05} valueLabel={`${roundTo(viewState.yaw, 2)} rad`} onChange={setYaw} />
+          <CompactRange label="Pitch" value={viewState.pitch} min={-1.25} max={1.35} step={0.05} valueLabel={`${roundTo(viewState.pitch, 2)} rad`} onChange={setPitch} />
+          <div className="rounded-lg border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-white/5">
+            <p className="text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Drag plane</p>
+            <div className="mt-2 grid grid-cols-3 gap-1">
+              {(["xy", "xz", "yz"] as DragPlane[]).map((plane) => (
+                <button key={plane} type="button" onClick={() => onDragPlane(plane)} className={toolClass(dragPlane === plane)}>
+                  {plane.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          </div>
+          <label className="flex min-h-10 items-center justify-between gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-black text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+            Vector B
+            <input type="checkbox" checked={showSecond} onChange={(event) => onShowSecond(event.target.checked)} className="h-4 w-4 accent-cyan-500" />
+          </label>
+          <label className="flex min-h-10 items-center justify-between gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-black text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+            Parallelogram
+            <input type="checkbox" checked={showParallelogram} onChange={(event) => onShowParallelogram(event.target.checked)} className="h-4 w-4 accent-cyan-500" />
+          </label>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SceneOptionsPanel({ options, onChange }: { options: SceneOptions; onChange: (options: SceneOptions) => void }) {
   const toggle = (key: SceneOptionKey) => onChange({ ...options, [key]: !options[key] });
   const items: Array<{ key: SceneOptionKey; label: string }> = [
@@ -318,14 +424,14 @@ function SceneOptionsPanel({ options, onChange }: { options: SceneOptions; onCha
   ];
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white/82 p-2.5 shadow-sm dark:border-white/10 dark:bg-slate-950/55">
+    <div className="rounded-lg border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-white/5">
       <div className="mb-2 flex items-center justify-between gap-2">
         <div className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">3D pane options</div>
         <button type="button" onClick={() => onChange(defaultSceneOptions)} className="rounded-lg border border-slate-200 px-2 py-1 text-[11px] font-black text-slate-600 dark:border-white/10 dark:text-slate-300">
           Show all
         </button>
       </div>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
         {items.map((item) => (
           <label key={item.key} className="flex min-h-9 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-black text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
             <input type="checkbox" checked={options[item.key]} onChange={() => toggle(item.key)} className="h-4 w-4 accent-cyan-500" />
@@ -334,6 +440,18 @@ function SceneOptionsPanel({ options, onChange }: { options: SceneOptions; onCha
         ))}
       </div>
     </div>
+  );
+}
+
+function CompactRange({ label, value, min, max, step, valueLabel, onChange }: { label: string; value: number; min: number; max: number; step: number; valueLabel: string; onChange: (value: number) => void }) {
+  return (
+    <label className="rounded-lg border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-white/5">
+      <span className="flex items-center justify-between gap-2 text-[11px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+        {label}
+        <span className="text-cyan-700 dark:text-cyan-200">{valueLabel}</span>
+      </span>
+      <input type="range" value={value} min={min} max={max} step={step} onChange={(event) => onChange(Number(event.target.value))} className="mt-2 w-full accent-cyan-500" />
+    </label>
   );
 }
 

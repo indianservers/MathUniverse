@@ -34,10 +34,10 @@ describe("TheoremLibraryPage", () => {
     expect(html).toContain("Geometry");
     expect(html).toContain("Pythagorean theorem");
     expect(html).toContain("Triangle angle sum theorem");
-    expect(html).toContain("Open proof scaffold");
+    expect(html).toContain("Open proof draft");
   });
 
-  it("renders an individual theorem proof scaffold route", () => {
+  it("renders an individual theorem proof draft route", () => {
     const theorem = theoremCategories.find((category) => category.id === "geometry")?.theorems[0];
     expect(theorem).toBeDefined();
 
@@ -136,19 +136,6 @@ describe("TheoremLibraryPage", () => {
     expect(html).toContain("Common Mistakes");
   });
 
-  it("renders learning scaffolds instead of planned placeholders for remaining theorem pages", () => {
-    const complexNumbers = theoremCategories.find((category) => category.id === "complex-numbers");
-    expect(complexNumbers).toBeDefined();
-    expect(complexNumbers?.theorems.every((theorem) => theorem.proofStatus !== "planned")).toBe(true);
-
-    const html = renderTheoremRoute("/theorems/complex-numbers/de-moivre-theorem-4");
-
-    expect(html).toContain("Learning scaffold");
-    expect(html).toContain("A guided proof scaffold is available below");
-    expect(html).toContain("Read the claim");
-    expect(html).toContain("Check the conditions");
-  });
-
   it("renders Phase 6 coordinate geometry and calculus draft proofs", () => {
     const coordinateGeometry = theoremCategories.find((category) => category.id === "coordinate-geometry");
     const calculus = theoremCategories.find((category) => category.id === "calculus-analysis");
@@ -165,5 +152,61 @@ describe("TheoremLibraryPage", () => {
     const calculusHtml = renderTheoremRoute("/theorems/calculus-analysis/mean-value-theorem-5");
     expect(calculusHtml).toContain("Apply the key relation");
     expect(calculusHtml).toContain("f&#x27;(c)=(f(b)-f(a))/(b-a)");
+  });
+
+  it("renders Phase 7 probability/statistics and complex number draft proofs", () => {
+    const probabilityStatistics = theoremCategories.find((category) => category.id === "probability-statistics");
+    const complexNumbers = theoremCategories.find((category) => category.id === "complex-numbers");
+
+    expect(probabilityStatistics?.theorems).toHaveLength(18);
+    expect(complexNumbers?.theorems).toHaveLength(18);
+    expect(probabilityStatistics?.theorems.every((theorem) => theorem.proofStatus === "draft-ready")).toBe(true);
+    expect(complexNumbers?.theorems.every((theorem) => theorem.proofStatus === "draft-ready")).toBe(true);
+
+    const probabilityHtml = renderTheoremRoute("/theorems/probability-statistics/bayes-theorem-3");
+    expect(probabilityHtml).toContain("Use the key relation");
+    expect(probabilityHtml).toContain("P(A|B)=P(B|A)P(A)/P(B)");
+
+    const complexHtml = renderTheoremRoute("/theorems/complex-numbers/de-moivre-theorem-4");
+    expect(complexHtml).toContain("Build the setup");
+    expect(complexHtml).toContain("(r cis theta)^n=r^n cis(n theta)");
+  });
+
+  it("renders Phase 8 discrete logic and graph theory draft proofs", () => {
+    const discreteLogic = theoremCategories.find((category) => category.id === "discrete-logic");
+    const graphTheory = theoremCategories.find((category) => category.id === "graph-theory");
+
+    expect(discreteLogic?.theorems).toHaveLength(18);
+    expect(graphTheory?.theorems).toHaveLength(18);
+    expect(discreteLogic?.theorems.every((theorem) => theorem.proofStatus === "draft-ready")).toBe(true);
+    expect(graphTheory?.theorems.every((theorem) => theorem.proofStatus === "draft-ready")).toBe(true);
+
+    const discreteHtml = renderTheoremRoute("/theorems/discrete-logic/principle-of-mathematical-induction-1");
+    expect(discreteHtml).toContain("State the claim carefully");
+    expect(discreteHtml).toContain("P(1) and P(n)=&gt;P(n+1)");
+
+    const graphHtml = renderTheoremRoute("/theorems/graph-theory/dijkstra-correctness-theorem-15");
+    expect(graphHtml).toContain("Check the hidden condition");
+    expect(graphHtml).toContain("Negative edge weights break the proof.");
+  });
+
+  it("renders Phase 9 optimization and engineering draft proofs", () => {
+    const optimizationEngineering = theoremCategories.find((category) => category.id === "optimization-engineering");
+
+    expect(optimizationEngineering?.theorems).toHaveLength(18);
+    expect(optimizationEngineering?.theorems.every((theorem) => theorem.proofStatus === "draft-ready")).toBe(true);
+
+    const html = renderTheoremRoute("/theorems/optimization-engineering/lagrange-multiplier-theorem-3");
+
+    expect(html).toContain("Step-by-step proof");
+    expect(html).toContain("grad f=lambda grad g");
+    expect(html).toContain("The constraint gradient must not be zero.");
+  });
+
+  it("keeps every theorem category fully draft-ready after proof-draft phases", () => {
+    const theoremStatuses = theoremCategories.flatMap((category) => category.theorems.map((theorem) => theorem.proofStatus));
+
+    expect(theoremStatuses).toHaveLength(theoremCount);
+    expect(theoremStatuses.every((status) => status === "draft-ready")).toBe(true);
   });
 });

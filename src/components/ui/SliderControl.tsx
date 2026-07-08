@@ -87,7 +87,7 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
   const compact = density === "compact";
   if (compact) {
     return (
-      <label className="grid gap-2 py-2 first:pt-0 last:pb-0 sm:grid-cols-[minmax(96px,0.8fr)_minmax(160px,1.8fr)_104px_32px] sm:items-center">
+      <label className="grid gap-2 py-2 first:pt-0 last:pb-0 md:grid-cols-[minmax(80px,0.8fr)_minmax(120px,1.6fr)] md:items-center 2xl:grid-cols-[minmax(96px,0.8fr)_minmax(160px,1.8fr)_minmax(88px,104px)_32px]">
         <div className="min-w-0">
           <span className="block truncate text-sm font-semibold text-slate-900 dark:text-white">{label}</span>
           {description && <p className="mt-0.5 line-clamp-1 text-xs text-slate-500 dark:text-slate-400">{description}</p>}
@@ -108,7 +108,7 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
             <span>{max}</span>
           </div>
         </div>
-        <div className="grid grid-cols-[1fr_auto] gap-1">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-1 md:col-span-2 2xl:col-span-1">
           <input
             className="min-w-0 rounded-lg border border-slate-200 bg-white px-2 py-1 text-right text-sm font-semibold text-slate-700 dark:border-white/10 dark:bg-slate-900 dark:text-cyan-100"
             type="number"
@@ -123,7 +123,7 @@ export default function SliderControl({ label, value, min, max, step, onChange, 
             {formatFormulaValue(value, unit)}
           </span>
         </div>
-        <button type="button" className={locked ? "mini-chip h-8 w-8 justify-center bg-cyan-100 p-0 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100" : "mini-chip h-8 w-8 justify-center p-0"} onClick={() => setLocked((value) => !value)} title="Range lock marker for paired slider work">
+        <button type="button" className={locked ? "mini-chip h-8 w-full justify-center bg-cyan-100 p-0 text-cyan-700 dark:bg-cyan-400/15 dark:text-cyan-100 md:col-span-2 2xl:col-span-1 2xl:w-8" : "mini-chip h-8 w-full justify-center p-0 md:col-span-2 2xl:col-span-1 2xl:w-8"} onClick={() => setLocked((value) => !value)} title="Range lock marker for paired slider work">
           {locked ? <Lock className="h-3.5 w-3.5" /> : <Unlock className="h-3.5 w-3.5" />}
         </button>
       </label>

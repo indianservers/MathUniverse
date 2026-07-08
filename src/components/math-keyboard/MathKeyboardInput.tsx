@@ -24,6 +24,7 @@ type MathKeyboardInputProps = {
   examples?: string[];
   onExample?: (value: string) => void;
   extraActions?: ReactNode;
+  defaultCompact?: boolean;
 };
 
 const groupLabels: Record<KeyGroup, string> = {
@@ -138,11 +139,12 @@ export default function MathKeyboardInput({
   examples = [],
   onExample,
   extraActions,
+  defaultCompact = false,
 }: MathKeyboardInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const groups = useMemo(() => modeGroups[mode], [mode]);
   const [activeGroup, setActiveGroup] = useState<KeyGroup>(groups[0]);
-  const [compact, setCompact] = useState(false);
+  const [compact, setCompact] = useState(defaultCompact);
 
   const setCaret = (position: number) => {
     requestAnimationFrame(() => {
@@ -195,7 +197,7 @@ export default function MathKeyboardInput({
         </label>
         <div className="mobile-safe-scroll flex gap-2 pb-1 md:flex-wrap md:overflow-visible md:pb-0">
           {extraActions}
-          <button type="button" onClick={() => setCompact((value) => !value)} className="math-tool-button tooltip-icon md:hidden" title={compact ? "Expand keyboard" : "Compact keyboard"} aria-label={compact ? "Expand keyboard" : "Compact keyboard"} data-tooltip={compact ? "Expand keyboard" : "Compact keyboard"}>
+          <button type="button" onClick={() => setCompact((value) => !value)} className="math-tool-button tooltip-icon" title={compact ? "Expand keyboard" : "Compact keyboard"} aria-label={compact ? "Expand keyboard" : "Compact keyboard"} data-tooltip={compact ? "Expand keyboard" : "Compact keyboard"}>
             {compact ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </button>
           <button type="button" onClick={() => moveCaret(-1)} className="math-tool-button tooltip-icon" title="Move cursor left" aria-label="Move cursor left" data-tooltip="Move cursor left"><ArrowLeft className="h-4 w-4" /></button>
