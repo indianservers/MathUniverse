@@ -9,11 +9,11 @@ const statusMeta: Record<NCERTGapStatus, { label: string; className: string }> =
   missing: { label: "Missing", className: "border-rose-300 bg-rose-50 text-rose-700 dark:border-rose-400/20 dark:bg-rose-400/10 dark:text-rose-200" },
 };
 
-const classLevels = ["Class 7", "Class 8", "Class 9", "Class 10"] as const;
+const classLevels = ["Class 7", "Class 8", "Class 9", "Class 10", "Class 12"] as const;
 
 export default function NCERTGapAnalysis() {
   return (
-    <SectionCard title="NCERT Classes 7-10 Gap Analysis" description="Chapter-by-chapter coverage against the current Math Universe app. Strong means a focused visual lab exists; partial means related support exists; missing means we should build a new module.">
+    <SectionCard title="NCERT Classes 7-12 Gap Analysis" description="Chapter-by-chapter coverage against the current Math Universe app. Strong means a focused visual lab exists; partial means related support exists; missing means we should build a new module.">
       <div className="mb-5 grid gap-3 md:grid-cols-4">
         <SummaryTile label="Strong coverage" value={ncertGapSummary.strong} icon={<CheckCircle2 className="h-5 w-5" />} tone="from-emerald-400 to-cyan-500" />
         <SummaryTile label="Partial coverage" value={ncertGapSummary.partial} icon={<Layers className="h-5 w-5" />} tone="from-cyan-400 to-blue-500" />

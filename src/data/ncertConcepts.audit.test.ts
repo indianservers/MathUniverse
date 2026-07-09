@@ -31,4 +31,27 @@ describe("NCERT concept audit", () => {
       }
     }
   });
+
+  it("includes the Phase 2 Grade 7 NCERT alignment routes", () => {
+    const ids = new Set(ncertConcepts.map((concept) => concept.id));
+    expect(ids.has("class-7-large-numbers-around-us")).toBe(true);
+    expect(ids.has("class-7-arithmetic-expressions")).toBe(true);
+    expect(ids.has("class-7-decimal-operations")).toBe(true);
+    expect(ids.has("class-7-fraction-operations")).toBe(true);
+    expect(ids.has("class-7-constructions-and-tilings")).toBe(true);
+    expect(ids.has("class-7-lines-and-triangles")).toBe(true);
+  });
+
+  it("includes the Phase 3 Class 12 NCERT guided visualization routes", () => {
+    const ids = new Set(ncertConcepts.map((concept) => concept.id));
+    expect(ids.has("class-12-relations-functions")).toBe(true);
+    expect(ids.has("class-12-determinants")).toBe(true);
+    expect(ids.has("class-12-continuity-differentiability")).toBe(true);
+    expect(ids.has("class-12-integration-methods")).toBe(true);
+    expect(ids.has("class-12-differential-equations")).toBe(true);
+    expect(ids.has("class-12-vectors-3d-geometry")).toBe(true);
+    expect(ids.has("class-12-bayes-theorem")).toBe(true);
+    expect(ids.has("class-12-linear-programming")).toBe(true);
+    expect(ids.has("class-12-inverse-trig")).toBe(true);
+  });
 });

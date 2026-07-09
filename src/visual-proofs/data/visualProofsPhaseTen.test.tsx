@@ -177,7 +177,7 @@ describe("Visual Proofs phase ten final metadata and smoke audit", () => {
   it("keeps trigonometry and coordinate geometry fully phase-upgraded", () => {
     const trigProofs = getVisualProofsByCategory("trigonometry").filter((proof) => proof.status === "available");
     const coordinateProofs = getVisualProofsByCategory("coordinate-geometry").filter((proof) => proof.status === "available");
-    expect(trigProofs).toHaveLength(15);
+    expect(trigProofs).toHaveLength(16);
     expect(coordinateProofs).toHaveLength(15);
     expect(trigProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
     expect(coordinateProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);

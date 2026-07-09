@@ -10,7 +10,7 @@ const phaseUpgradedProofs = visualProofsIndex.filter((proof) => proof.proofUpgra
 
 describe("Visual Proofs browser coverage map", () => {
   it("maps every phase-upgraded route to the full-matrix browser smoke", () => {
-    expect(visualProofsBrowserCoverage).toHaveLength(184);
+    expect(visualProofsBrowserCoverage).toHaveLength(185);
     expect(visualProofsBrowserCoverage).toHaveLength(phaseUpgradedProofs.length);
     expect(visualProofsBrowserCoverage).toHaveLength(visualProofsRouteSmokeManifest.length);
 

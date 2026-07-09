@@ -5,6 +5,16 @@ import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import VisualLearningPanel from "../components/ui/VisualLearningPanel";
+import Grade7ArithmeticExpressionsLab from "../components/ncert/grade7/Grade7ArithmeticExpressionsLab";
+import Grade7ConstructionsTilingsLab from "../components/ncert/grade7/Grade7ConstructionsTilingsLab";
+import Grade7DecimalOperationsLab from "../components/ncert/grade7/Grade7DecimalOperationsLab";
+import Grade7FractionOperationsLab from "../components/ncert/grade7/Grade7FractionOperationsLab";
+import Grade7LargeNumbersLab from "../components/ncert/grade7/Grade7LargeNumbersLab";
+import Grade7LinesTrianglesLab from "../components/ncert/grade7/Grade7LinesTrianglesLab";
+import Grade7ManipulativeLab, { isGrade7PriorityRoute } from "../components/ncert/grade7/Grade7ManipulativeLab";
+import Class12GuidedLab from "../components/ncert/class12/Class12GuidedLabs";
+import Class10BoardExamLab, { isClass10PriorityRoute } from "../components/ncert/class10/Class10BoardExamLabs";
+import NCERTTabbedWorkspace from "../components/ncert/layout/NCERTTabbedWorkspace";
 import { getNCERTConcept, type NCERTConcept, type NCERTVisualType } from "../data/ncertConcepts";
 import { degreesToRadians, roundTo } from "../utils/math";
 
@@ -16,6 +26,16 @@ export default function NCERTConceptPage() {
 }
 
 function NCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
+  if (isGrade7PriorityRoute(concept.id)) return <Grade7ManipulativeLab concept={concept} />;
+  const grade7Lab = renderGrade7ChapterLab(concept.visual);
+  if (grade7Lab) return grade7Lab;
+  if (isClass10PriorityRoute(concept.id)) return <Class10BoardExamLab concept={concept} />;
+  const class12Lab = renderClass12ChapterLab(concept.visual);
+  if (class12Lab) return class12Lab;
+  return <StandardNCERTConceptDetail concept={concept} />;
+}
+
+function StandardNCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
   const [a, setA] = useState(concept.defaultA);
   const [b, setB] = useState(concept.defaultB);
   const [c, setC] = useState(concept.defaultC ?? 1);
@@ -28,55 +48,91 @@ function NCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
 
   const metrics = useMemo(() => ncertMetrics(concept.visual, a, b, c), [concept.visual, a, b, c]);
   const resources = ncertResourceLinks(concept);
+  const controlsAndValues = (
+    <div className="space-y-4">
+      <FormulaBlock title="Core NCERT Formula" formula={concept.formula} explanation={concept.summary} />
+      <SliderGroup title="Concept controls">
+        <SliderControl density="compact" label={concept.sliderA} value={a} min={concept.minA} max={concept.maxA} step={concept.stepA} onChange={setA} />
+        <SliderControl density="compact" label={concept.sliderB} value={b} min={concept.minB} max={concept.maxB} step={concept.stepB} onChange={setB} />
+        {concept.sliderC && concept.minC !== undefined && concept.maxC !== undefined && concept.stepC !== undefined && (
+          <SliderControl density="compact" label={concept.sliderC} value={c} min={concept.minC} max={concept.maxC} step={concept.stepC} onChange={setC} />
+        )}
+      </SliderGroup>
+      <div className="grid grid-cols-2 gap-2">
+        {metrics.map((metric) => <Metric key={metric.label} label={metric.label} value={metric.value} />)}
+      </div>
+    </div>
+  );
+  const visualLab = (
+    <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
+      <div className="space-y-4">
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950">
+          <NCERTSvg visual={concept.visual} a={a} b={b} c={c} title={concept.title} />
+        </div>
+        <div className="grid gap-3 md:grid-cols-3">
+          {concept.outcomes.map((item) => <Info key={item} label="Outcome" value={item} />)}
+        </div>
+      </div>
+      {controlsAndValues}
+    </div>
+  );
+  const linksPanel = (
+    <div>
+      <div className="grid gap-3 md:grid-cols-3">
+        <Info label="Formula" value={concept.formula} />
+        <Info label="Visualization" value={ncertResourceText(concept.visual)} />
+        <Info label="Interactive task" value={concept.tasks[0] ?? "Move the controls and explain what changes."} />
+      </div>
+      {resources.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {resources.map((resource) => (
+            <Link key={resource.to} to={resource.to} className="action-secondary">
+              Open {resource.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <div className="space-y-6">
       <TopicHeader title={`${concept.classLevel}: ${concept.title}`} subtitle={concept.summary} difficulty={concept.unit} estimatedMinutes={15} />
 
-      <SectionCard title="Interactive NCERT Lab" description="Move the controls, watch the model change, then read the formula and step-by-step values.">
-        <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
-          <div className="space-y-4">
-            <FormulaBlock title="Core NCERT Formula" formula={concept.formula} explanation={concept.summary} />
-            <SliderGroup title="Concept controls">
-              <SliderControl density="compact" label={concept.sliderA} value={a} min={concept.minA} max={concept.maxA} step={concept.stepA} onChange={setA} />
-              <SliderControl density="compact" label={concept.sliderB} value={b} min={concept.minB} max={concept.maxB} step={concept.stepB} onChange={setB} />
-              {concept.sliderC && concept.minC !== undefined && concept.maxC !== undefined && concept.stepC !== undefined && (
-                <SliderControl density="compact" label={concept.sliderC} value={c} min={concept.minC} max={concept.maxC} step={concept.stepC} onChange={setC} />
-              )}
-            </SliderGroup>
-            <div className="grid grid-cols-2 gap-2">
-              {metrics.map((metric) => <Metric key={metric.label} label={metric.label} value={metric.value} />)}
-            </div>
-          </div>
-          <div className="space-y-4">
-            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950">
-              <NCERTSvg visual={concept.visual} a={a} b={b} c={c} title={concept.title} />
-            </div>
-            <div className="grid gap-3 md:grid-cols-3">
-              {concept.outcomes.map((item) => <Info key={item} label="Outcome" value={item} />)}
-            </div>
-          </div>
-        </div>
-      </SectionCard>
-
-      <VisualLearningPanel concept={concept.summary} formula={concept.formula} changes={changeText(concept.visual, concept.sliderA, concept.sliderB)} realWorldUse={concept.unit} steps={learningSteps(concept, a, b, c)} tasks={concept.tasks} />
-
-      <SectionCard title={`${concept.title} Visual Resources`} description="Only this concept's formula, outcomes, activity, and matching tools are shown here.">
-        <div className="grid gap-3 md:grid-cols-3">
-          <Info label="Formula" value={concept.formula} />
-          <Info label="Visualization" value={ncertResourceText(concept.visual)} />
-          <Info label="Interactive task" value={concept.tasks[0] ?? "Move the controls and explain what changes."} />
-        </div>
-        {resources.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {resources.map((resource) => (
-              <Link key={resource.to} to={resource.to} className="action-secondary">
-                Open {resource.label}
-              </Link>
-            ))}
-          </div>
-        )}
-      </SectionCard>
+      <NCERTTabbedWorkspace
+        ariaLabel={`${concept.title} NCERT concept tabs`}
+        tabs={[
+          { id: "visual", label: "Visual Lab", content: visualLab },
+          {
+            id: "steps",
+            label: "Steps / Proof",
+            content: <VisualLearningPanel concept={concept.summary} formula={concept.formula} changes={changeText(concept.visual, concept.sliderA, concept.sliderB)} realWorldUse={concept.unit} steps={learningSteps(concept, a, b, c)} tasks={concept.tasks} />,
+          },
+          {
+            id: "practice",
+            label: "Practice",
+            content: (
+              <SectionCard title="Practice prompts" description="Try these after moving the controls.">
+                <div className="grid gap-3 md:grid-cols-2">
+                  {concept.tasks.map((task) => <Info key={task} label="Task" value={task} />)}
+                </div>
+              </SectionCard>
+            ),
+          },
+          { id: "links", label: "Formula / Theorem Links", content: linksPanel },
+          {
+            id: "notes",
+            label: "Teacher Notes",
+            content: (
+              <SectionCard title="Classroom notes" description={concept.summary}>
+                <div className="grid gap-3 md:grid-cols-3">
+                  {concept.outcomes.map((item) => <Info key={item} label="Outcome" value={item} />)}
+                </div>
+              </SectionCard>
+            ),
+          },
+        ]}
+      />
     </div>
   );
 }
@@ -118,7 +174,57 @@ export const supportedNCERTVisualTypes = new Set<NCERTVisualType>([
   "inverse-trig-graph",
   "linear-pair",
   "quadratic-roots",
+  "irrational-proof",
+  "root-coefficients",
+  "linear-method-stepper",
+  "triangle-similarity-lab",
+  "circle-tangent-lab",
+  "circle-area-lab",
+  "solids-lab",
+  "grouped-statistics-lab",
+  "special-trig-angles",
+  "modelling-proof-lab",
+  "grade7-large-numbers-lab",
+  "grade7-arithmetic-expressions-lab",
+  "grade7-decimal-operations-lab",
+  "grade7-fraction-operations-lab",
+  "grade7-constructions-tilings-lab",
+  "grade7-lines-triangles-lab",
+  "grade7-algebraic-expressions-lab",
+  "grade7-data-handling-lab",
+  "class12-relations-functions-lab",
+  "class12-determinants-lab",
+  "class12-continuity-differentiability-lab",
+  "class12-integration-methods-lab",
+  "class12-differential-equations-lab",
+  "class12-vectors-3d-geometry-lab",
+  "class12-bayes-theorem-lab",
+  "class12-linear-programming-lab",
+  "class12-inverse-trig-lab",
 ]);
+
+function renderGrade7ChapterLab(visual: NCERTVisualType) {
+  if (visual === "grade7-large-numbers-lab") return <Grade7LargeNumbersLab />;
+  if (visual === "grade7-arithmetic-expressions-lab") return <Grade7ArithmeticExpressionsLab />;
+  if (visual === "grade7-decimal-operations-lab") return <Grade7DecimalOperationsLab />;
+  if (visual === "grade7-fraction-operations-lab") return <Grade7FractionOperationsLab />;
+  if (visual === "grade7-constructions-tilings-lab") return <Grade7ConstructionsTilingsLab />;
+  if (visual === "grade7-lines-triangles-lab") return <Grade7LinesTrianglesLab />;
+  return null;
+}
+
+function renderClass12ChapterLab(visual: NCERTVisualType) {
+  if (visual === "class12-relations-functions-lab") return <Class12GuidedLab kind="relations-functions" />;
+  if (visual === "class12-determinants-lab") return <Class12GuidedLab kind="determinants" />;
+  if (visual === "class12-continuity-differentiability-lab") return <Class12GuidedLab kind="continuity-differentiability" />;
+  if (visual === "class12-integration-methods-lab") return <Class12GuidedLab kind="integration-methods" />;
+  if (visual === "class12-differential-equations-lab") return <Class12GuidedLab kind="differential-equations" />;
+  if (visual === "class12-vectors-3d-geometry-lab") return <Class12GuidedLab kind="vectors-3d-geometry" />;
+  if (visual === "class12-bayes-theorem-lab") return <Class12GuidedLab kind="bayes-theorem" />;
+  if (visual === "class12-linear-programming-lab") return <Class12GuidedLab kind="linear-programming" />;
+  if (visual === "class12-inverse-trig-lab") return <Class12GuidedLab kind="inverse-trig" />;
+  return null;
+}
 
 function renderVisual(visual: NCERTVisualType, a: number, b: number, c: number) {
   if (visual === "integer-line") return <IntegerLine start={a} move={b} />;
@@ -145,7 +251,282 @@ function renderVisual(visual: NCERTVisualType, a: number, b: number, c: number) 
   if (visual === "linear-pair") return <LinearPairGraph m1={a} c1={b} m2={c} />;
   if (visual === "linear-inequality") return <LinearInequality a={a} b={b} c3={c} />;
   if (visual === "inverse-trig-graph") return <InverseTrigGraph fn={Math.round(a)} xVal={b} />;
+  if (visual === "irrational-proof") return <IrrationalProof n={Math.round(a)} digits={Math.round(b)} />;
+  if (visual === "root-coefficients") return <RootCoefficientLab alpha={a} beta={b} />;
+  if (visual === "linear-method-stepper") return <LinearMethodStepper m1={a} c1={b} m2={c} />;
+  if (visual === "triangle-similarity-lab") return <TriangleSimilarityLab a={a} b={b} c={c} />;
+  if (visual === "circle-tangent-lab") return <CircleTangentLab distance={a} radius={b} />;
+  if (visual === "circle-area-lab") return <CircleAreaLab angle={a} outerRadius={b} innerRadius={c} />;
+  if (visual === "solids-lab") return <SolidsLab a={a} b={b} c={c} />;
+  if (visual === "grouped-statistics-lab") return <GroupedStatisticsLab a={a} h={b} scale={c} />;
+  if (visual === "special-trig-angles") return <SpecialTrigAngles selector={Math.round(a)} size={b} />;
+  if (visual === "modelling-proof-lab") return <ModellingProofLab mode={Math.round(a)} step={Math.round(b)} />;
   return <HeightDistance angle={a} distance={b} />;
+}
+
+function IrrationalProof({ n, digits }: { n: number; digits: number }) {
+  const root = Math.sqrt(n);
+  const perfect = Number.isInteger(root);
+  const factors = primeFactors(n);
+  const counts = factors.reduce<Record<number, number>>((acc, item) => ({ ...acc, [item]: (acc[item] ?? 0) + 1 }), {});
+  const unpaired = Object.entries(counts).filter(([, count]) => count % 2 === 1).map(([prime]) => prime);
+  return (
+    <g>
+      <Label x="80" y="60" text={`sqrt(${n}) = ${root.toFixed(Math.max(1, digits))}`} />
+      <NumberLine min={0} max={8} y={155} />
+      <Point x={mapLine(Math.min(8, root), 0, 8)} y={155} label={perfect ? "integer root" : "irrational root"} />
+      <FactorRow x={95} y={225} label={`${n}`} factors={factors} common={unpaired.map(Number)} />
+      <rect x="95" y="285" width="570" height="88" rx="20" fill={perfect ? "#dcfce7" : "#fff7ed"} stroke={perfect ? "#16a34a" : "#f59e0b"} strokeWidth="3" />
+      <Label x="118" y="322" text={perfect ? "Every prime factor is paired, so the square root is rational." : `Unpaired prime factor(s): ${unpaired.join(", ")}. A square cannot have unpaired primes.`} />
+      <Label x="118" y="352" text={perfect ? `${n} is a perfect square.` : `Therefore sqrt(${n}) is not a rational number.`} />
+      <Label x="80" y="430" text="Class 10 idea: square numbers have prime factors in pairs." />
+    </g>
+  );
+}
+
+function RootCoefficientLab({ alpha, beta }: { alpha: number; beta: number }) {
+  const sum = alpha + beta;
+  const product = alpha * beta;
+  const bCoeff = -sum;
+  const cCoeff = product;
+  const y = (x: number) => (x - alpha) * (x - beta);
+  const points = Array.from({ length: 121 }, (_, i) => {
+    const x = -6 + i * 0.1;
+    return `${80 + ((x + 6) / 12) * 600},${245 - y(x) * 18}`;
+  }).join(" ");
+  return (
+    <g>
+      <Label x="80" y="55" text={`Roots alpha=${roundTo(alpha, 2)}, beta=${roundTo(beta, 2)}`} />
+      <line x1="80" x2="680" y1="245" y2="245" stroke="#0f172a" strokeWidth="3" />
+      <line x1="380" x2="380" y1="70" y2="410" stroke="#94a3b8" strokeWidth="2" />
+      <polyline points={points} fill="none" stroke="#06b6d4" strokeWidth="4" />
+      <Point x={80 + ((alpha + 6) / 12) * 600} y={245} label="alpha" />
+      <Point x={80 + ((beta + 6) / 12) * 600} y={245} label="beta" />
+      <rect x="90" y="315" width="560" height="82" rx="20" fill="#ecfeff" stroke="#06b6d4" strokeWidth="2" />
+      <Label x="115" y="348" text={`(x-alpha)(x-beta) = x^2 ${formatSigned(bCoeff)}x ${formatSigned(cCoeff)}`} />
+      <Label x="115" y="378" text={`alpha+beta=${roundTo(sum, 2)} = -b; alpha beta=${roundTo(product, 2)} = c`} />
+    </g>
+  );
+}
+
+function LinearMethodStepper({ m1, c1, m2 }: { m1: number; c1: number; m2: number }) {
+  const c2 = 1;
+  const parallel = Math.abs(m1 - m2) < 0.03;
+  const same = parallel && Math.abs(c1 - c2) < 0.03;
+  const x = parallel ? 0 : (c2 - c1) / (m1 - m2);
+  const y = m1 * x + c1;
+  const gx = (value: number) => 380 + value * 42;
+  const gy = (value: number) => 240 - value * 42;
+  const line = (m: number, k: number) => `${gx(-7)},${gy(m * -7 + k)} ${gx(7)},${gy(m * 7 + k)}`;
+  return (
+    <g>
+      <Label x="80" y="55" text={same ? "Coincident lines: infinitely many solutions" : parallel ? "Parallel lines: no solution" : `Intersection: (${roundTo(x, 2)}, ${roundTo(y, 2)})`} />
+      <line x1="80" x2="680" y1="240" y2="240" stroke="#0f172a" strokeWidth="2" />
+      <line x1="380" x2="380" y1="70" y2="410" stroke="#0f172a" strokeWidth="2" />
+      <polyline points={line(m1, c1)} stroke="#06b6d4" strokeWidth="4" />
+      <polyline points={line(m2, c2)} stroke="#8b5cf6" strokeWidth="4" />
+      {!parallel && <Point x={gx(x)} y={gy(y)} label="solution" />}
+      <rect x="80" y="315" width="600" height="92" rx="20" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" />
+      <Label x="104" y="345" text={`Substitution: set ${roundTo(m1, 2)}x ${formatSigned(c1)} = ${roundTo(m2, 2)}x + 1`} />
+      <Label x="104" y="373" text={`Elimination: move x terms together, then constants together.`} />
+      <Label x="104" y="400" text={`Consistency: ${parallel ? same ? "same slope and same intercept" : "same slope and different intercept" : "different slopes"}.`} />
+    </g>
+  );
+}
+
+function TriangleSimilarityLab({ a, b, c: _c }: { a: number; b: number; c: number }) {
+  const A = { x: 150, y: 355 }, B = { x: 610, y: 355 }, C = { x: 295, y: 105 };
+  const D = pointBetween(A, B, Math.max(0.05, Math.min(0.95, a)));
+  const E = pointBetween(A, C, Math.max(0.05, Math.min(0.95, b)));
+  const parallelish = Math.abs(a - b) < 0.025;
+  const scale = Math.max(0.4, Math.min(2.6, a));
+  const areaRatio = scale * scale;
+  return (
+    <g>
+      <Label x="80" y="55" text={parallelish ? "DE is parallel to BC: side ratios match." : "Side ratios do not match: DE is not parallel to BC."} />
+      <polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y}`} fill="#06b6d4" opacity="0.13" stroke="#0f172a" strokeWidth="4" />
+      <line x1={D.x} y1={D.y} x2={E.x} y2={E.y} stroke={parallelish ? "#22c55e" : "#f59e0b"} strokeWidth="5" />
+      <Point x={A.x} y={A.y} label="A" /><Point x={B.x} y={B.y} label="B" /><Point x={C.x} y={C.y} label="C" />
+      <Point x={D.x} y={D.y} label="D" /><Point x={E.x} y={E.y} label="E" />
+      <rect x="88" y="90" width="175" height="88" rx="18" fill="#ecfeff" stroke="#06b6d4" strokeWidth="2" />
+      <Label x="105" y="122" text={`AD/AB=${roundTo(a, 2)}`} />
+      <Label x="105" y="150" text={`AE/AC=${roundTo(b, 2)}`} />
+      <rect x="415" y="92" width="245" height="90" rx="18" fill="#fff7ed" stroke="#f59e0b" strokeWidth="2" />
+      <Label x="435" y="124" text={`Side scale k=${roundTo(scale, 2)}`} />
+      <Label x="435" y="154" text={`Area ratio k^2=${roundTo(areaRatio, 2)}`} />
+      <Label x="80" y="430" text="Use equal angles plus matching side ratios to prove similarity." />
+    </g>
+  );
+}
+
+function CircleTangentLab({ distance, radius }: { distance: number; radius: number }) {
+  const O = { x: 325, y: 240 };
+  const P = { x: O.x + distance * 55, y: O.y };
+  const r = radius * 55;
+  const outside = distance > radius;
+  const on = Math.abs(distance - radius) < 0.05;
+  const theta = outside ? Math.acos(radius / distance) : 0;
+  const t1 = { x: O.x + r * Math.cos(theta), y: O.y - r * Math.sin(theta) };
+  const t2 = { x: O.x + r * Math.cos(theta), y: O.y + r * Math.sin(theta) };
+  const tangentLength = outside ? Math.sqrt(distance * distance - radius * radius) : 0;
+  return (
+    <g>
+      <Label x="80" y="55" text={outside ? "External point: two equal tangents." : on ? "Point on circle: one tangent." : "Point inside circle: no tangent."} />
+      <circle cx={O.x} cy={O.y} r={r} fill="#06b6d4" opacity="0.12" stroke="#06b6d4" strokeWidth="4" />
+      <Point x={O.x} y={O.y} label="O" />
+      <Point x={P.x} y={P.y} label="P" />
+      {outside && (
+        <>
+          <line x1={P.x} y1={P.y} x2={t1.x} y2={t1.y} stroke="#f59e0b" strokeWidth="4" />
+          <line x1={P.x} y1={P.y} x2={t2.x} y2={t2.y} stroke="#f59e0b" strokeWidth="4" />
+          <line x1={O.x} y1={O.y} x2={t1.x} y2={t1.y} stroke="#8b5cf6" strokeWidth="3" strokeDasharray="7 5" />
+          <line x1={O.x} y1={O.y} x2={t2.x} y2={t2.y} stroke="#8b5cf6" strokeWidth="3" strokeDasharray="7 5" />
+          <Point x={t1.x} y={t1.y} label="T1" />
+          <Point x={t2.x} y={t2.y} label="T2" />
+        </>
+      )}
+      <rect x="84" y="360" width="585" height="68" rx="18" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" />
+      <Label x="105" y="388" text={`radius=${roundTo(radius, 2)}, OP=${roundTo(distance, 2)}, tangent length=${roundTo(tangentLength, 3)}`} />
+      <Label x="105" y="416" text={outside ? "OT is perpendicular to PT; right triangles prove PT1 = PT2." : "Tangent count changes with point position."} />
+    </g>
+  );
+}
+
+function CircleAreaLab({ angle, outerRadius, innerRadius }: { angle: number; outerRadius: number; innerRadius: number }) {
+  const r = outerRadius * 42;
+  const inner = Math.min(innerRadius * 42, r - 8);
+  const cx = 360, cy = 235;
+  const rad = degreesToRadians(angle);
+  const p1 = { x: cx + r, y: cy };
+  const p2 = { x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad) };
+  const largeArc = angle > 180 ? 1 : 0;
+  const sectorArea = (angle / 360) * Math.PI * outerRadius * outerRadius;
+  const triangleArea = 0.5 * outerRadius * outerRadius * Math.sin(rad);
+  const segmentArea = sectorArea - triangleArea;
+  return (
+    <g>
+      <Label x="80" y="55" text={`Sector=${roundTo(sectorArea, 2)}, triangle=${roundTo(triangleArea, 2)}, segment=${roundTo(segmentArea, 2)}`} />
+      <path d={`M${cx},${cy} L${p1.x},${p1.y} A${r},${r} 0 ${largeArc} 0 ${p2.x},${p2.y} Z`} fill="#06b6d4" opacity="0.28" stroke="#06b6d4" strokeWidth="4" />
+      <path d={`M${p1.x},${p1.y} A${r},${r} 0 ${largeArc} 0 ${p2.x},${p2.y} L${p1.x},${p1.y}`} fill="#f59e0b" opacity="0.28" stroke="#f59e0b" strokeWidth="3" />
+      {inner > 0 && <circle cx={cx} cy={cy} r={inner} fill="#f8fafc" opacity="0.85" stroke="#94a3b8" strokeWidth="2" />}
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="#0f172a" strokeWidth="2" opacity="0.45" />
+      <Point x={cx} y={cy} label="O" />
+      <Label x="92" y="390" text={`Composite ring-sector area = (${angle}/360) pi (${roundTo(outerRadius, 1)}^2 - ${roundTo(innerRadius, 1)}^2)`} />
+      <Label x="92" y="420" text="Segment area is the curved sector part after subtracting the straight triangle." />
+    </g>
+  );
+}
+
+function SolidsLab({ a, b, c }: { a: number; b: number; c: number }) {
+  const cylinderVolume = Math.PI * a * a * b;
+  const coneVolume = Math.PI * a * a * c / 3;
+  const frustumVolume = Math.PI * c * (a * a + b * b + a * b) / 3;
+  const recastHeight = cylinderVolume / (Math.PI * c * c || 1);
+  return (
+    <g>
+      <Label x="80" y="55" text={`Combined volume = cylinder + cone = ${roundTo(cylinderVolume + coneVolume, 2)}`} />
+      <ellipse cx="210" cy="160" rx={a * 28} ry="18" fill="#06b6d4" opacity="0.35" stroke="#06b6d4" strokeWidth="3" />
+      <rect x={210 - a * 28} y="160" width={a * 56} height={b * 24} fill="#06b6d4" opacity="0.18" stroke="#06b6d4" strokeWidth="3" />
+      <ellipse cx="210" cy={160 + b * 24} rx={a * 28} ry="18" fill="#06b6d4" opacity="0.25" stroke="#06b6d4" strokeWidth="3" />
+      <polygon points={`${210 - a * 28},160 ${210 + a * 28},160 210,${160 - c * 28}`} fill="#f59e0b" opacity="0.28" stroke="#f59e0b" strokeWidth="3" />
+      <polygon points={`455,140 585,180 545,340 415,300`} fill="#8b5cf6" opacity="0.22" stroke="#8b5cf6" strokeWidth="4" />
+      <ellipse cx="520" cy="160" rx={a * 22} ry="14" fill="#8b5cf6" opacity="0.35" stroke="#8b5cf6" strokeWidth="3" />
+      <ellipse cx="480" cy="320" rx={b * 18} ry="11" fill="#8b5cf6" opacity="0.25" stroke="#8b5cf6" strokeWidth="3" />
+      <rect x="82" y="365" width="600" height="70" rx="18" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" />
+      <Label x="104" y="392" text={`Frustum volume = ${roundTo(frustumVolume, 2)}; recast cylinder height = ${roundTo(recastHeight, 2)}`} />
+      <Label x="104" y="420" text="Hidden joining faces are not counted in exposed surface area; volume always adds or is conserved." />
+    </g>
+  );
+}
+
+function GroupedStatisticsLab({ a, h, scale }: { a: number; h: number; scale: number }) {
+  const freqs = [4, 7, 12, 9, 5].map((v) => v * Math.max(1, Math.round(scale)));
+  const classes = freqs.map((f, i) => ({ low: i * h + 10, high: (i + 1) * h + 10, mid: i * h + 10 + h / 2, f }));
+  const totalF = freqs.reduce((s, v) => s + v, 0);
+  const mean = classes.reduce((s, row) => s + row.f * row.mid, 0) / totalF;
+  const modalIndex = freqs.indexOf(Math.max(...freqs));
+  const medianTarget = totalF / 2;
+  let cumulative = 0;
+  const medianIndex = classes.findIndex((row) => {
+    cumulative += row.f;
+    return cumulative >= medianTarget;
+  });
+  const cfBefore = classes.slice(0, medianIndex).reduce((s, row) => s + row.f, 0);
+  const medianRow = classes[Math.max(0, medianIndex)];
+  const median = medianRow.low + ((medianTarget - cfBefore) / medianRow.f) * h;
+  return (
+    <g>
+      <Label x="80" y="50" text={`Mean=${roundTo(mean, 2)}, median=${roundTo(median, 2)}, modal class=${classes[modalIndex].low}-${classes[modalIndex].high}`} />
+      {classes.map((row, i) => (
+        <g key={i}>
+          <rect x={105 + i * 108} y={330 - row.f * 7} width="72" height={row.f * 7} fill={i === modalIndex ? "#f59e0b" : i === medianIndex ? "#8b5cf6" : "#06b6d4"} opacity="0.65" />
+          <Label x={98 + i * 108} y="360" text={`${row.low}-${row.high}`} />
+          <Label x={117 + i * 108} y={315 - row.f * 7} text={`f=${row.f}`} />
+        </g>
+      ))}
+      <rect x="86" y="75" width="610" height="92" rx="18" fill="#ecfeff" stroke="#06b6d4" strokeWidth="2" />
+      <Label x="105" y="105" text={`Direct: sum(fx)/sum(f) = ${roundTo(mean, 2)}`} />
+      <Label x="105" y="132" text={`Assumed mean: A=${roundTo(a, 1)}, use deviations d=x-A.`} />
+      <Label x="105" y="158" text={`Step deviation: u=(x-A)/h, h=${h}.`} />
+    </g>
+  );
+}
+
+function SpecialTrigAngles({ selector, size }: { selector: number; size: number }) {
+  const angles = [0, 30, 45, 60, 90];
+  const angle = angles[Math.max(0, Math.min(4, selector))];
+  const rad = degreesToRadians(angle || 1);
+  const hyp = 120 * size;
+  const A = { x: 160, y: 335 };
+  const B = { x: 160 + hyp * Math.cos(rad), y: 335 };
+  const C = { x: B.x, y: 335 - hyp * Math.sin(rad) };
+  const values: Record<number, [string, string, string]> = {
+    0: ["0", "1", "0"], 30: ["1/2", "sqrt(3)/2", "1/sqrt(3)"], 45: ["1/sqrt(2)", "1/sqrt(2)", "1"], 60: ["sqrt(3)/2", "1/2", "sqrt(3)"], 90: ["1", "0", "undefined"],
+  };
+  return (
+    <g>
+      <Label x="80" y="55" text={`${angle} degrees: sin=${values[angle][0]}, cos=${values[angle][1]}, tan=${values[angle][2]}`} />
+      <polygon points={`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y}`} fill="#06b6d4" opacity="0.16" stroke="#0f172a" strokeWidth="4" />
+      <line x1={B.x} y1={B.y} x2={C.x} y2={C.y} stroke="#f59e0b" strokeWidth="5" />
+      <line x1={A.x} y1={A.y} x2={B.x} y2={B.y} stroke="#8b5cf6" strokeWidth="5" />
+      <line x1={A.x} y1={A.y} x2={C.x} y2={C.y} stroke="#06b6d4" strokeWidth="5" />
+      <Label x="95" y="390" text="opposite / hypotenuse = sine; adjacent / hypotenuse = cosine; opposite / adjacent = tangent." />
+      <rect x="470" y="115" width="190" height="150" rx="20" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" />
+      <Label x="495" y="150" text={`sin = ${values[angle][0]}`} />
+      <Label x="495" y="190" text={`cos = ${values[angle][1]}`} />
+      <Label x="495" y="230" text={`tan = ${values[angle][2]}`} />
+    </g>
+  );
+}
+
+function ModellingProofLab({ mode, step }: { mode: number; step: number }) {
+  const proofStages = ["Given", "Claim", "Reason", "Therefore", "Check"];
+  const modelStages = ["Situation", "Assumptions", "Variables", "Equation", "Solve", "Validate"];
+  const stages = mode <= 4 ? proofStages : modelStages;
+  const active = Math.max(0, Math.min(stages.length - 1, step - 1));
+  return (
+    <g>
+      <Label x="80" y="60" text={mode <= 4 ? "Proof reasoning flow" : "Mathematical modelling flow"} />
+      {stages.map((stage, i) => (
+        <g key={stage}>
+          <rect x={95 + i * 108} y="160" width="92" height="70" rx="18" fill={i === active ? "#06b6d4" : "#e2e8f0"} stroke="#0f172a" strokeWidth="2" opacity={i === active ? 0.9 : 0.75} />
+          <Label x={104 + i * 108} y="202" text={stage} />
+          {i < stages.length - 1 && <line x1={187 + i * 108} y1="195" x2={203 + i * 108} y2="195" stroke="#0f172a" strokeWidth="3" />}
+        </g>
+      ))}
+      <rect x="90" y="300" width="585" height="92" rx="20" fill="#fff7ed" stroke="#f59e0b" strokeWidth="2" />
+      <Label x="112" y="334" text={mode <= 4 ? "A proof is not a list of answers; every claim needs a reason." : "A model is useful only after checking the answer against the real situation."} />
+      <Label x="112" y="365" text={`Current stage: ${stages[active]}. Say what information enters and what result leaves this stage.`} />
+    </g>
+  );
+}
+
+function pointBetween(p: { x: number; y: number }, q: { x: number; y: number }, t: number) {
+  return { x: p.x + (q.x - p.x) * t, y: p.y + (q.y - p.y) * t };
+}
+
+function formatSigned(value: number) {
+  return value < 0 ? `- ${roundTo(Math.abs(value), 2)}` : `+ ${roundTo(value, 2)}`;
 }
 
 function factorial(n: number): number {

@@ -115,6 +115,14 @@ export default function Home() {
       colorGradient: "from-emerald-500 to-sky-600",
     },
     {
+      title: "NCERT Dashboard",
+      description: "Class 7, Class 10, and Class 12 NCERT visual labs with formula, theorem, visual proof, practice, and QA badges.",
+      concepts: ["Class 7", "Class 10", "Class 12", "Board exams"],
+      icon: BookOpen,
+      route: "/ncert",
+      colorGradient: "from-cyan-600 to-emerald-500",
+    },
+    {
       title: "Syllabus Universe",
       description: "Class 8 to Degree Mathematics mapped to available visual labs and future concept cards.",
       concepts: ["Class-wise", "Formulas", "Mapped labs", "Roadmap"],

@@ -1,9 +1,13 @@
 import { advancedSyllabusLabs } from "./advancedSyllabusLabs";
+import { formulaCategories } from "./formulaLibrary";
+import { mathLabTools } from "./mathLabTools";
 import { geometryConcepts } from "./geometryConcepts";
 import { ncertConcepts, ncertRoute } from "./ncertConcepts";
 import { allNavigatorCards } from "./syllabusNavigator";
+import { theoremCategories } from "./theoremLibrary";
 import { topics } from "./topics";
 import { trigonometryConcepts } from "./trigonometryConcepts";
+import { visualProofsIndex } from "../visual-proofs/data/visualProofsIndex";
 
 export type SiteLink = {
   title: string;
@@ -26,6 +30,16 @@ const baseLinks: SiteLink[] = [
     keywords: ["math universe", "interactive math", "math visualizations", "learning app"],
     details: ["Main dashboard", "Topic navigation", "Visual learning entry point"],
     priority: 1,
+    changeFrequency: "weekly",
+  },
+  {
+    title: "NCERT Dashboard",
+    path: "/ncert",
+    description: "Class 7, Class 10, and Class 12 NCERT visual labs with formula, theorem, visual proof, practice, and QA badges.",
+    category: "NCERT",
+    keywords: ["NCERT", "class 7", "class 10", "class 12", "board exam", "textbook", "visual learning", "practice", "formula", "theorem"],
+    details: ["Grade 7", "Class 10", "Class 12", "Coverage dashboard", "Concept route index"],
+    priority: 0.88,
     changeFrequency: "weekly",
   },
   {
@@ -134,6 +148,16 @@ const baseLinks: SiteLink[] = [
     changeFrequency: "yearly",
   },
   {
+    title: "AR Math Lab",
+    path: "/modules/ar-math-lab",
+    description: "Augmented reality, camera preview, WebXR-ready 3D graphing, geometry solids, coordinates, measurements, and AR math practice.",
+    category: "3D / AR / XR",
+    keywords: ["AR Math Lab", "augmented reality", "mixed reality", "XR", "WebXR", "camera math", "3D graphs", "solids", "measurement"],
+    details: ["Camera preview", "3D graph overlay", "WebXR support", "Geometry solids", "AR practice"],
+    priority: 0.84,
+    changeFrequency: "weekly",
+  },
+  {
     title: "Statistics and Probability",
     path: "/probability-statistics",
     description: "Explore native distributions, variation, regression, probability, and uncertainty labs.",
@@ -184,10 +208,81 @@ const ncertLinks: SiteLink[] = ncertConcepts.map((concept) => ({
   path: ncertRoute(concept.id),
   description: concept.summary,
   category: `NCERT ${concept.classLevel}`,
-  keywords: ["NCERT math", concept.classLevel, concept.unit, concept.title, concept.formula],
-  details: [concept.classLevel, concept.unit, concept.formula],
+  keywords: [
+    "NCERT math",
+    "textbook",
+    "visual lab",
+    "practice",
+    "formula",
+    "theorem",
+    "board exam",
+    concept.classLevel,
+    concept.unit,
+    concept.title,
+    concept.formula,
+    concept.visual,
+    ...concept.outcomes,
+    ...concept.tasks,
+  ],
+  details: [concept.classLevel, concept.unit, concept.formula, ...concept.outcomes],
   priority: 0.62,
   changeFrequency: "monthly",
+}));
+
+const mathLabToolLinks: SiteLink[] = mathLabTools.map((tool) => ({
+  title: tool.title,
+  path: tool.route,
+  description: tool.description,
+  category: "Math Lab",
+  keywords: ["math lab", tool.title, tool.difficulty, ...tool.useCases],
+  details: [tool.difficulty, ...tool.useCases],
+  priority: 0.7,
+  changeFrequency: "monthly",
+}));
+
+const formulaLinks: SiteLink[] = formulaCategories.map((category) => ({
+  title: `${category.title} Formulas`,
+  path: `/formulas/${category.id}`,
+  description: category.description,
+  category: "Formula Library",
+  keywords: ["formula", "formula library", category.title, category.id, ...category.formulas.flatMap((formula) => [formula.title, formula.formula])],
+  details: category.formulas.slice(0, 12).map((formula) => formula.title),
+  priority: 0.64,
+  changeFrequency: "monthly",
+}));
+
+const theoremLinks: SiteLink[] = theoremCategories.flatMap((category) => [
+  {
+    title: `${category.title} Theorems`,
+    path: `/theorems/${category.id}`,
+    description: category.description,
+    category: "Theorem Library",
+    keywords: ["theorem", "proof", category.title, category.id, ...category.theorems.map((theorem) => theorem.title)],
+    details: category.theorems.slice(0, 12).map((theorem) => theorem.title),
+    priority: 0.64,
+    changeFrequency: "monthly" as const,
+  },
+  ...category.theorems.map((theorem) => ({
+    title: theorem.title,
+    path: `/theorems/${category.id}/${theorem.slug}`,
+    description: theorem.statement,
+    category: `Theorem: ${category.title}`,
+    keywords: ["theorem", "proof", category.title, theorem.title, theorem.subtopic, theorem.statement, ...theorem.prerequisites],
+    details: [theorem.subtopic, theorem.statement],
+    priority: 0.54,
+    changeFrequency: "monthly" as const,
+  })),
+]);
+
+const visualProofLinks: SiteLink[] = visualProofsIndex.map((proof) => ({
+  title: proof.title,
+  path: proof.route,
+  description: proof.shortDescription,
+  category: `Visual Proof: ${proof.categorySlug}`,
+  keywords: ["visual proof", "proof", proof.categorySlug, proof.title, proof.difficulty, ...proof.tags, ...proof.prerequisites, ...proof.learningOutcomes],
+  details: [proof.categorySlug, proof.difficulty, proof.estimatedTime, ...proof.learningOutcomes],
+  priority: proof.status === "available" ? 0.62 : 0.42,
+  changeFrequency: "monthly" as const,
 }));
 
 const advancedLabLinks: SiteLink[] = advancedSyllabusLabs.map((lab) => ({
@@ -217,10 +312,14 @@ const visualizationLinks: SiteLink[] = Array.from(new Map(allNavigatorCards
 export const siteLinks: SiteLink[] = [
   ...baseLinks,
   ...topicLinks,
+  ...mathLabToolLinks,
   ...visualizationLinks,
   ...geometryLinks,
   ...trigonometryLinks,
   ...ncertLinks,
+  ...formulaLinks,
+  ...theoremLinks,
+  ...visualProofLinks,
   ...advancedLabLinks,
 ];
 

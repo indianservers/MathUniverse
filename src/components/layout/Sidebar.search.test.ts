@@ -10,11 +10,25 @@ function searchableTitles(query: string) {
   return filterNavItems(mathTopics.items, terms, mathTopics.title).flatMap(flattenTitles);
 }
 
+function searchableTitlesInAllSections(query: string) {
+  const terms = normalizeSearchText(query).split(" ").filter(Boolean);
+  return navSections.flatMap((section) => filterNavItems(section.items, terms, section.title).flatMap(flattenTitles));
+}
+
 function flattenTitles(item: NavItem): string[] {
   return [item.title, ...(item.children ?? []).flatMap(flattenTitles)];
 }
 
 describe("Sidebar menu search", () => {
+  it("finds NCERT and AR/XR first-class dashboard entries", () => {
+    const home = navSections.find((section) => section.title === "Home");
+    expect(home).toBeDefined();
+    const terms = normalizeSearchText("ncert class 12").split(" ").filter(Boolean);
+    const titles = filterNavItems(home?.items ?? [], terms, home?.title ?? "Home").flatMap(flattenTitles);
+    expect(titles).toContain("NCERT Dashboard");
+    expect(searchableTitlesInAllSections("ar xr webxr")).toContain("AR Math Lab");
+  });
+
   it.each([
     "hcf",
     "H.C.F",

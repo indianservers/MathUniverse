@@ -53,6 +53,7 @@ const MatrixOperations = lazy(() => import("./pages/MatrixOperations"));
 const MatrixOperationsSandbox = lazy(() => import("./pages/MatrixOperationsSandbox"));
 const MatrixTransformationsVisualizerPage = lazy(() => import("./pages/MatrixTransformationsVisualizerPage"));
 const NCERTConceptPage = lazy(() => import("./pages/NCERTConceptPage"));
+const NCERTDashboardPage = lazy(() => import("./pages/NCERTDashboardPage"));
 const NumberSystems = lazy(() => import("./pages/NumberSystems"));
 const Olympyard = lazy(() => import("./pages/Olympyard"));
 const OlympyardMockTest = lazy(() => import("./pages/OlympyardMockTest"));
@@ -222,6 +223,7 @@ export default function App() {
             <Route path="math/fourier-series" element={<FourierSeriesVisualizerPage />} />
             <Route path="math/permutations-combinations" element={<PermutationsCombinationsVisualizer />} />
             <Route path="math/:visualizationId" element={<MathVisualizationPage />} />
+            <Route path="ncert" element={<NCERTDashboardPage />} />
             <Route path="ncert/:conceptId" element={<NCERTConceptPage />} />
             <Route path="syllabus-visual/:topicId" element={<BoardSyllabusVisualizer />} />
             <Route path="syllabus-visual-v2/:slug" element={<SyllabusVisualPage />} />

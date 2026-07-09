@@ -16,7 +16,7 @@ describe("Visual Proofs phase seven trigonometry completion", () => {
       const proof = getVisualProof(categorySlug, proofSlug);
       expect(proof?.route).toBe(`/visual-proofs/${categorySlug}/${proofSlug}`);
       expect(proof?.proofUpgradeStatus).toBe("phase-upgraded");
-      expect(proof?.proofLearningModel).toBe("measurement-scene");
+      expect(["measurement-scene", "angle-model"]).toContain(proof?.proofLearningModel);
       expect(proof?.misconceptionCheckCount).toBeGreaterThanOrEqual(1);
       expect(proof?.hasKeyboardControls).toBe(true);
       expect(proof?.hasStateInspector).toBe(true);
@@ -26,11 +26,11 @@ describe("Visual Proofs phase seven trigonometry completion", () => {
     }
   });
 
-  it("confirms all fifteen trigonometry routes are now phase-upgraded and config-backed", () => {
+  it("confirms all sixteen trigonometry routes are now phase-upgraded and config-backed", () => {
     const trigProofs = getVisualProofsByCategory("trigonometry").filter((proof) => proof.status === "available");
-    expect(trigProofs).toHaveLength(15);
-    expect(allTrigRouteSlugs).toHaveLength(15);
-    expect(allTrigConfigs).toHaveLength(15);
+    expect(trigProofs).toHaveLength(16);
+    expect(allTrigRouteSlugs).toHaveLength(16);
+    expect(allTrigConfigs).toHaveLength(16);
     for (const proof of trigProofs) {
       expect(proof.proofUpgradeStatus).toBe("phase-upgraded");
       expect(proof.proofLearningModel).toBeTruthy();

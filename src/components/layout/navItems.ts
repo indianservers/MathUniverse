@@ -101,6 +101,12 @@ export const navSections: NavSection[] = [
       { title: "CAS, Tables & Data", route: "/workspace/data", icon: "LineChart" },
       { title: "Teacher Studio", route: "/workspace/teach", icon: "Presentation" },
       { title: "Dashboard", route: "/", icon: "Home" },
+      {
+        title: "NCERT Dashboard",
+        route: "/ncert",
+        icon: "BookOpen",
+        searchTerms: ["ncert", "class 7", "class 10", "class 12", "board exam", "textbook", "visual practice", "formula theorem"],
+      },
       { title: "Syllabus", route: "/syllabus", icon: "BookOpen" },
       {
         title: "Formulas",
@@ -695,6 +701,7 @@ export const legacyNavItems = [
   { title: "Concept Graph", route: "/concept-graph", icon: Grid3X3 },
   { title: "Daily Challenge", route: "/daily-challenge", icon: CircleHelp },
   { title: "Worked Examples", route: "/worked-examples", icon: BookOpen },
+  { title: "NCERT Dashboard", route: "/ncert", icon: BookOpen },
   { title: "Syllabus", route: "/syllabus", icon: BookOpen },
   { title: "Formulas", route: "/formulas", icon: Sigma },
   { title: "Theorems", route: "/theorems", icon: BookOpen },

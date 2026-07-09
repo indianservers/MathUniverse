@@ -41,6 +41,22 @@ export const arcLengthFormulaPhaseSevenConfig: PhaseTwoProofConfig = {
   renderVisual: ArcLengthFormulaVisual,
 };
 
+export const lawOfCosinesCircleConstructionPhaseSevenConfig: PhaseTwoProofConfig = {
+  steps: ["Draw triangle ABC", "Place the circle through the included-angle joint", "Extend the baseline by a", "Extend the side line to show a - c", "Compare the auxiliary right triangle", "Connect the chord relation to the cosine rule"].map(step),
+  parameters: [{ id: "theta", label: "Included angle theta", min: 25, max: 120, defaultValue: 62, step: 1, unit: "deg" }, { id: "radius", label: "Circle radius", min: 3, max: 7, defaultValue: 5, step: 0.5 }],
+  toggles: [labelsToggle],
+  olympyardRoute: trigRoute,
+  prediction: { question: "What part of the construction changes when theta changes?", correctFeedback: "The projected chord length changes with cos(theta).", incorrectFeedback: "Watch the chord/projection labels tied to theta.", revealAfterAnswer: true, options: [{ id: "projection", label: "The projection/chord length changes", correct: true, feedback: "Correct." }, { id: "base", label: "Only the base label changes", feedback: "The geometry changes because cos(theta) changes the projection." }] },
+  misconception: { question: "Is c always found by a^2 + b^2?", explanation: "No. That is the right-triangle case. The correction term 2ab cos(theta) handles non-right included angles.", visualHint: "Compare the circle chord and cosine correction labels.", options: [{ id: "correction", label: "No, the cosine correction is needed.", correct: true, feedback: "Correct." }, { id: "pythagoras-only", label: "Yes, Pythagoras is enough.", feedback: "Only when theta is 90 degrees does cos(theta) become 0." }] },
+  formulaTokens: () => [{ id: "c2", label: "c^2", visualLabel: "opposite side squared" }, { id: "a2", label: "a^2", visualLabel: "base square" }, { id: "b2", label: "b^2", visualLabel: "side square" }, { id: "correction", label: "2ab cos(theta)", visualLabel: "projection correction" }],
+  formula: ({ theta, radius }) => `c^2 = a^2 + b^2 - 2ab cos(theta); theta = ${round(theta, 1)} deg, circle radius = ${radius}`,
+  explanation: () => "The circle construction exposes the projection term that corrects Pythagoras for a non-right included angle.",
+  liveValues: ({ theta, radius }) => [{ id: "theta", label: "theta", value: round(theta, 1), unit: "deg" }, { id: "cos", label: "cos theta", value: round(Math.cos(degToRad(theta))) }, { id: "radius", label: "circle radius", value: radius }, { id: "correction", label: "correction factor", value: round(2 * radius * Math.cos(degToRad(theta))) }],
+  invariants: () => [{ id: "cosine-rule", label: "Cosine rule balances all side lengths", holds: true, explanation: "The correction term disappears only at a right angle." }],
+  assumptions: ["The construction treats theta as the included angle between a and b.", "The visual labels keep side names consistent with the cosine rule."],
+  renderVisual: ArcLengthFormulaVisual,
+};
+
 function step(title: string, index: number) {
   return { id: `s${index}`, title, description: title, focusLabel: index < 2 ? "setup" : index < 5 ? "measure" : "conclusion" };
 }
@@ -48,6 +64,7 @@ function step(title: string, index: number) {
 export const phaseSevenRouteSlugs = [
   ["trigonometry", "arc-length-formula"],
   ["trigonometry", "small-angle-approximation"],
+  ["trigonometry", "law-of-cosines-circle-construction"],
 ] as const;
 
-export const phaseSevenConfigs = [arcLengthFormulaPhaseSevenConfig, smallAngleApproximationPhaseSevenConfig];
+export const phaseSevenConfigs = [arcLengthFormulaPhaseSevenConfig, smallAngleApproximationPhaseSevenConfig, lawOfCosinesCircleConstructionPhaseSevenConfig];
