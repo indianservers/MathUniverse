@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 export type CombinatoricsState = {
   items: string[];
@@ -48,6 +48,6 @@ export const useCombinatoricsStore = create<CombinatoricsState>()(
       setSelectedTerm: (selectedTerm) => set({ selectedTerm }),
       randomizeChallenge: () => set({ challengeSeed: Date.now() }),
     }),
-    { name: "math-universe-combinatorics-session" }
+    { name: "math-universe-combinatorics-session", storage: createJSONStorage(() => localStorage) }
   )
 );

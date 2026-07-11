@@ -19,9 +19,10 @@ export default function SectionCard({ id, title, description, children, classNam
   const [fullscreen, setFullscreen] = useState(false);
   const [fullscreenOffset, setFullscreenOffset] = useState({ x: 0, y: 0 });
   const spotlight = tone === "spotlight";
+  const fullscreenEnabled = allowFullscreen || isFullscreenCandidate(title, description);
 
   useEffect(() => {
-    if (!allowFullscreen) return undefined;
+    if (!fullscreenEnabled) return undefined;
     const handleFullscreenChange = () => {
       const isNativeFullscreen = document.fullscreenElement === sectionRef.current;
       setFullscreen(isNativeFullscreen);
@@ -29,7 +30,7 @@ export default function SectionCard({ id, title, description, children, classNam
     };
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
-  }, [allowFullscreen]);
+  }, [fullscreenEnabled]);
 
   useEffect(() => {
     if (!fullscreen) return undefined;
@@ -53,7 +54,7 @@ export default function SectionCard({ id, title, description, children, classNam
   }, [fullscreen, fullscreenOffset.x, fullscreenOffset.y]);
 
   async function toggleFullscreen() {
-    if (!allowFullscreen || !sectionRef.current) return;
+    if (!fullscreenEnabled || !sectionRef.current) return;
     if (fullscreen) {
       if (document.fullscreenElement === sectionRef.current) await document.exitFullscreen();
       setFullscreen(false);
@@ -70,7 +71,7 @@ export default function SectionCard({ id, title, description, children, classNam
     }
   }
 
-  const fullscreenButton = allowFullscreen ? (
+  const fullscreenButton = fullscreenEnabled ? (
     <button
       type="button"
       className="tool-button h-9 w-9 shrink-0 justify-center p-0"
@@ -86,6 +87,7 @@ export default function SectionCard({ id, title, description, children, classNam
     <section
       ref={sectionRef}
       id={id}
+      data-fullscreen={fullscreen ? "true" : "false"}
       style={fullscreen ? { position: "fixed", inset: 0, zIndex: 80, transform: `translate(${fullscreenOffset.x}px, ${fullscreenOffset.y}px)` } : undefined}
       className={clsx(
         "group/section relative min-w-0 max-w-full overflow-hidden rounded-xl p-3",
@@ -111,4 +113,11 @@ export default function SectionCard({ id, title, description, children, classNam
       {children}
     </section>
   );
+}
+
+function isFullscreenCandidate(title?: string, description?: string) {
+  const text = `${title ?? ""} ${description ?? ""}`.toLowerCase();
+  if (!text.trim()) return false;
+  if (/\b(resources|checklist|dictionary|showcase|library|bank|menu|dashboard|summary|notes?)\b/.test(text)) return false;
+  return /\b(visualization|visualizer|visual check|visual cue|interactive visualization|graph|plot|canvas|pane|simulation|model|diagram|surface|3d|2d)\b/.test(text);
 }

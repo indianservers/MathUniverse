@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 import type { InferenceRule, PredicateScenario } from "./logicEngine";
 
 export type LogicMode = "student" | "teacher";
@@ -68,6 +68,7 @@ export const useLogicStore = create<LogicSessionState>()(
     }),
     {
       name: "math-universe-mathematical-logic-session",
+      storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         expression: state.expression,
         inferenceRule: state.inferenceRule,

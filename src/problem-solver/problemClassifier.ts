@@ -90,10 +90,19 @@ export function classifyProblem(input: string): ProblemClassification {
 
   const normalizedText = stripPromptPrefix(normalizeText(trimmed));
 
+  if (isFractalPrompt(normalizedText)) {
+    return classification("fractal", rawInput, normalizedText, {
+      confidence: "high",
+      expression: normalizedText,
+      reason: "Detected Sierpinski carpet or fractal iteration vocabulary.",
+      assumptions: ["The Sierpinski carpet starts at n = 0 with one full square.", "Each iteration removes the middle ninth from every retained square."],
+    });
+  }
+
   const unsupportedAdvanced = unsupportedAdvancedTopic(normalizedText);
   if (unsupportedAdvanced) {
     return unsupported(rawInput, unsupportedAdvanced, "high", [
-      "This topic is recognized but is outside the certified Phase 1 problem-solver scope.",
+      "This topic is recognized but is outside the solver's certified automatic-solving scope.",
       "No deterministic answer will be generated for this input.",
     ]);
   }
@@ -103,7 +112,7 @@ export function classifyProblem(input: string): ProblemClassification {
       confidence: "high",
       expression: stripMatrixCommand(normalizedText),
       reason: "Detected matrix notation or a matrix operation keyword.",
-      assumptions: ["Matrix operations are detected but not solved in Phase 2."],
+      assumptions: ["Matrix operations are detected; use the matrix workspace when full row-operation detail is needed."],
     });
   }
 
@@ -136,7 +145,7 @@ export function classifyProblem(input: string): ProblemClassification {
       confidence: "high",
       expression: stats.expression,
       reason: stats.reason,
-      assumptions: ["Statistics operations are detected but not solved in Phase 2."],
+      assumptions: ["Statistics operations are detected; supported descriptive measures will be computed from the supplied data."],
     });
   }
 
@@ -160,7 +169,7 @@ export function classifyProblem(input: string): ProblemClassification {
     });
   }
 
-  return unsupported(rawInput, "Input did not match a supported Phase 2 intent.", "low", ["Try an equation, explicit command, number list, or matrix expression."]);
+  return unsupported(rawInput, "Input did not match a currently supported solver intent.", "low", ["Try an equation, explicit command, number list, or matrix expression."]);
 }
 
 function classifyEquation(rawInput: string, equation: string): ProblemClassification {
@@ -323,6 +332,10 @@ function isPercentChangePrompt(value: string) {
   const hasPercentChangeWords = /\b(?:percent|percentage)?\s*(?:increase|decrease|change)\b/i.test(value);
   const hasOldToNewValues = /\b(?:from|old|original|initial)\s+-?\d+(?:\.\d+)?\s+\b(?:to|new|final)\s+-?\d+(?:\.\d+)?\b/i.test(value);
   return hasPercentChangeWords && hasOldToNewValues;
+}
+
+function isFractalPrompt(text: string) {
+  return /sierpinski|fractal|retained squares|removed squares|self[- ]similar|side scale|carpet iteration/.test(text);
 }
 
 function unsupportedAdvancedTopic(value: string) {
@@ -530,11 +543,11 @@ function polynomialDegree(value: string, variable: string) {
 function operationAssumptions(kind: ProblemIntentKind, variable?: string) {
   if (kind === "derivative" || kind === "integral" || kind === "limit") return [`Use ${variable ?? "x"} as the variable unless the input states otherwise.`];
   if (kind === "evaluate") return ["Evaluate the expression without solving for a variable."];
-  return [`${labelForKind(kind)} is detected but full solving is deferred to a later phase.`];
+  return [`${labelForKind(kind)} is detected; the solver will use the current supported symbolic routine and show checkable steps when available.`];
 }
 
 function trigAssumptions(value: string) {
-  return /^(sin|cos|tan)\s*\(/i.test(value) ? ["Trigonometric angle mode is not evaluated in Phase 2."] : ["Evaluate the expression directly; no variable solving is assumed."];
+  return /^(sin|cos|tan)\s*\(/i.test(value) ? ["Trigonometric inputs use the solver's current angle-mode convention; verify degrees or radians when the context matters."] : ["Evaluate the expression directly; no variable solving is assumed."];
 }
 
 function labelForKind(kind: ProblemIntentKind) {

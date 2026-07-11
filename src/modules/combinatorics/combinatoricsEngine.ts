@@ -137,11 +137,87 @@ export function inclusionExclusion(a: number, b: number, c: number, ab: number, 
   };
 }
 
+export function pigeonholeLoad(objects: number, boxes: number) {
+  if (boxes <= 0) return 0;
+  return Math.ceil(objects / boxes);
+}
+
+export function derangements(n: number) {
+  if (n < 0) return 0n;
+  if (n === 0) return 1n;
+  if (n === 1) return 0n;
+  let previousPrevious = 1n;
+  let previous = 0n;
+  for (let value = 2; value <= n; value += 1) {
+    const current = BigInt(value - 1) * (previous + previousPrevious);
+    previousPrevious = previous;
+    previous = current;
+  }
+  return previous;
+}
+
+export function catalanNumber(n: number) {
+  if (n < 0) return 0n;
+  return combinations(2 * n, n) / BigInt(n + 1);
+}
+
+export function stirlingSecondKind(n: number, k: number) {
+  if (n < 0 || k < 0 || k > n) return 0n;
+  const table = Array.from({ length: n + 1 }, () => Array<bigint>(k + 1).fill(0n));
+  table[0][0] = 1n;
+  for (let row = 1; row <= n; row += 1) {
+    for (let col = 1; col <= Math.min(row, k); col += 1) {
+      table[row][col] = BigInt(col) * table[row - 1][col] + table[row - 1][col - 1];
+    }
+  }
+  return table[n][k];
+}
+
+export function bellNumber(n: number) {
+  let total = 0n;
+  for (let k = 0; k <= n; k += 1) total += stirlingSecondKind(n, k);
+  return total;
+}
+
+export function integerPartitions(n: number, limit = 80) {
+  const results: number[][] = [];
+  const visit = (remaining: number, maxPart: number, parts: number[]) => {
+    if (results.length >= limit) return;
+    if (remaining === 0) {
+      results.push(parts);
+      return;
+    }
+    for (let part = Math.min(remaining, maxPart); part >= 1; part -= 1) {
+      visit(remaining - part, part, [...parts, part]);
+    }
+  };
+  visit(Math.max(0, n), Math.max(0, n), []);
+  return results;
+}
+
+export function linearRecurrenceSequence(a0: number, a1: number, p: number, q: number, terms: number) {
+  const values = [a0, a1].slice(0, Math.max(1, terms));
+  while (values.length < terms) {
+    const next = p * values[values.length - 1] + q * values[values.length - 2];
+    values.push(next);
+  }
+  return values;
+}
+
+export function secondOrderGeneratingFunction(a0: number, a1: number, p: number, q: number) {
+  const numeratorX = a1 - p * a0;
+  const signQ = q >= 0 ? "-" : "+";
+  return `G(x)=(${a0}${numeratorX >= 0 ? "+" : ""}${numeratorX}x)/(1-${p}x${signQ}${Math.abs(q)}x^2)`;
+}
+
 export function worksheetSummary(n: number, r: number) {
   return [
     `Permutation without repetition: P(${n},${r}) = ${permutations(n, r).toString()}`,
     `Permutation with repetition: ${n}^${r} = ${permutations(n, r, true).toString()}`,
     `Combination without repetition: C(${n},${r}) = ${combinations(n, r).toString()}`,
     `Combination with repetition: C(${n + r - 1},${r}) = ${combinations(n, r, true).toString()}`,
+    `Derangements: !${n} = ${derangements(n).toString()}`,
+    `Catalan number: C_${r} = ${catalanNumber(r).toString()}`,
+    `Pigeonhole load: ${n} objects in ${Math.max(1, r)} boxes forces at least ${pigeonholeLoad(n, Math.max(1, r))} in one box.`,
   ].join("\n");
 }

@@ -8,7 +8,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Advanced",
     targetAudience: "School to Engineering Foundation",
     iconName: "Shapes",
-    proofCount: 12,
+    proofCount: 14,
     status: "available",
   },
   {
@@ -88,7 +88,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Advanced",
     targetAudience: "High school, engineering entrance preparation, first-year engineering mathematics",
     iconName: "ListOrdered",
-    proofCount: 15,
+    proofCount: 17,
     status: "available",
   },
   {

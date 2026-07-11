@@ -12,10 +12,15 @@ import {
   gotoOk,
 } from "./visualProofsBrowserAssertions";
 
-const categoryRoutes = visualProofCategories.map((category) => ({
-  label: category.title,
-  route: `/visual-proofs/${category.slug}`,
-}));
+const categoryRoutes = visualProofCategories.map((category) => {
+  const proofs = visualProofsIndex.filter((proof) => proof.categorySlug === category.slug);
+  return {
+    label: category.title,
+    route: `/visual-proofs/${category.slug}`,
+    availableProofCount: proofs.filter((proof) => proof.status === "available").length,
+    plannedProofCount: proofs.filter((proof) => proof.status === "coming-soon").length,
+  };
+});
 
 const representativeRoutes = visualProofsRepresentativeSmokeRoutes.map((route) => ({
   label: route.split("/").slice(-2).join("/"),
@@ -56,16 +61,24 @@ test.describe("Visual Proofs browser smoke", () => {
     await expect(page.locator("body")).not.toContainText("Internal server error");
   });
 
-  test("loads every Visual Proofs category page", async ({ page }) => {
-    test.setTimeout(60_000);
-
-    for (const { label, route } of categoryRoutes) {
+  for (const { availableProofCount, label, plannedProofCount, route } of categoryRoutes) {
+    test(`loads Visual Proofs category page: ${label}`, async ({ page }) => {
       await gotoOk(page, route);
 
       await expect(page.getByRole("heading", { name: label, exact: true })).toBeVisible();
+      await expectNoBrowserErrorSurface(page);
       await expect(page.locator("body")).not.toContainText("Proof not found");
-    }
-  });
+      await expect(page.getByRole("heading", { level: 2 }).first()).toBeVisible();
+
+      if (availableProofCount > 0) {
+        await expect(page.getByRole("link", { name: /Open Proof/i }).first()).toBeVisible();
+      }
+
+      if (plannedProofCount > 0 && (await page.getByRole("heading", { name: "Planned proofs", exact: true }).count()) > 0) {
+        await expect(page.getByRole("link", { name: /Open Roadmap/i }).first()).toBeVisible();
+      }
+    });
+  }
 
   test("renders one representative proof shell and nonblank visual per category", async ({ page }) => {
     test.setTimeout(180_000);
@@ -79,18 +92,18 @@ test.describe("Visual Proofs browser smoke", () => {
   });
 
   for (const viewport of mobileViewports) {
-    test(`mobile dense-route smoke has no horizontal overflow at ${viewport.width}px`, async ({ page }) => {
-      test.setTimeout(90_000);
-      await page.setViewportSize(viewport);
+    for (const { label, route } of denseMobileRoutes) {
+      test(`mobile dense-route smoke has no horizontal overflow at ${viewport.width}px: ${label}`, async ({ page }) => {
+        test.setTimeout(45_000);
+        await page.setViewportSize(viewport);
 
-      for (const { route } of denseMobileRoutes) {
         await gotoOk(page, route);
         await expectProofShell(page, { expectSnapshotExport: false });
         await expectNonblankPrimaryVisual(page);
 
         const horizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
-        expect(horizontalOverflow, route).toBeLessThanOrEqual(4);
-      }
-    });
+        expect(horizontalOverflow, `${route} at ${viewport.width}px`).toBeLessThanOrEqual(4);
+      });
+    }
   }
 });

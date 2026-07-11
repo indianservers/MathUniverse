@@ -19,7 +19,7 @@ export default function VisualProofCategoryPage() {
 
   const proofs = getVisualProofsByCategory(category.slug);
   const availableProofs = proofs.filter((proof) => proof.status === "available");
-  const comingSoonProofs = proofs.filter((proof) => proof.status === "coming-soon");
+  const plannedProofs = proofs.filter((proof) => proof.status === "coming-soon");
   const isGeometry = category.slug === "geometry";
   const isAlgebra = category.slug === "algebraic-identities";
   const isTrigonometry = category.slug === "trigonometry";
@@ -122,7 +122,7 @@ export default function VisualProofCategoryPage() {
       ) : (
         <>
           <ProofSection title="Available proofs" emptyText="No available proofs in this category yet." proofs={availableProofs} />
-          <ProofSection title="Coming-soon proofs" emptyText="No placeholders have been added for this category yet." proofs={comingSoonProofs} />
+          <ProofSection title="Planned proofs" emptyText="No roadmap proof cards are queued for this category yet." proofs={plannedProofs} />
         </>
       )}
     </div>

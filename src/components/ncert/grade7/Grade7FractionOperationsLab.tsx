@@ -37,6 +37,7 @@ export default function Grade7FractionOperationsLab() {
   return (
     <NCERTChapterScaffold
       title="Fraction Operations"
+      conceptId="class-7-fraction-operations"
       subtitle="Compare, simplify, add, subtract, multiply, and divide fractions using area and number-line models."
       formula="for addition/subtraction, use a common denominator"
       presets={presets.map((preset) => preset.label)}

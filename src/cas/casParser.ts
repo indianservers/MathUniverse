@@ -155,7 +155,7 @@ function withResolvedCommand(raw: string, syntax: ParsedCasInput["syntax"], comm
     errors.push(...validation.errors);
     warnings.push(...validation.warnings);
   }
-  if (normalizedName && resolveCasCommandSpec(normalizedName)?.support === "planned") warnings.push(`${normalizedName} is registered but not implemented yet.`);
+  if (normalizedName && resolveCasCommandSpec(normalizedName)?.support === "planned") warnings.push(`${normalizedName} is not available in the current CAS command set.`);
 
   return {
     raw,

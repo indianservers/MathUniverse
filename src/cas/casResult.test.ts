@@ -33,6 +33,14 @@ describe("casResult foundation", () => {
     expect(wrongArity.summary).toContain("Substitute expects");
   });
 
+  it("keeps unavailable CAS commands framed as current product boundaries", () => {
+    const unknown = evaluateCasInput("HyperbolicCompass[triangle]");
+
+    expect(unknown.status).toBe("error");
+    expect(`${unknown.summary} ${unknown.detail} ${unknown.warnings.join(" ")}`).not.toMatch(/not implemented|coming soon|placeholder/i);
+    expect(unknown.summary).toContain("Unknown CAS command");
+  });
+
   it("executes Phase 2 algebra and equation commands through the CAS notebook evaluator", () => {
     const coefficients = evaluateCasInput("Coefficients[3*x^2+2*x+1]");
     const root = evaluateCasInput("Root[x^2-5*x+6]");

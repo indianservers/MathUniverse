@@ -5,6 +5,15 @@ export function normalizePracticeText(value: string) {
 }
 
 export function checkNCERTPracticeAnswer(input: string, question: NCERTPracticeQuestion): NCERTPracticeResult {
+  const commonMistake = question.commonMistakes?.find((mistake) => {
+    if (typeof mistake.answer === "number") {
+      const value = Number(input);
+      return Number.isFinite(value) && Math.abs(value - mistake.answer) <= (question.tolerance ?? 0.001);
+    }
+    return normalizePracticeText(input) === normalizePracticeText(mistake.answer);
+  });
+  if (commonMistake) return { ok: false, message: commonMistake.feedback, matchedCommonMistake: true };
+
   const expected = question.answer;
   if (Array.isArray(expected)) {
     const ok = expected.map(normalizePracticeText).includes(normalizePracticeText(input));
@@ -23,5 +32,6 @@ function result(ok: boolean, question: NCERTPracticeQuestion): NCERTPracticeResu
   return {
     ok,
     message: ok ? `Correct. ${question.explanation}` : question.commonMistake ?? `Not yet. Hint: ${question.hint}`,
+    matchedCommonMistake: false,
   };
 }

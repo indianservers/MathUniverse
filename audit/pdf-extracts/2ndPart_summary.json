@@ -1,0 +1,331 @@
+[
+  {
+    "file": "hegp201.pdf",
+    "pages": 32,
+    "headings": [
+      "1.1 Fractions as Percentages",
+      "FRACTIONS IN",
+      "A B C D",
+      "1.2 Percentage of Some Quantity",
+      "0.5 × 24 = 12"
+    ],
+    "first": "--- PAGE 1 --- 1.1 Fractions as Percentages You might have heard statements like, “Mega Sale — up to 50% off!” or “Hiya scored 83% in her board exams”. Do you know what the symbol ʻ%ʼ means? This symbol is read as per cent. The word ‘per cent’ is derived from the Latin phrase ‘per centum’, meaning ‘by the hundred’ or ‘out of hundred’. So, 25 per cent (25%) means 25 out of every 100 — like 25 people out of 100, 25 rupees out of 100 rupees, or 25 marks out of 100 marks. If we say 50% of some quantity s, it means 50% = 50 × 1 100 × s (50 times the unit fraction of s) = 50 100 × s = 1 2s. Thus, percentages are simply fractions where the denominator is 100. Examples: 20% = 20 100 = 2 10 = 1 5 , 33% = 33 100. We saw that percentages are just fractions. Given any fraction, can we express it as a percentage? Yes, let us see how. Expressing Fractions as Percentages Example 1: Surya wants to use a deep orange colour to capture the sunset. He mixes some red paint and yellow paint to make this colour . The red paint makes up 3 4 of this mixture. What percentage of the colour is made with red? 3 4 is 3 out of every 4. That is, 6 out of every 8 (equivalent fraction). That is, 30 out of every 40. That is, 75 out of every 100. This means 75%. 3 4 = 6 8 = 30 40 = 75 100 FRACTIONS IN DISGUISE1 01_Chapter 1.indd 101_Chapter 1.indd 1 20-12-2025 16:28:4620-12-2025 16:28:46 --- PAGE 2 --- Ganita Prakash | Grade 8 | Part-II 2 Explaining this in a different way: To express 3 4 as a percentage, we need to find its equivalent fraction with 100 as the denominator . Two ways of going ahead are shown below. Method 1 Method 2 3 4 = 3 × 25 4 × 25 = 75 100 = 75% 3 4 = x 100 . 3 4 × 100 = x 100 × 100 [multiply both sides by 100] x = 3 4 × 100 = 75. So, 3 4 can be expressed as 75%. Observe the following bar model diagram showing the equivalence between 3"
+  },
+  {
+    "file": "hegp202.pdf",
+    "pages": 22,
+    "headings": [
+      "2.1 Doubling a Square",
+      "2.2 Halving a Square",
+      "2.3 Hypotenuse of an Isosceles Right Triangle",
+      "1.12 = 1.21",
+      "1.22 = 1.44",
+      "1.32 = 1.69",
+      "1.42 = 1.96",
+      "1.52 = 2.25",
+      "1.412 = 1.9881",
+      "1.422 = 2.0164",
+      "1.4112 = 1.990921",
+      "1.4122 = 1.993744",
+      "1.4132 = 1.996569",
+      "1.4142 = 1.999396",
+      "1.4152 = 2.002225",
+      "2.4 Combining Two Different Squares"
+    ],
+    "first": "--- PAGE 1 --- 2.1 Doubling a Square In Baudhāyana’s Śulba-Sūtra (c. 800 BCE), Baudhāyana considers the following question: How can one construct a square having double the area of a given square? A first guess might be to simply double the length of each side of the square. Will this new square have double the area of the original square? It’s not hard to see that the new square will have area 2 × 2 = 4 times the area of the original square: So how can one make a square that has double the area? Baudhāyana in his Śulba-Sūtra (Verse 1.9) gave an elegant answer to this question: The diagonal of a square produces a square of double the area of the original square. As Baudhāyana says, the key is to construct a square on the diagonal of the original square: THE BAUDHĀYANA- PYTHAGORAS THEOREM2 02_Chapter 2.indd 3302_Chapter 2.indd 33 20-12-2025 5.05.37 PM20-12-2025 5.05.37 PM --- PAGE 2 --- Ganita Prakash | Grade 8 | Part-II 34 Why does the new dotted square have double the area of the original square? In many of the constructions in the Śulba-Sūtra, it is desirable to construct, where needed, what Baudhāyana calls ‘east-west’ and ‘north-south’ lines, i.e., horizontal and vertical lines that are perpendicular to each other. Can you draw some horizontal and vertical lines to see why the new square has double the area of the original square? You could draw some horizontal and vertical lines as shown on the right. Why should the extension of the vertical and horizontal sides of the original square pass through the vertices of the dotted square? [Hint: From the diagonal property of a square, the line that bisects an angle passes through the opposite vertex. Argue why the vertical and horizontal sides of the original square bisect the two angles of the dotted square.] So, the new square has double the area of the original square, because the original square is made up of two small triangles, while the new square is made up of four small triangles. Moreover, all these small tr"
+  },
+  {
+    "file": "hegp203.pdf",
+    "pages": 15,
+    "headings": [
+      "3.1 Proportionality — A Quick Recap",
+      "PROPORTIONAL",
+      "3.2 Ratios in Maps",
+      "3.3 Ratios with More than 2 Terms",
+      "3.4 Dividing a Whole in a Given Ratio",
+      "1.5 × 20 = 30 units of sand, and",
+      "3.5 A Slice of the Pie",
+      "3.6 Inverse Proportions",
+      "1.5 = 2"
+    ],
+    "first": "--- PAGE 1 --- 3.1 Proportionality — A Quick Recap In an earlier chapter , we explored proportional relationships between quantities and we used the ratio notation to represent such relationships. When two or more related quantities change by the same factor , we call that relationship a proportional relationship. For example, idli batter is made by mixing rice and urad dal. The proportion of these two can have regional variations. One of the proportions used is: for 2 cups of rice, we add 1 cup of urad dal. We represent this relationship using the ratio notation 2 : 1. Viswanath made idlis by mixing 6 cups of rice with 3 cups of urad dal, while Puneet made idlis by mixing 4 cups of rice with 2 cups of urad dal. If cooked in the same way, would their idlis taste the same? Viswanath’s mixture can be represented as 6 : 3 and Puneet’s mixture as 4 : 2. Recall that, to verify that these two ratios are proportional, we can use the cross-multiplication method: × × 6 : 3 4 : 2 The two products are the same (12). So, the two ratios are proportional. It is likely that the idlis would taste the same, if all the other ingredients are proportional too! In general, we can say that two ratios a : b and c : d are proportional if a × d = b × c, or a c = b d . PROPORTIONAL REASONING–23 03_Chapter 3.indd 5503_Chapter 3.indd 55 20-12-2025 16:36:2120-12-2025 16:36:21 --- PAGE 2 --- Ganita Prakash | Grade 8 | Part-II 56 3.2 Ratios in Maps Have you noticed that in many maps there is a ratio given, usually in the lower right corner of the map? It usually contains 1 and a very large number , such as 1 : 60,00,000. What does RF 1 : 60,00,000 mean? What does it indicate? Can you guess? A Representative Fraction (RF) is an expression that shows the ratio between a distance on the map and the corresponding actual distance on the ground. For example, if the ratio on a map is 1 : 60,00,000, that means a distance of 1 cm on the map is equivalent to a geographical distance of 60,00,000 cm. Remembe"
+  },
+  {
+    "file": "hegp204.pdf",
+    "pages": 33,
+    "headings": [
+      "4.1 Fractals",
+      "EXPLORING SOME",
+      "GEOMETRIC THEMES",
+      "4.2 Visualising Solids"
+    ],
+    "first": "--- PAGE 1 --- In this chapter , we will explore two geometric themes. We will study fractals which are self-similar shapes. They exhibit the same or similar pattern over and over again — but at smaller and smaller scales. We will then look at different ways of visualising solids. 4.1 Fractals One of the most beautiful examples of a fractal that also occurs in nature is the fern. The fern is seen to have smaller copies of itself as its leaves, and these in turn have even smaller copies of themselves in their sub-leaves, and so on! Similar phenomena of self-similarity occur in trees (where a trunk has limbs, and a limb has branches, and the branches have branchlets, and so on), clouds, coastlines, mountains, lightning, and many other objects in nature. Other mathematical fractals can also be very beautiful. We will explore some of them here. Sierpinski Carpet The Polish mathematician Sierpinski discovered a type of fractal known as the Sierpinski Carpet. It is made by taking a square, breaking it into 9 smaller squares, and then removing the central square (see the figure below); the same procedure is then repeated on the remaining 8 squares, and so on. One then sees the same pattern at smaller and smaller scales. Step 0 Step 1 Step 2 . . . EXPLORING SOME GEOMETRIC THEMES 4 Fern 04_Chapter 4.indd 7004_Chapter 4.indd 70 20-12-2025 16:43:3920-12-2025 16:43:39 --- PAGE 2 --- 71 Exploring Some Geometric Themes Sierpinski Carpet Draw the initial few steps (at least till Step 2) of the shape sequence that leads to the Sierpinski Carpet. By its construction, each step in the sequence has (i) squares of the same size that remain in the figure, and the size of these squares becomes smaller and smaller as the step number increases, and (ii) square holes that are formed by removing square pieces. Do you see any pattern in the number of holes and squares that remain at each step? Let R n represent the number of remaining squares at the nth step, and Hn represent the number of ho"
+  },
+  {
+    "file": "hegp205.pdf",
+    "pages": 32,
+    "headings": [
+      "5.1 The Balancing Act",
+      "TALES BY DOTS",
+      "25.6 = z",
+      "5.2 Visualising and Interpreting Data"
+    ],
+    "first": "--- PAGE 1 --- 5.1 The Balancing Act Last year , we learnt about the mean and median. Recall that the mean of some data is the sum of all the values divided by the number of values in the data. The median is the middle value when the data is sorted. We shall try to understand the mean and median from a different perspective and see how the mean behaves with changing data. Consider any 2 numbers. Find their average/arithmetic mean. Repeat this by taking other pairs. What do you observe? For example, let the two numbers be 3 and 7. Their average is 3 + 7 2 = 5. Taking another pair of numbers, say 8 and 9, their average is 8 + 9 2 = 8.5. Visualising these as dot plots we get Notice that the mean is exactly halfway between the two numbers. We have learnt earlier that the arithmetic mean is a measure of central tendency and represents the ‘centre’ of the data. Let us see how the mean represents the ‘centre’ in the case of 3 numbers. Calculate and mark the mean of each collection of data below. TALES BY DOTS AND LINES5 05_Chapter 5.indd 10305_Chapter 5.indd 103 20-12-2025 16:48:5620-12-2025 16:48:56 --- PAGE 2 --- Ganita Prakash | Grade 8 | Part-II 104 Can you explain how the mean is the centre of each collection? Mark the mean for the collections below. Can you explain how the mean is the centre of each collection? Is the mean the midpoint of the two endpoints/extremes of the data? It is not always so. Instead, the total distances are equal on both the sides of the mean. This is illustrated through the following dot plots. Verify that this holds for all the collections of data shown earlier . Can there be more than one such ‘centre’? In other words, is there any other value such that the sum of the distances to the values lower than it and the values higher than it will still be equal? In the case of the collection 10, 10, 11, and 17 whose mean is 12, suppose there is a different centre larger than 12. Clearly, all the distances on the LHS will increase and the distances"
+  },
+  {
+    "file": "hegp206.pdf",
+    "pages": 13,
+    "headings": [
+      "6.1 Algebra Play",
+      "6.2 Thinking about ‘Think of a Number’ Tricks",
+      "6.3 Number Pyramids",
+      "6.4 Fun with Grids",
+      "SUN MON TUE WED THU FRI SAT",
+      "6.5 The Largest Product",
+      "6.6 Decoding Divisibility Tricks"
+    ],
+    "first": "--- PAGE 1 --- 6.1 Algebra Play Over the last two years, we have used algebra to model different situations. We have learned how to solve algebraic equations and find the values of unknown letter-numbers. Let’s now have some fun with algebra. We shall investigate tricks and puzzles, and explain why they work using algebra. We will also see how to invent new tricks and puzzles to entertain others. 6.2 Thinking about ‘Think of a Number’ Tricks In Grade 7, we learned about ‘Think of a Number’ tricks, like this one. 1. Think of a number . 2. Double it. 3. Add four . 4. Divide by two. 5. Subtract the original number you thought of. I predict you get 2. Am I right? Try it out with different starting numbers. Do you always end up with the same value, 2? Why? We saw that we can understand such tricks through algebra. 1. Think of a number: x 2. Double it: 2x 3. Add four: 2x + 4 4. Divide by 2: x + 2 5. Subtract the original number you thought of: x + 2 – x = 2 Therefore, no matter what the starting number is, the end result will always be 2! ALGEBRA PLAY6 06_Chapter 6.indd 13506_Chapter 6.indd 135 20-12-2025 16:51:4120-12-2025 16:51:41 --- PAGE 2 --- Ganita Prakash | Grade 8 | Part-II 136 How would you change this game to make the final answer 3? What about 5? Can you come up with more complicated steps that always lead to the same final value? Let us now look at a different trick of this type. Think of a date. 26/01 1 × 5 = 5 5 + 6 = 11 44 + 9 = 53 53 × 5 = 265 265 + 26 = 291. 11 × 4 = 44 Multiply the month by 5. Add 6. Add 9. Add the day. Tell me your answer . You thought of our Republic Day, 26/01. Multiply by 4. Multiply by 5. How did Shubham figure out the date chosen by Mukta? • Let the month be M and the day be D. • Multiply M by 5: 5M 06_Chapter 6.indd 13606_Chapter 6.indd 136 20-12-2025 16:51:4320-12-2025 16:51:43 --- PAGE 3 --- Algebra Play 137 • Add 6: 5M + 6 • Multiply by 4: 20M + 24 • Add 9: 20M + 33 • Multiply by 5: 100M + 165 • Add the day: 100M + 165 + D Mukt"
+  },
+  {
+    "file": "hegp207.pdf",
+    "pages": 29,
+    "headings": [
+      "7.1 Rectangle and Squares",
+      "3.2 cm"
+    ],
+    "first": "--- PAGE 1 --- 7 7.1 Rectangle and Squares How many different ways can you divide a square into 4 parts of equal area? One can actually think of infinitely many such ways! Consider a division, such as — and alter each part as follows. In each part, the area is compressed along one edge and expanded along another edge. If both the compression and expansion are of the same magnitude, then all 4 parts still have the same area! Try to think of different creative ways to divide a square into 4 parts of equal area. Math Talk AREA 07_Chapter 7.indd 14807_Chapter 7.indd 148 20-12-2025 16:59:5420-12-2025 16:59:54 --- PAGE 2 --- Area 149 7 You might have seen the rangoli art form, in which regions of different shapes are beautifully coloured using rangoli powder . Which of these rectangles requires more rangoli powder to be coloured, if the colouring is done evenly? We can answer this by counting the number of non-overlapping unit squares (squares of sidelength 1 cm in this case) that can be packed into each of the rectangles. Clearly, the rectangle having sidelengths 7 cm and 4 cm contains 7 × 4 = 28 unit squares, and the rectangle having sidelengths 8 cm and 3 cm contains 8 × 3 = 24 unit squares. Thus, the rectangle of sidelengths 7 cm and 4 cm requires more powder to be coloured. Recall that we measure the area of a region by finding the number of unit squares (which can also be a fraction) whose area equals that of the given region. We have seen that the number of unit squares contained in a rectangle is given by the product of its length and width — Area of a rectangle = length × width. The areas of the rectangles as seen in the previous problem are generally written as 28 sq. cm and 24 sq. cm, or as 28 cm2 and 24 cm2. 4 cm 7 cm 3 cm 8 cm 07_Chapter 7.indd 14907_Chapter 7.indd 149 20-12-2025 16:59:5720-12-2025 16:59:57 --- PAGE 3 --- Ganita Prakash | Grade 8 | Part-II 150 What is the area of each triangle in this rectangle? We have seen that the diagonal of a rectangle d"
+  },
+  {
+    "file": "hegp2ps.pdf",
+    "pages": 16,
+    "headings": [
+      "GANITA PRAKASH",
+      "ALL RIGHTS RESERVED",
+      "OFFICES OF THE PUBLICATION",
+      "DIVISION, NCERT",
+      "FOREWORD",
+      "ABOUT THE BOOK",
+      "Chapter 1: ‘Fractions in Disguise’ introduces percentages and several",
+      "Chapter 6: ‘Algebra Play’ explores how algebra can be used to model",
+      "NATIONAL SYLLABUS AND",
+      "TEACHING LEARNING MATERIAL",
+      "TEXTBOOK DEVELOPMENT TEAM",
+      "ACKNOWLEDGEMENTS",
+      "NOTE TO THE TEACHER"
+    ],
+    "first": "--- PAGE 1 --- GANITA PRAKASH Textbook of MathematicsTextbook of Mathematics 8 Part-II Grade 0_Prelims.indd 10_Prelims.indd 1 20-Dec-25 2:18:48 PM20-Dec-25 2:18:48 PM --- PAGE 2 --- First Edition December 2025 Pausha 1947 PD 2500T BS ©National Council of Educational Research and Training, 2025 ALL RIGHTS RESERVED  No part of this publication may be reproduced, stored in a retrieval system or transmitted, in any form or by any means, electronic, mechanical, photocopying, recording or otherwise without the prior permission of the publisher.  This book is sold subject to the condition that it shall not, by way of trade, be lent, re-sold, hired out or otherwise disposed of without the publisher’s consent, in any form of binding or cover other than that in which it is published.  The correct price of this publication is the price printed on this page, Any revised price indicated by a rubber stamp or by a sticker or by any other means is incorrect and should be unacceptable. OFFICES OF THE PUBLICATION DIVISION, NCERT NCERT Campus Sri Aurobindo Marg New Delhi 110 016 Phone : 011-26562708 108, 100 Feet Road Hosdakere Halli Extension Banashankari III Stage Bengaluru 560 085 Phone : 080-26725740 Navjivan Trust Building P.O.Navjivan Ahmedabad 380 014 Phone : 079-27541446 CWC Campus Opp. Dhankal Bus Stop Panihati Kolkata 700 114 Phone : 033-25530454 CWC Complex Maligaon Guwahati 781 021 Phone : 0361-2674869 Publication Team Head, Publication : M.V. Srinivasan Division Chief Editor : Bijnan Sutar Chief Business : Amitabh Kumar Manager Chief Production : Deepak Jaiswal Officer (In charge) Production Assistant : Ashwani Machra Cover Ritika B. Illustrations Chetan Sharma, Madhushree Basu Layout Creative Art Studio Printed on 80 GSM paper with NCERT watermark Published at the Publication Division by the Secretary, National Council of Educational Research and Training, Sri Aurobindo Marg, New Delhi 110 016 and printed at D.P. Printing & Binding, B-149, Okhla-I, A-1, New Delhi–1100"
+  },
+  {
+    "file": "iemh101.pdf",
+    "pages": 15,
+    "headings": [
+      "1.1 Introduction",
+      "Chapter 1.indd 1Chapter 1.indd 1 4/15/2026 2:52:19 PM4/15/2026 2:52:19 PM",
+      "1.2 Settling In",
+      "Chapter 1.indd 2Chapter 1.indd 2 4/15/2026 2:52:19 PM4/15/2026 2:52:19 PM",
+      "1.3 The 2-d Cartesian Coordinate System",
+      "Chapter 1.indd 3Chapter 1.indd 3 4/15/2026 2:52:19 PM4/15/2026 2:52:19 PM",
+      "4.5 units downward from O, its coordinates are (0, – 4.5), that is,",
+      "Chapter 1.indd 4Chapter 1.indd 4 4/15/2026 2:52:19 PM4/15/2026 2:52:19 PM",
+      "Chapter 1.indd 5Chapter 1.indd 5 4/15/2026 2:52:20 PM4/15/2026 2:52:20 PM",
+      "Chapter 1.indd 6Chapter 1.indd 6 4/15/2026 2:52:20 PM4/15/2026 2:52:20 PM",
+      "Chapter 1.indd 7Chapter 1.indd 7 4/15/2026 2:52:20 PM4/15/2026 2:52:20 PM",
+      "1.4 Distance Between Two Points in the 2-D Plane",
+      "Chapter 1.indd 8Chapter 1.indd 8 4/15/2026 2:52:20 PM4/15/2026 2:52:20 PM",
+      "Chapter 1.indd 9Chapter 1.indd 9 4/15/2026 2:52:23 PM4/15/2026 2:52:23 PM",
+      "Chapter 1.indd 10Chapter 1.indd 10 4/15/2026 2:52:25 PM4/15/2026 2:52:25 PM",
+      "Chapter 1.indd 11Chapter 1.indd 11 4/15/2026 2:52:26 PM4/15/2026 2:52:26 PM",
+      "Chapter 1.indd 12Chapter 1.indd 12 4/15/2026 2:52:26 PM4/15/2026 2:52:26 PM",
+      "Chapter 1.indd 13Chapter 1.indd 13 4/15/2026 2:52:26 PM4/15/2026 2:52:26 PM"
+    ],
+    "first": "--- PAGE 1 --- Orienting Yourself: The Use of Coordinates 1.1 Introduction A system of coordinates is a structured framework (like the grid lines on a map or graph paper) that enables us to use numbers to describe the exact physical locations of points or objects. The idea of ‘grid-based thinking’ and the geometry required to define the locations of points in space—indeed has deep roots in Bhārat. The first systematic use of grids occurred thousands of years ago — on a massive urban scale—in the Sindhu-Sarasvatī Civilisation, where city streets were constructed with striking precision in North–South and East–West directions at uniform distances of about 10 metres apart. This was a coordinate system in practice: a merchant could find a shop or a warehouse by counting North–South and East–West units of distance from the city centre. Baudhāyana (c. 800 C.E.), as we have seen, later used East–West and North–South lines for his deep geometric constructions, developing the Baudhāyana–Pythagoras Theorem and thus laying the foundation of coordinate geometry. Putting coordinates on the Earth’s surface later became important for navigation. Ujjayinī was described in the ancient world—at least as early as the 4th century BCE in the early Siddhāntas—as the point marking the central longitude meridian from which all other locations were measured. The Greek mathematician Ptolemy (c. 150 BCE), building on earlier works including that of Hipparchus, later described the latitudes and longitudes of thousands of locations, including ‘Ozine’ (Ujjayinī). Āryabhaṭa (c. 499 CE) replaced the Greek ‘chords’ with ‘sines’, making it much easier to calculate the coordinates of a star or a city. He mapped the sky using Celestial Coordinates, measuring coordinate distances from the ecliptic (the path of the sun). Brahmagupta (c. 628 CE) formalised the notion and use of zero and the negative numbers as algebraic entities; in modern coordinate systems, the ‘origin’ is zero and the ‘negative axes’ "
+  },
+  {
+    "file": "iemh102.pdf",
+    "pages": 25,
+    "headings": [
+      "2.1 Introduction",
+      "Chapter 2.indd 16Chapter 2.indd 16 4/15/2026 2:52:57 PM4/15/2026 2:52:57 PM",
+      "Chapter 2.indd 17Chapter 2.indd 17 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM",
+      "Chapter 2.indd 18Chapter 2.indd 18 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM",
+      "2.2 Linear Polynomials",
+      "Chapter 2.indd 19Chapter 2.indd 19 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM",
+      "Chapter 2.indd 20Chapter 2.indd 20 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM",
+      "2.3 Exploring linear patterns",
+      "Chapter 2.indd 21Chapter 2.indd 21 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM",
+      "Chapter 2.indd 22Chapter 2.indd 22 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM",
+      "Chapter 2.indd 23Chapter 2.indd 23 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM",
+      "Chapter 2.indd 24Chapter 2.indd 24 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM",
+      "Chapter 2.indd 25Chapter 2.indd 25 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM",
+      "2.5 Linear Relationships",
+      "Chapter 2.indd 26Chapter 2.indd 26 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM",
+      "2.6 Visualising linear relationships",
+      "Chapter 2.indd 27Chapter 2.indd 27 4/15/2026 2:52:58 PM4/15/2026 2:52:58 PM"
+    ],
+    "first": "--- PAGE 1 --- Introduction to Linear Polynomials 2.1 Introduction We have learnt about algebraic expressions in earlier grades. In this chapter , we will learn about the special types of algebraic expressions called linear polynomials. Let us first consider a few examples of algebr aic expressions. Example 1: Raju went to a shop where there were sealed boxes of different colours on sale. The shop owner told him that the red boxes have 4 pens each and the blue boxes have 5 pencils each. Now, if Raju bought x red boxes and y blue boxes, how can he quickly figure out the total quantity of pens and pencils? Also, if he got 3 extra pens free, how many pens and pencils did he get altogether? Observe that x red boxes will have 4x pens and y blue boxes will have 5y pencils. Also, he got 3 extra pens free. Thus, the total number of pens and pencils is given by the algebraic expression 4x + 5y + 3. In this example, 4x, 5y and 3 are terms of the expression, x and y are letter-numbers, the numbers 4 and 5 are the coefficients of x and y, respectively, and 3 is a constant . From now onwards, we will use a widely used alternate word for letter-numbers: variables. Thus in the expression 4x + 5y + 3, we say that the variables used are x and y. Example 2: A rectangular garden of length l metres and width w metres has to be fenced and decorated. A wire fence is to be laid along the length costing `100 per metre and a wooden fence is to be built along the width costing `80 per metre. Special seeds have to be sown throughout the garden which will cost `50 per square metre. 2 Fig. 2.1 Chapter 2.indd 16Chapter 2.indd 16 4/15/2026 2:52:57 PM4/15/2026 2:52:57 PM --- PAGE 2 --- Introduction to Linear Polynomials 17 Fig. 2.2 What will be the total cost incurred? Cost of wire fencing along the garden length = 2l × 100 = `200l Cost of wooden fencing along the garden width = 2w × 80 = `160w Cost of sowing seeds throughout the entire garden (depends on the area) = 50 × l × w = `50lw Total cost "
+  },
+  {
+    "file": "iemh103.pdf",
+    "pages": 27,
+    "headings": [
+      "Chapter 3.indd 41Chapter 3.indd 41 4/15/2026 2:54:11 PM4/15/2026 2:54:11 PM",
+      "Chapter 3.indd 42Chapter 3.indd 42 4/15/2026 2:54:11 PM4/15/2026 2:54:11 PM",
+      "3.2 The Revolution of Śhūnya: When Nothing",
+      "Chapter 3.indd 43Chapter 3.indd 43 4/15/2026 2:54:11 PM4/15/2026 2:54:11 PM",
+      "Chapter 3.indd 44Chapter 3.indd 44 4/15/2026 2:54:11 PM4/15/2026 2:54:11 PM",
+      "3.3 Integers: Expanding the Horizon",
+      "Chapter 3.indd 45Chapter 3.indd 45 4/15/2026 2:54:11 PM4/15/2026 2:54:11 PM",
+      "3.4 Filling the Spaces: Fractions and Rational",
+      "Chapter 3.indd 46Chapter 3.indd 46 4/15/2026 2:54:11 PM4/15/2026 2:54:11 PM",
+      "Chapter 3.indd 47Chapter 3.indd 47 4/15/2026 2:54:12 PM4/15/2026 2:54:12 PM",
+      "Chapter 3.indd 48Chapter 3.indd 48 4/15/2026 2:54:13 PM4/15/2026 2:54:13 PM",
+      "Chapter 3.indd 49Chapter 3.indd 49 4/15/2026 2:54:21 PM4/15/2026 2:54:21 PM"
+    ],
+    "first": "--- PAGE 1 --- The World of Numbers 3.1. The Dawn of Mathematics: The Human Need to Count Long before humanity built cities, formulated laws, or studied the stars, there existed a fundamental, practical necessity: the need to keep count. Mathematics did not begin in a classroom with equations on a board; it began in the dirt, on the bark of trees, and on bones. Imagine you are living thousands of years ago in a small agricultural settlement along the banks of the Saraswati river . You have a herd of cattle. Every morning, they go out into the dense forests to graze, and every evening, they return. How do you ensure that a calf has not wandered off? Without words for numbers, and without written symbols, early humans solved this through a concept called one-to-one correspondence. For every cow that left the settlement, the herder might place one pebble in a clay pot. In the evening, for every cow that returned, one pebble was removed. If the pot was empty at the end of the day, the herd was safe. If pebbles remained, cows were missing. This simple act of matching one object to another was the birth of the Natural Numbers ( = {1, 2, 3, 4, … }). 3.1.1 A History Written in Bone While the decimal place-value system we use today was perfected in the Indian subcontinent, the earliest physical evidence of humanity recording natural numbers takes us deep into the heart of Africa. The first mathematicians did not use paper; they used tally marks carved into bone. The Lebombo Bone, discovered in the Lebombo Mountains between South Africa and Swaziland, dates back approximately 35,000 years. It is a bone featuring 29 distinct, deliberately-carved uniformly-sized notches. Anthropologists and mathematicians believe this was not just random scratching, but a tool used as a lunar phase counter or a menstrual calendar , indicating that early humans were tracking time through natural numbers. 3 Chapter 3.indd 41Chapter 3.indd 41 4/15/2026 2:54:11 PM4/15/2026 2:54:11 PM --- PAGE 2 --"
+  },
+  {
+    "file": "iemh104.pdf",
+    "pages": 24,
+    "headings": [
+      "4.1 Introduction",
+      "Chapter 4.indd 68Chapter 4.indd 68 4/15/2026 2:58:51 PM4/15/2026 2:58:51 PM",
+      "4.2 Visualising Identities",
+      "Chapter 4.indd 69Chapter 4.indd 69 4/15/2026 2:58:51 PM4/15/2026 2:58:51 PM",
+      "Chapter 4.indd 70Chapter 4.indd 70 4/15/2026 2:58:56 PM4/15/2026 2:58:56 PM",
+      "Chapter 4.indd 71Chapter 4.indd 71 4/15/2026 2:58:56 PM4/15/2026 2:58:56 PM",
+      "4.3 Factorisation of Algebraic Expressions Using",
+      "Chapter 4.indd 72Chapter 4.indd 72 4/15/2026 2:59:04 PM4/15/2026 2:59:04 PM",
+      "Chapter 4.indd 73Chapter 4.indd 73 4/15/2026 2:59:07 PM4/15/2026 2:59:07 PM",
+      "Chapter 4.indd 74Chapter 4.indd 74 4/15/2026 2:59:07 PM4/15/2026 2:59:07 PM",
+      "Chapter 4.indd 75Chapter 4.indd 75 4/15/2026 2:59:14 PM4/15/2026 2:59:14 PM",
+      "Chapter 4.indd 76Chapter 4.indd 76 4/15/2026 2:59:14 PM4/15/2026 2:59:14 PM",
+      "Chapter 4.indd 77Chapter 4.indd 77 4/15/2026 2:59:25 PM4/15/2026 2:59:25 PM",
+      "4.5 Factorisation Using Algebra Tiles",
+      "Chapter 4.indd 78Chapter 4.indd 78 4/15/2026 2:59:25 PM4/15/2026 2:59:25 PM",
+      "Chapter 4.indd 79Chapter 4.indd 79 4/15/2026 2:59:25 PM4/15/2026 2:59:25 PM",
+      "4.6 Factorisation Without Using Algebra Tiles",
+      "Chapter 4.indd 80Chapter 4.indd 80 4/15/2026 2:59:26 PM4/15/2026 2:59:26 PM"
+    ],
+    "first": "--- PAGE 1 --- Exploring Algebraic Identities 4.1 Introduction In earlier chapters, you learnt about linear polynomials and how they can be used to represent and solve real-life problems. You also studied linear equations and discovered how they describe relationships between quantities. In this chapter , we will take the next step by exploring algebraic identities. These are special mathematical rules that not only make it easier to simplify complicated calculations but also help us work efficiently with algebraic expressions. Let us begin by exploring a few simple patterns. Example 1: Consider any three consecutive square numbers. For example, 1, 4, and 9. Add the smallest and the largest squares. Thus, 1 + 9 = 10. Then subtract twice the middle square from this sum. This leads to 10 – (2 × 4) = 10 – 8 = 2. Now try the same process with another set of three consecutive square numbers. Say 9, 16, 25. For example, consider the consecutive squares 25, 36, 49. Applying the same rule we get (25 + 49) – (2 × 36) = 74 – 72 = 2. Repeat this process with other sets of three consecutive square numbers. The result always seems to be 2! The pattern ma y look surprising, but soon we will uncover the reason behind it using algebra. 4 Chapter 4.indd 68Chapter 4.indd 68 4/15/2026 2:58:51 PM4/15/2026 2:58:51 PM --- PAGE 2 --- 69 Exploring Algebraic Identities Think and Reflect Try and find other patterns like this one. For example, you could consider 4 consecutive squares and see if you can find a pattern. 4.2 Visualising Identities In this section we will revisit some algebraic identities that we have studied in earlier grades and try to visualise them using geometrical models. In particular , we will use squares and rectangles to represent terms. Consider two line segments of lengths a and b units, respectively, and make a longer line segment of length (a + b) units as shown in Fig. 4.1. (a + b) units a units b units Fig. 4.1 We can now construct a square of side (a + b) units a"
+  },
+  {
+    "file": "iemh105.pdf",
+    "pages": 26,
+    "headings": [
+      "Chapter 5.indd 92Chapter 5.indd 92 4/15/2026 3:01:55 PM4/15/2026 3:01:55 PM",
+      "5.1 Definitions",
+      "Chapter 5.indd 93Chapter 5.indd 93 4/15/2026 3:01:55 PM4/15/2026 3:01:55 PM",
+      "5.2 Symmetries of a Circle",
+      "5.3 How Many Circles?",
+      "Chapter 5.indd 94Chapter 5.indd 94 4/15/2026 3:01:55 PM4/15/2026 3:01:55 PM",
+      "Chapter 5.indd 95Chapter 5.indd 95 4/15/2026 3:01:55 PM4/15/2026 3:01:55 PM",
+      "Chapter 5.indd 96Chapter 5.indd 96 4/15/2026 3:01:55 PM4/15/2026 3:01:55 PM",
+      "Chapter 5.indd 97Chapter 5.indd 97 4/15/2026 3:01:56 PM4/15/2026 3:01:56 PM",
+      "5.4 Chords and the Angles They Subtend",
+      "Chapter 5.indd 98Chapter 5.indd 98 4/15/2026 3:01:56 PM4/15/2026 3:01:56 PM",
+      "Chapter 5.indd 99Chapter 5.indd 99 4/15/2026 3:01:56 PM4/15/2026 3:01:56 PM",
+      "5.5 Midpoints and Perpendicular Bisectors of Chords",
+      "Chapter 5.indd 100Chapter 5.indd 100 4/15/2026 3:01:56 PM4/15/2026 3:01:56 PM",
+      "Chapter 5.indd 101Chapter 5.indd 101 4/15/2026 3:01:56 PM4/15/2026 3:01:56 PM",
+      "5.6 Distance of Chords from the Centre",
+      "Chapter 5.indd 102Chapter 5.indd 102 4/15/2026 3:01:57 PM4/15/2026 3:01:57 PM",
+      "Chapter 5.indd 103Chapter 5.indd 103 4/15/2026 3:01:57 PM4/15/2026 3:01:57 PM"
+    ],
+    "first": "--- PAGE 1 --- I’m Up and Down, and Round and Round Humanity has always been fascinated by the shapes of the things around them. In some early cave paintings, the sun is depicted as a circle. In the cave paintings of Gudahandi in Odisha, one sees numerous geometric patterns including triangles, squares, circles, and ovals. These shapes were likely inspired by what humans saw in nature. Can you recognise the origin of the shapes in Fig. 5.1? Fig. 5.1 Circles form when raindrops fall on water . The cross-section of a plant stem and the inflorescence of a sunflower are also circular in shape. The full moon and sun also look circular . Moon Sun (during a total solar eclipse) Fig 5.2 5 Chapter 5.indd 92Chapter 5.indd 92 4/15/2026 3:01:55 PM4/15/2026 3:01:55 PM --- PAGE 2 --- I’m Up and Down, and Round and Round 93 What properties are common to all circles, big and small? You have studied one such property in Grade 7. Humans must have noticed it after observing many circular patterns in nature. Every circle has a centre. All points on the circle are at equal distance from the centre. We turn this observation around and make it the definition of a circle. Activity: List some objects from nature that resemble a circle. Think and Reflect Jamuna has a circular piece of paper . She is trying to locate its centre. Amina gives her a suggestion. She follows the instructions and is thrilled to find that it works. Can you guess what Amina told her? 5.1 Definitions When we talk of mathematical shapes such as circles, triangles and squares, we always assume that the figures are drawn on a piece of paper — a two-dimensional plane. C D E B A Fig. 5.3: Circle, Centre A, Chord BC A circle is the set of all points on the plane that are equidistant from a given point on that plane. The set of points that satisfy a given condition is also called the locus of points that satisfy the condition. Using this term, a circle can also be described as the locus of points that are equidistant from a "
+  },
+  {
+    "file": "iemh106.pdf",
+    "pages": 37,
+    "headings": [
+      "Chapter 6.indd 118Chapter 6.indd 118 4/15/2026 3:02:30 PM4/15/2026 3:02:30 PM",
+      "6.1 Perimeter of a Shape",
+      "Chapter 6.indd 119Chapter 6.indd 119 4/15/2026 3:02:30 PM4/15/2026 3:02:30 PM",
+      "6.2 Perimeter of a Circle — The C/D Ratio",
+      "HOME MEASUREMENT",
+      "Chapter 6.indd 120Chapter 6.indd 120 4/15/2026 3:02:30 PM4/15/2026 3:02:30 PM",
+      "Chapter 6.indd 121Chapter 6.indd 121 4/15/2026 3:02:33 PM4/15/2026 3:02:33 PM",
+      "3.14167 for π.",
+      "Chapter 6.indd 122Chapter 6.indd 122 4/15/2026 3:02:34 PM4/15/2026 3:02:34 PM",
+      "6.3 π Is Irrational",
+      "Chapter 6.indd 123Chapter 6.indd 123 4/15/2026 3:02:34 PM4/15/2026 3:02:34 PM",
+      "Chapter 6.indd 124Chapter 6.indd 124 4/15/2026 3:02:35 PM4/15/2026 3:02:35 PM",
+      "6.4 Length of an Arc of a Circle",
+      "Chapter 6.indd 125Chapter 6.indd 125 4/15/2026 3:02:35 PM4/15/2026 3:02:35 PM",
+      "Chapter 6.indd 126Chapter 6.indd 126 4/15/2026 3:02:38 PM4/15/2026 3:02:38 PM",
+      "1.22 m.",
+      "168.78 m.",
+      "6.5 Problems, Puzzles, and Paradoxes on Perimeter",
+      "Chapter 6.indd 127Chapter 6.indd 127 4/15/2026 3:02:38 PM4/15/2026 3:02:38 PM",
+      "Chapter 6.indd 128Chapter 6.indd 128 4/15/2026 3:02:39 PM4/15/2026 3:02:39 PM"
+    ],
+    "first": "--- PAGE 1 --- Measuring Space: Perimeter and Area Fig. 6.1: Athletes at the start of 4 × 100 m relay race In Fig. 6.1, you see athletes assembled at the start of a 4 × 100 m relay race. The tracks are laid out, and the athletes are all set to go racing down the tracks. Do you notice that the athletes are not at the same starting line? Those in the outer lanes seem to be starting ahead of those in the inner lanes while the finish line is the same for all of them. What could be the reason for this? The distance between the starting points of adjacent lanes is called the ‘stagger’. Notice that the stagger continues all the way to the outermost lane. Do you think the stagger gives anyone (those in the outer lanes or in the inner lanes) an unfair advantage? Why or why not? On what basis can the organisers work out the length of the stagger between lanes? Think and Reflect In my school, the playground is too small to have a 400 m track, so the school constructed a 200 m track instead. Does this mean that we need a smaller stagger for the race tracks in my school (i.e., smaller than the stagger used in the Olympics), for the same 4 × 100 m relay race? To answer the question about the lane staggers required on a 4 × 100 m athletics track, we need to know how to find the length around a circle. 6 Chapter 6.indd 118Chapter 6.indd 118 4/15/2026 3:02:30 PM4/15/2026 3:02:30 PM --- PAGE 2 --- Measuring Space: Perimeter and Area 119 6.1 Perimeter of a Shape Given any shape, its perimeter is the total length around its border . Imagine a tiny insect going for a walk around its border , never turning around, till it returns to its starting point. The perimeter of the shape is the total distance it travels. So, a square with side a units has perimeter 4a units. An equilateral triangle with side a units has perimeter 3a units. Fig. 6.2 A a units Fig. 6.2 B a units The perimeter of a rectangle with length a units and width b units is 2(a + b) units. Note that the formula for the perim"
+  },
+  {
+    "file": "iemh107.pdf",
+    "pages": 19,
+    "headings": [
+      "7.1 What is Probability?",
+      "Chapter 7.indd 155Chapter 7.indd 155 4/15/2026 3:04:56 PM4/15/2026 3:04:56 PM",
+      "Chapter 7.indd 156Chapter 7.indd 156 4/15/2026 3:04:56 PM4/15/2026 3:04:56 PM",
+      "Chapter 7.indd 157Chapter 7.indd 157 4/15/2026 3:04:56 PM4/15/2026 3:04:56 PM",
+      "Chapter 7.indd 158Chapter 7.indd 158 4/15/2026 3:04:57 PM4/15/2026 3:04:57 PM",
+      "7.2 Measuring Probability Objectively",
+      "Chapter 7.indd 159Chapter 7.indd 159 4/15/2026 3:04:57 PM4/15/2026 3:04:57 PM",
+      "Chapter 7.indd 160Chapter 7.indd 160 4/15/2026 3:04:59 PM4/15/2026 3:04:59 PM",
+      "Chapter 7.indd 161Chapter 7.indd 161 4/15/2026 3:05:00 PM4/15/2026 3:05:00 PM",
+      "Chapter 7.indd 162Chapter 7.indd 162 4/15/2026 3:05:00 PM4/15/2026 3:05:00 PM",
+      "LEARN MORE ABOUT SAMPLING",
+      "Chapter 7.indd 163Chapter 7.indd 163 4/15/2026 3:05:00 PM4/15/2026 3:05:00 PM",
+      "FAIR AND UNBIASED",
+      "Chapter 7.indd 164Chapter 7.indd 164 4/15/2026 3:05:00 PM4/15/2026 3:05:00 PM",
+      "Chapter 7.indd 165Chapter 7.indd 165 4/15/2026 3:05:01 PM4/15/2026 3:05:01 PM",
+      "7.3 Elements of Probability: Sample Spaces and",
+      "H H HH",
+      "H T HT",
+      "T H TH",
+      "T T TT",
+      "Chapter 7.indd 166Chapter 7.indd 166 4/15/2026 3:05:01 PM4/15/2026 3:05:01 PM"
+    ],
+    "first": "--- PAGE 1 --- The Mathematics of Maybe: Introduction to Probability 7.1 What is Probability? Probability is a type of measurement, similar to how we measure quantities like length, area, or volume. However , instead of measuring physical quantities, probability is used to measure the likelihood of events. Specifically, it helps us express how confident or certain we are that a particular event will occur . For example, you may ask your friend: • Is it going to rain toda y? • Will our school win the inter-school hockey match tomorrow? • Will I be chosen in the monthly lucky draw to perform at the school assembly? [The names of all the students in school are written on slips of paper and one slip is randomly selected.] These events are examples of random events. We know the possible outcomes (either it will rain today or it will not; our school team will either win, draw or lose the hockey match; one student will be chosen to perform at the school assembly), but we do not know in advance which one will definitely occur . That is, there is an element of chance or randomness involved every time such an event takes place. Can we predict these outcomes with 100% certainty? One could respond to these questions with words such as impossible or certain, or using phrases such as less likely, more likely or equally likely. This decision is based on different kinds of evidence that have been gathered. For example, one friend might say, “The sun is shining brightly, so it’s unlikely to rain today”, while another might observe, “It’s very hot, which makes me think it could rain later”. In both cases, they are predicting rainfall based on how they interpret the present weather conditions. This is the subjective probability given to the event of today’s rainfall. 7 Chapter 7.indd 155Chapter 7.indd 155 4/15/2026 3:04:56 PM4/15/2026 3:04:56 PM --- PAGE 2 --- Ganita Manjari | Grade 9 | Part I 156 As you can see from the above example, probability deals with uncertainty or chance. One"
+  },
+  {
+    "file": "iemh108.pdf",
+    "pages": 27,
+    "headings": [
+      "8.1 Introduction to Sequences",
+      "Chapter 8.indd 174Chapter 8.indd 174 4/15/2026 4:49:01 PM4/15/2026 4:49:01 PM",
+      "Chapter 8.indd 175Chapter 8.indd 175 4/15/2026 4:49:02 PM4/15/2026 4:49:02 PM",
+      "8.2 Explicit Rule for a Sequence",
+      "Chapter 8.indd 176Chapter 8.indd 176 4/15/2026 4:49:02 PM4/15/2026 4:49:02 PM",
+      "Chapter 8.indd 177Chapter 8.indd 177 4/15/2026 4:49:02 PM4/15/2026 4:49:02 PM",
+      "8.3 Recursive Rule for a Sequence",
+      "Chapter 8.indd 178Chapter 8.indd 178 4/15/2026 4:49:02 PM4/15/2026 4:49:02 PM",
+      "Chapter 8.indd 179Chapter 8.indd 179 4/15/2026 4:49:02 PM4/15/2026 4:49:02 PM",
+      "8.4 Arithmetic Progressions",
+      "Chapter 8.indd 180Chapter 8.indd 180 4/15/2026 4:49:02 PM4/15/2026 4:49:02 PM",
+      "Chapter 8.indd 181Chapter 8.indd 181 4/15/2026 4:49:02 PM4/15/2026 4:49:02 PM",
+      "Chapter 8.indd 182Chapter 8.indd 182 16-04-2026 12:44:1216-04-2026 12:44:12",
+      "8.5 Sum of the First n Natural Numbers",
+      "Chapter 8.indd 183Chapter 8.indd 183 4/15/2026 4:49:02 PM4/15/2026 4:49:02 PM",
+      "Chapter 8.indd 184Chapter 8.indd 184 4/15/2026 4:49:03 PM4/15/2026 4:49:03 PM",
+      "Chapter 8.indd 185Chapter 8.indd 185 4/15/2026 4:49:06 PM4/15/2026 4:49:06 PM",
+      "8.6 Geometric Progressions",
+      "Chapter 8.indd 186Chapter 8.indd 186 4/15/2026 4:49:06 PM4/15/2026 4:49:06 PM"
+    ],
+    "first": "--- PAGE 1 --- Predicting What Comes Next: Exploring Sequences and Progressions 8.1 Introduction to Sequences We see patterns around us everywhere, be it in nature, in art, in music, in finance and in many other contexts in everyday life. Patterns help us make sense of the world and predict what comes next. In mathematics, sequences are special kinds of patterns formed by numbers or other objects arranged in a particular order . By understanding sequences, we can explore fascinating ideas about how numbers grow, shrink, or repeat and even use these ideas to solve real-life problems. In this chapter , we shall explore patterns in sequences of numbers. We will then find rules to help us predict more numbers of the sequence. Let us begin by looking at some number sequences that you have already seen in Grades 6, 7 and 8. 1, 2, 3, 4, 5, 6, … (Natural Numbers) 1, 3, 5, 7, 9, 11, ... (Odd Numbers) 1, 3, 6, 10, 15, 21, ... (Triangular Numbers) 1, 4, 9, 16, 25, 36, ... (Square Numbers) The three dots … indicate that the sequence continues indefinitely. Think and Reflect Can you describe the pattern in each of the above sequences? Can you predict the next few numbers in these sequences? Before we proceed, let us define a sequence as an ordered list of numbers where each number is a term of the sequence. Thus, in the sequence of square numbers, 1 is the first term, 4 is the second term, 25 is the fifth term and so on. Also, sequences may be finite or infinite. The sequences mentioned above are infinite. But the sequence 6, 12, 24, 48, 96 is a finite sequence of five terms. Can you think of other finite sequences that you see in your daily life? 8 Chapter 8.indd 174Chapter 8.indd 174 4/15/2026 4:49:01 PM4/15/2026 4:49:01 PM --- PAGE 2 --- 175 Predicting What Comes Next: Exploring Sequences and Progressions As you already know, in the sequence of natural numbers, every number (or term) is one more than the previous number . In the sequence consisting of all the odd numbers, the"
+  },
+  {
+    "file": "iemh1ps.pdf",
+    "pages": 20,
+    "headings": [
+      "GANITA MANJARI",
+      "ALL RIGHTS RESERVED",
+      "OFFICES OF THE PUBLICATION",
+      "DIVISION , NCERT",
+      "Chapter 1, ‘Orienting Yourself: The Use of Coordinates’ introduces",
+      "Chapter 2, ‘Introduction to Linear Polynomials’ develops an understanding",
+      "CONSTITUTION OF INDIA"
+    ],
+    "first": "--- PAGE 1 --- GANITA MANJARI Textbook of Mathematics for GRADE 9 Part I 0_Prilims.indd 10_Prilims.indd 1 4/15/2026 3:44:42 PM4/15/2026 3:44:42 PM --- PAGE 2 --- First Edition April 2026 Chaitra 1948 PD 2000T BS © National Council of Educational Research and Training, 2026 115.00 Printed on 80 GSM paper with NCERT watermark Published at the Publication Division by the Secreta ry, National Council of Educational Research and Training, Sri Aurobindo Marg, New Delhi 110016 and printed at Krown Printers, B-20/1 (GF, FF, SF, Fourth Floor), Okhla Indl. Area, Phase-2, New Delhi-110020 Publication Team Head, Publication : M.V. Srinivasan Division Chief Editor : Bijnan Sutar Chief Business Manager : Amitabh Kumar Chief Production Officer : Deepak Jaiswal (In charge) Assistant Production : Prakash Veer Singh Officer Cover Akshita Layout Bhuvan Enterprises Illustrations Akshita, Bhuvan Enterprises, and Ritika B ALL RIGHTS RESERVED  No part of this publication may be reproduced, stored in a retrieval system or transmitted, in any form or by any means, electronic, mechanical, photocopying, recording or otherwise without the prior permission of the publisher.  This book is sold subject to the condition that it shall not, by way of trade, be lent, re-sold, hired out or otherwise disposed of without the publisher’s consent, in any form of binding or cover other than that in which it is published.  The correct price of this publication is the price printed on this page, Any revised price indicated by a rubber stamp or by a sticker or by any other means is incorrect and should be unacceptable. OFFICES OF THE PUBLICATION DIVISION , NCERT NCERT Campus Sri Aurobindo Marg New Delhi 110 016 Phone : 011-26562708 108, 100 Feet Road Hosdakere Halli Extension Banashankari III Stage Bengaluru 560 085 Phone : 080-26725740 Navjivan Trust Building P.O. Navjivan Ahmedabad 380 014 Phone : 079-27541446 CWC Campus Opp. Dhankal Bus Stop Panihati Kolkata 700 114 Phone : 033-25530454 CWC Complex Mali"
+  }
+]

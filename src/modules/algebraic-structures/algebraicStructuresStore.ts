@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 import { modularTable, rebuildOperationTable, type OperationTable } from "./algebraicStructuresEngine";
 
 export type AlgebraicStructuresMode = "educational" | "quiz";
@@ -53,6 +53,6 @@ export const useAlgebraicStructuresStore = create<AlgebraicStructuresState>()(
       setLaw: (law) => set({ law }),
       setMode: (mode) => set({ mode }),
     }),
-    { name: "math-universe-algebraic-structures-session" }
+    { name: "math-universe-algebraic-structures-session", storage: createJSONStorage(() => localStorage) }
   )
 );

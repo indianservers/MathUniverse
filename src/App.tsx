@@ -2,6 +2,7 @@ import { Component, lazy, Suspense, useEffect, useState, type ErrorInfo, type Re
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import AppLayout from "./components/layout/AppLayout";
 import SeoMetadata from "./components/seo/SeoMetadata";
+import { formulaVisualizerConfigs } from "./data/formulaVisualizerRoutes";
 
 const About = lazy(() => import("./pages/About"));
 const AdvancedSyllabusLabPage = lazy(() => import("./pages/AdvancedSyllabusLabPage"));
@@ -23,6 +24,7 @@ const Documentation = lazy(() => import("./pages/Documentation"));
 const EigenvectorsVisualizerPage = lazy(() => import("./pages/EigenvectorsVisualizerPage"));
 const EngineeringMath = lazy(() => import("./pages/EngineeringMath"));
 const Formulas = lazy(() => import("./pages/Formulas"));
+const FormulaVisualizerPage = lazy(() => import("./pages/FormulaVisualizerPage"));
 const FourierSeriesAnimator = lazy(() => import("./pages/FourierSeriesAnimator"));
 const FourierSeriesVisualizerPage = lazy(() => import("./pages/FourierSeriesVisualizerPage"));
 const FunctionsGraphsVisualizer = lazy(() => import("./pages/FunctionsGraphsVisualizer"));
@@ -79,6 +81,7 @@ const TrigonometryConceptPage = lazy(() => import("./pages/TrigonometryConceptPa
 const TrigFormulaVisualizerPage = lazy(() => import("./trigonometry/pages/TrigFormulaVisualizerPage"));
 const TruthTableGenerator = lazy(() => import("./pages/TruthTableGenerator"));
 const UnitConverter = lazy(() => import("./pages/UnitConverter"));
+const VisualFormulasHub = lazy(() => import("./pages/VisualFormulasHub"));
 const VisualShowcase = lazy(() => import("./pages/VisualShowcase"));
 const VisualProofsHomePage = lazy(() => import("./visual-proofs/pages/VisualProofsHomePage"));
 const VisualProofCategoryPage = lazy(() => import("./visual-proofs/pages/VisualProofCategoryPage"));
@@ -165,6 +168,11 @@ export default function App() {
             <Route path="workspace/teach" element={<WorkspaceTeach />} />
             <Route path="formulas" element={<Formulas />} />
             <Route path="formulas/:categorySlug" element={<Formulas />} />
+            <Route path="visual-formulas" element={<VisualFormulasHub />} />
+            <Route path="visual-formulas/sierpinski-carpet" element={<FormulaVisualizerPage conceptId="sierpinski-carpet" />} />
+            {formulaVisualizerConfigs.filter((config) => config.id !== "trigonometry" && config.id !== "sierpinski-carpet").map((config) => (
+              <Route key={config.route} path={config.route.slice(1)} element={<FormulaVisualizerPage conceptId={config.id} />} />
+            ))}
             <Route path="theorems" element={<Theorems />} />
             <Route path="theorems/:categorySlug" element={<Theorems />} />
             <Route path="theorems/:categorySlug/:theoremSlug" element={<Theorems />} />
@@ -182,6 +190,16 @@ export default function App() {
             <Route path="trigonometry/formula-visualizer" element={<TrigFormulaVisualizerPage />} />
             <Route path="trigonometry/:conceptId" element={<TrigonometryConceptPage />} />
             <Route path="calculus" element={<Calculus />} />
+            <Route path="calculus/limits" element={<Calculus page="limits" />} />
+            <Route path="calculus/derivatives" element={<Calculus page="derivatives" />} />
+            <Route path="calculus/integrals" element={<Calculus page="integrals" />} />
+            <Route path="calculus/motion" element={<Calculus page="motion" />} />
+            <Route path="calculus/practice" element={<Calculus page="practice" />} />
+            <Route path="calculus/proof-problems" element={<Calculus page="proof-problems" />} />
+            <Route path="calculus/series-blocks" element={<Calculus page="series-blocks" />} />
+            <Route path="calculus/atlas" element={<Calculus page="atlas" />} />
+            <Route path="calculus/formulas" element={<Calculus page="formulas" />} />
+            <Route path="calculus/applications" element={<Calculus page="applications" />} />
             <Route path="combinatorics" element={<Combinatorics />} />
             <Route path="complex-numbers" element={<ComplexNumbers />} />
             <Route path="set-theory" element={<SetTheory />} />

@@ -248,7 +248,7 @@ export function evaluateCasInput(input: string, options: { mode?: CasEvaluationM
   }
 
   if (command.support === "planned") {
-    return createCasResult({ input, parsed, command, status: "planned", summary: `${command.name} is planned.`, detail: command.description, steps: ["The command is registered in the Phase 1 catalog.", "Execution will land in a later command-pack phase."], warnings: [`${command.name} is not implemented yet.`, ...baseWarnings], assumptions, dependencies: resolved.dependencies });
+    return createCasResult({ input, parsed, command, status: "planned", summary: `${command.name} is outside the current CAS command set.`, detail: `${command.description} Use a supported command such as Simplify, Factor, Expand, Solve, Derivative, or Integral.`, steps: ["Check the current CAS command set.", "Choose a supported command or keep the expression unchanged."], warnings: [`${command.name} is not available in the current CAS command set.`, ...baseWarnings], assumptions, dependencies: resolved.dependencies });
   }
 
   const symbolic = runImplementedCommand(command.name, parsed.args);

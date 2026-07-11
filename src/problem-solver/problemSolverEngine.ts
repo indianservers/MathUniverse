@@ -1,6 +1,7 @@
 import { solveAlgebraSteps } from "./algebraStepSolver";
 import { solveCalculus } from "./calculusSolver";
 import { solveExpressionOperation } from "./expressionOperationSolver";
+import { solveFractal } from "./fractalSolver";
 import { solveMatrix } from "./matrixSolver";
 import { classifyProblem } from "./problemClassifier";
 import type { ProblemClassification, ProblemIntentKind, ProblemSolverResult } from "./problemTypes";
@@ -109,6 +110,9 @@ export function buildSolverResult(classification: ProblemClassification): Proble
 
   const matrixResult = solveMatrix(classification);
   if (matrixResult) return matrixResult;
+
+  const fractalResult = solveFractal(classification);
+  if (fractalResult) return fractalResult;
 
   const wordProblemResult = solveWordProblem(classification);
   if (wordProblemResult) return wordProblemResult;

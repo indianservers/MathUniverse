@@ -41,6 +41,24 @@ function ids(prefix: string): GeometryIdFactory {
 }
 
 describe("geometry construction certification", () => {
+  it("treats an empty construction as ready instead of warning-only", () => {
+    const report = certifyGeometryConstruction({
+      points: [],
+      lines: [],
+      circles: [],
+      polygons: [],
+      arcs: [],
+      loci: [],
+      constraints: [],
+    });
+
+    expect(report.passed).toBe(true);
+    expect(report.score).toBe(100);
+    expect(report.summary).toBe("Geometry accuracy certified.");
+    expect(report.checks).toHaveLength(1);
+    expect(report.checks[0].severity).toBe("pass");
+  });
+
   it("certifies midpoint, parallel, perpendicular, and intersection constraints from builder output", () => {
     const midpoint = buildMidpointConstruction(cloneConstruction(), ["A", "B"], { idFactory: ids("mid") });
     const parallel = buildParallelConstruction(midpoint.construction, "line-ab", "C", { idFactory: ids("parallel") });

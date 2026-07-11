@@ -90,16 +90,16 @@ export default function FormulaVisualizationAtlas({ topic }: { topic: FormulaTop
 
   return (
     <SectionCard title={`${topic === "algebra" ? "Algebra" : "Calculus"} Formula Visualizer`} description="Search formulas, select a card, then use sliders to see the visual model change." compact>
-      <div className="grid gap-3 xl:grid-cols-[320px_minmax(0,1fr)]">
+      <div className="grid gap-3 xl:grid-cols-[390px_minmax(0,1fr)]">
         <div className="space-y-3">
-          <label className="flex min-h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold dark:border-white/10 dark:bg-slate-950/60">
-            <Search className="h-4 w-4 text-slate-400" />
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search formula..." className="min-w-0 flex-1 bg-transparent outline-none" />
+          <label className="flex min-h-12 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-base font-bold dark:border-white/10 dark:bg-slate-950/60">
+            <Search className="h-5 w-5 text-slate-400" />
+            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search formula..." className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-slate-400" />
           </label>
           <div className="mobile-safe-scroll">
             <div className="flex gap-2">
               {groups.map((item) => (
-                <button key={item} type="button" onClick={() => setGroup(item)} className={group === item ? "action-primary px-3 py-2 text-xs" : "tool-button px-3 py-2 text-xs"}>
+                <button key={item} type="button" onClick={() => setGroup(item)} className={group === item ? "action-primary min-h-11 px-4 py-2 text-sm" : "tool-button min-h-11 px-4 py-2 text-sm"}>
                   {item}
                 </button>
               ))}
@@ -107,13 +107,13 @@ export default function FormulaVisualizationAtlas({ topic }: { topic: FormulaTop
           </div>
           <div className="max-h-[430px] space-y-2 overflow-y-auto pr-1">
             {filtered.map((item) => (
-              <button key={item.id} type="button" onClick={() => setSelectedId(item.id)} className={`w-full rounded-lg border p-3 text-left transition ${selected.id === item.id ? "border-cyan-300 bg-cyan-50 dark:border-cyan-300/50 dark:bg-cyan-400/10" : "border-slate-200 bg-white/75 hover:border-cyan-200 dark:border-white/10 dark:bg-white/5"}`}>
+              <button key={item.id} type="button" onClick={() => setSelectedId(item.id)} className={`w-full rounded-xl border p-4 text-left transition ${selected.id === item.id ? "border-cyan-300 bg-cyan-50 dark:border-cyan-300/50 dark:bg-cyan-400/10" : "border-slate-200 bg-white/75 hover:border-cyan-200 dark:border-white/10 dark:bg-white/5"}`}>
                 <div className="flex items-start justify-between gap-2">
-                  <p className="text-sm font-black">{item.title}</p>
+                  <p className="text-lg font-black leading-6 text-slate-950 dark:text-white">{item.title}</p>
                   <span className="mini-chip">{item.level}</span>
                 </div>
-                <p className="mt-1 font-mono text-[12px] text-cyan-700 dark:text-cyan-200">{item.formula}</p>
-                <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">{item.summary}</p>
+                <p className="mt-2 break-words font-mono text-base font-black leading-6 text-cyan-700 dark:text-cyan-200">{item.formula}</p>
+                <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">{item.summary}</p>
               </button>
             ))}
           </div>
@@ -126,8 +126,8 @@ export default function FormulaVisualizationAtlas({ topic }: { topic: FormulaTop
             <SliderControl density="compact" label="n" value={n} min={1} max={20} step={1} onChange={setN} />
           </SliderGroup>
           <div className="flex flex-wrap gap-2">
-            <button type="button" onClick={() => setVisualMode("2d")} className={visualMode === "2d" ? "action-primary px-3 py-2 text-xs" : "tool-button px-3 py-2 text-xs"}>2D visual</button>
-            <button type="button" onClick={() => setVisualMode("3d")} className={visualMode === "3d" ? "action-primary px-3 py-2 text-xs" : "tool-button px-3 py-2 text-xs"}>3D visual</button>
+            <button type="button" onClick={() => setVisualMode("2d")} className={visualMode === "2d" ? "action-primary min-h-11 px-4 py-2 text-sm" : "tool-button min-h-11 px-4 py-2 text-sm"}>2D visual</button>
+            <button type="button" onClick={() => setVisualMode("3d")} className={visualMode === "3d" ? "action-primary min-h-11 px-4 py-2 text-sm" : "tool-button min-h-11 px-4 py-2 text-sm"}>3D visual</button>
           </div>
           <div className="rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-950/40">
             {visualMode === "2d" ? <FormulaVisual formula={selected} a={a} b={b} c={c} n={Math.round(n)} /> : <FormulaVisual3D formula={selected} a={a} b={b} c={c} n={Math.round(n)} />}
@@ -189,7 +189,7 @@ function Curve3D({ formula, a, b, c, n }: { formula: FormulaVisual; a: number; b
         <planeGeometry args={[8.4, 6.2]} />
         <meshStandardMaterial color="#0f172a" transparent opacity={0.22} side={THREE.DoubleSide} />
       </mesh>
-      <Text position={[-3.8, 2.9, 0]} fontSize={0.22} color="#e0f2fe" anchorX="left">{formula.formula}</Text>
+      <Text position={[-3.8, 2.9, 0]} fontSize={0.3} color="#e0f2fe" anchorX="left">{formula.formula}</Text>
     </group>
   );
 }
@@ -209,7 +209,7 @@ function IntegralBars3D({ a, b, c, n }: { a: number; b: number; c: number; n: nu
           </mesh>
         );
       })}
-      <Text position={[-3.4, 2.2, 0.7]} fontSize={0.22} color="#e0f2fe" anchorX="left">Riemann rectangles become volume blocks</Text>
+      <Text position={[-3.4, 2.2, 0.7]} fontSize={0.3} color="#e0f2fe" anchorX="left">Riemann rectangles become volume blocks</Text>
     </group>
   );
 }
@@ -234,7 +234,7 @@ function BoxBlock({ position, size, color, label }: { position: [number, number,
         <boxGeometry args={size} />
         <meshStandardMaterial color={color} transparent opacity={0.78} />
       </mesh>
-      <Text position={[0, 0, size[2] / 2 + 0.04]} fontSize={0.16} color="#f8fafc">{label}</Text>
+      <Text position={[0, 0, size[2] / 2 + 0.04]} fontSize={0.22} color="#f8fafc">{label}</Text>
     </group>
   );
 }
@@ -248,7 +248,7 @@ function SystemLines3D({ a, b, c }: { a: number; b: number; c: number }) {
       <Line points={lineB} color="#f59e0b" lineWidth={4} />
       <mesh position={[0, 0, -0.35]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[8, 6]} /><meshStandardMaterial color="#0891b2" transparent opacity={0.16} side={THREE.DoubleSide} /></mesh>
       <mesh position={[0, 0, 0.45]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[8, 6]} /><meshStandardMaterial color="#f59e0b" transparent opacity={0.12} side={THREE.DoubleSide} /></mesh>
-      <Text position={[-3.6, 2.8, 0.8]} fontSize={0.22} color="#e0f2fe" anchorX="left">solution as line intersection layers</Text>
+      <Text position={[-3.6, 2.8, 0.8]} fontSize={0.3} color="#e0f2fe" anchorX="left">solution as line intersection layers</Text>
     </group>
   );
 }
@@ -286,8 +286,8 @@ function Grid3D() {
       <gridHelper args={[9, 18, "#38bdf8", "#334155"]} position={[0, -1.6, 0]} />
       <Line points={[new THREE.Vector3(-4.5, -1.58, 0), new THREE.Vector3(4.5, -1.58, 0)]} color="#e0f2fe" lineWidth={2} />
       <Line points={[new THREE.Vector3(0, -1.58, -4.5), new THREE.Vector3(0, -1.58, 4.5)]} color="#e0f2fe" lineWidth={2} />
-      <Text position={[4.7, -1.45, 0]} fontSize={0.18} color="#e0f2fe">x</Text>
-      <Text position={[0.2, -1.45, 4.7]} fontSize={0.18} color="#e0f2fe">z</Text>
+      <Text position={[4.7, -1.45, 0]} fontSize={0.26} color="#e0f2fe">x</Text>
+      <Text position={[0.2, -1.45, 4.7]} fontSize={0.26} color="#e0f2fe">z</Text>
     </group>
   );
 }
@@ -327,8 +327,9 @@ function FormulaVisual({ formula, a, b, c, n }: { formula: FormulaVisual; a: num
       {formula.kind === "multivariable" && <GradientField />}
       {!["identity", "system", "multivariable"].includes(formula.kind) && <path d={path} fill="none" stroke="#06b6d4" strokeWidth="4" />}
       {["derivative", "limit"].includes(formula.kind) && <line x1={sx(pointX - 1.2)} y1={sy(pointY - slope * 1.2)} x2={sx(pointX + 1.2)} y2={sy(pointY + slope * 1.2)} stroke="#f59e0b" strokeWidth="3" />}
-      <text x="18" y="30" fill="#0f172a" fontSize="14" fontWeight="800">{formula.title}</text>
-      <text x="18" y="52" fill="#475569" fontSize="12" fontWeight="700">{formula.formula}</text>
+      <rect x="14" y="14" width="330" height="66" rx="12" fill="#ffffff" opacity="0.92" stroke="#e2e8f0" />
+      <text x="28" y="42" fill="#0f172a" fontSize="22" fontWeight="900">{formula.title}</text>
+      <text x="28" y="66" fill="#075985" fontSize="17" fontWeight="800">{formula.formula}</text>
     </svg>
   );
 }
@@ -344,14 +345,14 @@ function IdentityTiles({ a, b }: { a: number; b: number }) {
       <rect x={x + sizeA} y={y} width={sizeB} height={sizeA} fill="#f59e0b" opacity="0.3" stroke="#f59e0b" strokeWidth="3" />
       <rect x={x} y={y + sizeA} width={sizeA} height={sizeB} fill="#f59e0b" opacity="0.3" stroke="#f59e0b" strokeWidth="3" />
       <rect x={x + sizeA} y={y + sizeA} width={sizeB} height={sizeB} fill="#8b5cf6" opacity="0.32" stroke="#8b5cf6" strokeWidth="3" />
-      <text x={x} y={y + sizeA + sizeB + 28} fill="#0f172a" fontSize="14" fontWeight="800">(a+b)^2 pieces</text>
+      <text x={x} y={y + sizeA + sizeB + 32} fill="#0f172a" fontSize="20" fontWeight="900">(a+b)^2 pieces</text>
     </g>
   );
 }
 
 function SystemLines({ a, b, c, sx, sy }: { a: number; b: number; c: number; sx: (x: number) => number; sy: (y: number) => number }) {
   const line = (m: number, k: number) => `M${sx(-5)},${sy(m * -5 + k)} L${sx(5)},${sy(m * 5 + k)}`;
-  return <g><path d={line(a, b)} stroke="#06b6d4" strokeWidth="4" /><path d={line(-b || 1, c)} stroke="#f59e0b" strokeWidth="4" /><text x="280" y="315" fill="#0f172a" fontSize="14" fontWeight="800">intersection = solution</text></g>;
+  return <g><path d={line(a, b)} stroke="#06b6d4" strokeWidth="4" /><path d={line(-b || 1, c)} stroke="#f59e0b" strokeWidth="4" /><text x="260" y="315" fill="#0f172a" fontSize="20" fontWeight="900">intersection = solution</text></g>;
 }
 
 function IntegralBars({ fn, sx, sy, n }: { fn: (x: number) => number; sx: (x: number) => number; sy: (y: number) => number; n: number }) {
@@ -373,7 +374,7 @@ function Grid({ width, height }: { width: number; height: number }) {
 }
 
 function Fact({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-lg bg-slate-100 p-2 dark:bg-white/10"><p className="text-[10px] font-black uppercase text-slate-500">{label}</p><p className="mt-1 break-words font-mono text-xs font-bold">{value}</p></div>;
+  return <div className="rounded-lg bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs font-black uppercase text-slate-500">{label}</p><p className="mt-1 break-words font-mono text-sm font-black">{value}</p></div>;
 }
 
 function derivative(fn: (x: number) => number, x: number) {

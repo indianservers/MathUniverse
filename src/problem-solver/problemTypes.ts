@@ -14,6 +14,7 @@ export type ProblemIntentKind =
   | "system"
   | "statistics"
   | "matrix"
+  | "fractal"
   | "word-problem"
   | "unsupported";
 

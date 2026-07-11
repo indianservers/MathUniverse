@@ -18,6 +18,7 @@ export default function Grade7ArithmeticExpressionsLab() {
   return (
     <NCERTChapterScaffold
       title="Arithmetic Expressions"
+      conceptId="class-7-arithmetic-expressions"
       subtitle="Use brackets and BODMAS to decide which operation happens first."
       formula="Brackets -> divide/multiply left to right -> add/subtract left to right"
       presets={presets}

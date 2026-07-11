@@ -38,6 +38,8 @@ const expectedSequenceSlugs = [
   "pascal-triangle-binomial-coefficients",
   "visual-induction-domino-growth",
   "harmonic-series-growth-intuition",
+  "sierpinski-retained-area",
+  "sierpinski-removed-square-sum",
 ];
 
 describe("Visual Proofs phase thirteen sequences and series completion", () => {
@@ -74,10 +76,10 @@ describe("Visual Proofs phase thirteen sequences and series completion", () => {
     }
   });
 
-  it("keeps all fifteen Sequences and Series routes phase-upgraded and in the smoke manifest", () => {
+  it("keeps all seventeen Sequences and Series routes phase-upgraded and in the smoke manifest", () => {
     const sequenceProofs = getVisualProofsByCategory("sequences-and-series").filter((proof) => proof.status === "available");
     const manifestRoutes = visualProofsRouteSmokeManifest.map((entry) => entry.route);
-    expect(sequenceProofs).toHaveLength(15);
+    expect(sequenceProofs).toHaveLength(17);
     expect(sequenceProofs.map((proof) => proof.slug)).toEqual(expect.arrayContaining(expectedSequenceSlugs));
     expect(sequenceProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
     expect(sequenceProofs.every((proof) => proof.proofLearningModel === "pattern-model")).toBe(true);

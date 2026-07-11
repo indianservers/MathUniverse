@@ -29,6 +29,7 @@ import {
   Waves,
   Wrench,
 } from "lucide-react";
+import { visualFormulaMenuLinks } from "../../data/formulaVisualizerRoutes";
 
 export const iconMap = {
   Atom,
@@ -77,6 +78,25 @@ export type NavSection = {
   items: NavItem[];
 };
 
+const visualFormulaNavChildren: NavItem[] = [
+  ...visualFormulaMenuLinks.map((item): NavItem => ({
+    title: item.title,
+    route: item.route,
+    icon: visualFormulaIconForRoute(item.route),
+    searchTerms: item.searchTerms,
+  })),
+];
+
+function visualFormulaIconForRoute(route: string): keyof typeof iconMap {
+  if (route.includes("geometry") || route.includes("mensuration")) return "Shapes";
+  if (route.includes("derivatives") || route.includes("integration")) return "Sigma";
+  if (route.includes("matrices")) return "Grid3X3";
+  if (route.includes("vectors")) return "Workflow";
+  if (route.includes("probability")) return "CircleHelp";
+  if (route.includes("statistics")) return "BarChart3";
+  return "Calculator";
+}
+
 export const navSections: NavSection[] = [
   {
     title: "Home",
@@ -105,7 +125,22 @@ export const navSections: NavSection[] = [
         title: "NCERT Dashboard",
         route: "/ncert",
         icon: "BookOpen",
-        searchTerms: ["ncert", "class 7", "class 10", "class 12", "board exam", "textbook", "visual practice", "formula theorem"],
+        searchTerms: ["ncert", "class 7", "class 8", "class 10", "class 12", "board exam", "textbook", "visual practice", "formula theorem"],
+        children: [
+          { title: "All NCERT Labs", route: "/ncert", icon: "BookOpen" },
+          {
+            title: "Class 8 Fractals and Solid Views",
+            route: "/ncert/class-8-fractals-and-solid-views",
+            icon: "Cuboid",
+            searchTerms: ["class 8", "fractals", "sierpinski carpet", "solid views", "cube stacks", "top front side view"],
+            children: [
+              { title: "Fractal Explorer", route: "/ncert/class-8-fractals-and-solid-views?tab=fractal", icon: "Sparkles" },
+              { title: "Solid Views Lab", route: "/ncert/class-8-fractals-and-solid-views?tab=solid", icon: "Cuboid" },
+              { title: "Sierpinski Visual Formula", route: "/visual-formulas/sierpinski-carpet", icon: "Sigma" },
+              { title: "Projection Proofs", route: "/visual-proofs/geometry/orthographic-projection-from-cube-stacks", icon: "Shapes" },
+            ],
+          },
+        ],
       },
       { title: "Syllabus", route: "/syllabus", icon: "BookOpen" },
       {
@@ -114,6 +149,13 @@ export const navSections: NavSection[] = [
         icon: "Sigma",
         children: [
           { title: "All Formulas", route: "/formulas", icon: "Sigma" },
+          {
+            title: "Visual Formulas",
+            route: "/visual-formulas",
+            icon: "Sparkles",
+            searchTerms: ["visual formulas", "formula visualizer", "interactive formulas", "all visual formula pages"],
+            children: visualFormulaNavChildren,
+          },
           { title: "Trigonometry Formulas", route: "/formulas/trigonometry", icon: "Waves" },
           { title: "Geometry Formulas", route: "/formulas/geometry", icon: "Shapes" },
           { title: "Algebra Formulas", route: "/formulas/algebra", icon: "Calculator" },
@@ -198,15 +240,17 @@ export const navSections: NavSection[] = [
         icon: "Calculator",
         children: [
           { title: "Overview", route: "/algebra", icon: "Calculator" },
+          { title: "Formula Visualizer", route: "/algebra/formula-visualizer", icon: "Sparkles", searchTerms: ["algebra formula visualizer", "quadratic formula visualizer", "identity area model"] },
           {
             title: "Formula Visuals",
-            route: "/algebra",
+            route: "/algebra/formula-visualizer",
             icon: "Calculator",
             children: [
-              { title: "Linear Formulas", route: "/algebra", icon: "Calculator" },
-              { title: "Quadratic Formulas", route: "/algebra", icon: "Calculator" },
+              { title: "All Algebra Visual Formulas", route: "/algebra/formula-visualizer", icon: "Sparkles" },
+              { title: "Linear Formulas", route: "/algebra/formula-visualizer", icon: "Calculator" },
+              { title: "Quadratic Formulas", route: "/algebra/formula-visualizer", icon: "Calculator" },
               { title: "Identities", route: "/ncert/class-8-algebraic-identities", icon: "Calculator" },
-              { title: "Polynomials", route: "/ncert/class-10-polynomials", icon: "Calculator" },
+              { title: "Polynomials", route: "/polynomials/formula-visualizer", icon: "Sparkles", searchTerms: ["polynomial formula visualizer", "factor theorem", "remainder theorem", "roots"] },
             ],
           },
           { title: "Algebraic Structures", route: "/algebraic-structures", icon: "GitFork" },
@@ -240,6 +284,7 @@ export const navSections: NavSection[] = [
           "factor tree",
         ],
         children: [
+          { title: "Formula Visualizer", route: "/number-systems/formula-visualizer", icon: "Sparkles", searchTerms: ["number systems formula visualizer", "hcf gcd lcm prime factorization decimal expansion"] },
           {
             title: "Overview",
             route: "/number-systems",
@@ -345,6 +390,7 @@ export const navSections: NavSection[] = [
         icon: "Shapes",
         children: [
           { title: "Geometry Universe", route: "/geometry", icon: "Shapes" },
+          { title: "Formula Visualizer", route: "/geometry/formula-visualizer", icon: "Sparkles", searchTerms: ["geometry formula visualizer", "triangle area circle area sector arc"] },
           {
             title: "Circle to Triangle",
             route: "/circle-to-triangle",
@@ -352,7 +398,21 @@ export const navSections: NavSection[] = [
             searchTerms: ["circle to triangle", "semicircle arc line animation", "180 degree arc", "geometry motion"],
           },
           { title: "2D/3D Shapes", route: "/shapes", icon: "Cuboid" },
+          {
+            title: "Class 8 Fractals and Solid Views",
+            route: "/ncert/class-8-fractals-and-solid-views",
+            icon: "Cuboid",
+            searchTerms: ["sierpinski carpet", "fractal", "solid view", "cube stack", "orthographic projection"],
+            children: [
+              { title: "Fractal Explorer", route: "/ncert/class-8-fractals-and-solid-views?tab=fractal", icon: "Sparkles" },
+              { title: "Solid Views Lab", route: "/ncert/class-8-fractals-and-solid-views?tab=solid", icon: "Cuboid" },
+              { title: "Sierpinski Visual Formula", route: "/visual-formulas/sierpinski-carpet", icon: "Sigma" },
+              { title: "Non-Unique Projection Proof", route: "/visual-proofs/geometry/non-unique-solid-projections", icon: "Shapes" },
+            ],
+          },
           { title: "Coordinate Geometry", route: "/geometry/coordinate-geometry", icon: "Shapes" },
+          { title: "Coordinate Formula Visualizer", route: "/coordinate-geometry/formula-visualizer", icon: "ChartSpline", searchTerms: ["distance midpoint slope formula visualizer"] },
+          { title: "Mensuration Formula Visualizer", route: "/mensuration/formula-visualizer", icon: "Cuboid", searchTerms: ["area volume surface area visualizer"] },
         ],
       },
       {
@@ -410,7 +470,9 @@ export const navSections: NavSection[] = [
             children: [
               { title: "Limits", route: "/math/limits-continuity", icon: "Sigma" },
               { title: "Derivatives", route: "/math/derivatives", icon: "Sigma" },
+              { title: "Derivative Formula Visualizer", route: "/math/derivatives/formula-visualizer", icon: "Sparkles", searchTerms: ["derivative formula visualizer", "tangent slope power rule"] },
               { title: "Integration", route: "/math/integration", icon: "Sigma" },
+              { title: "Integration Formula Visualizer", route: "/math/integration/formula-visualizer", icon: "Sparkles", searchTerms: ["integration formula visualizer", "riemann sums area"] },
               { title: "Slope Fields", route: "/math/slope-fields", icon: "Sigma" },
             ],
           },
@@ -438,13 +500,22 @@ export const navSections: NavSection[] = [
           { title: "Nature and Maths", route: "/magic-maths", icon: "Leaf" },
         ],
       },
-      { title: "Complex Numbers", route: "/complex-numbers", icon: "Atom" },
+      {
+        title: "Complex Numbers",
+        route: "/complex-numbers",
+        icon: "Atom",
+        children: [
+          { title: "Complex Number Lab", route: "/complex-numbers", icon: "Atom" },
+          { title: "Formula Visualizer", route: "/complex-numbers/formula-visualizer", icon: "Sparkles", searchTerms: ["complex formula visualizer", "modulus argument conjugate de moivre roots"] },
+        ],
+      },
       {
         title: "Combinatorics",
         route: "/combinatorics",
         icon: "Grid3X3",
         searchTerms: ["counting", "permutation", "combination", "npr", "ncr", "pascal", "binomial", "inclusion exclusion"],
         children: [
+          { title: "Formula Visualizer", route: "/combinatorics/formula-visualizer", icon: "Sparkles", searchTerms: ["combinatorics formula visualizer", "npr ncr factorial binomial pascal"] },
           { title: "Combinatorics Lab", route: "/combinatorics", icon: "Grid3X3" },
           { title: "Permutations and Combinations", route: "/math/permutations-combinations", icon: "Grid3X3" },
           { title: "Counting Trees", route: "/combinatorics", icon: "Workflow" },
@@ -458,6 +529,8 @@ export const navSections: NavSection[] = [
         icon: "Network",
         searchTerms: ["set theory", "sets", "venn", "ven", "venn diagram", "union", "intersection", "subset", "relations", "functions", "hasse", "partial order", "cartesian product", "power set"],
         children: [
+          { title: "Set and Logic Formula Visualizer", route: "/set-theory/formula-visualizer", icon: "Sparkles", searchTerms: ["set theory formula visualizer", "venn truth table de morgan cardinality"] },
+          { title: "Relations and Functions Formula Visualizer", route: "/relations-functions/formula-visualizer", icon: "FunctionSquare", searchTerms: ["relations functions formula visualizer", "composition inverse domain range"] },
           { title: "Set Theory Lab", route: "/set-theory", icon: "Network" },
           { title: "Interactive Venn Diagrams", route: "/set-theory/venn-diagram-engine", icon: "Network", searchTerms: ["venn", "ven", "drag circles", "union", "intersection", "subset", "overlap", "disjoint"] },
           { title: "Set Builder and Notation", route: "/set-theory/set-builder", icon: "BookOpen", searchTerms: ["roster", "set notation", "universe", "set a", "set b"] },
@@ -488,6 +561,7 @@ export const navSections: NavSection[] = [
         icon: "Grid3X3",
         children: [
           { title: "Vector Visualizer", route: "/linear-algebra", icon: "Grid3X3" },
+          { title: "Vector Formula Visualizer", route: "/vectors/formula-visualizer", icon: "Sparkles", searchTerms: ["vector formula visualizer", "dot product projection angle"] },
           { title: "3D Vectors", route: "/linear-algebra", icon: "Cuboid" },
           { title: "Vector Algebra", route: "/linear-algebra", icon: "Sigma" },
           { title: "Dot and Cross Product", route: "/linear-algebra", icon: "Workflow" },
@@ -512,6 +586,7 @@ export const navSections: NavSection[] = [
         searchTerms: ["matrix", "matrices", "determinant", "inverse", "rank", "row operations", "eigenvalues", "eigenvectors", "systems"],
         children: [
           { title: "Matrix Operations", route: "/matrices", icon: "Grid3X3" },
+          { title: "Matrix Formula Visualizer", route: "/matrices/formula-visualizer", icon: "Sparkles", searchTerms: ["matrix formula visualizer", "determinant inverse multiplication"] },
           { title: "Matrix Basics", route: "/matrices/basics", icon: "BookOpen" },
           { title: "Matrix Addition", route: "/matrices/addition", icon: "Grid3X3" },
           { title: "Matrix Multiplication", route: "/matrices/multiplication", icon: "Workflow" },
@@ -531,6 +606,8 @@ export const navSections: NavSection[] = [
         searchTerms: ["statistics", "probability", "mean", "median", "mode", "variance", "standard deviation", "regression", "distribution"],
         children: [
           { title: "Statistics and Probability", route: "/probability-statistics", icon: "BarChart3" },
+          { title: "Probability Formula Visualizer", route: "/probability/formula-visualizer", icon: "CircleHelp", searchTerms: ["probability formula visualizer", "conditional probability bayes"] },
+          { title: "Statistics Formula Visualizer", route: "/statistics/formula-visualizer", icon: "BarChart3", searchTerms: ["statistics formula visualizer", "mean variance standard deviation"] },
           { title: "Probability Math Lab", route: "/math-lab/probability", icon: "CircleHelp" },
           { title: "Data Workspace", route: "/workspace/data", icon: "LineChart" },
         ],
@@ -607,11 +684,25 @@ export const navSections: NavSection[] = [
         ],
       },
       {
+        title: "Visual Formulas",
+        route: "/visual-formulas",
+        icon: "Sparkles",
+        searchTerms: ["visual formulas", "formula visualizer", "interactive formula bank", "formula visuals"],
+        children: visualFormulaNavChildren,
+      },
+      {
         title: "Formulas",
         route: "/formulas",
         icon: "Sigma",
         children: [
           { title: "All Formulas", route: "/formulas", icon: "Sigma" },
+          {
+            title: "Visual Formulas",
+            route: "/visual-formulas",
+            icon: "Sparkles",
+            searchTerms: ["visual formulas", "formula visualizer", "interactive formulas"],
+            children: visualFormulaNavChildren,
+          },
           { title: "Trigonometry Formulas", route: "/formulas/trigonometry", icon: "Waves" },
           { title: "Geometry Formulas", route: "/formulas/geometry", icon: "Shapes" },
           { title: "Algebra Formulas", route: "/formulas/algebra", icon: "Calculator" },
@@ -704,6 +795,28 @@ export const legacyNavItems = [
   { title: "NCERT Dashboard", route: "/ncert", icon: BookOpen },
   { title: "Syllabus", route: "/syllabus", icon: BookOpen },
   { title: "Formulas", route: "/formulas", icon: Sigma },
+  { title: "Visual Formulas", route: "/visual-formulas", icon: Sparkles },
+  { title: "Trigonometry Formula Visualizer", route: "/trigonometry/formula-visualizer", icon: Waves },
+  { title: "Algebra Formula Visualizer", route: "/algebra/formula-visualizer", icon: Calculator },
+  { title: "Geometry Formula Visualizer", route: "/geometry/formula-visualizer", icon: Shapes },
+  { title: "Coordinate Geometry Formula Visualizer", route: "/coordinate-geometry/formula-visualizer", icon: ChartSpline },
+  { title: "Derivatives Formula Visualizer", route: "/math/derivatives/formula-visualizer", icon: Sigma },
+  { title: "Integration Formula Visualizer", route: "/math/integration/formula-visualizer", icon: Sigma },
+  { title: "Matrices Formula Visualizer", route: "/matrices/formula-visualizer", icon: Grid3X3 },
+  { title: "Vectors Formula Visualizer", route: "/vectors/formula-visualizer", icon: Workflow },
+  { title: "Probability Formula Visualizer", route: "/probability/formula-visualizer", icon: CircleHelp },
+  { title: "Statistics Formula Visualizer", route: "/statistics/formula-visualizer", icon: BarChart3 },
+  { title: "Mensuration Formula Visualizer", route: "/mensuration/formula-visualizer", icon: Cuboid },
+  { title: "Number Systems Formula Visualizer", route: "/number-systems/formula-visualizer", icon: Hash },
+  { title: "Complex Numbers Formula Visualizer", route: "/complex-numbers/formula-visualizer", icon: Atom },
+  { title: "Sequences and Series Formula Visualizer", route: "/sequences-series/formula-visualizer", icon: ChartSpline },
+  { title: "Combinatorics Formula Visualizer", route: "/combinatorics/formula-visualizer", icon: Grid3X3 },
+  { title: "Set Theory Formula Visualizer", route: "/set-theory/formula-visualizer", icon: Network },
+  { title: "Relations and Functions Formula Visualizer", route: "/relations-functions/formula-visualizer", icon: FunctionSquare },
+  { title: "Linear Programming Formula Visualizer", route: "/linear-programming/formula-visualizer", icon: Sigma },
+  { title: "Polynomials Formula Visualizer", route: "/polynomials/formula-visualizer", icon: Calculator },
+  { title: "Inequalities Formula Visualizer", route: "/inequalities/formula-visualizer", icon: Sigma },
+  { title: "Probability Distributions Formula Visualizer", route: "/probability-distributions/formula-visualizer", icon: BarChart3 },
   { title: "Theorems", route: "/theorems", icon: BookOpen },
   { title: "Maths Visual Dictionary", route: "/visual-dictionary", icon: BookOpen },
   { title: "Scientific Calculator", route: "/calculator", icon: Calculator },

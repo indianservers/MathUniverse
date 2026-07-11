@@ -82,7 +82,7 @@ export default function TheoremLibraryPage() {
   const pageDescription =
     activeTheorem?.statement ??
     activeCategory?.description ??
-    "A compact theorem library with 12 major categories, 200+ theorem cards, subpages, and step-by-step proof drafts ready for future visual animations.";
+    "A compact theorem library with 12 major categories, 200+ theorem cards, proof-ready routes, reference pages, and connected visual learning links.";
   const unknownCategory = Boolean(categorySlug && !activeCategory);
 
   return (
@@ -257,7 +257,7 @@ function TheoremCard({ row }: { row: TheoremSheetRow }) {
           ))}
         </div>
         <Link className="inline-flex rounded-md border border-slate-200 px-3 py-2 text-sm font-black text-slate-700 transition hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:text-slate-200 dark:hover:border-cyan-300/50 dark:hover:text-cyan-100" to={`/theorems/${row.category.id}/${row.slug}`}>
-          Open proof draft
+          {isReferenceTheorem(row) ? "Open reference page" : "Open proof draft"}
         </Link>
         <RelatedLinkStrip related={related} compact />
       </div>
@@ -267,6 +267,7 @@ function TheoremCard({ row }: { row: TheoremSheetRow }) {
 
 function TheoremDetail({ theorem, category }: { theorem: TheoremLibraryItem; category: TheoremCategory }) {
   const related = useMemo(() => getRelatedLearningLinks(theorem, category), [category, theorem]);
+  const referencePage = isReferenceTheorem(theorem);
 
   return (
     <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-slate-900">
@@ -286,13 +287,13 @@ function TheoremDetail({ theorem, category }: { theorem: TheoremLibraryItem; cat
           </div>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <InfoPanel title="Why It Matters" text={theorem.whyItMatters} />
-            <InfoPanel title="Proof Draft" text={theorem.proofPlan} />
+            <InfoPanel title={referencePage ? "Reference Guide" : "Proof Draft"} text={theorem.proofPlan} />
           </div>
           <StepByStepProofPanel theorem={theorem} />
           <RelatedLearningPanel related={related} />
         </div>
         <aside className="rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
-          <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">Proof Roadmap</p>
+          <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">{referencePage ? "Reference Roadmap" : "Proof Roadmap"}</p>
           <ol className="mt-3 grid gap-2 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
             {theorem.proofSteps?.length ? (
               theorem.proofSteps.map((step, index) => (
@@ -302,10 +303,10 @@ function TheoremDetail({ theorem, category }: { theorem: TheoremLibraryItem; cat
               ))
             ) : (
               <>
-                <li className="rounded-md bg-white p-2 dark:bg-slate-950/50">1. State the givens and target result.</li>
-                <li className="rounded-md bg-white p-2 dark:bg-slate-950/50">2. Show the visual or algebraic setup.</li>
-                <li className="rounded-md bg-white p-2 dark:bg-slate-950/50">3. Add step-by-step reasoning.</li>
-                <li className="rounded-md bg-white p-2 dark:bg-slate-950/50">4. End with exam memory and common mistakes.</li>
+                <li className="rounded-md bg-white p-2 dark:bg-slate-950/50">1. Read the theorem statement and prerequisites.</li>
+                <li className="rounded-md bg-white p-2 dark:bg-slate-950/50">2. Check why the result matters.</li>
+                <li className="rounded-md bg-white p-2 dark:bg-slate-950/50">3. Open connected formulas or visual proofs.</li>
+                <li className="rounded-md bg-white p-2 dark:bg-slate-950/50">4. Use as a reference page until full proof steps are available.</li>
               </>
             )}
           </ol>
@@ -357,7 +358,7 @@ function StepByStepProofPanel({ theorem }: { theorem: TheoremLibraryItem }) {
       <div className="mt-4 rounded-lg border border-dashed border-slate-300 bg-slate-50 p-4 dark:border-white/15 dark:bg-white/5">
         <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">Step Proof Status</p>
         <p className="mt-2 text-base font-semibold leading-6 text-slate-700 dark:text-slate-200">
-          This theorem does not have step-by-step proof content yet. Add a draft proof before marking it classroom-ready.
+          Reference page: this theorem currently provides the statement, prerequisites, purpose, and connected learning links. It is not marked as a complete step-by-step proof route.
         </p>
       </div>
     );
@@ -527,8 +528,8 @@ function CategoryChip({ active, children, to }: { active: boolean; children: str
 function statusLabel(status: TheoremLibraryItem["proofStatus"]) {
   if (status === "visual-ready") return "Visual ready";
   if (status === "draft-ready") return "Draft proof";
-  if (status === "scaffold-ready") return "Foundation draft";
-  return "Needs proof draft";
+  if (status === "scaffold-ready") return "Reference page";
+  return "Proof needed";
 }
 
 function statusTone(status: TheoremLibraryItem["proofStatus"]) {
@@ -536,6 +537,10 @@ function statusTone(status: TheoremLibraryItem["proofStatus"]) {
   if (status === "draft-ready") return "border-cyan-200 bg-cyan-50 text-cyan-700 dark:border-cyan-300/30 dark:bg-cyan-300/10 dark:text-cyan-100";
   if (status === "scaffold-ready") return "border-violet-200 bg-violet-50 text-violet-700 dark:border-violet-300/30 dark:bg-violet-300/10 dark:text-violet-100";
   return "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-300/30 dark:bg-amber-300/10 dark:text-amber-100";
+}
+
+function isReferenceTheorem(theorem: Pick<TheoremLibraryItem, "proofStatus" | "proofSteps">) {
+  return theorem.proofStatus === "scaffold-ready" || !theorem.proofSteps?.length;
 }
 
 const theoremToProofCategory: Record<string, string[]> = {

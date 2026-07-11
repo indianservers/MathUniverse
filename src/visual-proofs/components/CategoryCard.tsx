@@ -23,8 +23,8 @@ export default function CategoryCard({ category }: CategoryCardProps) {
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-base font-black text-slate-950 dark:text-white">{category.title}</h3>
-            <span className={available ? "mini-chip bg-cyan-100 text-cyan-800 dark:bg-cyan-300/20 dark:text-cyan-100" : "mini-chip"}>
-              {available ? "Available" : "Coming soon"}
+          <span className={available ? "mini-chip bg-cyan-100 text-cyan-800 dark:bg-cyan-300/20 dark:text-cyan-100" : "mini-chip"}>
+            {available ? "Available" : "Planned"}
             </span>
           </div>
           <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{category.description}</p>

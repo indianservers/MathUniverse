@@ -38,5 +38,7 @@ describe("ARMathLab", () => {
     expect(html).toContain("Camera");
     expect(html).toContain("3D Preview");
     expect(html).toContain("ARSessionManager");
+    expect(html).toContain("Fallback placement guide is active.");
+    expect(html).not.toMatch(/Placeholder object|reticle placeholder|AR placeholder position|replace the placeholder|not implemented/i);
   });
 });

@@ -39,6 +39,7 @@ export default function Grade7DecimalOperationsLab() {
   return (
     <NCERTChapterScaffold
       title="Decimal Operations"
+      conceptId="class-7-decimal-operations"
       subtitle="Line up decimal places, compare decimal values, and see how powers of 10 move digits."
       formula="same place values line up under each other"
       presets={presets.map((preset) => preset.label)}

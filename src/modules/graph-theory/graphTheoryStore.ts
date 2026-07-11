@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 import { sampleGraph, type GraphEdge, type GraphNode, type GraphProject } from "./graphTheoryEngine";
 
 export type GraphAlgorithmName = "BFS" | "DFS" | "Dijkstra" | "Kruskal" | "Prim" | "Topological Sort";
@@ -43,6 +43,6 @@ export const useGraphTheoryStore = create<GraphTheoryState>()(
       loadProject: (project) => set({ ...project, stepIndex: 0 }),
       resetProject: () => set({ ...sampleGraph, stepIndex: 0 }),
     }),
-    { name: "math-universe-graph-theory-project" }
+    { name: "math-universe-graph-theory-project", storage: createJSONStorage(() => localStorage) }
   )
 );

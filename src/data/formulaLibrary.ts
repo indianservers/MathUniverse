@@ -73,6 +73,23 @@ export const formulaCategories: FormulaCategory[] = [
     ],
   },
   {
+    id: "fractals-solid-views",
+    title: "Fractals and Solid Views",
+    description: "Sierpinski carpet counts, retained area, removed area, and cube-stack projection rules.",
+    formulas: [
+      { title: "Sierpinski retained squares", formula: "R_n=8^n", note: "After n iterations, each retained square has produced 8 smaller retained squares." },
+      { title: "Sierpinski newly removed squares", formula: "N_n=8^{n-1}\\quad(n\\ge1)", note: "At step n, one center square is removed from each of the 8^(n-1) retained squares from the previous step." },
+      { title: "Sierpinski cumulative removed squares", formula: "C_n=1+8+8^2+\\cdots+8^{n-1}=\\frac{8^n-1}{7}", note: "A finite geometric sum counts all removed squares up to iteration n." },
+      { title: "Smallest side scale", formula: "s_n=\\frac{1}{3^n}", note: "Every iteration divides side length by 3." },
+      { title: "Smallest square area", formula: "a_n=\\frac{1}{9^n}", note: "Area scale is the square of side scale." },
+      { title: "Retained area fraction", formula: "A_n=\\left(\\frac{8}{9}\\right)^n=\\frac{8^n}{9^n}", note: "Each iteration keeps 8 of 9 equal area parts." },
+      { title: "Removed area fraction", formula: "M_n=1-\\left(\\frac{8}{9}\\right)^n", note: "Removed area is the complement of retained area." },
+      { title: "Top projection rule", formula: "T_{r,c}=1\\;\\text{if}\\;h_{r,c}>0", note: "The top view records whether a stack exists in each footprint cell." },
+      { title: "Front projection rule", formula: "F_c=\\max_r h_{r,c}", note: "The front view keeps the tallest stack in each column." },
+      { title: "Side projection rule", formula: "L_r=\\max_c h_{r,c}", note: "The side view keeps the tallest stack in each row." },
+    ],
+  },
+  {
     id: "coordinate-geometry",
     title: "Coordinate Geometry",
     description: "Lines, distances, sections, circles, conics, and coordinate transformations.",

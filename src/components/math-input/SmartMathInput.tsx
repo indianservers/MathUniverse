@@ -40,6 +40,7 @@ type SmartMathInputProps = {
   rows?: number;
   showInsights?: boolean;
   showLegend?: boolean;
+  showTokenPreview?: boolean;
   toolbar?: ReactNode;
   value: string;
 };
@@ -90,14 +91,15 @@ export default function SmartMathInput({
   rows = compact ? 1 : 4,
   showInsights = true,
   showLegend = true,
+  showTokenPreview = !compact,
   toolbar,
   value,
 }: SmartMathInputProps) {
   const tokens = useMemo(() => tokenizeSmartMathInput(value, mode), [mode, value]);
   const insight = useMemo(() => analyzeSmartMathInput(value, mode), [mode, value]);
   const minHeight = compact ? "min-h-12" : "min-h-[7rem]";
-  const textSize = compact ? "text-sm leading-6" : "text-lg leading-7";
-  const padding = compact ? "px-3 py-2.5" : "p-4";
+  const textSize = compact ? "text-sm leading-6" : "text-xl leading-8";
+  const padding = compact ? "px-3 py-2.5" : "p-4 sm:p-5";
 
   function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
     if (onSubmit && event.key === "Enter" && !event.shiftKey) {
@@ -109,13 +111,11 @@ export default function SmartMathInput({
   return (
     <div className={className}>
       {toolbar}
-      <div className={`relative ${minHeight} overflow-hidden rounded-2xl border border-slate-300 bg-slate-950 shadow-inner ring-1 ring-slate-900/5 focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-300/40 dark:border-white/10`}>
-        <pre aria-hidden="true" className={`pointer-events-none ${minHeight} whitespace-pre-wrap break-words ${padding} font-mono ${textSize} font-semibold text-slate-100`}>
-          {tokens.length ? tokens.map((token, index) => <SmartTokenSpan key={`${token.text}-${index}`} token={token} />) : <span className="text-slate-500">{placeholder}</span>}
-        </pre>
+      <div className={`relative rounded-3xl border border-cyan-100 bg-white shadow-[0_18px_45px_rgba(14,165,233,0.14)] ring-1 ring-cyan-200/70 transition focus-within:border-cyan-300 focus-within:shadow-[0_22px_55px_rgba(14,165,233,0.22)] focus-within:ring-4 focus-within:ring-cyan-200/70 dark:border-cyan-300/30 dark:bg-slate-50 dark:ring-cyan-300/30`}>
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300 to-transparent" />
         <textarea
           aria-label={ariaLabel}
-          className={`absolute inset-0 h-full w-full resize-none bg-transparent ${padding} font-mono ${textSize} font-semibold text-transparent caret-cyan-200 outline-none selection:bg-cyan-300/30`}
+          className={`block ${minHeight} w-full resize-y rounded-3xl bg-white ${padding} font-mono ${textSize} font-black text-slate-950 caret-cyan-700 outline-none placeholder:text-slate-400 selection:bg-cyan-200/70 dark:bg-slate-50 dark:text-slate-950`}
           onChange={(event) => onChange(event.target.value)}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
@@ -123,6 +123,17 @@ export default function SmartMathInput({
           spellCheck={false}
           value={value}
         />
+        {showTokenPreview ? (
+          <div className="border-t border-cyan-100 bg-cyan-50/55 px-4 py-3 dark:border-cyan-300/20 dark:bg-cyan-100/50">
+            <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
+              <p className="text-[11px] font-black uppercase tracking-[0.16em] text-cyan-800">Readable math preview</p>
+              <p className="text-[11px] font-bold text-slate-500">Typing stays plain; preview adds color.</p>
+            </div>
+            <pre aria-hidden="true" className="max-h-28 overflow-auto whitespace-pre-wrap break-words rounded-2xl bg-white px-3 py-2 font-mono text-base font-black leading-7 text-slate-900 shadow-inner thin-scrollbar">
+              {tokens.length ? tokens.map((token, index) => <SmartTokenSpan key={`${token.text}-${index}`} token={token} />) : <span className="text-slate-400">{placeholder}</span>}
+            </pre>
+          </div>
+        ) : null}
       </div>
       {showInsights && <SmartInputInsights insight={insight} />}
       {showLegend && <SmartInputLegend mode={mode} />}
@@ -196,21 +207,21 @@ export function analyzeSmartMathInput(value: string, mode: SmartMathInputMode = 
 
 function SmartTokenSpan({ token }: { token: SmartToken }) {
   const className: Record<SmartTokenKind, string> = {
-    command: "text-cyan-300",
-    keyword: "text-blue-200",
-    number: "text-amber-300",
-    operator: "text-rose-300",
-    relation: "text-pink-300",
-    set: "text-teal-300",
-    power: "text-emerald-200",
-    function: "text-violet-300",
-    variable: "text-emerald-300",
-    constant: "text-orange-300",
-    geometry: "text-sky-300",
-    matrix: "text-fuchsia-300",
-    punctuation: "text-slate-300",
-    space: "text-slate-100",
-    text: "text-slate-100",
+    command: "rounded-md bg-cyan-50 px-0.5 text-cyan-700",
+    keyword: "rounded-md bg-blue-50 px-0.5 text-blue-700",
+    number: "rounded-md bg-amber-50 px-0.5 text-amber-700",
+    operator: "rounded-md bg-rose-50 px-0.5 text-rose-700",
+    relation: "rounded-md bg-pink-50 px-0.5 text-pink-700",
+    set: "rounded-md bg-teal-50 px-0.5 text-teal-700",
+    power: "rounded-md bg-emerald-50 px-0.5 text-emerald-700",
+    function: "rounded-md bg-violet-50 px-0.5 text-violet-700",
+    variable: "rounded-md bg-emerald-50 px-0.5 text-emerald-700",
+    constant: "rounded-md bg-orange-50 px-0.5 text-orange-700",
+    geometry: "rounded-md bg-sky-50 px-0.5 text-sky-700",
+    matrix: "rounded-md bg-fuchsia-50 px-0.5 text-fuchsia-700",
+    punctuation: "text-slate-500",
+    space: "text-slate-900",
+    text: "text-slate-900",
   };
   return <span className={className[token.kind]}>{formatTokenText(token)}</span>;
 }

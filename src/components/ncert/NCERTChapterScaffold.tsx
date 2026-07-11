@@ -2,10 +2,15 @@ import type { ReactNode } from "react";
 import FormulaBlock from "../ui/FormulaBlock";
 import SectionCard from "../ui/SectionCard";
 import { DiagramSummary, GuidedScaffoldPanel, StudentTaskCard, TeacherNotes } from "../ui/LearningScaffolds";
+import { getNCERTPracticeItems } from "../../data/ncertPracticeBank";
 import NCERTTabbedWorkspace from "./layout/NCERTTabbedWorkspace";
+import NCERTPracticeCheck from "./practice/NCERTPracticeCheck";
+import NCERTTeacherModePanel from "./teacher/NCERTTeacherModePanel";
 
 type NCERTChapterScaffoldProps = {
   title: string;
+  conceptId?: string;
+  classLevel?: string;
   subtitle: string;
   formula: string;
   children: ReactNode;
@@ -30,6 +35,8 @@ type NCERTChapterScaffoldProps = {
 
 export default function NCERTChapterScaffold({
   title,
+  conceptId,
+  classLevel = "Class 7",
   subtitle,
   formula,
   children,
@@ -39,6 +46,7 @@ export default function NCERTChapterScaffold({
   recap,
   presets,
 }: NCERTChapterScaffoldProps) {
+  const bankQuestions = conceptId ? getNCERTPracticeItems(conceptId) : [];
   return (
     <div className="space-y-5">
       <section className="rounded-3xl border border-cyan-200 bg-white/90 p-5 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/70">
@@ -78,14 +86,18 @@ export default function NCERTChapterScaffold({
             label: "Practice",
             content: (
               <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(280px,380px)]">
-                <GuidedScaffoldPanel
-                  title="What did you learn?"
-                  goal="Say the rule in your own words, then test it on a new example."
-                  notice={recap[0] ?? "The visual shows the important structure."}
-                  tryIt={recap[1] ?? "Change one value and predict the result."}
-                  explain={recap[2] ?? "Explain why the answer changed."}
-                  checks={recap}
-                />
+                {bankQuestions.length > 0 ? (
+                  <NCERTPracticeCheck title={`${title} practice bank`} questions={bankQuestions} conceptId={conceptId} compact />
+                ) : (
+                  <GuidedScaffoldPanel
+                    title="What did you learn?"
+                    goal="Say the rule in your own words, then test it on a new example."
+                    notice={recap[0] ?? "The visual shows the important structure."}
+                    tryIt={recap[1] ?? "Change one value and predict the result."}
+                    explain={recap[2] ?? "Explain why the answer changed."}
+                    checks={recap}
+                  />
+                )}
                 <SectionCard title="Practice presets" description="Use these NCERT-style starting points before making your own.">
                   <div className="flex flex-wrap gap-2">
                     {presets.map((preset) => (
@@ -106,7 +118,16 @@ export default function NCERTChapterScaffold({
           {
             id: "teacher-notes",
             label: "Teacher Notes",
-            content: <TeacherNotes {...teacherNote} />,
+            content: bankQuestions.length > 0 ? (
+              <NCERTTeacherModePanel
+                title={title}
+                classLevel={classLevel}
+                questions={bankQuestions}
+                prompts={[teacherNote.prompt, studentTask.predict, studentTask.explain]}
+                misconception={teacherNote.misconception}
+                extension={teacherNote.extension}
+              />
+            ) : <TeacherNotes {...teacherNote} />,
           },
         ]}
       />

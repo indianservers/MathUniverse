@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 import { normalizeMathObject, withObjectPatch } from "./coreObjects";
 import { syncScenesWithObjects } from "./sceneGraph";
 import { buildRuntimeWorkspaceObjects } from "./workspaceRuntimeModel";
@@ -325,6 +325,7 @@ export const useWorkspaceStore = create<WorkspaceState>()(
     }),
     {
       name: WORKSPACE_STORAGE_KEY,
+      storage: createJSONStorage(() => localStorage),
       version: WORKSPACE_SCHEMA_VERSION,
       migrate: (persisted) => migrateWorkspaceState(persisted),
       partialize: (state) => ({

@@ -122,6 +122,22 @@ export const mathLabTools = [
     useCases: ["area", "perimeter", "volume", "surface area"],
   },
   {
+    title: "Sierpinski Carpet Explorer",
+    route: "/ncert/class-8-fractals-and-solid-views?tab=fractal",
+    icon: Sparkles,
+    difficulty: "Foundation",
+    description: "Explore self-similarity, retained squares, removed squares, side scale, and retained area fractions for the Sierpinski carpet.",
+    useCases: ["fractals", "self-similarity", "geometric sums", "area fractions"],
+  },
+  {
+    title: "Orthographic Solid Views Lab",
+    route: "/ncert/class-8-fractals-and-solid-views?tab=solid",
+    icon: Cuboid,
+    difficulty: "Foundation",
+    description: "Build cube-stack solids and compare top, front, left, and right orthographic projections.",
+    useCases: ["solid views", "cube stacks", "orthographic projections", "reconstruction"],
+  },
+  {
     title: "3D Graphing Lab",
     route: "/math-lab/3d-graphing",
     icon: Cuboid,

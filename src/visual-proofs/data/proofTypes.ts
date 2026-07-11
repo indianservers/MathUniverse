@@ -213,6 +213,8 @@ export type VisualProofComponentKey =
   | "SumArithmeticProgressionProof"
   | "GeometricProgressionScalingProof"
   | "FiniteGeometricSeriesSumProof"
+  | "SierpinskiRetainedAreaProof"
+  | "SierpinskiRemovedSquareSumProof"
   | "InfiniteGeometricSeriesConvergenceProof"
   | "TriangularNumbersProof"
   | "SquareNumbersOddLayersProof"
@@ -222,6 +224,8 @@ export type VisualProofComponentKey =
   | "PascalTriangleBinomialCoefficientsProof"
   | "VisualInductionDominoGrowthProof"
   | "HarmonicSeriesGrowthIntuitionProof"
+  | "OrthographicProjectionFromCubeStacksProof"
+  | "NonUniqueSolidProjectionsProof"
   | "ComingSoonProof";
 
 export type VisualProof = {

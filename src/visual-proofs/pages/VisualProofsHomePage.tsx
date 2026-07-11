@@ -94,7 +94,7 @@ export default function VisualProofsHomePage() {
         <FilterSelect label="Status" value={statusFilter} onChange={(value) => setStatusFilter(value as VisualProofStatus | "all")}>
           <option value="all">All statuses</option>
           <option value="available">Available</option>
-          <option value="coming-soon">Coming soon</option>
+          <option value="coming-soon">Planned</option>
         </FilterSelect>
       </section>
 

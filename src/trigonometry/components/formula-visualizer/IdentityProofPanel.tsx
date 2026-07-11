@@ -6,6 +6,7 @@ import {
   formatTrigNumber,
   getFormulaLiveValue,
 } from "../../utils/trigFormulaUtils";
+import MathExpression from "../../../components/ui/MathExpression";
 
 type IdentityProofPanelProps = {
   formula: TrigFormulaDefinition;
@@ -32,7 +33,7 @@ export default function IdentityProofPanel({
       <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
         <div className="min-w-0">
           <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Visual proof panel</p>
-          <h2 className="mt-2 break-words font-mono text-2xl font-black text-slate-950 dark:text-white">{formula.formula}</h2>
+          <MathExpression value={formula.formula} display className="mt-2 text-2xl font-black text-slate-950 dark:text-white" />
           <p className="mt-2 text-sm font-bold text-slate-700 dark:text-slate-200">{formula.meaning}</p>
         </div>
         <div className="rounded-lg bg-cyan-50 px-3 py-2 dark:bg-cyan-400/10">
@@ -76,7 +77,8 @@ function renderProofVisual(
 ) {
   if (formulaId.startsWith("even-") || compareEvenOdd) return <EvenOddVisual values={values} />;
   if (formulaId.startsWith("comp-") || compareComplementary) return <ComplementaryVisual values={values} />;
-  if (formulaId === "tan-ratio" || formulaId === "cot-ratio" || formulaId === "tan" || formulaId === "cot") return <QuotientVisual values={values} />;
+  if (formulaId.includes("reciprocal") || formulaId === "tan-ratio" || formulaId === "cot-ratio" || formulaId === "tan" || formulaId === "cot") return <QuotientVisual values={values} />;
+  if (formulaId.startsWith("periodic-") || formulaId.startsWith("angle-") || formulaId.startsWith("double-")) return <AngleTransformVisual values={values} formulaId={formulaId} />;
   return <PythagoreanVisual values={values} formulaId={formulaId} />;
 }
 
@@ -178,6 +180,61 @@ function ComplementaryVisual({ values }: { values: TrigFormulaValues }) {
       <text x="72" y="114" fill="#facc15" fontSize="13" fontWeight="800">tan(90 deg - theta) = cot theta</text>
     </svg>
   );
+}
+
+function AngleTransformVisual({ values, formulaId }: { values: TrigFormulaValues; formulaId: TrigFormulaId }) {
+  const origin = { x: 260, y: 132 };
+  const radius = 86;
+  const thetaPoint = pointOnCircle(origin, radius, values.degrees);
+  const beta = 30;
+  const targetDegrees = formulaId.startsWith("double-")
+    ? values.degrees * 2
+    : formulaId.startsWith("periodic-tan")
+      ? values.degrees + 180
+      : formulaId.startsWith("periodic-")
+        ? values.degrees + 360
+        : formulaId.includes("diff")
+          ? values.degrees - beta
+          : values.degrees + beta;
+  const targetPoint = pointOnCircle(origin, radius, targetDegrees);
+  const targetLabel = formulaId.startsWith("double-") ? "2theta" : formulaId.startsWith("periodic-") ? "repeat angle" : formulaId.includes("diff") ? "theta - beta" : "theta + beta";
+
+  return (
+    <svg viewBox="0 0 520 260" className={svgClass} data-testid="angle-transform-proof-visual" role="img" aria-label="Angle transform trigonometry comparison">
+      <rect width="520" height="260" fill="#020617" />
+      <circle cx={origin.x} cy={origin.y} r={radius} fill="rgba(34,211,238,0.08)" stroke="#67e8f9" strokeWidth="3" />
+      <line x1="88" y1={origin.y} x2="432" y2={origin.y} stroke="#cbd5e1" strokeWidth="2" />
+      <line x1={origin.x} y1="34" x2={origin.x} y2="226" stroke="#475569" strokeWidth="2" />
+      <path d={arcPath(origin, radius + 18, 0, values.degrees)} fill="none" stroke="#f59e0b" strokeWidth="5" strokeLinecap="round" />
+      <path d={arcPath(origin, radius + 34, values.degrees, targetDegrees)} fill="none" stroke="#22d3ee" strokeWidth="5" strokeLinecap="round" strokeDasharray="8 6" />
+      <line x1={origin.x} y1={origin.y} x2={thetaPoint.x} y2={thetaPoint.y} stroke="#f59e0b" strokeWidth="5" strokeLinecap="round" />
+      <line x1={origin.x} y1={origin.y} x2={targetPoint.x} y2={targetPoint.y} stroke="#22d3ee" strokeWidth="5" strokeLinecap="round" />
+      <line x1={targetPoint.x} y1={origin.y} x2={targetPoint.x} y2={targetPoint.y} stroke="#fb7185" strokeWidth="6" strokeLinecap="round" />
+      <line x1={origin.x} y1={origin.y} x2={targetPoint.x} y2={origin.y} stroke="#38bdf8" strokeWidth="6" strokeLinecap="round" />
+      <circle cx={thetaPoint.x} cy={thetaPoint.y} r="7" fill="#f59e0b" />
+      <circle cx={targetPoint.x} cy={targetPoint.y} r="7" fill="#22d3ee" />
+      <text x="34" y="42" fill="#e2e8f0" fontSize="15" fontWeight="900">Angle transformation</text>
+      <text x="34" y="70" fill="#f59e0b" fontSize="13" fontWeight="800">theta = {formatTrigNumber(values.degrees)} deg</text>
+      <text x="34" y="92" fill="#22d3ee" fontSize="13" fontWeight="800">{targetLabel} = {formatTrigNumber(((targetDegrees % 360) + 360) % 360)} deg</text>
+      <text x="34" y="116" fill="#fb7185" fontSize="13" fontWeight="800">new sine = vertical projection</text>
+      <text x="34" y="138" fill="#38bdf8" fontSize="13" fontWeight="800">new cosine = horizontal projection</text>
+      <text x="312" y="42" fill="#cbd5e1" fontSize="13" fontWeight="800">beta helper angle = 30 deg</text>
+    </svg>
+  );
+}
+
+function pointOnCircle(origin: { x: number; y: number }, radius: number, degrees: number) {
+  const radians = (degrees * Math.PI) / 180;
+  return { x: origin.x + Math.cos(radians) * radius, y: origin.y - Math.sin(radians) * radius };
+}
+
+function arcPath(origin: { x: number; y: number }, radius: number, startDegrees: number, endDegrees: number) {
+  const start = pointOnCircle(origin, radius, startDegrees);
+  const end = pointOnCircle(origin, radius, endDegrees);
+  const sweep = endDegrees >= startDegrees ? 0 : 1;
+  const delta = Math.abs(endDegrees - startDegrees);
+  const largeArc = delta % 360 > 180 ? 1 : 0;
+  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArc} ${sweep} ${end.x} ${end.y}`;
 }
 
 function ProofMetric({ label, value }: { label: string; value: string }) {

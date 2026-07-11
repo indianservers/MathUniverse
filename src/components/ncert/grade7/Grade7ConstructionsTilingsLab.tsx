@@ -18,6 +18,7 @@ export default function Grade7ConstructionsTilingsLab() {
   return (
     <NCERTChapterScaffold
       title="Constructions and Tilings"
+      conceptId="class-7-constructions-and-tilings"
       subtitle="Follow construction steps and test which shapes repeat without gaps."
       formula="accurate construction = fixed points + equal distances + clear steps"
       presets={["perpendicular bisector", "angle bisector", "3-4-5 triangle", "square tiling", "triangle tiling", "hexagon tiling"]}

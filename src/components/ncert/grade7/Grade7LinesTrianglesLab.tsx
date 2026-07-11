@@ -23,6 +23,7 @@ export default function Grade7LinesTrianglesLab() {
   return (
     <NCERTChapterScaffold
       title="Lines and Triangles"
+      conceptId="class-7-lines-and-triangles"
       subtitle="Explore parallel lines, transversals, angle pairs, triangle angle sum, and exterior angle facts."
       formula="angles in a triangle add to 180 degrees"
       presets={presets.map((preset) => preset.label)}

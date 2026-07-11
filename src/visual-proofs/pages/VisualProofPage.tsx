@@ -135,10 +135,10 @@ function ComingSoonProof({ category, proof }: { category: NonNullable<ReturnType
         <div className="min-h-[360px] bg-slate-950 p-6 text-white">
           <div className="mx-auto grid h-full max-w-5xl gap-5 md:grid-cols-[minmax(0,1fr)_300px] md:items-center">
             <div>
-              <p className="text-xs font-black uppercase tracking-wide text-violet-200">Scaffold-ready proof route</p>
+              <p className="text-xs font-black uppercase tracking-wide text-violet-200">Planned proof route</p>
               <h2 className="mt-3 text-3xl font-black leading-tight"><MathText value={proof.title} /></h2>
               <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-200">
-                A custom animation is still pending, but this route now shows the learning goal, prerequisite ideas, symbol plan, and build-ready proof sequence.
+                A custom animation is still queued, but this route clearly shows the learning goal, prerequisite ideas, symbol plan, and proof-building sequence.
               </p>
               <div className="mt-5 grid gap-2 sm:grid-cols-3">
                 {["Claim", "Diagram", "Invariant"].map((label, index) => (
@@ -179,12 +179,12 @@ function ComingSoonProof({ category, proof }: { category: NonNullable<ReturnType
       formula={<FormulaPanel formulas={[proof.title, proof.prerequisites[0] ? `uses ${proof.prerequisites[0]}` : "uses core definitions", "visual evidence -> theorem statement"]} />}
       conceptNotes={
         <div className="space-y-3">
-          <p>This scaffold keeps the route useful while the dedicated SVG, canvas, or HTML proof is being built.</p>
+          <p>This roadmap outline keeps the route useful while the dedicated SVG, canvas, or HTML proof is being built.</p>
           <TeacherNotes
             objective={`Prepare students to understand ${proof.title} before the custom interactive visual is available.`}
             prerequisite={proof.prerequisites.join(", ") || "Core definitions"}
             prompt="Which part of the statement should be visible first, and what should stay unchanged?"
-            misconception="Students may treat a placeholder as empty; use the scaffold to make them predict the proof structure."
+            misconception="Students may treat a planned proof route as empty; use the roadmap outline to make them predict the proof structure."
             extension="Ask learners to propose the first draggable control or animation frame."
           />
         </div>

@@ -3,6 +3,7 @@ import {
   type TrigFormulaValues,
   getFormulaLiveValue,
 } from "../../utils/trigFormulaUtils";
+import MathExpression from "../../../components/ui/MathExpression";
 
 type FormulaCardProps = {
   formula: TrigFormulaDefinition;
@@ -23,7 +24,7 @@ export default function FormulaCard({ formula, values, active = false, onSelect 
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="font-mono text-sm font-black text-slate-950 dark:text-white">{formula.formula}</p>
+          <MathExpression value={formula.formula} className="text-sm font-black text-slate-950 dark:text-white" />
           <p className="mt-1 text-xs font-bold uppercase text-cyan-700 dark:text-cyan-300">{formula.meaning}</p>
         </div>
         <span className="shrink-0 rounded-lg bg-slate-100 px-2 py-1 font-mono text-sm font-black text-slate-800 dark:bg-slate-950/80 dark:text-cyan-100">

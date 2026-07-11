@@ -17,8 +17,9 @@ describe("NCERTPracticeCheck", () => {
     );
 
     expect(html).toContain("What is 2 + 3?");
-    expect(html).toContain("Hint: Add both numbers.");
+    expect(html).toContain("Try it first");
     expect(html).toContain("Practice answer");
     expect(html).toContain("Check answer");
+    expect(html).toContain("All");
   });
 });

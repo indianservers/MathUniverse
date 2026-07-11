@@ -5,17 +5,14 @@ import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import { navItems } from "../../components/layout/navItems";
 import { journeySteps } from "../components/formula-visualizer/FormulaJourneyMode";
-import { practiceQuestions } from "../components/formula-visualizer/FormulaPracticeMode";
-import { misconceptionAlerts } from "../components/formula-visualizer/MisconceptionAlerts";
 import {
   computeTrigFormulaValues,
   getFormulaDefinition,
   getFormulaLiveValue,
   snapToSpecialAngle,
-  trigFormulaGroups,
   trigFormulaDefinitions,
 } from "../utils/trigFormulaUtils";
-import TrigFormulaVisualizerPage from "./TrigFormulaVisualizerPage";
+import TrigFormulaVisualizerPage, { trianglePointerToDegrees } from "./TrigFormulaVisualizerPage";
 
 describe("Trigonometric Formula Visualizer page", () => {
   it("renders the new page without replacing the existing trigonometry overview", () => {
@@ -30,7 +27,7 @@ describe("Trigonometric Formula Visualizer page", () => {
     expect(html).toContain("formula-unit-circle-svg");
   });
 
-  it("renders the premium learning experience surfaces", () => {
+  it("renders the compact learning workspace surfaces", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter>
         <TrigFormulaVisualizerPage />
@@ -40,29 +37,28 @@ describe("Trigonometric Formula Visualizer page", () => {
     expect(html).toContain("formula-journey-mode");
     expect(html).toContain("Formula Journey Mode");
     expect(html).toContain(journeySteps[0].title);
-    expect(html).toContain("formula-practice-mode");
-    expect(html).toContain(practiceQuestions[0].prompt);
-    expect(html).toContain("misconception-alerts");
-    expect(html).toContain(misconceptionAlerts[0]);
+    expect(html).toContain("formula-control-panel");
+    expect(html).toContain("trig-main-visual-pane");
+    expect(html).toContain("Values and explanation");
+    expect(html).toContain("Open formula controls");
     expect(html).toContain("formula-comparison-mode");
     expect(html).toContain("comparison-graph-svg");
   });
 
-  it("renders every formula group and gallery card", () => {
+  it("renders every formula in the top picker with stable picker IDs", () => {
     const html = renderToStaticMarkup(
       <MemoryRouter>
         <TrigFormulaVisualizerPage />
       </MemoryRouter>,
     );
 
-    for (const group of trigFormulaGroups) {
-      expect(html).toContain(`formula-group-${group.id}`);
-      expect(html).toContain(group.title);
-    }
+    expect(trigFormulaDefinitions).toHaveLength(40);
+    expect(trigFormulaDefinitions.filter((formula) => ["reciprocal-identities", "periodic-identities", "sum-difference-identities", "double-angle-identities"].includes(formula.groupId)).length).toBe(12);
+    expect(trigFormulaDefinitions.filter((formula) => formula.groupId === "basic-flip-formulas")).toHaveLength(6);
 
     for (const formula of trigFormulaDefinitions) {
-      expect(html).toContain(`formula-card-${formula.id}`);
-      expect(html).toContain(formula.formula);
+      expect(html).toContain(`formula-picker-${formula.id}`);
+      expect(html).toContain(formula.meaning);
     }
   });
 
@@ -78,6 +74,13 @@ describe("Trigonometric Formula Visualizer page", () => {
     expect(getFormulaLiveValue("pythagorean", sixty)).toBe("1");
     expect(getFormulaLiveValue("sec", sixty)).toBe("2");
     expect(getFormulaLiveValue("comp-sin", sixty)).toBe("0.5");
+    expect(getFormulaLiveValue("reciprocal-cos-sec", sixty)).toBe("1");
+    expect(getFormulaLiveValue("basic-sin-from-cosec", sixty)).toBe("0.866 = 0.866");
+    expect(getFormulaLiveValue("basic-cos-from-sec", sixty)).toBe("0.5 = 0.5");
+    expect(getFormulaLiveValue("basic-sec-from-cos", sixty)).toBe("2");
+    expect(getFormulaLiveValue("periodic-tan", sixty).trim()).toBe("1.732 = 1.732");
+    expect(getFormulaLiveValue("double-sin", sixty)).toBe("0.866 = 0.866");
+    expect(getFormulaLiveValue("angle-sum-cos", sixty)).toContain("0 = 0");
   });
 
   it("changes the selected visual explanation by formula", () => {
@@ -93,6 +96,14 @@ describe("Trigonometric Formula Visualizer page", () => {
     expect(snapToSpecialAngle(58)).toBe(60);
     expect(snapToSpecialAngle(44)).toBe(45);
     expect(snapToSpecialAngle(52)).toBe(52);
+  });
+
+  it("maps right-triangle pane dragging to a usable acute angle", () => {
+    const origin = { x: 100, y: 330 };
+
+    expect(Math.round(trianglePointerToDegrees({ x: 200, y: 230 }, origin))).toBe(45);
+    expect(Math.round(trianglePointerToDegrees({ x: 460, y: 318 }, origin))).toBe(2);
+    expect(Math.round(trianglePointerToDegrees({ x: 112, y: 60 }, origin))).toBe(87);
   });
 
   it("adds the new route and keeps existing trigonometry routes discoverable", () => {

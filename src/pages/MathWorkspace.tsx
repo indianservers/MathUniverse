@@ -1,6 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
-import { Box, ChevronDown, Circle, Download, Eraser, FunctionSquare, LineChart, Magnet, MousePointer2, Move, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
+import { Box, ChevronDown, Circle, Download, Eraser, FunctionSquare, LineChart, ListTree, Magnet, MousePointer2, Move, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
 import { MouseEvent as ReactMouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
@@ -135,6 +135,7 @@ type Added3DObject = { id: string; label: string; baseId: ThreeObjectId; render:
 type CameraPreset3D = "free" | "top" | "front" | "right" | "isometric";
 type Preset3DTransform = "center" | "ground" | "unit" | "wide" | "tall" | "xy-plane" | "xz-plane" | "yz-plane";
 type Space3DViewTab = "scene" | "xy" | "xz";
+type GraphWorkspaceTab = "graph" | "command" | "results" | "objects" | "algebra";
 type AlgebraObjectKind = "function" | "point" | "line" | "circle" | "polygon" | "arc" | "locus" | "3d";
 type AlgebraObjectRef = { kind: AlgebraObjectKind; id: string };
 type ObjectPropertyOverrides = Record<string, MathObjectProperties>;
@@ -308,6 +309,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [contextMenu, setContextMenu] = useState<ContextMenuState | null>(null);
   const [formulaSearch, setFormulaSearch] = useState("");
   const [workspaceView, setWorkspaceView] = useState<WorkspaceView>(routeInitialView);
+  const [graphWorkspaceTab, setGraphWorkspaceTab] = useState<GraphWorkspaceTab>("graph");
   const [teachingMode, setTeachingMode] = useState(false);
   const [guidedMode, setGuidedMode] = useState(false);
   const [guidedPhase, setGuidedPhase] = useState<GuidedActivityPhase>("predict");
@@ -2126,9 +2128,49 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         </div>
       </SectionCard>}
 
-      {workspaceView === "graph" && <SectionCard title="Graph, CAS, And Algebra" description="Type a calculation or command such as plot, solve, factor, derivative, integral, table, roots, extrema, or intersection.">
-        <div className="grid gap-3 2xl:grid-cols-[minmax(0,1fr)_320px]">
-          <div className="space-y-4">
+      {workspaceView === "graph" && <SectionCard title="Graph, CAS, And Algebra" description="Type commands, graph expressions, inspect results, and manage objects in focused tabs." compact={singleView}>
+        <div className="mb-3 mobile-safe-scroll thin-scrollbar">
+          <span className="sr-only">Workspace command keyboard</span>
+          <div className="inline-flex min-w-full gap-1.5 rounded-xl border border-slate-200 bg-white/80 p-1 dark:border-white/10 dark:bg-white/5 md:min-w-0">
+            {[
+              { id: "graph" as const, label: "Graph", icon: <LineChart className="h-4 w-4" /> },
+              { id: "command" as const, label: "Command", icon: <FunctionSquare className="h-4 w-4" /> },
+              { id: "results" as const, label: `Results ${results.length}`, icon: <Search className="h-4 w-4" /> },
+              { id: "objects" as const, label: `${unifiedWorkspaceObjects.length} Objects`, icon: <Box className="h-4 w-4" /> },
+              { id: "algebra" as const, label: "Algebra", icon: <ListTree className="h-4 w-4" /> },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setGraphWorkspaceTab(tab.id)}
+                className={`inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-lg px-3 text-sm font-black transition ${graphWorkspaceTab === tab.id ? "bg-cyan-500 text-white shadow-sm dark:bg-cyan-300 dark:text-slate-950" : "text-slate-500 hover:bg-cyan-50 hover:text-cyan-800 dark:text-slate-300 dark:hover:bg-cyan-300/10 dark:hover:text-cyan-100"}`}
+              >
+                {tab.icon}
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {graphWorkspaceTab === "graph" && (
+          <div ref={graphExportRef}>
+            <GraphWorkspacePanel
+              plots={plots}
+              colors={colors}
+              regressionSeed={regressionSeed}
+              onChange={handlePlotsChange}
+              tableRange={{ start: tableStart, end: tableEnd, step: tableStep }}
+              onTableRangeChange={({ start, end, step }) => {
+                setTableStart(start);
+                setTableEnd(end);
+                setTableStep(step);
+              }}
+            />
+          </div>
+        )}
+
+        {graphWorkspaceTab === "command" && (
+          <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_280px]">
             <MathKeyboardInput
               value={input}
               onChange={setInput}
@@ -2138,66 +2180,63 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               mode="command"
               examples={examples}
               onExample={setInput}
-              defaultCompact={singleView}
+              defaultCompact
             />
-            <div ref={graphExportRef}>
-              <GraphWorkspacePanel
-                plots={plots}
-                colors={colors}
-                regressionSeed={regressionSeed}
-                onChange={handlePlotsChange}
-                tableRange={{ start: tableStart, end: tableEnd, step: tableStep }}
-                onTableRangeChange={({ start, end, step }) => {
-                  setTableStart(start);
-                  setTableEnd(end);
-                  setTableStep(step);
-                }}
-              />
+            <div className="rounded-2xl bg-slate-100 p-3 text-sm leading-6 text-slate-600 dark:bg-white/10 dark:text-slate-300">
+              <p className="font-black text-slate-950 dark:text-white">Fast commands</p>
+              <p className="mt-1">Try plot, solve, factor, derivative, integral, table, roots, extrema, or intersection.</p>
             </div>
           </div>
-          <div className="space-y-3 2xl:sticky 2xl:top-20">
-            <div className="flex items-center justify-between">
-              <h2 className="font-bold">Results</h2>
-              <button type="button" onClick={() => setResults([])} className="rounded-full bg-slate-100 p-2 dark:bg-white/10" title="Clear results" aria-label="Clear results"><Trash2 className="h-4 w-4" /></button>
+        )}
+
+        {graphWorkspaceTab === "results" && (
+          <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_280px]">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <h2 className="font-bold">Results</h2>
+                <button type="button" onClick={() => setResults([])} className="rounded-full bg-slate-100 p-2 dark:bg-white/10" title="Clear results" aria-label="Clear results"><Trash2 className="h-4 w-4" /></button>
+              </div>
+              {results.length === 0 ? <EmptyPanel text="Run a command to see interpretation, exact result, numeric checks, and related output." /> : results.map((result) => <ResultCardView key={result.id} result={result} />)}
             </div>
-            {results.length === 0 ? <EmptyPanel text="Run a command to see interpretation, exact result, numeric checks, and related output." /> : results.map((result) => <ResultCardView key={result.id} result={result} />)}
-            <UnifiedWorkspacePanel
-              objects={unifiedWorkspaceObjects}
-              selectedObject={unifiedSelectedObject}
-              selectedObjectId={unifiedSelectedObjectId}
-              selectedObjectIds={unifiedSelectedObjectIds}
-              onObjectAction={handleUnifiedObjectAction}
-              onObjectChange={handleUnifiedObjectChange}
-            />
+            <div className="rounded-2xl bg-slate-100 p-3 text-sm font-bold text-slate-600 dark:bg-white/10 dark:text-slate-300">
+              Results stay here so the graph canvas keeps its space.
+            </div>
           </div>
-        </div>
-        <details className="mt-3 rounded-xl border border-slate-200 bg-white/70 p-2 dark:border-white/10 dark:bg-white/5" open={!singleView}>
-          <summary className="cursor-pointer rounded-lg px-2 py-2 text-sm font-black text-slate-900 marker:text-cyan-500 dark:text-white">
-            Unified Algebra And Object Panel
-          </summary>
-          <div className="mt-2">
-            <AlgebraObjectsPanel
-              objects={workspaceObjects}
-              selected={selectedAlgebra}
-              protocol={protocol}
-              graph={dynamicGraph}
-              graphHealth={dynamicHealth}
-              commandSummary={commandSummary}
-              onSelect={selectWorkspaceObject}
-              onRename={renameWorkspaceObject}
-              onEditDefinition={editWorkspaceDefinition}
-              onPatch={patchWorkspaceObject}
-              onDuplicate={duplicateWorkspaceObject}
-              onDelete={deleteWorkspaceObject}
-              onReplay={replayConstructionStep}
-              onContextMenu={(event, ref) => {
-                event.preventDefault();
-                setSelectedAlgebra(ref);
-                setContextMenu({ x: event.clientX, y: event.clientY, target: { type: "algebra", ref } });
-              }}
-            />
-          </div>
-        </details>
+        )}
+
+        {graphWorkspaceTab === "objects" && (
+          <UnifiedWorkspacePanel
+            objects={unifiedWorkspaceObjects}
+            selectedObject={unifiedSelectedObject}
+            selectedObjectId={unifiedSelectedObjectId}
+            selectedObjectIds={unifiedSelectedObjectIds}
+            onObjectAction={handleUnifiedObjectAction}
+            onObjectChange={handleUnifiedObjectChange}
+          />
+        )}
+
+        {graphWorkspaceTab === "algebra" && (
+          <AlgebraObjectsPanel
+            objects={workspaceObjects}
+            selected={selectedAlgebra}
+            protocol={protocol}
+            graph={dynamicGraph}
+            graphHealth={dynamicHealth}
+            commandSummary={commandSummary}
+            onSelect={selectWorkspaceObject}
+            onRename={renameWorkspaceObject}
+            onEditDefinition={editWorkspaceDefinition}
+            onPatch={patchWorkspaceObject}
+            onDuplicate={duplicateWorkspaceObject}
+            onDelete={deleteWorkspaceObject}
+            onReplay={replayConstructionStep}
+            onContextMenu={(event, ref) => {
+              event.preventDefault();
+              setSelectedAlgebra(ref);
+              setContextMenu({ x: event.clientX, y: event.clientY, target: { type: "algebra", ref } });
+            }}
+          />
+        )}
       </SectionCard>}
 
       {workspaceView === "data" && <SectionCard title={dataPage === "overview" ? "Data Workspace" : dataWorkspacePageTitle(dataPage)} description="Spreadsheet, CAS, function analysis, results, and the shared object registry are split into focused pages." headerAction={<DataWorkspaceNav active={dataPage} />} compact={singleView}>

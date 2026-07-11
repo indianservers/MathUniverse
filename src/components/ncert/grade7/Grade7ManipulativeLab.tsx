@@ -5,6 +5,8 @@ import NCERTSubTabs from "../layout/NCERTSubTabs";
 import NCERTTabbedWorkspace from "../layout/NCERTTabbedWorkspace";
 import NCERTPracticeCheck from "../practice/NCERTPracticeCheck";
 import type { NCERTPracticeQuestion } from "../practice/ncertPracticeTypes";
+import { getNCERTPracticeItems } from "../../../data/ncertPracticeBank";
+import NCERTTeacherModePanel from "../teacher/NCERTTeacherModePanel";
 import { evaluateArithmeticExpression, operateDecimals, operateFractions, type Fraction } from "./grade7MathUtils";
 import {
   angleBisectorCheck,
@@ -60,7 +62,8 @@ export default function Grade7ManipulativeLab({ concept }: { concept: NCERTConce
   const routeId = concept.id as Grade7PriorityRouteId;
   const config = grade7Config(routeId, concept);
   const [values, setValues] = useState(config.defaults);
-  const practice = grade7Practice(routeId, values);
+  const bankPractice = getNCERTPracticeItems(routeId);
+  const practice = bankPractice.length > 0 ? bankPractice : grade7Practice(routeId, values);
   const facts = grade7Facts(routeId, values);
   const feedback = grade7Feedback(routeId, values);
 
@@ -128,7 +131,7 @@ export default function Grade7ManipulativeLab({ concept }: { concept: NCERTConce
       tabs={config.subTabs.map((label, index) => ({
         id: label.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
         label,
-        content: index === config.subTabs.length - 1 ? <NCERTPracticeCheck questions={practice} /> : visual,
+        content: index === config.subTabs.length - 1 ? <NCERTPracticeCheck questions={practice} conceptId={routeId} compact /> : visual,
       }))}
     />
   );
@@ -152,7 +155,7 @@ export default function Grade7ManipulativeLab({ concept }: { concept: NCERTConce
         tabs={[
           { id: "explore", label: "Explore", content: visual },
           { id: "visual-model", label: "Visual Model", content: visualModel },
-          { id: "practice", label: "Practice", content: <NCERTPracticeCheck questions={practice} /> },
+          { id: "practice", label: "Practice", content: <NCERTPracticeCheck questions={practice} conceptId={routeId} compact /> },
           {
             id: "mistakes",
             label: "Common Mistakes",
@@ -166,11 +169,15 @@ export default function Grade7ManipulativeLab({ concept }: { concept: NCERTConce
             id: "teacher",
             label: "Teacher Notes",
             content: (
-              <div className="grid gap-4 md:grid-cols-3">
-                <NCERTCompactPanel title="Objective" accent="cyan"><p className="text-sm font-bold leading-6">{concept.outcomes[0]}</p></NCERTCompactPanel>
-                <NCERTCompactPanel title="Prompt" accent="violet"><p className="text-sm font-bold leading-6">{concept.tasks[0]}</p></NCERTCompactPanel>
-                <NCERTCompactPanel title="Recap" accent="emerald"><p className="text-sm font-bold leading-6">{concept.summary}</p></NCERTCompactPanel>
-              </div>
+              bankPractice.length > 0 ? (
+                <NCERTTeacherModePanel title={concept.title} classLevel={concept.classLevel} questions={bankPractice} prompts={concept.tasks} misconception={feedback} extension={concept.outcomes[1] ?? concept.summary} />
+              ) : (
+                <div className="grid gap-4 md:grid-cols-3">
+                  <NCERTCompactPanel title="Objective" accent="cyan"><p className="text-sm font-bold leading-6">{concept.outcomes[0]}</p></NCERTCompactPanel>
+                  <NCERTCompactPanel title="Prompt" accent="violet"><p className="text-sm font-bold leading-6">{concept.tasks[0]}</p></NCERTCompactPanel>
+                  <NCERTCompactPanel title="Recap" accent="emerald"><p className="text-sm font-bold leading-6">{concept.summary}</p></NCERTCompactPanel>
+                </div>
+              )
             ),
           },
         ]}

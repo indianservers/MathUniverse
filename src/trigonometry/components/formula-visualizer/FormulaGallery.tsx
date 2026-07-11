@@ -13,7 +13,7 @@ type FormulaGalleryProps = {
 
 export default function FormulaGallery({ values, selectedFormulaId, onSelect }: FormulaGalleryProps) {
   return (
-    <section className="space-y-4" data-testid="formula-gallery" aria-label="Trigonometry formula gallery">
+    <section className="max-h-[560px] space-y-4 overflow-y-auto pr-1" data-testid="formula-gallery" aria-label="Trigonometry formula gallery">
       {formulaGroupsWithDefinitions.map((group) => (
         <div
           key={group.id}

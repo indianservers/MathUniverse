@@ -98,7 +98,7 @@ const initialSceneState: ARSceneState = {
   showAxes: true,
   showLabels: true,
   placementReady: false,
-  selectedObjectId: "phase-2-placeholder-object",
+  selectedObjectId: "phase-2-preview-object",
   objectScale: 1,
   objectRotation: [0, 0, 0],
   objectPosition: [0, 0.45, 0],
@@ -175,7 +175,7 @@ export default function ARMathLab() {
     lastEvent: lastLearningEvent,
   }), [comparison, generatedGraphs, generatedSolids, graphSettings, input, lastLearningEvent, measurements, parameterValues, selectedGraph, selectedSolid]);
   const currentObject = useMemo<ARMathObject>(() => ({
-    id: selectedSolid?.id ?? selectedGraph?.id ?? "phase-2-placeholder-object",
+    id: selectedSolid?.id ?? selectedGraph?.id ?? "phase-2-preview-object",
     label: selectedSolid?.name ?? selectedGraph?.name ?? selectedExample.title,
     input,
     type: selectedSolid?.type ?? selectedGraph?.type ?? classification.type,
@@ -312,7 +312,7 @@ export default function ARMathLab() {
         setSessionState((state) => ({ ...state, mode: "3d-preview", status: "ready", infoMessage: "AR session ended. 3D Preview Mode is active." }));
       };
       session.addEventListener?.("end", handleEnd);
-      setSessionState((state) => ({ ...state, mode: "ar", status: "active", cameraPermission: "granted", errorMessage: undefined, infoMessage: "AR session started. Placeholder object and reticle are ready." }));
+      setSessionState((state) => ({ ...state, mode: "ar", status: "active", cameraPermission: "granted", errorMessage: undefined, infoMessage: "AR session started. Preview object and placement guide are ready." }));
       emitLearning("mode_changed", selectedObjectId, { mode: "ar" });
     } catch {
       xrSessionRef.current = null;
@@ -387,13 +387,13 @@ export default function ARMathLab() {
 
   function resetScene() {
     setSceneState(initialSceneState);
-    setSessionState((state) => ({ ...state, infoMessage: "Scene reset. Grid, axes, labels, and placeholder transform restored." }));
+    setSessionState((state) => ({ ...state, infoMessage: "Scene reset. Grid, axes, labels, and preview transform restored." }));
   }
 
   function placeObject() {
     const messages: Record<ARRenderMode, string> = {
-      ar: selectedSolid ? "Geometry solid placed in AR placeholder position." : selectedGraph ? "Generated graph placed in AR placeholder position." : "Object placed. Generate a graph or solid to replace the placeholder.",
-      "camera-preview": "Object placed in camera overlay mode.",
+      ar: selectedSolid ? "Geometry solid placed in the AR preview position." : selectedGraph ? "Generated graph placed in the AR preview position." : "Object placed. Generate a graph or solid to replace the preview object.",
+      "camera-preview": "Object placed in camera preview overlay mode.",
       "3d-preview": "Object placed in 3D preview.",
     };
     setSceneState((state) => ({ ...state, placementReady: true, selectedObjectId: currentObject.id }));
@@ -434,7 +434,7 @@ export default function ARMathLab() {
     setAnimations((items) => items.filter((animation) => animation.objectId !== selectedGraphId));
     setMeasurements((items) => items.filter((measurement) => measurement.objectId !== selectedGraphId));
     setSelectedGraphId(undefined);
-    setSessionState((state) => ({ ...state, infoMessage: "Graph deleted. Placeholder scene remains available." }));
+    setSessionState((state) => ({ ...state, infoMessage: "Graph deleted. The preview scene remains available." }));
   }
 
   function generateSolid() {
@@ -475,7 +475,7 @@ export default function ARMathLab() {
     setAnimations((items) => items.filter((animation) => animation.objectId !== selectedSolidId));
     setMeasurements((items) => items.filter((measurement) => measurement.objectId !== selectedSolidId));
     setSelectedSolidId(undefined);
-    setSessionState((state) => ({ ...state, infoMessage: "Geometry solid deleted. Graph and placeholder previews remain available." }));
+    setSessionState((state) => ({ ...state, infoMessage: "Geometry solid deleted. Graph and fallback previews remain available." }));
   }
 
   function duplicateSelectedSolid() {
@@ -893,7 +893,7 @@ export function ARFallbackViewer({ generatedGraphs, generatedSolids, measurement
   return (
     <div data-testid="ar-fallback-viewer" className="p-3 sm:p-4">
       <ThreeSceneWrapper height="clamp(440px, calc(100dvh - 170px), 720px)" mobileHeight="clamp(340px, 58dvh, 560px)" cameraPosition={[5, 4, 7]} fov={45} quality="high" chrome="cinematic" sceneLabel="3D Preview Mode" interactionLabel="Drag rotate - pinch or wheel zoom - right drag pan">
-        <PlaceholderScene generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} />
+        <PreviewScene generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} />
         <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} />
       </ThreeSceneWrapper>
       <p className="mt-3 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm font-semibold leading-6 text-cyan-50">3D Preview Mode is active. Use a WebXR-supported mobile browser for real AR.</p>
@@ -901,7 +901,7 @@ export function ARFallbackViewer({ generatedGraphs, generatedSolids, measurement
   );
 }
 
-function PlaceholderScene({ generatedGraphs, generatedSolids, measurements, mathObject, sceneState }: { generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; mathObject: ARMathObject; sceneState: ARSceneState }) {
+function PreviewScene({ generatedGraphs, generatedSolids, measurements, mathObject, sceneState }: { generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; mathObject: ARMathObject; sceneState: ARSceneState }) {
   const visibleGraphs = generatedGraphs.filter((graph) => graph.visible);
   const visibleSolids = generatedSolids.filter((solid) => solid.visible);
   return (
@@ -2329,9 +2329,9 @@ export function ARSessionManager({ sessionState, support }: { sessionState: ARSe
   return (
     <SectionCard title="Session Manager" description="State container for WebXR, camera preview, and 3D fallback lifecycle." compact>
       <div className="grid gap-3 md:grid-cols-3">
-        <PlaceholderTile icon={<Camera className="h-5 w-5" />} title="ARSessionManager" text={`${sessionState.mode} / ${sessionState.status}`} />
-        <PlaceholderTile icon={<Move3D className="h-5 w-5" />} title="ARObjectPlacement" text={sessionState.mode === "ar" && support.immersiveARSupported ? "AR reticle placeholder is active." : "Fallback placement marker is active."} />
-        <PlaceholderTile icon={<Ruler className="h-5 w-5" />} title="ARMeasurementTool" text="Unit-aware measurement model remains ready for later AR anchoring." />
+        <PreviewTile icon={<Camera className="h-5 w-5" />} title="ARSessionManager" text={`${sessionState.mode} / ${sessionState.status}`} />
+        <PreviewTile icon={<Move3D className="h-5 w-5" />} title="ARObjectPlacement" text={sessionState.mode === "ar" && support.immersiveARSupported ? "AR placement guide is active." : "Fallback placement guide is active."} />
+        <PreviewTile icon={<Ruler className="h-5 w-5" />} title="ARMeasurementTool" text="Unit-aware measurement model remains ready for later AR anchoring." />
       </div>
     </SectionCard>
   );
@@ -2390,7 +2390,7 @@ function StatusBadge({ label, value, tone }: { label: string; value: string; ton
   );
 }
 
-function PlaceholderTile({ icon, title, text }: { icon: JSX.Element; title: string; text: string }) {
+function PreviewTile({ icon, title, text }: { icon: JSX.Element; title: string; text: string }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/60">
       <div className="grid h-10 w-10 place-items-center rounded-2xl bg-cyan-100 text-cyan-700 dark:bg-cyan-300/10 dark:text-cyan-200">{icon}</div>

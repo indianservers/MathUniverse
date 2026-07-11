@@ -12,10 +12,15 @@ import Grade7FractionOperationsLab from "../components/ncert/grade7/Grade7Fracti
 import Grade7LargeNumbersLab from "../components/ncert/grade7/Grade7LargeNumbersLab";
 import Grade7LinesTrianglesLab from "../components/ncert/grade7/Grade7LinesTrianglesLab";
 import Grade7ManipulativeLab, { isGrade7PriorityRoute } from "../components/ncert/grade7/Grade7ManipulativeLab";
+import Grade8FractalsSolidViewsLab from "../components/ncert/grade8/Grade8FractalsSolidViewsLab";
 import Class12GuidedLab from "../components/ncert/class12/Class12GuidedLabs";
 import Class10BoardExamLab, { isClass10PriorityRoute } from "../components/ncert/class10/Class10BoardExamLabs";
 import NCERTTabbedWorkspace from "../components/ncert/layout/NCERTTabbedWorkspace";
+import NCERTPracticeCheck from "../components/ncert/practice/NCERTPracticeCheck";
+import NCERTTeacherModePanel from "../components/ncert/teacher/NCERTTeacherModePanel";
 import { getNCERTConcept, type NCERTConcept, type NCERTVisualType } from "../data/ncertConcepts";
+import { getNCERTPracticeItems } from "../data/ncertPracticeBank";
+import { getNCERTConceptResourceLinks } from "../data/ncertResourceLinks";
 import { degreesToRadians, roundTo } from "../utils/math";
 
 export default function NCERTConceptPage() {
@@ -47,7 +52,8 @@ function StandardNCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
   }, [concept]);
 
   const metrics = useMemo(() => ncertMetrics(concept.visual, a, b, c), [concept.visual, a, b, c]);
-  const resources = ncertResourceLinks(concept);
+  const resources = getNCERTConceptResourceLinks(concept);
+  const bankPractice = getNCERTPracticeItems(concept.id);
   const controlsAndValues = (
     <div className="space-y-4">
       <FormulaBlock title="Core NCERT Formula" formula={concept.formula} explanation={concept.summary} />
@@ -86,8 +92,11 @@ function StandardNCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
       {resources.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-2">
           {resources.map((resource) => (
-            <Link key={resource.to} to={resource.to} className="action-secondary">
+            <Link key={resource.href} to={resource.href} className="action-secondary">
               Open {resource.label}
+              <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] uppercase tracking-wide text-slate-600 dark:bg-white/10 dark:text-slate-300">
+                {resource.exactness}
+              </span>
             </Link>
           ))}
         </div>
@@ -111,7 +120,9 @@ function StandardNCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
           {
             id: "practice",
             label: "Practice",
-            content: (
+            content: bankPractice.length > 0 ? (
+              <NCERTPracticeCheck title={`${concept.title} practice bank`} questions={bankPractice} conceptId={concept.id} compact />
+            ) : (
               <SectionCard title="Practice prompts" description="Try these after moving the controls.">
                 <div className="grid gap-3 md:grid-cols-2">
                   {concept.tasks.map((task) => <Info key={task} label="Task" value={task} />)}
@@ -123,7 +134,9 @@ function StandardNCERTConceptDetail({ concept }: { concept: NCERTConcept }) {
           {
             id: "notes",
             label: "Teacher Notes",
-            content: (
+            content: bankPractice.length > 0 ? (
+              <NCERTTeacherModePanel title={concept.title} classLevel={concept.classLevel} questions={bankPractice} prompts={concept.tasks} misconception={changeText(concept.visual, concept.sliderA, concept.sliderB)} extension={concept.outcomes[1] ?? concept.summary} />
+            ) : (
               <SectionCard title="Classroom notes" description={concept.summary}>
                 <div className="grid gap-3 md:grid-cols-3">
                   {concept.outcomes.map((item) => <Info key={item} label="Outcome" value={item} />)}
@@ -192,6 +205,7 @@ export const supportedNCERTVisualTypes = new Set<NCERTVisualType>([
   "grade7-lines-triangles-lab",
   "grade7-algebraic-expressions-lab",
   "grade7-data-handling-lab",
+  "grade8-fractals-solid-views-lab",
   "class12-relations-functions-lab",
   "class12-determinants-lab",
   "class12-continuity-differentiability-lab",
@@ -210,6 +224,7 @@ function renderGrade7ChapterLab(visual: NCERTVisualType) {
   if (visual === "grade7-fraction-operations-lab") return <Grade7FractionOperationsLab />;
   if (visual === "grade7-constructions-tilings-lab") return <Grade7ConstructionsTilingsLab />;
   if (visual === "grade7-lines-triangles-lab") return <Grade7LinesTrianglesLab />;
+  if (visual === "grade8-fractals-solid-views-lab") return <Grade8FractalsSolidViewsLab />;
   return null;
 }
 
@@ -1342,11 +1357,3 @@ function ncertResourceText(visual: NCERTVisualType) {
   return "Concept-specific model with live controls, formula values, outcomes, and guided checks.";
 }
 
-function ncertResourceLinks(concept: NCERTConcept) {
-  if (concept.visual === "polynomial-graph" || concept.visual === "quadratic-roots") return [{ label: "Polynomial Workspace", to: "/workspace?template=polynomials" }];
-  if (concept.visual === "section-formula" || concept.visual === "conic-section") return [{ label: "Coordinate Geometry Lab", to: "/geometry/coordinate-geometry" }];
-  if (concept.visual === "heron" || concept.visual === "height-distance") return [{ label: "Triangle Shape Explorer", to: "/shapes?shape=triangle" }];
-  if (concept.visual === "euclid-geometry") return [{ label: "Geometry Construction Lab", to: "/geometry/geometric-constructions" }];
-  if (concept.visual === "linear-pair" || concept.visual === "linear-inequality" || concept.visual === "balance-equation") return [{ label: "Linear Equation Workspace", to: "/workspace?template=linear-equations" }];
-  return [];
-}

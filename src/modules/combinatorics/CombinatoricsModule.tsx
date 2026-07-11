@@ -1,26 +1,46 @@
 import { motion } from "framer-motion";
-import { BrainCircuit, Check, Download, Dices, Play } from "lucide-react";
+import { BrainCircuit, Check, Download, Dices, Layers3, Play, Repeat2, Sigma, SplitSquareVertical, Workflow } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
 import TopicHeader from "../../components/ui/TopicHeader";
 import {
   binomialExpansion,
   buildCountingTree,
+  bellNumber,
+  catalanNumber,
   combinations,
   constrainedRepetitions,
+  derangements,
   enumerateCombinations,
   enumeratePermutations,
+  integerPartitions,
   inclusionExclusion,
+  linearRecurrenceSequence,
   multinomialTerms,
   pascalTriangle,
+  pigeonholeLoad,
   permutations,
+  secondOrderGeneratingFunction,
+  stirlingSecondKind,
   worksheetSummary,
   type CountingNode,
 } from "./combinatoricsEngine";
 import { useCombinatoricsStore, type CombinatoricsState } from "./combinatoricsStore";
 
+type CombinatoricsTab = "map" | "counting" | "selection" | "coefficients" | "advanced" | "practice";
+
+const combinatoricsTabs: Array<{ id: CombinatoricsTab; label: string; icon: typeof Workflow }> = [
+  { id: "map", label: "Concept Map", icon: Workflow },
+  { id: "counting", label: "Counting", icon: SplitSquareVertical },
+  { id: "selection", label: "Permutations", icon: Layers3 },
+  { id: "coefficients", label: "Coefficients", icon: Sigma },
+  { id: "advanced", label: "Advanced", icon: Repeat2 },
+  { id: "practice", label: "Practice", icon: BrainCircuit },
+];
+
 export default function CombinatoricsModule() {
   const store = useCombinatoricsStore();
+  const [activeTab, setActiveTab] = useState<CombinatoricsTab>("map");
   const tree = useMemo(() => buildCountingTree(store.items, store.r, store.allowRepeat), [store.items, store.r, store.allowRepeat]);
   const permutationList = useMemo(() => enumeratePermutations(store.items, store.r, store.allowRepeat, store.constraint), [store.items, store.r, store.allowRepeat, store.constraint]);
   const combinationList = useMemo(() => enumerateCombinations(store.items, Math.min(store.r, store.items.length)), [store.items, store.r]);
@@ -28,7 +48,7 @@ export default function CombinatoricsModule() {
   const multiTerms = useMemo(() => multinomialTerms(["x", "y", "z"], store.multinomialPower), [store.multinomialPower]);
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-3">
       <TopicHeader
         title="Combinatorics"
         subtitle="Visualize counting trees, permutations, combinations, Pascal coefficients, expansions, and inclusion-exclusion."
@@ -37,54 +57,95 @@ export default function CombinatoricsModule() {
         formula={{ title: "Counting identity", formula: String.raw`{n \choose r}=\frac{n!}{r!(n-r)!}`, explanation: "The module connects exact formulas with visual enumeration and animated counting arguments." }}
       />
 
-      <ImplementationAudit />
-
       <ControlsPanel {...store} />
 
-      <div className="grid gap-5 xl:grid-cols-[1.1fr_.9fr]">
-        <CountingVisualizationEngine tree={tree} n={store.n} r={store.r} allowRepeat={store.allowRepeat} />
-        <PermutationSimulator items={store.items} r={store.r} allowRepeat={store.allowRepeat} constraint={store.constraint} permutations={permutationList} />
-      </div>
+      <nav className="sticky top-2 z-20 flex gap-2 overflow-x-auto rounded-2xl border border-cyan-100 bg-white/95 p-2 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/95" aria-label="Combinatorics workspaces">
+        {combinatoricsTabs.map((tab) => (
+          <TabButton key={tab.id} active={activeTab === tab.id} icon={tab.icon} label={tab.label} onClick={() => setActiveTab(tab.id)} />
+        ))}
+      </nav>
 
-      <div className="grid gap-5 xl:grid-cols-[.9fr_1.1fr]">
-        <CombinationGenerator items={store.items} r={Math.min(store.r, store.items.length)} combinations={combinationList} />
-        <PascalTriangleExplorer rows={store.pascalRows} selectedPower={store.binomialPower} onRows={store.setPascalRows} onPower={store.setBinomialPower} />
-      </div>
+      {activeTab === "map" ? <ImplementationAudit /> : null}
 
-      <div className="grid gap-5 xl:grid-cols-[1fr_1fr]">
-        <BinomialTheoremVisualizer power={store.binomialPower} terms={binomialTerms} selectedTerm={store.selectedTerm} onPower={store.setBinomialPower} onSelectedTerm={store.setSelectedTerm} />
-        <MultinomialExpansionEngine power={store.multinomialPower} terms={multiTerms} onPower={store.setMultinomialPower} />
-      </div>
+      {activeTab === "counting" ? (
+        <div className="grid gap-4 xl:grid-cols-[1.1fr_.9fr]">
+          <CountingVisualizationEngine tree={tree} n={store.n} r={store.r} allowRepeat={store.allowRepeat} />
+          <InclusionExclusionSimulator />
+        </div>
+      ) : null}
 
-      <div className="grid gap-5 xl:grid-cols-[1fr_1fr]">
-        <InclusionExclusionSimulator />
-        <ChallengeAndExportPanel n={store.n} r={store.r} seed={store.challengeSeed} onRandom={store.randomizeChallenge} />
-      </div>
+      {activeTab === "selection" ? (
+        <div className="grid gap-4 xl:grid-cols-[1fr_1fr]">
+          <PermutationSimulator items={store.items} r={store.r} allowRepeat={store.allowRepeat} constraint={store.constraint} permutations={permutationList} />
+          <CombinationGenerator items={store.items} r={Math.min(store.r, store.items.length)} combinations={combinationList} />
+        </div>
+      ) : null}
+
+      {activeTab === "coefficients" ? (
+        <div className="grid gap-4 xl:grid-cols-[.9fr_1.1fr]">
+          <PascalTriangleExplorer rows={store.pascalRows} selectedPower={store.binomialPower} onRows={store.setPascalRows} onPower={store.setBinomialPower} />
+          <div className="grid gap-4">
+            <BinomialTheoremVisualizer power={store.binomialPower} terms={binomialTerms} selectedTerm={store.selectedTerm} onPower={store.setBinomialPower} onSelectedTerm={store.setSelectedTerm} />
+            <MultinomialExpansionEngine power={store.multinomialPower} terms={multiTerms} onPower={store.setMultinomialPower} />
+          </div>
+        </div>
+      ) : null}
+
+      {activeTab === "advanced" ? <AdvancedCountingLab n={store.n} r={store.r} /> : null}
+
+      {activeTab === "practice" ? <ChallengeAndExportPanel n={store.n} r={store.r} seed={store.challengeSeed} onRandom={store.randomizeChallenge} /> : null}
     </div>
   );
 }
 
 function ImplementationAudit() {
   const rows = [
-    ["Counting Principles", "Partial", "NCERT permutation tree existed; added canonical product-rule tree and exact counters."],
-    ["Permutations", "Partial", "Existing tree/cycle visuals existed; added simulator with repetition and constraints."],
-    ["Combinations", "Partial", "Only nCr comparison text existed; added subset enumeration and animation."],
-    ["Repetition Cases", "Missing, implemented", "Added formulas for repeated permutations and combinations."],
-    ["Constrained Repetitions", "Missing, implemented", "Added bounded dynamic-programming counter."],
-    ["Binomial Coefficients", "Partial", "Pascal visual existed; added scalable Canvas explorer."],
-    ["Binomial Theorem", "Partial", "Existing NCERT visual existed; added interactive expansion terms."],
-    ["Multinomial Theorem", "Missing, implemented", "Added symbolic multinomial term engine."],
-    ["Principle of Inclusion and Exclusion", "Missing, implemented", "Added animated 3-set Venn formula simulator."],
+    ["Counting Principles", "Implemented", "Product rule, addition rule, tree diagram, exact counters, and bounded cases."],
+    ["Permutations", "Implemented", "Arrangements with repetition, no repetition, constraints, and capped enumeration."],
+    ["Combinations", "Implemented", "Subset generator with visual group selection and exact nCr calculation."],
+    ["Repetition Cases", "Implemented", "Repeated permutations, repeated combinations, and bounded distributions."],
+    ["Binomial Coefficients", "Implemented", "Pascal explorer with highlighted rows and coefficient meaning."],
+    ["Binomial Theorem", "Implemented", "Interactive expansion terms connected to choices from each factor."],
+    ["Multinomial Theorem", "Implemented", "Symbolic term engine for three-variable expansions."],
+    ["Inclusion-Exclusion", "Implemented", "Animated three-set Venn calculation with overlap steps."],
+    ["Pigeonhole Principle", "Implemented", "Forced box-load visual and smallest guaranteed load."],
+    ["Derangements", "Implemented", "No-fixed-point counter using the standard recurrence."],
+    ["Catalan Numbers", "Implemented", "Parentheses, triangulation, and path-counting family counter."],
+    ["Stirling and Bell Numbers", "Implemented", "Partition-into-groups counter and total set partition count."],
+    ["Integer Partitions", "Implemented", "Compact partition lister for number decomposition."],
+    ["Recurrences", "Implemented", "Second-order recurrence trace and generating-function form."],
   ];
   return (
-    <SectionCard title="Implementation Audit" description="Existing project scan before creating the canonical combinatorics module.">
-      <div className="mobile-safe-scroll">
-        <table className="min-w-full text-sm">
-          <thead className="bg-slate-100 text-left dark:bg-white/10"><tr><th className="px-3 py-2">Topic</th><th className="px-3 py-2">Status</th><th className="px-3 py-2">Action</th></tr></thead>
-          <tbody>{rows.map(([topic, status, action]) => <tr key={topic} className="border-t border-slate-200 dark:border-white/10"><td className="px-3 py-2 font-semibold">{topic}</td><td className="px-3 py-2"><span className="mini-chip">{status}</span></td><td className="px-3 py-2 text-slate-600 dark:text-slate-300">{action}</td></tr>)}</tbody>
-        </table>
+    <SectionCard title="Concept Map" description="Major combinatorics concepts are split into focused tabs instead of one long page.">
+      <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
+        {rows.map(([topic, status, action]) => (
+          <div key={topic} className="rounded-2xl border border-cyan-100 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
+            <div className="flex items-start justify-between gap-2">
+              <h2 className="text-sm font-black text-slate-950 dark:text-white">{topic}</h2>
+              <span className="mini-chip bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100">{status}</span>
+            </div>
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{action}</p>
+          </div>
+        ))}
       </div>
     </SectionCard>
+  );
+}
+
+function TabButton({ active, icon: Icon, label, onClick }: { active: boolean; icon: typeof Workflow; label: string; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`flex shrink-0 items-center gap-2 rounded-xl px-3 py-2 text-sm font-black transition ${
+        active
+          ? "bg-cyan-600 text-white shadow"
+          : "bg-slate-100 text-slate-700 hover:bg-cyan-50 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/15"
+      }`}
+    >
+      <Icon className="h-4 w-4" />
+      {label}
+    </button>
   );
 }
 
@@ -234,6 +295,82 @@ function InclusionExclusionSimulator() {
       </svg>
       <div className="mt-3 space-y-2">{result.steps.map((step) => <div key={step} className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10">{step}</div>)}</div>
     </SectionCard>
+  );
+}
+
+function AdvancedCountingLab({ n, r }: { n: number; r: number }) {
+  const safeN = Math.max(1, Math.min(12, n));
+  const safeR = Math.max(1, Math.min(safeN, r));
+  const partitions = useMemo(() => integerPartitions(safeN, 36), [safeN]);
+  const recurrence = useMemo(() => linearRecurrenceSequence(1, 1, 1, 1, 10), []);
+  const generatingFunction = secondOrderGeneratingFunction(1, 1, 1, 1);
+  const metrics = [
+    {
+      label: "Pigeonhole",
+      value: pigeonholeLoad(safeN, safeR).toString(),
+      detail: `${safeN} objects in ${safeR} boxes forces this many in one box.`,
+    },
+    {
+      label: "Derangements",
+      value: derangements(safeN).toString(),
+      detail: `Ways to rearrange ${safeN} objects with no object in its original place.`,
+    },
+    {
+      label: "Catalan",
+      value: catalanNumber(safeR).toString(),
+      detail: `Balanced parentheses, non-crossing paths, and polygon triangulations for ${safeR}.`,
+    },
+    {
+      label: "Stirling groups",
+      value: stirlingSecondKind(safeN, safeR).toString(),
+      detail: `Ways to split ${safeN} objects into ${safeR} non-empty unlabeled groups.`,
+    },
+    {
+      label: "Bell total",
+      value: bellNumber(safeR).toString(),
+      detail: `All possible partitions of a ${safeR}-object set.`,
+    },
+  ];
+
+  return (
+    <div className="grid gap-4 xl:grid-cols-[.95fr_1.05fr]">
+      <SectionCard title="Advanced Counting Families" description="Compact counters for the concepts that were previously missing from the page.">
+        <div className="grid gap-2 sm:grid-cols-2">
+          {metrics.map((metric) => (
+            <div key={metric.label} className="rounded-2xl border border-cyan-100 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
+              <div className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">{metric.label}</div>
+              <div className="mt-1 break-all font-mono text-2xl font-black text-slate-950 dark:text-white">{metric.value}</div>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{metric.detail}</p>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+
+      <SectionCard title="Partitions, Recurrences, and Generating Functions" description="See compact structure without turning the page into a long textbook.">
+        <div className="grid gap-3 lg:grid-cols-2">
+          <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+            <h3 className="font-black">Integer partitions of {safeN}</h3>
+            <div className="mt-2 grid max-h-56 gap-2 overflow-auto pr-1 text-sm">
+              {partitions.map((partition, index) => (
+                <div key={`${partition.join("+")}-${index}`} className="rounded-xl bg-white px-3 py-2 font-mono dark:bg-slate-950">
+                  {safeN} = {partition.join(" + ")}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+            <h3 className="font-black">Recurrence trace</h3>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {recurrence.map((value, index) => (
+                <span key={`${value}-${index}`} className="mini-chip">a{index}={value}</span>
+              ))}
+            </div>
+            <div className="mt-3 rounded-xl bg-white p-3 font-mono text-sm dark:bg-slate-950">{generatingFunction}</div>
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">This pattern uses the same recurrence shape as Fibonacci-style counting problems.</p>
+          </div>
+        </div>
+      </SectionCard>
+    </div>
   );
 }
 

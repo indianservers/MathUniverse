@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import NCERTCompactPanel from "../layout/NCERTCompactPanel";
 import NCERTSubTabs from "../layout/NCERTSubTabs";
 import NCERTTabbedWorkspace from "../layout/NCERTTabbedWorkspace";
+import NCERTPracticeCheck from "../practice/NCERTPracticeCheck";
 import type { NCERTConcept } from "../../../data/ncertConcepts";
+import { getNCERTPracticeItems } from "../../../data/ncertPracticeBank";
+import { getNCERTConceptResourceLinks } from "../../../data/ncertResourceLinks";
+import NCERTTeacherModePanel from "../teacher/NCERTTeacherModePanel";
 import {
   annulusArea,
   bptRatios,
@@ -55,6 +59,13 @@ export function isClass10PriorityRoute(id: string): id is Class10PriorityRouteId
   return (class10PriorityRouteIds as readonly string[]).includes(id);
 }
 
+function resourceLinksForConcept(concept: NCERTConcept) {
+  return getNCERTConceptResourceLinks(concept).map((resource) => ({
+    label: resource.label,
+    to: resource.href,
+  }));
+}
+
 type Preset = {
   label: string;
   values: number[];
@@ -89,6 +100,7 @@ export default function Class10BoardExamLab({ concept }: { concept: NCERTConcept
   const [presetIndex, setPresetIndex] = useState(0);
   const [answer, setAnswer] = useState("");
   const practice = config.practice(values, routeId);
+  const bankPractice = getNCERTPracticeItems(routeId);
   const result = checkPractice(answer, practice);
   const controlsPanel = (
     <div className="space-y-4">
@@ -169,20 +181,24 @@ export default function Class10BoardExamLab({ concept }: { concept: NCERTConcept
   );
   const practicePanel = (
     <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 dark:border-emerald-300/20 dark:bg-emerald-300/10">
-        <p className="text-base font-black text-slate-950 dark:text-white">{practice.prompt}</p>
-        <input
-          value={answer}
-          onChange={(event) => setAnswer(event.target.value)}
-          inputMode="decimal"
-          className="mt-3 w-full rounded-2xl border border-emerald-200 bg-white px-3 py-3 font-mono font-black dark:border-emerald-300/20 dark:bg-slate-900"
-          placeholder="Type your answer"
-          aria-label="Practice answer"
-        />
-        <p className={`mt-3 text-sm font-bold ${result.ok ? "text-emerald-700 dark:text-emerald-200" : "text-slate-600 dark:text-slate-300"}`}>
-          {answer ? result.message : practice.hint}
-        </p>
-      </div>
+      {bankPractice.length > 0 ? (
+        <NCERTPracticeCheck title={`${concept.title} practice bank`} questions={bankPractice} conceptId={routeId} compact />
+      ) : (
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 dark:border-emerald-300/20 dark:bg-emerald-300/10">
+          <p className="text-base font-black text-slate-950 dark:text-white">{practice.prompt}</p>
+          <input
+            value={answer}
+            onChange={(event) => setAnswer(event.target.value)}
+            inputMode="decimal"
+            className="mt-3 w-full rounded-2xl border border-emerald-200 bg-white px-3 py-3 font-mono font-black dark:border-emerald-300/20 dark:bg-slate-900"
+            placeholder="Type your answer"
+            aria-label="Practice answer"
+          />
+          <p className={`mt-3 text-sm font-bold ${result.ok ? "text-emerald-700 dark:text-emerald-200" : "text-slate-600 dark:text-slate-300"}`}>
+            {answer ? result.message : practice.hint}
+          </p>
+        </div>
+      )}
       <NCERTCompactPanel title="Try next" description="Change the preset, then answer again." accent="amber">
         {controlsPanel}
       </NCERTCompactPanel>
@@ -210,6 +226,11 @@ export default function Class10BoardExamLab({ concept }: { concept: NCERTConcept
       <NCERTCompactPanel title="Recap" accent="emerald">
         <p className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">{concept.summary}</p>
       </NCERTCompactPanel>
+      {bankPractice.length > 0 && (
+        <div className="md:col-span-3">
+          <NCERTTeacherModePanel title={concept.title} classLevel={concept.classLevel} questions={bankPractice} prompts={concept.tasks} misconception={config.feedback(values, routeId)} extension={concept.outcomes[1] ?? concept.summary} />
+        </div>
+      )}
     </div>
   );
 
@@ -335,7 +356,7 @@ function circleTangentPanel(concept: NCERTConcept): LabPanel {
     labels: ["Contact angle degrees", "Radius", "Secant tilt degrees"],
     defaults: [40, concept.defaultB, 12],
     formula: "Radius at the point of contact is perpendicular to the tangent: OT perpendicular PT.",
-    theoremLinks: [{ label: "circle tangent visual proof", to: "/visual-proofs/geometry/circle-tangent-radius-theorem" }, { label: "circle formulas", to: "/formulas/geometry" }],
+    theoremLinks: resourceLinksForConcept(concept),
     render: circleTangentSvg,
     metrics: (values) => {
       const theta = values[0];
@@ -363,7 +384,7 @@ function twoTangentsPanel(concept: NCERTConcept): LabPanel {
     labels: ["OP distance", "Radius"],
     defaults: [concept.defaultA, concept.defaultB],
     formula: "From an external point, tangent lengths are equal: PA = PB.",
-    theoremLinks: [{ label: "tangent theorem", to: "/theorems/geometry" }, { label: "circle visual proofs", to: "/visual-proofs/geometry" }],
+    theoremLinks: resourceLinksForConcept(concept),
     render: twoTangentsSvg,
     metrics: (values) => {
       const length = tangentLength(values[0], values[1]);
@@ -393,7 +414,7 @@ function trianglePanel(concept: NCERTConcept): LabPanel {
     labels: isArea ? ["Side ratio k", "Angle mismatch", "Area model"] : ["Cut or scale A", "Cut or angle B", "Scale/check C"],
     defaults: [concept.defaultA, concept.defaultB, concept.defaultC ?? 1],
     formula: concept.formula,
-    theoremLinks: [{ label: "triangle visual proofs", to: "/visual-proofs/geometry" }, { label: "geometry theorems", to: "/theorems/geometry" }],
+    theoremLinks: resourceLinksForConcept(concept),
     render: triangleSvg,
     metrics: (values, routeId) => {
       if (routeId.includes("areas")) return [
@@ -432,7 +453,7 @@ function linearPanel(concept: NCERTConcept): LabPanel {
     labels: ["a1", "b1", "c1", "a2", "b2", "c2"],
     defaults: [2, 1, 7, 1, -1, 1],
     formula: "a1x + b1y = c1 and a2x + b2y = c2; determinant a1b2 - a2b1 decides uniqueness.",
-    theoremLinks: [{ label: "algebra formulas", to: "/formulas/algebra" }, { label: "linear equations lab", to: "/ncert/class-10-pair-linear" }],
+    theoremLinks: resourceLinksForConcept(concept),
     render: linearSvg,
     metrics: (values) => {
       const verdict = classifyLinearSystem(values[0], values[1], values[2], values[3], values[4], values[5]);
@@ -470,7 +491,7 @@ function statsPanel(concept: NCERTConcept): LabPanel {
     labels: ["l1", "u1", "f1", "l2", "u2", "f2", "l3", "u3", "f3", "l4", "u4", "f4", "l5", "u5", "f5"],
     defaults: [0, 10, 6, 10, 20, 10, 20, 30, 14, 30, 40, 18, 40, 50, 12],
     formula: concept.formula,
-    theoremLinks: [{ label: "statistics formulas", to: "/formulas/statistics" }, { label: "probability and statistics", to: "/probability-statistics" }],
+    theoremLinks: resourceLinksForConcept(concept),
     render: statsSvg,
     metrics: (values) => {
       const stats = groupedStats(rowsFromValues(values));
@@ -511,7 +532,7 @@ function circleRegionPanel(concept: NCERTConcept): LabPanel {
     labels: ["Angle degrees", "Outer radius", "Inner radius"],
     defaults: [concept.defaultA, concept.defaultB, concept.defaultC ?? 2],
     formula: "Sector = theta/360 * pi r^2; segment = sector - triangle; annulus = pi(R^2-r^2).",
-    theoremLinks: [{ label: "circle formulas", to: "/formulas/geometry" }, { label: "circle area proof", to: "/visual-proofs/geometry/circle-area-unrolling" }],
+    theoremLinks: resourceLinksForConcept(concept),
     render: circleRegionSvg,
     metrics: (values) => [
       { label: "sector", value: round(sectorArea(values[1], values[0])).toString() },
@@ -538,7 +559,7 @@ function solidsPanel(concept: NCERTConcept): LabPanel {
     labels: isFrustum ? ["Large radius R", "Small radius r", "Height h"] : ["Radius", "Height", "Second radius/height"],
     defaults: [concept.defaultA, concept.defaultB, concept.defaultC ?? 3],
     formula: concept.formula,
-    theoremLinks: [{ label: "mensuration formulas", to: "/formulas/geometry" }, { label: "3D calculator", to: "/workspace/3d" }],
+    theoremLinks: resourceLinksForConcept(concept),
     render: solidsSvg,
     metrics: (values, routeId) => {
       if (routeId.includes("frustum")) {
@@ -590,7 +611,7 @@ function heightsPanel(concept: NCERTConcept): LabPanel {
     labels: ["Angle degrees", "Distance", "Observer shift"],
     defaults: [concept.defaultA, concept.defaultB, 0],
     formula: "tan(theta) = opposite / adjacent, so height = distance * tan(theta).",
-    theoremLinks: [{ label: "trigonometry formulas", to: "/formulas/trigonometry" }, { label: "trig visual proofs", to: "/visual-proofs/trigonometry" }],
+    theoremLinks: resourceLinksForConcept(concept),
     render: heightsSvg,
     metrics: (values) => [
       { label: "height", value: round(heightFromAngleDistance(values[0], values[1])).toString() },

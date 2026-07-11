@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 import type { OrderedPair, SetOperation } from "./setTheoryEngine";
 
 export type SetTheoryState = {
@@ -45,6 +45,6 @@ export const useSetTheoryStore = create<SetTheoryState>()(
       setPlaybackStep: (playbackStep) => set({ playbackStep }),
       randomizeChallenge: () => set({ challengeSeed: Date.now() }),
     }),
-    { name: "math-universe-set-theory-session" }
+    { name: "math-universe-set-theory-session", storage: createJSONStorage(() => localStorage) }
   )
 );

@@ -3,10 +3,12 @@ import { formulaCategories } from "./formulaLibrary";
 import { mathLabTools } from "./mathLabTools";
 import { geometryConcepts } from "./geometryConcepts";
 import { ncertConcepts, ncertRoute } from "./ncertConcepts";
+import { getNCERTConceptResourceLinks } from "./ncertResourceLinks";
 import { allNavigatorCards } from "./syllabusNavigator";
 import { theoremCategories } from "./theoremLibrary";
 import { topics } from "./topics";
 import { trigonometryConcepts } from "./trigonometryConcepts";
+import { formulaVisualizerConfigs } from "./formulaVisualizerRoutes";
 import { visualProofsIndex } from "../visual-proofs/data/visualProofsIndex";
 
 export type SiteLink = {
@@ -203,31 +205,35 @@ const trigonometryLinks: SiteLink[] = trigonometryConcepts.map((concept) => ({
   changeFrequency: "monthly",
 }));
 
-const ncertLinks: SiteLink[] = ncertConcepts.map((concept) => ({
-  title: `${concept.classLevel}: ${concept.title}`,
-  path: ncertRoute(concept.id),
-  description: concept.summary,
-  category: `NCERT ${concept.classLevel}`,
-  keywords: [
-    "NCERT math",
-    "textbook",
-    "visual lab",
-    "practice",
-    "formula",
-    "theorem",
-    "board exam",
-    concept.classLevel,
-    concept.unit,
-    concept.title,
-    concept.formula,
-    concept.visual,
-    ...concept.outcomes,
-    ...concept.tasks,
-  ],
-  details: [concept.classLevel, concept.unit, concept.formula, ...concept.outcomes],
-  priority: 0.62,
-  changeFrequency: "monthly",
-}));
+const ncertLinks: SiteLink[] = ncertConcepts.map((concept) => {
+  const resources = getNCERTConceptResourceLinks(concept);
+  return {
+    title: `${concept.classLevel}: ${concept.title}`,
+    path: ncertRoute(concept.id),
+    description: concept.summary,
+    category: `NCERT ${concept.classLevel}`,
+    keywords: [
+      "NCERT math",
+      "textbook",
+      "visual lab",
+      "practice",
+      "formula",
+      "theorem",
+      "board exam",
+      concept.classLevel,
+      concept.unit,
+      concept.title,
+      concept.formula,
+      concept.visual,
+      ...concept.outcomes,
+      ...concept.tasks,
+      ...resources.flatMap((resource) => [resource.label, resource.href, resource.type, resource.exactness, ...(resource.keywords ?? [])]),
+    ],
+    details: [concept.classLevel, concept.unit, concept.formula, ...concept.outcomes, ...resources.map((resource) => `${resource.exactness}: ${resource.label}`)],
+    priority: ["Class 7", "Class 10", "Class 12"].includes(concept.classLevel) ? 0.72 : 0.62,
+    changeFrequency: "monthly" as const,
+  };
+});
 
 const mathLabToolLinks: SiteLink[] = mathLabTools.map((tool) => ({
   title: tool.title,
@@ -250,6 +256,29 @@ const formulaLinks: SiteLink[] = formulaCategories.map((category) => ({
   priority: 0.64,
   changeFrequency: "monthly",
 }));
+
+const formulaVisualizerLinks: SiteLink[] = [
+  {
+    title: "Visual Formulas",
+    path: "/visual-formulas",
+    description: "Interactive visual formula labs for trigonometry, algebra, geometry, coordinate geometry, calculus, matrices, vectors, probability, statistics, and mensuration.",
+    category: "Formula Visualizers",
+    keywords: ["visual formulas", "formula visualizer", "interactive formulas", "formula lab", ...formulaVisualizerConfigs.flatMap((config) => [config.title, config.shortTitle, config.route, ...config.searchTerms])],
+    details: formulaVisualizerConfigs.map((config) => config.title),
+    priority: 0.76,
+    changeFrequency: "weekly",
+  },
+  ...formulaVisualizerConfigs.map((config) => ({
+    title: config.title,
+    path: config.route,
+    description: config.description,
+    category: "Formula Visualizers",
+    keywords: ["formula visualizer", "visual formula", config.category, config.title, config.shortTitle, ...config.searchTerms, ...config.formulas.flatMap((formula) => [formula.title, formula.plainText, ...formula.tags])],
+    details: [config.subtitle, ...config.formulas.slice(0, 10).map((formula) => formula.title)],
+    priority: 0.72,
+    changeFrequency: "weekly" as const,
+  })),
+];
 
 const theoremLinks: SiteLink[] = theoremCategories.flatMap((category) => [
   {
@@ -318,6 +347,7 @@ export const siteLinks: SiteLink[] = [
   ...trigonometryLinks,
   ...ncertLinks,
   ...formulaLinks,
+  ...formulaVisualizerLinks,
   ...theoremLinks,
   ...visualProofLinks,
   ...advancedLabLinks,

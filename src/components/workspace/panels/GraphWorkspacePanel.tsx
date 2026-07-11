@@ -1,5 +1,5 @@
-import { LineChart } from "lucide-react";
-import { useMemo, useState } from "react";
+import { FunctionSquare, LineChart, ListTree, SlidersHorizontal, Table2 } from "lucide-react";
+import { useMemo, useState, type ReactNode } from "react";
 import SmartMathInput from "../../math-input/SmartMathInput";
 import SliderControl, { SliderGroup } from "../../ui/SliderControl";
 import { isGraphValidationBlocking, validateGraphExpression } from "../../../workspace/graphValidation";
@@ -35,6 +35,7 @@ export interface GraphWorkspacePanelProps {
 
 export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tableRange, onChange, onTableRangeChange, validationMessage = null }: GraphWorkspacePanelProps) {
   const [draft, setDraft] = useState("cos(x)");
+  const [activePanel, setActivePanel] = useState<"input" | "plots" | "table">("input");
   const [graphValidation, setGraphValidation] = useState<GraphValidationResult | null>(validationMessage);
   const [xMin, setXMin] = useState(-10);
   const [xMax, setXMax] = useState(10);
@@ -69,9 +70,15 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
         </div>
       </div>
 
-      <div className="grid items-start gap-3 xl:grid-cols-[280px_minmax(0,1fr)]">
-        <div className="space-y-3">
-          <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+      <div className="grid items-start gap-3 2xl:grid-cols-[320px_minmax(0,1fr)]">
+        <div className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-white/5">
+          <div className="grid grid-cols-3 gap-1 rounded-xl bg-white p-1 dark:bg-slate-950/70">
+            <GraphPanelTab active={activePanel === "input"} icon={<FunctionSquare className="h-4 w-4" />} label="Input" onClick={() => setActivePanel("input")} />
+            <GraphPanelTab active={activePanel === "plots"} icon={<ListTree className="h-4 w-4" />} label="Plots" onClick={() => setActivePanel("plots")} />
+            <GraphPanelTab active={activePanel === "table"} icon={<Table2 className="h-4 w-4" />} label="Table" onClick={() => setActivePanel("table")} />
+          </div>
+
+          <div hidden={activePanel !== "input"} className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
             <label className="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Expression</label>
             <SmartMathInput
               ariaLabel="Smart graph expression editor"
@@ -104,16 +111,22 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
             </div>
           </div>
 
-          <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+          <div hidden={activePanel !== "table"} className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
             <p className="text-sm font-bold">Editable value table range</p>
             <div className="mt-2 grid grid-cols-3 gap-2">
               <GraphMiniNumber label="start" value={tableRange.start} onChange={(start) => onTableRangeChange({ ...tableRange, start })} />
               <GraphMiniNumber label="end" value={tableRange.end} onChange={(end) => onTableRangeChange({ ...tableRange, end })} />
               <GraphMiniNumber label="step" value={tableRange.step} onChange={(step) => onTableRangeChange({ ...tableRange, step: step || 1 })} />
             </div>
+            <div className="mt-3 max-h-[320px] overflow-auto rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
+              <table className="w-full min-w-[280px] text-left text-xs">
+                <thead className="sticky top-0 bg-slate-100 text-slate-500 dark:bg-slate-900 dark:text-slate-300"><tr><th className="p-2">expr</th><th className="p-2">x</th><th className="p-2">y</th></tr></thead>
+                <tbody>{tableRows.map((row, index) => <tr key={`${row.x}-${row.y}-${index}`} className="border-t border-slate-200 dark:border-white/10"><td className="max-w-[120px] truncate p-2 font-mono">{row.label}</td><td className="p-2 font-mono">{row.x}</td><td className="p-2 font-mono">{row.y}</td></tr>)}</tbody>
+              </table>
+            </div>
           </div>
 
-          <div className="space-y-2">
+          <div hidden={activePanel !== "plots"} className="space-y-2">
             {plots.map((plot) => (
               <div key={plot.id} className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-white/5">
                 <div className="grid grid-cols-[auto_auto_minmax(0,1fr)_auto] items-center gap-2">
@@ -136,6 +149,7 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
                 <p className="mt-2 text-xs font-semibold text-slate-500">{plot.kind ?? inferPlotKind(plot.expression)}</p>
               </div>
             ))}
+            {plots.length === 0 && <div className="rounded-xl bg-slate-100 p-3 text-sm font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">No graph objects yet.</div>}
           </div>
 
           <div className="grid grid-cols-2 gap-2">
@@ -146,7 +160,7 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
           </div>
         </div>
 
-        <div className="space-y-3">
+        <div className="min-w-0 space-y-3">
           <svg viewBox="0 0 640 360" className="h-[240px] w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[300px] 2xl:h-[340px]" data-testid="workspace-graph-surface">
             <GraphGrid viewport={viewport} />
             {sampledLayers.map((layer) => layer.cells.map((cell, index) => (
@@ -164,8 +178,9 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
             {visiblePlots.filter((plot) => plot.kind === "scatter" || plot.kind === "regression").flatMap((plot) => plot.points ?? []).map((point, index) => <circle key={`${point.x}-${point.y}-${index}`} cx={scaleX(point.x, viewport)} cy={scaleY(point.y, viewport)} r="5" fill="#ec4899" stroke="#0f172a" />)}
           </svg>
 
-          <div className="grid items-start gap-3 2xl:grid-cols-[minmax(0,1fr)_minmax(240px,300px)]">
+          <div className="grid items-start gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]">
             <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
+              <div className="mb-2 flex items-center gap-2 text-sm font-black"><SlidersHorizontal className="h-4 w-4 text-cyan-500" /> Parameters</div>
               <SliderGroup title="Parameter sliders">
                 <SliderControl density="compact" label="a" value={sliderA} min={-5} max={5} step={0.1} onChange={setSliderA} />
                 <SliderControl density="compact" label="b" value={sliderB} min={-10} max={10} step={0.1} onChange={setSliderB} />
@@ -185,6 +200,15 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
         </div>
       </div>
     </div>
+  );
+}
+
+function GraphPanelTab({ active, icon, label, onClick }: { active: boolean; icon: ReactNode; label: string; onClick: () => void }) {
+  return (
+    <button type="button" onClick={onClick} className={`inline-flex min-h-9 items-center justify-center gap-1.5 rounded-lg px-2 text-xs font-black transition ${active ? "bg-cyan-500 text-white shadow-sm dark:bg-cyan-300 dark:text-slate-950" : "text-slate-500 hover:bg-cyan-50 hover:text-cyan-800 dark:text-slate-300 dark:hover:bg-cyan-300/10 dark:hover:text-cyan-100"}`}>
+      {icon}
+      {label}
+    </button>
   );
 }
 

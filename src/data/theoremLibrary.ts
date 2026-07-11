@@ -378,6 +378,10 @@ export const theoremCategories: TheoremCategory[] = [
     ["Alternate segment theorem", "Circles", "The angle between a tangent and chord equals the angle in the alternate segment.", ["Circle angles"]],
     ["Intersecting chords theorem", "Circles", "Products of the two chord segments are equal for intersecting chords.", ["Similarity"]],
     ["Power of a point theorem", "Circles", "Secant and tangent products from one external point are equal.", ["Similar triangles"]],
+    ["Sierpinski retained area principle", "Fractals", "After n Sierpinski carpet iterations, the retained area fraction is (8/9)^n.", ["Fractions", "Area of a square", "Powers"]],
+    ["Sierpinski removed-square sum principle", "Fractals", "The total number of removed squares after n iterations is 1+8+...+8^(n-1)=(8^n-1)/7.", ["Geometric sequences", "Finite sums"]],
+    ["Orthographic projection maximum principle", "Solid views", "Top views record occupied footprint cells, while front and side views record maximum visible stack heights.", ["Cube stacks", "Maximum", "Projection"]],
+    ["Projection non-uniqueness principle", "Solid views", "The same top, front, and side projections can describe more than one cube-stack solid unless extra constraints are given.", ["Orthographic projections", "Cube count"]],
   ]),
   category("trigonometry", "Trigonometry", "Unit circle, triangle laws, identities, periodicity, and inverse trigonometric facts.", "sky", [
     ["Sine rule", "Triangle solving", "In any triangle, a/sin A=b/sin B=c/sin C.", ["Triangle angles"]],

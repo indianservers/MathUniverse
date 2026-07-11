@@ -24,4 +24,18 @@ describe("NCERT practice utilities", () => {
       explanation: "Correct.",
     }).ok).toBe(true);
   });
+
+  it("returns targeted common mistake feedback", () => {
+    const result = checkNCERTPracticeAnswer("36", {
+      id: "bodmas",
+      prompt: "Evaluate 8 + 4 x 3.",
+      answer: 20,
+      hint: "Multiply first.",
+      explanation: "4 x 3 is done first.",
+      commonMistakes: [{ answer: 36, feedback: "You added first. Use multiplication before addition." }],
+    });
+    expect(result.ok).toBe(false);
+    expect(result.matchedCommonMistake).toBe(true);
+    expect(result.message).toContain("multiplication");
+  });
 });

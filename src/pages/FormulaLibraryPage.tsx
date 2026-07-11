@@ -3,6 +3,7 @@ import { BookOpen, Copy, Sparkles, Search, Sigma } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { formulaCategories, type FormulaCategory, type FormulaLibraryItem } from "../data/formulaLibrary";
+import { getFormulaVisualizerForFormulaCategory } from "../data/formulaVisualizerRoutes";
 import { theoremCategories, type TheoremCategory, type TheoremLibraryItem } from "../data/theoremLibrary";
 import { getCuratedFormulaLearningLinks } from "../proof-explanations/proofLearningLinks";
 import { visualProofsIndex } from "../visual-proofs/data/visualProofsIndex";
@@ -179,6 +180,7 @@ export default function FormulaLibraryPage() {
     activeCategory?.description ??
     activeAlias?.description ??
     "A grouped formula library with 10 main categories and focused subcategory pages for quick revision.";
+  const visualizerRoute = getFormulaVisualizerForFormulaCategory(activeCategory?.id ?? categorySlug);
 
   return (
     <main className="min-h-screen bg-slate-50 px-3 py-3 text-slate-950 dark:bg-slate-950 dark:text-white sm:px-4 lg:px-6">
@@ -207,6 +209,12 @@ export default function FormulaLibraryPage() {
               <StatPill label="Topics" value={visibleCategories.length} />
             </div>
           </div>
+          {visualizerRoute ? (
+            <Link to={visualizerRoute} className="action-primary mt-3 w-fit">
+              <Sparkles className="h-4 w-4" />
+              Open Interactive Formula Visualizer
+            </Link>
+          ) : null}
         </header>
 
         <div className="sticky top-0 z-20 rounded-lg border border-slate-200 bg-white/95 p-2 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-900/95">

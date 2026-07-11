@@ -224,6 +224,54 @@ export const geometryProofDrafts = {
     "From one outside point, tangent squared equals external secant times whole secant.",
     ["Using only the inside-chord formula.", "Multiplying external segment by internal-only segment instead of the whole secant."],
   ),
+  "geometry:Sierpinski retained area principle": draft(
+    "Each Sierpinski carpet iteration keeps 8 of the 9 equal subsquares inside every retained square, so retained area is multiplied by 8/9 each time.",
+    [
+      ["Split the square", "Divide the starting square into a 3 by 3 grid of equal subsquares.", "Nine equal subsquares inside one square."],
+      ["Remove the center", "One middle subsquare is removed and eight congruent subsquares remain.", "The center hole is highlighted."],
+      ["Read the first multiplier", "The retained fraction after one step is 8/9 of the original area.", "Eight retained parts out of nine."],
+      ["Repeat on every retained square", "Every retained square is treated in the same way at the next iteration.", "Each remaining square splits again into nine."],
+      ["Multiply the same fraction", "After n iterations the retained fraction is (8/9)^n.", "A product of n identical keep-factors."],
+    ],
+    "Sierpinski retained area is repeated multiplication by 8/9.",
+    ["Counting removed squares instead of area fraction.", "Using 8^n as area without dividing by 9^n.", "Forgetting iteration 0 keeps the whole square."],
+  ),
+  "geometry:Sierpinski removed-square sum principle": draft(
+    "The number of newly removed center squares follows 1, 8, 8^2, ..., so the cumulative removed count is a finite geometric sum.",
+    [
+      ["Start with one removal", "At iteration 1, the center square is removed once.", "One center hole."],
+      ["Count new parents", "At iteration 2, each of the eight retained squares creates one new center hole.", "Eight new holes appear."],
+      ["Continue the pattern", "At iteration k, the number of new holes is 8^(k-1).", "Each retained copy contributes one center hole."],
+      ["Add all removed holes", "Total removed through iteration n is 1 + 8 + 8^2 + ... + 8^(n-1).", "A finite geometric series."],
+      ["Use the finite sum", "The cumulative removed count is (8^n - 1) / 7.", "The geometric sum formula is applied."],
+    ],
+    "Removed-hole counts form a finite geometric series with ratio 8.",
+    ["Starting the exponent at 8^1 for the first hole.", "Confusing total removed with newly removed.", "Using an infinite-series formula for a finite stage."],
+  ),
+  "geometry:Orthographic projection maximum principle": draft(
+    "In a cube-stack solid, a front, side, or top view records whether at least one cube exists along each viewing line, so each visible cell is a maximum/occupancy shadow.",
+    [
+      ["Choose a viewing direction", "Look at the stack from the front, side, or top.", "A cube stack with a viewing arrow."],
+      ["Follow one sight line", "A projected cell is visible if the sight line meets at least one cube.", "One row or column line is traced."],
+      ["Mark occupied views", "The projection records occupancy, not the hidden cubes behind the first visible cube.", "A shadow cell turns on."],
+      ["Repeat for all lines", "Every projection cell is determined by whether its corresponding line contains a cube.", "All view cells are filled from occupied lines."],
+      ["Compare with a reconstruction", "A proposed solid is correct only if all three computed views match the target views.", "Top, front, and side shadows are checked."],
+    ],
+    "Orthographic views are occupancy shadows along viewing lines.",
+    ["Counting only the nearest cube.", "Assuming a view shows every hidden cube.", "Checking one view and ignoring the other two."],
+  ),
+  "geometry:Projection non-uniqueness principle": draft(
+    "Top, front, and side projections can match for more than one cube arrangement because shadows do not always reveal depth positions.",
+    [
+      ["Build one solid", "Create a cube stack that matches the given top, front, and side views.", "First valid cube arrangement."],
+      ["Move a hidden cube", "Shift a cube along a sight line where every projection still remains occupied.", "A cube changes depth without changing shadows."],
+      ["Recompute the views", "Top, front, and side projections can stay identical even though the internal arrangement changed.", "The same three shadows appear."],
+      ["Compare cube counts or positions", "The two solids are different because at least one cube position or count differs.", "Two distinct solids are shown side by side."],
+      ["Conclude non-uniqueness", "Projections describe constraints, not always a single exact solid.", "Multiple reconstructions satisfy the same views."],
+    ],
+    "Same orthographic views can describe different solids.",
+    ["Assuming three views always force one solid.", "Ignoring hidden depth choices.", "Calling two solids equal because their shadows match."],
+  ),
 } as const;
 
 function draft(proofIdea: string, rawSteps: Array<[string, string, string]>, examMemory: string, commonMistakes: string[]) {

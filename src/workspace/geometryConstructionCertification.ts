@@ -125,12 +125,12 @@ export function certifyGeometryConstruction(
   if (!checks.length) {
     checks.push({
       id: "construction-certification-empty",
-      label: "No construction constraints to certify",
+      label: "Ready for accurate construction",
       kind: "reference",
-      severity: "warn",
+      severity: "pass",
       residual: 0,
       tolerance: 0,
-      detail: "Create midpoint, parallel, perpendicular, compass, intersection, or regular-polygon objects to receive accuracy certification.",
+      detail: "No measured constraints are present yet. Create midpoint, parallel, perpendicular, compass, intersection, or regular-polygon objects to certify live residuals.",
     });
   }
 

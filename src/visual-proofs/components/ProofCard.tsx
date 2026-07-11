@@ -17,7 +17,7 @@ export default function ProofCard({ proof }: ProofCardProps) {
         <GeometryProofThumbnail thumbnailKey={proof.thumbnailKey} />
         <div className="flex flex-wrap items-center gap-2">
           <span className={available ? "mini-chip bg-emerald-100 text-emerald-800 dark:bg-emerald-300/20 dark:text-emerald-100" : "mini-chip"}>
-            {available ? "Available" : "Coming soon"}
+            {available ? "Available" : "Planned proof"}
           </span>
           <span className="mini-chip">{proof.difficulty}</span>
           <span className="mini-chip inline-flex items-center gap-1">
@@ -40,9 +40,9 @@ export default function ProofCard({ proof }: ProofCardProps) {
       <Link
         to={proof.route}
         className={available ? "action-primary mt-4 w-fit rounded-xl" : "action-secondary mt-4 w-fit rounded-xl"}
-        aria-label={`${available ? "Open proof" : "Preview coming soon proof"}: ${proof.title}`}
+        aria-label={`${available ? "Open proof" : "Open planned proof route"}: ${proof.title}`}
       >
-        {available ? "Open Proof" : "Preview"} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        {available ? "Open Proof" : "Open Roadmap"} <ArrowRight className="h-4 w-4" aria-hidden="true" />
       </Link>
     </article>
   );

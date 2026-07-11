@@ -26,6 +26,7 @@ export default function Grade7LargeNumbersLab() {
   return (
     <NCERTChapterScaffold
       title="Large Numbers Around Us"
+      conceptId="class-7-large-numbers-around-us"
       subtitle="Read, compare, expand, and round large numbers using Indian and international place-value systems."
       formula="place value = digit x value of its place"
       presets={presets}

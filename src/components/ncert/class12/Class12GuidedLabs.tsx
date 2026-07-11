@@ -4,6 +4,8 @@ import NCERTSubTabs from "../layout/NCERTSubTabs";
 import NCERTTabbedWorkspace from "../layout/NCERTTabbedWorkspace";
 import NCERTPracticeCheck from "../practice/NCERTPracticeCheck";
 import type { NCERTPracticeQuestion } from "../practice/ncertPracticeTypes";
+import { getNCERTPracticeItems } from "../../../data/ncertPracticeBank";
+import NCERTTeacherModePanel from "../teacher/NCERTTeacherModePanel";
 import { classifyContinuityCase, derivativeRuleStep } from "./class12CalculusUtils";
 import { cramer2, det2, det3, inverse2, multiplyMatrixVector2, type Matrix2, type Matrix3 } from "./class12DeterminantUtils";
 import { applyInitialConditionForGrowth, differentialEquationPreset } from "./class12DifferentialEquationsUtils";
@@ -12,6 +14,7 @@ import { feasibleCorners, optimizeCorners } from "./class12LppUtils";
 import { bayesPosterior } from "./class12ProbabilityUtils";
 import { composeRelations, functionClassifier, inverseRelation, relationMatrix, relationPropertyReport, type RelationPair } from "./class12RelationsUtils";
 import { angleBetween, cross, directionCosines, dot, lineVectorForm, magnitude, projectionLength, shortestDistanceSkew, type Vector3 } from "./class12Vectors3DUtils";
+import { getNCERTConceptResourceLinks } from "../../../data/ncertResourceLinks";
 
 export type Class12LabKind =
   | "relations-functions"
@@ -107,6 +110,9 @@ export default function Class12GuidedLab({ kind }: { kind: Class12LabKind }) {
 
   const panel = useMemo(() => class12Panel(kind, preset, a, b, c), [kind, preset, a, b, c]);
   const details = useMemo(() => class12Details(kind, preset, a, b, c), [kind, preset, a, b, c]);
+  const conceptId = conceptIdByKind[kind];
+  const bankQuestions = getNCERTPracticeItems(conceptId);
+  const practiceQuestions = bankQuestions.length > 0 ? bankQuestions : details.questions;
   const controlsPanel = (
     <div className="space-y-4">
       <label className="block text-sm font-black text-slate-700 dark:text-slate-200">
@@ -158,7 +164,7 @@ export default function Class12GuidedLab({ kind }: { kind: Class12LabKind }) {
   );
   const practicePanel = (
     <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
-      <NCERTPracticeCheck title={`${config.title} practice checker`} questions={details.questions} />
+      <NCERTPracticeCheck title={`${config.title} practice bank`} questions={practiceQuestions} conceptId={conceptId} compact />
       <NCERTCompactPanel title="Practice prompt" description="Answer verbally or in notebook, then change values." accent="violet">
         <p className="text-sm font-bold leading-6 text-slate-700 dark:text-slate-200">{panel.practice}</p>
       </NCERTCompactPanel>
@@ -216,9 +222,13 @@ export default function Class12GuidedLab({ kind }: { kind: Class12LabKind }) {
             content: (
               <div className="grid gap-4 lg:grid-cols-2">
                 <NCERTCompactPanel title="Teacher prompts" description={config.subtitle} accent="amber">
-                  <div className="space-y-2">
-                  {config.prompts.map((prompt) => <p key={prompt} className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">{prompt}</p>)}
-                  </div>
+                  {bankQuestions.length > 0 ? (
+                    <NCERTTeacherModePanel title={config.title} classLevel="Class 12" questions={bankQuestions} prompts={config.prompts} misconception={details.verification[0]} extension={panel.practice} />
+                  ) : (
+                    <div className="space-y-2">
+                    {config.prompts.map((prompt) => <p key={prompt} className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">{prompt}</p>)}
+                    </div>
+                  )}
                 </NCERTCompactPanel>
                 <NCERTCompactPanel title="Formula / theorem / proof links" description="Exact links are used where available; category links are used when no exact route exists." accent="cyan">
                   <div className="flex flex-wrap gap-2">
@@ -577,24 +587,23 @@ function class12Details(kind: Class12LabKind, preset: number, a: number, b: numb
 }
 
 function linksFor(kind: Class12LabKind) {
-  const base = [
-    { label: "Formula library", href: "/formulas" },
-    { label: "Theorem library", href: "/theorems" },
-    { label: "Visual proofs", href: "/visual-proofs" },
-  ];
-  const exact: Partial<Record<Class12LabKind, { label: string; href: string }[]>> = {
-    determinants: [{ label: "Matrices and Linear Algebra Proofs", href: "/visual-proofs/matrices-linear-algebra" }],
-    "vectors-3d-geometry": [{ label: "Vector proofs", href: "/visual-proofs/vectors" }],
-    "inverse-trig": [{ label: "Trigonometry proofs", href: "/visual-proofs/trigonometry" }],
-    "continuity-differentiability": [{ label: "Derivatives lab", href: "/math/derivatives" }],
-    "integration-methods": [{ label: "Integration lab", href: "/math/integration" }],
-    "differential-equations": [{ label: "Slope fields lab", href: "/math/slope-fields" }],
-    "bayes-theorem": [{ label: "Probability theorems", href: "/theorems/probability-statistics" }],
-    "linear-programming": [{ label: "Optimization map", href: "/concept-map" }],
-    "relations-functions": [{ label: "Functions and graphs", href: "/math/functions" }],
-  };
-  return [...(exact[kind] ?? []), ...base];
+  return getNCERTConceptResourceLinks(conceptIdByKind[kind]).map((resource) => ({
+    label: resource.label,
+    href: resource.href,
+  }));
 }
+
+const conceptIdByKind: Record<Class12LabKind, string> = {
+  "relations-functions": "class-12-relations-functions",
+  determinants: "class-12-determinants",
+  "continuity-differentiability": "class-12-continuity-differentiability",
+  "integration-methods": "class-12-integration-methods",
+  "differential-equations": "class-12-differential-equations",
+  "vectors-3d-geometry": "class-12-vectors-3d-geometry",
+  "bayes-theorem": "class-12-bayes-theorem",
+  "linear-programming": "class-12-linear-programming",
+  "inverse-trig": "class-12-inverse-trig",
+};
 
 function inverseTrigPrincipal(preset: number, x: number) {
   const fns = ["sin^-1", "cos^-1", "tan^-1"];

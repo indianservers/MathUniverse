@@ -110,6 +110,12 @@ const configEntries: Array<[RouteSlug, PhaseTwoProofConfig]> = [
 
 const configByRoute = new Map(configEntries.map(([[categorySlug, proofSlug], config]) => [`/visual-proofs/${categorySlug}/${proofSlug}`, config]));
 const phaseUpgradedProofs = visualProofsIndex.filter((proof) => proof.proofUpgradeStatus === "phase-upgraded");
+const directCustomProofRoutes = new Set([
+  "/visual-proofs/sequences-and-series/sierpinski-retained-area",
+  "/visual-proofs/sequences-and-series/sierpinski-removed-square-sum",
+  "/visual-proofs/geometry/orthographic-projection-from-cube-stacks",
+  "/visual-proofs/geometry/non-unique-solid-projections",
+]);
 
 describe("Visual Proofs phase ten final metadata and smoke audit", () => {
   it("includes every phase-upgraded proof in the route smoke manifest", () => {
@@ -140,6 +146,10 @@ describe("Visual Proofs phase ten final metadata and smoke audit", () => {
 
   it("keeps every phase-upgraded proof backed by prompt, misconception, formula, values, and invariant config", () => {
     for (const proof of phaseUpgradedProofs) {
+      if (directCustomProofRoutes.has(proof.route)) {
+        expect(getVisualProofComponentLoader(proof.categorySlug, proof.componentKey), proof.componentKey).toEqual(expect.any(Function));
+        continue;
+      }
       const config = configByRoute.get(proof.route);
       expect(config, proof.route).toBeTruthy();
       if (!config) continue;

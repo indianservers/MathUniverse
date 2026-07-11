@@ -35,6 +35,8 @@ const expectedGeometrySlugs = [
   "polygon-interior-angle-sum",
   "area-of-circle-by-unrolling",
   "circle-to-triangle",
+  "orthographic-projection-from-cube-stacks",
+  "non-unique-solid-projections",
 ];
 
 describe("Visual Proofs phase eleven geometry completion", () => {
@@ -77,7 +79,7 @@ describe("Visual Proofs phase eleven geometry completion", () => {
 
   it("keeps all eleven geometry routes phase-upgraded", () => {
     const geometryProofs = getVisualProofsByCategory("geometry").filter((proof) => proof.status === "available");
-    expect(geometryProofs).toHaveLength(12);
+    expect(geometryProofs).toHaveLength(14);
     expect(geometryProofs.map((proof) => proof.slug)).toEqual(expect.arrayContaining(expectedGeometrySlugs));
     expect(geometryProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
     expect(geometryProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);

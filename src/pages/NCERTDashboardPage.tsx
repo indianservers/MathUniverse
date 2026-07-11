@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import SectionCard from "../components/ui/SectionCard";
 import { ncertConcepts, ncertRoute, type NCERTConcept } from "../data/ncertConcepts";
 import { ncertGapItems } from "../data/ncertGapAnalysis";
+import { getNCERTPracticeItems } from "../data/ncertPracticeBank";
+import { getNCERTConceptResourceLinks } from "../data/ncertResourceLinks";
+import { emptyMasteryRecord, masteryStatus, readNCERTMasteryStore } from "../hooks/useNCERTMastery";
 
 const priorityClasses = ["Class 7", "Class 10", "Class 12"] as const;
 
@@ -47,7 +50,18 @@ export default function NCERTDashboardPage() {
     const q = query.trim().toLowerCase();
     return ncertConcepts.filter((concept) => {
       const matchesClass = classFilter === "All" || concept.classLevel === classFilter;
-      const searchable = [concept.classLevel, concept.title, concept.unit, concept.summary, concept.formula, concept.visual, ...concept.outcomes, ...concept.tasks].join(" ").toLowerCase();
+      const resources = getNCERTConceptResourceLinks(concept);
+      const searchable = [
+        concept.classLevel,
+        concept.title,
+        concept.unit,
+        concept.summary,
+        concept.formula,
+        concept.visual,
+        ...concept.outcomes,
+        ...concept.tasks,
+        ...resources.flatMap((resource) => [resource.label, resource.href, resource.type, resource.exactness, ...(resource.keywords ?? [])]),
+      ].join(" ").toLowerCase();
       return matchesClass && (!q || searchable.includes(q));
     });
   }, [classFilter, query]);
@@ -156,7 +170,13 @@ export default function NCERTDashboardPage() {
 function ConceptCard({ concept }: { concept: NCERTConcept }) {
   const realVisual = realVisualTypes.has(concept.visual);
   const practiceReady = concept.tasks.length >= 3;
-  const likelyTheorem = /theorem|tangent|similar|triangle|determinant|bayes|continuity|differentiability|inverse|euclid|proof/i.test([concept.title, concept.summary, concept.formula].join(" "));
+  const resources = getNCERTConceptResourceLinks(concept);
+  const hasFormula = resources.some((resource) => resource.type === "formula");
+  const hasTheorem = resources.some((resource) => resource.type === "theorem");
+  const hasProof = resources.some((resource) => resource.type === "visual-proof");
+  const hasTool = resources.some((resource) => ["math-lab", "workspace", "ar-xr"].includes(resource.type));
+  const practiceCount = getNCERTPracticeItems(concept.id).length;
+  const mastery = typeof window === "undefined" ? emptyMasteryRecord() : readNCERTMasteryStore()[concept.id] ?? emptyMasteryRecord();
 
   return (
     <article className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-white/5">
@@ -169,10 +189,15 @@ function ConceptCard({ concept }: { concept: NCERTConcept }) {
       </div>
       <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">{concept.summary}</p>
       <div className="mt-3 flex flex-wrap gap-2">
-        <Badge label="Formula" tone="cyan" icon={<BookOpen className="h-3 w-3" />} />
-        {likelyTheorem && <Badge label="Theorem" tone="violet" icon={<ShieldCheck className="h-3 w-3" />} />}
+        {hasFormula && <Badge label="Formula" tone="cyan" icon={<BookOpen className="h-3 w-3" />} />}
+        {hasTheorem && <Badge label="Theorem" tone="violet" icon={<ShieldCheck className="h-3 w-3" />} />}
+        {hasProof && <Badge label="Proof" tone="violet" icon={<ShieldCheck className="h-3 w-3" />} />}
+        {hasTool && <Badge label="Tool" tone="cyan" icon={<FlaskConical className="h-3 w-3" />} />}
         <Badge label={realVisual ? "Real Visualization" : "Visual Needs QA"} tone={realVisual ? "emerald" : "amber"} icon={<Sparkles className="h-3 w-3" />} />
         {practiceReady && <Badge label="Practice" tone="cyan" icon={<FlaskConical className="h-3 w-3" />} />}
+        {practiceCount > 0 && <Badge label={`${practiceCount} checked Qs`} tone="emerald" icon={<FlaskConical className="h-3 w-3" />} />}
+        {practiceCount > 0 && <Badge label="Worksheet" tone="amber" icon={<BookOpen className="h-3 w-3" />} />}
+        {practiceCount > 0 && <Badge label={masteryStatus(mastery)} tone="slate" icon={<CheckCircle2 className="h-3 w-3" />} />}
         <Badge label="Browser QA" tone="slate" icon={<CheckCircle2 className="h-3 w-3" />} />
       </div>
       <div className="mt-4 rounded-2xl bg-slate-100 p-3 text-xs font-mono font-black text-slate-700 dark:bg-slate-950 dark:text-slate-200">{concept.formula}</div>

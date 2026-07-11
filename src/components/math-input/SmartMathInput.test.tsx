@@ -19,6 +19,7 @@ describe("SmartMathInput", () => {
         compact
         onChange={() => undefined}
         showLegend={false}
+        showTokenPreview
         value="A subset B, y <= x^2"
       />,
     );
@@ -27,6 +28,25 @@ describe("SmartMathInput", () => {
     expect(html).toContain("≤");
     expect(html).toContain("<sup>");
     expect(html).toContain("A subset B, y &lt;= x^2");
+  });
+
+  it("uses a snow-white editor surface with colored token classes", () => {
+    const html = renderToStaticMarkup(
+      <SmartMathInput
+        ariaLabel="Smart math test input"
+        onChange={() => undefined}
+        showLegend={false}
+        value="2*x+5=17"
+      />,
+    );
+
+    expect(html).toContain("bg-white");
+    expect(html).toContain("text-slate-950");
+    expect(html).not.toContain("text-transparent");
+    expect(html).toContain("Readable math preview");
+    expect(html).toContain("text-amber-700");
+    expect(html).toContain("text-rose-700");
+    expect(html).toContain("text-emerald-700");
   });
 
   it("surfaces intelligent hints for set relations and powers", () => {
