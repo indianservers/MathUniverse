@@ -31,6 +31,7 @@ const proofModules = import.meta.glob<VisualProofComponentModule>([
   "./mensuration/*.tsx",
   "./number-theory/*.tsx",
   "./probability/*.tsx",
+  "./ratios/*.tsx",
   "./sequences-series/*.tsx",
   "./statistics/*.tsx",
   "./transformations-symmetry/*.tsx",

@@ -252,6 +252,7 @@ describe("GeometryWorkspacePanel", () => {
     expect(html).toContain('data-testid="workspace-geometry-board"');
     expect(html).toContain("Move");
     expect(html).toContain("Touch mode");
-    expect(html).toContain("No construction constraints to certify");
+    expect(html).toContain("Construction Accuracy");
+    expect(html).toContain("100%");
   });
 });

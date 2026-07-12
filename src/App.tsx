@@ -170,7 +170,8 @@ export default function App() {
             <Route path="formulas/:categorySlug" element={<Formulas />} />
             <Route path="visual-formulas" element={<VisualFormulasHub />} />
             <Route path="visual-formulas/sierpinski-carpet" element={<FormulaVisualizerPage conceptId="sierpinski-carpet" />} />
-            {formulaVisualizerConfigs.filter((config) => config.id !== "trigonometry" && config.id !== "sierpinski-carpet").map((config) => (
+            <Route path="visual-formulas/proportional-reasoning-2" element={<FormulaVisualizerPage conceptId="proportional-reasoning-2" />} />
+            {formulaVisualizerConfigs.filter((config) => config.id !== "trigonometry" && config.id !== "sierpinski-carpet" && config.id !== "proportional-reasoning-2").map((config) => (
               <Route key={config.route} path={config.route.slice(1)} element={<FormulaVisualizerPage conceptId={config.id} />} />
             ))}
             <Route path="theorems" element={<Theorems />} />

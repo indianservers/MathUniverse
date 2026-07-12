@@ -366,6 +366,7 @@ function studentStrategyFor(result: ProblemSolverResult) {
     statistics: "Organize the data first, then compute the requested center or spread measure.",
     matrix: "Follow row, column, determinant, inverse, or multiplication rules exactly.",
     fractal: "Identify the iteration, then choose the Sierpinski count, scale, or area formula before substituting.",
+    "proportional-reasoning": "Decide whether the situation uses equal ratios, same-unit map scale, ratio shares, constant ratio, or constant product.",
     "word-problem": "Translate the sentence into math, solve the math, then attach the correct units.",
     unsupported: "This input needs a supported format or a clearer problem statement before solving.",
   };
@@ -378,6 +379,7 @@ function nextHabitFor(kind: ProblemIntentKind) {
   if (kind === "integral") return "Differentiate the result.";
   if (kind === "statistics") return "Check data count and units.";
   if (kind === "matrix") return "Check dimensions first.";
+  if (kind === "proportional-reasoning") return "Check the constant.";
   if (kind === "word-problem") return "Write the units.";
   return "Check each simplification.";
 }
@@ -391,6 +393,7 @@ function studentNoticeFor(kind: ProblemIntentKind) {
   if (kind === "system") return "All equations must be true at the same time.";
   if (kind === "statistics") return "The data order and count matter.";
   if (kind === "matrix") return "Rows and columns decide what operation is legal.";
+  if (kind === "proportional-reasoning") return "The key is deciding whether a ratio, product, scale, or whole-share stays constant.";
   return "Identify what the question is asking for.";
 }
 
@@ -404,6 +407,7 @@ function studentDoFor(kind: ProblemIntentKind) {
   if (kind === "integral") return "Reverse the derivative rule.";
   if (kind === "system") return "Eliminate or substitute one variable at a time.";
   if (kind === "statistics") return "Use the formula on the organized data.";
+  if (kind === "proportional-reasoning") return "Set up equal ratios, convert units, or check constant ratio/product before calculating.";
   return "Use one legal move at a time.";
 }
 
@@ -488,6 +492,7 @@ function examplesForKind(kind: ProblemIntentKind) {
     if (kind === "limit") return lower.includes("limit") || lower.includes("lim ");
     if (kind === "statistics") return /mean|median|mode|variance|quartiles|frequency/.test(lower);
     if (kind === "matrix") return lower.includes("[[") || lower.includes("matrix");
+    if (kind === "proportional-reasoning") return /ratio|proportion|map scale|pie|workers|direct|inverse/.test(lower);
     if (kind === "system") return lower.includes(";") || lower.includes(" and ");
     if (kind === "word-problem") return /train|car|rectangle|circle|interest|notebooks/.test(lower);
     return true;
@@ -506,6 +511,7 @@ function smartActionsFor(equation: string, kind: ProblemIntentKind) {
   if (kind === "derivative" || /^[a-z0-9+\-*/^() ]+$/i.test(expression)) actions.unshift({ label: "Differentiate this", value: `derivative of ${expression || "x^2"}` });
   if (kind === "integral" || /^[a-z0-9+\-*/^() ]+$/i.test(expression)) actions.unshift({ label: "Integrate this", value: `integrate ${expression || "2x"}` });
   if (kind === "linear-equation" || kind === "quadratic-equation") actions.unshift({ label: "Check by graph", value: cleaned });
+  if (kind === "proportional-reasoning") actions.unshift({ label: "Map-scale example", value: "3.2 cm on map with scale 1:50000" }, { label: "Ratio split", value: "divide 900 in ratio 2:3:4" });
   return actions.slice(0, 5);
 }
 

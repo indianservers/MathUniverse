@@ -4,6 +4,7 @@ import { solveExpressionOperation } from "./expressionOperationSolver";
 import { solveFractal } from "./fractalSolver";
 import { solveMatrix } from "./matrixSolver";
 import { classifyProblem } from "./problemClassifier";
+import { solveProportionalReasoning } from "./proportionalReasoningSolver";
 import type { ProblemClassification, ProblemIntentKind, ProblemSolverResult } from "./problemTypes";
 import { solveStatistics } from "./statisticsSolver";
 import { solveSystem } from "./systemSolver";
@@ -113,6 +114,9 @@ export function buildSolverResult(classification: ProblemClassification): Proble
 
   const fractalResult = solveFractal(classification);
   if (fractalResult) return fractalResult;
+
+  const proportionalReasoningResult = solveProportionalReasoning(classification);
+  if (proportionalReasoningResult) return proportionalReasoningResult;
 
   const wordProblemResult = solveWordProblem(classification);
   if (wordProblemResult) return wordProblemResult;

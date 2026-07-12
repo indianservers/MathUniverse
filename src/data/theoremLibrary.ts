@@ -113,6 +113,74 @@ const theoremProofDrafts: Record<string, TheoremProofDraft> = {
   ...geometryProofDrafts,
   ...linearAlgebraProofDrafts,
   ...trigonometryProofDrafts,
+  "proportional-reasoning:Cross multiplication principle": draft(
+    "Equal ratios can be turned into equal cross-products by multiplying both sides by the two denominators.",
+    [
+      ["Start with equal ratios", "Assume a/b = c/d with b and d non-zero.", "Two fraction cards are placed side by side."],
+      ["Clear both denominators", "Multiply both sides by bd so both denominators are removed using the same non-zero factor.", "The same rectangle scale is applied to both ratios."],
+      ["Cancel matching factors", "bd(a/b) becomes ad and bd(c/d) becomes bc.", "The denominator labels cancel cleanly."],
+      ["Compare products", "The result is ad = bc, so the two diagonal products give the exact equality test for the ratios.", "Cross-products are highlighted as equal areas."],
+      ["Reverse the reasoning", "If ad = bc, divide by bd to get a/b = c/d.", "The equality returns to ratio form."],
+    ],
+    "Equal ratios mean equal cross-products, and equal cross-products mean equal ratios.",
+    ["Using zero denominators.", "Multiplying only one side.", "Forgetting that the reverse direction also matters."],
+  ),
+  "proportional-reasoning:Representative fraction principle": draft(
+    "A map scale is a ratio between map distance and actual distance after both are written in the same unit.",
+    [
+      ["Name the two distances", "Identify the distance on the map and the real distance.", "A map segment is paired with a real-world segment."],
+      ["Convert units", "Write both lengths in the same unit.", "Different unit labels become matching unit labels."],
+      ["Form the ratio", "RF = map distance / actual distance.", "The shorter map segment sits over the longer actual segment."],
+      ["Reduce to 1:n", "Divide both terms by the map distance.", "The ratio becomes one map unit to n real units."],
+      ["Use the scale", "Multiply map distance by n for actual distance, or divide actual distance by n for map distance.", "The same scale bar works both ways."],
+    ],
+    "Representative fraction always needs same units first.",
+    ["Mixing centimetres and kilometres in one ratio.", "Treating 1:50000 as 50000 cm only after conversion is ignored."],
+  ),
+  "proportional-reasoning:Multi-term ratio division principle": draft(
+    "A whole split in a:b:c gives each part its fraction of the total ratio sum.",
+    [
+      ["Add ratio parts", "Find r1+r2+...+rk so the total number of equal ratio units in the whole is known.", "All ratio blocks line up to show the full whole."],
+      ["Find one unit", "One ratio unit is total divided by the sum of parts.", "The whole bar is chopped into equal units."],
+      ["Scale each part", "Multiply each ratio part by the value of one unit.", "Each coloured section receives its share."],
+      ["Check total", "Add all shares back together to confirm the split has used the whole amount and nothing has been lost.", "The shares refill the original whole exactly."],
+    ],
+    "Part share = part/sum of parts x total.",
+    ["Dividing the total by each part separately.", "Forgetting to check that all shares add back to the original total."],
+  ),
+  "proportional-reasoning:Pie-angle proportionality principle": draft(
+    "Pie chart sector angles share 360 degrees in the same ratio as the data parts.",
+    [
+      ["Start with a ratio", "Write the parts r1:r2:...:rk so each sector can be linked to one named part of the data.", "Ratio blocks sit beside a blank circle."],
+      ["Add the parts", "Find the total ratio units because the full 360 degrees must be shared across all parts together.", "The full circle is labelled as all units together."],
+      ["Compute each angle", "angle_i = part_i / total_parts x 360 degrees.", "Each sector grows by its proportional share."],
+      ["Check the circle", "All sector angles must add to 360 degrees.", "The circle closes with no gap or overlap."],
+    ],
+    "Pie angles are ratio shares of 360 degrees.",
+    ["Using 100 instead of 360 for angles.", "Rounding early so the final sectors do not add to 360."],
+  ),
+  "proportional-reasoning:Direct proportion constant-ratio principle": draft(
+    "In direct proportion, equal multiplication of x causes equal multiplication of y, so y/x stays constant.",
+    [
+      ["Write the model", "Use y = kx to show that y is always made by multiplying x by one fixed constant.", "A straight line through the origin is shown."],
+      ["Divide by x", "For x non-zero, y/x = k, so every valid pair keeps the same ratio of output to input.", "Every point has the same ratio label."],
+      ["Test two points", "Compare y1/x1 and y2/x2; equal ratios mean the two points follow the same direct proportion.", "Two points project to matching ratio cards."],
+      ["Predict a new value", "Use y2 = kx2 so the new input is scaled by the same constant as every earlier input.", "A new point lands on the same line."],
+    ],
+    "Direct proportion keeps y/x constant.",
+    ["Checking difference instead of ratio.", "Using direct proportion when doubling one value halves the other."],
+  ),
+  "proportional-reasoning:Inverse proportion constant-product principle": draft(
+    "In inverse proportion, one quantity grows while the other shrinks so their product stays fixed.",
+    [
+      ["Write the model", "Use xy = k or y = k/x to show that the product stays fixed while the factors trade size.", "A rectangle with fixed area k is shown."],
+      ["Test two pairs", "Compare x1y1 and x2y2; equal products show the pairs belong to the same inverse proportion.", "Both rectangles have the same area."],
+      ["Predict a new value", "Use y2 = k/x2 so the fixed product is preserved after choosing the new x value.", "Changing width forces height to adjust."],
+      ["Interpret the context", "More workers need fewer days; faster speed needs less time.", "Real examples sit beside the rectangle model."],
+    ],
+    "Inverse proportion keeps xy constant.",
+    ["Checking ratio instead of product.", "Assuming every decreasing relationship is inverse proportion."],
+  ),
   "number-theory:Euclid division lemma": draft(
     "Place multiples of the positive divisor on the number line; every integer lands between two neighboring multiples, and the leftover distance is the remainder.",
     [
@@ -382,6 +450,14 @@ export const theoremCategories: TheoremCategory[] = [
     ["Sierpinski removed-square sum principle", "Fractals", "The total number of removed squares after n iterations is 1+8+...+8^(n-1)=(8^n-1)/7.", ["Geometric sequences", "Finite sums"]],
     ["Orthographic projection maximum principle", "Solid views", "Top views record occupied footprint cells, while front and side views record maximum visible stack heights.", ["Cube stacks", "Maximum", "Projection"]],
     ["Projection non-uniqueness principle", "Solid views", "The same top, front, and side projections can describe more than one cube-stack solid unless extra constraints are given.", ["Orthographic projections", "Cube count"]],
+  ]),
+  category("proportional-reasoning", "Proportional Reasoning", "Ratio, map-scale, sharing, pie-chart, direct proportion, and inverse proportion principles.", "cyan", [
+    ["Cross multiplication principle", "Equivalent ratios", "For non-zero b and d, a/b=c/d exactly when ad=bc.", ["Fractions", "Multiplication"]],
+    ["Representative fraction principle", "Map scale", "A representative fraction is the ratio of map distance to actual distance after both are measured in the same unit.", ["Ratios", "Unit conversion"]],
+    ["Multi-term ratio division principle", "Ratio sharing", "If a total T is divided in ratio r1:r2:...:rk, then share i equals (ri/(r1+r2+...+rk))T.", ["Fractions", "Addition"]],
+    ["Pie-angle proportionality principle", "Pie charts", "Pie chart sector angles divide 360 degrees in the same ratio as the data parts.", ["Angles", "Ratios"]],
+    ["Direct proportion constant-ratio principle", "Direct proportion", "In direct proportion, y/x remains constant and y=kx.", ["Ratio tables", "Graphs"]],
+    ["Inverse proportion constant-product principle", "Inverse proportion", "In inverse proportion, xy remains constant and y=k/x.", ["Multiplication", "Graphs"]],
   ]),
   category("trigonometry", "Trigonometry", "Unit circle, triangle laws, identities, periodicity, and inverse trigonometric facts.", "sky", [
     ["Sine rule", "Triangle solving", "In any triangle, a/sin A=b/sin B=c/sin C.", ["Triangle angles"]],

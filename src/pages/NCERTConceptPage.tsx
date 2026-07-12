@@ -13,6 +13,7 @@ import Grade7LargeNumbersLab from "../components/ncert/grade7/Grade7LargeNumbers
 import Grade7LinesTrianglesLab from "../components/ncert/grade7/Grade7LinesTrianglesLab";
 import Grade7ManipulativeLab, { isGrade7PriorityRoute } from "../components/ncert/grade7/Grade7ManipulativeLab";
 import Grade8FractalsSolidViewsLab from "../components/ncert/grade8/Grade8FractalsSolidViewsLab";
+import Grade8ProportionalReasoningLab from "../components/ncert/grade8/Grade8ProportionalReasoningLab";
 import Class12GuidedLab from "../components/ncert/class12/Class12GuidedLabs";
 import Class10BoardExamLab, { isClass10PriorityRoute } from "../components/ncert/class10/Class10BoardExamLabs";
 import NCERTTabbedWorkspace from "../components/ncert/layout/NCERTTabbedWorkspace";
@@ -205,6 +206,7 @@ export const supportedNCERTVisualTypes = new Set<NCERTVisualType>([
   "grade7-lines-triangles-lab",
   "grade7-algebraic-expressions-lab",
   "grade7-data-handling-lab",
+  "grade8-proportional-reasoning-2-lab",
   "grade8-fractals-solid-views-lab",
   "class12-relations-functions-lab",
   "class12-determinants-lab",
@@ -224,6 +226,7 @@ function renderGrade7ChapterLab(visual: NCERTVisualType) {
   if (visual === "grade7-fraction-operations-lab") return <Grade7FractionOperationsLab />;
   if (visual === "grade7-constructions-tilings-lab") return <Grade7ConstructionsTilingsLab />;
   if (visual === "grade7-lines-triangles-lab") return <Grade7LinesTrianglesLab />;
+  if (visual === "grade8-proportional-reasoning-2-lab") return <Grade8ProportionalReasoningLab />;
   if (visual === "grade8-fractals-solid-views-lab") return <Grade8FractalsSolidViewsLab />;
   return null;
 }

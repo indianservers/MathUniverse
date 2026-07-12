@@ -13,6 +13,7 @@ const expectedCategoryCounts: Record<string, number> = {
   "coordinate-geometry": 15,
   "calculus": 15,
   "number-theory": 12,
+  "ratios": 4,
   "probability": 8,
   "statistics": 8,
   "sequences-and-series": 17,
@@ -45,7 +46,7 @@ const phaseUpgradedProofs = visualProofsIndex.filter((proof) => proof.proofUpgra
 
 describe("Visual Proofs phase twenty-eight final metadata and route hardening", () => {
   it("confirms every category is real, available, and backed by routes", () => {
-    expect(visualProofCategories).toHaveLength(18);
+    expect(visualProofCategories).toHaveLength(19);
     expect(visualProofCategories.every((category) => category.status === "available")).toBe(true);
     expect(visualProofsIndex.some((proof) => proof.status === "coming-soon")).toBe(false);
 
@@ -59,7 +60,7 @@ describe("Visual Proofs phase twenty-eight final metadata and route hardening", 
   });
 
   it("keeps every phase-upgraded proof fully described for premium shell rendering", () => {
-    expect(phaseUpgradedProofs).toHaveLength(189);
+    expect(phaseUpgradedProofs).toHaveLength(193);
     for (const proof of phaseUpgradedProofs) {
       expect(proof.route, proof.id).toBe(`/visual-proofs/${proof.categorySlug}/${proof.slug}`);
       expect(proof.title, proof.route).toBeTruthy();
@@ -115,9 +116,9 @@ describe("Visual Proofs phase twenty-eight final metadata and route hardening", 
   });
 
   it("exports generated route smoke lists for future browser tests", () => {
-    expect(visualProofsCategorySmokeRoutes).toHaveLength(18);
-    expect(visualProofsPhaseUpgradedSmokeRoutes).toHaveLength(189);
-    expect(visualProofsRepresentativeSmokeRoutes).toHaveLength(18);
+    expect(visualProofsCategorySmokeRoutes).toHaveLength(19);
+    expect(visualProofsPhaseUpgradedSmokeRoutes).toHaveLength(193);
+    expect(visualProofsRepresentativeSmokeRoutes).toHaveLength(19);
     expect(visualProofsAllSmokeRoutes).toContain("/visual-proofs");
     expect(visualProofsAllSmokeRoutes).toContain("/visual-proofs/engineering-mathematics/first-order-differential-equation-slope-field");
   });

@@ -1558,6 +1558,18 @@ function computeResult(formula: FormulaVisualizerEntry, params: FormulaParameter
   if (formula.id === "sierpinski-removed-area") return 1 - (8 / 9) ** iteration;
   if (formula.id === "solid-top-projection") return Math.abs(a) > 0 ? 1 : 0;
   if (formula.id === "solid-front-projection" || formula.id === "solid-side-projection") return Math.max(Math.abs(a), Math.abs(b), Math.abs(c));
+  if (formula.id === "equivalent-ratios") return Math.abs(a * n - b * c) < 1e-9 ? 1 : 0;
+  if (formula.id === "cross-multiplication") return a * n - b * c;
+  if (formula.id === "missing-fourth-term") return (b * c) / Math.max(0.001, a);
+  if (formula.id === "representative-fraction") return Math.max(1, Math.abs(b * 100000) / Math.max(0.001, Math.abs(a)));
+  if (formula.id === "actual-distance-map-scale") return Math.abs(a * b) / 100000;
+  if (formula.id === "map-distance-actual-scale") return (Math.abs(a) * 100000) / Math.max(1, Math.abs(b));
+  if (formula.id === "multi-term-ratio-share") return (Math.abs(a) / Math.max(1, Math.abs(a) + Math.abs(b) + Math.abs(c))) * Math.abs(n);
+  if (formula.id === "ratio-to-percentage") return (Math.abs(a) / Math.max(1, Math.abs(a) + Math.abs(b) + Math.abs(c))) * 100;
+  if (formula.id === "ratio-to-pie-angle") return (Math.abs(a) / Math.max(1, Math.abs(a) + Math.abs(b) + Math.abs(c))) * 360;
+  if (formula.id === "direct-proportion") return a * b;
+  if (formula.id === "inverse-proportion") return Math.abs(a * b) / Math.max(0.001, Math.abs(c));
+  if (formula.id === "constant-check") return Math.abs(a * b - c * n);
   switch (formula.visualizerType) {
     case "area":
       return formula.id.includes("difference") ? a * a - b * b : (a + b) ** 2;

@@ -62,6 +62,16 @@ export const visualProofCategories: VisualProofCategory[] = [
     status: "available",
   },
   {
+    title: "Ratio and Proportion Proofs",
+    slug: "ratios",
+    description: "Interactive proofs for equivalent ratios, cross multiplication, map scale, proportional sharing, pie sectors, and direct/inverse proportion.",
+    difficultyRange: "Beginner to Intermediate",
+    targetAudience: "Grade 8, middle school, and NCERT ratio learners",
+    iconName: "GitFork",
+    proofCount: 4,
+    status: "available",
+  },
+  {
     title: "Probability Proofs",
     slug: "probability",
     description: "Counting, sample spaces, conditional probability, and expectation proofs with simulations.",

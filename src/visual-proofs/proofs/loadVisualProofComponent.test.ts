@@ -13,7 +13,7 @@ const availableCategorySlugs = visualProofCategories.filter((category) => catego
 
 describe("Visual Proofs lazy component resolver", () => {
   it("keeps every phase-upgraded proof route covered by a lazy loader", () => {
-    expect(phaseUpgradedProofs).toHaveLength(189);
+    expect(phaseUpgradedProofs).toHaveLength(193);
 
     const missing = phaseUpgradedProofs.filter(
       (proof) => !getVisualProofComponentLoader(proof.categorySlug, proof.componentKey),

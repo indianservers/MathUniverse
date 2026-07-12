@@ -32,6 +32,7 @@ type LogarithmExponentProofSeed = GeometryProofSeed;
 type TransformationSymmetryProofSeed = GeometryProofSeed;
 type EngineeringMathematicsProofSeed = GeometryProofSeed;
 type SequenceSeriesProofSeed = GeometryProofSeed;
+type RatioProofSeed = GeometryProofSeed;
 
 const geometryProofs: GeometryProofSeed[] = [
   {
@@ -1143,6 +1144,61 @@ const numberTheoryProofs: NumberTheoryProofSeed[] = [
     prerequisites: ["Fractions", "Even numbers", "Pythagorean theorem", "Proof by contradiction"],
     learningOutcomes: ["Explain why sqrt(2) is not rational", "Use parity in a contradiction", "Connect unit-square diagonal to sqrt(2)"],
     componentKey: "IrrationalitySqrt2Proof",
+  },
+];
+
+const ratioProofs: RatioProofSeed[] = [
+  {
+    id: "cross-multiplication-equal-rectangles",
+    title: "Cross Multiplication as Equal Rectangles",
+    slug: "cross-multiplication-equal-rectangles",
+    shortDescription: "See a/b=c/d as matching rectangle products ad and bc.",
+    longDescription: "Adjust two ratios, compare their simplified forms, and watch the cross-products become equal exactly when the ratios are equivalent.",
+    difficulty: "Beginner",
+    tags: ["ratio", "proportion", "cross multiplication", "equivalent ratios", "rectangles"],
+    estimatedTime: "8 minutes",
+    prerequisites: ["Fractions", "Multiplication", "Area"],
+    learningOutcomes: ["Explain why a/b=c/d implies ad=bc", "Use cross-products to test equivalence", "Solve a missing proportional value"],
+    componentKey: "CrossMultiplicationEqualRectanglesProof",
+  },
+  {
+    id: "map-scale-same-unit-principle",
+    title: "Map Scale Needs Same Units",
+    slug: "map-scale-same-unit-principle",
+    shortDescription: "Convert map and actual distances to the same unit before reading RF.",
+    longDescription: "Use a scale bar to convert between map distance, actual distance, and representative fraction without mixing units.",
+    difficulty: "Beginner",
+    tags: ["map scale", "representative fraction", "unit conversion", "ratio"],
+    estimatedTime: "8 minutes",
+    prerequisites: ["Length units", "Ratios"],
+    learningOutcomes: ["Build RF after unit conversion", "Find actual distance from 1:n scale", "Find map distance from actual distance"],
+    componentKey: "MapScaleSameUnitPrincipleProof",
+  },
+  {
+    id: "multi-term-ratio-shares",
+    title: "Multi-Term Ratio Shares",
+    slug: "multi-term-ratio-shares",
+    shortDescription: "Split a whole into 2, 3, or more ratio parts and check the total.",
+    longDescription: "A stacked bar shows why each share is part/sum of parts times the whole, then converts the same ratio into percentages and pie angles.",
+    difficulty: "Beginner",
+    tags: ["ratio", "sharing", "pie chart", "percentage", "multi-term ratio"],
+    estimatedTime: "9 minutes",
+    prerequisites: ["Fractions", "Percentages", "Angles"],
+    learningOutcomes: ["Divide a whole in a given ratio", "Convert ratio parts to percentages", "Convert ratio parts to pie-chart angles"],
+    componentKey: "MultiTermRatioSharesProof",
+  },
+  {
+    id: "direct-vs-inverse-proportion",
+    title: "Direct vs Inverse Proportion",
+    slug: "direct-vs-inverse-proportion",
+    shortDescription: "Compare constant ratio y/x with constant product xy.",
+    longDescription: "Move x and compare a straight-line direct model with a fixed-area inverse model to decide which constant applies.",
+    difficulty: "Intermediate",
+    tags: ["direct proportion", "inverse proportion", "constant ratio", "constant product", "graph"],
+    estimatedTime: "9 minutes",
+    prerequisites: ["Ratios", "Multiplication", "Graphs"],
+    learningOutcomes: ["Identify direct proportion from constant y/x", "Identify inverse proportion from constant xy", "Use tables to predict missing values"],
+    componentKey: "DirectVsInverseProportionProof",
   },
 ];
 
@@ -2556,6 +2612,10 @@ const phaseUpgradedProofs = new Set<VisualProofComponentKey>([
   "FiniteGeometricSeriesSumProof",
   "SierpinskiRetainedAreaProof",
   "SierpinskiRemovedSquareSumProof",
+  "CrossMultiplicationEqualRectanglesProof",
+  "MapScaleSameUnitPrincipleProof",
+  "MultiTermRatioSharesProof",
+  "DirectVsInverseProportionProof",
   "InfiniteGeometricSeriesConvergenceProof",
   "TriangularNumbersProof",
   "SquareNumbersOddLayersProof",
@@ -2980,6 +3040,8 @@ function getLearningModel(categorySlug: string, proof: { componentKey: VisualPro
       return "graph-limit";
     case "number-theory":
       return "number-model";
+    case "ratios":
+      return "comparison-model";
     case "sequences-and-series":
       return "pattern-model";
     case "probability":
@@ -3012,6 +3074,7 @@ const visualProofExplanationContexts: Record<string, string> = {
   "coordinate-geometry": "The coordinate grid shows how changing points, slopes, or transformations changes the formula in real time.",
   calculus: "The graph model ties the algebraic rule to motion, slope, accumulated area, or local approximation.",
   "number-theory": "The number model uses grouping, arrays, clocks, or cycles so the divisibility pattern can be seen before it is generalized.",
+  ratios: "The ratio model keeps parts, products, units, and constants visible so students can see why proportional rules work.",
   probability: "The simulation board connects the formula to repeated trials, event regions, and long-run frequency behavior.",
   statistics: "The data display makes the statistic visible as balance, spread, position, or trend rather than only a computed value.",
   "matrices-linear-algebra": "The matrix view connects entries, row-column operations, systems, and transformations to visible movement or structure.",
@@ -3111,6 +3174,15 @@ const numberTheoryAvailableProofs: VisualProof[] = numberTheoryProofs.map((proof
   categorySlug: "number-theory",
   level: "Middle School to Olympiad Foundation",
   route: `/visual-proofs/number-theory/${proof.slug}`,
+  status: "available",
+  thumbnailKey: proof.componentKey,
+})).map(withUpgradeMetadata);
+
+const ratioAvailableProofs: VisualProof[] = ratioProofs.map((proof): VisualProof => ({
+  ...proof,
+  categorySlug: "ratios",
+  level: "Grade 8 NCERT Ratio and Proportion",
+  route: `/visual-proofs/ratios/${proof.slug}`,
   status: "available",
   thumbnailKey: proof.componentKey,
 })).map(withUpgradeMetadata);
@@ -3224,7 +3296,7 @@ const sequenceSeriesAvailableProofs: VisualProof[] = sequenceSeriesProofs.map((p
 })).map(withUpgradeMetadata);
 
 const plannedProofs: VisualProof[] = visualProofCategories
-  .filter((category) => !["geometry", "algebraic-identities", "trigonometry", "coordinate-geometry", "calculus", "number-theory", "probability", "statistics", "matrices-linear-algebra", "vectors", "complex-numbers", "mensuration", "conic-sections", "inequalities", "logarithms-exponents", "transformations-symmetry", "engineering-mathematics", "sequences-and-series"].includes(category.slug))
+  .filter((category) => !["geometry", "algebraic-identities", "trigonometry", "coordinate-geometry", "calculus", "number-theory", "ratios", "probability", "statistics", "matrices-linear-algebra", "vectors", "complex-numbers", "mensuration", "conic-sections", "inequalities", "logarithms-exponents", "transformations-symmetry", "engineering-mathematics", "sequences-and-series"].includes(category.slug))
   .map((category): VisualProof => ({
     id: `${category.slug}-starter-proof`,
     title: `${category.title} Starter Visual Proof`,
@@ -3251,6 +3323,7 @@ export const visualProofsIndex: VisualProof[] = [
   ...coordinateAvailableProofs,
   ...calculusAvailableProofs,
   ...numberTheoryAvailableProofs,
+  ...ratioAvailableProofs,
   ...probabilityAvailableProofs,
   ...statisticsAvailableProofs,
   ...matrixLinearAlgebraAvailableProofs,

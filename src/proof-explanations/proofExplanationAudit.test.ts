@@ -32,7 +32,7 @@ describe("proof explanation stabilization audit", () => {
     const phaseUpgradedProofs = visualProofsIndex.filter((proof) => proof.proofUpgradeStatus === "phase-upgraded");
     const categorySlugs = new Set(phaseUpgradedProofs.map((proof) => proof.categorySlug));
 
-    expect(categorySlugs.size).toBe(18);
+    expect(categorySlugs.size).toBe(19);
     expect(phaseUpgradedProofs.every((proof) => proof.longDescription.trim().length >= 110)).toBe(true);
     expect(phaseUpgradedProofs.every((proof) => proof.learningOutcomes.length >= 2)).toBe(true);
     expect(phaseUpgradedProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);

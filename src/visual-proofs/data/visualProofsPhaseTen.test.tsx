@@ -115,6 +115,10 @@ const directCustomProofRoutes = new Set([
   "/visual-proofs/sequences-and-series/sierpinski-removed-square-sum",
   "/visual-proofs/geometry/orthographic-projection-from-cube-stacks",
   "/visual-proofs/geometry/non-unique-solid-projections",
+  "/visual-proofs/ratios/cross-multiplication-equal-rectangles",
+  "/visual-proofs/ratios/map-scale-same-unit-principle",
+  "/visual-proofs/ratios/multi-term-ratio-shares",
+  "/visual-proofs/ratios/direct-vs-inverse-proportion",
 ]);
 
 describe("Visual Proofs phase ten final metadata and smoke audit", () => {

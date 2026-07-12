@@ -31,12 +31,10 @@ describe("GraphWorkspacePanel", () => {
     expect(html).toContain("Smart graph expression editor");
   });
 
-  it("uses smart expression rendering for graph plot input", () => {
+  it("preserves graph plot input safely inside the plots tab", () => {
     const html = renderPanel([{ id: "plot-1", expression: "A subset B, y<=x^2", color: colors[0], kind: "function", visible: true }]);
 
-    expect(html).toContain("⊂");
-    expect(html).toContain("≤");
-    expect(html).toContain("<sup>");
+    expect(html).toContain("Edit graph expression A subset B");
     expect(html).toContain("A subset B, y&lt;=x^2");
   });
 

@@ -99,6 +99,15 @@ export function classifyProblem(input: string): ProblemClassification {
     });
   }
 
+  if (isProportionalReasoningPrompt(normalizedText)) {
+    return classification("proportional-reasoning", rawInput, normalizedText, {
+      confidence: "high",
+      expression: normalizedText,
+      reason: "Detected ratio, map scale, cross multiplication, pie-angle, direct proportion, or inverse proportion vocabulary.",
+      assumptions: ["Ratios use positive quantities unless the prompt states otherwise.", "Map-scale distances are converted to matching units before using representative fraction."],
+    });
+  }
+
   const unsupportedAdvanced = unsupportedAdvancedTopic(normalizedText);
   if (unsupportedAdvanced) {
     return unsupported(rawInput, unsupportedAdvanced, "high", [
@@ -336,6 +345,10 @@ function isPercentChangePrompt(value: string) {
 
 function isFractalPrompt(text: string) {
   return /sierpinski|fractal|retained squares|removed squares|self[- ]similar|side scale|carpet iteration/.test(text);
+}
+
+function isProportionalReasoningPrompt(text: string) {
+  return /cross[- ]?multip|representative fraction|\brf\b|map scale|scale\s*1\s*:|ratio|proportion|proportional|direct proportion|inverse proportion|pie angle|pie chart|divide .* in .* ratio|split .* ratio|constant ratio|constant product|workers.*days|speed.*time/.test(text);
 }
 
 function unsupportedAdvancedTopic(value: string) {

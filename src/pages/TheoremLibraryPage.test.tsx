@@ -20,7 +20,7 @@ describe("TheoremLibraryPage", () => {
   it("renders an all-theorems page with category links", () => {
     const html = renderTheoremRoute("/theorems");
 
-    expect(theoremCategories).toHaveLength(12);
+    expect(theoremCategories).toHaveLength(13);
     expect(theoremCount).toBeGreaterThanOrEqual(200);
     expect(html).toContain("Theorem Library");
     expect(html).toContain("/theorems/geometry");
