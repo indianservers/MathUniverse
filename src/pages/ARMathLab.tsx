@@ -13,7 +13,7 @@ import { arPracticeActivities } from "../ar-math-lab/arPracticeActivities";
 import { calculateDisplayScale, crossSectionLabel, parseGeometrySolidInput, qualitySegments, solidTypeLabels, updateGeometryDimension } from "../ar-math-lab/arGeometrySolids";
 import { defaultGraphSettings, generateARGraphObject, parameterSliderSpecs, settingsFromClassification } from "../ar-math-lab/arGraphGenerator";
 import { comparisonSummary, createAnimation, createMeasurement, createObjectDimensionMeasurement, feedbackFor, lessonFor, parseSceneJson, serializeScene } from "../ar-math-lab/arInteractiveTools";
-import { buildLearningState, createARLearningEvent, type ARLearningEvent, type ARLearningEventType, type ARLearningState } from "../ar-math-lab/arLearningEngine";
+import { createARLearningEvent, type ARLearningEvent, type ARLearningEventType } from "../ar-math-lab/arLearningEngine";
 import { applyPerformanceModeToGraphSettings, hasHighResolutionRisk } from "../ar-math-lab/arProductionHardening";
 import { detectARSupport } from "../ar-math-lab/arSupport";
 import type { ARAdvancedToolTab, ARAnimation, ARComparison, ARCrossSectionMode, ARExample, ARGeneratedGeometrySolid, ARGeneratedGraphObject, ARGeometryQuality, ARGraphSettings, ARMathObject, ARMeasurement, ARMeasurementType, ARObjectType, ARRenderMode, ARScaleMode, ARSceneSaveData, ARSceneState, ARSessionState, ARSessionStatus, ARSolidType, ARSupportStatus, ARUnit, EquationClassificationResult } from "../ar-math-lab/types";
@@ -30,12 +30,6 @@ const objectTypeLabels: Record<ARObjectType, string> = {
   coordinate_axes: "Coordinate axes",
   measurement_demo: "Measurement demo",
   unknown: "Unknown",
-};
-
-const renderModeLabels: Record<ARRenderMode, string> = {
-  ar: "AR",
-  "camera-preview": "Camera preview",
-  "3d-preview": "3D preview",
 };
 
 const unitOptions: ARUnit[] = ["mm", "cm", "m", "inch", "ft"];
@@ -93,7 +87,7 @@ const initialSceneState: ARSceneState = {
 
 function createSessionState(support: ARSupportStatus, status: ARSessionStatus = "ready"): ARSessionState {
   return {
-    mode: support.recommendedMode,
+    mode: "3d-preview",
     status,
     webXRAvailable: support.webXRAvailable,
     immersiveARSupported: support.immersiveARSupported,
@@ -107,7 +101,7 @@ function createSessionState(support: ARSupportStatus, status: ARSessionStatus = 
 export default function ARMathLab() {
   const [selectedExampleId, setSelectedExampleId] = useState(initialExample.id);
   const [input, setInput] = useState(initialExample.input);
-  const [support, setSupport] = useState<ARSupportStatus>(checkingSupport);
+  const [, setSupport] = useState<ARSupportStatus>(checkingSupport);
   const [sessionState, setSessionState] = useState<ARSessionState>(() => createSessionState(checkingSupport, "checking"));
   const [sceneState, setSceneState] = useState<ARSceneState>(initialSceneState);
   const [objectType, setObjectType] = useState<ARObjectType>(initialExample.objectType);
@@ -135,9 +129,6 @@ export default function ARMathLab() {
   const [isGeneratingGraph, setIsGeneratingGraph] = useState(false);
   const [isGeneratingSolid, setIsGeneratingSolid] = useState(false);
   const [lastLearningEvent, setLastLearningEvent] = useState<ARLearningEvent>(() => createARLearningEvent("equation_entered", undefined, { input: initialExample.input }));
-  const [lessonActive, setLessonActive] = useState(false);
-  const [learningStepIndex, setLearningStepIndex] = useState(0);
-  const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({});
   const [quizResults, setQuizResults] = useState<Record<string, boolean>>({});
   const mountedRef = useRef(true);
   const cameraStreamRef = useRef<MediaStream | null>(null);
@@ -151,17 +142,6 @@ export default function ARMathLab() {
   const selectedLesson = useMemo(() => lessonFor(selectedGraph, selectedSolid), [selectedGraph, selectedSolid]);
   const recommendations = useMemo(() => feedbackFor(input, selectedGraph, selectedSolid), [input, selectedGraph, selectedSolid]);
   const comparisonText = useMemo(() => comparisonSummary(comparison, generatedGraphs, generatedSolids), [comparison, generatedGraphs, generatedSolids]);
-  const realtimeLearning = useMemo(() => buildLearningState(input, {
-    selectedGraph,
-    selectedSolid,
-    graphSettings,
-    parameterValues,
-    measurements,
-    comparison,
-    graphs: generatedGraphs,
-    solids: generatedSolids,
-    lastEvent: lastLearningEvent,
-  }), [comparison, generatedGraphs, generatedSolids, graphSettings, input, lastLearningEvent, measurements, parameterValues, selectedGraph, selectedSolid]);
   const currentObject = useMemo<ARMathObject>(() => ({
     id: selectedSolid?.id ?? selectedGraph?.id ?? "phase-2-preview-object",
     label: selectedSolid?.name ?? selectedGraph?.name ?? selectedExample.title,
@@ -284,8 +264,6 @@ export default function ARMathLab() {
     if (example.unit) setGeometryBuilderUnit(example.unit);
     setGraphError("");
     setGeometryError("");
-    setLessonActive(false);
-    setLearningStepIndex(0);
     emitLearning("equation_entered", undefined, { input: example.input, exampleId: example.id });
   }
 
@@ -294,7 +272,7 @@ export default function ARMathLab() {
       setSessionState((state) => ({ ...state, mode: "3d-preview", status: "unsupported", cameraPermission: "denied", errorMessage: "Camera access is not available in this browser.", infoMessage: "3D Preview Mode is active." }));
       return;
     }
-    await startCameraBackedMode("ar", "Browser AR is active with the live rear camera. Drag with one finger to place the math object; use two fingers to scale and rotate.", "browser-camera-ar");
+    await startCameraBackedMode("ar", "Camera AR is active.", "browser-camera-ar");
   }
 
   async function stopARSession() {
@@ -306,7 +284,7 @@ export default function ARMathLab() {
   }
 
   async function startCameraPreview() {
-    await startCameraBackedMode("camera-preview", "Camera Preview Mode is active. Drag the overlay to place the math object, then use measurements, labels, scale, and rotate controls.", "camera-preview");
+    await startCameraBackedMode("camera-preview", "Camera is active.", "camera-preview");
   }
 
   async function startCameraBackedMode(mode: "ar" | "camera-preview", infoMessage: string, reason: string) {
@@ -577,8 +555,8 @@ export default function ARMathLab() {
       comparison,
       settings: { showGrid: sceneState.showGrid, showAxes: sceneState.showAxes, showLabels: sceneState.showLabels },
       learning: {
-        activeConcept: realtimeLearning.activeConcept,
-        completedStepIds: lessonActive ? realtimeLearning.stepCards.slice(0, learningStepIndex + 1).map((_, index) => `${realtimeLearning.activeConcept}-${index}`) : [],
+        activeConcept: selectedLesson.title,
+        completedStepIds: [],
         quizResults,
         lastEvent: lastLearningEvent,
       },
@@ -624,36 +602,6 @@ export default function ARMathLab() {
     emitLearning("object_compared", next.objectAId ?? next.objectBId, next as unknown as Record<string, unknown>);
   }
 
-  function completeQuizAnswer(questionId: string, answer: string) {
-    setQuizAnswers((answers) => ({ ...answers, [questionId]: answer }));
-    setQuizResults((results) => ({ ...results, [questionId]: answer.trim().toLowerCase() === realtimeLearning.quiz.correctAnswer.trim().toLowerCase() }));
-  }
-
-  function handleLearningRecommendation(action: string) {
-    const lower = action.toLowerCase();
-    if (lower.includes("measure") || lower.includes("inspect") || lower.includes("point")) {
-      setActiveToolTab("measure");
-      addMeasurement(lower.includes("radius") ? "radius" : "distance");
-    } else if (lower.includes("animate")) {
-      setActiveToolTab("animate");
-      addAnimation(lower.includes("radius") || lower.includes("height") ? "dimension" : "parameter");
-    } else if (lower.includes("compare")) {
-      setActiveToolTab("compare");
-      updateComparison({ ...comparison, enabled: true });
-    } else if (lower.includes("wireframe")) {
-      updateGraphSetting("wireframe", true);
-      setActiveToolTab("graph");
-    } else if (lower.includes("cross-section") || lower.includes("cross section")) {
-      updateSelectedSolidSettings({ showCrossSection: true, crossSectionMode: "horizontal" });
-      setActiveToolTab("geometry");
-    } else if (lower.includes("rotate")) {
-      addAnimation("rotation");
-      setActiveToolTab("animate");
-    } else {
-      setSceneMessage(action);
-    }
-  }
-
   function updateScene(delta: Partial<ARSceneState>) {
     setSceneState((state) => ({ ...state, ...delta }));
   }
@@ -679,17 +627,10 @@ export default function ARMathLab() {
       <div className="sr-only" aria-live="polite">{sessionState.errorMessage ?? sceneMessage ?? sessionState.infoMessage}</div>
       <div className="mx-auto flex max-w-[1500px] flex-col gap-2.5 sm:gap-3">
         <header className="rounded-2xl border border-white/80 bg-white/88 p-3 shadow-lg shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/88 sm:rounded-[1.5rem]">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-4xl">
-              <p className="flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300 sm:text-xs sm:tracking-[0.22em]"><ScanLine className="h-4 w-4" /> Mobile AR math workspace</p>
-              <h1 className="mt-1 text-2xl font-black tracking-tight sm:text-3xl">AR Math Lab</h1>
-              <p className="mt-1 max-w-3xl text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300 sm:text-sm">Pick an example, generate a 3D object, then view it in 3D, camera preview, or AR when supported.</p>
-            </div>
-            <div className="hidden grid-cols-3 gap-1.5 text-center text-[11px] font-black sm:grid sm:min-w-[360px] sm:gap-2 sm:text-xs">
-              <StatusBadge label="Browser AR" value={support.cameraAvailable ? "camera ready" : "fallback"} tone={support.cameraAvailable ? "ready" : "idle"} />
-              <StatusBadge label="Camera" value={support.cameraAvailable ? "available" : "fallback"} tone={support.cameraAvailable ? "ready" : "idle"} />
-              <StatusBadge label="Mode" value={renderModeLabels[support.recommendedMode]} tone="ready" />
-            </div>
+          <div className="max-w-4xl">
+            <p className="flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300 sm:text-xs sm:tracking-[0.22em]"><ScanLine className="h-4 w-4" /> Mobile camera AR</p>
+            <h1 className="mt-1 text-2xl font-black tracking-tight sm:text-3xl">AR Math Lab</h1>
+            <p className="mt-1 max-w-3xl text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300 sm:text-sm">Choose a function, tap AR, then move the 3D math object on the live camera.</p>
           </div>
         </header>
 
@@ -792,43 +733,12 @@ export default function ARMathLab() {
             <ARScene mathObject={currentObject} cameraStream={cameraStream} generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} sessionState={sessionState} onSceneChange={updateScene} />
             <MobileQuickActions
               sessionState={sessionState}
-              support={support}
               onActivate3D={() => activate3DPreview()}
               onGenerateGraph={generateGraph}
               onPlaceObject={placeObject}
               onStartAR={startARSession}
               onStartCamera={startCameraPreview}
             />
-            <div className="hidden xl:block">
-              <ARRealtimeLearningPanel
-                learning={realtimeLearning}
-                lessonActive={lessonActive}
-                quizAnswers={quizAnswers}
-                quizResults={quizResults}
-                stepIndex={learningStepIndex}
-                teacherMode={teacherMode}
-                onAnswerQuiz={completeQuizAnswer}
-                onRecommendation={handleLearningRecommendation}
-                onSetStepIndex={setLearningStepIndex}
-                onStartLesson={() => {
-                  setLessonActive(true);
-                  setLearningStepIndex(0);
-                  emitLearning("object_selected", selectedObjectId, { lesson: realtimeLearning.activeConcept });
-                }}
-                onToggleTeacherMode={setTeacherMode}
-              />
-            </div>
-            <div className="hidden space-y-3 xl:block">
-              <ARSessionManager sessionState={sessionState} support={support} />
-              <ARStatusPanel sessionState={sessionState} support={support} />
-            </div>
-            <details className="ar-mobile-disclosure xl:hidden">
-              <summary>Device status and fallback details</summary>
-              <div className="ar-mobile-disclosure-body space-y-3">
-                <ARSessionManager sessionState={sessionState} support={support} />
-                <ARStatusPanel sessionState={sessionState} support={support} />
-              </div>
-            </details>
           </div>
         </section>
       </div>
@@ -840,11 +750,6 @@ export function ARScene({ mathObject, cameraStream, generatedGraphs, generatedSo
   const mode = sessionState.mode === "none" ? "3d-preview" : sessionState.mode;
   return (
     <section data-testid="ar-scene" className="relative overflow-hidden rounded-[1.5rem] border border-cyan-200/80 bg-slate-950 text-white shadow-2xl shadow-cyan-950/20 sm:rounded-[2rem]">
-      <div className="flex flex-wrap gap-1.5 p-2 sm:gap-2 sm:p-3">
-        <span className="rounded-full border border-cyan-300/40 bg-cyan-300/10 px-3 py-1.5 text-xs font-black text-cyan-100">{renderModeLabels[mode]}</span>
-        <span className="hidden rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white/85 sm:inline-flex">Phase 6 hardened preview</span>
-        <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white/85">{sessionState.status}</span>
-      </div>
       {mode === "camera-preview" ? <ARCameraPreview mathObject={mathObject} mode="camera-preview" onSceneChange={onSceneChange} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
       {mode === "ar" ? <ARCameraPreview mathObject={mathObject} mode="ar" onSceneChange={onSceneChange} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
       {mode === "3d-preview" ? <ARFallbackViewer generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} /> : null}
@@ -929,7 +834,7 @@ export function ARCameraPreview({ mathObject, mode, onSceneChange, sceneState, s
       <ARPlacementMarker mode={mode} sceneState={sceneState} />
       <ARLiveCamera3DOverlay mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
       <OverlayLabel mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
-      <p className="pointer-events-none absolute bottom-2 left-2 right-2 rounded-2xl bg-black/55 px-3 py-2 text-[11px] font-bold leading-4 text-white backdrop-blur sm:bottom-3 sm:left-3 sm:right-3 sm:text-xs sm:leading-5">{mode === "ar" ? "Browser AR: live camera with real 3D math. Drag with one finger to place; use two fingers to scale and rotate." : "Camera Preview: drag with one finger to place; use two fingers to scale and rotate."}</p>
+      <p className="pointer-events-none absolute bottom-2 left-2 right-2 rounded-xl bg-black/55 px-3 py-2 text-center text-xs font-black text-white backdrop-blur sm:bottom-3 sm:left-3 sm:right-3">Drag to move. Pinch to scale/rotate.</p>
     </div>
   );
 }
@@ -992,7 +897,6 @@ export function ARFallbackViewer({ generatedGraphs, generatedSolids, measurement
         <PreviewScene generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} />
         <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} />
       </ThreeSceneWrapper>
-      <p className="mt-3 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm font-semibold leading-6 text-cyan-50">3D Preview Mode is active. Start AR to use the live mobile camera.</p>
     </div>
   );
 }
@@ -1307,139 +1211,6 @@ function OverlayLabel({ mathObject, sceneState, selectedGraph, selectedSolid }: 
   );
 }
 
-function ARRealtimeLearningPanel({
-  learning,
-  lessonActive,
-  onAnswerQuiz,
-  onRecommendation,
-  onSetStepIndex,
-  onStartLesson,
-  onToggleTeacherMode,
-  quizAnswers,
-  quizResults,
-  stepIndex,
-  teacherMode,
-}: {
-  learning: ARLearningState;
-  lessonActive: boolean;
-  quizAnswers: Record<string, string>;
-  quizResults: Record<string, boolean>;
-  stepIndex: number;
-  teacherMode: boolean;
-  onAnswerQuiz: (questionId: string, answer: string) => void;
-  onRecommendation: (action: string) => void;
-  onSetStepIndex: (index: number) => void;
-  onStartLesson: () => void;
-  onToggleTeacherMode: (enabled: boolean) => void;
-}) {
-  const currentStep = learning.stepCards[Math.min(stepIndex, learning.stepCards.length - 1)] ?? "Generate or select an object.";
-  const quizAnswer = quizAnswers[learning.quiz.id] ?? "";
-  const quizResult = quizResults[learning.quiz.id];
-  return (
-    <SectionCard title="Real-time Learning" description="Live explanation, formula changes, misconceptions, quiz checks, and teacher prompts." compact>
-      <div data-testid="ar-realtime-learning" className="space-y-3" aria-live="polite">
-        <div className="grid gap-3 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
-          <div className="rounded-2xl border border-cyan-200 bg-white p-3 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/60">
-            <div className="flex flex-wrap items-start justify-between gap-2">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">Current concept</p>
-                <h2 className="mt-1 text-xl font-black tracking-tight">{learning.activeConcept}</h2>
-                <p className="mt-1 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">{learning.currentExplanation}</p>
-              </div>
-              <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-black text-cyan-800 dark:bg-cyan-300/10 dark:text-cyan-100">{learning.objectName}</span>
-            </div>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              <MiniLearningCard label="What changed" text={learning.whatChanged} />
-              <MiniLearningCard label="Meaning" text={learning.mathematicalMeaning} />
-            </div>
-            {learning.misconceptionWarning ? (
-              <p className="mt-3 rounded-2xl border border-amber-200 bg-amber-50 p-3 text-sm font-bold leading-6 text-amber-900 dark:border-amber-300/20 dark:bg-amber-300/10 dark:text-amber-100">{learning.misconceptionWarning}</p>
-            ) : null}
-          </div>
-
-          <div className="rounded-2xl border border-violet-200 bg-violet-50/70 p-3 dark:border-violet-300/20 dark:bg-violet-300/10">
-            <div className="flex items-center justify-between gap-2">
-              <p className="text-sm font-black">Live formula</p>
-              <span className="rounded-full bg-white px-2 py-1 text-[11px] font-black text-violet-800 dark:bg-slate-950/60 dark:text-violet-100">{learning.learningProgress}%</span>
-            </div>
-            <div className="mt-2 rounded-2xl bg-white p-3 text-center text-lg font-black dark:bg-slate-950/70">
-              <MathExpression value={learning.liveFormula} />
-            </div>
-            <p className="mt-2 text-xs font-bold leading-5 text-slate-600 dark:text-slate-300">{learning.formulaExplanation}</p>
-            <div className="mt-3 h-2 overflow-hidden rounded-full bg-white dark:bg-slate-950/70">
-              <div className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-violet-500" style={{ width: `${learning.learningProgress}%` }} />
-            </div>
-          </div>
-        </div>
-
-        <div className="grid gap-3 xl:grid-cols-3">
-          <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
-            <div className="flex items-center justify-between gap-2">
-              <p className="text-sm font-black">Step mode</p>
-              <button className="action-primary min-h-9 rounded-xl px-3 text-xs" type="button" onClick={onStartLesson}>{lessonActive ? "Restart" : "Start"}</button>
-            </div>
-            <p className="mt-2 rounded-xl bg-slate-50 p-3 text-sm font-bold leading-6 dark:bg-white/5">{currentStep}</p>
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              <button className="tool-button min-h-10 rounded-xl text-xs" type="button" onClick={() => onSetStepIndex(Math.max(0, stepIndex - 1))}>Previous</button>
-              <button className="tool-button min-h-10 rounded-xl text-xs" type="button" onClick={() => onSetStepIndex(Math.min(learning.stepCards.length - 1, stepIndex + 1))}>Next</button>
-            </div>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              {learning.stepCards.map((step, index) => (
-                <button key={step} type="button" aria-label={`Learning step ${index + 1}`} className={`h-8 w-8 rounded-full text-xs font-black ${index === stepIndex ? "bg-cyan-500 text-white" : "bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-slate-200"}`} onClick={() => onSetStepIndex(index)}>{index + 1}</button>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
-            <p className="text-sm font-black">Smart next actions</p>
-            <div className="mt-3 grid gap-2">
-              {learning.nextSuggestedActions.map((action) => (
-                <button key={action} className="tool-button min-h-10 justify-start rounded-xl text-left text-xs" type="button" onClick={() => onRecommendation(action)}>
-                  <Sparkles className="h-4 w-4" />
-                  <span>{action}</span>
-                </button>
-              ))}
-            </div>
-            {learning.comparisonInsight ? <p className="mt-3 rounded-xl bg-violet-50 p-3 text-xs font-bold leading-5 text-violet-900 dark:bg-violet-300/10 dark:text-violet-100">{learning.comparisonInsight}</p> : null}
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
-            <div className="flex items-center justify-between gap-2">
-              <p className="text-sm font-black">Quick quiz</p>
-              <CheckToggle label="Teacher" checked={teacherMode} onChange={onToggleTeacherMode} />
-            </div>
-            <p className={`${teacherMode ? "text-base" : "text-sm"} mt-2 font-bold leading-6`}>{learning.quiz.prompt}</p>
-            {learning.quiz.options?.length ? (
-              <div className="mt-3 grid gap-2">
-                {learning.quiz.options.map((option) => (
-                  <button key={option} className={`${quizAnswer === option ? "action-primary" : "tool-button"} min-h-10 justify-start rounded-xl text-xs`} type="button" onClick={() => onAnswerQuiz(learning.quiz.id, option)}>{option}</button>
-                ))}
-              </div>
-            ) : (
-              <input className="mt-3 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold dark:border-white/10 dark:bg-slate-950" value={quizAnswer} onChange={(event) => onAnswerQuiz(learning.quiz.id, event.target.value)} />
-            )}
-            {quizResult !== undefined ? (
-              <p className={`mt-3 rounded-xl p-3 text-xs font-bold leading-5 ${quizResult ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-300/10 dark:text-emerald-100" : "bg-amber-50 text-amber-900 dark:bg-amber-300/10 dark:text-amber-100"}`}>
-                {quizResult ? "Correct. " : "Check again. "}{learning.quiz.explanation}
-              </p>
-            ) : null}
-            <p className="mt-3 rounded-xl bg-cyan-50 p-3 text-xs font-bold leading-5 text-cyan-900 dark:bg-cyan-300/10 dark:text-cyan-100">{learning.classroomPrompt}</p>
-          </div>
-        </div>
-      </div>
-    </SectionCard>
-  );
-}
-
-function MiniLearningCard({ label, text }: { label: string; text: string }) {
-  return (
-    <div className="rounded-2xl bg-slate-50 p-3 dark:bg-white/5">
-      <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">{label}</p>
-      <p className="mt-1 text-sm font-bold leading-6 text-slate-700 dark:text-slate-200">{text}</p>
-    </div>
-  );
-}
-
 export function ARStatusPanel({ sessionState, support }: { sessionState: ARSessionState; support: ARSupportStatus }) {
   const messages = [sessionState.errorMessage, sessionState.infoMessage, ...support.warnings].filter(Boolean) as string[];
   return (
@@ -1459,9 +1230,8 @@ export function ARStatusPanel({ sessionState, support }: { sessionState: ARSessi
   );
 }
 
-function MobileQuickActions({ sessionState, support, onActivate3D, onGenerateGraph, onPlaceObject, onStartAR, onStartCamera }: {
+function MobileQuickActions({ sessionState, onActivate3D, onGenerateGraph, onPlaceObject, onStartAR, onStartCamera }: {
   sessionState: ARSessionState;
-  support: ARSupportStatus;
   onActivate3D: () => void;
   onGenerateGraph: () => void;
   onPlaceObject: () => void;
@@ -1472,10 +1242,10 @@ function MobileQuickActions({ sessionState, support, onActivate3D, onGenerateGra
     <section className="sticky top-1 z-30 rounded-[1.35rem] border border-cyan-200/80 bg-white/92 p-2 shadow-xl shadow-cyan-950/10 backdrop-blur xl:hidden">
       <div className="mb-2 flex items-center justify-between gap-2 px-1">
         <div className="min-w-0">
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">Mobile AR controls</p>
-          <p className="truncate text-[11px] font-bold text-slate-500">{renderModeLabels[sessionState.mode === "none" ? "3d-preview" : sessionState.mode]} · {support.cameraAvailable ? "live camera ready" : "3D fallback"}</p>
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">AR controls</p>
+          <p className="truncate text-[11px] font-bold text-slate-500">Camera, function, place.</p>
         </div>
-        <span className="shrink-0 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black text-emerald-800">{sessionState.status}</span>
+        {sessionState.status === "starting" ? <span className="shrink-0 rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-black text-amber-800">opening</span> : null}
       </div>
       <div className="grid grid-cols-5 gap-1.5">
         <MobileActionButton label="AR" icon={<ScanLine className="h-4 w-4" />} onClick={onStartAR} primary />
@@ -1738,7 +1508,6 @@ export function ARControlPanel(props: {
 
             <ARFormulaPanel classification={classification} selectedExample={selectedExample} />
             <ARMeasurementTool measurements={measurements} />
-            <ARHelpPanel />
           </div>
         </details>
       </div>
@@ -2415,19 +2184,36 @@ async function requestEnvironmentCameraStream() {
   const mediaDevices = navigator.mediaDevices;
   if (!mediaDevices?.getUserMedia) throw new Error("Camera access is not available.");
   const attempts: MediaStreamConstraints[] = [
-    { video: { facingMode: { exact: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false },
     { video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false },
     { video: true, audio: false },
   ];
   let lastError: unknown;
   for (const constraints of attempts) {
     try {
-      return await mediaDevices.getUserMedia(constraints);
+      return await getCameraStreamWithTimeout(mediaDevices, constraints, 6000);
     } catch (error) {
       lastError = error;
     }
   }
   throw lastError;
+}
+
+function getCameraStreamWithTimeout(mediaDevices: MediaDevices, constraints: MediaStreamConstraints, timeoutMs: number) {
+  let timedOut = false;
+  const request = mediaDevices.getUserMedia(constraints).then((stream) => {
+    if (timedOut) {
+      stopCameraTracks(stream);
+      throw new Error("Camera request timed out.");
+    }
+    return stream;
+  });
+  const timeout = new Promise<MediaStream>((_, reject) => {
+    window.setTimeout(() => {
+      timedOut = true;
+      reject(new Error("Camera request timed out."));
+    }, timeoutMs);
+  });
+  return Promise.race([request, timeout]);
 }
 
 function stopCameraTracks(stream: MediaStream | null) {
