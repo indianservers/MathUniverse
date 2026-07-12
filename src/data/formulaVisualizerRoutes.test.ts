@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { formulaVisualizerCategoryRouteMap, formulaVisualizerConfigs, getFormulaVisualizerForFormulaCategory, visualFormulaMenuLinks } from "./formulaVisualizerRoutes";
+import { realFormulaVisualizerModelTypes } from "../pages/FormulaVisualizerPage";
 
 const phase3Routes = [
   "/math/limits-continuity/formula-visualizer",
@@ -51,6 +52,19 @@ describe("formula visualizer route registry", () => {
       expect(config.searchTerms.join(" ")).toMatch(/visualizer/i);
       expect(config.route.endsWith("/formula-visualizer") || config.route.startsWith("/visual-formulas/")).toBe(true);
     });
+  });
+
+  it("keeps every configured visual formula type backed by a real renderer", () => {
+    const supportedTypes = new Set(realFormulaVisualizerModelTypes);
+    const configuredTypes = formulaVisualizerConfigs.flatMap((config) => config.formulas.map((formula) => ({
+      route: config.route,
+      formulaId: formula.id,
+      type: formula.visualizerType,
+    })));
+
+    const unsupported = configuredTypes.filter((entry) => !supportedTypes.has(entry.type));
+
+    expect(unsupported, unsupported.map((entry) => `${entry.route} :: ${entry.formulaId} uses ${entry.type}`).join("\n")).toEqual([]);
   });
 
   it("keeps formula library and menu links aligned to real visualizer routes", () => {

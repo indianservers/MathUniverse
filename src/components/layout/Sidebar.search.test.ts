@@ -22,11 +22,16 @@ function flattenTitles(item: NavItem): string[] {
 describe("Sidebar menu search", () => {
   it("finds NCERT and AR/XR first-class dashboard entries", () => {
     const home = navSections.find((section) => section.title === "Home");
+    const ar = navSections.find((section) => section.title === "AR / XR");
     expect(home).toBeDefined();
+    expect(ar).toBeDefined();
+    expect(ar?.items.map((item) => item.title)).toContain("AR Math Lab");
     const terms = normalizeSearchText("ncert class 12").split(" ").filter(Boolean);
     const titles = filterNavItems(home?.items ?? [], terms, home?.title ?? "Home").flatMap(flattenTitles);
     expect(titles).toContain("NCERT Dashboard");
     expect(searchableTitlesInAllSections("ar xr webxr")).toContain("AR Math Lab");
+    expect(searchableTitlesInAllSections("camera preview")).toContain("Camera Preview");
+    expect(searchableTitlesInAllSections("geometry solids")).toContain("AR Geometry Solids");
   });
 
   it.each([

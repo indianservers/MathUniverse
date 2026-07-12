@@ -131,7 +131,7 @@ export default function TheoremLibraryPage() {
                     placeholder="Search theorem, topic, use, prerequisite..."
                   />
                 </label>
-                <nav className="flex flex-wrap gap-2 pb-1 xl:max-w-[820px]" aria-label="Theorem categories">
+                <nav className="-mx-1 flex snap-x gap-1.5 overflow-x-auto px-1 pb-1 sm:mx-0 sm:flex-wrap sm:gap-2 sm:overflow-visible sm:px-0 xl:max-w-[820px]" aria-label="Theorem categories">
                   <CategoryChip to="/theorems" active={!categorySlug}>
                     All
                   </CategoryChip>
@@ -513,7 +513,7 @@ function StatPill({ label, value }: { label: string; value: number }) {
 function CategoryChip({ active, children, to }: { active: boolean; children: string; to: string }) {
   return (
     <Link
-      className={`max-w-[190px] rounded-md border px-3 py-2 text-center text-xs font-black leading-tight transition ${
+      className={`shrink-0 snap-start whitespace-nowrap rounded-md border px-2.5 py-2 text-center text-[11px] font-black leading-none transition sm:max-w-[190px] sm:whitespace-normal sm:px-3 sm:text-xs sm:leading-tight ${
         active
           ? "border-cyan-600 bg-cyan-600 text-white shadow-sm"
           : "border-slate-200 bg-slate-50 text-slate-700 hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-cyan-300/50 dark:hover:text-cyan-100"

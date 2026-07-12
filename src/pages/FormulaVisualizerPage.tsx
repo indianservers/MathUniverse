@@ -22,6 +22,61 @@ const defaultParams: FormulaParameters = { a: 3, b: 2, c: 1, n: 8, p: 45 };
 const baseTabs = ["Explore", "Formula Bank", "Examples", "Why it Works", "Practice"] as const;
 type Tab = (typeof baseTabs)[number] | "Teacher Notes";
 
+export const realFormulaVisualizerModelTypes = [
+  "graph",
+  "area",
+  "geometry",
+  "coordinate",
+  "calculus",
+  "matrix",
+  "vector",
+  "probability",
+  "statistics",
+  "mensuration",
+  "number-system",
+  "complex",
+  "sequence",
+  "combinatorics",
+  "set-logic",
+  "function",
+  "linear-programming",
+  "polynomial",
+  "inequality",
+  "distribution",
+  "limits-continuity",
+  "differential-equations",
+  "determinant",
+  "three-d-geometry",
+  "early-number-sense",
+  "fraction-percent",
+  "commercial-math",
+  "speed-work",
+  "mental-math",
+  "pre-algebra",
+  "number-theory",
+  "euclidean-geometry",
+  "analytic-geometry",
+  "precalculus",
+  "calculus-applications",
+  "multivariable-calculus",
+  "advanced-linear-algebra",
+  "abstract-algebra",
+  "real-analysis",
+  "complex-analysis",
+  "topology",
+  "differential-geometry",
+  "discrete-math",
+  "optimization",
+  "numerical-methods",
+  "dynamical-systems",
+  "pde",
+  "transforms",
+  "mathematical-physics",
+  "information-theory",
+  "machine-learning",
+  "cryptography",
+] as const satisfies readonly FormulaVisualizerEntry["visualizerType"][];
+
 export default function FormulaVisualizerPage({ conceptId }: FormulaVisualizerPageProps) {
   const config = getFormulaVisualizerConfig(conceptId);
 
@@ -296,7 +351,11 @@ function FormulaCanvas({ formula, params }: { formula: FormulaVisualizerEntry; p
         </defs>
         <rect width="760" height="390" rx="22" fill="url(#formulaPane)" />
         <Grid />
-        {isDeepenedPhaseOneFormula(formula.id) ? (
+        {isProportionalReasoningFormula(formula.id) ? (
+          <ProportionalReasoningVisual formula={formula} params={params} />
+        ) : isTrigonometryFormula(formula.id) ? (
+          <TrigonometryFormulaVisual formula={formula} params={params} />
+        ) : isDeepenedPhaseOneFormula(formula.id) ? (
           <DeepenedPhaseOneVisual formula={formula} params={params} />
         ) : formula.visualizerType === "area" ? (
           <g transform="translate(240 78)">
@@ -512,6 +571,174 @@ function StatisticsVisual({ params }: { params: FormulaParameters }) {
       ))}
       <line x1="0" y1={220 - mean * 18} x2="430" y2={220 - mean * 18} stroke="#facc15" strokeWidth="4" strokeDasharray="10 8" />
       <Text x="500" y={224 - mean * 18} value="mean" />
+    </g>
+  );
+}
+
+function isProportionalReasoningFormula(id: string) {
+  return [
+    "equivalent-ratios",
+    "cross-multiplication",
+    "missing-fourth-term",
+    "representative-fraction",
+    "actual-distance-map-scale",
+    "map-distance-actual-scale",
+    "multi-term-ratio-share",
+    "ratio-to-percentage",
+    "ratio-to-pie-angle",
+    "direct-proportion",
+    "inverse-proportion",
+    "constant-check",
+  ].includes(id);
+}
+
+function ProportionalReasoningVisual({ formula, params }: { formula: FormulaVisualizerEntry; params: FormulaParameters }) {
+  const a = Math.max(0.25, Math.abs(params.a));
+  const b = Math.max(0.25, Math.abs(params.b));
+  const c = Math.max(0.25, Math.abs(params.c));
+  const d = Math.max(1, Math.abs(params.n));
+  const parts = [a, b, c].map((value) => Math.max(0.1, value));
+  const partSum = parts.reduce((sum, value) => sum + value, 0);
+  const widths = parts.map((part) => (part / partSum) * 430);
+  const firstPercent = (a / partSum) * 100;
+  const firstAngle = (a / partSum) * 360;
+  const ratioDiff = a * d - b * c;
+  const mapActualKm = (a * b) / 100000;
+  const directK = b || 1;
+  const inverseK = Math.max(0.1, a * b);
+  const pieAngle = (firstAngle / 180) * Math.PI;
+  const pieEnd = { x: 560 + 82 * Math.cos(pieAngle - Math.PI / 2), y: 190 + 82 * Math.sin(pieAngle - Math.PI / 2) };
+
+  if (["equivalent-ratios", "cross-multiplication", "missing-fourth-term"].includes(formula.id)) {
+    const leftHeight = 46 + a * 12;
+    const leftWidth = 52 + d * 5;
+    const rightHeight = 46 + b * 12;
+    const rightWidth = 52 + c * 9;
+    return (
+      <g>
+        <rect x="118" y={245 - leftHeight} width={leftWidth} height={leftHeight} rx="10" fill="#22d3ee" opacity="0.45" stroke="#67e8f9" strokeWidth="4" />
+        <rect x="398" y={245 - rightHeight} width={rightWidth} height={rightHeight} rx="10" fill="#f59e0b" opacity="0.45" stroke="#fde68a" strokeWidth="4" />
+        <Text x={118 + leftWidth / 2} y={222 - leftHeight} value={`a x d = ${formatNumber(a * d)}`} />
+        <Text x={398 + rightWidth / 2} y={222 - rightHeight} value={`b x c = ${formatNumber(b * c)}`} />
+        <line x1="110" y1="278" x2="650" y2="278" stroke="#94a3b8" strokeWidth="3" />
+        <Text x="380" y="86" value={Math.abs(ratioDiff) < 0.01 ? "equivalent ratios" : `difference ${formatNumber(ratioDiff)}`} />
+        <Text x="380" y="128" value={formula.id === "missing-fourth-term" ? `missing d = ${formatNumber((b * c) / a)}` : "compare cross-products"} />
+      </g>
+    );
+  }
+
+  if (["representative-fraction", "actual-distance-map-scale", "map-distance-actual-scale"].includes(formula.id)) {
+    const mapWidth = Math.max(50, Math.min(240, a * 42));
+    const actualWidth = Math.max(160, Math.min(520, mapWidth + Math.log10(Math.max(10, b)) * 84));
+    return (
+      <g>
+        <line x1="120" y1="145" x2={120 + mapWidth} y2="145" stroke="#22d3ee" strokeWidth="12" strokeLinecap="round" />
+        <line x1="120" y1="245" x2={120 + actualWidth} y2="245" stroke="#f59e0b" strokeWidth="12" strokeLinecap="round" />
+        <line x1="120" y1="122" x2="120" y2="270" stroke="#e0f2fe" strokeWidth="3" strokeDasharray="8 8" />
+        <line x1={120 + mapWidth} y1="122" x2={120 + actualWidth} y2="270" stroke="#e0f2fe" strokeWidth="3" strokeDasharray="8 8" />
+        <Text x={120 + mapWidth / 2} y="112" value={`${formatNumber(a)} map units`} />
+        <Text x={120 + actualWidth / 2} y="296" value={`${formatNumber(mapActualKm)} km actual`} />
+        <Text x="560" y="118" value={`scale 1:${formatNumber(b)}`} />
+        <Text x="560" y="164" value="same units first" />
+      </g>
+    );
+  }
+
+  if (["multi-term-ratio-share", "ratio-to-percentage", "ratio-to-pie-angle"].includes(formula.id)) {
+    let x = 140;
+    const colors = ["#22d3ee", "#f59e0b", "#a78bfa"];
+    return (
+      <g>
+        {widths.map((width, index) => {
+          const currentX = x;
+          x += width;
+          return (
+            <g key={index}>
+              <rect x={currentX} y="115" width={width} height="76" rx="14" fill={colors[index]} opacity="0.7" />
+              <Text x={currentX + width / 2} y="154" value={`${formatNumber(parts[index])}`} />
+            </g>
+          );
+        })}
+        <circle cx="560" cy="190" r="82" fill="#172554" stroke="#67e8f9" strokeWidth="4" />
+        <path d={`M560 190 L560 108 A82 82 0 ${firstAngle > 180 ? 1 : 0} 1 ${pieEnd.x} ${pieEnd.y} Z`} fill="#facc15" opacity="0.65" stroke="#fef08a" strokeWidth="3" />
+        <Text x="350" y="250" value={`share=${formatNumber((a / partSum) * Math.abs(params.n))}`} />
+        <Text x="560" y="302" value={`${formatNumber(firstPercent)}% / ${formatNumber(firstAngle)} deg`} />
+      </g>
+    );
+  }
+
+  return (
+    <g>
+      <line x1="100" y1="300" x2="670" y2="300" stroke="#94a3b8" strokeWidth="3" />
+      <line x1="120" y1="62" x2="120" y2="320" stroke="#94a3b8" strokeWidth="3" />
+      <polyline
+        points={Array.from({ length: 9 }, (_, index) => {
+          const x = 1 + index;
+          const y = formula.id === "inverse-proportion" ? inverseK / x : directK * x;
+          return `${120 + index * 58},${Math.max(70, Math.min(300, 300 - y * 9))}`;
+        }).join(" ")}
+        fill="none"
+        stroke={formula.id === "inverse-proportion" ? "#f59e0b" : "#22d3ee"}
+        strokeWidth="5"
+        strokeLinecap="round"
+      />
+      <Text x="520" y="96" value={formula.id === "inverse-proportion" ? `xy=${formatNumber(inverseK)}` : `y/x=${formatNumber(directK)}`} />
+      <Text x="520" y="142" value={formula.id === "constant-check" ? "ratio or product?" : formula.id === "inverse-proportion" ? "hyperbola model" : "line model"} />
+    </g>
+  );
+}
+
+function isTrigonometryFormula(id: string) {
+  return [
+    "sin-ratio",
+    "cos-ratio",
+    "tan-ratio",
+    "pythagorean-identity",
+    "tan-identity",
+    "sine-rule",
+    "cosine-rule",
+    "angle-sum-sine",
+  ].includes(id);
+}
+
+function TrigonometryFormulaVisual({ formula, params }: { formula: FormulaVisualizerEntry; params: FormulaParameters }) {
+  const angle = (Math.max(5, Math.min(85, params.p)) / 180) * Math.PI;
+  const r = 104;
+  const cx = 220;
+  const cy = 190;
+  const px = cx + r * Math.cos(angle);
+  const py = cy - r * Math.sin(angle);
+  const tri = { ax: 420, ay: 284, bx: 660, by: 284, cx: 420 + Math.max(70, Math.abs(params.a) * 34), cy: 284 - Math.max(86, Math.abs(params.b) * 30) };
+  const showTriangleRule = ["sine-rule", "cosine-rule"].includes(formula.id);
+
+  if (showTriangleRule) {
+    return (
+      <g>
+        <polygon points={`${tri.ax},${tri.ay} ${tri.bx},${tri.by} ${tri.cx},${tri.cy}`} fill="#22d3ee" opacity="0.28" stroke="#e0f2fe" strokeWidth="5" />
+        <path d={`M${tri.bx - 46} ${tri.by} A46 46 0 0 0 ${tri.bx - 34} ${tri.by - 34}`} fill="none" stroke="#facc15" strokeWidth="5" />
+        <Text x={(tri.ax + tri.bx) / 2} y={tri.ay + 28} value="a" />
+        <Text x={(tri.bx + tri.cx) / 2 + 24} y={(tri.by + tri.cy) / 2} value="b" />
+        <Text x={(tri.ax + tri.cx) / 2 - 28} y={(tri.ay + tri.cy) / 2} value="c" />
+        <Text x={tri.bx - 34} y={tri.by - 26} value="C" />
+        <Text x="240" y="116" value={formula.id === "cosine-rule" ? "c^2 = a^2+b^2-2ab cos C" : "a/sin A = b/sin B = c/sin C"} />
+        <Text x="240" y="166" value={formula.id === "cosine-rule" ? "Pythagoras plus angle correction" : "same circumcircle ratio"} />
+      </g>
+    );
+  }
+
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r={r} fill="#22d3ee" opacity="0.12" stroke="#67e8f9" strokeWidth="4" />
+      <line x1={cx - 135} y1={cy} x2={cx + 145} y2={cy} stroke="#94a3b8" strokeWidth="3" />
+      <line x1={cx} y1={cy + 135} x2={cx} y2={cy - 145} stroke="#94a3b8" strokeWidth="3" />
+      <Arrow x1={cx} y1={cy} x2={px} y2={py} color="#facc15" label="r=1" />
+      <line x1={px} y1={py} x2={px} y2={cy} stroke="#f59e0b" strokeWidth="5" />
+      <line x1={cx} y1={cy} x2={px} y2={cy} stroke="#22d3ee" strokeWidth="5" />
+      <polygon points={`${420},${284} ${650},${284} ${650},${py}`} fill="#a78bfa" opacity="0.24" stroke="#ddd6fe" strokeWidth="4" />
+      <Text x={px + 38} y={(py + cy) / 2} value="sin" />
+      <Text x={(cx + px) / 2} y={cy + 28} value="cos" />
+      <Text x="535" y="118" value={formula.id === "pythagorean-identity" ? "sin^2 + cos^2 = 1" : formula.id === "tan-identity" ? "tan = sin / cos" : "triangle ratio"} />
+      <Text x="535" y="164" value={`${formula.title}: ${formatNumber(computeResult(formula, params))}`} />
     </g>
   );
 }
@@ -1570,6 +1797,24 @@ function computeResult(formula: FormulaVisualizerEntry, params: FormulaParameter
   if (formula.id === "direct-proportion") return a * b;
   if (formula.id === "inverse-proportion") return Math.abs(a * b) / Math.max(0.001, Math.abs(c));
   if (formula.id === "constant-check") return Math.abs(a * b - c * n);
+  if (formula.id === "sin-ratio") return Math.sin((Math.max(5, Math.min(85, p)) / 180) * Math.PI);
+  if (formula.id === "cos-ratio") return Math.cos((Math.max(5, Math.min(85, p)) / 180) * Math.PI);
+  if (formula.id === "tan-ratio") return Math.tan((Math.max(5, Math.min(85, p)) / 180) * Math.PI);
+  if (formula.id === "pythagorean-identity") {
+    const angle = (Math.max(5, Math.min(85, p)) / 180) * Math.PI;
+    return Math.sin(angle) ** 2 + Math.cos(angle) ** 2;
+  }
+  if (formula.id === "tan-identity") {
+    const angle = (Math.max(5, Math.min(85, p)) / 180) * Math.PI;
+    return Math.sin(angle) / Math.max(0.001, Math.cos(angle));
+  }
+  if (formula.id === "sine-rule") return Math.abs(a) / Math.max(0.001, Math.sin((Math.max(5, Math.min(85, p)) / 180) * Math.PI));
+  if (formula.id === "cosine-rule") return Math.sqrt(Math.max(0, a ** 2 + b ** 2 - 2 * a * b * Math.cos((Math.max(5, Math.min(85, p)) / 180) * Math.PI)));
+  if (formula.id === "angle-sum-sine") {
+    const firstAngle = (Math.max(5, Math.min(85, p)) / 180) * Math.PI;
+    const secondAngle = (Math.max(5, Math.min(85, Math.abs(a) * 10)) / 180) * Math.PI;
+    return Math.sin(firstAngle + secondAngle);
+  }
   switch (formula.visualizerType) {
     case "area":
       return formula.id.includes("difference") ? a * a - b * b : (a + b) ** 2;

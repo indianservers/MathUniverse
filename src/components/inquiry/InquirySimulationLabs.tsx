@@ -157,9 +157,9 @@ export default function InquirySimulationLabs() {
       <div className="grid gap-5 xl:grid-cols-[300px_minmax(0,1fr)]">
         <div className="space-y-3">
           {inquiryLabs.map((item) => (
-            <button key={item.id} type="button" onClick={() => switchLab(item)} className={`group w-full rounded-2xl border p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg ${item.id === lab.id ? "border-cyan-300 bg-cyan-50/95 shadow-cyan-200/50 dark:border-cyan-300/60 dark:bg-cyan-300/15 dark:shadow-cyan-950/20" : "border-slate-200/80 bg-white/80 hover:border-cyan-200 dark:border-white/10 dark:bg-white/[0.065] dark:hover:border-cyan-300/35"}`}>
-              <p className="flex items-center gap-2 font-black text-slate-900 dark:text-white"><FlaskConical className="h-4 w-4 text-cyan-500 dark:text-cyan-200" />{item.title}</p>
-              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">{item.question}</p>
+            <button key={item.id} type="button" onClick={() => switchLab(item)} className={`inquiry-lab-picker group w-full rounded-2xl border p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg ${item.id === lab.id ? "inquiry-lab-picker-active border-cyan-400 bg-cyan-50 shadow-cyan-200/50" : "border-slate-200 bg-white hover:border-cyan-300"}`}>
+              <p className="flex items-center gap-2 font-black text-slate-950"><FlaskConical className="h-4 w-4 text-cyan-600" />{item.title}</p>
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">{item.question}</p>
             </button>
           ))}
         </div>

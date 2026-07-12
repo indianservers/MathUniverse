@@ -249,6 +249,26 @@ export const navSections: NavSection[] = [
     ],
   },
   {
+    title: "AR / XR",
+    icon: "ScanLine",
+    items: [
+      {
+        title: "AR Math Lab",
+        route: "/modules/ar-math-lab",
+        icon: "ScanLine",
+        searchTerms: ["ar", "augmented reality", "mixed reality", "xr", "webxr", "camera math", "3d graph ar", "real space math"],
+        children: [
+          { title: "Open AR Math Lab", route: "/modules/ar-math-lab", icon: "ScanLine" },
+          { title: "Camera Preview", route: "/modules/ar-math-lab?mode=camera-preview", icon: "ScanLine", searchTerms: ["camera preview", "camera overlay", "mobile ar"] },
+          { title: "3D Preview", route: "/modules/ar-math-lab?mode=3d-preview", icon: "Cuboid", searchTerms: ["3d preview", "surface graph", "geometry solid"] },
+          { title: "AR Surfaces", route: "/modules/ar-math-lab?example=z-sin-x-sin-y", icon: "ChartSpline", searchTerms: ["surface", "z sin x sin y", "3d graph"] },
+          { title: "AR Geometry Solids", route: "/modules/ar-math-lab?example=cylinder-radius-4-height-10", icon: "Cuboid", searchTerms: ["cone", "cylinder", "sphere", "cuboid", "solid"] },
+          { title: "AR Measurements", route: "/modules/ar-math-lab?category=measurement", icon: "Ruler", searchTerms: ["measurement", "units", "real world dimensions"] },
+        ],
+      },
+    ],
+  },
+  {
     title: "Math Topics",
     icon: "Sigma",
     items: [

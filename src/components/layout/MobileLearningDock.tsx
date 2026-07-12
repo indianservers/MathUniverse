@@ -1,4 +1,4 @@
-import { BookOpen, Calculator, Cuboid, Home, Keyboard } from "lucide-react";
+import { BookOpen, Calculator, Cuboid, Home, Keyboard, ScanLine } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { getPendingQuizCount } from "./GlobalUx";
 
@@ -6,6 +6,7 @@ const dockItems = [
   { title: "Home", route: "/", icon: Home },
   { title: "Workspace", route: "/workspace", icon: Keyboard },
   { title: "Shapes", route: "/shapes", icon: Cuboid },
+  { title: "AR", route: "/modules/ar-math-lab", icon: ScanLine },
   { title: "Learn", route: "/learn", icon: BookOpen },
   { title: "Calc", route: "/calculator", icon: Calculator },
 ];
@@ -16,7 +17,7 @@ export default function MobileLearningDock() {
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2 shadow-2xl shadow-slate-900/15 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/95 lg:hidden" aria-label="Mobile learning shortcuts">
-      <div className="mx-auto grid max-w-md grid-cols-5 gap-1">
+      <div className="mx-auto grid max-w-lg grid-cols-6 gap-1">
         {dockItems.map((item) => {
           const active = item.route === "/" ? location.pathname === "/" : location.pathname.startsWith(item.route);
           const Icon = item.icon;

@@ -387,7 +387,8 @@ body {
       linear-gradient(135deg, rgba(255, 255, 255, 0.80), rgba(240, 249, 255, 0.68) 42%, rgba(245, 243, 255, 0.72));
   }
 
-  :root.dark .workspace-app-shell {
+  :root.dark .workspace-app-shell,
+  .dark .workspace-app-shell {
     background-image:
       radial-gradient(circle at 18% 0%, rgba(34, 211, 238, 0.18), transparent 22rem),
       radial-gradient(circle at 86% 10%, rgba(244, 114, 182, 0.11), transparent 23rem),
@@ -473,7 +474,36 @@ body {
   }
 
   .inquiry-lab-shell {
-    @apply shadow-2xl shadow-cyan-950/10 dark:shadow-black/30;
+    @apply bg-white/95 text-slate-950 shadow-2xl shadow-cyan-950/10 dark:bg-slate-950/90 dark:text-white dark:shadow-black/30;
+  }
+
+  .inquiry-lab-shell h2,
+  .inquiry-lab-shell h3,
+  .inquiry-lab-shell .inquiry-lab-picker p:first-child {
+    color: #020617 !important;
+  }
+
+  .inquiry-lab-shell > div > div:first-child p,
+  .inquiry-lab-shell .inquiry-lab-picker p:last-child {
+    color: #334155 !important;
+  }
+
+  .inquiry-lab-shell .inquiry-lab-picker {
+    background: rgba(255, 255, 255, 0.96) !important;
+    border-color: rgba(148, 163, 184, 0.38) !important;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08) !important;
+  }
+
+  .inquiry-lab-shell .inquiry-lab-picker-active {
+    background: linear-gradient(135deg, #ecfeff, #e0f2fe) !important;
+    border-color: rgba(6, 182, 212, 0.85) !important;
+  }
+
+  :root.dark .inquiry-lab-shell h2,
+  :root.dark .inquiry-lab-shell h3,
+  .dark .inquiry-lab-shell h2,
+  .dark .inquiry-lab-shell h3 {
+    color: #f8fafc !important;
   }
 
   .inquiry-lab-shell svg {
@@ -611,11 +641,57 @@ body {
       linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(236, 253, 245, 0.82) 38%, rgba(245, 243, 255, 0.86));
   }
 
-  :root.dark .spotlight-card {
+  :root.dark .spotlight-card,
+  .dark .spotlight-card {
     background-image:
       radial-gradient(circle at 16% 18%, rgba(34, 211, 238, 0.22), transparent 14rem),
       radial-gradient(circle at 88% 0%, rgba(244, 114, 182, 0.18), transparent 15rem),
       linear-gradient(135deg, rgba(8, 13, 32, 0.96), rgba(15, 23, 42, 0.9) 42%, rgba(30, 27, 75, 0.92));
+  }
+
+  .spotlight-card {
+    color: #020617;
+  }
+
+  .spotlight-card h1,
+  .spotlight-card h2,
+  .spotlight-card h3,
+  .spotlight-card h4,
+  .spotlight-card strong {
+    color: #020617;
+  }
+
+  .spotlight-card p,
+  .spotlight-card li,
+  .spotlight-card td,
+  .spotlight-card th {
+    color: #334155;
+  }
+
+  :root.dark .spotlight-card,
+  .dark .spotlight-card,
+  :root.dark .spotlight-card h1,
+  :root.dark .spotlight-card h2,
+  :root.dark .spotlight-card h3,
+  :root.dark .spotlight-card h4,
+  :root.dark .spotlight-card strong,
+  .dark .spotlight-card h1,
+  .dark .spotlight-card h2,
+  .dark .spotlight-card h3,
+  .dark .spotlight-card h4,
+  .dark .spotlight-card strong {
+    color: #f8fafc;
+  }
+
+  :root.dark .spotlight-card p,
+  :root.dark .spotlight-card li,
+  :root.dark .spotlight-card td,
+  :root.dark .spotlight-card th,
+  .dark .spotlight-card p,
+  .dark .spotlight-card li,
+  .dark .spotlight-card td,
+  .dark .spotlight-card th {
+    color: #cbd5e1;
   }
 
   .visual-stage {
@@ -626,7 +702,8 @@ body {
       linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.92));
   }
 
-  :root.dark .visual-stage {
+  :root.dark .visual-stage,
+  .dark .visual-stage {
     background-image:
       radial-gradient(circle at 18% 18%, rgba(34, 211, 238, 0.16), transparent 12rem),
       radial-gradient(circle at 82% 24%, rgba(167, 139, 250, 0.12), transparent 13rem),
@@ -704,7 +781,8 @@ body {
       linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent);
   }
 
-  :root.dark .visual-dictionary-page .glass-card {
+  :root.dark .visual-dictionary-page .glass-card,
+  .dark .visual-dictionary-page .glass-card {
     border-color: rgba(148, 163, 184, 0.45);
     color: #0f172a;
     background:
@@ -716,7 +794,8 @@ body {
   .visual-dictionary-page .glass-card h3,
   .visual-dictionary-page .glass-card summary,
   .visual-dictionary-page .glass-card .text-slate-950,
-  :root.dark .visual-dictionary-page .glass-card .dark\:text-white {
+  :root.dark .visual-dictionary-page .glass-card .dark\:text-white,
+  .dark .visual-dictionary-page .glass-card .dark\:text-white {
     color: #0f172a !important;
   }
 
@@ -726,7 +805,10 @@ body {
   .visual-dictionary-page .glass-card .text-slate-700,
   :root.dark .visual-dictionary-page .glass-card .dark\:text-slate-200,
   :root.dark .visual-dictionary-page .glass-card .dark\:text-slate-300,
-  :root.dark .visual-dictionary-page .glass-card .dark\:text-slate-400 {
+  :root.dark .visual-dictionary-page .glass-card .dark\:text-slate-400,
+  .dark .visual-dictionary-page .glass-card .dark\:text-slate-200,
+  .dark .visual-dictionary-page .glass-card .dark\:text-slate-300,
+  .dark .visual-dictionary-page .glass-card .dark\:text-slate-400 {
     color: #334155 !important;
   }
 
@@ -737,13 +819,16 @@ body {
   }
 
   :root.dark .visual-dictionary-page .glass-card button:not(.bg-cyan-300):not(.bg-slate-950):not(.bg-cyan-50),
-  :root.dark .visual-dictionary-page .glass-card label {
+  :root.dark .visual-dictionary-page .glass-card label,
+  .dark .visual-dictionary-page .glass-card button:not(.bg-cyan-300):not(.bg-slate-950):not(.bg-cyan-50),
+  .dark .visual-dictionary-page .glass-card label {
     border-color: rgba(148, 163, 184, 0.48) !important;
     background-color: rgba(255, 255, 255, 0.72) !important;
   }
 
   .visual-dictionary-page .glass-card .mini-chip,
-  :root.dark .visual-dictionary-page .glass-card .mini-chip {
+  :root.dark .visual-dictionary-page .glass-card .mini-chip,
+  .dark .visual-dictionary-page .glass-card .mini-chip {
     border-color: rgba(14, 116, 144, 0.28) !important;
     background: #cffafe !important;
     color: #155e75 !important;

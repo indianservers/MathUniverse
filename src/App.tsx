@@ -151,6 +151,7 @@ export default function App() {
             <Route path="math-lab/cas-solver" element={<Navigate to="/problem-solver" replace />} />
             <Route path="math-lab/query" element={<MathLabSmartQuery />} />
             <Route path="math-lab/:toolId" element={<MathLabToolPage />} />
+            <Route path="ar-math-lab" element={<Navigate to="/modules/ar-math-lab" replace />} />
             <Route path="modules/ar-math-lab" element={<ARMathLab />} />
             <Route path="visual-dictionary" element={<MathVisualDictionary />} />
             <Route path="magic-maths" element={<MagicMaths />} />
