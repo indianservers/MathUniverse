@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { Line, OrbitControls, Text } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
-import { Box, Camera, CheckCircle2, Compass, Cuboid, Grid3X3, HelpCircle, Minus, Move3D, Plus, RotateCcw, RotateCcwSquare, RotateCwSquare, Ruler, ScanLine, Sparkles, Waves, X } from "lucide-react";
+import { Camera, CheckCircle2, Compass, Cuboid, HelpCircle, Minus, Move3D, Plus, RotateCcw, RotateCcwSquare, RotateCwSquare, Ruler, ScanLine, Sparkles, Waves, X } from "lucide-react";
 import SmartMathInput from "../components/math-input/SmartMathInput";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathExpression from "../components/ui/MathExpression";
@@ -921,7 +922,8 @@ export function ARScene({ mathObject, cameraStream, generatedGraphs, generatedSo
 export function ARCameraPreview({ mathObject, mode, onSceneChange, sceneState, selectedGraph, selectedSolid, stream }: { mathObject: ARMathObject; mode: "ar" | "camera-preview"; onSceneChange: (delta: Partial<ARSceneState>) => void; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; stream: MediaStream | null }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
-  const draggingPointerRef = useRef<number | null>(null);
+  const activePointersRef = useRef(new Map<number, { x: number; y: number }>());
+  const gestureRef = useRef<{ distance: number; angle: number } | null>(null);
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return undefined;
@@ -940,33 +942,113 @@ export function ARCameraPreview({ mathObject, mode, onSceneChange, sceneState, s
     onSceneChange({ objectPosition: [Math.max(-4, Math.min(4, x)), Math.max(-4, Math.min(4, y)), sceneState.objectPosition[2]], placementReady: true });
   }
 
+  function updatePointer(event: PointerEvent<HTMLDivElement>) {
+    activePointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
+  }
+
+  function handleGesture(event: PointerEvent<HTMLDivElement>) {
+    updatePointer(event);
+    const pointers = [...activePointersRef.current.values()];
+    if (pointers.length < 2) {
+      gestureRef.current = null;
+      placeFromPointer(event);
+      return;
+    }
+
+    const [a, b] = pointers;
+    const distance = Math.hypot(a.x - b.x, a.y - b.y);
+    const angle = Math.atan2(b.y - a.y, b.x - a.x);
+    const previous = gestureRef.current;
+    gestureRef.current = { distance, angle };
+    if (!previous) return;
+
+    const scaleMultiplier = Math.max(0.82, Math.min(1.18, distance / Math.max(1, previous.distance)));
+    const nextScale = Math.min(3, Math.max(0.35, roundTo(sceneState.objectScale * scaleMultiplier, 2)));
+    const nextRotationY = roundTo(sceneState.objectRotation[1] + angle - previous.angle, 2);
+    onSceneChange({ objectScale: nextScale, objectRotation: [sceneState.objectRotation[0], nextRotationY, sceneState.objectRotation[2]], placementReady: true });
+  }
+
   return (
     <div
       ref={stageRef}
       className="relative h-[clamp(300px,52dvh,540px)] min-h-[300px] touch-none overflow-hidden bg-black xl:h-[clamp(440px,calc(100dvh-170px),720px)]"
       onPointerDown={(event) => {
-        draggingPointerRef.current = event.pointerId;
         event.currentTarget.setPointerCapture(event.pointerId);
-        placeFromPointer(event);
+        updatePointer(event);
+        if (activePointersRef.current.size === 1) placeFromPointer(event);
       }}
       onPointerMove={(event) => {
-        if (draggingPointerRef.current !== event.pointerId) return;
-        placeFromPointer(event);
+        if (!activePointersRef.current.has(event.pointerId)) return;
+        handleGesture(event);
       }}
       onPointerUp={(event) => {
-        if (draggingPointerRef.current === event.pointerId) draggingPointerRef.current = null;
+        activePointersRef.current.delete(event.pointerId);
+        if (activePointersRef.current.size < 2) gestureRef.current = null;
         event.currentTarget.releasePointerCapture(event.pointerId);
       }}
       onPointerCancel={(event) => {
-        if (draggingPointerRef.current === event.pointerId) draggingPointerRef.current = null;
+        activePointersRef.current.delete(event.pointerId);
+        if (activePointersRef.current.size < 2) gestureRef.current = null;
       }}
     >
       {stream ? <video ref={videoRef} className="h-full w-full object-cover" autoPlay muted playsInline aria-label="Live camera preview" /> : <div className="grid h-full place-items-center text-center text-sm font-bold text-slate-300">Waiting for camera permission...</div>}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0,transparent_36%,rgba(2,6,23,0.34)_72%)]" />
       <ARPlacementMarker mode={mode} sceneState={sceneState} />
-      <OverlayObject mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
-      <p className="pointer-events-none absolute bottom-2 left-2 right-2 rounded-2xl bg-black/55 px-3 py-2 text-[11px] font-bold leading-4 text-white backdrop-blur sm:bottom-3 sm:left-3 sm:right-3 sm:text-xs sm:leading-5">{mode === "ar" ? "Live AR overlay: drag anywhere on the camera view to place the object. Use scale, rotate, labels, cross-sections, and measurements for precision." : "Camera Preview: drag anywhere on the camera view to place the object."}</p>
+      <ARLiveCamera3DOverlay mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
+      <OverlayLabel mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
+      <p className="pointer-events-none absolute bottom-2 left-2 right-2 rounded-2xl bg-black/55 px-3 py-2 text-[11px] font-bold leading-4 text-white backdrop-blur sm:bottom-3 sm:left-3 sm:right-3 sm:text-xs sm:leading-5">{mode === "ar" ? "Browser AR: live camera with real 3D math. Drag with one finger to place; use two fingers to scale and rotate." : "Camera Preview: drag with one finger to place; use two fingers to scale and rotate."}</p>
     </div>
+  );
+}
+
+function ARLiveCamera3DOverlay({ mathObject, sceneState, selectedGraph, selectedSolid }: { mathObject: ARMathObject; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid }) {
+  const overlaySceneState: ARSceneState = {
+    ...sceneState,
+    objectPosition: [sceneState.objectPosition[0] * 0.14, sceneState.objectPosition[1] * 0.11, 0],
+    objectScale: sceneState.objectScale * 0.52,
+  };
+
+  return (
+    <div className="pointer-events-none absolute inset-0" data-testid="browser-ar-three-overlay">
+      <Canvas
+        orthographic
+        camera={{ position: [0, 0, 6], zoom: 110, near: 0.1, far: 100 }}
+        dpr={[1, 2]}
+        gl={{ alpha: true, antialias: true, preserveDrawingBuffer: false }}
+        onCreated={({ gl }) => {
+          gl.setClearColor("#000000", 0);
+          gl.outputColorSpace = THREE.SRGBColorSpace;
+        }}
+      >
+        <ambientLight intensity={0.65} />
+        <hemisphereLight args={["#e0f2fe", "#0f172a", 0.88]} />
+        <directionalLight position={[3, 4, 5]} intensity={1.25} />
+        <pointLight position={[-2, 1.4, 2]} intensity={0.75} color="#22d3ee" />
+        {selectedSolid ? <ARGeometrySolid sceneState={overlaySceneState} solid={selectedSolid} /> : null}
+        {selectedGraph ? <ARGraphObject graph={selectedGraph} sceneState={overlaySceneState} /> : null}
+        {!selectedSolid && !selectedGraph ? <CameraOverlayPlaceholder mathObject={mathObject} sceneState={overlaySceneState} /> : null}
+      </Canvas>
+    </div>
+  );
+}
+
+function CameraOverlayPlaceholder({ mathObject, sceneState }: { mathObject: ARMathObject; sceneState: ARSceneState }) {
+  return (
+    <group position={sceneState.objectPosition} rotation={sceneState.objectRotation} scale={sceneState.objectScale}>
+      <mesh castShadow>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="#22d3ee" transparent opacity={0.52} roughness={0.34} metalness={0.12} />
+      </mesh>
+      <mesh>
+        <torusGeometry args={[0.82, 0.025, 12, 64]} />
+        <meshStandardMaterial color="#c084fc" emissive="#7c3aed" emissiveIntensity={0.28} />
+      </mesh>
+      {sceneState.showLabels ? (
+        <Text position={[0, 0.9, 0]} fontSize={0.15} color="#e0f2fe" anchorX="center" outlineWidth={0.004} outlineColor="#020617">
+          {objectTypeLabels[mathObject.type]}
+        </Text>
+      ) : null}
+    </group>
   );
 }
 
@@ -1338,133 +1420,21 @@ export function ARPlacementMarker({ mode, sceneState }: { mode: "ar" | "camera-p
   );
 }
 
-function OverlayObject({ mathObject, sceneState, selectedGraph, selectedSolid }: { mathObject: ARMathObject; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid }) {
+function OverlayLabel({ mathObject, sceneState, selectedGraph, selectedSolid }: { mathObject: ARMathObject; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid }) {
   const [x, y] = sceneState.objectPosition;
   const transform = `translate(-50%, -50%) translate(${x * 44}px, ${-y * 36}px) rotate(${sceneState.objectRotation[1]}rad) scale(${sceneState.objectScale})`;
   const label = selectedSolid?.name ?? selectedGraph?.name ?? objectTypeLabels[mathObject.type];
   const detail = selectedSolid ? formulaSummaryForOverlay(selectedSolid) : selectedGraph?.equation;
   return (
     <div className="pointer-events-none absolute left-1/2 top-1/2 w-[min(46vw,360px)] max-w-[360px] text-center" style={{ transform }}>
-      <div className="relative mx-auto aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-cyan-100/70 bg-slate-950/30 shadow-2xl shadow-cyan-300/30 backdrop-blur-[2px]">
-        {selectedGraph ? <CameraGraphPreview graph={selectedGraph} /> : selectedSolid ? <CameraSolidPreview solid={selectedSolid} /> : (
-          <div className="grid h-full place-items-center">
-            <div className="grid h-16 w-16 place-items-center rounded-2xl border border-white/30 bg-slate-950/40">{iconForType(mathObject.type)}</div>
-          </div>
-        )}
-      </div>
       {sceneState.showLabels ? (
-        <div className="mx-auto mt-2 max-w-[320px] rounded-2xl bg-black/55 px-3 py-2 text-white backdrop-blur">
+        <div className="mx-auto mt-[min(28vw,190px)] max-w-[320px] rounded-2xl bg-black/55 px-3 py-2 text-white backdrop-blur">
           <p className="line-clamp-1 text-xs font-black">{label}</p>
           {detail ? <p className="line-clamp-1 text-[10px] font-bold text-cyan-50">{detail}</p> : null}
         </div>
       ) : null}
     </div>
   );
-}
-
-function CameraGraphPreview({ graph }: { graph: ARGeneratedGraphObject }) {
-  if (graph.geometry.kind === "curve") {
-    const projected = projectOverlayPoints(graph.geometry.points);
-    const path = projected.map((point) => point.join(",")).join(" ");
-    return (
-      <svg viewBox="0 0 320 240" className="h-full w-full" role="img" aria-label={`${graph.name} camera overlay`}>
-        <defs>
-          <filter id={`curve-glow-${graph.id}`} x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-        </defs>
-        <rect width="320" height="240" fill="rgba(2, 6, 23, 0.18)" />
-        <polyline points={path} fill="none" stroke="#22d3ee" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" filter={`url(#curve-glow-${graph.id})`} />
-        {projected.filter((_, index) => index % Math.max(1, Math.floor(projected.length / 12)) === 0).map(([px, py], index) => <circle key={`${px}-${py}-${index}`} cx={px} cy={py} r="3.2" fill="#fde047" />)}
-      </svg>
-    );
-  }
-
-  const projected = surfacePreviewPoints(graph.geometry.vertices);
-  return (
-    <svg viewBox="0 0 320 240" className="h-full w-full" role="img" aria-label={`${graph.name} surface camera overlay`}>
-      <defs>
-        <radialGradient id={`surface-fill-${graph.id}`} cx="45%" cy="35%" r="70%">
-          <stop offset="0%" stopColor="#67e8f9" stopOpacity="0.78" />
-          <stop offset="60%" stopColor="#22d3ee" stopOpacity="0.42" />
-          <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.2" />
-        </radialGradient>
-      </defs>
-      <rect width="320" height="240" fill="rgba(2, 6, 23, 0.16)" />
-      <polygon points={projected.map((point) => point.join(",")).join(" ")} fill={`url(#surface-fill-${graph.id})`} stroke="#e0f2fe" strokeWidth="2" />
-      {projected.map(([px, py], index) => <circle key={`${px}-${py}-${index}`} cx={px} cy={py} r="2" fill={index % 2 === 0 ? "#22d3ee" : "#c084fc"} opacity="0.8" />)}
-      <path d="M36 188 C88 130 118 206 160 144 C212 68 246 158 292 92" fill="none" stroke="#fde047" strokeWidth="3" strokeDasharray="7 8" opacity="0.9" />
-    </svg>
-  );
-}
-
-function CameraSolidPreview({ solid }: { solid: ARGeneratedGeometrySolid }) {
-  const fill = solid.solidType === "sphere" || solid.solidType === "hemisphere" ? "#a78bfa" : solid.solidType === "cone" || solid.solidType === "pyramid" ? "#fb7185" : "#22d3ee";
-  return (
-    <svg viewBox="0 0 320 240" className="h-full w-full" role="img" aria-label={`${solid.name} camera overlay`}>
-      <rect width="320" height="240" fill="rgba(2, 6, 23, 0.16)" />
-      {solid.solidType === "sphere" || solid.solidType === "hemisphere" ? (
-        <>
-          <circle cx="160" cy="120" r="62" fill={fill} opacity="0.58" stroke="#e0f2fe" strokeWidth="3" />
-          <ellipse cx="160" cy="120" rx="62" ry="18" fill="none" stroke="#fde047" strokeWidth="3" strokeDasharray="8 7" />
-        </>
-      ) : solid.solidType === "cone" || solid.solidType === "pyramid" ? (
-        <>
-          <ellipse cx="160" cy="176" rx="74" ry="20" fill={fill} opacity="0.42" stroke="#e0f2fe" strokeWidth="3" />
-          <path d="M86 176 L160 44 L234 176 Z" fill={fill} opacity="0.52" stroke="#e0f2fe" strokeWidth="3" />
-          <path d="M160 44 L160 176" stroke="#fde047" strokeWidth="3" strokeDasharray="8 7" />
-        </>
-      ) : (
-        <>
-          <path d="M88 82 L208 62 L246 132 L126 154 Z" fill={fill} opacity="0.52" stroke="#e0f2fe" strokeWidth="3" />
-          <path d="M88 82 L88 158 L126 216 L126 154 M246 132 L246 204 L126 216 M208 62 L208 138" fill="none" stroke="#e0f2fe" strokeWidth="3" opacity="0.9" />
-        </>
-      )}
-      <text x="160" y="224" textAnchor="middle" fill="#e0f2fe" fontSize="14" fontWeight="800">{solidTypeLabels[solid.solidType]}</text>
-    </svg>
-  );
-}
-
-function surfacePreviewPoints(vertices: number[]): [number, number][] {
-  const points: [number, number, number][] = [];
-  const stride = Math.max(3, Math.floor(vertices.length / 72 / 3) * 3);
-  for (let index = 0; index < vertices.length; index += stride) {
-    points.push([vertices[index] ?? 0, vertices[index + 1] ?? 0, vertices[index + 2] ?? 0]);
-  }
-  return convexHull(projectOverlayPoints(points));
-}
-
-function projectOverlayPoints(points: [number, number, number][]): [number, number][] {
-  if (!points.length) return [[80, 150], [160, 70], [240, 150]];
-  const raw = points.map(([x, y, z]) => [x + z * 0.38, -y + z * 0.18] as [number, number]);
-  const xs = raw.map(([x]) => x);
-  const ys = raw.map(([, y]) => y);
-  const minX = Math.min(...xs);
-  const maxX = Math.max(...xs);
-  const minY = Math.min(...ys);
-  const maxY = Math.max(...ys);
-  const width = Math.max(0.001, maxX - minX);
-  const height = Math.max(0.001, maxY - minY);
-  const scale = Math.min(240 / width, 160 / height);
-  return raw.map(([x, y]) => [roundTo(160 + (x - (minX + width / 2)) * scale, 1), roundTo(120 + (y - (minY + height / 2)) * scale, 1)] as [number, number]);
-}
-
-function convexHull(points: [number, number][]) {
-  if (points.length <= 3) return points;
-  const sorted = [...points].sort(([ax, ay], [bx, by]) => ax === bx ? ay - by : ax - bx);
-  const cross = (origin: [number, number], a: [number, number], b: [number, number]) => (a[0] - origin[0]) * (b[1] - origin[1]) - (a[1] - origin[1]) * (b[0] - origin[0]);
-  const lower: [number, number][] = [];
-  sorted.forEach((point) => {
-    while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], point) <= 0) lower.pop();
-    lower.push(point);
-  });
-  const upper: [number, number][] = [];
-  [...sorted].reverse().forEach((point) => {
-    while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], point) <= 0) upper.pop();
-    upper.push(point);
-  });
-  return lower.slice(0, -1).concat(upper.slice(0, -1));
 }
 
 function ARRealtimeLearningPanel({
@@ -2556,14 +2526,6 @@ function InfoBox({ icon, text, title }: { icon: JSX.Element; text: string; title
       <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">{text}</p>
     </div>
   );
-}
-
-function iconForType(type: ARObjectType) {
-  if (type === "geometry_solid") return <Cuboid className="h-9 w-9" />;
-  if (type === "coordinate_axes") return <Grid3X3 className="h-9 w-9" />;
-  if (type === "measurement_demo") return <Ruler className="h-9 w-9" />;
-  if (type === "parametric_curve") return <Waves className="h-9 w-9" />;
-  return <Box className="h-9 w-9" />;
 }
 
 function readableDimensionName(key: string) {
