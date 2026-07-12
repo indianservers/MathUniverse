@@ -50,8 +50,11 @@ function AppFooter() {
         </div>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-3 text-[11px] font-bold uppercase text-slate-500 dark:border-white/10 dark:text-slate-400">
           <span>Version {APP_VERSION}</span>
-          <span>&copy; {year} Math Universe</span>
+          <span>&copy; {year} Indian Servers Private Limited. No right to reproduce it.</span>
         </div>
+        <p className="mt-2 text-[11px] font-semibold text-slate-500 dark:text-slate-400">
+          www.IndianServers.com info@IndianServers.com
+        </p>
       </div>
     </footer>
   );
@@ -107,6 +110,7 @@ export default function AppLayout() {
                 <Outlet />
               </div>
             </main>
+            <AppFooter />
           </div>
         </div>
         <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
