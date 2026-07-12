@@ -16,14 +16,14 @@ export default function MobileLearningDock() {
   const learnCount = getPendingQuizCount();
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 px-2 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2 shadow-2xl shadow-slate-900/15 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/95 lg:hidden" aria-label="Mobile learning shortcuts">
-      <div className="mx-auto grid max-w-lg grid-cols-6 gap-1">
+    <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 px-1.5 pb-[calc(env(safe-area-inset-bottom)+0.45rem)] pt-1.5 shadow-2xl shadow-slate-900/15 backdrop-blur-xl dark:border-white/10 dark:bg-slate-950/95 lg:hidden" aria-label="Mobile learning shortcuts">
+      <div className="mx-auto grid max-w-lg grid-cols-6 gap-0.5 sm:gap-1">
         {dockItems.map((item) => {
           const active = item.route === "/" ? location.pathname === "/" : location.pathname.startsWith(item.route);
           const Icon = item.icon;
           return (
-            <Link key={item.route} to={item.route} className={`relative flex min-h-14 flex-col items-center justify-center gap-1 rounded-2xl px-2 text-[11px] font-bold transition ${active ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10"}`}>
-              {item.route === "/learn" && learnCount > 0 && <span className="absolute right-3 top-1 grid h-5 min-w-5 place-items-center rounded-full bg-rose-500 px-1 text-[10px] font-black text-white">{learnCount}</span>}
+            <Link key={item.route} to={item.route} className={`relative flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-xl px-1 text-[10px] font-bold transition sm:min-h-14 sm:gap-1 sm:rounded-2xl sm:px-2 sm:text-[11px] ${active ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10"}`}>
+              {item.route === "/learn" && learnCount > 0 && <span className="absolute right-2 top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-rose-500 px-1 text-[10px] font-black text-white sm:right-3 sm:top-1">{learnCount}</span>}
               <Icon className="h-4 w-4" />
               {item.title}
             </Link>

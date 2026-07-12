@@ -696,30 +696,20 @@ export default function ARMathLab() {
     <main data-testid="ar-math-lab-page" className="min-h-screen bg-[radial-gradient(circle_at_18%_5%,rgba(34,211,238,0.22),transparent_26%),radial-gradient(circle_at_88%_18%,rgba(168,85,247,0.16),transparent_28%),linear-gradient(135deg,#ecfeff_0%,#f8fafc_52%,#f5f3ff_100%)] px-2 py-2 text-slate-950 dark:from-slate-950 dark:to-slate-900 sm:px-4 lg:px-5">
       <div className="sr-only" aria-live="polite">{sessionState.errorMessage ?? sceneMessage ?? sessionState.infoMessage}</div>
       <div className="mx-auto flex max-w-[1500px] flex-col gap-2.5 sm:gap-3">
-        <header className="rounded-[1.5rem] border border-white/80 bg-white/88 p-3 shadow-lg shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/88">
+        <header className="rounded-2xl border border-white/80 bg-white/88 p-3 shadow-lg shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/88 sm:rounded-[1.5rem]">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-4xl">
-              <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.22em] text-cyan-700 dark:text-cyan-300"><ScanLine className="h-4 w-4" /> AR / Augmented Reality / MR / XR</p>
+              <p className="flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300 sm:text-xs sm:tracking-[0.22em]"><ScanLine className="h-4 w-4" /> Mobile AR math workspace</p>
               <h1 className="mt-1 text-2xl font-black tracking-tight sm:text-3xl">AR Math Lab</h1>
-              <p className="mt-1 hidden max-w-3xl text-sm font-semibold leading-5 text-slate-600 dark:text-slate-300 sm:block">Create 3D math objects, preview them with camera overlays, then use practice tasks for AR-ready learning.</p>
+              <p className="mt-1 max-w-3xl text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300 sm:text-sm">Pick an example, generate a 3D object, then view it in 3D, camera preview, or AR when supported.</p>
             </div>
-            <div className="grid grid-cols-3 gap-1.5 text-center text-[11px] font-black sm:min-w-[360px] sm:gap-2 sm:text-xs">
+            <div className="hidden grid-cols-3 gap-1.5 text-center text-[11px] font-black sm:grid sm:min-w-[360px] sm:gap-2 sm:text-xs">
               <StatusBadge label="WebXR" value={support.webXRAvailable ? "available" : "fallback"} tone={support.webXRAvailable ? "ready" : "idle"} />
               <StatusBadge label="Camera" value={support.cameraAvailable ? "available" : "fallback"} tone={support.cameraAvailable ? "ready" : "idle"} />
               <StatusBadge label="Mode" value={renderModeLabels[support.recommendedMode]} tone="ready" />
             </div>
           </div>
         </header>
-
-        <MobileQuickActions
-          sessionState={sessionState}
-          support={support}
-          onActivate3D={() => activate3DPreview()}
-          onGenerateGraph={generateGraph}
-          onPlaceObject={placeObject}
-          onStartAR={startARSession}
-          onStartCamera={startCameraPreview}
-        />
 
         <section className="grid gap-3 xl:grid-cols-[380px_minmax(0,1fr)] 2xl:grid-cols-[400px_minmax(0,1fr)]">
           <aside className="order-2 min-w-0 space-y-3 xl:order-1 xl:sticky xl:top-3 xl:max-h-[calc(100dvh-1.5rem)] xl:overflow-y-auto xl:pr-1 xl:self-start">
@@ -818,25 +808,45 @@ export default function ARMathLab() {
 
           <div className="order-1 min-w-0 space-y-3 xl:order-2">
             <ARScene mathObject={currentObject} cameraStream={cameraStream} generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} sessionState={sessionState} />
-            <ARRealtimeLearningPanel
-              learning={realtimeLearning}
-              lessonActive={lessonActive}
-              quizAnswers={quizAnswers}
-              quizResults={quizResults}
-              stepIndex={learningStepIndex}
-              teacherMode={teacherMode}
-              onAnswerQuiz={completeQuizAnswer}
-              onRecommendation={handleLearningRecommendation}
-              onSetStepIndex={setLearningStepIndex}
-              onStartLesson={() => {
-                setLessonActive(true);
-                setLearningStepIndex(0);
-                emitLearning("object_selected", selectedObjectId, { lesson: realtimeLearning.activeConcept });
-              }}
-              onToggleTeacherMode={setTeacherMode}
+            <MobileQuickActions
+              sessionState={sessionState}
+              support={support}
+              onActivate3D={() => activate3DPreview()}
+              onGenerateGraph={generateGraph}
+              onPlaceObject={placeObject}
+              onStartAR={startARSession}
+              onStartCamera={startCameraPreview}
             />
-            <ARSessionManager sessionState={sessionState} support={support} />
-            <ARStatusPanel sessionState={sessionState} support={support} />
+            <div className="hidden xl:block">
+              <ARRealtimeLearningPanel
+                learning={realtimeLearning}
+                lessonActive={lessonActive}
+                quizAnswers={quizAnswers}
+                quizResults={quizResults}
+                stepIndex={learningStepIndex}
+                teacherMode={teacherMode}
+                onAnswerQuiz={completeQuizAnswer}
+                onRecommendation={handleLearningRecommendation}
+                onSetStepIndex={setLearningStepIndex}
+                onStartLesson={() => {
+                  setLessonActive(true);
+                  setLearningStepIndex(0);
+                  emitLearning("object_selected", selectedObjectId, { lesson: realtimeLearning.activeConcept });
+                }}
+                onToggleTeacherMode={setTeacherMode}
+              />
+            </div>
+            <div className="hidden space-y-3 xl:block">
+              <ARSessionManager sessionState={sessionState} support={support} />
+              <ARStatusPanel sessionState={sessionState} support={support} />
+            </div>
+            <details className="ar-mobile-disclosure xl:hidden">
+              <summary>Device status and fallback details</summary>
+              <div className="ar-mobile-disclosure-body space-y-3">
+                <ARSessionManager sessionState={sessionState} support={support} />
+                <ARStatusPanel sessionState={sessionState} support={support} />
+              </div>
+            </details>
           </div>
         </section>
       </div>
@@ -868,7 +878,7 @@ export function ARCameraPreview({ mathObject, sceneState, selectedGraph, selecte
   }, [stream]);
 
   return (
-    <div className="relative h-[clamp(340px,58dvh,600px)] min-h-[340px] overflow-hidden bg-black xl:h-[clamp(440px,calc(100dvh-170px),720px)]">
+    <div className="relative h-[clamp(300px,52dvh,540px)] min-h-[300px] overflow-hidden bg-black xl:h-[clamp(440px,calc(100dvh-170px),720px)]">
       {stream ? <video ref={videoRef} className="h-full w-full object-cover" autoPlay muted playsInline aria-label="Live camera preview" /> : <div className="grid h-full place-items-center text-center text-sm font-bold text-slate-300">Waiting for camera permission...</div>}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0,transparent_36%,rgba(2,6,23,0.34)_72%)]" />
       <ARPlacementMarker mode="camera-preview" sceneState={sceneState} />
@@ -880,7 +890,7 @@ export function ARCameraPreview({ mathObject, sceneState, selectedGraph, selecte
 
 export function ARModePreview({ mathObject, sceneState, selectedGraph, selectedSolid }: { mathObject: ARMathObject; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid }) {
   return (
-    <div className="relative h-[clamp(340px,58dvh,600px)] min-h-[340px] overflow-hidden bg-[radial-gradient(circle_at_50%_40%,rgba(34,211,238,0.24),transparent_32%),linear-gradient(180deg,#020617,#07111f)] xl:h-[clamp(440px,calc(100dvh-170px),720px)]">
+    <div className="relative h-[clamp(300px,52dvh,540px)] min-h-[300px] overflow-hidden bg-[radial-gradient(circle_at_50%_40%,rgba(34,211,238,0.24),transparent_32%),linear-gradient(180deg,#020617,#07111f)] xl:h-[clamp(440px,calc(100dvh-170px),720px)]">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.09)_1px,transparent_1px)] bg-[size:44px_44px]" />
       <ARPlacementMarker mode="ar" sceneState={sceneState} />
       <OverlayObject mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
@@ -892,7 +902,7 @@ export function ARModePreview({ mathObject, sceneState, selectedGraph, selectedS
 export function ARFallbackViewer({ generatedGraphs, generatedSolids, measurements, mathObject, sceneState }: { generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; mathObject: ARMathObject; sceneState: ARSceneState }) {
   return (
     <div data-testid="ar-fallback-viewer" className="p-3 sm:p-4">
-      <ThreeSceneWrapper height="clamp(440px, calc(100dvh - 170px), 720px)" mobileHeight="clamp(340px, 58dvh, 560px)" cameraPosition={[5, 4, 7]} fov={45} quality="high" chrome="cinematic" sceneLabel="3D Preview Mode" interactionLabel="Drag rotate - pinch or wheel zoom - right drag pan">
+      <ThreeSceneWrapper height="clamp(440px, calc(100dvh - 170px), 720px)" mobileHeight="clamp(300px, 52dvh, 540px)" cameraPosition={[5, 4, 7]} fov={45} quality="high" chrome="cinematic" sceneLabel="3D Preview Mode" interactionLabel="Drag rotate - pinch or wheel zoom - right drag pan">
         <PreviewScene generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} />
         <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} />
       </ThreeSceneWrapper>
@@ -1603,7 +1613,7 @@ export function ARControlPanel(props: {
   return (
     <SectionCard title="Controls" description="Generate equation graphs, tune ranges, and place the object in AR, camera, or 3D preview." compact>
       <div data-testid="ar-control-panel" className="space-y-4">
-        <div className="grid grid-cols-2 gap-2">
+        <div className="hidden grid-cols-2 gap-2 xl:grid">
           <ControlButton label="Start AR" icon={<ScanLine className="h-4 w-4" />} onClick={props.onStartAR} primary disabled={sessionState.status === "starting"} />
           <ControlButton label="Camera" icon={<Camera className="h-4 w-4" />} onClick={props.onStartCamera} />
           <ControlButton label="3D Preview" icon={<Cuboid className="h-4 w-4" />} onClick={() => props.onActivate3D()} />
@@ -1650,108 +1660,113 @@ export function ARControlPanel(props: {
           </div>
         </div>
 
-        <GraphSettingsPanel classification={classification} graphSettings={graphSettings} onChange={props.onUpdateGraphSetting} />
-        <ARGeometryBuilder
-          builderType={geometryBuilderType}
-          builderUnit={geometryBuilderUnit}
-          selectedSolid={selectedSolid}
-          onDuplicate={props.onDuplicateSolid}
-          onGenerateSolid={props.onGenerateSolid}
-          onSetBuilderType={props.onSetGeometryBuilderType}
-          onSetBuilderUnit={props.onSetGeometryBuilderUnit}
-          onUpdateCustomScale={props.onUpdateSolidCustomScale}
-          onUpdateDimension={props.onUpdateSolidDimension}
-          onUpdateScale={props.onUpdateSolidScale}
-          onUpdateSettings={props.onUpdateSolidSettings}
-        />
+        <details className="ar-mobile-disclosure">
+          <summary>More controls, formulas, and measurements</summary>
+          <div className="ar-mobile-disclosure-body space-y-4">
+            <GraphSettingsPanel classification={classification} graphSettings={graphSettings} onChange={props.onUpdateGraphSetting} />
+            <ARGeometryBuilder
+              builderType={geometryBuilderType}
+              builderUnit={geometryBuilderUnit}
+              selectedSolid={selectedSolid}
+              onDuplicate={props.onDuplicateSolid}
+              onGenerateSolid={props.onGenerateSolid}
+              onSetBuilderType={props.onSetGeometryBuilderType}
+              onSetBuilderUnit={props.onSetGeometryBuilderUnit}
+              onUpdateCustomScale={props.onUpdateSolidCustomScale}
+              onUpdateDimension={props.onUpdateSolidDimension}
+              onUpdateScale={props.onUpdateSolidScale}
+              onUpdateSettings={props.onUpdateSolidSettings}
+            />
 
-        {parameterSpecs.length ? (
-          <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
-            <p className="text-sm font-black">Parameter sliders</p>
-            <div className="mt-3 space-y-3">
-              {parameterSpecs.map((spec) => (
-                <label key={spec.key} className="block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                  {spec.key} = {parameterValues[spec.key] ?? spec.defaultValue}
-                  <input
-                    className="mt-2 w-full accent-cyan-500"
-                    type="range"
-                    min={spec.min}
-                    max={spec.max}
-                    step={spec.step}
-                    value={parameterValues[spec.key] ?? spec.defaultValue}
-                    onChange={(event) => props.onParameterChange(spec.key, Number(event.target.value))}
-                  />
-                </label>
-              ))}
+            {parameterSpecs.length ? (
+              <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
+                <p className="text-sm font-black">Parameter sliders</p>
+                <div className="mt-3 space-y-3">
+                  {parameterSpecs.map((spec) => (
+                    <label key={spec.key} className="block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                      {spec.key} = {parameterValues[spec.key] ?? spec.defaultValue}
+                      <input
+                        className="mt-2 w-full accent-cyan-500"
+                        type="range"
+                        min={spec.min}
+                        max={spec.max}
+                        step={spec.step}
+                        value={parameterValues[spec.key] ?? spec.defaultValue}
+                        onChange={(event) => props.onParameterChange(spec.key, Number(event.target.value))}
+                      />
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            <ObjectListPanel graphs={generatedGraphs} selectedGraphId={selectedGraphId} onSelectGraph={props.onSelectGraph} />
+            <GeometryObjectListPanel solids={generatedSolids} selectedSolidId={selectedSolidId} onSelectSolid={props.onSelectSolid} />
+
+            <div className="grid grid-cols-3 gap-2">
+              <ToggleButton label="Grid" checked={sceneState.showGrid} onClick={() => props.onSceneChange({ showGrid: !sceneState.showGrid })} />
+              <ToggleButton label="Axes" checked={sceneState.showAxes} onClick={() => props.onSceneChange({ showAxes: !sceneState.showAxes })} />
+              <ToggleButton label="Labels" checked={sceneState.showLabels} onClick={() => props.onSceneChange({ showLabels: !sceneState.showLabels })} />
             </div>
+            <CheckToggle label="Performance Mode" checked={performanceMode} onChange={props.onSetPerformanceMode} />
+
+            <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
+              <p className="text-sm font-black">Object controls</p>
+              <div className="mt-3 grid grid-cols-3 gap-2">
+                <ControlButton label="Scale +" icon={<Plus className="h-4 w-4" />} onClick={() => props.onScale(1.15)} />
+                <ControlButton label="Move Up" icon={<Move3D className="h-4 w-4" />} onClick={() => props.onMove(1, 0.15)} />
+                <ControlButton label="Rotate R" icon={<RotateCwSquare className="h-4 w-4" />} onClick={() => props.onRotate(0.18)} />
+                <ControlButton label="Move Left" icon={<Minus className="h-4 w-4" />} onClick={() => props.onMove(0, -0.15)} />
+                <ControlButton label="Center" icon={<Compass className="h-4 w-4" />} onClick={() => props.onSceneChange({ objectPosition: [0, 0.45, 0] })} />
+                <ControlButton label="Move Right" icon={<Plus className="h-4 w-4" />} onClick={() => props.onMove(0, 0.15)} />
+                <ControlButton label="Scale -" icon={<Minus className="h-4 w-4" />} onClick={() => props.onScale(0.87)} />
+                <ControlButton label="Move Down" icon={<Move3D className="h-4 w-4" />} onClick={() => props.onMove(1, -0.15)} />
+                <ControlButton label="Rotate L" icon={<RotateCcwSquare className="h-4 w-4" />} onClick={() => props.onRotate(-0.18)} />
+              </div>
+            </div>
+
+            <ARAdvancedToolsPanel
+              activeToolTab={activeToolTab}
+              animations={animations}
+              comparison={comparison}
+              comparisonText={comparisonText}
+              generatedGraphs={generatedGraphs}
+              generatedSolids={generatedSolids}
+              importSceneJson={importSceneJson}
+              measurements={measurements}
+              measurementMode={measurementMode}
+              performanceMode={performanceMode}
+              recommendations={recommendations}
+              savedSceneName={savedSceneName}
+              sceneMessage={sceneMessage}
+              selectedLesson={selectedLesson}
+              selectedExampleId={selectedExampleId}
+              selectedSolid={selectedSolid}
+              teacherMode={teacherMode}
+              onAddAnimation={props.onAddAnimation}
+              onAddMeasurement={props.onAddMeasurement}
+              onCaptureScene={props.onCaptureScene}
+              onClearMeasurements={props.onClearMeasurements}
+              onExampleChange={props.onExampleChange}
+              onExportSceneJson={props.onExportSceneJson}
+              onImportScene={props.onImportScene}
+              onLoadScene={props.onLoadScene}
+              onSaveScene={props.onSaveScene}
+              onSetActiveToolTab={props.onSetActiveToolTab}
+              onSetComparison={props.onSetComparison}
+              onSetImportSceneJson={props.onSetImportSceneJson}
+              onSetMeasurementMode={props.onSetMeasurementMode}
+              onSetPerformanceMode={props.onSetPerformanceMode}
+              onSetSavedSceneName={props.onSetSavedSceneName}
+              onSetTeacherMode={props.onSetTeacherMode}
+              onUpdateAnimationStatus={props.onUpdateAnimationStatus}
+            />
+
+            <ARFormulaPanel classification={classification} selectedExample={selectedExample} />
+            <ARMeasurementTool measurements={measurements} />
+            <ARHelpPanel />
           </div>
-        ) : null}
-
-        <ObjectListPanel graphs={generatedGraphs} selectedGraphId={selectedGraphId} onSelectGraph={props.onSelectGraph} />
-        <GeometryObjectListPanel solids={generatedSolids} selectedSolidId={selectedSolidId} onSelectSolid={props.onSelectSolid} />
-
-        <div className="grid grid-cols-3 gap-2">
-          <ToggleButton label="Grid" checked={sceneState.showGrid} onClick={() => props.onSceneChange({ showGrid: !sceneState.showGrid })} />
-          <ToggleButton label="Axes" checked={sceneState.showAxes} onClick={() => props.onSceneChange({ showAxes: !sceneState.showAxes })} />
-          <ToggleButton label="Labels" checked={sceneState.showLabels} onClick={() => props.onSceneChange({ showLabels: !sceneState.showLabels })} />
-        </div>
-        <CheckToggle label="Performance Mode" checked={performanceMode} onChange={props.onSetPerformanceMode} />
-
-        <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
-          <p className="text-sm font-black">Object controls</p>
-          <div className="mt-3 grid grid-cols-3 gap-2">
-            <ControlButton label="Scale +" icon={<Plus className="h-4 w-4" />} onClick={() => props.onScale(1.15)} />
-            <ControlButton label="Move Up" icon={<Move3D className="h-4 w-4" />} onClick={() => props.onMove(1, 0.15)} />
-            <ControlButton label="Rotate R" icon={<RotateCwSquare className="h-4 w-4" />} onClick={() => props.onRotate(0.18)} />
-            <ControlButton label="Move Left" icon={<Minus className="h-4 w-4" />} onClick={() => props.onMove(0, -0.15)} />
-            <ControlButton label="Center" icon={<Compass className="h-4 w-4" />} onClick={() => props.onSceneChange({ objectPosition: [0, 0.45, 0] })} />
-            <ControlButton label="Move Right" icon={<Plus className="h-4 w-4" />} onClick={() => props.onMove(0, 0.15)} />
-            <ControlButton label="Scale -" icon={<Minus className="h-4 w-4" />} onClick={() => props.onScale(0.87)} />
-            <ControlButton label="Move Down" icon={<Move3D className="h-4 w-4" />} onClick={() => props.onMove(1, -0.15)} />
-            <ControlButton label="Rotate L" icon={<RotateCcwSquare className="h-4 w-4" />} onClick={() => props.onRotate(-0.18)} />
-          </div>
-        </div>
-
-        <ARAdvancedToolsPanel
-          activeToolTab={activeToolTab}
-          animations={animations}
-          comparison={comparison}
-          comparisonText={comparisonText}
-          generatedGraphs={generatedGraphs}
-          generatedSolids={generatedSolids}
-          importSceneJson={importSceneJson}
-          measurements={measurements}
-          measurementMode={measurementMode}
-          performanceMode={performanceMode}
-          recommendations={recommendations}
-          savedSceneName={savedSceneName}
-          sceneMessage={sceneMessage}
-          selectedLesson={selectedLesson}
-          selectedExampleId={selectedExampleId}
-          selectedSolid={selectedSolid}
-          teacherMode={teacherMode}
-          onAddAnimation={props.onAddAnimation}
-          onAddMeasurement={props.onAddMeasurement}
-          onCaptureScene={props.onCaptureScene}
-          onClearMeasurements={props.onClearMeasurements}
-          onExampleChange={props.onExampleChange}
-          onExportSceneJson={props.onExportSceneJson}
-          onImportScene={props.onImportScene}
-          onLoadScene={props.onLoadScene}
-          onSaveScene={props.onSaveScene}
-          onSetActiveToolTab={props.onSetActiveToolTab}
-          onSetComparison={props.onSetComparison}
-          onSetImportSceneJson={props.onSetImportSceneJson}
-          onSetMeasurementMode={props.onSetMeasurementMode}
-          onSetPerformanceMode={props.onSetPerformanceMode}
-          onSetSavedSceneName={props.onSetSavedSceneName}
-          onSetTeacherMode={props.onSetTeacherMode}
-          onUpdateAnimationStatus={props.onUpdateAnimationStatus}
-        />
-
-        <ARFormulaPanel classification={classification} selectedExample={selectedExample} />
-        <ARMeasurementTool measurements={measurements} />
-        <ARHelpPanel />
+        </details>
       </div>
     </SectionCard>
   );

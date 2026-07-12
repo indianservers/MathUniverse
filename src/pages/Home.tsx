@@ -137,7 +137,7 @@ export default function Home() {
   const [olympyardProgress] = useLocalStorage<OlympyardProgressLite>(OLYMPYARD_PROGRESS_STORAGE_KEY, initialOlympyardProgressLite);
   const recentItems = recentRouteItems(5);
   const [tourOpen, setTourOpen] = useState(false);
-  const [homeFilter, setHomeFilter] = useState<"all" | "core" | "tools" | "practice" | "advanced">("core");
+  const [homeFilter, setHomeFilter] = useState<"all" | "core" | "tools" | "practice" | "advanced">("all");
   const [homeQuery, setHomeQuery] = useState("");
   const [activePath, setActivePath] = useState<(typeof learnerPaths)[number]["id"]>("student");
   const labs = topics.reduce((sum, topic) => sum + topic.labCount, 0);

@@ -102,8 +102,8 @@ export default function AppLayout() {
         <div className="app-layout-rail flex min-h-screen">
           <Sidebar />
           <div className="flex min-w-0 flex-1 flex-col">
-            <main ref={mainContentRef} id="main-content" className="app-fullscreen-target min-h-screen w-full p-2">
-              <div key={location.pathname} className="page-transition min-h-screen">
+            <main ref={mainContentRef} id="main-content" className="app-fullscreen-target min-h-screen w-full p-1 pb-24 sm:p-2 lg:pb-2">
+              <div key={location.pathname} className="page-transition min-h-screen min-w-0 overflow-x-clip">
                 <Outlet />
               </div>
             </main>
@@ -129,7 +129,7 @@ export default function AppLayout() {
           <main
             ref={mainContentRef}
             id="main-content"
-            className="app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 px-3 pb-6 pt-3 sm:px-4 md:px-5 md:pt-4"
+            className="app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 px-2 pb-24 pt-2 sm:px-4 md:px-5 md:pb-6 md:pt-4"
           >
             <button
               type="button"
@@ -141,7 +141,7 @@ export default function AppLayout() {
               {mainFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
               <span>{mainFullscreen ? "Exit" : "Full"}</span>
             </button>
-            <div key={location.pathname} className="page-transition space-y-2.5">
+            <div key={location.pathname} className="page-transition min-w-0 space-y-2.5 overflow-x-clip">
               <InlinePageNav showBack={showBack} />
               <Outlet />
             </div>

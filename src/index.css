@@ -27,6 +27,12 @@ body {
   overflow-x: hidden;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .route-progress {
   position: fixed;
   top: 0;
@@ -80,6 +86,7 @@ body {
   body {
     @apply bg-[#f7fcff] text-slate-950 dark:bg-[#081122] dark:text-slate-100;
     max-width: 100vw;
+    overflow-x: hidden;
     overscroll-behavior-x: none;
     background-image:
       radial-gradient(circle at 8% 10%, rgba(34, 211, 238, 0.18), transparent 30rem),
@@ -97,6 +104,25 @@ body {
 
   * {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50 dark:focus-visible:ring-cyan-300 dark:focus-visible:ring-offset-slate-950;
+  }
+
+  main,
+  section,
+  article,
+  aside,
+  nav,
+  header,
+  footer,
+  form,
+  fieldset {
+    min-width: 0;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
   }
 
   ::selection {
@@ -153,11 +179,61 @@ body {
 }
 
 @layer components {
+  .app-fullscreen-target,
+  .page-transition {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
   .glass-card {
     @apply border border-white/80 bg-white/[.88] shadow-xl shadow-cyan-100/60 backdrop-blur-xl transition duration-200 dark:border-white/10 dark:bg-slate-900/[.78] dark:shadow-black/30;
     background-image:
       linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(236, 254, 255, 0.62) 46%, rgba(250, 245, 255, 0.68)),
       linear-gradient(180deg, rgba(255, 255, 255, 0.46), transparent);
+  }
+
+  .glass-card,
+  .surface-soft,
+  .spotlight-card,
+  .formula-library-card,
+  .formula-detail-block,
+  .desktop-sidebar-panel,
+  .workspace-app-shell,
+  .workspace-grid {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .glass-card p,
+  .glass-card li,
+  .surface-soft p,
+  .surface-soft li,
+  .spotlight-card p,
+  .spotlight-card li,
+  .formula-library-card p,
+  .formula-library-card li,
+  .formula-detail-block p,
+  .formula-detail-block li {
+    overflow-wrap: anywhere;
+  }
+
+  .katex-display,
+  .formula-display,
+  .math-formula,
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  pre,
+  code {
+    overflow-wrap: anywhere;
+  }
+
+  main table {
+    max-width: 100%;
   }
 
   .surface-soft {
@@ -298,6 +374,51 @@ body {
     @apply inline-flex h-11 w-11 items-center justify-center rounded-xl border border-cyan-100 bg-white/85 text-slate-700 shadow-sm shadow-cyan-100/40 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15;
   }
 
+  .ar-mobile-disclosure {
+    @apply rounded-2xl border border-cyan-100 bg-white/[.88] p-2 shadow-sm shadow-cyan-100/40 dark:border-white/10 dark:bg-white/5;
+  }
+
+  .ar-mobile-disclosure > summary {
+    @apply cursor-pointer list-none rounded-xl px-3 py-2 text-sm font-black text-slate-800 transition hover:bg-cyan-50 dark:text-slate-100 dark:hover:bg-cyan-300/10;
+  }
+
+  .ar-mobile-disclosure > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .ar-mobile-disclosure > summary::after {
+    content: "+";
+    float: right;
+    font-weight: 900;
+    color: #0891b2;
+  }
+
+  .ar-mobile-disclosure[open] > summary::after {
+    content: "-";
+  }
+
+  .ar-mobile-disclosure-body {
+    @apply mt-2 min-w-0;
+  }
+
+  @media (min-width: 1280px) {
+    .ar-mobile-disclosure {
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .ar-mobile-disclosure > summary {
+      display: none;
+    }
+
+    .ar-mobile-disclosure:not([open]) > .ar-mobile-disclosure-body,
+    .ar-mobile-disclosure-body {
+      display: block !important;
+    }
+  }
+
   @media (min-width: 1024px) {
     .app-layout-rail:has([data-testid="desktop-sidebar"][data-collapsed="false"]) {
       background: linear-gradient(to right, rgba(7, 24, 39, 0.95) 0 18rem, transparent 18rem);
@@ -310,6 +431,50 @@ body {
 
   .tool-button {
     @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-cyan-100 bg-white/85 px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm shadow-cyan-100/40 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 hover:text-cyan-900 active:translate-y-0 dark:border-white/15 dark:bg-white/10 dark:text-slate-100 dark:hover:border-cyan-300/40 dark:hover:bg-cyan-300/10 dark:hover:text-cyan-50;
+  }
+
+  @media (max-width: 640px) {
+    .glass-card,
+    .surface-soft,
+    .spotlight-card,
+    .formula-library-card,
+    .formula-detail-block {
+      border-radius: 1rem;
+    }
+
+    .action-primary,
+    .action-secondary,
+    .tool-button {
+      min-height: 2.75rem;
+      max-width: 100%;
+      white-space: normal;
+      border-radius: 1rem;
+      padding: 0.7rem 0.85rem;
+      line-height: 1.25;
+    }
+
+    .mini-chip,
+    .formula-inline-tag,
+    .formula-level,
+    .formula-usage,
+    .formula-progress {
+      max-width: 100%;
+      white-space: normal;
+      line-height: 1.2;
+    }
+
+    .desktop-sidebar-panel {
+      position: static !important;
+      max-height: none !important;
+      overflow: visible !important;
+    }
+
+    .workspace-app-shell {
+      min-height: calc(100dvh - 5.75rem);
+      height: auto;
+      border-radius: 1rem;
+      padding: 0.35rem;
+    }
   }
 
   .thin-scrollbar {

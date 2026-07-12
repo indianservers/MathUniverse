@@ -77,10 +77,10 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             animate={{ x: 0 }}
             exit={{ x: -320 }}
             transition={{ type: "spring", stiffness: 260, damping: 28 }}
-            className="relative z-10 h-full w-80 max-w-[86vw] overflow-y-auto bg-white p-5 pb-8 shadow-2xl dark:bg-slate-950"
+            className="relative z-10 h-full w-[min(21rem,92vw)] overflow-y-auto bg-white p-3 pb-24 shadow-2xl sm:p-5 sm:pb-8 dark:bg-slate-950"
             aria-label="Mobile navigation"
           >
-            <div className="mb-6 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between sm:mb-6">
               <div>
                 <p className="text-lg font-bold">Math Universe</p>
                 <p className="text-xs text-slate-500 dark:text-slate-400">Visual learning space</p>
@@ -94,7 +94,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
               <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search menu, formula, topic..." className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-slate-400" />
             </label>
             {!query && recentTools.length > 0 && (
-              <div className="mb-4 rounded-2xl border border-cyan-200 bg-cyan-50 p-2 dark:border-cyan-400/20 dark:bg-cyan-400/10">
+              <div className="mb-3 rounded-2xl border border-cyan-200 bg-cyan-50 p-2 dark:border-cyan-400/20 dark:bg-cyan-400/10 sm:mb-4">
                 <p className="mb-1 flex items-center gap-2 px-2 text-xs font-black uppercase text-cyan-800 dark:text-cyan-100"><Clock3 className="h-3.5 w-3.5" />Recently opened</p>
                 {recentTools.map((item) => {
                   const Icon = item.icon;
@@ -107,7 +107,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                 })}
               </div>
             )}
-            <nav className="space-y-2" aria-label="Mobile navigation">
+            <nav className="space-y-1.5 sm:space-y-2" aria-label="Mobile navigation">
               {filteredSections.length === 0 && (
                 <div className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm font-semibold text-slate-500 dark:border-white/15 dark:text-slate-400">
                   No tools found. Try graph, matrix, solver, or quiz.
