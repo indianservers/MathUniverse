@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { Line, OrbitControls, Text } from "@react-three/drei";
 import * as THREE from "three";
 import { Box, Camera, CheckCircle2, Compass, Cuboid, Grid3X3, HelpCircle, Minus, Move3D, Plus, RotateCcw, RotateCcwSquare, RotateCwSquare, Ruler, ScanLine, Sparkles, Waves, X } from "lucide-react";
@@ -22,13 +22,6 @@ type XRSessionLike = {
   requestReferenceSpace?: (type: "local" | "local-floor" | "viewer") => Promise<unknown>;
   addEventListener?: (type: "end" | "visibilitychange", listener: () => void) => void;
   removeEventListener?: (type: "end" | "visibilitychange", listener: () => void) => void;
-};
-
-type NavigatorWithXRSession = Navigator & {
-  xr?: {
-    isSessionSupported?: (mode: "immersive-ar") => Promise<boolean>;
-    requestSession?: (mode: "immersive-ar", options?: Record<string, unknown>) => Promise<XRSessionLike>;
-  };
 };
 
 const initialExample = arMathExamples[0];
@@ -308,37 +301,16 @@ export default function ARMathLab() {
   }
 
   async function startARSession() {
-    if (!support.isSecureContext) {
-      setSessionState((state) => ({ ...state, mode: "3d-preview", status: "unsupported", errorMessage: "WebXR AR requires HTTPS or a secure localhost context.", infoMessage: "3D Preview Mode is active. Use a WebXR-supported mobile browser for real AR." }));
-      emitLearning("mode_changed", selectedObjectId, { mode: "3d-preview", reason: "secure-context-required" });
+    if (!navigator.mediaDevices?.getUserMedia) {
+      setSessionState((state) => ({ ...state, mode: "3d-preview", status: "unsupported", cameraPermission: "denied", errorMessage: "Camera access is not available in this browser.", infoMessage: "3D Preview Mode is active." }));
       return;
     }
-    if (!support.webXRAvailable || !support.immersiveARSupported) {
-      setSessionState((state) => ({ ...state, mode: support.cameraAvailable ? "camera-preview" : "3d-preview", status: "unsupported", errorMessage: "This browser does not support immersive AR.", infoMessage: support.cameraAvailable ? "Camera Preview Mode can be used." : "3D Preview Mode is available." }));
-      emitLearning("mode_changed", selectedObjectId, { mode: support.cameraAvailable ? "camera-preview" : "3d-preview", reason: "immersive-ar-unsupported" });
-      return;
-    }
-
-    setSessionState((state) => ({ ...state, mode: "ar", status: "starting", errorMessage: undefined, infoMessage: "Starting AR session..." }));
-    try {
-      await stopCameraPreview(false);
-      const xr = (navigator as NavigatorWithXRSession).xr;
-      const session = await xr?.requestSession?.("immersive-ar", { optionalFeatures: ["local-floor", "dom-overlay"], domOverlay: { root: document.body } });
-      if (!session) throw new Error("Browser did not return an XR session.");
-      xrSessionRef.current = session;
-      await session.requestReferenceSpace?.("local-floor").catch(() => session.requestReferenceSpace?.("local")).catch(() => undefined);
-      const handleEnd = () => {
-        xrSessionRef.current = null;
-        setSessionState((state) => ({ ...state, mode: "3d-preview", status: "ready", infoMessage: "AR session ended. 3D Preview Mode is active." }));
-      };
-      session.addEventListener?.("end", handleEnd);
-      setSessionState((state) => ({ ...state, mode: "ar", status: "active", cameraPermission: "granted", errorMessage: undefined, infoMessage: "AR session started. Preview object and placement guide are ready." }));
-      emitLearning("mode_changed", selectedObjectId, { mode: "ar" });
-    } catch {
-      xrSessionRef.current = null;
-      setSessionState((state) => ({ ...state, mode: support.cameraAvailable ? "camera-preview" : "3d-preview", status: "error", errorMessage: "Unable to start AR session. Falling back to preview mode.", infoMessage: support.cameraAvailable ? "Camera Preview Mode can be used." : "3D Preview Mode is available." }));
-      emitLearning("error_occurred", selectedObjectId, { area: "ar-session" });
-    }
+    const reason = !support.isSecureContext
+      ? "secure-context-required"
+      : !support.webXRAvailable || !support.immersiveARSupported
+        ? "immersive-ar-unsupported"
+        : "camera-backed-ar";
+    await startCameraBackedMode("ar", `Live AR overlay is active with the rear camera. Drag the math object to place it, pinch with the browser zoom disabled by the app shell, and use scale/rotate controls for precision. ${reason === "camera-backed-ar" ? "This device reports immersive AR support; the web view is using the reliable camera-backed renderer for consistent mobile behavior." : "Full WebXR spatial anchoring is not exposed here, so this mobile-safe AR overlay is used."}`, reason);
   }
 
   async function stopARSession() {
@@ -350,28 +322,32 @@ export default function ARMathLab() {
   }
 
   async function startCameraPreview() {
+    await startCameraBackedMode("camera-preview", "Camera Preview Mode is active. Drag the overlay to place the math object, then use measurements, labels, scale, and rotate controls.", "camera-preview");
+  }
+
+  async function startCameraBackedMode(mode: "ar" | "camera-preview", infoMessage: string, reason: string) {
     if (!navigator.mediaDevices?.getUserMedia) {
       setSessionState((state) => ({ ...state, mode: "3d-preview", status: "unsupported", cameraPermission: "denied", errorMessage: "Camera access is not available in this browser.", infoMessage: "3D Preview Mode is active." }));
       return;
     }
-    setSessionState((state) => ({ ...state, mode: "camera-preview", status: "starting", cameraPermission: "prompt", errorMessage: undefined, infoMessage: "Requesting camera permission..." }));
+    setSessionState((state) => ({ ...state, mode, status: "starting", cameraPermission: "prompt", errorMessage: undefined, infoMessage: "Requesting rear camera permission..." }));
     try {
       await stopARSessionIfActive();
       releaseCameraStream();
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } }, audio: false });
+      const stream = await requestEnvironmentCameraStream();
       if (!mountedRef.current) {
         stopCameraTracks(stream);
         return;
       }
       cameraStreamRef.current = stream;
       setCameraStream(stream);
-      setSessionState((state) => ({ ...state, mode: "camera-preview", status: "active", cameraPermission: "granted", errorMessage: undefined, infoMessage: "Camera Preview Mode is active. Desktop Chrome can show camera overlays, but immersive room-anchored AR usually requires an AR-capable mobile browser and device." }));
-      emitLearning("mode_changed", selectedObjectId, { mode: "camera-preview" });
+      setSessionState((state) => ({ ...state, mode, status: "active", cameraPermission: "granted", errorMessage: undefined, infoMessage }));
+      emitLearning("mode_changed", selectedObjectId, { mode, reason });
     } catch (error) {
       releaseCameraStream();
       setCameraStream(null);
       setSessionState((state) => ({ ...state, mode: "3d-preview", status: "error", cameraPermission: "denied", errorMessage: cameraErrorMessage(error), infoMessage: "3D Preview Mode is active." }));
-      emitLearning("error_occurred", selectedObjectId, { area: "camera-preview", message: cameraErrorMessage(error) });
+      emitLearning("error_occurred", selectedObjectId, { area: mode, message: cameraErrorMessage(error), reason });
     }
   }
 
@@ -837,7 +813,7 @@ export default function ARMathLab() {
           </aside>
 
           <div className="order-1 min-w-0 space-y-3 xl:order-2">
-            <ARScene mathObject={currentObject} cameraStream={cameraStream} generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} sessionState={sessionState} />
+            <ARScene mathObject={currentObject} cameraStream={cameraStream} generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} sessionState={sessionState} onSceneChange={updateScene} />
             <MobileQuickActions
               sessionState={sessionState}
               support={support}
@@ -884,7 +860,7 @@ export default function ARMathLab() {
   );
 }
 
-export function ARScene({ mathObject, cameraStream, generatedGraphs, generatedSolids, measurements, sceneState, selectedGraph, selectedSolid, sessionState }: { mathObject: ARMathObject; cameraStream: MediaStream | null; generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; sessionState: ARSessionState }) {
+export function ARScene({ mathObject, cameraStream, generatedGraphs, generatedSolids, measurements, onSceneChange, sceneState, selectedGraph, selectedSolid, sessionState }: { mathObject: ARMathObject; cameraStream: MediaStream | null; generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; onSceneChange: (delta: Partial<ARSceneState>) => void; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; sessionState: ARSessionState }) {
   const mode = sessionState.mode === "none" ? "3d-preview" : sessionState.mode;
   return (
     <section data-testid="ar-scene" className="relative overflow-hidden rounded-[1.5rem] border border-cyan-200/80 bg-slate-950 text-white shadow-2xl shadow-cyan-950/20 sm:rounded-[2rem]">
@@ -893,15 +869,17 @@ export function ARScene({ mathObject, cameraStream, generatedGraphs, generatedSo
         <span className="hidden rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white/85 sm:inline-flex">Phase 6 hardened preview</span>
         <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white/85">{sessionState.status}</span>
       </div>
-      {mode === "camera-preview" ? <ARCameraPreview mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
-      {mode === "ar" ? <ARModePreview mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} /> : null}
+      {mode === "camera-preview" ? <ARCameraPreview mathObject={mathObject} mode="camera-preview" onSceneChange={onSceneChange} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
+      {mode === "ar" ? <ARCameraPreview mathObject={mathObject} mode="ar" onSceneChange={onSceneChange} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
       {mode === "3d-preview" ? <ARFallbackViewer generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} /> : null}
     </section>
   );
 }
 
-export function ARCameraPreview({ mathObject, sceneState, selectedGraph, selectedSolid, stream }: { mathObject: ARMathObject; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; stream: MediaStream | null }) {
+export function ARCameraPreview({ mathObject, mode, onSceneChange, sceneState, selectedGraph, selectedSolid, stream }: { mathObject: ARMathObject; mode: "ar" | "camera-preview"; onSceneChange: (delta: Partial<ARSceneState>) => void; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; stream: MediaStream | null }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const draggingPointerRef = useRef<number | null>(null);
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return undefined;
@@ -912,24 +890,40 @@ export function ARCameraPreview({ mathObject, sceneState, selectedGraph, selecte
     };
   }, [stream]);
 
+  function placeFromPointer(event: PointerEvent<HTMLDivElement>) {
+    const rect = stageRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const x = roundTo((event.clientX - (rect.left + rect.width / 2)) / 44, 2);
+    const y = roundTo(-(event.clientY - (rect.top + rect.height / 2)) / 36, 2);
+    onSceneChange({ objectPosition: [Math.max(-4, Math.min(4, x)), Math.max(-4, Math.min(4, y)), sceneState.objectPosition[2]], placementReady: true });
+  }
+
   return (
-    <div className="relative h-[clamp(300px,52dvh,540px)] min-h-[300px] overflow-hidden bg-black xl:h-[clamp(440px,calc(100dvh-170px),720px)]">
+    <div
+      ref={stageRef}
+      className="relative h-[clamp(300px,52dvh,540px)] min-h-[300px] touch-none overflow-hidden bg-black xl:h-[clamp(440px,calc(100dvh-170px),720px)]"
+      onPointerDown={(event) => {
+        draggingPointerRef.current = event.pointerId;
+        event.currentTarget.setPointerCapture(event.pointerId);
+        placeFromPointer(event);
+      }}
+      onPointerMove={(event) => {
+        if (draggingPointerRef.current !== event.pointerId) return;
+        placeFromPointer(event);
+      }}
+      onPointerUp={(event) => {
+        if (draggingPointerRef.current === event.pointerId) draggingPointerRef.current = null;
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      }}
+      onPointerCancel={(event) => {
+        if (draggingPointerRef.current === event.pointerId) draggingPointerRef.current = null;
+      }}
+    >
       {stream ? <video ref={videoRef} className="h-full w-full object-cover" autoPlay muted playsInline aria-label="Live camera preview" /> : <div className="grid h-full place-items-center text-center text-sm font-bold text-slate-300">Waiting for camera permission...</div>}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0,transparent_36%,rgba(2,6,23,0.34)_72%)]" />
-      <ARPlacementMarker mode="camera-preview" sceneState={sceneState} />
+      <ARPlacementMarker mode={mode} sceneState={sceneState} />
       <OverlayObject mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
-      <p className="absolute bottom-2 left-2 right-2 rounded-2xl bg-black/55 px-3 py-2 text-[11px] font-bold leading-4 text-white backdrop-blur sm:bottom-3 sm:left-3 sm:right-3 sm:text-xs sm:leading-5">Camera Preview: desktop Chrome can use the camera, but real room-anchored WebXR AR usually needs an AR-capable mobile browser/device.</p>
-    </div>
-  );
-}
-
-export function ARModePreview({ mathObject, sceneState, selectedGraph, selectedSolid }: { mathObject: ARMathObject; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid }) {
-  return (
-    <div className="relative h-[clamp(300px,52dvh,540px)] min-h-[300px] overflow-hidden bg-[radial-gradient(circle_at_50%_40%,rgba(34,211,238,0.24),transparent_32%),linear-gradient(180deg,#020617,#07111f)] xl:h-[clamp(440px,calc(100dvh-170px),720px)]">
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.09)_1px,transparent_1px)] bg-[size:44px_44px]" />
-      <ARPlacementMarker mode="ar" sceneState={sceneState} />
-      <OverlayObject mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} />
-      <p className="absolute bottom-2 left-2 right-2 rounded-2xl bg-black/60 px-3 py-2 text-[11px] font-bold leading-4 text-white backdrop-blur sm:bottom-3 sm:left-3 sm:right-3 sm:text-xs sm:leading-5">AR session started. Generated graph objects are ready in preview and overlay modes.</p>
+      <p className="pointer-events-none absolute bottom-2 left-2 right-2 rounded-2xl bg-black/55 px-3 py-2 text-[11px] font-bold leading-4 text-white backdrop-blur sm:bottom-3 sm:left-3 sm:right-3 sm:text-xs sm:leading-5">{mode === "ar" ? "Live AR overlay: drag anywhere on the camera view to place the object. Use scale, rotate, labels, cross-sections, and measurements for precision." : "Camera Preview: drag anywhere on the camera view to place the object."}</p>
     </div>
   );
 }
@@ -2478,6 +2472,25 @@ function formatNumber(value: number) {
 
 function formulaSummaryForOverlay(solid: ARGeneratedGeometrySolid) {
   return solid.calculatedValues.formulas.slice(0, 2).map((line) => line.result).join(" - ");
+}
+
+async function requestEnvironmentCameraStream() {
+  const mediaDevices = navigator.mediaDevices;
+  if (!mediaDevices?.getUserMedia) throw new Error("Camera access is not available.");
+  const attempts: MediaStreamConstraints[] = [
+    { video: { facingMode: { exact: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false },
+    { video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false },
+    { video: true, audio: false },
+  ];
+  let lastError: unknown;
+  for (const constraints of attempts) {
+    try {
+      return await mediaDevices.getUserMedia(constraints);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError;
 }
 
 function stopCameraTracks(stream: MediaStream | null) {
