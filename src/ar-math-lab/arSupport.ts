@@ -88,16 +88,13 @@ function detectWebGL(createCanvas: ARSupportEnvironment["createCanvas"]) {
 }
 
 function recommendMode(status: Pick<ARSupportStatus, "isSecureContext" | "immersiveARSupported" | "cameraAvailable" | "webGLAvailable">): ARRenderMode {
-  if (status.isSecureContext && status.immersiveARSupported && status.webGLAvailable) return "ar";
-  if (status.cameraAvailable) return "camera-preview";
+  if (status.cameraAvailable) return "ar";
   return "3d-preview";
 }
 
 function buildSupportWarnings(status: Pick<ARSupportStatus, "isSecureContext" | "webXRAvailable" | "immersiveARSupported" | "cameraAvailable" | "webGLAvailable">) {
   const warnings: string[] = [];
-  if (!status.isSecureContext) warnings.push("WebXR AR requires HTTPS or a secure localhost context.");
-  if (!status.webXRAvailable) warnings.push("navigator.xr is not available, so full AR sessions are not exposed by this browser.");
-  if (status.immersiveARSupported === false) warnings.push("immersive-ar is not exposed here. Latest desktop Chrome can still lack room-anchored AR; try Chrome on an ARCore/ARKit-capable mobile device for true AR.");
+  if (!status.isSecureContext) warnings.push("Live camera AR requires HTTPS or a secure localhost context.");
   if (!status.cameraAvailable) warnings.push("Camera access is not available. 3D Preview Mode will be used.");
   if (!status.webGLAvailable) warnings.push("WebGL is not available, so 3D preview may be limited.");
   return warnings;
@@ -105,8 +102,7 @@ function buildSupportWarnings(status: Pick<ARSupportStatus, "isSecureContext" | 
 
 function buildSupportMessage(status: Pick<ARSupportStatus, "isSecureContext" | "immersiveARSupported" | "cameraAvailable" | "webGLAvailable">) {
   if (!status.webGLAvailable) return "WebGL is unavailable. The page will keep controls visible, but 3D rendering may not work.";
-  if (status.isSecureContext && status.immersiveARSupported) return "AR is supported on this device.";
-  if (!status.isSecureContext) return "WebXR AR requires HTTPS or secure context.";
-  if (status.cameraAvailable) return "Camera is available. Full WebXR AR is not exposed in this browser/device, so Camera Preview Mode is used.";
+  if (status.cameraAvailable) return "Browser AR is ready. Start AR to use the live mobile camera with interactive 3D math.";
+  if (!status.isSecureContext) return "Live camera AR requires HTTPS or secure context.";
   return "Camera access is not available. 3D Preview Mode will be used.";
 }

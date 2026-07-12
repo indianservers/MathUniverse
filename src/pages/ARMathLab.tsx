@@ -18,20 +18,6 @@ import { applyPerformanceModeToGraphSettings, hasHighResolutionRisk } from "../a
 import { detectARSupport } from "../ar-math-lab/arSupport";
 import type { ARAdvancedToolTab, ARAnimation, ARComparison, ARCrossSectionMode, ARExample, ARGeneratedGeometrySolid, ARGeneratedGraphObject, ARGeometryQuality, ARGraphSettings, ARMathObject, ARMeasurement, ARMeasurementType, ARObjectType, ARRenderMode, ARScaleMode, ARSceneSaveData, ARSceneState, ARSessionState, ARSessionStatus, ARSolidType, ARSupportStatus, ARUnit, EquationClassificationResult } from "../ar-math-lab/types";
 
-type XRSessionLike = {
-  end: () => Promise<void>;
-  requestReferenceSpace?: (type: "local" | "local-floor" | "viewer") => Promise<unknown>;
-  addEventListener?: (type: "end" | "visibilitychange", listener: () => void) => void;
-  removeEventListener?: (type: "end" | "visibilitychange", listener: () => void) => void;
-};
-
-type NavigatorWithXRSession = Navigator & {
-  xr?: {
-    isSessionSupported?: (mode: "immersive-ar") => Promise<boolean>;
-    requestSession?: (mode: "immersive-ar", options?: Record<string, unknown>) => Promise<XRSessionLike>;
-  };
-};
-
 const initialExample = arMathExamples[0];
 const objectTypeLabels: Record<ARObjectType, string> = {
   explicit_surface: "Explicit surface",
@@ -153,10 +139,8 @@ export default function ARMathLab() {
   const [learningStepIndex, setLearningStepIndex] = useState(0);
   const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({});
   const [quizResults, setQuizResults] = useState<Record<string, boolean>>({});
-  const [xrSession, setXrSession] = useState<XRSessionLike | null>(null);
   const mountedRef = useRef(true);
   const cameraStreamRef = useRef<MediaStream | null>(null);
-  const xrSessionRef = useRef<XRSessionLike | null>(null);
 
   const selectedExample = useMemo(() => arMathExamples.find((example) => example.id === selectedExampleId) ?? initialExample, [selectedExampleId]);
   const classification = useMemo(() => classifyEquationInput(input), [input]);
@@ -213,23 +197,17 @@ export default function ARMathLab() {
   useEffect(() => () => {
     mountedRef.current = false;
     releaseCameraStream();
-    xrSessionRef.current?.end().catch(() => undefined);
-    xrSessionRef.current = null;
-    setXrSession(null);
   }, []);
 
   useEffect(() => {
     const stopLiveMedia = () => {
       releaseCameraStream();
-      xrSessionRef.current?.end().catch(() => undefined);
-      xrSessionRef.current = null;
     };
     const handleVisibilityChange = () => {
       if (document.visibilityState === "hidden") {
         setAnimations((items) => items.map((animation) => animation.status === "playing" ? { ...animation, status: "paused" } : animation));
         stopLiveMedia();
         setCameraStream(null);
-        setXrSession(null);
         setSessionState((state) => state.mode === "camera-preview" || state.mode === "ar"
           ? { ...state, mode: "3d-preview", status: "ready", infoMessage: "Camera and AR session closed while the app was hidden." }
           : state);
@@ -312,52 +290,17 @@ export default function ARMathLab() {
   }
 
   async function startARSession() {
-    if (support.isSecureContext && support.webXRAvailable && support.immersiveARSupported) {
-      setSessionState((state) => ({ ...state, mode: "ar", status: "starting", cameraPermission: "prompt", errorMessage: undefined, infoMessage: "Starting WebXR AR session..." }));
-      try {
-        await stopCameraPreview(false);
-        const session = await (navigator as NavigatorWithXRSession).xr?.requestSession?.("immersive-ar", {
-          optionalFeatures: ["local-floor", "bounded-floor", "dom-overlay", "hit-test"],
-          domOverlay: { root: document.body },
-        });
-        if (!session) throw new Error("Browser did not return an XR session.");
-        xrSessionRef.current = session;
-        setXrSession(session);
-        const handleEnd = () => {
-          xrSessionRef.current = null;
-          setXrSession(null);
-          setSessionState((state) => ({ ...state, mode: "3d-preview", status: "ready", infoMessage: "WebXR AR session ended. 3D Preview Mode is active." }));
-        };
-        session.addEventListener?.("end", handleEnd);
-        setSessionState((state) => ({ ...state, mode: "ar", status: "active", cameraPermission: "granted", errorMessage: undefined, infoMessage: "WebXR AR is active. Move the phone to inspect the placed math object in real space." }));
-        emitLearning("mode_changed", selectedObjectId, { mode: "ar", reason: "webxr-immersive-ar" });
-        return;
-      } catch (error) {
-        xrSessionRef.current = null;
-        setXrSession(null);
-        emitLearning("error_occurred", selectedObjectId, { area: "webxr-ar", message: webXRErrorMessage(error) });
-        if (!navigator.mediaDevices?.getUserMedia) {
-          setSessionState((state) => ({ ...state, mode: "3d-preview", status: "error", cameraPermission: "denied", errorMessage: webXRErrorMessage(error), infoMessage: "3D Preview Mode is active." }));
-          return;
-        }
-        await startCameraBackedMode("ar", `WebXR could not start (${webXRErrorMessage(error)}). Live AR camera overlay is active instead.`, "webxr-start-failed");
-        return;
-      }
-    }
-
     if (!navigator.mediaDevices?.getUserMedia) {
-      setSessionState((state) => ({ ...state, mode: "3d-preview", status: "unsupported", cameraPermission: "denied", errorMessage: "This browser does not expose WebXR AR or camera access.", infoMessage: "3D Preview Mode is active." }));
+      setSessionState((state) => ({ ...state, mode: "3d-preview", status: "unsupported", cameraPermission: "denied", errorMessage: "Camera access is not available in this browser.", infoMessage: "3D Preview Mode is active." }));
       return;
     }
-    const reason = !support.isSecureContext ? "secure-context-required" : "immersive-ar-unsupported";
-    await startCameraBackedMode("ar", "Full WebXR spatial anchoring is not exposed here, so the live camera AR overlay is active. Use a secure Android Chrome/WebXR device for true room-anchored AR.", reason);
+    await startCameraBackedMode("ar", "Browser AR is active with the live rear camera. Drag with one finger to place the math object; use two fingers to scale and rotate.", "browser-camera-ar");
   }
 
   async function stopARSession() {
     setSessionState((state) => ({ ...state, status: "stopping", infoMessage: "Ending AR session..." }));
-    await xrSessionRef.current?.end().catch(() => undefined);
-    xrSessionRef.current = null;
-    setXrSession(null);
+    releaseCameraStream();
+    setCameraStream(null);
     setSessionState((state) => ({ ...state, mode: "3d-preview", status: "ready", infoMessage: "AR session ended. 3D Preview Mode is active." }));
     emitLearning("mode_changed", selectedObjectId, { mode: "3d-preview" });
   }
@@ -373,7 +316,6 @@ export default function ARMathLab() {
     }
     setSessionState((state) => ({ ...state, mode, status: "starting", cameraPermission: "prompt", errorMessage: undefined, infoMessage: "Requesting rear camera permission..." }));
     try {
-      await stopARSessionIfActive();
       releaseCameraStream();
       const stream = await requestEnvironmentCameraStream();
       if (!mountedRef.current) {
@@ -401,15 +343,7 @@ export default function ARMathLab() {
     }
   }
 
-  async function stopARSessionIfActive() {
-    if (!xrSessionRef.current) return;
-    await xrSessionRef.current.end().catch(() => undefined);
-    xrSessionRef.current = null;
-    setXrSession(null);
-  }
-
-  function activate3DPreview(message = "3D Preview Mode is active. Use a WebXR-supported mobile browser for real AR.") {
-    stopARSessionIfActive();
+  function activate3DPreview(message = "3D Preview Mode is active. Start AR to use the live mobile camera.") {
     releaseCameraStream();
     setCameraStream(null);
     setSessionState((state) => ({ ...state, mode: "3d-preview", status: "active", errorMessage: undefined, infoMessage: message }));
@@ -752,7 +686,7 @@ export default function ARMathLab() {
               <p className="mt-1 max-w-3xl text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300 sm:text-sm">Pick an example, generate a 3D object, then view it in 3D, camera preview, or AR when supported.</p>
             </div>
             <div className="hidden grid-cols-3 gap-1.5 text-center text-[11px] font-black sm:grid sm:min-w-[360px] sm:gap-2 sm:text-xs">
-              <StatusBadge label="WebXR" value={support.webXRAvailable ? "available" : "fallback"} tone={support.webXRAvailable ? "ready" : "idle"} />
+              <StatusBadge label="Browser AR" value={support.cameraAvailable ? "camera ready" : "fallback"} tone={support.cameraAvailable ? "ready" : "idle"} />
               <StatusBadge label="Camera" value={support.cameraAvailable ? "available" : "fallback"} tone={support.cameraAvailable ? "ready" : "idle"} />
               <StatusBadge label="Mode" value={renderModeLabels[support.recommendedMode]} tone="ready" />
             </div>
@@ -855,7 +789,7 @@ export default function ARMathLab() {
           </aside>
 
           <div className="order-1 min-w-0 space-y-3 xl:order-2">
-            <ARScene mathObject={currentObject} cameraStream={cameraStream} generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} sessionState={sessionState} xrSession={xrSession} onSceneChange={updateScene} />
+            <ARScene mathObject={currentObject} cameraStream={cameraStream} generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} sessionState={sessionState} onSceneChange={updateScene} />
             <MobileQuickActions
               sessionState={sessionState}
               support={support}
@@ -902,7 +836,7 @@ export default function ARMathLab() {
   );
 }
 
-export function ARScene({ mathObject, cameraStream, generatedGraphs, generatedSolids, measurements, onSceneChange, sceneState, selectedGraph, selectedSolid, sessionState, xrSession }: { mathObject: ARMathObject; cameraStream: MediaStream | null; generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; onSceneChange: (delta: Partial<ARSceneState>) => void; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; sessionState: ARSessionState; xrSession: XRSessionLike | null }) {
+export function ARScene({ mathObject, cameraStream, generatedGraphs, generatedSolids, measurements, onSceneChange, sceneState, selectedGraph, selectedSolid, sessionState }: { mathObject: ARMathObject; cameraStream: MediaStream | null; generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; onSceneChange: (delta: Partial<ARSceneState>) => void; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; sessionState: ARSessionState }) {
   const mode = sessionState.mode === "none" ? "3d-preview" : sessionState.mode;
   return (
     <section data-testid="ar-scene" className="relative overflow-hidden rounded-[1.5rem] border border-cyan-200/80 bg-slate-950 text-white shadow-2xl shadow-cyan-950/20 sm:rounded-[2rem]">
@@ -912,8 +846,7 @@ export function ARScene({ mathObject, cameraStream, generatedGraphs, generatedSo
         <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-white/85">{sessionState.status}</span>
       </div>
       {mode === "camera-preview" ? <ARCameraPreview mathObject={mathObject} mode="camera-preview" onSceneChange={onSceneChange} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
-      {mode === "ar" && xrSession ? <ARWebXRView mathObject={mathObject} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} session={xrSession} /> : null}
-      {mode === "ar" && !xrSession ? <ARCameraPreview mathObject={mathObject} mode="ar" onSceneChange={onSceneChange} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
+      {mode === "ar" ? <ARCameraPreview mathObject={mathObject} mode="ar" onSceneChange={onSceneChange} sceneState={sceneState} selectedGraph={selectedGraph} selectedSolid={selectedSolid} stream={cameraStream} /> : null}
       {mode === "3d-preview" ? <ARFallbackViewer generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} /> : null}
     </section>
   );
@@ -1052,69 +985,6 @@ function CameraOverlayPlaceholder({ mathObject, sceneState }: { mathObject: ARMa
   );
 }
 
-export function ARWebXRView({ mathObject, sceneState, selectedGraph, selectedSolid, session }: { mathObject: ARMathObject; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; session: XRSessionLike }) {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return undefined;
-
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, preserveDrawingBuffer: false });
-    renderer.xr.enabled = true;
-    renderer.xr.setReferenceSpaceType("local");
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setSize(canvas.clientWidth || 1, canvas.clientHeight || 1, false);
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera();
-    scene.add(new THREE.HemisphereLight("#e0f2fe", "#0f172a", 1.4));
-    const keyLight = new THREE.DirectionalLight("#ffffff", 1.6);
-    keyLight.position.set(1.5, 3, 2);
-    scene.add(keyLight);
-
-    const anchor = new THREE.Group();
-    anchor.position.set(sceneState.objectPosition[0] * 0.08, Math.max(0.05, sceneState.objectPosition[1] * 0.05), -1.15 + sceneState.objectPosition[2] * 0.08);
-    anchor.rotation.set(sceneState.objectRotation[0], sceneState.objectRotation[1], sceneState.objectRotation[2]);
-    anchor.scale.setScalar(Math.max(0.18, Math.min(1.8, sceneState.objectScale * 0.45)));
-    anchor.add(createWebXRMathObject(mathObject, selectedGraph, selectedSolid));
-    scene.add(anchor);
-
-    const reticle = createWebXRReticle(sceneState.placementReady);
-    reticle.position.set(anchor.position.x, 0.01, anchor.position.z);
-    scene.add(reticle);
-
-    let disposed = false;
-    const bindSession = async () => {
-      try {
-        await renderer.xr.setSession(session as Parameters<typeof renderer.xr.setSession>[0]);
-        if (!disposed) renderer.setAnimationLoop(() => renderer.render(scene, camera));
-      } catch {
-        if (!disposed) renderer.render(scene, camera);
-      }
-    };
-    bindSession();
-
-    const handleResize = () => renderer.setSize(canvas.clientWidth || 1, canvas.clientHeight || 1, false);
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      disposed = true;
-      window.removeEventListener("resize", handleResize);
-      renderer.setAnimationLoop(null);
-      disposeThreeObject(scene);
-      renderer.dispose();
-    };
-  }, [mathObject, sceneState, selectedGraph, selectedSolid, session]);
-
-  return (
-    <div className="relative h-[clamp(300px,52dvh,540px)] min-h-[300px] overflow-hidden bg-black xl:h-[clamp(440px,calc(100dvh-170px),720px)]">
-      <canvas ref={canvasRef} className="h-full w-full" data-testid="webxr-ar-canvas" />
-      <div className="pointer-events-none absolute left-3 top-3 rounded-full border border-emerald-300/50 bg-emerald-400/15 px-3 py-1.5 text-[11px] font-black uppercase tracking-wide text-emerald-100">WebXR immersive AR</div>
-      <p className="pointer-events-none absolute bottom-2 left-2 right-2 rounded-2xl bg-black/55 px-3 py-2 text-[11px] font-bold leading-4 text-white backdrop-blur sm:bottom-3 sm:left-3 sm:right-3 sm:text-xs sm:leading-5">True WebXR AR is active. Move around the placed math object; use the side controls to scale, rotate, label, section, and measure it.</p>
-    </div>
-  );
-}
-
 export function ARFallbackViewer({ generatedGraphs, generatedSolids, measurements, mathObject, sceneState }: { generatedGraphs: ARGeneratedGraphObject[]; generatedSolids: ARGeneratedGeometrySolid[]; measurements: ARMeasurement[]; mathObject: ARMathObject; sceneState: ARSceneState }) {
   return (
     <div data-testid="ar-fallback-viewer" className="p-3 sm:p-4">
@@ -1122,7 +992,7 @@ export function ARFallbackViewer({ generatedGraphs, generatedSolids, measurement
         <PreviewScene generatedGraphs={generatedGraphs} generatedSolids={generatedSolids} measurements={measurements} mathObject={mathObject} sceneState={sceneState} />
         <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} />
       </ThreeSceneWrapper>
-      <p className="mt-3 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm font-semibold leading-6 text-cyan-50">3D Preview Mode is active. Use a WebXR-supported mobile browser for real AR.</p>
+      <p className="mt-3 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm font-semibold leading-6 text-cyan-50">3D Preview Mode is active. Start AR to use the live mobile camera.</p>
     </div>
   );
 }
@@ -1573,11 +1443,11 @@ function MiniLearningCard({ label, text }: { label: string; text: string }) {
 export function ARStatusPanel({ sessionState, support }: { sessionState: ARSessionState; support: ARSupportStatus }) {
   const messages = [sessionState.errorMessage, sessionState.infoMessage, ...support.warnings].filter(Boolean) as string[];
   return (
-    <SectionCard title="AR Status" description="Live session, camera, WebXR, and fallback status." compact>
+    <SectionCard title="AR Status" description="Live camera, browser AR, and fallback status." compact>
       <div data-testid="ar-status-panel" className="grid grid-cols-2 gap-2">
         <StatusBadge label="mode" value={sessionState.mode} tone={sessionState.status === "active" ? "ready" : "idle"} />
         <StatusBadge label="status" value={sessionState.status} tone={sessionState.status === "active" || sessionState.status === "ready" ? "ready" : "idle"} />
-        <StatusBadge label="immersive-ar" value={support.immersiveARSupported ? "yes" : "no"} tone={support.immersiveARSupported ? "ready" : "idle"} />
+        <StatusBadge label="browser AR" value={support.cameraAvailable ? "ready" : "fallback"} tone={support.cameraAvailable ? "ready" : "idle"} />
         <StatusBadge label="camera permission" value={sessionState.cameraPermission} tone={sessionState.cameraPermission === "granted" ? "ready" : "idle"} />
         <StatusBadge label="secure" value={support.isSecureContext ? "yes" : "no"} tone={support.isSecureContext ? "ready" : "idle"} />
         <StatusBadge label="WebGL" value={support.webGLAvailable ? "yes" : "no"} tone={support.webGLAvailable ? "ready" : "idle"} />
@@ -1603,7 +1473,7 @@ function MobileQuickActions({ sessionState, support, onActivate3D, onGenerateGra
       <div className="mb-2 flex items-center justify-between gap-2 px-1">
         <div className="min-w-0">
           <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">Mobile AR controls</p>
-          <p className="truncate text-[11px] font-bold text-slate-500">{renderModeLabels[sessionState.mode === "none" ? "3d-preview" : sessionState.mode]} · {support.immersiveARSupported ? "true AR ready" : "camera/3D fallback"}</p>
+          <p className="truncate text-[11px] font-bold text-slate-500">{renderModeLabels[sessionState.mode === "none" ? "3d-preview" : sessionState.mode]} · {support.cameraAvailable ? "live camera ready" : "3D fallback"}</p>
         </div>
         <span className="shrink-0 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black text-emerald-800">{sessionState.status}</span>
       </div>
@@ -2446,11 +2316,11 @@ function CheckToggle({ checked, label, onChange }: { checked: boolean; label: st
 
 export function ARSessionManager({ sessionState, support }: { sessionState: ARSessionState; support: ARSupportStatus }) {
   return (
-    <SectionCard title="Session Manager" description="State container for WebXR, camera preview, and 3D fallback lifecycle." compact>
+    <SectionCard title="Session Manager" description="State container for mobile camera AR, camera preview, and 3D fallback lifecycle." compact>
       <div className="grid gap-3 md:grid-cols-3">
         <PreviewTile icon={<Camera className="h-5 w-5" />} title="ARSessionManager" text={`${sessionState.mode} / ${sessionState.status}`} />
-        <PreviewTile icon={<Move3D className="h-5 w-5" />} title="ARObjectPlacement" text={sessionState.mode === "ar" && support.immersiveARSupported ? "AR placement guide is active." : "Fallback placement guide is active."} />
-        <PreviewTile icon={<Ruler className="h-5 w-5" />} title="ARMeasurementTool" text="Unit-aware measurement model remains ready for later AR anchoring." />
+        <PreviewTile icon={<Move3D className="h-5 w-5" />} title="ARObjectPlacement" text={sessionState.mode === "ar" && support.cameraAvailable ? "Live camera placement is active." : "Fallback placement guide is active."} />
+        <PreviewTile icon={<Ruler className="h-5 w-5" />} title="ARMeasurementTool" text="Unit-aware measurements stay ready in the live camera overlay." />
       </div>
     </SectionCard>
   );
@@ -2466,8 +2336,8 @@ export function ARHelpPanel() {
     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
       <p className="flex items-center gap-2 text-sm font-black"><HelpCircle className="h-4 w-4 text-violet-500" />GeoGebra-style AR Help</p>
       <ul className="mt-2 space-y-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
-        <li>- AR Mode places math objects in real space when WebXR immersive-ar is supported.</li>
-        <li>- Camera Preview uses the camera as an overlay fallback when true AR is unavailable.</li>
+        <li>- AR Mode uses the phone camera with an interactive 3D math overlay.</li>
+        <li>- Drag with one finger to place the object; use two fingers to scale and rotate.</li>
         <li>- 3D Preview works on every supported desktop browser and is best for practice before using AR.</li>
         <li>- Use Practice Studio to load a task, place the object, walk around, measure, capture evidence, and explain.</li>
         <li>- Use Performance Mode on phones if surfaces or animations feel slow.</li>
@@ -2541,104 +2411,6 @@ function formulaSummaryForOverlay(solid: ARGeneratedGeometrySolid) {
   return solid.calculatedValues.formulas.slice(0, 2).map((line) => line.result).join(" - ");
 }
 
-function createWebXRMathObject(mathObject: ARMathObject, graph?: ARGeneratedGraphObject, solid?: ARGeneratedGeometrySolid) {
-  if (solid) return createWebXRSolid(solid);
-  if (graph) return createWebXRGraph(graph);
-
-  const group = new THREE.Group();
-  const cube = new THREE.Mesh(
-    new THREE.BoxGeometry(0.35, 0.35, 0.35),
-    new THREE.MeshStandardMaterial({ color: "#22d3ee", transparent: true, opacity: 0.58, roughness: 0.35, metalness: 0.08 })
-  );
-  cube.position.y = 0.22;
-  group.add(cube);
-  const ring = new THREE.Mesh(
-    new THREE.TorusGeometry(0.31, 0.012, 12, 64),
-    new THREE.MeshStandardMaterial({ color: "#c084fc", emissive: "#7c3aed", emissiveIntensity: 0.22 })
-  );
-  ring.position.y = 0.22;
-  group.add(ring);
-  group.name = objectTypeLabels[mathObject.type];
-  return group;
-}
-
-function createWebXRGraph(graph: ARGeneratedGraphObject) {
-  const group = new THREE.Group();
-  if (graph.geometry.kind === "curve") {
-    const points = graph.geometry.points.map(([x, y, z]) => new THREE.Vector3(x * 0.22, y * 0.22 + 0.35, z * 0.22));
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const material = new THREE.LineBasicMaterial({ color: "#22d3ee", linewidth: Math.max(1, graph.settings.curveThickness * 40) });
-    group.add(new THREE.Line(geometry, material));
-    points.filter((_, index) => index % Math.max(1, Math.floor(points.length / 18)) === 0).forEach((point) => {
-      const marker = new THREE.Mesh(new THREE.SphereGeometry(0.025, 12, 12), new THREE.MeshStandardMaterial({ color: "#facc15", emissive: "#facc15", emissiveIntensity: 0.35 }));
-      marker.position.copy(point);
-      group.add(marker);
-    });
-    return group;
-  }
-
-  const geometry = new THREE.BufferGeometry();
-  const vertices = graph.geometry.vertices.map((value, index) => index % 3 === 1 ? value * 0.22 + 0.35 : value * 0.22);
-  geometry.setAttribute("position", new THREE.BufferAttribute(new Float32Array(vertices), 3));
-  geometry.setIndex(graph.geometry.indices);
-  geometry.computeVertexNormals();
-  group.add(new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: "#22d3ee", transparent: true, opacity: 0.62, side: THREE.DoubleSide, roughness: 0.42, metalness: 0.08 })));
-  const wire = new THREE.LineSegments(new THREE.WireframeGeometry(geometry), new THREE.LineBasicMaterial({ color: "#e0f2fe", transparent: true, opacity: 0.24 }));
-  group.add(wire);
-  return group;
-}
-
-function createWebXRSolid(solid: ARGeneratedGeometrySolid) {
-  const d = solid.dimensions;
-  const displayScale = calculateDisplayScale(solid);
-  const group = new THREE.Group();
-  const color = solid.solidType === "cone" || solid.solidType === "frustum" || solid.solidType === "pyramid" ? "#fb7185" : solid.solidType === "sphere" || solid.solidType === "hemisphere" || solid.solidType === "torus" ? "#a78bfa" : "#22d3ee";
-  const material = new THREE.MeshStandardMaterial({ color, transparent: solid.settings.transparent, opacity: solid.settings.transparent ? 0.58 : 0.92, roughness: 0.35, metalness: 0.08, side: THREE.DoubleSide });
-  const segments = qualitySegments(solid.settings.quality);
-  let mesh: THREE.Mesh;
-
-  if (solid.solidType === "cube") mesh = new THREE.Mesh(new THREE.BoxGeometry(d.side.meters, d.side.meters, d.side.meters), material);
-  else if (solid.solidType === "cuboid") mesh = new THREE.Mesh(new THREE.BoxGeometry(d.length.meters, d.height.meters, d.width.meters), material);
-  else if (solid.solidType === "cylinder") mesh = new THREE.Mesh(new THREE.CylinderGeometry(d.radius.meters, d.radius.meters, d.height.meters, segments.radial, 1, false), material);
-  else if (solid.solidType === "cone") mesh = new THREE.Mesh(new THREE.ConeGeometry(d.radius.meters, d.height.meters, segments.radial, 1, false), material);
-  else if (solid.solidType === "sphere") mesh = new THREE.Mesh(new THREE.SphereGeometry(d.radius.meters, segments.sphereWidth, segments.sphereHeight), material);
-  else if (solid.solidType === "hemisphere") mesh = new THREE.Mesh(new THREE.SphereGeometry(d.radius.meters, segments.sphereWidth, segments.sphereHeight, 0, Math.PI * 2, 0, Math.PI / 2), material);
-  else if (solid.solidType === "frustum") mesh = new THREE.Mesh(new THREE.CylinderGeometry(d.topRadius.meters, d.bottomRadius.meters, d.height.meters, segments.radial, 1, false), material);
-  else if (solid.solidType === "torus") mesh = new THREE.Mesh(new THREE.TorusGeometry(d.majorRadius.meters, d.minorRadius.meters, segments.torusTube, segments.radial), material);
-  else if (solid.solidType === "pyramid") mesh = new THREE.Mesh(new THREE.ConeGeometry(d.baseSide.meters / Math.sqrt(2), d.height.meters, 4), material);
-  else mesh = new THREE.Mesh(new THREE.CylinderGeometry(d.baseSide.meters, d.baseSide.meters, d.height.meters, Math.max(3, Math.round(d.baseType?.value ?? 6)), 1, false), material);
-
-  mesh.position.y = solid.solidType === "sphere" || solid.solidType === "torus" ? d.radius?.meters ?? 0.18 : (d.height?.meters ?? d.side?.meters ?? 0.3) / 2;
-  if (solid.solidType === "torus") mesh.rotation.x = Math.PI / 2;
-  if (solid.solidType === "pyramid") mesh.rotation.y = Math.PI / 4;
-  group.add(mesh);
-  if (solid.settings.showWireframe) group.add(new THREE.LineSegments(new THREE.WireframeGeometry(mesh.geometry), new THREE.LineBasicMaterial({ color: "#e0f2fe", transparent: true, opacity: 0.35 })));
-  group.scale.setScalar(displayScale);
-  return group;
-}
-
-function createWebXRReticle(placed: boolean) {
-  const group = new THREE.Group();
-  const color = placed ? "#facc15" : "#22d3ee";
-  const ring = new THREE.Mesh(
-    new THREE.RingGeometry(0.16, 0.18, 64).rotateX(-Math.PI / 2),
-    new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.9, side: THREE.DoubleSide })
-  );
-  const crossA = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.004, 0.004), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.72 }));
-  const crossB = new THREE.Mesh(new THREE.BoxGeometry(0.004, 0.004, 0.42), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.72 }));
-  group.add(ring, crossA, crossB);
-  return group;
-}
-
-function disposeThreeObject(object: THREE.Object3D) {
-  object.traverse((child) => {
-    if (!(child instanceof THREE.Mesh || child instanceof THREE.Line || child instanceof THREE.LineSegments)) return;
-    child.geometry?.dispose();
-    const materials = Array.isArray(child.material) ? child.material : [child.material];
-    materials.forEach((material) => material?.dispose());
-  });
-}
-
 async function requestEnvironmentCameraStream() {
   const mediaDevices = navigator.mediaDevices;
   if (!mediaDevices?.getUserMedia) throw new Error("Camera access is not available.");
@@ -2679,15 +2451,6 @@ function cameraErrorMessage(error: unknown) {
   if (name === "NotReadableError") return "Camera is already being used by another application.";
   if (name === "OverconstrainedError") return "The requested environment camera is not available. 3D Preview Mode is available.";
   return "Unable to start camera preview. 3D Preview Mode is available.";
-}
-
-function webXRErrorMessage(error: unknown) {
-  const name = error instanceof DOMException ? error.name : "";
-  if (name === "NotAllowedError") return "WebXR AR permission was denied.";
-  if (name === "NotSupportedError") return "This browser or device does not support immersive WebXR AR.";
-  if (name === "SecurityError") return "WebXR AR requires HTTPS and a secure browser context.";
-  if (name === "InvalidStateError") return "Another XR session is already active.";
-  return error instanceof Error ? error.message : "Unable to start WebXR AR.";
 }
 
 function isLearningEventType(value: string): value is ARLearningEventType {
