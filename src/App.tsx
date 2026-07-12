@@ -1,99 +1,122 @@
-import { Component, lazy, Suspense, useEffect, useState, type ErrorInfo, type ReactNode } from "react";
+import { Component, lazy, Suspense, useEffect, useState, type ComponentType, type ErrorInfo, type ReactNode } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import AppLayout from "./components/layout/AppLayout";
 import SeoMetadata from "./components/seo/SeoMetadata";
 import { formulaVisualizerConfigs } from "./data/formulaVisualizerRoutes";
 
-const About = lazy(() => import("./pages/About"));
-const AdvancedSyllabusLabPage = lazy(() => import("./pages/AdvancedSyllabusLabPage"));
-const Algebra = lazy(() => import("./pages/Algebra"));
-const AlgebraicStructures = lazy(() => import("./pages/AlgebraicStructures"));
-const AIApplications = lazy(() => import("./pages/AIApplications"));
-const ARMathLab = lazy(() => import("./pages/ARMathLab"));
-const BoardSyllabusVisualizer = lazy(() => import("./pages/BoardSyllabusVisualizer"));
-const Calculus = lazy(() => import("./pages/Calculus"));
-const CircleToTriangleVisualization = lazy(() => import("./pages/CircleToTriangleVisualization"));
-const Combinatorics = lazy(() => import("./pages/Combinatorics"));
-const ComplexNumbers = lazy(() => import("./pages/ComplexNumbers"));
-const ConceptDependencyGraph = lazy(() => import("./pages/ConceptDependencyGraph"));
-const ConceptMapPage = lazy(() => import("./concept-map/ConceptMapPage"));
-const DailyChallenge = lazy(() => import("./pages/DailyChallenge"));
-const DerivativesTangentVisualizer = lazy(() => import("./pages/DerivativesTangentVisualizer"));
-const DiscreteWorld = lazy(() => import("./pages/DiscreteWorld"));
-const Documentation = lazy(() => import("./pages/Documentation"));
-const EigenvectorsVisualizerPage = lazy(() => import("./pages/EigenvectorsVisualizerPage"));
-const EngineeringMath = lazy(() => import("./pages/EngineeringMath"));
-const Formulas = lazy(() => import("./pages/Formulas"));
-const FormulaVisualizerPage = lazy(() => import("./pages/FormulaVisualizerPage"));
-const FourierSeriesAnimator = lazy(() => import("./pages/FourierSeriesAnimator"));
-const FourierSeriesVisualizerPage = lazy(() => import("./pages/FourierSeriesVisualizerPage"));
-const FunctionsGraphsVisualizer = lazy(() => import("./pages/FunctionsGraphsVisualizer"));
-const Geometry = lazy(() => import("./pages/Geometry"));
-const GeometryConceptPage = lazy(() => import("./pages/GeometryConceptPage"));
-const GraphComparisonMode = lazy(() => import("./pages/GraphComparisonMode"));
-const GraphTheory = lazy(() => import("./pages/GraphTheory"));
-const Home = lazy(() => import("./pages/Home"));
-const IntegrationAreaVisualizerPage = lazy(() => import("./pages/IntegrationAreaVisualizerPage"));
-const LearningHub = lazy(() => import("./pages/LearningHub"));
-const LinearAlgebra = lazy(() => import("./pages/LinearAlgebra"));
-const LimitsContinuityVisualizer = lazy(() => import("./pages/LimitsContinuityVisualizer"));
-const MathLab = lazy(() => import("./pages/MathLab"));
-const MathLab3DGraphing = lazy(() => import("./pages/MathLab3DGraphing"));
-const MathLabConicSolver = lazy(() => import("./pages/MathLabConicSolver"));
-const MathLabFunctionExplorer = lazy(() => import("./pages/MathLabFunctionExplorer"));
-const MathLabGraphingCalculator = lazy(() => import("./pages/MathLabGraphingCalculator"));
-const MathLabLinearAlgebra = lazy(() => import("./pages/MathLabLinearAlgebra"));
-const MathLabProbability = lazy(() => import("./pages/MathLabProbability"));
-const MathLabSmartQuery = lazy(() => import("./pages/MathLabSmartQuery"));
-const MathLabToolPage = lazy(() => import("./pages/MathLabToolPage"));
-const MathVisualizationPage = lazy(() => import("./pages/MathVisualizationPage"));
-const MathVisualDictionary = lazy(() => import("./pages/MathVisualDictionary"));
-const MathWorkspace = lazy(() => import("./pages/MathWorkspace"));
-const MagicMaths = lazy(() => import("./pages/MagicMaths"));
-const MatrixOperationPage = lazy(() => import("./pages/MatrixOperationPage"));
-const MatrixOperations = lazy(() => import("./pages/MatrixOperations"));
-const MatrixOperationsSandbox = lazy(() => import("./pages/MatrixOperationsSandbox"));
-const MatrixTransformationsVisualizerPage = lazy(() => import("./pages/MatrixTransformationsVisualizerPage"));
-const NCERTConceptPage = lazy(() => import("./pages/NCERTConceptPage"));
-const NCERTDashboardPage = lazy(() => import("./pages/NCERTDashboardPage"));
-const NumberSystems = lazy(() => import("./pages/NumberSystems"));
-const Olympyard = lazy(() => import("./pages/Olympyard"));
-const OlympyardMockTest = lazy(() => import("./pages/OlympyardMockTest"));
-const OlympyardPractice = lazy(() => import("./pages/OlympyardPractice"));
-const ParametricCurveExplorer = lazy(() => import("./pages/ParametricCurveExplorer"));
-const PermutationsCombinationsVisualizer = lazy(() => import("./pages/PermutationsCombinationsVisualizer"));
-const PolarCoordinatesVisualizer = lazy(() => import("./pages/PolarCoordinatesVisualizer"));
-const ProbabilityStatistics = lazy(() => import("./pages/ProbabilityStatistics"));
-const Quiz = lazy(() => import("./pages/Quiz"));
-const ScientificCalculator = lazy(() => import("./pages/ScientificCalculator"));
-const SetTheory = lazy(() => import("./pages/SetTheory"));
-const ShapesExplorer = lazy(() => import("./pages/ShapesExplorer"));
-const Sitemap = lazy(() => import("./pages/Sitemap"));
-const SlopeFieldsVisualizerPage = lazy(() => import("./pages/SlopeFieldsVisualizerPage"));
-const SpacedRepetitionQuiz = lazy(() => import("./pages/SpacedRepetitionQuiz"));
-const StepByStepProblemSolver = lazy(() => import("./pages/StepByStepProblemSolver"));
-const SurfacePlotter3D = lazy(() => import("./pages/SurfacePlotter3D"));
-const Syllabus = lazy(() => import("./pages/Syllabus"));
-const SyllabusVisualPage = lazy(() => import("./pages/SyllabusVisualPage"));
-const Theorems = lazy(() => import("./pages/Theorems"));
-const Trigonometry = lazy(() => import("./pages/Trigonometry"));
-const TrigonometryConceptPage = lazy(() => import("./pages/TrigonometryConceptPage"));
-const TrigFormulaVisualizerPage = lazy(() => import("./trigonometry/pages/TrigFormulaVisualizerPage"));
-const TruthTableGenerator = lazy(() => import("./pages/TruthTableGenerator"));
-const UnitConverter = lazy(() => import("./pages/UnitConverter"));
-const VisualFormulasHub = lazy(() => import("./pages/VisualFormulasHub"));
-const VisualShowcase = lazy(() => import("./pages/VisualShowcase"));
-const VisualProofsHomePage = lazy(() => import("./visual-proofs/pages/VisualProofsHomePage"));
-const VisualProofCategoryPage = lazy(() => import("./visual-proofs/pages/VisualProofCategoryPage"));
-const VisualProofPage = lazy(() => import("./visual-proofs/pages/VisualProofPage"));
-const WorkedExamplesLibrary = lazy(() => import("./pages/WorkedExamplesLibrary"));
-const Workspace3D = lazy(() => import("./pages/Workspace3D"));
-const WorkspaceData = lazy(() => import("./pages/WorkspaceData"));
-const WorkspaceGeometry = lazy(() => import("./pages/WorkspaceGeometry"));
-const WorkspaceGraph = lazy(() => import("./pages/WorkspaceGraph"));
-const WorkspaceTeach = lazy(() => import("./pages/WorkspaceTeach"));
+const routeChunkReloadKey = "math-universe-route-chunk-reload";
 
-type AppErrorBoundaryProps = { children: ReactNode };
+function isRouteChunkLoadError(error: unknown) {
+  const message = error instanceof Error ? error.message : String(error);
+  return /ChunkLoadError|Loading chunk|Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module/i.test(message);
+}
+
+function lazyRoute<Props>(loader: () => Promise<{ default: ComponentType<Props> }>) {
+  return lazy(async () => {
+    try {
+      const module = await loader();
+      if (typeof window !== "undefined") sessionStorage.removeItem(routeChunkReloadKey);
+      return module;
+    } catch (error) {
+      if (typeof window !== "undefined" && isRouteChunkLoadError(error) && sessionStorage.getItem(routeChunkReloadKey) !== "1") {
+        sessionStorage.setItem(routeChunkReloadKey, "1");
+        window.location.reload();
+      }
+      throw error;
+    }
+  });
+}
+
+const About = lazyRoute(() => import("./pages/About"));
+const AdvancedSyllabusLabPage = lazyRoute(() => import("./pages/AdvancedSyllabusLabPage"));
+const Algebra = lazyRoute(() => import("./pages/Algebra"));
+const AlgebraicStructures = lazyRoute(() => import("./pages/AlgebraicStructures"));
+const AIApplications = lazyRoute(() => import("./pages/AIApplications"));
+const ARMathLab = lazyRoute(() => import("./pages/ARMathLab"));
+const BoardSyllabusVisualizer = lazyRoute(() => import("./pages/BoardSyllabusVisualizer"));
+const Calculus = lazyRoute(() => import("./pages/Calculus"));
+const CircleToTriangleVisualization = lazyRoute(() => import("./pages/CircleToTriangleVisualization"));
+const Combinatorics = lazyRoute(() => import("./pages/Combinatorics"));
+const ComplexNumbers = lazyRoute(() => import("./pages/ComplexNumbers"));
+const ConceptDependencyGraph = lazyRoute(() => import("./pages/ConceptDependencyGraph"));
+const ConceptMapPage = lazyRoute(() => import("./concept-map/ConceptMapPage"));
+const DailyChallenge = lazyRoute(() => import("./pages/DailyChallenge"));
+const DerivativesTangentVisualizer = lazyRoute(() => import("./pages/DerivativesTangentVisualizer"));
+const DiscreteWorld = lazyRoute(() => import("./pages/DiscreteWorld"));
+const Documentation = lazyRoute(() => import("./pages/Documentation"));
+const EigenvectorsVisualizerPage = lazyRoute(() => import("./pages/EigenvectorsVisualizerPage"));
+const EngineeringMath = lazyRoute(() => import("./pages/EngineeringMath"));
+const Formulas = lazyRoute(() => import("./pages/Formulas"));
+const FormulaVisualizerPage = lazyRoute(() => import("./pages/FormulaVisualizerPage"));
+const FourierSeriesAnimator = lazyRoute(() => import("./pages/FourierSeriesAnimator"));
+const FourierSeriesVisualizerPage = lazyRoute(() => import("./pages/FourierSeriesVisualizerPage"));
+const FunctionsGraphsVisualizer = lazyRoute(() => import("./pages/FunctionsGraphsVisualizer"));
+const Geometry = lazyRoute(() => import("./pages/Geometry"));
+const GeometryConceptPage = lazyRoute(() => import("./pages/GeometryConceptPage"));
+const GraphComparisonMode = lazyRoute(() => import("./pages/GraphComparisonMode"));
+const GraphTheory = lazyRoute(() => import("./pages/GraphTheory"));
+const Home = lazyRoute(() => import("./pages/Home"));
+const IntegrationAreaVisualizerPage = lazyRoute(() => import("./pages/IntegrationAreaVisualizerPage"));
+const LearningHub = lazyRoute(() => import("./pages/LearningHub"));
+const LinearAlgebra = lazyRoute(() => import("./pages/LinearAlgebra"));
+const LimitsContinuityVisualizer = lazyRoute(() => import("./pages/LimitsContinuityVisualizer"));
+const MathLab = lazyRoute(() => import("./pages/MathLab"));
+const MathLab3DGraphing = lazyRoute(() => import("./pages/MathLab3DGraphing"));
+const MathLabConicSolver = lazyRoute(() => import("./pages/MathLabConicSolver"));
+const MathLabFunctionExplorer = lazyRoute(() => import("./pages/MathLabFunctionExplorer"));
+const MathLabGraphingCalculator = lazyRoute(() => import("./pages/MathLabGraphingCalculator"));
+const MathLabLinearAlgebra = lazyRoute(() => import("./pages/MathLabLinearAlgebra"));
+const MathLabProbability = lazyRoute(() => import("./pages/MathLabProbability"));
+const MathLabSmartQuery = lazyRoute(() => import("./pages/MathLabSmartQuery"));
+const MathLabToolPage = lazyRoute(() => import("./pages/MathLabToolPage"));
+const MathVisualizationPage = lazyRoute(() => import("./pages/MathVisualizationPage"));
+const MathVisualDictionary = lazyRoute(() => import("./pages/MathVisualDictionary"));
+const MathWorkspace = lazyRoute(() => import("./pages/MathWorkspace"));
+const MagicMaths = lazyRoute(() => import("./pages/MagicMaths"));
+const MatrixOperationPage = lazyRoute(() => import("./pages/MatrixOperationPage"));
+const MatrixOperations = lazyRoute(() => import("./pages/MatrixOperations"));
+const MatrixOperationsSandbox = lazyRoute(() => import("./pages/MatrixOperationsSandbox"));
+const MatrixTransformationsVisualizerPage = lazyRoute(() => import("./pages/MatrixTransformationsVisualizerPage"));
+const NCERTConceptPage = lazyRoute(() => import("./pages/NCERTConceptPage"));
+const NCERTDashboardPage = lazyRoute(() => import("./pages/NCERTDashboardPage"));
+const NumberSystems = lazyRoute(() => import("./pages/NumberSystems"));
+const Olympyard = lazyRoute(() => import("./pages/Olympyard"));
+const OlympyardMockTest = lazyRoute(() => import("./pages/OlympyardMockTest"));
+const OlympyardPractice = lazyRoute(() => import("./pages/OlympyardPractice"));
+const ParametricCurveExplorer = lazyRoute(() => import("./pages/ParametricCurveExplorer"));
+const PermutationsCombinationsVisualizer = lazyRoute(() => import("./pages/PermutationsCombinationsVisualizer"));
+const PolarCoordinatesVisualizer = lazyRoute(() => import("./pages/PolarCoordinatesVisualizer"));
+const ProbabilityStatistics = lazyRoute(() => import("./pages/ProbabilityStatistics"));
+const Quiz = lazyRoute(() => import("./pages/Quiz"));
+const ScientificCalculator = lazyRoute(() => import("./pages/ScientificCalculator"));
+const SetTheory = lazyRoute(() => import("./pages/SetTheory"));
+const ShapesExplorer = lazyRoute(() => import("./pages/ShapesExplorer"));
+const Sitemap = lazyRoute(() => import("./pages/Sitemap"));
+const SlopeFieldsVisualizerPage = lazyRoute(() => import("./pages/SlopeFieldsVisualizerPage"));
+const SpacedRepetitionQuiz = lazyRoute(() => import("./pages/SpacedRepetitionQuiz"));
+const StepByStepProblemSolver = lazyRoute(() => import("./pages/StepByStepProblemSolver"));
+const SurfacePlotter3D = lazyRoute(() => import("./pages/SurfacePlotter3D"));
+const Syllabus = lazyRoute(() => import("./pages/Syllabus"));
+const SyllabusVisualPage = lazyRoute(() => import("./pages/SyllabusVisualPage"));
+const Theorems = lazyRoute(() => import("./pages/Theorems"));
+const Trigonometry = lazyRoute(() => import("./pages/Trigonometry"));
+const TrigonometryConceptPage = lazyRoute(() => import("./pages/TrigonometryConceptPage"));
+const TrigFormulaVisualizerPage = lazyRoute(() => import("./trigonometry/pages/TrigFormulaVisualizerPage"));
+const TruthTableGenerator = lazyRoute(() => import("./pages/TruthTableGenerator"));
+const UnitConverter = lazyRoute(() => import("./pages/UnitConverter"));
+const VisualFormulasHub = lazyRoute(() => import("./pages/VisualFormulasHub"));
+const VisualShowcase = lazyRoute(() => import("./pages/VisualShowcase"));
+const VisualProofsHomePage = lazyRoute(() => import("./visual-proofs/pages/VisualProofsHomePage"));
+const VisualProofCategoryPage = lazyRoute(() => import("./visual-proofs/pages/VisualProofCategoryPage"));
+const VisualProofPage = lazyRoute(() => import("./visual-proofs/pages/VisualProofPage"));
+const WorkedExamplesLibrary = lazyRoute(() => import("./pages/WorkedExamplesLibrary"));
+const Workspace3D = lazyRoute(() => import("./pages/Workspace3D"));
+const WorkspaceData = lazyRoute(() => import("./pages/WorkspaceData"));
+const WorkspaceGeometry = lazyRoute(() => import("./pages/WorkspaceGeometry"));
+const WorkspaceGraph = lazyRoute(() => import("./pages/WorkspaceGraph"));
+const WorkspaceTeach = lazyRoute(() => import("./pages/WorkspaceTeach"));
+
+type AppErrorBoundaryProps = { children: ReactNode; resetKey: string };
 type AppErrorBoundaryState = { hasError: boolean };
 
 class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundaryState> {
@@ -101,6 +124,12 @@ class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundary
 
   static getDerivedStateFromError(): AppErrorBoundaryState {
     return { hasError: true };
+  }
+
+  componentDidUpdate(previousProps: AppErrorBoundaryProps) {
+    if (this.state.hasError && previousProps.resetKey !== this.props.resetKey) {
+      this.setState({ hasError: false });
+    }
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -130,8 +159,10 @@ class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundary
 }
 
 export default function App() {
+  const location = useLocation();
+
   return (
-    <AppErrorBoundary>
+    <AppErrorBoundary resetKey={location.pathname}>
       <SeoMetadata />
       <RouteProgressBar />
       <Suspense fallback={<RouteFallback />}>

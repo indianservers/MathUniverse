@@ -152,6 +152,8 @@ export default function ARMathLab() {
   const [learningStepIndex, setLearningStepIndex] = useState(0);
   const [quizAnswers, setQuizAnswers] = useState<Record<string, string>>({});
   const [quizResults, setQuizResults] = useState<Record<string, boolean>>({});
+  const mountedRef = useRef(true);
+  const cameraStreamRef = useRef<MediaStream | null>(null);
   const xrSessionRef = useRef<XRSessionLike | null>(null);
 
   const selectedExample = useMemo(() => arMathExamples.find((example) => example.id === selectedExampleId) ?? initialExample, [selectedExampleId]);
@@ -207,19 +209,37 @@ export default function ARMathLab() {
   }, []);
 
   useEffect(() => () => {
-    stopCameraTracks(cameraStream);
+    mountedRef.current = false;
+    releaseCameraStream();
     xrSessionRef.current?.end().catch(() => undefined);
-  }, [cameraStream]);
+    xrSessionRef.current = null;
+  }, []);
 
   useEffect(() => {
+    const stopLiveMedia = () => {
+      releaseCameraStream();
+      xrSessionRef.current?.end().catch(() => undefined);
+      xrSessionRef.current = null;
+    };
     const handleVisibilityChange = () => {
       if (document.visibilityState === "hidden") {
         setAnimations((items) => items.map((animation) => animation.status === "playing" ? { ...animation, status: "paused" } : animation));
-        setSceneMessage("Animations paused while this tab is hidden.");
+        stopLiveMedia();
+        setCameraStream(null);
+        setSessionState((state) => state.mode === "camera-preview" || state.mode === "ar"
+          ? { ...state, mode: "3d-preview", status: "ready", infoMessage: "Camera and AR session closed while the app was hidden." }
+          : state);
+        setSceneMessage("Animations paused and live camera resources closed while this tab is hidden.");
       }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", stopLiveMedia);
+    window.addEventListener("beforeunload", stopLiveMedia);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", stopLiveMedia);
+      window.removeEventListener("beforeunload", stopLiveMedia);
+    };
   }, []);
 
   useEffect(() => {
@@ -337,13 +357,18 @@ export default function ARMathLab() {
     setSessionState((state) => ({ ...state, mode: "camera-preview", status: "starting", cameraPermission: "prompt", errorMessage: undefined, infoMessage: "Requesting camera permission..." }));
     try {
       await stopARSessionIfActive();
-      stopCameraTracks(cameraStream);
+      releaseCameraStream();
       const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } }, audio: false });
+      if (!mountedRef.current) {
+        stopCameraTracks(stream);
+        return;
+      }
+      cameraStreamRef.current = stream;
       setCameraStream(stream);
       setSessionState((state) => ({ ...state, mode: "camera-preview", status: "active", cameraPermission: "granted", errorMessage: undefined, infoMessage: "Camera Preview Mode is active. Desktop Chrome can show camera overlays, but immersive room-anchored AR usually requires an AR-capable mobile browser and device." }));
       emitLearning("mode_changed", selectedObjectId, { mode: "camera-preview" });
     } catch (error) {
-      stopCameraTracks(cameraStream);
+      releaseCameraStream();
       setCameraStream(null);
       setSessionState((state) => ({ ...state, mode: "3d-preview", status: "error", cameraPermission: "denied", errorMessage: cameraErrorMessage(error), infoMessage: "3D Preview Mode is active." }));
       emitLearning("error_occurred", selectedObjectId, { area: "camera-preview", message: cameraErrorMessage(error) });
@@ -351,7 +376,7 @@ export default function ARMathLab() {
   }
 
   async function stopCameraPreview(showMessage = true) {
-    stopCameraTracks(cameraStream);
+    releaseCameraStream();
     setCameraStream(null);
     if (showMessage) {
       setSessionState((state) => ({ ...state, mode: "3d-preview", status: "ready", infoMessage: "Camera preview ended. 3D Preview Mode is active." }));
@@ -367,10 +392,15 @@ export default function ARMathLab() {
 
   function activate3DPreview(message = "3D Preview Mode is active. Use a WebXR-supported mobile browser for real AR.") {
     stopARSessionIfActive();
-    stopCameraTracks(cameraStream);
+    releaseCameraStream();
     setCameraStream(null);
     setSessionState((state) => ({ ...state, mode: "3d-preview", status: "active", errorMessage: undefined, infoMessage: message }));
     emitLearning("mode_changed", selectedObjectId, { mode: "3d-preview" });
+  }
+
+  function releaseCameraStream() {
+    stopCameraTracks(cameraStreamRef.current);
+    cameraStreamRef.current = null;
   }
 
   function exitActiveMode() {
@@ -873,8 +903,13 @@ export function ARScene({ mathObject, cameraStream, generatedGraphs, generatedSo
 export function ARCameraPreview({ mathObject, sceneState, selectedGraph, selectedSolid, stream }: { mathObject: ARMathObject; sceneState: ARSceneState; selectedGraph?: ARGeneratedGraphObject; selectedSolid?: ARGeneratedGeometrySolid; stream: MediaStream | null }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   useEffect(() => {
-    if (!videoRef.current) return;
-    videoRef.current.srcObject = stream;
+    const video = videoRef.current;
+    if (!video) return undefined;
+    video.srcObject = stream;
+    return () => {
+      video.pause();
+      video.srcObject = null;
+    };
   }, [stream]);
 
   return (
