@@ -41,7 +41,7 @@ export async function detectARSupport(environment: ARSupportEnvironment = defaul
     message,
     hasNavigatorXR: webXRAvailable,
     secureContext: isSecureContext,
-    notes: [...warnings, message, `Recommended mode: ${recommendedMode}.`],
+    notes: [...buildSupportNotes({ webXRAvailable }), ...warnings, message, `Recommended mode: ${recommendedMode}.`],
   };
 }
 
@@ -88,7 +88,8 @@ function detectWebGL(createCanvas: ARSupportEnvironment["createCanvas"]) {
 }
 
 function recommendMode(status: Pick<ARSupportStatus, "isSecureContext" | "immersiveARSupported" | "cameraAvailable" | "webGLAvailable">): ARRenderMode {
-  if (status.cameraAvailable) return "ar";
+  if (status.immersiveARSupported && status.cameraAvailable) return "ar";
+  if (status.cameraAvailable) return "camera-preview";
   return "3d-preview";
 }
 
@@ -98,6 +99,10 @@ function buildSupportWarnings(status: Pick<ARSupportStatus, "isSecureContext" | 
   if (!status.cameraAvailable) warnings.push("Camera access is not available. 3D Preview Mode will be used.");
   if (!status.webGLAvailable) warnings.push("WebGL is not available, so 3D preview may be limited.");
   return warnings;
+}
+
+function buildSupportNotes(status: Pick<ARSupportStatus, "webXRAvailable">) {
+  return status.webXRAvailable ? [] : ["navigator.xr is not available."];
 }
 
 function buildSupportMessage(status: Pick<ARSupportStatus, "isSecureContext" | "immersiveARSupported" | "cameraAvailable" | "webGLAvailable">) {

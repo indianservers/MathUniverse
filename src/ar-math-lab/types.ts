@@ -111,6 +111,10 @@ export type ARSceneState = {
   objectScale: number;
   objectRotation: [number, number, number];
   objectPosition: [number, number, number];
+  objectColor: string;
+  objectOpacity: number;
+  objectContrast: number;
+  phoneOrbitEnabled: boolean;
 };
 
 export type ARMathObject = {
