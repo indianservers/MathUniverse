@@ -46,11 +46,11 @@ const shapes: ShapeDefinition[] = [
   { id: "semicircle", name: "Semicircle", kind: "2d", category: "2D Curved", formula: "Arc = pi r, A = 1/2 pi r^2", description: "Half of a circle split by a diameter.", dimensions: ["radius"], use: "Arches, windows, half-pipe profiles." },
   { id: "sector", name: "Sector", kind: "2d", category: "2D Curved", formula: "A = theta/360 pi r^2, L = theta/360 2 pi r", description: "A slice of a circle controlled by central angle.", dimensions: ["radius", "angle"], use: "Pie charts, clock angles, circular tracks." },
   { id: "ellipse", name: "Ellipse", kind: "2d", category: "2D Curved", formula: "A = pi ab", description: "A stretched circle with semi-major and semi-minor axes.", dimensions: ["semi-major axis a", "semi-minor axis b"], use: "Orbits, lenses, design curves." },
-  { id: "triangle", name: "Triangle", kind: "2d", category: "2D Basic", formula: "A = 1/2 bh, P = a + b + c", description: "A three-sided polygon, the base unit of many meshes.", dimensions: ["base", "height"], use: "Trusses, roofs, triangulation, game meshes." },
+  { id: "triangle", name: "General Triangle", kind: "2d", category: "2D Basic", formula: "A = 1/2 bh, P = a + b + c", description: "A three-sided polygon. No equal sides or right angle are assumed.", dimensions: ["base", "perpendicular height"], use: "Trusses, roofs, triangulation, game meshes." },
   { id: "right-triangle", name: "Right Triangle", kind: "2d", category: "2D Basic", formula: "A = 1/2 ab, c = sqrt(a^2 + b^2)", description: "A triangle with one 90 degree angle.", dimensions: ["base", "height"], use: "Slopes, ramps, navigation, trigonometry." },
   { id: "equilateral-triangle", name: "Equilateral Triangle", kind: "2d", category: "2D Basic", formula: "A = sqrt(3)/4 s^2, P = 3s", description: "A triangle with three equal sides and three 60 degree angles.", dimensions: ["side"], use: "Trusses, tessellations, warning signs." },
   { id: "isosceles-triangle", name: "Isosceles Triangle", kind: "2d", category: "2D Basic", formula: "A = 1/2 bh, P = b + 2s", description: "A triangle with two equal sides and a line of symmetry.", dimensions: ["base", "height"], use: "Roofs, bridge frames, symmetry." },
-  { id: "scalene-triangle", name: "Scalene Triangle", kind: "2d", category: "2D Basic", formula: "A = 1/2 bh, P = a + b + c", description: "A triangle whose three side lengths are different.", dimensions: ["base", "height"], use: "Surveying, triangulation, irregular structures." },
+  { id: "scalene-triangle", name: "Scalene Triangle", kind: "2d", category: "2D Basic", formula: "A = 1/2 bh, P = a + b + c", description: "A triangle with three different side lengths and three different angles.", dimensions: ["base", "perpendicular height", "apex offset"], use: "Surveying, triangulation, irregular structures." },
   { id: "square", name: "Square", kind: "2d", category: "2D Basic", formula: "A = s^2, P = 4s, d = s sqrt(2)", description: "Four equal sides and four right angles.", dimensions: ["side"], use: "Tiles, grids, pixels, floor plans." },
   { id: "rectangle", name: "Rectangle", kind: "2d", category: "2D Basic", formula: "A = lw, P = 2(l+w)", description: "Opposite sides equal, all angles right angles.", dimensions: ["length", "width"], use: "Screens, rooms, pages, dashboards." },
   { id: "rounded-rectangle", name: "Rounded Rectangle", kind: "2d", category: "2D Basic", formula: "A = lw - (4-pi)r^2", description: "A rectangle whose four corners are replaced by quarter-circle arcs.", dimensions: ["length", "width", "corner radius"], use: "Screens, cards, signs, interface design." },
@@ -126,12 +126,24 @@ export default function ShapesExplorer() {
   useEffect(() => markTopicVisited("shapes"), [markTopicVisited]);
 
   useEffect(() => {
-    const shapeParam = new URLSearchParams(window.location.search).get("shape");
+    const params = new URLSearchParams(window.location.search);
+    const shapeParam = params.get("shape");
     const initialShape = shapes.find((shape) => shape.id === shapeParam);
     if (initialShape) {
       setSelectedId(initialShape.id);
       setViewTab(initialShape.kind);
     }
+    const readNumber = (...keys: string[]) => {
+      const raw = keys.map((key) => params.get(key)).find((value) => value !== null);
+      const value = raw === undefined || raw === null ? Number.NaN : Number(raw);
+      return Number.isFinite(value) ? value : undefined;
+    };
+    const first = readNumber("v_base", "v_side", "v_radius", "v_length", "v_outer_radius_r");
+    const second = readNumber("v_perpendicular_height", "v_height", "v_width", "v_inner_radius_r");
+    const third = readNumber("v_apex_offset", "v_third_dimension");
+    if (first !== undefined) setA(first);
+    if (second !== undefined) setB(second);
+    if (third !== undefined) setC(third);
   }, []);
 
   const selected = shapes.find((shape) => shape.id === selectedId) ?? shapes[0];
@@ -152,7 +164,9 @@ export default function ShapesExplorer() {
     setViewRotation(0);
     setViewTab(shape.kind);
     setViewResetNonce((value) => value + 1);
-    window.history.replaceState(null, "", `${window.location.pathname}?shape=${shape.id}`);
+    const params = new URLSearchParams(window.location.search);
+    params.set("shape", shape.id);
+    window.history.replaceState(null, "", `${window.location.pathname}?${params.toString()}`);
     markTopicInteracted("shapes");
   };
   const toggleCategory = (item: ShapeCategory) => {
@@ -291,6 +305,7 @@ export default function ShapesExplorer() {
               <InfoTile label="Used in" value={selected.use} />
             </div>
             <p className="rounded-xl bg-cyan-50 p-3 text-xs leading-5 text-slate-600 dark:bg-cyan-300/10 dark:text-slate-300">{formulaExplanation(selected.id, a, b, c, sides, angle)}</p>
+            <ShapeLearningGuide shape={selected} />
           </aside>
         </div>
       </SectionCard>
@@ -1023,8 +1038,10 @@ function getShapeFormulaEntries(id: ShapeId): ShapeFormulaEntry[] {
     ],
     "scalene-triangle": [
       { title: "Area", formula: "A=1/2 bh", note: "The same base-height rule used by every triangle.", valueLabel: "Area" },
+      { title: "Left side", formula: "s_1=sqrt(x^2+h^2)", note: "The apex offset x and height form a right triangle.", valueLabel: "Left side" },
+      { title: "Right side", formula: "s_2=sqrt((b-x)^2+h^2)", note: "The remaining base length is b-x.", valueLabel: "Right side" },
       { title: "Heron's formula", formula: "A=sqrt(p(p-a)(p-b)(p-c))", note: "Use when all three unequal sides are known." },
-      { title: "Perimeter", formula: "P=a+b+c", note: "Add the three unequal sides." },
+      { title: "Perimeter", formula: "P=b+s_1+s_2", note: "Add the three unequal sides.", valueLabel: "Perimeter" },
     ],
     square: [
       { title: "Area", formula: "A=s^2", note: "Side squared.", valueLabel: "Area" },
@@ -1196,7 +1213,13 @@ function formulaExplanation(id: ShapeId, a: number, b: number, c: number, sides:
   if (id === "semicircle") return `The diagram shows half a disk. Radius r=${roundTo(a, 2)} controls both the curved arc pi*r and the half-area.`;
   if (id === "sector") return `The amber slice is theta=${roundTo(angle, 0)} degrees out of 360. Arc length and area use the same fraction theta/360.`;
   if (id === "ellipse") return `The horizontal semi-axis a=${roundTo(a, 2)} and vertical semi-axis b=${roundTo(b, 2)} multiply in A=pi*a*b.`;
-  if (id.includes("triangle")) return `The base b=${roundTo(a, 2)} and perpendicular height h=${roundTo(id === "equilateral-triangle" ? Math.sqrt(3) * a / 2 : b, 2)} form the same universal rule for every triangle: A=1/2*b*h.`;
+  if (id === "scalene-triangle") {
+    const offset = Math.min(Math.max(c, 0.1), Math.max(0.1, a - 0.1));
+    return `The apex is ${roundTo(offset, 2)} units from the left end of the base. This makes the three sides different, while the dashed h=${roundTo(b, 2)} line stays perpendicular to base b=${roundTo(a, 2)} for A=1/2*b*h.`;
+  }
+  if (id === "equilateral-triangle") return `All three sides are s=${roundTo(a, 2)}. The altitude splits it into two congruent 30-60-90 triangles, so h=sqrt(3)*s/2=${roundTo(Math.sqrt(3) * a / 2, 2)}.`;
+  if (id === "isosceles-triangle") return `The altitude bisects base b=${roundTo(a, 2)}, creating two matching right triangles. Each equal side is sqrt(h^2+(b/2)^2).`;
+  if (id.includes("triangle")) return `The base b=${roundTo(a, 2)} and its perpendicular height h=${roundTo(b, 2)} give A=1/2*b*h. A height must meet the base at 90°.`;
   if (id === "square") return `Every side is s=${roundTo(a, 2)}. Area counts s by s square units, while perimeter walks four equal sides.`;
   if (id === "rectangle") return `Length l=${roundTo(a, 2)} and width w=${roundTo(b, 2)} define the rectangle, so A=l*w and P=2(l+w).`;
   if (id === "rounded-rectangle") return `Length l=${roundTo(a, 2)}, width w=${roundTo(b, 2)}, and corner radius r=${roundTo(Math.min(c, a / 2, b / 2), 2)} define the rounded rectangle.`;
@@ -1229,6 +1252,7 @@ function symbolSummary(id: ShapeId, a: number, b: number, c: number, sides: numb
   if (id === "rectangle") return `l=${roundTo(a, 2)}, w=${roundTo(b, 2)}`;
   if (id === "cross") return `a=${roundTo(a, 2)}, w=${roundTo(b, 2)}`;
   if (id === "rounded-rectangle") return `l=${roundTo(a, 2)}, w=${roundTo(b, 2)}, r=${roundTo(Math.min(c, a / 2, b / 2), 2)}`;
+  if (id === "scalene-triangle") return `b=${roundTo(a, 2)}, h=${roundTo(b, 2)}, x=${roundTo(Math.min(Math.max(c, 0.1), Math.max(0.1, a - 0.1)), 2)}`;
   if (id.includes("triangle") || id === "parallelogram") return id === "equilateral-triangle" ? `s=${roundTo(a, 2)}` : `b=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
   if (id === "square" || id === "cube" || isFixedRegularPolygon(id)) return `s=${roundTo(a, 2)}`;
   if (id === "rhombus" || id === "kite") return `d1=${roundTo(a, 2)}, d2=${roundTo(b, 2)}`;
@@ -1302,6 +1326,54 @@ function IconButton({ label, onClick, disabled, children }: { label: string; onC
       {children}
     </button>
   );
+}
+
+function ShapeLearningGuide({ shape }: { shape: ShapeDefinition }) {
+  const facts = shapeIdentityFacts(shape.id);
+  return (
+    <section className="rounded-xl border border-amber-200 bg-amber-50/90 p-3 dark:border-amber-300/20 dark:bg-amber-300/10" aria-label={`How to recognize ${shape.name}`}>
+      <p className="text-xs font-black uppercase tracking-wide text-amber-800 dark:text-amber-200">How to recognize it</p>
+      <ul className="mt-2 space-y-1.5 text-xs leading-5 text-slate-700 dark:text-slate-200">
+        {facts.map((fact) => <li key={fact} className="flex gap-2"><span aria-hidden="true" className="font-black text-amber-600">✓</span><span>{fact}</span></li>)}
+      </ul>
+    </section>
+  );
+}
+
+function shapeIdentityFacts(id: ShapeId): string[] {
+  const triangleFacts: Partial<Record<ShapeId, string[]>> = {
+    triangle: ["Exactly 3 straight sides and 3 angles.", "No side equality or special angle is assumed."],
+    "right-triangle": ["One angle is exactly 90° (look for the small square).", "The side opposite 90° is the hypotenuse and is longest."],
+    "equilateral-triangle": ["All 3 sides are equal (matching tick marks).", "All 3 angles are 60°; it has 3 lines of symmetry."],
+    "isosceles-triangle": ["Exactly 2 sides are equal (matching tick marks).", "The 2 base angles are equal; the central altitude is also a symmetry line."],
+    "scalene-triangle": ["All 3 sides have different lengths.", "All 3 angles are different; there is no line of symmetry."],
+  };
+  if (triangleFacts[id]) return triangleFacts[id]!;
+  if (["circle", "semicircle", "sector", "quadrant", "segment", "annulus", "crescent", "ellipse"].includes(id)) {
+    return ["Its boundary includes a curved circular or elliptical part.", "Use radii, axes, or a central angle—not a side length—to size it."];
+  }
+  if (isFixedRegularPolygon(id) || id === "regular-polygon") {
+    return ["It is a closed polygon made only from straight sides.", "In this regular model, every side and every interior angle is equal."];
+  }
+  if (["square", "rectangle", "rounded-rectangle", "parallelogram", "rhombus", "trapezium", "kite", "cross", "star"].includes(id)) {
+    return [shapeDescriptionProperty(id), "Area measures the inside; perimeter measures the complete boundary."];
+  }
+  if (id.includes("prism")) return ["It has 2 congruent, parallel polygon bases.", "Its side faces connect matching edges; volume = base area × length."];
+  if (id.includes("pyramid")) return ["It has 1 polygon base and triangular faces meeting at one apex.", "Its perpendicular height meets the base at 90°; volume = ⅓ × base area × height."];
+  if (["tetrahedron", "octahedron", "dodecahedron", "icosahedron", "cube", "cuboid"].includes(id)) {
+    return ["It is a 3D solid with flat faces, edges, and vertices.", "Surface area covers the outside; volume measures the space inside."];
+  }
+  return ["It is a 3D solid with a curved surface.", "The diagram distinguishes radius from perpendicular height or tube radius."];
+}
+
+function shapeDescriptionProperty(id: ShapeId) {
+  const properties: Partial<Record<ShapeId, string>> = {
+    square: "4 equal sides and 4 right angles.", rectangle: "Opposite sides are equal and all 4 angles are right angles.",
+    "rounded-rectangle": "A rectangle with 4 quarter-circle corners.", parallelogram: "Both pairs of opposite sides are parallel and equal.",
+    rhombus: "All 4 sides are equal; opposite angles are equal.", trapezium: "Exactly one pair of opposite sides is parallel in this model.",
+    kite: "Two pairs of adjacent sides are equal.", cross: "Two equal-width rectangles cross at right angles.", star: "5 outer points alternate with 5 inner corners.",
+  };
+  return properties[id] ?? "Compare its sides, angles, parallel lines, and symmetry.";
 }
 
 const futuristicPalettes = [
@@ -1408,7 +1480,7 @@ const shapeControlLabels: Record<ShapeId, readonly [string, string?, string?]> =
   "right-triangle": ["Leg a (base)", "Leg b (height)"],
   "equilateral-triangle": ["Side"],
   "isosceles-triangle": ["Base", "Perpendicular height"],
-  "scalene-triangle": ["Base", "Perpendicular height"],
+  "scalene-triangle": ["Base", "Perpendicular height", "Apex offset from left"],
   square: ["Side"],
   rectangle: ["Length", "Width"],
   "rounded-rectangle": ["Length", "Width", "Corner radius"],
@@ -1485,6 +1557,7 @@ function secondControlRange(id: ShapeId, firstValue: number) {
 
 function thirdControlRange(id: ShapeId, firstValue: number, secondValue: number) {
   if (id === "rounded-rectangle") return { min: 0.1, max: Math.max(0.1, roundTo(Math.min(firstValue, secondValue) / 2, 1)) };
+  if (id === "scalene-triangle") return { min: 0.1, max: Math.max(0.2, roundTo(firstValue - 0.1, 1)) };
   return { min: 0.5, max: 12 };
 }
 
@@ -1507,7 +1580,12 @@ function getMetrics(id: ShapeId, a: number, b: number, c: number, n: number, ang
     case "right-triangle": return { Area: a * b / 2, Hypotenuse: Math.hypot(a, b), Perimeter: a + b + Math.hypot(a, b) };
     case "equilateral-triangle": return { Area: Math.sqrt(3) * a * a / 4, Perimeter: 3 * a, Height: Math.sqrt(3) * a / 2 };
     case "isosceles-triangle": { const side = Math.hypot(a / 2, b); return { Area: a * b / 2, "Equal side": side, Perimeter: a + 2 * side }; }
-    case "scalene-triangle": return { Area: a * b / 2, "Shown base": a, "Shown height": b };
+    case "scalene-triangle": {
+      const offset = Math.min(Math.max(c, 0.1), Math.max(0.1, a - 0.1));
+      const leftSide = Math.hypot(offset, b);
+      const rightSide = Math.hypot(a - offset, b);
+      return { Area: a * b / 2, "Left side": leftSide, "Right side": rightSide, Perimeter: a + leftSide + rightSide };
+    }
     case "square": return { Area: a * a, Perimeter: 4 * a, Diagonal: a * Math.SQRT2 };
     case "rectangle": return { Area: a * b, Perimeter: 2 * (a + b), Diagonal: Math.hypot(a, b) };
     case "rounded-rectangle": { const r = Math.min(c, a / 2, b / 2); return { Area: a * b - (4 - Math.PI) * r * r, Perimeter: 2 * (a + b - 4 * r) + 2 * Math.PI * r, "Corner radius": r }; }
@@ -1586,6 +1664,11 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation, fillMode, colo
     const r = index % 2 === 0 ? radius : Math.max(24, Math.min(b * scale, radius * 0.62));
     return `${cx + r * Math.cos(theta)},${cy + r * Math.sin(theta)}`;
   }).join(" ");
+  const scaleneOffset = Math.min(Math.max(c, 0.1), Math.max(0.1, a - 0.1));
+  const triangleApexX = shape === "scalene-triangle" ? cx - w / 2 + (scaleneOffset / a) * w : shape === "triangle" ? cx + w * 0.18 : cx;
+  const equilateralRise = Math.min(w * Math.sqrt(3) / 6, 75);
+  const triangleBaseY = shape === "equilateral-triangle" ? cy + equilateralRise : cy + h / 2;
+  const triangleTopY = shape === "equilateral-triangle" ? cy - 2 * equilateralRise : cy - h / 2;
 
   return (
     <svg viewBox="0 0 480 360" className="h-[300px] w-full sm:h-[360px]">
@@ -1605,11 +1688,11 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation, fillMode, colo
         {shape === "ellipse" && <ellipse cx={cx} cy={cy} rx={Math.min(a * scale, 170)} ry={Math.min(b * scale, 120)} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "annulus" && <path d={`${ringPath(cx, cy, radius, Math.max(18, Math.min(b * scale, radius - 12)))}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" fillRule="evenodd" />}
         {shape === "crescent" && <path d={`M ${cx - radius * 0.35} ${cy - radius} A ${radius} ${radius} 0 1 0 ${cx - radius * 0.35} ${cy + radius} A ${Math.max(20, b * scale)} ${Math.max(20, b * scale)} 0 1 1 ${cx - radius * 0.35} ${cy - radius} Z`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
-        {shape === "triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${cx},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${triangleApexX},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "right-triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${cx - w / 2},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
-        {shape === "equilateral-triangle" && <polygon points={`${cx - w / 2},${cy + Math.min(w * Math.sqrt(3) / 6, 75)} ${cx + w / 2},${cy + Math.min(w * Math.sqrt(3) / 6, 75)} ${cx},${cy - Math.min(w * Math.sqrt(3) / 3, 150)}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "equilateral-triangle" && <polygon points={`${cx - w / 2},${triangleBaseY} ${cx + w / 2},${triangleBaseY} ${cx},${triangleTopY}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "isosceles-triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${cx},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
-        {shape === "scalene-triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${cx - w * 0.16},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "scalene-triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${triangleApexX},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "square" && <rect x={cx - radius} y={cy - radius} width={radius * 2} height={radius * 2} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "rectangle" && <rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "rounded-rectangle" && <rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} rx={Math.min(c * scale, w / 2, h / 2)} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
@@ -1626,8 +1709,9 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation, fillMode, colo
         {(["cone", "frustum", "square-pyramid", "triangular-pyramid", "rectangular-pyramid", "pentagonal-pyramid", "hexagonal-pyramid"] as ShapeId[]).includes(shape) && <polygon points={shape === "frustum" ? `${cx - w / 4},${cy - h / 2} ${cx + w / 4},${cy - h / 2} ${cx + w / 2},${cy + h / 2} ${cx - w / 2},${cy + h / 2}` : `${cx},${cy - h / 2} ${cx + w / 2},${cy + h / 2} ${cx - w / 2},${cy + h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {(["tetrahedron", "octahedron", "dodecahedron", "icosahedron", "triangular-prism", "pentagonal-prism", "hexagonal-prism", "octagonal-prism"] as ShapeId[]).includes(shape) && <polygon points={polygonPoints} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "torus" && <path d={ringPath(cx, cy, radius, Math.max(18, Math.min(b * scale, radius - 12)))} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" fillRule="evenodd" />}
+        <TriangleIdentityMarks shape={shape} cx={cx} w={w} baseY={triangleBaseY} topY={triangleTopY} />
         <line x1="80" y1="310" x2="400" y2="310" stroke="#94a3b8" strokeDasharray="6 6" />
-        <DimensionGuides2D shape={shape} cx={cx} cy={cy} radius={radius} w={w} h={h} top={top} height={height} sectorX={sectorX} sectorY={sectorY} />
+        <DimensionGuides2D shape={shape} cx={cx} cy={cy} radius={radius} w={w} h={h} top={top} height={height} sectorX={sectorX} sectorY={sectorY} triangleApexX={triangleApexX} triangleBaseY={triangleBaseY} triangleTopY={triangleTopY} />
       </g>
     </svg>
   );
@@ -1637,13 +1721,38 @@ function ringPath(cx: number, cy: number, outer: number, inner: number) {
   return `M ${cx - outer} ${cy} A ${outer} ${outer} 0 1 0 ${cx + outer} ${cy} A ${outer} ${outer} 0 1 0 ${cx - outer} ${cy} M ${cx - inner} ${cy} A ${inner} ${inner} 0 1 1 ${cx + inner} ${cy} A ${inner} ${inner} 0 1 1 ${cx - inner} ${cy}`;
 }
 
-function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, sectorY }: { shape: ShapeId; cx: number; cy: number; radius: number; w: number; h: number; top: number; height: number; sectorX: number; sectorY: number }) {
+function TriangleIdentityMarks({ shape, cx, w, baseY, topY }: { shape: ShapeId; cx: number; w: number; baseY: number; topY: number }) {
+  if (shape === "equilateral-triangle") return <g aria-label="Three matching side marks show all sides are equal">
+    <line x1={cx - w * 0.27} y1={(baseY + topY) / 2 - 5} x2={cx - w * 0.22} y2={(baseY + topY) / 2 + 5} stroke="#f8fafc" strokeWidth="4" />
+    <line x1={cx + w * 0.22} y1={(baseY + topY) / 2 + 5} x2={cx + w * 0.27} y2={(baseY + topY) / 2 - 5} stroke="#f8fafc" strokeWidth="4" />
+    <line x1={cx} y1={baseY - 7} x2={cx} y2={baseY + 7} stroke="#f8fafc" strokeWidth="4" />
+    <text x={cx - 12} y={topY + 28} fill="#fef3c7" fontSize="13" fontWeight="800">60°</text>
+  </g>;
+  if (shape === "isosceles-triangle") return <g aria-label="Two matching side marks show the sloping sides are equal">
+    <line x1={cx - w * 0.27} y1={(baseY + topY) / 2 - 5} x2={cx - w * 0.22} y2={(baseY + topY) / 2 + 5} stroke="#f8fafc" strokeWidth="4" />
+    <line x1={cx + w * 0.22} y1={(baseY + topY) / 2 + 5} x2={cx + w * 0.27} y2={(baseY + topY) / 2 - 5} stroke="#f8fafc" strokeWidth="4" />
+  </g>;
+  if (shape === "scalene-triangle") return <g aria-label="Different labels show that all three side lengths differ">
+    <text x={cx - w / 2 + 16} y={(baseY + topY) / 2} fill="#fef3c7" fontSize="14" fontWeight="800">s₁</text>
+    <text x={cx + w / 2 - 28} y={(baseY + topY) / 2} fill="#fef3c7" fontSize="14" fontWeight="800">s₂</text>
+  </g>;
+  return null;
+}
+
+function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, sectorY, triangleApexX, triangleBaseY, triangleTopY }: { shape: ShapeId; cx: number; cy: number; radius: number; w: number; h: number; top: number; height: number; sectorX: number; sectorY: number; triangleApexX: number; triangleBaseY: number; triangleTopY: number }) {
   const label = (x: number, y: number, text: string, color = "#0f172a") => <text x={x} y={y} fill={color} fontSize="15" fontWeight="700">{text}</text>;
   const guide = (x1: number, y1: number, x2: number, y2: number, color = "#f59e0b") => <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={color} strokeWidth="3" strokeDasharray="7 5" />;
   if (["circle", "semicircle"].includes(shape)) return <>{guide(cx, cy, cx + radius, cy)}{label(cx + radius / 2 - 5, cy - 10, "r", "#f59e0b")}{guide(cx - radius, cy + 26, cx + radius, cy + 26, "#8b5cf6")}{label(cx - 8, cy + 48, "d=2r", "#8b5cf6")}</>;
   if (shape === "sector") return <>{guide(cx, cy, cx + radius, cy)}{guide(cx, cy, sectorX, sectorY)}{label(cx + radius / 2, cy - 10, "r", "#f59e0b")}{label(cx + 18, cy - 22, "theta", "#8b5cf6")}</>;
   if (shape === "ellipse") return <>{guide(cx, cy, cx + Math.min(w / 2, 170), cy)}{guide(cx, cy, cx, cy - Math.min(h / 2, 120))}{label(cx + 55, cy - 10, "a", "#f59e0b")}{label(cx + 10, cy - 55, "b", "#8b5cf6")}</>;
-  if (["triangle", "isosceles-triangle", "scalene-triangle", "equilateral-triangle"].includes(shape)) return <>{guide(cx - w / 2, cy + h / 2 + 20, cx + w / 2, cy + h / 2 + 20)}{guide(cx, cy + h / 2, cx, cy - h / 2)}{label(cx - 10, cy + h / 2 + 42, shape === "equilateral-triangle" ? "s" : "b", "#f59e0b")}{label(cx + 10, cy, "h", "#8b5cf6")}</>;
+  if (["triangle", "isosceles-triangle", "scalene-triangle", "equilateral-triangle"].includes(shape)) return <>
+    {guide(cx - w / 2, triangleBaseY + 20, cx + w / 2, triangleBaseY + 20)}
+    {guide(triangleApexX, triangleBaseY, triangleApexX, triangleTopY)}
+    <line x1={triangleApexX} y1={triangleBaseY - 12} x2={triangleApexX + 12} y2={triangleBaseY - 12} stroke="#f8fafc" strokeWidth="2" />
+    <line x1={triangleApexX + 12} y1={triangleBaseY - 12} x2={triangleApexX + 12} y2={triangleBaseY} stroke="#f8fafc" strokeWidth="2" />
+    {label(cx - 10, triangleBaseY + 42, shape === "equilateral-triangle" ? "s" : "b", "#f59e0b")}
+    {label(triangleApexX + 10, (triangleBaseY + triangleTopY) / 2, "h ⟂ b", "#8b5cf6")}
+  </>;
   if (shape === "right-triangle") return <>{guide(cx - w / 2, cy + h / 2 + 20, cx + w / 2, cy + h / 2 + 20)}{guide(cx - w / 2 - 20, cy + h / 2, cx - w / 2 - 20, cy - h / 2)}{guide(cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2, "#ef4444")}{label(cx - 5, cy + h / 2 + 42, "b", "#f59e0b")}{label(cx - w / 2 - 45, cy, "h", "#8b5cf6")}{label(cx, cy, "c", "#ef4444")}</>;
   if (shape === "square") return <>{guide(cx - radius, cy + radius + 18, cx + radius, cy + radius + 18)}{label(cx - 5, cy + radius + 40, "s", "#f59e0b")}</>;
   if (shape === "rectangle" || shape === "rounded-rectangle") return <>{guide(cx - w / 2, cy + h / 2 + 18, cx + w / 2, cy + h / 2 + 18)}{guide(cx - w / 2 - 18, cy - h / 2, cx - w / 2 - 18, cy + h / 2)}{label(cx - 5, cy + h / 2 + 40, "l", "#f59e0b")}{label(cx - w / 2 - 42, cy, "w", "#8b5cf6")}</>;
