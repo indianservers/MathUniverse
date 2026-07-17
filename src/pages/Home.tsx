@@ -153,7 +153,7 @@ export default function Home() {
     },
     {
       title: "Math Lab",
-      description: "GeoGebra-style visual tools and WolframAlpha-style solving workspace for graphing, solving, symbolic algebra, calculus, statistics, probability, geometry, linear algebra, and 3D graphs.",
+      description: "Interactive visual tools and a step-by-step solving workspace for graphing, symbolic algebra, calculus, statistics, probability, geometry, linear algebra, and 3D graphs.",
       concepts: ["Graphing", "Solving", "CAS", "3D graphs"],
       icon: FlaskConical,
       route: "/math-lab",
@@ -169,7 +169,7 @@ export default function Home() {
     },
     {
       title: "Math Workspace",
-      description: "GeoGebra and Wolfram-style workspace with command input, graphing, result cards, and geometry construction.",
+      description: "Unified mathematics workspace with command input, graphing, result cards, and dynamic geometry construction.",
       concepts: ["Graphing", "Commands", "Geometry", "Measurements"],
       icon: Calculator,
       route: "/workspace",

@@ -142,7 +142,7 @@ const unitRules: Record<string, UpgradeRule> = {
   Geometry: {
     unit: "Geometry",
     priority: "High",
-    modifications: ["Audit all construction tools for GeoGebra-style staged clicks", "Add labels, captions, style, conditional visibility, dynamic color, and layers to objects"],
+    modifications: ["Audit all construction tools for clear staged-click workflows", "Add labels, captions, style, conditional visibility, dynamic color, and layers to objects"],
     upgrades: ["Real constraint kernel for points, lines, circles, polygons, transforms, and measurements", "Construction protocol parity with replay and step inspection"],
     qualityTargets: ["Line, ray, segment, vector, circle, and polygon tools require the correct number of clicks", "Dependencies survive undo, import, export, and replay"],
   },

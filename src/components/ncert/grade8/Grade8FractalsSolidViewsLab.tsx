@@ -439,13 +439,17 @@ function SolidSvg({ grid, showAxes, showGrid, showOutlines, view }: { grid: Cube
       {showGrid && <g stroke="#164e63" opacity="0.35">{Array.from({ length: 8 }, (_, i) => <line key={i} x1={60 + i * 58} y1="330" x2={220 + i * 58} y2="230" />)}</g>}
       {sorted.map((cube) => <IsoCube key={`${cube.row}-${cube.col}-${cube.z}`} row={cube.row} col={cube.col} z={cube.z} outline={showOutlines} />)}
       {showAxes && (
-        <g stroke="#e0f2fe" strokeWidth="3" fill="#e0f2fe" fontWeight="900">
-          <line x1="70" y1="360" x2="160" y2="360" />
-          <line x1="70" y1="360" x2="35" y2="330" />
-          <line x1="70" y1="360" x2="70" y2="275" />
-          <text x="164" y="365">x</text>
-          <text x="20" y="330">y</text>
-          <text x="62" y="268">z</text>
+        <g>
+          <g stroke="#e0f2fe" strokeWidth="3" fill="none">
+            <line x1="70" y1="360" x2="160" y2="360" />
+            <line x1="70" y1="360" x2="35" y2="330" />
+            <line x1="70" y1="360" x2="70" y2="275" />
+          </g>
+          <g fill="#e0f2fe" stroke="none" fontSize="24" fontWeight="900">
+            <text x="164" y="365">x</text>
+            <text x="20" y="330">y</text>
+            <text x="62" y="268">z</text>
+          </g>
         </g>
       )}
     </svg>

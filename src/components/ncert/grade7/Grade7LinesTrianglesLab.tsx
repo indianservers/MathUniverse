@@ -89,26 +89,35 @@ export default function Grade7LinesTrianglesLab() {
 
 function Transversal({ angle }: { angle: number }) {
   return (
-    <g stroke="#e2e8f0" strokeWidth="5" fill="none">
-      <path d="M80 140 H680 M80 280 H680" />
-      <path d="M260 340 L510 70" stroke="#22d3ee" />
-      <path d="M365 140 A55 55 0 0 1 410 105" stroke="#facc15" />
-      <path d="M495 280 A55 55 0 0 1 538 246" stroke="#facc15" />
-      <text x="420" y="120" fill="#fff" fontWeight="900">{angle} degrees</text>
-      <text x="545" y="260" fill="#fff" fontWeight="900">corresponding = {angle} degrees</text>
-      <text x="120" y="120" fill="#93c5fd" fontWeight="900">parallel</text>
+    <g>
+      <g stroke="#e2e8f0" strokeWidth="5" fill="none">
+        <path d="M80 140 H680 M80 280 H680" />
+        <path d="M260 340 L510 70" stroke="#22d3ee" />
+        <path d="M365 140 A55 55 0 0 1 410 105" stroke="#facc15" />
+        <path d="M495 280 A55 55 0 0 1 538 246" stroke="#facc15" />
+      </g>
+      <g stroke="none" fontSize="32" fontWeight="900">
+        <text x="420" y="118" fill="#fff">{angle} degrees</text>
+        <text x="510" y="256" fill="#fff">corresponding</text>
+        <text x="510" y="286" fill="#fff">= {angle} degrees</text>
+        <text x="120" y="120" fill="#93c5fd">parallel</text>
+      </g>
     </g>
   );
 }
 
 function TriangleAngles({ a, b, c }: { a: number; b: number; c: number }) {
   return (
-    <g stroke="#e2e8f0" strokeWidth="5" fill="none">
-      <path d="M170 320 L590 320 L360 95 Z" fill="#0e7490" opacity="0.65" />
-      <text x="190" y="300" fill="#facc15" fontWeight="900">{a} degrees</text>
-      <text x="515" y="300" fill="#facc15" fontWeight="900">{b} degrees</text>
-      <text x="345" y="135" fill="#facc15" fontWeight="900">{c} degrees</text>
-      <text x="250" y="380" fill="#fff" fontWeight="900">{a} + {b} + {c} = 180 degrees</text>
+    <g>
+      <g stroke="#e2e8f0" strokeWidth="5" fill="none">
+        <path d="M170 320 L590 320 L360 95 Z" fill="#0e7490" opacity="0.65" />
+      </g>
+      <g stroke="none" fontSize="32" fontWeight="900">
+        <text x="190" y="300" fill="#facc15">{a} degrees</text>
+        <text x="505" y="300" fill="#facc15">{b} degrees</text>
+        <text x="345" y="135" fill="#facc15">{c} degrees</text>
+        <text x="230" y="380" fill="#fff">{a} + {b} + {c} = 180 degrees</text>
+      </g>
     </g>
   );
 }
@@ -117,24 +126,33 @@ function ExteriorAngle({ angle }: { angle: number }) {
   const other = 60;
   const exterior = angle + other;
   return (
-    <g stroke="#e2e8f0" strokeWidth="5" fill="none">
-      <path d="M180 320 L500 320 L340 120 Z" fill="#0e7490" opacity="0.65" />
-      <path d="M500 320 H680" stroke="#facc15" />
-      <text x="205" y="300" fill="#fff" fontWeight="900">{angle} degrees</text>
-      <text x="335" y="155" fill="#fff" fontWeight="900">{other} degrees</text>
-      <text x="525" y="295" fill="#facc15" fontWeight="900">exterior {exterior} degrees</text>
-      <text x="210" y="380" fill="#fff" fontWeight="900">exterior = {angle} + {other}</text>
+    <g>
+      <g stroke="#e2e8f0" strokeWidth="5" fill="none">
+        <path d="M180 320 L500 320 L340 120 Z" fill="#0e7490" opacity="0.65" />
+        <path d="M500 320 H680" stroke="#facc15" />
+      </g>
+      <g stroke="none" fontSize="32" fontWeight="900">
+        <text x="205" y="300" fill="#fff">{angle} degrees</text>
+        <text x="335" y="155" fill="#fff">{other} degrees</text>
+        <text x="525" y="292" fill="#facc15">exterior</text>
+        <text x="525" y="322" fill="#facc15">{exterior} degrees</text>
+        <text x="210" y="380" fill="#fff">exterior = {angle} + {other}</text>
+      </g>
     </g>
   );
 }
 
 function Intersecting({ angle }: { angle: number }) {
   return (
-    <g stroke="#e2e8f0" strokeWidth="5" fill="none">
-      <path d="M160 320 L600 100 M160 100 L600 320" />
-      <text x="380" y="170" fill="#facc15" fontWeight="900">{angle} degrees</text>
-      <text x="335" y="285" fill="#facc15" fontWeight="900">{angle} degrees</text>
-      <text x="220" y="380" fill="#fff" fontWeight="900">vertical opposite angles are equal</text>
+    <g>
+      <g stroke="#e2e8f0" strokeWidth="5" fill="none">
+        <path d="M160 320 L600 100 M160 100 L600 320" />
+      </g>
+      <g stroke="none" fontSize="32" fontWeight="900">
+        <text x="380" y="170" fill="#facc15">{angle} degrees</text>
+        <text x="335" y="285" fill="#facc15">{angle} degrees</text>
+        <text x="180" y="380" fill="#fff">vertical opposite angles are equal</text>
+      </g>
     </g>
   );
 }

@@ -6,7 +6,7 @@ export const mathLabTools = [
     route: "/math-lab/graphing-calculator",
     icon: LineChart,
     difficulty: "Intermediate",
-    description: "Desmos-style 2D graphing with multiple functions, zoom, pan, tables, roots, intercepts, trace mode, and numeric checks.",
+    description: "Interactive 2D graphing with multiple functions, zoom, pan, tables, roots, intercepts, trace mode, and numeric checks.",
     useCases: ["2D graphing", "roots", "tables", "trace"],
   },
   {
@@ -14,7 +14,7 @@ export const mathLabTools = [
     route: "/workspace",
     icon: Triangle,
     difficulty: "Intermediate",
-    description: "GeoGebra-style construction workspace with points, lines, circles, polygons, transforms, constraints, and live measurements.",
+    description: "Dynamic construction workspace with points, lines, circles, polygons, transforms, constraints, and live measurements.",
     useCases: ["construction", "constraints", "measurements", "transforms"],
   },
   {

@@ -84,32 +84,40 @@ export default function Grade7ConstructionsTilingsLab() {
 function ConstructionSvg({ mode }: { mode: ConstructionMode }) {
   if (mode === "angle") {
     return (
-      <g transform="translate(60 60)" stroke="#e2e8f0" strokeWidth="5" fill="none">
-        <path d="M80 260 L250 120 M80 260 L320 260" />
-        <path d="M145 206 A90 90 0 0 1 170 260" stroke="#22d3ee" strokeDasharray="8 8" />
-        <path d="M190 170 A70 70 0 0 1 235 225 M175 260 A70 70 0 0 1 235 225" stroke="#facc15" />
-        <path d="M80 260 L235 225" stroke="#a78bfa" />
-        <text x="90" y="300" fill="#fff" fontWeight="900">angle bisector</text>
+      <g transform="translate(60 60)">
+        <g stroke="#e2e8f0" strokeWidth="5" fill="none">
+          <path d="M80 260 L250 120 M80 260 L320 260" />
+          <path d="M145 206 A90 90 0 0 1 170 260" stroke="#22d3ee" strokeDasharray="8 8" />
+          <path d="M190 170 A70 70 0 0 1 235 225 M175 260 A70 70 0 0 1 235 225" stroke="#facc15" />
+          <path d="M80 260 L235 225" stroke="#a78bfa" />
+        </g>
+        <text x="90" y="300" fill="#fff" stroke="none" fontSize="30" fontWeight="900">angle bisector</text>
       </g>
     );
   }
   if (mode === "triangle") {
     return (
-      <g transform="translate(50 55)" stroke="#e2e8f0" strokeWidth="5" fill="none">
-        <path d="M70 280 L250 280 L250 40 Z" fill="#0e7490" opacity="0.55" />
-        <path d="M70 280 A180 180 0 0 1 250 100 M250 280 A240 240 0 0 0 250 40" stroke="#f472b6" strokeDasharray="8 8" />
-        <text x="135" y="315" fill="#fff" fontWeight="900">3</text>
-        <text x="265" y="165" fill="#fff" fontWeight="900">4</text>
-        <text x="135" y="150" fill="#fff" fontWeight="900">5</text>
+      <g transform="translate(50 55)">
+        <g stroke="#e2e8f0" strokeWidth="5" fill="none">
+          <path d="M70 280 L250 280 L250 40 Z" fill="#0e7490" opacity="0.55" />
+          <path d="M70 280 A180 180 0 0 1 250 100 M250 280 A240 240 0 0 0 250 40" stroke="#f472b6" strokeDasharray="8 8" />
+        </g>
+        <g fill="#fff" stroke="none" fontSize="30" fontWeight="900">
+          <text x="135" y="315">3</text>
+          <text x="265" y="165">4</text>
+          <text x="135" y="150">5</text>
+        </g>
       </g>
     );
   }
   return (
-    <g transform="translate(50 70)" stroke="#e2e8f0" strokeWidth="5" fill="none">
-      <path d="M60 200 L300 200" />
-      <path d="M60 200 A150 150 0 0 1 180 70 M60 200 A150 150 0 0 0 180 330 M300 200 A150 150 0 0 0 180 70 M300 200 A150 150 0 0 1 180 330" stroke="#22d3ee" strokeDasharray="8 8" />
-      <path d="M180 70 L180 330" stroke="#facc15" />
-      <text x="160" y="365" fill="#fff" fontWeight="900">perpendicular bisector</text>
+    <g transform="translate(50 70)">
+      <g stroke="#e2e8f0" strokeWidth="5" fill="none">
+        <path d="M60 200 L300 200" />
+        <path d="M60 200 A150 150 0 0 1 180 70 M60 200 A150 150 0 0 0 180 330 M300 200 A150 150 0 0 0 180 70 M300 200 A150 150 0 0 1 180 330" stroke="#22d3ee" strokeDasharray="8 8" />
+        <path d="M180 70 L180 330" stroke="#facc15" />
+      </g>
+      <text x="130" y="365" fill="#fff" stroke="none" fontSize="30" fontWeight="900">perpendicular bisector</text>
     </g>
   );
 }

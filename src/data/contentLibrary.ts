@@ -43,7 +43,7 @@ export const contentLibrary: LibraryItem[] = [
     tags: ["geometry engine", "constraints", "measurements"],
   },
   {
-    id: "desmos-style-graphing",
+    id: "interactive-graphing-lab",
     title: "Graphing Lab: Sliders and Inequalities",
     kind: "lesson",
     gradeBand: "Class 8-12",

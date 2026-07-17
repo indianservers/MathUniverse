@@ -1817,7 +1817,7 @@ function GeoGebraQuickCreatePanel({ onCreateQuickGraph, onCreateQuickSolid }: { 
   ];
   return (
     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
-      <p className="text-sm font-black">GeoGebra-style quick tools</p>
+      <p className="text-sm font-black">Dynamic geometry quick tools</p>
       <div className="mt-2 grid grid-cols-4 gap-2">
         {graphPresets.map((preset) => <button key={preset.label} type="button" className="min-h-10 rounded-xl bg-cyan-100 px-2 text-xs font-black text-cyan-950 dark:bg-cyan-300/15 dark:text-cyan-50" onClick={() => onCreateQuickGraph(preset.expression)}>{preset.label}</button>)}
         {solidPresets.map((preset) => <button key={preset.label} type="button" className="min-h-10 rounded-xl bg-violet-100 px-2 text-xs font-black text-violet-950 dark:bg-violet-300/15 dark:text-violet-50" onClick={() => onCreateQuickSolid(preset.instruction, preset.type)}>{preset.label}</button>)}
@@ -2060,7 +2060,7 @@ function ARPracticeStudio({
     <div className="space-y-3">
       <div className="rounded-2xl bg-cyan-50 p-3 dark:bg-cyan-300/10">
         <p className="text-sm font-black">Student Practice Studio</p>
-        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">GeoGebra-style activities: load a model, place it, walk around, measure, animate, compare, capture evidence, and explain what changed.</p>
+        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">Interactive geometry activities: load a model, place it, walk around, measure, animate, compare, capture evidence, and explain what changed.</p>
       </div>
       <input
         aria-label="Search AR practice activities"
@@ -2414,7 +2414,7 @@ export function ARMeasurementTool({ measurements = [] }: { measurements?: ARMeas
 export function ARHelpPanel() {
   return (
     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
-      <p className="flex items-center gap-2 text-sm font-black"><HelpCircle className="h-4 w-4 text-violet-500" />GeoGebra-style AR Help</p>
+      <p className="flex items-center gap-2 text-sm font-black"><HelpCircle className="h-4 w-4 text-violet-500" />Interactive AR Help</p>
       <ul className="mt-2 space-y-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
         <li>- AR Mode uses the phone camera with an interactive 3D math overlay.</li>
         <li>- Drag with one finger to place the object; use two fingers to scale and rotate.</li>

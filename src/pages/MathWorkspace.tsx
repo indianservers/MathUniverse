@@ -2025,7 +2025,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   return (
     <div ref={workspaceRef} className={singleView ? "space-y-2 pt-0" : "space-y-2 pt-14 xl:pt-12"}>
       <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} docked={singleView} />
-      {!singleView && <TopicHeader title="Math Workspace" subtitle="A GeoGebra and Wolfram-style workspace for graphing, commands, results, and geometric construction." difficulty="All levels" estimatedMinutes={45} />}
+      {!singleView && <TopicHeader title="Math Workspace" subtitle="A unified workspace for graphing, commands, results, and dynamic geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 
       {!singleView && <WorkspaceModeTabs active={workspaceView} onChange={setWorkspaceView} />}
       <CompactWorkspaceBar
@@ -3867,7 +3867,7 @@ function CasDepthPanel({ expression, onExpressionChange, onCommand }: { expressi
           <span className="mini-chip">{casSummary.implemented} implemented</span>
           <span className="mini-chip">{casSummary.partial} partial</span>
           <span className="mini-chip">{casSummary.planned} planned</span>
-          <span className="mini-chip">{geogebraSummary.covered}/{geogebraSummary.geogebraTotal} GeoGebra CAS</span>
+          <span className="mini-chip">{geogebraSummary.covered}/{geogebraSummary.geogebraTotal} CAS commands</span>
           <span className="mini-chip">{geogebraSummary.missingByPriority.P0} P0 gaps</span>
         </div>
         <div className="mt-3 grid gap-1.5">
@@ -4333,7 +4333,7 @@ function WorkspaceMainMenu({ active, onChange, docked = false }: { active: Works
       <div className="flex min-w-0 items-center justify-between gap-2">
         <div className="flex min-w-0 flex-1 items-center gap-1.5">
           <span className="shrink-0 rounded-lg bg-cyan-500 px-2.5 py-1.5 text-[11px] font-black uppercase tracking-wide text-slate-950 shadow-lg shadow-cyan-500/20">Menu</span>
-          <div className="mobile-safe-scroll flex min-w-0 gap-1.5 overflow-x-auto">
+          <div className="flex min-w-0 gap-1.5 overflow-x-auto overscroll-x-contain">
             {modules.map((module) => (
               <Link
                 key={module.id}
@@ -4351,7 +4351,7 @@ function WorkspaceMainMenu({ active, onChange, docked = false }: { active: Works
             ))}
           </div>
         </div>
-        <div className="mobile-safe-scroll hidden max-w-[38%] gap-1.5 overflow-x-auto lg:flex">
+        <div className="hidden max-w-[38%] gap-1.5 overflow-x-auto overscroll-x-contain lg:flex">
           {links.map((item) => (
             <Link key={item.route} to={item.route} className="inline-flex min-h-9 shrink-0 items-center rounded-lg bg-slate-100 px-2.5 py-1.5 text-xs font-bold text-slate-700 transition hover:bg-cyan-100 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-cyan-300/15">
               {item.label}
@@ -4451,7 +4451,7 @@ const worldClassMathSoftwareGaps = [
   { title: "Dynamic dependency graph", detail: "Make every spreadsheet cell, CAS result, plot, slider, and object reactive with visible dependency tracing and recomputation status." },
   { title: "Geometry and data fusion", detail: "Let tables generate points, loci, constructions, sliders, statistics, and regression objects without switching mental models." },
   { title: "Proof and verification layer", detail: "Add theorem-aware checks, counterexamples, units, assumptions, numeric verification, and explainable confidence for each result." },
-  { title: "Professional import/export", detail: "Support CSV/XLSX, GeoGebra files, LaTeX, MathML, SVG/PDF, classroom handouts, and reproducible project bundles." },
+  { title: "Professional import/export", detail: "Support CSV/XLSX, interoperable geometry files, LaTeX, MathML, SVG/PDF, classroom handouts, and reproducible project bundles." },
   { title: "Collaboration and classroom mode", detail: "Add shared boards, teacher locks, assignments, student replay, privacy-safe analytics, and versioned construction history." },
   { title: "Accessibility and internationalization", detail: "Improve keyboard navigation, screen reader math output, high contrast, localization, handwriting, and touch-first workflows." },
   { title: "Performance at scale", detail: "Use workers, virtualization, cached sampling, robust numeric solvers, and graceful fallbacks for large tables and dense graphs." },
@@ -4497,7 +4497,7 @@ function CompactWorkspaceBar({ activeTemplate, dynamicHealth, qaReport, teaching
 
   return (
     <div className={compact ? "rounded-xl border border-slate-200 bg-white/80 p-2 dark:border-white/10 dark:bg-white/5" : "rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5"} data-testid="workspace-command-bar">
-      <div className="flex flex-wrap items-center justify-between gap-2">
+      <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-wrap items-center gap-2">
           <span className={`rounded-full px-3 py-1.5 text-xs font-black ${dynamicHealth.ready ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100" : "bg-amber-100 text-amber-900 dark:bg-amber-400/15 dark:text-amber-100"}`}>Kernel {dynamicHealth.ready ? "ready" : "needs attention"}</span>
           <span className="mini-chip">{dynamicHealth.total} objects</span>
@@ -4514,7 +4514,7 @@ function CompactWorkspaceBar({ activeTemplate, dynamicHealth, qaReport, teaching
             </div>
           </details>
         ) : (
-          <div className="mobile-safe-scroll flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+          <div className="flex w-full min-w-0 flex-nowrap gap-2 overflow-x-auto overscroll-x-contain pb-1 lg:flex-1 lg:justify-end">
             {actionButtons}
           </div>
         )}
@@ -4671,7 +4671,7 @@ function _CriticalGapPhasePanel() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h3 className="font-bold">Critical Gap Implementation Phases</h3>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Four production phases that close the GeoGebra-level core gaps while keeping the app browser-only.</p>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Four production phases that close the core dynamic-mathematics gaps while keeping the app browser-only.</p>
         </div>
         <span className="mini-chip">{criticalGapImplementationPhases.length} phases</span>
       </div>
@@ -5258,7 +5258,7 @@ function _BeyondGeoGebraCockpit({ packageSpec, packages, validation, assessment,
     <div className="rounded-2xl border border-violet-200 bg-violet-50/70 p-4 dark:border-violet-300/20 dark:bg-violet-400/10">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h3 className="font-bold">Beyond GeoGebra Teaching Intelligence</h3>
+          <h3 className="font-bold">Advanced Teaching Intelligence</h3>
           <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{packages.length} unit labs with guided validation, teacher reveal, assessment, tutor prompts, production readiness, and command discovery.</p>
         </div>
         <span className="mini-chip">{packageSpec.unit}</span>
@@ -7271,7 +7271,7 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
       {tool === "angle" && (
         <div className="mt-3 rounded-xl border border-cyan-200 bg-white/70 p-3 text-xs leading-5 text-cyan-950 dark:border-cyan-300/20 dark:bg-slate-950/40 dark:text-cyan-50" data-testid="angle-tool-geogebra-plus-help">
           <p className="font-black">Better angle workflow</p>
-          <p className="mt-1">Like GeoGebra, use three points with the vertex second. This workspace also previews the arc, labels ∠ABC live, and shows the reflex complement for teaching orientation.</p>
+          <p className="mt-1">Use three points with the vertex second. The workspace previews the arc, labels ∠ABC live, and shows the reflex complement for teaching orientation.</p>
         </div>
       )}
     </div>

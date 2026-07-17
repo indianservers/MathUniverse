@@ -34,7 +34,7 @@ export type ReleaseCheck = {
   label: string;
   passed: boolean;
   detail: string;
-  group: "foundation" | "construction" | "teaching" | "production" | "beyond-geogebra";
+  group: "foundation" | "construction" | "teaching" | "production" | "advanced";
   action: string;
 };
 
@@ -51,7 +51,7 @@ export function computeReleaseHealth(input: ReleaseHealthInput): ReleaseHealth {
     {
       id: "geometry-tools",
       group: "construction",
-      label: "GeoGebra-like 2D construction",
+      label: "Dynamic 2D construction",
       passed: input.geometryObjects > 0 && (input.geometryToolCount ?? 0) >= 30,
       detail: `${input.geometryObjects} construction object(s), ${input.geometryToolCount ?? 0} 2D tool(s)`,
       action: "Load a geometry template or construct points, lines, circles, polygons, measurements, and transforms.",
@@ -114,10 +114,10 @@ export function computeReleaseHealth(input: ReleaseHealthInput): ReleaseHealth {
     },
     {
       id: "syllabus-intelligence",
-      group: "beyond-geogebra",
+      group: "advanced",
       label: "Differentiators and syllabus intelligence",
       passed: Boolean(input.syllabusReady) && (input.differentiatorCount ?? 0) >= 3,
-      detail: `${input.differentiatorCount ?? 0} beyond-GeoGebra differentiator(s) active`,
+      detail: `${input.differentiatorCount ?? 0} advanced differentiator(s) active`,
       action: "Seed a syllabus teaching activity and connect the active workspace to lesson, practice, animation, and share workflows.",
     },
   ];

@@ -293,13 +293,13 @@ function Fact({ label, value }: { label: string; value: string }) {
 }
 
 function Text({ x, y, value, size = 20 }: { x: number; y: number; value: string; size?: number }) {
-  return <text x={x} y={y} fill="#e0f2fe" fontSize={size} fontWeight="900">{value}</text>;
+  return <text x={x} y={y} fill="#e0f2fe" stroke="none" fontSize={size} fontWeight="900">{value}</text>;
 }
 
 function ConstructionVisual({ values }: { values: number[] }) {
   const radius = values[0];
   const tileCount = Math.round(values[2]);
-  return <g><line x1="180" x2="420" y1="220" y2="220" stroke="#e2e8f0" strokeWidth="5" /><circle cx="180" cy="220" r={radius} fill="none" stroke="#22d3ee" strokeDasharray="8 8" strokeWidth="3" /><circle cx="420" cy="220" r={radius} fill="none" stroke="#22d3ee" strokeDasharray="8 8" strokeWidth="3" /><line x1="300" x2="300" y1="80" y2="360" stroke="#facc15" strokeWidth="4" /><Text x={120} y={60} value="compass arcs + ruler line" /><Text x={250} y={405} value="midpoint check: valid" size={18} />{Array.from({ length: tileCount }, (_, i) => <rect key={i} x={500 + (i % 3) * 48} y={120 + Math.floor(i / 3) * 48} width="42" height="42" fill={i % 2 ? "#a78bfa" : "#22d3ee"} opacity="0.85" />)}</g>;
+  return <g><line x1="180" x2="420" y1="220" y2="220" stroke="#e2e8f0" strokeWidth="5" /><circle cx="180" cy="220" r={radius} fill="none" stroke="#22d3ee" strokeDasharray="8 8" strokeWidth="3" /><circle cx="420" cy="220" r={radius} fill="none" stroke="#22d3ee" strokeDasharray="8 8" strokeWidth="3" /><line x1="300" x2="300" y1="80" y2="360" stroke="#facc15" strokeWidth="4" /><Text x={120} y={60} value="compass arcs + ruler line" size={28} /><Text x={230} y={405} value="midpoint check: valid" size={24} />{Array.from({ length: tileCount }, (_, i) => <rect key={i} x={500 + (i % 3) * 48} y={120 + Math.floor(i / 3) * 48} width="42" height="42" fill={i % 2 ? "#a78bfa" : "#22d3ee"} opacity="0.85" />)}</g>;
 }
 
 function ArithmeticVisual({ values }: { values: number[] }) {

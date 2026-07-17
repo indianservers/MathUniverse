@@ -33,7 +33,7 @@ export const protectedWorkspaceBaselines: WorkspaceBaselineRoute[] = [
     route: "/workspace/geometry",
     purpose: "Current 2D geometry construction workspace.",
     protectedSignals: ["Geometry Constructor", "Object Properties", "Current tool", "Touch mode", "showUnits"],
-    mustKeep: ["left tool palette", "central geometry board", "right object properties", "graph unit toggle", "GeoGebra-style multi-click tools"],
+    mustKeep: ["left tool palette", "central geometry board", "right object properties", "graph unit toggle", "guided multi-click tools"],
   },
   {
     id: "workspace-3d",

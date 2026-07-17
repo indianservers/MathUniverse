@@ -11,7 +11,7 @@ export const criticalGapImplementationPhases: CriticalGapPhase[] = [
     id: 1,
     title: "Dynamic Core And Command Foundation",
     goal: "Make every workspace object addressable, dependency-aware, and discoverable from one command catalog.",
-    gaps: ["True Dynamic Object Kernel", "Unified Algebra View Parity", "GeoGebra-Level Command Language"],
+    gaps: ["True Dynamic Object Kernel", "Unified Algebra View Parity", "Advanced Geometry Command Language"],
     deliverables: ["Central dependency graph", "Cycle and missing dependency detection", "Command catalog by math domain", "Algebra panel health indicators"],
   },
   {

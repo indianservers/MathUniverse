@@ -9,7 +9,7 @@ Updated after Prompt 6: Linear Algebra Lab and 3D Graphing Lab were upgraded to 
 | Function Explorer | FULLY IMPLEMENTED | `/math-lab/function-explorer` now provides live base and transformed graphs for `g(x)=a f(b(x-h))+k`, sliders for `a`, `b`, `h`, and `k`, original/transformed toggles, trace, tables, approximate domain/range/intercepts, symmetry checks, and educational transformation notes. Results are numeric approximations from sampled real values. |
 | Equation Solver | PARTIALLY IMPLEMENTED | Existing `/problem-solver`, algebra visualizers, and matrix linear systems connected through `/math-lab/equation-solver`. Inequality solving is not complete. |
 | CAS / Algebra solving | CONSOLIDATED | Nerdamer-backed simplify/solve/differentiate/integrate utilities are routed through the main Step-by-Step Problem Solver instead of a separate CAS Solver page. |
-| Step-by-Step Solver | PARTIALLY IMPLEMENTED | `/problem-solver` provides symbolic equation steps. More granular WolframAlpha-style transformations are future work. |
+| Step-by-Step Solver | PARTIALLY IMPLEMENTED | `/problem-solver` provides symbolic equation steps. More granular symbolic transformations are future work. |
 | Geometry Lab | PARTIALLY IMPLEMENTED | Existing geometry, shapes, theorem, circle, triangle, and 3D shape visualizers connected through `/math-lab/geometry`. Full construction workspace is still future work. |
 | Calculus Visualizer | FULLY IMPLEMENTED | Existing limits, derivatives, integrals, tangent, Riemann-style, and motion visualizers are routed from Math Lab. |
 | Statistics Lab | CONNECTED / OUT OF SCOPE | User clarified statistics should remain in the dedicated statistics page. `/math-lab/statistics` keeps an integration link to `/probability-statistics`; no new statistics implementation was added in Prompt 6. |
@@ -24,6 +24,6 @@ Updated after Prompt 6: Linear Algebra Lab and 3D Graphing Lab were upgraded to 
 ## Final Notes
 
 - Numeric approximation limitations: graph roots, visible ranges, symmetry checks, discontinuities, calculus-style samples, and 3D surfaces are numerical approximations over the current window.
-- Unsupported or partial areas: full natural-language WolframAlpha-style reasoning, broad probability simulations, full geometry construction workspace, and full CAS notebook workflows remain future work.
+- Unsupported or partial areas: full natural-language mathematical reasoning, broad probability simulations, full geometry construction workspace, and full CAS notebook workflows remain future work.
 - Package dependencies added in Prompt 6: none. Existing Three.js and React Three Fiber dependencies were reused.
 - Build status: `npm run build` passes after Prompt 6.

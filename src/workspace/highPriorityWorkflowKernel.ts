@@ -193,7 +193,7 @@ export function exportPresets(): ExportPreset[] {
     { id: "svg-selected", label: "Selected region SVG", format: "svg", quality: "print", selectedRegion: true },
     { id: "pdf-worksheet", label: "Worksheet PDF with answer key", format: "pdf", quality: "print", answerKey: true },
     { id: "json-project", label: "Browser JSON project", format: "json", quality: "standard" },
-    { id: "ggb-lite", label: "GeoGebra-lite exchange bundle", format: "zip", quality: "standard" },
+    { id: "ggb-lite", label: "Geometry exchange bundle", format: "zip", quality: "standard" },
   ];
 }
 

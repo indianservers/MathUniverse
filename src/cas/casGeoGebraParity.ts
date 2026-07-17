@@ -88,7 +88,7 @@ function parityEntry(command: string): GeoGebraParityEntry {
     status: "missing",
     category: parityCategory(command),
     priority: parityPriority(command),
-    note: "Not implemented yet; keep as a tracked GeoGebra parity gap.",
+    note: "Not implemented yet; keep as a tracked command-coverage gap.",
   };
 }
 

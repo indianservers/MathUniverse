@@ -1,10 +1,9 @@
-import { Award, Box, Camera, Circle, Cuboid, Download, Eye, Heart, Mic, PanelLeftClose, PanelLeftOpen, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
+import { Award, Box, Camera, Circle, Cuboid, Download, Eye, Grid3X3, Heart, Mic, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
 import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent, type RefObject } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
-import FormulaBlock from "../components/ui/FormulaBlock";
 import MathExpression from "../components/ui/MathExpression";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
@@ -13,14 +12,15 @@ import { useProgress } from "../hooks/useProgress";
 import { roundTo } from "../utils/math";
 
 type ShapeKind = "2d" | "3d";
+type ShapeFillMode = "gradient" | "solid" | "outline";
 type ShapeCategory = "2D Basic" | "2D Curved" | "2D Polygons" | "3D Solids" | "3D Curved Solids";
 type ShapeId =
-  | "circle" | "semicircle" | "sector" | "ellipse" | "triangle" | "right-triangle" | "square" | "rectangle"
-  | "parallelogram" | "rhombus" | "trapezium" | "kite" | "pentagon" | "hexagon" | "heptagon" | "octagon" | "decagon" | "regular-polygon"
+  | "circle" | "semicircle" | "sector" | "ellipse" | "triangle" | "right-triangle" | "equilateral-triangle" | "isosceles-triangle" | "scalene-triangle" | "square" | "rectangle" | "rounded-rectangle"
+  | "parallelogram" | "rhombus" | "trapezium" | "kite" | "pentagon" | "hexagon" | "heptagon" | "octagon" | "nonagon" | "decagon" | "dodecagon" | "regular-polygon"
   | "annulus" | "quadrant" | "segment" | "crescent" | "star" | "cross"
   | "cube" | "cuboid" | "sphere" | "hemisphere" | "cylinder" | "hollow-cylinder" | "capsule" | "ellipsoid" | "cone" | "frustum" | "torus"
-  | "tetrahedron" | "octahedron" | "dodecahedron" | "icosahedron" | "square-pyramid" | "triangular-pyramid" | "rectangular-pyramid"
-  | "triangular-prism" | "pentagonal-prism" | "hexagonal-prism";
+  | "tetrahedron" | "octahedron" | "dodecahedron" | "icosahedron" | "square-pyramid" | "triangular-pyramid" | "rectangular-pyramid" | "pentagonal-pyramid" | "hexagonal-pyramid"
+  | "triangular-prism" | "pentagonal-prism" | "hexagonal-prism" | "octagonal-prism";
 
 type ShapeDefinition = {
   id: ShapeId;
@@ -45,11 +45,15 @@ const shapes: ShapeDefinition[] = [
   { id: "circle", name: "Circle", kind: "2d", category: "2D Curved", formula: "C = 2 pi r, A = pi r^2", description: "All points at a fixed distance from the center.", dimensions: ["radius"], use: "Wheels, clocks, lenses, gears." },
   { id: "semicircle", name: "Semicircle", kind: "2d", category: "2D Curved", formula: "Arc = pi r, A = 1/2 pi r^2", description: "Half of a circle split by a diameter.", dimensions: ["radius"], use: "Arches, windows, half-pipe profiles." },
   { id: "sector", name: "Sector", kind: "2d", category: "2D Curved", formula: "A = theta/360 pi r^2, L = theta/360 2 pi r", description: "A slice of a circle controlled by central angle.", dimensions: ["radius", "angle"], use: "Pie charts, clock angles, circular tracks." },
-  { id: "ellipse", name: "Ellipse", kind: "2d", category: "2D Curved", formula: "A = pi ab", description: "A stretched circle with semi-major and semi-minor axes.", dimensions: ["width", "height"], use: "Orbits, lenses, design curves." },
+  { id: "ellipse", name: "Ellipse", kind: "2d", category: "2D Curved", formula: "A = pi ab", description: "A stretched circle with semi-major and semi-minor axes.", dimensions: ["semi-major axis a", "semi-minor axis b"], use: "Orbits, lenses, design curves." },
   { id: "triangle", name: "Triangle", kind: "2d", category: "2D Basic", formula: "A = 1/2 bh, P = a + b + c", description: "A three-sided polygon, the base unit of many meshes.", dimensions: ["base", "height"], use: "Trusses, roofs, triangulation, game meshes." },
   { id: "right-triangle", name: "Right Triangle", kind: "2d", category: "2D Basic", formula: "A = 1/2 ab, c = sqrt(a^2 + b^2)", description: "A triangle with one 90 degree angle.", dimensions: ["base", "height"], use: "Slopes, ramps, navigation, trigonometry." },
+  { id: "equilateral-triangle", name: "Equilateral Triangle", kind: "2d", category: "2D Basic", formula: "A = sqrt(3)/4 s^2, P = 3s", description: "A triangle with three equal sides and three 60 degree angles.", dimensions: ["side"], use: "Trusses, tessellations, warning signs." },
+  { id: "isosceles-triangle", name: "Isosceles Triangle", kind: "2d", category: "2D Basic", formula: "A = 1/2 bh, P = b + 2s", description: "A triangle with two equal sides and a line of symmetry.", dimensions: ["base", "height"], use: "Roofs, bridge frames, symmetry." },
+  { id: "scalene-triangle", name: "Scalene Triangle", kind: "2d", category: "2D Basic", formula: "A = 1/2 bh, P = a + b + c", description: "A triangle whose three side lengths are different.", dimensions: ["base", "height"], use: "Surveying, triangulation, irregular structures." },
   { id: "square", name: "Square", kind: "2d", category: "2D Basic", formula: "A = s^2, P = 4s, d = s sqrt(2)", description: "Four equal sides and four right angles.", dimensions: ["side"], use: "Tiles, grids, pixels, floor plans." },
   { id: "rectangle", name: "Rectangle", kind: "2d", category: "2D Basic", formula: "A = lw, P = 2(l+w)", description: "Opposite sides equal, all angles right angles.", dimensions: ["length", "width"], use: "Screens, rooms, pages, dashboards." },
+  { id: "rounded-rectangle", name: "Rounded Rectangle", kind: "2d", category: "2D Basic", formula: "A = lw - (4-pi)r^2", description: "A rectangle whose four corners are replaced by quarter-circle arcs.", dimensions: ["length", "width", "corner radius"], use: "Screens, cards, signs, interface design." },
   { id: "parallelogram", name: "Parallelogram", kind: "2d", category: "2D Polygons", formula: "A = bh, P = 2(a+b)", description: "Opposite sides are parallel and equal.", dimensions: ["base", "height", "side"], use: "Vector addition, tiling, force diagrams." },
   { id: "rhombus", name: "Rhombus", kind: "2d", category: "2D Polygons", formula: "A = d1 d2 / 2, P = 4s", description: "A parallelogram with four equal sides.", dimensions: ["diagonal 1", "diagonal 2"], use: "Patterns, crystals, lattice geometry." },
   { id: "trapezium", name: "Trapezium", kind: "2d", category: "2D Polygons", formula: "A = 1/2 (a+b)h", description: "A quadrilateral with one pair of parallel sides.", dimensions: ["base", "top", "height"], use: "Bridges, ramps, cross-sections." },
@@ -58,14 +62,16 @@ const shapes: ShapeDefinition[] = [
   { id: "hexagon", name: "Hexagon", kind: "2d", category: "2D Polygons", formula: "A = 3sqrt(3)s^2/2, P = 6s", description: "A six-sided polygon common in efficient packing.", dimensions: ["side"], use: "Honeycombs, bolts, grid maps." },
   { id: "heptagon", name: "Heptagon", kind: "2d", category: "2D Polygons", formula: "A = 7s^2/(4 tan(pi/7)), P = 7s", description: "A seven-sided polygon.", dimensions: ["side"], use: "Coins, decorative geometry, polygon classification." },
   { id: "octagon", name: "Octagon", kind: "2d", category: "2D Polygons", formula: "A = 2(1+sqrt(2))s^2, P = 8s", description: "An eight-sided polygon.", dimensions: ["side"], use: "Stop signs, floor patterns, design frames." },
+  { id: "nonagon", name: "Nonagon", kind: "2d", category: "2D Polygons", formula: "A = 9s^2/(4 tan(pi/9)), P = 9s", description: "A regular nine-sided polygon.", dimensions: ["side"], use: "Decorative frames, radial layouts, polygon studies." },
   { id: "decagon", name: "Decagon", kind: "2d", category: "2D Polygons", formula: "A = 10s^2/(4 tan(pi/10)), P = 10s", description: "A ten-sided polygon.", dimensions: ["side"], use: "Circular approximations, ornaments, game tokens." },
+  { id: "dodecagon", name: "Dodecagon", kind: "2d", category: "2D Polygons", formula: "A = 12s^2/(4 tan(pi/12)), P = 12s", description: "A regular twelve-sided polygon.", dimensions: ["side"], use: "Clock faces, coins, architectural plans." },
   { id: "regular-polygon", name: "Regular Polygon", kind: "2d", category: "2D Polygons", formula: "A = n s^2 / (4 tan(pi/n)), P = ns", description: "All sides and angles are equal.", dimensions: ["side", "sides"], use: "Tiling, icons, nuts and bolts, meshes." },
   { id: "annulus", name: "Annulus", kind: "2d", category: "2D Curved", formula: "A = pi(R^2-r^2)", description: "A ring-shaped region between two concentric circles.", dimensions: ["outer radius", "inner radius"], use: "Washers, rings, tracks, gaskets." },
   { id: "quadrant", name: "Quadrant", kind: "2d", category: "2D Curved", formula: "A = 1/4 pi r^2, arc = 1/2 pi r", description: "One quarter of a circle.", dimensions: ["radius"], use: "Coordinate planes, rounded corners, quarter turns." },
   { id: "segment", name: "Circular Segment", kind: "2d", category: "2D Curved", formula: "A = sector area - triangle area", description: "A region cut from a circle by a chord.", dimensions: ["radius", "angle"], use: "Lenses, bridge arches, tank fill levels." },
   { id: "crescent", name: "Crescent", kind: "2d", category: "2D Curved", formula: "A = area(big circle) - overlap", description: "A moon-like shape made from two offset circular arcs.", dimensions: ["outer radius", "inner radius"], use: "Astronomy icons, logos, moon phases." },
-  { id: "star", name: "Star Polygon", kind: "2d", category: "2D Polygons", formula: "A from alternating outer/inner radii", description: "A self-pointing polygon with alternating radii.", dimensions: ["outer radius", "inner radius"], use: "Flags, ratings, decorative geometry." },
-  { id: "cross", name: "Cross Shape", kind: "2d", category: "2D Polygons", formula: "A = vertical rectangle + horizontal rectangle - overlap", description: "Two rectangles crossing at right angles.", dimensions: ["arm length", "arm width"], use: "Symbols, floor plans, structural layouts." },
+  { id: "star", name: "Star Polygon", kind: "2d", category: "2D Polygons", formula: "A = 5Rr sin(36 deg)", description: "A five-point star polygon with alternating outer and inner radii.", dimensions: ["outer radius", "inner radius"], use: "Flags, ratings, decorative geometry." },
+  { id: "cross", name: "Cross Shape", kind: "2d", category: "2D Polygons", formula: "A = 4aw-w^2, P = 8a", description: "Two centered rectangles of total arm length 2a and width w crossing at right angles.", dimensions: ["arm half-length", "arm width"], use: "Symbols, floor plans, structural layouts." },
   { id: "cube", name: "Cube", kind: "3d", category: "3D Solids", formula: "SA = 6s^2, V = s^3", description: "A solid with six equal square faces.", dimensions: ["side"], use: "Dice, voxels, packaging, 3D grids." },
   { id: "cuboid", name: "Cuboid", kind: "3d", category: "3D Solids", formula: "SA = 2(lw+lh+wh), V = lwh", description: "A rectangular box with length, width, and height.", dimensions: ["length", "width", "height"], use: "Rooms, cartons, tanks, containers." },
   { id: "sphere", name: "Sphere", kind: "3d", category: "3D Curved Solids", formula: "SA = 4 pi r^2, V = 4/3 pi r^3", description: "All surface points are the same distance from the center.", dimensions: ["radius"], use: "Planets, balls, bubbles, atoms." },
@@ -73,19 +79,22 @@ const shapes: ShapeDefinition[] = [
   { id: "cylinder", name: "Cylinder", kind: "3d", category: "3D Curved Solids", formula: "SA = 2 pi r(r+h), V = pi r^2 h", description: "Two circular bases connected by a curved surface.", dimensions: ["radius", "height"], use: "Cans, pipes, tanks, pistons." },
   { id: "hollow-cylinder", name: "Hollow Cylinder", kind: "3d", category: "3D Curved Solids", formula: "V = pi h(R^2-r^2)", description: "A tube with outer and inner circular radii.", dimensions: ["outer radius", "inner radius", "height"], use: "Pipes, sleeves, washers, ducts." },
   { id: "capsule", name: "Capsule", kind: "3d", category: "3D Curved Solids", formula: "V = pi r^2 h + 4/3 pi r^3", description: "A cylinder capped by two hemispheres.", dimensions: ["radius", "cylinder length"], use: "Pills, pressure vessels, game colliders." },
-  { id: "ellipsoid", name: "Ellipsoid", kind: "3d", category: "3D Curved Solids", formula: "V = 4/3 pi abc", description: "A sphere stretched along three axes.", dimensions: ["axis a", "axis b", "axis c"], use: "Planets, lenses, probability clouds." },
+  { id: "ellipsoid", name: "Ellipsoid", kind: "3d", category: "3D Curved Solids", formula: "V = 4/3 pi abc", description: "A sphere stretched along three semi-axes.", dimensions: ["semi-axis a", "semi-axis b", "semi-axis c"], use: "Planets, lenses, probability clouds." },
   { id: "cone", name: "Cone", kind: "3d", category: "3D Curved Solids", formula: "SA = pi r(r+l), V = 1/3 pi r^2 h", description: "A circular base tapering to one point.", dimensions: ["radius", "height"], use: "Funnels, traffic cones, nozzles." },
   { id: "frustum", name: "Frustum", kind: "3d", category: "3D Curved Solids", formula: "V = 1/3 pi h(R^2 + Rr + r^2)", description: "A cone with its top cut off parallel to the base.", dimensions: ["radius", "top radius", "height"], use: "Buckets, lampshades, tapered columns." },
   { id: "tetrahedron", name: "Tetrahedron", kind: "3d", category: "3D Solids", formula: "V = s^3/(6sqrt(2))", description: "A polyhedron with four triangular faces.", dimensions: ["side"], use: "Molecular geometry, dice, meshes." },
   { id: "octahedron", name: "Octahedron", kind: "3d", category: "3D Solids", formula: "V = sqrt(2)s^3/3", description: "A polyhedron with eight triangular faces.", dimensions: ["side"], use: "Crystals, dice, symmetric models." },
-  { id: "dodecahedron", name: "Dodecahedron", kind: "3d", category: "3D Solids", formula: "12 regular pentagonal faces", description: "A Platonic solid with twelve pentagonal faces.", dimensions: ["side"], use: "Dice, topology, symmetry studies." },
-  { id: "icosahedron", name: "Icosahedron", kind: "3d", category: "3D Solids", formula: "20 equilateral triangular faces", description: "A Platonic solid with twenty triangular faces.", dimensions: ["side"], use: "Geodesic models, dice, meshes." },
+  { id: "dodecahedron", name: "Dodecahedron", kind: "3d", category: "3D Solids", formula: "SA = 3sqrt(25+10sqrt(5))s^2, V = (15+7sqrt(5))s^3/4", description: "A Platonic solid with twelve pentagonal faces.", dimensions: ["edge length"], use: "Dice, topology, symmetry studies." },
+  { id: "icosahedron", name: "Icosahedron", kind: "3d", category: "3D Solids", formula: "SA = 5sqrt(3)s^2, V = 5(3+sqrt(5))s^3/12", description: "A Platonic solid with twenty triangular faces.", dimensions: ["edge length"], use: "Geodesic models, dice, meshes." },
   { id: "square-pyramid", name: "Square Pyramid", kind: "3d", category: "3D Solids", formula: "V = 1/3 s^2 h", description: "A square base rising to one apex.", dimensions: ["side", "height"], use: "Pyramids, roofs, monuments." },
   { id: "triangular-pyramid", name: "Triangular Pyramid", kind: "3d", category: "3D Solids", formula: "V = 1/3 Bh", description: "A pyramid with a triangular base.", dimensions: ["base side", "height"], use: "Tetrahedral models, roof geometry." },
   { id: "rectangular-pyramid", name: "Rectangular Pyramid", kind: "3d", category: "3D Solids", formula: "V = 1/3 lwh", description: "A rectangular base rising to one apex.", dimensions: ["length", "width", "height"], use: "Roofs, monuments, packaging." },
+  { id: "pentagonal-pyramid", name: "Pentagonal Pyramid", kind: "3d", category: "3D Solids", formula: "V = 1/3 Bh", description: "A regular pentagonal base joined to one apex.", dimensions: ["base side", "height"], use: "Architecture, crystal models, geometric sculpture." },
+  { id: "hexagonal-pyramid", name: "Hexagonal Pyramid", kind: "3d", category: "3D Solids", formula: "V = 1/3 Bh", description: "A regular hexagonal base joined to one apex.", dimensions: ["base side", "height"], use: "Roofs, crystal models, geometric sculpture." },
   { id: "triangular-prism", name: "Triangular Prism", kind: "3d", category: "3D Solids", formula: "V = 1/2 bhL", description: "A triangular face extruded through a length.", dimensions: ["base", "height", "length"], use: "Roof forms, wedges, optical prisms." },
   { id: "pentagonal-prism", name: "Pentagonal Prism", kind: "3d", category: "3D Solids", formula: "V = pentagon area * length", description: "A pentagonal face extruded through a length.", dimensions: ["side", "length"], use: "Columns, packaging, architecture." },
-  { id: "hexagonal-prism", name: "Hexagonal Prism", kind: "3d", category: "3D Solids", formula: "V = 3sqrt(3)/2 s^2 h", description: "A hexagonal face extruded through a length.", dimensions: ["side", "length"], use: "Pencils, honeycomb cells, bolts." },
+  { id: "hexagonal-prism", name: "Hexagonal Prism", kind: "3d", category: "3D Solids", formula: "V = 3sqrt(3)/2 s^2 L", description: "A hexagonal face extruded through a length.", dimensions: ["side", "length"], use: "Pencils, honeycomb cells, bolts." },
+  { id: "octagonal-prism", name: "Octagonal Prism", kind: "3d", category: "3D Solids", formula: "V = 2(1+sqrt(2))s^2 L", description: "An octagonal face extruded through a length.", dimensions: ["side", "length"], use: "Columns, packaging, architectural structures." },
   { id: "torus", name: "Torus", kind: "3d", category: "3D Curved Solids", formula: "SA = 4 pi^2 Rr, V = 2 pi^2 Rr^2", description: "A doughnut-shaped solid with major and minor radii.", dimensions: ["major radius", "minor radius"], use: "Tires, O-rings, magnetic coils." },
 ];
 
@@ -102,30 +111,47 @@ export default function ShapesExplorer() {
   const [sides, setSides] = useState(6);
   const [angle, setAngle] = useState(90);
   const [wireframe, setWireframe] = useState(false);
+  const [fillMode, setFillMode] = useState<ShapeFillMode>("gradient");
+  const [colorA, setColorA] = useState("#22d3ee");
+  const [colorB, setColorB] = useState("#8b5cf6");
+  const [shapeGlow, setShapeGlow] = useState(true);
+  const [showGrid, setShowGrid] = useState(true);
   const [viewZoom, setViewZoom] = useState(1);
   const [viewRotation, setViewRotation] = useState(0);
   const [autoRotate, setAutoRotate] = useState(true);
+  const [viewTab, setViewTab] = useState<ShapeKind>("2d");
+  const [stageHeight, setStageHeight] = useState(520);
+  const [viewResetNonce, setViewResetNonce] = useState(0);
   const [shapeMenuCollapsed, setShapeMenuCollapsed] = useState(false);
-  const [controlPaneWidth, setControlPaneWidth] = useState(30);
-  const [viewPaneSplit, setViewPaneSplit] = useState(50);
-  const workspaceRef = useRef<HTMLDivElement>(null);
-  const viewsRef = useRef<HTMLDivElement>(null);
   useEffect(() => markTopicVisited("shapes"), [markTopicVisited]);
 
   useEffect(() => {
     const shapeParam = new URLSearchParams(window.location.search).get("shape");
-    if (shapeParam && shapes.some((shape) => shape.id === shapeParam)) setSelectedId(shapeParam as ShapeId);
+    const initialShape = shapes.find((shape) => shape.id === shapeParam);
+    if (initialShape) {
+      setSelectedId(initialShape.id);
+      setViewTab(initialShape.kind);
+    }
   }, []);
 
   const selected = shapes.find((shape) => shape.id === selectedId) ?? shapes[0];
   const groupedShapes = useMemo(() => shapeMenuCategories.map((item) => ({ category: item, shapes: shapes.filter((shape) => shape.category === item) })), []);
   const metrics = getMetrics(selected.id, a, b, c, sides, angle);
+  const secondRange = secondControlRange(selected.id, a);
+  const thirdRange = thirdControlRange(selected.id, a, b);
+
+  useEffect(() => {
+    if (needsSecond(selected.id) && (b < secondRange.min || b > secondRange.max)) setB(Math.min(secondRange.max, Math.max(secondRange.min, b)));
+    if (needsThird(selected.id) && (c < thirdRange.min || c > thirdRange.max)) setC(Math.min(thirdRange.max, Math.max(thirdRange.min, c)));
+  }, [selected.id, a, b, c, secondRange.min, secondRange.max, thirdRange.min, thirdRange.max]);
 
   const selectShape = (shape: ShapeDefinition) => {
     setSelectedId(shape.id);
     setExpandedCategories((items) => new Set([...items, shape.category]));
     setViewZoom(1);
     setViewRotation(0);
+    setViewTab(shape.kind);
+    setViewResetNonce((value) => value + 1);
     window.history.replaceState(null, "", `${window.location.pathname}?shape=${shape.id}`);
     markTopicInteracted("shapes");
   };
@@ -146,6 +172,7 @@ export default function ShapesExplorer() {
     setViewZoom(1);
     setViewRotation(0);
     setAutoRotate(true);
+    setViewResetNonce((value) => value + 1);
   };
 
   return (
@@ -157,7 +184,7 @@ export default function ShapesExplorer() {
         estimatedMinutes={35}
       />
       <SectionCard title="Shapes Explorer" description="Use the left menu to choose a 2D shape or 3D object. The selected object opens on the right with live controls.">
-        <div className={shapeMenuCollapsed ? "grid gap-4" : "grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)]"}>
+        <div className={shapeMenuCollapsed ? "grid gap-4 xl:grid-cols-[minmax(0,1fr)_300px]" : "grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)_300px]"}>
           {shapeMenuCollapsed ? (
             <button
               type="button"
@@ -185,7 +212,7 @@ export default function ShapesExplorer() {
               onCollapse={() => setShapeMenuCollapsed(true)}
             />
           )}
-          <div className="min-w-0 rounded-xl border border-slate-200 bg-white/70 p-3 dark:border-white/10 dark:bg-white/5">
+          <div className="min-w-0 rounded-2xl border border-cyan-200/80 bg-gradient-to-br from-white via-cyan-50/45 to-violet-50/70 p-3 shadow-sm dark:border-cyan-300/15 dark:from-slate-950 dark:via-cyan-950/25 dark:to-violet-950/25">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">{selected.category}</p>
@@ -194,176 +221,77 @@ export default function ShapesExplorer() {
               </div>
               <span className="mini-chip">{selected.kind === "3d" ? "3D object" : "2D shape"}</span>
             </div>
-            <p className="mt-3 rounded-lg bg-slate-100 p-3 text-sm font-bold dark:bg-white/10"><MathExpression value={selected.formula} /></p>
-            <div className="mt-4 grid gap-4 xl:grid-cols-[300px_minmax(0,1fr)]">
-              <div className="space-y-3">
-                <SliderGroup title="Shape controls">
-                  <SliderControl density="compact" label={primaryLabel(selected)} value={a} min={0.5} max={10} step={0.1} onChange={setA} />
-                  {needsSecond(selected.id) && <SliderControl density="compact" label={secondLabel(selected)} value={b} min={0.5} max={10} step={0.1} onChange={setB} />}
-                  {needsThird(selected.id) && <SliderControl density="compact" label={thirdLabel(selected)} value={c} min={0.5} max={12} step={0.1} onChange={setC} />}
-                  {selected.id === "regular-polygon" && <SliderControl density="compact" label="Number of sides" value={sides} min={3} max={12} step={1} onChange={(value) => setSides(Math.round(value))} />}
-                  {selected.id === "sector" && <SliderControl density="compact" label="Central angle" value={angle} min={5} max={360} step={1} onChange={setAngle} unit="deg" />}
-                </SliderGroup>
-                {selected.kind === "3d" && (
-                  <label className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
-                    <input type="checkbox" checked={wireframe} onChange={(event) => setWireframe(event.target.checked)} />
-                    Wireframe
-                  </label>
-                )}
-                <div className="grid grid-cols-2 gap-2">
-                  {Object.entries(metrics).map(([label, value]) => <Metric key={label} label={label} value={value} />)}
-                </div>
-              </div>
-
-              <div className="min-w-0 space-y-3">
-                <ShapeViewControls
-                  kind={selected.kind}
-                  zoom={viewZoom}
-                  rotation={viewRotation}
-                  autoRotate={autoRotate}
-                  onZoomIn={zoomIn}
-                  onZoomOut={zoomOut}
-                  onRotateLeft={rotateLeft}
-                  onRotateRight={rotateRight}
-                  onReset={resetView}
-                  onToggleAutoRotate={() => setAutoRotate((value) => !value)}
-                />
-                <div className="grid gap-3 xl:grid-cols-2">
-                  <VisualizationPane title="2D Pane" description="Exact plane view with live dimensions." badge={selected.kind === "2d" ? "native 2D" : "shadow view"}>
-                    <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} />
-                  </VisualizationPane>
-                  <VisualizationPane
-                    title="3D Pane"
-                    description={selected.kind === "2d" ? "Extruded model from the 2D outline." : "Real solid with dimension guides."}
-                    badge={selected.kind === "2d" ? "extruded 3D" : "solid 3D"}
-                    action={
-                      <button type="button" onClick={() => setAutoRotate((value) => !value)} className={autoRotate ? "action-primary px-3 py-2 text-xs" : "action-secondary px-3 py-2 text-xs"}>
-                        {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                        {autoRotate ? "Pause" : "Rotate"}
-                      </button>
-                    }
-                  >
-                    <ThreeSceneWrapper height="100%" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom">
-                      <ambientLight intensity={0.75} />
-                      <directionalLight position={[4, 5, 4]} intensity={1.35} />
-                      <RotatingSolid shape={selected.id} a={a} b={b} c={c} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} sides={sides} />
-                      <OrbitControls enablePan={false} enableZoom enableDamping />
-                    </ThreeSceneWrapper>
-                  </VisualizationPane>
-                </div>
+            <div className="mt-4 flex rounded-xl bg-white/80 p-1 shadow-sm dark:bg-slate-950/60" role="tablist" aria-label="Shape view">
+              {(["2d", "3d"] as ShapeKind[]).map((tab) => (
+                <button key={tab} type="button" role="tab" aria-selected={viewTab === tab} onClick={() => setViewTab(tab)} className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-black transition ${viewTab === tab ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-md" : "text-slate-600 hover:bg-cyan-50 dark:text-slate-300 dark:hover:bg-white/10"}`}>
+                  {tab === "2d" ? "2D view" : selected.kind === "2d" ? "3D extrusion" : "3D solid"}
+                </button>
+              ))}
+            </div>
+            <div className="mt-3">
+              <ShapeViewControls kind={selected.kind} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} onZoomIn={zoomIn} onZoomOut={zoomOut} onRotateLeft={rotateLeft} onRotateRight={rotateRight} onReset={resetView} onToggleAutoRotate={() => setAutoRotate((value) => !value)} />
+            </div>
+            <div
+              className="relative mt-3 overflow-hidden rounded-2xl border border-cyan-400/25 shadow-[inset_0_0_80px_rgba(34,211,238,0.08),0_0_35px_rgba(139,92,246,0.12)]"
+              style={{
+                height: stageHeight,
+                backgroundColor: "#030712",
+                backgroundImage: showGrid
+                  ? "linear-gradient(rgba(34,211,238,.09) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,.09) 1px, transparent 1px), radial-gradient(circle at 50% 45%, rgba(124,58,237,.28), transparent 48%), radial-gradient(circle at 20% 15%, rgba(6,182,212,.18), transparent 38%)"
+                  : "radial-gradient(circle at 50% 45%, rgba(124,58,237,.3), transparent 48%), radial-gradient(circle at 20% 15%, rgba(6,182,212,.2), transparent 38%)",
+                backgroundSize: showGrid ? "28px 28px, 28px 28px, 100% 100%, 100% 100%" : "100% 100%, 100% 100%",
+              }}
+            >
+              {viewTab === "2d" ? (
+                <InteractiveShape2D resetKey={`${selected.id}-${viewResetNonce}`} onZoomIn={zoomIn} onZoomOut={zoomOut}>
+                  <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} fillMode={fillMode} colorA={colorA} colorB={colorB} glow={shapeGlow} />
+                </InteractiveShape2D>
+              ) : (
+                <ThreeSceneWrapper height="100%" mobileHeight="100%" interactionLabel="Drag to rotate - wheel or pinch to zoom">
+                  <ambientLight intensity={0.9} />
+                  <directionalLight position={[4, 5, 4]} intensity={1.45} />
+                  <directionalLight position={[-3, 1, -2]} intensity={0.7} color={colorB} />
+                  <pointLight position={[0, -3, 3]} intensity={shapeGlow ? 1.1 : 0.35} color={colorA} />
+                  <RotatingSolid shape={selected.id} a={a} b={b} c={c} angle={angle} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} sides={sides} fillMode={fillMode} colorA={colorA} colorB={colorB} glow={shapeGlow} />
+                  <OrbitControls enablePan enableZoom enableDamping />
+                </ThreeSceneWrapper>
+              )}
+              <div className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-slate-950/75 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">
+                {viewTab === "2d" ? "Drag to move · wheel to zoom" : "Drag to rotate · pinch to zoom"}
               </div>
             </div>
-            <div className="mt-4 grid gap-3 md:grid-cols-4">
-              <InfoTile label="Dimensions" value={selected.dimensions.join(", ")} />
-              <InfoTile label="Current symbols" value={symbolSummary(selected.id, a, b, c, sides, angle)} />
-              <InfoTile label="Type" value={selected.kind === "2d" ? "Plane shape" : "Solid shape"} />
-              <InfoTile label="Used in" value={selected.use} />
-            </div>
+            <div role="separator" aria-label="Resize visualization height" onPointerDown={(event) => startHeightResize(event, stageHeight, setStageHeight)} className="mx-auto mt-2 flex h-5 w-32 cursor-row-resize items-center justify-center rounded-full text-slate-400 transition hover:bg-cyan-100 hover:text-cyan-600 dark:hover:bg-cyan-300/10"><span className="h-1 w-12 rounded-full bg-current" /></div>
           </div>
-        </div>
-      </SectionCard>
 
-      <SectionCard title={selected.name} description={selected.description} className="hidden">
-        <div
-          ref={workspaceRef}
-          className="grid gap-3 xl:min-h-[720px] xl:items-stretch"
-          style={{ gridTemplateColumns: `minmax(280px, ${controlPaneWidth}%) 14px minmax(50%, 1fr)` }}
-        >
-          <div className="space-y-4 overflow-y-auto pr-1 xl:max-h-[78vh]">
-            <FormulaBlock title={`${selected.name} Formulas`} formula={selected.formula} />
-            <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">
-              <p className="font-bold">Visual formula guide</p>
-              <p className="mt-2">{formulaExplanation(selected.id, a, b, c, sides, angle)}</p>
+          <aside className="space-y-3 rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/45">
+            <div className="rounded-xl bg-gradient-to-r from-cyan-500/10 to-violet-500/10 p-3">
+              <p className="text-xs font-black uppercase text-cyan-700 dark:text-cyan-200">Formula</p>
+              <p className="mt-2 overflow-x-auto text-sm font-bold"><MathExpression value={selected.formula} /></p>
             </div>
+            <ShapeAppearanceControls fillMode={fillMode} onFillMode={setFillMode} colorA={colorA} colorB={colorB} onColorA={setColorA} onColorB={setColorB} glow={shapeGlow} onGlow={() => setShapeGlow((value) => !value)} grid={showGrid} onGrid={() => setShowGrid((value) => !value)} />
             <SliderGroup title="Shape controls">
               <SliderControl density="compact" label={primaryLabel(selected)} value={a} min={0.5} max={10} step={0.1} onChange={setA} />
-              {needsSecond(selected.id) && <SliderControl density="compact" label={secondLabel(selected)} value={b} min={0.5} max={10} step={0.1} onChange={setB} />}
-              {needsThird(selected.id) && <SliderControl density="compact" label={thirdLabel(selected)} value={c} min={0.5} max={12} step={0.1} onChange={setC} />}
+              {needsSecond(selected.id) && <SliderControl density="compact" label={secondLabel(selected)} value={b} min={secondRange.min} max={secondRange.max} step={0.1} onChange={setB} />}
+              {needsThird(selected.id) && <SliderControl density="compact" label={thirdLabel(selected)} value={c} min={thirdRange.min} max={thirdRange.max} step={0.1} onChange={setC} />}
               {selected.id === "regular-polygon" && <SliderControl density="compact" label="Number of sides" value={sides} min={3} max={12} step={1} onChange={(value) => setSides(Math.round(value))} />}
-              {selected.id === "sector" && <SliderControl density="compact" label="Central angle" value={angle} min={5} max={360} step={1} onChange={setAngle} unit="deg" />}
+              {(selected.id === "sector" || selected.id === "segment") && <SliderControl density="compact" label="Central angle" value={angle} min={5} max={360} step={1} onChange={setAngle} unit="deg" />}
             </SliderGroup>
             {selected.kind === "3d" && (
-              <label className="flex items-center gap-3 rounded-2xl bg-slate-100 p-4 text-sm font-semibold dark:bg-white/10">
+              <label className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 text-sm font-semibold dark:bg-white/10">
                 <input type="checkbox" checked={wireframe} onChange={(event) => setWireframe(event.target.checked)} />
                 Wireframe
               </label>
             )}
             <div className="grid grid-cols-2 gap-2">
-              {Object.entries(metrics).map(([label, value]) => (
-                <Metric key={label} label={label} value={value} />
-              ))}
+              {Object.entries(metrics).map(([label, value]) => <Metric key={label} label={label} value={value} />)}
             </div>
-          </div>
-
-          <div
-            role="separator"
-            aria-orientation="vertical"
-            aria-label="Resize controls and visualization panes"
-            className="hidden cursor-col-resize rounded-full bg-slate-200 transition hover:bg-cyan-400 dark:bg-white/10 dark:hover:bg-cyan-400 xl:block"
-            onPointerDown={(event) => startPaneResize(event, workspaceRef, setControlPaneWidth, 20, 48)}
-          />
-
-          <div className="space-y-4">
-            <ShapeViewControls
-              kind={selected.kind}
-              zoom={viewZoom}
-              rotation={viewRotation}
-              autoRotate={autoRotate}
-              onZoomIn={zoomIn}
-              onZoomOut={zoomOut}
-              onRotateLeft={rotateLeft}
-              onRotateRight={rotateRight}
-              onReset={resetView}
-              onToggleAutoRotate={() => setAutoRotate((value) => !value)}
-            />
-            <div
-              ref={viewsRef}
-              className="grid gap-3 xl:min-h-[640px] xl:items-stretch"
-              style={{ gridTemplateColumns: `minmax(280px, ${viewPaneSplit}%) 14px minmax(280px, 1fr)` }}
-            >
-              <VisualizationPane title="2D Pane" description="Exact plane view with live dimensions." badge={selected.kind === "2d" ? "native 2D" : "shadow view"}>
-                <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} />
-              </VisualizationPane>
-
-              <div
-                role="separator"
-                aria-orientation="vertical"
-                aria-label="Resize 2D and 3D panes"
-                className="hidden cursor-col-resize rounded-full bg-slate-200 transition hover:bg-cyan-400 dark:bg-white/10 dark:hover:bg-cyan-400 xl:block"
-                onPointerDown={(event) => startPaneResize(event, viewsRef, setViewPaneSplit, 30, 70)}
-              />
-
-              <VisualizationPane
-                title="3D Pane"
-                description={selected.kind === "2d" ? "Extruded model from the 2D outline." : "Real solid with dimension guides."}
-                badge={selected.kind === "2d" ? "extruded 3D" : "solid 3D"}
-                action={
-                  <button type="button" onClick={() => setAutoRotate((value) => !value)} className={autoRotate ? "action-primary px-3 py-2 text-xs" : "action-secondary px-3 py-2 text-xs"}>
-                    {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                    {autoRotate ? "Pause rotation" : "Start rotation"}
-                  </button>
-                }
-              >
-                <ThreeSceneWrapper height="100%" mobileHeight="min(68vh, 390px)" interactionLabel="Drag rotate - pinch zoom">
-                  <ambientLight intensity={0.75} />
-                  <directionalLight position={[4, 5, 4]} intensity={1.35} />
-                  <RotatingSolid shape={selected.id} a={a} b={b} c={c} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate} sides={sides} />
-                  <OrbitControls enablePan={false} enableZoom enableDamping />
-                </ThreeSceneWrapper>
-              </VisualizationPane>
-            </div>
-
-            <div className="rounded-2xl border border-dashed border-cyan-300/60 bg-cyan-50/70 p-3 text-xs font-bold text-cyan-900 dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-100">
-              Drag the vertical handles to resize. The visual workspace starts above 50% of this shape area, and the 2D/3D panes start at an equal split.
-            </div>
-
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="space-y-2">
               <InfoTile label="Dimensions" value={selected.dimensions.join(", ")} />
               <InfoTile label="Current symbols" value={symbolSummary(selected.id, a, b, c, sides, angle)} />
-              <InfoTile label="Type" value={selected.kind === "2d" ? "Plane shape" : "Solid shape"} />
               <InfoTile label="Used in" value={selected.use} />
             </div>
-          </div>
+            <p className="rounded-xl bg-cyan-50 p-3 text-xs leading-5 text-slate-600 dark:bg-cyan-300/10 dark:text-slate-300">{formulaExplanation(selected.id, a, b, c, sides, angle)}</p>
+          </aside>
         </div>
       </SectionCard>
 
@@ -384,6 +312,14 @@ function FormulaMapSection({ selected, metrics, shapes, onSelect }: { selected: 
       description={`Showing ${formulaCount} formulas related to the selected ${selected.kind === "3d" ? "3D object" : "shape"}: ${selected.name}.`}
       headerAction={<span className="mini-chip">{selected.kind === "3d" ? "3D object" : "2D shape"}</span>}
     >
+      <div className="mb-4 rounded-2xl border border-violet-200 bg-gradient-to-r from-cyan-50 via-white to-violet-50 p-4 dark:border-violet-300/15 dark:from-cyan-950/25 dark:via-slate-950/40 dark:to-violet-950/25">
+        <p className="text-xs font-black uppercase tracking-wide text-violet-700 dark:text-violet-200">Common formulas · same rule, many shapes</p>
+        <div className="mt-3 grid gap-3 md:grid-cols-3">
+          <FormulaMapCard entry={{ title: "Any triangle", formula: "A=1/2 bh", note: "Right, acute, obtuse, equilateral, isosceles, or scalene: use a base and its perpendicular height." }} metrics={{}} compact />
+          <FormulaMapCard entry={{ title: "Any prism", formula: "V=BL", note: "Multiply the area B of the end face by the prism length L." }} metrics={{}} compact />
+          <FormulaMapCard entry={{ title: "Any pyramid or cone", formula: "V=1/3 Bh", note: "One third of the matching prism or cylinder with the same base and height." }} metrics={{}} compact />
+        </div>
+      </div>
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_300px]">
         <div className="space-y-4">
           <div className="rounded-xl border border-cyan-200 bg-cyan-50/80 p-4 dark:border-cyan-400/20 dark:bg-cyan-400/10">
@@ -1057,12 +993,12 @@ function getShapeFormulaEntries(id: ShapeId): ShapeFormulaEntry[] {
       { title: "Inner arc", formula: "L_i approx pi r", note: "Shown as an inner circular cut.", valueLabel: "Inner arc" },
     ],
     star: [
-      { title: "Approx area", formula: "A approx 5Rr sin72", note: "Five alternating outer/inner triangular wedges.", valueLabel: "Approx area" },
+      { title: "Area", formula: "A=5Rr sin36", note: "Ten alternating-radius edges form ten center triangles.", valueLabel: "Area" },
       { title: "Points", formula: "n=5", note: "Current star model uses five points.", valueLabel: "Points" },
     ],
     cross: [
-      { title: "Area", formula: "A=2ab-b^2", note: "Two rectangles minus the overlap square.", valueLabel: "Area" },
-      { title: "Perimeter", formula: "P=4a+8b", note: "Outer boundary of the equal-arm cross.", valueLabel: "Perimeter" },
+      { title: "Area", formula: "A=4aw-w^2", note: "Two 2a by w rectangles minus their w by w overlap.", valueLabel: "Area" },
+      { title: "Perimeter", formula: "P=8a", note: "The inset and end segments combine to eight half-arm lengths.", valueLabel: "Perimeter" },
     ],
     triangle: [
       { title: "Area", formula: "A=1/2 bh", note: "Base times perpendicular height.", valueLabel: "Area" },
@@ -1075,6 +1011,21 @@ function getShapeFormulaEntries(id: ShapeId): ShapeFormulaEntry[] {
       { title: "Perimeter", formula: "P=a+b+c", note: "Both legs plus hypotenuse.", valueLabel: "Perimeter" },
       { title: "Trig ratios", formula: "sin theta=opposite/hypotenuse, tan theta=opposite/adjacent", note: "Connects the triangle to trigonometry." },
     ],
+    "equilateral-triangle": [
+      { title: "Area", formula: "A=sqrt(3)s^2/4", note: "The common triangle rule A=bh/2 with h=sqrt(3)s/2.", valueLabel: "Area" },
+      { title: "Perimeter", formula: "P=3s", note: "Three equal sides.", valueLabel: "Perimeter" },
+      { title: "Height", formula: "h=sqrt(3)s/2", note: "Altitude splits the shape into two 30-60-90 triangles.", valueLabel: "Height" },
+    ],
+    "isosceles-triangle": [
+      { title: "Area", formula: "A=1/2 bh", note: "The universal triangle area rule.", valueLabel: "Area" },
+      { title: "Equal side", formula: "s=sqrt(h^2+(b/2)^2)", note: "The altitude bisects the base.", valueLabel: "Equal side" },
+      { title: "Perimeter", formula: "P=b+2s", note: "Base plus two equal sides.", valueLabel: "Perimeter" },
+    ],
+    "scalene-triangle": [
+      { title: "Area", formula: "A=1/2 bh", note: "The same base-height rule used by every triangle.", valueLabel: "Area" },
+      { title: "Heron's formula", formula: "A=sqrt(p(p-a)(p-b)(p-c))", note: "Use when all three unequal sides are known." },
+      { title: "Perimeter", formula: "P=a+b+c", note: "Add the three unequal sides." },
+    ],
     square: [
       { title: "Area", formula: "A=s^2", note: "Side squared.", valueLabel: "Area" },
       { title: "Perimeter", formula: "P=4s", note: "Four equal sides.", valueLabel: "Perimeter" },
@@ -1084,6 +1035,10 @@ function getShapeFormulaEntries(id: ShapeId): ShapeFormulaEntry[] {
       { title: "Area", formula: "A=lw", note: "Length times width.", valueLabel: "Area" },
       { title: "Perimeter", formula: "P=2(l+w)", note: "Two lengths and two widths.", valueLabel: "Perimeter" },
       { title: "Diagonal", formula: "d=sqrt(l^2+w^2)", note: "Pythagoras across the rectangle.", valueLabel: "Diagonal" },
+    ],
+    "rounded-rectangle": [
+      { title: "Area", formula: "A=lw-(4-pi)r^2", note: "Rectangle area minus the four rounded corner cutouts.", valueLabel: "Area" },
+      { title: "Perimeter", formula: "P=2(l+w-4r)+2 pi r", note: "Straight portions plus four quarter-circle arcs.", valueLabel: "Perimeter" },
     ],
     parallelogram: [
       { title: "Area", formula: "A=bh", note: "Base times perpendicular height.", valueLabel: "Area" },
@@ -1112,7 +1067,9 @@ function getShapeFormulaEntries(id: ShapeId): ShapeFormulaEntry[] {
     hexagon: polygon(6),
     heptagon: polygon(7),
     octagon: polygon(8),
+    nonagon: polygon(9),
     decagon: polygon(10),
+    dodecagon: polygon(12),
     cube: [
       { title: "Surface area", formula: "SA=6s^2", note: "Six congruent square faces.", valueLabel: "Surface area" },
       { title: "Volume", formula: "V=s^3", note: "Side cubed.", valueLabel: "Volume" },
@@ -1172,11 +1129,15 @@ function getShapeFormulaEntries(id: ShapeId): ShapeFormulaEntry[] {
       { title: "Faces", formula: "F=8", note: "Eight triangular faces.", valueLabel: "Faces" },
     ],
     dodecahedron: [
+      { title: "Surface area", formula: "SA=3sqrt(25+10sqrt(5))s^2", note: "Area of twelve regular pentagonal faces.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=(15+7sqrt(5))s^3/4", note: "Volume from edge length s.", valueLabel: "Volume" },
       { title: "Faces", formula: "F=12", note: "Twelve regular pentagonal faces.", valueLabel: "Faces" },
       { title: "Edges", formula: "E=30", note: "Edge count.", valueLabel: "Edges" },
       { title: "Vertices", formula: "V=20", note: "Vertex count.", valueLabel: "Vertices" },
     ],
     icosahedron: [
+      { title: "Surface area", formula: "SA=5sqrt(3)s^2", note: "Area of twenty equilateral triangular faces.", valueLabel: "Surface area" },
+      { title: "Volume", formula: "V=5(3+sqrt(5))s^3/12", note: "Volume from edge length s.", valueLabel: "Volume" },
       { title: "Faces", formula: "F=20", note: "Twenty triangular faces.", valueLabel: "Faces" },
       { title: "Edges", formula: "E=30", note: "Edge count.", valueLabel: "Edges" },
       { title: "Vertices", formula: "V=12", note: "Vertex count.", valueLabel: "Vertices" },
@@ -1194,9 +1155,18 @@ function getShapeFormulaEntries(id: ShapeId): ShapeFormulaEntry[] {
       { title: "Base area", formula: "B=lw", note: "Rectangular base area.", valueLabel: "Base area" },
       { title: "Volume", formula: "V=1/3 lwh", note: "One third of matching cuboid.", valueLabel: "Volume" },
     ],
+    "pentagonal-pyramid": [
+      { title: "Base area", formula: "B=5s^2/(4 tan(pi/5))", note: "Area of the regular pentagonal base.", valueLabel: "Base area" },
+      { title: "Volume", formula: "V=1/3 Bh", note: "One third of a matching pentagonal prism.", valueLabel: "Volume" },
+    ],
+    "hexagonal-pyramid": [
+      { title: "Base area", formula: "B=3sqrt(3)s^2/2", note: "Area of the regular hexagonal base.", valueLabel: "Base area" },
+      { title: "Volume", formula: "V=1/3 Bh", note: "One third of a matching hexagonal prism.", valueLabel: "Volume" },
+    ],
     "triangular-prism": prism("1/2 bh", "a+b+c"),
     "pentagonal-prism": prism("5s^2/(4 tan(pi/5))", "5s"),
     "hexagonal-prism": prism("3sqrt(3)s^2/2", "6s"),
+    "octagonal-prism": prism("2(1+sqrt(2))s^2", "8s"),
     torus: [
       { title: "Surface area", formula: "SA=4 pi^2 Rr", note: "Area of a swept circle.", valueLabel: "Surface area" },
       { title: "Volume", formula: "V=2 pi^2 Rr^2", note: "Volume of a circle swept around an axis.", valueLabel: "Volume" },
@@ -1226,9 +1196,10 @@ function formulaExplanation(id: ShapeId, a: number, b: number, c: number, sides:
   if (id === "semicircle") return `The diagram shows half a disk. Radius r=${roundTo(a, 2)} controls both the curved arc pi*r and the half-area.`;
   if (id === "sector") return `The amber slice is theta=${roundTo(angle, 0)} degrees out of 360. Arc length and area use the same fraction theta/360.`;
   if (id === "ellipse") return `The horizontal semi-axis a=${roundTo(a, 2)} and vertical semi-axis b=${roundTo(b, 2)} multiply in A=pi*a*b.`;
-  if (id === "triangle" || id === "right-triangle") return `The base b=${roundTo(a, 2)} and height h=${roundTo(b, 2)} make a rectangle; the triangle takes exactly half, so A=1/2*b*h.`;
+  if (id.includes("triangle")) return `The base b=${roundTo(a, 2)} and perpendicular height h=${roundTo(id === "equilateral-triangle" ? Math.sqrt(3) * a / 2 : b, 2)} form the same universal rule for every triangle: A=1/2*b*h.`;
   if (id === "square") return `Every side is s=${roundTo(a, 2)}. Area counts s by s square units, while perimeter walks four equal sides.`;
-  if (id === "rectangle") return `Length l=${roundTo(a, 2)} and breadth b=${roundTo(b, 2)} multiply for area. Perimeter walks l+b+l+b.`;
+  if (id === "rectangle") return `Length l=${roundTo(a, 2)} and width w=${roundTo(b, 2)} define the rectangle, so A=l*w and P=2(l+w).`;
+  if (id === "rounded-rectangle") return `Length l=${roundTo(a, 2)}, width w=${roundTo(b, 2)}, and corner radius r=${roundTo(Math.min(c, a / 2, b / 2), 2)} define the rounded rectangle.`;
   if (id === "parallelogram") return `Base b=${roundTo(a, 2)} times perpendicular height h=${roundTo(b, 2)} gives area; the slanted side controls perimeter.`;
   if (id === "rhombus" || id === "kite") return `The diagonals d1=${roundTo(a, 2)} and d2=${roundTo(b, 2)} cross. Their rectangle is twice the shape area, so A=d1*d2/2.`;
   if (id === "trapezium") return `Parallel sides a=${roundTo(a, 2)} and b=${roundTo(b, 2)} are averaged, then multiplied by height h=${roundTo(c, 2)}.`;
@@ -1246,7 +1217,7 @@ function formulaExplanation(id: ShapeId, a: number, b: number, c: number, sides:
   if (id === "cone") return `Radius r=${roundTo(a, 2)}, height h=${roundTo(b, 2)}, and slant l=${roundTo(Math.hypot(a, b), 2)} define the curved surface and one-third cylinder volume.`;
   if (id === "frustum") return `Bottom radius R=${roundTo(a, 2)}, top radius r=${roundTo(b, 2)}, and height h=${roundTo(c, 2)} describe a sliced cone.`;
   if (id.includes("pyramid") || isPlatonicSolid(id)) return `The base area and height create a pyramid-style volume, while triangular faces reveal the solid's symmetry.`;
-  if (id.includes("prism")) return `The base polygon area is extruded through length L=${roundTo(c, 2)} to create volume.`;
+  if (id.includes("prism")) return `The base polygon area is extruded through length L=${roundTo(id === "triangular-prism" ? c : b, 2)} to create volume.`;
   return `Major radius R=${roundTo(a, 2)} goes around the ring; minor radius r=${roundTo(b, 2)} controls the tube thickness.`;
 }
 
@@ -1255,8 +1226,10 @@ function symbolSummary(id: ShapeId, a: number, b: number, c: number, sides: numb
   if (id === "sector" || id === "segment") return `r=${roundTo(a, 2)}, theta=${roundTo(angle, 0)} deg`;
   if (id === "ellipse") return `a=${roundTo(a, 2)}, b=${roundTo(b, 2)}`;
   if (id === "annulus" || id === "crescent" || id === "star" || id === "torus" || id === "hollow-cylinder") return `R=${roundTo(a, 2)}, r=${roundTo(b, 2)}`;
-  if (id === "rectangle" || id === "cross") return `l=${roundTo(a, 2)}, b=${roundTo(b, 2)}`;
-  if (id === "triangle" || id === "right-triangle" || id === "parallelogram") return `b=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
+  if (id === "rectangle") return `l=${roundTo(a, 2)}, w=${roundTo(b, 2)}`;
+  if (id === "cross") return `a=${roundTo(a, 2)}, w=${roundTo(b, 2)}`;
+  if (id === "rounded-rectangle") return `l=${roundTo(a, 2)}, w=${roundTo(b, 2)}, r=${roundTo(Math.min(c, a / 2, b / 2), 2)}`;
+  if (id.includes("triangle") || id === "parallelogram") return id === "equilateral-triangle" ? `s=${roundTo(a, 2)}` : `b=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
   if (id === "square" || id === "cube" || isFixedRegularPolygon(id)) return `s=${roundTo(a, 2)}`;
   if (id === "rhombus" || id === "kite") return `d1=${roundTo(a, 2)}, d2=${roundTo(b, 2)}`;
   if (id === "trapezium") return `a=${roundTo(a, 2)}, b=${roundTo(b, 2)}, h=${roundTo(c, 2)}`;
@@ -1265,8 +1238,9 @@ function symbolSummary(id: ShapeId, a: number, b: number, c: number, sides: numb
   if (id === "cylinder" || id === "capsule") return `r=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
   if (id === "cone") return `r=${roundTo(a, 2)}, h=${roundTo(b, 2)}, l=${roundTo(Math.hypot(a, b), 2)}`;
   if (id === "frustum") return `R=${roundTo(a, 2)}, r=${roundTo(b, 2)}, h=${roundTo(c, 2)}`;
-  if (id === "square-pyramid" || id === "triangular-pyramid") return `s=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
-  if (id.includes("prism")) return `s/b=${roundTo(a, 2)}, h=${roundTo(b, 2)}, L=${roundTo(c, 2)}`;
+  if (id.includes("pyramid")) return `s=${roundTo(a, 2)}, h=${roundTo(b, 2)}`;
+  if (id === "triangular-prism") return `b=${roundTo(a, 2)}, h=${roundTo(b, 2)}, L=${roundTo(c, 2)}`;
+  if (id.includes("prism")) return `s=${roundTo(a, 2)}, L=${roundTo(b, 2)}`;
   return `R=${roundTo(a, 2)}, r=${roundTo(b, 2)}`;
 }
 
@@ -1285,8 +1259,8 @@ type ShapeViewControlsProps = {
 
 function ShapeViewControls({ kind, zoom, rotation, autoRotate, onZoomIn, onZoomOut, onRotateLeft, onRotateRight, onReset, onToggleAutoRotate }: ShapeViewControlsProps) {
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/60 sm:flex-row sm:items-center sm:justify-between">
-      <div className="mobile-safe-scroll flex gap-2 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+    <div className="space-y-3 rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-slate-950/60">
+      <div className="flex flex-nowrap items-center gap-2 overflow-x-auto pb-1" aria-label="View controls">
         <IconButton label="Zoom out" onClick={onZoomOut} disabled={zoom <= 0.55}>
           <ZoomOut className="h-4 w-4" />
         </IconButton>
@@ -1307,10 +1281,6 @@ function ShapeViewControls({ kind, zoom, rotation, autoRotate, onZoomIn, onZoomO
         </IconButton>
       </div>
       <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
-        <button type="button" onClick={onToggleAutoRotate} className={autoRotate ? "action-primary px-3 py-2 text-xs" : "action-secondary px-3 py-2 text-xs"}>
-          {autoRotate ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-          {autoRotate ? "Pause rotation" : "Start rotation"}
-        </button>
         <span className="mini-chip">Zoom {roundTo(zoom * 100, 0)}%</span>
         <span className="mini-chip">Rotate {rotation} deg</span>
         <span className="mini-chip">{kind === "2d" ? "2D + extruded 3D" : "solid 3D"}</span>
@@ -1334,37 +1304,88 @@ function IconButton({ label, onClick, disabled, children }: { label: string; onC
   );
 }
 
-function VisualizationPane({ title, description, badge, action, children }: { title: string; description: string; badge: string; action?: ReactNode; children: ReactNode }) {
+const futuristicPalettes = [
+  { name: "Cyan violet", a: "#22d3ee", b: "#8b5cf6" },
+  { name: "Electric blue", a: "#38bdf8", b: "#2563eb" },
+  { name: "Neon magenta", a: "#f472b6", b: "#9333ea" },
+  { name: "Aurora", a: "#34d399", b: "#06b6d4" },
+];
+
+function ShapeAppearanceControls({ fillMode, onFillMode, colorA, colorB, onColorA, onColorB, glow, onGlow, grid, onGrid }: {
+  fillMode: ShapeFillMode;
+  onFillMode: (mode: ShapeFillMode) => void;
+  colorA: string;
+  colorB: string;
+  onColorA: (color: string) => void;
+  onColorB: (color: string) => void;
+  glow: boolean;
+  onGlow: () => void;
+  grid: boolean;
+  onGrid: () => void;
+}) {
   return (
-    <div className="flex min-h-[390px] flex-col rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60 xl:min-h-[640px]">
-      <div className="mb-3 flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-xs font-black uppercase text-cyan-600 dark:text-cyan-300">{title}</p>
-          <p className="mt-1 text-sm leading-5 text-slate-600 dark:text-slate-300">{description}</p>
-        </div>
-        <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
-          {action}
-          <span className="rounded-full bg-slate-100 px-3 py-2 text-xs font-black text-slate-700 dark:bg-white/10 dark:text-slate-100">{badge}</span>
-        </div>
+    <div className="rounded-xl border border-violet-200/80 bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-950 p-3 text-white shadow-lg shadow-violet-500/10">
+      <div className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-cyan-200"><Palette className="h-4 w-4" /> Appearance</div>
+      <div className="mt-3 grid grid-cols-3 gap-1 rounded-lg bg-black/25 p-1">
+        {(["gradient", "solid", "outline"] as ShapeFillMode[]).map((mode) => (
+          <button key={mode} type="button" aria-pressed={fillMode === mode} onClick={() => onFillMode(mode)} className={`rounded-md px-2 py-2 text-xs font-bold capitalize transition ${fillMode === mode ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-[0_0_16px_rgba(139,92,246,.45)]" : "text-slate-300 hover:bg-white/10"}`}>{mode === "outline" ? "No fill" : mode}</button>
+        ))}
       </div>
-      <div className="min-h-0 flex-1 overflow-hidden rounded-2xl bg-slate-50 dark:bg-slate-950">
-        {children}
+      <div className="mt-3 flex items-center justify-between gap-3">
+        <label className="flex items-center gap-2 text-xs font-semibold text-slate-300">Color 1 <input aria-label="Primary shape color" type="color" value={colorA} onChange={(event) => onColorA(event.target.value)} className="h-8 w-10 cursor-pointer rounded border-0 bg-transparent" /></label>
+        <label className={`flex items-center gap-2 text-xs font-semibold text-slate-300 ${fillMode === "solid" ? "opacity-45" : ""}`}>Color 2 <input aria-label="Secondary shape color" type="color" value={colorB} onChange={(event) => onColorB(event.target.value)} disabled={fillMode === "solid"} className="h-8 w-10 cursor-pointer rounded border-0 bg-transparent disabled:cursor-not-allowed" /></label>
+      </div>
+      <div className="mt-2 flex gap-2" aria-label="Color presets">
+        {futuristicPalettes.map((palette) => (
+          <button key={palette.name} type="button" title={palette.name} aria-label={palette.name} onClick={() => { onColorA(palette.a); onColorB(palette.b); }} className="h-7 flex-1 rounded-full border border-white/20 transition hover:-translate-y-0.5 hover:border-white/60" style={{ background: `linear-gradient(135deg, ${palette.a}, ${palette.b})` }} />
+        ))}
+      </div>
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        <button type="button" aria-pressed={glow} onClick={onGlow} className={`flex items-center justify-center gap-2 rounded-lg px-2 py-2 text-xs font-bold ${glow ? "bg-cyan-400/20 text-cyan-100 ring-1 ring-cyan-300/50" : "bg-white/5 text-slate-400"}`}><Sparkles className="h-4 w-4" /> Glow</button>
+        <button type="button" aria-pressed={grid} onClick={onGrid} className={`flex items-center justify-center gap-2 rounded-lg px-2 py-2 text-xs font-bold ${grid ? "bg-violet-400/20 text-violet-100 ring-1 ring-violet-300/50" : "bg-white/5 text-slate-400"}`}><Grid3X3 className="h-4 w-4" /> Grid</button>
       </div>
     </div>
   );
 }
 
-function startPaneResize(event: PointerEvent<HTMLDivElement>, containerRef: RefObject<HTMLDivElement | null>, setValue: (value: number) => void, min: number, max: number) {
+function InteractiveShape2D({ children, resetKey, onZoomIn, onZoomOut }: { children: ReactNode; resetKey: string; onZoomIn: () => void; onZoomOut: () => void }) {
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const dragStart = useRef<{ x: number; y: number; panX: number; panY: number } | null>(null);
+
+  useEffect(() => setPan({ x: 0, y: 0 }), [resetKey]);
+
+  return (
+    <div
+      className="flex h-full w-full touch-none select-none items-center justify-center overflow-hidden active:cursor-grabbing"
+      onWheel={(event) => {
+        event.preventDefault();
+        if (event.deltaY < 0) onZoomIn();
+        else onZoomOut();
+      }}
+      onPointerDown={(event) => {
+        event.currentTarget.setPointerCapture(event.pointerId);
+        dragStart.current = { x: event.clientX, y: event.clientY, panX: pan.x, panY: pan.y };
+      }}
+      onPointerMove={(event) => {
+        if (!dragStart.current) return;
+        setPan({ x: dragStart.current.panX + event.clientX - dragStart.current.x, y: dragStart.current.panY + event.clientY - dragStart.current.y });
+      }}
+      onPointerUp={() => { dragStart.current = null; }}
+      onPointerCancel={() => { dragStart.current = null; }}
+    >
+      <div className="w-full transition-transform duration-75" style={{ transform: `translate(${pan.x}px, ${pan.y}px)` }}>{children}</div>
+    </div>
+  );
+}
+
+function startHeightResize(event: PointerEvent<HTMLDivElement>, currentHeight: number, setHeight: (value: number) => void) {
   event.preventDefault();
-  const container = containerRef.current;
-  if (!container) return;
-  const rect = container.getBoundingClientRect();
+  const startY = event.clientY;
   const pointerId = event.pointerId;
   event.currentTarget.setPointerCapture(pointerId);
 
   const handleMove = (moveEvent: globalThis.PointerEvent) => {
-    const percent = ((moveEvent.clientX - rect.left) / Math.max(1, rect.width)) * 100;
-    setValue(roundTo(Math.min(max, Math.max(min, percent)), 1));
+    setHeight(Math.min(760, Math.max(360, currentHeight + moveEvent.clientY - startY)));
   };
 
   const cleanup = () => {
@@ -1378,39 +1399,99 @@ function startPaneResize(event: PointerEvent<HTMLDivElement>, containerRef: RefO
   window.addEventListener("pointercancel", cleanup);
 }
 
+const shapeControlLabels: Record<ShapeId, readonly [string, string?, string?]> = {
+  circle: ["Radius"],
+  semicircle: ["Radius"],
+  sector: ["Radius"],
+  ellipse: ["Semi-major axis a", "Semi-minor axis b"],
+  triangle: ["Base", "Perpendicular height"],
+  "right-triangle": ["Leg a (base)", "Leg b (height)"],
+  "equilateral-triangle": ["Side"],
+  "isosceles-triangle": ["Base", "Perpendicular height"],
+  "scalene-triangle": ["Base", "Perpendicular height"],
+  square: ["Side"],
+  rectangle: ["Length", "Width"],
+  "rounded-rectangle": ["Length", "Width", "Corner radius"],
+  parallelogram: ["Base", "Perpendicular height", "Slanted side"],
+  rhombus: ["Diagonal d1", "Diagonal d2"],
+  trapezium: ["Base a", "Top base b", "Perpendicular height"],
+  kite: ["Diagonal d1", "Diagonal d2"],
+  pentagon: ["Side"],
+  hexagon: ["Side"],
+  heptagon: ["Side"],
+  octagon: ["Side"],
+  nonagon: ["Side"],
+  decagon: ["Side"],
+  dodecagon: ["Side"],
+  "regular-polygon": ["Side"],
+  annulus: ["Outer radius R", "Inner radius r"],
+  quadrant: ["Radius"],
+  segment: ["Radius"],
+  crescent: ["Outer radius R", "Inner radius r"],
+  star: ["Outer radius R", "Inner radius r"],
+  cross: ["Arm half-length a", "Arm width w"],
+  cube: ["Side"],
+  cuboid: ["Length", "Width", "Height"],
+  sphere: ["Radius"],
+  hemisphere: ["Radius"],
+  cylinder: ["Radius", "Height"],
+  "hollow-cylinder": ["Outer radius R", "Inner radius r", "Height"],
+  capsule: ["Radius", "Cylinder length"],
+  ellipsoid: ["Semi-axis a", "Semi-axis b", "Semi-axis c"],
+  cone: ["Radius", "Perpendicular height"],
+  frustum: ["Bottom radius R", "Top radius r", "Perpendicular height"],
+  torus: ["Major radius R", "Minor radius r"],
+  tetrahedron: ["Edge length"],
+  octahedron: ["Edge length"],
+  dodecahedron: ["Edge length"],
+  icosahedron: ["Edge length"],
+  "square-pyramid": ["Base side", "Perpendicular height"],
+  "triangular-pyramid": ["Base side", "Perpendicular height"],
+  "rectangular-pyramid": ["Base length", "Base width", "Perpendicular height"],
+  "pentagonal-pyramid": ["Base side", "Perpendicular height"],
+  "hexagonal-pyramid": ["Base side", "Perpendicular height"],
+  "triangular-prism": ["Triangle base", "Triangle height", "Prism length"],
+  "pentagonal-prism": ["Base side", "Prism length"],
+  "hexagonal-prism": ["Base side", "Prism length"],
+  "octagonal-prism": ["Base side", "Prism length"],
+};
+
 function primaryLabel(shape: ShapeDefinition) {
-  if (shape.id === "ellipse" || shape.id === "ellipsoid") return "Semi-major axis a";
-  if (shape.id === "cuboid") return "Length";
-  if (["torus", "annulus", "crescent", "star", "hollow-cylinder"].includes(shape.id)) return "Outer / major radius R";
-  if (shape.id === "regular-polygon" || isFixedRegularPolygon(shape.id) || isPlatonicSolid(shape.id) || shape.id === "square" || shape.id === "cube" || shape.id.includes("pyramid")) return "Side";
-  if (shape.id === "triangle" || shape.id === "right-triangle" || shape.id === "parallelogram" || shape.id === "trapezium" || shape.id.includes("prism")) return "Base / side";
-  return "Radius";
+  return shapeControlLabels[shape.id][0];
 }
 
 function secondLabel(shape: ShapeDefinition) {
-  if (shape.id === "ellipse" || shape.id === "ellipsoid" || shape.id === "rhombus" || shape.id === "kite") return "Second dimension";
-  if (shape.id === "cuboid") return "Width";
-  if (["torus", "annulus", "crescent", "star", "hollow-cylinder"].includes(shape.id)) return "Inner / minor radius r";
-  if (shape.id === "trapezium" || shape.id === "frustum") return "Top radius / top base";
-  return "Height";
+  return shapeControlLabels[shape.id][1] ?? "Second dimension";
 }
 
 function thirdLabel(shape: ShapeDefinition) {
-  if (shape.id === "parallelogram") return "Side";
-  if (shape.id === "triangular-prism") return "Length";
-  return "Height";
+  return shapeControlLabels[shape.id][2] ?? "Third dimension";
 }
 
 function needsSecond(id: ShapeId) {
-  return !["circle", "semicircle", "quadrant", "square", "pentagon", "hexagon", "heptagon", "octagon", "decagon", "cube", "sphere", "hemisphere", "tetrahedron", "octahedron", "dodecahedron", "icosahedron"].includes(id);
+  return Boolean(shapeControlLabels[id][1]);
 }
 
 function needsThird(id: ShapeId) {
-  return ["parallelogram", "trapezium", "cuboid", "frustum", "ellipsoid", "hollow-cylinder", "rectangular-pyramid", "triangular-prism", "pentagonal-prism", "hexagonal-prism"].includes(id);
+  return Boolean(shapeControlLabels[id][2]);
+}
+
+function secondControlRange(id: ShapeId, firstValue: number) {
+  const boundedInnerRadius = ["annulus", "crescent", "star", "torus", "hollow-cylinder"].includes(id);
+  if (boundedInnerRadius) return { min: 0.1, max: Math.max(0.1, roundTo(firstValue - 0.1, 1)) };
+  if (id === "cross") return { min: 0.1, max: Math.max(0.1, roundTo(firstValue * 2, 1)) };
+  return { min: 0.5, max: 10 };
+}
+
+function thirdControlRange(id: ShapeId, firstValue: number, secondValue: number) {
+  if (id === "rounded-rectangle") return { min: 0.1, max: Math.max(0.1, roundTo(Math.min(firstValue, secondValue) / 2, 1)) };
+  return { min: 0.5, max: 12 };
 }
 
 function getMetrics(id: ShapeId, a: number, b: number, c: number, n: number, angle: number): Metrics {
   const fixedSides = polygonSideCount(id, n);
+  const innerRadius = Math.min(b, Math.max(0.1, a - 0.1));
+  const armWidth = Math.min(b, 2 * a);
   switch (id) {
     case "circle": return { Circumference: 2 * Math.PI * a, Area: Math.PI * a * a };
     case "semicircle": return { "Arc length": Math.PI * a, Perimeter: Math.PI * a + 2 * a, Area: Math.PI * a * a / 2 };
@@ -1418,14 +1499,18 @@ function getMetrics(id: ShapeId, a: number, b: number, c: number, n: number, ang
     case "quadrant": return { "Arc length": Math.PI * a / 2, Area: Math.PI * a * a / 4, Perimeter: Math.PI * a / 2 + 2 * a };
     case "segment": return { "Arc length": angle / 360 * 2 * Math.PI * a, Area: (a * a / 2) * (((angle * Math.PI) / 180) - Math.sin((angle * Math.PI) / 180)) };
     case "ellipse": return { Area: Math.PI * a * b, "Approx perimeter": Math.PI * (3 * (a + b) - Math.sqrt((3 * a + b) * (a + 3 * b))) };
-    case "annulus": return { Area: Math.PI * (a * a - b * b), "Outer circumference": 2 * Math.PI * a, "Inner circumference": 2 * Math.PI * b };
-    case "crescent": return { "Approx area": Math.max(0, Math.PI * (a * a - b * b * 0.72)), "Outer arc": Math.PI * a, "Inner arc": Math.PI * b };
-    case "star": return { "Approx area": 5 * a * b * Math.sin((72 * Math.PI) / 180), Points: 5 };
-    case "cross": return { Area: 2 * a * b - b * b, Perimeter: 4 * a + 8 * b };
+    case "annulus": return { Area: Math.PI * (a * a - innerRadius * innerRadius), "Outer circumference": 2 * Math.PI * a, "Inner circumference": 2 * Math.PI * innerRadius };
+    case "crescent": return { "Approx area": Math.max(0, Math.PI * (a * a - innerRadius * innerRadius * 0.72)), "Outer arc": Math.PI * a, "Inner arc": Math.PI * innerRadius };
+    case "star": return { Area: 5 * a * innerRadius * Math.sin((36 * Math.PI) / 180), Points: 5 };
+    case "cross": return { Area: 4 * a * armWidth - armWidth * armWidth, Perimeter: 8 * a };
     case "triangle": return { Area: a * b / 2, "Shown base": a, "Shown height": b };
     case "right-triangle": return { Area: a * b / 2, Hypotenuse: Math.hypot(a, b), Perimeter: a + b + Math.hypot(a, b) };
+    case "equilateral-triangle": return { Area: Math.sqrt(3) * a * a / 4, Perimeter: 3 * a, Height: Math.sqrt(3) * a / 2 };
+    case "isosceles-triangle": { const side = Math.hypot(a / 2, b); return { Area: a * b / 2, "Equal side": side, Perimeter: a + 2 * side }; }
+    case "scalene-triangle": return { Area: a * b / 2, "Shown base": a, "Shown height": b };
     case "square": return { Area: a * a, Perimeter: 4 * a, Diagonal: a * Math.SQRT2 };
     case "rectangle": return { Area: a * b, Perimeter: 2 * (a + b), Diagonal: Math.hypot(a, b) };
+    case "rounded-rectangle": { const r = Math.min(c, a / 2, b / 2); return { Area: a * b - (4 - Math.PI) * r * r, Perimeter: 2 * (a + b - 4 * r) + 2 * Math.PI * r, "Corner radius": r }; }
     case "parallelogram": return { Area: a * b, Perimeter: 2 * (a + c) };
     case "rhombus": return { Area: a * b / 2, Side: Math.hypot(a / 2, b / 2), Perimeter: 4 * Math.hypot(a / 2, b / 2) };
     case "trapezium": return { Area: (a + b) * c / 2, "Midline": (a + b) / 2 };
@@ -1435,38 +1520,43 @@ function getMetrics(id: ShapeId, a: number, b: number, c: number, n: number, ang
     case "hexagon":
     case "heptagon":
     case "octagon":
+    case "nonagon":
     case "decagon": return { Perimeter: fixedSides * a, Area: fixedSides * a * a / (4 * Math.tan(Math.PI / fixedSides)), Apothem: a / (2 * Math.tan(Math.PI / fixedSides)) };
+    case "dodecagon": return { Perimeter: fixedSides * a, Area: fixedSides * a * a / (4 * Math.tan(Math.PI / fixedSides)), Apothem: a / (2 * Math.tan(Math.PI / fixedSides)) };
     case "cube": return { "Surface area": 6 * a * a, Volume: a ** 3, Diagonal: a * Math.sqrt(3) };
     case "cuboid": return { "Surface area": 2 * (a * b + a * c + b * c), Volume: a * b * c, Diagonal: Math.hypot(a, b, c) };
     case "sphere": return { "Surface area": 4 * Math.PI * a * a, Volume: 4 / 3 * Math.PI * a ** 3 };
     case "hemisphere": return { "Curved area": 2 * Math.PI * a * a, "Total area": 3 * Math.PI * a * a, Volume: 2 / 3 * Math.PI * a ** 3 };
     case "cylinder": return { "Surface area": 2 * Math.PI * a * (a + b), Volume: Math.PI * a * a * b };
-    case "hollow-cylinder": return { "Material volume": Math.PI * c * (a * a - b * b), "Outer area": 2 * Math.PI * a * c, "Inner area": 2 * Math.PI * b * c };
+    case "hollow-cylinder": return { "Material volume": Math.PI * c * (a * a - innerRadius * innerRadius), "Outer area": 2 * Math.PI * a * c, "Inner area": 2 * Math.PI * innerRadius * c };
     case "capsule": return { "Surface area": 2 * Math.PI * a * b + 4 * Math.PI * a * a, Volume: Math.PI * a * a * b + 4 / 3 * Math.PI * a ** 3 };
     case "ellipsoid": return { Volume: 4 / 3 * Math.PI * a * b * c, "Mean radius": (a + b + c) / 3 };
     case "cone": return { "Slant height": Math.hypot(a, b), "Surface area": Math.PI * a * (a + Math.hypot(a, b)), Volume: Math.PI * a * a * b / 3 };
     case "frustum": return { "Slant height": Math.hypot(a - b, c), "Surface area": Math.PI * (a + b) * Math.hypot(a - b, c) + Math.PI * (a * a + b * b), Volume: Math.PI * c * (a * a + a * b + b * b) / 3 };
     case "tetrahedron": return { "Surface area": Math.sqrt(3) * a * a, Volume: a ** 3 / (6 * Math.sqrt(2)), Faces: 4 };
     case "octahedron": return { "Surface area": 2 * Math.sqrt(3) * a * a, Volume: Math.sqrt(2) * a ** 3 / 3, Faces: 8 };
-    case "dodecahedron": return { Faces: 12, Edges: 30, Vertices: 20 };
-    case "icosahedron": return { Faces: 20, Edges: 30, Vertices: 12 };
+    case "dodecahedron": return { "Surface area": 3 * Math.sqrt(25 + 10 * Math.sqrt(5)) * a * a, Volume: (15 + 7 * Math.sqrt(5)) * a ** 3 / 4, Faces: 12, Edges: 30, Vertices: 20 };
+    case "icosahedron": return { "Surface area": 5 * Math.sqrt(3) * a * a, Volume: 5 * (3 + Math.sqrt(5)) * a ** 3 / 12, Faces: 20, Edges: 30, Vertices: 12 };
     case "square-pyramid": return { "Slant height": Math.hypot(a / 2, b), "Surface area": a * a + 2 * a * Math.hypot(a / 2, b), Volume: a * a * b / 3 };
     case "triangular-pyramid": return { "Base area": Math.sqrt(3) * a * a / 4, Volume: (Math.sqrt(3) * a * a / 4) * b / 3 };
     case "rectangular-pyramid": return { "Base area": a * b, Volume: a * b * c / 3 };
+    case "pentagonal-pyramid": { const baseArea = 5 * a * a / (4 * Math.tan(Math.PI / 5)); return { "Base area": baseArea, Volume: baseArea * b / 3 }; }
+    case "hexagonal-pyramid": { const baseArea = 3 * Math.sqrt(3) * a * a / 2; return { "Base area": baseArea, Volume: baseArea * b / 3 }; }
     case "triangular-prism": return { "Base area": a * b / 2, Volume: a * b * c / 2 };
-    case "pentagonal-prism": return { "Base area": 5 * a * a / (4 * Math.tan(Math.PI / 5)), Volume: 5 * a * a * c / (4 * Math.tan(Math.PI / 5)) };
-    case "hexagonal-prism": return { "Base area": 3 * Math.sqrt(3) * a * a / 2, Volume: 3 * Math.sqrt(3) * a * a * c / 2 };
-    case "torus": return { "Surface area": 4 * Math.PI * Math.PI * a * b, Volume: 2 * Math.PI * Math.PI * a * b * b };
+    case "pentagonal-prism": return { "Base area": 5 * a * a / (4 * Math.tan(Math.PI / 5)), Volume: 5 * a * a * b / (4 * Math.tan(Math.PI / 5)) };
+    case "hexagonal-prism": return { "Base area": 3 * Math.sqrt(3) * a * a / 2, Volume: 3 * Math.sqrt(3) * a * a * b / 2 };
+    case "octagonal-prism": { const baseArea = 2 * (1 + Math.SQRT2) * a * a; return { "Base area": baseArea, Volume: baseArea * b }; }
+    case "torus": return { "Surface area": 4 * Math.PI * Math.PI * a * innerRadius, Volume: 2 * Math.PI * Math.PI * a * innerRadius * innerRadius };
     default: return {};
   }
 }
 
 function isFixedRegularPolygon(id: ShapeId) {
-  return ["pentagon", "hexagon", "heptagon", "octagon", "decagon"].includes(id);
+  return ["pentagon", "hexagon", "heptagon", "octagon", "nonagon", "decagon", "dodecagon"].includes(id);
 }
 
 function polygonSideCount(id: ShapeId, fallback: number) {
-  const counts: Partial<Record<ShapeId, number>> = { pentagon: 5, hexagon: 6, heptagon: 7, octagon: 8, decagon: 10 };
+  const counts: Partial<Record<ShapeId, number>> = { pentagon: 5, hexagon: 6, heptagon: 7, octagon: 8, nonagon: 9, decagon: 10, dodecagon: 12, "triangular-prism": 3, "pentagonal-prism": 5, "hexagonal-prism": 6, "octagonal-prism": 8 };
   return counts[id] ?? fallback;
 }
 
@@ -1474,7 +1564,7 @@ function isPlatonicSolid(id: ShapeId) {
   return ["tetrahedron", "octahedron", "dodecahedron", "icosahedron"].includes(id);
 }
 
-function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation }: { shape: ShapeId; a: number; b: number; c: number; sides: number; angle: number; zoom: number; rotation: number }) {
+function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation, fillMode, colorA, colorB, glow }: { shape: ShapeId; a: number; b: number; c: number; sides: number; angle: number; zoom: number; rotation: number; fillMode: ShapeFillMode; colorA: string; colorB: string; glow: boolean }) {
   const scale = 18;
   const cx = 240;
   const cy = 180;
@@ -1501,11 +1591,12 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation }: { shape: Sha
     <svg viewBox="0 0 480 360" className="h-[300px] w-full sm:h-[360px]">
       <defs>
         <linearGradient id="shapeFill" x1="0" x2="1">
-          <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.3" />
+          <stop offset="0%" stopColor={colorA} stopOpacity="0.72" />
+          <stop offset="100%" stopColor={colorB} stopOpacity="0.58" />
         </linearGradient>
       </defs>
-      <g transform={`translate(${cx} ${cy}) rotate(${rotation}) scale(${zoom}) translate(${-cx} ${-cy})`}>
+      <style>{`[data-shape-art] > :not(line):not(text) { fill: ${fillMode === "outline" ? "none" : fillMode === "solid" ? colorA : "url(#shapeFill)"} !important; stroke: ${fillMode === "solid" ? colorB : colorA} !important; stroke-width: 4px; filter: ${glow ? `drop-shadow(0 0 5px ${colorA}) drop-shadow(0 0 12px ${colorB})` : "none"}; }`}</style>
+      <g data-shape-art transform={`translate(${cx} ${cy}) rotate(${rotation}) scale(${zoom}) translate(${-cx} ${-cy})`}>
         {shape === "circle" && <circle cx={cx} cy={cy} r={radius} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "semicircle" && <path d={`M ${cx - radius} ${cy} A ${radius} ${radius} 0 0 1 ${cx + radius} ${cy} L ${cx - radius} ${cy}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "sector" && <path d={`M ${cx} ${cy} L ${cx + radius} ${cy} A ${radius} ${radius} 0 ${angle > 180 ? 1 : 0} 0 ${sectorX} ${sectorY} Z`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
@@ -1516,8 +1607,12 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation }: { shape: Sha
         {shape === "crescent" && <path d={`M ${cx - radius * 0.35} ${cy - radius} A ${radius} ${radius} 0 1 0 ${cx - radius * 0.35} ${cy + radius} A ${Math.max(20, b * scale)} ${Math.max(20, b * scale)} 0 1 1 ${cx - radius * 0.35} ${cy - radius} Z`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${cx},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "right-triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${cx - w / 2},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "equilateral-triangle" && <polygon points={`${cx - w / 2},${cy + Math.min(w * Math.sqrt(3) / 6, 75)} ${cx + w / 2},${cy + Math.min(w * Math.sqrt(3) / 6, 75)} ${cx},${cy - Math.min(w * Math.sqrt(3) / 3, 150)}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "isosceles-triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${cx},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "scalene-triangle" && <polygon points={`${cx - w / 2},${cy + h / 2} ${cx + w / 2},${cy + h / 2} ${cx - w * 0.16},${cy - h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "square" && <rect x={cx - radius} y={cy - radius} width={radius * 2} height={radius * 2} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "rectangle" && <rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "rounded-rectangle" && <rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} rx={Math.min(c * scale, w / 2, h / 2)} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "parallelogram" && <polygon points={`${cx - w / 2 + 45},${cy - h / 2} ${cx + w / 2},${cy - h / 2} ${cx + w / 2 - 45},${cy + h / 2} ${cx - w / 2},${cy + h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "rhombus" && <polygon points={`${cx},${cy - h / 2} ${cx + w / 2},${cy} ${cx},${cy + h / 2} ${cx - w / 2},${cy}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "trapezium" && <polygon points={`${cx - top / 2},${cy - height / 2} ${cx + top / 2},${cy - height / 2} ${cx + w / 2},${cy + height / 2} ${cx - w / 2},${cy + height / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
@@ -1525,6 +1620,12 @@ function ShapeSvg({ shape, a, b, c, sides, angle, zoom, rotation }: { shape: Sha
         {(shape === "regular-polygon" || isFixedRegularPolygon(shape)) && <polygon points={polygonPoints} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "star" && <polygon points={starPoints} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
         {shape === "cross" && <path d={`M ${cx - b * scale / 2} ${cy - radius} H ${cx + b * scale / 2} V ${cy - b * scale / 2} H ${cx + radius} V ${cy + b * scale / 2} H ${cx + b * scale / 2} V ${cy + radius} H ${cx - b * scale / 2} V ${cy + b * scale / 2} H ${cx - radius} V ${cy - b * scale / 2} H ${cx - b * scale / 2} Z`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {(["cube", "cuboid"] as ShapeId[]).includes(shape) && <rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {(["sphere", "hemisphere"] as ShapeId[]).includes(shape) && <circle cx={cx} cy={cy} r={radius} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {(["cylinder", "hollow-cylinder", "capsule", "ellipsoid"] as ShapeId[]).includes(shape) && <rect x={cx - w / 2} y={cy - h / 2} width={w} height={h} rx={shape === "capsule" ? h / 2 : 12} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {(["cone", "frustum", "square-pyramid", "triangular-pyramid", "rectangular-pyramid", "pentagonal-pyramid", "hexagonal-pyramid"] as ShapeId[]).includes(shape) && <polygon points={shape === "frustum" ? `${cx - w / 4},${cy - h / 2} ${cx + w / 4},${cy - h / 2} ${cx + w / 2},${cy + h / 2} ${cx - w / 2},${cy + h / 2}` : `${cx},${cy - h / 2} ${cx + w / 2},${cy + h / 2} ${cx - w / 2},${cy + h / 2}`} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {(["tetrahedron", "octahedron", "dodecahedron", "icosahedron", "triangular-prism", "pentagonal-prism", "hexagonal-prism", "octagonal-prism"] as ShapeId[]).includes(shape) && <polygon points={polygonPoints} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" />}
+        {shape === "torus" && <path d={ringPath(cx, cy, radius, Math.max(18, Math.min(b * scale, radius - 12)))} fill="url(#shapeFill)" stroke="#06b6d4" strokeWidth="4" fillRule="evenodd" />}
         <line x1="80" y1="310" x2="400" y2="310" stroke="#94a3b8" strokeDasharray="6 6" />
         <DimensionGuides2D shape={shape} cx={cx} cy={cy} radius={radius} w={w} h={h} top={top} height={height} sectorX={sectorX} sectorY={sectorY} />
       </g>
@@ -1542,10 +1643,10 @@ function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, 
   if (["circle", "semicircle"].includes(shape)) return <>{guide(cx, cy, cx + radius, cy)}{label(cx + radius / 2 - 5, cy - 10, "r", "#f59e0b")}{guide(cx - radius, cy + 26, cx + radius, cy + 26, "#8b5cf6")}{label(cx - 8, cy + 48, "d=2r", "#8b5cf6")}</>;
   if (shape === "sector") return <>{guide(cx, cy, cx + radius, cy)}{guide(cx, cy, sectorX, sectorY)}{label(cx + radius / 2, cy - 10, "r", "#f59e0b")}{label(cx + 18, cy - 22, "theta", "#8b5cf6")}</>;
   if (shape === "ellipse") return <>{guide(cx, cy, cx + Math.min(w / 2, 170), cy)}{guide(cx, cy, cx, cy - Math.min(h / 2, 120))}{label(cx + 55, cy - 10, "a", "#f59e0b")}{label(cx + 10, cy - 55, "b", "#8b5cf6")}</>;
-  if (shape === "triangle") return <>{guide(cx - w / 2, cy + h / 2 + 20, cx + w / 2, cy + h / 2 + 20)}{guide(cx, cy + h / 2, cx, cy - h / 2)}{label(cx - 10, cy + h / 2 + 42, "b", "#f59e0b")}{label(cx + 10, cy, "h", "#8b5cf6")}</>;
+  if (["triangle", "isosceles-triangle", "scalene-triangle", "equilateral-triangle"].includes(shape)) return <>{guide(cx - w / 2, cy + h / 2 + 20, cx + w / 2, cy + h / 2 + 20)}{guide(cx, cy + h / 2, cx, cy - h / 2)}{label(cx - 10, cy + h / 2 + 42, shape === "equilateral-triangle" ? "s" : "b", "#f59e0b")}{label(cx + 10, cy, "h", "#8b5cf6")}</>;
   if (shape === "right-triangle") return <>{guide(cx - w / 2, cy + h / 2 + 20, cx + w / 2, cy + h / 2 + 20)}{guide(cx - w / 2 - 20, cy + h / 2, cx - w / 2 - 20, cy - h / 2)}{guide(cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2, "#ef4444")}{label(cx - 5, cy + h / 2 + 42, "b", "#f59e0b")}{label(cx - w / 2 - 45, cy, "h", "#8b5cf6")}{label(cx, cy, "c", "#ef4444")}</>;
   if (shape === "square") return <>{guide(cx - radius, cy + radius + 18, cx + radius, cy + radius + 18)}{label(cx - 5, cy + radius + 40, "s", "#f59e0b")}</>;
-  if (shape === "rectangle") return <>{guide(cx - w / 2, cy + h / 2 + 18, cx + w / 2, cy + h / 2 + 18)}{guide(cx - w / 2 - 18, cy - h / 2, cx - w / 2 - 18, cy + h / 2)}{label(cx - 5, cy + h / 2 + 40, "l", "#f59e0b")}{label(cx - w / 2 - 42, cy, "b", "#8b5cf6")}</>;
+  if (shape === "rectangle" || shape === "rounded-rectangle") return <>{guide(cx - w / 2, cy + h / 2 + 18, cx + w / 2, cy + h / 2 + 18)}{guide(cx - w / 2 - 18, cy - h / 2, cx - w / 2 - 18, cy + h / 2)}{label(cx - 5, cy + h / 2 + 40, "l", "#f59e0b")}{label(cx - w / 2 - 42, cy, "w", "#8b5cf6")}</>;
   if (shape === "parallelogram") return <>{guide(cx - w / 2, cy + h / 2 + 18, cx + w / 2 - 45, cy + h / 2 + 18)}{guide(cx, cy + h / 2, cx, cy - h / 2)}{label(cx - 5, cy + h / 2 + 40, "b", "#f59e0b")}{label(cx + 10, cy, "h", "#8b5cf6")}</>;
   if (shape === "rhombus" || shape === "kite") return <>{guide(cx - w / 2, cy, cx + w / 2, cy)}{guide(cx, cy - h / 2, cx, cy + h / 2)}{label(cx - 8, cy - 10, "d1", "#f59e0b")}{label(cx + 10, cy, "d2", "#8b5cf6")}</>;
   if (shape === "trapezium") return <>{guide(cx - w / 2, cy + height / 2 + 18, cx + w / 2, cy + height / 2 + 18)}{guide(cx - top / 2, cy - height / 2 - 18, cx + top / 2, cy - height / 2 - 18)}{guide(cx, cy - height / 2, cx, cy + height / 2)}{label(cx - 8, cy + height / 2 + 40, "a", "#f59e0b")}{label(cx - 8, cy - height / 2 - 28, "b", "#8b5cf6")}{label(cx + 10, cy, "h", "#ef4444")}</>;
@@ -1553,7 +1654,7 @@ function DimensionGuides2D({ shape, cx, cy, radius, w, h, top, height, sectorX, 
   return null;
 }
 
-function RotatingSolid({ shape, a, b, c, wireframe, zoom, rotation, autoRotate, sides }: { shape: ShapeId; a: number; b: number; c: number; wireframe: boolean; zoom: number; rotation: number; autoRotate: boolean; sides?: number }) {
+function RotatingSolid({ shape, a, b, c, angle, wireframe, zoom, rotation, autoRotate, sides, fillMode, colorA, colorB, glow }: { shape: ShapeId; a: number; b: number; c: number; angle: number; wireframe: boolean; zoom: number; rotation: number; autoRotate: boolean; sides?: number; fillMode: ShapeFillMode; colorA: string; colorB: string; glow: boolean }) {
   const ref = useRef<THREE.Mesh>(null);
   const guideRef = useRef<THREE.Group>(null);
   useEffect(() => {
@@ -1569,11 +1670,12 @@ function RotatingSolid({ shape, a, b, c, wireframe, zoom, rotation, autoRotate, 
     if (guideRef.current && autoRotate) guideRef.current.rotation.y += delta * 0.45;
   });
 
-  const size = Math.min(a, 5);
-  const second = Math.min(b, 5);
-  const third = Math.min(c, 6);
-  const meshScale: [number, number, number] = shape === "ellipsoid" ? [size, second, third] : [1, 1, 1];
-  const extrudeDepth = Math.max(0.35, Math.min(1.4, third * 0.25));
+  // Keep real dimensions in the calculators while normalizing the rendered model to the camera.
+  const size = Math.min(a, 5) * 0.52;
+  const second = Math.min(b, 5) * 0.52;
+  const third = Math.min(c, 6) * 0.46;
+  const meshScale: [number, number, number] = shape === "ellipsoid" ? [size, second, third] : shape === "ellipse" ? [size, 1, second] : [1, 1, 1];
+  const extrudeDepth = 0.55;
   const polygonSides = polygonSideCount(shape, sides ?? 6);
   const is2DPolygon = shape === "regular-polygon" || isFixedRegularPolygon(shape);
 
@@ -1582,7 +1684,7 @@ function RotatingSolid({ shape, a, b, c, wireframe, zoom, rotation, autoRotate, 
       <mesh ref={ref} scale={meshScale}>
         {shape === "circle" && <cylinderGeometry args={[size, size, extrudeDepth, 72]} />}
         {shape === "semicircle" && <cylinderGeometry args={[size, size, extrudeDepth, 36, 1, false, 0, Math.PI]} />}
-        {shape === "sector" && <cylinderGeometry args={[size, size, extrudeDepth, 48, 1, false, 0, Math.max(0.2, Math.min(Math.PI * 2, (Math.PI * 2 * 90) / 360))]} />}
+        {shape === "sector" && <cylinderGeometry args={[size, size, extrudeDepth, 48, 1, false, 0, Math.max(0.2, Math.min(Math.PI * 2, (Math.PI * 2 * angle) / 360))]} />}
         {shape === "ellipse" && <cylinderGeometry args={[1, 1, extrudeDepth, 72]} />}
         {shape === "annulus" && <torusGeometry args={[Math.max(0.2, size * 0.7), Math.max(0.08, Math.min(second, size) * 0.18), 18, 72]} />}
         {shape === "quadrant" && <cylinderGeometry args={[size, size, extrudeDepth, 24, 1, false, 0, Math.PI / 2]} />}
@@ -1590,8 +1692,10 @@ function RotatingSolid({ shape, a, b, c, wireframe, zoom, rotation, autoRotate, 
         {shape === "crescent" && <torusGeometry args={[Math.max(0.2, size * 0.72), Math.max(0.08, Math.min(second, size) * 0.14), 16, 72, Math.PI * 1.35]} />}
         {shape === "triangle" && <cylinderGeometry args={[size, size, extrudeDepth, 3]} />}
         {shape === "right-triangle" && <cylinderGeometry args={[size, size, extrudeDepth, 3]} />}
+        {(shape === "equilateral-triangle" || shape === "isosceles-triangle" || shape === "scalene-triangle") && <cylinderGeometry args={[size, size, extrudeDepth, 3]} />}
         {shape === "square" && <boxGeometry args={[size, size, extrudeDepth]} />}
         {shape === "rectangle" && <boxGeometry args={[size, second, extrudeDepth]} />}
+        {shape === "rounded-rectangle" && <boxGeometry args={[size, second, extrudeDepth]} />}
         {shape === "parallelogram" && <boxGeometry args={[size, second, extrudeDepth]} />}
         {shape === "rhombus" && <octahedronGeometry args={[size, 0]} />}
         {shape === "trapezium" && <cylinderGeometry args={[Math.max(second, 0.2), size, extrudeDepth, 4]} />}
@@ -1616,11 +1720,23 @@ function RotatingSolid({ shape, a, b, c, wireframe, zoom, rotation, autoRotate, 
         {shape === "square-pyramid" && <coneGeometry args={[size, second, 4]} />}
         {shape === "triangular-pyramid" && <coneGeometry args={[size, second, 3]} />}
         {shape === "rectangular-pyramid" && <coneGeometry args={[size, third, 4]} />}
+        {shape === "pentagonal-pyramid" && <coneGeometry args={[size, second, 5]} />}
+        {shape === "hexagonal-pyramid" && <coneGeometry args={[size, second, 6]} />}
         {shape === "triangular-prism" && <cylinderGeometry args={[size, size, third, 3]} />}
-        {shape === "pentagonal-prism" && <cylinderGeometry args={[size, size, third, 5]} />}
-        {shape === "hexagonal-prism" && <cylinderGeometry args={[size, size, third, 6]} />}
+        {shape === "pentagonal-prism" && <cylinderGeometry args={[size, size, second, 5]} />}
+        {shape === "hexagonal-prism" && <cylinderGeometry args={[size, size, second, 6]} />}
+        {shape === "octagonal-prism" && <cylinderGeometry args={[size, size, second, 8]} />}
         {shape === "torus" && <torusGeometry args={[size, second, 24, 96]} />}
-        <meshStandardMaterial color="#22d3ee" roughness={0.3} metalness={0.16} wireframe={wireframe} transparent opacity={wireframe ? 1 : 0.82} />
+        <meshStandardMaterial
+          color={colorA}
+          emissive={colorB}
+          emissiveIntensity={glow ? (fillMode === "outline" ? 0.8 : 0.3) : 0.05}
+          roughness={fillMode === "gradient" ? 0.22 : 0.36}
+          metalness={fillMode === "gradient" ? 0.38 : 0.16}
+          wireframe={wireframe || fillMode === "outline"}
+          transparent
+          opacity={wireframe || fillMode === "outline" ? 0.95 : 0.84}
+        />
       </mesh>
       <group ref={guideRef}>
         <DimensionGuides3D shape={shape} size={size} second={second} third={third} />
@@ -1639,7 +1755,22 @@ function DimensionGuides3D({ shape, size, second, third }: { shape: ShapeId; siz
   if (shape === "frustum") return <><GuideLine start={[0, -third / 2, 0]} end={[size, -third / 2, 0]} color="#f59e0b" /><GuideLine start={[0, third / 2, 0]} end={[second, third / 2, 0]} color="#8b5cf6" /><GuideLine start={[-size - 0.35, -third / 2, 0]} end={[-size - 0.35, third / 2, 0]} color="#ef4444" /><GuideLabel position={[size / 2, -third / 2 - 0.2, 0]} text="R" /><GuideLabel position={[second / 2, third / 2 + 0.25, 0]} text="r" /><GuideLabel position={[-size - 0.6, 0, 0]} text="h" /></>;
   if (shape === "square-pyramid") return <><GuideLine start={[-size / 2, -second / 2 - 0.2, size / 2]} end={[size / 2, -second / 2 - 0.2, size / 2]} color="#f59e0b" /><GuideLine start={[0, -second / 2, 0]} end={[0, second / 2, 0]} color="#8b5cf6" /><GuideLabel position={[0, -second / 2 - 0.42, size / 2]} text="s" /><GuideLabel position={[0.15, 0, 0]} text="h" /></>;
   if (shape === "triangular-prism") return <><GuideLine start={[-size, -0.25, third / 2]} end={[size, -0.25, third / 2]} color="#f59e0b" /><GuideLine start={[-size - 0.3, -0.25, -third / 2]} end={[-size - 0.3, second, -third / 2]} color="#8b5cf6" /><GuideLine start={[size + 0.25, -0.25, -third / 2]} end={[size + 0.25, -0.25, third / 2]} color="#ef4444" /><GuideLabel position={[0, -0.45, third / 2]} text="b" /><GuideLabel position={[-size - 0.55, second / 2, -third / 2]} text="h" /><GuideLabel position={[size + 0.45, -0.25, 0]} text="L" /></>;
-  return <><GuideLine start={[0, 0, 0]} end={[size, 0, 0]} color="#f59e0b" /><GuideLine start={[size, 0, 0]} end={[size + second, 0, 0]} color="#8b5cf6" /><GuideLabel position={[size / 2, 0.2, 0]} text="R" /><GuideLabel position={[size + second / 2, 0.25, 0]} text="r" /></>;
+  const [firstSymbol, secondSymbol] = dimensionGuideSymbols(shape);
+  return <><GuideLine start={[0, 0, 0]} end={[size, 0, 0]} color="#f59e0b" />{secondSymbol && <GuideLine start={[0, 0, 0]} end={[0, second, 0]} color="#8b5cf6" />}<GuideLabel position={[size / 2, 0.2, 0]} text={firstSymbol} />{secondSymbol && <GuideLabel position={[0.2, second / 2, 0]} text={secondSymbol} />}</>;
+}
+
+function dimensionGuideSymbols(id: ShapeId): [string, string?] {
+  if (["annulus", "crescent", "star", "torus", "hollow-cylinder"].includes(id)) return ["R", "r"];
+  if (["circle", "semicircle", "sector", "quadrant", "segment", "sphere", "hemisphere", "cylinder", "capsule", "cone"].includes(id)) return ["r", shapeControlLabels[id][1] ? "h" : undefined];
+  if (id === "ellipse" || id === "ellipsoid") return ["a", "b"];
+  if (id === "rhombus" || id === "kite") return ["d1", "d2"];
+  if (id === "rectangle" || id === "rounded-rectangle") return ["l", "w"];
+  if (id === "cross") return ["a", "w"];
+  if (id === "trapezium") return ["a", "b"];
+  if (id.includes("triangle") || id === "parallelogram") return [id === "equilateral-triangle" ? "s" : "b", id === "equilateral-triangle" ? undefined : "h"];
+  if (id.includes("prism")) return [id === "triangular-prism" ? "b" : "s", "L"];
+  if (id.includes("pyramid")) return [id === "rectangular-pyramid" ? "l" : "s", "h"];
+  return ["s"];
 }
 
 function GuideLine({ start, end, color }: { start: [number, number, number]; end: [number, number, number]; color: string }) {
