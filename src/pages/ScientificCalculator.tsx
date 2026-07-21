@@ -11,7 +11,7 @@ import TopicHeader from "../components/ui/TopicHeader";
 import { CopyResultButton, ExampleValuesButton, RelatedToolLinks, ResetValuesButton, TermTooltip } from "../components/ui/UiFeedback";
 import { calculatorExamples } from "../data/calculatorExamples";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { evaluateExpression } from "../utils/calculator";
+import { evaluateExpression, evaluateExpressionDetailed } from "../utils/calculator";
 import type { AngleMode } from "../utils/calculator";
 import { symbolicDerivative, symbolicIntegral, symbolicLatex, trySymbolic } from "../utils/symbolic";
 
@@ -21,6 +21,7 @@ export default function ScientificCalculator() {
   const [expression, setExpression] = useState("");
   const [result, setResult] = useState("");
   const [error, setError] = useState("");
+  const [resultAccuracy, setResultAccuracy] = useState<"exact" | "approximate">("exact");
   const [angleMode, setAngleMode] = useLocalStorage<AngleMode>("math-universe-angle-mode", "DEG");
   const [memory, setMemory] = useLocalStorage<number>("math-universe-calculator-memory", 0);
   const [history, setHistory] = useLocalStorage<HistoryItem[]>("math-universe-calculator-history", []);
@@ -72,8 +73,10 @@ export default function ScientificCalculator() {
   const calculate = () => {
     if (!expression.trim()) return;
     try {
-      const nextResult = evaluateExpression(expression, angleMode);
+      const evaluation = evaluateExpressionDetailed(expression, angleMode);
+      const nextResult = evaluation.value;
       setResult(nextResult);
+      setResultAccuracy(evaluation.accuracy);
       setError("");
       setHistory((items) => [{ expression, result: nextResult }, ...(Array.isArray(items) ? items : [])].slice(0, MAX_HISTORY));
     } catch (caught) {
@@ -138,7 +141,8 @@ export default function ScientificCalculator() {
           </div>
 
           <div className="mt-5">
-            <CalculatorDisplay expression={displayExpression} result={result} error={error} angleMode={angleMode} memory={memory} />
+            <CalculatorDisplay expression={displayExpression} result={result} error={error} angleMode={angleMode} memory={memory} accuracy={resultAccuracy} />
+            <p className="mt-2 text-xs font-semibold text-slate-500 dark:text-slate-400">Convention: exponentiation precedes unary minus; powers associate right-to-left. Trigonometric functions use the selected {angleMode} mode.</p>
           </div>
 
           <div className="mt-5">

@@ -28,6 +28,7 @@ function lazyRoute<Props>(loader: () => Promise<{ default: ComponentType<Props> 
 }
 
 const About = lazyRoute(() => import("./pages/About"));
+const AccuracyCertification = lazyRoute(() => import("./pages/AccuracyCertification"));
 const AdvancedSyllabusLabPage = lazyRoute(() => import("./pages/AdvancedSyllabusLabPage"));
 const Algebra = lazyRoute(() => import("./pages/Algebra"));
 const AlgebraicStructures = lazyRoute(() => import("./pages/AlgebraicStructures"));
@@ -169,6 +170,7 @@ export default function App() {
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<Home />} />
+            <Route path="accuracy-certification" element={<AccuracyCertification />} />
             <Route path="algebra" element={<Algebra />} />
             <Route path="algebraic-structures" element={<AlgebraicStructures />} />
             <Route path="math-lab" element={<MathLab />} />

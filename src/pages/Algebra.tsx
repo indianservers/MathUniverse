@@ -7,6 +7,7 @@ import ApplicationVisualCard from "../components/ui/ApplicationVisualCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicTabs from "../components/ui/TopicTabs";
 import ContinueCard from "../components/ui/ContinueCard";
+import ConceptAccuracyPanel from "../components/ui/ConceptAccuracyPanel";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import FormulaVisualizationAtlas from "../visualizations/formulas/FormulaVisualizationAtlas";
@@ -38,6 +39,7 @@ export default function Algebra() {
         { id: "quadratic", label: "Quadratic", content: <QuadraticEquationVisualizer /> },
         { id: "systems", label: "Systems", content: <SimultaneousEquationsVisualizer /> },
         { id: "formulas", label: "Formula Atlas", content: <FormulaVisualizationAtlas topic="algebra" /> },
+        { id: "accuracy", label: "Accuracy & Examples", content: <ConceptAccuracyPanel domain="algebra" /> },
       ]} />
       <div className="grid gap-4 md:grid-cols-2">
         <FormulaBlock title="Line" formula="y=mx+c" />

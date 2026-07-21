@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import SectionCard from "../components/ui/SectionCard";
+import ConceptAccuracyPanel from "../components/ui/ConceptAccuracyPanel";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicTabs from "../components/ui/TopicTabs";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import { roundTo } from "../utils/math";
+import { isPerfectSquareInteger, normalizeRational } from "../utils/coreAccuracyOracles";
 
 const numberConcepts = [
   { title: "Natural Numbers", set: "N", note: "Counting numbers: 1, 2, 3, ...", example: "5" },
@@ -52,6 +54,7 @@ export default function NumberSystems() {
               { id: "real-line", label: "Real Line", content: <RealLineLab rational={rational} irrational={irrational} /> },
               { id: "space", label: "3D View", content: <NumberSystem3D rational={rational} irrational={irrational} /> },
               { id: "concepts", label: "Concepts", content: <ConceptGrid /> },
+              { id: "accuracy", label: "Accuracy & Examples", content: <ConceptAccuracyPanel domain="number-systems" /> },
             ]}
           />
         </div>
@@ -77,6 +80,7 @@ export default function NumberSystems() {
 
 function RationalLab({ p, q, setP, setQ, decimal }: { p: number; q: number; setP: (value: number) => void; setQ: (value: number) => void; decimal: string }) {
   const value = p / Math.max(1, q);
+  const normalized = normalizeRational(p, q);
   return (
     <SectionCard title="Rational Numbers" description="Move p and q to see p/q as a point, fraction, and decimal." compact>
       <div className="grid gap-3 xl:grid-cols-[280px_minmax(0,1fr)]">
@@ -86,6 +90,7 @@ function RationalLab({ p, q, setP, setQ, decimal }: { p: number; q: number; setP
             <SliderControl density="compact" label="denominator q" value={q} min={1} max={24} step={1} onChange={setQ} />
           </SliderGroup>
           <Metric label="fraction" value={`${p}/${q}`} />
+          <Metric label="exact reduced form" value={`${normalized.numerator}/${normalized.denominator}`} />
           <Metric label="decimal" value={decimal} />
           <Metric label="value" value={roundTo(value, 5).toString()} />
         </div>
@@ -97,7 +102,7 @@ function RationalLab({ p, q, setP, setQ, decimal }: { p: number; q: number; setP
 
 function IrrationalLab({ root, setRoot, digits, setDigits }: { root: number; setRoot: (value: number) => void; digits: number; setDigits: (value: number) => void }) {
   const value = Math.sqrt(root);
-  const rational = isPerfectSquare(root);
+  const rational = isPerfectSquareInteger(root);
   return (
     <SectionCard title="Irrational Numbers" description="Roots of non-perfect squares produce decimal values that do not terminate or repeat." compact>
       <div className="grid gap-3 xl:grid-cols-[280px_minmax(0,1fr)]">
@@ -222,8 +227,4 @@ function NumberLine({ values }: { values: { label: string; value: number; color:
 
 function Metric({ label, value }: { label: string; value: string }) {
   return <div className="rounded-lg bg-slate-100 p-2 dark:bg-white/10"><p className="text-[10px] font-black uppercase text-slate-500">{label}</p><p className="break-words font-mono text-sm font-bold">{value}</p></div>;
-}
-
-function isPerfectSquare(value: number) {
-  return Number.isInteger(Math.sqrt(value));
 }

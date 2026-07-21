@@ -6,6 +6,7 @@ import ApplicationVisualCard from "../components/ui/ApplicationVisualCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import TopicTabs from "../components/ui/TopicTabs";
+import ConceptAccuracyPanel from "../components/ui/ConceptAccuracyPanel";
 import { topics } from "../data/topics";
 import { geometryConcepts } from "../data/geometryConcepts";
 import { useProgress } from "../hooks/useProgress";
@@ -102,6 +103,7 @@ export default function Geometry() {
             { id: "theorems", label: "Theorems", content: <GeometryTheoremVisualizers /> },
             { id: "circles", label: "Circles", content: <CircleExplorer /> },
             { id: "solids", label: "3D Solids", content: <Shape3DExplorer /> },
+            { id: "accuracy", label: "Accuracy & Examples", content: <ConceptAccuracyPanel domain="geometry" /> },
           ]} />
         </div>
         <button type="button" className={`-mx-2 hidden rounded-full border border-transparent xl:block ${rightOpen ? "cursor-col-resize hover:border-cyan-300 hover:bg-cyan-400/15" : "pointer-events-none opacity-0"}`} onPointerDown={startResize("right", rightWidth)} aria-label="Resize right panel" />

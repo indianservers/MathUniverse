@@ -117,6 +117,16 @@ function toRpn(tokens: Token[]) {
 
 function applyFunction(name: string, value: number, angleMode: AngleMode) {
   const toAngle = (input: number) => angleMode === "DEG" ? degToRad(input) : input;
+  if ((name === "sqrt" && value < 0) || ((name === "ln" || name === "log") && value <= 0)) {
+    throw new Error(`${name} is undefined for ${value} in the real-number calculator`);
+  }
+  if ((name === "asin" || name === "acos") && Math.abs(value) > 1) {
+    throw new Error(`${name} needs an input from -1 to 1`);
+  }
+  if (name === "tan") {
+    const radians = toAngle(value);
+    if (Math.abs(Math.cos(radians)) < 1e-12) throw new Error(`tan(${value}) is undefined in ${angleMode} mode`);
+  }
   if (name === "sin") return Math.sin(toAngle(value));
   if (name === "cos") return Math.cos(toAngle(value));
   if (name === "tan") return Math.tan(toAngle(value));
@@ -162,4 +172,25 @@ export function evaluateExpression(input: string, angleMode: AngleMode) {
   });
   if (stack.length !== 1) throw new Error("Invalid expression");
   return formatCalculatorResult(stack[0]);
+}
+
+export type CalculatorEvaluation = {
+  value: string;
+  accuracy: "exact" | "approximate";
+  convention: string;
+};
+
+export function evaluateExpressionDetailed(input: string, angleMode: AngleMode): CalculatorEvaluation {
+  const value = evaluateExpression(input, angleMode);
+  const normalized = convertDisplayToExpression(input).toLowerCase();
+  const necessarilyApproximate = /\b(?:sin|cos|tan|asin|acos|atan|ln|log|exp|cbrt)\b|\b(?:pi|e)\b/.test(normalized);
+  const rootMatch = normalized.match(/^sqrt\(([-+]?\d+(?:\.\d+)?)\)$/);
+  const perfectSquareRoot = rootMatch ? Number.isInteger(Math.sqrt(Number(rootMatch[1]))) : false;
+  const hasRoot = /\bsqrt\b/.test(normalized);
+  const hasNonIntegerDivision = normalized.includes("/") && !Number.isInteger(Number(value));
+  return {
+    value,
+    accuracy: necessarilyApproximate || (hasRoot && !perfectSquareRoot) || hasNonIntegerDivision ? "approximate" : "exact",
+    convention: `${angleMode} angles; exponentiation precedes unary minus; ^ is right-associative.`,
+  };
 }

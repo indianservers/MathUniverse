@@ -5,6 +5,7 @@ import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import ResponsiveBarChart from "../components/charts/ResponsiveBarChart";
 import ResponsiveLineChart from "../components/charts/ResponsiveLineChart";
+import PhaseTwoDomainPanel from "../components/ui/PhaseTwoDomainPanel";
 
 export default function ProbabilityStatistics() {
   const [mean, setMean] = useState(0);
@@ -55,6 +56,7 @@ export default function ProbabilityStatistics() {
           <ResponsiveBarChart data={histogram} color="#14b8a6" />
         </GraphCard>
       </div>
+      <PhaseTwoDomainPanel domain="statistics-probability" />
     </div>
   );
 }

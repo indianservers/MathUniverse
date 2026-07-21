@@ -193,6 +193,74 @@ body {
       linear-gradient(180deg, rgba(255, 255, 255, 0.46), transparent);
   }
 
+  .home-hero {
+    background:
+      radial-gradient(circle at 12% 8%, rgba(34, 211, 238, 0.72), transparent 29rem),
+      radial-gradient(circle at 88% 90%, rgba(217, 70, 239, 0.58), transparent 28rem),
+      linear-gradient(125deg, #075985 0%, #3730a3 48%, #6b21a8 100%);
+  }
+
+  .home-hero-grid {
+    opacity: 0.22;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    background-size: 38px 38px;
+    mask-image: linear-gradient(to bottom right, black, transparent 75%);
+  }
+
+  .home-hero-action {
+    @apply inline-flex min-h-11 items-center gap-2 border border-white/25 bg-white/10 px-4 text-sm font-black text-white shadow-lg shadow-indigo-950/10 backdrop-blur-md transition hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/20;
+  }
+
+  .home-shortcut-card {
+    @apply border-cyan-200/70 bg-gradient-to-br from-cyan-50 to-white hover:border-cyan-400 hover:shadow-cyan-200/60 dark:border-cyan-300/20 dark:from-cyan-400/15 dark:to-cyan-950/30 dark:hover:border-cyan-300/50;
+  }
+
+  .home-shortcut-card:nth-child(3n + 2) {
+    @apply border-violet-200/70 from-violet-50 hover:border-violet-400 hover:shadow-violet-200/60 dark:border-violet-300/20 dark:from-violet-400/15 dark:to-violet-950/30 dark:hover:border-violet-300/50;
+  }
+
+  .home-shortcut-card:nth-child(3n) {
+    @apply border-amber-200/70 from-amber-50 hover:border-amber-400 hover:shadow-amber-200/60 dark:border-amber-300/20 dark:from-amber-400/15 dark:to-amber-950/30 dark:hover:border-amber-300/50;
+  }
+
+  .home-stat-card {
+    @apply border-cyan-200/70 bg-gradient-to-br from-cyan-50 via-white to-sky-50 dark:border-cyan-300/20 dark:from-cyan-400/15 dark:via-slate-950/60 dark:to-sky-950/40;
+  }
+
+  .home-stat-card:nth-child(6n + 2) {
+    @apply border-violet-200/70 from-violet-50 to-fuchsia-50 dark:border-violet-300/20 dark:from-violet-400/15 dark:to-fuchsia-950/40;
+  }
+
+  .home-stat-card:nth-child(6n + 3) {
+    @apply border-amber-200/70 from-amber-50 to-orange-50 dark:border-amber-300/20 dark:from-amber-400/15 dark:to-orange-950/40;
+  }
+
+  .home-stat-card:nth-child(6n + 4) {
+    @apply border-emerald-200/70 from-emerald-50 to-teal-50 dark:border-emerald-300/20 dark:from-emerald-400/15 dark:to-teal-950/40;
+  }
+
+  .home-stat-card:nth-child(6n + 5) {
+    @apply border-rose-200/70 from-rose-50 to-pink-50 dark:border-rose-300/20 dark:from-rose-400/15 dark:to-pink-950/40;
+  }
+
+  .home-stat-card:nth-child(6n) {
+    @apply border-sky-200/70 from-sky-50 to-indigo-50 dark:border-sky-300/20 dark:from-sky-400/15 dark:to-indigo-950/40;
+  }
+
+  .module-card {
+    background-image:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(240, 249, 255, 0.72) 52%, rgba(250, 245, 255, 0.76)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.5), transparent);
+  }
+
+  :root.dark .module-card {
+    background-image:
+      linear-gradient(145deg, rgba(15, 23, 42, 0.92), rgba(8, 47, 73, 0.68) 52%, rgba(46, 16, 101, 0.56)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
+  }
+
   .glass-card,
   .surface-soft,
   .spotlight-card,

@@ -7,6 +7,7 @@ import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import TopicTabs from "../components/ui/TopicTabs";
 import ContinueCard from "../components/ui/ContinueCard";
+import ConceptAccuracyPanel from "../components/ui/ConceptAccuracyPanel";
 import { topics } from "../data/topics";
 import { trigonometryConcepts } from "../data/trigonometryConcepts";
 import { useProgress } from "../hooks/useProgress";
@@ -37,6 +38,7 @@ export default function Trigonometry() {
             { id: "concepts", label: "Concepts", content: <ConceptPages concepts={trigonometryConcepts} /> },
             { id: "formulas", label: "Formulas", content: <FormulaGroups groups={formulaGroups} /> },
             { id: "syllabus", label: "Syllabus", content: <SyllabusCoverage groups={syllabusGroups} /> },
+            { id: "accuracy", label: "Accuracy & Examples", content: <ConceptAccuracyPanel domain="trigonometry" /> },
           ]} />
         </div>
         <aside className="desktop-sidebar-panel scroll-panel thin-scrollbar space-y-3">

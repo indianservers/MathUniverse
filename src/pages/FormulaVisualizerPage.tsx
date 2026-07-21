@@ -2,6 +2,9 @@ import { BookOpen, CheckCircle2, RotateCcw, Search, Sparkles } from "lucide-reac
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { formulaVisualizerConfigs, getFormulaVisualizerConfig, type FormulaVisualizerEntry, type FormulaVisualizerRouteConfig } from "../data/formulaVisualizerRoutes";
+import { buildFormulaVisualizationExplanation, type FormulaVisualizationExplanation } from "../data/formulaVisualizationExplanations";
+import { getSetLogicVisualMode, type SetLogicVisualMode } from "../utils/setLogicVisualModel";
+import { getProportionalVisualMode, PROPORTIONAL_FORMULA_IDS } from "../utils/proportionalVisualModel";
 import MathExpression from "../components/ui/MathExpression";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
@@ -16,6 +19,15 @@ type FormulaParameters = {
   c: number;
   n: number;
   p: number;
+};
+
+export type FormulaControlSpec = {
+  key: keyof FormulaParameters;
+  label: string;
+  min: number;
+  max: number;
+  step: number;
+  unit?: string;
 };
 
 const defaultParams: FormulaParameters = { a: 3, b: 2, c: 1, n: 8, p: 45 };
@@ -169,7 +181,10 @@ function FormulaVisualizerShell({ config }: { config: FormulaVisualizerRouteConf
         </header>
 
         {activeTab === "Explore" ? (
-          <section className="grid min-h-0 gap-3 xl:grid-cols-[320px_minmax(0,1fr)_340px]">
+          <section
+            className="grid min-h-0 min-w-0 items-start gap-3 xl:grid-cols-[minmax(260px,300px)_minmax(0,1fr)] 2xl:grid-cols-[minmax(260px,320px)_minmax(0,1fr)_minmax(300px,340px)]"
+            data-testid="formula-visualizer-explore-layout"
+          >
             <FormulaSelector
               config={config}
               difficulty={difficulty}
@@ -236,17 +251,17 @@ function FormulaSelector({
   setSelectedId: (value: string) => void;
 }) {
   return (
-    <aside className="desktop-sidebar-panel min-h-0 space-y-3 xl:sticky xl:top-24">
+    <aside className="desktop-sidebar-panel min-h-0 min-w-0 space-y-3 xl:sticky xl:top-24">
       <label className="flex min-h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold dark:border-white/10 dark:bg-slate-950/70">
         <Search className="h-4 w-4 text-slate-400" />
         <span className="sr-only">Search {config.shortTitle} formulas</span>
         <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search formula..." className="min-w-0 flex-1 bg-transparent outline-none" />
       </label>
       <div className="grid grid-cols-2 gap-2">
-        <select className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold dark:border-white/10 dark:bg-slate-950" value={group} onChange={(event) => setGroup(event.target.value)} aria-label="Formula group filter">
+        <select className="min-w-0 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold dark:border-white/10 dark:bg-slate-950" value={group} onChange={(event) => setGroup(event.target.value)} aria-label="Formula group filter">
           {groups.map((item) => <option key={item}>{item}</option>)}
         </select>
-        <select className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold dark:border-white/10 dark:bg-slate-950" value={difficulty} onChange={(event) => setDifficulty(event.target.value)} aria-label="Formula difficulty filter">
+        <select className="min-w-0 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold dark:border-white/10 dark:bg-slate-950" value={difficulty} onChange={(event) => setDifficulty(event.target.value)} aria-label="Formula difficulty filter">
           {difficulties.map((item) => <option key={item}>{item}</option>)}
         </select>
       </div>
@@ -273,6 +288,7 @@ function FormulaSelector({
 
 function InteractiveFormulaPanel({ config, formula, params }: { config: FormulaVisualizerRouteConfig; formula: FormulaVisualizerEntry; params: FormulaParameters }) {
   const result = computeResult(formula, params);
+  const explanation = buildFormulaVisualizationExplanation(formula);
   return (
     <SectionCard
       title={formula.title}
@@ -297,20 +313,33 @@ function InteractiveFormulaPanel({ config, formula, params }: { config: FormulaV
         <InfoTile label="Variables" value={formula.variables.join(", ")} />
         <InfoTile label="Reference" value={config.category} />
       </div>
+      <details className="mt-4 rounded-2xl border border-cyan-200 bg-cyan-50/70 p-4 dark:border-cyan-300/20 dark:bg-cyan-300/10" open>
+        <summary className="cursor-pointer text-lg font-black text-slate-950 dark:text-white">How to understand this visualization</summary>
+        <FormulaExplanationContent explanation={explanation} formula={formula} compact />
+      </details>
     </SectionCard>
   );
 }
 
 function FormulaParameterControls({ formula, params, reset, updateParam }: { formula: FormulaVisualizerEntry; params: FormulaParameters; reset: () => void; updateParam: (key: keyof FormulaParameters, value: number) => void }) {
   const warning = getWarning(formula, params);
+  const controls = getFormulaControlSpecs(formula);
   return (
-    <aside className="desktop-sidebar-panel space-y-3 xl:sticky xl:top-24">
+    <aside className="desktop-sidebar-panel min-w-0 space-y-3 xl:col-span-2 2xl:col-span-1 2xl:sticky 2xl:top-24">
       <SliderGroup title="Controls" description="Move values and watch the visual, result, and substitution update together.">
-        <SliderControl density="compact" label="a" value={params.a} min={-6} max={8} step={0.25} onChange={(value) => updateParam("a", value)} />
-        <SliderControl density="compact" label="b" value={params.b} min={-6} max={8} step={0.25} onChange={(value) => updateParam("b", value)} />
-        <SliderControl density="compact" label="c" value={params.c} min={-6} max={8} step={0.25} onChange={(value) => updateParam("c", value)} />
-        <SliderControl density="compact" label="n" value={params.n} min={1} max={24} step={1} onChange={(value) => updateParam("n", value)} />
-        <SliderControl density="compact" label="p" value={params.p} min={0} max={100} step={1} unit="%" onChange={(value) => updateParam("p", value)} />
+        {controls.map((control) => (
+          <SliderControl
+            key={`${control.key}-${control.label}`}
+            density="compact"
+            label={control.label}
+            value={params[control.key]}
+            min={control.min}
+            max={control.max}
+            step={control.step}
+            unit={control.unit}
+            onChange={(value) => updateParam(control.key, value)}
+          />
+        ))}
       </SliderGroup>
       {warning ? <div className="rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm font-bold text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-100">{warning}</div> : null}
       <div className="rounded-xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5">
@@ -322,6 +351,51 @@ function FormulaParameterControls({ formula, params, reset, updateParam }: { for
       </div>
     </aside>
   );
+}
+
+const controlKeyOrder: (keyof FormulaParameters)[] = ["a", "b", "c", "n", "p"];
+
+const variableControlAliases: Record<string, keyof FormulaParameters> = {
+  r: "a",
+  x: "a",
+  y: "b",
+  h: "b",
+  theta: "p",
+  "θ": "p",
+  d: "n",
+  x1: "a",
+  y1: "b",
+  x2: "c",
+  y2: "n",
+  ax: "a",
+  ay: "b",
+  bx: "c",
+  by: "n",
+  mu: "a",
+  sigma: "b",
+  "p(e)": "p",
+};
+
+export function getFormulaControlSpecs(formula: FormulaVisualizerEntry): FormulaControlSpec[] {
+  const used = new Set<keyof FormulaParameters>();
+
+  return formula.variables.slice(0, controlKeyOrder.length).map((variable) => {
+    const normalized = variable.trim();
+    const lower = normalized.toLowerCase();
+    const directKey = controlKeyOrder.includes(normalized as keyof FormulaParameters) ? normalized as keyof FormulaParameters : undefined;
+    const preferredKey = directKey ?? variableControlAliases[lower];
+    const key = preferredKey && !used.has(preferredKey)
+      ? preferredKey
+      : controlKeyOrder.find((candidate) => !used.has(candidate)) ?? "a";
+    used.add(key);
+
+    if (lower === "theta" || normalized === "θ") {
+      return { key, label: "θ", min: 5, max: 85, step: 1, unit: "°" };
+    }
+    if (key === "n") return { key, label: normalized, min: 1, max: 24, step: 1 };
+    if (key === "p") return { key, label: normalized, min: 0, max: 100, step: 1, unit: "%" };
+    return { key, label: normalized, min: -6, max: 8, step: 0.25 };
+  });
 }
 
 function FormulaCanvas({ formula, params }: { formula: FormulaVisualizerEntry; params: FormulaParameters }) {
@@ -338,7 +412,7 @@ function FormulaCanvas({ formula, params }: { formula: FormulaVisualizerEntry; p
 
   return (
     <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 shadow-inner shadow-cyan-950/30 group-data-[fullscreen=true]/section:h-[calc(100vh-250px)] dark:border-white/10">
-      <svg viewBox="0 0 760 390" role="img" aria-label={`${formula.title} interactive visual output`} className="h-[360px] w-full max-w-full group-data-[fullscreen=true]/section:h-full">
+      <svg viewBox="0 0 760 500" role="img" aria-label={`${formula.title} interactive visual output`} className="aspect-[38/25] h-auto w-full max-w-full group-data-[fullscreen=true]/section:h-full">
         <defs>
           <linearGradient id="formulaPane" x1="0" x2="1">
             <stop stopColor="#08111f" />
@@ -349,9 +423,10 @@ function FormulaCanvas({ formula, params }: { formula: FormulaVisualizerEntry; p
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
         </defs>
-        <rect width="760" height="390" rx="22" fill="url(#formulaPane)" />
-        <Grid />
-        {isProportionalReasoningFormula(formula.id) ? (
+        <rect width="760" height="500" rx="22" fill="url(#formulaPane)" />
+        <g transform="translate(0 100)">
+          <Grid />
+          {isProportionalReasoningFormula(formula.id) ? (
           <ProportionalReasoningVisual formula={formula} params={params} />
         ) : isTrigonometryFormula(formula.id) ? (
           <TrigonometryFormulaVisual formula={formula} params={params} />
@@ -412,7 +487,8 @@ function FormulaCanvas({ formula, params }: { formula: FormulaVisualizerEntry; p
           <Phase3Visual formula={formula} params={params} />
         ) : (
           <StatisticsVisual params={params} />
-        )}
+          )}
+        </g>
         <foreignObject x="34" y="24" width="300" height="88">
           <div className="rounded-xl border border-cyan-300/40 bg-slate-950/75 p-3 text-white">
             <p className="text-xs font-black uppercase text-cyan-200">Selected model</p>
@@ -477,22 +553,16 @@ function ExamplePanel({ config, setParams, setActiveTab }: { config: FormulaVisu
 }
 
 function ExplanationPanel({ config, formula }: { config: FormulaVisualizerRouteConfig; formula: FormulaVisualizerEntry }) {
+  const explanation = buildFormulaVisualizationExplanation(formula);
   return (
     <section className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_340px]">
       <article className="desktop-card p-4">
         <h2 className="text-2xl font-black">Why it works</h2>
-        <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{formula.description}</p>
+        <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{explanation.conceptSummary}</p>
         <div className="mt-4 rounded-xl border border-cyan-200 bg-cyan-50 p-4 dark:border-cyan-300/30 dark:bg-cyan-400/10">
           <MathExpression value={formula.latex} display className="text-lg" />
         </div>
-        <p className="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">
-          The visual keeps the same mathematical quantity while changing the representation. Watch the highlighted length, area, slope, count, or probability region, then compare it with the live substitution.
-        </p>
-        {formula.commonMistake ? (
-          <div className="mt-4 rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm font-bold text-amber-900 dark:border-amber-300/40 dark:bg-amber-300/10 dark:text-amber-100">
-            Common mistake: {formula.commonMistake}
-          </div>
-        ) : null}
+        <FormulaExplanationContent explanation={explanation} formula={formula} />
       </article>
       <aside className="desktop-sidebar-panel space-y-3">
         <h3 className="text-lg font-black">Related learning</h3>
@@ -505,6 +575,41 @@ function ExplanationPanel({ config, formula }: { config: FormulaVisualizerRouteC
           </Link>
         ))}
       </aside>
+    </section>
+  );
+}
+
+function FormulaExplanationContent({ explanation, formula, compact = false }: { explanation: FormulaVisualizationExplanation; formula: FormulaVisualizerEntry; compact?: boolean }) {
+  return (
+    <div className={`mt-4 grid gap-3 ${compact ? "xl:grid-cols-2" : ""}`}>
+      <ExplanationBlock title="1. What you are looking at" items={explanation.diagramReading} />
+      <ExplanationBlock title="2. What each control changes" items={explanation.controlEffects} />
+      <ExplanationBlock title="3. Step-by-step reasoning" items={explanation.reasoningSteps.map((step, index) => `${index + 1}. ${step}`)} />
+      <ExplanationBlock title="4. What must remain true" text={explanation.invariant} />
+      <section className="rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-950 dark:border-amber-300/30 dark:bg-amber-300/10 dark:text-amber-50">
+        <h3 className="font-black">5. Common mistake to avoid</h3>
+        <p className="mt-2 font-semibold leading-6">{explanation.commonMistake}</p>
+      </section>
+      <section className="rounded-xl border border-emerald-300 bg-emerald-50 p-3 text-sm text-emerald-950 dark:border-emerald-300/30 dark:bg-emerald-300/10 dark:text-emerald-50">
+        <h3 className="font-black">6. Try this</h3>
+        <p className="mt-2 font-semibold leading-6">{explanation.tryThis}</p>
+        <p className="mt-2 rounded-lg bg-white/70 p-2 font-bold dark:bg-slate-950/30"><span className="font-black">Success condition:</span> {explanation.successCondition}</p>
+      </section>
+      {formula.notes ? <ExplanationBlock title="Formula note" text={formula.notes} /> : null}
+      <details className="rounded-xl border border-slate-200 bg-white/80 p-3 text-sm dark:border-white/10 dark:bg-white/5">
+        <summary className="cursor-pointer font-black">Text-only diagram description</summary>
+        <p className="mt-2 leading-6 text-slate-600 dark:text-slate-300">{explanation.textAlternative}</p>
+      </details>
+    </div>
+  );
+}
+
+function ExplanationBlock({ title, text, items }: { title: string; text?: string; items?: string[] }) {
+  return (
+    <section className="rounded-xl border border-slate-200 bg-white/80 p-3 text-sm dark:border-white/10 dark:bg-white/5">
+      <h3 className="font-black text-slate-950 dark:text-white">{title}</h3>
+      {text ? <p className="mt-2 leading-6 text-slate-600 dark:text-slate-300">{text}</p> : null}
+      {items ? <ul className="mt-2 grid gap-2 leading-6 text-slate-600 dark:text-slate-300">{items.map((item) => <li key={item} className="flex gap-2"><span aria-hidden="true" className="font-black text-cyan-600">•</span><span>{item}</span></li>)}</ul> : null}
     </section>
   );
 }
@@ -576,23 +681,94 @@ function StatisticsVisual({ params }: { params: FormulaParameters }) {
 }
 
 function isProportionalReasoningFormula(id: string) {
-  return [
-    "equivalent-ratios",
-    "cross-multiplication",
-    "missing-fourth-term",
-    "representative-fraction",
-    "actual-distance-map-scale",
-    "map-distance-actual-scale",
-    "multi-term-ratio-share",
-    "ratio-to-percentage",
-    "ratio-to-pie-angle",
-    "direct-proportion",
-    "inverse-proportion",
-    "constant-check",
-  ].includes(id);
+  return PROPORTIONAL_FORMULA_IDS.includes(id as (typeof PROPORTIONAL_FORMULA_IDS)[number]);
 }
 
 function ProportionalReasoningVisual({ formula, params }: { formula: FormulaVisualizerEntry; params: FormulaParameters }) {
+  const mode = getProportionalVisualMode(formula.id);
+  if (!mode) return null;
+  if (mode === "equivalent-ratios") return <EquivalentRatiosVisual params={params} />;
+  if (mode === "cross-multiplication") return <CrossMultiplicationVisual params={params} />;
+  if (mode === "missing-fourth-term") return <MissingFourthTermVisual params={params} />;
+  if (mode === "representative-fraction") return <RepresentativeFractionVisual params={params} />;
+  if (mode === "actual-distance-map-scale") return <ActualDistanceVisual params={params} />;
+  if (mode === "map-distance-actual-scale") return <MapDistanceVisual params={params} />;
+  if (mode === "multi-term-ratio-share") return <RatioShareVisual params={params} />;
+  if (mode === "ratio-to-percentage") return <RatioPercentageVisual params={params} />;
+  if (mode === "ratio-to-pie-angle") return <RatioPieAngleVisual params={params} />;
+  if (mode === "direct-proportion") return <DirectProportionVisual params={params} />;
+  if (mode === "inverse-proportion") return <InverseProportionVisual params={params} />;
+  return <ProportionConstantCheckVisual params={params} />;
+}
+
+function ratioValues(params: FormulaParameters) {
+  return {
+    a: Math.max(0.25, Math.abs(params.a)), b: Math.max(0.25, Math.abs(params.b)),
+    c: Math.max(0.25, Math.abs(params.c)), d: Math.max(1, Math.abs(params.n)),
+  };
+}
+
+function FractionStack({ x, y, numerator, denominator, color }: { x: number; y: number; numerator: string; denominator: string; color: string }) {
+  return <g><text x={x} y={y - 18} fill={color} fontSize="28" fontWeight="900" textAnchor="middle">{numerator}</text><line x1={x - 42} y1={y} x2={x + 42} y2={y} stroke="#e0f2fe" strokeWidth="4" /><text x={x} y={y + 40} fill={color} fontSize="28" fontWeight="900" textAnchor="middle">{denominator}</text></g>;
+}
+
+function EquivalentRatiosVisual({ params }: { params: FormulaParameters }) {
+  const { a, b, c, d } = ratioValues(params);
+  const equivalent = Math.abs(a / b - c / d) < 0.001;
+  return <g><FractionStack x={250} y={185} numerator={formatNumber(a)} denominator={formatNumber(b)} color="#67e8f9" /><Text x="380" y="190" value={equivalent ? "=" : "≠"} /><FractionStack x={510} y={185} numerator={formatNumber(c)} denominator={formatNumber(d)} color="#c4b5fd" /><Text x="380" y="88" value="compare simplified ratios" /><Text x="380" y="300" value={`${formatNumber(a / b)} ${equivalent ? "=" : "≠"} ${formatNumber(c / d)}`} /></g>;
+}
+
+function CrossMultiplicationVisual({ params }: { params: FormulaParameters }) {
+  const { a, b, c, d } = ratioValues(params);
+  const ad = a * d; const bc = b * c; const equal = Math.abs(ad - bc) < 0.001;
+  return <g><FractionStack x={250} y={174} numerator={formatNumber(a)} denominator={formatNumber(b)} color="#67e8f9" /><FractionStack x={510} y={174} numerator={formatNumber(c)} denominator={formatNumber(d)} color="#c4b5fd" /><path d="M250 130 L510 220" stroke="#facc15" strokeWidth="7" strokeLinecap="round" /><path d="M250 220 L510 130" stroke="#f59e0b" strokeWidth="7" strokeLinecap="round" /><Text x="380" y="80" value="multiply diagonally" /><Text x="270" y="292" value={`a·d = ${formatNumber(ad)}`} /><Text x="500" y="292" value={`b·c = ${formatNumber(bc)}`} /><Text x="380" y="338" value={equal ? "cross-products are equal" : `not equal: Δ=${formatNumber(ad - bc)}`} /></g>;
+}
+
+function MissingFourthTermVisual({ params }: { params: FormulaParameters }) {
+  const { a, b, c } = ratioValues(params); const missing = (b * c) / a;
+  return <g><FractionStack x={250} y={184} numerator={formatNumber(a)} denominator={formatNumber(b)} color="#67e8f9" /><Text x="380" y="188" value="=" /><FractionStack x={510} y={184} numerator={formatNumber(c)} denominator="?" color="#facc15" /><path d="M250 142 L510 226" stroke="#f59e0b" strokeWidth="6" strokeDasharray="10 8" /><Text x="380" y="82" value="solve the missing denominator" /><Text x="380" y="304" value={`d = b·c/a = ${formatNumber(b)}·${formatNumber(c)}/${formatNumber(a)}`} /><Text x="380" y="346" value={`d = ${formatNumber(missing)}`} /></g>;
+}
+
+function ScaleRuler({ y, length, color, label }: { y: number; length: number; color: string; label: string }) {
+  return <g><line x1="150" y1={y} x2={150 + length} y2={y} stroke={color} strokeWidth="14" strokeLinecap="round" /><line x1="150" y1={y - 18} x2="150" y2={y + 18} stroke="#e0f2fe" strokeWidth="3" /><line x1={150 + length} y1={y - 18} x2={150 + length} y2={y + 18} stroke="#e0f2fe" strokeWidth="3" /><Text x={150 + length / 2} y={y - 30} value={label} /></g>;
+}
+
+function RepresentativeFractionVisual({ params }: { params: FormulaParameters }) {
+  const { a, b } = ratioValues(params); const actualCm = b * 100000; const denominator = actualCm / a;
+  return <g><ScaleRuler y={130} length={130} color="#22d3ee" label={`${formatNumber(a)} cm on map`} /><ScaleRuler y={242} length={430} color="#f59e0b" label={`${formatNumber(b)} km = ${formatNumber(actualCm)} cm`} /><Text x="530" y="104" value="convert to same unit" /><Text x="380" y="312" value={`RF = ${formatNumber(a)}:${formatNumber(actualCm)} = 1:${formatNumber(denominator)}`} /></g>;
+}
+
+function ActualDistanceVisual({ params }: { params: FormulaParameters }) {
+  const { a, b } = ratioValues(params); const actualCm = a * b; const actualKm = actualCm / 100000;
+  return <g><ScaleRuler y={126} length={150} color="#22d3ee" label={`map = ${formatNumber(a)} cm`} /><path d="M310 126 H520" stroke="#facc15" strokeWidth="5" /><Text x="414" y="98" value={`× scale ${formatNumber(b)}`} /><ScaleRuler y={242} length={420} color="#f59e0b" label={`actual = ${formatNumber(actualCm)} cm`} /><Text x="380" y="315" value={`= ${formatNumber(actualKm)} km`} /></g>;
+}
+
+function MapDistanceVisual({ params }: { params: FormulaParameters }) {
+  const { a, b } = ratioValues(params); const actualCm = a * 100000; const mapCm = actualCm / b;
+  return <g><ScaleRuler y={126} length={420} color="#f59e0b" label={`actual = ${formatNumber(a)} km = ${formatNumber(actualCm)} cm`} /><path d="M520 164 H310" stroke="#facc15" strokeWidth="5" /><Text x="414" y="192" value={`÷ scale ${formatNumber(b)}`} /><ScaleRuler y={256} length={150} color="#22d3ee" label={`map = ${formatNumber(mapCm)} cm`} /><Text x="500" y="300" value="real world → map" /></g>;
+}
+
+function RatioBar({ params, showValues = true }: { params: FormulaParameters; showValues?: boolean }) {
+  const { a, b, c } = ratioValues(params); const parts = [a, b, c]; const total = a + b + c; let cursor = 145; const colors = ["#22d3ee", "#f59e0b", "#a78bfa"];
+  return <g>{parts.map((part, index) => { const width = part / total * 470; const x = cursor; cursor += width; return <g key={index}><rect x={x} y="132" width={width} height="92" rx="12" fill={colors[index]} opacity="0.76" stroke="#e0f2fe" /><Text x={x + width / 2} y="180" value={showValues ? formatNumber(part) : `${formatNumber(part / total * 100)}%`} /></g>; })}</g>;
+}
+
+function RatioShareVisual({ params }: { params: FormulaParameters }) { const { a, b, c } = ratioValues(params); const sum = a + b + c; const share = a / sum * Math.abs(params.n); return <g><RatioBar params={params} /><Text x="380" y="86" value={`split total ${formatNumber(Math.abs(params.n))} in ratio ${formatNumber(a)}:${formatNumber(b)}:${formatNumber(c)}`} /><Text x="380" y="282" value={`first share = ${formatNumber(a)}/${formatNumber(sum)} × ${formatNumber(Math.abs(params.n))}`} /><Text x="380" y="330" value={`= ${formatNumber(share)}`} /></g>; }
+
+function RatioPercentageVisual({ params }: { params: FormulaParameters }) { const { a, b, c } = ratioValues(params); const percent = a / (a + b + c) * 100; return <g><RatioBar params={params} showValues={false} /><rect x="145" y="254" width="470" height="28" rx="14" fill="#172554" stroke="#cbd5e1" /><rect x="145" y="254" width={470 * percent / 100} height="28" rx="14" fill="#22d3ee" /><Text x="380" y="88" value="ratio parts become percentages of 100" /><Text x="380" y="330" value={`first part = ${formatNumber(percent)}%`} /></g>; }
+
+function RatioPieAngleVisual({ params }: { params: FormulaParameters }) { const { a, b, c } = ratioValues(params); const angle = a / (a + b + c) * 360; const radians = angle * Math.PI / 180; const endX = 380 + 112 * Math.sin(radians); const endY = 190 - 112 * Math.cos(radians); return <g><circle cx="380" cy="190" r="112" fill="#172554" stroke="#ddd6fe" strokeWidth="5" /><path d={`M380 190 L380 78 A112 112 0 ${angle > 180 ? 1 : 0} 1 ${endX} ${endY} Z`} fill="#facc15" opacity="0.78" stroke="#fef08a" strokeWidth="4" /><Text x="380" y="190" value={`${formatNumber(angle)}°`} /><Text x="380" y="340" value={`${formatNumber(a)}/${formatNumber(a + b + c)} × 360°`} /></g>; }
+
+function ProportionAxes() { return <g><line x1="120" y1="310" x2="650" y2="310" stroke="#94a3b8" strokeWidth="3" /><line x1="120" y1="310" x2="120" y2="60" stroke="#94a3b8" strokeWidth="3" /><Text x="650" y="340" value="x" /><Text x="92" y="70" value="y" /></g>; }
+
+function DirectProportionVisual({ params }: { params: FormulaParameters }) { const x = Math.max(.25, Math.abs(params.a)); const k = Math.max(.25, Math.abs(params.b)); const y = k * x; const points = Array.from({length:9},(_,i)=>`${120+i*58},${310-Math.min(230,k*i*7)}`).join(" "); return <g><ProportionAxes /><polyline points={points} fill="none" stroke="#22d3ee" strokeWidth="6" /><circle cx={120+x*45} cy={310-Math.min(230,y*9)} r="11" fill="#facc15" /><Text x="500" y="92" value={`y = ${formatNumber(k)}x`} /><Text x="500" y="136" value={`y/x = ${formatNumber(k)}`} /><Text x="500" y="180" value={`(${formatNumber(x)}, ${formatNumber(y)})`} /></g>; }
+
+function InverseProportionVisual({ params }: { params: FormulaParameters }) { const { a, b, c } = ratioValues(params); const k = a * b; const x = c; const y = k/x; const points = Array.from({length:48},(_,i)=>{const xv=.5+i*.16; return `${120+xv*55},${310-Math.min(235,(k/xv)*8)}`;}).join(" "); return <g><ProportionAxes /><polyline points={points} fill="none" stroke="#f59e0b" strokeWidth="6" /><circle cx={120+x*55} cy={310-Math.min(235,y*8)} r="11" fill="#facc15" /><Text x="510" y="92" value={`xy = k = ${formatNumber(k)}`} /><Text x="510" y="136" value={`y = ${formatNumber(k)}/x`} /><Text x="510" y="180" value={`(${formatNumber(x)}, ${formatNumber(y)})`} /></g>; }
+
+function ProportionConstantCheckVisual({ params }: { params: FormulaParameters }) { const { a, b, c, d } = ratioValues(params); const r1=b/a,r2=d/c,p1=a*b,p2=c*d; const direct=Math.abs(r1-r2)<.001; const inverse=Math.abs(p1-p2)<.001; const result=direct?"DIRECT: equal y/x":inverse?"INVERSE: equal xy":"NEITHER constant matches"; return <g><rect x="130" y="92" width="220" height="172" rx="18" fill="#22d3ee" opacity=".22" stroke="#67e8f9" strokeWidth="4" /><rect x="410" y="92" width="220" height="172" rx="18" fill="#a78bfa" opacity=".22" stroke="#ddd6fe" strokeWidth="4" /><Text x="240" y="132" value={`Pair 1: (${formatNumber(a)},${formatNumber(b)})`} /><Text x="240" y="178" value={`y/x=${formatNumber(r1)}`} /><Text x="240" y="222" value={`xy=${formatNumber(p1)}`} /><Text x="520" y="132" value={`Pair 2: (${formatNumber(c)},${formatNumber(d)})`} /><Text x="520" y="178" value={`y/x=${formatNumber(r2)}`} /><Text x="520" y="222" value={`xy=${formatNumber(p2)}`} /><Text x="380" y="322" value={result} /></g>; }
+
+/** @deprecated Kept only as a reference for older snapshots; the live page uses formula-specific models above. */
+export function LegacyProportionalReasoningVisual({ formula, params }: { formula: FormulaVisualizerEntry; params: FormulaParameters }) {
   const a = Math.max(0.25, Math.abs(params.a));
   const b = Math.max(0.25, Math.abs(params.b));
   const c = Math.max(0.25, Math.abs(params.c));
@@ -1018,7 +1194,7 @@ function Phase2Visual({ formula, params }: { formula: FormulaVisualizerEntry; pa
     case "combinatorics":
       return <CombinatoricsVisual params={params} />;
     case "set-logic":
-      return <SetLogicVisual params={params} />;
+      return <SetLogicVisual formula={formula} params={params} />;
     case "function":
     case "polynomial":
       return <FunctionFamilyVisual params={params} formula={formula} />;
@@ -1123,22 +1299,88 @@ function CombinatoricsVisual({ params }: { params: FormulaParameters }) {
   );
 }
 
-function SetLogicVisual({ params }: { params: FormulaParameters }) {
-  const p = params.p > 50;
-  const q = params.b >= 0;
+function SetLogicVisual({ formula, params }: { formula: FormulaVisualizerEntry; params: FormulaParameters }) {
+  const mode = getSetLogicVisualMode(formula.id);
+  if (mode === "cartesian") return <CartesianProductVisual params={params} />;
+  if (mode === "implication" || mode === "biconditional" || mode === "contrapositive") {
+    return <LogicTruthTableVisual mode={mode} params={params} />;
+  }
+  return <SetRegionVisual mode={mode} params={params} />;
+}
+
+function SetRegionVisual({ mode, params }: { mode: Exclude<SetLogicVisualMode, "cartesian" | "implication" | "biconditional" | "contrapositive">; params: FormulaParameters }) {
+  const sizeA = Math.max(0, Math.round(Math.abs(params.a)));
+  const sizeB = Math.max(0, Math.round(Math.abs(params.b)));
+  const overlap = Math.min(sizeA, sizeB, Math.max(0, Math.round(Math.abs(params.c))));
+  const unionCount = sizeA + sizeB - overlap;
+  const activeLabel = mode === "union" ? "A ∪ B" : mode === "intersection" ? "A ∩ B" : mode === "difference" ? "A − B" : mode === "complement" ? "(A ∪ B)′" : `n(A ∪ B) = ${unionCount}`;
+  const showUnion = mode === "union" || mode === "cardinality";
   return (
     <g>
-      <circle cx="330" cy="178" r="104" fill="#22d3ee" opacity="0.42" stroke="#67e8f9" strokeWidth="4" />
-      <circle cx="430" cy="178" r="104" fill="#a78bfa" opacity="0.42" stroke="#ddd6fe" strokeWidth="4" />
-      <Text x="286" y="178" value="A" />
-      <Text x="474" y="178" value="B" />
-      <Text x="380" y="178" value="A∩B" />
-      <g transform="translate(162 308)">
-        {["p", "q", "p=>q"].map((label, index) => <Text key={label} x={index * 150} y="0" value={label} />)}
-        <Text x="0" y="38" value={p ? "T" : "F"} />
-        <Text x="150" y="38" value={q ? "T" : "F"} />
-        <Text x="300" y="38" value={!p || q ? "T" : "F"} />
-      </g>
+      <defs>
+        <clipPath id="set-clip-a"><circle cx="330" cy="188" r="104" /></clipPath>
+        <mask id="set-a-minus-b"><rect width="760" height="390" fill="black" /><circle cx="330" cy="188" r="104" fill="white" /><circle cx="430" cy="188" r="104" fill="black" /></mask>
+        <mask id="set-outside-union"><rect width="760" height="390" fill="white" /><circle cx="330" cy="188" r="104" fill="black" /><circle cx="430" cy="188" r="104" fill="black" /></mask>
+      </defs>
+      <rect x="142" y="54" width="476" height="270" rx="18" fill="#0f2740" stroke="#64748b" strokeWidth="3" />
+      {mode === "complement" ? <rect x="142" y="54" width="476" height="270" rx="18" fill="#f59e0b" opacity="0.55" mask="url(#set-outside-union)" /> : null}
+      {showUnion ? <><circle cx="330" cy="188" r="104" fill="#22d3ee" opacity="0.64" /><circle cx="430" cy="188" r="104" fill="#a78bfa" opacity="0.64" /></> : null}
+      {mode === "intersection" ? <circle cx="430" cy="188" r="104" fill="#facc15" opacity="0.78" clipPath="url(#set-clip-a)" /> : null}
+      {mode === "difference" ? <rect width="760" height="390" fill="#22d3ee" opacity="0.8" mask="url(#set-a-minus-b)" /> : null}
+      <circle cx="330" cy="188" r="104" fill={showUnion ? "transparent" : "#22d3ee"} fillOpacity="0.13" stroke="#67e8f9" strokeWidth="4" />
+      <circle cx="430" cy="188" r="104" fill={showUnion ? "transparent" : "#a78bfa"} fillOpacity="0.13" stroke="#ddd6fe" strokeWidth="4" />
+      <Text x="278" y="188" value={mode === "cardinality" ? String(sizeA - overlap) : "A"} />
+      <Text x="482" y="188" value={mode === "cardinality" ? String(sizeB - overlap) : "B"} />
+      <Text x="380" y="188" value={mode === "cardinality" ? String(overlap) : "A∩B"} />
+      <Text x="380" y="304" value={activeLabel} />
+      {mode === "cardinality" ? <Text x="380" y="92" value={`${sizeA} + ${sizeB} − ${overlap} = ${unionCount}`} /> : null}
+    </g>
+  );
+}
+
+function CartesianProductVisual({ params }: { params: FormulaParameters }) {
+  const aCount = Math.max(1, Math.min(5, Math.round(Math.abs(params.a))));
+  const bCount = Math.max(1, Math.min(5, Math.round(Math.abs(params.b))));
+  return (
+    <g transform="translate(170 70)">
+      <Text x="210" y="0" value={`A × B has ${aCount * bCount} ordered pairs`} />
+      {Array.from({ length: aCount }, (_, row) => (
+        <g key={`a-${row}`}>
+          <Text x="0" y={66 + row * 48} value={`a${row + 1}`} />
+          {Array.from({ length: bCount }, (_, column) => (
+            <g key={`${row}-${column}`}>
+              {row === 0 ? <Text x={100 + column * 78} y="34" value={`b${column + 1}`} /> : null}
+              <rect x={67 + column * 78} y={43 + row * 48} width="66" height="38" rx="9" fill={(row + column) % 2 ? "#a78bfa" : "#22d3ee"} opacity="0.62" stroke="#e0f2fe" />
+              <text x={100 + column * 78} y={67 + row * 48} fill="white" fontSize="12" fontWeight="700" textAnchor="middle">({row + 1},{column + 1})</text>
+            </g>
+          ))}
+        </g>
+      ))}
+      <Text x="210" y="310" value={`|A|·|B| = ${aCount}·${bCount} = ${aCount * bCount}`} />
+    </g>
+  );
+}
+
+function LogicTruthTableVisual({ mode, params }: { mode: "implication" | "biconditional" | "contrapositive"; params: FormulaParameters }) {
+  const selectedP = params.p >= 50;
+  const selectedQ = params.b >= 0;
+  const rows = [[true, true], [true, false], [false, true], [false, false]] as const;
+  const title = mode === "implication" ? "p ⇒ q ≡ ¬p ∨ q" : mode === "biconditional" ? "p ⇔ q" : "p ⇒ q ≡ ¬q ⇒ ¬p";
+  const value = (p: boolean, q: boolean) => mode === "biconditional" ? p === q : !p || q;
+  return (
+    <g transform="translate(152 62)">
+      <Text x="228" y="0" value={title} />
+      {["p", "q", mode === "biconditional" ? "p⇔q" : mode === "contrapositive" ? "¬q⇒¬p" : "p⇒q"].map((label, index) => <Text key={label} x={80 + index * 150} y="52" value={label} />)}
+      {rows.map(([p, q], row) => {
+        const selected = p === selectedP && q === selectedQ;
+        return <g key={`${p}-${q}`}>
+          <rect x="18" y={72 + row * 52} width="420" height="42" rx="10" fill={selected ? "#f59e0b" : row % 2 ? "#172b45" : "#10243c"} opacity={selected ? 0.68 : 0.9} stroke={selected ? "#fde68a" : "#334155"} />
+          <Text x="80" y={94 + row * 52} value={p ? "T" : "F"} />
+          <Text x="230" y={94 + row * 52} value={q ? "T" : "F"} />
+          <Text x="380" y={94 + row * 52} value={value(p, q) ? "T" : "F"} />
+        </g>;
+      })}
+      <Text x="228" y="306" value="Highlighted row follows the live p and q controls" />
     </g>
   );
 }
@@ -1926,7 +2168,10 @@ function computeResult(formula: FormulaVisualizerEntry, params: FormulaParameter
 }
 
 function buildSubstitution(formula: FormulaVisualizerEntry, params: FormulaParameters) {
-  return `a=${formatNumber(params.a)}, b=${formatNumber(params.b)}, c=${formatNumber(params.c)}, n=${formatNumber(params.n)}, p=${formatNumber(params.p)} gives ${formula.title} ≈ ${formatNumber(computeResult(formula, params))}.`;
+  const values = getFormulaControlSpecs(formula)
+    .map((control) => `${control.label}=${formatNumber(params[control.key])}${control.unit ?? ""}`)
+    .join(", ");
+  return `${values} gives ${formula.title} ≈ ${formatNumber(computeResult(formula, params))}.`;
 }
 
 function getWarning(formula: FormulaVisualizerEntry, params: FormulaParameters) {

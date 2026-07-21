@@ -6,6 +6,7 @@ import SliderControl from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
 import { generateRange } from "../../utils/graph";
 import { roundTo } from "../../utils/math";
+import { analyzeSlopeSystem } from "../../utils/coreAccuracyOracles";
 
 export default function SimultaneousEquationsVisualizer() {
   const [m1, setM1] = useState(1);
@@ -13,12 +14,13 @@ export default function SimultaneousEquationsVisualizer() {
   const [m2, setM2] = useState(-1);
   const [c2, setC2] = useState(4);
   const data = useMemo(() => generateRange(-10, 10, 0.5).map((x) => ({ x, y1: m1 * x + c1, y2: m2 * x + c2 })), [m1, c1, m2, c2]);
-  const parallel = Math.abs(m1 - m2) < 0.0001;
-  const identical = parallel && Math.abs(c1 - c2) < 0.0001;
-  const x = parallel ? null : (c2 - c1) / (m1 - m2);
-  const y = x === null ? null : m1 * x + c1;
-  const classification = identical ? "Infinite solutions / same line" : parallel ? "No solution / parallel lines" : "One solution";
-  const parallelDistance = parallel && !identical ? Math.abs(c2 - c1) / Math.sqrt(m1 * m1 + 1) : null;
+  const analysis = useMemo(() => analyzeSlopeSystem(m1, c1, m2, c2, 1e-7), [m1, c1, m2, c2]);
+  const parallel = analysis.kind !== "unique";
+  const identical = analysis.kind === "identical";
+  const x = analysis.kind === "unique" ? analysis.x : null;
+  const y = analysis.kind === "unique" ? analysis.y : null;
+  const classification = identical ? "Infinite solutions / same line" : analysis.kind === "parallel" ? "No solution / parallel lines" : "One verified solution";
+  const parallelDistance = analysis.kind === "parallel" ? analysis.distance : null;
 
   return (
     <SectionCard title="Simultaneous Equations Visualizer" description="The intersection is the solution satisfying both equations.">
@@ -37,6 +39,7 @@ export default function SimultaneousEquationsVisualizer() {
             <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">{identical ? "Infinitely many solutions: both lines are the same." : parallel ? "No solution: the lines are parallel." : `Solution: x=${roundTo(x ?? 0, 3)}, y=${roundTo(y ?? 0, 3)}`}</p>
             <p className="mt-2 text-sm font-semibold">Classification: {classification}</p>
             {parallelDistance !== null && <p className="mt-2 text-sm">Distance between lines: {roundTo(parallelDistance, 3)}</p>}
+            {analysis.kind === "unique" && <p className="mt-2 text-xs text-emerald-700 dark:text-emerald-200">Residual check: line 1 {analysis.residual1.toExponential(2)}; line 2 {analysis.residual2.toExponential(2)}</p>}
           </div>
           <div className="rounded-2xl bg-slate-100 p-4 text-sm dark:bg-white/10">
             <p className="font-semibold">Algebraic solving steps</p>
@@ -66,11 +69,13 @@ export default function SimultaneousEquationsVisualizer() {
       <div className="mt-6">
         <VisualLearningPanel
           concept="A system of two linear equations asks where two lines agree."
-          formula="x = (c2 - c1) / (m1 - m2), y = m1x + c1"
+          formula="x = (c2 - c1) / (m1 - m2), y = m1x + c1, when m1 != m2"
           changes="Changing slopes rotates the lines. Changing intercepts shifts them. Equal slopes create parallel or identical lines."
           realWorldUse="Break-even analysis: one line can represent revenue, the other cost. Their intersection is the break-even point."
-          steps={[`Compare slopes: m1=${roundTo(m1, 2)}, m2=${roundTo(m2, 2)}.`, `Classify the system: ${classification}.`, parallel ? "Equal slopes mean there is no single crossing point." : `Solve x=${roundTo(x ?? 0, 3)}.`, y === null ? "No unique y-value exists." : `Substitute to get y=${roundTo(y, 3)}.`]}
+          steps={[`Compare slopes: m1=${roundTo(m1, 2)}, m2=${roundTo(m2, 2)}.`, `Classify the system: ${classification}.`, parallel ? (identical ? "Equal slopes and intercepts mean every point on the line is a solution." : "Equal slopes with different intercepts mean no crossing point.") : `Solve x=${roundTo(x ?? 0, 3)}.`, y === null ? "No unique y-value exists." : `Substitute to get y=${roundTo(y, 3)} and verify both residuals.`]}
           tasks={["Make both slopes equal.", "Make both equations identical.", "Make two lines intersect near the origin.", "Make one line steeper than the other."]}
+          misconception="Equal slopes do not automatically mean the same line; the intercepts must also agree."
+          teacherPrompt="What do the two substitution residuals tell you?"
         />
       </div>
     </SectionCard>

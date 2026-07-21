@@ -36,6 +36,8 @@ export default function Documentation() {
         estimatedMinutes={8}
       />
 
+      <Link to="/accuracy-certification" className="action-primary w-full sm:w-fit">Open Accuracy & Certification dashboard</Link>
+
       <SectionCard title="Site Coverage" description="Use this page as a human-readable guide to every learning route currently published in Math Universe. Each entry includes its link, route, search category, and topic details.">
         <div className="grid gap-3 md:grid-cols-3">
           <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">

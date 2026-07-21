@@ -74,8 +74,9 @@ export default function DashboardCard({ title, description, concepts, icon: Icon
         whileHover={{ y: -4 }}
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
         onContextMenu={handleContextMenu}
-        className={`glass-card group relative flex min-h-[190px] flex-col overflow-hidden rounded-xl border-l-4 ${strip} p-3 hover:shadow-glow`}
+        className={`glass-card module-card group relative isolate flex min-h-[190px] flex-col overflow-hidden rounded-xl border-l-4 ${strip} p-3 hover:shadow-glow`}
       >
+        <div className={`absolute -right-12 -top-16 -z-10 h-40 w-40 rounded-full bg-gradient-to-br ${colorGradient} opacity-[0.14] blur-2xl transition duration-300 group-hover:scale-125 group-hover:opacity-25 dark:opacity-20`} aria-hidden="true" />
         {(isNew || progress > 65) && <div className="absolute right-2 top-3 rounded-full bg-cyan-500 px-2.5 py-1 text-xs font-black uppercase text-white shadow-lg sm:-right-10 sm:top-4 sm:rotate-45 sm:rounded-none sm:px-10">{isNew ? "New" : "Updated"}</div>}
         <div className="flex items-start justify-between gap-3">
           <div className={`rounded-xl bg-gradient-to-br ${colorGradient} p-2.5 text-white shadow-lg transition group-hover:scale-105`}>

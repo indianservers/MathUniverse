@@ -115,7 +115,7 @@ function TopicSummaryCard({ topic, bestScore, questionCount, onStart }: {
 
 export default function Quiz() {
   const topic = topics.find((item) => item.id === "quiz")!;
-  const { getTopicProgress, markTopicVisited, markTopicInteracted, saveQuizScore } = useProgress();
+  const { getTopicProgress, getTopicMastery, markTopicVisited, markTopicInteracted, saveQuizScore } = useProgress();
   const [bestScores, setBestScores] = useLocalStorage<Record<string, number>>("math-universe-quiz-best", {});
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [confirmed, setConfirmed] = useState(false);
@@ -132,6 +132,7 @@ export default function Quiz() {
   const questions = useMemo(() => quizData.filter((question) => question.topic === selectedTopic), [selectedTopic]);
   const score = questions.reduce((sum, question, i) => sum + (answers[i] === question.correctAnswerIndex ? 1 : 0), 0);
   const wrongQuestions = questions.map((question, i) => ({ question, index: i })).filter(({ question, index: i }) => answers[i] !== undefined && answers[i] !== question.correctAnswerIndex);
+  const mastery = selectedTopic ? getTopicMastery(selectedTopic) : null;
 
   useEffect(() => {
     if (!timerEnabled || finished || !selectedTopic || !confirmed) return;
@@ -249,6 +250,7 @@ export default function Quiz() {
 
       {selectedTopic && finished && (
         <QuizResult score={score} total={questions.length} bestScore={bestScores[selectedTopic] ?? Math.round((score / questions.length) * 100)} onRestart={restart} onBack={back}>
+          {mastery ? <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-4 text-sm dark:border-cyan-300/20 dark:bg-cyan-300/10"><p className="font-black capitalize">Mastery evidence: {mastery.status}</p><p className="mt-1 text-slate-600 dark:text-slate-300">{mastery.reason}</p><p className="mt-1 text-xs font-semibold">Next evidence review: {new Date(mastery.nextReviewAt).toLocaleDateString()}</p></div> : null}
           {wrongQuestions.length > 0 && (
             <div className="rounded-2xl bg-slate-100 p-4 dark:bg-white/10">
               <h3 className="font-black">Review wrong answers</h3>

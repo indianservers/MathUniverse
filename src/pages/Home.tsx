@@ -240,54 +240,57 @@ export default function Home() {
     <div className="space-y-4">
       <GuidedTourOverlay open={tourOpen} onClose={() => setTourOpen(false)} />
 
-      <section className="relative overflow-hidden rounded-[1.6rem] border border-white/70 bg-white/90 shadow-2xl shadow-cyan-100/50 backdrop-blur-2xl dark:border-white/10 dark:bg-slate-950/78 dark:shadow-black/25">
-        <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-cyan-400 via-emerald-400 to-violet-500" aria-hidden="true" />
+      <section className="home-hero relative isolate overflow-hidden rounded-[1.8rem] border border-white/35 text-white shadow-2xl shadow-indigo-500/25">
+        <div className="home-hero-grid absolute inset-0 -z-10" aria-hidden="true" />
+        <div className="absolute -left-16 -top-24 -z-10 h-72 w-72 rounded-full bg-cyan-300/35 blur-3xl" aria-hidden="true" />
+        <div className="absolute -bottom-32 left-1/3 -z-10 h-80 w-80 rounded-full bg-fuchsia-500/30 blur-3xl" aria-hidden="true" />
+        <div className="absolute -right-16 top-8 -z-10 h-72 w-72 rounded-full bg-amber-300/20 blur-3xl" aria-hidden="true" />
         <div className="grid gap-4 p-4 md:p-5 xl:grid-cols-[minmax(0,1fr)_360px]">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="mini-chip bg-cyan-50 text-cyan-800 dark:bg-cyan-400/10 dark:text-cyan-100">
+              <span className="mini-chip border-white/20 bg-white/15 text-white backdrop-blur-md">
                 <Sparkles className="h-3.5 w-3.5" />
                 2026 welcome screen
               </span>
-              <span className="mini-chip bg-emerald-50 text-emerald-800 dark:bg-emerald-300/10 dark:text-emerald-100">
+              <span className="mini-chip border-white/20 bg-emerald-300/20 text-emerald-50 backdrop-blur-md">
                 <CheckCircle2 className="h-3.5 w-3.5" />
                 {getOverallProgress()}% local progress
               </span>
-              <span className="mini-chip">
+              <span className="mini-chip border-white/20 bg-violet-300/20 text-violet-50 backdrop-blur-md">
                 <Gauge className="h-3.5 w-3.5" />
                 {topics.length} worlds · {labs} labs
               </span>
             </div>
-            <h1 className="mt-5 max-w-5xl text-4xl font-black tracking-tight text-slate-950 dark:text-white md:text-6xl">
-              Math Universe
+            <h1 className="mt-5 max-w-5xl text-4xl font-black tracking-tight text-white drop-shadow-sm md:text-6xl">
+              See mathematics come alive.
             </h1>
-            <p className="mt-3 max-w-3xl text-base font-semibold leading-7 text-slate-600 dark:text-slate-300 md:text-lg">
+            <p className="mt-3 max-w-3xl text-base font-semibold leading-7 text-cyan-50/90 md:text-lg">
               A visual learning cockpit for formulas, proofs, graphing, NCERT practice, AR/XR, geometry, calculus, and problem solving.
             </p>
 
             <div className="mt-5 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
-              <Link to="/math-lab" className="action-primary justify-center rounded-2xl py-3">
+              <Link to="/math-lab" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-black text-indigo-800 shadow-xl shadow-slate-950/15 transition hover:-translate-y-0.5 hover:bg-cyan-50">
                 <PlayCircle className="h-4 w-4" />
                 Start Lab
               </Link>
-              <Link to="/problem-solver" className="action-secondary justify-center rounded-2xl py-3">
+              <Link to="/problem-solver" className="home-hero-action justify-center rounded-2xl py-3">
                 <Wand2 className="h-4 w-4" />
                 Solve
               </Link>
-              <Link to="/visual-formulas" className="action-secondary justify-center rounded-2xl py-3">
+              <Link to="/visual-formulas" className="home-hero-action justify-center rounded-2xl py-3">
                 <Sparkles className="h-4 w-4" />
                 Formulas
               </Link>
-              <button type="button" className="action-secondary justify-center rounded-2xl py-3" onClick={() => setTourOpen(true)}>
+              <button type="button" className="home-hero-action justify-center rounded-2xl py-3" onClick={() => setTourOpen(true)}>
                 <HelpCircle className="h-4 w-4" />
                 Tour
               </button>
             </div>
           </div>
 
-          <aside className="rounded-3xl border border-cyan-100 bg-slate-950 p-3 text-white shadow-xl dark:border-cyan-300/20">
-            <div className="rounded-2xl bg-gradient-to-br from-cyan-400 via-emerald-300 to-violet-400 p-[1px]">
-              <div className="rounded-2xl bg-slate-950 p-4">
+          <aside className="rounded-3xl border border-white/20 bg-white/10 p-3 text-white shadow-xl backdrop-blur-xl">
+            <div className="rounded-2xl bg-gradient-to-br from-cyan-300 via-emerald-300 to-fuchsia-400 p-[1px]">
+              <div className="rounded-2xl bg-indigo-950/80 p-4 backdrop-blur-xl">
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-200">Launch console</p>
                 <h2 className="mt-2 text-2xl font-black">Choose your path</h2>
                 <div className="mt-4 grid gap-2">
@@ -335,7 +338,7 @@ export default function Home() {
           {launchShortcuts.map((item) => {
             const Icon = item.icon;
             return (
-              <Link key={item.route} to={item.route} className="shrink-0 rounded-2xl border border-slate-200 bg-white px-3 py-2 shadow-sm transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/5 dark:hover:border-cyan-300/40 dark:hover:bg-cyan-300/10">
+              <Link key={item.route} to={item.route} className="home-shortcut-card shrink-0 rounded-2xl border px-3 py-2 shadow-sm transition hover:-translate-y-0.5">
                 <span className="flex items-center gap-2 text-sm font-black text-slate-900 dark:text-white"><Icon className="h-4 w-4 text-cyan-600 dark:text-cyan-300" />{item.label}</span>
                 <span className="mt-1 block text-xs font-semibold text-slate-500 dark:text-slate-400">{item.hint}</span>
               </Link>
@@ -353,7 +356,7 @@ export default function Home() {
           { label: "Practice tracks", value: 8, icon: Trophy, color: "text-rose-600 dark:text-rose-300" },
           { label: "Smart tools", value: "12+", icon: BrainCircuit, color: "text-sky-600 dark:text-sky-300" },
         ].map(({ label, value, icon: Icon, color }) => (
-          <div key={label} className="rounded-2xl border border-slate-200/80 bg-white/85 p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/45">
+          <div key={label} className="home-stat-card rounded-2xl border p-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
             <Icon className={`h-5 w-5 ${color}`} />
             <p className="mt-2 text-2xl font-black text-slate-950 dark:text-white">{value}</p>
             <p className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</p>

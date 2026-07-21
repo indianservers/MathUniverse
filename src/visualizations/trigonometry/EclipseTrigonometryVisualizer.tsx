@@ -4,6 +4,7 @@ import FormulaBlock from "../../components/ui/FormulaBlock";
 import SectionCard from "../../components/ui/SectionCard";
 import SliderControl from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
+import { classifySolarEclipseAngular, diskOverlapFraction } from "../../utils/coreAccuracyOracles";
 import { clamp, roundTo } from "../../utils/math";
 
 type EclipseMode = "solar" | "lunar";
@@ -81,7 +82,7 @@ export default function EclipseTrigonometryVisualizer() {
             </button>
           </div>
 
-          <FormulaBlock title="Angular Size" formula={"theta \\approx diameter / distance"} explanation="Eclipses happen when apparent angles overlap from the observer's point of view." />
+          <FormulaBlock title="Angular Diameter of a Sphere" formula={"theta = 2\\arcsin(radius / distance)"} explanation="For small angles this is approximately diameter / distance. Eclipse type then depends on angular radii and centre separation." />
         </div>
 
         <div className="space-y-4">
@@ -130,12 +131,12 @@ export default function EclipseTrigonometryVisualizer() {
           <div className="grid gap-3 md:grid-cols-3">
             <InfoCard title="Real Angle" text={`Sun approx ${sunAngle} deg. Moon now ${roundTo(moonAngle, 2)} deg. Their tiny angular match is why eclipses are possible.`} />
             <InfoCard title="Light Rays" text="Outer rays form the penumbra. Inner crossing rays form the umbra where the light source is fully blocked." />
-            <InfoCard title="Trigonometry" text="Use tan(theta/2)=radius/distance to connect physical size, distance, apparent angle, and shadow width." />
+            <InfoCard title="Trigonometry" text="For a spherical body, sin(theta/2)=radius/centre distance. The small-angle approximation is theta approximately diameter/distance." />
           </div>
 
           <VisualLearningPanel
             concept="An eclipse is an angular-overlap problem."
-            formula="tan(theta/2) = radius / distance"
+            formula="theta = 2 arcsin(radius / centre distance)"
             changes="Move alignment to miss or hit the shadow. Change Moon angle to switch between total and annular solar eclipses."
             realWorldUse="Astronomers predict eclipses by modeling orbital inclination, apparent angular diameters, and shadow cones."
             warning="The drawing is not distance-scale accurate; it preserves the angle and shadow ideas so the geometry is readable."
@@ -218,9 +219,10 @@ function AngleGauge({ x, y, sun, moon, offset, mode }: { x: number; y: number; s
 function classifyEclipse(mode: EclipseMode, offset: number, moonAngle: number, lightSpread: number) {
   if (mode === "solar") {
     const threshold = (sunAngle + moonAngle) / 2;
-    if (offset > threshold) return { title: "No solar eclipse", reason: "The Moon misses the Sun's apparent disk from the observer's line of sight.", threshold };
-    if (offset > Math.abs(moonAngle - sunAngle) / 2) return { title: "Partial solar eclipse", reason: "Only part of the Sun is covered because the angular centers are offset.", threshold };
-    if (moonAngle >= sunAngle) return { title: "Total solar eclipse", reason: "The Moon's apparent angle is large enough to cover the full Sun.", threshold };
+    const kind = classifySolarEclipseAngular(sunAngle, moonAngle, offset);
+    if (kind === "none") return { title: "No solar eclipse", reason: "The Moon misses the Sun's apparent disk from the observer's line of sight.", threshold };
+    if (kind === "partial") return { title: "Partial solar eclipse", reason: "Only part of the Sun is covered because the angular centers are offset.", threshold };
+    if (kind === "total") return { title: "Total solar eclipse", reason: "The Moon's apparent angle is large enough to cover the full Sun.", threshold };
     return { title: "Annular solar eclipse", reason: "The Moon is centered but appears smaller, leaving a ring of sunlight.", threshold };
   }
   const umbra = Math.max(0.36, lightSpread * 0.82);
@@ -232,12 +234,7 @@ function classifyEclipse(mode: EclipseMode, offset: number, moonAngle: number, l
 }
 
 function diskOverlapPercent(r1: number, r2: number, d: number) {
-  if (d >= r1 + r2) return 0;
-  if (d <= Math.abs(r1 - r2)) return 100 * (Math.PI * Math.min(r1, r2) ** 2) / (Math.PI * r1 ** 2);
-  const a = r1 ** 2 * Math.acos((d ** 2 + r1 ** 2 - r2 ** 2) / (2 * d * r1));
-  const b = r2 ** 2 * Math.acos((d ** 2 + r2 ** 2 - r1 ** 2) / (2 * d * r2));
-  const c = 0.5 * Math.sqrt((-d + r1 + r2) * (d + r1 - r2) * (d - r1 + r2) * (d + r1 + r2));
-  return clamp(((a + b - c) / (Math.PI * r1 ** 2)) * 100, 0, 100);
+  return 100 * diskOverlapFraction(r1, r2, d);
 }
 
 function Metric({ label, value }: { label: string; value: string }) {

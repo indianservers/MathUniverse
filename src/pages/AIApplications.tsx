@@ -4,6 +4,7 @@ import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
+import PhaseTwoDomainPanel from "../components/ui/PhaseTwoDomainPanel";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import AIApplicationsGrid from "../visualizations/ai/AIApplicationsGrid";
@@ -275,6 +276,7 @@ export default function AIApplications() {
         </aside>
       </div>
 
+      <PhaseTwoDomainPanel domain="ai-engineering" />
       <TopicProgressActions topicId={topic.id} />
     </div>
   );

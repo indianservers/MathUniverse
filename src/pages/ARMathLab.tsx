@@ -17,6 +17,7 @@ import { createARLearningEvent, type ARLearningEvent, type ARLearningEventType }
 import { applyPerformanceModeToGraphSettings, hasHighResolutionRisk } from "../ar-math-lab/arProductionHardening";
 import { detectARSupport } from "../ar-math-lab/arSupport";
 import type { ARAdvancedToolTab, ARAnimation, ARComparison, ARCrossSectionMode, ARExample, ARGeneratedGeometrySolid, ARGeneratedGraphObject, ARGeometryQuality, ARGraphSettings, ARMathObject, ARMeasurement, ARMeasurementType, ARObjectType, ARRenderMode, ARScaleMode, ARSceneSaveData, ARSceneState, ARSessionState, ARSessionStatus, ARSolidType, ARSupportStatus, ARUnit, EquationClassificationResult } from "../ar-math-lab/types";
+import { calibrationDisclosure, identityARCalibration } from "../ar-math-lab/arCalibration";
 
 const initialExample = arMathExamples[0];
 const objectTypeLabels: Record<ARObjectType, string> = {
@@ -1004,7 +1005,7 @@ function LiveCameraToolDock({
   phoneOrbitEnabled,
   onAddMeasurement,
   onClearShapes,
-  onEnablePhoneOrbit,
+  onEnablePhoneOrbit: _onEnablePhoneOrbit,
   onMoveDepth,
   onRotate,
   onScale,
@@ -1690,7 +1691,7 @@ export function ARControlPanel(props: {
           </div>
         </div>
 
-        <details className="ar-mobile-disclosure">
+        <details className="ar-mobile-disclosure" open>
           <summary>More controls, formulas, and measurements</summary>
           <div className="ar-mobile-disclosure-body space-y-4">
             <GraphSettingsPanel classification={classification} graphSettings={graphSettings} onChange={props.onUpdateGraphSetting} />
@@ -2395,12 +2396,17 @@ function CheckToggle({ checked, label, onChange }: { checked: boolean; label: st
 }
 
 export function ARSessionManager({ sessionState, support }: { sessionState: ARSessionState; support: ARSupportStatus }) {
+  const calibration = calibrationDisclosure(identityARCalibration);
   return (
     <SectionCard title="Session Manager" description="State container for mobile camera AR, camera preview, and 3D fallback lifecycle." compact>
       <div className="grid gap-3 md:grid-cols-3">
         <PreviewTile icon={<Camera className="h-5 w-5" />} title="ARSessionManager" text={`${sessionState.mode} / ${sessionState.status}`} />
         <PreviewTile icon={<Move3D className="h-5 w-5" />} title="ARObjectPlacement" text={sessionState.mode === "ar" && support.cameraAvailable ? "Live camera placement is active." : "Fallback placement guide is active."} />
         <PreviewTile icon={<Ruler className="h-5 w-5" />} title="ARMeasurementTool" text="Unit-aware measurements stay ready in the live camera overlay." />
+      </div>
+      <div className="mt-3 rounded-xl border border-amber-300 bg-amber-50 p-3 text-xs font-semibold leading-5 text-amber-950 dark:border-amber-300/20 dark:bg-amber-300/10 dark:text-amber-50">
+        <p className="font-black">Calibration: {calibration.label}</p>
+        <p>Math frame: metres on x/y/z axes. Device frame: local WebXR coordinates. {calibration.limitation}</p>
       </div>
     </SectionCard>
   );

@@ -5,6 +5,7 @@ import ApplicationVisualCard from "../components/ui/ApplicationVisualCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import TopicTabs from "../components/ui/TopicTabs";
+import ConceptAccuracyPanel from "../components/ui/ConceptAccuracyPanel";
 import ContinueCard from "../components/ui/ContinueCard";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
@@ -289,6 +290,7 @@ function CalculusOverview({ level, mode, modeNote, progress, launchers, tracks }
         { id: "traps", label: "Traps", content: <MisconceptionPanel /> },
         { id: "exam", label: "Exam Moves", content: <ExamMovesPanel /> },
         { id: "formulas", label: "Essentials", content: <FormulaEssentialsPanel /> },
+        { id: "accuracy", label: "Accuracy & Examples", content: <ConceptAccuracyPanel domain="calculus" /> },
       ]} />
     </div>
   );

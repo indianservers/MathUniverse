@@ -16,13 +16,15 @@ export default function QuizCard({ question, selected, onSelect, assisted = fals
       <div className="flex flex-wrap items-center gap-2">
         <span className="rounded-full bg-cyan-100 px-3 py-1 text-xs font-bold text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-200">{question.topic}</span>
         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold dark:bg-white/10">{question.difficulty}</span>
+        <span className="mini-chip">Grade {question.gradeBand}</span>
+        <span className="mini-chip">{question.subskill.replace(/-/g, " ")}</span>
       </div>
       <h3 className="mt-4 text-xl font-bold">{question.question}</h3>
       <div className="mt-3">
         <button type="button" className="tool-button" onClick={onHint} disabled={answered || assisted}>
           {assisted ? "Hint used" : "Use hint (-5 XP)"}
         </button>
-        {assisted && <p className="mt-3 rounded-2xl bg-amber-50 p-3 text-sm font-semibold text-amber-900 dark:bg-amber-400/10 dark:text-amber-100">Hint: eliminate answers that do not match {question.topic.toLowerCase()} definitions, then check the units or graph behavior.</p>}
+        {assisted && <p className="mt-3 rounded-2xl bg-amber-50 p-3 text-sm font-semibold text-amber-900 dark:bg-amber-400/10 dark:text-amber-100">Hint: {question.hints[0]}</p>}
       </div>
       <div className="mt-5 grid gap-3">
         {question.options.map((option, index) => {
@@ -35,7 +37,11 @@ export default function QuizCard({ question, selected, onSelect, assisted = fals
           );
         })}
       </div>
-      {answered && <p className="mt-4 rounded-2xl bg-slate-100 p-4 text-sm leading-6 dark:bg-white/10">{question.explanation}</p>}
+      {answered && <div className="mt-4 rounded-2xl bg-slate-100 p-4 text-sm leading-6 dark:bg-white/10">
+        <p>{question.explanation}</p>
+        {selected !== question.correctAnswerIndex ? <p className="mt-2 font-semibold text-rose-700 dark:text-rose-200">Why that option fails: {selected != null && selected >= 0 ? question.distractorRationales[selected] : "No option was selected before the timer ended."} Tag: {question.misconceptionTag}.</p> : <p className="mt-2 font-semibold text-emerald-700 dark:text-emerald-200">Oracle verified: {question.scoringRubric.fullCredit}</p>}
+        <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Next hint/solution step: {question.hints[1]}</p>
+      </div>}
     </motion.div>
   );
 }

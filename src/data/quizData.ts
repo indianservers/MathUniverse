@@ -2,12 +2,20 @@ export type QuizDifficulty = "Easy" | "Medium" | "Hard";
 
 export type QuizQuestion = {
   id: string;
+  conceptId: string;
+  subskill: string;
+  gradeBand: string;
   topic: string;
   question: string;
   options: string[];
   correctAnswerIndex: number;
   explanation: string;
   difficulty: QuizDifficulty;
+  misconceptionTag: string;
+  hints: [string, string];
+  scoringRubric: { fullCredit: string; noCredit: string };
+  answerOracle: { kind: "option-index"; value: number };
+  distractorRationales: string[];
 };
 
 type Fact = {
@@ -21,7 +29,7 @@ type Fact = {
 type NumericPattern = {
   label: string;
   difficulty?: QuizDifficulty;
-  build: (variant: number) => Omit<QuizQuestion, "id" | "topic" | "difficulty"> & { difficulty?: QuizDifficulty };
+  build: (variant: number) => Pick<QuizQuestion, "question" | "options" | "correctAnswerIndex" | "explanation"> & { difficulty?: QuizDifficulty };
 };
 
 type ConceptBank = {
@@ -38,11 +46,35 @@ const gcd = (a: number, b: number): number => b === 0 ? Math.abs(a) : gcd(b, a %
 
 function placeAnswer(answer: string, distractors: string[], seed: number) {
   const unique = Array.from(new Set(distractors.filter((item) => item !== answer)));
+  const numericAnswer = Number(answer.replace(/%$/, ""));
+  const fallbackCandidates = Number.isFinite(numericAnswer)
+    ? [String(-numericAnswer), String(numericAnswer + 1), String(numericAnswer - 1), "Undefined"]
+    : ["The conditions are insufficient", "The expression is undefined", "The converse statement"];
+  for (const candidate of fallbackCandidates) if (candidate !== answer && !unique.includes(candidate) && unique.length < 3) unique.push(candidate);
+  if (unique.length < 3) throw new Error(`Question needs three distinct misconception-based distractors for answer: ${answer}`);
   const options = unique.slice(0, 3);
-  while (options.length < 3) options.push(`Not ${answer}`);
   const index = optionIndex(seed);
   options.splice(index, 0, answer);
   return { options, correctAnswerIndex: index };
+}
+
+function gradeBand(difficulty: QuizDifficulty) {
+  if (difficulty === "Easy") return "6-8";
+  if (difficulty === "Medium") return "8-10";
+  return "10-12";
+}
+
+function integrityMetadata(bank: ConceptBank, subskill: string, difficulty: QuizDifficulty, correctAnswerIndex: number, misconceptionTag: string, explanation: string, options: string[]) {
+  return {
+    conceptId: `quiz.${bank.slug}`,
+    subskill,
+    gradeBand: gradeBand(difficulty),
+    misconceptionTag,
+    hints: [`Identify the ${subskill.replace(/[-.]/g, " ")} rule and its conditions.`, explanation] as [string, string],
+    scoringRubric: { fullCredit: "Select the unique oracle-backed option.", noCredit: "Any distractor; use its misconception feedback before retrying." },
+    answerOracle: { kind: "option-index" as const, value: correctAnswerIndex },
+    distractorRationales: options.map((_, index) => index === correctAnswerIndex ? "Correct option: verified by the stored solution." : `Known ${subskill.replace(/[-.]/g, " ")} misconception or calculation error.`),
+  };
 }
 
 function factQuestion(bank: ConceptBank, fact: Fact, index: number, variant: number): QuizQuestion {
@@ -52,6 +84,7 @@ function factQuestion(bank: ConceptBank, fact: Fact, index: number, variant: num
     `${fact.prompt} This belongs to which correct idea?`,
   ];
   const { options, correctAnswerIndex } = placeAnswer(fact.answer, fact.distractors, index + variant);
+  const difficulty = fact.difficulty ?? bank.difficulty;
   return {
     id: `${bank.slug}-fact-${index}-${variant}`,
     topic: bank.topic,
@@ -59,17 +92,20 @@ function factQuestion(bank: ConceptBank, fact: Fact, index: number, variant: num
     options,
     correctAnswerIndex,
     explanation: fact.explanation,
-    difficulty: fact.difficulty ?? bank.difficulty,
+    difficulty,
+    ...integrityMetadata(bank, `recognition-${index}`, difficulty, correctAnswerIndex, fact.distractors[0], fact.explanation, options),
   };
 }
 
 function numericQuestion(bank: ConceptBank, pattern: NumericPattern, index: number, variant: number): QuizQuestion {
   const question = pattern.build(variant);
+  const difficulty = question.difficulty ?? pattern.difficulty ?? bank.difficulty;
   return {
     id: `${bank.slug}-calc-${index}-${variant}`,
     topic: bank.topic,
-    difficulty: question.difficulty ?? pattern.difficulty ?? bank.difficulty,
     ...question,
+    difficulty,
+    ...integrityMetadata(bank, pattern.label, difficulty, question.correctAnswerIndex, `calculation-error:${pattern.label}`, question.explanation, question.options),
   };
 }
 
@@ -89,7 +125,7 @@ const banks: ConceptBank[] = [
       { label: "fraction-simplify", build: (v) => { const a = 6 + v; const b = 12 + 2 * v; const g = gcd(a, b); const answer = `${a / g}/${b / g}`; return { question: `Simplify ${a}/${b}.`, ...placeAnswer(answer, [`${a}/${b}`, `${b / g}/${a / g}`, `${a + g}/${b}`], v), explanation: `Divide numerator and denominator by gcd ${g}.` }; } },
       { label: "decimal", build: (v) => { const q = [2, 4, 5, 8, 10][v % 5]; const p = 1 + (v % (q - 1)); const answer = round(p / q, 4).toString(); return { question: `Convert ${p}/${q} to decimal.`, ...placeAnswer(answer, [round((p + 1) / q, 4).toString(), round(p / (q + 1), 4).toString(), `${p}.${q}`], v + 2), explanation: `Compute p divided by q: ${p} / ${q} = ${answer}.` }; } },
       { label: "perfect-square", build: (v) => { const n = 2 + v; const value = n * n; return { question: `sqrt(${value}) is classified as`, ...placeAnswer("rational", ["irrational", "not real", "undefined"], v + 3), explanation: `${value} is a perfect square, so its square root is integer ${n}.` }; } },
-      { label: "midpoint", build: (v) => { const a = -3 + (v % 7); const b = a + 2 + (v % 4); const answer = round((a + b) / 2, 2).toString(); return { question: `Find one number between ${a} and ${b} using the midpoint.`, ...placeAnswer(answer, [String(a + b), String(b - a), String(a - b)], v + 4), explanation: `The midpoint is (${a}+${b})/2 = ${answer}.` }; } },
+      { label: "midpoint", build: (v) => { const a = -3 + (v % 7); const b = a + 2 + (v % 4); const answer = round((a + b) / 2, 2).toString(); return { question: `Find one number between ${a} and ${b} using the midpoint.`, ...placeAnswer(answer, [String(a), String(b), "No real number lies between them"], v + 4), explanation: `The midpoint is (${a}+${b})/2 = ${answer}.` }; } },
       { label: "integer-order", build: (v) => { const a = -8 + v; const b = a + 5; return { question: `Which number is greater: ${a} or ${b}?`, ...placeAnswer(String(b), [String(a), "They are equal", "Cannot compare"], v + 5), explanation: `On the number line, ${b} is to the right of ${a}.` }; } },
     ],
   },

@@ -10,7 +10,7 @@ type HeaderProps = {
 
 export default function Header({ mobileMenuOpen, onMenuClick }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 border-b border-white/25 bg-[linear-gradient(90deg,rgba(7,24,39,0.88),rgba(13,38,58,0.84),rgba(42,40,90,0.78))] px-4 py-3 text-white shadow-xl shadow-cyan-950/10 backdrop-blur-2xl dark:border-white/10 md:px-8">
+    <header className="sticky top-0 z-30 border-b border-white/25 bg-[linear-gradient(105deg,rgba(3,105,161,0.94),rgba(67,56,202,0.92)_52%,rgba(147,51,234,0.9))] px-4 py-3 text-white shadow-xl shadow-indigo-950/20 backdrop-blur-2xl dark:border-white/10 md:px-8">
       <div className="flex items-center justify-between">
         <button
           type="button"

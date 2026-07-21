@@ -8,6 +8,17 @@ type ProgressState = {
   pageProgress: Record<string, number>;
   quizScores: Record<string, number>;
   quizBestScores: Record<string, number>;
+  mastery: Record<string, MasteryEvidence>;
+};
+
+export type MasteryEvidence = {
+  attempts: number;
+  totalScore: number;
+  firstAssessedAt: number;
+  lastAssessedAt: number;
+  nextReviewAt: number;
+  status: "unassessed" | "developing" | "proficient" | "durable";
+  reason: string;
 };
 
 const initialProgress: ProgressState = {
@@ -16,6 +27,7 @@ const initialProgress: ProgressState = {
   pageProgress: {},
   quizScores: {},
   quizBestScores: {},
+  mastery: {},
 };
 
 function normalizeProgress(value: ProgressState | null | undefined): ProgressState {
@@ -27,7 +39,25 @@ function normalizeProgress(value: ProgressState | null | undefined): ProgressSta
     pageProgress: { ...initialProgress.pageProgress, ...(value?.pageProgress ?? {}) },
     quizScores: { ...initialProgress.quizScores, ...(value?.quizScores ?? {}) },
     quizBestScores: { ...initialProgress.quizBestScores, ...(value?.quizBestScores ?? {}) },
+    mastery: { ...initialProgress.mastery, ...(value?.mastery ?? {}) },
   };
+}
+
+export function updateMasteryEvidence(previous: MasteryEvidence | undefined, score: number, assessedAt = Date.now()): MasteryEvidence {
+  const safeScore = Math.min(100, Math.max(0, score));
+  const attempts = (previous?.attempts ?? 0) + 1;
+  const totalScore = (previous?.totalScore ?? 0) + safeScore;
+  const firstAssessedAt = previous?.firstAssessedAt ?? assessedAt;
+  const average = totalScore / attempts;
+  const ageDays = (assessedAt - firstAssessedAt) / 86_400_000;
+  const status = attempts >= 3 && average >= 85 && ageDays >= 7 ? "durable" : attempts >= 2 && average >= 80 ? "proficient" : "developing";
+  const reviewDays = status === "durable" ? 14 : status === "proficient" ? 7 : safeScore >= 70 ? 3 : 1;
+  const reason = status === "durable"
+    ? `Durable mastery: ${attempts} assessments average ${Math.round(average)}% across at least 7 days.`
+    : status === "proficient"
+      ? `Proficient: ${attempts} assessments average ${Math.round(average)}%; spaced evidence is still needed.`
+      : `Developing: ${attempts} assessed attempt${attempts === 1 ? "" : "s"} average ${Math.round(average)}%.`;
+  return { attempts, totalScore, firstAssessedAt, lastAssessedAt: assessedAt, nextReviewAt: assessedAt + reviewDays * 86_400_000, status, reason };
 }
 
 export function useProgress() {
@@ -85,6 +115,7 @@ export function useProgress() {
         ...base,
         quizScores: { ...base.quizScores, [quizId]: score },
         quizBestScores: { ...base.quizBestScores, [quizId]: Math.max(base.quizBestScores[quizId] ?? 0, score) },
+        mastery: { ...base.mastery, [quizId]: updateMasteryEvidence(base.mastery[quizId], score) },
       };
     });
   }, [setProgress]);
@@ -100,6 +131,8 @@ export function useProgress() {
     return Math.round(total / topics.length);
   }, [getTopicProgress]);
 
+  const getTopicMastery = useCallback((topicId: string) => safeProgress.mastery[topicId] ?? null, [safeProgress.mastery]);
+
   return {
     progress: safeProgress,
     markTopicVisited,
@@ -109,5 +142,6 @@ export function useProgress() {
     saveQuizScore,
     getTopicProgress,
     getOverallProgress,
+    getTopicMastery,
   };
 }

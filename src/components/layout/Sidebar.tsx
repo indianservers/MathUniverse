@@ -64,7 +64,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className={`hidden h-screen min-h-screen shrink-0 overflow-hidden border-r border-cyan-200/25 bg-[linear-gradient(180deg,#071827_0%,#0b2230_46%,#081522_100%)] text-slate-100 shadow-2xl shadow-cyan-950/25 backdrop-blur-2xl transition-[width] dark:border-white/10 dark:bg-[linear-gradient(180deg,#06111f_0%,#0a1627_52%,#050b14_100%)] lg:sticky lg:top-0 lg:block ${collapsed ? "w-28" : "w-72"}`} data-testid="desktop-sidebar" data-collapsed={collapsed}>
+    <aside className={`hidden h-screen min-h-screen shrink-0 overflow-hidden border-r border-cyan-200/25 bg-[radial-gradient(circle_at_10%_5%,rgba(34,211,238,0.3),transparent_25%),radial-gradient(circle_at_90%_48%,rgba(168,85,247,0.22),transparent_32%),linear-gradient(180deg,#082f49_0%,#172554_48%,#240c45_100%)] text-slate-100 shadow-2xl shadow-indigo-950/30 backdrop-blur-2xl transition-[width] dark:border-white/10 lg:sticky lg:top-0 lg:block ${collapsed ? "w-28" : "w-72"}`} data-testid="desktop-sidebar" data-collapsed={collapsed}>
       <div className={`thin-scrollbar flex h-full min-h-0 flex-col overflow-y-auto overflow-x-hidden ${collapsed ? "p-3 pb-20" : "p-4 pb-20"}`}>
       {collapsed && (
         <button

@@ -237,7 +237,7 @@ export default function ShapesExplorer() {
             </div>
             <div className="mt-4 flex rounded-xl bg-white/80 p-1 shadow-sm dark:bg-slate-950/60" role="tablist" aria-label="Shape view">
               {(["2d", "3d"] as ShapeKind[]).map((tab) => (
-                <button key={tab} type="button" role="tab" aria-selected={viewTab === tab} onClick={() => setViewTab(tab)} className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-black transition ${viewTab === tab ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-md" : "text-slate-600 hover:bg-cyan-50 dark:text-slate-300 dark:hover:bg-white/10"}`}>
+                <button key={tab} type="button" role="tab" aria-label={tab === "2d" ? "2D Pane" : "3D Pane"} aria-selected={viewTab === tab} onClick={() => setViewTab(tab)} className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-black transition ${viewTab === tab ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-md" : "text-slate-600 hover:bg-cyan-50 dark:text-slate-300 dark:hover:bg-white/10"}`}>
                   {tab === "2d" ? "2D view" : selected.kind === "2d" ? "3D extrusion" : "3D solid"}
                 </button>
               ))}

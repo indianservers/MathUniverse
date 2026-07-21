@@ -1510,6 +1510,13 @@ formulaCategories.forEach((category) => {
   category.formulas.push(...(unacademyCoverageItems[category.id] ?? []));
   if (category.id === "geometry") category.formulas.push(...geometryShapeFormulaItems);
   if (category.id === "mensuration-units") category.formulas.push(...solidShapeFormulaItems);
+  const canonicalTitles = new Set<string>();
+  category.formulas = category.formulas.filter((item) => {
+    const canonicalTitle = item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    if (canonicalTitles.has(canonicalTitle)) return false;
+    canonicalTitles.add(canonicalTitle);
+    return true;
+  });
 });
 
 export const formulaCategoryCount = formulaCategories.length;

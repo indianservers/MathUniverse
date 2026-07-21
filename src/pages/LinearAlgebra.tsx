@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import TopicTabs from "../components/ui/TopicTabs";
+import PhaseTwoDomainPanel from "../components/ui/PhaseTwoDomainPanel";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import EigenvectorVisualizer from "../visualizations/linear-algebra/EigenvectorVisualizer";
@@ -27,6 +28,7 @@ export default function LinearAlgebra() {
         { id: "matrix-transform", label: "Matrix Transform", content: <MatrixTransformationVisualizer /> },
         { id: "eigenvectors", label: "Eigenvectors", content: <EigenvectorVisualizer /> },
         { id: "applications", label: "Applications", content: <LinearAlgebraApplications /> },
+        { id: "accuracy", label: "Accuracy & Validation", content: <PhaseTwoDomainPanel domain="linear-algebra" /> },
       ]} />
       <TopicProgressActions topicId={topic.id} />
     </div>

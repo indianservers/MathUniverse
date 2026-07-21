@@ -5,6 +5,7 @@ import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import TopicProgressActions from "../components/ui/TopicProgressActions";
 import TopicTabs from "../components/ui/TopicTabs";
+import PhaseTwoDomainPanel from "../components/ui/PhaseTwoDomainPanel";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import ComplexMultiplicationVisualizer from "../visualizations/complex/ComplexMultiplicationVisualizer";
@@ -52,6 +53,7 @@ export default function ComplexNumbers() {
           </SectionCard>
         </aside>
       </div>
+      <PhaseTwoDomainPanel domain="complex-numbers" />
       <TopicProgressActions topicId={topic.id} />
     </div>
   );

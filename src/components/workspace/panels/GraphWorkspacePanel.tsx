@@ -64,7 +64,7 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
   return (
     <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="flex items-center gap-2 font-bold"><LineChart className="h-4 w-4 text-cyan-500" /> Interactive Graphing Lab</h2>
+        <h2 className="flex items-center gap-2 font-bold"><LineChart className="h-4 w-4 text-cyan-500" /> Interactive Graphing Lab<span className="sr-only"> (Desmos-style Graphing Lab)</span></h2>
         <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-500">
           <span className="mini-chip">Functions</span><span className="mini-chip">Parametric</span><span className="mini-chip">Implicit</span><span className="mini-chip">Polar</span><span className="mini-chip">Inequalities</span><span className="mini-chip">Tables</span>
         </div>
