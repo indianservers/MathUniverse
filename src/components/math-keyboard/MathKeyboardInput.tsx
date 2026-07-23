@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowRight, Calculator, ChevronDown, ChevronUp, CornerDownLeft, Delete, Eraser, FunctionSquare, Keyboard, Pi, Sigma, Sparkles, Superscript } from "lucide-react";
-import { ReactNode, useMemo, useRef, useState } from "react";
+import { ReactNode, useId, useMemo, useRef, useState } from "react";
 
 type KeyboardMode = "calculate" | "command" | "formula";
 type KeyGroup = "numbers" | "functions" | "algebra" | "calculus" | "symbols" | "commands";
@@ -142,6 +142,7 @@ export default function MathKeyboardInput({
   defaultCompact = false,
 }: MathKeyboardInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const inputId = useId();
   const groups = useMemo(() => modeGroups[mode], [mode]);
   const [activeGroup, setActiveGroup] = useState<KeyGroup>(groups[0]);
   const [compact, setCompact] = useState(defaultCompact);
@@ -191,7 +192,7 @@ export default function MathKeyboardInput({
   return (
     <div className="sticky bottom-20 z-30 max-h-[78vh] overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-slate-950/95 md:static md:max-h-none md:overflow-hidden md:dark:bg-slate-950/70">
       <div className="flex flex-col gap-3 border-b border-slate-200 p-3 dark:border-white/10 md:flex-row md:items-center md:justify-between">
-        <label className="flex min-w-0 flex-1 items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200">
+        <label htmlFor={inputId} className="flex min-w-0 flex-1 items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-200">
           <Keyboard className="h-4 w-4 text-cyan-500" />
           {label}
         </label>
@@ -210,6 +211,8 @@ export default function MathKeyboardInput({
 
       <div className="p-3">
         <textarea
+          id={inputId}
+          aria-label={label}
           ref={textareaRef}
           value={value}
           onChange={(event) => onChange(event.target.value)}

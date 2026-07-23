@@ -59,6 +59,9 @@ const GraphTheory = lazyRoute(() => import("./pages/GraphTheory"));
 const Home = lazyRoute(() => import("./pages/Home"));
 const IntegrationAreaVisualizerPage = lazyRoute(() => import("./pages/IntegrationAreaVisualizerPage"));
 const LearningHub = lazyRoute(() => import("./pages/LearningHub"));
+const LessonsHomePage = lazyRoute(() => import("./modules/lessons/pages/LessonsHomePage"));
+const LessonsCategoryPage = lazyRoute(() => import("./modules/lessons/pages/LessonsCategoryPage"));
+const LessonPage = lazyRoute(() => import("./modules/lessons/pages/LessonPage"));
 const LinearAlgebra = lazyRoute(() => import("./pages/LinearAlgebra"));
 const LimitsContinuityVisualizer = lazyRoute(() => import("./pages/LimitsContinuityVisualizer"));
 const MathLab = lazyRoute(() => import("./pages/MathLab"));
@@ -246,6 +249,9 @@ export default function App() {
             <Route path="matrix-sandbox" element={<MatrixOperationsSandbox />} />
             <Route path="ai-applications" element={<AIApplications />} />
             <Route path="learn" element={<LearningHub />} />
+            <Route path="lessons" element={<LessonsHomePage />} />
+            <Route path="lessons/:categorySlug" element={<LessonsCategoryPage />} />
+            <Route path="lessons/:categorySlug/:lessonSlug" element={<LessonPage />} />
             <Route path="olympyard" element={<Olympyard />} />
             <Route path="olympyard/mock-test" element={<OlympyardMockTest />} />
             <Route path="olympyard/practice/:topicId" element={<OlympyardPractice />} />

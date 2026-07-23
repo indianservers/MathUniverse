@@ -316,6 +316,22 @@ body {
     @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-cyan-100 bg-white/85 px-4 py-3 text-sm font-semibold text-slate-800 shadow-sm shadow-cyan-100/40 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 active:translate-y-0 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15;
   }
 
+  .lesson-input {
+    @apply min-h-11 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200 dark:border-white/10 dark:bg-slate-900 dark:text-white dark:focus:ring-cyan-400/20;
+  }
+
+  .status-good {
+    @apply rounded-xl bg-emerald-100 p-2 text-sm font-black text-emerald-900 dark:bg-emerald-400/15 dark:text-emerald-100;
+  }
+
+  .status-neutral {
+    @apply rounded-xl bg-amber-100 p-2 text-sm font-black text-amber-900 dark:bg-amber-400/15 dark:text-amber-100;
+  }
+
+  .status-bad {
+    @apply rounded-xl bg-red-100 p-2 text-sm font-black text-red-900 dark:bg-red-400/15 dark:text-red-100;
+  }
+
   .math-pane-tool-button {
     @apply inline-flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-200 bg-white text-slate-800 shadow-sm shadow-cyan-100/50 transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 active:translate-y-0 dark:border-white/10 dark:bg-white/10 dark:text-slate-100 dark:hover:bg-white/15;
   }

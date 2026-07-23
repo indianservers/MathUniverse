@@ -160,6 +160,16 @@ const baseLinks: SiteLink[] = [
     changeFrequency: "weekly",
   },
   {
+    title: "Interactive Lessons",
+    path: "/lessons",
+    description: "Focused, interactive mathematics lessons built from reusable calculator, graph, number, authoring, and accessibility engines.",
+    category: "Learning",
+    keywords: ["interactive lessons", "math activities", "GeoGebra style", "guided exploration", "calculator lessons", "number lessons"],
+    details: ["674 lessons · all 4 phases", "Discover Explore Try Check", "On-demand engine loading"],
+    priority: 0.86,
+    changeFrequency: "weekly",
+  },
+  {
     title: "Statistics and Probability",
     path: "/probability-statistics",
     description: "Explore native distributions, variation, regression, probability, and uncertainty labs.",
