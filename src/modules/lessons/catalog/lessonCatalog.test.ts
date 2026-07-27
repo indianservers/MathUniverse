@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { findLesson, lessonCatalog, lessonCategories, lessonsForCategory } from "./lessonCatalog";
 import { validateLessonDefinition } from "../engine/lessonContracts";
+import { lessonLanguageOptions, loadLessonLocalizedContent, loadLessonLocalizationPack } from "../engine/lessonLanguages";
 
 describe("complete four-phase lesson catalog", () => {
   it("contains all 674 workbook rows exactly once", () => {
@@ -41,6 +42,19 @@ describe("complete four-phase lesson catalog", () => {
     expect(lessonCatalog.every((lesson) => lesson.purpose && lesson.outcome && lesson.interactions)).toBe(true);
   });
 
+  it("adds learning content, control guidance, and formulas to every lesson page", () => {
+    for (const lesson of lessonCatalog) {
+      expect(lesson.content.summary, `lesson ${lesson.id} summary`).toContain(lesson.title);
+      expect(lesson.content.explanation, `lesson ${lesson.id} explanation`).toContain("small experiment");
+      expect(lesson.content.keyIdeas.length, `lesson ${lesson.id} key ideas`).toBeGreaterThanOrEqual(3);
+      expect(lesson.content.realWorldExamples.length, `lesson ${lesson.id} examples`).toBeGreaterThanOrEqual(2);
+      expect(lesson.content.controlGuide.length, `lesson ${lesson.id} controls`).toBeGreaterThanOrEqual(3);
+      expect(lesson.content.formulas.length, `lesson ${lesson.id} formulas`).toBeGreaterThanOrEqual(2);
+      expect(lesson.content.formulas.every((item) => item.label && item.expression && item.explanation), `lesson ${lesson.id} formula fields`).toBe(true);
+      expect(lesson.content.knowMore.length, `lesson ${lesson.id} know more`).toBeGreaterThanOrEqual(3);
+    }
+  });
+
   it("gives every lesson a valid interaction contract and explicit preset diagnostic", () => {
     for (const lesson of lessonCatalog) {
       expect(validateLessonDefinition(lesson), `lesson ${lesson.id}`).toEqual([]);
@@ -53,5 +67,31 @@ describe("complete four-phase lesson catalog", () => {
   it("resolves the Phase 1 priority concepts to exact presets", () => {
     const expected: Record<number, string> = { 359: "matrix.eigen-directions", 404: "geometry3d.solid-net", 443: "cas.first-order-ode", 480: "statistics.box-plot", 576: "discrete.graph-colouring", 582: "discrete.set-builder", 583: "discrete.set-operations", 586: "discrete.power-set", 587: "discrete.truth-table", 588: "discrete.logical-connectives", 589: "discrete.quantifiers", 591: "finance.simple-interest" };
     for (const [id, preset] of Object.entries(expected)) expect(lessonCatalog.find((lesson) => lesson.id === Number(id))?.preset.id).toBe(preset);
+  });
+
+  it("offers Indian regional lesson language packs on demand with English term anchors", async () => {
+    expect(lessonLanguageOptions.map((language) => language.code)).toEqual(["en", "hi", "bn", "te", "ta", "mr", "gu", "kn", "ml", "pa", "or", "as", "ur"]);
+    const pack = await loadLessonLocalizationPack("hi");
+    expect(pack?.englishName).toBe("Hindi");
+    const content = pack!.contentForLesson(lessonCatalog[0]);
+    expect(content.summary).toContain("(concept)");
+    expect(content.summary).toContain("(visual model)");
+    expect(content.workedConnection).toContain("formula");
+    expect(content.formulas[0].label).toContain("(formula)");
+  });
+
+  it("creates lesson-specific regional content for every lesson without prebuilt lesson bulk", async () => {
+    for (const language of lessonLanguageOptions.filter((option) => option.code !== "en")) {
+      for (const lesson of lessonCatalog) {
+        const content = await loadLessonLocalizedContent(language.code, lesson);
+        expect(content.summary, `${language.code} lesson ${lesson.id} summary`).toContain(lesson.title);
+        expect(content.summary, `${language.code} lesson ${lesson.id} topic`).toContain(lesson.topic);
+        expect(content.explanation, `${language.code} lesson ${lesson.id} interactions`).toContain(lesson.interactions);
+        expect(content.realWorldExamples, `${language.code} lesson ${lesson.id} examples`).toHaveLength(lesson.content.realWorldExamples.length);
+        expect(content.realWorldExamples[0], `${language.code} lesson ${lesson.id} first example`).toContain(lesson.content.realWorldExamples[0]);
+        expect(content.controlGuide.join(" "), `${language.code} lesson ${lesson.id} controls`).toContain(lesson.contract.requiredControlIds[0]);
+        expect(content.formulas[0].expression, `${language.code} lesson ${lesson.id} formula`).toBe(lesson.content.formulas[0].expression);
+      }
+    }
   });
 });

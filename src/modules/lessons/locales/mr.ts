@@ -1,0 +1,23 @@
+import { createIndianRegionalLessonPack } from "./createIndianRegionalLessonPack";
+
+export default createIndianRegionalLessonPack({
+  code: "mr",
+  nativeName: "मराठी",
+  englishName: "Marathi",
+  labels: {
+    summaryLead: "वरील सोपा धडा, विषय",
+    summaryBridge: "लाइव्ह कार्यक्षेत्रात एकत्र दिसतात",
+    explanation: "हा धडा छोट्या प्रयोगासारखा घ्या. आधी अंदाज लावा, मग मॉडेल बदला आणि दृश्य, सूत्र व उत्तर एकच संबंध दाखवतात का ते पाहा.",
+    ideaWatch: "या गोष्टी एकत्र कशा बदलतात ते पाहा",
+    ideaChallenge: "अन्वेषणानंतर यांची जुळवणी करा",
+    workedConnection: "या पानावर आधी अंदाज लावा, नंतर नियंत्रण बदला आणि तुलना करा",
+    controlsUse: "ही नियंत्रणे वापरा",
+    controlsAfter: "प्रत्येक बदलानंतर वाचा",
+    controlsReset: "रीसेटनंतर परत येणारी स्थिती",
+    examplePrefix: "या धड्याचे उदाहरण",
+    knowWhy: "का महत्त्वाचे",
+    knowTest: "कसे तपासायचे",
+    knowFormula: "सूत्राशी संबंध",
+    knowRealLife: "वास्तव उदाहरण",
+  },
+});

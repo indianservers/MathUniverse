@@ -1,4 +1,5 @@
 import { resolveLessonPreset, validatePresetResolution } from "./lessonPresets";
+import { createLessonContent } from "./lessonContent";
 import type { LessonAdapter, LessonDefinition, LessonInteractionContract, LessonSourceDefinition } from "../types";
 
 type ContractTemplate = Omit<LessonInteractionContract, "concept" | "challengeFactory">;
@@ -54,7 +55,7 @@ export function enrichLessonDefinition(source: LessonSourceDefinition): LessonDe
     concept: source.title,
     challengeFactory: overrideContract?.challengeFactory ?? preset.id,
   };
-  const lesson = { ...source, preset, contract };
+  const lesson = { ...source, preset, contract, content: createLessonContent({ ...source, preset, contract }) };
   const errors = validateLessonDefinition(lesson);
   if (errors.length) throw new Error(`Lesson ${source.id} certification schema: ${errors.join("; ")}`);
   return lesson;
@@ -80,4 +81,3 @@ function template(requiredControls: ContractTemplate["requiredControls"], requir
 function override(requiredControls: LessonInteractionContract["requiredControls"], requiredControlIds: string[], observableOutputs: string[], requiredRepresentations: string[], requiredInteractionVerbs: string[], challengeFactory: string, keyboardAlternative: string, screenReaderSummary: string): Partial<LessonInteractionContract> {
   return { requiredControls, requiredControlIds, observableOutputs, requiredRepresentations, requiredInteractionVerbs, challengeFactory, keyboardAlternative, screenReaderSummary };
 }
-

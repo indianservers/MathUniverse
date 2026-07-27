@@ -1,0 +1,4225 @@
+{
+  "generatedAt": "2026-07-27T05:45:05.705Z",
+  "scope": "Phase 1 school syllabus remediation only",
+  "boards": [
+    "NCERT",
+    "CBSE",
+    "AP_SCERT",
+    "TN_SCERT",
+    "CAMBRIDGE_IGCSE",
+    "IB_AA",
+    "IB_AI",
+    "COMMON_CORE"
+  ],
+  "totalMissingConcepts": 220,
+  "conceptPacks": [
+    {
+      "id": "phase1-class-6-numbers-and-arithmetic",
+      "priority": "P1",
+      "academicLevel": "CLASS_6",
+      "unit": "Numbers and Arithmetic",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-6-numbers-and-arithmetic-01-place-value-explorer",
+          "title": "Place Value Explorer",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Numbers and Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-6-numbers-and-arithmetic-02-indian-and-international-number-naming-systems",
+          "title": "Indian and International Number Naming Systems",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Numbers and Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-6-numbers-and-arithmetic-03-estimation-and-rounding-lab",
+          "title": "Estimation and Rounding Lab",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Numbers and Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-6-numbers-and-arithmetic-04-approximation-and-error-bounds",
+          "title": "Approximation and Error Bounds",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Numbers and Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-6-numbers-and-arithmetic-05-mixed-units-and-unit-conversion",
+          "title": "Mixed Units and Unit Conversion",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Numbers and Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-6-data-handling",
+      "priority": "P1",
+      "academicLevel": "CLASS_6",
+      "unit": "Data Handling",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-6-data-handling-01-pictograph-builder",
+          "title": "Pictograph Builder",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Data Handling syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-6-data-handling-02-bar-graph-builder",
+          "title": "Bar Graph Builder",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Data Handling syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-6-data-handling-03-survey-to-frequency-table",
+          "title": "Survey to Frequency Table",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Data Handling syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-6-data-handling-04-misleading-graph-detection",
+          "title": "Misleading Graph Detection",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Data Handling syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-6-patterns",
+      "priority": "P1",
+      "academicLevel": "CLASS_6",
+      "unit": "Patterns",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-6-patterns-01-number-pattern-completion",
+          "title": "Number Pattern Completion",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Patterns syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-6-patterns-02-shape-pattern-completion",
+          "title": "Shape Pattern Completion",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Patterns syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-6-patterns-03-input-output-rule-machines",
+          "title": "Input-Output Rule Machines",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 6 Patterns syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-7-numbers-and-arithmetic",
+      "priority": "P1",
+      "academicLevel": "CLASS_7",
+      "unit": "Numbers and Arithmetic",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-7-numbers-and-arithmetic-01-divisibility-tests-for-2-4-5-6-8-10-and-11",
+          "title": "Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Numbers and Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-numbers-and-arithmetic-02-digital-root-and-divisibility",
+          "title": "Digital Root and Divisibility",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Numbers and Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-numbers-and-arithmetic-03-remainder-reasoning",
+          "title": "Remainder Reasoning",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Numbers and Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-numbers-and-arithmetic-04-unit-rate-table-lab",
+          "title": "Unit Rate Table Lab",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Numbers and Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-numbers-and-arithmetic-05-ratio-tables",
+          "title": "Ratio Tables",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Numbers and Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-7-applied-arithmetic",
+      "priority": "P1",
+      "academicLevel": "CLASS_7",
+      "unit": "Applied Arithmetic",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-7-applied-arithmetic-01-bills-discounts-and-tax",
+          "title": "Bills, Discounts and Tax",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Applied Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-applied-arithmetic-02-profit-loss-and-marked-price",
+          "title": "Profit, Loss and Marked Price",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Applied Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-applied-arithmetic-03-household-budget-arithmetic",
+          "title": "Household Budget Arithmetic",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Applied Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-applied-arithmetic-04-scale-factor-in-maps-and-recipes",
+          "title": "Scale Factor in Maps and Recipes",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Applied Arithmetic syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-7-practical-geometry",
+      "priority": "P1",
+      "academicLevel": "CLASS_7",
+      "unit": "Practical Geometry",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-7-practical-geometry-01-copying-a-line-segment",
+          "title": "Copying a Line Segment",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Practical Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-practical-geometry-02-copying-an-angle",
+          "title": "Copying an Angle",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Practical Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-practical-geometry-03-perpendicular-bisector-construction",
+          "title": "Perpendicular Bisector Construction",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Practical Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-practical-geometry-04-angle-bisector-construction",
+          "title": "Angle Bisector Construction",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Practical Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-practical-geometry-05-perpendicular-through-a-point",
+          "title": "Perpendicular Through a Point",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Practical Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-7-practical-geometry-06-parallel-line-construction",
+          "title": "Parallel Line Construction",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 7 Practical Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-8-practical-geometry",
+      "priority": "P1",
+      "academicLevel": "CLASS_8",
+      "unit": "Practical Geometry",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-8-practical-geometry-01-triangle-construction-by-sss",
+          "title": "Triangle Construction by SSS",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Practical Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-8-practical-geometry-02-triangle-construction-by-sas",
+          "title": "Triangle Construction by SAS",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Practical Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-8-practical-geometry-03-triangle-construction-by-asa",
+          "title": "Triangle Construction by ASA",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Practical Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-8-practical-geometry-04-right-triangle-construction-by-rhs",
+          "title": "Right Triangle Construction by RHS",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Practical Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-8-data-handling",
+      "priority": "P1",
+      "academicLevel": "CLASS_8",
+      "unit": "Data Handling",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-8-data-handling-01-double-bar-graph-comparison",
+          "title": "Double Bar Graph Comparison",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Data Handling syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-8-data-handling-02-mean-median-and-mode-practice-path",
+          "title": "Mean Median and Mode Practice Path",
+          "suggestedLessonType": "PRACTICE",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Data Handling syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-8-data-handling-03-range-and-spread-explorer",
+          "title": "Range and Spread Explorer",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Data Handling syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-8-information-processing",
+      "priority": "P1",
+      "academicLevel": "CLASS_8",
+      "unit": "Information Processing",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-8-information-processing-01-flowchart-logic",
+          "title": "Flowchart Logic",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Information Processing syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-8-information-processing-02-pattern-encoding",
+          "title": "Pattern Encoding",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Information Processing syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-8-information-processing-03-magic-squares",
+          "title": "Magic Squares",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Information Processing syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-8-information-processing-04-route-map-reasoning",
+          "title": "Route Map Reasoning",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Information Processing syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-8-information-processing-05-tabular-pattern-completion",
+          "title": "Tabular Pattern Completion",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 8 Information Processing syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-9-real-numbers",
+      "priority": "P0",
+      "academicLevel": "CLASS_9",
+      "unit": "Real Numbers",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-9-real-numbers-01-decimal-expansion-of-rational-numbers",
+          "title": "Decimal Expansion of Rational Numbers",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Real Numbers syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-real-numbers-02-terminating-and-non-terminating-decimals",
+          "title": "Terminating and Non-Terminating Decimals",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Real Numbers syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-real-numbers-03-rational-and-irrational-classification",
+          "title": "Rational and Irrational Classification",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Real Numbers syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-real-numbers-04-successive-magnification-on-the-number-line",
+          "title": "Successive Magnification on the Number Line",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Real Numbers syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-real-numbers-05-rationalisation-of-denominators",
+          "title": "Rationalisation of Denominators",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Real Numbers syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-real-numbers-06-nth-roots-and-radical-meaning",
+          "title": "nth Roots and Radical Meaning",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Real Numbers syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-9-polynomials",
+      "priority": "P0",
+      "academicLevel": "CLASS_9",
+      "unit": "Polynomials",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-9-polynomials-01-graphical-zeros-of-polynomials",
+          "title": "Graphical Zeros of Polynomials",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Polynomials syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-polynomials-02-polynomial-division",
+          "title": "Polynomial Division",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Polynomials syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-polynomials-03-remainder-theorem",
+          "title": "Remainder Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Polynomials syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-polynomials-04-factor-theorem",
+          "title": "Factor Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Polynomials syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-polynomials-05-relationship-between-zeros-and-coefficients",
+          "title": "Relationship Between Zeros and Coefficients",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Polynomials syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-polynomials-06-cubic-algebraic-identities",
+          "title": "Cubic Algebraic Identities",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Polynomials syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-polynomials-07-polynomial-factorisation-practice",
+          "title": "Polynomial Factorisation Practice",
+          "suggestedLessonType": "PRACTICE",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Polynomials syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-9-euclidean-geometry",
+      "priority": "P0",
+      "academicLevel": "CLASS_9",
+      "unit": "Euclidean Geometry",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-9-euclidean-geometry-01-definitions-axioms-and-postulates",
+          "title": "Definitions Axioms and Postulates",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-02-euclid-s-five-postulates",
+          "title": "Euclid's Five Postulates",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-03-equivalent-forms-of-the-fifth-postulate",
+          "title": "Equivalent Forms of the Fifth Postulate",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-04-axiom-versus-theorem",
+          "title": "Axiom versus Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-05-proof-structure-and-logical-statements",
+          "title": "Proof Structure and Logical Statements",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-06-vertically-opposite-angles",
+          "title": "Vertically Opposite Angles",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-07-linear-pair-axiom-and-converse",
+          "title": "Linear Pair Axiom and Converse",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-08-corresponding-angles",
+          "title": "Corresponding Angles",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-09-alternate-interior-angles",
+          "title": "Alternate Interior Angles",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-10-interior-angles-on-the-same-side",
+          "title": "Interior Angles on the Same Side",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-11-parallel-line-converse-theorems",
+          "title": "Parallel Line Converse Theorems",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-12-triangle-angle-sum-theorem",
+          "title": "Triangle Angle Sum Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-euclidean-geometry-13-exterior-angle-theorem",
+          "title": "Exterior Angle Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Euclidean Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-9-triangle-proofs",
+      "priority": "P0",
+      "academicLevel": "CLASS_9",
+      "unit": "Triangle Proofs",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-9-triangle-proofs-01-sas-congruence",
+          "title": "SAS Congruence",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Triangle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-triangle-proofs-02-asa-congruence",
+          "title": "ASA Congruence",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Triangle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-triangle-proofs-03-aas-congruence",
+          "title": "AAS Congruence",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Triangle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-triangle-proofs-04-sss-congruence",
+          "title": "SSS Congruence",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Triangle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-triangle-proofs-05-rhs-congruence",
+          "title": "RHS Congruence",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Triangle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-triangle-proofs-06-equal-sides-and-equal-angles",
+          "title": "Equal Sides and Equal Angles",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Triangle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-triangle-proofs-07-triangle-inequality",
+          "title": "Triangle Inequality",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Triangle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-9-quadrilateral-proofs",
+      "priority": "P0",
+      "academicLevel": "CLASS_9",
+      "unit": "Quadrilateral Proofs",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-9-quadrilateral-proofs-01-parallelogram-opposite-sides",
+          "title": "Parallelogram Opposite Sides",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Quadrilateral Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-quadrilateral-proofs-02-parallelogram-opposite-angles",
+          "title": "Parallelogram Opposite Angles",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Quadrilateral Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-quadrilateral-proofs-03-parallelogram-diagonals",
+          "title": "Parallelogram Diagonals",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Quadrilateral Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-quadrilateral-proofs-04-conditions-for-a-quadrilateral-to-be-a-parallelogram",
+          "title": "Conditions for a Quadrilateral to Be a Parallelogram",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Quadrilateral Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-quadrilateral-proofs-05-midpoint-theorem",
+          "title": "Midpoint Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Quadrilateral Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-quadrilateral-proofs-06-converse-of-midpoint-theorem",
+          "title": "Converse of Midpoint Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Quadrilateral Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-9-mensuration",
+      "priority": "P0",
+      "academicLevel": "CLASS_9",
+      "unit": "Mensuration",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-9-mensuration-01-heron-s-formula-derivation",
+          "title": "Heron's Formula Derivation",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Mensuration syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-mensuration-02-semi-perimeter-lab",
+          "title": "Semi-Perimeter Lab",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Mensuration syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-mensuration-03-coordinate-area-versus-heron-s-formula",
+          "title": "Coordinate Area versus Heron's Formula",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Mensuration syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-9-mensuration-04-combined-solids",
+          "title": "Combined Solids",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 9 Mensuration syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-10-coordinate-geometry",
+      "priority": "P0",
+      "academicLevel": "CLASS_10",
+      "unit": "Coordinate Geometry",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-10-coordinate-geometry-01-distance-formula",
+          "title": "Distance Formula",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Coordinate Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-coordinate-geometry-02-midpoint-formula",
+          "title": "Midpoint Formula",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Coordinate Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-coordinate-geometry-03-internal-section-formula",
+          "title": "Internal Section Formula",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Coordinate Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-coordinate-geometry-04-external-section-formula",
+          "title": "External Section Formula",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Coordinate Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-coordinate-geometry-05-area-of-triangle-using-coordinates",
+          "title": "Area of Triangle Using Coordinates",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Coordinate Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-coordinate-geometry-06-collinearity-using-coordinate-area",
+          "title": "Collinearity Using Coordinate Area",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Coordinate Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-10-circle-proofs",
+      "priority": "P0",
+      "academicLevel": "CLASS_10",
+      "unit": "Circle Proofs",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-10-circle-proofs-01-equal-chords-and-equal-angles",
+          "title": "Equal Chords and Equal Angles",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Circle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-circle-proofs-02-perpendicular-from-centre-to-chord",
+          "title": "Perpendicular from Centre to Chord",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Circle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-circle-proofs-03-angle-subtended-by-an-arc",
+          "title": "Angle Subtended by an Arc",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Circle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-circle-proofs-04-angle-in-a-semicircle",
+          "title": "Angle in a Semicircle",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Circle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-circle-proofs-05-angles-in-the-same-segment",
+          "title": "Angles in the Same Segment",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Circle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-circle-proofs-06-cyclic-quadrilateral",
+          "title": "Cyclic Quadrilateral",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Circle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-circle-proofs-07-opposite-angles-of-a-cyclic-quadrilateral",
+          "title": "Opposite Angles of a Cyclic Quadrilateral",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Circle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-circle-proofs-08-tangent-perpendicular-to-radius",
+          "title": "Tangent Perpendicular to Radius",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Circle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-circle-proofs-09-tangent-lengths-from-an-external-point",
+          "title": "Tangent Lengths from an External Point",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Circle Proofs syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-10-trigonometry-applications",
+      "priority": "P0",
+      "academicLevel": "CLASS_10",
+      "unit": "Trigonometry Applications",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-10-trigonometry-applications-01-angle-of-elevation",
+          "title": "Angle of Elevation",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Trigonometry Applications syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-trigonometry-applications-02-angle-of-depression",
+          "title": "Angle of Depression",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Trigonometry Applications syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-trigonometry-applications-03-shadow-length-modelling",
+          "title": "Shadow-Length Modelling",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Trigonometry Applications syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-trigonometry-applications-04-two-observer-height-problems",
+          "title": "Two-Observer Height Problems",
+          "suggestedLessonType": "PRACTICE",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Trigonometry Applications syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-10-statistics",
+      "priority": "P0",
+      "academicLevel": "CLASS_10",
+      "unit": "Statistics",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-10-statistics-01-grouped-mean-by-direct-method",
+          "title": "Grouped Mean by Direct Method",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Statistics syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-statistics-02-grouped-mean-by-assumed-mean",
+          "title": "Grouped Mean by Assumed Mean",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Statistics syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-statistics-03-grouped-mean-by-step-deviation",
+          "title": "Grouped Mean by Step Deviation",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Statistics syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-statistics-04-less-than-cumulative-frequency",
+          "title": "Less-Than Cumulative Frequency",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Statistics syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-statistics-05-more-than-cumulative-frequency",
+          "title": "More-Than Cumulative Frequency",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Statistics syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-statistics-06-less-than-ogive",
+          "title": "Less-Than Ogive",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Statistics syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-statistics-07-more-than-ogive",
+          "title": "More-Than Ogive",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Statistics syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-statistics-08-median-from-an-ogive",
+          "title": "Median from an Ogive",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Statistics syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-10-mensuration",
+      "priority": "P0",
+      "academicLevel": "CLASS_10",
+      "unit": "Mensuration",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-10-mensuration-01-frustum-of-a-cone",
+          "title": "Frustum of a Cone",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Mensuration syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-10-mensuration-02-combined-solids",
+          "title": "Combined Solids",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 10 Mensuration syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-11-relations-and-functions",
+      "priority": "P1",
+      "academicLevel": "CLASS_11",
+      "unit": "Relations and Functions",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-11-relations-and-functions-01-types-of-relations",
+          "title": "Types of Relations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-02-reflexive-relations",
+          "title": "Reflexive Relations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-03-symmetric-relations",
+          "title": "Symmetric Relations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-04-transitive-relations",
+          "title": "Transitive Relations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-05-equivalence-relations",
+          "title": "Equivalence Relations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-06-one-one-functions",
+          "title": "One-One Functions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-07-many-one-functions",
+          "title": "Many-One Functions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-08-into-functions",
+          "title": "Into Functions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-09-onto-functions",
+          "title": "Onto Functions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-10-composition-of-functions",
+          "title": "Composition of Functions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-11-invertible-functions",
+          "title": "Invertible Functions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-relations-and-functions-12-binary-operations",
+          "title": "Binary Operations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Relations and Functions syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-11-trigonometry",
+      "priority": "P1",
+      "academicLevel": "CLASS_11",
+      "unit": "Trigonometry",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-11-trigonometry-01-domain-and-range-of-trigonometric-functions",
+          "title": "Domain and Range of Trigonometric Functions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Trigonometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-trigonometry-02-transformation-of-trigonometric-graphs",
+          "title": "Transformation of Trigonometric Graphs",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Trigonometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-trigonometry-03-general-solutions-of-trigonometric-equations",
+          "title": "General Solutions of Trigonometric Equations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Trigonometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-trigonometry-04-principal-solutions",
+          "title": "Principal Solutions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Trigonometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-11-mathematical-induction",
+      "priority": "P1",
+      "academicLevel": "CLASS_11",
+      "unit": "Mathematical Induction",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-11-mathematical-induction-01-logic-of-mathematical-induction",
+          "title": "Logic of Mathematical Induction",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Mathematical Induction syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-mathematical-induction-02-base-case-and-inductive-step",
+          "title": "Base Case and Inductive Step",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Mathematical Induction syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-mathematical-induction-03-sum-formula-by-induction",
+          "title": "Sum Formula by Induction",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Mathematical Induction syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-mathematical-induction-04-divisibility-by-induction",
+          "title": "Divisibility by Induction",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "number",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Mathematical Induction syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-mathematical-induction-05-inequality-by-induction",
+          "title": "Inequality by Induction",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Mathematical Induction syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-mathematical-induction-06-strong-induction-introduction",
+          "title": "Strong Induction Introduction",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Mathematical Induction syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-11-binomial-theorem",
+      "priority": "P1",
+      "academicLevel": "CLASS_11",
+      "unit": "Binomial Theorem",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-11-binomial-theorem-01-binomial-expansion",
+          "title": "Binomial Expansion",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Binomial Theorem syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-binomial-theorem-02-general-term",
+          "title": "General Term",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Binomial Theorem syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-binomial-theorem-03-middle-term",
+          "title": "Middle Term",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Binomial Theorem syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-binomial-theorem-04-independent-term",
+          "title": "Independent Term",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Binomial Theorem syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-binomial-theorem-05-binomial-approximation",
+          "title": "Binomial Approximation",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Binomial Theorem syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-binomial-theorem-06-pascal-identity",
+          "title": "Pascal Identity",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Binomial Theorem syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-binomial-theorem-07-combinatorial-interpretation",
+          "title": "Combinatorial Interpretation",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "learning",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Binomial Theorem syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-11-conic-sections",
+      "priority": "P1",
+      "academicLevel": "CLASS_11",
+      "unit": "Conic Sections",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-11-conic-sections-01-parabola-standard-forms",
+          "title": "Parabola Standard Forms",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-conic-sections-02-focus-directrix-definition",
+          "title": "Focus-Directrix Definition",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-conic-sections-03-ellipse-standard-forms",
+          "title": "Ellipse Standard Forms",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-conic-sections-04-hyperbola-standard-forms",
+          "title": "Hyperbola Standard Forms",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-conic-sections-05-eccentricity",
+          "title": "Eccentricity",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-conic-sections-06-parametric-coordinates",
+          "title": "Parametric Coordinates",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-conic-sections-07-tangent-to-a-parabola",
+          "title": "Tangent to a Parabola",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-conic-sections-08-normal-to-a-parabola",
+          "title": "Normal to a Parabola",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-conic-sections-09-tangent-to-an-ellipse",
+          "title": "Tangent to an Ellipse",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-conic-sections-10-tangent-to-a-hyperbola",
+          "title": "Tangent to a Hyperbola",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-11-conic-sections-11-conic-identification-from-general-equation",
+          "title": "Conic Identification from General Equation",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 11 Conic Sections syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-12-three-dimensional-geometry",
+      "priority": "P1",
+      "academicLevel": "CLASS_12",
+      "unit": "Three-Dimensional Geometry",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-01-direction-ratios",
+          "title": "Direction Ratios",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry3d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-02-direction-cosines",
+          "title": "Direction Cosines",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry3d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-03-line-through-two-points-in-3d",
+          "title": "Line Through Two Points in 3D",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry3d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-04-vector-equation-of-a-line",
+          "title": "Vector Equation of a Line",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-05-cartesian-equation-of-a-line",
+          "title": "Cartesian Equation of a Line",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-06-skew-lines",
+          "title": "Skew Lines",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry3d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-07-shortest-distance-between-lines",
+          "title": "Shortest Distance Between Lines",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-08-plane-equation",
+          "title": "Plane Equation",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry3d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-09-point-normal-form",
+          "title": "Point-Normal Form",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry2d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-10-intercept-form-of-a-plane",
+          "title": "Intercept Form of a Plane",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry3d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-11-distance-from-point-to-plane",
+          "title": "Distance from Point to Plane",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "geometry3d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-12-angle-between-two-planes",
+          "title": "Angle Between Two Planes",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry3d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-three-dimensional-geometry-13-angle-between-line-and-plane",
+          "title": "Angle Between Line and Plane",
+          "suggestedLessonType": "VISUAL_EXPLORATION",
+          "suggestedAdapter": "geometry3d",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Three-Dimensional Geometry syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-12-formal-calculus",
+      "priority": "P0",
+      "academicLevel": "CLASS_12",
+      "unit": "Formal Calculus",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-12-formal-calculus-01-left-hand-and-right-hand-limits",
+          "title": "Left-Hand and Right-Hand Limits",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-02-continuity-at-a-point",
+          "title": "Continuity at a Point",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-03-continuity-on-an-interval",
+          "title": "Continuity on an Interval",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-04-removable-discontinuity",
+          "title": "Removable Discontinuity",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-05-jump-discontinuity",
+          "title": "Jump Discontinuity",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-06-infinite-discontinuity",
+          "title": "Infinite Discontinuity",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-07-differentiability-versus-continuity",
+          "title": "Differentiability versus Continuity",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-08-rolle-s-theorem",
+          "title": "Rolle's Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-09-lagrange-mean-value-theorem",
+          "title": "Lagrange Mean Value Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-10-rate-of-change",
+          "title": "Rate of Change",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-11-tangents-and-normals",
+          "title": "Tangents and Normals",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-12-increasing-and-decreasing-functions",
+          "title": "Increasing and Decreasing Functions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-13-local-maxima-and-minima",
+          "title": "Local Maxima and Minima",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-14-absolute-maxima-and-minima",
+          "title": "Absolute Maxima and Minima",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-15-approximation-using-differentials",
+          "title": "Approximation Using Differentials",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-16-integration-by-substitution",
+          "title": "Integration by Substitution",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-17-integration-by-parts",
+          "title": "Integration by Parts",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-18-integration-by-partial-fractions",
+          "title": "Integration by Partial Fractions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-19-definite-integral-properties",
+          "title": "Definite Integral Properties",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-20-area-under-a-curve",
+          "title": "Area Under a Curve",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-formal-calculus-21-area-between-curves",
+          "title": "Area Between Curves",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Formal Calculus syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-12-differential-equations",
+      "priority": "P1",
+      "academicLevel": "CLASS_12",
+      "unit": "Differential Equations",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-12-differential-equations-01-formation-of-differential-equations",
+          "title": "Formation of Differential Equations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "calculus",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Differential Equations syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-differential-equations-02-order-and-degree",
+          "title": "Order and Degree",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "calculus",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Differential Equations syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-differential-equations-03-variable-separable-equations",
+          "title": "Variable-Separable Equations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "calculus",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Differential Equations syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-differential-equations-04-homogeneous-first-order-equations",
+          "title": "Homogeneous First-Order Equations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "calculus",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Differential Equations syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-differential-equations-05-linear-first-order-equations",
+          "title": "Linear First-Order Equations",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "calculus",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Differential Equations syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-differential-equations-06-general-and-particular-solutions",
+          "title": "General and Particular Solutions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "calculus",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Differential Equations syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-differential-equations-07-direction-fields",
+          "title": "Direction Fields",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "calculus",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Differential Equations syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-12-matrices-and-determinants",
+      "priority": "P1",
+      "academicLevel": "CLASS_12",
+      "unit": "Matrices and Determinants",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-12-matrices-and-determinants-01-minors-and-cofactors",
+          "title": "Minors and Cofactors",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "matrix",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Matrices and Determinants syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-matrices-and-determinants-02-adjoint-of-a-matrix",
+          "title": "Adjoint of a Matrix",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "matrix",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Matrices and Determinants syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-matrices-and-determinants-03-inverse-by-adjoint",
+          "title": "Inverse by Adjoint",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "matrix",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Matrices and Determinants syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-matrices-and-determinants-04-determinants-and-geometric-area",
+          "title": "Determinants and Geometric Area",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "matrix",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Matrices and Determinants syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-matrices-and-determinants-05-solving-linear-equations-by-matrices",
+          "title": "Solving Linear Equations by Matrices",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "matrix",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Matrices and Determinants syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-matrices-and-determinants-06-cramer-s-rule",
+          "title": "Cramer's Rule",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "matrix",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Matrices and Determinants syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-matrices-and-determinants-07-consistency-of-linear-systems",
+          "title": "Consistency of Linear Systems",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "matrix",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Matrices and Determinants syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-12-linear-programming",
+      "priority": "P1",
+      "academicLevel": "CLASS_12",
+      "unit": "Linear Programming",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-12-linear-programming-01-formulating-linear-programming-problems",
+          "title": "Formulating Linear Programming Problems",
+          "suggestedLessonType": "PRACTICE",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Linear Programming syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-linear-programming-02-feasible-region",
+          "title": "Feasible Region",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Linear Programming syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-linear-programming-03-corner-point-method",
+          "title": "Corner-Point Method",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Linear Programming syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-linear-programming-04-bounded-feasible-region",
+          "title": "Bounded Feasible Region",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Linear Programming syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-linear-programming-05-unbounded-feasible-region",
+          "title": "Unbounded Feasible Region",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Linear Programming syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-linear-programming-06-multiple-optimal-solutions",
+          "title": "Multiple Optimal Solutions",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Linear Programming syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-linear-programming-07-infeasible-problems",
+          "title": "Infeasible Problems",
+          "suggestedLessonType": "PRACTICE",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Linear Programming syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-linear-programming-08-diet-problem",
+          "title": "Diet Problem",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Linear Programming syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-linear-programming-09-production-planning-problem",
+          "title": "Production Planning Problem",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Linear Programming syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-linear-programming-10-transportation-style-lpp-introduction",
+          "title": "Transportation-Style LPP Introduction",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "graph",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Linear Programming syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    },
+    {
+      "id": "phase1-class-12-probability",
+      "priority": "P0",
+      "academicLevel": "CLASS_12",
+      "unit": "Probability",
+      "missingConcepts": [
+        {
+          "id": "phase1-class-12-probability-01-conditional-probability",
+          "title": "Conditional Probability",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-probability-02-multiplication-rule",
+          "title": "Multiplication Rule",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-probability-03-independent-events",
+          "title": "Independent Events",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-probability-04-total-probability-theorem",
+          "title": "Total Probability Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-probability-05-bayes-theorem",
+          "title": "Bayes' Theorem",
+          "suggestedLessonType": "PROOF",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-probability-06-random-variables",
+          "title": "Random Variables",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-probability-07-probability-distribution-of-a-random-variable",
+          "title": "Probability Distribution of a Random Variable",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-probability-08-expected-value",
+          "title": "Expected Value",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-probability-09-variance",
+          "title": "Variance",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-probability-10-bernoulli-trials",
+          "title": "Bernoulli Trials",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        },
+        {
+          "id": "phase1-class-12-probability-11-binomial-distribution",
+          "title": "Binomial Distribution",
+          "suggestedLessonType": "CONCEPT",
+          "suggestedAdapter": "statistics",
+          "boards": [
+            "NCERT",
+            "CBSE",
+            "AP_SCERT",
+            "TN_SCERT",
+            "CAMBRIDGE_IGCSE",
+            "IB_AA",
+            "IB_AI",
+            "COMMON_CORE"
+          ],
+          "coverageNeed": "DIRECT",
+          "reason": "Required for CLASS 12 Probability syllabus continuity across NCERT, CBSE, AP_SCERT, TN_SCERT, and comparable international pathways."
+        }
+      ]
+    }
+  ]
+}

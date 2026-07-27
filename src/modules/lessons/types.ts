@@ -57,6 +57,49 @@ export type LessonPresetResolution = {
   specificity: "lesson" | "concept" | "family";
 };
 
+export type LessonFormula = {
+  label: string;
+  expression: string;
+  explanation: string;
+};
+
+export type LessonContent = {
+  summary: string;
+  explanation: string;
+  keyIdeas: string[];
+  realWorldExamples: string[];
+  controlGuide: string[];
+  formulas: LessonFormula[];
+  workedConnection: string;
+  knowMore: string[];
+};
+
+export type LessonLanguageCode =
+  | "en"
+  | "hi"
+  | "bn"
+  | "te"
+  | "ta"
+  | "mr"
+  | "gu"
+  | "kn"
+  | "ml"
+  | "pa"
+  | "or"
+  | "as"
+  | "ur";
+
+export type LessonLanguageOption = {
+  code: LessonLanguageCode;
+  nativeName: string;
+  englishName: string;
+  direction?: "ltr" | "rtl";
+};
+
+export type LessonLocalizationPack = LessonLanguageOption & {
+  contentForLesson: (lesson: LessonDefinition) => LessonContent;
+};
+
 export type LessonInteractionEvent = {
   controlId: string;
   kind: LessonControlKind;
@@ -88,9 +131,10 @@ export type LessonDefinition = {
   adapter: LessonAdapter;
   preset: LessonPresetResolution;
   contract: LessonInteractionContract;
+  content: LessonContent;
 };
 
-export type LessonSourceDefinition = Omit<LessonDefinition, "preset" | "contract">;
+export type LessonSourceDefinition = Omit<LessonDefinition, "preset" | "contract" | "content">;
 
 export type LessonStage = "discover" | "explore" | "try" | "check";
 

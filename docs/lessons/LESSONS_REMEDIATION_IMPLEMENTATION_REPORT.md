@@ -57,12 +57,23 @@ Preview: `http://localhost:5537/lessons`
 - Every non-simple finance lesson links three exact-value controls to a derived chart, compact value table, dynamic screen-reader summary, and current-state challenge.
 - Live checks on Break-Even, Compound Interest, and Linear Programming passed. At 375 px, the Linear Programming lesson had no page-level horizontal overflow.
 
+### Matrices and Linear Algebra family — IDs 347–364
+
+- All 18 routes resolve through typed, lesson-specific presets.
+- Seventeen generic routes were replaced by concept-specific activities; the existing high-quality Eigenvalues and Eigenvectors activity remains in use for ID 359.
+- Existing matrix and linear-algebra engines now drive matrix construction, addition/subtraction, scalar and matrix multiplication, identity, transpose, determinant, inverse, elementary row operations, RREF, augmented systems, and linear transformations.
+- Vector-space routes now compute rank and dimension, basis and independence status, spans, Gram–Schmidt orthogonalisation, and least-squares regression from the current inputs.
+- Singular matrices and inconsistent/dependent systems produce explicit mathematical states instead of misleading numeric fallbacks.
+- Every activity links exact-value controls to a result matrix or vector view, concise computation steps, a dynamic screen-reader summary, and a challenge generated from the current state.
+- Automated render coverage passed for all 18 lesson routes. Live-browser automation was unavailable after the documented reconnect retry, so no unsupported alternate browser stack was used.
+
 ### Current Phase 2 verification
 
 - TypeScript: `npm run typecheck` — pass.
 - Lint: `npm run lint` — pass with zero warnings.
-- Tests: `npm test` — 198 files and 1,259 tests passed.
-- Production build: `npm run build` — pass; Vite transformed 4,570 modules.
+- Matrix focused tests: 17 tests passed across preset, model, adapter, and active-challenge coverage.
+- Tests: 200 of 201 files passed; 1,268 of 1,270 tests passed. The two failures are pre-existing Formula Library render tests exceeding their 5-second timeout only under the full serial suite; the complete Formula Library test file passes in isolation (6 of 6).
+- Production build: `npm run build` — pass; Vite transformed 4,573 modules.
 - Finance focused tests: 14 tests passed across preset, model, adapter, and active-challenge coverage.
 - Sequence focused tests: 15 tests passed across preset, model, adapter, and active-challenge coverage.
 - Port 5537: development server listening and serving the updated lesson routes.
