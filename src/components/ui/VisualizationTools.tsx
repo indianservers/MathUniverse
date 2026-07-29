@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Download, Eraser, Expand, FileText, Grid2X2, Link2, Pencil, SkipForward, Trash2, Type } from "lucide-react";
+import { Download, Eraser, Expand, FileText, Grid2X2, Link2, MousePointer2, Pencil, SkipForward, Trash2, Type } from "lucide-react";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { clsx } from "clsx";
@@ -8,7 +8,7 @@ type Point = { x: number; y: number };
 type StrokeAnnotation = { id: string; kind: "stroke"; points: Point[]; color: string; size: number };
 type TextAnnotation = { id: string; kind: "text"; x: number; y: number; text: string; color: string };
 type Annotation = StrokeAnnotation | TextAnnotation;
-type AnnotationMode = "draw" | "text" | "erase";
+type AnnotationMode = "inspect" | "draw" | "text" | "erase";
 
 type VisualizationToolsProps = {
   title: string;
@@ -18,7 +18,7 @@ type VisualizationToolsProps = {
 
 export default function VisualizationTools({ title, targetRef, children }: VisualizationToolsProps) {
   const storageKey = useMemo(() => annotationStorageKey(title), [title]);
-  const [mode, setMode] = useState<AnnotationMode>("draw");
+  const [mode, setMode] = useState<AnnotationMode>("inspect");
   const [annotations, setAnnotations] = useState<Annotation[]>(() => loadAnnotations(storageKey));
   const [copied, setCopied] = useState(false);
   const [showGrid, setShowGrid] = useState(true);
@@ -150,6 +150,9 @@ export default function VisualizationTools({ title, targetRef, children }: Visua
           Step {step}
         </button>
         <div className="ml-0 flex items-center gap-1 rounded-full border border-slate-200 bg-white/80 p-1 dark:border-white/10 dark:bg-white/10 sm:ml-2">
+          <ModeButton active={mode === "inspect"} title="Use controls" onClick={() => setMode("inspect")}>
+            <MousePointer2 className="h-4 w-4" />
+          </ModeButton>
           <ModeButton active={mode === "draw"} title="Draw notes" onClick={() => setMode("draw")}>
             <Pencil className="h-4 w-4" />
           </ModeButton>
@@ -171,7 +174,7 @@ export default function VisualizationTools({ title, targetRef, children }: Visua
         </div>
         {showGrid && <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-40 [background-image:linear-gradient(rgba(14,165,233,.18)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,.18)_1px,transparent_1px)] [background-size:32px_32px]" />}
         {trace && <div className="pointer-events-none absolute inset-0 rounded-2xl bg-cyan-400/5 ring-4 ring-inset ring-cyan-400/10" />}
-        <CrosshairHud />
+        {mode !== "inspect" && <CrosshairHud />}
         <AnnotationLayer mode={mode} annotations={annotations} onChange={setAnnotations} />
       </div>
     </div>
@@ -256,6 +259,7 @@ function AnnotationLayer({ mode, annotations, onChange }: { mode: AnnotationMode
   }
 
   function begin(event: React.PointerEvent<HTMLCanvasElement>) {
+    if (mode === "inspect") return;
     const point = pointerPoint(event);
 
     if (mode === "text") {
@@ -289,7 +293,7 @@ function AnnotationLayer({ mode, annotations, onChange }: { mode: AnnotationMode
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 z-10 cursor-crosshair touch-none rounded-2xl"
+      className={clsx("absolute inset-0 z-10 touch-none rounded-2xl", mode === "inspect" ? "pointer-events-none cursor-default" : "cursor-crosshair")}
       onPointerDown={begin}
       onPointerMove={move}
       onPointerUp={end}

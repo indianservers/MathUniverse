@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, CheckCircle2, ClipboardList, FlaskConical, Layers3, PlayCircle, Route, Search, Sigma, Target, Wrench } from "lucide-react";
+import { ArrowRight, BookOpen, ClipboardList, FlaskConical, PlayCircle, Route, Search, Sigma, Target, Wrench } from "lucide-react";
 import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,14 +8,11 @@ import TopicHeader from "../components/ui/TopicHeader";
 import { engineeringConceptLabId, engineeringVisualForConcept, type AdvancedLabVisual } from "../data/advancedSyllabusLabs";
 import { assessmentSummary, buildEngineeringAssessmentPlans, engineeringExamSprints, sprintReadiness } from "../data/engineeringAssessmentPlanner";
 import { caseStudiesForDomain, caseStudySummary } from "../data/engineeringCaseStudies";
-import { buildEngineeringConceptCoverage, engineeringCoverageSummary } from "../data/engineeringConceptCoverage";
 import { dependenciesForDomain, dependencyGraphSummary, learningPathsForDomain, unlocksForDomain } from "../data/engineeringDependencyGraph";
 import { formulaAtlasSummary, formulasForDomain, type EngineeringFormulaCard } from "../data/engineeringFormulaAtlas";
 import {
-  engineeringCoverageGaps,
   engineeringDomainById,
   engineeringMathDomains,
-  engineeringMathMilestones,
   engineeringMathSummary,
 } from "../data/engineeringMathBlueprint";
 import { launcherCoverageSummary, launchersForDomain } from "../data/engineeringLabLaunchers";
@@ -45,7 +42,6 @@ export default function EngineeringMath() {
   const [visualT, setVisualT] = useState(0.45);
   const [liveSystemObjects, setLiveSystemObjects] = useState<MathObject[]>([]);
   const selected = engineeringDomainById(selectedId) ?? engineeringMathDomains[0];
-  const gaps = useMemo(() => engineeringCoverageGaps().filter((gap) => gap.domainId === selected?.id), [selected?.id]);
   const launchers = useMemo(() => {
     const base = launchersForDomain(selected?.id ?? "");
     return launcherFilter === "all" ? base : base.filter((launcher) => launcher.kind === launcherFilter);
@@ -60,7 +56,6 @@ export default function EngineeringMath() {
     });
   }, [query, semesterFilter]);
   const quickStarts = useMemo(() => buildQuickStarts(), []);
-  const readinessRows = useMemo(() => buildReadinessRows(), []);
   const solverPresets = useMemo(() => engineeringSolverPresets.filter((preset) => preset.domainId === selected?.id), [selected?.id]);
   const practicePack = useMemo(() => practicePackForDomain(selected?.id ?? ""), [selected?.id]);
   const practiceSummary = useMemo(() => practiceCoverageSummary(), []);
@@ -80,18 +75,14 @@ export default function EngineeringMath() {
   const projectsSummary = useMemo(() => projectSummary(), []);
   const caseStudies = useMemo(() => caseStudiesForDomain(selected?.id ?? ""), [selected?.id]);
   const caseStudiesSummary = useMemo(() => caseStudySummary(), []);
-  const coverageRows = useMemo(() => buildEngineeringConceptCoverage(), []);
-  const coverageSummary = useMemo(() => engineeringCoverageSummary(), []);
-  const selectedCoverage = useMemo(() => coverageRows.find((row) => row.domainId === selected?.id), [coverageRows, selected?.id]);
   const simulationScenarios = useMemo(() => simulationsForDomain(selected?.id ?? ""), [selected?.id]);
   const simulationSummary = useMemo(() => simulationCoverageSummary(), []);
   const workspaceObjects = useMemo(() => selected ? buildEngineeringWorkspaceObjects({
     domain: selected,
     formulas: formulaCards,
     simulations: simulationScenarios,
-    coverage: selectedCoverage ? { percent: selectedCoverage.percent, missing: selectedCoverage.missing } : undefined,
     controls: { shape: visualA, forcing: visualB, time: visualT },
-  }) : [], [formulaCards, selected, selectedCoverage, simulationScenarios, visualA, visualB, visualT]);
+  }) : [], [formulaCards, selected, simulationScenarios, visualA, visualB, visualT]);
   const liveWorkspaceParent = useMemo(() => selected ? { id: `domain-${selected.id}`, title: selected.title } : undefined, [selected]);
   const publishedWorkspaceObjects = useMemo(() => [...workspaceObjects, ...liveSystemObjects], [liveSystemObjects, workspaceObjects]);
   useUniversalObjectGraphPublisher("engineering-math", publishedWorkspaceObjects);
@@ -108,11 +99,9 @@ export default function EngineeringMath() {
       <section className="grid gap-3 md:grid-cols-3 xl:grid-cols-6">
         <MetricCard label="Domains" value={engineeringMathSummary.domainCount} />
         <MetricCard label="Topics" value={engineeringMathSummary.topicCount} />
-        <MetricCard label="Native routes" value={engineeringMathSummary.nativeRouteCount} />
         <MetricCard label="Formula families" value={engineeringMathSummary.formulaFamilyCount} />
         <MetricCard label="Worked examples" value={workedSummary.exampleCount} />
         <MetricCard label="Portfolio tasks" value={projectsSummary.projectCount} />
-        <MetricCard label="Coverage score" value={coverageSummary.average} suffix="%" />
         <MetricCard label="Simulations" value={simulationSummary.scenarioCount} />
       </section>
 
@@ -315,41 +304,6 @@ export default function EngineeringMath() {
                 <p className="mt-3 rounded-lg bg-slate-100 p-3 text-sm font-bold text-slate-500 dark:bg-white/10 dark:text-slate-300">Solver presets for this domain are scheduled after the current numerical, transforms, PDE, stochastic, and vector-field set.</p>
               )}
             </section>
-
-            {selectedCoverage && (
-              <section className="mt-4 rounded-lg bg-slate-50 p-3 dark:bg-white/5">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="flex items-center gap-2 text-sm font-black text-slate-950 dark:text-white">
-                    <CheckCircle2 className="h-4 w-4 text-cyan-600 dark:text-cyan-200" />
-                    Concept Coverage Audit
-                  </h3>
-                  <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{selectedCoverage.score}/{selectedCoverage.maxScore} checks</span>
-                </div>
-                <div className="mt-3 grid gap-3 lg:grid-cols-[220px_minmax(0,1fr)]">
-                  <div className="rounded-lg border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/70">
-                    <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Selected Coverage</p>
-                    <p className="mt-2 text-3xl font-black text-slate-950 dark:text-white">{selectedCoverage.percent}%</p>
-                    <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
-                      <div className="h-full bg-cyan-500" style={{ width: `${selectedCoverage.percent}%` }} />
-                    </div>
-                    <p className="mt-2 text-[11px] font-bold leading-4 text-slate-500 dark:text-slate-400">{selectedCoverage.missing.length === 0 ? "No core gaps remain for this domain." : `${selectedCoverage.missing.length} upgrade targets remain.`}</p>
-                  </div>
-                  <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
-                    {Object.entries(selectedCoverage.counts).map(([key, value]) => (
-                      <div key={key} className="rounded-lg border border-slate-200 bg-white p-2 dark:border-white/10 dark:bg-slate-950/70">
-                        <p className="text-[11px] font-black uppercase text-slate-500 dark:text-slate-400">{coverageLabel(key)}</p>
-                        <p className="mt-1 text-xl font-black text-slate-950 dark:text-white">{value}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-3 grid gap-2 lg:grid-cols-2">
-                  {selectedCoverage.nextActions.map((action) => (
-                    <p key={action} className={`rounded-lg p-2 text-xs font-bold leading-5 ${selectedCoverage.missing.length === 0 ? "bg-emerald-50 text-emerald-800 dark:bg-emerald-400/10 dark:text-emerald-100" : "bg-amber-50 text-amber-800 dark:bg-amber-400/10 dark:text-amber-100"}`}>{action}</p>
-                  ))}
-                </div>
-              </section>
-            )}
 
             <section className="mt-4 rounded-lg bg-slate-50 p-3 dark:bg-white/5">
               <div className="flex items-center justify-between gap-2">
@@ -609,7 +563,6 @@ export default function EngineeringMath() {
                         {topic.title}
                         <ArrowRight className="h-4 w-4 text-cyan-500 transition group-hover:translate-x-0.5" />
                       </span>
-                      <span className="mt-1 block text-xs font-semibold text-slate-500 dark:text-slate-400">{topic.linkedVisualization.route}</span>
                     </Link>
                     <div className="mt-3 grid gap-2 sm:grid-cols-2">
                       {topic.concepts.map((concept) => (
@@ -624,20 +577,6 @@ export default function EngineeringMath() {
         )}
 
         <aside className="space-y-3">
-          <Panel title="Domain Readiness" icon={<Layers3 className="h-4 w-4" />}>
-            <div className="space-y-2">
-              {readinessRows.slice(0, 6).map((row) => (
-                <button key={row.id} type="button" onClick={() => setSelectedId(row.id)} className="w-full rounded-lg bg-slate-50 p-2 text-left transition hover:bg-cyan-50 dark:bg-white/5 dark:hover:bg-cyan-300/10">
-                  <span className="flex items-center justify-between gap-2 text-xs font-black text-slate-950 dark:text-white">
-                    {row.shortTitle}
-                    <span className="text-cyan-600 dark:text-cyan-200">{row.score}/4</span>
-                  </span>
-                  <span className="mt-1 block h-1.5 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10"><span className="block h-full bg-cyan-500" style={{ width: `${row.score * 25}%` }} /></span>
-                </button>
-              ))}
-            </div>
-          </Panel>
-
           <Panel title="Exam Planner" icon={<Target className="h-4 w-4" />}>
             <div className="space-y-2">
               <p className="rounded-lg bg-slate-50 p-2 text-xs font-bold leading-5 text-slate-600 dark:bg-white/5 dark:text-slate-300">
@@ -655,94 +594,7 @@ export default function EngineeringMath() {
             </div>
           </Panel>
 
-          <Panel title="Native Routes" icon={<Route className="h-4 w-4" />}>
-            <div className="space-y-2">
-              {selected?.nativeRoutes.map((route) => (
-                <Link key={route} to={route} className="mini-chip w-full justify-between hover:bg-cyan-100 hover:text-cyan-700 dark:hover:bg-cyan-400/15">
-                  {route}
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              ))}
-            </div>
-          </Panel>
-
-        <Panel title="Coverage Status" icon={<CheckCircle2 className="h-4 w-4" />}>
-            {selectedCoverage && selectedCoverage.missing.length === 0 ? (
-              <p className="text-sm font-semibold leading-6 text-emerald-700 dark:text-emerald-200">Domain has complete concept coverage across topics, visuals, formulas, launchers, solvers, practice, projects, case studies, and assessment.</p>
-            ) : (
-              <div className="space-y-2">
-                {(selectedCoverage?.missing ?? gaps.map((gap) => gap.gap)).map((gap) => <p key={gap} className="rounded-lg bg-amber-50 p-2 text-sm font-bold text-amber-800 dark:bg-amber-400/10 dark:text-amber-100">{gap}</p>)}
-              </div>
-            )}
-          </Panel>
-
-          <Panel title="Phase Milestones" icon={<FlaskConical className="h-4 w-4" />}>
-            <div className="space-y-2">
-              {engineeringMathMilestones.map((milestone) => (
-                <div key={milestone.id} className="rounded-lg bg-slate-50 p-3 dark:bg-white/5">
-                  <p className="text-sm font-black text-slate-950 dark:text-white">{milestone.title}</p>
-                  <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">{milestone.deliverables.join(", ")}</p>
-                </div>
-              ))}
-            </div>
-          </Panel>
         </aside>
-      </section>
-
-      <section className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_420px]">
-        <Panel title="Domain Comparison Matrix" icon={<ClipboardList className="h-4 w-4" />}>
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[760px] text-left text-sm">
-              <thead className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">
-                <tr>
-                  <th className="p-2">Domain</th>
-                  <th className="p-2">Semester</th>
-                  <th className="p-2">Topics</th>
-                  <th className="p-2">Launchers</th>
-                  <th className="p-2">Solvers</th>
-                  <th className="p-2">Coverage</th>
-                  <th className="p-2">Formula Families</th>
-                  <th className="p-2">Primary Applications</th>
-                </tr>
-              </thead>
-              <tbody>
-                {readinessRows.map((row) => (
-                  <tr key={row.id} className="border-t border-slate-200 dark:border-white/10">
-                    {(() => {
-                      const coverage = coverageRows.find((item) => item.domainId === row.id);
-                      return (
-                        <>
-                    <td className="p-2 font-black text-slate-950 dark:text-white">{row.title}</td>
-                    <td className="p-2 font-bold text-slate-500 dark:text-slate-300">{row.semesterBand}</td>
-                    <td className="p-2 font-bold">{row.topicCount}</td>
-                    <td className="p-2 font-bold">{row.launcherCount}</td>
-                    <td className="p-2 font-bold">{coverage?.counts.solvers ?? 0}</td>
-                    <td className="p-2 font-bold text-cyan-700 dark:text-cyan-200">{coverage?.percent ?? 0}%</td>
-                    <td className="p-2 font-bold">{row.formulaCount}</td>
-                    <td className="p-2 text-xs font-semibold text-slate-500 dark:text-slate-400">{row.applications}</td>
-                        </>
-                      );
-                    })()}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Panel>
-
-        <Panel title="Build Priorities" icon={<CheckCircle2 className="h-4 w-4" />}>
-          <div className="space-y-2">
-            {readinessRows.filter((row) => row.priority === "High").slice(0, 5).map((row) => (
-              <button key={row.id} type="button" onClick={() => setSelectedId(row.id)} className="group w-full rounded-lg bg-slate-50 p-3 text-left transition hover:bg-cyan-50 dark:bg-white/5 dark:hover:bg-cyan-300/10">
-                <span className="flex items-center justify-between gap-2 text-sm font-black text-slate-950 dark:text-white">
-                  {row.title}
-                  <ArrowRight className="h-4 w-4 text-cyan-500 transition group-hover:translate-x-0.5" />
-                </span>
-                <span className="mt-1 block text-xs font-semibold text-slate-500 dark:text-slate-400">{row.recommendation}</span>
-              </button>
-            ))}
-          </div>
-        </Panel>
       </section>
 
       <section className="grid gap-3 xl:grid-cols-4">
@@ -769,12 +621,6 @@ function MetricCard({ label, value, suffix = "" }: { label: string; value: numbe
       <p className="mt-2 text-3xl font-black text-slate-950 dark:text-white">{value}{suffix}</p>
     </div>
   );
-}
-
-function coverageLabel(key: string) {
-  return key
-    .replace(/([A-Z])/g, " $1")
-    .replace(/^./, (value) => value.toUpperCase());
 }
 
 function Badge({ label, tone }: { label: string; tone: "hot" | "cool" | "live" }) {
@@ -1251,31 +1097,6 @@ function buildQuickStarts() {
     { title: "Simulation Path", steps: ["PDE", "Numerical Methods", "Data Workspace", "Export"] },
     { title: "AI/ML Math Path", steps: ["Linear Algebra", "Probability", "Optimization", "Applications"] },
   ];
-}
-
-function buildReadinessRows() {
-  return engineeringMathDomains.map((domain) => {
-    const domainLaunchers = launchersForDomain(domain.id);
-    const score = [
-      domain.topics.length > 0,
-      domain.nativeRoutes.length > 0,
-      domain.formulaFamilies.length >= 4,
-      domainLaunchers.length >= 4,
-    ].filter(Boolean).length;
-    return {
-      id: domain.id,
-      title: domain.title,
-      shortTitle: domain.title.replace("Engineering ", "").replace(" and ", " + "),
-      semesterBand: domain.semesterBand,
-      topicCount: domain.topics.length,
-      launcherCount: domainLaunchers.length,
-      formulaCount: domain.formulaFamilies.length,
-      applications: domain.applicationAreas.slice(0, 3).join(", "),
-      priority: domain.priority,
-      score,
-      recommendation: score === 4 ? "Ready for deeper simulations and assessment packs." : "Needs more route, formula, or launcher coverage.",
-    };
-  });
 }
 
 function conceptVisualCount(topics: SyllabusTopic[]) {

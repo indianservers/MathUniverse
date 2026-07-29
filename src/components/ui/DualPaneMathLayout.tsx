@@ -17,9 +17,10 @@ type DualPaneMathLayoutProps = {
   controls: ReactNode;
   panes: [Pane, Pane];
   insights?: ReactNode;
+  theory?: ReactNode;
 };
 
-export default function DualPaneMathLayout({ title, subtitle, meta, controls, panes, insights }: DualPaneMathLayoutProps) {
+export default function DualPaneMathLayout({ title, subtitle, meta, controls, panes, insights, theory }: DualPaneMathLayoutProps) {
   const [activePane, setActivePane] = useState<"2d" | "3d">("2d");
   const [zoomByPane, setZoomByPane] = useState<Record<"2d" | "3d", number>>({ "2d": 1, "3d": 1 });
   const [leftWidth, setLeftWidth] = useState(340);
@@ -135,6 +136,12 @@ export default function DualPaneMathLayout({ title, subtitle, meta, controls, pa
           </aside>
         ) : null}
       </div>
+
+      {theory ? (
+        <SectionCard title="Theory" description="Read this after exploring the controls to connect the visual model with the mathematics.">
+          {theory}
+        </SectionCard>
+      ) : null}
     </div>
   );
 }

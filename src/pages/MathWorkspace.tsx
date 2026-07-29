@@ -71,7 +71,6 @@ import { evaluateSpreadsheetGrid, fillDownFormula, rangeToCsv } from "../workspa
 import { syllabusWorkspaceTemplates, type GuidedActivityPhase, type SyllabusWorkspaceTemplate } from "../workspace/syllabusWorkspaceTemplates";
 import type { MathObject, MathObjectKind, MathObjectProperties, MathObjectStyle, MathTransform } from "../workspace/types";
 import { useWorkspaceStore } from "../workspace/workspaceStore";
-import { runWorkspaceQaSuite, type WorkspaceQaReport } from "../workspace/workspaceQaSuite";
 import { createUnsupportedWorkspaceAction } from "../workspace/unsupportedWorkspaceAction";
 import { workspaceModeNavigation } from "../workspace/workspaceModeConfig";
 import {
@@ -322,9 +321,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [controlsLocked, setControlsLocked] = useState(false);
   const [highContrastMode, setHighContrastMode] = useState(false);
   const [performanceMode, setPerformanceMode] = useState(false);
-  const [qaReport, setQaReport] = useState<WorkspaceQaReport>(() => runWorkspaceQaSuite());
   const [projectLibrary, setProjectLibrary] = useState<OfflineProjectEntry<WorkspaceSnapshot>[]>(() => readOfflineProjectLibrary<WorkspaceSnapshot>());
-  const [projectStatus, setProjectStatus] = useState("Offline project library ready.");
+  const [, setProjectStatus] = useState("");
   const [protocol, setProtocol] = useState<ConstructionStep[]>([]);
   const [undoStack, setUndoStack] = useState<ConstructionStep[]>([]);
   const [redoStack, setRedoStack] = useState<ConstructionStep[]>([]);
@@ -1587,7 +1585,6 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     runGuidedExample(template.command);
     setProjectStatus(`${template.unit} template loaded with guided activity mode.`);
   };
-  const runQaNow = () => setQaReport(runWorkspaceQaSuite());
   const updateGuidedActivityEntry = (patch: Partial<ActivityJournalEntry>) => {
     const key = activityJournalKey(activeTemplate.id, guidedPhase);
     setActivityJournal((current) => ({
@@ -2015,11 +2012,11 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setResults((current) => [{ id: crypto.randomUUID(), input: `${model} regression`, interpretation: "Spreadsheet regression", result: regression.expression, detail: regression.detail, table: points.slice(0, 12), graphExpression: regression.expression }, ...current].slice(0, 12));
   };
   const dataOverviewCards = [
-    { title: "Spreadsheet", text: "Editable cells, formulas, scatter plots, and regression.", route: "/workspace/data/spreadsheet", meta: `${spreadsheet.length} rows` },
-    { title: "Function Analysis", text: "Roots, extrema, intercepts, derivative, integral, and table commands.", route: "/workspace/data/analysis", meta: activeCasExpression },
-    { title: "CAS Workbench", text: "Exact algebra actions for simplify, factor, solve, limits, substitution, and systems.", route: "/workspace/data/cas", meta: `${casDepthActions.length} actions` },
-    { title: "Results", text: "Command history, exact results, numeric checks, and generated tables.", route: "/workspace/data/results", meta: `${results.length} cards` },
-    { title: "Object Registry", text: "Shared graph, CAS, table, spreadsheet, geometry, and 3D objects.", route: "/workspace/data/objects", meta: `${unifiedWorkspaceObjects.length} objects` },
+    { title: "Spreadsheet", text: "Editable cells, formulas, scatter plots, and regression.", route: "/workspace/data/spreadsheet", concept: "Tables" },
+    { title: "Function Analysis", text: "Roots, extrema, intercepts, derivative, integral, and table commands.", route: "/workspace/data/analysis", concept: "Functions" },
+    { title: "CAS Workbench", text: "Exact algebra actions for simplify, factor, solve, limits, substitution, and systems.", route: "/workspace/data/cas", concept: "Algebra" },
+    { title: "Results", text: "Exact results, numeric checks, and generated tables.", route: "/workspace/data/results", concept: "Solutions" },
+    { title: "Object Registry", text: "Shared graph, CAS, table, spreadsheet, geometry, and 3D objects.", route: "/workspace/data/objects", concept: "Linked Objects" },
   ];
 
   return (
@@ -2030,10 +2027,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       {!singleView && <WorkspaceModeTabs active={workspaceView} onChange={setWorkspaceView} />}
       <CompactWorkspaceBar
         activeTemplate={activeTemplate}
-        dynamicHealth={dynamicHealth}
-        qaReport={qaReport}
         teachingMode={teachingMode}
-        performanceMode={performanceMode}
         compact={singleView}
         onSave={saveWorkspace}
         onLoad={loadWorkspace}
@@ -2046,13 +2040,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           setTeachingMode((value) => !value);
           setWorkspaceView("teach");
         }}
-        onRunQa={runQaNow}
-        onPerformance={setPerformanceMode}
       />
       {!singleView && workspaceView !== "3d" && <WorkspaceShortcutStrip />}
-      <div className={singleView ? "rounded-xl border border-cyan-200 bg-cyan-50 px-3 py-1 text-[11px] font-bold text-cyan-950 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-50" : "rounded-xl border border-cyan-200 bg-cyan-50 px-3 py-1.5 text-xs font-bold text-cyan-950 dark:border-cyan-300/20 dark:bg-cyan-300/10 dark:text-cyan-50"} role="status" aria-live="polite" data-testid="workspace-safety-status">
-        {projectStatus}
-      </div>
 
       {workspaceView === "teach" && <SectionCard title="Teaching, Library, And Export" description="Launch syllabus workspaces, guide students, present steps, and manage browser-only projects.">
         <div data-testid="workspace-teacher-surface">
@@ -2092,8 +2081,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
               onExport={exportPracticeReport}
             />
             <TeacherPresentationPanel active={teachingMode} locked={controlsLocked} revealStep={revealStep} lesson={classroomLesson} template={activeTemplate} notes={presentationNotes} responses={practiceResponses} report={practiceReport} journal={activityJournal} onToggle={setTeachingMode} onLock={setControlsLocked} onReveal={setRevealStep} onNotes={setPresentationNotes} onCopyLink={copyTeacherPresentationUrl} />
-            <OfflineProjectLibraryPanel projects={projectLibrary} status={projectStatus} onSave={saveProjectToLibrary} onRestore={restoreProject} onDelete={deleteProject} onClear={clearProjects} />
-            <ProductionQualityPanel highContrast={highContrastMode} performanceMode={performanceMode} qaReport={qaReport} onHighContrast={setHighContrastMode} onPerformance={setPerformanceMode} onRunQa={runQaNow} />
+            <OfflineProjectLibraryPanel projects={projectLibrary} onSave={saveProjectToLibrary} onRestore={restoreProject} onDelete={deleteProject} onClear={clearProjects} />
             {teachingMode && (
               <div className="rounded-2xl bg-cyan-50 p-4 text-sm leading-6 text-slate-700 dark:bg-cyan-400/10 dark:text-cyan-50">
                 <p className="font-bold">Teacher presentation mode is active</p>
@@ -2239,20 +2227,19 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         )}
       </SectionCard>}
 
-      {workspaceView === "data" && <SectionCard title={dataPage === "overview" ? "Data Workspace" : dataWorkspacePageTitle(dataPage)} description="Spreadsheet, CAS, function analysis, results, and the shared object registry are split into focused pages." headerAction={<DataWorkspaceNav active={dataPage} />} compact={singleView}>
+      {workspaceView === "data" && <SectionCard title={dataPage === "overview" ? "Data Workspace" : dataWorkspacePageTitle(dataPage)} description="Explore tables, symbolic algebra, function behavior, exact solutions, and linked mathematical objects." headerAction={<DataWorkspaceNav active={dataPage} />} compact={singleView}>
         <div data-testid="workspace-data-surface">
         {dataPage === "overview" && (
           <div className="space-y-3">
             <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-5">
               {dataOverviewCards.map((card) => (
                 <Link key={card.route} to={card.route} className="rounded-xl border border-slate-200 bg-white p-3 text-left transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950/60 dark:hover:border-cyan-300/30 dark:hover:bg-cyan-300/10">
-                  <p className="text-xs font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">{card.meta}</p>
+                  <p className="text-xs font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">{card.concept}</p>
                   <h3 className="mt-2 font-bold text-slate-950 dark:text-white">{card.title}</h3>
                   <p className="mt-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{card.text}</p>
                 </Link>
               ))}
             </div>
-            <WorldClassMathSoftwareGaps />
           </div>
         )}
         {dataPage === "spreadsheet" && (
@@ -4446,40 +4433,7 @@ function DataWorkspaceNav({ active }: { active: DataWorkspacePage }) {
   );
 }
 
-const worldClassMathSoftwareGaps = [
-  { title: "Native symbolic engine", detail: "Broaden exact CAS coverage to assumptions, domains, piecewise algebra, equation systems, inequalities, and step explanations." },
-  { title: "Dynamic dependency graph", detail: "Make every spreadsheet cell, CAS result, plot, slider, and object reactive with visible dependency tracing and recomputation status." },
-  { title: "Geometry and data fusion", detail: "Let tables generate points, loci, constructions, sliders, statistics, and regression objects without switching mental models." },
-  { title: "Proof and verification layer", detail: "Add theorem-aware checks, counterexamples, units, assumptions, numeric verification, and explainable confidence for each result." },
-  { title: "Professional import/export", detail: "Support CSV/XLSX, interoperable geometry files, LaTeX, MathML, SVG/PDF, classroom handouts, and reproducible project bundles." },
-  { title: "Collaboration and classroom mode", detail: "Add shared boards, teacher locks, assignments, student replay, privacy-safe analytics, and versioned construction history." },
-  { title: "Accessibility and internationalization", detail: "Improve keyboard navigation, screen reader math output, high contrast, localization, handwriting, and touch-first workflows." },
-  { title: "Performance at scale", detail: "Use workers, virtualization, cached sampling, robust numeric solvers, and graceful fallbacks for large tables and dense graphs." },
-];
-
-function WorldClassMathSoftwareGaps() {
-  return (
-    <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-300/20 dark:bg-amber-300/10">
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <p className="text-xs font-black uppercase tracking-wide text-amber-700 dark:text-amber-200">World-class gaps</p>
-          <h3 className="mt-1 text-lg font-bold text-slate-950 dark:text-white">What is missing versus top maths software</h3>
-        </div>
-        <span className="rounded-full bg-white px-3 py-1.5 text-xs font-black uppercase text-amber-800 shadow-sm dark:bg-slate-950 dark:text-amber-100">{worldClassMathSoftwareGaps.length} priorities</span>
-      </div>
-      <div className="mt-4 grid gap-3 md:grid-cols-2">
-        {worldClassMathSoftwareGaps.map((gap) => (
-          <article key={gap.title} className="rounded-xl bg-white p-3 dark:bg-slate-950/70">
-            <h4 className="font-bold text-slate-950 dark:text-white">{gap.title}</h4>
-            <p className="mt-1 text-sm leading-5 text-slate-600 dark:text-slate-300">{gap.detail}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function CompactWorkspaceBar({ activeTemplate, dynamicHealth, qaReport, teachingMode, performanceMode, compact = false, onSave, onLoad, onUndo, onRedo, onExportJson, onExportPng, onShare, onToggleTeach, onRunQa, onPerformance }: { activeTemplate: SyllabusWorkspaceTemplate; dynamicHealth: ReturnType<typeof graphHealthSummary>; qaReport: WorkspaceQaReport; teachingMode: boolean; performanceMode: boolean; compact?: boolean; onSave: () => void; onLoad: () => void; onUndo: () => void; onRedo: () => void; onExportJson: () => void; onExportPng: () => void; onShare: () => void; onToggleTeach: () => void; onRunQa: () => void; onPerformance: (value: boolean) => void }) {
+function CompactWorkspaceBar({ activeTemplate, teachingMode, compact = false, onSave, onLoad, onUndo, onRedo, onExportJson, onExportPng, onShare, onToggleTeach }: { activeTemplate: SyllabusWorkspaceTemplate; teachingMode: boolean; compact?: boolean; onSave: () => void; onLoad: () => void; onUndo: () => void; onRedo: () => void; onExportJson: () => void; onExportPng: () => void; onShare: () => void; onToggleTeach: () => void }) {
   const actionButtons = (
     <>
       <button type="button" onClick={onSave} className="action-secondary py-2"><Save className="h-4 w-4" />Save</button>
@@ -4489,8 +4443,6 @@ function CompactWorkspaceBar({ activeTemplate, dynamicHealth, qaReport, teaching
       <button type="button" onClick={onExportJson} className="action-secondary py-2"><Download className="h-4 w-4" />JSON</button>
       <button type="button" onClick={onExportPng} className="action-secondary py-2"><Download className="h-4 w-4" />PNG</button>
       <button type="button" onClick={onShare} className="action-secondary py-2"><Download className="h-4 w-4" />URL</button>
-      <button type="button" onClick={() => onPerformance(!performanceMode)} className={performanceMode ? "action-primary py-2" : "action-secondary py-2"}>Performance</button>
-      <button type="button" onClick={onRunQa} className="action-secondary py-2">Run QA</button>
       <button type="button" onClick={onToggleTeach} className={teachingMode ? "action-primary py-2" : "action-secondary py-2"}><Presentation className="h-4 w-4" />Teach</button>
     </>
   );
@@ -4499,10 +4451,7 @@ function CompactWorkspaceBar({ activeTemplate, dynamicHealth, qaReport, teaching
     <div className={compact ? "rounded-xl border border-slate-200 bg-white/80 p-2 dark:border-white/10 dark:bg-white/5" : "rounded-2xl border border-slate-200 bg-white/80 p-3 dark:border-white/10 dark:bg-white/5"} data-testid="workspace-command-bar">
       <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-wrap items-center gap-2">
-          <span className={`rounded-full px-3 py-1.5 text-xs font-black ${dynamicHealth.ready ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100" : "bg-amber-100 text-amber-900 dark:bg-amber-400/15 dark:text-amber-100"}`}>Kernel {dynamicHealth.ready ? "ready" : "needs attention"}</span>
-          <span className="mini-chip">{dynamicHealth.total} objects</span>
           <span className="mini-chip">{activeTemplate.unit}</span>
-          <span className={`rounded-full px-3 py-1.5 text-xs font-black ${qaReport.failed ? "bg-rose-100 text-rose-800 dark:bg-rose-400/15 dark:text-rose-100" : "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100"}`}>QA {qaReport.passed}/{qaReport.passed + qaReport.failed}</span>
         </div>
         {compact ? (
           <details className="relative ml-auto">
@@ -5374,13 +5323,12 @@ function TeacherPresentationPanel({ active, locked, revealStep, lesson, template
   );
 }
 
-function OfflineProjectLibraryPanel({ projects, status, onSave, onRestore, onDelete, onClear }: { projects: OfflineProjectEntry<WorkspaceSnapshot>[]; status: string; onSave: () => void; onRestore: (entry: OfflineProjectEntry<WorkspaceSnapshot>) => void; onDelete: (id: string) => void; onClear: () => void }) {
+function OfflineProjectLibraryPanel({ projects, onSave, onRestore, onDelete, onClear }: { projects: OfflineProjectEntry<WorkspaceSnapshot>[]; onSave: () => void; onRestore: (entry: OfflineProjectEntry<WorkspaceSnapshot>) => void; onDelete: (id: string) => void; onClear: () => void }) {
   return (
     <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h3 className="font-bold">Offline-First Project Library</h3>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{status}</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <button type="button" onClick={onSave} className="action-secondary py-2">Save current</button>
@@ -5399,31 +5347,6 @@ function OfflineProjectLibraryPanel({ projects, status, onSave, onRestore, onDel
           </div>
         ))}
       </div>
-    </div>
-  );
-}
-
-function ProductionQualityPanel({ highContrast, performanceMode, qaReport, onHighContrast, onPerformance, onRunQa }: { highContrast: boolean; performanceMode: boolean; qaReport: WorkspaceQaReport; onHighContrast: (value: boolean) => void; onPerformance: (value: boolean) => void; onRunQa: () => void }) {
-  const [showDetails, setShowDetails] = useState(false);
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h3 className="font-bold">QA, Performance, Accessibility</h3>
-        <div className="flex flex-wrap gap-2">
-          <button type="button" onClick={onRunQa} className="action-secondary py-2">Run QA</button>
-          <button type="button" onClick={() => setShowDetails((value) => !value)} className="action-secondary py-2">{showDetails ? "Hide details" : "Show details"}</button>
-        </div>
-      </div>
-      <div className="mt-3 grid gap-2 md:grid-cols-3">
-        <Toggle checked={highContrast} label="High contrast" onChange={onHighContrast} />
-        <Toggle checked={performanceMode} label="Performance mode" onChange={onPerformance} />
-        <div className={`rounded-2xl p-3 text-sm font-bold ${qaReport.failed ? "bg-rose-100 text-rose-800 dark:bg-rose-400/15 dark:text-rose-100" : "bg-emerald-100 text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-100"}`}>QA: {qaReport.passed} passed, {qaReport.failed} failed</div>
-      </div>
-      {showDetails && (
-        <div className="mt-3 grid gap-2 md:grid-cols-2">
-          {qaReport.checks.map((check) => <div key={check.id} className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10"><p className="font-bold">{check.passed ? "Pass" : "Fail"} - {check.label}</p><p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{check.area}: {check.detail}</p></div>)}
-        </div>
-      )}
     </div>
   );
 }

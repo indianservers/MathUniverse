@@ -1,4 +1,4 @@
-import { type MouseEvent, useMemo, useState } from "react";
+import { type MouseEvent, useMemo, useState, type ReactNode } from "react";
 import { Plus, Trash2 } from "lucide-react";
 import DualPaneMathLayout from "../components/ui/DualPaneMathLayout";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
@@ -115,7 +115,30 @@ export default function SlopeFieldsVisualizerPage() {
           </div>
         </div>
       }
+      theory={
+        <div className="grid gap-4 lg:grid-cols-3">
+          <TheoryPanel title="Core Idea">
+            A first-order differential equation dy/dx = f(x,y) does not directly give y. It gives the slope a solution should have at each point.
+          </TheoryPanel>
+          <TheoryPanel title="Initial Conditions">
+            Each starting point selects one curve from the family of possible solutions. Nearby starts can follow similar or very different paths depending on the field.
+            <div className="mt-3 rounded-xl bg-slate-100 p-3 font-mono text-xs font-bold dark:bg-slate-950">dy/dx = f(x,y), y(x0)=y0</div>
+          </TheoryPanel>
+          <TheoryPanel title="How To Read This Tool">
+            Click the plane or adjust x0 and y0 to set an initial condition. The small segments show local direction; the colored curve follows those directions.
+          </TheoryPanel>
+        </div>
+      }
     />
+  );
+}
+
+function TheoryPanel({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white/75 p-4 text-sm leading-6 text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+      <h2 className="text-base font-black text-slate-950 dark:text-white">{title}</h2>
+      <div className="mt-2">{children}</div>
+    </div>
   );
 }
 

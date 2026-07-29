@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import DualPaneMathLayout from "../components/ui/DualPaneMathLayout";
 import SliderControl from "../components/ui/SliderControl";
 import { compileFunctionExpression } from "../utils/functionParser";
@@ -118,7 +118,30 @@ export default function LimitsContinuityVisualizer() {
           </div>
         </div>
       }
+      theory={
+        <div className="grid gap-4 lg:grid-cols-3">
+          <TheoryPanel title="Core Idea">
+            A limit describes the value a function approaches near x = a. It is about nearby behavior, not only the value exactly at a.
+          </TheoryPanel>
+          <TheoryPanel title="Continuity Test">
+            Continuity at a point needs three facts: f(a) exists, the two-sided limit exists, and both values are equal.
+            <div className="mt-3 rounded-xl bg-slate-100 p-3 font-mono text-xs font-bold dark:bg-slate-950">lim x-&gt;a f(x) = f(a)</div>
+          </TheoryPanel>
+          <TheoryPanel title="How To Read This Tool">
+            Move a to choose the test point. Reduce approach distance to bring the left and right samples closer to a, then compare their target values.
+          </TheoryPanel>
+        </div>
+      }
     />
+  );
+}
+
+function TheoryPanel({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white/75 p-4 text-sm leading-6 text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+      <h2 className="text-base font-black text-slate-950 dark:text-white">{title}</h2>
+      <div className="mt-2">{children}</div>
+    </div>
   );
 }
 

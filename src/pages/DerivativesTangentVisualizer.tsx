@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Line, OrbitControls, Text } from "@react-three/drei";
 import DualPaneMathLayout from "../components/ui/DualPaneMathLayout";
 import SliderControl from "../components/ui/SliderControl";
@@ -115,7 +115,30 @@ export default function DerivativesTangentVisualizer() {
           </div>
         </div>
       }
+      theory={
+        <div className="grid gap-4 lg:grid-cols-3">
+          <TheoryPanel title="Core Idea">
+            A derivative is the instantaneous rate of change of a function. Visually, it is the slope of the tangent line at one chosen point.
+          </TheoryPanel>
+          <TheoryPanel title="Limit Definition">
+            Start with a secant slope between two points, then shrink the horizontal gap h toward 0. If the slopes approach one stable value, that value is f'(a).
+            <div className="mt-3 rounded-xl bg-slate-100 p-3 font-mono text-xs font-bold dark:bg-slate-950">f'(a) = lim h-&gt;0 [f(a+h)-f(a)]/h</div>
+          </TheoryPanel>
+          <TheoryPanel title="How To Read This Tool">
+            Move a to choose the tangent point. Move h to compare secant and tangent behavior. Turn on f'(x) to see the derivative as its own function.
+          </TheoryPanel>
+        </div>
+      }
     />
+  );
+}
+
+function TheoryPanel({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white/75 p-4 text-sm leading-6 text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+      <h2 className="text-base font-black text-slate-950 dark:text-white">{title}</h2>
+      <div className="mt-2">{children}</div>
+    </div>
   );
 }
 

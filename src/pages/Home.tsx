@@ -1,7 +1,7 @@
 import { BookOpen, BrainCircuit, Calculator, CheckCircle2, Cuboid, FlaskConical, Gauge, GraduationCap, HelpCircle, Layers3, LibraryBig, MonitorSmartphone, PlayCircle, Rocket, Route, Search, ShieldCheck, Sparkles, Target, Trophy, Wand2, X, ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import DashboardCard from "../components/ui/DashboardCard";
 import AITutorPanel from "../components/ui/AITutorPanel";
 import { iconMap } from "../components/layout/navItems";
@@ -443,8 +443,113 @@ export default function Home() {
           </button>
         </section>
       )}
+      {homeFilter === "all" && <FormulaMuseumSection />}
       {homeFilter === "all" && <AITutorPanel />}
     </div>
+  );
+}
+
+function FormulaMuseumSection() {
+  const exhibits = [
+    {
+      title: "Derivative Tangent Sculpture",
+      route: "/math/derivatives",
+      formula: "f'(x)=lim(h->0)(f(x+h)-f(x))/h",
+      note: "A moving tangent beam rides along a curve and reveals instantaneous slope.",
+      className: "museum-derivative",
+    },
+    {
+      title: "Integral Slab Gallery",
+      route: "/math/integration",
+      formula: "integral_a^b f(x) dx",
+      note: "Area becomes stacked translucent slabs, from rough rectangles to smooth accumulation.",
+      className: "museum-integral",
+    },
+    {
+      title: "Matrix Transform Room",
+      route: "/math/matrix-transformations",
+      formula: "A[x,y]^T",
+      note: "Step into a grid room where a matrix rotates, shears, stretches, and reflects space.",
+      className: "museum-matrix",
+    },
+    {
+      title: "Probability Branch Atrium",
+      route: "/probability-statistics",
+      formula: "P(A|B)=P(A)P(B|A)/P(B)",
+      note: "Branching paths turn conditional probability into a walkable decision tree.",
+      className: "museum-probability",
+    },
+  ];
+
+  return (
+    <section className="formula-museum overflow-hidden rounded-[1.8rem] border border-slate-200 bg-slate-950 text-white shadow-2xl shadow-cyan-950/20 dark:border-white/10" aria-label="3D Formula Museum">
+      <div className="grid gap-4 p-4 md:p-5 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <div className="flex min-h-[420px] flex-col justify-between">
+          <div>
+            <span className="mini-chip border-cyan-300/30 bg-cyan-300/10 text-cyan-100">
+              <Cuboid className="h-3.5 w-3.5" />
+              3D Formula Museum
+            </span>
+            <h2 className="mt-4 max-w-2xl text-3xl font-black tracking-tight text-white md:text-5xl">
+              Walk through formulas as physical exhibits.
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-300 md:text-base">
+              Derivatives become tangent sculptures, integrals stack into area slabs, matrices reshape rooms, and probability grows into branching pathways.
+            </p>
+          </div>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            <Link to="/visual-formulas" className="action-primary">
+              <Sparkles className="h-4 w-4" />
+              Open formula atlas
+            </Link>
+            <Link to="/math-lab/3d-graphing" className="action-secondary border-white/15 bg-white/10 text-white hover:bg-white/15">
+              <Cuboid className="h-4 w-4" />
+              Open 3D lab
+            </Link>
+          </div>
+        </div>
+
+        <div className="formula-museum-stage" aria-hidden="true">
+          <div className="museum-floor" />
+          <div className="museum-exhibit museum-derivative">
+            <span className="museum-curve" />
+            <span className="museum-tangent" />
+            <span className="museum-label">f'(x)</span>
+          </div>
+          <div className="museum-exhibit museum-integral">
+            {Array.from({ length: 8 }, (_, index) => <span key={index} style={{ "--i": index } as CSSProperties} />)}
+            <span className="museum-label">area</span>
+          </div>
+          <div className="museum-exhibit museum-matrix">
+            <span />
+            <span />
+            <span />
+            <span className="museum-label">A</span>
+          </div>
+          <div className="museum-exhibit museum-probability">
+            <span />
+            <span />
+            <span />
+            <span className="museum-label">P</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-2 border-t border-white/10 p-4 md:grid-cols-2 xl:grid-cols-4">
+        {exhibits.map((exhibit) => (
+          <Link key={exhibit.title} to={exhibit.route} className="group rounded-2xl border border-white/10 bg-white/[0.06] p-3 transition hover:-translate-y-0.5 hover:border-cyan-300/50 hover:bg-white/[0.09]">
+            <div className={`museum-card-icon ${exhibit.className}`} />
+            <h3 className="mt-3 text-sm font-black text-white">{exhibit.title}</h3>
+            <p className="mt-1 font-mono text-[11px] font-black text-cyan-200">{exhibit.formula}</p>
+            <p className="mt-2 line-clamp-3 text-xs font-semibold leading-5 text-slate-300">{exhibit.note}</p>
+            <span className="mt-3 inline-flex items-center gap-2 text-xs font-black text-cyan-200">
+              Enter exhibit <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
+            </span>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 

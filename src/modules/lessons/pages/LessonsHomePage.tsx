@@ -1,17 +1,19 @@
 import { ArrowRight, BookOpen, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { advancedConceptLessons, type AdvancedConceptLesson } from "../catalog/advanced/advancedConceptLessons";
 import { lessonCatalog, lessonCategories } from "../catalog/lessonCatalog";
 import { schoolLessonCatalog } from "../catalog/school/schoolSyllabusCatalog";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
 
 type LessonSearchResult =
   | { kind: "interactive"; lesson: (typeof lessonCatalog)[number] }
+  | { kind: "advanced"; lesson: AdvancedConceptLesson }
   | { kind: "school"; lesson: SchoolSyllabusLesson };
 
 export default function LessonsHomePage() {
   const [query, setQuery] = useState("");
-  const totalLessonCount = lessonCatalog.length + schoolLessonCatalog.length;
+  const totalLessonCount = lessonCatalog.length + schoolLessonCatalog.length + advancedConceptLessons.length;
   const results = useMemo<LessonSearchResult[]>(() => {
     const normalized = query.trim().toLowerCase();
     if (!normalized) return [];
@@ -38,7 +40,23 @@ export default function LessonsHomePage() {
       )
       .map((lesson) => ({ kind: "school" as const, lesson }));
 
-    return [...interactiveMatches, ...schoolMatches].slice(0, 36);
+    const advancedMatches = advancedConceptLessons
+      .filter((lesson) =>
+        [
+          lesson.title,
+          lesson.summary,
+          lesson.strand,
+          lesson.searchKeywords.join(" "),
+          lesson.objectives.join(" "),
+          lesson.learn.join(" "),
+        ]
+          .join(" ")
+          .toLowerCase()
+          .includes(normalized),
+      )
+      .map((lesson) => ({ kind: "advanced" as const, lesson }));
+
+    return [...interactiveMatches, ...advancedMatches, ...schoolMatches].slice(0, 36);
   }, [query]);
 
   return (
@@ -79,6 +97,8 @@ export default function LessonsHomePage() {
             {results.map((result) =>
               result.kind === "interactive" ? (
                 <LessonCard key={`interactive-${result.lesson.id}`} lesson={result.lesson} />
+              ) : result.kind === "advanced" ? (
+                <AdvancedLessonSearchCard key={`advanced-${result.lesson.id}`} lesson={result.lesson} />
               ) : (
                 <SchoolLessonSearchCard key={`school-${result.lesson.id}`} lesson={result.lesson} />
               ),
@@ -88,6 +108,17 @@ export default function LessonsHomePage() {
         </section>
       ) : (
         <section className="grid gap-3 md:grid-cols-2">
+          <Link to="/lessons/advanced-concepts" className="group rounded-2xl border border-violet-200 bg-violet-50 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-violet-400 dark:border-violet-300/20 dark:bg-violet-300/10">
+            <div className="flex items-start justify-between gap-3">
+              <BookOpen className="h-6 w-6 text-violet-600" />
+              <span className="rounded-full bg-white px-2 py-1 text-xs font-black text-violet-700 dark:bg-white/10 dark:text-violet-100">{advancedConceptLessons.length}</span>
+            </div>
+            <h2 className="mt-4 text-xl font-black">Advanced Concept Lessons</h2>
+            <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Theory-backed lessons for continued fractions, famous problems, inference, differential equations, and special functions.</p>
+            <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-violet-700 dark:text-violet-300">
+              Open advanced pack <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+            </span>
+          </Link>
           <Link to="/lessons/school" className="group rounded-2xl border border-cyan-200 bg-cyan-50 p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-400 dark:border-cyan-300/20 dark:bg-cyan-300/10">
             <div className="flex items-start justify-between gap-3">
               <BookOpen className="h-6 w-6 text-cyan-600" />
@@ -124,6 +155,17 @@ function LessonCard({ lesson }: { lesson: (typeof lessonCatalog)[number] }) {
       <p className="text-[10px] font-black uppercase text-cyan-600">#{lesson.id} - {lesson.topic}</p>
       <h3 className="mt-1 font-black">{lesson.title}</h3>
       <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-500 dark:text-slate-300">{lesson.purpose}</p>
+    </Link>
+  );
+}
+
+function AdvancedLessonSearchCard({ lesson }: { lesson: AdvancedConceptLesson }) {
+  return (
+    <Link to={lesson.route} className="rounded-2xl border border-violet-200 bg-violet-50 p-4 transition hover:border-violet-400 dark:border-violet-300/20 dark:bg-violet-300/10">
+      <p className="text-[10px] font-black uppercase text-violet-700 dark:text-violet-200">Advanced - {lesson.strand}</p>
+      <h3 className="mt-1 font-black">{lesson.title}</h3>
+      <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{lesson.summary}</p>
+      <p className="mt-2 text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">{lesson.searchKeywords.slice(0, 4).join(" - ")}</p>
     </Link>
   );
 }

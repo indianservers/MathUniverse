@@ -46,6 +46,14 @@ describe("GraphWorkspacePanel", () => {
     expect(html).toContain("stroke=\"#06b6d4\"");
   });
 
+  it("renders axis unit labels on the graph surface", () => {
+    const html = renderPanel([{ id: "plot-1", expression: "a*x+b", color: colors[0], kind: "function", visible: true }]);
+
+    expect(html).toContain(">1 unit</text>");
+    expect(html).toContain(">x</text>");
+    expect(html).toContain(">y</text>");
+  });
+
   it("renders visible validation messages with suggestions", () => {
     const html = renderPanel(
       [{ id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true }],

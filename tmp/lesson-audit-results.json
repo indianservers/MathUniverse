@@ -1,0 +1,107 @@
+{
+  "totals": {
+    "core": 674,
+    "school": 220,
+    "advanced": 25,
+    "all": 919
+  },
+  "uniqueness": {
+    "duplicateCoreIds": [],
+    "duplicateSchoolIds": [],
+    "duplicateAdvancedIds": [],
+    "duplicateRoutes": []
+  },
+  "core": {
+    "byPhase": {
+      "Phase 1": 130,
+      "Phase 2": 225,
+      "Phase 3": 163,
+      "Phase 4": 156
+    },
+    "byCategory": {
+      "3D Mathematics": 50,
+      "Advanced Mathematics": 44,
+      "Algebra": 37,
+      "Authoring and Learning System": 39,
+      "Calculus": 57,
+      "Core Workspaces": 38,
+      "Data and Probability": 106,
+      "Discrete and Applied Mathematics": 62,
+      "Geometry": 90,
+      "Graphs and Functions": 56,
+      "Numbers and Arithmetic": 35,
+      "Platform Capabilities": 18,
+      "Symbolic Mathematics": 22,
+      "Trigonometry": 20
+    },
+    "byAdapter": {
+      "algebra": 20,
+      "algebra-cas": 37,
+      "authoring": 22,
+      "calculator": 18,
+      "calculus": 57,
+      "cas": 22,
+      "complex": 13,
+      "discrete": 35,
+      "finance": 27,
+      "geometry2d": 75,
+      "geometry3d": 50,
+      "graph": 56,
+      "inference": 19,
+      "learning": 17,
+      "matrix": 18,
+      "number": 35,
+      "platform": 18,
+      "probability": 37,
+      "sequence": 13,
+      "spreadsheet": 17,
+      "statistics": 33,
+      "trigonometry": 20,
+      "vector": 15
+    },
+    "byPresetSpecificity": {
+      "family": 560,
+      "lesson": 114
+    },
+    "formulaCount": 1645,
+    "issues": [],
+    "formulaWarnings": []
+  },
+  "school": {
+    "byAcademicLevel": {
+      "CLASS_10": 29,
+      "CLASS_11": 40,
+      "CLASS_12": 69,
+      "CLASS_6": 12,
+      "CLASS_7": 15,
+      "CLASS_8": 12,
+      "CLASS_9": 43
+    },
+    "byLessonType": {
+      "CONCEPT": 151,
+      "PRACTICE": 5,
+      "PROOF": 47,
+      "VISUAL_EXPLORATION": 17
+    },
+    "issues": []
+  },
+  "advanced": {
+    "byStrand": {
+      "Continued Fractions": 5,
+      "Differential Equations": 5,
+      "Famous Problems": 5,
+      "Special Functions": 5,
+      "Statistical Inference": 5
+    },
+    "byToolRoute": {
+      "/math-lab/continued-fractions": 5,
+      "/math-lab/differential-equations": 4,
+      "/math-lab/famous-problems": 5,
+      "/math-lab/special-functions": 5,
+      "/math-lab/stats-inference": 5,
+      "/math/slope-fields": 1
+    },
+    "pathwayCount": 3,
+    "issues": []
+  }
+}

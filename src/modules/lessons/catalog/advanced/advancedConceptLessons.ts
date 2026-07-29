@@ -1,0 +1,421 @@
+export type AdvancedConceptStrand = "Continued Fractions" | "Famous Problems" | "Statistical Inference" | "Differential Equations" | "Special Functions";
+
+export type AdvancedConceptLesson = {
+  id: string;
+  numericId: number;
+  slug: string;
+  route: string;
+  strand: AdvancedConceptStrand;
+  title: string;
+  summary: string;
+  estimatedMinutes: number;
+  difficulty: "Advanced";
+  toolRoute: string;
+  objectives: string[];
+  learn: string[];
+  explore: string[];
+  practice: string[];
+  assessmentPrompts: string[];
+  searchKeywords: string[];
+};
+
+type LessonSeed = Omit<AdvancedConceptLesson, "id" | "numericId" | "route" | "difficulty">;
+
+const seeds: LessonSeed[] = [
+  {
+    slug: "partial-quotients",
+    strand: "Continued Fractions",
+    title: "Partial Quotients",
+    summary: "Read a continued fraction as a sequence of integer choices that repeatedly zoom into the remaining error.",
+    estimatedMinutes: 14,
+    toolRoute: "/math-lab/continued-fractions",
+    objectives: ["Convert a number into partial quotients.", "Explain why each reciprocal step exposes the next integer part.", "Connect finite continued fractions to rational numbers."],
+    learn: ["A continued fraction records a number by peeling off its integer part, then repeating the process on the reciprocal of the fractional remainder.", "The partial quotients are the integers in that recursive description.", "Stopping after a partial quotient gives a rational approximation called a convergent."],
+    explore: ["Use the continued fractions studio with different decimal inputs and compare how quickly the partial quotients grow.", "Change a rational number slightly and notice when early partial quotients stay fixed.", "Compare terminating and non-terminating patterns."],
+    practice: ["Find the partial quotients for 7/5, 13/8, and 22/7.", "Write [2; 1, 3] as an ordinary fraction.", "Explain what a large partial quotient says about a nearby rational approximation."],
+    assessmentPrompts: ["Why does taking a reciprocal reveal the next partial quotient?", "How can you tell from the expansion that a number is rational?"],
+    searchKeywords: ["continued fraction", "partial quotient", "rational approximation", "convergent"],
+  },
+  {
+    slug: "convergents",
+    strand: "Continued Fractions",
+    title: "Convergents",
+    summary: "Build the best successive rational estimates from a continued fraction and track their error.",
+    estimatedMinutes: 16,
+    toolRoute: "/math-lab/continued-fractions",
+    objectives: ["Compute convergents from partial quotients.", "Compare convergent error against nearby fractions.", "Use numerator-denominator recurrences."],
+    learn: ["Each prefix of a continued fraction produces a convergent.", "Convergents alternate around the target value in many familiar irrational examples.", "The recurrence p_n = a_n p_{n-1} + p_{n-2} and q_n = a_n q_{n-1} + q_{n-2} builds them efficiently."],
+    explore: ["Use the studio to compare convergents for pi, sqrt(2), and the golden ratio.", "Watch how denominator size and approximation error move together.", "Identify which convergent gives the strongest estimate under a denominator cap."],
+    practice: ["Compute the first four convergents of [1; 2, 2, 2, ...].", "Find the error of 22/7 as an approximation to pi.", "Choose the better approximation to sqrt(2): 7/5 or 10/7."],
+    assessmentPrompts: ["Why are convergents useful when denominator size is limited?", "What information is lost if you only store a decimal approximation?"],
+    searchKeywords: ["convergent", "best approximation", "continued fraction recurrence", "denominator"],
+  },
+  {
+    slug: "euclidean-algorithm-continued-fractions",
+    strand: "Continued Fractions",
+    title: "Euclidean Algorithm Link",
+    summary: "See how gcd division steps are the same structure as a rational continued fraction.",
+    estimatedMinutes: 15,
+    toolRoute: "/math-lab/continued-fractions",
+    objectives: ["Map Euclidean divisions to partial quotients.", "Use remainders to form a finite continued fraction.", "Explain why rational continued fractions terminate."],
+    learn: ["For a rational number a/b, repeated division a = qb + r gives the same quotients that appear in the continued fraction.", "The process terminates exactly when a remainder becomes zero.", "This connects gcd computation to rational reconstruction."],
+    explore: ["Enter ratios with a common factor and compare the gcd chain to the fraction expansion.", "Try consecutive Fibonacci numbers and observe the long string of ones.", "Reverse the quotients to rebuild the original fraction."],
+    practice: ["Use Euclidean division to expand 43/19.", "Explain why 34/21 has many partial quotients equal to 1.", "Reconstruct a fraction from quotients 3, 4, 2."],
+    assessmentPrompts: ["How does the final nonzero remainder relate to gcd?", "Why do Fibonacci ratios create slow Euclidean algorithms?"],
+    searchKeywords: ["Euclidean algorithm", "gcd", "remainders", "continued fraction"],
+  },
+  {
+    slug: "best-rational-approximations",
+    strand: "Continued Fractions",
+    title: "Best Rational Approximations",
+    summary: "Use continued fractions to find fractions that beat every competitor with a smaller denominator.",
+    estimatedMinutes: 17,
+    toolRoute: "/math-lab/continued-fractions",
+    objectives: ["Define best approximation under a denominator limit.", "Use convergents as high-quality candidates.", "Compare approximation error fairly."],
+    learn: ["A best rational approximation balances closeness against denominator size.", "Continued fraction convergents are unusually strong because they encode long-lasting integer structure.", "Semi-convergents can also matter between two consecutive convergents."],
+    explore: ["Search for the best fraction to approximate pi with denominators below 10, 100, and 1000.", "Compare decimal rounding with continued fraction rounding.", "Use error bars to see when two fractions are practically indistinguishable."],
+    practice: ["Find a strong approximation to sqrt(3) with denominator below 20.", "Compare 355/113 and 22/7 for pi.", "Explain why a smaller absolute error is not the only criterion."],
+    assessmentPrompts: ["What makes an approximation 'best' in a denominator-limited setting?", "When might a semi-convergent be useful?"],
+    searchKeywords: ["Diophantine approximation", "best rational approximation", "semiconvergent", "pi"],
+  },
+  {
+    slug: "periodic-square-root-continued-fractions",
+    strand: "Continued Fractions",
+    title: "Periodic Square Roots",
+    summary: "Discover why square roots of non-square integers produce repeating continued fractions.",
+    estimatedMinutes: 18,
+    toolRoute: "/math-lab/continued-fractions",
+    objectives: ["Recognize periodic continued fractions.", "Connect quadratic irrationals to repeating expansions.", "Use periods to approximate square roots."],
+    learn: ["Square roots of non-square integers are quadratic irrationals.", "Their continued fractions eventually repeat, and for square roots the repetition starts immediately after the integer part.", "The period length carries arithmetic information about the number."],
+    explore: ["Compare sqrt(2), sqrt(3), sqrt(5), and sqrt(13) in the studio.", "Track the repeated block and the convergents it produces.", "Use the repeated block to generate increasingly accurate approximations."],
+    practice: ["Write the repeating pattern for sqrt(2).", "Compute three convergents from [1; 2, 2, 2, ...].", "Describe how periodicity differs from a terminating rational expansion."],
+    assessmentPrompts: ["Why does a repeating continued fraction suggest a quadratic equation?", "How is this like and unlike repeating decimals?"],
+    searchKeywords: ["periodic continued fraction", "quadratic irrational", "square root", "pell equation"],
+  },
+  {
+    slug: "collatz-conjecture",
+    strand: "Famous Problems",
+    title: "Collatz Conjecture",
+    summary: "Experiment with the 3n + 1 rule and distinguish evidence from proof.",
+    estimatedMinutes: 14,
+    toolRoute: "/math-lab/famous-problems",
+    objectives: ["Apply the Collatz rule to generate an orbit.", "Track stopping time and peak value.", "Explain why computation is not a proof."],
+    learn: ["The rule sends even n to n/2 and odd n to 3n + 1.", "The conjecture says every positive integer eventually reaches 1.", "Many starting values have been tested, but a general proof remains unknown."],
+    explore: ["Use the famous problems studio to compare stopping times for nearby starting values.", "Look for starts with unusually high peaks.", "Try grouping values by parity patterns."],
+    practice: ["Compute the orbit starting at 7 until it reaches 1.", "Find the first value above 10 in the orbit from 3.", "Write one sentence separating verified examples from proof."],
+    assessmentPrompts: ["Why does checking a million cases not settle the conjecture?", "What data would make a good Collatz visualization?"],
+    searchKeywords: ["Collatz", "3n+1", "stopping time", "unsolved problem"],
+  },
+  {
+    slug: "goldbach-conjecture",
+    strand: "Famous Problems",
+    title: "Goldbach Conjecture",
+    summary: "Represent even numbers as sums of two primes and observe the unresolved pattern.",
+    estimatedMinutes: 15,
+    toolRoute: "/math-lab/famous-problems",
+    objectives: ["Test Goldbach partitions for even numbers.", "Count how many prime pairs represent a value.", "Explain the conjecture in precise language."],
+    learn: ["The strong Goldbach conjecture states that every even integer greater than 2 is the sum of two primes.", "Examples are easy to find, but the universal claim is still open.", "Prime density heuristics make the pattern plausible while stopping short of proof."],
+    explore: ["Use the studio to scan even numbers and count prime-pair representations.", "Compare small even numbers with larger ones.", "Look for symmetry in pairs p + q = n."],
+    practice: ["List all Goldbach pairs for 28.", "Find two prime sums for 50.", "Explain why 2 is excluded from the claim."],
+    assessmentPrompts: ["What would a counterexample need to look like?", "Why do prime counts matter for intuition here?"],
+    searchKeywords: ["Goldbach", "prime sums", "number theory", "unsolved"],
+  },
+  {
+    slug: "riemann-hypothesis-primes",
+    strand: "Famous Problems",
+    title: "Riemann Hypothesis and Primes",
+    summary: "Connect zeros of the zeta function to the rhythm of prime counting.",
+    estimatedMinutes: 18,
+    toolRoute: "/math-lab/famous-problems",
+    objectives: ["Describe the prime-counting function informally.", "State the Riemann Hypothesis at a high level.", "Connect zeta zeros to prime distribution error."],
+    learn: ["The zeta function extends a sum over powers into complex analysis.", "Its nontrivial zeros appear to lie on the critical line.", "That zero pattern controls how regularly primes are distributed."],
+    explore: ["Use the famous problems studio and special functions gallery together.", "Compare exact prime counts with smooth approximations.", "Discuss what an error term means in a counting problem."],
+    practice: ["Estimate whether primes become more or less dense as numbers grow.", "Name the critical line in the usual statement.", "Explain why this problem bridges number theory and analysis."],
+    assessmentPrompts: ["What does the hypothesis predict about prime-counting error?", "Why is the zeta function surprising in a lesson about primes?"],
+    searchKeywords: ["Riemann hypothesis", "zeta function", "prime counting", "critical line"],
+  },
+  {
+    slug: "fermats-last-theorem",
+    strand: "Famous Problems",
+    title: "Fermat's Last Theorem",
+    summary: "Compare Pythagorean triples with the impossible higher-power equation.",
+    estimatedMinutes: 15,
+    toolRoute: "/math-lab/famous-problems",
+    objectives: ["State Fermat's Last Theorem.", "Contrast exponent 2 with exponents greater than 2.", "Understand why examples are not enough for impossibility."],
+    learn: ["There are many whole-number solutions to a^2 + b^2 = c^2.", "Fermat's Last Theorem says no positive integer solutions exist for a^n + b^n = c^n when n > 2.", "The modern proof connects the statement to elliptic curves and modular forms."],
+    explore: ["Search small grids for exponent 2 and exponent 3 outcomes.", "Record near misses for cubes.", "Use the studio to compare a conjecture, a theorem, and a proof story."],
+    practice: ["Give one Pythagorean triple.", "Check whether 3^3 + 4^3 is a cube.", "Explain why a theorem can be true even when the proof is far beyond the lesson."],
+    assessmentPrompts: ["What changes when the exponent moves from 2 to 3?", "Why is 'no solutions' harder to support than 'here is one solution'?"],
+    searchKeywords: ["Fermat", "Pythagorean triples", "elliptic curves", "modular forms"],
+  },
+  {
+    slug: "four-color-theorem",
+    strand: "Famous Problems",
+    title: "Four-Color Theorem",
+    summary: "Model maps as graphs and test why four colors always suffice on a plane.",
+    estimatedMinutes: 16,
+    toolRoute: "/math-lab/famous-problems",
+    objectives: ["Translate a map into an adjacency graph.", "Color adjacent regions with different colors.", "Discuss computer-assisted proof at a learner-friendly level."],
+    learn: ["The theorem says any planar map can be colored with at most four colors so neighboring regions differ.", "The graph version replaces regions with vertices and borders with edges.", "Its proof is famous because computers checked many unavoidable cases."],
+    explore: ["Draw small maps and convert them to adjacency graphs.", "Try to force a fifth color and inspect why the attempt fails.", "Compare planar and nonplanar constraints."],
+    practice: ["Color a five-region cycle with three colors.", "Explain why touching at a single point is not usually counted as adjacency.", "Name one reason the proof changed mathematical culture."],
+    assessmentPrompts: ["What makes the graph planar?", "Why did computer assistance matter for this theorem?"],
+    searchKeywords: ["four color theorem", "planar graph", "map coloring", "computer assisted proof"],
+  },
+  {
+    slug: "confidence-intervals",
+    strand: "Statistical Inference",
+    title: "Confidence Intervals",
+    summary: "Interpret intervals as a repeated-sampling method rather than a guarantee about one sample.",
+    estimatedMinutes: 16,
+    toolRoute: "/math-lab/stats-inference",
+    objectives: ["Compute a basic confidence interval idea from estimate plus margin.", "Interpret confidence level correctly.", "Distinguish parameter, statistic, and interval."],
+    learn: ["A confidence interval is built from sample data to estimate an unknown population parameter.", "The confidence level describes long-run success of the method over repeated samples.", "Wider intervals usually mean more uncertainty or higher confidence."],
+    explore: ["Use the inference studio to simulate many samples and see how often intervals cover the true mean.", "Change sample size and confidence level.", "Compare narrow intervals with coverage."],
+    practice: ["Interpret a 95% confidence interval without saying there is a 95% chance the fixed parameter lies inside.", "Predict what happens when sample size quadruples.", "Identify the estimate and margin of error in 42 plus or minus 3."],
+    assessmentPrompts: ["What does 95% confidence mean in repeated sampling?", "Why does a larger sample usually narrow the interval?"],
+    searchKeywords: ["confidence interval", "sampling", "coverage", "statistics"],
+  },
+  {
+    slug: "margin-of-error-sample-size",
+    strand: "Statistical Inference",
+    title: "Margin of Error and Sample Size",
+    summary: "Control precision by connecting variability, confidence, and n.",
+    estimatedMinutes: 15,
+    toolRoute: "/math-lab/stats-inference",
+    objectives: ["Explain margin of error as the radius of an interval.", "Describe how sample size affects precision.", "Connect standard error to square-root scaling."],
+    learn: ["Margin of error is the distance from the estimate to an interval endpoint.", "For many common settings, standard error shrinks like 1/sqrt(n).", "Doubling precision often requires about four times as much data."],
+    explore: ["Move the sample-size control in the studio and watch interval width.", "Hold confidence fixed, then change variability.", "Compare practical precision with data-collection cost."],
+    practice: ["If n grows from 25 to 100, predict the standard error change.", "Explain why higher confidence widens an interval.", "Find the full interval from estimate 18 and margin 2.5."],
+    assessmentPrompts: ["Why does precision improve slowly as n grows?", "Which is easier: halve margin of error or double sample size?"],
+    searchKeywords: ["margin of error", "sample size", "standard error", "confidence"],
+  },
+  {
+    slug: "hypothesis-tests",
+    strand: "Statistical Inference",
+    title: "Hypothesis Tests",
+    summary: "Use null and alternative hypotheses to decide whether data look surprising.",
+    estimatedMinutes: 16,
+    toolRoute: "/math-lab/stats-inference",
+    objectives: ["State null and alternative hypotheses.", "Interpret a test statistic as evidence scale.", "Connect rejection decisions to significance level."],
+    learn: ["A hypothesis test begins with a default model called the null hypothesis.", "The alternative hypothesis describes the effect or difference being investigated.", "A significance level sets how much false-alarm risk the procedure accepts before seeing data."],
+    explore: ["Use the inference studio to shift a sample mean away from the null.", "Change alpha and watch the rejection region.", "Compare one-sided and two-sided evidence."],
+    practice: ["Write hypotheses for testing whether a coin is fair.", "Explain what alpha = 0.05 controls.", "Decide whether a very ordinary sample should reject the null."],
+    assessmentPrompts: ["Why do we begin with a null model?", "What does rejecting the null allow us to say, and what does it not prove?"],
+    searchKeywords: ["hypothesis test", "null hypothesis", "alternative hypothesis", "significance"],
+  },
+  {
+    slug: "p-values",
+    strand: "Statistical Inference",
+    title: "p-Values",
+    summary: "Read a p-value as surprise under a null model, not as the probability a claim is true.",
+    estimatedMinutes: 15,
+    toolRoute: "/math-lab/stats-inference",
+    objectives: ["Define p-value in context.", "Avoid common p-value misinterpretations.", "Relate p-values to tail areas."],
+    learn: ["A p-value measures how extreme the observed result, or something more extreme, would be if the null model were true.", "Small p-values are evidence against the null model.", "A p-value is not the probability that the null hypothesis is true."],
+    explore: ["Use the studio distribution view to shade tail areas.", "Move an observed statistic and watch the p-value change.", "Compare p-values across different sample sizes."],
+    practice: ["Interpret p = 0.03 in one sentence.", "Say why p = 0.20 is not proof that the null is true.", "Identify the tail area for a two-sided test."],
+    assessmentPrompts: ["What is the reference world used to compute a p-value?", "Why can a tiny effect have a small p-value in a huge sample?"],
+    searchKeywords: ["p-value", "tail area", "null model", "statistical significance"],
+  },
+  {
+    slug: "type-i-type-ii-error",
+    strand: "Statistical Inference",
+    title: "Type I and Type II Error",
+    summary: "Balance false positives and false negatives when making statistical decisions.",
+    estimatedMinutes: 17,
+    toolRoute: "/math-lab/stats-inference",
+    objectives: ["Define Type I and Type II errors.", "Connect alpha to false-positive risk.", "Explain power as detecting real effects."],
+    learn: ["A Type I error rejects a true null hypothesis.", "A Type II error fails to reject a false null hypothesis.", "Power is the probability of detecting an effect when the alternative is true."],
+    explore: ["Use the inference studio to move the true effect and compare overlapping distributions.", "Change alpha and observe the tradeoff.", "Increase sample size and watch power improve."],
+    practice: ["Classify a false alarm in a medical test.", "Classify a missed real effect.", "Explain one situation where Type I error is especially costly."],
+    assessmentPrompts: ["Why can lowering alpha increase Type II error?", "How does sample size help both precision and power?"],
+    searchKeywords: ["Type I error", "Type II error", "power", "false positive", "false negative"],
+  },
+  {
+    slug: "slope-fields",
+    strand: "Differential Equations",
+    title: "Slope Fields",
+    summary: "Read a differential equation as a field of tiny direction instructions.",
+    estimatedMinutes: 14,
+    toolRoute: "/math/slope-fields",
+    objectives: ["Interpret dy/dx = f(x,y) graphically.", "Sketch solution curves through initial points.", "Connect local slopes to global behavior."],
+    learn: ["A slope field places a small segment at many points showing the derivative a solution would have there.", "A solution curve threads through the field while matching the local direction.", "Initial conditions select one curve from a family of possible solutions."],
+    explore: ["Use the slope-fields visualizer to change f(x,y).", "Move the initial point and compare solution curves.", "Look for equilibrium solutions where slope is zero."],
+    practice: ["Sketch a solution through (0, 1) from a simple slope field.", "Identify a horizontal equilibrium in dy/dx = y(1-y).", "Explain why solution curves should not cross in a well-behaved field."],
+    assessmentPrompts: ["How does a slope field encode infinitely many solutions?", "What role does the initial condition play?"],
+    searchKeywords: ["slope field", "differential equation", "initial condition", "direction field"],
+  },
+  {
+    slug: "euler-method",
+    strand: "Differential Equations",
+    title: "Euler Method",
+    summary: "Approximate an unknown solution curve by walking along tangent directions.",
+    estimatedMinutes: 17,
+    toolRoute: "/math-lab/differential-equations",
+    objectives: ["Use Euler steps to approximate an IVP.", "Explain the role of step size.", "Compare numerical approximation with exact behavior."],
+    learn: ["Euler's method starts at an initial condition and repeatedly moves by slope times step size.", "Smaller steps usually improve accuracy but require more computation.", "The method makes local linear predictions from the derivative."],
+    explore: ["Use the differential equations studio to compare coarse and fine step sizes.", "Watch error accumulate over many steps.", "Try an equation where the curve bends quickly."],
+    practice: ["Take two Euler steps of size 0.5 for y' = y from y(0)=1.", "Explain why step size matters.", "Predict when Euler's method may perform poorly."],
+    assessmentPrompts: ["What information does each Euler step use?", "Why is Euler's method both powerful and limited?"],
+    searchKeywords: ["Euler method", "numerical method", "IVP", "step size"],
+  },
+  {
+    slug: "growth-decay-ivps",
+    strand: "Differential Equations",
+    title: "Growth and Decay IVPs",
+    summary: "Model proportional change with initial value problems and exponential solutions.",
+    estimatedMinutes: 15,
+    toolRoute: "/math-lab/differential-equations",
+    objectives: ["Recognize y' = ky as proportional growth or decay.", "Use an initial condition to determine a solution.", "Interpret k in context."],
+    learn: ["When rate of change is proportional to current amount, the model is y' = ky.", "Positive k gives growth and negative k gives decay.", "The initial condition sets the starting amount and determines the specific exponential curve."],
+    explore: ["Use the studio to vary k and the initial value.", "Compare doubling and half-life interpretations.", "Overlay exact curves with numerical approximations."],
+    practice: ["Solve y' = 2y, y(0)=3 in formula form.", "Explain what k = -0.4 means.", "Find the initial value from a graph at x = 0."],
+    assessmentPrompts: ["Why does proportional change lead to exponential behavior?", "How is a family of solutions narrowed to one solution?"],
+    searchKeywords: ["growth decay", "initial value problem", "exponential", "differential equations"],
+  },
+  {
+    slug: "logistic-differential-equation",
+    strand: "Differential Equations",
+    title: "Logistic Differential Equation",
+    summary: "Model growth that slows as it approaches a carrying capacity.",
+    estimatedMinutes: 17,
+    toolRoute: "/math-lab/differential-equations",
+    objectives: ["Interpret carrying capacity.", "Identify equilibria in logistic growth.", "Compare logistic and exponential models."],
+    learn: ["The logistic model grows nearly exponentially when the population is small.", "Growth slows as the population approaches a carrying capacity.", "The equilibria reveal long-run behavior without solving the equation exactly."],
+    explore: ["Use the studio to change carrying capacity and growth rate.", "Start above and below the carrying capacity.", "Compare with y' = ky over the same interval."],
+    practice: ["Identify equilibria in y' = y(1-y/10).", "Explain what happens when y starts above 10.", "Name one real-world limitation of logistic growth."],
+    assessmentPrompts: ["Why does the logistic model bend into an S-shape?", "What can equilibrium analysis tell us before solving?"],
+    searchKeywords: ["logistic equation", "carrying capacity", "equilibrium", "population model"],
+  },
+  {
+    slug: "second-order-oscillator",
+    strand: "Differential Equations",
+    title: "Second-Order Oscillator",
+    summary: "Treat position, velocity, and acceleration as a coupled dynamic system.",
+    estimatedMinutes: 18,
+    toolRoute: "/math-lab/differential-equations",
+    objectives: ["Recognize second-order equations in motion models.", "Connect y'' to acceleration.", "Describe oscillation using phase behavior."],
+    learn: ["A second-order differential equation involves acceleration or curvature.", "The classic oscillator y'' + omega^2 y = 0 models repeated motion.", "Initial position and velocity are both needed to determine a solution."],
+    explore: ["Use the studio to change frequency and initial velocity.", "Plot position and velocity together.", "Compare undamped and damped behavior conceptually."],
+    practice: ["State two initial conditions needed for a second-order IVP.", "Explain what larger omega does to oscillation.", "Classify y'' = -y as restoring motion."],
+    assessmentPrompts: ["Why is one initial value not enough for a second-order equation?", "How does the equation encode a restoring force?"],
+    searchKeywords: ["second order differential equation", "oscillator", "phase plane", "acceleration"],
+  },
+  {
+    slug: "gamma-function",
+    strand: "Special Functions",
+    title: "Gamma Function",
+    summary: "Extend factorials beyond whole numbers with a continuous special function.",
+    estimatedMinutes: 15,
+    toolRoute: "/math-lab/special-functions",
+    objectives: ["Use Gamma(n + 1) = n! for whole numbers.", "Interpret extension beyond integers.", "Identify where Gamma appears in advanced mathematics."],
+    learn: ["The gamma function extends the factorial pattern to many non-integer inputs.", "For positive integers, Gamma(n) = (n - 1)!.", "It appears in probability distributions, integrals, and complex analysis."],
+    explore: ["Use the gallery to compare factorial points with the smooth gamma curve.", "Evaluate Gamma(1/2) and connect it to sqrt(pi).", "Look for poles at non-positive integers."],
+    practice: ["Compute Gamma(5).", "State the relationship between Gamma(n) and factorial.", "Name one distribution that uses Gamma."],
+    assessmentPrompts: ["Why is extending factorial useful?", "What makes Gamma more than curve-fitting through factorial points?"],
+    searchKeywords: ["gamma function", "factorial", "special functions", "probability"],
+  },
+  {
+    slug: "beta-function",
+    strand: "Special Functions",
+    title: "Beta Function",
+    summary: "Meet a two-input function that links integrals, gamma values, and distributions.",
+    estimatedMinutes: 16,
+    toolRoute: "/math-lab/special-functions",
+    objectives: ["Recognize the beta function as a two-parameter integral.", "Connect beta and gamma functions.", "Identify its role in probability."],
+    learn: ["The beta function depends on two positive parameters.", "It is closely connected to gamma through B(x,y) = Gamma(x)Gamma(y)/Gamma(x+y).", "It normalizes beta distributions in statistics."],
+    explore: ["Use the gallery to change two parameters and observe shape changes.", "Compare symmetric and skewed beta distribution shapes.", "Trace how gamma values combine into beta values."],
+    practice: ["Explain why a two-parameter function can control more shape than one parameter.", "Use the gamma identity to simplify B(1,1).", "Name one setting where values are restricted to 0 through 1."],
+    assessmentPrompts: ["How does the beta function connect analysis and probability?", "Why do normalizing constants matter?"],
+    searchKeywords: ["beta function", "gamma identity", "beta distribution", "normalization"],
+  },
+  {
+    slug: "error-function",
+    strand: "Special Functions",
+    title: "Error Function",
+    summary: "Connect accumulated Gaussian area to probability and diffusion models.",
+    estimatedMinutes: 15,
+    toolRoute: "/math-lab/special-functions",
+    objectives: ["Describe erf as an accumulated bell-curve area.", "Connect erf to normal probabilities.", "Recognize its role in heat and diffusion equations."],
+    learn: ["The error function accumulates area under a scaled Gaussian curve.", "It is closely related to the normal distribution's cumulative probability.", "Its S-shape appears in diffusion, heat flow, and measurement error."],
+    explore: ["Use the gallery to compare erf with a normal CDF.", "Move x from negative to positive values and observe saturation.", "Discuss why accumulated area produces an S-shaped curve."],
+    practice: ["Describe erf(0) by symmetry.", "Explain why erf approaches fixed limits far from zero.", "Name one modeling context for erf."],
+    assessmentPrompts: ["Why does Gaussian area matter in statistics?", "How does erf translate density into cumulative probability?"],
+    searchKeywords: ["error function", "Gaussian", "normal distribution", "diffusion"],
+  },
+  {
+    slug: "zeta-function",
+    strand: "Special Functions",
+    title: "Zeta Function",
+    summary: "Study a function whose values and zeros connect series, primes, and famous open problems.",
+    estimatedMinutes: 18,
+    toolRoute: "/math-lab/special-functions",
+    objectives: ["Recognize zeta as a sum over reciprocal powers.", "Connect Euler products to primes.", "Relate zeta to the Riemann Hypothesis."],
+    learn: ["For suitable inputs, zeta(s) sums 1/n^s over positive integers.", "Euler's product formula links that sum to all prime numbers.", "The function's complex zeros are central to the Riemann Hypothesis."],
+    explore: ["Use the gallery to compare zeta values for different real inputs.", "Connect zeta(2) with pi squared over 6.", "Pair this lesson with the famous problems Riemann lesson."],
+    practice: ["Explain why the series 1 + 1/2^s + 1/3^s + ... shrinks faster for larger s.", "State one connection between zeta and primes.", "Describe what makes zeta a special function."],
+    assessmentPrompts: ["How can a series over all integers reveal information about primes?", "Why is analytic continuation an important idea here?"],
+    searchKeywords: ["zeta function", "Euler product", "Riemann hypothesis", "series"],
+  },
+  {
+    slug: "bessel-function",
+    strand: "Special Functions",
+    title: "Bessel Function",
+    summary: "Recognize wave-like functions that appear in circular and cylindrical symmetry.",
+    estimatedMinutes: 17,
+    toolRoute: "/math-lab/special-functions",
+    objectives: ["Identify Bessel functions as special solutions to differential equations.", "Connect them to radial symmetry.", "Interpret zeros as physically meaningful points."],
+    learn: ["Bessel functions arise when solving certain differential equations with circular or cylindrical symmetry.", "Their graphs oscillate with changing amplitude.", "Zeros of Bessel functions appear in vibration, waves, and boundary-value problems."],
+    explore: ["Use the gallery to compare Bessel-like curves with sine waves.", "Look for spacing between zeros.", "Connect circular drums or waveguides to radial equations."],
+    practice: ["Name one physical system where Bessel functions appear.", "Describe how a Bessel graph differs from a sine wave.", "Explain why symmetry changes the differential equation."],
+    assessmentPrompts: ["Why do special functions often come from differential equations?", "What can zeros tell us in a vibration problem?"],
+    searchKeywords: ["Bessel function", "cylindrical symmetry", "waves", "zeros"],
+  },
+];
+
+export const advancedConceptStrands: AdvancedConceptStrand[] = ["Continued Fractions", "Famous Problems", "Statistical Inference", "Differential Equations", "Special Functions"];
+
+export const advancedConceptLessons: AdvancedConceptLesson[] = seeds.map((lesson, index) => {
+  const numericId = 2001 + index;
+  return {
+    ...lesson,
+    id: `advanced-${numericId}`,
+    numericId,
+    route: `/lessons/advanced-concepts/${numericId}-${lesson.slug}`,
+    difficulty: "Advanced",
+  };
+});
+
+export function advancedLessonsFor(strand: AdvancedConceptStrand | "ALL", query = "") {
+  const normalized = query.trim().toLowerCase();
+  return advancedConceptLessons.filter((lesson) => {
+    const strandMatch = strand === "ALL" || lesson.strand === strand;
+    if (!strandMatch) return false;
+    if (!normalized) return true;
+    return [
+      lesson.title,
+      lesson.summary,
+      lesson.strand,
+      lesson.searchKeywords.join(" "),
+      lesson.objectives.join(" "),
+      lesson.learn.join(" "),
+    ]
+      .join(" ")
+      .toLowerCase()
+      .includes(normalized);
+  });
+}
+
+export function findAdvancedConceptLesson(lessonSlug?: string) {
+  if (!lessonSlug) return undefined;
+  return advancedConceptLessons.find((lesson) => lesson.route.endsWith(`/${lessonSlug}`));
+}
+
+export function adjacentAdvancedConceptLessons(lesson: AdvancedConceptLesson) {
+  const index = advancedConceptLessons.findIndex((candidate) => candidate.id === lesson.id);
+  return {
+    previous: index > 0 ? advancedConceptLessons[index - 1] : undefined,
+    next: index >= 0 && index < advancedConceptLessons.length - 1 ? advancedConceptLessons[index + 1] : undefined,
+  };
+}

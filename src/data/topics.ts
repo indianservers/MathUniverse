@@ -196,6 +196,18 @@ export const topics: Topic[] = [
     labCount: 14,
   },
   {
+    id: "advanced-concept-studios",
+    title: "Advanced Concept Studios",
+    route: "/math-lab/continued-fractions",
+    iconName: "Sigma",
+    description: "Explore continued fractions, famous math problems, statistical inference, differential equations, and special functions.",
+    concepts: ["Continued fractions", "Famous problems", "Inference", "Differential equations", "Special functions"],
+    difficulty: "Advanced",
+    estimatedMinutes: 70,
+    colorGradient: "from-teal-500 to-rose-500",
+    labCount: 5,
+  },
+  {
     id: "ai",
     title: "Math in AI & Real Life",
     route: "/ai-applications",

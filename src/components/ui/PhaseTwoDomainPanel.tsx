@@ -37,5 +37,5 @@ export default function PhaseTwoDomainPanel({ domain }: { domain: PhaseTwoAdvanc
 }
 
 function Block({ title, text, items, icon = false }: { title: string; text?: string; items?: string[]; icon?: boolean }) {
-  return <section className="rounded-xl bg-slate-100 p-3 dark:bg-white/10"><h3 className="flex items-center gap-2 font-black uppercase text-slate-500 dark:text-slate-300">{icon ? <FlaskConical className="h-3.5 w-3.5" /> : null}{title}</h3>{text ? <p className="mt-1 text-slate-700 dark:text-slate-200">{text}</p> : null}{items ? <ul className="mt-1 grid gap-1">{items.map((item) => <li key={item}>• {item}</li>)}</ul> : null}</section>;
+  return <section className="rounded-xl bg-slate-100 p-3 dark:bg-white/10"><h3 className="flex items-center gap-2 font-black uppercase text-slate-500 dark:text-slate-300">{icon ? <FlaskConical className="h-3.5 w-3.5" /> : null}{title}</h3>{text ? <p className="mt-1 text-slate-700 dark:text-slate-200">{text}</p> : null}{items ? <ul className="mt-1 grid gap-1">{items.map((item, index) => <li key={`${title}-${index}`}>- {item}</li>)}</ul> : null}</section>;
 }

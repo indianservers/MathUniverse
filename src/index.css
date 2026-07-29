@@ -249,6 +249,255 @@ body {
     @apply border-sky-200/70 from-sky-50 to-indigo-50 dark:border-sky-300/20 dark:from-sky-400/15 dark:to-indigo-950/40;
   }
 
+  .formula-museum {
+    position: relative;
+    background:
+      linear-gradient(180deg, rgba(8, 13, 33, 0.88), rgba(15, 23, 42, 0.96)),
+      linear-gradient(135deg, #07111f, #122243 46%, #31135f);
+  }
+
+  .formula-museum::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.28;
+    background-image:
+      linear-gradient(rgba(103, 232, 249, 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(103, 232, 249, 0.14) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to bottom, black, transparent 86%);
+  }
+
+  .formula-museum-stage {
+    position: relative;
+    min-height: 420px;
+    perspective: 900px;
+    transform-style: preserve-3d;
+  }
+
+  .museum-floor {
+    position: absolute;
+    inset: auto 4% 16px;
+    height: 62%;
+    border: 1px solid rgba(125, 211, 252, 0.2);
+    border-radius: 28px;
+    background:
+      linear-gradient(rgba(125, 211, 252, 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(125, 211, 252, 0.12) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(14, 116, 144, 0.12), rgba(88, 28, 135, 0.18));
+    background-size: 36px 36px, 36px 36px, auto;
+    box-shadow: inset 0 0 36px rgba(34, 211, 238, 0.14), 0 24px 80px rgba(0, 0, 0, 0.36);
+    transform: rotateX(64deg) translateZ(-42px);
+    transform-origin: center bottom;
+  }
+
+  .museum-exhibit {
+    position: absolute;
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28), inset 0 0 26px rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+  }
+
+  .museum-label {
+    position: absolute;
+    left: 12px;
+    bottom: 10px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: #cffafe;
+  }
+
+  .museum-exhibit.museum-derivative {
+    left: 7%;
+    top: 18%;
+    width: 36%;
+    height: 34%;
+    border-radius: 22px;
+    transform: rotateY(-18deg) rotateX(8deg);
+  }
+
+  .museum-curve {
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    top: 50%;
+    height: 56px;
+    border-top: 7px solid #22d3ee;
+    border-radius: 50%;
+    transform: rotate(-9deg);
+    filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.72));
+  }
+
+  .museum-tangent {
+    position: absolute;
+    left: 18%;
+    right: 16%;
+    top: 47%;
+    height: 4px;
+    border-radius: 999px;
+    background: #facc15;
+    box-shadow: 0 0 18px rgba(250, 204, 21, 0.8);
+    transform: rotate(-18deg);
+    animation: museum-tangent-drift 5s ease-in-out infinite;
+  }
+
+  .museum-exhibit.museum-integral {
+    right: 8%;
+    top: 10%;
+    width: 38%;
+    height: 42%;
+    border-radius: 24px;
+    transform: rotateY(16deg) rotateX(7deg);
+  }
+
+  .museum-exhibit.museum-integral > span:not(.museum-label) {
+    position: absolute;
+    bottom: 42px;
+    left: calc(12% + var(--i) * 9%);
+    width: 7%;
+    height: calc(32px + var(--i) * 8px);
+    border: 1px solid rgba(103, 232, 249, 0.42);
+    border-radius: 8px 8px 2px 2px;
+    background: linear-gradient(180deg, rgba(34, 211, 238, 0.55), rgba(168, 85, 247, 0.22));
+    box-shadow: 0 0 16px rgba(34, 211, 238, 0.22);
+  }
+
+  .museum-exhibit.museum-matrix {
+    left: 15%;
+    bottom: 13%;
+    width: 32%;
+    height: 30%;
+    border-radius: 20px;
+    transform: rotateY(20deg) rotateX(14deg) rotateZ(-3deg);
+  }
+
+  .museum-exhibit.museum-matrix > span:not(.museum-label) {
+    position: absolute;
+    border: 2px solid rgba(196, 181, 253, 0.6);
+    background: rgba(139, 92, 246, 0.18);
+  }
+
+  .museum-exhibit.museum-matrix > span:nth-child(1) {
+    inset: 18% 55% 52% 12%;
+  }
+
+  .museum-exhibit.museum-matrix > span:nth-child(2) {
+    inset: 18% 14% 52% 53%;
+  }
+
+  .museum-exhibit.museum-matrix > span:nth-child(3) {
+    inset: 52% 26% 16% 24%;
+    transform: skewX(-18deg);
+  }
+
+  .museum-exhibit.museum-probability {
+    right: 13%;
+    bottom: 11%;
+    width: 34%;
+    height: 30%;
+    border-radius: 999px 28px 28px 999px;
+    transform: rotateY(-14deg) rotateX(12deg);
+  }
+
+  .museum-exhibit.museum-probability > span:not(.museum-label) {
+    position: absolute;
+    height: 4px;
+    border-radius: 999px;
+    background: #34d399;
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.55);
+    transform-origin: left center;
+  }
+
+  .museum-exhibit.museum-probability > span:nth-child(1) {
+    left: 18%;
+    top: 50%;
+    width: 58%;
+    transform: rotate(-24deg);
+  }
+
+  .museum-exhibit.museum-probability > span:nth-child(2) {
+    left: 18%;
+    top: 50%;
+    width: 64%;
+    transform: rotate(18deg);
+  }
+
+  .museum-exhibit.museum-probability > span:nth-child(3) {
+    left: 46%;
+    top: 36%;
+    width: 38%;
+    transform: rotate(34deg);
+    background: #67e8f9;
+  }
+
+  .museum-card-icon {
+    height: 58px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.16));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .museum-card-icon::after {
+    content: "";
+    position: absolute;
+    inset: 16px 14px;
+    border-radius: 999px;
+    border-top: 4px solid rgba(103, 232, 249, 0.9);
+    transform: rotate(-10deg);
+  }
+
+  .museum-card-icon.museum-integral::after {
+    inset: 12px 18px;
+    border-top: 0;
+    border-left: 8px solid rgba(34, 211, 238, 0.74);
+    border-right: 8px solid rgba(168, 85, 247, 0.55);
+    border-radius: 6px;
+  }
+
+  .museum-card-icon.museum-matrix::after {
+    inset: 13px 22px;
+    border: 3px solid rgba(196, 181, 253, 0.9);
+    border-radius: 3px;
+    transform: skewX(-16deg);
+  }
+
+  .museum-card-icon.museum-probability::after {
+    inset: 27px 14px auto;
+    height: 4px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(52, 211, 153, 0.9);
+    box-shadow: 18px -13px 0 rgba(103, 232, 249, 0.75), 18px 13px 0 rgba(167, 243, 208, 0.75);
+  }
+
+  @keyframes museum-tangent-drift {
+    0%, 100% {
+      transform: translateX(-5%) rotate(-18deg);
+    }
+    50% {
+      transform: translateX(12%) rotate(-8deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .formula-museum-stage {
+      min-height: 340px;
+    }
+
+    .museum-exhibit.museum-derivative,
+    .museum-exhibit.museum-integral,
+    .museum-exhibit.museum-matrix,
+    .museum-exhibit.museum-probability {
+      transform: none;
+    }
+  }
+
   .module-card {
     background-image:
       linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(240, 249, 255, 0.72) 52%, rgba(250, 245, 255, 0.76)),

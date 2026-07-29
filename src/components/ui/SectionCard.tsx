@@ -1,6 +1,7 @@
 import { clsx } from "clsx";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { ReactNode, useEffect, useRef, useState } from "react";
+import VisualizationTools from "./VisualizationTools";
 
 type SectionCardProps = {
   id?: string;
@@ -12,14 +13,16 @@ type SectionCardProps = {
   headerAction?: ReactNode;
   tone?: "default" | "spotlight";
   allowFullscreen?: boolean;
+  visualizationTools?: boolean | "auto";
 };
 
-export default function SectionCard({ id, title, description, children, className, compact = false, headerAction, tone = "default", allowFullscreen = false }: SectionCardProps) {
+export default function SectionCard({ id, title, description, children, className, compact = false, headerAction, tone = "default", allowFullscreen = false, visualizationTools = "auto" }: SectionCardProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [fullscreen, setFullscreen] = useState(false);
   const [fullscreenOffset, setFullscreenOffset] = useState({ x: 0, y: 0 });
   const spotlight = tone === "spotlight";
   const fullscreenEnabled = allowFullscreen || isFullscreenCandidate(title, description);
+  const visualizationToolsEnabled = Boolean(title) && (visualizationTools === true || (visualizationTools === "auto" && isVisualizationToolCandidate(title, description)));
 
   useEffect(() => {
     if (!fullscreenEnabled) return undefined;
@@ -110,7 +113,11 @@ export default function SectionCard({ id, title, description, children, classNam
           {(headerAction || fullscreenButton) && <div className="flex shrink-0 items-center gap-2">{headerAction}{fullscreenButton}</div>}
         </div>
       )}
-      {children}
+      {visualizationToolsEnabled && title ? (
+        <VisualizationTools title={title} targetRef={sectionRef}>
+          {children}
+        </VisualizationTools>
+      ) : children}
     </section>
   );
 }
@@ -120,4 +127,11 @@ function isFullscreenCandidate(title?: string, description?: string) {
   if (!text.trim()) return false;
   if (/\b(resources|checklist|dictionary|showcase|library|bank|menu|dashboard|summary|notes?)\b/.test(text)) return false;
   return /\b(visualization|visualizer|visual check|visual cue|interactive visualization|graph|plot|canvas|pane|simulation|model|diagram|surface|3d|2d)\b/.test(text);
+}
+
+function isVisualizationToolCandidate(title?: string, description?: string) {
+  const text = `${title ?? ""} ${description ?? ""}`.toLowerCase();
+  if (!text.trim()) return false;
+  if (/\b(resources|checklist|dictionary|showcase|library|bank|menu|dashboard|summary|notes?|theory|learn more|examples?|problems?|practice prompts?|classroom notes?|filters?|presets?|input check|values and explanation|controls?)\b/.test(text)) return false;
+  return /\b(interactive|lab|visualization|visualizer|visual check|visual cue|graph|plot|canvas|workspace|simulation|simulator|model|diagram|surface|3d|2d|proof|studio|engine)\b/.test(text);
 }

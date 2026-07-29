@@ -7,7 +7,6 @@ import Sidebar from "./Sidebar";
 import { navItems } from "./navItems";
 import { BackToTopButton, BreadcrumbTrail, UndoToastHost } from "./GlobalUx";
 import { ArrowLeft, Github, Mail, Map, Maximize2, Minimize2, Sparkles } from "lucide-react";
-import { APP_VERSION } from "../../appVersion";
 
 function InlinePageNav({ showBack }: { showBack: boolean }) {
   const navigate = useNavigate();
@@ -49,7 +48,6 @@ function AppFooter() {
           </div>
         </div>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-3 text-[11px] font-bold uppercase text-slate-500 dark:border-white/10 dark:text-slate-400">
-          <span>Version {APP_VERSION}</span>
           <span>&copy; {year} Indian Servers Private Limited. No right to reproduce it.</span>
         </div>
         <p className="mt-2 text-[11px] font-semibold text-slate-500 dark:text-slate-400">
@@ -115,9 +113,6 @@ export default function AppLayout() {
         </div>
         <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
         <MobileLearningDock />
-        <div className="fixed bottom-3 left-3 z-40 rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[11px] font-black text-slate-500 shadow-lg backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300 lg:bottom-4">
-          v{APP_VERSION}
-        </div>
         <UndoToastHost />
       </div>
     );
@@ -155,9 +150,6 @@ export default function AppLayout() {
       </div>
       <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
       <MobileLearningDock />
-      <div className="fixed bottom-3 left-3 z-40 rounded-full border border-slate-200 bg-white/90 px-3 py-1 text-[11px] font-black text-slate-500 shadow-lg backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-slate-300 lg:bottom-4">
-        v{APP_VERSION}
-      </div>
       <BackToTopButton />
       <UndoToastHost />
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Pause, Play, RotateCcw } from "lucide-react";
 import DualPaneMathLayout from "../components/ui/DualPaneMathLayout";
 import SliderControl from "../components/ui/SliderControl";
@@ -144,7 +144,30 @@ export default function IntegrationAreaVisualizerPage() {
           </div>
         </div>
       }
+      theory={
+        <div className="grid gap-4 lg:grid-cols-3">
+          <TheoryPanel title="Core Idea">
+            A definite integral accumulates infinitely many tiny vertical slices. The total is signed area when slices below the x-axis count negative.
+          </TheoryPanel>
+          <TheoryPanel title="Approximation">
+            Riemann sums, trapezoids, and Simpson's Rule estimate the same accumulation with finite partitions. More partitions usually reduce slice error.
+            <div className="mt-3 rounded-xl bg-slate-100 p-3 font-mono text-xs font-bold dark:bg-slate-950">integral_a^b f(x) dx ≈ sum f(x_i) Δx</div>
+          </TheoryPanel>
+          <TheoryPanel title="How To Read This Tool">
+            Choose bounds a and b, then change partitions and method. For area between curves, the tool accumulates the vertical distance between f(x) and g(x).
+          </TheoryPanel>
+        </div>
+      }
     />
+  );
+}
+
+function TheoryPanel({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white/75 p-4 text-sm leading-6 text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
+      <h2 className="text-base font-black text-slate-950 dark:text-white">{title}</h2>
+      <div className="mt-2">{children}</div>
+    </div>
   );
 }
 

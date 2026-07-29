@@ -215,14 +215,103 @@ function GraphPanelTab({ active, icon, label, onClick }: { active: boolean; icon
 function GraphGrid({ viewport }: { viewport: GraphViewport }) {
   const zeroX = scaleX(0, viewport);
   const zeroY = scaleY(0, viewport);
+  const xTicks = axisTicks(viewport.xMin, viewport.xMax, 10);
+  const yTicks = axisTicks(viewport.yMin, viewport.yMax, 8);
+  const xAxisVisible = zeroY >= 0 && zeroY <= viewport.height;
+  const yAxisVisible = zeroX >= 0 && zeroX <= viewport.width;
+  const xTickY = Math.min(viewport.height - 18, Math.max(18, zeroY + 18));
+  const yTickX = Math.min(viewport.width - 32, Math.max(32, zeroX - 8));
+  const unitX0 = scaleX(0, viewport);
+  const unitX1 = scaleX(1, viewport);
+  const unitY0 = scaleY(0, viewport);
+  const unitY1 = scaleY(1, viewport);
+  const showXUnit = xAxisVisible && isInRange(0, viewport.xMin, viewport.xMax) && isInRange(1, viewport.xMin, viewport.xMax);
+  const showYUnit = yAxisVisible && isInRange(0, viewport.yMin, viewport.yMax) && isInRange(1, viewport.yMin, viewport.yMax);
   return (
     <g>
       {Array.from({ length: 21 }, (_, i) => <line key={`v-${i}`} x1={i * 32} x2={i * 32} y1="0" y2="360" stroke="rgba(148,163,184,.22)" />)}
       {Array.from({ length: 13 }, (_, i) => <line key={`h-${i}`} x1="0" x2="640" y1={i * 30} y2={i * 30} stroke="rgba(148,163,184,.22)" />)}
       <line x1={zeroX} x2={zeroX} y1="0" y2="360" stroke="#64748b" strokeWidth="2" />
       <line x1="0" x2="640" y1={zeroY} y2={zeroY} stroke="#64748b" strokeWidth="2" />
+      {xTicks.map((tick) => {
+        const x = scaleX(tick, viewport);
+        return (
+          <g key={`x-tick-${tick}`}>
+            <line x1={x} x2={x} y1={xAxisVisible ? zeroY - 5 : viewport.height - 22} y2={xAxisVisible ? zeroY + 5 : viewport.height - 12} stroke="#475569" strokeWidth="1.5" />
+            {tick !== 0 ? (
+              <text x={x} y={xAxisVisible ? xTickY : viewport.height - 6} textAnchor="middle" className="fill-slate-600 text-[10px] font-bold dark:fill-slate-300">
+                {formatAxisTick(tick)}
+              </text>
+            ) : null}
+          </g>
+        );
+      })}
+      {yTicks.map((tick) => {
+        const y = scaleY(tick, viewport);
+        return (
+          <g key={`y-tick-${tick}`}>
+            <line x1={yAxisVisible ? zeroX - 5 : 12} x2={yAxisVisible ? zeroX + 5 : 22} y1={y} y2={y} stroke="#475569" strokeWidth="1.5" />
+            {tick !== 0 ? (
+              <text x={yAxisVisible ? yTickX : 28} y={y + 3} textAnchor={yAxisVisible ? "end" : "start"} className="fill-slate-600 text-[10px] font-bold dark:fill-slate-300">
+                {formatAxisTick(tick)}
+              </text>
+            ) : null}
+          </g>
+        );
+      })}
+      {showXUnit ? (
+        <g>
+          <line x1={unitX0} x2={unitX1} y1={zeroY - 18} y2={zeroY - 18} stroke="#0891b2" strokeWidth="2" />
+          <line x1={unitX0} x2={unitX0} y1={zeroY - 22} y2={zeroY - 14} stroke="#0891b2" strokeWidth="2" />
+          <line x1={unitX1} x2={unitX1} y1={zeroY - 22} y2={zeroY - 14} stroke="#0891b2" strokeWidth="2" />
+          <text x={(unitX0 + unitX1) / 2} y={zeroY - 24} textAnchor="middle" className="fill-cyan-700 text-[10px] font-black dark:fill-cyan-200">
+            1 unit
+          </text>
+        </g>
+      ) : null}
+      {showYUnit ? (
+        <g>
+          <line x1={zeroX + 18} x2={zeroX + 18} y1={unitY0} y2={unitY1} stroke="#0891b2" strokeWidth="2" />
+          <line x1={zeroX + 14} x2={zeroX + 22} y1={unitY0} y2={unitY0} stroke="#0891b2" strokeWidth="2" />
+          <line x1={zeroX + 14} x2={zeroX + 22} y1={unitY1} y2={unitY1} stroke="#0891b2" strokeWidth="2" />
+          <text x={zeroX + 26} y={(unitY0 + unitY1) / 2 + 3} className="fill-cyan-700 text-[10px] font-black dark:fill-cyan-200">
+            1 unit
+          </text>
+        </g>
+      ) : null}
+      <text x={viewport.width - 18} y={Math.min(viewport.height - 10, Math.max(18, zeroY - 8))} textAnchor="end" className="fill-slate-700 text-[12px] font-black dark:fill-slate-200">
+        x
+      </text>
+      <text x={Math.min(viewport.width - 18, Math.max(18, zeroX + 10))} y="18" className="fill-slate-700 text-[12px] font-black dark:fill-slate-200">
+        y
+      </text>
     </g>
   );
+}
+
+function axisTicks(min: number, max: number, targetCount: number) {
+  const span = Math.abs(max - min) || 1;
+  const rawStep = span / targetCount;
+  const magnitude = 10 ** Math.floor(Math.log10(rawStep));
+  const normalized = rawStep / magnitude;
+  const niceNormalized = normalized <= 1 ? 1 : normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
+  const step = niceNormalized * magnitude;
+  const start = Math.ceil(min / step) * step;
+  const ticks: number[] = [];
+  for (let value = start; value <= max + step * 0.5; value += step) {
+    const rounded = Number(value.toFixed(8));
+    if (rounded >= min - 1e-8 && rounded <= max + 1e-8) ticks.push(rounded);
+    if (ticks.length > 40) break;
+  }
+  return ticks;
+}
+
+function formatAxisTick(value: number) {
+  return Number.isInteger(value) ? String(value) : value.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
+}
+
+function isInRange(value: number, min: number, max: number) {
+  return value >= Math.min(min, max) && value <= Math.max(min, max);
 }
 
 function GraphMiniNumber({ label, value, onChange }: { label: string; value: number; onChange: (value: number) => void }) {

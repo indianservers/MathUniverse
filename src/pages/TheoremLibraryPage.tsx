@@ -1,7 +1,7 @@
-import { BookOpen, BookOpenCheck, CheckCircle2, ChevronLeft, Link2, Search, Sigma, Sparkles, TriangleAlert } from "lucide-react";
+import { BookOpen, BookOpenCheck, CheckCircle2, ChevronLeft, ChevronRight, Lightbulb, Link2, RotateCcw, Search, Sigma, Sparkles, Target, TriangleAlert } from "lucide-react";
 import { useMemo, useState, type ReactNode } from "react";
 import { Link, useParams } from "react-router-dom";
-import MathExpression, { isFormulaLike } from "../components/ui/MathExpression";
+import { InlineMathText } from "../components/ui/MathExpression";
 import { formulaCategories, type FormulaCategory, type FormulaLibraryItem } from "../data/formulaLibrary";
 import { theoremCategories, theoremCount, type TheoremCategory, type TheoremLibraryItem } from "../data/theoremLibrary";
 import { getCuratedTheoremLearningLinks } from "../proof-explanations/proofLearningLinks";
@@ -66,6 +66,9 @@ export default function TheoremLibraryPage() {
         row.title,
         row.statement,
         row.subtopic,
+        row.purpose,
+        row.detailedExplanation,
+        row.examples.map((example) => `${example.title} ${example.scenario} ${example.takeaway}`).join(" "),
         row.whyItMatters,
         row.category.title,
         row.category.description,
@@ -246,7 +249,7 @@ function TheoremCard({ row }: { row: TheoremSheetRow }) {
       <p className="mt-2 rounded-md bg-slate-50 px-3 py-2 text-base font-bold leading-6 text-slate-800 dark:bg-white/5 dark:text-slate-100">
         <TheoremStatement value={row.statement} />
       </p>
-      <p className="mt-3 text-base font-semibold leading-6 text-slate-600 dark:text-slate-300">{row.whyItMatters}</p>
+      <p className="mt-3 text-base font-semibold leading-6 text-slate-600 dark:text-slate-300"><InlineMathText value={row.purpose} /></p>
       <div className="mt-auto pt-3">
         <div className="mb-2 flex flex-wrap gap-1.5">
           <span className="rounded-md bg-cyan-50 px-2 py-1 text-xs font-black text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-100">{row.subtopic}</span>
@@ -286,9 +289,13 @@ function TheoremDetail({ theorem, category }: { theorem: TheoremLibraryItem; cat
             </p>
           </div>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
+            <InfoPanel title="Purpose" text={theorem.purpose} />
             <InfoPanel title="Why It Matters" text={theorem.whyItMatters} />
             <InfoPanel title={referencePage ? "Reference Guide" : "Proof Draft"} text={theorem.proofPlan} />
           </div>
+          <DetailedExplanationPanel theorem={theorem} />
+          <TheoremExamplesPanel theorem={theorem} />
+          <UniversalVisualProofPanel theorem={theorem} category={category} />
           <StepByStepProofPanel theorem={theorem} />
           <RelatedLearningPanel related={related} />
         </div>
@@ -325,31 +332,7 @@ function TheoremDetail({ theorem, category }: { theorem: TheoremLibraryItem; cat
 }
 
 function TheoremStatement({ value, mathClassName = "" }: { value: string; mathClassName?: string }) {
-  const trimmed = value.trim();
-  const sentenceEnd = trimmed.endsWith(".") ? "." : "";
-  const body = sentenceEnd ? trimmed.slice(0, -1) : trimmed;
-  const commaIndex = body.lastIndexOf(",");
-  const formulaCandidate = commaIndex > -1 ? body.slice(commaIndex + 1).trim() : body;
-
-  if (commaIndex > -1 && isFormulaLike(formulaCandidate)) {
-    return (
-      <>
-        {body.slice(0, commaIndex + 1)} <MathExpression value={formulaCandidate} className={mathClassName} />
-        {sentenceEnd}
-      </>
-    );
-  }
-
-  if (isFormulaLike(body) && !/[a-z]{3,}\s+[a-z]{3,}/i.test(body)) {
-    return (
-      <>
-        <MathExpression value={body} className={mathClassName} />
-        {sentenceEnd}
-      </>
-    );
-  }
-
-  return <>{value}</>;
+  return <InlineMathText value={value} mathClassName={mathClassName} />;
 }
 
 function StepByStepProofPanel({ theorem }: { theorem: TheoremLibraryItem }) {
@@ -369,7 +352,7 @@ function StepByStepProofPanel({ theorem }: { theorem: TheoremLibraryItem }) {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">Step-by-step proof</p>
-          <p className="mt-2 text-base font-bold leading-6 text-slate-800 dark:text-slate-100">{theorem.proofIdea}</p>
+          <p className="mt-2 text-base font-bold leading-6 text-slate-800 dark:text-slate-100"><InlineMathText value={theorem.proofIdea ?? ""} /></p>
         </div>
         <span className={`w-fit rounded-md border px-2 py-1 text-[10px] font-black uppercase tracking-wide ${statusTone(theorem.proofStatus)}`}>
           {statusLabel(theorem.proofStatus)}
@@ -382,9 +365,9 @@ function StepByStepProofPanel({ theorem }: { theorem: TheoremLibraryItem }) {
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-cyan-600 text-sm font-black text-white">{index + 1}</span>
               <div className="min-w-0">
                 <h3 className="text-lg font-black leading-tight text-slate-950 dark:text-white">{step.title}</h3>
-                <p className="mt-1 text-base font-semibold leading-6 text-slate-700 dark:text-slate-200">{step.explanation}</p>
+                <p className="mt-1 text-base font-semibold leading-6 text-slate-700 dark:text-slate-200"><InlineMathText value={step.explanation} /></p>
                 <p className="mt-2 rounded-md bg-slate-50 px-3 py-2 text-sm font-bold leading-5 text-slate-600 dark:bg-white/5 dark:text-slate-300">
-                  Visual cue: {step.representation}
+                  Visual cue: <InlineMathText value={step.representation} />
                 </p>
               </div>
             </div>
@@ -398,7 +381,7 @@ function StepByStepProofPanel({ theorem }: { theorem: TheoremLibraryItem }) {
               <CheckCircle2 className="h-4 w-4" />
               Exam Memory
             </p>
-            <p className="mt-2 text-base font-bold leading-6 text-slate-700 dark:text-slate-200">{theorem.examMemory}</p>
+            <p className="mt-2 text-base font-bold leading-6 text-slate-700 dark:text-slate-200"><InlineMathText value={theorem.examMemory} /></p>
           </div>
         ) : null}
         {theorem.commonMistakes?.length ? (
@@ -409,13 +392,281 @@ function StepByStepProofPanel({ theorem }: { theorem: TheoremLibraryItem }) {
             </p>
             <ul className="mt-2 grid gap-1.5 text-base font-bold leading-6 text-slate-700 dark:text-slate-200">
               {theorem.commonMistakes.map((mistake) => (
-                <li key={mistake}>- {mistake}</li>
+                <li key={mistake}>- <InlineMathText value={mistake} /></li>
               ))}
             </ul>
           </div>
         ) : null}
       </div>
     </section>
+  );
+}
+
+function UniversalVisualProofPanel({ theorem, category }: { theorem: TheoremLibraryItem; category: TheoremCategory }) {
+  const steps = theorem.proofSteps?.length
+    ? theorem.proofSteps
+    : [
+        { title: "Read the claim", explanation: theorem.statement, representation: "Separate the theorem into givens, conditions, and target result." },
+        { title: "Check conditions", explanation: theorem.purpose, representation: "Prerequisites and hypotheses are checked before applying the theorem." },
+        { title: "Apply result", explanation: theorem.whyItMatters, representation: "The conclusion is highlighted as the reusable theorem result." },
+      ];
+  const [activeStep, setActiveStep] = useState(0);
+  const active = steps[Math.min(activeStep, steps.length - 1)];
+  const progress = steps.length <= 1 ? 100 : (activeStep / (steps.length - 1)) * 100;
+
+  const previous = () => setActiveStep((step) => Math.max(0, step - 1));
+  const next = () => setActiveStep((step) => Math.min(steps.length - 1, step + 1));
+  const reset = () => setActiveStep(0);
+
+  return (
+    <section className="mt-4 rounded-lg border border-violet-200 bg-violet-50/70 p-4 dark:border-violet-300/20 dark:bg-violet-400/10" data-testid="theorem-universal-visual-proof">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+        <div>
+          <p className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-violet-700 dark:text-violet-200">
+            <Sparkles className="h-4 w-4" />
+            Interactive Visual Proof
+          </p>
+          <h3 className="mt-1 text-xl font-black leading-tight text-slate-950 dark:text-white">{theorem.title}</h3>
+          <p className="mt-1 max-w-3xl text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
+            Step through the proof visually: setup, key relation, condition check, and conclusion are shown as connected proof states.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={previous} className="inline-flex items-center gap-1 rounded-md border border-violet-200 bg-white px-3 py-2 text-xs font-black text-violet-800 transition hover:bg-violet-100 disabled:opacity-50 dark:border-violet-300/20 dark:bg-slate-950/60 dark:text-violet-100" disabled={activeStep === 0}>
+            <ChevronLeft className="h-4 w-4" />
+            Prev
+          </button>
+          <button type="button" onClick={reset} className="inline-flex items-center gap-1 rounded-md border border-violet-200 bg-white px-3 py-2 text-xs font-black text-violet-800 transition hover:bg-violet-100 dark:border-violet-300/20 dark:bg-slate-950/60 dark:text-violet-100">
+            <RotateCcw className="h-4 w-4" />
+            Reset
+          </button>
+          <button type="button" onClick={next} className="inline-flex items-center gap-1 rounded-md bg-violet-600 px-3 py-2 text-xs font-black text-white transition hover:bg-violet-700 disabled:opacity-50" disabled={activeStep === steps.length - 1}>
+            Next
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-4 grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="overflow-hidden rounded-lg border border-white bg-white shadow-sm dark:border-white/10 dark:bg-slate-950/60">
+          <TheoremVisualCanvas category={category} theorem={theorem} activeStep={activeStep} totalSteps={steps.length} activeTitle={active.title} />
+        </div>
+        <aside className="rounded-lg bg-white p-3 dark:bg-slate-950/60">
+          <p className="text-xs font-black uppercase tracking-wide text-violet-700 dark:text-violet-200">Visual state {activeStep + 1} of {steps.length}</p>
+          <h4 className="mt-2 text-lg font-black leading-tight text-slate-950 dark:text-white">{active.title}</h4>
+          <p className="mt-2 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200"><InlineMathText value={active.explanation} /></p>
+          <p className="mt-3 rounded-md bg-violet-50 px-3 py-2 text-sm font-bold leading-5 text-violet-800 dark:bg-violet-300/10 dark:text-violet-100">
+            Visual cue: <InlineMathText value={active.representation} />
+          </p>
+          <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-white/10">
+            <div className="h-full rounded-full bg-violet-600 transition-all" style={{ width: `${progress}%` }} />
+          </div>
+          <div className="mt-3 grid gap-1.5">
+            {steps.map((step, index) => (
+              <button
+                key={`${step.title}-${index}`}
+                type="button"
+                onClick={() => setActiveStep(index)}
+                className={`rounded-md px-2 py-1.5 text-left text-xs font-black transition ${index === activeStep ? "bg-violet-600 text-white" : "bg-slate-100 text-slate-600 hover:bg-violet-100 hover:text-violet-800 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-violet-300/15 dark:hover:text-violet-100"}`}
+              >
+                {index + 1}. {step.title}
+              </button>
+            ))}
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+function TheoremVisualCanvas({ activeStep, activeTitle, category, theorem, totalSteps }: { activeStep: number; activeTitle: string; category: TheoremCategory; theorem: TheoremLibraryItem; totalSteps: number }) {
+  if (category.id === "geometry" || category.id === "coordinate-geometry" || theorem.subtopic.toLowerCase().includes("triangle") || theorem.title.toLowerCase().includes("angle")) {
+    return <GeometryTheoremVisual activeStep={activeStep} activeTitle={activeTitle} theorem={theorem} totalSteps={totalSteps} />;
+  }
+  if (category.id === "graph-theory" || category.id === "discrete-logic") {
+    return <NetworkTheoremVisual activeStep={activeStep} activeTitle={activeTitle} theorem={theorem} totalSteps={totalSteps} />;
+  }
+  if (category.id === "probability-statistics") {
+    return <ProbabilityTheoremVisual activeStep={activeStep} activeTitle={activeTitle} theorem={theorem} totalSteps={totalSteps} />;
+  }
+  return <GeneralTheoremVisual activeStep={activeStep} activeTitle={activeTitle} category={category} theorem={theorem} totalSteps={totalSteps} />;
+}
+
+function GeometryTheoremVisual({ activeStep, activeTitle, theorem, totalSteps }: { activeStep: number; activeTitle: string; theorem: TheoremLibraryItem; totalSteps: number }) {
+  const reveal = (index: number) => activeStep >= Math.min(index, totalSteps - 1);
+  return (
+    <svg viewBox="0 0 900 420" role="img" aria-label={`${theorem.title} visual proof`} className="h-[340px] w-full max-w-full bg-slate-950">
+      <TheoremVisualTitle theorem={theorem} activeTitle={activeTitle} />
+      <path d="M170 310 L450 82 L730 310 Z" fill="#0f766e22" stroke="#67e8f9" strokeWidth="5" strokeLinejoin="round" />
+      <line x1="450" y1="82" x2="450" y2="310" stroke="#fbbf24" strokeWidth={reveal(1) ? 5 : 2} strokeDasharray={reveal(1) ? "0" : "8 8"} />
+      <circle cx="170" cy="310" r="8" fill="#fb7185" />
+      <circle cx="450" cy="82" r="8" fill="#fbbf24" />
+      <circle cx="730" cy="310" r="8" fill="#fb7185" />
+      <text x="150" y="340" fill="#f8fafc" fontSize="24" fontWeight="900">A</text>
+      <text x="442" y="58" fill="#f8fafc" fontSize="24" fontWeight="900">B</text>
+      <text x="742" y="340" fill="#f8fafc" fontSize="24" fontWeight="900">C</text>
+      <path d="M205 306 Q230 272 262 276" fill="none" stroke={reveal(2) ? "#fb7185" : "#94a3b8"} strokeWidth="6" />
+      <path d="M695 306 Q670 272 638 276" fill="none" stroke={reveal(2) ? "#fb7185" : "#94a3b8"} strokeWidth="6" />
+      <text x="360" y="355" fill="#a7f3d0" fontSize="22" fontWeight="900">conditions checked</text>
+      <text x="314" y="386" fill={reveal(3) ? "#fef08a" : "#94a3b8"} fontSize="24" fontWeight="900">matching structure forces the conclusion</text>
+      <ProofStepBadges activeStep={activeStep} totalSteps={totalSteps} />
+    </svg>
+  );
+}
+
+function NetworkTheoremVisual({ activeStep, activeTitle, theorem, totalSteps }: { activeStep: number; activeTitle: string; theorem: TheoremLibraryItem; totalSteps: number }) {
+  const nodes = [
+    [210, 250],
+    [360, 145],
+    [540, 145],
+    [690, 250],
+    [450, 315],
+  ] as const;
+  return (
+    <svg viewBox="0 0 900 420" role="img" aria-label={`${theorem.title} visual proof`} className="h-[340px] w-full max-w-full bg-slate-950">
+      <TheoremVisualTitle theorem={theorem} activeTitle={activeTitle} />
+      {nodes.slice(0, -1).map(([x, y], index) => {
+        const [x2, y2] = nodes[index + 1];
+        return <line key={`edge-${index}`} x1={x} y1={y} x2={x2} y2={y2} stroke={index <= activeStep ? "#67e8f9" : "#475569"} strokeWidth="5" />;
+      })}
+      <line x1={690} y1={250} x2={210} y2={250} stroke={activeStep > 2 ? "#fbbf24" : "#475569"} strokeWidth="5" />
+      {nodes.map(([x, y], index) => (
+        <g key={`node-${index}`}>
+          <circle cx={x} cy={y} r="30" fill={index <= activeStep ? "#0891b2" : "#334155"} stroke="#e0f2fe" strokeWidth="4" />
+          <text x={x} y={y + 8} textAnchor="middle" fill="#f8fafc" fontSize="22" fontWeight="900">{index + 1}</text>
+        </g>
+      ))}
+      <ProofStepBadges activeStep={activeStep} totalSteps={totalSteps} />
+    </svg>
+  );
+}
+
+function ProbabilityTheoremVisual({ activeStep, activeTitle, theorem, totalSteps }: { activeStep: number; activeTitle: string; theorem: TheoremLibraryItem; totalSteps: number }) {
+  const branches = [
+    ["A", 300, 160, "#22c55e"],
+    ["not A", 300, 300, "#f97316"],
+    ["B", 610, 120, "#38bdf8"],
+    ["not B", 610, 220, "#a78bfa"],
+    ["B", 610, 275, "#38bdf8"],
+    ["not B", 610, 360, "#a78bfa"],
+  ] as const;
+  return (
+    <svg viewBox="0 0 900 420" role="img" aria-label={`${theorem.title} visual proof`} className="h-[340px] w-full max-w-full bg-slate-950">
+      <TheoremVisualTitle theorem={theorem} activeTitle={activeTitle} />
+      <circle cx="120" cy="230" r="38" fill="#0891b2" stroke="#e0f2fe" strokeWidth="4" />
+      <text x="120" y="238" textAnchor="middle" fill="#f8fafc" fontSize="24" fontWeight="900">Start</text>
+      {branches.map(([label, x, y, color], index) => (
+        <g key={`${label}-${x}-${y}`}>
+          <line x1={index < 2 ? 158 : 338} y1={index < 2 ? 230 : index < 4 ? 160 : 300} x2={x - 38} y2={y} stroke={index <= activeStep + 1 ? color : "#475569"} strokeWidth="5" />
+          <circle cx={x} cy={y} r="36" fill={index <= activeStep + 1 ? color : "#334155"} stroke="#e0f2fe" strokeWidth="4" />
+          <text x={x} y={y + 8} textAnchor="middle" fill="#f8fafc" fontSize="20" fontWeight="900">{label}</text>
+        </g>
+      ))}
+      <text x="365" y="390" fill="#fef08a" fontSize="24" fontWeight="900">combine branches under the theorem conditions</text>
+      <ProofStepBadges activeStep={activeStep} totalSteps={totalSteps} />
+    </svg>
+  );
+}
+
+function GeneralTheoremVisual({ activeStep, activeTitle, category, theorem, totalSteps }: { activeStep: number; activeTitle: string; category: TheoremCategory; theorem: TheoremLibraryItem; totalSteps: number }) {
+  const nodes = ["Givens", "Conditions", "Key relation", "Conclusion"];
+  return (
+    <svg viewBox="0 0 900 420" role="img" aria-label={`${theorem.title} visual proof`} className="h-[340px] w-full max-w-full bg-slate-950">
+      <TheoremVisualTitle theorem={theorem} activeTitle={activeTitle} />
+      {nodes.map((label, index) => {
+        const x = 145 + index * 205;
+        const active = index <= Math.min(activeStep, nodes.length - 1);
+        return (
+          <g key={label}>
+            {index > 0 ? <line x1={x - 160} x2={x - 45} y1="230" y2="230" stroke={active ? "#67e8f9" : "#475569"} strokeWidth="6" strokeLinecap="round" /> : null}
+            <rect x={x - 55} y="175" width="110" height="110" rx="14" fill={active ? "#0891b2" : "#334155"} stroke={active ? "#a7f3d0" : "#94a3b8"} strokeWidth="4" />
+            <text x={x} y="225" textAnchor="middle" fill="#f8fafc" fontSize="18" fontWeight="900">{label}</text>
+            <text x={x} y="250" textAnchor="middle" fill="#dbeafe" fontSize="14" fontWeight="800">{index + 1}</text>
+          </g>
+        );
+      })}
+      <text x="450" y="340" textAnchor="middle" fill="#fef08a" fontSize="24" fontWeight="900">{category.title}</text>
+      <ProofStepBadges activeStep={activeStep} totalSteps={totalSteps} />
+    </svg>
+  );
+}
+
+function TheoremVisualTitle({ activeTitle, theorem }: { activeTitle: string; theorem: TheoremLibraryItem }) {
+  return (
+    <g>
+      <text x="36" y="48" fill="#f8fafc" fontSize="26" fontWeight="900">{truncateSvgText(theorem.title, 44)}</text>
+      <text x="36" y="82" fill="#bae6fd" fontSize="18" fontWeight="800">{truncateSvgText(activeTitle, 70)}</text>
+    </g>
+  );
+}
+
+function ProofStepBadges({ activeStep, totalSteps }: { activeStep: number; totalSteps: number }) {
+  return (
+    <g>
+      {Array.from({ length: totalSteps }, (_, index) => (
+        <circle key={`proof-dot-${index}`} cx={620 + index * 28} cy="48" r="8" fill={index <= activeStep ? "#fbbf24" : "#475569"} />
+      ))}
+    </g>
+  );
+}
+
+function truncateSvgText(value: string, limit: number) {
+  return value.length > limit ? `${value.slice(0, limit - 3)}...` : value;
+}
+
+function DetailedExplanationPanel({ theorem }: { theorem: TheoremLibraryItem }) {
+  return (
+    <section className="mt-4 rounded-lg border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/40">
+      <p className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-200">
+        <BookOpenCheck className="h-4 w-4" />
+        Detailed Explanation
+      </p>
+      <p className="mt-2 text-base font-semibold leading-7 text-slate-700 dark:text-slate-200"><InlineMathText value={theorem.detailedExplanation} /></p>
+      <div className="mt-3 grid gap-2 md:grid-cols-3">
+        <LearningCue icon={<Target className="h-4 w-4" />} title="Check" text="Identify the theorem's conditions before using the result." />
+        <LearningCue icon={<Sigma className="h-4 w-4" />} title="Apply" text="Substitute the known values, relations, or objects into the conclusion." />
+        <LearningCue icon={<CheckCircle2 className="h-4 w-4" />} title="Verify" text="Match the final result back to the original problem or proof target." />
+      </div>
+    </section>
+  );
+}
+
+function TheoremExamplesPanel({ theorem }: { theorem: TheoremLibraryItem }) {
+  return (
+    <section className="mt-4 rounded-lg border border-emerald-200 bg-emerald-50/60 p-4 dark:border-emerald-300/20 dark:bg-emerald-400/10">
+      <p className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-emerald-700 dark:text-emerald-200">
+        <Lightbulb className="h-4 w-4" />
+        Examples and Uses
+      </p>
+      <div className="mt-3 grid gap-3 md:grid-cols-2">
+        {theorem.examples.map((example, index) => (
+          <article key={`${example.title}-${index}`} className="rounded-lg border border-white bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/60">
+            <div className="flex items-start gap-3">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-emerald-600 text-sm font-black text-white">{index + 1}</span>
+              <div className="min-w-0">
+                <h3 className="text-base font-black leading-tight text-slate-950 dark:text-white">{example.title}</h3>
+                <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200"><InlineMathText value={example.scenario} /></p>
+                <p className="mt-2 rounded-md bg-emerald-50 px-3 py-2 text-sm font-bold leading-5 text-emerald-800 dark:bg-emerald-300/10 dark:text-emerald-100">
+                  <InlineMathText value={example.takeaway} />
+                </p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function LearningCue({ icon, text, title }: { icon: ReactNode; text: string; title: string }) {
+  return (
+    <div className="rounded-lg bg-slate-50 p-3 dark:bg-white/5">
+      <p className="flex items-center gap-2 text-sm font-black text-slate-900 dark:text-white">
+        {icon}
+        {title}
+      </p>
+      <p className="mt-1 text-sm font-semibold leading-5 text-slate-600 dark:text-slate-300">{text}</p>
+    </div>
   );
 }
 
@@ -496,7 +747,7 @@ function InfoPanel({ title, text }: { title: string; text: string }) {
   return (
     <div className="rounded-lg border border-slate-200 p-3 dark:border-white/10">
       <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{title}</p>
-      <p className="mt-2 text-base font-semibold leading-6 text-slate-700 dark:text-slate-200">{text}</p>
+      <p className="mt-2 text-base font-semibold leading-6 text-slate-700 dark:text-slate-200"><InlineMathText value={text} /></p>
     </div>
   );
 }

@@ -1,7 +1,9 @@
 import { CheckCircle2, Gauge, Lightbulb, RotateCcw, SlidersHorizontal, Target } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import MathExpression from "../../../components/ui/MathExpression";
+import VisualizationTools from "../../../components/ui/VisualizationTools";
 import type { SchoolSyllabusLesson } from "../syllabus/lessonSyllabusTypes";
+import SchoolProofMiniTool, { hasSchoolProofMiniTool } from "./SchoolProofMiniTool";
 
 type LabModel = {
   family: "algebra" | "calculus" | "geometry" | "probability" | "statistics" | "trigonometry" | "vectors" | "number";
@@ -25,7 +27,10 @@ export default function SchoolLessonInteractiveLab({ lesson }: { lesson: SchoolS
   const [a, setA] = useState(4);
   const [b, setB] = useState(3);
   const [showReason, setShowReason] = useState(false);
+  const visualRef = useRef<HTMLElement>(null);
   const model = useMemo(() => createLabModel(lesson, a, b), [lesson, a, b]);
+
+  if (hasSchoolProofMiniTool(lesson)) return <SchoolProofMiniTool lesson={lesson} />;
 
   return (
     <section className="rounded-3xl border border-cyan-100 bg-white p-4 shadow-xl shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/75" aria-label="Interactive lesson lab">
@@ -54,13 +59,15 @@ export default function SchoolLessonInteractiveLab({ lesson }: { lesson: SchoolS
         </div>
 
         <div className="space-y-3">
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/70">
+          <section ref={visualRef} className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/70">
             <div className="flex items-center justify-between gap-2">
               <h3 className="flex items-center gap-2 text-sm font-black uppercase text-slate-700 dark:text-slate-200"><Gauge className="h-4 w-4 text-cyan-600" />{model.visualLabel}</h3>
               <span className="rounded-full bg-cyan-50 px-2.5 py-1 text-xs font-black text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-100">{lesson.metadata.lessonType}</span>
             </div>
-            <ConceptVisual model={model} a={a} b={b} />
-          </div>
+            <VisualizationTools title={`${lesson.title} ${model.visualLabel}`} targetRef={visualRef}>
+              <ConceptVisual model={model} a={a} b={b} />
+            </VisualizationTools>
+          </section>
 
           <div className="grid gap-3 lg:grid-cols-2">
             <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-amber-950 dark:border-amber-300/20 dark:bg-amber-300/10 dark:text-amber-100">
@@ -161,7 +168,7 @@ function algebraModel(lesson: SchoolSyllabusLesson, a: number, b: number): LabMo
   return baseModel(lesson, "algebra", "Function machine", "f(x)=mx+c", "Adjust the rule and inspect how each input maps to an output.", "Multiplier m", "Constant c", "f(2)", String(output), `Rate of change ${a}`, "Input-output table", `For f(x)=${a}x+${b}, find f(2).`, `f(2)=${a} x 2 + ${b} = ${output}.`, "Do not combine unlike terms; substitute first, then simplify.");
 }
 
-function trigonometryModel(lesson: SchoolSyllabusLesson, a: number, b: number): LabModel {
+function trigonometryModel(lesson: SchoolSyllabusLesson, a: number, _b: number): LabModel {
   const angle = a * 9;
   const sine = Math.sin((angle * Math.PI) / 180);
   return baseModel(lesson, "trigonometry", "Angle ratio explorer", "\\sin\\theta=\\frac{opposite}{hypotenuse}", "Move the angle and compare the ratio with the visual height.", "Angle step", "Scale", "sin(theta)", sine.toFixed(3), `Angle ${angle} deg`, "Ratio bars", `Estimate sin(${angle} deg).`, `sin(${angle} deg) is about ${sine.toFixed(3)}.`, "Do not confuse sine with cosine; sine tracks the vertical/opposite side.");
