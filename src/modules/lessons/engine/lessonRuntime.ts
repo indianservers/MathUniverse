@@ -1,5 +1,6 @@
 import { evaluateExpression } from "../../../utils/calculator";
 import { latestLessonEvidence } from "./lessonInteraction";
+import { createStrengthenedFoundationChallenge } from "../strengthening/foundationNumberContent";
 import type { LessonDefinition, LessonInteractionEvent } from "../types";
 
 export type LessonChallenge = {
@@ -15,6 +16,8 @@ export type LessonCheckResult = { correct: boolean; feedback: string };
 export function createLessonChallenge(lesson: LessonDefinition, seed: number, history: LessonInteractionEvent[] = []): LessonChallenge {
   const a = 2 + (seed % 7);
   const b = 1 + (Math.floor(seed / 7) % 6);
+  const strengthened = createStrengthenedFoundationChallenge(lesson.id);
+  if (strengthened) return strengthened;
   const specific = createSpecificChallenge(lesson, history);
   if (specific) return specific;
 

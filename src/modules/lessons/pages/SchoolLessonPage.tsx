@@ -2,12 +2,17 @@ import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ClipboardCheck, ListChec
 import { Link, useParams } from "react-router-dom";
 import { adjacentSchoolLessons, findSchoolLesson } from "../catalog/school/schoolSyllabusCatalog";
 import SchoolLessonInteractiveLab from "../components/SchoolLessonInteractiveLab";
+import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
+import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
 
 export default function SchoolLessonPage() {
   const { levelSlug: routeLevelSlug, lessonSlug } = useParams();
   const lesson = findSchoolLesson(routeLevelSlug, lessonSlug);
   if (!lesson) return <LessonNotFound />;
   const adjacent = adjacentSchoolLessons(lesson);
+  const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
+  const content = strengthened ? strengthenedSchoolContent(strengthened) : lesson.content;
+  const objectives = strengthened?.learningObjectives ?? lesson.metadata.learningObjectives;
 
   return (
     <div className="space-y-4" data-testid="school-lesson-page">
@@ -16,7 +21,7 @@ export default function SchoolLessonPage() {
           <div>
             <p className="text-xs font-black uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">{lesson.metadata.academicLevel} - {lesson.metadata.conceptFamily}</p>
             <h1 className="mt-2 text-3xl font-black text-slate-950 dark:text-white">{lesson.title}</h1>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">{lesson.content.summary}</p>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">{content.summary}</p>
           </div>
           <Link className="action-secondary" to="/lessons/school"><ArrowLeft className="h-4 w-4" />School lessons</Link>
         </div>
@@ -33,18 +38,18 @@ export default function SchoolLessonPage() {
       <main className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_340px]">
         <div className="space-y-4">
           <QualitySection lessonTitle={lesson.title} family={lesson.metadata.conceptFamily} />
-          <Section icon={<BookOpen className="h-4 w-4" />} title="Learn" items={lesson.content.learn} />
-          <Section icon={<Route className="h-4 w-4" />} title="Explore" items={lesson.content.explore} />
-          <Section icon={<ListChecks className="h-4 w-4" />} title="Practice" items={lesson.content.practice} />
-          {lesson.content.proofChecklist ? <Section icon={<SearchCheck className="h-4 w-4" />} title="Proof checklist" items={lesson.content.proofChecklist} /> : null}
-          {lesson.content.constructionChecklist ? <Section icon={<SearchCheck className="h-4 w-4" />} title="Construction checklist" items={lesson.content.constructionChecklist} /> : null}
+          <Section icon={<BookOpen className="h-4 w-4" />} title="Learn" items={content.learn} />
+          <Section icon={<Route className="h-4 w-4" />} title="Explore" items={content.explore} />
+          <Section icon={<ListChecks className="h-4 w-4" />} title="Practice" items={content.practice} />
+          {content.proofChecklist ? <Section icon={<SearchCheck className="h-4 w-4" />} title="Proof checklist" items={content.proofChecklist} /> : null}
+          {content.constructionChecklist ? <Section icon={<SearchCheck className="h-4 w-4" />} title="Construction checklist" items={content.constructionChecklist} /> : null}
         </div>
 
         <aside className="space-y-4 xl:sticky xl:top-20">
           <section className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/70">
             <h2 className="flex items-center gap-2 text-sm font-black uppercase text-cyan-600 dark:text-cyan-300"><ClipboardCheck className="h-4 w-4" />Objectives</h2>
             <ul className="mt-3 space-y-2">
-              {lesson.metadata.learningObjectives.map((objective) => <li key={objective} className="flex gap-2 text-sm leading-6 text-slate-600 dark:text-slate-300"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-500" />{objective}</li>)}
+              {objectives.map((objective) => <li key={objective} className="flex gap-2 text-sm leading-6 text-slate-600 dark:text-slate-300"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-500" />{objective}</li>)}
             </ul>
           </section>
           <section className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/70">
@@ -53,7 +58,7 @@ export default function SchoolLessonPage() {
               {lesson.metadata.syllabusTags.map((tag) => <span key={`${tag.board}-${tag.level}`} className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black text-slate-600 dark:bg-white/10 dark:text-slate-300">{tag.board}</span>)}
             </div>
           </section>
-          <Section icon={<ClipboardCheck className="h-4 w-4" />} title="Assessment prompts" items={lesson.content.assessmentPrompts} />
+          <Section icon={<ClipboardCheck className="h-4 w-4" />} title="Assessment prompts" items={content.assessmentPrompts} />
         </aside>
       </main>
 
@@ -63,6 +68,18 @@ export default function SchoolLessonPage() {
       </nav>
     </div>
   );
+}
+
+function strengthenedSchoolContent(lesson: NonNullable<ReturnType<typeof getStrengthenedFoundationLesson>>): SchoolLessonContent {
+  return {
+    summary: lesson.introduction,
+    learn: [lesson.basicIdea, lesson.howItWorks, `Common mistake: ${lesson.misconceptions[0].mistake} Correction: ${lesson.misconceptions[0].correction}`],
+    explore: lesson.guidedExploration.map((step) => step.prompt),
+    practice: lesson.practice.slice(1, 4).map((item) => item.prompt),
+    assessmentPrompts: [lesson.challenge.prompt, ...lesson.exitCheck.map((item) => item.prompt), `Give one real-life use: ${lesson.realLifeExamples[0].context}.`],
+    proofChecklist: lesson.lessonType === "proof" ? ["Write the given statement clearly.", "Name the accepted definition, axiom, postulate, or theorem used.", "Give a reason for each step.", "Check that the conclusion proves exactly what was asked."] : undefined,
+    constructionChecklist: lesson.topic.includes("Geometry") && lesson.lessonType === "procedure" ? ["Draw the given object first.", "Keep compass width fixed when equal lengths are needed.", "Mark intersection points clearly.", "Check the required equal length, angle, or parallel condition."] : undefined,
+  };
 }
 
 function Section({ icon, title, items }: { icon: JSX.Element; title: string; items: string[] }) {

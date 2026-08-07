@@ -39,4 +39,47 @@ describe("FinanceLessonAdapter", () => {
       expect(html).not.toContain("Closing");
     }
   });
+
+  it("renders strengthened finance lessons with lesson-specific guidance", () => {
+    const expected = new Map([
+      [592, "Compound Interest"],
+      [593, "Effective Interest Rate"],
+      [594, "Present Value"],
+      [595, "Future Value"],
+      [596, "Annuities"],
+      [597, "Loans and EMIs"],
+      [598, "Amortisation Table"],
+      [599, "Depreciation"],
+      [600, "Inflation"],
+      [601, "Currency Conversion"],
+      [602, "Profit, Loss, Markup and Margin"],
+      [603, "Break-Even Analysis"],
+      [604, "Tax and Discounts"],
+      [605, "Investment Comparison"],
+      [606, "Model Builder"],
+      [607, "Linear Models"],
+      [608, "Quadratic Models"],
+      [609, "Exponential and Logistic Models"],
+      [610, "Periodic Models"],
+      [611, "Piecewise Models"],
+      [612, "Parameter Estimation"],
+      [613, "Dimensional Analysis"],
+      [614, "Sensitivity Analysis"],
+      [615, "Residual and Error Analysis"],
+      [616, "Scenario Comparison"],
+      [617, "Linear Programming"],
+    ]);
+    for (const [lessonId, snippet] of expected) {
+      const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
+      const html = renderToStaticMarkup(
+        <FinanceLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
+      );
+      expect(html, `lesson ${lessonId}`).toContain(snippet);
+      expect(html, `lesson ${lessonId}`).toContain("finance-result");
+    }
+  });
 });

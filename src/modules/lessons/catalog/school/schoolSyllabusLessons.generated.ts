@@ -101,9 +101,9 @@ export const schoolSyllabusLessons = [
         }
       ],
       "learningObjectives": [
-        "State the meaning of Place Value Explorer in the context of Numbers and Arithmetic.",
-        "Connect Place Value Explorer to a visual, symbolic, or tabular representation.",
-        "Solve a syllabus-style problem involving Place Value Explorer."
+        "Read the value of each digit using ones, tens, hundreds, thousands, and lakhs.",
+        "Write a whole number in standard form and expanded form.",
+        "Correct the mistake of using only face value when place value is needed."
       ],
       "estimatedMinutes": 18,
       "difficulty": "FOUNDATION",
@@ -135,26 +135,26 @@ export const schoolSyllabusLessons = [
       }
     },
     "content": {
-      "summary": "Place Value Explorer fills a Class 6 Numbers and Arithmetic syllabus gap. The lesson introduces the concept, connects it to an interactive representation, and checks mastery with targeted practice.",
+      "summary": "Place value shows how much a digit is worth because of its position. It is important for reading prices, marks, distances, and large counts correctly.",
       "learn": [
-        "Define Place Value Explorer using the language expected in school mathematics.",
-        "Identify the key quantities, symbols, and conditions used in Place Value Explorer.",
-        "Compare one correct example and one common misconception for Place Value Explorer."
+        "A digit has face value by itself, but place value depends on position.",
+        "Each place to the left is ten times the place before it.",
+        "In 4,582, the digit 5 means 500 because it is in the hundreds place."
       ],
       "explore": [
-        "Manipulate the linked model to observe how Place Value Explorer changes when an input changes.",
-        "Record a prediction before using the model, then compare it with the observed result.",
-        "Use the formula, diagram, table, or graph to explain why the result is valid."
+        "Move digits between places and read how their values change.",
+        "Build expanded form by adding thousands, hundreds, tens, and ones.",
+        "Compare two numbers by checking the highest place where they differ."
       ],
       "practice": [
-        "Solve a direct NCERT/CBSE-style problem on Place Value Explorer.",
-        "Solve one AP/TN textbook-style application problem on Place Value Explorer.",
-        "Solve one Cambridge/Common Core/IB-style reasoning problem on Place Value Explorer."
+        "Write 6,307 as 6000 + 300 + 7.",
+        "Find the place value of 8 in 18,245.",
+        "Explain why 5 in 5,000 is not the same value as 5 in 50."
       ],
       "assessmentPrompts": [
-        "What must be true before Place Value Explorer can be applied?",
-        "Which representation best explains Place Value Explorer: diagram, table, graph, formula, or proof?",
-        "Give one error a learner might make while solving Place Value Explorer."
+        "What is the place value of 7 in 9,742?",
+        "Write 23,406 in expanded form.",
+        "What mistake happens when a student reads only face value?"
       ]
     }
   },
@@ -262,9 +262,9 @@ export const schoolSyllabusLessons = [
         }
       ],
       "learningObjectives": [
-        "State the meaning of Indian and International Number Naming Systems in the context of Numbers and Arithmetic.",
-        "Connect Indian and International Number Naming Systems to a visual, symbolic, or tabular representation.",
-        "Solve a syllabus-style problem involving Indian and International Number Naming Systems."
+        "Place commas correctly in Indian and International number systems.",
+        "Read lakh, crore, million, and billion names without mixing systems.",
+        "Convert the same large number between the two comma styles."
       ],
       "estimatedMinutes": 18,
       "difficulty": "FOUNDATION",
@@ -299,26 +299,26 @@ export const schoolSyllabusLessons = [
       }
     },
     "content": {
-      "summary": "Indian and International Number Naming Systems fills a Class 6 Numbers and Arithmetic syllabus gap. The lesson introduces the concept, connects it to an interactive representation, and checks mastery with targeted practice.",
+      "summary": "Number naming systems group large numbers for easy reading. Indian grouping uses lakh and crore, while International grouping uses thousand, million, and billion.",
       "learn": [
-        "Define Indian and International Number Naming Systems using the language expected in school mathematics.",
-        "Identify the key quantities, symbols, and conditions used in Indian and International Number Naming Systems.",
-        "Compare one correct example and one common misconception for Indian and International Number Naming Systems."
+        "Indian grouping is 3 digits, then groups of 2 digits.",
+        "International grouping uses groups of 3 digits throughout.",
+        "Use one system at a time so names and commas match."
       ],
       "explore": [
-        "Manipulate the linked model to observe how Indian and International Number Naming Systems changes when an input changes.",
-        "Record a prediction before using the model, then compare it with the observed result.",
-        "Use the formula, diagram, table, or graph to explain why the result is valid."
+        "Place commas in 12345678 using both systems.",
+        "Read 1,00,000 as one lakh and 100,000 as one hundred thousand.",
+        "Match each comma group with its correct name."
       ],
       "practice": [
-        "Solve a direct NCERT/CBSE-style problem on Indian and International Number Naming Systems.",
-        "Solve one AP/TN textbook-style application problem on Indian and International Number Naming Systems.",
-        "Solve one Cambridge/Common Core/IB-style reasoning problem on Indian and International Number Naming Systems."
+        "Write 100000 as 1,00,000 in the Indian system.",
+        "Write 1000000 as 1,000,000 in the International system.",
+        "Explain why crore and million names should not be mixed in one reading."
       ],
       "assessmentPrompts": [
-        "What must be true before Indian and International Number Naming Systems can be applied?",
-        "Which representation best explains Indian and International Number Naming Systems: diagram, table, graph, formula, or proof?",
-        "Give one error a learner might make while solving Indian and International Number Naming Systems."
+        "How is 1234567 written with Indian commas?",
+        "What is 1,000,000 called in the International system?",
+        "Which system uses lakh and crore?"
       ]
     }
   },
@@ -426,9 +426,9 @@ export const schoolSyllabusLessons = [
         }
       ],
       "learningObjectives": [
-        "State the meaning of Estimation and Rounding Lab in the context of Numbers and Arithmetic.",
-        "Connect Estimation and Rounding Lab to a visual, symbolic, or tabular representation.",
-        "Solve a syllabus-style problem involving Estimation and Rounding Lab."
+        "Round whole numbers to the nearest ten, hundred, or thousand.",
+        "Use estimation to check whether an exact answer is reasonable.",
+        "Choose when an approximate answer is useful in daily life."
       ],
       "estimatedMinutes": 18,
       "difficulty": "FOUNDATION",
@@ -461,26 +461,26 @@ export const schoolSyllabusLessons = [
       }
     },
     "content": {
-      "summary": "Estimation and Rounding Lab fills a Class 6 Numbers and Arithmetic syllabus gap. The lesson introduces the concept, connects it to an interactive representation, and checks mastery with targeted practice.",
+      "summary": "Estimation gives a close answer when exact calculation is not needed. Rounding helps us plan shopping, travel time, and quick mental checks.",
       "learn": [
-        "Define Estimation and Rounding Lab using the language expected in school mathematics.",
-        "Identify the key quantities, symbols, and conditions used in Estimation and Rounding Lab.",
-        "Compare one correct example and one common misconception for Estimation and Rounding Lab."
+        "Choose the place you want to round to before changing the number.",
+        "Look at the digit immediately to the right of that place.",
+        "If that digit is 5 or more, round up; otherwise round down."
       ],
       "explore": [
-        "Manipulate the linked model to observe how Estimation and Rounding Lab changes when an input changes.",
-        "Record a prediction before using the model, then compare it with the observed result.",
-        "Use the formula, diagram, table, or graph to explain why the result is valid."
+        "Place 4,582 on a number line between 4,500 and 4,600.",
+        "Round the same number to tens, hundreds, and thousands.",
+        "Compare the rounded answer with the exact number to judge reasonableness."
       ],
       "practice": [
-        "Solve a direct NCERT/CBSE-style problem on Estimation and Rounding Lab.",
-        "Solve one AP/TN textbook-style application problem on Estimation and Rounding Lab.",
-        "Solve one Cambridge/Common Core/IB-style reasoning problem on Estimation and Rounding Lab."
+        "Round 4,582 to the nearest hundred.",
+        "Estimate 198 + 403 by rounding to nearby hundreds.",
+        "Explain why rounding is helpful before checking a shopping bill."
       ],
       "assessmentPrompts": [
-        "What must be true before Estimation and Rounding Lab can be applied?",
-        "Which representation best explains Estimation and Rounding Lab: diagram, table, graph, formula, or proof?",
-        "Give one error a learner might make while solving Estimation and Rounding Lab."
+        "Round 7,846 to the nearest thousand.",
+        "Which digit decides rounding 3,672 to the nearest hundred?",
+        "Give one daily situation where estimation is better than exact counting."
       ]
     }
   },

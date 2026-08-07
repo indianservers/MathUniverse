@@ -1,0 +1,4615 @@
+{
+  "generatedAt": "2026-08-06",
+  "status": "phase_1_brief_scaffold",
+  "note": "These are Phase 1 briefs. They are not approved lesson replacements.",
+  "lessons": [
+    {
+      "id": 657,
+      "title": "Drag and Manipulate",
+      "route": "/lessons/platform-capabilities/657-drag-and-manipulate",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Drag and Manipulate means in Common Tools and Accessibility.",
+        "Connect Drag and Manipulate to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Drag and Manipulate",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Drag and Manipulate is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Drag and Manipulate, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Drag and Manipulate work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Drag and Manipulate during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Drag and Manipulate.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Drag and Manipulate without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Drag and Manipulate.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Drag and Manipulate; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Drag and Manipulate; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Drag and Manipulate; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_DRAG_AND_MANIPULATE",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Drag and Manipulate.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Drag and Manipulate.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Drag and Manipulate"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Drag and Manipulate using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Drag and Manipulate before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Drag and Manipulate appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DRAG_AND_MANIPULATE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Drag and Manipulate once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DRAG_AND_MANIPULATE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Drag and Manipulate.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DRAG_AND_MANIPULATE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Drag and Manipulate.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DRAG_AND_MANIPULATE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Drag and Manipulate in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DRAG_AND_MANIPULATE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Drag and Manipulate.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Drag and Manipulate and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 658,
+      "title": "Zoom and Pan",
+      "route": "/lessons/platform-capabilities/658-zoom-and-pan",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Zoom and Pan means in Common Tools and Accessibility.",
+        "Connect Zoom and Pan to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Zoom and Pan",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Zoom and Pan is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Zoom and Pan, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Zoom and Pan work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Zoom and Pan during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Zoom and Pan.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Zoom and Pan without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Zoom and Pan.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Zoom and Pan; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Zoom and Pan; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Zoom and Pan; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_ZOOM_AND_PAN",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Zoom and Pan.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Zoom and Pan.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Zoom and Pan"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Zoom and Pan using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Zoom and Pan before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Zoom and Pan appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ZOOM_AND_PAN",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Zoom and Pan once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ZOOM_AND_PAN",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Zoom and Pan.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ZOOM_AND_PAN",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Zoom and Pan.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ZOOM_AND_PAN",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Zoom and Pan in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ZOOM_AND_PAN",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Zoom and Pan.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Zoom and Pan and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 659,
+      "title": "Reset View",
+      "route": "/lessons/platform-capabilities/659-reset-view",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Reset View means in Common Tools and Accessibility.",
+        "Connect Reset View to a suitable venn diagram representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Reset View",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Reset View is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Reset View, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Reset View work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Reset View during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Reset View.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "venn_diagram",
+          "learningPurpose": "Show the main structure of Reset View without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Reset View.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Reset View; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Reset View; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Reset View; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_RESET_VIEW",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Reset View.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Reset View.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Reset View"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Reset View using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Reset View before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Reset View appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RESET_VIEW",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Reset View once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RESET_VIEW",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Reset View.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RESET_VIEW",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Reset View.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RESET_VIEW",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Reset View in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RESET_VIEW",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Reset View.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Reset View and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 660,
+      "title": "Undo and Redo",
+      "route": "/lessons/platform-capabilities/660-undo-and-redo",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Undo and Redo means in Common Tools and Accessibility.",
+        "Connect Undo and Redo to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Undo and Redo",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Undo and Redo is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Undo and Redo, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Undo and Redo work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Undo and Redo during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Undo and Redo.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Undo and Redo without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Undo and Redo.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Undo and Redo; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Undo and Redo; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Undo and Redo; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_UNDO_AND_REDO",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Undo and Redo.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Undo and Redo.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Undo and Redo"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Undo and Redo using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Undo and Redo before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Undo and Redo appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNDO_AND_REDO",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Undo and Redo once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNDO_AND_REDO",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Undo and Redo.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNDO_AND_REDO",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Undo and Redo.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNDO_AND_REDO",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Undo and Redo in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNDO_AND_REDO",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Undo and Redo.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Undo and Redo and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 661,
+      "title": "Animation Player",
+      "route": "/lessons/platform-capabilities/661-animation-player",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Animation Player means in Common Tools and Accessibility.",
+        "Connect Animation Player to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Animation Player",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Animation Player is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Animation Player, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Animation Player work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Animation Player during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Animation Player.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Animation Player without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Animation Player.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Animation Player; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Animation Player; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Animation Player; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_ANIMATION_PLAYER",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Animation Player.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Animation Player.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Animation Player"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Animation Player using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Animation Player before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Animation Player appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANIMATION_PLAYER",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Animation Player once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANIMATION_PLAYER",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Animation Player.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANIMATION_PLAYER",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Animation Player.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANIMATION_PLAYER",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Animation Player in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANIMATION_PLAYER",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Animation Player.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Animation Player and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 662,
+      "title": "Snap Controls",
+      "route": "/lessons/platform-capabilities/662-snap-controls",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Snap Controls means in Common Tools and Accessibility.",
+        "Connect Snap Controls to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Snap Controls",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Snap Controls is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Snap Controls, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Snap Controls work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Snap Controls during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Snap Controls.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Snap Controls without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Snap Controls.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Snap Controls; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Snap Controls; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Snap Controls; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_SNAP_CONTROLS",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Snap Controls.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Snap Controls.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Snap Controls"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Snap Controls using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Snap Controls before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Snap Controls appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SNAP_CONTROLS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Snap Controls once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SNAP_CONTROLS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Snap Controls.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SNAP_CONTROLS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Snap Controls.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SNAP_CONTROLS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Snap Controls in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SNAP_CONTROLS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Snap Controls.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Snap Controls and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 663,
+      "title": "Trace and Locus",
+      "route": "/lessons/platform-capabilities/663-trace-and-locus",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Trace and Locus means in Common Tools and Accessibility.",
+        "Connect Trace and Locus to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Trace and Locus",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Trace and Locus is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Trace and Locus, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Trace and Locus work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Trace and Locus during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Trace and Locus.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Trace and Locus without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Trace and Locus.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Trace and Locus; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Trace and Locus; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Trace and Locus; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_TRACE_AND_LOCUS",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Trace and Locus.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Trace and Locus.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Trace and Locus"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Trace and Locus using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Trace and Locus before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Trace and Locus appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRACE_AND_LOCUS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Trace and Locus once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRACE_AND_LOCUS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Trace and Locus.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRACE_AND_LOCUS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Trace and Locus.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRACE_AND_LOCUS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Trace and Locus in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRACE_AND_LOCUS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Trace and Locus.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Trace and Locus and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 664,
+      "title": "Exact and Decimal Output",
+      "route": "/lessons/platform-capabilities/664-exact-and-decimal-output",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Exact and Decimal Output means in Common Tools and Accessibility.",
+        "Connect Exact and Decimal Output to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Exact and Decimal Output",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Exact and Decimal Output is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Exact and Decimal Output, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Exact and Decimal Output work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Exact and Decimal Output during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Exact and Decimal Output.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Exact and Decimal Output without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Exact and Decimal Output.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Exact and Decimal Output; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Exact and Decimal Output; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Exact and Decimal Output; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_EXACT_AND_DECIMAL_OUTPUT",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Exact and Decimal Output.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Exact and Decimal Output.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Exact and Decimal Output"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Exact and Decimal Output using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Exact and Decimal Output before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Exact and Decimal Output appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXACT_AND_DECIMAL_OUTPUT",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Exact and Decimal Output once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXACT_AND_DECIMAL_OUTPUT",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Exact and Decimal Output.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXACT_AND_DECIMAL_OUTPUT",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Exact and Decimal Output.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXACT_AND_DECIMAL_OUTPUT",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Exact and Decimal Output in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXACT_AND_DECIMAL_OUTPUT",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Exact and Decimal Output.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Exact and Decimal Output and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 665,
+      "title": "Linked Views",
+      "route": "/lessons/platform-capabilities/665-linked-views",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Linked Views means in Common Tools and Accessibility.",
+        "Connect Linked Views to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Linked Views",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Linked Views is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Linked Views, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Linked Views work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Linked Views during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Linked Views.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Linked Views without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Linked Views.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Linked Views; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Linked Views; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Linked Views; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_LINKED_VIEWS",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Linked Views.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Linked Views.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Linked Views"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Linked Views using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Linked Views before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Linked Views appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_LINKED_VIEWS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Linked Views once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_LINKED_VIEWS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Linked Views.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_LINKED_VIEWS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Linked Views.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_LINKED_VIEWS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Linked Views in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_LINKED_VIEWS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Linked Views.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Linked Views and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 666,
+      "title": "Save, Duplicate and Share",
+      "route": "/lessons/platform-capabilities/666-save-duplicate-and-share",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Save, Duplicate and Share means in Common Tools and Accessibility.",
+        "Connect Save, Duplicate and Share to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Save, Duplicate and Share",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Save, Duplicate and Share is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Save, Duplicate and Share, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Save, Duplicate and Share work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Save, Duplicate and Share during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Save, Duplicate and Share.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Save, Duplicate and Share without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Save, Duplicate and Share.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Save, Duplicate and Share; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Save, Duplicate and Share; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Save, Duplicate and Share; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_SAVE_DUPLICATE_AND_SHARE",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Save, Duplicate and Share.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Save, Duplicate and Share.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Save, Duplicate and Share"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Save, Duplicate and Share using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Save, Duplicate and Share before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Save, Duplicate and Share appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SAVE_DUPLICATE_AND_SHARE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Save, Duplicate and Share once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SAVE_DUPLICATE_AND_SHARE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Save, Duplicate and Share.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SAVE_DUPLICATE_AND_SHARE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Save, Duplicate and Share.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SAVE_DUPLICATE_AND_SHARE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Save, Duplicate and Share in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SAVE_DUPLICATE_AND_SHARE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Save, Duplicate and Share.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Save, Duplicate and Share and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 667,
+      "title": "Export",
+      "route": "/lessons/platform-capabilities/667-export",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Export means in Common Tools and Accessibility.",
+        "Connect Export to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Export",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Export is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Export, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Export work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Export during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Export.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Export without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Export.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Export; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Export; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Export; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_EXPORT",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Export.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Export.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Export"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Export using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Export before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Export appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXPORT",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Export once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXPORT",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Export.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXPORT",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Export.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXPORT",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Export in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXPORT",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Export.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Export and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 668,
+      "title": "Teacher Presentation Mode",
+      "route": "/lessons/platform-capabilities/668-teacher-presentation-mode",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Teacher Presentation Mode means in Common Tools and Accessibility.",
+        "Connect Teacher Presentation Mode to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Teacher Presentation Mode",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Teacher Presentation Mode is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Teacher Presentation Mode, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Teacher Presentation Mode work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Teacher Presentation Mode during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Teacher Presentation Mode.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Teacher Presentation Mode without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Teacher Presentation Mode.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Teacher Presentation Mode; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Teacher Presentation Mode; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Teacher Presentation Mode; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_TEACHER_PRESENTATION_MODE",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Teacher Presentation Mode.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Teacher Presentation Mode.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Teacher Presentation Mode"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Teacher Presentation Mode using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Teacher Presentation Mode before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Teacher Presentation Mode appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TEACHER_PRESENTATION_MODE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Teacher Presentation Mode once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TEACHER_PRESENTATION_MODE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Teacher Presentation Mode.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TEACHER_PRESENTATION_MODE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Teacher Presentation Mode.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TEACHER_PRESENTATION_MODE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Teacher Presentation Mode in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TEACHER_PRESENTATION_MODE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Teacher Presentation Mode.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Teacher Presentation Mode and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 669,
+      "title": "Learner Practice Mode",
+      "route": "/lessons/platform-capabilities/669-learner-practice-mode",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Learner Practice Mode means in Common Tools and Accessibility.",
+        "Connect Learner Practice Mode to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Learner Practice Mode",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Learner Practice Mode is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Learner Practice Mode, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Learner Practice Mode work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Learner Practice Mode during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Learner Practice Mode.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Learner Practice Mode without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Learner Practice Mode.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Learner Practice Mode; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Learner Practice Mode; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Learner Practice Mode; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_LEARNER_PRACTICE_MODE",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Learner Practice Mode.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Learner Practice Mode.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Learner Practice Mode"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Learner Practice Mode using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Learner Practice Mode before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Learner Practice Mode appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_LEARNER_PRACTICE_MODE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Learner Practice Mode once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_LEARNER_PRACTICE_MODE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Learner Practice Mode.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_LEARNER_PRACTICE_MODE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Learner Practice Mode.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_LEARNER_PRACTICE_MODE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Learner Practice Mode in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_LEARNER_PRACTICE_MODE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Learner Practice Mode.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Learner Practice Mode and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 670,
+      "title": "Exam Mode",
+      "route": "/lessons/platform-capabilities/670-exam-mode",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Exam Mode means in Common Tools and Accessibility.",
+        "Connect Exam Mode to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Exam Mode",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Exam Mode is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Exam Mode, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Exam Mode work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Exam Mode during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Exam Mode.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Exam Mode without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Exam Mode.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Exam Mode; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Exam Mode; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Exam Mode; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_EXAM_MODE",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Exam Mode.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Exam Mode.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Exam Mode"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Exam Mode using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Exam Mode before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Exam Mode appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXAM_MODE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Exam Mode once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXAM_MODE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Exam Mode.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXAM_MODE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Exam Mode.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXAM_MODE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Exam Mode in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXAM_MODE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Exam Mode.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Exam Mode and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 671,
+      "title": "Keyboard Navigation",
+      "route": "/lessons/platform-capabilities/671-keyboard-navigation",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Keyboard Navigation means in Common Tools and Accessibility.",
+        "Connect Keyboard Navigation to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Keyboard Navigation",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Keyboard Navigation is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Keyboard Navigation, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Keyboard Navigation work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Keyboard Navigation during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Keyboard Navigation.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Keyboard Navigation without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Keyboard Navigation.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Keyboard Navigation; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Keyboard Navigation; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Keyboard Navigation; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_KEYBOARD_NAVIGATION",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Keyboard Navigation.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Keyboard Navigation.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Keyboard Navigation"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Keyboard Navigation using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Keyboard Navigation before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Keyboard Navigation appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_KEYBOARD_NAVIGATION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Keyboard Navigation once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_KEYBOARD_NAVIGATION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Keyboard Navigation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_KEYBOARD_NAVIGATION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Keyboard Navigation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_KEYBOARD_NAVIGATION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Keyboard Navigation in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_KEYBOARD_NAVIGATION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Keyboard Navigation.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Keyboard Navigation and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 672,
+      "title": "Screen Reader Support",
+      "route": "/lessons/platform-capabilities/672-screen-reader-support",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Screen Reader Support means in Common Tools and Accessibility.",
+        "Connect Screen Reader Support to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Screen Reader Support",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Screen Reader Support is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Screen Reader Support, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Screen Reader Support work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Screen Reader Support during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Screen Reader Support.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Screen Reader Support without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Screen Reader Support.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Screen Reader Support; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Screen Reader Support; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Screen Reader Support; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_SCREEN_READER_SUPPORT",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Screen Reader Support.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Screen Reader Support.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Screen Reader Support"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Screen Reader Support using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Screen Reader Support before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Screen Reader Support appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SCREEN_READER_SUPPORT",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Screen Reader Support once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SCREEN_READER_SUPPORT",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Screen Reader Support.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SCREEN_READER_SUPPORT",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Screen Reader Support.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SCREEN_READER_SUPPORT",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Screen Reader Support in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SCREEN_READER_SUPPORT",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Screen Reader Support.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Screen Reader Support and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 673,
+      "title": "High Contrast and Large Text",
+      "route": "/lessons/platform-capabilities/673-high-contrast-and-large-text",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what High Contrast and Large Text means in Common Tools and Accessibility.",
+        "Connect High Contrast and Large Text to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "High Contrast and Large Text",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "High Contrast and Large Text is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define High Contrast and Large Text, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make High Contrast and Large Text work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for High Contrast and Large Text during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to High Contrast and Large Text.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of High Contrast and Large Text without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses High Contrast and Large Text.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits High Contrast and Large Text; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits High Contrast and Large Text; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits High Contrast and Large Text; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_HIGH_CONTRAST_AND_LARGE_TEXT",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to High Contrast and Large Text.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in High Contrast and Large Text.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for High Contrast and Large Text"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain High Contrast and Large Text using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in High Contrast and Large Text before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where High Contrast and Large Text appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HIGH_CONTRAST_AND_LARGE_TEXT",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for High Contrast and Large Text once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HIGH_CONTRAST_AND_LARGE_TEXT",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving High Contrast and Large Text.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HIGH_CONTRAST_AND_LARGE_TEXT",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about High Contrast and Large Text.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HIGH_CONTRAST_AND_LARGE_TEXT",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply High Contrast and Large Text in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HIGH_CONTRAST_AND_LARGE_TEXT",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of High Contrast and Large Text.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of High Contrast and Large Text and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 674,
+      "title": "Multi-Language Terminology",
+      "route": "/lessons/platform-capabilities/674-multi-language-terminology",
+      "category": "Platform Capabilities",
+      "topic": "Common Tools and Accessibility",
+      "lessonType": "tool",
+      "learningObjectives": [
+        "State what Multi-Language Terminology means in Common Tools and Accessibility.",
+        "Connect Multi-Language Terminology to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Multi-Language Terminology",
+          "meaning": "The exact concept named by this lesson inside Common Tools and Accessibility."
+        },
+        {
+          "term": "Common Tools and Accessibility",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Multi-Language Terminology is a tool lesson in Common Tools and Accessibility. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Multi-Language Terminology, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Multi-Language Terminology work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Multi-Language Terminology during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Multi-Language Terminology.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Multi-Language Terminology without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Multi-Language Terminology.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Multi-Language Terminology; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Multi-Language Terminology; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Multi-Language Terminology; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_MULTI_LANGUAGE_TERMINOLOGY",
+          "mistake": "Using a rule from Common Tools and Accessibility without checking that it applies to Multi-Language Terminology.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Multi-Language Terminology.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Multi-Language Terminology"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Multi-Language Terminology using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Multi-Language Terminology before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Multi-Language Terminology appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MULTI_LANGUAGE_TERMINOLOGY",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Multi-Language Terminology once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MULTI_LANGUAGE_TERMINOLOGY",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Multi-Language Terminology.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MULTI_LANGUAGE_TERMINOLOGY",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Multi-Language Terminology.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MULTI_LANGUAGE_TERMINOLOGY",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Multi-Language Terminology in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MULTI_LANGUAGE_TERMINOLOGY",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Multi-Language Terminology.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Multi-Language Terminology and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    }
+  ]
+}

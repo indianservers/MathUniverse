@@ -43,4 +43,26 @@ describe("SequenceLessonAdapter", () => {
       expect(html, String(lessonId)).toContain(text);
     }
   });
+
+  it("renders strengthened sequence lessons 334 and 335 with their own presets", () => {
+    const expected = new Map([
+      [334, "Sequence Generator"],
+      [335, "Arithmetic Sequences"],
+    ]);
+
+    for (const [lessonId, title] of expected) {
+      const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
+      const html = renderToStaticMarkup(
+        <SequenceLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
+      ).replaceAll("Â·", "-");
+
+      expect(html, String(lessonId)).toContain(title);
+      expect(html, String(lessonId)).toContain("sequence and series lab");
+      expect(html, String(lessonId)).toContain('id="sequence-result"');
+    }
+  });
 });

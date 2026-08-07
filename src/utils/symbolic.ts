@@ -6,6 +6,12 @@ import { addMatrices, adjointMatrix, cofactorMatrix, createMatrix, determinantSt
 import { crossProduct, dotProduct, scalarVectorMultiply, unitVector, vectorAdd, vectorMagnitude, vectorProjection, vectorSubtract } from "./mathEngine/linearAlgebraUtils";
 import { binomialDistribution } from "./mathEngine/probabilityUtils";
 
+type NerdamerSolveExtension = typeof nerdamer & {
+  solve: (equation: string, variable?: string) => { toString: () => string };
+};
+
+const nerdamerWithSolve = nerdamer as NerdamerSolveExtension;
+
 export type SymbolicResult = {
   result: string;
   exact?: string;
@@ -1876,7 +1882,7 @@ export function symbolicLatex(expression: string) {
 export function symbolicSolve(equation: string, variable = "x"): SymbolicResult {
   const normalized = normalizeEquation(equation);
   const cleanVariable = normalizeVariable(variable);
-  const roots = nerdamer.solve(normalized, cleanVariable).toString();
+  const roots = nerdamerWithSolve.solve(normalized, cleanVariable).toString();
   const analyzed = analyzeSolveCandidates(normalized, roots, cleanVariable);
   const result = `${cleanVariable} = ${formatSolutionList(analyzed.accepted.length ? `[${analyzed.accepted.join(",")}]` : roots)}`;
   return {
@@ -1918,7 +1924,7 @@ export function symbolicNumericSolve(equation: string, variable = "x"): Symbolic
 export function symbolicComplexSolve(equation: string, variable = "x"): SymbolicResult {
   const normalized = normalizeEquation(equation);
   const cleanVariable = normalizeVariable(variable);
-  const roots = nerdamer.solve(normalized, cleanVariable).toString();
+  const roots = nerdamerWithSolve.solve(normalized, cleanVariable).toString();
   const result = `${cleanVariable} = ${formatSolutionList(roots)}`;
   return {
     result,
@@ -1960,7 +1966,7 @@ export function symbolicRootList(expression: string, variable = "x"): SymbolicRe
 
 export function symbolicComplexRoot(expression: string, variable = "x"): SymbolicResult {
   const cleanVariable = normalizeVariable(variable);
-  const roots = nerdamer.solve(normalizeEquation(expression), cleanVariable).toString();
+  const roots = nerdamerWithSolve.solve(normalizeEquation(expression), cleanVariable).toString();
   const result = `[${formatSolutionList(roots)}]`;
   return {
     result,
@@ -2015,7 +2021,7 @@ export function symbolicCommonDenominator(expression: string): SymbolicResult {
 export function symbolicComplexFactor(expression: string, variable = "x"): SymbolicResult {
   const normalized = normalizeSymbolic(expression);
   const cleanVariable = normalizeVariable(variable);
-  const roots = nerdamer.solve(`${normalized}=0`, cleanVariable).toString().replace(/^\[|\]$/g, "").split(",").map((root) => root.trim()).filter(Boolean);
+  const roots = nerdamerWithSolve.solve(`${normalized}=0`, cleanVariable).toString().replace(/^\[|\]$/g, "").split(",").map((root) => root.trim()).filter(Boolean);
   const result = roots.length ? roots.map((root) => `(${cleanVariable}-(${cleanSymbolic(root)}))`).join("*") : cleanSymbolic(nerdamer(`factor(${normalized})`).toString());
   return {
     result,

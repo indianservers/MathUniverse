@@ -1,0 +1,3098 @@
+{
+  "generatedAt": "2026-08-06",
+  "status": "phase_1_brief_scaffold",
+  "note": "These are Phase 1 briefs. They are not approved lesson replacements.",
+  "lessons": [
+    {
+      "id": 10028,
+      "title": "Triangle Construction by SSS",
+      "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-sss",
+      "category": "School Syllabus",
+      "topic": "Practical Geometry",
+      "academicLevel": "CLASS_8",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Triangle Construction by SSS means in Practical Geometry.",
+        "Connect Triangle Construction by SSS to a suitable geometric construction representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Points, lines, and angles",
+        "Measurement",
+        "Basic construction language"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Triangle Construction by SSS",
+          "meaning": "The exact concept named by this lesson inside Practical Geometry."
+        },
+        {
+          "term": "Practical Geometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Triangle Construction by SSS is a visual exploration lesson in Practical Geometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Triangle Construction by SSS, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Triangle Construction by SSS work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Triangle Construction by SSS during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Triangle Construction by SSS.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "geometric_construction",
+          "learningPurpose": "Show the main structure of Triangle Construction by SSS without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Triangle Construction by SSS.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Floor plan measurement",
+          "connection": "Use only if it naturally fits Triangle Construction by SSS; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Package design",
+          "connection": "Use only if it naturally fits Triangle Construction by SSS; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Map scale",
+          "connection": "Use only if it naturally fits Triangle Construction by SSS; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_TRIANGLE_CONSTRUCTION_BY_SSS",
+          "mistake": "Using a rule from Practical Geometry without checking that it applies to Triangle Construction by SSS.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Triangle Construction by SSS.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Triangle Construction by SSS"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Triangle Construction by SSS using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Triangle Construction by SSS before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Triangle Construction by SSS appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_SSS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Triangle Construction by SSS once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_SSS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Triangle Construction by SSS.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_SSS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Triangle Construction by SSS.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_SSS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Triangle Construction by SSS in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_SSS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Triangle Construction by SSS.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Triangle Construction by SSS and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10029,
+      "title": "Triangle Construction by SAS",
+      "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-sas",
+      "category": "School Syllabus",
+      "topic": "Practical Geometry",
+      "academicLevel": "CLASS_8",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Triangle Construction by SAS means in Practical Geometry.",
+        "Connect Triangle Construction by SAS to a suitable geometric construction representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Points, lines, and angles",
+        "Measurement",
+        "Basic construction language"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Triangle Construction by SAS",
+          "meaning": "The exact concept named by this lesson inside Practical Geometry."
+        },
+        {
+          "term": "Practical Geometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Triangle Construction by SAS is a visual exploration lesson in Practical Geometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Triangle Construction by SAS, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Triangle Construction by SAS work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Triangle Construction by SAS during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Triangle Construction by SAS.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "geometric_construction",
+          "learningPurpose": "Show the main structure of Triangle Construction by SAS without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Triangle Construction by SAS.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Floor plan measurement",
+          "connection": "Use only if it naturally fits Triangle Construction by SAS; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Package design",
+          "connection": "Use only if it naturally fits Triangle Construction by SAS; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Map scale",
+          "connection": "Use only if it naturally fits Triangle Construction by SAS; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_TRIANGLE_CONSTRUCTION_BY_SAS",
+          "mistake": "Using a rule from Practical Geometry without checking that it applies to Triangle Construction by SAS.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Triangle Construction by SAS.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Triangle Construction by SAS"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Triangle Construction by SAS using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Triangle Construction by SAS before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Triangle Construction by SAS appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_SAS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Triangle Construction by SAS once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_SAS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Triangle Construction by SAS.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_SAS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Triangle Construction by SAS.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_SAS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Triangle Construction by SAS in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_SAS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Triangle Construction by SAS.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Triangle Construction by SAS and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10030,
+      "title": "Triangle Construction by ASA",
+      "route": "/lessons/school/class-8/class-8-practical-geometry-triangle-construction-by-asa",
+      "category": "School Syllabus",
+      "topic": "Practical Geometry",
+      "academicLevel": "CLASS_8",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Triangle Construction by ASA means in Practical Geometry.",
+        "Connect Triangle Construction by ASA to a suitable geometric construction representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Points, lines, and angles",
+        "Measurement",
+        "Basic construction language"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Triangle Construction by ASA",
+          "meaning": "The exact concept named by this lesson inside Practical Geometry."
+        },
+        {
+          "term": "Practical Geometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Triangle Construction by ASA is a visual exploration lesson in Practical Geometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Triangle Construction by ASA, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Triangle Construction by ASA work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Triangle Construction by ASA during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Triangle Construction by ASA.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "geometric_construction",
+          "learningPurpose": "Show the main structure of Triangle Construction by ASA without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Triangle Construction by ASA.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Floor plan measurement",
+          "connection": "Use only if it naturally fits Triangle Construction by ASA; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Package design",
+          "connection": "Use only if it naturally fits Triangle Construction by ASA; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Map scale",
+          "connection": "Use only if it naturally fits Triangle Construction by ASA; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_TRIANGLE_CONSTRUCTION_BY_ASA",
+          "mistake": "Using a rule from Practical Geometry without checking that it applies to Triangle Construction by ASA.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Triangle Construction by ASA.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Triangle Construction by ASA"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Triangle Construction by ASA using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Triangle Construction by ASA before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Triangle Construction by ASA appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_ASA",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Triangle Construction by ASA once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_ASA",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Triangle Construction by ASA.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_ASA",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Triangle Construction by ASA.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_ASA",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Triangle Construction by ASA in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_CONSTRUCTION_BY_ASA",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Triangle Construction by ASA.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Triangle Construction by ASA and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10031,
+      "title": "Right Triangle Construction by RHS",
+      "route": "/lessons/school/class-8/class-8-practical-geometry-right-triangle-construction-by-rhs",
+      "category": "School Syllabus",
+      "topic": "Practical Geometry",
+      "academicLevel": "CLASS_8",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Right Triangle Construction by RHS means in Practical Geometry.",
+        "Connect Right Triangle Construction by RHS to a suitable geometric construction representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Points, lines, and angles",
+        "Measurement",
+        "Basic construction language"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Right Triangle Construction by RHS",
+          "meaning": "The exact concept named by this lesson inside Practical Geometry."
+        },
+        {
+          "term": "Practical Geometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Right Triangle Construction by RHS is a visual exploration lesson in Practical Geometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Right Triangle Construction by RHS, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Right Triangle Construction by RHS work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Right Triangle Construction by RHS during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Right Triangle Construction by RHS.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "geometric_construction",
+          "learningPurpose": "Show the main structure of Right Triangle Construction by RHS without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Right Triangle Construction by RHS.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Floor plan measurement",
+          "connection": "Use only if it naturally fits Right Triangle Construction by RHS; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Package design",
+          "connection": "Use only if it naturally fits Right Triangle Construction by RHS; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Map scale",
+          "connection": "Use only if it naturally fits Right Triangle Construction by RHS; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_RIGHT_TRIANGLE_CONSTRUCTION_BY_RHS",
+          "mistake": "Using a rule from Practical Geometry without checking that it applies to Right Triangle Construction by RHS.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Right Triangle Construction by RHS.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Right Triangle Construction by RHS"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Right Triangle Construction by RHS using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Right Triangle Construction by RHS before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Right Triangle Construction by RHS appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RIGHT_TRIANGLE_CONSTRUCTION_BY_RHS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Right Triangle Construction by RHS once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RIGHT_TRIANGLE_CONSTRUCTION_BY_RHS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Right Triangle Construction by RHS.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RIGHT_TRIANGLE_CONSTRUCTION_BY_RHS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Right Triangle Construction by RHS.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RIGHT_TRIANGLE_CONSTRUCTION_BY_RHS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Right Triangle Construction by RHS in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RIGHT_TRIANGLE_CONSTRUCTION_BY_RHS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Right Triangle Construction by RHS.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Right Triangle Construction by RHS and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10032,
+      "title": "Double Bar Graph Comparison",
+      "route": "/lessons/school/class-8/class-8-data-handling-double-bar-graph-comparison",
+      "category": "School Syllabus",
+      "topic": "Data Handling",
+      "academicLevel": "CLASS_8",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Double Bar Graph Comparison means in Data Handling.",
+        "Connect Double Bar Graph Comparison to a suitable table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Fractions or decimals",
+        "Tables",
+        "Basic graph reading"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Double Bar Graph Comparison",
+          "meaning": "The exact concept named by this lesson inside Data Handling."
+        },
+        {
+          "term": "Data Handling",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Double Bar Graph Comparison is a visual exploration lesson in Data Handling. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Double Bar Graph Comparison, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Double Bar Graph Comparison work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Double Bar Graph Comparison during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Double Bar Graph Comparison.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "table",
+          "learningPurpose": "Show the main structure of Double Bar Graph Comparison without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Double Bar Graph Comparison.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Weather chance",
+          "connection": "Use only if it naturally fits Double Bar Graph Comparison; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Exam score comparison",
+          "connection": "Use only if it naturally fits Double Bar Graph Comparison; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Quality sampling",
+          "connection": "Use only if it naturally fits Double Bar Graph Comparison; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_DOUBLE_BAR_GRAPH_COMPARISON",
+          "mistake": "Using a rule from Data Handling without checking that it applies to Double Bar Graph Comparison.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Double Bar Graph Comparison.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Double Bar Graph Comparison"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Double Bar Graph Comparison using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Double Bar Graph Comparison before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Double Bar Graph Comparison appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DOUBLE_BAR_GRAPH_COMPARISON",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Double Bar Graph Comparison once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DOUBLE_BAR_GRAPH_COMPARISON",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Double Bar Graph Comparison.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DOUBLE_BAR_GRAPH_COMPARISON",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Double Bar Graph Comparison.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DOUBLE_BAR_GRAPH_COMPARISON",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Double Bar Graph Comparison in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DOUBLE_BAR_GRAPH_COMPARISON",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Double Bar Graph Comparison.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Double Bar Graph Comparison and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10033,
+      "title": "Mean Median and Mode Practice Path",
+      "route": "/lessons/school/class-8/class-8-data-handling-mean-median-and-mode-practice-path",
+      "category": "School Syllabus",
+      "topic": "Data Handling",
+      "academicLevel": "CLASS_8",
+      "lessonType": "practice",
+      "learningObjectives": [
+        "State what Mean Median and Mode Practice Path means in Data Handling.",
+        "Connect Mean Median and Mode Practice Path to a suitable table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Fractions or decimals",
+        "Tables",
+        "Basic graph reading"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Mean Median and Mode Practice Path",
+          "meaning": "The exact concept named by this lesson inside Data Handling."
+        },
+        {
+          "term": "Data Handling",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Mean Median and Mode Practice Path is a practice lesson in Data Handling. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Mean Median and Mode Practice Path, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Mean Median and Mode Practice Path work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Mean Median and Mode Practice Path during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Mean Median and Mode Practice Path.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "table",
+          "learningPurpose": "Show the main structure of Mean Median and Mode Practice Path without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Mean Median and Mode Practice Path.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Weather chance",
+          "connection": "Use only if it naturally fits Mean Median and Mode Practice Path; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Exam score comparison",
+          "connection": "Use only if it naturally fits Mean Median and Mode Practice Path; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Quality sampling",
+          "connection": "Use only if it naturally fits Mean Median and Mode Practice Path; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_MEAN_MEDIAN_AND_MODE_PRACTICE_PATH",
+          "mistake": "Using a rule from Data Handling without checking that it applies to Mean Median and Mode Practice Path.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Mean Median and Mode Practice Path.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Mean Median and Mode Practice Path"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Mean Median and Mode Practice Path using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Mean Median and Mode Practice Path before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Mean Median and Mode Practice Path appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MEAN_MEDIAN_AND_MODE_PRACTICE_PATH",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Mean Median and Mode Practice Path once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MEAN_MEDIAN_AND_MODE_PRACTICE_PATH",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Mean Median and Mode Practice Path.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MEAN_MEDIAN_AND_MODE_PRACTICE_PATH",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Mean Median and Mode Practice Path.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MEAN_MEDIAN_AND_MODE_PRACTICE_PATH",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Mean Median and Mode Practice Path in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MEAN_MEDIAN_AND_MODE_PRACTICE_PATH",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Mean Median and Mode Practice Path.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Mean Median and Mode Practice Path and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10034,
+      "title": "Range and Spread Explorer",
+      "route": "/lessons/school/class-8/class-8-data-handling-range-and-spread-explorer",
+      "category": "School Syllabus",
+      "topic": "Data Handling",
+      "academicLevel": "CLASS_8",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Range and Spread Explorer means in Data Handling.",
+        "Connect Range and Spread Explorer to a suitable table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Fractions or decimals",
+        "Tables",
+        "Basic graph reading"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Range and Spread Explorer",
+          "meaning": "The exact concept named by this lesson inside Data Handling."
+        },
+        {
+          "term": "Data Handling",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Range and Spread Explorer is a concept lesson in Data Handling. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Range and Spread Explorer, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Range and Spread Explorer work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Range and Spread Explorer during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Range and Spread Explorer.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "table",
+          "learningPurpose": "Show the main structure of Range and Spread Explorer without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Range and Spread Explorer.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Weather chance",
+          "connection": "Use only if it naturally fits Range and Spread Explorer; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Exam score comparison",
+          "connection": "Use only if it naturally fits Range and Spread Explorer; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Quality sampling",
+          "connection": "Use only if it naturally fits Range and Spread Explorer; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_RANGE_AND_SPREAD_EXPLORER",
+          "mistake": "Using a rule from Data Handling without checking that it applies to Range and Spread Explorer.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Range and Spread Explorer.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Range and Spread Explorer"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Range and Spread Explorer using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Range and Spread Explorer before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Range and Spread Explorer appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RANGE_AND_SPREAD_EXPLORER",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Range and Spread Explorer once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RANGE_AND_SPREAD_EXPLORER",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Range and Spread Explorer.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RANGE_AND_SPREAD_EXPLORER",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Range and Spread Explorer.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RANGE_AND_SPREAD_EXPLORER",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Range and Spread Explorer in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RANGE_AND_SPREAD_EXPLORER",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Range and Spread Explorer.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Range and Spread Explorer and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10035,
+      "title": "Flowchart Logic",
+      "route": "/lessons/school/class-8/class-8-information-processing-flowchart-logic",
+      "category": "School Syllabus",
+      "topic": "Information Processing",
+      "academicLevel": "CLASS_8",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Flowchart Logic means in Information Processing.",
+        "Connect Flowchart Logic to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Flowchart Logic",
+          "meaning": "The exact concept named by this lesson inside Information Processing."
+        },
+        {
+          "term": "Information Processing",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Flowchart Logic is a concept lesson in Information Processing. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Flowchart Logic, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Flowchart Logic work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Flowchart Logic during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Flowchart Logic.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Flowchart Logic without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Flowchart Logic.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Flowchart Logic; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Flowchart Logic; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Flowchart Logic; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_FLOWCHART_LOGIC",
+          "mistake": "Using a rule from Information Processing without checking that it applies to Flowchart Logic.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Flowchart Logic.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Flowchart Logic"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Flowchart Logic using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Flowchart Logic before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Flowchart Logic appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_FLOWCHART_LOGIC",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Flowchart Logic once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_FLOWCHART_LOGIC",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Flowchart Logic.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_FLOWCHART_LOGIC",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Flowchart Logic.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_FLOWCHART_LOGIC",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Flowchart Logic in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_FLOWCHART_LOGIC",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Flowchart Logic.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Flowchart Logic and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10036,
+      "title": "Pattern Encoding",
+      "route": "/lessons/school/class-8/class-8-information-processing-pattern-encoding",
+      "category": "School Syllabus",
+      "topic": "Information Processing",
+      "academicLevel": "CLASS_8",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Pattern Encoding means in Information Processing.",
+        "Connect Pattern Encoding to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Pattern Encoding",
+          "meaning": "The exact concept named by this lesson inside Information Processing."
+        },
+        {
+          "term": "Information Processing",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Pattern Encoding is a concept lesson in Information Processing. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Pattern Encoding, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Pattern Encoding work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Pattern Encoding during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Pattern Encoding.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Pattern Encoding without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Pattern Encoding.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Pattern Encoding; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Pattern Encoding; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Pattern Encoding; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_PATTERN_ENCODING",
+          "mistake": "Using a rule from Information Processing without checking that it applies to Pattern Encoding.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Pattern Encoding.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Pattern Encoding"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Pattern Encoding using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Pattern Encoding before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Pattern Encoding appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PATTERN_ENCODING",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Pattern Encoding once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PATTERN_ENCODING",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Pattern Encoding.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PATTERN_ENCODING",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Pattern Encoding.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PATTERN_ENCODING",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Pattern Encoding in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PATTERN_ENCODING",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Pattern Encoding.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Pattern Encoding and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10037,
+      "title": "Magic Squares",
+      "route": "/lessons/school/class-8/class-8-information-processing-magic-squares",
+      "category": "School Syllabus",
+      "topic": "Information Processing",
+      "academicLevel": "CLASS_8",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Magic Squares means in Information Processing.",
+        "Connect Magic Squares to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Magic Squares",
+          "meaning": "The exact concept named by this lesson inside Information Processing."
+        },
+        {
+          "term": "Information Processing",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Magic Squares is a concept lesson in Information Processing. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Magic Squares, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Magic Squares work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Magic Squares during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Magic Squares.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Magic Squares without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Magic Squares.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Magic Squares; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Magic Squares; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Magic Squares; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_MAGIC_SQUARES",
+          "mistake": "Using a rule from Information Processing without checking that it applies to Magic Squares.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Magic Squares.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Magic Squares"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Magic Squares using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Magic Squares before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Magic Squares appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MAGIC_SQUARES",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Magic Squares once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MAGIC_SQUARES",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Magic Squares.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MAGIC_SQUARES",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Magic Squares.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MAGIC_SQUARES",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Magic Squares in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MAGIC_SQUARES",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Magic Squares.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Magic Squares and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10038,
+      "title": "Route Map Reasoning",
+      "route": "/lessons/school/class-8/class-8-information-processing-route-map-reasoning",
+      "category": "School Syllabus",
+      "topic": "Information Processing",
+      "academicLevel": "CLASS_8",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Route Map Reasoning means in Information Processing.",
+        "Connect Route Map Reasoning to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Route Map Reasoning",
+          "meaning": "The exact concept named by this lesson inside Information Processing."
+        },
+        {
+          "term": "Information Processing",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Route Map Reasoning is a concept lesson in Information Processing. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Route Map Reasoning, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Route Map Reasoning work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Route Map Reasoning during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Route Map Reasoning.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Route Map Reasoning without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Route Map Reasoning.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Route Map Reasoning; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Route Map Reasoning; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Route Map Reasoning; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_ROUTE_MAP_REASONING",
+          "mistake": "Using a rule from Information Processing without checking that it applies to Route Map Reasoning.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Route Map Reasoning.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Route Map Reasoning"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Route Map Reasoning using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Route Map Reasoning before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Route Map Reasoning appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ROUTE_MAP_REASONING",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Route Map Reasoning once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ROUTE_MAP_REASONING",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Route Map Reasoning.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ROUTE_MAP_REASONING",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Route Map Reasoning.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ROUTE_MAP_REASONING",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Route Map Reasoning in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ROUTE_MAP_REASONING",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Route Map Reasoning.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Route Map Reasoning and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10039,
+      "title": "Tabular Pattern Completion",
+      "route": "/lessons/school/class-8/class-8-information-processing-tabular-pattern-completion",
+      "category": "School Syllabus",
+      "topic": "Information Processing",
+      "academicLevel": "CLASS_8",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Tabular Pattern Completion means in Information Processing.",
+        "Connect Tabular Pattern Completion to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Tabular Pattern Completion",
+          "meaning": "The exact concept named by this lesson inside Information Processing."
+        },
+        {
+          "term": "Information Processing",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Tabular Pattern Completion is a concept lesson in Information Processing. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Tabular Pattern Completion, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Tabular Pattern Completion work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Tabular Pattern Completion during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Tabular Pattern Completion.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Tabular Pattern Completion without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Tabular Pattern Completion.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Tabular Pattern Completion; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Tabular Pattern Completion; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Tabular Pattern Completion; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_TABULAR_PATTERN_COMPLETION",
+          "mistake": "Using a rule from Information Processing without checking that it applies to Tabular Pattern Completion.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Tabular Pattern Completion.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Tabular Pattern Completion"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Tabular Pattern Completion using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Tabular Pattern Completion before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Tabular Pattern Completion appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TABULAR_PATTERN_COMPLETION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Tabular Pattern Completion once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TABULAR_PATTERN_COMPLETION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Tabular Pattern Completion.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TABULAR_PATTERN_COMPLETION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Tabular Pattern Completion.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TABULAR_PATTERN_COMPLETION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Tabular Pattern Completion in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TABULAR_PATTERN_COMPLETION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Tabular Pattern Completion.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Tabular Pattern Completion and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5147 @@
+{
+  "generatedAt": "2026-08-06",
+  "status": "phase_1_brief_scaffold",
+  "note": "These are Phase 1 briefs. They are not approved lesson replacements.",
+  "lessons": [
+    {
+      "id": 257,
+      "title": "Angle Measurement",
+      "route": "/lessons/trigonometry/257-angle-measurement",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Angle Measurement means in Trigonometry.",
+        "Connect Angle Measurement to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Angle Measurement",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Angle Measurement is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Angle Measurement, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Angle Measurement work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Angle Measurement during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Angle Measurement.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Angle Measurement without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Angle Measurement.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Angle Measurement; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Angle Measurement; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Angle Measurement; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_ANGLE_MEASUREMENT",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Angle Measurement.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Angle Measurement.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Angle Measurement"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Angle Measurement using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Angle Measurement before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Angle Measurement appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANGLE_MEASUREMENT",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Angle Measurement once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANGLE_MEASUREMENT",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Angle Measurement.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANGLE_MEASUREMENT",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Angle Measurement.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANGLE_MEASUREMENT",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Angle Measurement in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANGLE_MEASUREMENT",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Angle Measurement.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Angle Measurement and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 258,
+      "title": "Unit Circle",
+      "route": "/lessons/trigonometry/258-unit-circle",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Unit Circle means in Trigonometry.",
+        "Connect Unit Circle to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Unit Circle",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Unit Circle is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Unit Circle, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Unit Circle work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Unit Circle during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Unit Circle.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Unit Circle without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Unit Circle.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Unit Circle; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Unit Circle; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Unit Circle; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_UNIT_CIRCLE",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Unit Circle.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Unit Circle.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Unit Circle"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Unit Circle using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Unit Circle before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Unit Circle appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNIT_CIRCLE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Unit Circle once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNIT_CIRCLE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Unit Circle.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNIT_CIRCLE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Unit Circle.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNIT_CIRCLE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Unit Circle in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNIT_CIRCLE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Unit Circle.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Unit Circle and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 259,
+      "title": "Right-Triangle Ratios",
+      "route": "/lessons/trigonometry/259-right-triangle-ratios",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Right-Triangle Ratios means in Trigonometry.",
+        "Connect Right-Triangle Ratios to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Right-Triangle Ratios",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Right-Triangle Ratios is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Right-Triangle Ratios, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Right-Triangle Ratios work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Right-Triangle Ratios during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Right-Triangle Ratios.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Right-Triangle Ratios without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Right-Triangle Ratios.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Right-Triangle Ratios; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Right-Triangle Ratios; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Right-Triangle Ratios; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_RIGHT_TRIANGLE_RATIOS",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Right-Triangle Ratios.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Right-Triangle Ratios.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Right-Triangle Ratios"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Right-Triangle Ratios using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Right-Triangle Ratios before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Right-Triangle Ratios appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RIGHT_TRIANGLE_RATIOS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Right-Triangle Ratios once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RIGHT_TRIANGLE_RATIOS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Right-Triangle Ratios.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RIGHT_TRIANGLE_RATIOS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Right-Triangle Ratios.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RIGHT_TRIANGLE_RATIOS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Right-Triangle Ratios in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RIGHT_TRIANGLE_RATIOS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Right-Triangle Ratios.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Right-Triangle Ratios and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 260,
+      "title": "Exact Trig Values",
+      "route": "/lessons/trigonometry/260-exact-trig-values",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Exact Trig Values means in Trigonometry.",
+        "Connect Exact Trig Values to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Exact Trig Values",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Exact Trig Values is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Exact Trig Values, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Exact Trig Values work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Exact Trig Values during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Exact Trig Values.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Exact Trig Values without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Exact Trig Values.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Exact Trig Values; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Exact Trig Values; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Exact Trig Values; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_EXACT_TRIG_VALUES",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Exact Trig Values.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Exact Trig Values.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Exact Trig Values"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Exact Trig Values using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Exact Trig Values before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Exact Trig Values appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXACT_TRIG_VALUES",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Exact Trig Values once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXACT_TRIG_VALUES",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Exact Trig Values.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXACT_TRIG_VALUES",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Exact Trig Values.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXACT_TRIG_VALUES",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Exact Trig Values in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_EXACT_TRIG_VALUES",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Exact Trig Values.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Exact Trig Values and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 261,
+      "title": "Sine Graph",
+      "route": "/lessons/trigonometry/261-sine-graph",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Sine Graph means in Trigonometry.",
+        "Connect Sine Graph to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Sine Graph",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Sine Graph is a visual exploration lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Sine Graph, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Sine Graph work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Sine Graph during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Sine Graph.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Sine Graph without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Sine Graph.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Sine Graph; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Sine Graph; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Sine Graph; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_SINE_GRAPH",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Sine Graph.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Sine Graph.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Sine Graph"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Sine Graph using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Sine Graph before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Sine Graph appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SINE_GRAPH",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Sine Graph once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SINE_GRAPH",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Sine Graph.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SINE_GRAPH",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Sine Graph.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SINE_GRAPH",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Sine Graph in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SINE_GRAPH",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Sine Graph.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Sine Graph and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 262,
+      "title": "Cosine Graph",
+      "route": "/lessons/trigonometry/262-cosine-graph",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Cosine Graph means in Trigonometry.",
+        "Connect Cosine Graph to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Cosine Graph",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Cosine Graph is a visual exploration lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Cosine Graph, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Cosine Graph work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Cosine Graph during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Cosine Graph.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Cosine Graph without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Cosine Graph.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Cosine Graph; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Cosine Graph; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Cosine Graph; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_COSINE_GRAPH",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Cosine Graph.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Cosine Graph.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Cosine Graph"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Cosine Graph using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Cosine Graph before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Cosine Graph appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COSINE_GRAPH",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Cosine Graph once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COSINE_GRAPH",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Cosine Graph.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COSINE_GRAPH",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Cosine Graph.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COSINE_GRAPH",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Cosine Graph in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COSINE_GRAPH",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Cosine Graph.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Cosine Graph and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 263,
+      "title": "Tangent Graph",
+      "route": "/lessons/trigonometry/263-tangent-graph",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Tangent Graph means in Trigonometry.",
+        "Connect Tangent Graph to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Tangent Graph",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Tangent Graph is a visual exploration lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Tangent Graph, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Tangent Graph work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Tangent Graph during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Tangent Graph.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Tangent Graph without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Tangent Graph.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Tangent Graph; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Tangent Graph; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Tangent Graph; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_TANGENT_GRAPH",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Tangent Graph.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Tangent Graph.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Tangent Graph"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Tangent Graph using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Tangent Graph before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Tangent Graph appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TANGENT_GRAPH",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Tangent Graph once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TANGENT_GRAPH",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Tangent Graph.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TANGENT_GRAPH",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Tangent Graph.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TANGENT_GRAPH",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Tangent Graph in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TANGENT_GRAPH",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Tangent Graph.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Tangent Graph and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 264,
+      "title": "Reciprocal Trig Functions",
+      "route": "/lessons/trigonometry/264-reciprocal-trig-functions",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Reciprocal Trig Functions means in Trigonometry.",
+        "Connect Reciprocal Trig Functions to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Reciprocal Trig Functions",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Reciprocal Trig Functions is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Reciprocal Trig Functions, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Reciprocal Trig Functions work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Reciprocal Trig Functions during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Reciprocal Trig Functions.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Reciprocal Trig Functions without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Reciprocal Trig Functions.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Reciprocal Trig Functions; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Reciprocal Trig Functions; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Reciprocal Trig Functions; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_RECIPROCAL_TRIG_FUNCTIONS",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Reciprocal Trig Functions.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Reciprocal Trig Functions.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Reciprocal Trig Functions"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Reciprocal Trig Functions using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Reciprocal Trig Functions before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Reciprocal Trig Functions appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RECIPROCAL_TRIG_FUNCTIONS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Reciprocal Trig Functions once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RECIPROCAL_TRIG_FUNCTIONS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Reciprocal Trig Functions.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RECIPROCAL_TRIG_FUNCTIONS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Reciprocal Trig Functions.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RECIPROCAL_TRIG_FUNCTIONS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Reciprocal Trig Functions in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RECIPROCAL_TRIG_FUNCTIONS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Reciprocal Trig Functions.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Reciprocal Trig Functions and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 265,
+      "title": "Inverse Trig Functions",
+      "route": "/lessons/trigonometry/265-inverse-trig-functions",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Inverse Trig Functions means in Trigonometry.",
+        "Connect Inverse Trig Functions to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Inverse Trig Functions",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Inverse Trig Functions is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Inverse Trig Functions, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Inverse Trig Functions work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Inverse Trig Functions during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Inverse Trig Functions.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Inverse Trig Functions without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Inverse Trig Functions.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Inverse Trig Functions; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Inverse Trig Functions; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Inverse Trig Functions; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_INVERSE_TRIG_FUNCTIONS",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Inverse Trig Functions.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Inverse Trig Functions.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Inverse Trig Functions"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Inverse Trig Functions using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Inverse Trig Functions before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Inverse Trig Functions appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INVERSE_TRIG_FUNCTIONS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Inverse Trig Functions once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INVERSE_TRIG_FUNCTIONS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Inverse Trig Functions.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INVERSE_TRIG_FUNCTIONS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Inverse Trig Functions.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INVERSE_TRIG_FUNCTIONS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Inverse Trig Functions in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INVERSE_TRIG_FUNCTIONS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Inverse Trig Functions.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Inverse Trig Functions and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 266,
+      "title": "Trig Identities",
+      "route": "/lessons/trigonometry/266-trig-identities",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Trig Identities means in Trigonometry.",
+        "Connect Trig Identities to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Trig Identities",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Trig Identities is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Trig Identities, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Trig Identities work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Trig Identities during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Trig Identities.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Trig Identities without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Trig Identities.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Trig Identities; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Trig Identities; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Trig Identities; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_TRIG_IDENTITIES",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Trig Identities.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Trig Identities.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Trig Identities"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Trig Identities using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Trig Identities before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Trig Identities appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIG_IDENTITIES",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Trig Identities once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIG_IDENTITIES",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Trig Identities.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIG_IDENTITIES",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Trig Identities.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIG_IDENTITIES",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Trig Identities in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIG_IDENTITIES",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Trig Identities.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Trig Identities and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 267,
+      "title": "Compound-Angle Formulae",
+      "route": "/lessons/trigonometry/267-compound-angle-formulae",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Compound-Angle Formulae means in Trigonometry.",
+        "Connect Compound-Angle Formulae to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Compound-Angle Formulae",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Compound-Angle Formulae is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Compound-Angle Formulae, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Compound-Angle Formulae work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Compound-Angle Formulae during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Compound-Angle Formulae.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Compound-Angle Formulae without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Compound-Angle Formulae.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Compound-Angle Formulae; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Compound-Angle Formulae; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Compound-Angle Formulae; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_COMPOUND_ANGLE_FORMULAE",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Compound-Angle Formulae.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Compound-Angle Formulae.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Compound-Angle Formulae"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Compound-Angle Formulae using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Compound-Angle Formulae before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Compound-Angle Formulae appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COMPOUND_ANGLE_FORMULAE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Compound-Angle Formulae once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COMPOUND_ANGLE_FORMULAE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Compound-Angle Formulae.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COMPOUND_ANGLE_FORMULAE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Compound-Angle Formulae.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COMPOUND_ANGLE_FORMULAE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Compound-Angle Formulae in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COMPOUND_ANGLE_FORMULAE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Compound-Angle Formulae.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Compound-Angle Formulae and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 268,
+      "title": "Double- and Half-Angle Formulae",
+      "route": "/lessons/trigonometry/268-double-and-half-angle-formulae",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Double- and Half-Angle Formulae means in Trigonometry.",
+        "Connect Double- and Half-Angle Formulae to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Double- and Half-Angle Formulae",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Double- and Half-Angle Formulae is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Double- and Half-Angle Formulae, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Double- and Half-Angle Formulae work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Double- and Half-Angle Formulae during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Double- and Half-Angle Formulae.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Double- and Half-Angle Formulae without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Double- and Half-Angle Formulae.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Double- and Half-Angle Formulae; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Double- and Half-Angle Formulae; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Double- and Half-Angle Formulae; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_DOUBLE_AND_HALF_ANGLE_FORMULAE",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Double- and Half-Angle Formulae.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Double- and Half-Angle Formulae.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Double- and Half-Angle Formulae"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Double- and Half-Angle Formulae using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Double- and Half-Angle Formulae before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Double- and Half-Angle Formulae appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DOUBLE_AND_HALF_ANGLE_FORMULAE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Double- and Half-Angle Formulae once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DOUBLE_AND_HALF_ANGLE_FORMULAE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Double- and Half-Angle Formulae.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DOUBLE_AND_HALF_ANGLE_FORMULAE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Double- and Half-Angle Formulae.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DOUBLE_AND_HALF_ANGLE_FORMULAE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Double- and Half-Angle Formulae in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DOUBLE_AND_HALF_ANGLE_FORMULAE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Double- and Half-Angle Formulae.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Double- and Half-Angle Formulae and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 269,
+      "title": "Trig Equations",
+      "route": "/lessons/trigonometry/269-trig-equations",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Trig Equations means in Trigonometry.",
+        "Connect Trig Equations to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Trig Equations",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Trig Equations is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Trig Equations, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Trig Equations work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Trig Equations during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Trig Equations.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Trig Equations without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Trig Equations.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Trig Equations; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Trig Equations; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Trig Equations; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_TRIG_EQUATIONS",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Trig Equations.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Trig Equations.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Trig Equations"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Trig Equations using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Trig Equations before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Trig Equations appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIG_EQUATIONS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Trig Equations once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIG_EQUATIONS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Trig Equations.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIG_EQUATIONS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Trig Equations.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIG_EQUATIONS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Trig Equations in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIG_EQUATIONS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Trig Equations.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Trig Equations and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 270,
+      "title": "Sine Rule",
+      "route": "/lessons/trigonometry/270-sine-rule",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Sine Rule means in Trigonometry.",
+        "Connect Sine Rule to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Sine Rule",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Sine Rule is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Sine Rule, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Sine Rule work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Sine Rule during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Sine Rule.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Sine Rule without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Sine Rule.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Sine Rule; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Sine Rule; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Sine Rule; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_SINE_RULE",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Sine Rule.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Sine Rule.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Sine Rule"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Sine Rule using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Sine Rule before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Sine Rule appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SINE_RULE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Sine Rule once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SINE_RULE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Sine Rule.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SINE_RULE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Sine Rule.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SINE_RULE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Sine Rule in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SINE_RULE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Sine Rule.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Sine Rule and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 271,
+      "title": "Cosine Rule",
+      "route": "/lessons/trigonometry/271-cosine-rule",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Cosine Rule means in Trigonometry.",
+        "Connect Cosine Rule to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Cosine Rule",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Cosine Rule is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Cosine Rule, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Cosine Rule work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Cosine Rule during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Cosine Rule.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Cosine Rule without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Cosine Rule.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Cosine Rule; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Cosine Rule; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Cosine Rule; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_COSINE_RULE",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Cosine Rule.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Cosine Rule.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Cosine Rule"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Cosine Rule using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Cosine Rule before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Cosine Rule appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COSINE_RULE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Cosine Rule once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COSINE_RULE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Cosine Rule.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COSINE_RULE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Cosine Rule.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COSINE_RULE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Cosine Rule in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COSINE_RULE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Cosine Rule.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Cosine Rule and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 272,
+      "title": "Triangle Area Formula",
+      "route": "/lessons/trigonometry/272-triangle-area-formula",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Triangle Area Formula means in Trigonometry.",
+        "Connect Triangle Area Formula to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Triangle Area Formula",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Triangle Area Formula is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Triangle Area Formula, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Triangle Area Formula work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Triangle Area Formula during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Triangle Area Formula.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Triangle Area Formula without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Triangle Area Formula.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Triangle Area Formula; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Triangle Area Formula; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Triangle Area Formula; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_TRIANGLE_AREA_FORMULA",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Triangle Area Formula.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Triangle Area Formula.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Triangle Area Formula"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Triangle Area Formula using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Triangle Area Formula before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Triangle Area Formula appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_AREA_FORMULA",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Triangle Area Formula once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_AREA_FORMULA",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Triangle Area Formula.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_AREA_FORMULA",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Triangle Area Formula.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_AREA_FORMULA",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Triangle Area Formula in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_TRIANGLE_AREA_FORMULA",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Triangle Area Formula.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Triangle Area Formula and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 273,
+      "title": "Bearings",
+      "route": "/lessons/trigonometry/273-bearings",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Bearings means in Trigonometry.",
+        "Connect Bearings to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Bearings",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Bearings is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Bearings, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Bearings work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Bearings during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Bearings.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Bearings without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Bearings.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Bearings; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Bearings; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Bearings; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_BEARINGS",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Bearings.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Bearings.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Bearings"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Bearings using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Bearings before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Bearings appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BEARINGS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Bearings once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BEARINGS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Bearings.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BEARINGS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Bearings.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BEARINGS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Bearings in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BEARINGS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Bearings.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Bearings and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 274,
+      "title": "Elevation and Depression",
+      "route": "/lessons/trigonometry/274-elevation-and-depression",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Elevation and Depression means in Trigonometry.",
+        "Connect Elevation and Depression to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Elevation and Depression",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Elevation and Depression is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Elevation and Depression, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Elevation and Depression work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Elevation and Depression during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Elevation and Depression.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Elevation and Depression without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Elevation and Depression.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Elevation and Depression; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Elevation and Depression; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Elevation and Depression; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_ELEVATION_AND_DEPRESSION",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Elevation and Depression.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Elevation and Depression.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Elevation and Depression"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Elevation and Depression using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Elevation and Depression before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Elevation and Depression appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ELEVATION_AND_DEPRESSION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Elevation and Depression once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ELEVATION_AND_DEPRESSION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Elevation and Depression.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ELEVATION_AND_DEPRESSION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Elevation and Depression.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ELEVATION_AND_DEPRESSION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Elevation and Depression in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ELEVATION_AND_DEPRESSION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Elevation and Depression.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Elevation and Depression and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 275,
+      "title": "Harmonic Motion",
+      "route": "/lessons/trigonometry/275-harmonic-motion",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Harmonic Motion means in Trigonometry.",
+        "Connect Harmonic Motion to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Harmonic Motion",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Harmonic Motion is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Harmonic Motion, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Harmonic Motion work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Harmonic Motion during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Harmonic Motion.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Harmonic Motion without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Harmonic Motion.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Harmonic Motion; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Harmonic Motion; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Harmonic Motion; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_HARMONIC_MOTION",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Harmonic Motion.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Harmonic Motion.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Harmonic Motion"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Harmonic Motion using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Harmonic Motion before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Harmonic Motion appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HARMONIC_MOTION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Harmonic Motion once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HARMONIC_MOTION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Harmonic Motion.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HARMONIC_MOTION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Harmonic Motion.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HARMONIC_MOTION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Harmonic Motion in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HARMONIC_MOTION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Harmonic Motion.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Harmonic Motion and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 276,
+      "title": "Polar Trigonometry",
+      "route": "/lessons/trigonometry/276-polar-trigonometry",
+      "category": "Trigonometry",
+      "topic": "Trigonometry",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Polar Trigonometry means in Trigonometry.",
+        "Connect Polar Trigonometry to a suitable unit circle representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Angles",
+        "Right triangles",
+        "Coordinate plane"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Polar Trigonometry",
+          "meaning": "The exact concept named by this lesson inside Trigonometry."
+        },
+        {
+          "term": "Trigonometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Polar Trigonometry is a concept lesson in Trigonometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Polar Trigonometry, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Polar Trigonometry work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Polar Trigonometry during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Polar Trigonometry.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "unit_circle",
+          "learningPurpose": "Show the main structure of Polar Trigonometry without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Polar Trigonometry.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Polar Trigonometry; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Polar Trigonometry; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Polar Trigonometry; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_POLAR_TRIGONOMETRY",
+          "mistake": "Using a rule from Trigonometry without checking that it applies to Polar Trigonometry.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Polar Trigonometry.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Polar Trigonometry"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Polar Trigonometry using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Polar Trigonometry before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Polar Trigonometry appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_POLAR_TRIGONOMETRY",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Polar Trigonometry once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_POLAR_TRIGONOMETRY",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Polar Trigonometry.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_POLAR_TRIGONOMETRY",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Polar Trigonometry.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_POLAR_TRIGONOMETRY",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Polar Trigonometry in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_POLAR_TRIGONOMETRY",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Polar Trigonometry.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Polar Trigonometry and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    }
+  ]
+}

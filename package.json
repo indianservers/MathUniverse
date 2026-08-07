@@ -20,6 +20,10 @@
     "test:e2e:visual-proofs:export": "npm run build && playwright test tests/visual-proofs/visualProofsExport.e2e.ts",
     "test:e2e:visual-proofs:export:full": "npm run build && playwright test tests/visual-proofs/visualProofsExportFullMatrix.e2e.ts",
     "test:e2e:visual-proofs:full": "npm run build && playwright test tests/visual-proofs/visualProofsFullMatrix.e2e.ts",
+    "lessons:strengthening:parse": "node scripts/parse-lesson-audit.mjs",
+    "lessons:strengthening:validate": "node scripts/validate-lesson-content.mjs",
+    "lessons:strengthening:scan": "node scripts/scan-generic-content.mjs",
+    "lessons:strengthening:report": "node scripts/report-lesson-progress.mjs",
     "verify": "npm run lint && npm run build"
   },
   "dependencies": {

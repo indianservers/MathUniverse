@@ -37,6 +37,7 @@ export type VisualProofCategory = {
 };
 
 export type VisualProofComponentKey =
+  | "VisualProofBlueprintProof"
   | "CircleAreaUnrollingProof"
   | "CircleToTriangleProof"
   | "PythagoreanAreaRearrangementProof"

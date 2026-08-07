@@ -1,0 +1,3868 @@
+{
+  "generatedAt": "2026-08-06",
+  "status": "phase_1_brief_scaffold",
+  "note": "These are Phase 1 briefs. They are not approved lesson replacements.",
+  "lessons": [
+    {
+      "id": 10013,
+      "title": "Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11",
+      "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-divisibility-tests-for-2-4-5-6-8-10-and-11",
+      "category": "School Syllabus",
+      "topic": "Numbers and Arithmetic",
+      "academicLevel": "CLASS_7",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 means in Numbers and Arithmetic.",
+        "Connect Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11",
+          "meaning": "The exact concept named by this lesson inside Numbers and Arithmetic."
+        },
+        {
+          "term": "Numbers and Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 is a concept lesson in Numbers and Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Budget calculation",
+          "connection": "Use only if it naturally fits Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Recipe scaling",
+          "connection": "Use only if it naturally fits Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Unknown quantity in a plan",
+          "connection": "Use only if it naturally fits Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_DIVISIBILITY_TESTS_FOR_2_4_5_6_8_10_AND_11",
+          "mistake": "Using a rule from Numbers and Arithmetic without checking that it applies to Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DIVISIBILITY_TESTS_FOR_2_4_5_6_8_10_AND_11",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DIVISIBILITY_TESTS_FOR_2_4_5_6_8_10_AND_11",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DIVISIBILITY_TESTS_FOR_2_4_5_6_8_10_AND_11",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DIVISIBILITY_TESTS_FOR_2_4_5_6_8_10_AND_11",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DIVISIBILITY_TESTS_FOR_2_4_5_6_8_10_AND_11",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Divisibility Tests for 2, 4, 5, 6, 8, 10 and 11 and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10014,
+      "title": "Digital Root and Divisibility",
+      "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-digital-root-and-divisibility",
+      "category": "School Syllabus",
+      "topic": "Numbers and Arithmetic",
+      "academicLevel": "CLASS_7",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Digital Root and Divisibility means in Numbers and Arithmetic.",
+        "Connect Digital Root and Divisibility to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Digital Root and Divisibility",
+          "meaning": "The exact concept named by this lesson inside Numbers and Arithmetic."
+        },
+        {
+          "term": "Numbers and Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Digital Root and Divisibility is a concept lesson in Numbers and Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Digital Root and Divisibility, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Digital Root and Divisibility work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Digital Root and Divisibility during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Digital Root and Divisibility.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Digital Root and Divisibility without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Digital Root and Divisibility.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Budget calculation",
+          "connection": "Use only if it naturally fits Digital Root and Divisibility; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Recipe scaling",
+          "connection": "Use only if it naturally fits Digital Root and Divisibility; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Unknown quantity in a plan",
+          "connection": "Use only if it naturally fits Digital Root and Divisibility; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_DIGITAL_ROOT_AND_DIVISIBILITY",
+          "mistake": "Using a rule from Numbers and Arithmetic without checking that it applies to Digital Root and Divisibility.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Digital Root and Divisibility.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Digital Root and Divisibility"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Digital Root and Divisibility using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Digital Root and Divisibility before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Digital Root and Divisibility appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DIGITAL_ROOT_AND_DIVISIBILITY",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Digital Root and Divisibility once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DIGITAL_ROOT_AND_DIVISIBILITY",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Digital Root and Divisibility.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DIGITAL_ROOT_AND_DIVISIBILITY",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Digital Root and Divisibility.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DIGITAL_ROOT_AND_DIVISIBILITY",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Digital Root and Divisibility in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_DIGITAL_ROOT_AND_DIVISIBILITY",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Digital Root and Divisibility.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Digital Root and Divisibility and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10015,
+      "title": "Remainder Reasoning",
+      "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-remainder-reasoning",
+      "category": "School Syllabus",
+      "topic": "Numbers and Arithmetic",
+      "academicLevel": "CLASS_7",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Remainder Reasoning means in Numbers and Arithmetic.",
+        "Connect Remainder Reasoning to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Remainder Reasoning",
+          "meaning": "The exact concept named by this lesson inside Numbers and Arithmetic."
+        },
+        {
+          "term": "Numbers and Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Remainder Reasoning is a concept lesson in Numbers and Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Remainder Reasoning, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Remainder Reasoning work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Remainder Reasoning during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Remainder Reasoning.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Remainder Reasoning without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Remainder Reasoning.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Budget calculation",
+          "connection": "Use only if it naturally fits Remainder Reasoning; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Recipe scaling",
+          "connection": "Use only if it naturally fits Remainder Reasoning; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Unknown quantity in a plan",
+          "connection": "Use only if it naturally fits Remainder Reasoning; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_REMAINDER_REASONING",
+          "mistake": "Using a rule from Numbers and Arithmetic without checking that it applies to Remainder Reasoning.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Remainder Reasoning.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Remainder Reasoning"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Remainder Reasoning using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Remainder Reasoning before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Remainder Reasoning appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_REMAINDER_REASONING",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Remainder Reasoning once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_REMAINDER_REASONING",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Remainder Reasoning.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_REMAINDER_REASONING",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Remainder Reasoning.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_REMAINDER_REASONING",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Remainder Reasoning in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_REMAINDER_REASONING",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Remainder Reasoning.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Remainder Reasoning and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10016,
+      "title": "Unit Rate Table Lab",
+      "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-unit-rate-table-lab",
+      "category": "School Syllabus",
+      "topic": "Numbers and Arithmetic",
+      "academicLevel": "CLASS_7",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Unit Rate Table Lab means in Numbers and Arithmetic.",
+        "Connect Unit Rate Table Lab to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Unit Rate Table Lab",
+          "meaning": "The exact concept named by this lesson inside Numbers and Arithmetic."
+        },
+        {
+          "term": "Numbers and Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Unit Rate Table Lab is a concept lesson in Numbers and Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Unit Rate Table Lab, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Unit Rate Table Lab work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Unit Rate Table Lab during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Unit Rate Table Lab.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Unit Rate Table Lab without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Unit Rate Table Lab.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Budget calculation",
+          "connection": "Use only if it naturally fits Unit Rate Table Lab; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Recipe scaling",
+          "connection": "Use only if it naturally fits Unit Rate Table Lab; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Unknown quantity in a plan",
+          "connection": "Use only if it naturally fits Unit Rate Table Lab; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_UNIT_RATE_TABLE_LAB",
+          "mistake": "Using a rule from Numbers and Arithmetic without checking that it applies to Unit Rate Table Lab.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Unit Rate Table Lab.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Unit Rate Table Lab"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Unit Rate Table Lab using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Unit Rate Table Lab before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Unit Rate Table Lab appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNIT_RATE_TABLE_LAB",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Unit Rate Table Lab once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNIT_RATE_TABLE_LAB",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Unit Rate Table Lab.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNIT_RATE_TABLE_LAB",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Unit Rate Table Lab.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNIT_RATE_TABLE_LAB",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Unit Rate Table Lab in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_UNIT_RATE_TABLE_LAB",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Unit Rate Table Lab.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Unit Rate Table Lab and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10017,
+      "title": "Ratio Tables",
+      "route": "/lessons/school/class-7/class-7-numbers-and-arithmetic-ratio-tables",
+      "category": "School Syllabus",
+      "topic": "Numbers and Arithmetic",
+      "academicLevel": "CLASS_7",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Ratio Tables means in Numbers and Arithmetic.",
+        "Connect Ratio Tables to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Ratio Tables",
+          "meaning": "The exact concept named by this lesson inside Numbers and Arithmetic."
+        },
+        {
+          "term": "Numbers and Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Ratio Tables is a concept lesson in Numbers and Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Ratio Tables, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Ratio Tables work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Ratio Tables during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Ratio Tables.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Ratio Tables without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Ratio Tables.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Budget calculation",
+          "connection": "Use only if it naturally fits Ratio Tables; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Recipe scaling",
+          "connection": "Use only if it naturally fits Ratio Tables; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Unknown quantity in a plan",
+          "connection": "Use only if it naturally fits Ratio Tables; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_RATIO_TABLES",
+          "mistake": "Using a rule from Numbers and Arithmetic without checking that it applies to Ratio Tables.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Ratio Tables.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Ratio Tables"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Ratio Tables using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Ratio Tables before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Ratio Tables appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RATIO_TABLES",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Ratio Tables once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RATIO_TABLES",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Ratio Tables.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RATIO_TABLES",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Ratio Tables.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RATIO_TABLES",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Ratio Tables in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_RATIO_TABLES",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Ratio Tables.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Ratio Tables and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10018,
+      "title": "Bills, Discounts and Tax",
+      "route": "/lessons/school/class-7/class-7-applied-arithmetic-bills-discounts-and-tax",
+      "category": "School Syllabus",
+      "topic": "Applied Arithmetic",
+      "academicLevel": "CLASS_7",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Bills, Discounts and Tax means in Applied Arithmetic.",
+        "Connect Bills, Discounts and Tax to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Bills, Discounts and Tax",
+          "meaning": "The exact concept named by this lesson inside Applied Arithmetic."
+        },
+        {
+          "term": "Applied Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Bills, Discounts and Tax is a concept lesson in Applied Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Bills, Discounts and Tax, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Bills, Discounts and Tax work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Bills, Discounts and Tax during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Bills, Discounts and Tax.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Bills, Discounts and Tax without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Bills, Discounts and Tax.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Bills, Discounts and Tax; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Bills, Discounts and Tax; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Bills, Discounts and Tax; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_BILLS_DISCOUNTS_AND_TAX",
+          "mistake": "Using a rule from Applied Arithmetic without checking that it applies to Bills, Discounts and Tax.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Bills, Discounts and Tax.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Bills, Discounts and Tax"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Bills, Discounts and Tax using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Bills, Discounts and Tax before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Bills, Discounts and Tax appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BILLS_DISCOUNTS_AND_TAX",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Bills, Discounts and Tax once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BILLS_DISCOUNTS_AND_TAX",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Bills, Discounts and Tax.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BILLS_DISCOUNTS_AND_TAX",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Bills, Discounts and Tax.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BILLS_DISCOUNTS_AND_TAX",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Bills, Discounts and Tax in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BILLS_DISCOUNTS_AND_TAX",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Bills, Discounts and Tax.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Bills, Discounts and Tax and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10019,
+      "title": "Profit, Loss and Marked Price",
+      "route": "/lessons/school/class-7/class-7-applied-arithmetic-profit-loss-and-marked-price",
+      "category": "School Syllabus",
+      "topic": "Applied Arithmetic",
+      "academicLevel": "CLASS_7",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Profit, Loss and Marked Price means in Applied Arithmetic.",
+        "Connect Profit, Loss and Marked Price to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Profit, Loss and Marked Price",
+          "meaning": "The exact concept named by this lesson inside Applied Arithmetic."
+        },
+        {
+          "term": "Applied Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Profit, Loss and Marked Price is a concept lesson in Applied Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Profit, Loss and Marked Price, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Profit, Loss and Marked Price work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Profit, Loss and Marked Price during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Profit, Loss and Marked Price.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Profit, Loss and Marked Price without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Profit, Loss and Marked Price.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Profit, Loss and Marked Price; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Profit, Loss and Marked Price; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Profit, Loss and Marked Price; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_PROFIT_LOSS_AND_MARKED_PRICE",
+          "mistake": "Using a rule from Applied Arithmetic without checking that it applies to Profit, Loss and Marked Price.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Profit, Loss and Marked Price.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Profit, Loss and Marked Price"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Profit, Loss and Marked Price using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Profit, Loss and Marked Price before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Profit, Loss and Marked Price appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PROFIT_LOSS_AND_MARKED_PRICE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Profit, Loss and Marked Price once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PROFIT_LOSS_AND_MARKED_PRICE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Profit, Loss and Marked Price.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PROFIT_LOSS_AND_MARKED_PRICE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Profit, Loss and Marked Price.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PROFIT_LOSS_AND_MARKED_PRICE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Profit, Loss and Marked Price in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PROFIT_LOSS_AND_MARKED_PRICE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Profit, Loss and Marked Price.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Profit, Loss and Marked Price and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10020,
+      "title": "Household Budget Arithmetic",
+      "route": "/lessons/school/class-7/class-7-applied-arithmetic-household-budget-arithmetic",
+      "category": "School Syllabus",
+      "topic": "Applied Arithmetic",
+      "academicLevel": "CLASS_7",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Household Budget Arithmetic means in Applied Arithmetic.",
+        "Connect Household Budget Arithmetic to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Household Budget Arithmetic",
+          "meaning": "The exact concept named by this lesson inside Applied Arithmetic."
+        },
+        {
+          "term": "Applied Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Household Budget Arithmetic is a concept lesson in Applied Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Household Budget Arithmetic, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Household Budget Arithmetic work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Household Budget Arithmetic during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Household Budget Arithmetic.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Household Budget Arithmetic without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Household Budget Arithmetic.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Household Budget Arithmetic; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Household Budget Arithmetic; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Household Budget Arithmetic; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_HOUSEHOLD_BUDGET_ARITHMETIC",
+          "mistake": "Using a rule from Applied Arithmetic without checking that it applies to Household Budget Arithmetic.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Household Budget Arithmetic.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Household Budget Arithmetic"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Household Budget Arithmetic using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Household Budget Arithmetic before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Household Budget Arithmetic appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HOUSEHOLD_BUDGET_ARITHMETIC",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Household Budget Arithmetic once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HOUSEHOLD_BUDGET_ARITHMETIC",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Household Budget Arithmetic.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HOUSEHOLD_BUDGET_ARITHMETIC",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Household Budget Arithmetic.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HOUSEHOLD_BUDGET_ARITHMETIC",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Household Budget Arithmetic in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_HOUSEHOLD_BUDGET_ARITHMETIC",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Household Budget Arithmetic.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Household Budget Arithmetic and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10021,
+      "title": "Scale Factor in Maps and Recipes",
+      "route": "/lessons/school/class-7/class-7-applied-arithmetic-scale-factor-in-maps-and-recipes",
+      "category": "School Syllabus",
+      "topic": "Applied Arithmetic",
+      "academicLevel": "CLASS_7",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Scale Factor in Maps and Recipes means in Applied Arithmetic.",
+        "Connect Scale Factor in Maps and Recipes to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Scale Factor in Maps and Recipes",
+          "meaning": "The exact concept named by this lesson inside Applied Arithmetic."
+        },
+        {
+          "term": "Applied Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Scale Factor in Maps and Recipes is a concept lesson in Applied Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Scale Factor in Maps and Recipes, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Scale Factor in Maps and Recipes work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Scale Factor in Maps and Recipes during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Scale Factor in Maps and Recipes.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Scale Factor in Maps and Recipes without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Scale Factor in Maps and Recipes.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Scale Factor in Maps and Recipes; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Scale Factor in Maps and Recipes; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Scale Factor in Maps and Recipes; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_SCALE_FACTOR_IN_MAPS_AND_RECIPES",
+          "mistake": "Using a rule from Applied Arithmetic without checking that it applies to Scale Factor in Maps and Recipes.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Scale Factor in Maps and Recipes.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Scale Factor in Maps and Recipes"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Scale Factor in Maps and Recipes using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Scale Factor in Maps and Recipes before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Scale Factor in Maps and Recipes appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SCALE_FACTOR_IN_MAPS_AND_RECIPES",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Scale Factor in Maps and Recipes once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SCALE_FACTOR_IN_MAPS_AND_RECIPES",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Scale Factor in Maps and Recipes.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SCALE_FACTOR_IN_MAPS_AND_RECIPES",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Scale Factor in Maps and Recipes.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SCALE_FACTOR_IN_MAPS_AND_RECIPES",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Scale Factor in Maps and Recipes in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SCALE_FACTOR_IN_MAPS_AND_RECIPES",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Scale Factor in Maps and Recipes.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Scale Factor in Maps and Recipes and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10022,
+      "title": "Copying a Line Segment",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-copying-a-line-segment",
+      "category": "School Syllabus",
+      "topic": "Practical Geometry",
+      "academicLevel": "CLASS_7",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Copying a Line Segment means in Practical Geometry.",
+        "Connect Copying a Line Segment to a suitable geometric construction representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Points, lines, and angles",
+        "Measurement",
+        "Basic construction language"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Copying a Line Segment",
+          "meaning": "The exact concept named by this lesson inside Practical Geometry."
+        },
+        {
+          "term": "Practical Geometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Copying a Line Segment is a visual exploration lesson in Practical Geometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Copying a Line Segment, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Copying a Line Segment work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Copying a Line Segment during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Copying a Line Segment.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "geometric_construction",
+          "learningPurpose": "Show the main structure of Copying a Line Segment without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Copying a Line Segment.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Floor plan measurement",
+          "connection": "Use only if it naturally fits Copying a Line Segment; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Package design",
+          "connection": "Use only if it naturally fits Copying a Line Segment; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Map scale",
+          "connection": "Use only if it naturally fits Copying a Line Segment; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_COPYING_A_LINE_SEGMENT",
+          "mistake": "Using a rule from Practical Geometry without checking that it applies to Copying a Line Segment.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Copying a Line Segment.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Copying a Line Segment"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Copying a Line Segment using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Copying a Line Segment before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Copying a Line Segment appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COPYING_A_LINE_SEGMENT",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Copying a Line Segment once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COPYING_A_LINE_SEGMENT",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Copying a Line Segment.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COPYING_A_LINE_SEGMENT",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Copying a Line Segment.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COPYING_A_LINE_SEGMENT",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Copying a Line Segment in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COPYING_A_LINE_SEGMENT",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Copying a Line Segment.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Copying a Line Segment and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10023,
+      "title": "Copying an Angle",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-copying-an-angle",
+      "category": "School Syllabus",
+      "topic": "Practical Geometry",
+      "academicLevel": "CLASS_7",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Copying an Angle means in Practical Geometry.",
+        "Connect Copying an Angle to a suitable geometric construction representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Points, lines, and angles",
+        "Measurement",
+        "Basic construction language"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Copying an Angle",
+          "meaning": "The exact concept named by this lesson inside Practical Geometry."
+        },
+        {
+          "term": "Practical Geometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Copying an Angle is a visual exploration lesson in Practical Geometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Copying an Angle, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Copying an Angle work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Copying an Angle during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Copying an Angle.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "geometric_construction",
+          "learningPurpose": "Show the main structure of Copying an Angle without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Copying an Angle.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Floor plan measurement",
+          "connection": "Use only if it naturally fits Copying an Angle; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Package design",
+          "connection": "Use only if it naturally fits Copying an Angle; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Map scale",
+          "connection": "Use only if it naturally fits Copying an Angle; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_COPYING_AN_ANGLE",
+          "mistake": "Using a rule from Practical Geometry without checking that it applies to Copying an Angle.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Copying an Angle.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Copying an Angle"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Copying an Angle using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Copying an Angle before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Copying an Angle appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COPYING_AN_ANGLE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Copying an Angle once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COPYING_AN_ANGLE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Copying an Angle.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COPYING_AN_ANGLE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Copying an Angle.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COPYING_AN_ANGLE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Copying an Angle in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_COPYING_AN_ANGLE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Copying an Angle.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Copying an Angle and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10024,
+      "title": "Perpendicular Bisector Construction",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-perpendicular-bisector-construction",
+      "category": "School Syllabus",
+      "topic": "Practical Geometry",
+      "academicLevel": "CLASS_7",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Perpendicular Bisector Construction means in Practical Geometry.",
+        "Connect Perpendicular Bisector Construction to a suitable geometric construction representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Points, lines, and angles",
+        "Measurement",
+        "Basic construction language"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Perpendicular Bisector Construction",
+          "meaning": "The exact concept named by this lesson inside Practical Geometry."
+        },
+        {
+          "term": "Practical Geometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Perpendicular Bisector Construction is a visual exploration lesson in Practical Geometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Perpendicular Bisector Construction, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Perpendicular Bisector Construction work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Perpendicular Bisector Construction during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Perpendicular Bisector Construction.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "geometric_construction",
+          "learningPurpose": "Show the main structure of Perpendicular Bisector Construction without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Perpendicular Bisector Construction.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Floor plan measurement",
+          "connection": "Use only if it naturally fits Perpendicular Bisector Construction; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Package design",
+          "connection": "Use only if it naturally fits Perpendicular Bisector Construction; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Map scale",
+          "connection": "Use only if it naturally fits Perpendicular Bisector Construction; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_PERPENDICULAR_BISECTOR_CONSTRUCTION",
+          "mistake": "Using a rule from Practical Geometry without checking that it applies to Perpendicular Bisector Construction.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Perpendicular Bisector Construction.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Perpendicular Bisector Construction"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Perpendicular Bisector Construction using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Perpendicular Bisector Construction before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Perpendicular Bisector Construction appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PERPENDICULAR_BISECTOR_CONSTRUCTION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Perpendicular Bisector Construction once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PERPENDICULAR_BISECTOR_CONSTRUCTION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Perpendicular Bisector Construction.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PERPENDICULAR_BISECTOR_CONSTRUCTION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Perpendicular Bisector Construction.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PERPENDICULAR_BISECTOR_CONSTRUCTION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Perpendicular Bisector Construction in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PERPENDICULAR_BISECTOR_CONSTRUCTION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Perpendicular Bisector Construction.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Perpendicular Bisector Construction and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10025,
+      "title": "Angle Bisector Construction",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-angle-bisector-construction",
+      "category": "School Syllabus",
+      "topic": "Practical Geometry",
+      "academicLevel": "CLASS_7",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Angle Bisector Construction means in Practical Geometry.",
+        "Connect Angle Bisector Construction to a suitable geometric construction representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Points, lines, and angles",
+        "Measurement",
+        "Basic construction language"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Angle Bisector Construction",
+          "meaning": "The exact concept named by this lesson inside Practical Geometry."
+        },
+        {
+          "term": "Practical Geometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Angle Bisector Construction is a visual exploration lesson in Practical Geometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Angle Bisector Construction, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Angle Bisector Construction work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Angle Bisector Construction during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Angle Bisector Construction.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "geometric_construction",
+          "learningPurpose": "Show the main structure of Angle Bisector Construction without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Angle Bisector Construction.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Floor plan measurement",
+          "connection": "Use only if it naturally fits Angle Bisector Construction; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Package design",
+          "connection": "Use only if it naturally fits Angle Bisector Construction; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Map scale",
+          "connection": "Use only if it naturally fits Angle Bisector Construction; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_ANGLE_BISECTOR_CONSTRUCTION",
+          "mistake": "Using a rule from Practical Geometry without checking that it applies to Angle Bisector Construction.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Angle Bisector Construction.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Angle Bisector Construction"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Angle Bisector Construction using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Angle Bisector Construction before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Angle Bisector Construction appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANGLE_BISECTOR_CONSTRUCTION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Angle Bisector Construction once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANGLE_BISECTOR_CONSTRUCTION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Angle Bisector Construction.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANGLE_BISECTOR_CONSTRUCTION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Angle Bisector Construction.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANGLE_BISECTOR_CONSTRUCTION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Angle Bisector Construction in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ANGLE_BISECTOR_CONSTRUCTION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Angle Bisector Construction.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Angle Bisector Construction and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10026,
+      "title": "Perpendicular Through a Point",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-perpendicular-through-a-point",
+      "category": "School Syllabus",
+      "topic": "Practical Geometry",
+      "academicLevel": "CLASS_7",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Perpendicular Through a Point means in Practical Geometry.",
+        "Connect Perpendicular Through a Point to a suitable geometric construction representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Points, lines, and angles",
+        "Measurement",
+        "Basic construction language"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Perpendicular Through a Point",
+          "meaning": "The exact concept named by this lesson inside Practical Geometry."
+        },
+        {
+          "term": "Practical Geometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Perpendicular Through a Point is a concept lesson in Practical Geometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Perpendicular Through a Point, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Perpendicular Through a Point work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Perpendicular Through a Point during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Perpendicular Through a Point.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "geometric_construction",
+          "learningPurpose": "Show the main structure of Perpendicular Through a Point without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Perpendicular Through a Point.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Floor plan measurement",
+          "connection": "Use only if it naturally fits Perpendicular Through a Point; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Package design",
+          "connection": "Use only if it naturally fits Perpendicular Through a Point; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Map scale",
+          "connection": "Use only if it naturally fits Perpendicular Through a Point; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_PERPENDICULAR_THROUGH_A_POINT",
+          "mistake": "Using a rule from Practical Geometry without checking that it applies to Perpendicular Through a Point.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Perpendicular Through a Point.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Perpendicular Through a Point"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Perpendicular Through a Point using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Perpendicular Through a Point before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Perpendicular Through a Point appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PERPENDICULAR_THROUGH_A_POINT",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Perpendicular Through a Point once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PERPENDICULAR_THROUGH_A_POINT",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Perpendicular Through a Point.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PERPENDICULAR_THROUGH_A_POINT",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Perpendicular Through a Point.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PERPENDICULAR_THROUGH_A_POINT",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Perpendicular Through a Point in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PERPENDICULAR_THROUGH_A_POINT",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Perpendicular Through a Point.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Perpendicular Through a Point and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10027,
+      "title": "Parallel Line Construction",
+      "route": "/lessons/school/class-7/class-7-practical-geometry-parallel-line-construction",
+      "category": "School Syllabus",
+      "topic": "Practical Geometry",
+      "academicLevel": "CLASS_7",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Parallel Line Construction means in Practical Geometry.",
+        "Connect Parallel Line Construction to a suitable geometric construction representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Points, lines, and angles",
+        "Measurement",
+        "Basic construction language"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Parallel Line Construction",
+          "meaning": "The exact concept named by this lesson inside Practical Geometry."
+        },
+        {
+          "term": "Practical Geometry",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Parallel Line Construction is a visual exploration lesson in Practical Geometry. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Parallel Line Construction, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Parallel Line Construction work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Parallel Line Construction during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Parallel Line Construction.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "geometric_construction",
+          "learningPurpose": "Show the main structure of Parallel Line Construction without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Parallel Line Construction.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Floor plan measurement",
+          "connection": "Use only if it naturally fits Parallel Line Construction; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Package design",
+          "connection": "Use only if it naturally fits Parallel Line Construction; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Map scale",
+          "connection": "Use only if it naturally fits Parallel Line Construction; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_PARALLEL_LINE_CONSTRUCTION",
+          "mistake": "Using a rule from Practical Geometry without checking that it applies to Parallel Line Construction.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Parallel Line Construction.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Parallel Line Construction"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Parallel Line Construction using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Parallel Line Construction before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Parallel Line Construction appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PARALLEL_LINE_CONSTRUCTION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Parallel Line Construction once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PARALLEL_LINE_CONSTRUCTION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Parallel Line Construction.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PARALLEL_LINE_CONSTRUCTION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Parallel Line Construction.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PARALLEL_LINE_CONSTRUCTION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Parallel Line Construction in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PARALLEL_LINE_CONSTRUCTION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Parallel Line Construction.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Parallel Line Construction and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    }
+  ]
+}

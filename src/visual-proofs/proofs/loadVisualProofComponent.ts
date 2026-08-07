@@ -16,6 +16,7 @@ export type CategoryProofLoaders = Partial<Record<VisualProofComponentKey, Visua
 export type VisualProofCategoryLoaderMap = Record<string, CategoryProofLoaders>;
 
 const proofModules = import.meta.glob<VisualProofComponentModule>([
+  "./VisualProofBlueprintProof.tsx",
   "./CircleAreaUnrollingProof.tsx",
   "./CircleToTriangleProof.tsx",
   "./algebra/*.tsx",
@@ -72,5 +73,5 @@ export function getVisualProofComponentLoader(categorySlug: string, componentKey
 }
 
 export function loadVisualProofComponent(categorySlug: string, componentKey: VisualProofComponentKey) {
-  return getVisualProofComponentLoader(categorySlug, componentKey)?.();
+  return (getVisualProofComponentLoader(categorySlug, componentKey) ?? moduleByComponentKey[componentKey])?.();
 }

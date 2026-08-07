@@ -1,0 +1,3095 @@
+{
+  "generatedAt": "2026-08-06",
+  "status": "phase_1_brief_scaffold",
+  "note": "These are Phase 1 briefs. They are not approved lesson replacements.",
+  "lessons": [
+    {
+      "id": 10001,
+      "title": "Place Value Explorer",
+      "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-place-value-explorer",
+      "category": "School Syllabus",
+      "topic": "Numbers and Arithmetic",
+      "academicLevel": "CLASS_6",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Place Value Explorer means in Numbers and Arithmetic.",
+        "Connect Place Value Explorer to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Place Value Explorer",
+          "meaning": "The exact concept named by this lesson inside Numbers and Arithmetic."
+        },
+        {
+          "term": "Numbers and Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Place Value Explorer is a concept lesson in Numbers and Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Place Value Explorer, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Place Value Explorer work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Place Value Explorer during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Place Value Explorer.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Place Value Explorer without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Place Value Explorer.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Budget calculation",
+          "connection": "Use only if it naturally fits Place Value Explorer; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Recipe scaling",
+          "connection": "Use only if it naturally fits Place Value Explorer; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Unknown quantity in a plan",
+          "connection": "Use only if it naturally fits Place Value Explorer; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_PLACE_VALUE_EXPLORER",
+          "mistake": "Using a rule from Numbers and Arithmetic without checking that it applies to Place Value Explorer.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Place Value Explorer.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Place Value Explorer"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Place Value Explorer using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Place Value Explorer before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Place Value Explorer appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PLACE_VALUE_EXPLORER",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Place Value Explorer once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PLACE_VALUE_EXPLORER",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Place Value Explorer.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PLACE_VALUE_EXPLORER",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Place Value Explorer.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PLACE_VALUE_EXPLORER",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Place Value Explorer in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PLACE_VALUE_EXPLORER",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Place Value Explorer.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Place Value Explorer and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10002,
+      "title": "Indian and International Number Naming Systems",
+      "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-indian-and-international-number-naming-systems",
+      "category": "School Syllabus",
+      "topic": "Numbers and Arithmetic",
+      "academicLevel": "CLASS_6",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Indian and International Number Naming Systems means in Numbers and Arithmetic.",
+        "Connect Indian and International Number Naming Systems to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Indian and International Number Naming Systems",
+          "meaning": "The exact concept named by this lesson inside Numbers and Arithmetic."
+        },
+        {
+          "term": "Numbers and Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Indian and International Number Naming Systems is a concept lesson in Numbers and Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Indian and International Number Naming Systems, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Indian and International Number Naming Systems work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Indian and International Number Naming Systems during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Indian and International Number Naming Systems.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Indian and International Number Naming Systems without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Indian and International Number Naming Systems.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Budget calculation",
+          "connection": "Use only if it naturally fits Indian and International Number Naming Systems; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Recipe scaling",
+          "connection": "Use only if it naturally fits Indian and International Number Naming Systems; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Unknown quantity in a plan",
+          "connection": "Use only if it naturally fits Indian and International Number Naming Systems; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_INDIAN_AND_INTERNATIONAL_NUMBER_NAMING_SYSTEMS",
+          "mistake": "Using a rule from Numbers and Arithmetic without checking that it applies to Indian and International Number Naming Systems.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Indian and International Number Naming Systems.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Indian and International Number Naming Systems"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Indian and International Number Naming Systems using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Indian and International Number Naming Systems before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Indian and International Number Naming Systems appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INDIAN_AND_INTERNATIONAL_NUMBER_NAMING_SYSTEMS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Indian and International Number Naming Systems once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INDIAN_AND_INTERNATIONAL_NUMBER_NAMING_SYSTEMS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Indian and International Number Naming Systems.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INDIAN_AND_INTERNATIONAL_NUMBER_NAMING_SYSTEMS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Indian and International Number Naming Systems.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INDIAN_AND_INTERNATIONAL_NUMBER_NAMING_SYSTEMS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Indian and International Number Naming Systems in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INDIAN_AND_INTERNATIONAL_NUMBER_NAMING_SYSTEMS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Indian and International Number Naming Systems.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Indian and International Number Naming Systems and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10003,
+      "title": "Estimation and Rounding Lab",
+      "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-estimation-and-rounding-lab",
+      "category": "School Syllabus",
+      "topic": "Numbers and Arithmetic",
+      "academicLevel": "CLASS_6",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Estimation and Rounding Lab means in Numbers and Arithmetic.",
+        "Connect Estimation and Rounding Lab to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Estimation and Rounding Lab",
+          "meaning": "The exact concept named by this lesson inside Numbers and Arithmetic."
+        },
+        {
+          "term": "Numbers and Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Estimation and Rounding Lab is a concept lesson in Numbers and Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Estimation and Rounding Lab, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Estimation and Rounding Lab work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Estimation and Rounding Lab during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Estimation and Rounding Lab.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Estimation and Rounding Lab without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Estimation and Rounding Lab.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Budget calculation",
+          "connection": "Use only if it naturally fits Estimation and Rounding Lab; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Recipe scaling",
+          "connection": "Use only if it naturally fits Estimation and Rounding Lab; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Unknown quantity in a plan",
+          "connection": "Use only if it naturally fits Estimation and Rounding Lab; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_ESTIMATION_AND_ROUNDING_LAB",
+          "mistake": "Using a rule from Numbers and Arithmetic without checking that it applies to Estimation and Rounding Lab.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Estimation and Rounding Lab.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Estimation and Rounding Lab"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Estimation and Rounding Lab using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Estimation and Rounding Lab before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Estimation and Rounding Lab appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ESTIMATION_AND_ROUNDING_LAB",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Estimation and Rounding Lab once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ESTIMATION_AND_ROUNDING_LAB",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Estimation and Rounding Lab.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ESTIMATION_AND_ROUNDING_LAB",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Estimation and Rounding Lab.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ESTIMATION_AND_ROUNDING_LAB",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Estimation and Rounding Lab in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_ESTIMATION_AND_ROUNDING_LAB",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Estimation and Rounding Lab.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Estimation and Rounding Lab and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10004,
+      "title": "Approximation and Error Bounds",
+      "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-approximation-and-error-bounds",
+      "category": "School Syllabus",
+      "topic": "Numbers and Arithmetic",
+      "academicLevel": "CLASS_6",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Approximation and Error Bounds means in Numbers and Arithmetic.",
+        "Connect Approximation and Error Bounds to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Approximation and Error Bounds",
+          "meaning": "The exact concept named by this lesson inside Numbers and Arithmetic."
+        },
+        {
+          "term": "Numbers and Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Approximation and Error Bounds is a concept lesson in Numbers and Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Approximation and Error Bounds, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Approximation and Error Bounds work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Approximation and Error Bounds during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Approximation and Error Bounds.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Approximation and Error Bounds without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Approximation and Error Bounds.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Budget calculation",
+          "connection": "Use only if it naturally fits Approximation and Error Bounds; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Recipe scaling",
+          "connection": "Use only if it naturally fits Approximation and Error Bounds; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Unknown quantity in a plan",
+          "connection": "Use only if it naturally fits Approximation and Error Bounds; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_APPROXIMATION_AND_ERROR_BOUNDS",
+          "mistake": "Using a rule from Numbers and Arithmetic without checking that it applies to Approximation and Error Bounds.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Approximation and Error Bounds.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Approximation and Error Bounds"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Approximation and Error Bounds using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Approximation and Error Bounds before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Approximation and Error Bounds appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_APPROXIMATION_AND_ERROR_BOUNDS",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Approximation and Error Bounds once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_APPROXIMATION_AND_ERROR_BOUNDS",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Approximation and Error Bounds.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_APPROXIMATION_AND_ERROR_BOUNDS",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Approximation and Error Bounds.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_APPROXIMATION_AND_ERROR_BOUNDS",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Approximation and Error Bounds in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_APPROXIMATION_AND_ERROR_BOUNDS",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Approximation and Error Bounds.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Approximation and Error Bounds and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10005,
+      "title": "Mixed Units and Unit Conversion",
+      "route": "/lessons/school/class-6/class-6-numbers-and-arithmetic-mixed-units-and-unit-conversion",
+      "category": "School Syllabus",
+      "topic": "Numbers and Arithmetic",
+      "academicLevel": "CLASS_6",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Mixed Units and Unit Conversion means in Numbers and Arithmetic.",
+        "Connect Mixed Units and Unit Conversion to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Mixed Units and Unit Conversion",
+          "meaning": "The exact concept named by this lesson inside Numbers and Arithmetic."
+        },
+        {
+          "term": "Numbers and Arithmetic",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Mixed Units and Unit Conversion is a concept lesson in Numbers and Arithmetic. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Mixed Units and Unit Conversion, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Mixed Units and Unit Conversion work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Mixed Units and Unit Conversion during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Mixed Units and Unit Conversion.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Mixed Units and Unit Conversion without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Mixed Units and Unit Conversion.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Budget calculation",
+          "connection": "Use only if it naturally fits Mixed Units and Unit Conversion; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Recipe scaling",
+          "connection": "Use only if it naturally fits Mixed Units and Unit Conversion; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Unknown quantity in a plan",
+          "connection": "Use only if it naturally fits Mixed Units and Unit Conversion; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_MIXED_UNITS_AND_UNIT_CONVERSION",
+          "mistake": "Using a rule from Numbers and Arithmetic without checking that it applies to Mixed Units and Unit Conversion.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Mixed Units and Unit Conversion.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Mixed Units and Unit Conversion"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Mixed Units and Unit Conversion using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Mixed Units and Unit Conversion before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Mixed Units and Unit Conversion appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MIXED_UNITS_AND_UNIT_CONVERSION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Mixed Units and Unit Conversion once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MIXED_UNITS_AND_UNIT_CONVERSION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Mixed Units and Unit Conversion.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MIXED_UNITS_AND_UNIT_CONVERSION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Mixed Units and Unit Conversion.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MIXED_UNITS_AND_UNIT_CONVERSION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Mixed Units and Unit Conversion in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MIXED_UNITS_AND_UNIT_CONVERSION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Mixed Units and Unit Conversion.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Mixed Units and Unit Conversion and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10006,
+      "title": "Pictograph Builder",
+      "route": "/lessons/school/class-6/class-6-data-handling-pictograph-builder",
+      "category": "School Syllabus",
+      "topic": "Data Handling",
+      "academicLevel": "CLASS_6",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Pictograph Builder means in Data Handling.",
+        "Connect Pictograph Builder to a suitable table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Fractions or decimals",
+        "Tables",
+        "Basic graph reading"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Pictograph Builder",
+          "meaning": "The exact concept named by this lesson inside Data Handling."
+        },
+        {
+          "term": "Data Handling",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Pictograph Builder is a visual exploration lesson in Data Handling. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Pictograph Builder, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Pictograph Builder work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Pictograph Builder during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Pictograph Builder.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "table",
+          "learningPurpose": "Show the main structure of Pictograph Builder without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Pictograph Builder.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Weather chance",
+          "connection": "Use only if it naturally fits Pictograph Builder; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Exam score comparison",
+          "connection": "Use only if it naturally fits Pictograph Builder; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Quality sampling",
+          "connection": "Use only if it naturally fits Pictograph Builder; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_PICTOGRAPH_BUILDER",
+          "mistake": "Using a rule from Data Handling without checking that it applies to Pictograph Builder.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Pictograph Builder.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Pictograph Builder"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Pictograph Builder using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Pictograph Builder before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Pictograph Builder appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PICTOGRAPH_BUILDER",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Pictograph Builder once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PICTOGRAPH_BUILDER",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Pictograph Builder.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PICTOGRAPH_BUILDER",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Pictograph Builder.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PICTOGRAPH_BUILDER",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Pictograph Builder in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_PICTOGRAPH_BUILDER",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Pictograph Builder.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Pictograph Builder and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10007,
+      "title": "Bar Graph Builder",
+      "route": "/lessons/school/class-6/class-6-data-handling-bar-graph-builder",
+      "category": "School Syllabus",
+      "topic": "Data Handling",
+      "academicLevel": "CLASS_6",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Bar Graph Builder means in Data Handling.",
+        "Connect Bar Graph Builder to a suitable table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Fractions or decimals",
+        "Tables",
+        "Basic graph reading"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Bar Graph Builder",
+          "meaning": "The exact concept named by this lesson inside Data Handling."
+        },
+        {
+          "term": "Data Handling",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Bar Graph Builder is a visual exploration lesson in Data Handling. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Bar Graph Builder, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Bar Graph Builder work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Bar Graph Builder during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Bar Graph Builder.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "table",
+          "learningPurpose": "Show the main structure of Bar Graph Builder without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Bar Graph Builder.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Weather chance",
+          "connection": "Use only if it naturally fits Bar Graph Builder; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Exam score comparison",
+          "connection": "Use only if it naturally fits Bar Graph Builder; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Quality sampling",
+          "connection": "Use only if it naturally fits Bar Graph Builder; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_BAR_GRAPH_BUILDER",
+          "mistake": "Using a rule from Data Handling without checking that it applies to Bar Graph Builder.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Bar Graph Builder.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Bar Graph Builder"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Bar Graph Builder using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Bar Graph Builder before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Bar Graph Builder appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BAR_GRAPH_BUILDER",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Bar Graph Builder once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BAR_GRAPH_BUILDER",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Bar Graph Builder.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BAR_GRAPH_BUILDER",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Bar Graph Builder.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BAR_GRAPH_BUILDER",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Bar Graph Builder in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_BAR_GRAPH_BUILDER",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Bar Graph Builder.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Bar Graph Builder and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10008,
+      "title": "Survey to Frequency Table",
+      "route": "/lessons/school/class-6/class-6-data-handling-survey-to-frequency-table",
+      "category": "School Syllabus",
+      "topic": "Data Handling",
+      "academicLevel": "CLASS_6",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Survey to Frequency Table means in Data Handling.",
+        "Connect Survey to Frequency Table to a suitable table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Fractions or decimals",
+        "Tables",
+        "Basic graph reading"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Survey to Frequency Table",
+          "meaning": "The exact concept named by this lesson inside Data Handling."
+        },
+        {
+          "term": "Data Handling",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Survey to Frequency Table is a concept lesson in Data Handling. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Survey to Frequency Table, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Survey to Frequency Table work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Survey to Frequency Table during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Survey to Frequency Table.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "table",
+          "learningPurpose": "Show the main structure of Survey to Frequency Table without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Survey to Frequency Table.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Weather chance",
+          "connection": "Use only if it naturally fits Survey to Frequency Table; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Exam score comparison",
+          "connection": "Use only if it naturally fits Survey to Frequency Table; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Quality sampling",
+          "connection": "Use only if it naturally fits Survey to Frequency Table; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_SURVEY_TO_FREQUENCY_TABLE",
+          "mistake": "Using a rule from Data Handling without checking that it applies to Survey to Frequency Table.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Survey to Frequency Table.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Survey to Frequency Table"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Survey to Frequency Table using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Survey to Frequency Table before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Survey to Frequency Table appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SURVEY_TO_FREQUENCY_TABLE",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Survey to Frequency Table once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SURVEY_TO_FREQUENCY_TABLE",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Survey to Frequency Table.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SURVEY_TO_FREQUENCY_TABLE",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Survey to Frequency Table.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SURVEY_TO_FREQUENCY_TABLE",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Survey to Frequency Table in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SURVEY_TO_FREQUENCY_TABLE",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Survey to Frequency Table.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Survey to Frequency Table and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10009,
+      "title": "Misleading Graph Detection",
+      "route": "/lessons/school/class-6/class-6-data-handling-misleading-graph-detection",
+      "category": "School Syllabus",
+      "topic": "Data Handling",
+      "academicLevel": "CLASS_6",
+      "lessonType": "visual_exploration",
+      "learningObjectives": [
+        "State what Misleading Graph Detection means in Data Handling.",
+        "Connect Misleading Graph Detection to a suitable table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Fractions or decimals",
+        "Tables",
+        "Basic graph reading"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Misleading Graph Detection",
+          "meaning": "The exact concept named by this lesson inside Data Handling."
+        },
+        {
+          "term": "Data Handling",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Misleading Graph Detection is a visual exploration lesson in Data Handling. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Misleading Graph Detection, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Misleading Graph Detection work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Misleading Graph Detection during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Misleading Graph Detection.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "table",
+          "learningPurpose": "Show the main structure of Misleading Graph Detection without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Misleading Graph Detection.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "Weather chance",
+          "connection": "Use only if it naturally fits Misleading Graph Detection; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "Exam score comparison",
+          "connection": "Use only if it naturally fits Misleading Graph Detection; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "Quality sampling",
+          "connection": "Use only if it naturally fits Misleading Graph Detection; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_MISLEADING_GRAPH_DETECTION",
+          "mistake": "Using a rule from Data Handling without checking that it applies to Misleading Graph Detection.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Misleading Graph Detection.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Misleading Graph Detection"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Misleading Graph Detection using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Misleading Graph Detection before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Misleading Graph Detection appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MISLEADING_GRAPH_DETECTION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Misleading Graph Detection once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MISLEADING_GRAPH_DETECTION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Misleading Graph Detection.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MISLEADING_GRAPH_DETECTION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Misleading Graph Detection.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MISLEADING_GRAPH_DETECTION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Misleading Graph Detection in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_MISLEADING_GRAPH_DETECTION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Misleading Graph Detection.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Misleading Graph Detection and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10010,
+      "title": "Number Pattern Completion",
+      "route": "/lessons/school/class-6/class-6-patterns-number-pattern-completion",
+      "category": "School Syllabus",
+      "topic": "Patterns",
+      "academicLevel": "CLASS_6",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Number Pattern Completion means in Patterns.",
+        "Connect Number Pattern Completion to a suitable number line representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Number Pattern Completion",
+          "meaning": "The exact concept named by this lesson inside Patterns."
+        },
+        {
+          "term": "Patterns",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Number Pattern Completion is a concept lesson in Patterns. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Number Pattern Completion, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Number Pattern Completion work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Number Pattern Completion during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Number Pattern Completion.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "number_line",
+          "learningPurpose": "Show the main structure of Number Pattern Completion without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Number Pattern Completion.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Number Pattern Completion; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Number Pattern Completion; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Number Pattern Completion; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_NUMBER_PATTERN_COMPLETION",
+          "mistake": "Using a rule from Patterns without checking that it applies to Number Pattern Completion.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Number Pattern Completion.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Number Pattern Completion"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Number Pattern Completion using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Number Pattern Completion before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Number Pattern Completion appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_NUMBER_PATTERN_COMPLETION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Number Pattern Completion once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_NUMBER_PATTERN_COMPLETION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Number Pattern Completion.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_NUMBER_PATTERN_COMPLETION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Number Pattern Completion.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_NUMBER_PATTERN_COMPLETION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Number Pattern Completion in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_NUMBER_PATTERN_COMPLETION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Number Pattern Completion.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Number Pattern Completion and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10011,
+      "title": "Shape Pattern Completion",
+      "route": "/lessons/school/class-6/class-6-patterns-shape-pattern-completion",
+      "category": "School Syllabus",
+      "topic": "Patterns",
+      "academicLevel": "CLASS_6",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Shape Pattern Completion means in Patterns.",
+        "Connect Shape Pattern Completion to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Shape Pattern Completion",
+          "meaning": "The exact concept named by this lesson inside Patterns."
+        },
+        {
+          "term": "Patterns",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Shape Pattern Completion is a concept lesson in Patterns. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Shape Pattern Completion, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Shape Pattern Completion work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Shape Pattern Completion during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Shape Pattern Completion.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Shape Pattern Completion without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Shape Pattern Completion.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Shape Pattern Completion; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Shape Pattern Completion; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Shape Pattern Completion; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_SHAPE_PATTERN_COMPLETION",
+          "mistake": "Using a rule from Patterns without checking that it applies to Shape Pattern Completion.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Shape Pattern Completion.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Shape Pattern Completion"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Shape Pattern Completion using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Shape Pattern Completion before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Shape Pattern Completion appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SHAPE_PATTERN_COMPLETION",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Shape Pattern Completion once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SHAPE_PATTERN_COMPLETION",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Shape Pattern Completion.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SHAPE_PATTERN_COMPLETION",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Shape Pattern Completion.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SHAPE_PATTERN_COMPLETION",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Shape Pattern Completion in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_SHAPE_PATTERN_COMPLETION",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Shape Pattern Completion.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Shape Pattern Completion and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    },
+    {
+      "id": 10012,
+      "title": "Input-Output Rule Machines",
+      "route": "/lessons/school/class-6/class-6-patterns-input-output-rule-machines",
+      "category": "School Syllabus",
+      "topic": "Patterns",
+      "academicLevel": "CLASS_6",
+      "lessonType": "concept",
+      "learningObjectives": [
+        "State what Input-Output Rule Machines means in Patterns.",
+        "Connect Input-Output Rule Machines to a suitable text table representation.",
+        "Solve a first practice task and explain the likely mistake."
+      ],
+      "prerequisites": [
+        "Arithmetic facts",
+        "Reading mathematical notation"
+      ],
+      "keyVocabulary": [
+        {
+          "term": "Input-Output Rule Machines",
+          "meaning": "The exact concept named by this lesson inside Patterns."
+        },
+        {
+          "term": "Patterns",
+          "meaning": "The lesson family that supplies prior ideas and notation."
+        }
+      ],
+      "introduction": "Input-Output Rule Machines is a concept lesson in Patterns. It needs exact teaching tied to this route, not shared adapter copy.",
+      "basicIdea": "The brief should define Input-Output Rule Machines, show a simple example, and include a non-example or boundary case when useful.",
+      "howItWorks": "The lesson should show the steps or relationships that make Input-Output Rule Machines work, using the existing route and shared lesson shell.",
+      "whyItWorks": "The final content must justify each rule with accepted mathematics. Leave formulas empty until variables and restrictions are known.",
+      "definitions": [
+        {
+          "id": "definition-main",
+          "statement": "Author a precise definition for Input-Output Rule Machines during Phase 2."
+        }
+      ],
+      "facts": [
+        {
+          "id": "fact-scope",
+          "statement": "Use only accepted facts that apply to Input-Output Rule Machines.",
+          "conditions": [
+            "Verify before approval"
+          ]
+        }
+      ],
+      "formulas": [],
+      "conditionsAndRestrictions": [
+        "Add domain restrictions, excluded values, units, and exact-versus-approximate notes where applicable."
+      ],
+      "representations": [
+        {
+          "id": "primary-representation",
+          "type": "text_table",
+          "learningPurpose": "Show the main structure of Input-Output Rule Machines without unrelated decoration."
+        }
+      ],
+      "workedExamples": [
+        {
+          "id": "worked-example-1",
+          "prompt": "Create a worked example that directly uses Input-Output Rule Machines.",
+          "steps": [
+            "State the known values or objects.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "answer": "To be authored and verified in Phase 2."
+        }
+      ],
+      "realLifeExamples": [
+        {
+          "id": "application-1",
+          "context": "A matching mathematical example",
+          "connection": "Use only if it naturally fits Input-Output Rule Machines; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-2",
+          "context": "A boundary example",
+          "connection": "Use only if it naturally fits Input-Output Rule Machines; otherwise replace with a mathematical application."
+        },
+        {
+          "id": "application-3",
+          "context": "A non-example",
+          "connection": "Use only if it naturally fits Input-Output Rule Machines; otherwise replace with a mathematical application."
+        }
+      ],
+      "misconceptions": [
+        {
+          "code": "CHECK_INPUT_OUTPUT_RULE_MACHINES",
+          "mistake": "Using a rule from Patterns without checking that it applies to Input-Output Rule Machines.",
+          "correction": "Ask the learner to state the condition first, then solve or classify."
+        }
+      ],
+      "interaction": {
+        "id": "primary-interaction",
+        "learningPurpose": "Help learners see the key change or invariant in Input-Output Rule Machines.",
+        "parameters": [
+          {
+            "id": "primary-value",
+            "label": "Main value for Input-Output Rule Machines"
+          }
+        ],
+        "initialState": "Use a small, valid example that shows the concept clearly.",
+        "dynamicFeedback": "Feedback must name the mathematical change, not only say that a control moved.",
+        "successCriteria": [
+          "Learner can explain Input-Output Rule Machines using the chosen representation."
+        ],
+        "accessibilityAlternative": "Provide an equivalent text, table, keyboard, or step-by-step path."
+      },
+      "guidedExploration": [
+        {
+          "id": "predict",
+          "prompt": "Predict what should change in Input-Output Rule Machines before using the model."
+        },
+        {
+          "id": "observe",
+          "prompt": "Change one value and record what changed and what stayed fixed."
+        },
+        {
+          "id": "conclude",
+          "prompt": "Write one sentence linking the visual result to the rule."
+        }
+      ],
+      "practice": [
+        {
+          "id": "practice-1",
+          "prompt": "Identify where Input-Output Rule Machines appears in a simple example.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INPUT_OUTPUT_RULE_MACHINES",
+          "difficulty": "recognition",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-2",
+          "prompt": "Use the definition or rule for Input-Output Rule Machines once.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INPUT_OUTPUT_RULE_MACHINES",
+          "difficulty": "direct",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-3",
+          "prompt": "Solve a two-step task involving Input-Output Rule Machines.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INPUT_OUTPUT_RULE_MACHINES",
+          "difficulty": "multi_step",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-4",
+          "prompt": "Find the mistake in a worked attempt about Input-Output Rule Machines.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INPUT_OUTPUT_RULE_MACHINES",
+          "difficulty": "error_diagnosis",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        },
+        {
+          "id": "practice-5",
+          "prompt": "Apply Input-Output Rule Machines in a new mathematical situation.",
+          "answer": "To be authored and verified in Phase 2.",
+          "hints": [
+            "State the rule first.",
+            "Check the needed condition.",
+            "Compare with the representation."
+          ],
+          "workedSolution": [
+            "Write the known information.",
+            "Apply the correct rule.",
+            "Check the result."
+          ],
+          "misconceptionTag": "CHECK_INPUT_OUTPUT_RULE_MACHINES",
+          "difficulty": "transfer",
+          "parameterConstraints": [
+            "Use valid values for this exact concept."
+          ]
+        }
+      ],
+      "challenge": {
+        "id": "challenge-1",
+        "prompt": "Create a challenge that checks real understanding of Input-Output Rule Machines.",
+        "successCriteria": [
+          "Uses valid conditions",
+          "Shows correct reasoning",
+          "Explains one misconception"
+        ],
+        "hints": [
+          "Start from the definition.",
+          "Check the restriction or boundary case.",
+          "Verify the answer."
+        ]
+      },
+      "exitCheck": [
+        {
+          "id": "exit-check-1",
+          "prompt": "Give one correct example of Input-Output Rule Machines and explain why it works.",
+          "answer": "To be authored and verified in Phase 2.",
+          "criterion": "The answer must use the exact definition or rule."
+        }
+      ],
+      "accessibilityNotes": [
+        "Keep keyboard access for all controls.",
+        "Provide text alternatives for diagrams, graphs, and simulations."
+      ],
+      "expertReviewRequired": false,
+      "sourceNotes": [
+        "Generated from the Phase 1 audit manifest.",
+        "This brief is a content-planning scaffold, not strengthened production copy."
+      ]
+    }
+  ]
+}

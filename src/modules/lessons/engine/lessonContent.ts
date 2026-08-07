@@ -1,4 +1,5 @@
 import type { LessonContent, LessonDefinition, LessonFormula, LessonSourceDefinition } from "../types";
+import { getStrengthenedLessonContent } from "../strengthening/foundationNumberContent";
 
 type ContentSource = LessonSourceDefinition & Partial<Pick<LessonDefinition, "contract" | "preset">>;
 
@@ -98,6 +99,8 @@ const adapterFormulas: Record<LessonSourceDefinition["adapter"], LessonFormula[]
 };
 
 export function createLessonContent(lesson: ContentSource): LessonContent {
+  const strengthened = getStrengthenedLessonContent(lesson);
+  if (strengthened) return strengthened;
   const titleTopic = `${lesson.title} ${lesson.topic}`.toLowerCase();
   const formulas = formulasFor(titleTopic, lesson.adapter);
   const controlGuide = controlGuideFor(lesson);

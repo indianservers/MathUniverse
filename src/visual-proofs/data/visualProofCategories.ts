@@ -8,7 +8,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Advanced",
     targetAudience: "School to Engineering Foundation",
     iconName: "Shapes",
-    proofCount: 14,
+    proofCount: 16,
     status: "available",
   },
   {
@@ -18,7 +18,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Intermediate",
     targetAudience: "Middle school, high school, foundation mathematics, engineering entrance preparation",
     iconName: "Sigma",
-    proofCount: 12,
+    proofCount: 13,
     status: "available",
   },
   {
@@ -38,7 +38,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Intermediate",
     targetAudience: "High school, engineering entrance preparation, first-year engineering mathematics",
     iconName: "ChartSpline",
-    proofCount: 15,
+    proofCount: 16,
     status: "available",
   },
   {
@@ -48,7 +48,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Intermediate to Advanced",
     targetAudience: "Senior school, engineering entrance preparation, undergraduate mathematics, engineering mathematics",
     iconName: "FunctionSquare",
-    proofCount: 15,
+    proofCount: 16,
     status: "available",
   },
   {
@@ -58,7 +58,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Intermediate",
     targetAudience: "Middle school, high school, olympiad foundation, engineering entrance preparation",
     iconName: "Hash",
-    proofCount: 12,
+    proofCount: 16,
     status: "available",
   },
   {
@@ -78,7 +78,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Advanced",
     targetAudience: "School, statistics, and engineering learners",
     iconName: "CircleHelp",
-    proofCount: 8,
+    proofCount: 11,
     status: "available",
   },
   {
@@ -88,7 +88,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Intermediate to Advanced",
     targetAudience: "Data science, school, and engineering students",
     iconName: "BarChart3",
-    proofCount: 8,
+    proofCount: 10,
     status: "available",
   },
   {
@@ -98,7 +98,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Advanced",
     targetAudience: "High school, engineering entrance preparation, first-year engineering mathematics",
     iconName: "ListOrdered",
-    proofCount: 17,
+    proofCount: 24,
     status: "available",
   },
   {
@@ -108,7 +108,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Intermediate to Advanced",
     targetAudience: "Engineering and degree students",
     iconName: "Grid3X3",
-    proofCount: 8,
+    proofCount: 11,
     status: "available",
   },
   {
@@ -138,7 +138,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Intermediate",
     targetAudience: "School and competitive-exam learners",
     iconName: "Cuboid",
-    proofCount: 8,
+    proofCount: 9,
     status: "available",
   },
   {
@@ -168,7 +168,7 @@ export const visualProofCategories: VisualProofCategory[] = [
     difficultyRange: "Beginner to Advanced",
     targetAudience: "High school, science, and engineering students",
     iconName: "FunctionSquare",
-    proofCount: 8,
+    proofCount: 13,
     status: "available",
   },
   {
