@@ -39,7 +39,7 @@ export const protectedWorkspaceBaselines: WorkspaceBaselineRoute[] = [
     id: "workspace-3d",
     route: "/workspace/3d?v_surface_scale=1&v_solid_height_radius=2.5&v_cross_section_z=0&v_scene_animation_speed=0.18",
     purpose: "Current 3D workspace with left controls, center 2D/3D panes, and right object inspector.",
-    protectedSignals: ["3D Graphing And Solids Lab", "Controls", "Top View X-Y", "Side View X-Z", "3D Scene Objects", "Selected Object", "HorizontalPanelHeader", "PanelLeftClose", "PanelRightClose"],
+    protectedSignals: ["ObjectStudioWorkspace", "Workspace3DScene", "OrbitControls", "objectStudioMeasurement", "add3dSceneObject", "update3dTransform", "update3dVector", "duplicate3dObject"],
     mustKeep: ["left controls panel", "middle 2D projection panes", "middle 3D scene", "right scene objects", "right selected object properties", "horizontal collapse", "vertical accordion collapse"],
   },
   {

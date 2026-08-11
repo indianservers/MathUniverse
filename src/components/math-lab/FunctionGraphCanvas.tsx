@@ -1,5 +1,5 @@
 import type { GraphSample } from "../../utils/mathEngine/graphSampler";
-import type { PointerEvent } from "react";
+import { useRef, type PointerEvent, type WheelEvent } from "react";
 
 export type FunctionGraphSeries = {
   id: string;
@@ -25,12 +25,18 @@ type FunctionGraphCanvasProps = {
   traceX?: number;
   selectedSeriesId?: string;
   onTraceChange?: (x: number) => void;
+  onViewChange?: (view: FunctionGraphView) => void;
   integralArea?: {
     points: GraphSample[];
     color: string;
     start: number;
     end: number;
   };
+  featurePoints?: Array<{
+    x: number;
+    y: number;
+    type: "root" | "intercept" | "minimum" | "maximum" | "intersection";
+  }>;
 };
 
 const WIDTH = 720;
@@ -44,8 +50,11 @@ export default function FunctionGraphCanvas({
   traceX,
   selectedSeriesId,
   onTraceChange,
+  onViewChange,
   integralArea,
+  featurePoints = [],
 }: FunctionGraphCanvasProps) {
+  const dragRef = useRef<{ clientX: number; clientY: number; view: FunctionGraphView } | null>(null);
   const toScreen = (x: number, y: number) => ({
     x: ((x - view.xMin) / (view.xMax - view.xMin)) * WIDTH,
     y: HEIGHT - ((y - view.yMin) / (view.yMax - view.yMin)) * HEIGHT,
@@ -55,10 +64,37 @@ export default function FunctionGraphCanvas({
   const tracePoint = traceSeries && typeof traceX === "number" ? nearestPoint(traceSeries.points, traceX) : null;
 
   function handlePointerMove(event: PointerEvent<SVGSVGElement>) {
+    if (dragRef.current && event.buttons === 1 && onViewChange) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const dx = (event.clientX - dragRef.current.clientX) / rect.width * (view.xMax - view.xMin);
+      const dy = (event.clientY - dragRef.current.clientY) / rect.height * (view.yMax - view.yMin);
+      onViewChange({ xMin: dragRef.current.view.xMin - dx, xMax: dragRef.current.view.xMax - dx, yMin: dragRef.current.view.yMin + dy, yMax: dragRef.current.view.yMax + dy });
+      return;
+    }
     if (!onTraceChange) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const ratio = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
     onTraceChange(view.xMin + ratio * (view.xMax - view.xMin));
+  }
+
+  function handlePointerDown(event: PointerEvent<SVGSVGElement>) {
+    dragRef.current = { clientX: event.clientX, clientY: event.clientY, view };
+    event.currentTarget.setPointerCapture(event.pointerId);
+    handlePointerMove(event);
+  }
+
+  function handleWheel(event: WheelEvent<SVGSVGElement>) {
+    if (!onViewChange) return;
+    event.preventDefault();
+    const rect = event.currentTarget.getBoundingClientRect();
+    const xRatio = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+    const yRatio = Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
+    const anchorX = view.xMin + xRatio * (view.xMax - view.xMin);
+    const anchorY = view.yMax - yRatio * (view.yMax - view.yMin);
+    const factor = event.deltaY > 0 ? 1.14 : 0.86;
+    const width = (view.xMax - view.xMin) * factor;
+    const height = (view.yMax - view.yMin) * factor;
+    onViewChange({ xMin: anchorX - width * xRatio, xMax: anchorX + width * (1 - xRatio), yMin: anchorY - height * (1 - yRatio), yMax: anchorY + height * yRatio });
   }
 
   return (
@@ -68,7 +104,10 @@ export default function FunctionGraphCanvas({
       role="img"
       aria-label="Interactive function graph"
       onPointerMove={handlePointerMove}
-      onPointerDown={handlePointerMove}
+      onPointerDown={handlePointerDown}
+      onPointerUp={() => { dragRef.current = null; }}
+      onPointerCancel={() => { dragRef.current = null; }}
+      onWheel={handleWheel}
     >
       <rect width={WIDTH} height={HEIGHT} fill="currentColor" className="text-white dark:text-slate-950" />
       <text x="694" y="222" fill="#64748b" fontSize="13" fontWeight="800">x</text>
@@ -96,6 +135,10 @@ export default function FunctionGraphCanvas({
             ))}
         </g>
       ))}
+      {featurePoints.filter((point) => point.x >= view.xMin && point.x <= view.xMax && point.y >= view.yMin && point.y <= view.yMax).map((point, index) => {
+        const screen = toScreen(point.x, point.y);
+        return <g key={`${point.type}-${index}`} aria-label={`${point.type} at ${formatTick(point.x)}, ${formatTick(point.y)}`}><circle cx={screen.x} cy={screen.y} r="5.5" fill={point.type === "intersection" ? "#f97316" : "#06b6d4"} stroke="#ffffff" strokeWidth="2" /><title>{`${point.type}: (${formatTick(point.x)}, ${formatTick(point.y)})`}</title></g>;
+      })}
       {tracePoint && traceSeries && typeof tracePoint.y === "number" && (
         <g>
           <line x1={toScreen(tracePoint.x, view.yMin).x} x2={toScreen(tracePoint.x, view.yMin).x} y1="0" y2={HEIGHT} stroke="#64748b" strokeDasharray="5 7" opacity="0.45" />

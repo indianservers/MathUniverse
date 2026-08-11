@@ -15,6 +15,7 @@ export function useGraphStudioProject<TState>({ dimension, initialName, state, a
   const [undoStack, setUndoStack] = useState<TState[]>([]);
   const [redoStack, setRedoStack] = useState<TState[]>([]);
   const previousRef = useRef(state);
+  const initialStateRef = useRef(state);
   const skipHistoryRef = useRef(false);
   const initializedRef = useRef(false);
 
@@ -50,7 +51,10 @@ export function useGraphStudioProject<TState>({ dimension, initialName, state, a
     setProjects(readGraphStudioProjects<TState>(dimension));
   };
   const newProject = () => {
-    const next = createGraphStudioProject(dimension, `Untitled ${dimension.toUpperCase()} project`, state);
+    const next = createGraphStudioProject(dimension, `Untitled ${dimension.toUpperCase()} project`, initialStateRef.current);
+    skipHistoryRef.current = true;
+    applyState(initialStateRef.current, []);
+    previousRef.current = initialStateRef.current;
     setProject(next);
     setUndoStack([]);
     setRedoStack([]);

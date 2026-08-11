@@ -24,28 +24,35 @@ describe("graphing workspaces", () => {
   it("renders the completed 2D graph controls and canonical examples", () => {
     const html = renderToStaticMarkup(<MemoryRouter><MathLabGraphingCalculator /></MemoryRouter>);
 
-    expect(html).toContain("Collapse equation panel");
+    expect(html).toContain("Expressions &amp; Layers");
     expect(html).toContain("x^2 + y^2 = 25");
     expect(html).toContain("(2, 3)");
     expect(html).toContain("Derivative");
-    expect(html).toContain("Integral");
-    expect(html).toContain("Saved (0)");
-    expect(html).toContain("X minimum");
-    expect(html).toContain("Intersections");
+    expect(html).toContain("Shade integral");
+    expect(html).toContain("Table of values");
+    expect(html).toContain("Visible range");
+    expect(html).toContain("Find intersections");
+    expect(html).toContain("Graph Studio 2D");
+    expect(html).toContain("Build");
+    expect(html).toContain("Analyze");
+    expect(html).toContain("Animate");
+    expect(html).toContain("Learn");
+    expect(html).toContain("Offline ready");
   });
 
   it("renders multi-surface, slice, opacity, solid, save, and camera controls in 3D", () => {
     const html = renderToStaticMarkup(<MemoryRouter><MathLab3DGraphing /></MemoryRouter>);
 
-    expect(html).toContain("Second surface");
-    expect(html).toContain("Surface opacity");
-    expect(html).toContain("Cross-section slice");
-    expect(html).toContain("Parametric helix");
-    expect(html).toContain("Sphere");
-    expect(html).toContain("Cylinder");
-    expect(html).toContain("Saved (0)");
-    expect(html).toContain("Reset Camera");
-    expect(html).toContain("Top");
-    expect(html).toContain("Front");
+    expect(html).toContain("Graph Studio 3D");
+    expect(html).toContain("Expressions &amp; Layers");
+    expect(html).toContain("Surface Inspector");
+    expect(html).toContain("Cross-section");
+    expect(html).toContain("Timeline");
+    expect(html).toContain("Build");
+    expect(html).toContain("Analyze");
+    expect(html).toContain("Animate");
+    expect(html).toContain("Learn");
+    expect(html).toContain("Export");
+    expect(html).toContain("Offline ready");
   });
 });

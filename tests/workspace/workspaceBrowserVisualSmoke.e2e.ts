@@ -75,7 +75,7 @@ test.describe("Workspace browser visual smoke", () => {
 
     await gotoWorkspaceRoute(page, "/workspace/3d");
 
-    await expect(page.getByText("3D Graphing And Solids Lab")).toBeVisible();
+    await expect(page.getByText("3D Object Studio")).toBeVisible();
     await expectWorkspaceShell(page);
     await expectVisibleBox(page.getByTestId("workspace-3d-surface"));
     await expectThreeCanvasEvidence(page.getByTestId("workspace-3d-canvas"));

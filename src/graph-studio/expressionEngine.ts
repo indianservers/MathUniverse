@@ -1,7 +1,7 @@
 import type { GraphStudioVariable } from "./types";
 
 const BUILT_INS = new Set([
-  "x", "y", "z", "t", "theta", "pi", "e", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh",
+  "x", "y", "z", "theta", "pi", "e", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh",
   "sqrt", "cbrt", "abs", "ln", "log", "exp", "floor", "ceil", "round", "min", "max", "sum", "product",
 ]);
 

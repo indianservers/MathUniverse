@@ -65,6 +65,7 @@ export default function AppLayout() {
   const location = useLocation();
   const showBack = location.pathname.split("/").filter(Boolean).length > 1;
   const isWorkspaceRoute = location.pathname === "/workspace" || location.pathname.startsWith("/workspace/");
+  const isStudioRoute = location.pathname === "/math-lab/3d-graphing" || location.pathname === "/math-lab/graphing-calculator" || location.pathname === "/workspace/3d";
 
   useEffect(() => {
     setMobileOpen(false);
@@ -95,6 +96,15 @@ export default function AppLayout() {
       localStorage.setItem(recentToolsKey, JSON.stringify([currentRoute]));
     }
   }, [location.pathname]);
+
+  if (isStudioRoute) {
+    return (
+      <main id="main-content" className="h-dvh overflow-hidden bg-[#030914]">
+        <Outlet />
+        <UndoToastHost />
+      </main>
+    );
+  }
 
   if (isWorkspaceRoute) {
     return (

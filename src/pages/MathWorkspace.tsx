@@ -1,6 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
-import { Box, ChevronDown, Circle, Download, Eraser, FunctionSquare, LineChart, ListTree, Magnet, MousePointer2, Move, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
+import { Box, ChevronDown, Circle, Download, Eraser, FunctionSquare, LineChart, ListTree, Magnet, MousePointer2, Move, PanelLeftClose, PanelRightClose, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
 import { MouseEvent as ReactMouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
@@ -71,6 +71,7 @@ import { evaluateSpreadsheetGrid, fillDownFormula, rangeToCsv } from "../workspa
 import { syllabusWorkspaceTemplates, type GuidedActivityPhase, type SyllabusWorkspaceTemplate } from "../workspace/syllabusWorkspaceTemplates";
 import type { MathObject, MathObjectKind, MathObjectProperties, MathObjectStyle, MathTransform } from "../workspace/types";
 import { useWorkspaceStore } from "../workspace/workspaceStore";
+import ObjectStudioWorkspace, { type ObjectStudioItem, type ObjectStudioShape, type ObjectStudioTool } from "../graph-studio/ObjectStudioWorkspace";
 import { createUnsupportedWorkspaceAction } from "../workspace/unsupportedWorkspaceAction";
 import { workspaceModeNavigation } from "../workspace/workspaceModeConfig";
 import {
@@ -133,7 +134,6 @@ type Added3DRenderKind = "surface" | "solid" | "slice" | "point" | "vector" | "l
 type Added3DObject = { id: string; label: string; baseId: ThreeObjectId; render: Added3DRenderKind; solid?: SolidKind; surface?: SurfaceKind; transform: Transform3D };
 type CameraPreset3D = "free" | "top" | "front" | "right" | "isometric";
 type Preset3DTransform = "center" | "ground" | "unit" | "wide" | "tall" | "xy-plane" | "xz-plane" | "yz-plane";
-type Space3DViewTab = "scene" | "xy" | "xz";
 type GraphWorkspaceTab = "graph" | "command" | "results" | "objects" | "algebra";
 type AlgebraObjectKind = "function" | "point" | "line" | "circle" | "polygon" | "arc" | "locus" | "3d";
 type AlgebraObjectRef = { kind: AlgebraObjectKind; id: string };
@@ -219,6 +219,32 @@ const defaultTransforms3d: Record<ThreeObjectId, Transform3D> = {
 const threeObjectLabels: Record<ThreeObjectId, string> = { surface: "Surface mesh", solid: "Solid shape", slice: "Cross-section", point: "Point", vector: "Vector", line3d: "Line", plane3d: "Plane", sphere3d: "Sphere", cone3d: "Cone", cylinder3d: "Cylinder", prism3d: "Prism", pyramid3d: "Pyramid", polyhedron3d: "Polyhedron" };
 const threeObjectSolidMap: Partial<Record<ThreeObjectId, SolidKind>> = { solid: "cube", sphere3d: "sphere", cone3d: "cone", cylinder3d: "cylinder", prism3d: "prism", pyramid3d: "pyramid", polyhedron3d: "polyhedron" };
 const threeBaseIds = Object.keys(defaultTransforms3d) as ThreeObjectId[];
+const objectStudioShapes: ObjectStudioShape[] = [
+  { id: "solid:cube", label: "Cube", category: "primitives", preview: "cube" },
+  { id: "solid:cuboid", label: "Cuboid", category: "primitives", preview: "cube" },
+  { id: "solid:sphere", label: "Sphere", category: "primitives", preview: "sphere" },
+  { id: "solid:ellipsoid", label: "Ellipsoid", category: "primitives", preview: "ellipsoid" },
+  { id: "solid:hemisphere", label: "Hemisphere", category: "primitives", preview: "hemisphere" },
+  { id: "solid:cylinder", label: "Cylinder", category: "primitives", preview: "cylinder" },
+  { id: "solid:cone", label: "Cone", category: "primitives", preview: "cone" },
+  { id: "solid:frustum", label: "Frustum", category: "primitives", preview: "frustum" },
+  { id: "solid:torus", label: "Torus", category: "primitives", preview: "torus" },
+  { id: "solid:tube", label: "Tube", category: "primitives", preview: "torus" },
+  { id: "solid:capsule", label: "Capsule", category: "primitives", preview: "capsule" },
+  { id: "solid:prism", label: "Triangular prism", category: "geometry", preview: "prism" },
+  { id: "solid:pyramid", label: "Pyramid", category: "geometry", preview: "pyramid" },
+  { id: "solid:tetrahedron", label: "Tetrahedron", category: "geometry", preview: "polyhedron" },
+  { id: "solid:octahedron", label: "Octahedron", category: "geometry", preview: "polyhedron" },
+  { id: "solid:dodecahedron", label: "Dodecahedron", category: "geometry", preview: "polyhedron" },
+  { id: "solid:wedge", label: "Wedge", category: "geometry", preview: "prism" },
+  { id: "solid:polyhedron", label: "Icosahedron", category: "geometry", preview: "polyhedron" },
+  { id: "plane3d", label: "Plane", category: "geometry", preview: "plane" },
+  { id: "surface", label: "Surface mesh", category: "geometry", preview: "surface" },
+  { id: "slice", label: "Cross-section", category: "geometry", preview: "plane" },
+  { id: "point", label: "Point", category: "vectors", preview: "point" },
+  { id: "vector", label: "Vector", category: "vectors", preview: "vector" },
+  { id: "line3d", label: "Line", category: "vectors", preview: "line" },
+];
 const isBase3dId = (id: string): id is ThreeObjectId => id in defaultTransforms3d;
 const addedRenderKindForBase = (id: ThreeObjectId): Added3DRenderKind => {
   if (id === "surface") return "surface";
@@ -231,11 +257,6 @@ const addedRenderKindForBase = (id: ThreeObjectId): Added3DRenderKind => {
 };
 const geometryDefaultColor: Record<GeometryObjectType, string> = { point: "#06b6d4", line: "#8b5cf6", circle: "#06b6d4", polygon: "#f59e0b", arc: "#14b8a6", locus: "#ec4899" };
 const examples = ["plot sin(x)", "Root[x^2-4]", "Extremum[x^2-4*x+1]", "Intersect[x^2, 2*x+3]", "Derivative[x^3-2*x]", "Integral[3*x^2]", "Factor[x^2-5*x+6]", "Expand[(x+2)(x+3)]", "Solve[x^2-5*x+6=0]", "Substitute[x^2+a, a=3]", "Sequence[n^2, n, 1, 6]", "Table[sin(x), -3, 3, 0.5]"];
-const space3dViewTabs: Array<{ id: Space3DViewTab; label: string }> = [
-  { id: "scene", label: "3D Scene" },
-  { id: "xy", label: "Top X-Y" },
-  { id: "xz", label: "Side X-Z" },
-];
 const guidedExamples = [
   { title: "Quadratic Roots", command: "solve x^2-5*x+6=0" },
   { title: "Derivative Check", command: "derivative x^3-2*x" },
@@ -299,9 +320,9 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [cameraPreset3d, setCameraPreset3d] = useState<CameraPreset3D>("isometric");
   const [zoom3d, setZoom3d] = useState(1);
   const [selected3d, setSelected3d] = useState<string>("solid");
-  const [space3dViewTab, setSpace3dViewTab] = useState<Space3DViewTab>("scene");
-  const [controls3dOpen, setControls3dOpen] = useState(true);
-  const [inspector3dOpen, setInspector3dOpen] = useState(true);
+  const [objectStudioTool, setObjectStudioTool] = useState<ObjectStudioTool>("select");
+  const [objectStudioSnapEnabled, setObjectStudioSnapEnabled] = useState(true);
+  const [objectStudioSnapStep, setObjectStudioSnapStep] = useState(0.25);
   const [transforms3d, setTransforms3d] = useState<Record<ThreeObjectId, Transform3D>>(defaultTransforms3d);
   const [added3dObjects, setAdded3dObjects] = useState<Added3DObject[]>([]);
   const [drag3d, setDrag3d] = useState<string | null>(null);
@@ -322,7 +343,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [highContrastMode, setHighContrastMode] = useState(false);
   const [performanceMode, setPerformanceMode] = useState(false);
   const [projectLibrary, setProjectLibrary] = useState<OfflineProjectEntry<WorkspaceSnapshot>[]>(() => readOfflineProjectLibrary<WorkspaceSnapshot>());
-  const [, setProjectStatus] = useState("");
+  const [projectStatus, setProjectStatus] = useState("Scene ready");
   const [protocol, setProtocol] = useState<ConstructionStep[]>([]);
   const [undoStack, setUndoStack] = useState<ConstructionStep[]>([]);
   const [redoStack, setRedoStack] = useState<ConstructionStep[]>([]);
@@ -2020,12 +2041,12 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   ];
 
   return (
-    <div ref={workspaceRef} className={singleView ? "space-y-2 pt-0" : "space-y-2 pt-14 xl:pt-12"}>
-      <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} docked={singleView} />
+    <div ref={workspaceRef} className={singleView && workspaceView === "3d" ? "h-dvh overflow-hidden" : singleView ? "space-y-2 pt-0" : "space-y-2 pt-14 xl:pt-12"}>
+      {!(singleView && workspaceView === "3d") && <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} docked={singleView} />}
       {!singleView && <TopicHeader title="Math Workspace" subtitle="A unified workspace for graphing, commands, results, and dynamic geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 
       {!singleView && <WorkspaceModeTabs active={workspaceView} onChange={setWorkspaceView} />}
-      <CompactWorkspaceBar
+      {!(singleView && workspaceView === "3d") && <CompactWorkspaceBar
         activeTemplate={activeTemplate}
         teachingMode={teachingMode}
         compact={singleView}
@@ -2040,7 +2061,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           setTeachingMode((value) => !value);
           setWorkspaceView("teach");
         }}
-      />
+      />}
       {!singleView && workspaceView !== "3d" && <WorkspaceShortcutStrip />}
 
       {workspaceView === "teach" && <SectionCard title="Teaching, Library, And Export" description="Launch syllabus workspaces, guide students, present steps, and manage browser-only projects.">
@@ -2271,209 +2292,110 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         </div>
       </SectionCard>}
 
-      {workspaceView === "3d" && <SectionCard title="3D Graphing And Solids Lab" description="Explore 3D axes, points, vectors, planes, surfaces, solids, cross-sections, and camera controls." compact>
-        <div className="relative" data-testid="workspace-3d-surface">
-          {!inspector3dOpen && (
-            <button
-              type="button"
-              onClick={() => setInspector3dOpen(true)}
-              className="absolute right-3 top-3 z-20 hidden items-center gap-2 rounded-2xl border border-cyan-200 bg-white px-3 py-2 text-sm font-black text-slate-800 shadow-lg transition hover:bg-cyan-50 dark:border-cyan-300/30 dark:bg-slate-950 dark:text-white dark:hover:bg-cyan-300/10 xl:inline-flex"
-              title="Open Objects panel"
-              aria-label="Open Objects panel"
-            >
-              <PanelRightOpen className="h-4 w-4" />
-              Objects
-            </button>
-          )}
-        <div
-          className={`grid grid-cols-1 items-start gap-2 ${
-            controls3dOpen && inspector3dOpen
-              ? "2xl:grid-cols-[minmax(210px,248px)_minmax(360px,1fr)_minmax(230px,280px)]"
-              : controls3dOpen
-                ? "xl:grid-cols-[minmax(210px,248px)_minmax(360px,1fr)]"
-                : inspector3dOpen
-                  ? "xl:grid-cols-[minmax(360px,1fr)_minmax(230px,280px)]"
-                  : ""
-          }`}
-        >
-          {controls3dOpen && (
-            <aside className="order-2 min-h-0 space-y-2 xl:order-1 2xl:sticky 2xl:top-20">
-              <HorizontalPanelHeader title="Controls" side="left" onCollapse={() => setControls3dOpen(false)} />
-              <SceneSetupTabs3D
-                selected3d={selected3d}
-                selected3dTransform={selected3dTransform}
+      {workspaceView === "3d" && (
+        <ObjectStudioWorkspace
+          scene={(
+            <ThreeSceneWrapper height="100%" mobileHeight="100%" interactionLabel="Drag objects, orbit, pan, and zoom">
+              <ambientLight intensity={0.75} />
+              <directionalLight position={[5, 6, 4]} intensity={1.2} />
+              <Workspace3DScene
                 surface={surface}
-                solid={solid}
                 surfaceExpression={surfaceExpression}
+                solid={solid}
                 surfaceScale={surfaceScale}
-                height3d={height3d}
+                solidSize={height3d}
                 crossSection={crossSection}
-                sceneAnimationSpeed={sceneAnimationSpeed}
                 showSurface={showSurface}
                 showSolid={showSolid}
-                autoRotate3d={autoRotate3d}
-                cameraPreset3d={cameraPreset3d}
-                onSurface={(value) => {
-                  setSurface(value);
-                  setShowSurface(true);
-                  add3dSceneObject("surface", { surface: value, label: value });
+                autoRotate={autoRotate3d}
+                animationSpeed={sceneAnimationSpeed}
+                zoom={zoom3d}
+                performanceMode={performanceMode}
+                cameraPreset={cameraPreset3d}
+                selected={selected3d}
+                transforms={transforms3d}
+                addedObjects={added3dObjects}
+                dragging={drag3d}
+                interactionTool={objectStudioTool}
+                snapStep={objectStudioSnapEnabled ? objectStudioSnapStep : 0}
+                onSelect={setSelected3d}
+                onDrag={setDrag3d}
+                onTransform={update3dTransform}
+                onContextMenu={(event, id) => {
+                  event.stopPropagation();
+                  setSelected3d(id);
+                  setContextMenu({ x: event.nativeEvent.clientX, y: event.nativeEvent.clientY, target: { type: "3d", id } });
                 }}
-                onSolid={(value) => {
-                  setSolid(value);
-                  setShowSolid(true);
-                  add3dSceneObject("solid", { solid: value, label: value });
-                }}
-                onObject={(id) => add3dSceneObject(id, { solid: threeObjectSolidMap[id], label: threeObjectLabels[id] })}
-                onSurfaceExpression={setSurfaceExpression}
-                onSurfaceScale={setSurfaceScale}
-                onHeight={setHeight3d}
-                onCrossSection={setCrossSection}
-                onAnimationSpeed={setSceneAnimationSpeed}
-                onShowSurface={setShowSurface}
-                onShowSolid={setShowSolid}
-                onAutoRotate={setAutoRotate3d}
-                onCamera={setCameraPreset3d}
-                onZoomIn={() => setZoom3d((value) => Math.min(1.8, roundTo(value + 0.1, 2)))}
-                onZoomOut={() => setZoom3d((value) => Math.max(0.6, roundTo(value - 0.1, 2)))}
-                onReset={() => { setZoom3d(1); setSurfaceScale(1); setCrossSection(0); setCameraPreset3d("isometric"); }}
-                onSelectTool={() => {
-                  setSelected3d("");
-                  setDrag3d(null);
-                  setProjectStatus("3D Select tool ready. Click an object in the scene or object list.");
-                }}
-                onNudge={(axis, amount) => update3dTransform(selected3d, { position: selected3dTransform.position.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
-                onRotateAxis={(axis, amount) => update3dTransform(selected3d, { rotation: selected3dTransform.rotation.map((value, index) => index === axis ? roundTo(value + amount, 2) : value) as [number, number, number] })}
-                onScale={(amount) => update3dTransform(selected3d, { scale: Math.max(0.2, roundTo(selected3dTransform.scale + amount, 2)) })}
-                onMaterial={(material) => update3dTransform(selected3d, { material })}
-                onOpacity={(opacity) => update3dTransform(selected3d, { opacity })}
-                onDuplicate={() => duplicate3dObject()}
-                onDelete={() => delete3dObject()}
-                onRestore={() => restore3dObject()}
-                onLock={() => update3dTransform(selected3d, { locked: !selected3dTransform.locked })}
-                onTrace={() => update3dTransform(selected3d, { trace: !selected3dTransform.trace })}
-                onToggleSelectedVisibility={() => update3dTransform(selected3d, { visible: !selected3dTransform.visible })}
               />
-            </aside>
-          )}
-
-          <div className="order-1 min-w-0 space-y-2 xl:order-2">
-            <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/80 p-1.5 shadow-sm dark:border-white/10 dark:bg-white/5">
-              <div className="flex flex-wrap gap-2">
-                {!controls3dOpen && <button type="button" onClick={() => setControls3dOpen(true)} className="action-secondary"><PanelLeftOpen className="h-4 w-4" />Controls</button>}
-                <button type="button" onClick={() => { setSelected3d(""); setDrag3d(null); setProjectStatus("3D Select tool ready. Click an object in the scene or object list."); }} className="action-secondary">
-                  <MousePointer2 className="h-4 w-4" /> Select
-                </button>
-                <button type="button" onClick={() => setAutoRotate3d((value) => !value)} className={autoRotate3d ? "action-primary" : "action-secondary"}>
-                  <RotateCcw className="h-4 w-4" /> {autoRotate3d ? "Pause rotation" : "Start rotation"}
-                </button>
-                {!inspector3dOpen && <button type="button" onClick={() => setInspector3dOpen(true)} className="action-secondary"><PanelRightOpen className="h-4 w-4" />Objects</button>}
-              </div>
-              <p className="px-2 text-xs font-bold text-slate-500 dark:text-slate-400">Esc deselects. Delete removes selected object.</p>
-            </div>
-            <div className="rounded-xl border border-slate-200 bg-white/85 p-1.5 shadow-sm dark:border-white/10 dark:bg-white/5">
-              <PanelTabs active={space3dViewTab} tabs={space3dViewTabs} onChange={setSpace3dViewTab} />
-            </div>
-            <Space3DConstructionWorkbench
-              selected={selected3d}
-              transform={selected3dTransform}
-              onPreset={(preset) => apply3dTransformPreset(preset)}
-              onDuplicate={() => duplicate3dObject()}
-              onDelete={() => delete3dObject()}
-              onRestore={() => restore3dObject()}
-              onToggleVisibility={() => update3dTransform(selected3d, { visible: !selected3dTransform.visible })}
-            />
-
-            <div className="min-h-[clamp(300px,calc(100vh-360px),520px)]">
-              {space3dViewTab === "scene" && (
-                <div className="min-h-[320px] overflow-hidden rounded-xl border border-slate-200 bg-slate-950 shadow-sm dark:border-white/10" data-testid="workspace-3d-canvas">
-                  <ThreeSceneWrapper height="clamp(300px, calc(100vh - 360px), 520px)" mobileHeight="min(50vh, 360px)" interactionLabel="Drag rotate - pinch zoom">
-                    <ambientLight intensity={0.75} />
-                    <directionalLight position={[5, 6, 4]} intensity={1.2} />
-                    <Workspace3DScene
-                      surface={surface}
-                      surfaceExpression={surfaceExpression}
-                      solid={solid}
-                      surfaceScale={surfaceScale}
-                      solidSize={height3d}
-                      crossSection={crossSection}
-                      showSurface={showSurface}
-                      showSolid={showSolid}
-                      autoRotate={autoRotate3d}
-                      animationSpeed={sceneAnimationSpeed}
-                      zoom={zoom3d}
-                      performanceMode={performanceMode}
-                      cameraPreset={cameraPreset3d}
-                      selected={selected3d}
-                      transforms={transforms3d}
-                      addedObjects={added3dObjects}
-                      dragging={drag3d}
-                      onSelect={setSelected3d}
-                      onDrag={setDrag3d}
-                      onTransform={update3dTransform}
-                      onContextMenu={(event, id) => {
-                        event.stopPropagation();
-                        setSelected3d(id);
-                        setContextMenu({ x: event.nativeEvent.clientX, y: event.nativeEvent.clientY, target: { type: "3d", id } });
-                      }}
-                    />
-                    <OrbitControls enablePan enableZoom enableDamping enabled={!drag3d} />
-                  </ThreeSceneWrapper>
-                </div>
-              )}
-              {space3dViewTab === "xy" && (
-                <Workspace3DProjectionPane
-                  view="xy"
-                  selected={selected3d}
-                  transform={selected3dTransform}
-                  surfaceScale={surfaceScale}
-                  solid={solid}
-                  solidSize={height3d}
-                  crossSection={crossSection}
-                  showSurface={showSurface}
-                  showSolid={showSolid}
-                />
-              )}
-              {space3dViewTab === "xz" && (
-                <Workspace3DProjectionPane
-                  view="xz"
-                  selected={selected3d}
-                  transform={selected3dTransform}
-                  surfaceScale={surfaceScale}
-                  solid={solid}
-                  solidSize={height3d}
-                  crossSection={crossSection}
-                  showSurface={showSurface}
-                  showSolid={showSolid}
-                />
-              )}
-            </div>
-
-            <div className="grid gap-2 md:grid-cols-3">
-              <InfoPill title="Axes" text="X, Y, and Z directions are shown with colored vectors." />
-              <InfoPill title="Surface" text="The mesh updates from the selected z=f(x,y) function." />
-              <InfoPill title="Cross-section" text="The amber plane slices the surface at a chosen z-level." />
-            </div>
-          </div>
-
-          {inspector3dOpen && (
-            <aside className="order-3 min-h-0 space-y-2 2xl:sticky 2xl:top-20">
-              <HorizontalPanelHeader title="Objects" side="right" onCollapse={() => setInspector3dOpen(false)} />
-              <InspectorTabs3D selected={selected3d} transform={selected3dTransform} transforms={transforms3d} addedObjects={added3dObjects} onSelect={setSelected3d} onTransform={update3dTransform} onVector={update3dVector} onRestore={restore3dObject} onDelete={delete3dObject} />
-              <UnifiedWorkspacePanel
-                objects={unifiedWorkspaceObjects}
-                selectedObject={unifiedSelectedObject}
-                selectedObjectId={unifiedSelectedObjectId}
-                selectedObjectIds={unifiedSelectedObjectIds}
-                onObjectAction={handleUnifiedObjectAction}
-                onObjectChange={handleUnifiedObjectChange}
+              <OrbitControls
+                enableDamping
+                enabled={!drag3d && ["select", "orbit", "pan", "zoom"].includes(objectStudioTool)}
+                enableRotate={objectStudioTool === "select" || objectStudioTool === "orbit"}
+                enablePan={objectStudioTool === "select" || objectStudioTool === "pan"}
+                enableZoom={objectStudioTool === "select" || objectStudioTool === "zoom"}
+                mouseButtons={{
+                  LEFT: objectStudioTool === "pan" ? THREE.MOUSE.PAN : objectStudioTool === "zoom" ? THREE.MOUSE.DOLLY : THREE.MOUSE.ROTATE,
+                  MIDDLE: THREE.MOUSE.DOLLY,
+                  RIGHT: THREE.MOUSE.PAN,
+                }}
               />
-              <Readout3D surface={surface} surfaceScale={surfaceScale} crossSection={crossSection} zoom={zoom3d} />
-              <GizmoReadout3D selected={selected3d} transform={selected3dTransform} />
-            </aside>
+            </ThreeSceneWrapper>
           )}
-        </div>
-        </div>
-      </SectionCard>}
+          objects={[
+            ...threeBaseIds.map((id): ObjectStudioItem => ({ id, label: threeObjectLabels[id], kind: id, transform: transforms3d[id], added: false })),
+            ...added3dObjects.map((object): ObjectStudioItem => ({ id: object.id, label: object.label, kind: object.baseId, transform: object.transform, added: true })),
+          ]}
+          selectedId={selected3d}
+          selectedTransform={selected3dTransform}
+          shapes={objectStudioShapes}
+          projectStatus={projectStatus}
+          canUndo={undoStack.length > 0}
+          canRedo={redoStack.length > 0}
+          cameraPreset={cameraPreset3d}
+          zoom={zoom3d}
+          autoRotate={autoRotate3d}
+          animationSpeed={sceneAnimationSpeed}
+          tool={objectStudioTool}
+          snapEnabled={objectStudioSnapEnabled}
+          snapStep={objectStudioSnapStep}
+          measurement={objectStudioMeasurement(
+            selected3d,
+            selected3dTransform,
+            selected3d === "solid" ? solid : isBase3dId(selected3d) ? threeObjectSolidMap[selected3d] : added3dObjects.find((object) => object.id === selected3d)?.solid,
+          )}
+          onUndo={undoWorkspace}
+          onRedo={redoWorkspace}
+          onSave={saveWorkspace}
+          onLoad={loadWorkspace}
+          onExport={exportWorkspaceJson}
+          onAdd={(shapeId) => {
+            if (shapeId.startsWith("solid:")) {
+              const solidKind = shapeId.slice(6) as SolidKind;
+              const shape = objectStudioShapes.find((item) => item.id === shapeId);
+              add3dSceneObject("solid", { solid: solidKind, label: shape?.label ?? solidKind });
+            }
+            else {
+              const baseId = shapeId as ThreeObjectId;
+              add3dSceneObject(baseId, { solid: threeObjectSolidMap[baseId], label: threeObjectLabels[baseId] });
+            }
+          }}
+          onSelect={setSelected3d}
+          onClearSelection={() => { setSelected3d(""); setDrag3d(null); }}
+          onTransform={update3dTransform}
+          onVector={update3dVector}
+          onDuplicate={duplicate3dObject}
+          onDelete={delete3dObject}
+          onRestore={restore3dObject}
+          onPreset={apply3dTransformPreset}
+          onCamera={setCameraPreset3d}
+          onZoom={setZoom3d}
+          onAutoRotate={setAutoRotate3d}
+          onAnimationSpeed={setSceneAnimationSpeed}
+          onTool={setObjectStudioTool}
+          onSnapEnabled={setObjectStudioSnapEnabled}
+          onSnapStep={setObjectStudioSnapStep}
+        />
+      )}
 
       {workspaceView === "geometry" && <SectionCard title="Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements.">
         <GeometryWorkspacePanel
@@ -4864,7 +4786,7 @@ function Space3DPaletteAction({ item }: { item: GeometryPaletteActionItem }) {
   );
 }
 
-function Space3DConstructionWorkbench({
+function _Space3DConstructionWorkbench({
   selected,
   transform,
   onPreset,
@@ -5351,7 +5273,7 @@ function OfflineProjectLibraryPanel({ projects, onSave, onRestore, onDelete, onC
   );
 }
 
-function GizmoReadout3D({ selected, transform }: { selected: string; transform: Transform3D }) {
+function _GizmoReadout3D({ selected, transform }: { selected: string; transform: Transform3D }) {
   const mode: TransformMode3 = selected === "slice" || selected === "plane3d" ? "rotate" : selected === "solid" || selected.endsWith("3d") ? "scale" : "translate";
   const handles = createTransformGizmo(mode);
   const measurement = object3Measurement(transformToKernelObject(selected, transform));
@@ -5372,7 +5294,7 @@ function GizmoReadout3D({ selected, transform }: { selected: string; transform: 
   );
 }
 
-function Readout3D({ surface, surfaceScale, crossSection, zoom }: { surface: SurfaceKind; surfaceScale: number; crossSection: number; zoom: number }) {
+function _Readout3D({ surface, surfaceScale, crossSection, zoom }: { surface: SurfaceKind; surfaceScale: number; crossSection: number; zoom: number }) {
   return (
     <CollapsibleSideCard id="workspace-3d-readout-panel" title="3D Readout" meta={<span className="mini-chip">{roundTo(zoom * 100, 0)}%</span>} className="border-transparent bg-slate-100 shadow-none dark:bg-white/10">
       <div className="space-y-1 leading-6 text-slate-600 dark:text-slate-300">
@@ -5806,7 +5728,7 @@ function CollapsibleSideCard({ children, className = "", defaultOpen = true, id,
   );
 }
 
-function HorizontalPanelHeader({ title, side, onCollapse }: { title: string; side: "left" | "right"; onCollapse: () => void }) {
+function _HorizontalPanelHeader({ title, side, onCollapse }: { title: string; side: "left" | "right"; onCollapse: () => void }) {
   const Icon = side === "left" ? PanelLeftClose : PanelRightClose;
   return (
     <div className="flex items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/85 p-2 shadow-sm dark:border-white/10 dark:bg-white/5">
@@ -5821,7 +5743,7 @@ function HorizontalPanelHeader({ title, side, onCollapse }: { title: string; sid
   );
 }
 
-function Workspace3DProjectionPane({ view, selected, transform, surfaceScale, solid, solidSize, crossSection, showSurface, showSolid }: { view: "xy" | "xz"; selected: string; transform: Transform3D; surfaceScale: number; solid: SolidKind; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean }) {
+function _Workspace3DProjectionPane({ view, selected, transform, surfaceScale, solid, solidSize, crossSection, showSurface, showSolid }: { view: "xy" | "xz"; selected: string; transform: Transform3D; surfaceScale: number; solid: SolidKind; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean }) {
   const px = 170 + transform.position[0] * 18;
   const py = 150 - transform.position[1] * 18;
   const pz = 150 - transform.position[2] * 18;
@@ -5898,6 +5820,75 @@ function Workspace3DProjectionPane({ view, selected, transform, surfaceScale, so
       )}
     </section>
   );
+}
+
+function objectStudioMeasurement(selected: string, transform: Transform3D, solid?: SolidKind) {
+  const kernelMeasurement = object3Measurement(transformToKernelObject(selected, transform));
+  const dimensions = (transform.dimensions ?? [1, 1, 1]).map((value) => Math.max(0, value * transform.scale));
+  const [width, height, depth] = dimensions;
+  const result = (label: string, volume: number, surfaceArea: number) => ({ label, volume, surfaceArea, detail: `w=${roundTo(width, 2)}, h=${roundTo(height, 2)}, d=${roundTo(depth, 2)}` });
+  if (!solid) return kernelMeasurement;
+  if (solid === "cube" || solid === "cuboid") return result(solid, width * height * depth, 2 * (width * height + height * depth + width * depth));
+  if (solid === "sphere") {
+    const radius = width / 2;
+    return result(solid, (4 / 3) * Math.PI * radius ** 3, 4 * Math.PI * radius ** 2);
+  }
+  if (solid === "ellipsoid") {
+    const [a, b, c] = [width / 2, height / 2, depth / 2];
+    const p = 1.6075;
+    return result(solid, (4 / 3) * Math.PI * a * b * c, 4 * Math.PI * (((a * b) ** p + (a * c) ** p + (b * c) ** p) / 3) ** (1 / p));
+  }
+  if (solid === "hemisphere") {
+    const radius = width / 2;
+    return result(solid, (2 / 3) * Math.PI * radius ** 3, 3 * Math.PI * radius ** 2);
+  }
+  if (solid === "cylinder" || solid === "cone" || solid === "frustum") {
+    const radius = width / 2;
+    if (solid === "cylinder") return result(solid, Math.PI * radius ** 2 * height, 2 * Math.PI * radius * (radius + height));
+    if (solid === "cone") return result(solid, Math.PI * radius ** 2 * height / 3, Math.PI * radius * (radius + Math.hypot(radius, height)));
+    const topRadius = radius * (0.32 / 0.55);
+    const slant = Math.hypot(radius - topRadius, height);
+    return result(solid, Math.PI * height * (radius ** 2 + radius * topRadius + topRadius ** 2) / 3, Math.PI * (radius ** 2 + topRadius ** 2 + (radius + topRadius) * slant));
+  }
+  if (solid === "torus" || solid === "tube") {
+    const size = width;
+    const majorRadius = size * (solid === "torus" ? 0.34 : 0.4);
+    const minorRadius = size * (solid === "torus" ? 0.12 : 0.06);
+    return result(solid, 2 * Math.PI ** 2 * majorRadius * minorRadius ** 2, 4 * Math.PI ** 2 * majorRadius * minorRadius);
+  }
+  if (solid === "capsule") {
+    const radius = width * 0.26;
+    const body = height * 0.62;
+    return result(solid, Math.PI * radius ** 2 * body + (4 / 3) * Math.PI * radius ** 3, 2 * Math.PI * radius * body + 4 * Math.PI * radius ** 2);
+  }
+  if (solid === "prism") {
+    const side = Math.sqrt(3) * width / 2;
+    const baseArea = Math.sqrt(3) * side ** 2 / 4;
+    return result(solid, baseArea * height, 2 * baseArea + 3 * side * height);
+  }
+  if (solid === "pyramid") {
+    const side = width / Math.SQRT2;
+    const slant = Math.hypot(side / 2, height);
+    return result(solid, side ** 2 * height / 3, side ** 2 + 2 * side * slant);
+  }
+  if (solid === "tetrahedron") {
+    const edge = 4 * (width * 0.58) / Math.sqrt(6);
+    return result(solid, edge ** 3 / (6 * Math.sqrt(2)), Math.sqrt(3) * edge ** 2);
+  }
+  if (solid === "octahedron") {
+    const edge = width * 0.58 * Math.SQRT2;
+    return result(solid, Math.SQRT2 * edge ** 3 / 3, 2 * Math.sqrt(3) * edge ** 2);
+  }
+  if (solid === "dodecahedron") {
+    const edge = 2 * width / (Math.sqrt(3) * (1 + Math.sqrt(5)));
+    return result(solid, (15 + 7 * Math.sqrt(5)) * edge ** 3 / 4, 3 * Math.sqrt(25 + 10 * Math.sqrt(5)) * edge ** 2);
+  }
+  if (solid === "polyhedron") {
+    const edge = 2 * width / Math.sqrt(10 + 2 * Math.sqrt(5));
+    return result("icosahedron", 5 * (3 + Math.sqrt(5)) * edge ** 3 / 12, 5 * Math.sqrt(3) * edge ** 2);
+  }
+  if (solid === "wedge") return result(solid, width * height * depth / 2, width * depth + 2 * Math.hypot(height, depth) * width / 2 + height * depth);
+  return kernelMeasurement;
 }
 
 function workspaceViewForMode(mode: (typeof workspaceModeNavigation)[number]["mode"]): WorkspaceView {
@@ -6003,6 +5994,7 @@ type SceneSetupTabs3DProps = {
   onToggleSelectedVisibility: () => void;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
   const [openSections, setOpenSections] = useState<Record<"surface" | "solid" | "parameters" | "camera", boolean>>({
     surface: false,
@@ -6120,6 +6112,7 @@ function SceneSetupTabs3D(props: SceneSetupTabs3DProps) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function InspectorTabs3D({ selected, transform, transforms, addedObjects, onSelect, onTransform, onVector, onRestore, onDelete }: { selected: string; transform: Transform3D; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; onSelect: (id: string) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onVector: (id: string, key: "position" | "rotation", index: number, value: number) => void; onRestore: (id: string) => void; onDelete: (id: string) => void }) {
   const [openSections, setOpenSections] = useState<Record<"object" | "transform" | "objects", boolean>>({
     object: true,
@@ -6157,7 +6150,7 @@ function AccordionSection({ title, summary, open, onToggle, children }: { title:
   );
 }
 
-function PanelTabs<T extends string>({ active, tabs, onChange }: { active: T; tabs: Array<{ id: T; label: string }>; onChange: (id: T) => void }) {
+function _PanelTabs<T extends string>({ active, tabs, onChange }: { active: T; tabs: Array<{ id: T; label: string }>; onChange: (id: T) => void }) {
   return (
     <div className="flex gap-1 overflow-x-auto rounded-xl bg-slate-100 p-1 dark:bg-white/10">
       {tabs.map((item) => (
@@ -6452,10 +6445,11 @@ function workflowTypeForContextTarget(target: ContextMenuState["target"]): Workf
   return target.type;
 }
 
-function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, addedObjects, dragging, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; dragging: string | null; onSelect: (id: string) => void; onDrag: (id: string | null) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onContextMenu: (event: ThreeEvent<MouseEvent>, id: string) => void }) {
+function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, solidSize, crossSection, showSurface, showSolid, autoRotate, animationSpeed, zoom, performanceMode, cameraPreset, selected, transforms, addedObjects, dragging, interactionTool, snapStep, onSelect, onDrag, onTransform, onContextMenu }: { surface: SurfaceKind; surfaceExpression: string; solid: SolidKind; surfaceScale: number; solidSize: number; crossSection: number; showSurface: boolean; showSolid: boolean; autoRotate: boolean; animationSpeed: number; zoom: number; performanceMode: boolean; cameraPreset: CameraPreset3D; selected: string; transforms: Record<ThreeObjectId, Transform3D>; addedObjects: Added3DObject[]; dragging: string | null; interactionTool: ObjectStudioTool; snapStep: number; onSelect: (id: string) => void; onDrag: (id: string | null) => void; onTransform: (id: string, patch: Partial<Transform3D>) => void; onContextMenu: (event: ThreeEvent<MouseEvent>, id: string) => void }) {
   const groupRef = useRef<THREE.Group>(null);
+  const manipulationStart = useRef<{ id: string; point: THREE.Vector3; transform: Transform3D } | null>(null);
   useEffect(() => {
-    const releaseDrag = () => onDrag(null);
+    const releaseDrag = () => { manipulationStart.current = null; onDrag(null); };
     window.addEventListener("pointerup", releaseDrag);
     window.addEventListener("pointercancel", releaseDrag);
     window.addEventListener("blur", releaseDrag);
@@ -6476,18 +6470,20 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
     onClick: (event: ThreeEvent<MouseEvent>) => { event.stopPropagation(); onSelect(id); },
     onContextMenu: (event: ThreeEvent<MouseEvent>) => onContextMenu(event, id),
     onPointerDown: (event: ThreeEvent<PointerEvent>) => {
+      if (!["select", "move", "rotate", "scale"].includes(interactionTool)) return;
       event.stopPropagation();
       onSelect(id);
-      if (event.button !== 0) return;
+      if (event.button !== 0 || interactionTool === "select") return;
       const current = transformForId(id);
       if (current?.locked) return;
       if (event.target instanceof Element && "setPointerCapture" in event.target) {
         (event.target as Element & { setPointerCapture: (pointerId: number) => void }).setPointerCapture(event.pointerId);
       }
+      if (current) manipulationStart.current = { id, point: event.point.clone(), transform: { ...current, position: [...current.position], rotation: [...current.rotation] } };
       onDrag(id);
     },
-    onPointerUp: (event: ThreeEvent<PointerEvent>) => { event.stopPropagation(); onDrag(null); },
-    onPointerCancel: (event: ThreeEvent<PointerEvent>) => { event.stopPropagation(); onDrag(null); },
+    onPointerUp: (event: ThreeEvent<PointerEvent>) => { event.stopPropagation(); manipulationStart.current = null; onDrag(null); },
+    onPointerCancel: (event: ThreeEvent<PointerEvent>) => { event.stopPropagation(); manipulationStart.current = null; onDrag(null); },
     onPointerLeave: () => {
       if (dragging === id) onDrag(null);
     },
@@ -6495,12 +6491,28 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
       if (dragging !== id || id === "vector") return;
       event.stopPropagation();
       const current = transformForId(id);
-      if (!current) return;
+      const start = manipulationStart.current;
+      if (!current || !start || start.id !== id) return;
       if (current.locked || event.buttons !== 1) {
+        manipulationStart.current = null;
         onDrag(null);
         return;
       }
-      onTransform(id, { position: [roundTo(event.point.x, 2), current.position[1], roundTo(event.point.z, 2)] });
+      const dx = event.point.x - start.point.x;
+      const dz = event.point.z - start.point.z;
+      if (interactionTool === "move") {
+        const nextX = start.transform.position[0] + dx;
+        const nextZ = start.transform.position[2] + dz;
+        onTransform(id, { position: [snap3dValue(nextX, snapStep), start.transform.position[1], snap3dValue(nextZ, snapStep)] });
+      }
+      if (interactionTool === "rotate") {
+        const nextRotation = start.transform.rotation[1] + (dx - dz) * 22;
+        onTransform(id, { rotation: [start.transform.rotation[0], snap3dValue(nextRotation, snapStep > 0 ? 15 : 0), start.transform.rotation[2]] });
+      }
+      if (interactionTool === "scale") {
+        const nextScale = Math.max(0.1, start.transform.scale * (1 + (dx - dz) * 0.18));
+        onTransform(id, { scale: snap3dValue(nextScale, snapStep > 0 ? 0.1 : 0) });
+      }
     },
   });
 
@@ -6509,7 +6521,7 @@ function Workspace3DScene({ surface, surfaceExpression, solid, surfaceScale, sol
       <Axes3D />
       <gridHelper args={[10, 10, "#334155", "#1e293b"]} rotation={[0, 0, 0]} />
       {showSurface && transforms.surface.visible && <TransformGroup3D transform={transforms.surface} selected={selected === "surface"}><SurfaceMesh surface={surface} expression={surfaceExpression} scaleValue={surfaceScale} transform={transforms.surface} performanceMode={performanceMode} eventProps={selectProps("surface")} /></TransformGroup3D>}
-      {showSolid && transforms.solid.visible && <TransformGroup3D transform={transforms.solid} selected={selected === "solid"} yOffset={solidSize / 4}><SolidMesh solid={solid} size={solidSize} transform={transforms.solid} eventProps={selectProps("solid")} /></TransformGroup3D>}
+      {showSolid && transforms.solid.visible && <TransformGroup3D transform={transforms.solid} selected={selected === "solid"} yOffset={solidSize / 4}><SolidMesh solid={solid} size={solidSize} transform={transforms.solid} animate={autoRotate} eventProps={selectProps("solid")} /></TransformGroup3D>}
       {transforms.slice.visible && <TransformGroup3D transform={{ ...transforms.slice, position: [transforms.slice.position[0], crossSection + transforms.slice.position[1], transforms.slice.position[2]] }} selected={selected === "slice"}><CrossSectionPlane color={transforms.slice.color} eventProps={selectProps("slice")} /></TransformGroup3D>}
       {transforms.vector.visible && <TransformGroup3D transform={transforms.vector} selected={selected === "vector"}><VectorArrow start={[-3, 0.05, -3]} end={transforms.point.position} color={transforms.vector.color} eventProps={selectProps("vector")} /></TransformGroup3D>}
       {transforms.point.visible && <TransformGroup3D transform={transforms.point} selected={selected === "point"}><Point3D label="P" color={transforms.point.color} eventProps={selectProps("point")} /></TransformGroup3D>}
@@ -6710,10 +6722,15 @@ function cameraPresetRotation(preset: CameraPreset3D): [number, number, number] 
   return [0, 0, 0];
 }
 
-function SolidMesh({ solid, size, transform, eventProps }: { solid: SolidKind; size: number; transform: Transform3D; eventProps?: Record<string, unknown> }) {
+function snap3dValue(value: number, step: number) {
+  if (!step) return roundTo(value, 2);
+  return roundTo(Math.round(value / step) * step, 2);
+}
+
+function SolidMesh({ solid, size, transform, animate, eventProps }: { solid: SolidKind; size: number; transform: Transform3D; animate: boolean; eventProps?: Record<string, unknown> }) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame((_, delta) => {
-    if (ref.current) ref.current.rotation.y += delta * 0.18;
+    if (ref.current && animate) ref.current.rotation.y += delta * 0.18;
   });
   return (
     <mesh ref={ref} scale={solid === "ellipsoid" ? [1.45, 0.72, 0.95] : [1, 1, 1]} {...eventProps}>
