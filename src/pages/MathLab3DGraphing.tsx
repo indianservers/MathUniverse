@@ -1,24 +1,55 @@
-import { OrbitControls, Text } from "@react-three/drei";
+import { Line, OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useMemo, useRef, useState } from "react";
-import { Box, ChevronDown, ChevronsLeft, ChevronsRight, Dices, Grid3X3, Palette, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pause, Play, RotateCcw } from "lucide-react";
+import { Box, ChevronDown, ChevronsLeft, ChevronsRight, Dices, Download, Eye, EyeOff, FolderOpen, Grid3X3, Keyboard, Palette, PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen, Pause, Play, RotateCcw, Save, Trash2 } from "lucide-react";
 import { FormulaBlock, MathErrorBox, MathLabLayout, ResultCard, StepPanel } from "../components/math-lab/MathLabShared";
+import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import { ApproxBadge, CopyResultButton, EmptyState, ExportImageButton, FullscreenButton, InfoCallout, LoadingSkeleton, PresetChips, ResetExampleButton } from "../components/ui/UiFeedback";
 import { SurfaceSampleResult, generateSurfaceMeshData, sampleSurface } from "../utils/mathEngine/graph3dUtils";
+import { deleteGraphWorkspace, readSavedGraphWorkspaces, saveGraphWorkspace, type SavedGraphWorkspace } from "../utils/graphWorkspaceStorage";
+import GraphExamplesGallery from "../graph-studio/GraphExamplesGallery";
+import GraphStudioProjectBar from "../graph-studio/GraphStudioProjectBar";
+import GraphVariableRack from "../graph-studio/GraphVariableRack";
+import { substituteGraphVariables } from "../graph-studio/expressionEngine";
+import { downloadGraphStudioFile } from "../graph-studio/projectStorage";
+import { useGraphStudioProject } from "../graph-studio/useGraphStudioProject";
+import type { GraphStudioVariable } from "../graph-studio/types";
 
 const examples = [
   "x^2 + y^2",
   "sin(x) * cos(y)",
+  "sqrt(x^2 + y^2)",
   "x^2 - y^2",
+  "sqrt(25 - x^2 - y^2)",
+  "sqrt(9 - x^2)",
   "exp(-(x^2 + y^2))",
 ];
 
 type SurfacePalette = "height" | "thermal" | "contour" | "mono";
 type ObjectPosition = { x: number; y: number; z: number };
+type ReferenceObjectKind = "none" | "helix" | "sphere" | "cone" | "cylinder";
+type SliceAxis = "x" | "y" | "z";
+type Graph3DWorkspaceState = {
+  expression: string;
+  secondaryExpression: string;
+  secondaryVisible: boolean;
+  xRange: number;
+  yRange: number;
+  resolution: number;
+  opacity: number;
+  palette: SurfacePalette;
+  showGrid: boolean;
+  showAxes: boolean;
+  showWireframe: boolean;
+  showPoints: boolean;
+  sliceEnabled: boolean;
+  sliceX: number;
+  referenceObject: ReferenceObjectKind;
+};
 type BeautifulSurfacePreset = {
   name: string;
   expression: string;
@@ -30,9 +61,12 @@ type BeautifulSurfacePreset = {
 
 const initialObjectPosition: ObjectPosition = { x: 0, y: 0, z: 0 };
 const beautifulSurfacePresets = buildBeautifulSurfacePresets();
+const GRAPH_3D_STORAGE_KEY = "math-universe-saved-3d-graphs";
 
 export default function MathLab3DGraphing() {
   const [expression, setExpression] = useState("sin(x) * cos(y)");
+  const [secondaryExpression, setSecondaryExpression] = useState("x^2 - y^2");
+  const [secondaryVisible, setSecondaryVisible] = useState(false);
   const [xRange, setXRange] = useState(3);
   const [yRange, setYRange] = useState(3);
   const [resolution, setResolution] = useState(44);
@@ -41,6 +75,7 @@ export default function MathLab3DGraphing() {
   const [showAxes, setShowAxes] = useState(true);
   const [showPoints, setShowPoints] = useState(false);
   const [showWireframe, setShowWireframe] = useState(false);
+  const [surfaceOpacity, setSurfaceOpacity] = useState(0.9);
   const [showLabels, setShowLabels] = useState(true);
   const [autoRotate, setAutoRotate] = useState(false);
   const [samplingAnimation, setSamplingAnimation] = useState(true);
@@ -52,8 +87,47 @@ export default function MathLab3DGraphing() {
   const [surfaceExplanationOpen, setSurfaceExplanationOpen] = useState(true);
   const [sampleTableOpen, setSampleTableOpen] = useState(false);
   const [randomSurfaceName, setRandomSurfaceName] = useState("Classic sine lattice");
+  const [sliceEnabled, setSliceEnabled] = useState(false);
+  const [sliceX, setSliceX] = useState(0);
+  const [referenceObject, setReferenceObject] = useState<ReferenceObjectKind>("none");
+  const [cameraPosition, setCameraPosition] = useState<[number, number, number]>([4, 3.2, 6]);
+  const [saveName, setSaveName] = useState("My 3D graph");
+  const [savedOpen, setSavedOpen] = useState(false);
+  const [savedGraphs, setSavedGraphs] = useState<SavedGraphWorkspace<Graph3DWorkspaceState>[]>(() => readSavedGraphWorkspaces(GRAPH_3D_STORAGE_KEY));
+  const [graphVariables, setGraphVariables] = useState<GraphStudioVariable[]>([]);
+  const [mathKeyboardOpen, setMathKeyboardOpen] = useState(false);
+  const [sliceAxis, setSliceAxis] = useState<SliceAxis>("x");
 
-  const surface = useMemo(() => sampleSurface(expression, -xRange, xRange, -yRange, yRange, resolution), [expression, xRange, yRange, resolution]);
+  const graphStudioState = useMemo<Graph3DWorkspaceState>(() => ({ expression, secondaryExpression, secondaryVisible, xRange, yRange, resolution, opacity: surfaceOpacity, palette, showGrid, showAxes, showWireframe, showPoints, sliceEnabled, sliceX, referenceObject }), [expression, palette, referenceObject, resolution, secondaryExpression, secondaryVisible, showAxes, showGrid, showPoints, showWireframe, sliceEnabled, sliceX, surfaceOpacity, xRange, yRange]);
+  const graphStudio = useGraphStudioProject({
+    dimension: "3d",
+    initialName: "Graph Studio 3D",
+    state: graphStudioState,
+    applyState: (state, variables) => {
+      setExpression(state.expression);
+      setSecondaryExpression(state.secondaryExpression);
+      setSecondaryVisible(state.secondaryVisible);
+      setXRange(state.xRange);
+      setYRange(state.yRange);
+      setResolution(state.resolution);
+      setSurfaceOpacity(state.opacity);
+      setPalette(state.palette);
+      setShowGrid(state.showGrid);
+      setShowAxes(state.showAxes);
+      setShowWireframe(state.showWireframe);
+      setShowPoints(state.showPoints);
+      setSliceEnabled(state.sliceEnabled);
+      setSliceX(state.sliceX);
+      setReferenceObject(state.referenceObject);
+      setGraphVariables(variables);
+      setCameraKey((value) => value + 1);
+    },
+  });
+
+  const resolvedExpression = substituteGraphVariables(expression, graphVariables);
+  const resolvedSecondaryExpression = substituteGraphVariables(secondaryExpression, graphVariables);
+  const surface = useMemo(() => sampleSurface(resolvedExpression, -xRange, xRange, -yRange, yRange, resolution), [resolvedExpression, xRange, yRange, resolution]);
+  const secondarySurface = useMemo(() => secondaryVisible ? sampleSurface(resolvedSecondaryExpression, -xRange, xRange, -yRange, yRange, resolution) : null, [resolution, resolvedSecondaryExpression, secondaryVisible, xRange, yRange]);
   const sampleRows = useMemo(() => surface.grid.flatMap((row, rowIndex) => row.filter((_, colIndex) => rowIndex % Math.max(1, Math.floor(surface.grid.length / 4)) === 0 && colIndex % Math.max(1, Math.floor(row.length / 4)) === 0)).slice(0, 16), [surface.grid]);
   const surfaceSummary = [
     `Surface: z = ${expression}`,
@@ -89,6 +163,12 @@ export default function MathLab3DGraphing() {
       notes={notes}
       compactHeader
     >
+      <GraphStudioProjectBar controller={graphStudio} variables={graphVariables} onVariablesChange={setGraphVariables} />
+      <div className="flex flex-wrap items-center gap-2 rounded-lg border border-slate-200 bg-white/70 p-2 dark:border-white/10 dark:bg-slate-950/60">
+        <GraphExamplesGallery dimension="3d" onOpen={(example) => openStudioExample(example.name, example.equation)} />
+        <button type="button" className={mathKeyboardOpen ? "action-primary" : "tool-button"} onClick={() => setMathKeyboardOpen((value) => !value)}><Keyboard className="h-4 w-4" />Math keyboard</button>
+        <span className="ml-auto text-xs font-bold text-slate-500">Schema v{graphStudio.project.schemaVersion} · auto-saved offline</span>
+      </div>
       <div className={`grid min-h-0 gap-3 ${controlsOpen ? "xl:grid-cols-[300px_minmax(0,1fr)]" : "xl:grid-cols-[64px_minmax(0,1fr)]"}`}>
         <aside className="desktop-sidebar-panel scroll-panel thin-scrollbar space-y-3">
         <button
@@ -118,7 +198,20 @@ export default function MathLab3DGraphing() {
             />
           </label>
           <MathErrorBox error={surface.error} />
+          {mathKeyboardOpen && <div className="mt-3"><MathKeyboardInput value={expression} onChange={setExpression} label="Edit 3D surface" mode="formula" rows={2} /></div>}
           <div className="mt-4"><PresetChips examples={examples} onSelect={setExpression} /></div>
+          <div className="mt-4 rounded-xl border border-slate-200 p-3 dark:border-white/10">
+            <div className="flex items-center gap-2">
+              <button type="button" className="tooltip-icon rounded-lg p-2" aria-label={secondaryVisible ? "Hide second surface" : "Show second surface"} data-tooltip={secondaryVisible ? "Hide second surface" : "Show second surface"} onClick={() => setSecondaryVisible((value) => !value)}>
+                {secondaryVisible ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+              </button>
+              <span className="text-sm font-black">Second surface</span>
+            </div>
+            <label className="mt-2 block text-sm font-bold text-slate-600 dark:text-slate-300">z =
+              <input className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 font-mono text-sm dark:border-white/10 dark:bg-slate-950" value={secondaryExpression} onChange={(event) => setSecondaryExpression(event.target.value)} />
+            </label>
+            {secondaryVisible && <MathErrorBox error={secondarySurface?.error} />}
+          </div>
           <div className="mt-4 rounded-2xl border border-cyan-300/40 bg-cyan-400/10 p-3 text-sm leading-5 text-cyan-950 dark:text-cyan-50">
             <p className="font-black">{beautifulSurfacePresets.length}+ beautiful formulas ready</p>
             <p className="mt-1">Current random pick: <span className="font-mono font-bold">{randomSurfaceName}</span></p>
@@ -127,7 +220,34 @@ export default function MathLab3DGraphing() {
             <SliderControl density="compact" label="3D x range" min={1} max={8} step={0.25} value={xRange} onChange={setXRange} />
             <SliderControl density="compact" label="3D y range" min={1} max={8} step={0.25} value={yRange} onChange={setYRange} />
             <SliderControl density="compact" label="3D resolution" min={12} max={80} step={2} value={resolution} onChange={setResolution} />
+            <SliderControl density="compact" label="Surface opacity" min={0.15} max={1} step={0.05} value={surfaceOpacity} onChange={setSurfaceOpacity} />
           </SliderGroup>
+          <div className="mt-4 rounded-xl border border-slate-200 p-3 dark:border-white/10">
+            <label className="text-sm font-black text-slate-700 dark:text-slate-200">Parametric / solid overlay
+              <select className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold dark:border-white/10 dark:bg-slate-950" value={referenceObject} onChange={(event) => setReferenceObject(event.target.value as ReferenceObjectKind)}>
+                <option value="none">None</option>
+                <option value="helix">Parametric helix</option>
+                <option value="sphere">Sphere</option>
+                <option value="cone">Cone</option>
+                <option value="cylinder">Cylinder</option>
+              </select>
+            </label>
+            <label className="mt-3 flex items-center gap-2 text-sm font-bold"><input type="checkbox" checked={sliceEnabled} onChange={(event) => setSliceEnabled(event.target.checked)} />Cross-section slice</label>
+            {sliceEnabled && <div className="mt-2 space-y-2">
+              <label className="block text-xs font-black uppercase text-slate-500">Slice axis<select aria-label="Slice axis" className="mt-1 w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-sm dark:border-white/10 dark:bg-slate-950" value={sliceAxis} onChange={(event) => setSliceAxis(event.target.value as SliceAxis)}><option value="x">x = constant</option><option value="y">y = constant</option><option value="z">z = constant</option></select></label>
+              <SliderControl density="compact" label={`Slice ${sliceAxis}`} min={sliceAxis === "z" ? (surface.minZ ?? -3) : -(sliceAxis === "x" ? xRange : yRange)} max={sliceAxis === "z" ? (surface.maxZ ?? 3) : (sliceAxis === "x" ? xRange : yRange)} step={0.1} value={sliceX} onChange={setSliceX} />
+            </div>}
+          </div>
+          <div className="mt-4 border-t border-slate-200 pt-4 dark:border-white/10">
+            <label className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Saved graph name
+              <input className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold dark:border-white/10 dark:bg-slate-950" value={saveName} onChange={(event) => setSaveName(event.target.value)} />
+            </label>
+            <div className="mt-2 flex gap-2">
+              <button type="button" className="action-primary flex-1 justify-center" onClick={saveCurrentGraph}><Save className="h-4 w-4" />Save</button>
+              <button type="button" className="tool-button flex-1 justify-center" onClick={() => setSavedOpen((value) => !value)} aria-expanded={savedOpen}><FolderOpen className="h-4 w-4" />Saved ({savedGraphs.length})</button>
+            </div>
+            {savedOpen && <Saved3DGraphList saved={savedGraphs} onLoad={loadSavedGraph} onDelete={removeSavedGraph} />}
+          </div>
           {surface.warning && <p className="mt-4 rounded-2xl bg-amber-50 p-4 text-sm font-semibold text-amber-800 dark:bg-amber-400/10 dark:text-amber-100">{surface.warning}</p>}
         </SectionCard>
         <SectionCard title="Move Surface" description="Shift the whole graph in math coordinates. X moves left/right, Y moves across the base grid, and Z changes height." compact>
@@ -143,6 +263,7 @@ export default function MathLab3DGraphing() {
             <RotateCcw className="h-4 w-4" />Reset object position
           </button>
         </SectionCard>
+        <GraphVariableRack expressions={[expression, ...(secondaryVisible ? [secondaryExpression] : [])]} variables={graphVariables} onChange={updateStudioVariables} />
         </>
         ) : (
           <div className="flex flex-col items-center gap-2">
@@ -159,24 +280,29 @@ export default function MathLab3DGraphing() {
             {surface.error ? (
               <LoadingSkeleton label="Waiting for a valid z = f(x,y) surface" />
             ) : (
-              <ThreeSceneWrapper key={cameraKey} height="clamp(560px, calc(100vh - 300px), 820px)" mobileHeight="560px" interactionLabel="Left drag rotate - wheel/pinch zoom - right drag pan" cameraPosition={[4, 3.2, 6]} fov={46} quality="high" chrome="cinematic" sceneLabel={autoRotate ? "3D graphing - rotating" : "3D graphing - paused"}>
+              <ThreeSceneWrapper key={cameraKey} height="clamp(560px, calc(100vh - 300px), 820px)" mobileHeight="560px" interactionLabel="Left drag rotate - wheel/pinch zoom - right drag pan" cameraPosition={cameraPosition} fov={46} quality="high" chrome="cinematic" sceneLabel={autoRotate ? "3D graphing - rotating" : "3D graphing - paused"}>
                 <color attach="background" args={["#020617"]} />
                 <ambientLight intensity={0.72} />
                 <directionalLight position={[5, 8, 6]} intensity={1.35} />
                 <group position={toScenePosition(objectPosition)}>
-                  <SurfaceMesh samples={surface} palette={palette} wireframe={showWireframe} />
+                  <SurfaceMesh samples={surface} palette={palette} wireframe={showWireframe} opacity={surfaceOpacity} />
+                  {secondaryVisible && secondarySurface && !secondarySurface.error && <SurfaceMesh samples={secondarySurface} palette="thermal" wireframe={showWireframe} opacity={Math.max(0.18, surfaceOpacity * 0.62)} />}
                   <SamplingSweep samples={surface} active={samplingAnimation} />
                   {showPoints && <SamplePointCloud samples={surface} />}
                   {showBase && <BasePlane size={Math.max(xRange, yRange) * 2.08} />}
                   {showGrid && <gridHelper args={[Math.max(xRange, yRange) * 2.2, 18, "#38bdf8", "#334155"]} />}
                   {showAxes && <axesHelper args={[Math.max(xRange, yRange) * 1.25]} />}
                   {showLabels && <SurfaceLabels scale={Math.max(xRange, yRange) * 1.25} expression={expression} samples={surface} objectPosition={objectPosition} />}
+                  {sliceEnabled && <SlicePlane axis={sliceAxis} value={sliceX} range={Math.max(xRange, yRange)} samples={surface} />}
+                  {sliceEnabled && <SliceCurve axis={sliceAxis} value={sliceX} samples={surface} />}
+                  <ReferenceObject kind={referenceObject} scale={Math.max(1.4, Math.min(xRange, yRange) * 0.48)} />
                 </group>
                 <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} autoRotate={autoRotate} autoRotateSpeed={0.7} />
               </ThreeSceneWrapper>
             )}
           </div>
-          <div className="flex flex-wrap gap-2">
+          {sliceEnabled && <CrossSectionChart axis={sliceAxis} value={sliceX} samples={surface} />}
+          <div className="sticky bottom-2 z-30 flex flex-wrap gap-2 rounded-xl border border-slate-200 bg-white/95 p-2 shadow-xl backdrop-blur dark:border-white/10 dark:bg-slate-950/95">
             <SceneCheckbox label="Base" checked={showBase} onChange={setShowBase} />
             <SceneCheckbox label="Grid" checked={showGrid} onChange={setShowGrid} />
             <SceneCheckbox label="Coordinates" checked={showAxes} onChange={setShowAxes} />
@@ -201,8 +327,16 @@ export default function MathLab3DGraphing() {
               </select>
             </label>
             <button type="button" className="tool-button" onClick={() => setCameraKey((value) => value + 1)}><RotateCcw className="h-4 w-4" />Reset Camera</button>
+            <button type="button" className="tool-button" onClick={() => setCameraView([0.01, 8, 0.01])}>Top</button>
+            <button type="button" className="tool-button" onClick={() => setCameraView([0.01, -8, 0.01])}>Bottom</button>
+            <button type="button" className="tool-button" onClick={() => setCameraView([0.01, 1.8, 8])}>Front</button>
+            <button type="button" className="tool-button" onClick={() => setCameraView([0.01, 1.8, -8])}>Back</button>
+            <button type="button" className="tool-button" onClick={() => setCameraView([-8, 1.8, 0.01])}>Left</button>
+            <button type="button" className="tool-button" onClick={() => setCameraView([8, 1.8, 0.01])}>Right</button>
+            <button type="button" className="tool-button" onClick={() => setCameraView([4, 3.2, 6])}>Iso</button>
             <FullscreenButton targetId="surface-3d-panel" />
             <ExportImageButton targetId="surface-3d-panel" filename="3d-surface.png" />
+            <button type="button" className="tool-button" onClick={exportSurfaceCsv}><Download className="h-4 w-4" />CSV</button>
             <button type="button" className="tool-button" onClick={() => setAnalysisOpen((value) => !value)}>
               {analysisOpen ? <PanelRightClose className="h-4 w-4" /> : <PanelRightOpen className="h-4 w-4" />}
               {analysisOpen ? "Hide details" : "Show details"}
@@ -298,6 +432,22 @@ export default function MathLab3DGraphing() {
     </MathLabLayout>
   );
 
+  function updateStudioVariables(variables: GraphStudioVariable[]) {
+    setGraphVariables(variables);
+    graphStudio.updateProject({ variables });
+  }
+
+  function openStudioExample(name: string, equation: string) {
+    setExpression(equation.replace(/^z\s*=\s*/i, ""));
+    graphStudio.updateProject({ name });
+    setCameraView([4, 3.2, 6]);
+  }
+
+  function exportSurfaceCsv() {
+    const csv = ["x,y,z,valid", ...surface.grid.flatMap((row) => row.map((point) => `${point.x},${point.y},${point.z ?? ""},${point.valid}`))].join("\n");
+    downloadGraphStudioFile(`${fileSlug(expression)}-surface.csv`, csv, "text/csv");
+  }
+
   function tryRandom() {
     const preset = beautifulSurfacePresets[Math.floor(Math.random() * beautifulSurfacePresets.length)];
     setExpression(preset.expression);
@@ -314,6 +464,64 @@ export default function MathLab3DGraphing() {
     setShowLabels(true);
     setCameraKey((value) => value + 1);
   }
+
+  function setCameraView(position: [number, number, number]) {
+    setCameraPosition(position);
+    setCameraKey((value) => value + 1);
+  }
+
+  function saveCurrentGraph() {
+    const workspace: SavedGraphWorkspace<Graph3DWorkspaceState> = {
+      id: `graph-3d-${Date.now()}`,
+      name: saveName.trim() || "Untitled 3D graph",
+      savedAt: new Date().toISOString(),
+      state: { expression, secondaryExpression, secondaryVisible, xRange, yRange, resolution, opacity: surfaceOpacity, palette, showGrid, showAxes, showWireframe, showPoints, sliceEnabled, sliceX, referenceObject },
+    };
+    setSavedGraphs(saveGraphWorkspace(GRAPH_3D_STORAGE_KEY, workspace));
+    setSavedOpen(true);
+  }
+
+  function loadSavedGraph(workspace: SavedGraphWorkspace<Graph3DWorkspaceState>) {
+    const state = workspace.state;
+    setExpression(state.expression);
+    setSecondaryExpression(state.secondaryExpression);
+    setSecondaryVisible(state.secondaryVisible);
+    setXRange(state.xRange);
+    setYRange(state.yRange);
+    setResolution(state.resolution);
+    setSurfaceOpacity(state.opacity);
+    setPalette(state.palette);
+    setShowGrid(state.showGrid);
+    setShowAxes(state.showAxes);
+    setShowWireframe(state.showWireframe);
+    setShowPoints(state.showPoints);
+    setSliceEnabled(state.sliceEnabled);
+    setSliceX(state.sliceX);
+    setReferenceObject(state.referenceObject);
+    setSaveName(workspace.name);
+    setCameraView([4, 3.2, 6]);
+  }
+
+  function removeSavedGraph(id: string) {
+    setSavedGraphs(deleteGraphWorkspace<Graph3DWorkspaceState>(GRAPH_3D_STORAGE_KEY, id));
+  }
+}
+
+function Saved3DGraphList({ saved, onLoad, onDelete }: { saved: SavedGraphWorkspace<Graph3DWorkspaceState>[]; onLoad: (workspace: SavedGraphWorkspace<Graph3DWorkspaceState>) => void; onDelete: (id: string) => void }) {
+  if (!saved.length) return <p className="mt-3 text-sm font-semibold text-slate-500">No saved 3D graphs yet.</p>;
+  return (
+    <div className="mt-3 max-h-56 space-y-2 overflow-auto" aria-label="Saved 3D graphs">
+      {saved.map((workspace) => (
+        <div key={workspace.id} className="flex items-center gap-2 rounded-xl border border-slate-200 p-2 dark:border-white/10">
+          <button type="button" className="min-w-0 flex-1 text-left" onClick={() => onLoad(workspace)}>
+            <span className="block truncate text-sm font-black">{workspace.name}</span>
+            <span className="block truncate text-xs text-slate-500">z = {workspace.state.expression}</span>
+          </button>
+          <button type="button" className="tooltip-icon rounded-lg p-2 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-400/10" aria-label={`Delete ${workspace.name}`} data-tooltip="Delete saved graph" onClick={() => onDelete(workspace.id)}><Trash2 className="h-4 w-4" /></button>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 function buildBeautifulSurfacePresets(): BeautifulSurfacePreset[] {
@@ -397,7 +605,7 @@ function buildBeautifulSurfacePresets(): BeautifulSurfacePreset[] {
   return [...trigMix, ...radial, ...flower, ...waves, ...gaussians, ...polynomial, ...special, ...harmonic, ...landscapes, ...gems];
 }
 
-function SurfaceMesh({ samples, palette, wireframe }: { samples: SurfaceSampleResult; palette: SurfacePalette; wireframe: boolean }) {
+function SurfaceMesh({ samples, palette, wireframe, opacity }: { samples: SurfaceSampleResult; palette: SurfacePalette; wireframe: boolean; opacity: number }) {
   const geometry = useMemo(() => {
     const data = generateSurfaceMeshData(samples);
     const geom = new THREE.BufferGeometry();
@@ -412,7 +620,7 @@ function SurfaceMesh({ samples, palette, wireframe }: { samples: SurfaceSampleRe
   return (
     <group>
       <mesh geometry={geometry} scale={[1, verticalScale(samples), 1]} castShadow receiveShadow>
-        <meshStandardMaterial vertexColors side={THREE.DoubleSide} roughness={0.42} metalness={0.08} />
+        <meshStandardMaterial vertexColors side={THREE.DoubleSide} roughness={0.42} metalness={0.08} transparent={opacity < 1} opacity={opacity} depthWrite={opacity > 0.72} />
       </mesh>
       {wireframe && (
         <mesh geometry={geometry} scale={[1, verticalScale(samples), 1]}>
@@ -421,6 +629,85 @@ function SurfaceMesh({ samples, palette, wireframe }: { samples: SurfaceSampleRe
       )}
     </group>
   );
+}
+
+function SlicePlane({ axis, value, range, samples }: { axis: SliceAxis; value: number; range: number; samples: SurfaceSampleResult }) {
+  const height = Math.max(2, Math.abs(samples.minZ ?? -1), Math.abs(samples.maxZ ?? 1)) * verticalScale(samples) * 2.2;
+  const position: [number, number, number] = axis === "x" ? [value, height * 0.08, 0] : axis === "y" ? [0, height * 0.08, value] : [0, value * verticalScale(samples), 0];
+  const rotation: [number, number, number] = axis === "x" ? [0, Math.PI / 2, 0] : axis === "y" ? [0, 0, 0] : [-Math.PI / 2, 0, 0];
+  return (
+    <mesh position={position} rotation={rotation}>
+      <planeGeometry args={axis === "z" ? [range * 2.1, range * 2.1] : [range * 2.1, height]} />
+      <meshBasicMaterial color="#fef08a" transparent opacity={0.18} side={THREE.DoubleSide} depthWrite={false} />
+    </mesh>
+  );
+}
+
+function SliceCurve({ axis, value, samples }: { axis: SliceAxis; value: number; samples: SurfaceSampleResult }) {
+  const points = useMemo(() => crossSectionPoints(samples, axis, value), [axis, samples, value]);
+  const scenePoints = points.map((point) => axis === "x"
+    ? new THREE.Vector3(value, point.v * verticalScale(samples), point.u)
+    : axis === "y"
+      ? new THREE.Vector3(point.u, point.v * verticalScale(samples), value)
+      : new THREE.Vector3(point.u, value * verticalScale(samples), point.v));
+  if (scenePoints.length < 2) return null;
+  if (axis === "z") return <group>{scenePoints.slice(0, 180).map((point, index) => <mesh key={`${index}-${point.x}-${point.z}`} position={point}><sphereGeometry args={[0.035, 8, 8]} /><meshBasicMaterial color="#fde047" /></mesh>)}</group>;
+  return <Line points={scenePoints} color="#fde047" lineWidth={4} />;
+}
+
+function CrossSectionChart({ axis, value, samples }: { axis: SliceAxis; value: number; samples: SurfaceSampleResult }) {
+  const points = crossSectionPoints(samples, axis, value);
+  if (points.length < 2) return null;
+  const width = 720;
+  const height = 180;
+  const minU = Math.min(...points.map((point) => point.u));
+  const maxU = Math.max(...points.map((point) => point.u));
+  const minV = Math.min(...points.map((point) => point.v));
+  const maxV = Math.max(...points.map((point) => point.v));
+  const project = (point: { u: number; v: number }) => `${20 + ((point.u - minU) / Math.max(1e-8, maxU - minU)) * (width - 40)},${height - 20 - ((point.v - minV) / Math.max(1e-8, maxV - minV)) * (height - 40)}`;
+  return <section className="mb-3 rounded-lg border border-amber-300/40 bg-slate-950 p-3 text-white" aria-label={`Live ${axis} cross-section`}>
+    <div className="mb-2 flex items-center justify-between gap-2"><strong className="text-sm">Live 2D cross-section</strong><code className="text-xs text-amber-200">{axis} = {format(value)}</code></div>
+    <svg viewBox={`0 0 ${width} ${height}`} className="h-44 w-full" role="img" aria-label={`Approximate cross-section at ${axis} equals ${format(value)}`}>
+      <rect width={width} height={height} fill="#020617" />
+      <path d={`M20 ${height - 20}H${width - 20} M20 20V${height - 20}`} stroke="#475569" />
+      {axis === "z" ? points.slice(0, 220).map((point, index) => { const [cx, cy] = project(point).split(","); return <circle key={`${index}-${cx}-${cy}`} cx={cx} cy={cy} r="2.5" fill="#fde047" />; }) : <polyline points={points.map(project).join(" ")} fill="none" stroke="#fde047" strokeWidth="3" />}
+    </svg>
+    <p className="mt-2 text-xs text-slate-400">Numerically sampled intersection. Values are approximate.</p>
+  </section>;
+}
+
+function crossSectionPoints(samples: SurfaceSampleResult, axis: SliceAxis, value: number) {
+  if (!samples.grid.length) return [] as { u: number; v: number }[];
+  if (axis === "x") return samples.grid.map((row) => row.reduce((best, point) => Math.abs(point.x - value) < Math.abs(best.x - value) ? point : best, row[0])).filter((point) => point?.valid && point.z !== null).map((point) => ({ u: point.y, v: point.z! }));
+  if (axis === "y") {
+    const row = samples.grid.reduce((best, candidate) => Math.abs((candidate[0]?.y ?? 0) - value) < Math.abs((best[0]?.y ?? 0) - value) ? candidate : best, samples.grid[0]);
+    return row.filter((point) => point.valid && point.z !== null).map((point) => ({ u: point.x, v: point.z! }));
+  }
+  const intersections: { u: number; v: number }[] = [];
+  samples.grid.forEach((row) => {
+    for (let index = 1; index < row.length; index += 1) {
+      const left = row[index - 1];
+      const right = row[index];
+      if (!left.valid || !right.valid || left.z === null || right.z === null || (left.z - value) * (right.z - value) > 0) continue;
+      const ratio = Math.abs(right.z - left.z) < 1e-8 ? 0 : (value - left.z) / (right.z - left.z);
+      intersections.push({ u: left.x + ratio * (right.x - left.x), v: left.y });
+    }
+  });
+  return intersections;
+}
+
+function ReferenceObject({ kind, scale }: { kind: ReferenceObjectKind; scale: number }) {
+  if (kind === "none") return null;
+  if (kind === "helix") {
+    const points = Array.from({ length: 180 }, (_, index) => {
+      const t = index / 179 * Math.PI * 6;
+      return new THREE.Vector3(Math.cos(t) * scale * 0.7, -scale + index / 179 * scale * 2, Math.sin(t) * scale * 0.7);
+    });
+    return <Line points={points} color="#fef08a" lineWidth={3} />;
+  }
+  if (kind === "sphere") return <mesh position={[0, scale, 0]}><sphereGeometry args={[scale, 48, 32]} /><meshStandardMaterial color="#a78bfa" wireframe transparent opacity={0.42} /></mesh>;
+  if (kind === "cone") return <mesh position={[0, scale, 0]}><coneGeometry args={[scale, scale * 2, 48]} /><meshStandardMaterial color="#f59e0b" wireframe transparent opacity={0.46} /></mesh>;
+  return <mesh position={[0, scale, 0]}><cylinderGeometry args={[scale, scale, scale * 2, 48]} /><meshStandardMaterial color="#22d3ee" wireframe transparent opacity={0.42} /></mesh>;
 }
 
 function SceneCheckbox({ label, checked, onChange }: { label: string; checked: boolean; onChange: (value: boolean) => void }) {
@@ -604,4 +891,8 @@ function format(value: number) {
   if (Math.abs(value) < 1e-10) return "0";
   if (Math.abs(value) >= 10000 || Math.abs(value) < 0.001) return value.toExponential(3);
   return Number(value.toFixed(4)).toString();
+}
+
+function fileSlug(value: string) {
+  return value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48) || "surface";
 }

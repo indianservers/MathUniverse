@@ -35,4 +35,18 @@ describe("Class 10 board exam lab routing", () => {
     expect(html).toContain("Links");
     expect(html).toContain('role="tablist"');
   });
+
+  it("labels grouped-data bars with frequency units", () => {
+    const concept = ncertConcepts.find((item) => item.id === "class-10-grouped-mean-methods");
+    expect(concept).toBeTruthy();
+    const html = renderToStaticMarkup(
+      <MemoryRouter>
+        <Class10BoardExamLab concept={concept!} />
+      </MemoryRouter>,
+    );
+
+    expect(html).toContain("frequency (students)");
+    expect(html).toContain("students");
+    expect(html).toContain("Grouped frequency chart");
+  });
 });

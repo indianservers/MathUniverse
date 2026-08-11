@@ -35,6 +35,7 @@ function ContinuedFractionLab({ lesson }: { lesson: AdvancedConceptLesson }) {
             </article>
           ))}
         </div>
+        <ContinuedFractionScene numerator={numerator} denominator={denominator} expansion={expansion} />
       </div>
     </LabShell>
   );
@@ -62,6 +63,7 @@ function FamousProblemLab({ lesson }: { lesson: AdvancedConceptLesson }) {
             This lab gives evidence and counterexample-hunting habits. The lesson still asks learners to name the difference between tested examples and proof.
           </p>
         </div>
+        <FamousProblemScene lesson={lesson} start={start} orbit={orbit} />
       </div>
     </LabShell>
   );
@@ -97,6 +99,7 @@ function InferenceLab({ lesson }: { lesson: AdvancedConceptLesson }) {
           <Metric label="Margin" value={formatNumber(margin)} />
           <Metric label="Interval" value={`${formatNumber(estimate - margin)} to ${formatNumber(estimate + margin)}`} />
         </div>
+        <InferenceScene estimate={estimate} margin={margin} confidence={confidence} />
       </div>
     </LabShell>
   );
@@ -126,6 +129,7 @@ function DifferentialEquationLab({ lesson }: { lesson: AdvancedConceptLesson }) 
             </tbody>
           </table>
         </div>
+        <DifferentialEquationScene rows={rows} k={k} />
       </div>
     </LabShell>
   );
@@ -159,9 +163,74 @@ function SpecialFunctionLab({ lesson }: { lesson: AdvancedConceptLesson }) {
           <Metric label="Output" value={formatNumber(value)} />
           <Metric label="Note" value={specialFunctionNote(functionName)} />
         </div>
+        <SpecialFunctionScene functionName={functionName} x={x} />
       </div>
     </LabShell>
   );
+}
+
+function ContinuedFractionScene({ numerator, denominator, expansion }: { numerator: number; denominator: number; expansion: ReturnType<typeof continuedFractionFor> }) {
+  const target = numerator / denominator;
+  const points = expansion.convergents.slice(0, 8).map((item, index) => {
+    const error = Math.min(1, Math.abs(item.value - target));
+    return { x: 44 + index * 35, y: 172 - (1 - error) * 120, label: `${item.numerator}/${item.denominator}` };
+  });
+  return <svg viewBox="0 0 340 220" className="min-h-64 rounded-xl bg-white/85 p-2 dark:bg-slate-950/50" role="img" aria-label="continued fraction convergent error plot"><line x1="34" y1="178" x2="314" y2="178" stroke="#94a3b8" /><line x1="34" y1="34" x2="34" y2="178" stroke="#94a3b8" /><polyline points={points.map((point) => `${point.x},${point.y}`).join(" ")} fill="none" stroke="#06b6d4" strokeWidth="5" strokeLinejoin="round" strokeLinecap="round" />{points.map((point, index) => <g key={`${point.label}-${index}`}><circle cx={point.x} cy={point.y} r="7" fill={index % 2 ? "#8b5cf6" : "#f59e0b"} /><text x={point.x - 16} y={point.y - 12} className="text-[9px] font-bold fill-slate-600">{point.label}</text></g>)}<text x="42" y="28" className="text-sm font-black fill-slate-700">convergents climb toward the target</text></svg>;
+}
+
+function FamousProblemScene({ lesson, start, orbit }: { lesson: AdvancedConceptLesson; start: number; orbit: ReturnType<typeof collatzOrbit> }) {
+  const title = lesson.title.toLowerCase();
+  if (title.includes("four-color")) return <FourColorScene />;
+  if (title.includes("goldbach")) return <GoldbachScene even={Math.max(8, Math.round(start / 2) * 2)} />;
+  if (title.includes("riemann")) return <PrimeWaveScene />;
+  if (title.includes("fermat")) return <FermatScene power={3 + (start % 3)} />;
+  return <CollatzScene values={orbit.values} />;
+}
+
+function CollatzScene({ values }: { values: number[] }) {
+  const max = Math.max(...values.slice(0, 40));
+  const points = values.slice(0, 40).map((value, index) => `${32 + index * 7},${182 - (value / max) * 140}`).join(" ");
+  return <svg viewBox="0 0 340 220" className="min-h-64 rounded-xl bg-white/85 p-2 dark:bg-slate-950/50"><polyline points={points} fill="none" stroke="#06b6d4" strokeWidth="4" /><text x="36" y="30" className="text-sm font-black fill-slate-700">orbit spikes, falls, and hunts for 1</text></svg>;
+}
+
+function GoldbachScene({ even }: { even: number }) {
+  const primes = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31];
+  const pairs = primes.filter((prime) => primes.includes(even - prime)).slice(0, 5);
+  return <svg viewBox="0 0 340 220" className="min-h-64 rounded-xl bg-white/85 p-2 dark:bg-slate-950/50">{pairs.map((prime, index) => <g key={prime}><circle cx={84 + index * 44} cy="92" r="20" fill="#06b6d4" opacity="0.75" /><circle cx={84 + index * 44} cy="142" r="20" fill="#f59e0b" opacity="0.75" /><text x={76 + index * 44} y="97" className="text-xs font-black fill-slate-800">{prime}</text><text x={74 + index * 44} y="147" className="text-xs font-black fill-slate-800">{even - prime}</text></g>)}<text x="44" y="34" className="text-sm font-black fill-slate-700">{even} as prime-pair evidence</text></svg>;
+}
+
+function PrimeWaveScene() {
+  return <svg viewBox="0 0 340 220" className="min-h-64 rounded-xl bg-white/85 p-2 dark:bg-slate-950/50">{Array.from({ length: 24 }, (_, index) => <line key={index} x1={40 + index * 11} y1="178" x2={40 + index * 11} y2={178 - (index % 5 === 0 || index % 7 === 0 ? 92 : 34 + (index % 4) * 15)} stroke={index % 5 === 0 ? "#f59e0b" : "#06b6d4"} strokeWidth="5" strokeLinecap="round" />)}<path d="M38 110 C 92 48, 138 172, 188 98 S 268 54, 304 126" fill="none" stroke="#8b5cf6" strokeWidth="4" /><text x="38" y="30" className="text-sm font-black fill-slate-700">prime counts wobble around a smooth wave</text></svg>;
+}
+
+function FermatScene({ power }: { power: number }) {
+  return <svg viewBox="0 0 340 220" className="min-h-64 rounded-xl bg-white/85 p-2 dark:bg-slate-950/50"><rect x="54" y="92" width="54" height="54" rx="8" fill="#06b6d4" opacity="0.75" /><rect x="130" y="70" width="72" height="72" rx="8" fill="#f59e0b" opacity="0.72" /><rect x="230" y="44" width="92" height="92" rx="8" fill="#8b5cf6" opacity="0.38" stroke="#8b5cf6" strokeWidth="4" /><text x="54" y="178" className="text-sm font-black fill-slate-700">try to tile c^n from a^n + b^n, n={power}</text></svg>;
+}
+
+function FourColorScene() {
+  const colors = ["#06b6d4", "#f59e0b", "#8b5cf6", "#22c55e", "#06b6d4", "#f59e0b"];
+  return <svg viewBox="0 0 340 220" className="min-h-64 rounded-xl bg-white/85 p-2 dark:bg-slate-950/50">{colors.map((color, index) => <path key={index} d={`M${48 + index * 38},${62 + (index % 2) * 28} L${102 + index * 26},${42 + (index % 3) * 18} L${124 + index * 20},${112 + (index % 2) * 24} L${74 + index * 30},${160 - (index % 2) * 14} Z`} fill={color} opacity="0.7" stroke="#0f172a" strokeWidth="3" />)}<text x="42" y="202" className="text-sm font-black fill-slate-700">adjacent regions need different colours</text></svg>;
+}
+
+function InferenceScene({ estimate, margin, confidence }: { estimate: number; margin: number; confidence: number }) {
+  const left = 170 - margin * 5;
+  const right = 170 + margin * 5;
+  return <svg viewBox="0 0 340 220" className="min-h-64 rounded-xl bg-white/85 p-2 dark:bg-slate-950/50"><path d="M38 174 C 94 170, 104 72, 170 72 S 246 170, 302 174" fill="#22d3ee33" stroke="#06b6d4" strokeWidth="5" /><rect x={left} y="58" width={right - left} height="126" rx="14" fill="#f59e0b" opacity="0.24" stroke="#f59e0b" strokeWidth="3" /><line x1="170" y1="54" x2="170" y2="188" stroke="#8b5cf6" strokeWidth="5" /><text x="44" y="32" className="text-sm font-black fill-slate-700">{confidence}% interval around estimate {formatNumber(estimate)}</text></svg>;
+}
+
+function DifferentialEquationScene({ rows, k }: { rows: ReturnType<typeof eulerRows>; k: number }) {
+  const path = rows.map((row, index) => `${44 + index * 30},${174 - row.y * 18}`).join(" ");
+  return <svg viewBox="0 0 340 220" className="min-h-64 rounded-xl bg-white/85 p-2 dark:bg-slate-950/50">{Array.from({ length: 54 }, (_, index) => { const x = 44 + (index % 9) * 30; const y = 42 + Math.floor(index / 9) * 24; const tilt = ((Math.floor(index / 9) - 3) * k) / 5; return <line key={index} x1={x - 7} y1={y + tilt * 7} x2={x + 7} y2={y - tilt * 7} stroke="#06b6d4" strokeWidth="3" strokeLinecap="round" />; })}<polyline points={path} fill="none" stroke="#f59e0b" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" /><text x="42" y="28" className="text-sm font-black fill-slate-700">Euler path walks through the slope field</text></svg>;
+}
+
+function SpecialFunctionScene({ functionName, x }: { functionName: "gamma" | "zeta" | "erf"; x: number }) {
+  const points = Array.from({ length: 80 }, (_, index) => {
+    const t = functionName === "zeta" ? 1.1 + (index / 79) * 5 : -2 + (index / 79) * 6;
+    const value = functionName === "gamma" ? Math.min(12, gammaApprox(Math.max(0.1, t))) : functionName === "zeta" ? Math.min(8, zetaApprox(t)) : erfApprox(t) * 4 + 4;
+    return `${38 + index * 3.3},${178 - value * 12}`;
+  }).join(" ");
+  const markerX = functionName === "zeta" ? 38 + ((Math.max(1.1, x) - 1.1) / 5) * 264 : 38 + ((x + 2) / 6) * 264;
+  return <svg viewBox="0 0 340 220" className="min-h-64 rounded-xl bg-white/85 p-2 dark:bg-slate-950/50"><line x1="38" y1="178" x2="304" y2="178" stroke="#94a3b8" /><polyline points={points} fill="none" stroke="#06b6d4" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" /><line x1={markerX} y1="36" x2={markerX} y2="182" stroke="#f59e0b" strokeWidth="4" strokeDasharray="7 5" /><text x="42" y="28" className="text-sm font-black fill-slate-700">{functionName} curve with active input marker</text></svg>;
 }
 
 function LabShell({ lesson, icon, title, children }: { lesson: AdvancedConceptLesson; icon: JSX.Element; title: string; children: JSX.Element }) {

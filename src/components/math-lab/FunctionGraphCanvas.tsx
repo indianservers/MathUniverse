@@ -7,6 +7,7 @@ export type FunctionGraphSeries = {
   color: string;
   points: GraphSample[];
   visible: boolean;
+  style?: "line" | "points" | "derivative";
 };
 
 export type FunctionGraphView = {
@@ -24,6 +25,12 @@ type FunctionGraphCanvasProps = {
   traceX?: number;
   selectedSeriesId?: string;
   onTraceChange?: (x: number) => void;
+  integralArea?: {
+    points: GraphSample[];
+    color: string;
+    start: number;
+    end: number;
+  };
 };
 
 const WIDTH = 720;
@@ -37,6 +44,7 @@ export default function FunctionGraphCanvas({
   traceX,
   selectedSeriesId,
   onTraceChange,
+  integralArea,
 }: FunctionGraphCanvasProps) {
   const toScreen = (x: number, y: number) => ({
     x: ((x - view.xMin) / (view.xMax - view.xMin)) * WIDTH,
@@ -60,26 +68,32 @@ export default function FunctionGraphCanvas({
       role="img"
       aria-label="Interactive function graph"
       onPointerMove={handlePointerMove}
+      onPointerDown={handlePointerMove}
     >
       <rect width={WIDTH} height={HEIGHT} fill="currentColor" className="text-white dark:text-slate-950" />
       <text x="694" y="222" fill="#64748b" fontSize="13" fontWeight="800">x</text>
       <text x="364" y="22" fill="#64748b" fontSize="13" fontWeight="800">y</text>
       {showGrid && <Grid view={view} toScreen={toScreen} />}
       {showAxes && <Axes view={view} toScreen={toScreen} />}
+      {integralArea && <IntegralArea area={integralArea} view={view} toScreen={toScreen} />}
       {series.filter((item) => item.visible).map((item) => (
         <g key={item.id}>
-          {segmentsFor(item.points, view, toScreen).map((segment, index) => (
-            <polyline
-              key={`${item.id}-${index}`}
-              points={segment}
-              fill="none"
-              stroke={item.color}
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              opacity="0.92"
-            />
-          ))}
+          {item.style === "points" ? item.points.filter((point) => point.valid && point.y !== null).map((point, index) => {
+            const screen = toScreen(point.x, point.y!);
+            return <circle key={`${item.id}-${index}`} cx={screen.x} cy={screen.y} r="7" fill={item.color} stroke="#ffffff" strokeWidth="2.5" />;
+          }) : segmentsFor(item.points, view, toScreen).map((segment, index) => (
+              <polyline
+                key={`${item.id}-${index}`}
+                points={segment}
+                fill="none"
+                stroke={item.color}
+                strokeWidth={item.style === "derivative" ? "2.5" : "3"}
+                strokeDasharray={item.style === "derivative" ? "8 6" : undefined}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity="0.92"
+              />
+            ))}
         </g>
       ))}
       {tracePoint && traceSeries && typeof tracePoint.y === "number" && (
@@ -94,6 +108,28 @@ export default function FunctionGraphCanvas({
         </g>
       )}
     </svg>
+  );
+}
+
+function IntegralArea({ area, view, toScreen }: { area: NonNullable<FunctionGraphCanvasProps["integralArea"]>; view: FunctionGraphView; toScreen: (x: number, y: number) => { x: number; y: number } }) {
+  const valid = area.points.filter((point) => point.valid && point.y !== null && point.x >= area.start && point.x <= area.end);
+  if (valid.length < 2) return null;
+  const baseline = Math.max(view.yMin, Math.min(view.yMax, 0));
+  const first = toScreen(valid[0].x, baseline);
+  const last = toScreen(valid.at(-1)!.x, baseline);
+  const curve = valid.map((point) => {
+    const screen = toScreen(point.x, point.y!);
+    return `${screen.x.toFixed(2)},${screen.y.toFixed(2)}`;
+  }).join(" ");
+  return (
+    <polygon
+      points={`${first.x.toFixed(2)},${first.y.toFixed(2)} ${curve} ${last.x.toFixed(2)},${last.y.toFixed(2)}`}
+      fill={area.color}
+      opacity="0.18"
+      stroke={area.color}
+      strokeWidth="1.5"
+      aria-label={`Integral area from ${area.start} to ${area.end}`}
+    />
   );
 }
 

@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import LessonsCategoryPage from "./LessonsCategoryPage";
 import LessonsHomePage from "./LessonsHomePage";
 import LessonPage from "./LessonPage";
+import AdvancedConceptLessonPage from "./AdvancedConceptLessonPage";
 import SchoolLessonsPage from "./SchoolLessonsPage";
 import SchoolLessonPage from "./SchoolLessonPage";
 
@@ -34,12 +35,30 @@ describe("lesson pages", () => {
     expect(html).toContain("Check");
   });
 
+  it("renders expert-review lessons with topic-specific visual requirements", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/calculus/277-informal-limits"]}><Routes><Route path="/lessons/:categorySlug/:lessonSlug" element={<LessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain("Informal Limits");
+    expect(html).toContain("Visual requirement");
+    expect(html).toContain("function graph");
+    expect(html).toContain("Use values near a, not just at a.");
+    expect(html).toContain("If f(x) approaches 4 near x=2, what is the limit?");
+    expect(html).not.toContain("For f(x)=");
+  });
+
   it("renders generated school syllabus pathways", () => {
     const html = renderToStaticMarkup(<MemoryRouter><SchoolLessonsPage /></MemoryRouter>);
     expect(html).toContain("School syllabus remediation");
     expect(html).toContain("220");
     expect(html).toContain("Euclidean Geometry");
     expect(html).toContain("NCERT Class 6 Mathematics");
+  });
+
+  it("renders advanced interactive labs with visual scenes", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/advanced-concepts/2001-partial-quotients"]}><Routes><Route path="/lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} /></Routes></MemoryRouter>);
+    expect(html).toContain("Partial Quotients");
+    expect(html).toContain("Step Explorer");
+    expect(html).toContain("continued fraction convergent error plot");
+    expect(html).toContain("convergents climb toward the target");
   });
 
   it("renders a generated school lesson route", () => {
@@ -60,6 +79,8 @@ describe("lesson pages", () => {
     expect(html).toContain("Place value tells the value of a digit");
     expect(html).toContain("Read digits from right to left");
     expect(html).toContain("In 4,582, what is the place value of 5?");
+    expect(html).toContain("place value chart visual model");
+    expect(html).toContain("a digit&#x27;s value depends on its column");
     expect(html).not.toContain("Place Value Explorer fills a Class 6");
   });
 
@@ -89,6 +110,8 @@ describe("lesson pages", () => {
     expect(html).toContain("Bayes&#x27; Theorem");
     expect(html).toContain("reverses conditional probability");
     expect(html).toContain("total probability denominator");
+    expect(html).toContain("tree diagram visual model");
+    expect(html).toContain("branches multiply along paths");
     expect(html).not.toContain("Bayes&#x27; Theorem fills a Class 12");
   });
 });

@@ -972,10 +972,50 @@ Object.assign(foundationNumberLessons, Object.fromEntries([
   }),
 ].map((lesson) => [lesson.id, lesson])));
 
-export const strengthenedFoundationLessonIds = Object.keys(foundationNumberLessons).map(Number);
+const allStrengthenedLessons: Record<number, StrengthenedLesson> = {
+  ...foundationNumberLessons,
+  ...algebraStrengthenedLessons,
+  ...appliedModellingBatchStrengthenedLessons,
+  ...functionStrengthenedLessons,
+  ...coordinateStrengthenedLessons,
+  ...vectorStrengthenedLessons,
+  ...dynamicGeometryStrengthenedLessons,
+  ...coreWorkspaceStrengthenedLessons,
+  ...graphToolStrengthenedLessons,
+  ...extraSplitStrengthenedLessons,
+  ...geometryBatchStrengthenedLessons,
+  ...geometryLociStrengthenedLessons,
+  ...trigBatchStrengthenedLessons,
+  ...calculusBatchStrengthenedLessons,
+  ...integralBatchStrengthenedLessons,
+  ...sequenceBatchStrengthenedLessons,
+  ...sequenceSeriesBatchStrengthenedLessons,
+  ...matrixBatchStrengthenedLessons,
+  ...complexBatchStrengthenedLessons,
+  ...complexAdvancedBatchStrengthenedLessons,
+  ...geometry3DBatchStrengthenedLessons,
+  ...geometry3DAdvancedBatchStrengthenedLessons,
+  ...authoringBatchStrengthenedLessons,
+  ...authoringContinuationBatchStrengthenedLessons,
+  ...platformBatchStrengthenedLessons,
+  ...symbolicBatchStrengthenedLessons,
+  ...symbolicContinuationBatchStrengthenedLessons,
+  ...spreadsheetBatchStrengthenedLessons,
+  ...statisticsBatchStrengthenedLessons,
+  ...regressionProbabilityBatchStrengthenedLessons,
+  ...distributionInferenceBatchStrengthenedLessons,
+  ...inferenceDiscreteBatchStrengthenedLessons,
+  ...schoolSyllabusBatchStrengthenedLessons,
+  ...schoolSyllabusProofBatchStrengthenedLessons,
+  ...schoolSyllabusAdvancedBatchStrengthenedLessons,
+  ...schoolSyllabusClass12BatchStrengthenedLessons,
+  ...schoolSyllabusFinalBatchStrengthenedLessons,
+};
+
+export const strengthenedFoundationLessonIds = Object.keys(allStrengthenedLessons).map(Number).sort((left, right) => left - right);
 
 export function getStrengthenedFoundationLesson(id: number) {
-  return foundationNumberLessons[id] ?? null;
+  return allStrengthenedLessons[id] ?? null;
 }
 
 export function getStrengthenedLessonContent(lesson: Pick<LessonDefinition, "id" | "title" | "topic" | "outcome">): LessonContent | null {
@@ -1005,8 +1045,7 @@ export function getStrengthenedLessonContent(lesson: Pick<LessonDefinition, "id"
   };
 }
 
-export function createStrengthenedFoundationChallenge(lessonId: number): FoundationChallenge | null {
-  const challenges: Record<number, FoundationChallenge> = {
+const allStrengthenedChallenges: Record<number, FoundationChallenge> = {
     57: { prompt: "Which value is a natural number in this lesson: 0, 12, or 1/2?", expected: "12", hint: "Natural numbers are counting numbers starting at 1.", kind: "keywords", factoryId: "number.natural-numbers" },
     58: { prompt: "Write the first whole number.", expected: "0", hint: "Whole numbers include zero.", kind: "numeric", factoryId: "number.whole-numbers" },
     59: { prompt: "Which integer is greater: -4 or -1?", expected: "-1", hint: "Greater means farther right on the number line.", kind: "numeric", factoryId: "number.integers" },
@@ -1078,8 +1117,10 @@ export function createStrengthenedFoundationChallenge(lessonId: number): Foundat
     ...schoolSyllabusAdvancedBatchStrengthenedChallenges,
     ...schoolSyllabusClass12BatchStrengthenedChallenges,
     ...schoolSyllabusFinalBatchStrengthenedChallenges,
-  };
-  return challenges[lessonId] ?? null;
+};
+
+export function createStrengthenedFoundationChallenge(lessonId: number): FoundationChallenge | null {
+  return allStrengthenedChallenges[lessonId] ?? null;
 }
 
 function toLessonFormula(formula: StrengthenedLesson["formulas"][number]): LessonFormula {

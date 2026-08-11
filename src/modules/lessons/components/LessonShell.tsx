@@ -40,6 +40,8 @@ import { createLegacyInteractionEvent, hasRequiredLessonEvidence } from "../engi
 import { isLessonLanguageCode, lessonLanguageOptions, loadLessonLocalizedContent } from "../engine/lessonLanguages";
 import { clearLessonProgress, defaultLessonProgress, readLessonProgress, writeLessonProgress } from "../engine/lessonPersistence";
 import { checkLessonAnswer, createLessonChallenge } from "../engine/lessonRuntime";
+import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
+import type { StrengthenedLesson } from "../strengthening/strengthenedLessonSchema";
 import type { LessonContent, LessonDefinition, LessonLanguageCode, LessonProgress, LessonStage } from "../types";
 import LessonSurface from "./LessonSurface";
 
@@ -67,6 +69,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
   const interacted = useMemo(() => hasRequiredLessonEvidence(lesson, progress.interactionHistory), [lesson, progress.interactionHistory]);
   const challenge = useMemo(() => createLessonChallenge(lesson, progress.seed, progress.interactionHistory), [lesson, progress.interactionHistory, progress.seed]);
   const adjacent = useMemo(() => adjacentLessons(lesson), [lesson]);
+  const strengthenedLesson = useMemo(() => getStrengthenedFoundationLesson(lesson.id), [lesson.id]);
   const selectedLanguage = lessonLanguageOptions.find((option) => option.code === languageCode) ?? lessonLanguageOptions[0];
   const localizedContent = languageContent ?? lesson.content;
   const stageIndex = Math.max(0, stages.findIndex((stage) => stage.id === progress.stage));
@@ -219,6 +222,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
               <MiniMetric icon={<Eye className="h-4 w-4" />} label="Observe" value={lesson.contract.observableOutputs.join(", ")} />
               <MiniMetric icon={<Layers3 className="h-4 w-4" />} label="Representations" value={lesson.contract.requiredRepresentations.join(", ")} />
             </div>
+            <LessonVisualBrief lesson={lesson} strengthenedLesson={strengthenedLesson} />
             <LessonSurface lesson={lesson} resetToken={resetToken} onInteraction={(event) => { const interaction = event ?? createLegacyInteractionEvent(lesson); setProgress((current) => ({ ...current, interactionHistory: [...current.interactionHistory, interaction].slice(-40), ...(current.stage === "discover" && current.prediction.trim() ? { stage: "explore" as const } : {}), updatedAt: Date.now() })); }} />
             <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {lesson.contract.requiredControlIds.map((control) => <Tag key={control} icon={<SlidersHorizontal className="h-3.5 w-3.5" />} label={control} />)}
@@ -254,6 +258,38 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         {adjacent.next ? <Link className="action-secondary justify-end text-right" to={adjacent.next.route}><span><span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">Next</span><span className="line-clamp-1">{adjacent.next.title}</span></span><ArrowRight className="h-4 w-4" /></Link> : <span />}
       </nav>
     </div>
+  );
+}
+
+function LessonVisualBrief({ lesson, strengthenedLesson }: { lesson: LessonDefinition; strengthenedLesson: StrengthenedLesson | null }) {
+  const representations = strengthenedLesson?.representations.length ? strengthenedLesson.representations : lesson.contract.requiredRepresentations.map((representation) => ({
+    id: representation,
+    type: "text_table" as const,
+    learningPurpose: `Use the ${representation} representation to inspect ${lesson.title}.`,
+  }));
+  const misconception = strengthenedLesson?.misconceptions[0];
+  const exitCheck = strengthenedLesson?.exitCheck[0];
+  return (
+    <section className="mb-3 rounded-2xl border border-sky-200 bg-sky-50/80 p-3 dark:border-sky-300/20 dark:bg-sky-300/10" aria-label="Lesson-specific visual requirements">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <SectionTitle icon={<Eye className="h-4 w-4" />} label="Visual requirement" />
+        <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-black uppercase text-sky-700 dark:bg-white/10 dark:text-sky-100">
+          {strengthenedLesson ? "Strengthened" : "Contract"}
+        </span>
+      </div>
+      <div className="mt-3 grid gap-2 md:grid-cols-2">
+        {representations.slice(0, 4).map((representation) => (
+          <article key={representation.id} className="rounded-xl border border-sky-100 bg-white/85 p-3 dark:border-white/10 dark:bg-slate-950/50">
+            <p className="text-[10px] font-black uppercase text-sky-700 dark:text-sky-200">{representation.type.replace(/_/g, " ")}</p>
+            <p className="mt-1 text-xs font-bold leading-5 text-slate-600 dark:text-slate-300">{representation.learningPurpose}</p>
+          </article>
+        ))}
+      </div>
+      <div className="mt-2 grid gap-2 lg:grid-cols-2">
+        {misconception ? <p className="rounded-xl bg-white/85 p-3 text-xs font-bold leading-5 text-slate-700 dark:bg-slate-950/50 dark:text-slate-200"><strong>Do not make it generic:</strong> {misconception.correction}</p> : null}
+        {exitCheck ? <p className="rounded-xl bg-white/85 p-3 text-xs font-bold leading-5 text-slate-700 dark:bg-slate-950/50 dark:text-slate-200"><strong>Visual must prove:</strong> {exitCheck.criterion}</p> : null}
+      </div>
+    </section>
   );
 }
 

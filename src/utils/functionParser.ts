@@ -8,7 +8,7 @@ type Token =
   | { type: "leftParen" }
   | { type: "rightParen" };
 
-const functions = new Set(["sin", "cos", "tan", "asin", "acos", "atan", "ln", "log", "exp", "sqrt", "cbrt", "abs", "floor", "ceil"]);
+const functions = new Set(["sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh", "ln", "log", "exp", "sqrt", "cbrt", "abs", "floor", "ceil", "round"]);
 const precedence: Record<string, number> = { "+": 1, "-": 1, "*": 2, "/": 2, "^": 3, "u-": 4 };
 const rightAssociative = new Set(["^", "u-"]);
 
@@ -29,9 +29,11 @@ function normalize(input: string) {
     .replace(/\u00f7/g, "/")
     .replace(/\u00d7/g, "*")
     .replace(/\u03c0/g, "pi")
+    .replace(/\u00b2/g, "^2")
+    .replace(/\u00b3/g, "^3")
     .replace(/\s+/g, "")
     .toLowerCase()
-    .replace(/(\d|\)|x|y|pi|e)(?=(x|y|pi|e|sin|cos|tan|asin|acos|atan|ln|log|exp|sqrt|cbrt|abs|floor|ceil|\())/g, "$1*");
+    .replace(/(\d|\)|x|y|pi|e)(?=(x|y|pi|e|sin|cos|tan|asin|acos|atan|sinh|cosh|tanh|ln|log|exp|sqrt|cbrt|abs|floor|ceil|round|\())/g, "$1*");
   const forbidden = /(window|document|globalthis|process|fetch|eval|function|constructor|import|=>|;|=|\{|\}|\[|\])/i;
   if (!expression) throw new Error("Enter a function of x");
   if (forbidden.test(expression)) throw new Error("Unsupported expression");
@@ -143,6 +145,9 @@ function applyFunction(name: string, value: number) {
   if (name === "asin") return Math.asin(value);
   if (name === "acos") return Math.acos(value);
   if (name === "atan") return Math.atan(value);
+  if (name === "sinh") return Math.sinh(value);
+  if (name === "cosh") return Math.cosh(value);
+  if (name === "tanh") return Math.tanh(value);
   if (name === "ln") return Math.log(value);
   if (name === "log") return Math.log10(value);
   if (name === "exp") return Math.exp(value);
@@ -151,5 +156,6 @@ function applyFunction(name: string, value: number) {
   if (name === "abs") return Math.abs(value);
   if (name === "floor") return Math.floor(value);
   if (name === "ceil") return Math.ceil(value);
+  if (name === "round") return Math.round(value);
   throw new Error("Unsupported function");
 }

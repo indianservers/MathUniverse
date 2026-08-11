@@ -342,7 +342,20 @@ function RationalVisual({ values }: { values: number[] }) {
 function QuantityVisual({ values }: { values: number[] }) {
   const [base, percent, time] = values;
   const width = Math.max(0, Math.min(520, Math.abs(percent) / 100 * 520));
-  return <g><Text x={90} y={70} value={`${percent}% of ${base} = ${percentValue(base, percent).toFixed(2)}`} size={30} /><rect x="100" y="130" width="520" height="58" rx="18" fill="#1e293b" /><rect x="100" y="130" width={width} height="58" rx="18" fill={percent >= 0 ? "#22d3ee" : "#fb7185"} /><Text x={90} y={275} value={`simple interest = ${simpleInterest(base, Math.abs(percent), time).toFixed(2)}`} /><Text x={90} y={335} value="ratio table | profit/loss | discount/tax all use the base" size={18} /></g>;
+  const selectedUnits = percentValue(base, percent);
+  return (
+    <g aria-label={`Percentage bar from 0 to ${base} units, with ${selectedUnits.toFixed(2)} units selected`}>
+      <Text x={90} y={70} value={`${percent}% of ${base} = ${selectedUnits.toFixed(2)} units`} size={30} />
+      <rect x="100" y="130" width="520" height="58" rx="14" fill="#1e293b" stroke="#cbd5e1" strokeWidth="2" />
+      <rect x="100" y="130" width={width} height="58" rx="14" fill={percent >= 0 ? "#22d3ee" : "#fb7185"} />
+      {Array.from({ length: 9 }, (_, index) => (
+        <line key={index} x1={152 + index * 52} x2={152 + index * 52} y1="132" y2="186" stroke="#e2e8f0" strokeWidth="1.5" opacity="0.85" />
+      ))}
+      <Text x={100} y={220} value={`whole bar = ${base} units | each section = ${(base / 10).toFixed(2)} units`} size={16} />
+      <Text x={90} y={285} value={`simple interest = ${simpleInterest(base, Math.abs(percent), time).toFixed(2)} units`} />
+      <Text x={90} y={345} value="ratio table | profit/loss | discount/tax all use the base" size={18} />
+    </g>
+  );
 }
 
 function AlgebraVisual({ values }: { values: number[] }) {
@@ -353,7 +366,25 @@ function AlgebraVisual({ values }: { values: number[] }) {
 function DataVisual({ values }: { values: number[] }) {
   const dataset = dataSet(Math.round(values[0]));
   const max = Math.max(...dataset);
-  return <g><Text x={90} y={70} value={`data: ${dataset.join(", ")}`} size={28} />{dataset.map((value, i) => <rect key={i} x={105 + i * 70} y={350 - value / max * 210} width="42" height={value / max * 210} fill="#22d3ee" />)}<Text x={90} y={405} value={`mean ${mean(dataset).toFixed(1)}, median ${median(dataset)}, mode ${mode(dataset).join(", ")}`} /></g>;
+  return (
+    <g aria-label={`Data bar chart. Values in units: ${dataset.join(", ")}`}>
+      <Text x={90} y={70} value={`data: ${dataset.join(", ")} units`} size={28} />
+      <line x1="88" x2="670" y1="350" y2="350" stroke="#e2e8f0" strokeWidth="2" />
+      <text x="60" y="300" transform="rotate(-90 60 300)" fill="#cbd5e1" fontSize="13" fontWeight="800">value (units)</text>
+      {dataset.map((value, i) => {
+        const height = value / max * 210;
+        const x = 105 + i * 70;
+        return (
+          <g key={i}>
+            <rect x={x} y={350 - height} width="42" height={height} rx="5" fill="#22d3ee" stroke="#e2e8f0" />
+            <Text x={x + 8} y={338 - height} value={`${value}`} size={14} />
+            <Text x={x + 13} y={375} value={`${i + 1}`} size={13} />
+          </g>
+        );
+      })}
+      <Text x={90} y={420} value={`mean ${mean(dataset).toFixed(1)} units, median ${median(dataset)} units, mode ${mode(dataset).join(", ")}`} />
+    </g>
+  );
 }
 
 function arithmeticExpression(preset: number) {

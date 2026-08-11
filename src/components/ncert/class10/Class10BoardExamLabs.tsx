@@ -801,17 +801,30 @@ function linearSvg(values: number[]) {
 function statsSvg(values: number[]) {
   const stats = groupedStats(rowsFromValues(values));
   const maxF = Math.max(1, ...stats.rows.map((row) => row.frequency));
+  const tickValues = [...new Set(Array.from({ length: 5 }, (_, index) => Math.round((maxF * index) / 4)))];
   return (
-    <g>
+    <g aria-label={`Grouped frequency chart. Bar heights in students: ${stats.rows.map((row) => row.frequency).join(", ")}`}>
       <Label x={60} y={65} text="Grouped table and ogive" />
+      <line x1="68" x2="690" y1="390" y2="390" stroke="#cbd5e1" strokeWidth="2" />
+      <line x1="68" x2="68" y1="140" y2="390" stroke="#cbd5e1" strokeWidth="2" />
+      {tickValues.map((tick) => {
+        const y = 390 - (tick / maxF) * 250;
+        return (
+          <g key={tick}>
+            <line x1="63" x2="690" y1={y} y2={y} stroke="#475569" strokeWidth="1" />
+            <Label x={38} y={y + 5} text={String(tick)} size={12} />
+          </g>
+        );
+      })}
+      <text x="24" y="320" transform="rotate(-90 24 320)" fill="#cbd5e1" fontSize="12" fontWeight="800">frequency (students)</text>
       {stats.rows.map((row, index) => {
         const x = 80 + index * 120;
         const barH = (row.frequency / maxF) * 250;
         return (
           <g key={`${row.lower}-${row.upper}`}>
-            <rect x={x} y={390 - barH} width="72" height={barH} fill={index === stats.modalIndex ? "#facc15" : "#22d3ee"} opacity="0.75" />
+            <rect x={x} y={390 - barH} width="72" height={barH} fill={index === stats.modalIndex ? "#facc15" : "#22d3ee"} opacity="0.78" stroke="#e2e8f0" strokeWidth="1" />
             <Label x={x - 5} y={425} text={`${row.lower}-${row.upper}`} size={13} />
-            <Label x={x + 18} y={380 - barH} text={String(row.frequency)} size={14} />
+            <Label x={x + 5} y={380 - barH} text={`${row.frequency} students`} size={13} />
           </g>
         );
       })}

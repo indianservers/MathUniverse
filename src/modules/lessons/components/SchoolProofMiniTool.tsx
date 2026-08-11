@@ -503,6 +503,7 @@ function ProbabilityTheoremProofTool({ lesson, config }: { lesson: SchoolSyllabu
         <Slider label="Likelihood P(B|A) %" value={likelihood} min={10} max={95} onChange={setLikelihood} />
         <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/70">
           <h3 className="text-sm font-black uppercase text-slate-700 dark:text-slate-200">Probability tree</h3>
+          <p className="mt-2 text-xs font-bold leading-5 text-slate-500 dark:text-slate-300">tree diagram visual model</p>
           <ProbabilityTreeSvg />
           <div className="mt-3 grid gap-2 sm:grid-cols-3">
             <Metric label="Numerator" value={`${prior * likelihood}`} />
@@ -684,7 +685,7 @@ function ConicSvg({ title }: { title: string }) {
 
 function ProbabilityTreeSvg() {
   return (
-    <svg viewBox="0 0 560 230" className="mt-3 h-52 w-full rounded-2xl bg-slate-50 dark:bg-white/5" role="img" aria-label="Probability partition tree">
+    <svg viewBox="0 0 560 230" className="mt-3 h-52 w-full rounded-2xl bg-slate-50 dark:bg-white/5" role="img" aria-label="tree diagram visual model showing branches multiply along paths">
       <circle cx="80" cy="115" r="8" fill="#4f46e5" />
       <line x1="88" y1="115" x2="230" y2="60" stroke="#0369a1" strokeWidth="4" />
       <line x1="88" y1="115" x2="230" y2="170" stroke="#0369a1" strokeWidth="4" />
@@ -696,6 +697,7 @@ function ProbabilityTreeSvg() {
       <text x="245" y="180" fontWeight="900" fill="#075985">not A</text>
       <text x="430" y="44" fontWeight="900" fill="#047857">B</text>
       <text x="430" y="150" fontWeight="900" fill="#047857">B</text>
+      <text x="80" y="214" fontWeight="900" fill="#475569">branches multiply along paths</text>
     </svg>
   );
 }

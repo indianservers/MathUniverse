@@ -12,6 +12,7 @@ import InquirySimulationLabs from "../components/inquiry/InquirySimulationLabs";
 import { recentRouteItems } from "../components/layout/GlobalUx";
 import { buildPracticeSpineLite } from "../data/olympyardPracticeSpineLite";
 import { initialOlympyardProgressLite, normalizeOlympyardProgressLite, OLYMPYARD_PROGRESS_STORAGE_KEY, type OlympyardProgressLite } from "../data/olympyardProgressLite";
+import VisualMathsGraphingSection from "../components/home/VisualMathsGraphingSection";
 
 const tourSteps = [
   { label: "Algebra line graph", route: "/algebra", description: "See how coefficients reshape lines and parabolas in real time." },
@@ -346,6 +347,8 @@ export default function Home() {
           })}
         </div>
       </section>
+
+      <VisualMathsGraphingSection />
 
       <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-6">
         {[

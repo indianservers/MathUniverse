@@ -472,14 +472,25 @@ function GroupedStatisticsLab({ a, h, scale }: { a: number; h: number; scale: nu
   const cfBefore = classes.slice(0, medianIndex).reduce((s, row) => s + row.f, 0);
   const medianRow = classes[Math.max(0, medianIndex)];
   const median = medianRow.low + ((medianTarget - cfBefore) / medianRow.f) * h;
+  const maxFrequency = Math.max(...freqs);
+  const frequencyTicks = Array.from({ length: 4 }, (_, index) => Math.round((maxFrequency * index) / 3));
   return (
-    <g>
+    <g aria-label={`Grouped frequency bar chart. Frequencies in students: ${freqs.join(", ")}`}>
       <Label x="80" y="50" text={`Mean=${roundTo(mean, 2)}, median=${roundTo(median, 2)}, modal class=${classes[modalIndex].low}-${classes[modalIndex].high}`} />
+      <line x1="92" x2="665" y1="330" y2="330" stroke="#0f172a" strokeWidth="2" />
+      <line x1="92" x2="92" y1={330 - maxFrequency * 7} y2="330" stroke="#0f172a" strokeWidth="2" />
+      {frequencyTicks.map((tick) => (
+        <g key={tick}>
+          <line x1="87" x2="665" y1={330 - tick * 7} y2={330 - tick * 7} stroke="#cbd5e1" strokeWidth="1" />
+          <text x="80" y={334 - tick * 7} textAnchor="end" fill="#334155" fontSize="11" fontWeight="700">{tick}</text>
+        </g>
+      ))}
+      <text x="52" y="272" transform="rotate(-90 52 272)" fill="#334155" fontSize="12" fontWeight="800">frequency (students)</text>
       {classes.map((row, i) => (
         <g key={i}>
-          <rect x={105 + i * 108} y={330 - row.f * 7} width="72" height={row.f * 7} fill={i === modalIndex ? "#f59e0b" : i === medianIndex ? "#8b5cf6" : "#06b6d4"} opacity="0.65" />
+          <rect x={105 + i * 108} y={330 - row.f * 7} width="72" height={row.f * 7} fill={i === modalIndex ? "#f59e0b" : i === medianIndex ? "#8b5cf6" : "#06b6d4"} opacity="0.72" stroke="#0f172a" strokeWidth="1" />
           <Label x={98 + i * 108} y="360" text={`${row.low}-${row.high}`} />
-          <Label x={117 + i * 108} y={315 - row.f * 7} text={`f=${row.f}`} />
+          <Label x={110 + i * 108} y={315 - row.f * 7} text={`${row.f} students`} />
         </g>
       ))}
       <rect x="86" y="75" width="610" height="92" rx="18" fill="#ecfeff" stroke="#06b6d4" strokeWidth="2" />
@@ -764,7 +775,7 @@ function FractionDecimal({ numerator, denominator }: { numerator: number; denomi
 function ComparingQuantities({ base, percent, time }: { base: number; percent: number; time: number }) {
   const simple = base + (base * percent * time) / 100;
   const compound = base * Math.pow(1 + percent / 100, time);
-  return <g><Label x="70" y="80" text={`Base ${base}, rate ${percent}%, time ${time}`} /><Bar x={100} y={150} w={base / 5} label="original" color="#94a3b8" /><Bar x={100} y={235} w={Math.max(10, simple / 5)} label="simple" color="#06b6d4" /><Bar x={100} y={320} w={Math.max(10, compound / 5)} label="compound" color="#f59e0b" /></g>;
+  return <g><Label x="70" y="80" text={`Base ${base}, rate ${percent}%, time ${time}`} /><Bar x={100} y={150} w={base / 5} value={base} label="original" color="#94a3b8" /><Bar x={100} y={235} w={Math.max(10, simple / 5)} value={simple} label="simple" color="#06b6d4" /><Bar x={100} y={320} w={Math.max(10, compound / 5)} value={compound} label="compound" color="#f59e0b" /></g>;
 }
 
 function RationalLine({ p, q }: { p: number; q: number }) {
@@ -779,9 +790,9 @@ function ExponentBlocks({ base, m, n }: { base: number; m: number; n: number }) 
   return (
     <g>
       <Label x="70" y="70" text={`${roundTo(base, 2)}^${m} x ${roundTo(base, 2)}^${n} = ${roundTo(base, 2)}^${m + n}`} />
-      <Bar x={90} y={135} w={scaleWidth(valueM)} label={`${roundTo(base, 2)}^${m} = ${formatPowerValue(valueM)}`} color="#06b6d4" />
-      <Bar x={90} y={220} w={scaleWidth(Math.pow(base, n))} label={`${roundTo(base, 2)}^${n} = ${formatPowerValue(Math.pow(base, n))}`} color="#f59e0b" />
-      <Bar x={90} y={305} w={scaleWidth(combined)} label={`combined = ${formatPowerValue(combined)}`} color="#8b5cf6" />
+      <Bar x={90} y={135} w={scaleWidth(valueM)} value={valueM} label={`${roundTo(base, 2)}^${m} = ${formatPowerValue(valueM)}`} color="#06b6d4" />
+      <Bar x={90} y={220} w={scaleWidth(Math.pow(base, n))} value={Math.pow(base, n)} label={`${roundTo(base, 2)}^${n} = ${formatPowerValue(Math.pow(base, n))}`} color="#f59e0b" />
+      <Bar x={90} y={305} w={scaleWidth(combined)} value={combined} label={`combined = ${formatPowerValue(combined)}`} color="#8b5cf6" />
       <Label x="90" y="405" text={m < 0 || n < 0 ? "Negative exponents shrink values into reciprocals." : "Same base multiplication adds exponents."} />
     </g>
   );
@@ -919,7 +930,29 @@ function EuclidAlgorithm({ a, b }: { a: number; b: number }) {
 function APVisual({ first, diff, n }: { first: number; diff: number; n: number }) {
   const terms = Array.from({ length: n }, (_, i) => first + i * diff);
   const sum = terms.reduce((total, value) => total + value, 0);
-  return <g><Label x="80" y="70" text={`Progression: ${terms.slice(0, 6).map((x) => roundTo(x, 1)).join(", ")}${terms.length > 6 ? "..." : ""}`} />{terms.map((term, i) => <rect key={i} x={70 + i * 40} y={330 - Math.max(8, Math.abs(term) * 8)} width="26" height={Math.max(8, Math.abs(term) * 8)} fill={term >= 0 ? "#06b6d4" : "#f59e0b"} opacity="0.72" />)}<Label x="80" y="410" text={`a_n=${roundTo(terms.at(-1) ?? 0, 2)}, S_n=${roundTo(sum, 2)}`} /></g>;
+  const maxMagnitude = Math.max(1, ...terms.map((term) => Math.abs(term)));
+  const pixelsPerUnit = Math.min(8, 190 / maxMagnitude);
+  const baseline = terms.some((term) => term < 0) ? 250 : 330;
+  return (
+    <g aria-label={`Arithmetic progression bar chart in units: ${terms.map((term) => roundTo(term, 1)).join(", ")}`}>
+      <Label x="80" y="58" text={`Progression: ${terms.slice(0, 6).map((x) => roundTo(x, 1)).join(", ")}${terms.length > 6 ? "..." : ""}`} />
+      <Label x="80" y="90" text="bar height = term value (units)" />
+      <line x1="65" x2="690" y1={baseline} y2={baseline} stroke="#0f172a" strokeWidth="2" />
+      {terms.map((term, i) => {
+        const height = Math.max(8, Math.abs(term) * pixelsPerUnit);
+        const x = 70 + i * 40;
+        const y = term >= 0 ? baseline - height : baseline;
+        return (
+          <g key={i}>
+            <rect x={x} y={y} width="26" height={height} rx="4" fill={term >= 0 ? "#06b6d4" : "#f59e0b"} opacity="0.72" />
+            <text x={x + 13} y={term >= 0 ? y - 7 : y + height + 15} textAnchor="middle" fill="#0f172a" fontSize="12" fontWeight="800">{roundTo(term, 1)}</text>
+            <text x={x + 13} y={baseline + (terms.some((value) => value < 0) ? 132 : 22)} textAnchor="middle" fill="#334155" fontSize="11" fontWeight="700">a{i + 1}</text>
+          </g>
+        );
+      })}
+      <Label x="80" y="425" text={`a_n=${roundTo(terms.at(-1) ?? 0, 2)} units, S_n=${roundTo(sum, 2)} units`} />
+    </g>
+  );
 }
 
 function SectionFormula({ m, n }: { m: number; n: number }) {
@@ -944,8 +977,36 @@ function Grid() {
   return <g opacity="0.45">{Array.from({ length: 15 }).map((_, i) => <line key={`v-${i}`} x1={40 + i * 48} y1="30" x2={40 + i * 48} y2="430" stroke="#e2e8f0" />)}{Array.from({ length: 9 }).map((_, i) => <line key={`h-${i}`} x1="30" y1={45 + i * 45} x2="730" y2={45 + i * 45} stroke="#e2e8f0" />)}</g>;
 }
 
-function Bar({ x, y, w, label, color }: { x: number; y: number; w: number; label: string; color: string }) {
-  return <g><rect x={x} y={y} width={Math.min(560, Math.abs(w))} height="44" rx="14" fill={color} opacity="0.65" /><Label x={x} y={y - 12} text={label} /></g>;
+function Bar({ x, y, w, value, label, color }: { x: number; y: number; w: number; value: number; label: string; color: string }) {
+  const width = Math.min(560, Math.max(24, Math.abs(w)));
+  const magnitude = Math.abs(value);
+  const isExactUnitBar = Number.isInteger(magnitude) && magnitude > 0 && magnitude <= 32 && width / magnitude >= 4;
+  const targetSections = Math.min(20, Math.max(1, Math.round(width / 24)));
+  const exactDivisor = Number.isInteger(magnitude)
+    ? Array.from({ length: 19 }, (_, index) => index + 2)
+        .filter((candidate) => magnitude % candidate === 0)
+        .sort((left, right) => Math.abs(left - targetSections) - Math.abs(right - targetSections))[0]
+    : undefined;
+  const sectionCount = isExactUnitBar ? magnitude : exactDivisor ?? targetSections;
+  const sectionWidth = width / sectionCount;
+  const unitText = `${formatPowerValue(value)} ${magnitude === 1 ? "unit" : "units"}`;
+  const unitsPerSection = roundTo(magnitude / sectionCount, 2);
+  const sectionText = isExactUnitBar
+    ? "each section = 1 unit"
+    : `each section ${Number.isInteger(unitsPerSection) ? "=" : "≈"} ${formatPowerValue(unitsPerSection)} units`;
+  const valueFitsInside = width >= 64;
+  const sectionFitsBeside = width < 360;
+  return (
+    <g aria-label={`${label}; ${unitText}; ${sectionText}`}>
+      <Label x={x} y={y - 12} text={label} />
+      <rect x={x} y={y} width={width} height="44" rx="10" fill={color} opacity="0.72" stroke="#0f172a" strokeWidth="1.5" />
+      {Array.from({ length: sectionCount - 1 }, (_, index) => (
+        <line key={index} x1={x + (index + 1) * sectionWidth} x2={x + (index + 1) * sectionWidth} y1={y + 2} y2={y + 42} stroke="#f8fafc" strokeWidth="1.5" opacity="0.9" />
+      ))}
+      <text x={valueFitsInside ? x + width / 2 : x + width + 8} y={sectionFitsBeside ? y + 27 : y + 18} textAnchor={valueFitsInside ? "middle" : "start"} fill="#0f172a" fontSize="13" fontWeight="900">{unitText}</text>
+      <text x={sectionFitsBeside ? x + width + 10 : x + width / 2} y={sectionFitsBeside ? y + 28 : y + 38} textAnchor={sectionFitsBeside ? "start" : "middle"} fill="#334155" fontSize="11" fontWeight="700">{sectionText}</text>
+    </g>
+  );
 }
 
 function Arrow({ x1, x2, y, color }: { x1: number; x2: number; y: number; color: string }) {
