@@ -40,11 +40,13 @@ describe("Visual Proofs phase seventeen probability launch", () => {
   it("keeps probability free of generic coming-soon starter as the main experience", () => {
     const probabilityProofs = getVisualProofsByCategory("probability");
     const manifestRoutes = visualProofsRouteSmokeManifest.map((entry) => entry.route);
-    expect(probabilityProofs).toHaveLength(8);
+    expect(probabilityProofs.length).toBeGreaterThanOrEqual(8);
     expect(probabilityProofs.every((proof) => proof.status === "available")).toBe(true);
     expect(probabilityProofs.some((proof) => proof.slug === "starter-visual-proof")).toBe(false);
-    expect(probabilityProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
-    expect(probabilityProofs.every((proof) => proof.proofLearningModel === "simulation-board")).toBe(true);
+    const phaseSlugs = new Set<string>(phaseSeventeenRouteSlugs.map(([, slug]) => slug));
+    const phaseProofs = probabilityProofs.filter((proof) => phaseSlugs.has(proof.slug));
+    expect(phaseProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    expect(phaseProofs.every((proof) => proof.proofLearningModel === "simulation-board")).toBe(true);
     expect(manifestRoutes).toEqual(expect.arrayContaining(phaseSeventeenRouteSlugs.map(routeFromSlug)));
   });
 

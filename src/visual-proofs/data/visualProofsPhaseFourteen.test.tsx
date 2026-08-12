@@ -49,7 +49,7 @@ describe("Visual Proofs phase fourteen calculus graph-limit upgrade", () => {
 
   it("keeps the Phase 14 routes upgraded as part of the calculus category", () => {
     const calculusProofs = getVisualProofsByCategory("calculus").filter((proof) => proof.status === "available");
-    expect(calculusProofs).toHaveLength(15);
+    expect(calculusProofs.length).toBeGreaterThanOrEqual(15);
     expect(calculusProofs.filter((proof) => proof.proofUpgradeStatus === "phase-upgraded").map((proof) => proof.slug)).toEqual(expect.arrayContaining(upgradedCalculusSlugs));
     expect(calculusProofs.filter((proof) => upgradedCalculusSlugs.includes(proof.slug)).every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
   });

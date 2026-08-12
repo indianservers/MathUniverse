@@ -7,6 +7,8 @@ import Sidebar from "./Sidebar";
 import { navItems } from "./navItems";
 import { BackToTopButton, BreadcrumbTrail, UndoToastHost } from "./GlobalUx";
 import { ArrowLeft, Github, Mail, Map, Maximize2, Minimize2, Sparkles } from "lucide-react";
+import MathWorkspaceLayout from "../workspace/MathWorkspaceLayout";
+import { findMathWorkspace } from "../../workspace/mathWorkspaces";
 
 function InlinePageNav({ showBack }: { showBack: boolean }) {
   const navigate = useNavigate();
@@ -65,7 +67,8 @@ export default function AppLayout() {
   const location = useLocation();
   const showBack = location.pathname.split("/").filter(Boolean).length > 1;
   const isWorkspaceRoute = location.pathname === "/workspace" || location.pathname.startsWith("/workspace/");
-  const isStudioRoute = location.pathname === "/math-lab/3d-graphing" || location.pathname === "/math-lab/graphing-calculator" || location.pathname === "/workspace/3d";
+  const isStudioRoute = location.pathname === "/math-lab/3d-graphing" || location.pathname === "/math-lab/graphing-calculator" || location.pathname === "/workspace/graph" || location.pathname === "/workspace/3d" || location.pathname === "/workspace/geometry" || location.pathname.startsWith("/workspace/data") || location.pathname === "/shapes";
+  const currentMathWorkspace = findMathWorkspace(location.pathname);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -99,8 +102,8 @@ export default function AppLayout() {
 
   if (isStudioRoute) {
     return (
-      <main id="main-content" className="h-dvh overflow-hidden bg-[#030914]">
-        <Outlet />
+      <main id="main-content" className="math-workspace-host h-dvh overflow-hidden bg-[#030914]">
+        {currentMathWorkspace ? <MathWorkspaceLayout workspace={currentMathWorkspace}><Outlet /></MathWorkspaceLayout> : <div className="math-workspace-page h-full min-h-0"><Outlet /></div>}
         <UndoToastHost />
       </main>
     );

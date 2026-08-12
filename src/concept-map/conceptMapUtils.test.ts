@@ -8,12 +8,24 @@ import {
   getConceptReadiness,
   getNextConcepts,
   getPrerequisites,
+  getVisibleEdges,
 } from "./conceptMapUtils";
 
 describe("concept map data and utilities", () => {
   it("ships a large enough Phase 1 knowledge graph", () => {
     expect(conceptNodes.length).toBeGreaterThanOrEqual(60);
     expect(conceptEdges.length).toBeGreaterThanOrEqual(100);
+    expect(Math.max(...conceptNodes.map((concept) => concept.x))).toBeLessThanOrEqual(1760);
+    expect(Math.max(...conceptNodes.map((concept) => concept.y))).toBeLessThanOrEqual(1060);
+    expect(Math.min(...conceptNodes.map((concept) => concept.x))).toBeGreaterThanOrEqual(0);
+    expect(Math.min(...conceptNodes.map((concept) => concept.y))).toBeGreaterThanOrEqual(0);
+  });
+
+  it("filters visible edges by relationship type", () => {
+    const trigonometry = filterConcepts({ categories: ["trigonometry"] });
+    const edges = getVisibleEdges(trigonometry, undefined, false, false, ["prerequisite"]);
+    expect(edges.length).toBeGreaterThan(0);
+    expect(edges.every((edge) => edge.type === "prerequisite")).toBe(true);
   });
 
   it("resolves core concept relationships", () => {

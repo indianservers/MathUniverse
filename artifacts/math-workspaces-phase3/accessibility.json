@@ -1,0 +1,65 @@
+[
+  {
+    "name": "cas",
+    "route": "/workspace/data",
+    "focused": {
+      "tag": "INPUT",
+      "label": "Workspace title"
+    },
+    "violations": []
+  },
+  {
+    "name": "spreadsheet",
+    "route": "/workspace/data/spreadsheet",
+    "focused": {
+      "tag": "INPUT",
+      "label": "Import spreadsheet file"
+    },
+    "violations": []
+  },
+  {
+    "name": "geometry",
+    "route": "/workspace/geometry",
+    "focused": {
+      "tag": "A",
+      "label": "Home"
+    },
+    "violations": []
+  },
+  {
+    "name": "geometry-3d",
+    "route": "/workspace/3d",
+    "focused": {
+      "tag": "A",
+      "label": "Home"
+    },
+    "violations": []
+  },
+  {
+    "name": "graphs",
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "focused": {
+      "tag": "A",
+      "label": "Home"
+    },
+    "violations": []
+  },
+  {
+    "name": "graphs-3d",
+    "route": "/math-lab/3d-graphing",
+    "focused": {
+      "tag": "A",
+      "label": "Home"
+    },
+    "violations": []
+  },
+  {
+    "name": "shapes",
+    "route": "/shapes",
+    "focused": {
+      "tag": "A",
+      "label": "Home"
+    },
+    "violations": []
+  }
+]

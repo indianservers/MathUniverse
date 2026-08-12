@@ -1,7 +1,23 @@
-import { useMemo, useState } from "react";
-import { ChevronDown, Eye, Filter, Search, Sparkles } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import {
+  ArrowLeft, ArrowRight, BookOpen, Check, ChevronDown, CircleHelp, Clock3, Eye, Filter,
+  History, Info, ListFilter, Maximize2, Menu, Minus, Network, Plus, RotateCcw,
+  Search, Share2, Sparkles, Star, Volume2, X,
+} from "lucide-react";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
+import { InlineMathText } from "../components/ui/MathExpression";
+import {
+  dictionarySlug,
+  filterDictionaryTerms,
+  findDictionaryTerm,
+  readStoredList,
+  readStoredProgress,
+  relatedDictionaryTerms,
+  type DictionaryProgress,
+} from "../dictionary/visualDictionaryWorkspace";
+import { iconForDictionaryTerm, mathConceptIcons } from "../dictionary/mathConceptIcons";
 import {
   visualDictionaryCategories,
   visualDictionaryLetters,
@@ -170,7 +186,248 @@ const dictionaryRanges: Array<{ id: DictionaryRange; label: string; from: string
 const initialVisibleTerms = 48;
 const loadMoreTerms = 48;
 
+const savedKey = "math-universe-dictionary-saved-v1";
+const recentKey = "math-universe-dictionary-recent-v1";
+const progressKey = "math-universe-dictionary-progress-v1";
+const textSizeKey = "math-universe-dictionary-text-size-v1";
+
+type IndexTab = "all" | "recent" | "saved";
+type TextSize = "small" | "default" | "large";
+
+const pronunciations: Record<string, string> = {
+  abacus: "/AB-uh-kuhs/", algebra: "/AL-juh-bruh/", calculus: "/KAL-kyuh-luhs/",
+  derivative: "/dih-RIV-uh-tiv/", geometry: "/jee-OM-uh-tree/", hypotenuse: "/hy-POT-uh-noos/",
+  matrix: "/MAY-triks/", probability: "/prob-uh-BIL-uh-tee/", theorem: "/THEE-uh-rum/",
+};
+
 export default function MathVisualDictionary() {
+  const [params, setParams] = useSearchParams();
+  const initialTerm = findDictionaryTerm(visualDictionaryTerms, params.get("term")) ?? visualDictionaryTerms[0];
+  const [selected, setSelected] = useState(initialTerm);
+  const [query, setQuery] = useState(params.get("q") ?? "");
+  const [letter, setLetter] = useState(params.get("letter") ?? "All");
+  const [category, setCategory] = useState(params.get("category") ?? "All");
+  const [kind, setKind] = useState(params.get("visual") ?? "All");
+  const [indexTab, setIndexTab] = useState<IndexTab>("all");
+  const [saved, setSaved] = useState(() => readStoredList(savedKey));
+  const [recent, setRecent] = useState(() => readStoredList(recentKey));
+  const [progress, setProgress] = useState<DictionaryProgress>(() => readStoredProgress(progressKey));
+  const [readingMode, setReadingMode] = useState(false);
+  const [textSize, setTextSize] = useState<TextSize>(() => (localStorage.getItem(textSizeKey) as TextSize) || "default");
+  const [indexOpen, setIndexOpen] = useState(false);
+  const [practiceValue, setPracticeValue] = useState(0);
+  const [practiceState, setPracticeState] = useState<"idle" | "correct" | "incorrect">("idle");
+  const [notice, setNotice] = useState("");
+  const searchRef = useRef<HTMLInputElement>(null);
+  const visualRef = useRef<HTMLDivElement>(null);
+  const visualKinds = useMemo(() => Array.from(new Set(visualDictionaryTerms.map((term) => term.kind))).sort(), []);
+  const availableLetters = useMemo(() => new Set(visualDictionaryLetters), []);
+
+  const filtered = useMemo(() => {
+    const base = indexTab === "saved"
+      ? visualDictionaryTerms.filter((entry) => saved.includes(dictionarySlug(entry.term)))
+      : indexTab === "recent"
+        ? recent.map((slug) => findDictionaryTerm(visualDictionaryTerms, slug)).filter((entry): entry is VisualDictionaryTerm => Boolean(entry))
+        : visualDictionaryTerms;
+    return filterDictionaryTerms(base, { query, letter, category, kind });
+  }, [category, indexTab, kind, letter, query, recent, saved]);
+
+  const selectedIndex = Math.max(0, filtered.findIndex((entry) => entry.term === selected.term));
+  const related = useMemo(() => relatedDictionaryTerms(visualDictionaryTerms, selected), [selected]);
+  const meaning = selected.explanation ?? customMeanings[selected.term.toLowerCase()]?.meaning ?? defaultMeaning(selected);
+  const example = selected.representation ?? customMeanings[selected.term.toLowerCase()]?.example ?? defaultExample(selected);
+  const steps = howItWorks(selected);
+  const practice = practiceFor(selected);
+  const viewedCount = Object.values(progress).filter((state) => state.viewed).length;
+  const selectedProgress = progress[dictionarySlug(selected.term)] ?? {};
+  const savedSelected = saved.includes(dictionarySlug(selected.term));
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "/" && !isEditableTarget(event.target)) { event.preventDefault(); searchRef.current?.focus(); }
+      if (event.key === "Escape") { setIndexOpen(false); searchRef.current?.blur(); }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  useEffect(() => {
+    const slug = dictionarySlug(selected.term);
+    const now = new Date().toISOString();
+    setRecent((current) => {
+      const next = [slug, ...current.filter((item) => item !== slug)].slice(0, 40);
+      localStorage.setItem(recentKey, JSON.stringify(next));
+      return next;
+    });
+    setProgress((current) => {
+      const next = { ...current, [slug]: { ...current[slug], viewed: current[slug]?.viewed ?? now } };
+      localStorage.setItem(progressKey, JSON.stringify(next));
+      return next;
+    });
+  }, [selected.term]);
+
+  useEffect(() => {
+    const next = new URLSearchParams();
+    next.set("term", dictionarySlug(selected.term));
+    if (query) next.set("q", query);
+    if (letter !== "All") next.set("letter", letter);
+    if (category !== "All") next.set("category", category);
+    if (kind !== "All") next.set("visual", kind);
+    setParams(next, { replace: true });
+  }, [category, kind, letter, query, selected.term, setParams]);
+
+  function selectTerm(entry: VisualDictionaryTerm) {
+    setSelected(entry);
+    setPracticeValue(0);
+    setPracticeState("idle");
+    setIndexOpen(false);
+    setNotice(`${entry.term} selected`);
+  }
+
+  function toggleSaved(entry = selected) {
+    const slug = dictionarySlug(entry.term);
+    setSaved((current) => {
+      const next = current.includes(slug) ? current.filter((item) => item !== slug) : [slug, ...current];
+      localStorage.setItem(savedKey, JSON.stringify(next));
+      return next;
+    });
+  }
+
+  function clearFilters() {
+    setQuery(""); setLetter("All"); setCategory("All"); setKind("All"); setIndexTab("all");
+  }
+
+  function navigateRelative(offset: number) {
+    if (!filtered.length) return;
+    selectTerm(filtered[(selectedIndex + offset + filtered.length) % filtered.length]);
+  }
+
+  function chooseRandom() {
+    const candidates = filtered.filter((entry) => entry.term !== selected.term);
+    if (candidates.length) selectTerm(candidates[Math.floor(Math.random() * candidates.length)]);
+  }
+
+  function checkPractice() {
+    const correct = practiceValue === practice.target;
+    setPracticeState(correct ? "correct" : "incorrect");
+    const slug = dictionarySlug(selected.term);
+    const now = new Date().toISOString();
+    setProgress((current) => {
+      const attempts = Number(current[slug]?.practiced ? 1 : 0);
+      const next = { ...current, [slug]: { ...current[slug], practiced: now, ...(correct && attempts ? { mastered: now } : {}) } };
+      localStorage.setItem(progressKey, JSON.stringify(next));
+      return next;
+    });
+  }
+
+  function speakTerm() {
+    if (!("speechSynthesis" in window)) { setNotice("Speech is not supported by this browser."); return; }
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(selected.term));
+  }
+
+  async function shareTerm() {
+    const url = window.location.href;
+    if (navigator.share) await navigator.share({ title: selected.term, text: meaning, url });
+    else { await navigator.clipboard.writeText(url); setNotice("Term link copied"); }
+  }
+
+  async function toggleVisualFullscreen() {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await visualRef.current?.requestFullscreen?.();
+  }
+
+  function changeTextSize(next: TextSize) {
+    setTextSize(next); localStorage.setItem(textSizeKey, next);
+  }
+
+  return (
+    <div className={`dictionary-workspace dictionary-text-${textSize} ${readingMode ? "is-reading" : ""}`}>
+      <p className="sr-only" aria-live="polite">{notice}</p>
+      <header className="dictionary-header">
+        <div className="dictionary-brand"><img src={mathConceptIcons.dictionary} alt="" /><div><h1>Maths Visual Dictionary</h1><p>{visualDictionaryTerms.length.toLocaleString()} visual definitions from arithmetic to advanced mathematics</p></div></div>
+        <label className="dictionary-search">
+          <Search aria-hidden="true" />
+          <span className="sr-only">Search dictionary</span>
+          <input ref={searchRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search a term, symbol, formula or idea..." />
+          {query ? <button type="button" onClick={() => setQuery("")} aria-label="Clear search"><X /></button> : <kbd>/</kbd>}
+        </label>
+        <nav className="dictionary-header-actions" aria-label="Dictionary actions">
+          <button type="button" onClick={() => setIndexTab("saved")} title="Favorites"><Star /><span>Favorites</span></button>
+          <button type="button" onClick={() => setIndexTab("recent")} title="History"><History /><span>History</span></button>
+          <button type="button" onClick={chooseRandom} title="Random term"><RotateCcw /><span>Random</span></button>
+        </nav>
+      </header>
+
+      <div className="dictionary-filterbar">
+        <div className="dictionary-count">{filtered.length.toLocaleString()} terms <span>• {visualDictionaryLetters.length} letters • {visualDictionaryCategories.length} categories</span></div>
+        <div className="dictionary-letters" aria-label="Filter by first letter">
+          {["All", ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"].map((item) => <button key={item} type="button" disabled={item !== "All" && !availableLetters.has(item)} aria-pressed={letter === item} onClick={() => setLetter(item)}>{item}</button>)}
+        </div>
+        <label><span className="sr-only">Category</span><ListFilter /><select value={category} onChange={(event) => setCategory(event.target.value)}><option value="All">All categories</option>{visualDictionaryCategories.map((item) => <option key={item}>{item}</option>)}</select></label>
+        <label><span className="sr-only">Visual type</span><Eye /><select value={kind} onChange={(event) => setKind(event.target.value)}><option value="All">All visuals</option>{visualKinds.map((item) => <option key={item} value={item}>{visualKindLabels[item]}</option>)}</select></label>
+        {(query || letter !== "All" || category !== "All" || kind !== "All" || indexTab !== "all") && <button type="button" className="dictionary-clear" onClick={clearFilters}>Clear filters</button>}
+      </div>
+
+      <button type="button" className="dictionary-index-toggle" onClick={() => setIndexOpen(true)}><Menu /> Browse {filtered.length.toLocaleString()} terms</button>
+      <div className="dictionary-columns">
+        <aside className={`dictionary-index ${indexOpen ? "is-open" : ""}`} aria-label="Dictionary term index">
+          <div className="dictionary-panel-heading"><h2><BookOpen /> Dictionary</h2><button type="button" onClick={() => setIndexOpen(false)} aria-label="Close dictionary"><X /></button></div>
+          <div className="dictionary-index-tabs" role="tablist">
+            {(["all", "recent", "saved"] as IndexTab[]).map((tab) => <button role="tab" aria-selected={indexTab === tab} key={tab} onClick={() => setIndexTab(tab)}>{tab === "all" ? "All" : tab === "recent" ? "Recent" : "Saved"}</button>)}
+          </div>
+          <div className="dictionary-term-list" role="listbox" aria-label="Terms">
+            {filtered.slice(0, 100).map((entry) => {
+              const active = entry.term === selected.term;
+              return <div key={entry.term} className={`dictionary-term-row ${active ? "is-selected" : ""}`} role="option" aria-selected={active}>
+                <button type="button" onClick={() => selectTerm(entry)}>
+                  <span className="dictionary-thumb"><img src={iconForDictionaryTerm(entry)} alt="" loading="lazy" decoding="async" /></span>
+                  <span><strong>{entry.term}</strong><small>{entry.category} · {visualKindLabels[entry.kind]}</small></span>
+                </button>
+                <button type="button" onClick={() => toggleSaved(entry)} aria-label={`${saved.includes(dictionarySlug(entry.term)) ? "Remove" : "Add"} ${entry.term} ${saved.includes(dictionarySlug(entry.term)) ? "from" : "to"} favorites`}><Star fill={saved.includes(dictionarySlug(entry.term)) ? "currentColor" : "none"} /></button>
+              </div>;
+            })}
+            {!filtered.length && <div className="dictionary-empty"><Search /><strong>No matching term</strong><p>Try a broader word or clear the current filters.</p><button type="button" onClick={clearFilters}>Clear filters</button></div>}
+            {filtered.length > 100 && <p className="dictionary-list-limit">Showing the first 100 matches. Refine search to narrow the index.</p>}
+          </div>
+          <div className="dictionary-quick-categories"><span>Quick categories</span>{(["Algebra", "Geometry", "Calculus", "Statistics"] as VisualDictionaryCategory[]).map((item) => <button key={item} onClick={() => setCategory(item)} title={item}><img src={mathConceptIcons[item]} alt="" /><span>{item}</span></button>)}</div>
+        </aside>
+
+        <main className="dictionary-detail" id="dictionary-selected-term">
+          <div className="dictionary-term-header">
+            <div className="dictionary-selected-heading"><img src={iconForDictionaryTerm(selected)} alt="" /><div><div className="dictionary-title-line"><h2>{selected.term}</h2>{pronunciations[selected.term.toLowerCase()] && <span>{pronunciations[selected.term.toLowerCase()]}</span>}<button type="button" onClick={speakTerm} aria-label={`Pronounce ${selected.term}`}><Volume2 /></button></div><div className="dictionary-tags"><span>{selected.category}</span><span>{visualKindLabels[selected.kind]}</span></div></div></div>
+            <div><button type="button" onClick={() => toggleSaved()} aria-pressed={savedSelected}><Star fill={savedSelected ? "currentColor" : "none"} />{savedSelected ? "Saved" : "Save"}</button><button type="button" onClick={() => void shareTerm()}><Share2 />Share</button></div>
+          </div>
+          <div ref={visualRef} className="dictionary-primary-visual">
+            <DictionaryVisual kind={selected.kind} term={selected.term} tone={categoryStyles[selected.category]} large />
+            <button type="button" onClick={() => void toggleVisualFullscreen()} aria-label="Toggle visual fullscreen"><Maximize2 /></button>
+          </div>
+          <div className="dictionary-definition-grid">
+            <section><h3><BookOpen /> Meaning</h3><p>{selected.description ?? meaning}</p><h3><CircleHelp /> In simple words</h3><p>{meaning}</p><div className="dictionary-example"><h3><Sparkles /> Example</h3><InlineMathText value={example} /></div></section>
+            <section><h3><Check /> How it works</h3><ol>{steps.map((step, index) => <li key={step}><span>{index + 1}</span><p>{step}</p></li>)}</ol><h3><Info /> Notation</h3><div className="dictionary-notation"><InlineMathText value={selected.representation ?? notationFor(selected)} /></div></section>
+          </div>
+        </main>
+
+        <aside className="dictionary-inspector" aria-label="Term information and practice">
+          <section><h2><Info /> At a glance</h2><dl><div><dt>Type</dt><dd>{visualKindLabels[selected.kind]}</dd></div><div><dt>Level</dt><dd>{levelFor(selected)}</dd></div><div><dt>Category</dt><dd>{selected.category}</dd></div><div><dt>Keywords</dt><dd>{selected.keywords.slice(0, 3).join(", ")}</dd></div></dl></section>
+          <section><h2><Network /> Related terms</h2><div className="dictionary-related">{related.map((entry) => <button key={entry.term} onClick={() => selectTerm(entry)}><img src={iconForDictionaryTerm(entry)} alt="" />{entry.term}</button>)}</div><Link to={`/concept-map?concept=${encodeURIComponent(selected.term)}`}>Open concept map <ArrowRight /></Link></section>
+          <section><h2><Sparkles /> Try it</h2><p>{practice.instruction}</p><div className="dictionary-practice"><button onClick={() => setPracticeValue((value) => Math.max(practice.min, value - 1))} aria-label={`Decrease ${practice.label}`}><Minus /></button><output aria-label={practice.label}>{practiceValue}</output><button onClick={() => setPracticeValue((value) => Math.min(practice.max, value + 1))} aria-label={`Increase ${practice.label}`}><Plus /></button></div><input aria-label={practice.label} type="range" min={practice.min} max={practice.max} value={practiceValue} onChange={(event) => { setPracticeValue(Number(event.target.value)); setPracticeState("idle"); }} /><div className={`dictionary-practice-feedback is-${practiceState}`} role="status">{practiceState === "correct" ? practice.success : practiceState === "incorrect" ? practice.hint : `Target ${practice.label}: ${practice.target}`}</div><div className="dictionary-practice-actions"><button onClick={() => { setPracticeValue(0); setPracticeState("idle"); }}>Reset</button><button onClick={checkPractice}>Check</button></div></section>
+          <section><h2><Clock3 /> Learning progress</h2><div className="dictionary-progress-states"><span className={selectedProgress.viewed ? "done" : ""}>Viewed</span><span className={selectedProgress.practiced ? "done" : ""}>Practiced</span><span className={selectedProgress.mastered ? "done" : ""}>Mastered</span></div></section>
+          <div className="dictionary-integrations"><Link to="/lessons"><BookOpen />Open in Lesson</Link><Link to={`/ai-applications?topic=${encodeURIComponent(selected.term)}`}><Sparkles />Ask AI Tutor</Link></div>
+        </aside>
+      </div>
+
+      <footer className="dictionary-footer">
+        <button type="button" onClick={() => navigateRelative(-1)}><ArrowLeft /><span><small>Previous term</small>{filtered[(selectedIndex - 1 + filtered.length) % filtered.length]?.term ?? "None"}</span></button>
+        <button type="button" onClick={chooseRandom}><RotateCcw /> Random term</button>
+        <button type="button" onClick={() => navigateRelative(1)}><span><small>Next term</small>{filtered[(selectedIndex + 1) % filtered.length]?.term ?? "None"}</span><ArrowRight /></button>
+        <div className="dictionary-reading"><button type="button" aria-pressed={readingMode} onClick={() => setReadingMode((value) => !value)}><BookOpen /> Reading mode</button><button onClick={() => changeTextSize("small")} aria-label="Smaller text">A-</button><button onClick={() => changeTextSize("default")} aria-label="Default text">A</button><button onClick={() => changeTextSize("large")} aria-label="Larger text">A+</button><span>{viewedCount} of {visualDictionaryTerms.length.toLocaleString()} viewed</span></div>
+      </footer>
+    </div>
+  );
+}
+
+export function LegacyMathVisualDictionary() {
   const [query, setQuery] = useState("");
   const [activeRange, setActiveRange] = useState<DictionaryRange | "All">("A-K");
   const [activeLetter, setActiveLetter] = useState("All");
@@ -502,11 +759,11 @@ function DictionaryListItem({ entry, isExpanded, onToggle }: { entry: VisualDict
   );
 }
 
-function DictionaryVisual({ kind, term, tone, large = false }: { kind: VisualDictionaryKind; term: string; tone: string; large?: boolean }) {
+export function DictionaryVisual({ kind, term, tone, large = false, thumbnail = false }: { kind: VisualDictionaryKind; term: string; tone: string; large?: boolean; thumbnail?: boolean }) {
   const gradientId = `dict-${safeId(term)}`;
   const arrowId = `dict-arrow-${safeId(term)}${large ? "-large" : ""}`;
   return (
-    <svg viewBox="0 0 360 180" className={`${large ? "h-72" : "h-44"} w-full rounded-lg bg-slate-950`} role="img" aria-label={`${term} visual`}>
+    <svg viewBox="0 0 360 180" className={`${thumbnail ? "h-10" : large ? "h-72" : "h-44"} w-full rounded-lg bg-slate-950`} role="img" aria-label={`${term} visual`}>
       <defs>
         <linearGradient id={gradientId} x1="0" x2="1" y1="0" y2="1">
           <stop offset="0%" stopColor={gradientStart(tone)} />
@@ -1021,4 +1278,58 @@ function gradientEnd(tone: string) {
 
 function safeId(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+}
+
+function isEditableTarget(target: EventTarget | null) {
+  return target instanceof HTMLElement && (target.matches("input, textarea, select") || target.isContentEditable);
+}
+
+function howItWorks(entry: VisualDictionaryTerm) {
+  const noun = entry.term.toLowerCase();
+  const byKind: Record<VisualDictionaryKind, string[]> = {
+    angle: ["Identify the two rays and their shared vertex.", "Measure the opening from one ray to the other.", "Classify or use the angle from its measure."],
+    circle: ["Locate the centre and boundary of the circle.", "Mark the relevant radius, chord, arc, or tangent.", "Use their relationship to calculate the required value."],
+    triangle: ["Label the three sides and angles.", "Identify the known measurements or ratios.", "Apply the matching triangle relationship and check the result."],
+    graph: ["Choose representative input values.", "Plot the corresponding output values on the axes.", "Read the curve's intercepts, slope, or changing behavior."],
+    "number-line": ["Choose zero as the reference position.", "Move left for negative values and right for positive values.", "Read order and distance from each position."],
+    set: ["Define the objects that belong to each set.", "Place shared elements in overlapping regions.", "Read the requested union, intersection, or difference."],
+    matrix: ["Arrange values into labelled rows and columns.", "Apply the operation to corresponding entries.", "Check the resulting matrix dimensions and values."],
+    vector: ["Mark the starting and ending positions.", "Measure the horizontal and vertical change.", "Write the direction and magnitude from those components."],
+    solid: ["Identify the faces, edges, and dimensions.", "Match each measurement to the correct part.", "Use the relevant area or volume relationship."],
+    fraction: ["Divide the whole into equal parts.", "Count the selected parts.", "Write selected parts over total parts and simplify."],
+    probability: ["List all possible outcomes.", "Count the outcomes matching the event.", "Compare favorable outcomes with the whole sample space."],
+    sequence: ["Read the terms in order.", "Compare neighboring terms to find the pattern.", "Use the pattern to predict or calculate another term."],
+    coordinate: ["Start at the origin.", "Move horizontally to the x-coordinate.", "Move vertically to the y-coordinate and mark the point."],
+    logic: ["Identify the premise and conclusion.", "Test the statement in every required case.", "State whether the argument follows and why."],
+    text: ["Read the symbol in its mathematical context.", "Identify the quantities it connects or modifies.", "Use it consistently in a complete expression."],
+  };
+  return byKind[entry.kind].map((step) => step.replace("the requested", noun === "abacus" ? "the represented" : "the requested"));
+}
+
+function notationFor(entry: VisualDictionaryTerm) {
+  const notation: Partial<Record<VisualDictionaryKind, string>> = {
+    angle: "m angle A = theta degrees", circle: "C = 2 pi r", triangle: "a^2 + b^2 = c^2", graph: "y = f(x)",
+    "number-line": "-2 < 0 < 3", set: "A intersection B", matrix: "A = [[a,b],[c,d]]", vector: "v = <x,y>",
+    solid: "V = lwh", fraction: "a/b", probability: "P(A) = favorable / total", sequence: "a_n",
+    coordinate: "P = (x,y)", logic: "p -> q", text: entry.term,
+  };
+  return notation[entry.kind] ?? entry.term;
+}
+
+function levelFor(entry: VisualDictionaryTerm) {
+  if (["Arithmetic", "Geometry"].includes(entry.category) && ["number-line", "fraction", "angle", "solid"].includes(entry.kind)) return "Beginner";
+  if (["Calculus", "Linear Algebra", "Logic"].includes(entry.category)) return "Advanced";
+  return "Intermediate";
+}
+
+function practiceFor(entry: VisualDictionaryTerm) {
+  const configs: Partial<Record<VisualDictionaryKind, { label: string; target: number; min: number; max: number; instruction: string; success: string; hint: string }>> = {
+    angle: { label: "angle", target: 45, min: 0, max: 90, instruction: "Adjust the angle to 45 degrees.", success: "Correct. This is a 45 degree angle.", hint: "Use the slider to reach 45 degrees." },
+    fraction: { label: "shaded parts", target: 3, min: 0, max: 5, instruction: "Shade 3 of 5 equal parts.", success: "Correct. Three of five parts represents 3/5.", hint: "Count until exactly three parts are selected." },
+    matrix: { label: "row count", target: 2, min: 0, max: 4, instruction: "Build the two rows in a 2 by 2 matrix.", success: "Correct. A 2 by 2 matrix has two rows.", hint: "The first number in 2 by 2 is the row count." },
+    probability: { label: "favorable outcomes", target: 2, min: 0, max: 6, instruction: "Choose 2 favorable outcomes from a sample space of 6.", success: "Correct. The event has probability 2/6.", hint: "Select exactly two favorable outcomes." },
+    set: { label: "shared elements", target: 2, min: 0, max: 5, instruction: "Place 2 shared elements in the overlap.", success: "Correct. The intersection contains two elements.", hint: "The overlap should contain exactly two elements." },
+    coordinate: { label: "x-coordinate", target: 2, min: -5, max: 5, instruction: "Move the point to x = 2.", success: "Correct. The point is aligned with x = 2.", hint: "Move right until the x-coordinate is 2." },
+  };
+  return configs[entry.kind] ?? { label: "value", target: 3, min: -5, max: 5, instruction: "Move the value to 3, then check your answer.", success: "Correct. You represented 3.", hint: "Move right until the value is 3." };
 }

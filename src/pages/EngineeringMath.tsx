@@ -8,6 +8,7 @@ import TopicHeader from "../components/ui/TopicHeader";
 import { engineeringConceptLabId, engineeringVisualForConcept, type AdvancedLabVisual } from "../data/advancedSyllabusLabs";
 import { assessmentSummary, buildEngineeringAssessmentPlans, engineeringExamSprints, sprintReadiness } from "../data/engineeringAssessmentPlanner";
 import { caseStudiesForDomain, caseStudySummary } from "../data/engineeringCaseStudies";
+import { buildEngineeringConceptCoverage, engineeringCoverageSummary } from "../data/engineeringConceptCoverage";
 import { dependenciesForDomain, dependencyGraphSummary, learningPathsForDomain, unlocksForDomain } from "../data/engineeringDependencyGraph";
 import { formulaAtlasSummary, formulasForDomain, type EngineeringFormulaCard } from "../data/engineeringFormulaAtlas";
 import {
@@ -47,6 +48,8 @@ export default function EngineeringMath() {
     return launcherFilter === "all" ? base : base.filter((launcher) => launcher.kind === launcherFilter);
   }, [launcherFilter, selected?.id]);
   const launcherSummary = useMemo(() => launcherCoverageSummary(), []);
+  const coverageRows = useMemo(() => buildEngineeringConceptCoverage(), []);
+  const coverageSummary = useMemo(() => engineeringCoverageSummary(), []);
   const visibleDomains = useMemo(() => {
     const normalized = query.trim().toLowerCase();
     return engineeringMathDomains.filter((domain) => {
@@ -595,6 +598,31 @@ export default function EngineeringMath() {
           </Panel>
 
         </aside>
+      </section>
+
+      <section className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_420px]">
+        <Panel title="Concept Coverage Audit" icon={<ClipboardList className="h-4 w-4" />}>
+          <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+            {coverageRows.map((row) => (
+              <button key={row.domainId} type="button" onClick={() => setSelectedId(row.domainId)} className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-left transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/5 dark:hover:bg-cyan-300/10">
+                <span className="flex items-center justify-between gap-2 text-sm font-black text-slate-950 dark:text-white">
+                  {row.title}
+                  <span className="text-cyan-600 dark:text-cyan-200">{row.percent}%</span>
+                </span>
+                <span className="mt-2 block text-xs font-semibold text-slate-500 dark:text-slate-400">{row.counts.nativeVisuals} visuals | {row.counts.launchers} labs | {row.counts.formulas} formulas</span>
+              </button>
+            ))}
+          </div>
+        </Panel>
+        <Panel title="Domain Readiness" icon={<Target className="h-4 w-4" />}>
+          <div className="grid grid-cols-2 gap-2">
+            <MetricCard label="Coverage" value={coverageSummary.average} suffix="%" />
+            <MetricCard label="Exam ready" value={coverageSummary.examReadinessAverage} suffix="%" />
+            <MetricCard label="Complete" value={coverageSummary.completeDomains} />
+            <MetricCard label="Open gaps" value={coverageSummary.remainingGapCount} />
+          </div>
+          <p className="mt-3 text-xs font-bold leading-5 text-slate-500 dark:text-slate-400">Domain Comparison Matrix and Build Priorities update from the live coverage audit.</p>
+        </Panel>
       </section>
 
       <section className="grid gap-3 xl:grid-cols-4">

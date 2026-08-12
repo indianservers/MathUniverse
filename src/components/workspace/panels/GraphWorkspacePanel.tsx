@@ -1,9 +1,10 @@
 import { FunctionSquare, LineChart, ListTree, SlidersHorizontal, Table2 } from "lucide-react";
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import SmartMathInput from "../../math-input/SmartMathInput";
 import SliderControl, { SliderGroup } from "../../ui/SliderControl";
 import { isGraphValidationBlocking, validateGraphExpression } from "../../../workspace/graphValidation";
 import type { GraphValidationResult } from "../../../workspace/types/graphValidation";
+import { readLinkedParameters, saveLinkedParameter } from "../../../workspace/linkedParameters";
 import {
   buildAddedGraphPlots,
   graphInputPresets,
@@ -41,14 +42,19 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
   const [xMax, setXMax] = useState(10);
   const [yMin, setYMin] = useState(-10);
   const [yMax, setYMax] = useState(10);
-  const [sliderA, setSliderA] = useState(1);
-  const [sliderB, setSliderB] = useState(0);
+  const initialParameters = useMemo(() => readLinkedParameters(), []);
+  const queryParameters = useMemo(() => typeof window === "undefined" ? new URLSearchParams() : new URLSearchParams(window.location.search), []);
+  const [sliderA, setSliderA] = useState(() => numericParameter(queryParameters.get("v_a"), initialParameters.a?.value ?? 1));
+  const [sliderB, setSliderB] = useState(() => numericParameter(queryParameters.get("v_b"), initialParameters.b?.value ?? 0));
   const visiblePlots = useMemo(() => plots.filter((plot) => plot.visible !== false), [plots]);
   const viewport = useMemo(() => ({ xMin, xMax, yMin, yMax, width: 640, height: 360 }), [xMin, xMax, yMin, yMax]);
   const sampledLayers = useMemo(() => visiblePlots.map((plot) => samplePlotLayer(plot, viewport, sliderA, sliderB)), [visiblePlots, viewport, sliderA, sliderB]);
   const tableRows = useMemo(() => visiblePlots.slice(0, 3).flatMap((plot) => sampleTable(applyGraphParameters(plot.expression, sliderA, sliderB), plot.expression, tableRange.start, tableRange.end, tableRange.step)), [visiblePlots, sliderA, sliderB, tableRange.start, tableRange.end, tableRange.step]);
   const regression = useMemo(() => regressionModel(regressionSeed, "linear"), [regressionSeed]);
   const activeValidation = validationMessage ?? graphValidation;
+
+  useEffect(() => { saveLinkedParameter({ name: "a", value: sliderA, min: -5, max: 5, step: 0.1, integer: false }); syncParameterQuery("v_a", sliderA); }, [sliderA]);
+  useEffect(() => { saveLinkedParameter({ name: "b", value: sliderB, min: -10, max: 10, step: 0.1, integer: false }); syncParameterQuery("v_b", sliderB); }, [sliderB]);
 
   const addPlot = (expression: string, kind?: PlotKind) => {
     const validation = validateGraphExpression(expression);
@@ -62,7 +68,7 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
   const addRegression = () => onChange([{ id: crypto.randomUUID(), expression: regression.expression, color: "#ec4899", kind: "regression" as PlotKind, points: regressionSeed, visible: true }, ...plots].slice(0, 10));
 
   return (
-    <div className="space-y-3 rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
+    <div className="graph-workspace-panel space-y-3 rounded-2xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-slate-950/60">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="flex items-center gap-2 font-bold"><LineChart className="h-4 w-4 text-cyan-500" /> Interactive Graphing Lab<span className="sr-only"> (Desmos-style Graphing Lab)</span></h2>
         <div className="flex flex-wrap gap-2 text-xs font-semibold text-slate-500">
@@ -70,8 +76,8 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
         </div>
       </div>
 
-      <div className="grid items-start gap-3 2xl:grid-cols-[320px_minmax(0,1fr)]">
-        <div className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-white/5">
+      <div className="graph-workspace-panel-grid grid items-start gap-3 xl:grid-cols-[320px_minmax(0,1fr)]">
+        <div className="graph-workspace-controls space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-white/5">
           <div className="grid grid-cols-3 gap-1 rounded-xl bg-white p-1 dark:bg-slate-950/70">
             <GraphPanelTab active={activePanel === "input"} icon={<FunctionSquare className="h-4 w-4" />} label="Input" onClick={() => setActivePanel("input")} />
             <GraphPanelTab active={activePanel === "plots"} icon={<ListTree className="h-4 w-4" />} label="Plots" onClick={() => setActivePanel("plots")} />
@@ -160,8 +166,8 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
           </div>
         </div>
 
-        <div className="min-w-0 space-y-3">
-          <svg viewBox="0 0 640 360" className="h-[240px] w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[300px] 2xl:h-[340px]" data-testid="workspace-graph-surface">
+        <div className="graph-workspace-visual min-w-0 space-y-3">
+          <svg viewBox="0 0 640 360" className="graph-workspace-surface h-[240px] w-full rounded-xl bg-slate-50 dark:bg-slate-900 sm:h-[300px] xl:h-[340px]" data-testid="workspace-graph-surface">
             <GraphGrid viewport={viewport} />
             {sampledLayers.map((layer) => layer.cells.map((cell, index) => (
               <rect
@@ -199,8 +205,28 @@ export default function GraphWorkspacePanel({ plots, colors, regressionSeed, tab
           </div>
         </div>
       </div>
+      <div className="graph-workspace-status" role="status">
+        <span><strong>{visiblePlots.length}</strong> visible plot{visiblePlots.length === 1 ? "" : "s"}</span>
+        <span>x: {xMin} to {xMax}</span>
+        <span>y: {yMin} to {yMax}</span>
+        <span><strong>a</strong> = {sliderA.toFixed(1)}</span>
+        <span><strong>b</strong> = {sliderB.toFixed(1)}</span>
+        <span className="graph-workspace-status-ready">Live sampling ready</span>
+      </div>
     </div>
   );
+}
+
+function numericParameter(raw: string | null, fallback: number) {
+  const value = Number(raw);
+  return raw !== null && Number.isFinite(value) ? value : fallback;
+}
+
+function syncParameterQuery(name: string, value: number) {
+  if (typeof window === "undefined") return;
+  const url = new URL(window.location.href);
+  url.searchParams.set(name, String(value));
+  window.history.replaceState(window.history.state, "", url);
 }
 
 function GraphPanelTab({ active, icon, label, onClick }: { active: boolean; icon: ReactNode; label: string; onClick: () => void }) {

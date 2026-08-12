@@ -89,6 +89,34 @@ describe("casNotebookEngine", () => {
     expect(evaluated.find((item) => item.id === "identity")?.steps.join(" ")).toContain("sample values were checked");
   });
 
+  it("supports advanced calculus, algebra, and matrix operations through the notebook", () => {
+    const evaluated = evaluateNotebookCells([
+      cell("square", "x^2+6*x+5, x", "complete-square"),
+      cell("side", "1/x, x, 0, above", "one-sided-limit"),
+      cell("taylor", "sin(x), x, 0, 3", "taylor"),
+      cell("det", "[[1,2],[3,4]]", "determinant"),
+      cell("rank", "[[1,2],[2,4]]", "matrix-rank"),
+    ], "x real", "exact");
+
+    expect(evaluated.find((item) => item.id === "square")?.ok).toBe(true);
+    expect(evaluated.find((item) => item.id === "side")?.ok).toBe(true);
+    expect(evaluated.find((item) => item.id === "taylor")?.output).toContain("x");
+    expect(evaluated.find((item) => item.id === "det")?.output).toContain("-2");
+    expect(evaluated.find((item) => item.id === "rank")?.output).toContain("1");
+  });
+
+  it("provides truthful structured step fields for progressive explanation", () => {
+    const [evaluated] = evaluateNotebookCells([cell("factor", "x^2-5*x+6", "factor")], "x real", "exact");
+    const finalStep = evaluated.structuredSteps?.at(-1);
+
+    expect(evaluated.structuredSteps?.length).toBe(evaluated.steps.length);
+    expect(finalStep).toMatchObject({ operation: "Factor", result: evaluated.output });
+    expect(finalStep?.previousExpression).toBeTruthy();
+    expect(finalStep?.rule).toBeTruthy();
+    expect(finalStep?.explanation).toBeTruthy();
+    expect(finalStep?.verification).toContain("Re-run factor");
+  });
+
   it("exports a markdown solution notebook", () => {
     const cells = evaluateNotebookCells([cell("c1", "x^2-5*x+6", "factor")], "x real", "exact");
     const markdown = serializeCasNotebookMarkdown({ cells, assumptions: "x real", mode: "exact" } satisfies NotebookState);

@@ -1,6 +1,6 @@
 import {
-  Activity, Bot, Box, Calculator, ChevronDown, ChevronLeft, ChevronRight, Copy, Crosshair, Download, Eye, EyeOff,
-  FileJson, Focus, Fullscreen, Grid3X3, Home, Layers3, LineChart, Maximize2, Menu, Network,
+  Activity, Bot, Calculator, ChevronDown, ChevronLeft, ChevronRight, Copy, Crosshair, Download, Eye, EyeOff,
+  FileJson, Focus, Fullscreen, Grid3X3, Home, Layers3, Maximize2, Menu, Network,
   PanelLeftClose, PanelRightClose, Pause, Pencil, Play, Plus, Redo2, Repeat2, RotateCcw, Save, Settings, Sigma,
   SlidersHorizontal, StepForward, Undo2,
 } from "lucide-react";
@@ -28,6 +28,8 @@ export type GraphStudio3DWorkspaceProps = {
   onExportProject: () => void;
   onExportCsv: () => void;
   onCopyEquation: () => void;
+  onOpenCas: () => void;
+  onOpenGeometry: () => void;
   expression: string;
   secondaryExpression: string;
   secondaryVisible: boolean;
@@ -102,8 +104,7 @@ export type GraphStudio3DWorkspaceProps = {
 };
 
 const nav = [
-  ["Home", "/", Home], ["Workspace", "/workspace", Layers3], ["3D Graphs", "/math-lab/3d-graphing", Box],
-  ["2D Graphs", "/math-lab/graphing-calculator", LineChart], ["CAS", "/workspace/data/cas", Sigma],
+  ["Home", "/", Home], ["Workspace", "/workspace", Layers3],
   ["AI Board", "/board", Bot], ["Concept Map", "/concept-map", Network], ["Calculator", "/calculator", Calculator],
 ] as const;
 
@@ -205,7 +206,9 @@ export default function GraphStudio3DWorkspace(props: GraphStudio3DWorkspaceProp
     </header>
 
     <nav className="gs3d-navrail" aria-label="Graph Studio navigation">
-      {nav.map(([label, route, Icon]) => <Link key={label} to={route} className={label === "3D Graphs" ? "active" : ""} title={label}><Icon /><span>{label}</span></Link>)}
+      {nav.map(([label, route, Icon]) => <Link key={label} to={route} title={label}><Icon /><span>{label}</span></Link>)}
+      <button type="button" onClick={props.onOpenCas} title="Open in CAS"><Sigma /><span>CAS</span></button>
+      <button type="button" onClick={props.onOpenGeometry} title="Open in 3D Geometry"><Layers3 /><span>3D Geometry</span></button>
       <Link to="/math-lab" title="More"><SlidersHorizontal /><span>More</span></Link>
     </nav>
 

@@ -1,5 +1,6 @@
 import { createRef } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
+import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import { certifyGeometryConstruction } from "../../../workspace/geometryConstructionCertification";
 import GeometryWorkspacePanel, { type Construction, type GeometryGraphSettings, type GeometryTool, type SelectedGeometryObject, type WorkspaceImage } from "./GeometryWorkspacePanel";
@@ -50,6 +51,7 @@ function renderPanel(options: {
   sidebar?: React.ReactNode;
 } = {}) {
   return renderToStaticMarkup(
+    <MemoryRouter>
     <GeometryWorkspacePanel
       activeTool={options.activeTool ?? "point"}
       construction={construction}
@@ -89,7 +91,8 @@ function renderPanel(options: {
       onBoardPointerLeave={() => undefined}
       onBoardContextMenu={() => undefined}
       onGeometryExportRef={() => undefined}
-    />,
+    />
+    </MemoryRouter>,
   );
 }
 
@@ -131,6 +134,7 @@ describe("GeometryWorkspacePanel", () => {
 
   it("can hide point labels and measurement overlays through graph settings", () => {
     const html = renderToStaticMarkup(
+      <MemoryRouter>
       <GeometryWorkspacePanel
         activeTool="point"
         construction={construction}
@@ -170,7 +174,8 @@ describe("GeometryWorkspacePanel", () => {
         onBoardPointerLeave={() => undefined}
         onBoardContextMenu={() => undefined}
         onGeometryExportRef={() => undefined}
-      />,
+      />
+      </MemoryRouter>,
     );
 
     expect(html).not.toContain('data-testid="workspace-geometry-measurements"');
@@ -207,6 +212,7 @@ describe("GeometryWorkspacePanel", () => {
   it("handles empty construction state safely", () => {
     const emptyConstruction: Construction = { points: [], lines: [], circles: [], polygons: [], arcs: [], loci: [], constraints: [] };
     const html = renderToStaticMarkup(
+      <MemoryRouter>
       <GeometryWorkspacePanel
         activeTool="select"
         construction={emptyConstruction}
@@ -246,7 +252,8 @@ describe("GeometryWorkspacePanel", () => {
         onBoardPointerLeave={() => undefined}
         onBoardContextMenu={() => undefined}
         onGeometryExportRef={() => undefined}
-      />,
+      />
+      </MemoryRouter>,
     );
 
     expect(html).toContain('data-testid="workspace-geometry-board"');

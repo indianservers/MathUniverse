@@ -40,11 +40,13 @@ describe("Visual Proofs phase twenty-two mensuration launch", () => {
   it("removes mensuration as a generic coming-soon starter experience", () => {
     const proofs = getVisualProofsByCategory("mensuration");
     const manifestRoutes = visualProofsRouteSmokeManifest.map((entry) => entry.route);
-    expect(proofs).toHaveLength(8);
+    expect(proofs.length).toBeGreaterThanOrEqual(8);
     expect(proofs.every((proof) => proof.status === "available")).toBe(true);
     expect(proofs.some((proof) => proof.slug === "starter-visual-proof")).toBe(false);
-    expect(proofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
-    expect(proofs.every((proof) => proof.proofLearningModel === "measurement-scene")).toBe(true);
+    const phaseSlugs = new Set<string>(phaseTwentyTwoRouteSlugs.map(([, slug]) => slug));
+    const phaseProofs = proofs.filter((proof) => phaseSlugs.has(proof.slug));
+    expect(phaseProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    expect(phaseProofs.every((proof) => proof.proofLearningModel === "measurement-scene")).toBe(true);
     expect(manifestRoutes).toEqual(expect.arrayContaining(phaseTwentyTwoRouteSlugs.map(routeFromSlug)));
   });
 

@@ -16,8 +16,6 @@ type PremierDistributionChartProps = {
 const chartWidth = 920;
 const chartHeight = 420;
 const margin = { top: 44, right: 34, bottom: 58, left: 64 };
-const plotWidth = chartWidth - margin.left - margin.right;
-const plotHeight = chartHeight - margin.top - margin.bottom;
 
 export default function PremierDistributionChart({ points, kind, title }: PremierDistributionChartProps) {
   const rawId = useId().replace(/:/g, "");

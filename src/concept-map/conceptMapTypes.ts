@@ -91,6 +91,7 @@ export interface ConceptMapFilters {
   categories?: ConceptCategory[];
   difficulties?: ConceptDifficulty[];
   modules?: ConceptModuleFilter[];
+  relationships?: ConceptEdgeType[];
 }
 
 export interface ConceptCategoryInfo {

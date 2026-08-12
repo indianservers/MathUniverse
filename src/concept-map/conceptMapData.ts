@@ -96,8 +96,8 @@ function makeNode(seed: NodeSeed, index: number): ConceptNode {
     route: seed.route,
     estimatedMinutes: seed.minutes ?? 20,
     masteryLevel: seed.difficulty === "foundation" ? 65 : seed.difficulty === "basic" ? 35 : 0,
-    x: origin.x + (column - 1.5) * 86 + (row % 2) * 20,
-    y: origin.y + row * 62,
+    x: Math.min(1708, Math.max(52, origin.x + (column - 1.5) * 86 + (row % 2) * 20)),
+    y: Math.min(1008, Math.max(52, origin.y + row * 62)),
   };
 }
 
@@ -281,7 +281,12 @@ const seeds: NodeSeed[] = rawSeeds.map(([id, title, category, difficulty, prereq
   modules: modules as keyof typeof moduleProfiles,
 }) as NodeSeed);
 
-export const conceptNodes: ConceptNode[] = seeds.map((seed, index) => makeNode(seed, index));
+const categoryIndexes = new Map<ConceptCategory, number>();
+export const conceptNodes: ConceptNode[] = seeds.map((seed) => {
+  const index = categoryIndexes.get(seed.category) ?? 0;
+  categoryIndexes.set(seed.category, index + 1);
+  return makeNode(seed, index);
+});
 
 const explicitEdges: ConceptEdge[] = [
   edge("formula-link", "trig-pythagorean-identity", "visual-proofs", "visual proof available", 5),

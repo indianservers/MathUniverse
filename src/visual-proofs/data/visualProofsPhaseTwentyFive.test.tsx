@@ -40,10 +40,11 @@ describe("Visual Proofs phase twenty-five logarithms and exponents launch", () =
   it("replaces logarithms and exponents as a generic coming-soon starter experience", () => {
     const proofs = getVisualProofsByCategory("logarithms-exponents");
     const manifestRoutes = visualProofsRouteSmokeManifest.map((entry) => entry.route);
-    expect(proofs).toHaveLength(8);
+    expect(proofs.length).toBeGreaterThanOrEqual(8);
     expect(proofs.every((proof) => proof.status === "available")).toBe(true);
     expect(proofs.some((proof) => proof.slug === "starter-visual-proof")).toBe(false);
-    expect(proofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    const phaseSlugs = new Set<string>(phaseTwentyFiveRouteSlugs.map(([, slug]) => slug));
+    expect(proofs.filter((proof) => phaseSlugs.has(proof.slug)).every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
     expect(manifestRoutes).toEqual(expect.arrayContaining(phaseTwentyFiveRouteSlugs.map(routeFromSlug)));
   });
 

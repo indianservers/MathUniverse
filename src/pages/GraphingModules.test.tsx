@@ -1,21 +1,23 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
-import VisualMathsGraphingSection, { visualMathsGraphingModules } from "../components/home/VisualMathsGraphingSection";
+import { MathWorkspacesHomeSection } from "../components/workspace/MathWorkspaceNavigation";
 import { navSections } from "../components/layout/navItems";
+import { mathWorkspaces } from "../workspace/mathWorkspaces";
 import MathLab3DGraphing from "./MathLab3DGraphing";
 import MathLabGraphingCalculator from "./MathLabGraphingCalculator";
 
-describe("Visual Maths & Graphing discovery", () => {
-  it("groups the six differentiated modules on Home and in navigation", () => {
-    const html = renderToStaticMarkup(<MemoryRouter><VisualMathsGraphingSection /></MemoryRouter>);
-    const navigation = navSections.find((section) => section.title === "Visual Maths & Graphing");
+describe("Math Workspaces discovery", () => {
+  it("groups the six connected studios on Home and in navigation", () => {
+    const html = renderToStaticMarkup(<MemoryRouter><MathWorkspacesHomeSection /></MemoryRouter>);
+    const navigation = navSections.find((section) => section.title === "Math Workspaces");
+    const navigationItems = navigation?.items.flatMap((item) => item.children ?? []);
 
-    expect(visualMathsGraphingModules).toHaveLength(6);
-    expect(navigation?.items).toHaveLength(6);
-    for (const title of ["2D Explorer", "3D Explorer", "Shapes Explorer", "2D Graphs", "3D Graphs", "CAS - Computer Algebra System"]) {
+    expect(mathWorkspaces).toHaveLength(6);
+    expect(navigation?.items).toHaveLength(3);
+    for (const title of ["CAS", "Geometry", "3D Geometry", "Graphs", "3D Graphs", "Shapes Explorer"]) {
       expect(html).toContain(title);
-      expect(navigation?.items.some((item) => item.title === title)).toBe(true);
+      expect(navigationItems?.some((item) => item.title === title)).toBe(true);
     }
   });
 });

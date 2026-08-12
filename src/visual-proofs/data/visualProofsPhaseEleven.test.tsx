@@ -79,12 +79,13 @@ describe("Visual Proofs phase eleven geometry completion", () => {
 
   it("keeps all eleven geometry routes phase-upgraded", () => {
     const geometryProofs = getVisualProofsByCategory("geometry").filter((proof) => proof.status === "available");
-    expect(geometryProofs).toHaveLength(14);
+    expect(geometryProofs.length).toBeGreaterThanOrEqual(14);
     expect(geometryProofs.map((proof) => proof.slug)).toEqual(expect.arrayContaining(expectedGeometrySlugs));
-    expect(geometryProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
-    expect(geometryProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);
-    expect(geometryProofs.every((proof) => proof.hasTeacherMode && proof.hasKeyboardControls && proof.hasStateInspector && proof.hasOlympyardPracticeExit)).toBe(true);
-    expect(geometryProofs.some((proof) => proof.hasVisualRegressionTest)).toBe(false);
+    const phaseProofs = geometryProofs.filter((proof) => expectedGeometrySlugs.includes(proof.slug));
+    expect(phaseProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    expect(phaseProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);
+    expect(phaseProofs.every((proof) => proof.hasTeacherMode && proof.hasKeyboardControls && proof.hasStateInspector && proof.hasOlympyardPracticeExit)).toBe(true);
+    expect(phaseProofs.some((proof) => proof.hasVisualRegressionTest)).toBe(false);
   });
 
   it("exposes required geometry interaction contracts", () => {

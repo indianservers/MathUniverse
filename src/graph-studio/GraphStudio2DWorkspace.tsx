@@ -43,7 +43,7 @@ export type GraphStudio2DWorkspaceProps = {
 };
 
 const nav = [
-  ["Home", "/", Home], ["Workspace", "/workspace", Layers3], ["2D Graphs", "/math-lab/graphing-calculator", LineChart],
+  ["Home", "/", Home], ["Workspace", "/workspace", Layers3], ["2D Graphs", "/workspace/graph", LineChart],
   ["3D Graphs", "/math-lab/3d-graphing", Box], ["Formulas", "/formulas", Sigma], ["AI Board", "/board", Bot],
   ["Concept Map", "/concept-map", Network], ["Calculator", "/calculator", Calculator],
 ] as const;

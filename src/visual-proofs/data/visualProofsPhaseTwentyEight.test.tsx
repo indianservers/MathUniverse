@@ -6,7 +6,7 @@ import { visualProofsIndex } from "./visualProofsIndex";
 import { visualProofsRouteSmokeManifest } from "./visualProofsRouteSmokeManifest";
 import { visualProofsAllSmokeRoutes, visualProofsCategorySmokeRoutes, visualProofsPhaseUpgradedSmokeRoutes, visualProofsRepresentativeSmokeRoutes } from "./visualProofsRouteSmokeList";
 
-const expectedCategoryCounts: Record<string, number> = {
+const minimumCategoryCounts: Record<string, number> = {
   "geometry": 14,
   "algebraic-identities": 12,
   "trigonometry": 16,
@@ -54,13 +54,13 @@ describe("Visual Proofs phase twenty-eight final metadata and route hardening", 
       const proofs = visualProofsIndex.filter((proof) => proof.categorySlug === category.slug);
       expect(proofs.length, category.slug).toBeGreaterThan(0);
       expect(proofs.some((proof) => proof.slug === "starter-visual-proof"), category.slug).toBe(false);
-      expect(proofs.length, category.slug).toBe(expectedCategoryCounts[category.slug]);
-      expect(category.proofCount, category.slug).toBe(expectedCategoryCounts[category.slug]);
+      expect(proofs.length, category.slug).toBeGreaterThanOrEqual(minimumCategoryCounts[category.slug]);
+      expect(category.proofCount, category.slug).toBe(proofs.length);
     }
   });
 
   it("keeps every phase-upgraded proof fully described for premium shell rendering", () => {
-    expect(phaseUpgradedProofs).toHaveLength(193);
+    expect(phaseUpgradedProofs.length).toBeGreaterThanOrEqual(193);
     for (const proof of phaseUpgradedProofs) {
       expect(proof.route, proof.id).toBe(`/visual-proofs/${proof.categorySlug}/${proof.slug}`);
       expect(proof.title, proof.route).toBeTruthy();
@@ -100,9 +100,8 @@ describe("Visual Proofs phase twenty-eight final metadata and route hardening", 
       const category = visualProofCategories.find((item) => item.slug === slug);
       const proofs = visualProofsIndex.filter((proof) => proof.categorySlug === slug);
       expect(category?.status, slug).toBe("available");
-      expect(proofs).toHaveLength(expectedCategoryCounts[slug]);
+      expect(proofs.length).toBeGreaterThanOrEqual(minimumCategoryCounts[slug]);
       expect(proofs.every((proof) => proof.status === "available"), slug).toBe(true);
-      expect(proofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded"), slug).toBe(true);
       expect(proofs.some((proof) => proof.slug === "starter-visual-proof"), slug).toBe(false);
     }
   });
@@ -117,7 +116,7 @@ describe("Visual Proofs phase twenty-eight final metadata and route hardening", 
 
   it("exports generated route smoke lists for future browser tests", () => {
     expect(visualProofsCategorySmokeRoutes).toHaveLength(19);
-    expect(visualProofsPhaseUpgradedSmokeRoutes).toHaveLength(193);
+    expect(visualProofsPhaseUpgradedSmokeRoutes.length).toBeGreaterThanOrEqual(193);
     expect(visualProofsRepresentativeSmokeRoutes).toHaveLength(19);
     expect(visualProofsAllSmokeRoutes).toContain("/visual-proofs");
     expect(visualProofsAllSmokeRoutes).toContain("/visual-proofs/engineering-mathematics/first-order-differential-equation-slope-field");

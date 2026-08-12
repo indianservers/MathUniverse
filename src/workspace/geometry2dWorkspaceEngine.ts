@@ -153,10 +153,16 @@ export function measureGeometry2D(scene: Geometry2DScene): GeometryMeasurement[]
   });
 
   const comparable = scene.objects.filter((object): object is Extract<Geometry2DObject, { object: KernelObject }> => "object" in object);
-  for (let i = 0; i < comparable.length; i += 1) {
+  const maxInferredRelations = 2000;
+  let inferredRelationCount = 0;
+  relationScan: for (let i = 0; i < comparable.length; i += 1) {
     for (let j = i + 1; j < comparable.length; j += 1) {
       const relation = relationBetween(comparable[i].object, comparable[j].object);
-      if (relation.relation !== "none") measurements.push({ kind: "relation", label: `${comparable[i].label} vs ${comparable[j].label}`, value: relation.relation, unit: "statement" });
+      if (relation.relation !== "none") {
+        measurements.push({ kind: "relation", label: `${comparable[i].label} vs ${comparable[j].label}`, value: relation.relation, unit: "statement" });
+        inferredRelationCount += 1;
+        if (inferredRelationCount >= maxInferredRelations) break relationScan;
+      }
     }
   }
   return measurements;

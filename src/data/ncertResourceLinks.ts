@@ -151,7 +151,7 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
   },
   {
     conceptId: "class-7-exponents",
-    resources: [formula("Exponent formulas", "algebra"), proof("Laws of exponents visual proof", "logarithms-exponents", "laws-of-exponents-same-base"), theorem("Exponent laws theorem", "algebra", "exponent-laws-theorem-16")],
+    resources: [formula("Exponent formulas", "algebra"), proof("Laws of exponents visual proof", "logarithms-exponents", "laws-of-exponents-same-base"), theorem("Exponent laws theorem", "algebra", "exponent-laws-theorem-21")],
   },
   {
     conceptId: "class-7-lines-and-triangles",
@@ -194,8 +194,8 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
     resources: [
       formula("Fractals and solid views formulas", "fractals-solid-views", ["sierpinski", "area fractions", "solid views"]),
       reference("Sierpinski visual formula lab", "/visual-formulas/sierpinski-carpet", "exact", ["sierpinski carpet", "retained area", "removed squares"]),
-      theorem("Sierpinski retained area principle", "geometry", "sierpinski-retained-area-principle-19", "exact", ["fractals", "retained area"]),
-      theorem("Orthographic projection maximum principle", "geometry", "orthographic-projection-maximum-principle-21", "exact", ["solid views", "projection"]),
+      theorem("Sierpinski retained area principle", "geometry", "sierpinski-retained-area-principle-25", "exact", ["fractals", "retained area"]),
+      theorem("Orthographic projection maximum principle", "geometry", "orthographic-projection-maximum-principle-27", "exact", ["solid views", "projection"]),
       proof("Sierpinski retained area proof", "sequences-and-series", "sierpinski-retained-area", "exact", ["fractal area", "sierpinski"]),
       proof("Sierpinski removed square sum proof", "sequences-and-series", "sierpinski-removed-square-sum", "exact", ["finite geometric sum"]),
       proof("Orthographic projection proof", "geometry", "orthographic-projection-from-cube-stacks", "exact", ["top view", "front view", "side view"]),
@@ -317,7 +317,7 @@ export const ncertConceptResourceLinks: NCERTConceptResourceLinks[] = [
   },
   {
     conceptId: "class-12-relations-functions",
-    resources: [formula("Relations and functions formulas", "relations-functions"), theorem("Inverse function theorem", "algebra", "inverse-function-theorem-for-algebra-17"), tool("Function explorer", "/math/functions")],
+    resources: [formula("Relations and functions formulas", "relations-functions"), theorem("Inverse function theorem", "algebra", "inverse-function-theorem-for-algebra-22"), tool("Function explorer", "/math/functions")],
   },
   {
     conceptId: "class-12-determinants",

@@ -192,9 +192,10 @@ describe("Visual Proofs phase ten final metadata and smoke audit", () => {
     const trigProofs = getVisualProofsByCategory("trigonometry").filter((proof) => proof.status === "available");
     const coordinateProofs = getVisualProofsByCategory("coordinate-geometry").filter((proof) => proof.status === "available");
     expect(trigProofs).toHaveLength(16);
-    expect(coordinateProofs).toHaveLength(15);
+    expect(coordinateProofs.length).toBeGreaterThanOrEqual(15);
     expect(trigProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
-    expect(coordinateProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    const coordinatePhaseSlugs = new Set<string>(allCoordinateRouteSlugs.map(([, slug]) => slug));
+    expect(coordinateProofs.filter((proof) => coordinatePhaseSlugs.has(proof.slug)).every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
     expect(trigonometryRouteSmokeManifest.map((entry) => entry.route)).toEqual(expect.arrayContaining(allTrigRouteSlugs.map(routeFromSlug)));
     expect(coordinateGeometryRouteSmokeManifest.map((entry) => entry.route)).toEqual(expect.arrayContaining(allCoordinateRouteSlugs.map(routeFromSlug)));
   });

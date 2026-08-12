@@ -1,0 +1,56 @@
+[
+  {
+    "route": "/workspace/3d",
+    "iteration": 1,
+    "mounted": 1,
+    "remaining": 0
+  },
+  {
+    "route": "/workspace/3d",
+    "iteration": 2,
+    "mounted": 1,
+    "remaining": 0
+  },
+  {
+    "route": "/workspace/3d",
+    "iteration": 3,
+    "mounted": 1,
+    "remaining": 0
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "iteration": 1,
+    "mounted": 1,
+    "remaining": 0
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "iteration": 2,
+    "mounted": 1,
+    "remaining": 0
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "iteration": 3,
+    "mounted": 1,
+    "remaining": 0
+  },
+  {
+    "route": "/shapes",
+    "iteration": 1,
+    "mounted": 1,
+    "remaining": 0
+  },
+  {
+    "route": "/shapes",
+    "iteration": 2,
+    "mounted": 1,
+    "remaining": 0
+  },
+  {
+    "route": "/shapes",
+    "iteration": 3,
+    "mounted": 1,
+    "remaining": 0
+  }
+]

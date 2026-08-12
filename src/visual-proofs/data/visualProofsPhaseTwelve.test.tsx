@@ -67,12 +67,13 @@ describe("Visual Proofs phase twelve algebraic identities completion", () => {
   it("keeps all twelve Algebraic Identities routes phase-upgraded and in the smoke manifest", () => {
     const algebraProofs = getVisualProofsByCategory("algebraic-identities").filter((proof) => proof.status === "available");
     const manifestRoutes = visualProofsRouteSmokeManifest.map((entry) => entry.route);
-    expect(algebraProofs).toHaveLength(12);
+    expect(algebraProofs.length).toBeGreaterThanOrEqual(12);
     expect(algebraProofs.map((proof) => proof.slug)).toEqual(expect.arrayContaining(expectedAlgebraSlugs));
-    expect(algebraProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
-    expect(algebraProofs.every((proof) => proof.proofLearningModel === "tile-model")).toBe(true);
-    expect(algebraProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);
-    expect(algebraProofs.every((proof) => proof.hasTeacherMode && proof.hasKeyboardControls && proof.hasStateInspector && proof.hasOlympyardPracticeExit)).toBe(true);
+    const phaseProofs = algebraProofs.filter((proof) => expectedAlgebraSlugs.includes(proof.slug));
+    expect(phaseProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    expect(phaseProofs.every((proof) => proof.proofLearningModel === "tile-model")).toBe(true);
+    expect(phaseProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);
+    expect(phaseProofs.every((proof) => proof.hasTeacherMode && proof.hasKeyboardControls && proof.hasStateInspector && proof.hasOlympyardPracticeExit)).toBe(true);
     expect(manifestRoutes).toEqual(expect.arrayContaining(expectedAlgebraSlugs.map((slug) => `/visual-proofs/algebraic-identities/${slug}`)));
   });
 

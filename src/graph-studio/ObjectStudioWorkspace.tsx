@@ -69,7 +69,7 @@ type Props = {
 
 const nav = [
   ["Home", "/", Home], ["Workspace", "/workspace", Layers3], ["2D Explorer", "/workspace/geometry", Shapes],
-  ["3D Studio", "/workspace/3d", Box], ["Shapes", "/math-lab/shapes", Circle], ["Graphs", "/math-lab/graphing-calculator", LineChart],
+  ["3D Studio", "/workspace/3d", Box], ["Shapes", "/shapes", Circle], ["Graphs", "/workspace/graph", LineChart],
   ["Calculator", "/calculator", Calculator],
 ] as const;
 

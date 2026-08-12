@@ -1,11 +1,25 @@
 import { OrbitControls } from "@react-three/drei";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
-import { Box, ChevronDown, Circle, Download, Eraser, FunctionSquare, LineChart, ListTree, Magnet, MousePointer2, Move, PanelLeftClose, PanelRightClose, Pentagon, Plus, Presentation, Rotate3D, RotateCcw, Save, Search, Slash, Trash2, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
+import { AlertTriangle, Box, Braces, Camera, Check, CheckCircle2, ChevronDown, Circle, CircleDot, Copy, Download, Eraser, Eye, EyeOff, FileText, Filter, FunctionSquare, Grid3X3, Home, Info, Keyboard, LineChart, ListTree, Magnet, Maximize2, Menu, Mic, MoreHorizontal, MousePointer2, Move, Orbit, PanelLeftClose, PanelRightClose, Pentagon, Pin, Play, Plus, Presentation, Redo2, Rotate3D, RotateCcw, Ruler, Save, Search, Settings, Share2, Sigma, Slash, SlidersHorizontal, Sparkles, Table2, Trash2, Undo2, User, WandSparkles, X, ZoomIn, ZoomOut, type LucideIcon } from "lucide-react";
 import { MouseEvent as ReactMouseEvent, PointerEvent, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import * as THREE from "three";
 import { casCommandRegistrySummary, searchCasCommands } from "../cas/casCommandRegistry";
 import { geogebraCasParitySummary } from "../cas/casGeoGebraParity";
+import {
+  casNotebookExamples,
+  createNotebookCell,
+  evaluateNotebookCellInState,
+  evaluateNotebookCells,
+  operationOptions,
+  serializeCasNotebookMarkdown,
+  starterNotebookCells,
+  type EvaluationMode,
+  type NotebookCell,
+  type NotebookOperation,
+  type NotebookState,
+} from "../cas/casNotebookEngine";
+import { readCasNotebookState, saveCasNotebookState } from "../cas/casNotebookPersistence";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathKeyboardInput from "../components/math-keyboard/MathKeyboardInput";
 import GeometryWorkspacePanel, { type GeometryGraphSettings } from "../components/workspace/panels/GeometryWorkspacePanel";
@@ -16,6 +30,8 @@ import SectionCard from "../components/ui/SectionCard";
 import SliderControl from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import MathExpression from "../components/ui/MathExpression";
+import FunctionGraphCanvas, { type FunctionGraphSeries, type FunctionGraphView } from "../components/math-lab/FunctionGraphCanvas";
+import { approximateRoots, sampleFunction } from "../utils/mathEngine/graphSampler";
 import { roundTo } from "../utils/math";
 import { symbolicDerivative, symbolicExpand, symbolicFactor, symbolicIntegral, symbolicLimit, symbolicPartialFractions, symbolicPolynomialDivide, symbolicSimplify, symbolicSolve, symbolicSubstitute, symbolicSystemSolve, trySymbolic } from "../utils/symbolic";
 import { commandExamplesFor, commandRegistrySummary, normalizeCommandName, resolveCommandSpec } from "../workspace/commandRegistry";
@@ -71,9 +87,14 @@ import { evaluateSpreadsheetGrid, fillDownFormula, rangeToCsv } from "../workspa
 import { syllabusWorkspaceTemplates, type GuidedActivityPhase, type SyllabusWorkspaceTemplate } from "../workspace/syllabusWorkspaceTemplates";
 import type { MathObject, MathObjectKind, MathObjectProperties, MathObjectStyle, MathTransform } from "../workspace/types";
 import { useWorkspaceStore } from "../workspace/workspaceStore";
+import { browserSpeechRecognitionConstructor, isBrowserSpeechInputSupported, normalizeSpokenMath, type BrowserSpeechRecognition, type SpeechInputState } from "../workspace/browserSpeechInput";
 import ObjectStudioWorkspace, { type ObjectStudioItem, type ObjectStudioShape, type ObjectStudioTool } from "../graph-studio/ObjectStudioWorkspace";
 import { createUnsupportedWorkspaceAction } from "../workspace/unsupportedWorkspaceAction";
 import { workspaceModeNavigation } from "../workspace/workspaceModeConfig";
+import { createMathWorkspacePayload, type MathWorkspacePayload } from "../workspace/mathWorkspaces";
+import { saveLinkedParameter } from "../workspace/linkedParameters";
+import { readWorkspaceTransfer, saveWorkspaceTransfer } from "../workspace/workspaceTransfer";
+import CasSpreadsheetStudio from "../components/workspace/CasSpreadsheetStudio";
 import {
   createGeometryTransformRequest,
   createNoSelectionDeleteAction,
@@ -287,10 +308,20 @@ function resolveInitialWorkspaceViewFromRoute(fallback: WorkspaceView): Workspac
 }
 
 export default function MathWorkspace({ initialView = "graph", singleView = false, dataPage = "overview" }: { initialView?: WorkspaceView; singleView?: boolean; dataPage?: DataWorkspacePage }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const routePayload = (location.state as { mathWorkspacePayload?: MathWorkspacePayload } | null)?.mathWorkspacePayload;
   const routeInitialView = useMemo(() => resolveInitialWorkspaceViewFromRoute(initialView), [initialView]);
+  const transferTarget = routeInitialView === "graph" ? "graphs" : routeInitialView === "3d" ? "graphs-3d" : routeInitialView === "geometry" ? "geometry" : "cas";
+  const incomingWorkspacePayload = useMemo(() => routePayload ?? readWorkspaceTransfer(transferTarget), [routePayload, transferTarget]);
   const [input, setInput] = useState("plot sin(x)");
   const [results, setResults] = useState<ResultCard[]>([]);
-  const [plots, setPlots] = useState<PlotItem[]>([{ id: "plot-1", expression: "sin(x)", color: colors[0], kind: "function", visible: true }]);
+  const [plots, setPlots] = useState<PlotItem[]>(() => {
+    const expression = incomingWorkspacePayload?.objectType === "expression" || incomingWorkspacePayload?.objectType === "equation"
+      ? incomingWorkspacePayload.value
+      : "sin(x)";
+    return [{ id: "plot-1", expression, color: colors[0], kind: inferPlotKind(expression), visible: true }];
+  });
   const [tool, setTool] = useState<GeometryTool>("select");
   const [construction, setConstruction] = useState<Construction>(initialConstruction);
   const [selectedGeometry, setSelectedGeometry] = useState<SelectedGeometryObject | null>(null);
@@ -308,7 +339,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     regularPolygonIds: construction.polygons.filter((polygon) => polygon.style?.label === "regular-polygon").map((polygon) => polygon.id),
   }), [construction]);
   const [surface, setSurface] = useState<SurfaceKind>("paraboloid");
-  const [surfaceExpression, setSurfaceExpression] = useState("sin(x) * cos(y)");
+  const [surfaceExpression, setSurfaceExpression] = useState(() => incomingWorkspacePayload?.objectType === "surface" ? incomingWorkspacePayload.value : "sin(x) * cos(y)");
   const [solid, setSolid] = useState<SolidKind>("cube");
   const [surfaceScale, setSurfaceScale] = useState(1);
   const [height3d, setHeight3d] = useState(2.5);
@@ -351,6 +382,12 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [objectPropertyOverrides, setObjectPropertyOverrides] = useState<ObjectPropertyOverrides>({});
   const [spreadsheet, setSpreadsheet] = useState<SpreadsheetCellGrid>(initialSpreadsheet);
   const [casExpression, setCasExpression] = useState("x^2-5*x+6");
+  const [casNotebookState, setCasNotebookState] = useState<NotebookState>(() => readCasNotebookState() ?? createDefaultCasNotebookState());
+  const [casUndoStack, setCasUndoStack] = useState<NotebookState[]>([]);
+  const [casRedoStack, setCasRedoStack] = useState<NotebookState[]>([]);
+  const [selectedCasCellId, setSelectedCasCellId] = useState<string | null>(() => null);
+  const [casComposerInput, setCasComposerInput] = useState(() => incomingWorkspacePayload?.value ?? "Solve[x^3 - 3*x = 2, x]");
+  const [casComposerOperation, setCasComposerOperation] = useState<NotebookOperation>("solve");
   const [tableStart, setTableStart] = useState(-4);
   const [tableEnd, setTableEnd] = useState(4);
   const [tableStep, setTableStep] = useState(1);
@@ -369,6 +406,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   useEffect(() => {
     setWorkspaceView(routeInitialView);
   }, [routeInitialView]);
+
+  useEffect(() => {
+    saveCasNotebookState(casNotebookState);
+  }, [casNotebookState]);
 
   useEffect(() => {
     const match = window.location.hash.match(/project=([^&]+)/);
@@ -465,6 +506,14 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const undoWorkspace = () => {
+    if (workspaceView === "data" && dataPage === "cas" && casUndoStack.length) {
+      const [previous, ...rest] = casUndoStack;
+      setCasRedoStack((current) => [casNotebookState, ...current].slice(0, 40));
+      setCasUndoStack(rest);
+      setCasNotebookState(previous);
+      setSelectedCasCellId(previous.cells[0]?.id ?? null);
+      return;
+    }
     const [step, ...rest] = undoStack;
     if (!step) return undoConstruction();
     const currentStep = captureStep(`Redo ${step.label}`, "State before undo.");
@@ -474,6 +523,14 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const redoWorkspace = () => {
+    if (workspaceView === "data" && dataPage === "cas" && casRedoStack.length) {
+      const [next, ...rest] = casRedoStack;
+      setCasUndoStack((current) => [casNotebookState, ...current].slice(0, 40));
+      setCasRedoStack(rest);
+      setCasNotebookState(next);
+      setSelectedCasCellId(next.cells[0]?.id ?? null);
+      return;
+    }
     const [step, ...rest] = redoStack;
     if (!step) return;
     const currentStep = captureStep(`Undo ${step.label}`, "State before redo.");
@@ -2012,7 +2069,70 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   };
 
   const activeFunctionPlot = plots.find((plot) => plot.visible !== false && (plot.kind ?? inferPlotKind(plot.expression)) === "function") ?? plots[0];
-  const activeCasExpression = casExpression.trim() || stripInequality(activeFunctionPlot?.expression ?? "x^2-5*x+6");
+  const selectedCasCell = casNotebookState.cells.find((cell) => cell.id === selectedCasCellId) ?? casNotebookState.cells.find((cell) => cell.output) ?? casNotebookState.cells[0];
+  const casNotebookExport = useMemo(() => serializeCasNotebookMarkdown(casNotebookState), [casNotebookState]);
+  const commitCasNotebook = (next: NotebookState) => {
+    setCasUndoStack((current) => [casNotebookState, ...current].slice(0, 40));
+    setCasRedoStack([]);
+    setCasNotebookState(next);
+  };
+  const updateCasCell = (id: string, patch: Partial<NotebookCell>) => {
+    const cells = casNotebookState.cells.map((cell) => (cell.id === id ? { ...cell, ...patch } : cell));
+    commitCasNotebook({ ...casNotebookState, cells: evaluateNotebookCells(cells, casNotebookState.assumptions, casNotebookState.mode) });
+  };
+  const runCasCell = (id: string) => {
+    setSelectedCasCellId(id);
+    commitCasNotebook({ ...casNotebookState, cells: evaluateNotebookCellInState(id, casNotebookState.cells, casNotebookState.assumptions, casNotebookState.mode) });
+  };
+  const runCasNotebook = () => {
+    commitCasNotebook({ ...casNotebookState, cells: evaluateNotebookCells(casNotebookState.cells, casNotebookState.assumptions, casNotebookState.mode) });
+  };
+  const addCasCell = (input = casComposerInput, operation = casComposerOperation) => {
+    const nextCell = createNotebookCell(input, operation);
+    setSelectedCasCellId(nextCell.id);
+    const cells = [nextCell, ...casNotebookState.cells].slice(0, 40);
+    commitCasNotebook({ ...casNotebookState, cells: evaluateNotebookCells(cells, casNotebookState.assumptions, casNotebookState.mode) });
+  };
+  const duplicateCasCell = (cell: NotebookCell) => addCasCell(cell.input, cell.operation);
+  const deleteCasCell = (id: string) => {
+    commitCasNotebook({ ...casNotebookState, cells: casNotebookState.cells.filter((cell) => cell.id !== id) });
+    setSelectedCasCellId((current) => current === id ? null : current);
+  };
+  const reorderCasCells = (orderedIds: string[]) => {
+    const byId = new Map(casNotebookState.cells.map((cell) => [cell.id, cell]));
+    const cells = orderedIds.map((id) => byId.get(id)).filter((cell): cell is NotebookCell => Boolean(cell));
+    if (cells.length === casNotebookState.cells.length) commitCasNotebook({ ...casNotebookState, cells });
+  };
+  const resetCasNotebook = () => {
+    const next = createDefaultCasNotebookState();
+    commitCasNotebook(next);
+    setSelectedCasCellId(next.cells[0]?.id ?? null);
+  };
+  const setCasMode = (mode: EvaluationMode) => commitCasNotebook({ ...casNotebookState, mode, cells: evaluateNotebookCells(casNotebookState.cells, casNotebookState.assumptions, mode) });
+  const setCasAssumptions = (assumptions: string) => commitCasNotebook({ ...casNotebookState, assumptions, cells: evaluateNotebookCells(casNotebookState.cells, assumptions, casNotebookState.mode) });
+  const sendCasCellToGraph = (cell: NotebookCell) => {
+    const expression = graphableExpressionFromCasCell(cell);
+    const payload = createMathWorkspacePayload({
+      sourceWorkspace: "cas",
+      objectType: "expression",
+      label: cell.input || "CAS expression",
+      value: expression,
+      metadata: { operation: cell.operation },
+    });
+    saveWorkspaceTransfer(payload, "graphs");
+    navigate("/workspace/graph", {
+      state: { mathWorkspacePayload: payload },
+    });
+  };
+  const exportCasNotebook = () => {
+    const blob = new Blob([casNotebookExport], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "computer-algebra-studio.md";
+    link.click();
+    URL.revokeObjectURL(url);
+  };
   const runDataCommand = (command: string) => {
     setInput(command);
     const analysis = interpretInput(command);
@@ -2022,11 +2142,11 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       setPlots((current) => [{ id: crypto.randomUUID(), expression: analysis.graphExpression!, color: colors[current.length % colors.length], kind: inferPlotKind(analysis.graphExpression!), visible: true }, ...current].slice(0, 10));
     }
   };
-  const addSpreadsheetScatter = (points: ResultTableRow[]) => {
+  const _addSpreadsheetScatter = (points: ResultTableRow[]) => {
     recordWorkspaceStep("Add spreadsheet scatter", `${points.length} spreadsheet points linked to graph.`);
     setPlots((current) => [{ id: crypto.randomUUID(), expression: "spreadsheet data", color: "#ec4899", kind: "scatter" as PlotKind, points, visible: true }, ...current].slice(0, 10));
   };
-  const addSpreadsheetRegression = (model: RegressionModel, points: ResultTableRow[]) => {
+  const _addSpreadsheetRegression = (model: RegressionModel, points: ResultTableRow[]) => {
     const regression = regressionModel(points, model);
     recordWorkspaceStep("Add spreadsheet regression", `${model} regression from spreadsheet.`);
     setPlots((current) => [{ id: crypto.randomUUID(), expression: regression.expression, color: "#14b8a6", kind: "regression" as PlotKind, points, visible: true }, ...current].slice(0, 10));
@@ -2040,13 +2160,18 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     { title: "Object Registry", text: "Shared graph, CAS, table, spreadsheet, geometry, and 3D objects.", route: "/workspace/data/objects", concept: "Linked Objects" },
   ];
 
+  const singleViewCasStudio = singleView && workspaceView === "data" && dataPage === "cas";
+  const singleViewSpreadsheetStudio = singleView && workspaceView === "data" && dataPage === "spreadsheet";
+  const singleViewStudio = singleView && (workspaceView === "graph" || workspaceView === "3d" || workspaceView === "geometry" || singleViewCasStudio || singleViewSpreadsheetStudio);
+  const workspaceRootClass = singleViewStudio ? `${workspaceView === "graph" ? "math-workspace-single-graph min-h-full" : "h-full min-h-0 overflow-hidden"}` : singleView ? "space-y-2 pt-0" : "space-y-2 pt-14 xl:pt-12";
+
   return (
-    <div ref={workspaceRef} className={singleView && workspaceView === "3d" ? "h-dvh overflow-hidden" : singleView ? "space-y-2 pt-0" : "space-y-2 pt-14 xl:pt-12"}>
-      {!(singleView && workspaceView === "3d") && <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} docked={singleView} />}
+    <div ref={workspaceRef} className={workspaceRootClass}>
+      {!singleViewStudio && <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} docked={singleView} />}
       {!singleView && <TopicHeader title="Math Workspace" subtitle="A unified workspace for graphing, commands, results, and dynamic geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 
       {!singleView && <WorkspaceModeTabs active={workspaceView} onChange={setWorkspaceView} />}
-      {!(singleView && workspaceView === "3d") && <CompactWorkspaceBar
+      {!singleViewStudio && <CompactWorkspaceBar
         activeTemplate={activeTemplate}
         teachingMode={teachingMode}
         compact={singleView}
@@ -2137,8 +2262,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         </div>
       </SectionCard>}
 
-      {workspaceView === "graph" && <SectionCard title="Graph, CAS, And Algebra" description="Type commands, graph expressions, inspect results, and manage objects in focused tabs." compact={singleView}>
-        <div className="mb-3 mobile-safe-scroll thin-scrollbar">
+      {workspaceView === "graph" && <SectionCard title="Graph, CAS, And Algebra" description="Type commands, graph expressions, inspect results, and manage objects in focused tabs." compact={singleView} className={singleView ? "graph-workspace-card" : undefined} visualizationTools={singleView ? false : "auto"}>
+        <div className="graph-workspace-tabs mb-3 mobile-safe-scroll thin-scrollbar">
           <span className="sr-only">Workspace command keyboard</span>
           <div className="inline-flex min-w-full gap-1.5 rounded-xl border border-slate-200 bg-white/80 p-1 dark:border-white/10 dark:bg-white/5 md:min-w-0">
             {[
@@ -2162,7 +2287,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         </div>
 
         {graphWorkspaceTab === "graph" && (
-          <div ref={graphExportRef}>
+          <div ref={graphExportRef} className="graph-workspace-panel-host">
             <GraphWorkspacePanel
               plots={plots}
               colors={colors}
@@ -2248,7 +2373,41 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         )}
       </SectionCard>}
 
-      {workspaceView === "data" && <SectionCard title={dataPage === "overview" ? "Data Workspace" : dataWorkspacePageTitle(dataPage)} description="Explore tables, symbolic algebra, function behavior, exact solutions, and linked mathematical objects." headerAction={<DataWorkspaceNav active={dataPage} />} compact={singleView}>
+      {workspaceView === "data" && dataPage === "cas" && (
+        <CasStudioWorkspaceV2
+          state={casNotebookState}
+          selectedCell={selectedCasCell}
+          composerInput={casComposerInput}
+          composerOperation={casComposerOperation}
+          exportMarkdown={casNotebookExport}
+          results={results}
+          onSelectCell={setSelectedCasCellId}
+          onUpdateCell={updateCasCell}
+          onRunCell={runCasCell}
+          onRunAll={runCasNotebook}
+          onAddCell={addCasCell}
+          onDuplicateCell={duplicateCasCell}
+          onDeleteCell={deleteCasCell}
+          onReorderCells={reorderCasCells}
+          onReset={resetCasNotebook}
+          onModeChange={setCasMode}
+          onAssumptionsChange={setCasAssumptions}
+          onComposerInputChange={setCasComposerInput}
+          onComposerOperationChange={setCasComposerOperation}
+          onDataCommand={runDataCommand}
+          onSendToGraph={sendCasCellToGraph}
+          onExport={exportCasNotebook}
+          onUndo={undoWorkspace}
+          onRedo={redoWorkspace}
+          onShare={exportShareUrl}
+        />
+      )}
+
+      {workspaceView === "data" && dataPage === "spreadsheet" && (
+        <CasSpreadsheetStudio legacyGrid={spreadsheet} onLegacyGridChange={setSpreadsheet} />
+      )}
+
+      {workspaceView === "data" && dataPage !== "cas" && dataPage !== "spreadsheet" && <SectionCard title={dataPage === "overview" ? "Data Workspace" : dataWorkspacePageTitle(dataPage)} description="Explore tables, symbolic algebra, function behavior, exact solutions, and linked mathematical objects." headerAction={<DataWorkspaceNav active={dataPage} />} compact={singleView}>
         <div data-testid="workspace-data-surface">
         {dataPage === "overview" && (
           <div className="space-y-3">
@@ -2263,19 +2422,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             </div>
           </div>
         )}
-        {dataPage === "spreadsheet" && (
-          <SpreadsheetPanel grid={spreadsheet} onChange={setSpreadsheet} onScatter={addSpreadsheetScatter} onRegression={addSpreadsheetRegression} />
-        )}
         {dataPage === "analysis" && (
           <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
             <FunctionAnalysisPanel plot={activeFunctionPlot} onCommand={runDataCommand} />
             <CasResultsPanel results={results} onClear={() => setResults([])} />
-          </div>
-        )}
-        {dataPage === "cas" && (
-          <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_360px]">
-            <CasDepthPanel expression={activeCasExpression} onExpressionChange={setCasExpression} onCommand={runDataCommand} />
-            <FunctionAnalysisPanel plot={activeFunctionPlot} onCommand={runDataCommand} />
           </div>
         )}
         {dataPage === "results" && <CasResultsPanel results={results} onClear={() => setResults([])} />}
@@ -2397,7 +2547,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         />
       )}
 
-      {workspaceView === "geometry" && <SectionCard title="Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements.">
+      {workspaceView === "geometry" && (singleView ? (
         <GeometryWorkspacePanel
           activeTool={tool}
           construction={construction}
@@ -2428,6 +2578,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onReset={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
           onSave={saveConstruction}
           onLoad={loadConstruction}
+          onExport={exportGeometryPng}
           onGraphSettingsChange={setGeometryGraphSettings}
           onClearPendingPicks={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
           onBoardPointerDown={handleBoardPointerDown}
@@ -2436,10 +2587,9 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onBoardPointerLeave={() => { setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
           onBoardContextMenu={handleGeometryContextMenu}
           onGeometryExportRef={(node) => { geometryExportRef.current = node; }}
-          sidebar={(
-            <>
-              <ConstructionHelp tool={tool} />
-              <GeometryObjectPanel
+          constructionHelp={<ConstructionHelp tool={tool} />}
+          objectInspector={(
+            <GeometryObjectPanel
                 selected={selectedGeometry}
                 construction={construction}
                 locked={selectedGeometry ? lockedGeometryIds.includes(selectedGeometry.id) : false}
@@ -2451,13 +2601,17 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                 onRestore={restoreGeometryObject}
                 onToggleLock={toggleGeometryLock}
               />
-              <ImageObjectPanel
+          )}
+          imageInspector={(
+            <ImageObjectPanel
                 image={workspaceImages.find((image) => image.id === selectedImageId) ?? null}
                 onChange={updateSelectedImage}
                 onDelete={deleteSelectedImage}
               />
-              <ConstructionProtocolPanel protocol={protocol} onReplay={restoreProtocolSnapshot} />
-              <UnifiedWorkspacePanel
+          )}
+          constructionProtocol={<ConstructionProtocolPanel protocol={protocol} onReplay={restoreProtocolSnapshot} />}
+          unifiedObjectsPanel={(
+            <UnifiedWorkspacePanel
                 objects={unifiedWorkspaceObjects}
                 selectedObject={unifiedSelectedObject}
                 selectedObjectId={unifiedSelectedObjectId}
@@ -2465,12 +2619,87 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
                 onObjectAction={handleUnifiedObjectAction}
                 onObjectChange={handleUnifiedObjectChange}
               />
-              <Measurements construction={construction} />
-              <ConstraintPanel construction={construction} />
-            </>
           )}
+          measurementsPanel={<Measurements construction={construction} />}
+          constraintsPanel={<ConstraintPanel construction={construction} />}
         />
-      </SectionCard>}
+      ) : (
+        <SectionCard title="Geometry Constructor" description="Create points, lines, circles, polygons, drag points, and inspect live measurements.">
+          <GeometryWorkspacePanel
+            activeTool={tool}
+            construction={construction}
+            selectedGeometry={selectedGeometry}
+            selectedPointIds={selectedPointIds}
+            polygonDraft={polygonDraft}
+            geometryObjectPicks={geometryObjectPicks}
+            constructionAccuracyReport={geometryCertificationReport}
+            workspaceImages={workspaceImages}
+            selectedImageId={selectedImageId}
+            graphSettings={geometryGraphSettings}
+            boardRef={svgRef}
+            imageInputRef={imageInputRef}
+            onImageUpload={handleImageUpload}
+            onToolChange={selectGeometryTool}
+            onSelectAll={() => setSelectedPointIds(construction.points.map((point) => point.id))}
+            onMoveSelected={() => transformSelectedGeometryPoints("translate")}
+            onRotateSelected={() => transformSelectedGeometryPoints("rotate")}
+            onDilateSelected={() => transformSelectedGeometryPoints("dilate")}
+            onUndo={undoConstruction}
+            onRedo={redoWorkspace}
+            onDeleteSelected={() => deleteGeometryObject()}
+            onShowHide={toggleSelectedGeometryVisibility}
+            onLockSelected={() => toggleGeometryLock()}
+            onTraceSelected={() => setSelectedGeometryTrace(true)}
+            onStopTrace={() => setSelectedGeometryTrace(false)}
+            onClearTrace={clearGeometryTrace}
+            onReset={() => { setConstruction(initialConstruction); setSelectedPointIds([]); setPolygonDraft([]); setGeometryObjectPicks([]); }}
+            onSave={saveConstruction}
+            onLoad={loadConstruction}
+            onExport={exportGeometryPng}
+            onGraphSettingsChange={setGeometryGraphSettings}
+            onClearPendingPicks={() => { setGeometryObjectPicks([]); setSelectedPointIds([]); setPolygonDraft([]); }}
+            onBoardPointerDown={handleBoardPointerDown}
+            onBoardPointerMove={handleBoardPointerMove}
+            onBoardPointerUp={(event) => { event.currentTarget.releasePointerCapture(event.pointerId); setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+            onBoardPointerLeave={() => { setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
+            onBoardContextMenu={handleGeometryContextMenu}
+            onGeometryExportRef={(node) => { geometryExportRef.current = node; }}
+            sidebar={(
+              <>
+                <ConstructionHelp tool={tool} />
+                <GeometryObjectPanel
+                  selected={selectedGeometry}
+                  construction={construction}
+                  locked={selectedGeometry ? lockedGeometryIds.includes(selectedGeometry.id) : false}
+                  onPointChange={updateSelectedPoint}
+                  onStyleChange={updateSelectedGeometryStyle}
+                  onRadiusChange={updateSelectedCircleRadius}
+                  onDuplicate={duplicateGeometryObject}
+                  onDelete={deleteGeometryObject}
+                  onRestore={restoreGeometryObject}
+                  onToggleLock={toggleGeometryLock}
+                />
+                <ImageObjectPanel
+                  image={workspaceImages.find((image) => image.id === selectedImageId) ?? null}
+                  onChange={updateSelectedImage}
+                  onDelete={deleteSelectedImage}
+                />
+                <ConstructionProtocolPanel protocol={protocol} onReplay={restoreProtocolSnapshot} />
+                <UnifiedWorkspacePanel
+                  objects={unifiedWorkspaceObjects}
+                  selectedObject={unifiedSelectedObject}
+                  selectedObjectId={unifiedSelectedObjectId}
+                  selectedObjectIds={unifiedSelectedObjectIds}
+                  onObjectAction={handleUnifiedObjectAction}
+                  onObjectChange={handleUnifiedObjectChange}
+                />
+                <Measurements construction={construction} />
+                <ConstraintPanel construction={construction} />
+              </>
+            )}
+          />
+        </SectionCard>
+      ))}
       {contextMenu && (
         <ObjectContextMenu
           state={contextMenu}
@@ -3639,7 +3868,7 @@ function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function SpreadsheetPanel({ grid, onChange, onScatter, onRegression }: { grid: SpreadsheetCellGrid; onChange: (grid: SpreadsheetCellGrid) => void; onScatter: (points: ResultTableRow[]) => void; onRegression: (model: RegressionModel, points: ResultTableRow[]) => void }) {
+function LegacySpreadsheetPanel({ grid, onChange, onScatter, onRegression }: { grid: SpreadsheetCellGrid; onChange: (grid: SpreadsheetCellGrid) => void; onScatter: (points: ResultTableRow[]) => void; onRegression: (model: RegressionModel, points: ResultTableRow[]) => void }) {
   const evaluated = useMemo(() => evaluateSpreadsheetGrid(grid), [grid]);
   const points = useMemo(() => spreadsheetPoints(evaluated.values), [evaluated]);
   const exportCsv = () => {
@@ -3731,7 +3960,7 @@ const casDepthActions = [
   { label: "CAS Card", command: (expression: string) => `CAS[Factor, ${expression}]`, tone: "violet" },
 ] as const;
 
-function CasDepthPanel({ expression, onExpressionChange, onCommand }: { expression: string; onExpressionChange: (expression: string) => void; onCommand: (command: string) => void }) {
+function LegacyCasDepthPanel({ expression, onExpressionChange, onCommand }: { expression: string; onExpressionChange: (expression: string) => void; onCommand: (command: string) => void }) {
   const cleanExpression = expression || "x^2-5*x+6";
   const casSummary = useMemo(() => casCommandRegistrySummary(), []);
   const geogebraSummary = useMemo(() => geogebraCasParitySummary(), []);
@@ -4327,7 +4556,7 @@ function WorkspaceModeTabs({ active, onChange }: { active: WorkspaceView; onChan
 }
 
 const dataWorkspaceNavItems: { id: DataWorkspacePage; label: string; route: string }[] = [
-  { id: "overview", label: "Overview", route: "/workspace/data" },
+  { id: "overview", label: "Overview", route: "/workspace/data/overview" },
   { id: "spreadsheet", label: "Spreadsheet", route: "/workspace/data/spreadsheet" },
   { id: "analysis", label: "Analysis", route: "/workspace/data/analysis" },
   { id: "cas", label: "CAS", route: "/workspace/data/cas" },
@@ -4392,6 +4621,617 @@ function CompactWorkspaceBar({ activeTemplate, teachingMode, compact = false, on
       </div>
     </div>
   );
+}
+
+type CasStudioWorkspaceProps = {
+  state: NotebookState;
+  selectedCell?: NotebookCell;
+  composerInput: string;
+  composerOperation: NotebookOperation;
+  exportMarkdown: string;
+  results: ResultCard[];
+  onSelectCell: (id: string | null) => void;
+  onUpdateCell: (id: string, patch: Partial<NotebookCell>) => void;
+  onRunCell: (id: string) => void;
+  onRunAll: () => void;
+  onAddCell: (input?: string, operation?: NotebookOperation) => void;
+  onDuplicateCell: (cell: NotebookCell) => void;
+  onDeleteCell: (id: string) => void;
+  onReorderCells: (orderedIds: string[]) => void;
+  onReset: () => void;
+  onModeChange: (mode: EvaluationMode) => void;
+  onAssumptionsChange: (assumptions: string) => void;
+  onComposerInputChange: (value: string) => void;
+  onComposerOperationChange: (operation: NotebookOperation) => void;
+  onDataCommand: (command: string) => void;
+  onSendToGraph: (cell: NotebookCell) => void;
+  onExport: () => void;
+  onUndo: () => void;
+  onRedo: () => void;
+  onShare: () => void;
+};
+
+function LegacyCasStudioWorkspace({
+  state,
+  selectedCell,
+  composerInput,
+  composerOperation,
+  exportMarkdown,
+  results,
+  onSelectCell,
+  onUpdateCell,
+  onRunCell,
+  onRunAll,
+  onAddCell,
+  onDuplicateCell,
+  onDeleteCell,
+  onReset,
+  onModeChange,
+  onAssumptionsChange,
+  onComposerInputChange,
+  onComposerOperationChange,
+  onDataCommand,
+  onSendToGraph,
+  onExport,
+}: CasStudioWorkspaceProps) {
+  const [workspaceQuery, setWorkspaceQuery] = useState("");
+  const [mobilePanel, setMobilePanel] = useState<"notebook" | "history" | "result">("notebook");
+  const variableCount = state.cells.filter((cell) => /:=/.test(cell.input)).length;
+  const functionCount = state.cells.filter((cell) => /(derivative|differentiate|integrate|limit|solve|factor|expand)/i.test(cell.operation)).length;
+  const selectedIndex = selectedCell ? state.cells.length - state.cells.findIndex((cell) => cell.id === selectedCell.id) : 0;
+  const latestResults = results.slice(0, 4);
+  const visibleCells = useMemo(() => {
+    const query = workspaceQuery.trim().toLowerCase();
+    if (!query) return state.cells;
+    return state.cells.filter((cell) =>
+      [cell.input, cell.operation, cell.output, cell.exact, ...(cell.steps ?? [])].filter(Boolean).join(" ").toLowerCase().includes(query),
+    );
+  }, [state.cells, workspaceQuery]);
+
+  return (
+    <div className={`cas-studio-shell mobile-panel-${mobilePanel}`} data-testid="workspace-cas-studio">
+      <nav className="cas-mobile-panels" aria-label="CAS mobile panels">
+        <button type="button" className={mobilePanel === "history" ? "is-active" : ""} onClick={() => setMobilePanel("history")}>History</button>
+        <button type="button" className={mobilePanel === "notebook" ? "is-active" : ""} onClick={() => setMobilePanel("notebook")}>Notebook</button>
+        <button type="button" className={mobilePanel === "result" ? "is-active" : ""} onClick={() => setMobilePanel("result")}>Result</button>
+      </nav>
+      <aside className="cas-studio-left" aria-label="CAS workspace and history">
+        <button type="button" className="cas-mobile-sheet-close" onClick={() => setMobilePanel("notebook")}>Close history</button>
+        <div className="cas-panel-heading">
+          <div>
+            <p>Computer Algebra Studio</p>
+            <h3>Workspace</h3>
+          </div>
+          <button type="button" onClick={() => onAddCell()} title="New calculation" aria-label="New calculation"><Plus className="h-4 w-4" /></button>
+        </div>
+        <label className="cas-search">
+          <Search className="h-4 w-4" />
+          <input value={workspaceQuery} placeholder="Search expressions" onChange={(event) => setWorkspaceQuery(event.target.value)} />
+        </label>
+        <div className="cas-object-list">
+          {visibleCells.map((cell) => {
+            const active = selectedCell?.id === cell.id;
+            const index = state.cells.findIndex((item) => item.id === cell.id);
+            return (
+              <button key={cell.id} type="button" className={`cas-object-row ${active ? "is-active" : ""}`} onClick={() => onSelectCell(cell.id)}>
+                <span className="cas-object-badge">{state.cells.length - index}</span>
+                <span className="min-w-0 flex-1">
+                  <strong>{operationOptions.find((item) => item.value === cell.operation)?.label ?? cell.operation}</strong>
+                  <small>{cell.input || "Empty calculation"}</small>
+                </span>
+                {cell.ok ? <CheckCircle2 className="h-4 w-4 text-emerald-500" /> : cell.output ? <AlertTriangle className="h-4 w-4 text-amber-500" /> : <Pin className="h-4 w-4 text-slate-300" />}
+              </button>
+            );
+          })}
+          {!visibleCells.length && <div className="cas-empty-result">No expressions match this search.</div>}
+        </div>
+        <div className="cas-section-list">
+          <CasSummaryRow label="Variables" value={variableCount} />
+          <CasSummaryRow label="Functions" value={functionCount} />
+          <CasSummaryRow label="Equations" value={state.cells.filter((cell) => /=/.test(cell.input) && !/:=/.test(cell.input)).length} />
+          <CasSummaryRow label="Matrices" value={state.cells.filter((cell) => cell.operation === "matrix").length} />
+          <CasSummaryRow label="Lists" value={state.cells.filter((cell) => cell.operation === "list").length} />
+          <CasSummaryRow label="Saved objects" value={state.cells.length} />
+        </div>
+        <div className="cas-history-strip">
+          <div className="cas-panel-heading compact">
+            <div><p>History</p><h3>{latestResults.length || state.cells.length} recent</h3></div>
+          </div>
+          {(latestResults.length ? latestResults : state.cells.slice(0, 4)).map((item) => (
+            "input" in item && "interpretation" in item ? (
+              <button key={item.id} type="button" onClick={() => onDataCommand(item.input)}>
+                <span>{item.interpretation}</span>
+                <strong>{item.input}</strong>
+              </button>
+            ) : null
+          ))}
+        </div>
+      </aside>
+
+      <main className="cas-studio-center">
+        <header className="cas-studio-modebar">
+          {[
+            ["CAS", "cas"],
+            ["Graph 2D", "graph2d"],
+            ["Graph 3D", "graph3d"],
+            ["Geometry", "geometry"],
+            ["Spreadsheet", "spreadsheet"],
+            ["Probability", "probability"],
+            ["Notes", "notes"],
+          ].map(([label, mode]) => (
+            <button
+              key={mode}
+              type="button"
+              className={mode === "cas" ? "is-active" : mode === "spreadsheet" ? "" : "is-unavailable"}
+              disabled={!["cas", "spreadsheet"].includes(mode)}
+              onClick={() => mode === "spreadsheet" ? window.location.assign("/workspace/data/spreadsheet") : undefined}
+              title={mode === "cas" ? "Current symbolic workspace" : mode === "spreadsheet" ? "Open spreadsheet route" : "Available as a separate workspace route"}
+            >
+              {mode === "cas" ? <Sigma className="h-4 w-4" /> : mode === "graph2d" ? <LineChart className="h-4 w-4" /> : mode === "graph3d" ? <Box className="h-4 w-4" /> : mode === "spreadsheet" ? <Braces className="h-4 w-4" /> : <FileText className="h-4 w-4" />}
+              {label}
+            </button>
+          ))}
+        </header>
+
+        <section className="cas-notebook-scroll" aria-label="CAS notebook">
+          {state.cells.map((cell, index) => (
+            <CasStudioNotebookBlock
+              key={cell.id}
+              cell={cell}
+              index={state.cells.length - index}
+              active={selectedCell?.id === cell.id}
+              onSelect={() => onSelectCell(cell.id)}
+              onRun={() => onRunCell(cell.id)}
+              onChange={(patch) => onUpdateCell(cell.id, patch)}
+              onDuplicate={() => onDuplicateCell(cell)}
+              onDelete={() => onDeleteCell(cell.id)}
+              onSendToGraph={() => onSendToGraph(cell)}
+              onUseResult={() => {
+                const next = cell.exact ?? cell.output ?? cell.input;
+                onComposerInputChange(next);
+                onAddCell(next, "simplify");
+              }}
+            />
+          ))}
+        </section>
+
+        <section className="cas-composer">
+          <div className="cas-composer-input">
+            <select value={composerOperation} onChange={(event) => onComposerOperationChange(event.target.value as NotebookOperation)} aria-label="CAS operation">
+              {operationOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
+            </select>
+            <textarea value={composerInput} onChange={(event) => onComposerInputChange(event.target.value)} placeholder="Enter symbolic expression, equation, matrix, system, units, or natural-language prompt" />
+            <div className="cas-composer-tools">
+              <button type="button" title="Voice input unavailable in offline workspace" disabled><Mic className="h-4 w-4" /></button>
+              <button type="button" title="Equation scanning opens after confirmation workflow is connected" disabled><Camera className="h-4 w-4" /></button>
+              <button type="button" title="Keyboard visible below"><Keyboard className="h-4 w-4" /></button>
+              <button type="button" className="primary" onClick={() => onAddCell(composerInput, composerOperation)}><Play className="h-4 w-4" />Calculate</button>
+            </div>
+          </div>
+          <div className="cas-keyboard">
+            {["x", "y", "pi", "e", "sqrt()", "^", "| |", "log", "ln", "sin", "cos", "tan", "d/dx", "Integral[]", "Limit[]", "Solve[]", "Matrix[]", "->", "alpha", "Omega"].map((key) => (
+              <button key={key} type="button" onClick={() => onComposerInputChange(`${composerInput}${key}`)}>{key}</button>
+            ))}
+          </div>
+          <div className="cas-example-row">
+            {casNotebookExamples.slice(0, 6).map((example) => (
+              <button key={example.label} type="button" onClick={() => {
+                onComposerInputChange(example.input);
+                onComposerOperationChange(example.operation);
+              }}>
+                <span>{example.label}</span>
+                <strong>{example.input}</strong>
+              </button>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      <aside className="cas-studio-right" aria-label="CAS result inspector">
+        <button type="button" className="cas-mobile-sheet-close" onClick={() => setMobilePanel("notebook")}>Close results</button>
+        <div className="cas-inspector-tabs">
+          {["Result", "Steps", "Properties", "Assumptions", "Related"].map((tab, index) => <button key={tab} type="button" className={index === 0 ? "is-active" : ""}>{tab}</button>)}
+        </div>
+        {selectedCell ? (
+          <>
+            <section className="cas-inspector-card">
+              <div className="cas-panel-heading compact"><div><p>Exact result</p><h3>In [{selectedIndex}]</h3></div>{selectedCell.ok ? <CheckCircle2 className="h-5 w-5 text-emerald-500" /> : <AlertTriangle className="h-5 w-5 text-amber-500" />}</div>
+              <div className="cas-result-box"><MathExpression value={selectedCell.exact ?? selectedCell.output ?? "Run this cell"} /></div>
+              {selectedCell.numeric && <div className="cas-result-box muted"><MathExpression value={selectedCell.numeric} /></div>}
+              <p>{selectedCell.detail || "Select or run a CAS block to inspect exact results, assumptions, warnings, and verification."}</p>
+            </section>
+            <section className="cas-inspector-card">
+              <div className="cas-panel-heading compact"><div><p>Assumptions</p><h3>{state.mode} mode</h3></div></div>
+              <textarea value={state.assumptions} onChange={(event) => onAssumptionsChange(event.target.value)} />
+              <div className="cas-format-row">
+                {(["exact", "numeric"] as EvaluationMode[]).map((mode) => <button key={mode} type="button" className={state.mode === mode ? "is-active" : ""} onClick={() => onModeChange(mode)}>{mode}</button>)}
+              </div>
+            </section>
+            <section className="cas-inspector-card">
+              <div className="cas-panel-heading compact"><div><p>Steps</p><h3>{selectedCell.steps.length || 0} transformations</h3></div></div>
+              <ol className="cas-step-list">
+                {(selectedCell.steps.length ? selectedCell.steps : ["Run the selected block to generate structured CAS steps."]).map((step, index) => <li key={`${selectedCell.id}-${index}`}><span>{index + 1}</span>{step}</li>)}
+              </ol>
+            </section>
+            <section className="cas-inspector-card">
+              <div className="cas-action-grid">
+                <button type="button" onClick={() => navigator.clipboard?.writeText(selectedCell.exact ?? selectedCell.output ?? selectedCell.input)}><Copy className="h-4 w-4" />Copy result</button>
+                <button type="button" onClick={() => onSendToGraph(selectedCell)}><LineChart className="h-4 w-4" />Plot in 2D</button>
+                <button type="button" disabled title="3D plotting uses the separate Graph 3D route"><Box className="h-4 w-4" />Plot in 3D</button>
+                <button type="button" onClick={onExport}><Download className="h-4 w-4" />Export</button>
+                <button type="button" onClick={onRunAll}><CheckCircle2 className="h-4 w-4" />Verify all</button>
+                <button type="button" disabled title="Spreadsheet insertion is available from the Spreadsheet route"><Braces className="h-4 w-4" />Spreadsheet</button>
+              </div>
+            </section>
+            <section className="cas-ai-tutor">
+              <p>AI Tutor</p>
+              <strong>{selectedCell.ok ? "Verified CAS result is separate from this explanation." : "This cell needs an edit or a run."}</strong>
+              <span>{selectedCell.ok ? "Try explaining why the selected transformation preserves equivalence, then verify by substitution." : "Check syntax, choose a supported operation, then rerun the block."}</span>
+            </section>
+          </>
+        ) : (
+          <EmptyPanel text="Add or select a CAS block to inspect exact results, steps, assumptions, and related actions." />
+        )}
+        <div className="cas-global-actions">
+          <button type="button" onClick={onRunAll}><Play className="h-4 w-4" />Run all</button>
+          <button type="button" onClick={onReset}><RotateCcw className="h-4 w-4" />Reset</button>
+          <button type="button" onClick={onExport}><Download className="h-4 w-4" />Export notebook</button>
+        </div>
+        <pre className="cas-export-preview">{exportMarkdown}</pre>
+      </aside>
+    </div>
+  );
+}
+
+// Retained while saved workspace payloads migrate to the symbolic-first studio.
+void [LegacySpreadsheetPanel, LegacyCasDepthPanel, LegacyCasStudioWorkspace];
+
+const CAS_OBJECT_COLORS = ["#7c3aed", "#2563eb", "#14b8a6", "#f97316", "#db2777", "#06b6d4", "#8b5cf6", "#16a34a"];
+
+const CAS_DOCK_TOOLS: Array<{ label: string; operation?: NotebookOperation; route?: string; icon: LucideIcon }> = [
+  { label: "Simplify", operation: "simplify", icon: Sparkles }, { label: "Factor", operation: "factor", icon: FunctionSquare },
+  { label: "Expand", operation: "expand", icon: Maximize2 }, { label: "Solve", operation: "solve", icon: CheckCircle2 },
+  { label: "Calculus", operation: "differentiate", icon: LineChart }, { label: "Matrices", operation: "matrix", icon: Grid3X3 },
+  { label: "Units", operation: "simplify", icon: Ruler }, { label: "Statistics", route: "/workspace/data/analysis", icon: SlidersHorizontal },
+  { label: "Regression", route: "/workspace/data/spreadsheet", icon: LineChart }, { label: "Inequalities", operation: "inequality", icon: Slash },
+  { label: "Complex", operation: "complex-solve", icon: Circle }, { label: "Parametric", route: "/workspace/graph", icon: Move },
+  { label: "Implicit", operation: "implicit-differentiate", icon: FunctionSquare }, { label: "Sliders", operation: "simplify", icon: SlidersHorizontal },
+  { label: "Trace", route: "/workspace/graph", icon: MousePointer2 }, { label: "Table", route: "/workspace/data/spreadsheet", icon: Table2 },
+  { label: "Animation", route: "/workspace/graph", icon: Play }, { label: "More", icon: MoreHorizontal },
+];
+
+function CasStudioWorkspaceV2(props: CasStudioWorkspaceProps) {
+  const {
+    state, selectedCell, composerInput, composerOperation, onSelectCell, onUpdateCell, onRunCell, onAddCell,
+    onDuplicateCell, onDeleteCell, onReorderCells, onReset, onModeChange, onAssumptionsChange,
+    onComposerInputChange, onComposerOperationChange, onSendToGraph, onExport, onUndo, onRedo, onShare,
+  } = props;
+  const navigate = useNavigate();
+  const [workspaceQuery, setWorkspaceQuery] = useState("");
+  const [workspaceTitle, setWorkspaceTitle] = useState("Untitled Workspace");
+  const [mobilePanel, setMobilePanel] = useState<"canvas" | "objects" | "result">("canvas");
+  const [inspectorTab, setInspectorTab] = useState<"result" | "steps" | "properties" | "assumptions" | "related">("result");
+  const [displayMode, setDisplayMode] = useState<"2d" | "3d">("2d");
+  const [graphTool, setGraphTool] = useState("select");
+  const [graphView, setGraphView] = useState<FunctionGraphView>({ xMin: -5, xMax: 5, yMin: -5, yMax: 5 });
+  const [traceX, setTraceX] = useState(1.4);
+  const [keyboardOpen, setKeyboardOpen] = useState(true);
+  const [inputMode, setInputMode] = useState<"math" | "natural">("math");
+  const [statusMessage, setStatusMessage] = useState("Ready");
+  const [graphPreviewOpen, setGraphPreviewOpen] = useState(false);
+  const [speechState, setSpeechState] = useState<SpeechInputState>("idle");
+  const [speechDraft, setSpeechDraft] = useState("");
+  const [visibleObjects, setVisibleObjects] = useState<Record<string, boolean>>({});
+  const [draggedCellId, setDraggedCellId] = useState<string | null>(null);
+  const [angleMode, setAngleMode] = useState<"rad" | "deg">("rad");
+  const [domainMode, setDomainMode] = useState<"real" | "complex">("real");
+  const [precision, setPrecision] = useState(10);
+  const [revealedStepCount, setRevealedStepCount] = useState(1);
+  const graphHostRef = useRef<HTMLDivElement | null>(null);
+  const scanInputRef = useRef<HTMLInputElement | null>(null);
+  const speechRecognitionRef = useRef<BrowserSpeechRecognition | null>(null);
+  const speechSupported = typeof window !== "undefined" && isBrowserSpeechInputSupported(window);
+  const variableCount = state.cells.filter((cell) => /:=/.test(cell.input)).length;
+  const functionCount = state.cells.filter((cell) => /x/i.test(cell.input) && !/=/.test(cell.input)).length;
+  const selectedIndex = selectedCell ? state.cells.length - state.cells.findIndex((cell) => cell.id === selectedCell.id) : 0;
+
+  useEffect(() => {
+    setVisibleObjects((current) => Object.fromEntries(state.cells.map((cell) => [cell.id, current[cell.id] ?? true])));
+  }, [state.cells]);
+
+  useEffect(() => () => speechRecognitionRef.current?.abort(), []);
+
+  useEffect(() => setRevealedStepCount(1), [selectedCell?.id]);
+
+  const filteredCells = useMemo(() => {
+    const query = workspaceQuery.trim().toLowerCase();
+    return query ? state.cells.filter((cell) => `${cell.operation} ${cell.input} ${cell.output} ${cell.exact ?? ""}`.toLowerCase().includes(query)) : state.cells;
+  }, [state.cells, workspaceQuery]);
+
+  const graphSeries = useMemo<FunctionGraphSeries[]>(() => state.cells.flatMap((cell, index) => {
+    if (visibleObjects[cell.id] === false) return [];
+    const expression = casPlotExpression(cell);
+    if (!expression) return [];
+    const sampled = sampleFunction(expression, graphView.xMin, graphView.xMax, 420);
+    if (sampled.error || !sampled.points.some((point) => point.valid)) return [];
+    return [{ id: cell.id, label: cell.input, color: CAS_OBJECT_COLORS[index % CAS_OBJECT_COLORS.length], points: sampled.points, visible: true, style: cell.operation === "differentiate" || cell.operation === "tangent-line" ? "derivative" as const : "line" as const }];
+  }).slice(0, 8), [graphView.xMax, graphView.xMin, state.cells, visibleObjects]);
+
+  const selectedExpression = selectedCell ? casPlotExpression(selectedCell) : undefined;
+  const featurePoints = useMemo(() => selectedExpression ? approximateRoots(selectedExpression, graphView.xMin, graphView.xMax).roots.map((x) => ({ x, y: 0, type: "root" as const })) : [], [graphView.xMax, graphView.xMin, selectedExpression]);
+  const selectedRange = useMemo(() => {
+    if (!selectedExpression) return null;
+    const values = sampleFunction(selectedExpression, graphView.xMin, graphView.xMax, 180).points.map((point) => point.y).filter((value): value is number => typeof value === "number" && Number.isFinite(value));
+    return values.length ? `${Math.min(...values).toFixed(2)} to ${Math.max(...values).toFixed(2)}` : null;
+  }, [graphView.xMax, graphView.xMin, selectedExpression]);
+
+  const runComposer = () => {
+    if (!composerInput.trim()) return setStatusMessage("Enter an expression first");
+    onAddCell(composerInput, composerOperation);
+    setStatusMessage("Calculation completed");
+    setInspectorTab("result");
+  };
+  const chooseOperation = (operation: NotebookOperation, seed?: string) => {
+    onComposerOperationChange(operation);
+    if (seed) onComposerInputChange(seed);
+    else if (selectedCell) onComposerInputChange(selectedCell.input);
+    setStatusMessage(`${operationOptions.find((item) => item.value === operation)?.label ?? operation} ready`);
+  };
+  const createSlider = () => {
+    const assignment = selectedCell?.input.match(/^\s*([a-zA-Z])\s*:=\s*(-?\d+(?:\.\d+)?)\s*$/);
+    const name = assignment?.[1] ?? "a";
+    const value = Number(assignment?.[2] ?? 1);
+    saveLinkedParameter({ name, value, min: -10, max: 10, step: 0.1, integer: false });
+    chooseOperation("simplify", `${name} := ${value}`);
+    setStatusMessage(`Linked slider ${name} created`);
+  };
+  const sendSelectedToSpreadsheet = () => {
+    if (!selectedCell) return;
+    const payload = createMathWorkspacePayload({ sourceWorkspace: "cas", objectType: "expression", label: selectedCell.input, value: selectedCell.exact ?? selectedCell.output ?? selectedCell.input, metadata: { operation: selectedCell.operation } });
+    saveWorkspaceTransfer(payload, "spreadsheet");
+    navigate("/workspace/data/spreadsheet", { state: { mathWorkspacePayload: payload } });
+  };
+  const sendSelectedToGraph3d = () => {
+    if (!selectedCell) return;
+    const payload = createMathWorkspacePayload({ sourceWorkspace: "cas", objectType: "surface", label: selectedCell.input, value: graphableExpressionFromCasCell(selectedCell), metadata: { operation: selectedCell.operation } });
+    saveWorkspaceTransfer(payload, "graphs-3d");
+    navigate("/math-lab/3d-graphing", { state: { mathWorkspacePayload: payload } });
+  };
+  const copySelectedFormat = async (format: "latex" | "mathml") => {
+    if (!selectedCell) return;
+    const value = selectedCell.exact ?? selectedCell.output ?? selectedCell.input;
+    const content = format === "latex" ? value : `<math xmlns="http://www.w3.org/1998/Math/MathML"><mtext>${value.replace(/[<>&]/g, (character) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[character]!))}</mtext></math>`;
+    await navigator.clipboard?.writeText(content);
+    setStatusMessage(`${format === "latex" ? "LaTeX" : "MathML"} copied`);
+  };
+  const exportSelectedCalculation = () => {
+    if (!selectedCell) return;
+    const content = JSON.stringify({ version: 1, assumptions: state.assumptions, mode: state.mode, calculation: selectedCell }, null, 2);
+    downloadCasArtifact(`cas-calculation-${selectedIndex}.json`, content, "application/json;charset=utf-8");
+    setStatusMessage("Calculation exported");
+  };
+  const reorderCell = (targetId: string) => {
+    if (!draggedCellId || draggedCellId === targetId) return;
+    const ids = state.cells.map((cell) => cell.id);
+    const from = ids.indexOf(draggedCellId);
+    const to = ids.indexOf(targetId);
+    if (from < 0 || to < 0) return;
+    ids.splice(to, 0, ids.splice(from, 1)[0]);
+    onReorderCells(ids);
+    setDraggedCellId(null);
+  };
+  const startVoiceInput = () => {
+    const Recognition = browserSpeechRecognitionConstructor(window);
+    if (!Recognition) return;
+    speechRecognitionRef.current?.abort();
+    const recognition = new Recognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = "en-IN";
+    recognition.onresult = (event) => {
+      setSpeechState("processing");
+      setSpeechDraft(normalizeSpokenMath(event.results[0][0].transcript));
+      setSpeechState("success");
+    };
+    recognition.onerror = (event) => {
+      setSpeechState("error");
+      setStatusMessage(event.error === "not-allowed" ? "Microphone permission was denied" : "Voice input could not be recognized");
+    };
+    recognition.onend = () => setSpeechState((current) => current === "listening" ? "idle" : current);
+    speechRecognitionRef.current = recognition;
+    setSpeechDraft("");
+    setSpeechState("listening");
+    recognition.start();
+  };
+
+  const moduleItems: Array<{ label: string; route?: string; icon: LucideIcon; current?: boolean; disabledReason?: string }> = [
+    { label: "CAS", icon: Sigma, current: true }, { label: "Graph 2D", route: "/workspace/graph", icon: LineChart },
+    { label: "Graph 3D", route: "/math-lab/3d-graphing", icon: Box }, { label: "Geometry", route: "/workspace/geometry", icon: Pentagon },
+    { label: "Spreadsheet", route: "/workspace/data/spreadsheet", icon: Table2 }, { label: "Probability", route: "/math-lab/probability", icon: CircleDot },
+  ];
+  const graphTools: Array<{ id: string; label: string; icon: LucideIcon }> = [
+    { id: "select", label: "Select", icon: MousePointer2 }, { id: "point", label: "Point", icon: CircleDot },
+    { id: "line", label: "Line", icon: Slash }, { id: "function", label: "Function", icon: FunctionSquare },
+    { id: "measure", label: "Measure", icon: Ruler }, { id: "transform", label: "Transform", icon: WandSparkles },
+    { id: "more", label: "More", icon: MoreHorizontal },
+  ];
+
+  return <div className={`cas-studio-shell cas-studio-v2 mobile-panel-${mobilePanel}`} data-testid="workspace-cas-studio">
+    <header className="cas-app-header">
+      <div className="cas-brand"><span><Sigma /></span><strong>Computer Algebra Studio</strong></div>
+      <input className="cas-workspace-title" value={workspaceTitle} onChange={(event) => setWorkspaceTitle(event.target.value)} aria-label="Workspace title" />
+      <div className="cas-header-actions">
+        <button type="button" onClick={onUndo} aria-label="Undo" title="Undo"><Undo2 /></button><button type="button" onClick={onRedo} aria-label="Redo" title="Redo"><Redo2 /></button>
+        <label className="cas-global-search"><Search /><input value={workspaceQuery} onChange={(event) => setWorkspaceQuery(event.target.value)} placeholder="Search" /></label>
+        <button type="button" onClick={() => { void onShare(); setStatusMessage("Share link copied"); }}><Share2 /><span>Share</span></button>
+        <button type="button" onClick={onExport}><Download /><span>Export</span></button>
+        <button type="button" onClick={() => { setInspectorTab("assumptions"); setMobilePanel("result"); }} aria-label="Settings"><Settings /></button>
+        <button type="button" className="cas-avatar" onClick={() => setStatusMessage("Signed in workspace profile")} aria-label="User profile"><User /></button>
+        <button type="button" className="cas-mobile-menu" onClick={() => setMobilePanel("objects")} aria-label="Open objects"><Menu /></button>
+      </div>
+    </header>
+
+    <nav className="cas-studio-modebar" aria-label="Math workspace modules">{moduleItems.map((item) => { const Icon = item.icon; return <button key={item.label} type="button" className={item.current ? "is-active" : item.disabledReason ? "is-disabled" : ""} disabled={Boolean(item.disabledReason)} title={item.disabledReason} onClick={() => item.route && navigate(item.route)}><Icon />{item.label}</button>; })}</nav>
+
+    <aside className="cas-studio-left" aria-label="CAS object explorer">
+      <button type="button" className="cas-mobile-sheet-close" onClick={() => setMobilePanel("canvas")}><X />Close objects</button>
+      <div className="cas-panel-heading"><div><p>Object explorer</p><h3>{state.cells.length} objects</h3></div><button type="button" onClick={() => onAddCell()} title="Add object" aria-label="Add object"><Plus /></button></div>
+      <label className="cas-search"><Search /><input value={workspaceQuery} placeholder="Search objects" onChange={(event) => setWorkspaceQuery(event.target.value)} /><button type="button" onClick={() => setWorkspaceQuery("")} aria-label="Clear filter"><Filter /></button></label>
+      <div className="cas-object-list" role="list" aria-label="CAS objects">{filteredCells.map((cell) => {
+        const active = selectedCell?.id === cell.id;
+        const index = state.cells.findIndex((item) => item.id === cell.id);
+        return <div key={cell.id} className={`cas-object-row ${active ? "is-active" : ""}`} role="listitem" draggable onDragStart={() => setDraggedCellId(cell.id)} onDragOver={(event) => event.preventDefault()} onDrop={() => reorderCell(cell.id)}>
+          <button type="button" className="cas-object-main" onClick={() => { onSelectCell(cell.id); setMobilePanel("canvas"); }}><span className="cas-object-badge" style={{ background: CAS_OBJECT_COLORS[index % CAS_OBJECT_COLORS.length] }}>{state.cells.length - index}</span><FunctionSquare className="cas-object-type" /><span className="cas-object-copy"><strong>{cell.input || "Empty calculation"}</strong><small>{cell.exact ?? cell.output ?? operationOptions.find((item) => item.value === cell.operation)?.label}</small></span></button>
+          <button type="button" className="cas-object-icon" onClick={() => setVisibleObjects((current) => ({ ...current, [cell.id]: current[cell.id] === false }))} aria-label={`${visibleObjects[cell.id] === false ? "Show" : "Hide"} ${cell.input}`}>{visibleObjects[cell.id] === false ? <EyeOff /> : <Eye />}</button>
+          <details className="cas-object-menu"><summary aria-label="Object actions"><MoreHorizontal /></summary><div><button type="button" onClick={() => onDuplicateCell(cell)}>Duplicate</button><button type="button" onClick={() => onSendToGraph(cell)}>Open in Graph 2D</button><button type="button" onClick={() => onDeleteCell(cell.id)}>Delete</button></div></details>
+        </div>;
+      })}{!filteredCells.length && <div className="cas-empty-result">No objects match this search.</div>}</div>
+      <div className="cas-section-list">{[["Variables", variableCount], ["Functions", functionCount], ["Equations", state.cells.filter((cell) => /=/.test(cell.input) && !/:=/.test(cell.input)).length], ["Matrices", state.cells.filter((cell) => cell.operation === "matrix").length], ["Lists", state.cells.filter((cell) => cell.operation === "list").length], ["Saved objects", state.cells.length]].map(([label, value]) => <details key={label as string}><summary><span>{label}</span><strong>{value}</strong></summary><small>{value ? `${value} linked object${value === 1 ? "" : "s"}` : "No objects yet"}</small></details>)}</div>
+    </aside>
+
+    <main className="cas-studio-center">
+      <section className="cas-notebook-workspace" aria-label="CAS notebook calculations">
+        <header className="cas-notebook-toolbar"><div><strong>Symbolic notebook</strong><span>{state.cells.length} calculation{state.cells.length === 1 ? "" : "s"}</span></div><div><button type="button" onClick={() => onAddCell()}><Plus />New</button><button type="button" onClick={() => setGraphPreviewOpen((value) => !value)} aria-expanded={graphPreviewOpen}><LineChart />{graphPreviewOpen ? "Close preview" : "Graph preview"}</button></div></header>
+      <div className="cas-notebook-scroll">{state.cells.map((cell, index) => <CasStudioNotebookBlock key={cell.id} cell={cell} index={state.cells.length - index} active={selectedCell?.id === cell.id} onSelect={() => onSelectCell(cell.id)} onRun={() => onRunCell(cell.id)} onChange={(patch) => onUpdateCell(cell.id, patch)} onDuplicate={() => onDuplicateCell(cell)} onDelete={() => onDeleteCell(cell.id)} onSendToGraph={() => onSendToGraph(cell)} onUseResult={() => onComposerInputChange(cell.exact ?? cell.output ?? cell.input)} />)}</div>
+      </section>
+      {graphPreviewOpen && <section className="cas-graph-workspace cas-graph-preview" ref={graphHostRef} aria-label="CAS graph preview">
+        <div className="cas-graph-topbar"><div className="cas-segmented"><button type="button" className={displayMode === "2d" ? "is-active" : ""} onClick={() => setDisplayMode("2d")}>2D</button><button type="button" className={displayMode === "3d" ? "is-active" : ""} onClick={() => setDisplayMode("3d")}>3D</button></div><div className="cas-graph-legend">{graphSeries.slice(0, 3).map((series) => <button type="button" key={series.id} onClick={() => onSelectCell(series.id)}><span style={{ background: series.color }} />{series.label}</button>)}</div></div>
+        <div className="cas-graph-tools">{graphTools.map((tool) => { const Icon = tool.icon; return <button key={tool.id} type="button" className={graphTool === tool.id ? "is-active" : ""} onClick={() => { setGraphTool(tool.id); setStatusMessage(`${tool.label} tool selected`); }} title={tool.label}><Icon /><span>{tool.label}</span></button>; })}</div>
+        <div className="cas-graph-actions"><button type="button" onClick={() => setGraphPreviewOpen(false)} aria-label="Close graph preview"><X /></button><button type="button" onClick={() => setGraphView((view) => zoomCasGraph(view, .78))} aria-label="Zoom in"><ZoomIn /></button><button type="button" onClick={() => setGraphView((view) => zoomCasGraph(view, 1.28))} aria-label="Zoom out"><ZoomOut /></button><button type="button" onClick={() => setGraphView({ xMin: -5, xMax: 5, yMin: -5, yMax: 5 })} aria-label="Reset graph view"><Home /></button><button type="button" onClick={() => setStatusMessage(`Grid x ${graphView.xMin.toFixed(1)} to ${graphView.xMax.toFixed(1)}`)} aria-label="Graph settings"><Settings /></button><button type="button" onClick={() => void graphHostRef.current?.requestFullscreen?.()} aria-label="Fullscreen graph"><Maximize2 /></button></div>
+        <div className="cas-graph-canvas">{displayMode === "2d" ? <FunctionGraphCanvas series={graphSeries} view={graphView} selectedSeriesId={selectedCell?.id} traceX={traceX} onTraceChange={setTraceX} onViewChange={setGraphView} featurePoints={featurePoints} /> : <button type="button" className="cas-3d-preview" onClick={() => navigate("/math-lab/3d-graphing")}><Box /><strong>Open the selected expression in Graph 3D</strong><span>Use the spatial workspace for surfaces and solids.</span></button>}</div>
+        <div className="cas-graph-status"><span>{graphSeries.length} visible object{graphSeries.length === 1 ? "" : "s"}</span><span>Pointer x = {traceX.toFixed(2)}</span><strong>{statusMessage}</strong></div>
+      </section>}
+      <section className="cas-composer"><div className="cas-composer-input">
+        <select value={composerOperation} onChange={(event) => onComposerOperationChange(event.target.value as NotebookOperation)} aria-label="CAS operation">{operationOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</select>
+        <div className="cas-expression-field"><textarea value={composerInput} onChange={(event) => onComposerInputChange(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); runComposer(); } }} placeholder="Enter an expression, equation, matrix, or natural-language prompt" /><div className="cas-input-mode"><button type="button" className={inputMode === "math" ? "is-active" : ""} onClick={() => setInputMode("math")}>Math</button><button type="button" className={inputMode === "natural" ? "is-active" : ""} onClick={() => setInputMode("natural")}>Natural language</button></div></div>
+        <div className="cas-composer-tools"><button type="button" title={speechSupported ? "Start voice input" : "Voice input is not supported in this browser."} disabled={!speechSupported} className={speechState === "listening" ? "is-active" : ""} onClick={startVoiceInput} aria-label={speechState === "listening" ? "Listening for mathematical input" : "Start voice input"}><Mic /></button><button type="button" title="Equation scanning is unavailable because no OCR engine is installed." disabled aria-label="Equation scanning unavailable"><Camera /></button><input ref={scanInputRef} hidden type="file" accept="image/*" /><button type="button" title="Toggle keyboard" className={keyboardOpen ? "is-active" : ""} onClick={() => setKeyboardOpen((value) => !value)}><Keyboard /></button><button type="button" className="primary" onClick={runComposer}><Play />Run</button></div>
+      </div>{speechState === "listening" && <div className="cas-speech-review" role="status"><span>Listening...</span><button type="button" onClick={() => { speechRecognitionRef.current?.abort(); setSpeechState("idle"); }}>Cancel</button></div>}{speechDraft && <div className="cas-speech-review" role="status"><label>Recognized math<input value={speechDraft} onChange={(event) => setSpeechDraft(event.target.value)} /></label><button type="button" onClick={() => { onComposerInputChange(speechDraft); setSpeechDraft(""); setSpeechState("idle"); }}>Use input</button><button type="button" onClick={() => { setSpeechDraft(""); setSpeechState("idle"); }}>Discard</button></div>}{keyboardOpen && <div className="cas-keyboard">{["x", "y", "pi", "e", "sqrt()", "cbrt()", "^", "abs()", "log", "ln", "sin", "cos", "tan", "Integral[]", "d/dx", "Sum[]", "infinity", "->", "alpha", "Omega", "..."].map((key) => <button key={key} type="button" onClick={() => onComposerInputChange(`${composerInput}${key}`)}>{key}</button>)}</div>}</section>
+    </main>
+
+    <aside className="cas-studio-right" aria-label="CAS result inspector"><button type="button" className="cas-mobile-sheet-close" onClick={() => setMobilePanel("canvas")}><X />Close inspector</button>
+      <div className="cas-inspector-tabs" role="tablist">{(["result", "steps", "properties", "assumptions", "related"] as const).map((tab) => <button key={tab} type="button" role="tab" aria-selected={inspectorTab === tab} className={inspectorTab === tab ? "is-active" : ""} onClick={() => setInspectorTab(tab)}>{tab[0].toUpperCase() + tab.slice(1)}</button>)}</div>
+      {selectedCell ? <div className="cas-inspector-scroll">
+        {inspectorTab === "result" && <><section className="cas-inspector-card"><div className="cas-panel-heading compact"><div><p>Exact solution</p><h3>In [{selectedIndex}]</h3></div>{selectedCell.ok ? <CheckCircle2 /> : <AlertTriangle />}</div><div className="cas-result-box"><MathExpression value={selectedCell.exact ?? selectedCell.output ?? "Run this object"} /><button type="button" onClick={() => void navigator.clipboard?.writeText(selectedCell.exact ?? selectedCell.output ?? selectedCell.input)} aria-label="Copy exact result"><Copy /></button></div>{selectedCell.numeric && <><p>Decimal approximation</p><div className="cas-result-box muted"><MathExpression value={selectedCell.numeric} /><button type="button" onClick={() => void navigator.clipboard?.writeText(selectedCell.numeric!)} aria-label="Copy decimal result"><Copy /></button></div></>}<p>{selectedCell.detail}</p></section><section className="cas-inspector-card"><div className="cas-panel-heading compact"><div><p>Domain and assumptions</p><h3>{domainMode === "real" ? "Real domain" : "Complex domain"}</h3></div><Info /></div><p>{state.assumptions || "No variable assumptions"}</p></section><section className="cas-action-grid"><button type="button" onClick={() => setInspectorTab("steps")}><Sparkles />Explain</button><button type="button" onClick={() => onRunCell(selectedCell.id)}><CheckCircle2 />Verify</button><button type="button" onClick={() => chooseOperation("simplify", selectedCell.input)}><RotateCcw />Alternative</button><button type="button" onClick={createSlider}><SlidersHorizontal />Create slider</button></section></>}
+        {inspectorTab === "steps" && <section className="cas-inspector-card cas-steps-card"><div className="cas-panel-heading compact"><div><p>Steps</p><h3>{selectedCell.structuredSteps?.length ?? selectedCell.steps.length} transformations</h3></div></div><ol className="cas-step-list">{(selectedCell.structuredSteps?.slice(0, revealedStepCount) ?? []).map((step, index) => <li key={step.id}><span>{index + 1}</span><div><strong>{step.rule}</strong><MathExpression value={step.result} /><small>{step.explanation}</small>{step.changedTerms.length > 0 && <small>Changed: {step.changedTerms.join(", ")}</small>}{index === (selectedCell.structuredSteps?.length ?? 0) - 1 && selectedCell.ok && <small><Check />{step.verification}</small>}</div></li>)}</ol>{!selectedCell.structuredSteps?.length && <div className="cas-empty-result">Run the selected object to generate solver-backed transformations.</div>}<div className="cas-action-grid"><button type="button" disabled={revealedStepCount >= (selectedCell.structuredSteps?.length ?? 0)} onClick={() => setRevealedStepCount((count) => count + 1)}><Sparkles />Next step</button><button type="button" onClick={() => setRevealedStepCount(selectedCell.structuredSteps?.length ?? 0)}><ListTree />Show all</button><button type="button" onClick={() => onRunCell(selectedCell.id)}><CheckCircle2 />Verify</button><button type="button" onClick={() => chooseOperation("factor", selectedCell.input)}><WandSparkles />Alternative</button></div></section>}
+        {inspectorTab === "properties" && <section className="cas-inspector-card cas-property-list"><div className="cas-panel-heading compact"><div><p>Object properties</p><h3>{operationOptions.find((item) => item.value === selectedCell.operation)?.label}</h3></div></div><dl><div><dt>Expression</dt><dd>{selectedCell.input}</dd></div><div><dt>Status</dt><dd>{selectedCell.ok ? "Verified" : "Needs attention"}</dd></div><div><dt>Visible range</dt><dd>{selectedRange ?? "Not graphable"}</dd></div><div><dt>Dependencies</dt><dd>{selectedCell.dependencies?.join(", ") || "None"}</dd></div><div><dt>Created</dt><dd>{selectedCell.createdAt}</dd></div></dl><div className="cas-action-grid"><button type="button" onClick={() => setVisibleObjects((current) => ({ ...current, [selectedCell.id]: current[selectedCell.id] === false }))}>{visibleObjects[selectedCell.id] === false ? <Eye /> : <EyeOff />}Visibility</button><button type="button" onClick={() => onSendToGraph(selectedCell)}><LineChart />Graph 2D</button><button type="button" onClick={() => onDuplicateCell(selectedCell)}><Copy />Duplicate</button><button type="button" onClick={() => onDeleteCell(selectedCell.id)}><Trash2 />Delete</button><button type="button" onClick={() => void copySelectedFormat("latex")}><Copy />Copy LaTeX</button><button type="button" onClick={() => void copySelectedFormat("mathml")}><Braces />Copy MathML</button><button type="button" onClick={exportSelectedCalculation}><Download />Export calculation</button></div></section>}
+        {inspectorTab === "assumptions" && <section className="cas-inspector-card cas-assumptions-panel"><div className="cas-panel-heading compact"><div><p>Evaluation context</p><h3>Assumptions</h3></div></div><label>Variables<textarea value={state.assumptions} onChange={(event) => onAssumptionsChange(event.target.value)} /></label><label>Evaluation mode<div className="cas-format-row">{(["exact", "numeric"] as EvaluationMode[]).map((mode) => <button key={mode} type="button" className={state.mode === mode ? "is-active" : ""} onClick={() => onModeChange(mode)}>{mode}</button>)}</div></label><label>Domain<div className="cas-format-row">{(["real", "complex"] as const).map((mode) => <button key={mode} type="button" className={domainMode === mode ? "is-active" : ""} onClick={() => { setDomainMode(mode); onAssumptionsChange(`${state.assumptions.replace(/\b(real|complex)\b/g, "").trim()} ${mode}`.trim()); }}>{mode}</button>)}</div></label><label>Angle mode<div className="cas-format-row">{(["rad", "deg"] as const).map((mode) => <button key={mode} type="button" className={angleMode === mode ? "is-active" : ""} onClick={() => setAngleMode(mode)}>{mode === "rad" ? "Radians" : "Degrees"}</button>)}</div></label><label>Precision<input type="number" min="3" max="16" value={precision} onChange={(event) => setPrecision(Number(event.target.value))} /></label></section>}
+        {inspectorTab === "related" && <section className="cas-inspector-card"><div className="cas-panel-heading compact"><div><p>Related operations</p><h3>Explore this object</h3></div></div><div className="cas-related-grid">{(["simplify", "factor", "expand", "solve", "differentiate", "integrate", "limit", "tangent-line"] as NotebookOperation[]).map((operation) => <button key={operation} type="button" onClick={() => chooseOperation(operation, selectedCell.input)}>{operationOptions.find((item) => item.value === operation)?.label}</button>)}</div><div className="cas-action-grid"><button type="button" onClick={() => onSendToGraph(selectedCell)}><LineChart />Graph 2D</button><button type="button" onClick={sendSelectedToGraph3d}><Orbit />Graph 3D</button><button type="button" onClick={sendSelectedToSpreadsheet}><Table2 />Spreadsheet</button></div></section>}
+        <section className="cas-ai-tutor"><p><Sparkles />AI Tutor</p><strong>{selectedCell.ok ? `${operationOptions.find((item) => item.value === selectedCell.operation)?.label} completed successfully.` : "This object needs an edit or recalculation."}</strong><span>{selectedCell.warnings?.[0] ?? (selectedCell.ok ? `Review ${selectedCell.steps.length} solver step${selectedCell.steps.length === 1 ? "" : "s"}, then verify by substitution.` : "Check the expression syntax and selected operation before running it again.")}</span></section>
+      </div> : <EmptyPanel text="Add or select a CAS object to inspect its result." />}
+    </aside>
+
+    <section className="cas-history-workbench"><div className="cas-history-pane"><header><strong>History</strong><span>{state.cells.length} calculations</span><button type="button" onClick={onReset} title="Clear history"><Trash2 /></button></header><div>{state.cells.slice(0, 6).map((cell) => <button key={cell.id} type="button" onClick={() => { onSelectCell(cell.id); onComposerInputChange(cell.input); onComposerOperationChange(cell.operation); }}><FunctionSquare /><span><strong>{cell.input}</strong><small>{cell.createdAt}</small></span>{cell.ok ? <CheckCircle2 /> : <AlertTriangle />}</button>)}</div></div><div className="cas-sheet-preview"><header><strong>Spreadsheet</strong><span>{Math.min(4, state.cells.length)} x 3</span><button type="button" onClick={() => navigate("/workspace/data/spreadsheet")}>Open</button></header><table><thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead><tbody>{state.cells.slice(0, 4).map((cell, index) => <tr key={cell.id}><th>{index + 1}</th><td>{cell.operation}</td><td>{cell.input}</td><td>{cell.exact ?? cell.output}</td></tr>)}</tbody></table></div></section>
+
+    <nav className="cas-tool-dock" aria-label="CAS mathematical tools"><div className="cas-tool-scroll">{CAS_DOCK_TOOLS.map((tool) => { const Icon = tool.icon; return <button key={tool.label} type="button" onClick={() => tool.route ? navigate(tool.route) : tool.operation ? chooseOperation(tool.operation) : setKeyboardOpen((value) => !value)}><Icon /><span>{tool.label}</span></button>; })}</div><div className="cas-global-controls"><button type="button" onClick={() => onModeChange(state.mode === "exact" ? "numeric" : "exact")}><span className="cas-status-dot" />{state.mode === "exact" ? "Exact" : "Numeric"}</button><button type="button" onClick={() => setAngleMode((mode) => mode === "rad" ? "deg" : "rad")}>{angleMode === "rad" ? "Radians" : "Degrees"}</button><button type="button" onClick={() => setDomainMode((mode) => mode === "real" ? "complex" : "real")}>{domainMode === "real" ? "Real" : "Complex"}</button><button type="button" onClick={() => setKeyboardOpen((value) => !value)} aria-label="Toggle keyboard"><Keyboard /></button></div></nav>
+    <nav className="cas-mobile-panels"><button type="button" className={mobilePanel === "objects" ? "is-active" : ""} onClick={() => setMobilePanel("objects")}><ListTree />Objects</button><button type="button" className={mobilePanel === "canvas" ? "is-active" : ""} onClick={() => setMobilePanel("canvas")}><Sigma />Notebook</button><button type="button" className={mobilePanel === "result" ? "is-active" : ""} onClick={() => setMobilePanel("result")}><CheckCircle2 />Result</button></nav>
+  </div>;
+}
+
+function casPlotExpression(cell: NotebookCell) {
+  const functionDefinition = cell.input.match(/^\s*[a-z]\w*\s*\(\s*x\s*\)\s*:?=\s*(.+)$/i);
+  if (functionDefinition) return functionDefinition[1].trim();
+  const tangent = (cell.exact ?? cell.output).match(/y\s*=\s*(.+)$/i);
+  if (tangent) return tangent[1].trim();
+  const source = cell.input.replace(/^Solve\[/i, "").replace(/,\s*x\s*\]$/i, "").trim();
+  if (!/\bx\b/i.test(source) || /[;[\]]/.test(source)) return undefined;
+  const equality = source.match(/^(.+?)=(.+)$/);
+  return equality ? `(${equality[1]})-(${equality[2]})` : source;
+}
+
+function zoomCasGraph(view: FunctionGraphView, factor: number): FunctionGraphView {
+  const centerX = (view.xMin + view.xMax) / 2;
+  const centerY = (view.yMin + view.yMax) / 2;
+  const halfWidth = (view.xMax - view.xMin) * factor / 2;
+  const halfHeight = (view.yMax - view.yMin) * factor / 2;
+  return { xMin: centerX - halfWidth, xMax: centerX + halfWidth, yMin: centerY - halfHeight, yMax: centerY + halfHeight };
+}
+
+function CasStudioNotebookBlock({ cell, index, active, onSelect, onRun, onChange, onDuplicate, onDelete, onSendToGraph, onUseResult }: {
+  cell: NotebookCell;
+  index: number;
+  active: boolean;
+  onSelect: () => void;
+  onRun: () => void;
+  onChange: (patch: Partial<NotebookCell>) => void;
+  onDuplicate: () => void;
+  onDelete: () => void;
+  onSendToGraph: () => void;
+  onUseResult: () => void;
+}) {
+  const [stepsOpen, setStepsOpen] = useState(index <= 2);
+  return (
+    <article className={`cas-notebook-block ${active ? "is-active" : ""}`} onFocus={onSelect} onClick={onSelect}>
+      <div className="cas-block-header">
+        <span>In [{index}]</span>
+        <select aria-label={`Operation for calculation ${index}`} value={cell.operation} onChange={(event) => onChange({ operation: event.target.value as NotebookOperation })}>
+          {operationOptions.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
+        </select>
+        <div>
+          <button type="button" onClick={onRun} title="Recalculate"><Play className="h-4 w-4" /></button>
+          <button type="button" onClick={onDuplicate} title="Duplicate"><Copy className="h-4 w-4" /></button>
+          <button type="button" onClick={onSendToGraph} title="Send to Graph 2D"><LineChart className="h-4 w-4" /></button>
+          <button type="button" onClick={onDelete} title="Delete"><Trash2 className="h-4 w-4" /></button>
+        </div>
+      </div>
+      <textarea value={cell.input} onChange={(event) => onChange({ input: event.target.value })} aria-label={`CAS input ${index}`} placeholder="Factor[x^3 - 3*x^2 - 4*x + 12]" />
+      {cell.output ? (
+        <div className="cas-block-output">
+          <div className="cas-block-result">
+            <p>Exact result</p>
+            <strong><MathExpression value={cell.exact ?? cell.output} /></strong>
+          </div>
+          {cell.numeric && <div className="cas-block-result muted"><p>Decimal approximation</p><strong><MathExpression value={cell.numeric} /></strong></div>}
+          {!!cell.warnings?.length && <div className="cas-warning"><AlertTriangle className="h-4 w-4" />{cell.warnings.join(" ")}</div>}
+          <div className="cas-block-actions">
+            <button type="button" onClick={() => setStepsOpen((value) => !value)}>{stepsOpen ? "Hide steps" : "Show steps"}</button>
+            <button type="button" onClick={onUseResult}>Use result</button>
+            <button type="button" onClick={onSendToGraph}>Plot in 2D</button>
+          </div>
+          {stepsOpen && (
+            <ol className="cas-step-list">
+              {cell.steps.map((step, stepIndex) => <li key={`${cell.id}-block-step-${stepIndex}`}><span>{stepIndex + 1}</span>{step}</li>)}
+            </ol>
+          )}
+        </div>
+      ) : (
+        <div className="cas-empty-result">Run this block to generate exact result, decimal check, assumptions, warnings, and steps.</div>
+      )}
+    </article>
+  );
+}
+
+function CasSummaryRow({ label, value }: { label: string; value: number }) {
+  return <div className="cas-summary-row"><span>{label}</span><strong>{value}</strong></div>;
+}
+
+function createDefaultCasNotebookState(): NotebookState {
+  const assumptions = "x real";
+  const mode: EvaluationMode = "exact";
+  const cells = starterNotebookCells.map((cell) => ({ ...cell, id: crypto.randomUUID() }));
+  return {
+    cells: evaluateNotebookCells(cells, assumptions, mode),
+    assumptions,
+    mode,
+  };
+}
+
+function downloadCasArtifact(filename: string, content: string, type: string) {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+function graphableExpressionFromCasCell(cell: NotebookCell) {
+  const candidate = cell.exact || cell.output || cell.input;
+  const equationMatch = candidate.match(/y\s*=\s*(.+)$/i);
+  if (equationMatch) return equationMatch[1].trim();
+  const solveInput = cell.input.match(/Solve\[(.+?)(?:,\s*x)?\]$/i);
+  if (solveInput) return stripInequality(solveInput[1].replace(/=.+$/, ""));
+  return stripInequality(candidate.replace(/^[a-z]\s*:=\s*/i, "").replace(/^x\s*=\s*/i, ""));
 }
 
 function _HighPriorityWorkflowBar({ selectedType, styleControls, protocolPlan, slider, snapCandidates, imageWorkflow, exportPresets, tablet, onAddImage, onPauseAnimation, onPlayAnimation }: { selectedType: WorkflowObjectType; styleControls: StyleBarControl[]; protocolPlan: ProtocolPlaybackPlan; slider: SliderObject; snapCandidates: (SnapCandidate & { distance: number })[]; imageWorkflow: ImageWorkflowSpec; exportPresets: ExportPreset[]; tablet: TabletControlSpec; onAddImage: () => void; onPauseAnimation: () => void; onPlayAnimation: () => void }) {

@@ -1,0 +1,1570 @@
+[
+  {
+    "route": "/workspace/data",
+    "viewport": "320x568",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 320,
+      "height": 568
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 698,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "320x568",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 320,
+      "height": 568
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 5,
+    "loadMs": 388,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "320x568",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 320,
+      "height": 448
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 512,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "320x568",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 320,
+      "height": 448
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 849,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "320x568",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 320,
+      "height": 448
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 345,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "320x568",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 320,
+      "height": 448
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 1704,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "320x568",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 320,
+      "height": 448
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 764,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "360x800",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 360,
+      "height": 800
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 761,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "360x800",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 360,
+      "height": 800
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 5,
+    "loadMs": 431,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "360x800",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 360,
+      "height": 680
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 404,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "360x800",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 360,
+      "height": 680
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 838,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "360x800",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 360,
+      "height": 680
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 361,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "360x800",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 360,
+      "height": 680
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 623,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "360x800",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 360,
+      "height": 680
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 658,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "390x844",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 390,
+      "height": 844
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 748,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "390x844",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 390,
+      "height": 844
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 5,
+    "loadMs": 424,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "390x844",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 390,
+      "height": 724
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 399,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "390x844",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 390,
+      "height": 724
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 825,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "390x844",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 390,
+      "height": 724
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 351,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "390x844",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 390,
+      "height": 724
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 607,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "390x844",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 390,
+      "height": 724
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 638,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "412x915",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 412,
+      "height": 915
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 747,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "412x915",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 412,
+      "height": 915
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 5,
+    "loadMs": 440,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "412x915",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 412,
+      "height": 795
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 475,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "412x915",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 412,
+      "height": 795
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 900,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "412x915",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 412,
+      "height": 795
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 450,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "412x915",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 412,
+      "height": 795
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 1860,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "412x915",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 412,
+      "height": 795
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 779,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "600x960",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 600,
+      "height": 960
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 880,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "600x960",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 600,
+      "height": 960
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 5,
+    "loadMs": 510,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "600x960",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 600,
+      "height": 840
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 578,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "600x960",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 600,
+      "height": 840
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 974,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "600x960",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 600,
+      "height": 840
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 479,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "600x960",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 600,
+      "height": 840
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 1727,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "600x960",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 600,
+      "height": 840
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 715,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "768x1024",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 768,
+      "height": 1024
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 820,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "768x1024",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 768,
+      "height": 1024
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 6,
+    "loadMs": 544,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "768x1024",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 768,
+      "height": 910
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 441,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "768x1024",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 768,
+      "height": 910
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 841,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "768x1024",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 768,
+      "height": 910
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 490,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "768x1024",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 768,
+      "height": 910
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 723,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "768x1024",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 768,
+      "height": 910
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 727,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "820x1180",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 820,
+      "height": 1180
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 800,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "820x1180",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 820,
+      "height": 1180
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 6,
+    "loadMs": 582,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "820x1180",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 820,
+      "height": 1066
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 488,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "820x1180",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 820,
+      "height": 1066
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 894,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "820x1180",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 820,
+      "height": 1066
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 351,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "820x1180",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 820,
+      "height": 1066
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 1719,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "820x1180",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 820,
+      "height": 1066
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 815,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "1024x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1024,
+      "height": 768
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 1054,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "1024x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1024,
+      "height": 768
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 6,
+    "loadMs": 539,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "1024x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1024,
+      "height": 710
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 579,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "1024x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1024,
+      "height": 710
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 1109,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "1024x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1024,
+      "height": 710
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 521,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "1024x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1024,
+      "height": 710
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 2192,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "1024x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1024,
+      "height": 710
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 870,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "1280x720",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1280,
+      "height": 720
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 942,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "1280x720",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1280,
+      "height": 720
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 6,
+    "loadMs": 457,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "1280x720",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1280,
+      "height": 662
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 572,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "1280x720",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1280,
+      "height": 662
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 790,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "1280x720",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1280,
+      "height": 662
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 413,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "1280x720",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1280,
+      "height": 662
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 628,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "1280x720",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1280,
+      "height": 662
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 659,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "1366x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1366,
+      "height": 768
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 803,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "1366x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1366,
+      "height": 768
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 6,
+    "loadMs": 471,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "1366x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1366,
+      "height": 710
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 579,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "1366x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1366,
+      "height": 710
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 880,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "1366x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1366,
+      "height": 710
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 387,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "1366x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1366,
+      "height": 710
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 627,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "1366x768",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1366,
+      "height": 710
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 695,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "1440x900",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1440,
+      "height": 900
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 819,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "1440x900",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1440,
+      "height": 900
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 6,
+    "loadMs": 456,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "1440x900",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1440,
+      "height": 842
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 555,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "1440x900",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1440,
+      "height": 842
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 807,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "1440x900",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1440,
+      "height": 842
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 400,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "1440x900",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1440,
+      "height": 842
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 631,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "1440x900",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1440,
+      "height": 842
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 722,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "1920x1080",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1920,
+      "height": 1080
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 796,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "1920x1080",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1920,
+      "height": 1080
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 6,
+    "loadMs": 526,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "1920x1080",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1920,
+      "height": 1022
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 516,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "1920x1080",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1920,
+      "height": 1022
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 868,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "1920x1080",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1920,
+      "height": 1022
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 424,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "1920x1080",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1920,
+      "height": 1022
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 1862,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "1920x1080",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 1920,
+      "height": 1022
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 846,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "2560x1440",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 2560,
+      "height": 1440
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 851,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "2560x1440",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 2560,
+      "height": 1440
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 6,
+    "loadMs": 565,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "2560x1440",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 2560,
+      "height": 1382
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 568,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "2560x1440",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 2560,
+      "height": 1382
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 851,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "2560x1440",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 2560,
+      "height": 1382
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 413,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "2560x1440",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 2560,
+      "height": 1382
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 1350,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "2560x1440",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 2560,
+      "height": 1382
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 991,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data",
+    "viewport": "3840x2160",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 3840,
+      "height": 2160
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 9,
+    "loadMs": 837,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/data/spreadsheet",
+    "viewport": "3840x2160",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 3840,
+      "height": 2160
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 6,
+    "loadMs": 462,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/geometry",
+    "viewport": "3840x2160",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 3840,
+      "height": 2102
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 594,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/3d",
+    "viewport": "3840x2160",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 3840,
+      "height": 2102
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 1106,
+    "consoleErrors": []
+  },
+  {
+    "route": "/workspace/graph?v_a=1&v_b=0",
+    "viewport": "3840x2160",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 3840,
+      "height": 2102
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 4,
+    "loadMs": 577,
+    "consoleErrors": []
+  },
+  {
+    "route": "/math-lab/3d-graphing",
+    "viewport": "3840x2160",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 3840,
+      "height": 2102
+    },
+    "canvasCount": 1,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 10,
+    "loadMs": 841,
+    "consoleErrors": []
+  },
+  {
+    "route": "/shapes",
+    "viewport": "3840x2160",
+    "horizontalOverflow": 0,
+    "stage": {
+      "width": 3840,
+      "height": 2102
+    },
+    "canvasCount": 0,
+    "clippedControls": 0,
+    "clippedControlLabels": [],
+    "smallTargets": 0,
+    "landmarks": 8,
+    "loadMs": 1335,
+    "consoleErrors": []
+  }
+]

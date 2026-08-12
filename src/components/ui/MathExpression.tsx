@@ -22,6 +22,7 @@ export default function MathExpression({ value, display = false, className = "" 
   return (
     <span
       className={`math-expression inline-block max-w-full overflow-x-auto overflow-y-hidden align-middle [&_.katex-display]:my-0 ${className}`}
+      tabIndex={0}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
@@ -63,7 +64,7 @@ export function InlineMathText({ value, className = "", mathClassName = "" }: { 
 
 export function isFormulaLike(value: string) {
   if (!/[A-Za-z0-9\\]/.test(value) || /^[=<>+\-*/^_.,;:!?]+$/.test(value)) return false;
-  return /[=^_<>]|\\|sqrt\(|cbrt\(|\b(?:pi|theta|alpha|beta|gamma|delta|lambda|mu|sigma|phi)\b|\b(?:sin|cos|tan|sec|csc|cot|cosec|log|ln|lim)\b\s*[\(^A-Za-z0-9]|[A-Za-z0-9)\]}]\s*[+*/]\s*[A-Za-z0-9([{]/i.test(value);
+  return /[=^_<>]|\\|sqrt\(|cbrt\(|\b(?:pi|theta|alpha|beta|gamma|delta|lambda|mu|sigma|phi)\b|\b(?:sin|cos|tan|sec|csc|cot|cosec|log|ln|lim)\b\s*[(^A-Za-z0-9]|[A-Za-z0-9)\]}]\s*[+*/]\s*[A-Za-z0-9([{]/i.test(value);
 }
 
 export function normalizeFormulaForKatex(value: string) {

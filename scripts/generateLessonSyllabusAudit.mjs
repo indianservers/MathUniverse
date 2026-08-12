@@ -215,7 +215,7 @@ const schoolGapBacklog = {
   scope: "Phase 1 school syllabus remediation only",
   boards,
   totalMissingConcepts: schoolGaps.reduce((sum, [, , concepts]) => sum + concepts.length, 0),
-  conceptPacks: schoolGaps.map(([level, unit, concepts], packIndex) => ({
+  conceptPacks: schoolGaps.map(([level, unit, concepts]) => ({
     id: `phase1-${conceptSlug(level)}-${conceptSlug(unit)}`,
     priority: level === "CLASS_9" || level === "CLASS_10" || /Formal Calculus|Probability|Euclidean/.test(unit) ? "P0" : "P1",
     academicLevel: level,

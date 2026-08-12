@@ -1,16 +1,34 @@
 import {
+  symbolicCompleteSquare,
+  symbolicComplexSolve,
+  symbolicDeterminant,
   symbolicDerivative,
   symbolicDefiniteIntegral,
+  symbolicEigenvalues,
+  symbolicEigenvectors,
   symbolicExpand,
   symbolicFactor,
+  symbolicImplicitDerivative,
   symbolicIntegral,
+  symbolicInverseLaplace,
+  symbolicInverseMatrix,
+  symbolicLaplace,
   symbolicLimit,
+  symbolicMatrixMultiply,
+  symbolicMatrixRank,
+  symbolicNumericSolve,
+  symbolicOneSidedLimit,
   symbolicPartialFractions,
   symbolicPolynomialDivide,
+  symbolicRationalize,
+  symbolicRref,
   symbolicSimplify,
   symbolicSolve,
+  symbolicSolveInequality,
+  symbolicSolveOde,
   symbolicSubstitute,
   symbolicSystemSolve,
+  symbolicTaylorPolynomial,
   symbolicTangentLine,
   symbolicVerifyIdentity,
   trySymbolic,
@@ -28,13 +46,42 @@ export type NotebookOperation =
   | "integrate"
   | "definite-integral"
   | "limit"
+  | "one-sided-limit"
+  | "implicit-differentiate"
+  | "taylor"
+  | "laplace"
+  | "inverse-laplace"
+  | "ode"
   | "tangent-line"
   | "verify-identity"
   | "substitute"
   | "partial-fractions"
   | "polynomial-divide"
+  | "complete-square"
+  | "rationalize"
+  | "numeric-solve"
+  | "complex-solve"
+  | "inequality"
   | "matrix"
+  | "determinant"
+  | "inverse-matrix"
+  | "matrix-multiply"
+  | "rref"
+  | "matrix-rank"
+  | "eigenvalues"
+  | "eigenvectors"
   | "list";
+
+export type NotebookStructuredStep = {
+  id: string;
+  operation: string;
+  rule: string;
+  previousExpression: string;
+  result: string;
+  explanation: string;
+  changedTerms: string[];
+  verification: string;
+};
 
 export type EvaluationMode = "exact" | "numeric";
 
@@ -48,6 +95,7 @@ export type NotebookCell = {
   ok: boolean;
   detail: string;
   steps: string[];
+  structuredSteps?: NotebookStructuredStep[];
   createdAt: string;
   resolvedInput?: string;
   dependencies?: string[];
@@ -89,12 +137,30 @@ export const operationOptions: Array<{ value: NotebookOperation; label: string }
   { value: "integrate", label: "Integrate" },
   { value: "definite-integral", label: "Definite Integral" },
   { value: "limit", label: "Limit" },
+  { value: "one-sided-limit", label: "One-sided Limit" },
+  { value: "implicit-differentiate", label: "Implicit Derivative" },
+  { value: "taylor", label: "Taylor Polynomial" },
+  { value: "laplace", label: "Laplace Transform" },
+  { value: "inverse-laplace", label: "Inverse Laplace" },
+  { value: "ode", label: "Solve ODE" },
   { value: "tangent-line", label: "Tangent Line" },
   { value: "verify-identity", label: "Verify Identity" },
   { value: "substitute", label: "Substitute" },
   { value: "partial-fractions", label: "Partial Fractions" },
   { value: "polynomial-divide", label: "Polynomial Divide" },
+  { value: "complete-square", label: "Complete Square" },
+  { value: "rationalize", label: "Rationalize" },
+  { value: "numeric-solve", label: "Numeric Solve" },
+  { value: "complex-solve", label: "Complex Solve" },
+  { value: "inequality", label: "Solve Inequality" },
   { value: "matrix", label: "Matrix" },
+  { value: "determinant", label: "Determinant" },
+  { value: "inverse-matrix", label: "Inverse Matrix" },
+  { value: "matrix-multiply", label: "Matrix Multiply" },
+  { value: "rref", label: "Row-reduced Form" },
+  { value: "matrix-rank", label: "Matrix Rank" },
+  { value: "eigenvalues", label: "Eigenvalues" },
+  { value: "eigenvectors", label: "Eigenvectors" },
   { value: "list", label: "List" },
 ];
 
@@ -105,6 +171,7 @@ export const casNotebookExamples: Array<{ label: string; input: string; operatio
   { label: "Equation system", input: "x+y=5; x-y=1", operation: "system" },
   { label: "Matrix", input: "[[1,2],[3,4]]", operation: "matrix" },
   { label: "Limit", input: "sin(x)/x, x, 0", operation: "limit" },
+  { label: "Taylor series", input: "sin(x), x, 0, 5", operation: "taylor" },
   { label: "Definite integral", input: "x^2, 0, 2, x", operation: "definite-integral" },
   { label: "Tangent line", input: "x^2, 3, x", operation: "tangent-line" },
   { label: "Verify identity", input: "tan(x), sin(x)/cos(x), x", operation: "verify-identity" },
@@ -178,6 +245,7 @@ export function evaluateNotebookCell(cell: NotebookCell, context: NotebookEvalua
       output: "Enter an expression first.",
       detail: "The cell is empty.",
       steps: ["Choose an operation.", "Enter an expression, matrix, list, or system.", "Run the cell again."],
+      structuredSteps: [],
       createdAt: new Date().toLocaleString(),
       warnings: ["Empty cells are skipped by the worksheet engine."],
       assumptionSummary,
@@ -189,20 +257,23 @@ export function evaluateNotebookCell(cell: NotebookCell, context: NotebookEvalua
   const result = assignment ? assignmentResult(assignment.name, assignment.value, context.memory) : runNotebookOperation(cell.operation, resolved.input, context.assumptions);
   const numeric = context.mode === "numeric" ? numericCheck(resolved.input, result?.result ?? resolved.input, context.memory) : undefined;
   const warnings = [...resolved.warnings, ...assumptionWarnings(context.assumptions)];
+  const steps = [
+    `Assumptions: ${context.assumptions.trim() || "none"}.`,
+    `Mode: ${context.mode}.`,
+    resolved.input !== input ? `Resolved worksheet references: ${resolved.input}.` : "No worksheet references needed resolving.",
+    ...(result?.steps ?? ["Parse the cell input.", "No supported transformation matched this cell."]),
+  ];
+  const output = context.mode === "numeric" && numeric ? numeric : result?.result ?? "CAS could not process this cell.";
 
   return {
     ...cell,
-    output: context.mode === "numeric" && numeric ? numeric : result?.result ?? "CAS could not process this cell.",
+    output,
     exact: result?.exact ?? result?.result,
     numeric,
     ok: Boolean(result),
     detail: result?.detail ?? "The CAS engine could not produce a supported symbolic result for this input.",
-    steps: [
-      `Assumptions: ${context.assumptions.trim() || "none"}.`,
-      `Mode: ${context.mode}.`,
-      resolved.input !== input ? `Resolved worksheet references: ${resolved.input}.` : "No worksheet references needed resolving.",
-      ...(result?.steps ?? ["Parse the cell input.", "No supported transformation matched this cell."]),
-    ],
+    steps,
+    structuredSteps: buildStructuredSteps(cell.operation, input, resolved.input, output, steps),
     createdAt: new Date().toLocaleString(),
     resolvedInput: resolved.input,
     dependencies: resolved.dependencies,
@@ -320,6 +391,31 @@ function runNotebookOperation(operation: NotebookOperation, input: string, assum
     const [expression, variable = inferVariable(input), target = "0"] = splitTopLevel(input);
     return withAssumptions(trySymbolic(() => symbolicLimit(expression, variable, target)), assumptions);
   }
+  if (operation === "one-sided-limit") {
+    const [expression, variable = inferVariable(input), target = "0", rawDirection = "above"] = splitTopLevel(input);
+    const direction = rawDirection.toLowerCase() === "below" || rawDirection === "-" ? "below" : "above";
+    return withAssumptions(trySymbolic(() => symbolicOneSidedLimit(expression, variable, target, direction)), assumptions);
+  }
+  if (operation === "implicit-differentiate") {
+    const [equation, variable = "x", dependent = "y"] = splitTopLevel(input);
+    return withAssumptions(trySymbolic(() => symbolicImplicitDerivative(equation, variable, dependent)), assumptions);
+  }
+  if (operation === "taylor") {
+    const [expression, variable = inferVariable(input), center = "0", order = "5"] = splitTopLevel(input);
+    return withAssumptions(trySymbolic(() => symbolicTaylorPolynomial(expression, variable, center, order)), assumptions);
+  }
+  if (operation === "laplace") {
+    const [expression, variable = "t", target = "s"] = splitTopLevel(input);
+    return withAssumptions(trySymbolic(() => symbolicLaplace(expression, variable, target)), assumptions);
+  }
+  if (operation === "inverse-laplace") {
+    const [expression, variable = "s", target = "t"] = splitTopLevel(input);
+    return withAssumptions(trySymbolic(() => symbolicInverseLaplace(expression, variable, target)), assumptions);
+  }
+  if (operation === "ode") {
+    const [equation, variable = "x", dependent = "y"] = splitTopLevel(input);
+    return withAssumptions(trySymbolic(() => symbolicSolveOde(equation, variable, dependent)), assumptions);
+  }
   if (operation === "tangent-line") {
     const [expression, point = "0", variable = inferVariable(input)] = splitTopLevel(input);
     return withAssumptions(trySymbolic(() => symbolicTangentLine(expression, point, variable)), assumptions);
@@ -341,9 +437,50 @@ function runNotebookOperation(operation: NotebookOperation, input: string, assum
     const [dividend, divisor = "1", variable = inferVariable(input)] = splitTopLevel(input);
     return withAssumptions(trySymbolic(() => symbolicPolynomialDivide(dividend, divisor, variable)), assumptions);
   }
+  if (operation === "complete-square") {
+    const [expression, variable = inferVariable(input)] = splitTopLevel(input);
+    return withAssumptions(trySymbolic(() => symbolicCompleteSquare(expression, variable)), assumptions);
+  }
+  if (operation === "rationalize") return withAssumptions(trySymbolic(() => symbolicRationalize(input)), assumptions);
+  if (operation === "numeric-solve") return withAssumptions(trySymbolic(() => symbolicNumericSolve(input.includes("=") ? input : `${input}=0`, inferVariable(input))), assumptions);
+  if (operation === "complex-solve") return withAssumptions(trySymbolic(() => symbolicComplexSolve(input.includes("=") ? input : `${input}=0`, inferVariable(input))), assumptions);
+  if (operation === "inequality") return withAssumptions(trySymbolic(() => symbolicSolveInequality(input, inferVariable(input))), assumptions);
   if (operation === "matrix") return matrixResult(input);
+  if (operation === "determinant") return withAssumptions(trySymbolic(() => symbolicDeterminant(input)), assumptions);
+  if (operation === "inverse-matrix") return withAssumptions(trySymbolic(() => symbolicInverseMatrix(input)), assumptions);
+  if (operation === "matrix-multiply") {
+    const [first, second = "[]"] = splitTopLevel(input);
+    return withAssumptions(trySymbolic(() => symbolicMatrixMultiply(first, second)), assumptions);
+  }
+  if (operation === "rref") return withAssumptions(trySymbolic(() => symbolicRref(input)), assumptions);
+  if (operation === "matrix-rank") return withAssumptions(trySymbolic(() => symbolicMatrixRank(input)), assumptions);
+  if (operation === "eigenvalues") return withAssumptions(trySymbolic(() => symbolicEigenvalues(input)), assumptions);
+  if (operation === "eigenvectors") return withAssumptions(trySymbolic(() => symbolicEigenvectors(input)), assumptions);
   if (operation === "list") return listResult(input);
   return null;
+}
+
+function buildStructuredSteps(operation: NotebookOperation, originalInput: string, resolvedInput: string, output: string, steps: string[]): NotebookStructuredStep[] {
+  return steps.map((explanation, index) => {
+    const isResolution = index <= 2;
+    const previousExpression = index === 0 ? originalInput : resolvedInput;
+    const result = index === steps.length - 1 ? output : resolvedInput;
+    return {
+      id: `${operation}-${index + 1}`,
+      operation: operationOptions.find((item) => item.value === operation)?.label ?? operation,
+      rule: isResolution ? ["Assumption context", "Evaluation mode", "Notebook dependency resolution"][index] : "Symbolic engine transformation",
+      previousExpression,
+      result,
+      explanation,
+      changedTerms: tokenDifference(previousExpression, result),
+      verification: index === steps.length - 1 ? `Re-run ${operation} on the resolved input and compare with ${output}.` : "Context recorded for the next transformation.",
+    };
+  });
+}
+
+function tokenDifference(before: string, after: string) {
+  const beforeTokens = new Set(before.match(/[A-Za-z0-9.]+|[^\sA-Za-z0-9]/g) ?? []);
+  return Array.from(new Set(after.match(/[A-Za-z0-9.]+|[^\sA-Za-z0-9]/g) ?? [])).filter((token) => !beforeTokens.has(token)).slice(0, 12);
 }
 
 function withAssumptions(result: SymbolicResult | null, assumptions: string): SymbolicResult | null {

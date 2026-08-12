@@ -15,6 +15,13 @@ export default tseslint.config(
       globals: globals.serviceworker,
     },
   },
+  {
+    files: ["scripts/**/*.mjs", "tmp/**/*.mjs"],
+    languageOptions: {
+      ecmaVersion: 2022,
+      globals: globals.node,
+    },
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {

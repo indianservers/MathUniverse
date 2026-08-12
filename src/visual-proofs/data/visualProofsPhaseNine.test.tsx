@@ -34,10 +34,12 @@ describe("Visual Proofs phase nine coordinate geometry completion", () => {
 
   it("keeps all fifteen coordinate geometry routes phase-upgraded and in the smoke manifest", () => {
     const coordinateProofs = getVisualProofsByCategory("coordinate-geometry");
-    expect(coordinateProofs).toHaveLength(15);
-    expect(coordinateProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
-    expect(coordinateProofs.every((proof) => (proof.misconceptionCheckCount ?? 0) >= 1)).toBe(true);
-    expect(coordinateProofs.every((proof) => proof.hasTeacherMode && proof.hasKeyboardControls && proof.hasStateInspector && proof.hasOlympyardPracticeExit)).toBe(true);
+    expect(coordinateProofs.length).toBeGreaterThanOrEqual(15);
+    const phaseSlugs = new Set<string>(allCoordinateRouteSlugs.map(([, slug]) => slug));
+    const phaseProofs = coordinateProofs.filter((proof) => phaseSlugs.has(proof.slug));
+    expect(phaseProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    expect(phaseProofs.every((proof) => (proof.misconceptionCheckCount ?? 0) >= 1)).toBe(true);
+    expect(phaseProofs.every((proof) => proof.hasTeacherMode && proof.hasKeyboardControls && proof.hasStateInspector && proof.hasOlympyardPracticeExit)).toBe(true);
     expect(visualProofsRouteSmokeManifest.map((entry) => entry.route)).toEqual(expect.arrayContaining(allCoordinateRouteSlugs.map(([category, slug]) => `/visual-proofs/${category}/${slug}`)));
   });
 

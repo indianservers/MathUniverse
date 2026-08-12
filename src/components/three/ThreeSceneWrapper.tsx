@@ -1,6 +1,6 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { clsx } from "clsx";
-import { Component, CSSProperties, ReactNode, Suspense } from "react";
+import { Component, CSSProperties, ReactNode, Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { LoadingSkeleton } from "../ui/UiFeedback";
 
@@ -18,6 +18,7 @@ type ThreeSceneWrapperProps = {
   chrome?: "standard" | "cinematic";
   sceneLabel?: string;
   toolbar?: ReactNode;
+  sceneSummary?: string;
 };
 
 function ThreeFallback() {
@@ -55,7 +56,9 @@ export default function ThreeSceneWrapper({
   chrome = "standard",
   sceneLabel,
   toolbar,
+  sceneSummary,
 }: ThreeSceneWrapperProps) {
+  const hostRef = useRef<HTMLDivElement | null>(null);
   const style = {
     "--scene-height": height,
     "--scene-mobile-height": mobileHeight,
@@ -64,6 +67,7 @@ export default function ThreeSceneWrapper({
 
   return (
     <div
+      ref={hostRef}
       className={clsx(
         "relative h-[var(--scene-mobile-height)] overflow-hidden border bg-slate-950 touch-none sm:h-[var(--scene-height)]",
         isCinematic
@@ -72,6 +76,9 @@ export default function ThreeSceneWrapper({
         className
       )}
       style={style}
+      role="application"
+      tabIndex={0}
+      aria-label={sceneSummary ?? sceneLabel ?? `Interactive 3D scene. ${interactionLabel}`}
     >
       <div
         className={clsx(
@@ -115,6 +122,7 @@ export default function ThreeSceneWrapper({
               gl.toneMappingExposure = isCinematic ? 1.08 : 1;
             }}
             shadows
+            aria-hidden="true"
           >
             {defaultLights && !isCinematic && (
               <>
@@ -132,9 +140,21 @@ export default function ThreeSceneWrapper({
               </>
             )}
             {children}
+            <SceneLifecycleGuard />
           </Canvas>
         </Suspense>
       </ThreeErrorBoundary>
+      <p className="sr-only">{sceneSummary ?? `Interactive 3D scene. ${interactionLabel}. Use the adjacent controls for a keyboard-accessible alternative.`}</p>
     </div>
   );
+}
+
+function SceneLifecycleGuard() {
+  const gl = useThree((state) => state.gl);
+  useEffect(() => () => {
+    gl.renderLists.dispose();
+    gl.dispose();
+    gl.forceContextLoss();
+  }, [gl]);
+  return null;
 }

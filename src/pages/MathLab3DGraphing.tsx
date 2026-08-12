@@ -3,6 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Trash2 } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import { SurfaceSampleResult, generateSurfaceMeshData, sampleSurface } from "../utils/mathEngine/graph3dUtils";
 import { deleteGraphWorkspace, readSavedGraphWorkspaces, saveGraphWorkspace, type SavedGraphWorkspace } from "../utils/graphWorkspaceStorage";
@@ -13,6 +14,9 @@ import { downloadGraphStudioFile, exportGraphStudioProject } from "../graph-stud
 import { useGraphStudioProject } from "../graph-studio/useGraphStudioProject";
 import type { GraphStudioStylePreset, GraphStudioVariable } from "../graph-studio/types";
 import { symbolicDerivative, trySymbolic } from "../utils/symbolic";
+import { createMathWorkspacePayload, type MathWorkspacePayload } from "../workspace/mathWorkspaces";
+import { readWorkspaceTransfer, saveWorkspaceTransfer } from "../workspace/workspaceTransfer";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 
 const examples = [
   "x^2 + y^2",
@@ -60,7 +64,12 @@ const beautifulSurfacePresets = buildBeautifulSurfacePresets();
 const GRAPH_3D_STORAGE_KEY = "math-universe-saved-3d-graphs";
 
 export default function MathLab3DGraphing() {
-  const [expression, setExpression] = useState("sin(x) * cos(y)");
+  const reducedMotion = useReducedMotion();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const routePayload = (location.state as { mathWorkspacePayload?: MathWorkspacePayload } | null)?.mathWorkspacePayload;
+  const incomingPayload = useMemo(() => routePayload ?? readWorkspaceTransfer("graphs-3d"), [routePayload]);
+  const [expression, setExpression] = useState(() => incomingPayload?.objectType === "surface" ? incomingPayload.value : "sin(x) * cos(y)");
   const [secondaryExpression, setSecondaryExpression] = useState("x^2 - y^2");
   const [secondaryVisible, setSecondaryVisible] = useState(false);
   const [xRange, setXRange] = useState(3);
@@ -133,10 +142,10 @@ export default function MathLab3DGraphing() {
   }, [expression, secondaryExpression, secondaryVisible]);
 
   useEffect(() => {
-    if (!variablesPlaying) return;
+    if (!variablesPlaying || reducedMotion) return;
     const timer = window.setInterval(() => setGraphVariables((current) => current.map(advanceGraphVariable)), 60);
     return () => window.clearInterval(timer);
-  }, [variablesPlaying]);
+  }, [reducedMotion, variablesPlaying]);
 
   useEffect(() => setExactPartial(null), [resolvedExpression]);
 
@@ -152,6 +161,16 @@ export default function MathLab3DGraphing() {
       onExportProject={exportProject}
       onExportCsv={exportSurfaceCsv}
       onCopyEquation={copyEquation}
+      onOpenCas={() => {
+        const payload = createMathWorkspacePayload({ sourceWorkspace: "graphs-3d", objectType: "surface", label: expression, value: expression });
+        saveWorkspaceTransfer(payload, "cas");
+        navigate("/workspace/data", { state: { mathWorkspacePayload: payload } });
+      }}
+      onOpenGeometry={() => {
+        const payload = createMathWorkspacePayload({ sourceWorkspace: "graphs-3d", objectType: "surface", label: expression, value: expression });
+        saveWorkspaceTransfer(payload, "geometry-3d");
+        navigate("/workspace/3d", { state: { mathWorkspacePayload: payload } });
+      }}
       expression={expression}
       secondaryExpression={secondaryExpression}
       secondaryVisible={secondaryVisible}
@@ -175,7 +194,7 @@ export default function MathLab3DGraphing() {
       scene={surface.error ? (
         <div className="flex h-full items-center justify-center bg-slate-950 p-6 text-center text-sm font-bold text-amber-200">{surface.error}</div>
       ) : (
-        <ThreeSceneWrapper key={cameraKey} height="100%" mobileHeight="100%" interactionLabel="Drag to orbit - wheel/pinch zoom - shift-drag pan" cameraPosition={cameraPosition} fov={46} quality="high" chrome="cinematic" showHint={false} sceneLabel={autoRotate ? "3D graphing - rotating" : undefined} className="h-full rounded-none border-0">
+        <ThreeSceneWrapper key={cameraKey} height="100%" mobileHeight="100%" interactionLabel="Drag to orbit - wheel/pinch zoom - shift-drag pan" cameraPosition={cameraPosition} fov={46} quality="high" chrome="cinematic" showHint={false} sceneLabel={autoRotate && !reducedMotion ? "3D graphing - rotating" : undefined} sceneSummary={`Surface z equals ${expression}. Domain x from ${-xRange} to ${xRange}, y from ${-yRange} to ${yRange}. ${surface.grid.flat().filter((point) => point.valid).length} valid samples.`} className="h-full rounded-none border-0">
           <color attach="background" args={[studioSceneBackground(graphStudio.project.stylePreset)]} />
           <ambientLight intensity={0.72} />
           <directionalLight position={[5, 8, 6]} intensity={1.35} />
@@ -193,7 +212,7 @@ export default function MathLab3DGraphing() {
             {surfaceDifferential && <SurfaceDifferentialGeometry analysis={surfaceDifferential} scale={Math.max(0.7, Math.min(xRange, yRange) * 0.22)} />}
             <ReferenceObject kind={referenceObject} scale={Math.max(1.4, Math.min(xRange, yRange) * 0.48)} />
           </group>
-          <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} autoRotate={autoRotate} autoRotateSpeed={0.7} />
+          <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} autoRotate={autoRotate && !reducedMotion} autoRotateSpeed={0.7} />
         </ThreeSceneWrapper>
       )}
       crossSectionPreview={sliceEnabled ? <CrossSectionChart axis={sliceAxis} value={sliceX} samples={surface} /> : undefined}

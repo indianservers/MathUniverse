@@ -1,0 +1,818 @@
+{
+  "generatedAt": "2026-08-12T10:00:20.105Z",
+  "fileCount": 256,
+  "batchSize": 10,
+  "totals": {
+    "suites": 518,
+    "passedSuites": 518,
+    "failedSuites": 0,
+    "tests": 1463,
+    "passedTests": 1463,
+    "failedTests": 0,
+    "timedOutBatches": 0
+  },
+  "results": [
+    {
+      "batch": 1,
+      "files": [
+        "src/ar-math-lab/arCalibration.test.ts",
+        "src/ar-math-lab/arEquationClassifier.test.ts",
+        "src/ar-math-lab/arGeometrySolids.test.ts",
+        "src/ar-math-lab/arGraphGenerator.test.ts",
+        "src/ar-math-lab/arInteractiveTools.test.ts",
+        "src/ar-math-lab/arLearningEngine.test.ts",
+        "src/ar-math-lab/arProductionHardening.test.ts",
+        "src/ar-math-lab/arSupport.test.ts",
+        "src/cas/casCommandRegistry.test.ts",
+        "src/cas/casGeoGebraParity.test.ts"
+      ],
+      "durationMs": 2933,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 21,
+        "passedSuites": 21,
+        "failedSuites": 0,
+        "totalTests": 55,
+        "passedTests": 55,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 2,
+      "files": [
+        "src/cas/casNotebookEngine.test.ts",
+        "src/cas/casNotebookPersistence.test.ts",
+        "src/cas/casParser.test.ts",
+        "src/cas/casResult.test.ts",
+        "src/components/inquiry/InquirySimulationLabs.test.tsx",
+        "src/components/layout/Sidebar.search.test.ts",
+        "src/components/math-input/SmartMathInput.test.tsx",
+        "src/components/ncert/class10/Class10BoardExamLabs.test.tsx",
+        "src/components/ncert/class10/class10BoardExamMath.test.ts",
+        "src/components/ncert/class12/Class12GuidedLabs.test.tsx"
+      ],
+      "durationMs": 5721,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 65,
+        "passedTests": 65,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 3,
+      "files": [
+        "src/components/ncert/class12/class12Phase7Utils.test.ts",
+        "src/components/ncert/grade7/Grade7ManipulativeLab.test.tsx",
+        "src/components/ncert/grade7/Grade7TabbedLabs.test.tsx",
+        "src/components/ncert/grade7/grade7ManipulativeUtils.test.ts",
+        "src/components/ncert/grade7/grade7MathUtils.test.ts",
+        "src/components/ncert/grade8/fractalsSolidViewsMath.test.ts",
+        "src/components/ncert/grade8/proportionalReasoningMath.test.ts",
+        "src/components/ncert/layout/NCERTTabbedWorkspace.test.tsx",
+        "src/components/ncert/practice/NCERTPracticeCheck.test.tsx",
+        "src/components/ncert/practice/ncertPracticeUtils.test.ts"
+      ],
+      "durationMs": 3669,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 21,
+        "passedSuites": 21,
+        "failedSuites": 0,
+        "totalTests": 40,
+        "passedTests": 40,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 4,
+      "files": [
+        "src/components/ncert/teacher/NCERTTeacherModePanel.test.tsx",
+        "src/components/olympyard/OlympyardQuestionRenderer.test.ts",
+        "src/components/three/ThreeSceneWrapper.test.tsx",
+        "src/components/workspace/MathWorkspaceLayout.test.tsx",
+        "src/components/workspace/panels/GeometryWorkspacePanel.test.tsx",
+        "src/components/workspace/panels/GraphWorkspacePanel.test.tsx",
+        "src/concept-map/ConceptMapPage.test.tsx",
+        "src/concept-map/conceptMapUtils.test.ts",
+        "src/data/conceptAccuracy/conceptAccuracy.test.ts",
+        "src/data/engineeringAssessmentPlanner.test.ts"
+      ],
+      "durationMs": 4881,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 54,
+        "passedTests": 54,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 5,
+      "files": [
+        "src/data/engineeringCaseStudies.test.ts",
+        "src/data/engineeringConceptCoverage.test.ts",
+        "src/data/engineeringDependencyGraph.test.ts",
+        "src/data/engineeringFormulaAtlas.test.ts",
+        "src/data/engineeringLabLaunchers.test.ts",
+        "src/data/engineeringMathBlueprint.test.ts",
+        "src/data/engineeringMathSolvers.test.ts",
+        "src/data/engineeringPracticePacks.test.ts",
+        "src/data/engineeringProjects.test.ts",
+        "src/data/engineeringSimulationScenarios.test.ts"
+      ],
+      "durationMs": 3052,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 45,
+        "passedTests": 45,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 6,
+      "files": [
+        "src/data/engineeringWorkedExamples.test.ts",
+        "src/data/formulaVisualizationExplanations.test.ts",
+        "src/data/formulaVisualizerRoutes.test.ts",
+        "src/data/mathVisualDictionary.test.ts",
+        "src/data/ncertConcepts.audit.test.ts",
+        "src/data/ncertPracticeBank.test.ts",
+        "src/data/ncertPracticeGenerators.test.ts",
+        "src/data/ncertResourceLinks.test.ts",
+        "src/data/olympyardProgress.test.ts",
+        "src/data/olympyardTopics.test.ts"
+      ],
+      "durationMs": 5700,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 41,
+        "passedTests": 41,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 7,
+      "files": [
+        "src/data/phaseTwoAccuracy/phaseTwoAccuracy.test.ts",
+        "src/data/quizDataAccuracy.test.ts",
+        "src/data/siteLinks.discoverability.test.ts",
+        "src/data/syllabusConceptLabs.test.ts",
+        "src/data/syllabusIntelligence.test.ts",
+        "src/data/unitUpgradePlan.test.ts",
+        "src/graph-studio/graphIntelligence.test.ts",
+        "src/graph-studio/graphStudioFoundation.test.ts",
+        "src/hooks/useNCERTMastery.test.ts",
+        "src/hooks/useProgressAccuracy.test.ts"
+      ],
+      "durationMs": 3786,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 21,
+        "passedSuites": 21,
+        "failedSuites": 0,
+        "totalTests": 45,
+        "passedTests": 45,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 8,
+      "files": [
+        "src/mobile/mobileNativeReadiness.test.ts",
+        "src/modules/board/BoardPage.test.tsx",
+        "src/modules/board/boardEngineAdapters.test.ts",
+        "src/modules/board/boardExport.test.ts",
+        "src/modules/board/boardGeometry.test.ts",
+        "src/modules/board/boardHistory.test.ts",
+        "src/modules/board/boardImageImport.test.ts",
+        "src/modules/board/boardIntelligence.context.test.ts",
+        "src/modules/board/boardIntelligence.security.test.ts",
+        "src/modules/board/boardIntelligence.workflow.test.ts"
+      ],
+      "durationMs": 3814,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 46,
+        "passedTests": 46,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 9,
+      "files": [
+        "src/modules/board/boardLearningIntegration.test.ts",
+        "src/modules/board/boardMathAnalyzer.test.ts",
+        "src/modules/board/boardPersistence.test.ts",
+        "src/modules/board/boardTutor.test.ts",
+        "src/modules/board/boardWorkVerification.test.ts",
+        "src/modules/board/mathRecognition.test.ts",
+        "src/modules/graph-theory/graphTheoryEngine.test.ts",
+        "src/modules/lessons/adapters/AlgebraCasLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/AlgebraLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/AuthoringLessonAdapter.test.tsx"
+      ],
+      "durationMs": 13225,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 38,
+        "passedTests": 38,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 10,
+      "files": [
+        "src/modules/lessons/adapters/CalculatorLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/CalculusLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/CasLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/ComplexLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/DiscreteLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/FinanceLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/Geometry2DLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/Geometry3DLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/GraphLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/InferenceLessonAdapter.test.tsx"
+      ],
+      "durationMs": 19613,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 21,
+        "passedTests": 21,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 11,
+      "files": [
+        "src/modules/lessons/adapters/MatrixLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/NumberLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/PlatformLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/ProbabilityLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/SequenceLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/SpreadsheetLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/StatisticsLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/TrigonometryLessonAdapter.test.tsx",
+        "src/modules/lessons/adapters/VectorLessonAdapter.test.tsx",
+        "src/modules/lessons/audit/lessonSyllabusAudit.test.ts"
+      ],
+      "durationMs": 18224,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 15,
+        "passedTests": 15,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 12,
+      "files": [
+        "src/modules/lessons/catalog/advanced/advancedConceptLessons.test.ts",
+        "src/modules/lessons/catalog/advanced/advancedConceptPathways.test.ts",
+        "src/modules/lessons/catalog/lessonCatalog.test.ts",
+        "src/modules/lessons/catalog/lessonPhase2Baseline.test.ts",
+        "src/modules/lessons/catalog/school/schoolSyllabusLessons.test.ts",
+        "src/modules/lessons/components/SchoolProofMiniTool.test.tsx",
+        "src/modules/lessons/engine/discreteConceptModels.test.ts",
+        "src/modules/lessons/engine/financeConceptModels.test.ts",
+        "src/modules/lessons/engine/lessonRuntime.test.ts",
+        "src/modules/lessons/engine/matrixConceptModels.test.ts"
+      ],
+      "durationMs": 14909,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 22,
+        "passedSuites": 22,
+        "failedSuites": 0,
+        "totalTests": 54,
+        "passedTests": 54,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 13,
+      "files": [
+        "src/modules/lessons/engine/p0LessonModels.test.ts",
+        "src/modules/lessons/engine/sequenceConceptModels.test.ts",
+        "src/modules/lessons/pages/LessonPages.test.tsx",
+        "src/modules/lessons/presets/calculatorLessonPresets.test.ts",
+        "src/modules/lessons/presets/discreteLessonPresets.test.ts",
+        "src/modules/lessons/presets/financeLessonPresets.test.ts",
+        "src/modules/lessons/presets/matrixLessonPresets.test.ts",
+        "src/modules/lessons/presets/sequenceLessonPresets.test.ts",
+        "src/modules/lessons/strengthening/foundationNumberContent.test.ts",
+        "src/modules/lessons/strengthening/strengthenedLessonSchema.test.ts"
+      ],
+      "durationMs": 13914,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 34,
+        "passedTests": 34,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 14,
+      "files": [
+        "src/modules/set-theory/setTheoryEngine.test.ts",
+        "src/pages/ARMathLab.test.tsx",
+        "src/pages/FormulaLibraryPage.test.tsx",
+        "src/pages/FormulaVisualizerControls.test.ts",
+        "src/pages/FormulaVisualizerSetLogic.test.ts",
+        "src/pages/GraphingModules.test.tsx",
+        "src/pages/NCERTConceptPage.test.tsx",
+        "src/pages/ShapesExplorer.thumbnails.test.tsx",
+        "src/pages/TheoremLibraryPage.test.tsx",
+        "src/problem-solver/algebraStepSolver.test.ts"
+      ],
+      "durationMs": 10456,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 21,
+        "passedSuites": 21,
+        "failedSuites": 0,
+        "totalTests": 65,
+        "passedTests": 65,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 15,
+      "files": [
+        "src/problem-solver/calculusSolver.test.ts",
+        "src/problem-solver/expressionOperationSolver.test.ts",
+        "src/problem-solver/fractalSolver.test.ts",
+        "src/problem-solver/graphingUtils.test.ts",
+        "src/problem-solver/intelligence/mathRecognizer.test.ts",
+        "src/problem-solver/mathKeywordRecognizer.test.ts",
+        "src/problem-solver/mathSuggestions.test.ts",
+        "src/problem-solver/matrixSolver.test.ts",
+        "src/problem-solver/problemClassifier.test.ts",
+        "src/problem-solver/problemSolverQualityRegression.test.ts"
+      ],
+      "durationMs": 3747,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 205,
+        "passedTests": 205,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 16,
+      "files": [
+        "src/problem-solver/problemSolverTrustCertification.test.ts",
+        "src/problem-solver/proportionalReasoningSolver.test.ts",
+        "src/problem-solver/resultCards.test.ts",
+        "src/problem-solver/statisticsSolver.test.ts",
+        "src/problem-solver/systemSolver.test.ts",
+        "src/problem-solver/valueTable.test.ts",
+        "src/problem-solver/wordProblemSolver.test.ts",
+        "src/proof-explanations/proofExplanationAudit.test.ts",
+        "src/proof-explanations/proofLearningLinks.test.ts",
+        "src/pwa-assets.test.ts"
+      ],
+      "durationMs": 3350,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 180,
+        "passedTests": 180,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 17,
+      "files": [
+        "src/trigonometry/pages/TrigFormulaVisualizerPage.test.tsx",
+        "src/utils/calculatorAccuracy.test.ts",
+        "src/utils/coreAccuracyOracles.test.ts",
+        "src/utils/deploymentBase.test.ts",
+        "src/utils/mathEngine/engineeringSystems.test.ts",
+        "src/utils/mathEngine/probabilityUtils.test.ts",
+        "src/utils/phaseTwoAccuracyOracles.test.ts",
+        "src/utils/proportionalVisualModel.test.ts",
+        "src/utils/symbolic.test.ts",
+        "src/visual-proofs/data/proofExplanations.test.ts"
+      ],
+      "durationMs": 3872,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 58,
+        "passedTests": 58,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 18,
+      "files": [
+        "src/visual-proofs/data/visualProofCategoryCounts.test.ts",
+        "src/visual-proofs/data/visualProofsBrowserCoverage.test.ts",
+        "src/visual-proofs/data/visualProofsDeferredCopy.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseEight.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseEighteen.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseEleven.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseFifteen.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseFive.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseFour.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseFourteen.test.tsx"
+      ],
+      "durationMs": 4377,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 38,
+        "passedTests": 38,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 19,
+      "files": [
+        "src/visual-proofs/data/visualProofsPhaseNine.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseNineteen.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseOne.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseSeven.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseSeventeen.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseSix.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseSixteen.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseTen.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseThirteen.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseThree.test.tsx"
+      ],
+      "durationMs": 5930,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 47,
+        "passedTests": 47,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 20,
+      "files": [
+        "src/visual-proofs/data/visualProofsPhaseTwelve.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseTwenty.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseTwentyEight.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseTwentyFive.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseTwentyFour.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseTwentyOne.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseTwentySeven.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseTwentySix.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseTwentyThree.test.tsx",
+        "src/visual-proofs/data/visualProofsPhaseTwentyTwo.test.tsx"
+      ],
+      "durationMs": 4369,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 51,
+        "passedTests": 51,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 21,
+      "files": [
+        "src/visual-proofs/proofs/loadVisualProofComponent.test.ts",
+        "src/visual-proofs/utils/visualProofExportUtils.test.ts",
+        "src/visualizations/linear-algebra/VectorVisualizer.test.tsx",
+        "src/visualizations/trigonometry/AngleSumDifferenceVisualizer.test.ts",
+        "src/visualizations/trigonometry/CoreIdentityProofVisualizer.test.ts",
+        "src/visualizations/trigonometry/DoubleHalfAngleVisualizer.test.ts",
+        "src/visualizations/trigonometry/InverseTrigVisualizer.test.ts",
+        "src/visualizations/trigonometry/TriangleCircleRatioVisualizer.test.ts",
+        "src/visualizations/trigonometry/TrigGraphStudio.test.ts",
+        "src/visualizations/trigonometry/TrigPracticeChallengeSystem.test.ts"
+      ],
+      "durationMs": 6436,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 76,
+        "passedTests": 76,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 22,
+      "files": [
+        "src/visualizations/trigonometry/UnitCircleMasterVisualizer.test.ts",
+        "src/visualizations/trigonometry/trigonometryFinalAudit.test.ts",
+        "src/workspace/actionCommandKernel.test.ts",
+        "src/workspace/beyondGeoGebraKernel.test.ts",
+        "src/workspace/browserSpeechInput.test.ts",
+        "src/workspace/casTableKernel.test.ts",
+        "src/workspace/commandRegistry.test.ts",
+        "src/workspace/constructionKernels.test.ts",
+        "src/workspace/constructionProtocol.test.ts",
+        "src/workspace/dataWorkspaceIntegration.test.ts"
+      ],
+      "durationMs": 4190,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 34,
+        "passedTests": 34,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 23,
+      "files": [
+        "src/workspace/directionalFocus.test.ts",
+        "src/workspace/dynamicObjectKernel.test.ts",
+        "src/workspace/dynamicWorkspaceEngine.test.ts",
+        "src/workspace/geogebraCommandParser.test.ts",
+        "src/workspace/geometry2dKernel.test.ts",
+        "src/workspace/geometry2dWorkspaceEngine.test.ts",
+        "src/workspace/geometry3dKernel.test.ts",
+        "src/workspace/geometry3dWorkspaceEngine.test.ts",
+        "src/workspace/geometryAdvancedConstructionBuilder.test.ts",
+        "src/workspace/geometryCommandController.test.ts"
+      ],
+      "durationMs": 2889,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 55,
+        "passedTests": 55,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 24,
+      "files": [
+        "src/workspace/geometryConstructionBuilder.test.ts",
+        "src/workspace/geometryConstructionCertification.test.ts",
+        "src/workspace/geometryWorkflowRegression.test.ts",
+        "src/workspace/graphAnalysis.test.ts",
+        "src/workspace/graphSampler.test.ts",
+        "src/workspace/graphingWorkflowRegression.test.ts",
+        "src/workspace/highPriorityWorkflowKernel.test.ts",
+        "src/workspace/ismobjExchange.test.ts",
+        "src/workspace/largeConstructionPerformance.test.ts",
+        "src/workspace/locusTraceKernel.test.ts"
+      ],
+      "durationMs": 12651,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 39,
+        "passedTests": 39,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 25,
+      "files": [
+        "src/workspace/objectProperties.test.ts",
+        "src/workspace/offlineProjectLibrary.test.ts",
+        "src/workspace/spreadsheetKernel.test.ts",
+        "src/workspace/spreadsheetStudioEngine.test.ts",
+        "src/workspace/spreadsheetXlsx.test.ts",
+        "src/workspace/syllabusWorkspaceTemplates.test.ts",
+        "src/workspace/threeDWorkspaceSmoke.test.ts",
+        "src/workspace/universalObjectGraph.test.ts",
+        "src/workspace/workspaceBaselineGuards.test.ts",
+        "src/workspace/workspaceEngineBridge.test.ts"
+      ],
+      "durationMs": 3336,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 20,
+        "passedSuites": 20,
+        "failedSuites": 0,
+        "totalTests": 35,
+        "passedTests": 35,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    },
+    {
+      "batch": 26,
+      "files": [
+        "src/workspace/workspaceModeConfig.test.ts",
+        "src/workspace/workspaceQaSuite.test.ts",
+        "src/workspace/workspaceRouteSmoke.test.tsx",
+        "src/workspace/workspaceRuntimeModel.test.ts",
+        "src/workspace/workspaceTransfer.test.ts",
+        "src/workspace/workspaceViewport.test.ts"
+      ],
+      "durationMs": 4777,
+      "exitCode": 0,
+      "signal": null,
+      "timedOut": false,
+      "summary": {
+        "totalSuites": 12,
+        "passedSuites": 12,
+        "failedSuites": 0,
+        "totalTests": 27,
+        "passedTests": 27,
+        "failedTests": 0,
+        "success": true,
+        "failures": []
+      },
+      "stderr": "",
+      "stdoutTail": ""
+    }
+  ]
+}

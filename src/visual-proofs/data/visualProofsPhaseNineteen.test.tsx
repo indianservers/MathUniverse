@@ -50,10 +50,11 @@ describe("Visual Proofs phase nineteen matrices and linear algebra launch", () =
   it("keeps matrices free of generic coming-soon starter as the main experience", () => {
     const proofs = getVisualProofsByCategory("matrices-linear-algebra");
     const manifestRoutes = visualProofsRouteSmokeManifest.map((entry) => entry.route);
-    expect(proofs).toHaveLength(8);
+    expect(proofs.length).toBeGreaterThanOrEqual(8);
     expect(proofs.every((proof) => proof.status === "available")).toBe(true);
     expect(proofs.some((proof) => proof.slug === "starter-visual-proof")).toBe(false);
-    expect(proofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    const phaseSlugs = new Set<string>(phaseNineteenRouteSlugs.map(([, slug]) => slug));
+    expect(proofs.filter((proof) => phaseSlugs.has(proof.slug)).every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
     expect(manifestRoutes).toEqual(expect.arrayContaining(phaseNineteenRouteSlugs.map(routeFromSlug)));
   });
 

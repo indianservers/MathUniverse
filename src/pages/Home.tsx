@@ -12,7 +12,8 @@ import InquirySimulationLabs from "../components/inquiry/InquirySimulationLabs";
 import { recentRouteItems } from "../components/layout/GlobalUx";
 import { buildPracticeSpineLite } from "../data/olympyardPracticeSpineLite";
 import { initialOlympyardProgressLite, normalizeOlympyardProgressLite, OLYMPYARD_PROGRESS_STORAGE_KEY, type OlympyardProgressLite } from "../data/olympyardProgressLite";
-import VisualMathsGraphingSection from "../components/home/VisualMathsGraphingSection";
+import { MathWorkspacesHomeSection } from "../components/workspace/MathWorkspaceNavigation";
+import InteractiveMathHero from "../components/home/InteractiveMathHero";
 
 const tourSteps = [
   { label: "Algebra line graph", route: "/algebra", description: "See how coefficients reshape lines and parabolas in real time." },
@@ -177,14 +178,6 @@ export default function Home() {
       colorGradient: "from-cyan-500 to-indigo-600",
     },
     {
-      title: "2D/3D Shapes Explorer",
-      description: "Dedicated visual library for plane figures and solid shapes with formulas, dimensions, area, surface area, and volume.",
-      concepts: ["2D shapes", "3D solids", "Formulas", "Visual explorer"],
-      icon: Cuboid,
-      route: "/shapes",
-      colorGradient: "from-emerald-500 to-sky-600",
-    },
-    {
       title: "NCERT Dashboard",
       description: "Class 7, Class 10, and Class 12 NCERT visual labs with formula, theorem, visual proof, practice, and QA badges.",
       concepts: ["Class 7", "Class 10", "Class 12", "Board exams"],
@@ -241,7 +234,7 @@ export default function Home() {
     <div className="space-y-4">
       <GuidedTourOverlay open={tourOpen} onClose={() => setTourOpen(false)} />
 
-      <section className="home-hero relative isolate overflow-hidden rounded-[1.8rem] border border-white/35 text-white shadow-2xl shadow-indigo-500/25">
+      <div className="hidden"><section className="home-hero relative isolate overflow-hidden rounded-[1.8rem] border border-white/35 text-white shadow-2xl shadow-indigo-500/25">
         <div className="home-hero-grid absolute inset-0 -z-10" aria-hidden="true" />
         <div className="absolute -left-16 -top-24 -z-10 h-72 w-72 rounded-full bg-cyan-300/35 blur-3xl" aria-hidden="true" />
         <div className="absolute -bottom-32 left-1/3 -z-10 h-80 w-80 rounded-full bg-fuchsia-500/30 blur-3xl" aria-hidden="true" />
@@ -321,6 +314,13 @@ export default function Home() {
             </div>
           </aside>
         </div>
+      </section></div>
+
+      <InteractiveMathHero />
+
+      <section className="home-path-section" aria-labelledby="home-path-title">
+        <div className="home-path-heading"><span>Choose how you want to explore</span><h2 id="home-path-title">A clear path for every curious mind</h2></div>
+        <div className="home-path-grid">{learnerPaths.map((path) => { const Icon = path.icon; return <Link key={path.id} to={path.route} className={`home-path-card is-${path.id}`} onMouseEnter={() => setActivePath(path.id)}><span className="home-path-icon"><Icon /></span><span><strong>{path.label}</strong><small>{path.description}</small><b>{path.id === "student" ? "Start learning" : path.id === "teacher" ? "Open studio" : "Explore tools"}<ArrowRight /></b></span></Link>; })}</div>
       </section>
 
       <section className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto]">
@@ -348,7 +348,7 @@ export default function Home() {
         </div>
       </section>
 
-      <VisualMathsGraphingSection />
+      <MathWorkspacesHomeSection />
 
       <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-6">
         {[

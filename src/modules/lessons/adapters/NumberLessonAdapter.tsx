@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import SliderControl, { SliderGroup } from "../../../components/ui/SliderControl";
-import { factorsOf, formatFactorization, gcd, lcm, primeFactorization } from "../../../visual-proofs/utils/numberTheoryMath";
+import { factorsOf, formatFactorization, primeFactorization } from "../../../visual-proofs/utils/numberTheoryMath";
 import AdapterFrame from "../components/AdapterFrame";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { LessonAdapterProps } from "../types";

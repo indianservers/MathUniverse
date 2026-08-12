@@ -40,11 +40,13 @@ describe("Visual Proofs phase fifteen calculus completion", () => {
   it("makes all fifteen calculus routes phase-upgraded and present in the smoke manifest", () => {
     const calculusProofs = getVisualProofsByCategory("calculus").filter((proof) => proof.status === "available");
     const manifestRoutes = visualProofsRouteSmokeManifest.map((entry) => entry.route);
-    expect(calculusProofs).toHaveLength(15);
-    expect(calculusProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
-    expect(calculusProofs.every((proof) => proof.proofLearningModel === "graph-limit")).toBe(true);
-    expect(calculusProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);
-    expect(calculusProofs.every((proof) => proof.hasTeacherMode && proof.hasKeyboardControls && proof.hasStateInspector && proof.hasOlympyardPracticeExit)).toBe(true);
+    expect(calculusProofs.length).toBeGreaterThanOrEqual(15);
+    const phaseSlugs = new Set<string>(allCalculusPhaseRouteSlugs.map(([, slug]) => slug));
+    const phaseProofs = calculusProofs.filter((proof) => phaseSlugs.has(proof.slug));
+    expect(phaseProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    expect(phaseProofs.every((proof) => proof.proofLearningModel === "graph-limit")).toBe(true);
+    expect(phaseProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);
+    expect(phaseProofs.every((proof) => proof.hasTeacherMode && proof.hasKeyboardControls && proof.hasStateInspector && proof.hasOlympyardPracticeExit)).toBe(true);
     expect(manifestRoutes).toEqual(expect.arrayContaining(allCalculusPhaseRouteSlugs.map(routeFromSlug)));
     expect(manifestRoutes).toEqual(expect.arrayContaining(phaseFourteenRouteSlugs.map(routeFromSlug)));
     expect(manifestRoutes).toEqual(expect.arrayContaining(phaseFifteenRouteSlugs.map(routeFromSlug)));

@@ -1,7 +1,8 @@
-import { Award, Box, Camera, Circle, Cuboid, Download, Eye, Grid3X3, Heart, Mic, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Shapes, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
+import { Award, Box, Calculator, Camera, Cuboid, Download, Eye, Grid3X3, Heart, Home, Layers3, LineChart, Mic, Orbit, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Settings, Shapes, Sigma, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
 import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { NavLink } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import MathExpression from "../components/ui/MathExpression";
@@ -10,11 +11,16 @@ import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
 import TopicHeader from "../components/ui/TopicHeader";
 import { useProgress } from "../hooks/useProgress";
 import { roundTo } from "../utils/math";
+import { ContextualWorkspaceLink } from "../components/workspace/MathWorkspaceNavigation";
+import { createMathWorkspacePayload, workspaceRoute } from "../workspace/mathWorkspaces";
+import { useDialogFocus } from "../hooks/useDialogFocus";
+import { useReducedMotion } from "../hooks/useReducedMotion";
+import ShapeThumbnail from "../components/shapes/ShapeThumbnail";
 
 type ShapeKind = "2d" | "3d";
 type ShapeFillMode = "gradient" | "solid" | "outline";
-type ShapeCategory = "2D Basic" | "2D Curved" | "2D Polygons" | "3D Solids" | "3D Curved Solids";
-type ShapeId =
+export type ShapeCategory = "2D Basic" | "2D Curved" | "2D Polygons" | "3D Solids" | "3D Curved Solids";
+export type ShapeId =
   | "circle" | "semicircle" | "sector" | "ellipse" | "triangle" | "right-triangle" | "equilateral-triangle" | "isosceles-triangle" | "scalene-triangle" | "square" | "rectangle" | "rounded-rectangle"
   | "parallelogram" | "rhombus" | "trapezium" | "kite" | "pentagon" | "hexagon" | "heptagon" | "octagon" | "nonagon" | "decagon" | "dodecagon" | "regular-polygon"
   | "annulus" | "quadrant" | "segment" | "crescent" | "star" | "cross"
@@ -22,7 +28,7 @@ type ShapeId =
   | "tetrahedron" | "octahedron" | "dodecahedron" | "icosahedron" | "square-pyramid" | "triangular-pyramid" | "rectangular-pyramid" | "pentagonal-pyramid" | "hexagonal-pyramid"
   | "triangular-prism" | "pentagonal-prism" | "hexagonal-prism" | "octagonal-prism";
 
-type ShapeDefinition = {
+export type ShapeDefinition = {
   id: ShapeId;
   name: string;
   kind: ShapeKind;
@@ -31,9 +37,23 @@ type ShapeDefinition = {
   description: string;
   dimensions: string[];
   use: string;
+  thumbnail: string;
 };
 
 type Metrics = Record<string, number>;
+
+const studioRailItems = [
+  { label: "Home", route: "/", icon: Home },
+  { label: "Workspace", route: "/workspace", icon: Layers3 },
+  { label: "Shapes", route: workspaceRoute("shapes"), icon: Cuboid },
+  { label: "Geometry", route: workspaceRoute("geometry"), icon: Triangle },
+  { label: "2D Graphs", route: workspaceRoute("graphs"), icon: LineChart },
+  { label: "3D Studio", route: workspaceRoute("geometry-3d"), icon: Box },
+  { label: "3D Graphs", route: workspaceRoute("graphs-3d"), icon: Orbit },
+  { label: "CAS", route: workspaceRoute("cas"), icon: Sigma },
+  { label: "Calculator", route: "/calculator", icon: Calculator },
+] as const;
+
 type ShapeFormulaEntry = {
   title: string;
   formula: string;
@@ -41,7 +61,7 @@ type ShapeFormulaEntry = {
   valueLabel?: string;
 };
 
-const shapes: ShapeDefinition[] = [
+const shapeSeeds: Omit<ShapeDefinition, "thumbnail">[] = [
   { id: "circle", name: "Circle", kind: "2d", category: "2D Curved", formula: "C = 2 pi r, A = pi r^2", description: "All points at a fixed distance from the center.", dimensions: ["radius"], use: "Wheels, clocks, lenses, gears." },
   { id: "semicircle", name: "Semicircle", kind: "2d", category: "2D Curved", formula: "Arc = pi r, A = 1/2 pi r^2", description: "Half of a circle split by a diameter.", dimensions: ["radius"], use: "Arches, windows, half-pipe profiles." },
   { id: "sector", name: "Sector", kind: "2d", category: "2D Curved", formula: "A = theta/360 pi r^2, L = theta/360 2 pi r", description: "A slice of a circle controlled by central angle.", dimensions: ["radius", "angle"], use: "Pie charts, clock angles, circular tracks." },
@@ -122,7 +142,22 @@ export default function ShapesExplorer() {
   const [viewTab, setViewTab] = useState<ShapeKind>("2d");
   const [stageHeight, setStageHeight] = useState(520);
   const [viewResetNonce, setViewResetNonce] = useState(0);
-  const [shapeMenuCollapsed, setShapeMenuCollapsed] = useState(false);
+  const [shapeMenuCollapsed, setShapeMenuCollapsed] = useState(() => typeof window !== "undefined" && window.innerWidth <= 900);
+  const [mobileInspectorOpen, setMobileInspectorOpen] = useState(false);
+  const [mobileInspectorSize, setMobileInspectorSize] = useState<"half" | "full">("half");
+  const inspectorRef = useRef<HTMLElement | null>(null);
+  const inspectorTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const inspectorDragRef = useRef<{ y: number; size: "half" | "full" } | null>(null);
+  const reducedMotion = useReducedMotion();
+  useDialogFocus(mobileInspectorOpen, inspectorRef, inspectorTriggerRef);
+  const [studioTab, setStudioTab] = useState<"Explore" | "Properties" | "Formulas" | "Compare" | "Learn">("Explore");
+  const [inspectorTab, setInspectorTab] = useState<"Dimensions" | "Formulas" | "Properties">("Dimensions");
+  const [libraryFilter, setLibraryFilter] = useState<"All" | ShapeKind>("All");
+  const [shapeSearch, setShapeSearch] = useState("");
+  const [showLabels, setShowLabels] = useState(true);
+  const [lockProportions, setLockProportions] = useState(false);
+  const [surfacePaint, setSurfacePaint] = useState(45);
+  const [favoriteIds, setFavoriteIds] = useState<Set<ShapeId>>(() => new Set());
   useEffect(() => markTopicVisited("shapes"), [markTopicVisited]);
 
   useEffect(() => {
@@ -148,7 +183,23 @@ export default function ShapesExplorer() {
 
   const selected = shapes.find((shape) => shape.id === selectedId) ?? shapes[0];
   const groupedShapes = useMemo(() => shapeMenuCategories.map((item) => ({ category: item, shapes: shapes.filter((shape) => shape.category === item) })), []);
+  const filteredGroupedShapes = useMemo(() => {
+    const query = shapeSearch.trim().toLowerCase();
+    return groupedShapes
+      .map(({ category, shapes: categoryShapes }) => ({
+        category,
+        shapes: categoryShapes.filter((shape) => {
+          const matchesType = libraryFilter === "All" || shape.kind === libraryFilter;
+          const matchesQuery = !query || [shape.name, shape.category, shape.description, shape.formula, shape.use].join(" ").toLowerCase().includes(query);
+          return matchesType && matchesQuery;
+        }),
+      }))
+      .filter((group) => group.shapes.length > 0);
+  }, [groupedShapes, libraryFilter, shapeSearch]);
   const metrics = getMetrics(selected.id, a, b, c, sides, angle);
+  const formulaEntries = useMemo(() => getShapeFormulaEntries(selected.id), [selected.id]);
+  const familyShapes = useMemo(() => shapes.filter((shape) => shape.category === selected.category && shape.id !== selected.id).slice(0, 4), [selected.category, selected.id]);
+  const structure = shapeProperties(selected);
   const secondRange = secondControlRange(selected.id, a);
   const thirdRange = thirdControlRange(selected.id, a, b);
 
@@ -188,6 +239,197 @@ export default function ShapesExplorer() {
     setAutoRotate(true);
     setViewResetNonce((value) => value + 1);
   };
+  const toggleFavorite = () => {
+    setFavoriteIds((current) => {
+      const next = new Set(current);
+      if (next.has(selected.id)) next.delete(selected.id);
+      else next.add(selected.id);
+      return next;
+    });
+  };
+  const setShapeMode = (mode: "solid" | "wireframe" | "transparent") => {
+    if (mode === "wireframe") {
+      setWireframe(true);
+      setFillMode("outline");
+      return;
+    }
+    setWireframe(false);
+    setFillMode(mode === "transparent" ? "gradient" : "solid");
+  };
+  const activeShapeMode = wireframe || fillMode === "outline" ? "wireframe" : fillMode === "solid" ? "solid" : "transparent";
+  const exportSummary = () => downloadTextFile(`${selected.name.toLowerCase().replace(/\s+/g, "-")}-shape-summary.txt`, `${selected.name}\n${selected.description}\nFormula: ${selected.formula}\nSymbols: ${symbolSummary(selected.id, a, b, c, sides, angle)}\nMetrics:\n${Object.entries(metrics).map(([label, value]) => `${label}: ${roundTo(value, 3)}`).join("\n")}`);
+  const shapePayload = createMathWorkspacePayload({
+    sourceWorkspace: "shapes",
+    objectType: "shape",
+    label: selected.name,
+    value: selected.formula,
+    metadata: { shapeId: selected.id, dimension: selected.kind },
+  });
+  const openMobileInspector = () => { setMobileInspectorSize("half"); setMobileInspectorOpen(true); };
+  const closeMobileInspector = () => setMobileInspectorOpen(false);
+  const finishInspectorDrag = (event: PointerEvent<HTMLElement>) => {
+    const drag = inspectorDragRef.current;
+    if (!drag) return;
+    const delta = event.clientY - drag.y;
+    inspectorDragRef.current = null;
+    if (delta > 90) {
+      if (drag.size === "full") setMobileInspectorSize("half");
+      else closeMobileInspector();
+    } else if (delta < -90) setMobileInspectorSize("full");
+  };
+
+  return (
+    <div className={`shapes-studio-shell ${mobileInspectorOpen ? "has-mobile-inspector" : ""}`} onPointerDown={() => markTopicInteracted("shapes")}>
+      <aside className="shapes-studio-rail" aria-label="Math Universe navigation">
+        <div className="shapes-studio-logo"><Shapes className="h-7 w-7" /><span>Math<br />Universe</span></div>
+        <div className="shapes-rail-links thin-scrollbar">
+          {studioRailItems.map(({ label, route, icon: Icon }) => (
+            <NavLink key={label} to={route} end className={({ isActive }) => `shapes-rail-button ${isActive ? "is-active" : ""}`} title={`Open ${label}`}>
+              <Icon className="h-5 w-5" />
+              <span>{label}</span>
+            </NavLink>
+          ))}
+        </div>
+      </aside>
+
+      <header className="shapes-studio-topbar">
+        <div className="shapes-title-lockup">
+          <button type="button" className="shapes-icon-button" onClick={() => setShapeMenuCollapsed((value) => !value)} title="Toggle shape library">
+            {shapeMenuCollapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
+          </button>
+          <h1>2D &amp; 3D Shapes Explorer</h1>
+        </div>
+        <nav className="shapes-mode-tabs" aria-label="Explorer modes">
+          {(["Explore", "Properties", "Formulas", "Compare", "Learn"] as const).map((tab) => (
+            <button key={tab} type="button" className={studioTab === tab ? "is-active" : ""} onClick={() => setStudioTab(tab)}>{tab}</button>
+          ))}
+        </nav>
+        <button ref={inspectorTriggerRef} type="button" className="shapes-mobile-properties shapes-icon-button" onClick={openMobileInspector} aria-haspopup="dialog" aria-expanded={mobileInspectorOpen}><Settings className="h-4 w-4" /><span>Properties</span></button>
+        <div className="shapes-top-actions">
+          <button type="button" className={favoriteIds.has(selected.id) ? "shapes-toolbar-button is-active" : "shapes-toolbar-button"} onClick={toggleFavorite}><Star className="h-4 w-4" />Favourite</button>
+          <button type="button" className="shapes-toolbar-button" onClick={resetView}><RefreshCw className="h-4 w-4" />Reset</button>
+          <button type="button" className="shapes-toolbar-button" onClick={exportSummary}><Download className="h-4 w-4" />Export</button>
+          <button type="button" className="shapes-toolbar-button"><Settings className="h-4 w-4" />Settings</button>
+        </div>
+      </header>
+
+      <aside className={`shapes-library-panel ${shapeMenuCollapsed ? "is-collapsed" : ""}`}>
+        <div className="shapes-panel-heading"><h2>Shape Library</h2><span>{shapes.length}</span></div>
+        <label className="shapes-search-box"><Search className="h-4 w-4" /><input value={shapeSearch} onChange={(event) => setShapeSearch(event.target.value)} placeholder="Search 2D & 3D shapes" /></label>
+        <div className="shapes-filter-row">
+          {(["All", "2d", "3d"] as const).map((filter) => (
+            <button key={filter} type="button" className={libraryFilter === filter ? "is-active" : ""} onClick={() => setLibraryFilter(filter)}>{filter === "All" ? "All" : filter.toUpperCase()}</button>
+          ))}
+        </div>
+        <div className="shapes-library-list">
+          {filteredGroupedShapes.map(({ category, shapes: categoryShapes }) => {
+            const open = expandedCategories.has(category);
+            return (
+              <section key={category} className="shapes-library-group">
+                <button type="button" onClick={() => toggleCategory(category)} className="shapes-library-group-toggle"><span>{category}</span><span>{open ? "⌄" : "›"}</span></button>
+                {open && categoryShapes.map((shape) => {
+                  const active = selected.id === shape.id;
+                  return (
+                    <button key={shape.id} type="button" className={`shapes-library-item ${active ? "is-active" : ""}`} onClick={() => { selectShape(shape); if (window.innerWidth <= 900) setShapeMenuCollapsed(true); }}>
+                      <ShapeThumbnail src={shape.thumbnail} name={shape.name} size="small" selected={active} decorative />
+                      <span>{shape.name}</span>
+                    </button>
+                  );
+                })}
+              </section>
+            );
+          })}
+        </div>
+      </aside>
+
+      <main className="shapes-workbench">
+        <section className="shapes-viewport-card">
+          <div className="shapes-viewport-toolbar">
+            <div className="shapes-segmented-control">
+              {(["2d", "3d"] as ShapeKind[]).map((tab) => <button key={tab} type="button" className={viewTab === tab ? "is-active" : ""} onClick={() => setViewTab(tab)}>{tab === "2d" ? "2D view" : "3D view"}</button>)}
+            </div>
+            <div className="shapes-segmented-control">
+              {(["solid", "wireframe", "transparent"] as const).map((mode) => <button key={mode} type="button" className={activeShapeMode === mode ? "is-active" : ""} onClick={() => setShapeMode(mode)}>{mode}</button>)}
+            </div>
+            <div className="shapes-viewport-actions">
+              <button type="button" className="shapes-icon-button" onClick={zoomOut} title="Zoom out"><ZoomOut className="h-4 w-4" /></button>
+              <button type="button" className="shapes-icon-button" onClick={zoomIn} title="Zoom in"><ZoomIn className="h-4 w-4" /></button>
+              <button type="button" className="shapes-icon-button" onClick={resetView} title="Fit view"><RefreshCw className="h-4 w-4" /></button>
+            </div>
+          </div>
+          <div className="shapes-stage" style={{ minHeight: Math.min(stageHeight, 520) }}>
+            <div className="shapes-axis-cube" aria-hidden="true"><span>TOP</span><span>LEFT</span><span>FRONT</span></div>
+            {viewTab === "2d" ? (
+              <InteractiveShape2D resetKey={`${selected.id}-${viewResetNonce}`} onZoomIn={zoomIn} onZoomOut={zoomOut}>
+                <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} fillMode={fillMode} colorA={colorA} colorB={colorB} glow={shapeGlow} />
+              </InteractiveShape2D>
+            ) : (
+              <ThreeSceneWrapper height="100%" mobileHeight="100%" interactionLabel="Drag to rotate - wheel or pinch to zoom" sceneSummary={`${selected.name}. ${selected.description}. ${symbolSummary(selected.id, a, b, c, sides, angle)}.`}>
+                <ambientLight intensity={0.9} />
+                <directionalLight position={[4, 5, 4]} intensity={1.45} />
+                <directionalLight position={[-3, 1, -2]} intensity={0.7} color={colorB} />
+                <pointLight position={[0, -3, 3]} intensity={shapeGlow ? 1.1 : 0.35} color={colorA} />
+                <RotatingSolid shape={selected.id} a={a} b={b} c={c} angle={angle} wireframe={wireframe} zoom={viewZoom} rotation={viewRotation} autoRotate={autoRotate && !reducedMotion} sides={sides} fillMode={fillMode} colorA={colorA} colorB={colorB} glow={shapeGlow} />
+                <OrbitControls enablePan enableZoom enableDamping />
+              </ThreeSceneWrapper>
+            )}
+            {showLabels && <div className="shapes-stage-labels"><span>{symbolSummary(selected.id, a, b, c, sides, angle)}</span><span>{selected.category}</span></div>}
+            <div className="shapes-floating-controls">
+              <button type="button" className={autoRotate ? "is-active" : ""} onClick={() => setAutoRotate((value) => !value)}><RotateCw className="h-4 w-4" />Rotate</button>
+              <button type="button"><Eye className="h-4 w-4" />Pan</button>
+              <button type="button"><Wand2 className="h-4 w-4" />Measure</button>
+              <button type="button" onClick={() => setShowGrid((value) => !value)}><Grid3X3 className="h-4 w-4" />Grid</button>
+              <button type="button" onClick={resetView}><RefreshCw className="h-4 w-4" />Reset view</button>
+            </div>
+          </div>
+          <div role="separator" aria-label="Resize visualization height" onPointerDown={(event) => startHeightResize(event, stageHeight, setStageHeight)} className="shapes-resize-handle"><span /></div>
+        </section>
+
+        <section className="shapes-bottom-dock">
+          <div className="shapes-dock-tabs">
+            {(["Live Values", "Net & Cross-Sections", "Formula Map"] as const).map((tab) => <button key={tab} type="button" className={(studioTab === "Explore" && tab === "Live Values") || (studioTab === "Properties" && tab.startsWith("Net")) || (studioTab === "Formulas" && tab === "Formula Map") ? "is-active" : ""}>{tab}</button>)}
+            <span className="shapes-live-status">Updates live</span>
+          </div>
+          <div className="shapes-dock-grid">{Object.entries(metrics).slice(0, 6).map(([label, value]) => <Metric key={label} label={label} value={value} />)}</div>
+          {studioTab === "Properties" && <div className="shapes-net-strip"><NetExplorer shape={selected.id} paint={surfacePaint} /><SliderControl density="compact" label="Surface paint" value={surfacePaint} min={0} max={100} step={5} onChange={setSurfacePaint} unit="%" /></div>}
+        </section>
+      </main>
+
+      {mobileInspectorOpen && <button type="button" className="shapes-mobile-sheet-backdrop" onClick={closeMobileInspector} aria-label="Close shape properties" />}
+      <aside ref={inspectorRef} tabIndex={mobileInspectorOpen ? -1 : undefined} role={mobileInspectorOpen ? "dialog" : undefined} aria-modal={mobileInspectorOpen ? true : undefined} aria-label={mobileInspectorOpen ? `${selected.name} properties` : undefined} className={`shapes-inspector-panel mobile-sheet-${mobileInspectorSize}`}>
+        <button type="button" className="shapes-mobile-sheet-drag" aria-label={`${mobileInspectorSize === "half" ? "Expand" : "Collapse"} properties sheet`} onClick={() => setMobileInspectorSize((size) => size === "half" ? "full" : "half")} onPointerDown={(event) => { inspectorDragRef.current = { y: event.clientY, size: mobileInspectorSize }; event.currentTarget.setPointerCapture(event.pointerId); }} onPointerUp={finishInspectorDrag}><span /></button>
+        <button type="button" className="shapes-mobile-sheet-close" onClick={closeMobileInspector}>Close properties</button>
+        <section className="shapes-inspector-card is-primary">
+          <div className="shapes-panel-heading"><h2>Shape Inspector</h2><span>i</span></div>
+          <div className="shapes-inspector-tabs">{(["Dimensions", "Formulas", "Properties"] as const).map((tab) => <button key={tab} type="button" className={inspectorTab === tab ? "is-active" : ""} onClick={() => setInspectorTab(tab)}>{tab}</button>)}</div>
+          <div className="shapes-selected-summary"><MiniShape id={selected.id} size="large" /><div><h3>{selected.name}</h3><p>{selected.description}</p></div></div>
+          {inspectorTab === "Dimensions" && (
+            <>
+              <SliderGroup title="">
+                <SliderControl density="compact" label={primaryLabel(selected)} value={a} min={0.5} max={10} step={0.1} onChange={(value) => { setA(value); if (lockProportions && needsSecond(selected.id)) setB(value); }} />
+                {needsSecond(selected.id) && <SliderControl density="compact" label={secondLabel(selected)} value={b} min={secondRange.min} max={secondRange.max} step={0.1} onChange={setB} />}
+                {needsThird(selected.id) && <SliderControl density="compact" label={thirdLabel(selected)} value={c} min={thirdRange.min} max={thirdRange.max} step={0.1} onChange={setC} />}
+                {selected.id === "regular-polygon" && <SliderControl density="compact" label="Number of sides" value={sides} min={3} max={12} step={1} onChange={(value) => setSides(Math.round(value))} />}
+                {(selected.id === "sector" || selected.id === "segment") && <SliderControl density="compact" label="Central angle" value={angle} min={5} max={360} step={1} onChange={setAngle} unit="deg" />}
+              </SliderGroup>
+              <div className="shapes-toggle-list">
+                <label><input type="checkbox" checked={lockProportions} onChange={(event) => setLockProportions(event.target.checked)} />Lock proportions</label>
+                <label><input type="checkbox" checked={showLabels} onChange={(event) => setShowLabels(event.target.checked)} />Show labels</label>
+                <label><input type="checkbox" checked={shapeGlow} onChange={() => setShapeGlow((value) => !value)} />Glow model</label>
+              </div>
+            </>
+          )}
+          {inspectorTab === "Formulas" && <div className="shapes-formula-stack"><div className="shapes-formula-box"><MathExpression value={selected.formula} /></div>{formulaEntries.slice(0, 3).map((entry) => <FormulaMapCard key={entry.title} entry={entry} metrics={metrics} compact />)}</div>}
+          {inspectorTab === "Properties" && <div className="shapes-property-stack"><InfoTile label="Dimensions" value={selected.dimensions.join(", ")} /><InfoTile label="Current symbols" value={symbolSummary(selected.id, a, b, c, sides, angle)} /><InfoTile label="Used in" value={selected.use} /><ShapeLearningGuide shape={selected} /></div>}
+          <div className="shapes-structure-grid"><Metric label="Faces" value={structure.faces} /><Metric label="Edges" value={structure.edges} /><Metric label="Vertices" value={structure.vertices} /></div>
+        </section>
+        <section className="shapes-inspector-card"><div className="shapes-panel-heading"><h2>Formulas</h2><span>Σ</span></div><p className="shapes-formula-box"><MathExpression value={selected.formula} /></p><p className="shapes-explanation">{formulaExplanation(selected.id, a, b, c, sides, angle)}</p><div className="shapes-open-in-actions"><ContextualWorkspaceLink target="cas" payload={shapePayload}>Open formula in CAS</ContextualWorkspaceLink><ContextualWorkspaceLink target={selected.kind === "3d" ? "geometry-3d" : "geometry"} payload={shapePayload}>Open in {selected.kind === "3d" ? "3D Geometry" : "Geometry"}</ContextualWorkspaceLink></div></section>
+        <section className="shapes-inspector-card shapes-related-card"><div className="shapes-panel-heading"><h2>Related Shapes</h2><span>{familyShapes.length}</span></div><div className="shapes-related-grid">{familyShapes.map((shape) => <button key={shape.id} type="button" onClick={() => selectShape(shape)}><ShapeThumbnail src={shape.thumbnail} name={shape.name} size="large" decorative /><span>{shape.name}</span></button>)}</div></section>
+      </aside>
+
+      <footer className="shapes-status-bar"><span className="is-online">Offline</span><span>{viewTab === "3d" ? "Interactive model" : "Planar model"}</span><span>Exact formulas</span><span>Saved</span></footer>
+    </div>
+  );
 
   return (
     <div className="space-y-6" onPointerDown={() => markTopicInteracted("shapes")}>
@@ -385,9 +627,9 @@ function FormulaMapSection({ selected, metrics, shapes, onSelect }: { selected: 
             <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">Same family</p>
             <div className="mt-3 grid gap-2">
               {familyShapes.map((shape) => (
-                <button key={shape.id} type="button" onClick={() => onSelect(shape)} className="rounded-lg border border-transparent bg-slate-100 px-3 py-2 text-left text-sm transition hover:border-cyan-300 hover:bg-cyan-50 dark:bg-white/10 dark:hover:bg-cyan-300/10">
-                  <span className="font-bold">{shape.name}</span>
-                  <span className="mt-1 block truncate text-xs font-semibold text-slate-500 dark:text-slate-400"><MathExpression value={shape.formula} /></span>
+                <button key={shape.id} type="button" onClick={() => onSelect(shape)} className="flex items-center gap-3 rounded-lg border border-transparent bg-slate-100 px-3 py-2 text-left text-sm transition hover:border-cyan-300 hover:bg-cyan-50 dark:bg-white/10 dark:hover:bg-cyan-300/10">
+                  <ShapeThumbnail src={shape.thumbnail} name={shape.name} size="medium" decorative />
+                  <span className="min-w-0"><span className="block font-bold">{shape.name}</span><span className="mt-1 block truncate text-xs font-semibold text-slate-500 dark:text-slate-400"><MathExpression value={shape.formula} /></span></span>
                 </button>
               ))}
             </div>
@@ -471,7 +713,6 @@ function ShapeSelectorMenu({
                   <div className="grid gap-1">
                     {categoryShapes.map((shape) => {
                       const active = shape.id === selectedId;
-                      const Icon = shape.kind === "3d" ? Box : shape.id.includes("triangle") ? Triangle : shape.id === "circle" ? Circle : Shapes;
                       return (
                         <button
                           key={shape.id}
@@ -479,7 +720,7 @@ function ShapeSelectorMenu({
                           onClick={() => onSelect(shape)}
                           className={`flex min-w-0 items-center gap-2 rounded-md px-2 py-2 text-left text-sm transition ${active ? "bg-cyan-100 text-cyan-950 ring-1 ring-cyan-300 dark:bg-cyan-300/20 dark:text-cyan-50" : "hover:bg-white dark:hover:bg-white/10"}`}
                         >
-                          <Icon className="h-4 w-4 shrink-0 text-cyan-600 dark:text-cyan-200" />
+                          <ShapeThumbnail src={shape.thumbnail} name={shape.name} size="compact" selected={active} decorative />
                           <span className="min-w-0 flex-1 truncate font-bold">{shape.name}</span>
                         </button>
                       );
@@ -644,8 +885,7 @@ function KidsShapeStudio({ shapes, selected, onSelect }: { shapes: ShapeDefiniti
             <div className="grid gap-4 xl:grid-cols-2">
               <StudioPanel title="Flashcards and pronunciation" icon={<Mic className="h-5 w-5" />}>
                 <div className="rounded-2xl bg-gradient-to-br from-cyan-100 to-violet-100 p-5 text-slate-950 dark:from-cyan-400/20 dark:to-violet-500/20 dark:text-white">
-                  <p className="text-xs font-bold uppercase">Shape flashcard</p>
-                  <p className="mt-2 text-3xl font-black">{flashShape.name}</p>
+                  <div className="flex items-center gap-4"><ShapeThumbnail src={flashShape.thumbnail} name={flashShape.name} size="compare" decorative /><div><p className="text-xs font-bold uppercase">Shape flashcard</p><p className="mt-1 text-3xl font-black">{flashShape.name}</p></div></div>
                   <p className="mt-2 text-sm leading-6">{flashShape.description}</p>
                   <p className="mt-3 text-sm font-semibold"><MathExpression value={flashShape.formula} /></p>
                 </div>
@@ -756,7 +996,7 @@ function KidsShapeStudio({ shapes, selected, onSelect }: { shapes: ShapeDefiniti
                 <div className="max-h-72 overflow-y-auto rounded-2xl border border-slate-200 dark:border-white/10">
                   <table className="w-full text-left text-sm">
                     <thead className="bg-slate-100 dark:bg-white/10"><tr><th className="p-2">Shape</th><th className="p-2">Type</th><th className="p-2">Sides/Faces</th><th className="p-2">Symmetry</th></tr></thead>
-                    <tbody>{filtered.slice(0, 12).map((shape) => <tr key={shape.id} className="border-t border-slate-200 dark:border-white/10"><td className="p-2 font-bold">{shape.name}</td><td className="p-2">{shape.kind}</td><td className="p-2">{propertyOf(shape, "sides") || propertyOf(shape, "faces")}</td><td className="p-2">{propertyOf(shape, "symmetry")}</td></tr>)}</tbody>
+                    <tbody>{filtered.slice(0, 12).map((shape) => <tr key={shape.id} className="border-t border-slate-200 dark:border-white/10"><td className="p-2"><span className="flex items-center gap-2 font-bold"><ShapeThumbnail src={shape.thumbnail} name={shape.name} size="compact" decorative />{shape.name}</span></td><td className="p-2">{shape.kind}</td><td className="p-2">{propertyOf(shape, "sides") || propertyOf(shape, "faces")}</td><td className="p-2">{propertyOf(shape, "symmetry")}</td></tr>)}</tbody>
                   </table>
                 </div>
               </StudioPanel>
@@ -791,12 +1031,12 @@ function KidsShapeStudio({ shapes, selected, onSelect }: { shapes: ShapeDefiniti
               </StudioPanel>
 
               <StudioPanel title="Favorites and recently learned" icon={<Heart className="h-5 w-5" />}>
-                <div className="flex flex-wrap gap-2">{recent.map((shapeId) => <button key={shapeId} type="button" className="mini-chip" onClick={() => selectAndTrack(shapeById(shapes, shapeId))}>{shapeName(shapeId)}</button>)}</div>
+                <div className="flex flex-wrap gap-2">{recent.map((shapeId) => { const shape = shapeById(shapes, shapeId); return <button key={shapeId} type="button" className="mini-chip" onClick={() => selectAndTrack(shape)}><ShapeThumbnail src={shape.thumbnail} name={shape.name} size="compact" decorative />{shape.name}</button>; })}</div>
                 <button type="button" onClick={() => toggleFavorite(selected.id)} className="mt-3 action-primary"><Heart className="h-4 w-4" />{favorites.includes(selected.id) ? "Remove favorite" : "Add favorite"}</button>
               </StudioPanel>
 
               <StudioPanel title="Search, sorting and filters" icon={<Search className="h-5 w-5" />}>
-                <div className="grid gap-2 md:grid-cols-2">{filtered.slice(0, 8).map((shape) => <button key={shape.id} type="button" onClick={() => selectAndTrack(shape)} className="rounded-xl bg-slate-100 p-3 text-left text-sm font-bold dark:bg-white/10">{shape.name}<span className="block text-xs font-normal text-slate-500">{shape.category}</span></button>)}</div>
+                <div className="grid gap-2 md:grid-cols-2">{filtered.slice(0, 8).map((shape) => <button key={shape.id} type="button" onClick={() => selectAndTrack(shape)} className="flex items-center gap-3 rounded-xl bg-slate-100 p-3 text-left text-sm font-bold dark:bg-white/10"><ShapeThumbnail src={shape.thumbnail} name={shape.name} size="medium" decorative /><span>{shape.name}<span className="block text-xs font-normal text-slate-500">{shape.category}</span></span></button>)}</div>
               </StudioPanel>
             </div>
           )}
@@ -843,8 +1083,9 @@ function StudioPanel({ title, icon, children }: { title: string; icon: ReactNode
   return <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-white/10 dark:bg-white/5"><div className="mb-3 flex items-center gap-2 font-bold text-slate-900 dark:text-white">{icon}{title}</div>{children}</div>;
 }
 
-function MiniShape({ id }: { id: ShapeId }) {
-  return <div className="grid aspect-square place-items-center rounded-lg bg-white dark:bg-white/10"><svg viewBox="0 0 50 50" className="h-8 w-8"><MiniShapeGlyph id={id} /></svg></div>;
+function MiniShape({ id, size = "medium" }: { id: ShapeId; size?: "compact" | "small" | "medium" | "large" | "compare" }) {
+  const shape = shapeById(shapes, id);
+  return <ShapeThumbnail src={shape.thumbnail} name={shape.name} size={size} decorative />;
 }
 
 function MiniShapeSvg({ id, x, y }: { id: ShapeId; x: number; y: number }) {
@@ -1382,6 +1623,19 @@ const futuristicPalettes = [
   { name: "Neon magenta", a: "#f472b6", b: "#9333ea" },
   { name: "Aurora", a: "#34d399", b: "#06b6d4" },
 ];
+
+const thumbnailAliases: Partial<Record<ShapeId, string>> = {
+  segment: "circular-segment",
+  star: "star-polygon",
+  cross: "cross-shape",
+};
+
+export const shapeThumbnailPath = (id: ShapeId) => `/assets/shapes/thumbnails/${thumbnailAliases[id] ?? id}.png`;
+
+export const shapes: ShapeDefinition[] = shapeSeeds.map((shape) => ({
+  ...shape,
+  thumbnail: shapeThumbnailPath(shape.id),
+}));
 
 function ShapeAppearanceControls({ fillMode, onFillMode, colorA, colorB, onColorA, onColorB, glow, onGlow, grid, onGrid }: {
   fillMode: ShapeFillMode;

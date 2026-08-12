@@ -1,9 +1,17 @@
 import {
   Box,
+  Calculator,
   Circle,
   Download,
   Eraser,
+  Eye,
+  EyeOff,
+  FileText,
+  Home,
+  Layers3,
   LineChart,
+  ListTree,
+  Lock,
   Magnet,
   MousePointer2,
   Move,
@@ -11,12 +19,17 @@ import {
   Plus,
   RotateCcw,
   Save,
+  Settings,
+  Share2,
   Slash,
   Trash2,
+  Unlock,
   ZoomIn,
+  ZoomOut,
   type LucideIcon,
 } from "lucide-react";
-import { type PointerEvent, type ReactNode, type RefObject } from "react";
+import { Link } from "react-router-dom";
+import { type PointerEvent, type ReactNode, type RefObject, useState } from "react";
 import { roundTo } from "../../../utils/math";
 import type { GeometryCertificationReport } from "../../../workspace/geometryConstructionCertification";
 
@@ -63,7 +76,14 @@ interface GeometryWorkspacePanelProps {
   graphSettings: GeometryGraphSettings;
   boardRef: RefObject<SVGSVGElement>;
   imageInputRef: RefObject<HTMLInputElement>;
-  sidebar: ReactNode;
+  sidebar?: ReactNode;
+  constructionHelp?: ReactNode;
+  objectInspector?: ReactNode;
+  imageInspector?: ReactNode;
+  constructionProtocol?: ReactNode;
+  unifiedObjectsPanel?: ReactNode;
+  measurementsPanel?: ReactNode;
+  constraintsPanel?: ReactNode;
   onImageUpload: (fileList: FileList | null) => void;
   onToolChange: (tool: GeometryTool) => void;
   onSelectAll: () => void;
@@ -81,6 +101,7 @@ interface GeometryWorkspacePanelProps {
   onReset: () => void;
   onSave: () => void;
   onLoad: () => void;
+  onExport?: () => void;
   onGraphSettingsChange: (settings: GeometryGraphSettings) => void;
   onClearPendingPicks: () => void;
   onBoardPointerDown: (event: PointerEvent<SVGSVGElement>) => void;
@@ -178,6 +199,13 @@ export default function GeometryWorkspacePanel({
   boardRef,
   imageInputRef,
   sidebar,
+  constructionHelp,
+  objectInspector,
+  imageInspector,
+  constructionProtocol,
+  unifiedObjectsPanel,
+  measurementsPanel,
+  constraintsPanel,
   onImageUpload,
   onToolChange,
   onSelectAll,
@@ -195,6 +223,7 @@ export default function GeometryWorkspacePanel({
   onReset,
   onSave,
   onLoad,
+  onExport,
   onGraphSettingsChange,
   onClearPendingPicks,
   onBoardPointerDown,
@@ -204,10 +233,56 @@ export default function GeometryWorkspacePanel({
   onBoardContextMenu,
   onGeometryExportRef,
 }: GeometryWorkspacePanelProps) {
+  const [studioMode, setStudioMode] = useState<"Construct" | "Analyze" | "Measure" | "Animate" | "Learn">("Construct");
+  const [registryTab, setRegistryTab] = useState<"Objects" | "Algebra" | "Layers">("Objects");
+  const [inspectorTab, setInspectorTab] = useState<"Properties" | "Style" | "Relations">("Properties");
+  const [projectName, setProjectName] = useState("Circle Theorem Exploration");
+  const activeHint = geometryToolObjectPickHint(activeTool, geometryObjectPicks) ?? `${geometryToolLabel(activeTool)} tool ready`;
+  const selectedPoint = selectedGeometry?.type === "point" ? pointById(construction.points, selectedGeometry.id) : null;
+  const renameProject = () => {
+    const next = window.prompt("Rename project", projectName);
+    if (next?.trim()) setProjectName(next.trim().slice(0, 64));
+  };
+  const toggleContrast = () => onGraphSettingsChange({ ...graphSettings, highContrastGrid: !graphSettings.highContrastGrid });
+  const activeDock = studioMode === "Animate" ? "Animation" : studioMode === "Measure" ? "Measurements" : "Construction Protocol";
   return (
-    <div className="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_300px] 2xl:grid-cols-[minmax(0,1fr)_340px]">
-      <div className="grid min-h-0 gap-3 lg:grid-cols-[250px_minmax(0,1fr)]">
-        <div className="min-h-0">
+    <div className="geometry-studio-shell">
+      <GeometryStudioRail />
+      <header className="geometry-studio-topbar">
+        <div className="min-w-0">
+          <div className="flex min-w-0 items-center gap-2">
+            <h1>Dynamic Geometry Studio</h1>
+            <button type="button" onClick={renameProject} className="geometry-icon-button" title="Rename project" aria-label="Rename project"><FileText className="h-4 w-4" /></button>
+          </div>
+          <p>{projectName}</p>
+        </div>
+        <div className="geometry-mode-tabs" aria-label="Geometry workspace modes">
+          {["Construct", "Analyze", "Measure", "Animate", "Learn"].map((mode) => (
+            <button key={mode} type="button" onClick={() => setStudioMode(mode as typeof studioMode)} className={mode === studioMode ? "active" : ""}>{mode}</button>
+          ))}
+        </div>
+        <div className="geometry-top-actions">
+          <button type="button" onClick={onUndo} title="Undo" aria-label="Undo"><RotateCcw className="h-4 w-4" /><span>Undo</span></button>
+          <button type="button" onClick={onRedo} title="Redo" aria-label="Redo"><RotateCcw className="h-4 w-4 -scale-x-100" /><span>Redo</span></button>
+          <button type="button" onClick={onSave} title="Save" aria-label="Save"><Save className="h-4 w-4" /><span>Save</span></button>
+          <button type="button" onClick={onLoad} title="Load saved construction" aria-label="Load saved construction"><Download className="h-4 w-4" /><span>Load</span></button>
+          <button type="button" onClick={onExport} title="Export" aria-label="Export"><Share2 className="h-4 w-4" /><span>Export</span></button>
+          <button type="button" onClick={toggleContrast} title="Toggle high contrast grid" aria-label="Toggle high contrast grid"><Settings className="h-4 w-4" /></button>
+        </div>
+      </header>
+
+      <aside className="geometry-studio-toolbox">
+        <div className="geometry-panel-heading">
+          <div>
+            <h2>Geometry Tools</h2>
+            <p>{activeHint}</p>
+          </div>
+          <span aria-hidden="true">•••</span>
+        </div>
+        <label className="geometry-tool-search">
+          <span className="sr-only">Find a tool</span>
+          <input placeholder="Find a tool" />
+        </label>
           <input ref={imageInputRef} type="file" accept="image/*" className="hidden" onChange={(event) => onImageUpload(event.target.files)} />
           <GeometryToolPalette
             activeTool={activeTool}
@@ -229,11 +304,16 @@ export default function GeometryWorkspacePanel({
             onLoad={onLoad}
             onAddImage={() => imageInputRef.current?.click()}
           />
-        </div>
-        <div className="min-w-0 space-y-3">
-          <GeometryGraphSettingsBar settings={graphSettings} onChange={onGraphSettingsChange} />
-          <GeometryPendingPickPanel tool={activeTool} picks={geometryObjectPicks} construction={construction} onClear={onClearPendingPicks} />
-          <GeometryAccuracyStrip report={constructionAccuracyReport} selectedGeometry={selectedGeometry} />
+      </aside>
+
+      <main className="geometry-studio-main">
+        <section className="geometry-canvas-panel">
+          <div className="geometry-canvas-header">
+            <GeometryGraphSettingsBar settings={graphSettings} onChange={onGraphSettingsChange} />
+            <GeometryAccuracyStrip report={constructionAccuracyReport} selectedGeometry={selectedGeometry} />
+          </div>
+          <div className="geometry-canvas-stage">
+            <GeometryNavTools activeTool={activeTool} onTool={onToolChange} />
           <GeometryBoard
             boardRef={boardRef}
             construction={construction}
@@ -250,13 +330,78 @@ export default function GeometryWorkspacePanel({
             onPointerLeave={onBoardPointerLeave}
             onContextMenu={onBoardContextMenu}
           />
-          <p className="rounded-2xl bg-cyan-50 p-3 text-xs font-semibold leading-5 text-cyan-900 dark:bg-cyan-400/10 dark:text-cyan-100">
-            Touch mode: choose a tool, tap to place points, then drag existing points. Keyboard mode: select a point, use arrow keys to nudge it, hold Shift for larger steps, and press Escape to clear selection.
-          </p>
-          <HiddenGeometryExport refSetter={onGeometryExportRef} construction={construction} images={workspaceImages} graphSettings={graphSettings} />
-        </div>
-      </div>
-      <div className="space-y-3 lg:sticky lg:top-24">{sidebar}</div>
+            <div className="geometry-canvas-hint">
+              Drag points to explore · Shift for multi-select · Esc to clear
+            </div>
+            <span className="sr-only">Touch mode supports direct manipulation with 44 pixel controls.</span>
+            <GeometryPendingPickPanel tool={activeTool} picks={geometryObjectPicks} construction={construction} onClear={onClearPendingPicks} />
+          </div>
+        </section>
+
+        <section className="geometry-context-toolbar" aria-label="Selected object actions">
+          <div>
+            <span>Selected:</span>
+            <strong>{selectedGeometry ? geometryObjectLabel(construction, selectedGeometry) : "None"}</strong>
+          </div>
+          <button type="button" onClick={() => onToolChange("select")} className="active"><Move className="h-4 w-4" />Move</button>
+          <button type="button" onClick={onTraceSelected}><LineChart className="h-4 w-4" />Trace</button>
+          <button type="button" onClick={onLockSelected}><Lock className="h-4 w-4" />Lock</button>
+          <button type="button" onClick={onShowHide}><EyeOff className="h-4 w-4" />Hide</button>
+          <button type="button" onClick={onDeleteSelected} className="danger"><Trash2 className="h-4 w-4" />Delete</button>
+          {selectedPoint && (
+            <div className="geometry-coordinate-readout">
+              <span>X <strong>{roundTo(selectedPoint.x / 40 - 8, 2)}</strong></span>
+              <span>Y <strong>{roundTo(5.5 - selectedPoint.y / 40, 2)}</strong></span>
+            </div>
+          )}
+        </section>
+
+        <section className="geometry-bottom-dock">
+          <div className="geometry-dock-tabs">
+            {(["Construction Protocol", "Measurements", "Animation"] as const).map((tab) => (
+              <button key={tab} type="button" onClick={() => setStudioMode(tab === "Animation" ? "Animate" : tab === "Measurements" ? "Measure" : "Construct")} className={activeDock === tab ? "active" : ""}>{tab}</button>
+            ))}
+          </div>
+          <div className="geometry-dock-content">
+            <div tabIndex={0} aria-label="Construction protocol">{constructionProtocol}</div>
+            <div tabIndex={0} aria-label="Measurements">{measurementsPanel}</div>
+            <div tabIndex={0} aria-label="Constraints and construction help">{constraintsPanel ?? constructionHelp}</div>
+          </div>
+        </section>
+        <HiddenGeometryExport refSetter={onGeometryExportRef} construction={construction} images={workspaceImages} graphSettings={graphSettings} />
+      </main>
+
+      <nav className="geometry-mobile-tools" aria-label="Essential geometry tools">
+        {([
+          ["select", "Select", MousePointer2],
+          ["point", "Point", Plus],
+          ["line", "Line", Slash],
+          ["circle", "Circle", Circle],
+          ["polygon", "Shape", Pentagon],
+        ] as Array<[GeometryTool, string, LucideIcon]>).map(([id, label, Icon]) => (
+          <button key={id} type="button" className={activeTool === id ? "active" : ""} onClick={() => onToolChange(id)} aria-pressed={activeTool === id}><Icon /><span>{label}</span></button>
+        ))}
+      </nav>
+
+      <aside className="geometry-studio-right">
+        <section className="geometry-right-card geometry-objects-tabs">
+          <div className="geometry-panel-heading"><h2>Objects & Algebra</h2><span>{construction.points.length + construction.lines.length + construction.circles.length + construction.polygons.length + construction.arcs.length + construction.loci.length} objects</span></div>
+          <div className="geometry-tab-strip" role="tablist" aria-label="Geometry object views">{(["Objects", "Algebra", "Layers"] as const).map((tab) => <button key={tab} type="button" role="tab" aria-selected={registryTab === tab} onClick={() => setRegistryTab(tab)} className={registryTab === tab ? "active" : ""}>{tab}</button>)}</div>
+          {registryTab === "Objects" && <GeometryObjectRegistry construction={construction} selectedGeometry={selectedGeometry} />}
+          {registryTab === "Algebra" && unifiedObjectsPanel}
+          {registryTab === "Layers" && <div className="geometry-object-registry"><p className="geometry-empty-note">Layers follow object visibility and construction order. Use the object list to show, hide, or reorder linked items.</p></div>}
+          {registryTab === "Objects" && unifiedObjectsPanel}
+        </section>
+        <section className="geometry-right-card geometry-inspector-card">
+          <div className="geometry-panel-heading"><h2>Object Inspector</h2><span>{selectedGeometry?.type ?? "No selection"}</span></div>
+          <div className="geometry-tab-strip" role="tablist" aria-label="Geometry inspector views">{(["Properties", "Style", "Relations"] as const).map((tab) => <button key={tab} type="button" role="tab" aria-selected={inspectorTab === tab} onClick={() => setInspectorTab(tab)} className={inspectorTab === tab ? "active" : ""}>{tab}</button>)}</div>
+          {inspectorTab === "Properties" && <>{objectInspector}{imageInspector}{sidebar}</>}
+          {inspectorTab === "Style" && <div className="geometry-object-registry"><p className="geometry-empty-note">Select an object to edit its colour, opacity, label, visibility, and line style.</p>{objectInspector}</div>}
+          {inspectorTab === "Relations" && <div className="geometry-object-registry"><p className="geometry-empty-note">Dependent constraints and construction relationships update live as parent points move.</p>{constraintsPanel}</div>}
+        </section>
+      </aside>
+
+      <footer className="geometry-statusbar"><span className="ok-dot" /> Offline <span>60 FPS</span><span>{construction.constraints.length} constraints</span><span>{constructionAccuracyReport.summary}</span></footer>
     </div>
   );
 }
@@ -323,7 +468,7 @@ function GeometryToolPalette({
   ];
 
   return (
-    <aside className="geometry-left-tools thin-scrollbar max-h-[min(66vh,560px)] overflow-auto rounded-2xl border border-slate-200 bg-white/90 p-2 shadow-xl shadow-slate-200/40 dark:border-white/10 dark:bg-slate-950/70 dark:shadow-black/20">
+    <aside className="geometry-left-tools thin-scrollbar">
       {geometryPaletteGroups.map((group) => (
         <GeometryPaletteSection key={group.title} title={group.title}>
           {group.tools.map((item) => (
@@ -338,6 +483,90 @@ function GeometryToolPalette({
         {fileActions.map((item) => <GeometryPaletteAction key={item.id} item={item} />)}
       </GeometryPaletteSection>
     </aside>
+  );
+}
+
+function GeometryStudioRail() {
+  const items = [
+    { label: "Home", href: "/", icon: Home },
+    { label: "Workspace", href: "/workspace", icon: Box },
+    { label: "Geometry", href: "/workspace/geometry", icon: Pentagon, active: true },
+    { label: "2D Graphs", href: "/workspace/graph", icon: LineChart },
+    { label: "3D Studio", href: "/workspace/3d", icon: Layers3 },
+    { label: "CAS", href: "/workspace/data", icon: Calculator },
+    { label: "More", href: "/sitemap", icon: ListTree },
+  ];
+  return (
+    <nav className="geometry-studio-rail" aria-label="Studio navigation">
+      <a className="geometry-brand" href="/" aria-label="Math Universe home">mu</a>
+      {items.map(({ label, href, icon: Icon, active }) => (
+        <Link key={label} to={href} className={active ? "active" : ""} aria-current={active ? "page" : undefined} title={label}>
+          <Icon className="h-4 w-4" />
+          <span>{label}</span>
+        </Link>
+      ))}
+    </nav>
+  );
+}
+
+function GeometryNavTools({ activeTool, onTool }: { activeTool: GeometryTool; onTool: (tool: GeometryTool) => void }) {
+  const tools: Array<{ id: GeometryTool; label: string; icon: LucideIcon }> = [
+    { id: "select", label: "Select", icon: MousePointer2 },
+    { id: "move-canvas", label: "Pan", icon: Move },
+    { id: "zoom", label: "Zoom", icon: ZoomIn },
+  ];
+  return (
+    <div className="geometry-nav-tools" aria-label="Canvas navigation tools">
+      {tools.map(({ id, label, icon: Icon }) => (
+        <button key={id} type="button" onClick={() => onTool(id)} className={activeTool === id ? "active" : ""} title={label} aria-label={label}>
+          <Icon className="h-4 w-4" />
+          <span>{label}</span>
+        </button>
+      ))}
+      <button type="button" title="Fit view" aria-label="Fit view"><ZoomOut className="h-4 w-4" /><span>Fit</span></button>
+    </div>
+  );
+}
+
+function GeometryObjectRegistry({ construction, selectedGeometry }: { construction: Construction; selectedGeometry: SelectedGeometryObject | null }) {
+  const rows: Array<{ type: GeometryObjectType; id: string; label: string; value: string; icon: LucideIcon; visible?: boolean; locked?: boolean }> = [
+    ...construction.points.map((point) => ({ type: "point" as const, id: point.id, label: point.label, value: `(${roundTo(point.x / 40 - 8, 2)}, ${roundTo(5.5 - point.y / 40, 2)})`, icon: Plus, visible: point.style?.visible !== false })),
+    ...construction.lines.map((line, index) => ({ type: "line" as const, id: line.id, label: lineName(line, construction, index), value: line.style?.label ?? "line", icon: Slash, visible: line.style?.visible !== false })),
+    ...construction.circles.map((circle, index) => ({ type: "circle" as const, id: circle.id, label: circleName(circle, construction, index), value: "circle", icon: Circle, visible: circle.style?.visible !== false })),
+    ...construction.polygons.map((polygon, index) => ({ type: "polygon" as const, id: polygon.id, label: `Polygon ${index + 1}`, value: `${polygon.points.length} vertices`, icon: Pentagon, visible: polygon.style?.visible !== false })),
+    ...construction.arcs.map((arc, index) => ({ type: "arc" as const, id: arc.id, label: `Arc ${index + 1}`, value: arc.sector ? "sector" : "arc", icon: Circle, visible: arc.style?.visible !== false })),
+    ...construction.loci.map((locus) => ({ type: "locus" as const, id: locus.id, label: locus.label, value: `${locus.points.length} samples`, icon: LineChart, visible: locus.style?.visible !== false })),
+  ];
+  const grouped = [
+    { label: "Points", rows: rows.filter((row) => row.type === "point") },
+    { label: "Lines & Segments", rows: rows.filter((row) => row.type === "line") },
+    { label: "Circles", rows: rows.filter((row) => row.type === "circle") },
+    { label: "Polygons", rows: rows.filter((row) => row.type === "polygon") },
+    { label: "Arcs & Loci", rows: rows.filter((row) => row.type === "arc" || row.type === "locus") },
+  ].filter((group) => group.rows.length);
+  return (
+    <div className="geometry-object-registry">
+      {grouped.length ? grouped.map((group) => (
+        <div key={group.label} className="geometry-object-group">
+          <h3>{group.label}</h3>
+          {group.rows.map((row) => {
+            const Icon = row.icon;
+            const active = selectedGeometry?.type === row.type && selectedGeometry.id === row.id;
+            return (
+              <div key={`${row.type}-${row.id}`} className={`geometry-object-row ${active ? "active" : ""}`}>
+                <Icon className="h-4 w-4" />
+                <div>
+                  <strong>{row.label}</strong>
+                  <span>{row.value}</span>
+                </div>
+                {row.visible ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                {row.locked ? <Lock className="h-4 w-4" /> : <Unlock className="h-4 w-4" />}
+              </div>
+            );
+          })}
+        </div>
+      )) : <p className="geometry-empty-note">Create geometry objects to populate the registry.</p>}
+    </div>
   );
 }
 
@@ -395,7 +624,7 @@ function GeometryGraphSettingsBar({ settings, onChange }: { settings: GeometryGr
             key={item.key}
             type="button"
             onClick={() => toggle(item.key)}
-            className={`rounded-lg border px-2.5 py-1 text-xs font-black transition ${settings[item.key] ? "border-cyan-300 bg-cyan-500 text-white shadow-sm shadow-cyan-500/20" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-cyan-200 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-cyan-400/10"}`}
+            className={`rounded-lg border px-2.5 py-1 text-xs font-black transition ${settings[item.key] ? "border-cyan-700 bg-cyan-700 text-white shadow-sm shadow-cyan-700/20" : "border-slate-200 bg-slate-50 text-slate-700 hover:border-cyan-200 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950 dark:text-slate-200 dark:hover:bg-cyan-400/10"}`}
             aria-pressed={settings[item.key]}
             data-testid={`workspace-geometry-setting-${item.key}`}
           >
@@ -452,7 +681,7 @@ function GeometryBoard({
       onContextMenu={onContextMenu}
       onPointerUp={onPointerUp}
       onPointerLeave={onPointerLeave}
-      className="h-[min(420px,68vh)] min-h-[320px] w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950 sm:h-[420px]"
+      className="geometry-board-svg w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"
     >
       <title>Math Universe Geometry Construction</title>
       <GeometryGrid settings={graphSettings} />

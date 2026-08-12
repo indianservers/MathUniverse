@@ -96,10 +96,11 @@ export function filterConcepts(filters: ConceptMapFilters): ConceptNode[] {
   });
 }
 
-export function getVisibleEdges(visibleConcepts: ConceptNode[], selectedId?: string, onlyPrerequisites?: boolean, onlyNext?: boolean) {
+export function getVisibleEdges(visibleConcepts: ConceptNode[], selectedId?: string, onlyPrerequisites?: boolean, onlyNext?: boolean, relationshipTypes?: ConceptMapFilters["relationships"]) {
   const visible = new Set(visibleConcepts.map((concept) => concept.id));
   return conceptEdges.filter((edge) => {
     if (!visible.has(edge.source) || !visible.has(edge.target)) return false;
+    if (relationshipTypes?.length && !relationshipTypes.includes(edge.type)) return false;
     if (onlyPrerequisites && selectedId) return edge.target === selectedId && edge.type === "prerequisite";
     if (onlyNext && selectedId) return edge.source === selectedId && edge.type === "builds-into";
     return true;

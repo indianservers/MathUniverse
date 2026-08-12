@@ -41,28 +41,51 @@ export function evaluateDynamicWorkspace(objects: MathObject[]): DynamicWorkspac
   const diagnostics: DynamicDiagnostic[] = [];
   const normalized = objects.map(normalizeMathObject);
   const ordered = topologicalOrder(normalized, diagnostics);
-  let current = normalized;
+  const current = [...normalized];
+  const positionById = new Map(current.map((object, index) => [object.id, index]));
+  const index = indexObjects(current);
 
   ordered.forEach((object) => {
     if (!object.definition?.source) return;
     try {
       const command = parseGeoGebraCommand(object.definition.source);
-      const next = materializeCommand(command, object.id, indexObjects(current), object);
-      current = current.map((candidate) => (candidate.id === object.id ? normalizeDynamicObject(next) : candidate));
+      const previous = index.byId.get(object.id) ?? object;
+      const next = normalizeDynamicObject(materializeCommand(command, object.id, index, previous));
+      const position = positionById.get(object.id);
+      if (position !== undefined) current[position] = next;
+      updateObjectIndex(index, previous, next);
     } catch (error) {
       diagnostics.push({ objectId: object.id, severity: "error", message: error instanceof Error ? error.message : "Could not recompute object." });
-      current = current.map((candidate) => (candidate.id === object.id ? withObjectPatch(candidate, { status: "error" }) : candidate));
+      const position = positionById.get(object.id);
+      if (position !== undefined) {
+        const previous = current[position];
+        const next = withObjectPatch(previous, { status: "error" });
+        current[position] = next;
+        updateObjectIndex(index, previous, next);
+      }
     }
   });
 
-  current = applyObjectProperties(current);
-  const algebra = buildCanonicalAlgebra(current);
+  const resolved = applyObjectProperties(current);
+  const algebra = buildCanonicalAlgebra(resolved);
   const algebraById = new Map(algebra.map((row) => [row.id, row]));
   return {
-    objects: current.map((object) => normalizeMathObject({ ...object, algebra: algebraById.get(object.id) })),
+    objects: resolved.map((object) => normalizeMathObject({ ...object, algebra: algebraById.get(object.id) })),
     algebra,
     diagnostics,
   };
+}
+
+function updateObjectIndex(index: ObjectIndex, previous: MathObject, next: MathObject) {
+  if (previous.label !== next.label) {
+    index.byName.delete(previous.label);
+    index.byName.delete(previous.label.toLowerCase());
+  }
+  index.byId.set(next.id, next);
+  index.byName.set(next.id, next);
+  index.byName.set(next.id.toLowerCase(), next);
+  index.byName.set(next.label, next);
+  index.byName.set(next.label.toLowerCase(), next);
 }
 
 export function buildCanonicalAlgebra(objects: MathObject[]): AlgebraObjectModel[] {

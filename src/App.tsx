@@ -4,7 +4,8 @@ import AppLayout from "./components/layout/AppLayout";
 import SeoMetadata from "./components/seo/SeoMetadata";
 import { formulaVisualizerConfigs } from "./data/formulaVisualizerRoutes";
 
-const routeChunkReloadKey = "math-universe-route-chunk-reload";
+const routeChunkReloadPrefix = "math-universe-route-chunk-reload:";
+const routeChunkReloadWindowMs = 30_000;
 
 function isRouteChunkLoadError(error: unknown) {
   const message = error instanceof Error ? error.message : String(error);
@@ -15,16 +16,32 @@ function lazyRoute<Props>(loader: () => Promise<{ default: ComponentType<Props> 
   return lazy(async () => {
     try {
       const module = await loader();
-      if (typeof window !== "undefined") sessionStorage.removeItem(routeChunkReloadKey);
+      if (typeof window !== "undefined") sessionStorage.removeItem(`${routeChunkReloadPrefix}${window.location.pathname}`);
       return module;
     } catch (error) {
-      if (typeof window !== "undefined" && isRouteChunkLoadError(error) && sessionStorage.getItem(routeChunkReloadKey) !== "1") {
-        sessionStorage.setItem(routeChunkReloadKey, "1");
-        window.location.reload();
+      if (typeof window !== "undefined" && isRouteChunkLoadError(error)) {
+        const reloadKey = `${routeChunkReloadPrefix}${window.location.pathname}`;
+        const lastReload = Number(sessionStorage.getItem(reloadKey) ?? 0);
+        if (!Number.isFinite(lastReload) || Date.now() - lastReload > routeChunkReloadWindowMs) {
+          sessionStorage.setItem(reloadKey, String(Date.now()));
+          await clearStaleAppCaches();
+          window.location.replace(window.location.href);
+        }
       }
       throw error;
     }
   });
+}
+
+async function clearStaleAppCaches() {
+  if ("serviceWorker" in navigator) {
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(registrations.map((registration) => registration.unregister()));
+  }
+  if ("caches" in window) {
+    const keys = await caches.keys();
+    await Promise.all(keys.map((key) => caches.delete(key)));
+  }
 }
 
 const About = lazyRoute(() => import("./pages/About"));
@@ -162,7 +179,7 @@ class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundary
             <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
               Reload the app to restore the latest lesson shell and cached visualizations.
             </p>
-            <button className="action-primary mt-5" type="button" onClick={() => window.location.reload()}>
+            <button className="action-primary mt-5" type="button" onClick={() => { void clearStaleAppCaches().finally(() => window.location.replace(window.location.href)); }}>
               Reload app
             </button>
           </section>
@@ -215,6 +232,7 @@ export default function App() {
             <Route path="workspace/geometry" element={<WorkspaceGeometry />} />
             <Route path="workspace/3d" element={<Workspace3D />} />
             <Route path="workspace/data" element={<WorkspaceData />} />
+            <Route path="workspace/data/overview" element={<WorkspaceData page="overview" />} />
             <Route path="workspace/data/spreadsheet" element={<WorkspaceData page="spreadsheet" />} />
             <Route path="workspace/data/analysis" element={<WorkspaceData page="analysis" />} />
             <Route path="workspace/data/cas" element={<WorkspaceData page="cas" />} />
@@ -368,6 +386,7 @@ function RouteProgressBar() {
     <div
       className={`route-progress ${visible ? "route-progress-visible" : ""}`}
       role="progressbar"
+      aria-label="Loading page"
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={Math.round(progress)}

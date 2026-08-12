@@ -36,6 +36,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { visualFormulaMenuLinks } from "../../data/formulaVisualizerRoutes";
+import { mathWorkspaceGroupLabels, mathWorkspaces, type MathWorkspaceGroup } from "../../workspace/mathWorkspaces";
 
 export const iconMap = {
   Atom,
@@ -79,6 +80,7 @@ export type NavItem = {
   title: string;
   route: string;
   icon: keyof typeof iconMap;
+  description?: string;
   isExternal?: boolean;
   searchTerms?: string[];
   children?: NavItem[];
@@ -89,6 +91,23 @@ export type NavSection = {
   icon: keyof typeof iconMap;
   items: NavItem[];
 };
+
+const mathWorkspaceGroups: MathWorkspaceGroup[] = ["calculate", "construct-graph", "explore"];
+const mathWorkspaceNavItems: NavItem[] = mathWorkspaceGroups.map((group) => {
+  const workspaces = mathWorkspaces.filter((workspace) => workspace.group === group);
+  return {
+    title: mathWorkspaceGroupLabels[group],
+    route: `/math-workspaces/${group}`,
+    icon: group === "calculate" ? "Sigma" : group === "explore" ? "Shapes" : "Grid3X3",
+    children: workspaces.map((workspace) => ({
+      title: workspace.name,
+      route: workspace.route,
+      icon: workspace.icon,
+      description: workspace.shortDescription,
+      searchTerms: [workspace.description, "math workspace", "interactive studio"],
+    })),
+  };
+});
 
 const visualFormulaNavChildren: NavItem[] = [
   ...visualFormulaMenuLinks.map((item): NavItem => ({
@@ -122,9 +141,6 @@ export const navSections: NavSection[] = [
         icon: "Network",
         searchTerms: ["concept map", "knowledge graph", "learning path", "prerequisites", "math brain"],
       },
-      { title: "Graph & Algebra", route: "/workspace/graph", icon: "FunctionSquare" },
-      { title: "Geometry Constructor", route: "/workspace/geometry", icon: "Shapes" },
-      { title: "3D Calculator", route: "/workspace/3d", icon: "Cuboid" },
       {
         title: "Advanced Concept Studios",
         route: "/math-lab/continued-fractions",
@@ -144,7 +160,6 @@ export const navSections: NavSection[] = [
         icon: "ScanLine",
         searchTerms: ["ar", "augmented reality", "mixed reality", "xr", "webxr", "camera math", "3d graph ar"],
       },
-      { title: "CAS, Tables & Data", route: "/workspace/data", icon: "LineChart" },
       { title: "Teacher Studio", route: "/workspace/teach", icon: "Presentation" },
       { title: "Dashboard", route: "/", icon: "Home" },
       {
@@ -284,16 +299,9 @@ export const navSections: NavSection[] = [
     ],
   },
   {
-    title: "Visual Maths & Graphing",
-    icon: "ChartSpline",
-    items: [
-      { title: "2D Explorer", route: "/workspace/geometry", icon: "Ruler", searchTerms: ["points", "lines", "vectors", "geometric construction"] },
-      { title: "3D Explorer", route: "/workspace/3d", icon: "Cuboid", searchTerms: ["objects", "vectors", "planes", "solids"] },
-      { title: "Shapes Explorer", route: "/shapes", icon: "Shapes", searchTerms: ["measurements", "transformations", "area", "volume"] },
-      { title: "2D Graphs", route: "/math-lab/graphing-calculator", icon: "ChartSpline", searchTerms: ["equations", "functions", "coordinate graph", "roots", "derivative", "integral"] },
-      { title: "3D Graphs", route: "/math-lab/3d-graphing", icon: "Orbit", searchTerms: ["surfaces", "parametric", "multivariable", "sphere", "cone", "cylinder"] },
-      { title: "CAS - Computer Algebra System", route: "/workspace/data/cas", icon: "Sigma", searchTerms: ["symbolic", "simplify", "solve", "differentiate", "integrate"] },
-    ],
+    title: "Math Workspaces",
+    icon: "Grid3X3",
+    items: mathWorkspaceNavItems,
   },
   {
     title: "AR / XR",

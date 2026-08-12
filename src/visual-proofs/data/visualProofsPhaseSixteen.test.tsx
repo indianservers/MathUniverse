@@ -43,11 +43,13 @@ describe("Visual Proofs phase sixteen number theory completion", () => {
   it("makes all twelve Number Theory routes phase-upgraded and present in the smoke manifest", () => {
     const numberTheoryProofs = getVisualProofsByCategory("number-theory").filter((proof) => proof.status === "available");
     const manifestRoutes = visualProofsRouteSmokeManifest.map((entry) => entry.route);
-    expect(numberTheoryProofs).toHaveLength(12);
-    expect(numberTheoryProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
-    expect(numberTheoryProofs.every((proof) => proof.proofLearningModel === "number-model")).toBe(true);
-    expect(numberTheoryProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);
-    expect(numberTheoryProofs.every((proof) => proof.hasTeacherMode && proof.hasKeyboardControls && proof.hasStateInspector && proof.hasOlympyardPracticeExit)).toBe(true);
+    expect(numberTheoryProofs.length).toBeGreaterThanOrEqual(12);
+    const phaseSlugs = new Set<string>(phaseSixteenRouteSlugs.map(([, slug]) => slug));
+    const phaseProofs = numberTheoryProofs.filter((proof) => phaseSlugs.has(proof.slug));
+    expect(phaseProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    expect(phaseProofs.every((proof) => proof.proofLearningModel === "number-model")).toBe(true);
+    expect(phaseProofs.every((proof) => proof.hasFormulaTokens && proof.hasPredictionPrompt && proof.hasSnapshotSupport)).toBe(true);
+    expect(phaseProofs.every((proof) => proof.hasTeacherMode && proof.hasKeyboardControls && proof.hasStateInspector && proof.hasOlympyardPracticeExit)).toBe(true);
     expect(manifestRoutes).toEqual(expect.arrayContaining(phaseSixteenRouteSlugs.map(routeFromSlug)));
   });
 

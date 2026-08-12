@@ -106,6 +106,10 @@ function contentFor(title, unit, level, lessonType) {
   return content;
 }
 
+function ensureTitleInSummary(title, content) {
+  return content.summary.includes(title) ? content : { ...content, summary: `${title}: ${content.summary}` };
+}
+
 function prerequisitesFor(previousLessonId, unit, level) {
   const prerequisites = [
     {
@@ -181,7 +185,7 @@ for (const pack of backlog.conceptPacks) {
           masteryThreshold: 0.8,
         },
       },
-      content: contentFor(concept.title, pack.unit, pack.academicLevel, lessonType),
+      content: ensureTitleInSummary(concept.title, contentFor(concept.title, pack.unit, pack.academicLevel, lessonType)),
     };
     lessons.push(lesson);
     previousLessonId = id;

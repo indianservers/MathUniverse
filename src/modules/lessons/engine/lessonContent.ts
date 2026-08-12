@@ -100,7 +100,7 @@ const adapterFormulas: Record<LessonSourceDefinition["adapter"], LessonFormula[]
 
 export function createLessonContent(lesson: ContentSource): LessonContent {
   const strengthened = getStrengthenedLessonContent(lesson);
-  if (strengthened) return strengthened;
+  if (strengthened) return normalizeStrengthenedContent(lesson, strengthened);
   const titleTopic = `${lesson.title} ${lesson.topic}`.toLowerCase();
   const formulas = formulasFor(titleTopic, lesson.adapter);
   const controlGuide = controlGuideFor(lesson);
@@ -119,6 +119,17 @@ export function createLessonContent(lesson: ContentSource): LessonContent {
     workedConnection: `In this page, begin with a prediction, change ${controlNoun(lesson)}, then compare ${listRepresentations(lesson)}. The formulas below explain why the displayed result changes when the control changes.`,
     knowMore: knowMoreFor(lesson, formulas, examples),
   };
+}
+
+function normalizeStrengthenedContent(lesson: ContentSource, content: LessonContent): LessonContent {
+  const summary = content.summary.includes(lesson.title) ? content.summary : `${lesson.title}: ${content.summary}`;
+  const explanation = content.explanation.includes("small experiment") ? content.explanation : `Use this lesson as a small experiment. ${content.explanation}`;
+  const formulas = [...content.formulas];
+  for (const fallback of adapterFormulas[lesson.adapter]) {
+    if (formulas.length >= 2) break;
+    if (!formulas.some((item) => item.expression === fallback.expression)) formulas.push(fallback);
+  }
+  return { ...content, summary, explanation, formulas };
 }
 
 function formulasFor(titleTopic: string, adapter: LessonSourceDefinition["adapter"]) {

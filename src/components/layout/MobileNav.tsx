@@ -188,7 +188,7 @@ function MobileNavItem({
           aria-expanded={open}
         >
           <Icon className="h-4 w-4" />
-          <span className="min-w-0 flex-1 truncate">{item.title}</span>
+          <span className="min-w-0 flex-1"><span className="block truncate">{item.title}</span>{item.description && <span className="mt-0.5 block truncate text-[11px] font-medium text-slate-400">{item.description}</span>}</span>
           <ChevronDown className={`h-3.5 w-3.5 transition ${open ? "rotate-180" : ""}`} />
         </button>
         {open && (
@@ -223,7 +223,7 @@ function MobileNavItem({
       }
     >
       <Icon className="h-4 w-4" />
-      <span className="truncate">{item.title}</span>
+      <span className="min-w-0"><span className="block truncate">{item.title}</span>{item.description && <span className="mt-0.5 block truncate text-[11px] font-medium text-slate-400">{item.description}</span>}</span>
     </NavLink>
   );
 }

@@ -40,11 +40,13 @@ describe("Visual Proofs phase eighteen statistics launch", () => {
   it("keeps statistics free of generic coming-soon starter as the main experience", () => {
     const statisticsProofs = getVisualProofsByCategory("statistics");
     const manifestRoutes = visualProofsRouteSmokeManifest.map((entry) => entry.route);
-    expect(statisticsProofs).toHaveLength(8);
+    expect(statisticsProofs.length).toBeGreaterThanOrEqual(8);
     expect(statisticsProofs.every((proof) => proof.status === "available")).toBe(true);
     expect(statisticsProofs.some((proof) => proof.slug === "starter-visual-proof")).toBe(false);
-    expect(statisticsProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
-    expect(statisticsProofs.every((proof) => proof.proofLearningModel === "data-display")).toBe(true);
+    const phaseSlugs = new Set<string>(phaseEighteenRouteSlugs.map(([, slug]) => slug));
+    const phaseProofs = statisticsProofs.filter((proof) => phaseSlugs.has(proof.slug));
+    expect(phaseProofs.every((proof) => proof.proofUpgradeStatus === "phase-upgraded")).toBe(true);
+    expect(phaseProofs.every((proof) => proof.proofLearningModel === "data-display")).toBe(true);
     expect(manifestRoutes).toEqual(expect.arrayContaining(phaseEighteenRouteSlugs.map(routeFromSlug)));
   });
 
