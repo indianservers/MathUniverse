@@ -68,6 +68,7 @@ export default function AppLayout() {
   const showBack = location.pathname.split("/").filter(Boolean).length > 1;
   const isWorkspaceRoute = location.pathname === "/workspace" || location.pathname.startsWith("/workspace/");
   const isStudioRoute = location.pathname === "/math-lab/3d-graphing" || location.pathname === "/math-lab/graphing-calculator" || location.pathname === "/workspace/graph" || location.pathname === "/workspace/3d" || location.pathname === "/workspace/geometry" || location.pathname.startsWith("/workspace/data") || location.pathname === "/shapes";
+  const isCalculusLabRoute = location.pathname === "/math/limits-continuity" || location.pathname === "/math/derivatives" || location.pathname === "/math/derivatives/formula-visualizer" || location.pathname === "/math/integration" || location.pathname === "/math/integration/formula-visualizer";
   const currentMathWorkspace = findMathWorkspace(location.pathname);
 
   useEffect(() => {
@@ -99,6 +100,15 @@ export default function AppLayout() {
       localStorage.setItem(recentToolsKey, JSON.stringify([currentRoute]));
     }
   }, [location.pathname]);
+
+  if (isCalculusLabRoute) {
+    return (
+      <main id="main-content" className="h-dvh overflow-auto bg-slate-50">
+        <Outlet />
+        <UndoToastHost />
+      </main>
+    );
+  }
 
   if (isStudioRoute) {
     return (

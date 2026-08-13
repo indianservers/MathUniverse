@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import FormulaBlock from "../../components/ui/FormulaBlock";
 import SectionCard from "../../components/ui/SectionCard";
@@ -47,8 +46,8 @@ export default function ComplexMultiplicationVisualizer() {
             <line x1="10" x2="350" y1="180" y2="180" stroke="#64748b" /><line x1="180" x2="180" y1="10" y2="350" stroke="#64748b" />
             <Vector p={p1} color="#22d3ee" label="z1" />
             <Vector p={p2} color="#a78bfa" label="z2" />
-            <motion.line x1={center} y1={center} animate={{ x2: p3.x, y2: p3.y }} stroke="#f59e0b" strokeWidth="4" markerEnd="url(#arrow-mul)" />
-            <motion.circle animate={{ cx: p3.x, cy: p3.y }} r="8" fill="#f59e0b" />
+            <line x1={center} y1={center} x2={p3.x} y2={p3.y} stroke="#f59e0b" strokeWidth="4" markerEnd="url(#arrow-mul)" />
+            <circle cx={p3.x} cy={p3.y} r="8" fill="#f59e0b" />
             <text x={p3.x + 8} y={p3.y - 8} fill="#f59e0b" fontWeight="700">z1*z2</text>
           </svg>
         </div>

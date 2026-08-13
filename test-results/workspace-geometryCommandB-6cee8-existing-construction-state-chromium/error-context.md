@@ -1,0 +1,1607 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: workspace\geometryCommandBoundary.e2e.ts >> Geometry command-boundary regression >> geometry tool switching preserves existing construction state
+- Location: tests\workspace\geometryCommandBoundary.e2e.ts:106:3
+
+# Error details
+
+```
+Error: locator.click: Error: strict mode violation: getByTestId('workspace-geometry-tool-line') resolved to 2 elements:
+    1) <button type="button" class="geometry-palette-button " title="Line. Right click to unpin." data-testid="workspace-geometry-tool-line">…</button> aka locator('section').filter({ hasText: 'FavoritesMovePointLineCirclePolygon' }).getByTestId('workspace-geometry-tool-line')
+    2) <button type="button" class="geometry-palette-button " title="Line. Right click to unpin." data-testid="workspace-geometry-tool-line">…</button> aka locator('section').filter({ hasText: 'Basic' }).getByTestId('workspace-geometry-tool-line')
+
+Call log:
+  - waiting for getByTestId('workspace-geometry-tool-line')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - progressbar "Loading page"
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "Math Workspaces home" [ref=e6] [cursor=pointer]:
+          - /url: /workspace
+          - img [ref=e8]
+          - generic [ref=e10]:
+            - strong [ref=e11]: Math Workspaces
+            - generic [ref=e12]: Six connected studios
+        - navigation "Workspace tools" [ref=e13]:
+          - link "Home" [ref=e14] [cursor=pointer]:
+            - /url: /workspace
+            - img [ref=e15]
+            - generic [ref=e18]: Home
+          - link "CAS" [ref=e19] [cursor=pointer]:
+            - /url: /workspace/data
+            - img [ref=e20]
+            - generic [ref=e22]: CAS
+          - link "2D Geometry" [ref=e23] [cursor=pointer]:
+            - /url: /workspace/geometry
+            - img [ref=e24]
+            - generic [ref=e28]: 2D Geometry
+          - link "3D Geometry" [ref=e29] [cursor=pointer]:
+            - /url: /workspace/3d
+            - img [ref=e30]
+            - generic [ref=e34]: 3D Geometry
+          - link "Graphs" [ref=e35] [cursor=pointer]:
+            - /url: /workspace/graph
+            - img [ref=e36]
+            - generic [ref=e39]: Graphs
+          - link "3D Graphs" [ref=e40] [cursor=pointer]:
+            - /url: /math-lab/3d-graphing
+            - img [ref=e41]
+            - generic [ref=e47]: 3D Graphs
+          - link "Shapes Explorer" [ref=e48] [cursor=pointer]:
+            - /url: /shapes
+            - img [ref=e49]
+            - generic [ref=e53]: Shapes Explorer
+      - generic [ref=e56]:
+        - navigation "Studio navigation" [ref=e57]:
+          - link "Math Universe home" [ref=e58] [cursor=pointer]:
+            - /url: /
+            - text: mu
+          - link "Home" [ref=e59] [cursor=pointer]:
+            - /url: /
+            - img [ref=e60]
+            - generic [ref=e63]: Home
+          - link "Workspace" [ref=e64] [cursor=pointer]:
+            - /url: /workspace
+            - img [ref=e65]
+            - generic [ref=e68]: Workspace
+          - link "Geometry" [ref=e69] [cursor=pointer]:
+            - /url: /workspace/geometry
+            - img [ref=e70]
+            - generic [ref=e72]: Geometry
+          - link "2D Graphs" [ref=e73] [cursor=pointer]:
+            - /url: /workspace/graph
+            - img [ref=e74]
+            - generic [ref=e77]: 2D Graphs
+          - link "3D Studio" [ref=e78] [cursor=pointer]:
+            - /url: /workspace/3d
+            - img [ref=e79]
+            - generic [ref=e83]: 3D Studio
+          - link "CAS" [ref=e84] [cursor=pointer]:
+            - /url: /workspace/data
+            - img [ref=e85]
+            - generic [ref=e87]: CAS
+          - link "More" [ref=e88] [cursor=pointer]:
+            - /url: /sitemap
+            - img [ref=e89]
+            - generic [ref=e92]: More
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - generic [ref=e95]:
+              - heading "Dynamic Geometry Studio" [level=1] [ref=e96]
+              - button "Rename project" [ref=e97] [cursor=pointer]:
+                - img [ref=e98]
+            - paragraph [ref=e101]: Circle Theorem Exploration
+          - generic "Geometry workspace modes" [ref=e102]:
+            - button "Construct" [ref=e103] [cursor=pointer]
+            - button "Analyze" [ref=e104] [cursor=pointer]
+            - button "Measure" [ref=e105] [cursor=pointer]
+            - button "Animate" [ref=e106] [cursor=pointer]
+            - button "Learn" [ref=e107] [cursor=pointer]
+          - generic [ref=e108]:
+            - button "Undo" [ref=e109] [cursor=pointer]:
+              - img [ref=e110]
+            - button "Redo" [ref=e113] [cursor=pointer]:
+              - img [ref=e114]
+            - button "Save" [ref=e117] [cursor=pointer]:
+              - img [ref=e118]
+            - button "Load saved construction" [ref=e122] [cursor=pointer]:
+              - img [ref=e123]
+            - button "Export" [ref=e126] [cursor=pointer]:
+              - img [ref=e127]
+            - button "Workspace settings" [ref=e133] [cursor=pointer]:
+              - img [ref=e134]
+            - button "Open workspace panels" [ref=e137] [cursor=pointer]:
+              - img [ref=e138]
+        - complementary [ref=e139]:
+          - generic [ref=e140]:
+            - generic [ref=e141]:
+              - heading "Geometry Tools" [level=2] [ref=e142]
+              - paragraph [ref=e143]: Move tool ready
+            - generic [ref=e144]: •••
+          - generic [ref=e145]:
+            - generic [ref=e146]: Find a tool
+            - textbox "Find a tool" [ref=e147]:
+              - /placeholder: Find a tool or task
+          - complementary [ref=e148]:
+            - generic [ref=e149]:
+              - button "Favorites" [expanded] [ref=e150] [cursor=pointer]:
+                - generic [ref=e151]: Favorites
+              - generic [ref=e152]:
+                - button "Move" [ref=e153] [cursor=pointer]:
+                  - img [ref=e154]
+                  - generic [ref=e156]: Move
+                  - img [ref=e157]
+                - button "Point" [ref=e159] [cursor=pointer]:
+                  - img [ref=e160]
+                  - generic [ref=e161]: Point
+                  - img [ref=e162]
+                - button "Line" [ref=e164] [cursor=pointer]:
+                  - img [ref=e165]
+                  - generic [ref=e167]: Line
+                  - img [ref=e168]
+                - button "Circle" [ref=e170] [cursor=pointer]:
+                  - img [ref=e171]
+                  - generic [ref=e173]: Circle
+                  - img [ref=e174]
+                - button "Polygon" [ref=e176] [cursor=pointer]:
+                  - img [ref=e177]
+                  - generic [ref=e179]: Polygon
+                  - img [ref=e180]
+            - generic [ref=e182]:
+              - button "Basic Tools" [expanded] [ref=e183] [cursor=pointer]:
+                - generic [ref=e184]: Basic Tools
+                - img [ref=e185]
+              - generic [ref=e187]:
+                - button "Move" [ref=e188] [cursor=pointer]:
+                  - img [ref=e189]
+                  - generic [ref=e191]: Move
+                  - img [ref=e192]
+                - button "Point" [ref=e194] [cursor=pointer]:
+                  - img [ref=e195]
+                  - generic [ref=e196]: Point
+                  - img [ref=e197]
+                - button "Segment" [ref=e199] [cursor=pointer]:
+                  - img [ref=e200]
+                  - generic [ref=e205]: Segment
+                - button "Line" [ref=e206] [cursor=pointer]:
+                  - img [ref=e207]
+                  - generic [ref=e209]: Line
+                  - img [ref=e210]
+                - button "Ray" [ref=e212] [cursor=pointer]:
+                  - img [ref=e213]
+                  - generic [ref=e216]: Ray
+                - button "Vector" [ref=e217] [cursor=pointer]:
+                  - img [ref=e218]
+                  - generic [ref=e223]: Vector
+                - button "Circle" [ref=e224] [cursor=pointer]:
+                  - img [ref=e225]
+                  - generic [ref=e227]: Circle
+                  - img [ref=e228]
+                - button "Polygon" [ref=e230] [cursor=pointer]:
+                  - img [ref=e231]
+                  - generic [ref=e233]: Polygon
+                  - img [ref=e234]
+                - button "Angle" [ref=e236] [cursor=pointer]:
+                  - img [ref=e237]
+                  - generic [ref=e239]: Angle
+            - generic [ref=e240]:
+              - button "Edit" [expanded] [ref=e241] [cursor=pointer]:
+                - generic [ref=e242]: Edit
+                - img [ref=e243]
+              - generic [ref=e245]:
+                - button "Freehand" [ref=e246] [cursor=pointer]:
+                  - img [ref=e247]
+                  - generic [ref=e249]: Freehand
+                - button "Text" [ref=e250] [cursor=pointer]:
+                  - img [ref=e251]
+                  - generic [ref=e253]: Text
+                - button "Image" [ref=e254] [cursor=pointer]:
+                  - img [ref=e255]
+                  - generic [ref=e258]: Image
+                - button "Move Canvas" [ref=e259] [cursor=pointer]:
+                  - img [ref=e260]
+                  - generic [ref=e265]: Move Canvas
+                - button "Zoom" [ref=e266] [cursor=pointer]:
+                  - img [ref=e267]
+                  - generic [ref=e270]: Zoom
+            - generic [ref=e271]:
+              - button "Construct" [expanded] [ref=e272] [cursor=pointer]:
+                - generic [ref=e273]: Construct
+                - img [ref=e274]
+              - generic [ref=e276]:
+                - button "Parallel" [ref=e277] [cursor=pointer]:
+                  - img [ref=e278]
+                  - generic [ref=e280]: Parallel
+                - button "Perp." [ref=e281] [cursor=pointer]:
+                  - img [ref=e282]
+                  - generic [ref=e283]: Perp.
+                - button "Perp. Bisector" [ref=e284] [cursor=pointer]:
+                  - img [ref=e285]
+                  - generic [ref=e287]: Perp. Bisector
+                - button "Angle Bisector" [ref=e288] [cursor=pointer]:
+                  - img [ref=e289]
+                  - generic [ref=e291]: Angle Bisector
+                - button "Midpoint" [ref=e292] [cursor=pointer]:
+                  - img [ref=e293]
+                  - generic [ref=e297]: Midpoint
+                - button "Intersect" [ref=e298] [cursor=pointer]:
+                  - img [ref=e299]
+                  - generic [ref=e300]: Intersect
+                - button "Fixed Length" [ref=e301] [cursor=pointer]:
+                  - img [ref=e302]
+                  - generic [ref=e306]: Fixed Length
+                - button "Point on Circle" [ref=e307] [cursor=pointer]:
+                  - img [ref=e308]
+                  - generic [ref=e310]: Point on Circle
+                - button "Circle Radius" [ref=e311] [cursor=pointer]:
+                  - img [ref=e312]
+                  - generic [ref=e314]: Circle Radius
+                - button "Circle 3 Points" [ref=e315] [cursor=pointer]:
+                  - img [ref=e316]
+                  - generic [ref=e318]: Circle 3 Points
+            - generic [ref=e319]:
+              - button "Shapes" [expanded] [ref=e320] [cursor=pointer]:
+                - generic [ref=e321]: Shapes
+                - img [ref=e322]
+              - generic [ref=e324]:
+                - button "Triangle" [ref=e325] [cursor=pointer]:
+                  - img [ref=e326]
+                  - generic [ref=e328]: Triangle
+                - button "Rectangle" [ref=e329] [cursor=pointer]:
+                  - img [ref=e330]
+                  - generic [ref=e333]: Rectangle
+                - button "Circle Shape" [ref=e334] [cursor=pointer]:
+                  - img [ref=e335]
+                  - generic [ref=e337]: Circle Shape
+                - button "Parabola" [ref=e338] [cursor=pointer]:
+                  - img [ref=e339]
+                  - generic [ref=e342]: Parabola
+                - button "Ellipse" [ref=e343] [cursor=pointer]:
+                  - img [ref=e344]
+                  - generic [ref=e346]: Ellipse
+                - button "Hyperbola" [ref=e347] [cursor=pointer]:
+                  - img [ref=e348]
+                  - generic [ref=e351]: Hyperbola
+            - generic [ref=e352]:
+              - button "Curves" [expanded] [ref=e353] [cursor=pointer]:
+                - generic [ref=e354]: Curves
+                - img [ref=e355]
+              - generic [ref=e357]:
+                - button "Tangent" [ref=e358] [cursor=pointer]:
+                  - img [ref=e359]
+                  - generic [ref=e361]: Tangent
+                - button "Polar" [ref=e362] [cursor=pointer]:
+                  - img [ref=e363]
+                  - generic [ref=e368]: Polar
+                - button "Locus" [ref=e369] [cursor=pointer]:
+                  - img [ref=e370]
+                  - generic [ref=e373]: Locus
+                - button "Regular Polygon" [ref=e374] [cursor=pointer]:
+                  - img [ref=e375]
+                  - generic [ref=e377]: Regular Polygon
+                - button "Arc" [ref=e378] [cursor=pointer]:
+                  - img [ref=e379]
+                  - generic [ref=e381]: Arc
+                - button "Sector" [ref=e382] [cursor=pointer]:
+                  - img [ref=e383]
+                  - generic [ref=e385]: Sector
+                - button "Compass" [ref=e386] [cursor=pointer]:
+                  - img [ref=e387]
+                  - generic [ref=e391]: Compass
+            - generic [ref=e392]:
+              - button "Transform" [expanded] [ref=e393] [cursor=pointer]:
+                - generic [ref=e394]: Transform
+                - img [ref=e395]
+              - generic [ref=e397]:
+                - button "Mirror" [ref=e398] [cursor=pointer]:
+                  - img [ref=e399]
+                  - generic [ref=e401]: Mirror
+                - button "Rotate 45" [ref=e402] [cursor=pointer]:
+                  - img [ref=e403]
+                  - generic [ref=e406]: Rotate 45
+                - button "Dilate 1.5x" [ref=e407] [cursor=pointer]:
+                  - img [ref=e408]
+                  - generic [ref=e411]: Dilate 1.5x
+                - button "Translate" [ref=e412] [cursor=pointer]:
+                  - img [ref=e413]
+                  - generic [ref=e418]: Translate
+            - generic [ref=e419]:
+              - button "Selection" [expanded] [ref=e420] [cursor=pointer]:
+                - generic [ref=e421]: Selection
+                - img [ref=e422]
+              - generic [ref=e424]:
+                - button "Select All Points" [ref=e425] [cursor=pointer]:
+                  - img [ref=e426]
+                  - generic [ref=e428]: Select All Points
+                - button "Move Selected" [ref=e429] [cursor=pointer]:
+                  - img [ref=e430]
+                  - generic [ref=e435]: Move Selected
+                - button "Rotate Selected" [ref=e436] [cursor=pointer]:
+                  - img [ref=e437]
+                  - generic [ref=e440]: Rotate Selected
+                - button "Dilate Selected" [ref=e441] [cursor=pointer]:
+                  - img [ref=e442]
+                  - generic [ref=e445]: Dilate Selected
+                - button "Size -" [ref=e446] [cursor=pointer]:
+                  - img [ref=e447]
+                  - generic [ref=e448]: Size -
+                - button "Size +" [ref=e449] [cursor=pointer]:
+                  - img [ref=e450]
+                  - generic [ref=e451]: Size +
+                - button "Show / Hide" [ref=e452] [cursor=pointer]:
+                  - img [ref=e453]
+                  - generic [ref=e455]: Show / Hide
+                - button "Lock" [ref=e456] [cursor=pointer]:
+                  - img [ref=e457]
+                  - generic [ref=e461]: Lock
+                - button "Reflect" [ref=e462] [cursor=pointer]:
+                  - img [ref=e463]
+                  - generic [ref=e465]: Reflect
+                - button "Trace" [ref=e466] [cursor=pointer]:
+                  - img [ref=e467]
+                  - generic [ref=e470]: Trace
+                - button "Stop Trace" [ref=e471] [cursor=pointer]:
+                  - img [ref=e472]
+                  - generic [ref=e475]: Stop Trace
+                - button "Clear Trace" [ref=e476] [cursor=pointer]:
+                  - img [ref=e477]
+                  - generic [ref=e480]: Clear Trace
+            - generic [ref=e481]:
+              - button "File / Image" [expanded] [ref=e482] [cursor=pointer]:
+                - generic [ref=e483]: File / Image
+                - img [ref=e484]
+              - generic [ref=e486]:
+                - button "Delete" [ref=e487] [cursor=pointer]:
+                  - img [ref=e488]
+                  - generic [ref=e491]: Delete
+                - button "Undo" [ref=e492] [cursor=pointer]:
+                  - img [ref=e493]
+                  - generic [ref=e496]: Undo
+                - button "Redo" [ref=e497] [cursor=pointer]:
+                  - img [ref=e498]
+                  - generic [ref=e501]: Redo
+                - button "Reset" [ref=e502] [cursor=pointer]:
+                  - img [ref=e503]
+                  - generic [ref=e506]: Reset
+                - button "Save" [ref=e507] [cursor=pointer]:
+                  - img [ref=e508]
+                  - generic [ref=e512]: Save
+                - button "Load" [ref=e513] [cursor=pointer]:
+                  - img [ref=e514]
+                  - generic [ref=e517]: Load
+                - button "Add Image" [ref=e518] [cursor=pointer]:
+                  - img [ref=e519]
+                  - generic [ref=e520]: Add Image
+        - main [ref=e521]:
+          - generic [ref=e522]:
+            - generic [ref=e523]:
+              - generic [ref=e524]:
+                - generic [ref=e526]: 1 unit = 40 grid pixels, origin at board center
+                - generic [ref=e527]:
+                  - button "Grid" [pressed] [ref=e528] [cursor=pointer]
+                  - button "Axes" [ref=e529] [cursor=pointer]
+                  - button "Numbers" [ref=e530] [cursor=pointer]
+                  - button "Labels" [pressed] [ref=e531] [cursor=pointer]
+                  - button "Measures" [pressed] [ref=e532] [cursor=pointer]
+                  - button "Grid snap" [pressed] [ref=e533] [cursor=pointer]
+                  - button "Object snap" [pressed] [ref=e534] [cursor=pointer]
+                  - button "Contrast" [ref=e535] [cursor=pointer]
+              - generic [ref=e537]:
+                - generic [ref=e538]:
+                  - paragraph [ref=e539]: Construction Accuracy
+                  - paragraph [ref=e540]: Geometry accuracy certified.
+                - generic [ref=e541]:
+                  - generic [ref=e542]: 100%
+                  - generic [ref=e543]: max residual 0
+            - generic [ref=e544]:
+              - generic "Canvas navigation tools" [ref=e545]:
+                - button "Select" [ref=e546] [cursor=pointer]:
+                  - img [ref=e547]
+                  - generic [ref=e549]: Select
+                - button "Pan" [ref=e550] [cursor=pointer]:
+                  - img [ref=e551]
+                  - generic [ref=e556]: Pan
+                - button "Zoom" [ref=e557] [cursor=pointer]:
+                  - img [ref=e558]
+                  - generic [ref=e561]: Zoom
+                - button "Fit view" [ref=e562] [cursor=pointer]:
+                  - img [ref=e563]
+                  - generic [ref=e566]: Fit
+              - application "Geometry constructor. Select a point and use arrow keys to nudge it. Press Escape to return to select mode." [ref=e567]
+              - generic [ref=e569]: Drag points to explore · Shift for multi-select · Esc to clear
+              - generic [ref=e570]: Touch mode supports direct manipulation with 44 pixel controls.
+          - region "Selected object actions" [ref=e571]:
+            - generic [ref=e572]:
+              - text: "Selected:"
+              - strong [ref=e573]: None
+            - button "Move" [ref=e574] [cursor=pointer]:
+              - img
+              - text: Move
+            - button "Size" [disabled] [ref=e579]:
+              - img
+              - text: Size
+            - button "Size" [disabled] [ref=e580]:
+              - img
+              - text: Size
+            - button "Trace" [ref=e581] [cursor=pointer]:
+              - img
+              - text: Trace
+            - button "Lock" [ref=e584] [cursor=pointer]:
+              - img
+              - text: Lock
+            - button "Hide" [ref=e587] [cursor=pointer]:
+              - img
+              - text: Hide
+            - button "Delete" [ref=e592] [cursor=pointer]:
+              - img
+              - text: Delete
+          - generic [ref=e595]:
+            - generic [ref=e596]:
+              - button "Construction Protocol" [ref=e597] [cursor=pointer]
+              - button "Measurements" [ref=e598] [cursor=pointer]
+              - button "Animation" [ref=e599] [cursor=pointer]
+            - generic [ref=e600]:
+              - generic "Construction protocol" [ref=e601]:
+                - generic [ref=e602]:
+                  - generic [ref=e603]:
+                    - heading "Construction Protocol" [level=3] [ref=e604]
+                    - generic [ref=e605]: 0 steps
+                  - paragraph [ref=e606]: Create or edit objects to build a replayable construction history.
+              - generic "Measurements" [ref=e607]:
+                - generic [ref=e608]:
+                  - generic [ref=e609]:
+                    - img [ref=e610]
+                    - generic [ref=e611]:
+                      - strong [ref=e612]: Pinned measurements
+                      - generic [ref=e613]: 0 pinned
+                  - paragraph [ref=e614]: Create a line or circle to pin live measurements.
+                - generic [ref=e615]:
+                  - heading "Live Measurements" [level=3] [ref=e616]
+                  - paragraph [ref=e617]: Create lines, circles, or polygons to see measurements.
+              - generic "Constraints and construction help" [ref=e618]:
+                - generic [ref=e619]:
+                  - heading "Constraint Engine" [level=3] [ref=e620]
+                  - paragraph [ref=e621]: "Draggable points now recompute dependent objects: parallel, perpendicular, midpoint, fixed length, point-on-circle, and line intersections."
+                  - paragraph [ref=e622]: Add a constraint tool to see live dependencies here.
+        - complementary [ref=e623]:
+          - generic [ref=e624]:
+            - generic [ref=e625]:
+              - heading "Objects & Algebra" [level=2] [ref=e626]
+              - generic [ref=e627]: 0 objects
+            - tablist "Geometry object views" [ref=e628]:
+              - tab "Objects" [selected] [ref=e629] [cursor=pointer]
+              - tab "Algebra" [ref=e630] [cursor=pointer]
+              - tab "Layers" [ref=e631] [cursor=pointer]
+            - generic [ref=e632]:
+              - generic [ref=e633]:
+                - img [ref=e634]
+                - textbox [ref=e636]:
+                  - /placeholder: Search objects
+              - combobox "Filter geometry objects" [ref=e637]:
+                - option "All objects" [selected]
+                - option "Points"
+                - option "Lines"
+                - option "Circles"
+                - option "Polygons"
+                - option "Visible"
+                - option "Hidden"
+            - paragraph [ref=e639]: Create geometry objects to populate the registry.
+            - generic [ref=e640]:
+              - button "Unified Dynamic Workspace Graph, geometry, CAS, tables, spreadsheet, and 3D registry 18 objects" [expanded] [ref=e641] [cursor=pointer]:
+                - generic [ref=e642]:
+                  - generic [ref=e643]: Unified Dynamic Workspace
+                  - generic [ref=e644]: Graph, geometry, CAS, tables, spreadsheet, and 3D registry
+                - generic [ref=e645]:
+                  - generic [ref=e646]: 18 objects
+                  - img [ref=e648]
+              - generic [ref=e650]:
+                - generic [ref=e651]:
+                  - generic [ref=e652]:
+                    - heading "Objects" [level=2] [ref=e653]
+                    - generic [ref=e654]: 18/18
+                  - generic [ref=e656]:
+                    - generic [ref=e657]: 0 selected
+                    - generic [ref=e658]:
+                      - button "All" [ref=e659] [cursor=pointer]
+                      - button "Clear" [ref=e660] [cursor=pointer]
+                  - generic [ref=e661]:
+                    - generic [ref=e662]:
+                      - text: Search objects
+                      - textbox "Search objects" [ref=e663]:
+                        - /placeholder: label, value, kind, view...
+                    - generic [ref=e664]:
+                      - button "All 18" [ref=e665] [cursor=pointer]
+                      - button "Algebra 3" [ref=e666] [cursor=pointer]
+                      - button "2D 0" [ref=e667] [cursor=pointer]
+                      - button "3D 13" [ref=e668] [cursor=pointer]
+                      - button "Measure 2" [ref=e669] [cursor=pointer]
+                      - button "Shown 10" [ref=e670] [cursor=pointer]
+                      - button "Hidden 8" [ref=e671] [cursor=pointer]
+                      - button "Selected 0" [ref=e672] [cursor=pointer]
+                  - generic [ref=e673]:
+                    - generic [ref=e674]:
+                      - generic [ref=e675]:
+                        - checkbox "Select cone" [ref=e676]
+                        - button "Solid cone" [ref=e677] [cursor=pointer]:
+                          - generic [ref=e678]:
+                            - generic [ref=e679]: Solid
+                            - generic [ref=e680]: cone
+                          - paragraph [ref=e681]:
+                            - generic [ref=e683]:
+                              - math [ref=e685]:
+                                - generic [ref=e687]:
+                                  - generic [ref=e688]: p
+                                  - generic [ref=e689]: o
+                                  - generic [ref=e690]: s
+                                  - generic [ref=e691]: =
+                                  - generic [ref=e692]: (
+                                  - generic [ref=e693]: "2.4"
+                                  - generic [ref=e694]: ","
+                                  - generic [ref=e695]: "1"
+                                  - generic [ref=e696]: ","
+                                  - generic [ref=e697]: −
+                                  - generic [ref=e698]: "1.8"
+                                  - generic [ref=e699]: )
+                                  - generic [ref=e700]: ","
+                                  - generic [ref=e701]: r
+                                  - generic [ref=e702]: o
+                                  - generic [ref=e703]: t
+                                  - generic [ref=e704]: =
+                                  - generic [ref=e705]: (
+                                  - generic [ref=e706]: "0"
+                                  - generic [ref=e707]: ","
+                                  - generic [ref=e708]: "0"
+                                  - generic [ref=e709]: ","
+                                  - generic [ref=e710]: "0"
+                                  - generic [ref=e711]: )
+                                  - generic [ref=e712]: ","
+                                  - generic [ref=e713]: s
+                                  - generic [ref=e714]: c
+                                  - generic [ref=e715]: a
+                                  - generic [ref=e716]: l
+                                  - generic [ref=e717]: e
+                                  - generic [ref=e718]: =
+                                  - generic [ref=e719]: "1"
+                              - generic [ref=e720]:
+                                - generic [ref=e721]: pos =
+                                - generic [ref=e722]: (2.4, 1, −1.8), rot =
+                                - generic [ref=e723]: (0, 0, 0), scale =
+                                - generic [ref=e724]: "1"
+                      - generic [ref=e725]:
+                        - button "Show object" [ref=e726] [cursor=pointer]:
+                          - img [ref=e727]
+                        - button "Duplicate object" [ref=e732] [cursor=pointer]:
+                          - img [ref=e733]
+                        - button "Restore object defaults" [ref=e738] [cursor=pointer]:
+                          - img [ref=e739]
+                        - button "Remove object from workspace registry" [ref=e742] [cursor=pointer]:
+                          - img [ref=e743]
+                    - generic [ref=e746]:
+                      - generic [ref=e747]:
+                        - checkbox "Select cylinder" [ref=e748]
+                        - button "Solid cylinder" [ref=e749] [cursor=pointer]:
+                          - generic [ref=e750]:
+                            - generic [ref=e751]: Solid
+                            - generic [ref=e752]: cylinder
+                          - paragraph [ref=e753]:
+                            - generic [ref=e755]:
+                              - math [ref=e757]:
+                                - generic [ref=e759]:
+                                  - generic [ref=e760]: p
+                                  - generic [ref=e761]: o
+                                  - generic [ref=e762]: s
+                                  - generic [ref=e763]: =
+                                  - generic [ref=e764]: (
+                                  - generic [ref=e765]: "0"
+                                  - generic [ref=e766]: ","
+                                  - generic [ref=e767]: "1"
+                                  - generic [ref=e768]: ","
+                                  - generic [ref=e769]: −
+                                  - generic [ref=e770]: "2.4"
+                                  - generic [ref=e771]: )
+                                  - generic [ref=e772]: ","
+                                  - generic [ref=e773]: r
+                                  - generic [ref=e774]: o
+                                  - generic [ref=e775]: t
+                                  - generic [ref=e776]: =
+                                  - generic [ref=e777]: (
+                                  - generic [ref=e778]: "0"
+                                  - generic [ref=e779]: ","
+                                  - generic [ref=e780]: "0"
+                                  - generic [ref=e781]: ","
+                                  - generic [ref=e782]: "0"
+                                  - generic [ref=e783]: )
+                                  - generic [ref=e784]: ","
+                                  - generic [ref=e785]: s
+                                  - generic [ref=e786]: c
+                                  - generic [ref=e787]: a
+                                  - generic [ref=e788]: l
+                                  - generic [ref=e789]: e
+                                  - generic [ref=e790]: =
+                                  - generic [ref=e791]: "1"
+                              - generic [ref=e792]:
+                                - generic [ref=e793]: pos =
+                                - generic [ref=e794]: (0, 1, −2.4), rot =
+                                - generic [ref=e795]: (0, 0, 0), scale =
+                                - generic [ref=e796]: "1"
+                      - generic [ref=e797]:
+                        - button "Show object" [ref=e798] [cursor=pointer]:
+                          - img [ref=e799]
+                        - button "Duplicate object" [ref=e804] [cursor=pointer]:
+                          - img [ref=e805]
+                        - button "Restore object defaults" [ref=e810] [cursor=pointer]:
+                          - img [ref=e811]
+                        - button "Remove object from workspace registry" [ref=e814] [cursor=pointer]:
+                          - img [ref=e815]
+                    - generic [ref=e818]:
+                      - generic [ref=e819]:
+                        - checkbox "Select f" [ref=e820]
+                        - button "Func f" [ref=e821] [cursor=pointer]:
+                          - generic [ref=e822]:
+                            - generic [ref=e823]: Func
+                            - generic [ref=e824]: f
+                          - paragraph [ref=e825]:
+                            - generic [ref=e827]:
+                              - math [ref=e829]:
+                                - generic [ref=e831]:
+                                  - generic [ref=e832]: f
+                                  - generic [ref=e833]: (
+                                  - generic [ref=e834]: x
+                                  - generic [ref=e835]: )
+                                  - generic [ref=e836]: =
+                                  - generic [ref=e837]: sin
+                                  - generic: ⁡
+                                  - generic [ref=e838]: (
+                                  - generic [ref=e839]: x
+                                  - generic [ref=e840]: )
+                              - generic [ref=e841]:
+                                - generic [ref=e842]: f(x) =
+                                - generic [ref=e843]: sin(x)
+                      - generic [ref=e844]:
+                        - button "Hide object" [ref=e845] [cursor=pointer]:
+                          - img [ref=e846]
+                        - button "Duplicate object" [ref=e849] [cursor=pointer]:
+                          - img [ref=e850]
+                        - button "Restore object defaults" [ref=e855] [cursor=pointer]:
+                          - img [ref=e856]
+                        - button "Remove object from workspace registry" [ref=e859] [cursor=pointer]:
+                          - img [ref=e860]
+                    - generic [ref=e863]:
+                      - generic [ref=e864]:
+                        - checkbox "Select l" [ref=e865]
+                        - button "Line l" [ref=e866] [cursor=pointer]:
+                          - generic [ref=e867]:
+                            - generic [ref=e868]: Line
+                            - generic [ref=e869]: l
+                          - paragraph [ref=e870]:
+                            - generic [ref=e872]:
+                              - math [ref=e874]:
+                                - generic [ref=e876]:
+                                  - generic [ref=e877]: p
+                                  - generic [ref=e878]: o
+                                  - generic [ref=e879]: s
+                                  - generic [ref=e880]: =
+                                  - generic [ref=e881]: (
+                                  - generic [ref=e882]: −
+                                  - generic [ref=e883]: "1.8"
+                                  - generic [ref=e884]: ","
+                                  - generic [ref=e885]: "0.4"
+                                  - generic [ref=e886]: ","
+                                  - generic [ref=e887]: "1.8"
+                                  - generic [ref=e888]: )
+                                  - generic [ref=e889]: ","
+                                  - generic [ref=e890]: r
+                                  - generic [ref=e891]: o
+                                  - generic [ref=e892]: t
+                                  - generic [ref=e893]: =
+                                  - generic [ref=e894]: (
+                                  - generic [ref=e895]: "0"
+                                  - generic [ref=e896]: ","
+                                  - generic [ref=e897]: "35"
+                                  - generic [ref=e898]: ","
+                                  - generic [ref=e899]: "0"
+                                  - generic [ref=e900]: )
+                                  - generic [ref=e901]: ","
+                                  - generic [ref=e902]: s
+                                  - generic [ref=e903]: c
+                                  - generic [ref=e904]: a
+                                  - generic [ref=e905]: l
+                                  - generic [ref=e906]: e
+                                  - generic [ref=e907]: =
+                                  - generic [ref=e908]: "1"
+                              - generic [ref=e909]:
+                                - generic [ref=e910]: pos =
+                                - generic [ref=e911]: (−1.8, 0.4, 1.8), rot =
+                                - generic [ref=e912]: (0, 35, 0), scale =
+                                - generic [ref=e913]: "1"
+                      - generic [ref=e914]:
+                        - button "Show object" [ref=e915] [cursor=pointer]:
+                          - img [ref=e916]
+                        - button "Duplicate object" [ref=e921] [cursor=pointer]:
+                          - img [ref=e922]
+                        - button "Restore object defaults" [ref=e927] [cursor=pointer]:
+                          - img [ref=e928]
+                        - button "Remove object from workspace registry" [ref=e931] [cursor=pointer]:
+                          - img [ref=e932]
+                    - generic [ref=e935]:
+                      - generic [ref=e936]:
+                        - checkbox "Select P" [ref=e937]
+                        - button "Point P" [ref=e938] [cursor=pointer]:
+                          - generic [ref=e939]:
+                            - generic [ref=e940]: Point
+                            - generic [ref=e941]: P
+                          - paragraph [ref=e942]:
+                            - generic [ref=e944]:
+                              - math [ref=e946]:
+                                - generic [ref=e948]:
+                                  - generic [ref=e949]: p
+                                  - generic [ref=e950]: o
+                                  - generic [ref=e951]: s
+                                  - generic [ref=e952]: =
+                                  - generic [ref=e953]: (
+                                  - generic [ref=e954]: "2.2"
+                                  - generic [ref=e955]: ","
+                                  - generic [ref=e956]: "1.4"
+                                  - generic [ref=e957]: ","
+                                  - generic [ref=e958]: "1.8"
+                                  - generic [ref=e959]: )
+                                  - generic [ref=e960]: ","
+                                  - generic [ref=e961]: r
+                                  - generic [ref=e962]: o
+                                  - generic [ref=e963]: t
+                                  - generic [ref=e964]: =
+                                  - generic [ref=e965]: (
+                                  - generic [ref=e966]: "0"
+                                  - generic [ref=e967]: ","
+                                  - generic [ref=e968]: "0"
+                                  - generic [ref=e969]: ","
+                                  - generic [ref=e970]: "0"
+                                  - generic [ref=e971]: )
+                                  - generic [ref=e972]: ","
+                                  - generic [ref=e973]: s
+                                  - generic [ref=e974]: c
+                                  - generic [ref=e975]: a
+                                  - generic [ref=e976]: l
+                                  - generic [ref=e977]: e
+                                  - generic [ref=e978]: =
+                                  - generic [ref=e979]: "1"
+                              - generic [ref=e980]:
+                                - generic [ref=e981]: pos =
+                                - generic [ref=e982]: (2.2, 1.4, 1.8), rot =
+                                - generic [ref=e983]: (0, 0, 0), scale =
+                                - generic [ref=e984]: "1"
+                      - generic [ref=e985]:
+                        - button "Hide object" [ref=e986] [cursor=pointer]:
+                          - img [ref=e987]
+                        - button "Duplicate object" [ref=e990] [cursor=pointer]:
+                          - img [ref=e991]
+                        - button "Restore object defaults" [ref=e996] [cursor=pointer]:
+                          - img [ref=e997]
+                        - button "Remove object from workspace registry" [ref=e1000] [cursor=pointer]:
+                          - img [ref=e1001]
+                    - generic [ref=e1004]:
+                      - generic [ref=e1005]:
+                        - checkbox "Select plane" [ref=e1006]
+                        - button "Plane plane" [ref=e1007] [cursor=pointer]:
+                          - generic [ref=e1008]:
+                            - generic [ref=e1009]: Plane
+                            - generic [ref=e1010]: plane
+                          - paragraph [ref=e1011]:
+                            - generic [ref=e1013]:
+                              - math [ref=e1015]:
+                                - generic [ref=e1017]:
+                                  - generic [ref=e1018]: p
+                                  - generic [ref=e1019]: o
+                                  - generic [ref=e1020]: s
+                                  - generic [ref=e1021]: =
+                                  - generic [ref=e1022]: (
+                                  - generic [ref=e1023]: "0"
+                                  - generic [ref=e1024]: ","
+                                  - generic [ref=e1025]: "0.8"
+                                  - generic [ref=e1026]: ","
+                                  - generic [ref=e1027]: "0"
+                                  - generic [ref=e1028]: )
+                                  - generic [ref=e1029]: ","
+                                  - generic [ref=e1030]: r
+                                  - generic [ref=e1031]: o
+                                  - generic [ref=e1032]: t
+                                  - generic [ref=e1033]: =
+                                  - generic [ref=e1034]: (
+                                  - generic [ref=e1035]: −
+                                  - generic [ref=e1036]: "20"
+                                  - generic [ref=e1037]: ","
+                                  - generic [ref=e1038]: "0"
+                                  - generic [ref=e1039]: ","
+                                  - generic [ref=e1040]: "0"
+                                  - generic [ref=e1041]: )
+                                  - generic [ref=e1042]: ","
+                                  - generic [ref=e1043]: s
+                                  - generic [ref=e1044]: c
+                                  - generic [ref=e1045]: a
+                                  - generic [ref=e1046]: l
+                                  - generic [ref=e1047]: e
+                                  - generic [ref=e1048]: =
+                                  - generic [ref=e1049]: "1"
+                              - generic [ref=e1050]:
+                                - generic [ref=e1051]: pos =
+                                - generic [ref=e1052]: (0, 0.8, 0), rot =
+                                - generic [ref=e1053]: (−20, 0, 0), scale =
+                                - generic [ref=e1054]: "1"
+                      - generic [ref=e1055]:
+                        - button "Show object" [ref=e1056] [cursor=pointer]:
+                          - img [ref=e1057]
+                        - button "Duplicate object" [ref=e1062] [cursor=pointer]:
+                          - img [ref=e1063]
+                        - button "Restore object defaults" [ref=e1068] [cursor=pointer]:
+                          - img [ref=e1069]
+                        - button "Remove object from workspace registry" [ref=e1072] [cursor=pointer]:
+                          - img [ref=e1073]
+                    - generic [ref=e1076]:
+                      - generic [ref=e1077]:
+                        - checkbox "Select polyhedron" [ref=e1078]
+                        - button "Solid polyhedron" [ref=e1079] [cursor=pointer]:
+                          - generic [ref=e1080]:
+                            - generic [ref=e1081]: Solid
+                            - generic [ref=e1082]: polyhedron
+                          - paragraph [ref=e1083]:
+                            - generic [ref=e1085]:
+                              - math [ref=e1087]:
+                                - generic [ref=e1089]:
+                                  - generic [ref=e1090]: p
+                                  - generic [ref=e1091]: o
+                                  - generic [ref=e1092]: s
+                                  - generic [ref=e1093]: =
+                                  - generic [ref=e1094]: (
+                                  - generic [ref=e1095]: "0"
+                                  - generic [ref=e1096]: ","
+                                  - generic [ref=e1097]: "1.2"
+                                  - generic [ref=e1098]: ","
+                                  - generic [ref=e1099]: "2.8"
+                                  - generic [ref=e1100]: )
+                                  - generic [ref=e1101]: ","
+                                  - generic [ref=e1102]: r
+                                  - generic [ref=e1103]: o
+                                  - generic [ref=e1104]: t
+                                  - generic [ref=e1105]: =
+                                  - generic [ref=e1106]: (
+                                  - generic [ref=e1107]: "20"
+                                  - generic [ref=e1108]: ","
+                                  - generic [ref=e1109]: "20"
+                                  - generic [ref=e1110]: ","
+                                  - generic [ref=e1111]: "0"
+                                  - generic [ref=e1112]: )
+                                  - generic [ref=e1113]: ","
+                                  - generic [ref=e1114]: s
+                                  - generic [ref=e1115]: c
+                                  - generic [ref=e1116]: a
+                                  - generic [ref=e1117]: l
+                                  - generic [ref=e1118]: e
+                                  - generic [ref=e1119]: =
+                                  - generic [ref=e1120]: "1"
+                              - generic [ref=e1121]:
+                                - generic [ref=e1122]: pos =
+                                - generic [ref=e1123]: (0, 1.2, 2.8), rot =
+                                - generic [ref=e1124]: (20, 20, 0), scale =
+                                - generic [ref=e1125]: "1"
+                      - generic [ref=e1126]:
+                        - button "Show object" [ref=e1127] [cursor=pointer]:
+                          - img [ref=e1128]
+                        - button "Duplicate object" [ref=e1133] [cursor=pointer]:
+                          - img [ref=e1134]
+                        - button "Restore object defaults" [ref=e1139] [cursor=pointer]:
+                          - img [ref=e1140]
+                        - button "Remove object from workspace registry" [ref=e1143] [cursor=pointer]:
+                          - img [ref=e1144]
+                    - generic [ref=e1147]:
+                      - generic [ref=e1148]:
+                        - checkbox "Select prism" [ref=e1149]
+                        - button "Solid prism" [ref=e1150] [cursor=pointer]:
+                          - generic [ref=e1151]:
+                            - generic [ref=e1152]: Solid
+                            - generic [ref=e1153]: prism
+                          - paragraph [ref=e1154]:
+                            - generic [ref=e1156]:
+                              - math [ref=e1158]:
+                                - generic [ref=e1160]:
+                                  - generic [ref=e1161]: p
+                                  - generic [ref=e1162]: o
+                                  - generic [ref=e1163]: s
+                                  - generic [ref=e1164]: =
+                                  - generic [ref=e1165]: (
+                                  - generic [ref=e1166]: −
+                                  - generic [ref=e1167]: "2.6"
+                                  - generic [ref=e1168]: ","
+                                  - generic [ref=e1169]: "0.9"
+                                  - generic [ref=e1170]: ","
+                                  - generic [ref=e1171]: "1"
+                                  - generic [ref=e1172]: )
+                                  - generic [ref=e1173]: ","
+                                  - generic [ref=e1174]: r
+                                  - generic [ref=e1175]: o
+                                  - generic [ref=e1176]: t
+                                  - generic [ref=e1177]: =
+                                  - generic [ref=e1178]: (
+                                  - generic [ref=e1179]: "0"
+                                  - generic [ref=e1180]: ","
+                                  - generic [ref=e1181]: "20"
+                                  - generic [ref=e1182]: ","
+                                  - generic [ref=e1183]: "0"
+                                  - generic [ref=e1184]: )
+                                  - generic [ref=e1185]: ","
+                                  - generic [ref=e1186]: s
+                                  - generic [ref=e1187]: c
+                                  - generic [ref=e1188]: a
+                                  - generic [ref=e1189]: l
+                                  - generic [ref=e1190]: e
+                                  - generic [ref=e1191]: =
+                                  - generic [ref=e1192]: "1"
+                              - generic [ref=e1193]:
+                                - generic [ref=e1194]: pos =
+                                - generic [ref=e1195]: (−2.6, 0.9, 1), rot =
+                                - generic [ref=e1196]: (0, 20, 0), scale =
+                                - generic [ref=e1197]: "1"
+                      - generic [ref=e1198]:
+                        - button "Show object" [ref=e1199] [cursor=pointer]:
+                          - img [ref=e1200]
+                        - button "Duplicate object" [ref=e1205] [cursor=pointer]:
+                          - img [ref=e1206]
+                        - button "Restore object defaults" [ref=e1211] [cursor=pointer]:
+                          - img [ref=e1212]
+                        - button "Remove object from workspace registry" [ref=e1215] [cursor=pointer]:
+                          - img [ref=e1216]
+                    - generic [ref=e1219]:
+                      - generic [ref=e1220]:
+                        - checkbox "Select pyramid" [ref=e1221]
+                        - button "Solid pyramid" [ref=e1222] [cursor=pointer]:
+                          - generic [ref=e1223]:
+                            - generic [ref=e1224]: Solid
+                            - generic [ref=e1225]: pyramid
+                          - paragraph [ref=e1226]:
+                            - generic [ref=e1228]:
+                              - math [ref=e1230]:
+                                - generic [ref=e1232]:
+                                  - generic [ref=e1233]: p
+                                  - generic [ref=e1234]: o
+                                  - generic [ref=e1235]: s
+                                  - generic [ref=e1236]: =
+                                  - generic [ref=e1237]: (
+                                  - generic [ref=e1238]: "2.6"
+                                  - generic [ref=e1239]: ","
+                                  - generic [ref=e1240]: "0.9"
+                                  - generic [ref=e1241]: ","
+                                  - generic [ref=e1242]: "1"
+                                  - generic [ref=e1243]: )
+                                  - generic [ref=e1244]: ","
+                                  - generic [ref=e1245]: r
+                                  - generic [ref=e1246]: o
+                                  - generic [ref=e1247]: t
+                                  - generic [ref=e1248]: =
+                                  - generic [ref=e1249]: (
+                                  - generic [ref=e1250]: "0"
+                                  - generic [ref=e1251]: ","
+                                  - generic [ref=e1252]: −
+                                  - generic [ref=e1253]: "20"
+                                  - generic [ref=e1254]: ","
+                                  - generic [ref=e1255]: "0"
+                                  - generic [ref=e1256]: )
+                                  - generic [ref=e1257]: ","
+                                  - generic [ref=e1258]: s
+                                  - generic [ref=e1259]: c
+                                  - generic [ref=e1260]: a
+                                  - generic [ref=e1261]: l
+                                  - generic [ref=e1262]: e
+                                  - generic [ref=e1263]: =
+                                  - generic [ref=e1264]: "1"
+                              - generic [ref=e1265]:
+                                - generic [ref=e1266]: pos =
+                                - generic [ref=e1267]: (2.6, 0.9, 1), rot =
+                                - generic [ref=e1268]: (0, −20, 0), scale =
+                                - generic [ref=e1269]: "1"
+                      - generic [ref=e1270]:
+                        - button "Show object" [ref=e1271] [cursor=pointer]:
+                          - img [ref=e1272]
+                        - button "Duplicate object" [ref=e1277] [cursor=pointer]:
+                          - img [ref=e1278]
+                        - button "Restore object defaults" [ref=e1283] [cursor=pointer]:
+                          - img [ref=e1284]
+                        - button "Remove object from workspace registry" [ref=e1287] [cursor=pointer]:
+                          - img [ref=e1288]
+                    - generic [ref=e1291]:
+                      - generic [ref=e1292]:
+                        - checkbox "Select sin(x) table" [ref=e1293]
+                        - button "Table sin(x) table" [ref=e1294] [cursor=pointer]:
+                          - generic [ref=e1295]:
+                            - generic [ref=e1296]: Table
+                            - generic [ref=e1297]: sin(x) table
+                          - paragraph [ref=e1298]:
+                            - generic [ref=e1300]:
+                              - math [ref=e1302]:
+                                - generic [ref=e1304]:
+                                  - generic [ref=e1305]: T
+                                  - generic [ref=e1306]: a
+                                  - generic [ref=e1307]: b
+                                  - generic [ref=e1308]: l
+                                  - generic [ref=e1309]: e
+                                  - generic [ref=e1310]: "["
+                                  - generic [ref=e1311]: sin
+                                  - generic: ⁡
+                                  - generic [ref=e1312]: (
+                                  - generic [ref=e1313]: x
+                                  - generic [ref=e1314]: )
+                                  - generic [ref=e1315]: ","
+                                  - generic [ref=e1316]: −
+                                  - generic [ref=e1317]: "4"
+                                  - generic [ref=e1318]: ","
+                                  - generic [ref=e1319]: "4"
+                                  - generic [ref=e1320]: ","
+                                  - generic [ref=e1321]: "1"
+                                  - generic [ref=e1322]: "]"
+                              - generic [ref=e1324]: Table[sin(x), −4, 4, 1]
+                      - generic [ref=e1325]:
+                        - button "Hide object" [ref=e1326] [cursor=pointer]:
+                          - img [ref=e1327]
+                        - button "Duplicate object" [ref=e1330] [cursor=pointer]:
+                          - img [ref=e1331]
+                        - button "Restore object defaults" [ref=e1336] [cursor=pointer]:
+                          - img [ref=e1337]
+                        - button "Remove object from workspace registry" [ref=e1340] [cursor=pointer]:
+                          - img [ref=e1341]
+                    - generic [ref=e1344]:
+                      - generic [ref=e1345]:
+                        - checkbox "Select slice" [ref=e1346]
+                        - button "Plane slice" [ref=e1347] [cursor=pointer]:
+                          - generic [ref=e1348]:
+                            - generic [ref=e1349]: Plane
+                            - generic [ref=e1350]: slice
+                          - paragraph [ref=e1351]:
+                            - generic [ref=e1353]:
+                              - math [ref=e1355]:
+                                - generic [ref=e1357]:
+                                  - generic [ref=e1358]: p
+                                  - generic [ref=e1359]: o
+                                  - generic [ref=e1360]: s
+                                  - generic [ref=e1361]: =
+                                  - generic [ref=e1362]: (
+                                  - generic [ref=e1363]: "0"
+                                  - generic [ref=e1364]: ","
+                                  - generic [ref=e1365]: "0"
+                                  - generic [ref=e1366]: ","
+                                  - generic [ref=e1367]: "0"
+                                  - generic [ref=e1368]: )
+                                  - generic [ref=e1369]: ","
+                                  - generic [ref=e1370]: r
+                                  - generic [ref=e1371]: o
+                                  - generic [ref=e1372]: t
+                                  - generic [ref=e1373]: =
+                                  - generic [ref=e1374]: (
+                                  - generic [ref=e1375]: −
+                                  - generic [ref=e1376]: "90"
+                                  - generic [ref=e1377]: ","
+                                  - generic [ref=e1378]: "0"
+                                  - generic [ref=e1379]: ","
+                                  - generic [ref=e1380]: "0"
+                                  - generic [ref=e1381]: )
+                                  - generic [ref=e1382]: ","
+                                  - generic [ref=e1383]: s
+                                  - generic [ref=e1384]: c
+                                  - generic [ref=e1385]: a
+                                  - generic [ref=e1386]: l
+                                  - generic [ref=e1387]: e
+                                  - generic [ref=e1388]: =
+                                  - generic [ref=e1389]: "1"
+                              - generic [ref=e1390]:
+                                - generic [ref=e1391]: pos =
+                                - generic [ref=e1392]: (0, 0, 0), rot =
+                                - generic [ref=e1393]: (−90, 0, 0), scale =
+                                - generic [ref=e1394]: "1"
+                      - generic [ref=e1395]:
+                        - button "Hide object" [ref=e1396] [cursor=pointer]:
+                          - img [ref=e1397]
+                        - button "Duplicate object" [ref=e1400] [cursor=pointer]:
+                          - img [ref=e1401]
+                        - button "Restore object defaults" [ref=e1406] [cursor=pointer]:
+                          - img [ref=e1407]
+                        - button "Remove object from workspace registry" [ref=e1410] [cursor=pointer]:
+                          - img [ref=e1411]
+                    - generic [ref=e1414]:
+                      - generic [ref=e1415]:
+                        - checkbox "Select solid" [ref=e1416]
+                        - button "Solid solid" [ref=e1417] [cursor=pointer]:
+                          - generic [ref=e1418]:
+                            - generic [ref=e1419]: Solid
+                            - generic [ref=e1420]: solid
+                          - paragraph [ref=e1421]:
+                            - generic [ref=e1423]:
+                              - math [ref=e1425]:
+                                - generic [ref=e1427]:
+                                  - generic [ref=e1428]: p
+                                  - generic [ref=e1429]: o
+                                  - generic [ref=e1430]: s
+                                  - generic [ref=e1431]: =
+                                  - generic [ref=e1432]: (
+                                  - generic [ref=e1433]: "3"
+                                  - generic [ref=e1434]: ","
+                                  - generic [ref=e1435]: "0"
+                                  - generic [ref=e1436]: ","
+                                  - generic [ref=e1437]: "2.6"
+                                  - generic [ref=e1438]: )
+                                  - generic [ref=e1439]: ","
+                                  - generic [ref=e1440]: r
+                                  - generic [ref=e1441]: o
+                                  - generic [ref=e1442]: t
+                                  - generic [ref=e1443]: =
+                                  - generic [ref=e1444]: (
+                                  - generic [ref=e1445]: "0"
+                                  - generic [ref=e1446]: ","
+                                  - generic [ref=e1447]: "0"
+                                  - generic [ref=e1448]: ","
+                                  - generic [ref=e1449]: "0"
+                                  - generic [ref=e1450]: )
+                                  - generic [ref=e1451]: ","
+                                  - generic [ref=e1452]: s
+                                  - generic [ref=e1453]: c
+                                  - generic [ref=e1454]: a
+                                  - generic [ref=e1455]: l
+                                  - generic [ref=e1456]: e
+                                  - generic [ref=e1457]: =
+                                  - generic [ref=e1458]: "1"
+                              - generic [ref=e1459]:
+                                - generic [ref=e1460]: pos =
+                                - generic [ref=e1461]: (3, 0, 2.6), rot =
+                                - generic [ref=e1462]: (0, 0, 0), scale =
+                                - generic [ref=e1463]: "1"
+                      - generic [ref=e1464]:
+                        - button "Hide object" [ref=e1465] [cursor=pointer]:
+                          - img [ref=e1466]
+                        - button "Duplicate object" [ref=e1469] [cursor=pointer]:
+                          - img [ref=e1470]
+                        - button "Restore object defaults" [ref=e1475] [cursor=pointer]:
+                          - img [ref=e1476]
+                        - button "Remove object from workspace registry" [ref=e1479] [cursor=pointer]:
+                          - img [ref=e1480]
+                    - generic [ref=e1483]:
+                      - generic [ref=e1484]:
+                        - checkbox "Select sphere" [ref=e1485]
+                        - button "Solid sphere" [ref=e1486] [cursor=pointer]:
+                          - generic [ref=e1487]:
+                            - generic [ref=e1488]: Solid
+                            - generic [ref=e1489]: sphere
+                          - paragraph [ref=e1490]:
+                            - generic [ref=e1492]:
+                              - math [ref=e1494]:
+                                - generic [ref=e1496]:
+                                  - generic [ref=e1497]: p
+                                  - generic [ref=e1498]: o
+                                  - generic [ref=e1499]: s
+                                  - generic [ref=e1500]: =
+                                  - generic [ref=e1501]: (
+                                  - generic [ref=e1502]: −
+                                  - generic [ref=e1503]: "2.4"
+                                  - generic [ref=e1504]: ","
+                                  - generic [ref=e1505]: "1.2"
+                                  - generic [ref=e1506]: ","
+                                  - generic [ref=e1507]: −
+                                  - generic [ref=e1508]: "1.8"
+                                  - generic [ref=e1509]: )
+                                  - generic [ref=e1510]: ","
+                                  - generic [ref=e1511]: r
+                                  - generic [ref=e1512]: o
+                                  - generic [ref=e1513]: t
+                                  - generic [ref=e1514]: =
+                                  - generic [ref=e1515]: (
+                                  - generic [ref=e1516]: "0"
+                                  - generic [ref=e1517]: ","
+                                  - generic [ref=e1518]: "0"
+                                  - generic [ref=e1519]: ","
+                                  - generic [ref=e1520]: "0"
+                                  - generic [ref=e1521]: )
+                                  - generic [ref=e1522]: ","
+                                  - generic [ref=e1523]: s
+                                  - generic [ref=e1524]: c
+                                  - generic [ref=e1525]: a
+                                  - generic [ref=e1526]: l
+                                  - generic [ref=e1527]: e
+                                  - generic [ref=e1528]: =
+                                  - generic [ref=e1529]: "1"
+                              - generic [ref=e1530]:
+                                - generic [ref=e1531]: pos =
+                                - generic [ref=e1532]: (−2.4, 1.2, −1.8), rot =
+                                - generic [ref=e1533]: (0, 0, 0), scale =
+                                - generic [ref=e1534]: "1"
+                      - generic [ref=e1535]:
+                        - button "Show object" [ref=e1536] [cursor=pointer]:
+                          - img [ref=e1537]
+                        - button "Duplicate object" [ref=e1542] [cursor=pointer]:
+                          - img [ref=e1543]
+                        - button "Restore object defaults" [ref=e1548] [cursor=pointer]:
+                          - img [ref=e1549]
+                        - button "Remove object from workspace registry" [ref=e1552] [cursor=pointer]:
+                          - img [ref=e1553]
+                    - generic [ref=e1556]:
+                      - generic [ref=e1557]:
+                        - checkbox "Select Spreadsheet grid" [ref=e1558]
+                        - button "Data Spreadsheet grid" [ref=e1559] [cursor=pointer]:
+                          - generic [ref=e1560]:
+                            - generic [ref=e1561]: Data
+                            - generic [ref=e1562]: Spreadsheet grid
+                          - paragraph [ref=e1563]:
+                            - generic [ref=e1565]:
+                              - math [ref=e1567]:
+                                - generic [ref=e1569]:
+                                  - generic [ref=e1570]: "6"
+                                  - generic [ref=e1571]: r
+                                  - generic [ref=e1572]: o
+                                  - generic [ref=e1573]: w
+                                  - generic [ref=e1574]: s
+                                  - generic [ref=e1575]: x
+                                  - generic [ref=e1576]: "4"
+                                  - generic [ref=e1577]: c
+                                  - generic [ref=e1578]: o
+                                  - generic [ref=e1579]: l
+                                  - generic [ref=e1580]: u
+                                  - generic [ref=e1581]: m
+                                  - generic [ref=e1582]: "n"
+                                  - generic [ref=e1583]: s
+                              - generic [ref=e1585]: 6rowsx4columns
+                      - generic [ref=e1586]:
+                        - button "Hide object" [ref=e1587] [cursor=pointer]:
+                          - img [ref=e1588]
+                        - button "Duplicate object" [ref=e1591] [cursor=pointer]:
+                          - img [ref=e1592]
+                        - button "Restore object defaults" [ref=e1597] [cursor=pointer]:
+                          - img [ref=e1598]
+                        - button "Remove object from workspace registry" [ref=e1601] [cursor=pointer]:
+                          - img [ref=e1602]
+                    - generic [ref=e1605]:
+                      - generic [ref=e1606]:
+                        - checkbox "Select surface" [ref=e1607]
+                        - button "Surf surface" [ref=e1608] [cursor=pointer]:
+                          - generic [ref=e1609]:
+                            - generic [ref=e1610]: Surf
+                            - generic [ref=e1611]: surface
+                          - paragraph [ref=e1612]:
+                            - generic [ref=e1614]:
+                              - math [ref=e1616]:
+                                - generic [ref=e1618]:
+                                  - generic [ref=e1619]: p
+                                  - generic [ref=e1620]: o
+                                  - generic [ref=e1621]: s
+                                  - generic [ref=e1622]: =
+                                  - generic [ref=e1623]: (
+                                  - generic [ref=e1624]: "0"
+                                  - generic [ref=e1625]: ","
+                                  - generic [ref=e1626]: "0"
+                                  - generic [ref=e1627]: ","
+                                  - generic [ref=e1628]: "0"
+                                  - generic [ref=e1629]: )
+                                  - generic [ref=e1630]: ","
+                                  - generic [ref=e1631]: r
+                                  - generic [ref=e1632]: o
+                                  - generic [ref=e1633]: t
+                                  - generic [ref=e1634]: =
+                                  - generic [ref=e1635]: (
+                                  - generic [ref=e1636]: "0"
+                                  - generic [ref=e1637]: ","
+                                  - generic [ref=e1638]: "0"
+                                  - generic [ref=e1639]: ","
+                                  - generic [ref=e1640]: "0"
+                                  - generic [ref=e1641]: )
+                                  - generic [ref=e1642]: ","
+                                  - generic [ref=e1643]: s
+                                  - generic [ref=e1644]: c
+                                  - generic [ref=e1645]: a
+                                  - generic [ref=e1646]: l
+                                  - generic [ref=e1647]: e
+                                  - generic [ref=e1648]: =
+                                  - generic [ref=e1649]: "1"
+                              - generic [ref=e1650]:
+                                - generic [ref=e1651]: pos =
+                                - generic [ref=e1652]: (0, 0, 0), rot =
+                                - generic [ref=e1653]: (0, 0, 0), scale =
+                                - generic [ref=e1654]: "1"
+                      - generic [ref=e1655]:
+                        - button "Hide object" [ref=e1656] [cursor=pointer]:
+                          - img [ref=e1657]
+                        - button "Duplicate object" [ref=e1660] [cursor=pointer]:
+                          - img [ref=e1661]
+                        - button "Restore object defaults" [ref=e1666] [cursor=pointer]:
+                          - img [ref=e1667]
+                        - button "Remove object from workspace registry" [ref=e1670] [cursor=pointer]:
+                          - img [ref=e1671]
+                    - generic [ref=e1674]:
+                      - generic [ref=e1675]:
+                        - checkbox "Select v" [ref=e1676]
+                        - button "Vec v" [ref=e1677] [cursor=pointer]:
+                          - generic [ref=e1678]:
+                            - generic [ref=e1679]: Vec
+                            - generic [ref=e1680]: v
+                          - paragraph [ref=e1681]:
+                            - generic [ref=e1683]:
+                              - math [ref=e1685]:
+                                - generic [ref=e1687]:
+                                  - generic [ref=e1688]: p
+                                  - generic [ref=e1689]: o
+                                  - generic [ref=e1690]: s
+                                  - generic [ref=e1691]: =
+                                  - generic [ref=e1692]: (
+                                  - generic [ref=e1693]: "0"
+                                  - generic [ref=e1694]: ","
+                                  - generic [ref=e1695]: "0"
+                                  - generic [ref=e1696]: ","
+                                  - generic [ref=e1697]: "0"
+                                  - generic [ref=e1698]: )
+                                  - generic [ref=e1699]: ","
+                                  - generic [ref=e1700]: r
+                                  - generic [ref=e1701]: o
+                                  - generic [ref=e1702]: t
+                                  - generic [ref=e1703]: =
+                                  - generic [ref=e1704]: (
+                                  - generic [ref=e1705]: "0"
+                                  - generic [ref=e1706]: ","
+                                  - generic [ref=e1707]: "0"
+                                  - generic [ref=e1708]: ","
+                                  - generic [ref=e1709]: "0"
+                                  - generic [ref=e1710]: )
+                                  - generic [ref=e1711]: ","
+                                  - generic [ref=e1712]: s
+                                  - generic [ref=e1713]: c
+                                  - generic [ref=e1714]: a
+                                  - generic [ref=e1715]: l
+                                  - generic [ref=e1716]: e
+                                  - generic [ref=e1717]: =
+                                  - generic [ref=e1718]: "1"
+                              - generic [ref=e1719]:
+                                - generic [ref=e1720]: pos =
+                                - generic [ref=e1721]: (0, 0, 0), rot =
+                                - generic [ref=e1722]: (0, 0, 0), scale =
+                                - generic [ref=e1723]: "1"
+                      - generic [ref=e1724]:
+                        - button "Hide object" [ref=e1725] [cursor=pointer]:
+                          - img [ref=e1726]
+                        - button "Duplicate object" [ref=e1729] [cursor=pointer]:
+                          - img [ref=e1730]
+                        - button "Restore object defaults" [ref=e1735] [cursor=pointer]:
+                          - img [ref=e1736]
+                        - button "Remove object from workspace registry" [ref=e1739] [cursor=pointer]:
+                          - img [ref=e1740]
+                    - generic [ref=e1743]:
+                      - generic [ref=e1744]:
+                        - checkbox "Select plane plane" [ref=e1745]
+                        - button "Result plane plane" [ref=e1746] [cursor=pointer]:
+                          - generic [ref=e1747]:
+                            - generic [ref=e1748]: Result
+                            - generic [ref=e1749]: plane plane
+                          - paragraph [ref=e1750]:
+                            - generic [ref=e1752]:
+                              - math [ref=e1754]:
+                                - generic [ref=e1756]:
+                                  - generic [ref=e1757]: "0"
+                                  - generic [ref=e1758]: x
+                                  - generic [ref=e1759]: +
+                                  - generic [ref=e1760]: "0"
+                                  - generic [ref=e1761]: "y"
+                                  - generic [ref=e1762]: +
+                                  - generic [ref=e1763]: "1"
+                                  - generic [ref=e1764]: z
+                                  - generic [ref=e1765]: =
+                                  - generic [ref=e1766]: "0"
+                                  - generic [ref=e1767]: e
+                                  - generic [ref=e1768]: q
+                                  - generic [ref=e1769]: u
+                                  - generic [ref=e1770]: a
+                                  - generic [ref=e1771]: t
+                                  - generic [ref=e1772]: i
+                                  - generic [ref=e1773]: o
+                                  - generic [ref=e1774]: "n"
+                              - generic [ref=e1775]:
+                                - generic [ref=e1776]: 0x +
+                                - generic [ref=e1777]: 0y +
+                                - generic [ref=e1778]: 1z =
+                                - generic [ref=e1779]: 0equation
+                      - generic [ref=e1780]:
+                        - button "Hide object" [ref=e1781] [cursor=pointer]:
+                          - img [ref=e1782]
+                        - button "Duplicate object" [ref=e1785] [cursor=pointer]:
+                          - img [ref=e1786]
+                        - button "Restore object defaults" [ref=e1791] [cursor=pointer]:
+                          - img [ref=e1792]
+                        - button "Remove object from workspace registry" [ref=e1795] [cursor=pointer]:
+                          - img [ref=e1796]
+                    - generic [ref=e1799]:
+                      - generic [ref=e1800]:
+                        - checkbox "Select plane slice" [ref=e1801]
+                        - button "Result plane slice" [ref=e1802] [cursor=pointer]:
+                          - generic [ref=e1803]:
+                            - generic [ref=e1804]: Result
+                            - generic [ref=e1805]: plane slice
+                          - paragraph [ref=e1806]:
+                            - generic [ref=e1808]:
+                              - math [ref=e1810]:
+                                - generic [ref=e1812]:
+                                  - generic [ref=e1813]: "0"
+                                  - generic [ref=e1814]: x
+                                  - generic [ref=e1815]: +
+                                  - generic [ref=e1816]: "0"
+                                  - generic [ref=e1817]: "y"
+                                  - generic [ref=e1818]: +
+                                  - generic [ref=e1819]: "1"
+                                  - generic [ref=e1820]: z
+                                  - generic [ref=e1821]: =
+                                  - generic [ref=e1822]: "0"
+                                  - generic [ref=e1823]: e
+                                  - generic [ref=e1824]: q
+                                  - generic [ref=e1825]: u
+                                  - generic [ref=e1826]: a
+                                  - generic [ref=e1827]: t
+                                  - generic [ref=e1828]: i
+                                  - generic [ref=e1829]: o
+                                  - generic [ref=e1830]: "n"
+                              - generic [ref=e1831]:
+                                - generic [ref=e1832]: 0x +
+                                - generic [ref=e1833]: 0y +
+                                - generic [ref=e1834]: 1z =
+                                - generic [ref=e1835]: 0equation
+                      - generic [ref=e1836]:
+                        - button "Hide object" [ref=e1837] [cursor=pointer]:
+                          - img [ref=e1838]
+                        - button "Duplicate object" [ref=e1841] [cursor=pointer]:
+                          - img [ref=e1842]
+                        - button "Restore object defaults" [ref=e1847] [cursor=pointer]:
+                          - img [ref=e1848]
+                        - button "Remove object from workspace registry" [ref=e1851] [cursor=pointer]:
+                          - img [ref=e1852]
+                - generic [ref=e1855]:
+                  - heading "Inspector" [level=2] [ref=e1856]
+                  - paragraph [ref=e1857]: Select a workspace object to inspect its value, linked views, dependencies, and metadata.
+          - generic [ref=e1858]:
+            - generic [ref=e1859]:
+              - heading "Object Inspector" [level=2] [ref=e1860]
+              - generic [ref=e1861]: No selection
+            - tablist "Geometry inspector views" [ref=e1862]:
+              - tab "Properties" [selected] [ref=e1863] [cursor=pointer]
+              - tab "Style" [ref=e1864] [cursor=pointer]
+              - tab "Relations" [ref=e1865] [cursor=pointer]
+            - generic [ref=e1866]:
+              - heading "Object Properties" [level=3] [ref=e1868]
+              - paragraph [ref=e1869]: Select a point, line, circle, or polygon to modify x/y, size, color, visibility, lock, duplicate, restore, or delete.
+            - generic [ref=e1870]:
+              - heading "Image Layer" [level=3] [ref=e1871]
+              - paragraph [ref=e1872]: Use Add Image to place a picture on the geometry board. Click an image to edit size, opacity, and lock state.
+        - generic [ref=e1873]:
+          - text: Offline
+          - generic [ref=e1875]: 60 FPS
+          - generic [ref=e1876]: 0 constraints
+          - generic [ref=e1877]: Geometry accuracy certified.
+          - button "Snap on" [ref=e1878] [cursor=pointer]:
+            - img [ref=e1879]
+            - text: Snap on
+```
+
+# Test source
+
+```ts
+  11  |     lines: board.querySelectorAll("[data-object-type='line']").length,
+  12  |     circles: board.querySelectorAll("[data-object-type='circle']").length,
+  13  |     polygons: board.querySelectorAll("[data-object-type='polygon']").length,
+  14  |     measurementText: board.querySelector("[data-testid='workspace-geometry-measurements']")?.textContent?.trim() ?? "",
+  15  |   }));
+  16  | }
+  17  | 
+  18  | async function clickBoardPoint(page: import("@playwright/test").Page, x: number, y: number) {
+  19  |   await page.getByTestId("workspace-geometry-board").click({ position: { x, y } });
+  20  | }
+  21  | 
+  22  | async function clickRenderedPoint(page: import("@playwright/test").Page, index: number) {
+  23  |   const point = page.getByTestId("workspace-geometry-board").locator("[data-point-id]").nth(index);
+  24  |   await expect(point).toBeVisible();
+  25  |   const box = await point.boundingBox();
+  26  |   expect(box).not.toBeNull();
+  27  |   if (!box) return;
+  28  |   await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+  29  | }
+  30  | 
+  31  | test.describe("Geometry command-boundary regression", () => {
+  32  |   test("selects and deletes a geometry point through the extracted panel boundary", async ({ page }) => {
+  33  |     const assertNoFatalErrors = failOnFatalConsoleErrors(page);
+  34  |     await gotoWorkspaceRoute(page, "/workspace/geometry");
+  35  | 
+  36  |     const board = page.getByTestId("workspace-geometry-board");
+  37  |     await expectNonblankSvgSurface(board, 8, { requirePath: false });
+  38  |     const beforeCreate = await geometryBoardState(page);
+  39  |     await page.getByTestId("workspace-geometry-tool-point").click();
+  40  |     await clickBoardPoint(page, 280, 120);
+  41  | 
+  42  |     const afterCreate = await geometryBoardState(page);
+  43  |     expect(afterCreate.points).toBe(beforeCreate.points + 1);
+  44  | 
+  45  |     await page.getByRole("button", { name: "Move", exact: true }).click();
+  46  |     await clickRenderedPoint(page, afterCreate.points - 1);
+  47  |     await page.keyboard.press("Delete");
+  48  | 
+  49  |     const afterDelete = await geometryBoardState(page);
+  50  |     expect(afterDelete.points).toBe(beforeCreate.points);
+  51  |     await expectNonblankSvgSurface(board, 8, { requirePath: false });
+  52  |     await assertNoFatalErrors();
+  53  |   });
+  54  | 
+  55  |   test("delete and transform commands fail safely with no geometry selection", async ({ page }) => {
+  56  |     const assertNoFatalErrors = failOnFatalConsoleErrors(page);
+  57  |     await gotoWorkspaceRoute(page, "/workspace/geometry");
+  58  | 
+  59  |     const board = page.getByTestId("workspace-geometry-board");
+  60  |     const before = await geometryBoardState(page);
+  61  |     await page.keyboard.press("Escape");
+  62  |     await page.keyboard.press("Delete");
+  63  | 
+  64  |     await expect(page.getByTestId("workspace-safety-status")).toContainText("Delete selection is not supported");
+  65  |     expect(await geometryBoardState(page)).toEqual(before);
+  66  | 
+  67  |     await page.getByRole("button", { name: "Move Selected", exact: true }).click();
+  68  |     await expect(page.getByTestId("workspace-safety-status")).toContainText("Geometry transform is not supported");
+  69  |     expect(await geometryBoardState(page)).toEqual(before);
+  70  |     await expectNonblankSvgSurface(board, 8, { requirePath: false });
+  71  |     await assertNoFatalErrors();
+  72  |   });
+  73  | 
+  74  |   test("measurement overlays remain visible after point drag", async ({ page }) => {
+  75  |     const assertNoFatalErrors = failOnFatalConsoleErrors(page);
+  76  |     await gotoWorkspaceRoute(page, "/workspace/geometry");
+  77  | 
+  78  |     const board = page.getByTestId("workspace-geometry-board");
+  79  |     await expect(board.getByTestId("workspace-geometry-measurements")).toBeAttached();
+  80  |     const box = await board.boundingBox();
+  81  |     expect(box).not.toBeNull();
+  82  |     if (!box) return;
+  83  |     await page.getByTestId("workspace-geometry-tool-point").click();
+  84  |     await clickBoardPoint(page, 220, 300);
+  85  |     await clickBoardPoint(page, 360, 260);
+  86  |     await page.getByTestId("workspace-geometry-tool-line").click();
+  87  |     await clickRenderedPoint(page, 0);
+  88  |     await clickRenderedPoint(page, 1);
+  89  | 
+  90  |     const before = await geometryBoardState(page);
+  91  |     expect(before.lines).toBeGreaterThan(0);
+  92  |     expect(before.measurementText.length).toBeGreaterThan(0);
+  93  | 
+  94  |     await page.getByRole("button", { name: "Move", exact: true }).click();
+  95  |     await page.mouse.move(box.x + 220, box.y + 300);
+  96  |     await page.mouse.down();
+  97  |     await page.mouse.move(box.x + 250, box.y + 280, { steps: 4 });
+  98  |     await page.mouse.up();
+  99  | 
+  100 |     const after = await geometryBoardState(page);
+  101 |     expect(after.measurementText.length).toBeGreaterThan(0);
+  102 |     await expect(board.getByTestId("workspace-geometry-measurements")).toBeAttached();
+  103 |     await assertNoFatalErrors();
+  104 |   });
+  105 | 
+  106 |   test("geometry tool switching preserves existing construction state", async ({ page }) => {
+  107 |     const assertNoFatalErrors = failOnFatalConsoleErrors(page);
+  108 |     await gotoWorkspaceRoute(page, "/workspace/geometry");
+  109 | 
+  110 |     const before = await geometryBoardState(page);
+> 111 |     await page.getByTestId("workspace-geometry-tool-line").click();
+      |                                                            ^ Error: locator.click: Error: strict mode violation: getByTestId('workspace-geometry-tool-line') resolved to 2 elements:
+  112 |     await page.getByTestId("workspace-geometry-tool-circle").click();
+  113 |     await page.getByTestId("workspace-geometry-tool-point").click();
+  114 |     await page.getByRole("button", { name: "Move", exact: true }).click();
+  115 | 
+  116 |     expect(await geometryBoardState(page)).toEqual(before);
+  117 |     await assertNoFatalErrors();
+  118 |   });
+  119 | });
+  120 | 
+```

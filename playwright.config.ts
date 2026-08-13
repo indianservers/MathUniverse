@@ -11,7 +11,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [["list"], ["html", { open: "never" }]] : "list",
   use: {
-    baseURL: "http://127.0.0.1:4301",
+    baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL ?? "http://127.0.0.1:4301",
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
@@ -22,7 +22,7 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
-  webServer: {
+  webServer: process.env.PLAYWRIGHT_TEST_BASE_URL ? undefined : {
     command: "npm run preview -- --host 127.0.0.1 --port 4301",
     url: "http://127.0.0.1:4301/visual-proofs",
     reuseExistingServer: !process.env.CI,

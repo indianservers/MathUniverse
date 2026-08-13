@@ -142,6 +142,8 @@ export function MathToolCard({
   difficulty,
   useCases,
   route,
+  engineFamily,
+  checks,
 }: {
   icon: LucideIcon;
   title: string;
@@ -149,6 +151,8 @@ export function MathToolCard({
   difficulty: string;
   useCases: string[];
   route: string;
+  engineFamily?: string;
+  checks?: string[];
 }) {
   return (
     <div className="group rounded-xl border border-slate-200 bg-white/80 p-3 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-xl hover:shadow-cyan-500/10 dark:border-white/10 dark:bg-white/5">
@@ -157,13 +161,18 @@ export function MathToolCard({
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-100 text-cyan-700 transition group-hover:scale-105 dark:bg-cyan-400/15 dark:text-cyan-200">
             <Icon className="h-5 w-5" />
           </div>
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-600 dark:bg-white/10 dark:text-slate-300">{difficulty}</span>
+          <div className="flex flex-col items-end gap-1">
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-600 dark:bg-white/10 dark:text-slate-300">{difficulty}</span>
+            {engineFamily && <span className="text-[10px] font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">{engineFamily}</span>}
+          </div>
         </div>
         <h2 className="mt-3 text-lg font-black">{title}</h2>
         <p className="mt-1.5 line-clamp-2 text-sm leading-5 text-slate-600 dark:text-slate-300">{description}</p>
-        <div className="mt-3 flex flex-wrap gap-1.5">
+        <p className="mt-3 text-[10px] font-black uppercase tracking-wide text-slate-400">Options · {useCases.length}</p>
+        <div className="mt-1.5 flex flex-wrap gap-1.5">
           {useCases.slice(0, 4).map((item) => <span key={item} className="mini-chip">{item}</span>)}
         </div>
+        {checks?.length ? <p className="mt-3 text-[11px] font-semibold text-emerald-600 dark:text-emerald-300">Validated: {checks.join(" · ")}</p> : null}
         <span className="mt-4 inline-flex rounded-xl bg-slate-950 px-3 py-2 text-sm font-bold text-white transition group-hover:bg-cyan-600 dark:bg-white dark:text-slate-950">Open</span>
       </Link>
       <div className="mt-3 border-t border-slate-200 pt-3 dark:border-white/10">
@@ -180,6 +189,7 @@ export function MathToolRow({
   difficulty,
   useCases,
   route,
+  engineFamily,
 }: {
   icon: LucideIcon;
   title: string;
@@ -187,6 +197,7 @@ export function MathToolRow({
   difficulty: string;
   useCases: string[];
   route: string;
+  engineFamily?: string;
 }) {
   return (
     <Link to={route} className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white/80 px-3 py-2.5 shadow-sm transition hover:border-cyan-300 hover:shadow-md dark:border-white/10 dark:bg-white/5">
@@ -197,10 +208,11 @@ export function MathToolRow({
         <div className="flex flex-wrap items-center gap-2">
           <span className="font-black">{title}</span>
           <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-black text-slate-600 dark:bg-white/10 dark:text-slate-300">{difficulty}</span>
+          {engineFamily && <span className="text-[10px] font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">{engineFamily}</span>}
         </div>
         <p className="mt-0.5 line-clamp-1 text-xs text-slate-500 dark:text-slate-400">{description}</p>
       </div>
-      <div className="hidden flex-wrap gap-1.5 md:flex">
+      <div className="hidden max-w-[40%] flex-wrap justify-end gap-1.5 md:flex" aria-label={`${useCases.length} options`}>
         {useCases.slice(0, 3).map((item) => <span key={item} className="mini-chip text-[11px]">{item}</span>)}
       </div>
     </Link>

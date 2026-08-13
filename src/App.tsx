@@ -70,7 +70,6 @@ const Formulas = lazyRoute(() => import("./pages/Formulas"));
 const FormulaVisualizerPage = lazyRoute(() => import("./pages/FormulaVisualizerPage"));
 const FourierSeriesAnimator = lazyRoute(() => import("./pages/FourierSeriesAnimator"));
 const FourierSeriesVisualizerPage = lazyRoute(() => import("./pages/FourierSeriesVisualizerPage"));
-const FunctionsGraphsVisualizer = lazyRoute(() => import("./pages/FunctionsGraphsVisualizer"));
 const Geometry = lazyRoute(() => import("./pages/Geometry"));
 const GeometryConceptPage = lazyRoute(() => import("./pages/GeometryConceptPage"));
 const GraphComparisonMode = lazyRoute(() => import("./pages/GraphComparisonMode"));
@@ -98,7 +97,7 @@ const MathLabSmartQuery = lazyRoute(() => import("./pages/MathLabSmartQuery"));
 const MathLabToolPage = lazyRoute(() => import("./pages/MathLabToolPage"));
 const MathVisualizationPage = lazyRoute(() => import("./pages/MathVisualizationPage"));
 const MathVisualDictionary = lazyRoute(() => import("./pages/MathVisualDictionary"));
-const MathWorkspace = lazyRoute(() => import("./pages/MathWorkspace"));
+const WorkspaceHome = lazyRoute(() => import("./pages/WorkspaceHome"));
 const MagicMaths = lazyRoute(() => import("./pages/MagicMaths"));
 const MatrixOperationPage = lazyRoute(() => import("./pages/MatrixOperationPage"));
 const MatrixOperations = lazyRoute(() => import("./pages/MatrixOperations"));
@@ -147,7 +146,6 @@ const Workspace3D = lazyRoute(() => import("./pages/Workspace3D"));
 const WorkspaceData = lazyRoute(() => import("./pages/WorkspaceData"));
 const WorkspaceGeometry = lazyRoute(() => import("./pages/WorkspaceGeometry"));
 const WorkspaceGraph = lazyRoute(() => import("./pages/WorkspaceGraph"));
-const WorkspaceTeach = lazyRoute(() => import("./pages/WorkspaceTeach"));
 
 type AppErrorBoundaryProps = { children: ReactNode; resetKey: string };
 type AppErrorBoundaryState = { hasError: boolean };
@@ -226,7 +224,7 @@ export default function App() {
             <Route path="visual-dictionary" element={<MathVisualDictionary />} />
             <Route path="magic-maths" element={<MagicMaths />} />
             <Route path="magic-maths/:conceptSlug" element={<MagicMaths />} />
-            <Route path="workspace" element={<MathWorkspace />} />
+            <Route path="workspace" element={<WorkspaceHome />} />
             <Route path="board" element={<BoardPage />} />
             <Route path="workspace/graph" element={<WorkspaceGraph />} />
             <Route path="workspace/geometry" element={<WorkspaceGeometry />} />
@@ -238,7 +236,7 @@ export default function App() {
             <Route path="workspace/data/cas" element={<WorkspaceData page="cas" />} />
             <Route path="workspace/data/results" element={<WorkspaceData page="results" />} />
             <Route path="workspace/data/objects" element={<WorkspaceData page="objects" />} />
-            <Route path="workspace/teach" element={<WorkspaceTeach />} />
+            <Route path="workspace/teach" element={<Navigate to="/workspace" replace />} />
             <Route path="formulas" element={<Formulas />} />
             <Route path="formulas/:categorySlug" element={<Formulas />} />
             <Route path="visual-formulas" element={<VisualFormulasHub />} />
@@ -334,7 +332,7 @@ export default function App() {
             <Route path="probability-statistics/school-statistics" element={<StatisticsSyllabusCompletionPage studioId="school-statistics" />} />
             <Route path="mathematical-logic" element={<TruthTableGenerator />} />
             <Route path="truth-table" element={<TruthTableGenerator />} />
-            <Route path="math/functions-graphs" element={<FunctionsGraphsVisualizer />} />
+            <Route path="math/functions-graphs" element={<Navigate to="/workspace/graph" replace />} />
             <Route path="math/limits-continuity" element={<LimitsContinuityVisualizer />} />
             <Route path="math/derivatives" element={<DerivativesTangentVisualizer />} />
             <Route path="math/integration" element={<IntegrationAreaVisualizerPage />} />

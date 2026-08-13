@@ -1,4 +1,4 @@
-import { Award, Box, Calculator, Camera, Cuboid, Download, Eye, Grid3X3, Heart, Home, Layers3, LineChart, Mic, Orbit, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, RotateCcw, RotateCw, Search, Settings, Shapes, Sigma, Sparkles, Star, Triangle, Volume2, Wand2, ZoomIn, ZoomOut } from "lucide-react";
+import { Award, Box, Calculator, Camera, Check, ChevronDown, Cuboid, Download, Eye, Filter, Grid3X3, Heart, History, Home, Layers3, LineChart, Mic, Orbit, PanelLeftClose, PanelLeftOpen, Palette, Pause, Play, Printer, RefreshCw, Redo2, RotateCcw, RotateCw, Ruler, Search, Settings, Shapes, Sigma, SlidersHorizontal, Sparkles, Star, Triangle, Undo2, Volume2, Wand2, X, ZoomIn, ZoomOut } from "lucide-react";
 import { OrbitControls, Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { ReactNode, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
@@ -41,6 +41,29 @@ export type ShapeDefinition = {
 };
 
 type Metrics = Record<string, number>;
+type ShapeToolMode = "rotate" | "pan" | "measure" | "grid";
+type ShapeUnit = "units" | "mm" | "cm" | "m" | "in";
+type ShapeSort = "name" | "dimension" | "complexity" | "vertices";
+type ShapeHistorySnapshot = {
+  a: number;
+  b: number;
+  c: number;
+  sides: number;
+  angle: number;
+  selectedId: ShapeId;
+  wireframe: boolean;
+  fillMode: ShapeFillMode;
+  colorA: string;
+  colorB: string;
+  shapeGlow: boolean;
+  showGrid: boolean;
+  viewZoom: number;
+  viewRotation: number;
+  autoRotate: boolean;
+};
+
+const SHAPES_PREFERENCES_KEY = "math-universe-shapes-preferences-v2";
+const unitScale: Record<ShapeUnit, number> = { units: 1, mm: 10, cm: 1, m: 0.01, in: 0.3937008 };
 
 const studioRailItems = [
   { label: "Home", route: "/", icon: Home },
@@ -158,7 +181,46 @@ export default function ShapesExplorer() {
   const [lockProportions, setLockProportions] = useState(false);
   const [surfacePaint, setSurfacePaint] = useState(45);
   const [favoriteIds, setFavoriteIds] = useState<Set<ShapeId>>(() => new Set());
+  const [recentIds, setRecentIds] = useState<ShapeId[]>([]);
+  const [compareIds, setCompareIds] = useState<ShapeId[]>(["circle", "square"]);
+  const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const [advancedFilter, setAdvancedFilter] = useState<"all" | "curved" | "polygon" | "solid">("all");
+  const [shapeSort, setShapeSort] = useState<ShapeSort>("name");
+  const [unit, setUnit] = useState<ShapeUnit>("units");
+  const [precision, setPrecision] = useState(2);
+  const [toolMode, setToolMode] = useState<ShapeToolMode>("rotate");
+  const [gridSpacing, setGridSpacing] = useState(1);
+  const [snapToGrid, setSnapToGrid] = useState(false);
+  const [showAxes, setShowAxes] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [exportOpen, setExportOpen] = useState(false);
+  const [highContrast, setHighContrast] = useState(false);
+  const [largeLabels, setLargeLabels] = useState(false);
+  const [colorblindPalette, setColorblindPalette] = useState(false);
+  const [netProgress, setNetProgress] = useState(0);
+  const [sliceAxis, setSliceAxis] = useState<"x" | "y" | "z">("z");
+  const [slicePosition, setSlicePosition] = useState(50);
+  const [sliceAngle, setSliceAngle] = useState(0);
+  const [highlightedSymbol, setHighlightedSymbol] = useState<string | null>(null);
+  const [learnStep, setLearnStep] = useState(0);
+  const [historyStack, setHistoryStack] = useState<ShapeHistorySnapshot[]>([]);
+  const [redoStack, setRedoStack] = useState<ShapeHistorySnapshot[]>([]);
+  const historyGuard = useRef(false);
   useEffect(() => markTopicVisited("shapes"), [markTopicVisited]);
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(SHAPES_PREFERENCES_KEY) ?? "{}") as { favorites?: ShapeId[]; recent?: ShapeId[]; unit?: ShapeUnit; precision?: number };
+      setFavoriteIds(new Set(saved.favorites ?? []));
+      setRecentIds(saved.recent ?? []);
+      if (saved.unit) setUnit(saved.unit);
+      if (typeof saved.precision === "number") setPrecision(saved.precision);
+    } catch { /* Ignore malformed local preferences. */ }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(SHAPES_PREFERENCES_KEY, JSON.stringify({ favorites: [...favoriteIds], recent: recentIds, unit, precision }));
+  }, [favoriteIds, precision, recentIds, unit]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -190,12 +252,14 @@ export default function ShapesExplorer() {
         category,
         shapes: categoryShapes.filter((shape) => {
           const matchesType = libraryFilter === "All" || shape.kind === libraryFilter;
+          const matchesFavorite = !favoritesOnly || favoriteIds.has(shape.id);
+          const matchesAdvanced = advancedFilter === "all" || (advancedFilter === "curved" ? /circle|ellipse|annulus|sector|segment|crescent|sphere|cylinder|cone|torus|capsule|frustum|hemisphere/.test(shape.id) : advancedFilter === "polygon" ? shape.kind === "2d" && !/circle|ellipse|annulus|sector|segment|crescent|semicircle|quadrant/.test(shape.id) : shape.kind === "3d");
           const matchesQuery = !query || [shape.name, shape.category, shape.description, shape.formula, shape.use].join(" ").toLowerCase().includes(query);
-          return matchesType && matchesQuery;
-        }),
+          return matchesType && matchesFavorite && matchesAdvanced && matchesQuery;
+        }).sort((left, right) => shapeSort === "name" ? left.name.localeCompare(right.name) : shapeSort === "dimension" ? left.kind.localeCompare(right.kind) || left.name.localeCompare(right.name) : shapeSort === "vertices" ? shapeProperties(left).vertices - shapeProperties(right).vertices || left.name.localeCompare(right.name) : shapeComplexity(left) - shapeComplexity(right) || left.name.localeCompare(right.name)),
       }))
       .filter((group) => group.shapes.length > 0);
-  }, [groupedShapes, libraryFilter, shapeSearch]);
+  }, [advancedFilter, favoriteIds, favoritesOnly, groupedShapes, libraryFilter, shapeSearch, shapeSort]);
   const metrics = getMetrics(selected.id, a, b, c, sides, angle);
   const formulaEntries = useMemo(() => getShapeFormulaEntries(selected.id), [selected.id]);
   const familyShapes = useMemo(() => shapes.filter((shape) => shape.category === selected.category && shape.id !== selected.id).slice(0, 4), [selected.category, selected.id]);
@@ -209,7 +273,9 @@ export default function ShapesExplorer() {
   }, [selected.id, a, b, c, secondRange.min, secondRange.max, thirdRange.min, thirdRange.max]);
 
   const selectShape = (shape: ShapeDefinition) => {
+    recordHistory();
     setSelectedId(shape.id);
+    setRecentIds((current) => [shape.id, ...current.filter((id) => id !== shape.id)].slice(0, 8));
     setExpandedCategories((items) => new Set([...items, shape.category]));
     setViewZoom(1);
     setViewRotation(0);
@@ -234,11 +300,23 @@ export default function ShapesExplorer() {
   const rotateLeft = () => setViewRotation((value) => value - 15);
   const rotateRight = () => setViewRotation((value) => value + 15);
   const resetView = () => {
+    recordHistory();
     setViewZoom(1);
     setViewRotation(0);
     setAutoRotate(true);
     setViewResetNonce((value) => value + 1);
   };
+  const snapshot = (): ShapeHistorySnapshot => ({ a, b, c, sides, angle, selectedId, wireframe, fillMode, colorA, colorB, shapeGlow, showGrid, viewZoom, viewRotation, autoRotate });
+  const applySnapshot = (next: ShapeHistorySnapshot) => {
+    historyGuard.current = true;
+    setA(next.a); setB(next.b); setC(next.c); setSides(next.sides); setAngle(next.angle); setSelectedId(next.selectedId);
+    setWireframe(next.wireframe); setFillMode(next.fillMode); setColorA(next.colorA); setColorB(next.colorB); setShapeGlow(next.shapeGlow);
+    setShowGrid(next.showGrid); setViewZoom(next.viewZoom); setViewRotation(next.viewRotation); setAutoRotate(next.autoRotate);
+  };
+  const recordHistory = () => { if (historyGuard.current) { historyGuard.current = false; return; } setHistoryStack((current) => [...current.slice(-39), snapshot()]); setRedoStack([]); };
+  const undoShape = () => { const previous = historyStack.at(-1); if (!previous) return; setRedoStack((current) => [...current, snapshot()]); setHistoryStack((current) => current.slice(0, -1)); applySnapshot(previous); };
+  const redoShape = () => { const next = redoStack.at(-1); if (!next) return; setHistoryStack((current) => [...current, snapshot()]); setRedoStack((current) => current.slice(0, -1)); applySnapshot(next); };
+  const setDimension = (key: "a" | "b" | "c" | "sides" | "angle", value: number) => { recordHistory(); if (key === "a") setA(value); else if (key === "b") setB(value); else if (key === "c") setC(value); else if (key === "sides") setSides(Math.round(value)); else setAngle(value); };
   const toggleFavorite = () => {
     setFavoriteIds((current) => {
       const next = new Set(current);
@@ -248,6 +326,7 @@ export default function ShapesExplorer() {
     });
   };
   const setShapeMode = (mode: "solid" | "wireframe" | "transparent") => {
+    recordHistory();
     if (mode === "wireframe") {
       setWireframe(true);
       setFillMode("outline");
@@ -258,6 +337,14 @@ export default function ShapesExplorer() {
   };
   const activeShapeMode = wireframe || fillMode === "outline" ? "wireframe" : fillMode === "solid" ? "solid" : "transparent";
   const exportSummary = () => downloadTextFile(`${selected.name.toLowerCase().replace(/\s+/g, "-")}-shape-summary.txt`, `${selected.name}\n${selected.description}\nFormula: ${selected.formula}\nSymbols: ${symbolSummary(selected.id, a, b, c, sides, angle)}\nMetrics:\n${Object.entries(metrics).map(([label, value]) => `${label}: ${roundTo(value, 3)}`).join("\n")}`);
+  const metricPower = (label: string) => label.toLowerCase().includes("volume") ? 3 : /area|surface/.test(label.toLowerCase()) ? 2 : 1;
+  const converted = (value: number, label: string) => roundTo(value * unitScale[unit] ** metricPower(label), precision);
+  const metricUnit = (label: string) => {
+    const exponent = metricPower(label);
+    const base = unit === "units" ? "u" : unit;
+    return exponent === 3 ? `${base}³` : exponent === 2 ? `${base}²` : base;
+  };
+  const toggleCompare = (id: ShapeId) => setCompareIds((current) => current.includes(id) ? current.filter((item) => item !== id) : current.length < 4 ? [...current, id] : [...current.slice(1), id]);
   const shapePayload = createMathWorkspacePayload({
     sourceWorkspace: "shapes",
     objectType: "shape",
@@ -279,7 +366,7 @@ export default function ShapesExplorer() {
   };
 
   return (
-    <div className={`shapes-studio-shell ${mobileInspectorOpen ? "has-mobile-inspector" : ""}`} onPointerDown={() => markTopicInteracted("shapes")}>
+    <div className={`shapes-studio-shell ${mobileInspectorOpen ? "has-mobile-inspector" : ""} ${highContrast ? "is-high-contrast" : ""} ${largeLabels ? "has-large-labels" : ""}`} onPointerDown={() => markTopicInteracted("shapes")}>
       <aside className="shapes-studio-rail" aria-label="Math Universe navigation">
         <div className="shapes-studio-logo"><Shapes className="h-7 w-7" /><span>Math<br />Universe</span></div>
         <div className="shapes-rail-links thin-scrollbar">
@@ -304,12 +391,14 @@ export default function ShapesExplorer() {
             <button key={tab} type="button" className={studioTab === tab ? "is-active" : ""} onClick={() => setStudioTab(tab)}>{tab}</button>
           ))}
         </nav>
-        <button ref={inspectorTriggerRef} type="button" className="shapes-mobile-properties shapes-icon-button" onClick={openMobileInspector} aria-haspopup="dialog" aria-expanded={mobileInspectorOpen}><Settings className="h-4 w-4" /><span>Properties</span></button>
+        <div className="shapes-mobile-quick-actions"><button type="button" className="shapes-icon-button" onClick={() => setExportOpen(true)} aria-label="Export shape"><Download className="h-4 w-4" /></button><button type="button" className="shapes-icon-button" onClick={() => setSettingsOpen(true)} aria-label="Workspace settings"><Settings className="h-4 w-4" /></button><button ref={inspectorTriggerRef} type="button" className="shapes-mobile-properties shapes-icon-button" onClick={openMobileInspector} aria-haspopup="dialog" aria-expanded={mobileInspectorOpen}><SlidersHorizontal className="h-4 w-4" /><span>Properties</span></button></div>
         <div className="shapes-top-actions">
+          <button type="button" className="shapes-toolbar-button" onClick={undoShape} disabled={!historyStack.length} title="Undo"><Undo2 className="h-4 w-4" /></button>
+          <button type="button" className="shapes-toolbar-button" onClick={redoShape} disabled={!redoStack.length} title="Redo"><Redo2 className="h-4 w-4" /></button>
           <button type="button" className={favoriteIds.has(selected.id) ? "shapes-toolbar-button is-active" : "shapes-toolbar-button"} onClick={toggleFavorite}><Star className="h-4 w-4" />Favourite</button>
           <button type="button" className="shapes-toolbar-button" onClick={resetView}><RefreshCw className="h-4 w-4" />Reset</button>
-          <button type="button" className="shapes-toolbar-button" onClick={exportSummary}><Download className="h-4 w-4" />Export</button>
-          <button type="button" className="shapes-toolbar-button"><Settings className="h-4 w-4" />Settings</button>
+          <button type="button" className="shapes-toolbar-button" onClick={() => setExportOpen(true)}><Download className="h-4 w-4" />Export</button>
+          <button type="button" className="shapes-toolbar-button" onClick={() => setSettingsOpen(true)}><Settings className="h-4 w-4" />Settings</button>
         </div>
       </header>
 
@@ -321,6 +410,13 @@ export default function ShapesExplorer() {
             <button key={filter} type="button" className={libraryFilter === filter ? "is-active" : ""} onClick={() => setLibraryFilter(filter)}>{filter === "All" ? "All" : filter.toUpperCase()}</button>
           ))}
         </div>
+        <div className="shapes-library-advanced">
+          <button type="button" className={favoritesOnly ? "is-active" : ""} onClick={() => setFavoritesOnly((value) => !value)}><Star />Favorites</button>
+          <label><Filter /><select aria-label="Shape property filter" value={advancedFilter} onChange={(event) => setAdvancedFilter(event.target.value as typeof advancedFilter)}><option value="all">All properties</option><option value="curved">Curved</option><option value="polygon">Polygons</option><option value="solid">Solids</option></select></label>
+          <label><SlidersHorizontal /><select aria-label="Sort shapes" value={shapeSort} onChange={(event) => setShapeSort(event.target.value as ShapeSort)}><option value="name">Name</option><option value="dimension">2D / 3D</option><option value="complexity">Complexity</option><option value="vertices">Vertices</option></select></label>
+        </div>
+        <div className="shapes-library-breadcrumb"><span>{selected.category}</span><ChevronDown /><strong>{selected.name}</strong></div>
+        {!!recentIds.length && <div className="shapes-recent-row"><span><History />Recent</span>{recentIds.slice(0, 5).map((id) => { const shape = shapeById(shapes, id); return <button type="button" key={id} title={shape.name} onClick={() => selectShape(shape)}><ShapeThumbnail src={shape.thumbnail} name={shape.name} size="compact" decorative /></button>; })}</div>}
         <div className="shapes-library-list">
           {filteredGroupedShapes.map(({ category, shapes: categoryShapes }) => {
             const open = expandedCategories.has(category);
@@ -333,6 +429,7 @@ export default function ShapesExplorer() {
                     <button key={shape.id} type="button" className={`shapes-library-item ${active ? "is-active" : ""}`} onClick={() => { selectShape(shape); if (window.innerWidth <= 900) setShapeMenuCollapsed(true); }}>
                       <ShapeThumbnail src={shape.thumbnail} name={shape.name} size="small" selected={active} decorative />
                       <span>{shape.name}</span>
+                      <span className={compareIds.includes(shape.id) ? "shapes-compare-pin is-active" : "shapes-compare-pin"} role="button" tabIndex={0} aria-label={`${compareIds.includes(shape.id) ? "Remove" : "Add"} ${shape.name} ${compareIds.includes(shape.id) ? "from" : "to"} comparison`} onClick={(event) => { event.stopPropagation(); toggleCompare(shape.id); }} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); event.stopPropagation(); toggleCompare(shape.id); } }}><Check /></span>
                     </button>
                   );
                 })}
@@ -340,9 +437,12 @@ export default function ShapesExplorer() {
             );
           })}
         </div>
+        {!filteredGroupedShapes.length && <div className="shapes-empty-state"><Search /><strong>No shapes found</strong><span>Clear filters or try a broader property.</span><button type="button" onClick={() => { setShapeSearch(""); setLibraryFilter("All"); setAdvancedFilter("all"); setFavoritesOnly(false); }}>Clear filters</button></div>}
       </aside>
 
       <main className="shapes-workbench">
+        {studioTab === "Compare" ? <ShapeCompareWorkspace shapeIds={compareIds} selectedId={selected.id} onToggle={toggleCompare} onSelect={selectShape} a={a} b={b} c={c} sides={sides} angle={angle} precision={precision} unit={unit} /> : studioTab === "Learn" ? <ShapeLearnWorkspace shape={selected} metrics={metrics} step={learnStep} onStep={setLearnStep} onOpenInspector={() => { setInspectorTab("Properties"); openMobileInspector(); }} /> : (
+        <>
         <section className="shapes-viewport-card">
           <div className="shapes-viewport-toolbar">
             <div className="shapes-segmented-control">
@@ -357,8 +457,9 @@ export default function ShapesExplorer() {
               <button type="button" className="shapes-icon-button" onClick={resetView} title="Fit view"><RefreshCw className="h-4 w-4" /></button>
             </div>
           </div>
-          <div className="shapes-stage" style={{ minHeight: Math.min(stageHeight, 520) }}>
+          <div className={`shapes-stage ${snapToGrid ? "is-snapping" : ""}`} style={{ minHeight: Math.min(stageHeight, 520), backgroundSize: showGrid ? `${28 * gridSpacing}px ${28 * gridSpacing}px, ${28 * gridSpacing}px ${28 * gridSpacing}px, 100% 100%, 100% 100%` : "100% 100%, 100% 100%" }}>
             <div className="shapes-axis-cube" aria-hidden="true"><span>TOP</span><span>LEFT</span><span>FRONT</span></div>
+            {showAxes && <div className="shapes-coordinate-axes" aria-hidden="true"><i /><b /><span>x</span><em>y</em></div>}
             {viewTab === "2d" ? (
               <InteractiveShape2D resetKey={`${selected.id}-${viewResetNonce}`} onZoomIn={zoomIn} onZoomOut={zoomOut}>
                 <ShapeSvg shape={selected.id} a={a} b={b} c={c} sides={sides} angle={angle} zoom={viewZoom} rotation={viewRotation} fillMode={fillMode} colorA={colorA} colorB={colorB} glow={shapeGlow} />
@@ -375,12 +476,14 @@ export default function ShapesExplorer() {
             )}
             {showLabels && <div className="shapes-stage-labels"><span>{symbolSummary(selected.id, a, b, c, sides, angle)}</span><span>{selected.category}</span></div>}
             <div className="shapes-floating-controls">
-              <button type="button" className={autoRotate ? "is-active" : ""} onClick={() => setAutoRotate((value) => !value)}><RotateCw className="h-4 w-4" />Rotate</button>
-              <button type="button"><Eye className="h-4 w-4" />Pan</button>
-              <button type="button"><Wand2 className="h-4 w-4" />Measure</button>
-              <button type="button" onClick={() => setShowGrid((value) => !value)}><Grid3X3 className="h-4 w-4" />Grid</button>
+              <button type="button" className={toolMode === "rotate" ? "is-active" : ""} onClick={() => { setToolMode("rotate"); setAutoRotate((value) => !value); }}><RotateCw className="h-4 w-4" />Rotate</button>
+              <button type="button" className={toolMode === "pan" ? "is-active" : ""} onClick={() => setToolMode("pan")}><Eye className="h-4 w-4" />Pan</button>
+              <button type="button" className={toolMode === "measure" ? "is-active" : ""} onClick={() => setToolMode("measure")}><Ruler className="h-4 w-4" />Measure</button>
+              <button type="button" className={toolMode === "grid" ? "is-active" : ""} onClick={() => { setToolMode("grid"); setShowGrid((value) => !value); }}><Grid3X3 className="h-4 w-4" />Grid</button>
               <button type="button" onClick={resetView}><RefreshCw className="h-4 w-4" />Reset view</button>
             </div>
+            {toolMode === "measure" && <ShapeMeasurementOverlay shape={selected} metrics={metrics} unit={unit} precision={precision} />}
+            {toolMode === "grid" && <div className="shapes-grid-popover"><label>Spacing<input type="number" min="0.25" max="5" step="0.25" value={gridSpacing} onChange={(event) => setGridSpacing(Number(event.target.value))} /></label><label><input type="checkbox" checked={snapToGrid} onChange={(event) => setSnapToGrid(event.target.checked)} />Snap</label><label><input type="checkbox" checked={showAxes} onChange={(event) => setShowAxes(event.target.checked)} />Axes</label></div>}
           </div>
           <div role="separator" aria-label="Resize visualization height" onPointerDown={(event) => startHeightResize(event, stageHeight, setStageHeight)} className="shapes-resize-handle"><span /></div>
         </section>
@@ -390,9 +493,12 @@ export default function ShapesExplorer() {
             {(["Live Values", "Net & Cross-Sections", "Formula Map"] as const).map((tab) => <button key={tab} type="button" className={(studioTab === "Explore" && tab === "Live Values") || (studioTab === "Properties" && tab.startsWith("Net")) || (studioTab === "Formulas" && tab === "Formula Map") ? "is-active" : ""}>{tab}</button>)}
             <span className="shapes-live-status">Updates live</span>
           </div>
-          <div className="shapes-dock-grid">{Object.entries(metrics).slice(0, 6).map(([label, value]) => <Metric key={label} label={label} value={value} />)}</div>
-          {studioTab === "Properties" && <div className="shapes-net-strip"><NetExplorer shape={selected.id} paint={surfacePaint} /><SliderControl density="compact" label="Surface paint" value={surfacePaint} min={0} max={100} step={5} onChange={setSurfacePaint} unit="%" /></div>}
+          <div className="shapes-dock-grid">{Object.entries(metrics).slice(0, 6).map(([label, value]) => <Metric key={label} label={label} value={converted(value, label)} suffix={metricUnit(label)} />)}</div>
+          {studioTab === "Properties" && <div className="shapes-net-strip"><NetExplorer shape={selected.id} paint={surfacePaint} progress={netProgress} /><div className="shapes-net-controls"><SliderControl density="compact" label="Fold / unfold" value={netProgress} min={0} max={100} step={5} onChange={setNetProgress} unit="%" /><SliderControl density="compact" label="Surface paint" value={surfacePaint} min={0} max={100} step={5} onChange={setSurfacePaint} unit="%" /><button type="button" onClick={() => setNetProgress(0)}>Reset net</button></div><ShapeCrossSectionControls shape={selected} axis={sliceAxis} position={slicePosition} angle={sliceAngle} onAxis={setSliceAxis} onPosition={setSlicePosition} onAngle={setSliceAngle} /></div>}
+          {studioTab === "Formulas" && <FormulaDependencyPanel shape={selected} entries={formulaEntries} highlighted={highlightedSymbol} onHighlight={setHighlightedSymbol} />}
         </section>
+        </>
+        )}
       </main>
 
       {mobileInspectorOpen && <button type="button" className="shapes-mobile-sheet-backdrop" onClick={closeMobileInspector} aria-label="Close shape properties" />}
@@ -406,16 +512,16 @@ export default function ShapesExplorer() {
           {inspectorTab === "Dimensions" && (
             <>
               <SliderGroup title="">
-                <SliderControl density="compact" label={primaryLabel(selected)} value={a} min={0.5} max={10} step={0.1} onChange={(value) => { setA(value); if (lockProportions && needsSecond(selected.id)) setB(value); }} />
-                {needsSecond(selected.id) && <SliderControl density="compact" label={secondLabel(selected)} value={b} min={secondRange.min} max={secondRange.max} step={0.1} onChange={setB} />}
-                {needsThird(selected.id) && <SliderControl density="compact" label={thirdLabel(selected)} value={c} min={thirdRange.min} max={thirdRange.max} step={0.1} onChange={setC} />}
-                {selected.id === "regular-polygon" && <SliderControl density="compact" label="Number of sides" value={sides} min={3} max={12} step={1} onChange={(value) => setSides(Math.round(value))} />}
-                {(selected.id === "sector" || selected.id === "segment") && <SliderControl density="compact" label="Central angle" value={angle} min={5} max={360} step={1} onChange={setAngle} unit="deg" />}
+                <PreciseDimensionControl label={primaryLabel(selected)} value={a} min={0.5} max={10} step={0.1} unit={unit} highlighted={Boolean(highlightedSymbol)} onChange={(value) => { setDimension("a", value); if (lockProportions && needsSecond(selected.id)) setB(value); }} />
+                {needsSecond(selected.id) && <PreciseDimensionControl label={secondLabel(selected)} value={b} min={secondRange.min} max={secondRange.max} step={0.1} unit={unit} highlighted={Boolean(highlightedSymbol)} onChange={(value) => setDimension("b", value)} />}
+                {needsThird(selected.id) && <PreciseDimensionControl label={thirdLabel(selected)} value={c} min={thirdRange.min} max={thirdRange.max} step={0.1} unit={unit} highlighted={Boolean(highlightedSymbol)} onChange={(value) => setDimension("c", value)} />}
+                {selected.id === "regular-polygon" && <PreciseDimensionControl label="Number of sides" value={sides} min={3} max={12} step={1} unit="units" highlighted={highlightedSymbol === "n"} onChange={(value) => setDimension("sides", value)} />}
+                {(selected.id === "sector" || selected.id === "segment") && <PreciseDimensionControl label="Central angle" value={angle} min={5} max={360} step={1} unit="units" highlighted={highlightedSymbol === "theta"} onChange={(value) => setDimension("angle", value)} suffix="°" />}
               </SliderGroup>
               <div className="shapes-toggle-list">
                 <label><input type="checkbox" checked={lockProportions} onChange={(event) => setLockProportions(event.target.checked)} />Lock proportions</label>
                 <label><input type="checkbox" checked={showLabels} onChange={(event) => setShowLabels(event.target.checked)} />Show labels</label>
-                <label><input type="checkbox" checked={shapeGlow} onChange={() => setShapeGlow((value) => !value)} />Glow model</label>
+                <label><input type="checkbox" checked={shapeGlow} onChange={() => { recordHistory(); setShapeGlow((value) => !value); }} />Glow model</label>
               </div>
             </>
           )}
@@ -428,6 +534,8 @@ export default function ShapesExplorer() {
       </aside>
 
       <footer className="shapes-status-bar"><span className="is-online">Offline</span><span>{viewTab === "3d" ? "Interactive model" : "Planar model"}</span><span>Exact formulas</span><span>Saved</span></footer>
+      {settingsOpen && <ShapeSettingsDialog unit={unit} precision={precision} highContrast={highContrast} largeLabels={largeLabels} colorblind={colorblindPalette} reducedMotion={reducedMotion} onUnit={setUnit} onPrecision={setPrecision} onHighContrast={setHighContrast} onLargeLabels={setLargeLabels} onColorblind={(value) => { setColorblindPalette(value); if (value) { setColorA("#0072b2"); setColorB("#f0e442"); } }} onClose={() => setSettingsOpen(false)} />}
+      {exportOpen && <ShapeExportDialog shape={selected} metrics={metrics} summary={exportSummary} onClose={() => setExportOpen(false)} />}
     </div>
   );
 
@@ -1088,6 +1196,55 @@ function MiniShape({ id, size = "medium" }: { id: ShapeId; size?: "compact" | "s
   return <ShapeThumbnail src={shape.thumbnail} name={shape.name} size={size} decorative />;
 }
 
+function ShapeCompareWorkspace({ shapeIds, selectedId, onToggle, onSelect, a, b, c, sides, angle, precision, unit }: { shapeIds: ShapeId[]; selectedId: ShapeId; onToggle: (id: ShapeId) => void; onSelect: (shape: ShapeDefinition) => void; a: number; b: number; c: number; sides: number; angle: number; precision: number; unit: ShapeUnit }) {
+  const compared = shapeIds.map((id) => shapeById(shapes, id));
+  return <section className="shapes-mode-workspace"><header><div><span>Compare workspace</span><h2>Shape comparison</h2><p>Pin up to four shapes from the library. Dimensions and metrics use the current controls.</p></div><span>{compared.length}/4 pinned</span></header>{compared.length ? <div className="shapes-compare-grid">{compared.map((shape) => { const metrics = getMetrics(shape.id, a, b, c, sides, angle); const structure = shapeProperties(shape); return <article key={shape.id} className={shape.id === selectedId ? "is-selected" : ""}><button type="button" className="shapes-compare-remove" onClick={() => onToggle(shape.id)} aria-label={`Remove ${shape.name} from comparison`}><X /></button><button type="button" className="shapes-compare-select" onClick={() => onSelect(shape)}><ShapeThumbnail src={shape.thumbnail} name={shape.name} size="compare" decorative /><strong>{shape.name}</strong><span>{shape.category}</span></button><p><MathExpression value={shape.formula} /></p><dl><div><dt>Faces</dt><dd>{structure.faces}</dd></div><div><dt>Edges</dt><dd>{structure.edges}</dd></div><div><dt>Vertices</dt><dd>{structure.vertices}</dd></div>{Object.entries(metrics).slice(0, 3).map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{roundTo(value * unitScale[unit], precision)}</dd></div>)}</dl></article>; })}</div> : <div className="shapes-empty-state"><Shapes /><strong>No shapes pinned</strong><span>Use the check icon beside a library shape.</span></div>}</section>;
+}
+
+function ShapeLearnWorkspace({ shape, metrics, step, onStep, onOpenInspector }: { shape: ShapeDefinition; metrics: Metrics; step: number; onStep: (step: number) => void; onOpenInspector: () => void }) {
+  const steps = ["Recognize", "Measure", "Calculate", "Apply"];
+  const content = [shapeIdentityFacts(shape.id).join(" "), `Identify ${shape.dimensions.join(", ")}. Change a dimension and observe which measurements respond.`, `Use ${shape.formula}. The current values include ${Object.entries(metrics).slice(0, 2).map(([label, value]) => `${label} ${roundTo(value, 2)}`).join(" and ")}.`, `Find a real example: ${shape.use}`][step];
+  return <section className="shapes-mode-workspace shapes-learn-workspace"><header><div><span>Guided lesson</span><h2>{shape.name}</h2><p>{shape.description}</p></div><Award /></header><div className="shapes-learning-path">{steps.map((label, index) => <button type="button" key={label} className={index === step ? "is-active" : index < step ? "is-complete" : ""} onClick={() => onStep(index)}><span>{index < step ? <Check /> : index + 1}</span>{label}</button>)}</div><div className="shapes-learn-card"><ShapeThumbnail src={shape.thumbnail} name={shape.name} size="compare" decorative /><div><h3>{steps[step]}</h3><p>{content}</p><div><button type="button" onClick={() => onStep(Math.max(0, step - 1))} disabled={!step}>Previous</button><button type="button" onClick={() => step < 3 ? onStep(step + 1) : onOpenInspector()}>{step < 3 ? "Continue" : "Inspect shape"}</button></div></div></div></section>;
+}
+
+function PreciseDimensionControl({ label, value, min, max, step, unit, suffix, highlighted, onChange }: { label: string; value: number; min: number; max: number; step: number; unit: ShapeUnit; suffix?: string; highlighted: boolean; onChange: (value: number) => void }) {
+  return <label className={`shapes-precise-control ${highlighted ? "is-highlighted" : ""}`}><span>{label}<span>{unit === "units" ? suffix ?? "" : unit}</span></span><div><input type="range" min={min} max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} /><input aria-label={`${label} exact value`} type="number" min={min} max={max} step={step} value={value} onChange={(event) => onChange(Math.min(max, Math.max(min, Number(event.target.value))))} /></div></label>;
+}
+
+function ShapeMeasurementOverlay({ shape, metrics, unit, precision }: { shape: ShapeDefinition; metrics: Metrics; unit: ShapeUnit; precision: number }) {
+  return <div className="shapes-measure-overlay"><header><Ruler /><strong>{shape.name} measurements</strong></header>{Object.entries(metrics).slice(0, 4).map(([label, value]) => <span key={label}>{label}<b>{roundTo(value * unitScale[unit], precision)} {unit === "units" ? "u" : unit}</b></span>)}</div>;
+}
+
+function ShapeCrossSectionControls({ shape, axis, position, angle, onAxis, onPosition, onAngle }: { shape: ShapeDefinition; axis: "x" | "y" | "z"; position: number; angle: number; onAxis: (axis: "x" | "y" | "z") => void; onPosition: (value: number) => void; onAngle: (value: number) => void }) {
+  const section = shape.kind === "2d" ? "Cross-sections require a 3D solid." : /sphere|ellipsoid/.test(shape.id) ? "Ellipse" : /cone|pyramid/.test(shape.id) ? "Scaled polygon" : /cylinder/.test(shape.id) ? (axis === "z" ? "Circle" : "Rectangle") : "Polygon";
+  return <section className="shapes-cross-section"><header><SlidersHorizontal /><strong>Cross-section</strong><span>{section}</span></header>{shape.kind === "3d" ? <><label>Plane<select value={axis} onChange={(event) => onAxis(event.target.value as typeof axis)}><option value="x">X plane</option><option value="y">Y plane</option><option value="z">Z plane</option></select></label><SliderControl density="compact" label="Position" value={position} min={0} max={100} step={1} onChange={onPosition} unit="%" /><SliderControl density="compact" label="Angle" value={angle} min={-90} max={90} step={1} onChange={onAngle} unit="°" /></> : <p>{section}</p>}</section>;
+}
+
+function FormulaDependencyPanel({ shape, entries, highlighted, onHighlight }: { shape: ShapeDefinition; entries: ShapeFormulaEntry[]; highlighted: string | null; onHighlight: (symbol: string | null) => void }) {
+  const symbols = Array.from(new Set((shape.formula.match(/[a-zA-Z]+/g) ?? []).filter((token) => !["SA", "CSA", "TSA", "A", "V", "P"].includes(token)))).slice(0, 6);
+  return <div className="shapes-formula-dependencies"><div><strong>Formula dependencies</strong><span>Select a symbol to highlight its controls.</span></div><div>{symbols.map((symbol) => <button type="button" key={symbol} className={highlighted === symbol ? "is-active" : ""} onClick={() => onHighlight(highlighted === symbol ? null : symbol)}>{symbol}</button>)}</div><section>{entries.map((entry) => <div key={entry.title}><strong>{entry.title}</strong><MathExpression value={entry.formula} /><span>{entry.note}</span></div>)}</section></div>;
+}
+
+function ShapeSettingsDialog({ unit, precision, highContrast, largeLabels, colorblind, reducedMotion, onUnit, onPrecision, onHighContrast, onLargeLabels, onColorblind, onClose }: { unit: ShapeUnit; precision: number; highContrast: boolean; largeLabels: boolean; colorblind: boolean; reducedMotion: boolean; onUnit: (unit: ShapeUnit) => void; onPrecision: (value: number) => void; onHighContrast: (value: boolean) => void; onLargeLabels: (value: boolean) => void; onColorblind: (value: boolean) => void; onClose: () => void }) {
+  return <div className="shapes-modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}><section className="shapes-modal" role="dialog" aria-modal="true" aria-label="Shape Explorer settings"><header><h2>Workspace settings</h2><button type="button" onClick={onClose} aria-label="Close settings"><X /></button></header><label>Measurement unit<select value={unit} onChange={(event) => onUnit(event.target.value as ShapeUnit)}><option value="units">Abstract units</option><option value="mm">Millimetres</option><option value="cm">Centimetres</option><option value="m">Metres</option><option value="in">Inches</option></select></label><label>Decimal precision<select value={precision} onChange={(event) => onPrecision(Number(event.target.value))}>{[0, 1, 2, 3, 4].map((value) => <option key={value} value={value}>{value} places</option>)}</select></label><label className="shapes-setting-toggle"><span>High contrast</span><input type="checkbox" checked={highContrast} onChange={(event) => onHighContrast(event.target.checked)} /></label><label className="shapes-setting-toggle"><span>Larger labels</span><input type="checkbox" checked={largeLabels} onChange={(event) => onLargeLabels(event.target.checked)} /></label><label className="shapes-setting-toggle"><span>Color-blind safe palette</span><input type="checkbox" checked={colorblind} onChange={(event) => onColorblind(event.target.checked)} /></label><p>Reduced motion follows your device setting and is currently {reducedMotion ? "enabled" : "disabled"}.</p></section></div>;
+}
+
+function ShapeExportDialog({ shape, metrics, summary, onClose }: { shape: ShapeDefinition; metrics: Metrics; summary: () => void; onClose: () => void }) {
+  const exportCsv = () => downloadTextFile(`${shape.id}-measurements.csv`, `metric,value\n${Object.entries(metrics).map(([label, value]) => `${label},${value}`).join("\n")}`);
+  const exportSvg = () => downloadTextFile(`${shape.id}.svg`, simpleShapeSvg(shape));
+  const exportPng = async () => {
+    const target = document.querySelector<HTMLElement>(".shapes-stage");
+    if (!target) return;
+    const { default: html2canvas } = await import("html2canvas");
+    const canvas = await html2canvas(target, { backgroundColor: "#06111f", scale: Math.min(window.devicePixelRatio, 2) });
+    const anchor = document.createElement("a");
+    anchor.download = `${shape.id}.png`;
+    anchor.href = canvas.toDataURL("image/png");
+    anchor.click();
+  };
+  return <div className="shapes-modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}><section className="shapes-modal" role="dialog" aria-modal="true" aria-label="Export shape"><header><h2>Export {shape.name}</h2><button type="button" onClick={onClose} aria-label="Close export"><X /></button></header><div className="shapes-export-grid"><button type="button" onClick={() => { void exportPng(); onClose(); }}><Download /><strong>Viewport image</strong><span>PNG</span></button><button type="button" onClick={() => { summary(); onClose(); }}><Download /><strong>Summary</strong><span>TXT</span></button><button type="button" onClick={() => { exportSvg(); onClose(); }}><Shapes /><strong>Vector</strong><span>SVG</span></button><button type="button" onClick={() => { exportCsv(); onClose(); }}><Grid3X3 /><strong>Measurements</strong><span>CSV</span></button><button type="button" onClick={() => window.print()}><Printer /><strong>Worksheet</strong><span>PDF / Print</span></button>{shape.kind === "3d" && <button type="button" onClick={() => downloadTextFile(`${shape.id}-3d-readme.txt`, `${shape.name} is available as an interactive Math Universe model. Mesh export is not available for this procedural solid.`)}><Cuboid /><strong>3D model note</strong><span>TXT</span></button>}</div></section></div>;
+}
+
 function MiniShapeSvg({ id, x, y }: { id: ShapeId; x: number; y: number }) {
   return <g transform={`translate(${x} ${y})`}><MiniShapeGlyph id={id} /></g>;
 }
@@ -1099,16 +1256,19 @@ function MiniShapeGlyph({ id }: { id: ShapeId }) {
   return <rect x="7" y="9" width="36" height="32" rx="4" fill="#22d3ee" opacity="0.7" stroke="#06b6d4" strokeWidth="3" />;
 }
 
-function NetExplorer({ shape, paint }: { shape: ShapeId; paint: number }) {
+function NetExplorer({ shape, paint, progress = 0 }: { shape: ShapeId; paint: number; progress?: number }) {
+  const definition = shapes.find((item) => item.id === shape);
+  const unavailable = definition?.kind === "2d" || ["sphere", "hemisphere", "hollow-cylinder", "capsule", "ellipsoid", "frustum", "torus"].includes(shape);
+  if (unavailable) return <div className="shapes-net-unavailable"><Shapes /><strong>No exact flat net</strong><span>{definition?.kind === "2d" ? "Select a 3D polyhedron or developable solid to unfold its surfaces." : `${definition?.name ?? "This solid"} cannot be represented by one exact, distortion-free flat net.`}</span></div>;
   const fill = `rgba(34,211,238,${0.12 + paint / 160})`;
   return (
-    <svg viewBox="0 0 420 220" className="h-56 w-full rounded-2xl bg-slate-100 dark:bg-slate-950">
+    <svg viewBox="0 0 420 220" className="h-56 w-full rounded-2xl bg-slate-100 dark:bg-slate-950" style={{ transform: `perspective(700px) rotateX(${progress * 0.28}deg)`, transition: "transform .2s ease" }}>
       {shape === "cylinder" ? <><rect x="110" y="80" width="190" height="70" fill={fill} stroke="#06b6d4" strokeWidth="3" /><circle cx="95" cy="115" r="35" fill={fill} stroke="#f59e0b" strokeWidth="3" /><circle cx="315" cy="115" r="35" fill={fill} stroke="#f59e0b" strokeWidth="3" /></> :
         shape === "cone" ? <><path d="M210 30 L320 170 L100 170 Z" fill={fill} stroke="#06b6d4" strokeWidth="3" /><circle cx="210" cy="170" r="42" fill={fill} stroke="#f59e0b" strokeWidth="3" /></> :
         shape === "square-pyramid" ? <><rect x="175" y="85" width="70" height="70" fill={fill} stroke="#06b6d4" strokeWidth="3" /><polygon points="175,85 210,25 245,85" fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points="245,85 310,120 245,155" fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points="245,155 210,215 175,155" fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points="175,155 110,120 175,85" fill={fill} stroke="#f59e0b" strokeWidth="3" /></> :
         shape === "triangular-prism" ? <><polygon points="70,150 125,55 180,150" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="180" y="55" width="90" height="95" fill={fill} stroke="#f59e0b" strokeWidth="3" /><polygon points="270,150 325,55 380,150" fill={fill} stroke="#06b6d4" strokeWidth="3" /></> :
         <><rect x="175" y="85" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="125" y="85" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="225" y="85" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="275" y="85" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="175" y="35" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /><rect x="175" y="135" width="50" height="50" fill={fill} stroke="#06b6d4" strokeWidth="3" /></>}
-      <text x="20" y="205" fill="#64748b" className="text-xs font-bold">Surface-area unfolding net and folding model</text>
+      <text x="20" y="205" fill="#64748b" className="text-xs font-bold">{progress ? `Folded ${progress}%` : "Surface-area unfolding net and folding model"}</text>
     </svg>
   );
 }
@@ -1185,8 +1345,13 @@ function worksheetText(items: ShapeDefinition[]) {
   return items.map((shape, index) => `${index + 1}. ${shape.name}\nFormula: ${shape.formula}\nTask: Find a real object shaped like this and write its dimensions.\n`).join("\n");
 }
 
-function Metric({ label, value }: { label: string; value: number }) {
-  return <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs text-slate-500 dark:text-slate-400">{label}</p><p className="font-bold">{roundTo(value, 2)}</p></div>;
+function Metric({ label, value, suffix }: { label: string; value: number; suffix?: string }) {
+  return <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10"><p className="text-xs text-slate-500 dark:text-slate-400">{label}</p><p className="font-bold">{roundTo(value, 3)}{suffix ? <small className="ml-1 text-[10px] text-slate-500">{suffix}</small> : null}</p></div>;
+}
+
+function shapeComplexity(shape: ShapeDefinition) {
+  const properties = shapeProperties(shape);
+  return properties.faces + properties.edges + properties.vertices + properties.sides + properties["curved edges"] * 2;
 }
 
 function InfoTile({ label, value }: { label: string; value: string }) {

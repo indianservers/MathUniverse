@@ -827,7 +827,7 @@ export const navSections: NavSection[] = [
           { title: "AR Math Lab", route: "/modules/ar-math-lab", icon: "ScanLine", searchTerms: ["ar graph", "xr solids", "camera coordinates", "webxr"] },
           { title: "Matrix Transformations", route: "/math/matrix-transformations", icon: "Workflow" },
           { title: "Eigenvectors", route: "/math/eigenvectors", icon: "Sparkles" },
-          { title: "Functions and Graphs", route: "/math/functions-graphs", icon: "FunctionSquare" },
+          { title: "Functions and Graphs", route: "/workspace/graph", icon: "FunctionSquare" },
           { title: "Limits and Continuity", route: "/math/limits-continuity", icon: "Sigma" },
           { title: "Derivative Tangents", route: "/math/derivatives", icon: "Sigma" },
           { title: "Integration Area", route: "/math/integration", icon: "Sigma" },

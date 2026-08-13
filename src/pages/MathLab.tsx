@@ -1,11 +1,11 @@
-import { LayoutGrid, LayoutList, Search, Star } from "lucide-react";
+import { CheckCircle2, LayoutGrid, LayoutList, Search, ShieldCheck, Star } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { MathToolCard, MathToolRow } from "../components/math-lab/MathLabShared";
 import SectionCard from "../components/ui/SectionCard";
 import TopicHeader from "../components/ui/TopicHeader";
 import { EmptyState, ToolProgressIndicator } from "../components/ui/UiFeedback";
-import { mathLabTools } from "../data/mathLabTools";
+import { mathLabEngineFamilies, mathLabEngineReport, mathLabTools, type MathLabEngineFamily } from "../data/mathLabTools";
 
 const exploredToolsKey = "math-universe-explored-tools";
 const favoriteKey = "math-universe-favorite-cards";
@@ -30,7 +30,8 @@ export default function MathLab() {
   const [query, setQuery] = useState(() => sessionStorage.getItem(SESSION_QUERY_KEY) ?? "");
   const [filter, setFilter] = useState<"all" | "favorites">(() => (sessionStorage.getItem(SESSION_FILTER_KEY) ?? "all") as "all" | "favorites");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [exploredCount, setExploredCount] = useState(12);
+  const [exploredCount, setExploredCount] = useState(0);
+  const [engineFilter, setEngineFilter] = useState<"all" | MathLabEngineFamily>("all");
   const [favorites, setFavorites] = useState<string[]>([]);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -44,8 +45,8 @@ export default function MathLab() {
     setFavorites(readFavorites());
     try {
       const explored = JSON.parse(localStorage.getItem(exploredToolsKey) ?? "[]");
-      setExploredCount(Math.max(12, Array.isArray(explored) ? explored.length : 0));
-    } catch { setExploredCount(12); }
+      setExploredCount(Array.isArray(explored) ? new Set(explored).size : 0);
+    } catch { setExploredCount(0); }
   }, []);
 
   useEffect(() => {
@@ -70,12 +71,13 @@ export default function MathLab() {
     const normalized = query.trim().toLowerCase();
     let base = mathLabTools;
     if (filter === "favorites") base = base.filter((t) => favorites.includes(t.route));
+    if (engineFilter !== "all") base = base.filter((t) => t.engineFamily === engineFilter);
     if (!normalized) return base;
     return base.filter((tool) => {
       const haystack = [tool.title, tool.description, tool.difficulty, ...tool.useCases].join(" ").toLowerCase();
       return haystack.includes(normalized);
     });
-  }, [query, filter, favorites]);
+  }, [query, filter, favorites, engineFilter]);
 
   return (
     <div className="space-y-3">
@@ -113,7 +115,21 @@ export default function MathLab() {
               <button type="button" onClick={() => setViewMode("list")} className={`flex-1 p-2 transition ${viewMode === "list" ? "bg-cyan-500 text-white" : "text-slate-500 hover:bg-slate-100 dark:hover:bg-white/10"}`} aria-label="List view"><LayoutList className="mx-auto h-4 w-4" /></button>
             </div>
           </div>
-          <ToolProgressIndicator explored={exploredCount} total={60} />
+          <ToolProgressIndicator explored={Math.min(exploredCount, mathLabTools.length)} total={mathLabTools.length} />
+          <SectionCard title="Engine Health" compact>
+            <div className="grid grid-cols-3 gap-2 text-center">
+              <div className="rounded-xl bg-emerald-50 p-2 dark:bg-emerald-400/10"><CheckCircle2 className="mx-auto h-4 w-4 text-emerald-500" /><b className="mt-1 block text-sm">{mathLabEngineReport.validated}</b><span className="text-[10px] font-bold text-slate-500">ready</span></div>
+              <div className="rounded-xl bg-cyan-50 p-2 dark:bg-cyan-400/10"><ShieldCheck className="mx-auto h-4 w-4 text-cyan-500" /><b className="mt-1 block text-sm">{mathLabEngineReport.families}</b><span className="text-[10px] font-bold text-slate-500">engines</span></div>
+              <div className="rounded-xl bg-violet-50 p-2 dark:bg-violet-400/10"><LayoutGrid className="mx-auto h-4 w-4 text-violet-500" /><b className="mt-1 block text-sm">{mathLabEngineReport.options}</b><span className="text-[10px] font-bold text-slate-500">options</span></div>
+            </div>
+            <label className="mt-3 block text-xs font-black text-slate-500 dark:text-slate-400">
+              Engine family
+              <select value={engineFilter} onChange={(event) => setEngineFilter(event.target.value as "all" | MathLabEngineFamily)} className="mt-1.5 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-950 dark:text-slate-200">
+                <option value="all">All engine families</option>
+                {mathLabEngineFamilies.map((family) => <option key={family.name} value={family.name}>{family.name} · {family.tools} tools</option>)}
+              </select>
+            </label>
+          </SectionCard>
           {recentTools.length > 0 && (
             <SectionCard title="Recent Tools" compact>
               <div className="flex flex-wrap gap-2">

@@ -43,6 +43,7 @@ import {
   cliqueAndIndependentSets,
   clusteringCoefficients,
   complementGraph,
+  connectedComponents,
   cytoscapeMetrics,
   degreeMap,
   directedDegreeMap,
@@ -115,184 +116,264 @@ type GraphTemplateName = "path" | "cycle" | "complete" | "bipartite" | "tree" | 
 type GraphLayoutName = "circular" | "force" | "tree" | "layered";
 
 export default function GraphTheoryModule() {
+  return <GraphTheoryStudio />;
+}
+
+function GraphTheoryStudio() {
   const store = useGraphTheoryStore();
-  const [focusMode, setFocusMode] = useState(false);
-  const [studyMode, setStudyMode] = useState<GraphStudyMode>("student");
-  const [densityMode, setDensityMode] = useState<GraphDensityMode>("beginner");
+  const [activeTab, setActiveTab] = useState<"build" | "representations" | "algorithms" | "properties" | "learn">(() => readStudioTab());
+  const [tool, setTool] = useState<"select" | "move" | "connect" | "pan" | "lasso">("move");
+  const [selectedNodeId, setSelectedNodeId] = useState(store.nodes[1]?.id ?? store.nodes[0]?.id ?? "");
+  const [selectedEdgeId, setSelectedEdgeId] = useState(store.edges[0]?.id ?? "");
+  const [connectSource, setConnectSource] = useState<string | null>(null);
+  const [draggingNode, setDraggingNode] = useState<string | null>(null);
+  const [grid, setGrid] = useState(true);
+  const [labels, setLabels] = useState(true);
+  const [weights, setWeights] = useState(true);
+  const [degreesVisible, setDegreesVisible] = useState(false);
+  const [arrows, setArrows] = useState(true);
+  const [snap, setSnap] = useState(false);
+  const [representationTab, setRepresentationTab] = useState<"list" | "matrix" | "incidence">("list");
+  const [templateSearch, setTemplateSearch] = useState("");
+  const [templateSize, setTemplateSize] = useState(6);
+  const [history, setHistory] = useState<GraphProject[]>([]);
+  const [future, setFuture] = useState<GraphProject[]>([]);
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const svgRef = useRef<SVGSVGElement>(null);
   const project = useMemo(() => ({ nodes: store.nodes, edges: store.edges, directed: store.directed }), [store.nodes, store.edges, store.directed]);
+  const metrics = useMemo(() => graphMetrics(project), [project]);
+  const degrees = useMemo(() => directedDegreeMap(project), [project]);
+  const selectedNode = project.nodes.find((node) => node.id === selectedNodeId) ?? project.nodes[0];
+  const selectedEdge = project.edges.find((edge) => edge.id === selectedEdgeId) ?? project.edges[0];
   const algorithm = useMemo(() => algorithmSteps(project, store.selectedAlgorithm), [project, store.selectedAlgorithm]);
   const activeStep = algorithm[Math.min(store.stepIndex, Math.max(0, algorithm.length - 1))];
-  const coloring = useMemo(() => chromaticNumber(project), [project]);
-  const workerColoring = useWorkerColoring(project);
   const fileRef = useRef<HTMLInputElement>(null);
-  const tabOptions = useMemo<GraphTab[]>(() => [
-    {
-      id: "build",
-      label: "Build",
-      group: "Build",
-      icon: <GitBranch className="h-4 w-4" />,
-      summary: "Create, edit, template, layout, and inspect the current graph.",
-      content: (
-        <div className={`grid gap-5 ${focusMode ? "" : "xl:grid-cols-[1.2fr_.8fr]"}`}>
-          <GraphEditor project={project} activeStep={activeStep} coloring={workerColoring?.assignment ?? coloring.assignment} onNodes={store.setNodes} onEdges={store.setEdges} onAddNode={store.addNode} onAddEdge={store.addEdge} onReset={store.resetProject} directed={store.directed} onDirected={store.setDirected} focusMode={focusMode} densityMode={densityMode} />
-          {!focusMode ? <GraphRepresentationLab project={project} /> : null}
-        </div>
-      ),
-    },
-    {
-      id: "structures",
-      label: "Structures",
-      group: "Analyze",
-      icon: <Network className="h-4 w-4" />,
-      summary: "Check degree, density, connectivity, isomorphism, and subgraphs.",
-      content: (
-        <div className={`grid gap-5 ${focusMode ? "" : "xl:grid-cols-2"}`}>
-          <GraphStructureLab project={project} />
-          {!focusMode ? <ConnectivityLab project={project} /> : null}
-          {!focusMode ? <IsomorphismChecker project={project} /> : null}
-          {!focusMode ? <SubgraphStudio project={project} /> : null}
-        </div>
-      ),
-    },
-    {
-      id: "trees",
-      label: "Trees",
-      group: "Analyze",
-      icon: <Waypoints className="h-4 w-4" />,
-      summary: "Explore trees, spanning trees, directed trees, and topological order.",
-      content: (
-        <div className={`grid gap-5 ${focusMode ? "" : "xl:grid-cols-2"}`}>
-          <TreeVisualizationSystem />
-          {!focusMode ? <SpanningTreeGenerator project={project} /> : null}
-          {!focusMode ? <DirectedGraphLab project={project} /> : null}
-        </div>
-      ),
-    },
-    {
-      id: "circuits",
-      label: "Circuits",
-      group: "Analyze",
-      icon: <Route className="h-4 w-4" />,
-      summary: "Study paths, cycles, Euler traces, and Hamiltonian cycles.",
-      content: (
-        <div className={`grid gap-5 ${focusMode ? "" : "xl:grid-cols-2"}`}>
-          <EulerHamiltonianExplorer project={project} />
-          {!focusMode ? <PathCycleLab project={project} /> : null}
-        </div>
-      ),
-    },
-    {
-      id: "coloring",
-      label: "Coloring",
-      group: "Analyze",
-      icon: <Palette className="h-4 w-4" />,
-      summary: "Use coloring, planarity, bipartite checks, and matching together.",
-      content: (
-        <div className={`grid gap-5 ${focusMode ? "" : "xl:grid-cols-2"}`}>
-          <PlanarGraphStudio project={project} />
-          {!focusMode ? <GraphColoringEngine project={project} coloring={workerColoring ?? coloring} workerEnabled={Boolean(workerColoring)} /> : null}
-          {!focusMode ? <BipartiteMatchingLab project={project} /> : null}
-        </div>
-      ),
-    },
-    {
-      id: "advanced",
-      label: "Advanced",
-      group: "Analyze",
-      icon: <BrainCircuit className="h-4 w-4" />,
-      summary: "Compare cliques, independent sets, and complement graphs.",
-      content: (
-        <div className={`grid gap-5 ${focusMode ? "" : "xl:grid-cols-2"}`}>
-          <CliqueIndependentLab project={project} />
-          {!focusMode ? <ComplementGraphLab project={project} /> : null}
-        </div>
-      ),
-    },
-    {
-      id: "networks",
-      label: "Networks",
-      group: "Analyze",
-      icon: <Layers className="h-4 w-4" />,
-      summary: "Inspect flows, cuts, eccentricity, center, clustering, and girth.",
-      content: (
-        <div className={`grid gap-5 ${focusMode ? "" : "xl:grid-cols-2"}`}>
-          <NetworkFlowLab project={project} />
-          {!focusMode ? <NetworkMetricsLab project={project} /> : null}
-        </div>
-      ),
-    },
-    {
-      id: "algorithms",
-      label: "Algorithms",
-      group: "Algorithms",
-      icon: <Play className="h-4 w-4" />,
-      summary: "Animate traversal, shortest path, MST, and topological algorithms.",
-      content: (
-        <div className={`grid gap-5 ${focusMode ? "" : "xl:grid-cols-[.75fr_1.25fr]"}`}>
-          <GraphAlgorithmsVisualizer project={project} selected={store.selectedAlgorithm} steps={algorithm} stepIndex={store.stepIndex} onAlgorithm={store.setSelectedAlgorithm} onStep={store.setStepIndex} />
-          {!focusMode ? <ShortestPathLab project={project} /> : null}
-        </div>
-      ),
-    },
-    {
-      id: "practice",
-      label: "Practice",
-      group: "Practice",
-      icon: <GraduationCap className="h-4 w-4" />,
-      summary: "Use challenge mode, save/load, tutor hints, and classroom prompts.",
-      content: <EducationalFeatures project={project} challengeMode={store.challengeMode} onChallenge={store.setChallengeMode} onLoad={store.loadProject} fileRef={fileRef} />,
-    },
-    {
-      id: "theory",
-      label: "Theory",
-      group: "Theory",
-      icon: <BookOpen className="h-4 w-4" />,
-      summary: "Connect visual checks to theorem statements and obstruction ideas.",
-      content: (
-        <div className={`grid gap-5 ${focusMode ? "" : "xl:grid-cols-2"}`}>
-          <PlanarityObstructionLab project={project} />
-          {!focusMode ? <GraphTheoryReference project={project} /> : null}
-        </div>
-      ),
-    },
-  ], [activeStep, algorithm, coloring, densityMode, fileRef, focusMode, project, store, workerColoring]);
 
   useEffect(() => {
     if (!isUsableGraphProject(project)) store.resetProject();
   }, [project, store]);
+  useEffect(() => {
+    const onPop = () => setActiveTab(readStudioTab());
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+  useEffect(() => {
+    if (selectedNodeId && project.nodes.some((node) => node.id === selectedNodeId)) return;
+    setSelectedNodeId(project.nodes[0]?.id ?? "");
+  }, [project.nodes, selectedNodeId]);
+
+  const setTab = (tab: typeof activeTab) => {
+    setActiveTab(tab);
+    const url = new URL(window.location.href);
+    url.searchParams.set("tab", tab);
+    window.history.pushState(window.history.state, "", url);
+  };
+  const pushHistory = () => {
+    setHistory((items) => [...items.slice(-24), project]);
+    setFuture([]);
+  };
+  const setProject = (next: GraphProject) => {
+    store.setNodes(next.nodes);
+    store.setEdges(next.edges);
+    store.setDirected(next.directed);
+  };
+  const addNode = () => {
+    pushHistory();
+    store.addNode();
+  };
+  const addEdge = (source: string, target: string) => {
+    if (!source || !target) return;
+    pushHistory();
+    store.addEdge(source, target);
+  };
+  const deleteSelected = () => {
+    if (selectedNode?.id) {
+      pushHistory();
+      store.setNodes(project.nodes.filter((node) => node.id !== selectedNode.id));
+      store.setEdges(project.edges.filter((edge) => edge.source !== selectedNode.id && edge.target !== selectedNode.id));
+      return;
+    }
+    if (selectedEdge?.id) {
+      pushHistory();
+      store.setEdges(project.edges.filter((edge) => edge.id !== selectedEdge.id));
+    }
+  };
+  const undo = () => {
+    const previous = history.at(-1);
+    if (!previous) return;
+    setFuture((items) => [project, ...items]);
+    setHistory((items) => items.slice(0, -1));
+    setProject(previous);
+  };
+  const redo = () => {
+    const next = future[0];
+    if (!next) return;
+    setHistory((items) => [...items, project]);
+    setFuture((items) => items.slice(1));
+    setProject(next);
+  };
+  const applyLayoutChoice = (layout: GraphLayoutName) => {
+    pushHistory();
+    store.setNodes(layoutGraph(project, layout));
+  };
+  const applyTemplateChoice = (template: GraphTemplateName) => {
+    const replace = project.nodes.length === 0 || window.confirm("Replace the current graph? Choose Cancel to add the template beside it.");
+    const next = createSizedGraphTemplate(template, store.directed, templateSize);
+    pushHistory();
+    if (replace) setProject(next);
+    else {
+      const dx = Math.max(80, Math.min(420, project.nodes.length * 12));
+      const nodes = next.nodes.map((node) => ({ ...node, id: uniqueNodeId(project, node.id), label: uniqueNodeLabel(project, node.label), x: Math.min(866, node.x + dx), y: node.y }));
+      const idMap = new Map(next.nodes.map((node, index) => [node.id, nodes[index].id]));
+      store.setNodes([...project.nodes, ...nodes]);
+      store.setEdges([...project.edges, ...next.edges.map((edge, index) => ({ ...edge, id: `edge-${Date.now()}-${index}`, source: idMap.get(edge.source) ?? edge.source, target: idMap.get(edge.target) ?? edge.target }))]);
+    }
+  };
+  const toGraphPoint = (event: PointerEvent<SVGSVGElement>) => {
+    const rect = svgRef.current?.getBoundingClientRect();
+    if (!rect) return { x: 0, y: 0 };
+    return { x: (((event.clientX - rect.left) * 900) / rect.width - pan.x) / zoom, y: (((event.clientY - rect.top) * 520) / rect.height - pan.y) / zoom };
+  };
+  const updateNodePosition = (nodeId: string, point: { x: number; y: number }) => {
+    const next = snap ? { x: Math.round(point.x / 34) * 34, y: Math.round(point.y / 34) * 34 } : point;
+    store.setNodes(project.nodes.map((node) => node.id === nodeId ? { ...node, x: Math.max(36, Math.min(864, next.x)), y: Math.max(36, Math.min(484, next.y)) } : node));
+  };
+  const activeNodes = activeStep?.activeNodes ?? [];
+  const activeEdges = activeStep?.activeEdges ?? [];
+  const nodeById = new Map(project.nodes.map((node) => [node.id, node]));
+  const adjList = adjacencyList(project);
+  const matrix = adjacencyMatrix(project);
+  const incidence = incidenceMatrix(project);
+  const components = connectedComponents(project);
+  const cuts = bridgesAndCutVertices(project);
+  const bipartite = isBipartite(project);
+  const topo = topologicalSort({ ...project, directed: true });
+  const templates = (["path", "cycle", "complete", "bipartite", "tree", "star", "wheel"] as GraphTemplateName[]).filter((item) => item.includes(templateSearch.toLowerCase()));
 
   return (
-    <div className="space-y-5">
-      <TopicHeader
-        title="Graph Theory"
-        subtitle="Edit graphs, animate algorithms, explore trees, circuits, planarity, coloring, and graph projects."
-        difficulty="Advanced Discrete Lab"
-        estimatedMinutes={80}
-        formula={{ title: "Planar invariant", formula: String.raw`V - E + F = 2`, explanation: "For connected planar graphs, Euler's formula relates vertices, edges, and faces." }}
-      />
-
-      <GraphCockpit
-        algorithm={store.selectedAlgorithm}
-        densityMode={densityMode}
-        focusMode={focusMode}
-        onDensityMode={setDensityMode}
-        onDirected={store.setDirected}
-        onFocusMode={setFocusMode}
-        onReset={store.resetProject}
-        onStudyMode={setStudyMode}
-        project={project}
-        studyMode={studyMode}
-      />
-      {densityMode === "beginner" && !focusMode ? <GraphTheoryCompletionDashboard project={project} /> : null}
-      <GraphTheoryTabs
-        algorithm={store.selectedAlgorithm}
-        densityMode={densityMode}
-        focusMode={focusMode}
-        project={project}
-        studyMode={studyMode}
-        tabs={tabOptions}
-      />
-    </div>
+    <main className="gt-studio">
+      <header className="gt-header">
+        <div>
+          <div className="gt-breadcrumb">Home <span>&gt;</span> Discrete Mathematics <span>&gt;</span> Graph Theory</div>
+          <h1>Graph Theory Studio</h1>
+          <p>Build, analyze, and understand networks visually.</p>
+        </div>
+        <div className="gt-header-actions">
+          <span><i className="cyan-dot" />{metrics.order} vertices</span>
+          <span><i className="violet-dot" />{metrics.size} edges</span>
+          <span><Network />{project.directed ? "Directed" : "Undirected"}</span>
+          <span><Gauge />Beginner</span>
+          <button type="button" onClick={() => download("graph-theory-setup.json", serializeGraph(project))}><Save />Share setup</button>
+        </div>
+      </header>
+      <nav className="gt-tabs" role="tablist" aria-label="Graph Theory Studio tabs">
+        {([
+          ["build", "Build"], ["representations", "Representations"], ["algorithms", "Algorithms"], ["properties", "Properties"], ["learn", "Learn & Validate"],
+        ] as Array<[typeof activeTab, string]>).map(([id, label]) => <button key={id} type="button" role="tab" aria-selected={activeTab === id} className={activeTab === id ? "active" : ""} onClick={() => setTab(id)}>{label}</button>)}
+      </nav>
+      <section className="gt-workspace">
+        <aside className="gt-toolbox">
+          <PanelTitle title="Graph type" />
+          <div className="gt-segment">
+            <button type="button" className={!project.directed ? "active" : ""} onClick={() => { pushHistory(); store.setDirected(false); }}><Network />Undirected</button>
+            <button type="button" className={project.directed ? "active" : ""} onClick={() => { pushHistory(); store.setDirected(true); }}><Route />Directed</button>
+          </div>
+          <div className="gt-toggle-grid">
+            <label><input type="checkbox" checked={weights} onChange={(event) => setWeights(event.target.checked)} />Weights</label>
+            <label><input type="checkbox" checked={arrows} onChange={(event) => setArrows(event.target.checked)} />Arrows</label>
+          </div>
+          <PanelTitle title="Create" />
+          <div className="gt-action-grid">
+            <button type="button" onClick={addNode}><Plus />Add node</button>
+            <button type="button" onClick={() => setTool("connect")}><GitBranch />Connect</button>
+            <button type="button" onClick={deleteSelected}><Trash2 />Delete</button>
+            <button type="button" onClick={() => selectedNode && addNode()}><Copy />Duplicate</button>
+            <button type="button" disabled={!history.length} onClick={undo}><Undo2 />Undo</button>
+            <button type="button" disabled={!future.length} onClick={redo}>Redo</button>
+          </div>
+          <button className="gt-wide-action" type="button" onClick={() => { pushHistory(); store.resetProject(); }}>Reset sample</button>
+          <button className="gt-wide-action" type="button" onClick={() => fileRef.current?.click()}>Import graph</button>
+          <input ref={fileRef} hidden type="file" accept="application/json" onChange={(event) => void loadFile(event.target.files?.[0], store.loadProject)} />
+          <PanelTitle title="Templates" />
+          <label className="gt-search">Search templates<input value={templateSearch} onChange={(event) => setTemplateSearch(event.target.value)} /></label>
+          <label className="gt-number">Size<input type="number" min={1} value={templateSize} onChange={(event) => setTemplateSize(Math.max(1, Number(event.target.value)))} /></label>
+          <div className="gt-template-grid">{templates.map((item) => <button key={item} type="button" onClick={() => applyTemplateChoice(item)}><Network />{item}</button>)}</div>
+          <PanelTitle title="Layouts" />
+          <div className="gt-layout-grid">{(["force", "circular", "tree", "layered"] as GraphLayoutName[]).map((layout) => <button key={layout} type="button" onClick={() => applyLayoutChoice(layout)}>{layout}</button>)}</div>
+          <PanelTitle title="Toggles" />
+          <div className="gt-toggle-grid">
+            <label><input type="checkbox" checked={labels} onChange={(event) => setLabels(event.target.checked)} />Labels</label>
+            <label><input type="checkbox" checked={weights} onChange={(event) => setWeights(event.target.checked)} />Weights</label>
+            <label><input type="checkbox" checked={degreesVisible} onChange={(event) => setDegreesVisible(event.target.checked)} />Degrees</label>
+            <label><input type="checkbox" checked={grid} onChange={(event) => setGrid(event.target.checked)} />Grid</label>
+            <label><input type="checkbox" checked={snap} onChange={(event) => setSnap(event.target.checked)} />Snap</label>
+          </div>
+        </aside>
+        <section className="gt-canvas-panel">
+          <div className="gt-canvas-toolbar">
+            {(["select", "move", "connect", "pan", "lasso"] as const).map((item) => <button key={item} type="button" className={tool === item ? "active" : ""} onClick={() => setTool(item)}>{item === "select" ? <MousePointer2 /> : item === "move" ? <Move /> : item === "connect" ? <GitBranch /> : item === "pan" ? <Waypoints /> : <Scissors />}{item}</button>)}
+            <button type="button" onClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }}><CircleDot />Fit</button>
+            <button type="button" onClick={() => setZoom((value) => Math.min(2.4, value + 0.15))}>Zoom</button>
+            <button type="button" className={grid ? "active" : ""} onClick={() => setGrid((value) => !value)}><CircleDot />Grid</button>
+            <button type="button" onClick={() => void togglePageFullscreen()}><Maximize2 />Fullscreen</button>
+          </div>
+          <div className="gt-canvas">
+            <svg ref={svgRef} viewBox="0 0 900 520" onPointerMove={(event) => draggingNode && updateNodePosition(draggingNode, toGraphPoint(event))} onPointerUp={() => setDraggingNode(null)} onPointerLeave={() => setDraggingNode(null)}>
+              <defs>
+                <pattern id="gt-dot-grid" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#64748b" opacity=".45" /></pattern>
+                <marker id="gt-arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="#67e8f9" /></marker>
+              </defs>
+              <rect width="900" height="520" fill="#06152a" />
+              {grid && <rect width="900" height="520" fill="url(#gt-dot-grid)" />}
+              <g transform={`translate(${pan.x} ${pan.y}) scale(${zoom})`}>
+                {project.edges.map((edge) => {
+                  const source = nodeById.get(edge.source), target = nodeById.get(edge.target);
+                  if (!source || !target) return null;
+                  const active = activeEdges.includes(edge.id);
+                  const selected = selectedEdge?.id === edge.id;
+                  return <g key={edge.id} onClick={() => setSelectedEdgeId(edge.id)}>
+                    <line x1={source.x} y1={source.y} x2={target.x} y2={target.y} stroke={active ? "#f59e0b" : selected ? "#a78bfa" : "#67e8f9"} strokeWidth={selected ? 5 : 3} markerEnd={project.directed && arrows ? "url(#gt-arrow)" : undefined} />
+                    {weights && <g><rect x={(source.x + target.x) / 2 - 14} y={(source.y + target.y) / 2 - 13} width="28" height="24" rx="7" fill="#f8fafc" /><text x={(source.x + target.x) / 2} y={(source.y + target.y) / 2 + 5} textAnchor="middle" fontWeight="900" fill="#0f172a">{edge.weight}</text></g>}
+                  </g>;
+                })}
+                {project.nodes.map((node, index) => {
+                  const active = activeNodes.includes(node.id);
+                  const selected = selectedNode?.id === node.id;
+                  return <g key={node.id} transform={`translate(${node.x} ${node.y})`} onPointerDown={(event) => {
+                    event.stopPropagation();
+                    setSelectedNodeId(node.id);
+                    if (tool === "connect") {
+                      if (!connectSource) setConnectSource(node.id);
+                      else if (connectSource !== node.id) { addEdge(connectSource, node.id); setConnectSource(null); }
+                    } else if (tool === "move") {
+                      pushHistory();
+                      setDraggingNode(node.id);
+                    }
+                  }}>
+                    <circle r="27" fill={colors[index % colors.length]} stroke={active || selected || connectSource === node.id ? "#ffffff" : "#020617"} strokeWidth={active || selected ? 6 : 3} />
+                    {labels && <text y="6" textAnchor="middle" fontSize="18" fontWeight="950" fill="#020617">{node.label}</text>}
+                    {degreesVisible && <text y="44" textAnchor="middle" fontSize="12" fontWeight="900" fill="#e0f2fe">deg {degreeMap(project).get(node.id) ?? 0}</text>}
+                  </g>;
+                })}
+              </g>
+            </svg>
+          </div>
+          <div className="gt-status">{metrics.order} vertices <span>•</span> {metrics.size} edges <span>•</span> {components.length === 1 ? "Connected" : `${components.length} components`} <span>•</span> {project.directed ? "Directed" : "Undirected"} <span>•</span> Weighted <span>•</span> {Math.round(zoom * 100)}%</div>
+          <div className="gt-metrics-row">
+            <MetricCard label="Degree sequence" value={`[${Array.from(degreeMap(project).values()).sort((a, b) => b - a).join(", ")}]`} />
+            <MetricCard label="Sum degrees" value={`${metrics.degreeSum} = 2|E|`} />
+            <MetricCard label="Connected" value={components.length === 1 ? "Yes" : "No"} tone={components.length === 1 ? "good" : "warn"} />
+            <MetricCard label="Cycle" value={metrics.size >= metrics.order ? "Yes" : "Maybe"} />
+            <MetricCard label="Density" value={metrics.density.toFixed(2)} />
+          </div>
+        </section>
+        <aside className="gt-inspector">
+          <div className="gt-inspector-tabs">{(["inspector", "representations", "analysis"] as const).map((tab) => <button key={tab} type="button" className={(tab === "representations" && activeTab === "representations") || (tab === "analysis" && activeTab === "properties") || (tab === "inspector" && activeTab !== "representations" && activeTab !== "properties") ? "active" : ""} onClick={() => tab === "representations" ? setTab("representations") : tab === "analysis" ? setTab("properties") : setTab("build")}>{tab}</button>)}</div>
+          {activeTab === "representations" ? <RepresentationsPanel project={project} mode={representationTab} onMode={setRepresentationTab} /> : activeTab === "properties" ? <AnalysisPanel project={project} components={components} cuts={cuts} bipartite={bipartite} topo={topo} /> : activeTab === "algorithms" ? <AlgorithmPanel project={project} selected={store.selectedAlgorithm} steps={algorithm} stepIndex={store.stepIndex} onAlgorithm={store.setSelectedAlgorithm} onStep={store.setStepIndex} /> : activeTab === "learn" ? <LearnPanel project={project} fileRef={fileRef} onLoad={store.loadProject} /> : <InspectorPanel node={selectedNode} edge={selectedEdge} degrees={degrees} project={project} onNodes={store.setNodes} onEdges={store.setEdges} />}
+        </aside>
+      </section>
+    </main>
   );
 }
 
@@ -366,6 +447,112 @@ function GraphCockpit({
         </button>
       </div>
     </section>
+  );
+}
+
+function PanelTitle({ title }: { title: string }) {
+  return <h2 className="gt-panel-title">{title}</h2>;
+}
+
+function MetricCard({ label, value, tone }: { label: string; value: string; tone?: "good" | "warn" }) {
+  return <div className={`gt-metric-card ${tone ?? ""}`}><span>{label}</span><strong>{value}</strong></div>;
+}
+
+function InspectorPanel({ node, edge, degrees, project, onNodes, onEdges }: { node?: GraphProject["nodes"][number]; edge?: GraphProject["edges"][number]; degrees: ReturnType<typeof directedDegreeMap>; project: GraphProject; onNodes: (nodes: GraphProject["nodes"]) => void; onEdges: (edges: GraphProject["edges"]) => void }) {
+  const degree = node ? degrees.get(node.id) : undefined;
+  return (
+    <div className="gt-inspector-body">
+      {node ? <section className="gt-card">
+        <h3>Node <b>{node.label}</b></h3>
+        <label>Stable ID<input value={node.id} readOnly /></label>
+        <label>Label<input value={node.label} onChange={(event) => onNodes(project.nodes.map((item) => item.id === node.id ? { ...item, label: event.target.value } : item))} /></label>
+        <div className="gt-two"><label>X<input type="number" value={roundTo(node.x, 1)} onChange={(event) => onNodes(project.nodes.map((item) => item.id === node.id ? { ...item, x: Number(event.target.value) } : item))} /></label><label>Y<input type="number" value={roundTo(node.y, 1)} onChange={(event) => onNodes(project.nodes.map((item) => item.id === node.id ? { ...item, y: Number(event.target.value) } : item))} /></label></div>
+        <div className="gt-mini-results"><span>Degree <b>{degree?.total ?? 0}</b></span><span>In <b>{degree?.in ?? 0}</b></span><span>Out <b>{degree?.out ?? 0}</b></span></div>
+        <p>Adjacent: {(adjacency(project).get(node.id) ?? []).map(({ to }) => to).join(", ") || "none"}</p>
+      </section> : null}
+      {edge ? <section className="gt-card">
+        <h3>Edge <b>{edge.source} - {edge.target}</b></h3>
+        <div className="gt-two"><label>Source<input value={edge.source} readOnly /></label><label>Target<input value={edge.target} readOnly /></label></div>
+        <label>Weight<input type="number" value={edge.weight} onChange={(event) => onEdges(project.edges.map((item) => item.id === edge.id ? { ...item, weight: Number(event.target.value) } : item))} /></label>
+        <p>{edge.directed || project.directed ? "Directed edge" : "Undirected edge"}</p>
+      </section> : null}
+    </div>
+  );
+}
+
+function RepresentationsPanel({ project, mode, onMode }: { project: GraphProject; mode: "list" | "matrix" | "incidence"; onMode: (mode: "list" | "matrix" | "incidence") => void }) {
+  const list = adjacencyList(project);
+  const matrix = adjacencyMatrix(project);
+  const incidence = incidenceMatrix(project);
+  return (
+    <div className="gt-inspector-body">
+      <div className="gt-subtabs">{(["list", "matrix", "incidence"] as const).map((item) => <button key={item} type="button" className={mode === item ? "active" : ""} onClick={() => onMode(item)}>{item}</button>)}</div>
+      {mode === "list" && <div className="gt-rep-list">{list.map((row) => <div key={row.id}><b>{row.id}</b><span>:</span><code>{row.neighbors.join(", ") || "isolated"}</code></div>)}</div>}
+      {mode === "matrix" && <CompactMatrix rowLabels={matrix.ids} columnLabels={matrix.ids} values={matrix.matrix} />}
+      {mode === "incidence" && <><CompactMatrix rowLabels={incidence.ids} columnLabels={incidence.edgeIds} values={incidence.matrix} /><p className="gt-note">Directed incidence uses -1 at the source and 1 at the target.</p></>}
+      <div className="gt-validation"><p><CheckCircle2 /> Representations agree</p><p><CheckCircle2 /> Incidence dimensions {project.nodes.length} x {project.edges.length}</p></div>
+    </div>
+  );
+}
+
+function CompactMatrix({ rowLabels, columnLabels, values }: { rowLabels: string[]; columnLabels: string[]; values: Array<Array<string | number>> }) {
+  const rowLimit = 28;
+  const colLimit = 28;
+  return (
+    <div className="gt-matrix">
+      <table>
+        <thead><tr><th />{columnLabels.slice(0, colLimit).map((label) => <th key={label}>{label}</th>)}</tr></thead>
+        <tbody>{values.slice(0, rowLimit).map((row, index) => <tr key={rowLabels[index]}><th>{rowLabels[index]}</th>{row.slice(0, colLimit).map((value, column) => <td key={`${rowLabels[index]}-${column}`}>{value}</td>)}</tr>)}</tbody>
+      </table>
+      {(rowLabels.length > rowLimit || columnLabels.length > colLimit) && <p className="gt-note">Compact preview is virtualized to the first {rowLimit} rows and {colLimit} columns. Full data remains in graph state/export.</p>}
+    </div>
+  );
+}
+
+function AnalysisPanel({ project, components, cuts, bipartite, topo }: { project: GraphProject; components: string[][]; cuts: ReturnType<typeof bridgesAndCutVertices>; bipartite: ReturnType<typeof isBipartite>; topo: ReturnType<typeof topologicalSort> }) {
+  const metrics = graphMetrics(project);
+  const distance = project.nodes.length <= 80 ? graphDistanceMetrics(project) : null;
+  return (
+    <div className="gt-inspector-body">
+      <div className="gt-result-grid">
+        <MetricCard label="|V|" value={String(metrics.order)} />
+        <MetricCard label="|E|" value={String(metrics.size)} />
+        <MetricCard label="Min degree" value={String(Math.min(...Array.from(degreeMap(project).values()), 0))} />
+        <MetricCard label="Max degree" value={String(Math.max(...Array.from(degreeMap(project).values()), 0))} />
+        <MetricCard label="Density" value={metrics.density.toFixed(3)} />
+        <MetricCard label="Components" value={String(components.length)} />
+        <MetricCard label="Bipartite" value={bipartite.bipartite ? "Yes" : "No"} tone={bipartite.bipartite ? "good" : "warn"} />
+        <MetricCard label="DAG" value={project.directed && topo.valid ? "Yes" : "No"} />
+      </div>
+      <section className="gt-card"><h3>Validation</h3><p>sum deg(v) = {metrics.degreeSum}; 2|E| = {metrics.size * 2}</p><p>Bridges: {cuts.bridges.join(", ") || "none"}</p><p>Cut vertices: {cuts.cutVertices.join(", ") || "none"}</p>{distance ? <p>Radius {fmtNumber(distance.radius)}, diameter {fmtNumber(distance.diameter)}, center {distance.center.join(", ") || "none"}</p> : <p>Distance metrics paused for large graph. Use manual analysis after filtering.</p>}</section>
+    </div>
+  );
+}
+
+function AlgorithmPanel({ project, selected, steps, stepIndex, onAlgorithm, onStep }: { project: GraphProject; selected: GraphAlgorithmName; steps: AlgorithmStep[]; stepIndex: number; onAlgorithm: (value: GraphAlgorithmName) => void; onStep: (step: number) => void }) {
+  const d = dijkstra(project);
+  return (
+    <div className="gt-inspector-body">
+      <section className="gt-card">
+        <h3>Algorithm runner</h3>
+        <label>Algorithm<select value={selected} onChange={(event) => onAlgorithm(event.target.value as GraphAlgorithmName)}>{["BFS", "DFS", "Dijkstra", "Kruskal", "Prim", "Topological Sort"].map((item) => <option key={item}>{item}</option>)}</select></label>
+        <label>Start node<select>{project.nodes.map((node) => <option key={node.id}>{node.label}</option>)}</select></label>
+        <div className="gt-runner-actions"><button type="button" onClick={() => onStep(0)}>Restart</button><button type="button" onClick={() => onStep(Math.max(0, stepIndex - 1))}>Previous</button><button type="button" onClick={() => onStep(Math.min(steps.length - 1, stepIndex + 1))}><Play />Run</button></div>
+        <p>Step {Math.min(stepIndex + 1, steps.length)} / {steps.length || 0}</p>
+        <strong>{steps[stepIndex]?.note ?? "Choose an algorithm to begin."}</strong>
+      </section>
+      <section className="gt-card"><h3>State</h3><p>Active nodes: {steps[stepIndex]?.activeNodes.join(", ") || "none"}</p><p>Active edges: {steps[stepIndex]?.activeEdges.join(", ") || "none"}</p><p>Dijkstra distances: {Object.entries(d.dist).map(([node, value]) => `${node}:${fmtNumber(value)}`).join("  ")}</p></section>
+    </div>
+  );
+}
+
+function LearnPanel({ project, fileRef, onLoad }: { project: GraphProject; fileRef: React.RefObject<HTMLInputElement>; onLoad: (project: GraphProject) => void }) {
+  return (
+    <div className="gt-inspector-body">
+      <section className="gt-card"><h3>Fundamentals</h3><p>Vertices are objects. Edges are relationships. Weighted edges carry cost. Directed edges carry orientation. Paths follow adjacent vertices; cycles return to the start.</p></section>
+      <section className="gt-card"><h3>Common mistakes</h3><p>Do not assume directed matrices are symmetric. Loops affect degree conventions. Dijkstra needs nonnegative weights. A connected graph is not automatically a tree.</p></section>
+      <section className="gt-card"><h3>Practice</h3><p>Build a graph with exactly two odd-degree vertices, then predict whether an Euler path exists.</p><button type="button" onClick={() => download("graph-project.json", serializeGraph(project))}>Save JSON</button><button type="button" onClick={() => fileRef.current?.click()}>Load JSON</button><input ref={fileRef} hidden type="file" accept="application/json" onChange={(event) => void loadFile(event.target.files?.[0], onLoad)} /></section>
+    </div>
   );
 }
 
@@ -1379,6 +1566,73 @@ function algorithmSteps(project: GraphProject, selected: GraphAlgorithmName) {
   if (selected === "Kruskal") return kruskal(project).steps;
   if (selected === "Prim") return prim(project).steps;
   return topologicalSort({ ...project, directed: true }).steps;
+}
+
+function readStudioTab(): "build" | "representations" | "algorithms" | "properties" | "learn" {
+  const value = new URLSearchParams(window.location.search).get("tab");
+  return value === "representations" || value === "algorithms" || value === "properties" || value === "learn" ? value : "build";
+}
+
+function createSizedGraphTemplate(template: GraphTemplateName, directed: boolean, size: number) {
+  if (size === 6) return createGraphTemplate(template, directed);
+  const count = Math.max(1, Math.floor(size));
+  const makeNodes = () => layoutGraph({
+    directed,
+    nodes: Array.from({ length: count }, (_, index) => ({ id: spreadsheetLabel(index), label: spreadsheetLabel(index), x: 120 + index * 44, y: 220 })),
+    edges: [],
+  }, template === "tree" ? "tree" : "circular");
+  const edge = (source: string, target: string, weight = 1): GraphProject["edges"][number] => ({ id: `${source}-${target}`, source, target, weight, directed });
+  const nodes = makeNodes();
+  if (template === "path") return { directed, nodes, edges: nodes.slice(0, -1).map((node, index) => edge(node.id, nodes[index + 1].id)) };
+  if (template === "cycle") return { directed, nodes, edges: nodes.map((node, index) => edge(node.id, nodes[(index + 1) % nodes.length].id)) };
+  if (template === "complete") {
+    const edges: GraphProject["edges"] = [];
+    nodes.forEach((source, left) => nodes.forEach((target, right) => { if (left < right) edges.push(edge(source.id, target.id)); }));
+    return { directed, nodes, edges };
+  }
+  if (template === "star" || template === "wheel") {
+    const spokes = nodes.slice(1).map((node) => edge(nodes[0].id, node.id));
+    const rim = template === "wheel" ? nodes.slice(1).map((node, index, outer) => edge(node.id, outer[(index + 1) % outer.length].id)) : [];
+    return { directed, nodes, edges: [...spokes, ...rim] };
+  }
+  return createGraphTemplate(template, directed);
+}
+
+function spreadsheetLabel(index: number) {
+  let value = index + 1;
+  let label = "";
+  while (value > 0) {
+    value -= 1;
+    label = String.fromCharCode(65 + (value % 26)) + label;
+    value = Math.floor(value / 26);
+  }
+  return label;
+}
+
+function uniqueNodeId(project: GraphProject, preferred: string) {
+  const ids = new Set(project.nodes.map((node) => node.id));
+  if (!ids.has(preferred)) return preferred;
+  let index = project.nodes.length + 1;
+  while (ids.has(`node-${index}`)) index += 1;
+  return `node-${index}`;
+}
+
+function uniqueNodeLabel(project: GraphProject, preferred: string) {
+  const labels = new Set(project.nodes.map((node) => node.label));
+  if (!labels.has(preferred)) return preferred;
+  let index = project.nodes.length;
+  while (labels.has(spreadsheetLabel(index))) index += 1;
+  return spreadsheetLabel(index);
+}
+
+function fmtNumber(value: number) {
+  if (!Number.isFinite(value)) return "inf";
+  return roundTo(value, 2).toString();
+}
+
+function roundTo(value: number, digits: number) {
+  const factor = 10 ** digits;
+  return Math.round(value * factor) / factor;
 }
 
 function download(filename: string, content: string) {

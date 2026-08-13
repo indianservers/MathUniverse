@@ -3,9 +3,28 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { iconMap } from "../layout/navItems";
-import { findMathWorkspace, mathWorkspaceGroupLabels, mathWorkspaces, workspaceById, type MathWorkspaceGroup, type MathWorkspaceId, type MathWorkspacePayload } from "../../workspace/mathWorkspaces";
+import { findMathWorkspace, mathWorkspaceGroupLabels, mathWorkspaces, workspaceById, type MathWorkspaceDefinition, type MathWorkspaceGroup, type MathWorkspaceId, type MathWorkspacePayload } from "../../workspace/mathWorkspaces";
+import "../../pages/WorkspaceHome.css";
 
 const workspaceGroups: MathWorkspaceGroup[] = ["calculate", "construct-graph", "explore"];
+
+export function WorkspaceSuiteBar({ workspace }: { workspace?: MathWorkspaceDefinition }) {
+  return (
+    <header className="workspace-suite-bar" data-testid="workspace-suite-bar">
+      <Link to="/workspace" className="workspace-suite-brand" aria-label="Math Workspaces home">
+        <span className="workspace-suite-mark"><Grid3X3 /></span>
+        <span><strong>Math Workspaces</strong><small>Six connected studios</small></span>
+      </Link>
+      <nav aria-label="Workspace tools">
+        <Link to="/workspace" className={!workspace ? "is-active" : ""}><Home /><span>Home</span></Link>
+        {mathWorkspaces.map((item) => {
+          const Icon = iconMap[item.icon];
+          return <Link key={item.id} to={item.route} className={workspace?.id === item.id ? "is-active" : ""} aria-current={workspace?.id === item.id ? "page" : undefined}><Icon /><span>{item.name}</span></Link>;
+        })}
+      </nav>
+    </header>
+  );
+}
 
 export function MathWorkspaceChrome({ compact = false }: { compact?: boolean }) {
   const location = useLocation();

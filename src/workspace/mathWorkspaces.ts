@@ -47,7 +47,7 @@ export const mathWorkspaces: MathWorkspaceDefinition[] = [
   },
   {
     id: "geometry",
-    name: "Geometry",
+    name: "2D Geometry",
     route: "/workspace/geometry",
     icon: "Shapes",
     description: "Construct and investigate interactive 2D geometric objects.",

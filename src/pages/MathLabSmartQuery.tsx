@@ -13,6 +13,10 @@ const examples = [
   "integrate x^2 + 2*x",
   "roll dice probability",
   "construct triangle angle",
+  "area of a circle radius 5",
+  "3D surface z = sin(x*y)",
+  "truth table for p and q",
+  "convert 5 kilometres to metres",
 ];
 
 export default function MathLabSmartQuery() {
@@ -35,7 +39,7 @@ export default function MathLabSmartQuery() {
     <div className="space-y-6">
       <TopicHeader
         title="Smart Math Query"
-        subtitle="Type a math task and jump to the best graphing, solving, CAS, geometry, or probability tool."
+        subtitle="Type a math task and jump to the correct graphing, solving, calculus, geometry, data, or discrete-math engine."
         difficulty="Routing Assistant"
         estimatedMinutes={10}
       />
@@ -100,9 +104,9 @@ export default function MathLabSmartQuery() {
       <SectionCard title="How It Routes">
         <div className="grid gap-3 md:grid-cols-3">
           {[
-            "Function words like plot and graph go to the Graphing Calculator.",
-            "Symbolic words like solve, derivative, and integrate go to solver or CAS tools.",
-            "Experiment words like coin, dice, card, and binomial go to Probability Simulator.",
+            "Graph, surface, geometry, conic, and trigonometry requests open their respective visual engines.",
+            "Solve, factor, derivative, and integral requests arrive prefilled in the verified step-by-step solver.",
+            "Probability, statistics, matrices, units, logic, sets, graph theory, and combinatorics route independently.",
           ].map((text) => (
             <div key={text} className="rounded-lg bg-slate-100 p-4 text-sm font-semibold leading-6 dark:bg-white/10">
               <Sparkles className="mb-2 h-4 w-4 text-cyan-500" />
@@ -119,6 +123,7 @@ function buildTargetRoute(routed: ReturnType<typeof routeQuery>) {
   const params = new URLSearchParams();
   if (routed.expression) params.set("q", routed.expression);
   if (routed.operation) params.set("op", routed.operation);
+  if (routed.route === "/problem-solver") params.set("query", routed.originalQuery);
   const suffix = params.toString();
   return suffix ? `${routed.route}?${suffix}` : routed.route;
 }

@@ -5,7 +5,7 @@ import type { MathWorkspaceDefinition } from "../../workspace/mathWorkspaces";
 import { useDialogFocus } from "../../hooks/useDialogFocus";
 import { classifyWorkspaceViewport, type WorkspaceViewportMode } from "../../workspace/workspaceViewport";
 import { nextDirectionalFocus, type FocusDirection } from "../../workspace/directionalFocus";
-import { MathWorkspaceChrome } from "./MathWorkspaceNavigation";
+import { WorkspaceSuiteBar } from "./MathWorkspaceNavigation";
 
 type WorkspaceSheet = "more" | "help" | null;
 
@@ -92,7 +92,7 @@ export default function MathWorkspaceLayout({ workspace, children }: { workspace
       data-input={coarsePointer ? "coarse" : "fine"}
       data-viewport={viewportMode}
     >
-      <MathWorkspaceChrome compact />
+      <WorkspaceSuiteBar workspace={workspace} />
       <div
         className="math-workspace-stage"
         tabIndex={workspace.id === "graphs" ? 0 : undefined}

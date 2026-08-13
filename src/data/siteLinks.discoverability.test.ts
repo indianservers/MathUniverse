@@ -50,7 +50,7 @@ describe("site links discoverability", () => {
     expect(routePaths.has("/formulas/algebra")).toBe(true);
     expect(routePaths.has("/theorems/geometry")).toBe(true);
     expect(routePaths.has("/visual-proofs/geometry/pythagorean-theorem-area-rearrangement")).toBe(true);
-    expect(routePaths.has("/math-lab/graphing-calculator")).toBe(true);
+    expect(routePaths.has("/workspace/graph")).toBe(true);
   });
 
   it("keeps route indexes discoverable across generated tool, formula, theorem, and proof links", () => {

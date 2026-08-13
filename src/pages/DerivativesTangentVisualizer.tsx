@@ -1,308 +1,132 @@
-import { useMemo, useState, type ReactNode } from "react";
-import { Line, OrbitControls, Text } from "@react-three/drei";
-import DualPaneMathLayout from "../components/ui/DualPaneMathLayout";
-import SliderControl from "../components/ui/SliderControl";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { Line as ThreeLine, OrbitControls, Text } from "@react-three/drei";
+import { Link, useSearchParams } from "react-router-dom";
+import {
+  Bell, BookOpen, Check, ChevronDown, ChevronRight, Download, Expand, Grid3X3,
+  Menu, Pause, Play, RotateCcw, Search, Settings, StepBack, StepForward,
+  Sun, X,
+} from "lucide-react";
+import CalculusSidebar from "../components/calculus/CalculusSidebar";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import { compileFunctionExpression } from "../utils/functionParser";
 import { roundTo } from "../utils/math";
+import "./LimitsContinuityVisualizer.css";
+import "./DerivativesTangentVisualizer.css";
 
 type Point = { x: number; y: number; defined: boolean };
-
-const presets = ["x^2", "x^3", "sin(x)", "cos(x)", "exp(x)", "log(x)", "abs(x)", "1/x"];
+type Tab = "explanation" | "table" | "steps";
+const presets = [
+  { label: "x²", value: "x^2" }, { label: "x³", value: "x^3" },
+  { label: "sin(x)", value: "sin(x)" }, { label: "|x|", value: "abs(x)" },
+];
 
 export default function DerivativesTangentVisualizer() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [expression, setExpression] = useState("x^2");
   const [draft, setDraft] = useState("x^2");
-  const [a, setA] = useState(1);
-  const [h, setH] = useState(1);
+  const [a, setA] = useState(() => numberParam(searchParams.get("v_tangent_point_x_a"), 1));
+  const [h, setH] = useState(() => nonZero(numberParam(searchParams.get("v_secant_distance_h"), 1)));
+  const [showTangent, setShowTangent] = useState(true);
   const [showSecant, setShowSecant] = useState(true);
   const [showDerivative, setShowDerivative] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [speed, setSpeed] = useState(1);
+  const [activePane, setActivePane] = useState<"2d" | "3d">("2d");
+  const [gridVisible, setGridVisible] = useState(true);
+  const [trace, setTrace] = useState(false);
+  const [activeTab, setActiveTab] = useState<Tab>("table");
+  const [learningOpen, setLearningOpen] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const compiled = useMemo(() => {
-    try {
-      return { fn: compileFunctionExpression(expression), error: "" };
-    } catch (error) {
-      return { fn: null, error: error instanceof Error ? error.message : "Invalid function" };
-    }
+    try { return { fn: compileFunctionExpression(expression), error: "" }; }
+    catch (error) { return { fn: null, error: error instanceof Error ? error.message : "Invalid function" }; }
   }, [expression]);
 
-  const samples = useMemo(() => compiled.fn ? sample(compiled.fn, -8, 8) : [], [compiled.fn]);
-  const derivativeSamples = useMemo(() => compiled.fn ? sample((x) => derivativeAt(compiled.fn!, x, 0.001), -8, 8) : [], [compiled.fn]);
-  const fa = compiled.fn ? safeValue(compiled.fn, a) : NaN;
-  const derivative = compiled.fn ? derivativeAt(compiled.fn, a, Math.min(0.01, Math.max(0.0001, Math.abs(h) / 10))) : NaN;
-  const secantSlope = compiled.fn ? secantAt(compiled.fn, a, h) : NaN;
-  const edgeNote = edgeCaseNote(expression, a, fa, derivative);
+  useEffect(() => {
+    const next = new URLSearchParams(searchParams);
+    next.set("v_tangent_point_x_a", tidy(a));
+    next.set("v_secant_distance_h", tidy(h));
+    if (next.toString() !== searchParams.toString()) setSearchParams(next, { replace: true });
+  }, [a, h, searchParams, setSearchParams]);
 
-  return (
-    <DualPaneMathLayout
-      title="Derivatives and Tangent Lines"
-      subtitle="See derivative as tangent slope, compare secants approaching tangents, and switch between clean 2D graphing and a rotatable 3D concept view."
-      meta={
-        <>
-          <span className="rounded-full bg-cyan-100 px-3 py-2 text-xs font-black text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-200">Differential Calculus</span>
-          <span className="rounded-full bg-violet-100 px-3 py-2 text-xs font-black text-violet-800 dark:bg-violet-400/15 dark:text-violet-200">20 min</span>
-        </>
-      }
-      controls={
-        <div className="space-y-4">
-          <label className="block">
-            <span className="text-sm font-bold">f(x)</span>
-            <div className="mt-2 grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-1">
-              <input value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") setExpression(draft); }} className="premium-input min-h-11" />
-              <button type="button" className="action-primary px-4" onClick={() => setExpression(draft)}>Plot</button>
-            </div>
-            {compiled.error && <p className="mt-2 rounded-xl bg-rose-50 p-3 text-sm font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{compiled.error}</p>}
-          </label>
+  useEffect(() => {
+    if (!playing) return;
+    const timer = window.setInterval(() => setH((value) => {
+      const next = Math.max(.01, Math.abs(value) - .02 * speed);
+      if (next <= .0101) setPlaying(false);
+      return Math.sign(value || 1) * next;
+    }), 45);
+    const onVisibility = () => document.hidden && setPlaying(false);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => { window.clearInterval(timer); document.removeEventListener("visibilitychange", onVisibility); };
+  }, [playing, speed]);
 
-          <SliderControl density="compact" label="Tangent point x = a" value={a} min={-6} max={6} step={0.05} onChange={setA} />
-          <SliderControl density="compact" label="Secant distance h" value={h} min={-3} max={3} step={0.05} onChange={setH} />
+  const fn = compiled.fn;
+  const fa = fn ? safeValue(fn, a) : NaN;
+  const fq = fn ? safeValue(fn, a + h) : NaN;
+  const derivative = fn ? differentiabilityAt(fn, a, expression) : { value: NaN, status: "undefined" as const, note: "Plot a valid function." };
+  const secantSlope = fn ? secantAt(fn, a, h) : NaN;
 
-          <div className="grid grid-cols-2 gap-2">
-            <button type="button" onClick={() => setShowSecant((value) => !value)} className={showSecant ? "action-primary justify-center" : "action-secondary justify-center"}>Secant</button>
-            <button type="button" onClick={() => setShowDerivative((value) => !value)} className={showDerivative ? "action-primary justify-center" : "action-secondary justify-center"}>f'(x)</button>
-          </div>
+  const reset = () => { setA(1); setH(1); setPlaying(false); };
+  const applyPreset = (value: string) => { setDraft(value); setExpression(value); };
 
-          <div className="grid grid-cols-2 gap-2">
-            <Metric label="f(a)" value={formatValue(fa)} />
-            <Metric label="f'(a)" value={formatValue(derivative)} />
-            <Metric label="secant" value={formatValue(secantSlope)} />
-            <Metric label="behavior" value={slopeMeaning(derivative)} />
-          </div>
+  return <div className="limits-app derivatives-app">
+    <CalculusSidebar mobileOpen={mobileNavOpen} onClose={() => setMobileNavOpen(false)} />
+    <div className="limits-page">
+      <DerivativesHeader onMenu={() => setMobileNavOpen(true)} />
+      <div className="limits-content">
+        <section className="limits-titlebar"><div><nav aria-label="Breadcrumb"><Link to="/">Home</Link><ChevronRight/><Link to="/calculus">Math</Link><ChevronRight/><span>Derivatives</span></nav><h1>Derivatives &amp; Tangent Lines</h1><p>Explore derivatives as tangent slopes and watch secant lines converge as h → 0.</p></div><div className="limits-badges"><span>Differential Calculus</span><span>20 min</span></div></section>
+        <div className="limits-workspace derivatives-workspace">
+          <ControlsCard draft={draft} error={compiled.error} a={a} h={h} fa={fa} fq={fq} showTangent={showTangent} showSecant={showSecant} showDerivative={showDerivative} playing={playing} speed={speed} onDraft={setDraft} onPlot={() => setExpression(draft)} onPreset={applyPreset} onA={setA} onH={(value) => setH(nonZero(value))} onTangent={setShowTangent} onSecant={setShowSecant} onDerivative={setShowDerivative} onPlaying={setPlaying} onSpeed={setSpeed} onReset={reset}/>
+          <ExplorerCard fn={fn} expression={expression} a={a} h={h} fa={fa} fq={fq} derivative={derivative.value} secantSlope={secantSlope} showTangent={showTangent} showSecant={showSecant} showDerivative={showDerivative} activePane={activePane} onPane={setActivePane} gridVisible={gridVisible} onGrid={() => setGridVisible(v=>!v)} trace={trace} onTrace={()=>setTrace(v=>!v)} playing={playing} onPlaying={setPlaying} speed={speed} onSpeed={setSpeed} onH={setH} onReset={reset}/>
+          <AnalysisCard fn={fn} expression={expression} a={a} h={h} fa={fa} fq={fq} derivative={derivative} secantSlope={secantSlope} activeTab={activeTab} onTab={setActiveTab}/>
         </div>
-      }
-      panes={[
-        {
-          id: "2d",
-          label: "2D graph",
-          title: "2D Tangent and Secant Pane",
-          description: "Blue is f(x), orange is tangent, violet is secant, green is f'(x) when enabled.",
-          content: <DerivativeGraph samples={samples} derivativeSamples={derivativeSamples} fn={compiled.fn} a={a} h={h} derivative={derivative} showSecant={showSecant} showDerivative={showDerivative} />,
-        },
-        {
-          id: "3d",
-          label: "3D pane",
-          title: "3D Tangent View",
-          description: "Rotate the same curve in 3D with labelled axes, tangent, secant, and rise/run.",
-          content: (
-            <ThreeSceneWrapper height="520px" mobileHeight="420px" cameraPosition={[5.2, 4, 6.5]} fov={44} quality="high" chrome="cinematic" sceneLabel="Derivative 3D labels" interactionLabel="Drag rotate - wheel or pinch zoom">
-              <DerivativeScene3D samples={samples} fn={compiled.fn} a={a} h={h} derivative={derivative} showSecant={showSecant} />
-            </ThreeSceneWrapper>
-          ),
-        },
-      ]}
-      insights={
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-2">
-            <Metric label="a" value={roundTo(a, 3).toString()} />
-            <Metric label="a + h" value={roundTo(a + h, 3).toString()} />
-          </div>
-          <div className="rounded-2xl bg-slate-100 p-3 dark:bg-white/10">
-            <p className="text-xs font-black uppercase text-slate-500 dark:text-slate-400">central difference</p>
-            <p className="mt-1 break-words font-mono text-xs font-bold">[f(a+h)-f(a-h)] / 2h</p>
-          </div>
-          <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">{edgeNote}</p>
-          <div className="space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-            <p>At <strong>x = {roundTo(a, 2)}</strong>, the derivative is approximately <strong>{formatValue(derivative)}</strong>.</p>
-            <p>{slopeMeaning(derivative) === "increasing" ? "A positive slope means the function is increasing at this point." : slopeMeaning(derivative) === "decreasing" ? "A negative slope means the function is decreasing at this point." : "A near-zero slope can indicate a flat tangent and possible maximum or minimum."}</p>
-            <p>The tangent line uses local slope. The secant line uses two nearby points. Shrinking <strong>h</strong> makes the secant behave more like the tangent.</p>
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            {presets.map((preset) => (
-              <button key={preset} type="button" onClick={() => { setDraft(preset); setExpression(preset); }} className="cinematic-preset-button px-3 py-2 font-mono text-sm">
-                {preset}
-              </button>
-            ))}
-          </div>
-        </div>
-      }
-      theory={
-        <div className="grid gap-4 lg:grid-cols-3">
-          <TheoryPanel title="Core Idea">
-            A derivative is the instantaneous rate of change of a function. Visually, it is the slope of the tangent line at one chosen point.
-          </TheoryPanel>
-          <TheoryPanel title="Limit Definition">
-            Start with a secant slope between two points, then shrink the horizontal gap h toward 0. If the slopes approach one stable value, that value is f'(a).
-            <div className="mt-3 rounded-xl bg-slate-100 p-3 font-mono text-xs font-bold dark:bg-slate-950">f'(a) = lim h-&gt;0 [f(a+h)-f(a)]/h</div>
-          </TheoryPanel>
-          <TheoryPanel title="How To Read This Tool">
-            Move a to choose the tangent point. Move h to compare secant and tangent behavior. Turn on f'(x) to see the derivative as its own function.
-          </TheoryPanel>
-        </div>
-      }
-    />
-  );
-}
-
-function TheoryPanel({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="rounded-xl border border-slate-200 bg-white/75 p-4 text-sm leading-6 text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
-      <h2 className="text-base font-black text-slate-950 dark:text-white">{title}</h2>
-      <div className="mt-2">{children}</div>
+        <LearningDrawer open={learningOpen} onToggle={() => setLearningOpen(v=>!v)}/>
+      </div>
     </div>
-  );
+  </div>;
 }
 
-function DerivativeGraph({ samples, derivativeSamples, fn, a, h, derivative, showSecant, showDerivative }: { samples: Point[]; derivativeSamples: Point[]; fn: ((x: number) => number) | null; a: number; h: number; derivative: number; showSecant: boolean; showDerivative: boolean }) {
-  const width = 760, height = 460, pad = 44, xMin = -8, xMax = 8, yMin = -8, yMax = 8;
-  const sx = (x: number) => pad + ((x - xMin) / (xMax - xMin)) * (width - pad * 2);
-  const sy = (y: number) => height - pad - ((y - yMin) / (yMax - yMin)) * (height - pad * 2);
-  const fa = fn ? safeValue(fn, a) : NaN;
-  const fb = fn ? safeValue(fn, a + h) : NaN;
-  const tangent = Number.isFinite(fa) && Number.isFinite(derivative) ? [[a - 2, fa - derivative * 2], [a + 2, fa + derivative * 2]] : null;
-  const secant = fn && Number.isFinite(fa) && Number.isFinite(fb) && Math.abs(h) > 0.0001 ? [[a, fa], [a + h, fb]] : null;
-  const secantSlope = secant ? (secant[1][1] - secant[0][1]) / Math.max(1e-8, secant[1][0] - secant[0][0]) : 0;
-  const run = 1;
-  const rise = Number.isFinite(derivative) ? derivative * run : 0;
-  return (
-    <svg viewBox="0 0 760 460" className="cinematic-svg-stage sm:h-[460px]">
-      <defs>
-        <radialGradient id="derivative-bg" cx="50%" cy="45%" r="72%">
-          <stop offset="0%" stopColor="#12395a" stopOpacity="0.72" />
-          <stop offset="56%" stopColor="#07182d" stopOpacity="0.94" />
-          <stop offset="100%" stopColor="#020617" />
-        </radialGradient>
-        <filter id="derivative-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-        <marker id="axis-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#e2e8f0" /></marker>
-        <marker id="label-arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 Z" fill="#f8fafc" /></marker>
-      </defs>
-      <rect x="0" y="0" width="760" height="460" fill="url(#derivative-bg)" />
-      {grid(width, height, pad)}
-      <line x1={sx(0)} x2={sx(0)} y1={height - pad} y2={pad} stroke="#e2e8f0" strokeOpacity="0.82" strokeWidth="2.4" markerEnd="url(#axis-arrow)" />
-      <line x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} stroke="#e2e8f0" strokeOpacity="0.82" strokeWidth="2.4" markerEnd="url(#axis-arrow)" />
-      <text x={width - pad + 12} y={sy(0) + 6} fontSize="22" fontWeight="900" fill="#e2e8f0">x</text>
-      <text x={sx(0) - 16} y={pad - 12} fontSize="22" fontWeight="900" fill="#e2e8f0">y</text>
-      <path d={path(samples, sx, sy, yMin, yMax)} fill="none" stroke="#22d3ee" strokeWidth="4" filter="url(#derivative-glow)" />
-      {showDerivative && <path d={path(derivativeSamples, sx, sy, yMin, yMax)} fill="none" stroke="#34d399" strokeWidth="4" opacity="0.85" filter="url(#derivative-glow)" />}
-      {tangent && <line x1={sx(tangent[0][0])} y1={sy(tangent[0][1])} x2={sx(tangent[1][0])} y2={sy(tangent[1][1])} stroke="#f59e0b" strokeWidth="4" filter="url(#derivative-glow)" />}
-      {showSecant && secant && <line x1={sx(secant[0][0])} y1={sy(secant[0][1])} x2={sx(secant[1][0])} y2={sy(secant[1][1])} stroke="#c084fc" strokeWidth="4" strokeDasharray="8 7" filter="url(#derivative-glow)" />}
-      {showSecant && secant && <g opacity="0.75">
-        <line x1={sx(secant[0][0])} x2={sx(secant[0][0])} y1={sy(0)} y2={sy(secant[0][1])} stroke="#e2e8f0" strokeWidth="2" strokeDasharray="7 7" />
-        <line x1={sx(secant[1][0])} x2={sx(secant[1][0])} y1={sy(0)} y2={sy(secant[1][1])} stroke="#e2e8f0" strokeWidth="2" strokeDasharray="7 7" />
-      </g>}
-      {Number.isFinite(fa) && <g><circle cx={sx(a)} cy={sy(fa)} r="8" fill="#ef4444" stroke="#020617" strokeWidth="2" /><text x={sx(a) + 12} y={sy(fa) - 10} fontSize="13" fontWeight="900" fill="#f8fafc">point of tangency</text></g>}
-      {Number.isFinite(fa) && Number.isFinite(rise) && <g><line x1={sx(a)} y1={sy(fa)} x2={sx(a + run)} y2={sy(fa)} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="3" /><line x1={sx(a + run)} y1={sy(fa)} x2={sx(a + run)} y2={sy(fa + rise)} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="3" /><text x={sx(a + run) + 8} y={sy(fa + rise)} fontSize="13" fontWeight="900" fill="#f8fafc">rise/run</text></g>}
-      <text x={width * 0.58} y={height * 0.2} fontSize="20" fontWeight="900" fill="#22d3ee">y = f(x)</text>
-      {tangent && <g><line x1={sx(a - 1.5)} y1={sy(fa + derivative * -1.5) - 54} x2={sx(a - 0.52)} y2={sy(fa + derivative * -0.52)} stroke="#f8fafc" strokeWidth="2" markerEnd="url(#label-arrow)" /><text x={sx(a - 2.2)} y={sy(fa + derivative * -1.5) - 62} fontSize="15" fontWeight="900" fill="#f8fafc">Tangent line</text></g>}
-      {showSecant && secant && <g><line x1={sx(a + h * 0.35)} y1={sy(fa) + 64} x2={sx(a + h * 0.5)} y2={sy(fa + secantSlope * h * 0.5)} stroke="#f8fafc" strokeWidth="2" markerEnd="url(#label-arrow)" /><text x={sx(a + h * 0.1)} y={sy(fa) + 84} fontSize="15" fontWeight="900" fill="#f8fafc">Secant line</text></g>}
-      <text x="58" y="28" fontSize="13" fontWeight="900" fill="#67e8f9">curve f(x)</text>
-      <text x="142" y="28" fontSize="13" fontWeight="900" fill="#f59e0b">tangent</text>
-      {showDerivative && <text x="192" y="28" fontSize="13" fontWeight="900" fill="#10b981">f'(x)</text>}
-    </svg>
-  );
+function DerivativesHeader({ onMenu }: { onMenu: () => void }) {
+  return <header className="limits-header derivatives-header"><button className="limits-mobile-menu" onClick={onMenu} aria-label="Open Calculus navigation"><Menu/></button><div className="limits-search"><Search/><span>Search</span><kbd>⌘K</kbd></div><div className="limits-utilities"><button title="Notifications"><Bell/></button><button title="Settings"><Settings/></button><button title="Theme"><Sun/></button><button className="profile" title="Profile">S</button></div></header>;
 }
 
-function DerivativeScene3D({ samples, fn, a, h, derivative, showSecant }: { samples: Point[]; fn: ((x: number) => number) | null; a: number; h: number; derivative: number; showSecant: boolean }) {
-  const scaleX = 0.42;
-  const scaleY = 0.28;
-  const to3D = (x: number, y: number): [number, number, number] => [x * scaleX, Math.max(-8, Math.min(8, y)) * scaleY, 0];
-  const curve = samples.filter((point) => point.defined && point.y >= -8 && point.y <= 8).map((point) => to3D(point.x, point.y));
-  const fa = fn ? safeValue(fn, a) : NaN;
-  const fb = fn ? safeValue(fn, a + h) : NaN;
-  const tangent: [number, number, number][] = Number.isFinite(fa) && Number.isFinite(derivative)
-    ? [to3D(a - 2.4, fa - derivative * 2.4), to3D(a + 2.4, fa + derivative * 2.4)]
-    : [];
-  const secant: [number, number, number][] = showSecant && Number.isFinite(fa) && Number.isFinite(fb) && Math.abs(h) > 0.0001
-    ? [to3D(a, fa), to3D(a + h, fb)]
-    : [];
-  const tangentPoint = Number.isFinite(fa) ? to3D(a, fa) : [0, 0, 0] as [number, number, number];
-  const runEnd = Number.isFinite(fa) && Number.isFinite(derivative) ? to3D(a + 1, fa) : tangentPoint;
-  const riseEnd = Number.isFinite(fa) && Number.isFinite(derivative) ? to3D(a + 1, fa + derivative) : tangentPoint;
+type ControlsProps={draft:string;error:string;a:number;h:number;fa:number;fq:number;showTangent:boolean;showSecant:boolean;showDerivative:boolean;playing:boolean;speed:number;onDraft:(v:string)=>void;onPlot:()=>void;onPreset:(v:string)=>void;onA:(v:number)=>void;onH:(v:number)=>void;onTangent:(v:boolean)=>void;onSecant:(v:boolean)=>void;onDerivative:(v:boolean)=>void;onPlaying:(v:boolean)=>void;onSpeed:(v:number)=>void;onReset:()=>void};
+function ControlsCard(p:ControlsProps){return <section className="limits-card controls-card derivative-controls"><div className="card-heading"><h2>Function &amp; Parameters</h2><i/></div><label className="field-label" htmlFor="derivative-expression">f(x)</label><div className="expression-input"><input id="derivative-expression" value={p.draft} onChange={e=>p.onDraft(e.target.value)} onKeyDown={e=>e.key==="Enter"&&p.onPlot()}/><button onClick={()=>p.onDraft("")} aria-label="Clear expression"><X/></button></div><button className="plot-button" onClick={p.onPlot}>Plot</button>{p.error&&<p className="limits-error">{p.error}</p>}
+  <div className="control-section"><span className="field-label">Examples</span><div className="example-grid">{presets.map(x=><button key={x.value} onClick={()=>p.onPreset(x.value)}>{x.label}</button>)}</div></div>
+  <RangeRow label="Tangent point a" value={p.a} min={-3} max={3} onChange={p.onA}/><RangeRow label="Secant distance h" value={p.h} min={-3} max={3} onChange={p.onH}/>
+  <div className="point-values"><div><i className="orange-dot"/><span>P(a, f(a))</span><b>= ({fmt(p.a)}, {fmt(p.fa)})</b></div><div><i className="violet-dot"/><span>Q(a+h, f(a+h))</span><b>= ({fmt(p.a+p.h)}, {fmt(p.fq)})</b></div></div>
+  <div className="control-section visibility-controls"><span className="field-label">Show</span><Toggle label="Tangent line" checked={p.showTangent} color="orange" onChange={p.onTangent}/><Toggle label="Secant line" checked={p.showSecant} color="violet" onChange={p.onSecant}/><Toggle label="Derivative f′(x)" checked={p.showDerivative} color="green" onChange={p.onDerivative}/></div>
+  <div className="control-section derivative-animation"><span className="field-label">Animation</span><div><button onClick={p.onReset}><RotateCcw/>Reset</button><button onClick={()=>p.onPlaying(!p.playing)}>{p.playing?<Pause/>:<Play/>}{p.playing?"Pause":"Play"}</button><button onClick={()=>p.onH(Math.sign(p.h||1)*Math.max(.01,Math.abs(p.h)-.1))}><StepForward/>Step</button></div><label>Speed<select value={p.speed} onChange={e=>p.onSpeed(Number(e.target.value))}><option value={.5}>0.5×</option><option value={1}>1.0×</option><option value={2}>2.0×</option></select></label></div>
+  </section>}
+function RangeRow({label,value,min,max,onChange}:{label:string;value:number;min:number;max:number;onChange:(v:number)=>void}){return <div className="control-section range-row"><label><span className="field-label">{label}</span><div><input aria-label={label} type="range" min={min} max={max} step="0.05" value={value} onChange={e=>onChange(Number(e.target.value))}/><input aria-label={`${label} numeric value`} type="number" min={min} max={max} step="0.05" value={value} onChange={e=>onChange(Number(e.target.value))}/></div></label></div>}
+function Toggle({label,checked,color,onChange}:{label:string;checked:boolean;color:string;onChange:(v:boolean)=>void}){return <label><span>{label}</span><input type="checkbox" checked={checked} onChange={e=>onChange(e.target.checked)}/><i className={color}/></label>}
 
-  return (
-    <>
-      <ambientLight intensity={0.55} />
-      <directionalLight position={[5, 7, 5]} intensity={1.4} />
-      <gridHelper args={[8, 16, "#38bdf8", "#334155"]} position={[0, -2.28, 0]} />
-      <axesHelper args={[3.8]} />
-      <Line points={[[-3.6, 0, 0], [3.6, 0, 0]]} color="#67e8f9" lineWidth={2} />
-      <Line points={[[0, -2.4, 0], [0, 2.8, 0]]} color="#86efac" lineWidth={2} />
-      <Line points={[[0, 0, -2.8], [0, 0, 2.8]]} color="#c4b5fd" lineWidth={2} />
-      {curve.length > 1 && <Line points={curve} color="#22d3ee" lineWidth={5} />}
-      {tangent.length > 1 && <Line points={tangent} color="#f59e0b" lineWidth={5} />}
-      {secant.length > 1 && <Line points={secant} color="#c084fc" lineWidth={4} dashed dashSize={0.2} gapSize={0.12} />}
-      <Line points={[tangentPoint, runEnd, riseEnd]} color="#f8fafc" lineWidth={3} />
-      <mesh position={tangentPoint}>
-        <sphereGeometry args={[0.08, 20, 12]} />
-        <meshStandardMaterial color="#ef4444" emissive="#ef4444" emissiveIntensity={0.35} />
-      </mesh>
-      <Text position={[3.85, 0.1, 0]} fontSize={0.22} color="#67e8f9" anchorX="center" outlineWidth={0.012} outlineColor="#020617">x</Text>
-      <Text position={[0.14, 3, 0]} fontSize={0.22} color="#86efac" anchorX="center" outlineWidth={0.012} outlineColor="#020617">y</Text>
-      <Text position={[0, 0.14, 3]} fontSize={0.22} color="#c4b5fd" anchorX="center" outlineWidth={0.012} outlineColor="#020617">z</Text>
-      <Text position={[1.4, 1.95, 0]} fontSize={0.2} color="#22d3ee" anchorX="center" outlineWidth={0.012} outlineColor="#020617">curve y = f(x)</Text>
-      <Text position={[tangentPoint[0] + 0.55, tangentPoint[1] + 0.35, 0]} fontSize={0.17} color="#f59e0b" anchorX="left" outlineWidth={0.012} outlineColor="#020617">tangent slope f'(a) = {formatValue(derivative)}</Text>
-      {secant.length > 1 && <Text position={[secant[1][0], secant[1][1] + 0.28, 0]} fontSize={0.17} color="#c084fc" anchorX="center" outlineWidth={0.012} outlineColor="#020617">secant line</Text>}
-      <Text position={[runEnd[0] + 0.28, runEnd[1] + 0.18, 0]} fontSize={0.16} color="#f8fafc" anchorX="left" outlineWidth={0.012} outlineColor="#020617">rise / run</Text>
-      <OrbitControls enablePan enableZoom enableDamping dampingFactor={0.08} />
-    </>
-  );
-}
+type ExplorerProps={fn:((x:number)=>number)|null;expression:string;a:number;h:number;fa:number;fq:number;derivative:number;secantSlope:number;showTangent:boolean;showSecant:boolean;showDerivative:boolean;activePane:"2d"|"3d";onPane:(v:"2d"|"3d")=>void;gridVisible:boolean;onGrid:()=>void;trace:boolean;onTrace:()=>void;playing:boolean;onPlaying:(v:boolean)=>void;speed:number;onSpeed:(v:number)=>void;onH:(v:number)=>void;onReset:()=>void};
+function ExplorerCard(p:ExplorerProps){const graphRef=useRef<HTMLDivElement>(null);const [resetKey,setResetKey]=useState(0);const fullscreen=async()=>document.fullscreenElement?document.exitFullscreen():graphRef.current?.requestFullscreen();const exportPng=async()=>{if(!graphRef.current)return;const {default:html2canvas}=await import("html2canvas");const canvas=await html2canvas(graphRef.current,{backgroundColor:"#071b32",scale:2});const link=document.createElement("a");link.download="derivatives-tangent-lines.png";link.href=canvas.toDataURL("image/png");link.click()};return <section className="limits-card explorer-card derivative-explorer"><div className="explorer-top"><div><h2>Tangent Explorer</h2><div className="legend"><span><i className="cyan-line"/>f(x) = {pretty(p.expression)}</span><span><i className="orange-line"/>Tangent</span><span><i className="violet-line"/>Secant</span><span><i className="green-line"/>f′(x)</span></div></div><div className="graph-toolbar"><div className="pane-toggle"><button className={p.activePane==="2d"?"active":""} onClick={()=>p.onPane("2d")}>2D</button><button className={p.activePane==="3d"?"active":""} onClick={()=>p.onPane("3d")}>3D</button></div><button className={p.trace?"active":""} onClick={p.onTrace}>⌁ <span>Trace</span></button><button className={p.gridVisible?"active":""} onClick={p.onGrid}><Grid3X3/><span>Grid</span></button><button onClick={()=>{setResetKey(v=>v+1);p.onReset()}}><RotateCcw/><span>Reset</span></button><button onClick={()=>void fullscreen()}><Expand/><span>Fullscreen</span></button><button onClick={()=>void exportPng()}><Download/><span>Export</span></button></div></div>
+  <div className="graph-stage derivative-stage" ref={graphRef}>{p.activePane==="2d"?<DerivativeGraph key={resetKey} {...p}/>:<ThreeSceneWrapper height="100%" mobileHeight="400px" cameraPosition={[5.2,4,6.5]} fov={44} quality="high" chrome="cinematic" sceneLabel="Derivative 3D labels" interactionLabel="Drag rotate - wheel or pinch zoom"><DerivativeScene3D samples={p.fn?sample(p.fn,-8,8):[]} fn={p.fn} a={p.a} h={p.h} derivative={p.derivative} showSecant={p.showSecant}/></ThreeSceneWrapper>}</div>
+  <div className="derivative-timeline"><strong>h → 0</strong><div><button onClick={()=>p.onH(Math.sign(p.h||1)*Math.min(3,Math.abs(p.h)+.1))}><StepBack/></button><button onClick={()=>p.onH(Math.sign(p.h||1)*Math.max(.01,Math.abs(p.h)-.1))}><ChevronRight/></button><button className="primary" onClick={()=>p.onPlaying(!p.playing)}>{p.playing?<Pause/>:<Play/>}</button><button onClick={()=>p.onH(Math.sign(p.h||1)*Math.max(.01,Math.abs(p.h)-.1))}><ChevronRight/></button><button onClick={()=>p.onH(Math.sign(p.h||1)*.01)}><StepForward/></button></div><span>h = <b>{fmt(p.h)}</b></span><label>Speed <select value={p.speed} onChange={e=>p.onSpeed(Number(e.target.value))}><option value={.5}>0.5×</option><option value={1}>1.0×</option><option value={2}>2.0×</option></select></label></div>
+  <div className="slope-strip">Secant slope <em>m<sub>s</sub></em> = <b className="violet-text">{fixed(p.secantSlope,3)}</b><span>→</span>Tangent slope <em>f′(a)</em> = <b className="orange-text">{fixed(p.derivative,3)}</b></div></section>}
 
-function sample(fn: (x: number) => number, min: number, max: number) {
-  return Array.from({ length: 520 }, (_, i) => {
-    const x = min + (i / 519) * (max - min);
-    const y = safeValue(fn, x);
-    return { x, y, defined: Number.isFinite(y) && Math.abs(y) < 1e5 };
-  });
-}
+function DerivativeGraph(p:ExplorerProps){const width=900,height=555,pad=58,yMin=-2.5,yMax=6.7;const [view,setView]=useState({center:.7,span:8.4});const [tracePoint,setTracePoint]=useState<Point|null>(null);const drag=useRef<{x:number;c:number}|null>(null);const xMin=view.center-view.span/2,xMax=view.center+view.span/2;const sx=useCallback((x:number)=>pad+(x-xMin)/(xMax-xMin)*(width-pad*2),[xMin,xMax]);const sy=useCallback((y:number)=>height-pad-(y-yMin)/(yMax-yMin)*(height-pad*2),[]);const samples=useMemo(()=>p.fn?sample(p.fn,xMin,xMax,800):[],[p.fn,xMin,xMax]);const derivativeSamples=useMemo(()=>p.fn?sample(x=>differentiabilityAt(p.fn!,x,p.expression).value,xMin,xMax,650):[],[p.fn,p.expression,xMin,xMax]);const onMove=(e:ReactPointerEvent<SVGSVGElement>)=>{if(drag.current){const r=e.currentTarget.getBoundingClientRect();setView(v=>({...v,center:drag.current!.c-(e.clientX-drag.current!.x)/r.width*v.span}));return}if(!p.trace||!p.fn)return;const r=e.currentTarget.getBoundingClientRect(),x=xMin+(e.clientX-r.left)/r.width*(xMax-xMin);setTracePoint(pointAt(p.fn,x))};const tangentY=(x:number)=>p.fa+p.derivative*(x-p.a);const secantY=(x:number)=>p.fa+p.secantSlope*(x-p.a);return <svg viewBox={`0 0 ${width} ${height}`} aria-label="Graph of the function, tangent line, and secant line. Use the mouse wheel to zoom and drag to pan." onWheel={e=>{e.preventDefault();setView(v=>({...v,span:Math.max(3,Math.min(14,v.span*(e.deltaY>0?1.12:.88)))}))}} onPointerDown={e=>{drag.current={x:e.clientX,c:view.center};e.currentTarget.setPointerCapture(e.pointerId)}} onPointerUp={e=>{drag.current=null;e.currentTarget.releasePointerCapture(e.pointerId)}} onPointerMove={onMove} onPointerLeave={()=>{drag.current=null;setTracePoint(null)}}><defs><linearGradient id="derivative-bg" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#06192f"/><stop offset="1" stopColor="#08223c"/></linearGradient></defs><rect width={width} height={height} rx="14" fill="url(#derivative-bg)"/>{p.gridVisible&&<GraphGrid width={width} height={height} pad={pad} sx={sx} sy={sy}/>}<line x1={pad} x2={width-pad} y1={sy(0)} y2={sy(0)} className="axis"/><line x1={sx(0)} x2={sx(0)} y1={pad} y2={height-pad} className="axis"/><text x={width-pad+8} y={sy(0)-8} className="axis-label">x</text><text x={sx(0)+10} y={pad-8} className="axis-label">y</text><path d={path(samples,sx,sy,yMin,yMax)} fill="none" stroke="#12c5ee" strokeWidth="4"/>{p.showDerivative&&Number.isFinite(p.derivative)&&<path d={path(derivativeSamples,sx,sy,yMin,yMax)} fill="none" stroke="#22c977" strokeWidth="3"/>}{p.showTangent&&Number.isFinite(p.derivative)&&<line x1={sx(xMin)} y1={sy(tangentY(xMin))} x2={sx(xMax)} y2={sy(tangentY(xMax))} stroke="#fb7a11" strokeWidth="3.5"/>}{p.showSecant&&Number.isFinite(p.secantSlope)&&<line x1={sx(xMin)} y1={sy(secantY(xMin))} x2={sx(xMax)} y2={sy(secantY(xMax))} stroke="#9b4de3" strokeWidth="3.5"/>}{p.showSecant&&Number.isFinite(p.fq)&&<g className="rise-run"><line x1={sx(p.a)} x2={sx(p.a+p.h)} y1={sy(p.fa)} y2={sy(p.fa)}/><line x1={sx(p.a+p.h)} x2={sx(p.a+p.h)} y1={sy(p.fa)} y2={sy(p.fq)}/><text x={(sx(p.a)+sx(p.a+p.h))/2} y={sy(p.fa)+23}>Δx = h = {fmt(p.h)}</text><text x={sx(p.a+p.h)+12} y={(sy(p.fa)+sy(p.fq))/2}>Δy = {fmt(p.fq-p.fa)}</text></g>}<GraphPoint x={sx(p.a)} y={sy(p.fa)} color="#fb7a11" label={`P (${fmt(p.a)}, ${fmt(p.fa)})`}/>{p.showSecant&&<GraphPoint x={sx(p.a+p.h)} y={sy(p.fq)} color="#9b4de3" label={`Q (${fmt(p.a+p.h)}, ${fmt(p.fq)})`}/>}<GraphLegend a={p.a} h={p.h} derivative={p.derivative} secant={p.secantSlope}/>{tracePoint?.defined&&<GraphPoint x={sx(tracePoint.x)} y={sy(tracePoint.y)} color="#22d3ee" label={`(${tracePoint.x.toFixed(2)}, ${tracePoint.y.toFixed(2)})`}/>}</svg>}
+function GraphGrid({width,height,pad,sx,sy}:{width:number;height:number;pad:number;sx:(x:number)=>number;sy:(y:number)=>number}){const xs=[-3,-2,-1,0,1,2,3,4],ys=[-2,-1,0,1,2,3,4,5,6];return <g>{xs.map(x=><g key={`x${x}`}><line x1={sx(x)} x2={sx(x)} y1={pad} y2={height-pad} className="gridline"/>{x!==0&&<text x={sx(x)} y={sy(0)+24} className="tick" textAnchor="middle">{x}</text>}</g>)}{ys.map(y=><g key={`y${y}`}><line x1={pad} x2={width-pad} y1={sy(y)} y2={sy(y)} className="gridline"/>{y!==0&&<text x={sx(0)-13} y={sy(y)+5} className="tick" textAnchor="end">{y}</text>}</g>)}</g>}
+function GraphPoint({x,y,color,label}:{x:number;y:number;color:string;label:string}){return <g><circle cx={x} cy={y} r="7" fill={color} stroke="#07162a" strokeWidth="3"/><text x={x+12} y={y-10} className="point-label" fill={color}>{label}</text></g>}
+function GraphLegend({a,h,derivative,secant}:{a:number;h:number;derivative:number;secant:number}){return <g className="inside-legend"><rect x="74" y="74" width="235" height="116" rx="10"/><text x="94" y="101" fill="#12c5ee">— f(x)</text><text x="94" y="127" fill="#fb7a11">— y = {lineEquation(derivative,a,a*a)} (tangent)</text><text x="94" y="153" fill="#a855f7">— mₛ = {fixed(secant,2)} (secant)</text><text x="94" y="179" fill="#22c977">— f′(x) · h = {fmt(h)}</text></g>}
 
-function derivativeAt(fn: (x: number) => number, x: number, h: number) {
-  const left = safeValue(fn, x - h);
-  const right = safeValue(fn, x + h);
-  return Number.isFinite(left) && Number.isFinite(right) ? (right - left) / (2 * h) : NaN;
-}
+type DerivativeInfo={value:number;status:"positive"|"negative"|"zero"|"undefined"|"vertical"|"corner";note:string};
+function AnalysisCard({fn,expression,a,h,fa,fq,derivative,secantSlope,activeTab,onTab}:{fn:((x:number)=>number)|null;expression:string;a:number;h:number;fa:number;fq:number;derivative:DerivativeInfo;secantSlope:number;activeTab:Tab;onTab:(v:Tab)=>void}){const diff=Math.abs(secantSlope-derivative.value);return <section className="limits-card analysis-card derivative-analysis"><h2>Live Slope Analysis</h2><div className="derivative-result"><span>Derivative at x = {fmt(a)}</span><strong>f′({fmt(a)}) = {fixed(derivative.value,4)}</strong></div><div className="derivative-metrics"><Metric label="a" value={fmt(a)} color="orange"/><Metric label="a + h" value={fmt(a+h)} color="violet"/><Metric label="f(a)" value={fmt(fa)} color="blue"/><Metric label="f(a+h)" value={fmt(fq)} color="violet"/></div><FormulaRow tone="violet" label="Secant slope" formula="mₛ = [f(a+h) − f(a)] / h" value={fixed(secantSlope,4)}/><FormulaRow tone="orange" label="Tangent slope" formula="f′(a) = lim h→0 [f(a+h) − f(a)] / h" value={fixed(derivative.value,4)}/><div className="convergence-card"><div><span>Slope difference</span><strong>|mₛ − f′(a)|</strong><b>= {fixed(diff,4)}</b></div><div className="convergence-track"><i style={{width:`${Math.min(100,Number.isFinite(diff)?diff*50:100)}%`}}/></div><small><span>0</span><span>→ 0 as h → 0</span></small></div><div className={`slope-status ${derivative.status}`}><Check/><strong>{statusLabel(derivative.status)}</strong></div><p className="derivative-conclusion">{conclusion(derivative,secantSlope,a)}</p><div className="analysis-tabs" role="tablist">{(["explanation","table","steps"] as Tab[]).map(t=><button role="tab" aria-selected={activeTab===t} className={activeTab===t?"active":""} onClick={()=>onTab(t)} key={t}>{t==="table"?"Value Table":t[0].toUpperCase()+t.slice(1)}</button>)}</div><div className="tab-content derivative-tab" role="tabpanel">{activeTab==="explanation"&&<p>{derivative.note} The secant slope is {fixed(secantSlope,4)} for h = {fmt(h)}.</p>}{activeTab==="table"&&<ValueTable fn={fn} a={a} derivative={derivative.value}/>} {activeTab==="steps"&&<Steps expression={expression} a={a} derivative={derivative.value}/>}</div></section>}
+function Metric({label,value,color}:{label:string;value:string;color:string}){return <div><span>{label}</span><strong className={color}>{value}</strong></div>}
+function FormulaRow({tone,label,formula,value}:{tone:string;label:string;formula:string;value:string}){return <div className={`formula-row ${tone}`}><span>{label}</span><code>{formula}</code><strong>= {value}</strong></div>}
+function ValueTable({fn,a,derivative}:{fn:((x:number)=>number)|null;a:number;derivative:number}){return <table><thead><tr><th>h</th><th>a + h</th><th>Secant slope mₛ</th><th>|mₛ − f′|</th></tr></thead><tbody>{[1,.5,.1,.01].map(h=>{const s=fn?secantAt(fn,a,h):NaN;return <tr key={h}><td>{h}</td><td>{fmt(a+h)}</td><td>{fixed(s,4)}</td><td>{fixed(Math.abs(s-derivative),4)}</td></tr>})}</tbody></table>}
+function Steps({expression,a,derivative}:{expression:string;a:number;derivative:number}){if(expression.replace(/\s/g,"")==="x^2")return <div className="math-steps"><code>[f(a+h) − f(a)] / h</code><span>= [(a+h)² − a²] / h</span><span>= (2ah + h²) / h</span><span>= 2a + h</span><strong>lim h→0 (2a+h) = 2a, so f′({fmt(a)}) = {fixed(derivative,4)}</strong></div>;return <div className="math-steps"><span>Evaluate f(a+h) and f(a).</span><span>Divide their difference by h.</span><strong>Let h approach zero to obtain f′(a) = {fixed(derivative,4)}.</strong></div>}
+function LearningDrawer({open,onToggle}:{open:boolean;onToggle:()=>void}){return <section className={`learning-drawer ${open?"open":""}`}><button onClick={onToggle} aria-expanded={open}><BookOpen/><span>Concept</span><i>•</i><span>Difference Quotient</span><i>•</i><span>Tangent vs Secant</span><ChevronDown/></button>{open&&<div><article><h3>Concept</h3><p>A derivative is instantaneous rate of change—the slope of the tangent at one point.</p></article><article><h3>Difference Quotient</h3><p>[f(a+h) − f(a)] / h is the secant slope. Its limit as h approaches zero is f′(a).</p></article><article><h3>Tangent vs Secant</h3><p>A secant crosses the graph at P and Q. As Q moves toward P, the secant converges to the tangent.</p></article></div>}</section>}
 
-function secantAt(fn: (x: number) => number, x: number, h: number) {
-  if (Math.abs(h) < 0.0001) return NaN;
-  const y1 = safeValue(fn, x), y2 = safeValue(fn, x + h);
-  return Number.isFinite(y1) && Number.isFinite(y2) ? (y2 - y1) / h : NaN;
-}
-
-function safeValue(fn: (x: number) => number, x: number) {
-  try {
-    const y = fn(x);
-    return Number.isFinite(y) ? y : NaN;
-  } catch {
-    return NaN;
-  }
-}
-
-function path(points: Point[], sx: (x: number) => number, sy: (y: number) => number, yMin: number, yMax: number) {
-  let open = false;
-  return points.map((point) => {
-    if (!point.defined || point.y < yMin - 8 || point.y > yMax + 8) {
-      open = false;
-      return "";
-    }
-    const command = open ? "L" : "M";
-    open = true;
-    return `${command}${sx(point.x)},${sy(point.y)}`;
-  }).join(" ");
-}
-
-function grid(width: number, height: number, pad: number) {
-  return <g>{Array.from({ length: 11 }).map((_, i) => <line key={`v-${i}`} x1={pad + i * (width - pad * 2) / 10} x2={pad + i * (width - pad * 2) / 10} y1={pad} y2={height - pad} stroke="#67e8f9" opacity="0.16" />)}{Array.from({ length: 9 }).map((_, i) => <line key={`h-${i}`} x1={pad} x2={width - pad} y1={pad + i * (height - pad * 2) / 8} y2={pad + i * (height - pad * 2) / 8} stroke="#67e8f9" opacity="0.16" />)}</g>;
-}
-
-function Metric({ label, value }: { label: string; value: string }) {
-  return <div className="cinematic-stat"><p className="cinematic-stat-label">{label}</p><p className="cinematic-stat-value">{value}</p></div>;
-}
-
-function formatValue(value: number) {
-  return Number.isFinite(value) ? roundTo(value, 4).toString() : "undefined";
-}
-
-function slopeMeaning(value: number) {
-  if (!Number.isFinite(value)) return "undefined";
-  if (value > 0.05) return "increasing";
-  if (value < -0.05) return "decreasing";
-  return "flat / possible extremum";
-}
-
-function edgeCaseNote(expression: string, a: number, fa: number, derivative: number) {
-  const exp = expression.toLowerCase();
-  if (exp.includes("abs") && Math.abs(a) < 0.05) return "For abs(x), the left slope and right slope disagree at 0, so the derivative does not exist there.";
-  if ((exp.includes("1/x") || exp.includes("log")) && !Number.isFinite(fa)) return "The function is undefined at this x-value, so the tangent and derivative are not defined.";
-  if (!Number.isFinite(derivative)) return "The derivative could not be computed here because nearby function values are undefined or unstable.";
-  return "The numerical derivative uses central difference, which compares points on both sides of a.";
-}
-
+function DerivativeScene3D({samples,fn,a,h,derivative,showSecant}:{samples:Point[];fn:((x:number)=>number)|null;a:number;h:number;derivative:number;showSecant:boolean}){const to3D=(x:number,y:number):[number,number,number]=>[x*.42,Math.max(-8,Math.min(8,y))*.28,0];const curve=samples.filter(p=>p.defined&&p.y>=-8&&p.y<=8).map(p=>to3D(p.x,p.y));const fa=fn?safeValue(fn,a):NaN,fb=fn?safeValue(fn,a+h):NaN;const tangent:NumberTriplet[]=Number.isFinite(fa)&&Number.isFinite(derivative)?[to3D(a-2.4,fa-derivative*2.4),to3D(a+2.4,fa+derivative*2.4)]:[];const secant:NumberTriplet[]=showSecant&&Number.isFinite(fa)&&Number.isFinite(fb)?[to3D(a,fa),to3D(a+h,fb)]:[];const point:NumberTriplet=Number.isFinite(fa)?to3D(a,fa):[0,0,0];return <><ambientLight intensity={.55}/><directionalLight position={[5,7,5]} intensity={1.4}/><gridHelper args={[8,16,"#38bdf8","#334155"]} position={[0,-2.28,0]}/><axesHelper args={[3.8]}/>{curve.length>1&&<ThreeLine points={curve} color="#22d3ee" lineWidth={5}/>} {tangent.length>1&&<ThreeLine points={tangent} color="#f97316" lineWidth={5}/>} {secant.length>1&&<ThreeLine points={secant} color="#a855f7" lineWidth={4}/>}<mesh position={point}><sphereGeometry args={[.08,20,12]}/><meshStandardMaterial color="#f97316"/></mesh><Text position={[1.2,2,0]} fontSize={.2} color="#22d3ee">f(x)</Text><Text position={[point[0]+.4,point[1]+.3,0]} fontSize={.16} color="#fb923c">f′(a) = {fixed(derivative,3)}</Text><OrbitControls enablePan enableZoom enableDamping dampingFactor={.08}/></>}
+type NumberTriplet=[number,number,number];
+function sample(fn:(x:number)=>number,min:number,max:number,count=520){return Array.from({length:count},(_,i)=>pointAt(fn,min+i/(count-1)*(max-min)))}function pointAt(fn:(x:number)=>number,x:number):Point{const y=safeValue(fn,x);return{x,y,defined:Number.isFinite(y)&&Math.abs(y)<1e5}}function safeValue(fn:(x:number)=>number,x:number){try{const y=fn(x);return Number.isFinite(y)?y:NaN}catch{return NaN}}function secantAt(fn:(x:number)=>number,a:number,h:number){if(Math.abs(h)<1e-7)return NaN;return(safeValue(fn,a+h)-safeValue(fn,a))/h}
+function differentiabilityAt(fn:(x:number)=>number,a:number,expression:string):DerivativeInfo{const eps=1e-4,fa=safeValue(fn,a),left=(fa-safeValue(fn,a-eps))/eps,right=(safeValue(fn,a+eps)-fa)/eps;if(!Number.isFinite(fa)||!Number.isFinite(left)||!Number.isFinite(right))return{value:NaN,status:"undefined",note:"The function or nearby values are undefined, so no derivative is shown."};if(Math.abs(left-right)>.08)return{value:NaN,status:"corner",note:`The left slope (${fixed(left,2)}) and right slope (${fixed(right,2)}) disagree, indicating a corner or cusp.`};const value=(left+right)/2;if(Math.abs(value)>1e4)return{value:NaN,status:"vertical",note:"Nearby slopes grow without bound, indicating a vertical tangent."};const status=Math.abs(value)<.005?"zero":value>0?"positive":"negative";return{value,status,note:expression.includes("abs")?"The one-sided slopes agree at this selected point.":"The tangent slope is estimated with matching left and right numerical differences."}}
+function path(points:Point[],sx:(x:number)=>number,sy:(y:number)=>number,yMin:number,yMax:number){let open=false;return points.map(p=>{if(!p.defined||p.y<yMin-2||p.y>yMax+2){open=false;return""}const c=open?"L":"M";open=true;return`${c}${sx(p.x).toFixed(2)},${sy(p.y).toFixed(2)}`}).join(" ")}
+function numberParam(v:string|null,f:number){const n=Number(v);return Number.isFinite(n)?n:f}function nonZero(v:number){return Math.abs(v)<.0001?(v<0?-.01:.01):v}function tidy(v:number){return Number(v.toFixed(3)).toString()}function fmt(v:number){return Number.isFinite(v)?roundTo(v,3).toString():"Undefined"}function fixed(v:number,n:number){return Number.isFinite(v)?v.toFixed(n):"Undefined"}function pretty(v:string){return v.replace("^2","²").replace("^3","³").replace("abs(x)","|x|")}
+function statusLabel(s:DerivativeInfo["status"]){return s==="positive"?"Positive slope • Function increasing":s==="negative"?"Negative slope • Function decreasing":s==="zero"?"Zero slope • Stationary point":s==="vertical"?"Vertical tangent":s==="corner"?"Corner or cusp • Derivative undefined":"Derivative undefined"}function conclusion(d:DerivativeInfo,s:number,a:number){if(!Number.isFinite(d.value))return d.note;return`As h approaches 0, the secant line rotates toward the tangent line and its slope ${fixed(s,3)} approaches ${fixed(d.value,3)} at x = ${fmt(a)}.`}function lineEquation(m:number,a:number,fa:number){if(!Number.isFinite(m))return"undefined";const b=fa-m*a;return`${fixed(m,1)}x ${b<0?"−":"+"} ${fixed(Math.abs(b),1)}`}

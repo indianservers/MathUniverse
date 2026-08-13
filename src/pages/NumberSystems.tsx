@@ -6,8 +6,7 @@ import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import SectionCard from "../components/ui/SectionCard";
 import ConceptAccuracyPanel from "../components/ui/ConceptAccuracyPanel";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
-import TopicHeader from "../components/ui/TopicHeader";
-import TopicTabs from "../components/ui/TopicTabs";
+import StudioPageShell from "../components/ui/StudioPageShell";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import { roundTo } from "../utils/math";
@@ -28,6 +27,8 @@ const numberConcepts = [
   { title: "Real Number Hierarchy", set: "N subset W subset Z subset Q subset R", note: "Number sets nest, while irrationals share the real line outside Q.", example: "sqrt(3) in R, not Q" },
 ];
 
+type NumberTabId = "rational" | "irrational" | "real-line" | "space" | "concepts" | "accuracy";
+
 export default function NumberSystems() {
   const topic = topics.find((item) => item.id === "number-systems")!;
   const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
@@ -35,30 +36,119 @@ export default function NumberSystems() {
   const [q, setQ] = useState(8);
   const [root, setRoot] = useState(2);
   const [digits, setDigits] = useState(8);
+  const [activeTab, setActiveTab] = useState<NumberTabId>(() => readNumberTabFromUrl());
 
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
 
   const rational = p / Math.max(1, q);
   const irrational = Math.sqrt(root);
   const decimal = useMemo(() => rational.toFixed(Math.round(digits)), [rational, digits]);
+  const progress = normalizeProgress(getTopicProgress(topic.id));
+  const normalized = normalizeRational(p, q);
+  const tabs = useMemo(() => [
+    {
+      id: "rational" as const,
+      label: "Rational",
+      summary: "Move p and q to connect fractions, reduced form, decimals, and points on a number line.",
+      focus: `${p}/${q}`,
+      content: <RationalLab p={p} q={q} setP={setP} setQ={setQ} decimal={decimal} />,
+    },
+    {
+      id: "irrational" as const,
+      label: "Irrational",
+      summary: "Use roots and decimal precision to separate perfect-square rationals from irrational surds.",
+      focus: `sqrt(${root})`,
+      content: <IrrationalLab root={root} setRoot={setRoot} digits={digits} setDigits={setDigits} />,
+    },
+    {
+      id: "real-line" as const,
+      label: "Real Line",
+      summary: "Place rational, irrational, and between-values on one continuous real number rail.",
+      focus: "Q and R\\Q",
+      content: <RealLineLab rational={rational} irrational={irrational} />,
+    },
+    {
+      id: "space" as const,
+      label: "3D View",
+      summary: "Explore nested number-set rings and a 3D real-number rail.",
+      focus: "N subset W subset Z subset Q subset R",
+      content: <NumberSystem3D rational={rational} irrational={irrational} />,
+    },
+    {
+      id: "concepts" as const,
+      label: "Concepts",
+      summary: "Review the full hierarchy from natural numbers through reals and density.",
+      focus: `${numberConcepts.length} ideas`,
+      content: <ConceptGrid />,
+    },
+    {
+      id: "accuracy" as const,
+      label: "Accuracy",
+      summary: "Practice classification and catch decimal-expansion mistakes.",
+      focus: "validation",
+      content: <ConceptAccuracyPanel domain="number-systems" />,
+    },
+  ], [decimal, digits, irrational, p, q, rational, root]);
+  const currentTab = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
+
+  useEffect(() => {
+    const onPopState = () => setActiveTab(readNumberTabFromUrl());
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  const selectTab = (tabId: NumberTabId) => {
+    setActiveTab(tabId);
+    const url = new URL(window.location.href);
+    if (tabId === "rational") url.searchParams.delete("tab");
+    else url.searchParams.set("tab", tabId);
+    window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  };
 
   return (
-    <div className="space-y-3" onPointerDown={() => markTopicInteracted(topic.id)}>
-      <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
-      <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_280px]">
-        <div className="min-w-0">
-          <TopicTabs
-            tabs={[
-              { id: "rational", label: "Rational", content: <RationalLab p={p} q={q} setP={setP} setQ={setQ} decimal={decimal} /> },
-              { id: "irrational", label: "Irrational", content: <IrrationalLab root={root} setRoot={setRoot} digits={digits} setDigits={setDigits} /> },
-              { id: "real-line", label: "Real Line", content: <RealLineLab rational={rational} irrational={irrational} /> },
-              { id: "space", label: "3D View", content: <NumberSystem3D rational={rational} irrational={irrational} /> },
-              { id: "concepts", label: "Concepts", content: <ConceptGrid /> },
-              { id: "accuracy", label: "Accuracy & Examples", content: <ConceptAccuracyPanel domain="number-systems" /> },
-            ]}
-          />
-        </div>
-        <aside className="desktop-sidebar-panel scroll-panel space-y-3 xl:sticky xl:top-24">
+    <StudioPageShell
+      className="number-studio"
+      title="Number Systems Studio"
+      subtitle={topic.description}
+      breadcrumbs={["Home", "Math Topics", "Number Systems"]}
+      difficulty={topic.difficulty}
+      estimatedMinutes={topic.estimatedMinutes}
+      progress={progress}
+      status={[
+        { id: "concepts", label: "Concepts", value: numberConcepts.length, tone: "cyan" },
+        { id: "classification", label: "Current", value: currentTab.label, tone: "violet" },
+      ]}
+    >
+      <div className="number-workspace" onPointerDown={() => markTopicInteracted(topic.id)}>
+        <section className="number-main-panel" aria-label="Number systems workspace">
+          <div className="number-tabs" role="tablist" aria-label="Number systems studio sections">
+            {tabs.map((tab) => (
+              <button key={tab.id} type="button" role="tab" aria-selected={tab.id === currentTab.id} className={tab.id === currentTab.id ? "active" : ""} onClick={() => selectTab(tab.id)}>
+                {tab.label}
+              </button>
+            ))}
+          </div>
+          <div className="number-context-strip">
+            <div>
+              <span>Current focus</span>
+              <strong>{currentTab.focus}</strong>
+            </div>
+            <p>{currentTab.summary}</p>
+          </div>
+          <div className="number-tab-content thin-scrollbar">{currentTab.content}</div>
+        </section>
+        <aside className="number-inspector thin-scrollbar" aria-label="Number systems inspector">
+          <div className="number-guide-card">
+            <span>Live classification</span>
+            <h2>{currentTab.label}</h2>
+            <p>{currentTab.summary}</p>
+            <div className="number-mini-grid">
+              <Metric label="fraction" value={`${p}/${q}`} />
+              <Metric label="reduced" value={`${normalized.numerator}/${normalized.denominator}`} />
+              <Metric label="rational" value={roundTo(rational, 5).toString()} />
+              <Metric label="surd" value={roundTo(irrational, 5).toString()} />
+            </div>
+          </div>
           <SectionCard title="Fast NCERT Links" compact>
             <div className="grid gap-2">
               <Link className="tool-button justify-start" to="/ncert/class-7-rational-numbers">Class 7 rational lab</Link>
@@ -74,7 +164,7 @@ export default function NumberSystems() {
           </SectionCard>
         </aside>
       </div>
-    </div>
+    </StudioPageShell>
   );
 }
 
@@ -227,4 +317,17 @@ function NumberLine({ values }: { values: { label: string; value: number; color:
 
 function Metric({ label, value }: { label: string; value: string }) {
   return <div className="rounded-lg bg-slate-100 p-2 dark:bg-white/10"><p className="text-[10px] font-black uppercase text-slate-500">{label}</p><p className="break-words font-mono text-sm font-bold">{value}</p></div>;
+}
+
+function readNumberTabFromUrl(): NumberTabId {
+  if (typeof window === "undefined") return "rational";
+  const tab = new URLSearchParams(window.location.search).get("tab");
+  if (tab === "irrational" || tab === "real-line" || tab === "space" || tab === "concepts" || tab === "accuracy") return tab;
+  return "rational";
+}
+
+function normalizeProgress(value: number) {
+  if (!Number.isFinite(value)) return 0;
+  const percent = value <= 1 ? value * 100 : value;
+  return Math.max(0, Math.min(100, Math.round(percent)));
 }

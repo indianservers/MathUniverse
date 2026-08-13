@@ -48,7 +48,7 @@ export function sampleFunction(input: string, xMin = -10, xMax = 10, samples = 3
   const compiled = compileFunction(input);
   if (!compiled.fn) return { points: [] as GraphSample[], error: compiled.error, normalized: compiled.normalized };
 
-  const count = Math.max(2, samples);
+  const count = Math.max(2, Math.min(5000, Math.round(samples)));
   const points = Array.from({ length: count }, (_, index) => {
     const x = xMin + (index / (count - 1)) * (xMax - xMin);
     try {
@@ -66,8 +66,10 @@ export function generateTableValues(input: string, start = -5, end = 5, step = 1
   const compiled = compileFunction(input);
   if (!compiled.fn) return { rows: [] as GraphSample[], error: compiled.error };
   const rows: GraphSample[] = [];
-  const safeStep = Math.max(Math.abs(step), 0.0001);
-  for (let x = start; x <= end + safeStep / 2 && rows.length < 1000; x += safeStep) {
+  const direction = end >= start ? 1 : -1;
+  const safeStep = Math.max(Math.abs(step), 0.0001) * direction;
+  const inRange = (x: number) => direction > 0 ? x <= end + Math.abs(safeStep) / 2 : x >= end - Math.abs(safeStep) / 2;
+  for (let x = start; inRange(x) && rows.length < 1000; x += safeStep) {
     const value = safeEvaluateCompiled(compiled.fn, Number(x.toFixed(8)));
     rows.push(value);
   }
@@ -119,12 +121,18 @@ export function detectDiscontinuities(samples: GraphSample[]) {
 }
 
 export function sampleSurface(expression: string, min = -3, max = 3, steps = 40) {
-  const fn = compileTwoVariableExpression(expression);
-  return Array.from({ length: steps }, (_, yIndex) => {
-    const y = min + (yIndex / Math.max(1, steps - 1)) * (max - min);
-    return Array.from({ length: steps }, (_, xIndex) => {
-      const x = min + (xIndex / Math.max(1, steps - 1)) * (max - min);
-      return { x, y, z: fn(x, y) };
+  const fn = compileTwoVariableExpression(expression.trim().replace(/^z\s*=/i, ""));
+  const size = Math.max(2, Math.min(120, Math.round(steps)));
+  return Array.from({ length: size }, (_, yIndex) => {
+    const y = min + (yIndex / Math.max(1, size - 1)) * (max - min);
+    return Array.from({ length: size }, (_, xIndex) => {
+      const x = min + (xIndex / Math.max(1, size - 1)) * (max - min);
+      try {
+        const z = fn(x, y);
+        return { x, y, z: Number.isFinite(z) ? z : Number.NaN };
+      } catch {
+        return { x, y, z: Number.NaN };
+      }
     });
   });
 }

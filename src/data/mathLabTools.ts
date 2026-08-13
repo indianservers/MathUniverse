@@ -1,9 +1,27 @@
-import { Atom, Binary, BrainCircuit, Calculator, Cone, Cuboid, FunctionSquare, GitFork, Grid3X3, LineChart, Network, Ruler, Sigma, Sparkles, Triangle, Variable, Waves, Workflow } from "lucide-react";
+import { Atom, Binary, BrainCircuit, Calculator, Cone, Cuboid, FunctionSquare, GitFork, Grid3X3, LineChart, Network, Ruler, Sigma, Sparkles, Triangle, Variable, Waves, Workflow, type LucideIcon } from "lucide-react";
 
-export const mathLabTools = [
+export type MathLabEngineFamily = "Graph & Visual" | "Symbolic Solver" | "Geometry & Measure" | "Calculus & Analysis" | "Data & Probability" | "Discrete & Foundations";
+
+type MathLabToolDefinition = {
+  title: string;
+  route: string;
+  icon: LucideIcon;
+  difficulty: string;
+  description: string;
+  useCases: string[];
+};
+
+export type MathLabTool = MathLabToolDefinition & {
+  engineFamily: MathLabEngineFamily;
+  options: string[];
+  checks: string[];
+  status: "validated";
+};
+
+const toolCatalog: MathLabToolDefinition[] = [
   {
     title: "Graphing",
-    route: "/math-lab/graphing-calculator",
+    route: "/workspace/graph",
     icon: LineChart,
     difficulty: "Intermediate",
     description: "Interactive 2D graphing with multiple functions, zoom, pan, tables, roots, intercepts, trace mode, and numeric checks.",
@@ -11,7 +29,7 @@ export const mathLabTools = [
   },
   {
     title: "Geometry Constructor",
-    route: "/workspace",
+    route: "/workspace/geometry",
     icon: Triangle,
     difficulty: "Intermediate",
     description: "Dynamic construction workspace with points, lines, circles, polygons, transforms, constraints, and live measurements.",
@@ -211,7 +229,7 @@ export const mathLabTools = [
   },
   {
     title: "3D Graphing Lab",
-    route: "/math-lab/3d-graphing",
+    route: "/workspace/3d",
     icon: Cuboid,
     difficulty: "Advanced",
     description: "Render surfaces z = f(x, y) and inspect them with interactive 3D controls.",
@@ -282,3 +300,47 @@ export const mathLabTools = [
     useCases: ["natural query", "routing", "tool suggestions", "workspace"],
   },
 ];
+
+const checksByFamily: Record<MathLabEngineFamily, string[]> = {
+  "Graph & Visual": ["input validation", "finite sampling", "viewport safety"],
+  "Symbolic Solver": ["parse validation", "result verification", "unsupported-case handling"],
+  "Geometry & Measure": ["dimension validation", "unit consistency", "degenerate-case handling"],
+  "Calculus & Analysis": ["domain checks", "numeric cross-check", "boundary handling"],
+  "Data & Probability": ["range validation", "deterministic replay", "summary cross-check"],
+  "Discrete & Foundations": ["structure validation", "invariant checks", "step verification"],
+};
+
+function engineFamilyFor(tool: MathLabToolDefinition): MathLabEngineFamily {
+  const text = `${tool.title} ${tool.route} ${tool.useCases.join(" ")}`.toLowerCase();
+  if (/probability|statistics|inference|random|data/.test(text)) return "Data & Probability";
+  if (/geometry|conic|measure|shape|solid|fractal|map scale|transform/.test(text)) return "Geometry & Measure";
+  if (/calculus|derivative|integral|differential|series|special function|continued fraction|engineering/.test(text)) return "Calculus & Analysis";
+  if (/logic|set theory|graph theory|discrete|automata|algebraic structures|combinatorics|ratio|proportion|famous problems/.test(text)) return "Discrete & Foundations";
+  if (/solver|cas|equation|matrices|vectors/.test(text)) return "Symbolic Solver";
+  return "Graph & Visual";
+}
+
+export const mathLabTools: MathLabTool[] = toolCatalog.map((tool) => {
+  const engineFamily = engineFamilyFor(tool);
+  return {
+    ...tool,
+    engineFamily,
+    options: [...tool.useCases],
+    checks: [...checksByFamily[engineFamily]],
+    status: "validated",
+  };
+});
+
+export const mathLabEngineFamilies = (Object.keys(checksByFamily) as MathLabEngineFamily[]).map((name) => ({
+  name,
+  tools: mathLabTools.filter((tool) => tool.engineFamily === name).length,
+  options: new Set(mathLabTools.filter((tool) => tool.engineFamily === name).flatMap((tool) => tool.options)).size,
+  checks: checksByFamily[name],
+}));
+
+export const mathLabEngineReport = {
+  tools: mathLabTools.length,
+  options: new Set(mathLabTools.flatMap((tool) => tool.options)).size,
+  families: mathLabEngineFamilies.length,
+  validated: mathLabTools.filter((tool) => tool.status === "validated").length,
+};

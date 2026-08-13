@@ -7,7 +7,7 @@ import TrigonometryMathLab from "../visualizations/trigonometry/TrigonometryMath
 const implementedLinks: Record<string, Array<{ label: string; route: string; note: string }>> = {
   "graphing-calculator": [
     { label: "Open Math Workspace", route: "/workspace", note: "Existing command-style graphing and geometry workspace." },
-    { label: "Open Function Graphs", route: "/math/functions-graphs", note: "Existing function transformations and graph visualizer." },
+    { label: "Open Function Graphs", route: "/workspace/graph", note: "Open the unified graphing workspace." },
     { label: "Open Graph Comparison", route: "/graph-comparison", note: "Existing two-function comparison and error curve." },
   ],
   geometry: [
@@ -20,7 +20,7 @@ const implementedLinks: Record<string, Array<{ label: string; route: string; not
     { label: "Open Matrix Linear Systems", route: "/matrices/linear-equations", note: "Existing augmented matrix solver with graph connection." },
   ],
   "function-explorer": [
-    { label: "Open Function Explorer", route: "/math/functions-graphs", note: "Existing transformations and function graph controls." },
+    { label: "Open Function Explorer", route: "/workspace/graph", note: "Open the unified graphing workspace." },
     { label: "Open Polar Visualizer", route: "/polar-visualizer", note: "Existing polar function tracing." },
     { label: "Open Parametric Curves", route: "/parametric-curves", note: "Existing x(t), y(t) explorer." },
   ],

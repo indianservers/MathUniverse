@@ -30,8 +30,12 @@ export const useGraphTheoryStore = create<GraphTheoryState>()(
       setNodes: (nodes) => set({ nodes }),
       setEdges: (edges) => set({ edges }),
       addNode: () => set((state) => {
-        const id = String.fromCharCode(65 + state.nodes.length);
-        return { nodes: [...state.nodes, { id, label: id, x: 100 + state.nodes.length * 35, y: 120 }] };
+        const existing = new Set(state.nodes.map((node) => node.id));
+        const index = nextNodeIndex(existing);
+        const id = `node-${index + 1}`;
+        const label = spreadsheetLabel(index);
+        const offset = state.nodes.length;
+        return { nodes: [...state.nodes, { id, label, x: 120 + (offset % 10) * 48, y: 110 + Math.floor(offset / 10) * 42 }] };
       }),
       addEdge: (source, target) => set((state) => ({
         edges: [...state.edges, { id: `${source}-${target}-${Date.now()}`, source, target, weight: 1, directed: state.directed }],
@@ -46,3 +50,20 @@ export const useGraphTheoryStore = create<GraphTheoryState>()(
     { name: "math-universe-graph-theory-project", storage: createJSONStorage(() => localStorage) }
   )
 );
+
+function nextNodeIndex(existing: Set<string>) {
+  let index = 0;
+  while (existing.has(`node-${index + 1}`) || existing.has(spreadsheetLabel(index))) index += 1;
+  return index;
+}
+
+function spreadsheetLabel(index: number) {
+  let value = index + 1;
+  let label = "";
+  while (value > 0) {
+    value -= 1;
+    label = String.fromCharCode(65 + (value % 26)) + label;
+    value = Math.floor(value / 26);
+  }
+  return label;
+}

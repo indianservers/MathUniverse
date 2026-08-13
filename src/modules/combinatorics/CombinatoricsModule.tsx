@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { BrainCircuit, Check, Download, Dices, Layers3, Play, Repeat2, Sigma, SplitSquareVertical, Workflow } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
-import TopicHeader from "../../components/ui/TopicHeader";
 import {
   binomialExpansion,
   buildCountingTree,
@@ -40,60 +39,68 @@ const combinatoricsTabs: Array<{ id: CombinatoricsTab; label: string; icon: type
 
 export default function CombinatoricsModule() {
   const store = useCombinatoricsStore();
-  const [activeTab, setActiveTab] = useState<CombinatoricsTab>("map");
+  const [activeTab, setActiveTab] = useState<CombinatoricsTab>(() => readCombinatoricsTabFromUrl());
   const tree = useMemo(() => buildCountingTree(store.items, store.r, store.allowRepeat), [store.items, store.r, store.allowRepeat]);
   const permutationList = useMemo(() => enumeratePermutations(store.items, store.r, store.allowRepeat, store.constraint), [store.items, store.r, store.allowRepeat, store.constraint]);
   const combinationList = useMemo(() => enumerateCombinations(store.items, Math.min(store.r, store.items.length)), [store.items, store.r]);
   const binomialTerms = useMemo(() => binomialExpansion("a", "b", store.binomialPower), [store.binomialPower]);
   const multiTerms = useMemo(() => multinomialTerms(["x", "y", "z"], store.multinomialPower), [store.multinomialPower]);
 
-  return (
-    <div className="space-y-3">
-      <TopicHeader
-        title="Combinatorics"
-        subtitle="Visualize counting trees, permutations, combinations, Pascal coefficients, expansions, and inclusion-exclusion."
-        difficulty="Discrete Counting Lab"
-        estimatedMinutes={65}
-        formula={{ title: "Counting identity", formula: String.raw`{n \choose r}=\frac{n!}{r!(n-r)!}`, explanation: "The module connects exact formulas with visual enumeration and animated counting arguments." }}
-      />
+  useEffect(() => {
+    const onPopState = () => setActiveTab(readCombinatoricsTabFromUrl());
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
+  const selectTab = (tabId: CombinatoricsTab) => {
+    setActiveTab(tabId);
+    const url = new URL(window.location.href);
+    if (tabId === "map") url.searchParams.delete("tab");
+    else url.searchParams.set("tab", tabId);
+    window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  };
+
+  return (
+    <div className="combinatorics-module-shell">
       <ControlsPanel {...store} />
 
-      <nav className="sticky top-2 z-20 flex gap-2 overflow-x-auto rounded-2xl border border-cyan-100 bg-white/95 p-2 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/95" aria-label="Combinatorics workspaces">
+      <nav className="combinatorics-module-tabs" aria-label="Combinatorics workspaces">
         {combinatoricsTabs.map((tab) => (
-          <TabButton key={tab.id} active={activeTab === tab.id} icon={tab.icon} label={tab.label} onClick={() => setActiveTab(tab.id)} />
+          <TabButton key={tab.id} active={activeTab === tab.id} icon={tab.icon} label={tab.label} onClick={() => selectTab(tab.id)} />
         ))}
       </nav>
 
-      {activeTab === "map" ? <ImplementationAudit /> : null}
+      <div className="combinatorics-module-content thin-scrollbar">
+        {activeTab === "map" ? <ImplementationAudit /> : null}
 
-      {activeTab === "counting" ? (
-        <div className="grid gap-4 xl:grid-cols-[1.1fr_.9fr]">
-          <CountingVisualizationEngine tree={tree} n={store.n} r={store.r} allowRepeat={store.allowRepeat} />
-          <InclusionExclusionSimulator />
-        </div>
-      ) : null}
-
-      {activeTab === "selection" ? (
-        <div className="grid gap-4 xl:grid-cols-[1fr_1fr]">
-          <PermutationSimulator items={store.items} r={store.r} allowRepeat={store.allowRepeat} constraint={store.constraint} permutations={permutationList} />
-          <CombinationGenerator items={store.items} r={Math.min(store.r, store.items.length)} combinations={combinationList} />
-        </div>
-      ) : null}
-
-      {activeTab === "coefficients" ? (
-        <div className="grid gap-4 xl:grid-cols-[.9fr_1.1fr]">
-          <PascalTriangleExplorer rows={store.pascalRows} selectedPower={store.binomialPower} onRows={store.setPascalRows} onPower={store.setBinomialPower} />
-          <div className="grid gap-4">
-            <BinomialTheoremVisualizer power={store.binomialPower} terms={binomialTerms} selectedTerm={store.selectedTerm} onPower={store.setBinomialPower} onSelectedTerm={store.setSelectedTerm} />
-            <MultinomialExpansionEngine power={store.multinomialPower} terms={multiTerms} onPower={store.setMultinomialPower} />
+        {activeTab === "counting" ? (
+          <div className="grid gap-4 xl:grid-cols-[1.1fr_.9fr]">
+            <CountingVisualizationEngine tree={tree} n={store.n} r={store.r} allowRepeat={store.allowRepeat} />
+            <InclusionExclusionSimulator />
           </div>
-        </div>
-      ) : null}
+        ) : null}
 
-      {activeTab === "advanced" ? <AdvancedCountingLab n={store.n} r={store.r} /> : null}
+        {activeTab === "selection" ? (
+          <div className="grid gap-4 xl:grid-cols-[1fr_1fr]">
+            <PermutationSimulator items={store.items} r={store.r} allowRepeat={store.allowRepeat} constraint={store.constraint} permutations={permutationList} />
+            <CombinationGenerator items={store.items} r={Math.min(store.r, store.items.length)} combinations={combinationList} />
+          </div>
+        ) : null}
 
-      {activeTab === "practice" ? <ChallengeAndExportPanel n={store.n} r={store.r} seed={store.challengeSeed} onRandom={store.randomizeChallenge} /> : null}
+        {activeTab === "coefficients" ? (
+          <div className="grid gap-4 xl:grid-cols-[.9fr_1.1fr]">
+            <PascalTriangleExplorer rows={store.pascalRows} selectedPower={store.binomialPower} onRows={store.setPascalRows} onPower={store.setBinomialPower} />
+            <div className="grid gap-4">
+              <BinomialTheoremVisualizer power={store.binomialPower} terms={binomialTerms} selectedTerm={store.selectedTerm} onPower={store.setBinomialPower} onSelectedTerm={store.setSelectedTerm} />
+              <MultinomialExpansionEngine power={store.multinomialPower} terms={multiTerms} onPower={store.setMultinomialPower} />
+            </div>
+          </div>
+        ) : null}
+
+        {activeTab === "advanced" ? <AdvancedCountingLab n={store.n} r={store.r} /> : null}
+
+        {activeTab === "practice" ? <ChallengeAndExportPanel n={store.n} r={store.r} seed={store.challengeSeed} onRandom={store.randomizeChallenge} /> : null}
+      </div>
     </div>
   );
 }
@@ -415,4 +422,11 @@ function flattenTree(root: CountingNode) {
   };
   visit(root);
   return nodes;
+}
+
+function readCombinatoricsTabFromUrl(): CombinatoricsTab {
+  if (typeof window === "undefined") return "map";
+  const tab = new URLSearchParams(window.location.search).get("tab");
+  if (tab === "counting" || tab === "selection" || tab === "coefficients" || tab === "advanced" || tab === "practice") return tab;
+  return "map";
 }

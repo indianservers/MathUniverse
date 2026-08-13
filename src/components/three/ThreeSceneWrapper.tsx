@@ -19,6 +19,7 @@ type ThreeSceneWrapperProps = {
   sceneLabel?: string;
   toolbar?: ReactNode;
   sceneSummary?: string;
+  sceneOverlay?: string;
 };
 
 function ThreeFallback() {
@@ -57,6 +58,7 @@ export default function ThreeSceneWrapper({
   sceneLabel,
   toolbar,
   sceneSummary,
+  sceneOverlay,
 }: ThreeSceneWrapperProps) {
   const hostRef = useRef<HTMLDivElement | null>(null);
   const style = {
@@ -87,6 +89,7 @@ export default function ThreeSceneWrapper({
             ? "bg-[linear-gradient(135deg,rgba(8,47,73,0.34),transparent_36%),linear-gradient(315deg,rgba(88,28,135,0.24),transparent_34%),linear-gradient(180deg,rgba(2,6,23,0.08),rgba(2,6,23,0.72))]"
             : "bg-[radial-gradient(circle_at_25%_15%,rgba(34,211,238,0.18),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(167,139,250,0.12),transparent_30%)]"
         )}
+        style={sceneOverlay ? { background: sceneOverlay } : undefined}
       />
       {isCinematic && (
         <>

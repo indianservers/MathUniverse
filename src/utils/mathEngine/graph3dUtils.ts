@@ -26,6 +26,10 @@ export function safeEvaluateSurface(functionInput: string, x: number, y: number)
 }
 
 export function sampleSurface(functionInput: string, xMin = -3, xMax = 3, yMin = -3, yMax = 3, resolution = 42): SurfaceSampleResult {
+  if (![xMin, xMax, yMin, yMax, resolution].every(Number.isFinite)) return { grid: [], minZ: null, maxZ: null, error: "Surface bounds and resolution must be finite numbers." };
+  if (xMin === xMax || yMin === yMax) return { grid: [], minZ: null, maxZ: null, error: "Surface bounds must span a non-zero interval." };
+  if (xMin > xMax) [xMin, xMax] = [xMax, xMin];
+  if (yMin > yMax) [yMin, yMax] = [yMax, yMin];
   let fn: (x: number, y: number) => number;
   try {
     fn = compileTwoVariableExpression(normalizeSurfaceInput(functionInput));
@@ -59,7 +63,7 @@ export function sampleSurface(functionInput: string, xMin = -3, xMax = 3, yMin =
     grid,
     minZ: values.length ? Math.min(...values) : null,
     maxZ: values.length ? Math.max(...values) : null,
-    warning: resolution > 70 ? "High resolution can slow down older devices." : undefined,
+    warning: !values.length ? "The expression has no finite values in this window." : resolution > 70 ? "High resolution can slow down older devices." : undefined,
   };
 }
 

@@ -26,9 +26,8 @@ import {
   Wand2,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import SectionCard from "../../components/ui/SectionCard";
-import TopicHeader from "../../components/ui/TopicHeader";
 import { useTheme } from "../../hooks/useTheme";
 import {
   buildTruthTable,
@@ -136,7 +135,7 @@ export default function MathematicalLogicModule() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizChecked, setQuizChecked] = useState(false);
-  const [activeTab, setActiveTab] = useState<LogicTab>("build");
+  const [activeTab, setActiveTab] = useState<LogicTab>(() => readLogicTabFromUrl());
 
   const parsed = useMemo(() => {
     try {
@@ -156,6 +155,20 @@ export default function MathematicalLogicModule() {
 
   const insertSymbol = (insert: string) => setExpression(`${expression}${insert}`);
   const session = { expression, inferenceRule, premises, predicate, mode, completedExercises };
+
+  useEffect(() => {
+    const onPopState = () => setActiveTab(readLogicTabFromUrl());
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  const selectTab = (tabId: LogicTab) => {
+    setActiveTab(tabId);
+    const url = new URL(window.location.href);
+    if (tabId === "build") url.searchParams.delete("tab");
+    else url.searchParams.set("tab", tabId);
+    window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  };
 
   async function exportImage(kind: "png" | "pdf") {
     if (!exportRef.current) return;
@@ -188,19 +201,8 @@ export default function MathematicalLogicModule() {
   }
 
   return (
-    <div className="desktop-page-shell" ref={exportRef}>
-      <div className="desktop-page-header">
-      <TopicHeader
-        title="Mathematical Logic"
-        subtitle="Build statements, simulate connectives, generate truth tables, transform normal forms, and explore inference."
-        difficulty="Advanced Logic Lab"
-        estimatedMinutes={55}
-        progress={Math.round((completedExercises.length / exercises.length) * 100)}
-        formula={{ title: "Core equivalence", formula: String.raw`p \to q \equiv \neg p \lor q`, explanation: "The module uses truth-functional semantics for statement calculus and finite-domain semantics for predicate calculus." }}
-      />
-      </div>
-
-      <div className="rounded-2xl border border-cyan-200 bg-white/90 p-3 shadow-sm dark:border-cyan-300/20 dark:bg-slate-950/70">
+    <div className="logic-module-shell" ref={exportRef}>
+      <div className="logic-module-toolbar">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="mobile-safe-scroll thin-scrollbar min-w-0">
             <div className="inline-flex min-w-full gap-1.5 rounded-xl border border-slate-200 bg-white/80 p-1 dark:border-white/10 dark:bg-white/5 md:min-w-0">
@@ -210,7 +212,7 @@ export default function MathematicalLogicModule() {
                   <button
                     key={tab.id}
                     type="button"
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => selectTab(tab.id)}
                     className={`inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-lg px-3 text-sm font-black transition ${activeTab === tab.id ? "bg-cyan-500 text-white shadow-sm dark:bg-cyan-300 dark:text-slate-950" : "text-slate-500 hover:bg-cyan-50 hover:text-cyan-800 dark:text-slate-300 dark:hover:bg-cyan-300/10 dark:hover:text-cyan-100"}`}
                   >
                     <Icon className="h-4 w-4" />
@@ -233,33 +235,34 @@ export default function MathematicalLogicModule() {
         <LogicStatusStrip table={parsed.table} classification={classification} error={parsed.error} completed={completedExercises.length} />
       </div>
 
-      {activeTab === "build" && (
-        <div className="grid gap-3 xl:grid-cols-[1.15fr_.85fr]">
-          <StatementBuilder expression={expression} error={parsed.error} onChange={setExpression} onInsert={insertSymbol} />
-          <ConnectivesVisualization expression={expression} result={activeRow?.result ?? false} values={activeRow?.values ?? { P: true, Q: false }} />
-        </div>
-      )}
+      <div className="logic-module-content thin-scrollbar">
+        {activeTab === "build" && (
+          <div className="grid gap-3 xl:grid-cols-[1.15fr_.85fr]">
+            <StatementBuilder expression={expression} error={parsed.error} onChange={setExpression} onInsert={insertSymbol} />
+            <ConnectivesVisualization expression={expression} result={activeRow?.result ?? false} values={activeRow?.values ?? { P: true, Q: false }} />
+          </div>
+        )}
 
-      {activeTab === "tables" && (
-        <div className="grid gap-3 xl:grid-cols-[1.15fr_.85fr]">
-          <TruthTablePanel table={parsed.table} error={parsed.error} selectedRow={selectedRow} selectedStep={selectedStep} onSelectRow={setSelectedRow} onSelectStep={setSelectedStep} />
-          <EvaluationPanel activeStep={activeStep} row={activeRow} expression={expression} />
-        </div>
-      )}
+        {activeTab === "tables" && (
+          <div className="grid gap-3 xl:grid-cols-[1.15fr_.85fr]">
+            <TruthTablePanel table={parsed.table} error={parsed.error} selectedRow={selectedRow} selectedStep={selectedStep} onSelectRow={setSelectedRow} onSelectStep={setSelectedStep} />
+            <EvaluationPanel activeStep={activeStep} row={activeRow} expression={expression} />
+          </div>
+        )}
 
-      {activeTab === "forms" && (
-        <div className="grid gap-3 xl:grid-cols-[1fr_.9fr]">
-          <NormalFormsPanel normalForms={normalForms} />
-          <SatisfiabilityPanel table={parsed.table} classification={classification} />
-        </div>
-      )}
+        {activeTab === "forms" && (
+          <div className="grid gap-3 xl:grid-cols-[1fr_.9fr]">
+            <NormalFormsPanel normalForms={normalForms} />
+            <SatisfiabilityPanel table={parsed.table} classification={classification} />
+          </div>
+        )}
 
-      {activeTab === "inference" && (
-        <div className="grid gap-3 xl:grid-cols-[1fr_.85fr]">
-          <InferencePanel rule={inferenceRule} premises={premises} inference={inference} onRule={setInferenceRule} onPremise={setPremise} />
-          <ProofMethodsPanel />
-        </div>
-      )}
+        {activeTab === "inference" && (
+          <div className="grid gap-3 xl:grid-cols-[1fr_.85fr]">
+            <InferencePanel rule={inferenceRule} premises={premises} inference={inference} onRule={setInferenceRule} onPremise={setPremise} />
+            <ProofMethodsPanel />
+          </div>
+        )}
 
       {activeTab === "predicate" && (
         <div className="grid gap-3 xl:grid-cols-[1fr_.85fr]">
@@ -280,6 +283,7 @@ export default function MathematicalLogicModule() {
       )}
 
       {activeTab === "audit" && <AuditReport />}
+      </div>
     </div>
   );
 }
@@ -739,4 +743,11 @@ function classifyTruthTable(table: TruthTable) {
     falseRows,
     explanation: "The statement is true for some assignments and false for others.",
   };
+}
+
+function readLogicTabFromUrl(): LogicTab {
+  if (typeof window === "undefined") return "build";
+  const tab = new URLSearchParams(window.location.search).get("tab");
+  if (tab === "tables" || tab === "forms" || tab === "inference" || tab === "predicate" || tab === "laws" || tab === "practice" || tab === "audit") return tab;
+  return "build";
 }

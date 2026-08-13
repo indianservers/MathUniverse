@@ -20,8 +20,8 @@ export function unitVector(v: number[]) {
 }
 
 export function dotProduct(u: number[], v: number[]) {
-  const length = Math.min(u.length, v.length);
-  return Array.from({ length }, (_, index) => u[index] * v[index]).reduce((sum, value) => sum + value, 0);
+  if (u.length !== v.length) return Number.NaN;
+  return u.reduce((sum, value, index) => sum + value * v[index], 0);
 }
 
 export function crossProduct(u: Vector3, v: Vector3) {
@@ -73,6 +73,8 @@ export function checkBasis2D(u: Vector2, v: Vector2) {
 }
 
 export function gaussianElimination(input: Matrix) {
+  const validation = validateMatrix(input);
+  if (!validation.valid) return { result: [] as Matrix, steps: [] as RowReductionStep[], error: validation.error };
   const matrix = cloneMatrix(input);
   const steps: RowReductionStep[] = [{ title: "Start", operation: "Original matrix", matrix: cloneMatrix(matrix) }];
   let pivotRow = 0;
@@ -103,6 +105,8 @@ export function gaussianElimination(input: Matrix) {
 }
 
 export function rref(input: Matrix) {
+  const validation = validateMatrix(input);
+  if (!validation.valid) return { result: [] as Matrix, steps: [] as RowReductionStep[], rank: 0, error: validation.error };
   const matrix = cloneMatrix(input);
   const steps: RowReductionStep[] = [{ title: "Start", operation: "Original matrix", matrix: cloneMatrix(matrix) }];
   let pivotRow = 0;
@@ -145,6 +149,14 @@ export function solveAugmentedRref(input: Matrix) {
   const coefficientRank = rank(reduced.result.map((row) => row.slice(0, cols - 1)));
   if (coefficientRank < cols - 1) return { ...reduced, solution: null, status: "infinitely many solutions" };
   return { ...reduced, solution: reduced.result.slice(0, cols - 1).map((row) => row[cols - 1]), status: "unique solution" };
+}
+
+export function validateMatrix(matrix: Matrix) {
+  if (!matrix.length || !matrix[0]?.length) return { valid: false, error: "Matrix must contain at least one row and one column." };
+  const width = matrix[0].length;
+  if (matrix.some((row) => row.length !== width)) return { valid: false, error: "Every matrix row must have the same number of columns." };
+  if (matrix.some((row) => row.some((value) => !Number.isFinite(value)))) return { valid: false, error: "Matrix entries must be finite numbers." };
+  return { valid: true as const, rows: matrix.length, columns: width };
 }
 
 function cloneMatrix(matrix: Matrix): Matrix {

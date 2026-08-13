@@ -1,5 +1,5 @@
-import { LocateFixed, Move3D, Rotate3D, RotateCcw, Target, ZoomIn, ZoomOut } from "lucide-react";
-import { PointerEvent, ReactNode, WheelEvent, useMemo, useRef, useState } from "react";
+import { Eraser, Expand, Grid3X3, LocateFixed, Move3D, MousePointer2, Pencil, Rotate3D, RotateCcw, Tag, Target, ZoomIn, ZoomOut } from "lucide-react";
+import { PointerEvent, ReactNode, WheelEvent, useEffect, useMemo, useRef, useState } from "react";
 import SectionCard from "../../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../../components/ui/SliderControl";
 import VisualLearningPanel from "../../components/ui/VisualLearningPanel";
@@ -15,6 +15,7 @@ type ControlTab = "a" | "b" | "results" | "xy" | "explain";
 type SceneOptionKey = "xAxis" | "yAxis" | "zAxis" | "grid" | "units" | "labels" | "resultant" | "projection" | "cross";
 type SceneOptions = Record<SceneOptionKey, boolean>;
 type VectorPreset = "right" | "up" | "diagonal" | "zero" | "opposite";
+type VectorVisualizerVariant = "default" | "workspace";
 
 const range = 10;
 const planeCenter = 180;
@@ -53,7 +54,7 @@ const beginnerPresets: Record<VectorPreset, { label: string; aHead: Vec3; bHead:
   opposite: { label: "Opposite pair", aHead: [4, 0, 0], bHead: [-4, 0, 0] },
 };
 
-export default function VectorVisualizer() {
+export default function VectorVisualizer({ variant = "default" }: { variant?: VectorVisualizerVariant }) {
   const initial = useMemo(readVectorParams, []);
   const [aTail, setATail] = useState<Vec3>(initial.aTail);
   const [aHead, setAHead] = useState<Vec3>(initial.aHead);
@@ -80,6 +81,9 @@ export default function VectorVisualizer() {
   const projection = scaleVec(b, projectionScale);
   const area = magnitude(cross);
   const zeroVectorWarning = magA <= zeroTolerance || (showSecond && magB <= zeroTolerance);
+  const compact = variant === "workspace";
+  const unitA = magA <= zeroTolerance ? null : scaleVec(a, 1 / magA);
+  const magSum = magnitude(sum);
 
   const movePoint = (target: DragTarget, delta: Vec3) => {
     const setter = target === "a-tail" ? setATail : target === "a-head" ? setAHead : target === "b-tail" ? setBTail : setBHead;
@@ -115,6 +119,107 @@ export default function VectorVisualizer() {
     setViewPreset("front");
     setViewState(presetViews.front);
   };
+
+  useEffect(() => {
+    syncVectorQuery({ aHead, aTail, bHead, bTail });
+  }, [aHead, aTail, bHead, bTail]);
+
+  if (compact) {
+    return (
+      <section className="la-vector-workspace" aria-label="Linear Algebra vector visualizer workspace">
+        <div className="la-vector-stage">
+          <div className="la-canvas-card">
+            <CanvasToolBar
+              labels={sceneOptions.labels}
+              grid={sceneOptions.grid}
+              projection={sceneOptions.projection}
+              onLabels={() => setSceneOptions((options) => ({ ...options, labels: !options.labels }))}
+              onGrid={() => setSceneOptions((options) => ({ ...options, grid: !options.grid }))}
+              onProjection={() => setSceneOptions((options) => ({ ...options, projection: !options.projection }))}
+              onClear={() => applyBeginnerPreset("zero")}
+              onReset={reset}
+              onFullscreen={openWorkspaceFullscreen}
+            />
+            <VectorScene3D
+              aTail={aTail}
+              aHead={aHead}
+              bTail={bTail}
+              bHead={bHead}
+              showSecond={showSecond}
+              showParallelogram={showParallelogram}
+              projection={projection}
+              sum={sum}
+              cross={cross}
+              dragPlane={dragPlane}
+              viewPreset={viewPreset}
+              viewState={viewState}
+              onViewStateChange={setViewState}
+              onViewPresetChange={setViewPreset}
+              onMovePoint={movePoint}
+              options={sceneOptions}
+              compact
+            />
+            <CanvasViewBar viewPreset={viewPreset} zoom={viewState.zoom} onPreset={setPreset} onZoom={zoomView} onReset={reset} />
+          </div>
+          <div className="la-preset-card">
+            <div>
+              <span>Presets</span>
+              <strong>Quick vector setups</strong>
+            </div>
+            <div>
+              {(Object.keys(beginnerPresets) as VectorPreset[]).map((preset) => (
+                <button key={preset} type="button" onClick={() => applyBeginnerPreset(preset)}>{beginnerPresets[preset].label}</button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <aside className="la-vector-inspector">
+          <div className="la-inspector-tabs">
+            <PanelTab active={activePanel === "a"} onClick={() => setActivePanel("a")}>Vector A</PanelTab>
+            <PanelTab active={activePanel === "b"} onClick={() => setActivePanel("b")}>Vector B</PanelTab>
+            <PanelTab active={activePanel === "results"} onClick={() => setActivePanel("results")}>Results</PanelTab>
+          </div>
+          <div className="la-inspector-scroll">
+            {activePanel === "a" && (
+              <>
+                <VectorControlPanel title="Vector A" badge={<VectorBadge value={a} color="text-cyan-500" />} head={aHead} tail={aTail} onHeadChange={setAHead} onTailChange={setATail} sliderPrefix="A" compact />
+                <LiveVectorSummary label="A" vector={a} tail={aTail} head={aHead} magnitude={magA} unit={unitA} />
+              </>
+            )}
+            {activePanel === "b" && (
+              <>
+                <label className="la-toggle-row"><span>Enable Vector B</span><input type="checkbox" checked={showSecond} onChange={(event) => setShowSecond(event.target.checked)} /></label>
+                {showSecond ? <VectorControlPanel title="Vector B" badge={<VectorBadge value={b} color="text-violet-400" />} head={bHead} tail={bTail} onHeadChange={setBHead} onTailChange={setBTail} sliderPrefix="B" compact /> : <p className="la-muted-note">Turn on Vector B to unlock dot product, cross product, angle, projection, and resultant values.</p>}
+                {showSecond && <LiveVectorSummary label="B" vector={b} tail={bTail} head={bHead} magnitude={magB} unit={magB <= zeroTolerance ? null : scaleVec(b, 1 / magB)} />}
+              </>
+            )}
+            {activePanel === "results" && (
+              <div className="la-results-panel">
+                <Metric label="A dot B" value={showSecond ? dot : "Enable B"} />
+                <Metric label="A cross B" value={showSecond ? `<${cross.map((item) => roundTo(item, 2)).join(", ")}>` : "Enable B"} />
+                <Metric label="Angle" value={showSecond && magA > zeroTolerance && magB > zeroTolerance ? `${roundTo(angle, 2)} deg` : "undefined"} />
+                <Metric label="Projection" value={showSecond && magB > zeroTolerance ? `<${projection.map((item) => roundTo(item, 2)).join(", ")}>` : "undefined"} />
+                <Metric label="Area" value={showSecond ? area : "Enable B"} />
+                <Metric label="A + B" value={showSecond ? `<${sum.map((item) => roundTo(item, 2)).join(", ")}>` : "Enable B"} />
+                {zeroVectorWarning && <InvalidMathStateMessage>Zero vector direction is undefined. Length is 0, so there is no single direction to point toward.</InvalidMathStateMessage>}
+              </div>
+            )}
+          </div>
+          <TryThisFirst zeroVectorWarning={zeroVectorWarning} />
+        </aside>
+
+        <div className="la-results-strip">
+          <ResultStripMetric label="Dot Product" value={showSecond ? formatValue(dot) : "Enable B"} />
+          <ResultStripMetric label="Cross Product" value={showSecond ? `<${cross.map((item) => roundTo(item, 2)).join(", ")}>` : "Enable B"} />
+          <ResultStripMetric label="Angle" value={showSecond && magA > zeroTolerance && magB > zeroTolerance ? `${roundTo(angle, 2)} deg` : "undefined"} />
+          <ResultStripMetric label="|A|" value={formatValue(magA)} />
+          <ResultStripMetric label="|B|" value={showSecond ? formatValue(magB) : "Enable B"} />
+          <ResultStripMetric label="|A+B|" value={showSecond ? formatValue(magSum) : "Enable B"} />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <SectionCard
@@ -443,6 +548,95 @@ function SceneOptionsPanel({ options, onChange }: { options: SceneOptions; onCha
   );
 }
 
+function CanvasToolBar({
+  grid,
+  labels,
+  projection,
+  onClear,
+  onFullscreen,
+  onGrid,
+  onLabels,
+  onProjection,
+  onReset,
+}: {
+  grid: boolean;
+  labels: boolean;
+  projection: boolean;
+  onClear: () => void;
+  onFullscreen: () => void;
+  onGrid: () => void;
+  onLabels: () => void;
+  onProjection: () => void;
+  onReset: () => void;
+}) {
+  const tools = [
+    { label: "Select", icon: <MousePointer2 />, active: true, action: undefined },
+    { label: "Draw", icon: <Pencil />, active: false, action: undefined },
+    { label: "Labels", icon: <Tag />, active: labels, action: onLabels },
+    { label: "Clear", icon: <Eraser />, active: false, action: onClear },
+    { label: "Grid", icon: <Grid3X3 />, active: grid, action: onGrid },
+    { label: "Projection", icon: <LocateFixed />, active: projection, action: onProjection },
+    { label: "Reset", icon: <RotateCcw />, active: false, action: onReset },
+    { label: "Full screen", icon: <Expand />, active: false, action: onFullscreen },
+  ];
+  return (
+    <div className="la-canvas-toolbar" aria-label="Vector canvas tools">
+      {tools.map((tool) => (
+        <button key={tool.label} type="button" title={tool.label} aria-label={tool.label} aria-pressed={tool.active} className={tool.active ? "active" : ""} onClick={tool.action}>
+          {tool.icon}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function CanvasViewBar({ viewPreset, zoom, onPreset, onReset, onZoom }: { viewPreset: ViewPreset; zoom: number; onPreset: (preset: ViewPreset) => void; onReset: () => void; onZoom: (delta: number) => void }) {
+  return (
+    <div className="la-canvas-viewbar" aria-label="Vector canvas view controls">
+      {(["front", "isometric", "top"] as ViewPreset[]).map((preset) => (
+        <button key={preset} type="button" className={viewPreset === preset ? "active" : ""} onClick={() => onPreset(preset)}>{preset}</button>
+      ))}
+      <button type="button" aria-label="Zoom out" onClick={() => onZoom(-0.15)}><ZoomOut /></button>
+      <span>{roundTo(zoom, 2)}x</span>
+      <button type="button" aria-label="Zoom in" onClick={() => onZoom(0.15)}><ZoomIn /></button>
+      <button type="button" onClick={onReset}>Reset</button>
+    </div>
+  );
+}
+
+function TryThisFirst({ zeroVectorWarning }: { zeroVectorWarning: boolean }) {
+  return (
+    <div className="la-try-card">
+      <strong>Try this first</strong>
+      <ol>
+        <li><b>Predict</b><span>Choose a preset and estimate the resultant direction.</span></li>
+        <li><b>Observe</b><span>Drag a head handle and watch formulas update.</span></li>
+        <li><b>Explain</b><span>Connect component changes to magnitude and angle.</span></li>
+      </ol>
+      {zeroVectorWarning && <p>Zero vector selected: direction and angle are undefined until length is nonzero.</p>}
+    </div>
+  );
+}
+
+function LiveVectorSummary({ head, label, magnitude: length, tail, unit, vector }: { head: Vec3; label: string; magnitude: number; tail: Vec3; unit: Vec3 | null; vector: Vec3 }) {
+  return (
+    <div className="la-live-summary">
+      <strong>{label} = &lt;{vector.map((item) => roundTo(item, 2)).join(", ")}&gt;</strong>
+      <dl>
+        <div><dt>Magnitude</dt><dd>{formatValue(length)}</dd></div>
+        <div><dt>Unit direction</dt><dd>{unit ? `<${unit.map((item) => roundTo(item, 3)).join(", ")}>` : "undefined"}</dd></div>
+        <div><dt>Tail</dt><dd>&lt;{tail.map((item) => roundTo(item, 2)).join(", ")}&gt;</dd></div>
+        <div><dt>Head</dt><dd>&lt;{head.map((item) => roundTo(item, 2)).join(", ")}&gt;</dd></div>
+      </dl>
+      <code>|{label}| = sqrt({vector.map((item) => `${roundTo(item, 2)}^2`).join(" + ")}) = {formatValue(length)}</code>
+    </div>
+  );
+}
+
+function ResultStripMetric({ label, value }: { label: string; value: string }) {
+  return <div><span>{label}</span><strong>{value}</strong></div>;
+}
+
 function CompactRange({ label, value, min, max, step, valueLabel, onChange }: { label: string; value: number; min: number; max: number; step: number; valueLabel: string; onChange: (value: number) => void }) {
   return (
     <label className="rounded-lg border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-white/5">
@@ -463,6 +657,7 @@ function VectorControlPanel({
   onHeadChange,
   onTailChange,
   sliderPrefix,
+  compact = false,
 }: {
   title: string;
   badge: ReactNode;
@@ -471,9 +666,10 @@ function VectorControlPanel({
   onHeadChange: (value: Vec3) => void;
   onTailChange: (value: Vec3) => void;
   sliderPrefix: "A" | "B";
+  compact?: boolean;
 }) {
   return (
-    <div className="space-y-3">
+    <div className={compact ? "la-vector-control" : "space-y-3"}>
       <div className="flex items-center justify-between gap-2">
         <p className="text-sm font-black text-slate-950 dark:text-white">{title}</p>
         {badge}
@@ -538,6 +734,7 @@ function VectorScene3D({
   onViewPresetChange,
   onMovePoint,
   options,
+  compact = false,
 }: {
   aTail: Vec3;
   aHead: Vec3;
@@ -555,6 +752,7 @@ function VectorScene3D({
   onViewPresetChange: (value: ViewPreset) => void;
   onMovePoint: (target: DragTarget, delta: Vec3) => void;
   options: SceneOptions;
+  compact?: boolean;
 }) {
   const dragRef = useRef<{ mode: "point"; target: DragTarget; x: number; y: number } | { mode: "view"; x: number; y: number } | null>(null);
   const project = (point: Vec3) => project3d(point, viewState);
@@ -612,7 +810,7 @@ function VectorScene3D({
   };
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-950 p-2 shadow-inner dark:border-white/10">
+    <div className={`${compact ? "linear-vector-scene-wrap" : "rounded-xl border border-slate-200 bg-slate-950 p-2 shadow-inner dark:border-white/10"}`}>
       <DiagramSummary>
         3D vector diagram showing vector A from tail to head{showSecond ? ", vector B, and selected operation overlays" : ""}.
       </DiagramSummary>
@@ -836,7 +1034,7 @@ function VectorBadge({ value, color }: { value: Vec3; color: string }) {
 
 function Metric({ label, value }: { label: string; value: number | string }) {
   return (
-    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10">
+    <div className="rounded-xl bg-slate-100 p-3 dark:bg-white/10 la-metric">
       <p className="text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</p>
       <p className="mt-1 break-words font-mono text-sm font-black text-slate-950 dark:text-white">{typeof value === "number" ? roundTo(value, 3) : value}</p>
     </div>
@@ -857,11 +1055,17 @@ function readVectorParams() {
     return fallback;
   };
   return {
-    aTail: [0, 0, 0] as Vec3,
+    aTail: [get(["v_a_tail_x"], 0), get(["v_a_tail_y"], 0), get(["v_a_tail_z"], 0)] as Vec3,
     aHead: [get(["v_a_x", "v_x"], 5), get(["v_a_y", "v_y"], 3), get(["v_a_z", "v_z"], 2)] as Vec3,
-    bTail: [0, 0, 0] as Vec3,
+    bTail: [get(["v_b_tail_x"], 0), get(["v_b_tail_y"], 0), get(["v_b_tail_z"], 0)] as Vec3,
     bHead: [get(["v_b_x", "v_u"], -2), get(["v_b_y", "v_v"], 4), get(["v_b_z", "v_w"], -1.5)] as Vec3,
   };
+}
+
+function openWorkspaceFullscreen() {
+  if (typeof document === "undefined") return;
+  const target = document.querySelector<HTMLElement>(".la-canvas-card");
+  void target?.requestFullscreen?.();
 }
 
 function project3d(point: Vec3, view: ViewState) {
@@ -930,4 +1134,31 @@ function clamp(value: number, min: number, max: number) {
 
 function clampVec(point: Vec3): Vec3 {
   return [clamp(point[0], -range, range), clamp(point[1], -range, range), clamp(point[2], -range, range)];
+}
+
+function syncVectorQuery({ aHead, aTail, bHead, bTail }: { aHead: Vec3; aTail: Vec3; bHead: Vec3; bTail: Vec3 }) {
+  if (typeof window === "undefined" || !window.history?.replaceState) return;
+  const url = new URL(window.location.href);
+  const values: Record<string, number> = {
+    v_a_x: aHead[0],
+    v_a_y: aHead[1],
+    v_a_z: aHead[2],
+    v_a_tail_x: aTail[0],
+    v_a_tail_y: aTail[1],
+    v_a_tail_z: aTail[2],
+    v_b_x: bHead[0],
+    v_b_y: bHead[1],
+    v_b_z: bHead[2],
+    v_b_tail_x: bTail[0],
+    v_b_tail_y: bTail[1],
+    v_b_tail_z: bTail[2],
+  };
+  Object.entries(values).forEach(([key, value]) => url.searchParams.set(key, formatValue(value)));
+  window.history.replaceState(window.history.state, "", url);
+}
+
+function formatValue(value: number) {
+  if (!Number.isFinite(value)) return "undefined";
+  if (Math.abs(value) < zeroTolerance) return "0";
+  return Number(value.toFixed(3)).toString();
 }

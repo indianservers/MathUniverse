@@ -57,7 +57,7 @@ const quickLaunchers = [
   { title: "Derivative Pane", route: "/math/derivatives", icon: TrendingUp, tag: "Slope", level: "Class 12", note: "Tangent, secant, derivative graph, and rate." },
   { title: "Integration Pane", route: "/math/integration", icon: ChartNoAxesCombined, tag: "Area", level: "Class 12", note: "Riemann sums, signed area, and accumulation." },
   { title: "Slope Fields", route: "/math/slope-fields", icon: Waves, tag: "ODE", level: "Degree", note: "Direction fields and solution curves." },
-  { title: "Functions", route: "/math/functions-graphs", icon: FunctionSquare, tag: "Graphs", level: "Class 11", note: "Domains, transforms, intercepts, and behavior." },
+  { title: "Functions", route: "/workspace/graph", icon: FunctionSquare, tag: "Graphs", level: "Class 11", note: "Domains, transforms, intercepts, and behavior." },
   { title: "Formula Visualizer", route: "/math/derivatives/formula-visualizer", icon: Sigma, tag: "Formulas", level: "JEE", note: "Derivative formula meanings and examples." },
   { title: "Integral Formulas", route: "/math/integration/formula-visualizer", icon: Sigma, tag: "Formulas", level: "Class 12", note: "Antiderivatives and definite integral rules." },
   { title: "Differential Equations", route: "/math/differential-equations/formula-visualizer", icon: Activity, tag: "ODE", level: "Engineering", note: "Growth, decay, logistic, and separable models." },

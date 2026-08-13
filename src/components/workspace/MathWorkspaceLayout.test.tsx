@@ -18,6 +18,6 @@ describe("MathWorkspaceLayout", () => {
     expect(markup).toContain(`${workspace.name} workspace controls`);
     expect(markup).toContain("math-workspace-mobile-dock");
     expect(markup).toContain("Primary activity");
-    expect(markup).toContain("math-workspace-switcher-trigger");
+    expect(markup).toContain("workspace-suite-bar");
   });
 });

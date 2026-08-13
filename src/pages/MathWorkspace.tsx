@@ -1322,6 +1322,14 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     updateSelectedGeometryStyle({ ...(object?.style ?? {}), visible: object?.style?.visible === false });
   };
 
+  const toggleGeometryVisibility = (object: SelectedGeometryObject) => {
+    const geometry = geometryObjectBySelection(construction, object);
+    recordWorkspaceStep("Toggle geometry visibility", `${object.type} visibility changed.`);
+    setConstruction((current) => patchGeometryObject(current, object, { style: { ...(geometry?.style ?? {}), visible: geometry?.style?.visible === false } }));
+    setSelectedGeometry(object);
+    setSelectedImageId(null);
+  };
+
   const setSelectedGeometryTrace = (enabled: boolean) => {
     if (!selectedGeometry) return;
     recordWorkspaceStep(enabled ? "Start geometry trace" : "Stop geometry trace", `${selectedGeometry.type} trace ${enabled ? "enabled" : "stopped"}.`);
@@ -2124,6 +2132,28 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       state: { mathWorkspacePayload: payload },
     });
   };
+
+  const resizeSelectedGeometry = (direction: "increase" | "decrease") => {
+    if (!selectedGeometry) {
+      setProjectStatus("Select a 2D geometry object before resizing.");
+      return;
+    }
+    if (lockedGeometryIds.includes(selectedGeometry.id)) {
+      setProjectStatus("Selected geometry object is locked.");
+      return;
+    }
+    const factor = direction === "increase" ? 1.12 : 0.88;
+    recordWorkspaceStep("Resize geometry object", `${geometryObjectLabel(construction, selectedGeometry)} ${direction === "increase" ? "enlarged" : "reduced"}.`);
+    if (selectedGeometry.type === "point") {
+      const point = pointById(construction.points, selectedGeometry.id);
+      const currentSize = point?.style?.size ?? 1;
+      updateSelectedGeometryStyle({ ...(point?.style ?? {}), size: roundTo(Math.max(0.4, Math.min(3.5, currentSize * factor)), 2) });
+      setProjectStatus(`${point?.label ?? "Point"} marker resized.`);
+      return;
+    }
+    setConstruction((current) => resizeGeometryObjectInConstruction(current, selectedGeometry, factor));
+    setProjectStatus(`${geometryObjectLabel(construction, selectedGeometry)} resized.`);
+  };
   const exportCasNotebook = () => {
     const blob = new Blob([casNotebookExport], { type: "text/markdown;charset=utf-8" });
     const url = URL.createObjectURL(blob);
@@ -2567,6 +2597,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onMoveSelected={() => transformSelectedGeometryPoints("translate")}
           onRotateSelected={() => transformSelectedGeometryPoints("rotate")}
           onDilateSelected={() => transformSelectedGeometryPoints("dilate")}
+          onResizeSelected={resizeSelectedGeometry}
           onUndo={undoConstruction}
           onRedo={redoWorkspace}
           onDeleteSelected={() => deleteGeometryObject()}
@@ -2587,6 +2618,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
           onBoardPointerLeave={() => { setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
           onBoardContextMenu={handleGeometryContextMenu}
           onGeometryExportRef={(node) => { geometryExportRef.current = node; }}
+          onSelectGeometry={(selection) => { setSelectedGeometry(selection); setSelectedImageId(null); }}
+          onToggleGeometryVisibility={toggleGeometryVisibility}
+          protocolEntries={protocol}
+          onReplayProtocol={(index) => { const step = [...protocol].reverse()[index]; if (step) restoreProtocolSnapshot(step); }}
           constructionHelp={<ConstructionHelp tool={tool} />}
           objectInspector={(
             <GeometryObjectPanel
@@ -2644,6 +2679,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             onMoveSelected={() => transformSelectedGeometryPoints("translate")}
             onRotateSelected={() => transformSelectedGeometryPoints("rotate")}
             onDilateSelected={() => transformSelectedGeometryPoints("dilate")}
+            onResizeSelected={resizeSelectedGeometry}
             onUndo={undoConstruction}
             onRedo={redoWorkspace}
             onDeleteSelected={() => deleteGeometryObject()}
@@ -2664,6 +2700,10 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             onBoardPointerLeave={() => { setDragPointId(null); setDragGeometry(null); setDragImageId(null); }}
             onBoardContextMenu={handleGeometryContextMenu}
             onGeometryExportRef={(node) => { geometryExportRef.current = node; }}
+            onSelectGeometry={(selection) => { setSelectedGeometry(selection); setSelectedImageId(null); }}
+            onToggleGeometryVisibility={toggleGeometryVisibility}
+            protocolEntries={protocol}
+            onReplayProtocol={(index) => { const step = [...protocol].reverse()[index]; if (step) restoreProtocolSnapshot(step); }}
             sidebar={(
               <>
                 <ConstructionHelp tool={tool} />
@@ -7943,6 +7983,43 @@ function circleRadiusUnits(construction: Construction, circleId: string) {
   const center = circle ? pointById(construction.points, circle.center) : null;
   const edge = circle ? pointById(construction.points, circle.edge) : null;
   return center && edge ? roundTo(distance(center, edge) / 40, 2) : null;
+}
+
+function resizeGeometryObjectInConstruction(construction: Construction, object: SelectedGeometryObject, factor: number): Construction {
+  const pointIds = pointIdsForObject(construction, object);
+  if (!pointIds.length) {
+    if (object.type !== "locus") return construction;
+    return {
+      ...construction,
+      loci: construction.loci.map((locus) => {
+        if (locus.id !== object.id || !locus.points.length) return locus;
+        const center = centroid(locus.points);
+        return { ...locus, points: locus.points.map((point) => scalePointAround(point, center, factor)) };
+      }),
+    };
+  }
+  const points = pointIds.map((id) => pointById(construction.points, id)).filter((point): point is GeoPoint => Boolean(point));
+  if (!points.length) return construction;
+  const center = object.type === "circle" || object.type === "arc"
+    ? points[0]
+    : centroid(points);
+  const anchorId = object.type === "circle" || object.type === "arc" ? points[0].id : "";
+  return solveConstruction({
+    ...construction,
+    points: construction.points.map((point) => {
+      if (!pointIds.includes(point.id) || point.id === anchorId) return point;
+      return { ...point, ...scalePointAround(point, center, factor) };
+    }),
+  });
+}
+
+function centroid(points: Array<{ x: number; y: number }>) {
+  const total = points.reduce((sum, point) => ({ x: sum.x + point.x, y: sum.y + point.y }), { x: 0, y: 0 });
+  return { x: total.x / points.length, y: total.y / points.length };
+}
+
+function scalePointAround(point: { x: number; y: number }, center: { x: number; y: number }, factor: number) {
+  return { x: center.x + (point.x - center.x) * factor, y: center.y + (point.y - center.y) * factor };
 }
 
 function ConstraintPanel({ construction }: { construction: Construction }) {

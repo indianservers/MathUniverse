@@ -72,6 +72,7 @@ function renderPanel(options: {
       onMoveSelected={() => undefined}
       onRotateSelected={() => undefined}
       onDilateSelected={() => undefined}
+      onResizeSelected={() => undefined}
       onUndo={() => undefined}
       onRedo={() => undefined}
       onDeleteSelected={() => undefined}
@@ -155,6 +156,7 @@ describe("GeometryWorkspacePanel", () => {
         onMoveSelected={() => undefined}
         onRotateSelected={() => undefined}
         onDilateSelected={() => undefined}
+        onResizeSelected={() => undefined}
         onUndo={() => undefined}
         onRedo={() => undefined}
         onDeleteSelected={() => undefined}
@@ -233,6 +235,7 @@ describe("GeometryWorkspacePanel", () => {
         onMoveSelected={() => undefined}
         onRotateSelected={() => undefined}
         onDilateSelected={() => undefined}
+        onResizeSelected={() => undefined}
         onUndo={() => undefined}
         onRedo={() => undefined}
         onDeleteSelected={() => undefined}

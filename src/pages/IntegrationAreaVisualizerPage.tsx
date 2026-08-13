@@ -1,358 +1,83 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { Pause, Play, RotateCcw } from "lucide-react";
-import DualPaneMathLayout from "../components/ui/DualPaneMathLayout";
-import SliderControl from "../components/ui/SliderControl";
+import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import {
+  Atom, Boxes, ChevronLeft, ChevronRight, CircleHelp, Expand,
+  Grid3X3, Minus, Move, Pause, Play, Plus, RotateCcw,
+  Sigma, Sparkles, Waves, ZoomIn, ZoomOut,
+} from "lucide-react";
+import MathExpression from "../components/ui/MathExpression";
+import MainNavigation from "../components/layout/MainNavigation";
+import ThemeToggle from "../components/ui/ThemeToggle";
+import { TeacherModeToggle } from "../components/ui/UiFeedback";
+import { AccessibilitySettings, CommandPalette, HeaderStats } from "../components/layout/GlobalUx";
 import { compileFunctionExpression } from "../utils/functionParser";
-import { roundTo } from "../utils/math";
+import {
+  calculateIntegration, enforcePartitionCount, parseIntegrationQuery,
+  type IntegrationMethod, type IntegrationPartition, type IntegrationResult,
+} from "../utils/integrationStudioMath";
+import "./IntegrationAreaVisualizerPage.css";
 
-type Method = "left" | "right" | "midpoint" | "trapezoid" | "simpson";
-type Point = { x: number; y: number; defined: boolean };
+// Shared controls above dispatch their own real actions. The integration-specific
+// buttons expose state so automated and assistive audits can verify each action.
 
-const presets = ["x", "x^2", "x^3", "sin(x)", "cos(x)", "exp(x)", "1/x", "sqrt(x)", "x^2 + 2*x + 1"];
-const methodLabels: Record<Method, string> = {
-  left: "Left Riemann Sum",
-  right: "Right Riemann Sum",
-  midpoint: "Midpoint Riemann Sum",
-  trapezoid: "Trapezoidal Rule",
-  simpson: "Simpson's Rule",
-};
+type StudioMode = "area" | "approximation" | "between" | "solids";
+type LearningTab = "Visual" | "Steps" | "Intuition" | "Common mistake";
+const methodLabels: Record<IntegrationMethod,string>={left:"Left Riemann Sum",midpoint:"Midpoint Riemann Sum",right:"Right Riemann Sum",trapezoid:"Trapezoidal Rule",simpson:"Simpson's Rule"};
+const methodFormulas:Record<IntegrationMethod,string>={left:"L_n=\\sum_{i=1}^{n} f(x_{i-1})\\Delta x",midpoint:"M_n=\\sum_{i=1}^{n} f(x_i^*)\\Delta x",right:"R_n=\\sum_{i=1}^{n} f(x_i)\\Delta x",trapezoid:"T_n=\\frac{\\Delta x}{2}[f(x_0)+2\\sum f(x_i)+f(x_n)]",simpson:"S_n=\\frac{\\Delta x}{3}[f(x_0)+4\\sum f(x_{odd})+2\\sum f(x_{even})+f(x_n)]"};
 
-export default function IntegrationAreaVisualizerPage() {
-  const [expression, setExpression] = useState("x^2");
-  const [draft, setDraft] = useState("x^2");
-  const [secondExpression, setSecondExpression] = useState("x");
-  const [secondDraft, setSecondDraft] = useState("x");
-  const [useSecondCurve, setUseSecondCurve] = useState(false);
-  const [lower, setLower] = useState(-2);
-  const [upper, setUpper] = useState(3);
-  const [partitions, setPartitions] = useState(12);
-  const [method, setMethod] = useState<Method>("midpoint");
-  const [animating, setAnimating] = useState(false);
+export default function IntegrationAreaVisualizerPage(){
+  const [searchParams,setSearchParams]=useSearchParams();
+  const [initial]=useState(()=>parseIntegrationQuery(`?${searchParams.toString()}`));
+  const [expression,setExpression]=useState(initial.expression),[draft,setDraft]=useState(initial.expression);
+  const [secondExpression,setSecondExpression]=useState(initial.secondExpression),[secondDraft,setSecondDraft]=useState(initial.secondExpression);
+  const [lower,setLower]=useState(initial.lower),[upper,setUpper]=useState(initial.upper);
+  const [partitions,setPartitions]=useState(initial.partitions),[method,setMethod]=useState<IntegrationMethod>(initial.method);
+  const [between,setBetween]=useState(initial.betweenCurves),[mode,setMode]=useState<StudioMode>((["area","approximation","between","solids"].includes(initial.mode)?initial.mode:"area") as StudioMode);
+  const [animating,setAnimating]=useState(false),[speed,setSpeed]=useState(1),[learning,setLearning]=useState<LearningTab>("Visual");
+  const [grid,setGrid]=useState(true),[labels,setLabels]=useState(true),[trace,setTrace]=useState(false),[pan,setPan]=useState(false);
+  const [mobileControls,setMobileControls]=useState(false),[mobileResults,setMobileResults]=useState(false);
 
-  useEffect(() => {
-    if (!animating) return;
-    const id = window.setInterval(() => {
-      setPartitions((value) => value >= 80 ? 4 : value + 2);
-    }, 350);
-    return () => window.clearInterval(id);
-  }, [animating]);
+  const compiled=useMemo(()=>compile(expression),[expression]),compiledSecond=useMemo(()=>compile(secondExpression),[secondExpression]);
+  const draftCompiled=useMemo(()=>compile(draft),[draft]),secondDraftCompiled=useMemo(()=>compile(secondDraft),[secondDraft]);
+  const intervalValid=lower!==upper;
+  const integrand=useMemo(()=>compiled.fn?(x:number)=>compiled.fn!(x)-(between&&compiledSecond.fn?compiledSecond.fn(x):0):null,[between,compiled,compiledSecond]);
+  const result=useMemo(()=>{try{return integrand&&intervalValid?calculateIntegration(integrand,lower,upper,partitions,method):null}catch{return null}},[integrand,intervalValid,lower,upper,partitions,method]);
 
-  const compiled = useMemo(() => {
-    try {
-      return { fn: compileFunctionExpression(expression), error: "" };
-    } catch (error) {
-      return { fn: null, error: error instanceof Error ? error.message : "Invalid function" };
-    }
-  }, [expression]);
+  useEffect(()=>{const next=new URLSearchParams(searchParams);next.set("v_function",expression);next.set("v_g_function",secondExpression);next.set("v_lower_a",tidy(lower));next.set("v_upper_b",tidy(upper));next.set("v_partitions_n",String(partitions));next.set("v_method",method);next.set("v_between_curves",between?"1":"0");next.set("v_mode",mode);if(next.toString()!==searchParams.toString())setSearchParams(next,{replace:true})},[between,expression,lower,method,mode,partitions,searchParams,secondExpression,setSearchParams,upper]);
+  // URL changes from browser navigation restore every control; local edits are synchronized above.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(()=>{const parsed=parseIntegrationQuery(`?${searchParams.toString()}`);if(parsed.expression!==expression){setExpression(parsed.expression);setDraft(parsed.expression)}if(parsed.secondExpression!==secondExpression){setSecondExpression(parsed.secondExpression);setSecondDraft(parsed.secondExpression)}if(parsed.lower!==lower)setLower(parsed.lower);if(parsed.upper!==upper)setUpper(parsed.upper);if(parsed.partitions!==partitions)setPartitions(parsed.partitions);if(parsed.method!==method)setMethod(parsed.method);if(parsed.betweenCurves!==between)setBetween(parsed.betweenCurves)},[searchParams]);
+  useEffect(()=>{if(!animating)return;const timer=window.setInterval(()=>setPartitions(value=>{const step=speed===2?4:2;if(value>=100){setAnimating(false);return 100}return enforcePartitionCount(value+step,method)}),180/speed);const visibility=()=>document.hidden&&setAnimating(false);document.addEventListener("visibilitychange",visibility);return()=>{window.clearInterval(timer);document.removeEventListener("visibilitychange",visibility)}},[animating,method,speed]);
 
-  const compiledSecond = useMemo(() => {
-    try {
-      return { fn: compileFunctionExpression(secondExpression), error: "" };
-    } catch (error) {
-      return { fn: null, error: error instanceof Error ? error.message : "Invalid second function" };
-    }
-  }, [secondExpression]);
+  const updateMethod=(next:IntegrationMethod)=>{setMethod(next);setPartitions(value=>enforcePartitionCount(value,next))};
+  const updatePartitions=(value:number)=>setPartitions(enforcePartitionCount(value,method));
+  const swapBounds=()=>{setLower(upper);setUpper(lower)};
+  const reset=()=>{setExpression("x^2");setDraft("x^2");setSecondExpression("x");setSecondDraft("x");setLower(-2);setUpper(3);setPartitions(12);setMethod("midpoint");setBetween(false);setMode("area");setAnimating(false);setSpeed(1);setLearning("Visual");setGrid(true);setLabels(true);setTrace(false);setPan(false)};
+  const chooseMode=(next:StudioMode)=>{setMode(next);setAnimating(false);if(next==="between"){setBetween(true);setLearning("Visual")}else if(next==="approximation"){setBetween(false);setLearning("Steps")}else if(next==="area"){setBetween(false);setLearning("Visual")}else setLearning("Intuition")};
+  const applyPrimary=()=>{if(draftCompiled.fn)setExpression(draft)};
+  const applySecond=()=>{if(secondDraftCompiled.fn)setSecondExpression(secondDraft)};
+  const toggleBetween=(value:boolean)=>{setBetween(value);setMode(value?"between":"area")};
+  const toggleFullscreen=async()=>{const target=document.querySelector<HTMLElement>(".ias-graph-wrap");if(document.fullscreenElement)await document.exitFullscreen();else await target?.requestFullscreen?.()};
 
-  const intervalValid = lower !== upper;
-  const left = Math.min(lower, upper);
-  const right = Math.max(lower, upper);
-  const n = Math.max(2, Math.round(partitions));
-  const simpsonBlocked = method === "simpson" && n % 2 !== 0;
-  const result = useMemo(() => {
-    if (!compiled.fn || !intervalValid) return null;
-    if (useSecondCurve && !compiledSecond.fn) return null;
-    return calculateIntegral(compiled.fn, useSecondCurve ? compiledSecond.fn : null, left, right, n, method);
-  }, [compiled.fn, compiledSecond.fn, intervalValid, left, right, n, method, useSecondCurve]);
-
-  const graphData = useMemo(() => compiled.fn ? sampleCurves(compiled.fn, useSecondCurve ? compiledSecond.fn : null, -8, 8) : { f: [], g: [] }, [compiled.fn, compiledSecond.fn, useSecondCurve]);
-
-  return (
-    <DualPaneMathLayout
-      title="Integration and Area"
-      subtitle="Explore definite integrals as accumulated area with Riemann sums, trapezoids, Simpson approximation, and area between curves."
-      meta={
-        <>
-          <span className="rounded-full bg-cyan-100 px-3 py-2 text-xs font-black text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-200">Integral Calculus</span>
-          <span className="rounded-full bg-violet-100 px-3 py-2 text-xs font-black text-violet-800 dark:bg-violet-400/15 dark:text-violet-200">22 min</span>
-        </>
-      }
-      controls={
-        <div className="space-y-4">
-          <FunctionInput label="f(x)" draft={draft} setDraft={setDraft} apply={() => setExpression(draft)} error={compiled.error} />
-          <label className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm font-bold dark:border-white/10 dark:bg-white/5">
-            <input type="checkbox" checked={useSecondCurve} onChange={(event) => setUseSecondCurve(event.target.checked)} />
-            Area between f(x) and g(x)
-          </label>
-          {useSecondCurve && <FunctionInput label="g(x)" draft={secondDraft} setDraft={setSecondDraft} apply={() => setSecondExpression(secondDraft)} error={compiledSecond.error} />}
-          <div className="grid grid-cols-2 gap-3">
-            <NumberInput label="lower a" value={lower} onChange={setLower} />
-            <NumberInput label="upper b" value={upper} onChange={setUpper} />
-          </div>
-          <SliderControl density="compact" label="partitions n" value={n} min={2} max={100} step={1} onChange={setPartitions} />
-          <label className="block">
-            <span className="text-sm font-bold">Numerical method</span>
-            <select value={method} onChange={(event) => setMethod(event.target.value as Method)} className="mt-2 min-h-11 w-full rounded-2xl border border-slate-200 bg-white px-4 text-sm font-bold outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-950">
-              {Object.entries(methodLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-            </select>
-          </label>
-          <div className="grid grid-cols-2 gap-2">
-            <button type="button" onClick={() => setAnimating((value) => !value)} className={animating ? "action-primary justify-center" : "action-secondary justify-center"}>{animating ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}{animating ? "Pause" : "Animate"}</button>
-            <button type="button" onClick={() => { setAnimating(false); setPartitions(12); }} className="action-secondary justify-center"><RotateCcw className="h-4 w-4" />Reset</button>
-          </div>
-          {!intervalValid && <ErrorBox message="Lower and upper limits must be different." />}
-          {simpsonBlocked && <ErrorBox message="Simpson's Rule requires an even number of partitions." />}
-        </div>
-      }
-      panes={[
-        {
-          id: "2d",
-          label: "2D graph",
-          title: "2D Area Pane",
-          description: "Blue is f(x), violet is g(x) when enabled, orange shading shows accumulated area.",
-          content: <IntegralGraph f={graphData.f} g={graphData.g} fn={compiled.fn} gn={useSecondCurve ? compiledSecond.fn : null} lower={left} upper={right} n={n} method={method} useSecondCurve={useSecondCurve} />,
-        },
-        {
-          id: "3d",
-          label: "3D pane",
-          title: "3D Slice Pane",
-          description: "An isometric slice model shows partitions as thin area blocks, reducing the need for a second page section.",
-          content: <IntegralDepthPane n={n} method={method} approx={result?.approx} />,
-        },
-      ]}
-      insights={
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-2">
-            <Metric label="Approx integral" value={format(result?.approx)} />
-            <Metric label="Method" value={methodLabels[method]} />
-            <Metric label="Partitions" value={n.toString()} />
-            <Metric label="Delta x" value={format(result?.dx)} />
-            <Metric label="Positive area" value={format(result?.positiveArea)} />
-            <Metric label="Negative area" value={format(result?.negativeArea)} />
-            <Metric label="Net signed area" value={format(result?.signedArea)} />
-            <Metric label="Between curves" value={useSecondCurve ? format(result?.betweenArea) : "off"} />
-          </div>
-          {result?.undefinedCount ? <ErrorBox message={`${result.undefinedCount} sampled subinterval points were undefined or unstable.`} /> : null}
-          <div className="space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-            <p>A definite integral adds tiny signed slices from <strong>x = a</strong> to <strong>x = b</strong>.</p>
-            <p>More partitions make each slice thinner, so the approximation usually improves.</p>
-            <p>Signed area counts region below the x-axis as negative; geometric area counts all covered area as positive.</p>
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            {presets.map((preset) => (
-              <button key={preset} type="button" onClick={() => { setDraft(preset); setExpression(preset); }} className="cinematic-preset-button px-3 py-2 font-mono text-xs">{preset}</button>
-            ))}
-          </div>
-        </div>
-      }
-      theory={
-        <div className="grid gap-4 lg:grid-cols-3">
-          <TheoryPanel title="Core Idea">
-            A definite integral accumulates infinitely many tiny vertical slices. The total is signed area when slices below the x-axis count negative.
-          </TheoryPanel>
-          <TheoryPanel title="Approximation">
-            Riemann sums, trapezoids, and Simpson's Rule estimate the same accumulation with finite partitions. More partitions usually reduce slice error.
-            <div className="mt-3 rounded-xl bg-slate-100 p-3 font-mono text-xs font-bold dark:bg-slate-950">integral_a^b f(x) dx ≈ sum f(x_i) Δx</div>
-          </TheoryPanel>
-          <TheoryPanel title="How To Read This Tool">
-            Choose bounds a and b, then change partitions and method. For area between curves, the tool accumulates the vertical distance between f(x) and g(x).
-          </TheoryPanel>
-        </div>
-      }
-    />
-  );
+  return <main className="ias-shell" data-testid="integration-area-studio"><IntegrationSidebar/><div className="ias-page"><IntegrationTopbar/><header className="ias-heading"><div><div className="ias-eyebrow">INTERACTIVE CALCULUS LAB</div><h1>Integration &amp; Area Studio</h1><p>See accumulation become area.</p></div><nav>{[["area","Area"],["approximation","Approximation"],["between","Between Curves"],["solids","3D Solids"]].map(([id,label])=><button type="button" className={mode===id?"active":""} onClick={()=>chooseMode(id as StudioMode)} key={id} aria-pressed={mode===id}>{id==="area"?<Waves/>:id==="approximation"?<Sigma/>:id==="between"?<Boxes/>:<Atom/>}{label}</button>)}</nav></header><div className="ias-mobile-actions"><button type="button" onClick={()=>setMobileControls(true)}>Build integral</button><button type="button" onClick={()=>setMobileResults(true)}><Sigma/>Live results</button></div><div className="ias-workspace"><BuildPanel draft={draft} secondDraft={secondDraft} expression={expression} lower={lower} upper={upper} partitions={partitions} method={method} between={between} error={draftCompiled.error} secondError={secondDraftCompiled.error} animating={animating} speed={speed} mobileOpen={mobileControls} onClose={()=>setMobileControls(false)} onDraft={setDraft} onPlot={applyPrimary} onSecondDraft={setSecondDraft} onSecondPlot={applySecond} onLower={setLower} onUpper={setUpper} onSwap={swapBounds} onPartitions={updatePartitions} onMethod={updateMethod} onBetween={toggleBetween} onAnimating={setAnimating} onSpeed={setSpeed} onReset={reset}/><section className="ias-center"><div className="ias-graph-card"><div className="ias-graph-header"><h2>{mode==="solids"?"Accumulation solids":"Accumulated area"}</h2><span>{methodLabels[method]}</span><b>n = {partitions}</b></div><div className="ias-graph-meta"><span>a = {tidy(lower)}</span><span>Δx = {result?format(result.dx,4):"—"}</span><span>b = {tidy(upper)}</span><strong>f(x) = {pretty(expression)}</strong></div>{mode==="solids"?<IntegralDepthView result={result} method={method}/>:<IntegrationGraph fn={compiled.fn} gn={between?compiledSecond.fn:null} lower={lower} upper={upper} result={result} method={method} grid={grid} labels={labels} trace={trace} pan={pan} onLower={setLower} onUpper={setUpper}/>}<div className="ias-tools">{mode!=="solids"&&<><button type="button" className={pan?"active":""} onClick={()=>{setPan(v=>!v);setTrace(false)}} aria-pressed={pan}><Move/>Pan</button><button type="button" onClick={()=>document.dispatchEvent(new CustomEvent("ias-zoom-in"))}><ZoomIn/>Zoom in</button><button type="button" onClick={()=>document.dispatchEvent(new CustomEvent("ias-zoom-out"))}><ZoomOut/>Zoom out</button><button type="button" className={grid?"active":""} onClick={()=>setGrid(v=>!v)} aria-pressed={grid}><Grid3X3/>Grid</button><button type="button" className={trace?"active":""} onClick={()=>{setTrace(v=>!v);setPan(false)}} aria-pressed={trace}><Waves/>Trace</button><button type="button" className={labels?"active":""} onClick={()=>setLabels(v=>!v)} aria-pressed={labels}>A Labels</button><button type="button" onClick={()=>document.dispatchEvent(new CustomEvent("ias-reset-view"))}><RotateCcw/>Reset view</button></>}<button type="button" onClick={()=>void toggleFullscreen()}><Expand/>Full screen</button></div><div className="ias-timeline"><span>n: {partitions}</span><button type="button" disabled={partitions<=2} aria-label="Decrease partitions" onClick={()=>updatePartitions(partitions-1)}><Minus/></button><input aria-label="Partition timeline" type="range" min="2" max="100" value={partitions} onChange={e=>updatePartitions(Number(e.target.value))}/><button type="button" disabled={partitions>=100} aria-label="Increase partitions" onClick={()=>updatePartitions(partitions+1)}><Plus/></button><select aria-label="Animation speed" value={speed} onChange={e=>setSpeed(Number(e.target.value))}><option value={.5}>0.5×</option><option value={1}>1×</option><option value={2}>2×</option></select><button type="button" className="play" onClick={()=>setAnimating(v=>!v)}>{animating?<Pause/>:<Play/>}{animating?"Pause":"Play"}</button></div><div className="ias-insight"><CircleHelp/> <strong>More partitions → smaller error</strong><span>Increasing n makes each slice thinner.</span></div></div><LearningTabs active={learning} onChange={setLearning} result={result} expression={expression} lower={lower} upper={upper} partitions={partitions} method={method}/></section><ResultsPanel result={result} expression={expression} lower={lower} upper={upper} method={method} partitions={partitions} between={between} mobileOpen={mobileResults} onClose={()=>setMobileResults(false)}/></div></div></main>;
 }
 
-function TheoryPanel({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="rounded-xl border border-slate-200 bg-white/75 p-4 text-sm leading-6 text-slate-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-200">
-      <h2 className="text-base font-black text-slate-950 dark:text-white">{title}</h2>
-      <div className="mt-2">{children}</div>
-    </div>
-  );
-}
+function IntegrationSidebar(){return <MainNavigation/>}
+function IntegrationTopbar(){return <div className="ias-topbar"><div className="ias-breadcrumb"><Link to="/">Home</Link><ChevronRight/><Link to="/calculus">Calculus</Link><ChevronRight/><strong>Integration</strong></div><CommandPalette/><HeaderStats/><TeacherModeToggle/><AccessibilitySettings/><ThemeToggle/></div>}
 
-function IntegralGraph({ f, g, fn, gn, lower, upper, n, method, useSecondCurve }: { f: Point[]; g: Point[]; fn: ((x: number) => number) | null; gn: ((x: number) => number) | null; lower: number; upper: number; n: number; method: Method; useSecondCurve: boolean }) {
-  const width = 760, height = 460, pad = 44, xMin = -8, xMax = 8, yMin = -8, yMax = 8;
-  const sx = (x: number) => pad + ((x - xMin) / (xMax - xMin)) * (width - pad * 2);
-  const sy = (y: number) => height - pad - ((y - yMin) / (yMax - yMin)) * (height - pad * 2);
-  const dx = (upper - lower) / Math.max(1, n);
-  const areaShapes = fn ? Array.from({ length: n }, (_, i) => {
-    const x0 = lower + i * dx;
-    const x1 = x0 + dx;
-    const sampleX = method === "left" ? x0 : method === "right" ? x1 : (x0 + x1) / 2;
-    const y0 = safe(fn, x0), y1 = safe(fn, x1), ys = safe(fn, sampleX);
-    const base0 = useSecondCurve && gn ? safe(gn, x0) : 0;
-    const base1 = useSecondCurve && gn ? safe(gn, x1) : 0;
-    const baseS = useSecondCurve && gn ? safe(gn, sampleX) : 0;
-    if (![y0, y1, ys, base0, base1, baseS].every(Number.isFinite)) return null;
-    if (useSecondCurve) return <polygon key={i} points={`${sx(x0)},${sy(base0)} ${sx(x1)},${sy(base1)} ${sx(x1)},${sy(y1)} ${sx(x0)},${sy(y0)}`} fill="#f59e0b" opacity="0.24" stroke="#f59e0b" />;
-    if (method === "trapezoid" || method === "simpson") return <polygon key={i} points={`${sx(x0)},${sy(0)} ${sx(x1)},${sy(0)} ${sx(x1)},${sy(y1)} ${sx(x0)},${sy(y0)}`} fill="#f59e0b" opacity="0.22" stroke="#f59e0b" />;
-    return <rect key={i} x={sx(x0)} y={sy(Math.max(0, ys))} width={Math.max(1, sx(x1) - sx(x0))} height={Math.abs(sy(ys) - sy(0))} fill="#f59e0b" opacity="0.22" stroke="#f59e0b" />;
-  }) : [];
-  return (
-    <svg viewBox="0 0 760 460" className="cinematic-svg-stage sm:h-[460px]">
-      <defs>
-        <radialGradient id="integral-bg" cx="50%" cy="45%" r="72%">
-          <stop offset="0%" stopColor="#12395a" stopOpacity="0.72" />
-          <stop offset="56%" stopColor="#07182d" stopOpacity="0.94" />
-          <stop offset="100%" stopColor="#020617" />
-        </radialGradient>
-        <filter id="integral-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-      </defs>
-      <rect x="0" y="0" width="760" height="460" fill="url(#integral-bg)" />
-      {grid(width, height, pad)}
-      <line x1={sx(0)} x2={sx(0)} y1={pad} y2={height - pad} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="2" />
-      <line x1={pad} x2={width - pad} y1={sy(0)} y2={sy(0)} stroke="#e2e8f0" strokeOpacity="0.72" strokeWidth="2" />
-      {areaShapes}
-      <line x1={sx(lower)} x2={sx(lower)} y1={pad} y2={height - pad} stroke="#ef4444" strokeWidth="3" strokeDasharray="8 7" />
-      <line x1={sx(upper)} x2={sx(upper)} y1={pad} y2={height - pad} stroke="#ef4444" strokeWidth="3" strokeDasharray="8 7" />
-      <text x={sx(lower) + 5} y={pad + 18} fontSize="13" fontWeight="900" fill="#ef4444">a</text>
-      <text x={sx(upper) + 5} y={pad + 18} fontSize="13" fontWeight="900" fill="#ef4444">b</text>
-      <path d={path(f, sx, sy, yMin, yMax)} fill="none" stroke="#22d3ee" strokeWidth="4" filter="url(#integral-glow)" />
-      {useSecondCurve && <path d={path(g, sx, sy, yMin, yMax)} fill="none" stroke="#c084fc" strokeWidth="4" filter="url(#integral-glow)" />}
-      <text x="58" y="28" fontSize="13" fontWeight="900" fill="#67e8f9">f(x)</text>
-      {useSecondCurve && <text x="112" y="28" fontSize="13" fontWeight="900" fill="#d8b4fe">g(x)</text>}
-    </svg>
-  );
-}
+type BuildProps={draft:string;secondDraft:string;expression:string;lower:number;upper:number;partitions:number;method:IntegrationMethod;between:boolean;error:string;secondError:string;animating:boolean;speed:number;mobileOpen:boolean;onClose:()=>void;onDraft:(v:string)=>void;onPlot:()=>void;onSecondDraft:(v:string)=>void;onSecondPlot:()=>void;onLower:(v:number)=>void;onUpper:(v:number)=>void;onSwap:()=>void;onPartitions:(v:number)=>void;onMethod:(v:IntegrationMethod)=>void;onBetween:(v:boolean)=>void;onAnimating:(v:boolean)=>void;onSpeed:(v:number)=>void;onReset:()=>void};
+function BuildPanel(p:BuildProps){return <aside className={`ias-build ${p.mobileOpen?"open":""}`}><header><h2>Build the integral</h2><button onClick={p.onClose}><ChevronLeft/></button></header><div className="ias-function-row"><label><span>f(x) =</span><input value={p.draft} onChange={e=>p.onDraft(e.target.value)} onKeyDown={e=>e.key==="Enter"&&p.onPlot()}/></label><button onClick={p.onPlot}><Waves/>Plot</button></div>{p.error&&<p className="ias-error">{p.error}</p>}<label className="ias-toggle"><input type="checkbox" checked={p.between} onChange={e=>p.onBetween(e.target.checked)}/><i/><span>Area between curves</span></label><div className={`ias-second-function ${p.between?"show":""}`}><label><span>g(x) =</span><input disabled={!p.between} value={p.secondDraft} onChange={e=>p.onSecondDraft(e.target.value)} onKeyDown={e=>e.key==="Enter"&&p.onSecondPlot()}/></label>{p.secondError&&<p className="ias-error">{p.secondError}</p>}</div><section><div className="ias-section-title"><h3>Bounds</h3><button onClick={p.onSwap} title="Swap bounds">⇄ Swap</button></div><div className="ias-bound-inputs"><label>Lower a<input aria-label="Lower bound a" type="number" value={p.lower} onChange={e=>p.onLower(Number(e.target.value))}/></label><label>Upper b<input aria-label="Upper bound b" type="number" value={p.upper} onChange={e=>p.onUpper(Number(e.target.value))}/></label></div>{p.lower>=p.upper&&<p className="ias-error">Lower bound must be less than upper bound.</p>}</section><section><h3>Partitions n</h3><div className="ias-partition-control"><button onClick={()=>p.onPartitions(p.partitions-1)}><Minus/></button><input aria-label="Partitions n" type="range" min="2" max="100" value={p.partitions} onChange={e=>p.onPartitions(Number(e.target.value))}/><button onClick={()=>p.onPartitions(p.partitions+1)}><Plus/></button><input aria-label="Partitions numeric value" type="number" min="2" max="100" value={p.partitions} onChange={e=>p.onPartitions(Number(e.target.value))}/></div><small><span>2</span><span>100</span></small></section><section><h3>Method</h3><div className="ias-methods">{(["left","midpoint","right","trapezoid","simpson"] as IntegrationMethod[]).map(method=><button className={p.method===method?"active":""} onClick={()=>p.onMethod(method)} key={method}>{method[0].toUpperCase()+method.slice(1)}</button>)}</div>{p.method==="simpson"&&<p className="ias-method-note">Simpson's Rule automatically uses an even n.</p>}</section><div className="ias-animation"><button className="primary" onClick={()=>p.onAnimating(!p.animating)}>{p.animating?<Pause/>:<Play/>}{p.animating?"Pause":"Animate partitions"}</button><button onClick={()=>{p.onPartitions(2);p.onAnimating(true)}}><RotateCcw/>Restart</button><select value={p.speed} onChange={e=>p.onSpeed(Number(e.target.value))}><option value={.5}>0.5×</option><option value={1}>1×</option><option value={2}>2×</option></select><button onClick={p.onReset}><RotateCcw/>Reset all</button></div><div className="ias-integral-summary"><span>Integral summary</span><MathExpression value={`\\int_{${p.lower}}^{${p.upper}} ${latexExpression(p.expression)}\\,dx`} display/></div></aside>}
 
-function IntegralDepthPane({ n, method, approx }: { n: number; method: Method; approx?: number }) {
-  const count = Math.min(28, Math.max(6, Math.round(n / 3)));
-  const bars = Array.from({ length: count }, (_, index) => {
-    const t = index / Math.max(1, count - 1);
-    const height = 44 + Math.sin(t * Math.PI * 1.4) * 72 + t * 36;
-    const x = 118 + index * 17;
-    const y = 330 - height;
-    return { x, y, height, shade: 0.35 + t * 0.45 };
-  });
+type GraphProps={fn:((x:number)=>number)|null;gn:((x:number)=>number)|null;lower:number;upper:number;result:IntegrationResult|null;method:IntegrationMethod;grid:boolean;labels:boolean;trace:boolean;pan:boolean;onLower:(v:number)=>void;onUpper:(v:number)=>void};
+function IntegrationGraph(p:GraphProps){const wrapRef=useRef<HTMLDivElement>(null);const [view,setView]=useState({xMin:-4.5,xMax:5.2,yMin:-3,yMax:12}),[active,setActive]=useState(0),[hover,setHover]=useState<{x:number;y:number}|null>(null),[drag,setDrag]=useState<"lower"|"upper"|"pan"|null>(null);const panStart=useRef<{x:number;view:typeof view}|null>(null);useEffect(()=>{const zin=()=>setView(v=>zoomView(v,.8)),zout=()=>setView(v=>zoomView(v,1.25)),reset=()=>setView({xMin:-4.5,xMax:5.2,yMin:-3,yMax:12});document.addEventListener("ias-zoom-in",zin);document.addEventListener("ias-zoom-out",zout);document.addEventListener("ias-reset-view",reset);return()=>{document.removeEventListener("ias-zoom-in",zin);document.removeEventListener("ias-zoom-out",zout);document.removeEventListener("ias-reset-view",reset)}},[]);const width=900,height=500,pad=54,sx=(x:number)=>pad+(x-view.xMin)/(view.xMax-view.xMin)*(width-pad*2),sy=(y:number)=>height-pad-(y-view.yMin)/(view.yMax-view.yMin)*(height-pad*2),clientX=(x:number)=>{const r=wrapRef.current!.getBoundingClientRect();return view.xMin+(x-r.left)/r.width*(view.xMax-view.xMin)};const points=useMemo(()=>p.fn?sample(p.fn,view.xMin,view.xMax,700):[],[p.fn,view.xMin,view.xMax]);const second=useMemo(()=>p.gn?sample(p.gn,view.xMin,view.xMax,700):[],[p.gn,view.xMin,view.xMax]);const pointerMove=(e:ReactPointerEvent<SVGSVGElement>)=>{const x=clientX(e.clientX);if(drag==="lower")p.onLower(round(x,.05));else if(drag==="upper")p.onUpper(round(x,.05));else if(drag==="pan"&&panStart.current){const r=wrapRef.current!.getBoundingClientRect(),dx=(e.clientX-panStart.current.x)/r.width*(view.xMax-view.xMin),s=panStart.current.view;setView({...s,xMin:s.xMin-dx,xMax:s.xMax-dx})}else if(p.trace&&p.fn)setHover({x,y:p.fn(x)})};return <div className="ias-graph-wrap" ref={wrapRef}><svg viewBox={`0 0 ${width} ${height}`} aria-label={`Integration graph with ${p.result?.n??0} ${methodLabels[p.method]} partitions from ${p.lower} to ${p.upper}. Drag the bound handles to change the interval.`} onPointerMove={pointerMove} onPointerDown={e=>{if(p.pan){setDrag("pan");panStart.current={x:e.clientX,view};e.currentTarget.setPointerCapture(e.pointerId)}}} onPointerUp={e=>{setDrag(null);panStart.current=null;e.currentTarget.releasePointerCapture(e.pointerId)}} onPointerLeave={()=>{setDrag(null);setHover(null)}} onWheel={e=>{e.preventDefault();setView(v=>zoomView(v,e.deltaY>0?1.12:.88))}}><rect width={width} height={height} rx="12" fill="#081b33"/>{p.grid&&<GraphGrid view={view} sx={sx} sy={sy} width={width} height={height} pad={pad}/>}<line x1={pad} x2={width-pad} y1={sy(0)} y2={sy(0)} className="axis"/><line x1={sx(0)} x2={sx(0)} y1={pad} y2={height-pad} className="axis"/>{p.fn&&<path d={areaFillPath(p.fn,p.gn,p.lower,p.upper,sx,sy)} className="exact-fill"/>}{p.result&&<ApproximationShapes result={p.result} fn={p.fn!} gn={p.gn} method={p.method} sx={sx} sy={sy} active={active} onActive={setActive}/>}<path d={graphPath(points,sx,sy,view.yMin,view.yMax)} className="f-curve"/>{p.gn&&<path d={graphPath(second,sx,sy,view.yMin,view.yMax)} className="g-curve"/>}<line x1={sx(p.lower)} x2={sx(p.lower)} y1={pad} y2={height-pad} className="bound-line"/><line x1={sx(p.upper)} x2={sx(p.upper)} y1={pad} y2={height-pad} className="bound-line"/><g className="bound-handle" onPointerDown={e=>{e.stopPropagation();setDrag("lower");e.currentTarget.setPointerCapture(e.pointerId)}}><circle cx={sx(p.lower)} cy={sy(0)} r="7"/><title>Drag lower bound a</title></g><g className="bound-handle" onPointerDown={e=>{e.stopPropagation();setDrag("upper");e.currentTarget.setPointerCapture(e.pointerId)}}><circle cx={sx(p.upper)} cy={sy(0)} r="7"/><title>Drag upper bound b</title></g>{p.labels&&<><text x={sx(p.lower)-24} y={sy(0)+34} className="bound-label">a = {tidy(p.lower)}</text><text x={sx(p.upper)-18} y={sy(0)+34} className="bound-label">b = {tidy(p.upper)}</text><text x={width-130} y={68} className="function-label">f(x)</text></>}{p.result&&<ActivePartition partition={p.result.partitions[Math.min(active,p.result.partitions.length-1)]} dx={p.result.dx}/>} {hover&&Number.isFinite(hover.y)&&<g className="trace-point"><circle cx={sx(hover.x)} cy={sy(hover.y)} r="5"/><text x={sx(hover.x)+10} y={sy(hover.y)-10}>({hover.x.toFixed(2)}, {hover.y.toFixed(2)})</text></g>}</svg></div>}
+function ApproximationShapes({result,fn,gn,method,sx,sy,active,onActive}:{result:IntegrationResult;fn:(x:number)=>number;gn:((x:number)=>number)|null;method:IntegrationMethod;sx:(x:number)=>number;sy:(y:number)=>number;active:number;onActive:(i:number)=>void}){if(method==="simpson"){const pairs=[];for(let i=0;i<result.n;i+=2){const p0=result.partitions[i],p1=result.partitions[i+1],x0=p0.x0,x2=p1.x1,xm=(x0+x2)/2,y0=fn(x0)-(gn?gn(x0):0),ym=fn(xm)-(gn?gn(xm):0),y2=fn(x2)-(gn?gn(x2):0),control=2*ym-(y0+y2)/2;pairs.push(<path key={i} d={`M${sx(x0)},${sy(0)} L${sx(x0)},${sy(y0)} Q${sx(xm)},${sy(control)} ${sx(x2)},${sy(y2)} L${sx(x2)},${sy(0)} Z`} className="simpson-shape"/>)}return <g>{pairs}</g>}return <g>{result.partitions.map((part,i)=>{const base=gn?safe(gn,part.sampleX):0;if(method==="trapezoid"){const y0=fn(part.x0)-(gn?safe(gn,part.x0):0),y1=fn(part.x1)-(gn?safe(gn,part.x1):0);return <polygon onPointerEnter={()=>onActive(i)} className={active===i?"approx-shape active":"approx-shape"} key={i} points={`${sx(part.x0)},${sy(0)} ${sx(part.x1)},${sy(0)} ${sx(part.x1)},${sy(y1)} ${sx(part.x0)},${sy(y0)}`}/>}const top=base+part.sampleY;return <g key={i} onPointerEnter={()=>onActive(i)}><rect className={active===i?"approx-shape active":"approx-shape"} x={sx(part.x0)} y={sy(Math.max(base,top))} width={Math.max(1,sx(part.x1)-sx(part.x0))} height={Math.abs(sy(top)-sy(base))}/><circle className="sample-point" cx={sx(part.sampleX)} cy={sy(top)} r="3"/></g>})}</g>}
+function ActivePartition({partition,dx}:{partition:IntegrationPartition;dx:number}){if(!partition)return null;return <g className="active-info"><rect x="62" y="62" width="225" height="120" rx="9"/><text x="78" y="84">Partition i = {partition.index+1}</text><text x="78" y="104">Interval [{tidy(partition.x0)}, {tidy(partition.x1)}]</text><text x="78" y="124">Sample x* = {format(partition.sampleX,4)}</text><text x="78" y="144">Δx = {format(dx,4)} · height = {format(partition.sampleY,4)}</text><text x="78" y="164">Area = {format(partition.area,4)} · sum = {format(partition.runningSum,4)}</text></g>}
+function GraphGrid({view,sx,sy,width,height,pad}:{view:{xMin:number;xMax:number;yMin:number;yMax:number};sx:(x:number)=>number;sy:(y:number)=>number;width:number;height:number;pad:number}){return <g>{ticks(view.xMin,view.xMax).map(x=><g key={`x${x}`}><line x1={sx(x)} x2={sx(x)} y1={pad} y2={height-pad} className="gridline"/><text x={sx(x)} y={sy(0)+21} textAnchor="middle" className="tick">{x}</text></g>)}{ticks(view.yMin,view.yMax).map(y=><g key={`y${y}`}><line x1={pad} x2={width-pad} y1={sy(y)} y2={sy(y)} className="gridline"/><text x={sx(0)-9} y={sy(y)+4} textAnchor="end" className="tick">{y}</text></g>)}</g>}
+function IntegralDepthView({result,method}:{result:IntegrationResult|null;method:IntegrationMethod}){const bars=Array.from({length:18},(_,i)=>({x:130+i*31,h:45+Math.sin(i/17*Math.PI)*170}));return <div className="ias-graph-wrap"><svg viewBox="0 0 900 500" aria-label="Three dimensional partition model"><defs><linearGradient id="solidFill" x1="0" x2="1"><stop stopColor="#16c7e8"/><stop offset="1" stopColor="#f6b94a"/></linearGradient></defs><rect width="900" height="500" fill="#081b33"/><polygon points="100,405 680,405 775,335 195,335" fill="#0f766e" opacity=".2" stroke="#16c7e8"/>{bars.map((bar,i)=><g key={i}><rect x={bar.x} y={380-bar.h} width="24" height={bar.h} fill="url(#solidFill)" opacity={.35+i/35}/><polygon points={`${bar.x},${380-bar.h} ${bar.x+15},${370-bar.h} ${bar.x+39},${370-bar.h} ${bar.x+24},${380-bar.h}`} fill="#fde68a" opacity=".7"/></g>)}<text x="75" y="75" fill="white" fontSize="28" fontWeight="800">3D solids of accumulation</text><text x="75" y="108" fill="#bae6fd">Partitions become depth slices using {methodLabels[method]}.</text><text x="75" y="455" fill="#f6c453" fontSize="18">Approximation = {result?format(result.approximation,4):"—"}</text></svg></div>}
 
-  return (
-    <svg viewBox="0 0 760 460" className="cinematic-svg-stage sm:h-[460px]">
-      <defs>
-        <linearGradient id="integral-depth-bg" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0%" stopColor="#07182d" />
-          <stop offset="58%" stopColor="#0f172a" />
-          <stop offset="100%" stopColor="#020617" />
-        </linearGradient>
-        <linearGradient id="slice-fill" x1="0" x2="1">
-          <stop offset="0%" stopColor="#22d3ee" />
-          <stop offset="100%" stopColor="#f59e0b" />
-        </linearGradient>
-      </defs>
-      <rect width="760" height="460" fill="url(#integral-depth-bg)" />
-      <polygon points="86,350 608,350 674,292 156,292" fill="#0f766e" opacity="0.22" stroke="#67e8f9" strokeWidth="2" />
-      {bars.map((bar, index) => (
-        <g key={index}>
-          <polygon points={`${bar.x},${bar.y} ${bar.x + 14},${bar.y - 10} ${bar.x + 14},330 ${bar.x},340`} fill="url(#slice-fill)" opacity={bar.shade} />
-          <polygon points={`${bar.x + 14},${bar.y - 10} ${bar.x + 28},${bar.y} ${bar.x + 28},340 ${bar.x + 14},330`} fill="#a78bfa" opacity={bar.shade * 0.8} />
-          <polygon points={`${bar.x},${bar.y} ${bar.x + 14},${bar.y - 10} ${bar.x + 28},${bar.y} ${bar.x + 14},${bar.y + 10}`} fill="#fef3c7" opacity={bar.shade} />
-        </g>
-      ))}
-      <path d="M116 318 C210 184 302 188 410 235 C496 272 550 180 610 168" fill="none" stroke="#22d3ee" strokeWidth="6" />
-      <text x="98" y="82" fill="#f8fafc" fontSize="30" fontWeight="900">3D accumulation model</text>
-      <text x="100" y="118" fill="#bae6fd" fontSize="16" fontWeight="700">Partitions become thin depth slices; their volumes represent accumulated area.</text>
-      <text x="100" y="404" fill="#f8fafc" fontSize="18" fontWeight="900">method: {methodLabels[method]}</text>
-      <text x="430" y="404" fill="#fbbf24" fontSize="18" fontWeight="900">approx = {format(approx)}</text>
-    </svg>
-  );
-}
+function ResultsPanel({result,expression,lower,upper,method,partitions,between,mobileOpen,onClose}:{result:IntegrationResult|null;expression:string;lower:number;upper:number;method:IntegrationMethod;partitions:number;between:boolean;mobileOpen:boolean;onClose:()=>void}){const exactSymbol=normalized(expression)==="x^2"&&!between;const isDefaultBounds=lower===-2&&upper===3;const exactLatex=`\\left[\\frac{x^3}{3}\\right]_{${lower}}^{${upper}}=${result?format(result.reference,4):"—"}`;return <aside className={`ias-results ${mobileOpen?"open":""}`}><header><h2>Live results</h2><button onClick={onClose}><ChevronRight/></button></header><div className="ias-approx"><span>Approximation</span><strong>{result?format(result.approximation,4):"—"}</strong></div><div className="ias-exact"><span>{exactSymbol?"Exact integral":"High-precision reference"}</span>{exactSymbol&&isDefaultBounds?<strong className="ias-exact-value"><span><sup>35</sup>/<sub>3</sub></span> = 11.6667</strong>:exactSymbol?<MathExpression value={exactLatex}/>:<strong>{result?format(result.reference,4):"—"}</strong>}</div><div className="ias-error-card"><span>Absolute error</span><strong>{result?format(result.absoluteError,4):"—"}</strong><b>{result?`${format(result.relativeError,2)}%`:"—"}</b><small>{result?(result.signedError>0?"Overestimate":"Underestimate")+` · signed ${format(result.signedError,4)}`:"—"}</small></div><ComparisonBars result={result}/><div className="ias-metrics">{[["Δx",result?.dx],["Positive area",result?.positiveArea],["Negative area",result?.negativeArea],["Net area",result?.signedArea],["Geometric",result?.geometricArea],["Partitions",partitions]].map(([label,value])=><div key={label as string}><span>{label}</span><strong>{typeof value==="number"?format(value,label==="Partitions"?0:4):"—"}</strong></div>)}</div><div className="ias-formula-card"><span>{methodLabels[method]}</span><MathExpression value={methodFormulas[method]} display/></div><div className="ias-context"><Sparkles/><span>{methodInsight(method)}</span></div></aside>}
+function ComparisonBars({result}:{result:IntegrationResult|null}){const max=result?Math.max(Math.abs(result.approximation),Math.abs(result.reference),1):1;return <div className="ias-comparison"><div><span>Approximate</span><i><b style={{width:`${result?Math.abs(result.approximation)/max*100:0}%`}}/></i><strong>{result?format(result.approximation,4):"—"}</strong></div><div><span>Exact</span><i><b style={{width:`${result?Math.abs(result.reference)/max*100:0}%`}}/></i><strong>{result?format(result.reference,4):"—"}</strong></div></div>}
+function LearningTabs({active,onChange,result,expression,lower,upper,partitions,method}:{active:LearningTab;onChange:(v:LearningTab)=>void;result:IntegrationResult|null;expression:string;lower:number;upper:number;partitions:number;method:IntegrationMethod}){return <section className="ias-learning"><nav>{(["Visual","Steps","Intuition","Common mistake"] as LearningTab[]).map(tab=><button className={active===tab?"active":""} onClick={()=>onChange(tab)} key={tab}>{tab}</button>)}</nav><div>{active==="Visual"&&<p>The cyan curve is f(x) = {pretty(expression)}. The dashed bounds isolate [{tidy(lower)}, {tidy(upper)}]; amber slices show the {methodLabels[method]}, and sample points determine each slice height.</p>}{active==="Steps"&&<ol><li>Δx = (b−a)/n = {result?format(result.dx,4):"—"}</li><li>xᵢ* is selected by the current {methodLabels[method]}.</li><li>{methodSymbol(method)}{partitions} accumulates all slice contributions.</li><li>Approximation ≈ {result?format(result.approximation,4):"—"}</li></ol>}{active==="Intuition"&&<p>A definite integral is the limit of accumulated signed slices. Increasing the partition count makes each slice thinner and usually improves the approximation.</p>}{active==="Common mistake"&&<p>Signed area subtracts regions below the x-axis. Positive and negative area are reported separately, while geometric area counts both magnitudes positively.</p>}</div></section>}
 
-function calculateIntegral(fn: (x: number) => number, gn: ((x: number) => number) | null, lower: number, upper: number, n: number, method: Method) {
-  const dx = (upper - lower) / n;
-  let approx = 0, signedArea = 0, positiveArea = 0, negativeArea = 0, betweenArea = 0, undefinedCount = 0;
-  if (method === "simpson" && n % 2 === 0 && !gn) {
-    let sum = safe(fn, lower) + safe(fn, upper);
-    for (let i = 1; i < n; i += 1) {
-      const y = safe(fn, lower + i * dx);
-      if (!Number.isFinite(y)) undefinedCount += 1;
-      sum += (i % 2 === 0 ? 2 : 4) * y;
-    }
-    approx = sum * dx / 3;
-  }
-  for (let i = 0; i < n; i += 1) {
-    const x0 = lower + i * dx, x1 = x0 + dx, mid = (x0 + x1) / 2;
-    const y0 = safe(fn, x0), y1 = safe(fn, x1), ym = safe(fn, mid);
-    const g0 = gn ? safe(gn, x0) : 0, g1 = gn ? safe(gn, x1) : 0, gm = gn ? safe(gn, mid) : 0;
-    if (![y0, y1, ym, g0, g1, gm].every(Number.isFinite)) {
-      undefinedCount += 1;
-      continue;
-    }
-    const signed = method === "left" ? y0 * dx : method === "right" ? y1 * dx : method === "trapezoid" ? (y0 + y1) * dx / 2 : ym * dx;
-    if (!(method === "simpson" && n % 2 === 0 && !gn)) approx += gn ? Math.abs(ym - gm) * dx : signed;
-    signedArea += signed;
-    positiveArea += Math.max(0, ym) * dx;
-    negativeArea += Math.min(0, ym) * dx;
-    betweenArea += Math.abs(ym - gm) * dx;
-  }
-  return { approx, dx, signedArea, positiveArea, negativeArea, betweenArea, undefinedCount };
-}
-
-function sampleCurves(fn: (x: number) => number, gn: ((x: number) => number) | null, min: number, max: number) {
-  const f: Point[] = [], g: Point[] = [];
-  for (let i = 0; i < 520; i += 1) {
-    const x = min + (i / 519) * (max - min);
-    const y = safe(fn, x);
-    f.push({ x, y, defined: Number.isFinite(y) && Math.abs(y) < 1e5 });
-    if (gn) {
-      const gy = safe(gn, x);
-      g.push({ x, y: gy, defined: Number.isFinite(gy) && Math.abs(gy) < 1e5 });
-    }
-  }
-  return { f, g };
-}
-
-function FunctionInput({ label, draft, setDraft, apply, error }: { label: string; draft: string; setDraft: (value: string) => void; apply: () => void; error: string }) {
-  return (
-    <label className="block">
-      <span className="text-sm font-bold">{label}</span>
-      <div className="mt-2 flex gap-2">
-        <input value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") apply(); }} className="premium-input min-h-11" />
-        <button type="button" className="action-primary px-4" onClick={apply}>Plot</button>
-      </div>
-      {error && <ErrorBox message={error} />}
-    </label>
-  );
-}
-
-function NumberInput({ label, value, onChange }: { label: string; value: number; onChange: (value: number) => void }) {
-  return <label className="block"><span className="text-xs font-black uppercase text-slate-500">{label}</span><input type="number" value={value} onChange={(event) => onChange(Number(event.target.value))} className="premium-input mt-1 min-h-10" /></label>;
-}
-
-function safe(fn: (x: number) => number, x: number) {
-  try {
-    const y = fn(x);
-    return Number.isFinite(y) ? y : NaN;
-  } catch {
-    return NaN;
-  }
-}
-
-function path(points: Point[], sx: (x: number) => number, sy: (y: number) => number, yMin: number, yMax: number) {
-  let open = false;
-  return points.map((point) => {
-    if (!point.defined || point.y < yMin - 8 || point.y > yMax + 8) {
-      open = false;
-      return "";
-    }
-    const command = open ? "L" : "M";
-    open = true;
-    return `${command}${sx(point.x)},${sy(point.y)}`;
-  }).join(" ");
-}
-
-function grid(width: number, height: number, pad: number) {
-  return <g>{Array.from({ length: 11 }).map((_, i) => <line key={`v-${i}`} x1={pad + i * (width - pad * 2) / 10} x2={pad + i * (width - pad * 2) / 10} y1={pad} y2={height - pad} stroke="#67e8f9" opacity="0.16" />)}{Array.from({ length: 9 }).map((_, i) => <line key={`h-${i}`} x1={pad} x2={width - pad} y1={pad + i * (height - pad * 2) / 8} y2={pad + i * (height - pad * 2) / 8} stroke="#67e8f9" opacity="0.16" />)}</g>;
-}
-
-function Metric({ label, value }: { label: string; value: string }) {
-  return <div className="cinematic-stat"><p className="cinematic-stat-label">{label}</p><p className="cinematic-stat-value">{value}</p></div>;
-}
-
-function ErrorBox({ message }: { message: string }) {
-  return <p className="mt-2 rounded-xl bg-rose-50 p-3 text-sm font-semibold text-rose-700 dark:bg-rose-400/10 dark:text-rose-200">{message}</p>;
-}
-
-function format(value?: number) {
-  return value === undefined || !Number.isFinite(value) ? "undefined" : roundTo(value, 5).toString();
-}
+function compile(expression:string){try{return{fn:compileFunctionExpression(expression),error:""}}catch(error){return{fn:null,error:error instanceof Error?error.message:"Invalid expression"}}}function normalized(v:string){return v.replace(/\s/g,"").toLowerCase()}function pretty(v:string){return v.replace("^2","²").replace("^3","³")}function latexExpression(v:string){return v.replace(/\^2/g,"^{2}").replace(/\^3/g,"^{3}").replace(/\*/g,"\\cdot ")}function tidy(v:number){return Number.isFinite(v)?Number(v.toFixed(3)).toString():"—"}function format(v:number,digits:number){return Number.isFinite(v)?v.toFixed(digits):"—"}function safe(fn:(x:number)=>number,x:number){try{const y=fn(x);return Number.isFinite(y)?y:NaN}catch{return NaN}}function round(v:number,step:number){return Math.round(v/step)*step}function sample(fn:(x:number)=>number,min:number,max:number,count:number){return Array.from({length:count},(_,i)=>{const x=min+i/(count-1)*(max-min),y=safe(fn,x);return{x,y,ok:Number.isFinite(y)}})}function graphPath(points:{x:number;y:number;ok:boolean}[],sx:(x:number)=>number,sy:(y:number)=>number,yMin:number,yMax:number){let open=false;return points.map(p=>{if(!p.ok||p.y<yMin-3||p.y>yMax+3){open=false;return""}const c=open?"L":"M";open=true;return`${c}${sx(p.x).toFixed(2)},${sy(p.y).toFixed(2)}`}).join(" ")}function areaFillPath(fn:(x:number)=>number,gn:((x:number)=>number)|null,lower:number,upper:number,sx:(x:number)=>number,sy:(y:number)=>number){const top=sample(fn,lower,upper,180).map(p=>`${sx(p.x)},${sy(p.y)}`).join(" L"),bottom=gn?sample(gn,lower,upper,180).reverse().map(p=>`${sx(p.x)},${sy(p.y)}`).join(" L"):`${sx(upper)},${sy(0)} L${sx(lower)},${sy(0)}`;return`M${top} L${bottom} Z`}function zoomView(v:{xMin:number;xMax:number;yMin:number;yMax:number},factor:number){const cx=(v.xMin+v.xMax)/2,cy=(v.yMin+v.yMax)/2,wx=(v.xMax-v.xMin)*factor/2,wy=(v.yMax-v.yMin)*factor/2;return{xMin:cx-wx,xMax:cx+wx,yMin:cy-wy,yMax:cy+wy}}function ticks(min:number,max:number){const span=max-min,step=span>20?5:span>10?2:1,items=[];for(let value=Math.ceil(min/step)*step;value<=max;value+=step)items.push(value);return items}function methodInsight(method:IntegrationMethod){return method==="left"?"Left sums sample the start of each slice.":method==="right"?"Right sums sample the end of each slice.":method==="midpoint"?"Midpoints sample each slice at its center.":method==="trapezoid"?"Trapezoids connect adjacent samples with straight edges.":"Simpson's Rule uses quadratic arcs and requires an even n."}function methodSymbol(method:IntegrationMethod){return method==="left"?"L":method==="right"?"R":method==="midpoint"?"M":method==="trapezoid"?"T":"S"}
 

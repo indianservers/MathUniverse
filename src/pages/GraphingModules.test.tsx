@@ -15,7 +15,7 @@ describe("Math Workspaces discovery", () => {
 
     expect(mathWorkspaces).toHaveLength(6);
     expect(navigation?.items).toHaveLength(3);
-    for (const title of ["CAS", "Geometry", "3D Geometry", "Graphs", "3D Graphs", "Shapes Explorer"]) {
+    for (const title of ["CAS", "2D Geometry", "3D Geometry", "Graphs", "3D Graphs", "Shapes Explorer"]) {
       expect(html).toContain(title);
       expect(navigationItems?.some((item) => item.title === title)).toBe(true);
     }

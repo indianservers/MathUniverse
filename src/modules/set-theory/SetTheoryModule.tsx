@@ -6,7 +6,6 @@ import { useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerE
 import { Link, Navigate, useParams } from "react-router-dom";
 import ReactFlow, { Background, Controls, MarkerType, type Edge, type Node } from "reactflow";
 import SectionCard from "../../components/ui/SectionCard";
-import TopicHeader from "../../components/ui/TopicHeader";
 import {
   applySetOperation,
   cartesianProduct,
@@ -249,15 +248,18 @@ export default function SetTheoryModule() {
   if (pageSlug && !activePage) return <Navigate to="/set-theory" replace />;
 
   return (
-    <div className="space-y-4">
-      <TopicHeader
-        title={activePage?.title ?? "Set Theory and Relations"}
-        subtitle={activePage?.description ?? "Pick one focused lab at a time: sets, Venn diagrams, relations, Hasse diagrams, functions, representations, and practice."}
-        difficulty="Discrete Structures"
-        estimatedMinutes={activePage ? 15 : 60}
-        formula={{ title: "Core identity", formula: String.raw`A \triangle B = (A \setminus B) \cup (B \setminus A)`, explanation: "The module connects set notation, visual regions, relation matrices, directed graphs, and function mappings." }}
-      />
-
+    <div className="set-theory-module-shell">
+      {activePage ? (
+        <div className="set-theory-page-context">
+          <span>{activePage.title}</span>
+          <p>{activePage.description}</p>
+        </div>
+      ) : (
+        <div className="set-theory-page-context">
+          <span>Overview</span>
+          <p>Pick one focused lab at a time: sets, Venn diagrams, relations, Hasse diagrams, functions, representations, and practice.</p>
+        </div>
+      )}
       <SetTheoryTopicLauncher />
 
       {activePage ? (

@@ -8,6 +8,8 @@ import { getProportionalVisualMode, PROPORTIONAL_FORMULA_IDS } from "../utils/pr
 import MathExpression from "../components/ui/MathExpression";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
+import DerivativesFormulaStudio from "./DerivativesFormulaStudio";
+import IntegrationFormulaStudio from "./IntegrationFormulaStudio";
 
 type FormulaVisualizerPageProps = {
   conceptId: string;
@@ -105,6 +107,9 @@ export default function FormulaVisualizerPage({ conceptId }: FormulaVisualizerPa
       </main>
     );
   }
+
+  if (conceptId === "derivatives") return <DerivativesFormulaStudio config={config} />;
+  if (conceptId === "integration") return <IntegrationFormulaStudio _config={config} />;
 
   return <FormulaVisualizerShell config={config} />;
 }

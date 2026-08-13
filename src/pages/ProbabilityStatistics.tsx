@@ -1,10 +1,10 @@
 import { ArrowRight, BarChart3, BrainCircuit, FlaskConical, GitBranch, LineChart, Network, Search, Sigma, Shuffle, SlidersHorizontal, Table2, type LucideIcon } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import GraphCard from "../components/ui/GraphCard";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
-import TopicHeader from "../components/ui/TopicHeader";
+import StudioPageShell from "../components/ui/StudioPageShell";
 import ResponsiveBarChart from "../components/charts/ResponsiveBarChart";
 import ResponsiveLineChart from "../components/charts/ResponsiveLineChart";
 import PhaseTwoDomainPanel from "../components/ui/PhaseTwoDomainPanel";
@@ -14,6 +14,7 @@ import { statisticsSyllabusStudios } from "../modules/probability-statistics/pag
 import LearningExpansion from "../modules/probability-statistics/pages/LearningExpansion";
 
 type AccentName = "cyan" | "violet" | "emerald" | "rose" | "amber" | "sky" | "indigo" | "slate";
+type StatsTabId = "concepts" | "normal" | "data" | "learning";
 
 type ConceptCardItem = {
   title: string;
@@ -131,6 +132,7 @@ const statisticsConceptCards = [
 ] as const satisfies readonly ConceptCardItem[];
 
 export default function ProbabilityStatistics() {
+  const [activeTab, setActiveTab] = useState<StatsTabId>(() => readStatsTabFromUrl());
   const [conceptQuery, setConceptQuery] = useState("");
   const [mean, setMean] = useState(0);
   const [sigma, setSigma] = useState(1);
@@ -180,75 +182,145 @@ export default function ProbabilityStatistics() {
     return distributionCards.filter((card) => cardMatches(card, normalizedConceptQuery));
   }, [distributionCards, normalizedConceptQuery]);
   const hasVisibleCards = filteredConcepts.length > 0;
+  const tabs = [
+    { id: "concepts" as const, label: "Concepts", summary: "Search concept cards, distributions, inference pages, lessons, proof routes, and statistics studios." },
+    { id: "normal" as const, label: "Normal Lab", summary: "Move mean, standard deviation, and observed x to see z-score and cumulative probability update." },
+    { id: "data" as const, label: "Data Lab", summary: "Enter raw data, read quick summaries, and build a histogram from the same sample." },
+    { id: "learning" as const, label: "Learning", summary: "Open the overview learning expansion and the domain readiness panel in one place." },
+  ];
+  const currentTab = tabs.find((tab) => tab.id === activeTab) ?? tabs[0];
+
+  const selectTab = (tabId: StatsTabId) => {
+    setActiveTab(tabId);
+    const url = new URL(window.location.href);
+    if (tabId === "concepts") url.searchParams.delete("tab");
+    else url.searchParams.set("tab", tabId);
+    window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  };
+
+  useEffect(() => {
+    const onPopState = () => setActiveTab(readStatsTabFromUrl());
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
   return (
-    <div className="space-y-6">
-      <TopicHeader title="Probability & Statistics" subtitle="Open concept cards for distributions, inference, regression, Bayesian reasoning, stochastic processes, and data labs." difficulty="Concept Home" estimatedMinutes={10} />
-
-      <section className="rounded-3xl border border-cyan-100 bg-white p-5 shadow-xl shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/75">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-600 dark:text-cyan-300">Concept launcher</p>
-            <h1 className="mt-2 text-3xl font-black text-slate-950 dark:text-white">Probability & statistics home</h1>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-              Pick a concept card to open its interactive page. Use search for distributions, inference terms, regression, Bayesian models, stochastic processes, and data handling.
-            </p>
+    <StudioPageShell
+      className="stats-studio"
+      title="Probability & Statistics Studio"
+      subtitle="Open concept cards for distributions, inference, regression, Bayesian reasoning, stochastic processes, and data labs."
+      breadcrumbs={["Home", "Probability & Statistics"]}
+      difficulty="Concept Home"
+      estimatedMinutes={10}
+      progress={76}
+      status={[
+        { id: "cards", label: "Index cards", value: allConcepts.length, tone: "cyan" },
+        { id: "distributions", label: "Distributions", value: distributionSpecs.length, tone: "violet" },
+      ]}
+    >
+      <div className="stats-workspace">
+        <section className="stats-main-panel" aria-label="Probability and statistics workspace">
+          <div className="stats-tabs" role="tablist" aria-label="Probability and statistics sections">
+            {tabs.map((tab) => (
+              <button key={tab.id} type="button" role="tab" aria-selected={tab.id === currentTab.id} className={tab.id === currentTab.id ? "active" : ""} onClick={() => selectTab(tab.id)}>
+                {tab.label}
+              </button>
+            ))}
           </div>
-          <div className="grid grid-cols-3 gap-2 text-center">
+          <div className="stats-context-strip">
+            <div>
+              <span>Current view</span>
+              <strong>{currentTab.label}</strong>
+            </div>
+            <p>{currentTab.summary}</p>
+          </div>
+          <div className="stats-tab-content thin-scrollbar">
+            {activeTab === "concepts" ? (
+              <div className="grid gap-4">
+                {!hasVisibleCards ? <p className="rounded-2xl bg-white p-4 text-sm font-bold dark:bg-slate-950">No probability or statistics concept matches that search.</p> : null}
+                <ConceptSection title="Main interactive studios" description="The primary probability and statistics tools. Each card opens a dedicated interactive page." cards={filteredCoreCards} />
+                <ConceptSection title="UG, PG, and professional statistics studios" description="Survey sampling, DOE, SQC, time series, nonparametrics, multivariate, advanced inference, official statistics, survival, actuarial, computing, modelling, and school statistics polish." cards={filteredSyllabusCompletionCards} />
+                <ConceptSection title="Concepts, lessons, and proof tools" description="School-to-university concepts plus visual proof and workspace routes." cards={filteredStatisticsCards} />
+                <ConceptSection title="Popular distribution shortcuts" description="Fast links to the most-used probability distribution pages." cards={filteredQuickCards} />
+                <ConceptSection title="Complete distribution index" description="All distribution concepts currently wired in the atlas, with a basic use-case description for each." cards={filteredDistributionCards} />
+              </div>
+            ) : null}
+            {activeTab === "normal" ? (
+              <div id="normal-lab" className="grid gap-6 scroll-mt-24 xl:grid-cols-[320px_minmax(0,1fr)]">
+                <SectionCard title="Normal Controls">
+                  <div className="space-y-4">
+                    <SliderGroup title="Distribution parameters">
+                      <SliderControl density="compact" label="Mean mu" value={mean} min={-10} max={10} step={0.1} onChange={setMean} />
+                      <SliderControl density="compact" label="Standard deviation sigma" value={safeSigma} min={0.1} max={6} step={0.1} onChange={setSigma} />
+                      <SliderControl density="compact" label="Observed x" value={x} min={-15} max={15} step={0.1} onChange={setX} />
+                    </SliderGroup>
+                    <div className="rounded-2xl bg-cyan-50 p-4 text-sm font-semibold text-cyan-900 dark:bg-cyan-400/10 dark:text-cyan-100">
+                      z = (x - mu) / sigma = {round(z)}<br />
+                      {"P(Z <= z) ~= "} {round(normalCdf(z))}
+                    </div>
+                  </div>
+                </SectionCard>
+                <GraphCard title="Normal Distribution Curve">
+                  <ResponsiveLineChart data={normalData} lineColor="#8b5cf6" />
+                </GraphCard>
+              </div>
+            ) : null}
+            {activeTab === "data" ? (
+              <div id="data-lab" className="grid gap-6 scroll-mt-24 xl:grid-cols-[320px_minmax(0,1fr)]">
+                <SectionCard title="Manual Data Input" description="Enter numbers separated by commas or spaces.">
+                  <textarea className="min-h-40 w-full rounded-2xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-950/60" value={rawData} onChange={(event) => setRawData(event.target.value)} />
+                  <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+                    <Stat label="n" value={samples.length} />
+                    <Stat label="mean" value={round(avg(samples))} />
+                    <Stat label="min" value={round(Math.min(...samples))} />
+                    <Stat label="max" value={round(Math.max(...samples))} />
+                  </div>
+                </SectionCard>
+                <GraphCard title="Histogram Builder">
+                  <ResponsiveBarChart data={histogram} color="#14b8a6" />
+                </GraphCard>
+              </div>
+            ) : null}
+            {activeTab === "learning" ? (
+              <div className="grid gap-4">
+                <LearningExpansion content={statisticsLearningContent.overview} />
+                <PhaseTwoDomainPanel domain="statistics-probability" />
+              </div>
+            ) : null}
+          </div>
+        </section>
+        <aside className="stats-inspector thin-scrollbar" aria-label="Probability and statistics inspector">
+          <div className="stats-guide-card">
+            <span>Studio guide</span>
+            <h2>{currentTab.label}</h2>
+            <p>{currentTab.summary}</p>
+          </div>
+          <label className="stats-search-box">
+            <Search className="h-5 w-5 text-cyan-600" />
+            <input value={conceptQuery} onChange={(event) => setConceptQuery(event.target.value)} placeholder="Search normal, p-value, regression..." />
+            <SlidersHorizontal className="h-4 w-4 text-slate-400" />
+          </label>
+          <div className="stats-mini-grid">
             <Stat label="Index cards" value={allConcepts.length} />
+            <Stat label="Visible" value={filteredConcepts.length} />
             <Stat label="Distributions" value={distributionSpecs.length} />
             <Stat label="Tools" value={conceptCards.length + statisticsConceptCards.length} />
           </div>
-        </div>
-        <label className="mt-5 flex min-h-12 items-center gap-3 rounded-2xl bg-slate-100 px-4 text-slate-900 dark:bg-white/10 dark:text-white">
-          <Search className="h-5 w-5 text-cyan-600" />
-          <input className="min-w-0 flex-1 bg-transparent text-sm outline-none" value={conceptQuery} onChange={(event) => setConceptQuery(event.target.value)} placeholder="Search normal, binomial, p-value, regression, Markov, entropy..." />
-          <SlidersHorizontal className="h-4 w-4 text-slate-400" />
-        </label>
-      </section>
-
-      {!hasVisibleCards ? <p className="rounded-2xl bg-white p-4 text-sm font-bold dark:bg-slate-950">No probability or statistics concept matches that search.</p> : null}
-      <ConceptSection title="Main interactive studios" description="The primary probability and statistics tools. Each card opens a dedicated interactive page." cards={filteredCoreCards} />
-      <ConceptSection title="UG, PG, and professional statistics studios" description="Survey sampling, DOE, SQC, time series, nonparametrics, multivariate, advanced inference, official statistics, survival, actuarial, computing, modelling, and school statistics polish." cards={filteredSyllabusCompletionCards} />
-      <ConceptSection title="Concepts, lessons, and proof tools" description="School-to-university concepts plus visual proof and workspace routes." cards={filteredStatisticsCards} />
-      <ConceptSection title="Popular distribution shortcuts" description="Fast links to the most-used probability distribution pages." cards={filteredQuickCards} />
-      <ConceptSection title="Complete distribution index" description="All distribution concepts currently wired in the atlas, with a basic use-case description for each." cards={filteredDistributionCards} />
-
-      <div id="normal-lab" className="grid gap-6 scroll-mt-24 xl:grid-cols-[320px_minmax(0,1fr)]">
-        <SectionCard title="Normal Controls">
-          <div className="space-y-4">
-            <SliderGroup title="Distribution parameters">
-              <SliderControl density="compact" label="Mean mu" value={mean} min={-10} max={10} step={0.1} onChange={setMean} />
-              <SliderControl density="compact" label="Standard deviation sigma" value={safeSigma} min={0.1} max={6} step={0.1} onChange={setSigma} />
-              <SliderControl density="compact" label="Observed x" value={x} min={-15} max={15} step={0.1} onChange={setX} />
-            </SliderGroup>
-            <div className="rounded-2xl bg-cyan-50 p-4 text-sm font-semibold text-cyan-900 dark:bg-cyan-400/10 dark:text-cyan-100">
-              z = (x - mu) / sigma = {round(z)}<br />
-              {"P(Z <= z) ~= "} {round(normalCdf(z))}
+          <SectionCard title="Live Normal" compact>
+            <div className="grid gap-2 text-sm font-semibold">
+              <p>z = {round(z)}</p>
+              <p>P(Z &lt;= z) ~= {round(normalCdf(z))}</p>
             </div>
-          </div>
-        </SectionCard>
-        <GraphCard title="Normal Distribution Curve">
-          <ResponsiveLineChart data={normalData} lineColor="#8b5cf6" />
-        </GraphCard>
+          </SectionCard>
+          <SectionCard title="Data Snapshot" compact>
+            <div className="grid gap-2 text-sm font-semibold">
+              <p>n = {samples.length}</p>
+              <p>mean = {round(avg(samples))}</p>
+            </div>
+          </SectionCard>
+        </aside>
       </div>
-      <div id="data-lab" className="grid gap-6 scroll-mt-24 xl:grid-cols-[320px_minmax(0,1fr)]">
-        <SectionCard title="Manual Data Input" description="Enter numbers separated by commas or spaces.">
-          <textarea className="min-h-40 w-full rounded-2xl border border-slate-200 bg-white p-3 font-mono text-sm dark:border-white/10 dark:bg-slate-950/60" value={rawData} onChange={(event) => setRawData(event.target.value)} />
-          <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-            <Stat label="n" value={samples.length} />
-            <Stat label="mean" value={round(avg(samples))} />
-            <Stat label="min" value={round(Math.min(...samples))} />
-            <Stat label="max" value={round(Math.max(...samples))} />
-          </div>
-        </SectionCard>
-        <GraphCard title="Histogram Builder">
-          <ResponsiveBarChart data={histogram} color="#14b8a6" />
-        </GraphCard>
-      </div>
-      <LearningExpansion content={statisticsLearningContent.overview} />
-      <PhaseTwoDomainPanel domain="statistics-probability" />
-    </div>
+    </StudioPageShell>
   );
 }
 
@@ -264,7 +336,7 @@ function ConceptSection({ title, description, cards }: { title: string; descript
         <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-black text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-100">{cards.length} cards</span>
       </div>
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {cards.map((card) => <ConceptCard key={card.route} card={card} />)}
+        {cards.map((card) => <ConceptCard key={`${card.route}-${card.title}-${card.label}`} card={card} />)}
       </div>
     </section>
   );
@@ -347,4 +419,11 @@ function avg(values: number[]) {
 
 function round(value: number) {
   return Number.isFinite(value) ? Number(value.toFixed(3)).toString() : "0";
+}
+
+function readStatsTabFromUrl(): StatsTabId {
+  if (typeof window === "undefined") return "concepts";
+  const tab = new URLSearchParams(window.location.search).get("tab");
+  if (tab === "normal" || tab === "data" || tab === "learning") return tab;
+  return "concepts";
 }
