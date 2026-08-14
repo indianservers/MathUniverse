@@ -48,7 +48,7 @@ import { type PointerEvent, type ReactNode, type RefObject, useEffect, useState 
 import { roundTo } from "../../../utils/math";
 import type { GeometryCertificationReport } from "../../../workspace/geometryConstructionCertification";
 
-export type GeometryTool = "select" | "point" | "segment" | "ray" | "vector" | "line" | "circle" | "polygon" | "angle" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "circle-radius" | "circle-3-points" | "on-circle" | "intersect" | "perpendicular-bisector" | "angle-bisector" | "tangent" | "polar" | "locus" | "regular-polygon" | "sector" | "arc" | "compass" | "mirror" | "rotate" | "dilate" | "translate" | "show-hide" | "lock" | "freehand" | "text" | "image" | "move-canvas" | "zoom" | "triangle" | "rectangle" | "shape-circle" | "parabola" | "ellipse" | "hyperbola" | "reflect" | "trace" | "stop-trace" | "clear-trace" | "delete" | "redo" | "reset" | "save" | "load";
+export type GeometryTool = "select" | "point" | "segment" | "ray" | "vector" | "line" | "circle" | "polygon" | "angle" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "circle-radius" | "circle-3-points" | "on-circle" | "intersect" | "perpendicular-bisector" | "angle-bisector" | "tangent" | "polar" | "locus" | "regular-polygon" | "sector" | "arc" | "compass" | "mirror" | "rotate" | "dilate" | "translate" | "show-hide" | "lock" | "freehand" | "text" | "image" | "move-canvas" | "zoom" | "triangle" | "rectangle" | "square" | "pentagon-shape" | "hexagon" | "parallelogram" | "trapezoid" | "rhombus" | "kite" | "shape-circle" | "semicircle" | "parabola" | "ellipse" | "hyperbola" | "reflect" | "trace" | "stop-trace" | "clear-trace" | "delete" | "redo" | "reset" | "save" | "load";
 export type GeoStyle = { color?: string; fill?: string; strokeWidth?: number; size?: number; visible?: boolean; trace?: boolean; label?: string; opacity?: number; labelMode?: "name" | "value" | "both" | "hidden" };
 export type GeoPoint = { id: string; x: number; y: number; label: string; style?: GeoStyle };
 export type GeoLine = { id: string; a: string; b: string; style?: GeoStyle };
@@ -172,7 +172,15 @@ const geometryPaletteGroups: Array<{ title: string; tools: GeometryPaletteToolIt
   { title: "Shapes", tools: [
     { id: "triangle", label: "Triangle", icon: Pentagon },
     { id: "rectangle", label: "Rectangle", icon: Box },
+    { id: "square", label: "Square", icon: Box },
+    { id: "pentagon-shape", label: "Pentagon", icon: Pentagon },
+    { id: "hexagon", label: "Hexagon", icon: Pentagon },
+    { id: "parallelogram", label: "Parallelogram", icon: Box },
+    { id: "trapezoid", label: "Trapezoid", icon: Pentagon },
+    { id: "rhombus", label: "Rhombus", icon: Pentagon },
+    { id: "kite", label: "Kite", icon: Pentagon },
     { id: "shape-circle", label: "Circle Shape", icon: Circle },
+    { id: "semicircle", label: "Semicircle", icon: Circle },
     { id: "parabola", label: "Parabola", icon: LineChart },
     { id: "ellipse", label: "Ellipse", icon: Circle },
     { id: "hyperbola", label: "Hyperbola", icon: LineChart },

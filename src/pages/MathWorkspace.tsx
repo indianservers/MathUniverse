@@ -142,7 +142,7 @@ import {
 
 type ResultCard = { id: string; input: string; interpretation: string; result: string; detail?: string; steps?: string[]; table?: ResultTableRow[]; related?: string[]; graphExpression?: string };
 type SpreadsheetCellGrid = string[][];
-type GeometryTool = "select" | "point" | "segment" | "ray" | "vector" | "line" | "circle" | "polygon" | "angle" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "circle-radius" | "circle-3-points" | "on-circle" | "intersect" | "perpendicular-bisector" | "angle-bisector" | "tangent" | "polar" | "locus" | "regular-polygon" | "sector" | "arc" | "compass" | "mirror" | "rotate" | "dilate" | "translate" | "show-hide" | "lock" | "freehand" | "text" | "image" | "move-canvas" | "zoom" | "triangle" | "rectangle" | "shape-circle" | "parabola" | "ellipse" | "hyperbola" | "reflect" | "trace" | "stop-trace" | "clear-trace" | "delete" | "redo" | "reset" | "save" | "load";
+type GeometryTool = "select" | "point" | "segment" | "ray" | "vector" | "line" | "circle" | "polygon" | "angle" | "parallel" | "perpendicular" | "midpoint" | "fixed-length" | "circle-radius" | "circle-3-points" | "on-circle" | "intersect" | "perpendicular-bisector" | "angle-bisector" | "tangent" | "polar" | "locus" | "regular-polygon" | "sector" | "arc" | "compass" | "mirror" | "rotate" | "dilate" | "translate" | "show-hide" | "lock" | "freehand" | "text" | "image" | "move-canvas" | "zoom" | "triangle" | "rectangle" | "square" | "pentagon-shape" | "hexagon" | "parallelogram" | "trapezoid" | "rhombus" | "kite" | "shape-circle" | "semicircle" | "parabola" | "ellipse" | "hyperbola" | "reflect" | "trace" | "stop-trace" | "clear-trace" | "delete" | "redo" | "reset" | "save" | "load";
 type GeoLine = { id: string; a: string; b: string; style?: GeoStyle };
 type GeoCircle = { id: string; center: string; edge: string; style?: GeoStyle };
 type GeoPolygon = { id: string; points: string[]; style?: GeoStyle };
@@ -162,7 +162,7 @@ type ObjectPropertyOverrides = Record<string, MathObjectProperties>;
 type ContextMenuState = { x: number; y: number; target: SelectedGeometryObject | { type: "3d"; id: string } | { type: "algebra"; ref: AlgebraObjectRef } };
 type WorkspaceView = "graph" | "geometry" | "3d" | "data" | "teach";
 export type DataWorkspacePage = "overview" | "spreadsheet" | "analysis" | "cas" | "results" | "objects";
-type ConstructionStep = { id: string; label: string; detail: string; createdAt: number; snapshot: Pick<WorkspaceSnapshot, "plots" | "construction" | "transforms3d" | "added3dObjects"> };
+type ConstructionStep = { id: string; label: string; detail: string; createdAt: number; snapshot: Pick<WorkspaceSnapshot, "plots" | "construction" | "transforms3d" | "added3dObjects" | "deletedBase3dIds"> };
 type ActivityJournalEntry = { templateId: string; phase: GuidedActivityPhase; response: string; selfCheck: "not-started" | "revisit" | "got-it"; confidence: number; updatedAt: number };
 type WorkspaceSnapshot = {
   input: string;
@@ -185,6 +185,7 @@ type WorkspaceSnapshot = {
   zoom3d: number;
   transforms3d: Record<ThreeObjectId, Transform3D>;
   added3dObjects?: Added3DObject[];
+  deletedBase3dIds?: ThreeObjectId[];
   images?: WorkspaceImage[];
   spreadsheet?: SpreadsheetCellGrid;
   tableRange?: { start: number; end: number; step: number };
@@ -267,6 +268,8 @@ const objectStudioShapes: ObjectStudioShape[] = [
   { id: "line3d", label: "Line", category: "vectors", preview: "line" },
 ];
 const isBase3dId = (id: string): id is ThreeObjectId => id in defaultTransforms3d;
+const getFirstAvailable3dObjectId = (deletedIds: ThreeObjectId[], addedObjects: Added3DObject[]) =>
+  threeBaseIds.find((id) => !deletedIds.includes(id)) ?? addedObjects[0]?.id ?? "";
 const addedRenderKindForBase = (id: ThreeObjectId): Added3DRenderKind => {
   if (id === "surface") return "surface";
   if (id === "slice") return "slice";
@@ -356,6 +359,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const [objectStudioSnapStep, setObjectStudioSnapStep] = useState(0.25);
   const [transforms3d, setTransforms3d] = useState<Record<ThreeObjectId, Transform3D>>(defaultTransforms3d);
   const [added3dObjects, setAdded3dObjects] = useState<Added3DObject[]>([]);
+  const [deletedBase3dIds, setDeletedBase3dIds] = useState<ThreeObjectId[]>([]);
   const [drag3d, setDrag3d] = useState<string | null>(null);
   const [contextMenu, setContextMenu] = useState<ContextMenuState | null>(null);
   const [formulaSearch, setFormulaSearch] = useState("");
@@ -488,14 +492,14 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     label,
     detail,
     createdAt: Date.now(),
-    snapshot: { plots, construction, transforms3d, added3dObjects },
+    snapshot: { plots, construction, transforms3d, added3dObjects, deletedBase3dIds },
   });
 
   const recordWorkspaceStep = (label: string, detail: string) => {
     const step = captureStep(label, detail);
     setUndoStack((current) => [step, ...current].slice(0, 80));
     setRedoStack([]);
-    setProtocol((current) => [{ ...step, snapshot: { plots, construction, transforms3d, added3dObjects } }, ...current].slice(0, 120));
+    setProtocol((current) => [{ ...step, snapshot: { plots, construction, transforms3d, added3dObjects, deletedBase3dIds } }, ...current].slice(0, 120));
   };
 
   const restoreProtocolSnapshot = (step: ConstructionStep) => {
@@ -503,6 +507,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setConstruction(normalizeConstruction(step.snapshot.construction ?? initialConstruction));
     setTransforms3d({ ...defaultTransforms3d, ...(step.snapshot.transforms3d ?? {}) });
     setAdded3dObjects(step.snapshot.added3dObjects ?? []);
+    setDeletedBase3dIds(step.snapshot.deletedBase3dIds ?? []);
   };
 
   const undoWorkspace = () => {
@@ -566,6 +571,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       recordWorkspaceStep("Define 3D point", `${name}=(${position.join(", ")})`);
       setSelected3d("point");
       setShowSurface(true);
+      setDeletedBase3dIds((current) => current.filter((id) => id !== "point"));
       setTransforms3d((current) => ({ ...current, point: { ...current.point, name, position, visible: true } }));
       addResultCard({
         id: crypto.randomUUID(),
@@ -785,7 +791,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       return;
     }
     if (["image", "delete", "redo", "reset", "save", "load"].includes(tool)) return;
-    const quickCreateTools: GeometryTool[] = ["text", "rectangle", "shape-circle", "parabola", "ellipse", "hyperbola"];
+    const quickCreateTools: GeometryTool[] = ["text", "rectangle", "square", "pentagon-shape", "hexagon", "parallelogram", "trapezoid", "rhombus", "kite", "shape-circle", "semicircle", "parabola", "ellipse", "hyperbola"];
     if (quickCreateTools.includes(tool)) {
       const point = clientToBoard(event);
       if (point) createQuickGeometryObject(tool, point.x, point.y);
@@ -910,6 +916,47 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
         const points = [makePoint(x - 70, y - 45, 0), makePoint(x + 70, y - 45, 1), makePoint(x + 70, y + 45, 2), makePoint(x - 70, y + 45, 3)];
         return solveConstruction({ ...current, points: [...current.points, ...points], polygons: [...current.polygons, { id: crypto.randomUUID(), points: points.map((point) => point.id), style: { fill: "rgba(14,165,233,.16)", color: "#22d3ee" } }] });
       }
+      const polygonStyles: Partial<Record<GeometryTool, GeoStyle>> = {
+        square: { fill: "rgba(34,197,94,.16)", color: "#22c55e" },
+        "pentagon-shape": { fill: "rgba(168,85,247,.16)", color: "#a855f7" },
+        hexagon: { fill: "rgba(20,184,166,.16)", color: "#14b8a6" },
+        parallelogram: { fill: "rgba(249,115,22,.16)", color: "#f97316" },
+        trapezoid: { fill: "rgba(234,179,8,.18)", color: "#eab308" },
+        rhombus: { fill: "rgba(236,72,153,.16)", color: "#ec4899" },
+        kite: { fill: "rgba(99,102,241,.16)", color: "#6366f1" },
+      };
+      const createPolygon = (offsets: Array<[number, number]>, label: string) => {
+        const points = offsets.map(([dx, dy], index) => makePoint(x + dx, y + dy, index));
+        return solveConstruction({
+          ...current,
+          points: [...current.points, ...points],
+          polygons: [...current.polygons, { id: crypto.randomUUID(), points: points.map((point) => point.id), style: { ...polygonStyles[shapeTool], label } }],
+        });
+      };
+      if (shapeTool === "square") {
+        return createPolygon([[-58, -58], [58, -58], [58, 58], [-58, 58]], "square");
+      }
+      if (shapeTool === "pentagon-shape" || shapeTool === "hexagon") {
+        const sides = shapeTool === "pentagon-shape" ? 5 : 6;
+        const radius = shapeTool === "pentagon-shape" ? 72 : 78;
+        const offsets = Array.from({ length: sides }, (_, index): [number, number] => {
+          const angle = -Math.PI / 2 + index / sides * Math.PI * 2;
+          return [Math.cos(angle) * radius, Math.sin(angle) * radius];
+        });
+        return createPolygon(offsets, shapeTool === "pentagon-shape" ? "pentagon" : "hexagon");
+      }
+      if (shapeTool === "parallelogram") {
+        return createPolygon([[-76, -46], [52, -46], [76, 46], [-52, 46]], "parallelogram");
+      }
+      if (shapeTool === "trapezoid") {
+        return createPolygon([[-48, -52], [48, -52], [86, 52], [-86, 52]], "trapezoid");
+      }
+      if (shapeTool === "rhombus") {
+        return createPolygon([[0, -72], [82, 0], [0, 72], [-82, 0]], "rhombus");
+      }
+      if (shapeTool === "kite") {
+        return createPolygon([[0, -86], [58, -10], [0, 82], [-38, -10]], "kite");
+      }
       if (shapeTool === "shape-circle") {
         const center = makePoint(x, y, 0);
         const edge = makePoint(x + 72, y, 1);
@@ -917,11 +964,12 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       }
       const curvePoints = Array.from({ length: 48 }, (_, index) => {
         const t = ((index / 47) * 2 - 1);
+        if (shapeTool === "semicircle") return { x: x + t * 96, y: y - Math.sqrt(Math.max(0, 1 - t * t)) * 72 + 36 };
         if (shapeTool === "parabola") return { x: x + t * 120, y: y + t * t * 90 - 60 };
         if (shapeTool === "ellipse") return { x: x + Math.cos(index / 47 * Math.PI * 2) * 110, y: y + Math.sin(index / 47 * Math.PI * 2) * 62 };
         return { x: x + t * 125, y: y + (t === 0 ? 0 : 42 / t) };
       });
-      return solveConstruction({ ...current, loci: [...current.loci, { id: crypto.randomUUID(), label: shapeTool, points: curvePoints, style: { color: shapeTool === "ellipse" ? "#22d3ee" : shapeTool === "hyperbola" ? "#f97316" : "#a78bfa", strokeWidth: 4 } }] });
+      return solveConstruction({ ...current, loci: [...current.loci, { id: crypto.randomUUID(), label: shapeTool, points: curvePoints, style: { color: shapeTool === "ellipse" ? "#22d3ee" : shapeTool === "hyperbola" ? "#f97316" : shapeTool === "semicircle" ? "#10b981" : "#a78bfa", strokeWidth: 4 } }] });
     });
     setTool("select");
   };
@@ -1418,19 +1466,31 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const restore3dObject = (id = selected3d) => {
     const target = isBase3dId(id) ? transforms3d[id] : added3dObjects.find((object) => object.id === id)?.transform;
     recordWorkspaceStep("Restore 3D object", `${target?.name ?? id} restored.`);
-    if (isBase3dId(id)) setTransforms3d((current) => ({ ...current, [id]: defaultTransforms3d[id] }));
+    if (isBase3dId(id)) {
+      setDeletedBase3dIds((current) => current.filter((deletedId) => deletedId !== id));
+      setTransforms3d((current) => ({ ...current, [id]: defaultTransforms3d[id] }));
+    }
     else setAdded3dObjects((current) => current.map((object) => object.id === id ? { ...object, transform: { ...defaultTransforms3d[object.baseId], name: object.label, visible: true, color: object.transform.color } } : object));
     setContextMenu(null);
   };
 
   const delete3dObject = (id = selected3d) => {
     const target = isBase3dId(id) ? transforms3d[id] : added3dObjects.find((object) => object.id === id)?.transform;
-    recordWorkspaceStep(isBase3dId(id) ? "Hide 3D object" : "Delete 3D object", `${target?.name ?? id} removed from view.`);
-    if (isBase3dId(id)) setTransforms3d((current) => ({ ...current, [id]: { ...current[id], visible: false } }));
+    recordWorkspaceStep("Delete 3D object", `${target?.name ?? id} deleted from the scene.`);
+    if (isBase3dId(id)) {
+      setDeletedBase3dIds((current) => current.includes(id) ? current : [...current, id]);
+      setTransforms3d((current) => ({ ...current, [id]: { ...current[id], visible: false } }));
+      if (selected3d === id) {
+        setSelected3d(getFirstAvailable3dObjectId([...deletedBase3dIds, id], added3dObjects));
+      }
+    }
     else {
       setAdded3dObjects((current) => current.filter((object) => object.id !== id));
-      setSelected3d("solid");
+      if (selected3d === id) {
+        setSelected3d(getFirstAvailable3dObjectId(deletedBase3dIds, added3dObjects.filter((object) => object.id !== id)));
+      }
     }
+    setProjectStatus(`${target?.name ?? id} deleted from the scene.`);
     setContextMenu(null);
   };
 
@@ -1470,7 +1530,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
       setProjectStatus("Saved geometry construction could not be loaded. The stored data is invalid.");
     }
   };
-  const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, geometryGraphSettings, lockedGeometryIds, surface, surfaceExpression, cameraPreset3d, sceneAnimationSpeed, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, autoRotate3d, zoom3d, transforms3d, added3dObjects, images: workspaceImages, spreadsheet, tableRange: { start: tableStart, end: tableEnd, step: tableStep }, guidedMode, guidedPhase, teachingMode, revealStep, controlsLocked, highContrastMode, performanceMode, protocol, activityJournal, presentationNotes, objectProperties: objectPropertyOverrides });
+  const snapshot = (): WorkspaceSnapshot => ({ input, results, plots, construction, geometryGraphSettings, lockedGeometryIds, surface, surfaceExpression, cameraPreset3d, sceneAnimationSpeed, solid, surfaceScale, height3d, crossSection, showSurface, showSolid, autoRotate3d, zoom3d, transforms3d, added3dObjects, deletedBase3dIds, images: workspaceImages, spreadsheet, tableRange: { start: tableStart, end: tableEnd, step: tableStep }, guidedMode, guidedPhase, teachingMode, revealStep, controlsLocked, highContrastMode, performanceMode, protocol, activityJournal, presentationNotes, objectProperties: objectPropertyOverrides });
   const saveWorkspace = () => {
     localStorage.setItem("math-universe-workspace-full", JSON.stringify(snapshot()));
     setProjectStatus("Workspace saved in this browser.");
@@ -1496,7 +1556,8 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
     setZoom3d(data.zoom3d ?? 1);
     setTransforms3d({ ...defaultTransforms3d, ...(data.transforms3d ?? {}) });
     setAdded3dObjects(data.added3dObjects ?? []);
-    setSelected3d("solid");
+    setDeletedBase3dIds(data.deletedBase3dIds ?? []);
+    setSelected3d(getFirstAvailable3dObjectId(data.deletedBase3dIds ?? [], data.added3dObjects ?? []));
     setWorkspaceImages(data.images ?? []);
     setSelectedImageId(null);
     setSpreadsheet(data.spreadsheet ?? initialSpreadsheet);
@@ -2522,7 +2583,7 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
             </ThreeSceneWrapper>
           )}
           objects={[
-            ...threeBaseIds.map((id): ObjectStudioItem => ({ id, label: threeObjectLabels[id], kind: id, transform: transforms3d[id], added: false })),
+            ...threeBaseIds.filter((id) => !deletedBase3dIds.includes(id)).map((id): ObjectStudioItem => ({ id, label: threeObjectLabels[id], kind: id, transform: transforms3d[id], added: false })),
             ...added3dObjects.map((object): ObjectStudioItem => ({ id: object.id, label: object.label, kind: object.baseId, transform: object.transform, added: true })),
           ]}
           selectedId={selected3d}
@@ -8086,7 +8147,15 @@ function ConstructionHelp({ tool }: { tool: GeometryTool }) {
     zoom: "Zoom mode is available from the plate and keeps the current construction selected.",
     triangle: "Click three vertices to draw an editable triangle.",
     rectangle: "Click the board to insert an editable rectangle.",
+    square: "Click the board to insert an editable square.",
+    "pentagon-shape": "Click the board to insert an editable regular pentagon.",
+    hexagon: "Click the board to insert an editable regular hexagon.",
+    parallelogram: "Click the board to insert an editable parallelogram.",
+    trapezoid: "Click the board to insert an editable trapezoid.",
+    rhombus: "Click the board to insert an editable rhombus.",
+    kite: "Click the board to insert an editable kite.",
     "shape-circle": "Click the board to insert a ready circle with center and edge points.",
+    semicircle: "Click the board to insert a semicircle visualization curve.",
     parabola: "Click the board to insert a parabola visualization curve.",
     ellipse: "Click the board to insert an ellipse visualization curve.",
     hyperbola: "Click the board to insert a hyperbola visualization curve.",

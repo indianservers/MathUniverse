@@ -1,6 +1,6 @@
-import { BookOpen, CheckCircle2, RotateCcw, Search, Sparkles } from "lucide-react";
-import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { BookOpen, CheckCircle2, Download, Expand, FileText, Grid3X3, List, RotateCcw, Search, Share2, Sparkles, Tags, Workflow } from "lucide-react";
+import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { formulaVisualizerConfigs, getFormulaVisualizerConfig, type FormulaVisualizerEntry, type FormulaVisualizerRouteConfig } from "../data/formulaVisualizerRoutes";
 import { buildFormulaVisualizationExplanation, type FormulaVisualizationExplanation } from "../data/formulaVisualizationExplanations";
 import { getSetLogicVisualMode, type SetLogicVisualMode } from "../utils/setLogicVisualModel";
@@ -110,9 +110,733 @@ export default function FormulaVisualizerPage({ conceptId }: FormulaVisualizerPa
 
   if (conceptId === "derivatives") return <DerivativesFormulaStudio config={config} />;
   if (conceptId === "integration") return <IntegrationFormulaStudio _config={config} />;
+  if (conceptId === "vectors") return <VectorsFormulaStudio config={config} />;
 
   return <FormulaVisualizerShell config={config} />;
 }
+
+type VectorParameters = {
+  ax: number;
+  ay: number;
+  bx: number;
+  by: number;
+  k: number;
+};
+
+type VectorToolState = {
+  grid: boolean;
+  components: boolean;
+  labels: boolean;
+  trace: boolean;
+};
+
+const defaultVectorParams: VectorParameters = { ax: 3, ay: 2, bx: 1, by: 8, k: 2 };
+
+function VectorsFormulaStudio({ config }: { config: FormulaVisualizerRouteConfig }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState<Tab>("Explore");
+  const [query, setQuery] = useState("");
+  const [group, setGroup] = useState("All");
+  const [selectedId, setSelectedId] = useState(() => searchParams.get("v_formula") ?? config.defaultFormulaId);
+  const [params, setParams] = useState<VectorParameters>(() => ({
+    ax: readVectorParam(searchParams, "v_ax", defaultVectorParams.ax),
+    ay: readVectorParam(searchParams, "v_ay", defaultVectorParams.ay),
+    bx: readVectorParam(searchParams, "v_bx", defaultVectorParams.bx),
+    by: readVectorParam(searchParams, "v_by", defaultVectorParams.by),
+    k: readVectorParam(searchParams, "v_k", defaultVectorParams.k),
+  }));
+  const [tools, setTools] = useState<VectorToolState>({ grid: true, components: true, labels: true, trace: false });
+  const [practiceAnswer, setPracticeAnswer] = useState("");
+
+  const groups = useMemo(() => ["All", ...Array.from(new Set(config.formulas.map((formula) => formula.group)))], [config.formulas]);
+  const filtered = useMemo(() => {
+    const normalized = query.trim().toLowerCase();
+    return config.formulas.filter((formula) => {
+      const matchesGroup = group === "All" || formula.group === group;
+      const matchesText =
+        !normalized ||
+        [formula.title, formula.plainText, formula.description, formula.group, formula.difficulty, ...formula.tags]
+          .join(" ")
+          .toLowerCase()
+          .includes(normalized);
+      return matchesGroup && matchesText;
+    });
+  }, [config.formulas, group, query]);
+  const selected = config.formulas.find((formula) => formula.id === selectedId) ?? filtered[0] ?? config.formulas[0];
+  const metrics = computeVectorMetrics(params);
+  const genericParams = vectorToFormulaParams(params);
+  const practiceExpected = Math.round(vectorPracticeValue(selected, metrics) * 100) / 100;
+  const practiceNumeric = Number(practiceAnswer);
+  const practiceCorrect = practiceAnswer.trim() !== "" && Number.isFinite(practiceNumeric) && Math.abs(practiceNumeric - practiceExpected) <= 0.05;
+
+  useEffect(() => {
+    const next = new URLSearchParams(searchParams);
+    next.set("v_formula", selected.id);
+    next.set("v_ax", compactNumber(params.ax));
+    next.set("v_ay", compactNumber(params.ay));
+    next.set("v_bx", compactNumber(params.bx));
+    next.set("v_by", compactNumber(params.by));
+    next.set("v_k", compactNumber(params.k));
+    if (next.toString() !== searchParams.toString()) setSearchParams(next, { replace: true });
+  }, [params, searchParams, selected.id, setSearchParams]);
+
+  const setVectorParam = (key: keyof VectorParameters, value: number) => {
+    setParams((current) => ({ ...current, [key]: clampVectorValue(value, key === "k" ? -5 : -10, key === "k" ? 5 : 10) }));
+  };
+  const reset = () => {
+    setParams(defaultVectorParams);
+    setSelectedId(config.defaultFormulaId);
+  };
+  const selectFormula = (id: string) => {
+    setSelectedId(id);
+    setActiveTab("Explore");
+  };
+
+  return (
+    <main className="desktop-page-shell bg-[radial-gradient(circle_at_20%_8%,rgba(34,211,238,0.16),transparent_28%),radial-gradient(circle_at_84%_6%,rgba(167,139,250,0.16),transparent_30%),#f8fbff]" data-testid="vectors-formula-visualizer-page">
+      <section className="mx-auto flex w-full max-w-[1580px] flex-col gap-3">
+        <header className="rounded-2xl border border-slate-200/90 bg-white/86 p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/80">
+          <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
+            <div className="min-w-0">
+              <p className="flex items-center gap-2 text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-300">
+                <Sparkles className="h-4 w-4" />
+                Visual Formula Lab
+              </p>
+              <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-950 dark:text-white">Vectors</h1>
+              <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">Explore vector operations through live geometry.</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <button type="button" className="action-secondary" onClick={() => setActiveTab("Formula Bank")}>
+                <BookOpen className="h-4 w-4" /> Formula Library
+              </button>
+              <Link to={config.formulaLibraryRoute} className="action-secondary">
+                <FileText className="h-4 w-4" /> Reference
+              </Link>
+              <button type="button" className="action-primary" onClick={reset}>
+                <RotateCcw className="h-4 w-4" /> Reset
+              </button>
+            </div>
+          </div>
+          <FormulaTabs tabs={baseTabs} activeTab={activeTab} onChange={setActiveTab} />
+        </header>
+
+        {activeTab === "Explore" ? (
+          <>
+            <section className="grid min-h-0 min-w-0 items-start gap-3 lg:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[270px_minmax(0,1fr)_330px]" data-testid="vectors-studio-explore-layout">
+              <VectorFormulaLibrary
+                filtered={filtered}
+                group={group}
+                groups={groups}
+                query={query}
+                selected={selected}
+                onGroup={setGroup}
+                onQuery={setQuery}
+                onSelect={setSelectedId}
+              />
+              <VectorVisualizationStage formula={selected} params={params} metrics={metrics} tools={tools} onTools={setTools} />
+              <VectorControlsPanel formula={selected} params={params} metrics={metrics} onChange={setVectorParam} onReset={reset} onStep={() => setActiveTab("Why it Works")} />
+            </section>
+            <LearnTheIdea formula={selected} metrics={metrics} />
+          </>
+        ) : null}
+
+        {activeTab === "Formula Bank" ? <VectorFormulaBank config={config} formulas={filtered} query={query} setQuery={setQuery} onSelect={selectFormula} /> : null}
+        {activeTab === "Examples" ? <VectorExamples config={config} onLoad={(next) => { setParams(next); setActiveTab("Explore"); }} /> : null}
+        {activeTab === "Why it Works" ? <ExplanationPanel config={config} formula={selected} /> : null}
+        {activeTab === "Practice" ? (
+          <PracticePanel
+            formula={selected}
+            params={genericParams}
+            answer={practiceAnswer}
+            expected={practiceExpected}
+            correct={practiceCorrect}
+            setAnswer={setPracticeAnswer}
+          />
+        ) : null}
+      </section>
+    </main>
+  );
+}
+
+function VectorFormulaBank({ config, formulas, query, setQuery, onSelect }: { config: FormulaVisualizerRouteConfig; formulas: FormulaVisualizerEntry[]; query: string; setQuery: (value: string) => void; onSelect: (id: string) => void }) {
+  return (
+    <section className="rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/88">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <h2 className="text-2xl font-black text-slate-950 dark:text-white">Formula Bank</h2>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{config.formulas.length} vector formulas with compact references and live entry points.</p>
+        </div>
+        <label className="flex min-h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold dark:border-white/10 dark:bg-slate-900 lg:w-[360px]">
+          <Search className="h-4 w-4 text-slate-400" />
+          <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search bank..." className="min-w-0 flex-1 bg-transparent outline-none" />
+        </label>
+      </div>
+      <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        {formulas.map((formula) => (
+          <article key={formula.id} className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="font-black text-slate-950 dark:text-white">{formula.title}</h3>
+              <span className="mini-chip">{formula.difficulty}</span>
+            </div>
+            <MathExpression value={formula.latex} className="mt-2 text-cyan-700 dark:text-cyan-200" />
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{formula.description}</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <span className="mini-chip">{formula.group}</span>
+              {formula.tags.slice(0, 3).map((tag) => <span key={tag} className="mini-chip">{tag}</span>)}
+            </div>
+            <button type="button" className="action-secondary mt-3" onClick={() => onSelect(formula.id)}>
+              Open in Explore
+            </button>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function VectorExamples({ config, onLoad }: { config: FormulaVisualizerRouteConfig; onLoad: (params: VectorParameters) => void }) {
+  const examples = config.examples.map((example, index) => {
+    const base = [
+      { ax: 3, ay: 2, bx: 1, by: 8, k: 2 },
+      { ax: -2, ay: 4, bx: 5, by: -1, k: -1.5 },
+      { ax: 6, ay: -3, bx: -4, by: 5, k: 3 },
+    ][index % 3];
+    return { ...example, vectorValues: base };
+  });
+  return (
+    <section className="grid gap-3 lg:grid-cols-3">
+      {examples.map((example) => (
+        <article key={example.title} className="rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/88">
+          <h2 className="text-xl font-black text-slate-950 dark:text-white">{example.title}</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{example.description}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <span className="mini-chip">a=({example.vectorValues.ax}, {example.vectorValues.ay})</span>
+            <span className="mini-chip">b=({example.vectorValues.bx}, {example.vectorValues.by})</span>
+            <span className="mini-chip">k={example.vectorValues.k}</span>
+          </div>
+          <button type="button" className="action-primary mt-4" onClick={() => onLoad(example.vectorValues)}>
+            Load example
+          </button>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+function computeVectorMetrics(params: VectorParameters) {
+  const dot = params.ax * params.bx + params.ay * params.by;
+  const cross = params.ax * params.by - params.ay * params.bx;
+  const magA = Math.hypot(params.ax, params.ay);
+  const magB = Math.hypot(params.bx, params.by);
+  const sum = { x: params.ax + params.bx, y: params.ay + params.by };
+  const sumMagnitude = Math.hypot(sum.x, sum.y);
+  const sumAngle = angleDegrees(sum.x, sum.y);
+  const angle = magA > 0 && magB > 0 ? Math.acos(Math.max(-1, Math.min(1, dot / (magA * magB)))) * 180 / Math.PI : 0;
+  const projectionScale = magB > 0 ? dot / (magB * magB) : 0;
+  const projection = { x: projectionScale * params.bx, y: projectionScale * params.by };
+  const unitA = magA > 0 ? { x: params.ax / magA, y: params.ay / magA } : { x: 0, y: 0 };
+  return { dot, cross, magA, magB, sum, sumMagnitude, sumAngle, angle, projection, projectionScale, unitA };
+}
+
+function vectorResultCards(formula: FormulaVisualizerEntry, metrics: ReturnType<typeof computeVectorMetrics>, params: VectorParameters) {
+  if (formula.id === "dot-product") return [
+    { label: "Dot product", value: compactNumber(metrics.dot), color: "text-cyan-600 dark:text-cyan-200" },
+    { label: "Angle", value: `${compactNumber(metrics.angle)} deg`, color: "text-violet-600 dark:text-violet-200" },
+    { label: "Alignment", value: metrics.dot >= 0 ? "same direction" : "opposite pull", color: "text-emerald-600 dark:text-emerald-200" },
+  ];
+  if (formula.id === "cross-product") return [
+    { label: "Cross product", value: compactNumber(metrics.cross), color: "text-amber-600 dark:text-amber-200" },
+    { label: "Area", value: compactNumber(Math.abs(metrics.cross)), color: "text-cyan-600 dark:text-cyan-200" },
+    { label: "Orientation", value: metrics.cross >= 0 ? "counterclockwise" : "clockwise", color: "text-violet-600 dark:text-violet-200" },
+  ];
+  if (formula.id === "projection") return [
+    { label: "Projection", value: `(${compactNumber(metrics.projection.x)}, ${compactNumber(metrics.projection.y)})`, color: "text-amber-600 dark:text-amber-200" },
+    { label: "Scale on b", value: compactNumber(metrics.projectionScale), color: "text-cyan-600 dark:text-cyan-200" },
+    { label: "|b|", value: compactNumber(metrics.magB), color: "text-violet-600 dark:text-violet-200" },
+  ];
+  if (formula.id === "scalar-vector") return [
+    { label: "Scaled vector", value: `(${compactNumber(params.k * params.ax)}, ${compactNumber(params.k * params.ay)})`, color: "text-amber-600 dark:text-amber-200" },
+    { label: "Magnitude", value: compactNumber(Math.abs(params.k) * metrics.magA), color: "text-cyan-600 dark:text-cyan-200" },
+    { label: "Scalar k", value: compactNumber(params.k), color: "text-violet-600 dark:text-violet-200" },
+  ];
+  if (formula.id === "magnitude") return [
+    { label: "Magnitude |a|", value: compactNumber(metrics.magA), color: "text-cyan-600 dark:text-cyan-200" },
+    { label: "Direction a", value: `${compactNumber(angleDegrees(params.ax, params.ay))} deg`, color: "text-violet-600 dark:text-violet-200" },
+    { label: "Components", value: `(${compactNumber(params.ax)}, ${compactNumber(params.ay)})`, color: "text-amber-600 dark:text-amber-200" },
+  ];
+  if (formula.id === "unit-vector") return [
+    { label: "Unit vector", value: `(${compactNumber(metrics.unitA.x)}, ${compactNumber(metrics.unitA.y)})`, color: "text-cyan-600 dark:text-cyan-200" },
+    { label: "|a|", value: compactNumber(metrics.magA), color: "text-violet-600 dark:text-violet-200" },
+    { label: "Unit length", value: metrics.magA > 0 ? "1" : "undefined", color: "text-amber-600 dark:text-amber-200" },
+  ];
+  if (formula.id === "angle-between") return [
+    { label: "Angle theta", value: `${compactNumber(metrics.angle)} deg`, color: "text-violet-600 dark:text-violet-200" },
+    { label: "Dot product", value: compactNumber(metrics.dot), color: "text-cyan-600 dark:text-cyan-200" },
+    { label: "|a||b|", value: compactNumber(metrics.magA * metrics.magB), color: "text-amber-600 dark:text-amber-200" },
+  ];
+  return [
+    { label: "Resultant", value: `(${compactNumber(metrics.sum.x)}, ${compactNumber(metrics.sum.y)})`, color: "text-cyan-600 dark:text-cyan-200" },
+    { label: "Magnitude", value: compactNumber(metrics.sumMagnitude), color: "text-emerald-600 dark:text-emerald-200" },
+    { label: "Direction", value: `${compactNumber(metrics.sumAngle)} deg`, color: "text-violet-600 dark:text-violet-200" },
+  ];
+}
+
+function vectorCalculationLines(formula: FormulaVisualizerEntry, params: VectorParameters, metrics: ReturnType<typeof computeVectorMetrics>) {
+  if (formula.id === "dot-product") return ["\\vec a\\cdot\\vec b=a_xb_x+a_yb_y", `=${compactNumber(params.ax)}(${compactNumber(params.bx)})+${compactNumber(params.ay)}(${compactNumber(params.by)})`, `=${compactNumber(metrics.dot)}`];
+  if (formula.id === "cross-product") return ["|\\vec a\\times\\vec b|=|a_xb_y-a_yb_x|", `=|${compactNumber(params.ax)}(${compactNumber(params.by)})-${compactNumber(params.ay)}(${compactNumber(params.bx)})|`, `=${compactNumber(Math.abs(metrics.cross))}`];
+  if (formula.id === "projection") return ["\\mathrm{proj}_b a=\\frac{a\\cdot b}{|b|^2}b", `=\\frac{${compactNumber(metrics.dot)}}{${compactNumber(metrics.magB ** 2)}}(${compactNumber(params.bx)},${compactNumber(params.by)})`, `=(${compactNumber(metrics.projection.x)},${compactNumber(metrics.projection.y)})`];
+  if (formula.id === "scalar-vector") return ["k\\vec a=\\langle ka_x,ka_y\\rangle", `=${compactNumber(params.k)}(${compactNumber(params.ax)},${compactNumber(params.ay)})`, `=(${compactNumber(params.k * params.ax)},${compactNumber(params.k * params.ay)})`];
+  if (formula.id === "magnitude") return ["|\\vec a|=\\sqrt{a_x^2+a_y^2}", `=\\sqrt{${compactNumber(params.ax)}^2+${compactNumber(params.ay)}^2}`, `=${compactNumber(metrics.magA)}`];
+  if (formula.id === "unit-vector") return ["\\hat a=\\frac{\\vec a}{|\\vec a|}", `=\\frac{(${compactNumber(params.ax)},${compactNumber(params.ay)})}{${compactNumber(metrics.magA)}}`, `=(${compactNumber(metrics.unitA.x)},${compactNumber(metrics.unitA.y)})`];
+  if (formula.id === "angle-between") return ["\\cos\\theta=\\frac{a\\cdot b}{|a||b|}", `=\\frac{${compactNumber(metrics.dot)}}{${compactNumber(metrics.magA)}\\cdot${compactNumber(metrics.magB)}}`, `\\theta=${compactNumber(metrics.angle)}^\\circ`];
+  return ["\\vec a+\\vec b=(a_x+b_x,a_y+b_y)", `=(${compactNumber(params.ax)}+${compactNumber(params.bx)},${compactNumber(params.ay)}+${compactNumber(params.by)})`, `=(${compactNumber(metrics.sum.x)},${compactNumber(metrics.sum.y)})`];
+}
+
+function vectorBadge(formula: FormulaVisualizerEntry, metrics: ReturnType<typeof computeVectorMetrics>, params: VectorParameters) {
+  if (formula.id === "dot-product") return `a dot b = ${compactNumber(metrics.dot)}`;
+  if (formula.id === "cross-product") return `area = ${compactNumber(Math.abs(metrics.cross))}`;
+  if (formula.id === "projection") return `proj = (${compactNumber(metrics.projection.x)}, ${compactNumber(metrics.projection.y)})`;
+  if (formula.id === "scalar-vector") return `k a = (${compactNumber(params.k * params.ax)}, ${compactNumber(params.k * params.ay)})`;
+  if (formula.id === "magnitude") return `|a| = ${compactNumber(metrics.magA)}`;
+  if (formula.id === "unit-vector") return `unit = (${compactNumber(metrics.unitA.x)}, ${compactNumber(metrics.unitA.y)})`;
+  if (formula.id === "angle-between") return `theta = ${compactNumber(metrics.angle)} deg`;
+  return `|a + b| = ${compactNumber(metrics.sumMagnitude)}`;
+}
+
+function vectorPracticeValue(formula: FormulaVisualizerEntry, metrics: ReturnType<typeof computeVectorMetrics>) {
+  if (formula.id === "dot-product") return metrics.dot;
+  if (formula.id === "cross-product") return Math.abs(metrics.cross);
+  if (formula.id === "projection") return metrics.projectionScale;
+  if (formula.id === "magnitude" || formula.id === "unit-vector") return metrics.magA;
+  if (formula.id === "angle-between") return metrics.angle;
+  return metrics.sumMagnitude;
+}
+
+function vectorToFormulaParams(params: VectorParameters): FormulaParameters {
+  return { a: params.ax, b: params.ay, c: params.bx, n: params.by, p: params.k };
+}
+
+function readVectorParam(searchParams: URLSearchParams, key: string, fallback: number) {
+  const raw = searchParams.get(key);
+  if (raw === null) return fallback;
+  const value = Number(raw);
+  return Number.isFinite(value) ? value : fallback;
+}
+
+function clampVectorValue(value: number, min: number, max: number) {
+  if (!Number.isFinite(value)) return 0;
+  return Number(Math.min(max, Math.max(min, value)).toFixed(4));
+}
+
+function compactNumber(value: number) {
+  if (!Number.isFinite(value)) return "undefined";
+  return Number(value.toFixed(2)).toString();
+}
+
+function angleDegrees(x: number, y: number) {
+  if (x === 0 && y === 0) return 0;
+  const angle = Math.atan2(y, x) * 180 / Math.PI;
+  return angle < 0 ? angle + 360 : angle;
+}
+
+function downloadVectorPng(svg: SVGSVGElement | null) {
+  if (!svg || typeof document === "undefined") return;
+  const xml = new XMLSerializer().serializeToString(svg);
+  const svgBlob = new Blob([xml], { type: "image/svg+xml;charset=utf-8" });
+  const url = URL.createObjectURL(svgBlob);
+  const image = new Image();
+  image.onload = () => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 1520;
+    canvas.height = 860;
+    const context = canvas.getContext("2d");
+    if (!context) return;
+    context.fillStyle = "#07152d";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    URL.revokeObjectURL(url);
+    const anchor = document.createElement("a");
+    anchor.download = "vectors-formula-visualizer.png";
+    anchor.href = canvas.toDataURL("image/png");
+    anchor.click();
+  };
+  image.src = url;
+}
+
+function printVectorPdf(target: HTMLElement | null) {
+  if (!target || typeof window === "undefined") return;
+  window.print();
+}
+
+async function shareCurrentVectorUrl() {
+  if (typeof window === "undefined") return;
+  const url = window.location.href;
+  if (navigator.share) {
+    await navigator.share({ title: "Vectors Formula Visualizer", url });
+    return;
+  }
+  await navigator.clipboard?.writeText(url);
+}
+
+function FormulaTabs({ tabs, activeTab, onChange }: { tabs: readonly Tab[]; activeTab: Tab; onChange: (tab: Tab) => void }) {
+  return (
+    <nav className="mt-4 flex gap-2 overflow-x-auto" aria-label="Vectors formula visualizer tabs">
+      {tabs.map((tab) => (
+        <button key={tab} type="button" className={activeTab === tab ? "action-primary shrink-0 px-4 py-2 text-sm" : "tool-button shrink-0 px-4 py-2 text-sm"} onClick={() => onChange(tab)}>
+          {tab}
+        </button>
+      ))}
+    </nav>
+  );
+}
+
+function VectorFormulaLibrary({
+  filtered,
+  group,
+  groups,
+  query,
+  selected,
+  onGroup,
+  onQuery,
+  onSelect,
+}: {
+  filtered: FormulaVisualizerEntry[];
+  group: string;
+  groups: string[];
+  query: string;
+  selected: FormulaVisualizerEntry;
+  onGroup: (value: string) => void;
+  onQuery: (value: string) => void;
+  onSelect: (value: string) => void;
+}) {
+  return (
+    <aside className="rounded-2xl border border-slate-200 bg-white/92 p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/82 lg:col-span-2 xl:col-span-1">
+      <h2 className="text-sm font-black uppercase tracking-wide text-slate-950 dark:text-white">Formulas</h2>
+      <label className="mt-3 flex min-h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold dark:border-white/10 dark:bg-slate-900">
+        <Search className="h-4 w-4 text-slate-400" />
+        <span className="sr-only">Search vector formulas</span>
+        <input value={query} onChange={(event) => onQuery(event.target.value)} placeholder="Search formulas..." className="min-w-0 flex-1 bg-transparent outline-none" />
+      </label>
+      <div className="mt-2 flex gap-1 overflow-x-auto pb-1">
+        {groups.map((item) => (
+          <button key={item} type="button" className={group === item ? "mini-chip bg-cyan-500 text-white" : "mini-chip"} onClick={() => onGroup(item)}>
+            {item}
+          </button>
+        ))}
+      </div>
+      <div className="mt-2 max-h-[56vh] space-y-2 overflow-y-auto pr-1 thin-scrollbar">
+        {filtered.map((formula) => (
+          <FormulaListItem key={formula.id} formula={formula} selected={formula.id === selected.id} onSelect={() => onSelect(formula.id)} />
+        ))}
+      </div>
+    </aside>
+  );
+}
+
+function FormulaListItem({ formula, selected, onSelect }: { formula: FormulaVisualizerEntry; selected: boolean; onSelect: () => void }) {
+  return (
+    <button
+      type="button"
+      className={`w-full rounded-xl border p-3 text-left transition ${selected ? "border-cyan-300 bg-cyan-50 shadow-sm dark:border-cyan-300/50 dark:bg-cyan-400/10" : "border-slate-200 bg-white hover:border-cyan-200 dark:border-white/10 dark:bg-white/5"}`}
+      onClick={onSelect}
+    >
+      <div className="flex items-start justify-between gap-2">
+        <span className="flex min-w-0 items-start gap-2">
+          <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${selected ? "bg-cyan-500" : "bg-slate-300"}`} />
+          <span className="min-w-0">
+            <span className="block text-sm font-black text-slate-950 dark:text-white">{formula.title}</span>
+            <MathExpression value={formula.latex} className="mt-1 block text-sm text-slate-700 dark:text-cyan-100" />
+          </span>
+        </span>
+        <span className="mini-chip shrink-0">{formula.group}</span>
+      </div>
+    </button>
+  );
+}
+
+function VectorVisualizationStage({ formula, params, metrics, tools, onTools }: { formula: FormulaVisualizerEntry; params: VectorParameters; metrics: ReturnType<typeof computeVectorMetrics>; tools: VectorToolState; onTools: (tools: VectorToolState) => void }) {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const resultCards = vectorResultCards(formula, metrics, params);
+
+  const toggle = (key: keyof VectorToolState) => onTools({ ...tools, [key]: !tools[key] });
+
+  return (
+    <section className="min-w-0 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/88">
+      <header className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            <h2 className="text-xl font-black text-slate-950 dark:text-white">{formula.title}</h2>
+            <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm font-black text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-300/10 dark:text-emerald-100">{vectorBadge(formula, metrics, params)}</span>
+          </div>
+          <p className="mt-1 text-sm leading-5 text-slate-600 dark:text-slate-300">{formula.description}</p>
+          <MathExpression value={formula.latex} display className="mt-2 text-lg font-black text-slate-900 dark:text-white" />
+        </div>
+        <VectorLegend params={params} metrics={metrics} />
+      </header>
+
+      <div ref={stageRef} className="mt-3 overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-inner shadow-cyan-950/40">
+        <VectorGraph ref={svgRef} formula={formula} params={params} metrics={metrics} tools={tools} />
+      </div>
+
+      <div className="mt-3 grid gap-2 md:grid-cols-3">
+        {resultCards.map((card) => (
+          <article key={card.label} className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-white/5">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">{card.label}</p>
+            <p className={`mt-1 text-2xl font-black ${card.color}`}>{card.value}</p>
+          </article>
+        ))}
+      </div>
+      <VisualizationToolbar
+        tools={tools}
+        onToggle={toggle}
+        onResetView={() => onTools({ grid: true, components: true, labels: true, trace: false })}
+        onFullscreen={() => stageRef.current?.requestFullscreen?.()}
+        onPng={() => downloadVectorPng(svgRef.current)}
+        onPdf={() => printVectorPdf(stageRef.current)}
+        onShare={() => shareCurrentVectorUrl()}
+      />
+    </section>
+  );
+}
+
+function VectorLegend({ params, metrics }: { params: VectorParameters; metrics: ReturnType<typeof computeVectorMetrics> }) {
+  const rows = [
+    ["bg-cyan-400", `Vector a (${compactNumber(params.ax)}, ${compactNumber(params.ay)})`],
+    ["bg-violet-500", `Vector b (${compactNumber(params.bx)}, ${compactNumber(params.by)})`],
+    ["bg-amber-400", `Resultant a + b (${compactNumber(metrics.sum.x)}, ${compactNumber(metrics.sum.y)})`],
+  ];
+  return (
+    <div className="grid gap-1 text-xs font-bold text-slate-700 dark:text-slate-200">
+      {rows.map(([dot, label]) => (
+        <span key={label} className="flex items-center gap-2">
+          <i className={`h-1.5 w-5 rounded-full ${dot}`} />
+          {label}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+const VectorGraph = forwardRef<SVGSVGElement, { formula: FormulaVisualizerEntry; params: VectorParameters; metrics: ReturnType<typeof computeVectorMetrics>; tools: VectorToolState }>(function VectorGraph({ formula, params, metrics, tools }, ref) {
+  const scale = 28;
+  const origin = { x: 340, y: 300 };
+  const point = (x: number, y: number) => ({ x: origin.x + x * scale, y: origin.y - y * scale });
+  const a = point(params.ax, params.ay);
+  const b = point(params.bx, params.by);
+  const sum = point(metrics.sum.x, metrics.sum.y);
+  const tipBFromA = { x: a.x + params.bx * scale, y: a.y - params.by * scale };
+  const projection = point(metrics.projection.x, metrics.projection.y);
+  const scalar = point(params.ax * params.k, params.ay * params.k);
+  const showResultant = ["vector-addition", "magnitude", "unit-vector", "direction-cosines"].includes(formula.id);
+  const showDotProjection = ["dot-product", "projection", "angle-between"].includes(formula.id);
+  const showCross = formula.id === "cross-product";
+
+  return (
+    <svg ref={ref} viewBox="0 0 760 430" role="img" aria-label={`${formula.title} vector graph`} className="block aspect-[76/43] min-h-[360px] w-full">
+      <defs>
+        <marker id="vfs-cyan-arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L13,6.5 L0,13 z" fill="#22d3ee" /></marker>
+        <marker id="vfs-violet-arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L13,6.5 L0,13 z" fill="#8b5cf6" /></marker>
+        <marker id="vfs-amber-arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L13,6.5 L0,13 z" fill="#f59e0b" /></marker>
+      </defs>
+      <rect width="760" height="430" rx="22" fill="#07152d" />
+      {tools.grid ? <GraphGrid origin={origin} scale={scale} /> : null}
+      <line x1="36" y1={origin.y} x2="724" y2={origin.y} stroke="#cbd5e1" strokeWidth="1.6" />
+      <line x1={origin.x} y1="28" x2={origin.x} y2="398" stroke="#cbd5e1" strokeWidth="1.6" />
+      <text x="728" y={origin.y - 12} fill="#e0f2fe" fontSize="15" fontWeight="900">x</text>
+      <text x={origin.x + 12} y="36" fill="#e0f2fe" fontSize="15" fontWeight="900">y</text>
+      {tools.components ? (
+        <g strokeDasharray="7 7">
+          <line x1={a.x} y1={a.y} x2={a.x} y2={origin.y} stroke="#22d3ee" strokeWidth="1.5" opacity="0.72" />
+          <line x1={a.x} y1={a.y} x2={origin.x} y2={a.y} stroke="#22d3ee" strokeWidth="1.5" opacity="0.72" />
+          <line x1={sum.x} y1={sum.y} x2={sum.x} y2={origin.y} stroke="#f59e0b" strokeWidth="1.5" opacity="0.72" />
+          <line x1={sum.x} y1={sum.y} x2={origin.x} y2={sum.y} stroke="#f59e0b" strokeWidth="1.5" opacity="0.72" />
+        </g>
+      ) : null}
+      {tools.trace ? <polyline points={`${origin.x},${origin.y} ${a.x},${a.y} ${tipBFromA.x},${tipBFromA.y}`} fill="none" stroke="#e0f2fe" strokeWidth="2" strokeDasharray="8 8" opacity="0.58" /> : null}
+      {showCross ? <polygon points={`${origin.x},${origin.y} ${a.x},${a.y} ${sum.x},${sum.y} ${b.x},${b.y}`} fill="#f59e0b" opacity="0.16" stroke="#f59e0b" strokeWidth="2" /> : null}
+      {showDotProjection ? (
+        <g>
+          <line x1={a.x} y1={a.y} x2={projection.x} y2={projection.y} stroke="#f8fafc" strokeWidth="1.8" strokeDasharray="7 7" opacity="0.75" />
+          <line x1={origin.x} y1={origin.y} x2={projection.x} y2={projection.y} stroke="#f59e0b" strokeWidth="5" markerEnd="url(#vfs-amber-arrow)" />
+          <circle cx={projection.x} cy={projection.y} r="5" fill="#f59e0b" />
+        </g>
+      ) : null}
+      <line x1={origin.x} y1={origin.y} x2={a.x} y2={a.y} stroke="#22d3ee" strokeWidth="5" strokeLinecap="round" markerEnd="url(#vfs-cyan-arrow)" />
+      <line x1={origin.x} y1={origin.y} x2={b.x} y2={b.y} stroke="#8b5cf6" strokeWidth="5" strokeLinecap="round" markerEnd="url(#vfs-violet-arrow)" />
+      {formula.id === "scalar-vector" ? <line x1={origin.x} y1={origin.y} x2={scalar.x} y2={scalar.y} stroke="#f59e0b" strokeWidth="5" strokeLinecap="round" markerEnd="url(#vfs-amber-arrow)" /> : null}
+      {showResultant || formula.id === "vector-addition" ? <line x1={origin.x} y1={origin.y} x2={sum.x} y2={sum.y} stroke="#f59e0b" strokeWidth="5" strokeLinecap="round" markerEnd="url(#vfs-amber-arrow)" /> : null}
+      {formula.id === "vector-addition" ? <line x1={a.x} y1={a.y} x2={tipBFromA.x} y2={tipBFromA.y} stroke="#8b5cf6" strokeWidth="4" strokeLinecap="round" markerEnd="url(#vfs-violet-arrow)" opacity="0.9" /> : null}
+      <circle cx={a.x} cy={a.y} r="5.5" fill="#a5f3fc" />
+      <circle cx={b.x} cy={b.y} r="5.5" fill="#ddd6fe" />
+      <circle cx={sum.x} cy={sum.y} r="6" fill="#fcd34d" />
+      {tools.labels ? (
+        <g fontSize="18" fontWeight="900">
+          <text x={(origin.x + a.x) / 2 + 14} y={(origin.y + a.y) / 2 - 10} fill="#67e8f9">a</text>
+          <text x={(origin.x + b.x) / 2 + 14} y={(origin.y + b.y) / 2 - 10} fill="#c4b5fd">b</text>
+          <text x={(origin.x + sum.x) / 2 + 16} y={(origin.y + sum.y) / 2 - 12} fill="#fbbf24">a + b</text>
+          {showDotProjection ? <text x={projection.x + 12} y={projection.y + 20} fill="#fbbf24">projection</text> : null}
+        </g>
+      ) : null}
+    </svg>
+  );
+});
+
+function GraphGrid({ origin, scale }: { origin: { x: number; y: number }; scale: number }) {
+  const verticals = Array.from({ length: 25 }, (_, index) => index - 12);
+  const horizontals = Array.from({ length: 15 }, (_, index) => index - 7);
+  return (
+    <g>
+      {verticals.map((value) => (
+        <line key={`v-${value}`} x1={origin.x + value * scale} y1="28" x2={origin.x + value * scale} y2="398" stroke={value === 0 ? "#cbd5e1" : "#1e3a5f"} strokeWidth={value === 0 ? 1.5 : 1} />
+      ))}
+      {horizontals.map((value) => (
+        <line key={`h-${value}`} x1="36" y1={origin.y - value * scale} x2="724" y2={origin.y - value * scale} stroke={value === 0 ? "#cbd5e1" : "#1e3a5f"} strokeWidth={value === 0 ? 1.5 : 1} />
+      ))}
+      {verticals.filter((value) => value % 2 === 0 && value !== 0).map((value) => (
+        <text key={`vx-${value}`} x={origin.x + value * scale} y={origin.y + 22} fill="#94a3b8" fontSize="12" fontWeight="800" textAnchor="middle">{value}</text>
+      ))}
+      {horizontals.filter((value) => value % 2 === 0 && value !== 0).map((value) => (
+        <text key={`hy-${value}`} x={origin.x - 14} y={origin.y - value * scale + 4} fill="#94a3b8" fontSize="12" fontWeight="800" textAnchor="end">{value}</text>
+      ))}
+    </g>
+  );
+}
+
+function VisualizationToolbar({
+  tools,
+  onToggle,
+  onResetView,
+  onFullscreen,
+  onPng,
+  onPdf,
+  onShare,
+}: {
+  tools: VectorToolState;
+  onToggle: (key: keyof VectorToolState) => void;
+  onResetView: () => void;
+  onFullscreen: () => void;
+  onPng: () => void;
+  onPdf: () => void;
+  onShare: () => void;
+}) {
+  const buttons: Array<{ key: keyof VectorToolState; label: string; icon: JSX.Element }> = [
+    { key: "grid", label: "Grid", icon: <Grid3X3 className="h-4 w-4" /> },
+    { key: "components", label: "Components", icon: <Workflow className="h-4 w-4" /> },
+    { key: "labels", label: "Labels", icon: <Tags className="h-4 w-4" /> },
+    { key: "trace", label: "Trace", icon: <List className="h-4 w-4" /> },
+  ];
+  return (
+    <div className="mt-3 flex flex-wrap gap-2 rounded-xl border border-slate-200 bg-slate-50 p-2 dark:border-white/10 dark:bg-white/5">
+      {buttons.map((button) => (
+        <button key={button.key} type="button" className={tools[button.key] ? "action-primary px-3 py-2 text-sm" : "tool-button px-3 py-2 text-sm"} onClick={() => onToggle(button.key)}>
+          {button.icon} {button.label}
+        </button>
+      ))}
+      <button type="button" className="tool-button px-3 py-2 text-sm" onClick={onResetView}><RotateCcw className="h-4 w-4" /> Reset view</button>
+      <button type="button" className="tool-button px-3 py-2 text-sm" onClick={onFullscreen}><Expand className="h-4 w-4" /> Fullscreen</button>
+      <button type="button" className="tool-button px-3 py-2 text-sm" onClick={onPng}><Download className="h-4 w-4" /> PNG</button>
+      <button type="button" className="tool-button px-3 py-2 text-sm" onClick={onPdf}><FileText className="h-4 w-4" /> PDF</button>
+      <button type="button" className="tool-button px-3 py-2 text-sm" onClick={onShare}><Share2 className="h-4 w-4" /> Share</button>
+    </div>
+  );
+}
+
+function VectorControlsPanel({ formula, params, metrics, onChange, onReset, onStep }: { formula: FormulaVisualizerEntry; params: VectorParameters; metrics: ReturnType<typeof computeVectorMetrics>; onChange: (key: keyof VectorParameters, value: number) => void; onReset: () => void; onStep: () => void }) {
+  return (
+    <aside className="rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/88 lg:sticky lg:top-24">
+      <h2 className="text-sm font-black uppercase tracking-wide text-slate-950 dark:text-white">Vector Controls</h2>
+      <VectorInputGroup title="Vector a" color="cyan" pair={`(${compactNumber(params.ax)}, ${compactNumber(params.ay)})`} controls={[["ax", "a_x"], ["ay", "a_y"]]} params={params} onChange={onChange} />
+      {formula.id !== "magnitude" && formula.id !== "unit-vector" && formula.id !== "scalar-vector" ? (
+        <VectorInputGroup title="Vector b" color="violet" pair={`(${compactNumber(params.bx)}, ${compactNumber(params.by)})`} controls={[["bx", "b_x"], ["by", "b_y"]]} params={params} onChange={onChange} />
+      ) : null}
+      {formula.id === "scalar-vector" ? (
+        <VectorInputGroup title="Scalar" color="amber" pair={`k = ${compactNumber(params.k)}`} controls={[["k", "k"]]} params={params} onChange={onChange} min={-5} max={5} />
+      ) : null}
+      <LiveCalculation formula={formula} params={params} metrics={metrics} onStep={onStep} />
+      <button type="button" className="action-secondary mt-3 w-full" onClick={onReset}>
+        <RotateCcw className="h-4 w-4" /> Reset
+      </button>
+    </aside>
+  );
+}
+
+function VectorInputGroup({ title, color, pair, controls, params, onChange, min = -10, max = 10 }: { title: string; color: "cyan" | "violet" | "amber"; pair: string; controls: Array<[keyof VectorParameters, string]>; params: VectorParameters; onChange: (key: keyof VectorParameters, value: number) => void; min?: number; max?: number }) {
+  const colorClasses = color === "cyan" ? "border-cyan-300 bg-cyan-50/70 text-cyan-700 dark:border-cyan-300/40 dark:bg-cyan-400/10 dark:text-cyan-100" : color === "violet" ? "border-violet-300 bg-violet-50/70 text-violet-700 dark:border-violet-300/40 dark:bg-violet-400/10 dark:text-violet-100" : "border-amber-300 bg-amber-50/70 text-amber-700 dark:border-amber-300/40 dark:bg-amber-400/10 dark:text-amber-100";
+  const accent = color === "cyan" ? "accent-cyan-500" : color === "violet" ? "accent-violet-500" : "accent-amber-500";
+  return (
+    <section className={`mt-3 rounded-xl border p-3 ${colorClasses}`}>
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <h3 className="text-sm font-black">{title}</h3>
+        <span className="text-sm font-black">{pair}</span>
+      </div>
+      <div className="grid gap-2">
+        {controls.map(([key, label]) => (
+          <label key={key} className="grid grid-cols-[42px_minmax(0,1fr)_68px] items-center gap-2">
+            <span className="font-serif text-sm font-black">{label}</span>
+            <input aria-label={`${label} slider`} type="range" min={min} max={max} step="0.25" value={params[key]} onChange={(event) => onChange(key, Number(event.target.value))} className={`min-w-0 ${accent}`} />
+            <input aria-label={`${label} value`} type="number" min={min} max={max} step="0.25" value={Number(params[key].toFixed(4))} onChange={(event) => onChange(key, Number(event.target.value))} className="min-w-0 rounded-lg border border-white/80 bg-white px-2 py-1 text-right text-sm font-black text-slate-900 outline-none focus:border-cyan-400 dark:border-white/10 dark:bg-slate-950 dark:text-white" />
+          </label>
+        ))}
+      </div>
+      <div className="mt-1 flex justify-between px-[42px] text-[10px] font-black opacity-70"><span>{min}</span><span>{max}</span></div>
+    </section>
+  );
+}
+
+function LiveCalculation({ formula, params, metrics, onStep }: { formula: FormulaVisualizerEntry; params: VectorParameters; metrics: ReturnType<typeof computeVectorMetrics>; onStep: () => void }) {
+  const lines = vectorCalculationLines(formula, params, metrics);
+  return (
+    <section className="mt-3 rounded-xl border border-slate-200 bg-white p-3 dark:border-white/10 dark:bg-white/5">
+      <h3 className="text-sm font-black uppercase tracking-wide text-slate-950 dark:text-white">Live Calculation</h3>
+      <div className="mt-2 grid gap-2 text-sm font-bold text-slate-700 dark:text-slate-200">
+        {lines.map((line) => <MathExpression key={line} value={line} display />)}
+      </div>
+      <button type="button" className="action-primary mt-3 w-full" onClick={onStep}>
+        <List className="h-4 w-4" /> Step-by-step
+      </button>
+    </section>
+  );
+}
+
+function LearnTheIdea({ formula, metrics }: { formula: FormulaVisualizerEntry; metrics: ReturnType<typeof computeVectorMetrics> }) {
+  const isAddition = formula.id === "vector-addition";
+  const cards = isAddition
+    ? [
+        ["1", "Add components", `Add x-components and y-components separately. Result: (${compactNumber(metrics.sum.x)}, ${compactNumber(metrics.sum.y)}).`],
+        ["2", "Draw tip-to-tail", "Place b at the head of a. The same arrow from start to final tip is a + b."],
+        ["3", "Read the resultant", `Length is ${compactNumber(metrics.sumMagnitude)} and direction is ${compactNumber(metrics.sumAngle)} degrees.`],
+      ]
+    : [
+        ["1", "Read the vectors", "Start with components, because every vector formula is built from them."],
+        ["2", "Apply the formula", formula.description],
+        ["3", "Check the geometry", "Compare the number with the graph: length, angle, area, or projection should match the visual."],
+      ];
+  return (
+    <details className="rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/88" open>
+      <summary className="cursor-pointer text-sm font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Learn the Idea</summary>
+      <div className="mt-3 grid gap-3 md:grid-cols-3">
+        {cards.map(([number, title, text]) => (
+          <article key={title} className="rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-white/10 dark:bg-white/5">
+            <div className="flex items-start gap-3">
+              <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-blue-600 text-sm font-black text-white">{number}</span>
+              <div>
+                <h3 className="font-black text-slate-950 dark:text-white">{title}</h3>
+                <p className="mt-1 text-sm leading-5 text-slate-600 dark:text-slate-300">{text}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <details className="mt-3 rounded-xl border border-slate-200 bg-white p-3 text-sm dark:border-white/10 dark:bg-white/5">
+        <summary className="cursor-pointer font-black">More explanation</summary>
+        <FormulaExplanationContent explanation={buildFormulaVisualizationExplanation(formula)} formula={formula} compact />
+      </details>
+    </details>
+  );
+}
+
+
 
 function FormulaVisualizerShell({ config }: { config: FormulaVisualizerRouteConfig }) {
   const [activeTab, setActiveTab] = useState<Tab>("Explore");
