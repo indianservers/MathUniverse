@@ -1,7 +1,7 @@
-import { BookOpen, BrainCircuit, Calculator, CheckCircle2, Cuboid, FlaskConical, Gauge, GraduationCap, HelpCircle, Layers3, LibraryBig, MonitorSmartphone, PlayCircle, Rocket, Route, Search, ShieldCheck, Sparkles, Target, Trophy, Wand2, X, ArrowRight } from "lucide-react";
+import { BookOpen, BrainCircuit, Calculator, CheckCircle2, Compass, Cuboid, FlaskConical, Gauge, GraduationCap, HelpCircle, Layers3, LibraryBig, MonitorSmartphone, PlayCircle, Rocket, Route, Search, ShieldCheck, Sparkles, Target, Trophy, Wand2, X, ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState, type CSSProperties } from "react";
+import { useState, type CSSProperties, type PointerEvent } from "react";
 import DashboardCard from "../components/ui/DashboardCard";
 import AITutorPanel from "../components/ui/AITutorPanel";
 import { iconMap } from "../components/layout/navItems";
@@ -14,6 +14,7 @@ import { buildPracticeSpineLite } from "../data/olympyardPracticeSpineLite";
 import { initialOlympyardProgressLite, normalizeOlympyardProgressLite, OLYMPYARD_PROGRESS_STORAGE_KEY, type OlympyardProgressLite } from "../data/olympyardProgressLite";
 import { MathWorkspacesHomeSection } from "../components/workspace/MathWorkspaceNavigation";
 import InteractiveMathHero from "../components/home/InteractiveMathHero";
+import MathExpression from "../components/ui/MathExpression";
 
 const tourSteps = [
   { label: "Algebra line graph", route: "/algebra", description: "See how coefficients reshape lines and parabolas in real time." },
@@ -64,34 +65,6 @@ const launchShortcuts = [
   { label: "NCERT path", route: "/ncert", icon: BookOpen, hint: "class labs" },
   { label: "AR Math Lab", route: "/modules/ar-math-lab", icon: MonitorSmartphone, hint: "XR preview" },
   { label: "Graph Theory", route: "/graph-theory", icon: Layers3, hint: "algorithms" },
-] as const;
-
-const enhancementChecklist = [
-  "Hero launch console",
-  "Role-based learner paths",
-  "Search-first discovery",
-  "Compact stats bar",
-  "Recent route chips",
-  "Primary action cluster",
-  "Visual proof shortcut",
-  "NCERT shortcut",
-  "Formula visualizer shortcut",
-  "Problem solver shortcut",
-  "Modern module cards",
-  "Favorite support",
-  "Open-in-new-tab affordance",
-  "Progress visibility",
-  "Estimated time chips",
-  "Difficulty chips",
-  "Adaptive practice strip",
-  "Responsive mobile dock awareness",
-  "Better empty state",
-  "Filter tabs",
-  "Teacher/student/explorer routing",
-  "Command-style search",
-  "High-contrast cards",
-  "Compact text hierarchy",
-  "2026 glass surface treatment",
 ] as const;
 
 function GuidedTourOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -234,6 +207,9 @@ export default function Home() {
     <div className="space-y-4">
       <GuidedTourOverlay open={tourOpen} onClose={() => setTourOpen(false)} />
 
+      <HomeMathStudioHero labs={labs} topicCount={topics.length} progress={getOverallProgress()} onTour={() => setTourOpen(true)} />
+      <HomeUnderstandingSection />
+
       <div className="hidden"><section className="home-hero relative isolate overflow-hidden rounded-[1.8rem] border border-white/35 text-white shadow-2xl shadow-indigo-500/25">
         <div className="home-hero-grid absolute inset-0 -z-10" aria-hidden="true" />
         <div className="absolute -left-16 -top-24 -z-10 h-72 w-72 rounded-full bg-cyan-300/35 blur-3xl" aria-hidden="true" />
@@ -316,8 +292,6 @@ export default function Home() {
         </div>
       </section></div>
 
-      <InteractiveMathHero />
-
       <section className="home-path-section" aria-labelledby="home-path-title">
         <div className="home-path-heading"><span>Choose how you want to explore</span><h2 id="home-path-title">A clear path for every curious mind</h2></div>
         <div className="home-path-grid">{learnerPaths.map((path) => { const Icon = path.icon; return <Link key={path.id} to={path.route} className={`home-path-card is-${path.id}`} onMouseEnter={() => setActivePath(path.id)}><span className="home-path-icon"><Icon /></span><span><strong>{path.label}</strong><small>{path.description}</small><b>{path.id === "student" ? "Start learning" : path.id === "teacher" ? "Open studio" : "Explore tools"}<ArrowRight /></b></span></Link>; })}</div>
@@ -349,6 +323,17 @@ export default function Home() {
       </section>
 
       <MathWorkspacesHomeSection />
+
+      <section className="rounded-[1.4rem] border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/[0.04]" aria-labelledby="home-3d-graph-title">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2 px-1">
+          <div>
+            <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Interactive 3D graph</p>
+            <h2 id="home-3d-graph-title" className="text-xl font-black text-slate-950 dark:text-white">Current 3D surface lab preserved</h2>
+          </div>
+          <Link to="/math-lab/3d-graphing" className="mini-chip">Open full 3D graph</Link>
+        </div>
+        <InteractiveMathHero />
+      </section>
 
       <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-6">
         {[
@@ -383,7 +368,7 @@ export default function Home() {
         </section>
       )}
 
-      <section className="grid gap-3 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)]">
+      <section className="grid gap-3">
         <div className="rounded-2xl border border-slate-200 bg-white/85 p-4 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
@@ -405,7 +390,6 @@ export default function Home() {
             })}
           </div>
         </div>
-        <EnhancementDigest />
       </section>
 
       <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
@@ -452,6 +436,266 @@ export default function Home() {
   );
 }
 
+type HomeMathStudioHeroProps = {
+  labs: number;
+  topicCount: number;
+  progress: number;
+  onTour: () => void;
+};
+
+function HomeMathStudioHero({ labs, topicCount, progress, onTour }: HomeMathStudioHeroProps) {
+  const [amplitude, setAmplitude] = useState(1.05);
+  const [phase, setPhase] = useState(0);
+  const [frequency, setFrequency] = useState(1);
+  const [graphPointer, setGraphPointer] = useState({ active: false, t: 0.65 });
+
+  function updateGraphFromPointer(event: PointerEvent<SVGSVGElement>) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const localX = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+    const localY = Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
+    const nextAmplitude = Math.min(1.7, Math.max(0.5, 0.55 + Math.abs(localY - 0.5) * 2.3));
+    setGraphPointer({ active: true, t: localX });
+    setPhase((localX - 0.5) * Math.PI * 2);
+    setFrequency(Number((0.7 + localX * 1.1).toFixed(2)));
+    setAmplitude(Number(nextAmplitude.toFixed(2)));
+  }
+
+  function handleGraphPointerDown(event: PointerEvent<SVGSVGElement>) {
+    event.currentTarget.setPointerCapture(event.pointerId);
+    updateGraphFromPointer(event);
+  }
+
+  const wavePath = Array.from({ length: 92 }, (_, index) => {
+    const t = index / 91;
+    const x = 48 + t * 640;
+    const y = 174 - Math.sin(t * Math.PI * 2 * frequency + phase) * 68 * amplitude;
+    return `${index === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
+  }).join(" ");
+  const softWavePath = Array.from({ length: 92 }, (_, index) => {
+    const t = index / 91;
+    const x = 48 + t * 640;
+    const y = 174 - Math.cos(t * Math.PI * 2 * 0.75 + phase * 0.55) * 42;
+    return `${index === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
+  }).join(" ");
+  const liveValue = Math.sin(graphPointer.t * Math.PI * 2 * frequency + phase) * amplitude;
+  const liveX = 48 + graphPointer.t * 640;
+  const liveY = 174 - liveValue * 68;
+  const stats = [
+    { label: "Interactive Labs", value: `${labs}+`, icon: FlaskConical, hint: "Simulations you can explore" },
+    { label: "Visual Concepts", value: `${Math.max(300, topicCount * 18)}+`, icon: Cuboid, hint: "From basics to advanced" },
+    { label: "Grades 4-10", value: "CBSE", icon: GraduationCap, hint: "Curriculum aligned" },
+    { label: "Learn by Exploring", value: `${progress}%`, icon: Compass, hint: "Visual. Interactive. Intuitive." },
+  ];
+
+  return (
+    <section className="home-studio-hero" aria-labelledby="home-studio-title">
+      <div className="home-studio-grid">
+        <div className="home-studio-copy">
+          <span className="home-studio-eyebrow"><Sparkles /> About Math Universe</span>
+          <h1 id="home-studio-title" className="home-studio-title">
+            Mathematics you can <span className="accent-cyan">see</span>, <span className="accent-violet">touch</span>, and understand
+          </h1>
+          <p>
+            Math Universe turns abstract ideas into vivid, interactive experiences so every learner can explore, experiment, and truly understand mathematics.
+          </p>
+          <div className="home-studio-actions">
+            <Link to="/math-lab" className="home-studio-primary"><Sparkles /> Explore Math Lab</Link>
+            <Link to="/learning-paths" className="home-studio-secondary"><BookOpen /> View Learning Paths</Link>
+            <button type="button" className="home-studio-icon-action" onClick={onTour} aria-label="Open guided tour"><HelpCircle /></button>
+          </div>
+        </div>
+
+        <div className="home-studio-visual" aria-label="Interactive math studio preview">
+          <svg
+            className="home-studio-graph"
+            viewBox="0 0 740 350"
+            role="img"
+            aria-label="Interactive sine graph. Drag across the graph to change amplitude, phase, and frequency."
+            onPointerDown={handleGraphPointerDown}
+            onPointerMove={(event) => {
+              if (event.buttons === 1) updateGraphFromPointer(event);
+            }}
+            onPointerUp={(event) => {
+              event.currentTarget.releasePointerCapture(event.pointerId);
+              setGraphPointer((current) => ({ ...current, active: false }));
+            }}
+          >
+            <defs>
+              <pattern id="homeGraphGrid" width="28" height="28" patternUnits="userSpaceOnUse">
+                <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#8fdcff" strokeOpacity="0.28" strokeWidth="1" />
+              </pattern>
+              <linearGradient id="homeWaveGradient" x1="0" x2="1">
+                <stop offset="0%" stopColor="#00c8ff" />
+                <stop offset="48%" stopColor="#38d6ff" />
+                <stop offset="100%" stopColor="#b45cff" />
+              </linearGradient>
+              <filter id="homeWaveGlow" x="-8%" y="-28%" width="116%" height="156%">
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feColorMatrix in="blur" values="0 0 0 0 0.1 0 0 0 0 0.72 0 0 0 0 1 0 0 0 .55 0" result="glow" />
+                <feMerge>
+                  <feMergeNode in="glow" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <rect x="0" y="0" width="740" height="350" rx="20" fill="url(#homeGraphGrid)" />
+            <path d="M48 174H688" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" />
+            <path d="M370 36V310" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" />
+            <path d="M680 168L692 174L680 180" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M364 48L370 36L376 48" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            {[-3, -2, -1, 1, 2, 3].map((tick) => (
+              <g key={tick}>
+                <path d={`M ${370 + tick * 82} 166 V 182`} stroke="#3b82f6" strokeWidth="1.5" />
+                <text x={370 + tick * 82} y="202" textAnchor="middle" fill="#1d4ed8" fontSize="15" fontWeight="800">{tick}</text>
+              </g>
+            ))}
+            {[-2, -1, 1, 2].map((tick) => (
+              <g key={tick}>
+                <path d={`M 362 ${174 - tick * 56} H 378`} stroke="#3b82f6" strokeWidth="1.5" />
+                <text x="346" y={179 - tick * 56} textAnchor="end" fill="#1d4ed8" fontSize="15" fontWeight="800">{tick}</text>
+              </g>
+            ))}
+            <text x="704" y="162" fill="#3b82f6" fontSize="22" fontStyle="italic" fontWeight="800">x</text>
+            <text x="345" y="31" fill="#3b82f6" fontSize="22" fontStyle="italic" fontWeight="800">y</text>
+            <path d={softWavePath} fill="none" stroke="#c084fc" strokeWidth="4" strokeLinecap="round" opacity="0.55" filter="url(#homeWaveGlow)" />
+            <path d={wavePath} fill="none" stroke="url(#homeWaveGradient)" strokeWidth="5" strokeLinecap="round" filter="url(#homeWaveGlow)" />
+            <line x1={liveX} x2={liveX} y1="54" y2="294" stroke={graphPointer.active ? "#ffffff" : "#8b5cf6"} strokeWidth="2.5" strokeDasharray="8 8" opacity="0.88" />
+            <circle cx={liveX} cy={liveY} r={graphPointer.active ? 10 : 7} fill="#7c3aed" stroke="white" strokeWidth="3" />
+          </svg>
+
+          <div className="home-floating-card home-function-card"><span />f(x) = {amplitude.toFixed(1)}sin({frequency.toFixed(1)}x)</div>
+          <div className="home-floating-card home-theorem-card">
+            <strong>Pythagorean Theorem</strong>
+            <b>a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup></b>
+            <svg viewBox="0 0 150 100" aria-hidden="true">
+              <path d="M24 78H128L24 18Z" fill="none" stroke="currentColor" strokeWidth="3" />
+              <path d="M24 78V62H40" fill="none" stroke="currentColor" strokeWidth="2" />
+            </svg>
+          </div>
+          <div className="home-floating-card home-formula-card">
+            <strong>Quadratic Formula</strong>
+            <div className="home-quadratic-display" aria-hidden="true">
+              <span>x =</span>
+              <span className="home-quadratic-fraction">
+                <span className="home-quadratic-numerator">
+                  -b &plusmn; <span className="home-radical">&radic;<span>b<sup>2</sup> - 4ac</span></span>
+                </span>
+                <span className="home-quadratic-denominator">2a</span>
+              </span>
+            </div>
+            <MathExpression className="sr-only" display value={"x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}"} />
+          </div>
+          <div className="home-floating-card home-circle-card">
+            <strong>Circle Equation</strong>
+            <b>x<sup>2</sup> + y<sup>2</sup> = r<sup>2</sup></b>
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="36" fill="none" stroke="currentColor" strokeWidth="3" />
+              <path d="M18 60H102M60 18V102M60 60H96" stroke="currentColor" strokeWidth="2" />
+            </svg>
+          </div>
+          <div className="home-torus-object" aria-hidden="true">
+            <svg viewBox="0 0 180 90">
+              {Array.from({ length: 11 }, (_, i) => <ellipse key={i} cx="90" cy="45" rx={74 - i * 3.1} ry={25 + i * 1.1} fill="none" stroke="#38bdf8" strokeOpacity={0.2 + i * 0.05} strokeWidth="1.5" />)}
+            </svg>
+          </div>
+          <div className="home-cube-3d" aria-hidden="true">
+            <span className="front" /><span className="back" /><span className="right" /><span className="left" /><span className="top" /><span className="bottom" />
+          </div>
+          <div className="home-studio-controls" aria-label="Graph controls">
+            <label><span>Amplitude</span><input type="range" min="0.5" max="1.7" step="0.05" value={amplitude} onChange={(event) => setAmplitude(Number(event.target.value))} /></label>
+            <label><span>Phase</span><input type="range" min="-2" max="2" step="0.1" value={phase} onChange={(event) => setPhase(Number(event.target.value))} /></label>
+            <label><span>Frequency</span><input type="range" min="0.7" max="1.8" step="0.05" value={frequency} onChange={(event) => setFrequency(Number(event.target.value))} /></label>
+          </div>
+        </div>
+      </div>
+      <div className="home-studio-stats">
+        {stats.map(({ label, value, icon: Icon, hint }) => (
+          <div key={label} className="home-studio-stat">
+            <span><Icon /></span>
+            <div>
+              <strong>{value}</strong>
+              <b>{label}</b>
+              <small>{hint}</small>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function HomeUnderstandingSection() {
+  const cards = [
+    {
+      title: "Explore concepts",
+      text: "Dive into interactive models and uncover patterns.",
+      art: (
+        <svg viewBox="0 0 210 90" aria-hidden="true">
+          <path d="M20 68C50 68 54 20 84 20C112 20 111 48 138 48C160 48 171 22 194 14" fill="none" stroke="#0ea5e9" strokeWidth="4" />
+          <path d="M20 68H190M28 16V78" stroke="#cbd5e1" strokeWidth="2" />
+          <circle cx="84" cy="20" r="8" fill="#38bdf8" stroke="#2563eb" strokeWidth="3" />
+        </svg>
+      ),
+    },
+    {
+      title: "Manipulate variables",
+      text: "Change values in real time and see instant results.",
+      art: (
+        <div className="home-slider-art" aria-hidden="true">
+          <span><i style={{ left: "42%" }} /></span>
+          <span><i style={{ left: "74%" }} /></span>
+          <span><i style={{ left: "24%" }} /></span>
+        </div>
+      ),
+    },
+    {
+      title: "Understand why",
+      text: "Connect visuals to logic and build lasting intuition.",
+      art: (
+        <svg viewBox="0 0 210 90" aria-hidden="true">
+          <path d="M42 70L103 16L166 70Z" fill="rgba(168,85,247,.12)" stroke="#8b5cf6" strokeWidth="3" />
+          <path d="M103 16V70L42 70M103 70L166 70M103 16L126 72" stroke="#7dd3fc" strokeWidth="2" strokeDasharray="6 6" />
+          <path d="M126 72L137 64L147 72" fill="none" stroke="#0ea5e9" strokeWidth="2" />
+        </svg>
+      ),
+    },
+  ];
+  const worlds = [
+    { title: "Algebra", text: "Master expressions, equations, and patterns visually.", route: "/math/algebra", className: "algebra" },
+    { title: "Geometry", text: "Explore shapes, theorems, and spatial reasoning.", route: "/math/geometry", className: "geometry" },
+    { title: "Trigonometry", text: "Understand angles, identities, and wave functions.", route: "/math/trigonometry", className: "trig" },
+    { title: "Calculus", text: "Visualize change, limits, and area under curves.", route: "/math/calculus", className: "calculus" },
+  ];
+
+  return (
+    <>
+      <section className="home-understanding" aria-labelledby="home-understanding-title">
+        <h2 id="home-understanding-title">Built for visual understanding</h2>
+        <div className="home-understanding-grid">
+          {cards.map((card) => (
+            <article key={card.title} className="home-understanding-card">
+              <div>{card.art}</div>
+              <span><strong>{card.title}</strong><small>{card.text}</small></span>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="home-learning-universe" aria-labelledby="home-learning-title">
+        <h2 id="home-learning-title">Learning universe</h2>
+        <div className="home-learning-grid">
+          {worlds.map((world) => (
+            <Link key={world.title} to={world.route} className={`home-learning-card ${world.className}`}>
+              <strong>{world.title}</strong>
+              <span>{world.text}</span>
+              <i aria-hidden="true" />
+            </Link>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
 function FormulaMuseumSection() {
   const exhibits = [
     {
@@ -494,7 +738,7 @@ function FormulaMuseumSection() {
               3D Formula Museum
             </span>
             <h2 className="mt-4 max-w-2xl text-3xl font-black tracking-tight text-white md:text-5xl">
-              Walk through formulas as physical exhibits.
+              Explore formulas as interactive models.
             </h2>
             <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-300 md:text-base">
               Derivatives become tangent sculptures, integrals stack into area slabs, matrices reshape rooms, and probability grows into branching pathways.
@@ -553,30 +797,6 @@ function FormulaMuseumSection() {
         ))}
       </div>
     </section>
-  );
-}
-
-function EnhancementDigest() {
-  return (
-    <aside className="rounded-2xl border border-slate-200 bg-white/85 p-4 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
-      <div className="flex items-center justify-between gap-2">
-        <div>
-          <p className="text-xs font-black uppercase tracking-wide text-violet-700 dark:text-violet-300">UI upgrade</p>
-          <h2 className="mt-1 text-xl font-black text-slate-950 dark:text-white">25 refinements applied</h2>
-        </div>
-        <span className="rounded-2xl bg-violet-50 p-3 text-violet-700 dark:bg-violet-400/10 dark:text-violet-200">
-          <Sparkles className="h-5 w-5" />
-        </span>
-      </div>
-      <div className="mt-3 grid max-h-56 gap-1.5 overflow-auto pr-1 thin-scrollbar">
-        {enhancementChecklist.map((item, index) => (
-          <div key={item} className="flex items-center gap-2 rounded-xl bg-slate-50 px-2.5 py-2 dark:bg-slate-950/40">
-            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cyan-100 text-[10px] font-black text-cyan-800 dark:bg-cyan-400/15 dark:text-cyan-100">{index + 1}</span>
-            <span className="text-xs font-bold text-slate-700 dark:text-slate-200">{item}</span>
-          </div>
-        ))}
-      </div>
-    </aside>
   );
 }
 

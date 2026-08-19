@@ -1,10 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import AITutorPanel from "../components/ui/AITutorPanel";
+import { Activity, BookOpen, Bot, BrainCircuit, CheckCircle2, ChevronRight, CircleAlert, Clock3, Cpu, Eye, Gauge, HelpCircle, Image, ListChecks, LockKeyhole, MapPin, Maximize2, Minus, MoreHorizontal, Play, Plus, Radio, Rotate3D, RotateCcw, Satellite, Search, Shield, Sigma, SlidersHorizontal, Stethoscope, Trophy, Waves, Zap } from "lucide-react";
+import MathExpression from "../components/ui/MathExpression";
 import SectionCard from "../components/ui/SectionCard";
 import SliderControl, { SliderGroup } from "../components/ui/SliderControl";
-import TopicHeader from "../components/ui/TopicHeader";
-import TopicProgressActions from "../components/ui/TopicProgressActions";
-import PhaseTwoDomainPanel from "../components/ui/PhaseTwoDomainPanel";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import AIApplicationsGrid from "../visualizations/ai/AIApplicationsGrid";
@@ -17,17 +15,17 @@ import RoboticsPathVisualizer from "../visualizations/ai/RoboticsPathVisualizer"
 import SignalProcessingVisualizer from "../visualizations/ai/SignalProcessingVisualizer";
 
 const MODULES = [
-  { id: "neural", label: "Neural Network", component: <NeuralNetworkVisualizer /> },
-  { id: "gradient", label: "Gradient Descent", component: <GradientDescentVisualizer /> },
-  { id: "signal", label: "Signal Processing", component: <SignalProcessingVisualizer /> },
-  { id: "image", label: "Image Compression", component: <ImageCompressionVisualizer /> },
-  { id: "gps", label: "GPS Triangulation", component: <GPSTriangulationVisualizer /> },
-  { id: "crypto", label: "Cryptography", component: <CryptographyVisualizer /> },
-  { id: "robotics", label: "Robotics Path", component: <RoboticsPathVisualizer /> },
-  { id: "graphics", label: "Computer Graphics", component: <ComputerGraphicsVisualizer /> },
-  { id: "radar", label: "Radar Systems", component: <RadarSystemsVisualizer /> },
-  { id: "medical", label: "Medical Imaging", component: <MedicalImagingVisualizer /> },
-  { id: "grid", label: "All Applications", component: <AIApplicationsGrid /> },
+  { id: "neural", label: "Neural Networks", icon: BrainCircuit, component: <NeuralNetworkVisualizer /> },
+  { id: "gradient", label: "Gradient Descent", icon: Activity, component: <GradientDescentVisualizer /> },
+  { id: "signal", label: "Signal Processing", icon: Waves, component: <SignalProcessingVisualizer /> },
+  { id: "image", label: "Image Compression", icon: Image, component: <ImageCompressionVisualizer /> },
+  { id: "gps", label: "GPS", icon: MapPin, component: <GPSTriangulationVisualizer /> },
+  { id: "crypto", label: "Cryptography", icon: LockKeyhole, component: <CryptographyVisualizer /> },
+  { id: "robotics", label: "Robotics", icon: Rotate3D, component: <RoboticsPathVisualizer /> },
+  { id: "graphics", label: "Graphics", icon: Cpu, component: <ComputerGraphicsVisualizer /> },
+  { id: "radar", label: "Radar", icon: Radio, component: <RadarSystemsVisualizer /> },
+  { id: "medical", label: "Medical Imaging", icon: Stethoscope, component: <MedicalImagingVisualizer /> },
+  { id: "grid", label: "More", icon: MoreHorizontal, component: <AIApplicationsGrid /> },
 ];
 
 type Point = [number, number];
@@ -237,47 +235,303 @@ function gaussian(seed: number) {
 
 export default function AIApplications() {
   const topic = topics.find((item) => item.id === "ai")!;
-  const { getTopicProgress, markTopicVisited, markTopicInteracted } = useProgress();
+  const { getTopicProgress, markTopicVisited, markTopicInteracted, markTopicCompleted } = useProgress();
   const [activeId, setActiveId] = useState(MODULES[0].id);
+  const [dataset, setDataset] = useState("Spiral (3 classes)");
+  const [inputs, setInputs] = useState(3);
+  const [hiddenLayers, setHiddenLayers] = useState(2);
+  const [neurons, setNeurons] = useState(4);
+  const [activation, setActivation] = useState("ReLU");
+  const [learningRate, setLearningRate] = useState(0.01);
+  const [bias, setBias] = useState(true);
+  const [showWeights, setShowWeights] = useState(true);
+  const [running, setRunning] = useState(false);
+  const [epoch, setEpoch] = useState(42);
+  const [selected, setSelected] = useState("h1-2");
+  const [learnTab, setLearnTab] = useState<"explain" | "inspect" | "challenge">("explain");
+  const [validationTopic, setValidationTopic] = useState("Gradient Descent");
+  const [scenario, setScenario] = useState("Convex bowl");
+  const [assessmentMode, setAssessmentMode] = useState("Calculation");
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [answer, setAnswer] = useState("");
+  const [checked, setChecked] = useState(false);
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
 
   const active = MODULES.find((m) => m.id === activeId) ?? MODULES[0];
+  const progress = getTopicProgress(topic.id);
+  const loss = Math.max(0.018, 0.18 / (1 + epoch / 26) + (hiddenLayers > 3 ? 0.035 : 0) + (learningRate > 0.06 ? 0.08 : 0));
+  const accuracy = Math.min(98.4, 78 + hiddenLayers * 4.5 + neurons * 1.35 - Math.abs(learningRate - 0.02) * 120);
+  const prediction = activation === "Sigmoid" ? 0.73 : activation === "Tanh" ? 0.41 : 0.86;
+
+  useEffect(() => {
+    if (!running) return;
+    const timer = window.setInterval(() => setEpoch((current) => (current >= 100 ? 1 : current + 1)), 650);
+    return () => window.clearInterval(timer);
+  }, [running]);
+
+  const resetNetwork = () => {
+    setInputs(3);
+    setHiddenLayers(2);
+    setNeurons(4);
+    setActivation("ReLU");
+    setLearningRate(0.01);
+    setBias(true);
+    setShowWeights(true);
+    setEpoch(1);
+    setRunning(false);
+  };
 
   return (
-    <div className="space-y-3" onPointerDown={() => markTopicInteracted(topic.id)}>
-      <TopicHeader title={topic.title} subtitle={topic.description} difficulty={topic.difficulty} estimatedMinutes={topic.estimatedMinutes} progress={getTopicProgress(topic.id)} />
+    <div className="ai-studio-page" onPointerDown={() => markTopicInteracted(topic.id)}>
+      <AIApplicationsHeader progress={progress} estimatedMinutes={topic.estimatedMinutes} onContinue={() => setRunning(true)} />
+      <AIModuleTabs activeId={activeId} setActiveId={setActiveId} />
 
-      <div className="grid gap-3 xl:grid-cols-[240px_minmax(0,1fr)_300px]">
-        <aside className="cinematic-control-panel scroll-panel xl:sticky xl:top-24">
-          <p className="mb-2 text-xs font-black uppercase text-slate-400">Modules</p>
-          <nav className="grid gap-1.5">
-            {MODULES.map((m) => (
-              <button
-                key={m.id}
-                type="button"
-                onClick={() => setActiveId(m.id)}
-                className={`rounded-lg px-3 py-2 text-left text-sm font-bold transition ${
-                  m.id === activeId
-                    ? "bg-slate-950 text-white shadow-lg shadow-cyan-950/10 dark:bg-cyan-300 dark:text-slate-950"
-                    : "bg-white/80 text-slate-700 hover:bg-slate-100 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
-                } border border-slate-200 dark:border-white/10`}
-              >
-                {m.label}
-              </button>
-            ))}
-          </nav>
-        </aside>
-        <div className="min-w-0">
-          {active.component}
-        </div>
-        <aside className="desktop-sidebar-panel scroll-panel space-y-3 xl:sticky xl:top-24">
-          <SectionCard title="Math Powers Modern Intelligence" description="AI systems are built from algebra, calculus, probability, geometry, signals, and linear algebra." compact />
-          <AITutorPanel />
-        </aside>
-      </div>
+      {activeId === "neural" ? (
+        <>
+          <section className="ai-network-studio" aria-label="Neural network workspace">
+            <ExperimentControls
+              dataset={dataset}
+              setDataset={setDataset}
+              inputs={inputs}
+              setInputs={setInputs}
+              hiddenLayers={hiddenLayers}
+              setHiddenLayers={setHiddenLayers}
+              neurons={neurons}
+              setNeurons={setNeurons}
+              activation={activation}
+              setActivation={setActivation}
+              learningRate={learningRate}
+              setLearningRate={setLearningRate}
+              bias={bias}
+              setBias={setBias}
+              showWeights={showWeights}
+              setShowWeights={setShowWeights}
+              onReset={resetNetwork}
+              onRun={() => setRunning((value) => !value)}
+              running={running}
+            />
+            <NeuralNetworkPlayground
+              inputs={inputs}
+              hiddenLayers={hiddenLayers}
+              neurons={neurons}
+              activation={activation}
+              showWeights={showWeights}
+              running={running}
+              epoch={epoch}
+              loss={loss}
+              accuracy={accuracy}
+              prediction={prediction}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <LearnInspectPanel tab={learnTab} setTab={setLearnTab} selected={selected} activation={activation} prediction={prediction} />
+          </section>
+          <FormulaFlow running={running} />
+          <ChallengeStrip />
+        </>
+      ) : (
+        <ModuleSpecificWorkspace active={active} />
+      )}
 
-      <PhaseTwoDomainPanel domain="ai-engineering" />
-      <TopicProgressActions topicId={topic.id} />
+      <section className="ai-validation-grid" aria-label="Accuracy, assumptions and evidence">
+        <ValidationWorkspace activeTopic={validationTopic} setActiveTopic={setValidationTopic} scenario={scenario} setScenario={setScenario} />
+        <EvidenceDashboard progress={progress} assessmentMode={assessmentMode} setAssessmentMode={setAssessmentMode} questionIndex={questionIndex} setQuestionIndex={setQuestionIndex} answer={answer} setAnswer={setAnswer} checked={checked} setChecked={setChecked} />
+      </section>
+
+      <RealWorldApplications setActiveId={setActiveId} />
+      <BottomProgress progress={progress} onComplete={() => markTopicCompleted(topic.id)} />
+      <AIFooter />
     </div>
   );
+}
+
+type ExperimentControlsProps = {
+  dataset: string;
+  setDataset: (value: string) => void;
+  inputs: number;
+  setInputs: (value: number) => void;
+  hiddenLayers: number;
+  setHiddenLayers: (value: number) => void;
+  neurons: number;
+  setNeurons: (value: number) => void;
+  activation: string;
+  setActivation: (value: string) => void;
+  learningRate: number;
+  setLearningRate: (value: number) => void;
+  bias: boolean;
+  setBias: (value: boolean) => void;
+  showWeights: boolean;
+  setShowWeights: (value: boolean) => void;
+  onReset: () => void;
+  onRun: () => void;
+  running: boolean;
+};
+
+function AIApplicationsHeader({ progress, estimatedMinutes, onContinue }: { progress: number; estimatedMinutes: number; onContinue: () => void }) {
+  return (
+    <section className="ai-studio-header">
+      <div className="ai-header-title">
+        <span><BrainCircuit /></span>
+        <div>
+          <h1>Math in AI & Real Life</h1>
+          <p>Explore the mathematics behind intelligent systems</p>
+        </div>
+      </div>
+      <div className="ai-header-progress">
+        <span>In progress <b>{Math.round(progress)}%</b></span>
+        <i><em style={{ width: `${Math.max(8, progress)}%` }} /></i>
+      </div>
+      <div className="ai-header-actions">
+        <span><Gauge />Intermediate</span>
+        <span><Clock3 />{estimatedMinutes} min</span>
+        <button type="button" onClick={onContinue}><Play />Continue lesson</button>
+      </div>
+    </section>
+  );
+}
+
+function AIModuleTabs({ activeId, setActiveId }: { activeId: string; setActiveId: (value: string) => void }) {
+  return (
+    <nav className="ai-module-tabs" aria-label="AI application modules">
+      {MODULES.map(({ id, label, icon: Icon }) => (
+        <button key={id} type="button" className={activeId === id ? "active" : ""} onClick={() => setActiveId(id)}>
+          <Icon />{label}
+        </button>
+      ))}
+    </nav>
+  );
+}
+
+function ExperimentControls(props: ExperimentControlsProps) {
+  const step = (value: number, setter: (value: number) => void, delta: number, min: number, max: number) => setter(Math.min(max, Math.max(min, value + delta)));
+  return (
+    <aside className="ai-experiment-panel">
+      <h2>Experiment controls</h2>
+      <label>Dataset<select value={props.dataset} onChange={(event) => props.setDataset(event.target.value)}><option>Spiral (3 classes)</option><option>XOR</option><option>Circles</option><option>Linear separation</option><option>User-entered values</option></select></label>
+      <Stepper label="Inputs" value={props.inputs} onMinus={() => step(props.inputs, props.setInputs, -1, 1, 8)} onPlus={() => step(props.inputs, props.setInputs, 1, 1, 8)} />
+      <Stepper label="Hidden layers" value={props.hiddenLayers} onMinus={() => step(props.hiddenLayers, props.setHiddenLayers, -1, 1, 4)} onPlus={() => step(props.hiddenLayers, props.setHiddenLayers, 1, 1, 4)} />
+      <Stepper label="Neurons per layer" value={props.neurons} onMinus={() => step(props.neurons, props.setNeurons, -1, 2, 8)} onPlus={() => step(props.neurons, props.setNeurons, 1, 2, 8)} />
+      <label>Activation<select value={props.activation} onChange={(event) => props.setActivation(event.target.value)}><option>ReLU</option><option>Sigmoid</option><option>Tanh</option><option>Linear</option></select></label>
+      <label className="ai-range-row"><span>Learning rate <b>{props.learningRate.toFixed(3)}</b></span><input aria-label="Learning rate" type="range" min="0.001" max="0.1" step="0.001" value={props.learningRate} onChange={(event) => props.setLearningRate(Number(event.target.value))} /></label>
+      <ToggleRow label="Bias" checked={props.bias} onChange={props.setBias} />
+      <ToggleRow label="Show weights" checked={props.showWeights} onChange={props.setShowWeights} />
+      <div className="ai-control-actions"><button type="button" onClick={props.onReset}><RotateCcw />Reset</button><button type="button" onClick={props.onRun} className="primary"><Play />{props.running ? "Pause" : "Run network"}</button></div>
+    </aside>
+  );
+}
+
+function Stepper({ label, value, onMinus, onPlus }: { label: string; value: number; onMinus: () => void; onPlus: () => void }) {
+  return <div className="ai-stepper"><span>{label}</span><div><button type="button" onClick={onMinus} aria-label={`Decrease ${label}`}><Minus /></button><b>{value}</b><button type="button" onClick={onPlus} aria-label={`Increase ${label}`}><Plus /></button></div></div>;
+}
+
+function ToggleRow({ label, checked, onChange }: { label: string; checked: boolean; onChange: (value: boolean) => void }) {
+  return <label className="ai-toggle-row"><span>{label}</span><input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} /></label>;
+}
+
+function NeuralNetworkPlayground({ inputs, hiddenLayers, neurons, activation, showWeights, running, epoch, loss, accuracy, prediction, selected, setSelected }: { inputs: number; hiddenLayers: number; neurons: number; activation: string; showWeights: boolean; running: boolean; epoch: number; loss: number; accuracy: number; prediction: number; selected: string; setSelected: (value: string) => void }) {
+  const layers = buildNetworkLayers(inputs, hiddenLayers, neurons);
+  const connections = layers.slice(0, -1).flatMap((layer, layerIndex) => layer.nodes.flatMap((node, nodeIndex) => layers[layerIndex + 1].nodes.map((target, targetIndex) => ({ from: node, to: target, id: `${layerIndex}-${nodeIndex}-${targetIndex}`, weight: Math.sin((layerIndex + 1) * (nodeIndex + 2) * (targetIndex + 3)) }))));
+  return (
+    <main className="ai-playground">
+      <div className="ai-playground-top"><h2>Neural Network Playground <span className={running ? "live" : ""}>{running ? "Live" : "Ready"}</span></h2><div><button type="button" aria-label="Zoom out"><Minus /></button><button type="button" aria-label="Zoom in"><Plus /></button><button type="button" aria-label="Fit network"><Maximize2 /></button></div></div>
+      <svg className="ai-network-canvas" viewBox="0 0 760 360" role="img" aria-label="Interactive neural network canvas">
+        <defs><filter id="aiNodeGlow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter></defs>
+        {connections.map((connection) => <line key={connection.id} x1={connection.from.x} y1={connection.from.y} x2={connection.to.x} y2={connection.to.y} stroke={connection.weight >= 0 ? "#25d7ff" : "#ffb020"} strokeOpacity={showWeights ? 0.25 + Math.abs(connection.weight) * 0.5 : 0.18} strokeWidth={showWeights ? 1 + Math.abs(connection.weight) * 3 : 1.2} />)}
+        {running && connections.filter((_, index) => index % 4 === epoch % 4).slice(0, 18).map((connection) => <circle key={`pulse-${connection.id}`} r="4" fill="#e0f2fe"><animateMotion dur="1.4s" repeatCount="indefinite" path={`M${connection.from.x},${connection.from.y} L${connection.to.x},${connection.to.y}`} /></circle>)}
+        {layers.map((layer) => <g key={layer.label}><text x={layer.x} y="38" fill="#e2e8f0" textAnchor="middle" fontSize="13" fontWeight="800">{layer.label}</text>{layer.nodes.map((node, nodeIndex) => <g key={node.id} tabIndex={0} role="button" aria-label={`Inspect ${node.id}`} onClick={() => setSelected(node.id)} onKeyDown={(event) => { if (event.key === "Enter") setSelected(node.id); }}><circle cx={node.x} cy={node.y} r="20" fill={layer.kind === "input" ? "#22d3ee" : layer.kind === "output" ? "#f59e0b" : "#8b5cf6"} stroke={selected === node.id ? "#fff" : "#312e81"} strokeWidth="3" filter="url(#aiNodeGlow)" /><text x={node.x} y={node.y + 5} textAnchor="middle" fill="#020617" fontSize="11" fontWeight="900">{layer.kind === "input" ? `x${nodeIndex + 1}` : layer.kind === "output" ? `y${nodeIndex + 1}` : ""}</text></g>)}</g>)}
+      </svg>
+      <div className="ai-network-legend"><span>Weight strength <i /></span><span><b className="positive" />Positive</span><span><b className="negative" />Negative</span><span><b className="signal" />Signal flow</span></div>
+      <div className="ai-formula-band"><MathExpression value="y=\\sigma(Wx+b)" display /><span><b>W</b>: weights</span><span><b>x</b>: inputs</span><span><b>b</b>: bias</span><span><b>sigma</b>: {activation}</span></div>
+      <div className="ai-metric-row"><MetricCard label="Loss" value={loss.toFixed(3)} trend="down" /><MetricCard label="Accuracy" value={`${accuracy.toFixed(1)}%`} trend="up" /><MetricCard label="Epoch" value={`${epoch}/100`} trend="up" /><MetricCard label="Prediction" value={prediction.toFixed(2)} trend="up" /></div>
+    </main>
+  );
+}
+
+function MetricCard({ label, value, trend }: { label: string; value: string; trend: "up" | "down" }) {
+  return <article><span>{label}</span><strong>{value}</strong><svg viewBox="0 0 100 24" aria-hidden="true"><path d={trend === "up" ? "M4 18L18 15L32 17L46 9L60 11L75 6L94 8" : "M4 5L20 8L34 10L50 15L66 16L80 18L96 19"} fill="none" stroke="#22d3ee" strokeWidth="3" strokeLinecap="round" /></svg></article>;
+}
+
+function LearnInspectPanel({ tab, setTab, selected, activation, prediction }: { tab: "explain" | "inspect" | "challenge"; setTab: (value: "explain" | "inspect" | "challenge") => void; selected: string; activation: string; prediction: number }) {
+  return (
+    <aside className="ai-inspect-panel">
+      <h2>Learn & Inspect</h2>
+      <div className="ai-inspect-tabs">{(["explain", "inspect", "challenge"] as const).map((item) => <button key={item} type="button" className={tab === item ? "active" : ""} onClick={() => setTab(item)}>{item}</button>)}</div>
+      {tab === "explain" && <div className="ai-explain-card"><h3>How a neuron decides</h3>{["Weighted sum", "Add bias", "Apply activation", "Produce output"].map((item, index) => <p key={item}><b>{index + 1}</b><span>{item}<small>{index === 0 ? "Combine inputs with weights." : index === 1 ? "Shift the decision boundary." : index === 2 ? `${activation} introduces model behavior.` : "Send the value onward."}</small></span></p>)}<MathExpression value="z=w*x+b" /><ActivationMiniGraph activation={activation} /></div>}
+      {tab === "inspect" && <div className="ai-explain-card"><h3>Selected state</h3><dl><dt>Neuron ID</dt><dd>{selected}</dd><dt>Input values</dt><dd>[0.72, -0.18, 0.44]</dd><dt>Weights</dt><dd>[0.61, -0.25, 0.39]</dd><dt>Bias</dt><dd>0.12</dd><dt>Weighted sum</dt><dd>0.84</dd><dt>Activation output</dt><dd>{prediction.toFixed(2)}</dd></dl></div>}
+      {tab === "challenge" && <div className="ai-explain-card"><h3>Challenge</h3><p className="plain">Adjust hidden layers and learning rate until loss falls below 0.05 without making the model unstable.</p><button type="button">Start challenge <ChevronRight /></button></div>}
+      <div className="ai-tutor-card"><h3><Bot />AI Tutor</h3><p>I'm here to help you understand neural networks.</p>{["Why use hidden layers?", "How do weights update?", "What is backpropagation?", "Why ReLU activation?"].map((item) => <button type="button" key={item}>{item}</button>)}</div>
+    </aside>
+  );
+}
+
+function ActivationMiniGraph({ activation }: { activation: string }) {
+  const path = activation === "Sigmoid" ? "M10 70C38 70 42 20 78 20" : activation === "Tanh" ? "M10 72C34 72 48 18 78 18" : activation === "Linear" ? "M12 70L80 18" : "M12 70H38L80 18";
+  return <svg className="ai-activation-mini" viewBox="0 0 94 84" aria-label={`${activation} activation graph`}><path d="M12 72H86M20 8V76" stroke="#cbd5e1" /><path d={path} fill="none" stroke="#3b82f6" strokeWidth="3" /></svg>;
+}
+
+function FormulaFlow({ running }: { running: boolean }) {
+  const steps = [["Input", "Raw features enter the network.", BrainCircuit], ["Weighted sum", "Each neuron computes z = w dot x + b.", Sigma], ["Activation", "Apply non-linearity to introduce complexity.", Zap], ["Output", "Network produces the final prediction.", Trophy]] as const;
+  return <section className={`ai-flow-section ${running ? "running" : ""}`}><h2>From formula to prediction</h2><p>See how data flows through a neural network to produce an output.</p><div>{steps.map(([title, text, Icon], index) => <article key={title}><b>{index + 1}</b><span><strong>{title}</strong><small>{text}</small></span><Icon />{index < steps.length - 1 ? <i /> : null}</article>)}</div></section>;
+}
+
+function ChallengeStrip() {
+  const challenges = [["Tune the network", "Adjust learning rate and hidden layers to minimize loss.", "Medium", "3-4 min", SlidersHorizontal], ["Find the unstable model", "Identify which setup will diverge and explain why.", "Hard", "4-5 min", Activity], ["Explain the prediction", "Why did the network output a high value for this input?", "Easy", "3 min", HelpCircle]] as const;
+  return <section className="ai-challenge-section"><h2>Test your understanding</h2><p>Quick challenges to reinforce core ideas.</p><div>{challenges.map(([title, text, difficulty, time, Icon]) => <article key={title}><Icon /><span><strong>{title}</strong><small>{text}</small><b className={difficulty.toLowerCase()}>{difficulty}</b></span><em><Clock3 />{time}</em><button type="button" aria-label={`Open ${title}`}><ChevronRight /></button></article>)}</div></section>;
+}
+
+function ValidationWorkspace({ activeTopic, setActiveTopic, scenario, setScenario }: { activeTopic: string; setActiveTopic: (value: string) => void; scenario: string; setScenario: (value: string) => void }) {
+  const topics = ["Gradient Descent", "Neural Networks", "Signal Processing", "Robotics & Transformations", "Engineering Simulations", "Cryptography Examples"];
+  return <section className="ai-validation-panel"><h2>Accuracy, assumptions & validation</h2><p>Know when the mathematics works and when it does not.</p><div className="ai-validation-body"><div className="ai-accordion">{topics.map((item) => <button key={item} type="button" className={activeTopic === item ? "active" : ""} onClick={() => setActiveTopic(item)}><Shield />{item}<span>{activeTopic === item ? "Open" : "Review"}</span></button>)}</div><div className="ai-validation-detail"><article className="ai-update-rule"><span>Update rule</span><MathExpression value="x_{k+1}=x_k-\\eta\\nabla f(x_k)" display /></article><LossChart scenario={scenario} /><div className="ai-proof-cards">{["Assumptions", "Invariants", "Common misconception", "Independent check"].map((item, index) => <article key={item}><b>{index === 2 ? <CircleAlert /> : <CheckCircle2 />}</b><strong>{item}</strong><small>{index === 0 ? "Smooth objective and bounded learning rate." : index === 1 ? "Accepted steps reduce objective." : index === 2 ? "A larger learning rate can overshoot." : "Compare analytic and central differences."}</small></article>)}</div><div className="ai-scenario-row">{["Convex bowl", "Ill-conditioned valley", "Linear regression"].map((item) => <button key={item} type="button" className={scenario === item ? "active" : ""} onClick={() => setScenario(item)}>{item}</button>)}<button type="button" className="run"><Play />Run validation</button></div></div></div></section>;
+}
+
+function LossChart({ scenario }: { scenario: string }) {
+  const amp = scenario === "Ill-conditioned valley" ? 1.8 : scenario === "Linear regression" ? 0.75 : 1;
+  const path = Array.from({ length: 40 }, (_, index) => {
+    const x = 18 + index * 5.3;
+    const y = 26 + Math.log(index + 1) * 18 * amp + Math.sin(index * 0.6) * (scenario === "Ill-conditioned valley" ? 7 : 2);
+    return `${index === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
+  }).join(" ");
+  return <article className="ai-loss-chart"><span>Loss over iterations</span><svg viewBox="0 0 250 130"><path d="M24 104H230M24 18V104" stroke="#cbd5e1" /><path d={path} fill="none" stroke="#7c3aed" strokeWidth="3" /><text x="104" y="124" fill="#64748b" fontSize="10">Iterations</text></svg></article>;
+}
+
+function EvidenceDashboard({ progress, assessmentMode, setAssessmentMode, questionIndex, setQuestionIndex, answer, setAnswer, checked, setChecked }: { progress: number; assessmentMode: string; setAssessmentMode: (value: string) => void; questionIndex: number; setQuestionIndex: (value: number) => void; answer: string; setAnswer: (value: string) => void; checked: boolean; setChecked: (value: boolean) => void }) {
+  const questions = ["For f(x)=1/2 x^T A x-b^T x, compute one gradient descent step.", "Which assumption fails when eta is too large?", "Explain why ReLU can create sparse activations."];
+  return <section className="ai-evidence-panel"><h2>Evidence dashboard</h2><div className="ai-evidence-top"><div className="ai-readiness" style={{ "--ready": `${progress}%` } as React.CSSProperties}><strong>{Math.round(progress)}%</strong><span>Ready</span></div><div className="ai-check-list"><span><CheckCircle2 />Passed <b>{progress >= 100 ? 12 : 3}</b></span><span><CircleAlert />Needs review <b>{progress >= 100 ? 0 : 3}</b></span><span><Clock3 />Pending <b>{progress >= 100 ? 0 : 2}</b></span></div><div className="ai-check-list"><span><CheckCircle2 />Formula verified</span><span><CheckCircle2 />Boundary tested</span><span><CircleAlert />Counterexample included</span><span><Clock3 />Accessibility review</span></div></div><div className="ai-assessment-modes">{["Recognition", "Calculation", "Interpretation", "Error analysis", "Transfer"].map((item) => <button key={item} type="button" className={assessmentMode === item ? "active" : ""} onClick={() => setAssessmentMode(item)}>{item}</button>)}</div><div className="ai-question-card"><small>Example question ({assessmentMode})</small><p>{questions[questionIndex]}</p><label><Search />Answer<input value={answer} onChange={(event) => { setAnswer(event.target.value); setChecked(false); }} placeholder="Type a short answer" /></label>{checked ? <b>{answer.trim().length > 3 ? "Good start. Compare with the solution steps." : "Add more mathematical detail."}</b> : null}<div><button type="button" onClick={() => setChecked(true)}>Check answer</button><button type="button">View solution <ChevronRight /></button><button type="button" onClick={() => { setQuestionIndex((questionIndex + 1) % questions.length); setAnswer(""); setChecked(false); }}>Next</button></div></div></section>;
+}
+
+function RealWorldApplications({ setActiveId }: { setActiveId: (value: string) => void }) {
+  const apps = [["Signal Processing", "X(f)=integral x(t)e^{-j2*pi*f*t}dt", "signal", Waves], ["Robotics", "T=prod_i e^{[xi_i]theta_i}", "robotics", Rotate3D], ["Engineering Simulation", "du/dt=alpha*nabla^2 u", "gradient", Activity], ["Medical Imaging", "R(theta,s)=integral f(x)ds", "medical", Stethoscope], ["Cryptography", "c=m^e mod n", "crypto", LockKeyhole]] as const;
+  return <section className="ai-app-grid-section"><h2>Explore real-world applications</h2><p>See how mathematics and AI solve problems across domains.</p><div>{apps.map(([title, formula, route, Icon]) => <article key={title}><span><strong>{title}</strong><MathExpression value={formula} /></span><ApplicationMiniVisual type={route} /><button type="button" onClick={() => setActiveId(route)}>Open module <ChevronRight /></button><Icon /></article>)}</div></section>;
+}
+
+function ApplicationMiniVisual({ type }: { type: string }) {
+  if (type === "medical") return <canvas className="ai-mini-medical" width={96} height={56} aria-label="Medical imaging preview" />;
+  return <svg className="ai-mini-visual" viewBox="0 0 120 64" aria-hidden="true"><path d={type === "signal" ? "M4 34C20 4 34 62 52 28S86 14 116 40" : type === "robotics" ? "M28 48L52 28L76 38L98 16" : type === "crypto" ? "M24 52V30H96V52ZM42 30V20C42 8 78 8 78 30" : "M10 54C34 20 62 8 110 30"} fill="none" stroke="#0ea5e9" strokeWidth="4" strokeLinecap="round" /><circle cx="52" cy="28" r="5" fill="#8b5cf6" /></svg>;
+}
+
+function BottomProgress({ progress, onComplete }: { progress: number; onComplete: () => void }) {
+  return <section className="ai-bottom-progress"><span>Module progress</span><i><em style={{ width: `${progress}%` }} /></i><b>{Math.round(progress)}%</b><small>{progress >= 100 ? "Completed activities ready" : "3 completed activities - 4 remaining checks"}</small><button type="button">View certification evidence</button><button type="button" onClick={onComplete} className="primary"><CheckCircle2 />Mark as complete</button></section>;
+}
+
+function AIFooter() {
+  return <footer className="ai-footer"><div><BrainCircuit /><span><strong>Math Universe</strong><small>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</small></span></div><nav><a href="/sitemap">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav></footer>;
+}
+
+function ModuleSpecificWorkspace({ active }: { active: typeof MODULES[number] }) {
+  return <section className="ai-module-workspace"><div className="ai-module-workspace-head"><span><active.icon /></span><div><h2>{active.label}</h2><p>Module-specific visualizer and controls preserved from the existing AI Applications page.</p></div></div>{active.component}</section>;
+}
+
+function buildNetworkLayers(inputCount: number, hiddenLayerCount: number, neuronsPerLayer: number) {
+  const layerCount = hiddenLayerCount + 2;
+  return Array.from({ length: layerCount }, (_, layerIndex) => {
+    const kind = layerIndex === 0 ? "input" : layerIndex === layerCount - 1 ? "output" : "hidden";
+    const count = kind === "input" ? inputCount : kind === "output" ? 3 : neuronsPerLayer;
+    const x = 80 + layerIndex * (600 / Math.max(1, layerCount - 1));
+    return {
+      x,
+      kind,
+      label: kind === "input" ? `Input layer (${count})` : kind === "output" ? `Output layer (${count})` : `Hidden layer ${layerIndex} (${count})`,
+      nodes: Array.from({ length: count }, (_, nodeIndex) => ({ id: `${kind[0]}${layerIndex}-${nodeIndex + 1}`, x, y: 86 + nodeIndex * (190 / Math.max(1, count - 1)) })),
+    };
+  });
 }

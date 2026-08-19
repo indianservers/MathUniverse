@@ -1,0 +1,2791 @@
+{
+  "total": 299,
+  "expected": 299,
+  "matches": true,
+  "categories": [
+    {
+      "id": "algebra",
+      "title": "Algebra",
+      "description": "Identities, equations, roots, inequalities, functions, and polynomial structure.",
+      "accent": "cyan",
+      "count": 23
+    },
+    {
+      "id": "geometry",
+      "title": "Geometry",
+      "description": "Euclidean triangle, circle, quadrilateral, similarity, congruence, and area theorems.",
+      "accent": "emerald",
+      "count": 28
+    },
+    {
+      "id": "proportional-reasoning",
+      "title": "Proportional Reasoning",
+      "description": "Ratio, map-scale, sharing, pie-chart, direct proportion, and inverse proportion principles.",
+      "accent": "cyan",
+      "count": 10
+    },
+    {
+      "id": "trigonometry",
+      "title": "Trigonometry",
+      "description": "Unit circle, triangle laws, identities, periodicity, and inverse trigonometric facts.",
+      "accent": "sky",
+      "count": 22
+    },
+    {
+      "id": "coordinate-geometry",
+      "title": "Coordinate Geometry",
+      "description": "Distance, slope, lines, conics, transformations, and analytic geometry theorems.",
+      "accent": "violet",
+      "count": 23
+    },
+    {
+      "id": "calculus-analysis",
+      "title": "Calculus & Analysis",
+      "description": "Limits, continuity, derivatives, integrals, series, and multivariable results.",
+      "accent": "rose",
+      "count": 25
+    },
+    {
+      "id": "number-theory",
+      "title": "Number Theory",
+      "description": "Divisibility, primes, modular arithmetic, congruences, and classical integer theorems.",
+      "accent": "amber",
+      "count": 23
+    },
+    {
+      "id": "probability-statistics",
+      "title": "Probability & Statistics",
+      "description": "Counting probability, random variables, expectation, distributions, and inference.",
+      "accent": "orange",
+      "count": 25
+    },
+    {
+      "id": "linear-algebra-vectors",
+      "title": "Linear Algebra & Vectors",
+      "description": "Matrices, vector spaces, determinants, transformations, eigenvalues, and projections.",
+      "accent": "indigo",
+      "count": 24
+    },
+    {
+      "id": "complex-numbers",
+      "title": "Complex Numbers",
+      "description": "Complex plane, polar form, roots, analytic functions, residues, and contour results.",
+      "accent": "fuchsia",
+      "count": 24
+    },
+    {
+      "id": "discrete-logic",
+      "title": "Discrete Math & Logic",
+      "description": "Sets, relations, induction, counting, recurrence, Boolean algebra, and proof methods.",
+      "accent": "lime",
+      "count": 24
+    },
+    {
+      "id": "graph-theory",
+      "title": "Graph Theory",
+      "description": "Paths, trees, planarity, coloring, connectivity, matching, and network theorems.",
+      "accent": "teal",
+      "count": 24
+    },
+    {
+      "id": "optimization-engineering",
+      "title": "Optimization & Engineering Math",
+      "description": "Optimization, numerical methods, transforms, PDEs, mechanics, and engineering analysis.",
+      "accent": "slate",
+      "count": 24
+    }
+  ],
+  "routes": [
+    {
+      "theoremName": "Factor theorem",
+      "route": "/theorems/algebra/factor-theorem-1",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Remainder theorem",
+      "route": "/theorems/algebra/remainder-theorem-2",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Fundamental theorem of algebra",
+      "route": "/theorems/algebra/fundamental-theorem-of-algebra-3",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Polynomial root-factor theorem",
+      "route": "/theorems/algebra/polynomial-root-factor-theorem-4",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Vieta theorem",
+      "route": "/theorems/algebra/vieta-theorem-5",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Quadratic discriminant theorem",
+      "route": "/theorems/algebra/quadratic-discriminant-theorem-6",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Completing square theorem",
+      "route": "/theorems/algebra/completing-square-theorem-7",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "AM-GM inequality",
+      "route": "/theorems/algebra/am-gm-inequality-8",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Cauchy-Schwarz inequality",
+      "route": "/theorems/algebra/cauchy-schwarz-inequality-9",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Triangle inequality for real numbers",
+      "route": "/theorems/algebra/triangle-inequality-for-real-numbers-10",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Binomial theorem",
+      "route": "/theorems/algebra/binomial-theorem-11",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Pascal identity",
+      "route": "/theorems/algebra/pascal-identity-12",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Rational root theorem",
+      "route": "/theorems/algebra/rational-root-theorem-13",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Synthetic division theorem",
+      "route": "/theorems/algebra/synthetic-division-theorem-14",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Polynomial division algorithm",
+      "route": "/theorems/algebra/polynomial-division-algorithm-15",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Gauss lemma for polynomials",
+      "route": "/theorems/algebra/gauss-lemma-for-polynomials-16",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Eisenstein criterion",
+      "route": "/theorems/algebra/eisenstein-criterion-17",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Descartes rule of signs",
+      "route": "/theorems/algebra/descartes-rule-of-signs-18",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Fundamental theorem of symmetric polynomials",
+      "route": "/theorems/algebra/fundamental-theorem-of-symmetric-polynomials-19",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Logarithm product theorem",
+      "route": "/theorems/algebra/logarithm-product-theorem-20",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Exponent laws theorem",
+      "route": "/theorems/algebra/exponent-laws-theorem-21",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Inverse function theorem for algebra",
+      "route": "/theorems/algebra/inverse-function-theorem-for-algebra-22",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Composition associativity theorem",
+      "route": "/theorems/algebra/composition-associativity-theorem-23",
+      "categoryName": "Algebra",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Algebra tiles"
+    },
+    {
+      "theoremName": "Pythagorean theorem",
+      "route": "/theorems/geometry/pythagorean-theorem-1",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Converse of Pythagoras",
+      "route": "/theorems/geometry/converse-of-pythagoras-2",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Triangle angle sum theorem",
+      "route": "/theorems/geometry/triangle-angle-sum-theorem-3",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Exterior angle theorem",
+      "route": "/theorems/geometry/exterior-angle-theorem-4",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Base angle theorem",
+      "route": "/theorems/geometry/base-angle-theorem-5",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "SSS congruence theorem",
+      "route": "/theorems/geometry/sss-congruence-theorem-6",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "SAS congruence theorem",
+      "route": "/theorems/geometry/sas-congruence-theorem-7",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "ASA congruence theorem",
+      "route": "/theorems/geometry/asa-congruence-theorem-8",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "AA similarity theorem",
+      "route": "/theorems/geometry/aa-similarity-theorem-9",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Basic proportionality theorem",
+      "route": "/theorems/geometry/basic-proportionality-theorem-10",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Angle bisector theorem",
+      "route": "/theorems/geometry/angle-bisector-theorem-11",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Perpendicular bisector theorem",
+      "route": "/theorems/geometry/perpendicular-bisector-theorem-12",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Median centroid theorem",
+      "route": "/theorems/geometry/median-centroid-theorem-13",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Cyclic quadrilateral theorem",
+      "route": "/theorems/geometry/cyclic-quadrilateral-theorem-14",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Tangent radius theorem",
+      "route": "/theorems/geometry/tangent-radius-theorem-15",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Alternate segment theorem",
+      "route": "/theorems/geometry/alternate-segment-theorem-16",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Intersecting chords theorem",
+      "route": "/theorems/geometry/intersecting-chords-theorem-17",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Power of a point theorem",
+      "route": "/theorems/geometry/power-of-a-point-theorem-18",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Ceva theorem",
+      "route": "/theorems/geometry/ceva-theorem-19",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Menelaus theorem",
+      "route": "/theorems/geometry/menelaus-theorem-20",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Ptolemy theorem",
+      "route": "/theorems/geometry/ptolemy-theorem-21",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Stewart theorem",
+      "route": "/theorems/geometry/stewart-theorem-22",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Heron theorem",
+      "route": "/theorems/geometry/heron-theorem-23",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Euler line theorem",
+      "route": "/theorems/geometry/euler-line-theorem-24",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Sierpinski retained area principle",
+      "route": "/theorems/geometry/sierpinski-retained-area-principle-25",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Sierpinski removed-square sum principle",
+      "route": "/theorems/geometry/sierpinski-removed-square-sum-principle-26",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Orthographic projection maximum principle",
+      "route": "/theorems/geometry/orthographic-projection-maximum-principle-27",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Projection non-uniqueness principle",
+      "route": "/theorems/geometry/projection-non-uniqueness-principle-28",
+      "categoryName": "Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Dissection"
+    },
+    {
+      "theoremName": "Cross multiplication principle",
+      "route": "/theorems/proportional-reasoning/cross-multiplication-principle-1",
+      "categoryName": "Proportional Reasoning",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Measurement"
+    },
+    {
+      "theoremName": "Representative fraction principle",
+      "route": "/theorems/proportional-reasoning/representative-fraction-principle-2",
+      "categoryName": "Proportional Reasoning",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Measurement"
+    },
+    {
+      "theoremName": "Multi-term ratio division principle",
+      "route": "/theorems/proportional-reasoning/multi-term-ratio-division-principle-3",
+      "categoryName": "Proportional Reasoning",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Measurement"
+    },
+    {
+      "theoremName": "Pie-angle proportionality principle",
+      "route": "/theorems/proportional-reasoning/pie-angle-proportionality-principle-4",
+      "categoryName": "Proportional Reasoning",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Measurement"
+    },
+    {
+      "theoremName": "Direct proportion constant-ratio principle",
+      "route": "/theorems/proportional-reasoning/direct-proportion-constant-ratio-principle-5",
+      "categoryName": "Proportional Reasoning",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Measurement"
+    },
+    {
+      "theoremName": "Inverse proportion constant-product principle",
+      "route": "/theorems/proportional-reasoning/inverse-proportion-constant-product-principle-6",
+      "categoryName": "Proportional Reasoning",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Measurement"
+    },
+    {
+      "theoremName": "Unit rate theorem",
+      "route": "/theorems/proportional-reasoning/unit-rate-theorem-7",
+      "categoryName": "Proportional Reasoning",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Measurement"
+    },
+    {
+      "theoremName": "Scale factor area theorem",
+      "route": "/theorems/proportional-reasoning/scale-factor-area-theorem-8",
+      "categoryName": "Proportional Reasoning",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Measurement"
+    },
+    {
+      "theoremName": "Scale factor volume theorem",
+      "route": "/theorems/proportional-reasoning/scale-factor-volume-theorem-9",
+      "categoryName": "Proportional Reasoning",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Measurement"
+    },
+    {
+      "theoremName": "Compound percent multiplier theorem",
+      "route": "/theorems/proportional-reasoning/compound-percent-multiplier-theorem-10",
+      "categoryName": "Proportional Reasoning",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Measurement"
+    },
+    {
+      "theoremName": "Sine rule",
+      "route": "/theorems/trigonometry/sine-rule-1",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Cosine rule",
+      "route": "/theorems/trigonometry/cosine-rule-2",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Area sine theorem",
+      "route": "/theorems/trigonometry/area-sine-theorem-3",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Unit circle coordinate theorem",
+      "route": "/theorems/trigonometry/unit-circle-coordinate-theorem-4",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Pythagorean identity theorem",
+      "route": "/theorems/trigonometry/pythagorean-identity-theorem-5",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Tangent quotient theorem",
+      "route": "/theorems/trigonometry/tangent-quotient-theorem-6",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Reciprocal identity theorem",
+      "route": "/theorems/trigonometry/reciprocal-identity-theorem-7",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Sine addition theorem",
+      "route": "/theorems/trigonometry/sine-addition-theorem-8",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Cosine addition theorem",
+      "route": "/theorems/trigonometry/cosine-addition-theorem-9",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Tangent addition theorem",
+      "route": "/theorems/trigonometry/tangent-addition-theorem-10",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Double angle theorem",
+      "route": "/theorems/trigonometry/double-angle-theorem-11",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Half angle theorem",
+      "route": "/theorems/trigonometry/half-angle-theorem-12",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Product-to-sum theorem",
+      "route": "/theorems/trigonometry/product-to-sum-theorem-13",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Sum-to-product theorem",
+      "route": "/theorems/trigonometry/sum-to-product-theorem-14",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Even-odd trig theorem",
+      "route": "/theorems/trigonometry/even-odd-trig-theorem-15",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Complementary angle theorem",
+      "route": "/theorems/trigonometry/complementary-angle-theorem-16",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Periodicity theorem",
+      "route": "/theorems/trigonometry/periodicity-theorem-17",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Inverse trig range theorem",
+      "route": "/theorems/trigonometry/inverse-trig-range-theorem-18",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Law of tangents",
+      "route": "/theorems/trigonometry/law-of-tangents-19",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Mollweide theorem",
+      "route": "/theorems/trigonometry/mollweide-theorem-20",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Triple angle theorem",
+      "route": "/theorems/trigonometry/triple-angle-theorem-21",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Weierstrass substitution theorem",
+      "route": "/theorems/trigonometry/weierstrass-substitution-theorem-22",
+      "categoryName": "Trigonometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Motion or locus"
+    },
+    {
+      "theoremName": "Distance formula theorem",
+      "route": "/theorems/coordinate-geometry/distance-formula-theorem-1",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Midpoint theorem",
+      "route": "/theorems/coordinate-geometry/midpoint-theorem-2",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Section formula theorem",
+      "route": "/theorems/coordinate-geometry/section-formula-theorem-3",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Slope criterion for parallel lines",
+      "route": "/theorems/coordinate-geometry/slope-criterion-for-parallel-lines-4",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Slope criterion for perpendicular lines",
+      "route": "/theorems/coordinate-geometry/slope-criterion-for-perpendicular-lines-5",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Two-point line theorem",
+      "route": "/theorems/coordinate-geometry/two-point-line-theorem-6",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Point-line distance theorem",
+      "route": "/theorems/coordinate-geometry/point-line-distance-theorem-7",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Area shoelace theorem",
+      "route": "/theorems/coordinate-geometry/area-shoelace-theorem-8",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Collinearity determinant theorem",
+      "route": "/theorems/coordinate-geometry/collinearity-determinant-theorem-9",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Circle center-radius theorem",
+      "route": "/theorems/coordinate-geometry/circle-center-radius-theorem-10",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Parabola focus-directrix theorem",
+      "route": "/theorems/coordinate-geometry/parabola-focus-directrix-theorem-11",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Ellipse focal sum theorem",
+      "route": "/theorems/coordinate-geometry/ellipse-focal-sum-theorem-12",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Hyperbola focal difference theorem",
+      "route": "/theorems/coordinate-geometry/hyperbola-focal-difference-theorem-13",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Conic eccentricity theorem",
+      "route": "/theorems/coordinate-geometry/conic-eccentricity-theorem-14",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Rotation matrix theorem",
+      "route": "/theorems/coordinate-geometry/rotation-matrix-theorem-15",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Reflection transformation theorem",
+      "route": "/theorems/coordinate-geometry/reflection-transformation-theorem-16",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Translation invariance theorem",
+      "route": "/theorems/coordinate-geometry/translation-invariance-theorem-17",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Homothety scale theorem",
+      "route": "/theorems/coordinate-geometry/homothety-scale-theorem-18",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Angle between two lines theorem",
+      "route": "/theorems/coordinate-geometry/angle-between-two-lines-theorem-19",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Line intercept theorem",
+      "route": "/theorems/coordinate-geometry/line-intercept-theorem-20",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Tangent to circle theorem",
+      "route": "/theorems/coordinate-geometry/tangent-to-circle-theorem-21",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Pair of straight lines theorem",
+      "route": "/theorems/coordinate-geometry/pair-of-straight-lines-theorem-22",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Conic tangent theorem",
+      "route": "/theorems/coordinate-geometry/conic-tangent-theorem-23",
+      "categoryName": "Coordinate Geometry",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Coordinate derivation"
+    },
+    {
+      "theoremName": "Squeeze theorem",
+      "route": "/theorems/calculus-analysis/squeeze-theorem-1",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Intermediate value theorem",
+      "route": "/theorems/calculus-analysis/intermediate-value-theorem-2",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Extreme value theorem",
+      "route": "/theorems/calculus-analysis/extreme-value-theorem-3",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Rolle theorem",
+      "route": "/theorems/calculus-analysis/rolle-theorem-4",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Mean value theorem",
+      "route": "/theorems/calculus-analysis/mean-value-theorem-5",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Taylor theorem",
+      "route": "/theorems/calculus-analysis/taylor-theorem-6",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "L'Hopital theorem",
+      "route": "/theorems/calculus-analysis/l-hopital-theorem-7",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Fundamental theorem of calculus I",
+      "route": "/theorems/calculus-analysis/fundamental-theorem-of-calculus-i-8",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Fundamental theorem of calculus II",
+      "route": "/theorems/calculus-analysis/fundamental-theorem-of-calculus-ii-9",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Integration by parts theorem",
+      "route": "/theorems/calculus-analysis/integration-by-parts-theorem-10",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Change of variables theorem",
+      "route": "/theorems/calculus-analysis/change-of-variables-theorem-11",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Monotonicity theorem",
+      "route": "/theorems/calculus-analysis/monotonicity-theorem-12",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Concavity theorem",
+      "route": "/theorems/calculus-analysis/concavity-theorem-13",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Uniform convergence theorem",
+      "route": "/theorems/calculus-analysis/uniform-convergence-theorem-14",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Ratio test theorem",
+      "route": "/theorems/calculus-analysis/ratio-test-theorem-15",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Green theorem",
+      "route": "/theorems/calculus-analysis/green-theorem-16",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Divergence theorem",
+      "route": "/theorems/calculus-analysis/divergence-theorem-17",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Stokes theorem",
+      "route": "/theorems/calculus-analysis/stokes-theorem-18",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Bolzano-Weierstrass theorem",
+      "route": "/theorems/calculus-analysis/bolzano-weierstrass-theorem-19",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Heine-Borel theorem",
+      "route": "/theorems/calculus-analysis/heine-borel-theorem-20",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Darboux theorem",
+      "route": "/theorems/calculus-analysis/darboux-theorem-21",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Inverse function theorem",
+      "route": "/theorems/calculus-analysis/inverse-function-theorem-22",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Implicit function theorem",
+      "route": "/theorems/calculus-analysis/implicit-function-theorem-23",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Fubini theorem",
+      "route": "/theorems/calculus-analysis/fubini-theorem-24",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Dominated convergence theorem",
+      "route": "/theorems/calculus-analysis/dominated-convergence-theorem-25",
+      "categoryName": "Calculus & Analysis",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Limit process"
+    },
+    {
+      "theoremName": "Euclid division lemma",
+      "route": "/theorems/number-theory/euclid-division-lemma-1",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Euclidean algorithm theorem",
+      "route": "/theorems/number-theory/euclidean-algorithm-theorem-2",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Bezout identity",
+      "route": "/theorems/number-theory/bezout-identity-3",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Fundamental theorem of arithmetic",
+      "route": "/theorems/number-theory/fundamental-theorem-of-arithmetic-4",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Euclid infinitude of primes",
+      "route": "/theorems/number-theory/euclid-infinitude-of-primes-5",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Divisibility by 3 theorem",
+      "route": "/theorems/number-theory/divisibility-by-3-theorem-6",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Divisibility by 9 theorem",
+      "route": "/theorems/number-theory/divisibility-by-9-theorem-7",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Chinese remainder theorem",
+      "route": "/theorems/number-theory/chinese-remainder-theorem-8",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Fermat little theorem",
+      "route": "/theorems/number-theory/fermat-little-theorem-9",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Euler theorem",
+      "route": "/theorems/number-theory/euler-theorem-10",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Wilson theorem",
+      "route": "/theorems/number-theory/wilson-theorem-11",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Euler phi product theorem",
+      "route": "/theorems/number-theory/euler-phi-product-theorem-12",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Quadratic residue theorem",
+      "route": "/theorems/number-theory/quadratic-residue-theorem-13",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Pigeonhole divisibility theorem",
+      "route": "/theorems/number-theory/pigeonhole-divisibility-theorem-14",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "LCM-GCD product theorem",
+      "route": "/theorems/number-theory/lcm-gcd-product-theorem-15",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Modular inverse theorem",
+      "route": "/theorems/number-theory/modular-inverse-theorem-16",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Prime divisor theorem",
+      "route": "/theorems/number-theory/prime-divisor-theorem-17",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Order theorem",
+      "route": "/theorems/number-theory/order-theorem-18",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Euclid lemma",
+      "route": "/theorems/number-theory/euclid-lemma-19",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Euler criterion",
+      "route": "/theorems/number-theory/euler-criterion-20",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Quadratic reciprocity theorem",
+      "route": "/theorems/number-theory/quadratic-reciprocity-theorem-21",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Mobius inversion theorem",
+      "route": "/theorems/number-theory/mobius-inversion-theorem-22",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Primitive root theorem",
+      "route": "/theorems/number-theory/primitive-root-theorem-23",
+      "categoryName": "Number Theory",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Modular clock"
+    },
+    {
+      "theoremName": "Addition rule theorem",
+      "route": "/theorems/probability-statistics/addition-rule-theorem-1",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Multiplication rule theorem",
+      "route": "/theorems/probability-statistics/multiplication-rule-theorem-2",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Bayes theorem",
+      "route": "/theorems/probability-statistics/bayes-theorem-3",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Law of total probability",
+      "route": "/theorems/probability-statistics/law-of-total-probability-4",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Independence theorem",
+      "route": "/theorems/probability-statistics/independence-theorem-5",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Expected value linearity theorem",
+      "route": "/theorems/probability-statistics/expected-value-linearity-theorem-6",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Variance shift theorem",
+      "route": "/theorems/probability-statistics/variance-shift-theorem-7",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Variance scale theorem",
+      "route": "/theorems/probability-statistics/variance-scale-theorem-8",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Binomial theorem for probability",
+      "route": "/theorems/probability-statistics/binomial-theorem-for-probability-9",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Poisson approximation theorem",
+      "route": "/theorems/probability-statistics/poisson-approximation-theorem-10",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "experiment",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Central limit theorem",
+      "route": "/theorems/probability-statistics/central-limit-theorem-11",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Law of large numbers",
+      "route": "/theorems/probability-statistics/law-of-large-numbers-12",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "experiment",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Chebyshev inequality",
+      "route": "/theorems/probability-statistics/chebyshev-inequality-13",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Markov inequality",
+      "route": "/theorems/probability-statistics/markov-inequality-14",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Normal symmetry theorem",
+      "route": "/theorems/probability-statistics/normal-symmetry-theorem-15",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "experiment",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Regression least squares theorem",
+      "route": "/theorems/probability-statistics/regression-least-squares-theorem-16",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Correlation bound theorem",
+      "route": "/theorems/probability-statistics/correlation-bound-theorem-17",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "experiment",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Sampling distribution theorem",
+      "route": "/theorems/probability-statistics/sampling-distribution-theorem-18",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "experiment",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Law of the unconscious statistician",
+      "route": "/theorems/probability-statistics/law-of-the-unconscious-statistician-19",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "experiment",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Conditional expectation tower theorem",
+      "route": "/theorems/probability-statistics/conditional-expectation-tower-theorem-20",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Jensen inequality",
+      "route": "/theorems/probability-statistics/jensen-inequality-21",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Slutsky theorem",
+      "route": "/theorems/probability-statistics/slutsky-theorem-22",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "experiment",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Continuous mapping theorem",
+      "route": "/theorems/probability-statistics/continuous-mapping-theorem-23",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "experiment",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Neyman-Pearson lemma",
+      "route": "/theorems/probability-statistics/neyman-pearson-lemma-24",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Cramer-Rao lower bound",
+      "route": "/theorems/probability-statistics/cramer-rao-lower-bound-25",
+      "categoryName": "Probability & Statistics",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Probability simulation"
+    },
+    {
+      "theoremName": "Matrix associativity theorem",
+      "route": "/theorems/linear-algebra-vectors/matrix-associativity-theorem-1",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Matrix distributive theorem",
+      "route": "/theorems/linear-algebra-vectors/matrix-distributive-theorem-2",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Invertible matrix theorem",
+      "route": "/theorems/linear-algebra-vectors/invertible-matrix-theorem-3",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Rank-nullity theorem",
+      "route": "/theorems/linear-algebra-vectors/rank-nullity-theorem-4",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Basis uniqueness theorem",
+      "route": "/theorems/linear-algebra-vectors/basis-uniqueness-theorem-5",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Dimension theorem",
+      "route": "/theorems/linear-algebra-vectors/dimension-theorem-6",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Determinant area theorem",
+      "route": "/theorems/linear-algebra-vectors/determinant-area-theorem-7",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Cramer theorem",
+      "route": "/theorems/linear-algebra-vectors/cramer-theorem-8",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Eigenvalue equation theorem",
+      "route": "/theorems/linear-algebra-vectors/eigenvalue-equation-theorem-9",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Diagonalization theorem",
+      "route": "/theorems/linear-algebra-vectors/diagonalization-theorem-10",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Cayley-Hamilton theorem",
+      "route": "/theorems/linear-algebra-vectors/cayley-hamilton-theorem-11",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Orthogonal projection theorem",
+      "route": "/theorems/linear-algebra-vectors/orthogonal-projection-theorem-12",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Gram-Schmidt theorem",
+      "route": "/theorems/linear-algebra-vectors/gram-schmidt-theorem-13",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Dot product angle theorem",
+      "route": "/theorems/linear-algebra-vectors/dot-product-angle-theorem-14",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Cross product area theorem",
+      "route": "/theorems/linear-algebra-vectors/cross-product-area-theorem-15",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Scalar triple product theorem",
+      "route": "/theorems/linear-algebra-vectors/scalar-triple-product-theorem-16",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Linear transformation theorem",
+      "route": "/theorems/linear-algebra-vectors/linear-transformation-theorem-17",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Spectral theorem",
+      "route": "/theorems/linear-algebra-vectors/spectral-theorem-18",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Fundamental theorem of linear algebra",
+      "route": "/theorems/linear-algebra-vectors/fundamental-theorem-of-linear-algebra-19",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "LU decomposition theorem",
+      "route": "/theorems/linear-algebra-vectors/lu-decomposition-theorem-20",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Singular value decomposition theorem",
+      "route": "/theorems/linear-algebra-vectors/singular-value-decomposition-theorem-21",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Jordan canonical form theorem",
+      "route": "/theorems/linear-algebra-vectors/jordan-canonical-form-theorem-22",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Schur decomposition theorem",
+      "route": "/theorems/linear-algebra-vectors/schur-decomposition-theorem-23",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Perron-Frobenius theorem",
+      "route": "/theorems/linear-algebra-vectors/perron-frobenius-theorem-24",
+      "categoryName": "Linear Algebra & Vectors",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Matrix transformation"
+    },
+    {
+      "theoremName": "Complex conjugate theorem",
+      "route": "/theorems/complex-numbers/complex-conjugate-theorem-1",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Modulus product theorem",
+      "route": "/theorems/complex-numbers/modulus-product-theorem-2",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Argument addition theorem",
+      "route": "/theorems/complex-numbers/argument-addition-theorem-3",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "De Moivre theorem",
+      "route": "/theorems/complex-numbers/de-moivre-theorem-4",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "nth roots theorem",
+      "route": "/theorems/complex-numbers/nth-roots-theorem-5",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Euler formula theorem",
+      "route": "/theorems/complex-numbers/euler-formula-theorem-6",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Triangle inequality complex theorem",
+      "route": "/theorems/complex-numbers/triangle-inequality-complex-theorem-7",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Cauchy-Riemann theorem",
+      "route": "/theorems/complex-numbers/cauchy-riemann-theorem-8",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Cauchy integral theorem",
+      "route": "/theorems/complex-numbers/cauchy-integral-theorem-9",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Cauchy integral formula",
+      "route": "/theorems/complex-numbers/cauchy-integral-formula-10",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Liouville theorem",
+      "route": "/theorems/complex-numbers/liouville-theorem-11",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Maximum modulus theorem",
+      "route": "/theorems/complex-numbers/maximum-modulus-theorem-12",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Residue theorem",
+      "route": "/theorems/complex-numbers/residue-theorem-13",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Argument principle",
+      "route": "/theorems/complex-numbers/argument-principle-14",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Open mapping theorem",
+      "route": "/theorems/complex-numbers/open-mapping-theorem-15",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Morera theorem",
+      "route": "/theorems/complex-numbers/morera-theorem-16",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Laurent theorem",
+      "route": "/theorems/complex-numbers/laurent-theorem-17",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Rouche theorem",
+      "route": "/theorems/complex-numbers/rouche-theorem-18",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Identity theorem",
+      "route": "/theorems/complex-numbers/identity-theorem-19",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Cauchy estimates theorem",
+      "route": "/theorems/complex-numbers/cauchy-estimates-theorem-20",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Schwarz lemma",
+      "route": "/theorems/complex-numbers/schwarz-lemma-21",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Analytic continuation theorem",
+      "route": "/theorems/complex-numbers/analytic-continuation-theorem-22",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Casorati-Weierstrass theorem",
+      "route": "/theorems/complex-numbers/casorati-weierstrass-theorem-23",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Riemann mapping theorem",
+      "route": "/theorems/complex-numbers/riemann-mapping-theorem-24",
+      "categoryName": "Complex Numbers",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Transformation"
+    },
+    {
+      "theoremName": "Principle of mathematical induction",
+      "route": "/theorems/discrete-logic/principle-of-mathematical-induction-1",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Strong induction theorem",
+      "route": "/theorems/discrete-logic/strong-induction-theorem-2",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Pigeonhole principle",
+      "route": "/theorems/discrete-logic/pigeonhole-principle-3",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Inclusion-exclusion theorem",
+      "route": "/theorems/discrete-logic/inclusion-exclusion-theorem-4",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Multiplication principle",
+      "route": "/theorems/discrete-logic/multiplication-principle-5",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Addition principle",
+      "route": "/theorems/discrete-logic/addition-principle-6",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Recurrence solution theorem",
+      "route": "/theorems/discrete-logic/recurrence-solution-theorem-7",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Boolean De Morgan theorem",
+      "route": "/theorems/discrete-logic/boolean-de-morgan-theorem-8",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Contrapositive theorem",
+      "route": "/theorems/discrete-logic/contrapositive-theorem-9",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Equivalence relation theorem",
+      "route": "/theorems/discrete-logic/equivalence-relation-theorem-10",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Partial order theorem",
+      "route": "/theorems/discrete-logic/partial-order-theorem-11",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Cantor theorem",
+      "route": "/theorems/discrete-logic/cantor-theorem-12",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Cartesian product count theorem",
+      "route": "/theorems/discrete-logic/cartesian-product-count-theorem-13",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Binomial counting theorem",
+      "route": "/theorems/discrete-logic/binomial-counting-theorem-14",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Handshake lemma",
+      "route": "/theorems/discrete-logic/handshake-lemma-15",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Recursive definition theorem",
+      "route": "/theorems/discrete-logic/recursive-definition-theorem-16",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Truth table completeness theorem",
+      "route": "/theorems/discrete-logic/truth-table-completeness-theorem-17",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "CNF-DNF theorem",
+      "route": "/theorems/discrete-logic/cnf-dnf-theorem-18",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Well-ordering principle",
+      "route": "/theorems/discrete-logic/well-ordering-principle-19",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Master theorem",
+      "route": "/theorems/discrete-logic/master-theorem-20",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Burnside lemma",
+      "route": "/theorems/discrete-logic/burnside-lemma-21",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Ramsey theorem",
+      "route": "/theorems/discrete-logic/ramsey-theorem-22",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Dilworth theorem",
+      "route": "/theorems/discrete-logic/dilworth-theorem-23",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Foundation",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Sperner theorem",
+      "route": "/theorems/discrete-logic/sperner-theorem-24",
+      "categoryName": "Discrete Math & Logic",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Intermediate",
+      "strategyFamily": "Induction"
+    },
+    {
+      "theoremName": "Euler trail theorem",
+      "route": "/theorems/graph-theory/euler-trail-theorem-1",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Euler circuit theorem",
+      "route": "/theorems/graph-theory/euler-circuit-theorem-2",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Tree edge theorem",
+      "route": "/theorems/graph-theory/tree-edge-theorem-3",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Tree path uniqueness theorem",
+      "route": "/theorems/graph-theory/tree-path-uniqueness-theorem-4",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Cycle-edge theorem",
+      "route": "/theorems/graph-theory/cycle-edge-theorem-5",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Bipartite cycle theorem",
+      "route": "/theorems/graph-theory/bipartite-cycle-theorem-6",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Planar Euler formula",
+      "route": "/theorems/graph-theory/planar-euler-formula-7",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Kuratowski theorem",
+      "route": "/theorems/graph-theory/kuratowski-theorem-8",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Four color theorem",
+      "route": "/theorems/graph-theory/four-color-theorem-9",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Brooks theorem",
+      "route": "/theorems/graph-theory/brooks-theorem-10",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Hall marriage theorem",
+      "route": "/theorems/graph-theory/hall-marriage-theorem-11",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Konig theorem",
+      "route": "/theorems/graph-theory/konig-theorem-12",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Menger theorem",
+      "route": "/theorems/graph-theory/menger-theorem-13",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Max-flow min-cut theorem",
+      "route": "/theorems/graph-theory/max-flow-min-cut-theorem-14",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Dijkstra correctness theorem",
+      "route": "/theorems/graph-theory/dijkstra-correctness-theorem-15",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Bellman-Ford theorem",
+      "route": "/theorems/graph-theory/bellman-ford-theorem-16",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Minimum spanning tree cut theorem",
+      "route": "/theorems/graph-theory/minimum-spanning-tree-cut-theorem-17",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Cayley theorem for trees",
+      "route": "/theorems/graph-theory/cayley-theorem-for-trees-18",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Turan theorem",
+      "route": "/theorems/graph-theory/turan-theorem-19",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Dirac theorem",
+      "route": "/theorems/graph-theory/dirac-theorem-20",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Ore theorem",
+      "route": "/theorems/graph-theory/ore-theorem-21",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Matrix tree theorem",
+      "route": "/theorems/graph-theory/matrix-tree-theorem-22",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Euler planar inequality",
+      "route": "/theorems/graph-theory/euler-planar-inequality-23",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "Whitney theorem",
+      "route": "/theorems/graph-theory/whitney-theorem-24",
+      "categoryName": "Graph Theory",
+      "existingStatus": "partial",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Graph traversal"
+    },
+    {
+      "theoremName": "First derivative test theorem",
+      "route": "/theorems/optimization-engineering/first-derivative-test-theorem-1",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Second derivative test theorem",
+      "route": "/theorems/optimization-engineering/second-derivative-test-theorem-2",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Lagrange multiplier theorem",
+      "route": "/theorems/optimization-engineering/lagrange-multiplier-theorem-3",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "KKT theorem",
+      "route": "/theorems/optimization-engineering/kkt-theorem-4",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Convex minimum theorem",
+      "route": "/theorems/optimization-engineering/convex-minimum-theorem-5",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Newton convergence theorem",
+      "route": "/theorems/optimization-engineering/newton-convergence-theorem-6",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Bisection convergence theorem",
+      "route": "/theorems/optimization-engineering/bisection-convergence-theorem-7",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Fixed point theorem",
+      "route": "/theorems/optimization-engineering/fixed-point-theorem-8",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Simpson rule accuracy theorem",
+      "route": "/theorems/optimization-engineering/simpson-rule-accuracy-theorem-9",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Runge-Kutta consistency theorem",
+      "route": "/theorems/optimization-engineering/runge-kutta-consistency-theorem-10",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Laplace derivative theorem",
+      "route": "/theorems/optimization-engineering/laplace-derivative-theorem-11",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Convolution theorem",
+      "route": "/theorems/optimization-engineering/convolution-theorem-12",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Fourier transform shift theorem",
+      "route": "/theorems/optimization-engineering/fourier-transform-shift-theorem-13",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Parseval theorem",
+      "route": "/theorems/optimization-engineering/parseval-theorem-14",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Heat equation maximum principle",
+      "route": "/theorems/optimization-engineering/heat-equation-maximum-principle-15",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Wave equation energy theorem",
+      "route": "/theorems/optimization-engineering/wave-equation-energy-theorem-16",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Gauss law theorem",
+      "route": "/theorems/optimization-engineering/gauss-law-theorem-17",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Virtual work theorem",
+      "route": "/theorems/optimization-engineering/virtual-work-theorem-18",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Weierstrass extreme value theorem",
+      "route": "/theorems/optimization-engineering/weierstrass-extreme-value-theorem-19",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Weak duality theorem",
+      "route": "/theorems/optimization-engineering/weak-duality-theorem-20",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Strong duality theorem",
+      "route": "/theorems/optimization-engineering/strong-duality-theorem-21",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Complementary slackness theorem",
+      "route": "/theorems/optimization-engineering/complementary-slackness-theorem-22",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Envelope theorem",
+      "route": "/theorems/optimization-engineering/envelope-theorem-23",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "Visual proof",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    },
+    {
+      "theoremName": "Pontryagin maximum principle",
+      "route": "/theorems/optimization-engineering/pontryagin-maximum-principle-24",
+      "categoryName": "Optimization & Engineering Math",
+      "existingStatus": "Complete",
+      "proofType": "intuition",
+      "mathematicalLevel": "Advanced",
+      "strategyFamily": "Optimization landscape"
+    }
+  ]
+}
