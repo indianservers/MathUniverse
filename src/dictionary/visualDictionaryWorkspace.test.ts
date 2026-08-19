@@ -1,11 +1,20 @@
 import { describe, expect, it } from "vitest";
 import { visualDictionaryTerms } from "../data/mathVisualDictionary";
-import { dictionarySlug, filterDictionaryTerms, findDictionaryTerm, relatedDictionaryTerms } from "./visualDictionaryWorkspace";
+import { dictionaryRangeForLetter, dictionarySlug, filterDictionaryTerms, findDictionaryTerm, relatedDictionaryTerms } from "./visualDictionaryWorkspace";
 
 describe("visual dictionary workspace", () => {
   it("creates stable slugs and resolves direct URL selections", () => {
     expect(dictionarySlug("Pythagorean theorem")).toBe("pythagorean-theorem");
     expect(findDictionaryTerm(visualDictionaryTerms, "pythagorean-theorem")?.term).toBe("Pythagorean theorem");
+  });
+
+  it("maps selected letters to their visible dictionary range", () => {
+    expect(dictionaryRangeForLetter("A")).toBe("A-K");
+    expect(dictionaryRangeForLetter("K")).toBe("A-K");
+    expect(dictionaryRangeForLetter("L")).toBe("L-T");
+    expect(dictionaryRangeForLetter("P")).toBe("L-T");
+    expect(dictionaryRangeForLetter("U")).toBe("U-Z");
+    expect(dictionaryRangeForLetter("1")).toBe("All");
   });
 
   it("ranks exact and partial term searches before keyword matches", () => {

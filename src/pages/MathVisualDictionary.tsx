@@ -10,6 +10,7 @@ import TopicHeader from "../components/ui/TopicHeader";
 import { InlineMathText } from "../components/ui/MathExpression";
 import {
   dictionarySlug,
+  dictionaryRangeForLetter,
   filterDictionaryTerms,
   findDictionaryTerm,
   readStoredList,
@@ -235,7 +236,7 @@ export default function MathVisualDictionary() {
   const selectedIndex = Math.max(0, filtered.findIndex((entry) => entry.term === selected.term));
   const related = useMemo(() => relatedDictionaryTerms(visualDictionaryTerms, selected), [selected]);
   const meaning = selected.explanation ?? customMeanings[selected.term.toLowerCase()]?.meaning ?? defaultMeaning(selected);
-  const example = selected.representation ?? customMeanings[selected.term.toLowerCase()]?.example ?? defaultExample(selected);
+  const example = selected.example ?? customMeanings[selected.term.toLowerCase()]?.example ?? defaultExample(selected);
   const steps = howItWorks(selected);
   const practice = practiceFor(selected);
   const viewedCount = Object.values(progress).filter((state) => state.viewed).length;
@@ -404,7 +405,7 @@ export default function MathVisualDictionary() {
           </div>
           <div className="dictionary-definition-grid">
             <section><h3><BookOpen /> Meaning</h3><p>{selected.description ?? meaning}</p><h3><CircleHelp /> In simple words</h3><p>{meaning}</p><div className="dictionary-example"><h3><Sparkles /> Example</h3><InlineMathText value={example} /></div></section>
-            <section><h3><Check /> How it works</h3><ol>{steps.map((step, index) => <li key={step}><span>{index + 1}</span><p>{step}</p></li>)}</ol><h3><Info /> Notation</h3><div className="dictionary-notation"><InlineMathText value={selected.representation ?? notationFor(selected)} /></div></section>
+            <section><h3><Check /> How it works</h3><ol>{steps.map((step, index) => <li key={step}><span>{index + 1}</span><p>{step}</p></li>)}</ol><h3><Info /> Notation</h3><div className="dictionary-notation"><InlineMathText value={notationDisplayFor(selected)} /></div></section>
           </div>
         </main>
 
@@ -465,6 +466,7 @@ export function LegacyMathVisualDictionary() {
   const categoryCounts = useMemo(() => countBy(visualDictionaryTerms, (term) => term.category), []);
   const kindCounts = useMemo(() => countBy(visualDictionaryTerms, (term) => term.kind), []);
   const visualKinds = useMemo(() => Array.from(new Set(visualDictionaryTerms.map((term) => term.kind))).sort(), []);
+  const selectedRange = activeLetter === "All" ? activeRange : dictionaryRangeForLetter(activeLetter);
   const rangeCounts = useMemo(() => Object.fromEntries(dictionaryRanges.map((range) => [range.id, visualDictionaryTerms.filter((entry) => {
     const firstLetter = entry.term[0].toUpperCase();
     return firstLetter >= range.from && firstLetter <= range.to;
@@ -480,7 +482,7 @@ export function LegacyMathVisualDictionary() {
 
   function focusTerm(term: string) {
     setQuery(term);
-    setActiveRange("A-K");
+    setActiveRange(dictionaryRangeForLetter(term[0]) as DictionaryRange);
     setActiveLetter("All");
     setActiveCategory("All");
     setActiveKind("All");
@@ -617,7 +619,7 @@ export function LegacyMathVisualDictionary() {
                 setActiveLetter("All");
                 openDictionary();
               }}
-              className={`rounded-xl border px-4 py-3 text-left transition ${activeRange === range.id && !query.trim() ? "border-cyan-300 bg-cyan-300 text-slate-950" : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"}`}
+              className={`rounded-xl border px-4 py-3 text-left transition ${selectedRange === range.id && !query.trim() ? "border-cyan-300 bg-cyan-300 text-slate-950" : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"}`}
             >
               <span className="block text-sm font-black">{range.label}</span>
               <span className="text-xs font-semibold opacity-75">{rangeCounts[range.id]} terms</span>
@@ -631,6 +633,7 @@ export function LegacyMathVisualDictionary() {
               type="button"
               onClick={() => {
                 setActiveLetter(letter);
+                setActiveRange(letter === "All" ? "A-K" : dictionaryRangeForLetter(letter));
                 openDictionary();
               }}
               className={`min-w-10 rounded-full border px-3 py-2 text-sm font-black transition ${activeLetter === letter ? "border-cyan-300 bg-cyan-300 text-slate-950" : "border-slate-200 bg-white text-slate-700 hover:border-cyan-300 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"}`}
@@ -674,7 +677,7 @@ export function LegacyMathVisualDictionary() {
                 {activeCategory !== "All" && <span className="mini-chip">{activeCategory}</span>}
                 {activeKind !== "All" && <span className="mini-chip">{visualKindLabels[activeKind]}</span>}
                 {activeLetter !== "All" && <span className="mini-chip">Letter {activeLetter}</span>}
-                {!query.trim() && activeLetter === "All" && <span className="mini-chip">{activeRange}</span>}
+                {!query.trim() && <span className="mini-chip">{selectedRange}</span>}
                 <button type="button" onClick={clearFilters} className="rounded-full border border-slate-200 px-3 py-1 text-xs font-black text-slate-700 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:text-slate-200 dark:hover:bg-cyan-400/10">
                   Back to categories
                 </button>
@@ -724,7 +727,7 @@ function DictionaryListItem({ entry, isExpanded, onToggle }: { entry: VisualDict
   const tone = categoryStyles[entry.category];
   const lower = entry.term.toLowerCase();
   const meaning = entry.explanation ?? customMeanings[lower]?.meaning ?? defaultMeaning(entry);
-  const example = entry.representation ?? customMeanings[lower]?.example ?? defaultExample(entry);
+  const example = entry.example ?? customMeanings[lower]?.example ?? defaultExample(entry);
   return (
     <article className={`bg-white text-slate-800 ${isExpanded ? "ring-2 ring-inset ring-cyan-200" : ""}`}>
       <button type="button" onClick={onToggle} className="flex w-full items-center gap-3 px-3 py-2.5 text-left transition hover:bg-cyan-50 dark:hover:bg-cyan-300/10" aria-expanded={isExpanded}>
@@ -744,7 +747,7 @@ function DictionaryListItem({ entry, isExpanded, onToggle }: { entry: VisualDict
             {entry.description ? <p className="mb-2 text-sm font-black text-slate-950">{entry.description}</p> : null}
             <p className="text-sm leading-6 text-slate-700">{meaning}</p>
             <div className="mt-3 rounded-xl bg-slate-100 p-3 text-xs font-semibold leading-5 text-slate-700">
-              <span className="font-black text-slate-950">{entry.representation ? "Visual representation: " : "Example: "}</span>{example}
+              <span className="font-black text-slate-950">Example: </span>{example}
             </div>
             <div className="mt-3 flex flex-wrap gap-2">
               {entry.keywords.slice(0, 8).map((keyword) => <span key={keyword} className="mini-chip">{keyword}</span>)}
@@ -782,6 +785,24 @@ export function DictionaryVisual({ kind, term, tone, large = false, thumbnail = 
 
 function renderVisual(kind: VisualDictionaryKind, term: string, fill: string, arrowId: string) {
   const lower = term.toLowerCase();
+  const label = visualLabel(term);
+  const cue = visualCue(term, kind);
+  if (lower === "power" || lower === "exponent" || lower === "base") {
+    const baseFill = lower === "base" ? "#fbbf24" : "#f8fafc";
+    const exponentFill = lower === "exponent" ? "#fbbf24" : "#67e8f9";
+    const powerFill = lower === "power" ? "#fbbf24" : "#a78bfa";
+    return (
+      <g>
+        <rect x="48" y="40" width="264" height="96" rx="12" fill="rgba(34,211,238,.12)" stroke="#67e8f9" strokeWidth="3" />
+        <text x="104" y="104" fill={baseFill} fontSize="46" fontWeight="900">2</text>
+        <text x="146" y="72" fill={exponentFill} fontSize="28" fontWeight="900">4</text>
+        <text x="182" y="100" fill="#e2e8f0" fontSize="26" fontWeight="900">= 16</text>
+        <path d="M118 112 C136 136 176 136 206 112" fill="none" stroke={powerFill} strokeWidth="5" />
+        <text x="72" y="36" fill="#f8fafc" fontSize="14" fontWeight="900">2 x 2 x 2 x 2</text>
+        <text x="76" y="154" fill="#f8fafc" fontSize="13" fontWeight="900">{label}: {cue}</text>
+      </g>
+    );
+  }
   if (lower === "arc" || lower === "major arc" || lower === "minor arc") {
     return (
       <g fill="none" strokeLinecap="round">
@@ -1135,48 +1156,48 @@ function renderVisual(kind: VisualDictionaryKind, term: string, fill: string, ar
     );
   }
   if (kind === "circle") {
-    return <g fill="none" stroke="#e2e8f0" strokeWidth="4" strokeLinecap="round"><circle cx="180" cy="88" r="48" /><path d="M180 88 L226 74" stroke={fill} /><path d="M180 88 A48 48 0 0 1 221 112" stroke={fill} strokeWidth="8" /><line x1="115" y1="136" x2="285" y2="40" stroke="#38bdf8" strokeDasharray="7 6" /><text x="235" y="116" fill="#f8fafc" stroke="none" fontSize="14" fontWeight="900">arc / secant / tangent</text></g>;
+    return <g fill="none" stroke="#e2e8f0" strokeWidth="4" strokeLinecap="round"><circle cx="180" cy="88" r="48" /><path d="M180 88 L226 74" stroke={fill} /><path d="M180 88 A48 48 0 0 1 221 112" stroke={fill} strokeWidth="8" /><line x1="115" y1="136" x2="285" y2="40" stroke="#38bdf8" strokeDasharray="7 6" /><circle cx="180" cy="88" r="5" fill="#fbbf24" stroke="none" /><text x="232" y="116" fill="#f8fafc" stroke="none" fontSize="13" fontWeight="900">{label}</text><text x="64" y="42" fill="#67e8f9" stroke="none" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "angle") {
-    return <g fill="none" stroke="#e2e8f0" strokeWidth="5" strokeLinecap="round"><line x1="92" y1="128" x2="260" y2="128" /><line x1="92" y1="128" x2="210" y2="48" /><path d="M135 128 A43 43 0 0 0 128 104" stroke={fill} strokeWidth="9" /><circle cx="92" cy="128" r="6" fill="#f8fafc" stroke="none" /><text x="140" y="102" fill="#f8fafc" stroke="none" fontSize="22" fontWeight="900">theta</text></g>;
+    return <g fill="none" stroke="#e2e8f0" strokeWidth="5" strokeLinecap="round"><line x1="92" y1="128" x2="260" y2="128" /><line x1="92" y1="128" x2="210" y2="48" /><path d="M135 128 A43 43 0 0 0 128 104" stroke={fill} strokeWidth="9" /><circle cx="92" cy="128" r="6" fill="#f8fafc" stroke="none" /><text x="140" y="102" fill="#f8fafc" stroke="none" fontSize="15" fontWeight="900">{label}</text><text x="188" y="148" fill="#67e8f9" stroke="none" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "triangle") {
-    return <g fill="none" stroke="#e2e8f0" strokeWidth="4" strokeLinejoin="round"><path d="M88 132 L246 132 L148 42 Z" fill="rgba(34,211,238,.14)" /><line x1="148" y1="42" x2="148" y2="132" stroke={fill} strokeDasharray="6 5" /><text x="158" y="96" fill="#f8fafc" stroke="none" fontSize="16" fontWeight="900">h</text><text x="152" y="151" fill="#f8fafc" stroke="none" fontSize="15" fontWeight="900">base</text></g>;
+    return <g fill="none" stroke="#e2e8f0" strokeWidth="4" strokeLinejoin="round"><path d="M88 132 L246 132 L148 42 Z" fill="rgba(34,211,238,.14)" /><line x1="148" y1="42" x2="148" y2="132" stroke={fill} strokeDasharray="6 5" /><circle cx="148" cy="88" r="7" fill="#fbbf24" stroke="none" /><text x="158" y="96" fill="#f8fafc" stroke="none" fontSize="13" fontWeight="900">{label}</text><text x="118" y="151" fill="#67e8f9" stroke="none" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "graph") {
-    return <g fill="none" strokeWidth="4" strokeLinecap="round"><line x1="52" y1="134" x2="312" y2="134" stroke="#64748b" /><line x1="72" y1="24" x2="72" y2="150" stroke="#64748b" /><path d="M74 126 C122 20 180 30 230 130 C252 174 282 120 308 62" stroke={fill} /><line x1="134" y1="98" x2="238" y2="72" stroke="#fbbf24" strokeDasharray="7 6" /><circle cx="188" cy="84" r="6" fill="#f8fafc" /></g>;
+    return <g fill="none" strokeWidth="4" strokeLinecap="round"><line x1="52" y1="134" x2="312" y2="134" stroke="#64748b" /><line x1="72" y1="24" x2="72" y2="150" stroke="#64748b" /><path d="M74 126 C122 20 180 30 230 130 C252 174 282 120 308 62" stroke={fill} /><line x1="134" y1="98" x2="238" y2="72" stroke="#fbbf24" strokeDasharray="7 6" /><circle cx="188" cy="84" r="6" fill="#f8fafc" /><text x="206" y="54" fill="#f8fafc" stroke="none" fontSize="13" fontWeight="900">{label}</text><text x="92" y="34" fill="#67e8f9" stroke="none" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "number-line") {
-    return <g fill="none" stroke="#e2e8f0" strokeWidth="4" strokeLinecap="round"><line x1="42" y1="92" x2="318" y2="92" /><path d="M318 92 L306 84 M318 92 L306 100" /><circle cx="180" cy="92" r="11" fill={fill} stroke="none" /><path d="M116 92 A64 34 0 0 1 180 92" stroke="#fbbf24" strokeWidth="5" /><text x="66" y="122" fill="#f8fafc" stroke="none" fontSize="14">-2</text><text x="176" y="122" fill="#f8fafc" stroke="none" fontSize="14">0</text><text x="282" y="122" fill="#f8fafc" stroke="none" fontSize="14">2</text></g>;
+    return <g fill="none" stroke="#e2e8f0" strokeWidth="4" strokeLinecap="round"><line x1="42" y1="92" x2="318" y2="92" /><path d="M318 92 L306 84 M318 92 L306 100" /><circle cx="180" cy="92" r="11" fill={fill} stroke="none" /><path d="M116 92 A64 34 0 0 1 180 92" stroke="#fbbf24" strokeWidth="5" /><text x="66" y="122" fill="#f8fafc" stroke="none" fontSize="14">-2</text><text x="176" y="122" fill="#f8fafc" stroke="none" fontSize="14">0</text><text x="282" y="122" fill="#f8fafc" stroke="none" fontSize="14">2</text><text x="130" y="58" fill="#f8fafc" stroke="none" fontSize="14" fontWeight="900">{label}</text><text x="214" y="78" fill="#67e8f9" stroke="none" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "set") {
-    return <g><circle cx="148" cy="88" r="54" fill="rgba(34,211,238,.32)" stroke="#67e8f9" strokeWidth="4" /><circle cx="210" cy="88" r="54" fill="rgba(251,191,36,.30)" stroke="#fbbf24" strokeWidth="4" /><text x="124" y="92" fill="#f8fafc" fontSize="18" fontWeight="900">A</text><text x="228" y="92" fill="#f8fafc" fontSize="18" fontWeight="900">B</text><text x="174" y="92" fill="#fff" fontSize="14" fontWeight="900">overlap</text></g>;
+    return <g><circle cx="148" cy="88" r="54" fill="rgba(34,211,238,.32)" stroke="#67e8f9" strokeWidth="4" /><circle cx="210" cy="88" r="54" fill="rgba(251,191,36,.30)" stroke="#fbbf24" strokeWidth="4" /><text x="124" y="92" fill="#f8fafc" fontSize="18" fontWeight="900">A</text><text x="228" y="92" fill="#f8fafc" fontSize="18" fontWeight="900">B</text><text x="160" y="92" fill="#fff" fontSize="13" fontWeight="900">{label}</text><text x="92" y="148" fill="#67e8f9" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "matrix") {
-    return <g>{[0, 1, 2].map((row) => [0, 1, 2].map((col) => <rect key={`${row}-${col}`} x={96 + col * 52} y={42 + row * 34} width="42" height="26" rx="6" fill={row === col ? "#22d3ee" : "#1e293b"} stroke="#94a3b8" />))}<text x="260" y="92" fill="#f8fafc" fontSize="18" fontWeight="900">grid of values</text></g>;
+    return <g>{[0, 1, 2].map((row) => [0, 1, 2].map((col) => <rect key={`${row}-${col}`} x={96 + col * 52} y={42 + row * 34} width="42" height="26" rx="6" fill={row === col ? "#22d3ee" : "#1e293b"} stroke="#94a3b8" />))}<path d="M260 88 H308" stroke="#fbbf24" strokeWidth="4" markerEnd={`url(#${arrowId})`} /><text x="226" y="38" fill="#f8fafc" fontSize="13" fontWeight="900">{label}</text><text x="238" y="126" fill="#67e8f9" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "vector") {
-    return <g fill="none" strokeWidth="5" strokeLinecap="round"><line x1="72" y1="134" x2="300" y2="134" stroke="#64748b" /><line x1="92" y1="150" x2="92" y2="30" stroke="#64748b" /><path d="M92 134 L242 54" stroke={fill} /><path d="M242 54 L224 56 M242 54 L232 70" stroke={fill} /><text x="186" y="76" fill="#f8fafc" stroke="none" fontSize="16" fontWeight="900">magnitude + direction</text></g>;
+    return <g fill="none" strokeWidth="5" strokeLinecap="round"><line x1="72" y1="134" x2="300" y2="134" stroke="#64748b" /><line x1="92" y1="150" x2="92" y2="30" stroke="#64748b" /><path d="M92 134 L242 54" stroke={fill} /><path d="M242 54 L224 56 M242 54 L232 70" stroke={fill} /><line x1="92" y1="134" x2="204" y2="134" stroke="#fbbf24" strokeDasharray="6 5" /><text x="182" y="76" fill="#f8fafc" stroke="none" fontSize="13" fontWeight="900">{label}</text><text x="118" y="34" fill="#67e8f9" stroke="none" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "solid") {
-    return <g fill="none" stroke="#e2e8f0" strokeWidth="4" strokeLinejoin="round"><path d="M112 70 H224 V132 H112 Z" fill="rgba(34,211,238,.14)" /><path d="M112 70 L144 42 H256 V104 L224 132" /><path d="M224 70 H256 M256 42 V104 M144 42 V70" stroke={fill} /><text x="140" y="154" fill="#f8fafc" stroke="none" fontSize="15" fontWeight="900">length x width x height</text></g>;
+    return <g fill="none" stroke="#e2e8f0" strokeWidth="4" strokeLinejoin="round"><path d="M112 70 H224 V132 H112 Z" fill="rgba(34,211,238,.14)" /><path d="M112 70 L144 42 H256 V104 L224 132" /><path d="M224 70 H256 M256 42 V104 M144 42 V70" stroke={fill} /><circle cx="224" cy="70" r="6" fill="#fbbf24" stroke="none" /><text x="148" y="154" fill="#f8fafc" stroke="none" fontSize="13" fontWeight="900">{label}</text><text x="70" y="38" fill="#67e8f9" stroke="none" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "fraction") {
-    return <g>{[0, 1, 2, 3, 4].map((index) => <rect key={index} x={70 + index * 44} y="66" width="38" height="60" rx="8" fill={index < 3 ? "#22d3ee" : "#334155"} stroke="#94a3b8" />)}<text x="98" y="46" fill="#f8fafc" fontSize="22" fontWeight="900">3 / 5</text><text x="224" y="102" fill="#f8fafc" fontSize="15" fontWeight="900">parts of a whole</text></g>;
+    return <g>{[0, 1, 2, 3, 4].map((index) => <rect key={index} x={70 + index * 44} y="66" width="38" height="60" rx="8" fill={index < 3 ? "#22d3ee" : "#334155"} stroke="#94a3b8" />)}<text x="98" y="46" fill="#f8fafc" fontSize="22" fontWeight="900">3 / 5</text><text x="218" y="102" fill="#f8fafc" fontSize="13" fontWeight="900">{label}</text><text x="82" y="150" fill="#67e8f9" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "probability") {
-    return <g>{[0, 1, 2, 3, 4, 5].map((index) => <circle key={index} cx={92 + index * 34} cy={88} r="15" fill={index < 2 ? "#fbbf24" : "#22d3ee"} />)}<path d="M72 134 H292" stroke="#e2e8f0" strokeWidth="4" /><text x="108" y="45" fill="#f8fafc" fontSize="18" fontWeight="900">favorable / total</text></g>;
+    return <g>{[0, 1, 2, 3, 4, 5].map((index) => <circle key={index} cx={92 + index * 34} cy={88} r="15" fill={index < 2 ? "#fbbf24" : "#22d3ee"} />)}<path d="M72 134 H292" stroke="#e2e8f0" strokeWidth="4" /><text x="108" y="45" fill="#f8fafc" fontSize="15" fontWeight="900">{label}</text><text x="98" y="154" fill="#67e8f9" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "sequence") {
-    return <g>{[1, 2, 3, 4, 5].map((value, index) => <g key={value}><circle cx={78 + index * 50} cy={126 - value * 16} r="12" fill={index % 2 ? "#fbbf24" : "#22d3ee"} /><text x={72 + index * 50} y="154" fill="#f8fafc" fontSize="13">{value}</text></g>)}<path d="M78 110 L128 94 L178 78 L228 62 L278 46" stroke="#e2e8f0" strokeWidth="3" strokeDasharray="6 5" fill="none" /></g>;
+    return <g>{[1, 2, 3, 4, 5].map((value, index) => <g key={value}><circle cx={78 + index * 50} cy={126 - value * 16} r="12" fill={index % 2 ? "#fbbf24" : "#22d3ee"} /><text x={72 + index * 50} y="154" fill="#f8fafc" fontSize="13">{value}</text></g>)}<path d="M78 110 L128 94 L178 78 L228 62 L278 46" stroke="#e2e8f0" strokeWidth="3" strokeDasharray="6 5" fill="none" /><text x="172" y="38" fill="#f8fafc" fontSize="13" fontWeight="900">{label}</text><text x="74" y="42" fill="#67e8f9" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "coordinate") {
-    return <g fill="none" strokeWidth="4" strokeLinecap="round"><line x1="60" y1="136" x2="308" y2="136" stroke="#64748b" /><line x1="98" y1="32" x2="98" y2="152" stroke="#64748b" /><circle cx="214" cy="74" r="9" fill={fill} /><line x1="214" y1="74" x2="214" y2="136" stroke="#fbbf24" strokeDasharray="5 5" /><line x1="98" y1="74" x2="214" y2="74" stroke="#38bdf8" strokeDasharray="5 5" /><text x="226" y="72" fill="#f8fafc" stroke="none" fontSize="16" fontWeight="900">(x,y)</text></g>;
+    return <g fill="none" strokeWidth="4" strokeLinecap="round"><line x1="60" y1="136" x2="308" y2="136" stroke="#64748b" /><line x1="98" y1="32" x2="98" y2="152" stroke="#64748b" /><circle cx="214" cy="74" r="9" fill={fill} /><line x1="214" y1="74" x2="214" y2="136" stroke="#fbbf24" strokeDasharray="5 5" /><line x1="98" y1="74" x2="214" y2="74" stroke="#38bdf8" strokeDasharray="5 5" /><text x="226" y="72" fill="#f8fafc" stroke="none" fontSize="13" fontWeight="900">{label}</text><text x="74" y="26" fill="#67e8f9" stroke="none" fontSize="12" fontWeight="900">{cue}</text></g>;
   }
   if (kind === "logic") {
-    return <g fill="none" stroke="#e2e8f0" strokeWidth="4"><rect x="64" y="48" width="86" height="70" rx="14" fill="rgba(34,211,238,.12)" /><rect x="210" y="48" width="86" height="70" rx="14" fill="rgba(251,191,36,.12)" /><path d="M150 84 H210" /><path d="M210 84 L198 76 M210 84 L198 92" /><text x="92" y="90" fill="#f8fafc" stroke="none" fontSize="16" fontWeight="900">if</text><text x="238" y="90" fill="#f8fafc" stroke="none" fontSize="16" fontWeight="900">then</text></g>;
+    return <g fill="none" stroke="#e2e8f0" strokeWidth="4"><rect x="64" y="48" width="86" height="70" rx="14" fill="rgba(34,211,238,.12)" /><rect x="210" y="48" width="86" height="70" rx="14" fill="rgba(251,191,36,.12)" /><path d="M150 84 H210" /><path d="M210 84 L198 76 M210 84 L198 92" /><text x="90" y="90" fill="#f8fafc" stroke="none" fontSize="14" fontWeight="900">given</text><text x="230" y="90" fill="#f8fafc" stroke="none" fontSize="14" fontWeight="900">claim</text><text x="122" y="142" fill="#67e8f9" stroke="none" fontSize="12" fontWeight="900">{label}: {cue}</text></g>;
   }
-  return <g><rect x="54" y="48" width="252" height="82" rx="18" fill="rgba(34,211,238,.14)" stroke="#67e8f9" strokeWidth="3" /><text x="86" y="94" fill="#f8fafc" fontSize="20" fontWeight="900">definition + example</text></g>;
+  return <g><rect x="54" y="48" width="252" height="82" rx="12" fill="rgba(34,211,238,.14)" stroke="#67e8f9" strokeWidth="3" /><text x="78" y="84" fill="#f8fafc" fontSize="16" fontWeight="900">{label}</text><text x="78" y="108" fill="#67e8f9" fontSize="12" fontWeight="900">{cue}</text></g>;
 }
 
 function Grid() {
@@ -1195,12 +1216,12 @@ function DictionaryStat({ label, value }: { label: string; value: number }) {
 function defaultMeaning(entry: VisualDictionaryTerm) {
   const term = entry.term.toLowerCase();
   const templates: Record<VisualDictionaryKind, string> = {
-    angle: `${entry.term} is an angle idea: compare two rays, turns, or angle positions in a diagram.`,
-    circle: `${entry.term} is a circle idea: use the center, radius, boundary, or a line meeting the circle to see it.`,
-    triangle: `${entry.term} is a triangle idea: read it from sides, angles, height, or matching triangle shapes.`,
-    graph: `${entry.term} is a graph or algebra idea: see how a rule changes inputs into outputs.`,
-    "number-line": `${entry.term} is a number idea: place it on a line to compare size, direction, or distance from zero.`,
-    set: `${entry.term} is a set idea: group objects and study membership, overlap, or exclusion.`,
+    angle: `${entry.term} names an angle type, measurement, or relationship between rays.`,
+    circle: `${entry.term} names a circle part, measurement, or relationship involving the boundary and centre.`,
+    triangle: `${entry.term} names a triangle side, angle, centre, theorem, or construction.`,
+    graph: `${entry.term} is an algebraic relationship that can be studied by plotting its values on axes.`,
+    "number-line": `${entry.term} is a number relationship shown by order, distance, sign, or repeated steps.`,
+    set: `${entry.term} describes membership, grouping, overlap, or exclusion between collections.`,
     matrix: `${entry.term} is organized in rows and columns, useful for transformations, systems, and data.`,
     vector: `${entry.term} is best seen with arrows, direction, length, and components.`,
     solid: `${entry.term} is a shape or measurement idea: connect faces, edges, area, or volume to the picture.`,
@@ -1220,8 +1241,8 @@ function defaultExample(entry: VisualDictionaryTerm) {
   const templates: Record<VisualDictionaryKind, string> = {
     angle: "Rotate one ray from another and read the opening in degrees.",
     circle: "Mark a center and radius, then identify the highlighted part on the boundary.",
-    triangle: "Draw a triangle, label sides or angles, and compare the required part.",
-    graph: "Plot x-values and watch the curve show the behavior of the rule.",
+    triangle: "In a 3-4-5 triangle, the sides and angles reveal the named triangle property.",
+    graph: "For y = 2x + 1, inputs 0, 1, and 2 produce outputs 1, 3, and 5.",
     "number-line": "Place -2, 0, and 3 on a line to compare order and distance.",
     set: "Put numbers in circles A and B; the overlap shows shared elements.",
     matrix: "Use [[1, 2], [3, 4]] as a two-row, two-column example.",
@@ -1280,6 +1301,42 @@ function safeId(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 }
 
+function visualLabel(term: string) {
+  return term.length > 24 ? `${term.slice(0, 21)}...` : term;
+}
+
+function visualCue(term: string, kind: VisualDictionaryKind) {
+  const lower = term.toLowerCase();
+  if (lower.includes("inverse")) return "undo / reverse";
+  if (lower.includes("axis")) return "reference line";
+  if (lower.includes("factor")) return "exact divisor";
+  if (lower.includes("mean") || lower.includes("median") || lower.includes("mode")) return "data centre";
+  if (lower.includes("range") || lower.includes("deviation") || lower.includes("variance")) return "spread";
+  if (lower.includes("probability") || lower.includes("event")) return "chance model";
+  if (lower.includes("function")) return "input -> output";
+  if (lower.includes("angle")) return "measured turn";
+  if (lower.includes("matrix")) return "row-column action";
+  if (lower.includes("vector")) return "direction + size";
+  const cues: Record<VisualDictionaryKind, string> = {
+    angle: "angle relation",
+    circle: "circle feature",
+    triangle: "triangle part",
+    graph: "graph behaviour",
+    "number-line": "ordered value",
+    set: "membership region",
+    matrix: "entry structure",
+    vector: "arrow relation",
+    solid: "shape feature",
+    fraction: "parts compared",
+    probability: "outcomes counted",
+    sequence: "ordered pattern",
+    coordinate: "position on axes",
+    logic: "reasoning link",
+    text: "symbol in context",
+  };
+  return cues[kind];
+}
+
 function isEditableTarget(target: EventTarget | null) {
   return target instanceof HTMLElement && (target.matches("input, textarea, select") || target.isContentEditable);
 }
@@ -1314,6 +1371,12 @@ function notationFor(entry: VisualDictionaryTerm) {
     coordinate: "P = (x,y)", logic: "p -> q", text: entry.term,
   };
   return notation[entry.kind] ?? entry.term;
+}
+
+function notationDisplayFor(entry: VisualDictionaryTerm) {
+  const value = entry.representation?.trim();
+  if (!value) return notationFor(entry);
+  return /^(draw|show|use|represent|highlight|shade|mark)\b/i.test(value) ? notationFor(entry) : value;
 }
 
 function levelFor(entry: VisualDictionaryTerm) {

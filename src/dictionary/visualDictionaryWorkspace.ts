@@ -6,6 +6,16 @@ export function dictionarySlug(term: string) {
   return term.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+export type DictionaryLetterRange = "A-K" | "L-T" | "U-Z";
+
+export function dictionaryRangeForLetter(letter: string): DictionaryLetterRange | "All" {
+  const normalized = letter.trim().toUpperCase();
+  if (!/^[A-Z]$/.test(normalized)) return "All";
+  if (normalized <= "K") return "A-K";
+  if (normalized <= "T") return "L-T";
+  return "U-Z";
+}
+
 export function findDictionaryTerm(terms: VisualDictionaryTerm[], value: string | null | undefined) {
   if (!value) return undefined;
   const normalized = decodeURIComponent(value).toLowerCase();

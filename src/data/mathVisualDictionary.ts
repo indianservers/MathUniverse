@@ -36,6 +36,7 @@ export type VisualDictionaryTerm = {
   description?: string;
   explanation?: string;
   representation?: string;
+  example?: string;
 };
 
 const rawTerms: Array<[string, VisualDictionaryCategory, VisualDictionaryKind, string?]> = [
@@ -57,7 +58,7 @@ const rawTerms: Array<[string, VisualDictionaryCategory, VisualDictionaryKind, s
   ["Median", "Statistics", "probability"], ["Midpoint", "Geometry", "coordinate"], ["Mode", "Statistics", "probability"], ["Multiple", "Number Theory", "number-line"], ["Natural number", "Number Theory", "number-line"], ["Negative number", "Arithmetic", "number-line"], ["Net", "Geometry", "solid"], ["Null set", "Set Theory", "set"],
   ["Number line", "Arithmetic", "number-line"], ["Numerator", "Arithmetic", "fraction"], ["Obtuse angle", "Geometry", "angle"], ["Odd number", "Number Theory", "number-line"], ["Ordered pair", "Geometry", "coordinate"], ["Origin", "Geometry", "coordinate"], ["Outcome", "Probability", "probability"], ["Outlier", "Statistics", "probability"],
   ["Parallel lines", "Geometry", "coordinate"], ["Parabola", "Algebra", "graph"], ["Parentheses", "Algebra", "text"], ["Percent", "Arithmetic", "fraction"], ["Perimeter", "Geometry", "solid"], ["Permutation", "Probability", "probability"], ["Perpendicular lines", "Geometry", "coordinate"], ["Pi", "Geometry", "circle"],
-  ["Plane", "Geometry", "coordinate"], ["Point", "Geometry", "coordinate"], ["Polygon", "Geometry", "solid"], ["Polynomial", "Algebra", "graph"], ["Positive number", "Arithmetic", "number-line"], ["Power", "Algebra", "graph"], ["Prime factor", "Number Theory", "set"], ["Prime number", "Number Theory", "number-line"],
+  ["Plane", "Geometry", "coordinate"], ["Point", "Geometry", "coordinate"], ["Polygon", "Geometry", "solid"], ["Polynomial", "Algebra", "graph"], ["Positive number", "Arithmetic", "number-line"], ["Power", "Algebra", "text"], ["Prime factor", "Number Theory", "set"], ["Prime number", "Number Theory", "number-line"],
   ["Prism", "Geometry", "solid"], ["Probability", "Probability", "probability"], ["Product", "Arithmetic", "number-line"], ["Proper fraction", "Arithmetic", "fraction"], ["Proportion", "Algebra", "fraction"], ["Pyramid", "Geometry", "solid"], ["Quadrant", "Geometry", "coordinate"], ["Quadratic", "Algebra", "graph"],
   ["Quadrilateral", "Geometry", "solid"], ["Quotient", "Arithmetic", "number-line"], ["Radius", "Geometry", "circle"], ["Range", "Statistics", "probability"], ["Range of function", "Algebra", "set"], ["Rate", "Algebra", "graph"], ["Ratio", "Arithmetic", "fraction"], ["Rational number", "Number Theory", "fraction"],
   ["Ray", "Geometry", "coordinate"], ["Real number", "Number Theory", "number-line"], ["Rectangle", "Geometry", "solid"], ["Recurring decimal", "Arithmetic", "fraction"], ["Reflection", "Geometry", "coordinate"], ["Remainder", "Arithmetic", "number-line"], ["Rhombus", "Geometry", "solid"], ["Right angle", "Geometry", "angle"],
@@ -117,6 +118,205 @@ const rawTerms: Array<[string, VisualDictionaryCategory, VisualDictionaryKind, s
 
 type EnrichedVisualDictionaryTerm = Omit<VisualDictionaryTerm, "keywords"> & {
   extra?: string;
+};
+
+function rawTermDescription(term: string, category: VisualDictionaryCategory, kind: VisualDictionaryKind) {
+  const topic = term.toLowerCase();
+  const exact = exactRawDescriptions[topic];
+  if (exact) return exact;
+  if (topic.includes("angle")) return `${term} is an angle relationship involving the size, position, or direction of a turn between rays.`;
+  if (topic.includes("axis")) return `${term} is a reference line used to measure position, direction, or symmetry.`;
+  if (topic.includes("factor")) return `${term} is a number or expression that divides another quantity exactly, or helps build it by multiplication.`;
+  if (topic.includes("limit")) return `${term} describes the value a quantity approaches near a chosen input, boundary, or direction.`;
+  if (topic.includes("matrix")) return `${term} is a row-and-column object or operation used to organize values, solve systems, or transform vectors.`;
+  if (topic.includes("probability") || topic.includes("event")) return `${term} describes a chance situation by naming outcomes and comparing favorable cases with all possible cases.`;
+  if (topic.includes("function")) return `${term} describes a rule that assigns each allowed input to an output.`;
+  if (topic.includes("sequence") || topic.includes("series")) return `${term} describes ordered numbers whose positions or sums follow a pattern.`;
+  if (topic.includes("vector")) return `${term} describes a quantity with direction and magnitude, often represented by an arrow.`;
+  if (topic.includes("set")) return `${term} describes a collection of objects and the membership relationship between them.`;
+  if (topic.includes("triangle")) return `${term} describes a property, side, angle, or construction inside a three-sided figure.`;
+
+  const byKind: Record<VisualDictionaryKind, string> = {
+    angle: `${term} names a specific angle type or angle relationship measured by the opening between rays.`,
+    circle: `${term} names a part or measurement of a circle, such as its boundary, centre distance, or related line.`,
+    triangle: `${term} names a side, angle, centre, or relationship inside a triangle.`,
+    graph: `${term} is an algebraic idea that can be visualized on a graph when its values or changes are plotted.`,
+    "number-line": `${term} is a number idea shown by position, distance, order, or repeated steps on a number line.`,
+    set: `${term} describes how objects belong to, combine with, or differ between sets.`,
+    matrix: `${term} is represented with a rectangular array of entries or an operation on that array.`,
+    vector: `${term} describes arrows, components, direction, magnitude, or vector spaces.`,
+    solid: `${term} names a geometric shape, feature, or measurement in two or three dimensions.`,
+    fraction: `${term} compares one quantity with another using equal parts, ratios, or a numerator over a denominator.`,
+    probability: `${term} describes outcomes, likelihood, counting, or variation in a random process.`,
+    sequence: `${term} describes ordered terms, repeated growth, or a summation pattern.`,
+    coordinate: `${term} names a position, direction, line, or transformation on coordinate axes.`,
+    logic: `${term} is a reasoning structure used to connect assumptions, statements, and conclusions.`,
+    text: `${term} is mathematical language or notation used to group, name, or manipulate expressions.`,
+  };
+  return byKind[kind];
+}
+
+function rawTermExplanation(term: string, kind: VisualDictionaryKind) {
+  const topic = term.toLowerCase();
+  const exact = exactRawExplanations[topic];
+  if (exact) return exact;
+  if (topic.includes("inverse")) return `The visual highlights how ${term.toLowerCase()} reverses or undoes a matching operation.`;
+  if (topic.includes("symmetry")) return `The visual marks the line, point, or transformation that keeps the figure balanced.`;
+  if (topic.includes("proportion") || topic.includes("ratio")) return `The visual compares two quantities so their relative sizes can be read directly.`;
+  if (topic.includes("correlation")) return `The visual uses a scatter pattern to show how two quantities move together.`;
+  if (topic.includes("derivative") || topic.includes("gradient") || topic.includes("slope")) return `The visual shows the changing rate with a line that captures direction at or between points.`;
+
+  const byKind: Record<VisualDictionaryKind, string> = {
+    angle: `Look for the highlighted opening, matching angle pair, or turn that identifies ${term.toLowerCase()}.`,
+    circle: `Look for the highlighted arc, radius, chord, sector, tangent, or circle region that identifies ${term.toLowerCase()}.`,
+    triangle: `The marked sides, angles, and helper lines show where ${term.toLowerCase()} lives in the triangle.`,
+    graph: `The curve, intercepts, slope marks, or shaded regions show the behaviour named by ${term.toLowerCase()}.`,
+    "number-line": `The highlighted point or interval places ${term.toLowerCase()} in order on the number line.`,
+    set: `The shaded region or arrows show which elements are included in ${term.toLowerCase()}.`,
+    matrix: `The highlighted rows, columns, or diagonal entries show the structure behind ${term.toLowerCase()}.`,
+    vector: `The arrows and component marks show the direction or span described by ${term.toLowerCase()}.`,
+    solid: `The highlighted face, edge, dimension, or net shows the shape feature named by ${term.toLowerCase()}.`,
+    fraction: `The shaded parts show the numerator, denominator, or comparison behind ${term.toLowerCase()}.`,
+    probability: `The favorable outcomes, bars, or branches show how ${term.toLowerCase()} is counted.`,
+    sequence: `The ordered dots show the pattern or repeated step behind ${term.toLowerCase()}.`,
+    coordinate: `The axes, point, and guide lines show the location or movement described by ${term.toLowerCase()}.`,
+    logic: `The statement boxes and arrows show how ${term.toLowerCase()} connects assumptions to conclusions.`,
+    text: `The notation card shows how ${term.toLowerCase()} is written and read inside a mathematical sentence.`,
+  };
+  return byKind[kind];
+}
+
+function rawTermRepresentation(term: string, kind: VisualDictionaryKind) {
+  const topic = term.toLowerCase();
+  const exact = exactRawRepresentations[topic];
+  if (exact) return exact;
+  if (topic.includes("angle")) return "m angle ABC = 45 degrees";
+  if (topic.includes("axis")) return "x-axis: y = 0; y-axis: x = 0";
+  if (topic.includes("matrix")) return "A = [[1, 2], [3, 4]]";
+  if (topic.includes("set")) return "A = {1, 2, 3}";
+  if (topic.includes("function")) return "f(x) = x^2";
+  if (topic.includes("triangle")) return "a + b + c perimeter, A + B + C = 180 degrees";
+
+  const byKind: Record<VisualDictionaryKind, string> = {
+    angle: "theta = 60 degrees",
+    circle: "C = 2 pi r",
+    triangle: "a^2 + b^2 = c^2",
+    graph: "y = f(x)",
+    "number-line": "-3 < 0 < 4",
+    set: "A union B",
+    matrix: "A = [[a, b], [c, d]]",
+    vector: "v = <3, 2>",
+    solid: "V = length x width x height",
+    fraction: "a / b, b != 0",
+    probability: "P(A) = favorable outcomes / total outcomes",
+    sequence: "a_n = a_1 + (n - 1)d",
+    coordinate: "P = (x, y)",
+    logic: "p -> q",
+    text: term,
+  };
+  return byKind[kind];
+}
+
+function rawTermExample(term: string, kind: VisualDictionaryKind) {
+  const topic = term.toLowerCase();
+  const exact = exactRawExamples[topic];
+  if (exact) return exact;
+  if (topic.includes("angle")) return `If one ray turns 45 degrees from another, the marked opening is an example of ${term.toLowerCase()}.`;
+  if (topic.includes("axis")) return `On the coordinate plane, the x-axis is the horizontal reference line and the y-axis is vertical.`;
+  if (topic.includes("factor")) return `Since 3 x 4 = 12, both 3 and 4 are factors of 12.`;
+  if (topic.includes("matrix")) return `In [[1, 2], [3, 4]], 1 and 2 are in the first row of the matrix.`;
+  if (topic.includes("probability")) return `If 2 of 6 equally likely outcomes are favorable, the probability is 2/6 = 1/3.`;
+  if (topic.includes("function")) return `For f(x) = x^2, input 3 gives output f(3) = 9.`;
+  if (topic.includes("sequence")) return `2, 5, 8, 11 is a sequence with common difference 3.`;
+  if (topic.includes("vector")) return `The vector <3, 2> moves 3 units right and 2 units up.`;
+  if (topic.includes("set")) return `If A = {1, 2, 3}, then 2 is an element of A.`;
+
+  const byKind: Record<VisualDictionaryKind, string> = {
+    angle: "A 90 degree corner of a square is a right angle.",
+    circle: "In a circle with radius 5 cm, the diameter is 10 cm.",
+    triangle: "A triangle with sides 3, 4, and 5 is a right triangle.",
+    graph: "For y = 2x + 1, x = 3 gives y = 7.",
+    "number-line": "The number -2 sits two units to the left of 0.",
+    set: "For A = {2, 4, 6}, the number 4 belongs to A.",
+    matrix: "A 2 by 2 matrix can be written as [[1, 2], [3, 4]].",
+    vector: "A displacement of <5, 0> moves five units horizontally.",
+    solid: "A cuboid of size 2 x 3 x 4 has volume 24 cubic units.",
+    fraction: "The fraction 3/5 means 3 equal parts out of 5 total parts.",
+    probability: "Rolling an even number on a fair die has probability 3/6 = 1/2.",
+    sequence: "The sequence 4, 8, 12, 16 increases by 4 each step.",
+    coordinate: "The point (4, 2) is four units right and two units up from the origin.",
+    logic: "If p means it is raining and q means the ground is wet, p -> q reads if p, then q.",
+    text: "In 2 x (3 + 4), the parentheses tell us to add first.",
+  };
+  return byKind[kind];
+}
+
+const exactRawDescriptions: Record<string, string> = {
+  power: "In mathematics, a power (or exponentiation) is an expression that represents multiplying a base by itself a specified number of times.",
+  exponent: "An exponent is the small raised number in a power that tells how many equal factors of the base are multiplied.",
+  base: "A base is the repeated factor in a power expression, or the reference side of a geometric figure when the term is used in geometry.",
+  "base ten": "Base ten is the place-value number system that uses the ten digits 0 through 9.",
+  algebra: "Algebra is the branch of mathematics that uses symbols and variables to describe number patterns and relationships.",
+  coefficient: "A coefficient is a number multiplying a variable or expression.",
+  constant: "A constant is a fixed value that does not change.",
+  equation: "An equation is a mathematical statement that two expressions are equal.",
+  expression: "An expression is a mathematical phrase made from numbers, variables, and operations, without an equals sign.",
+  variable: "A variable is a symbol that stands for a value that can change or be unknown.",
+  unknown: "An unknown is a value to be found in an equation or problem.",
+  term: "A term is one part of an expression, separated from other parts by addition or subtraction.",
+  logarithm: "A logarithm is the exponent needed to raise a base to a given number.",
+  polynomial: "A polynomial is an expression made from variables raised to whole-number powers and combined by addition or subtraction.",
+  quadratic: "A quadratic is a degree-two expression, equation, or function.",
+  binomial: "A binomial is an algebraic expression with exactly two terms.",
+  monomial: "A monomial is an algebraic expression with one term.",
+  trinomial: "A trinomial is an algebraic expression with exactly three terms.",
+  fraction: "A fraction represents parts of a whole or division using a numerator over a denominator.",
+  numerator: "A numerator is the top number of a fraction, showing how many parts are selected.",
+  denominator: "A denominator is the bottom number of a fraction, showing how many equal parts make the whole.",
+  percent: "A percent is a ratio out of 100.",
+  decimal: "A decimal is a number written with a decimal point to show whole units and fractional parts.",
+  "absolute value": "Absolute value is a number's distance from zero on the number line.",
+  integer: "An integer is a whole number, zero, or the negative of a whole number.",
+  "natural number": "A natural number is a counting number such as 1, 2, 3, and so on.",
+  "whole number": "A whole number is 0 or a counting number with no fractional part.",
+  "rational number": "A rational number can be written as a fraction of two integers with a nonzero denominator.",
+  "irrational number": "An irrational number cannot be written as a fraction of two integers.",
+  "real number": "A real number is any number that can be placed on the number line.",
+  "complex number": "A complex number has the form a + bi, where a and b are real numbers and i^2 = -1.",
+  mean: "The mean is the arithmetic average found by adding values and dividing by how many values there are.",
+  median: "The median is the middle value when data is arranged in order.",
+  mode: "The mode is the value that appears most often in a data set.",
+  range: "The range is the difference between the largest and smallest data values.",
+  "standard deviation": "Standard deviation measures a typical distance of data values from the mean.",
+  variance: "Variance is the average squared distance of values from the mean.",
+};
+
+const exactRawExplanations: Record<string, string> = {
+  power: "In b^n, b is the base, n is the exponent, and the whole expression b^n is the power. For example, 2^4 means 2 x 2 x 2 x 2.",
+  exponent: "The exponent counts repeated factors, not ordinary multiplication by that number: 2^4 is 2 x 2 x 2 x 2, not 2 x 4.",
+  base: "In exponents, the base is repeatedly multiplied; in geometry, the base is the side or face used as a reference for height.",
+  logarithm: "Logarithms undo exponentiation: log base 2 of 8 is 3 because 2^3 = 8.",
+};
+
+const exactRawRepresentations: Record<string, string> = {
+  power: "b^n = b x b x ... x b, n factors",
+  exponent: "2^4: exponent = 4",
+  base: "2^4: base = 2",
+  logarithm: "log_b(a) = c means b^c = a",
+};
+
+const exactRawExamples: Record<string, string> = {
+  power: "In 2^4 = 16, 2 is the base, 4 is the exponent, and 2 x 2 x 2 x 2 equals 16.",
+  exponent: "In 5^3 = 125, the exponent 3 says to multiply three factors: 5 x 5 x 5.",
+  base: "In 7^2 = 49, the base is 7; in a triangle area formula, the base is the side paired with the height.",
+  logarithm: "log_10(1000) = 3 because 10^3 = 1000.",
+  coefficient: "In 6x + 2, the coefficient of x is 6.",
+  constant: "In y = 3x + 5, the constant term is 5.",
+  equation: "x + 4 = 9 is an equation; solving it gives x = 5.",
+  expression: "3x + 7 is an expression, not an equation, because it has no equals sign.",
+  variable: "In A = l x w, l and w are variables for length and width.",
+  fraction: "In 3/5, 3 is the numerator and 5 is the denominator.",
+  percent: "25% means 25 out of 100, which equals 1/4.",
 };
 
 const additionalVisualDictionaryTerms: EnrichedVisualDictionaryTerm[] = [
@@ -556,17 +756,29 @@ export const visualDictionaryTerms: VisualDictionaryTerm[] = [
   term,
   category,
   kind,
+  description: rawTermDescription(term, category, kind),
+  explanation: rawTermExplanation(term, kind),
+  representation: rawTermRepresentation(term, kind),
+  example: rawTermExample(term, kind),
   keywords: [term, category, kind, extra].join(" ").toLowerCase().split(/\s+/).filter(Boolean),
   })),
   ...additionalVisualDictionaryTerms.map(({ extra = "", ...entry }) => ({
     ...entry,
-    keywords: [entry.term, entry.category, entry.kind, entry.description, entry.explanation, entry.representation, extra].join(" ").toLowerCase().split(/\s+/).filter(Boolean),
+    example: generatedExampleFor(entry),
+    keywords: [entry.term, entry.category, entry.kind, entry.description, entry.explanation, entry.representation, generatedExampleFor(entry), extra].join(" ").toLowerCase().split(/\s+/).filter(Boolean),
   })),
   ...symbolDictionaryTerms.map(({ extra = "", ...entry }) => ({
     ...entry,
-    keywords: [entry.term, entry.category, entry.kind, entry.description, entry.explanation, entry.representation, extra].join(" ").toLowerCase().split(/\s+/).filter(Boolean),
+    example: generatedExampleFor(entry),
+    keywords: [entry.term, entry.category, entry.kind, entry.description, entry.explanation, entry.representation, generatedExampleFor(entry), extra].join(" ").toLowerCase().split(/\s+/).filter(Boolean),
   })),
 ];
+
+function generatedExampleFor(entry: Omit<VisualDictionaryTerm, "keywords">) {
+  if (entry.example?.trim()) return entry.example;
+  if (entry.representation?.trim().toLowerCase().startsWith("example:")) return entry.representation;
+  return rawTermExample(entry.term, entry.kind);
+}
 
 export const visualDictionaryLetters = Array.from(new Set(visualDictionaryTerms.map((entry) => entry.term[0].toUpperCase()))).sort();
 
