@@ -72,6 +72,7 @@ export type GraphStudio3DWorkspaceProps = {
   onReferenceObjectChange: (value: "none" | "helix" | "sphere" | "cone" | "cylinder") => void;
   showGrid: boolean;
   showAxes: boolean;
+  showInfiniteAxes: boolean;
   showLabels: boolean;
   showBase: boolean;
   autoRotate: boolean;
@@ -80,6 +81,7 @@ export type GraphStudio3DWorkspaceProps = {
   sliceValue: number;
   onShowGridChange: (value: boolean) => void;
   onShowAxesChange: (value: boolean) => void;
+  onShowInfiniteAxesChange: (value: boolean) => void;
   onShowLabelsChange: (value: boolean) => void;
   onShowBaseChange: (value: boolean) => void;
   onAutoRotateChange: (value: boolean) => void;
@@ -207,7 +209,7 @@ export default function GraphStudio3DWorkspace(props: GraphStudio3DWorkspaceProp
       <Link to="/math-lab" title="More"><SlidersHorizontal /><span>More</span></Link>
     </nav>
 
-    <aside className={`gs3d-left-panel ${leftOpen ? "open" : ""}`} aria-label="Expressions and layers">
+    <aside className={`gs3d-left-panel ${leftOpen ? "open" : ""}`} aria-label="Expressions and layers" aria-hidden={!leftOpen}>
       <PanelHeader title={`Expressions & Layers (${props.surfaces.length})`} onCollapse={() => setLeftOpen(false)} side="left" />
       <div className="gs3d-panel-scroll">
         <div className="gs3d-layer-summary"><span>{visibleSurfaceCount} visible</span><span>{errorCount ? `${errorCount} errors` : "All valid"}</span><button type="button" onClick={() => props.onSetAllVisibility(visibleSurfaceCount !== props.surfaces.length)}>{visibleSurfaceCount === props.surfaces.length ? "Hide all" : "Show all"}</button></div>
@@ -220,6 +222,7 @@ export default function GraphStudio3DWorkspace(props: GraphStudio3DWorkspaceProp
         <div className="gs3d-panel-section"><h3>Scene layers</h3>
           <ToggleRow label="Grid" icon={<Grid3X3 />} checked={props.showGrid} onChange={props.onShowGridChange} />
           <ToggleRow label="Axes & coordinates" icon={<Crosshair />} checked={props.showAxes} onChange={props.onShowAxesChange} />
+          <ToggleRow label="Infinite axis" icon={<Maximize2 />} checked={props.showInfiniteAxes} onChange={props.onShowInfiniteAxesChange} />
           <ToggleRow label="Labels" icon={<Sigma />} checked={props.showLabels} onChange={props.onShowLabelsChange} />
           <ToggleRow label="Base plane" icon={<Layers3 />} checked={props.showBase} onChange={props.onShowBaseChange} />
           <ToggleRow label="Sampling sweep" icon={<Activity />} checked={selectedSurface.samplingAnimation} onChange={(samplingAnimation) => props.onSurfaceChange(selectedSurface.id, { samplingAnimation })} />
@@ -242,7 +245,7 @@ export default function GraphStudio3DWorkspace(props: GraphStudio3DWorkspaceProp
       <div className="gs3d-interaction-hint">Drag to orbit <span /> Wheel to zoom <span /> Shift-drag to pan</div>
     </main>
 
-    <aside className={`gs3d-right-panel ${rightOpen ? "open" : ""}`} aria-label="Surface Inspector">
+    <aside className={`gs3d-right-panel ${rightOpen ? "open" : ""}`} aria-label="Surface Inspector" aria-hidden={!rightOpen}>
       <PanelHeader title={tool === "slice" ? "Slice Inspector" : tool === "point" ? "Point Inspector" : "Surface Inspector"} onCollapse={() => setRightOpen(false)} side="right" />
       <div className="gs3d-inspector-tabs">{(["properties", "analysis", "style"] as Studio3DInspectorTab[]).map((item) => <button key={item} type="button" className={inspectorTab === item ? "active" : ""} onClick={() => setInspectorTab(item)}>{item}</button>)}</div>
       <div className="gs3d-panel-scroll" aria-live="polite">

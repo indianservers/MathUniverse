@@ -7548,13 +7548,32 @@ function AddedSceneObject3D({ object, selected, surfaceScale, solidSize, crossSe
 }
 
 function TransformGroup3D({ transform, selected, yOffset = 0, children }: { transform: Transform3D; selected: boolean; yOffset?: number; children: JSX.Element }) {
+  const [width, height, depth] = transform.dimensions ?? [1.7, 1.7, 1.7];
+  const glowSize: [number, number, number] = [
+    Math.max(0.34, width + 0.28),
+    Math.max(0.34, height + 0.28),
+    Math.max(0.34, depth + 0.28),
+  ];
+  const outerGlowSize: [number, number, number] = glowSize.map((value) => value + 0.22) as [number, number, number];
   return (
     <group position={[transform.position[0], transform.position[1] + yOffset, transform.position[2]]} rotation={transform.rotation.map((value) => THREE.MathUtils.degToRad(value)) as [number, number, number]} scale={transform.scale}>
       {children}
-      {selected && <mesh>
-        <sphereGeometry args={[0.16, 16, 12]} />
-        <meshBasicMaterial color="#f97316" wireframe />
-      </mesh>}
+      {selected && (
+        <group renderOrder={20}>
+          <mesh>
+            <boxGeometry args={outerGlowSize} />
+            <meshBasicMaterial color="#67e8f9" wireframe transparent opacity={0.22} depthTest={false} />
+          </mesh>
+          <mesh>
+            <boxGeometry args={glowSize} />
+            <meshBasicMaterial color="#22d3ee" wireframe transparent opacity={0.92} depthTest={false} />
+          </mesh>
+          <mesh>
+            <sphereGeometry args={[0.16, 16, 12]} />
+            <meshBasicMaterial color="#f97316" wireframe transparent opacity={0.95} depthTest={false} />
+          </mesh>
+        </group>
+      )}
     </group>
   );
 }

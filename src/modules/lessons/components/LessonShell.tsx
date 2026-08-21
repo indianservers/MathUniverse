@@ -8,6 +8,7 @@ import {
   ChevronDown,
   Circle,
   ClipboardCheck,
+  Copy,
   ExternalLink,
   Eye,
   HelpCircle,
@@ -17,6 +18,7 @@ import {
   Lightbulb,
   ListChecks,
   Lock,
+  Maximize2,
   MousePointer2,
   NotebookText,
   PanelTop,
@@ -29,6 +31,7 @@ import {
   Sparkles,
   Target,
   Timer,
+  X,
   Zap,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -46,10 +49,10 @@ import type { LessonContent, LessonDefinition, LessonLanguageCode, LessonProgres
 import LessonSurface from "./LessonSurface";
 
 const stages: Array<{ id: LessonStage; label: string; short: string; description: string }> = [
-  { id: "discover", label: "Discover", short: "Predict", description: "Write what you expect before touching the model." },
-  { id: "explore", label: "Explore", short: "Interact", description: "Change controls and observe linked outputs." },
-  { id: "try", label: "Try", short: "Solve", description: "Use the model and formula to answer a challenge." },
-  { id: "check", label: "Check", short: "Verify", description: "Confirm the answer and lock in the learning." },
+  { id: "discover", label: "Predict", short: "Predict", description: "Write what you expect before touching the model." },
+  { id: "explore", label: "Drag", short: "Drag", description: "Move controls and make the representation change." },
+  { id: "try", label: "Observe", short: "Observe", description: "Use the model and formula to explain the change." },
+  { id: "check", label: "Explain", short: "Explain", description: "Confirm the answer and lock in the learning." },
 ];
 
 const predictionStarters = [
@@ -58,11 +61,30 @@ const predictionStarters = [
   "I predict one representation will explain the other.",
 ];
 
+type LessonVisualState = {
+  pointA: number;
+  pointB: number;
+  verticalShift: number;
+  showProjections: boolean;
+  showGrid: boolean;
+};
+
+const defaultVisualState: LessonVisualState = {
+  pointA: -4,
+  pointB: 4,
+  verticalShift: 0,
+  showProjections: true,
+  showGrid: true,
+};
+
 export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
   const [progress, setProgress] = useState<LessonProgress>(() => readLessonProgress(lesson));
   const [resetToken, setResetToken] = useState(0);
   const [feedback, setFeedback] = useState("");
   const [shareStatus, setShareStatus] = useState("");
+  const [shareOpen, setShareOpen] = useState(false);
+  const [focusMode, setFocusMode] = useState(false);
+  const [visualState, setVisualState] = useState<LessonVisualState>(() => readVisualStateFromUrl());
   const [languageCode, setLanguageCode] = useState<LessonLanguageCode>("en");
   const [languageContent, setLanguageContent] = useState<LessonContent | null>(null);
   const [languageStatus, setLanguageStatus] = useState("");
@@ -106,17 +128,27 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
   }, [languageCode, lesson, selectedLanguage.englishName]);
 
   const patchProgress = (patch: Partial<LessonProgress>) => setProgress((current) => ({ ...current, ...patch, updatedAt: Date.now() }));
+  const recordInteraction = (event = createLegacyInteractionEvent(lesson)) => {
+    setProgress((current) => ({
+      ...current,
+      interactionHistory: [...current.interactionHistory, event].slice(-40),
+      ...(current.stage === "discover" && current.prediction.trim() ? { stage: "explore" as const } : {}),
+      updatedAt: Date.now(),
+    }));
+  };
   const reset = () => {
     clearLessonProgress(lesson.id);
     setProgress(defaultLessonProgress(lesson));
     setFeedback("");
     setShareStatus("");
+    setVisualState(defaultVisualState);
     setResetToken((value) => value + 1);
   };
-  const share = async () => {
-    const url = window.location.href;
+  const shareUrl = useMemo(() => buildShareUrl(visualState), [visualState]);
+  const copyShareLink = async () => {
+    const url = shareUrl;
     await navigator.clipboard?.writeText(url);
-    setShareStatus("Lesson link copied.");
+    setShareStatus("Lesson state link copied.");
   };
   const check = () => {
     const result = checkLessonAnswer(challenge, progress.answer, interacted);
@@ -163,7 +195,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
                 </select>
               </label>
               <button type="button" className="action-secondary" onClick={reset} title="Reset lesson progress"><RotateCcw className="h-4 w-4" />Reset</button>
-              <button type="button" className="action-secondary" onClick={() => void share()} title="Copy lesson link"><Share2 className="h-4 w-4" />Share</button>
+              <button type="button" className="action-secondary" onClick={() => setShareOpen(true)} title="Share lesson state"><Share2 className="h-4 w-4" />Share</button>
               <Link className="action-secondary" to={workspaceRoute(lesson)} title="Open related workspace"><ExternalLink className="h-4 w-4" />Workspace</Link>
             </div>
           </div>
@@ -222,8 +254,9 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
               <MiniMetric icon={<Eye className="h-4 w-4" />} label="Observe" value={lesson.contract.observableOutputs.join(", ")} />
               <MiniMetric icon={<Layers3 className="h-4 w-4" />} label="Representations" value={lesson.contract.requiredRepresentations.join(", ")} />
             </div>
+            <ImmersiveVisualLab lesson={lesson} state={visualState} onStateChange={setVisualState} onInteraction={recordInteraction} onFocus={() => setFocusMode(true)} />
             <LessonVisualBrief lesson={lesson} strengthenedLesson={strengthenedLesson} />
-            <LessonSurface lesson={lesson} resetToken={resetToken} onInteraction={(event) => { const interaction = event ?? createLegacyInteractionEvent(lesson); setProgress((current) => ({ ...current, interactionHistory: [...current.interactionHistory, interaction].slice(-40), ...(current.stage === "discover" && current.prediction.trim() ? { stage: "explore" as const } : {}), updatedAt: Date.now() })); }} />
+            <LessonSurface lesson={lesson} resetToken={resetToken} onInteraction={(event) => recordInteraction(event ?? createLegacyInteractionEvent(lesson))} />
             <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {lesson.contract.requiredControlIds.map((control) => <Tag key={control} icon={<SlidersHorizontal className="h-3.5 w-3.5" />} label={control} />)}
               {lesson.contract.workspaceObjects.slice(0, 3).map((object) => <Tag key={object} icon={<PanelTop className="h-3.5 w-3.5" />} label={object} />)}
@@ -257,8 +290,197 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         {adjacent.previous ? <Link className="action-secondary justify-start" to={adjacent.previous.route}><ArrowLeft className="h-4 w-4" /><span><span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">Previous</span><span className="line-clamp-1">{adjacent.previous.title}</span></span></Link> : <span />}
         {adjacent.next ? <Link className="action-secondary justify-end text-right" to={adjacent.next.route}><span><span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">Next</span><span className="line-clamp-1">{adjacent.next.title}</span></span><ArrowRight className="h-4 w-4" /></Link> : <span />}
       </nav>
+      {focusMode ? <VisualFocusOverlay lesson={lesson} state={visualState} onStateChange={setVisualState} onInteraction={recordInteraction} onClose={() => setFocusMode(false)} /> : null}
+      {shareOpen ? <LessonShareModal lesson={lesson} state={visualState} shareUrl={shareUrl} status={shareStatus} onCopy={copyShareLink} onClose={() => setShareOpen(false)} /> : null}
     </div>
   );
+}
+
+function ImmersiveVisualLab({ lesson, state, onStateChange, onInteraction, onFocus }: { lesson: LessonDefinition; state: LessonVisualState; onStateChange: (state: LessonVisualState) => void; onInteraction: () => void; onFocus: () => void }) {
+  return (
+    <section className="lesson-immersive-lab" aria-label="Immersive visual lab">
+      <div className="lesson-lab-task">
+        <p className="text-[10px] font-black uppercase tracking-wide text-cyan-700">Your task</p>
+        {["Predict", "Drag", "Observe", "Explain"].map((step, index) => (
+          <div key={step} className="lesson-lab-step">
+            <span>{index + 1}</span>
+            <strong>{step}</strong>
+            <small>{labStepCopy(step, lesson)}</small>
+          </div>
+        ))}
+      </div>
+      <div className="lesson-lab-stage">
+        <LessonStateGraph state={state} title={lesson.title} />
+        <div className="lesson-floating-equation">f(x) = -1/2 x^2 + 2 + {state.verticalShift.toFixed(1)}</div>
+        <div className="lesson-floating-output">
+          <strong>Domain (x)</strong>
+          <span>[{Math.min(state.pointA, state.pointB).toFixed(1)}, {Math.max(state.pointA, state.pointB).toFixed(1)}]</span>
+          <strong>Range (y)</strong>
+          <span>[{graphY(Math.abs(state.pointA) > Math.abs(state.pointB) ? state.pointA : state.pointB, state.verticalShift).toFixed(1)}, {(2 + state.verticalShift).toFixed(1)}]</span>
+        </div>
+      </div>
+      <div className="lesson-lab-controls">
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-500">Floating controls</p>
+          <button type="button" className="lesson-icon-button" onClick={onFocus} aria-label="Open full screen visual lab"><Maximize2 className="h-4 w-4" /></button>
+        </div>
+        <LabSlider label="Point A (x)" min={-5} max={0} step={0.5} value={state.pointA} onChange={(pointA) => { onStateChange({ ...state, pointA }); onInteraction(); }} />
+        <LabSlider label="Point B (x)" min={0} max={5} step={0.5} value={state.pointB} onChange={(pointB) => { onStateChange({ ...state, pointB }); onInteraction(); }} />
+        <LabSlider label="Vertical shift" min={-2} max={2} step={0.25} value={state.verticalShift} onChange={(verticalShift) => { onStateChange({ ...state, verticalShift }); onInteraction(); }} />
+        <label className="lesson-toggle-row"><input type="checkbox" checked={state.showProjections} onChange={(event) => { onStateChange({ ...state, showProjections: event.target.checked }); onInteraction(); }} />Show projections</label>
+        <label className="lesson-toggle-row"><input type="checkbox" checked={state.showGrid} onChange={(event) => { onStateChange({ ...state, showGrid: event.target.checked }); onInteraction(); }} />Show grid</label>
+      </div>
+    </section>
+  );
+}
+
+function VisualFocusOverlay({ lesson, state, onStateChange, onInteraction, onClose }: { lesson: LessonDefinition; state: LessonVisualState; onStateChange: (state: LessonVisualState) => void; onInteraction: () => void; onClose: () => void }) {
+  return (
+    <div className="lesson-focus-overlay" role="dialog" aria-modal="true" aria-label="Full screen visual lab">
+      <div className="lesson-focus-topbar">
+        <div>
+          <p className="text-[10px] font-black uppercase tracking-wide text-cyan-200">Visual focus mode</p>
+          <h2>{lesson.title}</h2>
+        </div>
+        <button type="button" className="lesson-focus-close" onClick={onClose}><X className="h-4 w-4" />Close</button>
+      </div>
+      <div className="lesson-focus-canvas">
+        <LessonStateGraph state={state} title={lesson.title} large />
+      </div>
+      <div className="lesson-focus-controls">
+        <LabSlider label="Point A (x)" min={-5} max={0} step={0.5} value={state.pointA} onChange={(pointA) => { onStateChange({ ...state, pointA }); onInteraction(); }} />
+        <LabSlider label="Point B (x)" min={0} max={5} step={0.5} value={state.pointB} onChange={(pointB) => { onStateChange({ ...state, pointB }); onInteraction(); }} />
+        <LabSlider label="Vertical shift" min={-2} max={2} step={0.25} value={state.verticalShift} onChange={(verticalShift) => { onStateChange({ ...state, verticalShift }); onInteraction(); }} />
+        <label className="lesson-toggle-row"><input type="checkbox" checked={state.showProjections} onChange={(event) => { onStateChange({ ...state, showProjections: event.target.checked }); onInteraction(); }} />Projections</label>
+        <label className="lesson-toggle-row"><input type="checkbox" checked={state.showGrid} onChange={(event) => { onStateChange({ ...state, showGrid: event.target.checked }); onInteraction(); }} />Grid</label>
+      </div>
+    </div>
+  );
+}
+
+function LessonShareModal({ lesson, state, shareUrl, status, onCopy, onClose }: { lesson: LessonDefinition; state: LessonVisualState; shareUrl: string; status: string; onCopy: () => void; onClose: () => void }) {
+  return (
+    <div className="lesson-share-backdrop" role="dialog" aria-modal="true" aria-labelledby="lesson-share-title">
+      <section className="lesson-share-modal">
+        <div className="lesson-share-header">
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-wide text-cyan-700">Share current visual state</p>
+            <h2 id="lesson-share-title">{lesson.title}</h2>
+          </div>
+          <button type="button" className="lesson-icon-button" onClick={onClose} aria-label="Close share modal"><X className="h-4 w-4" /></button>
+        </div>
+        <div className="lesson-share-grid">
+          <div>
+            <p className="text-xs font-black uppercase text-slate-500">Exact preview</p>
+            <div className="lesson-share-preview"><LessonStateGraph state={state} title={lesson.title} /></div>
+          </div>
+          <div className="lesson-share-details">
+            <p><strong>Step:</strong> visual exploration</p>
+            <p><strong>Domain:</strong> [{Math.min(state.pointA, state.pointB).toFixed(1)}, {Math.max(state.pointA, state.pointB).toFixed(1)}]</p>
+            <p><strong>Vertical shift:</strong> {state.verticalShift.toFixed(2)}</p>
+            <label>Link<input readOnly value={shareUrl} /></label>
+            <button type="button" className="action-primary w-full justify-center" onClick={() => void onCopy()}><Copy className="h-4 w-4" />Copy state link</button>
+            {status ? <p className="rounded-xl bg-emerald-50 p-3 text-sm font-black text-emerald-800" role="status">{status}</p> : null}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function LessonStateGraph({ state, title, large = false }: { state: LessonVisualState; title: string; large?: boolean }) {
+  const xA = toGraphX(state.pointA);
+  const xB = toGraphX(state.pointB);
+  const yA = toGraphY(graphY(state.pointA, state.verticalShift));
+  const yB = toGraphY(graphY(state.pointB, state.verticalShift));
+  const vertexY = toGraphY(2 + state.verticalShift);
+  const domainLeft = Math.min(xA, xB);
+  const domainWidth = Math.abs(xB - xA);
+  return (
+    <svg className={large ? "lesson-state-graph is-large" : "lesson-state-graph"} viewBox="0 0 640 420" role="img" aria-label={`${title} graph with domain and range projections`}>
+      <rect width="640" height="420" rx="28" fill="#f8fbff" />
+      {state.showGrid ? Array.from({ length: 14 }, (_, index) => <line key={`grid-v-${index}`} x1={40 + index * 42} x2={40 + index * 42} y1="34" y2="374" stroke="#dbeafe" />) : null}
+      {state.showGrid ? Array.from({ length: 9 }, (_, index) => <line key={`grid-h-${index}`} x1="42" x2="598" y1={40 + index * 38} y2={40 + index * 38} stroke="#dbeafe" />) : null}
+      <rect x={domainLeft} y={vertexY} width={domainWidth} height={Math.max(yA, yB) - vertexY} rx="18" fill="#8b5cf6" opacity=".13" />
+      <line x1="60" y1="300" x2="590" y2="300" stroke="#0f172a" strokeWidth="2" />
+      <line x1="320" y1="46" x2="320" y2="372" stroke="#0f172a" strokeWidth="2" />
+      <path d="M 80 382 C 155 172 252 72 320 100 C 410 136 492 236 575 382" fill="none" stroke="#c4b5fd" strokeDasharray="9 9" strokeWidth="2" />
+      <path d={parabolaPath(state.verticalShift)} fill="none" stroke="#4f46e5" strokeWidth="7" strokeLinecap="round" />
+      {state.showProjections ? <path d={`M ${xA} ${yA} L ${xA} 300 M ${xB} ${yB} L ${xB} 300 M 320 ${vertexY} L 590 ${vertexY}`} stroke="#7c3aed" strokeDasharray="8 8" strokeWidth="2.5" /> : null}
+      <rect x={domainLeft} y="300" width={domainWidth} height="28" rx="14" fill="#2563eb" opacity=".18" />
+      <circle cx={xA} cy={yA} r="12" fill="#ffffff" stroke="#4f46e5" strokeWidth="6" />
+      <circle cx="320" cy={vertexY} r="9" fill="#4f46e5" />
+      <circle cx={xB} cy={yB} r="12" fill="#ffffff" stroke="#4f46e5" strokeWidth="6" />
+      <text x={xA - 24} y={yA - 18} fill="#1d4ed8" fontSize="18" fontWeight="900">A</text>
+      <text x={xB + 14} y={yB - 18} fill="#1d4ed8" fontSize="18" fontWeight="900">B</text>
+      <text x="480" y={vertexY - 12} fill="#7c3aed" fontSize="16" fontWeight="900">range projection</text>
+      <text x={domainLeft + 14} y="348" fill="#1d4ed8" fontSize="16" fontWeight="900">domain projection</text>
+    </svg>
+  );
+}
+
+function LabSlider({ label, value, min, max, step, onChange }: { label: string; value: number; min: number; max: number; step: number; onChange: (value: number) => void }) {
+  return (
+    <label className="lesson-lab-slider">
+      <span>{label}<strong>{value.toFixed(step < 1 ? 2 : 0)}</strong></span>
+      <input type="range" min={min} max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} />
+    </label>
+  );
+}
+
+function labStepCopy(step: string, lesson: LessonDefinition) {
+  if (step === "Predict") return "What happens before you touch the model?";
+  if (step === "Drag") return lesson.contract.requiredInteractionVerbs[0] ?? "Move a control.";
+  if (step === "Observe") return lesson.contract.observableOutputs[0] ?? "Read linked outputs.";
+  return "Write the idea in your own words.";
+}
+
+function graphY(x: number, shift: number) {
+  return -0.25 * x * x + 2 + shift;
+}
+
+function toGraphX(x: number) {
+  return 320 + x * 52;
+}
+
+function toGraphY(y: number) {
+  return 300 - y * 58;
+}
+
+function parabolaPath(shift: number) {
+  const points = Array.from({ length: 33 }, (_, index) => {
+    const x = -5 + index * (10 / 32);
+    return `${toGraphX(x).toFixed(1)},${toGraphY(graphY(x, shift)).toFixed(1)}`;
+  });
+  return `M ${points.join(" L ")}`;
+}
+
+function buildShareUrl(state: LessonVisualState) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("visualState", encodeURIComponent(JSON.stringify(state)));
+  return url.toString();
+}
+
+function readVisualStateFromUrl(): LessonVisualState {
+  if (typeof window === "undefined") return defaultVisualState;
+  const raw = window.location.search ? new URLSearchParams(window.location.search).get("visualState") : null;
+  if (!raw) return defaultVisualState;
+  try {
+    const parsed = JSON.parse(decodeURIComponent(raw)) as Partial<LessonVisualState>;
+    return {
+      pointA: finiteOrDefault(parsed.pointA, defaultVisualState.pointA),
+      pointB: finiteOrDefault(parsed.pointB, defaultVisualState.pointB),
+      verticalShift: finiteOrDefault(parsed.verticalShift, defaultVisualState.verticalShift),
+      showProjections: typeof parsed.showProjections === "boolean" ? parsed.showProjections : defaultVisualState.showProjections,
+      showGrid: typeof parsed.showGrid === "boolean" ? parsed.showGrid : defaultVisualState.showGrid,
+    };
+  } catch {
+    return defaultVisualState;
+  }
+}
+
+function finiteOrDefault(value: unknown, fallback: number) {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback;
 }
 
 function LessonVisualBrief({ lesson, strengthenedLesson }: { lesson: LessonDefinition; strengthenedLesson: StrengthenedLesson | null }) {

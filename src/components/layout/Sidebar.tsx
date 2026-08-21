@@ -23,7 +23,7 @@ export default function Sidebar() {
     [location.pathname],
   );
   const activeNavKeys = useMemo(() => navSections.flatMap((section) => section.items.flatMap((item) => activeItemKeys(item, location.pathname))), [location.pathname]);
-  const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Home", ...activeSections, ...activeNavKeys])));
+  const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Start Here", ...activeSections, ...activeNavKeys])));
   const [query, setQuery] = useState("");
   const [recentRoutes, setRecentRoutes] = useState<string[]>([]);
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem("math-universe-sidebar-collapsed") === "true");

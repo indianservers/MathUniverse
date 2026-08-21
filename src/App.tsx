@@ -78,8 +78,8 @@ const GraphComparisonMode = lazyRoute(() => import("./pages/GraphComparisonMode"
 const GraphTheory = lazyRoute(() => import("./pages/GraphTheory"));
 const Home = lazyRoute(() => import("./pages/Home"));
 const IntegrationAreaVisualizerPage = lazyRoute(() => import("./pages/IntegrationAreaVisualizerPage"));
-const LearningHub = lazyRoute(() => import("./pages/LearningHub"));
 const LessonsHomePage = lazyRoute(() => import("./modules/lessons/pages/LessonsHomePage"));
+const LearnDiscoveryPage = lazyRoute(() => import("./modules/lessons/pages/LearnDiscoveryPage"));
 const LessonsCategoryPage = lazyRoute(() => import("./modules/lessons/pages/LessonsCategoryPage"));
 const LessonPage = lazyRoute(() => import("./modules/lessons/pages/LessonPage"));
 const AdvancedConceptLessonsPage = lazyRoute(() => import("./modules/lessons/pages/AdvancedConceptLessonsPage"));
@@ -298,7 +298,9 @@ export default function App() {
             <Route path="matrices/:operationId" element={<MatrixOperationPage />} />
             <Route path="matrix-sandbox" element={<MatrixOperationsSandbox />} />
             <Route path="ai-applications" element={<AIApplications />} />
-            <Route path="learn" element={<LearningHub />} />
+            <Route path="learn" element={<LessonsHomePage />} />
+            <Route path="learn/:topicSlug" element={<LearnDiscoveryPage />} />
+            <Route path="learn/:topicSlug/:subtopicSlug" element={<LearnDiscoveryPage />} />
             <Route path="lessons" element={<LessonsHomePage />} />
             <Route path="lessons/advanced-concepts" element={<AdvancedConceptLessonsPage />} />
             <Route path="lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} />

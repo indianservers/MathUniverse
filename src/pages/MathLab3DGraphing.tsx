@@ -48,6 +48,7 @@ type Graph3DWorkspaceState = {
   palette?: SurfacePalette;
   showGrid: boolean;
   showAxes: boolean;
+  showInfiniteAxes?: boolean;
   showWireframe?: boolean;
   showPoints?: boolean;
   sliceEnabled: boolean;
@@ -82,6 +83,7 @@ export default function MathLab3DGraphing() {
   const [showGrid, setShowGrid] = useState(true);
   const [showBase, setShowBase] = useState(true);
   const [showAxes, setShowAxes] = useState(true);
+  const [showInfiniteAxes, setShowInfiniteAxes] = useState(false);
   const [showLabels, setShowLabels] = useState(true);
   const [autoRotate, setAutoRotate] = useState(false);
   const [objectPosition, setObjectPosition] = useState<ObjectPosition>(initialObjectPosition);
@@ -102,7 +104,7 @@ export default function MathLab3DGraphing() {
   });
   const graphTheme = getGraph3DTheme(graphThemeId);
 
-  const graphStudioState = useMemo<Graph3DWorkspaceState>(() => ({ surfaces, selectedSurfaceId, xRange, yRange, resolution, showGrid, showAxes, sliceEnabled, sliceX, referenceObject, variables: graphVariables }), [graphVariables, referenceObject, resolution, selectedSurfaceId, showAxes, showGrid, sliceEnabled, sliceX, surfaces, xRange, yRange]);
+  const graphStudioState = useMemo<Graph3DWorkspaceState>(() => ({ surfaces, selectedSurfaceId, xRange, yRange, resolution, showGrid, showAxes, showInfiniteAxes, sliceEnabled, sliceX, referenceObject, variables: graphVariables }), [graphVariables, referenceObject, resolution, selectedSurfaceId, showAxes, showGrid, showInfiniteAxes, sliceEnabled, sliceX, surfaces, xRange, yRange]);
   const graphStudio = useGraphStudioProject({
     dimension: "3d",
     initialName: "Graph Studio 3D",
@@ -116,6 +118,7 @@ export default function MathLab3DGraphing() {
       setResolution(state.resolution);
       setShowGrid(state.showGrid);
       setShowAxes(state.showAxes);
+      setShowInfiniteAxes(Boolean(state.showInfiniteAxes));
       setSliceEnabled(state.sliceEnabled);
       setSliceX(state.sliceX);
       setReferenceObject(state.referenceObject);
@@ -161,14 +164,14 @@ export default function MathLab3DGraphing() {
     title: () => graphStudio.project.name || "Graph Studio 3D",
     serializeScene: () => ({
       ...graphStudioState,
-      showBase, showLabels, autoRotate, objectPosition, cameraPosition, sliceAxis, analysisPoint, graphThemeId,
+      showBase, showLabels, showInfiniteAxes, autoRotate, objectPosition, cameraPosition, sliceAxis, analysisPoint, graphThemeId,
       projectName: graphStudio.project.name,
       stylePreset: graphStudio.project.stylePreset,
     }),
     deserializeScene: (scene) => {
       if (!scene || typeof scene !== "object") throw new Error("The imported 3D graph scene is invalid.");
       const state = scene as Partial<Graph3DWorkspaceState> & {
-        showBase?: boolean; showLabels?: boolean; autoRotate?: boolean; objectPosition?: ObjectPosition; cameraPosition?: [number, number, number];
+        showBase?: boolean; showLabels?: boolean; showInfiniteAxes?: boolean; autoRotate?: boolean; objectPosition?: ObjectPosition; cameraPosition?: [number, number, number];
         sliceAxis?: SliceAxis; analysisPoint?: { x: number; y: number }; graphThemeId?: Graph3DThemeId; projectName?: string;
         stylePreset?: typeof graphStudio.project.stylePreset;
       };
@@ -177,7 +180,7 @@ export default function MathLab3DGraphing() {
       setSurfaces(nextSurfaces);
       setSelectedSurfaceId(nextSurfaces.some(surface => surface.id === state.selectedSurfaceId) ? state.selectedSurfaceId! : nextSurfaces[0].id);
       setXRange(clamp(Number(state.xRange ?? 3), 1, 8)); setYRange(clamp(Number(state.yRange ?? 3), 1, 8)); setResolution(clamp(Math.round(Number(state.resolution ?? 44)), 12, 80));
-      setShowGrid(state.showGrid !== false); setShowAxes(state.showAxes !== false); setShowBase(state.showBase !== false); setShowLabels(state.showLabels !== false);
+      setShowGrid(state.showGrid !== false); setShowAxes(state.showAxes !== false); setShowInfiniteAxes(Boolean(state.showInfiniteAxes)); setShowBase(state.showBase !== false); setShowLabels(state.showLabels !== false);
       setSliceEnabled(Boolean(state.sliceEnabled)); setSliceX(Number(state.sliceX ?? 0)); setSliceAxis(["x", "y", "z"].includes(state.sliceAxis ?? "") ? state.sliceAxis! : "x");
       setReferenceObject(["none", "helix", "sphere", "cone", "cylinder"].includes(state.referenceObject ?? "") ? state.referenceObject! : "none");
       setGraphVariables(Array.isArray(state.variables) ? state.variables.slice(0, 24) : []);
@@ -251,7 +254,7 @@ export default function MathLab3DGraphing() {
             {visibleValidSurfaces.map(({ item, samples }) => <group key={item.id}><SurfaceMesh samples={samples} palette={item.palette} colorLow={item.colorLow} colorHigh={item.colorHigh} wireframe={item.wireframe} opacity={item.opacity} theme={graphTheme} selected={item.id === selectedSurface.id} interactive={item.id === selectedSurface.id && studioTool !== "select"} onPick={handleSurfacePick} />{item.samplingAnimation && <SamplingSweep samples={samples} active theme={graphTheme} />}{item.showPoints && <SamplePointCloud samples={samples} color={graphTheme.point} />}</group>)}
             {showBase && <BasePlane size={Math.max(xRange, yRange) * 2.08} theme={graphTheme} />}
             {showGrid && <gridHelper args={[Math.max(xRange, yRange) * 2.2, 18, graphTheme.gridMajor, graphTheme.gridMinor]} />}
-            {showAxes && <ThemeAxes scale={Math.max(xRange, yRange) * 1.25} theme={graphTheme} showLabels={showLabels} />}
+            {showAxes && <ThemeAxes scale={Math.max(xRange, yRange) * 1.25} theme={graphTheme} showLabels={showLabels} infinite={showInfiniteAxes} />}
             {showLabels && <SurfaceLabels scale={Math.max(xRange, yRange) * 1.25} expression={expression} samples={surface} objectPosition={objectPosition} theme={graphTheme} />}
             {sliceEnabled && <SlicePlane axis={sliceAxis} value={sliceX} range={Math.max(xRange, yRange)} samples={surface} color={graphTheme.crossSection} />}
             {sliceEnabled && <SliceCurve axis={sliceAxis} value={sliceX} samples={surface} color={graphTheme.crossSection} />}
@@ -284,6 +287,7 @@ export default function MathLab3DGraphing() {
       onReferenceObjectChange={setReferenceObject}
       showGrid={showGrid}
       showAxes={showAxes}
+      showInfiniteAxes={showInfiniteAxes}
       showLabels={showLabels}
       showBase={showBase}
       autoRotate={autoRotate}
@@ -292,6 +296,7 @@ export default function MathLab3DGraphing() {
       sliceValue={sliceX}
       onShowGridChange={setShowGrid}
       onShowAxesChange={setShowAxes}
+      onShowInfiniteAxesChange={setShowInfiniteAxes}
       onShowLabelsChange={setShowLabels}
       onShowBaseChange={setShowBase}
       onAutoRotateChange={setAutoRotate}
@@ -352,6 +357,7 @@ export default function MathLab3DGraphing() {
     setShowBase(true);
     setShowGrid(true);
     setShowAxes(true);
+    setShowInfiniteAxes(false);
     setShowLabels(true);
     setCameraKey((value) => value + 1);
   }
@@ -381,6 +387,7 @@ export default function MathLab3DGraphing() {
     setResolution(state.resolution);
     setShowGrid(state.showGrid);
     setShowAxes(state.showAxes);
+    setShowInfiniteAxes(Boolean(state.showInfiniteAxes));
     setSliceEnabled(state.sliceEnabled);
     setSliceX(state.sliceX);
     setReferenceObject(state.referenceObject);
@@ -736,13 +743,35 @@ function applyGradient(color: THREE.Color, stops: Graph3DTheme["gradient"], rati
   color.copy(new THREE.Color(lower.color)).lerp(new THREE.Color(upper.color), Math.max(0, Math.min(1, localRatio)));
 }
 
-function ThemeAxes({ scale, theme, showLabels }: { scale: number; theme: Graph3DTheme; showLabels: boolean }) {
-  const origin: [number, number, number] = [0, 0.012, 0];
+function ThemeAxes({ scale, theme, showLabels, infinite }: { scale: number; theme: Graph3DTheme; showLabels: boolean; infinite: boolean }) {
+  const axisScale = infinite ? Math.max(48, scale * 8) : scale;
+  const start = infinite ? -axisScale : 0;
+  const lineWidth = infinite ? 3 : 2;
   return <group>
-    <Line points={[origin, [scale, 0.012, 0]]} color={theme.axes[0]} lineWidth={2} />
-    <Line points={[origin, [0, 0.012, scale]]} color={theme.axes[1]} lineWidth={2} />
-    <Line points={[origin, [0, scale, 0]]} color={theme.axes[2]} lineWidth={2} />
-    {showLabels && <><TextSprite text="x" position={[scale, 0, 0]} color={theme.axes[0]} /><TextSprite text="y" position={[0, 0, scale]} color={theme.axes[1]} /><TextSprite text="z" position={[0, scale, 0]} color={theme.axes[2]} /></>}
+    <Line points={[[start, 0.012, 0], [axisScale, 0.012, 0]]} color={theme.axes[0]} lineWidth={lineWidth} />
+    <Line points={[[0, 0.012, start], [0, 0.012, axisScale]]} color={theme.axes[1]} lineWidth={lineWidth} />
+    <Line points={[[0, start, 0], [0, axisScale, 0]]} color={theme.axes[2]} lineWidth={lineWidth} />
+    {infinite && <InfiniteAxisCaps scale={axisScale} theme={theme} />}
+    {showLabels && <><TextSprite text="x" position={[axisScale, 0, 0]} color={theme.axes[0]} /><TextSprite text="y" position={[0, 0, axisScale]} color={theme.axes[1]} /><TextSprite text="z" position={[0, axisScale, 0]} color={theme.axes[2]} /></>}
+  </group>;
+}
+
+function InfiniteAxisCaps({ scale, theme }: { scale: number; theme: Graph3DTheme }) {
+  const radius = Math.max(0.08, scale * 0.006);
+  const length = Math.max(0.24, scale * 0.026);
+  const cap = (key: string, position: [number, number, number], color: string, rotation: [number, number, number]) => (
+    <mesh key={key} position={position} rotation={rotation}>
+      <coneGeometry args={[radius, length, 18]} />
+      <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.25} />
+    </mesh>
+  );
+  return <group>
+    {cap("x-plus", [scale, 0.012, 0], theme.axes[0], [0, 0, -Math.PI / 2])}
+    {cap("x-minus", [-scale, 0.012, 0], theme.axes[0], [0, 0, Math.PI / 2])}
+    {cap("y-plus", [0, 0.012, scale], theme.axes[1], [Math.PI / 2, 0, 0])}
+    {cap("y-minus", [0, 0.012, -scale], theme.axes[1], [-Math.PI / 2, 0, 0])}
+    {cap("z-plus", [0, scale, 0], theme.axes[2], [0, 0, 0])}
+    {cap("z-minus", [0, -scale, 0], theme.axes[2], [Math.PI, 0, 0])}
   </group>;
 }
 

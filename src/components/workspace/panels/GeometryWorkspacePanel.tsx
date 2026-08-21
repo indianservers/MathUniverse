@@ -860,6 +860,17 @@ function GeometryBoard({
       className="geometry-board-svg w-full touch-none rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950"
     >
       <title>Math Universe Geometry Construction</title>
+      <defs>
+        <filter id="geometry-selected-glow-filter" x="-45%" y="-45%" width="190%" height="190%">
+          <feGaussianBlur stdDeviation="4.5" result="blur" />
+          <feFlood floodColor="#22d3ee" floodOpacity="0.9" result="glowColor" />
+          <feComposite in="glowColor" in2="blur" operator="in" result="coloredGlow" />
+          <feMerge>
+            <feMergeNode in="coloredGlow" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
       <GeometryGrid settings={graphSettings} />
       {workspaceImages.filter((image) => image.visible !== false).map((image) => (
         <g key={image.id}>
@@ -868,7 +879,7 @@ function GeometryBoard({
         </g>
       ))}
       <ConstraintOverlays construction={construction} />
-      {construction.loci.map((locus) => <GeometryLocus key={locus.id} locus={locus} />)}
+      {construction.loci.map((locus) => <GeometryLocus key={locus.id} locus={locus} selected={isSelectedGeometry(selectedGeometry, "locus", locus.id)} />)}
       {construction.polygons.map((polygon) => <GeometryPolygon key={polygon.id} polygon={polygon} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "polygon", polygon.id)} />)}
       {construction.arcs.map((arc) => <GeometryArc key={arc.id} arc={arc} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "arc", arc.id)} />)}
       {construction.lines.map((line) => <GeometryLine key={line.id} line={line} points={construction.points} selected={isSelectedGeometry(selectedGeometry, "line", line.id)} />)}
@@ -879,6 +890,20 @@ function GeometryBoard({
       {construction.points.filter((point) => point.style?.visible !== false).map((point) => (
         <g key={point.id}>
           {point.style?.trace && <circle cx={point.x} cy={point.y} r={(point.style?.size ?? 9) + 12} fill="none" stroke={point.style?.color ?? "#06b6d4"} strokeDasharray="4 8" strokeWidth="4" opacity="0.28" />}
+          {isSelectedGeometry(selectedGeometry, "point", point.id) && (
+            <circle
+              cx={point.x}
+              cy={point.y}
+              r={(point.style?.size ?? 9) + 9}
+              fill="none"
+              stroke="#67e8f9"
+              strokeWidth="5"
+              opacity="0.9"
+              filter="url(#geometry-selected-glow-filter)"
+              className="geometry-selected-glow"
+              pointerEvents="none"
+            />
+          )}
           <circle
             data-point-id={point.id}
             cx={point.x}
@@ -978,7 +1003,9 @@ function GeometryLine({ line, points, selected = false }: { line: GeoLine; point
   const arrow = kind === "ray" || kind === "vector" ? arrowHeadPoints(endpoints.x1, endpoints.y1, endpoints.x2, endpoints.y2, kind === "vector" ? 14 : 11) : null;
   return (
     <g>
+      {selected && <line x1={endpoints.x1} y1={endpoints.y1} x2={endpoints.x2} y2={endpoints.y2} stroke="#67e8f9" strokeWidth={Math.max(12, (line.style?.strokeWidth ?? 4) + 8)} strokeDasharray={kind === "line" ? "10 8" : undefined} opacity="0.72" filter="url(#geometry-selected-glow-filter)" className="geometry-selected-glow" pointerEvents="none" />}
       <line data-object-type="line" data-object-id={line.id} x1={endpoints.x1} y1={endpoints.y1} x2={endpoints.x2} y2={endpoints.y2} stroke={color} strokeWidth={selected ? Math.max(7, line.style?.strokeWidth ?? 4) : line.style?.strokeWidth ?? 4} strokeDasharray={kind === "line" ? "10 8" : undefined} opacity={selected ? 0.95 : line.style?.opacity ?? 1} className="cursor-move" />
+      {selected && arrow && <polygon points={arrow} fill="#67e8f9" opacity="0.72" filter="url(#geometry-selected-glow-filter)" className="geometry-selected-glow" pointerEvents="none" />}
       {arrow && <polygon points={arrow} fill={color} opacity={selected ? 0.95 : line.style?.opacity ?? 1} pointerEvents="none" />}
       {kind !== "line" && <text x={(a.x + b.x) / 2 + 8} y={(a.y + b.y) / 2 - 8} fill={color} className="pointer-events-none select-none text-[10px] font-black uppercase">{kind}</text>}
     </g>
@@ -989,14 +1016,24 @@ function GeometryCircle({ circle, points, selected = false }: { circle: GeoCircl
   const center = pointById(points, circle.center), edge = pointById(points, circle.edge);
   if (!center || !edge || circle.style?.visible === false) return null;
   const radius = distance(center, edge);
-  return <circle data-object-type="circle" data-object-id={circle.id} cx={center.x} cy={center.y} r={radius} fill={circle.style?.fill ?? "rgba(34,211,238,.12)"} stroke={circle.style?.color ?? "#06b6d4"} strokeWidth={selected ? Math.max(7, circle.style?.strokeWidth ?? 4) : circle.style?.strokeWidth ?? 4} opacity={circle.style?.opacity ?? 1} className="cursor-move" />;
+  return (
+    <g>
+      {selected && <circle cx={center.x} cy={center.y} r={radius} fill="none" stroke="#67e8f9" strokeWidth={Math.max(12, (circle.style?.strokeWidth ?? 4) + 8)} opacity="0.72" filter="url(#geometry-selected-glow-filter)" className="geometry-selected-glow" pointerEvents="none" />}
+      <circle data-object-type="circle" data-object-id={circle.id} cx={center.x} cy={center.y} r={radius} fill={circle.style?.fill ?? "rgba(34,211,238,.12)"} stroke={circle.style?.color ?? "#06b6d4"} strokeWidth={selected ? Math.max(7, circle.style?.strokeWidth ?? 4) : circle.style?.strokeWidth ?? 4} opacity={circle.style?.opacity ?? 1} className="cursor-move" />
+    </g>
+  );
 }
 
 function GeometryPolygon({ polygon, points, selected = false }: { polygon: GeoPolygon; points: GeoPoint[]; selected?: boolean }) {
   const polygonPoints = polygon.points.map((id) => pointById(points, id)).filter(Boolean) as GeoPoint[];
   if (polygonPoints.length < 3 || polygon.style?.visible === false) return null;
   const value = polygonPoints.map((point) => `${point.x},${point.y}`).join(" ");
-  return <polygon data-object-type="polygon" data-object-id={polygon.id} points={value} fill={polygon.style?.fill ?? "rgba(245,158,11,.15)"} stroke={polygon.style?.color ?? "#f59e0b"} strokeWidth={selected ? Math.max(7, polygon.style?.strokeWidth ?? 3) : polygon.style?.strokeWidth ?? 3} opacity={polygon.style?.opacity ?? 1} className="cursor-move" />;
+  return (
+    <g>
+      {selected && <polygon points={value} fill="rgba(34,211,238,.12)" stroke="#67e8f9" strokeWidth={Math.max(11, (polygon.style?.strokeWidth ?? 3) + 8)} opacity="0.78" filter="url(#geometry-selected-glow-filter)" className="geometry-selected-glow" pointerEvents="none" />}
+      <polygon data-object-type="polygon" data-object-id={polygon.id} points={value} fill={polygon.style?.fill ?? "rgba(245,158,11,.15)"} stroke={polygon.style?.color ?? "#f59e0b"} strokeWidth={selected ? Math.max(7, polygon.style?.strokeWidth ?? 3) : polygon.style?.strokeWidth ?? 3} opacity={polygon.style?.opacity ?? 1} className="cursor-move" />
+    </g>
+  );
 }
 
 function GeometryArc({ arc, points, selected = false }: { arc: GeoArc; points: GeoPoint[]; selected?: boolean }) {
@@ -1007,13 +1044,23 @@ function GeometryArc({ arc, points, selected = false }: { arc: GeoArc; points: G
   const endAngle = Math.atan2(end.y - center.y, end.x - center.x);
   const largeArc = ((endAngle - startAngle + Math.PI * 2) % (Math.PI * 2)) > Math.PI ? 1 : 0;
   const path = `M ${center.x} ${center.y} L ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArc} 1 ${end.x} ${end.y}${arc.sector ? " Z" : ""}`;
-  return <path data-object-type="arc" data-object-id={arc.id} d={path} fill={arc.sector ? arc.style?.fill ?? "rgba(245,158,11,.16)" : "none"} stroke={arc.style?.color ?? "#14b8a6"} strokeWidth={selected ? 6 : arc.style?.strokeWidth ?? 4} opacity={arc.style?.opacity ?? 1} className="cursor-move" />;
+  return (
+    <g>
+      {selected && <path d={path} fill={arc.sector ? "rgba(34,211,238,.12)" : "none"} stroke="#67e8f9" strokeWidth={Math.max(12, (arc.style?.strokeWidth ?? 4) + 8)} opacity="0.74" filter="url(#geometry-selected-glow-filter)" className="geometry-selected-glow" pointerEvents="none" />}
+      <path data-object-type="arc" data-object-id={arc.id} d={path} fill={arc.sector ? arc.style?.fill ?? "rgba(245,158,11,.16)" : "none"} stroke={arc.style?.color ?? "#14b8a6"} strokeWidth={selected ? 6 : arc.style?.strokeWidth ?? 4} opacity={arc.style?.opacity ?? 1} className="cursor-move" />
+    </g>
+  );
 }
 
-function GeometryLocus({ locus }: { locus: GeoLocus }) {
+function GeometryLocus({ locus, selected = false }: { locus: GeoLocus; selected?: boolean }) {
   if (locus.style?.visible === false || locus.points.length < 2) return null;
   const d = locus.points.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ");
-  return <path data-object-type="locus" data-object-id={locus.id} d={d} fill="none" stroke={locus.style?.color ?? "#ec4899"} strokeWidth={locus.style?.strokeWidth ?? 4} opacity={locus.style?.opacity ?? 0.8} strokeLinecap="round" strokeLinejoin="round" />;
+  return (
+    <g>
+      {selected && <path d={d} fill="none" stroke="#67e8f9" strokeWidth={Math.max(12, (locus.style?.strokeWidth ?? 4) + 8)} opacity="0.72" filter="url(#geometry-selected-glow-filter)" className="geometry-selected-glow" pointerEvents="none" strokeLinecap="round" strokeLinejoin="round" />}
+      <path data-object-type="locus" data-object-id={locus.id} d={d} fill="none" stroke={locus.style?.color ?? "#ec4899"} strokeWidth={locus.style?.strokeWidth ?? 4} opacity={locus.style?.opacity ?? 0.8} strokeLinecap="round" strokeLinejoin="round" />
+    </g>
+  );
 }
 
 function PolygonDraftPreview({ draft, points }: { draft: string[]; points: GeoPoint[] }) {

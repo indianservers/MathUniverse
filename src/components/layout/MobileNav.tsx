@@ -18,7 +18,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
     [location.pathname],
   );
   const activeNavKeys = useMemo(() => navSections.flatMap((section) => section.items.flatMap((item) => activeItemKeys(item, location.pathname))), [location.pathname]);
-  const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Home", ...activeSections, ...activeNavKeys])));
+  const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Start Here", ...activeSections, ...activeNavKeys])));
   const [query, setQuery] = useState("");
   const [recentRoutes, setRecentRoutes] = useState<string[]>([]);
   const recentTools = useMemo(() => recentRoutes.map((route) => navItems.find((item) => item.route === route)).filter((item): item is NonNullable<typeof item> => Boolean(item)).slice(0, 4), [recentRoutes]);
