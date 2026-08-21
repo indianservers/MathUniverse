@@ -21,9 +21,9 @@ export default function WorkspaceHome() {
         <div className="workspace-home-copy">
           <span className="workspace-home-eyebrow"><Sparkles />CONNECTED MATH TOOLS</span>
           <h1>One workspace.<br /><em>Six ways to explore.</em></h1>
-          <p>Graph, construct, calculate, and investigate without leaving the same focused studio environment.</p>
+          <p>2D Geometry, 3D Geometry, 2D Graph, 3D Graph, CAS, and Solver live in the same focused studio environment.</p>
           <div className="workspace-home-actions">
-            <Link to="/workspace/graph">Open Graphs <ArrowRight /></Link>
+            <Link to="/workspace/graph">Open 2D Graph <ArrowRight /></Link>
             <a href="#workspace-tools">View all tools <Grid3X3 /></a>
           </div>
         </div>
@@ -43,7 +43,7 @@ export default function WorkspaceHome() {
       <section className="workspace-home-tools" id="workspace-tools" aria-labelledby="workspace-tools-title">
         <header>
           <div><span>THE WORKSPACE SUITE</span><h2 id="workspace-tools-title">Choose your tool</h2></div>
-          <p>Every studio shares the same compact navigation, focused canvas, and connected mathematical objects.</p>
+          <p>2D Geometry, 3D Geometry, 2D Graph, 3D Graph, CAS, and Solver share the same compact navigation, focused canvas, and connected mathematical objects.</p>
         </header>
         <div className="workspace-home-grid">
           {mathWorkspaces.map((workspace) => <WorkspaceCard workspace={workspace} key={workspace.id} />)}

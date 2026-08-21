@@ -1,0 +1,10 @@
+import { describe, expect, it } from "vitest";
+import { MathDependencyGraph } from "./dependencyGraph";
+import { createMathDocument, graphFromDocument, loadMathDocument, stableStringify } from "./document";
+
+describe("native mathematical document", () => {
+  it("serializes deterministically and preserves stable IDs and exact values", () => { const graph = new MathDependencyGraph(); graph.define("a=2", "stable-a"); graph.define("b=a+3", "stable-b"); const document = createMathDocument(graph.getSnapshot(), { documentId: "doc", createdAt: "2026-08-20T00:00:00.000Z", extensions: { preserved: true } }); document.modifiedAt = "2026-08-20T00:00:00.000Z"; const serialized = stableStringify(document); expect(stableStringify(JSON.parse(serialized))).toBe(serialized); const loaded = loadMathDocument(serialized); expect(loaded.status).toBe("VALID"); const restored = graphFromDocument(loaded.document!); expect(restored.graph?.getRecord("stable-a")?.id).toBe("stable-a"); expect(restored.graph?.evaluateExpression("b").exactForm).toBe("5"); });
+  it("quarantines corrupt data without silent loss", () => expect(loadMathDocument("{broken")).toMatchObject({ status: "QUARANTINED", diagnostics: [{ code: "CORRUPTED_DOCUMENT" }] }));
+  it("migrates schema zero documents", () => { const result = loadMathDocument(JSON.stringify({ schemaVersion: 0, documentId: "old", nodes: [{ id: "x", expression: "x=2" }] })); expect(result.status).toBe("MIGRATED"); expect(result.document?.mathematicalNodes[0]).toMatchObject({ id: "x", source: "x=2" }); });
+  it("migrates schema one documents with explicit Phase 2 defaults", () => { const graph = new MathDependencyGraph(); graph.define("a=2", "a"); const legacy = createMathDocument(graph.getSnapshot()); legacy.schemaVersion = 1; delete legacy.phase2; const result = loadMathDocument(JSON.stringify(legacy)); expect(result.status).toBe("MIGRATED"); expect(result.document).toMatchObject({ schemaVersion: 2, phase2: { objectRegistryVersion: 1, graphView: { qualityProfile: "BALANCED" } } }); });
+});

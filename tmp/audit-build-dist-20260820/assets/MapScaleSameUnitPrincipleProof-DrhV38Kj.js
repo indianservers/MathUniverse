@@ -1,0 +1,1 @@
+import{j as i}from"./vendor-react-3d-BdZIbgcA.js";import{RatioProofExperience as t}from"./RatioProofModels-DXxXuvXU.js";import"./vendor-icons-ChBwNkB7.js";import"./vendor-three-CLqD4r7U.js";import"./proportionalReasoningMath-thYBBWmB.js";function f({category:o,proof:r}){return i.jsx(t,{category:o,proof:r,kind:"scale"})}export{f as default};

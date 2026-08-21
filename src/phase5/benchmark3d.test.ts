@@ -1,0 +1,3 @@
+import { describe,expect,it } from "vitest";import { phase5Benchmark3D,runPhase5Benchmark } from "./benchmark3d";
+describe("public Phase 5 3D benchmark",()=>{it("contains the required 200 versioned cases",()=>{expect(phase5Benchmark3D).toHaveLength(200);const count=(category:string)=>phase5Benchmark3D.filter(c=>c.category===category).length;expect(count("EXPLICIT")).toBe(20);expect(count("PARAMETRIC")).toBe(20);expect(count("IMPLICIT")).toBe(20);expect(count("ACCESSIBILITY")).toBe(10);});it("executes every case and publishes failures",()=>{const report=runPhase5Benchmark();expect(report.total).toBe(200);expect(report.passed).toBe(200);expect(report.failed).toEqual([]);});});
+

@@ -92,9 +92,11 @@ import ObjectStudioWorkspace, { type ObjectStudioItem, type ObjectStudioShape, t
 import { createUnsupportedWorkspaceAction } from "../workspace/unsupportedWorkspaceAction";
 import { workspaceModeNavigation } from "../workspace/workspaceModeConfig";
 import { createMathWorkspacePayload, type MathWorkspacePayload } from "../workspace/mathWorkspaces";
-import { saveLinkedParameter } from "../workspace/linkedParameters";
+import { readLinkedParameters, saveLinkedParameter } from "../workspace/linkedParameters";
 import { readWorkspaceTransfer, saveWorkspaceTransfer } from "../workspace/workspaceTransfer";
 import CasSpreadsheetStudio from "../components/workspace/CasSpreadsheetStudio";
+import ShareExportControl from "../components/workspace/ShareExportControl";
+import type { PortableWorkspaceAdapter, PortableWorkspaceType } from "../workspace/portableWorkspace";
 import {
   createGeometryTransformRequest,
   createNoSelectionDeleteAction,
@@ -2254,10 +2256,63 @@ export default function MathWorkspace({ initialView = "graph", singleView = fals
   const singleViewCasStudio = singleView && workspaceView === "data" && dataPage === "cas";
   const singleViewSpreadsheetStudio = singleView && workspaceView === "data" && dataPage === "spreadsheet";
   const singleViewStudio = singleView && (workspaceView === "graph" || workspaceView === "3d" || workspaceView === "geometry" || singleViewCasStudio || singleViewSpreadsheetStudio);
-  const workspaceRootClass = singleViewStudio ? `${workspaceView === "graph" ? "math-workspace-single-graph min-h-full" : "h-full min-h-0 overflow-hidden"}` : singleView ? "space-y-2 pt-0" : "space-y-2 pt-14 xl:pt-12";
+  const workspaceRootClass = `relative ${singleViewStudio ? `${workspaceView === "graph" ? "math-workspace-single-graph min-h-full" : "h-full min-h-0 overflow-hidden"}` : singleView ? "space-y-2 pt-0" : "space-y-2 pt-14 xl:pt-12"}`;
+  const portableWorkspaceType: PortableWorkspaceType = workspaceView === "geometry" ? "2d-geometry" : workspaceView === "3d" ? "3d-geometry" : singleViewCasStudio ? "cas" : "2d-graph";
+  const portableAdapter: PortableWorkspaceAdapter = {
+    workspaceType: portableWorkspaceType,
+    engine: portableWorkspaceType === "cas" ? "math-universe-symbolic-notebook" : portableWorkspaceType === "2d-graph" ? "math-universe-graph-workspace" : portableWorkspaceType === "3d-geometry" ? "math-universe-three-workspace" : "math-universe-geometry-workspace",
+    engineVersion: "1.0.1",
+    title: () => portableWorkspaceType === "cas" ? "Computer Algebra Studio" : portableWorkspaceType === "2d-graph" ? "2D Graph Workspace" : portableWorkspaceType === "3d-geometry" ? "3D Geometry Workspace" : "2D Geometry Workspace",
+    serializeScene: () => ({
+      workspaceSnapshot: snapshot(),
+      ...(portableWorkspaceType === "2d-graph" ? { linkedParameters: readLinkedParameters() } : {}),
+      ...(portableWorkspaceType === "cas" ? { casNotebookState, selectedCasCellId, composerInput: casComposerInput, composerOperation: casComposerOperation } : {}),
+      workspaceType: portableWorkspaceType,
+    }),
+    deserializeScene: (scene) => {
+      if (!scene || typeof scene !== "object") throw new Error("The imported scene is missing or invalid.");
+      const record = scene as { workspaceSnapshot?: WorkspaceSnapshot; linkedParameters?: Record<string, { name?: string; value?: number; min?: number; max?: number; step?: number; integer?: boolean }>; casNotebookState?: NotebookState; selectedCasCellId?: string | null; composerInput?: string; composerOperation?: NotebookOperation };
+      if (!record.workspaceSnapshot) throw new Error("The imported scene does not contain a compatible workspace snapshot.");
+      restoreWorkspaceSnapshot(record.workspaceSnapshot);
+      if (portableWorkspaceType === "2d-graph" && record.linkedParameters && typeof record.linkedParameters === "object") {
+        Object.entries(record.linkedParameters).slice(0, 100).forEach(([key, parameter]) => {
+          const name = String(parameter.name ?? key).replace(/[^A-Za-z0-9_]/g, "").slice(0, 32);
+          const value = Number(parameter.value), min = Number(parameter.min), max = Number(parameter.max), step = Number(parameter.step);
+          if (name && [value, min, max, step].every(Number.isFinite) && min <= max && step > 0) saveLinkedParameter({ name, value: Math.min(max, Math.max(min, value)), min, max, step, integer: Boolean(parameter.integer) });
+        });
+      }
+      if (portableWorkspaceType === "cas" && record.casNotebookState?.cells && Array.isArray(record.casNotebookState.cells)) {
+        const assumptions = String(record.casNotebookState.assumptions ?? "").slice(0, 2_000);
+        const mode: EvaluationMode = record.casNotebookState.mode === "numeric" ? "numeric" : "exact";
+        const cells = record.casNotebookState.cells.slice(0, 200).map(cell => ({ ...cell, input: String(cell.input ?? "").slice(0, 20_000) }));
+        setCasNotebookState({ assumptions, mode, cells: evaluateNotebookCells(cells, assumptions, mode) });
+        setSelectedCasCellId(record.selectedCasCellId ?? cells[0]?.id ?? null);
+        setCasComposerInput(String(record.composerInput ?? "").slice(0, 20_000));
+        if (record.composerOperation && operationOptions.some(option => option.value === record.composerOperation)) setCasComposerOperation(record.composerOperation);
+      }
+      setProjectStatus("Portable workspace restored.");
+    },
+    validateScene: (scene) => !scene || typeof scene !== "object" || !("workspaceSnapshot" in scene) ? ["The imported scene does not contain a compatible workspace snapshot."] : [],
+    getImageTarget: (scope) => {
+      if (portableWorkspaceType === "2d-geometry") return geometryExportRef.current ?? workspaceRef.current;
+      if (portableWorkspaceType === "2d-graph") return graphExportRef.current ?? workspaceRef.current;
+      if (portableWorkspaceType === "cas") return workspaceRef.current?.querySelector(scope === "entire" ? ".cas-notebook-scroll" : ".cas-studio-center") as HTMLElement | null;
+      const canvas = workspaceRef.current?.querySelector("canvas");
+      return canvas?.parentElement ?? workspaceRef.current;
+    },
+    getSceneSummary: () => portableWorkspaceType === "cas"
+      ? { objectCount: casNotebookState.cells.length, expressionCount: casNotebookState.cells.length, description: `${casNotebookState.cells.length} CAS calculations` }
+      : portableWorkspaceType === "2d-graph"
+        ? { objectCount: plots.length, expressionCount: plots.length, description: `${plots.length} plotted expressions` }
+        : portableWorkspaceType === "3d-geometry"
+          ? { objectCount: Object.keys(transforms3d).length + added3dObjects.length - deletedBase3dIds.length, expressionCount: showSurface ? 1 : 0, description: `${added3dObjects.length} added 3D objects` }
+          : { objectCount: construction.points.length + construction.lines.length + construction.circles.length + construction.polygons.length, expressionCount: 0, description: `${construction.points.length} points and ${construction.lines.length + construction.circles.length + construction.polygons.length} constructions` },
+    canMerge: false,
+  };
 
   return (
     <div ref={workspaceRef} className={workspaceRootClass}>
+      {singleViewStudio && <ShareExportControl adapter={portableAdapter} />}
       {!singleViewStudio && <WorkspaceMainMenu active={workspaceView} onChange={setWorkspaceView} docked={singleView} />}
       {!singleView && <TopicHeader title="Math Workspace" subtitle="A unified workspace for graphing, commands, results, and dynamic geometric construction." difficulty="All levels" estimatedMinutes={45} />}
 

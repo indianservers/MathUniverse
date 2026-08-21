@@ -1,0 +1,1 @@
+import{l as o}from"./math-DFF0sVE_.js";function i(r,t,a=1){const n=[];for(let e=r;e<=t+a/2;e+=a)n.push(Number(e.toFixed(10)));return n}function s(r,t,a,n=1){return i(t,a,n).map(e=>({x:e,y:r(e)}))}function f(r,t,a=-10,n=10,e=1){return s(u=>o(u,r,t),a,n,e)}export{f as a,i as b,s as g};

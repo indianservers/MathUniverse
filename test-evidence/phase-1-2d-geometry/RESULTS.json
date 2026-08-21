@@ -1,0 +1,47 @@
+{
+  "phase": "Phase 1 - 2D Geometry",
+  "date": "2026-08-20",
+  "packageVersion": "1.0.1",
+  "commit": "2662c27",
+  "route": "/workspace/geometry",
+  "mandatoryOperationsAttempted": 70,
+  "statusTotals": {
+    "pass": 2,
+    "fail": 15,
+    "partial": 33,
+    "blocked": 0,
+    "notImplemented": 20
+  },
+  "defectTotals": {
+    "S0": 1,
+    "S1": 5,
+    "S2": 10,
+    "S3": 5,
+    "S4": 1,
+    "enhancement": 1
+  },
+  "crashes": 0,
+  "dataLossObserved": true,
+  "releaseVerdict": "NOT READY FOR RELEASE",
+  "build": {
+    "exitCode": 0,
+    "modules": 5536,
+    "seconds": 57.76,
+    "largeChunkWarning": true
+  },
+  "geometryRegression": {
+    "testFilesPassed": 8,
+    "testsPassed": 61
+  },
+  "stress": {
+    "objects": 100,
+    "creationMilliseconds": 28582,
+    "crash": false,
+    "invalidLabelsAfterZ": true
+  },
+  "testedViewports": [
+    "desktop",
+    "768x1024",
+    "390x844"
+  ]
+}

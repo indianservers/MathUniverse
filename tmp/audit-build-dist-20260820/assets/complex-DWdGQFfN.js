@@ -1,0 +1,1 @@
+function a(n,t){return Math.hypot(n,t)}function e(n,t){return Math.atan2(t,n)}function o(n,t){return{r:a(n,t),theta:e(n,t)}}function r(n,t){return{a:n.a*t.a-n.b*t.b,b:n.a*t.b+n.b*t.a}}function u(n){return{a:Math.cos(n),b:Math.sin(n)}}export{a,r as b,e as c,o as d,u as e};

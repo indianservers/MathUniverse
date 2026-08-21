@@ -6,7 +6,7 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["dist", "dev-dist", "node_modules", "*.tsbuildinfo", "vite.config.js"],
+    ignores: ["dist", "dev-dist", "node_modules", "tmp/audit-build-dist-*", "*.tsbuildinfo", "vite.config.js"],
   },
   {
     files: ["public/sw.js"],

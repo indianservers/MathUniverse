@@ -5,7 +5,7 @@ export const workspaceModeConfigs: Record<WorkspaceMode, WorkspaceModeConfig> = 
     mode: "home",
     routePath: "/workspace",
     title: "All workspace",
-    description: "Unified workspace home with graphing, geometry, 3D, data, and teaching tools.",
+    description: "Unified workspace home with 2D Geometry, 3D Geometry, 2D Graph, 3D Graph, CAS, and Solver tools.",
     primarySurfaceTestId: "workspace-graph-surface",
   },
   graph: {
@@ -25,7 +25,7 @@ export const workspaceModeConfigs: Record<WorkspaceMode, WorkspaceModeConfig> = 
   "three-d": {
     mode: "three-d",
     routePath: "/workspace/3d",
-    title: "3D",
+    title: "3D Geometry",
     description: "3D graphing, solids, surfaces, camera controls, and object transforms.",
     primarySurfaceTestId: "workspace-3d-surface",
   },

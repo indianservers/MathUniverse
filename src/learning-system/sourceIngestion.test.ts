@@ -1,0 +1,8 @@
+import { describe,expect,it } from "vitest";
+import { ingestedCurriculumBundles, officialCurriculumSources, unavailableOfficialSources } from "./officialSources";
+import { applyReviewerCorrection, curriculumDiff, duplicateSourceIds, validateSource } from "./sourceIngestion";
+describe("official curriculum ingestion",()=>{
+ it("stores checksum, year, pages, URL and honest review state",()=>{expect(officialCurriculumSources).toHaveLength(5);for(const source of officialCurriculumSources){expect(validateSource(source)).toEqual([]);expect(source.officialUrl).toMatch(/^https:\/\/cbseacademic\.nic\.in/);expect(source.checksum).toMatch(/^[a-f0-9]{64}$/);expect(source.pageCount).toBeGreaterThan(0);expect(source.reviewStatus).not.toBe("VERIFIED");}expect(duplicateSourceIds(officialCurriculumSources)).toEqual([]);});
+ it("preserves page references, confidence and audit history",()=>{const bundle=ingestedCurriculumBundles[0];expect(bundle.sections.length).toBeGreaterThan(5);expect(bundle.sections.every((entry)=>entry.pageOrSection&&entry.confidence>0)).toBe(true);const corrected=applyReviewerCorrection(bundle,bundle.sections[0].id,{title:"Reviewed Number System"},"real-reviewer-id","2026-08-20T11:00:00+05:30");expect(corrected.sections[0].reviewStatus).toBe("VERIFIED");expect(corrected.audit.at(-1)).toMatchObject({actorType:"REVIEWER",actorId:"real-reviewer-id",action:"CORRECT_SECTION"});expect(curriculumDiff(bundle,corrected).changed).toContain(bundle.sections[0].id);});
+ it("keeps unavailable AP, Telangana and NCERT sources explicit",()=>{expect(unavailableOfficialSources.map((entry)=>entry.board)).toEqual(["AP_BIE","TELANGANA_BIE","NCERT"]);expect(unavailableOfficialSources.every((entry)=>entry.status!=="VERIFIED")).toBe(true);});
+});

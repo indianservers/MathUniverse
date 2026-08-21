@@ -117,7 +117,7 @@ export function MathWorkspacesHomeSection() {
         <div>
           <p><Grid3X3 className="h-4 w-4" />Connected studios</p>
           <h2 id="math-workspaces-title">Math Workspaces</h2>
-          <span>Calculate, construct, graph and explore mathematics in connected interactive studios.</span>
+          <span>2D Geometry, 3D Geometry, 2D Graph, 3D Graph, CAS, and Solver are grouped in connected interactive studios.</span>
         </div>
         <span className="math-workspaces-suite-count">6 workspaces</span>
       </div>

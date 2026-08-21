@@ -46,6 +46,8 @@ async function clearStaleAppCaches() {
 
 const About = lazyRoute(() => import("./pages/About"));
 const AccuracyCertification = lazyRoute(() => import("./pages/AccuracyCertification"));
+const CoverageDashboardPage = lazyRoute(() => import("./pages/CoverageDashboardPage"));
+const Phase3LearningSystemPage = lazyRoute(() => import("./pages/Phase3LearningSystemPage"));
 const AdvancedSyllabusLabPage = lazyRoute(() => import("./pages/AdvancedSyllabusLabPage"));
 const AdvancedConceptStudios = lazyRoute(() => import("./pages/AdvancedConceptStudios"));
 const Algebra = lazyRoute(() => import("./pages/Algebra"));
@@ -84,6 +86,8 @@ const AdvancedConceptLessonsPage = lazyRoute(() => import("./modules/lessons/pag
 const AdvancedConceptLessonPage = lazyRoute(() => import("./modules/lessons/pages/AdvancedConceptLessonPage"));
 const SchoolLessonsPage = lazyRoute(() => import("./modules/lessons/pages/SchoolLessonsPage"));
 const SchoolLessonPage = lazyRoute(() => import("./modules/lessons/pages/SchoolLessonPage"));
+const Phase4ComputationalLabPage = lazyRoute(() => import("./pages/Phase4ComputationalLabPage"));
+const Phase5MathEnvironmentPage = lazyRoute(() => import("./pages/Phase5MathEnvironmentPage"));
 const LinearAlgebra = lazyRoute(() => import("./pages/LinearAlgebra"));
 const LimitsContinuityVisualizer = lazyRoute(() => import("./pages/LimitsContinuityVisualizer"));
 const MathLab = lazyRoute(() => import("./pages/MathLab"));
@@ -136,6 +140,7 @@ const TrigonometryConceptPage = lazyRoute(() => import("./pages/TrigonometryConc
 const TrigFormulaVisualizerPage = lazyRoute(() => import("./trigonometry/pages/TrigFormulaVisualizerPage"));
 const TruthTableGenerator = lazyRoute(() => import("./pages/TruthTableGenerator"));
 const UnitConverter = lazyRoute(() => import("./pages/UnitConverter"));
+const UniversalMathDocumentPage = lazyRoute(() => import("./pages/UniversalMathDocumentPage"));
 const VisualFormulasHub = lazyRoute(() => import("./pages/VisualFormulasHub"));
 const VisualShowcase = lazyRoute(() => import("./pages/VisualShowcase"));
 const VisualProofsHomePage = lazyRoute(() => import("./visual-proofs/pages/VisualProofsHomePage"));
@@ -201,6 +206,16 @@ export default function App() {
           <Route element={<AppLayout />}>
             <Route index element={<Home />} />
             <Route path="accuracy-certification" element={<AccuracyCertification />} />
+            <Route path="coverage-dashboard" element={<CoverageDashboardPage />} />
+            <Route path="curriculum-evidence" element={<Phase3LearningSystemPage />} />
+            <Route path="learning/*" element={<Phase3LearningSystemPage />} />
+            <Route path="compute/*" element={<Phase4ComputationalLabPage />} />
+            <Route path="data/*" element={<Phase4ComputationalLabPage />} />
+            <Route path="probability-lab" element={<Phase4ComputationalLabPage />} />
+            <Route path="math-3d" element={<Phase5MathEnvironmentPage />} />
+            <Route path="authoring-studio" element={<Phase5MathEnvironmentPage />} />
+            <Route path="curriculum-operations" element={<Phase5MathEnvironmentPage />} />
+            <Route path="release-scorecard" element={<Phase5MathEnvironmentPage />} />
             <Route path="algebra" element={<Algebra />} />
             <Route path="algebraic-structures" element={<AlgebraicStructures />} />
             <Route path="math-lab" element={<MathLab />} />
@@ -225,6 +240,7 @@ export default function App() {
             <Route path="magic-maths" element={<MagicMaths />} />
             <Route path="magic-maths/:conceptSlug" element={<MagicMaths />} />
             <Route path="workspace" element={<WorkspaceHome />} />
+            <Route path="math-document" element={<UniversalMathDocumentPage />} />
             <Route path="board" element={<BoardPage />} />
             <Route path="workspace/graph" element={<WorkspaceGraph />} />
             <Route path="workspace/geometry" element={<WorkspaceGeometry />} />

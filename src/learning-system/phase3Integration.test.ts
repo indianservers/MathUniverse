@@ -1,0 +1,9 @@
+import { describe,expect,it } from "vitest";
+import { evaluateAnswer } from "./assessmentEngine";
+import { coursePathways } from "./courseStructures";
+import { createInductionLessonBundle } from "./lessonSchema";
+import { computeMastery,remediationRecommendation } from "./masteryEngine";
+import { officialCurriculumSources } from "./officialSources";
+import { generateQuestion,practiceFamilies } from "./practiceEngine";
+import { certifyCourse } from "./reviewCertification";
+describe("course to lesson to practice to assessment to mastery",()=>{it("runs an evidence-producing path while certification correctly fails",()=>{const course=coursePathways.find((entry)=>entry.id==="CBSE_IX_MATHEMATICS")!;expect(course.units[0].chapters[0].outcomeIds.length).toBeGreaterThan(0);const {graph,lesson}=createInductionLessonBundle();expect(graph.evaluateExpression("lhs").exactForm).toBe("15");const family=practiceFamilies[2],question=generateQuestion(family,20260820);const evaluation=evaluateAnswer(question.answer,question.answer,{kind:"EXACT"});expect(evaluation.status).toBe("CORRECT");const evidence={id:"integration",conceptId:family.conceptIds[0],attemptedAt:"2026-08-20T00:00:00Z",correct:true,score:1,hintsUsed:0,timeSeconds:90,difficulty:family.difficulty,misconceptionTags:[],retentionCheck:false,assessmentType:"FORMATIVE",completion:"INDEPENDENT" as const,seed:question.seed};const mastery=computeMastery(family.conceptIds[0],[evidence],new Date("2026-08-20"));expect(mastery.evidenceCount).toBe(1);expect(remediationRecommendation(mastery,[]).steps).toContain("Reassess with a different deterministic seed");const certification=certifyCourse(course,officialCurriculumSources,[lesson],new Set(["reactive-dag"]),new Date("2026-08-20"));expect(certification.passed).toBe(false);expect(certification.blockingIssues.map((entry)=>entry.code)).toEqual(expect.arrayContaining(["SOURCE_NOT_VERIFIED","MODEL_PAPER_DRY_RUN_REQUIRED","AUTOMATED_VALIDATION_REQUIRED"]));});});

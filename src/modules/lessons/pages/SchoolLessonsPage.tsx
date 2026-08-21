@@ -2,16 +2,31 @@ import { ArrowRight, Filter, GraduationCap, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { schoolLessonsFor, schoolPathways } from "../catalog/school/schoolSyllabusCatalog";
-import type { AcademicLevel, SchoolSyllabusLesson, SyllabusBoard } from "../syllabus/lessonSyllabusTypes";
+import type { AcademicLevel, SchoolSyllabusLesson, SyllabusBoard, SyllabusLessonType } from "../syllabus/lessonSyllabusTypes";
 
 const levels: Array<AcademicLevel | "ALL"> = ["ALL", "CLASS_6", "CLASS_7", "CLASS_8", "CLASS_9", "CLASS_10", "CLASS_11", "CLASS_12"];
 const boards: Array<SyllabusBoard | "ALL"> = ["ALL", "NCERT", "CBSE", "AP_SCERT", "TN_SCERT", "CAMBRIDGE_IGCSE", "IB_AA", "IB_AI", "COMMON_CORE"];
+const lessonTypes: Array<SyllabusLessonType | "ALL"> = ["ALL", "CONCEPT", "VISUAL_EXPLORATION", "PROOF", "PRACTICE", "APPLICATION", "ASSESSMENT", "PROJECT"];
 
 export default function SchoolLessonsPage() {
   const [level, setLevel] = useState<AcademicLevel | "ALL">("ALL");
   const [board, setBoard] = useState<SyllabusBoard | "ALL">("ALL");
+  const [concept, setConcept] = useState("ALL");
+  const [lessonType, setLessonType] = useState<SyllabusLessonType | "ALL">("ALL");
   const [query, setQuery] = useState("");
-  const lessons = useMemo(() => schoolLessonsFor(level, board, query), [level, board, query]);
+  const baseLessons = useMemo(() => schoolLessonsFor(level, board, query), [level, board, query]);
+  const conceptOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const lesson of schoolLessonsFor(level, board, "")) {
+      counts.set(lesson.metadata.conceptFamily, (counts.get(lesson.metadata.conceptFamily) ?? 0) + 1);
+    }
+    return Array.from(counts, ([label, count]) => ({ label, count })).sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+  }, [board, level]);
+  const lessons = useMemo(() => baseLessons.filter((lesson) => {
+    const conceptMatches = concept === "ALL" || lesson.metadata.conceptFamily === concept;
+    const typeMatches = lessonType === "ALL" || lesson.metadata.lessonType === lessonType;
+    return conceptMatches && typeMatches;
+  }), [baseLessons, concept, lessonType]);
   const units = useMemo(() => Array.from(new Set(lessons.map((lesson) => lesson.metadata.conceptFamily))), [lessons]);
 
   return (
@@ -39,6 +54,16 @@ export default function SchoolLessonsPage() {
           <Select label="Class" value={level} values={levels} onChange={(value) => setLevel(value as AcademicLevel | "ALL")} />
           <Select label="Board" value={board} values={boards} onChange={(value) => setBoard(value as SyllabusBoard | "ALL")} />
         </div>
+
+        <div className="mt-3 grid gap-2 lg:grid-cols-[minmax(0,1fr)_220px]">
+          <Select label="Concept" value={concept} values={["ALL", ...conceptOptions.map((item) => item.label)]} onChange={setConcept} />
+          <Select label="Lesson type" value={lessonType} values={lessonTypes} onChange={(value) => setLessonType(value as SyllabusLessonType | "ALL")} />
+        </div>
+
+        <div className="mt-3 flex flex-wrap gap-2">
+          <FilterChip active={concept === "ALL"} label="All concepts" count={baseLessons.length} onClick={() => setConcept("ALL")} />
+          {conceptOptions.slice(0, 10).map((item) => <FilterChip key={item.label} active={concept === item.label} label={item.label} count={item.count} onClick={() => setConcept(item.label)} />)}
+        </div>
       </header>
 
       <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
@@ -57,7 +82,7 @@ export default function SchoolLessonsPage() {
       <section className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-xl font-black">{lessons.length} matching school lessons</h2>
-          <span className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-3 py-1 text-xs font-black text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-100"><Filter className="h-3.5 w-3.5" />{units.length} units</span>
+          <span className="inline-flex items-center gap-2 rounded-full bg-cyan-50 px-3 py-1 text-xs font-black text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-100"><Filter className="h-3.5 w-3.5" />{units.length} concepts</span>
         </div>
         {units.map((unit) => (
           <div key={unit}>
@@ -69,6 +94,15 @@ export default function SchoolLessonsPage() {
         ))}
       </section>
     </div>
+  );
+}
+
+function FilterChip({ active, label, count, onClick }: { active: boolean; label: string; count: number; onClick: () => void }) {
+  return (
+    <button type="button" className={`inline-flex min-h-9 items-center gap-2 rounded-lg border px-3 text-xs font-black transition ${active ? "border-cyan-500 bg-cyan-50 text-cyan-800 dark:border-cyan-300 dark:bg-cyan-300/15 dark:text-cyan-100" : "border-slate-200 bg-slate-50 text-slate-600 hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:border-cyan-300/40 dark:hover:text-cyan-100"}`} onClick={onClick}>
+      <span>{label}</span>
+      <span className="rounded-full bg-white px-1.5 py-0.5 text-[10px] text-slate-500 dark:bg-white/10 dark:text-slate-300">{count}</span>
+    </button>
   );
 }
 
@@ -94,10 +128,20 @@ function Select({ label, value, values, onChange }: { label: string; value: stri
       <span className="sr-only">{label}</span>
       <GraduationCap className="h-4 w-4 text-cyan-600" />
       <select className="min-w-0 flex-1 bg-transparent outline-none" value={value} onChange={(event) => onChange(event.target.value)}>
-        {values.map((item) => <option key={item} value={item}>{item === "ALL" ? `All ${label.toLowerCase()}s` : item}</option>)}
+        {values.map((item) => <option key={item} value={item}>{item === "ALL" ? allLabel(label) : formatLabel(item)}</option>)}
       </select>
     </label>
   );
+}
+
+function allLabel(label: string) {
+  if (label === "Class") return "All classes";
+  if (label === "Lesson type") return "All lesson types";
+  return `All ${label.toLowerCase()}s`;
+}
+
+function formatLabel(value: string) {
+  return value.toLowerCase().split("_").map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(" ");
 }
 
 function Stat({ label, value }: { label: string; value: string }) {

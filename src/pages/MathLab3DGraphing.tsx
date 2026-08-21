@@ -19,6 +19,8 @@ import { readWorkspaceTransfer, saveWorkspaceTransfer } from "../workspace/works
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import { createGraph3DSurface, migrateGraph3DSurfaces, type Graph3DSurface, type SurfacePalette } from "../graph-studio/graph3dSurfaceModel";
 import { DEFAULT_GRAPH_3D_THEME_ID, GRAPH_3D_THEME_STORAGE_KEY, getGraph3DTheme, isGraph3DThemeId, type Graph3DTheme, type Graph3DThemeId } from "../graph-studio/graph3dThemes";
+import ShareExportControl from "../components/workspace/ShareExportControl";
+import type { PortableWorkspaceAdapter } from "../workspace/portableWorkspace";
 
 const examples = [
   "x^2 + y^2",
@@ -152,6 +154,47 @@ export default function MathLab3DGraphing() {
     window.localStorage.setItem(GRAPH_3D_THEME_STORAGE_KEY, graphThemeId);
   }, [graphThemeId]);
 
+  const portableAdapter: PortableWorkspaceAdapter = {
+    workspaceType: "3d-graph",
+    engine: "graph-studio-3d",
+    engineVersion: "1.0.1",
+    title: () => graphStudio.project.name || "Graph Studio 3D",
+    serializeScene: () => ({
+      ...graphStudioState,
+      showBase, showLabels, autoRotate, objectPosition, cameraPosition, sliceAxis, analysisPoint, graphThemeId,
+      projectName: graphStudio.project.name,
+      stylePreset: graphStudio.project.stylePreset,
+    }),
+    deserializeScene: (scene) => {
+      if (!scene || typeof scene !== "object") throw new Error("The imported 3D graph scene is invalid.");
+      const state = scene as Partial<Graph3DWorkspaceState> & {
+        showBase?: boolean; showLabels?: boolean; autoRotate?: boolean; objectPosition?: ObjectPosition; cameraPosition?: [number, number, number];
+        sliceAxis?: SliceAxis; analysisPoint?: { x: number; y: number }; graphThemeId?: Graph3DThemeId; projectName?: string;
+        stylePreset?: typeof graphStudio.project.stylePreset;
+      };
+      const nextSurfaces = migrateGraph3DSurfaces(state);
+      if (!nextSurfaces.length) throw new Error("The imported file contains no supported 3D surfaces.");
+      setSurfaces(nextSurfaces);
+      setSelectedSurfaceId(nextSurfaces.some(surface => surface.id === state.selectedSurfaceId) ? state.selectedSurfaceId! : nextSurfaces[0].id);
+      setXRange(clamp(Number(state.xRange ?? 3), 1, 8)); setYRange(clamp(Number(state.yRange ?? 3), 1, 8)); setResolution(clamp(Math.round(Number(state.resolution ?? 44)), 12, 80));
+      setShowGrid(state.showGrid !== false); setShowAxes(state.showAxes !== false); setShowBase(state.showBase !== false); setShowLabels(state.showLabels !== false);
+      setSliceEnabled(Boolean(state.sliceEnabled)); setSliceX(Number(state.sliceX ?? 0)); setSliceAxis(["x", "y", "z"].includes(state.sliceAxis ?? "") ? state.sliceAxis! : "x");
+      setReferenceObject(["none", "helix", "sphere", "cone", "cylinder"].includes(state.referenceObject ?? "") ? state.referenceObject! : "none");
+      setGraphVariables(Array.isArray(state.variables) ? state.variables.slice(0, 24) : []);
+      setObjectPosition(state.objectPosition && [state.objectPosition.x, state.objectPosition.y, state.objectPosition.z].every(Number.isFinite) ? state.objectPosition : initialObjectPosition);
+      setCameraPosition(Array.isArray(state.cameraPosition) && state.cameraPosition.length === 3 ? state.cameraPosition.map(Number) as [number, number, number] : [4, 3.2, 6]);
+      setAnalysisPoint(state.analysisPoint && Number.isFinite(state.analysisPoint.x) && Number.isFinite(state.analysisPoint.y) ? state.analysisPoint : { x: 0, y: 0 });
+      setAutoRotate(Boolean(state.autoRotate));
+      if (isGraph3DThemeId(state.graphThemeId)) setGraphThemeId(state.graphThemeId);
+      graphStudio.updateProject({ name: String(state.projectName ?? graphStudio.project.name).slice(0, 160), stylePreset: state.stylePreset ?? graphStudio.project.stylePreset });
+      setCameraKey(value => value + 1);
+    },
+    validateScene: (scene) => !scene || typeof scene !== "object" || !Array.isArray((scene as { surfaces?: unknown }).surfaces) ? ["The imported file does not contain a supported 3D graph surface list."] : [],
+    getImageTarget: () => document.getElementById("surface-3d-panel"),
+    getSceneSummary: () => ({ objectCount: surfaces.length + (referenceObject === "none" ? 0 : 1), expressionCount: surfaces.length, description: `${surfaces.length} 3D surfaces` }),
+    canMerge: false,
+  };
+
   return (
     <GraphStudio3DWorkspace
       projectName={graphStudio.project.name}
@@ -258,6 +301,7 @@ export default function MathLab3DGraphing() {
       stylePreset={graphStudio.project.stylePreset}
       onStylePresetChange={(stylePreset) => graphStudio.updateProject({ stylePreset })}
       savedLibrary={<Saved3DGraphList saved={savedGraphs} onLoad={loadSavedGraph} onDelete={removeSavedGraph} />}
+      shareControl={<ShareExportControl adapter={portableAdapter} className="portable-share-inline" />}
     />
   );
 

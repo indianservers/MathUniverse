@@ -9,6 +9,16 @@
   "theme_color": "#07111f",
   "orientation": "any",
   "categories": ["education", "productivity"],
+  "launch_handler": { "client_mode": "navigate-existing" },
+  "file_handlers": [
+    {
+      "action": "/?portableImport=1",
+      "accept": {
+        "application/vnd.mathapp.workspace": [".mathworkspace"],
+        "application/vnd.mathapp.lesson": [".mathlesson"]
+      }
+    }
+  ],
   "icons": [
     {
       "src": "/math-universe-icon.svg",

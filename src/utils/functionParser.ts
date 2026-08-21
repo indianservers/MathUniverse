@@ -2,6 +2,7 @@ type Token =
   | { type: "number"; value: number }
   | { type: "variable" }
   | { type: "variableY" }
+  | { type: "variableZ" }
   | { type: "operator"; value: string }
   | { type: "function"; value: string }
   | { type: "constant"; value: "pi" | "e" }
@@ -22,7 +23,12 @@ export function compileTwoVariableExpression(input: string) {
   return (x: number, y: number) => evaluateRpn(rpn, x, y);
 }
 
-function normalize(input: string) {
+export function compileThreeVariableExpression(input: string) {
+  const rpn = toRpn(tokenize(input, true, true));
+  return (x: number, y: number, z: number) => evaluateRpn(rpn, x, y, z);
+}
+
+function normalize(input: string, allowZ = false) {
   const expression = input
     .trim()
     .replace(/^y\s*=/i, "")
@@ -33,7 +39,7 @@ function normalize(input: string) {
     .replace(/\u00b3/g, "^3")
     .replace(/\s+/g, "")
     .toLowerCase()
-    .replace(/(\d|\)|x|y|pi|e)(?=(x|y|pi|e|sin|cos|tan|asin|acos|atan|sinh|cosh|tanh|ln|log|exp|sqrt|cbrt|abs|floor|ceil|round|\())/g, "$1*");
+    .replace(new RegExp(`(\\d|\\)|x|y${allowZ ? "|z" : ""}|pi|e)(?=(x|y${allowZ ? "|z" : ""}|pi|e|sin|cos|tan|asin|acos|atan|sinh|cosh|tanh|ln|log|exp|sqrt|cbrt|abs|floor|ceil|round|\\())`, "g"), "$1*");
   const forbidden = /(window|document|globalthis|process|fetch|eval|function|constructor|import|=>|;|=|\{|\}|\[|\])/i;
   if (!expression) throw new Error("Enter a function of x");
   if (forbidden.test(expression)) throw new Error("Unsupported expression");
@@ -41,8 +47,8 @@ function normalize(input: string) {
   return expression;
 }
 
-function tokenize(input: string, allowY = false): Token[] {
-  const expression = normalize(input);
+function tokenize(input: string, allowY = false, allowZ = false): Token[] {
+  const expression = normalize(input, allowZ);
   const tokens: Token[] = [];
   let index = 0;
   while (index < expression.length) {
@@ -60,6 +66,7 @@ function tokenize(input: string, allowY = false): Token[] {
       while (index < expression.length && /[a-z]/.test(expression[index])) name += expression[index++];
       if (name === "x") tokens.push({ type: "variable" });
       else if (name === "y" && allowY) tokens.push({ type: "variableY" } as Token);
+      else if (name === "z" && allowZ) tokens.push({ type: "variableZ" } as Token);
       else if (name === "pi" || name === "e") tokens.push({ type: "constant", value: name });
       else if (functions.has(name)) tokens.push({ type: "function", value: name });
       else throw new Error(`Unsupported name: ${name}`);
@@ -81,7 +88,7 @@ function toRpn(tokens: Token[]) {
   const output: Token[] = [];
   const operators: Token[] = [];
   tokens.forEach((token) => {
-    if (token.type === "number" || token.type === "constant" || token.type === "variable" || token.type === "variableY") output.push(token);
+    if (token.type === "number" || token.type === "constant" || token.type === "variable" || token.type === "variableY" || token.type === "variableZ") output.push(token);
     else if (token.type === "function") operators.push(token);
     else if (token.type === "operator") {
       while (operators.length) {
@@ -106,12 +113,13 @@ function toRpn(tokens: Token[]) {
   return output;
 }
 
-function evaluateRpn(rpn: Token[], x: number, y = 0) {
+function evaluateRpn(rpn: Token[], x: number, y = 0, z = 0) {
   const stack: number[] = [];
   rpn.forEach((token) => {
     if (token.type === "number") stack.push(token.value);
     else if (token.type === "variable") stack.push(x);
     else if (token.type === "variableY") stack.push(y);
+    else if (token.type === "variableZ") stack.push(z);
     else if (token.type === "constant") stack.push(token.value === "pi" ? Math.PI : Math.E);
     else if (token.type === "function") {
       const value = stack.pop();

@@ -91,6 +91,7 @@ export type GraphStudio3DWorkspaceProps = {
   graphThemeId: Graph3DThemeId;
   onGraphThemeChange: (value: Graph3DThemeId) => void;
   savedLibrary: ReactNode;
+  shareControl?: ReactNode;
 };
 
 const nav = [
@@ -194,6 +195,7 @@ export default function GraphStudio3DWorkspace(props: GraphStudio3DWorkspaceProp
         <TopAction label="Save" icon={<Save />} onClick={props.onSave} shortcut="Ctrl+S" />
         <div className="relative"><TopAction label="Export" icon={<Download />} onClick={() => setExportOpen((value) => !value)} />{exportOpen && <ExportMenu props={props} close={() => setExportOpen(false)} />}</div>
         <div className="relative"><TopAction label="Settings" icon={<Settings />} onClick={() => setSettingsOpen((value) => !value)} />{settingsOpen && <SettingsMenu props={props} />}</div>
+        {props.shareControl}
       </div>
       <button type="button" className="gs3d-mobile-menu" onClick={() => setLeftOpen((value) => !value)} aria-label="Open expressions"><Menu /></button>
     </header>
@@ -255,7 +257,7 @@ export default function GraphStudio3DWorkspace(props: GraphStudio3DWorkspaceProp
 
     <footer className="gs3d-status"><span className="online-dot" />Offline ready <span>{fps} FPS</span><span>{props.surfaces.length} surfaces / {visibleSurfaceCount} visible</span><span>{props.resolution} x {props.resolution} adaptive mesh</span><span>{errorCount ? `${errorCount} calculation errors` : "Calculations current"}</span><span className="saved">Auto-saved locally</span></footer>
 
-    <nav className="gs3d-mobile-nav" aria-label="Mobile workspace panels"><button type="button" onClick={() => setLeftOpen(true)}><Layers3 />Expressions</button><button type="button" onClick={() => { chooseTool("point"); setRightOpen(true); setInspectorTab("analysis"); }}><Crosshair />Analyze</button><button type="button" onClick={() => setRightOpen(true)}><SlidersHorizontal />Inspector</button><button type="button" onClick={() => { setDockOpen(true); setDockTab("timeline"); }}><Activity />Timeline</button></nav>
+    <nav className="gs3d-mobile-nav" aria-label="Mobile workspace panels"><button type="button" onClick={() => setLeftOpen(true)}><Layers3 />Expressions</button><button type="button" onClick={() => { chooseTool("point"); setRightOpen(true); setInspectorTab("analysis"); }}><Crosshair />Analyze</button><button type="button" onClick={() => setRightOpen(true)}><SlidersHorizontal />Inspector</button><button type="button" onClick={() => { setDockOpen(true); setDockTab("timeline"); }}><Activity />Timeline</button>{props.shareControl}</nav>
   </div>;
 }
 

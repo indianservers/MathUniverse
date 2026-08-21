@@ -1,0 +1,257 @@
+{
+  "fileHeader": {
+    "magic": "MATHAPP_PORTABLE_FILE",
+    "fileKind": "lesson",
+    "fileExtension": ".mathlesson",
+    "mimeType": "application/vnd.mathapp.lesson",
+    "schemaVersion": 1,
+    "minimumReaderVersion": "1.0.0",
+    "createdByApp": "Math Universe",
+    "createdByAppVersion": "1.0.1"
+  },
+  "workspace": {
+    "type": "3d-graph",
+    "typeLabel": "3D Graph",
+    "engine": "graph-studio-3d",
+    "engineVersion": "1.0.1"
+  },
+  "document": {
+    "id": "574be7ce-8403-4436-9fbe-dde0ce8b0231",
+    "title": "Explore z = sin(x)cos(y)",
+    "description": "Investigate periodic peaks, troughs, zeros and cross-sections of a trigonometric surface.",
+    "author": {
+      "name": "Math Universe",
+      "organization": "Sample Lesson Library"
+    },
+    "createdAt": "2026-08-20T10:30:00.000Z",
+    "updatedAt": "2026-08-20T10:30:00.000Z",
+    "language": "en",
+    "tags": [
+      "surface",
+      "sine",
+      "cosine",
+      "periodicity",
+      "3d-graph"
+    ],
+    "difficulty": "intermediate",
+    "gradeLevel": [
+      "10",
+      "11",
+      "12"
+    ],
+    "subject": "Mathematics",
+    "topic": "Functions",
+    "estimatedDurationMinutes": 20
+  },
+  "preview": {
+    "thumbnailIncluded": true,
+    "thumbnailDataUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMzYwIj48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgcng9IjI4IiBmaWxsPSIjMDcxMTFmIi8+PHBhdGggZD0iTTAgMjgwIFExNjAgODAgMzIwIDIxMCBUNjQwIDkwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4YjVjZjYiIHN0cm9rZS13aWR0aD0iMTAiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIyMTAiIHI9IjEzIiBmaWxsPSIjZmJiZjI0Ii8+PHRleHQgeD0iMzIiIHk9IjU4IiBmaWxsPSIjZTZmYmZmIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSI3MDAiPkV4cGxvcmUgeiA9IHNpbih4KWNvcyh5KTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMzMwIiBmaWxsPSIjOTNjNWZkIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPk1hdGggVW5pdmVyc2Ugc2FtcGxlIGxlc3NvbjwvdGV4dD48L3N2Zz4=",
+    "objectCount": 1,
+    "expressionCount": 1,
+    "hasSolution": true
+  },
+  "scene": {
+    "surfaces": [
+      {
+        "id": "sample-sin-cos",
+        "name": "z = sin(x)cos(y)",
+        "expression": "sin(x)*cos(y)",
+        "visible": true,
+        "palette": "height",
+        "colorLow": "#22d3ee",
+        "colorHigh": "#8b5cf6",
+        "opacity": 0.9,
+        "wireframe": false,
+        "showPoints": false,
+        "samplingAnimation": false
+      }
+    ],
+    "selectedSurfaceId": "sample-sin-cos",
+    "xRange": 4,
+    "yRange": 4,
+    "resolution": 52,
+    "showGrid": true,
+    "showAxes": true,
+    "sliceEnabled": false,
+    "sliceX": 0,
+    "referenceObject": "none",
+    "variables": [],
+    "showBase": true,
+    "showLabels": true,
+    "autoRotate": false,
+    "objectPosition": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "cameraPosition": [
+      4,
+      3.2,
+      6
+    ],
+    "sliceAxis": "x",
+    "analysisPoint": {
+      "x": 0,
+      "y": 0
+    },
+    "graphThemeId": "cosmic-neon",
+    "projectName": "Trigonometric Surface",
+    "stylePreset": "presentation"
+  },
+  "lesson": {
+    "lessonId": "ff2eb145-c891-4795-ae5d-72668220ccd7",
+    "title": "Explore z = sin(x)cos(y)",
+    "shortDescription": "Investigate periodic peaks, troughs, zeros and cross-sections of a trigonometric surface.",
+    "subject": "Mathematics",
+    "workspaceType": "3d-graph",
+    "topic": "Functions",
+    "subtopic": "3D trigonometric surfaces",
+    "difficulty": "intermediate",
+    "gradeLevel": [
+      "10",
+      "11",
+      "12"
+    ],
+    "learningObjectives": [
+      "The surface ranges from −1 to 1, repeats periodically, and has grid-like zero curves with sine/cosine cross-sections."
+    ],
+    "prerequisites": [
+      "Basic coordinate and algebra fluency"
+    ],
+    "instructions": [
+      "Rotate the surface and locate peaks and troughs.",
+      "Find lines where z=0.",
+      "Enable a slice and compare it with a sine or cosine graph."
+    ],
+    "hints": [
+      "The maximum possible product is 1.",
+      "The surface is zero whenever sin(x)=0 or cos(y)=0.",
+      "At y=0, the cross-section is z=sin(x)."
+    ],
+    "checkpoints": [],
+    "solutionSteps": [
+      "Use the range −4≤x,y≤4.",
+      "Identify maxima such as (π/2,0,1) and neighboring troughs.",
+      "Note zero lines x=kπ and y=π/2+kπ.",
+      "Slice at x=π/2 to view z=cos(y)."
+    ],
+    "expectedResult": "The surface ranges from −1 to 1, repeats periodically, and has grid-like zero curves with sine/cosine cross-sections.",
+    "teacherNotes": "Invite students to explain why the visual and symbolic results agree.",
+    "estimatedDurationMinutes": 20,
+    "maximumScore": 100,
+    "attemptLimit": null,
+    "allowSolutionView": true,
+    "tags": [
+      "surface",
+      "sine",
+      "cosine",
+      "periodicity",
+      "3d-graph"
+    ],
+    "initialScene": {
+      "surfaces": [
+        {
+          "id": "sample-sin-cos",
+          "name": "z = sin(x)cos(y)",
+          "expression": "sin(x)*cos(y)",
+          "visible": true,
+          "palette": "height",
+          "colorLow": "#22d3ee",
+          "colorHigh": "#8b5cf6",
+          "opacity": 0.9,
+          "wireframe": false,
+          "showPoints": false,
+          "samplingAnimation": false
+        }
+      ],
+      "selectedSurfaceId": "sample-sin-cos",
+      "xRange": 4,
+      "yRange": 4,
+      "resolution": 52,
+      "showGrid": true,
+      "showAxes": true,
+      "sliceEnabled": false,
+      "sliceX": 0,
+      "referenceObject": "none",
+      "variables": [],
+      "showBase": true,
+      "showLabels": true,
+      "autoRotate": false,
+      "objectPosition": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "cameraPosition": [
+        4,
+        3.2,
+        6
+      ],
+      "sliceAxis": "x",
+      "analysisPoint": {
+        "x": 0,
+        "y": 0
+      },
+      "graphThemeId": "cosmic-neon",
+      "projectName": "Trigonometric Surface",
+      "stylePreset": "presentation"
+    },
+    "solutionScene": {
+      "surfaces": [
+        {
+          "id": "sample-sin-cos",
+          "name": "z = sin(x)cos(y)",
+          "expression": "sin(x)*cos(y)",
+          "visible": true,
+          "palette": "height",
+          "colorLow": "#22d3ee",
+          "colorHigh": "#8b5cf6",
+          "opacity": 0.9,
+          "wireframe": false,
+          "showPoints": false,
+          "samplingAnimation": false
+        }
+      ],
+      "selectedSurfaceId": "sample-sin-cos",
+      "xRange": 4,
+      "yRange": 4,
+      "resolution": 52,
+      "showGrid": true,
+      "showAxes": true,
+      "sliceEnabled": true,
+      "sliceX": 1.5707963267948966,
+      "referenceObject": "none",
+      "variables": [],
+      "showBase": true,
+      "showLabels": true,
+      "autoRotate": false,
+      "objectPosition": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "cameraPosition": [
+        4,
+        3.2,
+        6
+      ],
+      "sliceAxis": "x",
+      "analysisPoint": {
+        "x": 1.5707963267948966,
+        "y": 0
+      },
+      "graphThemeId": "cosmic-neon",
+      "projectName": "Trigonometric Surface",
+      "stylePreset": "presentation"
+    },
+    "openMode": "practice"
+  },
+  "metadata": {
+    "sample": true,
+    "license": "CC BY 4.0"
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "contentHash": "7354808b90fcb6fb9df02064c243e7d451823ac39655b13344811ca6dd08ecea"
+  }
+}
