@@ -35,7 +35,7 @@ function LegacyLearningLesson({ lesson, resetToken, onInteraction }: LessonAdapt
 }
 
 function isRedesignedLearningPageLesson(lessonId: number) {
-  return (lessonId >= 640 && lessonId <= 648) || lessonId === 650 || lessonId === 651 || lessonId === 653 || lessonId === 654;
+  return (lessonId >= 640 && lessonId <= 648) || lessonId === 650 || lessonId === 651 || (lessonId >= 653 && lessonId <= 656);
 }
 
 type LearningPageSpec = {
@@ -47,7 +47,7 @@ type LearningPageSpec = {
   left: string[];
   right: string[];
   footer: string;
-  visual: "line" | "parabola" | "balance" | "construction" | "cards";
+  visual: "line" | "parabola" | "balance" | "construction" | "cards" | "exit" | "revision";
 };
 
 function learningPageSpecFor(lessonId: number): LearningPageSpec {
@@ -65,6 +65,8 @@ function learningPageSpecFor(lessonId: number): LearningPageSpec {
     651: { title: "Real-World Application", value: "Choose Plan A", purpose: "Apply mathematics authentically.", prompt: "Plan A: C = 199 + 20g", focus: "Plan B: C = 99 + 35g", left: ["usage 8 GB", "break-even 6.67 GB"], right: ["recommend Choose Plan A", "compare total cost"], footer: "The recommendation follows from comparing total cost at the same usage.", visual: "line" },
     653: { title: "Dynamic Question Generator", value: "4 valid questions", purpose: "Provide repeated practice.", prompt: "a/b + c/d", focus: "2/3 + 3/4", left: ["common denominator 12", "answer 17/12 = 1 5/12", "simplified"], right: ["generate new", "4 valid questions"], footer: "The generator checks validity and simplification before releasing variants.", visual: "cards" },
     654: { title: "Mastery Challenge", value: "3/4", purpose: "Integrate related skills.", prompt: "Question 4", focus: "Explain y-intercept", left: ["linear functions checkpoint", "4 questions", "score 3/4"], right: ["confidence slider", "review mistake", "mastery almost there"], footer: "The checkpoint asks for answer, explanation, confidence, and review.", visual: "cards" },
+    655: { title: "Exit Ticket", value: "Correct", purpose: "Check essential understanding.", prompt: "y = 2x + 1", focus: "When x = 5, y = 11", left: ["Quick check 1", "Quick check 2", "Explain one takeaway", "Confidence: Good"], right: ["Correct", "Evidence recorded", "Next: Practice intercepts"], footer: "The exit ticket records calculation, graph reading, explanation, and confidence evidence.", visual: "exit" },
+    656: { title: "Revision Summary", value: "62%", purpose: "Consolidate key knowledge.", prompt: "Linear functions review", focus: "y = mx + b", left: ["Slope", "Intercept", "Table", "Graph", "Equation"], right: ["Weak spot: intercepts", "Revise next", "Mistake pattern", "Two revision cards"], footer: "The review map connects slope, intercept, table, graph, and equation before suggesting the next revision.", visual: "revision" },
   };
   return specs[lessonId] ?? specs[640];
 }
@@ -154,6 +156,30 @@ function renderLearningPageVisual(spec: LearningPageSpec) {
         <circle cx="270" cy="104" r="12" fill="#f59e0b" />
         <text x="282" y="103" fontWeight="900">{spec.focus}</text>
       </svg>
+    );
+  }
+  if (spec.visual === "exit") {
+    return (
+      <div className="grid gap-3 rounded-3xl bg-white p-4 ring-1 ring-slate-200 lg:grid-cols-[1fr_220px]">
+        <div className="space-y-3">
+          {["Calculate y", "Identify slope from graph", "Explain one takeaway"].map((task, index) => <div key={task} className="rounded-2xl bg-slate-50 p-3 ring-1 ring-slate-200"><p className="text-xs font-black uppercase text-slate-500">Question {index + 1}</p><p className="font-black text-slate-900">{task}</p>{index === 0 ? <p className="mt-2 rounded-xl bg-emerald-50 px-3 py-2 font-mono font-black text-emerald-900">When x = 5, y = 11 - Correct</p> : null}</div>)}
+        </div>
+        <svg viewBox="0 0 220 220" className="w-full rounded-2xl bg-slate-50 ring-1 ring-slate-200" role="img" aria-label="Exit ticket slope graph">
+          <line x1="30" y1="180" x2="200" y2="180" stroke="#334155" strokeWidth="2" /><line x1="70" y1="20" x2="70" y2="200" stroke="#334155" strokeWidth="2" />
+          <line x1="55" y1="162" x2="185" y2="32" stroke="#7c3aed" strokeWidth="5" />
+          <circle cx="150" cy="68" r="9" fill="#14b8a6" /><text x="108" y="58" fontWeight="900">x=5, y=11</text>
+        </svg>
+      </div>
+    );
+  }
+  if (spec.visual === "revision") {
+    return (
+      <div className="rounded-3xl bg-white p-4 ring-1 ring-slate-200">
+        <div className="grid place-items-center gap-3 md:grid-cols-[1fr_1fr_1fr]">
+          {["Slope", "Table", "Graph", "Equation", "Intercept"].map((node, index) => <div key={node} className={node === "Intercept" ? "rounded-2xl bg-amber-50 p-4 text-center font-black text-amber-900 ring-2 ring-amber-300" : "rounded-2xl bg-emerald-50 p-4 text-center font-black text-emerald-900 ring-1 ring-emerald-100"}>{node}{index < 4 ? <span className="ml-2 text-violet-600">-&gt;</span> : null}</div>)}
+        </div>
+        <div className="mt-4 grid gap-2 md:grid-cols-3">{[["Slope", "88%"], ["Intercept", "62%"], ["Equation", "91%"]].map(([label, score]) => <div key={label} className="rounded-2xl bg-slate-50 p-3"><p className="text-xs font-black text-slate-500">{label}</p><div className="mt-2 h-3 rounded-full bg-slate-200"><div className={label === "Intercept" ? "h-full rounded-full bg-amber-400" : "h-full rounded-full bg-teal-500"} style={{ width: score }} /></div><p className="mt-1 font-mono font-black">{score}</p></div>)}</div>
+      </div>
     );
   }
   return (
