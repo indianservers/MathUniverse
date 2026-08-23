@@ -1,0 +1,426 @@
+{
+  "baseUrl": "http://127.0.0.1:2245",
+  "generatedAt": "2026-08-23T15:15:34.984Z",
+  "results": [
+    {
+      "mockupId": 331,
+      "route": "/lessons/trigonometry/274-elevation-and-depression",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0331-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 331,
+      "route": "/lessons/trigonometry/274-elevation-and-depression",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0331-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 331,
+      "route": "/lessons/trigonometry/274-elevation-and-depression",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0331-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 332,
+      "route": "/lessons/trigonometry/275-harmonic-motion",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0332-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 332,
+      "route": "/lessons/trigonometry/275-harmonic-motion",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0332-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 332,
+      "route": "/lessons/trigonometry/275-harmonic-motion",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0332-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 333,
+      "route": "/lessons/trigonometry/276-polar-trigonometry",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0333-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 333,
+      "route": "/lessons/trigonometry/276-polar-trigonometry",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0333-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 333,
+      "route": "/lessons/trigonometry/276-polar-trigonometry",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0333-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 334,
+      "route": "/lessons/symbolic-mathematics/428-symbolic-evaluation",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0334-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 334,
+      "route": "/lessons/symbolic-mathematics/428-symbolic-evaluation",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0334-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 334,
+      "route": "/lessons/symbolic-mathematics/428-symbolic-evaluation",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0334-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 335,
+      "route": "/lessons/symbolic-mathematics/429-simplify",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0335-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 335,
+      "route": "/lessons/symbolic-mathematics/429-simplify",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0335-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 335,
+      "route": "/lessons/symbolic-mathematics/429-simplify",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0335-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 336,
+      "route": "/lessons/symbolic-mathematics/430-expand",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0336-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 336,
+      "route": "/lessons/symbolic-mathematics/430-expand",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0336-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 336,
+      "route": "/lessons/symbolic-mathematics/430-expand",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0336-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 337,
+      "route": "/lessons/symbolic-mathematics/431-factor",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0337-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 337,
+      "route": "/lessons/symbolic-mathematics/431-factor",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0337-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 337,
+      "route": "/lessons/symbolic-mathematics/431-factor",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0337-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 338,
+      "route": "/lessons/symbolic-mathematics/432-substitute",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0338-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 338,
+      "route": "/lessons/symbolic-mathematics/432-substitute",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0338-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 338,
+      "route": "/lessons/symbolic-mathematics/432-substitute",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0338-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 339,
+      "route": "/lessons/symbolic-mathematics/433-solve",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0339-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 339,
+      "route": "/lessons/symbolic-mathematics/433-solve",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0339-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 339,
+      "route": "/lessons/symbolic-mathematics/433-solve",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0339-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 340,
+      "route": "/lessons/symbolic-mathematics/434-numerical-solve",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0340-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 340,
+      "route": "/lessons/symbolic-mathematics/434-numerical-solve",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0340-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 340,
+      "route": "/lessons/symbolic-mathematics/434-numerical-solve",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0340-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 341,
+      "route": "/lessons/symbolic-mathematics/435-solve-systems",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0341-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 341,
+      "route": "/lessons/symbolic-mathematics/435-solve-systems",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0341-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 341,
+      "route": "/lessons/symbolic-mathematics/435-solve-systems",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0341-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 342,
+      "route": "/lessons/symbolic-mathematics/436-eliminate-variables",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0342-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 342,
+      "route": "/lessons/symbolic-mathematics/436-eliminate-variables",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0342-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 342,
+      "route": "/lessons/symbolic-mathematics/436-eliminate-variables",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0342-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 343,
+      "route": "/lessons/symbolic-mathematics/437-partial-fractions",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0343-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 343,
+      "route": "/lessons/symbolic-mathematics/437-partial-fractions",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0343-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 343,
+      "route": "/lessons/symbolic-mathematics/437-partial-fractions",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0343-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 344,
+      "route": "/lessons/symbolic-mathematics/438-polynomial-division",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0344-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 344,
+      "route": "/lessons/symbolic-mathematics/438-polynomial-division",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0344-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 344,
+      "route": "/lessons/symbolic-mathematics/438-polynomial-division",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0344-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 345,
+      "route": "/lessons/symbolic-mathematics/439-derivatives",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0345-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 345,
+      "route": "/lessons/symbolic-mathematics/439-derivatives",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0345-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 345,
+      "route": "/lessons/symbolic-mathematics/439-derivatives",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0345-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 346,
+      "route": "/lessons/symbolic-mathematics/440-integrals",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0346-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 346,
+      "route": "/lessons/symbolic-mathematics/440-integrals",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0346-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 346,
+      "route": "/lessons/symbolic-mathematics/440-integrals",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0346-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 347,
+      "route": "/lessons/symbolic-mathematics/441-limits",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0347-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 347,
+      "route": "/lessons/symbolic-mathematics/441-limits",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0347-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 347,
+      "route": "/lessons/symbolic-mathematics/441-limits",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0347-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 348,
+      "route": "/lessons/symbolic-mathematics/442-series-expansions",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0348-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 348,
+      "route": "/lessons/symbolic-mathematics/442-series-expansions",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0348-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 348,
+      "route": "/lessons/symbolic-mathematics/442-series-expansions",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0348-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 349,
+      "route": "/lessons/symbolic-mathematics/443-differential-equations",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0349-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 349,
+      "route": "/lessons/symbolic-mathematics/443-differential-equations",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0349-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 349,
+      "route": "/lessons/symbolic-mathematics/443-differential-equations",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0349-mobile.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 350,
+      "route": "/lessons/symbolic-mathematics/444-matrix-operations",
+      "viewport": "desktop",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0350-desktop.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 350,
+      "route": "/lessons/symbolic-mathematics/444-matrix-operations",
+      "viewport": "tablet",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0350-tablet.png",
+      "status": "passed"
+    },
+    {
+      "mockupId": 350,
+      "route": "/lessons/symbolic-mathematics/444-matrix-operations",
+      "viewport": "mobile",
+      "screenshotPath": "test-evidence\\lesson-ui-upgrade\\0350-mobile.png",
+      "status": "passed"
+    }
+  ]
+}
