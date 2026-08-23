@@ -31,7 +31,7 @@ export type ReusableLessonEngineParams = {
   visualLabels?: string[];
   insight?: string;
   check?: string;
-  solid?: "box" | "sphere" | "cylinder" | "cone" | "pyramid" | "triangular-prism";
+  solid?: "box" | "sphere" | "cylinder" | "cone" | "pyramid" | "triangular-prism" | "tetrahedron";
   surfaceExpression?: string;
   casCommand?: string;
   casExpression?: string;
@@ -386,8 +386,10 @@ function ReusableGeometry3DEngine({ params, resetToken, onInteraction }: Omit<Re
   const kernelObject = solid === "sphere" ? sphere3(point3(0, 0, 0), size / 2) : solid === "cylinder" ? cylinder3(point3(0, 0, 0), size / 2, height) : cone3(point3(0, 0, 0), size / 2, height);
   const kernelMetrics = object3Measurement(kernelObject);
   const genericMetrics = solidMetrics(solid, size);
-  const volume = solid === "box" || solid === "pyramid" || solid === "triangular-prism" ? genericMetrics.volume : kernelMetrics.volume;
-  const surfaceArea = solid === "box" ? genericMetrics.surfaceArea : kernelMetrics.surfaceArea;
+  const tetrahedronBaseArea = (Math.sqrt(3) / 4) * size ** 2;
+  const tetrahedronVolume = (tetrahedronBaseArea * height) / 3;
+  const volume = solid === "tetrahedron" ? tetrahedronVolume : solid === "box" || solid === "pyramid" || solid === "triangular-prism" ? genericMetrics.volume : kernelMetrics.volume;
+  const surfaceArea = solid === "box" || solid === "tetrahedron" ? genericMetrics.surfaceArea : kernelMetrics.surfaceArea;
   const update = (setter: (value: number) => void) => (value: number) => { setter(value); onInteraction(); };
   const updateSolidFromPointer = (event: PointerEvent<SVGSVGElement>) => {
     if (event.type === "pointermove" && event.buttons !== 1) return;
@@ -404,15 +406,16 @@ function ReusableGeometry3DEngine({ params, resetToken, onInteraction }: Omit<Re
     <div className="lesson-engine lesson-engine-3d-geometry">
       <div className="lesson-engine-axis lesson-direct-surface is-dark" data-direct-interaction="true">
         <span className="lesson-direct-cue is-dark">Drag solid</span>
-        <svg viewBox="0 0 640 360" className="h-[310px] w-full" role="img" aria-label="Reusable spatial solid workspace" onPointerDown={updateSolidFromPointer} onPointerMove={updateSolidFromPointer}>
+        <svg viewBox="0 0 640 360" className="h-[310px] w-full" role="img" aria-label={`${solid} spatial solid workspace`} onPointerDown={updateSolidFromPointer} onPointerMove={updateSolidFromPointer}>
           <Axis3D orbit={orbit} />
-          <Solid3D kind={solid} size={size} />
+          <Solid3D kind={solid} size={size} height={height} />
         </svg>
       </div>
       <EngineControlPanel title="Solid params" insight={params.insight} check={params.check}>
         <SliderControl density="compact" label="size" value={size} min={1} max={8} step={0.25} onChange={update(setSize)} />
         <SliderControl density="compact" label="height" value={height} min={1} max={10} step={0.25} onChange={update(setHeight)} />
         <SliderControl density="compact" label="orbit" value={orbit} min={0} max={360} step={5} unit="degrees" onChange={update(setOrbit)} />
+        {solid === "tetrahedron" ? <MiniMetric label="Formula" value="V = Bh / 3" /> : null}
         <div className="grid grid-cols-2 gap-2">
           <MiniMetric label="Volume" value={volume.toFixed(2)} />
           <MiniMetric label="Surface" value={surfaceArea.toFixed(2)} />
@@ -640,7 +643,7 @@ function geometrySceneFor(name: string): NonNullable<ReusableLessonEngineParams[
 
 function geometry3DParamsFor(title: string): ReusableLessonEngineParams {
   const name = title.toLowerCase();
-  const solid = name.includes("sphere") ? "sphere" : name.includes("cone") ? "cone" : name.includes("cylinder") ? "cylinder" : name.includes("pyramid") ? "pyramid" : name.includes("prism") ? "triangular-prism" : "box";
+  const solid = name.includes("sphere") ? "sphere" : name.includes("cone") ? "cone" : name.includes("cylinder") ? "cylinder" : name.includes("tetrahedron") ? "tetrahedron" : name.includes("pyramid") ? "pyramid" : name.includes("prism") ? "triangular-prism" : "box";
   const snippet = geometry3DGuidanceFor(title);
   return { title, solid, insight: `${snippet}: use x, y, and z axes with spatial measurements.`, check: "Volume uses cubic units; surface area uses square units." };
 }
@@ -750,10 +753,28 @@ function SurfaceWireframe({ range, slice }: { range: number; slice: number }) {
   return <g>{rows.map((points, index) => <polyline key={index} points={points} fill="none" stroke="#67e8f9" strokeWidth="2" />)}<ellipse cx="320" cy={185 - slice * 35} rx={Math.max(25, range * 22)} ry="30" fill="none" stroke="#f59e0b" strokeWidth="3" strokeDasharray="7 5" /></g>;
 }
 
-function Solid3D({ kind, size }: { kind: NonNullable<ReusableLessonEngineParams["solid"]>; size: number }) {
+function Solid3D({ kind, size, height }: { kind: NonNullable<ReusableLessonEngineParams["solid"]>; size: number; height: number }) {
   const scale = 20 + size * 7;
   if (kind === "sphere") return <ellipse cx="320" cy="185" rx={scale} ry={scale * 0.72} fill="#06b6d4" opacity=".55" stroke="#67e8f9" strokeWidth="3" />;
   if (kind === "cylinder" || kind === "cone") return <g><ellipse cx="320" cy="250" rx={scale} ry={scale * 0.3} fill="#06b6d4" opacity=".5" /><path d={kind === "cone" ? `M${320 - scale},250 L320,75 L${320 + scale},250` : `M${320 - scale},250 L${320 - scale},100 M${320 + scale},250 L${320 + scale},100`} fill="none" stroke="#67e8f9" strokeWidth="4" /><ellipse cx="320" cy="100" rx={kind === "cone" ? 3 : scale} ry={kind === "cone" ? 3 : scale * 0.3} fill="#06b6d4" opacity=".6" stroke="#67e8f9" /></g>;
+  if (kind === "tetrahedron") {
+    const apexY = 235 - height * 18;
+    const left = `${320 - scale},245`;
+    const right = `${320 + scale},245`;
+    const back = `320,${245 - scale * 0.62}`;
+    const apex = `320,${apexY}`;
+    return (
+      <g>
+        <polygon points={`${left} ${right} ${apex}`} fill="#06b6d4" opacity=".38" stroke="#67e8f9" strokeWidth="3" />
+        <polygon points={`${left} ${back} ${apex}`} fill="#14b8a6" opacity=".24" stroke="#67e8f9" strokeWidth="3" />
+        <polygon points={`${right} ${back} ${apex}`} fill="#38bdf8" opacity=".22" stroke="#67e8f9" strokeWidth="3" />
+        <path d={`M${left} L${back} L${right} M320,245 L${apex}`} fill="none" stroke="#f59e0b" strokeDasharray="7 5" strokeWidth="3" />
+        <circle cx="320" cy={apexY} r="5" fill="#f59e0b" />
+        <text x="333" y={apexY - 8} fill="#fef3c7" fontSize="18" fontWeight="900">apex</text>
+        <text x="330" y="268" fill="#cffafe" fontSize="16" fontWeight="900">base B</text>
+      </g>
+    );
+  }
   return <path d={`M${320 - scale},${220 - scale / 2} l${scale},${-scale / 2} l${scale},${scale / 2} v${scale} l${-scale},${scale / 2} l${-scale},${-scale / 2}z M320,${220 - scale} v${scale} M${320 - scale},${220 - scale / 2} l${scale},${scale / 2} l${scale},${-scale / 2}`} fill="#06b6d4" opacity=".38" stroke="#67e8f9" strokeWidth="3" />;
 }
 

@@ -69,6 +69,10 @@ describe("Geometry3DLessonAdapter", () => {
         expect(html, String(lessonId)).toContain("data-direct-interaction=\"true\"");
         expect(html, String(lessonId)).toContain(/surface|contour|gradient|tangent plane|partial derivative|multivariable|level curve|z=f\(x,y\)|implicit|parametric/i.test(lesson.title) ? "Drag surface" : "Drag solid");
       }
+      if (lessonId === 395) {
+        expect(html, String(lessonId)).toContain("tetrahedron spatial solid workspace");
+        expect(html, String(lessonId)).toContain("V = Bh / 3");
+      }
       expect(html, String(lessonId)).not.toContain("3D geometry");
     }
   });

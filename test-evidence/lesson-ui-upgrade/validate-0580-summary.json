@@ -1,0 +1,29 @@
+{
+  "baseUrl": "http://127.0.0.1:2245",
+  "results": [
+    {
+      "id": 580,
+      "route": "/lessons/3d-mathematics/395-tetrahedron",
+      "viewport": "desktop",
+      "status": "passed",
+      "beforeVolume": 11.55,
+      "afterVolume": 56.58
+    },
+    {
+      "id": 580,
+      "route": "/lessons/3d-mathematics/395-tetrahedron",
+      "viewport": "tablet",
+      "status": "passed",
+      "beforeVolume": 11.55,
+      "afterVolume": 56.58
+    },
+    {
+      "id": 580,
+      "route": "/lessons/3d-mathematics/395-tetrahedron",
+      "viewport": "mobile",
+      "status": "passed",
+      "beforeVolume": 11.55,
+      "afterVolume": 56.58
+    }
+  ]
+}
