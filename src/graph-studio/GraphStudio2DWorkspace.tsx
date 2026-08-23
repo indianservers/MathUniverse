@@ -1,7 +1,7 @@
 import {
   Activity, Bot, Box, Calculator, ChevronDown, ChevronLeft, ChevronRight, Copy, Crosshair, Download, Eye, EyeOff,
   FileJson, Focus, GripVertical, Grid3X3, Home, Layers3, LineChart, Maximize2, Menu, MoreVertical, Network,
-  PanelLeftClose, PanelRightClose, Pause, Pencil, Play, Plus, Redo2, Repeat2, RotateCcw, Save, Settings, Sigma,
+  PanelLeftClose, PanelRightClose, Pencil, Plus, Redo2, RotateCcw, Save, Settings, Sigma,
   SlidersHorizontal, Table2, Trash2, Undo2,
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
@@ -14,9 +14,9 @@ import type { GraphStudioStylePreset, GraphStudioVariable } from "./types";
 type FunctionRow = { id: string; input: string; color: string; visible: boolean };
 type PlottedRow = FunctionRow & { points: GraphSample[]; error?: string };
 type Point = { x: number; y: number };
-type Mode = "build" | "analyze" | "animate" | "learn";
+type Mode = "build" | "analyze" | "learn";
 type InspectorTab = "properties" | "analysis" | "style";
-type DockTab = "timeline" | "table" | "calculations";
+type DockTab = "table" | "calculations";
 type Tool = "select" | "point" | "trace";
 
 export type GraphStudio2DWorkspaceProps = {
@@ -74,18 +74,39 @@ export default function GraphStudio2DWorkspace(props: GraphStudio2DWorkspaceProp
 
   const chooseMode = (next: Mode) => {
     setMode(next);
-    if (next === "build") setLeftOpen(true);
-    if (next === "analyze") { setRightOpen(true); setTab("analysis"); }
-    if (next === "animate") { setDockOpen(true); setDockTab("timeline"); }
-    if (next === "learn") setRightOpen(true);
+    if (next === "build") {
+      setLeftOpen(true);
+      setRightOpen(true);
+      setDockOpen(true);
+      setTab("properties");
+      setDockTab("table");
+      setTool("select");
+    }
+    if (next === "analyze") {
+      setRightOpen(true);
+      setDockOpen(true);
+      setTab("analysis");
+      setDockTab("calculations");
+      setTool("trace");
+      props.onTraceModeChange(true);
+    }
+    if (next === "learn") {
+      setRightOpen(true);
+      setTab("analysis");
+    }
   };
   const selected = props.functions.find((item) => item.id === props.selectedId) ?? props.functions[0];
+  const modeHint = mode === "build"
+    ? "Build mode: edit expressions, parameters, layers, and graph window."
+    : mode === "analyze"
+      ? "Analyze mode: trace roots, intercepts, extrema, range, derivative, integral, and intersections."
+      : "Learn mode: read the graph with guided explanations and common mistakes.";
 
   return <div className={`graph-studio-3d-shell graph-studio-2d-shell ${leftOpen ? "has-left" : ""} ${rightOpen ? "has-right" : ""} ${dockOpen ? "has-dock" : ""}`}>
     <header className="gs3d-topbar">
       <div className="gs3d-brand"><div className="gs3d-mark">MU</div><strong>Graph Studio 2D</strong></div>
       <div className="gs3d-project-name">{renaming ? <input autoFocus aria-label="Project name" value={props.projectName} onChange={(event) => props.onProjectNameChange(event.target.value)} onBlur={() => setRenaming(false)} onKeyDown={(event) => event.key === "Enter" && setRenaming(false)} /> : <button type="button" onClick={() => setRenaming(true)} title="Rename project"><span>{props.projectName}</span><Pencil /></button>}</div>
-      <nav className="gs3d-modes" aria-label="Workspace modes">{(["build", "analyze", "animate", "learn"] as Mode[]).map((item) => <button key={item} type="button" className={mode === item ? "active" : ""} onClick={() => chooseMode(item)}>{capital(item)}</button>)}</nav>
+      <nav className="gs3d-modes" aria-label="Workspace modes">{(["build", "analyze", "learn"] as Mode[]).map((item) => <button key={item} type="button" className={mode === item ? "active" : ""} onClick={() => chooseMode(item)}>{capital(item)}</button>)}</nav>
       <div className="gs3d-top-actions">
         <TopAction label="Undo" icon={<Undo2 />} onClick={props.onUndo} disabled={!props.canUndo} />
         <TopAction label="Redo" icon={<Redo2 />} onClick={props.onRedo} disabled={!props.canRedo} />
@@ -116,6 +137,7 @@ export default function GraphStudio2DWorkspace(props: GraphStudio2DWorkspaceProp
       <div className="gs3d-canvas-tools" aria-label="Canvas tools"><CanvasTool label="Select" icon={<Focus />} active={tool === "select"} onClick={() => { setTool("select"); props.onTraceModeChange(false); }} /><CanvasTool label="Point" icon={<Crosshair />} active={tool === "point"} onClick={() => { setTool("point"); props.onTraceModeChange(true); setRightOpen(true); }} /><CanvasTool label="Trace" icon={<Activity />} active={tool === "trace"} onClick={() => { setTool("trace"); props.onTraceModeChange(true); }} /></div>
       <div className="gs3d-canvas-actions"><button type="button" onClick={props.onResetView} title="Fit graph"><Focus /></button><button type="button" onClick={() => void toggleFullscreen("graphing-canvas-panel")} title="Full screen"><Maximize2 /></button></div>
       <div id="graphing-canvas-panel" className="gs3d-scene-host gs2d-scene-host" data-graph-preset={props.stylePreset}>{props.canvas}</div>
+      <div className="gs2d-mode-hint" role="status">{modeHint}</div>
       <div className="gs3d-interaction-hint">Move over graph to trace <span /> Use view controls to frame <span /> Select a function to analyze</div>
     </main>
 
@@ -126,13 +148,14 @@ export default function GraphStudio2DWorkspace(props: GraphStudio2DWorkspaceProp
     </aside>
 
     <section className={`gs3d-dock ${dockOpen ? "open" : ""}`} aria-label="Graph data dock">
-      <div className="gs3d-dock-tabs">{(["timeline", "table", "calculations"] as DockTab[]).map((item) => <button key={item} type="button" className={dockTab === item ? "active" : ""} onClick={() => { setDockTab(item); setDockOpen(true); }}>{item === "table" ? "Table of values" : capital(item)}</button>)}<button type="button" className="collapse" onClick={() => setDockOpen((value) => !value)} aria-label={dockOpen ? "Collapse dock" : "Expand dock"}>{dockOpen ? <ChevronDown /> : <ChevronRight />}</button></div>
-      {dockOpen && <div className="gs3d-dock-content">{dockTab === "timeline" ? <Timeline props={props} /> : dockTab === "table" ? <TableDock props={props} selected={selected} /> : <Calculations props={props} />}</div>}
+      <div className="gs3d-dock-tabs">{(["table", "calculations"] as DockTab[]).map((item) => <button key={item} type="button" className={dockTab === item ? "active" : ""} onClick={() => { setDockTab(item); setDockOpen(true); }}>{item === "table" ? "Table of values" : capital(item)}</button>)}<button type="button" className="collapse" onClick={() => setDockOpen((value) => !value)} aria-label={dockOpen ? "Collapse dock" : "Expand dock"}>{dockOpen ? <ChevronDown /> : <ChevronRight />}</button></div>
+      {dockOpen && <div className="gs3d-dock-content">{dockTab === "table" ? <TableDock props={props} selected={selected} /> : <Calculations props={props} />}</div>}
     </section>
 
     <footer className="gs3d-status"><span className="online-dot" />Offline ready <span>{fps} FPS</span><span>Adaptive sampling</span><span>{props.plotted.some((item) => item.error) ? "Calculation warning" : "Calculations current"}</span><span className="saved">Saved locally</span></footer>
     <nav className="gs3d-mobile-nav" aria-label="Mobile workspace panels"><button type="button" onClick={() => setLeftOpen(true)}><Layers3 />Expressions</button><button type="button" onClick={() => setTool("trace")}><Focus />Tools</button><button type="button" onClick={() => setRightOpen(true)}><SlidersHorizontal />Inspector</button><button type="button" onClick={() => { setDockOpen(true); setDockTab("table"); }}><Table2 />Values</button></nav>
   </div>;
+
 }
 
 function TopAction({ label, icon, onClick, disabled }: { label: string; icon: ReactNode; onClick: () => void; disabled?: boolean }) { return <button type="button" className="gs3d-top-action" onClick={onClick} disabled={disabled} title={label}>{icon}<span>{label}</span></button>; }
@@ -152,7 +175,6 @@ function Style({ props, selected }: { props: GraphStudio2DWorkspaceProps; select
 function Analysis({ props, selected }: { props: GraphStudio2DWorkspaceProps; selected?: FunctionRow }) { const [showIntersections, setShowIntersections] = useState(false); return <div className="gs3d-inspector-content"><div className="gs2d-selected"><span style={{ background: selected?.color }} />Selected: <code>f(x) = {selected?.input}</code></div><div className="gs3d-analysis-table"><Metric label="Domain" value={props.discontinuities.length ? "Sampled real domain has breaks" : "Real values across visible window"} /><Metric label="Visible range" value={rangeText(props.visibleRange)} /><Metric label="Y-intercept" value={props.yIntercept === null ? "Undefined" : `(0, ${format(props.yIntercept)})`} /><Metric label="Roots" value={props.roots.length ? props.roots.map((x) => `(${format(x)}, 0)`).join(", ") : "None visible"} /><Metric label="Local minima" value={pointsText(props.minima)} /><Metric label="Local maxima" value={pointsText(props.maxima)} /><Metric label="Breaks" value={props.discontinuities.length ? props.discontinuities.map(format).join(", ") : "None detected"} /></div><Group title="Derivative preview"><DerivativePreview points={props.derivativePoints} color={selected?.color ?? "#06b6d4"} /><button type="button" className="gs2d-wide-action" onClick={() => props.onShowDerivativeChange(!props.showDerivative)}><Sigma />{props.showDerivative ? "Remove derivative layer" : "Plot numerical derivative"}</button></Group><button type="button" className={`gs2d-analysis-action ${props.showIntegral ? "active" : ""}`} onClick={() => props.onShowIntegralChange(!props.showIntegral)}>Shade integral <span>{props.integralValue === null ? "Unavailable" : `≈ ${format(props.integralValue)}`}</span></button><button type="button" className="gs2d-analysis-action" disabled={props.functions.filter((item) => item.visible).length < 2} onClick={() => setShowIntersections((value) => !value)}>Find intersections <span>{props.intersections.length ? `${props.intersections.length} visible` : "None visible"}</span></button>{showIntersections && <div className="gs2d-intersection-result">{pointsText(props.intersections)} <small>Approximate, visible window</small></div>}</div>; }
 function Learn({ selected, roots, minima }: { selected?: FunctionRow; roots: number[]; minima: Point[] }) { return <div className="gs3d-inspector-content"><Group title="Reading this graph"><p><code>f(x) = {selected?.input}</code> assigns a vertical value to each allowed x-value.</p></Group><details open><summary>Important observations</summary><p>{roots.length ? `The graph meets the x-axis at ${roots.map(format).join(", ")}.` : "No x-axis crossing is visible in this window."} {minima.length ? `A sampled turning point appears near ${pointsText(minima)}.` : "No local minimum is detected in this window."}</p></details><details><summary>Common mistake</summary><p>Visible-window results are numerical evidence, not a proof of the complete domain or range.</p></details><details><summary>Key point</summary><p>Zooming changes the inspected window, so numerical features may appear or disappear while the function itself stays unchanged.</p></details></div>; }
 
-function Timeline({ props }: { props: GraphStudio2DWorkspaceProps }) { const variable = props.variables[0]; const [playing, setPlaying] = useState(false); const [loop, setLoop] = useState(true); useEffect(() => { if (!playing || !variable) return; const timer = window.setInterval(() => { const next = variable.value + variable.step; const value = next > variable.max ? (loop ? variable.min : variable.max) : next; props.onVariablesChange(props.variables.map((item, index) => index ? item : { ...item, value })); if (next > variable.max && !loop) setPlaying(false); }, 80); return () => window.clearInterval(timer); }, [loop, playing, props, variable]); if (!variable) return <div className="gs2d-empty-dock"><Activity />Use a, b or c in an expression to create an animation timeline.</div>; return <div className="gs3d-timeline"><button type="button" aria-label={playing ? "Pause parameter" : "Play parameter"} onClick={() => setPlaying((value) => !value)}>{playing ? <Pause /> : <Play />}</button><strong>{variable.name}</strong><input className="scrubber" type="range" min={variable.min} max={variable.max} step={variable.step} value={variable.value} onChange={(event) => props.onVariablesChange(props.variables.map((item, index) => index ? item : { ...item, value: Number(event.target.value) }))} /><output>{format(variable.value)}</output><button type="button" className={loop ? "active" : ""} aria-label="Loop parameter" onClick={() => setLoop((value) => !value)}><Repeat2 /></button></div>; }
 function TableDock({ props, selected }: { props: GraphStudio2DWorkspaceProps; selected?: FunctionRow }) { return <div className="gs2d-table-dock"><div className="gs2d-table-controls"><NumberField label="Start" value={props.tableStart} onChange={props.onTableStartChange} /><NumberField label="End" value={props.tableEnd} onChange={props.onTableEndChange} /><NumberField label="Step" value={props.tableStep} onChange={props.onTableStepChange} /><button type="button" onClick={props.onExportCsv} title="Export table CSV"><Download /></button></div><div className="gs2d-table-wrap"><table><thead><tr><th>x</th><th>{selected?.input ?? "f(x)"}</th></tr></thead><tbody>{props.tableRows.slice(0, 40).map((row) => <tr key={row.x}><td>{format(row.x)}</td><td>{row.valid && row.y !== null ? format(row.y) : "undefined"}</td></tr>)}</tbody></table></div></div>; }
 function Calculations({ props }: { props: GraphStudio2DWorkspaceProps }) { return <div className="gs3d-values-dock"><Metric label="Trace point" value={`x = ${format(props.traceX)}`} /><Metric label="Roots" value={props.roots.length ? props.roots.map(format).join(", ") : "None visible"} /><Metric label="Integral" value={props.integralValue === null ? "Unavailable" : format(props.integralValue)} /><Metric label="Intersections" value={pointsText(props.intersections)} /></div>; }
 

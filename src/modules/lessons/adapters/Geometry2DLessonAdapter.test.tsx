@@ -33,8 +33,26 @@ describe("Geometry2DLessonAdapter", () => {
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain("Drag points");
+      expect(html, lesson.title).toContain("Worked:");
+      expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
+  });
+
+  it("renders angle-between-lines with two lines and an angle marker", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 176)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain("Angle Between Lines");
+    expect(html).toContain("line 1");
+    expect(html).toContain("line 2");
+    expect(html).toContain("angle 55.0 deg");
+    expect(html).toContain("Angle offset");
+    expect(html).toContain("data-direct-interaction=\"true\"");
   });
 
   it("renders dynamic geometry lessons 198 through 212 with construction-specific guidance", () => {
@@ -65,6 +83,10 @@ describe("Geometry2DLessonAdapter", () => {
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain("Drag points");
+      expect(html, lesson.title).toContain("Worked:");
+      expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
   });
@@ -85,6 +107,10 @@ describe("Geometry2DLessonAdapter", () => {
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain("Drag points");
+      expect(html, lesson.title).toContain("Worked:");
+      expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
   });
@@ -132,6 +158,10 @@ describe("Geometry2DLessonAdapter", () => {
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain("Drag points");
+      expect(html, lesson.title).toContain("Worked:");
+      expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
   });
@@ -160,6 +190,10 @@ describe("Geometry2DLessonAdapter", () => {
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain("Drag points");
+      expect(html, lesson.title).toContain("Worked:");
+      expect(html, lesson.title).toContain("Avoid:");
       expect(html, lesson.title).not.toContain("Coordinate rule");
     }
   });

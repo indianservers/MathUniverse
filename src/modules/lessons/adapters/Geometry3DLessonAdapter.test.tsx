@@ -65,6 +65,10 @@ describe("Geometry3DLessonAdapter", () => {
 
       expect(html, String(lessonId)).toContain(lesson.title.replace(/'/g, "&#x27;"));
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
+      if (lesson.preset.id !== "geometry3d.solid-net") {
+        expect(html, String(lessonId)).toContain("data-direct-interaction=\"true\"");
+        expect(html, String(lessonId)).toContain(/surface|contour|gradient|tangent plane|partial derivative|multivariable|level curve|z=f\(x,y\)|implicit|parametric/i.test(lesson.title) ? "Drag surface" : "Drag solid");
+      }
       expect(html, String(lessonId)).not.toContain("3D geometry");
     }
   });

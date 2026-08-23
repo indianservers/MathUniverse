@@ -15,7 +15,7 @@ describe("Math Workspaces discovery", () => {
 
     expect(mathWorkspaces).toHaveLength(6);
     expect(navigation?.items).toHaveLength(3);
-    for (const title of ["CAS", "2D Geometry", "3D Geometry", "Graphs", "3D Graphs", "Shapes Explorer"]) {
+    for (const title of ["CAS", "2D Geometry", "3D Geometry", "2D Graph", "3D Graph", "Shapes Explorer"]) {
       expect(html).toContain(title);
       expect(navigationItems?.some((item) => item.title === title)).toBe(true);
     }
@@ -37,8 +37,8 @@ describe("graphing workspaces", () => {
     expect(html).toContain("Graph Studio 2D");
     expect(html).toContain("Build");
     expect(html).toContain("Analyze");
-    expect(html).toContain("Animate");
     expect(html).toContain("Learn");
+    expect(html).not.toContain("Animate");
     expect(html).toContain("Offline ready");
   });
 

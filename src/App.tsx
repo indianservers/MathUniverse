@@ -305,6 +305,7 @@ export default function App() {
             <Route path="lessons/advanced-concepts" element={<AdvancedConceptLessonsPage />} />
             <Route path="lessons/advanced-concepts/:lessonSlug" element={<AdvancedConceptLessonPage />} />
             <Route path="lessons/school" element={<SchoolLessonsPage />} />
+            <Route path="lessons/school/:levelSlug" element={<SchoolLessonsPage />} />
             <Route path="lessons/school/:levelSlug/:lessonSlug" element={<SchoolLessonPage />} />
             <Route path="lessons/:categorySlug" element={<LessonsCategoryPage />} />
             <Route path="lessons/:categorySlug/:lessonSlug" element={<LessonPage />} />

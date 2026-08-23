@@ -35,6 +35,8 @@ describe("GraphLessonAdapter", () => {
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain("Drag graph");
       expect(html, lesson.title).not.toContain("Linked graph: the formula");
     }
   });
@@ -76,6 +78,8 @@ describe("GraphLessonAdapter", () => {
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain("Drag graph");
       expect(html, lesson.title).not.toContain("Linked graph: the formula");
     }
   });
@@ -107,6 +111,8 @@ describe("GraphLessonAdapter", () => {
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain("Drag graph");
       expect(html, lesson.title).not.toContain("Linked graph: the formula");
     }
   });

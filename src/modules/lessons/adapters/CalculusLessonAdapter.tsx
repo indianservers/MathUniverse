@@ -1,13 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import SliderControl, { SliderGroup } from "../../../components/ui/SliderControl";
 import { samplePlotLayer, type GraphViewport, type PlotItem } from "../../../components/workspace/panels/graphPanelUtils";
 import { symbolicDerivative, symbolicIntegral } from "../../../utils/symbolic";
 import AdapterFrame from "../components/AdapterFrame";
+import { calculusVisualPresetForLesson } from "../presets/calculusVisualPresets";
 import type { LessonAdapterProps } from "../types";
 
-const viewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, width: 640, height: 360 };
-const scaleX = (x: number) => ((x + 5) / 10) * 640;
-const scaleY = (y: number) => 360 - ((y + 6) / 16) * 360;
+const viewportSize = { width: 640, height: 360 };
+const fallbackViewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, ...viewportSize };
+const scaleX = (x: number, viewport: GraphViewport) => ((x - viewport.xMin) / (viewport.xMax - viewport.xMin || 1)) * viewport.width;
+const scaleY = (y: number, viewport: GraphViewport) => viewport.height - ((y - viewport.yMin) / (viewport.yMax - viewport.yMin || 1)) * viewport.height;
 
 function functionFor(title: string) {
   const name = title.toLowerCase();
@@ -15,15 +17,37 @@ function functionFor(title: string) {
   if (name.includes("exponential")) return "exp(x/2)";
   if (name.includes("rational") || name.includes("asympt")) return "1/x";
   if (name.includes("absolute")) return "abs(x)";
+  if (name.includes("local and global extrema") || name.includes("optimisation")) return "4-x^2";
+  if (name.includes("critical points") || name.includes("increasing") || name.includes("decreasing")) return "x^3-3*x";
+  if (name.includes("concavity") || name.includes("inflection")) return "x^3";
   return "x^2";
 }
 
 function numericValue(expression: string, x: number) {
-  if (expression === "sin(x)") return Math.sin(x);
-  if (expression === "exp(x/2)") return Math.exp(x / 2);
-  if (expression === "1/x") return 1 / x;
-  if (expression === "abs(x)") return Math.abs(x);
-  return x * x;
+  const safe = expression
+    .replace(/\^/g, "**")
+    .replace(/\bpi\b/gi, "Math.PI")
+    .replace(/\be\b/g, "Math.E")
+    .replace(/\bsin\b/gi, "Math.sin")
+    .replace(/\bcos\b/gi, "Math.cos")
+    .replace(/\btan\b/gi, "Math.tan")
+    .replace(/\bsqrt\b/gi, "Math.sqrt")
+    .replace(/\babs\b/gi, "Math.abs")
+    .replace(/\bln\b/gi, "Math.log")
+    .replace(/\blog\b/gi, "Math.log10")
+    .replace(/\bexp\b/gi, "Math.exp");
+  if (!/^[0-9x+*/().,\s*MATHPIEabceghilnopqrstxyz-]+$/i.test(safe) || /[;={}'"[\]]/.test(safe)) return Number.NaN;
+  return Function("x", `"use strict"; return (${safe});`)(x) as number;
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function readInitialNumberFromUrl(name: string, fallback: number, min: number, max: number) {
+  if (typeof window === "undefined") return fallback;
+  const value = Number(new URLSearchParams(window.location.search).get(name));
+  return Number.isFinite(value) ? clamp(value, min, max) : fallback;
 }
 
 function calculusGuidanceFor(title: string) {
@@ -89,27 +113,34 @@ function calculusGuidanceFor(title: string) {
 }
 
 export default function CalculusLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
-  const expression = useMemo(() => functionFor(lesson.title), [lesson.title]);
-  const initialX = lesson.id % 4 - 1;
-  const [x, setX] = useState(initialX || 1);
-  const [h, setH] = useState(1);
-  const [partitions, setPartitions] = useState(8);
-  const guidance = calculusGuidanceFor(lesson.title);
+  const visualPreset = useMemo(() => calculusVisualPresetForLesson(lesson.id), [lesson.id]);
+  const expression = useMemo(() => visualPreset?.expression ?? functionFor(lesson.title), [lesson.title, visualPreset]);
+  const viewport = useMemo<GraphViewport>(() => ({ ...(visualPreset?.viewport ?? fallbackViewport), ...viewportSize }), [visualPreset]);
+  const fallbackX = lesson.id % 4 - 1 || 1;
+  const initialX = readInitialNumberFromUrl("v_x", visualPreset?.x ?? fallbackX, viewport.xMin, viewport.xMax);
+  const initialH = readInitialNumberFromUrl("v_h", visualPreset?.h ?? 1, 0.05, 2);
+  const [x, setX] = useState(initialX);
+  const [h, setH] = useState(initialH);
+  const [partitions, setPartitions] = useState(visualPreset?.partitions ?? 8);
+  const [dragTarget, setDragTarget] = useState<"x" | "h" | null>(null);
+  const dragTargetRef = useRef<"x" | "h" | null>(null);
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const guidance = visualPreset?.guide ?? calculusGuidanceFor(lesson.title);
 
   useEffect(() => {
-    setX(initialX || 1);
-    setH(1);
-    setPartitions(8);
-  }, [initialX, resetToken]);
+    setX(initialX);
+    setH(initialH);
+    setPartitions(visualPreset?.partitions ?? 8);
+  }, [initialH, initialX, resetToken, visualPreset]);
 
   const plot = useMemo<PlotItem>(() => ({ id: `calculus-${lesson.id}`, expression, color: "#06b6d4", kind: "function", visible: true }), [expression, lesson.id]);
-  const layer = useMemo(() => samplePlotLayer(plot, viewport, 1, 0), [plot]);
+  const layer = useMemo(() => samplePlotLayer(plot, viewport, 1, 0), [plot, viewport]);
   const y = numericValue(expression, x);
   const nextY = numericValue(expression, x + h);
   const secant = (nextY - y) / h;
   const derivative = useMemo(() => symbolicDerivative(expression).result, [expression]);
   const integral = useMemo(() => symbolicIntegral(expression).result, [expression]);
-  const isIntegral = /area|integral|antiderivative|riemann|accumulation|volume/i.test(lesson.title);
+  const isIntegral = visualPreset ? visualPreset.mode === "accumulation" : /area|integral|antiderivative|riemann|accumulation|volume/i.test(lesson.title);
   const left = Math.min(0, x);
   const right = Math.max(0.1, x);
   const width = (right - left) / partitions;
@@ -122,22 +153,97 @@ export default function CalculusLessonAdapter({ lesson, resetToken, onInteractio
     setter(value);
     onInteraction();
   };
+  const updateFromPointer = useCallback((clientX: number, bounds: DOMRect, target: "x" | "h") => {
+    const nextGraphX = clamp(viewport.xMin + ((clientX - bounds.left) / bounds.width) * (viewport.xMax - viewport.xMin), viewport.xMin, viewport.xMax);
+    if (target === "x") {
+      setX(Number(nextGraphX.toFixed(2)));
+    } else {
+      setH(Number(clamp(nextGraphX - x, 0.05, 2).toFixed(2)));
+    }
+    onInteraction();
+  }, [onInteraction, viewport.xMax, viewport.xMin, x]);
+
+  useEffect(() => {
+    if (!dragTarget) return undefined;
+    const move = (event: MouseEvent | PointerEvent) => {
+      const bounds = svgRef.current?.getBoundingClientRect();
+      if (!bounds) return;
+      updateFromPointer(event.clientX, bounds, dragTarget);
+    };
+    const end = () => {
+      dragTargetRef.current = null;
+      setDragTarget(null);
+    };
+    window.addEventListener("mousemove", move);
+    window.addEventListener("pointermove", move);
+    window.addEventListener("mouseup", end);
+    window.addEventListener("pointerup", end);
+    return () => {
+      window.removeEventListener("mousemove", move);
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("mouseup", end);
+      window.removeEventListener("pointerup", end);
+    };
+  }, [dragTarget, updateFromPointer]);
+
+  const beginDrag = (target: "x" | "h") => {
+    dragTargetRef.current = target;
+    setDragTarget(target);
+  };
+
+  const endDrag = () => {
+    dragTargetRef.current = null;
+    setDragTarget(null);
+  };
 
   return (
-    <AdapterFrame title={`${lesson.title} - graph + CAS`} value={isIntegral ? `integral f dx = ${integral}` : `f'(x) = ${derivative}`} footer="The curve uses the graph sampler; exact derivative and antiderivative use the existing symbolic engine.">
-      <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_290px]">
+    <AdapterFrame title={`${lesson.title} - graph + CAS`} value={isIntegral ? `integral f dx = ${integral}` : `f'(x) = ${derivative}`} footer={visualPreset?.visualSummary ?? "The curve uses the graph sampler; exact derivative and antiderivative use the existing symbolic engine."}>
+      <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_270px]">
         <div className="overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-900">
-          <svg viewBox="0 0 640 360" className="h-[310px] w-full" role="img" aria-label={`Calculus model for ${expression}`}>
-            <Grid />
+          <svg
+            ref={svgRef}
+            viewBox="0 0 640 360"
+            className="h-[430px] w-full touch-none"
+            role="img"
+            aria-label={`Calculus model for ${expression}. Drag the highlighted point directly on the graph or use the linked controls.`}
+            onPointerMove={(event) => {
+              const target = dragTargetRef.current ?? dragTarget;
+              if (!target) return;
+              updateFromPointer(event.clientX, event.currentTarget.getBoundingClientRect(), target);
+            }}
+            onPointerUp={endDrag}
+            onPointerLeave={endDrag}
+            onPointerDown={(event) => {
+              if (isIntegral) return;
+              updateFromPointer(event.clientX, event.currentTarget.getBoundingClientRect(), "x");
+            }}
+            onMouseMove={(event) => {
+              const target = dragTargetRef.current ?? dragTarget;
+              if (!target) return;
+              updateFromPointer(event.clientX, event.currentTarget.getBoundingClientRect(), target);
+            }}
+            onMouseUp={endDrag}
+            onMouseLeave={endDrag}
+            onMouseDown={(event) => {
+              if (isIntegral) return;
+              updateFromPointer(event.clientX, event.currentTarget.getBoundingClientRect(), "x");
+            }}
+          >
+            <Grid viewport={viewport} />
+            {visualPreset?.verticalLines?.map((value) => <line key={`vline-${value}`} x1={scaleX(value, viewport)} x2={scaleX(value, viewport)} y1="0" y2={viewport.height} stroke="#ef4444" strokeWidth="3" strokeDasharray="9 7" />)}
+            {visualPreset?.horizontalLines?.map((value) => <line key={`hline-${value}`} x1="0" x2={viewport.width} y1={scaleY(value, viewport)} y2={scaleY(value, viewport)} stroke="#7c3aed" strokeWidth="3" strokeDasharray="9 7" />)}
             {isIntegral ? (
-              rectangles.map((item, index) => <rect key={index} x={scaleX(item.rx)} y={scaleY(Math.max(0, item.height))} width={Math.max(1, scaleX(item.rx + width) - scaleX(item.rx))} height={Math.abs(scaleY(0) - scaleY(item.height))} fill="#f59e0b" opacity=".25" stroke="#f59e0b" />)
+              rectangles.map((item, index) => <rect key={index} x={scaleX(item.rx, viewport)} y={scaleY(Math.max(0, item.height), viewport)} width={Math.max(1, scaleX(item.rx + width, viewport) - scaleX(item.rx, viewport))} height={Math.abs(scaleY(0, viewport) - scaleY(item.height, viewport))} fill="#f59e0b" opacity=".25" stroke="#f59e0b" />)
             ) : (
               <>
-                <line x1={scaleX(x)} y1={scaleY(y)} x2={scaleX(x + h)} y2={scaleY(nextY)} stroke="#f59e0b" strokeWidth="3" strokeDasharray="7 5" />
-                <circle cx={scaleX(x)} cy={scaleY(y)} r="7" fill="#f59e0b" />
-                <circle cx={scaleX(x + h)} cy={scaleY(nextY)} r="7" fill="#f59e0b" />
+                <line x1={scaleX(x, viewport)} y1={scaleY(y, viewport)} x2={scaleX(x + h, viewport)} y2={scaleY(nextY, viewport)} stroke="#f59e0b" strokeWidth="3" strokeDasharray="7 5" />
+                <circle cx={scaleX(x, viewport)} cy={scaleY(y, viewport)} r="12" fill="#ffffff" stroke="#f59e0b" strokeWidth="5" className="cursor-grab" onPointerDown={(event) => { event.stopPropagation(); beginDrag("x"); }} onMouseDown={(event) => { event.stopPropagation(); beginDrag("x"); }} />
+                <circle cx={scaleX(x + h, viewport)} cy={scaleY(nextY, viewport)} r="12" fill="#ffffff" stroke="#f59e0b" strokeWidth="5" className="cursor-grab" onPointerDown={(event) => { event.stopPropagation(); beginDrag("h"); }} onMouseDown={(event) => { event.stopPropagation(); beginDrag("h"); }} />
+                <text x={scaleX(x, viewport) + 14} y={scaleY(y, viewport) - 14} fill="#b45309" fontSize="16" fontWeight="900">{visualPreset?.pointLabels[0] ?? "drag x"}</text>
+                <text x={scaleX(x + h, viewport) + 14} y={scaleY(nextY, viewport) - 14} fill="#b45309" fontSize="16" fontWeight="900">{visualPreset?.pointLabels[1] ?? "drag h"}</text>
               </>
             )}
+            {visualPreset?.highlightX?.map((value) => <circle key={`highlight-${value}`} cx={scaleX(value, viewport)} cy={scaleY(numericValue(expression, value), viewport)} r="9" fill="#4f46e5" opacity=".9" />)}
             {layer.paths.map((path, index) => <path key={index} d={path} fill="none" stroke="#06b6d4" strokeWidth="4" />)}
           </svg>
         </div>
@@ -148,14 +254,14 @@ export default function CalculusLessonAdapter({ lesson, resetToken, onInteractio
             <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">{guidance[2]}</p>
           </div>
           <SliderGroup title="Linked controls">
-            <SliderControl density="compact" label="x" value={x} min={-4} max={4} step={0.1} onChange={update(setX)} />
+            <SliderControl density="compact" label="x" value={x} min={viewport.xMin} max={viewport.xMax} step={0.1} onChange={update(setX)} />
             {isIntegral ? <SliderControl density="compact" label="Rectangles" value={partitions} min={2} max={40} step={1} onChange={update(setPartitions)} /> : <SliderControl density="compact" label="h" value={h} min={0.05} max={2} step={0.05} onChange={update(setH)} />}
           </SliderGroup>
           <div className="grid grid-cols-2 gap-2">
-            <Metric label="f(x)" value={y.toFixed(3)} />
-            <Metric label={isIntegral ? "dx" : "Secant slope"} value={isIntegral ? width.toFixed(3) : secant.toFixed(3)} />
-            <Metric label="Exact f'" value={derivative} />
-            <Metric label="Exact integral" value={integral} />
+            <Metric label={visualPreset?.outputLabels[0] ?? "f(x)"} value={y.toFixed(3)} />
+            <Metric label={visualPreset?.outputLabels[1] ?? (isIntegral ? "dx" : "Secant slope")} value={isIntegral ? width.toFixed(3) : secant.toFixed(3)} />
+            <Metric label={visualPreset?.outputLabels[2] ?? "Exact f'"} value={derivative} />
+            <Metric label={visualPreset?.outputLabels[3] ?? "Exact integral"} value={integral} />
           </div>
         </div>
       </div>
@@ -163,13 +269,13 @@ export default function CalculusLessonAdapter({ lesson, resetToken, onInteractio
   );
 }
 
-function Grid() {
+function Grid({ viewport }: { viewport: GraphViewport }) {
   return (
     <g>
-      {Array.from({ length: 11 }, (_, i) => <line key={`v${i}`} x1={i * 64} x2={i * 64} y1="0" y2="360" stroke="#cbd5e1" opacity=".28" />)}
-      {Array.from({ length: 9 }, (_, i) => <line key={`h${i}`} x1="0" x2="640" y1={i * 45} y2={i * 45} stroke="#cbd5e1" opacity=".28" />)}
-      <line x1="0" x2="640" y1={scaleY(0)} y2={scaleY(0)} stroke="#64748b" />
-      <line x1={scaleX(0)} x2={scaleX(0)} y1="0" y2="360" stroke="#64748b" />
+      {Array.from({ length: 11 }, (_, i) => <line key={`v${i}`} x1={i * 64} x2={i * 64} y1="0" y2={viewport.height} stroke="#cbd5e1" opacity=".28" />)}
+      {Array.from({ length: 9 }, (_, i) => <line key={`h${i}`} x1="0" x2={viewport.width} y1={i * 45} y2={i * 45} stroke="#cbd5e1" opacity=".28" />)}
+      <line x1="0" x2={viewport.width} y1={scaleY(0, viewport)} y2={scaleY(0, viewport)} stroke="#64748b" />
+      <line x1={scaleX(0, viewport)} x2={scaleX(0, viewport)} y1="0" y2={viewport.height} stroke="#64748b" />
     </g>
   );
 }

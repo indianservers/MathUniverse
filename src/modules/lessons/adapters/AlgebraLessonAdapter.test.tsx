@@ -40,4 +40,74 @@ describe("AlgebraLessonAdapter", () => {
       expect(html, lesson.title).not.toContain("Algebra rule");
     }
   });
+
+  it("renders Lists as an ordered table workspace instead of a generic line graph", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 32)!;
+    const html = renderToStaticMarkup(
+      <AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain("List entries, positions, and operations");
+    expect(html).toContain("[2, 4, 6, 8]");
+    expect(html).toContain("No graph needed");
+    expect(html).toContain("Why this visual is valid");
+    expect(html).toContain("A list is an ordered collection");
+    expect(html).not.toContain("Graph of y equals");
+    expect(html).not.toContain("y=1x+1");
+  });
+
+  it("renders phase 4 algebra lessons 92 through 128 with lesson-specific structure labs", () => {
+    const expectedFamilies: Record<number, string> = {
+      92: "Tile/area model",
+      93: "Symbolic-step model",
+      94: "Symbolic-step model",
+      95: "Symbolic-step model",
+      96: "Tile/area model",
+      97: "Symbolic-step model",
+      98: "Symbolic-step model",
+      99: "Symbolic-step model",
+      100: "Symbolic-step model",
+      101: "Symbolic-step model",
+      102: "Symbolic-step model",
+      103: "Table/check model",
+      104: "Symbolic-step model",
+      105: "Symbolic-step model",
+      106: "Symbolic-step model",
+      107: "Symbolic-step model",
+      108: "Symbolic-step model",
+      109: "Symbolic-step model",
+      110: "Symbolic-step model",
+      111: "Symbolic-step model",
+      112: "Coordinate-region model",
+      113: "Table/check model",
+      114: "Graph sign structure",
+      115: "Graph sign structure",
+      116: "Symbolic-step model",
+      117: "Symbolic-step model",
+      118: "Graph sign structure",
+      119: "Symbolic-step model",
+      120: "Unit-circle equation",
+      121: "Number-line solution set",
+      122: "Number-line solution set",
+      123: "Number-line solution set",
+      124: "Graph sign structure",
+      125: "Graph sign structure",
+      126: "Coordinate-region model",
+      127: "Coordinate-region model",
+      128: "Table/check model",
+    };
+
+    for (const [idText, family] of Object.entries(expectedFamilies)) {
+      const lesson = lessonCatalog.find((item) => item.id === Number(idText))!;
+      const html = renderToStaticMarkup(
+        <AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      );
+
+      expect(html, lesson.title).toContain(`${lesson.title} structure lab`);
+      expect(html, lesson.title).toContain(`${lesson.title} concept trace`);
+      expect(html, lesson.title).toContain(family);
+      expect(html, lesson.title).toContain("This algebra page uses a lesson-specific symbolic workspace instead of a default line graph.");
+      expect(html, lesson.title).not.toContain("Graph of y equals");
+    }
+  });
 });

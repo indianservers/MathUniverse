@@ -38,4 +38,39 @@ describe("CalculatorLessonAdapter", () => {
       expect(html, lesson.title).not.toContain("Calculator rule");
     }
   });
+
+  it("renders phase 2 concept traces for calculator lessons 1 through 18", () => {
+    const expectedTraces: Record<number, string> = {
+      1: "Operation order stack",
+      2: "Fraction common-parts trace",
+      3: "Mixed to improper fraction",
+      4: "Percent of base amount",
+      5: "Ratio simplification trace",
+      6: "Power-root inverse pair",
+      7: "Scientific notation scale",
+      8: "Log as exponent question",
+      9: "Exponential repeated factors",
+      10: "Trig angle-mode check",
+      11: "Ratio to principal angle",
+      12: "Hyperbolic exponential formula",
+      13: "Counting choices trace",
+      14: "Distance from zero",
+      15: "Exact value to rounded report",
+      16: "Constant insertion check",
+      17: "History pairs input with output",
+      18: "Exact versus decimal classification",
+    };
+
+    for (const [idText, snippet] of Object.entries(expectedTraces)) {
+      const id = Number(idText);
+      const lesson = lessonCatalog.find((item) => item.id === id)!;
+      const html = renderToStaticMarkup(
+        <CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      );
+
+      expect(html, lesson.title).toContain("Concept trace");
+      expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).not.toContain("Calculator concept trace");
+    }
+  });
 });

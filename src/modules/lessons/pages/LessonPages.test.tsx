@@ -7,16 +7,20 @@ import LessonPage from "./LessonPage";
 import AdvancedConceptLessonPage from "./AdvancedConceptLessonPage";
 import SchoolLessonsPage from "./SchoolLessonsPage";
 import SchoolLessonPage from "./SchoolLessonPage";
+import { schoolLessonsFor } from "../catalog/school/schoolSyllabusCatalog";
+import type { AcademicLevel } from "../syllabus/lessonSyllabusTypes";
+
+const schoolLevels: AcademicLevel[] = ["CLASS_6", "CLASS_7", "CLASS_8", "CLASS_9", "CLASS_10", "CLASS_11", "CLASS_12"];
 
 describe("lesson pages", () => {
   it("renders the complete four-phase catalog", () => {
     const html = renderToStaticMarkup(<MemoryRouter><LessonsHomePage /></MemoryRouter>);
-    expect(html).toContain("Interactive lessons");
+    expect(html).toContain("Interactive mathematics");
     expect(html).toContain("919");
     expect(html).toContain("674");
-    expect(html).toContain("School Syllabus Remediation");
+    expect(html).toContain("School Curriculum");
     expect(html).toContain("220");
-    expect(html).toContain("Core Workspaces");
+    expect(html).toContain("Visual Workspaces");
   });
 
   it("renders a category route", () => {
@@ -29,19 +33,20 @@ describe("lesson pages", () => {
   it("renders a canonical lesson shell and preserves compact stages", () => {
     const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/core-workspaces/1-basic-calculator"]}><Routes><Route path="/lessons/:categorySlug/:lessonSlug" element={<LessonPage />} /></Routes></MemoryRouter>);
     expect(html).toContain("Basic Calculator");
-    expect(html).toContain("Discover");
-    expect(html).toContain("Explore");
-    expect(html).toContain("Try");
-    expect(html).toContain("Check");
+    expect(html).toContain("Interaction + visualization");
+    expect(html).toContain("Explain");
+    expect(html).toContain("Examples");
+    expect(html).toContain("Formulas");
+    expect(html).toContain("Know more");
   });
 
   it("renders expert-review lessons with topic-specific visual requirements", () => {
     const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/lessons/calculus/277-informal-limits"]}><Routes><Route path="/lessons/:categorySlug/:lessonSlug" element={<LessonPage />} /></Routes></MemoryRouter>);
     expect(html).toContain("Informal Limits");
-    expect(html).toContain("Visual requirement");
-    expect(html).toContain("function graph");
-    expect(html).toContain("Use values near a, not just at a.");
-    expect(html).toContain("If f(x) approaches 4 near x=2, what is the limit?");
+    expect(html).toContain("Interaction + visualization");
+    expect(html).toContain("primary-control");
+    expect(html).toContain("function");
+    expect(html).toContain("calculus object");
     expect(html).not.toContain("For f(x)=");
   });
 
@@ -51,6 +56,25 @@ describe("lesson pages", () => {
     expect(html).toContain("220");
     expect(html).toContain("Euclidean Geometry");
     expect(html).toContain("NCERT Class 6 Mathematics");
+  });
+
+  it("renders class-specific school lesson lists for every school class route", () => {
+    for (const level of schoolLevels) {
+      const routeLevel = level.toLowerCase().replace("_", "-");
+      const expectedLessons = schoolLessonsFor(level, "ALL", "");
+      const html = renderToStaticMarkup(
+        <MemoryRouter initialEntries={[`/lessons/school/${routeLevel}`]}>
+          <Routes>
+            <Route path="/lessons/school/:levelSlug" element={<SchoolLessonsPage />} />
+          </Routes>
+        </MemoryRouter>,
+      );
+
+      expect(html).toContain(`${formatClassForTest(level)} lessons`);
+      expect(html).toContain(`${expectedLessons.length} matching school lessons`);
+      expect(html).toContain(expectedLessons[0].title);
+      expect(html).not.toContain("School lesson not found");
+    }
   });
 
   it("renders advanced interactive labs with visual scenes", () => {
@@ -115,3 +139,7 @@ describe("lesson pages", () => {
     expect(html).not.toContain("Bayes&#x27; Theorem fills a Class 12");
   });
 });
+
+function formatClassForTest(value: AcademicLevel) {
+  return value.toLowerCase().split("_").map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(" ");
+}

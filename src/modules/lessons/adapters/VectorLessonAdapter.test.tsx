@@ -32,6 +32,9 @@ describe("VectorLessonAdapter", () => {
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain("Drag vector tips");
+      expect(html, lesson.title).toContain("Drag vector tips directly on the plane");
     }
   });
 });

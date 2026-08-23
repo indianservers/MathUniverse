@@ -2,13 +2,17 @@ import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ClipboardCheck, ListChec
 import { Link, useParams } from "react-router-dom";
 import { adjacentSchoolLessons, findSchoolLesson } from "../catalog/school/schoolSyllabusCatalog";
 import SchoolLessonInteractiveLab from "../components/SchoolLessonInteractiveLab";
+import { DecimalExpansionLessonPage } from "../decimalExpansion/DecimalExpansionLessonPage";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { SchoolLessonContent } from "../syllabus/lessonSyllabusTypes";
+
+const DECIMAL_EXPANSION_ROUTE_SLUG = "class-9-real-numbers-decimal-expansion-of-rational-numbers";
 
 export default function SchoolLessonPage() {
   const { levelSlug: routeLevelSlug, lessonSlug } = useParams();
   const lesson = findSchoolLesson(routeLevelSlug, lessonSlug);
   if (!lesson) return <LessonNotFound />;
+  if (lesson.slug === DECIMAL_EXPANSION_ROUTE_SLUG) return <DecimalExpansionLessonPage lesson={lesson} />;
   const adjacent = adjacentSchoolLessons(lesson);
   const strengthened = getStrengthenedFoundationLesson(lesson.numericId);
   const content = strengthened ? strengthenedSchoolContent(strengthened) : lesson.content;

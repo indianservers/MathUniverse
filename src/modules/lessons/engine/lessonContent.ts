@@ -105,12 +105,14 @@ export function createLessonContent(lesson: ContentSource): LessonContent {
   const formulas = formulasFor(titleTopic, lesson.adapter);
   const controlGuide = controlGuideFor(lesson);
   const examples = examplesFor(lesson);
+  const detailedExplanation = detailedExplanationFor(lesson, formulas);
   return {
     summary: `${lesson.title} is a ${lesson.topic.toLowerCase()} lesson about ${lesson.purpose.toLowerCase()} The live ${lesson.workspace.toLowerCase()} lets you connect the concept, its representation, and the final answer in one place.`,
-    explanation: `Think of this lesson as a small experiment. First notice what the concept is trying to measure, then change the live model and watch the output. If the visual change, formula, and answer all tell the same story, you have understood the lesson.`,
+    explanation: `Introduction: ${lesson.title} starts from ${lesson.description.toLowerCase()} Detailed explanation: ${detailedExplanation} In the live task, ${lesson.interactions.toLowerCase()}; use that action to connect ${listRepresentations(lesson)} with ${listOutputs(lesson)} before answering.`,
     keyIdeas: [
       lesson.description,
       `Watch how ${listOutputs(lesson)} change together; those linked changes are the main evidence for the concept.`,
+      `Read the model in this order: identify the given values, change one control, observe the linked representation, then explain the rule in words.`,
       `Use the lesson challenge after exploring so the formula, visual model, and calculation agree.`,
     ],
     realWorldExamples: examples,
@@ -123,13 +125,90 @@ export function createLessonContent(lesson: ContentSource): LessonContent {
 
 function normalizeStrengthenedContent(lesson: ContentSource, content: LessonContent): LessonContent {
   const summary = content.summary.includes(lesson.title) ? content.summary : `${lesson.title}: ${content.summary}`;
-  const explanation = content.explanation.includes("small experiment") ? content.explanation : `Use this lesson as a small experiment. ${content.explanation}`;
+  const explanation = content.explanation.includes("Introduction:")
+    ? `${content.explanation} In the live task, ${lesson.interactions.toLowerCase()}; use the model to connect ${listRepresentations(lesson)} with ${listOutputs(lesson)}.`
+    : `Introduction: ${content.summary} Detailed explanation: ${content.explanation} In the live task, ${lesson.interactions.toLowerCase()}; use the model to connect ${listRepresentations(lesson)} with ${listOutputs(lesson)}.`;
   const formulas = [...content.formulas];
   for (const fallback of adapterFormulas[lesson.adapter]) {
     if (formulas.length >= 2) break;
     if (!formulas.some((item) => item.expression === fallback.expression)) formulas.push(fallback);
   }
   return { ...content, summary, explanation, formulas };
+}
+
+function detailedExplanationFor(lesson: ContentSource, formulas: LessonFormula[]) {
+  const formula = formulas[0];
+  const representation = listRepresentations(lesson);
+  const output = listOutputs(lesson);
+  const topic = `${lesson.title} ${lesson.topic} ${lesson.workspace}`.toLowerCase();
+  const adapterDetail = adapterExplanationFor(lesson.adapter);
+  const conceptDetail = conceptExplanationFor(topic);
+  return [
+    adapterDetail,
+    conceptDetail,
+    `The main mathematical object is ${lesson.contract?.concept ?? lesson.title}. Treat every label, point, cell, or symbolic step as evidence, not decoration.`,
+    formula ? `The key formula here is ${formula.label}: ${formula.expression}. It matters because ${formula.explanation}` : "",
+    `A reliable solution should name the input, describe the change in ${representation}, and justify the final ${output}.`,
+    commonMistakeFor(topic, lesson.adapter),
+  ].filter(Boolean).join(" ");
+}
+
+function adapterExplanationFor(adapter: LessonSourceDefinition["adapter"]) {
+  const explanations: Record<LessonSourceDefinition["adapter"], string> = {
+    calculator: "Calculator lessons are about controlled numerical evaluation: preserve the expression structure, choose the correct mode, and only round when the question asks for an approximate answer.",
+    algebra: "Algebra lessons connect symbolic structure to visible change: equivalent expressions keep the same value, equations isolate an unknown, and graph/table views test whether each transformation is valid.",
+    number: "Number lessons make quantities concrete: use place value, factors, ratios, and benchmarks so the symbol is tied to a measurable amount.",
+    authoring: "Authoring lessons explain how learning controls are built: each input needs a purpose, a visible response, and feedback that helps a learner revise their thinking.",
+    learning: "Learning-system lessons focus on the learner journey: prediction, action, feedback, assessment, and revision should form one traceable cycle.",
+    platform: "Platform lessons make mathematical tools accessible and reliable: visual state, keyboard state, and text summary must describe the same object.",
+    graph: "Graph lessons ask you to read a relationship in three forms: equation, curve, and table. A change is meaningful only when all three update consistently.",
+    "algebra-cas": "Algebra CAS lessons keep exact symbolic reasoning visible: the result is important, but the transformation steps and restrictions explain why it is valid.",
+    geometry2d: "2D geometry lessons depend on construction constraints: points, lines, circles, angles, and measurements must preserve the stated relationship while you drag.",
+    vector: "Vector lessons read arrows as quantities with direction and size. Components, magnitude, angle, sum, and projection are different views of the same vector state.",
+    trigonometry: "Trigonometry lessons connect angle, triangle ratio, unit-circle coordinate, and wave graph. The angle unit and quadrant decide the sign and value.",
+    cas: "CAS lessons use exact algebraic operations. The correct answer includes the command, transformed expression, restrictions, and at least one reason for the step.",
+    calculus: "Calculus lessons study change and accumulation. The graph shows local behaviour, while derivative, integral, or limit notation gives the exact rule behind it.",
+    spreadsheet: "Spreadsheet lessons model a grid of dependent values: each formula should point to source cells, recalculate predictably, and support a chart or summary.",
+    statistics: "Statistics lessons turn data into evidence. Shape, centre, spread, outliers, and context must be read together before making a claim.",
+    probability: "Probability lessons compare theoretical models with repeated trials. Sample space, event, assumptions, and randomness must stay visible.",
+    inference: "Inference lessons use samples to reason about a population. The explanation must include uncertainty, sample size, assumptions, and what the interval or test does not prove.",
+    sequence: "Sequence lessons study ordered patterns. The rule must explain how each term follows from the previous term or from its position.",
+    matrix: "Matrix lessons treat arrays as transformations or systems. Entries are not isolated numbers; together they scale, rotate, solve, or encode relationships.",
+    complex: "Complex-number lessons use the plane to connect real part, imaginary part, modulus, argument, and rotation. Algebra and geometry should agree.",
+    geometry3d: "3D geometry lessons require spatial reading: identify faces, edges, cross-sections, axes, and measurements before using a formula.",
+    discrete: "Discrete lessons work with finite structures. Counting choices, graph edges, sets, and logic statements must be exact because one missed case changes the answer.",
+    finance: "Finance lessons are mathematical models with assumptions. Rate, time unit, principal, payment timing, and compounding rules must be stated before interpreting money values.",
+  };
+  return explanations[adapter];
+}
+
+function conceptExplanationFor(topic: string) {
+  if (/limit|continuity|discontinuity/.test(topic)) return "Look at what nearby inputs approach, not only the value printed at one point.";
+  if (/derivative|tangent|rate|slope/.test(topic)) return "Focus on change per unit input: the steeper the local graph, the larger the rate.";
+  if (/integral|area|accumulation|volume/.test(topic)) return "Think of many small pieces being added; labels should clarify bounds, width, height, and sign.";
+  if (/triangle|angle|trig|sine|cosine|tangent|bearing/.test(topic)) return "Start by marking the chosen angle, then match opposite, adjacent, hypotenuse, or unit-circle coordinates.";
+  if (/circle|arc|sector|ellipse|hyperbola|parabola|locus/.test(topic)) return "The shape is defined by a condition on all points, so test the condition while dragging rather than trusting appearance.";
+  if (/matrix|determinant|eigen|linear transformation/.test(topic)) return "Track how basis directions, area scale, and a test vector change under the matrix.";
+  if (/complex|imaginary|polar/.test(topic)) return "Read the point as both a coordinate pair and a rotation-scale form.";
+  if (/mean|median|quartile|variance|standard deviation|regression|correlation/.test(topic)) return "Inspect the data distribution before summarising; a single statistic can hide shape or outliers.";
+  if (/probability|binomial|normal|distribution|random/.test(topic)) return "Separate model probability from simulation results; short simulations vary more than long ones.";
+  if (/sequence|series|recursion/.test(topic)) return "Compare consecutive terms and position-based formulas to decide whether the pattern is arithmetic, geometric, recursive, or convergent.";
+  if (/set|logic|proof|graph theory|count|permutation|combination/.test(topic)) return "List the allowed cases carefully, then remove duplicates, overlaps, or invalid cases.";
+  if (/interest|loan|annuity|tax|discount|inflation|currency/.test(topic)) return "Convert percentages and time units first; then interpret whether the model is linear, compound, or payment-based.";
+  if (/3d|solid|surface|sphere|cone|cylinder|prism/.test(topic)) return "Rotate the object mentally and visually; formulas depend on which length is radius, height, base, or slant.";
+  if (/equation|expression|factor|solve|algebra/.test(topic)) return "Each algebraic step must preserve equality or equivalence; check by substituting a value or graphing both forms.";
+  return "Read the concept as an input-output relationship: the rule explains why changing one input changes the displayed result.";
+}
+
+function commonMistakeFor(topic: string, adapter: LessonSourceDefinition["adapter"]) {
+  if (/percent|rate|interest|finance/.test(topic)) return "Common mistake: using a percent as a whole number or mixing monthly and yearly rates.";
+  if (/area|volume|surface/.test(topic)) return "Common mistake: using a length formula when the question asks for area, volume, or surface area.";
+  if (/probability|statistics|inference/.test(topic)) return "Common mistake: making a certainty claim from a sample or simulation without naming uncertainty.";
+  if (/trig|angle|bearing/.test(topic)) return "Common mistake: using the wrong angle mode, wrong quadrant, or mismatched opposite/adjacent side.";
+  if (/matrix|vector|complex/.test(topic)) return "Common mistake: changing one component while forgetting the linked geometric meaning.";
+  if (/proof|logic|set|count|discrete/.test(topic)) return "Common mistake: checking examples but not proving every allowed case.";
+  if (adapter === "cas" || adapter === "algebra-cas") return "Common mistake: trusting a symbolic result without checking restrictions or the operation used.";
+  return "Common mistake: reading the final answer without explaining which input changed and why the representation changed with it.";
 }
 
 function formulasFor(titleTopic: string, adapter: LessonSourceDefinition["adapter"]) {

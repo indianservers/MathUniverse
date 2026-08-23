@@ -1,0 +1,44 @@
+# visual-batch-10
+
+Status: implemented and smoke-tested.
+
+| # | lessonId | title | topic | engine | route | visualGoal |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 241 | Dilation from Point | Transformations and Loci | geometry-2d | /lessons/geometry/241-dilation-from-point | Create a theorem or construction-specific 2D geometry scene for Dilation from Point: fixed objects, movable objects, invariants, and validation. |
+| 2 | 242 | Matrix Transformation | Transformations and Loci | geometry-2d | /lessons/geometry/242-matrix-transformation | Create a theorem or construction-specific 2D geometry scene for Matrix Transformation: fixed objects, movable objects, invariants, and validation. |
+| 3 | 243 | Composite Transformations | Transformations and Loci | geometry-2d | /lessons/geometry/243-composite-transformations | Create a theorem or construction-specific 2D geometry scene for Composite Transformations: fixed objects, movable objects, invariants, and validation. |
+| 4 | 244 | Transformation Mapping | Transformations and Loci | geometry-2d | /lessons/geometry/244-transformation-mapping | Create a theorem or construction-specific 2D geometry scene for Transformation Mapping: fixed objects, movable objects, invariants, and validation. |
+| 5 | 245 | Invariants | Transformations and Loci | geometry-2d | /lessons/geometry/245-invariants | Create a theorem or construction-specific 2D geometry scene for Invariants: fixed objects, movable objects, invariants, and validation. |
+| 6 | 246 | Symmetry Explorer | Transformations and Loci | geometry-2d | /lessons/geometry/246-symmetry-explorer | Create a theorem or construction-specific 2D geometry scene for Symmetry Explorer: fixed objects, movable objects, invariants, and validation. |
+| 7 | 247 | Locus Generator | Transformations and Loci | geometry-2d | /lessons/geometry/247-locus-generator | Create a theorem or construction-specific 2D geometry scene for Locus Generator: fixed objects, movable objects, invariants, and validation. |
+| 8 | 248 | Equidistant Loci | Transformations and Loci | geometry-2d | /lessons/geometry/248-equidistant-loci | Create a theorem or construction-specific 2D geometry scene for Equidistant Loci: fixed objects, movable objects, invariants, and validation. |
+| 9 | 249 | Moving-Linkage Loci | Transformations and Loci | geometry-2d | /lessons/geometry/249-moving-linkage-loci | Create a theorem or construction-specific 2D geometry scene for Moving-Linkage Loci: fixed objects, movable objects, invariants, and validation. |
+| 10 | 250 | Envelope of Lines | Transformations and Loci | geometry-2d | /lessons/geometry/250-envelope-of-lines | Create a theorem or construction-specific 2D geometry scene for Envelope of Lines: fixed objects, movable objects, invariants, and validation. |
+| 11 | 251 | Dynamic Trace | Transformations and Loci | geometry-2d | /lessons/geometry/251-dynamic-trace | Create a theorem or construction-specific 2D geometry scene for Dynamic Trace: fixed objects, movable objects, invariants, and validation. |
+| 12 | 252 | Conjecture Testing | Transformations and Loci | geometry-2d | /lessons/geometry/252-conjecture-testing | Create a theorem or construction-specific 2D geometry scene for Conjecture Testing: fixed objects, movable objects, invariants, and validation. |
+| 13 | 254 | Collinearity Test | Transformations and Loci | geometry-2d | /lessons/geometry/254-collinearity-test | Create a theorem or construction-specific 2D geometry scene for Collinearity Test: fixed objects, movable objects, invariants, and validation. |
+| 14 | 255 | Concurrency Test | Transformations and Loci | geometry-2d | /lessons/geometry/255-concurrency-test | Create a theorem or construction-specific 2D geometry scene for Concurrency Test: fixed objects, movable objects, invariants, and validation. |
+| 15 | 256 | Concyclicity Test | Transformations and Loci | geometry-2d | /lessons/geometry/256-concyclicity-test | Create a theorem or construction-specific 2D geometry scene for Concyclicity Test: fixed objects, movable objects, invariants, and validation. |
+| 16 | 257 | Angle Measurement | Trigonometry | geometry-2d | /lessons/trigonometry/257-angle-measurement | Create a theorem or construction-specific 2D geometry scene for Angle Measurement: fixed objects, movable objects, invariants, and validation. |
+| 17 | 258 | Unit Circle | Trigonometry | geometry-2d | /lessons/trigonometry/258-unit-circle | Create a theorem or construction-specific 2D geometry scene for Unit Circle: fixed objects, movable objects, invariants, and validation. |
+| 18 | 259 | Right-Triangle Ratios | Trigonometry | geometry-2d | /lessons/trigonometry/259-right-triangle-ratios | Create a theorem or construction-specific 2D geometry scene for Right-Triangle Ratios: fixed objects, movable objects, invariants, and validation. |
+| 19 | 267 | Compound-Angle Formulae | Trigonometry | geometry-2d | /lessons/trigonometry/267-compound-angle-formulae | Create a theorem or construction-specific 2D geometry scene for Compound-Angle Formulae: fixed objects, movable objects, invariants, and validation. |
+| 20 | 268 | Double- and Half-Angle Formulae | Trigonometry | geometry-2d | /lessons/trigonometry/268-double-and-half-angle-formulae | Create a theorem or construction-specific 2D geometry scene for Double- and Half-Angle Formulae: fixed objects, movable objects, invariants, and validation. |
+| 21 | 272 | Triangle Area Formula | Trigonometry | geometry-2d | /lessons/trigonometry/272-triangle-area-formula | Create a theorem or construction-specific 2D geometry scene for Triangle Area Formula: fixed objects, movable objects, invariants, and validation. |
+| 22 | 484 | Frequency Polygon | Statistics and Regression | geometry-2d | /lessons/data-and-probability/484-frequency-polygon | Create a theorem or construction-specific 2D geometry scene for Frequency Polygon: fixed objects, movable objects, invariants, and validation. |
+| 23 | 630 | Reset Construction | Interactive Authoring | geometry-2d | /lessons/authoring-and-learning-system/630-reset-construction | Create a theorem or construction-specific 2D geometry scene for Reset Construction: fixed objects, movable objects, invariants, and validation. |
+| 24 | 647 | Construction Challenge | Lesson and Assessment Pages | geometry-2d | /lessons/authoring-and-learning-system/647-construction-challenge | Create a theorem or construction-specific 2D geometry scene for Construction Challenge: fixed objects, movable objects, invariants, and validation. |
+| 25 | 590 | Proof Methods | Combinatorics, Graph Theory and Logic | graph-2d | /lessons/discrete-and-applied-mathematics/590-proof-methods | Create a lesson-specific 2D graph preset for Proof Methods: exact expression, viewport, draggable points, highlighted measurements, CAS overlay, and output labels. |
+| 26 | phase1-class-9-polynomials-03-remainder-theorem | Remainder Theorem | Polynomials | cas-data | /lessons/school/class-9/class-9-polynomials-remainder-theorem | Create a CAS/Data preset for Remainder Theorem: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 27 | phase1-class-9-polynomials-04-factor-theorem | Factor Theorem | Polynomials | cas-data | /lessons/school/class-9/class-9-polynomials-factor-theorem | Create a CAS/Data preset for Factor Theorem: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 28 | phase1-class-12-probability-04-total-probability-theorem | Total Probability Theorem | Probability | cas-data | /lessons/school/class-12/class-12-probability-total-probability-theorem | Create a CAS/Data preset for Total Probability Theorem: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 29 | phase1-class-12-probability-05-bayes-theorem | Bayes' Theorem | Probability | cas-data | /lessons/school/class-12/class-12-probability-bayes-theorem | Create a CAS/Data preset for Bayes' Theorem: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 30 | phase1-class-12-formal-calculus-12-increasing-and-decreasing-functions | Increasing and Decreasing Functions | Formal Calculus | graph-2d | /lessons/school/class-12/class-12-formal-calculus-increasing-and-decreasing-functions | Create a lesson-specific 2D graph preset for Increasing and Decreasing Functions: exact expression, viewport, draggable points, highlighted measurements, CAS overlay, and output labels. |
+
+## Completion Gate
+
+- Exact visual preset implemented for every row.
+- No repeated fallback graph unless mathematically justified in notes.
+- Route smoke test confirms each lesson renders a distinct visual state.
+- Browser visual spot-check completed for representative desktop and mobile widths.
+- Accessibility summary names the actual mathematical object.

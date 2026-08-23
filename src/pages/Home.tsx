@@ -1,4 +1,4 @@
-import { BookOpen, BrainCircuit, Calculator, CheckCircle2, Compass, Cuboid, FlaskConical, Gauge, GraduationCap, HelpCircle, Layers3, LibraryBig, MonitorSmartphone, PlayCircle, Rocket, Route, Search, ShieldCheck, Sparkles, Target, Trophy, Wand2, X, ArrowRight } from "lucide-react";
+import { BookOpen, BrainCircuit, Calculator, CheckCircle2, Compass, Cuboid, FlaskConical, Gauge, GraduationCap, HelpCircle, Layers3, LibraryBig, MonitorSmartphone, PlayCircle, Rocket, Route, Search, Sparkles, Trophy, Wand2, X, ArrowRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, type CSSProperties, type PointerEvent } from "react";
@@ -7,13 +7,8 @@ import AITutorPanel from "../components/ui/AITutorPanel";
 import { iconMap } from "../components/layout/navItems";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import InquirySimulationLabs from "../components/inquiry/InquirySimulationLabs";
 import { recentRouteItems } from "../components/layout/GlobalUx";
-import { buildPracticeSpineLite } from "../data/olympyardPracticeSpineLite";
-import { initialOlympyardProgressLite, normalizeOlympyardProgressLite, OLYMPYARD_PROGRESS_STORAGE_KEY, type OlympyardProgressLite } from "../data/olympyardProgressLite";
 import { MathWorkspacesHomeSection } from "../components/workspace/MathWorkspaceNavigation";
-import InteractiveMathHero from "../components/home/InteractiveMathHero";
 import MathExpression from "../components/ui/MathExpression";
 
 const tourSteps = [
@@ -109,14 +104,12 @@ function GuidedTourOverlay({ open, onClose }: { open: boolean; onClose: () => vo
 
 export default function Home() {
   const { getTopicProgress, getOverallProgress } = useProgress();
-  const [olympyardProgress] = useLocalStorage<OlympyardProgressLite>(OLYMPYARD_PROGRESS_STORAGE_KEY, initialOlympyardProgressLite);
   const recentItems = recentRouteItems(5);
   const [tourOpen, setTourOpen] = useState(false);
   const [homeFilter, setHomeFilter] = useState<"all" | "core" | "tools" | "practice" | "advanced">("all");
   const [homeQuery, setHomeQuery] = useState("");
   const [activePath, setActivePath] = useState<(typeof learnerPaths)[number]["id"]>("student");
   const labs = topics.reduce((sum, topic) => sum + topic.labCount, 0);
-  const practiceSpine = buildPracticeSpineLite(normalizeOlympyardProgressLite(olympyardProgress));
   const extraCards = [
     {
       title: "Visual Showcase",
@@ -201,8 +194,6 @@ export default function Home() {
     ? toolCards.filter(({ card }) => !normalizedQuery || `${card.title} ${card.description} ${card.concepts.join(" ")}`.toLowerCase().includes(normalizedQuery))
     : [];
   const activePathConfig = learnerPaths.find((path) => path.id === activePath) ?? learnerPaths[0];
-  const recommendedTopics = topics.filter((topic) => ["algebra", "geometry", "trigonometry", "calculus"].includes(topic.id)).slice(0, 4);
-
   return (
     <div className="space-y-4">
       <GuidedTourOverlay open={tourOpen} onClose={() => setTourOpen(false)} />
@@ -292,11 +283,6 @@ export default function Home() {
         </div>
       </section></div>
 
-      <section className="home-path-section" aria-labelledby="home-path-title">
-        <div className="home-path-heading"><span>Choose how you want to explore</span><h2 id="home-path-title">A clear path for every curious mind</h2></div>
-        <div className="home-path-grid">{learnerPaths.map((path) => { const Icon = path.icon; return <Link key={path.id} to={path.route} className={`home-path-card is-${path.id}`} onMouseEnter={() => setActivePath(path.id)}><span className="home-path-icon"><Icon /></span><span><strong>{path.label}</strong><small>{path.description}</small><b>{path.id === "student" ? "Start learning" : path.id === "teacher" ? "Open studio" : "Explore tools"}<ArrowRight /></b></span></Link>; })}</div>
-      </section>
-
       <section className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto]">
         <label className="flex min-w-0 items-center gap-3 rounded-2xl border border-cyan-100 bg-white/90 px-4 py-3 shadow-sm dark:border-white/10 dark:bg-slate-950/60">
           <Search className="h-5 w-5 text-cyan-600 dark:text-cyan-300" />
@@ -324,16 +310,20 @@ export default function Home() {
 
       <MathWorkspacesHomeSection />
 
-      <section className="rounded-[1.4rem] border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-white/[0.04]" aria-labelledby="home-3d-graph-title">
-        <div className="mb-3 flex flex-wrap items-center justify-between gap-2 px-1">
-          <div>
-            <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Interactive 3D graph</p>
-            <h2 id="home-3d-graph-title" className="text-xl font-black text-slate-950 dark:text-white">Current 3D surface lab preserved</h2>
-          </div>
-          <Link to="/math-lab/3d-graphing" className="mini-chip">Open full 3D graph</Link>
-        </div>
-        <InteractiveMathHero />
-      </section>
+      <Link
+        to="/math-lab/3d-graphing"
+        className="group grid max-w-md grid-cols-[48px_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-cyan-100 bg-white/85 p-3 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-cyan-300/40 dark:hover:bg-cyan-400/10"
+        aria-labelledby="home-3d-graph-title"
+      >
+        <span className="grid h-12 w-12 place-items-center rounded-xl bg-cyan-50 text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-200">
+          <Cuboid className="h-5 w-5" />
+        </span>
+        <span className="min-w-0">
+          <span className="block text-[10px] font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Interactive 3D graph</span>
+          <span id="home-3d-graph-title" className="mt-0.5 block truncate text-sm font-black text-slate-950 dark:text-white">Current 3D surface lab preserved</span>
+        </span>
+        <ArrowRight className="h-4 w-4 text-cyan-600 transition group-hover:translate-x-0.5 dark:text-cyan-300" />
+      </Link>
 
       <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-6">
         {[
@@ -368,30 +358,6 @@ export default function Home() {
         </section>
       )}
 
-      <section className="grid gap-3">
-        <div className="rounded-2xl border border-slate-200 bg-white/85 p-4 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <p className="text-xs font-black uppercase tracking-wide text-cyan-700 dark:text-cyan-300">Recommended next</p>
-              <h2 className="mt-1 text-xl font-black text-slate-950 dark:text-white">Start with the visual core</h2>
-            </div>
-            <Link to="/visual-showcase" className="mini-chip">Showcase</Link>
-          </div>
-          <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
-            {recommendedTopics.map((topic) => {
-              const Icon = iconMap[topic.iconName as keyof typeof iconMap] ?? BookOpen;
-              return (
-                <Link key={topic.id} to={topic.route} className="rounded-2xl border border-slate-200 bg-slate-50 p-3 transition hover:border-cyan-300 hover:bg-cyan-50 dark:border-white/10 dark:bg-slate-950/40 dark:hover:border-cyan-300/40">
-                  <Icon className="h-5 w-5 text-cyan-600 dark:text-cyan-300" />
-                  <p className="mt-2 text-sm font-black text-slate-950 dark:text-white">{topic.title}</p>
-                  <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-600 dark:text-slate-300">{topic.description}</p>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-slate-200 bg-white/80 p-2 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
         {[
           ["all", "All"],
@@ -411,8 +377,6 @@ export default function Home() {
         ))}
       </div>
 
-      {homeFilter === "all" || homeFilter === "practice" ? <InquirySimulationLabs /> : null}
-      {homeFilter === "all" || homeFilter === "practice" ? <PracticeSpineStrip spine={practiceSpine} /> : null}
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {visibleTopicCards.map(({ topic }) => {
           const Icon = iconMap[topic.iconName as keyof typeof iconMap] ?? BookOpen;
@@ -430,7 +394,6 @@ export default function Home() {
           </button>
         </section>
       )}
-      {homeFilter === "all" && <FormulaMuseumSection />}
       {homeFilter === "all" && <AITutorPanel />}
     </div>
   );
@@ -506,6 +469,7 @@ function HomeMathStudioHero({ labs, topicCount, progress, onTour }: HomeMathStud
         </div>
 
         <div className="home-studio-visual" aria-label="Interactive math studio preview">
+          <MathOrchestrationAnimation />
           <svg
             className="home-studio-graph"
             viewBox="0 0 740 350"
@@ -624,6 +588,67 @@ function HomeMathStudioHero({ labs, topicCount, progress, onTour }: HomeMathStud
   );
 }
 
+function MathOrchestrationAnimation() {
+  const objects = [
+    { label: "y=x²", className: "graph", text: "y=x²" },
+    { label: "triangle", className: "triangle", text: "△" },
+    { label: "circle", className: "circle", text: "○" },
+    { label: "cube", className: "cube", text: "□³" },
+    { label: "vector", className: "vector", text: "v⃗" },
+    { label: "matrix", className: "matrix", text: "[a b]" },
+    { label: "sine wave", className: "sine", text: "sin θ" },
+    { label: "tangent", className: "tangent", text: "f′" },
+    { label: "area", className: "area", text: "∫" },
+    { label: "probability tree", className: "probability", text: "P(A)" },
+    { label: "spiral", className: "spiral", text: "φ" },
+    { label: "pi", className: "pi", text: "π" },
+    { label: "sigma", className: "sigma", text: "Σ" },
+    { label: "integral", className: "integral", text: "∫dx" },
+    { label: "fraction", className: "fraction", text: "⅔" },
+    { label: "coordinate", className: "coordinate", text: "(x,y)" },
+    { label: "angle", className: "angle", text: "θ" },
+  ];
+
+  return (
+    <div className="home-math-orchestrator" aria-label="Animated mathematical objects transforming into connected visual ideas">
+      <div className="home-orchestrator-hub">
+        <span>Math</span>
+        <b>Universe</b>
+      </div>
+      <svg className="home-orchestrator-paths" viewBox="0 0 520 340" aria-hidden="true">
+        <defs>
+          <linearGradient id="homeOrchestratorFlow" x1="0" x2="1">
+            <stop offset="0%" stopColor="#06b6d4" />
+            <stop offset="52%" stopColor="#7c3aed" />
+            <stop offset="100%" stopColor="#f59e0b" />
+          </linearGradient>
+        </defs>
+        <path d="M96 170C132 78 244 62 300 118S398 226 456 80" />
+        <path d="M78 230C162 172 210 262 288 200S396 122 466 172" />
+        <path d="M260 38C232 96 278 128 260 170S212 228 260 302" />
+        <path d="M58 118C122 140 172 182 260 170S396 132 492 248" />
+      </svg>
+      <svg className="home-orchestrator-morph" viewBox="0 0 260 170" aria-hidden="true">
+        <path className="morph-line morph-a" d="M16 118C64 22 108 140 152 64S224 42 244 118" />
+        <path className="morph-line morph-b" d="M22 128L78 42L136 128Z M150 128C170 56 216 56 238 128" />
+        <path className="morph-line morph-c" d="M28 132C54 70 96 48 136 88C170 120 198 34 236 42" />
+        <g className="home-orchestrator-bars">
+          {Array.from({ length: 7 }, (_, index) => <rect key={index} x={50 + index * 19} y={126 - index * 8} width="12" height={index * 8 + 6} rx="3" />)}
+        </g>
+      </svg>
+      {objects.map((item, index) => (
+        <span
+          key={item.label}
+          className={`home-math-object is-${item.className}`}
+          style={{ "--i": index } as CSSProperties}
+        >
+          {item.text}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function HomeUnderstandingSection() {
   const cards = [
     {
@@ -693,141 +718,5 @@ function HomeUnderstandingSection() {
         </div>
       </section>
     </>
-  );
-}
-
-function FormulaMuseumSection() {
-  const exhibits = [
-    {
-      title: "Derivative Tangent Sculpture",
-      route: "/math/derivatives",
-      formula: "f'(x)=lim(h->0)(f(x+h)-f(x))/h",
-      note: "A moving tangent beam rides along a curve and reveals instantaneous slope.",
-      className: "museum-derivative",
-    },
-    {
-      title: "Integral Slab Gallery",
-      route: "/math/integration",
-      formula: "integral_a^b f(x) dx",
-      note: "Area becomes stacked translucent slabs, from rough rectangles to smooth accumulation.",
-      className: "museum-integral",
-    },
-    {
-      title: "Matrix Transform Room",
-      route: "/math/matrix-transformations",
-      formula: "A[x,y]^T",
-      note: "Step into a grid room where a matrix rotates, shears, stretches, and reflects space.",
-      className: "museum-matrix",
-    },
-    {
-      title: "Probability Branch Atrium",
-      route: "/probability-statistics",
-      formula: "P(A|B)=P(A)P(B|A)/P(B)",
-      note: "Branching paths turn conditional probability into a walkable decision tree.",
-      className: "museum-probability",
-    },
-  ];
-
-  return (
-    <section className="formula-museum overflow-hidden rounded-[1.8rem] border border-slate-200 bg-slate-950 text-white shadow-2xl shadow-cyan-950/20 dark:border-white/10" aria-label="3D Formula Museum">
-      <div className="grid gap-4 p-4 md:p-5 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-        <div className="flex min-h-[420px] flex-col justify-between">
-          <div>
-            <span className="mini-chip border-cyan-300/30 bg-cyan-300/10 text-cyan-100">
-              <Cuboid className="h-3.5 w-3.5" />
-              3D Formula Museum
-            </span>
-            <h2 className="mt-4 max-w-2xl text-3xl font-black tracking-tight text-white md:text-5xl">
-              Explore formulas as interactive models.
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-slate-300 md:text-base">
-              Derivatives become tangent sculptures, integrals stack into area slabs, matrices reshape rooms, and probability grows into branching pathways.
-            </p>
-          </div>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            <Link to="/visual-formulas" className="action-primary">
-              <Sparkles className="h-4 w-4" />
-              Open formula atlas
-            </Link>
-            <Link to="/math-lab/3d-graphing" className="action-secondary border-white/15 bg-white/10 text-white hover:bg-white/15">
-              <Cuboid className="h-4 w-4" />
-              Open 3D lab
-            </Link>
-          </div>
-        </div>
-
-        <div className="formula-museum-stage" aria-hidden="true">
-          <div className="museum-floor" />
-          <div className="museum-exhibit museum-derivative">
-            <span className="museum-curve" />
-            <span className="museum-tangent" />
-            <span className="museum-label">f'(x)</span>
-          </div>
-          <div className="museum-exhibit museum-integral">
-            {Array.from({ length: 8 }, (_, index) => <span key={index} style={{ "--i": index } as CSSProperties} />)}
-            <span className="museum-label">area</span>
-          </div>
-          <div className="museum-exhibit museum-matrix">
-            <span />
-            <span />
-            <span />
-            <span className="museum-label">A</span>
-          </div>
-          <div className="museum-exhibit museum-probability">
-            <span />
-            <span />
-            <span />
-            <span className="museum-label">P</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid gap-2 border-t border-white/10 p-4 md:grid-cols-2 xl:grid-cols-4">
-        {exhibits.map((exhibit) => (
-          <Link key={exhibit.title} to={exhibit.route} className="group rounded-2xl border border-white/10 bg-white/[0.06] p-3 transition hover:-translate-y-0.5 hover:border-cyan-300/50 hover:bg-white/[0.09]">
-            <div className={`museum-card-icon ${exhibit.className}`} />
-            <h3 className="mt-3 text-sm font-black text-white">{exhibit.title}</h3>
-            <p className="mt-1 font-mono text-[11px] font-black text-cyan-200">{exhibit.formula}</p>
-            <p className="mt-2 line-clamp-3 text-xs font-semibold leading-5 text-slate-300">{exhibit.note}</p>
-            <span className="mt-3 inline-flex items-center gap-2 text-xs font-black text-cyan-200">
-              Enter exhibit <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
-            </span>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function PracticeSpineStrip({ spine }: { spine: ReturnType<typeof buildPracticeSpineLite> }) {
-  const accuracy = spine.mastery.accuracy;
-  return (
-    <section className="grid gap-3 rounded-xl border border-slate-200 bg-white/85 p-4 shadow-sm dark:border-white/10 dark:bg-white/5 lg:grid-cols-[minmax(0,1fr)_auto]">
-      <div className="min-w-0">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="mini-chip bg-cyan-50 text-cyan-700 dark:bg-cyan-400/10 dark:text-cyan-100">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            Adaptive practice spine
-          </span>
-          <span className="mini-chip">{spine.mastery.attempted ? `${accuracy}% accuracy` : "No local signal yet"}</span>
-        </div>
-        <h2 className="mt-3 text-xl font-black text-slate-950 dark:text-white">
-          Practice next: {spine.primaryTopic?.title ?? "Number Sense"}
-        </h2>
-        <p className="mt-1 text-sm leading-6 text-slate-600 dark:text-slate-300">
-          Olympyard now connects topic labs, quizzes, visual reasoning, weak-area review, and mock tests into one adaptive queue.
-        </p>
-      </div>
-      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-white/60 bg-white/70 p-2 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/[0.04]">
-        <Link to={spine.primaryPracticeRoute} className="action-primary">
-          <Target className="h-4 w-4" />
-          Practice next
-        </Link>
-        <Link to={spine.adaptiveRoute} className="action-secondary">
-          Adaptive session
-        </Link>
-      </div>
-    </section>
   );
 }

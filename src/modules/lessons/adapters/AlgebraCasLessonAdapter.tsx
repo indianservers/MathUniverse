@@ -3,6 +3,7 @@ import SliderControl from "../../../components/ui/SliderControl";
 import { symbolicCompleteSquare, symbolicExpand, symbolicFactor, symbolicSimplify, symbolicSolve, symbolicSolveInequality, symbolicSubstitute, type SymbolicResult } from "../../../utils/symbolic";
 import AdapterFrame from "../components/AdapterFrame";
 import type { LessonAdapterProps } from "../types";
+import { AlgebraConceptWorkspace } from "./AlgebraLessonAdapter";
 
 function run(title: string, coefficient: number): { input: string; output: SymbolicResult } {
   const name = title.toLowerCase();
@@ -82,6 +83,14 @@ function runStrengthenedAlgebra(name: string, coefficient: number): { input: str
 }
 
 export default function AlgebraCasLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  if (lesson.categorySlug === "algebra" && lesson.id >= 92 && lesson.id <= 128) {
+    return <AlgebraConceptWorkspace lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+
+  return <LegacyAlgebraCasLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+}
+
+function LegacyAlgebraCasLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   const initial = lesson.id === 98 ? 2 : lesson.id % 4 + 2;
   const [coefficient, setCoefficient] = useState(initial);
   const [step, setStep] = useState(0);

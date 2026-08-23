@@ -18,7 +18,7 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
 
   return (
     <AdapterFrame
-      title={`${props.lesson.title} - reusable ${surfaceLesson ? "3D graph" : "3D geometry"} engine`}
+      title={`${props.lesson.title} - reusable ${surfaceLesson ? "3D graph" : "spatial"} engine`}
       value={surfaceLesson ? params.surfaceExpression : params.solid}
       footer="This embeds only the reusable 3D axis workspace area with lesson parameters, not the full studio menu."
     >

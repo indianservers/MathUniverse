@@ -1,7 +1,7 @@
 import { ArrowRight, Filter, GraduationCap, Search } from "lucide-react";
-import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-import { schoolLessonsFor, schoolPathways } from "../catalog/school/schoolSyllabusCatalog";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { levelFromSlug, levelSlug as toLevelSlug, schoolLessonsFor, schoolPathways } from "../catalog/school/schoolSyllabusCatalog";
 import type { AcademicLevel, SchoolSyllabusLesson, SyllabusBoard, SyllabusLessonType } from "../syllabus/lessonSyllabusTypes";
 
 const levels: Array<AcademicLevel | "ALL"> = ["ALL", "CLASS_6", "CLASS_7", "CLASS_8", "CLASS_9", "CLASS_10", "CLASS_11", "CLASS_12"];
@@ -9,11 +9,17 @@ const boards: Array<SyllabusBoard | "ALL"> = ["ALL", "NCERT", "CBSE", "AP_SCERT"
 const lessonTypes: Array<SyllabusLessonType | "ALL"> = ["ALL", "CONCEPT", "VISUAL_EXPLORATION", "PROOF", "PRACTICE", "APPLICATION", "ASSESSMENT", "PROJECT"];
 
 export default function SchoolLessonsPage() {
-  const [level, setLevel] = useState<AcademicLevel | "ALL">("ALL");
+  const { levelSlug } = useParams();
+  const routeLevel = useMemo(() => levelFromSlug(levelSlug ?? ""), [levelSlug]);
+  const [level, setLevel] = useState<AcademicLevel | "ALL">(routeLevel ?? "ALL");
   const [board, setBoard] = useState<SyllabusBoard | "ALL">("ALL");
   const [concept, setConcept] = useState("ALL");
   const [lessonType, setLessonType] = useState<SyllabusLessonType | "ALL">("ALL");
   const [query, setQuery] = useState("");
+  useEffect(() => {
+    setLevel(routeLevel ?? "ALL");
+    setConcept("ALL");
+  }, [routeLevel]);
   const baseLessons = useMemo(() => schoolLessonsFor(level, board, query), [level, board, query]);
   const conceptOptions = useMemo(() => {
     const counts = new Map<string, number>();
@@ -28,6 +34,15 @@ export default function SchoolLessonsPage() {
     return conceptMatches && typeMatches;
   }), [baseLessons, concept, lessonType]);
   const units = useMemo(() => Array.from(new Set(lessons.map((lesson) => lesson.metadata.conceptFamily))), [lessons]);
+  const visiblePathways = useMemo(() => schoolPathways.filter((pathway) => {
+    const levelMatches = level === "ALL" || pathway.academicLevel === level;
+    const boardMatches = board === "ALL" || pathway.board === board;
+    return levelMatches && boardMatches;
+  }), [board, level]);
+  const pageTitle = level === "ALL" ? "School syllabus remediation" : `${formatLabel(level)} lessons`;
+  const pageDescription = level === "ALL"
+    ? "Generated Class 6-12 concept lessons for NCERT, CBSE, AP, TN, Cambridge, IB, and Common Core gaps. These are additive pathway lessons; the original 674 lesson routes remain unchanged."
+    : `Browse every registered ${formatLabel(level)} school lesson, grouped by concept and filtered by board, lesson type, and search.`;
 
   return (
     <div className="space-y-4" data-testid="school-lessons-page">
@@ -35,14 +50,14 @@ export default function SchoolLessonsPage() {
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-600 dark:text-cyan-300">Phase 1 school syllabus</p>
-            <h1 className="mt-2 text-3xl font-black text-slate-950 dark:text-white">School syllabus remediation</h1>
+            <h1 className="mt-2 text-3xl font-black text-slate-950 dark:text-white">{pageTitle}</h1>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">
-              Generated Class 6-12 concept lessons for NCERT, CBSE, AP, TN, Cambridge, IB, and Common Core gaps. These are additive pathway lessons; the original 674 lesson routes remain unchanged.
+              {pageDescription}
             </p>
           </div>
           <div className="grid grid-cols-2 gap-2 text-center">
-            <Stat label="Lessons" value="220" />
-            <Stat label="Pathways" value={schoolPathways.length.toString()} />
+            <Stat label="Lessons" value={schoolLessonsFor(level, board, "").length.toString()} />
+            <Stat label="Pathways" value={visiblePathways.length.toString()} />
           </div>
         </div>
 
@@ -61,13 +76,21 @@ export default function SchoolLessonsPage() {
         </div>
 
         <div className="mt-3 flex flex-wrap gap-2">
+          {levels.filter((item): item is AcademicLevel => item !== "ALL").map((item) => (
+            <Link key={item} to={`/lessons/school/${toLevelSlug(item)}`} className={`inline-flex min-h-9 items-center rounded-lg border px-3 text-xs font-black transition ${level === item ? "border-cyan-500 bg-cyan-50 text-cyan-800 dark:border-cyan-300 dark:bg-cyan-300/15 dark:text-cyan-100" : "border-slate-200 bg-slate-50 text-slate-600 hover:border-cyan-300 hover:text-cyan-700 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:border-cyan-300/40 dark:hover:text-cyan-100"}`}>
+              {formatLabel(item)}
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-3 flex flex-wrap gap-2">
           <FilterChip active={concept === "ALL"} label="All concepts" count={baseLessons.length} onClick={() => setConcept("ALL")} />
           {conceptOptions.slice(0, 10).map((item) => <FilterChip key={item.label} active={concept === item.label} label={item.label} count={item.count} onClick={() => setConcept(item.label)} />)}
         </div>
       </header>
 
       <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-        {schoolPathways.slice(0, 8).map((pathway) => (
+        {visiblePathways.slice(0, 8).map((pathway) => (
           <article key={pathway.id} className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/70">
             <div className="flex items-center justify-between gap-2 text-xs font-black text-cyan-700 dark:text-cyan-300">
               <span>{pathway.board}</span>

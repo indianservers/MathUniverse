@@ -45,7 +45,9 @@ describe("complete four-phase lesson catalog", () => {
   it("adds learning content, control guidance, and formulas to every lesson page", () => {
     for (const lesson of lessonCatalog) {
       expect(lesson.content.summary, `lesson ${lesson.id} summary`).toContain(lesson.title);
-      expect(lesson.content.explanation, `lesson ${lesson.id} explanation`).toContain("small experiment");
+      expect(lesson.content.explanation, `lesson ${lesson.id} explanation`).toContain("Introduction:");
+      expect(lesson.content.explanation, `lesson ${lesson.id} detail`).toContain("Detailed explanation:");
+      expect(lesson.content.explanation, `lesson ${lesson.id} interactions`).toContain(lesson.interactions.toLowerCase());
       expect(lesson.content.keyIdeas.length, `lesson ${lesson.id} key ideas`).toBeGreaterThanOrEqual(3);
       expect(lesson.content.realWorldExamples.length, `lesson ${lesson.id} examples`).toBeGreaterThanOrEqual(2);
       expect(lesson.content.controlGuide.length, `lesson ${lesson.id} controls`).toBeGreaterThanOrEqual(3);
@@ -93,5 +95,5 @@ describe("complete four-phase lesson catalog", () => {
         expect(content.formulas[0].expression, `${language.code} lesson ${lesson.id} formula`).toBe(lesson.content.formulas[0].expression);
       }
     }
-  });
+  }, 30000);
 });

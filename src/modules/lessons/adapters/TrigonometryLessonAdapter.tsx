@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type PointerEvent } from "react";
 import SliderControl from "../../../components/ui/SliderControl";
 import { samplePlotLayer, type GraphViewport, type PlotItem } from "../../../components/workspace/panels/graphPanelUtils";
 import { computeTrigFormulaValues, formatTrigNumber } from "../../../trigonometry/utils/trigFormulaUtils";
@@ -23,12 +23,34 @@ export default function TrigonometryLessonAdapter({ lesson, resetToken, onIntera
   const graphValue = family === "cos" ? values.cos : family === "tan" ? values.tan ?? 0 : values.sin;
   const graphY = viewport.height - ((graphValue - viewport.yMin) / (viewport.yMax - viewport.yMin)) * viewport.height;
   const guidance = trigGuidanceFor(lesson.title);
+  const updateAngle = (value: number) => {
+    setAngle(Math.max(-360, Math.min(360, Math.round(value))));
+    onInteraction();
+  };
+  const updateFromCircle = (event: PointerEvent<SVGSVGElement>) => {
+    if (event.type === "pointermove" && event.buttons !== 1) return;
+    if (event.type === "pointerdown") event.currentTarget.setPointerCapture?.(event.pointerId);
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 320;
+    const y = ((event.clientY - rect.top) / rect.height) * 300;
+    const degrees = Math.atan2(150 - y, x - 160) * 180 / Math.PI;
+    updateAngle(degrees);
+  };
+  const updateFromGraph = (event: PointerEvent<SVGSVGElement>) => {
+    if (event.type === "pointermove" && event.buttons !== 1) return;
+    if (event.type === "pointerdown") event.currentTarget.setPointerCapture?.(event.pointerId);
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 640;
+    const radiansAtPointer = viewport.xMin + (x / 640) * (viewport.xMax - viewport.xMin);
+    updateAngle((radiansAtPointer * 180) / Math.PI);
+  };
 
   return (
-    <AdapterFrame title={`${lesson.title} - linked angle`} value={`${angle} degrees - ${values.radiansLabel}`} footer="One angle drives the unit circle, triangle ratios, and sampled trig graph in the same update cycle.">
+    <AdapterFrame title={`${lesson.title} - linked angle`} value={`${angle} degrees - ${values.radiansLabel}`} footer="Drag directly on the unit-circle point or graph marker; the side control is only for precise adjustment.">
       <div className="grid gap-3 xl:grid-cols-[340px_minmax(0,1fr)_250px]">
-        <div className="rounded-xl bg-slate-50 dark:bg-slate-900">
-          <svg viewBox="0 0 320 300" className="h-[300px] w-full" role="img" aria-label={`Unit circle at ${angle} degrees`}>
+        <div className="lesson-direct-surface rounded-xl bg-slate-50 dark:bg-slate-900" data-direct-interaction="true">
+          <span className="lesson-direct-cue">Drag the point</span>
+          <svg viewBox="0 0 320 300" className="h-[300px] w-full" role="img" aria-label={`Unit circle at ${angle} degrees`} onPointerDown={updateFromCircle} onPointerMove={updateFromCircle}>
             <circle cx="160" cy="150" r="112" fill="none" stroke="#94a3b8" strokeWidth="2" />
             <line x1="30" x2="290" y1="150" y2="150" stroke="#94a3b8" />
             <line x1="160" x2="160" y1="20" y2="280" stroke="#94a3b8" />
@@ -38,8 +60,9 @@ export default function TrigonometryLessonAdapter({ lesson, resetToken, onIntera
             <text x={px + 8} y={py - 8} fontWeight="800" fill="#334155">(cos theta, sin theta)</text>
           </svg>
         </div>
-        <div className="overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-900">
-          <svg viewBox="0 0 640 190" className="h-[220px] w-full" role="img" aria-label={`${family} graph linked to angle`}>
+        <div className="lesson-direct-surface overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-900" data-direct-interaction="true">
+          <span className="lesson-direct-cue">Drag graph marker</span>
+          <svg viewBox="0 0 640 190" className="h-[220px] w-full" role="img" aria-label={`${family} graph linked to angle`} onPointerDown={updateFromGraph} onPointerMove={updateFromGraph}>
             <line x1="0" x2="640" y1="95" y2="95" stroke="#64748b" />
             {layer.paths.map((path, index) => <path key={index} d={path} fill="none" stroke="#06b6d4" strokeWidth="4" />)}
             <line x1={graphX} x2={graphX} y1="0" y2="190" stroke="#f59e0b" strokeDasharray="6 4" />
@@ -52,7 +75,7 @@ export default function TrigonometryLessonAdapter({ lesson, resetToken, onIntera
             <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">{guidance[1]}</p>
             <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">{guidance[2]}</p>
           </div>
-          <SliderControl density="compact" label="Angle theta" value={angle} min={-360} max={360} step={1} unit="degrees" onChange={(value) => { setAngle(value); onInteraction(); }} />
+          <SliderControl density="compact" label="Angle theta" value={angle} min={-360} max={360} step={1} unit="degrees" onChange={updateAngle} />
           <div className="grid grid-cols-2 gap-2">
             <Metric label="sin theta" value={formatTrigNumber(values.sin)} />
             <Metric label="cos theta" value={formatTrigNumber(values.cos)} />

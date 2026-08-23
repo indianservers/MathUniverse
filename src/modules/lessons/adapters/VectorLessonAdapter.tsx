@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type PointerEvent } from "react";
 import SliderControl, { SliderGroup } from "../../../components/ui/SliderControl";
 import { dotProduct, vectorAdd, vectorMagnitude, vectorProjection, type Vector2 } from "../../../utils/mathEngine/linearAlgebraUtils";
 import AdapterFrame from "../components/AdapterFrame";
@@ -29,11 +29,13 @@ export default function VectorLessonAdapter({ lesson, resetToken, onInteraction 
   const [uy, setUy] = useState(2);
   const [vx, setVx] = useState(-1);
   const [vy, setVy] = useState(3);
+  const [activeVector, setActiveVector] = useState<"u" | "v">("u");
   useEffect(() => {
     setUx(3);
     setUy(2);
     setVx(-1);
     setVy(3);
+    setActiveVector("u");
   }, [resetToken]);
 
   const u: Vector2 = [ux, uy];
@@ -47,12 +49,32 @@ export default function VectorLessonAdapter({ lesson, resetToken, onInteraction 
     setter(value);
     onInteraction();
   };
+  const updateVectorFromPointer = (event: PointerEvent<SVGSVGElement>) => {
+    if (event.type === "pointermove" && event.buttons !== 1) return;
+    if (event.type === "pointerdown") event.currentTarget.setPointerCapture?.(event.pointerId);
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = Math.max(-5, Math.min(5, Math.round((((event.clientX - rect.left) / rect.width) * 640 - 320) / 19) / 2));
+    const y = Math.max(-5, Math.min(5, Math.round((180 - ((event.clientY - rect.top) / rect.height) * 360) / 19) / 2));
+    const distanceToU = Math.hypot(x - ux, y - uy);
+    const distanceToV = Math.hypot(x - vx, y - vy);
+    const target = event.type === "pointerdown" ? (distanceToU <= distanceToV ? "u" : "v") : activeVector;
+    if (event.type === "pointerdown") setActiveVector(target);
+    if (target === "u") {
+      setUx(x);
+      setUy(y);
+    } else {
+      setVx(x);
+      setVy(y);
+    }
+    onInteraction();
+  };
 
   return (
-    <AdapterFrame title={`${lesson.title} - vector plane`} value={`u dot v = ${dot.toFixed(1)}`} footer="Components, resultant, magnitude, angle, and projection are calculated by the existing linear-algebra engine.">
-      <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_290px]">
-        <div className="overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-900">
-          <svg viewBox="0 0 640 360" className="h-[310px] w-full" role="img" aria-label="Linked vector diagram">
+    <AdapterFrame title={`${lesson.title} - vector plane`} value={`u dot v = ${dot.toFixed(1)}`} footer="Drag vector tips directly on the plane; components, resultant, magnitude, angle, and projection are calculated by the existing linear-algebra engine.">
+      <div className="lesson-engine lesson-engine-vector">
+        <div className="lesson-engine-axis lesson-direct-surface" data-direct-interaction="true">
+          <span className="lesson-direct-cue">Drag vector tips</span>
+          <svg viewBox="0 0 640 360" className="h-full min-h-[360px] w-full" role="img" aria-label="Linked vector diagram" onPointerDown={updateVectorFromPointer} onPointerMove={updateVectorFromPointer}>
             <defs>
               <marker id="cyan-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#0891b2" /></marker>
               <marker id="amber-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#f59e0b" /></marker>
@@ -65,7 +87,7 @@ export default function VectorLessonAdapter({ lesson, resetToken, onInteraction 
             <Arrow vector={projection} color="#10b981" marker="url(#cyan-arrow)" label="proj" dashed />
           </svg>
         </div>
-        <div className="space-y-3">
+        <div className="lesson-engine-controls">
           <div className="rounded-xl bg-slate-100 p-3 text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-slate-100">
             <p>{guidance[0]}</p>
             <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">{guidance[1]}</p>

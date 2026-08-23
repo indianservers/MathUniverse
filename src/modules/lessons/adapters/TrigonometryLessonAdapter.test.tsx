@@ -37,6 +37,9 @@ describe("TrigonometryLessonAdapter", () => {
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
+      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain("Drag the point");
+      expect(html, lesson.title).toContain("Drag graph marker");
       expect(html, lesson.title).not.toContain("Trig rule");
     }
   });

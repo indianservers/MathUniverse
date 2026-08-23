@@ -1,0 +1,44 @@
+# visual-batch-16
+
+Status: implemented and smoke-tested.
+
+| # | lessonId | title | topic | engine | route | visualGoal |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 516 | Distribution Calculator | Probability and Distributions | cas-data | /lessons/data-and-probability/516-distribution-calculator | Create a CAS/Data preset for Distribution Calculator: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 2 | 517 | Probability Plot | Probability and Distributions | cas-data | /lessons/data-and-probability/517-probability-plot | Create a CAS/Data preset for Probability Plot: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 3 | 518 | Cumulative Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/518-cumulative-distribution | Create a CAS/Data preset for Cumulative Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 4 | 519 | Interval / Tail Probability | Probability and Distributions | cas-data | /lessons/data-and-probability/519-interval-tail-probability | Create a CAS/Data preset for Interval / Tail Probability: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 5 | 520 | Inverse Probability | Probability and Distributions | cas-data | /lessons/data-and-probability/520-inverse-probability | Create a CAS/Data preset for Inverse Probability: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 6 | 521 | Bernoulli Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/521-bernoulli-distribution | Create a CAS/Data preset for Bernoulli Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 7 | 522 | Binomial Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/522-binomial-distribution | Create a CAS/Data preset for Binomial Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 8 | 523 | Hypergeometric Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/523-hypergeometric-distribution | Create a CAS/Data preset for Hypergeometric Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 9 | 524 | Poisson Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/524-poisson-distribution | Create a CAS/Data preset for Poisson Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 10 | 525 | Geometric Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/525-geometric-distribution | Create a CAS/Data preset for Geometric Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 11 | 526 | Negative Binomial Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/526-negative-binomial-distribution | Create a CAS/Data preset for Negative Binomial Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 12 | 527 | Uniform Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/527-uniform-distribution | Create a CAS/Data preset for Uniform Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 13 | 528 | Normal Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/528-normal-distribution | Create a CAS/Data preset for Normal Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 14 | 529 | Student t Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/529-student-t-distribution | Create a CAS/Data preset for Student t Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 15 | 530 | Chi-Square Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/530-chi-square-distribution | Create a CAS/Data preset for Chi-Square Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 16 | 531 | F Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/531-f-distribution | Create a CAS/Data preset for F Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 17 | 533 | Gamma Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/533-gamma-distribution | Create a CAS/Data preset for Gamma Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 18 | 534 | Weibull Distribution | Probability and Distributions | cas-data | /lessons/data-and-probability/534-weibull-distribution | Create a CAS/Data preset for Weibull Distribution: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 19 | 535 | Standardisation | Probability and Distributions | cas-data | /lessons/data-and-probability/535-standardisation | Create a CAS/Data preset for Standardisation: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 20 | 536 | Distribution Simulation | Probability and Distributions | cas-data | /lessons/data-and-probability/536-distribution-simulation | Create a CAS/Data preset for Distribution Simulation: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 21 | 537 | Sampling Distributions | Inferential Statistics | cas-data | /lessons/data-and-probability/537-sampling-distributions | Create a CAS/Data preset for Sampling Distributions: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 22 | 539 | Confidence Interval for Mean | Inferential Statistics | cas-data | /lessons/data-and-probability/539-confidence-interval-for-mean | Create a CAS/Data preset for Confidence Interval for Mean: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 23 | 540 | Confidence Interval for Proportion | Inferential Statistics | cas-data | /lessons/data-and-probability/540-confidence-interval-for-proportion | Create a CAS/Data preset for Confidence Interval for Proportion: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 24 | 541 | Difference of Means Interval | Inferential Statistics | cas-data | /lessons/data-and-probability/541-difference-of-means-interval | Create a CAS/Data preset for Difference of Means Interval: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 25 | 542 | Difference of Proportions Interval | Inferential Statistics | cas-data | /lessons/data-and-probability/542-difference-of-proportions-interval | Create a CAS/Data preset for Difference of Proportions Interval: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 26 | 543 | One-Sample z-Test | Inferential Statistics | cas-data | /lessons/data-and-probability/543-one-sample-z-test | Create a CAS/Data preset for One-Sample z-Test: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 27 | 544 | One-Sample t-Test | Inferential Statistics | cas-data | /lessons/data-and-probability/544-one-sample-t-test | Create a CAS/Data preset for One-Sample t-Test: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 28 | 545 | Two-Sample t-Test | Inferential Statistics | cas-data | /lessons/data-and-probability/545-two-sample-t-test | Create a CAS/Data preset for Two-Sample t-Test: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 29 | 546 | Paired t-Test | Inferential Statistics | cas-data | /lessons/data-and-probability/546-paired-t-test | Create a CAS/Data preset for Paired t-Test: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+| 30 | 547 | One-Proportion Test | Inferential Statistics | cas-data | /lessons/data-and-probability/547-one-proportion-test | Create a CAS/Data preset for One-Proportion Test: expression/data state, exact operation, assumptions, outputs, and approximation policy. |
+
+## Completion Gate
+
+- Exact visual preset implemented for every row.
+- No repeated fallback graph unless mathematically justified in notes.
+- Route smoke test confirms each lesson renders a distinct visual state.
+- Browser visual spot-check completed for representative desktop and mobile widths.
+- Accessibility summary names the actual mathematical object.
