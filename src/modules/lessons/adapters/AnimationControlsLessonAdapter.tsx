@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight, Pause, Play, Repeat2, RotateCcw } from "lucide-react";
 import {
   samplePlotLayer,
@@ -216,7 +216,7 @@ export default function AnimationControlsLessonAdapter({
                 as lighter dashed lines when available.
               </desc>
               <GraphGrid />
-              {previousLayers.reverse().map(({ frame: previousFrame, layer, order, a }) => (
+              {previousLayers.slice().reverse().map(({ frame: previousFrame, layer, order, a }) => (
                 <g key={previousFrame} opacity={order === 0 ? 0.48 : 0.25}>
                   {layer.paths.map((path, index) => (
                     <path
@@ -520,7 +520,7 @@ function PlaybackButton({
   disabled = false,
   primary = false,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   onClick: () => void;
   disabled?: boolean;
