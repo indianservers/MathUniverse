@@ -57,6 +57,15 @@ export default function CalculatorLessonAdapter({ lesson, resetToken, onInteract
   if (lesson.id === 15) {
     return <RoundingPrecisionLessonSurface resetToken={resetToken} onInteraction={onInteraction} />;
   }
+  if (lesson.id === 16) {
+    return <ConstantsLibraryLessonSurface resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 17) {
+    return <CalculationHistoryLessonSurface resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 18) {
+    return <ExactAndDecimalModesLessonSurface resetToken={resetToken} onInteraction={onInteraction} />;
+  }
   return <DefaultCalculatorLessonSurface lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }
 
@@ -1360,10 +1369,715 @@ function AbsoluteValueLessonSurface({ resetToken, onInteraction }: { resetToken:
 }
 
 function RoundingPrecisionLessonSurface({ resetToken, onInteraction }: { resetToken: number; onInteraction: LessonAdapterProps["onInteraction"] }) {
-  const [precision,setPrecision]=useState(2); const [showPractice,setShowPractice]=useState(false); useEffect(()=>{setPrecision(2);setShowPractice(false);},[resetToken]);
-  const exact=10/3; const rounded=exact.toFixed(precision); const error=Math.abs(exact-Number(rounded)); const digits=exact.toFixed(precision+1).split(".")[1]??""; const nextDigit=digits.at(-1)??"0";
-  const update=(value:number)=>{const next=Math.round(value);const before=precision;setPrecision(next);onInteraction(createLessonInteractionEvent({controlId:"precision-places",kind:"slider",before,after:next,affectedOutputs:["rounded-report","next-digit-rule","precision-number-line"]}));};
-  return <AdapterFrame title="Rounding and Precision live calculator" value={`10/3 ≈ ${rounded} (${precision} d.p.)`} footer="The repeating exact value stays visible while only the final reported value changes precision."><div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_300px]"><section className="rounded-3xl border border-cyan-100 bg-gradient-to-br from-white via-cyan-50/40 to-violet-50 p-4 shadow-sm dark:border-cyan-300/20 dark:from-slate-950 dark:via-cyan-300/10 dark:to-violet-300/10"><div><p className="text-[10px] font-black uppercase text-cyan-700">Precision rule · Concept trace</p><h3 className="mt-1 text-xl font-black">Exact value vs displayed precision</h3></div><article className="mt-4 rounded-3xl border border-cyan-200 bg-white/90 p-4 text-center dark:border-cyan-300/20 dark:bg-slate-950/60"><p className="text-xs font-black uppercase text-cyan-700">Exact value (never rounded)</p><p className="mt-3 font-mono text-4xl font-black">10/3 = <span className="text-cyan-700">3.3333…</span></p><p className="mt-2 font-bold">The digit 3 repeats forever.</p></article><article className="mt-4 rounded-3xl border border-violet-200 bg-white/90 p-4 dark:border-violet-300/20 dark:bg-slate-950/60"><p className="font-black">Set displayed precision</p><input aria-label="Decimal places" type="range" min="1" max="4" value={precision} onChange={(event)=>update(Number(event.target.value))} className="mt-6 w-full"/><div className="flex justify-between font-mono text-sm font-black">{[1,2,3,4].map((value)=><span key={value} className={value===precision?"rounded-full bg-violet-600 px-3 py-1 text-white":"px-3 py-1"}>{value}</span>)}</div><div className="mt-5 grid gap-3 sm:grid-cols-2"><div className="rounded-2xl bg-orange-50 p-4 text-center"><p className="text-xs font-black uppercase text-orange-700">Report to {precision} d.p.</p><p className="mt-2 font-mono text-4xl font-black text-orange-600">{rounded}</p></div><div className="rounded-2xl bg-slate-50 p-4 text-center dark:bg-white/10"><p className="text-xs font-black uppercase">Equation view</p><p className="mt-2 font-mono text-xl font-black">10/3 ≈ {rounded}</p></div></div></article><div className="mt-4 rounded-3xl border border-slate-200 bg-white/90 p-4"><p className="font-black">Rounding rule (next digit)</p><div className="mt-3 flex flex-wrap items-center gap-3"><span className="font-mono text-lg font-black">For {rounded},</span><span className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-100 font-mono text-2xl font-black text-cyan-800">{nextDigit}</span><span className="font-bold">is the next digit. Since it is {Number(nextDigit)>=5?"5 or more, round up":"less than 5, keep the last shown digit"}.</span></div></div><div className="mt-4 rounded-3xl border border-slate-200 bg-white/90 p-4"><p className="font-black">Where does the exact value lie?</p><div className="relative mx-4 mt-10 h-14"><div className="absolute inset-x-0 top-2 h-1 bg-slate-400"/><span className="absolute top-0 h-6 w-6 -translate-x-1/2 -translate-y-2 rounded-full bg-violet-600" style={{left:"33%"}}><strong className="absolute top-7 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-violet-700">{rounded} reported</strong></span><span className="absolute top-0 h-6 w-6 -translate-x-1/2 -translate-y-2 rounded-full bg-cyan-600" style={{left:"41%"}}><strong className="absolute bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-cyan-700">3.333… exact</strong></span></div><p className="rounded-2xl bg-rose-50 p-3 text-sm font-black text-rose-800">Rounding introduces a small difference: |3.333… − {rounded}| ≈ {error.toFixed(Math.min(6,precision+3))}.</p></div><div className="mt-4 rounded-3xl border border-violet-100 bg-white/85 p-4"><p className="text-[10px] font-black uppercase text-violet-700">Practice</p><div className="mt-2 flex flex-wrap items-center justify-between gap-3"><p className="font-black">Round 22/7 to 3 decimal places.</p><button className="action-primary" onClick={()=>setShowPractice((current)=>!current)}>{showPractice?"Hide":"Show answer"}</button></div>{showPractice?<p className="mt-3 rounded-2xl bg-emerald-50 p-3 font-mono text-lg font-black text-emerald-800">22/7 = 3.142857… → 3.143</p>:null}</div></section><aside className="space-y-3"><FractionInspector label="Exact division" value="10/3"/><FractionInspector label="Decimal form" value="3.3333…" note="The 3 repeats forever."/><FractionInspector label="Displayed precision" value={`${precision} decimal places`}/><FractionInspector label="Rounded output" value={rounded} success/><FractionInspector label="Trace" value="Exact value to rounded report"/><div className="rounded-3xl border border-amber-200 bg-amber-50 p-4 text-sm font-black text-amber-900">Round only at the reporting step. Never replace the exact value during intermediate work.</div><button className="action-secondary w-full justify-center" onClick={()=>{setPrecision(2);setShowPractice(false);}}><RotateCcw className="h-4 w-4"/>Reset 2 d.p.</button></aside></div></AdapterFrame>;
+  const [precision, setPrecision] = useState(2);
+  const [showPractice, setShowPractice] = useState(false);
+
+  useEffect(() => {
+    setPrecision(2);
+    setShowPractice(false);
+  }, [resetToken]);
+
+  const exact = 10 / 3;
+  const rounded = exact.toFixed(precision);
+  const error = Math.abs(exact - Number(rounded));
+  const nextDigit = "3";
+  const exactPosition = 45;
+  const roundedPosition = precision === 1 ? 0 : precision === 2 ? 33 : 42;
+
+  const update = (value: number) => {
+    const next = Math.round(value);
+    const before = precision;
+    setPrecision(next);
+    onInteraction(createLessonInteractionEvent({
+      controlId: "precision-places",
+      kind: "slider",
+      before,
+      after: next,
+      affectedOutputs: ["rounded-report", "next-digit-rule", "precision-number-line"],
+    }));
+  };
+
+  const resetPrecision = () => {
+    setPrecision(2);
+    setShowPractice(false);
+    onInteraction(createLessonInteractionEvent({
+      controlId: "precision-reset",
+      kind: "tool",
+      before: { precision },
+      after: { precision: 2 },
+      affectedOutputs: ["rounded-report", "next-digit-rule", "precision-number-line", "practice-answer"],
+    }));
+  };
+
+  return (
+    <AdapterFrame title="Rounding and Precision live calculator" value={`10/3 ≈ ${rounded} (${precision} d.p.)`} footer="The repeating exact value stays visible while only the final reported value changes precision.">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
+        <section className="rounded-3xl border border-cyan-100 bg-gradient-to-br from-white via-cyan-50/45 to-violet-50 p-4 shadow-sm dark:border-cyan-300/20 dark:from-slate-950 dark:via-cyan-300/10 dark:to-violet-300/10">
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-wide text-cyan-700">Precision rule - Concept trace</p>
+            <h3 className="mt-1 text-2xl font-black text-slate-950 dark:text-white">Exact value vs displayed precision</h3>
+            <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">See how rounding changes only what we report, not the exact value.</p>
+          </div>
+
+          <article className="mt-4 grid items-center gap-4 rounded-3xl border border-cyan-200 bg-white/95 p-5 dark:border-cyan-300/20 dark:bg-slate-950/60 md:grid-cols-[minmax(0,1fr)_180px]">
+            <div className="text-center">
+              <p className="text-xs font-black uppercase text-cyan-700">Exact value (never rounded)</p>
+              <p className="mt-3 font-mono text-4xl font-black text-slate-950 dark:text-white">10/3 = <span className="text-cyan-700">3.3333...</span></p>
+              <p className="mt-2 font-bold text-slate-600 dark:text-slate-300">The 3 repeats forever.</p>
+            </div>
+            <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-4 text-center text-cyan-950">
+              <p className="text-xs font-black uppercase">Repeating digit</p>
+              <p className="mt-2 font-mono text-5xl font-black">3</p>
+              <p className="mt-1 text-sm font-bold">The 3 repeats infinitely.</p>
+            </div>
+          </article>
+
+          <article className="mt-4 rounded-3xl border border-violet-200 bg-white/95 p-5 dark:border-violet-300/20 dark:bg-slate-950/60">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p className="font-black text-slate-950 dark:text-white">Set displayed precision</p>
+                <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Drag the handle to choose how many decimal places to show.</p>
+              </div>
+              <span className="rounded-2xl border border-violet-200 bg-violet-50 px-4 py-2 font-black text-violet-800">Currently: {precision} decimal places</span>
+            </div>
+            <label className="sr-only" htmlFor="rounding-precision-slider">Decimal places</label>
+            <input id="rounding-precision-slider" aria-label="Decimal places" type="range" min="1" max="4" value={precision} onChange={(event) => update(Number(event.target.value))} className="mt-6 w-full accent-violet-600" />
+            <div className="mt-2 flex justify-between font-mono text-sm font-black">
+              {[1, 2, 3, 4].map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  aria-label={`${value} decimal places`}
+                  className={value === precision ? "rounded-full bg-violet-600 px-3 py-1 text-white" : "rounded-full px-3 py-1 text-slate-700 hover:bg-violet-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 dark:text-slate-200 dark:hover:bg-white/10"}
+                  onClick={() => update(value)}
+                >
+                  {value}
+                </button>
+              ))}
+            </div>
+            <div className="mt-5 grid gap-3 md:grid-cols-2">
+              <div className="rounded-2xl bg-orange-50 p-4 text-center ring-1 ring-orange-100">
+                <p className="text-xs font-black uppercase text-orange-700">Report to {precision} d.p.</p>
+                <p className="mt-2 font-mono text-4xl font-black text-orange-600">{rounded}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-50 p-4 text-center ring-1 ring-slate-200 dark:bg-white/10 dark:ring-white/10">
+                <p className="text-xs font-black uppercase">Equation view</p>
+                <p className="mt-2 font-mono text-xl font-black">10/3 ≈ {rounded}</p>
+                <p className="mt-1 text-xs font-bold text-slate-500">(to {precision} d.p.)</p>
+              </div>
+            </div>
+          </article>
+
+          <div className="mt-4 rounded-3xl border border-slate-200 bg-white/95 p-4">
+            <p className="font-black">Rounding rule (next digit)</p>
+            <div className="mt-3 flex flex-wrap items-center gap-3">
+              <span className="font-mono text-lg font-black">For {rounded},</span>
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-100 font-mono text-2xl font-black text-cyan-800">{nextDigit}</span>
+              <span className="font-bold text-slate-700">is the next digit. Since it is less than 5, keep the last shown digit.</span>
+            </div>
+          </div>
+
+          <div className="mt-4 rounded-3xl border border-slate-200 bg-white/95 p-4">
+            <p className="font-black">Where does the exact value lie?</p>
+            <div className="relative mx-4 mt-10 h-20">
+              <div className="absolute inset-x-0 top-5 h-1 bg-slate-400" />
+              {["3.30", "3.31", "3.32", "3.33", "3.34", "3.35", "3.36"].map((tick, index) => (
+                <span key={tick} className="absolute top-3 h-5 w-px bg-slate-500" style={{ left: `${(index / 6) * 100}%` }}>
+                  <small className="absolute top-7 -translate-x-1/2 font-mono text-xs font-black text-slate-600">{tick}</small>
+                </span>
+              ))}
+              <span className="absolute top-3 h-7 w-7 -translate-x-1/2 -translate-y-2 rounded-full bg-violet-600 ring-4 ring-white" style={{ left: `${roundedPosition}%` }}>
+                <strong className="absolute top-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-violet-700">{rounded} reported</strong>
+              </span>
+              <span className="absolute top-3 h-7 w-7 -translate-x-1/2 -translate-y-2 rounded-full bg-cyan-600 ring-4 ring-white" style={{ left: `${exactPosition}%` }}>
+                <strong className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-cyan-700">3.333... exact</strong>
+              </span>
+            </div>
+            <p className="rounded-2xl bg-rose-50 p-3 text-sm font-black text-rose-800">Rounding introduces a small difference: |3.333... - {rounded}| ≈ {error.toFixed(Math.min(6, precision + 3))}.</p>
+          </div>
+
+          <div className="mt-4 rounded-3xl border border-violet-100 bg-white/90 p-4">
+            <p className="text-[10px] font-black uppercase text-violet-700">Practice</p>
+            <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
+              <p className="font-black">Round 22/7 to 3 decimal places.</p>
+              <button type="button" className="action-primary" onClick={() => setShowPractice((current) => !current)}>{showPractice ? "Hide answer" : "Show answer"}</button>
+            </div>
+            {showPractice ? <p className="mt-3 rounded-2xl bg-emerald-50 p-3 font-mono text-lg font-black text-emerald-800">22/7 = 3.142857... {"->"} 3.143</p> : null}
+          </div>
+        </section>
+
+        <aside className="space-y-3">
+          <FractionInspector label="Exact division" value="10/3" note="This is the exact value." />
+          <FractionInspector label="Decimal form" value="3.3333..." note="The 3 repeats forever." />
+          <FractionInspector label="Displayed precision" value={`${precision} decimal places`} note="Choose how many places to show." />
+          <FractionInspector label="Rounded output" value={rounded} success note="This is what we report." />
+          <FractionInspector label="Trace" value="Exact value to rounded report" note="Round only at the final reporting step." />
+          <div className="rounded-3xl border border-sky-200 bg-sky-50 p-4 text-sm font-black text-sky-900">Key idea: exact value is infinite; precision is a choice.</div>
+          <div className="rounded-3xl border border-amber-200 bg-amber-50 p-4 text-sm font-black text-amber-900">Watch out: never replace the exact value during intermediate work.</div>
+          <button type="button" className="action-secondary w-full justify-center" onClick={resetPrecision}><RotateCcw className="h-4 w-4" />Reset 2 d.p.</button>
+        </aside>
+      </div>
+    </AdapterFrame>
+  );
+}
+
+type ConstantKey = "pi" | "e" | "tau" | "phi";
+
+const constantChoices: Record<ConstantKey, { label: string; symbol: string; value: number; stored: string; note: string }> = {
+  pi: { label: "pi", symbol: "π", value: Math.PI, stored: "3.141592653589793...", note: "Circle circumference and angle measure." },
+  e: { label: "e", symbol: "e", value: Math.E, stored: "2.718281828459045...", note: "Natural growth and logarithms." },
+  tau: { label: "tau", symbol: "τ", value: Math.PI * 2, stored: "6.283185307179586...", note: "One full turn in radians." },
+  phi: { label: "phi", symbol: "φ", value: (1 + Math.sqrt(5)) / 2, stored: "1.618033988749895...", note: "Golden-ratio scaling." },
+};
+
+function ConstantsLibraryLessonSurface({ resetToken, onInteraction }: { resetToken: number; onInteraction: LessonAdapterProps["onInteraction"] }) {
+  const [constant, setConstant] = useState<ConstantKey>("pi");
+  const [storedDigits, setStoredDigits] = useState(40);
+  const [showPractice, setShowPractice] = useState(false);
+
+  useEffect(() => {
+    setConstant("pi");
+    setStoredDigits(40);
+    setShowPractice(false);
+  }, [resetToken]);
+
+  const selected = constantChoices[constant];
+  const circumference = 2 * selected.value;
+  const roundedEarly = 2 * Number(selected.value.toFixed(2));
+  const storedOutput = truncateDecimals(circumference, 5);
+  const earlyOutput = roundedEarly.toFixed(2);
+  const difference = Math.abs(circumference - roundedEarly);
+
+  const selectConstant = (next: ConstantKey) => {
+    const before = constant;
+    setConstant(next);
+    onInteraction(createLessonInteractionEvent({
+      controlId: "constant-chip",
+      kind: "selection",
+      before,
+      after: next,
+      affectedOutputs: ["constant-circle", "constant-formula", "stored-output", "precision-comparison"],
+    }));
+  };
+
+  const updateDigits = (value: number) => {
+    const next = Math.round(value);
+    const before = storedDigits;
+    setStoredDigits(next);
+    onInteraction(createLessonInteractionEvent({
+      controlId: "stored-precision",
+      kind: "slider",
+      before,
+      after: next,
+      affectedOutputs: ["stored-constant-value", "precision-comparison"],
+    }));
+  };
+
+  const resetConstants = () => {
+    setConstant("pi");
+    setStoredDigits(40);
+    setShowPractice(false);
+    onInteraction(createLessonInteractionEvent({
+      controlId: "constants-reset",
+      kind: "tool",
+      before: { constant, storedDigits },
+      after: { constant: "pi", storedDigits: 40 },
+      affectedOutputs: ["constant-circle", "constant-formula", "stored-output", "practice-answer"],
+    }));
+  };
+
+  return (
+    <AdapterFrame title="Constants Library live calculator" value={`2 x ${selected.label} ≈ ${storedOutput}`} footer="Stored constants keep full precision during calculation; rounding is applied only when the result is displayed.">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
+        <section className="rounded-3xl border border-cyan-100 bg-gradient-to-br from-white via-cyan-50/45 to-violet-50 p-4 shadow-sm dark:border-cyan-300/20 dark:from-slate-950 dark:via-cyan-300/10 dark:to-violet-300/10">
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-wide text-cyan-700">Constant rule - Concept trace</p>
+            <h3 className="mt-1 text-2xl font-black text-slate-950 dark:text-white">Reliable constant insertion in action</h3>
+            <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">Choose a stored constant, use it in a formula, then round only the final result.</p>
+          </div>
+
+          <fieldset className="mt-4 flex flex-wrap gap-3" aria-label="Choose constant">
+            <legend className="sr-only">Choose constant</legend>
+            {(Object.keys(constantChoices) as ConstantKey[]).map((key) => {
+              const item = constantChoices[key];
+              return (
+                <label
+                  key={key}
+                  className={constant === key ? "cursor-pointer rounded-2xl bg-violet-600 px-5 py-3 font-black text-white shadow-lg shadow-violet-500/25" : "cursor-pointer rounded-2xl border border-slate-200 bg-white px-5 py-3 font-black text-slate-900 hover:border-violet-300 focus-within:outline-none focus-within:ring-2 focus-within:ring-violet-500"}
+                >
+                  <input className="sr-only" type="radio" name="constants-library-choice" checked={constant === key} onChange={() => selectConstant(key)} aria-label={`${item.label} constant`} />
+                  <span className="mr-2 font-mono text-xl">{item.symbol}</span>{item.label}
+                </label>
+              );
+            })}
+          </fieldset>
+
+          <div className="mt-5 grid items-center gap-5 lg:grid-cols-[minmax(320px,1fr)_260px]">
+            <div className="rounded-3xl border border-cyan-200 bg-white/95 p-5 dark:border-cyan-300/20 dark:bg-slate-950/60">
+              <svg viewBox="0 0 520 420" className="h-[360px] w-full" role="img" aria-label="Circle with radius 1, diameter 2, and circumference calculated using the selected constant">
+                <defs>
+                  <marker id="constants-arrow" markerHeight="8" markerWidth="8" orient="auto" refX="6" refY="4">
+                    <path d="M0,0 L8,4 L0,8 Z" fill="#0891b2" />
+                  </marker>
+                </defs>
+                <circle cx="250" cy="205" r="135" fill="#e8f7ff" stroke="#0891b2" strokeWidth="4" />
+                <circle cx="250" cy="205" r="150" fill="none" stroke="#7c3aed" strokeDasharray="9 8" strokeWidth="3" />
+                <line x1="250" y1="205" x2="345" y2="110" stroke="#0891b2" strokeWidth="4" markerEnd="url(#constants-arrow)" />
+                <line x1="115" y1="205" x2="385" y2="205" stroke="#2563eb" strokeWidth="4" markerEnd="url(#constants-arrow)" markerStart="url(#constants-arrow)" />
+                <circle cx="250" cy="205" r="7" fill="#0f172a" />
+                <text x="304" y="158" fill="#0e7490" fontSize="24" fontWeight="800">r = 1</text>
+                <text x="205" y="252" fill="#1d4ed8" fontSize="24" fontWeight="800">Diameter = 2r</text>
+                <text x="203" y="285" fill="#1d4ed8" fontSize="22" fontWeight="800">= 2</text>
+                <text x="165" y="44" fill="#7c3aed" fontSize="24" fontWeight="800" transform="rotate(-12 165 44)">Circumference C</text>
+              </svg>
+              <div className="rounded-3xl border border-cyan-100 bg-cyan-50 p-4 text-center">
+                <p className="font-mono text-3xl font-black text-slate-950">2 x {selected.label} = 2{selected.symbol} ≈ <span className="text-orange-600">{storedOutput}</span></p>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="rounded-3xl border border-violet-200 bg-white/95 p-4 text-center">
+                <p className="text-xs font-black uppercase text-violet-700">Circumference formula</p>
+                <p className="mt-2 font-mono text-2xl font-black">C = 2πr</p>
+              </div>
+              <div className="rounded-3xl border border-slate-200 bg-white/95 p-4 text-center">
+                <p className="text-sm font-black text-slate-600">With r = 1</p>
+                <p className="mt-3 font-mono text-xl font-black">C = 2π(1)</p>
+                <p className="mt-3 font-mono text-2xl font-black text-violet-700">C = 2π</p>
+              </div>
+              <div className="rounded-3xl border border-amber-200 bg-amber-50 p-4 text-sm font-black text-amber-900">Watch out: using 3.14 too early gives a slightly different result.</div>
+            </div>
+          </div>
+
+          <article className="mt-5 rounded-3xl border border-slate-200 bg-white/95 p-4">
+            <p className="font-black">Precision matters</p>
+            <p className="mt-1 text-sm font-semibold text-slate-600">Use full precision for calculations. Round only at the end.</p>
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              <div className="rounded-2xl border border-violet-200 bg-violet-50 p-3">
+                <p className="text-xs font-black uppercase text-violet-700">Stored value of {selected.label}</p>
+                <p className="mt-2 truncate font-mono text-sm font-black text-violet-900">{selected.symbol} = {selected.stored}</p>
+              </div>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                <p className="text-xs font-black uppercase text-slate-600">Rounded early</p>
+                <p className="mt-2 font-mono text-sm font-black">{selected.symbol} ≈ {selected.value.toFixed(2)}</p>
+              </div>
+            </div>
+            <label className="mt-4 block text-sm font-black text-slate-700">
+              Stored precision: {storedDigits} digits
+              <input aria-label="Stored precision digits" type="range" min="10" max="50" step="10" value={storedDigits} onChange={(event) => updateDigits(Number(event.target.value))} className="mt-2 w-full accent-violet-600" />
+            </label>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {[10, 20, 30, 40, 50].map((digits) => (
+                <button
+                  key={digits}
+                  type="button"
+                  aria-label={`${digits} stored digits`}
+                  className={digits === storedDigits ? "rounded-full bg-violet-600 px-3 py-1 text-xs font-black text-white" : "rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-black text-slate-700 hover:border-violet-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"}
+                  onClick={() => updateDigits(digits)}
+                >
+                  {digits}
+                </button>
+              ))}
+            </div>
+            <div className="mt-4 rounded-2xl bg-sky-50 p-3 text-sm font-black text-sky-900">Calculations use the stored constant above. Rounding is applied only when you choose to display the result.</div>
+          </article>
+
+          <div className="mt-4 rounded-3xl border border-violet-100 bg-white/90 p-4">
+            <p className="text-[10px] font-black uppercase text-violet-700">Practice with constants</p>
+            <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
+              <p className="font-black">Use pi to estimate circumference when r = 2.</p>
+              <button type="button" className="action-primary" onClick={() => setShowPractice((current) => !current)}>{showPractice ? "Hide answer" : "Show answer"}</button>
+            </div>
+            {showPractice ? <p className="mt-3 rounded-2xl bg-emerald-50 p-3 font-mono text-lg font-black text-emerald-800">C = 2π(2) = 4π. 4π ≈ 12.566</p> : null}
+          </div>
+        </section>
+
+        <aside className="space-y-3">
+          <FractionInspector label="Constant" value={`${selected.symbol} (${selected.label})`} note={selected.note} />
+          <FractionInspector label="Stored value" value={selected.stored} note={`${storedDigits} digits are available internally.`} />
+          <FractionInspector label="Formula" value="C = 2π" note="For radius 1, circumference is 2π." />
+          <FractionInspector label="Output" value={`C ≈ ${storedOutput}`} success note="Final display shown to 5 decimals." />
+          <FractionInspector label="Constant insertion check" value="2 x pi -> 2pi" note="The stored constant is inserted before calculation." />
+          <div className="rounded-3xl border border-slate-200 bg-white p-4">
+            <p className="font-black">Why stored precision matters</p>
+            <div className="mt-3 grid gap-2">
+              <div className="rounded-2xl bg-rose-50 p-3 font-mono text-sm font-black text-rose-900">Using {selected.symbol} ≈ {selected.value.toFixed(2)}: 2 x {selected.value.toFixed(2)} = {earlyOutput}</div>
+              <div className="rounded-2xl bg-emerald-50 p-3 font-mono text-sm font-black text-emerald-900">Using stored {selected.label}: 2 x {selected.value.toFixed(5)} = {storedOutput}</div>
+              <div className="rounded-2xl bg-amber-50 p-3 text-sm font-black text-amber-900">Difference ≈ {difference.toFixed(5)}. Small now, but it grows in longer calculations.</div>
+            </div>
+          </div>
+          <button type="button" className="action-secondary w-full justify-center" onClick={resetConstants}><RotateCcw className="h-4 w-4" />Reset pi</button>
+        </aside>
+      </div>
+    </AdapterFrame>
+  );
+}
+
+type HistoryAction = "reuse input" | "copy result" | "pin note" | "inspect source";
+
+const calculationHistoryRows = [
+  { id: 1, expression: "7 x 8", result: "56", time: "Just now", source: "Multiplication fact: 7 groups of 8 make 56." },
+  { id: 2, expression: "56 / 7", result: "8", time: "2 min ago", source: "This row reused 56 from row 1, then divided by 7." },
+  { id: 3, expression: "12 + 5", result: "17", time: "5 min ago", source: "Addition row kept with its original input." },
+  { id: 4, expression: "17 x 4", result: "68", time: "7 min ago", source: "This row reused row 3 after checking that 17 came from 12 + 5." },
+];
+
+function historyActionFeedback(action: HistoryAction, row: (typeof calculationHistoryRows)[number]) {
+  if (action === "reuse input") return `Reused input from row ${row.id}: ${row.expression} = ${row.result}.`;
+  if (action === "copy result") return `Copied result ${row.result} from row ${row.id}. Keep the matching input visible: ${row.expression}.`;
+  if (action === "pin note") return `Pinned note for row ${row.id}: ${row.expression} produced ${row.result}.`;
+  return `Source check for row ${row.id}: ${row.source} No hidden steps.`;
+}
+
+function CalculationHistoryLessonSurface({ resetToken, onInteraction }: { resetToken: number; onInteraction: LessonAdapterProps["onInteraction"] }) {
+  const [selectedRow, setSelectedRow] = useState(1);
+  const [lastAction, setLastAction] = useState<HistoryAction>("inspect source");
+  const [showPractice, setShowPractice] = useState(false);
+  const active = calculationHistoryRows.find((row) => row.id === selectedRow) ?? calculationHistoryRows[0];
+  const actionFeedback = historyActionFeedback(lastAction, active);
+
+  useEffect(() => {
+    setSelectedRow(1);
+    setLastAction("inspect source");
+    setShowPractice(false);
+  }, [resetToken]);
+
+  const selectRow = (id: number) => {
+    const before = selectedRow;
+    setSelectedRow(id);
+    onInteraction(createLessonInteractionEvent({
+      controlId: "history-row",
+      kind: "selection",
+      before,
+      after: id,
+      affectedOutputs: ["history-equation-overlay", "history-concept-trace", "history-source-inspector"],
+    }));
+  };
+
+  const runAction = (action: HistoryAction, id: number) => {
+    const row = calculationHistoryRows.find((item) => item.id === id) ?? active;
+    setSelectedRow(row.id);
+    setLastAction(action);
+    onInteraction(createLessonInteractionEvent({
+      controlId: `history-${action.replace(/\s+/g, "-")}`,
+      kind: "tool",
+      before: { selectedRow, lastAction },
+      after: { selectedRow: row.id, action, expression: row.expression, result: row.result },
+      affectedOutputs: ["history-feedback", "history-source-inspector", "history-concept-trace"],
+    }));
+  };
+
+  const resetHistory = () => {
+    setSelectedRow(1);
+    setLastAction("inspect source");
+    setShowPractice(false);
+    onInteraction(createLessonInteractionEvent({
+      controlId: "history-reset",
+      kind: "tool",
+      before: { selectedRow, lastAction },
+      after: { selectedRow: 1, lastAction: "inspect source" },
+      affectedOutputs: ["history-equation-overlay", "history-feedback", "practice-answer"],
+    }));
+  };
+
+  return (
+    <AdapterFrame title="Calculation History live calculator" value={`${active.expression} = ${active.result}`} footer="Calculation history is reliable only when every result stays paired with the expression that produced it.">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_330px]">
+        <section className="rounded-3xl border border-cyan-100 bg-gradient-to-br from-white via-cyan-50/45 to-violet-50 p-4 shadow-sm dark:border-cyan-300/20 dark:from-slate-950 dark:via-cyan-300/10 dark:to-violet-300/10">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-wide text-cyan-700">History rule - Concept trace</p>
+              <h3 className="mt-1 text-2xl font-black text-slate-950 dark:text-white">Every result has a source. Verify before you reuse.</h3>
+            </div>
+            <span className="rounded-2xl border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-black text-orange-800">Do not copy a result without its input</span>
+          </div>
+
+          <article className="mt-4 rounded-3xl bg-slate-950 p-5 text-center text-white shadow-xl">
+            <p className="font-mono text-5xl font-black tracking-wide">{active.expression} = <span className="text-cyan-300">{active.result}</span></p>
+            <p className="mt-2 text-sm font-bold text-cyan-100">{actionFeedback}</p>
+          </article>
+
+          <div className="mt-4 overflow-hidden rounded-3xl border border-slate-200 bg-white/95">
+            <div className="grid grid-cols-[48px_minmax(120px,1fr)_48px_90px_90px_220px] bg-slate-50 px-3 py-3 text-xs font-black uppercase text-slate-500">
+              <span>#</span><span>Expression input</span><span>=</span><span>Result</span><span>Time</span><span>Actions</span>
+            </div>
+            {calculationHistoryRows.map((row) => (
+              <div key={row.id} className={row.id === selectedRow ? "grid grid-cols-[48px_minmax(120px,1fr)_48px_90px_90px_220px] items-center border-t border-cyan-200 bg-cyan-50 px-3 py-3 ring-2 ring-cyan-300/50" : "grid grid-cols-[48px_minmax(120px,1fr)_48px_90px_90px_220px] items-center border-t border-slate-100 px-3 py-3"}>
+                <button type="button" className="text-left font-mono font-black" onClick={() => selectRow(row.id)}>{row.id}</button>
+                <button type="button" className="text-left font-mono text-lg font-black text-slate-950" onClick={() => selectRow(row.id)}>{row.expression}</button>
+                <span className="font-mono font-black text-slate-500">=</span>
+                <span className="font-mono text-lg font-black text-cyan-700">{row.result}</span>
+                <span className="text-sm font-bold text-slate-600">{row.time}</span>
+                <div className="flex gap-2">
+                  <button type="button" className="rounded-xl border border-slate-200 bg-white p-2 text-violet-700 hover:border-violet-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" aria-label={`Reuse input from row ${row.id}`} onClick={() => runAction("reuse input", row.id)}><RotateCcw className="h-4 w-4" /></button>
+                  <button type="button" className="rounded-xl border border-slate-200 bg-white p-2 text-slate-700 hover:border-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500" aria-label={`Copy result from row ${row.id}`} onClick={() => runAction("copy result", row.id)}><History className="h-4 w-4" /></button>
+                  <button type="button" className="rounded-xl border border-slate-200 bg-white p-2 text-violet-700 hover:border-violet-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500" aria-label={`Pin note for row ${row.id}`} onClick={() => runAction("pin note", row.id)}><BadgeInfo className="h-4 w-4" /></button>
+                  <button type="button" className="rounded-xl border border-slate-200 bg-white p-2 text-slate-700 hover:border-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500" aria-label={`Inspect source for row ${row.id}`} onClick={() => runAction("inspect source", row.id)}><ChevronRight className="h-4 w-4" /></button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 grid gap-3 md:grid-cols-4">
+            {(["reuse input", "copy result", "pin note", "inspect source"] as HistoryAction[]).map((action) => (
+              <button key={action} type="button" className={lastAction === action ? "rounded-2xl bg-violet-600 px-3 py-3 text-sm font-black capitalize text-white" : "rounded-2xl border border-slate-200 bg-white px-3 py-3 text-sm font-black capitalize text-slate-700 hover:border-violet-300"} onClick={() => runAction(action, selectedRow)}>
+                {action}
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-3xl border border-slate-200 bg-white/95 p-4">
+            <p className="text-xs font-black uppercase text-violet-700">Source inspector</p>
+            <p className="mt-2 font-mono text-xl font-black">{active.expression} = {active.result}</p>
+            <p className="mt-2 text-sm font-semibold text-slate-600">{active.source}</p>
+            <p className="mt-3 rounded-2xl bg-cyan-50 p-3 text-sm font-black text-cyan-900">Latest action: {lastAction}. {actionFeedback}</p>
+          </div>
+
+          <div className="mt-4 rounded-3xl border border-violet-100 bg-white/90 p-4">
+            <p className="text-[10px] font-black uppercase text-violet-700">Practice check</p>
+            <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
+              <p className="font-black">Which history row produced 56?</p>
+              <button type="button" className="action-primary" onClick={() => setShowPractice((current) => !current)}>{showPractice ? "Hide answer" : "Show answer"}</button>
+            </div>
+            {showPractice ? <p className="mt-3 rounded-2xl bg-emerald-50 p-3 font-mono text-lg font-black text-emerald-800">Row 1 produced 56: 7 x 8 = 56.</p> : null}
+          </div>
+        </section>
+
+        <aside className="space-y-3">
+          <FractionInspector label="Latest input" value={active.expression} note="The expression that produced the selected row." />
+          <FractionInspector label="Latest result" value={active.result} success note="The result is meaningful only with its input." />
+          <FractionInspector label="Rows stored" value="Expression + result" note="A history row stores both pieces together." />
+          <FractionInspector label="History pairs input with output" value="Source visible" note="Reuse safely by checking the source expression." />
+          <div className="rounded-3xl border border-slate-200 bg-white p-4">
+            <p className="font-black text-violet-800">Dependency chain</p>
+            <div className="mt-3 grid gap-2 text-center font-mono font-black">
+              <div className="rounded-2xl border border-violet-200 bg-violet-50 p-3">7 x 8 = 56</div>
+              <ChevronRight className="mx-auto h-5 w-5 rotate-90 text-violet-600" />
+              <div className="rounded-2xl border border-cyan-200 bg-cyan-50 p-3">56 / 7 = 8</div>
+              <ChevronRight className="mx-auto h-5 w-5 rotate-90 text-violet-600" />
+              <div className="rounded-2xl border border-rose-200 bg-rose-50 p-3 text-rose-800">56 + 3 = 59 only after source check</div>
+            </div>
+            <p className="mt-3 rounded-2xl bg-sky-50 p-3 text-sm font-black text-sky-900">Keep the source visible. Reuse with confidence.</p>
+          </div>
+          <div className="rounded-3xl border border-amber-200 bg-amber-50 p-4 text-sm font-black text-amber-900">Watch out: copying `56` without `7 x 8` removes the reason that made the result trustworthy.</div>
+          <button type="button" className="action-secondary w-full justify-center" onClick={resetHistory}><RotateCcw className="h-4 w-4" />Reset row 1</button>
+        </aside>
+      </div>
+    </AdapterFrame>
+  );
+}
+
+type ExactDecimalMode = "exact" | "decimal";
+
+function ExactAndDecimalModesLessonSurface({ resetToken, onInteraction }: { resetToken: number; onInteraction: LessonAdapterProps["onInteraction"] }) {
+  const [mode, setMode] = useState<ExactDecimalMode>("exact");
+  const [precision, setPrecision] = useState(3);
+  const [practiceChoice, setPracticeChoice] = useState<ExactDecimalMode>("exact");
+  const [showPractice, setShowPractice] = useState(false);
+  const [eventLog, setEventLog] = useState("Exact mode selected - radical form stays unchanged.");
+  const decimalPreview = Math.SQRT2.toFixed(precision);
+  const decimalPosition = Math.min(93, Math.max(7, ((Number(decimalPreview) - 1.41) / 0.01) * 100));
+
+  useEffect(() => {
+    setMode("exact");
+    setPrecision(3);
+    setPracticeChoice("exact");
+    setShowPractice(false);
+    setEventLog("Exact mode selected - radical form stays unchanged.");
+  }, [resetToken]);
+
+  const chooseMode = (nextMode: ExactDecimalMode) => {
+    const before = mode;
+    setMode(nextMode);
+    setEventLog(nextMode === "exact" ? "Exact mode selected - use structure for proof and algebra." : `Decimal preview selected - display rounds to ${decimalPreview}.`);
+    onInteraction(createLessonInteractionEvent({
+      controlId: "exact-decimal-mode",
+      kind: "selection",
+      before,
+      after: nextMode,
+      affectedOutputs: ["unit-square-diagonal", "decimal-preview", "mode-trace"],
+    }));
+  };
+
+  const updatePrecision = (nextPrecision: number) => {
+    const before = precision;
+    setPrecision(nextPrecision);
+    setEventLog(`Action fired - decimal display now shows ${nextPrecision} places, while sqrt(2) stays exact.`);
+    onInteraction(createLessonInteractionEvent({
+      controlId: "decimal-precision",
+      kind: "slider",
+      before,
+      after: nextPrecision,
+      affectedOutputs: ["decimal-preview", "comparison-table", "event-log"],
+    }));
+  };
+
+  const selectPractice = (choice: ExactDecimalMode) => {
+    const before = practiceChoice;
+    setPracticeChoice(choice);
+    setShowPractice(true);
+    setEventLog(choice === "exact" ? "Practice choice checked - exact is best for the 1 by 1 diagonal." : "Practice choice checked - decimal is useful after the exact source is known.");
+    onInteraction(createLessonInteractionEvent({
+      controlId: "exact-decimal-practice",
+      kind: "selection",
+      before,
+      after: choice,
+      affectedOutputs: ["practice-answer", "event-log"],
+    }));
+  };
+
+  const resetExactDecimal = () => {
+    setMode("exact");
+    setPrecision(3);
+    setPracticeChoice("exact");
+    setShowPractice(false);
+    setEventLog("Exact mode selected - radical form stays unchanged.");
+    onInteraction(createLessonInteractionEvent({
+      controlId: "exact-decimal-reset",
+      kind: "tool",
+      before: { mode, precision, practiceChoice },
+      after: { mode: "exact", precision: 3, practiceChoice: "exact" },
+      affectedOutputs: ["unit-square-diagonal", "decimal-preview", "practice-answer"],
+    }));
+  };
+
+  return (
+    <AdapterFrame title="Exact and Decimal Modes" value={`sqrt(2) = √2 ≈ ${decimalPreview}${precision < 8 ? "..." : ""}`} footer="Exact and decimal modes represent the same value in different forms. Keep the radical for structure; use decimals for measurement.">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_300px]">
+        <section className="rounded-3xl border border-cyan-100 bg-gradient-to-br from-white via-cyan-50/35 to-violet-50 p-4 shadow-sm dark:border-cyan-300/20 dark:from-slate-950 dark:via-cyan-300/10 dark:to-violet-300/10">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-wide text-cyan-700">Interaction + visualization</p>
+              <h3 className="mt-1 text-2xl font-black text-slate-950 dark:text-white">Exact vs. Decimal: Explore the difference</h3>
+            </div>
+            <span className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-2 text-sm font-black text-amber-800">{mode === "exact" ? "Exact selected" : "Decimal preview"}</span>
+          </div>
+
+          <div className="mt-4 rounded-3xl bg-white/90 p-5 text-center shadow-inner dark:bg-slate-950/60">
+            <p className="font-mono text-3xl font-black text-slate-950 dark:text-white sm:text-5xl">
+              sqrt(2) = <span className="text-cyan-600">√2</span> <span className="text-slate-400">≈</span> <span className="text-violet-700">1.41421356...</span>
+            </p>
+            <div className="mt-3 flex flex-wrap justify-center gap-3 text-sm font-black">
+              <span className="rounded-full bg-cyan-50 px-3 py-1 text-cyan-800">√2 is exact</span>
+              <span className="rounded-full bg-violet-50 px-3 py-1 text-violet-800">1.41421356... is approximate</span>
+            </div>
+          </div>
+
+          <div className="mt-4 grid gap-4 lg:grid-cols-2">
+            <article className="rounded-3xl border border-cyan-200 bg-white/95 p-4 dark:border-cyan-300/20 dark:bg-slate-950/60">
+              <p className="text-xs font-black uppercase text-cyan-700">Exact (symbolic)</p>
+              <p className="mt-1 text-sm font-bold text-slate-600 dark:text-slate-300">The diagonal of a 1 x 1 square</p>
+              <svg viewBox="0 0 260 260" className="mx-auto mt-4 w-full max-w-[340px]" role="img" aria-label="Unit square with diagonal labeled square root of 2">
+                <rect x="38" y="28" width="184" height="184" fill="rgba(14,165,233,.06)" stroke="#0891b2" strokeWidth="3" />
+                <line x1="38" y1="212" x2="222" y2="28" stroke="#0891b2" strokeWidth="3" strokeDasharray="8 6" />
+                <circle cx="38" cy="28" r="5" fill="#0891b2" />
+                <circle cx="222" cy="28" r="5" fill="#0891b2" />
+                <circle cx="38" cy="212" r="5" fill="#0891b2" />
+                <circle cx="222" cy="212" r="5" fill="#0891b2" />
+                <text x="18" y="126" fill="#0f172a" fontWeight="900" fontSize="18">1</text>
+                <text x="124" y="240" fill="#0f172a" fontWeight="900" fontSize="18">1</text>
+                <text x="112" y="132" fill="#7c3aed" fontWeight="900" fontSize="28">√2</text>
+              </svg>
+              <p className="mt-3 rounded-2xl bg-cyan-50 p-3 text-sm font-black text-cyan-900">The exact length is √2. It is irrational, so no finite decimal can finish it.</p>
+            </article>
+
+            <article className="rounded-3xl border border-violet-200 bg-white/95 p-4 dark:border-violet-300/20 dark:bg-slate-950/60">
+              <p className="text-xs font-black uppercase text-violet-700">Decimal (approximation)</p>
+              <p className="mt-1 text-sm font-bold text-slate-600 dark:text-slate-300">Zoom in on the length</p>
+              <div className="relative mt-12 h-24 rounded-3xl bg-gradient-to-r from-violet-50 via-violet-100 to-white">
+                <div className="absolute left-3 right-3 top-9 h-1 rounded-full bg-slate-300" />
+                {[1.41, 1.414, 1.42].map((mark) => (
+                  <span key={mark} className="absolute top-2 -translate-x-1/2 font-mono text-sm font-black text-slate-700" style={{ left: `${((mark - 1.41) / 0.01) * 100}%` }}>{mark}</span>
+                ))}
+                <span className="absolute top-8 h-11 w-1 -translate-x-1/2 rounded-full bg-violet-600" style={{ left: `${decimalPosition}%` }} />
+                <span className="absolute left-1/2 top-16 -translate-x-1/2 rounded-2xl border border-violet-200 bg-white px-6 py-3 font-mono text-3xl font-black text-violet-700 shadow-sm">{decimalPreview}</span>
+              </div>
+              <p className="mt-6 text-center font-mono text-xl font-black">√2 ≈ {decimalPreview}{precision < 8 ? "..." : ""}</p>
+              <p className="mt-2 text-center text-sm font-bold text-slate-600 dark:text-slate-300">The decimal goes on forever without repeating.</p>
+            </article>
+          </div>
+
+          <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(240px,.8fr)_1fr]">
+            <div className="rounded-3xl border border-slate-200 bg-white/95 p-4 dark:border-white/10 dark:bg-slate-950/60">
+              <p className="font-black text-slate-950 dark:text-white">Display mode</p>
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                {(["exact", "decimal"] as ExactDecimalMode[]).map((option) => (
+                  <button key={option} type="button" className={mode === option ? "rounded-2xl bg-cyan-600 px-3 py-3 text-sm font-black text-white shadow" : "rounded-2xl border border-slate-200 bg-white px-3 py-3 text-sm font-black text-slate-700 hover:border-cyan-300"} onClick={() => chooseMode(option)}>
+                    {option === "exact" ? "Exact (Symbolic)" : "Decimal (Preview)"}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-3xl border border-slate-200 bg-white/95 p-4 dark:border-white/10 dark:bg-slate-950/60">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <p className="font-black text-slate-950 dark:text-white">Decimal precision</p>
+                <span className="rounded-2xl border border-violet-200 bg-white px-4 py-2 font-mono font-black text-violet-700">{decimalPreview}</span>
+              </div>
+              <label className="sr-only" htmlFor="exact-decimal-precision">Decimal precision</label>
+              <input id="exact-decimal-precision" aria-label="Decimal precision" type="range" min="2" max="8" value={precision} onChange={(event) => updatePrecision(Number(event.target.value))} className="mt-4 w-full accent-violet-600" />
+              <div className="mt-3 flex flex-wrap gap-2">
+                {[2, 3, 5, 8].map((place) => (
+                  <button key={place} type="button" className={precision === place ? "rounded-xl bg-violet-600 px-3 py-2 text-xs font-black text-white" : "rounded-xl border border-violet-200 bg-white px-3 py-2 text-xs font-black text-violet-700"} onClick={() => updatePrecision(place)}>{place} places</button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 overflow-hidden rounded-3xl border border-slate-200 bg-white/95 dark:border-white/10 dark:bg-slate-950/60">
+            <div className="grid grid-cols-3 bg-slate-50 px-3 py-2 text-xs font-black uppercase text-slate-500 dark:bg-white/5 dark:text-slate-300"><span>Aspect</span><span>Exact (Symbolic)</span><span>Decimal (Approximate)</span></div>
+            {[
+              ["Representation", "√2", decimalPreview],
+              ["Nature", "Irrational full value", "Rounded finite display"],
+              ["Purpose", "Proofs, algebra, structure", "Measurements, estimates"],
+              ["Key point", "Keeps the full value", "Approximates the value"],
+            ].map(([aspect, exact, decimal]) => (
+              <div key={aspect} className="grid grid-cols-3 border-t border-slate-100 px-3 py-2 text-sm font-semibold dark:border-white/10">
+                <span>{aspect}</span><span className="font-mono">{exact}</span><span className="font-mono">{decimal}</span>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-3 text-sm font-black text-amber-900">Both represent the same number; only the form is different.</p>
+
+          <div className="mt-4 rounded-3xl border border-emerald-200 bg-white/95 p-4 dark:border-emerald-300/20 dark:bg-slate-950/60">
+            <p className="text-[10px] font-black uppercase text-emerald-700">Practice</p>
+            <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
+              <p className="font-black">Choose exact or decimal for the diagonal of a 1 by 1 square.</p>
+              <div className="flex flex-wrap gap-2">
+                <button type="button" className={practiceChoice === "exact" ? "action-primary" : "action-secondary"} onClick={() => selectPractice("exact")}>Exact (√2)</button>
+                <button type="button" className={practiceChoice === "decimal" ? "action-primary" : "action-secondary"} onClick={() => selectPractice("decimal")}>Decimal ({decimalPreview})</button>
+              </div>
+            </div>
+            {showPractice ? <p className={practiceChoice === "exact" ? "mt-3 rounded-2xl bg-emerald-50 p-3 font-mono text-lg font-black text-emerald-800" : "mt-3 rounded-2xl bg-amber-50 p-3 font-mono text-lg font-black text-amber-900"}>{practiceChoice === "exact" ? "Exact: √2; Decimal estimate: 1.414." : "Decimal estimate: 1.414, but choose exact when the square diagonal is the object."}</p> : null}
+          </div>
+        </section>
+
+        <aside className="space-y-3">
+          <p className="text-[10px] font-black uppercase tracking-wide text-cyan-700">Concept trace - Exact versus decimal classification</p>
+          <FractionInspector label="Exact form" value="√2" success note="The exact, symbolic form." />
+          <FractionInspector label="Decimal form" value={`≈ ${decimalPreview}${precision < 8 ? "..." : ""}`} note="An approximation that continues without end." />
+          <FractionInspector label="Mode" value={mode} note="Current display mode." />
+          <FractionInspector label="Use exact for" value="Structure" note="Proofs, simplification, algebraic work." />
+          <FractionInspector label="Use decimal for" value="Measurement" note="Estimation and real-world context." />
+          <div className="rounded-3xl border border-cyan-200 bg-cyan-50 p-4 text-cyan-950 dark:bg-cyan-300/10 dark:text-cyan-100">
+            <p className="text-[10px] font-black uppercase">Why this works</p>
+            <p className="mt-2 text-sm font-bold leading-6">A 1 x 1 square has diagonal length √(1² + 1²) = √2. Exact mode keeps √2; decimal mode rounds it for display.</p>
+          </div>
+          <div className="rounded-3xl border border-amber-200 bg-amber-50 p-4 text-sm font-black leading-6 text-amber-900 dark:bg-amber-300/10 dark:text-amber-100">Watch out: 1.414 is not equal to √2. It is a rounded report of the exact value.</div>
+          <div className="rounded-3xl border border-slate-200 bg-white p-4 dark:border-white/10 dark:bg-slate-950/60">
+            <p className="text-[10px] font-black uppercase text-slate-500">Event log</p>
+            <p className="mt-2 text-sm font-black text-slate-800 dark:text-slate-100">{eventLog}</p>
+          </div>
+          <button type="button" className="action-secondary w-full justify-center" onClick={resetExactDecimal}><RotateCcw className="h-4 w-4" />Reset exact mode</button>
+        </aside>
+      </div>
+    </AdapterFrame>
+  );
+}
+
+function truncateDecimals(value: number, places: number) {
+  const factor = 10 ** places;
+  return (Math.trunc(value * factor) / factor).toFixed(places);
 }
 
 function normalizeExpression(value: string) {
