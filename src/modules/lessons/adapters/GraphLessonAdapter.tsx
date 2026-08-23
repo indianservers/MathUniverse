@@ -18,7 +18,7 @@ type GraphSpec = {
 };
 
 export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
-  if (lesson.id >= 39 && lesson.id <= 48) {
+  if (lesson.id >= 39 && lesson.id <= 56) {
     return <RedesignedGraphingLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
@@ -88,6 +88,14 @@ function graphSpecFor(lessonId: number): GraphSpec {
     46: graphSpec("Data Plotter", "Connect datasets to graphs.", "r = 0.86", "Study hours vs Quiz score", "Best-fit line", ["Study hours", "Quiz score", "Residuals", "Outlier check"], ["r = 0.86", "trend, spread, and outliers", "Best-fit line"], "Do not force a curve before inspecting the data.", "trend, spread, and outliers", "data"),
     47: graphSpec("Table of Values", "Link numerical and graphical representations.", "x = 3", "f(x)=x^2-2x-3", "Row becomes point", ["x = 3", "f(x) = 0", "First differences"], ["Second differences constant", "pairs each input with its output", "Row becomes point"], "Every table row should correspond to a plotted graph point.", "pairs each input with its output", "table"),
     48: graphSpec("Trace Mode", "Observe paths and change.", "x = 1.8", "f(x)=sin(x)+0.3x", "Trace point", ["x = 1.8", "y = 1.51", "Slope estimate"], ["Move steadily and report both x and y", "reads coordinates along the graph", "Nearby values"], "Trace mode reads coordinates along the graph; report both x and y.", "reads coordinates along the graph", "trace"),
+    49: graphSpec("Zoom and Pan", "Inspect graphs at different scales.", "x:[-2, 2], y:[-1, 1]", "f(x)=0.25x^3-x", "Same equation, different view", ["Viewport", "Zoomed region", "Pan arrows", "Mini overview map"], ["Zoom in/out", "Reset view", "Same equation, different view"], "Zoom and pan change the view, not the equation.", "change the view, not the equation", "trace"),
+    50: graphSpec("Axis Controls", "Configure graph presentation.", "x:[-4,4], y:[0,18]", "y=2^x", "Axis limits and scale", ["x min", "x max", "y min", "y max"], ["Tick step", "Linear scale", "Log scale"], "Bad axis limits can hide important behavior, so check limits and scale together.", "limits and scale", "functions"),
+    51: graphSpec("Grid Controls", "Use appropriate construction guides.", "f(1.5)=1.125", "y=0.5x^2", "Major and minor guide-line spacing", ["Major spacing", "Minor subdivisions", "Snap to grid", "Grid opacity"], ["Sparse grid", "Dense grid", "Estimate points"], "Gridlines guide reading; guide-line spacing does not redefine values.", "guide-line spacing", "cartesian"),
+    52: graphSpec("Multiple Graphics Views", "Compare representations side by side.", "x = 2.0", "f(x)=sin(x)+0.25x", "Algebra, graph, table, and detail stay synchronized", ["Algebra view", "Graph view", "Table view", "Detail view"], ["Sync cursor", "2x2 layout", "same object at different scales"], "Each pane shows the same object at different scales, not a separate graph.", "same object at different scales", "table"),
+    53: graphSpec("Special Points", "Find important graph features.", "(-1,0), (3,0), (1,-4)", "f(x)=x^2-2x-3; g(x)=x-1", "Roots, vertex, intercepts, and intersections", ["Roots", "y-intercept", "Vertex", "Intersections"], ["(-1, 0)", "(3, 0)", "(1, -4)"], "Special points satisfy extra conditions beyond merely lying on the curve.", "satisfy extra conditions", "equation"),
+    54: graphSpec("Graph Inspector", "Read local graph properties.", "Slope at x = 1.2", "f(x)=x^3-3x", "Selected curve facts", ["Domain", "Range", "Intercepts", "Extrema"], ["Increasing", "Decreasing", "Average rate", "Concavity cue"], "The inspector reports selected graph facts for the current curve and probe.", "reports selected graph facts", "trace"),
+    55: graphSpec("Dynamic Parameters", "Study function families.", "a=2, b=1.5, c=0.5", "y=a sin(bx)+c", "Sliders change amplitude, period, and midline", ["Amplitude", "Period", "Midline", "Ghost curves"], ["a slider", "b slider", "c slider", "Animate sweep"], "A parameter slider should explain how it can change a whole graph family.", "change a whole graph family", "functions"),
+    56: graphSpec("Export Graph", "Reuse or share mathematical work.", "PNG / SVG / PDF", "f(x)=1/(1+e^{-x})", "Export preview with title, legend, labels, and scale", ["Export preview", "Include labels", "Scale 2x", "Copy link"], ["PNG", "SVG", "PDF", "Classroom embed"], "A useful exported graph includes axes, labels, and scale, and the exported state should match the current visual state.", "axes, labels, and scale", "functions"),
   };
   return specs[lessonId] ?? specs[39];
 }
