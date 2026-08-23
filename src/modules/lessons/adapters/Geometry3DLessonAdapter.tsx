@@ -12,7 +12,7 @@ export default function Geometry3DLessonAdapter(props: LessonAdapterProps) {
     );
   }
 
-  const surfaceLesson = /surface|contour|gradient|tangent plane|partial derivative|multivariable|level curve|z=f\(x,y\)|implicit|parametric/i.test(props.lesson.title);
+  const surfaceLesson = /contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(props.lesson.title);
   const engine = surfaceLesson ? "graph-3d" : "geometry-3d";
   const params = reusableEngineParamsFor(engine, props.lesson.title);
 

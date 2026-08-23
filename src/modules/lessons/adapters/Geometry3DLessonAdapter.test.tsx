@@ -67,7 +67,7 @@ describe("Geometry3DLessonAdapter", () => {
       expect(html, String(lessonId)).toContain(snippet.replace(/'/g, "&#x27;"));
       if (lesson.preset.id !== "geometry3d.solid-net") {
         expect(html, String(lessonId)).toContain("data-direct-interaction=\"true\"");
-        expect(html, String(lessonId)).toContain(/surface|contour|gradient|tangent plane|partial derivative|multivariable|level curve|z=f\(x,y\)|implicit|parametric/i.test(lesson.title) ? "Drag surface" : "Drag solid");
+        expect(html, String(lessonId)).toContain(/contour|gradient|tangent plane|partial derivative|multivariable|level curve|level surface|z=f\(x,y\)|implicit surface|parametric surface|space curve|quadric|cylindrical coordinates|spherical coordinates|normal vector/i.test(lesson.title) ? "Drag surface" : "Drag solid");
       }
       if (lessonId === 395) {
         expect(html, String(lessonId)).toContain("tetrahedron spatial solid workspace");

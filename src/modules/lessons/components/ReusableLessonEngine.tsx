@@ -31,7 +31,7 @@ export type ReusableLessonEngineParams = {
   visualLabels?: string[];
   insight?: string;
   check?: string;
-  solid?: "box" | "sphere" | "cylinder" | "cone" | "pyramid" | "triangular-prism" | "tetrahedron";
+  solid?: "box" | "sphere" | "cylinder" | "cone" | "pyramid" | "triangular-prism" | "tetrahedron" | "regular-polyhedra" | "hemisphere" | "frustum" | "surface-of-revolution" | "extrusion" | "cross-section" | "volume" | "surface-area" | "x-ray" | "camera" | "orthographic" | "ar-placement";
   surfaceExpression?: string;
   casCommand?: string;
   casExpression?: string;
@@ -138,6 +138,7 @@ function ReusableGraph3DEngine({ params, resetToken, onInteraction }: Omit<Reusa
   const [orbit, setOrbit] = useState(25);
   useEffect(() => { setRange(3); setSlice(0); setOrbit(25); }, [resetToken]);
   const surface = useMemo(() => summarizeSurfaceSamples((x, y) => (params.surfaceExpression?.includes("x^2 - y^2") ? x * x - y * y : Math.sin(x) * Math.cos(y)), range, slice), [params.surfaceExpression, range, slice]);
+  const graphDetails = graph3DDetails(params.title, range, slice);
   const update = (setter: (value: number) => void) => (value: number) => { setter(value); onInteraction(); };
   const updateSurfaceFromPointer = (event: PointerEvent<SVGSVGElement>) => {
     if (event.type === "pointermove" && event.buttons !== 1) return;
@@ -154,9 +155,10 @@ function ReusableGraph3DEngine({ params, resetToken, onInteraction }: Omit<Reusa
     <div className="lesson-engine lesson-engine-3d-graph">
       <div className="lesson-engine-axis lesson-direct-surface is-dark" data-direct-interaction="true">
         <span className="lesson-direct-cue is-dark">Drag surface</span>
-        <svg viewBox="0 0 640 360" className="h-[310px] w-full" role="img" aria-label="Reusable 3D graph engine surface workspace" onPointerDown={updateSurfaceFromPointer} onPointerMove={updateSurfaceFromPointer}>
+        <svg viewBox="0 0 640 360" className="h-[310px] w-full" role="img" aria-label={`${graphDetails.model} 3D graph workspace`} onPointerDown={updateSurfaceFromPointer} onPointerMove={updateSurfaceFromPointer}>
           <Axis3D orbit={orbit} />
           <SurfaceWireframe range={range} slice={slice} />
+          <Graph3DOverlay model={graphDetails.model} slice={slice} range={range} />
           <text x="34" y="40" fill="#bae6fd" fontWeight="900">{params.surfaceExpression ?? "z = sin(x) cos(y)"}</text>
         </svg>
       </div>
@@ -168,6 +170,8 @@ function ReusableGraph3DEngine({ params, resetToken, onInteraction }: Omit<Reusa
           <MiniMetric label="z min" value={surface.min.toFixed(2)} />
           <MiniMetric label="z max" value={surface.max.toFixed(2)} />
         </div>
+        <MiniMetric label="Model" value={graphDetails.model} />
+        <MiniMetric label="Rule" value={graphDetails.rule} />
       </EngineControlPanel>
     </div>
   );
@@ -386,10 +390,11 @@ function ReusableGeometry3DEngine({ params, resetToken, onInteraction }: Omit<Re
   const kernelObject = solid === "sphere" ? sphere3(point3(0, 0, 0), size / 2) : solid === "cylinder" ? cylinder3(point3(0, 0, 0), size / 2, height) : cone3(point3(0, 0, 0), size / 2, height);
   const kernelMetrics = object3Measurement(kernelObject);
   const genericMetrics = solidMetrics(solid, size);
+  const solidDetails = solid3DDetails(solid, size, height);
   const tetrahedronBaseArea = (Math.sqrt(3) / 4) * size ** 2;
   const tetrahedronVolume = (tetrahedronBaseArea * height) / 3;
-  const volume = solid === "tetrahedron" ? tetrahedronVolume : solid === "box" || solid === "pyramid" || solid === "triangular-prism" ? genericMetrics.volume : kernelMetrics.volume;
-  const surfaceArea = solid === "box" || solid === "tetrahedron" ? genericMetrics.surfaceArea : kernelMetrics.surfaceArea;
+  const volume = solidDetails.volume ?? (solid === "tetrahedron" ? tetrahedronVolume : solid === "box" || solid === "pyramid" || solid === "triangular-prism" ? genericMetrics.volume : kernelMetrics.volume);
+  const surfaceArea = solidDetails.surfaceArea ?? (solid === "box" || solid === "tetrahedron" ? genericMetrics.surfaceArea : kernelMetrics.surfaceArea);
   const update = (setter: (value: number) => void) => (value: number) => { setter(value); onInteraction(); };
   const updateSolidFromPointer = (event: PointerEvent<SVGSVGElement>) => {
     if (event.type === "pointermove" && event.buttons !== 1) return;
@@ -415,7 +420,8 @@ function ReusableGeometry3DEngine({ params, resetToken, onInteraction }: Omit<Re
         <SliderControl density="compact" label="size" value={size} min={1} max={8} step={0.25} onChange={update(setSize)} />
         <SliderControl density="compact" label="height" value={height} min={1} max={10} step={0.25} onChange={update(setHeight)} />
         <SliderControl density="compact" label="orbit" value={orbit} min={0} max={360} step={5} unit="degrees" onChange={update(setOrbit)} />
-        {solid === "tetrahedron" ? <MiniMetric label="Formula" value="V = Bh / 3" /> : null}
+        <MiniMetric label="Model" value={solidDetails.model} />
+        <MiniMetric label="Formula" value={solidDetails.formula} />
         <div className="grid grid-cols-2 gap-2">
           <MiniMetric label="Volume" value={volume.toFixed(2)} />
           <MiniMetric label="Surface" value={surfaceArea.toFixed(2)} />
@@ -523,8 +529,15 @@ function graph3DParamsFor(title: string): ReusableLessonEngineParams {
   const snippet = geometry3DGuidanceFor(title);
   if (name.includes("saddle") || name.includes("quadric")) return { title, surfaceExpression: "z = x^2 - y^2", insight: `${snippet}: a saddle curves up in one direction and down in another.`, check: "Rotate before deciding the curvature." };
   if (name.includes("sphere")) return { title, surfaceExpression: "z = sqrt(9 - x^2 - y^2)", insight: `${snippet}: a hemisphere is a height surface over a disk.`, check: "The domain is a circular disk." };
+  if (name.includes("space curve")) return { title, surfaceExpression: "r(t)=<cos t, sin t, t/4>", insight: `${snippet}: a parameter moves a point through x, y, and z together.`, check: "The tangent vector follows the direction of motion." };
+  if (name.includes("cylindrical coordinates")) return { title, surfaceExpression: "(r, theta, z) to (x, y, z)", insight: `${snippet}: radius, azimuth and height locate the same point.`, check: "Convert with x = r cos theta and y = r sin theta." };
+  if (name.includes("spherical coordinates")) return { title, surfaceExpression: "(rho, theta, phi) to (x, y, z)", insight: `${snippet}: radius plus two angles locate a point on a globe.`, check: "Confirm which angle is measured from the z-axis." };
+  if (name.includes("normal vector")) return { title, surfaceExpression: "n = r_u x r_v", insight: `${snippet}: the normal is perpendicular to both tangent directions.`, check: "Use dot products to verify perpendicularity." };
   if (name.includes("partial derivative")) return { title, surfaceExpression: "z = x^2 + y^2", insight: `${snippet}: hold one input fixed and read the directional slice rate.`, check: "Compare the x-slice and y-slice before naming the partial." };
   if (name.includes("tangent plane")) return { title, surfaceExpression: "z = sin(x) cos(y)", insight: `${snippet}: the plane matches the surface at one selected point.`, check: "Check both local slopes before trusting the plane." };
+  if (name.includes("gradient")) return { title, surfaceExpression: "grad f = <f_x, f_y>", insight: `${snippet}: the gradient points toward steepest ascent.`, check: "The gradient is perpendicular to the contour." };
+  if (name.includes("contour")) return { title, surfaceExpression: "f(x,y) = c", insight: `${snippet}: a horizontal slice becomes a contour curve.`, check: "Match the highlighted 3D slice to the 2D map." };
+  if (name.includes("level surface")) return { title, surfaceExpression: "f(x,y,z) = c", insight: `${snippet}: an isovalue reveals every point with the same field value.`, check: "Changing c moves through nested surfaces." };
   return { title, surfaceExpression: "z = sin(x) cos(y)", insight: `${snippet}: two inputs x and y produce height z.`, check: "Use cross-sections to read shape." };
 }
 
@@ -643,7 +656,7 @@ function geometrySceneFor(name: string): NonNullable<ReusableLessonEngineParams[
 
 function geometry3DParamsFor(title: string): ReusableLessonEngineParams {
   const name = title.toLowerCase();
-  const solid = name.includes("sphere") ? "sphere" : name.includes("cone") ? "cone" : name.includes("cylinder") ? "cylinder" : name.includes("tetrahedron") ? "tetrahedron" : name.includes("pyramid") ? "pyramid" : name.includes("prism") ? "triangular-prism" : "box";
+  const solid = name.includes("regular polyhedra") || name.includes("euler") ? "regular-polyhedra" : name.includes("hemisphere") ? "hemisphere" : name.includes("frustum") ? "frustum" : name.includes("surface of revolution") ? "surface-of-revolution" : name.includes("extrusion") ? "extrusion" : name.includes("cross-section") ? "cross-section" : name === "volume" ? "volume" : name.includes("surface area") ? "surface-area" : name.includes("transparent") || name.includes("x-ray") ? "x-ray" : name.includes("camera") ? "camera" : name.includes("orthographic") ? "orthographic" : name.includes("ar placement") ? "ar-placement" : name.includes("sphere") ? "sphere" : name.includes("cone") ? "cone" : name.includes("cylinder") ? "cylinder" : name.includes("tetrahedron") ? "tetrahedron" : name.includes("pyramid") ? "pyramid" : name.includes("prism") ? "triangular-prism" : "box";
   const snippet = geometry3DGuidanceFor(title);
   return { title, solid, insight: `${snippet}: use x, y, and z axes with spatial measurements.`, check: "Volume uses cubic units; surface area uses square units." };
 }
@@ -753,10 +766,67 @@ function SurfaceWireframe({ range, slice }: { range: number; slice: number }) {
   return <g>{rows.map((points, index) => <polyline key={index} points={points} fill="none" stroke="#67e8f9" strokeWidth="2" />)}<ellipse cx="320" cy={185 - slice * 35} rx={Math.max(25, range * 22)} ry="30" fill="none" stroke="#f59e0b" strokeWidth="3" strokeDasharray="7 5" /></g>;
 }
 
+function Graph3DOverlay({ model, slice, range }: { model: string; slice: number; range: number }) {
+  if (model === "space curve") return <g><path d="M210,260 C245,190 310,250 325,180 C340,110 415,165 430,80" fill="none" stroke="#f59e0b" strokeWidth="5" /><circle cx="325" cy="180" r="7" fill="#fef3c7" /><path d="M325,180 l42,-28" stroke="#22c55e" strokeWidth="4" markerEnd="url(#arrow)" /><text x="372" y="150" fill="#bbf7d0" fontWeight="900">tangent</text></g>;
+  if (model === "cylindrical coordinates") return <g><ellipse cx="320" cy="245" rx={range * 22} ry={range * 8} fill="none" stroke="#38bdf8" strokeDasharray="6 4" strokeWidth="3" /><path d={`M320,245 L${320 + range * 32},${245 - slice * 15} V125`} stroke="#f59e0b" strokeWidth="4" /><text x="365" y="128" fill="#fde68a" fontWeight="900">r, theta, z</text></g>;
+  if (model === "spherical coordinates") return <g><ellipse cx="320" cy="185" rx="82" ry="62" fill="#38bdf8" opacity=".18" stroke="#67e8f9" strokeWidth="3" /><path d="M320,185 L390,126" stroke="#f59e0b" strokeWidth="4" /><path d="M320,185 A60 60 0 0 1 379 175" fill="none" stroke="#a78bfa" strokeWidth="3" /><text x="397" y="126" fill="#fde68a" fontWeight="900">rho, theta, phi</text></g>;
+  if (model === "normal vector") return <g><polygon points="230,235 410,220 485,270 300,290" fill="#14b8a6" opacity=".28" stroke="#67e8f9" strokeWidth="3" /><path d="M340,245 V105" stroke="#f59e0b" strokeWidth="5" /><text x="352" y="116" fill="#fde68a" fontWeight="900">normal n</text></g>;
+  if (model === "gradient") return <g><ellipse cx="320" cy="210" rx="94" ry="42" fill="none" stroke="#c4b5fd" strokeWidth="3" /><path d="M320,210 L405,162" stroke="#f59e0b" strokeWidth="5" /><text x="410" y="160" fill="#fde68a" fontWeight="900">grad f</text></g>;
+  if (model === "contour" || model === "level surface") return <g><circle cx="486" cy="185" r="54" fill="none" stroke="#a78bfa" strokeWidth="3" /><circle cx="486" cy="185" r={Math.max(18, 36 + slice * 5)} fill="none" stroke="#f59e0b" strokeWidth="4" /><text x="440" y="258" fill="#ddd6fe" fontWeight="900">{model === "contour" ? "2D contour map" : "f(x,y,z)=c"}</text></g>;
+  return <g><path d="M260,245 Q320,145 380,245" fill="none" stroke="#f59e0b" strokeWidth="4" /><text x="395" y="238" fill="#fde68a" fontWeight="900">{model}</text></g>;
+}
+
+function graph3DDetails(title: string, range: number, slice: number) {
+  const name = title.toLowerCase();
+  if (name.includes("space curve")) return { model: "space curve", rule: `t=${slice.toFixed(1)}, |r'|=${Math.hypot(1, 0.25).toFixed(2)}` };
+  if (name.includes("quadric")) return { model: "quadric classifier", rule: "sign pattern -> surface type" };
+  if (name.includes("cylindrical")) return { model: "cylindrical coordinates", rule: "x=r cos theta, y=r sin theta" };
+  if (name.includes("spherical")) return { model: "spherical coordinates", rule: "rho with theta and phi" };
+  if (name.includes("contour")) return { model: "contour", rule: "f(x,y)=c" };
+  if (name.includes("level surface")) return { model: "level surface", rule: "f(x,y,z)=c" };
+  if (name.includes("partial derivative")) return { model: "partial derivative slices", rule: `fx=${(2 * range).toFixed(1)}, fy=${(2 * slice).toFixed(1)}` };
+  if (name.includes("gradient")) return { model: "gradient", rule: "grad f = <fx, fy>" };
+  if (name.includes("tangent plane")) return { model: "tangent plane", rule: "z-z0=fx(x-x0)+fy(y-y0)" };
+  if (name.includes("normal vector")) return { model: "normal vector", rule: "n perpendicular to tangents" };
+  if (name.includes("implicit")) return { model: "implicit surface", rule: "F(x,y,z)=0" };
+  if (name.includes("parametric")) return { model: "parametric surface", rule: "r(u,v)=<x,y,z>" };
+  return { model: "height surface", rule: "z=f(x,y)" };
+}
+
+function solid3DDetails(solid: NonNullable<ReusableLessonEngineParams["solid"]>, size: number, height: number) {
+  const radius = size / 2;
+  const slant = Math.hypot(radius, height);
+  if (solid === "regular-polyhedra") return { model: "Platonic solids carousel", formula: "V - E + F = 2", volume: undefined, surfaceArea: undefined };
+  if (solid === "cylinder") return { model: "cylinder with net", formula: "V = pi r^2 h", volume: Math.PI * radius ** 2 * height, surfaceArea: 2 * Math.PI * radius * (height + radius) };
+  if (solid === "cone") return { model: "cone with sector net", formula: "V = pi r^2 h / 3", volume: (Math.PI * radius ** 2 * height) / 3, surfaceArea: Math.PI * radius * (radius + slant) };
+  if (solid === "sphere") return { model: "sphere with great circle", formula: "V = 4 pi r^3 / 3", volume: (4 / 3) * Math.PI * radius ** 3, surfaceArea: 4 * Math.PI * radius ** 2 };
+  if (solid === "hemisphere") return { model: "hemisphere cut", formula: "V = 2 pi r^3 / 3", volume: (2 / 3) * Math.PI * radius ** 3, surfaceArea: 3 * Math.PI * radius ** 2 };
+  if (solid === "frustum") return { model: "frustum with two radii", formula: "V = pi h(R^2+Rr+r^2)/3", volume: (Math.PI * height * (radius ** 2 + radius * radius * 0.55 + (radius * 0.55) ** 2)) / 3, surfaceArea: Math.PI * (radius + radius * 0.55) * Math.hypot(height, radius * 0.45) + Math.PI * radius ** 2 + Math.PI * (radius * 0.55) ** 2 };
+  if (solid === "surface-of-revolution") return { model: "surface of revolution", formula: "rotate y=f(x)", volume: Math.PI * radius ** 2 * height, surfaceArea: 2 * Math.PI * radius * height };
+  if (solid === "extrusion") return { model: "extruded prism", formula: "V = area x depth", volume: ((Math.sqrt(3) / 4) * size ** 2) * height, surfaceArea: undefined };
+  if (solid === "cross-section") return { model: "moving slice plane", formula: "section changes with plane", volume: undefined, surfaceArea: undefined };
+  if (solid === "volume") return { model: "capacity comparison", formula: "volume uses cubic units", volume: size ** 2 * height, surfaceArea: undefined };
+  if (solid === "surface-area") return { model: "unfolded face net", formula: "sum exposed faces", volume: undefined, surfaceArea: 6 * size ** 2 };
+  if (solid === "x-ray") return { model: "transparent x-ray solid", formula: "hidden edges visible", volume: undefined, surfaceArea: undefined };
+  if (solid === "camera") return { model: "orbit pan zoom camera", formula: `orbit ${height.toFixed(1)}x`, volume: undefined, surfaceArea: undefined };
+  if (solid === "orthographic") return { model: "front top side views", formula: "3D -> 2D projections", volume: undefined, surfaceArea: undefined };
+  if (solid === "ar-placement") return { model: "AR placement anchor", formula: "scale and ground plane", volume: undefined, surfaceArea: undefined };
+  if (solid === "tetrahedron") return { model: "tetrahedron", formula: "V = Bh / 3", volume: undefined, surfaceArea: undefined };
+  return { model: solid, formula: "spatial measurement", volume: undefined, surfaceArea: undefined };
+}
+
 function Solid3D({ kind, size, height }: { kind: NonNullable<ReusableLessonEngineParams["solid"]>; size: number; height: number }) {
   const scale = 20 + size * 7;
   if (kind === "sphere") return <ellipse cx="320" cy="185" rx={scale} ry={scale * 0.72} fill="#06b6d4" opacity=".55" stroke="#67e8f9" strokeWidth="3" />;
+  if (kind === "hemisphere") return <g><path d={`M${320 - scale},200 A${scale},${scale * 0.72} 0 0 0 ${320 + scale},200 L${320 + scale},200 A${scale},${scale * 0.25} 0 0 1 ${320 - scale},200 Z`} fill="#06b6d4" opacity=".45" stroke="#67e8f9" strokeWidth="3" /><ellipse cx="320" cy="200" rx={scale} ry={scale * 0.25} fill="none" stroke="#f59e0b" strokeWidth="4" /><text x="338" y="195" fill="#fde68a" fontWeight="900">equator cut</text></g>;
   if (kind === "cylinder" || kind === "cone") return <g><ellipse cx="320" cy="250" rx={scale} ry={scale * 0.3} fill="#06b6d4" opacity=".5" /><path d={kind === "cone" ? `M${320 - scale},250 L320,75 L${320 + scale},250` : `M${320 - scale},250 L${320 - scale},100 M${320 + scale},250 L${320 + scale},100`} fill="none" stroke="#67e8f9" strokeWidth="4" /><ellipse cx="320" cy="100" rx={kind === "cone" ? 3 : scale} ry={kind === "cone" ? 3 : scale * 0.3} fill="#06b6d4" opacity=".6" stroke="#67e8f9" /></g>;
+  if (kind === "frustum") return <g><ellipse cx="320" cy="250" rx={scale} ry={scale * 0.3} fill="#06b6d4" opacity=".42" stroke="#67e8f9" strokeWidth="3" /><ellipse cx="320" cy={250 - height * 17} rx={scale * 0.55} ry={scale * 0.18} fill="#06b6d4" opacity=".62" stroke="#67e8f9" strokeWidth="3" /><path d={`M${320 - scale},250 L${320 - scale * 0.55},${250 - height * 17} M${320 + scale},250 L${320 + scale * 0.55},${250 - height * 17}`} stroke="#67e8f9" strokeWidth="4" /><text x="385" y="110" fill="#fde68a" fontWeight="900">R, r, h</text></g>;
+  if (kind === "regular-polyhedra") return <g><polygon points="320,75 415,145 378,260 262,260 225,145" fill="#06b6d4" opacity=".36" stroke="#67e8f9" strokeWidth="3" /><path d="M320,75 L378,260 M320,75 L262,260 M225,145 L415,145 M262,260 L415,145 M378,260 L225,145" stroke="#f59e0b" strokeWidth="2.5" /><text x="398" y="92" fill="#fde68a" fontWeight="900">V-E+F=2</text></g>;
+  if (kind === "surface-of-revolution") return <g><path d="M215,235 C260,140 365,140 425,235" fill="none" stroke="#f59e0b" strokeWidth="4" /><ellipse cx="320" cy="235" rx="105" ry="30" fill="#06b6d4" opacity=".25" stroke="#67e8f9" strokeWidth="3" /><ellipse cx="320" cy="175" rx="70" ry="20" fill="none" stroke="#67e8f9" strokeWidth="3" /><path d="M320,80 V270" stroke="#c4b5fd" strokeDasharray="7 5" strokeWidth="3" /><text x="335" y="98" fill="#ddd6fe" fontWeight="900">axis</text></g>;
+  if (kind === "extrusion") return <g><polygon points="235,250 300,170 370,250" fill="#a78bfa" opacity=".35" stroke="#ddd6fe" strokeWidth="3" /><polygon points="300,170 405,135 475,215 370,250" fill="#06b6d4" opacity=".32" stroke="#67e8f9" strokeWidth="3" /><path d="M235,250 L340,215 L405,135 M370,250 L475,215" stroke="#f59e0b" strokeWidth="3" /><text x="390" y="132" fill="#fde68a" fontWeight="900">depth</text></g>;
+  if (kind === "cross-section" || kind === "x-ray") return <g><path d={`M${320 - scale},${220 - scale / 2} l${scale},${-scale / 2} l${scale},${scale / 2} v${scale} l${-scale},${scale / 2} l${-scale},${-scale / 2}z M320,${220 - scale} v${scale}`} fill="#06b6d4" opacity={kind === "x-ray" ? ".18" : ".32"} stroke="#67e8f9" strokeWidth="3" /><polygon points="230,210 405,155 500,210 320,270" fill="#a78bfa" opacity=".34" stroke="#f59e0b" strokeWidth="3" /><text x="420" y="150" fill="#fde68a" fontWeight="900">{kind === "x-ray" ? "hidden edges" : "slice plane"}</text></g>;
+  if (kind === "surface-area") return <g><rect x="210" y="135" width="80" height="80" fill="#67e8f9" opacity=".5" stroke="#0e7490" strokeWidth="3" /><rect x="290" y="135" width="80" height="80" fill="#f59e0b" opacity=".5" stroke="#92400e" strokeWidth="3" /><rect x="370" y="135" width="80" height="80" fill="#a78bfa" opacity=".5" stroke="#6d28d9" strokeWidth="3" /><rect x="290" y="55" width="80" height="80" fill="#22c55e" opacity=".45" stroke="#15803d" strokeWidth="3" /><rect x="290" y="215" width="80" height="80" fill="#fb7185" opacity=".45" stroke="#be123c" strokeWidth="3" /><text x="462" y="180" fill="#fde68a" fontWeight="900">net faces</text></g>;
+  if (kind === "volume" || kind === "camera" || kind === "orthographic" || kind === "ar-placement") return <g><path d={`M${320 - scale},${220 - scale / 2} l${scale},${-scale / 2} l${scale},${scale / 2} v${scale} l${-scale},${scale / 2} l${-scale},${-scale / 2}z M320,${220 - scale} v${scale} M${320 - scale},${220 - scale / 2} l${scale},${scale / 2} l${scale},${-scale / 2}`} fill="#06b6d4" opacity=".38" stroke="#67e8f9" strokeWidth="3" /><path d={kind === "orthographic" ? "M455,105 h60 v45 h-60z M455,170 h60 v45 h-60z" : kind === "ar-placement" ? "M210,285 h230 l60,-35 h-230z" : "M245,95 C305,45 420,75 455,145"} fill="none" stroke="#f59e0b" strokeWidth="4" /><text x="455" y="95" fill="#fde68a" fontWeight="900">{kind === "camera" ? "orbit" : kind === "orthographic" ? "views" : kind === "ar-placement" ? "ground" : "capacity"}</text></g>;
   if (kind === "tetrahedron") {
     const apexY = 235 - height * 18;
     const left = `${320 - scale},245`;
