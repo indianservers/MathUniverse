@@ -49,11 +49,15 @@ function authoringGuidanceFor(title: string) {
 }
 
 export default function AuthoringLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
-  if (lesson.id >= 618 && lesson.id <= 634) {
+  if (isRedesignedAuthoringLesson(lesson.id)) {
     return <RedesignedAuthoringLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   return <LegacyAuthoringLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+}
+
+function isRedesignedAuthoringLesson(lessonId: number) {
+  return (lessonId >= 618 && lessonId <= 648) || lessonId === 650 || lessonId === 651 || lessonId === 653 || lessonId === 654;
 }
 
 function LegacyAuthoringLesson({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
@@ -201,6 +205,24 @@ function authoringSpecFor(lessonId: number): AuthoringSpec {
     632: { title: "Object Locking", purpose: "Protect instructional elements.", badge: "Unlocked: point P", value: "Locked: axes, grid, y = x", settings: [["Axes", "locked"], ["Grid", "locked"], ["Reference line", "locked"], ["Point P", "unlocked"]], checklist: ["Drag P onto the line", "Lock support objects", "Leave learner objects editable"], rule: "Lock supports that should not move; leave learner objects editable.", trap: "Do not lock everything; learners still need movable objects.", practice: "Try next: lock a target region but leave the answer point free.", logSeed: "Locked support stays still; learner object still moves." },
     633: { title: "Conditional Feedback", purpose: "Respond to learner input.", badge: "Test cases passed", value: "Correct", settings: [["Problem", "Solve: 2x + 4 = 10"], ["Learner answer", "x = 3"], ["If answer = 7", "Forgot to divide by 2"], ["If answer = -3", "Check the sign"]], checklist: ["Correct", "Feedback should say what to fix", "Test cases passed"], rule: "Conditional feedback maps learner answers to specific messages.", trap: "Avoid only right/wrong messages; say what to fix.", practice: "Try next: add a branch for x = 5.", logSeed: "Feedback branch selected Correct." },
     634: { title: "Custom Tool Builder", purpose: "Reuse construction procedures.", badge: "Test case passed", value: "Midpoint Tool", settings: [["Tool name", "Midpoint Tool"], ["Inputs", "Point A, Point B"], ["Output", "midpoint M"], ["Action", "Save tool"]], checklist: ["A(1,2)", "B(5,6)", "M(3,4)", "Save tool"], rule: "A custom tool packages inputs, construction steps, and outputs.", trap: "Do not hide inputs; name all needed inputs and outputs.", practice: "Try next: reuse the tool with A(0,0) and B(6,2).", logSeed: "Midpoint Tool test case passed." },
+    635: { title: "Command Library", purpose: "Expose advanced functionality.", badge: "Circle command", value: "Circle(A, 3)", settings: [["Search", "Circle"], ["Syntax", "Circle(center, radius)"], ["Example", "Circle(A, 3)"], ["Inputs", "A(1,2), radius = 3"]], checklist: ["A(1,2)", "radius = 3", "Command tested"], rule: "Read command syntax before use.", trap: "Input order matters. Wrong order: Circle(3, A).", practice: "Try next: test Circle(center, radius) before adding it to a worksheet.", logSeed: "Command tested: Circle(A, 3)." },
+    636: { title: "Object Scripting", purpose: "Run code when objects are used.", badge: "On drag end", value: "Inside target", settings: [["Event", "On drag end"], ["Condition", "Distance(P, C) < 1"], ["Action", "SetColor(P, green)"], ["Feedback", "Inside target"]], checklist: ["On click", "On drag", "On update", "Script ran successfully"], rule: "Attach code to the event that matches the learner action.", trap: "Event must match learner action.", practice: "Try next: drag point P into the target circle centered C(3,2), radius 1.", logSeed: "Script ran successfully after drag end." },
+    637: { title: "Randomisation", purpose: "Generate valid variants.", badge: "Seed 1842", value: "4x + 6 = 18", settings: [["a", "2..6"], ["x", "-5..5"], ["b", "-10..10"], ["Seed", "1842"]], checklist: ["integer solution", "no division by zero", "variants"], rule: "Set ranges and constraints so generated tasks stay valid.", trap: "Do not randomise values that can make an impossible question.", practice: "Try next: regenerate a linear equation and keep the solution integer.", logSeed: "Generated 4x + 6 = 18 with x = 3." },
+    638: { title: "Automatic Checking", purpose: "Accept equivalent answers.", badge: "Equivalent accepted", value: "2(x + 3)", settings: [["Student answer", "2(x + 3)"], ["Accepted", "2x + 6"], ["Accepted", "6 + 2x"], ["Tolerance", "exact algebra"]], checklist: ["Parse", "Simplify", "Compare", "Feedback"], rule: "Automatic checking should parse, simplify, compare, and return feedback.", trap: "Do not reject an equivalent expression such as 2(x + 3).", practice: "Try next: check whether 2(x + 3) and 2x + 6 are equivalent.", logSeed: "Rule passes: equivalent answer accepted." },
+    639: { title: "Import and Export", purpose: "Share complete lesson packages.", badge: "Ready to share", value: "linear-equations-lab.mujson", settings: [["Package", "linear-equations-lab.mujson"], ["Import", "drag/drop import zone"], ["Export", "selector"], ["Compatibility", "Compatible"]], checklist: ["Assets", "Variables", "Answer rules", "Metadata"], rule: "Import and export should preserve assets, variables, answer rules, and metadata.", trap: "Check compatibility before sharing a package.", practice: "Try next: preview a package, read the import log, then export it.", logSeed: "Package preview is compatible and ready to share." },
+    640: { title: "Concept Introduction", purpose: "Introduce definitions and notation.", badge: "Direct variation", value: "y = 3x", settings: [["Definition", "Direct variation"], ["Rule", "y = 3x"], ["Start value", "x = 2, y = 6"], ["Test value", "x = 4, y = 12"]], checklist: ["Predict", "Test", "Explain"], rule: "When x doubles, y doubles.", trap: "Do not begin with disconnected rules; link notation to a model.", practice: "Try next: predict what happens when x changes from 2 to 4.", logSeed: "Direct variation introduction is ready." },
+    641: { title: "Visualise", purpose: "Choose a visual that shows the relationship.", badge: "All views linked", value: "y = 2x + 1", settings: [["Pattern", "tiles"], ["Machine", "input-output"], ["Table", "x and y"], ["Graph", "y = 2x + 1"]], checklist: ["x = 3", "y = 7", "All views update together"], rule: "Visualise relationships by linking representations.", trap: "Pretty alone is not enough; the visual must reveal the relationship.", practice: "Try next: move the slider to x = 3 and confirm y = 7 everywhere.", logSeed: "Representation link confirmed." },
+    642: { title: "Manipulative Laboratory", purpose: "Give controls and a focused question.", badge: "Balance preserved", value: "x = 4", settings: [["Equation", "2x + 3 = 11"], ["Action", "Drag tiles"], ["Step", "remove 3 both sides"], ["Step", "divide by 2"]], checklist: ["2x = 8", "x = 4", "Balance preserved"], rule: "Manipulatives should show why each operation preserves equality.", trap: "Exploration needs a goal, not just movable tiles.", practice: "Try next: remove 3 from both sides, then divide the remaining tiles by 2.", logSeed: "Balance preserved after solving x = 4." },
+    643: { title: "Guided Exploration", purpose: "Use a clear question sequence.", badge: "m = 1.5", value: "y = 1.5x + 1", settings: [["Variable", "slope m"], ["Line", "y = mx + 1"], ["Ghosts", "m = -1, 0.5, 2"], ["Prompt", "Steeper lines have larger |m|"]], checklist: ["Notice", "Change", "Compare", "Conclude"], rule: "Guided exploration should move from noticing to testing and explaining.", trap: "Questions need a clear sequence.", practice: "Try next: drag the slope and compare ghost lines.", logSeed: "Exploration conclusion recorded." },
+    644: { title: "Predict-Test-Explain", purpose: "Record prediction before testing.", badge: "a = 2", value: "y = ax²", settings: [["Prediction", "curve gets narrower"], ["Test", "a = 2"], ["Vertex", "(0,0)"], ["Evidence", "At x = 2, y = 8"]], checklist: ["Prediction: curve gets narrower", "Test: a = 2", "Evidence", "Explain"], rule: "Prediction comes before testing.", trap: "Do not change the claim after seeing the graph.", practice: "My explanation: increasing a makes y-values farther from zero for the same x.", logSeed: "Predict-Test-Explain cycle captured." },
+    645: { title: "Worked Example", purpose: "Show steps, reasons, and answer.", badge: "Roots confirmed", value: "x = 2 or x = 3", settings: [["Problem", "x² - 5x + 6 = 0"], ["Factor", "(x - 2)(x - 3) = 0"], ["Product", "6"], ["Sum", "-5"]], checklist: ["x = 2", "x = 3", "Both roots confirmed"], rule: "Worked examples should connect symbolic steps to reasons.", trap: "Steps need reasons, not just answers.", practice: "Try next: check both roots on the graph intercepts.", logSeed: "Worked example roots confirmed." },
+    646: { title: "Step-by-Step Practice", purpose: "Check one useful step at a time.", badge: "Correct step", value: "x = 5", settings: [["Problem", "3x - 4 = 11"], ["Step 1", "Add 4"], ["Step 2", "3x = 15"], ["Step 3", "Divide by 3"]], checklist: ["x = 5", "3(5)-4=11", "hints"], rule: "Middle steps matter.", trap: "Do not skip straight to the final answer.", practice: "Try next: use the balance mini model to justify Add 4.", logSeed: "Correct step accepted." },
+    647: { title: "Construction Challenge", purpose: "State goal, tools, and success checks.", badge: "Construction valid", value: "PQ ⟂ AB", settings: [["Goal", "Construct the perpendicular bisector of AB"], ["Tool", "compass arcs"], ["Line", "PQ"], ["Point", "midpoint M"]], checklist: ["AM = MB", "PQ ⟂ AB", "Construction valid"], rule: "Conditions must be exact.", trap: "Do not accept a visual guess; verify equal distances and right angle.", practice: "Try next: draw arcs from A and B, connect P and Q, then mark M.", logSeed: "Construction valid: AM = MB and PQ ⟂ AB." },
+    648: { title: "Graph Matching", purpose: "Compare key graph features.", badge: "1 of 3 matched", value: "y = 2x + 1", settings: [["Equation", "y = 2x + 1"], ["Equation", "y = -x + 4"], ["Equation", "y = x² - 1"], ["Action", "drag to match"]], checklist: ["correct match", "use slope and intercept", "1 of 3 matched"], rule: "Graph matching should use features, equations, and tables.", trap: "Do not match only by rough appearance.", practice: "Try next: match y = 2x + 1 using slope and intercept.", logSeed: "Graph match accepted for y = 2x + 1." },
+    650: { title: "Multiple Representations", purpose: "Link forms to the same idea.", badge: "All forms agree", value: "y = x + 2", settings: [["Equation", "y = x + 2"], ["Table", "x = 3, y = 5"], ["Mapping", "3 -> 5"], ["Verbal", "add 2"]], checklist: ["Equation", "Table", "Mapping", "Graph", "Verbal rule"], rule: "Views should stay in sync.", trap: "Do not let representations show different values.", practice: "Try next: select x = 3 and verify y = 5 in every form.", logSeed: "All forms agree at x = 3, y = 5." },
+    651: { title: "Real-World Application", purpose: "Define context, variables, and units.", badge: "Choose Plan A", value: "8 GB", settings: [["Plan A", "C = 199 + 20g"], ["Plan B", "C = 99 + 35g"], ["Usage", "8 GB"], ["Break-even", "6.67 GB"]], checklist: ["compare total cost", "recommend", "Choose Plan A"], rule: "The story must affect the math.", trap: "Include units so the recommendation is meaningful.", practice: "Try next: compare both mobile plans at 8 GB.", logSeed: "Recommendation: Choose Plan A." },
+    653: { title: "Dynamic Question Generator", purpose: "Set allowed values and answer rules.", badge: "4 valid questions", value: "17/12", settings: [["Template", "a/b + c/d"], ["Generated", "2/3 + 3/4"], ["Common denominator", "12"], ["Answer", "17/12 = 1 5/12"]], checklist: ["simplified", "generate new", "4 valid questions"], rule: "Generated questions must stay valid.", trap: "Do not generate fractions without a simplification rule.", practice: "Try next: generate a new fraction addition question.", logSeed: "Generated question simplified to 17/12." },
+    654: { title: "Mastery Challenge", purpose: "Require steps, answer, and explanation.", badge: "3/4", value: "Almost there", settings: [["Topic", "linear functions checkpoint"], ["Questions", "4 questions"], ["Current", "Question 4"], ["Task", "Explain y-intercept"]], checklist: ["score 3/4", "confidence slider", "review mistake"], rule: "Mastery should show independence.", trap: "Do not count a score without explanation and review.", practice: "Try next: explain the y-intercept, then review the mistake.", logSeed: "Mastery almost there: 3/4." },
   };
   return specs[lessonId] ?? specs[618];
 }
@@ -222,6 +244,7 @@ function renderAuthoringVisual(lessonId: number, value: number): ReactNode {
   if (lessonId === 631) return <UndoRedoAuthoringVisual />;
   if (lessonId === 632) return <ObjectLockingAuthoringVisual />;
   if (lessonId === 633) return <ConditionalFeedbackAuthoringVisual />;
+  if (lessonId >= 635) return <AdvancedAuthoringVisual lessonId={lessonId} />;
   return <CustomToolAuthoringVisual />;
 }
 
@@ -569,6 +592,129 @@ function ConditionalFeedbackAuthoringVisual() {
         <div className="space-y-3"><p className="rounded-2xl bg-green-50 p-3 font-black text-green-900">Correct: x = 3 because 2(3)+4=10.</p><p className="rounded-2xl bg-amber-50 p-3 font-black text-amber-900">Feedback should say what to fix.</p><p className="rounded-2xl bg-cyan-50 p-3 font-black text-cyan-900">Test cases passed.</p></div>
       </div>
     </AuthoringCanvas>
+  );
+}
+
+type AdvancedVisualSpec = {
+  heading: string;
+  subtitle: string;
+  primary: string;
+  secondary: string;
+  left: string[];
+  right: string[];
+  footer: string;
+  graph?: "circle" | "line" | "parabola" | "balance" | "construction" | "cards";
+};
+
+function advancedVisualSpecFor(lessonId: number): AdvancedVisualSpec {
+  const specs: Record<number, AdvancedVisualSpec> = {
+    635: { heading: "Command Library", subtitle: "Expose advanced functionality.", primary: "Circle(center, radius)", secondary: "Circle(A, 3)", left: ["Search: Circle", "A(1,2)", "radius = 3", "Wrong order: Circle(3, A)"], right: ["Input order matters", "Read command syntax before use", "Command tested"], footer: "Syntax panel, live coordinate circle, and test log stay together.", graph: "circle" },
+    636: { heading: "Object Scripting", subtitle: "Event-driven learner feedback.", primary: "Distance(P, C) < 1", secondary: "SetColor(P, green)", left: ["On click", "On drag", "On update", "On drag end"], right: ["Inside target", "C(3,2), radius 1", "Script ran successfully", "Event must match learner action"], footer: "Dragging point P into the target circle runs the chosen script.", graph: "circle" },
+    637: { heading: "Randomisation", subtitle: "Generated linear equation with integer solution.", primary: "4x + 6 = 18", secondary: "solution x=3", left: ["a 2..6", "x -5..5", "b -10..10", "seed 1842"], right: ["regenerate", "integer solution", "no division by zero", "variants"], footer: "The generator locks constraints before producing a new question.", graph: "cards" },
+    638: { heading: "Automatic Checking", subtitle: "Equivalent expression accepted.", primary: "2(x + 3)", secondary: "2x + 6 = 6 + 2x", left: ["Student answer", "Accepted: 2x + 6", "Accepted: 6 + 2x", "exact algebra tolerance"], right: ["Parse", "Simplify", "Compare", "Feedback", "rule passes"], footer: "The rule pipeline accepts equivalent algebra instead of matching text.", graph: "cards" },
+    639: { heading: "Import and Export", subtitle: "Package a lesson safely.", primary: "linear-equations-lab.mujson", secondary: "Compatible", left: ["drag/drop import zone", "export selector", "package preview", "import log"], right: ["Assets", "Variables", "Answer rules", "Metadata", "Ready to share"], footer: "Compatibility checks run before the package is shared.", graph: "cards" },
+    640: { heading: "Concept Introduction", subtitle: "Introduce definitions and notation.", primary: "Direct variation", secondary: "y = 3x", left: ["x = 2", "y = 6", "x = 4", "y = 12"], right: ["When x doubles, y doubles", "Predict", "Test", "Explain"], footer: "A table and graph introduce the idea before formal practice.", graph: "line" },
+    641: { heading: "Visualise", subtitle: "Linked representations for y = 2x + 1.", primary: "x = 3", secondary: "y = 7", left: ["pattern tiles", "input-output machine", "table", "graph"], right: ["All views update together", "Representation link confirmed"], footer: "Moving the selected value highlights every representation at once.", graph: "line" },
+    642: { heading: "Manipulative Laboratory", subtitle: "Solve with balance tiles.", primary: "2x + 3 = 11", secondary: "x = 4", left: ["blue x tiles", "yellow unit tiles", "Drag tiles"], right: ["remove 3 both sides", "2x = 8", "divide by 2", "Balance preserved"], footer: "Each physical action is mirrored as an algebraic operation.", graph: "balance" },
+    643: { heading: "Guided Exploration", subtitle: "Explore slope m in y = mx + 1.", primary: "y = 1.5x + 1", secondary: "Steeper lines have larger |m|", left: ["m = -1", "m = 0.5", "m = 2", "drag slope"], right: ["Notice", "Change", "Compare", "Conclude"], footer: "Ghost lines help learners compare before writing a conclusion.", graph: "line" },
+    644: { heading: "Predict-Test-Explain", subtitle: "Coefficient a affects y = ax².", primary: "Prediction: curve gets narrower", secondary: "Test: a = 2", left: ["vertex remains (0,0)", "At x = 2, y = 8", "Evidence"], right: ["Explain", "My explanation", "a = 1 ghost", "a = 2 test"], footer: "The prediction stays visible next to the tested parabola.", graph: "parabola" },
+    645: { heading: "Worked Example", subtitle: "Factor a quadratic step by step.", primary: "x² - 5x + 6 = 0", secondary: "(x - 2)(x - 3) = 0", left: ["Product:6", "Sum:-5", "factor tiles"], right: ["roots x=2 or x=3", "graph check", "intercepts", "Both roots confirmed"], footer: "Symbolic factoring, tile grouping, and graph intercepts verify each other.", graph: "parabola" },
+    646: { heading: "Step-by-Step Practice", subtitle: "Solve one move at a time.", primary: "3x - 4 = 11", secondary: "x=5", left: ["Add 4", "3x=15", "Divide by 3"], right: ["correct step", "3(5)-4=11", "balance mini", "hints"], footer: "The checker validates the current step before unlocking the next.", graph: "balance" },
+    647: { heading: "Construction Challenge", subtitle: "Construct the perpendicular bisector of AB.", primary: "AM = MB", secondary: "PQ ⟂ AB", left: ["segment AB", "compass arcs", "intersection P/Q", "midpoint M"], right: ["right angle", "Construction valid"], footer: "Compass arcs create points P and Q, then line PQ bisects AB.", graph: "construction" },
+    648: { heading: "Graph Matching", subtitle: "Match equations to graphs and tables.", primary: "y=2x+1", secondary: "1 of 3 matched", left: ["y=-x+4", "y=x²-1", "drag to match"], right: ["correct match", "use slope and intercept"], footer: "Learners match by slope, intercept, and table values.", graph: "line" },
+    650: { heading: "Multiple Representations", subtitle: "Five views of y=x+2.", primary: "x=3", secondary: "y=5", left: ["Equation", "Table", "Mapping", "Graph", "Verbal rule"], right: ["selected x=3, y=5", "connected", "All forms agree"], footer: "Changing the selected x keeps every representation synchronized.", graph: "line" },
+    651: { heading: "Real-World Application", subtitle: "Compare mobile plans.", primary: "Plan A: C = 199 + 20g", secondary: "Plan B: C = 99 + 35g", left: ["usage 8 GB", "break-even 6.67 GB"], right: ["recommend Choose Plan A", "compare total cost"], footer: "The recommendation depends on usage and the break-even point.", graph: "line" },
+    653: { heading: "Dynamic Question Generator", subtitle: "Fraction addition template.", primary: "a/b + c/d", secondary: "2/3 + 3/4", left: ["common denominator 12", "answer 17/12 = 1 5/12", "simplified"], right: ["generate new", "4 valid questions"], footer: "Generated values are checked before the new question is released.", graph: "cards" },
+    654: { heading: "Mastery Challenge", subtitle: "Linear functions checkpoint.", primary: "Question 4", secondary: "Explain y-intercept", left: ["4 questions", "score 3/4", "confidence slider"], right: ["review mistake", "mastery almost there"], footer: "The checkpoint combines score, explanation, confidence, and review.", graph: "cards" },
+  };
+  return specs[lessonId] ?? specs[635];
+}
+
+function AdvancedAuthoringVisual({ lessonId }: { lessonId: number }) {
+  const spec = advancedVisualSpecFor(lessonId);
+  return (
+    <AuthoringCanvas>
+      <div className="grid gap-4 lg:grid-cols-[230px_minmax(0,1fr)_230px]">
+        <div className="space-y-2">
+          <p className="rounded-2xl bg-cyan-50 p-3 text-xs font-black uppercase tracking-wide text-cyan-900 ring-1 ring-cyan-100">{spec.heading}</p>
+          {spec.left.map((item, index) => <span key={`${item}-${index}`} className="block rounded-2xl bg-white p-3 text-sm font-black text-slate-800 ring-1 ring-slate-200 dark:bg-slate-950 dark:text-slate-100">{item}</span>)}
+        </div>
+        <div className="space-y-3">
+          <div className="rounded-3xl bg-slate-950 p-4 text-white shadow-sm">
+            <p className="text-xs font-black uppercase tracking-wide text-cyan-200">{spec.subtitle}</p>
+            <p className="mt-2 font-mono text-2xl font-black">{spec.primary}</p>
+            <p className="mt-2 rounded-2xl bg-white/10 p-3 font-mono text-xl font-black">{spec.secondary}</p>
+          </div>
+          {renderAdvancedMiniature(spec)}
+          <p className="rounded-2xl bg-violet-50 p-3 text-center text-sm font-black text-violet-950 ring-1 ring-violet-100">{spec.footer}</p>
+        </div>
+        <div className="space-y-2">
+          {spec.right.map((item, index) => <span key={`${item}-${index}`} className="block rounded-2xl bg-emerald-50 p-3 text-sm font-black text-emerald-950 ring-1 ring-emerald-100">{item}</span>)}
+        </div>
+      </div>
+    </AuthoringCanvas>
+  );
+}
+
+function renderAdvancedMiniature(spec: AdvancedVisualSpec) {
+  if (spec.graph === "circle") {
+    return (
+      <svg viewBox="0 0 420 240" className="w-full rounded-3xl bg-white ring-1 ring-slate-200" role="img" aria-label={`${spec.heading} circle preview`}>
+        <rect width="420" height="240" fill="#f8fafc" />
+        <line x1="30" y1="180" x2="390" y2="180" stroke="#94a3b8" strokeWidth="2" />
+        <line x1="130" y1="30" x2="130" y2="215" stroke="#94a3b8" strokeWidth="2" />
+        <circle cx="250" cy="100" r="70" fill="#cffafe" stroke="#0e7490" strokeWidth="5" />
+        <circle cx="250" cy="100" r="11" fill="#f59e0b" />
+        <text x="260" y="96" fontWeight="900">A(1,2)</text>
+        <text x="278" y="142" fill="#0e7490" fontWeight="900">radius = 3</text>
+      </svg>
+    );
+  }
+  if (spec.graph === "parabola") {
+    return (
+      <MiniGraph label={`${spec.heading} parabola preview`}>
+        <polyline points="78,68 112,126 146,168 180,184 214,168 248,126 282,68" fill="none" stroke="#a78bfa" strokeWidth="4" />
+        <polyline points="95,32 126,112 156,164 180,184 204,164 234,112 265,32" fill="none" stroke="#0f766e" strokeWidth="6" />
+        <text x="210" y="55" fill="#0f766e" fontWeight="900">{spec.secondary}</text>
+      </MiniGraph>
+    );
+  }
+  if (spec.graph === "balance") {
+    return (
+      <svg viewBox="0 0 420 220" className="w-full rounded-3xl bg-white ring-1 ring-slate-200" role="img" aria-label={`${spec.heading} balance preview`}>
+        <line x1="210" y1="35" x2="210" y2="185" stroke="#334155" strokeWidth="5" />
+        <line x1="90" y1="85" x2="330" y2="85" stroke="#334155" strokeWidth="5" />
+        <path d="M75 95 h110 l-22 70 h-66zM235 95 h110 l-22 70 h-66z" fill="#e0f2fe" stroke="#0e7490" strokeWidth="4" />
+        <text x="105" y="135" fontWeight="900">2x + 3</text>
+        <text x="275" y="135" fontWeight="900">11</text>
+        <text x="166" y="205" fill="#166534" fontWeight="900">{spec.secondary}</text>
+      </svg>
+    );
+  }
+  if (spec.graph === "construction") {
+    return (
+      <svg viewBox="0 0 420 240" className="w-full rounded-3xl bg-white ring-1 ring-slate-200" role="img" aria-label="Perpendicular bisector construction preview">
+        <line x1="90" y1="145" x2="330" y2="145" stroke="#0f766e" strokeWidth="6" />
+        <path d="M90 145 A92 92 0 0 1 210 58 M90 145 A92 92 0 0 0 210 232 M330 145 A92 92 0 0 0 210 58 M330 145 A92 92 0 0 1 210 232" fill="none" stroke="#7c3aed" strokeWidth="4" strokeDasharray="7 5" />
+        <line x1="210" y1="45" x2="210" y2="232" stroke="#f59e0b" strokeWidth="5" />
+        <text x="78" y="168" fontWeight="900">A</text><text x="332" y="168" fontWeight="900">B</text><text x="218" y="64" fontWeight="900">P</text><text x="218" y="226" fontWeight="900">Q</text><text x="178" y="138" fontWeight="900">M</text>
+      </svg>
+    );
+  }
+  if (spec.graph === "line") {
+    return (
+      <MiniGraph label={`${spec.heading} line preview`}>
+        <line x1="80" y1="198" x2="282" y2="64" stroke="#7c3aed" strokeWidth="5" />
+        <line x1="80" y1="92" x2="282" y2="198" stroke="#94a3b8" strokeWidth="3" strokeDasharray="8 6" />
+        <circle cx="230" cy="98" r="12" fill="#f59e0b" />
+        <text x="238" y="96" fontWeight="900">{spec.secondary}</text>
+      </MiniGraph>
+    );
+  }
+  return (
+    <div className="grid gap-3 rounded-3xl bg-slate-50 p-4 ring-1 ring-slate-200 md:grid-cols-3">
+      {[spec.primary, spec.secondary, spec.footer].map((item, index) => <div key={`${item}-${index}`} className="rounded-2xl bg-white p-4 text-center font-mono font-black text-slate-900 ring-1 ring-slate-200">{item}</div>)}
+    </div>
   );
 }
 
