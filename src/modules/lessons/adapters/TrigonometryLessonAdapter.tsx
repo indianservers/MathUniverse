@@ -972,7 +972,7 @@ function RightTriangleRatiosTargetLesson({
             <button
               type="button"
               className="inline-flex h-8 items-center gap-1 rounded-md border border-slate-200 bg-white px-2 text-[10px] font-black text-slate-700 [&_svg]:h-3 [&_svg]:w-3"
-              onClick={onInteraction}
+              onClick={() => onInteraction()}
             >
               <Share2 />
               Share

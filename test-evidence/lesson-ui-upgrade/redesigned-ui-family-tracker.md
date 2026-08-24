@@ -6,9 +6,9 @@ Total redesigned mockups found: `919`
 
 Mockups with screenshot/control evidence captured: `244`
 
-Strict target-complete mockups after visual audit and rework: `7`
+Strict target-complete mockups after visual audit and rework: `9`
 
-Pending strict target implementation: `912`
+Pending strict target implementation: `910`
 
 Strict audit: `completed-lessons-strict-target-audit.md`
 
@@ -20,7 +20,7 @@ Strict audit: `completed-lessons-strict-target-audit.md`
 |---:|---|---:|---|---|
 | `0131-0148` | 2D Graphing Calculator | 18 | Evidence only; strict audit failed | `0131-0148-2d-graphing-validation-summary.json` |
 | `0200-0206`, `0208-0211`, `0213-0219`, `0221` | Function graph/logarithmic-style workspace reuse | 19 unique mockups | Evidence only; strict audit failed | `0200-0204-validation-summary.json`, `logarithmic-workspace-reuse-validation-summary.json` |
-| `0255-0292` | Dynamic Geometry Constructions | 38 | 6 restored (`0255`-`0260`); 32 require rework | `completed-lessons-strict-target-audit.md` |
+| `0255-0292` | Dynamic Geometry Constructions | 38 | 8 restored (`0255`-`0262`); 30 require rework | `completed-lessons-strict-target-audit.md` |
 | `0314-0333` | Trigonometry | 20 | 1 restored (`0316`); 19 require rework | `0316-desktop.png` |
 | `0334-0355` | Symbolic Mathematics / CAS Workspace | 22 | Evidence only; strict audit failed | `0334-0355-symbolic-cas-validation-summary.json` |
 | `0356-0384` | Limits and Differential Calculus | 29 | Evidence only; strict audit failed | `0356-0384-limits-differential-validation-summary.json` |
@@ -61,7 +61,7 @@ Recommendation: do `0413-0429` next because it is the next contiguous unfinished
 | `0186-0223` | Functions and Function Transformations | 38 | 0 | 38 | Function graph workspace, transformation sliders, domain/range cards |
 | `0224-0239` | Coordinate Geometry | 16 | 0 | 16 | Coordinate plane, point/line tools, formula measurement cards |
 | `0240-0254` | Vectors | 15 | 0 | 15 | Vector canvas, component/resolution controls, operation cards |
-| `0255-0292` | Dynamic Geometry Constructions | 38 | 6 | 32 | Target-specific geometry construction surfaces |
+| `0255-0292` | Dynamic Geometry Constructions | 38 | 8 | 30 | Target-specific geometry construction surfaces |
 | `0293-0313` | Transformations and Loci | 21 | 0 | 21 | Geometry transform/locus canvas, trace controls, rule panels |
 | `0314-0333` | Trigonometry | 20 | 1 | 19 | Target-specific trig lesson surfaces |
 | `0334-0355` | Symbolic Mathematics / CAS Workspace | 22 | 0 | 22 | CAS input, command library, exact output, step/history panels |

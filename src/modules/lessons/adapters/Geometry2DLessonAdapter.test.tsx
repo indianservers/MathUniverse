@@ -105,6 +105,50 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Construction Workspace");
   });
 
+  it("renders segment as its own finite-endpoint surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 204)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("dynamic-geometry-mockup-0261");
+    expect(html).toContain(
+      "Finite segment AB with draggable endpoints A and B",
+    );
+    expect(html).toContain("Instant observation");
+    expect(html).toContain("Construction steps");
+    expect(html).toContain("Definition &amp; insight");
+    expect(html).toContain("Practice coordinate plane for segment");
+    expect(html).toContain("Compare with");
+    expect(html).not.toContain("Construction Workspace");
+  });
+
+  it("renders segment with given length as its own constrained construction", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 205)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("dynamic-geometry-mockup-0262");
+    expect(html).toContain(
+      "Fixed-length segment from A to constructed point B",
+    );
+    expect(html).toContain("Construction Controls");
+    expect(html).toContain("Live Verification");
+    expect(html).toContain("Coordinate Rule");
+    expect(html).toContain("Construction Steps (Compass &amp; Straightedge)");
+    expect(html).toContain('aria-label="Task length"');
+    expect(html).not.toContain("Construction Workspace");
+  });
+
   it("renders free point as its own draggable coordinate surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 198)!;
     const html = renderToStaticMarkup(
@@ -189,8 +233,6 @@ describe("Geometry2DLessonAdapter", () => {
 
   it("renders dynamic geometry lessons 198 through 212 with construction-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      204: "Segment",
-      205: "Fixed length segment",
       206: "Ray",
       207: "Polyline",
       208: "Perpendicular line",

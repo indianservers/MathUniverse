@@ -1,6 +1,6 @@
 # Target UI Completion Comparison
 
-> **Superseded for visual-completion status (2026-08-24).** This file records evidence capture, not exact target matching. See `completed-lessons-strict-target-audit.md`: 244 evidence pairs audited, 7 mockups now restored to target-specific surfaces, and 912 of 919 total mockups pending strict completion.
+> **Superseded for visual-completion status (2026-08-24).** This file records evidence capture, not exact target matching. See `completed-lessons-strict-target-audit.md`: 244 evidence pairs audited, 9 mockups now restored to target-specific surfaces, and 910 of 919 total mockups pending strict completion.
 
 Source target images: `D:\Math App Screenshots for UI Update\Updated UI`
 

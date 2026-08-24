@@ -46,18 +46,22 @@ function AppFooter() {
   const location = useLocation();
   const isRightTriangleTarget =
     location.pathname === "/lessons/trigonometry/259-right-triangle-ratios";
+  const usesTargetCompactFooter =
+    isRightTriangleTarget ||
+    location.pathname === "/lessons/geometry/205-segment-with-given-length";
   const ultraCompact =
     location.pathname === "/lessons/geometry/201-midpoint-or-centre" ||
     isRightTriangleTarget;
   const compact =
     location.pathname === "/lessons/geometry/199-point-on-object" ||
+    location.pathname === "/lessons/geometry/204-segment" ||
     ultraCompact;
   if (
     location.pathname === "/lessons/geometry/200-intersection-point" ||
     location.pathname === "/lessons/geometry/203-line-through-two-points"
   )
     return null;
-  if (isRightTriangleTarget) {
+  if (usesTargetCompactFooter) {
     return (
       <footer
         className="mx-auto h-[65px] w-full max-w-[1440px] px-5 py-1"

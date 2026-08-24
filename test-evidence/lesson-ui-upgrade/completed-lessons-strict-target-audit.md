@@ -18,11 +18,11 @@ A strict pass requires matching lesson-specific objects, controls, states, conte
 |---|---:|
 | Previously marked complete | 244 |
 | Strictly audited image pairs | 244 |
-| Fail - major mismatch | 237 |
+| Fail - major mismatch | 235 |
 | Metric review candidates | 0 |
-| Confirmed target-specific matches | 7 |
+| Confirmed target-specific matches | 9 |
 | Total target mockups | 919 |
-| Pending implementation after strict audit | 912 |
+| Pending implementation after strict audit | 910 |
 
 > `Review candidate` means only that coarse image metrics crossed the triage threshold. It is not a pass and still requires manual structural verification. No lesson is confirmed target-complete by this audit.
 
@@ -44,7 +44,7 @@ Mockup `0259` maps to lesson `202 Attach / Detach Point`, route `/lessons/geomet
 |---|---:|---:|---:|---:|
 | 2D Graphing Calculator | 18 | 18 | 0 | 0 |
 | Functions and Function Transformations | 19 | 19 | 0 | 0 |
-| Dynamic Geometry Constructions | 38 | 32 | 0 | 6 |
+| Dynamic Geometry Constructions | 38 | 30 | 0 | 8 |
 | Trigonometry | 20 | 19 | 0 | 1 |
 | Symbolic Mathematics / CAS | 22 | 22 | 0 | 0 |
 | Limits and Differential Calculus | 29 | 29 | 0 | 0 |
@@ -99,8 +99,8 @@ Mockup `0259` maps to lesson `202 Attach / Detach Point`, route `/lessons/geomet
 | `0258` | 201 Midpoint Or Centre<br>`/lessons/geometry/201-midpoint-or-centre` | Dynamic Geometry Constructions | **Pass - target-specific surface restored** | score 0.839; aspect 0.0%; pHash 0.746; MAE 0.102 | None in the required target structure. The draggable endpoint objects, computed midpoint, coordinate controls, reverse-endpoint invariant, worked graph, midpoint rule diagram, practice fields, and target portrait composition were restored and visually checked at 1024x1536. | [target](0258-reference.png) / [render](0258-desktop.png) |
 | `0259` | 202 Attach Detach Point<br>`/lessons/geometry/202-attach-detach-point` | Dynamic Geometry Constructions | **Pass - target-specific surface restored** | score 0.871; aspect 0.0%; pHash 0.793; MAE 0.075 | None in the required target structure. Circle, P/Q constraint states, mode controls, distance/status rows, attach/detach actions, comparison diagram, page geometry, and interactions were restored and visually checked at 1536x1024. | [target](0259-reference.png) / [render](0259-desktop.png) |
 | `0260` | 203 Line Through Two Points<br>`/lessons/geometry/203-line-through-two-points` | Dynamic Geometry Constructions | **Pass - target-specific surface restored** | score 0.808; aspect 1.8%; pHash 0.680; MAE 0.079 | None in the required target structure. The dedicated two-point coordinate model, infinite draggable line, editable A/B coordinates, display controls, live slope and equation, construction history, key insight, slope/intercept task validation, navigation, and exact 1536x1086 landscape geometry were restored and visually checked. | [target](0260-reference.png) / [render](0260-desktop.png) |
-| `0261` | 204 Segment<br>`/lessons/geometry/204-segment` | Dynamic Geometry Constructions | **Fail - major mismatch** | score 0.809; aspect 5.5%; pHash 0.695; MAE 0.077 | Target-specific construction objects, selected tool, property/action controls, construction sequence, and explanatory diagrams are missing or replaced by the generic point/line workspace. | [target](0261-reference.png) / [render](0261-desktop.png) |
-| `0262` | 205 Segment With Given Length<br>`/lessons/geometry/205-segment-with-given-length` | Dynamic Geometry Constructions | **Fail - major mismatch** | score 0.811; aspect 3.2%; pHash 0.691; MAE 0.078 | Target-specific construction objects, selected tool, property/action controls, construction sequence, and explanatory diagrams are missing or replaced by the generic point/line workspace. | [target](0262-reference.png) / [render](0262-desktop.png) |
+| `0261` | 204 Segment<br>`/lessons/geometry/204-segment` | Dynamic Geometry Constructions | **Pass - target-specific surface restored** | score 0.841; aspect 0.0%; pHash 0.738; MAE 0.081 | None in the required target structure. The dedicated finite segment AB model, independently draggable endpoints, snap and comparison modes, live length and midpoint observations, construction and definition panels, coordinate inputs, target endpoint practice validation, navigation, footer, and exact 1024x1536 portrait geometry were restored and visually checked. | [target](0261-reference.png) / [render](0261-desktop.png) |
+| `0262` | 205 Segment With Given Length<br>`/lessons/geometry/205-segment-with-given-length` | Dynamic Geometry Constructions | **Pass - target-specific surface restored** | score 0.795; aspect 0.0%; pHash 0.664; MAE 0.107 | None in the required target structure. The dedicated fixed-length segment model, start-point and length controls, draggable direction handle, computed endpoint B, angle dial, invariant distance verification, worked example, coordinate rule, construction challenge, compass-and-straightedge sequence, navigation, footer, and exact 1024x1536 portrait geometry were restored and visually checked. | [target](0262-reference.png) / [render](0262-desktop.png) |
 | `0263` | 206 Ray<br>`/lessons/geometry/206-ray` | Dynamic Geometry Constructions | **Fail - major mismatch** | score 0.826; aspect 2.9%; pHash 0.711; MAE 0.065 | Target-specific construction objects, selected tool, property/action controls, construction sequence, and explanatory diagrams are missing or replaced by the generic point/line workspace. | [target](0263-reference.png) / [render](0263-desktop.png) |
 | `0264` | 207 Polyline<br>`/lessons/geometry/207-polyline` | Dynamic Geometry Constructions | **Fail - major mismatch** | score 0.820; aspect 5.5%; pHash 0.719; MAE 0.083 | Target-specific construction objects, selected tool, property/action controls, construction sequence, and explanatory diagrams are missing or replaced by the generic point/line workspace. | [target](0264-reference.png) / [render](0264-desktop.png) |
 | `0265` | 208 Perpendicular Line<br>`/lessons/geometry/208-perpendicular-line` | Dynamic Geometry Constructions | **Fail - major mismatch** | score 0.822; aspect 6.2%; pHash 0.719; MAE 0.067 | Target-specific construction objects, selected tool, property/action controls, construction sequence, and explanatory diagrams are missing or replaced by the generic point/line workspace. | [target](0265-reference.png) / [render](0265-desktop.png) |
@@ -303,6 +303,6 @@ Mockup `0259` maps to lesson `202 Attach / Detach Point`, route `/lessons/geomet
 
 ## Required Tracking Correction
 
-Until lesson-specific visual and interaction parity is reimplemented and re-audited, the tracker should distinguish `evidence captured` from `strict target-complete`. 7 target-specific match is restored; 912 target mockups remain pending strict completion.
+Until lesson-specific visual and interaction parity is reimplemented and re-audited, the tracker should distinguish `evidence captured` from `strict target-complete`. 9 target-specific match is restored; 910 target mockups remain pending strict completion.
 
 Machine-readable measurements and paths: `completed-lessons-strict-target-audit.json`.

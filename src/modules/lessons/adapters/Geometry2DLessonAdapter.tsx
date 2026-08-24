@@ -175,6 +175,24 @@ function DynamicGeometryMockupLesson({
       />
     );
   }
+  if (lesson.id === 204) {
+    return (
+      <SegmentTargetLesson
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 205) {
+    return (
+      <SegmentGivenLengthTargetLesson
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
 
   const spec = dynamicGeometrySpecFor(lesson.id);
   const [x, setX] = useState(2);
@@ -1085,6 +1103,1189 @@ function LineThroughPointsGraph({
             strokeDasharray="3 3"
           />
         </>
+      ) : null}
+    </svg>
+  );
+}
+
+function SegmentTargetLesson({
+  lesson,
+  resetToken,
+  onInteraction,
+}: LessonAdapterProps) {
+  const [a, setA] = useState({ x: -3, y: 1 });
+  const [b, setB] = useState({ x: 4, y: 2 });
+  const [snap, setSnap] = useState(true);
+  const [stage, setStage] = useState("Observe");
+  const [compare, setCompare] = useState<"line" | "ray" | "none">("none");
+  const [dragging, setDragging] = useState<"a" | "b" | null>(null);
+  const [answer, setAnswer] = useState<"idle" | "correct" | "incorrect">(
+    "idle",
+  );
+  const [showSolution, setShowSolution] = useState(false);
+
+  useEffect(() => {
+    setA({ x: -3, y: 1 });
+    setB({ x: 4, y: 2 });
+    setSnap(true);
+    setStage("Observe");
+    setCompare("none");
+    setDragging(null);
+    setAnswer("idle");
+    setShowSolution(false);
+  }, [resetToken]);
+
+  const length = Math.hypot(b.x - a.x, b.y - a.y);
+  const midpoint = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+  const update = (which: "a" | "b", point: { x: number; y: number }) => {
+    const next = {
+      x: Math.max(-6, Math.min(6, point.x)),
+      y: Math.max(-6, Math.min(6, point.y)),
+    };
+    (which === "a" ? setA : setB)(next);
+    onInteraction();
+  };
+  const dragSegment = (event: PointerEvent<SVGSVGElement>) => {
+    if (event.type === "pointermove" && (event.buttons !== 1 || !dragging))
+      return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const raw = {
+      x: (((event.clientX - rect.left) / rect.width) * 520 - 260) / 36,
+      y: (230 - ((event.clientY - rect.top) / rect.height) * 460) / 36,
+    };
+    const point = {
+      x: snap ? Math.round(raw.x) : Number(raw.x.toFixed(1)),
+      y: snap ? Math.round(raw.y) : Number(raw.y.toFixed(1)),
+    };
+    const which =
+      event.type === "pointerdown"
+        ? Math.hypot(point.x - a.x, point.y - a.y) <=
+          Math.hypot(point.x - b.x, point.y - b.y)
+          ? "a"
+          : "b"
+        : dragging;
+    if (!which) return;
+    if (event.type === "pointerdown") {
+      setDragging(which);
+      event.currentTarget.setPointerCapture?.(event.pointerId);
+    }
+    update(which, point);
+  };
+
+  return (
+    <section
+      className="space-y-2"
+      data-testid="dynamic-geometry-mockup-0261"
+      data-direct-interaction="true"
+    >
+      <header className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <span className="rounded-full bg-cyan-50 px-2 py-1 text-[9px] font-black uppercase text-cyan-700">
+          Dynamic Geometry Constructions
+        </span>
+        <h1 className="mt-2 text-4xl font-black leading-none text-slate-950">
+          {lesson.title}
+        </h1>
+        <p className="mt-2 text-xs font-semibold text-slate-600">
+          Construct finite line segments and explore their properties.
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-bold text-slate-600">
+          <span className="rounded-full border border-slate-200 px-2 py-1">
+            Foundation / Advanced
+          </span>
+          <span className="rounded-full border border-slate-200 px-2 py-1">
+            Construction Studio
+          </span>
+          <span className="rounded-full border border-slate-200 px-2 py-1">
+            Geometry Tools
+          </span>
+          <span className="rounded-full border border-slate-200 px-2 py-1">
+            6-10 min
+          </span>
+        </div>
+        <div className="mt-3 flex flex-wrap justify-between gap-2">
+          <div className="flex gap-1.5">
+            <button type="button" className="segment-action">
+              English (English)
+            </button>
+            <button
+              type="button"
+              className="segment-action"
+              onClick={() => {
+                setA({ x: -3, y: 1 });
+                setB({ x: 4, y: 2 });
+                onInteraction();
+              }}
+            >
+              <RotateCcw />
+              Reset
+            </button>
+            <button type="button" className="segment-action text-slate-400">
+              Undo
+            </button>
+            <button type="button" className="segment-action text-slate-400">
+              Redo
+            </button>
+            <button type="button" className="segment-action">
+              <Share2 />
+              Share
+            </button>
+          </div>
+          <button type="button" className="segment-action">
+            <Maximize2 />
+            Workspace
+          </button>
+        </div>
+      </header>
+      <nav
+        className="grid grid-cols-5 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm"
+        aria-label="Segment lesson stages"
+      >
+        {[
+          ["Observe", <Eye key="e" />],
+          ["Manipulate", <Hand key="h" />],
+          ["Notice", <Lightbulb key="l" />],
+          ["Understand", <BookOpen key="b" />],
+          ["Try", <Target key="t" />],
+        ].map(([name, icon]) => (
+          <button
+            key={String(name)}
+            type="button"
+            onClick={() => {
+              setStage(String(name));
+              onInteraction();
+            }}
+            className={`flex h-14 items-center justify-center gap-2 text-[10px] font-black [&_svg]:h-4 [&_svg]:w-4 ${stage === name ? "border-b-2 border-cyan-500 bg-cyan-50 text-blue-700" : "text-slate-600"}`}
+          >
+            {icon}
+            {name}
+          </button>
+        ))}
+      </nav>
+      <div className="grid gap-2 lg:grid-cols-[minmax(0,1fr)_225px]">
+        <section className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+          <div className="flex items-start justify-between">
+            <div>
+              <h2 className="text-sm font-black">Construct a segment</h2>
+              <p className="mt-1 text-[10px] font-semibold text-slate-600">
+                Drag points A and B to change the segment.
+              </p>
+            </div>
+            <label className="flex items-center gap-2 rounded-md border border-slate-200 px-2 py-1 text-[10px] font-black">
+              Snap
+              <input
+                type="checkbox"
+                checked={snap}
+                onChange={(event) => {
+                  setSnap(event.target.checked);
+                  onInteraction();
+                }}
+              />
+            </label>
+          </div>
+          <div className="mt-2 flex gap-1">
+            <button
+              className="segment-tool is-active"
+              type="button"
+              aria-label="Select tool"
+            >
+              <MousePointer2 />
+            </button>
+            <button
+              className="segment-tool"
+              type="button"
+              aria-label="Point tool"
+            >
+              <Circle />
+            </button>
+            <button
+              className="segment-tool"
+              type="button"
+              aria-label="Segment tool"
+            >
+              <PenTool />
+            </button>
+            <button
+              className="segment-tool"
+              type="button"
+              aria-label="Line tool"
+            >
+              <Ruler />
+            </button>
+            <button
+              className="segment-tool"
+              type="button"
+              aria-label="Settings"
+            >
+              <Compass />
+            </button>
+          </div>
+          <SegmentGraph
+            a={a}
+            b={b}
+            compare={compare}
+            onPointer={dragSegment}
+            onEnd={() => setDragging(null)}
+          />
+          <div className="grid overflow-hidden rounded-md border border-slate-200 sm:grid-cols-[1fr_155px]">
+            <div className="p-2">
+              <p className="text-[9px] font-bold text-slate-500">
+                Point coordinates
+              </p>
+              <div className="mt-1 grid grid-cols-2 gap-3">
+                <SegmentPointInputs
+                  name="A"
+                  point={a}
+                  onChange={(point) => update("a", point)}
+                />
+                <SegmentPointInputs
+                  name="B"
+                  point={b}
+                  onChange={(point) => update("b", point)}
+                />
+              </div>
+            </div>
+            <div className="border-t border-slate-200 p-2 sm:border-l sm:border-t-0">
+              <p className="text-[9px] font-bold text-slate-500">
+                Segment length
+              </p>
+              <strong className="mt-3 block text-sm text-blue-700">
+                AB = {length.toFixed(2)} units
+              </strong>
+            </div>
+          </div>
+          <div className="mt-2 flex flex-wrap items-center gap-2 text-[9px] font-bold">
+            <span>Compare with</span>
+            {(["line", "ray", "none"] as const).map((mode) => (
+              <button
+                type="button"
+                key={mode}
+                onClick={() => {
+                  setCompare(mode);
+                  onInteraction();
+                }}
+                className={`rounded-md border px-3 py-1.5 capitalize ${compare === mode ? "border-blue-500 text-blue-700" : "border-slate-200 text-slate-600"}`}
+              >
+                {mode}
+              </button>
+            ))}
+          </div>
+        </section>
+        <aside className="space-y-2">
+          <SegmentAside title="Instant observation" icon={<Eye />}>
+            <p>Length</p>
+            <strong className="text-sm text-blue-700">
+              AB = {length.toFixed(2)} units
+            </strong>
+            <p className="mt-3">Midpoint</p>
+            <strong className="text-sm text-violet-700">
+              M ({midpoint.x.toFixed(2)}, {midpoint.y.toFixed(2)})
+            </strong>
+            <p className="mt-3">Distance formula check</p>
+            <p className="mt-1 font-serif text-xs font-black">
+              √(({b.x} − ({a.x}))² + ({b.y} − {a.y})²) = {length.toFixed(2)}
+            </p>
+          </SegmentAside>
+          <SegmentAside title="Construction steps" icon={<Lightbulb />}>
+            <ol className="space-y-2">
+              {[
+                "Place point A.",
+                "Place point B.",
+                "The segment AB is drawn. Its length is the distance between A and B.",
+              ].map((text, index) => (
+                <li className="flex gap-2" key={text}>
+                  <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-blue-400 text-[8px] font-black text-white">
+                    {index + 1}
+                  </span>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ol>
+          </SegmentAside>
+          <SegmentAside title="Definition & insight" icon={<BookOpen />}>
+            <p>A segment is the part of a line between two endpoints.</p>
+            <p className="mt-2">
+              Notation: AB or <span className="overline">AB</span>
+            </p>
+            <p className="mt-2">Length (Distance formula):</p>
+            <p className="mt-1 font-serif text-xs font-black">
+              AB = √((x₂ − x₁)² + (y₂ − y₁)²)
+            </p>
+          </SegmentAside>
+        </aside>
+      </div>
+      <section className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+        <h2 className="text-lg font-black">Try it yourself</h2>
+        <p className="text-[10px] font-semibold text-slate-600">
+          Construct a segment with the given endpoints and verify its length.
+        </p>
+        <div className="mt-2 grid gap-2 lg:grid-cols-[205px_minmax(0,1fr)_185px]">
+          <div className="rounded-md bg-cyan-50 p-3 text-[10px] leading-5">
+            <strong className="text-blue-700">Your task</strong>
+            <p className="mt-3">
+              Set A (−2, −1) and B (3, 4). Construct AB and find its length.
+            </p>
+            <p className="text-slate-500">
+              Hint: Drag points or enter coordinates.
+            </p>
+            <button
+              type="button"
+              className="mt-2 rounded-md bg-blue-600 px-3 py-2 font-black text-white"
+              onClick={() => {
+                const ok = a.x === -2 && a.y === -1 && b.x === 3 && b.y === 4;
+                setAnswer(ok ? "correct" : "incorrect");
+                onInteraction();
+              }}
+            >
+              Check Answer
+            </button>
+            {answer !== "idle" ? (
+              <p
+                role="status"
+                className={`mt-2 font-black ${answer === "correct" ? "text-emerald-700" : "text-rose-700"}`}
+              >
+                {answer === "correct"
+                  ? "Correct. The length is √50 ≈ 7.07."
+                  : "Set both endpoints to the requested coordinates."}
+              </p>
+            ) : null}
+          </div>
+          <SegmentTaskPreview show={showSolution} />
+          <div className="rounded-md border border-slate-200 bg-slate-50 p-3 text-[10px] leading-5">
+            <strong className="text-blue-700">Answer preview</strong>
+            <p className="mt-3">
+              A (−2, −1)
+              <br />B (3, 4)
+            </p>
+            <p className="mt-3">Expected length</p>
+            <strong className="text-blue-700">AB = 7.07 units</strong>
+            <button
+              type="button"
+              className="mt-3 flex items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-1 font-bold"
+              onClick={() => {
+                setShowSolution((value) => !value);
+                onInteraction();
+              }}
+            >
+              <Eye className="h-3 w-3" />
+              Show Solution
+            </button>
+          </div>
+        </div>
+      </section>
+      <nav
+        className="grid grid-cols-2 gap-2 text-[10px] font-bold"
+        aria-label="Adjacent lessons"
+      >
+        <a
+          className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white p-3"
+          href="/lessons/geometry/203-line-through-two-points"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span>
+            <small className="block uppercase text-slate-500">Previous</small>
+            Line Through Two Points
+          </span>
+        </a>
+        <a
+          className="flex items-center justify-end gap-2 rounded-lg border border-slate-200 bg-white p-3 text-right"
+          href="/lessons/geometry/205-segment-with-given-length"
+        >
+          <span>
+            <small className="block uppercase text-slate-500">Next</small>
+            Segment with Given Length
+          </span>
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </nav>
+    </section>
+  );
+}
+
+function SegmentGraph({
+  a,
+  b,
+  compare,
+  onPointer,
+  onEnd,
+}: {
+  a: { x: number; y: number };
+  b: { x: number; y: number };
+  compare: "line" | "ray" | "none";
+  onPointer: (event: PointerEvent<SVGSVGElement>) => void;
+  onEnd: () => void;
+}) {
+  const sx = (x: number) => 260 + x * 36,
+    sy = (y: number) => 230 - y * 36;
+  const dx = b.x - a.x,
+    dy = b.y - a.y,
+    n = Math.hypot(dx, dy) || 1,
+    ux = dx / n,
+    uy = dy / n;
+  const x1 = compare === "line" ? sx(a.x) - ux * 300 : sx(a.x),
+    y1 = compare === "line" ? sy(a.y) + uy * 300 : sy(a.y),
+    x2 = compare === "none" ? sx(b.x) : sx(b.x) + ux * 300,
+    y2 = compare === "none" ? sy(b.y) : sy(b.y) - uy * 300;
+  return (
+    <svg
+      viewBox="0 0 520 460"
+      className="h-[440px] w-full touch-none"
+      role="img"
+      aria-label="Finite segment AB with draggable endpoints A and B"
+      onPointerDown={onPointer}
+      onPointerMove={onPointer}
+      onPointerUp={onEnd}
+      onPointerCancel={onEnd}
+    >
+      <rect width="520" height="460" fill="white" />
+      {Array.from({ length: 13 }, (_, index) => (
+        <g key={index}>
+          <line
+            x1={44 + index * 36}
+            x2={44 + index * 36}
+            y1="25"
+            y2="435"
+            stroke="#dbe3ef"
+            strokeDasharray="3 3"
+          />
+          <line
+            y1={14 + index * 36}
+            y2={14 + index * 36}
+            x1="20"
+            x2="500"
+            stroke="#dbe3ef"
+            strokeDasharray="3 3"
+          />
+        </g>
+      ))}
+      <line x1="20" x2="505" y1="230" y2="230" stroke="#334155" />
+      <line x1="260" x2="260" y1="15" y2="445" stroke="#334155" />
+      <text x="504" y="220" fontSize="10">
+        x
+      </text>
+      <text x="270" y="18" fontSize="10">
+        y
+      </text>
+      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#087ff5" strokeWidth="4" />
+      <circle cx={sx(a.x)} cy={sy(a.y)} r="8" fill="#087ff5" />
+      <circle cx={sx(b.x)} cy={sy(b.y)} r="8" fill="#087ff5" />
+      <text
+        x={sx(a.x) - 12}
+        y={sy(a.y) - 14}
+        fill="#087ff5"
+        fontSize="14"
+        fontWeight="800"
+      >
+        A
+      </text>
+      <text
+        x={sx(b.x) + 8}
+        y={sy(b.y) - 14}
+        fill="#087ff5"
+        fontSize="14"
+        fontWeight="800"
+      >
+        B
+      </text>
+      <foreignObject x={sx(a.x) - 35} y={sy(a.y) + 10} width="80" height="30">
+        <div className="rounded border border-slate-200 bg-white px-2 py-1 text-center text-[9px]">
+          A ({a.x}, {a.y})
+        </div>
+      </foreignObject>
+      <foreignObject x={sx(b.x) - 30} y={sy(b.y) + 10} width="80" height="30">
+        <div className="rounded border border-slate-200 bg-white px-2 py-1 text-center text-[9px]">
+          B ({b.x}, {b.y})
+        </div>
+      </foreignObject>
+    </svg>
+  );
+}
+function SegmentPointInputs({
+  name,
+  point,
+  onChange,
+}: {
+  name: string;
+  point: { x: number; y: number };
+  onChange: (point: { x: number; y: number }) => void;
+}) {
+  return (
+    <div>
+      <p className="text-center text-[8px] font-bold">{name} (x, y)</p>
+      <div className="mt-1 grid grid-cols-2 gap-1">
+        <input
+          aria-label={`${name} x coordinate`}
+          className="min-w-0 rounded border border-slate-200 px-1 py-1 text-center text-[10px]"
+          type="number"
+          value={point.x}
+          onChange={(event) =>
+            onChange({ ...point, x: Number(event.target.value) })
+          }
+        />
+        <input
+          aria-label={`${name} y coordinate`}
+          className="min-w-0 rounded border border-slate-200 px-1 py-1 text-center text-[10px]"
+          type="number"
+          value={point.y}
+          onChange={(event) =>
+            onChange({ ...point, y: Number(event.target.value) })
+          }
+        />
+      </div>
+    </div>
+  );
+}
+function SegmentAside({
+  title,
+  icon,
+  children,
+}: {
+  title: string;
+  icon: ReactNode;
+  children: ReactNode;
+}) {
+  return (
+    <section className="rounded-lg border border-slate-200 bg-white p-3 text-[10px] leading-4 shadow-sm">
+      <h2 className="flex items-center gap-2 text-xs font-black text-blue-700">
+        <span className="grid h-6 w-6 place-items-center rounded-full bg-blue-50 [&_svg]:h-3.5 [&_svg]:w-3.5">
+          {icon}
+        </span>
+        {title}
+      </h2>
+      <div className="mt-3 rounded-md border border-slate-200 bg-white p-2 text-slate-700">
+        {children}
+      </div>
+    </section>
+  );
+}
+function SegmentTaskPreview({ show }: { show: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 310 190"
+      className="h-[180px] w-full"
+      role="img"
+      aria-label="Practice coordinate plane for segment from negative two negative one to three four"
+    >
+      <rect width="310" height="190" fill="white" />
+      {Array.from({ length: 9 }, (_, i) => (
+        <g key={i}>
+          <line
+            x1={35 + i * 30}
+            x2={35 + i * 30}
+            y1="10"
+            y2="180"
+            stroke="#dbe3ef"
+            strokeDasharray="3 3"
+          />
+          <line
+            y1={10 + i * 20}
+            y2={10 + i * 20}
+            x1="20"
+            x2="290"
+            stroke="#dbe3ef"
+            strokeDasharray="3 3"
+          />
+        </g>
+      ))}
+      <line x1="20" x2="295" y1="110" y2="110" stroke="#334155" />
+      <line x1="150" x2="150" y1="10" y2="180" stroke="#334155" />
+      {show ? (
+        <>
+          <line
+            x1="90"
+            y1="130"
+            x2="240"
+            y2="30"
+            stroke="#087ff5"
+            strokeWidth="4"
+          />
+          <circle cx="90" cy="130" r="6" fill="#087ff5" />
+          <circle cx="240" cy="30" r="6" fill="#087ff5" />
+        </>
+      ) : null}
+    </svg>
+  );
+}
+
+function SegmentGivenLengthTargetLesson({
+  lesson,
+  resetToken,
+  onInteraction,
+}: LessonAdapterProps) {
+  const [start, setStart] = useState({ x: 0, y: 0 });
+  const [length, setLength] = useState(5);
+  const [angle, setAngle] = useState(45);
+  const [grid, setGrid] = useState(true);
+  const [task, setTask] = useState({ ax: -2, ay: 1, length: 7, angle: 30 });
+  const [taskResult, setTaskResult] = useState<
+    "idle" | "correct" | "incorrect"
+  >("idle");
+  useEffect(() => {
+    setStart({ x: 0, y: 0 });
+    setLength(5);
+    setAngle(45);
+    setGrid(true);
+    setTask({ ax: -2, ay: 1, length: 7, angle: 30 });
+    setTaskResult("idle");
+  }, [resetToken]);
+  const radians = (angle * Math.PI) / 180;
+  const end = {
+    x: start.x + length * Math.cos(radians),
+    y: start.y + length * Math.sin(radians),
+  };
+  const updateAngleFromPointer = (event: PointerEvent<SVGSVGElement>) => {
+    if (event.type === "pointermove" && event.buttons !== 1) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const px = ((event.clientX - rect.left) / rect.width) * 620,
+      py = ((event.clientY - rect.top) / rect.height) * 520;
+    const sx = 310 + start.x * 30,
+      sy = 260 - start.y * 30;
+    setAngle(
+      Math.round(((Math.atan2(sy - py, px - sx) * 180) / Math.PI + 360) % 360),
+    );
+    onInteraction();
+  };
+  const setNumeric = (
+    setter: (value: number) => void,
+    value: string,
+    min: number,
+    max: number,
+  ) => {
+    setter(Math.max(min, Math.min(max, Number(value))));
+    onInteraction();
+  };
+  return (
+    <section
+      className="-mt-2 w-full space-y-3"
+      data-testid="dynamic-geometry-mockup-0262"
+      data-direct-interaction="true"
+    >
+      <header className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div className="flex gap-4">
+            <div className="grid h-16 w-14 place-items-center rounded-lg border border-cyan-200 text-cyan-600">
+              <Compass className="h-8 w-8" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-black text-slate-950">
+                {lesson.title}
+              </h1>
+              <p className="mt-1 text-xs font-semibold text-slate-600">
+                Construct a segment of a specified length from a chosen start
+                point.
+              </p>
+            </div>
+          </div>
+          <button type="button" className="segment-action">
+            English (English)
+          </button>
+        </div>
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+          <div className="flex gap-2 text-[9px] font-bold text-slate-600">
+            <span className="rounded-md border border-slate-200 px-2 py-1">
+              Dynamic Geometry Constructions
+            </span>
+            <span className="rounded-md border border-slate-200 px-2 py-1">
+              Geometry Tools
+            </span>
+            <span className="rounded-md border border-slate-200 px-2 py-1">
+              6-10 min
+            </span>
+          </div>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              className="segment-action"
+              onClick={() => {
+                setStart({ x: 0, y: 0 });
+                setLength(5);
+                setAngle(45);
+                onInteraction();
+              }}
+            >
+              <RotateCcw />
+              Reset
+            </button>
+            <button type="button" className="segment-action">
+              <Share2 />
+              Share
+            </button>
+          </div>
+        </div>
+      </header>
+      <nav
+        className="grid grid-cols-5 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm"
+        aria-label="Given length lesson stages"
+      >
+        {[
+          ["Observe", "See the model"],
+          ["Manipulate", "Change inputs"],
+          ["Notice", "Pattern emerges"],
+          ["Understand", "The rule"],
+          ["Try it", "Practice"],
+        ].map(([title, sub], index) => (
+          <button
+            type="button"
+            key={title}
+            className={`h-14 text-left text-[9px] ${index === 0 ? "border-b-2 border-blue-600 bg-blue-50" : ""}`}
+            onClick={() => onInteraction()}
+          >
+            <strong className="block text-[10px] text-slate-800">
+              <span className="mr-2 rounded bg-slate-100 px-1.5 py-1">
+                {index + 1}
+              </span>
+              {title}
+            </strong>
+            <span className="ml-8 text-slate-500">{sub}</span>
+          </button>
+        ))}
+      </nav>
+      <section className="grid rounded-lg border border-slate-200 bg-white shadow-sm lg:grid-cols-[minmax(0,1fr)_225px]">
+        <div className="p-3">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-black">Interactive Model</h2>
+            <label className="flex items-center gap-2 text-[9px] font-bold">
+              Grid
+              <input
+                type="checkbox"
+                checked={grid}
+                onChange={(event) => {
+                  setGrid(event.target.checked);
+                  onInteraction();
+                }}
+              />
+            </label>
+          </div>
+          <p className="mt-2 inline-flex rounded-md border border-cyan-200 bg-cyan-50 px-2 py-1 text-[9px] font-bold text-blue-700">
+            Drag the handle to set direction.
+          </p>
+          <GivenLengthGraph
+            start={start}
+            end={end}
+            length={length}
+            grid={grid}
+            onPointer={updateAngleFromPointer}
+          />
+          <div className="flex gap-4 border-t border-slate-200 pt-2 text-[8px] font-bold">
+            <span className="text-blue-700">● Start point A</span>
+            <span className="text-violet-700">━━ Constructed segment</span>
+            <span>-- Direction ray</span>
+          </div>
+        </div>
+        <aside className="border-t border-slate-200 p-3 lg:border-l lg:border-t-0">
+          <h2 className="text-xs font-black">Construction Controls</h2>
+          <h3 className="mt-3 text-[9px] font-black">Start point A</h3>
+          <div className="mt-1 grid grid-cols-2 gap-2">
+            <NumberField
+              label="A x"
+              value={start.x}
+              onChange={(value) =>
+                setNumeric(
+                  (v) => setStart((current) => ({ ...current, x: v })),
+                  value,
+                  -6,
+                  6,
+                )
+              }
+            />
+            <NumberField
+              label="A y"
+              value={start.y}
+              onChange={(value) =>
+                setNumeric(
+                  (v) => setStart((current) => ({ ...current, y: v })),
+                  value,
+                  -6,
+                  6,
+                )
+              }
+            />
+          </div>
+          <h3 className="mt-3 text-[9px] font-black">Length</h3>
+          <NumberField
+            label="Length AB"
+            value={length}
+            onChange={(value) => setNumeric(setLength, value, 1, 9)}
+          />
+          <h3 className="mt-3 text-[9px] font-black">Direction</h3>
+          <NumberField
+            label="Angle theta"
+            value={angle}
+            onChange={(value) => setNumeric(setAngle, value, 0, 359)}
+          />
+          <AngleDial angle={angle} />
+          <div className="mt-3 rounded-md border border-cyan-200 bg-cyan-50 p-2 text-[9px]">
+            <div className="flex justify-between">
+              <strong className="text-cyan-700">Live Verification</strong>
+              <span className="rounded bg-emerald-100 px-1.5 text-emerald-700">
+                ✓ Verified
+              </span>
+            </div>
+            <p className="mt-2 font-bold">Constructed point B</p>
+            <p>
+              B ({end.x.toFixed(3)}, {end.y.toFixed(3)})
+            </p>
+            <p className="mt-1">
+              Distance AB{" "}
+              <strong className="float-right">{length.toFixed(3)} units</strong>
+            </p>
+            <p>
+              Angle θ{" "}
+              <strong className="float-right">{angle.toFixed(1)}°</strong>
+            </p>
+            <p className="mt-2 rounded bg-emerald-100 p-2 font-black text-emerald-700">
+              Great! AB = {length} units.
+            </p>
+          </div>
+        </aside>
+      </section>
+      <div className="grid gap-2 lg:grid-cols-3">
+        <GivenLengthCard title="Worked Example" tone="blue">
+          <p>
+            Construct segment AB of length 5 units from A (0, 0) at angle 45°.
+          </p>
+          <ol className="mt-2 space-y-1">
+            {[
+              "Set start point A (0, 0).",
+              "Set length AB = 5 units.",
+              "Set direction angle θ = 45°.",
+              "Draw ray from A at 45°.",
+              "Mark point B so that AB = 5 units.",
+              "Read coordinates of B and verify.",
+            ].map((s, i) => (
+              <li key={s}>
+                <strong className="text-blue-700">{i + 1}.</strong> {s}
+              </li>
+            ))}
+          </ol>
+          <p className="mt-2 rounded bg-cyan-50 p-2 font-bold">
+            Result: B ({end.x.toFixed(3)}, {end.y.toFixed(3)})
+          </p>
+        </GivenLengthCard>
+        <GivenLengthCard title="Key Insight" tone="violet">
+          <p>
+            Point B is determined by the start point A, the length d, and the
+            direction angle θ.
+          </p>
+          <p className="mt-2 font-black text-violet-700">Coordinate Rule</p>
+          <div className="mt-2 rounded bg-violet-50 p-3 text-center font-serif text-sm font-black">
+            xB = xA + d cos θ<br />
+            yB = yA + d sin θ
+          </div>
+          <p className="mt-2">
+            θ is measured counterclockwise from the positive x-axis.
+          </p>
+        </GivenLengthCard>
+        <GivenLengthCard title="Your Turn" tone="cyan">
+          <p>
+            Construct segment AB of length 7 units from A (−2, 1) at angle 30°.
+          </p>
+          <div className="mt-2 grid grid-cols-2 gap-2">
+            <NumberField
+              label="Task A x"
+              value={task.ax}
+              onChange={(value) =>
+                setTask((current) => ({ ...current, ax: Number(value) }))
+              }
+            />
+            <NumberField
+              label="Task A y"
+              value={task.ay}
+              onChange={(value) =>
+                setTask((current) => ({ ...current, ay: Number(value) }))
+              }
+            />
+          </div>
+          <NumberField
+            label="Task length"
+            value={task.length}
+            onChange={(value) =>
+              setTask((current) => ({ ...current, length: Number(value) }))
+            }
+          />
+          <NumberField
+            label="Task angle"
+            value={task.angle}
+            onChange={(value) =>
+              setTask((current) => ({ ...current, angle: Number(value) }))
+            }
+          />
+          <button
+            type="button"
+            className="mt-3 w-full rounded-md bg-cyan-600 py-2 text-[10px] font-black text-white"
+            onClick={() => {
+              const ok =
+                task.ax === -2 &&
+                task.ay === 1 &&
+                task.length === 7 &&
+                task.angle === 30;
+              setTaskResult(ok ? "correct" : "incorrect");
+              onInteraction();
+            }}
+          >
+            Check My Construction
+          </button>
+          {taskResult !== "idle" ? (
+            <p
+              role="status"
+              className={`mt-2 font-black ${taskResult === "correct" ? "text-emerald-700" : "text-rose-700"}`}
+            >
+              {taskResult === "correct"
+                ? "Correct construction inputs."
+                : "Use the requested start, length and angle."}
+            </p>
+          ) : null}
+        </GivenLengthCard>
+      </div>
+      <section className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+        <h2 className="text-sm font-black">
+          Construction Steps (Compass & Straightedge)
+        </h2>
+        <div className="mt-2 grid gap-2 sm:grid-cols-4">
+          {[
+            ["Draw Ray", "Draw a ray from A in the desired direction."],
+            ["Set Compass", "Set compass radius to the given length d."],
+            [
+              "Mark Point B",
+              "With A as center, draw an arc to meet the ray at B.",
+            ],
+            ["Segment AB", "Segment AB is the required length d."],
+          ].map(([title, body], index) => (
+            <article
+              key={title}
+              className="rounded-md border border-slate-200 p-2 text-[9px]"
+            >
+              <h3 className="font-black text-blue-700">
+                <span className="mr-1 rounded bg-blue-50 px-1.5 py-1">
+                  {index + 1}
+                </span>
+                {title}
+              </h3>
+              <p className="mt-2 text-slate-600">{body}</p>
+              <MiniConstructionStep step={index} />
+            </article>
+          ))}
+        </div>
+      </section>
+      <nav
+        className="grid grid-cols-2 gap-2 text-[10px] font-bold"
+        aria-label="Adjacent lessons"
+      >
+        <a
+          className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white p-3"
+          href="/lessons/geometry/204-segment"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span>
+            <small className="block uppercase text-slate-500">Previous</small>
+            Segment
+          </span>
+        </a>
+        <a
+          className="flex items-center justify-end gap-2 rounded-lg border border-slate-200 bg-white p-3 text-right"
+          href="/lessons/geometry/206-ray"
+        >
+          <span>
+            <small className="block uppercase text-slate-500">Next</small>Ray
+          </span>
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </nav>
+    </section>
+  );
+}
+
+function GivenLengthGraph({
+  start,
+  end,
+  length,
+  grid,
+  onPointer,
+}: {
+  start: { x: number; y: number };
+  end: { x: number; y: number };
+  length: number;
+  grid: boolean;
+  onPointer: (event: PointerEvent<SVGSVGElement>) => void;
+}) {
+  const sx = (x: number) => 310 + x * 30,
+    sy = (y: number) => 260 - y * 30;
+  return (
+    <svg
+      viewBox="0 0 620 520"
+      className="h-[480px] w-full touch-none"
+      role="img"
+      aria-label="Fixed-length segment from A to constructed point B with draggable direction handle"
+      onPointerDown={onPointer}
+      onPointerMove={onPointer}
+    >
+      {grid
+        ? Array.from({ length: 17 }, (_, i) => (
+            <g key={i}>
+              <line
+                x1={40 + i * 34}
+                x2={40 + i * 34}
+                y1="20"
+                y2="500"
+                stroke="#dbe3ef"
+                strokeDasharray="3 3"
+              />
+              <line
+                y1={20 + i * 30}
+                y2={20 + i * 30}
+                x1="20"
+                x2="600"
+                stroke="#dbe3ef"
+                strokeDasharray="3 3"
+              />
+            </g>
+          ))
+        : null}
+      <line x1="20" x2="605" y1="260" y2="260" stroke="#64748b" />
+      <line x1="310" x2="310" y1="15" y2="505" stroke="#64748b" />
+      <line
+        x1={sx(start.x)}
+        y1={sy(start.y)}
+        x2={sx(end.x)}
+        y2={sy(end.y)}
+        stroke="#7c3aed"
+        strokeWidth="4"
+      />
+      <line
+        x1={sx(start.x)}
+        y1={sy(start.y)}
+        x2={sx(end.x) + (sx(end.x) - sx(start.x)) * 0.55}
+        y2={sy(end.y) + (sy(end.y) - sy(start.y)) * 0.55}
+        stroke="#334155"
+        strokeDasharray="6 5"
+      />
+      <circle cx={sx(start.x)} cy={sy(start.y)} r="7" fill="#2563eb" />
+      <circle
+        cx={sx(end.x)}
+        cy={sy(end.y)}
+        r="14"
+        fill="white"
+        stroke="#2563eb"
+        strokeWidth="3"
+      />
+      <text
+        x={sx(start.x) + 10}
+        y={sy(start.y) - 8}
+        fill="#2563eb"
+        fontSize="14"
+        fontWeight="800"
+      >
+        A ({start.x}, {start.y})
+      </text>
+      <text
+        x={sx(end.x) + 18}
+        y={sy(end.y) - 12}
+        fill="#7c3aed"
+        fontSize="13"
+        fontWeight="800"
+      >
+        B
+      </text>
+      <text
+        x={(sx(start.x) + sx(end.x)) / 2}
+        y={(sy(start.y) + sy(end.y)) / 2 - 10}
+        fill="#7c3aed"
+        fontSize="12"
+        fontWeight="800"
+      >
+        AB = {length}
+      </text>
+    </svg>
+  );
+}
+function NumberField({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <label className="mt-1 block text-[8px] font-bold text-slate-500">
+      {label}
+      <input
+        aria-label={label}
+        className="mt-0.5 w-full rounded border border-slate-200 bg-white px-2 py-1.5 text-[10px] text-slate-900"
+        type="number"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      />
+    </label>
+  );
+}
+function AngleDial({ angle }: { angle: number }) {
+  const r = (angle * Math.PI) / 180,
+    x = 55 + Math.cos(r) * 38,
+    y = 55 - Math.sin(r) * 38;
+  return (
+    <svg
+      viewBox="0 0 110 110"
+      className="mx-auto mt-2 h-[105px] w-[105px]"
+      role="img"
+      aria-label={`Direction dial ${angle} degrees`}
+    >
+      <circle cx="55" cy="55" r="40" fill="white" stroke="#94a3b8" />
+      <line x1="55" y1="55" x2={x} y2={y} stroke="#7c3aed" strokeWidth="3" />
+      <circle cx={x} cy={y} r="4" fill="#2563eb" />
+      <text x="45" y="88" fill="#1d4ed8" fontSize="14" fontWeight="900">
+        {angle}°
+      </text>
+    </svg>
+  );
+}
+function GivenLengthCard({
+  title,
+  tone,
+  children,
+}: {
+  title: string;
+  tone: "blue" | "violet" | "cyan";
+  children: ReactNode;
+}) {
+  const color =
+    tone === "blue"
+      ? "text-blue-700"
+      : tone === "violet"
+        ? "text-violet-700"
+        : "text-cyan-700";
+  return (
+    <article className="rounded-lg border border-slate-200 bg-white p-3 text-[9px] leading-4 shadow-sm">
+      <h2 className={`text-xs font-black ${color}`}>{title}</h2>
+      <div className="mt-3 text-slate-700">{children}</div>
+    </article>
+  );
+}
+function MiniConstructionStep({ step }: { step: number }) {
+  return (
+    <svg
+      viewBox="0 0 130 60"
+      className="mt-2 h-[50px] w-full"
+      aria-hidden="true"
+    >
+      <line
+        x1="15"
+        y1="45"
+        x2="112"
+        y2={step === 1 ? "45" : "18"}
+        stroke={step === 3 ? "#7c3aed" : "#64748b"}
+        strokeWidth="2"
+        strokeDasharray={step === 0 || step === 2 ? "5 4" : undefined}
+      />
+      <circle cx="15" cy="45" r="4" fill="#2563eb" />
+      <circle cx="112" cy={step === 1 ? 45 : 18} r="4" fill="#2563eb" />
+      {step === 1 ? (
+        <path
+          d="M45 48 L65 15 L85 48"
+          fill="none"
+          stroke="#64748b"
+          strokeWidth="2"
+        />
       ) : null}
     </svg>
   );
