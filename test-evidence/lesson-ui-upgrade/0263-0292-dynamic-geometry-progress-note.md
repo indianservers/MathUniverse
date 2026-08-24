@@ -52,3 +52,9 @@ Updated 2026-08-24. This batch replaces the generic construction fallback for le
 - Lessons pending in this requested batch: **0**
 - Evidence: `0263-desktop.png` through `0292-desktop.png`
 - Machine validation: `0263-0292-dedicated-target-validation.json`
+
+## Real-control rework
+
+### Lesson 206 / Mockup 0263 - Ray
+
+Reworked individually against the target mockup. Removed the placeholder Direction and Scale sliders. The surface now uses draggable endpoint A and direction point B, editable coordinates, live length/angle/slope measurements, grid visibility, zoom, fullscreen, reset, clipboard sharing, stage navigation, and validated slope/angle/notation practice inputs. Final exact-viewport check at 1031x1526: no overflow, no console errors, and the full footer is visible.

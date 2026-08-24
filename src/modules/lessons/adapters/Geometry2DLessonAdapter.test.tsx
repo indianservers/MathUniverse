@@ -255,6 +255,28 @@ describe("Geometry2DLessonAdapter", () => {
     }
   });
 
+  it("renders Ray with real point editing and target practice controls", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 206)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("Ray AB coordinate plane with draggable endpoint");
+    expect(html).toContain('aria-label="Edit point A"');
+    expect(html).toContain('aria-label="Edit point B"');
+    expect(html).toContain('aria-label="Zoom in"');
+    expect(html).toContain('aria-label="Fullscreen"');
+    expect(html).toContain("P(-2,1)");
+    expect(html).toContain("Q(2,5)");
+    expect(html).toContain("Ray practice slope");
+    expect(html).toContain("Check your answer");
+    expect(html).not.toContain('type="range"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

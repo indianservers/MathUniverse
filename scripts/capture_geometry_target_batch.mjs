@@ -60,15 +60,33 @@ for (const [id, mockup, slug, width, height] of lessons) {
   await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
   const selector = `[data-testid="dynamic-geometry-mockup-${String(mockup).padStart(4, "0")}"]`;
   await page.locator(selector).waitFor({ state: "visible" });
-  const firstRange = page.locator(`${selector} input[type="range"]`).first();
-  const before = Number(await firstRange.inputValue());
-  const max = Number(await firstRange.getAttribute("max"));
-  await firstRange.fill(String(Math.min(max, before + 1)));
-  await page.getByRole("button", { name: "Check Construction" }).click();
-  const status = await page
-    .getByRole("status")
-    .filter({ hasText: "Construction verified." })
-    .innerText();
+  let status;
+  if (id === 206) {
+    await page.getByRole("button", { name: "Edit point B" }).click();
+    await page.getByRole("spinbutton", { name: "B x coordinate" }).fill("5");
+    await page.getByRole("button", { name: "Hide grid" }).click();
+    await page.getByRole("button", { name: "Show grid" }).click();
+    await page.getByRole("textbox", { name: "Ray practice slope" }).fill("1");
+    await page.getByRole("textbox", { name: "Ray practice angle" }).fill("45");
+    await page
+      .getByRole("textbox", { name: "Ray practice ray notation" })
+      .fill("PQ");
+    await page.getByRole("button", { name: "Check your answer" }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct:" })
+      .innerText();
+  } else {
+    const firstRange = page.locator(`${selector} input[type="range"]`).first();
+    const before = Number(await firstRange.inputValue());
+    const max = Number(await firstRange.getAttribute("max"));
+    await firstRange.fill(String(Math.min(max, before + 1)));
+    await page.getByRole("button", { name: "Check Construction" }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Construction verified." })
+      .innerText();
+  }
   await page.reload({ waitUntil: "networkidle" });
   const geometry = await page.evaluate((surfaceSelector) => {
     const surface = document.querySelector(surfaceSelector);
@@ -104,8 +122,11 @@ for (const [id, mockup, slug, width, height] of lessons) {
   await page.close();
 }
 await browser.close();
+const validationName = selectedIds.size
+  ? `${String(lessons[0][1]).padStart(4, "0")}-dedicated-target-validation.json`
+  : "0263-0292-dedicated-target-validation.json";
 await fs.writeFile(
-  path.join(evidence, "0263-0292-dedicated-target-validation.json"),
+  path.join(evidence, validationName),
   JSON.stringify(results, null, 2),
 );
 console.log(
@@ -116,7 +137,7 @@ console.log(
         (row) =>
           row.consoleErrors.length ||
           row.overflowing ||
-          row.status !== "Construction verified.",
+          !row.status.match(/Construction verified\.|Correct:/),
       ).length,
       results,
     },

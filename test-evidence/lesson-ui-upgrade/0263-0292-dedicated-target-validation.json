@@ -5,10 +5,10 @@
     "route": "/lessons/geometry/206-ray",
     "width": 1031,
     "height": 1526,
-    "status": "Construction verified.",
+    "status": "Correct: slope 1, angle 45°, ray PQ.",
     "consoleErrors": [],
-    "scrollHeight": 1581,
-    "surfaceBottom": 1515.796875,
+    "scrollHeight": 1526,
+    "surfaceBottom": 1459.703125,
     "objectModel": "ray",
     "overflowing": 0
   },

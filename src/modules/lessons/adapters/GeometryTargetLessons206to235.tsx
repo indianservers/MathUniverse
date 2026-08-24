@@ -20,6 +20,7 @@ import {
   type ReactNode,
 } from "react";
 import type { LessonAdapterProps } from "../types";
+import RayTargetLesson from "./RayTargetLesson206";
 
 type Kind =
   | "ray"
@@ -528,8 +529,7 @@ function named(id: number) {
     <DedicatedGeometrySurface {...props} spec={specs[id]} />
   );
 }
-export const RayTargetLesson = named(206),
-  PolylineTargetLesson = named(207),
+export const PolylineTargetLesson = named(207),
   PerpendicularLineTargetLesson = named(208),
   ParallelLineTargetLesson = named(209),
   PerpendicularBisectorTargetLesson = named(210),
