@@ -495,6 +495,29 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Radius"');
   });
 
+  it("renders Compass as a distance-transfer construction with linked controls", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 221)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive compass plane with draggable center and opening",
+    );
+    expect(html).toContain('data-testid="compass-center-point"');
+    expect(html).toContain('data-testid="compass-radius-handle"');
+    expect(html).toContain('aria-label="Opening radius"');
+    expect(html).toContain("Copy Distance");
+    expect(html).toContain("Step History");
+    expect(html).toContain("Copy the distance AB to point C.");
+    expect(html).toContain('data-testid="compass-practice-point-d"');
+    expect(html).not.toContain("Compass transfer model");
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

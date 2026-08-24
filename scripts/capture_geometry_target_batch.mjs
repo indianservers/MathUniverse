@@ -526,6 +526,94 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct: octagon" })
       .innerText();
+  } else if (id === 221) {
+    const center = page.locator('[data-testid="compass-center-point"]');
+    const centerBefore = await center.getAttribute("cx");
+    const centerBox = await center.boundingBox();
+    if (!centerBox) throw new Error("Compass center is not draggable");
+    await page.mouse.move(
+      centerBox.x + centerBox.width / 2,
+      centerBox.y + centerBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(centerBox.x - 45, centerBox.y - 40, { steps: 4 });
+    await page.mouse.up();
+    if ((await center.getAttribute("cx")) === centerBefore) {
+      throw new Error("Compass center drag did not move the construction");
+    }
+    const radiusHandle = page.locator('[data-testid="compass-radius-handle"]');
+    const radiusBefore = await page
+      .getByRole("slider", { name: "Opening radius" })
+      .inputValue();
+    const radiusBox = await radiusHandle.boundingBox();
+    if (!radiusBox) throw new Error("Compass opening handle is not draggable");
+    await page.mouse.move(
+      radiusBox.x + radiusBox.width / 2,
+      radiusBox.y + radiusBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(radiusBox.x - 55, radiusBox.y + 15, { steps: 4 });
+    await page.mouse.up();
+    if (
+      (await page.getByRole("slider", { name: "Opening radius" }).inputValue()) ===
+      radiusBefore
+    ) {
+      throw new Error("Compass leg drag did not change the opening");
+    }
+    await page.getByRole("button", { name: "Circle (Center)" }).click();
+    await page
+      .getByRole("img", {
+        name: "Interactive compass plane with draggable center and opening",
+      })
+      .click({ position: { x: 275, y: 220 } });
+    await page.getByRole("button", { name: "Clear" }).click();
+    await page.getByRole("button", { name: "Circle (Center)" }).click();
+    await page
+      .getByRole("img", {
+        name: "Interactive compass plane with draggable center and opening",
+      })
+      .click({ position: { x: 310, y: 220 } });
+    await page.getByRole("button", { name: "3", exact: true }).click();
+    await page.getByRole("checkbox", { name: "Show radius" }).uncheck();
+    await page.getByRole("checkbox", { name: "Show radius" }).check();
+    await page.getByRole("button", { name: "Edit center coordinates" }).click();
+    await page.getByRole("spinbutton", { name: "Center x" }).fill("2");
+    await page.getByRole("spinbutton", { name: "Center y" }).fill("1");
+    const practicePoint = page.locator(
+      '[data-testid="compass-practice-point-d"]',
+    );
+    const practiceBox = await practicePoint.boundingBox();
+    if (!practiceBox) throw new Error("Compass practice point is not draggable");
+    const practicePlane = page.getByRole("img", {
+      name: "Compass distance transfer practice plane",
+    });
+    const practicePlaneBox = await practicePlane.boundingBox();
+    if (!practicePlaneBox) throw new Error("Compass practice plane is missing");
+    const practiceScale = Math.min(
+      practicePlaneBox.width / 480,
+      practicePlaneBox.height / 240,
+    );
+    const practiceTop =
+      practicePlaneBox.y + (practicePlaneBox.height - 240 * practiceScale) / 2;
+    await page.mouse.move(
+      practiceBox.x + practiceBox.width / 2,
+      practiceBox.y + practiceBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(
+      practicePlaneBox.x + practicePlaneBox.width / 2 + 120 * practiceScale,
+      practiceTop + 30 * practiceScale,
+      {
+      steps: 5,
+      },
+    );
+    await page.mouse.up();
+    await page.getByRole("button", { name: "Reset", exact: true }).last().click();
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct" })
+      .innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

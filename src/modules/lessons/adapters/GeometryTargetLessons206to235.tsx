@@ -29,6 +29,7 @@ import TangentTargetLesson from "./TangentTargetLesson212";
 import BestFitLineTargetLesson from "./BestFitLineTargetLesson213";
 import TriangleConstructorTargetLesson from "./TriangleConstructorTargetLesson214";
 import RegularPolygonTargetLesson from "./RegularPolygonTargetLesson215";
+import CompassTargetLesson from "./CompassTargetLesson221";
 import RayTargetLesson from "./RayTargetLesson206";
 
 type Kind =
@@ -543,7 +544,6 @@ export const RigidPolygonTargetLesson = named(216),
   CircleCentrePointTargetLesson = named(218),
   CircleCentreRadiusTargetLesson = named(219),
   CircleThreePointsTargetLesson = named(220),
-  CompassTargetLesson = named(221),
   SemicircleTargetLesson = named(222),
   CircularArcTargetLesson = named(223),
   CircumcircularArcTargetLesson = named(224),

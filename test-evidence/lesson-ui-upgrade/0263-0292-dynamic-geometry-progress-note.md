@@ -30,7 +30,7 @@ Updated 2026-08-24. This batch replaces the generic construction fallback for le
 | 0275 | 218 Circle Centre and Point | `circlePoint` | Implemented and browser-validated |
 | 0276 | 219 Circle Centre and Radius | `circleRadius` | Implemented and browser-validated |
 | 0277 | 220 Circle through Three Points | `circleThree` | Implemented and browser-validated |
-| 0278 | 221 Compass | `compass` | Implemented and browser-validated |
+| 0278 | 221 Compass | `compassDistanceTransfer` | Reworked individually and browser-validated |
 | 0279 | 222 Semicircle | `semicircle` | Implemented and browser-validated |
 | 0280 | 223 Circular Arc | `arc` | Implemented and browser-validated |
 | 0281 | 224 Circumcircular Arc | `circumArc` | Implemented and browser-validated |
@@ -94,3 +94,7 @@ Reworked individually against the target mockup. Removed the generic Apex x and 
 ### Lesson 215 / Mockup 0272 - Regular Polygon
 
 Reworked individually against the target mockup. Replaced the shared Sides n and Radius sliders with a generated vertex collection whose vertices are rotations of a first radius by 360 degrees divided by n. The center O and every generated vertex are directly draggable: moving O translates the construction, while moving a vertex updates radius and orientation without breaking equal sides or angles. Side count, radius, rotation, center placement, radii, grid, vertex, circumcircle, symmetry-axis, label, and fullscreen controls are functional. Central and interior angles, side length, apothem, perimeter, area, symmetry counts, coordinate labels, and construction formulas are derived from the same model. The octagon practice form numerically validates side length, perimeter, and area. Final exact-viewport check at 1027x1532 exercises both drag dependencies, n/r regeneration, rotation, center placement, all visibility controls, hint, and practice grading with no overflow or console errors; the page and three-column footer fit without scrolling.
+
+### Lesson 221 / Mockup 0278 - Compass
+
+Reworked individually against the target mockup after the shared geometry surface was found to be visually and behaviorally incorrect. Removed the generic circle diagram, Centre x slider, repeated Object model card, generic Construction Steps strip, and template practice record. The dedicated surface now draws an actual two-legged compass above a live circle; its draggable center B translates the complete construction and its draggable drawing leg changes the opening. Select, Point, Circle (Center), Copy Distance, Clear, radius presets, radius slider and steppers, show-radius, snap-to-grid, coordinate editing, reset, stage navigation, and adjacent-lesson navigation are functional. Radius, center coordinates, circle statements, and step history all derive from one compass-distance-transfer model. The separate AB-to-C exercise owns a draggable point D and grades the computed Euclidean distance CD against AB. Final 1024x1536 browser validation physically drags both compass dependencies and the practice point, exercises every target control class, verifies `CD = AB`, reloads to a clean state, and reports no horizontal overflow or console errors.
