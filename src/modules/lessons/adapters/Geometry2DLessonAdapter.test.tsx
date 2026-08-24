@@ -1125,9 +1125,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Drag points");
   });
 
-  it("renders geometry lessons 242 through 245 with transformation guidance", () => {
+  it("renders Matrix Transformation as a dedicated editable linear map", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 242)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0299"');
+    expect(html).toContain('data-object-model="editable-linear-map-basis-shape"');
+    expect(html).toContain("Interactive source shape and its matrix transformation");
+    expect(html).toContain('data-testid="matrix-source-a"');
+    expect(html).toContain('data-testid="matrix-transformed-shape"');
+    expect(html).toContain('aria-label="Matrix a"');
+    expect(html).toContain("Area scale factor = |det(A)|");
+    expect(html).toContain('aria-label="Practice matrix 1"');
+    expect(html).not.toContain("Drag points");
+  });
+
+  it("renders geometry lessons 243 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      242: "Matrix transformation",
       243: "Composite transformations",
       244: "Transformation mapping",
       245: "Invariants",

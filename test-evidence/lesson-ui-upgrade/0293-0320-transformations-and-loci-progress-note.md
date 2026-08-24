@@ -8,6 +8,7 @@
 | 0296 | 239 Reflection in Circle | `opposite-ray-circle-inversion` | Reworked individually and browser-validated |
 | 0297 | 240 Rotation Around Point | `fixed-centre-signed-angle-rotation` | Reworked individually and browser-validated |
 | 0298 | 241 Dilation from Point | `centre-scale-triangle-dilation` | Reworked individually and browser-validated |
+| 0299 | 242 Matrix Transformation | `editable-linear-map-basis-shape` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -84,3 +85,16 @@ Evidence:
 
 - `0298-desktop.png`
 - `0298-dedicated-target-validation.json`
+
+## Lesson 242 / Mockup 0299 - Matrix Transformation
+
+Reworked individually against the target mockup with a new lesson-specific adapter and `editable-linear-map-basis-shape` object model. The workspace owns a draggable source quadrilateral and editable 2x2 matrix, derives every transformed vertex with `x'=Ax`, and calculates determinant, absolute area scale factor, orientation, transformed coordinates, and images of both basis vectors from the same state. Overlay/before/after modes, direct coefficient inputs, six matrix presets, five lesson stages, five workspace tabs, reset, share, challenge, hint, and navigation are functional.
+
+The composition task grades all four entries of the matrix produced by stretching by (2,1) and then applying an x-shear, and reports the resulting image of P(1,2). Mockup 0299's displayed matrix `[[2,1],[0,1]]` conflicts with several plotted and tabulated transformed coordinates; the implementation preserves that visible matrix and applies it consistently rather than reproducing contradictory outputs.
+
+Final 1045x1505 browser validation physically drags source A, edits all matrix coefficients, verifies determinant updates, applies the reflection preset and verifies negative determinant, checks before/overlay visibility, and exercises incorrect and correct composition grading. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1423 with the target-aligned footer below it.
+
+Evidence:
+
+- `0299-desktop.png`
+- `0299-dedicated-target-validation.json`

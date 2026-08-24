@@ -42,6 +42,7 @@ const allLessons = [
   [239, 296, "reflection-in-circle", 1027, 1532],
   [240, 297, "rotation-around-point", 1474, 1067],
   [241, 298, "dilation-from-point", 1054, 1492],
+  [242, 299, "matrix-transformation", 1045, 1505],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2637,6 +2638,15 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("slider",{name:"Scale factor"}).fill("3");if((await surface.getAttribute("data-area-ratio"))!=="9.0000")throw new Error("Area ratio did not follow k squared");
     await page.getByRole("checkbox",{name:"Show rays"}).uncheck();await page.getByRole("button",{name:"Clear"}).click();if(await page.locator('[data-testid="dilation-image-polygon"]').count())throw new Error("Clear did not hide image");
     await page.getByRole("button",{name:"New question"}).click();await page.getByRole("button",{name:"Check my construction"}).click();status=await page.getByRole("status").filter({hasText:"Correct construction"}).innerText();
+  } else if (id === 242) {
+    const surface=page.locator(selector),source=page.locator('[data-testid="matrix-source-a"]'),imagePoint=page.locator('[data-testid="matrix-image-a"]');
+    if((await surface.getAttribute("data-object-model"))!=="editable-linear-map-basis-shape"||(await surface.getAttribute("data-determinant"))!=="2.0000"||(await imagePoint.getAttribute("data-x"))!=="-2.0000")throw new Error("Matrix transformation initial model is invalid");
+    const before=await imagePoint.getAttribute("data-x"),box=await source.boundingBox();if(!box)throw new Error("Matrix source A is not draggable");await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+51,box.y-26,{steps:6});await page.mouse.up();if((await imagePoint.getAttribute("data-x"))===before)throw new Error("Dragging source A did not transform its image");
+    await page.getByRole("spinbutton",{name:"Matrix a"}).fill("0");await page.getByRole("spinbutton",{name:"Matrix b"}).fill("-1");await page.getByRole("spinbutton",{name:"Matrix c"}).fill("1");await page.getByRole("spinbutton",{name:"Matrix d"}).fill("0");if((await surface.getAttribute("data-determinant"))!=="1.0000")throw new Error("Matrix input determinant failed");
+    await page.getByRole("button",{name:"Reflect X"}).click();if((await surface.getAttribute("data-determinant"))!=="-1.0000")throw new Error("Reflection preset did not reverse orientation");
+    await page.getByRole("button",{name:"Before",exact:true}).click();if(await page.locator('[data-testid="matrix-transformed-shape"]').count())throw new Error("Before mode did not hide transformed shape");await page.getByRole("button",{name:"Overlay"}).click();
+    await page.getByRole("textbox",{name:"Practice matrix 1"}).fill("0");await page.getByRole("textbox",{name:"Practice matrix 2"}).fill("0");await page.getByRole("textbox",{name:"Practice matrix 3"}).fill("0");await page.getByRole("textbox",{name:"Practice matrix 4"}).fill("0");await page.getByRole("button",{name:"Check",exact:true}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();
+    for(const [i,value] of ["2","1","0","1"].entries())await page.getByRole("textbox",{name:`Practice matrix ${i+1}`}).fill(value);await page.getByRole("button",{name:"Check",exact:true}).click();status=await page.getByRole("status").filter({hasText:"Correct: the composite matrix"}).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());
