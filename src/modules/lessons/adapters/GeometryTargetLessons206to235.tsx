@@ -31,6 +31,7 @@ import TriangleConstructorTargetLesson from "./TriangleConstructorTargetLesson21
 import RegularPolygonTargetLesson from "./RegularPolygonTargetLesson215";
 import RigidPolygonTargetLesson from "./RigidPolygonTargetLesson216";
 import GeneralPolygonTargetLesson from "./GeneralPolygonTargetLesson217";
+import CircleCentrePointTargetLesson from "./CircleCentrePointTargetLesson218";
 import CompassTargetLesson from "./CompassTargetLesson221";
 import RayTargetLesson from "./RayTargetLesson206";
 
@@ -541,8 +542,7 @@ function named(id: number) {
     <DedicatedGeometrySurface {...props} spec={specs[id]} />
   );
 }
-export const CircleCentrePointTargetLesson = named(218),
-  CircleCentreRadiusTargetLesson = named(219),
+export const CircleCentreRadiusTargetLesson = named(219),
   CircleThreePointsTargetLesson = named(220),
   SemicircleTargetLesson = named(222),
   CircularArcTargetLesson = named(223),

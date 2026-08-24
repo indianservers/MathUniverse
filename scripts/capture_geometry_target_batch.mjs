@@ -671,6 +671,78 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct polygon sums." })
       .innerText();
+  } else if (id === 218) {
+    const circle = page.locator(
+      '[data-testid="centre-point-construction-circle"]',
+    );
+    const centre = page.locator('[data-testid="circle-centre-handle"]');
+    const centreBefore = await centre.getAttribute("cx");
+    const radiusBeforeCentreDrag = await circle.getAttribute("data-radius");
+    const centreBox = await centre.boundingBox();
+    if (!centreBox) throw new Error("Circle centre C is not draggable");
+    await page.mouse.move(
+      centreBox.x + centreBox.width / 2,
+      centreBox.y + centreBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(centreBox.x + 30, centreBox.y - 22, { steps: 4 });
+    await page.mouse.up();
+    if ((await centre.getAttribute("cx")) === centreBefore) {
+      throw new Error("Dragging C did not translate the circle centre");
+    }
+    if ((await circle.getAttribute("data-radius")) === radiusBeforeCentreDrag) {
+      throw new Error("Dragging C did not recalculate CP");
+    }
+    const point = page.locator('[data-testid="circle-point-handle"]');
+    const pointBefore = await point.getAttribute("cx");
+    const radiusBeforePointDrag = await circle.getAttribute("data-radius");
+    const pointBox = await point.boundingBox();
+    if (!pointBox) throw new Error("Circle point P is not draggable");
+    await page.mouse.move(
+      pointBox.x + pointBox.width / 2,
+      pointBox.y + pointBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(pointBox.x - 28, pointBox.y + 34, { steps: 4 });
+    await page.mouse.up();
+    if ((await point.getAttribute("cx")) === pointBefore) {
+      throw new Error("Dragging P did not move the circumference point");
+    }
+    if ((await circle.getAttribute("data-radius")) === radiusBeforePointDrag) {
+      throw new Error("Dragging P did not change the circle radius");
+    }
+    await page.getByRole("spinbutton", { name: "Centre x coordinate" }).fill("2");
+    await page.getByRole("spinbutton", { name: "Centre y coordinate" }).fill("1");
+    await page.getByRole("spinbutton", { name: "Point x coordinate" }).fill("5");
+    await page.getByRole("spinbutton", { name: "Point y coordinate" }).fill("4");
+    await page.getByRole("button", { name: "Lock centre" }).click();
+    if (!(await page.getByRole("spinbutton", { name: "Centre x coordinate" }).isDisabled())) {
+      throw new Error("Centre lock did not disable coordinate editing");
+    }
+    await page.getByRole("button", { name: "Unlock centre" }).click();
+    for (const label of ["Grid", "Axes"]) {
+      const control = page.getByRole("button", { name: label, exact: true });
+      await control.click();
+      await control.click();
+    }
+    for (const label of [
+      "Show circle",
+      "Show radius",
+      "Show centre C",
+      "Show point P",
+    ]) {
+      const control = page.getByRole("checkbox", { name: label });
+      await control.uncheck();
+      await control.check();
+    }
+    await page.getByRole("button", { name: "New random challenge" }).click();
+    await page.getByRole("button", { name: "Load this challenge" }).click();
+    await page.getByText("Challenge circle loaded.").waitFor();
+    await page.getByRole("button", { name: "Reset view" }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct circle dependency." })
+      .innerText();
   } else if (id === 221) {
     const center = page.locator('[data-testid="compass-center-point"]');
     const centerBefore = await center.getAttribute("cx");

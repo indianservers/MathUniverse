@@ -78,7 +78,8 @@ function AppFooter() {
     ultraCompact;
   if (
     location.pathname === "/lessons/geometry/200-intersection-point" ||
-    location.pathname === "/lessons/geometry/203-line-through-two-points"
+    location.pathname === "/lessons/geometry/203-line-through-two-points" ||
+    location.pathname === "/lessons/geometry/218-circle-centre-and-point"
   )
     return null;
   if (usesTargetCompactFooter) {

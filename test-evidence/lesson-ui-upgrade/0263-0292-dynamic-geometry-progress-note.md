@@ -27,7 +27,7 @@ Updated 2026-08-24. This batch replaces the generic construction fallback for le
 | 0272 | 215 Regular Polygon | `regularPolygon` | Implemented and browser-validated |
 | 0273 | 216 Rigid Polygon | `rigidTriangleMotion` | Reworked individually and browser-validated |
 | 0274 | 217 General Polygon | `editableGeneralPolygon` | Reworked individually and browser-validated |
-| 0275 | 218 Circle Centre and Point | `circlePoint` | Implemented and browser-validated |
+| 0275 | 218 Circle Centre and Point | `circleCentreThroughPoint` | Reworked individually and browser-validated |
 | 0276 | 219 Circle Centre and Radius | `circleRadius` | Implemented and browser-validated |
 | 0277 | 220 Circle through Three Points | `circleThree` | Implemented and browser-validated |
 | 0278 | 221 Compass | `compassDistanceTransfer` | Reworked individually and browser-validated |
@@ -102,6 +102,10 @@ Reworked individually against the target mockup. Removed the generic quadrilater
 ### Lesson 217 / Mockup 0274 - General Polygon
 
 Reworked individually against the target mockup. Removed the generic regular pentagon, Vertices and Irregularity sliders, generic object-model panel, repeated construction cards, and template verification record. The dedicated surface owns an ordered collection of three to ten unrestricted vertices. Point and Polygon add vertices, every vertex is directly draggable, double-click removes a vertex, Move translates the complete polygon, Measure selects a real edge, and Clear All, reset, snap, and grid controls update the editor. Side lengths, perimeter, shoelace area, oriented interior angles, angle sum, expected angle sum, convexity, and pairwise non-adjacent edge intersection are recalculated from the same point collection. The Properties copy controls, n-gon pattern and formula panels, seven-gon example, learning flow, adjacent navigation, and independently graded hexagon sums follow mockup 0274. The screenshot uses live coordinate calculations rather than copying internally inconsistent property values from the mockup. Final 1022x1538 browser validation reshapes a vertex and confirms area changes, adds and removes a sixth vertex, translates the complete polygon and confirms area is preserved, selects an edge, exercises both display toggles, clears and restores the model, and verifies 720-degree/360-degree hexagon sums with no overflow or console errors.
+
+### Lesson 218 / Mockup 0275 - Circle Centre and Point
+
+Reworked individually against the target mockup. Removed the generic circle, Point angle and Point distance sliders, generic object-model panel, repeated construction cards, and template verification record. The dedicated construction owns independently draggable and editable centre C and circumference point P; the radius is always the Euclidean distance CP, the diameter is 2r, and the rendered circle, dashed radius, coordinate labels, measurement panel, and distance check derive from those two points. Coordinate locks prevent both direct dragging and field edits. Grid, axes, circle, radius, centre, and point visibility controls are functional. Reset restores the initial C(1, 2), P(5, 4) model. The learning goal, five-stage navigation, object editor, construction explanation, defining property, worked equation, challenge generator/loader, reminder, lesson index, and adjacent navigation reproduce mockup 0275's content hierarchy. Final 1024x1536 browser validation physically drags C and P and confirms each changes CP, edits all four coordinates, verifies the centre lock, exercises all six display controls, generates and loads a challenge, resets the model, and reports no overlap, overflow, or console errors. The dedicated surface ends at 1505px against the target's 1503px boundary.
 
 ### Lesson 221 / Mockup 0278 - Compass
 

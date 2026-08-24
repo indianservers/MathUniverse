@@ -553,6 +553,23 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Irregularity"');
   });
 
+  it("renders Circle Centre and Point with a direct radius dependency", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 218)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain("Interactive circle with draggable centre C and circumference point P");
+    expect(html).toContain('data-testid="circle-centre-handle"');
+    expect(html).toContain('data-testid="circle-point-handle"');
+    expect(html).toContain('aria-label="Centre x coordinate"');
+    expect(html).toContain('aria-label="Point y coordinate"');
+    expect(html).toContain("Live measurements");
+    expect(html).toContain("Load this challenge");
+    expect(html).not.toContain('aria-label="Point angle"');
+    expect(html).not.toContain('aria-label="Point distance"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

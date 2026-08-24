@@ -1,0 +1,15 @@
+[
+  {
+    "id": 218,
+    "mockup": 275,
+    "route": "/lessons/geometry/218-circle-centre-and-point",
+    "width": 1024,
+    "height": 1536,
+    "status": "Correct circle dependency.",
+    "consoleErrors": [],
+    "scrollHeight": 1536,
+    "surfaceBottom": 1505,
+    "objectModel": "circle-centre-through-point",
+    "overflowing": 0
+  }
+]
