@@ -118,6 +118,20 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
     await navigator.clipboard?.writeText(url);
     setShareStatus("Lesson state link copied.");
   };
+  const usesImmersiveFunctionWorkspace = lesson.id >= 143 && lesson.id <= 152;
+
+  if (usesImmersiveFunctionWorkspace) {
+    return (
+      <div className="lesson-page-shell space-y-3" data-testid="lesson-page" data-lesson-id={lesson.id}>
+        <LessonSurface lesson={lesson} resetToken={resetToken} onInteraction={recordInteraction} />
+        <nav className="lesson-adjacent-nav grid gap-3 sm:grid-cols-2" aria-label="Adjacent lessons">
+          {adjacent.previous ? <Link className="action-secondary justify-start" to={adjacent.previous.route}><ArrowLeft className="h-4 w-4" /><span><span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">Previous</span><span className="line-clamp-1">{adjacent.previous.title}</span></span></Link> : <span />}
+          {adjacent.next ? <Link className="action-secondary justify-end text-right" to={adjacent.next.route}><span><span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">Next</span><span className="line-clamp-1">{adjacent.next.title}</span></span><ArrowRight className="h-4 w-4" /></Link> : <span />}
+        </nav>
+      </div>
+    );
+  }
+
   return (
     <div className="lesson-page-shell space-y-3" data-testid="lesson-page" data-lesson-id={lesson.id}>
       <header className="lesson-shell-header overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-cyan-950/5 backdrop-blur dark:border-white/10 dark:bg-slate-950/80">

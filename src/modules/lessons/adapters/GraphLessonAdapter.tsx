@@ -1,5 +1,6 @@
 import AdapterFrame from "../components/AdapterFrame";
 import ReusableLessonEngine, { reusableEngineParamsFor } from "../components/ReusableLessonEngine";
+import FunctionMockupLesson from "./graph/FunctionMockupLesson";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { useEffect, useState } from "react";
@@ -18,6 +19,10 @@ type GraphSpec = {
 };
 
 export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  if (lesson.id >= 143 && lesson.id <= 152) {
+    return <FunctionMockupLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+
   if ((lesson.id >= 39 && lesson.id <= 56) || (lesson.id >= 129 && lesson.id <= 166)) {
     return <RedesignedGraphingLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
