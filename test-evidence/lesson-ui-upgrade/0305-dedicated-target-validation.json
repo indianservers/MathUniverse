@@ -1,0 +1,15 @@
+[
+  {
+    "id": 248,
+    "mockup": 305,
+    "route": "/lessons/geometry/248-equidistant-loci",
+    "width": 953,
+    "height": 1651,
+    "status": "Correct! The perpendicular bisector is 3x + 2y − 5 = 0.",
+    "consoleErrors": [],
+    "scrollHeight": 1651,
+    "surfaceBottom": 1561,
+    "objectModel": "dependent-perpendicular-bisector-equal-distance",
+    "overflowing": 0
+  }
+]

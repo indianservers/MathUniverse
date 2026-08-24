@@ -1208,9 +1208,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("Try it yourself");
   });
 
-  it("renders geometry lessons 248 through 256 with loci and proof guidance", () => {
+  it("renders Equidistant Loci as a dedicated perpendicular-bisector model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 248)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0305"');
+    expect(html).toContain('data-object-model="dependent-perpendicular-bisector-equal-distance"');
+    expect(html).toContain("Interactive equidistant points and perpendicular bisector locus");
+    expect(html).toContain('data-testid="equidistant-point-a"');
+    expect(html).toContain('data-testid="equidistant-anchor-p"');
+    expect(html).toContain('aria-label="Locus anchor P x coordinate"');
+    expect(html).toContain("|AP − BP|");
+    expect(html).toContain('aria-label="Practice equation B"');
+    expect(html).toContain("3x + 2y − 5 = 0");
+  });
+
+  it("renders geometry lessons 249 through 256 with loci and proof guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      248: "Equidistant loci",
       249: "Moving-linkage loci",
       250: "Envelope of lines",
       251: "Dynamic trace",

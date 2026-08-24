@@ -53,6 +53,7 @@ import TransformationMappingTargetLesson244 from "./TransformationMappingTargetL
 import InvariantsTargetLesson245 from "./InvariantsTargetLesson245";
 import SymmetryExplorerTargetLesson246 from "./SymmetryExplorerTargetLesson246";
 import LocusGeneratorTargetLesson247 from "./LocusGeneratorTargetLesson247";
+import EquidistantLociTargetLesson248 from "./EquidistantLociTargetLesson248";
 import TranslationVectorTargetLesson236 from "./TranslationVectorTargetLesson236";
 
 type GeometryTool =
@@ -98,6 +99,9 @@ export default function Geometry2DLessonAdapter({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  if (lesson.id === 248) {
+    return <EquidistantLociTargetLesson248 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
   if (lesson.id === 247) {
     return <LocusGeneratorTargetLesson247 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }

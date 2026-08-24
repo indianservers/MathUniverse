@@ -101,6 +101,8 @@ function AppFooter() {
     location.pathname === "/lessons/geometry/246-symmetry-explorer";
   const isLocusGeneratorTarget =
     location.pathname === "/lessons/geometry/247-locus-generator";
+  const isEquidistantLociTarget =
+    location.pathname === "/lessons/geometry/248-equidistant-loci";
   const isGeneralPolygonTarget =
     location.pathname === "/lessons/geometry/217-general-polygon";
   const isCircleCentreRadiusTarget =
@@ -132,15 +134,15 @@ function AppFooter() {
       </footer>
     );
   }
-  if (isPointReflectionTarget || isCircleReflectionTarget || isDilationPointTarget || isMatrixTransformationTarget || isCompositeTransformationTarget || isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget) {
+  if (isPointReflectionTarget || isCircleReflectionTarget || isDilationPointTarget || isMatrixTransformationTarget || isCompositeTransformationTarget || isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget || isEquidistantLociTarget) {
     return (
-      <footer className={`mx-auto w-full max-w-[1440px] pt-0 ${isLocusGeneratorTarget ? "h-[89px] px-[10px]" : isSymmetryExplorerTarget ? "h-[81px] px-[10px]" : isInvariantsTarget ? "h-[65px] px-[10px]" : isCompositeTransformationTarget ? "h-[62px] px-[12px]" : isMatrixTransformationTarget ? "h-[74px] px-[16px]" : isCircleReflectionTarget || isDilationPointTarget ? "h-[96px] pl-[10px] pr-[13px]" : "h-[118px] pl-[24px] pr-[19px]"}`} aria-label="Site footer">
-        <div className={`relative rounded-lg border border-slate-200 bg-white/80 px-4 shadow-sm ${isLocusGeneratorTarget ? "h-[87px] py-2" : isSymmetryExplorerTarget ? "h-[79px] py-2" : isInvariantsTarget ? "h-[65px] py-2" : isCompositeTransformationTarget ? "h-[54px] py-3" : isMatrixTransformationTarget ? "h-[66px] py-3" : isCircleReflectionTarget || isDilationPointTarget ? "h-[88px] py-3" : "h-[106px] py-3"}`}>
+      <footer className={`mx-auto w-full max-w-[1440px] pt-0 ${isEquidistantLociTarget ? "h-[77px] px-[10px]" : isLocusGeneratorTarget ? "h-[89px] px-[10px]" : isSymmetryExplorerTarget ? "h-[81px] px-[10px]" : isInvariantsTarget ? "h-[65px] px-[10px]" : isCompositeTransformationTarget ? "h-[62px] px-[12px]" : isMatrixTransformationTarget ? "h-[74px] px-[16px]" : isCircleReflectionTarget || isDilationPointTarget ? "h-[96px] pl-[10px] pr-[13px]" : "h-[118px] pl-[24px] pr-[19px]"}`} aria-label="Site footer">
+        <div className={`relative rounded-lg border border-slate-200 bg-white/80 px-4 shadow-sm ${isEquidistantLociTarget ? "h-[75px] py-2" : isLocusGeneratorTarget ? "h-[87px] py-2" : isSymmetryExplorerTarget ? "h-[79px] py-2" : isInvariantsTarget ? "h-[65px] py-2" : isCompositeTransformationTarget ? "h-[54px] py-3" : isMatrixTransformationTarget ? "h-[66px] py-3" : isCircleReflectionTarget || isDilationPointTarget ? "h-[88px] py-3" : "h-[106px] py-3"}`}>
           <p className="flex items-center gap-2 text-[10px] font-black text-slate-950"><Sparkles className="h-4 w-4 text-cyan-500" /> Math Universe</p>
           <p className="mt-1 max-w-[500px] text-[7px] leading-3 text-slate-600">Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p>
           <div className="absolute right-4 top-3 flex gap-2"><a className="target-geometry-action" href="/sitemap"><Map /> Sitemap</a><a className="target-geometry-action" href="/documentation"><Github /> Docs</a><a className="target-geometry-action" href="/about"><Mail /> About</a></div>
-          <p className={`${isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget ? "mt-1 pt-1" : "mt-3 pt-2"} border-t border-slate-200 text-[6px] font-bold uppercase text-slate-500`}>&copy; {year} Indian Servers Private Limited. No rights to reproduce it.</p>
-          <p className={`${isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget ? "absolute bottom-2 right-4" : "mt-1"} text-[6px] text-slate-500`}>www.IndianServers.com &nbsp;&nbsp; info@IndianServers.com</p>
+          <p className={`${isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget || isEquidistantLociTarget ? "mt-1 pt-1" : "mt-3 pt-2"} border-t border-slate-200 text-[6px] font-bold uppercase text-slate-500`}>&copy; {year} Indian Servers Private Limited. No rights to reproduce it.</p>
+          <p className={`${isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget || isEquidistantLociTarget ? "absolute bottom-2 right-4" : "mt-1"} text-[6px] text-slate-500`}>www.IndianServers.com &nbsp;&nbsp; info@IndianServers.com</p>
         </div>
       </footer>
     );
@@ -406,6 +408,8 @@ export default function AppLayout() {
     location.pathname === "/lessons/geometry/246-symmetry-explorer";
   const isLocusGeneratorTarget =
     location.pathname === "/lessons/geometry/247-locus-generator";
+  const isEquidistantLociTarget =
+    location.pathname === "/lessons/geometry/248-equidistant-loci";
   const isRigidPolygonTarget =
     location.pathname === "/lessons/geometry/216-rigid-polygon";
   const isGeneralPolygonTarget =
@@ -523,7 +527,7 @@ export default function AppLayout() {
   }
 
   return (
-    <div className={`min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.14),transparent_30%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.12),transparent_34%)] ${isDistanceTarget ? "target-distance-app" : isAreaTarget ? "target-area-app" : isAngleTarget ? "target-angle-app" : isFixedAngleTarget ? "target-fixed-angle-app" : isRelationTarget ? "target-relation-app" : isStepsTarget ? "target-steps-app" : isTranslationTarget ? "target-translation-app" : isReflectionTarget ? "target-reflection-app" : isPointReflectionTarget ? "target-point-reflection-app" : isCircleReflectionTarget ? "target-circle-reflection-app" : isRotationPointTarget ? "target-rotation-app" : isDilationPointTarget ? "target-dilation-app" : isMatrixTransformationTarget ? "target-matrix-app" : isCompositeTransformationTarget ? "target-composite-app" : isTransformationMappingTarget ? "target-mapping-app" : isInvariantsTarget ? "target-invariants-app" : isSymmetryExplorerTarget ? "target-symmetry-app" : isLocusGeneratorTarget ? "target-locus-app" : ""}`}>
+    <div className={`min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.14),transparent_30%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.12),transparent_34%)] ${isDistanceTarget ? "target-distance-app" : isAreaTarget ? "target-area-app" : isAngleTarget ? "target-angle-app" : isFixedAngleTarget ? "target-fixed-angle-app" : isRelationTarget ? "target-relation-app" : isStepsTarget ? "target-steps-app" : isTranslationTarget ? "target-translation-app" : isReflectionTarget ? "target-reflection-app" : isPointReflectionTarget ? "target-point-reflection-app" : isCircleReflectionTarget ? "target-circle-reflection-app" : isRotationPointTarget ? "target-rotation-app" : isDilationPointTarget ? "target-dilation-app" : isMatrixTransformationTarget ? "target-matrix-app" : isCompositeTransformationTarget ? "target-composite-app" : isTransformationMappingTarget ? "target-mapping-app" : isInvariantsTarget ? "target-invariants-app" : isSymmetryExplorerTarget ? "target-symmetry-app" : isLocusGeneratorTarget ? "target-locus-app" : isEquidistantLociTarget ? "target-equidistant-app" : ""}`}>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-2xl focus:bg-slate-950 focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white dark:focus:bg-white dark:focus:text-slate-950"
@@ -540,7 +544,7 @@ export default function AppLayout() {
           <main
             ref={mainContentRef}
             id="main-content"
-              className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircularArcTarget ? "pl-[23px] pr-4" : isCircumcircularArcTarget ? "pl-[6px] pr-3" : isCircularSectorTarget ? "pl-[6px] pr-4" : isConicFiveTarget ? "px-[14px]" : isEllipseTarget ? "pl-[13px] pr-[14px]" : isHyperbolaTarget ? "pl-[9px] pr-4" : isParabolaTarget ? "pl-[23px] pr-[19px]" : isDistanceTarget ? "pl-[17px] pr-4" : isAreaTarget ? "pl-[18px] pr-[11px]" : isAngleTarget ? "pl-[11px] pr-[3px]" : isFixedAngleTarget ? "pl-[12px] pr-[13px]" : isRelationTarget ? "pl-[18px] pr-[17px]" : isStepsTarget ? "pl-[14px] pr-[16px]" : isTranslationTarget ? "pl-[25px] pr-[34px]" : isReflectionTarget ? "px-[19px]" : isPointReflectionTarget ? "pl-[24px] pr-[19px]" : isCircleReflectionTarget ? "pl-[10px] pr-[13px]" : isRotationPointTarget ? "px-[20px]" : isDilationPointTarget ? "pl-[20px] pr-[16px]" : isMatrixTransformationTarget ? "px-[16px]" : isCompositeTransformationTarget ? "px-[12px]" : isTransformationMappingTarget ? "px-[12px]" : isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget ? "px-[10px]" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
+              className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircularArcTarget ? "pl-[23px] pr-4" : isCircumcircularArcTarget ? "pl-[6px] pr-3" : isCircularSectorTarget ? "pl-[6px] pr-4" : isConicFiveTarget ? "px-[14px]" : isEllipseTarget ? "pl-[13px] pr-[14px]" : isHyperbolaTarget ? "pl-[9px] pr-4" : isParabolaTarget ? "pl-[23px] pr-[19px]" : isDistanceTarget ? "pl-[17px] pr-4" : isAreaTarget ? "pl-[18px] pr-[11px]" : isAngleTarget ? "pl-[11px] pr-[3px]" : isFixedAngleTarget ? "pl-[12px] pr-[13px]" : isRelationTarget ? "pl-[18px] pr-[17px]" : isStepsTarget ? "pl-[14px] pr-[16px]" : isTranslationTarget ? "pl-[25px] pr-[34px]" : isReflectionTarget ? "px-[19px]" : isPointReflectionTarget ? "pl-[24px] pr-[19px]" : isCircleReflectionTarget ? "pl-[10px] pr-[13px]" : isRotationPointTarget ? "px-[20px]" : isDilationPointTarget ? "pl-[20px] pr-[16px]" : isMatrixTransformationTarget ? "px-[16px]" : isCompositeTransformationTarget ? "px-[12px]" : isTransformationMappingTarget ? "px-[12px]" : isInvariantsTarget || isSymmetryExplorerTarget || isLocusGeneratorTarget || isEquidistantLociTarget ? "px-[10px]" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
           >
             {!location.pathname.startsWith("/lessons/") && (
               <button

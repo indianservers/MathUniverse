@@ -14,6 +14,7 @@
 | 0302 | 245 Invariants | `measured-triangle-transformation-invariants` | Reworked individually and browser-validated |
 | 0303 | 246 Symmetry Explorer | `draggable-motif-exact-symmetry-tests` | Reworked individually and browser-validated |
 | 0304 | 247 Locus Generator | `anchor-radius-transformed-circle-locus` | Reworked individually and browser-validated |
+| 0305 | 248 Equidistant Loci | `dependent-perpendicular-bisector-equal-distance` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -164,3 +165,16 @@ Evidence:
 
 - `0304-desktop.png`
 - `0304-dedicated-target-validation.json`
+
+## Lesson 248 / Mockup 0305 - Equidistant Loci
+
+Reworked individually against the target mockup with a dedicated `dependent-perpendicular-bisector-equal-distance` object model. The workspace owns draggable endpoints A and B, joint translation, and a signed parameter locating dependent anchor P along the computed perpendicular bisector. It derives midpoint M, unit perpendicular direction, P, AP, BP, absolute distance difference, and the normalized line equation from the same geometry. Dragging either endpoint reconstructs the bisector while retaining P on the new locus; dragging P projects the pointer onto that line, so `AP = BP` remains an actual invariant rather than a displayed claim. Exact A, B and P controls, translation, distance/angle interpretations, grid, axes, labels, tabs, reset, share, fullscreen, object bar, and adjacent navigation are functional. The angle mode interprets the shared symmetry line as the bisector of angle APB.
+
+The practice task uses A(-4,2) and B(2,6). Their midpoint is (-1,4), the slope of AB is 2/3, and the perpendicular-bisector equation is `3x + 2y - 5 = 0`; the four choices are graded against that exact result. Mockup 0305 instead selects `3x + 2y - 2 = 0`, which does not pass through the midpoint. Its worked example for A(-2,1) and B(4,-3) also prints `2y - 3x + 1 = 0`, while the midpoint and perpendicular slope shown in the same card require `2y - 3x + 5 = 0`. The implementation preserves mathematically coherent equations rather than those two constant-term contradictions.
+
+Final 953x1651 browser validation physically drags A and B independently and proves the dependent P retains zero distance difference, drags P along the locus, edits the endpoints and derives the exact practice equation, translates the construction while preserving midpoint dependency and equal distances, exercises grid, axes, labels and angle mode, resets the model, and verifies incorrect and correct challenge paths. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1561 with the target-aligned footer below it.
+
+Evidence:
+
+- `0305-desktop.png`
+- `0305-dedicated-target-validation.json`
