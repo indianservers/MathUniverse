@@ -535,6 +535,163 @@
   color: #7c3aed;
 }
 
+.target-arc-header-action {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  background: #fff;
+  padding: 5px 11px;
+  color: #334155;
+  font-size: 9px;
+  font-weight: 850;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+.target-arc-header-action svg {
+  width: 13px;
+  height: 13px;
+}
+
+.target-arc-header-action select {
+  min-width: 112px;
+  appearance: auto;
+  border: 0;
+  background: transparent;
+  outline: 0;
+  font: inherit;
+}
+
+.target-arc-grid-toggle {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 2;
+  display: inline-flex;
+  height: 31px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+  background: #fff;
+  padding: 5px 10px;
+  color: #334155;
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.target-arc-grid-toggle svg {
+  width: 12px;
+  height: 12px;
+}
+
+.target-arc-zoom {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+.target-arc-zoom:last-child {
+  border-bottom: 0;
+}
+
+.target-arc-zoom svg {
+  width: 13px;
+  height: 13px;
+}
+
+.target-arc-card {
+  height: 218px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #fff;
+  padding: 15px;
+  color: #475569;
+  font-size: 9px;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+.target-arc-card h2 {
+  margin-bottom: 8px;
+  color: #10275f;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.target-arc-step {
+  display: flex;
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.target-arc-step b {
+  display: grid;
+  width: 15px;
+  height: 15px;
+  flex: none;
+  place-items: center;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #334155;
+  font-size: 7px;
+}
+
+.target-arc-formula {
+  margin-top: 14px;
+  border-radius: 7px;
+  background: #eff6ff;
+  padding: 15px;
+  text-align: center;
+  color: #0f172a;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.target-arc-check {
+  margin-top: 4px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+  padding: 7px 25px;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.target-arc-nav {
+  display: flex;
+  height: 49px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #fff;
+  padding: 8px 14px;
+  color: #0f172a;
+  font-size: 9px;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+.target-arc-nav svg {
+  width: 15px;
+  height: 15px;
+  color: #0f4c9a;
+}
+
+.target-arc-nav b {
+  display: block;
+  color: #64748b;
+  font-size: 7px;
+  text-transform: uppercase;
+}
+
 .target-semi-nav {
   display: flex;
   height: 52px;

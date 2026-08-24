@@ -56,6 +56,8 @@ function AppFooter() {
   const isCompassTarget = location.pathname === "/lessons/geometry/221-compass";
   const isSemicircleTarget =
     location.pathname === "/lessons/geometry/222-semicircle";
+  const isCircularArcTarget =
+    location.pathname === "/lessons/geometry/223-circular-arc";
   const isGeneralPolygonTarget =
     location.pathname === "/lessons/geometry/217-general-polygon";
   const isCircleCentreRadiusTarget =
@@ -63,7 +65,7 @@ function AppFooter() {
   const usesTargetCompactFooter =
     isRightTriangleTarget ||
     location.pathname === "/lessons/geometry/205-segment-with-given-length" ||
-    (![
+    (!isCircularArcTarget && ![
       "/lessons/geometry/210-perpendicular-bisector",
       "/lessons/geometry/212-tangent",
       "/lessons/geometry/214-triangle-constructor",
@@ -136,13 +138,13 @@ function AppFooter() {
       </footer>
     );
   }
-  if (isRegularPolygonTarget || isRigidPolygonTarget) {
+  if (isRegularPolygonTarget || isRigidPolygonTarget || isCircularArcTarget) {
     return (
       <footer
-        className={`mx-auto w-full max-w-[1440px] px-5 ${isRigidPolygonTarget ? "h-[120px] pt-1" : "h-[142px] pt-[22px]"}`}
+        className={`mx-auto w-full max-w-[1440px] px-5 ${isRigidPolygonTarget || isCircularArcTarget ? "h-[120px] pt-1" : "h-[142px] pt-[22px]"}`}
         aria-label="Site footer"
       >
-        <div className={`grid grid-cols-[minmax(0,1fr)_auto_250px] items-center gap-5 rounded-lg border border-slate-200 bg-white/80 px-4 shadow-sm ${isRigidPolygonTarget ? "h-[112px]" : "h-[90px]"}`}>
+        <div className={`grid grid-cols-[minmax(0,1fr)_auto_250px] items-center gap-5 rounded-lg border border-slate-200 bg-white/80 px-4 shadow-sm ${isRigidPolygonTarget || isCircularArcTarget ? "h-[112px]" : "h-[90px]"}`}>
           <div className="min-w-0">
             <p className="flex items-center gap-2 text-[10px] font-black text-slate-950">
               <Sparkles className="h-4 w-4 text-cyan-500" /> Math Universe
@@ -276,6 +278,8 @@ export default function AppLayout() {
   const isCompassTarget = location.pathname === "/lessons/geometry/221-compass";
   const isSemicircleTarget =
     location.pathname === "/lessons/geometry/222-semicircle";
+  const isCircularArcTarget =
+    location.pathname === "/lessons/geometry/223-circular-arc";
   const isRigidPolygonTarget =
     location.pathname === "/lessons/geometry/216-rigid-polygon";
   const isGeneralPolygonTarget =
@@ -410,7 +414,7 @@ export default function AppLayout() {
           <main
             ref={mainContentRef}
             id="main-content"
-            className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
+            className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircularArcTarget ? "pl-[23px] pr-4" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
           >
             {!location.pathname.startsWith("/lessons/") && (
               <button

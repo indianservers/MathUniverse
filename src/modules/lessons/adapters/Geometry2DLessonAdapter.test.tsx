@@ -545,6 +545,35 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Orientation"');
   });
 
+  it("renders Circular Arc with a center-radius two-endpoint model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 223)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive circular arc plane with draggable center O and circumference points A and B",
+    );
+    expect(html).toContain('data-testid="circular-arc-path"');
+    expect(html).toContain('data-testid="arc-center-point"');
+    expect(html).toContain('data-testid="arc-start-point"');
+    expect(html).toContain('data-testid="arc-end-point"');
+    expect(html).toContain('aria-label="Center x"');
+    expect(html).toContain('aria-label="Arc radius"');
+    expect(html).toContain('aria-label="Start angle"');
+    expect(html).toContain('aria-label="End angle"');
+    expect(html).toContain("Minor arc");
+    expect(html).toContain("Major arc");
+    expect(html).toContain("s = θ/360° × 2πr");
+    expect(html).toContain('aria-label="Practice arc length"');
+    expect(html).not.toContain('aria-label="Arc angle"');
+    expect(html).not.toContain("Circular arc model");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

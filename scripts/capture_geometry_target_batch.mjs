@@ -4,7 +4,7 @@ import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
 const evidence = path.join(root, "test-evidence", "lesson-ui-upgrade");
-const base = "http://127.0.0.1:2245";
+const base = process.env.LESSON_BASE_URL ?? "http://127.0.0.1:2245";
 const allLessons = [
   [206, 263, "ray", 1031, 1526],
   [207, 264, "polyline", 1024, 1536],
@@ -57,7 +57,7 @@ for (const [id, mockup, slug, width, height] of lessons) {
   });
   page.on("pageerror", (error) => consoleErrors.push(error.message));
   const route = `/lessons/geometry/${id}-${slug}`;
-  await page.goto(`${base}${route}`, { waitUntil: "networkidle" });
+  await page.goto(`${base}${route}`, { waitUntil: "networkidle", timeout: 60_000 });
   const selector = `[data-testid="dynamic-geometry-mockup-${String(mockup).padStart(4, "0")}"]`;
   await page.locator(selector).waitFor({ state: "visible" });
   let status;
@@ -1093,6 +1093,82 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct Thales theorem." })
       .innerText();
+  } else if (id === 223) {
+    const arc = page.locator('[data-testid="circular-arc-path"]');
+    const center = page.locator('[data-testid="arc-center-point"]');
+    const start = page.locator('[data-testid="arc-start-point"]');
+    const end = page.locator('[data-testid="arc-end-point"]');
+    const centerBefore = Number(await center.getAttribute("cx"));
+    const startBeforeCenterDrag = Number(await start.getAttribute("cx"));
+    const endBeforeCenterDrag = Number(await end.getAttribute("cx"));
+    const radiusBeforeCenterDrag = await arc.getAttribute("data-arc-length");
+    const centerBox = await center.boundingBox();
+    if (!centerBox) throw new Error("Circular arc center is not draggable");
+    await page.mouse.move(centerBox.x + centerBox.width / 2, centerBox.y + centerBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(centerBox.x + 34, centerBox.y - 24, { steps: 5 });
+    await page.mouse.up();
+    const centerAfter = Number(await center.getAttribute("cx"));
+    const startAfterCenterDrag = Number(await start.getAttribute("cx"));
+    const endAfterCenterDrag = Number(await end.getAttribute("cx"));
+    if (
+      centerAfter === centerBefore ||
+      Math.abs((centerAfter - centerBefore) - (startAfterCenterDrag - startBeforeCenterDrag)) > 0.1 ||
+      Math.abs((centerAfter - centerBefore) - (endAfterCenterDrag - endBeforeCenterDrag)) > 0.1 ||
+      radiusBeforeCenterDrag !== (await arc.getAttribute("data-arc-length"))
+    ) {
+      throw new Error("Dragging O did not translate the complete arc rigidly");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    const angleBeforeStartDrag = await arc.getAttribute("data-central-angle");
+    const startBox = await start.boundingBox();
+    if (!startBox) throw new Error("Circular arc point A is not draggable");
+    await page.mouse.move(startBox.x + startBox.width / 2, startBox.y + startBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(startBox.x - 30, startBox.y + 34, { steps: 5 });
+    await page.mouse.up();
+    if ((await arc.getAttribute("data-central-angle")) === angleBeforeStartDrag) {
+      throw new Error("Dragging A did not recalculate the central angle");
+    }
+    const angleBeforeEndDrag = await arc.getAttribute("data-central-angle");
+    const endBox = await end.boundingBox();
+    if (!endBox) throw new Error("Circular arc point B is not draggable");
+    await page.mouse.move(endBox.x + endBox.width / 2, endBox.y + endBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(endBox.x + 24, endBox.y - 28, { steps: 5 });
+    await page.mouse.up();
+    if ((await arc.getAttribute("data-central-angle")) === angleBeforeEndDrag) {
+      throw new Error("Dragging B did not recalculate the central angle");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    const initialAngle = Number(await arc.getAttribute("data-central-angle"));
+    const initialLength = Number(await arc.getAttribute("data-arc-length"));
+    await page.getByRole("slider", { name: "Arc radius" }).fill("6");
+    const lengthAtSix = Number(await arc.getAttribute("data-arc-length"));
+    if (Math.abs(lengthAtSix / initialLength - 1.2) > 0.01) {
+      throw new Error("Radius control did not scale arc length proportionally");
+    }
+    await page.getByRole("button", { name: "Major arc" }).click();
+    const majorAngle = Number(await arc.getAttribute("data-central-angle"));
+    if (Math.abs(initialAngle + majorAngle - 360) > 0.01) {
+      throw new Error("Major arc did not use the complementary central angle");
+    }
+    await page.getByRole("button", { name: "Results", exact: true }).click();
+    await page.getByText("Calculated results").waitFor();
+    await page.getByRole("button", { name: "Controls", exact: true }).click();
+    await page.getByRole("button", { name: "Show grid" }).click();
+    await page.getByRole("button", { name: "Hide grid" }).click();
+    await page.getByRole("button", { name: "Zoom in" }).click();
+    await page.getByRole("button", { name: "Zoom out" }).click();
+    await page.getByRole("button", { name: "Fit arc view" }).click();
+    await page.getByRole("combobox", { name: "Lesson language" }).selectOption({ label: "Hindi (हिन्दी)" });
+    await page.getByRole("button", { name: "Hint" }).click();
+    await page.getByRole("textbox", { name: "Practice arc length" }).fill("8");
+    await page.getByRole("button", { name: "Check answer" }).click();
+    await page.getByRole("status").filter({ hasText: "Recheck" }).waitFor();
+    await page.getByRole("textbox", { name: "Practice arc length" }).fill((3 * Math.PI).toFixed(3));
+    await page.getByRole("button", { name: "Check answer" }).click();
+    status = await page.getByRole("status").filter({ hasText: "Correct arc length." }).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

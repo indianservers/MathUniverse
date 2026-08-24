@@ -1,0 +1,15 @@
+[
+  {
+    "id": 223,
+    "mockup": 280,
+    "route": "/lessons/geometry/223-circular-arc",
+    "width": 1024,
+    "height": 1536,
+    "status": "Correct arc length.",
+    "consoleErrors": [],
+    "scrollHeight": 1536,
+    "surfaceBottom": 1407,
+    "objectModel": "center-radius-two-point-circular-arc",
+    "overflowing": 0
+  }
+]
