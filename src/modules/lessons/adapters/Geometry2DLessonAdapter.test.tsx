@@ -574,6 +574,34 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Circular arc model");
   });
 
+  it("renders Circumcircular Arc from three unrestricted points", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 224)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive circumcircular arc through draggable points A B and C",
+    );
+    expect(html).toContain('data-testid="circumarc-circle"');
+    expect(html).toContain('data-testid="circumarc-through-a"');
+    expect(html).toContain('data-testid="circumarc-center"');
+    expect(html).toContain('data-testid="circumarc-point-a"');
+    expect(html).toContain('data-testid="circumarc-point-b"');
+    expect(html).toContain('data-testid="circumarc-point-c"');
+    expect(html).toContain('aria-label="Point A x"');
+    expect(html).toContain('aria-label="Point C y slider"');
+    expect(html).toContain("∠AOC = 2∠ABC");
+    expect(html).toContain('aria-label="Practice arc measure"');
+    expect(html).toContain('aria-label="Practice inscribed angle"');
+    expect(html).not.toContain('aria-label="Central angle"');
+    expect(html).not.toContain("circumArc objects with lesson-specific");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

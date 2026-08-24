@@ -1169,6 +1169,95 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("textbox", { name: "Practice arc length" }).fill((3 * Math.PI).toFixed(3));
     await page.getByRole("button", { name: "Check answer" }).click();
     status = await page.getByRole("status").filter({ hasText: "Correct arc length." }).innerText();
+  } else if (id === 224) {
+    const circle = page.locator('[data-testid="circumarc-circle"]');
+    const arc = page.locator('[data-testid="circumarc-through-a"]');
+    const pointA = page.locator('[data-testid="circumarc-point-a"]');
+    const pointB = page.locator('[data-testid="circumarc-point-b"]');
+    const pointC = page.locator('[data-testid="circumarc-point-c"]');
+    const radiusBefore = await circle.getAttribute("data-radius");
+    const arcBefore = await arc.getAttribute("data-arc-measure");
+    const aBox = await pointA.boundingBox();
+    if (!aBox) throw new Error("Circumcircular point A is not draggable");
+    await page.mouse.move(aBox.x + aBox.width / 2, aBox.y + aBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(aBox.x + 34, aBox.y + 26, { steps: 5 });
+    await page.mouse.up();
+    if (
+      (await circle.getAttribute("data-radius")) === radiusBefore ||
+      (await arc.getAttribute("data-arc-measure")) === arcBefore
+    ) {
+      throw new Error("Dragging A did not rebuild the circumcircle and arc");
+    }
+    const bBefore = await pointB.getAttribute("cx");
+    const bBox = await pointB.boundingBox();
+    if (!bBox) throw new Error("Circumcircular point B is not draggable");
+    await page.mouse.move(bBox.x + bBox.width / 2, bBox.y + bBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(bBox.x + 28, bBox.y - 18, { steps: 5 });
+    await page.mouse.up();
+    if ((await pointB.getAttribute("cx")) === bBefore) {
+      throw new Error("Dragging B did not move the endpoint");
+    }
+    const cBefore = await pointC.getAttribute("cy");
+    const cBox = await pointC.boundingBox();
+    if (!cBox) throw new Error("Circumcircular point C is not draggable");
+    await page.mouse.move(cBox.x + cBox.width / 2, cBox.y + cBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(cBox.x - 20, cBox.y - 25, { steps: 5 });
+    await page.mouse.up();
+    if ((await pointC.getAttribute("cy")) === cBefore) {
+      throw new Error("Dragging C did not move the endpoint");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    await page.getByRole("spinbutton", { name: "Point A x" }).fill("1");
+    await page.getByRole("slider", { name: "Point B y slider" }).fill("-2");
+    await page.getByRole("spinbutton", { name: "Point C x" }).fill("5");
+    for (const label of [
+      "Show center O",
+      "Show radii",
+      "Show central ∠AOC",
+      "Show inscribed ∠ABC",
+    ]) {
+      const toggle = page.getByRole("checkbox", { name: label });
+      await toggle.uncheck({ force: true });
+      await toggle.check({ force: true });
+    }
+    await page.getByRole("button", { name: "Toggle triangle segments" }).click();
+    await page.getByRole("button", { name: "Toggle triangle segments" }).click();
+    await page.getByRole("button", { name: "Toggle circumcircle" }).click();
+    await page.getByRole("button", { name: "Toggle circumcircle" }).click();
+    const grid = page.getByRole("checkbox", { name: "Circumcircle grid" });
+    await grid.check();
+    await grid.uncheck();
+    await page.getByRole("button", { name: "Remove point C" }).click();
+    if ((await page.locator('[data-testid="circumarc-circle"]').count()) !== 0) {
+      throw new Error("Removing A did not invalidate the circumcircle");
+    }
+    await page
+      .getByRole("img", {
+        name: "Interactive circumcircular arc through draggable points A B and C",
+      })
+      .click({ position: { x: 290, y: 115 } });
+    await page.locator('[data-testid="circumarc-circle"]').waitFor();
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    await page.getByRole("button", { name: "Replay Steps" }).click();
+    await page.getByRole("button", { name: "Replay Steps" }).waitFor({ timeout: 5_000 });
+    await page
+      .getByRole("combobox", { name: "Circumcircular arc language" })
+      .selectOption({ label: "Hindi (हिन्दी)" });
+    await page.getByRole("textbox", { name: "Practice arc measure" }).fill("100");
+    await page.getByRole("textbox", { name: "Practice inscribed angle" }).fill("70");
+    await page.getByRole("button", { name: "Check relationship" }).click();
+    await page.getByRole("status").filter({ hasText: "divide the arc by 2" }).waitFor();
+    await page.getByRole("textbox", { name: "Practice arc measure" }).fill("120");
+    await page.getByRole("textbox", { name: "Practice inscribed angle" }).fill("60");
+    await page.getByRole("button", { name: "Check relationship" }).click();
+    status = await page.getByRole("status").filter({ hasText: "Well done!" }).innerText();
+    await page.getByRole("button", { name: "New Challenge" }).click();
+    if ((await page.getByRole("textbox", { name: "Practice arc measure" }).inputValue()) !== "80.00") {
+      throw new Error("New Challenge did not load a new theorem target");
+    }
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());
@@ -1230,7 +1319,7 @@ console.log(
         (row) =>
           row.consoleErrors.length ||
           row.overflowing ||
-          !row.status.match(/Construction verified\.|Correct/i),
+          !row.status.match(/Construction verified\.|Correct|Well done!/i),
       ).length,
       results,
     },

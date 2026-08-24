@@ -1,0 +1,15 @@
+[
+  {
+    "id": 224,
+    "mockup": 281,
+    "route": "/lessons/geometry/224-circumcircular-arc",
+    "width": 1013,
+    "height": 1553,
+    "status": "Well done! Arc ≈ 120° and ∠ABC ≈ 60°.",
+    "consoleErrors": [],
+    "scrollHeight": 1553,
+    "surfaceBottom": 1440,
+    "objectModel": "three-point-circumcircle-arc",
+    "overflowing": 0
+  }
+]

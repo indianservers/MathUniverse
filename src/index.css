@@ -692,6 +692,216 @@
   text-transform: uppercase;
 }
 
+.target-circ-header-action {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+  background: #fff;
+  padding: 5px 10px;
+  color: #334155;
+  font-size: 8px;
+  font-weight: 850;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+.target-circ-header-action svg {
+  width: 13px;
+  height: 13px;
+}
+
+.target-circ-header-action select {
+  min-width: 110px;
+  appearance: auto;
+  border: 0;
+  background: transparent;
+  outline: 0;
+  font: inherit;
+}
+
+.target-circ-icon {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+  background: #fff;
+}
+
+.target-circ-icon svg {
+  width: 13px;
+  height: 13px;
+}
+
+.target-circ-tool {
+  display: grid;
+  width: 36px;
+  height: 34px;
+  place-items: center;
+  border-right: 1px solid #e2e8f0;
+  background: #fff;
+  color: #475569;
+}
+
+.target-circ-tool:last-child {
+  border-right: 0;
+}
+
+.target-circ-tool.is-active {
+  border: 1px solid #0ea5e9;
+  background: #eff6ff;
+  color: #0369a1;
+}
+
+.target-circ-tool svg {
+  width: 14px;
+  height: 14px;
+}
+
+.target-circ-card {
+  height: 257px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #fff;
+  padding: 13px;
+  color: #475569;
+  font-size: 8px;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+.target-circ-card h2 {
+  margin-bottom: 8px;
+  color: #172554;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.target-circ-step {
+  display: flex;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.target-circ-step b {
+  display: grid;
+  width: 15px;
+  height: 15px;
+  flex: none;
+  place-items: center;
+  border-radius: 999px;
+  background: #1685c9;
+  color: #fff;
+  font-size: 7px;
+}
+
+.target-circ-replay,
+.target-circ-new {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  background: #fff;
+  padding: 7px;
+  color: #334155;
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.target-circ-replay {
+  margin-top: 14px;
+}
+
+.target-circ-new {
+  margin-top: 7px;
+}
+
+.target-circ-replay svg,
+.target-circ-new svg {
+  width: 12px;
+  height: 12px;
+}
+
+.target-circ-formula {
+  margin-top: 16px;
+  border-radius: 7px;
+  background: #eff6ff;
+  padding: 12px;
+  text-align: center;
+  color: #172554;
+  font-family: Georgia, serif;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.target-circ-check {
+  margin-top: 7px;
+  border-radius: 6px;
+  background: #1685c9;
+  padding: 5px 10px;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 900;
+}
+
+#circ-practice {
+  padding: 10px 13px;
+}
+
+#circ-practice h2 {
+  margin-bottom: 4px;
+}
+
+#circ-practice .mt-3,
+#circ-practice .mt-2 {
+  margin-top: 4px;
+}
+
+#circ-practice .target-circ-check {
+  margin-top: 4px;
+  padding-block: 4px;
+}
+
+#circ-practice .target-circ-new {
+  margin-top: 4px;
+  padding-block: 5px;
+}
+
+.target-circ-nav {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #fff;
+  padding: 8px 14px;
+  color: #0f172a;
+  font-size: 9px;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+.target-circ-nav svg {
+  width: 15px;
+  height: 15px;
+  color: #075baa;
+}
+
+.target-circ-nav b {
+  display: block;
+  color: #64748b;
+  font-size: 7px;
+  text-transform: uppercase;
+}
+
 .target-semi-nav {
   display: flex;
   height: 52px;
