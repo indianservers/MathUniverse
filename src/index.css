@@ -4265,6 +4265,776 @@
   width: 14px;
 }
 
+@media (min-width: 960px) and (max-width: 1279px) {
+  .target-distance-app [data-testid="desktop-sidebar"] {
+    width: 210px;
+  }
+}
+
+.target-distance-app > .app-layout-rail > div > header {
+  height: 54px;
+  padding: 6px 24px;
+}
+
+.target-distance-app > .app-layout-rail > div > header > div {
+  height: 41px;
+}
+
+.target-distance-app > .app-layout-rail > div > header > div > div:nth-child(2) p:first-child {
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.target-distance-app > .app-layout-rail > div > header > div > div:nth-child(2) p:last-child {
+  font-size: 8px;
+  line-height: 11px;
+}
+
+.target-distance-app > .app-layout-rail > div > header button {
+  min-height: 32px !important;
+  height: 32px;
+}
+
+.target-distance-app [data-testid="desktop-sidebar"] > div {
+  padding: 10px 10px 80px;
+}
+
+.target-distance-app [data-testid="desktop-sidebar"] > div > div:first-of-type {
+  min-height: 61px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  padding: 7px;
+}
+
+.target-distance-app [data-testid="desktop-sidebar"] > div > div:first-of-type > button:first-child {
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.target-distance-app [data-testid="desktop-sidebar"] > div > div:first-of-type > button:last-child {
+  width: 27px;
+  height: 27px;
+}
+
+.target-distance-app [data-testid="desktop-sidebar"] > div > div:first-of-type p:first-child {
+  font-size: 14px;
+}
+
+.target-distance-app [data-testid="desktop-sidebar"] > div > div:first-of-type p:last-child {
+  font-size: 8px;
+}
+
+.target-distance-page {
+  margin-top: -7px;
+  letter-spacing: 0;
+}
+
+.target-distance-header,
+.target-distance-stages,
+.target-distance-workspace,
+.target-distance-learning > article,
+.target-distance-practice,
+.target-distance-nav,
+.target-distance-nav > a {
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 0.94);
+  box-shadow: 0 1px 5px rgb(15 23 42 / 0.04);
+}
+
+.target-distance-header {
+  display: grid;
+  height: 149px;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: 20px;
+  padding: 16px;
+}
+
+.target-distance-header > div > span {
+  display: inline-block;
+  border-radius: 999px;
+  background: #e9f6ff;
+  padding: 4px 9px;
+  color: #0872b8;
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.target-distance-header h1 {
+  margin-top: 10px;
+  color: #172554;
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.target-distance-header > div > p {
+  margin-top: 8px;
+  color: #475569;
+  font-size: 10px;
+}
+
+.target-distance-header > div > section {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.target-distance-header > div > section b {
+  display: flex;
+  height: 28px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 0 9px;
+  color: #334155;
+  font-size: 7px;
+}
+
+.target-distance-header > div > section svg {
+  width: 11px;
+}
+
+.target-distance-header > aside {
+  position: relative;
+  border-left: 1px solid #e2e8f0;
+  padding-left: 20px;
+}
+
+.target-distance-header > aside h2 {
+  color: #172554;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.target-distance-header > aside p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  color: #475569;
+  font-size: 8px;
+}
+
+.target-distance-header > aside p svg {
+  width: 11px;
+  color: #475569;
+}
+
+.target-distance-header > aside button {
+  display: flex;
+  height: 29px;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 0 10px;
+  color: #334155;
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.target-distance-header > aside button svg {
+  width: 12px;
+}
+
+.target-distance-header > aside > div {
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  z-index: 4;
+  width: 235px;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  background: #f0f9ff;
+  padding: 8px;
+  color: #334155;
+  font-size: 7px;
+}
+
+.target-distance-stages {
+  display: grid;
+  height: 58px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.target-distance-stages button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-right: 1px solid #e2e8f0;
+  color: #172554;
+  text-align: left;
+}
+
+.target-distance-stages button:last-child {
+  border-right: 0;
+}
+
+.target-distance-stages button i {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 50%;
+  color: #334155;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 850;
+}
+
+.target-distance-stages button i svg {
+  width: 12px;
+}
+
+.target-distance-stages button b,
+.target-distance-stages button small {
+  display: block;
+}
+
+.target-distance-stages button b {
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.target-distance-stages button small {
+  margin-top: 3px;
+  color: #64748b;
+  font-size: 7px;
+}
+
+.target-distance-stages button.is-active {
+  margin: 3px;
+  border: 0;
+  border-radius: 8px;
+  background: #0ca9be;
+  color: #fff;
+  box-shadow: 0 4px 12px rgb(14 165 183 / 0.28);
+}
+
+.target-distance-stages button.is-active i,
+.target-distance-stages button.is-active small {
+  color: #fff;
+}
+
+.target-distance-workspace {
+  display: grid;
+  height: 565px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  margin-top: 14px;
+  overflow: hidden;
+}
+
+.target-distance-plane {
+  display: grid;
+  min-width: 0;
+  grid-template-rows: 57px 421px 87px;
+  border-right: 1px solid #e2e8f0;
+  padding: 0 14px 0 19px;
+}
+
+.target-distance-plane > header,
+.target-distance-measurement > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.target-distance-plane h2,
+.target-distance-measurement h2,
+.target-distance-learning h2,
+.target-distance-practice h2 {
+  color: #172554;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.target-distance-plane > header > div {
+  display: flex;
+  gap: 8px;
+}
+
+.target-distance-plane > header label,
+.target-distance-plane > header button,
+.target-distance-measurement > header label {
+  display: flex;
+  height: 29px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 0 9px;
+  color: #334155;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.target-distance-plane > header select,
+.target-distance-measurement > header select {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.target-distance-plane > header button svg {
+  width: 11px;
+}
+
+.target-distance-plane > svg {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+  touch-action: none;
+}
+
+.target-distance-plane > footer {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.target-distance-plane > footer button {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  gap: 5px;
+  border-bottom: 2px solid transparent;
+  padding: 0 7px;
+  color: #475569;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.target-distance-plane > footer button.is-active {
+  border-bottom-color: #168ddd;
+  color: #0872b8;
+}
+
+.target-distance-plane > footer button:last-child {
+  margin-left: auto;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+}
+
+.target-distance-plane > footer svg {
+  width: 11px;
+}
+
+.target-distance-measurement {
+  min-width: 0;
+  padding: 0 16px;
+}
+
+.target-distance-measurement > header {
+  height: 55px;
+}
+
+.target-distance-coordinate {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 9px 3px 15px;
+}
+
+.target-distance-coordinate h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #0b8fa5;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.target-distance-coordinate:nth-of-type(3) h3 {
+  color: #7438e5;
+}
+
+.target-distance-coordinate h3 i {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+}
+
+.target-distance-coordinate > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 35px;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.target-distance-coordinate label {
+  color: #334155;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.target-distance-coordinate input {
+  width: 100%;
+  height: 35px;
+  margin-top: 5px;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+  padding: 0 8px;
+  color: #172554;
+  font-size: 10px;
+}
+
+.target-distance-coordinate button {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  place-items: center;
+  align-self: end;
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+  color: #52627a;
+}
+
+.target-distance-coordinate button svg {
+  width: 13px;
+}
+
+.target-distance-result {
+  display: grid;
+  height: 74px;
+  margin-top: 10px;
+  place-items: center;
+  border: 1px solid #cfe0ee;
+  border-radius: 7px;
+  background: #f5faff;
+  padding: 9px;
+  color: #334155;
+  text-align: center;
+}
+
+.target-distance-result b {
+  font-size: 9px;
+}
+
+.target-distance-result strong {
+  color: #172554;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.target-distance-result small {
+  font-size: 9px;
+}
+
+.target-distance-measurement > button {
+  display: flex;
+  width: 100%;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 9px;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  color: #334155;
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.target-distance-measurement > button svg {
+  width: 11px;
+}
+
+.target-distance-components {
+  margin-top: 9px;
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+  padding: 11px;
+  color: #334155;
+  font-size: 8px;
+}
+
+.target-distance-components > b {
+  display: block;
+  margin-bottom: 9px;
+  color: #475569;
+}
+
+.target-distance-components p {
+  margin-top: 7px;
+  color: #0891b2;
+  font-weight: 800;
+}
+
+.target-distance-components p:nth-of-type(2) {
+  color: #7438e5;
+}
+
+.target-distance-components strong {
+  display: block;
+  margin-top: 10px;
+  color: #172554;
+  line-height: 1.5;
+}
+
+.target-distance-learning {
+  display: grid;
+  height: 210px;
+  grid-template-columns: 1fr 1fr 1.07fr;
+  gap: 12px;
+  margin-top: 11px;
+}
+
+.target-distance-learning > article {
+  min-width: 0;
+  padding: 13px;
+  color: #475569;
+  font-size: 8px;
+}
+
+.target-distance-learning article > p {
+  margin-top: 9px;
+  line-height: 1.45;
+}
+
+.target-distance-learning article:first-child > svg {
+  width: 100%;
+  height: 122px;
+  margin-top: 5px;
+}
+
+.target-distance-learning article:nth-child(2) > strong {
+  display: block;
+  margin-top: 13px;
+  color: #172554;
+}
+
+.target-distance-learning article:nth-child(2) > output {
+  display: block;
+  margin-top: 13px;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  background: #f0f9ff;
+  padding: 9px;
+  color: #334155;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.target-distance-learning article:last-child > div {
+  margin-top: 16px;
+  border: 1px solid #d8b4fe;
+  border-radius: 7px;
+  background: #faf5ff;
+  padding: 17px 8px;
+  color: #172554;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.target-distance-learning article:last-child > strong {
+  display: block;
+  margin-top: 12px;
+  color: #172554;
+}
+
+.target-distance-practice {
+  height: 245px;
+  margin-top: 11px;
+  overflow: hidden;
+  padding: 11px 14px;
+}
+
+.target-distance-practice > header {
+  display: flex;
+  height: 38px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.target-distance-practice > header p {
+  margin-top: 3px;
+  color: #64748b;
+  font-size: 7px;
+}
+
+.target-distance-practice > header > div:last-child {
+  display: flex;
+  gap: 9px;
+}
+
+.target-distance-practice > header span,
+.target-distance-practice > header button {
+  display: flex;
+  height: 29px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 0 10px;
+  color: #7438e5;
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.target-distance-practice > header button {
+  color: #168ddd;
+}
+
+.target-distance-practice > header svg {
+  width: 11px;
+}
+
+.target-distance-practice > div {
+  display: grid;
+  height: 181px;
+  grid-template-columns: 1.35fr 0.7fr 0.72fr 0.88fr;
+  gap: 11px;
+}
+
+.target-distance-practice > div > svg,
+.target-distance-practice > div > section {
+  min-width: 0;
+  height: 181px;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+}
+
+.target-distance-practice > div > svg {
+  width: 100%;
+  touch-action: none;
+}
+
+.target-distance-practice > div > section {
+  padding: 10px;
+  color: #475569;
+  font-size: 8px;
+}
+
+.target-distance-practice h3 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #172554;
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.target-distance-practice h3 b {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border-radius: 5px;
+  background: #eaf4ff;
+  color: #0872b8;
+}
+
+.target-distance-practice > div > section:nth-child(3) h3 b,
+.target-distance-practice > div > section:nth-child(4) h3 b {
+  background: #e6f8f8;
+  color: #0b8fa5;
+}
+
+.target-distance-practice > div > section > p {
+  min-height: 48px;
+  margin-top: 10px;
+  line-height: 1.45;
+}
+
+.target-distance-practice > div > section > label {
+  display: block;
+  color: #334155;
+  font-size: 7px;
+}
+
+.target-distance-practice > div > section > label span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+}
+
+.target-distance-practice input[type="number"] {
+  min-width: 0;
+  width: 70px;
+  height: 32px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 0 8px;
+}
+
+.target-distance-practice section > small {
+  display: block;
+  margin-top: 8px;
+}
+
+.target-distance-practice section:nth-child(3) output {
+  display: inline-grid;
+  min-width: 72px;
+  height: 32px;
+  margin: 7px 5px 0 0;
+  place-items: center;
+  border: 1px solid #a7f3d0;
+  border-radius: 6px;
+  background: #ecfdf5;
+  color: #172554;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.target-distance-reflect > p {
+  min-height: auto !important;
+}
+
+.target-distance-reflect > label {
+  display: flex !important;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.target-distance-reflect input {
+  accent-color: #0ea5e9;
+}
+
+.target-distance-nav {
+  display: grid;
+  height: 61px;
+  grid-template-columns: 120px 120px;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 7px;
+  padding: 5px;
+}
+
+.target-distance-nav > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 9px;
+  color: #172554;
+  font-size: 8px;
+}
+
+.target-distance-nav > a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.target-distance-nav b {
+  display: block;
+  color: #64748b;
+  font-size: 6px;
+  text-transform: uppercase;
+}
+
+.target-distance-nav svg {
+  width: 13px;
+}
+
 .target-semi-nav {
   display: flex;
   height: 52px;

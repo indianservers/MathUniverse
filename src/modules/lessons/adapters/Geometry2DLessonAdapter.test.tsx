@@ -731,6 +731,36 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Dedicated parabola objects");
   });
 
+  it("renders Distance Length from two editable coordinate endpoints", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 230)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Coordinate plane with draggable distance endpoints A and B",
+    );
+    expect(html).toContain('data-object-model="two-endpoint-coordinate-distance"');
+    expect(html).toContain('data-testid="distance-segment"');
+    expect(html).toContain('data-distance="7.810250"');
+    expect(html).toContain('data-testid="distance-point-a"');
+    expect(html).toContain('data-testid="distance-point-b"');
+    expect(html).toContain('data-testid="distance-delta-x"');
+    expect(html).toContain('data-testid="distance-delta-y"');
+    expect(html).toContain('aria-label="Point A x coordinate"');
+    expect(html).toContain('aria-label="Point B y coordinate"');
+    expect(html).toContain(
+      "Practice coordinate plane with draggable points P and Q",
+    );
+    expect(html).toContain("AB = √(6² + 5²) = √61");
+    expect(html).not.toContain("Delta x");
+    expect(html).not.toContain("Dedicated distance objects");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

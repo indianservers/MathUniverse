@@ -1579,6 +1579,104 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("spinbutton", { name: "Practice parabola focus y" }).fill("3");
     await page.getByRole("button", { name: "Check", exact: true }).click();
     status = await page.getByRole("status").filter({ hasText: "Construction correct." }).innerText();
+  } else if (id === 230) {
+    const segment = page.locator('[data-testid="distance-segment"]');
+    const pointA = page.locator('[data-testid="distance-point-a"]');
+    const pointB = page.locator('[data-testid="distance-point-b"]');
+    const initialDistance = await segment.getAttribute("data-distance");
+    if (initialDistance !== "7.810250") {
+      throw new Error(`Distance initial model was ${initialDistance}, expected sqrt(61)`);
+    }
+    const aBox = await pointA.boundingBox();
+    if (!aBox) throw new Error("Distance point A is not draggable");
+    await page.mouse.move(aBox.x + aBox.width / 2, aBox.y + aBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(aBox.x + 28, aBox.y - 18, { steps: 6 });
+    await page.mouse.up();
+    if ((await segment.getAttribute("data-distance")) === initialDistance) {
+      throw new Error("Dragging point A did not recalculate distance");
+    }
+    const afterA = await segment.getAttribute("data-distance");
+    const bBox = await pointB.boundingBox();
+    if (!bBox) throw new Error("Distance point B is not draggable");
+    await page.mouse.move(bBox.x + bBox.width / 2, bBox.y + bBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(bBox.x - 24, bBox.y + 20, { steps: 6 });
+    await page.mouse.up();
+    if ((await segment.getAttribute("data-distance")) === afterA) {
+      throw new Error("Dragging point B did not recalculate distance");
+    }
+    await page.getByRole("spinbutton", { name: "Point A x coordinate" }).fill("-3");
+    await page.getByRole("spinbutton", { name: "Point A y coordinate" }).fill("-1");
+    await page.getByRole("spinbutton", { name: "Point B x coordinate" }).fill("3");
+    await page.getByRole("spinbutton", { name: "Point B y coordinate" }).fill("3");
+    if ((await segment.getAttribute("data-distance")) !== "7.211103") {
+      throw new Error("Exact endpoint editors did not produce sqrt(52)");
+    }
+    await page.getByRole("button", { name: "Reset Point A" }).click();
+    await page.getByRole("button", { name: "Reset Point B" }).click();
+    await page.getByRole("combobox", { name: "Distance units" }).selectOption("cm");
+    if (!(await page.locator('[data-testid="distance-primary-value"]').innerText()).includes("78.10")) {
+      throw new Error("Distance unit conversion did not update");
+    }
+    await page.getByRole("combobox", { name: "Distance units" }).selectOption("units");
+    await page.getByRole("button", { name: "Show Δx, Δy" }).click();
+    if ((await page.locator('[data-testid="distance-component-guides"]').count()) !== 0) {
+      throw new Error("Component toggle did not hide the guides");
+    }
+    await page.getByRole("button", { name: "Show Δx, Δy" }).click();
+    await page.getByRole("button", { name: "Midpoint", exact: true }).click();
+    await page.locator('[data-testid="distance-midpoint"]').waitFor();
+    await page.getByRole("button", { name: "Perpendicular", exact: true }).click();
+    if ((await page.locator('[data-testid="distance-perpendicular"]').count()) !== 1) {
+      throw new Error("Perpendicular tool did not add its construction");
+    }
+    await page.getByRole("button", { name: "Point", exact: true }).click();
+    if ((await page.locator('[data-testid="distance-point-a"]').count()) !== 0) {
+      throw new Error("Point construction mode did not start a new point pair");
+    }
+    const plane = page.getByRole("img", { name: "Coordinate plane with draggable distance endpoints A and B" });
+    await plane.click({ position: { x: 120, y: 275 } });
+    await plane.click({ position: { x: 325, y: 145 } });
+    if ((await page.locator('[data-testid="distance-point-b"]').count()) !== 1) {
+      throw new Error("Point tool did not construct two endpoints");
+    }
+    await page.getByRole("button", { name: "Clear", exact: true }).click();
+    if ((await page.locator('[data-testid="distance-segment"]').count()) !== 0) {
+      throw new Error("Clear did not remove the measured segment");
+    }
+    await page.getByRole("button", { name: "Reset Point A" }).click();
+    await page.getByRole("button", { name: "Reset Point B" }).click();
+    await page.getByRole("combobox", { name: "Distance grid spacing" }).selectOption("2");
+    await page.getByRole("button", { name: "Reset view" }).click();
+    if ((await page.getByRole("combobox", { name: "Distance grid spacing" }).inputValue()) !== "1") {
+      throw new Error("Reset view did not restore unit grid spacing");
+    }
+    await page.getByRole("button", { name: "Quick reference" }).click();
+    await page.getByRole("note").waitFor();
+    await page.getByRole("button", { name: /2 Manipulate Change it/ }).click();
+    const practicePoint = page.locator('[data-testid="practice-distance-point-p"]');
+    const practiceBefore = await practicePoint.getAttribute("data-x");
+    const practiceDistanceBefore = await page.locator('[data-testid="practice-distance-value"]').innerText();
+    const practiceBox = await practicePoint.boundingBox();
+    if (!practiceBox) throw new Error("Practice distance point P is not draggable");
+    await page.mouse.move(practiceBox.x + practiceBox.width / 2, practiceBox.y + practiceBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(practiceBox.x + 22, practiceBox.y - 15, { steps: 5 });
+    await page.mouse.up();
+    if ((await practicePoint.getAttribute("data-x")) === practiceBefore ||
+        (await page.locator('[data-testid="practice-distance-value"]').innerText()) === practiceDistanceBefore) {
+      throw new Error("Dragging practice P did not update the exact distance");
+    }
+    await page.getByRole("spinbutton", { name: "Distance estimate" }).fill("1");
+    await page.getByRole("radio", { name: "Very close (±0.5)" }).check();
+    await page.getByRole("status").filter({ hasText: "Reconsider how close" }).waitFor();
+    const challengeBefore = await page.locator('[data-testid="practice-distance-value"]').innerText();
+    await page.getByRole("button", { name: "New challenge" }).click();
+    if ((await page.locator('[data-testid="practice-distance-value"]').innerText()) === challengeBefore) {
+      throw new Error("New challenge did not replace the practice point pair");
+    }
+    status = "Correct two-endpoint distance model and independent practice.";
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());
