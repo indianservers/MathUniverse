@@ -46,10 +46,14 @@ function AppFooter() {
   const location = useLocation();
   const isRightTriangleTarget =
     location.pathname === "/lessons/trigonometry/259-right-triangle-ratios";
+  const isTangentTarget = location.pathname === "/lessons/geometry/212-tangent";
   const usesTargetCompactFooter =
     isRightTriangleTarget ||
     location.pathname === "/lessons/geometry/205-segment-with-given-length" ||
-    (location.pathname !== "/lessons/geometry/210-perpendicular-bisector" &&
+    (![
+      "/lessons/geometry/210-perpendicular-bisector",
+      "/lessons/geometry/212-tangent",
+    ].includes(location.pathname) &&
       /^\/lessons\/geometry\/2(?:0[6-9]|[12][0-9]|3[0-5])-/.test(
         location.pathname,
       ));
@@ -116,7 +120,7 @@ function AppFooter() {
   }
   return (
     <footer
-      className={`mx-auto w-full max-w-[1440px] px-3 sm:px-4 md:px-5 ${isRightTriangleTarget ? "py-1" : ultraCompact ? "py-1.5" : compact ? "py-[9px]" : "py-[22px]"}`}
+      className={`mx-auto w-full max-w-[1440px] px-3 sm:px-4 md:px-5 ${isRightTriangleTarget ? "py-1" : isTangentTarget ? "py-[10px]" : ultraCompact ? "py-1.5" : compact ? "py-[9px]" : "py-[22px]"}`}
       aria-label="Site footer"
     >
       <div

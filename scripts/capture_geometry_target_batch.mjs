@@ -274,6 +274,52 @@ for (const [id, mockup, slug, width, height] of lessons) {
       throw new Error("New Angle did not change the practice model");
     }
     status = `Correct: ${await page.getByRole("status").filter({ hasText: "The two angles are equal" }).innerText()}`;
+  } else if (id === 212) {
+    const pointT = page.locator('[data-testid="tangent-point-t"]');
+    const xBeforeDrag = await pointT.getAttribute("cx");
+    const pointBox = await pointT.boundingBox();
+    if (!pointBox) throw new Error("Tangent point T is not draggable");
+    await page.mouse.move(
+      pointBox.x + pointBox.width / 2,
+      pointBox.y + pointBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(pointBox.x + 90, pointBox.y + 45, { steps: 5 });
+    await page.mouse.up();
+    if ((await pointT.getAttribute("cx")) === xBeforeDrag) {
+      throw new Error("Tangent drag did not update point T");
+    }
+    await page.getByRole("switch", { name: "Snap to circle" }).uncheck();
+    const yBeforeFreeDrag = await pointT.getAttribute("cy");
+    const movedBox = await pointT.boundingBox();
+    if (!movedBox) throw new Error("Free tangent point is missing");
+    await page.mouse.move(
+      movedBox.x + movedBox.width / 2,
+      movedBox.y + movedBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(movedBox.x + 35, movedBox.y + 28, { steps: 4 });
+    await page.mouse.up();
+    if ((await pointT.getAttribute("cy")) === yBeforeFreeDrag) {
+      throw new Error("Free tangent drag did not update point T");
+    }
+    await page.getByRole("switch", { name: "Show secant line" }).check();
+    await page.getByRole("switch", { name: "Show grid" }).uncheck();
+    await page.getByRole("button", { name: "Zoom in" }).click();
+    await page.getByRole("button", { name: "Zoom out" }).click();
+    await page.getByRole("button", { name: "Reset view" }).click();
+    const practiceBefore = await page
+      .getByRole("img", { name: /Practice tangent position/ })
+      .getAttribute("aria-label");
+    await page.getByRole("button", { name: "New Position" }).click();
+    const practiceAfter = await page
+      .getByRole("img", { name: /Practice tangent position/ })
+      .getAttribute("aria-label");
+    if (practiceBefore === practiceAfter) {
+      throw new Error("New Position did not update tangent practice");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    status = `Correct: ${await page.getByRole("status").filter({ hasText: "The tangent is perpendicular" }).innerText()}`;
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

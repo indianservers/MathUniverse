@@ -393,6 +393,31 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Ray length"');
   });
 
+  it("renders Tangent with a constrained circle-contact dependency model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 212)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive tangent circle with draggable center O and contact point T",
+    );
+    expect(html).toContain('data-testid="tangent-center-o"');
+    expect(html).toContain('data-testid="tangent-point-t"');
+    expect(html).toContain('aria-label="Snap to circle"');
+    expect(html).toContain('aria-label="Show secant line"');
+    expect(html).toContain("Distance from O to");
+    expect(html).toContain("Angle ∠OTℓ");
+    expect(html).toContain("Power (point O to");
+    expect(html).toContain("New Position");
+    expect(html).not.toContain('aria-label="Contact angle"');
+    expect(html).not.toContain('aria-label="Radius"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",
