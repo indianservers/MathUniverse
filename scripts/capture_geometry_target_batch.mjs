@@ -320,6 +320,63 @@ for (const [id, mockup, slug, width, height] of lessons) {
     }
     await page.getByRole("button", { name: "Reset", exact: true }).click();
     status = `Correct: ${await page.getByRole("status").filter({ hasText: "The tangent is perpendicular" }).innerText()}`;
+  } else if (id === 213) {
+    const point = page.locator('[data-testid="best-fit-point-0"]');
+    const xBeforeDrag = await point.getAttribute("cx");
+    const pointBox = await point.boundingBox();
+    if (!pointBox) throw new Error("Regression observation is not draggable");
+    await page.mouse.move(
+      pointBox.x + pointBox.width / 2,
+      pointBox.y + pointBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(pointBox.x + 30, pointBox.y - 22, { steps: 4 });
+    await page.mouse.up();
+    if ((await point.getAttribute("cx")) === xBeforeDrag) {
+      throw new Error("Regression point drag did not update observation");
+    }
+    const intercept = page.getByRole("slider", { name: "b (y-intercept)" });
+    const bBeforeLineDrag = await intercept.inputValue();
+    const line = page.locator('[data-testid="best-fit-draggable-line"]');
+    const lineBox = await line.boundingBox();
+    if (!lineBox) throw new Error("Regression line is not draggable");
+    await page.mouse.move(
+      lineBox.x + lineBox.width / 2,
+      lineBox.y + lineBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(lineBox.x + lineBox.width / 2, lineBox.y - 28, {
+      steps: 4,
+    });
+    await page.mouse.up();
+    if ((await intercept.inputValue()) === bBeforeLineDrag) {
+      throw new Error("Regression line drag did not update intercept");
+    }
+    await page.getByRole("slider", { name: "m (slope)" }).fill("0.5");
+    await intercept.fill("1");
+    for (const label of ["Best-fit line", "Residuals", "Equation"]) {
+      const control = page.getByRole("checkbox", { name: label });
+      await control.uncheck();
+      await control.check();
+    }
+    await page.getByRole("button", { name: "Bookmark lesson" }).click();
+    await page.getByRole("button", { name: "Fit least squares line" }).click();
+    await page.getByRole("button", { name: "Check my line" }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct: least-squares" })
+      .innerText();
+    const oldSlope = await page
+      .getByRole("slider", { name: "m (slope)" })
+      .inputValue();
+    await page.getByRole("button", { name: "New challenge" }).click();
+    if (
+      (await page.getByRole("slider", { name: "m (slope)" }).inputValue()) ===
+      oldSlope
+    ) {
+      throw new Error("New challenge did not update the regression dataset");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

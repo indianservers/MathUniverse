@@ -26,6 +26,7 @@ import ParallelLineTargetLesson from "./ParallelLineTargetLesson209";
 import PerpendicularBisectorTargetLesson from "./PerpendicularBisectorTargetLesson210";
 import AngleBisectorTargetLesson from "./AngleBisectorTargetLesson211";
 import TangentTargetLesson from "./TangentTargetLesson212";
+import BestFitLineTargetLesson from "./BestFitLineTargetLesson213";
 import RayTargetLesson from "./RayTargetLesson206";
 
 type Kind =
@@ -535,8 +536,7 @@ function named(id: number) {
     <DedicatedGeometrySurface {...props} spec={specs[id]} />
   );
 }
-export const BestFitLineTargetLesson = named(213),
-  TriangleConstructorTargetLesson = named(214),
+export const TriangleConstructorTargetLesson = named(214),
   RegularPolygonTargetLesson = named(215),
   RigidPolygonTargetLesson = named(216),
   GeneralPolygonTargetLesson = named(217),

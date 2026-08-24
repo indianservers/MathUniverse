@@ -418,6 +418,30 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Radius"');
   });
 
+  it("renders Best Fit Line with draggable data and least-squares statistics", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 213)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive least-squares scatterplot with draggable observations and line",
+    );
+    expect(html).toContain('data-testid="best-fit-point-0"');
+    expect(html).toContain('data-testid="best-fit-draggable-line"');
+    expect(html).toContain('aria-label="m (slope)"');
+    expect(html).toContain('aria-label="b (y-intercept)"');
+    expect(html).toContain('aria-label="Fit least squares line"');
+    expect(html).toContain("Sum of squared residuals (SSE)");
+    expect(html).toContain("R² (maximize)");
+    expect(html).toContain("Check my line");
+    expect(html).not.toContain('aria-label="Intercept b"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

@@ -1,0 +1,15 @@
+[
+  {
+    "id": 213,
+    "mockup": 270,
+    "route": "/lessons/geometry/213-best-fit-line",
+    "width": 1534,
+    "height": 1025,
+    "status": "Correct: least-squares minimum reached.",
+    "consoleErrors": [],
+    "scrollHeight": 1072,
+    "surfaceBottom": 1007,
+    "objectModel": "least-squares-regression",
+    "overflowing": 0
+  }
+]
