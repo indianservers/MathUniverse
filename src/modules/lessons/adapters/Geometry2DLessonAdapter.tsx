@@ -45,6 +45,7 @@ import { remainingGeometryTargetForLesson } from "./GeometryTargetLessons206to23
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
 import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
 import ReflectionCircleTargetLesson239 from "./ReflectionCircleTargetLesson239";
+import RotationPointTargetLesson240 from "./RotationPointTargetLesson240";
 import TranslationVectorTargetLesson236 from "./TranslationVectorTargetLesson236";
 
 type GeometryTool =
@@ -90,6 +91,9 @@ export default function Geometry2DLessonAdapter({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  if (lesson.id === 240) {
+    return <RotationPointTargetLesson240 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
   if (lesson.id === 239) {
     return <ReflectionCircleTargetLesson239 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }

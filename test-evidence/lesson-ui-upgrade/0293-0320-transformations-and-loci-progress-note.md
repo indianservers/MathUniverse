@@ -6,6 +6,7 @@
 | 0294 | 237 Reflection in Line | `point-line-orthogonal-reflection` | Reworked individually and browser-validated |
 | 0295 | 238 Reflection in Point | `centre-midpoint-half-turn-reflection` | Reworked individually and browser-validated |
 | 0296 | 239 Reflection in Circle | `opposite-ray-circle-inversion` | Reworked individually and browser-validated |
+| 0297 | 240 Rotation Around Point | `fixed-centre-signed-angle-rotation` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -60,3 +61,14 @@ Evidence:
 
 - `0296-desktop.png`
 - `0296-dedicated-target-validation.json`
+
+## Lesson 240 / Mockup 0297 - Rotation Around Point
+
+Reworked individually against the target mockup with a new lesson-specific adapter and `fixed-centre-signed-angle-rotation` object model. The workspace owns fixed centre O, source P, angle magnitude, and clockwise/counterclockwise direction, and derives P' using the full translated rotation matrix. It continuously calculates source and image radii and polar angles. O and P drag independently, while dragging P' changes the angle without changing the radius. Exact centre/source inputs, the angle dial, four signed presets, direction controls, image/arc/axis-label layers, five tabs, reset, share, fullscreen, and adjacent navigation are functional.
+
+The independent practice model rotates P(-2,5) by 120 degrees counterclockwise and grades P'=(-3.33,-4.23) to two decimal places. Final 1474x1067 browser validation physically drags P and O, checks their independent state, exercises exact coordinate edits, verifies 180-degree rotation, switches direction and applies the 90-degree preset, toggles image visibility, and verifies incorrect and correct grading paths. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1066.
+
+Evidence:
+
+- `0297-desktop.png`
+- `0297-dedicated-target-validation.json`

@@ -1091,9 +1091,27 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Drag points");
   });
 
-  it("renders geometry lessons 240 through 245 with transformation guidance", () => {
+  it("renders Rotation Around Point as a dedicated signed-angle rotation model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 240)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0297"');
+    expect(html).toContain('data-object-model="fixed-centre-signed-angle-rotation"');
+    expect(html).toContain("Interactive graph rotating P around draggable centre O");
+    expect(html).toContain('data-testid="rotation-centre"');
+    expect(html).toContain('data-testid="rotation-source"');
+    expect(html).toContain('data-testid="rotation-image"');
+    expect(html).toContain('data-testid="rotation-arc"');
+    expect(html).toContain('aria-label="Rotation angle"');
+    expect(html).toContain("x cos θ − y sin θ");
+    expect(html).toContain('aria-label="Practice rotated x coordinate"');
+    expect(html).not.toContain("Drag points");
+  });
+
+  it("renders geometry lessons 241 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      240: "Rotation around point",
       241: "Dilation from point",
       242: "Matrix transformation",
       243: "Composite transformations",

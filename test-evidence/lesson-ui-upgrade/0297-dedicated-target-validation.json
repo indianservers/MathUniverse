@@ -1,0 +1,15 @@
+[
+  {
+    "id": 240,
+    "mockup": 297,
+    "route": "/lessons/geometry/240-rotation-around-point",
+    "width": 1474,
+    "height": 1067,
+    "status": "Correct: P' = (-3.33, -4.23).",
+    "consoleErrors": [],
+    "scrollHeight": 1067,
+    "surfaceBottom": 1066,
+    "objectModel": "fixed-centre-signed-angle-rotation",
+    "overflowing": 0
+  }
+]

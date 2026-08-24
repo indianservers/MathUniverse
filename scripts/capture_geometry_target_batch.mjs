@@ -40,6 +40,7 @@ const allLessons = [
   [237, 294, "reflection-in-line", 1026, 1533],
   [238, 295, "reflection-in-point", 1044, 1506],
   [239, 296, "reflection-in-circle", 1027, 1532],
+  [240, 297, "rotation-around-point", 1474, 1067],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2582,6 +2583,47 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("textbox", { name: "Practice inverse y coordinate" }).fill("-5");
     await page.getByRole("button", { name: "Check", exact: true }).click();
     status = await page.getByRole("status").filter({ hasText: "Correct: P' = (10, -5)." }).innerText();
+  } else if (id === 240) {
+    const surface = page.locator(selector);
+    const centre = page.locator('[data-testid="rotation-centre"]');
+    const source = page.locator('[data-testid="rotation-source"]');
+    const imagePoint = page.locator('[data-testid="rotation-image"]');
+    if ((await surface.getAttribute("data-object-model")) !== "fixed-centre-signed-angle-rotation" ||
+        (await surface.getAttribute("data-image-x")) !== "-2.0000" ||
+        (await surface.getAttribute("data-image-y")) !== "4.0000") {
+      throw new Error("Rotation initial 90-degree model is invalid");
+    }
+    const radiusBefore = await surface.getAttribute("data-radius");
+    const centreBefore = await centre.getAttribute("data-x");
+    const sourceBox = await source.boundingBox();
+    if (!sourceBox) throw new Error("Rotation point P is not draggable");
+    await page.mouse.move(sourceBox.x + sourceBox.width / 2, sourceBox.y + sourceBox.height / 2);
+    await page.mouse.down(); await page.mouse.move(sourceBox.x + 29, sourceBox.y - 29, {steps:6}); await page.mouse.up();
+    if ((await centre.getAttribute("data-x")) !== centreBefore || (await surface.getAttribute("data-radius")) === radiusBefore) throw new Error("Dragging P did not update radius independently");
+    const sourceBefore = await source.getAttribute("data-x");
+    const centreBox = await centre.boundingBox();
+    if (!centreBox) throw new Error("Rotation centre O is not draggable");
+    await page.mouse.move(centreBox.x + centreBox.width/2,centreBox.y + centreBox.height/2); await page.mouse.down(); await page.mouse.move(centreBox.x+29,centreBox.y+29,{steps:6}); await page.mouse.up();
+    if ((await source.getAttribute("data-x")) !== sourceBefore) throw new Error("Dragging O changed source P");
+    await page.getByRole("spinbutton",{name:"Centre O x coordinate"}).fill("0");
+    await page.getByRole("spinbutton",{name:"Centre O y coordinate"}).fill("0");
+    await page.getByRole("spinbutton",{name:"Point P x coordinate"}).fill("4");
+    await page.getByRole("spinbutton",{name:"Point P y coordinate"}).fill("2");
+    await page.getByRole("slider",{name:"Rotation angle"}).fill("180");
+    if ((await surface.getAttribute("data-image-x")) !== "-4.0000" || (await surface.getAttribute("data-image-y")) !== "-2.0000") throw new Error("Angle control did not apply 180-degree rotation");
+    await page.getByRole("button",{name:"Clockwise direction",exact:true}).click();
+    await page.getByRole("button",{name:"90°",exact:true}).click();
+    await page.getByRole("checkbox",{name:"Show image (rotated)"}).uncheck();
+    if (await imagePoint.count()) throw new Error("Image visibility toggle failed");
+    await page.getByRole("checkbox",{name:"Show image (rotated)"}).check();
+    await page.getByRole("textbox",{name:"Practice rotated x coordinate"}).fill("0");
+    await page.getByRole("textbox",{name:"Practice rotated y coordinate"}).fill("0");
+    await page.getByRole("button",{name:"Check answer"}).click();
+    await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();
+    await page.getByRole("textbox",{name:"Practice rotated x coordinate"}).fill("-3.33");
+    await page.getByRole("textbox",{name:"Practice rotated y coordinate"}).fill("-4.23");
+    await page.getByRole("button",{name:"Check answer"}).click();
+    status = await page.getByRole("status").filter({hasText:"Correct: P'"}).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());
