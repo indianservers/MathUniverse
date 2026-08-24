@@ -42,6 +42,7 @@ import CircularSectorTargetLesson from "./CircularSectorTargetLesson225";
 import ConicFivePointsTargetLesson from "./ConicFivePointsTargetLesson226";
 import EllipseTargetLesson from "./EllipseTargetLesson227";
 import HyperbolaTargetLesson from "./HyperbolaTargetLesson228";
+import ParabolaTargetLesson from "./ParabolaTargetLesson229";
 import RayTargetLesson from "./RayTargetLesson206";
 
 type Kind =
@@ -551,8 +552,7 @@ function named(id: number) {
     <DedicatedGeometrySurface {...props} spec={specs[id]} />
   );
 }
-export const ParabolaTargetLesson = named(229),
-  DistanceLengthTargetLesson = named(230),
+export const DistanceLengthTargetLesson = named(230),
   AreaTargetLesson = named(231),
   AngleTargetLesson = named(232),
   FixedAngleTargetLesson = named(233),
@@ -1736,7 +1736,7 @@ function resultFor(
   kind: Kind,
   v1: number,
   v2: number,
-  p: { x: number; y: number },
+  _p: { x: number; y: number },
 ) {
   let primary: string, secondary: string, summary: string, objectModel: string;
   switch (kind) {

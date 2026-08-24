@@ -1,0 +1,15 @@
+[
+  {
+    "id": 229,
+    "mockup": 286,
+    "route": "/lessons/geometry/229-parabola",
+    "width": 1026,
+    "height": 1533,
+    "status": "Construction correct.",
+    "consoleErrors": [],
+    "scrollHeight": 1533,
+    "surfaceBottom": 1399,
+    "objectModel": "focus-directrix-equal-distance-parabola",
+    "overflowing": 0
+  }
+]

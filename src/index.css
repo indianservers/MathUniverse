@@ -3658,6 +3658,613 @@
   color: #ede9fe;
 }
 
+.target-parabola-page {
+  margin-top: -5px;
+  letter-spacing: 0;
+}
+
+.target-parabola-header,
+.target-parabola-tabs,
+.target-parabola-plot,
+.target-parabola-controls,
+.target-parabola-learning > article,
+.target-parabola-practice,
+.target-parabola-nav > a {
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 5px rgb(15 23 42 / 0.05);
+}
+
+.target-parabola-header {
+  display: grid;
+  height: 188px;
+  grid-template-columns: minmax(0, 1fr) 350px;
+  gap: 24px;
+  padding: 18px 20px;
+}
+
+.target-parabola-header > div:first-child > div {
+  display: flex;
+  gap: 7px;
+}
+
+.target-parabola-header > div:first-child > div span,
+.target-parabola-header > div:first-child > section span {
+  border-radius: 999px;
+  background: #eef6ff;
+  padding: 4px 8px;
+  color: #1769aa;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.target-parabola-header > div:first-child > div span:last-child {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
+
+.target-parabola-header h1 {
+  margin-top: 12px;
+  color: #132352;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.target-parabola-header > div:first-child > p {
+  margin-top: 9px;
+  color: #64748b;
+  font-size: 10px;
+}
+
+.target-parabola-header > div:first-child > section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.target-parabola-header > div:first-child > section span {
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #475569;
+}
+
+.target-parabola-header > div:last-child {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+}
+
+.target-parabola-header nav {
+  display: grid;
+  height: 70px;
+  grid-template-columns: repeat(5, 1fr);
+  overflow: hidden;
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+}
+
+.target-parabola-header nav button {
+  display: grid;
+  place-items: center;
+  border-right: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 7px;
+}
+
+.target-parabola-header nav button:last-child {
+  border-right: 0;
+}
+
+.target-parabola-header nav svg {
+  width: 15px;
+}
+
+.target-parabola-header nav b {
+  display: block;
+  font-size: 7px;
+}
+
+.target-parabola-header nav button.is-active {
+  background: #147ed1;
+  color: #fff;
+}
+
+.target-parabola-header > div:last-child > section {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.target-parabola-header > div:last-child > section button {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 0 10px;
+  color: #334155;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.target-parabola-header > div:last-child > section button:last-child {
+  border-color: #147ed1;
+  background: #147ed1;
+  color: #fff;
+}
+
+.target-parabola-header > div:last-child > section svg {
+  width: 12px;
+}
+
+.target-parabola-tabs {
+  display: grid;
+  height: 59px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 11px;
+  overflow: hidden;
+}
+
+.target-parabola-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-right: 1px solid #e2e8f0;
+  color: #42526b;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.target-parabola-tabs button:last-child {
+  border-right: 0;
+}
+
+.target-parabola-tabs button.is-active {
+  background: #f0f8ff;
+  color: #0872b8;
+  box-shadow: inset 0 -3px #168ddd;
+}
+
+.target-parabola-tabs svg {
+  width: 14px;
+}
+
+.target-parabola-workspace {
+  display: grid;
+  height: 545px;
+  grid-template-columns: minmax(0, 1.89fr) minmax(0, 1fr);
+  gap: 13px;
+  margin: 11px 14px 0;
+}
+
+.target-parabola-plot {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  grid-template-rows: 40px 35px minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.target-parabola-plot > header,
+.target-parabola-plot > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 11px;
+}
+
+.target-parabola-plot > header {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.target-parabola-plot h2,
+.target-parabola-controls h2,
+.target-parabola-learning h2,
+.target-parabola-practice h2 {
+  color: #132352;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.target-parabola-plot > header div,
+.target-parabola-plot > footer div {
+  display: flex;
+  gap: 4px;
+}
+
+.target-parabola-plot > header button,
+.target-parabola-plot > footer button {
+  display: grid;
+  height: 25px;
+  min-width: 25px;
+  place-items: center;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+  padding: 0 6px;
+  color: #64748b;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.target-parabola-plot button.is-active {
+  border-color: #168ddd;
+  background: #edf8ff;
+  color: #0872b8;
+}
+
+.target-parabola-plot button svg {
+  width: 12px;
+}
+
+.target-parabola-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid #edf2f7;
+  padding: 0 11px;
+  color: #475569;
+  font-size: 7px;
+}
+
+.target-parabola-legend span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.target-parabola-legend i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2468e5;
+}
+
+.target-parabola-legend span:nth-child(2) i {
+  border-radius: 0;
+  background: #9b4de4;
+}
+
+.target-parabola-legend span:last-child i {
+  background: #f97316;
+}
+
+.target-parabola-plot > svg {
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.target-parabola-plot > footer {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  left: 7px;
+  z-index: 2;
+  height: 37px;
+  border-top: 1px solid #e2e8f0;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  background: rgb(255 255 255 / 0.92);
+  color: #64748b;
+  font-size: 8px;
+}
+
+.target-parabola-controls {
+  height: 508px;
+  min-width: 0;
+  margin-top: 37px;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.target-parabola-controls > section:first-child p {
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 7px;
+}
+
+.target-parabola-point-editor,
+.target-parabola-directrix {
+  margin-top: 10px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 10px;
+}
+
+.target-parabola-point-editor h3,
+.target-parabola-directrix h3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #334155;
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.target-parabola-point-editor h3 i,
+.target-parabola-directrix h3 i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.target-parabola-point-editor > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 7px;
+}
+
+.target-parabola-point-editor label,
+.target-parabola-directrix label,
+.target-parabola-practice-directrix label {
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr);
+  align-items: center;
+  color: #64748b;
+  font-size: 8px;
+}
+
+.target-parabola-point-editor input,
+.target-parabola-directrix input,
+.target-parabola-practice-directrix input {
+  min-width: 0;
+  height: 28px;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+  padding: 0 7px;
+  color: #172554;
+  font-size: 8px;
+}
+
+.target-parabola-controls > button {
+  width: 100%;
+  height: 27px;
+  margin-top: 9px;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+  color: #475569;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.target-parabola-observation {
+  margin-top: 9px;
+  border: 1px solid #bae6fd;
+  border-radius: 7px;
+  background: #f0f9ff;
+  padding: 9px;
+  color: #334155;
+  font-size: 7px;
+}
+
+.target-parabola-observation h3 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #0872b8;
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.target-parabola-observation h3 svg {
+  width: 11px;
+}
+
+.target-parabola-observation div {
+  margin-top: 6px;
+  color: #172554;
+  line-height: 1.4;
+}
+
+.target-parabola-observation p {
+  margin-top: 6px;
+  line-height: 1.35;
+}
+
+.target-parabola-learning {
+  display: grid;
+  height: 216px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 17px 14px 0;
+}
+
+.target-parabola-learning > article {
+  min-width: 0;
+  padding: 13px;
+  color: #475569;
+  font-size: 8px;
+  line-height: 1.35;
+}
+
+.target-parabola-learning article > p {
+  margin-top: 8px;
+}
+
+.target-parabola-learning article:first-child > p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+}
+
+.target-parabola-learning article:first-child > p b {
+  display: grid;
+  width: 17px;
+  height: 17px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: #eaf4ff;
+  color: #0872b8;
+  font-size: 7px;
+}
+
+.target-parabola-learning article > div {
+  margin-top: 10px;
+  border-radius: 6px;
+  background: #f3f8fd;
+  padding: 10px;
+  color: #172554;
+  font-weight: 800;
+}
+
+.target-parabola-learning article > div b,
+.target-parabola-learning article > div small {
+  display: block;
+  margin-bottom: 4px;
+  color: #0872b8;
+}
+
+.target-parabola-learning article > strong {
+  display: block;
+  margin-top: 9px;
+  color: #0872b8;
+}
+
+.target-parabola-practice {
+  height: 168px;
+  margin: 15px 14px 0;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.target-parabola-practice > p {
+  margin-top: 5px;
+  color: #64748b;
+  font-size: 7px;
+}
+
+.target-parabola-practice > div {
+  display: grid;
+  grid-template-columns: 1.15fr 1.2fr 0.8fr 0.75fr 1.2fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.target-parabola-practice > div > section {
+  min-width: 0;
+  height: 91px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 9px;
+  color: #475569;
+  font-size: 7px;
+}
+
+.target-parabola-practice > div > section > b,
+.target-parabola-practice > div > section > strong {
+  display: block;
+}
+
+.target-parabola-practice > div > section > strong {
+  margin-top: 13px;
+  color: #0872b8;
+  font-size: 9px;
+}
+
+.target-parabola-practice .target-parabola-point-editor {
+  height: 91px;
+  margin-top: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 9px;
+}
+
+.target-parabola-practice-directrix label {
+  margin-top: 12px;
+}
+
+.target-parabola-practice-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.target-parabola-practice-actions button {
+  height: 27px;
+  border: 1px solid #168ddd;
+  border-radius: 5px;
+  color: #0872b8;
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.target-parabola-practice-actions button:first-child {
+  background: #168ddd;
+  color: #fff;
+}
+
+.target-parabola-practice-actions output {
+  grid-column: 1 / -1;
+  min-height: 13px;
+  font-size: 7px;
+}
+
+.target-parabola-practice-actions output.is-correct {
+  color: #15803d;
+}
+
+.target-parabola-practice-actions output.is-incorrect {
+  color: #be123c;
+}
+
+.target-parabola-checklist p {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+}
+
+.target-parabola-checklist svg {
+  width: 10px;
+  color: #16a34a;
+}
+
+.target-parabola-nav {
+  display: grid;
+  height: 46px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 13px;
+}
+
+.target-parabola-nav > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  color: #172554;
+  font-size: 8px;
+}
+
+.target-parabola-nav > a:last-child {
+  justify-content: flex-end;
+  background: #7541e8;
+  color: #fff;
+  text-align: right;
+}
+
+.target-parabola-nav b {
+  display: block;
+  color: #64748b;
+  font-size: 6px;
+  text-transform: uppercase;
+}
+
+.target-parabola-nav > a:last-child b {
+  color: #ede9fe;
+}
+
+.target-parabola-nav svg {
+  width: 14px;
+}
+
 .target-semi-nav {
   display: flex;
   height: 52px;

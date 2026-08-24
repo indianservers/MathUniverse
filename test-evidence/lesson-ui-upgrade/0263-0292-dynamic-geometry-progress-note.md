@@ -1,6 +1,6 @@
 # Dynamic Geometry target batch 0263-0292
 
-Updated 2026-08-24. This batch replaces the generic construction fallback for lessons 206-235 with dedicated lesson exports, lesson-specific object models, controls, formulas, construction guidance, tasks, and direct SVG interaction.
+Updated 2026-08-25. This batch replaces the generic construction fallback for lessons 206-235 with dedicated lesson exports, lesson-specific object models, controls, formulas, construction guidance, tasks, and direct SVG interaction.
 
 ## Validation loop
 
@@ -38,7 +38,7 @@ Updated 2026-08-24. This batch replaces the generic construction fallback for le
 | 0283 | 226 Conic through Five Points | `fivePointHomogeneousConic` | Reworked individually and browser-validated |
 | 0284 | 227 Ellipse | `twoFocusConstantSumEllipse` | Reworked individually and browser-validated |
 | 0285 | 228 Hyperbola | `twoFocusConstantDifferenceHyperbola` | Reworked individually and browser-validated |
-| 0286 | 229 Parabola | `parabola` | Implemented and browser-validated |
+| 0286 | 229 Parabola | `focusDirectrixEqualDistanceParabola` | Reworked individually and browser-validated |
 | 0287 | 230 Distance / Length | `distance` | Implemented and browser-validated |
 | 0288 | 231 Area | `area` | Implemented and browser-validated |
 | 0289 | 232 Angle | `angle` | Implemented and browser-validated |
@@ -146,3 +146,7 @@ Reworked individually against the target mockup with a new lesson-specific adapt
 ### Lesson 228 / Mockup 0285 - Hyperbola
 
 Reworked individually against the target mockup with a new lesson-specific adapter and `two-focus-constant-difference-hyperbola` object model. The surface owns center O, transverse semi-axis a, symmetric focus distance c, branch side, and hyperbolic parameter u; derives `b = sqrt(c²-a²)`, eccentricity `e = c/a`, both parametric branches, both asymptotes, constrained point P, Euclidean focal distances, and the invariant `|PF1-PF2| = 2a`. P drags on either branch, either focus changes c symmetrically and rebuilds b/asymptotes, and O translates the complete locus. Exact focus sliders and inputs, asymptote visibility, snap, fullscreen, fit/reset, language, share, stage tabs, parameter details, worked example, independent practice a, point-position action, incorrect/correct grading, overview, and adjacent navigation are functional. Mockup 0285 simultaneously prints `a=3`, `c=4`, `b=4`, and a focal-distance difference of 8; these cannot coexist because `c²=a²+b²` requires `b=sqrt(7)` and the distance invariant is `2a=6`. The implementation intentionally shows the correct `b=2.646` and difference 6. Final 1024x1536 browser validation drags P and proves the difference remains 6, drags F2 and proves b changes, drags O and proves translation, exercises both focus controls, asymptote/snap/details/stage/language/worked-example controls, and validates wrong and correct practice paths. It reports zero overflow, zero console errors, and an exact one-viewport page height.
+
+### Lesson 229 / Mockup 0286 - Parabola
+
+Reworked individually against the target mockup with a new lesson-specific adapter and `focus-directrix-equal-distance-parabola` object model. The surface owns focus F, horizontal directrix `y=d`, and a constrained trace abscissa; derives vertex `(h,k)`, focal parameter `p=(f_y-d)/2`, the locus `(x-h)²=4p(y-k)`, point P, its perpendicular foot, and both Euclidean distances. P drags along the locus while preserving `FP=d(P,directrix)`; F and the directrix drag independently and rebuild the vertex, focal parameter, equation, curve, and measurements. Exact focus/directrix/trace editors, axes, grid, trace guides, select/pan modes, zoom, fit, fullscreen, reset, copy/share, primary stages, lesson sections, independent practice, wrong/correct grading, and adjacent navigation are functional. Mockup 0286 combines F(0,2) and directrix `y=-2`, which require vertex (0,0), `p=2`, and `x²=8y`, with incompatible printed values P(2.83,1.67), equal distances 3.20, and `x²=16(y-2)`. Its practice equation `(x+1)²=8(y-1)` also requires focus (-1,3), while the checklist prints (-1,1). The implementation intentionally preserves the exact focus-directrix definition and uses the coherent practice focus (-1,3). Final 1026x1533 browser validation physically drags P/F/directrix, proves the distance invariant and recalculation, edits every exact coordinate, exercises all visibility and viewport controls, and validates incorrect and correct practice paths. It reports zero overflow, zero console errors, and an exact one-viewport page height.

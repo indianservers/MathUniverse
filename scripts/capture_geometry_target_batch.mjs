@@ -1505,6 +1505,80 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("checkbox", { name: "Move P toward" }).check();
     await page.getByRole("button", { name: "Check", exact: true }).click();
     status = await page.getByRole("status").filter({ hasText: "Correct: the difference is 2a." }).innerText();
+  } else if (id === 229) {
+    const locus = page.locator('[data-testid="parabola-locus"]');
+    const point = page.locator('[data-testid="parabola-point"]');
+    const focus = page.locator('[data-testid="parabola-focus"]');
+    const directrix = page.locator('[data-testid="parabola-directrix-handle"]');
+    const equality = page.locator('[data-testid="parabola-distance-equality"]');
+    const pointBefore = await point.getAttribute("data-x");
+    const pointBox = await point.boundingBox();
+    if (!pointBox) throw new Error("Parabola point P is not draggable");
+    await page.mouse.move(pointBox.x + pointBox.width / 2, pointBox.y + pointBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(pointBox.x + 38, pointBox.y, { steps: 6 });
+    await page.mouse.up();
+    if ((await point.getAttribute("data-x")) === pointBefore) {
+      throw new Error("Dragging P did not move it along the parabola");
+    }
+    const distances = (await equality.innerText()).split("=").map(Number);
+    if (distances.length !== 2 || Math.abs(distances[0] - distances[1]) > 0.01) {
+      throw new Error("Dragging P broke the focus-directrix equality");
+    }
+    const pBeforeFocus = await locus.getAttribute("data-p");
+    const focusBox = await focus.boundingBox();
+    if (!focusBox) throw new Error("Parabola focus is not draggable");
+    await page.mouse.move(focusBox.x + focusBox.width / 2, focusBox.y + focusBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(focusBox.x + 25, focusBox.y - 28, { steps: 5 });
+    await page.mouse.up();
+    if ((await locus.getAttribute("data-p")) === pBeforeFocus) {
+      throw new Error("Dragging the focus did not recalculate the focal parameter");
+    }
+    const pBeforeDirectrix = await locus.getAttribute("data-p");
+    const directrixBox = await directrix.boundingBox();
+    if (!directrixBox) throw new Error("Parabola directrix is not draggable");
+    await page.mouse.move(directrixBox.x + directrixBox.width / 2, directrixBox.y);
+    await page.mouse.down();
+    await page.mouse.move(directrixBox.x + directrixBox.width / 2, directrixBox.y + 22, { steps: 5 });
+    await page.mouse.up();
+    if ((await locus.getAttribute("data-p")) === pBeforeDirectrix) {
+      throw new Error("Dragging the directrix did not recalculate the parabola");
+    }
+    await page.locator('.target-parabola-header').getByRole("button", { name: "Reset", exact: true }).click();
+    await page.getByRole("spinbutton", { name: "Parabola focus x", exact: true }).fill("1");
+    await page.getByRole("spinbutton", { name: "Parabola focus y", exact: true }).fill("3");
+    await page.getByRole("spinbutton", { name: "Parabola directrix", exact: true }).fill("-1");
+    if ((await locus.getAttribute("data-p")) !== "2.000000") {
+      throw new Error("Exact focus/directrix inputs did not update the model");
+    }
+    await page.getByRole("spinbutton", { name: "Parabola trace x" }).fill("2");
+    await page.getByRole("spinbutton", { name: "Parabola trace y" }).fill("4");
+    await page.getByRole("button", { name: "Reset P to parabola" }).click();
+    for (const [name, testId] of [["Axes", "parabola-axes"], ["Trace", "parabola-trace"]]) {
+      await page.getByRole("button", { name, exact: true }).click();
+      if ((await page.locator(`[data-testid="${testId}"]`).count()) !== 0) throw new Error(`${name} toggle did not hide its layer`);
+      await page.getByRole("button", { name, exact: true }).click();
+    }
+    await page.getByRole("button", { name: "Grid", exact: true }).click();
+    if ((await page.locator('[data-testid="parabola-grid"]').getAttribute("fill")) !== "white") {
+      throw new Error("Grid toggle did not hide the grid");
+    }
+    await page.getByRole("button", { name: "Grid", exact: true }).click();
+    await page.getByRole("button", { name: "Zoom in parabola" }).click();
+    await page.getByRole("button", { name: "Zoom out parabola" }).click();
+    await page.getByRole("button", { name: "Fit parabola" }).click();
+    await page.getByRole("button", { name: /2 Manipulate/ }).click();
+    await page.getByRole("button", { name: "Understand", exact: true }).click();
+    await page.getByRole("button", { name: "Share", exact: true }).click();
+    await page.getByRole("spinbutton", { name: "Practice parabola focus x" }).fill("-1");
+    await page.getByRole("spinbutton", { name: "Practice parabola focus y" }).fill("1");
+    await page.getByRole("spinbutton", { name: "Practice parabola directrix" }).fill("-1");
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Match the focus and directrix." }).waitFor();
+    await page.getByRole("spinbutton", { name: "Practice parabola focus y" }).fill("3");
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page.getByRole("status").filter({ hasText: "Construction correct." }).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

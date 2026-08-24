@@ -704,6 +704,33 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Dedicated hyperbola objects");
   });
 
+  it("renders Parabola from a focus-directrix equal-distance locus", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 229)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive focus-directrix parabola with draggable focus directrix and trace point",
+    );
+    expect(html).toContain('data-object-model="focus-directrix-equal-distance-parabola"');
+    expect(html).toContain('data-testid="parabola-locus"');
+    expect(html).toContain('data-p="2.000000"');
+    expect(html).toContain('data-vertex-y="0.000000"');
+    expect(html).toContain('data-testid="parabola-focus"');
+    expect(html).toContain('data-testid="parabola-directrix-line"');
+    expect(html).toContain('data-testid="parabola-point"');
+    expect(html).toContain('aria-label="Parabola directrix"');
+    expect(html).toContain('aria-label="Practice parabola focus y"');
+    expect(html).toContain("FP = d(P, directrix)");
+    expect(html).toContain("Focus at (−1, 3)");
+    expect(html).not.toContain("Dedicated parabola objects");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(
