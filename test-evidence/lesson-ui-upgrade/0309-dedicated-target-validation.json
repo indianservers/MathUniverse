@@ -1,0 +1,15 @@
+[
+  {
+    "id": 252,
+    "mockup": 309,
+    "route": "/lessons/geometry/252-conjecture-testing",
+    "width": 986,
+    "height": 1595,
+    "status": "Correct. Translation moves the midpoint by the same vector, so its coordinates change.",
+    "consoleErrors": [],
+    "scrollHeight": 1595,
+    "surfaceBottom": 1529,
+    "objectModel": "measured-translation-conjecture-trial-engine",
+    "overflowing": 0
+  }
+]

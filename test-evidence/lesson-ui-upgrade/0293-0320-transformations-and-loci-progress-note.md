@@ -18,6 +18,7 @@
 | 0306 | 249 Moving-Linkage Loci | `fixed-foci-flexible-tether-ellipse` | Reworked individually and browser-validated |
 | 0307 | 250 Envelope of Lines | `parameterized-tangent-family-parabola-envelope` | Reworked individually and browser-validated |
 | 0308 | 251 Dynamic Trace | `dependent-dilation-image-with-temporal-trace` | Reworked individually and browser-validated |
+| 0309 | 252 Conjecture Testing | `measured-translation-conjecture-trial-engine` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -220,3 +221,18 @@ Evidence:
 
 - `0308-desktop.png`
 - `0308-dedicated-target-validation.json`
+
+## Lesson 252 / Mockup 0309 - Conjecture Testing
+
+Reworked individually against the target mockup with a dedicated `measured-translation-conjecture-trial-engine` object model. The construction owns segment endpoints A and B and translation vector T, then derives A′, B′, original and image lengths, both midpoints, midpoint displacement, length difference, and orientation. A, B, and the translation-vector handle drag independently; six exact and range controls update the same model. The translated segment always remains dependent on the original, so its distance and orientation invariants are measured rather than printed as fixed text.
+
+The conjecture panel evaluates the entered statement against current geometry, stores measured trials, and reports unverified, supported-so-far, or disproved states. It recognizes length, orientation, fixed-midpoint, and distance-from-origin claims. “New test case” changes both source geometry and translation before recording another trial, while clear removes evidence without resetting the construction. This preserves the key distinction requested by the lesson: repeated examples can support a conjecture but do not become an exact proof, while one measured counterexample disproves a universal claim. The quick challenge correctly grades that a non-zero translation moves the midpoint rather than leaving its coordinates unchanged.
+
+Mockup 0309 shows A `(0,0)`, an image point labeled B′ `(2,1)`, and translation `(2,0)` beside the rule `P′=(x+a,y+b)`; that image coordinate does not follow the displayed vector. The implementation uses a complete source segment and its exact translated image, keeping every displayed coordinate and invariant coherent instead of reproducing that contradiction.
+
+Final 986x1595 browser validation physically drags A, B, and the translation-vector handle while proving original and image lengths remain equal, sets all six exact controls and verifies zero length difference with midpoint displacement `sqrt(5)`, enters a false fixed-midpoint conjecture and obtains a counterexample across varied trials, clears the evidence, tests length preservation across two constructions and obtains supported-so-far status, and exercises incorrect and correct challenge paths. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1529 with the compact target-aligned footer below it.
+
+Evidence:
+
+- `0309-desktop.png`
+- `0309-dedicated-target-validation.json`

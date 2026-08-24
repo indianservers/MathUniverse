@@ -57,6 +57,7 @@ import EquidistantLociTargetLesson248 from "./EquidistantLociTargetLesson248";
 import MovingLinkageLociTargetLesson249 from "./MovingLinkageLociTargetLesson249";
 import EnvelopeLinesTargetLesson250 from "./EnvelopeLinesTargetLesson250";
 import DynamicTraceTargetLesson251 from "./DynamicTraceTargetLesson251";
+import ConjectureTestingTargetLesson252 from "./ConjectureTestingTargetLesson252";
 import TranslationVectorTargetLesson236 from "./TranslationVectorTargetLesson236";
 
 type GeometryTool =
@@ -107,6 +108,9 @@ export default function Geometry2DLessonAdapter({
   }
   if (lesson.id === 251) {
     return <DynamicTraceTargetLesson251 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 252) {
+    return <ConjectureTestingTargetLesson252 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.id === 249) {
     return <MovingLinkageLociTargetLesson249 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

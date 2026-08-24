@@ -1265,9 +1265,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("(-6, 3)");
   });
 
-  it("renders geometry lessons 252 through 256 with loci and proof guidance", () => {
+  it("renders Conjecture Testing as a dedicated measured trial model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 252)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0309"');
+    expect(html).toContain('data-object-model="measured-translation-conjecture-trial-engine"');
+    expect(html).toContain("Draggable segment and its translated image for conjecture testing");
+    expect(html).toContain('data-testid="conjecture-point-a"');
+    expect(html).toContain('data-testid="conjecture-point-b"');
+    expect(html).toContain('data-testid="conjecture-vector-handle"');
+    expect(html).toContain('aria-label="Conjecture statement"');
+    expect(html).toContain("claim holds so far");
+    expect(html).toContain('aria-label="Conjecture challenge C"');
+  });
+
+  it("renders geometry lessons 253 through 256 with loci and proof guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      252: "Conjecture testing",
       253: "Exact proof",
       254: "Collinearity test",
       255: "Concurrency test",
