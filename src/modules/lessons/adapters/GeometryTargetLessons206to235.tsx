@@ -47,6 +47,7 @@ import DistanceLengthTargetLesson from "./DistanceLengthTargetLesson230";
 import AreaTargetLesson from "./AreaTargetLesson231";
 import AngleTargetLesson from "./AngleTargetLesson232";
 import FixedAngleTargetLesson from "./FixedAngleTargetLesson233";
+import RelationCheckerTargetLesson from "./RelationCheckerTargetLesson234";
 import RayTargetLesson from "./RayTargetLesson206";
 
 type Kind =
@@ -556,8 +557,7 @@ function named(id: number) {
     <DedicatedGeometrySurface {...props} spec={specs[id]} />
   );
 }
-export const RelationCheckerTargetLesson = named(234),
-  ConstructionStepsTargetLesson = named(235);
+export const ConstructionStepsTargetLesson = named(235);
 
 const components: Record<number, (props: LessonAdapterProps) => ReactNode> = {
   206: RayTargetLesson,

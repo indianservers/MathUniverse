@@ -853,6 +853,35 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Dedicated fixedAngle objects");
   });
 
+  it("renders Relation Checker with typed objects and exact predicates", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 234)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Relation workspace with draggable lines l and m and point A",
+    );
+    expect(html).toContain(
+      'data-object-model="typed-object-exact-relation-predicates"',
+    );
+    expect(html).toContain('data-testid="relation-line-l"');
+    expect(html).toContain('data-testid="relation-line-m"');
+    expect(html).toContain('data-testid="relation-result"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain("m<sub>ℓ</sub> · m<sub>m</sub> = −1");
+    expect(html).toContain('aria-label="Auto-check relations"');
+    expect(html).toContain("Practice perpendicular lines with draggable line m");
+    expect(html).toContain("Check my relation");
+    expect(html).not.toContain('aria-label="Line 1 angle"');
+    expect(html).not.toContain('aria-label="Line 2 angle"');
+    expect(html).not.toContain("Dedicated relation objects");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

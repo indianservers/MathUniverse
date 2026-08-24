@@ -1,0 +1,15 @@
+[
+  {
+    "id": 234,
+    "mockup": 291,
+    "route": "/lessons/geometry/234-relation-checker",
+    "width": 1023,
+    "height": 1538,
+    "status": "Correct: the lines are perpendicular.",
+    "consoleErrors": [],
+    "scrollHeight": 1538,
+    "surfaceBottom": 1437,
+    "objectModel": "typed-object-exact-relation-predicates",
+    "overflowing": 0
+  }
+]

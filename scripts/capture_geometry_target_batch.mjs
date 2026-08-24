@@ -1999,6 +1999,117 @@ for (const [id, mockup, slug, width, height] of lessons) {
     if ((await liveAngle.innerText()) !== "55.0°") {
       throw new Error("Fixed Angle reset did not restore the target model");
     }
+  } else if (id === 234) {
+    const surface = page.locator(selector);
+    const result = page.locator('[data-testid="relation-result"]');
+    const lineL = page.locator('[data-testid="relation-line-l"]');
+    const lineM = page.locator('[data-testid="relation-line-m"]');
+    if ((await result.getAttribute("data-valid")) !== "true" ||
+        (await lineL.getAttribute("data-slope")) !== "1.000000" ||
+        (await lineM.getAttribute("data-slope")) !== "-1.000000") {
+      throw new Error("Relation Checker initial perpendicular model is invalid");
+    }
+    const handleA = page.locator('[data-testid="relation-handle-l-b"]');
+    const aBox = await handleA.boundingBox();
+    if (!aBox) throw new Error("Relation Checker point A is not draggable");
+    await page.mouse.move(aBox.x + aBox.width / 2, aBox.y + aBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(aBox.x + 34, aBox.y + 20, { steps: 7 });
+    await page.mouse.up();
+    if ((await lineL.getAttribute("data-slope")) === "1.000000" ||
+        (await result.getAttribute("data-valid")) !== "false") {
+      throw new Error("Dragging line l did not recompute the perpendicular predicate");
+    }
+    await page.getByRole("button", { name: "Reset construction", exact: true }).click();
+    if ((await result.getAttribute("data-valid")) !== "true") {
+      throw new Error("Relation reset did not restore perpendicular lines");
+    }
+    await page.getByRole("button", { name: "Move", exact: true }).click();
+    const handleB = page.locator('[data-testid="relation-handle-l-a"]');
+    const slopeBeforeMove = await lineL.getAttribute("data-slope");
+    const bBox = await handleB.boundingBox();
+    if (!bBox) throw new Error("Relation line move handle is missing");
+    await page.mouse.move(bBox.x + bBox.width / 2, bBox.y + bBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(bBox.x + 25, bBox.y - 18, { steps: 6 });
+    await page.mouse.up();
+    if ((await lineL.getAttribute("data-slope")) !== slopeBeforeMove ||
+        (await result.getAttribute("data-valid")) !== "true") {
+      throw new Error("Move tool failed to preserve the line direction relation");
+    }
+    await page.getByRole("switch", { name: "Auto-check relations" }).click();
+    await page.getByRole("radio", { name: /^Parallel/ }).click();
+    if (!(await result.innerText()).includes("Ready to check")) {
+      throw new Error("Manual relation mode did not defer evaluation");
+    }
+    await page.getByRole("button", { name: "Run check", exact: true }).click();
+    if ((await result.getAttribute("data-valid")) !== "false" ||
+        !(await result.innerText()).includes("Not parallel")) {
+      throw new Error("Parallel predicate returned an incorrect result");
+    }
+    await page.getByRole("radio", { name: /^Incident/ }).click();
+    await page.getByRole("button", { name: "Run check", exact: true }).click();
+    if ((await result.getAttribute("data-valid")) !== "true") {
+      throw new Error("Incident predicate did not detect the line intersection");
+    }
+    await page.getByRole("switch", { name: "Auto-check relations" }).click();
+    await page.getByRole("radio", { name: /^Perpendicular/ }).click();
+    const countBefore = Number(await surface.getAttribute("data-object-count"));
+    for (const name of ["Point", "Line", "Segment", "Ray", "Circle"]) {
+      await page.getByRole("button", { name, exact: true }).click();
+    }
+    if (Number(await surface.getAttribute("data-object-count")) !== countBefore + 5 ||
+        (await page.locator('[data-testid="relation-extra-objects"] > *').count()) !== 5) {
+      throw new Error("Relation object tools did not create all five object types");
+    }
+    await page.getByRole("button", { name: "Clear", exact: true }).click();
+    if ((await surface.getAttribute("data-object-count")) !== "0") {
+      throw new Error("Relation Clear did not remove workspace objects");
+    }
+    await page.getByRole("button", { name: "Reset construction", exact: true }).click();
+    await page.getByRole("button", { name: "Add to Notes", exact: true }).click();
+    await page.getByRole("textbox", { name: "Relation notes" }).fill("Perpendicular because the direction dot product is zero.");
+    await page.getByRole("button", { name: "Relation checker menu" }).click();
+    await page.getByRole("button", { name: "Copy evidence to notes" }).click();
+    if (!(await page.getByRole("textbox", { name: "Relation notes" }).inputValue()).includes("Perpendicular")) {
+      throw new Error("Relation evidence menu did not update notes");
+    }
+    await page.getByRole("button", { name: "Add to Notes", exact: true }).click();
+    await page.getByRole("combobox", { name: "Lesson language" }).selectOption({ label: "Hindi (हिन्दी)" });
+    await page.locator(".target-relation-tabs").getByRole("button", { name: /^Examples/ }).click();
+    await page.locator(".target-relation-tabs").getByRole("button", { name: /^Practice/ }).click();
+    await page.getByRole("button", { name: "Check my relation", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Correct: the lines are perpendicular." }).waitFor();
+    const practiceHandle = page.locator('[data-testid="relation-practice-handle"]');
+    const practiceGraph = page.getByRole("img", { name: "Practice perpendicular lines with draggable line m" });
+    const practiceHandleBox = await practiceHandle.boundingBox();
+    const practiceGraphBox = await practiceGraph.boundingBox();
+    if (!practiceHandleBox || !practiceGraphBox) throw new Error("Relation practice line is not draggable");
+    await page.mouse.move(practiceHandleBox.x + practiceHandleBox.width / 2, practiceHandleBox.y + practiceHandleBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(
+      practiceGraphBox.x + (156 / 190) * practiceGraphBox.width,
+      practiceGraphBox.y + (53 / 160) * practiceGraphBox.height,
+      { steps: 7 },
+    );
+    await page.mouse.up();
+    if (Math.abs(Number(await practiceHandle.getAttribute("data-angle"))) < 10) {
+      throw new Error("Dragging practice line m did not change its angle");
+    }
+    await page.getByRole("button", { name: "Check my relation", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Not yet" }).waitFor();
+    const movedHandleBox = await practiceHandle.boundingBox();
+    if (!movedHandleBox) throw new Error("Practice line handle disappeared after dragging");
+    await page.mouse.move(movedHandleBox.x + movedHandleBox.width / 2, movedHandleBox.y + movedHandleBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(
+      practiceGraphBox.x + (165 / 190) * practiceGraphBox.width,
+      practiceGraphBox.y + (88 / 160) * practiceGraphBox.height,
+      { steps: 7 },
+    );
+    await page.mouse.up();
+    await page.getByRole("button", { name: "Check my relation", exact: true }).click();
+    status = await page.getByRole("status").filter({ hasText: "Correct: the lines are perpendicular." }).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

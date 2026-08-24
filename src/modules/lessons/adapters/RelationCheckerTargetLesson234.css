@@ -1,0 +1,132 @@
+@media (min-width: 960px) and (max-width: 1279px) {
+  .target-relation-app [data-testid="desktop-sidebar"] { width: 216px; }
+}
+.target-relation-app > .app-layout-rail > div > header { height: 58px; padding: 8px 24px; }
+.target-relation-app > .app-layout-rail > div > header > div { height: 42px; }
+.target-relation-app > .app-layout-rail > div > header > div > div:nth-child(2) p:first-child { font-size: 10px; line-height: 12px; }
+.target-relation-app > .app-layout-rail > div > header > div > div:nth-child(2) p:last-child { font-size: 8px; line-height: 11px; }
+.target-relation-app > .app-layout-rail > div > header button { min-height: 32px !important; height: 32px; }
+.target-relation-app #main-content { padding-top: 10px; }
+.target-relation-app [data-testid="desktop-sidebar"] > div { padding: 9px 10px 80px; }
+.target-relation-app [data-testid="desktop-sidebar"] > div > div:first-of-type { min-height: 61px; margin-bottom: 15px; border-radius: 8px; padding: 7px; }
+.target-relation-app [data-testid="desktop-sidebar"] > div > div:first-of-type > button:first-child { border-radius: 8px; padding: 8px; }
+.target-relation-app [data-testid="desktop-sidebar"] > div > div:first-of-type > button:last-child { width: 27px; height: 27px; }
+.target-relation-app [data-testid="desktop-sidebar"] > div > div:first-of-type p:first-child { font-size: 13px; }
+.target-relation-app [data-testid="desktop-sidebar"] > div > div:first-of-type p:last-child { font-size: 8px; }
+
+.target-relation-page { letter-spacing: 0; }
+.target-relation-header,.target-relation-tabs,.target-relation-workspace,.target-relation-practice,.target-relation-nav > a { border: 1px solid #dbe4ef; border-radius: 8px; background: #fff; box-shadow: 0 1px 5px rgb(15 23 42 / .04); }
+.target-relation-header { display: flex; height: 167px; align-items: center; justify-content: space-between; padding: 15px 17px; }
+.target-relation-header > div > span { display: inline-block; border-radius: 999px; background: #f1f5f9; padding: 4px 9px; color: #475569; font-size: 7px; font-weight: 900; text-transform: uppercase; }
+.target-relation-header h1 { margin-top: 10px; color: #172554; font-size: 28px; font-weight: 900; line-height: 1; }
+.target-relation-header > div > p { margin-top: 9px; color: #334155; font-size: 10px; }
+.target-relation-header > div > section { display: flex; gap: 7px; margin-top: 14px; }
+.target-relation-header > div > section b { display: flex; height: 29px; align-items: center; gap: 6px; border: 1px solid #dbe4ef; border-radius: 7px; padding: 0 9px; color: #334155; font-size: 7px; }
+.target-relation-header svg { width: 11px; }
+.target-relation-header > aside { width: 237px; }
+.target-relation-header > aside h2 { color: #172554; font-size: 9px; font-weight: 900; }
+.target-relation-header > aside p { display: flex; align-items: center; gap: 8px; margin-top: 8px; color: #475569; font-size: 8px; }
+.target-relation-header > aside p svg { color: #172554; }
+.target-relation-header > aside label { display: flex; height: 32px; align-items: center; gap: 7px; margin-top: 14px; border: 1px solid #dbe4ef; border-radius: 7px; padding: 0 10px; color: #334155; font-size: 8px; font-weight: 800; }
+.target-relation-header > aside select { min-width: 0; flex: 1; border: 0; background: transparent; outline: 0; font-size: 8px; font-weight: 800; }
+
+.target-relation-tabs { display: grid; height: 55px; grid-template-columns: repeat(5,1fr); margin-top: 12px; overflow: hidden; }
+.target-relation-tabs button { position: relative; display: flex; align-items: center; justify-content: center; gap: 8px; border-right: 1px solid #e2e8f0; color: #334155; }
+.target-relation-tabs button:last-child { border-right: 0; }
+.target-relation-tabs button.is-active { color: #1769e8; }
+.target-relation-tabs button.is-active::after { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; background: #1769e8; content: ""; }
+.target-relation-tabs svg { width: 13px; }
+.target-relation-tabs b,.target-relation-tabs small { display: block; text-align: left; }
+.target-relation-tabs b { font-size: 9px; font-weight: 900; }
+.target-relation-tabs small { margin-top: 5px; color: #64748b; font-size: 6px; }
+
+.target-relation-workspace { height: 795px; margin-top: 10px; padding: 12px; }
+.target-relation-workspace > header { display: grid; height: 51px; grid-template-columns: 1fr 73px 129px; align-items: start; gap: 10px; }
+.target-relation-workspace > header h2 { color: #172554; font-size: 15px; font-weight: 900; }
+.target-relation-workspace > header p { margin-top: 8px; color: #475569; font-size: 8px; }
+.target-relation-workspace > header > button,.target-relation-workspace > header > label { display: flex; height: 34px; align-items: center; justify-content: center; gap: 7px; border: 1px solid #dbe4ef; border-radius: 7px; color: #334155; font-size: 8px; font-weight: 800; }
+.target-relation-workspace > header svg { width: 13px; }
+.target-relation-switch { position: relative; width: 35px; height: 18px; border-radius: 999px; background: #cbd5e1; }
+.target-relation-switch i { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; transition: transform 120ms ease; }
+.target-relation-switch.is-on { background: #1769e8; }
+.target-relation-switch.is-on i { transform: translateX(17px); }
+
+.target-relation-main-grid { display: grid; height: 476px; grid-template-columns: 91px minmax(0,1fr) 239px; gap: 10px; }
+.target-relation-tools { padding: 7px 2px 7px 0; }
+.target-relation-tools h3 { margin: 0 0 7px 4px; color: #334155; font-size: 8px; font-weight: 900; }
+.target-relation-tools h3:nth-of-type(2) { margin-top: 12px; }
+.target-relation-tools button { display: flex; width: 100%; height: 34px; align-items: center; gap: 9px; margin-top: 4px; border: 1px solid #dbe4ef; border-radius: 6px; padding: 0 9px; color: #334155; font-size: 8px; font-weight: 750; }
+.target-relation-tools button.is-active { border-color: #7dd3fc; background: #f0f9ff; }
+.target-relation-tools button svg { width: 13px; color: #1769e8; }
+.target-relation-tools button > i { width: 7px; height: 7px; border-radius: 50%; background: #1769e8; }
+.target-relation-main-grid > svg { width: 100%; height: 476px; touch-action: none; }
+
+.target-relation-checker { position: relative; min-width: 0; height: 476px; border: 1px solid #dbe4ef; border-radius: 8px; padding: 12px; }
+.target-relation-checker h3 { color: #172554; font-size: 11px; font-weight: 900; }
+.target-relation-checker > label { display: block; margin-top: 13px; color: #475569; font-size: 7px; font-weight: 800; }
+.target-relation-selected { display: grid; grid-template-columns: 1fr 18px 1fr; align-items: center; margin-top: 7px; }
+.target-relation-selected button { display: flex; height: 31px; align-items: center; gap: 7px; border: 1px solid #dbe4ef; border-radius: 6px; padding: 0 8px; color: #334155; font-size: 7px; font-weight: 800; }
+.target-relation-selected button:last-child { border-color: #d8b4fe; }
+.target-relation-selected i { width: 7px; height: 7px; background: #7c3aed; }
+.target-relation-selected i.is-blue { background: #1769e8; }
+.target-relation-selected span { text-align: center; color: #64748b; }
+.target-relation-checker fieldset { display: grid; gap: 2px; margin-top: 5px; }
+.target-relation-checker fieldset label { display: flex; height: 28px; align-items: center; gap: 8px; border: 1px solid transparent; border-radius: 6px; padding: 0 5px; color: #475569; font-size: 8px; }
+.target-relation-checker fieldset label.is-active { border-color: #7dd3fc; background: #f0f9ff; color: #172554; font-weight: 850; }
+.target-relation-checker fieldset input { width: 12px; height: 12px; accent-color: #1769e8; }
+.target-relation-run { width: 100%; height: 26px; border-radius: 5px; background: #1769e8; color: #fff; font-size: 7px; font-weight: 900; }
+.target-relation-evidence { min-height: 128px; margin-top: 7px; border: 1px solid #fed7aa; border-radius: 7px; background: #fff7ed; padding: 10px; color: #9a3412; }
+.target-relation-evidence.is-valid { border-color: #bbf7d0; background: #f0fdf4; color: #15803d; }
+.target-relation-evidence h4 { display: flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 900; }
+.target-relation-evidence h4 svg { width: 13px; }
+.target-relation-evidence strong { display: block; margin-top: 8px; font-family: Georgia,serif; font-size: 11px; font-style: italic; }
+.target-relation-evidence p { margin-top: 12px; color: #475569; font-size: 7px; font-weight: 900; }
+.target-relation-evidence span { display: block; margin-top: 5px; color: #475569; font-family: Georgia,serif; font-size: 7px; }
+.target-relation-checker > footer { position: relative; display: flex; gap: 8px; margin-top: 9px; }
+.target-relation-checker > footer > button { display: flex; height: 30px; align-items: center; justify-content: center; gap: 6px; border: 1px solid #dbe4ef; border-radius: 6px; padding: 0 10px; color: #334155; font-size: 7px; font-weight: 800; }
+.target-relation-checker > footer > button:last-of-type { width: 30px; padding: 0; }
+.target-relation-checker > footer svg { width: 12px; }
+.target-relation-checker menu { position: absolute; right: 0; bottom: 34px; z-index: 3; border: 1px solid #dbe4ef; border-radius: 6px; background: #fff; padding: 4px; box-shadow: 0 5px 14px rgb(15 23 42 / .12); }
+.target-relation-checker menu button { white-space: nowrap; padding: 7px; font-size: 7px; }
+.target-relation-checker textarea { position: absolute; right: 11px; bottom: 11px; left: 11px; z-index: 2; height: 73px; resize: none; border: 1px solid #93c5fd; border-radius: 6px; background: #fff; padding: 8px; font-size: 8px; outline: 0; }
+
+.target-relation-learning { display: grid; height: 246px; grid-template-columns: .95fr 1.24fr 1.12fr; gap: 10px; margin-top: 10px; }
+.target-relation-learning article { min-width: 0; border: 1px solid #dbe4ef; border-radius: 8px; padding: 12px; }
+.target-relation-learning h2,.target-relation-practice h2 { color: #172554; font-size: 11px; font-weight: 900; }
+.target-relation-learning h2 small { font-size: 6px; }
+.target-relation-learning article:first-child p { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: #475569; font-size: 7px; }
+.target-relation-learning article:first-child p i { display: grid; width: 16px; height: 16px; flex: 0 0 auto; place-items: center; border-radius: 50%; background: #1769e8; color: #fff; font-size: 6px; font-style: normal; font-weight: 900; }
+.target-relation-learning article:first-child button { display: flex; height: 31px; align-items: center; gap: 7px; margin-top: 20px; border: 1px solid #dbe4ef; border-radius: 6px; padding: 0 10px; color: #334155; font-size: 7px; }
+.target-relation-learning article:first-child button svg { width: 12px; }
+.target-relation-learning article:nth-child(2) > p,.target-relation-learning article:nth-child(3) > p { margin-top: 13px; color: #475569; font-size: 7px; line-height: 1.5; }
+.target-relation-learning article:nth-child(2) aside { margin-top: 12px; border: 1px solid #bbf7d0; border-radius: 6px; background: #f0fdf4; padding: 8px; color: #15803d; font-size: 7px; }
+.target-relation-learning article:nth-child(2) svg { width: 100%; height: 118px; }
+.target-relation-learning article:nth-child(3) { text-align: left; }
+.target-relation-learning article:nth-child(3) strong { display: block; width: 125px; margin: 18px auto 0; border: 1px solid #bae6fd; border-radius: 6px; background: #f0f9ff; padding: 7px; color: #172554; text-align: center; font-family: Georgia,serif; font-size: 12px; font-style: italic; }
+.target-relation-learning article:nth-child(3) small { display: block; margin-top: 12px; color: #64748b; text-align: center; font-size: 7px; }
+.target-relation-learning article:nth-child(3) p:last-child { text-align: center; }
+
+.target-relation-practice { height: 217px; margin-top: 13px; padding: 12px; }
+.target-relation-practice > header p { margin-top: 7px; color: #475569; font-size: 8px; }
+.target-relation-practice > div { display: grid; height: 148px; grid-template-columns: 155px minmax(0,1fr) 176px; gap: 10px; margin-top: 11px; }
+.target-relation-practice > div > svg,.target-relation-practice > div > article { min-width: 0; height: 148px; border: 1px solid #dbe4ef; border-radius: 7px; }
+.target-relation-practice > div > svg { width: 100%; touch-action: none; }
+.target-relation-practice > div > article { padding: 10px; }
+.target-relation-practice h3 { color: #172554; font-size: 8px; font-weight: 900; }
+.target-relation-practice > div > article:nth-child(2) > p { margin-top: 7px; color: #334155; font-size: 8px; }
+.target-relation-practice > div > article:nth-child(2) > div { margin-top: 15px; border: 1px solid #e2e8f0; border-radius: 6px; padding: 9px; }
+.target-relation-practice > div > article:nth-child(2) > div p { margin-top: 8px; color: #475569; font-size: 7px; }
+.target-relation-practice > div > article:last-child { display: grid; grid-template-rows: 1fr 36px 16px; }
+.target-relation-practice > div > article:last-child > p { display: flex; gap: 8px; color: #475569; font-size: 7px; line-height: 1.5; }
+.target-relation-practice > div > article:last-child > p svg { width: 13px; flex: 0 0 auto; color: #f59e0b; }
+.target-relation-practice > div > article:last-child > p b { display: block; margin-bottom: 5px; color: #172554; font-size: 8px; }
+.target-relation-practice > div > article:last-child > button { border: 1px solid #93c5fd; border-radius: 6px; background: #eff6ff; color: #1769e8; font-size: 8px; font-weight: 900; }
+.target-relation-practice output { display: block; padding-top: 4px; overflow: hidden; color: #b45309; font-size: 6px; white-space: nowrap; }
+.target-relation-practice output.is-correct { color: #15803d; }
+
+.target-relation-nav { display: grid; height: 54px; grid-template-columns: 1fr 180px 1fr; gap: 10px; margin-top: 12px; }
+.target-relation-nav > a { display: flex; align-items: center; gap: 10px; padding: 0 14px; color: #172554; font-size: 8px; }
+.target-relation-nav > a:nth-child(2) { justify-content: center; }
+.target-relation-nav > a:last-child { justify-content: flex-end; text-align: right; }
+.target-relation-nav b { display: block; color: #64748b; font-size: 6px; text-transform: uppercase; }
+.target-relation-nav svg { width: 13px; }
