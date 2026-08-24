@@ -36,6 +36,7 @@ const allLessons = [
   [233, 290, "fixed-angle", 1004, 1567],
   [234, 291, "relation-checker", 1023, 1538],
   [235, 292, "construction-steps", 1006, 1564],
+  [236, 293, "translation-by-vector", 1024, 1542],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2221,6 +2222,95 @@ for (const [id, mockup, slug, width, height] of lessons) {
     if ((await surface.getAttribute("data-current-step")) !== "1") {
       throw new Error("Construction practice reset did not restore step 1");
     }
+  } else if (id === 236) {
+    const surface = page.locator(selector);
+    const source = page.locator('[data-testid="translation-source-triangle"]');
+    const imageTriangle = page.locator('[data-testid="translation-image-triangle"]');
+    const vectorHandle = page.locator('[data-testid="translation-vector-handle"]');
+    if ((await surface.getAttribute("data-object-model")) !== "rigid-vector-translation-pair" ||
+        (await surface.getAttribute("data-vector-x")) !== "3.0000" ||
+        (await imageTriangle.getAttribute("data-a-x")) !== "1.0000" ||
+        (await imageTriangle.getAttribute("data-a-y")) !== "3.0000") {
+      throw new Error("Translation initial model does not match the vector mapping");
+    }
+    const sourceBeforeDrag = Number(await source.getAttribute("data-a-x"));
+    const vectorBeforeShapeDrag = await surface.getAttribute("data-vector-x");
+    const sourceBox = await source.boundingBox();
+    if (!sourceBox) throw new Error("Translation source triangle is not draggable");
+    await page.mouse.move(sourceBox.x + sourceBox.width / 2, sourceBox.y + sourceBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(sourceBox.x + sourceBox.width / 2 + 30, sourceBox.y + sourceBox.height / 2 - 15, { steps: 6 });
+    await page.mouse.up();
+    if (Number(await source.getAttribute("data-a-x")) === sourceBeforeDrag ||
+        (await surface.getAttribute("data-vector-x")) !== vectorBeforeShapeDrag) {
+      throw new Error("Dragging the source did not translate it rigidly while preserving the vector");
+    }
+    const sourceBeforeVectorDrag = await source.getAttribute("data-a-x");
+    const imageBeforeVectorDrag = await imageTriangle.getAttribute("data-a-x");
+    const vectorBox = await vectorHandle.boundingBox();
+    if (!vectorBox) throw new Error("Translation vector handle is not draggable");
+    await page.mouse.move(vectorBox.x + vectorBox.width / 2, vectorBox.y + vectorBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(vectorBox.x - 30, vectorBox.y + 30, { steps: 6 });
+    await page.mouse.up();
+    if ((await source.getAttribute("data-a-x")) !== sourceBeforeVectorDrag ||
+        (await imageTriangle.getAttribute("data-a-x")) === imageBeforeVectorDrag) {
+      throw new Error("Dragging the vector did not preserve the source and recalculate its image");
+    }
+    await page.getByRole("spinbutton", { name: "Vector x component exact value" }).fill("2");
+    await page.getByRole("spinbutton", { name: "Vector y component exact value" }).fill("-1");
+    const sourceA = Number(await source.getAttribute("data-a-x"));
+    if (Number(await imageTriangle.getAttribute("data-a-x")) !== sourceA + 2) {
+      throw new Error("Exact vector controls did not update the image coordinates");
+    }
+    await page.getByRole("button", { name: "Reverse", exact: true }).click();
+    if ((await surface.getAttribute("data-vector-x")) !== "-2.0000" ||
+        (await surface.getAttribute("data-vector-y")) !== "1.0000") {
+      throw new Error("Reverse did not negate both vector components");
+    }
+    await page.getByRole("button", { name: "Delete vector" }).click();
+    if ((await imageTriangle.getAttribute("data-a-x")) !== (await source.getAttribute("data-a-x"))) {
+      throw new Error("Deleting the vector did not make source and image coincide");
+    }
+    await surface.getByRole("button", { name: "Reset", exact: true }).click();
+    if ((await surface.getAttribute("data-vector-x")) !== "3.0000" ||
+        (await source.getAttribute("data-a-x")) !== "-2.0000") {
+      throw new Error("Translation reset did not restore the target construction");
+    }
+    await surface.locator(".target-translation-stages button").nth(1).click();
+    await page.getByRole("button", { name: "Bookmark lesson" }).click();
+    await page.getByRole("button", { name: "Edit", exact: true }).click();
+    const practiceSource = page.locator('[data-testid="translation-practice-source"]');
+    const practicePointA = page.locator('[data-testid="translation-practice-point-a"]');
+    const practiceSourceBefore = await practiceSource.getAttribute("data-a-x");
+    await practicePointA.scrollIntoViewIfNeeded();
+    const practiceBox = await practicePointA.boundingBox();
+    if (!practiceBox) throw new Error("Practice triangle vertex A is not draggable");
+    await page.mouse.move(practiceBox.x + practiceBox.width / 2, practiceBox.y + practiceBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(practiceBox.x + practiceBox.width / 2 + 18, practiceBox.y + practiceBox.height / 2, { steps: 5 });
+    await page.mouse.up();
+    if ((await practiceSource.getAttribute("data-a-x")) === practiceSourceBefore) {
+      throw new Error("Practice triangle drag did not update the challenge model");
+    }
+    const practiceVector = page.locator('[data-testid="translation-practice-vector-handle"]');
+    const practiceVectorBefore = await practiceVector.getAttribute("data-x");
+    await practiceVector.scrollIntoViewIfNeeded();
+    const practiceVectorBox = await practiceVector.boundingBox();
+    if (!practiceVectorBox) throw new Error("Practice vector is not draggable");
+    await page.mouse.move(practiceVectorBox.x + practiceVectorBox.width / 2, practiceVectorBox.y + practiceVectorBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(practiceVectorBox.x - 18, practiceVectorBox.y - 18, { steps: 5 });
+    await page.mouse.up();
+    if ((await practiceVector.getAttribute("data-x")) === practiceVectorBefore) {
+      throw new Error("Practice vector drag did not change the challenge vector");
+    }
+    await page.getByRole("textbox", { name: "A' x coordinate" }).fill("999");
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Not yet" }).waitFor();
+    await page.getByRole("button", { name: "Show solution", exact: true }).click();
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page.getByRole("status").filter({ hasText: "Correct: every practice vertex" }).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

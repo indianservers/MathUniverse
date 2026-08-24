@@ -42,6 +42,7 @@ import ReusableLessonEngine, {
 import { geometry2DVisualPresetForLesson } from "../presets/geometry2DVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { remainingGeometryTargetForLesson } from "./GeometryTargetLessons206to235";
+import TranslationVectorTargetLesson236 from "./TranslationVectorTargetLesson236";
 
 type GeometryTool =
   | "point"
@@ -86,6 +87,15 @@ export default function Geometry2DLessonAdapter({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  if (lesson.id === 236) {
+    return (
+      <TranslationVectorTargetLesson236
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
   if (lesson.id >= 198 && lesson.id <= 235) {
     return (
       <DynamicGeometryMockupLesson

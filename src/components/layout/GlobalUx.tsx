@@ -120,6 +120,8 @@ const pendingQuizCountKey = "math-universe-pending-quiz-count";
 export function BreadcrumbTrail() {
   const location = useLocation();
   const segments = location.pathname.split("/").filter(Boolean);
+  const includesCoordinateGeometry =
+    location.pathname === "/lessons/geometry/236-translation-by-vector";
   if (!segments.length) return null;
 
   return (
@@ -131,9 +133,12 @@ export function BreadcrumbTrail() {
         const label = matched?.title ?? segment.replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
         const last = index === segments.length - 1;
         return (
-          <span key={path} className="flex items-center gap-2">
-            <span aria-hidden>&gt;</span>
-            {last ? <span className="text-cyan-700 dark:text-cyan-200">{label}</span> : <Link to={path} className="hover:text-cyan-600">{label}</Link>}
+          <span key={path} className="contents">
+            {includesCoordinateGeometry && last && <span className="flex items-center gap-2"><span aria-hidden>&gt;</span><Link to="/lessons/geometry" className="hover:text-cyan-600">Coordinate Geometry</Link></span>}
+            <span className="flex items-center gap-2">
+              <span aria-hidden>&gt;</span>
+              {last ? <span className="text-cyan-700 dark:text-cyan-200">{label}</span> : <Link to={path} className="hover:text-cyan-600">{label}</Link>}
+            </span>
           </span>
         );
       })}

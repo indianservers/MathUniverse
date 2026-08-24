@@ -1000,9 +1000,33 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Point C y"');
   });
 
-  it("renders geometry lessons 236 through 245 with transformation guidance", () => {
+  it("renders Translation by Vector as a dedicated rigid translation model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 236)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0293"');
+    expect(html).toContain('data-object-model="rigid-vector-translation-pair"');
+    expect(html).toContain("Interactive translation graph with draggable source triangle and vector");
+    expect(html).toContain('data-testid="translation-source-triangle"');
+    expect(html).toContain('data-testid="translation-image-triangle"');
+    expect(html).toContain('data-testid="translation-vector-handle"');
+    expect(html).toContain('aria-label="Vector x component exact value"');
+    expect(html).toContain("(x, y) + &lt; a, b &gt; = (x + a, y + b)");
+    expect(html).toContain("Practice translation graph with draggable triangle and vector");
+    expect(html).toContain('aria-label="A&#x27; x coordinate"');
+    expect(html).toContain("Show solution");
+    expect(html).not.toContain("reusable 2D geometry engine");
+    expect(html).not.toContain("Drag points");
+  });
+
+  it("renders geometry lessons 237 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      236: "Translation by vector",
       237: "Reflection in line",
       238: "Reflection in point",
       239: "Reflection in circle",
