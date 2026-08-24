@@ -15,6 +15,7 @@
 | 0303 | 246 Symmetry Explorer | `draggable-motif-exact-symmetry-tests` | Reworked individually and browser-validated |
 | 0304 | 247 Locus Generator | `anchor-radius-transformed-circle-locus` | Reworked individually and browser-validated |
 | 0305 | 248 Equidistant Loci | `dependent-perpendicular-bisector-equal-distance` | Reworked individually and browser-validated |
+| 0306 | 249 Moving-Linkage Loci | `fixed-foci-flexible-tether-ellipse` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -178,3 +179,16 @@ Evidence:
 
 - `0305-desktop.png`
 - `0305-dedicated-target-validation.json`
+
+## Lesson 249 / Mockup 0306 - Moving-Linkage Loci
+
+Reworked individually against the target mockup with a dedicated `fixed-foci-flexible-tether-ellipse` object model. The workspace owns two fixed pivots A and C, their separation d, two flexible tether-length contributions whose sum is L, moving parameter theta, translation, scale, and rotation. It derives ellipse validity, center, focal points, constrained P, semi-major axis `a=L/2`, semi-minor axis `b=sqrt(a^2-(d/2)^2)`, AP, PC, their sum, angle APC, bounds, and transformed SVG locus from the same state. Dragging P inverts the locus transform and recovers theta, keeping `AP+PC=L` exactly. Animate/pause, 1x/2x/4x speed, both length controls, all four transform controls, reset, sharing, tabs, feedback, and adjacent navigation are functional. When L is not greater than AC, the model reports an invalid closed locus and removes the ellipse instead of drawing impossible geometry.
+
+The practice task uses total tether length 10 and AC=8, giving `a=5`, `c=4`, and `b=3`; it grades the ellipse and both semi-axis values together. Mockup 0306 describes two rigid links of fixed lengths AB=4 and BC=5 with fixed endpoints A and C, then claims their joint sweeps an ellipse. Two fixed-radius circles with fixed centers intersect in at most two points, so that rigid mechanism cannot produce the shown curve. The implementation uses the mathematically valid flexible-tether condition `AP+PC=constant`. The target practice additionally sets total length equal to AC (10), which degenerates to a segment while selecting a nondegenerate ellipse; the implementation uses AC=8 to retain the intended ellipse challenge.
+
+Final 1015x1550 browser validation physically drags P while preserving the constant distance sum, starts and pauses animation and proves theta advances only while playing, shortens the tether below AC and verifies the ellipse disappears, restores the valid initial dimensions, translates, doubles, and rotates the locus while checking center, axes, and scaled distance sum, resets the model, and exercises incorrect and correct challenge paths. It reports zero overflow, zero console errors, and an exact one-viewport page height.
+
+Evidence:
+
+- `0306-desktop.png`
+- `0306-dedicated-target-validation.json`

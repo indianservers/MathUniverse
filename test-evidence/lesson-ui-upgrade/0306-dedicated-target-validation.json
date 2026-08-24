@@ -1,0 +1,15 @@
+[
+  {
+    "id": 249,
+    "mockup": 306,
+    "route": "/lessons/geometry/249-moving-linkage-loci",
+    "width": 1015,
+    "height": 1550,
+    "status": "Answer: B\nCorrect! For total length 10 and AC = 8, the locus is an ellipse with a = 5 and b = 3.",
+    "consoleErrors": [],
+    "scrollHeight": 1550,
+    "surfaceBottom": 1539,
+    "objectModel": "fixed-foci-flexible-tether-ellipse",
+    "overflowing": 0
+  }
+]

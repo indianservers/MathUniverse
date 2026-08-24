@@ -1222,9 +1222,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("3x + 2y − 5 = 0");
   });
 
-  it("renders geometry lessons 249 through 256 with loci and proof guidance", () => {
+  it("renders Moving-Linkage Loci as a dedicated fixed-foci ellipse model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 249)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0306"');
+    expect(html).toContain('data-object-model="fixed-foci-flexible-tether-ellipse"');
+    expect(html).toContain("Interactive fixed-foci linkage tracing an ellipse");
+    expect(html).toContain('data-testid="linkage-point-p"');
+    expect(html).toContain('data-testid="linkage-locus"');
+    expect(html).toContain('aria-label="Link AB"');
+    expect(html).toContain("AP + PC");
+    expect(html).toContain('aria-label="Linkage practice B"');
+    expect(html).toContain("Ellipse (a = 5, b = 3)");
+  });
+
+  it("renders geometry lessons 250 through 256 with loci and proof guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      249: "Moving-linkage loci",
       250: "Envelope of lines",
       251: "Dynamic trace",
       252: "Conjecture testing",
