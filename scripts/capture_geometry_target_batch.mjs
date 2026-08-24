@@ -38,6 +38,7 @@ const allLessons = [
   [235, 292, "construction-steps", 1006, 1564],
   [236, 293, "translation-by-vector", 1024, 1542],
   [237, 294, "reflection-in-line", 1026, 1533],
+  [238, 295, "reflection-in-point", 1044, 1506],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2422,6 +2423,98 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("button", { name: "Check my work", exact: true }).click();
     status = await page.getByRole("status").filter({ hasText: "Correct: all line-reflection invariants" }).innerText();
     await page.locator(".target-reflection-practice aside").getByRole("button", { name: "Reset", exact: true }).click();
+  } else if (id === 238) {
+    const surface = page.locator(selector);
+    const centre = page.locator('[data-testid="point-reflection-centre"]');
+    const source = page.locator('[data-testid="point-reflection-source"]');
+    const imagePoint = page.locator('[data-testid="point-reflection-image"]');
+    if ((await surface.getAttribute("data-object-model")) !== "centre-midpoint-half-turn-reflection" ||
+        (await centre.getAttribute("data-x")) !== "0.0000" ||
+        (await source.getAttribute("data-x")) !== "3.0000" ||
+        (await source.getAttribute("data-y")) !== "1.0000" ||
+        (await imagePoint.getAttribute("data-x")) !== "-3.0000" ||
+        (await imagePoint.getAttribute("data-y")) !== "-1.0000") {
+      throw new Error("Point Reflection initial midpoint model is invalid");
+    }
+    const centreBeforeSourceDrag = await centre.getAttribute("data-x");
+    const imageBeforeSourceDrag = await imagePoint.getAttribute("data-x");
+    const sourceBox = await source.boundingBox();
+    if (!sourceBox) throw new Error("Point Reflection source A is not draggable");
+    await page.mouse.move(sourceBox.x + sourceBox.width / 2, sourceBox.y + sourceBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(sourceBox.x + 36, sourceBox.y - 18, { steps: 6 });
+    await page.mouse.up();
+    if ((await centre.getAttribute("data-x")) !== centreBeforeSourceDrag ||
+        (await imagePoint.getAttribute("data-x")) === imageBeforeSourceDrag) {
+      throw new Error("Dragging A did not preserve P while updating A'");
+    }
+    const sourceBeforeCentreDrag = await source.getAttribute("data-x");
+    const imageBeforeCentreDrag = await imagePoint.getAttribute("data-x");
+    const centreBox = await centre.boundingBox();
+    if (!centreBox) throw new Error("Point Reflection centre P is not draggable");
+    await page.mouse.move(centreBox.x + centreBox.width / 2, centreBox.y + centreBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(centreBox.x + 36, centreBox.y + 18, { steps: 6 });
+    await page.mouse.up();
+    if ((await source.getAttribute("data-x")) !== sourceBeforeCentreDrag ||
+        (await imagePoint.getAttribute("data-x")) === imageBeforeCentreDrag) {
+      throw new Error("Dragging P did not preserve A while recalculating A'");
+    }
+    await page.getByRole("spinbutton", { name: "Centre P x coordinate" }).fill("1");
+    await page.getByRole("spinbutton", { name: "Centre P y coordinate" }).fill("2");
+    await page.getByRole("spinbutton", { name: "Point A x coordinate" }).fill("4");
+    await page.getByRole("spinbutton", { name: "Point A y coordinate" }).fill("-1");
+    if ((await imagePoint.getAttribute("data-x")) !== "-2.0000" ||
+        (await imagePoint.getAttribute("data-y")) !== "5.0000") {
+      throw new Error("Exact P/A coordinate edits did not apply A'=2P-A");
+    }
+    await page.getByRole("button", { name: "Origin (0,0)", exact: true }).click();
+    if ((await imagePoint.getAttribute("data-x")) !== "-4.0000" ||
+        (await imagePoint.getAttribute("data-y")) !== "1.0000") {
+      throw new Error("Origin preset did not apply A'=(-x,-y)");
+    }
+    await page.getByRole("button", { name: "Quadrant I", exact: true }).click();
+    if ((await surface.getAttribute("data-centre-x")) !== "2.0000" ||
+        (await surface.getAttribute("data-centre-y")) !== "2.0000") {
+      throw new Error("Quadrant I centre preset did not move P");
+    }
+    const randomBefore = await surface.getAttribute("data-centre-x");
+    await page.getByRole("button", { name: "Random", exact: true }).click();
+    if ((await surface.getAttribute("data-centre-x")) === randomBefore) {
+      throw new Error("Random centre preset did not change P");
+    }
+    await page.getByRole("checkbox", { name: "Midpoint PA", exact: true }).uncheck();
+    if ((await page.locator('[data-testid="point-reflection-midpoint-pa"]').count()) !== 0) {
+      throw new Error("Midpoint PA layer did not hide");
+    }
+    await page.getByRole("checkbox", { name: "Midpoint PA", exact: true }).check();
+    await surface.getByRole("button", { name: "Reset", exact: true }).first().click();
+    const relativeBeforeMove = Number(await source.getAttribute("data-x")) - Number(await centre.getAttribute("data-x"));
+    await page.getByRole("button", { name: "Move construction tool" }).click();
+    const centreBeforeMove = await centre.getAttribute("data-x");
+    const moveSourceBox = await source.boundingBox();
+    if (!moveSourceBox) throw new Error("Move tool lost source A");
+    await page.mouse.move(moveSourceBox.x + moveSourceBox.width / 2, moveSourceBox.y + moveSourceBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(moveSourceBox.x + 36, moveSourceBox.y - 18, { steps: 6 });
+    await page.mouse.up();
+    const relativeAfterMove = Number(await source.getAttribute("data-x")) - Number(await centre.getAttribute("data-x"));
+    if ((await centre.getAttribute("data-x")) === centreBeforeMove || relativeAfterMove !== relativeBeforeMove) {
+      throw new Error("Move mode did not translate the complete construction rigidly");
+    }
+    await page.getByRole("slider", { name: "Point A horizontal position" }).fill("2");
+    await page.getByRole("button", { name: "Lesson guide", exact: true }).click();
+    await page.getByRole("button", { name: "Share", exact: true }).click();
+    await surface.locator(".target-point-reflection-stages button").nth(2).click();
+    await page.getByRole("textbox", { name: "Practice reflected x coordinate" }).fill("0");
+    await page.getByRole("textbox", { name: "Practice reflected y coordinate" }).fill("0");
+    await page.getByRole("button", { name: "Check answer", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Not yet" }).waitFor();
+    await page.getByRole("button", { name: "Show worked steps", exact: true }).click();
+    await page.getByRole("textbox", { name: "Practice reflected x coordinate" }).fill("-1");
+    await page.getByRole("textbox", { name: "Practice reflected y coordinate" }).fill("-5");
+    await page.getByRole("button", { name: "Check answer", exact: true }).click();
+    status = await page.getByRole("status").filter({ hasText: "Correct: A' = (-1, -5)" }).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

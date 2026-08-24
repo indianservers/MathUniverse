@@ -1,0 +1,15 @@
+[
+  {
+    "id": 238,
+    "mockup": 295,
+    "route": "/lessons/geometry/238-reflection-in-point",
+    "width": 1044,
+    "height": 1506,
+    "status": "Correct: A' = (-1, -5), so P is the midpoint of AA'.",
+    "consoleErrors": [],
+    "scrollHeight": 1506,
+    "surfaceBottom": 1380,
+    "objectModel": "centre-midpoint-half-turn-reflection",
+    "overflowing": 0
+  }
+]

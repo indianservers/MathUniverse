@@ -4,6 +4,7 @@
 |---|---|---|---|
 | 0293 | 236 Translation by Vector | `rigid-vector-translation-pair` | Reworked individually and browser-validated |
 | 0294 | 237 Reflection in Line | `point-line-orthogonal-reflection` | Reworked individually and browser-validated |
+| 0295 | 238 Reflection in Point | `centre-midpoint-half-turn-reflection` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -32,3 +33,16 @@ Evidence:
 
 - `0294-desktop.png`
 - `0294-dedicated-target-validation.json`
+
+## Lesson 238 / Mockup 0295 - Reflection in Point
+
+Reworked individually against the target mockup with a new lesson-specific adapter and `centre-midpoint-half-turn-reflection` object model. The main workspace owns centre P and source A, derives `A'=(2h-x,2k-y)`, and continuously calculates the complete collinear segment, midpoint invariant, equal centre distances, midpoint of PA, and midpoint of PA'. A and P drag independently. Move mode translates P and A together while preserving their relative vector and therefore translates A' rigidly. Exact centre/source inputs, source slider, origin, Quadrant I and deterministic random presets, five independent layer controls, Select/Move/Centre tools, result coordinates, reset, share, lesson guide, five stages, formula cards, and adjacent navigation are functional.
+
+The independent practice task owns P(2,-1) and A(5,3), derives the exact expected image A'(-1,-5), grades both coordinate fields, reports incorrect and correct outcomes, and exposes real worked steps. The mockup's printed main coordinates P(0,0), A(3,1), and A'(-3,-1) are mathematically consistent and are preserved exactly. Its plotted points appear at roughly twice their printed vertical coordinates, so the implementation intentionally keeps a truthful coordinate plane rather than reproducing that graphical contradiction.
+
+Final 1044x1506 browser validation physically drags A and proves P remains fixed, physically drags P and proves A remains fixed while A' updates, verifies exact coordinate edits against `A'=2P-A`, exercises all centre presets and layer visibility, physically translates the complete construction in Move mode while preserving the source-centre vector, exercises the source slider, lesson guide, share and stages, and verifies incorrect, worked-step, and correct practice paths. It reports zero overflow, zero console errors, an exact one-viewport page height, a lesson surface ending at y=1380, and the target-aligned full footer below it.
+
+Evidence:
+
+- `0295-desktop.png`
+- `0295-dedicated-target-validation.json`

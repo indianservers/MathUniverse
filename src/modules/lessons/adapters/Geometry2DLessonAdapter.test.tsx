@@ -1050,9 +1050,29 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Drag points");
   });
 
-  it("renders geometry lessons 238 through 245 with transformation guidance", () => {
+  it("renders Reflection in Point as a dedicated midpoint half-turn model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 238)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0295"');
+    expect(html).toContain('data-object-model="centre-midpoint-half-turn-reflection"');
+    expect(html).toContain("Interactive central reflection graph with draggable centre P and point A");
+    expect(html).toContain('data-testid="point-reflection-centre"');
+    expect(html).toContain('data-testid="point-reflection-source"');
+    expect(html).toContain('data-testid="point-reflection-image"');
+    expect(html).toContain('data-testid="point-reflection-midpoint-pa"');
+    expect(html).toContain('aria-label="Centre P x coordinate"');
+    expect(html).toContain("A&#x27; = (2h - x, 2k - y)");
+    expect(html).toContain('aria-label="Practice reflected x coordinate"');
+    expect(html).toContain("Check answer");
+    expect(html).not.toContain("reusable 2D geometry engine");
+    expect(html).not.toContain("Drag points");
+  });
+
+  it("renders geometry lessons 239 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      238: "Reflection in point",
       239: "Reflection in circle",
       240: "Rotation around point",
       241: "Dilation from point",

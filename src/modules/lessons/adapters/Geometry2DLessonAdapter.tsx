@@ -43,6 +43,7 @@ import { geometry2DVisualPresetForLesson } from "../presets/geometry2DVisualPres
 import type { LessonAdapterProps } from "../types";
 import { remainingGeometryTargetForLesson } from "./GeometryTargetLessons206to235";
 import ReflectionLineTargetLesson237 from "./ReflectionLineTargetLesson237";
+import ReflectionPointTargetLesson238 from "./ReflectionPointTargetLesson238";
 import TranslationVectorTargetLesson236 from "./TranslationVectorTargetLesson236";
 
 type GeometryTool =
@@ -88,6 +89,15 @@ export default function Geometry2DLessonAdapter({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  if (lesson.id === 238) {
+    return (
+      <ReflectionPointTargetLesson238
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
   if (lesson.id === 237) {
     return (
       <ReflectionLineTargetLesson237
