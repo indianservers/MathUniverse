@@ -1,0 +1,15 @@
+[
+  {
+    "id": 207,
+    "mockup": 264,
+    "route": "/lessons/geometry/207-polyline",
+    "width": 1024,
+    "height": 1536,
+    "status": "Correct construction and order.",
+    "consoleErrors": [],
+    "scrollHeight": 1536,
+    "surfaceBottom": 1426.0625,
+    "objectModel": "polyline",
+    "overflowing": 0
+  }
+]

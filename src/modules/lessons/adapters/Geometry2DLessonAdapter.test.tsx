@@ -277,6 +277,28 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('type="range"');
   });
 
+  it("renders Polyline with an ordered vertex model and real topology controls", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 207)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("Interactive polyline coordinate plane");
+    expect(html).toContain('data-testid="polyline-point-0"');
+    expect(html).toContain("Undo last action");
+    expect(html).toContain("Polyline summary");
+    expect(html).toContain("Segment lengths");
+    expect(html).toContain('aria-label="Closure tolerance"');
+    expect(html).toContain("Start constructing");
+    expect(html).toContain("Target total length");
+    expect(html).not.toContain("Direction</");
+    expect(html).not.toContain("Spread</");
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

@@ -76,6 +76,38 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct:" })
       .innerText();
+  } else if (id === 207) {
+    const firstPoint = page.locator('[data-testid="polyline-point-0"]');
+    const pointXBeforeDrag = await firstPoint.getAttribute("cx");
+    const firstPointBox = await firstPoint.boundingBox();
+    if (!firstPointBox) throw new Error("Polyline point A is not draggable");
+    await page.mouse.move(
+      firstPointBox.x + firstPointBox.width / 2,
+      firstPointBox.y + firstPointBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(firstPointBox.x + 24, firstPointBox.y - 18, {
+      steps: 4,
+    });
+    await page.mouse.up();
+    const pointXAfterDrag = await firstPoint.getAttribute("cx");
+    if (pointXAfterDrag === pointXBeforeDrag) {
+      throw new Error("Polyline drag did not update point A");
+    }
+    await page.getByRole("button", { name: "Point" }).click();
+    await page
+      .getByRole("img", { name: "Interactive polyline coordinate plane" })
+      .click({ position: { x: 210, y: 120 } });
+    await page.getByRole("button", { name: "Closed" }).click();
+    await page.getByRole("button", { name: "Open" }).click();
+    await page.getByRole("button", { name: "Undo last action" }).click();
+    await page.getByRole("button", { name: "Load example" }).click();
+    await page.getByRole("button", { name: "Start constructing" }).click();
+    await page.getByRole("button", { name: "Check answer" }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct construction" })
+      .innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());
@@ -137,7 +169,9 @@ console.log(
         (row) =>
           row.consoleErrors.length ||
           row.overflowing ||
-          !row.status.match(/Construction verified\.|Correct:/),
+          !row.status.match(
+            /Construction verified\.|Correct(?::| construction)/i,
+          ),
       ).length,
       results,
     },

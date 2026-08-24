@@ -58,3 +58,7 @@ Updated 2026-08-24. This batch replaces the generic construction fallback for le
 ### Lesson 206 / Mockup 0263 - Ray
 
 Reworked individually against the target mockup. Removed the placeholder Direction and Scale sliders. The surface now uses draggable endpoint A and direction point B, editable coordinates, live length/angle/slope measurements, grid visibility, zoom, fullscreen, reset, clipboard sharing, stage navigation, and validated slope/angle/notation practice inputs. Final exact-viewport check at 1031x1526: no overflow, no console errors, and the full footer is visible.
+
+### Lesson 207 / Mockup 0264 - Polyline
+
+Reworked individually against the target mockup. Removed the placeholder Vertices and Spread sliders. The surface now owns an ordered vertex collection with direct point creation and dragging, real open/closed topology, snapshot undo, clear, zoom, fullscreen, closure tolerance, segment-by-segment Euclidean lengths, computed total length, loadable worked example, and coordinate-validated practice construction. Final exact-viewport check at 1024x1536: no overflow or console errors; automated verification confirms that dragging changes the underlying SVG point coordinate.
