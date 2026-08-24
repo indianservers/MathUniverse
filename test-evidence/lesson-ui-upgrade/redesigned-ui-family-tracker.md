@@ -4,23 +4,29 @@ Source: `D:\Math App Screenshots for UI Update\Updated UI`
 
 Total redesigned mockups found: `919`
 
-Unique completed mockups with validation evidence: `244`
+Mockups with screenshot/control evidence captured: `244`
 
-Pending mockups: `675`
+Strict target-complete mockups after visual audit and rework: `7`
 
-## Completed Families
+Pending strict target implementation: `912`
+
+Strict audit: `completed-lessons-strict-target-audit.md`
+
+> Correction (2026-08-24): the earlier `Complete` labels proved evidence presence and control/console checks, not visual equivalence to the supplied target UI. The strict pair-by-pair audit found major target mismatches in all 244 evidence-captured desktop renders. These families require target-specific rework.
+
+## Evidence-Captured Families Requiring Target Rework
 
 | Mockups | Family | Lessons | Status | Evidence |
 |---:|---|---:|---|---|
-| `0131-0148` | 2D Graphing Calculator | 18 | Complete | `0131-0148-2d-graphing-validation-summary.json` |
-| `0200-0206`, `0208-0211`, `0213-0219`, `0221` | Function graph/logarithmic-style workspace reuse | 19 unique mockups | Complete for selected workspace-reuse set | `0200-0204-validation-summary.json`, `logarithmic-workspace-reuse-validation-summary.json` |
-| `0255-0292` | Dynamic Geometry Constructions | 38 | Complete | `0255-0292-dynamic-geometry-validation-summary.json` |
-| `0314-0333` | Trigonometry | 20 | Complete | `0314-0333-trigonometry-validation-summary.json` |
-| `0334-0355` | Symbolic Mathematics / CAS Workspace | 22 | Complete | `0334-0355-symbolic-cas-validation-summary.json` |
-| `0356-0384` | Limits and Differential Calculus | 29 | Complete | `0356-0384-limits-differential-validation-summary.json` |
-| `0385-0412` | Integral Calculus and Differential Equations | 28 | Complete | `0385-0412-integral-differential-validation-summary.json` |
-| `0430-0462` | Statistics and Regression | 33 | Complete | `0430-0462-statistics-regression-validation-summary.json` |
-| `0463-0499` | Probability and Distributions | 37 | Complete | `0463-0499-probability-distributions-validation-summary.json` |
+| `0131-0148` | 2D Graphing Calculator | 18 | Evidence only; strict audit failed | `0131-0148-2d-graphing-validation-summary.json` |
+| `0200-0206`, `0208-0211`, `0213-0219`, `0221` | Function graph/logarithmic-style workspace reuse | 19 unique mockups | Evidence only; strict audit failed | `0200-0204-validation-summary.json`, `logarithmic-workspace-reuse-validation-summary.json` |
+| `0255-0292` | Dynamic Geometry Constructions | 38 | 6 restored (`0255`-`0260`); 32 require rework | `completed-lessons-strict-target-audit.md` |
+| `0314-0333` | Trigonometry | 20 | 1 restored (`0316`); 19 require rework | `0316-desktop.png` |
+| `0334-0355` | Symbolic Mathematics / CAS Workspace | 22 | Evidence only; strict audit failed | `0334-0355-symbolic-cas-validation-summary.json` |
+| `0356-0384` | Limits and Differential Calculus | 29 | Evidence only; strict audit failed | `0356-0384-limits-differential-validation-summary.json` |
+| `0385-0412` | Integral Calculus and Differential Equations | 28 | Evidence only; strict audit failed | `0385-0412-integral-differential-validation-summary.json` |
+| `0430-0462` | Statistics and Regression | 33 | Evidence only; strict audit failed | `0430-0462-statistics-regression-validation-summary.json` |
+| `0463-0499` | Probability and Distributions | 37 | Evidence only; strict audit failed | `0463-0499-probability-distributions-validation-summary.json` |
 
 ## Next Recommended Group
 
@@ -40,7 +46,7 @@ Recommendation: do `0413-0429` next because it is the next contiguous unfinished
 
 ## Pending Families By Shared UI Pattern
 
-| Mockups | Family / Similar UI Group | Count | Completed | Pending | Shared UI Pattern |
+| Mockups | Family / Similar UI Group | Count | Strict Complete | Pending | Shared UI Pattern |
 |---:|---|---:|---:|---:|---|
 | `0001-0018` | Scientific Calculator | 18 | 0 | 18 | Calculator keypad, mode toggles, history, exact/decimal result panel |
 | `0019-0038` | Algebra and Dynamic Variables | 20 | 0 | 20 | Algebra input workspace, variables/sliders, object list, dependent object cards |
@@ -49,21 +55,21 @@ Recommendation: do `0413-0429` next because it is the next contiguous unfinished
 | `0074-0095` | Interactive Authoring | 22 | 0 | 22 | Authoring tool palette, component inspector, preview canvas |
 | `0096-0112` | Lesson and Assessment Pages | 17 | 0 | 17 | Lesson-page templates, assessment/practice layouts, feedback states |
 | `0113-0130` | Common Tools and Accessibility | 18 | 0 | 18 | Tool demonstrations: drag, zoom, reset, trace, export, keyboard/accessibility |
-| `0131-0148` | 2D Graphing Calculator | 18 | 18 | 0 | Graphing workspace |
+| `0131-0148` | 2D Graphing Calculator | 18 | 0 | 18 | Graphing workspace |
 | `0149-0163` | Expressions and Manipulation | 15 | 0 | 15 | Algebra manipulation canvas, tiles/steps/CAS panels |
 | `0164-0185` | Equations and Inequalities | 22 | 0 | 22 | Solver workspace, graph/table/step solution panels |
-| `0186-0223` | Functions and Function Transformations | 38 | 19 | 19 | Function graph workspace, transformation sliders, domain/range cards |
+| `0186-0223` | Functions and Function Transformations | 38 | 0 | 38 | Function graph workspace, transformation sliders, domain/range cards |
 | `0224-0239` | Coordinate Geometry | 16 | 0 | 16 | Coordinate plane, point/line tools, formula measurement cards |
 | `0240-0254` | Vectors | 15 | 0 | 15 | Vector canvas, component/resolution controls, operation cards |
-| `0255-0292` | Dynamic Geometry Constructions | 38 | 38 | 0 | Geometry construction workspace |
+| `0255-0292` | Dynamic Geometry Constructions | 38 | 6 | 32 | Target-specific geometry construction surfaces |
 | `0293-0313` | Transformations and Loci | 21 | 0 | 21 | Geometry transform/locus canvas, trace controls, rule panels |
-| `0314-0333` | Trigonometry | 20 | 20 | 0 | Trig explorer workspace |
-| `0334-0355` | Symbolic Mathematics / CAS Workspace | 22 | 22 | 0 | CAS input, command library, exact output, step/history panels |
-| `0356-0384` | Limits and Differential Calculus | 29 | 29 | 0 | Graph calculus lab, tangent/secant/limit sliders, theorem cards |
-| `0385-0412` | Integral Calculus and Differential Equations | 28 | 28 | 0 | Area/accumulation/direction-field visual lab, formula/practice panels |
+| `0314-0333` | Trigonometry | 20 | 1 | 19 | Target-specific trig lesson surfaces |
+| `0334-0355` | Symbolic Mathematics / CAS Workspace | 22 | 0 | 22 | CAS input, command library, exact output, step/history panels |
+| `0356-0384` | Limits and Differential Calculus | 29 | 0 | 29 | Graph calculus lab, tangent/secant/limit sliders, theorem cards |
+| `0385-0412` | Integral Calculus and Differential Equations | 28 | 0 | 28 | Area/accumulation/direction-field visual lab, formula/practice panels |
 | `0413-0429` | Spreadsheet Workspace | 17 | 0 | 17 | Spreadsheet grid, formula bar, charts/import/export panels |
-| `0430-0462` | Statistics and Regression | 33 | 33 | 0 | Data table, plots, regression/stat summary cards |
-| `0463-0499` | Probability and Distributions | 37 | 37 | 0 | Probability experiment/distribution lab, sample controls, result cards |
+| `0430-0462` | Statistics and Regression | 33 | 0 | 33 | Data table, plots, regression/stat summary cards |
+| `0463-0499` | Probability and Distributions | 37 | 0 | 37 | Probability experiment/distribution lab, sample controls, result cards |
 | `0500-0518` | Inferential Statistics | 19 | 0 | 19 | Sampling/test panels, confidence intervals, hypothesis-test result cards |
 | `0519-0531` | Sequences and Series | 13 | 0 | 13 | Sequence table, graph, rule generator, convergence cards |
 | `0532-0549` | Matrices and Linear Algebra | 18 | 0 | 18 | Matrix editor, operation controls, vector/transform preview |

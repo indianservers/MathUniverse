@@ -10,7 +10,7 @@ type HeaderProps = {
 
 export default function Header({ mobileMenuOpen, onMenuClick }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 border-b border-white/25 bg-[linear-gradient(105deg,rgba(3,105,161,0.94),rgba(67,56,202,0.92)_52%,rgba(147,51,234,0.9))] px-4 py-3 text-white shadow-xl shadow-indigo-950/20 backdrop-blur-2xl dark:border-white/10 md:px-8">
+    <header className="sticky top-0 z-30 border-b border-white/25 bg-[linear-gradient(105deg,rgba(3,105,161,0.94),rgba(67,56,202,0.92)_52%,rgba(147,51,234,0.9))] px-4 py-2 text-white shadow-xl shadow-indigo-950/20 backdrop-blur-2xl dark:border-white/10 md:px-8">
       <div className="flex items-center justify-between">
         <button
           type="button"
@@ -30,7 +30,7 @@ export default function Header({ mobileMenuOpen, onMenuClick }: HeaderProps) {
         <div className="flex items-center gap-1.5">
           <CommandPalette />
           <HeaderStats />
-          <div className="hidden sm:block"><TeacherModeToggle /></div>
+          <div className="hidden sm:block [&>button]:!min-h-10 [&>button]:!whitespace-nowrap [&>button]:!rounded-xl [&>button]:!px-3 [&>button]:!py-2 [&>button]:!text-xs"><TeacherModeToggle /></div>
           <KeyboardShortcutsPanel />
           <AccessibilitySettings />
           <ThemeToggle />

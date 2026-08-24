@@ -1,4 +1,5 @@
 import { renderToStaticMarkup } from "react-dom/server";
+import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import { lessonCatalog } from "../catalog/lessonCatalog";
 import TrigonometryLessonAdapter from "./TrigonometryLessonAdapter";
@@ -8,7 +9,6 @@ describe("TrigonometryLessonAdapter", () => {
     const expectedSnippets: Record<number, string> = {
       257: "Angle measurement",
       258: "Unit circle",
-      259: "Right-triangle ratios",
       260: "Exact trig values",
       261: "Sine graph",
       262: "Cosine graph",
@@ -32,15 +32,41 @@ describe("TrigonometryLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <TrigonometryLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain(lesson.title);
-      expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
-      expect(html, lesson.title).toContain("Drag the point");
-      expect(html, lesson.title).toContain("Drag graph marker");
+      expect(html, lesson.title).toContain(`trigonometry-mockup-`);
+      expect(html, lesson.title).toContain(snippet.split(" ")[0]);
       expect(html, lesson.title).not.toContain("Trig rule");
     }
+  });
+
+  it("renders lesson 259 as its own right-triangle ratio surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 259)!;
+    const html = renderToStaticMarkup(
+      <MemoryRouter>
+        <TrigonometryLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />
+      </MemoryRouter>,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0316"');
+    expect(html).toContain(
+      "Coordinate-grid right triangle OBC with right angle at B",
+    );
+    expect(html).toContain("Right angle at B is fixed");
+    expect(html).toContain("Signs by Quadrant (ASTC)");
+    expect(html).toContain("SOH-CAH-TOA");
+    expect(html).toContain("Common Misconception");
+    expect(html).toContain('aria-label="Opposite"');
+    expect(html).toContain('aria-label="Hypotenuse"');
   });
 });

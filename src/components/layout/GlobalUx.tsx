@@ -123,7 +123,7 @@ export function BreadcrumbTrail() {
   if (!segments.length) return null;
 
   return (
-    <nav className="mb-4 flex flex-wrap items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
+    <nav className="mb-2 flex flex-wrap items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
       <Link to="/" className="hover:text-cyan-600">Home</Link>
       {segments.map((segment, index) => {
         const path = `/${segments.slice(0, index + 1).join("/")}`;
@@ -208,7 +208,7 @@ export function CommandPalette() {
 
   return (
     <>
-      <button type="button" className="tool-button hidden sm:inline-flex" onClick={() => setOpen(true)} title="Open command palette">
+      <button type="button" className="tool-button hidden !min-h-10 !whitespace-nowrap !rounded-xl !px-3 !py-2 !text-xs sm:inline-flex" onClick={() => setOpen(true)} title="Open command palette">
         <Search className="h-4 w-4" />
         <span>Ctrl+K</span>
       </button>

@@ -28,12 +28,16 @@ describe("Geometry2DLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <Geometry2DLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain('data-direct-interaction="true"');
       expect(html, lesson.title).toContain("Drag points");
       expect(html, lesson.title).toContain("Worked:");
       expect(html, lesson.title).toContain("Avoid:");
@@ -44,7 +48,11 @@ describe("Geometry2DLessonAdapter", () => {
   it("renders angle-between-lines with two lines and an angle marker", () => {
     const lesson = lessonCatalog.find((item) => item.id === 176)!;
     const html = renderToStaticMarkup(
-      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
     );
 
     expect(html).toContain("Angle Between Lines");
@@ -52,17 +60,135 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("line 2");
     expect(html).toContain("angle 55.0 deg");
     expect(html).toContain("Angle offset");
-    expect(html).toContain("data-direct-interaction=\"true\"");
+    expect(html).toContain('data-direct-interaction="true"');
+  });
+
+  it("renders attach-detach point as its own circle-constraint surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 202)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("dynamic-geometry-mockup-0259");
+    expect(html).toContain("Circle with attached point P and detached point Q");
+    expect(html).toContain("P attached");
+    expect(html).toContain("Q detached");
+    expect(html).toContain("Constraint: circle");
+    expect(html).toContain("Attach to circle");
+    expect(html).toContain("Detach point");
+    expect(html).toContain("Distance to object");
+    expect(html).not.toContain("Construction Workspace");
+  });
+
+  it("renders line through two points as its own line-construction surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 203)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("dynamic-geometry-mockup-0260");
+    expect(html).toContain(
+      "Infinite line through draggable points A and B on a coordinate plane",
+    );
+    expect(html).toContain("Equation (slope-intercept form)");
+    expect(html).toContain("Construction Steps");
+    expect(html).toContain("slope m = (y₂ − y₁) / (x₂ − x₁)");
+    expect(html).toContain("C x task coordinate");
+    expect(html).not.toContain("Construction Workspace");
+  });
+
+  it("renders free point as its own draggable coordinate surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 198)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("dynamic-geometry-mockup-0255");
+    expect(html).toContain("Free point P coordinate plane");
+    expect(html).toContain("Point Properties");
+    expect(html).toContain("Independent coordinates");
+    expect(html).toContain("Worked Example");
+    expect(html).toContain("Understand the Rule");
+    expect(html).toContain("Try It: Your Turn");
+    expect(html).not.toContain("Construction steps (Compass-style)");
+  });
+
+  it("renders point on object as its own constrained-line surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 199)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("dynamic-geometry-mockup-0256");
+    expect(html).toContain("Point P constrained to line l coordinate plane");
+    expect(html).toContain("Free point mode");
+    expect(html).toContain("Slope (m)");
+    expect(html).toContain("y-intercept (b)");
+    expect(html).toContain("Point on a Circle");
+    expect(html).toContain("Construction Steps (Line)");
+    expect(html).toContain("Practice x coordinate");
+    expect(html).not.toContain("Construction Workspace");
+  });
+
+  it("renders intersection point as its own two-line relationship surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 200)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("dynamic-geometry-mockup-0257");
+    expect(html).toContain(
+      "Two lines and their intersection on a coordinate plane",
+    );
+    expect(html).toContain("Intersecting (Unique Solution)");
+    expect(html).toContain("Parallel (No Solution)");
+    expect(html).toContain("Coincident (Infinite Solutions)");
+    expect(html).toContain("Understand the rule");
+    expect(html).toContain("Intersection answer x");
+    expect(html).not.toContain("Construction Workspace");
+  });
+
+  it("renders midpoint or centre as its own endpoint-and-midpoint surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 201)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("dynamic-geometry-mockup-0258");
+    expect(html).toContain("Draggable endpoints A and B with midpoint M");
+    expect(html).toContain("Reverse endpoints challenge");
+    expect(html).toContain("Midpoint / Centre Formula");
+    expect(html).toContain("Worked midpoint graph");
+    expect(html).toContain("Midpoint answer x");
+    expect(html).not.toContain("Construction Workspace");
   });
 
   it("renders dynamic geometry lessons 198 through 212 with construction-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      198: "Free point",
-      199: "Point on object",
-      200: "Intersection point",
-      201: "Midpoint or centre",
-      202: "Attach or detach",
-      203: "Line through two points",
       204: "Segment",
       205: "Fixed length segment",
       206: "Ray",
@@ -78,12 +204,16 @@ describe("Geometry2DLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <Geometry2DLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain('data-direct-interaction="true"');
       expect(html, lesson.title).toContain("Drag points");
       expect(html, lesson.title).toContain("Worked:");
       expect(html, lesson.title).toContain("Avoid:");
@@ -102,12 +232,16 @@ describe("Geometry2DLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <Geometry2DLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain('data-direct-interaction="true"');
       expect(html, lesson.title).toContain("Drag points");
       expect(html, lesson.title).toContain("Worked:");
       expect(html, lesson.title).toContain("Avoid:");
@@ -153,12 +287,16 @@ describe("Geometry2DLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <Geometry2DLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain('data-direct-interaction="true"');
       expect(html, lesson.title).toContain("Drag points");
       expect(html, lesson.title).toContain("Worked:");
       expect(html, lesson.title).toContain("Avoid:");
@@ -185,12 +323,16 @@ describe("Geometry2DLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <Geometry2DLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain(lesson.title);
       expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain("data-direct-interaction=\"true\"");
+      expect(html, lesson.title).toContain('data-direct-interaction="true"');
       expect(html, lesson.title).toContain("Drag points");
       expect(html, lesson.title).toContain("Worked:");
       expect(html, lesson.title).toContain("Avoid:");
