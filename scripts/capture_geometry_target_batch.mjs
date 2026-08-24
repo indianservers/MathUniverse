@@ -1258,6 +1258,68 @@ for (const [id, mockup, slug, width, height] of lessons) {
     if ((await page.getByRole("textbox", { name: "Practice arc measure" }).inputValue()) !== "80.00") {
       throw new Error("New Challenge did not load a new theorem target");
     }
+  } else if (id === 225) {
+    const fill = page.locator('[data-testid="sector-fill"]');
+    const arc = page.locator('[data-testid="sector-arc"]');
+    const radiusHandle = page.locator('[data-testid="sector-radius-handle"]');
+    const angleHandle = page.locator('[data-testid="sector-angle-handle"]');
+    const centerHandle = page.locator('[data-testid="sector-center-handle"]');
+    const areaBefore = await fill.getAttribute("data-area");
+    const radiusBox = await radiusHandle.boundingBox();
+    if (!radiusBox) throw new Error("Sector radius handle is not draggable");
+    await page.mouse.move(radiusBox.x + radiusBox.width / 2, radiusBox.y + radiusBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(radiusBox.x + 34, radiusBox.y, { steps: 5 });
+    await page.mouse.up();
+    if ((await fill.getAttribute("data-area")) === areaBefore) {
+      throw new Error("Dragging the radius handle did not recalculate sector area");
+    }
+    const arcBefore = await arc.getAttribute("data-arc-length");
+    const angleBox = await angleHandle.boundingBox();
+    if (!angleBox) throw new Error("Sector angle handle is not draggable");
+    await page.mouse.move(angleBox.x + angleBox.width / 2, angleBox.y + angleBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(angleBox.x - 26, angleBox.y + 34, { steps: 5 });
+    await page.mouse.up();
+    if ((await arc.getAttribute("data-arc-length")) === arcBefore) {
+      throw new Error("Dragging the angle handle did not recalculate arc length");
+    }
+    const centerBefore = await centerHandle.getAttribute("cx");
+    const centerBox = await centerHandle.boundingBox();
+    if (!centerBox) throw new Error("Sector center handle is not draggable");
+    await page.mouse.move(centerBox.x + centerBox.width / 2, centerBox.y + centerBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(centerBox.x + 28, centerBox.y - 18, { steps: 5 });
+    await page.mouse.up();
+    if ((await centerHandle.getAttribute("cx")) === centerBefore) {
+      throw new Error("Dragging the sector center did not translate the model");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    await page.getByRole("slider", { name: "Sector radius slider", exact: true }).fill("8");
+    await page.getByRole("spinbutton", { name: "Sector central angle", exact: true }).fill("135");
+    await page.getByRole("button", { name: "Try this example" }).click();
+    if (
+      (await page.getByRole("spinbutton", { name: "Sector radius", exact: true }).inputValue()) !== "6" ||
+      (await page.getByRole("spinbutton", { name: "Sector central angle", exact: true }).inputValue()) !== "90"
+    ) {
+      throw new Error("Worked example did not load r=6 and theta=90");
+    }
+    await page.getByRole("button", { name: "Hide handles" }).click();
+    if ((await page.locator('[data-testid="sector-radius-handle"]').count()) !== 0) {
+      throw new Error("Hide handles did not remove the drag handles");
+    }
+    await page.getByRole("button", { name: "Show handles" }).click();
+    await page.getByRole("button", { name: "Try Independently" }).click();
+    await page.getByRole("button", { name: "Observe & Manipulate" }).click();
+    await page.getByRole("spinbutton", { name: "Practice sector radius" }).fill("5");
+    await page.getByRole("spinbutton", { name: "Practice sector angle" }).fill("100");
+    await page.getByRole("button", { name: "Check Answer" }).click();
+    await page.getByRole("status").filter({ hasText: "Match both target values." }).waitFor();
+    await page.getByRole("spinbutton", { name: "Practice sector radius" }).fill("7");
+    await page.getByRole("spinbutton", { name: "Practice sector angle" }).fill("120");
+    await page.getByRole("button", { name: "Check Answer" }).click();
+    await page.getByRole("status").filter({ hasText: "Angle: 120°" }).waitFor();
+    status = "Correct circular sector target.";
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

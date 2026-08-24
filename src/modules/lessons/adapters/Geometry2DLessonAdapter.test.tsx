@@ -602,6 +602,32 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("circumArc objects with lesson-specific");
   });
 
+  it("renders Circular Sector from a center-radius-angle object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 225)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive circular sector with draggable center radius and angle handles",
+    );
+    expect(html).toContain('data-testid="sector-fill"');
+    expect(html).toContain('data-testid="sector-arc"');
+    expect(html).toContain('data-testid="sector-center-handle"');
+    expect(html).toContain('data-testid="sector-radius-handle"');
+    expect(html).toContain('data-testid="sector-angle-handle"');
+    expect(html).toContain('aria-label="Sector radius"');
+    expect(html).toContain('aria-label="Sector central angle"');
+    expect(html).toContain('aria-label="Practice sector radius"');
+    expect(html).toContain("A = ½ r²θ");
+    expect(html).not.toContain("area = theta*r^2/2");
+    expect(html).not.toContain("Dedicated sector objects with lesson-specific");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

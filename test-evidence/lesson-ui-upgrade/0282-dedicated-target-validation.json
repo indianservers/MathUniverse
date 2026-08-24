@@ -1,0 +1,15 @@
+[
+  {
+    "id": 225,
+    "mockup": 282,
+    "route": "/lessons/geometry/225-circular-sector",
+    "width": 1024,
+    "height": 1536,
+    "status": "Correct circular sector target.",
+    "consoleErrors": [],
+    "scrollHeight": 1536,
+    "surfaceBottom": 1390,
+    "objectModel": "center-radius-angle-sector",
+    "overflowing": 0
+  }
+]
