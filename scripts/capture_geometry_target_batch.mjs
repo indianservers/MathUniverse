@@ -37,6 +37,7 @@ const allLessons = [
   [234, 291, "relation-checker", 1023, 1538],
   [235, 292, "construction-steps", 1006, 1564],
   [236, 293, "translation-by-vector", 1024, 1542],
+  [237, 294, "reflection-in-line", 1026, 1533],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2311,6 +2312,116 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("button", { name: "Show solution", exact: true }).click();
     await page.getByRole("button", { name: "Check", exact: true }).click();
     status = await page.getByRole("status").filter({ hasText: "Correct: every practice vertex" }).innerText();
+  } else if (id === 237) {
+    const surface = page.locator(selector);
+    const source = page.locator('[data-testid="reflection-source-point"]');
+    const imagePoint = page.locator('[data-testid="reflection-image-point"]');
+    const mirror = page.locator('[data-testid="reflection-mirror-line"]');
+    const leftDistance = page.locator('[data-testid="reflection-source-distance"]');
+    const rightDistance = page.locator('[data-testid="reflection-image-distance"]');
+    if ((await surface.getAttribute("data-object-model")) !== "point-line-orthogonal-reflection" ||
+        (await source.getAttribute("data-x")) !== "-4.0000" ||
+        (await imagePoint.getAttribute("data-x")) !== "6.0000" ||
+        (await mirror.getAttribute("data-value")) !== "1.0000" ||
+        (await leftDistance.innerText()) !== "5 units" ||
+        (await rightDistance.innerText()) !== "5 units") {
+      throw new Error("Reflection initial model does not satisfy the target construction");
+    }
+    const imageBeforePointDrag = await imagePoint.getAttribute("data-x");
+    const sourceBox = await source.boundingBox();
+    if (!sourceBox) throw new Error("Reflection source point is not draggable");
+    await page.mouse.move(sourceBox.x + sourceBox.width / 2, sourceBox.y + sourceBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(sourceBox.x + 35, sourceBox.y - 18, { steps: 6 });
+    await page.mouse.up();
+    if ((await imagePoint.getAttribute("data-x")) === imageBeforePointDrag ||
+        (await leftDistance.innerText()) !== (await rightDistance.innerText())) {
+      throw new Error("Dragging P did not preserve equal reflected distances");
+    }
+    await page.getByRole("spinbutton", { name: "Point P x coordinate" }).fill("-3");
+    if ((await imagePoint.getAttribute("data-x")) !== "5.0000") {
+      throw new Error("Editing P did not derive P' across x=1");
+    }
+    await page.getByRole("spinbutton", { name: "Image P' x coordinate" }).fill("4");
+    if ((await source.getAttribute("data-x")) !== "-2.0000") {
+      throw new Error("Editing dependent P' did not recover its reflected source");
+    }
+    await page.getByRole("spinbutton", { name: "Image P' y coordinate" }).fill("3");
+    if ((await source.getAttribute("data-y")) !== "3.0000") {
+      throw new Error("Editing image y did not preserve the vertical reflection rule");
+    }
+    const lineHandle = page.locator('[data-testid="reflection-line-handle"]');
+    const lineBeforeDrag = await mirror.getAttribute("data-value");
+    const sourceBeforeLineDrag = await source.getAttribute("data-x");
+    const imageBeforeLineDrag = await imagePoint.getAttribute("data-x");
+    const lineBox = await lineHandle.boundingBox();
+    if (!lineBox) throw new Error("Reflection mirror line is not draggable");
+    await page.mouse.move(lineBox.x + lineBox.width / 2, lineBox.y + lineBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(lineBox.x + 35, lineBox.y, { steps: 6 });
+    await page.mouse.up();
+    if ((await mirror.getAttribute("data-value")) === lineBeforeDrag ||
+        (await source.getAttribute("data-x")) !== sourceBeforeLineDrag ||
+        (await imagePoint.getAttribute("data-x")) === imageBeforeLineDrag ||
+        (await leftDistance.innerText()) !== (await rightDistance.innerText())) {
+      throw new Error("Dragging the mirror line did not update only the dependent image");
+    }
+    await page.getByRole("checkbox", { name: "Show perpendiculars" }).uncheck();
+    if ((await page.locator('[data-testid="reflection-perpendicular"]').count()) !== 0) {
+      throw new Error("Perpendicular visibility control did not hide the guide");
+    }
+    await page.getByRole("button", { name: "⌘ Fold", exact: true }).click();
+    if ((await imagePoint.getAttribute("data-x")) !== (await source.getAttribute("data-x"))) {
+      throw new Error("Fold did not superimpose the image on its source");
+    }
+    await page.getByRole("button", { name: "⌘ Fold", exact: true }).click();
+    await page.locator(".target-reflection-panel>nav").getByRole("button", { name: "Line", exact: true }).click();
+    await page.getByRole("button", { name: "horizontal", exact: true }).click();
+    await page.getByRole("spinbutton", { name: "Mirror line exact value" }).fill("2");
+    if ((await surface.getAttribute("data-orientation")) !== "horizontal" ||
+        (await surface.getAttribute("data-line")) !== "2.0000" ||
+        (await imagePoint.getAttribute("data-y")) !== "1.0000") {
+      throw new Error("Horizontal line mode did not apply y'=2b-y");
+    }
+    await page.locator(".target-reflection-panel>nav").getByRole("button", { name: "Objects", exact: true }).click();
+    await surface.getByRole("button", { name: "Reset", exact: true }).first().click();
+    if ((await source.getAttribute("data-x")) !== "-4.0000" ||
+        (await imagePoint.getAttribute("data-x")) !== "6.0000" ||
+        (await surface.getAttribute("data-orientation")) !== "vertical") {
+      throw new Error("Reflection reset did not restore the target model");
+    }
+    await surface.locator(".target-reflection-stages button").nth(2).click();
+    await page.getByRole("button", { name: "Share", exact: true }).click();
+    const practicePoint = page.locator('[data-testid="reflection-practice-point"]');
+    await practicePoint.scrollIntoViewIfNeeded();
+    const practicePointBefore = await practicePoint.getAttribute("data-x");
+    const practicePointBox = await practicePoint.boundingBox();
+    if (!practicePointBox) throw new Error("Practice reflection point is not draggable");
+    await page.mouse.move(practicePointBox.x + practicePointBox.width / 2, practicePointBox.y + practicePointBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(practicePointBox.x + 23, practicePointBox.y - 16, { steps: 6 });
+    await page.mouse.up();
+    if ((await practicePoint.getAttribute("data-x")) === practicePointBefore) {
+      throw new Error("Practice source point did not drag");
+    }
+    const practiceLine = page.locator('[data-testid="reflection-practice-line"]');
+    const practiceLineHandle = page.locator('[data-testid="reflection-practice-line-handle"]');
+    const practiceLineBefore = await practiceLine.getAttribute("data-value");
+    const practiceLineBox = await practiceLineHandle.boundingBox();
+    if (!practiceLineBox) throw new Error("Practice reflection line is not draggable");
+    await page.mouse.move(practiceLineBox.x + practiceLineBox.width / 2, practiceLineBox.y + practiceLineBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(practiceLineBox.x, practiceLineBox.y - 23, { steps: 6 });
+    await page.mouse.up();
+    if ((await practiceLine.getAttribute("data-value")) === practiceLineBefore) {
+      throw new Error("Practice mirror line did not drag");
+    }
+    await page.getByRole("button", { name: "Check my work", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Not yet" }).waitFor();
+    for (const checkbox of await page.locator(".target-reflection-practice aside label input").all()) await checkbox.check();
+    await page.getByRole("button", { name: "Check my work", exact: true }).click();
+    status = await page.getByRole("status").filter({ hasText: "Correct: all line-reflection invariants" }).innerText();
+    await page.locator(".target-reflection-practice aside").getByRole("button", { name: "Reset", exact: true }).click();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

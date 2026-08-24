@@ -1,0 +1,15 @@
+[
+  {
+    "id": 237,
+    "mockup": 294,
+    "route": "/lessons/geometry/237-reflection-in-line",
+    "width": 1026,
+    "height": 1533,
+    "status": "Correct: all line-reflection invariants are verified.",
+    "consoleErrors": [],
+    "scrollHeight": 1533,
+    "surfaceBottom": 1527,
+    "objectModel": "point-line-orthogonal-reflection",
+    "overflowing": 0
+  }
+]

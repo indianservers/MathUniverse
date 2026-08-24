@@ -122,19 +122,22 @@ export function BreadcrumbTrail() {
   const segments = location.pathname.split("/").filter(Boolean);
   const includesCoordinateGeometry =
     location.pathname === "/lessons/geometry/236-translation-by-vector";
+  const isReflectionLine =
+    location.pathname === "/lessons/geometry/237-reflection-in-line";
   if (!segments.length) return null;
 
   return (
     <nav className="mb-2 flex flex-wrap items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400" aria-label="Breadcrumb">
       <Link to="/" className="hover:text-cyan-600">Home</Link>
       {segments.map((segment, index) => {
+        if (isReflectionLine && segment === "geometry") return null;
         const path = `/${segments.slice(0, index + 1).join("/")}`;
         const matched = navItems.find((item) => !item.isExternal && item.route === path);
         const label = matched?.title ?? segment.replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
         const last = index === segments.length - 1;
         return (
           <span key={path} className="contents">
-            {includesCoordinateGeometry && last && <span className="flex items-center gap-2"><span aria-hidden>&gt;</span><Link to="/lessons/geometry" className="hover:text-cyan-600">Coordinate Geometry</Link></span>}
+            {(includesCoordinateGeometry || isReflectionLine) && last && <span className="flex items-center gap-2"><span aria-hidden>&gt;</span><Link to="/lessons/geometry" className="hover:text-cyan-600">Coordinate Geometry</Link></span>}
             <span className="flex items-center gap-2">
               <span aria-hidden>&gt;</span>
               {last ? <span className="text-cyan-700 dark:text-cyan-200">{label}</span> : <Link to={path} className="hover:text-cyan-600">{label}</Link>}

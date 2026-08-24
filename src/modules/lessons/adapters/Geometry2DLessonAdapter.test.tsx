@@ -1025,9 +1025,33 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Drag points");
   });
 
-  it("renders geometry lessons 237 through 245 with transformation guidance", () => {
+  it("renders Reflection in Line as a dedicated orthogonal reflection model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 237)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0294"');
+    expect(html).toContain('data-object-model="point-line-orthogonal-reflection"');
+    expect(html).toContain("Interactive point and mirror line reflection graph");
+    expect(html).toContain('data-testid="reflection-source-point"');
+    expect(html).toContain('data-testid="reflection-image-point"');
+    expect(html).toContain('data-testid="reflection-mirror-line"');
+    expect(html).toContain('aria-label="Point P x coordinate"');
+    expect(html).toContain('aria-label="Image P&#x27; x coordinate"');
+    expect(html).toContain("(x, y) → (2a - x, y)");
+    expect(html).toContain("Practice horizontal line reflection graph");
+    expect(html).toContain("Check my work");
+    expect(html).not.toContain("reusable 2D geometry engine");
+    expect(html).not.toContain("Drag points");
+  });
+
+  it("renders geometry lessons 238 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      237: "Reflection in line",
       238: "Reflection in point",
       239: "Reflection in circle",
       240: "Rotation around point",
