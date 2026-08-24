@@ -180,6 +180,55 @@
   color: white;
 }
 
+.target-general-clear {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 6px;
+  background: #7c3aed;
+  padding: 5px 10px;
+  color: white;
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.target-general-clear svg {
+  width: 12px;
+  height: 12px;
+}
+
+.target-general-card {
+  min-height: 195px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  padding: 14px;
+  color: #475569;
+  font-size: 8px;
+  line-height: 1.55;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+.target-general-card h2 {
+  margin-bottom: 9px;
+  color: #172554;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.target-general-card > p,
+.target-general-card > b {
+  display: block;
+  margin-top: 7px;
+}
+
+.target-general-formula {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
 :root {
   color-scheme: light;
   font-synthesis: none;

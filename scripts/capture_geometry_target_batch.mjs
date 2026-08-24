@@ -594,6 +594,83 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct rigid rotation." })
       .innerText();
+  } else if (id === 217) {
+    const body = page.locator('[data-testid="general-polygon-body"]');
+    const areaBeforeVertexDrag = await body.getAttribute("data-area");
+    const vertex = page.locator('[data-testid="general-polygon-vertex-0"]');
+    const vertexBefore = await vertex.getAttribute("cx");
+    const vertexBox = await vertex.boundingBox();
+    if (!vertexBox) throw new Error("General polygon vertex is not draggable");
+    await page.mouse.move(
+      vertexBox.x + vertexBox.width / 2,
+      vertexBox.y + vertexBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(vertexBox.x + 32, vertexBox.y - 28, { steps: 4 });
+    await page.mouse.up();
+    if ((await vertex.getAttribute("cx")) === vertexBefore) {
+      throw new Error("General polygon vertex drag did not reshape the polygon");
+    }
+    if ((await body.getAttribute("data-area")) === areaBeforeVertexDrag) {
+      throw new Error("Vertex drag did not update the computed polygon area");
+    }
+    await page.getByRole("button", { name: "Point", exact: true }).click();
+    const plane = page.getByRole("img", {
+      name: "Editable general polygon coordinate plane with add drag and remove vertices",
+    });
+    await plane.click({ position: { x: 420, y: 145 } });
+    if ((await page.locator('[data-testid^="general-polygon-vertex-"]').count()) !== 6) {
+      throw new Error("Point tool did not add a sixth polygon vertex");
+    }
+    await page.locator('[data-testid="general-polygon-vertex-5"]').dblclick();
+    if ((await page.locator('[data-testid^="general-polygon-vertex-"]').count()) !== 5) {
+      throw new Error("Double-click did not remove the added polygon vertex");
+    }
+    await page.getByRole("button", { name: "Move", exact: true }).click();
+    const areaBeforeMove = await body.getAttribute("data-area");
+    const pointsBeforeMove = await body.getAttribute("points");
+    const bodyBox = await body.boundingBox();
+    if (!bodyBox) throw new Error("General polygon body is not movable");
+    await page.mouse.move(
+      bodyBox.x + bodyBox.width / 2,
+      bodyBox.y + bodyBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(
+      bodyBox.x + bodyBox.width / 2 + 26,
+      bodyBox.y + bodyBox.height / 2 + 18,
+      { steps: 4 },
+    );
+    await page.mouse.up();
+    if ((await body.getAttribute("points")) === pointsBeforeMove) {
+      throw new Error("Move tool did not translate the complete polygon");
+    }
+    if ((await body.getAttribute("data-area")) !== areaBeforeMove) {
+      throw new Error("Whole-polygon translation changed its area");
+    }
+    await page.getByRole("button", { name: "Measure", exact: true }).click();
+    const firstSide = page.locator('[data-testid="general-polygon-side-0"]');
+    await firstSide.click({ force: true });
+    if ((await firstSide.getAttribute("stroke")) !== "#f97316") {
+      throw new Error("Measure tool did not select a polygon side");
+    }
+    for (const label of ["Snap", "Grid"]) {
+      const control = page.getByRole("checkbox", { name: label });
+      await control.uncheck();
+      await control.check();
+    }
+    await page.getByRole("button", { name: "Clear All" }).click();
+    if ((await page.locator('[data-testid^="general-polygon-vertex-"]').count()) !== 0) {
+      throw new Error("Clear All did not remove the polygon vertices");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    await page.getByRole("textbox", { name: "Hexagon interior sum" }).fill("720");
+    await page.getByRole("textbox", { name: "Hexagon exterior sum" }).fill("360");
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct polygon sums." })
+      .innerText();
   } else if (id === 221) {
     const center = page.locator('[data-testid="compass-center-point"]');
     const centerBefore = await center.getAttribute("cx");

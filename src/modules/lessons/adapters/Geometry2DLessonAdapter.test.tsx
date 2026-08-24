@@ -535,6 +535,24 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Translate x"');
   });
 
+  it("renders General Polygon with an editable measured vertex collection", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 217)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain("Editable general polygon coordinate plane with add drag and remove vertices");
+    expect(html).toContain('data-testid="general-polygon-body"');
+    expect(html).toContain('data-testid="general-polygon-vertex-0"');
+    expect(html).toContain('data-area=');
+    expect(html).toContain("Interior Angles");
+    expect(html).toContain("Self-intersecting");
+    expect(html).toContain("Try It Independently");
+    expect(html).toContain('aria-label="Hexagon interior sum"');
+    expect(html).not.toContain('aria-label="Vertices"');
+    expect(html).not.toContain('aria-label="Irregularity"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

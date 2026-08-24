@@ -26,7 +26,7 @@ Updated 2026-08-24. This batch replaces the generic construction fallback for le
 | 0271 | 214 Triangle Constructor | `triangle` | Implemented and browser-validated |
 | 0272 | 215 Regular Polygon | `regularPolygon` | Implemented and browser-validated |
 | 0273 | 216 Rigid Polygon | `rigidTriangleMotion` | Reworked individually and browser-validated |
-| 0274 | 217 General Polygon | `generalPolygon` | Implemented and browser-validated |
+| 0274 | 217 General Polygon | `editableGeneralPolygon` | Reworked individually and browser-validated |
 | 0275 | 218 Circle Centre and Point | `circlePoint` | Implemented and browser-validated |
 | 0276 | 219 Circle Centre and Radius | `circleRadius` | Implemented and browser-validated |
 | 0277 | 220 Circle through Three Points | `circleThree` | Implemented and browser-validated |
@@ -98,6 +98,10 @@ Reworked individually against the target mockup. Replaced the shared Sides n and
 ### Lesson 216 / Mockup 0273 - Rigid Polygon
 
 Reworked individually against the target mockup. Removed the generic quadrilateral, Rotation and Translate x sliders, repeated definition/rule cards, generic construction strip, and template verification record. The dedicated surface owns triangle ABC, a dependent translated copy A'B'C', rigid-body position and rotation, and visibility state for labels, lengths, angles, and overlay. Dragging the triangle in Move mode translates every vertex equally; dragging a vertex in Rotate mode turns the complete triangle around its centroid. Both transformations preserve the three computed side lengths byte-for-byte, and the overlay remains the exact vector (6, -2) image. The worked coordinate table, distance and angle invariants, rigid-motion taxonomy, adjacent navigation, and six-field 90-degree counterclockwise practice check match the target structure. The mockup labels two sides as 4.47 despite its stated coordinates producing 5.66 and 5.00; the implementation intentionally displays the correct live Euclidean calculations. Final 1027x1531 browser validation exercises translation, rotation, every visibility control, reset, and all practice fields, verifies the invariant data before and after both drags, reports no overflow or console errors, and fits the complete footer without scrolling.
+
+### Lesson 217 / Mockup 0274 - General Polygon
+
+Reworked individually against the target mockup. Removed the generic regular pentagon, Vertices and Irregularity sliders, generic object-model panel, repeated construction cards, and template verification record. The dedicated surface owns an ordered collection of three to ten unrestricted vertices. Point and Polygon add vertices, every vertex is directly draggable, double-click removes a vertex, Move translates the complete polygon, Measure selects a real edge, and Clear All, reset, snap, and grid controls update the editor. Side lengths, perimeter, shoelace area, oriented interior angles, angle sum, expected angle sum, convexity, and pairwise non-adjacent edge intersection are recalculated from the same point collection. The Properties copy controls, n-gon pattern and formula panels, seven-gon example, learning flow, adjacent navigation, and independently graded hexagon sums follow mockup 0274. The screenshot uses live coordinate calculations rather than copying internally inconsistent property values from the mockup. Final 1022x1538 browser validation reshapes a vertex and confirms area changes, adds and removes a sixth vertex, translates the complete polygon and confirms area is preserved, selects an edge, exercises both display toggles, clears and restores the model, and verifies 720-degree/360-degree hexagon sums with no overflow or console errors.
 
 ### Lesson 221 / Mockup 0278 - Compass
 
