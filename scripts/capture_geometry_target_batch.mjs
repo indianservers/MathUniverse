@@ -51,6 +51,7 @@ const allLessons = [
   [248, 305, "equidistant-loci", 953, 1651],
   [249, 306, "moving-linkage-loci", 1015, 1550],
   [250, 307, "envelope-of-lines", 993, 1583],
+  [251, 308, "dynamic-trace", 1009, 1559],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -76,7 +77,17 @@ for (const [id, mockup, slug, width, height] of lessons) {
   const selector = `[data-testid="dynamic-geometry-mockup-${String(mockup).padStart(4, "0")}"]`;
   await page.locator(selector).waitFor({ state: "visible" });
   let status;
-  if (id === 206) {
+  if (id === 251) {
+    const surface=page.locator(selector),source=page.locator('[data-testid="dynamic-trace-source-a"]');
+    if((await surface.getAttribute("data-object-model"))!=="dependent-dilation-image-with-temporal-trace"||(await surface.getAttribute("data-source-x"))!=="1.000"||(await surface.getAttribute("data-image-x"))!=="2.000"||(await surface.getAttribute("data-scale"))!=="2.000")throw new Error("Dynamic Trace initial dilation model is invalid");
+    const traceBefore=Number(await surface.getAttribute("data-trace-count")),box=await source.boundingBox();if(!box)throw new Error("Dynamic Trace source A is not draggable");await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+38,box.y-24,{steps:6});await page.mouse.up();const sx=Number(await surface.getAttribute("data-source-x")),sy=Number(await surface.getAttribute("data-source-y")),ix=Number(await surface.getAttribute("data-image-x")),iy=Number(await surface.getAttribute("data-image-y"));if(Math.abs(ix-2*sx)>.002||Math.abs(iy-2*sy)>.002||Number(await surface.getAttribute("data-trace-count"))<=traceBefore)throw new Error("Dragging A did not update dependent image and history");
+    await page.getByRole("spinbutton",{name:"B′ x exact value"}).fill("6");if((await surface.getAttribute("data-source-x"))!=="3.000"||(await surface.getAttribute("data-image-x"))!=="6.000")throw new Error("Inverse image coordinate control did not recover source A");
+    await page.getByRole("spinbutton",{name:"Transform k exact value"}).fill("-2");if(Number(await surface.getAttribute("data-image-x"))!==-2*Number(await surface.getAttribute("data-source-x")))throw new Error("Scale control did not recalculate the dependent image");
+    await page.getByRole("checkbox",{name:"Trace enabled"}).uncheck();const disabledCount=await surface.getAttribute("data-trace-count");await page.getByRole("spinbutton",{name:"A y exact value"}).fill("1.5");if((await surface.getAttribute("data-trace-count"))!==disabledCount)throw new Error("Disabled trace still accumulated history");await page.getByRole("checkbox",{name:"Trace enabled"}).check();
+    await page.getByRole("button",{name:"Play trace animation"}).click();const animatedBefore=await surface.getAttribute("data-source-x");await page.waitForTimeout(220);if((await surface.getAttribute("data-source-x"))===animatedBefore||(await surface.getAttribute("data-playing"))!=="true")throw new Error("Dynamic Trace playback did not animate");await page.getByRole("button",{name:"Pause trace animation"}).click();const paused=await surface.getAttribute("data-source-x");await page.waitForTimeout(150);if((await surface.getAttribute("data-source-x"))!==paused||(await surface.getAttribute("data-playing"))!=="false")throw new Error("Dynamic Trace playback did not pause");
+    await page.getByRole("button",{name:"Clear trace",exact:true}).click();if((await surface.getAttribute("data-trace-count"))!=="0")throw new Error("Dynamic Trace clear did not remove history");await page.getByRole("button",{name:"Reset",exact:true}).first().click();
+    await page.getByRole("radio",{name:"Dynamic trace challenge B"}).check();await page.getByRole("button",{name:"Check answer"}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();await page.getByRole("radio",{name:"Dynamic trace challenge A"}).check();await page.getByRole("button",{name:"Check answer"}).click();status=await page.getByRole("status").filter({hasText:"Great! That’s correct"}).innerText();
+  } else if (id === 206) {
     await page.getByRole("button", { name: "Edit point B" }).click();
     await page.getByRole("spinbutton", { name: "B x coordinate" }).fill("5");
     await page.getByRole("button", { name: "Hide grid" }).click();

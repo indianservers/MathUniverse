@@ -17,6 +17,7 @@
 | 0305 | 248 Equidistant Loci | `dependent-perpendicular-bisector-equal-distance` | Reworked individually and browser-validated |
 | 0306 | 249 Moving-Linkage Loci | `fixed-foci-flexible-tether-ellipse` | Reworked individually and browser-validated |
 | 0307 | 250 Envelope of Lines | `parameterized-tangent-family-parabola-envelope` | Reworked individually and browser-validated |
+| 0308 | 251 Dynamic Trace | `dependent-dilation-image-with-temporal-trace` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -206,3 +207,16 @@ Evidence:
 
 - `0307-desktop.png`
 - `0307-dedicated-target-validation.json`
+
+## Lesson 251 / Mockup 0308 - Dynamic Trace
+
+Reworked individually against the target mockup with a dedicated `dependent-dilation-image-with-temporal-trace` object model. Source A owns two coordinates and the image B′ is always derived by the dilation rule `B′=(kx_A,ky_A)`. Dragging A updates B′ and records its actual historical positions. Editing either B′ coordinate performs the inverse calculation to recover A, so the image controls are functional without breaking the dependency. Negative and fractional scale factors are supported. The trace toggle controls whether new history is recorded, fade changes historical opacity, speed changes animation rate, transport controls step or animate the construction, and clear removes history independently of the geometry.
+
+The practice task grades the requested dilation with `k=3` and `A=(-2,1)`, giving `B′=(-6,3)`, with incorrect and corrected feedback paths. Mockup 0308 displays A at `(0,0)` and B′ at `(2,2)` while simultaneously stating `B′=(kx_A,ky_A)` with `k=2`; those values cannot satisfy the displayed rule. The implementation starts from the coherent state A `(1,1)`, B′ `(2,2)`, and `k=2` rather than presenting a false live invariant.
+
+Final 1009x1559 browser validation physically drags A and proves both image coordinates remain exactly twice the source coordinates while history grows, edits B′ x and proves A x is recovered by inverse dilation, applies `k=-2` and verifies the dependent image, disables tracing and proves coordinate edits do not add samples, reenables tracing, starts and pauses animation while checking live state, clears the trace, resets the complete model, and exercises incorrect and correct challenge paths. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1507 with the compact target-aligned footer below it.
+
+Evidence:
+
+- `0308-desktop.png`
+- `0308-dedicated-target-validation.json`

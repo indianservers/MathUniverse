@@ -1250,9 +1250,23 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("y = x² + 1");
   });
 
-  it("renders geometry lessons 251 through 256 with loci and proof guidance", () => {
+  it("renders Dynamic Trace as a dedicated dependent dilation model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 251)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0308"');
+    expect(html).toContain('data-object-model="dependent-dilation-image-with-temporal-trace"');
+    expect(html).toContain("Interactive dilation with source point and dependent traced image");
+    expect(html).toContain('data-testid="dynamic-trace-source-a"');
+    expect(html).toContain('data-testid="dynamic-trace-image-b"');
+    expect(html).toContain('aria-label="Trace enabled"');
+    expect(html).toContain('aria-label="Transform k"');
+    expect(html).toContain("B′ = (k");
+    expect(html).toContain('aria-label="Dynamic trace challenge A"');
+    expect(html).toContain("(-6, 3)");
+  });
+
+  it("renders geometry lessons 252 through 256 with loci and proof guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      251: "Dynamic trace",
       252: "Conjecture testing",
       253: "Exact proof",
       254: "Collinearity test",

@@ -1,0 +1,15 @@
+[
+  {
+    "id": 251,
+    "mockup": 308,
+    "route": "/lessons/geometry/251-dynamic-trace",
+    "width": 1009,
+    "height": 1559,
+    "status": "Great! That’s correct. B′ = (3 · (−2), 3 · 1) = (−6, 3)",
+    "consoleErrors": [],
+    "scrollHeight": 1559,
+    "surfaceBottom": 1507,
+    "objectModel": "dependent-dilation-image-with-temporal-trace",
+    "overflowing": 0
+  }
+]
