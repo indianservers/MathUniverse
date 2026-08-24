@@ -62,3 +62,7 @@ Reworked individually against the target mockup. Removed the placeholder Directi
 ### Lesson 207 / Mockup 0264 - Polyline
 
 Reworked individually against the target mockup. Removed the placeholder Vertices and Spread sliders. The surface now owns an ordered vertex collection with direct point creation and dragging, real open/closed topology, snapshot undo, clear, zoom, fullscreen, closure tolerance, segment-by-segment Euclidean lengths, computed total length, loadable worked example, and coordinate-validated practice construction. Final exact-viewport check at 1024x1536: no overflow or console errors; automated verification confirms that dragging changes the underlying SVG point coordinate.
+
+### Lesson 208 / Mockup 0265 - Perpendicular Line
+
+Reworked individually against the target mockup. Replaced the Base angle and Point offset stand-ins with a given-line slope, draggable/editable point P, computed perpendicular slope, right-angle invariant, real Select/Point/Line/Perpendicular/Clear tools, random examples, zoom, fullscreen, compass-style construction sequence, and a gated practice construction. Fixed the 90-degree annotation so it no longer intercepts pointer input. Final exact-viewport check at 998x1576: no overflow or console errors; automated verification physically drags P and confirms its SVG coordinate changes before completing the practice construction.

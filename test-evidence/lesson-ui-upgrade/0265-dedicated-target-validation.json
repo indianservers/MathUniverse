@@ -1,0 +1,15 @@
+[
+  {
+    "id": 208,
+    "mockup": 265,
+    "route": "/lessons/geometry/208-perpendicular-line",
+    "width": 998,
+    "height": 1576,
+    "status": "Correct perpendicular construction.",
+    "consoleErrors": [],
+    "scrollHeight": 1607,
+    "surfaceBottom": 1542.015625,
+    "objectModel": "perpendicular-line",
+    "overflowing": 0
+  }
+]

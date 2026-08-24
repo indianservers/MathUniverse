@@ -108,6 +108,34 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct construction" })
       .innerText();
+  } else if (id === 208) {
+    const pointP = page.locator('[data-testid="perpendicular-point-p"]');
+    const pointXBeforeDrag = await pointP.getAttribute("cx");
+    const pointBox = await pointP.boundingBox();
+    if (!pointBox) throw new Error("Perpendicular point P is not draggable");
+    await page.mouse.move(
+      pointBox.x + pointBox.width / 2,
+      pointBox.y + pointBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.waitForTimeout(150);
+    await page.mouse.move(pointBox.x + 22, pointBox.y - 16, { steps: 4 });
+    await page.mouse.up();
+    if ((await pointP.getAttribute("cx")) === pointXBeforeDrag) {
+      throw new Error("Perpendicular drag did not update point P");
+    }
+    await page.getByRole("slider", { name: "Given line slope" }).fill("1");
+    await page.getByRole("spinbutton", { name: "Point P x" }).fill("3");
+    await page.getByRole("button", { name: "Clear" }).click();
+    await page.getByRole("button", { name: "Perpendicular" }).click();
+    await page.getByRole("button", { name: "New example" }).click();
+    await page.getByRole("button", { name: "Start construction" }).click();
+    await page.getByRole("button", { name: "Perpendicular" }).click();
+    await page.getByRole("button", { name: "Check answer" }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct perpendicular construction" })
+      .innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());
@@ -169,9 +197,7 @@ console.log(
         (row) =>
           row.consoleErrors.length ||
           row.overflowing ||
-          !row.status.match(
-            /Construction verified\.|Correct(?::| construction)/i,
-          ),
+          !row.status.match(/Construction verified\.|Correct/i),
       ).length,
       results,
     },
