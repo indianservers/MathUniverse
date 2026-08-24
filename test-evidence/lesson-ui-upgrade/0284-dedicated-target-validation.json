@@ -1,0 +1,15 @@
+[
+  {
+    "id": 227,
+    "mockup": 284,
+    "route": "/lessons/geometry/227-ellipse",
+    "width": 1032,
+    "height": 1524,
+    "status": "Correct ellipse focal invariant and practice.",
+    "consoleErrors": [],
+    "scrollHeight": 1524,
+    "surfaceBottom": 1415,
+    "objectModel": "two-focus-constant-sum-ellipse",
+    "overflowing": 0
+  }
+]

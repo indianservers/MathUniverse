@@ -651,6 +651,33 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Dedicated conicFive objects");
   });
 
+  it("renders Ellipse from a two-focus constant-sum locus", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 227)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive ellipse with draggable center foci and constrained point P",
+    );
+    expect(html).toContain('data-testid="ellipse-locus"');
+    expect(html).toContain('data-testid="ellipse-center"');
+    expect(html).toContain('data-testid="ellipse-focus-1"');
+    expect(html).toContain('data-testid="ellipse-focus-2"');
+    expect(html).toContain('data-testid="ellipse-point"');
+    expect(html).toContain('data-testid="ellipse-focal-sum">12.00');
+    expect(html).toContain('aria-label="Ellipse semi-major axis"');
+    expect(html).toContain('aria-label="Ellipse eccentricity"');
+    expect(html).toContain('aria-label="Ellipse practice minor"');
+    expect(html).toContain("PF₁ + PF₂ = 2a");
+    expect(html).not.toContain("Semi-minor b");
+    expect(html).not.toContain("Dedicated ellipse objects");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

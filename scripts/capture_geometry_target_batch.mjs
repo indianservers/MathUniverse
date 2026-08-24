@@ -1376,6 +1376,72 @@ for (const [id, mockup, slug, width, height] of lessons) {
       throw new Error("Practice points did not solve to the requested parabola");
     }
     status = "Correct five-point parabola classification.";
+  } else if (id === 227) {
+    const locus = page.locator('[data-testid="ellipse-locus"]');
+    const point = page.locator('[data-testid="ellipse-point"]');
+    const focus2 = page.locator('[data-testid="ellipse-focus-2"]');
+    const center = page.locator('[data-testid="ellipse-center"]');
+    const sum = page.locator('[data-testid="ellipse-focal-sum"]');
+    const thetaBefore = await point.getAttribute("data-theta");
+    const pointBox = await point.boundingBox();
+    if (!pointBox) throw new Error("Ellipse point P is not draggable");
+    await page.mouse.move(pointBox.x + pointBox.width / 2, pointBox.y + pointBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(pointBox.x - 42, pointBox.y + 31, { steps: 6 });
+    await page.mouse.up();
+    if ((await point.getAttribute("data-theta")) === thetaBefore) {
+      throw new Error("Dragging P did not change its ellipse parameter");
+    }
+    if ((await sum.innerText()) !== "12.00") {
+      throw new Error("Dragging P broke the two-focus constant-sum invariant");
+    }
+    const bBefore = await locus.getAttribute("data-b");
+    const focusBox = await focus2.boundingBox();
+    if (!focusBox) throw new Error("Ellipse focus F2 is not draggable");
+    await page.mouse.move(focusBox.x + focusBox.width / 2, focusBox.y + focusBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(focusBox.x + 35, focusBox.y, { steps: 5 });
+    await page.mouse.up();
+    if ((await locus.getAttribute("data-b")) === bBefore) {
+      throw new Error("Dragging a focus did not recalculate the minor semi-axis");
+    }
+    const centerBefore = await locus.getAttribute("cx");
+    const centerBox = await center.boundingBox();
+    if (!centerBox) throw new Error("Ellipse center O is not draggable");
+    await page.mouse.move(centerBox.x + centerBox.width / 2, centerBox.y + centerBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(centerBox.x + 24, centerBox.y - 18, { steps: 5 });
+    await page.mouse.up();
+    if ((await locus.getAttribute("cx")) === centerBefore) {
+      throw new Error("Dragging O did not translate the ellipse");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    await page.getByRole("spinbutton", { name: "Ellipse semi-major axis" }).fill("7");
+    await page.getByRole("spinbutton", { name: "Ellipse focus distance" }).fill("3.5");
+    await page.getByRole("slider", { name: "Ellipse eccentricity slider" }).fill("0.6");
+    await page.getByRole("spinbutton", { name: "Ellipse focus distance" }).fill("3.5");
+    for (const label of ["Axes", "Major/Minor Axes", "Grid"]) {
+      const toggle = page.getByRole("checkbox", { name: label, exact: true });
+      await toggle.uncheck();
+      await toggle.check();
+    }
+    await page.getByRole("button", { name: "Practice Try independently", exact: true }).click();
+    await page.getByRole("button", { name: "Observe See the model", exact: true }).click();
+    await page.getByRole("textbox", { name: "Ellipse practice sum" }).fill("10");
+    await page.getByRole("button", { name: "Check", exact: true }).nth(0).click();
+    await page.locator('.target-ellipse-practice output').nth(0).filter({ hasText: "Try again" }).waitFor();
+    await page.getByRole("textbox", { name: "Ellipse practice sum" }).fill("14");
+    await page.getByRole("textbox", { name: "Ellipse practice minor" }).fill("6.06");
+    await page.getByRole("textbox", { name: "Ellipse practice eccentricity" }).fill("0.5");
+    for (let index = 0; index < 3; index += 1) await page.getByRole("button", { name: "Check", exact: true }).nth(index).click();
+    if ((await page.locator('.target-ellipse-practice output').filter({ hasText: "Correct" }).count()) !== 3) {
+      throw new Error("Ellipse practice did not grade all three derived values");
+    }
+    await page.getByRole("button", { name: "Need a hint? Show solution formula" }).click();
+    await page.getByText("Use PF₁ + PF₂ = 2a").waitFor();
+    await page.getByRole("button", { name: "New Task" }).click();
+    await page.getByText("Set a = 8 and c = 4.8").waitFor();
+    status = "Correct ellipse focal invariant and practice.";
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());
