@@ -321,6 +321,27 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Point offset");
   });
 
+  it("renders Parallel Line with equal-slope dependency controls", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 209)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("Parallel lines coordinate plane");
+    expect(html).toContain('data-testid="parallel-point-p"');
+    expect(html).toContain('aria-label="Slope m"');
+    expect(html).toContain('aria-label="Point P x"');
+    expect(html).toContain("mℓ = mₘ");
+    expect(html).toContain("Worked example (steps)");
+    expect(html).toContain("Start practice");
+    expect(html).toContain("Check my answer");
+    expect(html).not.toContain("Translate x");
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

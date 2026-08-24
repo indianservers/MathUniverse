@@ -1,0 +1,15 @@
+[
+  {
+    "id": 209,
+    "mockup": 266,
+    "route": "/lessons/geometry/209-parallel-line",
+    "width": 1024,
+    "height": 1536,
+    "status": "Correct parallel construction.",
+    "consoleErrors": [],
+    "scrollHeight": 1577,
+    "surfaceBottom": 1511.75,
+    "objectModel": "parallel-line",
+    "overflowing": 0
+  }
+]

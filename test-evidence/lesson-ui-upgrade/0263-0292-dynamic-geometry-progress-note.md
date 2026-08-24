@@ -66,3 +66,7 @@ Reworked individually against the target mockup. Removed the placeholder Vertice
 ### Lesson 208 / Mockup 0265 - Perpendicular Line
 
 Reworked individually against the target mockup. Replaced the Base angle and Point offset stand-ins with a given-line slope, draggable/editable point P, computed perpendicular slope, right-angle invariant, real Select/Point/Line/Perpendicular/Clear tools, random examples, zoom, fullscreen, compass-style construction sequence, and a gated practice construction. Fixed the 90-degree annotation so it no longer intercepts pointer input. Final exact-viewport check at 998x1576: no overflow or console errors; automated verification physically drags P and confirms its SVG coordinate changes before completing the practice construction.
+
+### Lesson 209 / Mockup 0266 - Parallel Line
+
+Reworked individually against the target mockup. The surface now owns a given line `y = sx + c`, an independently draggable/editable point P, and a dependent parallel line whose intercept is calculated as `P.y - s*P.x`. Slope edits rotate both lines while preserving equality; moving P translates only the constructed line. Angle/slope overlays, snap mode, zoom, fullscreen, reset, exact inputs, steppers, live invariant cards, worked construction, and checkbox-validated practice are functional. Final exact-viewport check at 1024x1536 physically drags P and verifies successful target practice with no overflow or console errors.

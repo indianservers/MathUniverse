@@ -136,6 +136,40 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct perpendicular construction" })
       .innerText();
+  } else if (id === 209) {
+    const pointP = page.locator('[data-testid="parallel-point-p"]');
+    const pointXBeforeDrag = await pointP.getAttribute("cx");
+    const pointBox = await pointP.boundingBox();
+    if (!pointBox) throw new Error("Parallel point P is not draggable");
+    await page.mouse.move(
+      pointBox.x + pointBox.width / 2,
+      pointBox.y + pointBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(pointBox.x + 24, pointBox.y - 16, { steps: 4 });
+    await page.mouse.up();
+    if ((await pointP.getAttribute("cx")) === pointXBeforeDrag) {
+      throw new Error("Parallel drag did not update point P");
+    }
+    await page.getByRole("slider", { name: "Slope m" }).fill("1");
+    await page
+      .getByRole("spinbutton", { name: "y-intercept c exact value" })
+      .fill("2");
+    await page.getByRole("checkbox", { name: "Snap to grid" }).check();
+    await page.getByRole("button", { name: "Increase point x" }).click();
+    await page.getByRole("button", { name: "Start practice" }).click();
+    for (const label of [
+      "Slopes are equal",
+      "Angles are equal",
+      "Lines are parallel",
+    ]) {
+      await page.getByRole("checkbox", { name: label }).check();
+    }
+    await page.getByRole("button", { name: "Check my answer" }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct parallel construction" })
+      .innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());
