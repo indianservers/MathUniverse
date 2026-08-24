@@ -49,6 +49,7 @@ import RotationPointTargetLesson240 from "./RotationPointTargetLesson240";
 import DilationPointTargetLesson241 from "./DilationPointTargetLesson241";
 import MatrixTransformationTargetLesson242 from "./MatrixTransformationTargetLesson242";
 import CompositeTransformationsTargetLesson243 from "./CompositeTransformationsTargetLesson243";
+import TransformationMappingTargetLesson244 from "./TransformationMappingTargetLesson244";
 import TranslationVectorTargetLesson236 from "./TranslationVectorTargetLesson236";
 
 type GeometryTool =
@@ -94,6 +95,9 @@ export default function Geometry2DLessonAdapter({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  if (lesson.id === 244) {
+    return <TransformationMappingTargetLesson244 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
   if (lesson.id === 243) {
     return <CompositeTransformationsTargetLesson243 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }

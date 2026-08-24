@@ -120,7 +120,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
   };
   const usesImmersiveFunctionWorkspace = lesson.id >= 143 && lesson.id <= 152 || lesson.id === 153 || lesson.id === 154 || (lesson.id >= 156 && lesson.id <= 162) || lesson.id === 164 || lesson.id === 259;
   const usesTargetGraphingWorkspace = lesson.id >= 39 && lesson.id <= 56;
-  const usesImmersiveDynamicGeometryWorkspace = lesson.id >= 198 && lesson.id <= 243;
+  const usesImmersiveDynamicGeometryWorkspace = lesson.id >= 198 && lesson.id <= 244;
   const usesTargetTrigonometryWorkspace = lesson.id >= 257 && lesson.id <= 276;
   const usesTargetStatisticsWorkspace = lesson.id >= 467 && lesson.id <= 499;
   const usesTargetProbabilityWorkspace = lesson.id >= 500 && lesson.id <= 536;

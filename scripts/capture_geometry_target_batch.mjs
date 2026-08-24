@@ -44,6 +44,7 @@ const allLessons = [
   [241, 298, "dilation-from-point", 1054, 1492],
   [242, 299, "matrix-transformation", 1045, 1505],
   [243, 300, "composite-transformations", 988, 1592],
+  [244, 301, "transformation-mapping", 1001, 1572],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2657,6 +2658,15 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("checkbox",{name:"Grid",exact:true}).uncheck();await page.getByRole("checkbox",{name:"Grid",exact:true}).check();await page.getByRole("button",{name:"Reset",exact:true}).click();
     await page.getByRole("combobox",{name:"First practice transformation"}).selectOption("translate");await page.getByRole("combobox",{name:"Second practice transformation"}).selectOption("rotate");await page.getByRole("button",{name:"Check",exact:true}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();
     await page.getByRole("combobox",{name:"First practice transformation"}).selectOption("rotate");await page.getByRole("combobox",{name:"Second practice transformation"}).selectOption("translate");await page.getByRole("button",{name:"Check",exact:true}).click();status=await page.getByRole("status").filter({hasText:"Correct composition"}).innerText();
+  } else if (id === 244) {
+    const surface=page.locator(selector),source=page.locator('[data-testid="mapping-source-a"]'),imagePoint=page.locator('[data-testid="mapping-image-a"]');
+    if((await surface.getAttribute("data-object-model"))!=="linked-preimage-image-rule-inference"||(await surface.getAttribute("data-rule"))!=="(x,y) → (−y,x)"||(await surface.getAttribute("data-image-a"))!=="(-1, 2)"||(await imagePoint.getAttribute("data-x"))!=="-1.0000")throw new Error("Mapping initial rotation rule is invalid");
+    const beforeX=await imagePoint.getAttribute("data-x"),beforeY=await imagePoint.getAttribute("data-y"),box=await source.boundingBox();if(!box)throw new Error("Mapping source A is not draggable");await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+36,box.y-36,{steps:6});await page.mouse.up();if((await imagePoint.getAttribute("data-x"))===beforeX&&(await imagePoint.getAttribute("data-y"))===beforeY)throw new Error("Dragging pre-image did not update linked image");
+    await page.getByRole("combobox",{name:"Rotation angle"}).selectOption("180");if((await surface.getAttribute("data-rule"))!=="(x,y) → (−x,−y)")throw new Error("180 degree mapping rule failed");await page.getByRole("combobox",{name:"Rotation direction"}).selectOption("-1");
+    await page.getByRole("button",{name:"Translation"}).click();if((await surface.getAttribute("data-rule"))!=="(x,y) → (x+2,y+1)")throw new Error("Translation mapping failed");await page.getByRole("button",{name:"Reflection"}).click();await page.getByRole("button",{name:"Dilation"}).click();if((await surface.getAttribute("data-rule"))!=="(x,y) → (2x,2y)")throw new Error("Dilation mapping failed");
+    await page.getByRole("checkbox",{name:"Show labels"}).uncheck();await page.getByRole("checkbox",{name:"Snap to grid"}).uncheck();await page.getByRole("button",{name:"Reset",exact:true}).click();
+    await page.getByRole("textbox",{name:"Practice mapped x expression"}).fill("x");await page.getByRole("textbox",{name:"Practice mapped y expression"}).fill("y");await page.getByRole("button",{name:"Check",exact:true}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();await page.getByRole("button",{name:"Reveal answer"}).click();
+    await page.getByRole("textbox",{name:"Practice mapped x expression"}).fill("-y");await page.getByRole("textbox",{name:"Practice mapped y expression"}).fill("x");await page.getByRole("button",{name:"Check",exact:true}).click();status=await page.getByRole("status").filter({hasText:"Correct: the hidden rule"}).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

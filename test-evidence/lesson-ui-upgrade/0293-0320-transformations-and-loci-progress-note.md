@@ -10,6 +10,7 @@
 | 0298 | 241 Dilation from Point | `centre-scale-triangle-dilation` | Reworked individually and browser-validated |
 | 0299 | 242 Matrix Transformation | `editable-linear-map-basis-shape` | Reworked individually and browser-validated |
 | 0300 | 243 Composite Transformations | `ordered-two-step-affine-composition` | Reworked individually and browser-validated |
+| 0301 | 244 Transformation Mapping | `linked-preimage-image-rule-inference` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -110,3 +111,14 @@ Evidence:
 
 - `0300-desktop.png`
 - `0300-dedicated-target-validation.json`
+
+## Lesson 244 / Mockup 0301 - Transformation Mapping
+
+Reworked individually against the target mockup with a new lesson-specific adapter and `linked-preimage-image-rule-inference` object model. The workspace owns draggable pre-image triangle A-B-C and derives a linked image triangle from the selected transformation. Rotation angle and direction, translation, reflection, and dilation selectors all update the image coordinates, inferred mapping rule, transformation description, verification rows, invariant list, orientation note, and table from one model. Label visibility, snap-to-grid, stages, reset, share, reveal, and adjacent navigation are functional.
+
+The hidden-rule practice uses three target-consistent point pairs and grades both symbolic coordinate expressions, accepting `(-y,x)` only. Final 1001x1572 browser validation physically drags A, changes rotation angle and direction, exercises all four transformation modes, verifies their live rules, toggles labels and snapping, resets the model, reveals the answer, and verifies incorrect and correct grading. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1562. Browser-box validation also confirms the invariant cards end at y=1120 and the following misconception band begins at y=1132 with no overlap.
+
+Evidence:
+
+- `0301-desktop.png`
+- `0301-dedicated-target-validation.json`

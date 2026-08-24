@@ -1,0 +1,15 @@
+[
+  {
+    "id": 244,
+    "mockup": 301,
+    "route": "/lessons/geometry/244-transformation-mapping",
+    "width": 1001,
+    "height": 1572,
+    "status": "Correct: the hidden rule is (x, y) → (-y, x).",
+    "consoleErrors": [],
+    "scrollHeight": 1572,
+    "surfaceBottom": 1562,
+    "objectModel": "linked-preimage-image-rule-inference",
+    "overflowing": 0
+  }
+]

@@ -1152,9 +1152,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain('aria-label="First practice transformation"');
   });
 
-  it("renders geometry lessons 244 through 245 with transformation guidance", () => {
+  it("renders Transformation Mapping as a dedicated linked coordinate model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 244)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0301"');
+    expect(html).toContain('data-object-model="linked-preimage-image-rule-inference"');
+    expect(html).toContain("Interactive linked pre-image and image coordinate mapping");
+    expect(html).toContain('data-testid="mapping-source-a"');
+    expect(html).toContain('data-testid="mapping-image-a"');
+    expect(html).toContain('data-testid="mapping-image-triangle"');
+    expect(html).toContain('aria-label="Rotation angle"');
+    expect(html).toContain("(x,y) → (−y,x)");
+    expect(html).toContain('aria-label="Practice mapped x expression"');
+  });
+
+  it("renders geometry lesson 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      244: "Transformation mapping",
       245: "Invariants",
     };
 
