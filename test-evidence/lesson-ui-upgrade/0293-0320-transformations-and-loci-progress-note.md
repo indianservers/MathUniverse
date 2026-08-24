@@ -12,6 +12,7 @@
 | 0300 | 243 Composite Transformations | `ordered-two-step-affine-composition` | Reworked individually and browser-validated |
 | 0301 | 244 Transformation Mapping | `linked-preimage-image-rule-inference` | Reworked individually and browser-validated |
 | 0302 | 245 Invariants | `measured-triangle-transformation-invariants` | Reworked individually and browser-validated |
+| 0303 | 246 Symmetry Explorer | `draggable-motif-exact-symmetry-tests` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -136,3 +137,16 @@ Evidence:
 
 - `0302-desktop.png`
 - `0302-dedicated-target-validation.json`
+
+## Lesson 246 / Mockup 0303 - Symmetry Explorer
+
+Reworked individually against the target mockup with a dedicated `draggable-motif-exact-symmetry-tests` object model. The workspace owns a draggable motif, selectable mirror axis, reflected fold image, rotation image, fold opacity, and rotation angle. It tests reflected and rotated point sets for exact coincidence and derives line-symmetry validity, rotational validity, order, side length, vertex angle, and perimeter from the live geometry. Direct point dragging can break both symmetries; reset restores a genuine equilateral motif with symmetry about `x=0`, 120-degree rotational symmetry, and order 3. Mirror, fold, rotate and motif views, drag/transform modes, tool palette, axis selection, fold visibility, opacity, angle steppers and slider, tabs, guide, reset, share, and navigation are functional.
+
+The independent practice task reflects B(2,3) across `x=0`, requires the learner to decide whether the complete asymmetric practice motif has line symmetry, and calculates the smallest angle for rotational order 4. It grades B'(-2,3), `No`, n=4, and 90 degrees together rather than accepting partial or static answers. Mockup 0303 draws a scalene triangle entirely to the right of `x=0` while simultaneously claiming that it has `x=0` line symmetry, 120-degree rotational symmetry, order 3, and a 60-degree invariant angle. The implementation uses a mathematically valid equilateral motif for those initial claims instead of reproducing the contradictory plot.
+
+Final 933x1686 browser validation physically drags A and proves both exact-symmetry tests become false, resets the motif, switches to `y=0` and back to `x=0`, toggles and changes the fold overlay, opens the rotation preview, verifies that 60 degrees is invalid and 120 degrees restores order 3, then exercises incorrect and correct challenge paths. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1588 with the target-aligned footer below it.
+
+Evidence:
+
+- `0303-desktop.png`
+- `0303-dedicated-target-validation.json`

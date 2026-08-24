@@ -1,0 +1,15 @@
+[
+  {
+    "id": 246,
+    "mockup": 303,
+    "route": "/lessons/geometry/246-symmetry-explorer",
+    "width": 933,
+    "height": 1686,
+    "status": "Correct! The reflection, symmetry decision, and rotational angle all match.",
+    "consoleErrors": [],
+    "scrollHeight": 1686,
+    "surfaceBottom": 1588,
+    "objectModel": "draggable-motif-exact-symmetry-tests",
+    "overflowing": 0
+  }
+]

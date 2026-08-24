@@ -51,6 +51,7 @@ import MatrixTransformationTargetLesson242 from "./MatrixTransformationTargetLes
 import CompositeTransformationsTargetLesson243 from "./CompositeTransformationsTargetLesson243";
 import TransformationMappingTargetLesson244 from "./TransformationMappingTargetLesson244";
 import InvariantsTargetLesson245 from "./InvariantsTargetLesson245";
+import SymmetryExplorerTargetLesson246 from "./SymmetryExplorerTargetLesson246";
 import TranslationVectorTargetLesson236 from "./TranslationVectorTargetLesson236";
 
 type GeometryTool =
@@ -96,6 +97,9 @@ export default function Geometry2DLessonAdapter({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  if (lesson.id === 246) {
+    return <SymmetryExplorerTargetLesson246 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
   if (lesson.id === 245) {
     return <InvariantsTargetLesson245 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }

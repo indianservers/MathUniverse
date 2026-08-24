@@ -46,6 +46,7 @@ const allLessons = [
   [243, 300, "composite-transformations", 988, 1592],
   [244, 301, "transformation-mapping", 1001, 1572],
   [245, 302, "invariants", 893, 1762],
+  [246, 303, "symmetry-explorer", 933, 1686],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2668,6 +2669,23 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("checkbox",{name:"Show labels"}).uncheck();await page.getByRole("checkbox",{name:"Snap to grid"}).uncheck();await page.getByRole("button",{name:"Reset",exact:true}).click();
     await page.getByRole("textbox",{name:"Practice mapped x expression"}).fill("x");await page.getByRole("textbox",{name:"Practice mapped y expression"}).fill("y");await page.getByRole("button",{name:"Check",exact:true}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();await page.getByRole("button",{name:"Reveal answer"}).click();
     await page.getByRole("textbox",{name:"Practice mapped x expression"}).fill("-y");await page.getByRole("textbox",{name:"Practice mapped y expression"}).fill("x");await page.getByRole("button",{name:"Check",exact:true}).click();status=await page.getByRole("status").filter({hasText:"Correct: the hidden rule"}).innerText();
+  } else if (id === 246) {
+    const surface=page.locator(selector),pointA=page.locator('[data-testid="symmetry-point-a"]');
+    if((await surface.getAttribute("data-object-model"))!=="draggable-motif-exact-symmetry-tests"||(await surface.getAttribute("data-line-valid"))!=="true"||(await surface.getAttribute("data-rotation-valid"))!=="true"||(await surface.getAttribute("data-rotation-order"))!=="3")throw new Error("Symmetry Explorer initial exact model is invalid");
+    const pointBox=await pointA.boundingBox();if(!pointBox)throw new Error("Symmetry motif point A is not draggable");
+    await page.mouse.move(pointBox.x+pointBox.width/2,pointBox.y+pointBox.height/2);await page.mouse.down();await page.mouse.move(pointBox.x+35,pointBox.y+18,{steps:6});await page.mouse.up();
+    if((await surface.getAttribute("data-line-valid"))!=="false"||(await surface.getAttribute("data-rotation-valid"))!=="false")throw new Error("Dragging motif point did not invalidate exact symmetries");
+    await page.getByRole("button",{name:"Reset",exact:true}).first().click();
+    await page.getByRole("combobox",{name:"Symmetry mirror line"}).selectOption("y=0");if((await surface.getAttribute("data-line-valid"))!=="false")throw new Error("Mirror axis selector did not retest line symmetry");
+    await page.getByRole("combobox",{name:"Symmetry mirror line"}).selectOption("x=0");if((await surface.getAttribute("data-line-valid"))!=="true")throw new Error("Vertical mirror symmetry did not restore");
+    await page.getByRole("checkbox",{name:"Show fold overlay"}).uncheck();if(await page.locator('[data-testid="symmetry-mirror-image"]').count())throw new Error("Fold overlay toggle did not hide reflected motif");
+    await page.getByRole("checkbox",{name:"Show fold overlay"}).check();await page.getByRole("slider",{name:"Fold overlay opacity"}).fill("70");
+    await page.locator(".target-symmetry-lab>nav button").nth(3).click();if(!(await page.locator('[data-testid="symmetry-rotation-image"]').count()))throw new Error("Rotation preview did not render");
+    await page.getByRole("spinbutton",{name:"Rotation angle"}).fill("60");if((await surface.getAttribute("data-rotation-valid"))!=="false")throw new Error("Rotation angle did not invalidate motif symmetry");
+    await page.getByRole("spinbutton",{name:"Rotation angle"}).fill("120");if((await surface.getAttribute("data-rotation-order"))!=="3")throw new Error("120 degree rotation did not restore order three");
+    await page.getByRole("button",{name:"Reset",exact:true}).first().click();
+    await page.getByRole("textbox",{name:"Practice reflected B x"}).fill("0");await page.getByRole("textbox",{name:"Practice reflected B y"}).fill("0");await page.getByRole("radio",{name:"Practice line symmetry yes"}).check();await page.getByRole("combobox",{name:"Practice rotational order"}).selectOption("3");await page.getByRole("textbox",{name:"Practice rotational angle"}).fill("120");await page.getByRole("button",{name:"Check Answer"}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();
+    await page.getByRole("textbox",{name:"Practice reflected B x"}).fill("-2");await page.getByRole("textbox",{name:"Practice reflected B y"}).fill("3");await page.getByRole("radio",{name:"Practice line symmetry no"}).check();await page.getByRole("combobox",{name:"Practice rotational order"}).selectOption("4");await page.getByRole("textbox",{name:"Practice rotational angle"}).fill("90");await page.getByRole("button",{name:"Check Answer"}).click();status=await page.getByRole("status").filter({hasText:"Correct! The reflection"}).innerText();
   } else if (id === 245) {
     const surface=page.locator(selector),source=page.locator('[data-testid="invariants-source-a"]'),imagePoint=page.locator('[data-testid="invariants-image-a"]');
     if((await surface.getAttribute("data-object-model"))!=="measured-triangle-transformation-invariants"||(await surface.getAttribute("data-area-before"))!=="7.5000"||(await surface.getAttribute("data-area-after"))!=="7.5000"||(await imagePoint.getAttribute("data-x"))!=="3.0000")throw new Error("Invariant initial translation model is invalid");

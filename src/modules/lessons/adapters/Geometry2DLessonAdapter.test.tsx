@@ -1180,9 +1180,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("Check Answer");
   });
 
-  it("renders geometry lessons 246 through 256 with loci and proof guidance", () => {
+  it("renders Symmetry Explorer as a dedicated exact symmetry model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 246)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0303"');
+    expect(html).toContain('data-object-model="draggable-motif-exact-symmetry-tests"');
+    expect(html).toContain("Interactive symmetry motif with mirror and rotation previews");
+    expect(html).toContain('data-testid="symmetry-point-a"');
+    expect(html).toContain('data-testid="symmetry-mirror-image"');
+    expect(html).toContain('aria-label="Symmetry mirror line"');
+    expect(html).toContain('aria-label="Rotation angle"');
+    expect(html).toContain('aria-label="Practice reflected B x"');
+    expect(html).toContain("Check Answer");
+  });
+
+  it("renders geometry lessons 247 through 256 with loci and proof guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      246: "Symmetry explorer",
       247: "Locus generator",
       248: "Equidistant loci",
       249: "Moving-linkage loci",
