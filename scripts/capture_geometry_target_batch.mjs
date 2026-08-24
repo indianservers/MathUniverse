@@ -987,6 +987,112 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct" })
       .innerText();
+  } else if (id === 222) {
+    const endpointA = page.locator('[data-testid="semicircle-endpoint-a"]');
+    const endpointB = page.locator('[data-testid="semicircle-endpoint-b"]');
+    const arc = page.locator('[data-testid="semicircle-arc"]');
+    const aBefore = await endpointA.getAttribute("cx");
+    const radiusBefore = await arc.getAttribute("data-radius");
+    const aBox = await endpointA.boundingBox();
+    if (!aBox) throw new Error("Semicircle endpoint A is not draggable");
+    await page.mouse.move(aBox.x + aBox.width / 2, aBox.y + aBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(aBox.x + 35, aBox.y - 22, { steps: 4 });
+    await page.mouse.up();
+    if ((await endpointA.getAttribute("cx")) === aBefore) {
+      throw new Error("Dragging A did not update the diameter");
+    }
+    if ((await arc.getAttribute("data-radius")) === radiusBefore) {
+      throw new Error("Dragging A did not recalculate the radius");
+    }
+    const bBefore = await endpointB.getAttribute("cx");
+    const bBox = await endpointB.boundingBox();
+    if (!bBox) throw new Error("Semicircle endpoint B is not draggable");
+    await page.mouse.move(bBox.x + bBox.width / 2, bBox.y + bBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(bBox.x - 28, bBox.y + 18, { steps: 4 });
+    await page.mouse.up();
+    if ((await endpointB.getAttribute("cx")) === bBefore) {
+      throw new Error("Dragging B did not update the diameter");
+    }
+    for (const [label, value] of [
+      ["A x coordinate", "-6"],
+      ["A y coordinate", "0"],
+      ["B x coordinate", "6"],
+      ["B y coordinate", "0"],
+    ]) {
+      await page.getByRole("spinbutton", { name: label }).fill(value);
+    }
+    const upperPath = await arc.getAttribute("d");
+    await page.getByRole("button", { name: "Lower semicircle" }).click();
+    if ((await arc.getAttribute("d")) === upperPath) {
+      throw new Error("Orientation control did not flip the semicircle");
+    }
+    await page.getByRole("button", { name: "Upper semicircle" }).click();
+    await page.getByRole("button", { name: "Show calculations" }).click();
+    await page.getByText("r = AB / 2", { exact: false }).waitFor();
+    await page.getByRole("button", { name: "Show calculations" }).click();
+    await page.getByRole("button", { name: "Move semicircle" }).click();
+    const translatedABefore = Number(await endpointA.getAttribute("cx"));
+    const translatedBBefore = Number(await endpointB.getAttribute("cx"));
+    const translatedRadiusBefore = await arc.getAttribute("data-radius");
+    const arcBox = await arc.boundingBox();
+    if (!arcBox) throw new Error("Semicircle arc is not movable");
+    await page.mouse.move(arcBox.x + arcBox.width / 2, arcBox.y + 8);
+    await page.mouse.down();
+    await page.mouse.move(arcBox.x + arcBox.width / 2 + 26, arcBox.y + 22, {
+      steps: 4,
+    });
+    await page.mouse.up();
+    const translatedAAfter = Number(await endpointA.getAttribute("cx"));
+    const translatedBAfter = Number(await endpointB.getAttribute("cx"));
+    if (
+      Math.abs((translatedAAfter - translatedABefore) - (translatedBAfter - translatedBBefore)) > 0.1 ||
+      translatedRadiusBefore !== (await arc.getAttribute("data-radius"))
+    ) {
+      throw new Error("Move tool did not translate the rigid semicircle");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    const arcPoint = page.locator('[data-testid="semicircle-arc-point"]');
+    const arcPointBefore = await arcPoint.getAttribute("cx");
+    const arcPointBox = await arcPoint.boundingBox();
+    if (!arcPointBox) throw new Error("Semicircle point P is not draggable");
+    await page.mouse.move(
+      arcPointBox.x + arcPointBox.width / 2,
+      arcPointBox.y + arcPointBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(arcPointBox.x + 70, arcPointBox.y + 30, { steps: 5 });
+    await page.mouse.up();
+    if ((await arcPoint.getAttribute("cx")) === arcPointBefore) {
+      throw new Error("Dragging P did not move it along the semicircle");
+    }
+    if (!(await page.getByTestId("semicircle-thales-angle").innerText()).includes("90.00°")) {
+      throw new Error("Thales angle did not remain 90 degrees");
+    }
+    const practicePoint = page.locator('[data-testid="thales-practice-point"]');
+    const practiceBefore = await practicePoint.getAttribute("cx");
+    const practiceBox = await practicePoint.boundingBox();
+    if (!practiceBox) throw new Error("Thales practice point is not draggable");
+    await page.mouse.move(
+      practiceBox.x + practiceBox.width / 2,
+      practiceBox.y + practiceBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(practiceBox.x + 46, practiceBox.y + 24, { steps: 5 });
+    await page.mouse.up();
+    if ((await practicePoint.getAttribute("cx")) === practiceBefore) {
+      throw new Error("Thales practice drag did not move P");
+    }
+    await page.getByRole("radio", { name: "It becomes bigger." }).check();
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Try moving P" }).waitFor();
+    await page.getByRole("radio", { name: "It stays 90°." }).check();
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct Thales theorem." })
+      .innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

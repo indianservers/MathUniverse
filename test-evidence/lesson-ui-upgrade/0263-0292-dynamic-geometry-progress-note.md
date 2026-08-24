@@ -31,7 +31,7 @@ Updated 2026-08-24. This batch replaces the generic construction fallback for le
 | 0276 | 219 Circle Centre and Radius | `circleCentreFixedRadius` | Reworked individually and browser-validated |
 | 0277 | 220 Circle through Three Points | `threePointCircumcircle` | Reworked individually and browser-validated |
 | 0278 | 221 Compass | `compassDistanceTransfer` | Reworked individually and browser-validated |
-| 0279 | 222 Semicircle | `semicircle` | Implemented and browser-validated |
+| 0279 | 222 Semicircle | `diameterDefinedSemicircle` | Reworked individually and browser-validated |
 | 0280 | 223 Circular Arc | `arc` | Implemented and browser-validated |
 | 0281 | 224 Circumcircular Arc | `circumArc` | Implemented and browser-validated |
 | 0282 | 225 Circular Sector | `sector` | Implemented and browser-validated |
@@ -118,3 +118,7 @@ Reworked individually against the target mockup. Removed the generic three-dot c
 ### Lesson 221 / Mockup 0278 - Compass
 
 Reworked individually against the target mockup after the shared geometry surface was found to be visually and behaviorally incorrect. Removed the generic circle diagram, Centre x slider, repeated Object model card, generic Construction Steps strip, and template practice record. The dedicated surface now draws an actual two-legged compass above a live circle; its draggable center B translates the complete construction and its draggable drawing leg changes the opening. Select, Point, Circle (Center), Copy Distance, Clear, radius presets, radius slider and steppers, show-radius, snap-to-grid, coordinate editing, reset, stage navigation, and adjacent-lesson navigation are functional. Radius, center coordinates, circle statements, and step history all derive from one compass-distance-transfer model. The separate AB-to-C exercise owns a draggable point D and grades the computed Euclidean distance CD against AB. Final 1024x1536 browser validation physically drags both compass dependencies and the practice point, exercises every target control class, verifies `CD = AB`, reloads to a clean state, and reports no horizontal overflow or console errors.
+
+### Lesson 222 / Mockup 0279 - Semicircle
+
+Reworked individually against the target mockup. Removed the generic Diameter and Orientation sliders and the shared construction template. The dedicated model owns arbitrary endpoints A and B, derives midpoint O, radius AB/2, diameter, arc length, area, orientation, and an arc-constrained point P from those endpoints, and calculates angle APB directly from vectors. Dragging either endpoint rebuilds every dependent object; Move translates the complete construction without changing radius; Upper and Lower flip the arc; endpoint fields, reset, calculation disclosure, stage navigation, adjacent navigation, and the overflow calculation action are functional. The separate Thales challenge has its own draggable P, live right-angle marker, four answer choices, and real incorrect/correct grading. Final 1007x1562 browser validation exercises both endpoint drags, rigid translation, orientation, calculation disclosure, main and practice P drags, and both grading paths; it reports the `diameter-defined-semicircle` object model, zero overflow, zero console errors, and an exact one-viewport page height.

@@ -1,0 +1,15 @@
+[
+  {
+    "id": 222,
+    "mockup": 279,
+    "route": "/lessons/geometry/222-semicircle",
+    "width": 1007,
+    "height": 1562,
+    "status": "Correct Thales theorem.",
+    "consoleErrors": [],
+    "scrollHeight": 1562,
+    "surfaceBottom": 1469.5,
+    "objectModel": "diameter-defined-semicircle",
+    "overflowing": 0
+  }
+]

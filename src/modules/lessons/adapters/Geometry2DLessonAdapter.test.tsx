@@ -518,6 +518,33 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Compass transfer model");
   });
 
+  it("renders Semicircle as a diameter-defined construction with Thales practice", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 222)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive semicircle with draggable diameter endpoints A B and arc point P",
+    );
+    expect(html).toContain('data-testid="semicircle-arc"');
+    expect(html).toContain('data-testid="semicircle-endpoint-a"');
+    expect(html).toContain('data-testid="semicircle-endpoint-b"');
+    expect(html).toContain('data-testid="semicircle-arc-point"');
+    expect(html).toContain('data-testid="thales-practice-point"');
+    expect(html).toContain('aria-label="A x coordinate"');
+    expect(html).toContain('aria-label="B y coordinate"');
+    expect(html).toContain('aria-label="Upper semicircle"');
+    expect(html).toContain('aria-label="Lower semicircle"');
+    expect(html).toContain("Thales Challenge");
+    expect(html).not.toContain('aria-label="Diameter"');
+    expect(html).not.toContain('aria-label="Orientation"');
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(
