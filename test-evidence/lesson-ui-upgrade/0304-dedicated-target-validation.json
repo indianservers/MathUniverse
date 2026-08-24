@@ -1,0 +1,15 @@
+[
+  {
+    "id": 247,
+    "mockup": 304,
+    "route": "/lessons/geometry/247-locus-generator",
+    "width": 1006,
+    "height": 1563,
+    "status": "Correct! Great, your locus matches the target circle.\nCenter C(−2, −1), radius 2.50 detected.",
+    "consoleErrors": [],
+    "scrollHeight": 1563,
+    "surfaceBottom": 1452,
+    "objectModel": "anchor-radius-transformed-circle-locus",
+    "overflowing": 0
+  }
+]

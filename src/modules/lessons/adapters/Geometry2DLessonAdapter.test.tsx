@@ -1194,9 +1194,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("Check Answer");
   });
 
-  it("renders geometry lessons 247 through 256 with loci and proof guidance", () => {
+  it("renders Locus Generator as a dedicated anchor-radius trace model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 247)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0304"');
+    expect(html).toContain('data-object-model="anchor-radius-transformed-circle-locus"');
+    expect(html).toContain("Interactive anchor and moving point circle locus");
+    expect(html).toContain('data-testid="locus-anchor"');
+    expect(html).toContain('data-testid="locus-moving-point"');
+    expect(html).toContain('aria-label="Radius r"');
+    expect(html).toContain("Distance AP");
+    expect(html).toContain('aria-label="Practice A x (h)"');
+    expect(html).toContain("Try it yourself");
+  });
+
+  it("renders geometry lessons 248 through 256 with loci and proof guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      247: "Locus generator",
       248: "Equidistant loci",
       249: "Moving-linkage loci",
       250: "Envelope of lines",

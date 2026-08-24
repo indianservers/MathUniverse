@@ -13,6 +13,7 @@
 | 0301 | 244 Transformation Mapping | `linked-preimage-image-rule-inference` | Reworked individually and browser-validated |
 | 0302 | 245 Invariants | `measured-triangle-transformation-invariants` | Reworked individually and browser-validated |
 | 0303 | 246 Symmetry Explorer | `draggable-motif-exact-symmetry-tests` | Reworked individually and browser-validated |
+| 0304 | 247 Locus Generator | `anchor-radius-transformed-circle-locus` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -150,3 +151,16 @@ Evidence:
 
 - `0303-desktop.png`
 - `0303-dedicated-target-validation.json`
+
+## Lesson 247 / Mockup 0304 - Locus Generator
+
+Reworked individually against the target mockup with a dedicated `anchor-radius-transformed-circle-locus` object model. The workspace owns base anchor parameters h and k, radius r, translation, scale, and moving-point angle, then derives the transformed center, radius, point P, circle equation, distance AP, polar angle, midpoint, perimeter, and SVG locus from the same state. Anchor A and moving point P drag independently: moving A translates the full locus while preserving radius, while moving P recalculates radius and angle. Trace history records P only while tracing is active and is cleared whenever the defining parameters change, preventing old points from being presented under a new rule. Point/Trace/Path tabs, trace pause/resume, all six range and exact-value controls, lesson tabs, reset, share, workspace, object bar, and adjacent navigation are functional.
+
+The practice model grades all six target parameters together: center C(-2,-1), radius 2.5, zero translation, and unit scale. The target's prefilled correct values and green detected-circle result are preserved in the initial rendered state, while changing any value and checking produces an incorrect result until all six values are restored.
+
+Final 1006x1563 browser validation physically drags A and proves the locus translates without changing radius, drags P and proves radius and trace history update, edits h, k, r, translation, and scale and verifies transformed center (3,-1) with radius 6, pauses tracing and proves further dragging records no points, resets the complete model, and exercises incorrect and correct challenge paths. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1452 with the target-aligned footer below it.
+
+Evidence:
+
+- `0304-desktop.png`
+- `0304-dedicated-target-validation.json`
