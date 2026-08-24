@@ -1236,9 +1236,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("Ellipse (a = 5, b = 3)");
   });
 
-  it("renders geometry lessons 250 through 256 with loci and proof guidance", () => {
+  it("renders Envelope of Lines as a dedicated tangent-family model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 250)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0307"');
+    expect(html).toContain('data-object-model="parameterized-tangent-family-parabola-envelope"');
+    expect(html).toContain("Interactive tangent line family and detected parabola envelope");
+    expect(html).toContain('data-testid="envelope-contact-point"');
+    expect(html).toContain('data-testid="envelope-current-line"');
+    expect(html).toContain('aria-label="m (slope)"');
+    expect(html).toContain("∂F/∂m");
+    expect(html).toContain('aria-label="Envelope challenge A"');
+    expect(html).toContain("y = x² + 1");
+  });
+
+  it("renders geometry lessons 251 through 256 with loci and proof guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      250: "Envelope of lines",
       251: "Dynamic trace",
       252: "Conjecture testing",
       253: "Exact proof",

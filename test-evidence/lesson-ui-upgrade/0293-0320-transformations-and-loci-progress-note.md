@@ -16,6 +16,7 @@
 | 0304 | 247 Locus Generator | `anchor-radius-transformed-circle-locus` | Reworked individually and browser-validated |
 | 0305 | 248 Equidistant Loci | `dependent-perpendicular-bisector-equal-distance` | Reworked individually and browser-validated |
 | 0306 | 249 Moving-Linkage Loci | `fixed-foci-flexible-tether-ellipse` | Reworked individually and browser-validated |
+| 0307 | 250 Envelope of Lines | `parameterized-tangent-family-parabola-envelope` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -192,3 +193,16 @@ Evidence:
 
 - `0306-desktop.png`
 - `0306-dedicated-target-validation.json`
+
+## Lesson 250 / Mockup 0307 - Envelope of Lines
+
+Reworked individually against the target mockup with a dedicated `parameterized-tangent-family-parabola-envelope` object model. The family is `F(x,y,m)=y-mx-c+m^2/4=0`; solving `F=0` together with `dF/dm=0` gives contact point `(m/2,m^2/4+c)`, current-line intercept `c-m^2/4`, and envelope `y=x^2+c`. Slope and vertical-offset controls drive the line, contact point, equation cards, vertex, bounds, and detected SVG envelope from that model. Dragging the contact point recovers m while keeping it on the parabola. Trace accumulation records actual contact samples, respects its enable/disable control, allows repeated slopes as distinct historical samples, and clears independently. Tabs, reset, sharing, workspace, fullscreen, and adjacent navigation are functional.
+
+The practice task asks for the envelope of `y=mx+1-m^2/4` and grades `y=x^2+1`, including incorrect and corrected paths. Mockup 0307 labels the family only as `y=mx+c`, displays m=1 and c=0 with line `y=x`, marks (1,1) as its tangency point, and claims envelope `y=x^2`. The line `y=x` intersects that parabola at two points and is not tangent; the tangent with slope 1 is `y=x-1/4` at `(1/2,1/4)`. The implementation includes the required `-m^2/4` term and uses those coherent contact values rather than reproducing the contradiction.
+
+Final 993x1583 browser validation physically drags the contact point and proves it remains on the envelope, sets m=2 and verifies contact `(1,1)` with intercept -1, sets c=2 and verifies the shifted contact and envelope, disables trace accumulation and proves slope edits add no samples, reenables it and proves a sample is added, clears all traces, resets the model, and exercises incorrect and correct challenge paths. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1576.
+
+Evidence:
+
+- `0307-desktop.png`
+- `0307-dedicated-target-validation.json`
