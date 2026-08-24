@@ -43,6 +43,7 @@ const allLessons = [
   [240, 297, "rotation-around-point", 1474, 1067],
   [241, 298, "dilation-from-point", 1054, 1492],
   [242, 299, "matrix-transformation", 1045, 1505],
+  [243, 300, "composite-transformations", 988, 1592],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2647,6 +2648,15 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("button",{name:"Before",exact:true}).click();if(await page.locator('[data-testid="matrix-transformed-shape"]').count())throw new Error("Before mode did not hide transformed shape");await page.getByRole("button",{name:"Overlay"}).click();
     await page.getByRole("textbox",{name:"Practice matrix 1"}).fill("0");await page.getByRole("textbox",{name:"Practice matrix 2"}).fill("0");await page.getByRole("textbox",{name:"Practice matrix 3"}).fill("0");await page.getByRole("textbox",{name:"Practice matrix 4"}).fill("0");await page.getByRole("button",{name:"Check",exact:true}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();
     for(const [i,value] of ["2","1","0","1"].entries())await page.getByRole("textbox",{name:`Practice matrix ${i+1}`}).fill(value);await page.getByRole("button",{name:"Check",exact:true}).click();status=await page.getByRole("status").filter({hasText:"Correct: the composite matrix"}).innerText();
+  } else if (id === 243) {
+    const surface=page.locator(selector),source=page.locator('[data-testid="composite-source-a"]'),mid=page.locator('[data-testid="composite-intermediate-a"]'),finalPoint=page.locator('[data-testid="composite-final-a"]');
+    if((await surface.getAttribute("data-object-model"))!=="ordered-two-step-affine-composition"||(await surface.getAttribute("data-final-a"))!=="(2, -3)"||(await mid.getAttribute("data-x"))!=="-1.0000"||(await finalPoint.getAttribute("data-x"))!=="2.0000")throw new Error("Composite initial sequence is invalid");
+    const before=await finalPoint.getAttribute("data-x"),box=await source.boundingBox();if(!box)throw new Error("Composite source A is not draggable");await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+36,box.y-18,{steps:6});await page.mouse.up();if((await finalPoint.getAttribute("data-x"))===before)throw new Error("Dragging source did not update both composed images");
+    await page.getByRole("button",{name:"Swap transformation order"}).click();if((await surface.getAttribute("data-final-a"))==="(2, -3)")throw new Error("Swapping order did not change final mapping");
+    await page.locator(".target-composite-steps>button").last().click();await page.getByRole("button",{name:"Reflect Across line"}).click();
+    await page.getByRole("checkbox",{name:"Grid",exact:true}).uncheck();await page.getByRole("checkbox",{name:"Grid",exact:true}).check();await page.getByRole("button",{name:"Reset",exact:true}).click();
+    await page.getByRole("combobox",{name:"First practice transformation"}).selectOption("translate");await page.getByRole("combobox",{name:"Second practice transformation"}).selectOption("rotate");await page.getByRole("button",{name:"Check",exact:true}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();
+    await page.getByRole("combobox",{name:"First practice transformation"}).selectOption("rotate");await page.getByRole("combobox",{name:"Second practice transformation"}).selectOption("translate");await page.getByRole("button",{name:"Check",exact:true}).click();status=await page.getByRole("status").filter({hasText:"Correct composition"}).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

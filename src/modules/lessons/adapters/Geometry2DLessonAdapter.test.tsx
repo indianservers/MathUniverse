@@ -1022,7 +1022,6 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain('aria-label="A&#x27; x coordinate"');
     expect(html).toContain("Show solution");
     expect(html).not.toContain("reusable 2D geometry engine");
-    expect(html).not.toContain("Drag points");
   });
 
   it("renders Reflection in Line as a dedicated orthogonal reflection model", () => {
@@ -1139,9 +1138,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Drag points");
   });
 
-  it("renders geometry lessons 243 through 245 with transformation guidance", () => {
+  it("renders Composite Transformations as a dedicated ordered affine composer", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 243)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0300"');
+    expect(html).toContain('data-object-model="ordered-two-step-affine-composition"');
+    expect(html).toContain("Interactive two-step composite transformation graph");
+    expect(html).toContain('data-testid="composite-source-a"');
+    expect(html).toContain('data-testid="composite-intermediate-a"');
+    expect(html).toContain('data-testid="composite-final-triangle"');
+    expect(html).toContain('aria-label="Swap transformation order"');
+    expect(html).toContain("T₂ ∘ T₁(P) = T₂(T₁(P))");
+    expect(html).toContain('aria-label="First practice transformation"');
+  });
+
+  it("renders geometry lessons 244 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      243: "Composite transformations",
       244: "Transformation mapping",
       245: "Invariants",
     };

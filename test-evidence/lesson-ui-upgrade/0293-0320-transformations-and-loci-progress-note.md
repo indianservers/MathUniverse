@@ -9,6 +9,7 @@
 | 0297 | 240 Rotation Around Point | `fixed-centre-signed-angle-rotation` | Reworked individually and browser-validated |
 | 0298 | 241 Dilation from Point | `centre-scale-triangle-dilation` | Reworked individually and browser-validated |
 | 0299 | 242 Matrix Transformation | `editable-linear-map-basis-shape` | Reworked individually and browser-validated |
+| 0300 | 243 Composite Transformations | `ordered-two-step-affine-composition` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -98,3 +99,14 @@ Evidence:
 
 - `0299-desktop.png`
 - `0299-dedicated-target-validation.json`
+
+## Lesson 243 / Mockup 0300 - Composite Transformations
+
+Reworked individually against the target mockup with a new lesson-specific adapter and `ordered-two-step-affine-composition` object model. The workspace owns draggable source triangle A-B-C and two ordered operations, derives the complete intermediate and final triangles, and drives the graph, mapping strip, order comparison, worked table, and learning cards from that same composition. The default sequence exactly implements the target's 90-degree counterclockwise rotation followed by translation (3,-1). Step selection, operation-library replacement, order swap, grid/axes layers, reset, and practice controls are functional.
+
+The practice model requires the learner to choose the two transformations in the correct order and rejects the reversed order. Final 988x1592 browser validation physically drags source A and verifies both dependent images update, swaps the main order and verifies a different final mapping, replaces a selected step with reflection, toggles the grid, resets the full model, and exercises incorrect and correct practice orders. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1530 with the target-aligned footer below it.
+
+Evidence:
+
+- `0300-desktop.png`
+- `0300-dedicated-target-validation.json`

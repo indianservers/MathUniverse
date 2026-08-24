@@ -1,0 +1,15 @@
+[
+  {
+    "id": 243,
+    "mockup": 300,
+    "route": "/lessons/geometry/243-composite-transformations",
+    "width": 988,
+    "height": 1592,
+    "status": "Correct composition: rotate 90° first, then translate by (3, -1).",
+    "consoleErrors": [],
+    "scrollHeight": 1592,
+    "surfaceBottom": 1530,
+    "objectModel": "ordered-two-step-affine-composition",
+    "overflowing": 0
+  }
+]
