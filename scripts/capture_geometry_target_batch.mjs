@@ -41,6 +41,7 @@ const allLessons = [
   [238, 295, "reflection-in-point", 1044, 1506],
   [239, 296, "reflection-in-circle", 1027, 1532],
   [240, 297, "rotation-around-point", 1474, 1067],
+  [241, 298, "dilation-from-point", 1054, 1492],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2624,6 +2625,18 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("textbox",{name:"Practice rotated y coordinate"}).fill("-4.23");
     await page.getByRole("button",{name:"Check answer"}).click();
     status = await page.getByRole("status").filter({hasText:"Correct: P'"}).innerText();
+  } else if (id === 241) {
+    const surface=page.locator(selector),centre=page.locator('[data-testid="dilation-centre"]'),source=page.locator('[data-testid="dilation-source-a"]'),imagePoint=page.locator('[data-testid="dilation-image-a"]');
+    if((await surface.getAttribute("data-object-model"))!=="centre-scale-triangle-dilation"||(await surface.getAttribute("data-perimeter-ratio"))!=="2.0000"||(await surface.getAttribute("data-area-ratio"))!=="4.0000"||(await imagePoint.getAttribute("data-x"))!=="4.0000")throw new Error("Dilation initial model is invalid");
+    const centreBefore=await centre.getAttribute("data-x"),imageBefore=await imagePoint.getAttribute("data-x"),box=await source.boundingBox();if(!box)throw new Error("Dilation source A is not draggable");
+    await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+32,box.y-16,{steps:6});await page.mouse.up();
+    if((await centre.getAttribute("data-x"))!==centreBefore||(await imagePoint.getAttribute("data-x"))===imageBefore)throw new Error("Dragging A did not preserve C and update A'");
+    const sourceBefore=await source.getAttribute("data-x"),centreBox=await centre.boundingBox();if(!centreBox)throw new Error("Dilation centre is not draggable");
+    await page.mouse.move(centreBox.x+centreBox.width/2,centreBox.y+centreBox.height/2);await page.mouse.down();await page.mouse.move(centreBox.x+32,centreBox.y-16,{steps:6});await page.mouse.up();if((await source.getAttribute("data-x"))!==sourceBefore)throw new Error("Dragging C changed source triangle");
+    await page.getByRole("button",{name:"Negative k"}).click();if(Number(await surface.getAttribute("data-scale"))>=0)throw new Error("Negative mode failed");
+    await page.getByRole("slider",{name:"Scale factor"}).fill("3");if((await surface.getAttribute("data-area-ratio"))!=="9.0000")throw new Error("Area ratio did not follow k squared");
+    await page.getByRole("checkbox",{name:"Show rays"}).uncheck();await page.getByRole("button",{name:"Clear"}).click();if(await page.locator('[data-testid="dilation-image-polygon"]').count())throw new Error("Clear did not hide image");
+    await page.getByRole("button",{name:"New question"}).click();await page.getByRole("button",{name:"Check my construction"}).click();status=await page.getByRole("status").filter({hasText:"Correct construction"}).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

@@ -1,0 +1,15 @@
+[
+  {
+    "id": 241,
+    "mockup": 298,
+    "route": "/lessons/geometry/241-dilation-from-point",
+    "width": 1054,
+    "height": 1492,
+    "status": "Correct construction: every image vertex is 1.5 times as far from C.",
+    "consoleErrors": [],
+    "scrollHeight": 1492,
+    "surfaceBottom": 1396,
+    "objectModel": "centre-scale-triangle-dilation",
+    "overflowing": 0
+  }
+]

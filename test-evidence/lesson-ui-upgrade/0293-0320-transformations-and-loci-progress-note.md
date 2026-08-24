@@ -7,6 +7,7 @@
 | 0295 | 238 Reflection in Point | `centre-midpoint-half-turn-reflection` | Reworked individually and browser-validated |
 | 0296 | 239 Reflection in Circle | `opposite-ray-circle-inversion` | Reworked individually and browser-validated |
 | 0297 | 240 Rotation Around Point | `fixed-centre-signed-angle-rotation` | Reworked individually and browser-validated |
+| 0298 | 241 Dilation from Point | `centre-scale-triangle-dilation` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -72,3 +73,14 @@ Evidence:
 
 - `0297-desktop.png`
 - `0297-dedicated-target-validation.json`
+
+## Lesson 241 / Mockup 0298 - Dilation from Point
+
+Reworked individually against the target mockup with a new lesson-specific adapter and `centre-scale-triangle-dilation` object model. The workspace owns centre C and source triangle A-B-D, derives every image vertex with `V' = C + k(V-C)`, and calculates source/image distances, perimeter, area, and their live ratios. C and all three source vertices drag independently. Positive and negative scale modes, scale slider and steppers, exact centre inputs, construction rays, clear/reset, stages, language, sharing, workspace jump, and adjacent navigation are functional.
+
+The task state sets C=(0,0) and k=1.5, grades the live construction, and reports score and accuracy. Final 1054x1492 browser validation physically drags A and C independently, switches to negative scale, verifies the area ratio changes to k squared, toggles rays, clears the image, restores the task state, and verifies correct grading. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1396 with the target-aligned footer below it.
+
+Evidence:
+
+- `0298-desktop.png`
+- `0298-dedicated-target-validation.json`

@@ -1110,9 +1110,23 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Drag points");
   });
 
-  it("renders geometry lessons 241 through 245 with transformation guidance", () => {
+  it("renders Dilation from Point as a dedicated triangle scale model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 241)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0298"');
+    expect(html).toContain('data-object-model="centre-scale-triangle-dilation"');
+    expect(html).toContain("Interactive triangle dilation with draggable centre and vertices");
+    expect(html).toContain('data-testid="dilation-centre"');
+    expect(html).toContain('data-testid="dilation-source-a"');
+    expect(html).toContain('data-testid="dilation-image-polygon"');
+    expect(html).toContain('aria-label="Scale factor"');
+    expect(html).toContain("Area scale factor = k²");
+    expect(html).toContain("Check my construction");
+    expect(html).not.toContain("Drag points");
+  });
+
+  it("renders geometry lessons 242 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      241: "Dilation from point",
       242: "Matrix transformation",
       243: "Composite transformations",
       244: "Transformation mapping",
