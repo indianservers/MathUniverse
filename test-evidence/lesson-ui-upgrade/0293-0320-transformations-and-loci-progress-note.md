@@ -11,6 +11,7 @@
 | 0299 | 242 Matrix Transformation | `editable-linear-map-basis-shape` | Reworked individually and browser-validated |
 | 0300 | 243 Composite Transformations | `ordered-two-step-affine-composition` | Reworked individually and browser-validated |
 | 0301 | 244 Transformation Mapping | `linked-preimage-image-rule-inference` | Reworked individually and browser-validated |
+| 0302 | 245 Invariants | `measured-triangle-transformation-invariants` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -122,3 +123,16 @@ Evidence:
 
 - `0301-desktop.png`
 - `0301-dedicated-target-validation.json`
+
+## Lesson 245 / Mockup 0302 - Invariants
+
+Reworked individually against the target mockup with a dedicated `measured-triangle-transformation-invariants` object model. The workspace owns draggable source triangle A-B-C and derives its image from the selected translation, rotation, reflection, or dilation. Side lengths, three angles, parallelism, signed orientation, area, and scale are calculated from the live geometry and populate both the coordinate table and invariants tracker. All three source vertices drag directly; translation components, rotation angle, reflection line, dilation factor, grid, axes, stages, reset, share, tabs, and adjacent navigation are functional.
+
+The independent practice model rotates A(1,1), B(2,3), C(3,0) by 90 degrees counterclockwise and grades all six resulting coordinate fields against A'(-1,1), B'(-3,2), and C'(0,3). The target marks scale as changed under a unit-scale translation, which conflicts with the stated translation rule; the implementation reports scale unchanged for rigid transformations and changed only for dilation with k not equal to 1.
+
+Final 893x1762 browser validation physically drags source A and verifies the dependent image updates, changes translation components, exercises reflection, dilation, and rotation controls, verifies that dilation by 2 multiplies area by 4, toggles grid and axes, resets the model, and checks both incorrect and correct practice paths. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1697 with the target-aligned footer below it.
+
+Evidence:
+
+- `0302-desktop.png`
+- `0302-dedicated-target-validation.json`

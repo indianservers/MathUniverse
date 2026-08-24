@@ -1166,30 +1166,18 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain('aria-label="Practice mapped x expression"');
   });
 
-  it("renders geometry lesson 245 with transformation guidance", () => {
-    const expectedSnippets: Record<number, string> = {
-      245: "Invariants",
-    };
-
-    for (const [idText, snippet] of Object.entries(expectedSnippets)) {
-      const id = Number(idText);
-      const lesson = lessonCatalog.find((item) => item.id === id)!;
-      const html = renderToStaticMarkup(
-        <Geometry2DLessonAdapter
-          lesson={lesson}
-          resetToken={0}
-          onInteraction={vi.fn()}
-        />,
-      );
-
-      expect(html, lesson.title).toContain(lesson.title);
-      expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain('data-direct-interaction="true"');
-      expect(html, lesson.title).toContain("Drag points");
-      expect(html, lesson.title).toContain("Worked:");
-      expect(html, lesson.title).toContain("Avoid:");
-      expect(html, lesson.title).not.toContain("Coordinate rule");
-    }
+  it("renders Invariants as a dedicated measured transformation model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 245)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0302"');
+    expect(html).toContain('data-object-model="measured-triangle-transformation-invariants"');
+    expect(html).toContain("Interactive measured triangle and transformed image");
+    expect(html).toContain('data-testid="invariants-source-a"');
+    expect(html).toContain('data-testid="invariants-image-triangle"');
+    expect(html).toContain('aria-label="Translation delta x"');
+    expect(html).toContain("Invariants Tracker");
+    expect(html).toContain('aria-label="Practice A prime x"');
+    expect(html).toContain("Check Answer");
   });
 
   it("renders geometry lessons 246 through 256 with loci and proof guidance", () => {

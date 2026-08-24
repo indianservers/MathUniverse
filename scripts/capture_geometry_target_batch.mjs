@@ -45,6 +45,7 @@ const allLessons = [
   [242, 299, "matrix-transformation", 1045, 1505],
   [243, 300, "composite-transformations", 988, 1592],
   [244, 301, "transformation-mapping", 1001, 1572],
+  [245, 302, "invariants", 893, 1762],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2667,6 +2668,15 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("checkbox",{name:"Show labels"}).uncheck();await page.getByRole("checkbox",{name:"Snap to grid"}).uncheck();await page.getByRole("button",{name:"Reset",exact:true}).click();
     await page.getByRole("textbox",{name:"Practice mapped x expression"}).fill("x");await page.getByRole("textbox",{name:"Practice mapped y expression"}).fill("y");await page.getByRole("button",{name:"Check",exact:true}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();await page.getByRole("button",{name:"Reveal answer"}).click();
     await page.getByRole("textbox",{name:"Practice mapped x expression"}).fill("-y");await page.getByRole("textbox",{name:"Practice mapped y expression"}).fill("x");await page.getByRole("button",{name:"Check",exact:true}).click();status=await page.getByRole("status").filter({hasText:"Correct: the hidden rule"}).innerText();
+  } else if (id === 245) {
+    const surface=page.locator(selector),source=page.locator('[data-testid="invariants-source-a"]'),imagePoint=page.locator('[data-testid="invariants-image-a"]');
+    if((await surface.getAttribute("data-object-model"))!=="measured-triangle-transformation-invariants"||(await surface.getAttribute("data-area-before"))!=="7.5000"||(await surface.getAttribute("data-area-after"))!=="7.5000"||(await imagePoint.getAttribute("data-x"))!=="3.0000")throw new Error("Invariant initial translation model is invalid");
+    const imageBefore=await imagePoint.getAttribute("data-x"),box=await source.boundingBox();if(!box)throw new Error("Invariant source A is not draggable");await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+31,box.y-31,{steps:6});await page.mouse.up();if((await imagePoint.getAttribute("data-x"))===imageBefore)throw new Error("Dragging A did not update transformed image");
+    await page.getByRole("spinbutton",{name:"Translation delta x"}).fill("3");await page.getByRole("spinbutton",{name:"Translation delta y"}).fill("2");
+    await page.getByRole("button",{name:"Reflection"}).first().click();const orientationAfterReflection=await surface.getAttribute("data-orientation");await page.getByRole("button",{name:"Dilation"}).first().click();await page.getByRole("combobox",{name:"Dilation scale factor"}).selectOption("2");const beforeArea=Number(await surface.getAttribute("data-area-before")),afterArea=Number(await surface.getAttribute("data-area-after"));if(Math.abs(afterArea-beforeArea*4)>.001)throw new Error("Dilation area did not scale by k squared");if(!orientationAfterReflection)throw new Error("Reflection orientation was not calculated");
+    await page.getByRole("combobox",{name:"Invariant rotation angle"}).selectOption("90");await page.getByRole("checkbox",{name:"Show Grid"}).uncheck();await page.getByRole("checkbox",{name:"Show Axes"}).uncheck();await page.getByRole("button",{name:"Reset",exact:true}).click();
+    for(const k of ["A","B","C"]){await page.getByRole("textbox",{name:`Practice ${k} prime x`}).fill("0");await page.getByRole("textbox",{name:`Practice ${k} prime y`}).fill("0");}await page.getByRole("button",{name:"Check Answer"}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();
+    for(const [i,value] of ["-1","1","-3","2","0","3"].entries()){const k=["A","A","B","B","C","C"][i],axis=i%2?"y":"x";await page.getByRole("textbox",{name:`Practice ${k} prime ${axis}`}).fill(value)}await page.getByRole("button",{name:"Check Answer"}).click();status=await page.getByRole("status").filter({hasText:"Correct!"}).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

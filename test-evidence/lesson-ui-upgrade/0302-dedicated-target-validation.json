@@ -1,0 +1,15 @@
+[
+  {
+    "id": 245,
+    "mockup": 302,
+    "route": "/lessons/geometry/245-invariants",
+    "width": 893,
+    "height": 1762,
+    "status": "Correct! All rotated coordinates and invariants match.",
+    "consoleErrors": [],
+    "scrollHeight": 1762,
+    "surfaceBottom": 1697,
+    "objectModel": "measured-triangle-transformation-invariants",
+    "overflowing": 0
+  }
+]
