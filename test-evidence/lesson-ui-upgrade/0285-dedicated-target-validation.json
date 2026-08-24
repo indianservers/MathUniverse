@@ -1,0 +1,15 @@
+[
+  {
+    "id": 228,
+    "mockup": 285,
+    "route": "/lessons/geometry/228-hyperbola",
+    "width": 1024,
+    "height": 1536,
+    "status": "Correct: the difference is 2a.",
+    "consoleErrors": [],
+    "scrollHeight": 1536,
+    "surfaceBottom": 1425,
+    "objectModel": "two-focus-constant-difference-hyperbola",
+    "overflowing": 0
+  }
+]

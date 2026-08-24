@@ -1442,6 +1442,69 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("button", { name: "New Task" }).click();
     await page.getByText("Set a = 8 and c = 4.8").waitFor();
     status = "Correct ellipse focal invariant and practice.";
+  } else if (id === 228) {
+    const branch = page.locator('[data-testid="hyperbola-right-branch"]');
+    const point = page.locator('[data-testid="hyperbola-point"]');
+    const focus2 = page.locator('[data-testid="hyperbola-focus-2"]');
+    const center = page.locator('[data-testid="hyperbola-center"]');
+    const difference = page.locator('[data-testid="hyperbola-focal-difference"]');
+    const uBefore = await point.getAttribute("data-u");
+    const pointBox = await point.boundingBox();
+    if (!pointBox) throw new Error("Hyperbola point P is not draggable");
+    await page.mouse.move(pointBox.x + pointBox.width / 2, pointBox.y + pointBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(pointBox.x + 20, pointBox.y + 38, { steps: 6 });
+    await page.mouse.up();
+    if ((await point.getAttribute("data-u")) === uBefore) {
+      throw new Error("Dragging P did not change its branch parameter");
+    }
+    if ((await difference.innerText()) !== "6.000") {
+      throw new Error("Dragging P broke the constant focal-difference invariant");
+    }
+    const bBefore = await branch.getAttribute("data-b");
+    const focusBox = await focus2.boundingBox();
+    if (!focusBox) throw new Error("Hyperbola focus F2 is not draggable");
+    await page.mouse.move(focusBox.x + focusBox.width / 2, focusBox.y + focusBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(focusBox.x + 32, focusBox.y, { steps: 5 });
+    await page.mouse.up();
+    if ((await branch.getAttribute("data-b")) === bBefore) {
+      throw new Error("Dragging a focus did not recalculate b");
+    }
+    const centerBefore = await center.getAttribute("cx");
+    const centerBox = await center.boundingBox();
+    if (!centerBox) throw new Error("Hyperbola center is not draggable");
+    await page.mouse.move(centerBox.x + centerBox.width / 2, centerBox.y + centerBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(centerBox.x + 25, centerBox.y - 20, { steps: 5 });
+    await page.mouse.up();
+    if ((await center.getAttribute("cx")) === centerBefore) {
+      throw new Error("Dragging the center did not translate the hyperbola");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    await page.getByRole("spinbutton", { name: "Hyperbola right focus" }).fill("5");
+    await page.getByRole("slider", { name: "Hyperbola left focus slider" }).fill("-4.5");
+    const asymptotes = page.getByRole("checkbox", { name: "Show asymptotes" });
+    await asymptotes.uncheck();
+    if ((await page.locator('[data-testid="hyperbola-asymptote"]').count()) !== 0) throw new Error("Asymptote toggle did not hide both guides");
+    await asymptotes.check();
+    const snap = page.getByRole("checkbox", { name: "Snap to grid" });
+    await snap.check(); await snap.uncheck();
+    await page.getByRole("button", { name: "Hide details" }).click();
+    await page.getByRole("button", { name: "Show details" }).click();
+    await page.getByRole("button", { name: /Observe What is a hyperbola\?/ }).click();
+    await page.getByRole("button", { name: /Manipulate Drag to explore/ }).click();
+    await page.getByRole("combobox", { name: "Hyperbola lesson language" }).selectOption({ label: "Hindi (हिन्दी)" });
+    await page.getByRole("button", { name: "View worked example" }).click();
+    await page.getByText("For a = 3 and c = 4").waitFor();
+    await page.getByRole("spinbutton", { name: "Practice hyperbola semi-axis" }).fill("2.5");
+    await page.getByRole("textbox", { name: "Practice focal difference" }).fill("4");
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Use the constant 2a" }).waitFor();
+    await page.getByRole("spinbutton", { name: "Practice hyperbola semi-axis" }).fill("2");
+    await page.getByRole("checkbox", { name: "Move P toward" }).check();
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page.getByRole("status").filter({ hasText: "Correct: the difference is 2a." }).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

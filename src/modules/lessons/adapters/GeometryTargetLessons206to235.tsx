@@ -41,6 +41,7 @@ import CircumcircularArcTargetLesson from "./CircumcircularArcTargetLesson224";
 import CircularSectorTargetLesson from "./CircularSectorTargetLesson225";
 import ConicFivePointsTargetLesson from "./ConicFivePointsTargetLesson226";
 import EllipseTargetLesson from "./EllipseTargetLesson227";
+import HyperbolaTargetLesson from "./HyperbolaTargetLesson228";
 import RayTargetLesson from "./RayTargetLesson206";
 
 type Kind =
@@ -550,8 +551,7 @@ function named(id: number) {
     <DedicatedGeometrySurface {...props} spec={specs[id]} />
   );
 }
-export const HyperbolaTargetLesson = named(228),
-  ParabolaTargetLesson = named(229),
+export const ParabolaTargetLesson = named(229),
   DistanceLengthTargetLesson = named(230),
   AreaTargetLesson = named(231),
   AngleTargetLesson = named(232),

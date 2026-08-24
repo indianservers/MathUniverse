@@ -678,6 +678,32 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Dedicated ellipse objects");
   });
 
+  it("renders Hyperbola from a two-focus constant-difference locus", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 228)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive hyperbola with draggable center foci and constrained point P",
+    );
+    expect(html).toContain('data-testid="hyperbola-left-branch"');
+    expect(html).toContain('data-testid="hyperbola-right-branch"');
+    expect(html).toContain('data-testid="hyperbola-focus-1"');
+    expect(html).toContain('data-testid="hyperbola-focus-2"');
+    expect(html).toContain('data-testid="hyperbola-point"');
+    expect(html).toContain('data-testid="hyperbola-focal-difference">6.000');
+    expect(html).toContain('aria-label="Hyperbola right focus"');
+    expect(html).toContain('aria-label="Practice hyperbola semi-axis"');
+    expect(html).toContain("c² = a² + b²");
+    expect(html).not.toContain("Semi-axis b");
+    expect(html).not.toContain("Dedicated hyperbola objects");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

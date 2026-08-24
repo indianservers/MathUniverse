@@ -65,6 +65,7 @@ function AppFooter() {
   const isConicFiveTarget =
     location.pathname === "/lessons/geometry/226-conic-through-five-points";
   const isEllipseTarget = location.pathname === "/lessons/geometry/227-ellipse";
+  const isHyperbolaTarget = location.pathname === "/lessons/geometry/228-hyperbola";
   const isGeneralPolygonTarget =
     location.pathname === "/lessons/geometry/217-general-polygon";
   const isCircleCentreRadiusTarget =
@@ -99,7 +100,7 @@ function AppFooter() {
   if (usesTargetCompactFooter) {
     return (
       <footer
-        className={`mx-auto w-full max-w-[1440px] ${isConicFiveTarget ? "h-[53px] px-[14px] py-0" : isSemicircleTarget ? "h-[92px] px-4 pb-0 pt-[7px]" : isCompassTarget || isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "h-[93px] px-4 py-1" : "h-[65px] px-5 py-1"}`}
+        className={`mx-auto w-full max-w-[1440px] ${isConicFiveTarget ? "h-[53px] px-[14px] py-0" : isHyperbolaTarget ? "h-[110px] px-4 pt-[12px]" : isSemicircleTarget ? "h-[92px] px-4 pb-0 pt-[7px]" : isCompassTarget || isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "h-[93px] px-4 py-1" : "h-[65px] px-5 py-1"}`}
         aria-label="Site footer"
       >
         <div className="grid h-full grid-cols-[minmax(0,1fr)_auto] items-center rounded-lg border border-slate-200 bg-white/80 px-3 shadow-sm">
@@ -294,6 +295,7 @@ export default function AppLayout() {
   const isConicFiveTarget =
     location.pathname === "/lessons/geometry/226-conic-through-five-points";
   const isEllipseTarget = location.pathname === "/lessons/geometry/227-ellipse";
+  const isHyperbolaTarget = location.pathname === "/lessons/geometry/228-hyperbola";
   const isRigidPolygonTarget =
     location.pathname === "/lessons/geometry/216-rigid-polygon";
   const isGeneralPolygonTarget =
@@ -428,7 +430,7 @@ export default function AppLayout() {
           <main
             ref={mainContentRef}
             id="main-content"
-            className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircularArcTarget ? "pl-[23px] pr-4" : isCircumcircularArcTarget ? "pl-[6px] pr-3" : isCircularSectorTarget ? "pl-[6px] pr-4" : isConicFiveTarget ? "px-[14px]" : isEllipseTarget ? "pl-[13px] pr-[14px]" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
+            className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircularArcTarget ? "pl-[23px] pr-4" : isCircumcircularArcTarget ? "pl-[6px] pr-3" : isCircularSectorTarget ? "pl-[6px] pr-4" : isConicFiveTarget ? "px-[14px]" : isEllipseTarget ? "pl-[13px] pr-[14px]" : isHyperbolaTarget ? "pl-[9px] pr-4" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
           >
             {!location.pathname.startsWith("/lessons/") && (
               <button
