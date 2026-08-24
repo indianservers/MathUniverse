@@ -49,6 +49,8 @@ function AppFooter() {
   const isTangentTarget = location.pathname === "/lessons/geometry/212-tangent";
   const isTriangleConstructorTarget =
     location.pathname === "/lessons/geometry/214-triangle-constructor";
+  const isRegularPolygonTarget =
+    location.pathname === "/lessons/geometry/215-regular-polygon";
   const usesTargetCompactFooter =
     isRightTriangleTarget ||
     location.pathname === "/lessons/geometry/205-segment-with-given-length" ||
@@ -56,6 +58,7 @@ function AppFooter() {
       "/lessons/geometry/210-perpendicular-bisector",
       "/lessons/geometry/212-tangent",
       "/lessons/geometry/214-triangle-constructor",
+      "/lessons/geometry/215-regular-polygon",
     ].includes(location.pathname) &&
       /^\/lessons\/geometry\/2(?:0[6-9]|[12][0-9]|3[0-5])-/.test(
         location.pathname,
@@ -116,6 +119,46 @@ function AppFooter() {
               <Mail className="h-3 w-3" />
               About
             </a>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+  if (isRegularPolygonTarget) {
+    return (
+      <footer
+        className="mx-auto h-[142px] w-full max-w-[1440px] px-5 pt-[22px]"
+        aria-label="Site footer"
+      >
+        <div className="grid h-[90px] grid-cols-[minmax(0,1fr)_auto_250px] items-center gap-5 rounded-lg border border-slate-200 bg-white/80 px-4 shadow-sm">
+          <div className="min-w-0">
+            <p className="flex items-center gap-2 text-[10px] font-black text-slate-950">
+              <Sparkles className="h-4 w-4 text-cyan-500" /> Math Universe
+            </p>
+            <p className="mt-1 max-w-[260px] text-[8px] leading-3 text-slate-600">
+              Interactive math labs, visual proofs, NCERT explorations,
+              graphing, CAS-style tools, and classroom-ready activities.
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <a className="target-geometry-action" href="/sitemap">
+              <Map /> Sitemap
+            </a>
+            <a className="target-geometry-action" href="/documentation">
+              <Github /> Docs
+            </a>
+            <a className="target-geometry-action" href="/about">
+              <Mail /> About
+            </a>
+          </div>
+          <div className="text-[8px] font-bold text-slate-500">
+            <p className="uppercase">
+              &copy; {year} Indian Servers Private Limited.
+            </p>
+            <p className="mt-1 uppercase">No right to reproduce it.</p>
+            <p className="mt-3 normal-case">
+              www.IndianServers.com &nbsp; info@IndianServers.com
+            </p>
           </div>
         </div>
       </footer>

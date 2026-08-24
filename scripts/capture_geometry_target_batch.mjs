@@ -439,6 +439,93 @@ for (const [id, mockup, slug, width, height] of lessons) {
       throw new Error("Triangle pan tool did not move the construction");
     }
     await page.getByRole("button", { name: "Fit triangle to view" }).click();
+  } else if (id === 215) {
+    const vertex = page.locator('[data-testid="regular-polygon-vertex-0"]');
+    const xBeforeDrag = await vertex.getAttribute("cx");
+    const radiusBeforeDrag = await page
+      .getByRole("slider", { name: "Radius (r)" })
+      .inputValue();
+    const vertexBox = await vertex.boundingBox();
+    if (!vertexBox) throw new Error("Regular polygon vertex is not draggable");
+    await page.mouse.move(
+      vertexBox.x + vertexBox.width / 2,
+      vertexBox.y + vertexBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(vertexBox.x + 28, vertexBox.y + 18, { steps: 4 });
+    await page.mouse.up();
+    if (
+      (await vertex.getAttribute("cx")) === xBeforeDrag ||
+      (await page.getByRole("slider", { name: "Radius (r)" }).inputValue()) ===
+        radiusBeforeDrag
+    ) {
+      throw new Error(
+        "Polygon vertex drag did not update radius and orientation",
+      );
+    }
+    const center = page.locator('[data-testid="regular-polygon-center"]');
+    const centerBefore = await center.getAttribute("cx");
+    const centerBox = await center.boundingBox();
+    if (!centerBox) throw new Error("Regular polygon centre is not draggable");
+    await page.mouse.move(
+      centerBox.x + centerBox.width / 2,
+      centerBox.y + centerBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(centerBox.x + 24, centerBox.y - 16, { steps: 4 });
+    await page.mouse.up();
+    if ((await center.getAttribute("cx")) === centerBefore) {
+      throw new Error("Polygon centre drag did not translate the construction");
+    }
+    await page.getByRole("slider", { name: "Sides (n)" }).fill("8");
+    await page.getByRole("slider", { name: "Radius (r)" }).fill("5");
+    const rotatedBefore = await page
+      .locator('[data-testid="regular-polygon-vertex-0"]')
+      .getAttribute("cx");
+    await page
+      .getByRole("button", { name: "Rotate polygon 15 degrees" })
+      .click();
+    if (
+      (await page
+        .locator('[data-testid="regular-polygon-vertex-0"]')
+        .getAttribute("cx")) === rotatedBefore
+    ) {
+      throw new Error("Rotate control did not update polygon orientation");
+    }
+    await page.getByRole("button", { name: "Hide radii" }).click();
+    await page.getByRole("button", { name: "Show radii" }).click();
+    await page.getByRole("button", { name: "Hide polygon grid" }).click();
+    await page.getByRole("button", { name: "Show polygon grid" }).click();
+    for (const label of [
+      "Show vertices",
+      "Show circumcircle",
+      "Show symmetry axes",
+      "Labels",
+    ]) {
+      const control = page.getByRole("checkbox", { name: label });
+      await control.uncheck();
+      await control.check();
+    }
+    await page.getByRole("button", { name: "Place polygon centre" }).click();
+    const plane = page.getByRole("img", {
+      name: "Interactive regular polygon coordinate plane with draggable centre and vertices",
+    });
+    await plane.click({ position: { x: 310, y: 225 } });
+    await page
+      .getByRole("spinbutton", { name: "Polygon practice side" })
+      .fill("3.83");
+    await page
+      .getByRole("spinbutton", { name: "Polygon practice perimeter" })
+      .fill("30.61");
+    await page
+      .getByRole("spinbutton", { name: "Polygon practice area" })
+      .fill("70.71");
+    await page.getByRole("button", { name: "Hint" }).click();
+    await page.getByRole("button", { name: "Check Answer" }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct: octagon" })
+      .innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

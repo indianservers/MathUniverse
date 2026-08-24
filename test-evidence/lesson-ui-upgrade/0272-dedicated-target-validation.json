@@ -1,0 +1,15 @@
+[
+  {
+    "id": 215,
+    "mockup": 272,
+    "route": "/lessons/geometry/215-regular-polygon",
+    "width": 1027,
+    "height": 1532,
+    "status": "Correct: octagon measurements verified.",
+    "consoleErrors": [],
+    "scrollHeight": 1532,
+    "surfaceBottom": 1390,
+    "objectModel": "regular-polygon",
+    "overflowing": 0
+  }
+]

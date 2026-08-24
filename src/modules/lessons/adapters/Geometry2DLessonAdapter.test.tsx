@@ -469,6 +469,32 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Apex y"');
   });
 
+  it("renders Regular Polygon with generated vertices and exact measurements", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 215)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive regular polygon coordinate plane with draggable centre and vertices",
+    );
+    expect(html).toContain('data-testid="regular-polygon-center"');
+    expect(html).toContain('data-testid="regular-polygon-vertex-0"');
+    expect(html).toContain('aria-label="Sides (n)"');
+    expect(html).toContain('aria-label="Radius (r)"');
+    expect(html).toContain("Central angle (θ)");
+    expect(html).toContain("Lines of symmetry");
+    expect(html).toContain("A = ½nr² sin(360° / n)");
+    expect(html).toContain('aria-label="Polygon practice side"');
+    expect(html).toContain("Check Answer");
+    expect(html).not.toContain('aria-label="Sides n"');
+    expect(html).not.toContain('aria-label="Radius"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",
