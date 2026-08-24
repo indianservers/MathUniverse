@@ -366,6 +366,33 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Half length");
   });
 
+  it("renders Angle Bisector with draggable rays and derived half-angles", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 211)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive angle bisector construction with draggable points A B and C",
+    );
+    expect(html).toContain('data-testid="angle-point-a"');
+    expect(html).toContain('data-testid="angle-point-b"');
+    expect(html).toContain('data-testid="angle-point-c"');
+    expect(html).toContain('aria-label="Show arcs"');
+    expect(html).toContain("∠BAL = ∠LAC = ½∠BAC");
+    expect(html).toContain("Compass Construction");
+    expect(html).toContain("Show steps on canvas");
+    expect(html).toContain('data-testid="practice-angle-point-b"');
+    expect(html).toContain('data-testid="practice-angle-point-c"');
+    expect(html).toContain("New Angle");
+    expect(html).not.toContain('aria-label="Full angle"');
+    expect(html).not.toContain('aria-label="Ray length"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

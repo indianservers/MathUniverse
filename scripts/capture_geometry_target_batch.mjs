@@ -207,6 +207,73 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct: C lies" })
       .innerText();
+  } else if (id === 211) {
+    const pointB = page.locator('[data-testid="angle-point-b"]');
+    const xBeforeDrag = await pointB.getAttribute("cx");
+    const pointBox = await pointB.boundingBox();
+    if (!pointBox) throw new Error("Angle arm point B is not draggable");
+    await page.mouse.move(
+      pointBox.x + pointBox.width / 2,
+      pointBox.y + pointBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(pointBox.x - 20, pointBox.y + 26, { steps: 4 });
+    await page.mouse.up();
+    if ((await pointB.getAttribute("cx")) === xBeforeDrag) {
+      throw new Error("Angle arm drag did not update point B");
+    }
+    const arcs = page.getByRole("switch", { name: "Show arcs" });
+    await arcs.click();
+    await arcs.click();
+    await page.getByRole("button", { name: "Pan construction" }).click();
+    const plane = page.getByRole("img", {
+      name: "Interactive angle bisector construction with draggable points A B and C",
+    });
+    const planeBox = await plane.boundingBox();
+    if (!planeBox) throw new Error("Angle construction plane is missing");
+    await page.mouse.move(planeBox.x + 280, planeBox.y + 180);
+    await page.mouse.down();
+    await page.mouse.move(planeBox.x + 295, planeBox.y + 190, { steps: 3 });
+    await page.mouse.up();
+    await page
+      .getByRole("button", { name: "Show compass construction" })
+      .click();
+    await page.getByRole("button", { name: "Show steps on canvas" }).click();
+    const practiceC = page.locator('[data-testid="practice-angle-point-c"]');
+    const practiceCBefore = await practiceC.getAttribute("cy");
+    const practiceCBox = await practiceC.boundingBox();
+    if (!practiceCBox)
+      throw new Error("Practice angle point C is not draggable");
+    await page.mouse.move(
+      practiceCBox.x + practiceCBox.width / 2,
+      practiceCBox.y + practiceCBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(practiceCBox.x + 18, practiceCBox.y - 20, {
+      steps: 3,
+    });
+    await page.mouse.up();
+    if ((await practiceC.getAttribute("cy")) === practiceCBefore) {
+      throw new Error("Practice angle drag did not update point C");
+    }
+    const practiceBefore = await page
+      .getByRole("img", { name: /Practice angle/ })
+      .getAttribute("aria-label");
+    await page.getByRole("button", { name: "New Angle" }).click();
+    await page.waitForFunction(
+      (before) =>
+        document
+          .querySelector('[aria-label^="Practice angle"]')
+          ?.getAttribute("aria-label") !== before,
+      practiceBefore,
+    );
+    const practiceAfter = await page
+      .getByRole("img", { name: /Practice angle/ })
+      .getAttribute("aria-label");
+    if (practiceBefore === practiceAfter) {
+      throw new Error("New Angle did not change the practice model");
+    }
+    status = `Correct: ${await page.getByRole("status").filter({ hasText: "The two angles are equal" }).innerText()}`;
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

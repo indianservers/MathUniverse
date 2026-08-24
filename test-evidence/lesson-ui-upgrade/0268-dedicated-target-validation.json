@@ -1,0 +1,15 @@
+[
+  {
+    "id": 211,
+    "mockup": 268,
+    "route": "/lessons/geometry/211-angle-bisector",
+    "width": 1059,
+    "height": 1485,
+    "status": "Correct: The two angles are equal.\nLine l is the angle bisector.",
+    "consoleErrors": [],
+    "scrollHeight": 1485,
+    "surfaceBottom": 1381,
+    "objectModel": "angle-bisector",
+    "overflowing": 0
+  }
+]
