@@ -1642,6 +1642,687 @@
   text-transform: uppercase;
 }
 
+.target-conic-page {
+  margin-top: -15px;
+  letter-spacing: 0;
+}
+
+.target-conic-header {
+  height: 130px;
+  border: 1px solid #dbe4ef;
+  border-radius: 15px;
+  background: rgb(255 255 255 / 0.92);
+  padding: 18px 16px;
+  box-shadow: 0 5px 20px rgb(15 23 42 / 0.05);
+}
+
+.target-conic-header > div:first-child > div {
+  display: flex;
+  gap: 8px;
+}
+
+.target-conic-header > div:first-child > div span {
+  border-radius: 999px;
+  background: #e8f8fb;
+  padding: 5px 10px;
+  color: #08749a;
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.target-conic-header > div:first-child > div span:last-child {
+  background: #f0f2f7;
+  color: #3c4d6d;
+}
+
+.target-conic-header h1 {
+  margin-top: 8px;
+  color: #172554;
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.target-conic-header p {
+  margin-top: 8px;
+  color: #52627a;
+  font-size: 10px;
+}
+
+.target-conic-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.target-conic-actions > span,
+.target-conic-actions > label,
+.target-conic-actions > button,
+.target-conic-actions > a {
+  display: flex;
+  height: 29px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  background: #fff;
+  padding: 5px 10px;
+  color: #334155;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.target-conic-actions > label {
+  margin-left: auto;
+}
+
+.target-conic-actions svg {
+  width: 12px;
+}
+
+.target-conic-actions select {
+  border: 0;
+  background: transparent;
+  font: inherit;
+}
+
+.target-conic-shell {
+  height: 1089px;
+  margin-top: 27px;
+  overflow: hidden;
+  border: 1px solid #dbe4ef;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.35);
+  box-shadow: 0 3px 15px rgb(15 23 42 / 0.04);
+}
+
+.target-conic-stages {
+  display: grid;
+  height: 42px;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid #dbe4ef;
+  background: rgb(255 255 255 / 0.86);
+}
+
+.target-conic-stages button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-right: 1px solid #dbe4ef;
+  color: #172554;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.target-conic-stages button:last-child {
+  border-right: 0;
+}
+
+.target-conic-stages button b {
+  display: grid;
+  width: 21px;
+  height: 21px;
+  place-items: center;
+  border: 1px solid #8ba0bb;
+  border-radius: 50%;
+  font-size: 8px;
+}
+
+.target-conic-stages button.is-active {
+  margin: 0 8px;
+  border: 0;
+  border-radius: 9px 9px 0 0;
+  background: linear-gradient(110deg, #0b9fb4, #0783a3);
+  color: #fff;
+}
+
+.target-conic-stages button.is-active b {
+  border: 0;
+  background: #fff;
+  color: #1677a6;
+}
+
+.target-conic-main {
+  display: grid;
+  height: 652px;
+  grid-template-columns: minmax(0, 1.42fr) minmax(0, 1fr);
+  gap: 10px;
+  margin: 10px 8px 0;
+}
+
+.target-conic-plot,
+.target-conic-properties,
+.target-conic-lessons > article,
+.target-conic-checks {
+  border: 1px solid #dbe4ef;
+  border-radius: 11px;
+  background: rgb(255 255 255 / 0.94);
+  box-shadow: 0 1px 5px rgb(15 23 42 / 0.035);
+}
+
+.target-conic-plot {
+  overflow: hidden;
+  padding: 13px;
+}
+
+.target-conic-plot h2,
+.target-conic-properties h2,
+.target-conic-lessons h2,
+.target-conic-checks h2 {
+  color: #172554;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.target-conic-plot > svg {
+  display: block;
+  width: 100%;
+  height: 442px;
+  margin-top: 5px;
+  touch-action: none;
+}
+
+.target-conic-toolbar {
+  display: grid;
+  height: 45px;
+  grid-template-columns: auto auto 1fr repeat(4, 34px);
+  align-items: center;
+  gap: 7px;
+  border-top: 1px solid #dbe4ef;
+  border-bottom: 1px solid #dbe4ef;
+  padding-inline: 8px;
+}
+
+.target-conic-toolbar button {
+  display: flex;
+  height: 29px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  background: #fff;
+  padding-inline: 9px;
+  color: #334155;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.target-conic-toolbar button.is-active {
+  border-color: #0796af;
+  background: #0796af;
+  color: #fff;
+}
+
+.target-conic-toolbar svg {
+  width: 13px;
+}
+
+.target-conic-valid {
+  display: flex;
+  height: 41px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 11px;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  background: #f8fafc;
+  padding: 7px 10px;
+  color: #9f1239;
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.target-conic-valid.is-valid {
+  color: #334155;
+}
+
+.target-conic-valid span,
+.target-conic-valid button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.target-conic-valid span svg {
+  width: 17px;
+  padding: 3px;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.target-conic-valid button {
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  background: #fff;
+  padding: 5px 9px;
+  font-size: 8px;
+}
+
+.target-conic-valid button svg {
+  width: 12px;
+}
+
+.target-conic-properties {
+  overflow: hidden;
+  padding: 14px;
+}
+
+.target-conic-point-list {
+  margin-top: 10px;
+  border-bottom: 1px solid #dbe4ef;
+  padding-bottom: 9px;
+}
+
+.target-conic-point-list section {
+  display: grid;
+  height: 34px;
+  grid-template-columns: 12px 32px 1fr 1fr;
+  align-items: center;
+  gap: 7px;
+  font-size: 8px;
+}
+
+.target-conic-point-list section > i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.target-conic-point-list section > b {
+  color: #172554;
+  font-size: 9px;
+}
+
+.target-conic-point-list label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #64748b;
+}
+
+.target-conic-point-list input {
+  min-width: 0;
+  width: 100%;
+  height: 25px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding-inline: 6px;
+  color: #172554;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.target-conic-class {
+  min-height: 102px;
+  border-bottom: 1px solid #dbe4ef;
+  padding-top: 10px;
+}
+
+.target-conic-class > div {
+  display: flex;
+  height: 54px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.target-conic-class > div > span {
+  border-radius: 7px;
+  background: #e8faeb;
+  padding: 6px 10px;
+  color: #178540;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.target-conic-class > div > span.is-parabola {
+  background: #f3e8ff;
+  color: #7e22ce;
+}
+
+.target-conic-class > div > span.is-hyperbola,
+.target-conic-class > div > span.is-degenerate {
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.target-conic-class svg {
+  width: 105px;
+  height: 62px;
+}
+
+.target-conic-class p {
+  font-size: 9px;
+}
+
+.target-conic-equation {
+  min-height: 145px;
+  padding-top: 10px;
+}
+
+.target-conic-equation h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.target-conic-equation h2 em {
+  font-family: Georgia, serif;
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.target-conic-equation > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+  border-radius: 7px;
+  background: #f1f5fb;
+  padding: 8px;
+}
+
+.target-conic-equation > div span {
+  display: flex;
+  justify-content: space-between;
+  font-size: 7px;
+}
+
+.target-conic-equation > div span b {
+  font-size: 8px;
+}
+
+.target-conic-equation > div:last-child {
+  grid-template-columns: 68px repeat(3, 1fr);
+  font-size: 7px;
+}
+
+.target-conic-diagnostics {
+  display: grid;
+  height: 61px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.target-conic-diagnostics > span {
+  display: grid;
+  place-content: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  text-align: center;
+  font-size: 7px;
+}
+
+.target-conic-diagnostics small,
+.target-conic-diagnostics b {
+  display: block;
+  margin-top: 4px;
+}
+
+.target-conic-diagnostics b {
+  color: #172554;
+  font-size: 8px;
+}
+
+.target-conic-warning {
+  min-height: 66px;
+  margin-top: 9px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fff1f2;
+  padding: 9px;
+  color: #881337;
+  font-size: 7px;
+}
+
+.target-conic-warning.is-valid {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #713f12;
+}
+
+.target-conic-warning h3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.target-conic-warning h3 svg {
+  width: 14px;
+}
+
+.target-conic-warning p {
+  margin-top: 5px;
+}
+
+.target-conic-lessons {
+  display: grid;
+  height: 235px;
+  grid-template-columns: 1fr 1.03fr 1.22fr;
+  gap: 9px;
+  margin: 11px 8px 0;
+}
+
+.target-conic-lessons > article {
+  overflow: hidden;
+  padding: 13px;
+  color: #334155;
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.target-conic-lessons h2 small {
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.target-conic-lessons > article:first-child > p {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.target-conic-lessons > article:first-child > p > b {
+  display: grid;
+  width: 17px;
+  height: 17px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: #10a4c0;
+  color: #fff;
+  font-size: 7px;
+}
+
+.target-conic-insight {
+  position: relative;
+  background: linear-gradient(135deg, #fff, #f5f0ff) !important;
+}
+
+.target-conic-insight h2 {
+  color: #7141e8;
+}
+
+.target-conic-insight h3 {
+  margin-top: 9px;
+  color: #172554;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.target-conic-insight p {
+  margin-top: 10px;
+}
+
+.target-conic-insight svg {
+  position: absolute;
+  right: 4px;
+  top: 52px;
+  width: 112px;
+}
+
+.target-conic-insight small {
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
+  left: 13px;
+  color: #64748b;
+}
+
+.target-conic-practice {
+  position: relative;
+}
+
+.target-conic-practice h2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.target-conic-practice h2 button,
+.target-conic-practice > button {
+  border-radius: 5px;
+  background: #7541e8;
+  padding: 5px 9px;
+  color: #fff;
+  font-size: 7px;
+}
+
+.target-conic-practice > p {
+  margin-top: 8px;
+}
+
+.target-conic-practice > p:nth-of-type(n+2) {
+  display: grid;
+  grid-template-columns: 30px 65px 65px;
+  margin-top: 4px;
+  font-family: Georgia, serif;
+}
+
+.target-conic-practice > p:nth-of-type(n+2) span {
+  border: 1px solid #dbe4ef;
+  border-radius: 4px;
+  padding: 1px 5px;
+  text-align: center;
+}
+
+.target-conic-practice > button {
+  position: absolute;
+  right: 14px;
+  bottom: 52px;
+}
+
+.target-conic-practice > strong {
+  position: absolute;
+  right: 13px;
+  bottom: 14px;
+  left: 13px;
+  color: #7541e8;
+  font-size: 8px;
+}
+
+.target-conic-checks {
+  height: 128px;
+  margin: 10px 8px 0;
+  padding: 13px;
+}
+
+.target-conic-checks > div {
+  display: grid;
+  grid-template-columns: 1.15fr 0.9fr 1.1fr 1fr 1.15fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.target-conic-checks > div > section {
+  display: flex;
+  height: 68px;
+  align-items: flex-start;
+  gap: 9px;
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  padding: 9px;
+  color: #1785bd;
+}
+
+.target-conic-checks svg {
+  width: 18px;
+  flex: none;
+}
+
+.target-conic-checks span {
+  min-width: 0;
+  color: #334155;
+  font-size: 7px;
+}
+
+.target-conic-checks b,
+.target-conic-checks small {
+  display: block;
+}
+
+.target-conic-checks b {
+  color: #172554;
+  font-size: 8px;
+}
+
+.target-conic-checks small {
+  margin-top: 7px;
+  overflow-wrap: anywhere;
+}
+
+.target-conic-nav {
+  display: grid;
+  height: 47px;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.target-conic-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #dbe4ef;
+  border-radius: 9px;
+  background: rgb(255 255 255 / 0.9);
+  color: #172554;
+  font-size: 8px;
+  box-shadow: 0 1px 4px rgb(15 23 42 / 0.04);
+}
+
+.target-conic-nav a:first-child {
+  justify-content: flex-start;
+  padding-left: 14px;
+}
+
+.target-conic-nav a:last-child {
+  justify-content: flex-end;
+  padding-right: 14px;
+  text-align: right;
+}
+
+.target-conic-nav svg {
+  width: 14px;
+  color: #075baa;
+}
+
+.target-conic-nav b {
+  display: block;
+  color: #64748b;
+  font-size: 6px;
+  text-transform: uppercase;
+}
+
 .target-semi-nav {
   display: flex;
   height: 52px;

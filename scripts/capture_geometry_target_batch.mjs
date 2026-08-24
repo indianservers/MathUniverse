@@ -1320,6 +1320,62 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("button", { name: "Check Answer" }).click();
     await page.getByRole("status").filter({ hasText: "Angle: 120°" }).waitFor();
     status = "Correct circular sector target.";
+  } else if (id === 226) {
+    const path = page.locator('[data-testid="five-point-conic-path"]');
+    if ((await path.getAttribute("data-classification")) !== "ellipse") {
+      throw new Error("Initial five-point system did not solve to an ellipse");
+    }
+    const pathBefore = await path.getAttribute("d");
+    const point1 = page.locator('[data-testid="conic-point-1"]');
+    const point1Box = await point1.boundingBox();
+    if (!point1Box) throw new Error("Conic point P1 is not draggable");
+    await page.mouse.move(point1Box.x + point1Box.width / 2, point1Box.y + point1Box.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(point1Box.x + 34, point1Box.y - 22, { steps: 6 });
+    await page.mouse.up();
+    if ((await path.getAttribute("d")) === pathBefore) {
+      throw new Error("Dragging P1 did not resolve the conic coefficients");
+    }
+    const point4 = page.locator('[data-testid="conic-point-4"]');
+    const point4Before = await point4.getAttribute("cy");
+    const point4Box = await point4.boundingBox();
+    if (!point4Box) throw new Error("Conic point P4 is not draggable");
+    await page.mouse.move(point4Box.x + point4Box.width / 2, point4Box.y + point4Box.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(point4Box.x + 15, point4Box.y + 28, { steps: 5 });
+    await page.mouse.up();
+    if ((await point4.getAttribute("cy")) === point4Before) {
+      throw new Error("Dragging P4 did not move its independent constraint");
+    }
+    await page.getByRole("spinbutton", { name: "Conic point 2 x" }).fill("3.5");
+    await page.getByRole("spinbutton", { name: "Conic point 3 y" }).fill("-2");
+    await page.getByRole("button", { name: "Zoom in conic" }).click();
+    await page.getByRole("button", { name: "Zoom out conic" }).click();
+    await page.getByRole("button", { name: "Fit conic view" }).click();
+    await page.getByRole("button", { name: "Try Independently" }).click();
+    await page.getByRole("button", { name: "Observe & Manipulate" }).click();
+    await page.getByRole("combobox", { name: "Conic lesson language" }).selectOption({ label: "Hindi (हिन्दी)" });
+    await page.getByRole("button", { name: "Clear all" }).click();
+    if ((await page.locator('[data-testid^="conic-point-"]').count()) !== 0) {
+      throw new Error("Clear all did not remove all five point constraints");
+    }
+    const plot = page.getByRole("img", { name: "Five draggable points and their solved general conic" });
+    for (const position of [
+      { x: 150, y: 130 },
+      { x: 330, y: 95 },
+      { x: 400, y: 260 },
+      { x: 280, y: 360 },
+      { x: 110, y: 300 },
+    ]) await plot.click({ position });
+    if ((await page.locator('[data-testid^="conic-point-"]').count()) !== 5) {
+      throw new Error("Point tool did not rebuild five independent constraints");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    await page.getByRole("button", { name: "Load points" }).click();
+    if ((await path.getAttribute("data-classification")) !== "parabola") {
+      throw new Error("Practice points did not solve to the requested parabola");
+    }
+    status = "Correct five-point parabola classification.";
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

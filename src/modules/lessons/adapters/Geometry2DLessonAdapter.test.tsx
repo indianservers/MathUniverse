@@ -628,6 +628,29 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Dedicated sector objects with lesson-specific");
   });
 
+  it("renders Conic Through Five Points from a solved homogeneous system", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 226)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain("Five draggable points and their solved general conic");
+    expect(html).toContain('data-testid="five-point-conic-path"');
+    expect(html).toContain('data-classification="ellipse"');
+    expect(html).toContain('data-testid="conic-point-1"');
+    expect(html).toContain('data-testid="conic-point-5"');
+    expect(html).toContain('aria-label="Conic point 1 x"');
+    expect(html).toContain('aria-label="Conic point 5 y"');
+    expect(html).toContain("B² − 4AC");
+    expect(html).toContain("All five points lie on the conic.");
+    expect(html).not.toContain("Horizontal scale");
+    expect(html).not.toContain("Dedicated conicFive objects");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

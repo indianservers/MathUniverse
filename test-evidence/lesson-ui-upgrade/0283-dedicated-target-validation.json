@@ -1,0 +1,15 @@
+[
+  {
+    "id": 226,
+    "mockup": 283,
+    "route": "/lessons/geometry/226-conic-through-five-points",
+    "width": 1086,
+    "height": 1448,
+    "status": "Correct five-point parabola classification.",
+    "consoleErrors": [],
+    "scrollHeight": 1448,
+    "surfaceBottom": 1395,
+    "objectModel": "five-point-homogeneous-conic",
+    "overflowing": 0
+  }
+]
