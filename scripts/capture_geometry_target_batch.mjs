@@ -377,6 +377,68 @@ for (const [id, mockup, slug, width, height] of lessons) {
       throw new Error("New challenge did not update the regression dataset");
     }
     await page.getByRole("button", { name: "Reset", exact: true }).click();
+  } else if (id === 214) {
+    const pointC = page.locator('[data-testid="triangle-point-c"]');
+    const xBeforeDrag = await pointC.getAttribute("cx");
+    const pointBox = await pointC.boundingBox();
+    if (!pointBox) throw new Error("Triangle vertex C is not draggable");
+    await page.mouse.move(
+      pointBox.x + pointBox.width / 2,
+      pointBox.y + pointBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(pointBox.x + 28, pointBox.y - 20, { steps: 4 });
+    await page.mouse.up();
+    if ((await pointC.getAttribute("cx")) === xBeforeDrag) {
+      throw new Error("Triangle vertex drag did not update C");
+    }
+    await page.getByRole("button", { name: "SAS", exact: true }).click();
+    await page.getByRole("slider", { name: "AB (base)" }).fill("8");
+    await page.getByRole("slider", { name: "∠A" }).fill("45");
+    await page.getByRole("slider", { name: "AC", exact: true }).fill("7");
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct: target triangle" })
+      .innerText();
+    const practice = page.locator("#triangle-4");
+    const practiceBefore = await practice.innerText();
+    await page.getByRole("button", { name: "New values" }).click();
+    if ((await practice.innerText()) === practiceBefore) {
+      throw new Error("New values did not change the triangle target");
+    }
+    await page.getByRole("button", { name: "SSS", exact: true }).click();
+    await page.getByRole("slider", { name: "AB (base)" }).fill("1");
+    await page.getByRole("slider", { name: "AC", exact: true }).fill("1");
+    await page.getByRole("slider", { name: "BC" }).fill("3");
+    await page
+      .getByRole("status")
+      .filter({ hasText: "Not feasible" })
+      .waitFor();
+    await page.getByRole("button", { name: "ASA", exact: true }).click();
+    await page.getByRole("slider", { name: "∠A" }).fill("100");
+    await page.getByRole("slider", { name: "∠B" }).fill("100");
+    await page
+      .getByRole("status")
+      .filter({ hasText: "Not feasible" })
+      .waitFor();
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    const panLayer = page.locator('[data-testid="triangle-pan-layer"]');
+    const panBefore = await panLayer.getAttribute("transform");
+    await page.getByRole("button", { name: "Pan triangle plane" }).click();
+    const plane = page.getByRole("img", {
+      name: "Interactive triangle coordinate plane with draggable vertices A B and C",
+    });
+    const planeBox = await plane.boundingBox();
+    if (!planeBox) throw new Error("Triangle plane is missing");
+    await page.mouse.move(planeBox.x + 250, planeBox.y + 250);
+    await page.mouse.down();
+    await page.mouse.move(planeBox.x + 275, planeBox.y + 268, { steps: 3 });
+    await page.mouse.up();
+    if ((await panLayer.getAttribute("transform")) === panBefore) {
+      throw new Error("Triangle pan tool did not move the construction");
+    }
+    await page.getByRole("button", { name: "Fit triangle to view" }).click();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

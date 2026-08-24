@@ -1,0 +1,15 @@
+[
+  {
+    "id": 214,
+    "mockup": 271,
+    "route": "/lessons/geometry/214-triangle-constructor",
+    "width": 1029,
+    "height": 1528,
+    "status": "Correct: target triangle constructed.",
+    "consoleErrors": [],
+    "scrollHeight": 1528,
+    "surfaceBottom": 1391,
+    "objectModel": "triangle-construction",
+    "overflowing": 0
+  }
+]

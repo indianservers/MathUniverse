@@ -442,6 +442,33 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Intercept b"');
   });
 
+  it("renders Triangle Constructor with SSS, SAS, and ASA construction contracts", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 214)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive triangle coordinate plane with draggable vertices A B and C",
+    );
+    expect(html).toContain('data-testid="triangle-point-a"');
+    expect(html).toContain('data-testid="triangle-point-b"');
+    expect(html).toContain('data-testid="triangle-point-c"');
+    expect(html).toContain('data-testid="triangle-pan-layer"');
+    expect(html).toContain("Triangle from three measures");
+    expect(html).toContain("Feasibility rule (Triangle Inequality)");
+    expect(html).toContain("Insight (Law of Cosines)");
+    expect(html).toContain("Perimeter");
+    expect(html).toContain("Classification");
+    expect(html).toContain("New values");
+    expect(html).not.toContain('aria-label="Apex x"');
+    expect(html).not.toContain('aria-label="Apex y"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",
