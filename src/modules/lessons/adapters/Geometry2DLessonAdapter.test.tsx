@@ -588,6 +588,24 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Centre x" type="range"');
   });
 
+  it("renders Circle Through Three Points with a circumcircle dependency", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 220)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain("Interactive circumcircle through draggable points A B and C");
+    expect(html).toContain('data-testid="circumcircle-point-0"');
+    expect(html).toContain('data-testid="three-point-circle"');
+    expect(html).toContain('data-testid="circumcentre-o"');
+    expect(html).toContain("Perpendicular bisectors");
+    expect(html).toContain("If the three points are collinear");
+    expect(html).toContain('aria-label="Circumcentre x"');
+    expect(html).toContain('aria-label="Equation radius squared"');
+    expect(html).not.toContain('aria-label="Point C x"');
+    expect(html).not.toContain('aria-label="Point C y"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

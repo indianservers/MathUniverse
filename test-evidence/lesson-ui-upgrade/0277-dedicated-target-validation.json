@@ -1,0 +1,15 @@
+[
+  {
+    "id": 220,
+    "mockup": 277,
+    "route": "/lessons/geometry/220-circle-through-three-points",
+    "width": 1087,
+    "height": 1447,
+    "status": "Correct circumcircle construction.",
+    "consoleErrors": [],
+    "scrollHeight": 1447,
+    "surfaceBottom": 1413.5,
+    "objectModel": "three-point-circumcircle",
+    "overflowing": 0
+  }
+]

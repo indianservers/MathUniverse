@@ -33,6 +33,7 @@ import RigidPolygonTargetLesson from "./RigidPolygonTargetLesson216";
 import GeneralPolygonTargetLesson from "./GeneralPolygonTargetLesson217";
 import CircleCentrePointTargetLesson from "./CircleCentrePointTargetLesson218";
 import CircleCentreRadiusTargetLesson from "./CircleCentreRadiusTargetLesson219";
+import CircleThreePointsTargetLesson from "./CircleThreePointsTargetLesson220";
 import CompassTargetLesson from "./CompassTargetLesson221";
 import RayTargetLesson from "./RayTargetLesson206";
 
@@ -543,8 +544,7 @@ function named(id: number) {
     <DedicatedGeometrySurface {...props} spec={specs[id]} />
   );
 }
-export const CircleThreePointsTargetLesson = named(220),
-  SemicircleTargetLesson = named(222),
+export const SemicircleTargetLesson = named(222),
   CircularArcTargetLesson = named(223),
   CircumcircularArcTargetLesson = named(224),
   CircularSectorTargetLesson = named(225),

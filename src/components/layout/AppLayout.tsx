@@ -81,7 +81,8 @@ function AppFooter() {
   if (
     location.pathname === "/lessons/geometry/200-intersection-point" ||
     location.pathname === "/lessons/geometry/203-line-through-two-points" ||
-    location.pathname === "/lessons/geometry/218-circle-centre-and-point"
+    location.pathname === "/lessons/geometry/218-circle-centre-and-point" ||
+    location.pathname === "/lessons/geometry/220-circle-through-three-points"
   )
     return null;
   if (usesTargetCompactFooter) {
@@ -277,6 +278,8 @@ export default function AppLayout() {
     location.pathname === "/lessons/geometry/217-general-polygon";
   const isCircleCentreRadiusTarget =
     location.pathname === "/lessons/geometry/219-circle-centre-and-radius";
+  const isCircleThreePointsTarget =
+    location.pathname === "/lessons/geometry/220-circle-through-three-points";
 
   useEffect(() => {
     setMobileOpen(false);
@@ -403,7 +406,7 @@ export default function AppLayout() {
           <main
             ref={mainContentRef}
             id="main-content"
-            className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : "px-2 sm:px-4 md:px-5"}`}
+            className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
           >
             {!location.pathname.startsWith("/lessons/") && (
               <button

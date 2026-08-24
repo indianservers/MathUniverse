@@ -29,7 +29,7 @@ Updated 2026-08-24. This batch replaces the generic construction fallback for le
 | 0274 | 217 General Polygon | `editableGeneralPolygon` | Reworked individually and browser-validated |
 | 0275 | 218 Circle Centre and Point | `circleCentreThroughPoint` | Reworked individually and browser-validated |
 | 0276 | 219 Circle Centre and Radius | `circleCentreFixedRadius` | Reworked individually and browser-validated |
-| 0277 | 220 Circle through Three Points | `circleThree` | Implemented and browser-validated |
+| 0277 | 220 Circle through Three Points | `threePointCircumcircle` | Reworked individually and browser-validated |
 | 0278 | 221 Compass | `compassDistanceTransfer` | Reworked individually and browser-validated |
 | 0279 | 222 Semicircle | `semicircle` | Implemented and browser-validated |
 | 0280 | 223 Circular Arc | `arc` | Implemented and browser-validated |
@@ -110,6 +110,10 @@ Reworked individually against the target mockup. Removed the generic circle, Poi
 ### Lesson 219 / Mockup 0276 - Circle Centre and Radius
 
 Reworked individually against the target mockup. Removed the generic circle, Radius and Centre x sliders, generic object-model panel, repeated construction cards, and template verification record. The dedicated surface owns centre C, an independent numeric radius r, and an angular compass handle P derived from those values. Dragging C translates the circle and P without changing r; dragging P changes radius and orientation without moving C. Both pointer paths use the SVG screen transformation matrix so the model remains aligned with the cursor at the target aspect ratio. Centre steppers and exact inputs, radius slider/input/steppers, units menu, Select, Move, Compass, reset, language, share, stage navigation, and section navigation are functional. The live CP measurement, dynamic centre-radius equation, observation/compass panel, four-step worked construction, target diagram, and C(-3, 2), r=4 practice check follow mockup 0276. Final 997x1578 browser validation proves translation preserves the exact radius attribute, proves compass dragging preserves the exact centre coordinate, exercises all tools and controls, submits the target construction successfully, reports no overflow or console errors, and places the lesson boundary at 1459px against the target's 1461px boundary.
+
+### Lesson 220 / Mockup 0277 - Circle Through Three Points
+
+Reworked individually against the target mockup. Removed the generic three-dot circle, Point C x and Point C y sliders, generic object-model panel, repeated construction cards, and template verification record. The dedicated model owns three unrestricted draggable points A, B, and C and calculates the unique circumcentre with the determinant formula. The circle radius, all three perpendicular bisectors, circumcentre label, coordinate list, and OA/OB/OC verification derive from that result. When the determinant reaches zero, the circle and circumcentre disappear and the surface reports that no unique circle exists. Points can be removed from the object list and restored by clicking the graph; reset, labels, grid, circle, bisectors, centre, bookmark, share, fullscreen, stage navigation, adjacent navigation, and Back to Lessons are functional. The construction-step diagram, collinearity tip, circumcentre/equidistance formulas, and six-field practice equation follow mockup 0277. Final 1087x1447 browser validation drags A and confirms O changes, makes all three points exactly collinear and confirms the circle disappears, removes and replaces C, exercises every visibility control, places O on the x-axis, submits values derived from the live SVG model, and reports no overflow or console errors. The viewport includes the complete practice controls, navigation, and Back to Lessons link without scrolling.
 
 ### Lesson 221 / Mockup 0278 - Compass
 

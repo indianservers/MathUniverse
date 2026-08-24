@@ -798,6 +798,107 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct centre and radius construction." })
       .innerText();
+  } else if (id === 220) {
+    const plane = page.getByRole("img", {
+      name: "Interactive circumcircle through draggable points A B and C",
+    });
+    const toScreen = async (x, y) =>
+      plane.evaluate(
+        (svg, point) => {
+          const matrix = svg.getScreenCTM();
+          if (!matrix) throw new Error("Circumcircle SVG matrix is unavailable");
+          const result = new DOMPoint(point.x, point.y).matrixTransform(matrix);
+          return { x: result.x, y: result.y };
+        },
+        { x, y },
+      );
+    const circle = page.locator('[data-testid="three-point-circle"]');
+    const pointA = page.locator('[data-testid="circumcircle-point-0"]');
+    const centreBefore = await circle.getAttribute("data-center-y");
+    const pointABox = await pointA.boundingBox();
+    if (!pointABox) throw new Error("Circumcircle point A is not draggable");
+    await page.mouse.move(
+      pointABox.x + pointABox.width / 2,
+      pointABox.y + pointABox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(pointABox.x + 24, pointABox.y + 18, { steps: 4 });
+    await page.mouse.up();
+    if ((await circle.getAttribute("data-center-y")) === centreBefore) {
+      throw new Error("Dragging A did not update the circumcentre");
+    }
+    const collinear = await toScreen(350, 355);
+    const movedABox = await pointA.boundingBox();
+    if (!movedABox) throw new Error("Moved circumcircle point A is missing");
+    await page.mouse.move(
+      movedABox.x + movedABox.width / 2,
+      movedABox.y + movedABox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(collinear.x, collinear.y, { steps: 5 });
+    await page.mouse.up();
+    await page.getByText("No unique circle", { exact: true }).waitFor();
+    if (await page.locator('[data-testid="three-point-circle"]').count()) {
+      throw new Error("Collinear points still produced a unique circle");
+    }
+    await page.getByRole("button", { name: "Reset Points" }).click();
+    await page.getByRole("button", { name: "Remove point C" }).click();
+    if ((await page.locator('[data-testid^="circumcircle-point-"]').count()) !== 2) {
+      throw new Error("Point removal did not update the three-point model");
+    }
+    const replacement = await toScreen(515, 190);
+    await page.mouse.click(replacement.x, replacement.y);
+    if ((await page.locator('[data-testid^="circumcircle-point-"]').count()) !== 3) {
+      throw new Error("Clicking the plane did not replace the third point");
+    }
+    await page.getByRole("button", { name: "Reset Points" }).click();
+    for (const label of ["Labels", "Grid"]) {
+      const control = page.getByRole("checkbox", { name: label, exact: true });
+      await control.uncheck();
+      await control.check();
+    }
+    for (const label of [
+      "Circle (through A, B, C)",
+      "Perpendicular bisectors",
+      "Circumcentre O",
+    ]) {
+      const control = page.getByRole("checkbox", { name: label });
+      await control.uncheck();
+      await control.check();
+    }
+    const targetA = await toScreen(350, 300 - Math.sqrt(10) * 55);
+    const resetABox = await pointA.boundingBox();
+    if (!resetABox) throw new Error("Reset circumcircle point A is missing");
+    await page.mouse.move(
+      resetABox.x + resetABox.width / 2,
+      resetABox.y + resetABox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(targetA.x, targetA.y, { steps: 5 });
+    await page.mouse.up();
+    const practiceCircle = page.locator('[data-testid="three-point-circle"]');
+    const x0 = Number(await practiceCircle.getAttribute("data-center-x"));
+    const y0 = Number(await practiceCircle.getAttribute("data-center-y"));
+    const radius = Number(await practiceCircle.getAttribute("data-radius"));
+    if (Math.abs(y0) >= 0.08) {
+      throw new Error("Practice drag did not place O on the x-axis");
+    }
+    const values = {
+      "Circumcentre x": x0.toFixed(2),
+      "Circumcentre y": y0.toFixed(2),
+      "Circumcircle radius": radius.toFixed(2),
+      "Equation h": x0.toFixed(2),
+      "Equation k": y0.toFixed(2),
+      "Equation radius squared": (radius * radius).toFixed(2),
+    };
+    for (const [label, value] of Object.entries(values)) {
+      await page.getByRole("textbox", { name: label }).fill(value);
+    }
+    await page.getByRole("button", { name: "Check Answer" }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct circumcircle construction." })
+      .innerText();
   } else if (id === 221) {
     const center = page.locator('[data-testid="compass-center-point"]');
     const centerBefore = await center.getAttribute("cx");
