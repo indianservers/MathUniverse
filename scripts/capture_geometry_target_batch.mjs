@@ -1775,6 +1775,112 @@ for (const [id, mockup, slug, width, height] of lessons) {
       throw new Error("Tip preference did not hide the practice tip");
     }
     status = "Correct area-preserving shoelace and practice models.";
+  } else if (id === 232) {
+    const measurement = page.locator('[data-testid="angle-measurement"]');
+    const pointA = page.locator('[data-testid="angle-point-a"]');
+    const pointB = page.locator('[data-testid="angle-point-b"]');
+    const pointC = page.locator('[data-testid="angle-point-c"]');
+    if ((await measurement.innerText()) !== "55.0°") {
+      throw new Error("Angle initial model did not measure 55 degrees");
+    }
+    const cBefore = await pointC.getAttribute("data-x");
+    const cBox = await pointC.boundingBox();
+    if (!cBox) throw new Error("Angle point C is not draggable");
+    await page.mouse.move(cBox.x + cBox.width / 2, cBox.y + cBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(cBox.x + 32, cBox.y + 25, { steps: 6 });
+    await page.mouse.up();
+    if ((await pointC.getAttribute("data-x")) === cBefore ||
+        (await measurement.innerText()) === "55.0°") {
+      throw new Error("Dragging point C did not recalculate the angle");
+    }
+    const afterC = await measurement.innerText();
+    const bBox = await pointB.boundingBox();
+    if (!bBox) throw new Error("Angle point B is not draggable");
+    await page.mouse.move(bBox.x + bBox.width / 2, bBox.y + bBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(bBox.x - 20, bBox.y - 34, { steps: 6 });
+    await page.mouse.up();
+    if ((await measurement.innerText()) === afterC) {
+      throw new Error("Dragging point B did not rotate the base ray");
+    }
+    const angleBeforeTranslation = await measurement.innerText();
+    const aBefore = await pointA.getAttribute("data-x");
+    const aBox = await pointA.boundingBox();
+    if (!aBox) throw new Error("Angle vertex A is not draggable");
+    await page.mouse.move(aBox.x + aBox.width / 2, aBox.y + aBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(aBox.x + 25, aBox.y - 18, { steps: 5 });
+    await page.mouse.up();
+    if ((await pointA.getAttribute("data-x")) === aBefore) {
+      throw new Error("Dragging A did not translate the angle");
+    }
+    if ((await measurement.innerText()) !== angleBeforeTranslation) {
+      throw new Error("Translating vertex A changed the angle measure");
+    }
+    await page.locator('.target-angle-main').getByRole("button", { name: "Reset", exact: true }).click();
+    await page.getByRole("button", { name: "Protractor", exact: true }).click();
+    await page.locator('[data-testid="angle-protractor"]').first().waitFor();
+    await page.getByRole("button", { name: "Grid", exact: true }).click();
+    if ((await page.locator('[data-testid="angle-grid-layer"]').getAttribute("data-visible")) !== "false") {
+      throw new Error("Angle grid toggle did not hide the grid");
+    }
+    await page.getByRole("button", { name: "Grid", exact: true }).click();
+    await page.getByRole("button", { name: /^Right/ }).click();
+    if ((await measurement.innerText()) !== "90.0°") throw new Error("Right preset did not construct 90 degrees");
+    await page.getByRole("button", { name: /^Obtuse/ }).click();
+    if ((await measurement.innerText()) !== "120.0°") throw new Error("Obtuse preset did not construct 120 degrees");
+    await page.getByRole("button", { name: /^Straight/ }).click();
+    if ((await measurement.innerText()) !== "180.0°") throw new Error("Straight preset did not construct 180 degrees");
+    await page.getByRole("button", { name: /^Reflex 180/ }).click();
+    if ((await measurement.innerText()) !== "235.0°") throw new Error("Reflex preset did not construct 235 degrees");
+    await page.getByRole("button", { name: "Small angle", exact: true }).click();
+    if ((await measurement.innerText()) !== "125.0°") throw new Error("Small-angle mode did not select the complementary measure");
+    await page.getByRole("button", { name: "Reflex angle", exact: true }).click();
+    const layerChecks = [
+      ["Show angle arc", "angle-arc"],
+      ["Show ray AB", "angle-ray-ab"],
+      ["Show ray AC", "angle-ray-ac"],
+      ["Show labels", "angle-point-label"],
+    ];
+    for (const [name, testId] of layerChecks) {
+      const toggle = page.getByRole("checkbox", { name });
+      await toggle.uncheck();
+      if ((await page.locator(`[data-testid="${testId}"]`).count()) !== 0) {
+        throw new Error(`${name} did not hide its SVG layer`);
+      }
+      await toggle.check();
+    }
+    await page.getByRole("button", { name: "Copy point A" }).click();
+    await page.getByRole("status").filter({ hasText: "Point A copied." }).waitFor();
+    await page.getByRole("button", { name: "Bookmark Angle lesson" }).click();
+    await page.getByRole("button", { name: "Remove Angle bookmark" }).waitFor();
+    await page.getByRole("button", { name: /3 Notice Find the pattern/ }).click();
+    await page.getByRole("button", { name: "Go to angle step 5" }).click();
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Adjust ray AC closer to 120°." }).waitFor();
+    const practicePoint = page.locator('[data-testid="practice-angle-point-c"]');
+    const practiceSvg = page.getByRole("img", { name: "Practice protractor with draggable ray C" });
+    const practicePointBox = await practicePoint.boundingBox();
+    const practiceSvgBox = await practiceSvg.boundingBox();
+    if (!practicePointBox || !practiceSvgBox) throw new Error("Practice angle handle is not draggable");
+    await page.mouse.move(practicePointBox.x + practicePointBox.width / 2, practicePointBox.y + practicePointBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(
+      practiceSvgBox.x + (22 / 280) * practiceSvgBox.width,
+      practiceSvgBox.y + (30 / 180) * practiceSvgBox.height,
+      { steps: 8 },
+    );
+    await page.mouse.up();
+    if (Math.abs(Number(await practicePoint.getAttribute("data-angle")) - 120) > 1) {
+      throw new Error("Dragging practice C did not construct 120 degrees");
+    }
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page.getByRole("status").filter({ hasText: "120° construction correct." }).innerText();
+    await page.getByRole("button", { name: "Reset", exact: true }).last().click();
+    if ((await practicePoint.getAttribute("data-angle")) !== "112.000000") {
+      throw new Error("Practice reset did not restore 112 degrees");
+    }
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

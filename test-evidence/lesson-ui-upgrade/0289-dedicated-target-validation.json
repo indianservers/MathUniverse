@@ -1,0 +1,15 @@
+[
+  {
+    "id": 232,
+    "mockup": 289,
+    "route": "/lessons/geometry/232-angle",
+    "width": 994,
+    "height": 1582,
+    "status": "120° construction correct.",
+    "consoleErrors": [],
+    "scrollHeight": 1582,
+    "surfaceBottom": 1473,
+    "objectModel": "three-point-two-ray-oriented-angle",
+    "overflowing": 0
+  }
+]

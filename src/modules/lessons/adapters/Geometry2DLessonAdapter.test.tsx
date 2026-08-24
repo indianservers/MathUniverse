@@ -792,6 +792,36 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Dedicated area objects");
   });
 
+  it("renders Angle from three draggable points and two oriented rays", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 232)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Interactive angle with draggable vertex A and ray points B and C",
+    );
+    expect(html).toContain(
+      'data-object-model="three-point-two-ray-oriented-angle"',
+    );
+    expect(html).toContain('data-testid="angle-ray-ab"');
+    expect(html).toContain('data-testid="angle-ray-ac"');
+    expect(html).toContain('data-testid="angle-arc"');
+    expect(html).toContain('data-testid="angle-point-a"');
+    expect(html).toContain('data-testid="angle-point-b"');
+    expect(html).toContain('data-testid="angle-point-c"');
+    expect(html).toContain('data-testid="angle-measurement">55.0°');
+    expect(html).toContain('aria-label="Copy point A"');
+    expect(html).toContain("Practice protractor with draggable ray C");
+    expect(html).toContain("Construct an angle of 120°.");
+    expect(html).not.toContain("Ray length");
+    expect(html).not.toContain("Dedicated angle objects");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

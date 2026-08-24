@@ -5871,6 +5871,859 @@
   width: 14px;
 }
 
+@media (min-width: 960px) and (max-width: 1279px) {
+  .target-angle-app [data-testid="desktop-sidebar"] {
+    width: 210px;
+  }
+}
+
+.target-angle-app > .app-layout-rail > div > header {
+  height: 59px;
+  padding: 8px 24px;
+}
+
+.target-angle-app > .app-layout-rail > div > header > div {
+  height: 42px;
+}
+
+.target-angle-app > .app-layout-rail > div > header > div > div:nth-child(2) p:first-child {
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.target-angle-app > .app-layout-rail > div > header > div > div:nth-child(2) p:last-child {
+  font-size: 8px;
+  line-height: 11px;
+}
+
+.target-angle-app > .app-layout-rail > div > header button {
+  min-height: 32px !important;
+  height: 32px;
+}
+
+.target-angle-app #main-content {
+  padding-top: 9px;
+}
+
+.target-angle-app [data-testid="desktop-sidebar"] > div {
+  padding: 10px 9px 80px;
+}
+
+.target-angle-app [data-testid="desktop-sidebar"] > div > div:first-of-type {
+  min-height: 61px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  padding: 7px;
+}
+
+.target-angle-app [data-testid="desktop-sidebar"] > div > div:first-of-type > button:first-child {
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.target-angle-app [data-testid="desktop-sidebar"] > div > div:first-of-type > button:last-child {
+  width: 27px;
+  height: 27px;
+}
+
+.target-angle-app [data-testid="desktop-sidebar"] > div > div:first-of-type p:first-child {
+  font-size: 13px;
+}
+
+.target-angle-app [data-testid="desktop-sidebar"] > div > div:first-of-type p:last-child {
+  font-size: 8px;
+}
+
+.target-angle-page {
+  letter-spacing: 0;
+}
+
+.target-angle-header,
+.target-angle-stages,
+.target-angle-workspace,
+.target-angle-main,
+.target-angle-sidebar > article,
+.target-angle-learning > article,
+.target-angle-practice,
+.target-angle-nav > a,
+.target-angle-nav > section {
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 5px rgb(15 23 42 / 0.04);
+}
+
+.target-angle-header {
+  display: flex;
+  height: 142px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 17px;
+}
+
+.target-angle-header > div > span {
+  display: inline-block;
+  border-radius: 999px;
+  background: #f1f5f9;
+  padding: 5px 10px;
+  color: #475569;
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.target-angle-header h1 {
+  margin-top: 10px;
+  color: #172554;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.target-angle-header > div > p {
+  margin-top: 8px;
+  color: #475569;
+  font-size: 10px;
+}
+
+.target-angle-header > div > section {
+  display: flex;
+  gap: 8px;
+  margin-top: 13px;
+}
+
+.target-angle-header > div > section b {
+  display: flex;
+  height: 28px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 999px;
+  padding: 0 10px;
+  color: #334155;
+  font-size: 7px;
+}
+
+.target-angle-header > div > section svg {
+  width: 11px;
+}
+
+.target-angle-header > aside {
+  width: 229px;
+  height: 72px;
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  padding: 11px;
+  box-shadow: 0 2px 8px rgb(15 23 42 / 0.04);
+}
+
+.target-angle-header > aside > header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #172554;
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.target-angle-header > aside > header svg {
+  width: 11px;
+  color: #168ddd;
+}
+
+.target-angle-header > aside > div {
+  display: grid;
+  grid-template-columns: 37px 1fr 28px;
+  align-items: center;
+  margin-top: 9px;
+}
+
+.target-angle-header > aside strong {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 4px solid #e2e8f0;
+  border-radius: 50%;
+  color: #64748b;
+  font-size: 7px;
+}
+
+.target-angle-header > aside b {
+  color: #172554;
+  font-size: 8px;
+}
+
+.target-angle-header > aside button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  color: #64748b;
+}
+
+.target-angle-header > aside button svg {
+  width: 12px;
+}
+
+.target-angle-stages {
+  display: grid;
+  height: 61px;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 15px 13px 0;
+  overflow: hidden;
+}
+
+.target-angle-stages button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-right: 1px solid #e2e8f0;
+  color: #334155;
+  text-align: left;
+}
+
+.target-angle-stages button:last-child {
+  border-right: 0;
+}
+
+.target-angle-stages button > i {
+  display: grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  border-radius: 50%;
+  background: #cbd5e1;
+  color: #fff;
+  font-size: 7px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.target-angle-stages button b,
+.target-angle-stages button small {
+  display: block;
+}
+
+.target-angle-stages button b {
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.target-angle-stages button small {
+  margin-top: 5px;
+  color: #64748b;
+  font-size: 6px;
+}
+
+.target-angle-stages button.is-active {
+  margin: 3px;
+  border: 1px solid #93c5fd;
+  border-radius: 7px;
+  background: #f8fbff;
+  color: #1769e8;
+  box-shadow: 0 2px 8px rgb(59 130 246 / 0.12);
+}
+
+.target-angle-stages button.is-active > i {
+  background: #1769e8;
+}
+
+.target-angle-workspace {
+  position: relative;
+  display: grid;
+  height: 555px;
+  grid-template-columns: minmax(0, 2.95fr) minmax(0, 1fr);
+  gap: 13px;
+  margin: 25px 22px 0 13px;
+  padding-top: 12px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.target-angle-workspace::before {
+  position: absolute;
+  inset: 0 -22px 0 -13px;
+  z-index: 0;
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.06);
+  content: "";
+}
+
+.target-angle-workspace > * {
+  position: relative;
+  z-index: 1;
+}
+
+.target-angle-main {
+  display: grid;
+  min-width: 0;
+  height: 543px;
+  grid-template-rows: 54px 369px 120px;
+  overflow: hidden;
+  padding: 0 11px;
+}
+
+.target-angle-main > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.target-angle-main h2,
+.target-angle-sidebar h2,
+.target-angle-learning h2,
+.target-angle-practice h2 {
+  color: #172554;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.target-angle-main > header h2 {
+  font-size: 14px;
+}
+
+.target-angle-main > header p {
+  margin-top: 5px;
+  color: #475569;
+  font-size: 8px;
+}
+
+.target-angle-main > header > div:last-child {
+  display: flex;
+  gap: 7px;
+}
+
+.target-angle-main > header button {
+  display: flex;
+  height: 33px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 0 9px;
+  color: #475569;
+  font-size: 7px;
+  font-weight: 850;
+}
+
+.target-angle-main > header button.is-active {
+  border-color: #93c5fd;
+  background: #f0f9ff;
+  color: #0872b8;
+}
+
+.target-angle-main > header svg {
+  width: 12px;
+}
+
+.target-angle-main > svg {
+  width: 100%;
+  height: 369px;
+  touch-action: none;
+}
+
+.target-angle-main > footer {
+  display: grid;
+  height: 107px;
+  align-self: start;
+  grid-template-columns: 1fr 175px;
+  gap: 12px;
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+  padding: 11px;
+}
+
+.target-angle-main > footer > section:last-child {
+  border-left: 1px solid #e2e8f0;
+  padding-left: 14px;
+}
+
+.target-angle-main > footer h3 {
+  color: #172554;
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.target-angle-main > footer section > div {
+  display: flex;
+  gap: 6px;
+  margin-top: 9px;
+}
+
+.target-angle-main > footer button {
+  min-width: 53px;
+  height: 55px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  color: #334155;
+  font-size: 7px;
+}
+
+.target-angle-main > footer button b,
+.target-angle-main > footer button small {
+  display: block;
+}
+
+.target-angle-main > footer button small {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 6px;
+}
+
+.target-angle-main > footer button.is-active {
+  border-color: #60a5fa;
+  background: #eff6ff;
+  color: #1769e8;
+  box-shadow: 0 1px 5px rgb(59 130 246 / 0.15);
+}
+
+.target-angle-main > footer > section:last-child button {
+  min-width: 75px;
+  height: 36px;
+  font-size: 7px;
+  font-weight: 850;
+}
+
+.target-angle-sidebar {
+  min-width: 0;
+}
+
+.target-angle-sidebar > article {
+  padding: 12px;
+}
+
+.target-angle-sidebar > article:first-child {
+  height: 137px;
+}
+
+.target-angle-sidebar > article:first-child > p {
+  margin-top: 17px;
+  color: #172554;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.target-angle-sidebar > article:first-child > strong {
+  display: block;
+  margin-top: 7px;
+  color: #0ca9be;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.target-angle-sidebar > article:first-child > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 13px;
+  color: #334155;
+  font-size: 7px;
+}
+
+.target-angle-sidebar > article:first-child > span i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.target-angle-points {
+  position: relative;
+  height: 205px;
+  margin-top: 13px;
+}
+
+.target-angle-points > section {
+  margin-top: 10px;
+}
+
+.target-angle-points > section > b {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #172554;
+  font-size: 7px;
+}
+
+.target-angle-points > section > b i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1769e8;
+}
+
+.target-angle-points > section > div {
+  display: grid;
+  grid-template-columns: 1fr 28px;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.target-angle-points > section span {
+  display: flex;
+  height: 28px;
+  align-items: center;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 0 8px;
+  color: #334155;
+  font-size: 7px;
+}
+
+.target-angle-points > section button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  color: #64748b;
+}
+
+.target-angle-points > section button svg {
+  width: 11px;
+}
+
+.target-angle-points > output {
+  position: absolute;
+  right: 11px;
+  bottom: 4px;
+  color: #15803d;
+  font-size: 6px;
+}
+
+.target-angle-options {
+  height: 160px;
+  margin-top: 13px;
+}
+
+.target-angle-options label {
+  display: flex;
+  height: 28px;
+  align-items: center;
+  justify-content: space-between;
+  color: #334155;
+  font-size: 8px;
+}
+
+.target-angle-options input {
+  position: relative;
+  width: 26px;
+  height: 15px;
+  appearance: none;
+  border-radius: 999px;
+  background: #cbd5e1;
+}
+
+.target-angle-options input::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+  transition: transform 120ms;
+}
+
+.target-angle-options input:checked {
+  background: #0ca9be;
+}
+
+.target-angle-options input:checked::after {
+  transform: translateX(11px);
+}
+
+.target-angle-learning {
+  display: grid;
+  height: 231px;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 14px;
+  margin: 15px 13px 0;
+}
+
+.target-angle-learning > article {
+  min-width: 0;
+  padding: 14px;
+}
+
+.target-angle-learning > article > p {
+  margin-top: 8px;
+  color: #475569;
+  font-size: 8px;
+}
+
+.target-angle-learning > article:first-child > div {
+  display: grid;
+  grid-template-columns: 1fr 170px;
+  margin-top: 12px;
+}
+
+.target-angle-learning > article:first-child section p {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  color: #334155;
+  font-size: 7px;
+  line-height: 1.4;
+}
+
+.target-angle-learning > article:first-child section p b {
+  display: grid;
+  width: 16px;
+  height: 16px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: #1769e8;
+  color: #fff;
+}
+
+.target-angle-learning > article:first-child svg {
+  width: 170px;
+  height: 125px;
+}
+
+.target-angle-learning > article:last-child > strong {
+  display: block;
+  margin-top: 13px;
+  border-radius: 7px;
+  background: #f8fafc;
+  padding: 10px;
+  color: #172554;
+  text-align: center;
+  font-size: 13px;
+}
+
+.target-angle-learning > article:last-child > div {
+  margin-top: 10px;
+}
+
+.target-angle-learning > article:last-child > div p {
+  display: grid;
+  height: 25px;
+  grid-template-columns: 13px 1fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 8px;
+}
+
+.target-angle-learning > article:last-child > div p i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.target-angle-learning > article:last-child > div p span {
+  color: #172554;
+  font-weight: 850;
+}
+
+.target-angle-practice {
+  height: 245px;
+  margin: 14px 13px 0;
+  padding: 13px;
+}
+
+.target-angle-practice > header p {
+  margin-top: 5px;
+  color: #475569;
+  font-size: 8px;
+}
+
+.target-angle-practice > div {
+  display: grid;
+  height: 184px;
+  grid-template-columns: 1.15fr 0.78fr 1.08fr;
+  gap: 13px;
+  margin-top: 11px;
+}
+
+.target-angle-practice > div > svg,
+.target-angle-practice > div > article {
+  min-width: 0;
+  height: 184px;
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+}
+
+.target-angle-practice > div > svg {
+  width: 100%;
+  touch-action: none;
+}
+
+.target-angle-practice > div > article {
+  padding: 13px;
+  color: #334155;
+  font-size: 8px;
+}
+
+.target-angle-practice h3 {
+  color: #172554;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.target-angle-practice > div > article:nth-child(2) > p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.target-angle-practice > div > article:nth-child(2) > p i {
+  display: grid;
+  width: 14px;
+  height: 14px;
+  place-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+}
+
+.target-angle-practice > div > article:nth-child(2) > p i.is-ok {
+  border-color: #1769e8;
+  background: #1769e8;
+  color: #fff;
+}
+
+.target-angle-practice > div > article:nth-child(2) > p svg {
+  width: 9px;
+}
+
+.target-angle-practice > div > article:nth-child(2) footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.target-angle-practice > div > article:nth-child(2) button {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  gap: 6px;
+  border-radius: 6px;
+  padding: 0 13px;
+  color: #475569;
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.target-angle-practice > div > article:nth-child(2) button:first-child {
+  background: #1769e8;
+  color: #fff;
+}
+
+.target-angle-practice > div > article:nth-child(2) button svg {
+  width: 11px;
+}
+
+.target-angle-practice output {
+  display: block;
+  margin-top: 8px;
+  font-size: 7px;
+}
+
+.target-angle-practice output.is-correct {
+  color: #15803d;
+}
+
+.target-angle-practice output.is-incorrect {
+  color: #be123c;
+}
+
+.target-angle-gauge {
+  position: relative;
+  text-align: center;
+}
+
+.target-angle-gauge h3 {
+  text-align: left;
+}
+
+.target-angle-gauge svg {
+  width: 100%;
+  height: 95px;
+  margin-top: 6px;
+}
+
+.target-angle-gauge > strong {
+  position: absolute;
+  top: 76px;
+  left: 0;
+  width: 100%;
+  color: #172554;
+  font-size: 13px;
+}
+
+.target-angle-gauge p,
+.target-angle-gauge small {
+  display: block;
+  margin-top: 2px;
+}
+
+.target-angle-nav {
+  display: grid;
+  height: 56px;
+  grid-template-columns: 1fr 210px 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.target-angle-nav > a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 14px;
+  color: #172554;
+  font-size: 8px;
+}
+
+.target-angle-nav > a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.target-angle-nav b {
+  display: block;
+  color: #64748b;
+  font-size: 6px;
+  text-transform: uppercase;
+}
+
+.target-angle-nav > section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.target-angle-nav > section button {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border: 1px solid #dbe4ef;
+  border-radius: 50%;
+  color: #64748b;
+  font-size: 7px;
+}
+
+.target-angle-nav > section button.is-active {
+  border-color: #1769e8;
+  background: #1769e8;
+  color: #fff;
+}
+
+.target-angle-nav svg {
+  width: 13px;
+}
+
 .target-semi-nav {
   display: flex;
   height: 52px;
