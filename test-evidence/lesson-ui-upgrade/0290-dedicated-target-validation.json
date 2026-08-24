@@ -1,0 +1,15 @@
+[
+  {
+    "id": 233,
+    "mockup": 290,
+    "route": "/lessons/geometry/233-fixed-angle",
+    "width": 1004,
+    "height": 1567,
+    "status": "Correct\nThe locked ray matches the target angle.",
+    "consoleErrors": [],
+    "scrollHeight": 1567,
+    "surfaceBottom": 1548,
+    "objectModel": "locked-origin-ray-angle",
+    "overflowing": 0
+  }
+]

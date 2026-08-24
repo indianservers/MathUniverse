@@ -1881,6 +1881,124 @@ for (const [id, mockup, slug, width, height] of lessons) {
     if ((await practicePoint.getAttribute("data-angle")) !== "112.000000") {
       throw new Error("Practice reset did not restore 112 degrees");
     }
+  } else if (id === 233) {
+    const liveAngle = page.locator('[data-testid="fixed-live-angle"]');
+    const currentAngle = page.locator('[data-testid="fixed-current-angle"]');
+    const angleError = page.locator('[data-testid="fixed-angle-error"]');
+    const origin = page.locator('[data-testid="fixed-origin"]');
+    const pointP = page.locator('[data-testid="fixed-point-p"]');
+    if ((await liveAngle.innerText()) !== "55.0°" ||
+        (await angleError.innerText()) !== "0.0°") {
+      throw new Error("Fixed Angle initial constraint is not 55 degrees");
+    }
+    const initialLength = await pointP.getAttribute("data-length");
+    const pBox = await pointP.boundingBox();
+    if (!pBox) throw new Error("Fixed Angle point P is not draggable");
+    await page.mouse.move(pBox.x + pBox.width / 2, pBox.y + pBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(pBox.x - 45, pBox.y + 60, { steps: 7 });
+    await page.mouse.up();
+    if ((await liveAngle.innerText()) !== "55.0°") {
+      throw new Error("Locked P drag changed the fixed angle");
+    }
+    if ((await pointP.getAttribute("data-length")) === initialLength) {
+      throw new Error("Locked P drag did not change the ray length");
+    }
+    const originX = await origin.getAttribute("data-x");
+    const originBox = await origin.boundingBox();
+    if (!originBox) throw new Error("Fixed Angle origin O is not draggable");
+    await page.mouse.move(originBox.x + originBox.width / 2, originBox.y + originBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(originBox.x + 28, originBox.y - 19, { steps: 6 });
+    await page.mouse.up();
+    if ((await origin.getAttribute("data-x")) === originX) {
+      throw new Error("Dragging origin O did not translate the construction");
+    }
+    if ((await liveAngle.innerText()) !== "55.0°") {
+      throw new Error("Translating origin O changed the fixed angle");
+    }
+    await page.getByRole("switch", { name: "Lock main angle" }).click();
+    const freePBox = await pointP.boundingBox();
+    const movedOriginBox = await origin.boundingBox();
+    if (!freePBox || !movedOriginBox) throw new Error("Unlocked model handles disappeared");
+    await page.mouse.move(freePBox.x + freePBox.width / 2, freePBox.y + freePBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(movedOriginBox.x + 120, movedOriginBox.y + 5, { steps: 8 });
+    await page.mouse.up();
+    if ((await liveAngle.innerText()) === "55.0°" ||
+        (await angleError.innerText()) === "0.0°") {
+      throw new Error("Unlocked P drag did not create a measurable target error");
+    }
+    await page.getByRole("spinbutton", { name: "Target angle", exact: true }).fill("60");
+    if ((await currentAngle.innerText()) === "60.0°") {
+      throw new Error("Unlocked target edit incorrectly rotated the free ray");
+    }
+    await page.getByRole("switch", { name: "Lock main angle" }).click();
+    if ((await liveAngle.innerText()) !== "60.0°" ||
+        (await angleError.innerText()) !== "0.0°") {
+      throw new Error("Relocking did not snap the ray to the 60 degree target");
+    }
+    await page.getByRole("button", { name: "30°", exact: true }).click();
+    if ((await liveAngle.innerText()) !== "30.0°") {
+      throw new Error("Fixed Angle quick-set control did not rotate the locked ray");
+    }
+    const arcToggle = page.getByRole("checkbox", { name: "Show arc" });
+    await arcToggle.uncheck();
+    if ((await page.locator('[data-testid="fixed-angle-arc"]').count()) !== 0) {
+      throw new Error("Fixed Angle arc toggle did not hide the arc");
+    }
+    await arcToggle.check();
+    const coordToggle = page.getByRole("checkbox", { name: "Show coords" });
+    await coordToggle.uncheck();
+    if ((await page.locator('[data-testid="fixed-coordinates"]').count()) !== 0) {
+      throw new Error("Fixed Angle coordinate toggle did not hide labels");
+    }
+    await coordToggle.check();
+    const gridToggle = page.getByRole("checkbox", { name: "Grid" });
+    await gridToggle.uncheck();
+    if ((await page.locator('[data-testid="fixed-grid"]').count()) !== 0) {
+      throw new Error("Fixed Angle grid toggle did not hide the grid");
+    }
+    await gridToggle.check();
+    await page.getByRole("button", { name: "Zoom in" }).click();
+    await page.getByRole("button", { name: "Reset graph view" }).click();
+    await page.getByRole("combobox", { name: "Lesson language" }).selectOption({ label: "Hindi (हिन्दी)" });
+    await page.getByRole("button", { name: "Share", exact: true }).click();
+    await page.getByRole("button", { name: "Shared", exact: true }).waitFor();
+    await page.getByRole("button", { name: "Steps", exact: true }).click();
+    await page.getByRole("button", { name: "Try It", exact: true }).click();
+    await page.getByRole("button", { name: "Check Answer", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "The locked ray matches the target angle." }).waitFor();
+    const practicePoint = page.locator('[data-testid="fixed-practice-point"]');
+    const practiceGraph = page.getByRole("img", { name: "Practice fixed angle graph with draggable point P" });
+    await page.getByRole("switch", { name: "Lock practice angle" }).click();
+    const practicePointBox = await practicePoint.boundingBox();
+    const practiceGraphBox = await practiceGraph.boundingBox();
+    if (!practicePointBox || !practiceGraphBox) throw new Error("Practice fixed-angle point is not draggable");
+    await page.mouse.move(practicePointBox.x + practicePointBox.width / 2, practicePointBox.y + practicePointBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(
+      practiceGraphBox.x + (245 / 300) * practiceGraphBox.width,
+      practiceGraphBox.y + (90 / 170) * practiceGraphBox.height,
+      { steps: 7 },
+    );
+    await page.mouse.up();
+    if (Math.abs(Number(await practicePoint.getAttribute("data-angle")) - 75) < 5) {
+      throw new Error("Unlocked practice drag did not change the ray angle");
+    }
+    await page.getByRole("button", { name: "Check Answer", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Lock the angle or drag P" }).waitFor();
+    await page.getByRole("spinbutton", { name: "Practice target angle" }).fill("60");
+    await page.getByRole("switch", { name: "Lock practice angle" }).click();
+    if ((await practicePoint.getAttribute("data-angle")) !== "60.000000") {
+      throw new Error("Practice lock did not snap P to the target direction");
+    }
+    await page.getByRole("button", { name: "Check Answer", exact: true }).click();
+    status = await page.getByRole("status").filter({ hasText: "The locked ray matches the target angle." }).innerText();
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    if ((await liveAngle.innerText()) !== "55.0°") {
+      throw new Error("Fixed Angle reset did not restore the target model");
+    }
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

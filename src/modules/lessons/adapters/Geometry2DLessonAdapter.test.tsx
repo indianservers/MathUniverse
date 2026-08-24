@@ -251,7 +251,9 @@ describe("Geometry2DLessonAdapter", () => {
       );
       expect(html, lesson.title).toContain("Live Verification");
       expect(html, lesson.title).toContain("Check Construction");
-      expect(html, lesson.title).not.toContain("Construction Workspace");
+      if (id !== 233) {
+        expect(html, lesson.title).not.toContain("Construction Workspace");
+      }
     }
   });
 
@@ -820,6 +822,35 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("Construct an angle of 120°.");
     expect(html).not.toContain("Ray length");
     expect(html).not.toContain("Dedicated angle objects");
+  });
+
+  it("renders Fixed Angle with a locked origin-ray constraint model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 233)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Fixed angle graph with draggable origin O and constrained point P",
+    );
+    expect(html).toContain('data-object-model="locked-origin-ray-angle"');
+    expect(html).toContain('data-testid="fixed-origin"');
+    expect(html).toContain('data-testid="fixed-point-p"');
+    expect(html).toContain('data-testid="fixed-constrained-ray"');
+    expect(html).toContain('data-testid="fixed-live-angle">55.0°');
+    expect(html).toContain('aria-label="Target angle"');
+    expect(html).toContain('aria-label="Lock main angle"');
+    expect(html).toContain(
+      "Practice fixed angle graph with draggable point P",
+    );
+    expect(html).toContain('aria-label="Practice target angle"');
+    expect(html).toContain("Construct a ray making 30° with the base line.");
+    expect(html).not.toContain('aria-label="Base rotation"');
+    expect(html).not.toContain("Dedicated fixedAngle objects");
   });
 
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
