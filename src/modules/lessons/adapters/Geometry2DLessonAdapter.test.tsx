@@ -570,6 +570,24 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain('aria-label="Point distance"');
   });
 
+  it("renders Circle Centre and Radius with an independent fixed radius", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 219)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain("Interactive fixed-radius circle with draggable centre and compass handle");
+    expect(html).toContain('data-testid="fixed-radius-circle"');
+    expect(html).toContain('data-testid="fixed-radius-centre"');
+    expect(html).toContain('data-testid="fixed-radius-handle"');
+    expect(html).toContain('aria-label="Circle radius"');
+    expect(html).toContain('aria-label="Centre x"');
+    expect(html).toContain("Equation of the Circle");
+    expect(html).toContain("Construct a circle with centre C(-3, 2)");
+    expect(html).toContain("Check Answer");
+    expect(html).not.toContain('aria-label="Centre x" type="range"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

@@ -294,6 +294,75 @@
   text-transform: uppercase;
 }
 
+.target-radius-step {
+  display: grid;
+  height: 32px;
+  place-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: white;
+  color: #334155;
+  font-size: 13px;
+}
+
+.target-radius-card {
+  min-height: 185px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  padding: 15px;
+  color: #334155;
+  font-size: 9px;
+  line-height: 1.45;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+.target-radius-card h2 {
+  margin-bottom: 7px;
+  color: #075baa;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.target-radius-formula {
+  margin: 15px 0;
+  border: 1px solid #c084fc;
+  border-radius: 7px;
+  background: #faf5ff;
+  padding: 12px;
+  text-align: center;
+  color: #7e22ce;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.target-radius-nav {
+  display: flex;
+  height: 54px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  padding: 8px 14px;
+  color: #0f172a;
+  font-size: 9px;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.05);
+}
+
+.target-radius-nav svg {
+  width: 16px;
+  height: 16px;
+  color: #1675d1;
+}
+
+.target-radius-nav b {
+  display: block;
+  font-size: 7px;
+  text-transform: uppercase;
+}
+
 :root {
   color-scheme: light;
   font-synthesis: none;

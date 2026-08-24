@@ -1,0 +1,15 @@
+[
+  {
+    "id": 219,
+    "mockup": 276,
+    "route": "/lessons/geometry/219-circle-centre-and-radius",
+    "width": 997,
+    "height": 1578,
+    "status": "Correct centre and radius construction.",
+    "consoleErrors": [],
+    "scrollHeight": 1578,
+    "surfaceBottom": 1459.03125,
+    "objectModel": "circle-centre-fixed-radius",
+    "overflowing": 0
+  }
+]

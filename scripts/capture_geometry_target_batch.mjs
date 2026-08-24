@@ -743,6 +743,61 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct circle dependency." })
       .innerText();
+  } else if (id === 219) {
+    const circle = page.locator('[data-testid="fixed-radius-circle"]');
+    const centre = page.locator('[data-testid="fixed-radius-centre"]');
+    const centreBefore = await centre.getAttribute("cx");
+    const radiusBeforeCentreDrag = await circle.getAttribute("data-radius");
+    const centreBox = await centre.boundingBox();
+    if (!centreBox) throw new Error("Fixed-radius circle centre is not draggable");
+    await page.mouse.move(
+      centreBox.x + centreBox.width / 2,
+      centreBox.y + centreBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(centreBox.x + 34, centreBox.y - 24, { steps: 4 });
+    await page.mouse.up();
+    if ((await centre.getAttribute("cx")) === centreBefore) {
+      throw new Error("Dragging C did not translate the fixed-radius circle");
+    }
+    if ((await circle.getAttribute("data-radius")) !== radiusBeforeCentreDrag) {
+      throw new Error("Moving C changed the independent radius");
+    }
+    const handle = page.locator('[data-testid="fixed-radius-handle"]');
+    const handleBox = await handle.boundingBox();
+    if (!handleBox) throw new Error("Compass radius handle is not draggable");
+    const centreBeforeRadiusDrag = await centre.getAttribute("cx");
+    const radiusBeforeHandleDrag = await circle.getAttribute("data-radius");
+    await page.mouse.move(
+      handleBox.x + handleBox.width / 2,
+      handleBox.y + handleBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(handleBox.x + 38, handleBox.y + 16, { steps: 4 });
+    await page.mouse.up();
+    if ((await circle.getAttribute("data-radius")) === radiusBeforeHandleDrag) {
+      throw new Error("Compass drag did not update the numeric radius");
+    }
+    if ((await centre.getAttribute("cx")) !== centreBeforeRadiusDrag) {
+      throw new Error("Changing radius moved the centre");
+    }
+    for (const label of ["Move circle", "Adjust radius with compass", "Select"]) {
+      await page.getByRole("button", { name: label, exact: true }).click();
+    }
+    await page.getByRole("button", { name: "Increase Centre x" }).click();
+    await page.getByRole("button", { name: "Decrease Centre y" }).click();
+    await page.getByRole("button", { name: "Increase radius" }).click();
+    await page.getByRole("button", { name: "Decrease radius" }).click();
+    await page.getByRole("combobox", { name: "Radius units" }).selectOption("cm");
+    await page.getByRole("combobox", { name: "Radius units" }).selectOption("units");
+    await page.getByRole("spinbutton", { name: "Centre x", exact: true }).fill("-3");
+    await page.getByRole("spinbutton", { name: "Centre y", exact: true }).fill("2");
+    await page.getByRole("spinbutton", { name: "Radius exact value" }).fill("4");
+    await page.getByRole("button", { name: "Check Answer" }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct centre and radius construction." })
+      .innerText();
   } else if (id === 221) {
     const center = page.locator('[data-testid="compass-center-point"]');
     const centerBefore = await center.getAttribute("cx");
