@@ -40,6 +40,50 @@
   color: #0369a1;
 }
 
+.target-geometry-action {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #fff;
+  padding: 4px 8px;
+  color: #475569;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.target-geometry-action svg,
+.target-geometry-tool svg {
+  width: 13px;
+  height: 13px;
+}
+
+.target-geometry-chip {
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: #fff;
+}
+
+.target-geometry-tool {
+  display: grid;
+  width: 34px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  background: #fff;
+  color: #475569;
+}
+
+.target-geometry-tool.is-active {
+  border-color: #67e8f9;
+  background: #ecfeff;
+  color: #0369a1;
+}
+
 :root {
   color-scheme: light;
   font-synthesis: none;
@@ -2530,10 +2574,9 @@ body {
 }
 .ai-bottom-progress {
   display: grid;
-  grid-template-columns: auto minmax(160px, 260px) 54px minmax(
-      190px,
-      1fr
-    ) auto auto;
+  grid-template-columns:
+    auto minmax(160px, 260px) 54px minmax(190px, 1fr)
+    auto auto;
   gap: 14px;
   align-items: center;
   padding: 10px 16px;
@@ -2897,10 +2940,9 @@ body {
   container-name: math-workspace;
   container-type: inline-size;
   display: grid;
-  grid-template-rows: max(58px, calc(48px + env(safe-area-inset-top))) minmax(
-      0,
-      1fr
-    ) calc(var(--workspace-dock-height) + env(safe-area-inset-bottom));
+  grid-template-rows:
+    max(58px, calc(48px + env(safe-area-inset-top))) minmax(0, 1fr)
+    calc(var(--workspace-dock-height) + env(safe-area-inset-bottom));
   width: 100%;
   height: 100dvh;
   min-width: 0;

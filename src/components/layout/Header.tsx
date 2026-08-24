@@ -1,7 +1,12 @@
 import { Menu } from "lucide-react";
 import ThemeToggle from "../ui/ThemeToggle";
 import { TeacherModeToggle } from "../ui/UiFeedback";
-import { AccessibilitySettings, CommandPalette, HeaderStats, KeyboardShortcutsPanel } from "./GlobalUx";
+import {
+  AccessibilitySettings,
+  CommandPalette,
+  HeaderStats,
+  KeyboardShortcutsPanel,
+} from "./GlobalUx";
 
 type HeaderProps = {
   mobileMenuOpen: boolean;
@@ -15,7 +20,7 @@ export default function Header({ mobileMenuOpen, onMenuClick }: HeaderProps) {
         <button
           type="button"
           onClick={onMenuClick}
-          className="tooltip-icon inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white shadow-sm transition hover:bg-white/15 lg:hidden"
+          className="tooltip-icon inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white shadow-sm transition hover:bg-white/15 min-[960px]:hidden"
           aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-navigation"
@@ -24,13 +29,19 @@ export default function Header({ mobileMenuOpen, onMenuClick }: HeaderProps) {
           <Menu className="h-5 w-5" />
         </button>
         <div className="min-w-0 px-3 lg:px-0">
-          <p className="text-sm font-black text-cyan-100">Interactive Math Lab</p>
-          <p className="hidden truncate text-xs font-semibold text-white/65 sm:block">Visual proofs, simulations, graphing, and practice</p>
+          <p className="text-sm font-black text-cyan-100">
+            Interactive Math Lab
+          </p>
+          <p className="hidden truncate text-xs font-semibold text-white/65 sm:block">
+            Visual proofs, simulations, graphing, and practice
+          </p>
         </div>
         <div className="flex items-center gap-1.5">
           <CommandPalette />
           <HeaderStats />
-          <div className="hidden sm:block [&>button]:!min-h-10 [&>button]:!whitespace-nowrap [&>button]:!rounded-xl [&>button]:!px-3 [&>button]:!py-2 [&>button]:!text-xs"><TeacherModeToggle /></div>
+          <div className="hidden sm:block [&>button]:!min-h-10 [&>button]:!whitespace-nowrap [&>button]:!rounded-xl [&>button]:!px-3 [&>button]:!py-2 [&>button]:!text-xs">
+            <TeacherModeToggle />
+          </div>
           <KeyboardShortcutsPanel />
           <AccessibilitySettings />
           <ThemeToggle />

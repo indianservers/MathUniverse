@@ -41,6 +41,7 @@ import ReusableLessonEngine, {
 } from "../components/ReusableLessonEngine";
 import { geometry2DVisualPresetForLesson } from "../presets/geometry2DVisualPresets";
 import type { LessonAdapterProps } from "../types";
+import { remainingGeometryTargetForLesson } from "./GeometryTargetLessons206to235";
 
 type GeometryTool =
   | "point"
@@ -192,6 +193,13 @@ function DynamicGeometryMockupLesson({
         onInteraction={onInteraction}
       />
     );
+  }
+  if (lesson.id >= 206 && lesson.id <= 235) {
+    return remainingGeometryTargetForLesson({
+      lesson,
+      resetToken,
+      onInteraction,
+    });
   }
 
   const spec = dynamicGeometrySpecFor(lesson.id);

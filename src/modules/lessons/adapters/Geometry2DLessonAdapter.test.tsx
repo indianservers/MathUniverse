@@ -231,20 +231,10 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Construction Workspace");
   });
 
-  it("renders dynamic geometry lessons 198 through 212 with construction-specific guidance", () => {
-    const expectedSnippets: Record<number, string> = {
-      206: "Ray",
-      207: "Polyline",
-      208: "Perpendicular line",
-      209: "Parallel line",
-      210: "Perpendicular bisector",
-      211: "Angle bisector",
-      212: "Tangent",
-    };
-
-    for (const [idText, snippet] of Object.entries(expectedSnippets)) {
-      const id = Number(idText);
+  it("renders lessons 206 through 235 as thirty dedicated target surfaces", () => {
+    for (let id = 206; id <= 235; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
+      const mockup = String(id + 57).padStart(4, "0");
       const html = renderToStaticMarkup(
         <Geometry2DLessonAdapter
           lesson={lesson}
@@ -253,66 +243,20 @@ describe("Geometry2DLessonAdapter", () => {
         />,
       );
 
-      expect(html, lesson.title).toContain(lesson.title);
-      expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain('data-direct-interaction="true"');
-      expect(html, lesson.title).toContain("Drag points");
-      expect(html, lesson.title).toContain("Worked:");
-      expect(html, lesson.title).toContain("Avoid:");
-      expect(html, lesson.title).not.toContain("Coordinate rule");
-    }
-  });
-
-  it("renders dynamic geometry lessons 213 through 215 with construction-specific guidance", () => {
-    const expectedSnippets: Record<number, string> = {
-      213: "Best-fit line",
-      214: "Triangle constructor",
-      215: "Regular polygon",
-    };
-
-    for (const [idText, snippet] of Object.entries(expectedSnippets)) {
-      const id = Number(idText);
-      const lesson = lessonCatalog.find((item) => item.id === id)!;
-      const html = renderToStaticMarkup(
-        <Geometry2DLessonAdapter
-          lesson={lesson}
-          resetToken={0}
-          onInteraction={vi.fn()}
-        />,
+      expect(html, lesson.title).toContain(`dynamic-geometry-mockup-${mockup}`);
+      expect(html, lesson.title).toContain(`data-dedicated-lesson="${id}"`);
+      expect(html, lesson.title).toContain("data-object-model=");
+      expect(html, lesson.title).toContain(
+        "dedicated interactive geometry model",
       );
-
-      expect(html, lesson.title).toContain(lesson.title);
-      expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain('data-direct-interaction="true"');
-      expect(html, lesson.title).toContain("Drag points");
-      expect(html, lesson.title).toContain("Worked:");
-      expect(html, lesson.title).toContain("Avoid:");
-      expect(html, lesson.title).not.toContain("Coordinate rule");
+      expect(html, lesson.title).toContain("Live Verification");
+      expect(html, lesson.title).toContain("Check Construction");
+      expect(html, lesson.title).not.toContain("Construction Workspace");
     }
   });
 
-  it("renders geometry lessons 216 through 245 with construction and transformation guidance", () => {
+  it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      216: "Rigid polygon",
-      217: "General polygon",
-      218: "Centre and point circle",
-      219: "Centre and radius circle",
-      220: "Circle through three points",
-      221: "Compass",
-      222: "Semicircle",
-      223: "Circular arc",
-      224: "Circumcircular arc",
-      225: "Circular sector",
-      226: "Conic through five points",
-      227: "Ellipse",
-      228: "Hyperbola",
-      229: "Parabola",
-      230: "Distance or length",
-      231: "Area",
-      232: "Angle",
-      233: "Fixed angle",
-      234: "Relation checker",
-      235: "Construction steps",
       236: "Translation by vector",
       237: "Reflection in line",
       238: "Reflection in point",

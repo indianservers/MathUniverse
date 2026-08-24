@@ -1,9 +1,0 @@
-{
-  "mockup": "0132",
-  "lessonId": 40,
-  "route": "/lessons/graphs-and-functions/40-function-plotter",
-  "reference": "0132-interactive-foundational-advanced-2d-graphing-calculator-function-plotter-redesigned.png",
-  "present": true,
-  "interactiveControls": 45,
-  "consoleMessages": []
-}

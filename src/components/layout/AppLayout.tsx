@@ -48,7 +48,10 @@ function AppFooter() {
     location.pathname === "/lessons/trigonometry/259-right-triangle-ratios";
   const usesTargetCompactFooter =
     isRightTriangleTarget ||
-    location.pathname === "/lessons/geometry/205-segment-with-given-length";
+    location.pathname === "/lessons/geometry/205-segment-with-given-length" ||
+    /^\/lessons\/geometry\/2(?:0[6-9]|[12][0-9]|3[0-5])-/.test(
+      location.pathname,
+    );
   const ultraCompact =
     location.pathname === "/lessons/geometry/201-midpoint-or-centre" ||
     isRightTriangleTarget;

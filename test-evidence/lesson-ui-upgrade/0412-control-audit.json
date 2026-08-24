@@ -1,9 +1,0 @@
-{
-  "mockup": "0412",
-  "lessonId": 333,
-  "route": "/lessons/calculus/333-chaos-and-bifurcation",
-  "reference": "0412-interactive-advanced-integral-calculus-and-differential-equations-chaos-and-bifurcation-redesigned.png",
-  "present": true,
-  "interactiveControls": 11,
-  "consoleMessages": []
-}

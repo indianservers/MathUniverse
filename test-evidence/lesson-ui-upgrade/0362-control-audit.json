@@ -1,9 +1,0 @@
-{
-  "mockup": "0362",
-  "lessonId": 283,
-  "route": "/lessons/calculus/283-epsilondelta-visualiser",
-  "reference": "0362-interactive-advanced-limits-and-differential-calculus-epsilon-delta-visualiser-redesigned.png",
-  "present": true,
-  "interactiveControls": 11,
-  "consoleMessages": []
-}

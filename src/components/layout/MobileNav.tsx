@@ -2,7 +2,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Clock3, Search, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { basicNavItemSearchText, iconMap, navItems, navSections, normalizeNavSearchText, type NavItem } from "./navItems";
+import {
+  basicNavItemSearchText,
+  iconMap,
+  navItems,
+  navSections,
+  normalizeNavSearchText,
+  type NavItem,
+} from "./navItems";
 
 type MobileNavProps = {
   open: boolean;
@@ -14,16 +21,42 @@ const recentToolsKey = "math-universe-recent-tools";
 export default function MobileNav({ open, onClose }: MobileNavProps) {
   const location = useLocation();
   const activeSections = useMemo(
-    () => navSections.filter((section) => section.items.some((item) => itemHasActiveRoute(item, location.pathname))).map((section) => section.title),
+    () =>
+      navSections
+        .filter((section) =>
+          section.items.some((item) =>
+            itemHasActiveRoute(item, location.pathname),
+          ),
+        )
+        .map((section) => section.title),
     [location.pathname],
   );
-  const activeNavKeys = useMemo(() => navSections.flatMap((section) => section.items.flatMap((item) => activeItemKeys(item, location.pathname))), [location.pathname]);
-  const [openSections, setOpenSections] = useState<string[]>(() => Array.from(new Set(["Start Here", ...activeSections, ...activeNavKeys])));
+  const activeNavKeys = useMemo(
+    () =>
+      navSections.flatMap((section) =>
+        section.items.flatMap((item) =>
+          activeItemKeys(item, location.pathname),
+        ),
+      ),
+    [location.pathname],
+  );
+  const [openSections, setOpenSections] = useState<string[]>(() =>
+    Array.from(new Set(["Start Here", ...activeSections, ...activeNavKeys])),
+  );
   const [query, setQuery] = useState("");
   const [recentRoutes, setRecentRoutes] = useState<string[]>([]);
-  const recentTools = useMemo(() => recentRoutes.map((route) => navItems.find((item) => item.route === route)).filter((item): item is NonNullable<typeof item> => Boolean(item)).slice(0, 4), [recentRoutes]);
+  const recentTools = useMemo(
+    () =>
+      recentRoutes
+        .map((route) => navItems.find((item) => item.route === route))
+        .filter((item): item is NonNullable<typeof item> => Boolean(item))
+        .slice(0, 4),
+    [recentRoutes],
+  );
   const filteredSections = useMemo(() => {
-    const searchTerms = normalizeNavSearchText(query).split(" ").filter(Boolean);
+    const searchTerms = normalizeNavSearchText(query)
+      .split(" ")
+      .filter(Boolean);
     if (!searchTerms.length) return navSections;
     return navSections
       .map((section) => ({
@@ -35,10 +68,16 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
 
   useEffect(() => {
     if (!open) return;
-    setOpenSections((current) => Array.from(new Set([...current, ...activeSections, ...activeNavKeys])));
+    setOpenSections((current) =>
+      Array.from(new Set([...current, ...activeSections, ...activeNavKeys])),
+    );
     try {
       const current = JSON.parse(localStorage.getItem(recentToolsKey) ?? "[]");
-      setRecentRoutes(Array.isArray(current) ? current.filter((item): item is string => typeof item === "string") : []);
+      setRecentRoutes(
+        Array.isArray(current)
+          ? current.filter((item): item is string => typeof item === "string")
+          : [],
+      );
     } catch {
       setRecentRoutes([]);
     }
@@ -63,14 +102,28 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
   }, [onClose, open]);
 
   const toggleSection = (title: string) => {
-    setOpenSections((current) => current.includes(title) ? current.filter((item) => item !== title) : [...current, title]);
+    setOpenSections((current) =>
+      current.includes(title)
+        ? current.filter((item) => item !== title)
+        : [...current, title],
+    );
   };
 
   return (
     <AnimatePresence>
       {open && (
-        <motion.div className="fixed inset-0 z-50 lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <button className="absolute inset-0 z-0 bg-slate-950/60" type="button" aria-label="Close navigation" onClick={onClose} />
+        <motion.div
+          className="fixed inset-0 z-50 min-[960px]:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <button
+            className="absolute inset-0 z-0 bg-slate-950/60"
+            type="button"
+            aria-label="Close navigation"
+            onClick={onClose}
+          />
           <motion.aside
             id="mobile-navigation"
             initial={{ x: -320 }}
@@ -83,23 +136,43 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
             <div className="mb-4 flex items-center justify-between sm:mb-6">
               <div>
                 <p className="text-lg font-bold">Math Universe</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Visual learning space</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Visual learning space
+                </p>
               </div>
-              <button type="button" onClick={onClose} className="rounded-full p-2 transition hover:bg-slate-100 dark:hover:bg-white/10" aria-label="Close navigation">
+              <button
+                type="button"
+                onClick={onClose}
+                className="rounded-full p-2 transition hover:bg-slate-100 dark:hover:bg-white/10"
+                aria-label="Close navigation"
+              >
                 <X className="h-5 w-5" />
               </button>
             </div>
             <label className="mb-4 flex min-h-11 items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-3 text-sm font-semibold focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-300/40 dark:border-white/10 dark:bg-white/5">
               <Search className="h-4 w-4 text-slate-400" />
-              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search menu, formula, topic..." className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-slate-400" />
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search menu, formula, topic..."
+                className="min-w-0 flex-1 bg-transparent outline-none placeholder:text-slate-400"
+              />
             </label>
             {!query && recentTools.length > 0 && (
               <div className="mb-3 rounded-2xl border border-cyan-200 bg-cyan-50 p-2 dark:border-cyan-400/20 dark:bg-cyan-400/10 sm:mb-4">
-                <p className="mb-1 flex items-center gap-2 px-2 text-xs font-black uppercase text-cyan-800 dark:text-cyan-100"><Clock3 className="h-3.5 w-3.5" />Recently opened</p>
+                <p className="mb-1 flex items-center gap-2 px-2 text-xs font-black uppercase text-cyan-800 dark:text-cyan-100">
+                  <Clock3 className="h-3.5 w-3.5" />
+                  Recently opened
+                </p>
                 {recentTools.map((item) => {
                   const Icon = item.icon;
                   return (
-                    <NavLink key={item.route} to={item.route} onClick={onClose} className="flex items-center gap-2 rounded-xl px-2 py-2 text-sm font-bold text-cyan-900 dark:text-cyan-100">
+                    <NavLink
+                      key={item.route}
+                      to={item.route}
+                      onClick={onClose}
+                      className="flex items-center gap-2 rounded-xl px-2 py-2 text-sm font-bold text-cyan-900 dark:text-cyan-100"
+                    >
                       <Icon className="h-4 w-4" />
                       <span className="truncate">{item.title}</span>
                     </NavLink>
@@ -107,7 +180,10 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                 })}
               </div>
             )}
-            <nav className="space-y-1.5 sm:space-y-2" aria-label="Mobile navigation">
+            <nav
+              className="space-y-1.5 sm:space-y-2"
+              aria-label="Mobile navigation"
+            >
               {filteredSections.length === 0 && (
                 <div className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm font-semibold text-slate-500 dark:border-white/15 dark:text-slate-400">
                   No tools found. Try graph, matrix, solver, or quiz.
@@ -118,7 +194,10 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                 const sectionOpen = openSections.includes(section.title);
                 const sectionActive = activeSections.includes(section.title);
                 return (
-                  <div key={section.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-1 dark:border-white/10 dark:bg-white/[0.04]">
+                  <div
+                    key={section.title}
+                    className="rounded-2xl border border-slate-200 bg-slate-50 p-1 dark:border-white/10 dark:bg-white/[0.04]"
+                  >
                     <button
                       type="button"
                       onClick={() => toggleSection(section.title)}
@@ -126,8 +205,12 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                       aria-expanded={sectionOpen}
                     >
                       <SectionIcon className="h-4 w-4" />
-                      <span className="min-w-0 flex-1 truncate">{section.title}</span>
-                      <ChevronDown className={`h-4 w-4 transition ${sectionOpen ? "rotate-180" : ""}`} />
+                      <span className="min-w-0 flex-1 truncate">
+                        {section.title}
+                      </span>
+                      <ChevronDown
+                        className={`h-4 w-4 transition ${sectionOpen ? "rotate-180" : ""}`}
+                      />
                     </button>
                     {sectionOpen && (
                       <div className="mt-1 space-y-1 pb-1">
@@ -183,18 +266,37 @@ function MobileNavItem({
           type="button"
           onClick={() => onToggle(key)}
           className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
-            active ? "bg-cyan-50 text-cyan-800 dark:bg-cyan-400/10 dark:text-cyan-100" : "text-slate-600 dark:text-slate-300"
+            active
+              ? "bg-cyan-50 text-cyan-800 dark:bg-cyan-400/10 dark:text-cyan-100"
+              : "text-slate-600 dark:text-slate-300"
           }`}
           aria-expanded={open}
         >
           <Icon className="h-4 w-4" />
-          <span className="min-w-0 flex-1"><span className="block truncate">{item.title}</span>{item.description && <span className="mt-0.5 block truncate text-[11px] font-medium text-slate-400">{item.description}</span>}</span>
-          <ChevronDown className={`h-3.5 w-3.5 transition ${open ? "rotate-180" : ""}`} />
+          <span className="min-w-0 flex-1">
+            <span className="block truncate">{item.title}</span>
+            {item.description && (
+              <span className="mt-0.5 block truncate text-[11px] font-medium text-slate-400">
+                {item.description}
+              </span>
+            )}
+          </span>
+          <ChevronDown
+            className={`h-3.5 w-3.5 transition ${open ? "rotate-180" : ""}`}
+          />
         </button>
         {open && (
           <div className="space-y-1">
             {item.children?.map((child) => (
-              <MobileNavItem key={`${child.title}-${child.route}`} item={child} pathname={pathname} openKeys={openKeys} onToggle={onToggle} onClose={onClose} depth={depth + 1} />
+              <MobileNavItem
+                key={`${child.title}-${child.route}`}
+                item={child}
+                pathname={pathname}
+                openKeys={openKeys}
+                onToggle={onToggle}
+                onClose={onClose}
+                depth={depth + 1}
+              />
             ))}
           </div>
         )}
@@ -204,7 +306,11 @@ function MobileNavItem({
 
   if (item.isExternal) {
     return (
-      <a href={item.route} onClick={onClose} className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition dark:text-slate-300 ${indent}`}>
+      <a
+        href={item.route}
+        onClick={onClose}
+        className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-600 transition dark:text-slate-300 ${indent}`}
+      >
         <Icon className="h-4 w-4" />
         <span className="truncate">{item.title}</span>
       </a>
@@ -218,12 +324,21 @@ function MobileNavItem({
       onClick={onClose}
       className={({ isActive }) =>
         `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition ${indent} ${
-          isActive ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950" : "text-slate-600 dark:text-slate-300"
+          isActive
+            ? "bg-slate-950 text-white dark:bg-white dark:text-slate-950"
+            : "text-slate-600 dark:text-slate-300"
         }`
       }
     >
       <Icon className="h-4 w-4" />
-      <span className="min-w-0"><span className="block truncate">{item.title}</span>{item.description && <span className="mt-0.5 block truncate text-[11px] font-medium text-slate-400">{item.description}</span>}</span>
+      <span className="min-w-0">
+        <span className="block truncate">{item.title}</span>
+        {item.description && (
+          <span className="mt-0.5 block truncate text-[11px] font-medium text-slate-400">
+            {item.description}
+          </span>
+        )}
+      </span>
     </NavLink>
   );
 }
@@ -235,14 +350,28 @@ function isActiveRoute(pathname: string, route: string) {
 }
 
 function itemHasActiveRoute(item: NavItem, pathname: string): boolean {
-  if (item.children?.length) return pathname === item.route || item.children.some((child) => itemHasActiveRoute(child, pathname));
+  if (item.children?.length)
+    return (
+      pathname === item.route ||
+      item.children.some((child) => itemHasActiveRoute(child, pathname))
+    );
   return isActiveRoute(pathname, item.route);
 }
 
-function filterNavItems(items: NavItem[], searchTerms: string[], sectionTitle: string): NavItem[] {
+function filterNavItems(
+  items: NavItem[],
+  searchTerms: string[],
+  sectionTitle: string,
+): NavItem[] {
   return items.reduce<NavItem[]>((matches, item) => {
-    const children = filterNavItems(item.children ?? [], searchTerms, sectionTitle);
-    const match = searchTerms.every((term) => basicNavItemSearchText(item, sectionTitle).includes(term));
+    const children = filterNavItems(
+      item.children ?? [],
+      searchTerms,
+      sectionTitle,
+    );
+    const match = searchTerms.every((term) =>
+      basicNavItemSearchText(item, sectionTitle).includes(term),
+    );
     if (match || children.length > 0) matches.push({ ...item, children });
     return matches;
   }, []);
@@ -254,6 +383,10 @@ function navItemKey(item: NavItem) {
 
 function activeItemKeys(item: NavItem, pathname: string): string[] {
   if (!item.children?.length) return [];
-  const childKeys = item.children.flatMap((child) => activeItemKeys(child, pathname));
-  return itemHasActiveRoute(item, pathname) ? [navItemKey(item), ...childKeys] : childKeys;
+  const childKeys = item.children.flatMap((child) =>
+    activeItemKeys(child, pathname),
+  );
+  return itemHasActiveRoute(item, pathname)
+    ? [navItemKey(item), ...childKeys]
+    : childKeys;
 }

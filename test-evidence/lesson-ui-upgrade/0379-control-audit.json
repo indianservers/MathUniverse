@@ -1,9 +1,0 @@
-{
-  "mockup": "0379",
-  "lessonId": 300,
-  "route": "/lessons/calculus/300-inflection-points",
-  "reference": "0379-interactive-advanced-limits-and-differential-calculus-inflection-points-redesigned.png",
-  "present": true,
-  "interactiveControls": 11,
-  "consoleMessages": []
-}

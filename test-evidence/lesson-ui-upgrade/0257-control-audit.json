@@ -1,9 +1,0 @@
-{
-  "mockup": "0257",
-  "lessonId": 200,
-  "route": "/lessons/geometry/200-intersection-point",
-  "reference": "0257-interactive-foundational-advanced-dynamic-geometry-constructions-intersection-point-redesigned.png",
-  "present": true,
-  "interactiveControls": 53,
-  "consoleMessages": []
-}
