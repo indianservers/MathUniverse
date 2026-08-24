@@ -1071,9 +1071,28 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Drag points");
   });
 
-  it("renders geometry lessons 239 through 245 with transformation guidance", () => {
+  it("renders Reflection in Circle as a dedicated opposite-ray inversion model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 239)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0296"');
+    expect(html).toContain('data-object-model="opposite-ray-circle-inversion"');
+    expect(html).toContain("Interactive reflection in circle graph with draggable O, P, and radius");
+    expect(html).toContain('data-testid="circle-reflection-centre"');
+    expect(html).toContain('data-testid="circle-reflection-source"');
+    expect(html).toContain('data-testid="circle-reflection-image"');
+    expect(html).toContain('data-testid="circle-reflection-radius-handle"');
+    expect(html).toContain('aria-label="Circle radius exact value"');
+    expect(html).toContain("OP · OP&#x27; = r²");
+    expect(html).toContain('aria-label="Practice inverse x coordinate"');
+    expect(html).not.toContain("reusable 2D geometry engine");
+    expect(html).not.toContain("Drag points");
+  });
+
+  it("renders geometry lessons 240 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      239: "Reflection in circle",
       240: "Rotation around point",
       241: "Dilation from point",
       242: "Matrix transformation",

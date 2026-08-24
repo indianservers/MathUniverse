@@ -1,0 +1,15 @@
+[
+  {
+    "id": 239,
+    "mockup": 296,
+    "route": "/lessons/geometry/239-reflection-in-circle",
+    "width": 1027,
+    "height": 1532,
+    "status": "Correct: P' = (10, -5).",
+    "consoleErrors": [],
+    "scrollHeight": 1532,
+    "surfaceBottom": 1426,
+    "objectModel": "opposite-ray-circle-inversion",
+    "overflowing": 0
+  }
+]

@@ -39,6 +39,7 @@ const allLessons = [
   [236, 293, "translation-by-vector", 1024, 1542],
   [237, 294, "reflection-in-line", 1026, 1533],
   [238, 295, "reflection-in-point", 1044, 1506],
+  [239, 296, "reflection-in-circle", 1027, 1532],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -2515,6 +2516,72 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.getByRole("textbox", { name: "Practice reflected y coordinate" }).fill("-5");
     await page.getByRole("button", { name: "Check answer", exact: true }).click();
     status = await page.getByRole("status").filter({ hasText: "Correct: A' = (-1, -5)" }).innerText();
+  } else if (id === 239) {
+    const surface = page.locator(selector);
+    const centre = page.locator('[data-testid="circle-reflection-centre"]');
+    const source = page.locator('[data-testid="circle-reflection-source"]');
+    const imagePoint = page.locator('[data-testid="circle-reflection-image"]');
+    const radiusHandle = page.locator('[data-testid="circle-reflection-radius-handle"]');
+    if ((await surface.getAttribute("data-object-model")) !== "opposite-ray-circle-inversion" ||
+        (await surface.getAttribute("data-product")) !== "9.0000" ||
+        (await imagePoint.getAttribute("data-x")) !== "-1.0800" ||
+        (await imagePoint.getAttribute("data-y")) !== "-1.4400") {
+      throw new Error("Circle Reflection initial inverse model is invalid");
+    }
+    const centreBefore = await centre.getAttribute("cx");
+    const imageBefore = await imagePoint.getAttribute("data-x");
+    const sourceBox = await source.boundingBox();
+    if (!sourceBox) throw new Error("Circle Reflection point P is not draggable");
+    await page.mouse.move(sourceBox.x + sourceBox.width / 2, sourceBox.y + sourceBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(sourceBox.x + 35, sourceBox.y + 18, { steps: 6 });
+    await page.mouse.up();
+    if ((await centre.getAttribute("cx")) !== centreBefore ||
+        (await imagePoint.getAttribute("data-x")) === imageBefore ||
+        (await surface.getAttribute("data-product")) !== "9.0000") {
+      throw new Error("Dragging P did not independently preserve O and OP·OP'=r²");
+    }
+    const centreBox = await centre.boundingBox();
+    if (!centreBox) throw new Error("Circle Reflection centre O is not draggable");
+    const sourceBeforeCentre = await source.getAttribute("data-x");
+    await page.mouse.move(centreBox.x + centreBox.width / 2, centreBox.y + centreBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(centreBox.x + 35, centreBox.y - 18, { steps: 6 });
+    await page.mouse.up();
+    if ((await source.getAttribute("data-x")) !== sourceBeforeCentre ||
+        (await surface.getAttribute("data-product")) !== "9.0000") {
+      throw new Error("Dragging O did not independently preserve P and the inversion invariant");
+    }
+    await page.getByRole("button", { name: "Radius mode", exact: true }).click();
+    const handleBox = await radiusHandle.boundingBox();
+    if (!handleBox) throw new Error("Circle radius handle is not draggable");
+    await page.mouse.move(handleBox.x + handleBox.width / 2, handleBox.y + handleBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(handleBox.x + 35, handleBox.y, { steps: 6 });
+    await page.mouse.up();
+    const radius = Number(await surface.getAttribute("data-radius"));
+    if (Math.abs(Number(await surface.getAttribute("data-product")) - radius * radius) > .001) {
+      throw new Error("Dragging radius did not recalculate the inverse product");
+    }
+    await page.getByRole("spinbutton", { name: "Circle center O x coordinate" }).fill("0");
+    await page.getByRole("spinbutton", { name: "Circle center O y coordinate" }).fill("0");
+    await page.getByRole("spinbutton", { name: "Point P x coordinate" }).fill("3");
+    await page.getByRole("spinbutton", { name: "Point P y coordinate" }).fill("4");
+    await page.getByRole("spinbutton", { name: "Circle radius exact value" }).fill("3");
+    await page.getByRole("checkbox", { name: "Grid", exact: true }).uncheck();
+    await page.getByRole("checkbox", { name: "Grid", exact: true }).check();
+    await surface.locator(".target-circle-reflection-stages button").nth(3).click();
+    await page.getByRole("textbox", { name: "Practice inverse x coordinate" }).fill("0");
+    await page.getByRole("textbox", { name: "Practice inverse y coordinate" }).fill("0");
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "Not yet" }).waitFor();
+    await page.getByRole("button", { name: "Show solution", exact: true }).click();
+    await page.getByRole("status").filter({ hasText: "OP² = 5" }).waitFor();
+    await page.getByRole("button", { name: "Hide solution", exact: true }).click();
+    await page.getByRole("textbox", { name: "Practice inverse x coordinate" }).fill("10");
+    await page.getByRole("textbox", { name: "Practice inverse y coordinate" }).fill("-5");
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page.getByRole("status").filter({ hasText: "Correct: P' = (10, -5)." }).innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

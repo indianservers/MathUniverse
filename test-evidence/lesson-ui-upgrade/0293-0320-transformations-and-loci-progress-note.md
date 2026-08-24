@@ -5,6 +5,7 @@
 | 0293 | 236 Translation by Vector | `rigid-vector-translation-pair` | Reworked individually and browser-validated |
 | 0294 | 237 Reflection in Line | `point-line-orthogonal-reflection` | Reworked individually and browser-validated |
 | 0295 | 238 Reflection in Point | `centre-midpoint-half-turn-reflection` | Reworked individually and browser-validated |
+| 0296 | 239 Reflection in Circle | `opposite-ray-circle-inversion` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -46,3 +47,16 @@ Evidence:
 
 - `0295-desktop.png`
 - `0295-dedicated-target-validation.json`
+
+## Lesson 239 / Mockup 0296 - Reflection in Circle
+
+Reworked individually against the target mockup with a new lesson-specific adapter and `opposite-ray-circle-inversion` object model. The main workspace owns circle centre O, radius r, and source point P, and derives the opposite-ray image `P' = O - (r²/OP²)(P-O)`. It continuously calculates OP, OP', their product, and the invariant `OP · OP' = r²`; P, O, and the radius handle all drag directly and independently. Exact point/centre/radius inputs, point and radius modes, grid and axes controls, all five lesson stages, construction and insight panels, reset, solution reveal, grading, and adjacent navigation are functional.
+
+The independent practice task uses the target's circle `x²+y²=25` and P(-2,1), deriving and grading P'(10,-5) from the live signed-inversion rule. Mockup 0296 displays OP=5, OP'=1.8, and product 9, which requires P'=(-1.08,-1.44), but its plotted label and final worked-example line instead show P'=(-2.25,-3). The implementation preserves the target's stated opposite-ray rule and invariant with mathematically coherent coordinates rather than reproducing those contradictory labels.
+
+Final 1027x1532 browser validation physically drags P while preserving O, drags O while preserving P, drags the radius and verifies that the product changes to the new r², restores exact target inputs, toggles grid and stages, and verifies incorrect, solution, and correct practice paths. It reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1426 with the target-aligned footer below it.
+
+Evidence:
+
+- `0296-desktop.png`
+- `0296-dedicated-target-validation.json`
