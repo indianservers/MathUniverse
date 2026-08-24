@@ -1,6 +1,6 @@
 import { Check, CheckCircle2, Copy, Eye, Lightbulb, MousePointer2, Move, RotateCcw, ZoomIn } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import type { PointerEvent as ReactPointerEvent } from "react";
+import type { PointerEvent as ReactPointerEvent, ReactNode } from "react";
 import { createLessonInteractionEvent } from "../../engine/lessonInteraction";
 import type { LessonAdapterProps } from "../../types";
 
@@ -331,7 +331,376 @@ function LogarithmicGraph({ base, stretch, shiftX, shiftY, showInverse, mode, zo
 
 export default function FunctionMockupLesson(props: LessonAdapterProps) {
   if (props.lesson.id === 143) return <LogarithmicFunctionsLesson {...props} />;
+  if (props.lesson.id === 144) return <TrigonometricFunctionsLesson {...props} />;
+  if (props.lesson.id === 145) return <HyperbolicFunctionsLesson {...props} />;
+  if (props.lesson.id === 146) return <StepFunctionLesson {...props} kind="floor" />;
+  if (props.lesson.id === 147) return <StepFunctionLesson {...props} kind="ceiling" />;
   return <FunctionFamilyLesson {...props} />;
+}
+
+function TrigonometricFunctionsLesson({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  const [amplitude, setAmplitude] = useState(2);
+  const [period, setPeriod] = useState(2 * Math.PI);
+  const [phase, setPhase] = useState(Math.PI / 4);
+  const [midline, setMidline] = useState(0);
+  const [theta, setTheta] = useState(Math.PI / 3);
+  const [showSine, setShowSine] = useState(true);
+  const [showCosine, setShowCosine] = useState(true);
+  const [playing, setPlaying] = useState(false);
+  const [answer, setAnswer] = useState("");
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    setAmplitude(2);
+    setPeriod(2 * Math.PI);
+    setPhase(Math.PI / 4);
+    setMidline(0);
+    setTheta(Math.PI / 3);
+    setShowSine(true);
+    setShowCosine(true);
+    setPlaying(false);
+    setAnswer("");
+    setChecked(false);
+  }, [lesson.id, resetToken]);
+
+  useEffect(() => {
+    if (!playing) return;
+    const id = window.setInterval(() => setTheta((value) => (value + Math.PI / 48) % (2 * Math.PI)), 120);
+    return () => window.clearInterval(id);
+  }, [playing]);
+
+  const emit = (controlId: string, before: unknown, after: unknown) => onInteraction(createLessonInteractionEvent({
+    controlId,
+    kind: controlId.includes("toggle") ? "toggle" : controlId.includes("answer") ? "selection" : "slider",
+    before,
+    after,
+    affectedOutputs: ["trig-unit-circle", "trig-wave-graph", "trig-value-table", "trig-quiz-result"],
+  }));
+  const setParam = (controlId: string, before: number, after: number, setter: (value: number) => void) => {
+    setter(after);
+    emit(controlId, before, after);
+  };
+  const sine = Math.sin(theta);
+  const cosine = Math.cos(theta);
+  const omega = (2 * Math.PI) / period;
+  const transformedSine = amplitude * Math.sin(omega * theta + phase) + midline;
+  const transformedCosine = amplitude * Math.cos(omega * theta + phase) + midline;
+  const isCorrect = answer === "pi-4";
+
+  return (
+    <section className="overflow-hidden rounded-lg border border-slate-700 bg-[#07111f] text-slate-100 shadow-2xl" data-testid="function-mockup-0201">
+      <div className="border-b border-slate-700 bg-[radial-gradient(circle_at_75%_0%,rgba(14,165,233,.28),transparent_34%)] px-4 py-4">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-bold uppercase text-violet-300">Precalculus / Unit Circle & Trig Graphs</p>
+            <h1 className="mt-1 text-3xl font-black text-white">Trigonometric Functions</h1>
+            <p className="mt-1 text-sm text-slate-300">Circular motion drives the sine and cosine waves.</p>
+          </div>
+          <div className="rounded-md border border-slate-700 bg-slate-950/70 px-4 py-3 font-serif text-xl">
+            y = {formatNumber(amplitude)} sin(x + {formatRadians(phase)}) {midline >= 0 ? "+" : "-"} {formatNumber(Math.abs(midline))}
+          </div>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-2 text-sm font-semibold">
+          {["Overview", "Unit circle link", "Graphs", "Identities", "Applications", "Practice"].map((tab, index) => (
+            <button key={tab} type="button" onClick={() => emit("trig-tab-toggle", index, tab)} className={`rounded-md px-3 py-2 ${index === 1 ? "bg-violet-600 text-white" : "border border-slate-700 text-slate-300"}`}>{tab}</button>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid gap-3 p-3 xl:grid-cols-[minmax(0,1fr)_300px]">
+        <main className="grid gap-3 lg:grid-cols-[370px_minmax(0,1fr)]">
+          <Panel title="Unit Circle">
+            <TrigUnitCircle theta={theta} sine={sine} cosine={cosine} />
+            <Slider label="theta" value={theta} min={0} max={2 * Math.PI} step={Math.PI / 180} display={formatRadians(theta)} onChange={(value) => setParam("trig-theta-slider", theta, value, setTheta)} />
+          </Panel>
+          <Panel title="Sine & Cosine Graphs">
+            <TrigWaveGraph amplitude={amplitude} period={period} phase={phase} midline={midline} theta={theta} showSine={showSine} showCosine={showCosine} />
+          </Panel>
+          <Panel title={`Live Values (amplitude = ${formatNumber(amplitude)}, period = ${formatRadians(period)}, phase = ${formatRadians(phase)})`} className="lg:col-span-2">
+            <table className="w-full border-collapse text-sm">
+              <thead className="text-slate-400"><tr>{["theta", "deg", "sin theta", "cos theta", "transformed sine", "transformed cosine"].map((head) => <th key={head} className="border border-slate-700 px-2 py-2 text-left">{head}</th>)}</tr></thead>
+              <tbody>{[0, Math.PI / 6, Math.PI / 3, Math.PI / 2, Math.PI, 1.5 * Math.PI, 2 * Math.PI].map((angle) => <tr key={angle} className={Math.abs(angle - theta) < 0.05 ? "bg-yellow-400/10 text-yellow-200" : ""}><td className="border border-slate-700 px-2 py-2">{formatRadians(angle)}</td><td className="border border-slate-700 px-2 py-2">{Math.round(angle * 180 / Math.PI)} deg</td><td className="border border-slate-700 px-2 py-2">{Math.sin(angle).toFixed(3)}</td><td className="border border-slate-700 px-2 py-2">{Math.cos(angle).toFixed(3)}</td><td className="border border-slate-700 px-2 py-2 text-violet-300">{(amplitude * Math.sin(omega * angle + phase) + midline).toFixed(3)}</td><td className="border border-slate-700 px-2 py-2 text-cyan-300">{(amplitude * Math.cos(omega * angle + phase) + midline).toFixed(3)}</td></tr>)}</tbody>
+            </table>
+          </Panel>
+        </main>
+
+        <aside className="space-y-3">
+          <Panel title="Parameters">
+            <Slider label="Amplitude" value={amplitude} min={0.1} max={5} step={0.1} display={formatNumber(amplitude)} onChange={(value) => setParam("trig-amplitude-slider", amplitude, value, setAmplitude)} />
+            <Slider label="Period" value={period} min={Math.PI / 2} max={4 * Math.PI} step={Math.PI / 12} display={formatRadians(period)} onChange={(value) => setParam("trig-period-slider", period, value, setPeriod)} />
+            <Slider label="Phase shift" value={phase} min={-2 * Math.PI} max={2 * Math.PI} step={Math.PI / 12} display={formatRadians(phase)} onChange={(value) => setParam("trig-phase-slider", phase, value, setPhase)} />
+            <Slider label="Midline y" value={midline} min={-2} max={2} step={0.1} display={formatNumber(midline)} onChange={(value) => setParam("trig-midline-slider", midline, value, setMidline)} />
+            <label className="mt-3 flex items-center gap-2 text-sm"><input type="checkbox" checked={showSine} onChange={() => { setShowSine(!showSine); emit("trig-sine-toggle", showSine, !showSine); }} /> Trace sine</label>
+            <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={showCosine} onChange={() => { setShowCosine(!showCosine); emit("trig-cosine-toggle", showCosine, !showCosine); }} /> Trace cosine</label>
+          </Panel>
+          <Panel title="Quick Challenge">
+            <p className="text-sm">At what angle does sin theta = sqrt(2) / 2?</p>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              {[["pi-6", "pi/6"], ["pi-4", "pi/4"], ["pi-3", "pi/3"], ["pi-2", "pi/2"]].map(([id, label]) => <button key={id} type="button" onClick={() => { setAnswer(id); setChecked(false); emit("trig-answer-choice", answer, id); }} className={`rounded-md border px-3 py-2 font-serif ${answer === id ? "border-lime-500 bg-lime-500/10" : "border-slate-700"}`}>{label}</button>)}
+            </div>
+            <button type="button" className="mt-3 rounded-md bg-violet-600 px-4 py-2 text-sm font-bold text-white" onClick={() => { setChecked(true); emit("trig-check-answer", false, isCorrect); }}>Check Answer</button>
+            {checked ? <p className={`mt-2 text-sm font-bold ${isCorrect ? "text-lime-300" : "text-rose-300"}`}>{isCorrect ? "Correct." : "Try pi/4: sine and cosine are equal there."}</p> : null}
+          </Panel>
+        </aside>
+      </div>
+      <div className="flex items-center gap-3 border-t border-slate-700 px-4 py-3">
+        <button type="button" className="rounded-md bg-slate-800 px-4 py-2 font-bold" onClick={() => { setPlaying(!playing); emit("trig-play-toggle", playing, !playing); }}>{playing ? "Pause" : "Play"}</button>
+        <button type="button" className="rounded-md border border-slate-700 px-4 py-2 font-bold" onClick={() => setParam("trig-step-button", theta, (theta + Math.PI / 12) % (2 * Math.PI), setTheta)}>Step</button>
+        <button type="button" className="ml-auto rounded-md border border-slate-700 px-4 py-2 font-bold" onClick={() => { setAmplitude(2); setPeriod(2 * Math.PI); setPhase(Math.PI / 4); setMidline(0); setTheta(Math.PI / 3); setShowSine(true); setShowCosine(true); setPlaying(false); setAnswer(""); setChecked(false); emit("trig-reset", "changed", "defaults"); }}>Reset</button>
+      </div>
+    </section>
+  );
+}
+
+function HyperbolicFunctionsLesson({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  const [t, setT] = useState(1.2);
+  const [showSinh, setShowSinh] = useState(true);
+  const [showCosh, setShowCosh] = useState(true);
+  const [showTanh, setShowTanh] = useState(true);
+  const [checked, setChecked] = useState(false);
+  useEffect(() => { setT(1.2); setShowSinh(true); setShowCosh(true); setShowTanh(true); setChecked(false); }, [lesson.id, resetToken]);
+  const emit = (controlId: string, before: unknown, after: unknown) => onInteraction(createLessonInteractionEvent({ controlId, kind: "toggle", before, after, affectedOutputs: ["hyperbolic-graph", "hyperbolic-table", "hyperbolic-identity"] }));
+  const sinh = Math.sinh(t);
+  const cosh = Math.cosh(t);
+  const tanh = Math.tanh(t);
+  const exp = Math.exp(t);
+  const invExp = Math.exp(-t);
+  const identity = cosh * cosh - sinh * sinh;
+  return (
+    <section className="rounded-lg border border-slate-700 bg-[#07111f] p-4 text-slate-100 shadow-2xl" data-testid="function-mockup-0202">
+      <div className="flex flex-wrap justify-between gap-3 border-b border-slate-700 pb-3">
+        <div><p className="text-xs font-bold uppercase text-blue-300">Calculus / Hyperbolic Functions Lab</p><h1 className="text-3xl font-black">Hyperbolic Functions</h1><p className="text-sm text-slate-300">Explore exponential combinations and the unit hyperbola.</p></div>
+        <div className="flex gap-2">{["Explore", "Learn", "Practice", "Assess"].map((item, index) => <button key={item} type="button" className={`rounded-md px-3 py-2 text-sm font-bold ${index === 1 ? "bg-blue-600" : "border border-slate-700"}`} onClick={() => emit("hyperbolic-tab", index, item)}>{item}</button>)}</div>
+      </div>
+      <div className="mt-3 grid gap-3 xl:grid-cols-[300px_minmax(0,1fr)_330px]">
+        <Panel title="Unit hyperbola"><HyperbolaPanel t={t} sinh={sinh} cosh={cosh} /></Panel>
+        <Panel title="Hyperbolic curves"><HyperbolicGraph t={t} showSinh={showSinh} showCosh={showCosh} showTanh={showTanh} /><div className="mt-3 flex flex-wrap gap-3 text-sm">{[["sinh", showSinh, setShowSinh], ["cosh", showCosh, setShowCosh], ["tanh", showTanh, setShowTanh]].map(([name, value, setter]) => <label key={String(name)} className="flex items-center gap-2"><input type="checkbox" checked={Boolean(value)} onChange={() => { (setter as (value: boolean) => void)(!value); emit(`hyperbolic-${name}-toggle`, value, !value); }} /> y = {String(name)} t</label>)}</div></Panel>
+        <aside className="space-y-3">
+          <Panel title={`Parameters: t = ${t.toFixed(2)}`}><Slider label="t" value={t} min={-3} max={3} step={0.01} display={t.toFixed(2)} onChange={(value) => { setT(value); emit("hyperbolic-t-slider", t, value); }} /></Panel>
+          <Panel title="Exponential decomposition">
+            {[["e^t", exp], ["e^-t", invExp], ["sinh t", sinh], ["cosh t", cosh], ["tanh t", tanh]].map(([label, value]) => <p key={String(label)} className="flex justify-between border-b border-slate-700 py-2 text-sm"><span>{String(label)}</span><span className="font-mono">{Number(value).toFixed(4)}</span></p>)}
+          </Panel>
+          <Panel title="Identities & properties"><p className="rounded-md border border-lime-500 bg-lime-500/10 p-3 text-center font-serif text-xl">cosh^2 t - sinh^2 t = {identity.toFixed(4)}</p><p className="mt-3 text-blue-300">Not periodic</p></Panel>
+          <Panel title="Quick challenge"><p className="text-sm">Drag t so tanh t = 0.5 (within 0.01).</p><button type="button" className="mt-3 rounded-md bg-blue-600 px-4 py-2 text-sm font-bold" onClick={() => { setChecked(true); emit("hyperbolic-check-answer", false, Math.abs(tanh - 0.5) <= 0.01); }}>Check Answer</button>{checked ? <p className="mt-2 text-sm">Your tanh t = {tanh.toFixed(3)}. {Math.abs(tanh - 0.5) <= 0.01 ? "Close." : "Target is near t = 0.55."}</p> : null}</Panel>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+function StepFunctionLesson({ lesson, resetToken, onInteraction, kind }: LessonAdapterProps & { kind: "floor" | "ceiling" }) {
+  const dark = kind === "floor";
+  const [x, setX] = useState(kind === "floor" ? 2.73 : 2.3);
+  const [inputShift, setInputShift] = useState(0);
+  const [outputShift, setOutputShift] = useState(0);
+  const [snap, setSnap] = useState(kind === "ceiling");
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  useEffect(() => { setX(kind === "floor" ? 2.73 : 2.3); setInputShift(0); setOutputShift(0); setSnap(kind === "ceiling"); setAnswers({}); }, [lesson.id, resetToken, kind]);
+  const value = stepValue(kind, x, inputShift, outputShift);
+  const title = kind === "floor" ? "Floor Function" : "Ceiling Function";
+  const formula = kind === "floor" ? "floor" : "ceil";
+  const emit = (controlId: string, before: unknown, after: unknown) => onInteraction(createLessonInteractionEvent({ controlId, kind: "slider", before, after, affectedOutputs: ["step-function-graph", "step-function-table", "step-function-output", "step-function-challenge"] }));
+  const shell = dark ? "rounded-lg border border-slate-700 bg-[#07111f] p-4 text-slate-100 shadow-2xl" : "rounded-lg border border-slate-200 bg-white p-4 text-slate-950 shadow-lg";
+  return (
+    <section className={shell} data-testid={`function-mockup-${kind === "floor" ? "0203" : "0204"}`}>
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-current/10 pb-4">
+        <div><p className={dark ? "text-xs font-bold uppercase text-violet-300" : "text-xs font-bold uppercase text-cyan-700"}>Functions / Step Functions</p><h1 className="text-4xl font-black">{title}</h1><p className="text-lg">{kind === "floor" ? "Greatest integer <= x" : "Least integer >= x"}</p></div>
+        <div className={dark ? "rounded-md border border-violet-500/40 bg-violet-500/10 px-6 py-4 font-serif text-3xl text-violet-200" : "rounded-md border border-cyan-200 bg-cyan-50 px-6 py-4 font-serif text-3xl text-cyan-700"}>y = {kind === "floor" ? "floor(x)" : "ceil(x)"}</div>
+        <button type="button" className="rounded-md border border-current/20 px-4 py-2 font-bold" onClick={() => { setX(kind === "floor" ? 2.73 : 2.3); setInputShift(0); setOutputShift(0); setAnswers({}); emit(`${kind}-reset`, "changed", "defaults"); }}>Reset</button>
+      </div>
+      <div className="mt-4 grid gap-3 xl:grid-cols-[minmax(0,1fr)_330px]">
+        <main className="space-y-3">
+          <Panel title={`Graph of y = ${formula}(x)`}><StepGraph kind={kind} x={x} inputShift={inputShift} outputShift={outputShift} dark={dark} /></Panel>
+          <Panel title={kind === "floor" ? "Number Line View" : "Evaluation Table"}>
+            <table className="w-full border-collapse text-sm"><thead><tr>{["x", `${formula}(x)`, "Interval"].map((head) => <th key={head} className="border border-current/20 px-2 py-2 text-left">{head}</th>)}</tr></thead><tbody>{[-2.7, -1.2, 0, 0.6, 1.9, x, 3, 3.7].map((row) => <tr key={row} className={Math.abs(row - x) < 0.001 ? (dark ? "bg-yellow-400/10 text-yellow-200" : "bg-violet-100") : ""}><td className="border border-current/20 px-2 py-2">{row.toFixed(row % 1 === 0 ? 0 : 1)}</td><td className="border border-current/20 px-2 py-2">{stepValue(kind, row, inputShift, outputShift)}</td><td className="border border-current/20 px-2 py-2">{stepInterval(kind, row, inputShift)}</td></tr>)}</tbody></table>
+          </Panel>
+          <div className="grid gap-3 md:grid-cols-3">
+            <Panel title={kind === "floor" ? "Quick Challenge" : "Ceiling Function"}><StepChallenge kind={kind} answers={answers} setAnswers={setAnswers} /></Panel>
+            <Panel title={kind === "floor" ? "Key Takeaways" : "Floor Function"}><ul className="space-y-2 text-sm"><li>{kind === "floor" ? "Returns the greatest integer <= x." : "Returns the least integer >= x."}</li><li>Graph is a step function.</li><li>{kind === "floor" ? "Closed on the left, open on the right." : "Open on the left, closed on the right."}</li></ul></Panel>
+            <Panel title="Key Difference"><p className="text-sm">{kind === "floor" ? "Floor stays constant until the next integer." : "Ceiling jumps up after each integer."}</p></Panel>
+          </div>
+        </main>
+        <aside className="space-y-3">
+          <Panel title="Input / Output">
+            <div className="text-center font-serif text-3xl">x = {x.toFixed(2)}</div>
+            <Slider label="x" value={x} min={-10} max={10} step={snap ? 0.1 : 0.01} display={x.toFixed(2)} onChange={(value) => { setX(value); emit(`${kind}-x-slider`, x, value); }} />
+            <div className={dark ? "rounded-md bg-violet-500/20 p-4 text-center font-serif text-3xl text-violet-100" : "rounded-md bg-cyan-50 p-4 text-center font-serif text-3xl text-cyan-700"}>{formula}({x.toFixed(2)}) = {value}</div>
+          </Panel>
+          <Panel title="Transformations">
+            <Slider label="Input shift" value={inputShift} min={-5} max={5} step={1} display={String(inputShift)} onChange={(next) => { setInputShift(next); emit(`${kind}-input-shift`, inputShift, next); }} />
+            <Slider label="Output shift" value={outputShift} min={-5} max={5} step={1} display={String(outputShift)} onChange={(next) => { setOutputShift(next); emit(`${kind}-output-shift`, outputShift, next); }} />
+            <label className="mt-3 flex items-center justify-between text-sm font-bold"><span>Snap to integers</span><input type="checkbox" checked={snap} onChange={() => { setSnap(!snap); emit(`${kind}-snap-toggle`, snap, !snap); }} /></label>
+          </Panel>
+          <Panel title="Endpoint Convention"><p>{kind === "floor" ? "Closed left endpoint, open right endpoint." : "Open left endpoint, closed right endpoint."}</p><p className="mt-3 text-lime-400">STEP_ENDPOINTS_REQUIRED</p></Panel>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+function Panel({ title, children, className = "" }: { title: string; children: ReactNode; className?: string }) {
+  return <section className={`rounded-md border border-current/15 bg-white/[0.04] p-3 ${className}`}><h2 className="mb-3 text-sm font-black uppercase tracking-wide text-cyan-300">{title}</h2>{children}</section>;
+}
+
+function Slider({ label, value, min, max, step, display, onChange }: { label: string; value: number; min: number; max: number; step: number; display: string; onChange: (value: number) => void }) {
+  return (
+    <label className="block py-2 text-sm font-bold">
+      <span className="flex items-center justify-between gap-3"><span>{label}</span><input aria-label={label} type="number" min={min} max={max} step={step} value={Number(value.toFixed(4))} onChange={(event) => onChange(Number(event.target.value))} className="h-8 w-20 rounded-md border border-current/20 bg-transparent px-2 text-right font-mono" /></span>
+      <input aria-label={`${label} slider`} type="range" min={min} max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} className="mt-2 w-full accent-violet-500" />
+      <span className="mt-1 block text-right font-mono text-xs opacity-75">{display}</span>
+    </label>
+  );
+}
+
+function formatRadians(value: number) {
+  const parts: [number, string][] = [[0, "0"], [Math.PI / 6, "pi/6"], [Math.PI / 4, "pi/4"], [Math.PI / 3, "pi/3"], [Math.PI / 2, "pi/2"], [Math.PI, "pi"], [1.5 * Math.PI, "3pi/2"], [2 * Math.PI, "2pi"], [4 * Math.PI, "4pi"]];
+  const match = parts.find(([angle]) => Math.abs(value - angle) < 0.001);
+  if (match) return match[1];
+  const ratio = value / Math.PI;
+  return `${ratio.toFixed(2)}pi`;
+}
+
+function TrigUnitCircle({ theta, sine, cosine }: { theta: number; sine: number; cosine: number }) {
+  const cx = 170;
+  const cy = 165;
+  const r = 105;
+  const px = cx + r * cosine;
+  const py = cy - r * sine;
+  return (
+    <svg viewBox="0 0 360 340" className="w-full rounded-md bg-slate-950/50" role="img" aria-label="Unit circle linked to sine and cosine">
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="#dbeafe" strokeWidth="2" />
+      <line x1="35" y1={cy} x2="325" y2={cy} stroke="#dbeafe" />
+      <line x1={cx} y1="35" x2={cx} y2="300" stroke="#dbeafe" />
+      <line x1={cx} y1={cy} x2={px} y2={py} stroke="#facc15" strokeWidth="4" />
+      <line x1={px} y1={cy} x2={px} y2={py} stroke="#22d3ee" strokeDasharray="5 4" />
+      <line x1={cx} y1={py} x2={px} y2={py} stroke="#a855f7" strokeDasharray="5 4" />
+      <circle cx={px} cy={py} r="8" fill="#facc15" />
+      <path d={`M ${cx + 34} ${cy} A 34 34 0 0 0 ${cx + 34 * Math.cos(theta)} ${cy - 34 * Math.sin(theta)}`} fill="none" stroke="#facc15" strokeWidth="2" />
+      <text x="35" y="55" fill="#f8fafc" fontWeight="800">theta = {formatRadians(theta)}</text>
+      <text x="210" y="270" fill="#a855f7" fontWeight="800">sin = {sine.toFixed(3)}</text>
+      <text x="210" y="295" fill="#22d3ee" fontWeight="800">cos = {cosine.toFixed(3)}</text>
+    </svg>
+  );
+}
+
+function TrigWaveGraph({ amplitude, period, phase, midline, theta, showSine, showCosine }: { amplitude: number; period: number; phase: number; midline: number; theta: number; showSine: boolean; showCosine: boolean }) {
+  const sx = (x: number) => 45 + (x / (2 * Math.PI)) * 540;
+  const sy = (y: number) => 210 - y * 58;
+  const omega = (2 * Math.PI) / period;
+  const points = (fn: "sin" | "cos") => Array.from({ length: 160 }, (_, index) => {
+    const x = (index / 159) * 2 * Math.PI;
+    const y = amplitude * (fn === "sin" ? Math.sin(omega * x + phase) : Math.cos(omega * x + phase)) + midline;
+    return `${sx(x).toFixed(1)},${sy(y).toFixed(1)}`;
+  }).join(" ");
+  return (
+    <svg viewBox="0 0 640 430" className="w-full rounded-md bg-slate-950/50" role="img" aria-label="Sine and cosine graph">
+      {Array.from({ length: 9 }, (_, index) => <line key={`v-${index}`} x1={45 + index * 67.5} y1="40" x2={45 + index * 67.5} y2="370" stroke="#334155" strokeDasharray="5 4" />)}
+      {Array.from({ length: 7 }, (_, index) => <line key={`h-${index}`} x1="35" y1={70 + index * 50} x2="600" y2={70 + index * 50} stroke="#334155" strokeDasharray="5 4" />)}
+      <line x1="35" y1={sy(midline)} x2="600" y2={sy(midline)} stroke="#dbeafe" strokeDasharray="4 4" />
+      <line x1="45" y1="40" x2="45" y2="370" stroke="#dbeafe" />
+      <line x1={sx(theta)} y1="45" x2={sx(theta)} y2="370" stroke="#facc15" strokeDasharray="6 4" />
+      {showSine ? <polyline points={points("sin")} fill="none" stroke="#a855f7" strokeWidth="4" /> : null}
+      {showCosine ? <polyline points={points("cos")} fill="none" stroke="#22d3ee" strokeWidth="4" /> : null}
+      <circle cx={sx(theta)} cy={sy(amplitude * Math.sin(omega * theta + phase) + midline)} r="8" fill="#a855f7" stroke="#f5f3ff" strokeWidth="2" />
+      <circle cx={sx(theta)} cy={sy(amplitude * Math.cos(omega * theta + phase) + midline)} r="8" fill="#22d3ee" stroke="#ecfeff" strokeWidth="2" />
+      <text x="455" y="85" fill="#a855f7" fontWeight="900">y = {formatNumber(amplitude)} sin(x + {formatRadians(phase)})</text>
+      <text x="455" y="315" fill="#22d3ee" fontWeight="900">y = {formatNumber(amplitude)} cos(x + {formatRadians(phase)})</text>
+      <text x={sx(theta) + 8} y="390" fill="#facc15" fontWeight="900">{formatRadians(theta)}</text>
+    </svg>
+  );
+}
+
+function HyperbolaPanel({ t, sinh, cosh }: { t: number; sinh: number; cosh: number }) {
+  const sx = (x: number) => 145 + x * 78;
+  const sy = (y: number) => 180 - y * 72;
+  return (
+    <svg viewBox="0 0 300 360" className="w-full rounded-md bg-slate-950/50" role="img" aria-label="Unit hyperbola">
+      <line x1="20" y1="180" x2="280" y2="180" stroke="#dbeafe" />
+      <line x1="145" y1="30" x2="145" y2="325" stroke="#dbeafe" />
+      <path d="M35 315 C70 250 95 205 110 180 C95 155 70 110 35 45" fill="none" stroke="#22d3ee" strokeWidth="3" />
+      <path d="M255 315 C220 250 195 205 180 180 C195 155 220 110 255 45" fill="none" stroke="#22d3ee" strokeWidth="3" />
+      <line x1={sx(cosh)} y1={sy(0)} x2={sx(cosh)} y2={sy(sinh)} stroke="#94a3b8" strokeDasharray="5 4" />
+      <line x1={sx(0)} y1={sy(sinh)} x2={sx(cosh)} y2={sy(sinh)} stroke="#94a3b8" strokeDasharray="5 4" />
+      <circle cx={sx(cosh)} cy={sy(sinh)} r="8" fill="#facc15" />
+      <text x="25" y="45" fill="#f8fafc" fontWeight="900">x^2 - y^2 = 1</text>
+      <text x="165" y="130" fill="#facc15" fontWeight="900">P({t.toFixed(2)})</text>
+    </svg>
+  );
+}
+
+function HyperbolicGraph({ t, showSinh, showCosh, showTanh }: { t: number; showSinh: boolean; showCosh: boolean; showTanh: boolean }) {
+  const sx = (x: number) => 65 + ((x + 3) / 6) * 520;
+  const sy = (y: number) => 235 - y * 58;
+  const curve = (fn: (x: number) => number) => Array.from({ length: 180 }, (_, index) => {
+    const x = -3 + (index / 179) * 6;
+    return `${sx(x).toFixed(1)},${Math.max(35, Math.min(395, sy(fn(x)))).toFixed(1)}`;
+  }).join(" ");
+  return (
+    <svg viewBox="0 0 640 430" className="w-full rounded-md bg-slate-950/50" role="img" aria-label="Hyperbolic functions graph">
+      {Array.from({ length: 13 }, (_, index) => <line key={`v-${index}`} x1={65 + index * 43.3} y1="35" x2={65 + index * 43.3} y2="390" stroke="#334155" />)}
+      {Array.from({ length: 9 }, (_, index) => <line key={`h-${index}`} x1="35" y1={55 + index * 42} x2="600" y2={55 + index * 42} stroke="#334155" />)}
+      <line x1="35" y1={sy(0)} x2="600" y2={sy(0)} stroke="#dbeafe" />
+      <line x1={sx(0)} y1="35" x2={sx(0)} y2="390" stroke="#dbeafe" />
+      <line x1={sx(t)} y1="35" x2={sx(t)} y2="390" stroke="#f8fafc" strokeDasharray="6 5" />
+      {showSinh ? <polyline points={curve(Math.sinh)} fill="none" stroke="#3b82f6" strokeWidth="4" /> : null}
+      {showCosh ? <polyline points={curve(Math.cosh)} fill="none" stroke="#a855f7" strokeWidth="4" /> : null}
+      {showTanh ? <polyline points={curve(Math.tanh)} fill="none" stroke="#22c55e" strokeWidth="4" /> : null}
+      <text x={sx(t) - 38} y="60" fill="#f8fafc" fontWeight="900">t = {t.toFixed(2)}</text>
+    </svg>
+  );
+}
+
+function StepGraph({ kind, x, inputShift, outputShift, dark }: { kind: "floor" | "ceiling"; x: number; inputShift: number; outputShift: number; dark: boolean }) {
+  const sx = (value: number) => 340 + value * 72;
+  const sy = (value: number) => 235 - value * 50;
+  const current = stepValue(kind, x, inputShift, outputShift);
+  return (
+    <svg viewBox="0 0 760 430" className={`w-full rounded-md ${dark ? "bg-slate-950/50" : "bg-white"}`} role="img" aria-label={`${kind} step function graph`}>
+      {Array.from({ length: 11 }, (_, index) => <line key={`v-${index}`} x1={sx(index - 5)} y1="35" x2={sx(index - 5)} y2="375" stroke={dark ? "#334155" : "#e2e8f0"} strokeDasharray="4 4" />)}
+      {Array.from({ length: 9 }, (_, index) => <line key={`h-${index}`} x1="35" y1={sy(index - 4)} x2="725" y2={sy(index - 4)} stroke={dark ? "#334155" : "#e2e8f0"} strokeDasharray="4 4" />)}
+      <line x1="35" y1={sy(0)} x2="725" y2={sy(0)} stroke={dark ? "#dbeafe" : "#334155"} />
+      <line x1={sx(0)} y1="35" x2={sx(0)} y2="375" stroke={dark ? "#dbeafe" : "#334155"} />
+      {Array.from({ length: 9 }, (_, index) => {
+        const n = index - 4;
+        const y = n + outputShift;
+        const start = kind === "floor" ? n + inputShift : n - 1 + inputShift;
+        const end = kind === "floor" ? n + 1 + inputShift : n + inputShift;
+        return <g key={n}><line x1={sx(start)} y1={sy(y)} x2={sx(end)} y2={sy(y)} stroke={dark ? "#a855f7" : "#0891b2"} strokeWidth="5" /><circle cx={sx(start)} cy={sy(y)} r="7" fill={kind === "floor" ? (dark ? "#a855f7" : "#0891b2") : (dark ? "#07111f" : "#fff")} stroke={dark ? "#a855f7" : "#0891b2"} strokeWidth="3" /><circle cx={sx(end)} cy={sy(y)} r="7" fill={kind === "floor" ? (dark ? "#07111f" : "#fff") : (dark ? "#a855f7" : "#0891b2")} stroke={dark ? "#a855f7" : "#0891b2"} strokeWidth="3" /></g>;
+      })}
+      <rect x={sx(kind === "floor" ? current - outputShift + inputShift : current - outputShift - 1 + inputShift)} y="45" width={72} height="250" fill="#a855f7" opacity=".12" />
+      <line x1={sx(x)} y1="50" x2={sx(x)} y2="365" stroke="#f59e0b" strokeWidth="4" />
+      <text x={sx(x) + 12} y={sy(current) - 15} fill="#f59e0b" fontWeight="900">{formulaStepLabel(kind, x)} = {current}</text>
+      <text x="575" y="390" fill={dark ? "#f8fafc" : "#334155"}>{kind === "floor" ? "Closed left, open right" : "Open left, closed right"}</text>
+    </svg>
+  );
+}
+
+function stepValue(kind: "floor" | "ceiling", x: number, inputShift: number, outputShift: number) {
+  return (kind === "floor" ? Math.floor(x - inputShift) : Math.ceil(x - inputShift)) + outputShift;
+}
+
+function stepInterval(kind: "floor" | "ceiling", x: number, inputShift: number) {
+  const shifted = x - inputShift;
+  const n = kind === "floor" ? Math.floor(shifted) : Math.ceil(shifted);
+  return kind === "floor" ? `[${n + inputShift}, ${n + 1 + inputShift})` : `${n - 1 + inputShift} < x <= ${n + inputShift}`;
+}
+
+function formulaStepLabel(kind: "floor" | "ceiling", x: number) {
+  return `${kind}(${x.toFixed(2)})`;
+}
+
+function StepChallenge({ kind, answers, setAnswers }: { kind: "floor" | "ceiling"; answers: Record<string, string>; setAnswers: (value: Record<string, string>) => void }) {
+  const prompts = kind === "floor" ? [[-0.8, "-1"], [4.0, "4"], [5.999, "5"], [-3.001, "-4"]] : [[2.3, "3"], [-1.2, "-1"], [0, "0"], [3.2, "4"]];
+  return (
+    <div className="space-y-2">
+      {prompts.map(([input, expected], index) => {
+        const key = String(input);
+        const value = answers[key] ?? "";
+        const ok = value !== "" && value === expected;
+        return <div key={key} className="grid grid-cols-[1fr_70px_70px] items-center gap-2 text-sm"><span>{index + 1}. {formulaStepLabel(kind, Number(input))}</span><input aria-label={`${kind} challenge ${input}`} value={value} onChange={(event) => setAnswers({ ...answers, [key]: event.target.value })} className="rounded-md border border-current/20 bg-transparent px-2 py-1 text-center" /><span className={ok ? "text-lime-400" : "text-slate-400"}>{ok ? "Correct" : expected}</span></div>;
+      })}
+    </div>
+  );
 }
 
 function FunctionFamilyLesson({
@@ -594,11 +963,21 @@ function functionMockupSpecFor(lessonId: number): FunctionMockupSpec {
     145: spec("0202", "Hyperbolic Functions", "Compare sinh, cosh, and tanh through exponential growth and the unit-hyperbola idea.", "sinh(t), cosh(t), tanh(t)", "not periodic", "dark", "hyperbolic", ["Curves", "Exponential form", "Identity", "Compare"], "Hyperbolic family", ["cosh is even", "sinh is odd", "tanh is bounded between -1 and 1"], "Definition stack", ["sinh t = (e^t - e^-t)/2", "cosh t = (e^t + e^-t)/2", "cosh^2 t - sinh^2 t = 1"], [["sinh", "growth curve", "odd symmetry"], ["cosh", "catenary", "even symmetry"], ["tanh", "S-shaped", "horizontal bounds"]], "Hyperbolic functions use exponentials. Their names resemble trig functions, but their graphs do not cycle.", "cosh is not cosine and does not repeat periodically.", "Is cosh periodic like cosine?", "No. cosh grows and does not repeat."),
     146: spec("0203", "Floor Function", "Read the greatest integer less than or equal to x from a step graph.", "y = floor(x)", "floor(2.73) = 2", "dark", "floor", ["Step graph", "Intervals", "Table", "Challenge"], "Step interval", ["Highlighted interval [2, 3)", "Closed dot on the left", "Open dot on the right"], "Input probe", ["x = 2.73", "output = 2", "negative values move downward"], [["Input", "2.73", "lies in [2, 3)"], ["Output", "2", "greatest integer below"], ["Boundary", "3", "jumps to 3"]], "Floor functions make horizontal steps. Every input in one interval maps to the same integer.", "For negative numbers, floor(-1.2) is -2, not -1.", "What is floor(-1.2)?", "-2."),
     147: spec("0204", "Ceiling Function", "Find the least integer greater than or equal to x using upward step intervals.", "y = ceil(x)", "ceil(2.3) = 3", "light", "ceiling", ["Graph", "Intervals", "Evaluate", "Boundary"], "Ceiling interval", ["2 < x <= 3 maps to 3", "Open dot on the left", "Closed dot on the right"], "Step controls", ["input x", "vertical shift", "table rows"], [["Input", "2.3", "between 2 and 3"], ["Output", "3", "least integer above"], ["Use case", "buses/pages", "partial needs a whole"]], "Ceiling answers how many whole groups are needed when any remainder remains.", "Ceiling is not ordinary rounding; it always rounds up to cover the amount.", "What is ceil(3.2)?", "4."),
-    148: spec("0205", "Sign Function", "Classify negative, zero, and positive inputs while ignoring magnitude.", "y = sgn(x)", "sgn(-2.4) = -1", "light", "sign", ["Graph", "Cases", "Threshold", "Check"], "Three output cases", ["x < 0 gives -1", "x = 0 gives 0", "x > 0 gives 1"], "Classifier controls", ["input x", "threshold marker", "case highlight"], [["Negative", "-8", "output -1"], ["Zero", "0", "output 0"], ["Positive", "5", "output 1"]], "The sign function keeps direction and discards size.", "sign(-8) is -1, not -8.", "What is sign(-8)?", "-1."),
-    149: spec("0206", "Piecewise Functions", "Choose the correct rule by checking which condition contains the input.", "f(x) = {-x-1, x^2, 3}", "x = 1.4 active rule", "light", "piecewise", ["Rules", "Graph", "Boundaries", "Evaluate"], "Rule cards", ["x < 0: use -x - 1", "0 <= x < 2: use x^2", "x >= 2: use 3"], "Boundary controls", ["switch at x=0", "switch at x=2", "active segment"], [["Case 1", "x < 0", "line branch"], ["Case 2", "0 <= x < 2", "parabola branch"], ["Case 3", "x >= 2", "constant branch"]], "A piecewise function is still one function when exactly one rule applies to each input.", "Do not apply all rules to one input.", "For x=3, which rule is active?", "x >= 2, so f(x)=3."),
+    148: spec("0205", "Sign Function", "Classify negative, zero, and positive inputs while ignoring magnitude.", "y = sgn(x)", "sgn(-2.4) = -1", "dark", "sign", ["Graph", "Cases", "Threshold", "Check"], "Three output cases", ["x < 0 gives -1", "x = 0 gives 0", "x > 0 gives 1"], "Classifier controls", ["input x", "threshold marker", "case highlight"], [["Negative", "-8", "output -1"], ["Zero", "0", "output 0"], ["Positive", "5", "output 1"]], "The sign function keeps direction and discards size.", "sign(-8) is -1, not -8.", "What is sign(-8)?", "-1."),
+    149: spec("0206", "Piecewise Functions", "Choose the correct rule by checking which condition contains the input.", "f(x) = {-x-1, x^2, 3}", "x = 1.4 active rule", "dark", "piecewise", ["Rules", "Graph", "Boundaries", "Evaluate"], "Rule cards", ["x < 0: use -x - 1", "0 <= x < 2: use x^2", "x >= 2: use 3"], "Boundary controls", ["switch at x=0", "switch at x=2", "active segment"], [["Case 1", "x < 0", "line branch"], ["Case 2", "0 <= x < 2", "parabola branch"], ["Case 3", "x >= 2", "constant branch"]], "A piecewise function is still one function when exactly one rule applies to each input.", "Do not apply all rules to one input.", "For x=3, which rule is active?", "x >= 2, so f(x)=3."),
     150: spec("0207", "Composite Functions", "Follow the pipeline from x into the inner function and then into the outer function.", "g(x)=x+1, f(u)=u^2", "f(g(2)) = 9", "light", "composite", ["Pipeline", "Graph", "Order", "Check"], "Function pipeline", ["Start with x = 2", "Inner: g(2) = 3", "Outer: f(3) = 9"], "Order controls", ["f(g(x))", "g(f(x))", "inside first"], [["Input", "2", "goes into g"], ["Middle", "3", "output of g"], ["Output", "9", "f of middle value"]], "Composition is a pipeline: the inner output becomes the outer input.", "Reversing the order usually changes the answer.", "What is f(g(2))?", "9."),
-    151: spec("0208", "Inverse Functions", "Reverse input-output pairs and reflect graphs across y = x.", "f(x)=2x+1, f^-1(x)=(x-1)/2", "f^-1(5)=2", "light", "inverse", ["Reflect", "Mapping", "Table", "Check"], "Input-output reversal", ["(2, 5) becomes (5, 2)", "Reflect across y = x", "One-to-one needed"], "Inverse controls", ["slope", "intercept", "reflection overlay"], [["Original", "f(2)=5", "point (2,5)"], ["Inverse", "f^-1(5)=2", "point (5,2)"], ["Check", "f^-1(f(x))=x", "undoes the rule"]], "An inverse function undoes a rule by reversing each input-output pair.", "Inverse does not mean reciprocal 1/f(x).", "What is the inverse of 2x+1?", "(x - 1) / 2."),
-    152: spec("0209", "Even and Odd Functions", "Test f(-x) to decide y-axis symmetry, origin symmetry, or neither.", "even: f(-x)=f(x); odd: f(-x)=-f(x)", "verdict: even", "light", "symmetry", ["Even", "Odd", "Neither", "Test"], "Symmetry tests", ["Even: mirror over y-axis", "Odd: rotate around origin", "Neither: no matching symmetry"], "Comparison controls", ["test x", "show f(-x)", "symmetry overlay"], [["Even", "x^2", "f(-x)=f(x)"], ["Odd", "x^3", "f(-x)=-f(x)"], ["Neither", "x^2+x", "fails both"]], "The name even or odd is proved by substitution, not by guessing from the formula title.", "Always test f(-x); do not guess from the graph name.", "Is x^2 even or odd?", "Even."),
+    151: spec("0208", "Inverse Functions", "Reverse input-output pairs and reflect graphs across y = x.", "f(x)=2x+1, f^-1(x)=(x-1)/2", "f^-1(5)=2", "dark", "inverse", ["Reflect", "Mapping", "Table", "Check"], "Input-output reversal", ["(2, 5) becomes (5, 2)", "Reflect across y = x", "One-to-one needed"], "Inverse controls", ["slope", "intercept", "reflection overlay"], [["Original", "f(2)=5", "point (2,5)"], ["Inverse", "f^-1(5)=2", "point (5,2)"], ["Check", "f^-1(f(x))=x", "undoes the rule"]], "An inverse function undoes a rule by reversing each input-output pair.", "Inverse does not mean reciprocal 1/f(x).", "What is the inverse of 2x+1?", "(x - 1) / 2."),
+    152: spec("0209", "Even and Odd Functions", "Test f(-x) to decide y-axis symmetry, origin symmetry, or neither.", "even: f(-x)=f(x); odd: f(-x)=-f(x)", "verdict: even", "dark", "symmetry", ["Even", "Odd", "Neither", "Test"], "Symmetry tests", ["Even: mirror over y-axis", "Odd: rotate around origin", "Neither: no matching symmetry"], "Comparison controls", ["test x", "show f(-x)", "symmetry overlay"], [["Even", "x^2", "f(-x)=f(x)"], ["Odd", "x^3", "f(-x)=-f(x)"], ["Neither", "x^2+x", "fails both"]], "The name even or odd is proved by substitution, not by guessing from the formula title.", "Always test f(-x); do not guess from the graph name.", "Is x^2 even or odd?", "Even."),
+    153: spec("0210", "Increasing and Decreasing", "Use a probe and slope sign map to identify where a graph rises, falls, or turns.", "f'(x): + | 0 | - | 0 | +", "read left to right", "dark", "piecewise", ["Intervals", "Slope signs", "Turning points", "Check"], "Monotonic intervals", ["Increasing where f'(x) > 0", "Decreasing where f'(x) < 0", "Local extrema occur at sign changes"], "Inspector controls", ["x probe", "slope sign", "turning-point labels"], [["Left interval", "increasing", "positive slope"], ["Middle interval", "decreasing", "negative slope"], ["Right interval", "increasing", "positive slope"]], "Increasing and decreasing are read as x moves left to right across the graph.", "Do not judge increasing by height alone; compare nearby x-values.", "When is a graph increasing?", "When outputs rise as x increases."),
+    154: spec("0211", "Periodic Functions", "Measure one repeat cycle and connect period, amplitude, and midline.", "f(x + T) = f(x)", "period T = pi", "dark", "trigonometric", ["Cycle", "Period ruler", "Table", "Challenge"], "Repeating cycle", ["Matching points one period apart", "Amplitude from midline", "Period is horizontal length"], "Period controls", ["period T", "phase marker", "cycle shading"], [["Cycle start", "0", "first matching point"], ["Cycle end", "pi", "same output repeats"], ["Rule", "f(x+T)=f(x)", "periodic identity"]], "A periodic function repeats after a fixed horizontal interval.", "A period is horizontal distance, not vertical height.", "What does T mean?", "The repeat interval."),
+    156: spec("0213", "Vertical Translation", "Move every output up or down while x-values stay fixed.", "g(x)=f(x)+k", "k = 2", "dark", "symmetry", ["Graph", "Point table", "Parameter", "Check"], "Vertical shift", ["Every y-value changes by k", "x-coordinates stay fixed", "Parent and translated graph overlay"], "Shift controls", ["vertical shift k", "parent visibility", "sample point"], [["Parent", "(2,4)", "before shift"], ["Translated", "(2,6)", "after k=2"], ["Rule", "add outside", "changes output"]], "Outside addition moves every output by the same amount.", "Vertical shifts do not change x-coordinates.", "What changes in f(x)+k?", "Every y-value."),
+    157: spec("0214", "Horizontal Translation", "Move the graph left or right by changing the input before the function acts.", "g(x)=f(x-h)", "h = 2", "dark", "inverse", ["Graph", "Input remap", "Point table", "Check"], "Horizontal shift", ["Inside subtraction moves right", "Same y-levels", "Input changes before output"], "Shift controls", ["horizontal shift h", "parent visibility", "mapped input"], [["Parent", "(0,0)", "before shift"], ["Translated", "(2,0)", "after h=2"], ["Rule", "subtract inside", "moves right"]], "Inside changes remap the x-coordinate before the function is evaluated.", "f(x-2) moves right, not left.", "What does f(x-2) do?", "Moves the graph right 2."),
+    158: spec("0215", "Vertical Stretch and Compression", "Scale the height of every output by multiplying outside the function.", "g(x)=a f(x)", "a = 1.8", "dark", "symmetry", ["Graph", "Scale", "Point table", "Check"], "Vertical scale", ["x-values stay fixed", "y-values multiply by a", "Negative a reflects across x-axis"], "Scale controls", ["vertical scale a", "compression mode", "sample point"], [["Parent", "(2,4)", "before scale"], ["Stretched", "(2,7.2)", "after a=1.8"], ["Rule", "multiply outside", "changes height"]], "Outside multiplication stretches or compresses the graph vertically.", "A vertical scale changes y-values, not x-values.", "What does a f(x) change?", "The output height."),
+    159: spec("0216", "Horizontal Stretch and Compression", "Scale the width by multiplying the input before the function acts.", "g(x)=f(bx)", "b = 0.7", "dark", "inverse", ["Graph", "Width scale", "Point table", "Check"], "Horizontal scale", ["Horizontal distances scale inversely", "Same y-levels", "Input changes first"], "Scale controls", ["inside scale b", "width factor 1/b", "sample y-level"], [["Parent", "(2,4)", "before scale"], ["Wide graph", "(2.86,4)", "after b=0.7"], ["Rule", "multiply inside", "changes width"]], "Inside multiplication changes width before outputs are computed.", "Horizontal scale factors act inversely.", "What does f(2x) do?", "Compresses horizontally."),
+    160: spec("0217", "Reflection in x-Axis", "Flip every output by changing y to -y.", "g(x)=-f(x)", "(2,4) -> (2,-4)", "dark", "symmetry", ["Graph", "Point pairs", "Axis mirror", "Check"], "x-axis reflection", ["x-coordinate unchanged", "y changes sign", "Graph flips above/below x-axis"], "Reflection controls", ["reflection toggle", "vertical shift", "point pair"], [["Original", "(2,4)", "above x-axis"], ["Reflected", "(2,-4)", "below x-axis"], ["Rule", "-f(x)", "changes y to -y"]], "Reflection in the x-axis negates every output.", "The x-coordinate does not change in an x-axis reflection.", "What changes in -f(x)?", "The y-value changes sign."),
+    161: spec("0218", "Reflection in y-Axis", "Flip inputs by changing x to -x before evaluation.", "g(x)=f(-x)", "(-2,-8) <-> (2,-8)", "dark", "inverse", ["Graph", "Point pairs", "Axis mirror", "Check"], "y-axis reflection", ["x changes sign", "y-coordinate unchanged", "Left and right swap"], "Reflection controls", ["input sign toggle", "pre-shift", "point pair"], [["Original", "(2,-8)", "right branch"], ["Reflected", "(-2,-8)", "left branch"], ["Rule", "f(-x)", "changes x to -x"]], "Reflection in the y-axis negates the input before the rule acts.", "The y-coordinate does not change in a y-axis reflection.", "What changes in f(-x)?", "The x-value changes sign."),
+    162: spec("0219", "Combined Transformations", "Track inside and outside changes through one transformed equation.", "y=a(x-h)^2+k", "vertex (2,-1)", "dark", "symmetry", ["Graph", "Sequence", "Vertex", "Check"], "Combined transform", ["Parent y=x^2", "Track h, a, and k", "Vertex gives shift immediately"], "Parameter controls", ["a", "h", "k"], [["Parent vertex", "(0,0)", "start"], ["Final vertex", "(2,-1)", "after h and k"], ["Scale", "a", "opens or reflects"]], "Combined transformations are easiest when inside and outside changes are tracked separately.", "Do not apply transformations in a random order.", "What is the vertex of a(x-h)^2+k?", "(h, k)."),
+    164: spec("0221", "Parameter Explorer", "Change one parameter at a time and name the graph-family effect.", "y=a(x-h)^2+k", "a=2, h=1, k=-1", "dark", "symmetry", ["Explore", "Effects", "Table", "Challenge"], "Parameter effects", ["a controls opening and stretch", "h controls horizontal position", "k controls vertical position"], "Explorer controls", ["a slider", "h slider", "k slider"], [["a", "2", "narrower opening"], ["h", "1", "right shift"], ["k", "-1", "down shift"]], "Parameter sliders change the whole graph family, not just one point.", "Move one parameter at a time so the effect is visible.", "Which parameter moves the vertex up/down?", "k."),
   };
   return specs[lessonId] ?? specs[143];
 }

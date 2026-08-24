@@ -1,0 +1,27 @@
+{
+  "mockup": "0338",
+  "lessonId": 432,
+  "route": "/lessons/symbolic-mathematics/432-substitute",
+  "status": "Passed",
+  "targetMarkerCount": 1,
+  "controls": 19,
+  "minRequiredControls": 8,
+  "interactionChecks": [
+    "CAS command applied",
+    "Numeric mode selected"
+  ],
+  "responsiveChecks": {
+    "desktop": {
+      "overflow": false
+    },
+    "tablet": {
+      "overflow": false,
+      "width": 900
+    },
+    "mobile": {
+      "overflow": false,
+      "width": 390
+    }
+  },
+  "consoleMessages": 0
+}

@@ -1,0 +1,9 @@
+{
+  "mockup": "0278",
+  "lessonId": 221,
+  "route": "/lessons/geometry/221-compass",
+  "reference": "0278-interactive-foundational-advanced-dynamic-geometry-constructions-compass-redesigned.png",
+  "present": true,
+  "interactiveControls": 53,
+  "consoleMessages": []
+}

@@ -1,0 +1,9 @@
+{
+  "mockup": "0400",
+  "lessonId": 321,
+  "route": "/lessons/calculus/321-surface-area-of-revolution",
+  "reference": "0400-interactive-advanced-integral-calculus-and-differential-equations-surface-area-of-revolution-redesigned.png",
+  "present": true,
+  "interactiveControls": 11,
+  "consoleMessages": []
+}

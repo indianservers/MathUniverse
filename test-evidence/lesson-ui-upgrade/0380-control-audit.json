@@ -1,0 +1,9 @@
+{
+  "mockup": "0380",
+  "lessonId": 301,
+  "route": "/lessons/calculus/301-optimisation",
+  "reference": "0380-interactive-advanced-limits-and-differential-calculus-optimisation-redesigned.png",
+  "present": true,
+  "interactiveControls": 11,
+  "consoleMessages": []
+}

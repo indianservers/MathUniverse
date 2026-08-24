@@ -118,16 +118,24 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
     await navigator.clipboard?.writeText(url);
     setShareStatus("Lesson state link copied.");
   };
-  const usesImmersiveFunctionWorkspace = lesson.id >= 143 && lesson.id <= 152;
+  const usesImmersiveFunctionWorkspace = lesson.id >= 143 && lesson.id <= 152 || lesson.id === 153 || lesson.id === 154 || (lesson.id >= 156 && lesson.id <= 162) || lesson.id === 164;
+  const usesTargetGraphingWorkspace = lesson.id >= 39 && lesson.id <= 56;
+  const usesImmersiveDynamicGeometryWorkspace = lesson.id >= 198 && lesson.id <= 235;
+  const usesTargetTrigonometryWorkspace = lesson.id >= 257 && lesson.id <= 276;
+  const usesTargetStatisticsWorkspace = lesson.id >= 467 && lesson.id <= 499;
+  const usesTargetProbabilityWorkspace = lesson.id >= 500 && lesson.id <= 536;
+  const usesTargetLimitsDifferentialWorkspace = lesson.id >= 277 && lesson.id <= 305;
+  const usesTargetIntegralDifferentialWorkspace = lesson.id >= 306 && lesson.id <= 333;
+  const usesTargetSymbolicCasWorkspace = lesson.id >= 428 && lesson.id <= 449;
 
-  if (usesImmersiveFunctionWorkspace) {
+  if (usesImmersiveFunctionWorkspace || usesImmersiveDynamicGeometryWorkspace) {
     return (
       <div className="lesson-page-shell space-y-3" data-testid="lesson-page" data-lesson-id={lesson.id}>
         <LessonSurface lesson={lesson} resetToken={resetToken} onInteraction={recordInteraction} />
-        <nav className="lesson-adjacent-nav grid gap-3 sm:grid-cols-2" aria-label="Adjacent lessons">
+        {usesImmersiveDynamicGeometryWorkspace ? null : <nav className="lesson-adjacent-nav grid gap-3 sm:grid-cols-2" aria-label="Adjacent lessons">
           {adjacent.previous ? <Link className="action-secondary justify-start" to={adjacent.previous.route}><ArrowLeft className="h-4 w-4" /><span><span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">Previous</span><span className="line-clamp-1">{adjacent.previous.title}</span></span></Link> : <span />}
           {adjacent.next ? <Link className="action-secondary justify-end text-right" to={adjacent.next.route}><span><span className="block text-[10px] font-black uppercase text-slate-500 dark:text-slate-300">Next</span><span className="line-clamp-1">{adjacent.next.title}</span></span><ArrowRight className="h-4 w-4" /></Link> : <span />}
-        </nav>
+        </nav>}
       </div>
     );
   }
@@ -179,8 +187,8 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
 
       <div className="grid items-start gap-3">
         <main className="space-y-3">
-          {infoTab === "interaction" ? <section id="lesson-panel-interaction" role="tabpanel" className="lesson-workbench rounded-2xl border border-cyan-100 bg-white/90 p-3 shadow-lg shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/75" aria-label="Lesson interaction and visualization">
-            <div className="lesson-workbench-heading mb-3 flex flex-wrap items-center justify-between gap-3">
+          {infoTab === "interaction" ? <section id="lesson-panel-interaction" role="tabpanel" className={`lesson-workbench rounded-2xl border border-cyan-100 bg-white/90 p-3 shadow-lg shadow-cyan-950/5 dark:border-white/10 dark:bg-slate-950/75${usesTargetGraphingWorkspace || usesTargetTrigonometryWorkspace || usesTargetStatisticsWorkspace || usesTargetProbabilityWorkspace || usesTargetLimitsDifferentialWorkspace || usesTargetIntegralDifferentialWorkspace || usesTargetSymbolicCasWorkspace ? " is-target-graphing-workbench" : ""}`} aria-label="Lesson interaction and visualization">
+            {usesTargetGraphingWorkspace || usesTargetTrigonometryWorkspace || usesTargetStatisticsWorkspace || usesTargetProbabilityWorkspace || usesTargetLimitsDifferentialWorkspace || usesTargetIntegralDifferentialWorkspace || usesTargetSymbolicCasWorkspace ? null : <div className="lesson-workbench-heading mb-3 flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-wide text-cyan-600 dark:text-cyan-300">Interaction + visualization</p>
                 <h2 className="mt-1 text-xl font-black text-slate-950 dark:text-white">Work directly on the model</h2>
@@ -190,12 +198,12 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
                 <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-black text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-200">{progress.interactionHistory.length} actions</span>
                 <button type="button" className="lesson-icon-button" onClick={() => setFocusMode(true)} aria-label="Open full screen visual lab"><Maximize2 className="h-4 w-4" /></button>
               </div>
-            </div>
+            </div>}
             <LessonSurface lesson={lesson} resetToken={resetToken} onInteraction={(event) => recordInteraction(event ?? createLegacyInteractionEvent(lesson))} />
-            <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {usesTargetGraphingWorkspace || usesTargetTrigonometryWorkspace || usesTargetStatisticsWorkspace || usesTargetProbabilityWorkspace || usesTargetLimitsDifferentialWorkspace || usesTargetIntegralDifferentialWorkspace || usesTargetSymbolicCasWorkspace ? null : <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
               {lesson.contract.requiredControlIds.map((control) => <Tag key={control} icon={<SlidersHorizontal className="h-3.5 w-3.5" />} label={control} />)}
               {lesson.contract.workspaceObjects.slice(0, 3).map((object) => <Tag key={object} icon={<PanelTop className="h-3.5 w-3.5" />} label={object} />)}
-            </div>
+            </div>}
           </section> : <LessonContentPanel lesson={lesson} content={localizedContent} language={selectedLanguage} status={languageStatus} activeTab={infoTab} strengthenedLesson={strengthenedLesson} />}
         </main>
       </div>

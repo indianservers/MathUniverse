@@ -5,6 +5,8 @@ import { symbolicDerivative, symbolicIntegral } from "../../../utils/symbolic";
 import AdapterFrame from "../components/AdapterFrame";
 import { calculusVisualPresetForLesson } from "../presets/calculusVisualPresets";
 import type { LessonAdapterProps } from "../types";
+import IntegralDifferentialMockupLesson from "./calculus/IntegralDifferentialMockupLesson";
+import LimitsDifferentialMockupLesson from "./calculus/LimitsDifferentialMockupLesson";
 
 const viewportSize = { width: 640, height: 360 };
 const fallbackViewport: GraphViewport = { xMin: -5, xMax: 5, yMin: -6, yMax: 10, ...viewportSize };
@@ -112,7 +114,13 @@ function calculusGuidanceFor(title: string) {
   return ["Calculus rule", "Connect the graph, rate, and symbolic result.", "Check the domain before using a rule."];
 }
 
-export default function CalculusLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+export default function CalculusLessonAdapter(props: LessonAdapterProps) {
+  if (props.lesson.id >= 277 && props.lesson.id <= 305) return <LimitsDifferentialMockupLesson {...props} />;
+  if (props.lesson.id >= 306 && props.lesson.id <= 333) return <IntegralDifferentialMockupLesson {...props} />;
+  return <LegacyCalculusLessonAdapter {...props} />;
+}
+
+function LegacyCalculusLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   const visualPreset = useMemo(() => calculusVisualPresetForLesson(lesson.id), [lesson.id]);
   const expression = useMemo(() => visualPreset?.expression ?? functionFor(lesson.title), [lesson.title, visualPreset]);
   const viewport = useMemo<GraphViewport>(() => ({ ...(visualPreset?.viewport ?? fallbackViewport), ...viewportSize }), [visualPreset]);

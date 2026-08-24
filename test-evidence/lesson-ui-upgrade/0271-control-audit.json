@@ -1,0 +1,9 @@
+{
+  "mockup": "0271",
+  "lessonId": 214,
+  "route": "/lessons/geometry/214-triangle-constructor",
+  "reference": "0271-interactive-foundational-advanced-dynamic-geometry-constructions-triangle-constructor-redesigned.png",
+  "present": true,
+  "interactiveControls": 53,
+  "consoleMessages": []
+}

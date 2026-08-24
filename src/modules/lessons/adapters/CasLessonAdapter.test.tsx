@@ -21,6 +21,7 @@ describe("CasLessonAdapter", () => {
       [440, "Integrals"],
       [441, "Limits"],
       [442, "Series Expansions"],
+      [443, "Differential Equations"],
       [444, "Matrix Operations"],
       [445, "Complex Calculations"],
       [446, "Assumptions"],
@@ -32,11 +33,22 @@ describe("CasLessonAdapter", () => {
     for (const [lessonId, snippet] of expected) {
       const lesson = lessonCatalog.find((item) => item.id === lessonId)!;
       const html = renderToStaticMarkup(
-        <CasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <CasLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, String(lessonId)).toContain(lesson.title);
       expect(html, String(lessonId)).toContain(snippet);
+      expect(html, String(lessonId)).toContain(
+        `symbolic-cas-mockup-${String(lessonId - 94).padStart(4, "0")}`,
+      );
+      expect(
+        html.match(/data-lesson-control=/g)?.length,
+        String(lessonId),
+      ).toBeGreaterThanOrEqual(8);
       expect(html, String(lessonId)).not.toContain("CAS workspace</p>");
     }
   });

@@ -1,0 +1,9 @@
+{
+  "mockup": "0137",
+  "lessonId": 45,
+  "route": "/lessons/graphs-and-functions/45-point-plotter",
+  "reference": "0137-interactive-foundational-advanced-2d-graphing-calculator-point-plotter-redesigned.png",
+  "present": true,
+  "interactiveControls": 45,
+  "consoleMessages": []
+}

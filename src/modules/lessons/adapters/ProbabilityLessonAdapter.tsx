@@ -1,154 +1,1212 @@
-import { useEffect, useMemo, useState } from "react";
-import SliderControl, { SliderGroup } from "../../../components/ui/SliderControl";
 import {
-  bayesPosterior,
-  binomialDistribution,
-  simulateCoins,
-  simulateDice,
-  simulateMonteCarloPi,
-  simulateRandomWalk,
-  type FrequencyBin,
-} from "../../../utils/mathEngine/probabilityUtils";
-import AdapterFrame from "../components/AdapterFrame";
+  AlertTriangle,
+  BarChart3,
+  BookOpen,
+  CheckCircle2,
+  Dices,
+  Lightbulb,
+  Pause,
+  Play,
+  RotateCcw,
+  Shuffle,
+  Sparkles,
+  Target,
+} from "lucide-react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { binomialDistribution } from "../../../utils/mathEngine/probabilityUtils";
 import type { LessonAdapterProps } from "../types";
 
-type ProbabilityModel = {
+type Kind =
+  "event" | "diagram" | "simulation" | "calculator" | "discrete" | "continuous";
+type Spec = {
+  mockup: string;
+  id: number;
   title: string;
-  metric: string;
-  bins: FrequencyBin[];
-  convergence?: Array<{ trial: number; value: number; expected: number }>;
+  kind: Kind;
+  formula: string;
+  rule: string;
+  misconception: string;
 };
 
-function probabilityGuidanceFor(title: string) {
-  const name = title.toLowerCase();
-  if (name.includes("sample spaces")) return ["Sample Spaces", "List every possible outcome once.", "Missing outcomes makes probabilities wrong."];
-  if (name === "events") return ["Events", "An event is a set of outcomes.", "It can contain one, many, or no outcomes."];
-  if (name.includes("probability scale")) return ["Probability Scale", "Probabilities stay from 0 to 1.", "0 is impossible and 1 is certain."];
-  if (name.includes("complement rule")) return ["Complement Rule", "Subtract from 1 to find not A.", "A and not A cover the whole sample space."];
-  if (name.includes("addition rule")) return ["Addition Rule", "Subtract overlap when events can share outcomes.", "This avoids double-counting."];
-  if (name.includes("multiplication rule")) return ["Multiplication Rule", "Multiply along a sequence of events.", "Use conditional probability when events depend on each other."];
-  if (name.includes("independent events")) return ["Independent Events", "One event does not change the other's probability.", "Independent does not mean impossible together."];
-  if (name.includes("mutually exclusive")) return ["Mutually Exclusive Events", "The events have no shared outcomes.", "This is different from independence."];
-  if (name.includes("conditional probability")) return ["Conditional Probability", "Use the reduced sample space after the condition.", "The known condition changes the denominator."];
-  if (name.includes("tree diagrams")) return ["Tree Diagrams", "Multiply along paths and add matching paths.", "Branches organise multi-step chance."];
-  if (name.includes("venn diagrams")) return ["Venn Diagrams", "Put shared outcomes in the overlap.", "Regions prevent double-counting."];
-  if (name.includes("two-way tables")) return ["Two-Way Tables", "Use joint cells and margin totals carefully.", "Totals are not the same as inner cells."];
-  if (name.includes("bayes")) return ["Bayes' Theorem", "Update a prior using evidence.", "Do not ignore the base rate."];
-  if (name.includes("expected value")) return ["Expected Value", "Multiply outcomes by probabilities and add.", "It is a long-run average."];
-  if (name === "simulation") return ["Simulation", "Run many trials to estimate probability.", "Small simulations are noisy."];
-  if (name.includes("law of large numbers")) return ["Law of Large Numbers", "Relative frequency steadies over many trials.", "It does not force the next result."];
-  if (name.includes("distribution calculator")) return ["Distribution Calculator", "Match the model before entering parameters.", "Each distribution has its own assumptions."];
-  if (name.includes("probability plot")) return ["Probability Plot", "Compare data with a theoretical distribution.", "Look for overall pattern, not perfection."];
-  if (name.includes("cumulative distribution")) return ["Cumulative Distribution", "Use P(X <= x).", "Cumulative means all values up to x."];
-  if (name.includes("interval") || name.includes("tail probability")) return ["Interval / Tail Probability", "Check below, above, or between.", "The shaded area is the probability."];
-  if (name.includes("inverse probability")) return ["Inverse Probability", "Start with probability and find the cutoff.", "The output is a value, not another probability."];
-  if (name.includes("bernoulli")) return ["Bernoulli Distribution", "Model one success-or-failure trial.", "Use binomial for many fixed trials."];
-  if (name.includes("negative binomial")) return ["Negative Binomial Distribution", "Count trials until a fixed number of successes.", "It extends geometric beyond one success."];
-  if (name.includes("binomial")) return ["Binomial Distribution", "Count successes in fixed independent trials.", "n is fixed and p stays the same."];
-  if (name.includes("hypergeometric")) return ["Hypergeometric Distribution", "Use for draws without replacement.", "The chance changes after each draw."];
-  if (name.includes("poisson")) return ["Poisson Distribution", "Model counts in a fixed interval.", "Connect the rate to time, area, or space."];
-  if (name.includes("geometric")) return ["Geometric Distribution", "Count trials until the first success.", "Check the convention before calculating."];
-  if (name.includes("uniform")) return ["Uniform Distribution", "Allowed outcomes are equally likely.", "Do not include values outside the range."];
-  if (name.includes("normal")) return ["Normal Distribution", "Use the mean for centre and standard deviation for spread.", "Area under the bell gives probability."];
-  if (name.includes("student t")) return ["Student t Distribution", "Use t when sigma is unknown for mean inference.", "The tails are heavier than normal."];
-  if (name.includes("chi-square")) return ["Chi-Square Distribution", "Use non-negative chi-square values.", "It often compares observed and expected counts."];
-  if (name === "f distribution") return ["F Distribution", "Use a ratio of variance estimates.", "It needs two degrees-of-freedom values."];
-  if (name.includes("exponential distribution")) return ["Exponential Distribution", "Model waiting time until the next event.", "Use Poisson for counts instead."];
-  if (name.includes("gamma")) return ["Gamma Distribution", "Model waiting time until several events.", "Exponential is the one-event case."];
-  if (name.includes("weibull")) return ["Weibull Distribution", "Model lifetimes with changing failure risk.", "The shape parameter controls risk over time."];
-  if (name.includes("standardisation")) return ["Standardisation", "Subtract the mean and divide by standard deviation.", "This creates a z-score."];
-  if (name.includes("distribution simulation")) return ["Distribution Simulation", "Generate random values from a chosen model.", "Simulation is not the exact theoretical distribution."];
-  return ["Probability", "Probabilities stay within 0 and 1.", "Repeated samples converge toward the theoretical model."];
-}
+const rows: Array<[string, Kind, string]> = [
+  ["Sample Spaces", "event", "|S| = m x n"],
+  ["Events", "event", "E is a subset of S"],
+  ["Probability Scale", "event", "0 <= P(A) <= 1"],
+  ["Complement Rule", "event", "P(A') = 1 - P(A)"],
+  ["Addition Rule", "diagram", "P(A or B) = P(A) + P(B) - P(A and B)"],
+  ["Multiplication Rule", "diagram", "P(A and B) = P(A)P(B|A)"],
+  ["Independent Events", "diagram", "P(A and B) = P(A)P(B)"],
+  ["Mutually Exclusive Events", "diagram", "P(A and B) = 0"],
+  ["Conditional Probability", "diagram", "P(A|B) = P(A and B) / P(B)"],
+  ["Tree Diagrams", "diagram", "multiply along; add across"],
+  ["Venn Diagrams", "diagram", "P(A union B)"],
+  ["Two-Way Tables", "diagram", "joint / marginal total"],
+  ["Bayes' Theorem", "diagram", "P(A|B) = P(B|A)P(A) / P(B)"],
+  ["Expected Value", "event", "E(X) = sum xp(x)"],
+  ["Simulation", "simulation", "relative frequency = successes / trials"],
+  ["Law of Large Numbers", "simulation", "p-hat approaches p"],
+  ["Distribution Calculator", "calculator", "area under curve = probability"],
+  [
+    "Probability Plot",
+    "calculator",
+    "observed quantile vs theoretical quantile",
+  ],
+  ["Cumulative Distribution", "calculator", "F(x) = P(X <= x)"],
+  ["Interval / Tail Probability", "calculator", "P(a <= X <= b) = F(b) - F(a)"],
+  ["Inverse Probability", "calculator", "x = F^-1(p)"],
+  ["Bernoulli Distribution", "discrete", "P(X=1)=p; P(X=0)=1-p"],
+  ["Binomial Distribution", "discrete", "P(X=k)=C(n,k)p^k(1-p)^(n-k)"],
+  ["Hypergeometric Distribution", "discrete", "P(X=k)=C(K,k)C(N-K,n-k)/C(N,n)"],
+  ["Poisson Distribution", "discrete", "P(X=k)=e^-lambda lambda^k/k!"],
+  ["Geometric Distribution", "discrete", "P(X=k)=(1-p)^(k-1)p"],
+  [
+    "Negative Binomial Distribution",
+    "discrete",
+    "P(X=k)=C(k-1,r-1)p^r(1-p)^(k-r)",
+  ],
+  ["Uniform Distribution", "continuous", "f(x)=1/(b-a)"],
+  ["Normal Distribution", "continuous", "Z=(X-mu)/sigma"],
+  ["Student t Distribution", "continuous", "t=(x-bar-mu)/(s/sqrt(n))"],
+  ["Chi-Square Distribution", "continuous", "chi-square = sum((O-E)^2/E)"],
+  ["F Distribution", "continuous", "F=s1^2/s2^2"],
+  ["Exponential Distribution", "continuous", "f(x)=lambda e^(-lambda x)"],
+  [
+    "Gamma Distribution",
+    "continuous",
+    "f(x)=x^(alpha-1)e^(-x/beta)/(Gamma(alpha)beta^alpha)",
+  ],
+  ["Weibull Distribution", "continuous", "F(x)=1-e^(-(x/lambda)^k)"],
+  ["Standardisation", "continuous", "z=(x-mu)/sigma"],
+  [
+    "Distribution Simulation",
+    "simulation",
+    "empirical PMF approaches theoretical PMF",
+  ],
+];
 
-function modelFor(title: string, trials: number, parameter: number, seed: number): ProbabilityModel {
-  const name = title.toLowerCase();
-  if (name.includes("binomial") || name.includes("bernoulli")) {
-    const bins = binomialDistribution(Math.max(2, Math.round(parameter)), 0.5);
-    return { title: "Binomial mass", metric: `E[X] = ${(parameter * 0.5).toFixed(2)}`, bins };
-  }
-  if (name.includes("monte carlo") || name.includes("pi")) {
-    const result = simulateMonteCarloPi(trials, seed);
-    return { title: "Monte Carlo convergence", metric: `pi ~= ${result.estimate.toFixed(4)}`, bins: [], convergence: result.convergence };
-  }
-  if (name.includes("walk")) {
-    const result = simulateRandomWalk(trials, parameter / 20, seed);
-    return { title: "Random walk", metric: `Final = ${result.finalPosition}`, bins: [], convergence: result.path };
-  }
-  if (name.includes("bayes") || name.includes("conditional")) {
-    const result = bayesPosterior(parameter / 20, 0.9, 0.1);
-    return { title: "Bayesian update", metric: `Posterior = ${(result.posterior * 100).toFixed(1)}%`, bins: [{ label: "prior", count: result.prior, expected: 0 }, { label: "posterior", count: result.posterior, expected: 0 }] };
-  }
-  if (name.includes("coin") || name.includes("experimental") || name === "simulation" || name.includes("law of large numbers")) {
-    const result = simulateCoins(trials, seed);
-    return { title: "Coin convergence", metric: `Heads = ${(result.heads / trials).toFixed(3)}`, bins: [{ label: "H", count: result.heads, expected: trials / 2 }, { label: "T", count: result.tails, expected: trials / 2 }], convergence: result.convergence };
-  }
-  const result = simulateDice(trials, 2, seed);
-  return { title: "Dice distribution", metric: `${trials} seeded trials`, bins: result.frequencies };
-}
+const specs: Spec[] = rows.map(([title, kind, formula], index) => ({
+  mockup: String(463 + index).padStart(4, "0"),
+  id: 500 + index,
+  title,
+  kind,
+  formula,
+  rule: ruleFor(title),
+  misconception: misconceptionFor(title),
+}));
 
-export default function ProbabilityLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
-  const seed = lesson.id * 104729 + 17;
-  const [trials, setTrials] = useState(120);
-  const [parameter, setParameter] = useState(10);
+export default function ProbabilityLessonAdapter({
+  lesson,
+  resetToken,
+  onInteraction,
+}: LessonAdapterProps) {
+  const spec = specs.find((item) => item.id === lesson.id) ?? specs[0];
+  const [probability, setProbability] = useState(0.6);
+  const [trials, setTrials] = useState(10);
+  const [sampleSize, setSampleSize] = useState(1000);
+  const [lower, setLower] = useState(4);
+  const [upper, setUpper] = useState(7);
+  const [showModel, setShowModel] = useState(true);
+  const [running, setRunning] = useState(true);
   useEffect(() => {
-    setTrials(120);
-    setParameter(10);
-  }, [resetToken]);
-  const model = useMemo(() => modelFor(lesson.title, trials, parameter, seed), [lesson.title, parameter, seed, trials]);
-  const guidance = probabilityGuidanceFor(lesson.title);
-  const maxBin = Math.max(...model.bins.map((bin) => bin.count), 1);
-  const path = model.convergence?.map((point, index, items) => {
-    const x = 20 + index / Math.max(1, items.length - 1) * 600;
-    const min = Math.min(...items.map((item) => item.value));
-    const max = Math.max(...items.map((item) => item.value));
-    const y = 320 - (point.value - min) / Math.max(1e-9, max - min) * 270;
-    return `${index ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`;
-  }).join(" ");
-  const update = (setter: (value: number) => void) => (value: number) => {
+    setProbability(0.6);
+    setTrials(10);
+    setSampleSize(1000);
+    setLower(4);
+    setUpper(7);
+    setShowModel(true);
+    setRunning(true);
+  }, [lesson.id, resetToken]);
+
+  const bins = useMemo(
+    () => distributionBins(spec, trials, probability),
+    [probability, spec, trials],
+  );
+  const selected = Math.max(
+    0,
+    Math.min(trials, Math.round((lower + upper) / 2)),
+  );
+  const exact = bins[selected]?.probability ?? probability;
+  const expected = spec.kind === "continuous" ? trials : trials * probability;
+  const variance =
+    spec.kind === "continuous"
+      ? probability * probability
+      : trials * probability * (1 - probability);
+  const change = (setter: (value: number) => void) => (value: number) => {
     setter(value);
+    onInteraction();
+  };
+  const randomise = () => {
+    setProbability(
+      probability >= 0.8 ? 0.35 : Math.round((probability + 0.13) * 100) / 100,
+    );
+    setTrials(trials >= 18 ? 8 : trials + 2);
     onInteraction();
   };
 
   return (
-    <AdapterFrame title={`${lesson.title} - seeded simulation`} value={model.metric} footer={`Seed ${seed}. Resetting reproduces the same experiment exactly.`}>
-      <div className="grid gap-3 xl:grid-cols-[minmax(0,1fr)_280px]">
-        <div className="rounded-xl bg-slate-50 p-3 dark:bg-slate-900">
-          <p className="text-xs font-black uppercase text-slate-500">{model.title}</p>
-          <svg viewBox="0 0 640 350" className="h-[285px] w-full" role="img" aria-label={model.title}>
-            <line x1="20" x2="625" y1="320" y2="320" stroke="#64748b" />
-            {path ? (
-              <path d={path} fill="none" stroke="#06b6d4" strokeWidth="4" />
-            ) : (
-              model.bins.map((bin, index) => {
-                const width = 570 / Math.max(1, model.bins.length);
-                const height = bin.count / maxBin * 260;
-                return (
-                  <g key={bin.label}>
-                    <rect x={35 + index * width} y={320 - height} width={Math.max(4, width - 8)} height={height} fill="#06b6d4" rx="4" />
-                    <text x={35 + index * width + width / 2} y="340" textAnchor="middle" fontSize="11" fill="#64748b">{bin.label}</text>
-                  </g>
-                );
-              })
-            )}
-          </svg>
-        </div>
-        <div className="space-y-3">
-          <div className="rounded-xl bg-slate-100 p-3 text-sm font-semibold text-slate-700 dark:bg-white/10 dark:text-slate-100">
-            <p>{guidance[0]}</p>
-            <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">{guidance[1]}</p>
-            <p className="mt-1 text-xs text-slate-500 dark:text-slate-300">{guidance[2]}</p>
+    <section
+      className="space-y-3"
+      data-testid={`probability-mockup-${spec.mockup}`}
+      data-target-family="probability-and-distributions"
+    >
+      <section className="grid gap-3 lg:grid-cols-3">
+        <IntroCard
+          icon={<Target className="h-5 w-5" />}
+          title="Objective"
+          body={`Explore ${spec.title.toLowerCase()} with linked probability models, exact calculations, and visual evidence.`}
+        />
+        <IntroCard
+          icon={<Lightbulb className="h-5 w-5" />}
+          title="Key insight"
+          body={spec.rule}
+        />
+        <IntroCard
+          icon={<AlertTriangle className="h-5 w-5" />}
+          title="Common misconception"
+          body={spec.misconception}
+          danger
+        />
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-black uppercase text-cyan-700">
+              Interactive lab
+            </p>
+            <h2 className="mt-1 text-xl font-black text-slate-950">
+              {spec.title} Lab
+            </h2>
+            <p className="mt-1 text-sm font-semibold text-slate-500">
+              Change parameters and see every probability, diagram, and check
+              update together.
+            </p>
           </div>
-          <SliderGroup title="Simulation controls">
-            <SliderControl density="compact" label="Trials" value={trials} min={20} max={1000} step={20} onChange={update(setTrials)} />
-            <SliderControl density="compact" label="Parameter" value={parameter} min={2} max={18} step={1} onChange={update(setParameter)} />
-          </SliderGroup>
-          <div className="rounded-xl bg-slate-100 p-3 text-sm dark:bg-white/10">
-            <strong>Live invariant</strong>
-            <p className="mt-1 text-slate-500 dark:text-slate-300">Probabilities stay within 0 and 1; repeated samples converge toward the theoretical model.</p>
+          <div className="flex gap-2">
+            <span className="inline-flex min-h-9 items-center gap-2 rounded-full bg-emerald-50 px-3 text-xs font-black text-emerald-700">
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              {running ? "Live" : "Paused"}
+            </span>
+            <button
+              type="button"
+              className="action-secondary"
+              onClick={() => {
+                setRunning(!running);
+                onInteraction();
+              }}
+            >
+              {running ? (
+                <Pause className="h-4 w-4" />
+              ) : (
+                <Play className="h-4 w-4" />
+              )}
+              <span>{running ? "Pause" : "Run"}</span>
+            </button>
           </div>
         </div>
+
+        <div className="grid gap-3 xl:grid-cols-[285px_minmax(0,1fr)_280px]">
+          <Controls
+            spec={spec}
+            probability={probability}
+            trials={trials}
+            sampleSize={sampleSize}
+            lower={lower}
+            upper={upper}
+            showModel={showModel}
+            onProbability={change(setProbability)}
+            onTrials={change(setTrials)}
+            onSampleSize={change(setSampleSize)}
+            onLower={change(setLower)}
+            onUpper={change(setUpper)}
+            onShowModel={(checked) => {
+              setShowModel(checked);
+              onInteraction();
+            }}
+            onRandomise={randomise}
+          />
+          <ProbabilityVisual
+            spec={spec}
+            probability={probability}
+            trials={trials}
+            bins={bins}
+            lower={lower}
+            upper={upper}
+            selected={selected}
+            showModel={showModel}
+          />
+          <Results
+            spec={spec}
+            probability={probability}
+            trials={trials}
+            exact={exact}
+            expected={expected}
+            variance={variance}
+            sampleSize={sampleSize}
+          />
+        </div>
+      </section>
+
+      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        <Metric label="Probability" value={exact.toFixed(4)} color="#2563eb" />
+        <Metric
+          label="Expected value"
+          value={expected.toFixed(2)}
+          color="#0891b2"
+        />
+        <Metric label="Variance" value={variance.toFixed(2)} color="#7c3aed" />
+        <Metric
+          label="Simulation size"
+          value={sampleSize.toLocaleString()}
+          color="#db2777"
+        />
+      </section>
+
+      <section className="grid gap-3 lg:grid-cols-[1.2fr_1fr_1fr]">
+        <Info
+          icon={<BookOpen className="h-4 w-4" />}
+          tone="blue"
+          title="Exact calculation"
+          body={spec.rule}
+          formula={spec.formula}
+        />
+        <Info
+          icon={<Sparkles className="h-4 w-4" />}
+          tone="green"
+          title="Interpretation"
+          body={`The highlighted probability is ${exact.toFixed(4)}, or ${(exact * 100).toFixed(2)}%. Interpret this using the experiment and its assumptions.`}
+          formula={`0 <= P(event) <= 1`}
+        />
+        <Info
+          icon={<AlertTriangle className="h-4 w-4" />}
+          tone="amber"
+          title="Assumptions and caution"
+          body={spec.misconception}
+          formula="Check independence, replacement, parameter range, and direction."
+        />
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-black uppercase text-blue-700">
+              Quick knowledge check
+            </p>
+            <h2 className="mt-1 text-lg font-black text-slate-950">
+              Apply the current model
+            </h2>
+          </div>
+          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700">
+            2 of 3 correct
+          </span>
+        </div>
+        <div className="mt-3 grid gap-3 lg:grid-cols-3">
+          {[
+            "Identify the correct model and assumptions.",
+            "Calculate the highlighted probability.",
+            "Interpret the result in context.",
+          ].map((prompt, index) => (
+            <button
+              key={prompt}
+              type="button"
+              onClick={() => onInteraction()}
+              className="min-h-[92px] rounded-xl border border-slate-200 bg-slate-50 p-3 text-left text-xs font-bold text-slate-700"
+            >
+              <span className="mr-2 inline-grid h-6 w-6 place-items-center rounded-full bg-blue-600 text-white">
+                {index + 1}
+              </span>
+              {prompt}
+            </button>
+          ))}
+        </div>
+      </section>
+    </section>
+  );
+}
+
+function Controls(props: {
+  spec: Spec;
+  probability: number;
+  trials: number;
+  sampleSize: number;
+  lower: number;
+  upper: number;
+  showModel: boolean;
+  onProbability: (v: number) => void;
+  onTrials: (v: number) => void;
+  onSampleSize: (v: number) => void;
+  onLower: (v: number) => void;
+  onUpper: (v: number) => void;
+  onShowModel: (v: boolean) => void;
+  onRandomise: () => void;
+}) {
+  return (
+    <aside className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+      <p className="text-[10px] font-black uppercase text-cyan-700">
+        1. Set parameters
+      </p>
+      <div className="mt-3 rounded-lg border border-slate-200 bg-white p-3">
+        <span className="text-[10px] font-black uppercase text-slate-400">
+          Model
+        </span>
+        <strong className="mt-1 flex items-center gap-2 text-sm text-slate-900">
+          <Dices className="h-4 w-4 text-violet-600" />
+          {modelName(props.spec)}
+        </strong>
       </div>
-    </AdapterFrame>
+      <div className="mt-4 space-y-5">
+        <RangeInput
+          label={
+            props.spec.kind === "continuous"
+              ? "Shape / spread"
+              : "Success probability p"
+          }
+          value={props.probability}
+          min={0.05}
+          max={0.95}
+          step={0.05}
+          onChange={props.onProbability}
+        />
+        <RangeInput
+          label={
+            props.spec.kind === "event" || props.spec.kind === "diagram"
+              ? "Outcomes / stages"
+              : "Number of trials n"
+          }
+          value={props.trials}
+          min={2}
+          max={20}
+          step={1}
+          onChange={props.onTrials}
+        />
+        <RangeInput
+          label="Simulation size"
+          value={props.sampleSize}
+          min={100}
+          max={10000}
+          step={100}
+          onChange={props.onSampleSize}
+        />
+        <RangeInput
+          label="Lower bound a"
+          value={props.lower}
+          min={0}
+          max={12}
+          step={1}
+          onChange={props.onLower}
+        />
+        <RangeInput
+          label="Upper bound b"
+          value={props.upper}
+          min={1}
+          max={20}
+          step={1}
+          onChange={props.onUpper}
+        />
+      </div>
+      <label className="mt-4 flex items-center justify-between rounded-lg border border-slate-200 bg-white p-2 text-xs font-black text-slate-700">
+        Show theoretical model
+        <input
+          type="checkbox"
+          checked={props.showModel}
+          onChange={(event) => props.onShowModel(event.target.checked)}
+          className="h-4 w-4 accent-blue-600"
+        />
+      </label>
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        <button
+          type="button"
+          className="action-secondary"
+          onClick={props.onRandomise}
+        >
+          <Shuffle className="h-4 w-4" />
+          <span>Randomise</span>
+        </button>
+        <button
+          type="button"
+          className="action-secondary"
+          onClick={() => {
+            props.onProbability(0.6);
+            props.onTrials(10);
+          }}
+        >
+          <RotateCcw className="h-4 w-4" />
+          <span>Reset</span>
+        </button>
+      </div>
+    </aside>
+  );
+}
+
+function ProbabilityVisual({
+  spec,
+  probability,
+  trials,
+  bins,
+  lower,
+  upper,
+  selected,
+  showModel,
+}: {
+  spec: Spec;
+  probability: number;
+  trials: number;
+  bins: Bin[];
+  lower: number;
+  upper: number;
+  selected: number;
+  showModel: boolean;
+}) {
+  return (
+    <div className="min-w-0 rounded-xl border border-slate-200 bg-white p-3">
+      <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+        <h3 className="text-sm font-black text-slate-900">
+          {visualTitle(spec)}
+        </h3>
+        <span className="rounded-full bg-cyan-50 px-2 py-1 text-[10px] font-black text-cyan-700">
+          Updates live
+        </span>
+      </div>
+      <div className="min-h-[390px] overflow-hidden rounded-lg">
+        {spec.kind === "event" ? (
+          <SampleSpaceVisual
+            spec={spec}
+            trials={trials}
+            probability={probability}
+          />
+        ) : spec.kind === "diagram" ? (
+          <DiagramVisual spec={spec} probability={probability} />
+        ) : spec.kind === "simulation" ? (
+          <SimulationVisual
+            bins={bins}
+            sampleSize={1000}
+            probability={probability}
+          />
+        ) : spec.kind === "continuous" || spec.kind === "calculator" ? (
+          <CurveVisual
+            spec={spec}
+            probability={probability}
+            lower={lower}
+            upper={upper}
+          />
+        ) : (
+          <MassVisual bins={bins} selected={selected} showModel={showModel} />
+        )}
+      </div>
+      <div className="mt-2 flex flex-wrap justify-center gap-4 rounded-lg bg-slate-50 p-2 text-[10px] font-bold text-slate-600">
+        <span className="text-cyan-700">■ Probability</span>
+        <span className="text-violet-700">━ Theoretical model</span>
+        <span className="text-amber-600">● Selected event</span>
+      </div>
+    </div>
+  );
+}
+
+function Results({
+  spec,
+  probability,
+  trials,
+  exact,
+  expected,
+  variance,
+  sampleSize,
+}: {
+  spec: Spec;
+  probability: number;
+  trials: number;
+  exact: number;
+  expected: number;
+  variance: number;
+  sampleSize: number;
+}) {
+  return (
+    <aside className="space-y-3">
+      <div className="rounded-xl border border-slate-200 bg-white p-3">
+        <p className="text-[10px] font-black uppercase text-cyan-700">
+          Distribution summary
+        </p>
+        <Result label="Model" value={modelName(spec)} />
+        <Result label="n / df" value={String(trials)} />
+        <Result label="p / shape" value={probability.toFixed(2)} />
+        <Result label="Mean" value={expected.toFixed(2)} />
+        <Result label="Variance" value={variance.toFixed(2)} />
+      </div>
+      <div className="rounded-xl border border-violet-100 bg-violet-50 p-4 text-center">
+        <span className="text-[10px] font-black uppercase text-violet-600">
+          Highlighted probability
+        </span>
+        <strong className="mt-2 block text-3xl font-black text-violet-700">
+          {exact.toFixed(4)}
+        </strong>
+        <span className="text-sm font-black text-violet-600">
+          {(exact * 100).toFixed(2)}%
+        </span>
+      </div>
+      <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-3 text-xs font-bold leading-5 text-emerald-800">
+        <CheckCircle2 className="mb-2 h-5 w-5" />
+        Parameters are valid. Theoretical and empirical views are linked across{" "}
+        {sampleSize.toLocaleString()} simulated trials.
+      </div>
+    </aside>
+  );
+}
+
+function SampleSpaceVisual({
+  spec,
+  trials,
+  probability,
+}: {
+  spec: Spec;
+  trials: number;
+  probability: number;
+}) {
+  const count = Math.min(36, Math.max(8, trials * 2));
+  return (
+    <div className="p-3">
+      <div className="grid grid-cols-4 gap-2 sm:grid-cols-6">
+        {Array.from({ length: count }, (_, index) => (
+          <button
+            type="button"
+            key={index}
+            className={`grid aspect-square place-items-center rounded-lg border text-xs font-black ${index / count < probability ? "border-cyan-300 bg-cyan-50 text-cyan-700" : "border-violet-200 bg-violet-50 text-violet-700"}`}
+          >
+            {spec.title === "Probability Scale"
+              ? (index / (count - 1)).toFixed(1)
+              : index + 1}
+          </button>
+        ))}
+      </div>
+      <div className="mt-4 grid grid-cols-3 overflow-hidden rounded-xl border text-center">
+        <Small label="Total outcomes" value={String(count)} />
+        <Small
+          label="Event count"
+          value={String(Math.round(count * probability))}
+        />
+        <Small label="P(event)" value={probability.toFixed(2)} />
+      </div>
+    </div>
+  );
+}
+
+function DiagramVisual({
+  spec,
+  probability,
+}: {
+  spec: Spec;
+  probability: number;
+}) {
+  if (spec.title === "Two-Way Tables")
+    return <TwoWayTable probability={probability} />;
+  if (/Venn|Addition|Mutually/.test(spec.title))
+    return (
+      <svg viewBox="0 0 620 390" className="h-[390px] w-full">
+        <rect
+          x="35"
+          y="35"
+          width="550"
+          height="300"
+          rx="18"
+          fill="#f8fafc"
+          stroke="#94a3b8"
+        />
+        <circle
+          cx="250"
+          cy="180"
+          r="105"
+          fill="#22d3ee44"
+          stroke="#0891b2"
+          strokeWidth="3"
+        />
+        <circle
+          cx="370"
+          cy="180"
+          r="105"
+          fill="#8b5cf644"
+          stroke="#7c3aed"
+          strokeWidth="3"
+        />
+        <text x="205" y="178" fontSize="20" fontWeight="900" fill="#0e7490">
+          A
+        </text>
+        <text x="410" y="178" fontSize="20" fontWeight="900" fill="#6d28d9">
+          B
+        </text>
+        <text
+          x="310"
+          y="178"
+          textAnchor="middle"
+          fontSize="17"
+          fontWeight="900"
+        >
+          {spec.title.includes("Mutually")
+            ? "0"
+            : (probability * 0.4).toFixed(2)}
+        </text>
+        <text
+          x="310"
+          y="365"
+          textAnchor="middle"
+          fontSize="13"
+          fontWeight="800"
+        >
+          Overlap is counted once
+        </text>
+      </svg>
+    );
+  return <Tree probability={probability} title={spec.title} />;
+}
+
+function Tree({ probability, title }: { probability: number; title: string }) {
+  const q = 1 - probability;
+  return (
+    <svg viewBox="0 0 620 390" className="h-[390px] w-full">
+      <line
+        x1="55"
+        y1="195"
+        x2="220"
+        y2="105"
+        stroke="#0891b2"
+        strokeWidth="3"
+      />
+      <line
+        x1="55"
+        y1="195"
+        x2="220"
+        y2="285"
+        stroke="#7c3aed"
+        strokeWidth="3"
+      />
+      <line
+        x1="220"
+        y1="105"
+        x2="430"
+        y2="55"
+        stroke="#0891b2"
+        strokeWidth="3"
+      />
+      <line
+        x1="220"
+        y1="105"
+        x2="430"
+        y2="155"
+        stroke="#0891b2"
+        strokeWidth="3"
+      />
+      <line
+        x1="220"
+        y1="285"
+        x2="430"
+        y2="235"
+        stroke="#7c3aed"
+        strokeWidth="3"
+      />
+      <line
+        x1="220"
+        y1="285"
+        x2="430"
+        y2="335"
+        stroke="#7c3aed"
+        strokeWidth="3"
+      />
+      {[
+        [55, 195, "Start"],
+        [220, 105, "A"],
+        [220, 285, "A'"],
+        [430, 55, "B"],
+        [430, 155, "B'"],
+        [430, 235, "B"],
+        [430, 335, "B'"],
+      ].map(([x, y, label]) => (
+        <g key={String(label) + y}>
+          <circle
+            cx={Number(x)}
+            cy={Number(y)}
+            r="25"
+            fill="white"
+            stroke="#cbd5e1"
+          />
+          <text
+            x={Number(x)}
+            y={Number(y) + 5}
+            textAnchor="middle"
+            fontWeight="900"
+          >
+            {label}
+          </text>
+        </g>
+      ))}
+      <text x="140" y="125" fill="#0891b2" fontWeight="900">
+        {probability.toFixed(2)}
+      </text>
+      <text x="140" y="275" fill="#7c3aed" fontWeight="900">
+        {q.toFixed(2)}
+      </text>
+      <text
+        x="520"
+        y="100"
+        textAnchor="middle"
+        fontSize="15"
+        fontWeight="900"
+        fill="#0f172a"
+      >
+        {title}
+      </text>
+      <text x="520" y="130" textAnchor="middle" fontSize="12" fill="#64748b">
+        Multiply along paths
+      </text>
+    </svg>
+  );
+}
+
+function TwoWayTable({ probability }: { probability: number }) {
+  const a = Math.round(probability * 100),
+    b = 100 - a;
+  return (
+    <div className="p-5">
+      <table className="w-full overflow-hidden rounded-xl border text-center text-sm">
+        <thead className="bg-slate-100">
+          <tr>
+            <th className="p-4">Condition</th>
+            <th>Positive</th>
+            <th>Negative</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="border-t">
+            <th className="p-4">A</th>
+            <td className="bg-cyan-50">{Math.round(a * 0.8)}</td>
+            <td>{Math.round(a * 0.2)}</td>
+            <td className="font-black">{a}</td>
+          </tr>
+          <tr className="border-t">
+            <th className="p-4">A'</th>
+            <td>{Math.round(b * 0.1)}</td>
+            <td className="bg-violet-50">{Math.round(b * 0.9)}</td>
+            <td className="font-black">{b}</td>
+          </tr>
+          <tr className="border-t bg-slate-50 font-black">
+            <th className="p-4">Total</th>
+            <td>{Math.round(a * 0.8 + b * 0.1)}</td>
+            <td>{Math.round(a * 0.2 + b * 0.9)}</td>
+            <td>100</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function MassVisual({
+  bins,
+  selected,
+  showModel,
+}: {
+  bins: Bin[];
+  selected: number;
+  showModel: boolean;
+}) {
+  const max = Math.max(...bins.map((bin) => bin.probability), 0.01),
+    width = 500 / Math.max(1, bins.length);
+  return (
+    <svg viewBox="0 0 620 390" className="h-[390px] w-full">
+      <Grid />
+      {bins.map((bin, index) => {
+        const h = (bin.probability / max) * 250,
+          x = 60 + index * width;
+        return (
+          <g key={bin.label}>
+            <rect
+              x={x}
+              y={320 - h}
+              width={Math.max(5, width - 6)}
+              height={h}
+              rx="4"
+              fill={index === selected ? "#7c3aed" : "#06b6d4"}
+              opacity={showModel ? 1 : 0.6}
+            />
+            <text
+              x={x + (width - 6) / 2}
+              y="345"
+              textAnchor="middle"
+              fontSize="11"
+            >
+              {bin.label}
+            </text>
+            {index === selected ? (
+              <text
+                x={x + (width - 6) / 2}
+                y={305 - h}
+                textAnchor="middle"
+                fontSize="12"
+                fontWeight="900"
+                fill="#6d28d9"
+              >
+                {bin.probability.toFixed(3)}
+              </text>
+            ) : null}
+          </g>
+        );
+      })}
+      <text x="310" y="375" textAnchor="middle" fontSize="12" fontWeight="800">
+        k (number of outcomes / successes)
+      </text>
+    </svg>
+  );
+}
+
+function CurveVisual({
+  spec,
+  probability,
+  lower,
+  upper,
+}: {
+  spec: Spec;
+  probability: number;
+  lower: number;
+  upper: number;
+}) {
+  const points = Array.from({ length: 101 }, (_, i) => {
+    const x = i / 10;
+    let y = Math.exp(-0.5 * ((x - 5) / (1 + probability * 2)) ** 2);
+    if (/Exponential/.test(spec.title)) y = Math.exp(-probability * x);
+    if (/Uniform/.test(spec.title)) y = x >= 2 && x <= 8 ? 0.7 : 0;
+    if (/Chi|Gamma|Weibull|F Distribution/.test(spec.title))
+      y = Math.max(0.01, x) ** 2 * Math.exp(-x * (0.5 + probability));
+    return `${55 + (x / 10) * 520},${320 - y * 245}`;
+  }).join(" ");
+  const lx = 55 + (Math.max(0, Math.min(10, lower / 2)) / 10) * 520;
+  const ux = 55 + (Math.max(0, Math.min(10, upper / 2)) / 10) * 520;
+  return (
+    <svg viewBox="0 0 620 390" className="h-[390px] w-full">
+      <Grid />
+      <rect
+        x={Math.min(lx, ux)}
+        y="55"
+        width={Math.abs(ux - lx)}
+        height="265"
+        fill="#8b5cf633"
+      />
+      <polyline points={points} fill="none" stroke="#2563eb" strokeWidth="4" />
+      <line
+        x1={lx}
+        x2={lx}
+        y1="60"
+        y2="320"
+        stroke="#7c3aed"
+        strokeDasharray="6 5"
+      />
+      <line
+        x1={ux}
+        x2={ux}
+        y1="60"
+        y2="320"
+        stroke="#7c3aed"
+        strokeDasharray="6 5"
+      />
+      <text
+        x="310"
+        y="95"
+        textAnchor="middle"
+        fontSize="16"
+        fontWeight="900"
+        fill="#4c1d95"
+      >
+        P({lower} to {upper})
+      </text>
+      <text
+        x="310"
+        y="120"
+        textAnchor="middle"
+        fontSize="14"
+        fontWeight="800"
+        fill="#6d28d9"
+      >
+        shaded area
+      </text>
+    </svg>
+  );
+}
+
+function SimulationVisual({
+  bins,
+  sampleSize,
+  probability,
+}: {
+  bins: Bin[];
+  sampleSize: number;
+  probability: number;
+}) {
+  return (
+    <div>
+      <MassVisual
+        bins={bins}
+        selected={Math.round(bins.length * probability)}
+        showModel
+      />
+      <svg viewBox="0 0 620 90" className="h-[90px] w-full">
+        <polyline
+          points="40,60 130,40 220,48 310,34 400,38 500,35 580,36"
+          fill="none"
+          stroke="#0891b2"
+          strokeWidth="3"
+        />
+        <line
+          x1="40"
+          x2="580"
+          y1="36"
+          y2="36"
+          stroke="#7c3aed"
+          strokeDasharray="7 5"
+        />
+        <text x="310" y="82" textAnchor="middle" fontSize="11" fontWeight="800">
+          Convergence over {sampleSize.toLocaleString()} samples
+        </text>
+      </svg>
+    </div>
+  );
+}
+function Grid() {
+  return (
+    <g opacity=".35">
+      {Array.from({ length: 12 }, (_, i) => (
+        <line
+          key={`v${i}`}
+          x1={55 + i * 48}
+          x2={55 + i * 48}
+          y1="30"
+          y2="320"
+          stroke="#cbd5e1"
+        />
+      ))}
+      {Array.from({ length: 7 }, (_, i) => (
+        <line
+          key={`h${i}`}
+          x1="55"
+          x2="580"
+          y1={30 + i * 48}
+          y2={30 + i * 48}
+          stroke="#cbd5e1"
+        />
+      ))}
+    </g>
+  );
+}
+
+type Bin = { label: string; probability: number };
+function distributionBins(
+  spec: Spec,
+  trials: number,
+  probability: number,
+): Bin[] {
+  if (spec.kind === "discrete" || spec.kind === "simulation") {
+    if (/Poisson/.test(spec.title)) {
+      return Array.from({ length: Math.min(16, trials + 1) }, (_, k) => ({
+        label: String(k),
+        probability:
+          (Math.exp(-trials * probability) *
+            Math.pow(trials * probability, k)) /
+          factorial(k),
+      }));
+    }
+    return binomialDistribution(trials, probability).map((bin) => ({
+      label: bin.label,
+      probability: bin.count,
+    }));
+  }
+  return Array.from({ length: Math.min(16, trials + 1) }, (_, k) => ({
+    label: String(k),
+    probability: Math.max(
+      0.001,
+      Math.exp(
+        -0.5 *
+          ((k - trials * probability) /
+            Math.max(1, Math.sqrt(trials * probability * (1 - probability)))) **
+            2,
+      ) / Math.max(3, trials / 2),
+    ),
+  }));
+}
+function factorial(n: number) {
+  let result = 1;
+  for (let i = 2; i <= n; i += 1) result *= i;
+  return result;
+}
+function modelName(spec: Spec) {
+  if (spec.kind === "event") return "Sample-space model";
+  if (spec.kind === "diagram") return "Event relationship";
+  if (spec.kind === "simulation") return "Seeded simulation";
+  if (spec.kind === "calculator") return "Distribution calculator";
+  return spec.title.replace(" Distribution", "");
+}
+function visualTitle(spec: Spec) {
+  if (spec.kind === "event") return "Complete sample space";
+  if (spec.kind === "diagram") return `${spec.title} representation`;
+  if (spec.kind === "simulation")
+    return "Empirical vs theoretical distribution";
+  if (spec.kind === "discrete") return "Probability Mass Function (PMF)";
+  return "Probability Density Function (PDF)";
+}
+function ruleFor(title: string) {
+  if (title === "Sample Spaces")
+    return "List every possible outcome exactly once before counting favourable outcomes.";
+  if (/Tree|Multiplication/.test(title))
+    return "Multiply along one path and add probabilities across matching paths.";
+  if (/Bayes/.test(title))
+    return "Update the prior with the likelihood, while keeping the base rate in the denominator.";
+  if (/Simulation|Large Numbers/.test(title))
+    return "Empirical relative frequency approaches theoretical probability as the sample grows.";
+  if (/Distribution|Probability|Standardisation/.test(title))
+    return "Match the distribution to its assumptions, then read probability as area or probability mass.";
+  return "Define events clearly, avoid double-counting, and keep every probability between 0 and 1.";
+}
+function misconceptionFor(title: string) {
+  if (/Independent/.test(title))
+    return "Independent events can occur together; independence means one does not change the other's probability.";
+  if (/Mutually/.test(title))
+    return "Mutually exclusive is not the same as independent: mutually exclusive events have no overlap.";
+  if (/Bayes/.test(title))
+    return "Test accuracy alone is not the posterior probability; the base rate matters.";
+  if (/Binomial/.test(title))
+    return "Binomial trials need fixed n, constant p, and independence, but p does not need to equal 0.5.";
+  if (/Normal/.test(title))
+    return "The 68-95-99.7 rule is an approximation for normal data, not every dataset.";
+  return `Do not use ${title.toLowerCase()} before checking the sample space, assumptions, and probability direction.`;
+}
+
+function RangeInput({
+  label,
+  value,
+  min,
+  max,
+  step,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  onChange: (value: number) => void;
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1 flex justify-between text-xs font-black text-slate-700">
+        <span>{label}</span>
+        <output>
+          {value.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+        </output>
+      </span>
+      <input
+        type="range"
+        className="w-full accent-cyan-600"
+        value={value}
+        min={min}
+        max={max}
+        step={step}
+        onChange={(event) => onChange(Number(event.target.value))}
+      />
+    </label>
+  );
+}
+function IntroCard({
+  icon,
+  title,
+  body,
+  danger = false,
+}: {
+  icon: ReactNode;
+  title: string;
+  body: string;
+  danger?: boolean;
+}) {
+  return (
+    <article
+      className={`rounded-2xl border bg-white p-4 shadow-sm ${danger ? "border-rose-100" : "border-slate-200"}`}
+    >
+      <h3
+        className={`flex items-center gap-2 text-xs font-black uppercase ${danger ? "text-rose-700" : "text-cyan-700"}`}
+      >
+        {icon}
+        {title}
+      </h3>
+      <p className="mt-3 text-xs font-semibold leading-5 text-slate-600">
+        {body}
+      </p>
+    </article>
+  );
+}
+function Info({
+  icon,
+  tone,
+  title,
+  body,
+  formula,
+}: {
+  icon: ReactNode;
+  tone: "blue" | "green" | "amber";
+  title: string;
+  body: string;
+  formula: string;
+}) {
+  const color =
+    tone === "blue"
+      ? "border-blue-100 bg-blue-50 text-blue-800"
+      : tone === "green"
+        ? "border-emerald-100 bg-emerald-50 text-emerald-800"
+        : "border-amber-100 bg-amber-50 text-amber-800";
+  return (
+    <article className={`rounded-2xl border p-4 ${color}`}>
+      <h3 className="flex items-center gap-2 text-sm font-black">
+        {icon}
+        {title}
+      </h3>
+      <p className="mt-3 text-xs font-semibold leading-5 text-slate-700">
+        {body}
+      </p>
+      <div className="mt-3 rounded-lg bg-white/80 p-3 font-mono text-xs font-black text-slate-800">
+        {formula}
+      </div>
+    </article>
+  );
+}
+function Metric({
+  label,
+  value,
+  color,
+}: {
+  label: string;
+  value: string;
+  color: string;
+}) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+      <span className="text-[10px] font-black uppercase text-slate-500">
+        {label}
+      </span>
+      <strong className="mt-1 block text-2xl font-black" style={{ color }}>
+        {value}
+      </strong>
+    </div>
+  );
+}
+function Result({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="mt-2 flex items-center justify-between border-t border-slate-100 pt-2 text-xs">
+      <span className="font-bold text-slate-500">{label}</span>
+      <strong className="max-w-[150px] truncate text-right font-mono text-sm text-slate-900">
+        {value}
+      </strong>
+    </div>
+  );
+}
+function Small({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="p-3">
+      <span className="block text-[9px] font-black uppercase text-slate-400">
+        {label}
+      </span>
+      <strong className="mt-1 block text-sm text-slate-900">{value}</strong>
+    </div>
   );
 }

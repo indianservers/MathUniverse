@@ -1,0 +1,9 @@
+{
+  "mockup": "0291",
+  "lessonId": 234,
+  "route": "/lessons/geometry/234-relation-checker",
+  "reference": "0291-interactive-foundational-advanced-dynamic-geometry-constructions-relation-checker-redesigned.png",
+  "present": true,
+  "interactiveControls": 53,
+  "consoleMessages": []
+}

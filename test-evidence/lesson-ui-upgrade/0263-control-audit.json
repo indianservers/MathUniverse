@@ -1,0 +1,9 @@
+{
+  "mockup": "0263",
+  "lessonId": 206,
+  "route": "/lessons/geometry/206-ray",
+  "reference": "0263-interactive-foundational-advanced-dynamic-geometry-constructions-ray-redesigned.png",
+  "present": true,
+  "interactiveControls": 53,
+  "consoleMessages": []
+}

@@ -1,0 +1,48 @@
+{
+  "id": "0202",
+  "title": "Hyperbolic Functions",
+  "route": "/lessons/graphs-and-functions/145-hyperbolic-functions",
+  "reference": "C:\\Indian Servers\\Math Universe Visualizations\\test-evidence\\lesson-ui-upgrade\\0202-reference.png",
+  "consoleMessages": [],
+  "controls": [
+    {
+      "name": "t",
+      "type": "slider + numeric input",
+      "expected": "Updates curves, decomposition, identity and challenge value",
+      "before": "1.20",
+      "action": "set to 0.55",
+      "after": true,
+      "outputs": [
+        "graph",
+        "table",
+        "identity"
+      ],
+      "result": "pass"
+    },
+    {
+      "name": "cosh curve",
+      "type": "toggle",
+      "expected": "Hides cosh curve layer",
+      "before": "checked",
+      "action": "uncheck",
+      "after": "unchecked",
+      "outputs": [
+        "graph"
+      ],
+      "result": "pass"
+    },
+    {
+      "name": "Quick challenge",
+      "type": "button",
+      "expected": "Checks tanh t against 0.5 target",
+      "before": "unchecked",
+      "action": "check at t=0.55",
+      "after": true,
+      "outputs": [
+        "challenge feedback"
+      ],
+      "result": "pass"
+    }
+  ],
+  "passed": true
+}

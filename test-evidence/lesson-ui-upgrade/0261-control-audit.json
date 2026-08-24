@@ -1,0 +1,9 @@
+{
+  "mockup": "0261",
+  "lessonId": 204,
+  "route": "/lessons/geometry/204-segment",
+  "reference": "0261-interactive-foundational-advanced-dynamic-geometry-constructions-segment-redesigned.png",
+  "present": true,
+  "interactiveControls": 53,
+  "consoleMessages": []
+}

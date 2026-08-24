@@ -1,0 +1,9 @@
+{
+  "mockup": "0134",
+  "lessonId": 42,
+  "route": "/lessons/graphs-and-functions/42-inequality-grapher",
+  "reference": "0134-interactive-foundational-advanced-2d-graphing-calculator-inequality-grapher-redesigned.png",
+  "present": true,
+  "interactiveControls": 45,
+  "consoleMessages": []
+}

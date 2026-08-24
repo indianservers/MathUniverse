@@ -1,0 +1,25 @@
+{
+  "family": "Symbolic Mathematics / CAS Workspace",
+  "lessons": 22,
+  "status": "Passed",
+  "mockups": ["0334", "0335", "0336", "0337", "0338", "0339", "0340", "0341", "0342", "0343", "0344", "0345", "0346", "0347", "0348", "0349", "0350", "0351", "0352", "0353", "0354", "0355"],
+  "lessonIds": [428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449],
+  "viewports": {
+    "desktop": "default 1280px browser viewport",
+    "tablet": "900x1100",
+    "mobile": "390x844"
+  },
+  "evidenceDirectory": "0334-0355-symbolic-cas",
+  "evidencePerLesson": ["reference", "desktop", "tablet", "mobile", "interacted", "control-audit"],
+  "checks": {
+    "targetMarkersPassed": 22,
+    "routesAudited": 22,
+    "minimumControls": 19,
+    "maximumControls": 24,
+    "horizontalOverflowRoutes": 0,
+    "consoleWarnings": 0,
+    "consoleErrors": 0,
+    "typecheck": "Passed",
+    "focusedTests": "Passed"
+  }
+}

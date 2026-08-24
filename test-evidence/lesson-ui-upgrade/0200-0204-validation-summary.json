@@ -1,0 +1,92 @@
+[
+  {
+    "id": "0200",
+    "route": "/lessons/graphs-and-functions/143-logarithmic-functions",
+    "title": "Logarithmic Functions",
+    "reference": "0200-interactive-intermediate-advanced-functions-logarithmic-functions-redesigned.png",
+    "screenshots": [
+      "0200-reference.png",
+      "0200-desktop.png",
+      "0200-tablet.png",
+      "0200-mobile.png",
+      "0200-interacted.png"
+    ],
+    "controlAudit": "0200-control-audit.json",
+    "controlsPassed": 2,
+    "controlsTotal": 2,
+    "consoleMessages": 0,
+    "status": "Passed"
+  },
+  {
+    "id": "0201",
+    "route": "/lessons/graphs-and-functions/144-trigonometric-functions",
+    "title": "Trigonometric Functions",
+    "reference": "0201-interactive-intermediate-advanced-functions-trigonometric-functions-redesigned.png",
+    "screenshots": [
+      "0201-reference.png",
+      "0201-desktop.png",
+      "0201-tablet.png",
+      "0201-mobile.png",
+      "0201-interacted.png"
+    ],
+    "controlAudit": "0201-control-audit.json",
+    "controlsPassed": 4,
+    "controlsTotal": 4,
+    "consoleMessages": 0,
+    "status": "Passed"
+  },
+  {
+    "id": "0202",
+    "route": "/lessons/graphs-and-functions/145-hyperbolic-functions",
+    "title": "Hyperbolic Functions",
+    "reference": "0202-interactive-intermediate-advanced-functions-hyperbolic-functions-redesigned.png",
+    "screenshots": [
+      "0202-reference.png",
+      "0202-desktop.png",
+      "0202-tablet.png",
+      "0202-mobile.png",
+      "0202-interacted.png"
+    ],
+    "controlAudit": "0202-control-audit.json",
+    "controlsPassed": 3,
+    "controlsTotal": 3,
+    "consoleMessages": 0,
+    "status": "Passed"
+  },
+  {
+    "id": "0203",
+    "route": "/lessons/graphs-and-functions/146-floor-function",
+    "title": "Floor Function",
+    "reference": "0203-interactive-intermediate-advanced-functions-floor-function-redesigned.png",
+    "screenshots": [
+      "0203-reference.png",
+      "0203-desktop.png",
+      "0203-tablet.png",
+      "0203-mobile.png",
+      "0203-interacted.png"
+    ],
+    "controlAudit": "0203-control-audit.json",
+    "controlsPassed": 4,
+    "controlsTotal": 4,
+    "consoleMessages": 0,
+    "status": "Passed"
+  },
+  {
+    "id": "0204",
+    "route": "/lessons/graphs-and-functions/147-ceiling-function",
+    "title": "Ceiling Function",
+    "reference": "0204-interactive-intermediate-advanced-functions-ceiling-function-redesigned.png",
+    "screenshots": [
+      "0204-reference.png",
+      "0204-desktop.png",
+      "0204-tablet.png",
+      "0204-mobile.png",
+      "0204-interacted.png"
+    ],
+    "controlAudit": "0204-control-audit.json",
+    "controlsPassed": 4,
+    "controlsTotal": 4,
+    "consoleMessages": 0,
+    "status": "Passed"
+  }
+]

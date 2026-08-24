@@ -1,0 +1,307 @@
+{
+  "family": "Trigonometry",
+  "lessons": 20,
+  "status": "Passed",
+  "results": [
+    {
+      "mockup": "0314",
+      "lessonId": 257,
+      "route": "/lessons/trigonometry/257-angle-measurement",
+      "status": "Passed",
+      "screenshots": [
+        "0314-reference.png",
+        "0314-desktop.png",
+        "0314-tablet.png",
+        "0314-mobile.png",
+        "0314-interacted.png"
+      ],
+      "controlAudit": "0314-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0315",
+      "lessonId": 258,
+      "route": "/lessons/trigonometry/258-unit-circle",
+      "status": "Passed",
+      "screenshots": [
+        "0315-reference.png",
+        "0315-desktop.png",
+        "0315-tablet.png",
+        "0315-mobile.png",
+        "0315-interacted.png"
+      ],
+      "controlAudit": "0315-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0316",
+      "lessonId": 259,
+      "route": "/lessons/trigonometry/259-right-triangle-ratios",
+      "status": "Passed",
+      "screenshots": [
+        "0316-reference.png",
+        "0316-desktop.png",
+        "0316-tablet.png",
+        "0316-mobile.png",
+        "0316-interacted.png"
+      ],
+      "controlAudit": "0316-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0317",
+      "lessonId": 260,
+      "route": "/lessons/trigonometry/260-exact-trig-values",
+      "status": "Passed",
+      "screenshots": [
+        "0317-reference.png",
+        "0317-desktop.png",
+        "0317-tablet.png",
+        "0317-mobile.png",
+        "0317-interacted.png"
+      ],
+      "controlAudit": "0317-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0318",
+      "lessonId": 261,
+      "route": "/lessons/trigonometry/261-sine-graph",
+      "status": "Passed",
+      "screenshots": [
+        "0318-reference.png",
+        "0318-desktop.png",
+        "0318-tablet.png",
+        "0318-mobile.png",
+        "0318-interacted.png"
+      ],
+      "controlAudit": "0318-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0319",
+      "lessonId": 262,
+      "route": "/lessons/trigonometry/262-cosine-graph",
+      "status": "Passed",
+      "screenshots": [
+        "0319-reference.png",
+        "0319-desktop.png",
+        "0319-tablet.png",
+        "0319-mobile.png",
+        "0319-interacted.png"
+      ],
+      "controlAudit": "0319-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0320",
+      "lessonId": 263,
+      "route": "/lessons/trigonometry/263-tangent-graph",
+      "status": "Passed",
+      "screenshots": [
+        "0320-reference.png",
+        "0320-desktop.png",
+        "0320-tablet.png",
+        "0320-mobile.png",
+        "0320-interacted.png"
+      ],
+      "controlAudit": "0320-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0321",
+      "lessonId": 264,
+      "route": "/lessons/trigonometry/264-reciprocal-trig-functions",
+      "status": "Passed",
+      "screenshots": [
+        "0321-reference.png",
+        "0321-desktop.png",
+        "0321-tablet.png",
+        "0321-mobile.png",
+        "0321-interacted.png"
+      ],
+      "controlAudit": "0321-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0322",
+      "lessonId": 265,
+      "route": "/lessons/trigonometry/265-inverse-trig-functions",
+      "status": "Passed",
+      "screenshots": [
+        "0322-reference.png",
+        "0322-desktop.png",
+        "0322-tablet.png",
+        "0322-mobile.png",
+        "0322-interacted.png"
+      ],
+      "controlAudit": "0322-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0323",
+      "lessonId": 266,
+      "route": "/lessons/trigonometry/266-trig-identities",
+      "status": "Passed",
+      "screenshots": [
+        "0323-reference.png",
+        "0323-desktop.png",
+        "0323-tablet.png",
+        "0323-mobile.png",
+        "0323-interacted.png"
+      ],
+      "controlAudit": "0323-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0324",
+      "lessonId": 267,
+      "route": "/lessons/trigonometry/267-compound-angle-formulae",
+      "status": "Passed",
+      "screenshots": [
+        "0324-reference.png",
+        "0324-desktop.png",
+        "0324-tablet.png",
+        "0324-mobile.png",
+        "0324-interacted.png"
+      ],
+      "controlAudit": "0324-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0325",
+      "lessonId": 268,
+      "route": "/lessons/trigonometry/268-double-and-half-angle-formulae",
+      "status": "Passed",
+      "screenshots": [
+        "0325-reference.png",
+        "0325-desktop.png",
+        "0325-tablet.png",
+        "0325-mobile.png",
+        "0325-interacted.png"
+      ],
+      "controlAudit": "0325-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0326",
+      "lessonId": 269,
+      "route": "/lessons/trigonometry/269-trig-equations",
+      "status": "Passed",
+      "screenshots": [
+        "0326-reference.png",
+        "0326-desktop.png",
+        "0326-tablet.png",
+        "0326-mobile.png",
+        "0326-interacted.png"
+      ],
+      "controlAudit": "0326-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0327",
+      "lessonId": 270,
+      "route": "/lessons/trigonometry/270-sine-rule",
+      "status": "Passed",
+      "screenshots": [
+        "0327-reference.png",
+        "0327-desktop.png",
+        "0327-tablet.png",
+        "0327-mobile.png",
+        "0327-interacted.png"
+      ],
+      "controlAudit": "0327-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0328",
+      "lessonId": 271,
+      "route": "/lessons/trigonometry/271-cosine-rule",
+      "status": "Passed",
+      "screenshots": [
+        "0328-reference.png",
+        "0328-desktop.png",
+        "0328-tablet.png",
+        "0328-mobile.png",
+        "0328-interacted.png"
+      ],
+      "controlAudit": "0328-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0329",
+      "lessonId": 272,
+      "route": "/lessons/trigonometry/272-triangle-area-formula",
+      "status": "Passed",
+      "screenshots": [
+        "0329-reference.png",
+        "0329-desktop.png",
+        "0329-tablet.png",
+        "0329-mobile.png",
+        "0329-interacted.png"
+      ],
+      "controlAudit": "0329-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0330",
+      "lessonId": 273,
+      "route": "/lessons/trigonometry/273-bearings",
+      "status": "Passed",
+      "screenshots": [
+        "0330-reference.png",
+        "0330-desktop.png",
+        "0330-tablet.png",
+        "0330-mobile.png",
+        "0330-interacted.png"
+      ],
+      "controlAudit": "0330-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0331",
+      "lessonId": 274,
+      "route": "/lessons/trigonometry/274-elevation-and-depression",
+      "status": "Passed",
+      "screenshots": [
+        "0331-reference.png",
+        "0331-desktop.png",
+        "0331-tablet.png",
+        "0331-mobile.png",
+        "0331-interacted.png"
+      ],
+      "controlAudit": "0331-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0332",
+      "lessonId": 275,
+      "route": "/lessons/trigonometry/275-harmonic-motion",
+      "status": "Passed",
+      "screenshots": [
+        "0332-reference.png",
+        "0332-desktop.png",
+        "0332-tablet.png",
+        "0332-mobile.png",
+        "0332-interacted.png"
+      ],
+      "controlAudit": "0332-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0333",
+      "lessonId": 276,
+      "route": "/lessons/trigonometry/276-polar-trigonometry",
+      "status": "Passed",
+      "screenshots": [
+        "0333-reference.png",
+        "0333-desktop.png",
+        "0333-tablet.png",
+        "0333-mobile.png",
+        "0333-interacted.png"
+      ],
+      "controlAudit": "0333-control-audit.json",
+      "consoleMessages": 0
+    }
+  ]
+}

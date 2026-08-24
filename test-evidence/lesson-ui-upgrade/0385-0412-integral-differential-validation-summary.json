@@ -1,0 +1,427 @@
+{
+  "family": "Integral Calculus and Differential Equations",
+  "lessons": 28,
+  "status": "Passed",
+  "results": [
+    {
+      "mockup": "0385",
+      "lessonId": 306,
+      "route": "/lessons/calculus/306-area-by-rectangles",
+      "status": "Passed",
+      "screenshots": [
+        "0385-reference.png",
+        "0385-desktop.png",
+        "0385-tablet.png",
+        "0385-mobile.png",
+        "0385-interacted.png"
+      ],
+      "controlAudit": "0385-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0386",
+      "lessonId": 307,
+      "route": "/lessons/calculus/307-riemann-sums",
+      "status": "Passed",
+      "screenshots": [
+        "0386-reference.png",
+        "0386-desktop.png",
+        "0386-tablet.png",
+        "0386-mobile.png",
+        "0386-interacted.png"
+      ],
+      "controlAudit": "0386-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0387",
+      "lessonId": 308,
+      "route": "/lessons/calculus/308-definite-integral",
+      "status": "Passed",
+      "screenshots": [
+        "0387-reference.png",
+        "0387-desktop.png",
+        "0387-tablet.png",
+        "0387-mobile.png",
+        "0387-interacted.png"
+      ],
+      "controlAudit": "0387-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0388",
+      "lessonId": 309,
+      "route": "/lessons/calculus/309-indefinite-integral",
+      "status": "Passed",
+      "screenshots": [
+        "0388-reference.png",
+        "0388-desktop.png",
+        "0388-tablet.png",
+        "0388-mobile.png",
+        "0388-interacted.png"
+      ],
+      "controlAudit": "0388-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0389",
+      "lessonId": 310,
+      "route": "/lessons/calculus/310-fundamental-theorem",
+      "status": "Passed",
+      "screenshots": [
+        "0389-reference.png",
+        "0389-desktop.png",
+        "0389-tablet.png",
+        "0389-mobile.png",
+        "0389-interacted.png"
+      ],
+      "controlAudit": "0389-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0390",
+      "lessonId": 311,
+      "route": "/lessons/calculus/311-area-between-curves",
+      "status": "Passed",
+      "screenshots": [
+        "0390-reference.png",
+        "0390-desktop.png",
+        "0390-tablet.png",
+        "0390-mobile.png",
+        "0390-interacted.png"
+      ],
+      "controlAudit": "0390-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0391",
+      "lessonId": 312,
+      "route": "/lessons/calculus/312-substitution",
+      "status": "Passed",
+      "screenshots": [
+        "0391-reference.png",
+        "0391-desktop.png",
+        "0391-tablet.png",
+        "0391-mobile.png",
+        "0391-interacted.png"
+      ],
+      "controlAudit": "0391-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0392",
+      "lessonId": 313,
+      "route": "/lessons/calculus/313-integration-by-parts",
+      "status": "Passed",
+      "screenshots": [
+        "0392-reference.png",
+        "0392-desktop.png",
+        "0392-tablet.png",
+        "0392-mobile.png",
+        "0392-interacted.png"
+      ],
+      "controlAudit": "0392-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0393",
+      "lessonId": 314,
+      "route": "/lessons/calculus/314-partial-fractions",
+      "status": "Passed",
+      "screenshots": [
+        "0393-reference.png",
+        "0393-desktop.png",
+        "0393-tablet.png",
+        "0393-mobile.png",
+        "0393-interacted.png"
+      ],
+      "controlAudit": "0393-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0394",
+      "lessonId": 315,
+      "route": "/lessons/calculus/315-improper-integrals",
+      "status": "Passed",
+      "screenshots": [
+        "0394-reference.png",
+        "0394-desktop.png",
+        "0394-tablet.png",
+        "0394-mobile.png",
+        "0394-interacted.png"
+      ],
+      "controlAudit": "0394-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0395",
+      "lessonId": 316,
+      "route": "/lessons/calculus/316-numerical-integration",
+      "status": "Passed",
+      "screenshots": [
+        "0395-reference.png",
+        "0395-desktop.png",
+        "0395-tablet.png",
+        "0395-mobile.png",
+        "0395-interacted.png"
+      ],
+      "controlAudit": "0395-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0396",
+      "lessonId": 317,
+      "route": "/lessons/calculus/317-volume-by-slicing",
+      "status": "Passed",
+      "screenshots": [
+        "0396-reference.png",
+        "0396-desktop.png",
+        "0396-tablet.png",
+        "0396-mobile.png",
+        "0396-interacted.png"
+      ],
+      "controlAudit": "0396-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0397",
+      "lessonId": 318,
+      "route": "/lessons/calculus/318-disc-and-washer-methods",
+      "status": "Passed",
+      "screenshots": [
+        "0397-reference.png",
+        "0397-desktop.png",
+        "0397-tablet.png",
+        "0397-mobile.png",
+        "0397-interacted.png"
+      ],
+      "controlAudit": "0397-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0398",
+      "lessonId": 319,
+      "route": "/lessons/calculus/319-shell-method",
+      "status": "Passed",
+      "screenshots": [
+        "0398-reference.png",
+        "0398-desktop.png",
+        "0398-tablet.png",
+        "0398-mobile.png",
+        "0398-interacted.png"
+      ],
+      "controlAudit": "0398-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0399",
+      "lessonId": 320,
+      "route": "/lessons/calculus/320-arc-length",
+      "status": "Passed",
+      "screenshots": [
+        "0399-reference.png",
+        "0399-desktop.png",
+        "0399-tablet.png",
+        "0399-mobile.png",
+        "0399-interacted.png"
+      ],
+      "controlAudit": "0399-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0400",
+      "lessonId": 321,
+      "route": "/lessons/calculus/321-surface-area-of-revolution",
+      "status": "Passed",
+      "screenshots": [
+        "0400-reference.png",
+        "0400-desktop.png",
+        "0400-tablet.png",
+        "0400-mobile.png",
+        "0400-interacted.png"
+      ],
+      "controlAudit": "0400-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0401",
+      "lessonId": 322,
+      "route": "/lessons/calculus/322-accumulation-functions",
+      "status": "Passed",
+      "screenshots": [
+        "0401-reference.png",
+        "0401-desktop.png",
+        "0401-tablet.png",
+        "0401-mobile.png",
+        "0401-interacted.png"
+      ],
+      "controlAudit": "0401-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0402",
+      "lessonId": 323,
+      "route": "/lessons/calculus/323-direction-fields",
+      "status": "Passed",
+      "screenshots": [
+        "0402-reference.png",
+        "0402-desktop.png",
+        "0402-tablet.png",
+        "0402-mobile.png",
+        "0402-interacted.png"
+      ],
+      "controlAudit": "0402-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0403",
+      "lessonId": 324,
+      "route": "/lessons/calculus/324-euler-s-method",
+      "status": "Passed",
+      "screenshots": [
+        "0403-reference.png",
+        "0403-desktop.png",
+        "0403-tablet.png",
+        "0403-mobile.png",
+        "0403-interacted.png"
+      ],
+      "controlAudit": "0403-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0404",
+      "lessonId": 325,
+      "route": "/lessons/calculus/325-separable-equations",
+      "status": "Passed",
+      "screenshots": [
+        "0404-reference.png",
+        "0404-desktop.png",
+        "0404-tablet.png",
+        "0404-mobile.png",
+        "0404-interacted.png"
+      ],
+      "controlAudit": "0404-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0405",
+      "lessonId": 326,
+      "route": "/lessons/calculus/326-first-order-linear-equations",
+      "status": "Passed",
+      "screenshots": [
+        "0405-reference.png",
+        "0405-desktop.png",
+        "0405-tablet.png",
+        "0405-mobile.png",
+        "0405-interacted.png"
+      ],
+      "controlAudit": "0405-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0406",
+      "lessonId": 327,
+      "route": "/lessons/calculus/327-logistic-growth",
+      "status": "Passed",
+      "screenshots": [
+        "0406-reference.png",
+        "0406-desktop.png",
+        "0406-tablet.png",
+        "0406-mobile.png",
+        "0406-interacted.png"
+      ],
+      "controlAudit": "0406-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0407",
+      "lessonId": 328,
+      "route": "/lessons/calculus/328-second-order-equations",
+      "status": "Passed",
+      "screenshots": [
+        "0407-reference.png",
+        "0407-desktop.png",
+        "0407-tablet.png",
+        "0407-mobile.png",
+        "0407-interacted.png"
+      ],
+      "controlAudit": "0407-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0408",
+      "lessonId": 329,
+      "route": "/lessons/calculus/329-phase-plane",
+      "status": "Passed",
+      "screenshots": [
+        "0408-reference.png",
+        "0408-desktop.png",
+        "0408-tablet.png",
+        "0408-mobile.png",
+        "0408-interacted.png"
+      ],
+      "controlAudit": "0408-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0409",
+      "lessonId": 330,
+      "route": "/lessons/calculus/330-equilibrium-and-stability",
+      "status": "Passed",
+      "screenshots": [
+        "0409-reference.png",
+        "0409-desktop.png",
+        "0409-tablet.png",
+        "0409-mobile.png",
+        "0409-interacted.png"
+      ],
+      "controlAudit": "0409-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0410",
+      "lessonId": 331,
+      "route": "/lessons/calculus/331-discrete-dynamical-systems",
+      "status": "Passed",
+      "screenshots": [
+        "0410-reference.png",
+        "0410-desktop.png",
+        "0410-tablet.png",
+        "0410-mobile.png",
+        "0410-interacted.png"
+      ],
+      "controlAudit": "0410-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0411",
+      "lessonId": 332,
+      "route": "/lessons/calculus/332-cobweb-diagrams",
+      "status": "Passed",
+      "screenshots": [
+        "0411-reference.png",
+        "0411-desktop.png",
+        "0411-tablet.png",
+        "0411-mobile.png",
+        "0411-interacted.png"
+      ],
+      "controlAudit": "0411-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0412",
+      "lessonId": 333,
+      "route": "/lessons/calculus/333-chaos-and-bifurcation",
+      "status": "Passed",
+      "screenshots": [
+        "0412-reference.png",
+        "0412-desktop.png",
+        "0412-tablet.png",
+        "0412-mobile.png",
+        "0412-interacted.png"
+      ],
+      "controlAudit": "0412-control-audit.json",
+      "consoleMessages": 0
+    }
+  ]
+}

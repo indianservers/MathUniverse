@@ -1,0 +1,442 @@
+{
+  "family": "Limits and Differential Calculus",
+  "lessons": 29,
+  "status": "Passed",
+  "results": [
+    {
+      "mockup": "0356",
+      "lessonId": 277,
+      "route": "/lessons/calculus/277-informal-limits",
+      "status": "Passed",
+      "screenshots": [
+        "0356-reference.png",
+        "0356-desktop.png",
+        "0356-tablet.png",
+        "0356-mobile.png",
+        "0356-interacted.png"
+      ],
+      "controlAudit": "0356-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0357",
+      "lessonId": 278,
+      "route": "/lessons/calculus/278-one-sided-limits",
+      "status": "Passed",
+      "screenshots": [
+        "0357-reference.png",
+        "0357-desktop.png",
+        "0357-tablet.png",
+        "0357-mobile.png",
+        "0357-interacted.png"
+      ],
+      "controlAudit": "0357-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0358",
+      "lessonId": 279,
+      "route": "/lessons/calculus/279-infinite-limits",
+      "status": "Passed",
+      "screenshots": [
+        "0358-reference.png",
+        "0358-desktop.png",
+        "0358-tablet.png",
+        "0358-mobile.png",
+        "0358-interacted.png"
+      ],
+      "controlAudit": "0358-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0359",
+      "lessonId": 280,
+      "route": "/lessons/calculus/280-limits-at-infinity",
+      "status": "Passed",
+      "screenshots": [
+        "0359-reference.png",
+        "0359-desktop.png",
+        "0359-tablet.png",
+        "0359-mobile.png",
+        "0359-interacted.png"
+      ],
+      "controlAudit": "0359-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0360",
+      "lessonId": 281,
+      "route": "/lessons/calculus/281-continuity-at-a-point",
+      "status": "Passed",
+      "screenshots": [
+        "0360-reference.png",
+        "0360-desktop.png",
+        "0360-tablet.png",
+        "0360-mobile.png",
+        "0360-interacted.png"
+      ],
+      "controlAudit": "0360-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0361",
+      "lessonId": 282,
+      "route": "/lessons/calculus/282-types-of-discontinuity",
+      "status": "Passed",
+      "screenshots": [
+        "0361-reference.png",
+        "0361-desktop.png",
+        "0361-tablet.png",
+        "0361-mobile.png",
+        "0361-interacted.png"
+      ],
+      "controlAudit": "0361-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0362",
+      "lessonId": 283,
+      "route": "/lessons/calculus/283-epsilondelta-visualiser",
+      "status": "Passed",
+      "screenshots": [
+        "0362-reference.png",
+        "0362-desktop.png",
+        "0362-tablet.png",
+        "0362-mobile.png",
+        "0362-interacted.png"
+      ],
+      "controlAudit": "0362-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0363",
+      "lessonId": 284,
+      "route": "/lessons/calculus/284-average-rate-of-change",
+      "status": "Passed",
+      "screenshots": [
+        "0363-reference.png",
+        "0363-desktop.png",
+        "0363-tablet.png",
+        "0363-mobile.png",
+        "0363-interacted.png"
+      ],
+      "controlAudit": "0363-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0364",
+      "lessonId": 285,
+      "route": "/lessons/calculus/285-instantaneous-rate-of-change",
+      "status": "Passed",
+      "screenshots": [
+        "0364-reference.png",
+        "0364-desktop.png",
+        "0364-tablet.png",
+        "0364-mobile.png",
+        "0364-interacted.png"
+      ],
+      "controlAudit": "0364-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0365",
+      "lessonId": 286,
+      "route": "/lessons/calculus/286-derivative-from-first-principles",
+      "status": "Passed",
+      "screenshots": [
+        "0365-reference.png",
+        "0365-desktop.png",
+        "0365-tablet.png",
+        "0365-mobile.png",
+        "0365-interacted.png"
+      ],
+      "controlAudit": "0365-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0366",
+      "lessonId": 287,
+      "route": "/lessons/calculus/287-tangent-line",
+      "status": "Passed",
+      "screenshots": [
+        "0366-reference.png",
+        "0366-desktop.png",
+        "0366-tablet.png",
+        "0366-mobile.png",
+        "0366-interacted.png"
+      ],
+      "controlAudit": "0366-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0367",
+      "lessonId": 288,
+      "route": "/lessons/calculus/288-normal-line",
+      "status": "Passed",
+      "screenshots": [
+        "0367-reference.png",
+        "0367-desktop.png",
+        "0367-tablet.png",
+        "0367-mobile.png",
+        "0367-interacted.png"
+      ],
+      "controlAudit": "0367-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0368",
+      "lessonId": 289,
+      "route": "/lessons/calculus/289-derivative-graph",
+      "status": "Passed",
+      "screenshots": [
+        "0368-reference.png",
+        "0368-desktop.png",
+        "0368-tablet.png",
+        "0368-mobile.png",
+        "0368-interacted.png"
+      ],
+      "controlAudit": "0368-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0369",
+      "lessonId": 290,
+      "route": "/lessons/calculus/290-higher-derivatives",
+      "status": "Passed",
+      "screenshots": [
+        "0369-reference.png",
+        "0369-desktop.png",
+        "0369-tablet.png",
+        "0369-mobile.png",
+        "0369-interacted.png"
+      ],
+      "controlAudit": "0369-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0370",
+      "lessonId": 291,
+      "route": "/lessons/calculus/291-product-rule",
+      "status": "Passed",
+      "screenshots": [
+        "0370-reference.png",
+        "0370-desktop.png",
+        "0370-tablet.png",
+        "0370-mobile.png",
+        "0370-interacted.png"
+      ],
+      "controlAudit": "0370-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0371",
+      "lessonId": 292,
+      "route": "/lessons/calculus/292-quotient-rule",
+      "status": "Passed",
+      "screenshots": [
+        "0371-reference.png",
+        "0371-desktop.png",
+        "0371-tablet.png",
+        "0371-mobile.png",
+        "0371-interacted.png"
+      ],
+      "controlAudit": "0371-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0372",
+      "lessonId": 293,
+      "route": "/lessons/calculus/293-chain-rule",
+      "status": "Passed",
+      "screenshots": [
+        "0372-reference.png",
+        "0372-desktop.png",
+        "0372-tablet.png",
+        "0372-mobile.png",
+        "0372-interacted.png"
+      ],
+      "controlAudit": "0372-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0373",
+      "lessonId": 294,
+      "route": "/lessons/calculus/294-implicit-differentiation",
+      "status": "Passed",
+      "screenshots": [
+        "0373-reference.png",
+        "0373-desktop.png",
+        "0373-tablet.png",
+        "0373-mobile.png",
+        "0373-interacted.png"
+      ],
+      "controlAudit": "0373-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0374",
+      "lessonId": 295,
+      "route": "/lessons/calculus/295-parametric-differentiation",
+      "status": "Passed",
+      "screenshots": [
+        "0374-reference.png",
+        "0374-desktop.png",
+        "0374-tablet.png",
+        "0374-mobile.png",
+        "0374-interacted.png"
+      ],
+      "controlAudit": "0374-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0375",
+      "lessonId": 296,
+      "route": "/lessons/calculus/296-critical-points",
+      "status": "Passed",
+      "screenshots": [
+        "0375-reference.png",
+        "0375-desktop.png",
+        "0375-tablet.png",
+        "0375-mobile.png",
+        "0375-interacted.png"
+      ],
+      "controlAudit": "0375-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0376",
+      "lessonId": 297,
+      "route": "/lessons/calculus/297-increasing-decreasing",
+      "status": "Passed",
+      "screenshots": [
+        "0376-reference.png",
+        "0376-desktop.png",
+        "0376-tablet.png",
+        "0376-mobile.png",
+        "0376-interacted.png"
+      ],
+      "controlAudit": "0376-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0377",
+      "lessonId": 298,
+      "route": "/lessons/calculus/298-local-and-global-extrema",
+      "status": "Passed",
+      "screenshots": [
+        "0377-reference.png",
+        "0377-desktop.png",
+        "0377-tablet.png",
+        "0377-mobile.png",
+        "0377-interacted.png"
+      ],
+      "controlAudit": "0377-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0378",
+      "lessonId": 299,
+      "route": "/lessons/calculus/299-concavity",
+      "status": "Passed",
+      "screenshots": [
+        "0378-reference.png",
+        "0378-desktop.png",
+        "0378-tablet.png",
+        "0378-mobile.png",
+        "0378-interacted.png"
+      ],
+      "controlAudit": "0378-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0379",
+      "lessonId": 300,
+      "route": "/lessons/calculus/300-inflection-points",
+      "status": "Passed",
+      "screenshots": [
+        "0379-reference.png",
+        "0379-desktop.png",
+        "0379-tablet.png",
+        "0379-mobile.png",
+        "0379-interacted.png"
+      ],
+      "controlAudit": "0379-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0380",
+      "lessonId": 301,
+      "route": "/lessons/calculus/301-optimisation",
+      "status": "Passed",
+      "screenshots": [
+        "0380-reference.png",
+        "0380-desktop.png",
+        "0380-tablet.png",
+        "0380-mobile.png",
+        "0380-interacted.png"
+      ],
+      "controlAudit": "0380-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0381",
+      "lessonId": 302,
+      "route": "/lessons/calculus/302-related-rates",
+      "status": "Passed",
+      "screenshots": [
+        "0381-reference.png",
+        "0381-desktop.png",
+        "0381-tablet.png",
+        "0381-mobile.png",
+        "0381-interacted.png"
+      ],
+      "controlAudit": "0381-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0382",
+      "lessonId": 303,
+      "route": "/lessons/calculus/303-motion-analysis",
+      "status": "Passed",
+      "screenshots": [
+        "0382-reference.png",
+        "0382-desktop.png",
+        "0382-tablet.png",
+        "0382-mobile.png",
+        "0382-interacted.png"
+      ],
+      "controlAudit": "0382-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0383",
+      "lessonId": 304,
+      "route": "/lessons/calculus/304-newton-s-method",
+      "status": "Passed",
+      "screenshots": [
+        "0383-reference.png",
+        "0383-desktop.png",
+        "0383-tablet.png",
+        "0383-mobile.png",
+        "0383-interacted.png"
+      ],
+      "controlAudit": "0383-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0384",
+      "lessonId": 305,
+      "route": "/lessons/calculus/305-taylor-polynomial",
+      "status": "Passed",
+      "screenshots": [
+        "0384-reference.png",
+        "0384-desktop.png",
+        "0384-tablet.png",
+        "0384-mobile.png",
+        "0384-interacted.png"
+      ],
+      "controlAudit": "0384-control-audit.json",
+      "consoleMessages": 0
+    }
+  ]
+}

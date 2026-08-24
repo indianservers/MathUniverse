@@ -3,7 +3,9 @@ import ReusableLessonEngine, { reusableEngineParamsFor } from "../components/Reu
 import FunctionMockupLesson from "./graph/FunctionMockupLesson";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
+import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
 import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
 
 type GraphSpec = {
   title: string;
@@ -18,8 +20,23 @@ type GraphSpec = {
   visual: "cartesian" | "functions" | "equation" | "inequality" | "parametric" | "polar" | "points" | "data" | "table" | "trace";
 };
 
+type TwoDTool = "coordinate" | "functions" | "equation" | "region" | "parametric" | "polar" | "points" | "data" | "table" | "trace" | "zoom" | "axis" | "grid" | "views" | "special" | "inspector" | "parameters" | "export";
+
+type TwoDGraphSpec = GraphSpec & {
+  mockupId: string;
+  tool: TwoDTool;
+  status: string;
+  leftTitle: string;
+  leftSteps: string[];
+  rightTitle: string;
+  controls: [string, string, string][];
+  outputs: [string, string, string][];
+  table: [string, string, string][];
+  note: string;
+};
+
 export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
-  if (lesson.id >= 143 && lesson.id <= 152) {
+  if (usesFunctionMockupWorkspace(lesson.id)) {
     return <FunctionMockupLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
@@ -35,11 +52,18 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   );
 }
 
+function usesFunctionMockupWorkspace(lessonId: number) {
+  return lessonId >= 143 && lessonId <= 152 || lessonId === 153 || lessonId === 154 || (lessonId >= 156 && lessonId <= 162) || lessonId === 164;
+}
+
 function RedesignedGraphingLesson({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  if (lesson.id >= 39 && lesson.id <= 56) {
+    return <TwoDGraphingMockupLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+
   const spec = graphSpecFor(lesson.id);
   const [probe, setProbe] = useState(50);
   const [showHelper, setShowHelper] = useState(true);
-
   useEffect(() => { setProbe(50); setShowHelper(true); }, [lesson.id, resetToken]);
 
   return (
@@ -79,6 +103,246 @@ function RedesignedGraphingLesson({ lesson, resetToken, onInteraction }: LessonA
       </section>
     </AdapterFrame>
   );
+}
+
+function TwoDGraphingMockupLesson({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  const spec = twoDGraphSpecFor(lesson.id);
+  const [primary, setPrimary] = useState(2);
+  const [secondary, setSecondary] = useState(3);
+  const [trace, setTrace] = useState(1.5);
+  const [showGuides, setShowGuides] = useState(true);
+
+  useEffect(() => {
+    setPrimary(2);
+    setSecondary(3);
+    setTrace(1.5);
+    setShowGuides(true);
+  }, [lesson.id, resetToken]);
+
+  const updateNumber = (field: "primary" | "secondary" | "trace", next: number) => {
+    if (field === "primary") setPrimary(next);
+    if (field === "secondary") setSecondary(next);
+    if (field === "trace") setTrace(next);
+    onInteraction();
+  };
+
+  const resetView = () => {
+    setPrimary(2);
+    setSecondary(3);
+    setTrace(1.5);
+    setShowGuides(true);
+    onInteraction();
+  };
+
+  return (
+    <section className="overflow-hidden rounded-2xl border border-[#dbe6fb] bg-[#f8fbff] p-3 shadow-[0_18px_46px_rgba(15,23,42,.075)]" data-testid={`2d-graphing-mockup-${spec.mockupId}`}>
+      <div className="grid gap-3 xl:grid-cols-[170px_minmax(0,1fr)_285px]">
+        <aside className="rounded-2xl border border-[#dbe6fb] bg-white/95 p-3 shadow-sm">
+          <p className="text-[10px] font-black uppercase tracking-wide text-[#087b98]">{spec.leftTitle}</p>
+          <h3 className="mt-1 text-xl font-black leading-tight text-[#081238]">{spec.value}</h3>
+          <div className="mt-4 space-y-3">
+            {spec.leftSteps.map((step, index) => (
+              <div key={step} className="grid grid-cols-[24px_1fr] gap-2 text-sm font-black text-[#152348]">
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-blue-600 text-xs text-white">{index + 1}</span>
+                <span>{step}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs font-bold leading-5 text-amber-900">{spec.note}</div>
+        </aside>
+
+        <main className="min-w-0 rounded-2xl border border-[#dbe6fb] bg-white p-3 shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h3 className="text-base font-black text-[#152348]">{spec.equation}</h3>
+              <p className="mt-1 text-xs font-bold text-[#53627f]">{spec.focus}</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <GraphAction icon={<RotateCcw className="h-4 w-4" />} label="Reset view" onClick={resetView} />
+              <GraphAction icon={<ZoomIn className="h-4 w-4" />} label={spec.tool === "zoom" ? "Zoom fit" : "Fit"} onClick={() => updateNumber("trace", 1.5)} />
+              <GraphAction icon={<Share2 className="h-4 w-4" />} label="Share" onClick={onInteraction} />
+              <IconButton label="Move graph" onClick={onInteraction}><Move className="h-4 w-4" /></IconButton>
+              <IconButton label="Toggle guides" onClick={() => { setShowGuides((value) => !value); onInteraction(); }}><Grid3X3 className="h-4 w-4" /></IconButton>
+              <IconButton label="Inspector" onClick={onInteraction}><Eye className="h-4 w-4" /></IconButton>
+            </div>
+          </div>
+          <div className="mt-3">
+            <TwoDGraphCanvas spec={spec} primary={primary} secondary={secondary} trace={trace} showGuides={showGuides} />
+          </div>
+          <div className="mt-3 grid gap-2 md:grid-cols-3">
+            {spec.outputs.map(([label, value, tone]) => <OutputCard key={label} label={label} value={value} tone={tone} />)}
+          </div>
+        </main>
+
+        <aside className="space-y-3">
+          <section className="rounded-2xl border border-[#dbe6fb] bg-white/95 p-3 shadow-sm">
+            <p className="text-sm font-black text-[#081238]">{spec.rightTitle}</p>
+            <div className="mt-3 space-y-3">
+              {spec.controls.map(([label, value, tone], index) => (
+                <GraphControl key={label} label={label} value={index === 0 ? primary : index === 1 ? secondary : trace} valueLabel={value} tone={tone} onChange={(next) => updateNumber(index === 0 ? "primary" : index === 1 ? "secondary" : "trace", next)} />
+              ))}
+            </div>
+          </section>
+          <section className="rounded-2xl border border-[#dbe6fb] bg-white/95 p-3 shadow-sm">
+            <p className="text-sm font-black text-[#081238]">{spec.testSnippet}</p>
+            <div className="mt-3 overflow-hidden rounded-xl border border-[#dbe6fb]">
+              <table className="w-full border-collapse text-left text-xs">
+                <tbody>
+                  {spec.table.map(([label, value, detail], index) => (
+                    <tr key={`${label}-${value}-${index}`} className="border-b border-[#e6eefb] last:border-0">
+                      <th className="w-20 bg-[#f8fbff] px-2 py-2 font-black text-[#53627f]">{label}</th>
+                      <td className="px-2 py-2 font-black text-[#081238]">{value}</td>
+                      <td className="px-2 py-2 font-semibold text-[#53627f]">{detail}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <div className="mt-3 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]">
+        <section className="rounded-2xl border border-[#dbe6fb] bg-white/95 p-3 shadow-sm">
+          <p className="mb-2 text-sm font-black text-[#081238]">Sample values</p>
+          <MiniValuesTable spec={spec} trace={trace} />
+        </section>
+        <section className="rounded-2xl border border-[#dbe6fb] bg-white/95 p-4 text-sm font-bold leading-6 text-[#53627f] shadow-sm">
+          <strong className="block text-[#081238]">{spec.warning}</strong>
+          {spec.right.join(" · ")}
+        </section>
+      </div>
+    </section>
+  );
+}
+
+function GraphAction({ icon, label, onClick }: { icon: ReactNode; label: string; onClick: () => void }) {
+  return <button type="button" className="inline-flex min-h-11 items-center gap-2 rounded-2xl border border-[#dbe6fb] bg-white px-4 text-sm font-black text-[#152348] shadow-sm transition hover:border-cyan-300 hover:bg-cyan-50" onClick={onClick}>{icon}{label}</button>;
+}
+
+function IconButton({ children, label, onClick }: { children: ReactNode; label: string; onClick: () => void }) {
+  return <button type="button" aria-label={label} title={label} className="grid h-10 w-10 place-items-center rounded-xl border border-[#dbe6fb] bg-[#f8fbff] text-[#152348] transition hover:border-cyan-300 hover:bg-cyan-50" onClick={onClick}>{children}</button>;
+}
+
+function OutputCard({ label, value, tone }: { label: string; value: string; tone: string }) {
+  const color = tone === "violet" ? "border-violet-200 bg-violet-50 text-violet-900" : tone === "orange" ? "border-orange-200 bg-orange-50 text-orange-900" : "border-cyan-200 bg-cyan-50 text-cyan-950";
+  return <div className={`rounded-xl border p-3 ${color}`}><p className="text-[10px] font-black uppercase">{label}</p><p className="mt-1 font-mono text-lg font-black">{value}</p></div>;
+}
+
+function GraphControl({ label, value, valueLabel, tone, onChange }: { label: string; value: number; valueLabel: string; tone: string; onChange: (value: number) => void }) {
+  const accent = tone === "violet" ? "accent-violet-600" : tone === "orange" ? "accent-orange-500" : "accent-cyan-600";
+  const buttonTone = tone === "violet" ? "text-violet-700" : tone === "orange" ? "text-orange-700" : "text-cyan-700";
+  return (
+    <div>
+      <div className="mb-1 flex items-center justify-between text-xs font-black text-[#53627f]"><span>{label}</span><span>{valueLabel}</span></div>
+      <input aria-label={label} type="range" min="-5" max="5" step="0.5" value={value} onChange={(event) => onChange(Number(event.target.value))} className={`w-full ${accent}`} />
+      <div className="mt-2 grid grid-cols-[32px_1fr_32px] gap-2">
+        <button type="button" className={`grid h-8 place-items-center rounded-lg border border-[#dbe6fb] bg-white ${buttonTone}`} onClick={() => onChange(Math.max(-5, value - 0.5))}><Minus className="h-4 w-4" /></button>
+        <output className="grid h-8 place-items-center rounded-lg border border-[#dbe6fb] bg-[#f8fbff] font-mono text-sm font-black text-[#081238]">{value.toFixed(value % 1 ? 1 : 0)}</output>
+        <button type="button" className={`grid h-8 place-items-center rounded-lg border border-[#dbe6fb] bg-white ${buttonTone}`} onClick={() => onChange(Math.min(5, value + 0.5))}><Plus className="h-4 w-4" /></button>
+      </div>
+    </div>
+  );
+}
+
+function TwoDGraphCanvas({ spec, primary, secondary, trace, showGuides }: { spec: TwoDGraphSpec; primary: number; secondary: number; trace: number; showGuides: boolean }) {
+  const x = 420 + trace * 48;
+  const y = canvasY(spec.tool, trace, primary, secondary);
+  return (
+    <svg viewBox="0 0 720 520" className="block w-full rounded-2xl border border-[#dbe6fb] bg-white" role="img" aria-label={`${spec.title} graph workspace`}>
+      <defs>
+        <pattern id={`twod-grid-${spec.mockupId}`} width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#e6eefb" strokeWidth="1" /></pattern>
+        <marker id={`arrow-${spec.mockupId}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb" /></marker>
+      </defs>
+      <rect width="720" height="520" fill={`url(#twod-grid-${spec.mockupId})`} />
+      {showGuides ? <g opacity=".58">{Array.from({ length: 11 }, (_, index) => <text key={`x-${index}`} x={104 + index * 56} y="300" textAnchor="middle" fontSize="13" fontWeight="800" fill="#1f2937">{index - 5}</text>)}{Array.from({ length: 9 }, (_, index) => <text key={`y-${index}`} x="354" y={84 + index * 48} textAnchor="end" fontSize="13" fontWeight="800" fill="#1f2937">{4 - index}</text>)}</g> : null}
+      <line x1="74" y1="292" x2="680" y2="292" stroke="#2563eb" strokeWidth="3" markerEnd={`url(#arrow-${spec.mockupId})`} />
+      <line x1="360" y1="478" x2="360" y2="42" stroke="#2563eb" strokeWidth="3" markerEnd={`url(#arrow-${spec.mockupId})`} />
+      <text x="665" y="278" fontSize="16" fontWeight="900" fill="#081238">x</text>
+      <text x="374" y="56" fontSize="16" fontWeight="900" fill="#081238">y</text>
+      {renderTwoDGraphShape(spec.tool)}
+      {showGuides ? <g><line x1={x} y1="64" x2={x} y2="454" stroke="#3b82f6" strokeWidth="3" strokeDasharray="8 8" /><circle cx={x} cy={y} r="10" fill="#14a8bd" /><text x={Math.min(600, x + 14)} y={y - 16} fontSize="18" fontWeight="900" fill="#0898b7">{spec.value}</text></g> : null}
+    </svg>
+  );
+}
+
+function renderTwoDGraphShape(tool: TwoDTool) {
+  if (tool === "coordinate") return <><path d="M360 292 H470 V182" fill="none" stroke="#7c3aed" strokeWidth="4" strokeDasharray="8 7" /><circle cx="470" cy="182" r="10" fill="#14a8bd" /><text x="486" y="176" fontSize="20" fontWeight="900" fill="#0898b7">P(2, 3)</text><text x="430" y="330" fontSize="15" fontWeight="900" fill="#7c3aed">x first</text><text x="490" y="238" fontSize="15" fontWeight="900" fill="#7c3aed">y second</text></>;
+  if (tool === "functions") return <><path d="M110 80 C190 430 290 430 360 348 S500 24 612 82" fill="none" stroke="#0898b7" strokeWidth="5" /><line x1="95" y1="344" x2="650" y2="176" stroke="#7c3aed" strokeWidth="4" /><path d="M95 292 C170 220 246 410 330 318 S480 164 650 330" fill="none" stroke="#f97316" strokeWidth="4" /><text x="535" y="136" fontSize="18" fontWeight="900" fill="#0898b7">f(x)</text><text x="536" y="204" fontSize="18" fontWeight="900" fill="#7c3aed">g(x)</text></>;
+  if (tool === "equation") return <><ellipse cx="360" cy="250" rx="180" ry="100" fill="none" stroke="#0898b7" strokeWidth="5" /><line x1="120" y1="430" x2="610" y2="76" stroke="#7c3aed" strokeWidth="4" /><circle cx="470" cy="190" r="9" fill="#f97316" /><text x="492" y="186" fontSize="17" fontWeight="900" fill="#081238">solution point</text></>;
+  if (tool === "region") return <><polygon points="95,292 650,292 650,130 95,250" fill="#bae6fd" opacity=".85" /><polygon points="95,108 650,278 650,60 95,60" fill="#ddd6fe" opacity=".82" /><polygon points="320,206 650,130 650,278" fill="#5eead4" opacity=".8" /><line x1="95" y1="250" x2="650" y2="130" stroke="#0898b7" strokeWidth="4" /><line x1="95" y1="108" x2="650" y2="278" stroke="#7c3aed" strokeWidth="4" strokeDasharray="10 8" /></>;
+  if (tool === "parametric") return <><ellipse cx="360" cy="260" rx="205" ry="116" fill="none" stroke="#0898b7" strokeWidth="5" /><path d="M120 260 C205 72 330 450 440 112 S600 386 638 260" fill="none" stroke="#f97316" strokeWidth="4" opacity=".65" /><circle cx="520" cy="170" r="10" fill="#7c3aed" /></>;
+  if (tool === "polar") return <><circle cx="360" cy="260" r="54" fill="none" stroke="#dbe6fb" strokeWidth="3" /><circle cx="360" cy="260" r="106" fill="none" stroke="#dbe6fb" strokeWidth="3" /><circle cx="360" cy="260" r="158" fill="none" stroke="#dbe6fb" strokeWidth="3" /><path d="M360 260 C328 92 232 108 270 242 C145 250 180 366 336 318 C380 470 472 398 414 276 C570 238 512 114 388 222 Z" fill="none" stroke="#0898b7" strokeWidth="5" /><line x1="360" y1="260" x2="532" y2="102" stroke="#f97316" strokeWidth="4" /></>;
+  if (tool === "points") return <><polyline points="230,244 286,168 416,202 540,102 594,292" fill="none" stroke="#94a3b8" strokeWidth="3" strokeDasharray="8 6" />{[[230,244,"A"],[286,168,"B"],[416,202,"C"],[540,102,"D"],[594,292,"E"]].map(([cx, cy, label]) => <g key={label}><circle cx={cx} cy={cy} r="10" fill={label === "C" ? "#f97316" : "#14a8bd"} /><text x={Number(cx) + 13} y={Number(cy) - 11} fontSize="16" fontWeight="900" fill="#081238">{label}</text></g>)}</>;
+  if (tool === "data") return <><line x1="120" y1="420" x2="628" y2="110" stroke="#7c3aed" strokeWidth="4" />{[[128,392],[176,360],[224,338],[272,298],[320,278],[368,236],[416,216],[464,176],[512,148],[560,126],[400,386]].map(([cx, cy], index) => <g key={`${cx}-${cy}`}><line x1={cx} y1={cy} x2={cx} y2={440 - Number(cx) * .5} stroke="#cbd5e1" /><circle cx={cx} cy={cy} r="8" fill={index === 10 ? "#f97316" : "#14a8bd"} /></g>)}</>;
+  if (tool === "table") return <><path d="M120 90 C210 330 282 416 360 424 S512 330 604 90" fill="none" stroke="#0898b7" strokeWidth="5" /><circle cx="520" cy="218" r="11" fill="#f97316" /><text x="538" y="214" fontSize="17" fontWeight="900" fill="#081238">row to point</text></>;
+  if (tool === "trace" || tool === "zoom" || tool === "inspector") return <><path d="M96 372 C188 320 248 120 338 182 S492 390 650 108" fill="none" stroke="#0898b7" strokeWidth="5" /><line x1="340" y1="180" x2="560" y2="92" stroke="#f97316" strokeWidth="4" /><circle cx="340" cy="180" r="10" fill="#7c3aed" /></>;
+  if (tool === "axis") return <><path d="M120 410 C220 372 320 316 400 220 S528 76 628 64" fill="none" stroke="#0898b7" strokeWidth="5" /><rect x="88" y="70" width="150" height="96" rx="16" fill="#f8fbff" stroke="#dbe6fb" /><text x="106" y="106" fontSize="16" fontWeight="900" fill="#081238">x: [-4, 4]</text><text x="106" y="134" fontSize="16" fontWeight="900" fill="#081238">y: [0, 18]</text></>;
+  if (tool === "grid") return <><path d="M120 90 C210 330 282 416 360 424 S512 330 604 90" fill="none" stroke="#0898b7" strokeWidth="5" /><g stroke="#7c3aed" strokeWidth="2" opacity=".4">{Array.from({ length: 8 }, (_, index) => <line key={index} x1={112 + index * 70} x2={112 + index * 70} y1="58" y2="458" />)}</g></>;
+  if (tool === "views") return <><g>{[[92,72],[386,72],[92,272],[386,272]].map(([x, y], index) => <rect key={`${x}-${y}`} x={x} y={y} width="250" height="160" rx="16" fill={index === 0 ? "#eefcff" : "#f8fbff"} stroke="#dbe6fb" />)}</g><path d="M116 188 C180 116 256 116 320 188" fill="none" stroke="#0898b7" strokeWidth="4" /><path d="M410 364 C480 300 558 304 612 364" fill="none" stroke="#7c3aed" strokeWidth="4" /></>;
+  if (tool === "special") return <><path d="M120 90 C210 330 282 416 360 424 S512 330 604 90" fill="none" stroke="#0898b7" strokeWidth="5" />{[[250,292,"root"],[470,292,"root"],[360,424,"vertex"],[410,246,"meet"]].map(([cx, cy, label], index) => <g key={`${label}-${index}`}><circle cx={cx} cy={cy} r="10" fill="#f97316" /><text x={Number(cx) + 14} y={Number(cy) - 8} fontSize="15" fontWeight="900" fill="#081238">{label}</text></g>)}</>;
+  if (tool === "parameters") return <><path d="M96 292 C190 180 258 180 360 292 S535 400 650 292" fill="none" stroke="#cbd5e1" strokeWidth="3" strokeDasharray="8 6" /><path d="M96 344 C190 86 258 86 360 344 S535 498 650 344" fill="none" stroke="#0898b7" strokeWidth="5" /><text x="116" y="106" fontSize="18" fontWeight="900" fill="#7c3aed">a, b, c sliders</text></>;
+  return <><rect x="150" y="96" width="420" height="286" rx="18" fill="#f8fbff" stroke="#dbe6fb" /><path d="M188 320 C270 194 348 194 430 320 S530 390 540 190" fill="none" stroke="#0898b7" strokeWidth="5" /><text x="190" y="138" fontSize="18" fontWeight="900" fill="#081238">Export preview</text><text x="190" y="366" fontSize="15" fontWeight="900" fill="#53627f">PNG · SVG · PDF</text></>;
+}
+
+function canvasY(tool: TwoDTool, trace: number, primary: number, secondary: number) {
+  if (tool === "coordinate") return 292 - secondary * 36;
+  if (tool === "points") return 202;
+  if (tool === "data") return 300 - trace * 45;
+  if (tool === "parametric" || tool === "polar") return 260;
+  if (tool === "table" || tool === "grid" || tool === "special") return 292 - (primary * primary - 2 * primary - 3) * 16;
+  return 255 - Math.sin(trace) * 58 - trace * 18;
+}
+
+function MiniValuesTable({ spec, trace }: { spec: TwoDGraphSpec; trace: number }) {
+  const values = [-3, -2, -1, 0, 1, 1.5, 2, 3];
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[600px] border-collapse text-center text-xs">
+        <thead><tr className="bg-[#f8fbff] text-[#53627f]"><th className="border border-[#dbe6fb] px-2 py-2 text-left">x</th>{values.map((value) => <th key={value} className={Math.abs(value - trace) < 0.05 ? "border-2 border-blue-500 px-2 py-2 text-blue-700" : "border border-[#dbe6fb] px-2 py-2"}>{value}</th>)}</tr></thead>
+        <tbody>
+          <tr><th className="border border-[#dbe6fb] px-2 py-2 text-left font-black text-[#0898b7]">{spec.title}</th>{values.map((value) => <td key={value} className={Math.abs(value - trace) < 0.05 ? "border-2 border-blue-500 px-2 py-2 font-black text-blue-700" : "border border-[#dbe6fb] px-2 py-2 font-semibold text-[#152348]"}>{formatGraphValue(spec.tool, value)}</td>)}</tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function formatGraphValue(tool: TwoDTool, x: number) {
+  if (tool === "functions") return (x * x - 2).toFixed(3);
+  if (tool === "table" || tool === "grid" || tool === "special") return (x * x - 2 * x - 3).toFixed(3);
+  if (tool === "polar") return (4 * Math.sin(3 * x)).toFixed(3);
+  if (tool === "data") return (2.8 + x * 1.2).toFixed(3);
+  if (tool === "equation") return Math.abs((x * x) / 9 - 1).toFixed(3);
+  return (Math.sin(x) + 0.3 * x).toFixed(3);
+}
+
+function twoDGraphSpecFor(lessonId: number): TwoDGraphSpec {
+  const specs: Record<number, TwoDGraphSpec> = {
+    39: twoD("0131", "Cartesian Graphing", "coordinate", "Plot relationships on coordinate axes.", "P(2, 3)", "Plot the point. Read x first, then y.", "x first and y second", "Ordered pair", ["Read the ordered pair", "Move on the coordinate plane", "Plot the point"], "Your point", [["x first (horizontal)", "2", "cyan"], ["y second (vertical)", "3", "violet"], ["Trace x", "1.5", "cyan"]], [["x", "2", "cyan"], ["y", "3", "violet"], ["P", "(2, 3)", "cyan"]], [["P", "(2, 3)", "selected"], ["A", "(-3, 1)", "sample"], ["B", "(0, -2)", "sample"], ["C", "(4, -1)", "sample"]], "Always read the x-coordinate before the y-coordinate.", "Read the x-coordinate before the y-coordinate.", "Read in order"),
+    40: twoD("0132", "Function Plotter", "functions", "Compare multiple functions.", "Trace x = 1.5", "f(x)=x^2-2, g(x)=0.8x+1, h(x)=sin(x)", "Outputs update together", "Intersections", ["f & g: (0.618, -1.618)", "f & h: (-1.404, -1.030)", "g & h: (-1.978, -0.582)"], "Functions", [["f(x)", "x^2 - 2", "cyan"], ["g(x)", "0.8x + 1", "violet"], ["Trace x", "1.5", "orange"]], [["f(1.5)", "0.250", "cyan"], ["g(1.5)", "2.200", "violet"], ["h(1.5)", "0.997", "orange"]], [["f", "x^2 - 2", "visible"], ["g", "0.8x + 1", "visible"], ["h", "sin(x)", "visible"]], "Move the trace to see function values update together.", "Do not compare curves without checking the same x input.", "Outputs at trace"),
+    41: twoD("0133", "Equation Grapher", "equation", "Visualise explicit and implicit equations.", "Solution set", "x^2/9 + y^2/4 = 1", "Every point on the curve makes the equation true", "Check points", ["Substitute x and y", "True points stay on curve", "False points miss the graph"], "Equation tools", [["Test x", "2", "cyan"], ["Test y", "1", "violet"], ["Trace x", "1.5", "orange"]], [["Status", "satisfies", "cyan"], ["Curve", "ellipse", "violet"], ["Mode", "implicit", "orange"]], [["Point", "(2,1)", "true"], ["Point", "(4,1)", "false"], ["Rule", "all solutions", "set"]], "An equation graph is a set of all points that satisfy the rule.", "Implicit equations are solution sets, not always y as a function of x.", "Substitution check"),
+    42: twoD("0134", "Inequality Grapher", "region", "Understand feasible regions.", "Overlap", "y <= 0.8x + 1 and y > -0.5x + 2", "Overlap = solution region", "Region test", ["Check a sample point", "Solid line means included", "Dashed line means excluded"], "Inequality tools", [["Boundary A", "solid", "cyan"], ["Boundary B", "dashed", "violet"], ["Trace x", "1.5", "orange"]], [["A(1,2)", "true", "cyan"], ["Included", "solid", "violet"], ["Overlap", "solution", "orange"]], [["Line 1", "included", "solid"], ["Line 2", "not included", "dashed"], ["Region", "overlap", "answer"]], "The overlap is the set of points satisfying both inequalities.", "Solid boundaries are included; dashed boundaries are not.", "True/false badges"),
+    43: twoD("0135", "Parametric Curves", "parametric", "Explore time- or parameter-driven paths.", "t = 1.2pi", "x = 3cos(t), y = 2sin(t)", "t controls motion, not an axis", "Motion path", ["Follow the parameter", "Mark direction", "Read x(t) and y(t)"], "Parameter controls", [["a radius", "3", "cyan"], ["b radius", "2", "violet"], ["t", "1.2pi", "orange"]], [["x(t)", "-2.43", "cyan"], ["y(t)", "-1.18", "violet"], ["speed", "live", "orange"]], [["t", "0", "(3,0)"], ["t", "pi/2", "(0,2)"], ["t", "pi", "(-3,0)"]], "The parameter moves a point along the path.", "The parameter controls motion along the path; it is not a graph axis.", "t table"),
+    44: twoD("0136", "Polar Graphs", "polar", "Explore radius-angle relationships.", "theta = 40 deg", "r = 4sin(3theta)", "Angle first, radius next", "Polar reading", ["Turn by theta", "Measure radius r", "Convert to x,y when needed"], "Polar controls", [["radius scale", "4", "cyan"], ["petals", "3", "violet"], ["theta", "40 deg", "orange"]], [["r", "2.57", "cyan"], ["petals", "3", "violet"], ["pole", "center", "orange"]], [["theta", "0", "r=0"], ["theta", "30", "r=4"], ["theta", "60", "r=0"]], "Polar points are read by angle and distance.", "A polar point needs angle and radius, in that order.", "Cartesian check"),
+    45: twoD("0137", "Point Plotter", "points", "Build coordinate fluency.", "C(1, 2)", "A(-2, 1), B(-1, 3), C(1, 2)", "Plot exact ordered pairs before connecting anything", "Point list", ["Select a point", "Snap to grid", "Verify ordered pair"], "Point controls", [["x", "1", "cyan"], ["y", "2", "violet"], ["Trace x", "1.5", "orange"]], [["Selected", "C", "cyan"], ["Pair", "(1,2)", "violet"], ["Snap", "on", "orange"]], [["A", "(-2,1)", "plotted"], ["B", "(-1,3)", "plotted"], ["C", "(1,2)", "selected"]], "A plotted point should land on the exact grid address.", "Points are evidence before a trend line.", "Sample ordered pairs"),
+    46: twoD("0138", "Data Plotter", "data", "Connect datasets to graphs.", "r = 0.86", "Study hours vs Quiz score", "Best-fit line", "Data story", ["Plot each row", "Inspect outliers", "Compare to fit line"], "Data controls", [["hours", "2", "cyan"], ["score", "3", "violet"], ["Trace x", "1.5", "orange"]], [["trend", "positive", "cyan"], ["r", "0.86", "violet"], ["outlier", "flagged", "orange"]], [["Study", "2h", "68"], ["Study", "4h", "78"], ["Study", "6h", "90"]], "Trend, spread, and outliers must all be visible.", "Do not force a curve before inspecting the data.", "Residuals"),
+    47: twoD("0139", "Table of Values", "table", "Link numerical and graphical representations.", "x = 3", "f(x)=x^2-2x-3", "Row becomes point", "Table link", ["Choose row", "Compute output", "Plot row as a point"], "Table controls", [["x", "3", "cyan"], ["output", "0", "violet"], ["Trace x", "1.5", "orange"]], [["x", "3", "cyan"], ["f(x)", "0", "violet"], ["point", "(3,0)", "orange"]], [["-1", "0", "root"], ["1", "-4", "vertex"], ["3", "0", "root"]], "Each table row is a coordinate pair on the graph.", "Every table row should correspond to a plotted graph point.", "Second differences"),
+    48: twoD("0140", "Trace Mode", "trace", "Observe paths and change.", "x = 1.8", "f(x)=sin(x)+0.3x", "Trace point", "Trace readout", ["Move along curve", "Read x and y", "Estimate slope"], "Trace controls", [["trace x", "1.8", "cyan"], ["slope", "1.2", "violet"], ["step", "0.1", "orange"]], [["x", "1.8", "cyan"], ["y", "1.51", "violet"], ["slope", "0.07", "orange"]], [["near x", "1.7", "1.50"], ["trace", "1.8", "1.51"], ["near x", "1.9", "1.52"]], "Trace mode reports coordinates along the graph.", "Trace mode reads coordinates along the graph; report both x and y.", "Nearby values"),
+    49: twoD("0141", "Zoom and Pan", "zoom", "Inspect graphs at different scales.", "x:[-2, 2], y:[-1, 1]", "f(x)=0.25x^3-x", "Same equation, different view", "Viewport", ["Zoom in", "Pan canvas", "Reset view"], "Viewport controls", [["x-span", "4", "cyan"], ["y-span", "2", "violet"], ["Trace x", "1.5", "orange"]], [["window", "zoomed", "cyan"], ["equation", "same", "violet"], ["center", "(0,0)", "orange"]], [["Wide", "[-6,6]", "overview"], ["Zoom", "[-2,2]", "active"], ["Pan", "drag", "view only"]], "Zoom changes the window, not the equation.", "Zoom and pan change the view, not the equation.", "Mini overview map"),
+    50: twoD("0142", "Axis Controls", "axis", "Configure graph presentation.", "x:[-4,4], y:[0,18]", "y=2^x", "Axis limits and scale", "Axis setup", ["Set x-limits", "Set y-limits", "Check scale"], "Axis controls", [["x max", "4", "cyan"], ["y max", "18", "violet"], ["Trace x", "1.5", "orange"]], [["x range", "8", "cyan"], ["y range", "18", "violet"], ["scale", "linear", "orange"]], [["x min", "-4", "left"], ["x max", "4", "right"], ["tick", "1", "step"]], "Good axis limits reveal important graph behavior.", "Bad axis limits can hide important behavior, so check limits and scale together.", "Tick step"),
+    51: twoD("0143", "Grid Controls", "grid", "Use appropriate construction guides.", "f(1.5)=1.125", "y=0.5x^2", "Major and minor guide-line spacing", "Grid setup", ["Set major spacing", "Add subdivisions", "Snap or estimate"], "Grid controls", [["major", "1", "cyan"], ["minor", "0.5", "violet"], ["Trace x", "1.5", "orange"]], [["spacing", "major", "cyan"], ["snap", "on", "violet"], ["opacity", "70%", "orange"]], [["Sparse", "1", "read"], ["Dense", "0.25", "estimate"], ["Snap", "on", "construct"]], "Gridlines guide reading without changing values.", "Gridlines guide reading; guide-line spacing does not redefine values.", "Estimate points"),
+    52: twoD("0144", "Multiple Graphics Views", "views", "Compare representations side by side.", "x = 2.0", "f(x)=sin(x)+0.25x", "Algebra, graph, table, and detail stay synchronized", "Linked panes", ["Open algebra view", "Sync graph and table", "Inspect same object"], "View controls", [["pane", "2x2", "cyan"], ["sync", "on", "violet"], ["Trace x", "2.0", "orange"]], [["layout", "2x2", "cyan"], ["object", "same", "violet"], ["cursor", "synced", "orange"]], [["Graph", "active", "same"], ["Table", "active", "same"], ["Detail", "active", "same"]], "Each pane shows the same object at a different scale.", "Each pane shows the same object at different scales, not a separate graph.", "Sync cursor"),
+    53: twoD("0145", "Special Points", "special", "Find important graph features.", "(-1,0), (3,0), (1,-4)", "f(x)=x^2-2x-3; g(x)=x-1", "Roots, vertex, intercepts, and intersections", "Point finder", ["Find roots", "Find vertex", "Find intersections"], "Feature controls", [["root", "-1", "cyan"], ["vertex", "-4", "violet"], ["Trace x", "1.5", "orange"]], [["roots", "-1, 3", "cyan"], ["vertex", "(1,-4)", "violet"], ["meet", "(2,1)", "orange"]], [["Root", "(-1,0)", "zero"], ["Root", "(3,0)", "zero"], ["Vertex", "(1,-4)", "min"]], "Special points satisfy extra graph conditions.", "Special points satisfy extra conditions beyond merely lying on the curve.", "Feature list"),
+    54: twoD("0146", "Graph Inspector", "inspector", "Read local graph properties.", "Slope at x = 1.2", "f(x)=x^3-3x", "Selected curve facts", "Inspector", ["Select curve", "Move probe", "Read properties"], "Inspector controls", [["probe x", "1.2", "cyan"], ["window", "local", "violet"], ["Trace x", "1.5", "orange"]], [["slope", "1.32", "cyan"], ["domain", "all real", "violet"], ["concavity", "up", "orange"]], [["Domain", "all real", "global"], ["Range", "all real", "global"], ["Rate", "local", "probe"]], "The inspector reports facts for the selected graph and probe.", "The inspector reports selected graph facts for the current curve and probe.", "Selected curve facts"),
+    55: twoD("0147", "Dynamic Parameters", "parameters", "Study function families.", "a=2, b=1.5, c=0.5", "y=a sin(bx)+c", "Sliders change amplitude, period, and midline", "Parameter family", ["Move one slider", "Watch the ghost curve", "Name the effect"], "Parameter controls", [["a", "2", "cyan"], ["b", "1.5", "violet"], ["c", "0.5", "orange"]], [["amplitude", "2", "cyan"], ["period", "4.19", "violet"], ["midline", "0.5", "orange"]], [["a", "height", "amplitude"], ["b", "width", "period"], ["c", "up/down", "midline"]], "A parameter slider changes the whole graph family.", "A parameter slider should explain how it can change a whole graph family.", "Animate sweep"),
+    56: twoD("0148", "Export Graph", "export", "Reuse or share mathematical work.", "PNG / SVG / PDF", "f(x)=1/(1+e^{-x})", "Export preview with title, legend, labels, and scale", "Export setup", ["Preview output", "Include labels", "Choose format"], "Export controls", [["scale", "2x", "cyan"], ["labels", "on", "violet"], ["Trace x", "1.5", "orange"]], [["format", "PNG", "cyan"], ["labels", "included", "violet"], ["scale", "2x", "orange"]], [["PNG", "image", "ready"], ["SVG", "vector", "ready"], ["PDF", "print", "ready"]], "The exported graph should match the current visual state.", "A useful exported graph includes axes, labels, and scale, and the exported state should match the current visual state.", "Export preview"),
+  };
+  return specs[lessonId] ?? specs[39];
+}
+
+function twoD(mockupId: string, title: string, tool: TwoDTool, purpose: string, value: string, equation: string, focus: string, leftTitle: string, leftSteps: string[], rightTitle: string, controls: [string, string, string][], outputs: [string, string, string][], table: [string, string, string][], note: string, warning: string, testSnippet: string): TwoDGraphSpec {
+  return { mockupId, title, tool, purpose, value, equation, focus, leftTitle, leftSteps, rightTitle, controls, outputs, table, note, warning, testSnippet, status: focus, left: leftSteps, right: outputs.map(([label, val]) => `${label}: ${val}`), visual: tool === "region" ? "inequality" : tool === "coordinate" || tool === "grid" ? "cartesian" : tool === "special" ? "equation" : tool === "points" ? "points" : tool === "data" ? "data" : tool === "table" || tool === "views" ? "table" : tool === "polar" ? "polar" : tool === "parametric" ? "parametric" : "trace" };
 }
 
 function graphSpecFor(lessonId: number): GraphSpec {

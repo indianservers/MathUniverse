@@ -1,0 +1,36 @@
+{
+  "mockup": "0215",
+  "lessonId": 158,
+  "title": "Vertical Stretch and Compression",
+  "route": "/lessons/graphs-and-functions/158-vertical-stretch-and-compression",
+  "reference": "0215-interactive-intermediate-function-transformations-vertical-stretch-and-compression-redesigned.png",
+  "workspaceFamily": "logarithmic-style function graph workspace",
+  "consoleMessages": [],
+  "controls": [
+    {
+      "name": "Workspace render",
+      "type": "workspace",
+      "expected": "Dedicated function workspace renders for mapped route",
+      "result": "pass"
+    },
+    {
+      "name": "Graph output",
+      "type": "graph",
+      "expected": "Graph SVG and live output are visible",
+      "result": "pass"
+    },
+    {
+      "name": "Primary probe slider",
+      "type": "slider",
+      "expected": "Updates visible graph/table/output state",
+      "result": "pass"
+    },
+    {
+      "name": "Quick check answer",
+      "type": "button",
+      "expected": "Reveals lesson-specific answer feedback",
+      "result": "pass"
+    }
+  ],
+  "passed": true
+}

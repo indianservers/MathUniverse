@@ -1,0 +1,277 @@
+{
+  "family": "2D Graphing Calculator",
+  "lessons": 18,
+  "status": "Passed",
+  "results": [
+    {
+      "mockup": "0131",
+      "lessonId": 39,
+      "route": "/lessons/graphs-and-functions/39-cartesian-graphing",
+      "status": "Passed",
+      "screenshots": [
+        "0131-reference.png",
+        "0131-desktop.png",
+        "0131-tablet.png",
+        "0131-mobile.png",
+        "0131-interacted.png"
+      ],
+      "controlAudit": "0131-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0132",
+      "lessonId": 40,
+      "route": "/lessons/graphs-and-functions/40-function-plotter",
+      "status": "Passed",
+      "screenshots": [
+        "0132-reference.png",
+        "0132-desktop.png",
+        "0132-tablet.png",
+        "0132-mobile.png",
+        "0132-interacted.png"
+      ],
+      "controlAudit": "0132-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0133",
+      "lessonId": 41,
+      "route": "/lessons/graphs-and-functions/41-equation-grapher",
+      "status": "Passed",
+      "screenshots": [
+        "0133-reference.png",
+        "0133-desktop.png",
+        "0133-tablet.png",
+        "0133-mobile.png",
+        "0133-interacted.png"
+      ],
+      "controlAudit": "0133-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0134",
+      "lessonId": 42,
+      "route": "/lessons/graphs-and-functions/42-inequality-grapher",
+      "status": "Passed",
+      "screenshots": [
+        "0134-reference.png",
+        "0134-desktop.png",
+        "0134-tablet.png",
+        "0134-mobile.png",
+        "0134-interacted.png"
+      ],
+      "controlAudit": "0134-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0135",
+      "lessonId": 43,
+      "route": "/lessons/graphs-and-functions/43-parametric-curves",
+      "status": "Passed",
+      "screenshots": [
+        "0135-reference.png",
+        "0135-desktop.png",
+        "0135-tablet.png",
+        "0135-mobile.png",
+        "0135-interacted.png"
+      ],
+      "controlAudit": "0135-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0136",
+      "lessonId": 44,
+      "route": "/lessons/graphs-and-functions/44-polar-graphs",
+      "status": "Passed",
+      "screenshots": [
+        "0136-reference.png",
+        "0136-desktop.png",
+        "0136-tablet.png",
+        "0136-mobile.png",
+        "0136-interacted.png"
+      ],
+      "controlAudit": "0136-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0137",
+      "lessonId": 45,
+      "route": "/lessons/graphs-and-functions/45-point-plotter",
+      "status": "Passed",
+      "screenshots": [
+        "0137-reference.png",
+        "0137-desktop.png",
+        "0137-tablet.png",
+        "0137-mobile.png",
+        "0137-interacted.png"
+      ],
+      "controlAudit": "0137-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0138",
+      "lessonId": 46,
+      "route": "/lessons/graphs-and-functions/46-data-plotter",
+      "status": "Passed",
+      "screenshots": [
+        "0138-reference.png",
+        "0138-desktop.png",
+        "0138-tablet.png",
+        "0138-mobile.png",
+        "0138-interacted.png"
+      ],
+      "controlAudit": "0138-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0139",
+      "lessonId": 47,
+      "route": "/lessons/graphs-and-functions/47-table-of-values",
+      "status": "Passed",
+      "screenshots": [
+        "0139-reference.png",
+        "0139-desktop.png",
+        "0139-tablet.png",
+        "0139-mobile.png",
+        "0139-interacted.png"
+      ],
+      "controlAudit": "0139-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0140",
+      "lessonId": 48,
+      "route": "/lessons/graphs-and-functions/48-trace-mode",
+      "status": "Passed",
+      "screenshots": [
+        "0140-reference.png",
+        "0140-desktop.png",
+        "0140-tablet.png",
+        "0140-mobile.png",
+        "0140-interacted.png"
+      ],
+      "controlAudit": "0140-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0141",
+      "lessonId": 49,
+      "route": "/lessons/graphs-and-functions/49-zoom-and-pan",
+      "status": "Passed",
+      "screenshots": [
+        "0141-reference.png",
+        "0141-desktop.png",
+        "0141-tablet.png",
+        "0141-mobile.png",
+        "0141-interacted.png"
+      ],
+      "controlAudit": "0141-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0142",
+      "lessonId": 50,
+      "route": "/lessons/graphs-and-functions/50-axis-controls",
+      "status": "Passed",
+      "screenshots": [
+        "0142-reference.png",
+        "0142-desktop.png",
+        "0142-tablet.png",
+        "0142-mobile.png",
+        "0142-interacted.png"
+      ],
+      "controlAudit": "0142-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0143",
+      "lessonId": 51,
+      "route": "/lessons/graphs-and-functions/51-grid-controls",
+      "status": "Passed",
+      "screenshots": [
+        "0143-reference.png",
+        "0143-desktop.png",
+        "0143-tablet.png",
+        "0143-mobile.png",
+        "0143-interacted.png"
+      ],
+      "controlAudit": "0143-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0144",
+      "lessonId": 52,
+      "route": "/lessons/graphs-and-functions/52-multiple-graphics-views",
+      "status": "Passed",
+      "screenshots": [
+        "0144-reference.png",
+        "0144-desktop.png",
+        "0144-tablet.png",
+        "0144-mobile.png",
+        "0144-interacted.png"
+      ],
+      "controlAudit": "0144-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0145",
+      "lessonId": 53,
+      "route": "/lessons/graphs-and-functions/53-special-points",
+      "status": "Passed",
+      "screenshots": [
+        "0145-reference.png",
+        "0145-desktop.png",
+        "0145-tablet.png",
+        "0145-mobile.png",
+        "0145-interacted.png"
+      ],
+      "controlAudit": "0145-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0146",
+      "lessonId": 54,
+      "route": "/lessons/graphs-and-functions/54-graph-inspector",
+      "status": "Passed",
+      "screenshots": [
+        "0146-reference.png",
+        "0146-desktop.png",
+        "0146-tablet.png",
+        "0146-mobile.png",
+        "0146-interacted.png"
+      ],
+      "controlAudit": "0146-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0147",
+      "lessonId": 55,
+      "route": "/lessons/graphs-and-functions/55-dynamic-parameters",
+      "status": "Passed",
+      "screenshots": [
+        "0147-reference.png",
+        "0147-desktop.png",
+        "0147-tablet.png",
+        "0147-mobile.png",
+        "0147-interacted.png"
+      ],
+      "controlAudit": "0147-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0148",
+      "lessonId": 56,
+      "route": "/lessons/graphs-and-functions/56-export-graph",
+      "status": "Passed",
+      "screenshots": [
+        "0148-reference.png",
+        "0148-desktop.png",
+        "0148-tablet.png",
+        "0148-mobile.png",
+        "0148-interacted.png"
+      ],
+      "controlAudit": "0148-control-audit.json",
+      "consoleMessages": 0
+    }
+  ]
+}

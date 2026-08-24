@@ -1,0 +1,577 @@
+{
+  "family": "Dynamic Geometry Constructions",
+  "lessons": 38,
+  "status": "Passed",
+  "results": [
+    {
+      "mockup": "0255",
+      "lessonId": 198,
+      "route": "/lessons/geometry/198-free-point",
+      "status": "Passed",
+      "screenshots": [
+        "0255-reference.png",
+        "0255-desktop.png",
+        "0255-tablet.png",
+        "0255-mobile.png",
+        "0255-interacted.png"
+      ],
+      "controlAudit": "0255-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0256",
+      "lessonId": 199,
+      "route": "/lessons/geometry/199-point-on-object",
+      "status": "Passed",
+      "screenshots": [
+        "0256-reference.png",
+        "0256-desktop.png",
+        "0256-tablet.png",
+        "0256-mobile.png",
+        "0256-interacted.png"
+      ],
+      "controlAudit": "0256-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0257",
+      "lessonId": 200,
+      "route": "/lessons/geometry/200-intersection-point",
+      "status": "Passed",
+      "screenshots": [
+        "0257-reference.png",
+        "0257-desktop.png",
+        "0257-tablet.png",
+        "0257-mobile.png",
+        "0257-interacted.png"
+      ],
+      "controlAudit": "0257-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0258",
+      "lessonId": 201,
+      "route": "/lessons/geometry/201-midpoint-or-centre",
+      "status": "Passed",
+      "screenshots": [
+        "0258-reference.png",
+        "0258-desktop.png",
+        "0258-tablet.png",
+        "0258-mobile.png",
+        "0258-interacted.png"
+      ],
+      "controlAudit": "0258-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0259",
+      "lessonId": 202,
+      "route": "/lessons/geometry/202-attach-detach-point",
+      "status": "Passed",
+      "screenshots": [
+        "0259-reference.png",
+        "0259-desktop.png",
+        "0259-tablet.png",
+        "0259-mobile.png",
+        "0259-interacted.png"
+      ],
+      "controlAudit": "0259-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0260",
+      "lessonId": 203,
+      "route": "/lessons/geometry/203-line-through-two-points",
+      "status": "Passed",
+      "screenshots": [
+        "0260-reference.png",
+        "0260-desktop.png",
+        "0260-tablet.png",
+        "0260-mobile.png",
+        "0260-interacted.png"
+      ],
+      "controlAudit": "0260-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0261",
+      "lessonId": 204,
+      "route": "/lessons/geometry/204-segment",
+      "status": "Passed",
+      "screenshots": [
+        "0261-reference.png",
+        "0261-desktop.png",
+        "0261-tablet.png",
+        "0261-mobile.png",
+        "0261-interacted.png"
+      ],
+      "controlAudit": "0261-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0262",
+      "lessonId": 205,
+      "route": "/lessons/geometry/205-segment-with-given-length",
+      "status": "Passed",
+      "screenshots": [
+        "0262-reference.png",
+        "0262-desktop.png",
+        "0262-tablet.png",
+        "0262-mobile.png",
+        "0262-interacted.png"
+      ],
+      "controlAudit": "0262-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0263",
+      "lessonId": 206,
+      "route": "/lessons/geometry/206-ray",
+      "status": "Passed",
+      "screenshots": [
+        "0263-reference.png",
+        "0263-desktop.png",
+        "0263-tablet.png",
+        "0263-mobile.png",
+        "0263-interacted.png"
+      ],
+      "controlAudit": "0263-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0264",
+      "lessonId": 207,
+      "route": "/lessons/geometry/207-polyline",
+      "status": "Passed",
+      "screenshots": [
+        "0264-reference.png",
+        "0264-desktop.png",
+        "0264-tablet.png",
+        "0264-mobile.png",
+        "0264-interacted.png"
+      ],
+      "controlAudit": "0264-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0265",
+      "lessonId": 208,
+      "route": "/lessons/geometry/208-perpendicular-line",
+      "status": "Passed",
+      "screenshots": [
+        "0265-reference.png",
+        "0265-desktop.png",
+        "0265-tablet.png",
+        "0265-mobile.png",
+        "0265-interacted.png"
+      ],
+      "controlAudit": "0265-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0266",
+      "lessonId": 209,
+      "route": "/lessons/geometry/209-parallel-line",
+      "status": "Passed",
+      "screenshots": [
+        "0266-reference.png",
+        "0266-desktop.png",
+        "0266-tablet.png",
+        "0266-mobile.png",
+        "0266-interacted.png"
+      ],
+      "controlAudit": "0266-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0267",
+      "lessonId": 210,
+      "route": "/lessons/geometry/210-perpendicular-bisector",
+      "status": "Passed",
+      "screenshots": [
+        "0267-reference.png",
+        "0267-desktop.png",
+        "0267-tablet.png",
+        "0267-mobile.png",
+        "0267-interacted.png"
+      ],
+      "controlAudit": "0267-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0268",
+      "lessonId": 211,
+      "route": "/lessons/geometry/211-angle-bisector",
+      "status": "Passed",
+      "screenshots": [
+        "0268-reference.png",
+        "0268-desktop.png",
+        "0268-tablet.png",
+        "0268-mobile.png",
+        "0268-interacted.png"
+      ],
+      "controlAudit": "0268-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0269",
+      "lessonId": 212,
+      "route": "/lessons/geometry/212-tangent",
+      "status": "Passed",
+      "screenshots": [
+        "0269-reference.png",
+        "0269-desktop.png",
+        "0269-tablet.png",
+        "0269-mobile.png",
+        "0269-interacted.png"
+      ],
+      "controlAudit": "0269-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0270",
+      "lessonId": 213,
+      "route": "/lessons/geometry/213-best-fit-line",
+      "status": "Passed",
+      "screenshots": [
+        "0270-reference.png",
+        "0270-desktop.png",
+        "0270-tablet.png",
+        "0270-mobile.png",
+        "0270-interacted.png"
+      ],
+      "controlAudit": "0270-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0271",
+      "lessonId": 214,
+      "route": "/lessons/geometry/214-triangle-constructor",
+      "status": "Passed",
+      "screenshots": [
+        "0271-reference.png",
+        "0271-desktop.png",
+        "0271-tablet.png",
+        "0271-mobile.png",
+        "0271-interacted.png"
+      ],
+      "controlAudit": "0271-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0272",
+      "lessonId": 215,
+      "route": "/lessons/geometry/215-regular-polygon",
+      "status": "Passed",
+      "screenshots": [
+        "0272-reference.png",
+        "0272-desktop.png",
+        "0272-tablet.png",
+        "0272-mobile.png",
+        "0272-interacted.png"
+      ],
+      "controlAudit": "0272-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0273",
+      "lessonId": 216,
+      "route": "/lessons/geometry/216-rigid-polygon",
+      "status": "Passed",
+      "screenshots": [
+        "0273-reference.png",
+        "0273-desktop.png",
+        "0273-tablet.png",
+        "0273-mobile.png",
+        "0273-interacted.png"
+      ],
+      "controlAudit": "0273-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0274",
+      "lessonId": 217,
+      "route": "/lessons/geometry/217-general-polygon",
+      "status": "Passed",
+      "screenshots": [
+        "0274-reference.png",
+        "0274-desktop.png",
+        "0274-tablet.png",
+        "0274-mobile.png",
+        "0274-interacted.png"
+      ],
+      "controlAudit": "0274-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0275",
+      "lessonId": 218,
+      "route": "/lessons/geometry/218-circle-centre-and-point",
+      "status": "Passed",
+      "screenshots": [
+        "0275-reference.png",
+        "0275-desktop.png",
+        "0275-tablet.png",
+        "0275-mobile.png",
+        "0275-interacted.png"
+      ],
+      "controlAudit": "0275-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0276",
+      "lessonId": 219,
+      "route": "/lessons/geometry/219-circle-centre-and-radius",
+      "status": "Passed",
+      "screenshots": [
+        "0276-reference.png",
+        "0276-desktop.png",
+        "0276-tablet.png",
+        "0276-mobile.png",
+        "0276-interacted.png"
+      ],
+      "controlAudit": "0276-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0277",
+      "lessonId": 220,
+      "route": "/lessons/geometry/220-circle-through-three-points",
+      "status": "Passed",
+      "screenshots": [
+        "0277-reference.png",
+        "0277-desktop.png",
+        "0277-tablet.png",
+        "0277-mobile.png",
+        "0277-interacted.png"
+      ],
+      "controlAudit": "0277-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0278",
+      "lessonId": 221,
+      "route": "/lessons/geometry/221-compass",
+      "status": "Passed",
+      "screenshots": [
+        "0278-reference.png",
+        "0278-desktop.png",
+        "0278-tablet.png",
+        "0278-mobile.png",
+        "0278-interacted.png"
+      ],
+      "controlAudit": "0278-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0279",
+      "lessonId": 222,
+      "route": "/lessons/geometry/222-semicircle",
+      "status": "Passed",
+      "screenshots": [
+        "0279-reference.png",
+        "0279-desktop.png",
+        "0279-tablet.png",
+        "0279-mobile.png",
+        "0279-interacted.png"
+      ],
+      "controlAudit": "0279-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0280",
+      "lessonId": 223,
+      "route": "/lessons/geometry/223-circular-arc",
+      "status": "Passed",
+      "screenshots": [
+        "0280-reference.png",
+        "0280-desktop.png",
+        "0280-tablet.png",
+        "0280-mobile.png",
+        "0280-interacted.png"
+      ],
+      "controlAudit": "0280-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0281",
+      "lessonId": 224,
+      "route": "/lessons/geometry/224-circumcircular-arc",
+      "status": "Passed",
+      "screenshots": [
+        "0281-reference.png",
+        "0281-desktop.png",
+        "0281-tablet.png",
+        "0281-mobile.png",
+        "0281-interacted.png"
+      ],
+      "controlAudit": "0281-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0282",
+      "lessonId": 225,
+      "route": "/lessons/geometry/225-circular-sector",
+      "status": "Passed",
+      "screenshots": [
+        "0282-reference.png",
+        "0282-desktop.png",
+        "0282-tablet.png",
+        "0282-mobile.png",
+        "0282-interacted.png"
+      ],
+      "controlAudit": "0282-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0283",
+      "lessonId": 226,
+      "route": "/lessons/geometry/226-conic-through-five-points",
+      "status": "Passed",
+      "screenshots": [
+        "0283-reference.png",
+        "0283-desktop.png",
+        "0283-tablet.png",
+        "0283-mobile.png",
+        "0283-interacted.png"
+      ],
+      "controlAudit": "0283-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0284",
+      "lessonId": 227,
+      "route": "/lessons/geometry/227-ellipse",
+      "status": "Passed",
+      "screenshots": [
+        "0284-reference.png",
+        "0284-desktop.png",
+        "0284-tablet.png",
+        "0284-mobile.png",
+        "0284-interacted.png"
+      ],
+      "controlAudit": "0284-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0285",
+      "lessonId": 228,
+      "route": "/lessons/geometry/228-hyperbola",
+      "status": "Passed",
+      "screenshots": [
+        "0285-reference.png",
+        "0285-desktop.png",
+        "0285-tablet.png",
+        "0285-mobile.png",
+        "0285-interacted.png"
+      ],
+      "controlAudit": "0285-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0286",
+      "lessonId": 229,
+      "route": "/lessons/geometry/229-parabola",
+      "status": "Passed",
+      "screenshots": [
+        "0286-reference.png",
+        "0286-desktop.png",
+        "0286-tablet.png",
+        "0286-mobile.png",
+        "0286-interacted.png"
+      ],
+      "controlAudit": "0286-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0287",
+      "lessonId": 230,
+      "route": "/lessons/geometry/230-distance-length",
+      "status": "Passed",
+      "screenshots": [
+        "0287-reference.png",
+        "0287-desktop.png",
+        "0287-tablet.png",
+        "0287-mobile.png",
+        "0287-interacted.png"
+      ],
+      "controlAudit": "0287-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0288",
+      "lessonId": 231,
+      "route": "/lessons/geometry/231-area",
+      "status": "Passed",
+      "screenshots": [
+        "0288-reference.png",
+        "0288-desktop.png",
+        "0288-tablet.png",
+        "0288-mobile.png",
+        "0288-interacted.png"
+      ],
+      "controlAudit": "0288-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0289",
+      "lessonId": 232,
+      "route": "/lessons/geometry/232-angle",
+      "status": "Passed",
+      "screenshots": [
+        "0289-reference.png",
+        "0289-desktop.png",
+        "0289-tablet.png",
+        "0289-mobile.png",
+        "0289-interacted.png"
+      ],
+      "controlAudit": "0289-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0290",
+      "lessonId": 233,
+      "route": "/lessons/geometry/233-fixed-angle",
+      "status": "Passed",
+      "screenshots": [
+        "0290-reference.png",
+        "0290-desktop.png",
+        "0290-tablet.png",
+        "0290-mobile.png",
+        "0290-interacted.png"
+      ],
+      "controlAudit": "0290-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0291",
+      "lessonId": 234,
+      "route": "/lessons/geometry/234-relation-checker",
+      "status": "Passed",
+      "screenshots": [
+        "0291-reference.png",
+        "0291-desktop.png",
+        "0291-tablet.png",
+        "0291-mobile.png",
+        "0291-interacted.png"
+      ],
+      "controlAudit": "0291-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0292",
+      "lessonId": 235,
+      "route": "/lessons/geometry/235-construction-steps",
+      "status": "Passed",
+      "screenshots": [
+        "0292-reference.png",
+        "0292-desktop.png",
+        "0292-tablet.png",
+        "0292-mobile.png",
+        "0292-interacted.png"
+      ],
+      "controlAudit": "0292-control-audit.json",
+      "consoleMessages": 0
+    }
+  ]
+}

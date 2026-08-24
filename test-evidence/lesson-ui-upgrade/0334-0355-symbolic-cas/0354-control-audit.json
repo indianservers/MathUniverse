@@ -1,0 +1,27 @@
+{
+  "mockup": "0354",
+  "lessonId": 448,
+  "route": "/lessons/symbolic-mathematics/448-step-by-step-algebra",
+  "status": "Passed",
+  "targetMarkerCount": 1,
+  "controls": 19,
+  "minRequiredControls": 8,
+  "interactionChecks": [
+    "CAS command applied",
+    "Numeric mode selected"
+  ],
+  "responsiveChecks": {
+    "desktop": {
+      "overflow": false
+    },
+    "tablet": {
+      "overflow": false,
+      "width": 900
+    },
+    "mobile": {
+      "overflow": false,
+      "width": 390
+    }
+  },
+  "consoleMessages": 0
+}

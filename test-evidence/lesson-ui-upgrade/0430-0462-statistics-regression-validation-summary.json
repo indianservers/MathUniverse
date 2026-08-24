@@ -1,0 +1,502 @@
+{
+  "family": "Statistics and Regression",
+  "lessons": 33,
+  "status": "Passed",
+  "results": [
+    {
+      "mockup": "0430",
+      "lessonId": 467,
+      "route": "/lessons/data-and-probability/467-data-types",
+      "status": "Passed",
+      "screenshots": [
+        "0430-reference.png",
+        "0430-desktop.png",
+        "0430-tablet.png",
+        "0430-mobile.png",
+        "0430-interacted.png"
+      ],
+      "controlAudit": "0430-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0431",
+      "lessonId": 468,
+      "route": "/lessons/data-and-probability/468-frequency-tables",
+      "status": "Passed",
+      "screenshots": [
+        "0431-reference.png",
+        "0431-desktop.png",
+        "0431-tablet.png",
+        "0431-mobile.png",
+        "0431-interacted.png"
+      ],
+      "controlAudit": "0431-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0432",
+      "lessonId": 469,
+      "route": "/lessons/data-and-probability/469-grouped-frequency-tables",
+      "status": "Passed",
+      "screenshots": [
+        "0432-reference.png",
+        "0432-desktop.png",
+        "0432-tablet.png",
+        "0432-mobile.png",
+        "0432-interacted.png"
+      ],
+      "controlAudit": "0432-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0433",
+      "lessonId": 470,
+      "route": "/lessons/data-and-probability/470-mean",
+      "status": "Passed",
+      "screenshots": [
+        "0433-reference.png",
+        "0433-desktop.png",
+        "0433-tablet.png",
+        "0433-mobile.png",
+        "0433-interacted.png"
+      ],
+      "controlAudit": "0433-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0434",
+      "lessonId": 471,
+      "route": "/lessons/data-and-probability/471-median",
+      "status": "Passed",
+      "screenshots": [
+        "0434-reference.png",
+        "0434-desktop.png",
+        "0434-tablet.png",
+        "0434-mobile.png",
+        "0434-interacted.png"
+      ],
+      "controlAudit": "0434-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0435",
+      "lessonId": 472,
+      "route": "/lessons/data-and-probability/472-mode",
+      "status": "Passed",
+      "screenshots": [
+        "0435-reference.png",
+        "0435-desktop.png",
+        "0435-tablet.png",
+        "0435-mobile.png",
+        "0435-interacted.png"
+      ],
+      "controlAudit": "0435-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0436",
+      "lessonId": 473,
+      "route": "/lessons/data-and-probability/473-weighted-mean",
+      "status": "Passed",
+      "screenshots": [
+        "0436-reference.png",
+        "0436-desktop.png",
+        "0436-tablet.png",
+        "0436-mobile.png",
+        "0436-interacted.png"
+      ],
+      "controlAudit": "0436-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0437",
+      "lessonId": 474,
+      "route": "/lessons/data-and-probability/474-range",
+      "status": "Passed",
+      "screenshots": [
+        "0437-reference.png",
+        "0437-desktop.png",
+        "0437-tablet.png",
+        "0437-mobile.png",
+        "0437-interacted.png"
+      ],
+      "controlAudit": "0437-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0438",
+      "lessonId": 475,
+      "route": "/lessons/data-and-probability/475-quartiles-and-iqr",
+      "status": "Passed",
+      "screenshots": [
+        "0438-reference.png",
+        "0438-desktop.png",
+        "0438-tablet.png",
+        "0438-mobile.png",
+        "0438-interacted.png"
+      ],
+      "controlAudit": "0438-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0439",
+      "lessonId": 476,
+      "route": "/lessons/data-and-probability/476-variance-and-standard-deviation",
+      "status": "Passed",
+      "screenshots": [
+        "0439-reference.png",
+        "0439-desktop.png",
+        "0439-tablet.png",
+        "0439-mobile.png",
+        "0439-interacted.png"
+      ],
+      "controlAudit": "0439-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0440",
+      "lessonId": 477,
+      "route": "/lessons/data-and-probability/477-percentiles",
+      "status": "Passed",
+      "screenshots": [
+        "0440-reference.png",
+        "0440-desktop.png",
+        "0440-tablet.png",
+        "0440-mobile.png",
+        "0440-interacted.png"
+      ],
+      "controlAudit": "0440-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0441",
+      "lessonId": 478,
+      "route": "/lessons/data-and-probability/478-z-scores",
+      "status": "Passed",
+      "screenshots": [
+        "0441-reference.png",
+        "0441-desktop.png",
+        "0441-tablet.png",
+        "0441-mobile.png",
+        "0441-interacted.png"
+      ],
+      "controlAudit": "0441-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0442",
+      "lessonId": 479,
+      "route": "/lessons/data-and-probability/479-outliers",
+      "status": "Passed",
+      "screenshots": [
+        "0442-reference.png",
+        "0442-desktop.png",
+        "0442-tablet.png",
+        "0442-mobile.png",
+        "0442-interacted.png"
+      ],
+      "controlAudit": "0442-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0443",
+      "lessonId": 480,
+      "route": "/lessons/data-and-probability/480-box-plot",
+      "status": "Passed",
+      "screenshots": [
+        "0443-reference.png",
+        "0443-desktop.png",
+        "0443-tablet.png",
+        "0443-mobile.png",
+        "0443-interacted.png"
+      ],
+      "controlAudit": "0443-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0444",
+      "lessonId": 481,
+      "route": "/lessons/data-and-probability/481-dot-plot",
+      "status": "Passed",
+      "screenshots": [
+        "0444-reference.png",
+        "0444-desktop.png",
+        "0444-tablet.png",
+        "0444-mobile.png",
+        "0444-interacted.png"
+      ],
+      "controlAudit": "0444-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0445",
+      "lessonId": 482,
+      "route": "/lessons/data-and-probability/482-stem-and-leaf-plot",
+      "status": "Passed",
+      "screenshots": [
+        "0445-reference.png",
+        "0445-desktop.png",
+        "0445-tablet.png",
+        "0445-mobile.png",
+        "0445-interacted.png"
+      ],
+      "controlAudit": "0445-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0446",
+      "lessonId": 483,
+      "route": "/lessons/data-and-probability/483-histogram",
+      "status": "Passed",
+      "screenshots": [
+        "0446-reference.png",
+        "0446-desktop.png",
+        "0446-tablet.png",
+        "0446-mobile.png",
+        "0446-interacted.png"
+      ],
+      "controlAudit": "0446-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0447",
+      "lessonId": 484,
+      "route": "/lessons/data-and-probability/484-frequency-polygon",
+      "status": "Passed",
+      "screenshots": [
+        "0447-reference.png",
+        "0447-desktop.png",
+        "0447-tablet.png",
+        "0447-mobile.png",
+        "0447-interacted.png"
+      ],
+      "controlAudit": "0447-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0448",
+      "lessonId": 485,
+      "route": "/lessons/data-and-probability/485-cumulative-frequency-curve",
+      "status": "Passed",
+      "screenshots": [
+        "0448-reference.png",
+        "0448-desktop.png",
+        "0448-tablet.png",
+        "0448-mobile.png",
+        "0448-interacted.png"
+      ],
+      "controlAudit": "0448-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0449",
+      "lessonId": 486,
+      "route": "/lessons/data-and-probability/486-bar-and-pie-charts",
+      "status": "Passed",
+      "screenshots": [
+        "0449-reference.png",
+        "0449-desktop.png",
+        "0449-tablet.png",
+        "0449-mobile.png",
+        "0449-interacted.png"
+      ],
+      "controlAudit": "0449-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0450",
+      "lessonId": 487,
+      "route": "/lessons/data-and-probability/487-scatter-plot",
+      "status": "Passed",
+      "screenshots": [
+        "0450-reference.png",
+        "0450-desktop.png",
+        "0450-tablet.png",
+        "0450-mobile.png",
+        "0450-interacted.png"
+      ],
+      "controlAudit": "0450-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0451",
+      "lessonId": 488,
+      "route": "/lessons/data-and-probability/488-time-series-plot",
+      "status": "Passed",
+      "screenshots": [
+        "0451-reference.png",
+        "0451-desktop.png",
+        "0451-tablet.png",
+        "0451-mobile.png",
+        "0451-interacted.png"
+      ],
+      "controlAudit": "0451-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0452",
+      "lessonId": 489,
+      "route": "/lessons/data-and-probability/489-correlation-coefficient",
+      "status": "Passed",
+      "screenshots": [
+        "0452-reference.png",
+        "0452-desktop.png",
+        "0452-tablet.png",
+        "0452-mobile.png",
+        "0452-interacted.png"
+      ],
+      "controlAudit": "0452-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0453",
+      "lessonId": 490,
+      "route": "/lessons/data-and-probability/490-linear-regression",
+      "status": "Passed",
+      "screenshots": [
+        "0453-reference.png",
+        "0453-desktop.png",
+        "0453-tablet.png",
+        "0453-mobile.png",
+        "0453-interacted.png"
+      ],
+      "controlAudit": "0453-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0454",
+      "lessonId": 491,
+      "route": "/lessons/data-and-probability/491-polynomial-regression",
+      "status": "Passed",
+      "screenshots": [
+        "0454-reference.png",
+        "0454-desktop.png",
+        "0454-tablet.png",
+        "0454-mobile.png",
+        "0454-interacted.png"
+      ],
+      "controlAudit": "0454-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0455",
+      "lessonId": 492,
+      "route": "/lessons/data-and-probability/492-exponential-regression",
+      "status": "Passed",
+      "screenshots": [
+        "0455-reference.png",
+        "0455-desktop.png",
+        "0455-tablet.png",
+        "0455-mobile.png",
+        "0455-interacted.png"
+      ],
+      "controlAudit": "0455-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0456",
+      "lessonId": 493,
+      "route": "/lessons/data-and-probability/493-logarithmic-regression",
+      "status": "Passed",
+      "screenshots": [
+        "0456-reference.png",
+        "0456-desktop.png",
+        "0456-tablet.png",
+        "0456-mobile.png",
+        "0456-interacted.png"
+      ],
+      "controlAudit": "0456-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0457",
+      "lessonId": 494,
+      "route": "/lessons/data-and-probability/494-power-regression",
+      "status": "Passed",
+      "screenshots": [
+        "0457-reference.png",
+        "0457-desktop.png",
+        "0457-tablet.png",
+        "0457-mobile.png",
+        "0457-interacted.png"
+      ],
+      "controlAudit": "0457-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0458",
+      "lessonId": 495,
+      "route": "/lessons/data-and-probability/495-logistic-regression",
+      "status": "Passed",
+      "screenshots": [
+        "0458-reference.png",
+        "0458-desktop.png",
+        "0458-tablet.png",
+        "0458-mobile.png",
+        "0458-interacted.png"
+      ],
+      "controlAudit": "0458-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0459",
+      "lessonId": 496,
+      "route": "/lessons/data-and-probability/496-sinusoidal-regression",
+      "status": "Passed",
+      "screenshots": [
+        "0459-reference.png",
+        "0459-desktop.png",
+        "0459-tablet.png",
+        "0459-mobile.png",
+        "0459-interacted.png"
+      ],
+      "controlAudit": "0459-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0460",
+      "lessonId": 497,
+      "route": "/lessons/data-and-probability/497-residual-plot",
+      "status": "Passed",
+      "screenshots": [
+        "0460-reference.png",
+        "0460-desktop.png",
+        "0460-tablet.png",
+        "0460-mobile.png",
+        "0460-interacted.png"
+      ],
+      "controlAudit": "0460-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0461",
+      "lessonId": 498,
+      "route": "/lessons/data-and-probability/498-model-comparison",
+      "status": "Passed",
+      "screenshots": [
+        "0461-reference.png",
+        "0461-desktop.png",
+        "0461-tablet.png",
+        "0461-mobile.png",
+        "0461-interacted.png"
+      ],
+      "controlAudit": "0461-control-audit.json",
+      "consoleMessages": 0
+    },
+    {
+      "mockup": "0462",
+      "lessonId": 499,
+      "route": "/lessons/data-and-probability/499-interpolation-and-extrapolation",
+      "status": "Passed",
+      "screenshots": [
+        "0462-reference.png",
+        "0462-desktop.png",
+        "0462-tablet.png",
+        "0462-mobile.png",
+        "0462-interacted.png"
+      ],
+      "controlAudit": "0462-control-audit.json",
+      "consoleMessages": 0
+    }
+  ]
+}
