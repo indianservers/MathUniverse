@@ -1677,6 +1677,104 @@ for (const [id, mockup, slug, width, height] of lessons) {
       throw new Error("New challenge did not replace the practice point pair");
     }
     status = "Correct two-endpoint distance model and independent practice.";
+  } else if (id === 231) {
+    const polygon = page.locator('[data-testid="area-polygon"]');
+    const initialArea = await polygon.getAttribute("data-area");
+    const initialPerimeter = await polygon.getAttribute("data-perimeter");
+    if (initialArea !== "18.000000") {
+      throw new Error(`Area initial model was ${initialArea}, expected 18`);
+    }
+    const vertexA = page.locator('[data-testid="area-vertex-0"]');
+    const aBefore = await vertexA.getAttribute("data-x");
+    const aBox = await vertexA.boundingBox();
+    if (!aBox) throw new Error("Area vertex A is not draggable");
+    await page.mouse.move(aBox.x + aBox.width / 2, aBox.y + aBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(aBox.x - 35, aBox.y + 24, { steps: 7 });
+    await page.mouse.up();
+    if ((await vertexA.getAttribute("data-x")) === aBefore) {
+      throw new Error("Dragging area vertex A did not reshape the polygon");
+    }
+    if ((await polygon.getAttribute("data-area")) !== initialArea) {
+      throw new Error("Dragging area vertex A broke the shoelace invariant");
+    }
+    if ((await polygon.getAttribute("data-perimeter")) === initialPerimeter) {
+      throw new Error("Area-preserving drag did not change polygon perimeter");
+    }
+    const vertexC = page.locator('[data-testid="area-vertex-2"]');
+    const cBox = await vertexC.boundingBox();
+    if (!cBox) throw new Error("Area vertex C is not draggable");
+    await page.mouse.move(cBox.x + cBox.width / 2, cBox.y + cBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(cBox.x + 28, cBox.y - 18, { steps: 6 });
+    await page.mouse.up();
+    if ((await polygon.getAttribute("data-area")) !== initialArea) {
+      throw new Error("Dragging area vertex C broke the shoelace invariant");
+    }
+    const squares = page.getByRole("checkbox", { name: "Show unit squares" });
+    await squares.uncheck();
+    if ((await page.locator('[data-testid="area-unit-grid"]').getAttribute("data-visible")) !== "false") {
+      throw new Error("Unit-square toggle did not update the coordinate grid");
+    }
+    await squares.check();
+    await page.getByRole("button", { name: "Check invariance" }).click();
+    await page.getByRole("status").filter({ hasText: "Area invariant verified." }).waitFor();
+    await page.getByRole("combobox", { name: "Area measurement units" }).selectOption("cm²");
+    await page.getByRole("button", { name: "Explain", exact: true }).click();
+    await page.getByRole("button", { name: "Share", exact: true }).click();
+    await page.getByRole("button", { name: "Bookmark Area lesson" }).click();
+    await page.getByRole("button", { name: "Remove Area bookmark" }).waitFor();
+    await page.getByRole("button", { name: "Polygon", exact: true }).click();
+    const areaPlane = page.getByRole("img", { name: "Area-preserving draggable quadrilateral on a coordinate grid" });
+    await areaPlane.click({ position: { x: 55, y: 310 } });
+    await areaPlane.click({ position: { x: 170, y: 85 } });
+    await areaPlane.click({ position: { x: 410, y: 95 } });
+    await areaPlane.click({ position: { x: 390, y: 300 } });
+    if ((await page.locator('[data-testid="area-vertex-3"]').count()) !== 1) {
+      throw new Error("Polygon tool did not construct four vertices");
+    }
+    const constructedArea = await polygon.getAttribute("data-area");
+    if (!constructedArea || Number(constructedArea) <= 0) {
+      throw new Error("Constructed polygon did not produce a valid area");
+    }
+    await page.getByRole("button", { name: "Reset", exact: true }).click();
+    if ((await polygon.getAttribute("data-area")) !== "18.000000") {
+      throw new Error("Area reset did not restore the target quadrilateral");
+    }
+    const practicePolygon = page.locator('[data-testid="practice-area-polygon"]');
+    const practiceAreaBefore = await practicePolygon.getAttribute("data-area");
+    const practicePerimeterBefore = await practicePolygon.getAttribute("data-perimeter");
+    const practiceVertex = page.locator('[data-testid="practice-area-vertex-1"]');
+    const practiceBox = await practiceVertex.boundingBox();
+    if (!practiceBox) throw new Error("Practice area vertex is not draggable");
+    await page.mouse.move(practiceBox.x + practiceBox.width / 2, practiceBox.y + practiceBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(practiceBox.x + 24, practiceBox.y + 15, { steps: 6 });
+    await page.mouse.up();
+    if ((await practicePolygon.getAttribute("data-area")) !== practiceAreaBefore) {
+      throw new Error("Practice reshaping broke the area invariant");
+    }
+    if ((await practicePolygon.getAttribute("data-perimeter")) === practicePerimeterBefore) {
+      throw new Error("Practice reshaping did not change perimeter");
+    }
+    await page.getByRole("spinbutton", { name: "Practice polygon area" }).fill("1");
+    await page.getByRole("spinbutton", { name: "Practice polygon perimeter" }).fill("1");
+    await page.getByRole("button", { name: "Submit observation" }).click();
+    await page.getByRole("status").filter({ hasText: "Recheck both measurements." }).waitFor();
+    await page.getByRole("spinbutton", { name: "Practice polygon area" }).fill(String(Number(await practicePolygon.getAttribute("data-area")).toFixed(2)));
+    await page.getByRole("spinbutton", { name: "Practice polygon perimeter" }).fill(String(Number(await practicePolygon.getAttribute("data-perimeter")).toFixed(2)));
+    await page.getByRole("button", { name: "Submit observation" }).click();
+    await page.getByRole("status").filter({ hasText: "Observation correct." }).waitFor();
+    const beforeNewPolygon = await practicePolygon.getAttribute("data-area");
+    await page.getByRole("button", { name: "New polygon" }).click();
+    if ((await practicePolygon.getAttribute("data-area")) === beforeNewPolygon) {
+      throw new Error("New polygon did not replace the practice construction");
+    }
+    await page.getByRole("checkbox", { name: "Don’t show again" }).click();
+    if ((await page.locator('.target-area-tip').count()) !== 0) {
+      throw new Error("Tip preference did not hide the practice tip");
+    }
+    status = "Correct area-preserving shoelace and practice models.";
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

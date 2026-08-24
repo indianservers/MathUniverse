@@ -69,10 +69,12 @@ function AppFooter() {
   const isParabolaTarget = location.pathname === "/lessons/geometry/229-parabola";
   const isDistanceTarget =
     location.pathname === "/lessons/geometry/230-distance-length";
+  const isAreaTarget = location.pathname === "/lessons/geometry/231-area";
   const isGeneralPolygonTarget =
     location.pathname === "/lessons/geometry/217-general-polygon";
   const isCircleCentreRadiusTarget =
     location.pathname === "/lessons/geometry/219-circle-centre-and-radius";
+  if (isAreaTarget) return null;
   const usesTargetCompactFooter =
     isRightTriangleTarget ||
     location.pathname === "/lessons/geometry/205-segment-with-given-length" ||
@@ -302,6 +304,7 @@ export default function AppLayout() {
   const isParabolaTarget = location.pathname === "/lessons/geometry/229-parabola";
   const isDistanceTarget =
     location.pathname === "/lessons/geometry/230-distance-length";
+  const isAreaTarget = location.pathname === "/lessons/geometry/231-area";
   const isRigidPolygonTarget =
     location.pathname === "/lessons/geometry/216-rigid-polygon";
   const isGeneralPolygonTarget =
@@ -419,7 +422,7 @@ export default function AppLayout() {
   }
 
   return (
-    <div className={`min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.14),transparent_30%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.12),transparent_34%)] ${isDistanceTarget ? "target-distance-app" : ""}`}>
+    <div className={`min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.14),transparent_30%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.12),transparent_34%)] ${isDistanceTarget ? "target-distance-app" : isAreaTarget ? "target-area-app" : ""}`}>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-2xl focus:bg-slate-950 focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white dark:focus:bg-white dark:focus:text-slate-950"
@@ -436,7 +439,7 @@ export default function AppLayout() {
           <main
             ref={mainContentRef}
             id="main-content"
-            className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircularArcTarget ? "pl-[23px] pr-4" : isCircumcircularArcTarget ? "pl-[6px] pr-3" : isCircularSectorTarget ? "pl-[6px] pr-4" : isConicFiveTarget ? "px-[14px]" : isEllipseTarget ? "pl-[13px] pr-[14px]" : isHyperbolaTarget ? "pl-[9px] pr-4" : isParabolaTarget ? "pl-[23px] pr-[19px]" : isDistanceTarget ? "pl-[17px] pr-4" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
+            className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isSemicircleTarget || isRigidPolygonTarget ? "px-3" : isGeneralPolygonTarget || isCircleCentreRadiusTarget ? "px-4" : isCircularArcTarget ? "pl-[23px] pr-4" : isCircumcircularArcTarget ? "pl-[6px] pr-3" : isCircularSectorTarget ? "pl-[6px] pr-4" : isConicFiveTarget ? "px-[14px]" : isEllipseTarget ? "pl-[13px] pr-[14px]" : isHyperbolaTarget ? "pl-[9px] pr-4" : isParabolaTarget ? "pl-[23px] pr-[19px]" : isDistanceTarget ? "pl-[17px] pr-4" : isAreaTarget ? "pl-[18px] pr-[11px]" : isCircleThreePointsTarget ? "px-6" : "px-2 sm:px-4 md:px-5"}`}
           >
             {!location.pathname.startsWith("/lessons/") && (
               <button

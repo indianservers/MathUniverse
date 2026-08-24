@@ -761,6 +761,37 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Dedicated distance objects");
   });
 
+  it("renders Area from an area-preserving shoelace quadrilateral", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 231)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Area-preserving draggable quadrilateral on a coordinate grid",
+    );
+    expect(html).toContain(
+      'data-object-model="area-preserving-shoelace-quadrilateral"',
+    );
+    expect(html).toContain('data-testid="area-polygon"');
+    expect(html).toContain('data-area="18.000000"');
+    expect(html).toContain('data-testid="area-vertex-0"');
+    expect(html).toContain('data-testid="area-vertex-3"');
+    expect(html).toContain('data-testid="area-triangulation-diagonal"');
+    expect(html).toContain('data-testid="polygon-area-value">18.00');
+    expect(html).toContain('data-testid="polygon-perimeter-value">17.43');
+    expect(html).toContain(
+      "Practice area-preserving draggable quadrilateral",
+    );
+    expect(html).toContain("A = ½ |Σ(xᵢyᵢ₊₁ − xᵢ₊₁yᵢ)|");
+    expect(html).not.toContain("Width");
+    expect(html).not.toContain("Dedicated area objects");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

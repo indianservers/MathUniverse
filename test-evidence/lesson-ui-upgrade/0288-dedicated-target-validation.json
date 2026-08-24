@@ -1,0 +1,15 @@
+[
+  {
+    "id": 231,
+    "mockup": 288,
+    "route": "/lessons/geometry/231-area",
+    "width": 1040,
+    "height": 1513,
+    "status": "Correct area-preserving shoelace and practice models.",
+    "consoleErrors": [],
+    "scrollHeight": 1513,
+    "surfaceBottom": 1500,
+    "objectModel": "area-preserving-shoelace-quadrilateral",
+    "overflowing": 0
+  }
+]
