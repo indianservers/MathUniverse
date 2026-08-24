@@ -25,7 +25,7 @@ Updated 2026-08-24. This batch replaces the generic construction fallback for le
 | 0270 | 213 Best Fit Line | `bestFit` | Implemented and browser-validated |
 | 0271 | 214 Triangle Constructor | `triangle` | Implemented and browser-validated |
 | 0272 | 215 Regular Polygon | `regularPolygon` | Implemented and browser-validated |
-| 0273 | 216 Rigid Polygon | `rigidPolygon` | Implemented and browser-validated |
+| 0273 | 216 Rigid Polygon | `rigidTriangleMotion` | Reworked individually and browser-validated |
 | 0274 | 217 General Polygon | `generalPolygon` | Implemented and browser-validated |
 | 0275 | 218 Circle Centre and Point | `circlePoint` | Implemented and browser-validated |
 | 0276 | 219 Circle Centre and Radius | `circleRadius` | Implemented and browser-validated |
@@ -94,6 +94,10 @@ Reworked individually against the target mockup. Removed the generic Apex x and 
 ### Lesson 215 / Mockup 0272 - Regular Polygon
 
 Reworked individually against the target mockup. Replaced the shared Sides n and Radius sliders with a generated vertex collection whose vertices are rotations of a first radius by 360 degrees divided by n. The center O and every generated vertex are directly draggable: moving O translates the construction, while moving a vertex updates radius and orientation without breaking equal sides or angles. Side count, radius, rotation, center placement, radii, grid, vertex, circumcircle, symmetry-axis, label, and fullscreen controls are functional. Central and interior angles, side length, apothem, perimeter, area, symmetry counts, coordinate labels, and construction formulas are derived from the same model. The octagon practice form numerically validates side length, perimeter, and area. Final exact-viewport check at 1027x1532 exercises both drag dependencies, n/r regeneration, rotation, center placement, all visibility controls, hint, and practice grading with no overflow or console errors; the page and three-column footer fit without scrolling.
+
+### Lesson 216 / Mockup 0273 - Rigid Polygon
+
+Reworked individually against the target mockup. Removed the generic quadrilateral, Rotation and Translate x sliders, repeated definition/rule cards, generic construction strip, and template verification record. The dedicated surface owns triangle ABC, a dependent translated copy A'B'C', rigid-body position and rotation, and visibility state for labels, lengths, angles, and overlay. Dragging the triangle in Move mode translates every vertex equally; dragging a vertex in Rotate mode turns the complete triangle around its centroid. Both transformations preserve the three computed side lengths byte-for-byte, and the overlay remains the exact vector (6, -2) image. The worked coordinate table, distance and angle invariants, rigid-motion taxonomy, adjacent navigation, and six-field 90-degree counterclockwise practice check match the target structure. The mockup labels two sides as 4.47 despite its stated coordinates producing 5.66 and 5.00; the implementation intentionally displays the correct live Euclidean calculations. Final 1027x1531 browser validation exercises translation, rotation, every visibility control, reset, and all practice fields, verifies the invariant data before and after both drags, reports no overflow or console errors, and fits the complete footer without scrolling.
 
 ### Lesson 221 / Mockup 0278 - Compass
 

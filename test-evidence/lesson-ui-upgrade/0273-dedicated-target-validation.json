@@ -1,0 +1,15 @@
+[
+  {
+    "id": 216,
+    "mockup": 273,
+    "route": "/lessons/geometry/216-rigid-polygon",
+    "width": 1027,
+    "height": 1531,
+    "status": "Correct rigid rotation.",
+    "consoleErrors": [],
+    "scrollHeight": 1531,
+    "surfaceBottom": 1410.6875,
+    "objectModel": "rigid-triangle-motion",
+    "overflowing": 0
+  }
+]

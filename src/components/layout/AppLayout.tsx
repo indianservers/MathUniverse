@@ -51,6 +51,8 @@ function AppFooter() {
     location.pathname === "/lessons/geometry/214-triangle-constructor";
   const isRegularPolygonTarget =
     location.pathname === "/lessons/geometry/215-regular-polygon";
+  const isRigidPolygonTarget =
+    location.pathname === "/lessons/geometry/216-rigid-polygon";
   const isCompassTarget = location.pathname === "/lessons/geometry/221-compass";
   const usesTargetCompactFooter =
     isRightTriangleTarget ||
@@ -60,6 +62,7 @@ function AppFooter() {
       "/lessons/geometry/212-tangent",
       "/lessons/geometry/214-triangle-constructor",
       "/lessons/geometry/215-regular-polygon",
+      "/lessons/geometry/216-rigid-polygon",
     ].includes(location.pathname) &&
       /^\/lessons\/geometry\/2(?:0[6-9]|[12][0-9]|3[0-5])-/.test(
         location.pathname,
@@ -125,13 +128,13 @@ function AppFooter() {
       </footer>
     );
   }
-  if (isRegularPolygonTarget) {
+  if (isRegularPolygonTarget || isRigidPolygonTarget) {
     return (
       <footer
-        className="mx-auto h-[142px] w-full max-w-[1440px] px-5 pt-[22px]"
+        className={`mx-auto w-full max-w-[1440px] px-5 ${isRigidPolygonTarget ? "h-[120px] pt-1" : "h-[142px] pt-[22px]"}`}
         aria-label="Site footer"
       >
-        <div className="grid h-[90px] grid-cols-[minmax(0,1fr)_auto_250px] items-center gap-5 rounded-lg border border-slate-200 bg-white/80 px-4 shadow-sm">
+        <div className={`grid grid-cols-[minmax(0,1fr)_auto_250px] items-center gap-5 rounded-lg border border-slate-200 bg-white/80 px-4 shadow-sm ${isRigidPolygonTarget ? "h-[112px]" : "h-[90px]"}`}>
           <div className="min-w-0">
             <p className="flex items-center gap-2 text-[10px] font-black text-slate-950">
               <Sparkles className="h-4 w-4 text-cyan-500" /> Math Universe
@@ -263,6 +266,8 @@ export default function AppLayout() {
     location.pathname === "/math/integration/formula-visualizer";
   const currentMathWorkspace = findMathWorkspace(location.pathname);
   const isCompassTarget = location.pathname === "/lessons/geometry/221-compass";
+  const isRigidPolygonTarget =
+    location.pathname === "/lessons/geometry/216-rigid-polygon";
 
   useEffect(() => {
     setMobileOpen(false);
@@ -389,7 +394,7 @@ export default function AppLayout() {
           <main
             ref={mainContentRef}
             id="main-content"
-            className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget ? "px-3" : "px-2 sm:px-4 md:px-5"}`}
+            className={`app-fullscreen-target mx-auto w-full max-w-[1440px] flex-1 pb-24 pt-2 md:pb-0 md:pt-4 ${isCompassTarget || isRigidPolygonTarget ? "px-3" : "px-2 sm:px-4 md:px-5"}`}
           >
             {!location.pathname.startsWith("/lessons/") && (
               <button

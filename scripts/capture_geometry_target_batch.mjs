@@ -526,6 +526,74 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct: octagon" })
       .innerText();
+  } else if (id === 216) {
+    const polygon = page.locator('[data-testid="rigid-original-polygon"]');
+    const pointsBefore = await polygon.getAttribute("points");
+    const lengthsBefore = await polygon.getAttribute("data-side-lengths");
+    const polygonBox = await polygon.boundingBox();
+    if (!polygonBox) throw new Error("Rigid triangle is not draggable");
+    await page.mouse.move(
+      polygonBox.x + polygonBox.width / 2,
+      polygonBox.y + polygonBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(
+      polygonBox.x + polygonBox.width / 2 + 34,
+      polygonBox.y + polygonBox.height / 2 - 22,
+      { steps: 4 },
+    );
+    await page.mouse.up();
+    if ((await polygon.getAttribute("points")) === pointsBefore) {
+      throw new Error("Rigid-body move did not translate the triangle");
+    }
+    if ((await polygon.getAttribute("data-side-lengths")) !== lengthsBefore) {
+      throw new Error("Rigid-body move changed a side length");
+    }
+    await page.getByRole("button", { name: "Rotate", exact: true }).click();
+    const vertex = page.locator('[data-testid="rigid-vertex-a"]');
+    const vertexBefore = await vertex.getAttribute("cx");
+    const vertexBox = await vertex.boundingBox();
+    if (!vertexBox) throw new Error("Rigid triangle vertex is missing");
+    await page.mouse.move(
+      vertexBox.x + vertexBox.width / 2,
+      vertexBox.y + vertexBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(vertexBox.x + 24, vertexBox.y - 32, { steps: 4 });
+    await page.mouse.up();
+    if ((await vertex.getAttribute("cx")) === vertexBefore) {
+      throw new Error("Rotate mode did not turn the rigid triangle");
+    }
+    if ((await polygon.getAttribute("data-side-lengths")) !== lengthsBefore) {
+      throw new Error("Rigid-body rotation changed a side length");
+    }
+    for (const label of [
+      "Show labels",
+      "Show lengths",
+      "Show angles",
+      "Show overlay",
+    ]) {
+      const control = page.getByRole("checkbox", { name: label });
+      await control.uncheck();
+      await control.check();
+    }
+    await page.getByRole("button", { name: "Reset view" }).click();
+    const values = {
+      "A rotated x": "-1",
+      "A rotated y": "-3",
+      "B rotated x": "-5",
+      "B rotated y": "1",
+      "C rotated x": "-1",
+      "C rotated y": "4",
+    };
+    for (const [label, value] of Object.entries(values)) {
+      await page.getByRole("textbox", { name: label }).fill(value);
+    }
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct rigid rotation." })
+      .innerText();
   } else if (id === 221) {
     const center = page.locator('[data-testid="compass-center-point"]');
     const centerBefore = await center.getAttribute("cx");

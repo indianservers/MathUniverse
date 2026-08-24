@@ -518,6 +518,23 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Compass transfer model");
   });
 
+  it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 216)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain("Interactive rigid triangle plane with movable original and translated overlay");
+    expect(html).toContain('data-testid="rigid-original-polygon"');
+    expect(html).toContain('data-testid="rigid-overlay-polygon"');
+    expect(html).toContain('data-testid="rigid-vertex-a"');
+    expect(html).toContain("Side lengths stay the same.");
+    expect(html).toContain("Rotate triangle ABC about point P(0, 0) by 90 degrees counterclockwise.");
+    expect(html).toContain('aria-label="A rotated x"');
+    expect(html).not.toContain('aria-label="Rotation"');
+    expect(html).not.toContain('aria-label="Translate x"');
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",
