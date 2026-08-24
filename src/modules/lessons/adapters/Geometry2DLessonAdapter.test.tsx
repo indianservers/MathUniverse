@@ -342,6 +342,30 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Translate x");
   });
 
+  it("renders Perpendicular Bisector with circle-intersection geometry", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 210)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Perpendicular bisector construction with draggable",
+    );
+    expect(html).toContain('data-testid="bisector-point-a"');
+    expect(html).toContain('data-testid="bisector-point-b"');
+    expect(html).toContain('aria-label="Arc radius"');
+    expect(html).toContain("Show perpendicular bisector");
+    expect(html).toContain("AP = BP");
+    expect(html).toContain("XA = XB");
+    expect(html).toContain("Practice point C draggable");
+    expect(html).not.toContain("Segment angle");
+    expect(html).not.toContain("Half length");
+  });
+
   it("renders geometry lessons 236 through 245 with transformation guidance", () => {
     const expectedSnippets: Record<number, string> = {
       236: "Translation by vector",

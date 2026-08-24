@@ -1,0 +1,15 @@
+[
+  {
+    "id": 210,
+    "mockup": 267,
+    "route": "/lessons/geometry/210-perpendicular-bisector",
+    "width": 1024,
+    "height": 1536,
+    "status": "Correct: C lies on the perpendicular bisector.",
+    "consoleErrors": [],
+    "scrollHeight": 1536,
+    "surfaceBottom": 1377.5,
+    "objectModel": "perpendicular-bisector",
+    "overflowing": 0
+  }
+]

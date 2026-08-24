@@ -170,6 +170,43 @@ for (const [id, mockup, slug, width, height] of lessons) {
       .getByRole("status")
       .filter({ hasText: "Correct parallel construction" })
       .innerText();
+  } else if (id === 210) {
+    const pointA = page.locator('[data-testid="bisector-point-a"]');
+    const pointXBeforeDrag = await pointA.getAttribute("cx");
+    const pointBox = await pointA.boundingBox();
+    if (!pointBox) throw new Error("Bisector endpoint A is not draggable");
+    await page.mouse.move(
+      pointBox.x + pointBox.width / 2,
+      pointBox.y + pointBox.height / 2,
+    );
+    await page.mouse.down();
+    await page.mouse.move(pointBox.x + 22, pointBox.y - 14, { steps: 4 });
+    await page.mouse.up();
+    if ((await pointA.getAttribute("cx")) === pointXBeforeDrag) {
+      throw new Error("Bisector drag did not update endpoint A");
+    }
+    await page.getByRole("spinbutton", { name: "B y coordinate" }).fill("1");
+    await page.getByRole("button", { name: "Custom" }).click();
+    await page.getByRole("spinbutton", { name: "Arc radius" }).fill("6.5");
+    await page.getByRole("button", { name: "Auto" }).click();
+    for (const label of [
+      "Show arcs",
+      "Show perpendicular bisector",
+      "Show right angle",
+      "Show equal marks",
+      "Show labels",
+    ]) {
+      const control = page.getByRole("checkbox", { name: label }).last();
+      await control.uncheck();
+      await control.check();
+    }
+    await page.getByRole("button", { name: "Reset" }).click();
+    await page.getByRole("button", { name: "Hint" }).click();
+    await page.getByRole("button", { name: "Check", exact: true }).click();
+    status = await page
+      .getByRole("status")
+      .filter({ hasText: "Correct: C lies" })
+      .innerText();
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());
