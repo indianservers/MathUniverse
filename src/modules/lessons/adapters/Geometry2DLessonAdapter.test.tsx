@@ -882,6 +882,36 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).not.toContain("Dedicated relation objects");
   });
 
+  it("renders Construction Steps with an ordered dependency DAG", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 235)!;
+    const html = renderToStaticMarkup(
+      <Geometry2DLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain(
+      "Construction dependency graph with draggable points A and B",
+    );
+    expect(html).toContain(
+      'data-object-model="ordered-geometric-dependency-dag"',
+    );
+    expect(html).toContain('data-current-step="1"');
+    expect(html).toContain('data-stable="true"');
+    expect(html).toContain('data-testid="steps-point-a"');
+    expect(html).not.toContain('data-testid="steps-point-b"');
+    expect(html).toContain('aria-label="Construction timeline position"');
+    expect(html).toContain('aria-label="Unlock construction"');
+    expect(html).toContain("Line ℓ ⟂ AB");
+    expect(html).toContain("ordered-geometric-dependency-dag");
+    expect(html).toContain("Start Construction");
+    expect(html).not.toContain('aria-label="Point A x"');
+    expect(html).not.toContain('aria-label="Point B x"');
+    expect(html).not.toContain("Dedicated steps objects");
+  });
+
   it("renders Rigid Polygon with a triangle rigid-body motion model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 216)!;
     const html = renderToStaticMarkup(

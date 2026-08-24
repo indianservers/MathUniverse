@@ -2110,6 +2110,117 @@ for (const [id, mockup, slug, width, height] of lessons) {
     await page.mouse.up();
     await page.getByRole("button", { name: "Check my relation", exact: true }).click();
     status = await page.getByRole("status").filter({ hasText: "Correct: the lines are perpendicular." }).innerText();
+  } else if (id === 235) {
+    const surface = page.locator(selector);
+    const pointA = page.locator('[data-testid="steps-point-a"]');
+    const distance = page.locator('[data-testid="steps-distance"]');
+    const midpointValue = page.locator('[data-testid="steps-midpoint-value"]');
+    if ((await surface.getAttribute("data-current-step")) !== "1" ||
+        (await surface.getAttribute("data-stable")) !== "true" ||
+        (await pointA.getAttribute("data-x")) !== "2.000000" ||
+        (await page.locator('[data-testid="steps-point-b"]').count()) !== 0) {
+      throw new Error("Construction Steps initial reveal state is invalid");
+    }
+    await page.getByRole("button", { name: "Unlock construction" }).click();
+    await page.getByRole("spinbutton", { name: "A x exact value" }).fill("4");
+    if ((await distance.innerText()) !== "4.00" ||
+        (await midpointValue.innerText()) !== "(2.00, 0.00)") {
+      throw new Error("Editing A did not recalculate dependent measurements");
+    }
+    await page.getByRole("button", { name: "Undo construction edit" }).click();
+    if ((await pointA.getAttribute("data-x")) !== "2.000000" ||
+        (await midpointValue.innerText()) !== "(1.00, 0.00)") {
+      throw new Error("Construction undo did not restore the dependency snapshot");
+    }
+    await page.getByRole("button", { name: "Redo construction edit" }).click();
+    if ((await pointA.getAttribute("data-x")) !== "4.000000") {
+      throw new Error("Construction redo did not restore the edited point");
+    }
+    await page.getByRole("button", { name: "Next construction step" }).click();
+    const pointB = page.locator('[data-testid="steps-point-b"]');
+    if ((await surface.getAttribute("data-current-step")) !== "2" ||
+        (await pointB.count()) !== 1) {
+      throw new Error("Step 2 did not reveal point B");
+    }
+    await page.getByRole("slider", { name: "Construction timeline position" }).fill("6");
+    for (const testId of ["steps-line-ab", "steps-perpendicular", "steps-midpoint", "steps-segment-am"]) {
+      if ((await page.locator(`[data-testid="${testId}"]`).count()) !== 1) {
+        throw new Error(`Construction step 6 did not reveal ${testId}`);
+      }
+    }
+    await page.getByRole("switch", { name: "Hide dependencies" }).click();
+    if ((await page.locator('[data-testid="steps-dependency-overlay"]').count()) !== 1) {
+      throw new Error("Dependency visibility control did not show parent links");
+    }
+    await page.getByRole("button", { name: "Grid", exact: true }).click();
+    if ((await page.locator('[data-testid="steps-grid"]').count()) !== 0) {
+      throw new Error("Construction grid control did not hide the grid");
+    }
+    await page.getByRole("button", { name: "Grid", exact: true }).click();
+    const midpointBeforeDrag = await midpointValue.innerText();
+    await pointA.scrollIntoViewIfNeeded();
+    const aBox = await pointA.boundingBox();
+    if (!aBox) throw new Error("Construction point A is not draggable");
+    await page.mouse.move(aBox.x + aBox.width / 2, aBox.y + aBox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(aBox.x - 38, aBox.y - 24, { steps: 7 });
+    await page.mouse.up();
+    if ((await midpointValue.innerText()) === midpointBeforeDrag) {
+      throw new Error(`Dragging A did not update midpoint M (A=${await pointA.getAttribute("data-x")}, M=${await midpointValue.innerText()})`);
+    }
+    const distanceBeforeMove = await distance.innerText();
+    const bBeforeMove = await pointB.getAttribute("data-x");
+    await page.getByRole("button", { name: "Move tool" }).click();
+    await pointA.scrollIntoViewIfNeeded();
+    const moveABox = await pointA.boundingBox();
+    if (!moveABox) throw new Error("Construction Move tool lost point A");
+    await page.mouse.move(moveABox.x + moveABox.width / 2, moveABox.y + moveABox.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(moveABox.x + 26, moveABox.y + 17, { steps: 6 });
+    await page.mouse.up();
+    if ((await distance.innerText()) !== distanceBeforeMove ||
+        (await pointB.getAttribute("data-x")) === bBeforeMove) {
+      throw new Error("Move tool did not translate the construction rigidly");
+    }
+    await page.locator(".target-steps-parameters").getByRole("button", { name: "Step", exact: true }).click();
+    await page.locator(".target-steps-parameters").getByRole("button", { name: "Depend.", exact: true }).click();
+    if (!(await page.locator(".target-steps-side-list").innerText()).includes("depends on A, B")) {
+      throw new Error("Dependency tab did not expose parent relationships");
+    }
+    await page.getByRole("slider", { name: "Construction timeline position" }).fill("1");
+    await page.locator(".target-steps-timeline").getByRole("button", { name: "Play", exact: true }).click();
+    await page.waitForTimeout(2300);
+    if ((await surface.getAttribute("data-current-step")) !== "6") {
+      throw new Error("Construction playback did not traverse all six steps");
+    }
+    await page.getByRole("button", { name: "Export", exact: true }).click();
+    await page.getByRole("button", { name: "Exported", exact: true }).waitFor();
+    await page.getByRole("combobox", { name: "Lesson language" }).selectOption({ label: "Hindi (हिन्दी)" });
+    await page.getByRole("button", { name: "Start Construction", exact: true }).click();
+    if ((await surface.getAttribute("data-current-step")) !== "2" ||
+        (await pointA.getAttribute("data-x")) !== "3.000000" ||
+        (await pointB.getAttribute("data-x")) !== "-1.000000") {
+      throw new Error("Practice start did not load the given points and dependency state");
+    }
+    await page.getByRole("button", { name: "Segment tool" }).click();
+    if ((await surface.getAttribute("data-current-step")) !== "3") {
+      throw new Error("Segment tool did not advance the construction graph");
+    }
+    await page.getByRole("button", { name: "Perpendicular tool" }).click();
+    if ((await surface.getAttribute("data-current-step")) !== "4") {
+      throw new Error("Perpendicular tool did not add its dependent object");
+    }
+    await page.getByRole("slider", { name: "Construction timeline position" }).fill("6");
+    const practicePerpendicular = page.locator('[data-testid="steps-perpendicular"]');
+    if ((await practicePerpendicular.count()) !== 1 ||
+        (await midpointValue.innerText()) !== "(1.00, -1.00)") {
+      throw new Error("Practice dependency graph did not build from the given segment");
+    }
+    status = await page.getByRole("status").filter({ hasText: "Correct: perpendicular bisector" }).innerText();
+    await page.locator(".target-steps-learning").getByRole("button", { name: "Reset", exact: true }).click();
+    if ((await surface.getAttribute("data-current-step")) !== "1") {
+      throw new Error("Construction practice reset did not restore step 1");
+    }
   } else {
     const firstRange = page.locator(`${selector} input[type="range"]`).first();
     const before = Number(await firstRange.inputValue());

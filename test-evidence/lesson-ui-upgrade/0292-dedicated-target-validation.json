@@ -1,0 +1,15 @@
+[
+  {
+    "id": 235,
+    "mockup": 292,
+    "route": "/lessons/geometry/235-construction-steps",
+    "width": 1006,
+    "height": 1564,
+    "status": "Correct: perpendicular bisector dependency order completed.",
+    "consoleErrors": [],
+    "scrollHeight": 1564,
+    "surfaceBottom": 1461,
+    "objectModel": "ordered-geometric-dependency-dag",
+    "overflowing": 0
+  }
+]
