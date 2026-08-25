@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **31 of 130 lessons completed; 99 pending.**
+Dedicated rebuild target: **32 of 130 lessons completed; 98 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -35,6 +35,7 @@ Dedicated rebuild target: **31 of 130 lessons completed; 99 pending.**
 | 0029   | 29 Object Redefinition | Complete | Preserved object identity with executable old/new rules, real redefine transaction, dual evaluated graphs, recomputed dependent values/table/graph state, dependency tree, validation, and exact 1227x1294 target geometry |
 | 0030   | 30 Equation Input | Complete | Parsed two-sided linear equation with implicit multiplication, generated equal-operation steps, calculated balance weights, dual graph intersection, solution checklist/substitution proof, real examples/check/clear controls, and exact 1369x1149 target geometry |
 | 0031   | 31 Inequality Input | Complete | Parsed affine inequality with real operator selection, negative-coefficient sign reversal, open/closed boundary number line, graph region, calculated test points, examples/reset/share, and exact 1506x1044 target geometry |
+| 0032   | 32 Lists | Complete | Editable and draggable ordered list with index selection, live summary statistics, calculated append/remove/sort/map pipeline, bar/dot views, real operations/reset/start-over controls, and exact 1487x1058 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -469,3 +470,17 @@ Evidence:
 - `0031-reference.png`
 - `0031-desktop.png`
 - `0031-dedicated-target-validation.json`
+
+## Lesson 32 / Mockup 0032 - Lists
+
+Reworked individually against the target mockup with a dedicated `editable-draggable-ordered-list-index-selection-operation-pipeline-statistics-bar-dot-result-model`. The source list, selected index, selected value, length, sum, mean, operation stages, final list, final statistics, bar/dot visualization, index row, side summary, and concept examples all derive from explicit ordered-list state.
+
+Every source entry is a real numeric input and a native draggable item. Append adds the next value, Remove deletes the selected entry, Map doubles all current entries, and Sort alternates ascending and descending order. The plus tile, bar/dot selector, Reset list, Start over, tabs, and concept operation controls also mutate visible state. The initial pipeline computes `[2,4,6,8] -> append 10 -> remove 4 -> sort -> map 2x -> [4,12,16,20]`, sum 52, mean 13.
+
+Final 1487x1058 integrated browser validation edits the first entry to 3 and verifies live sum/mean/pipeline changes; physically drags the first entry to index 4; switches to dot plot; resets; appends 10; removes it; maps to `[4,8,12,16]`; sorts ascending and descending to `[16,12,8,4]`; starts over to an empty source list; and resets again. The final frame matches the target at surface x=277-1483 and y=107-1050, title/tabs shell y=107-264, workspace and side rail y=278-850, editor y=377-474, pipeline y=483.5-593.5, visualization/result y=593.5-792.5, and concept band y=868-1044. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0032-reference.png`
+- `0032-desktop.png`
+- `0032-dedicated-target-validation.json`

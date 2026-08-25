@@ -19,7 +19,7 @@ describe("AlgebraLessonAdapter", () => {
       29: "Modify constructions without rebuilding",
       30: "Create multiple equation types",
       31: "Explore solution regions",
-      32: "List rule",
+      32: "Work with ordered collections",
       33: "Matrix size",
       34: "Sequence rule",
       35: "Piecewise rule",
@@ -211,19 +211,21 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain("TEST POINTS");
   });
 
-  it("renders Lists as an ordered table workspace instead of a generic line graph", () => {
+  it("renders lesson 32 as a dedicated ordered-list operation workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 32)!;
     const html = renderToStaticMarkup(
       <AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
     );
 
-    expect(html).toContain("List entries, positions, and operations");
-    expect(html).toContain("[2, 4, 6, 8]");
-    expect(html).toContain("No graph needed");
-    expect(html).toContain("Why this visual is valid");
-    expect(html).toContain("A list is an ordered collection");
-    expect(html).not.toContain("Graph of y equals");
-    expect(html).not.toContain("y=1x+1");
+    expect(html).toContain('data-testid="algebra-mockup-0032"');
+    expect(html).toContain('data-dedicated-lesson="32"');
+    expect(html).toContain('data-object-model="editable-draggable-ordered-list-index-selection-operation-pipeline-statistics-bar-dot-result-model"');
+    expect(html).toContain('data-list="2,4,6,8"');
+    expect(html).toContain('data-selected-index="2"');
+    expect(html).toContain('data-final-list="4,12,16,20"');
+    expect(html).toContain('data-final-sum="52"');
+    expect(html).toContain('aria-label="List value 3"');
+    expect(html).toContain("Operation pipeline");
   });
 
   it("renders phase 4 algebra lessons 92 through 128 with lesson-specific structure labs", () => {

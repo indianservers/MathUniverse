@@ -1,0 +1,279 @@
+{
+  "mockup": "0032",
+  "lessonId": 32,
+  "route": "/lessons/core-workspaces/32-lists",
+  "objectModel": "editable-draggable-ordered-list-index-selection-operation-pipeline-statistics-bar-dot-result-model",
+  "checks": {
+    "initial": {
+      "list": "2,4,6,8",
+      "selected-index": "2",
+      "selected-value": "6",
+      "length": "4",
+      "sum": "20",
+      "mean": "5",
+      "final-list": "4,12,16,20",
+      "final-sum": "52",
+      "final-mean": "13",
+      "view": "bar",
+      "descending": "false",
+      "actions": "0"
+    },
+    "edit": {
+      "list": "3,4,6,8",
+      "selected-index": "0",
+      "selected-value": "3",
+      "length": "4",
+      "sum": "21",
+      "mean": "5.25",
+      "final-list": "6,12,16,20",
+      "final-sum": "54",
+      "final-mean": "13.5",
+      "view": "bar",
+      "descending": "false",
+      "actions": "1"
+    },
+    "drag": {
+      "list": "4,6,8,2",
+      "selected-index": "3",
+      "selected-value": "2",
+      "length": "4",
+      "sum": "20",
+      "mean": "5",
+      "final-list": "4,12,16,20",
+      "final-sum": "52",
+      "final-mean": "13",
+      "view": "bar",
+      "descending": "false",
+      "actions": "1"
+    },
+    "dot": {
+      "list": "4,6,8,2",
+      "selected-index": "3",
+      "selected-value": "2",
+      "length": "4",
+      "sum": "20",
+      "mean": "5",
+      "final-list": "4,12,16,20",
+      "final-sum": "52",
+      "final-mean": "13",
+      "view": "dot",
+      "descending": "false",
+      "actions": "2"
+    },
+    "reset": {
+      "list": "2,4,6,8",
+      "selected-index": "2",
+      "selected-value": "6",
+      "length": "4",
+      "sum": "20",
+      "mean": "5",
+      "final-list": "4,12,16,20",
+      "final-sum": "52",
+      "final-mean": "13",
+      "view": "bar",
+      "descending": "false",
+      "actions": "0"
+    },
+    "append": {
+      "list": "2,4,6,8,10",
+      "selected-index": "4",
+      "selected-value": "10",
+      "length": "5",
+      "sum": "30",
+      "mean": "6",
+      "final-list": "4,12,16,20,20",
+      "final-sum": "72",
+      "final-mean": "14.4",
+      "view": "bar",
+      "descending": "false",
+      "actions": "1"
+    },
+    "remove": {
+      "list": "2,4,6,8",
+      "selected-index": "3",
+      "selected-value": "8",
+      "length": "4",
+      "sum": "20",
+      "mean": "5",
+      "final-list": "4,12,16,20",
+      "final-sum": "52",
+      "final-mean": "13",
+      "view": "bar",
+      "descending": "false",
+      "actions": "2"
+    },
+    "map": {
+      "list": "4,8,12,16",
+      "selected-index": "3",
+      "selected-value": "16",
+      "length": "4",
+      "sum": "40",
+      "mean": "10",
+      "final-list": "16,20,24,32",
+      "final-sum": "92",
+      "final-mean": "23",
+      "view": "bar",
+      "descending": "false",
+      "actions": "3"
+    },
+    "sortAscending": {
+      "list": "4,8,12,16",
+      "selected-index": "3",
+      "selected-value": "16",
+      "length": "4",
+      "sum": "40",
+      "mean": "10",
+      "final-list": "32,24,20,16",
+      "final-sum": "92",
+      "final-mean": "23",
+      "view": "bar",
+      "descending": "true",
+      "actions": "4"
+    },
+    "sortDescending": {
+      "list": "16,12,8,4",
+      "selected-index": "3",
+      "selected-value": "4",
+      "length": "4",
+      "sum": "40",
+      "mean": "10",
+      "final-list": "16,20,24,32",
+      "final-sum": "92",
+      "final-mean": "23",
+      "view": "bar",
+      "descending": "false",
+      "actions": "5"
+    },
+    "startOver": {
+      "list": "",
+      "selected-index": "0",
+      "selected-value": "",
+      "length": "0",
+      "sum": "0",
+      "mean": "0",
+      "final-list": "20",
+      "final-sum": "20",
+      "final-mean": "20",
+      "view": "bar",
+      "descending": "false",
+      "actions": "1"
+    },
+    "finalReset": {
+      "list": "2,4,6,8",
+      "selected-index": "2",
+      "selected-value": "6",
+      "length": "4",
+      "sum": "20",
+      "mean": "5",
+      "final-list": "4,12,16,20",
+      "final-sum": "52",
+      "final-mean": "13",
+      "view": "bar",
+      "descending": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1487,
+      "height": 1058
+    },
+    "document": {
+      "width": 1487,
+      "height": 1058
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 107,
+      "bottom": 1050,
+      "height": 943,
+      "left": 277,
+      "right": 1483,
+      "width": 1206
+    },
+    "regions": {
+      "shell": {
+        "top": 107,
+        "bottom": 264,
+        "height": 157,
+        "left": 277,
+        "right": 1483,
+        "width": 1206
+      },
+      "header": {
+        "top": 108,
+        "bottom": 212,
+        "height": 104,
+        "left": 278,
+        "right": 1482,
+        "width": 1204
+      },
+      "tabs": {
+        "top": 212,
+        "bottom": 265,
+        "height": 53,
+        "left": 278,
+        "right": 1482,
+        "width": 1204
+      },
+      "layout": {
+        "top": 278,
+        "bottom": 850,
+        "height": 572,
+        "left": 277,
+        "right": 1483,
+        "width": 1206
+      },
+      "workspace": {
+        "top": 278,
+        "bottom": 850,
+        "height": 572,
+        "left": 277,
+        "right": 1086,
+        "width": 809
+      },
+      "editor": {
+        "top": 377,
+        "bottom": 474,
+        "height": 97,
+        "left": 293,
+        "right": 1070,
+        "width": 777
+      },
+      "pipeline": {
+        "top": 483.5,
+        "bottom": 593.5,
+        "height": 110,
+        "left": 293,
+        "right": 1070,
+        "width": 777
+      },
+      "visuals": {
+        "top": 593.5,
+        "bottom": 792.5,
+        "height": 199,
+        "left": 293,
+        "right": 1070,
+        "width": 777
+      },
+      "side": {
+        "top": 278,
+        "bottom": 850,
+        "height": 572,
+        "left": 1101,
+        "right": 1483,
+        "width": 382
+      },
+      "concepts": {
+        "top": 868,
+        "bottom": 1044,
+        "height": 176,
+        "left": 277,
+        "right": 1483,
+        "width": 1206
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
