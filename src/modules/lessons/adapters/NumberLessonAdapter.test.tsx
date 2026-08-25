@@ -173,6 +173,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="First number"');
     expect(html).toContain("Equal groups (visual proof)");
   });
+  it("renders lesson 70 as a dedicated shared-multiple LCM workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 70)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0052"');
+    expect(html).toContain('data-dedicated-lesson="70"');
+    expect(html).toContain('data-object-model="editable-number-pair-synchronized-multiple-jump-lines-generated-lists-draggable-shared-landing-prime-power-ladder-least-common-multiple-practice-model"');
+    expect(html).toContain('data-first="6"');
+    expect(html).toContain('data-second="8"');
+    expect(html).toContain('data-lcm="24"');
+    expect(html).toContain('data-first-multiples="6,12,18,24,30"');
+    expect(html).toContain('data-second-multiples="8,16,24,32,40"');
+    expect(html).toContain('data-lcm-primes="2,2,2,3"');
+    expect(html).toContain('aria-label="First shared landing drop zone"');
+    expect(html).toContain('aria-label="First number"');
+    expect(html).toContain("Watch the multiples land together");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

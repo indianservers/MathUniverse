@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **51 of 130 lessons completed; 79 pending.**
+Dedicated rebuild target: **52 of 130 lessons completed; 78 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -55,6 +55,7 @@ Dedicated rebuild target: **51 of 130 lessons completed; 79 pending.**
 | 0049   |                          67 Prime Numbers | Complete | Dedicated editable divisor-scanner model with calculated factors/factor count, native draggable counters, equal grouping rows, quotient/remainder states, prime/composite proof, practice, save/share controls, and exact 1536x1024 target geometry               |
 | 0050   |                    68 Prime Factorisation | Complete | Dedicated recursive binary factor-tree model with editable composite, calculated split steps/prime leaves, exponent compression, real rebuild slider, candidate frequency, dynamic practice, expand/reset controls, and exact 1536x1024 target geometry             |
 | 0051   |                               69 HCF/GCD | Complete | Dedicated editable pair model with calculated factor-set intersection, prime-exponent overlap, native draggable shared candidates, equal-group proof, steppers, misconception/practice states, and exact 1470x1070 target geometry                              |
+| 0052   |                                   70 LCM | Complete | Dedicated editable pair model with synchronized jump lines, generated multiple lists, native draggable landing candidates, prime-power ladder, least-shared proof, steppers, full controls/practice, and exact 1073x1466 target geometry                       |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -769,3 +770,17 @@ Evidence:
 - `0051-reference.png`
 - `0051-desktop.png`
 - `0051-dedicated-target-validation.json`
+
+## Lesson 70 / Mockup 0052 - LCM
+
+Reworked individually against the target mockup with a dedicated `editable-number-pair-synchronized-multiple-jump-lines-generated-lists-draggable-shared-landing-prime-power-ladder-least-common-multiple-practice-model`. The two editable numbers drive both jump lines, their shared landing, generated multiple lists, prime factorizations, highest-power ladder, compressed LCM proof, result rail, and misconception state from one lesson-owned calculation model.
+
+Both inputs have direct fields and working increment/decrement controls. Every listed multiple is a native draggable object that can be dropped onto the shared-landing proof: a later common multiple is identified as shared but not least, while the actual LCM restores the completed proof. Coprime and non-coprime pairs regenerate all representations. The 4/10 practice prompt, five tabs, language, Workspace, Reset, Share, navigation, and footer links all perform real actions. The shared number adapter only dispatches Lesson 70 to this separate component.
+
+Final 1073x1466 integrated browser validation verifies the initial 6/8 pair, LCM 24, line maximum 48, multiple lists, prime leaves, and `2^3 × 3`; edits the pair to 4/10 and verifies LCM 20; physically drags 40 to the landing and verifies shared-but-not-least feedback; drags 20 and verifies correction; changes to coprime 7/9 and verifies LCM 63 with `3^2 × 7`; exercises tab, language, and Workspace states; loads practice and resets. After three screenshot correction loops, the final frame matches the target at page x=230-1056 and y=99-1466, hero y=99-320, tabs y=336-389, main y=400-1257, synchronized lines x=247-777 and y=481-951, multiple lists y=972-1239, side rail x=800-1044, navigation y=1266-1320, and footer y=1336-1451. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0052-reference.png`
+- `0052-desktop.png`
+- `0052-dedicated-target-validation.json`
