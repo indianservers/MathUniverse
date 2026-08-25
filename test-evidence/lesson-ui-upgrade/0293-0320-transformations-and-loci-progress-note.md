@@ -1,6 +1,6 @@
 # Transformations and Loci target batch 0293-0320
 
-Dedicated rebuild target: **56 of 130 lessons completed; 74 pending.**
+Dedicated rebuild target: **57 of 130 lessons completed; 73 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -30,6 +30,7 @@ Dedicated rebuild target: **56 of 130 lessons completed; 74 pending.**
 | 0316 | 259 Right-Triangle Ratios | `axis-aligned-right-triangle-dependent-vertex-ratio-model` | Reworked individually and browser-validated |
 | 0317 | 260 Exact Trig Values | `snapped-special-angle-linked-circle-triangle-exact-value-model` | Reworked individually and browser-validated |
 | 0318 | 261 Sine Graph | `linked-unit-circle-transformable-sine-function-model` | Reworked individually and browser-validated |
+| 0319 | 262 Cosine Graph | `horizontal-unit-circle-projection-transformable-cosine-function-model` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -370,3 +371,16 @@ Evidence:
 
 - `0318-desktop.png`
 - `0318-dedicated-target-validation.json`
+
+## Lesson 262 / Mockup 0319 - Cosine Graph
+
+Reworked individually against the target mockup with a dedicated `horizontal-unit-circle-projection-transformable-cosine-function-model`. One angle state drives the rotating unit-circle radius, horizontal cosine projection, live x-coordinate, angle control, cosine value card, and synchronized marker on the cosine graph. Both the circle endpoint and graph marker are physically draggable and recover the same angle from SVG coordinates, so the horizontal projection and plotted ordinate remain linked.
+
+The transformation state implements the mockup's actual form `y = A cos(Bx − C) + D`. Amplitude, period factor, phase parameter, and vertical shift each have a real slider and plus/minus steppers; the model derives amplitude, period `2π/|B|`, phase shift `C/B`, range, current transformed value, and a simplified live equation. The rule table, sign-of-cosine strip, worked transformed graph, cosine-versus-sine comparison, language, reset, sharing, workspace focus, and adjacent navigation are functional or model-derived. The independent graph-matching challenge has four selectable equations and validates both incorrect and correct choices.
+
+Final 1003x1568 browser validation verifies the initial π/3 horizontal projection and cosine value 0.5; physically drags the circle endpoint to the positive x-axis and proves both linked values reach 1; physically drags the graph marker and proves the angle and circle projection follow; exercises the amplitude stepper; sets A=2, B=2, C=π/3, D=1 and verifies amplitude 2, period π, phase parameter π/3, vertical shift 1, and the transformed current value; follows wrong and correct graph-choice paths; and resets the complete state. The screenshot loop aligns the workspace at y=397, controls at y=714, practice at y=1324, and navigation exactly at y=1492-1545, with no overflow or console messages.
+
+Evidence:
+
+- `0319-desktop.png`
+- `0319-dedicated-target-validation.json`

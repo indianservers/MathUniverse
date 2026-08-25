@@ -1,0 +1,120 @@
+{
+  "mockup": "0319",
+  "lessonId": 262,
+  "route": "/lessons/trigonometry/262-cosine-graph",
+  "reference": "0319-interactive-intermediate-advanced-trigonometry-cosine-graph-redesigned.png",
+  "objectModel": "horizontal-unit-circle-projection-transformable-cosine-function-model",
+  "checks": {
+    "initial": {
+      "theta": 1.047198,
+      "currentX": 0.5,
+      "currentY": 0.5,
+      "amplitude": 1,
+      "period": 6.283185,
+      "phaseShift": 0,
+      "verticalShift": 0,
+      "practiceChoice": "c",
+      "practiceResult": "correct"
+    },
+    "circleDrag": {
+      "theta": 6.2801,
+      "currentX": 0.999995,
+      "currentY": 0.999995,
+      "amplitude": 1,
+      "period": 6.283185,
+      "phaseShift": 0,
+      "verticalShift": 0,
+      "practiceChoice": "c",
+      "practiceResult": "correct"
+    },
+    "graphDrag": {
+      "theta": 3.426761,
+      "currentX": -0.959614,
+      "currentY": -0.959614,
+      "amplitude": 1,
+      "period": 6.283185,
+      "phaseShift": 0,
+      "verticalShift": 0,
+      "practiceChoice": "c",
+      "practiceResult": "correct"
+    },
+    "increment": {
+      "theta": 3.426761,
+      "currentX": -0.959614,
+      "currentY": -1.055576,
+      "amplitude": 1.1,
+      "period": 6.283185,
+      "phaseShift": 0,
+      "verticalShift": 0,
+      "practiceChoice": "c",
+      "practiceResult": "correct"
+    },
+    "transformed": {
+      "theta": 3.426761,
+      "currentX": -0.959614,
+      "currentY": 2.776881,
+      "amplitude": 2,
+      "period": 3.141593,
+      "phaseShift": 1.047198,
+      "verticalShift": 1,
+      "practiceChoice": "c",
+      "practiceResult": "correct"
+    },
+    "incorrect": {
+      "theta": 3.426761,
+      "currentX": -0.959614,
+      "currentY": 2.776881,
+      "amplitude": 2,
+      "period": 3.141593,
+      "phaseShift": 1.047198,
+      "verticalShift": 1,
+      "practiceChoice": "a",
+      "practiceResult": "incorrect"
+    },
+    "correct": {
+      "theta": 3.426761,
+      "currentX": -0.959614,
+      "currentY": 2.776881,
+      "amplitude": 2,
+      "period": 3.141593,
+      "phaseShift": 1.047198,
+      "verticalShift": 1,
+      "practiceChoice": "c",
+      "practiceResult": "correct"
+    },
+    "reset": {
+      "theta": 1.047198,
+      "currentX": 0.5,
+      "currentY": 0.5,
+      "amplitude": 1,
+      "period": 6.283185,
+      "phaseShift": 0,
+      "verticalShift": 0,
+      "practiceChoice": "c",
+      "practiceResult": "correct"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1003,
+      "height": 1568
+    },
+    "document": {
+      "width": 1003,
+      "height": 1703
+    },
+    "horizontalOverflow": false,
+    "surfaceTop": 98,
+    "surfaceBottom": 1548,
+    "workspaceTop": 397,
+    "workspaceBottom": 701,
+    "controlsTop": 714,
+    "controlsBottom": 901,
+    "practiceTop": 1324,
+    "practiceBottom": 1472,
+    "navTop": 1492,
+    "navBottom": 1545
+  },
+  "consoleMessages": [],
+  "passed": true
+}

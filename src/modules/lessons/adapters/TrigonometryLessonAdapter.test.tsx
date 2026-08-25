@@ -130,6 +130,28 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain('aria-label="Practice C"');
   });
 
+  it("renders lesson 262 as a dedicated horizontal-projection cosine workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 262)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0319"');
+    expect(html).toContain('data-dedicated-lesson="262"');
+    expect(html).toContain(
+      'data-object-model="horizontal-unit-circle-projection-transformable-cosine-function-model"',
+    );
+    expect(html).toContain('data-current-x="0.500000"');
+    expect(html).toContain('data-amplitude="1.000"');
+    expect(html).toContain('data-period="6.283185"');
+    expect(html).toContain('data-testid="cosine-unit-circle-handle"');
+    expect(html).toContain('data-testid="cosine-main-graph-handle"');
+    expect(html).toContain('aria-label="Amplitude (A)"');
+    expect(html).toContain('aria-label="Cosine angle"');
+    expect(html).toContain("Cosine is NOT sine");
+    expect(html).toContain("Which equation matches the graph?");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(
