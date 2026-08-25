@@ -8,6 +8,7 @@ import type { StrengthenedLesson } from "../strengthening/strengthenedLessonSche
 import type { LessonAdapterProps, LessonDefinition } from "../types";
 import AlgebraWorkspaceTargetLesson19 from "./AlgebraWorkspaceTargetLesson19";
 import VariableExplorerTargetLesson20 from "./VariableExplorerTargetLesson20";
+import NumericSlidersTargetLesson21 from "./NumericSlidersTargetLesson21";
 
 const viewport: GraphViewport = { xMin: -10, xMax: 10, yMin: -10, yMax: 10, width: 640, height: 360 };
 
@@ -17,6 +18,9 @@ export default function AlgebraLessonAdapter({ lesson, resetToken, onInteraction
   }
   if (lesson.id === 20) {
     return <VariableExplorerTargetLesson20 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 21) {
+    return <NumericSlidersTargetLesson21 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.categorySlug === "core-workspaces" && lesson.id >= 19 && lesson.id <= 38) {
     return <RedesignedCoreAlgebraLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

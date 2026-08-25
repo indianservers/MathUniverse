@@ -1,0 +1,159 @@
+{
+  "mockup": "0021",
+  "lessonId": 21,
+  "route": "/lessons/core-workspaces/21-numeric-sliders",
+  "objectModel": "continuous-bounded-precision-slider-linked-substitution-pattern-coordinate-graph-model",
+  "checks": {
+    "initial": {
+      "x": "2",
+      "y": "7",
+      "min": "-5",
+      "max": "5",
+      "step": "0.1",
+      "actions": "0"
+    },
+    "slider": {
+      "x": "-1.5",
+      "y": "0",
+      "min": "-5",
+      "max": "5",
+      "step": "0.1",
+      "actions": "1"
+    },
+    "preset": {
+      "x": "4",
+      "y": "11",
+      "min": "-5",
+      "max": "5",
+      "step": "0.1",
+      "actions": "2"
+    },
+    "bounds": {
+      "x": "4",
+      "y": "11",
+      "min": "-3",
+      "max": "8",
+      "step": "0.1",
+      "actions": "4"
+    },
+    "precisionStep": {
+      "x": "3.5",
+      "y": "10",
+      "min": "-3",
+      "max": "8",
+      "step": "0.5",
+      "actions": "6"
+    },
+    "reset": {
+      "x": "2",
+      "y": "7",
+      "min": "-5",
+      "max": "5",
+      "step": "0.1",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1217,
+      "height": 1292
+    },
+    "document": {
+      "width": 1217,
+      "height": 1292
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 120,
+      "bottom": 1292,
+      "height": 1172,
+      "left": 262,
+      "right": 1196,
+      "width": 934
+    },
+    "regions": {
+      "card": {
+        "top": 120,
+        "bottom": 1153,
+        "height": 1033,
+        "left": 262,
+        "right": 1196,
+        "width": 934
+      },
+      "header": {
+        "top": 140,
+        "bottom": 275,
+        "height": 135,
+        "left": 282,
+        "right": 1176,
+        "width": 894
+      },
+      "main": {
+        "top": 275,
+        "bottom": 1064,
+        "height": 789,
+        "left": 282,
+        "right": 1176,
+        "width": 894
+      },
+      "slider": {
+        "top": 275,
+        "bottom": 477,
+        "height": 202,
+        "left": 282,
+        "right": 868,
+        "width": 586
+      },
+      "linked": {
+        "top": 492,
+        "bottom": 837,
+        "height": 345,
+        "left": 282,
+        "right": 868,
+        "width": 586
+      },
+      "pattern": {
+        "top": 852,
+        "bottom": 1063,
+        "height": 211,
+        "left": 282,
+        "right": 868,
+        "width": 586
+      },
+      "control": {
+        "top": 275,
+        "bottom": 700,
+        "height": 425,
+        "left": 881,
+        "right": 1175,
+        "width": 294
+      },
+      "graph": {
+        "top": 714,
+        "bottom": 1064,
+        "height": 350,
+        "left": 881,
+        "right": 1175,
+        "width": 294
+      },
+      "neighbors": {
+        "top": 1078,
+        "bottom": 1135,
+        "height": 57,
+        "left": 282,
+        "right": 1176,
+        "width": 894
+      },
+      "footer": {
+        "top": 1164,
+        "bottom": 1283,
+        "height": 119,
+        "left": 262,
+        "right": 1196,
+        "width": 934
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

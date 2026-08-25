@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **20 of 130 lessons completed; 110 pending.**
+Dedicated rebuild target: **21 of 130 lessons completed; 109 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -24,6 +24,7 @@ Dedicated rebuild target: **20 of 130 lessons completed; 110 pending.**
 | 0018   | 18 Exact and Decimal Modes | Complete | Linked unit-square radical and decimal number-line model with real exact/decimal modes, 2-16 place precision slider, live trace/table, expansion, reset/views, and rotating graded context practice at exact 1068x1472 target geometry |
 | 0019   | 19 Algebra Workspace | Complete | Editable affine-rule dependency graph with draggable x, parsed rule validation, live substitution/output/equivalence trace, dynamic test table, Clear All, reset/views, and rotating calculated practice at exact 1024x1536 target geometry |
 | 0020   | 20 Variable Explorer | Complete | Single-source x dependency model with real -5..5 slider and presets, linked rule/substitution/output stages, symbolic/numeric trace, update graph, value table, verification, reset/views, and workspace/share state at exact 1217x1292 target geometry |
+| 0021   | 21 Numeric Sliders | Complete | Continuous bounded x model with real drag slider, editable range, selectable precision, steppers, presets, linked substitution/result chain, pattern row, graph point/guides, reset/share, and exact 1217x1292 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -304,3 +305,17 @@ Evidence:
 - `0020-reference.png`
 - `0020-desktop.png`
 - `0020-dedicated-target-validation.json`
+
+## Lesson 21 / Mockup 0021 - Numeric Sliders
+
+Reworked individually against the target mockup with a dedicated `continuous-bounded-precision-slider-linked-substitution-pattern-coordinate-graph-model`. One continuous x parameter drives the active-value display, `y=2x+3` expression, numeric substitution, result, selected pattern example, coordinate point, guide lines, and point label from a single calculated state.
+
+The main slider is a real -5 to 5 range control with 0.1 precision. The decrease/increase buttons, direct numeric value field, four pattern presets, editable minimum and maximum bounds, and 0.1/0.5/1 precision selector all update that same state. Bounds clamp x safely, precision changes control rounding and stepping, and Reset and Share perform real actions.
+
+Final 1217x1292 integrated browser validation drags x to -1.5 and verifies y=0; selects x=4 and verifies y=11; changes the range to -3..8; changes precision to 0.5; steps down to x=3.5 and verifies y=10; and resets every value. The final frame matches the target at surface x=262-1196 and y=120-1292, lesson card y=120-1153, header y=140-275, workspace y=275-1064, slider y=275-477, linked outputs y=492-837, pattern y=852-1063, controls y=275-700, graph y=714-1064, navigation y=1078-1135, and footer y=1164-1283. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0021-reference.png`
+- `0021-desktop.png`
+- `0021-dedicated-target-validation.json`

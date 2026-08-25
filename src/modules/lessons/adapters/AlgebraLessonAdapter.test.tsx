@@ -8,7 +8,7 @@ describe("AlgebraLessonAdapter", () => {
     const expectedSnippets: Record<number, string> = {
       19: "Build, link, substitute, and check",
       20: "Changing x updates",
-      21: "Numeric slider",
+      21: "Linked outputs update live",
       22: "Integer slider",
       23: "Angle slider",
       24: "Animation rule",
@@ -65,6 +65,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('aria-label="Active variable x drag control"');
     expect(html).toContain("Dependency Graph");
     expect(html).toContain("Verify dependency");
+  });
+
+  it("renders lesson 21 as a dedicated continuous numeric slider lab", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 21)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0021"');
+    expect(html).toContain('data-dedicated-lesson="21"');
+    expect(html).toContain('data-object-model="continuous-bounded-precision-slider-linked-substitution-pattern-coordinate-graph-model"');
+    expect(html).toContain('data-x="2"');
+    expect(html).toContain('data-y="7"');
+    expect(html).toContain('aria-label="Numeric slider x drag control"');
+    expect(html).toContain("See the pattern");
+    expect(html).toContain("Visual on the graph");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {
