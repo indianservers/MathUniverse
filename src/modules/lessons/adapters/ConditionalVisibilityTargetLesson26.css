@@ -1,0 +1,644 @@
+.visibility-page {
+  position: relative;
+  top: -15px;
+  left: 2px;
+  width: 1022px;
+  height: 1065px;
+  margin-bottom: -15px;
+  color: #0a1738;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.visibility-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.visibility-page h1,
+.visibility-page h2,
+.visibility-page h3,
+.visibility-page p {
+  margin: 0;
+}
+.visibility-page button,
+.visibility-page input,
+.visibility-page select {
+  font: inherit;
+  color: inherit;
+}
+.visibility-page button {
+  cursor: pointer;
+}
+.visibility-breadcrumb {
+  position: absolute;
+  top: -38px;
+  left: 0;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #576a83;
+  font-weight: 800;
+}
+.visibility-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.visibility-breadcrumb a:first-child {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border: 1px solid #dce5ed;
+  border-radius: 50%;
+  background: #fff;
+}
+.visibility-breadcrumb b {
+  color: #00748a;
+}
+.visibility-header {
+  height: 236px;
+  padding: 12px 24px;
+  border: 1px solid #dfe6ed;
+  border-radius: 17px;
+  background: #fff;
+}
+.visibility-header h1 {
+  font-size: 37px;
+  line-height: 45px;
+  font-weight: 900;
+}
+.visibility-header > p {
+  color: #536983;
+  font-size: 13px;
+}
+.visibility-meta {
+  display: flex;
+  margin-top: 13px;
+  gap: 9px;
+}
+.visibility-meta b {
+  padding: 7px 12px;
+  border: 1px solid #dce4ec;
+  border-radius: 16px;
+  font-size: 9px;
+}
+.visibility-header > nav {
+  display: grid;
+  width: 439px;
+  margin-top: 14px;
+  grid-template-columns: 242px 88px 88px;
+  gap: 11px;
+}
+.visibility-header > nav button {
+  display: flex;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid #dce4ec;
+  border-radius: 10px;
+  background: #fff;
+  font-weight: 800;
+}
+.visibility-header > nav button:first-child {
+  padding: 0 15px;
+  justify-content: flex-start;
+}
+.visibility-header > nav button:first-child span {
+  margin-left: auto;
+}
+.visibility-header > nav button:last-child {
+  width: 119px;
+}
+.visibility-header > nav button.active {
+  border-color: #079bb6;
+  background: #effbfd;
+}
+.visibility-header svg {
+  width: 15px;
+}
+.visibility-tabs {
+  display: grid;
+  height: 59px;
+  margin-top: 10px;
+  padding: 7px 12px;
+  grid-template-columns: 115px repeat(4, 1fr);
+  border: 1px solid #dfe6ed;
+  border-radius: 14px;
+  background: #fff;
+}
+.visibility-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 800;
+}
+.visibility-tabs button.active {
+  background: #08a5c4;
+  color: #fff;
+}
+.visibility-main {
+  display: grid;
+  height: 659px;
+  margin-top: 8px;
+  grid-template-columns: 675px 337px;
+  gap: 10px;
+}
+.visibility-lab,
+.visibility-side {
+  height: 659px;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #dfe6ed;
+  border-radius: 14px;
+  background: #fff;
+}
+.visibility-lab {
+  padding: 12px;
+}
+.visibility-lab > header {
+  display: flex;
+  height: 79px;
+  justify-content: space-between;
+}
+.visibility-lab > header small,
+.visibility-side > small,
+.visibility-rule small,
+.visibility-side section > small {
+  color: #087e98;
+  font-size: 8px;
+  font-weight: 900;
+}
+.visibility-lab > header h2 {
+  margin-top: 5px;
+  font-size: 16px;
+}
+.visibility-lab > header p {
+  margin-top: 4px;
+  color: #536983;
+}
+.visibility-lab > header button {
+  width: 76px;
+  height: 36px;
+  margin-top: 23px;
+  border: 1px solid #dce4ec;
+  border-radius: 8px;
+  background: #fff;
+}
+.visibility-lab > header button.active {
+  border-color: #079cb8;
+  background: #eefbfd;
+}
+.condition-line {
+  position: relative;
+  height: 128px;
+  overflow: hidden;
+  border: 1px solid #dce4ec;
+  border-radius: 11px;
+}
+.condition-line .hidden-region,
+.condition-line .visible-region {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: grid;
+  padding-top: 13px;
+  align-content: start;
+  justify-items: center;
+  background: #fff8f7;
+  color: #d5202d;
+}
+.condition-line .visible-region {
+  right: 0;
+  background: #f3fffc;
+  color: #078e66;
+}
+.condition-line div b {
+  font-size: 8px;
+}
+.condition-line div span {
+  margin-top: 7px;
+  font-size: 13px;
+  font-weight: 900;
+}
+.condition-line input {
+  position: absolute;
+  z-index: 3;
+  top: 57px;
+  left: 15px;
+  width: 620px;
+  height: 2px;
+  appearance: none;
+  background: #18223b;
+}
+.condition-line input::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  appearance: none;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #079a82;
+  box-shadow: 0 0 0 1px #087b6b;
+}
+.condition-line > i {
+  position: absolute;
+  z-index: 4;
+  top: 51px;
+  width: 14px;
+  height: 14px;
+  transform: translateX(-50%);
+  border: 2px solid #26314a;
+  border-radius: 50%;
+  background: #fff;
+  pointer-events: none;
+}
+.condition-line > i.closed {
+  background: #fff;
+}
+.condition-line > output {
+  position: absolute;
+  z-index: 5;
+  top: 84px;
+  transform: translateX(-50%);
+  padding: 5px 8px;
+  border-radius: 5px;
+  background: #079a82;
+  color: #fff;
+  font-weight: 800;
+}
+.condition-line footer {
+  position: absolute;
+  right: 12px;
+  bottom: 25px;
+  left: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 800;
+}
+.visibility-middle {
+  display: grid;
+  height: 247px;
+  margin-top: 14px;
+  grid-template-columns: 370px 1fr;
+  gap: 20px;
+}
+.object-plot {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #dce4ec;
+  border-radius: 10px;
+}
+.object-plot .axis {
+  position: absolute;
+  background: #aeb8c5;
+}
+.object-plot .axis.x {
+  top: 50%;
+  right: 8px;
+  left: 8px;
+  height: 1px;
+}
+.object-plot .axis.y {
+  top: 7px;
+  bottom: 7px;
+  left: 50%;
+  width: 1px;
+}
+.object-plot .object {
+  position: absolute;
+  top: 25%;
+  left: 63%;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  color: #07977c;
+  font-size: 31px;
+}
+.object-plot .object.hidden {
+  border: 2px dashed #9aa5b3;
+  border-radius: 50%;
+}
+.object-plot > b {
+  position: absolute;
+  top: 25%;
+  left: 68%;
+  transform: translateY(-50%);
+  color: #078f72;
+  font-size: 14px;
+}
+.visibility-rule {
+  padding: 13px;
+  border: 1px solid #dce4ec;
+  border-radius: 10px;
+}
+.visibility-rule h2 {
+  margin-top: 6px;
+  font-size: 17px;
+}
+.visibility-rule hr {
+  margin: 13px 0;
+  border: 0;
+  border-top: 1px solid #dce4ec;
+}
+.visibility-rule > p {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.visibility-rule > b,
+.visibility-rule > strong {
+  display: flex;
+  height: 39px;
+  margin-top: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 11px;
+  border: 1px solid #91d8ce;
+  border-radius: 8px;
+  background: #f2fffb;
+  color: #078e72;
+  font-size: 13px;
+}
+.visibility-rule > strong {
+  justify-content: flex-start;
+  gap: 10px;
+}
+.visibility-rule .false {
+  border-color: #f2adad;
+  background: #fff7f7;
+  color: #dc2a35;
+}
+.visibility-rule svg {
+  width: 17px;
+  fill: #07977b;
+  color: #fff;
+}
+.visibility-before {
+  height: 150px;
+  margin-top: 13px;
+  padding: 10px;
+  border: 1px solid #dce4ec;
+  border-radius: 10px;
+}
+.visibility-before h3 {
+  font-size: 10px;
+}
+.visibility-before > div {
+  display: grid;
+  margin-top: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.visibility-before article {
+  display: grid;
+  height: 106px;
+  padding: 9px;
+  grid-template-columns: 1fr 105px;
+  border: 1px solid #c9eadf;
+  border-radius: 8px;
+  background: #f7fffc;
+}
+.visibility-before article.hidden {
+  border-color: #f3d6d6;
+  background: #fff9f9;
+}
+.visibility-before article section {
+  display: grid;
+  gap: 7px;
+}
+.visibility-before article small {
+  color: #078f70;
+  font-weight: 900;
+}
+.visibility-before article.hidden small,
+.visibility-before article.hidden strong {
+  color: #df2c35;
+}
+.visibility-before article strong {
+  color: #078f70;
+}
+.visibility-before article span {
+  color: #536983;
+}
+.mini-plot {
+  position: relative;
+  border-left: 1px solid #aeb8c5;
+  border-bottom: 1px solid #aeb8c5;
+}
+.mini-plot > span {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  border-top: 1px dashed #d1d7df;
+}
+.mini-plot > i {
+  position: absolute;
+  top: 38%;
+  left: 55%;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 2px dashed #9ba6b4;
+  border-radius: 50%;
+  color: #07977b;
+  font-size: 25px;
+  font-style: normal;
+}
+.mini-plot > i.visible {
+  border: 0;
+}
+.visibility-side {
+  padding: 15px;
+}
+.visibility-side > h2 {
+  margin-top: 15px;
+  font-size: 16px;
+}
+.visibility-side > input {
+  width: 100%;
+  margin-top: 14px;
+  accent-color: #079a82;
+}
+.visibility-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+}
+.visibility-side > section {
+  margin-top: 8px;
+  border: 1px solid #dfe6ed;
+  border-radius: 10px;
+}
+.condition-editor {
+  height: 96px;
+  padding: 12px;
+}
+.condition-editor > div {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: 74px 88px 1fr;
+  gap: 10px;
+}
+.condition-editor select,
+.condition-editor input {
+  height: 40px;
+  padding: 0 11px;
+  border: 1px solid #dce4ec;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 800;
+}
+.boundary-card {
+  height: 116px;
+  padding: 13px;
+}
+.boundary-card label {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  align-items: center;
+  font-weight: 800;
+}
+.boundary-card input {
+  height: 39px;
+  padding: 0 12px;
+  border: 1px solid #dce4ec;
+  border-radius: 8px;
+}
+.boundary-card > b {
+  display: block;
+  margin-top: 10px;
+}
+.boundary-card p {
+  margin-top: 5px;
+  color: #536983;
+}
+.status-card {
+  height: 89px;
+  padding: 11px;
+}
+.status-card > div {
+  display: grid;
+  height: 55px;
+  margin-top: 8px;
+  padding: 8px;
+  grid-template-columns: 22px 1fr;
+  align-items: center;
+  border: 1px solid #9bddd1;
+  border-radius: 8px;
+  background: #f3fffc;
+  color: #078d72;
+}
+.status-card > div.false {
+  border-color: #f1b0b0;
+  background: #fff7f7;
+  color: #d52d37;
+}
+.status-card svg {
+  width: 17px;
+  fill: #07977b;
+  color: #fff;
+}
+.status-card span {
+  grid-column: 2;
+}
+.truth-card {
+  height: 76px;
+  padding: 11px;
+}
+.truth-card > b {
+  display: block;
+  margin-top: 11px;
+  color: #078e72;
+  font-size: 15px;
+}
+.truth-card > b.false {
+  color: #dc2d37;
+}
+.about-card {
+  height: 112px;
+  padding: 12px;
+}
+.about-card p {
+  margin-top: 10px;
+  color: #536983;
+  line-height: 18px;
+}
+.visibility-neighbors {
+  display: grid;
+  height: 64px;
+  margin-top: 18px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.visibility-neighbors a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 18px;
+  border: 1px solid #dfe6ed;
+  border-radius: 12px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+.visibility-neighbors a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.visibility-neighbors span {
+  display: grid;
+}
+.visibility-neighbors small {
+  font-size: 8px;
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+  body:has(.visibility-page) [data-testid="desktop-sidebar"] {
+    width: 257px;
+  }
+  body:has(.visibility-page) #main-content {
+    padding: 47px 22px 0;
+    overflow: hidden;
+    background: #fff;
+  }
+  body:has(.visibility-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+  body:has(.visibility-page)
+    #main-content
+    .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+    visibility: hidden;
+  }
+}
+@media (max-width: 1099px) {
+  .visibility-page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .visibility-breadcrumb {
+    display: none;
+  }
+  .visibility-main {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .visibility-lab,
+  .visibility-side {
+    height: auto;
+  }
+  .visibility-side {
+    margin-top: 12px;
+  }
+}

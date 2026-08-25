@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **25 of 130 lessons completed; 105 pending.**
+Dedicated rebuild target: **26 of 130 lessons completed; 104 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -29,6 +29,7 @@ Dedicated rebuild target: **25 of 130 lessons completed; 105 pending.**
 | 0023   | 23 Angle Sliders | Complete | Draggable unit-circle angle model linked to sine-wave probe, trig values, degree/radian conversion, common-angle controls, 0-360 range, reset/views/workspace/share, and exact 1217x1292 target geometry |
 | 0024   | 24 Animation Controls | Complete | Timed six-frame affine parameter model with retained graph traces, real play/pause, speed and loop controls, timeline/table seeking, step controls, exact outputs, and exact 1388x1134 target geometry |
 | 0025   | 25 Dependent and Independent Objects | Complete | Two draggable/steppable parent points with derived segment, midpoint, Euclidean length, locked child fields, stacked midpoint formula, dependency hierarchy, and exact 1369x1132 target geometry |
+| 0026   | 26 Conditional Visibility | Complete | Editable Boolean condition with two synchronized x sliders, six operators, boundary inputs, number-line truth regions, visible/hidden object states, before/after proof, views/actions, and exact 1324x1188 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -379,3 +380,17 @@ Evidence:
 - `0025-reference.png`
 - `0025-desktop.png`
 - `0025-dedicated-target-validation.json`
+
+## Lesson 26 / Mockup 0026 - Conditional Visibility
+
+Reworked individually against the target mockup with a dedicated `editable-boolean-boundary-number-line-region-object-visibility-before-after-model`. One x value, comparison operator, and boundary c drive the number-line regions, threshold and value markers, object P, rule text, evaluation, visibility status, truth card, and before/after examples.
+
+Both the large number-line handle and inspector range are real synchronized controls. The operator supports `>=`, `>`, `<=`, `<`, `=`, and `!=`; both boundary inputs edit the same value. Reset, Share, Workspace, language, Legend, and all five views perform real state changes. Strict and inclusive boundary cases are evaluated mathematically rather than inferred from styling.
+
+Final 1324x1188 integrated browser validation moves x to 1.5 and verifies hidden state; changes c to 1 and verifies visible state; tests x=1 with strict `>` and verifies false; reverses to `<=` and verifies true; opens Know more and Workspace; shares the live rule; and resets to `2.5 >= 2 -> TRUE`. The final frame matches the target at surface x=281-1303 and y=123-1188, header y=123-359, tabs y=369-428, workspace y=436-1095, number line y=528-656, linked middle panels y=670-917, before/after y=930-1080, inspector x=966-1303, and navigation y=1113-1177. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0026-reference.png`
+- `0026-desktop.png`
+- `0026-dedicated-target-validation.json`

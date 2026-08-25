@@ -1,0 +1,184 @@
+{
+  "mockup": "0026",
+  "lessonId": 26,
+  "route": "/lessons/core-workspaces/26-conditional-visibility",
+  "objectModel": "editable-boolean-boundary-number-line-region-object-visibility-before-after-model",
+  "checks": {
+    "initial": {
+      "x": "2.5",
+      "operator": ">=",
+      "boundary": "2",
+      "visible": "true",
+      "view": "0",
+      "workspace": "false",
+      "actions": "0"
+    },
+    "hidden": {
+      "x": "1.5",
+      "operator": ">=",
+      "boundary": "2",
+      "visible": "false",
+      "view": "0",
+      "workspace": "false",
+      "actions": "1"
+    },
+    "boundary": {
+      "x": "1.5",
+      "operator": ">=",
+      "boundary": "1",
+      "visible": "true",
+      "view": "0",
+      "workspace": "false",
+      "actions": "2"
+    },
+    "strictBoundary": {
+      "x": "1",
+      "operator": ">",
+      "boundary": "1",
+      "visible": "false",
+      "view": "0",
+      "workspace": "false",
+      "actions": "4"
+    },
+    "reversed": {
+      "x": "1",
+      "operator": "<=",
+      "boundary": "1",
+      "visible": "true",
+      "view": "0",
+      "workspace": "false",
+      "actions": "5"
+    },
+    "view": {
+      "x": "1",
+      "operator": "<=",
+      "boundary": "1",
+      "visible": "true",
+      "view": "4",
+      "workspace": "false",
+      "actions": "6"
+    },
+    "workspace": {
+      "x": "1",
+      "operator": "<=",
+      "boundary": "1",
+      "visible": "true",
+      "view": "4",
+      "workspace": "true",
+      "actions": "7"
+    },
+    "share": {
+      "x": "1",
+      "operator": "<=",
+      "boundary": "1",
+      "visible": "true",
+      "view": "4",
+      "workspace": "true",
+      "actions": "8"
+    },
+    "reset": {
+      "x": "2.5",
+      "operator": ">=",
+      "boundary": "2",
+      "visible": "true",
+      "view": "0",
+      "workspace": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1324,
+      "height": 1188
+    },
+    "document": {
+      "width": 1324,
+      "height": 1188
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 123,
+      "bottom": 1188,
+      "height": 1065,
+      "left": 281,
+      "right": 1303,
+      "width": 1022
+    },
+    "regions": {
+      "header": {
+        "top": 123,
+        "bottom": 359,
+        "height": 236,
+        "left": 281,
+        "right": 1303,
+        "width": 1022
+      },
+      "tabs": {
+        "top": 369,
+        "bottom": 428,
+        "height": 59,
+        "left": 281,
+        "right": 1303,
+        "width": 1022
+      },
+      "main": {
+        "top": 436,
+        "bottom": 1095,
+        "height": 659,
+        "left": 281,
+        "right": 1303,
+        "width": 1022
+      },
+      "lab": {
+        "top": 436,
+        "bottom": 1095,
+        "height": 659,
+        "left": 281,
+        "right": 956,
+        "width": 675
+      },
+      "line": {
+        "top": 528,
+        "bottom": 656,
+        "height": 128,
+        "left": 294,
+        "right": 943,
+        "width": 649
+      },
+      "middle": {
+        "top": 670,
+        "bottom": 917,
+        "height": 247,
+        "left": 294,
+        "right": 943,
+        "width": 649
+      },
+      "before": {
+        "top": 930,
+        "bottom": 1080,
+        "height": 150,
+        "left": 294,
+        "right": 943,
+        "width": 649
+      },
+      "side": {
+        "top": 436,
+        "bottom": 1095,
+        "height": 659,
+        "left": 966,
+        "right": 1303,
+        "width": 337
+      },
+      "neighbors": {
+        "top": 1113,
+        "bottom": 1177,
+        "height": 64,
+        "left": 281,
+        "right": 1303,
+        "width": 1022
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

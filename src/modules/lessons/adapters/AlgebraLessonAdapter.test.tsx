@@ -13,7 +13,7 @@ describe("AlgebraLessonAdapter", () => {
       23: "Control rotations and periodic models",
       24: "Observe continuous mathematical change",
       25: "Teach construction hierarchy",
-      26: "Visibility rule",
+      26: "Create responsive interactive lessons",
       27: "Dynamic label",
       28: "Input syntax",
       29: "Redefinition rule",
@@ -131,6 +131,20 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('data-length="4"');
     expect(html).toContain('aria-label="Draggable independent points A and B with dependent midpoint"');
     expect(html).toContain("Dependency hierarchy");
+  });
+
+  it("renders lesson 26 as a dedicated conditional visibility workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 26)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0026"');
+    expect(html).toContain('data-dedicated-lesson="26"');
+    expect(html).toContain('data-object-model="editable-boolean-boundary-number-line-region-object-visibility-before-after-model"');
+    expect(html).toContain('data-x="2.5"');
+    expect(html).toContain('data-operator="&gt;="');
+    expect(html).toContain('data-boundary="2"');
+    expect(html).toContain('data-visible="true"');
+    expect(html).toContain('aria-label="Visibility number line drag control"');
+    expect(html).toContain("TRUTH EVALUATION");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {
