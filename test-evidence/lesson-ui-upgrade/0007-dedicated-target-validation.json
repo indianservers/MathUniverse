@@ -1,0 +1,142 @@
+{
+  "mockup": "0007",
+  "lessonId": 7,
+  "route": "/lessons/core-workspaces/7-scientific-notation",
+  "objectModel": "coefficient-power-ten-number-line-decimal-shift-standard-form-ladder-practice-model",
+  "checks": {
+    "initial": {
+      "coefficient": "6.02",
+      "exponent": "5",
+      "standard": "602,000",
+      "direction": "right",
+      "view": "0",
+      "instructions": "false",
+      "feedback": "correct"
+    },
+    "coefficient": {
+      "coefficient": "6.03",
+      "exponent": "5",
+      "standard": "603,000",
+      "direction": "right",
+      "view": "0",
+      "instructions": "false",
+      "feedback": "idle"
+    },
+    "exponent": {
+      "coefficient": "6.03",
+      "exponent": "4",
+      "standard": "60,300",
+      "direction": "right",
+      "view": "0",
+      "instructions": "false",
+      "feedback": "idle"
+    },
+    "reset": {
+      "coefficient": "6.02",
+      "exponent": "5",
+      "standard": "602,000",
+      "direction": "right",
+      "view": "0",
+      "instructions": "false",
+      "feedback": "idle"
+    },
+    "instructions": {
+      "coefficient": "6.02",
+      "exponent": "5",
+      "standard": "602,000",
+      "direction": "right",
+      "view": "0",
+      "instructions": "true",
+      "feedback": "idle"
+    },
+    "view": {
+      "coefficient": "6.02",
+      "exponent": "5",
+      "standard": "602,000",
+      "direction": "right",
+      "view": "2",
+      "instructions": "true",
+      "feedback": "idle"
+    },
+    "practice": {
+      "coefficient": "6.02",
+      "exponent": "5",
+      "standard": "602,000",
+      "direction": "right",
+      "view": "2",
+      "instructions": "true",
+      "feedback": "correct"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1508,
+      "height": 1043
+    },
+    "document": {
+      "width": 1508,
+      "height": 1179
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 102,
+      "bottom": 1024,
+      "height": 922,
+      "left": 302,
+      "right": 1462,
+      "width": 1160
+    },
+    "regions": {
+      "header": {
+        "top": 102,
+        "bottom": 294,
+        "height": 192,
+        "left": 302,
+        "right": 1462,
+        "width": 1160
+      },
+      "tabs": {
+        "top": 304,
+        "bottom": 362,
+        "height": 58,
+        "left": 302,
+        "right": 1462,
+        "width": 1160
+      },
+      "columns": {
+        "top": 371,
+        "bottom": 1024,
+        "height": 653,
+        "left": 309,
+        "right": 1462,
+        "width": 1153
+      },
+      "lab": {
+        "top": 371,
+        "bottom": 1024,
+        "height": 653,
+        "left": 309,
+        "right": 1173,
+        "width": 864
+      },
+      "side": {
+        "top": 371,
+        "bottom": 1024,
+        "height": 653,
+        "left": 1183,
+        "right": 1462,
+        "width": 279
+      },
+      "practice": {
+        "top": 880,
+        "bottom": 1011,
+        "height": 131,
+        "left": 322,
+        "right": 1160,
+        "width": 838
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

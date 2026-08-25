@@ -1,0 +1,492 @@
+.target-notation-page {
+  position: relative;
+  top: -28px;
+  left: 6px;
+  width: calc(100% - 30px);
+  height: 922px;
+  margin-bottom: -28px;
+  color: #0a1740;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.target-notation-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.target-notation-page h1,
+.target-notation-page h2,
+.target-notation-page h3,
+.target-notation-page p {
+  margin: 0;
+}
+.target-notation-page button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.target-notation-breadcrumb {
+  position: absolute;
+  top: -34px;
+  left: -18px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #526785;
+  font-weight: 750;
+}
+.target-notation-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.target-notation-breadcrumb a:first-child {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #d7e2ed;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+.target-notation-breadcrumb b {
+  color: #007c99;
+}
+.target-notation-header {
+  height: 192px;
+  padding: 20px 18px;
+  background: #fff;
+}
+.target-notation-header h1 {
+  font-size: 42px;
+  line-height: 50px;
+  font-weight: 850;
+}
+.target-notation-header > p {
+  font-size: 15px;
+  color: #536886;
+}
+.target-notation-header > div {
+  display: flex;
+  gap: 9px;
+  margin-top: 17px;
+}
+.target-notation-header > div b {
+  padding: 7px 14px;
+  border: 1px solid #d7e2ed;
+  border-radius: 16px;
+}
+.target-notation-header nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 13px;
+}
+.target-notation-header nav button {
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid #d7e2ed;
+  border-radius: 19px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.target-notation-header nav button:first-child {
+  width: 230px;
+  justify-content: space-between;
+}
+.target-notation-header svg {
+  width: 15px;
+}
+.target-notation-tabs {
+  height: 58px;
+  margin-top: 10px;
+  border: 1px solid #d7e2ed;
+  background: #fff;
+  padding: 9px 16px;
+  display: grid;
+  grid-template-columns: 235px repeat(4, 1fr);
+}
+.target-notation-tabs button {
+  border: 0;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 750;
+}
+.target-notation-tabs button.active {
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(100deg, #05a6b9, #06a6c5);
+}
+.target-notation-columns {
+  height: 653px;
+  margin-top: 9px;
+  margin-left: 7px;
+  width: calc(100% - 7px);
+  display: grid;
+  grid-template-columns: minmax(0, 864px) 279px;
+  gap: 10px;
+}
+.target-notation-columns > main {
+  min-width: 0;
+}
+.notation-lab {
+  height: 653px;
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  background: #fff;
+  padding: 12px;
+}
+.notation-lab > header {
+  height: 58px;
+  position: relative;
+}
+.notation-lab > header h2 {
+  font-size: 19px;
+  font-weight: 850;
+}
+.notation-lab > header > p {
+  margin-top: 5px;
+  color: #536887;
+  font-size: 13px;
+}
+.notation-lab > header button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 37px;
+  border: 1px solid #b6d4f2;
+  border-radius: 8px;
+  background: #fff;
+  color: #1263cd;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 13px;
+}
+.notation-lab > header button svg {
+  width: 15px;
+}
+.notation-lab > header aside {
+  position: absolute;
+  right: 0;
+  top: 42px;
+  width: 260px;
+  padding: 8px;
+  border: 1px solid #b6d4f2;
+  border-radius: 7px;
+  background: #fff;
+  z-index: 3;
+}
+.notation-controls {
+  height: 84px;
+  border: 1px solid #d7e2ed;
+  border-radius: 9px;
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  align-items: center;
+}
+.notation-controls > svg {
+  width: 18px;
+  justify-self: center;
+}
+.notation-stepper {
+  height: 83px;
+  display: grid;
+  place-items: center;
+  border-right: 1px solid #d7e2ed;
+}
+.notation-stepper:last-child {
+  border: 0;
+}
+.notation-stepper h3 {
+  color: #087c9c;
+  font-size: 12px;
+}
+.notation-stepper.violet h3 {
+  color: #702dcf;
+}
+.notation-stepper h3 small {
+  color: #526785;
+}
+.notation-stepper > div {
+  width: 194px;
+  height: 37px;
+  margin-top: -10px;
+  border-radius: 9px;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  overflow: hidden;
+  color: #fff;
+  background: #07a4ba;
+}
+.notation-stepper.violet > div {
+  background: #7130c9;
+}
+.notation-stepper button {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 22px;
+}
+.notation-stepper b {
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+}
+.notation-number-line {
+  height: 115px;
+  padding-top: 14px;
+}
+.notation-number-line h3 {
+  font-size: 14px;
+}
+.notation-number-line h3 small {
+  font-weight: 500;
+}
+.notation-number-line > div {
+  height: 2px;
+  margin: 47px 15px 0;
+  background: #079db5;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.notation-number-line i {
+  width: 1px;
+  height: 14px;
+  margin-top: -6px;
+  background: #526785;
+}
+.notation-number-line b {
+  position: absolute;
+  top: -31px;
+  transform: translateX(-50%);
+  color: #079bb2;
+  font-size: 17px;
+}
+.notation-number-line > span {
+  position: absolute;
+  margin-top: 8px;
+  font-size: 14px;
+}
+.notation-number-line > span:last-child {
+  right: 29px;
+}
+.notation-movement {
+  height: 129px;
+  padding-top: 5px;
+}
+.notation-movement h3 {
+  font-size: 14px;
+}
+.notation-movement > div {
+  height: 74px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.notation-movement span {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.notation-movement span > b {
+  position: absolute;
+  top: -27px;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #079eb7;
+}
+.notation-movement strong {
+  min-width: 91px;
+  height: 37px;
+  border: 1px solid #72c6df;
+  border-radius: 7px;
+  background: #eefafe;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+}
+.notation-movement span.final strong {
+  color: #fff;
+  background: #079eb8;
+}
+.notation-movement svg {
+  width: 17px;
+  margin: 0 10px;
+  color: #069cb5;
+}
+.notation-equation {
+  height: 90px;
+  border: 1px solid #bc9fe9;
+  border-radius: 8px;
+  background: linear-gradient(100deg, #edf8ff, #fbf3ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-family: serif;
+  font-size: 36px;
+}
+.notation-equation strong {
+  color: #079db7;
+  font-family: inherit;
+  font-size: 44px;
+}
+.notation-practice {
+  height: 131px;
+  margin-top: 20px;
+  border: 1px solid #d7e2ed;
+  border-radius: 9px;
+  padding: 13px;
+  position: relative;
+}
+.notation-practice h3 {
+  font-size: 14px;
+}
+.notation-practice > p {
+  margin-top: 7px;
+  font-size: 13px;
+}
+.notation-practice > button {
+  position: absolute;
+  right: 13px;
+  top: 18px;
+  height: 37px;
+  border: 1px solid #b6d5f4;
+  border-radius: 8px;
+  background: #fff;
+  color: #1264d3;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 13px;
+}
+.notation-practice button svg {
+  width: 15px;
+}
+.notation-practice > div {
+  height: 46px;
+  margin-top: 13px;
+  border-radius: 8px;
+  background: #eff9f2;
+  color: #168344;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 14px;
+}
+.notation-practice > div svg {
+  width: 23px;
+  height: 23px;
+  padding: 4px;
+  border-radius: 50%;
+  color: #fff;
+  background: #41b46c;
+}
+.notation-side {
+  height: 653px;
+  display: grid;
+  grid-template-rows: 314px 1fr;
+  gap: 10px;
+}
+.notation-side > section {
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  background: #fff;
+  padding: 13px;
+}
+.notation-side h2 {
+  font-size: 17px;
+  height: 32px;
+}
+.notation-trace {
+  height: 60px;
+  margin-bottom: 6px;
+  border: 1px solid #d7e2ed;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: center;
+  padding: 8px;
+}
+.notation-trace > i {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1769e6;
+}
+.notation-trace.violet > i {
+  background: #7945d6;
+}
+.notation-trace.cyan > i {
+  background: #09a2bb;
+}
+.notation-trace span {
+  display: grid;
+  gap: 5px;
+}
+.notation-trace strong {
+  font-size: 16px;
+}
+.notation-ladder > div {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  border-left: 2px solid #8c54df;
+  padding-left: 15px;
+}
+.notation-ladder i {
+  width: 10px;
+  height: 10px;
+  margin-left: -21px;
+  border-radius: 50%;
+  background: #7c48d2;
+}
+.notation-ladder b {
+  font-size: 13px;
+}
+.notation-ladder div.active {
+  color: #6728c4;
+  background: #f4edff;
+}
+.notation-ladder sup {
+  font-size: 9px;
+}
+@media (min-width: 1280px) {
+  #main-content:has(.target-notation-page) {
+    padding: 39px 22px 0;
+    overflow: hidden;
+  }
+}
+@media (max-width: 1100px) {
+  .target-notation-page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .target-notation-breadcrumb {
+    display: none;
+  }
+  .target-notation-columns {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .notation-side {
+    height: auto;
+  }
+  .notation-movement > div {
+    overflow-x: auto;
+  }
+  .target-notation-header h1 {
+    font-size: 34px;
+  }
+}

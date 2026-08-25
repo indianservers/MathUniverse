@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **6 of 130 lessons completed; 124 pending.**
+Dedicated rebuild target: **7 of 130 lessons completed; 123 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -10,6 +10,7 @@ Dedicated rebuild target: **6 of 130 lessons completed; 124 pending.**
 | 0004   | 4 Percentage Calculator | Complete | Draggable percent/base model with live hundred grid, segmented percent scale, whole/part bars, equation, quick table, trace, direct inputs, result, and graded inverse-percent practice at exact 1506x1045 target geometry         |
 | 0005   |      5 Ratio Calculator | Complete | Dual draggable/steppable ratio model with live GCF grouping, simplification proof, grouped bars, tile arrays, double number line, trace, action count, examples, and graded comparison practice at exact 1536x1024 target geometry |
 | 0006   |      6 Powers and Roots | Complete | Linked radicand/root area grid and base/exponent repeated-power model with cube, combined expression, steppers, trace, action state, and practice reveal at exact 1068x1472 target geometry                                        |
+| 0007   |   7 Scientific Notation | Complete | Linked coefficient/exponent model with real steppers, number-line marker, directional decimal-shift sequence, standard form, concept trace, powers ladder, instructions, and practice checking at exact 1508x1043 target geometry  |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -94,3 +95,17 @@ Evidence:
 - `0006-reference.png`
 - `0006-desktop.png`
 - `0006-dedicated-target-validation.json`
+
+## Lesson 7 / Mockup 0007 - Scientific Notation
+
+Reworked individually against the target mockup with a dedicated `coefficient-power-ten-number-line-decimal-shift-standard-form-ladder-practice-model`. Coefficient and exponent drive the number-line marker, directional decimal movement sequence, equation, standard form, four concept cards, and active powers-of-ten ladder from one calculation model.
+
+Both target steppers perform real bounded changes, including negative exponents and leftward decimal movement. Reset, Share, language/view tabs, Instructions, and Check Answer also perform real state changes. Standard form is calculated and locale-formatted rather than hard-coded.
+
+Final 1508x1043 browser validation changes coefficient 6.02 to 6.03 and verifies 603,000, decreases exponent from 5 to 4 and verifies 60,300, resets, opens instructions, switches lesson view, and checks the practice answer. The screenshot loop matches the target frame: header/tabs x=302-1462, header y=102-294, tabs y=304-362, lab x=309-1173 and y=371-1024, proof sidebar x=1183-1462, and practice x=322-1160. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0007-reference.png`
+- `0007-desktop.png`
+- `0007-dedicated-target-validation.json`
