@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **12 of 130 lessons completed; 118 pending.**
+Dedicated rebuild target: **13 of 130 lessons completed; 117 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -16,6 +16,7 @@ Dedicated rebuild target: **12 of 130 lessons completed; 118 pending.**
 | 0010   | 10 Trigonometric Calculator | Complete | Dual draggable unit-circle angle model with linked exact-value triangles, DEG/RAD calculations, live sum and trace, special-angle table, reset/views, and rotating graded practice at exact 1068x1472 target geometry |
 | 0011   | 11 Inverse Trigonometry | Complete | Draggable sine-ratio and unit-circle-ray model with calculated principal angle, right triangle, DEG/RAD values, verification, principal range, trace, and independent graded practice at exact 1068x1472 target geometry |
 | 0012   | 12 Hyperbolic Functions | Complete | Draggable x model with exact dual exponentials, continuous linked curves/probes, sinh difference construction, live trace, hyperbola context, views/reset, and rotating reveal practice at exact 1068x1472 target geometry |
+| 0013   | 13 Factorial, Permutation and Combination | Complete | Native draggable/clickable distinct-item slots with factorial, ordered permutation, unordered combination calculations, n/r inputs, mode-specific trace, comparison cards, and reveal practice at exact 1007x1562 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -184,3 +185,17 @@ Evidence:
 - `0012-reference.png`
 - `0012-desktop.png`
 - `0012-dedicated-target-validation.json`
+
+## Lesson 13 / Mockup 0013 - Factorial, Permutation and Combination
+
+Reworked individually against the target mockup with a dedicated `draggable-distinct-items-factorial-permutation-combination-counting-trace-practice-model`. Distinct numbered items can be dragged or clicked into counting slots. The selected mode and n/r parameters drive decreasing-choice counts, slot quantity, expansion, result, order interpretation, equation strip, and concept trace.
+
+Factorial, Permutation, and Combination are real modes rather than relabeled views: `n!`, `nPr`, and `nCr` use their correct formulas and update immediately. Native drag/drop, click placement, n/r editing, Reset, Share, Workspace, lesson views, and answer reveal/hide all perform real actions.
+
+Final 1007x1562 browser validation drags Item 1 into a slot, click-places Item 2, verifies `5! = 120`, `6P2 = 30`, and `6C3 = 20`, resets to `6! = 720`, switches view, and hides/reveals the practice answer. The target frame matches at surface x=222-992 and y=99-1559, header y=99-327, tabs y=336-391, lab y=400-1395, work y=479-1055, comparison y=1074-1248, practice y=1258-1386, navigation y=1404-1456, and footer y=1464-1555. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0013-reference.png`
+- `0013-desktop.png`
+- `0013-dedicated-target-validation.json`

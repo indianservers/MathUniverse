@@ -1,0 +1,195 @@
+{
+  "mockup": "0013",
+  "lessonId": 13,
+  "route": "/lessons/core-workspaces/13-factorial-permutation-and-combination",
+  "objectModel": "draggable-distinct-items-factorial-permutation-combination-counting-trace-practice-model",
+  "checks": {
+    "initial": {
+      "mode": "factorial",
+      "n": "6",
+      "r": "3",
+      "result": "720",
+      "filled": "0",
+      "actions": "0",
+      "view": "0",
+      "revealed": "true"
+    },
+    "drag": {
+      "mode": "factorial",
+      "n": "6",
+      "r": "3",
+      "result": "720",
+      "filled": "1",
+      "actions": "1",
+      "view": "0",
+      "revealed": "true"
+    },
+    "clickPlace": {
+      "mode": "factorial",
+      "n": "6",
+      "r": "3",
+      "result": "720",
+      "filled": "2",
+      "actions": "2",
+      "view": "0",
+      "revealed": "true"
+    },
+    "factorial5": {
+      "mode": "factorial",
+      "n": "5",
+      "r": "3",
+      "result": "120",
+      "filled": "0",
+      "actions": "3",
+      "view": "0",
+      "revealed": "true"
+    },
+    "permutation": {
+      "mode": "permutation",
+      "n": "6",
+      "r": "2",
+      "result": "30",
+      "filled": "0",
+      "actions": "6",
+      "view": "0",
+      "revealed": "true"
+    },
+    "combination": {
+      "mode": "combination",
+      "n": "6",
+      "r": "3",
+      "result": "20",
+      "filled": "0",
+      "actions": "8",
+      "view": "0",
+      "revealed": "true"
+    },
+    "reset": {
+      "mode": "factorial",
+      "n": "6",
+      "r": "3",
+      "result": "720",
+      "filled": "0",
+      "actions": "0",
+      "view": "0",
+      "revealed": "true"
+    },
+    "view": {
+      "mode": "factorial",
+      "n": "6",
+      "r": "3",
+      "result": "720",
+      "filled": "0",
+      "actions": "1",
+      "view": "2",
+      "revealed": "true"
+    },
+    "hidden": {
+      "mode": "factorial",
+      "n": "6",
+      "r": "3",
+      "result": "720",
+      "filled": "0",
+      "actions": "1",
+      "view": "2",
+      "revealed": "false"
+    },
+    "revealed": {
+      "mode": "factorial",
+      "n": "6",
+      "r": "3",
+      "result": "720",
+      "filled": "0",
+      "actions": "1",
+      "view": "2",
+      "revealed": "true"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1007,
+      "height": 1562
+    },
+    "document": {
+      "width": 1007,
+      "height": 1562
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 99,
+      "bottom": 1559,
+      "height": 1460,
+      "left": 222,
+      "right": 992,
+      "width": 770
+    },
+    "regions": {
+      "header": {
+        "top": 99,
+        "bottom": 327,
+        "height": 228,
+        "left": 222,
+        "right": 992,
+        "width": 770
+      },
+      "tabs": {
+        "top": 336,
+        "bottom": 391,
+        "height": 55,
+        "left": 222,
+        "right": 992,
+        "width": 770
+      },
+      "lab": {
+        "top": 400,
+        "bottom": 1395,
+        "height": 995,
+        "left": 222,
+        "right": 992,
+        "width": 770
+      },
+      "work": {
+        "top": 479,
+        "bottom": 1055,
+        "height": 576,
+        "left": 233,
+        "right": 981,
+        "width": 748
+      },
+      "compare": {
+        "top": 1074,
+        "bottom": 1248,
+        "height": 174,
+        "left": 233,
+        "right": 981,
+        "width": 748
+      },
+      "practice": {
+        "top": 1258,
+        "bottom": 1386,
+        "height": 128,
+        "left": 233,
+        "right": 981,
+        "width": 748
+      },
+      "neighbors": {
+        "top": 1404,
+        "bottom": 1456,
+        "height": 52,
+        "left": 222,
+        "right": 992,
+        "width": 770
+      },
+      "footer": {
+        "top": 1464,
+        "bottom": 1555,
+        "height": 91,
+        "left": 222,
+        "right": 992,
+        "width": 770
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

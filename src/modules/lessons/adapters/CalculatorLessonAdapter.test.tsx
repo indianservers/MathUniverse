@@ -222,6 +222,18 @@ describe("CalculatorLessonAdapter", () => {
     expect(html).toContain('aria-label="Hyperbolic x drag control"');
     expect(html).toContain("Average of the difference");
   });
+  it("renders lesson 13 as a dedicated counting-choices workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 13)!;
+    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="calculator-mockup-0013"');
+    expect(html).toContain('data-dedicated-lesson="13"');
+    expect(html).toContain('data-object-model="draggable-distinct-items-factorial-permutation-combination-counting-trace-practice-model"');
+    expect(html).toContain('data-mode="factorial"');
+    expect(html).toContain('data-n="6"');
+    expect(html).toContain('data-result="720"');
+    expect(html).toContain('aria-label="Counting items n"');
+    expect(html).toContain("Available items to choose from");
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
@@ -236,7 +248,7 @@ describe("CalculatorLessonAdapter", () => {
       10: "Special-angle lab",
       11: "Inverse sine lab",
       12: "Hyperbolic sine using exponentials",
-      13: "Counting rule",
+      13: "Counting choices visually",
       14: "Absolute value",
       15: "Precision rule",
       16: "Constant rule",

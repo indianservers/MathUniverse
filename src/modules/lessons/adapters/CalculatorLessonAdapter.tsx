@@ -36,6 +36,7 @@ import ExponentialCalculationsTargetLesson9 from "./ExponentialCalculationsTarge
 import TrigonometricCalculatorTargetLesson10 from "./TrigonometricCalculatorTargetLesson10";
 import InverseTrigonometryTargetLesson11 from "./InverseTrigonometryTargetLesson11";
 import HyperbolicFunctionsTargetLesson12 from "./HyperbolicFunctionsTargetLesson12";
+import CountingChoicesTargetLesson13 from "./CountingChoicesTargetLesson13";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -154,7 +155,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 13) {
     return (
-      <CountingChoicesLessonSurface
+      <CountingChoicesTargetLesson13
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -221,6 +223,7 @@ void ExponentialCalculationsLessonSurface;
 void TrigonometricCalculatorLessonSurface;
 void InverseTrigonometryLessonSurface;
 void HyperbolicFunctionsLessonSurface;
+void CountingChoicesLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,
