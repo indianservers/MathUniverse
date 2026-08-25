@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **28 of 130 lessons completed; 102 pending.**
+Dedicated rebuild target: **29 of 130 lessons completed; 101 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -32,6 +32,7 @@ Dedicated rebuild target: **28 of 130 lessons completed; 102 pending.**
 | 0026   | 26 Conditional Visibility | Complete | Editable Boolean condition with two synchronized x sliders, six operators, boundary inputs, number-line truth regions, visible/hidden object states, before/after proof, views/actions, and exact 1324x1188 target geometry |
 | 0027   | 27 Dynamic Labels | Complete | Draggable point with linked x/y fields, steppers and ranges, calculated distance, three token templates, coordinate/distance/projection toggles, live proof and preview, and exact 1227x1294 target geometry |
 | 0028   | 28 Algebraic Input | Complete | Parsed function model with editable notation, immediate syntax validation, live Nerdamer evaluation, sampled graph, calculated roots/vertex/intercept/key points, real create/edit/clear/share/reset controls, and exact 1227x1294 target geometry |
+| 0029   | 29 Object Redefinition | Complete | Preserved object identity with executable old/new rules, real redefine transaction, dual evaluated graphs, recomputed dependent values/table/graph state, dependency tree, validation, and exact 1227x1294 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -424,3 +425,17 @@ Evidence:
 - `0028-reference.png`
 - `0028-desktop.png`
 - `0028-dedicated-target-validation.json`
+
+## Lesson 29 / Mockup 0029 - Object Redefinition
+
+Reworked individually against the target mockup with a dedicated `preserved-object-identity-executable-old-new-rule-dependent-output-dual-graph-dependency-tree-model`. The object name, previous rule, current rule, editable draft, revision count, A=f(2), B=f(0), sampled before/after graphs, four dependent rows, status rail, and both dependency trees are linked to one explicit redefinition state.
+
+The object name and draft rule are editable. The draft is checked for supported notation, balanced parentheses, and real evaluation before Redefine is enabled. A redefine transaction preserves the object identity, promotes the current rule to the old rule, installs the draft, increments the revision, and recomputes every linked output. Clear, View as table, footer actions, and previous/next links also perform real state changes or navigation.
+
+Final 1227x1294 integrated browser validation renames f to g; changes the draft to `2*x + 3`; redefines it and verifies A=7, B=3, old/new rule promotion, and revision 2; rejects `(x + 1`; clears the draft; redefines again as `x^3` and verifies A=8, B=0, and revision 3; exercises the table action; and reloads the target state. The final frame matches the target at surface x=258-1198 and y=114-1279, lesson card y=114-1084, header y=130-220, definition y=220-377, comparison y=388-680, dependent table y=691-898, dependency tree y=909-1078, side rail x=948-1187, navigation y=1091-1151, and footer y=1160-1280. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0029-reference.png`
+- `0029-desktop.png`
+- `0029-dedicated-target-validation.json`

@@ -16,7 +16,7 @@ describe("AlgebraLessonAdapter", () => {
       26: "Create responsive interactive lessons",
       27: "Track changing mathematical information",
       28: "Construct objects from notation",
-      29: "Redefinition rule",
+      29: "Modify constructions without rebuilding",
       30: "Equation input",
       31: "Inequality input",
       32: "List rule",
@@ -171,6 +171,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('data-variable="x"');
     expect(html).toContain('aria-label="Algebra function input"');
     expect(html).toContain("Validation checklist");
+  });
+
+  it("renders lesson 29 as a dedicated object redefinition workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 29)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0029"');
+    expect(html).toContain('data-dedicated-lesson="29"');
+    expect(html).toContain('data-object-model="preserved-object-identity-executable-old-new-rule-dependent-output-dual-graph-dependency-tree-model"');
+    expect(html).toContain('data-old-rule="x + 1"');
+    expect(html).toContain('data-rule="x^2 - 1"');
+    expect(html).toContain('data-a="3"');
+    expect(html).toContain('aria-label="New object definition"');
+    expect(html).toContain("Updated dependents");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {

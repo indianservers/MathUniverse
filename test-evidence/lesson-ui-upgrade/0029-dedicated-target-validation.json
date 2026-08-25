@@ -1,0 +1,200 @@
+{
+  "mockup": "0029",
+  "lessonId": 29,
+  "route": "/lessons/core-workspaces/29-object-redefinition",
+  "objectModel": "preserved-object-identity-executable-old-new-rule-dependent-output-dual-graph-dependency-tree-model",
+  "checks": {
+    "initial": {
+      "name": "f",
+      "old-rule": "x + 1",
+      "rule": "x^2 - 1",
+      "draft": "x^2 - 1",
+      "valid": "true",
+      "a": "3",
+      "b": "-1",
+      "revision": "1",
+      "actions": "0"
+    },
+    "edited": {
+      "name": "g",
+      "old-rule": "x + 1",
+      "rule": "x^2 - 1",
+      "draft": "2*x + 3",
+      "valid": "true",
+      "a": "3",
+      "b": "-1",
+      "revision": "1",
+      "actions": "2"
+    },
+    "redefined": {
+      "name": "g",
+      "old-rule": "x^2 - 1",
+      "rule": "2*x + 3",
+      "draft": "2*x + 3",
+      "valid": "true",
+      "a": "7",
+      "b": "3",
+      "revision": "2",
+      "actions": "3"
+    },
+    "invalid": {
+      "name": "g",
+      "old-rule": "x^2 - 1",
+      "rule": "2*x + 3",
+      "draft": "(x + 1",
+      "valid": "false",
+      "a": "7",
+      "b": "3",
+      "revision": "2",
+      "actions": "4"
+    },
+    "disabled": true,
+    "clear": {
+      "name": "g",
+      "old-rule": "x^2 - 1",
+      "rule": "2*x + 3",
+      "draft": "",
+      "valid": "false",
+      "a": "7",
+      "b": "3",
+      "revision": "2",
+      "actions": "5"
+    },
+    "secondRedefinition": {
+      "name": "g",
+      "old-rule": "2*x + 3",
+      "rule": "x^3",
+      "draft": "x^3",
+      "valid": "true",
+      "a": "8",
+      "b": "0",
+      "revision": "3",
+      "actions": "7"
+    },
+    "tableAction": {
+      "name": "g",
+      "old-rule": "2*x + 3",
+      "rule": "x^3",
+      "draft": "x^3",
+      "valid": "true",
+      "a": "8",
+      "b": "0",
+      "revision": "3",
+      "actions": "8"
+    },
+    "resetByReload": {
+      "name": "f",
+      "old-rule": "x + 1",
+      "rule": "x^2 - 1",
+      "draft": "x^2 - 1",
+      "valid": "true",
+      "a": "3",
+      "b": "-1",
+      "revision": "1",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1227,
+      "height": 1294
+    },
+    "document": {
+      "width": 1227,
+      "height": 1294
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 114,
+      "bottom": 1279,
+      "height": 1165,
+      "left": 258,
+      "right": 1198,
+      "width": 940
+    },
+    "regions": {
+      "card": {
+        "top": 114,
+        "bottom": 1084,
+        "height": 970,
+        "left": 258,
+        "right": 1198,
+        "width": 940
+      },
+      "header": {
+        "top": 130,
+        "bottom": 220,
+        "height": 90,
+        "left": 276,
+        "right": 1180,
+        "width": 904
+      },
+      "main": {
+        "top": 220,
+        "bottom": 1076,
+        "height": 856,
+        "left": 276,
+        "right": 1180,
+        "width": 904
+      },
+      "definition": {
+        "top": 220,
+        "bottom": 377,
+        "height": 157,
+        "left": 276,
+        "right": 936,
+        "width": 660
+      },
+      "graphs": {
+        "top": 388,
+        "bottom": 680,
+        "height": 292,
+        "left": 276,
+        "right": 936,
+        "width": 660
+      },
+      "table": {
+        "top": 691,
+        "bottom": 898,
+        "height": 207,
+        "left": 276,
+        "right": 936,
+        "width": 660
+      },
+      "tree": {
+        "top": 909,
+        "bottom": 1078,
+        "height": 169,
+        "left": 276,
+        "right": 936,
+        "width": 660
+      },
+      "side": {
+        "top": 220,
+        "bottom": 1078,
+        "height": 858,
+        "left": 948,
+        "right": 1187,
+        "width": 239
+      },
+      "neighbors": {
+        "top": 1091,
+        "bottom": 1151,
+        "height": 60,
+        "left": 276,
+        "right": 1180,
+        "width": 904
+      },
+      "footer": {
+        "top": 1160,
+        "bottom": 1280,
+        "height": 120,
+        "left": 258,
+        "right": 1198,
+        "width": 940
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
