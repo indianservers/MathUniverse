@@ -1,0 +1,135 @@
+{
+  "mockup": "0004",
+  "lessonId": 4,
+  "route": "/lessons/core-workspaces/4-percentage-calculator",
+  "objectModel": "draggable-percent-base-hundred-grid-part-equation-practice-model",
+  "checks": {
+    "initial": {
+      "percent": "15",
+      "base": "240",
+      "part": "36",
+      "view": "0",
+      "answer": "",
+      "feedback": "idle"
+    },
+    "percentDrag": {
+      "percent": "25",
+      "base": "240",
+      "part": "60",
+      "view": "0",
+      "answer": "",
+      "feedback": "idle"
+    },
+    "baseDrag": {
+      "percent": "25",
+      "base": "320",
+      "part": "80",
+      "view": "0",
+      "answer": "",
+      "feedback": "idle"
+    },
+    "numeric": {
+      "percent": "15",
+      "base": "240",
+      "part": "36",
+      "view": "0",
+      "answer": "",
+      "feedback": "idle"
+    },
+    "view": {
+      "percent": "15",
+      "base": "240",
+      "part": "36",
+      "view": "2",
+      "answer": "",
+      "feedback": "idle"
+    },
+    "wrong": {
+      "percent": "15",
+      "base": "240",
+      "part": "36",
+      "view": "2",
+      "answer": "200",
+      "feedback": "incorrect"
+    },
+    "correct": {
+      "percent": "15",
+      "base": "240",
+      "part": "36",
+      "view": "2",
+      "answer": "240",
+      "feedback": "correct"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1506,
+      "height": 1045
+    },
+    "document": {
+      "width": 1506,
+      "height": 1192
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 107,
+      "bottom": 1037,
+      "height": 930,
+      "left": 285,
+      "right": 1484,
+      "width": 1199
+    },
+    "regions": {
+      "header": {
+        "top": 107,
+        "bottom": 273,
+        "height": 166,
+        "left": 285,
+        "right": 1484,
+        "width": 1199
+      },
+      "tabs": {
+        "top": 285,
+        "bottom": 328,
+        "height": 43,
+        "left": 285,
+        "right": 1484,
+        "width": 1199
+      },
+      "visual": {
+        "top": 338,
+        "bottom": 856,
+        "height": 518,
+        "left": 285,
+        "right": 1127,
+        "width": 842
+      },
+      "side": {
+        "top": 338,
+        "bottom": 967,
+        "height": 629,
+        "left": 1141,
+        "right": 1480,
+        "width": 339
+      },
+      "practice": {
+        "top": 866,
+        "bottom": 966,
+        "height": 100,
+        "left": 285,
+        "right": 1127,
+        "width": 842
+      },
+      "navigation": {
+        "top": 977,
+        "bottom": 1038,
+        "height": 61,
+        "left": 285,
+        "right": 1484,
+        "width": 1199
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

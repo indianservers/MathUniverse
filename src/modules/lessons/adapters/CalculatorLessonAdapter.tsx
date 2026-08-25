@@ -27,6 +27,7 @@ import {
 import BasicCalculatorTargetLesson1 from "./BasicCalculatorTargetLesson1";
 import FractionCalculatorTargetLesson2 from "./FractionCalculatorTargetLesson2";
 import MixedNumbersTargetLesson3 from "./MixedNumbersTargetLesson3";
+import PercentageCalculatorTargetLesson4 from "./PercentageCalculatorTargetLesson4";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -64,7 +65,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 4) {
     return (
-      <PercentageCalculatorLessonSurface
+      <PercentageCalculatorTargetLesson4
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -194,6 +196,7 @@ export default function CalculatorLessonAdapter({
 void BasicCalculatorLessonSurface;
 void FractionCalculatorLessonSurface;
 void MixedNumbersLessonSurface;
+void PercentageCalculatorLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,

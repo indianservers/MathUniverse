@@ -1,12 +1,13 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **3 of 130 lessons completed; 127 pending.**
+Dedicated rebuild target: **4 of 130 lessons completed; 126 pending.**
 
-| Mockup |                Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                    |
-| ------ | --------------------: | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0001   |    1 Basic Calculator | Complete | Editable arithmetic expression and BODMAS parse-trace model; real keypad families, direct expression input, automatic trace, history recall/reset, practice rotation, grading, solution, and exact 1489x1056 target geometry      |
-| 0002   | 2 Fraction Calculator | Complete | Linked two-fraction model with live LCD, equivalent bars, numerator-only addition, exact/mixed/decimal outputs, editable fields, functional keypad/modes, problem rotation, practice loading, and exact 1536x1024 target geometry |
-| 0003   |       3 Mixed Numbers | Complete | Dual mixed-number model with linked whole blocks/fraction strips, improper conversion, LCD expansion, exact/mixed/decimal results, active-field keypad modes, proof sidebar, practice reveal, and exact 1503x1047 target geometry |
+| Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                    |
+| ------ | ----------------------: | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0001   |      1 Basic Calculator | Complete | Editable arithmetic expression and BODMAS parse-trace model; real keypad families, direct expression input, automatic trace, history recall/reset, practice rotation, grading, solution, and exact 1489x1056 target geometry      |
+| 0002   |   2 Fraction Calculator | Complete | Linked two-fraction model with live LCD, equivalent bars, numerator-only addition, exact/mixed/decimal outputs, editable fields, functional keypad/modes, problem rotation, practice loading, and exact 1536x1024 target geometry |
+| 0003   |         3 Mixed Numbers | Complete | Dual mixed-number model with linked whole blocks/fraction strips, improper conversion, LCD expansion, exact/mixed/decimal results, active-field keypad modes, proof sidebar, practice reveal, and exact 1503x1047 target geometry |
+| 0004   | 4 Percentage Calculator | Complete | Draggable percent/base model with live hundred grid, segmented percent scale, whole/part bars, equation, quick table, trace, direct inputs, result, and graded inverse-percent practice at exact 1506x1045 target geometry        |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -49,3 +50,17 @@ Evidence:
 - `0003-reference.png`
 - `0003-desktop.png`
 - `0003-dedicated-target-validation.json`
+
+## Lesson 4 / Mockup 0004 - Percentage Calculator
+
+Reworked individually against the target mockup with a dedicated `draggable-percent-base-hundred-grid-part-equation-practice-model`. The percent and base values drive the 10x10 hundred grid, segmented percent scale, whole and result bars, equation, quick-look table, concept trace, adjustment panel, and result card from one live calculation model.
+
+Both target handles are real range controls and both values also support direct numeric editing. Reset, Share, language/view selection, all lesson tabs, the percent drag, base drag, practice answer input, and Check action perform real state changes. The inverse-percent practice grader rejects an incorrect answer and explains the correct `36 / 0.15 = 240` calculation after success.
+
+Final 1506x1045 browser validation drags percent from 15 to 25 and verifies part 60, drags base from 240 to 320 and verifies part 80, restores the target model through direct inputs, switches lesson view, rejects 200, and accepts 240. The screenshot loop matches the target geometry: lesson/header x=285-1484 and y=107-273, tabs y=285-328, visual model x=285-1127 and y=338-856, trace/controls x=1141-1480 and y=338-967, practice y=866-966, and navigation y=977-1038. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0004-reference.png`
+- `0004-desktop.png`
+- `0004-dedicated-target-validation.json`
