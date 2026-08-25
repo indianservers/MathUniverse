@@ -1,0 +1,220 @@
+{
+  "mockup": "0015",
+  "lessonId": 15,
+  "route": "/lessons/core-workspaces/15-rounding-and-precision",
+  "objectModel": "editable-fraction-exact-decimal-precision-slider-next-digit-reported-error-practice-model",
+  "checks": {
+    "initial": {
+      "numerator": "10",
+      "denominator": "3",
+      "precision": "2",
+      "exact": "3.33333…",
+      "reported": "3.33",
+      "next-digit": "3",
+      "error": "0.003333",
+      "view": "0",
+      "actions": "0",
+      "problem": "0",
+      "revealed": "true"
+    },
+    "fraction": {
+      "numerator": "1",
+      "denominator": "6",
+      "precision": "2",
+      "exact": "0.16667…",
+      "reported": "0.17",
+      "next-digit": "6",
+      "error": "0.003333",
+      "view": "0",
+      "actions": "2",
+      "problem": "0",
+      "revealed": "true"
+    },
+    "precision": {
+      "numerator": "1",
+      "denominator": "6",
+      "precision": "3",
+      "exact": "0.16667…",
+      "reported": "0.167",
+      "next-digit": "6",
+      "error": "0.000333",
+      "view": "0",
+      "actions": "3",
+      "problem": "0",
+      "revealed": "true"
+    },
+    "zeroGuard": {
+      "numerator": "1",
+      "denominator": "1",
+      "precision": "3",
+      "exact": "1",
+      "reported": "1.000",
+      "next-digit": "0",
+      "error": "0.000000",
+      "view": "0",
+      "actions": "4",
+      "problem": "0",
+      "revealed": "true"
+    },
+    "reset": {
+      "numerator": "10",
+      "denominator": "3",
+      "precision": "2",
+      "exact": "3.33333…",
+      "reported": "3.33",
+      "next-digit": "3",
+      "error": "0.003333",
+      "view": "0",
+      "actions": "0",
+      "problem": "0",
+      "revealed": "true"
+    },
+    "view": {
+      "numerator": "10",
+      "denominator": "3",
+      "precision": "2",
+      "exact": "3.33333…",
+      "reported": "3.33",
+      "next-digit": "3",
+      "error": "0.003333",
+      "view": "2",
+      "actions": "1",
+      "problem": "0",
+      "revealed": "true"
+    },
+    "hidden": {
+      "numerator": "10",
+      "denominator": "3",
+      "precision": "2",
+      "exact": "3.33333…",
+      "reported": "3.33",
+      "next-digit": "3",
+      "error": "0.003333",
+      "view": "2",
+      "actions": "1",
+      "problem": "0",
+      "revealed": "false"
+    },
+    "problem": {
+      "numerator": "10",
+      "denominator": "3",
+      "precision": "2",
+      "exact": "3.33333…",
+      "reported": "3.33",
+      "next-digit": "3",
+      "error": "0.003333",
+      "view": "2",
+      "actions": "2",
+      "problem": "1",
+      "revealed": "false"
+    },
+    "revealed": {
+      "numerator": "10",
+      "denominator": "3",
+      "precision": "2",
+      "exact": "3.33333…",
+      "reported": "3.33",
+      "next-digit": "3",
+      "error": "0.003333",
+      "view": "2",
+      "actions": "2",
+      "problem": "1",
+      "revealed": "true"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1068,
+      "height": 1473
+    },
+    "document": {
+      "width": 1068,
+      "height": 1473
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 99,
+      "bottom": 1470,
+      "height": 1371,
+      "left": 226,
+      "right": 1053,
+      "width": 827
+    },
+    "regions": {
+      "header": {
+        "top": 99,
+        "bottom": 332,
+        "height": 233,
+        "left": 226,
+        "right": 1053,
+        "width": 827
+      },
+      "tabs": {
+        "top": 342,
+        "bottom": 395,
+        "height": 53,
+        "left": 226,
+        "right": 1053,
+        "width": 827
+      },
+      "lab": {
+        "top": 404,
+        "bottom": 1408,
+        "height": 1004,
+        "left": 226,
+        "right": 1053,
+        "width": 827
+      },
+      "columns": {
+        "top": 417,
+        "bottom": 1190,
+        "height": 773,
+        "left": 239,
+        "right": 1040,
+        "width": 801
+      },
+      "exact": {
+        "top": 488,
+        "bottom": 621,
+        "height": 133,
+        "left": 239,
+        "right": 817,
+        "width": 578
+      },
+      "precision": {
+        "top": 631,
+        "bottom": 921,
+        "height": 290,
+        "left": 239,
+        "right": 817,
+        "width": 578
+      },
+      "line": {
+        "top": 1016,
+        "bottom": 1190,
+        "height": 174,
+        "left": 239,
+        "right": 817,
+        "width": 578
+      },
+      "practice": {
+        "top": 1207,
+        "bottom": 1408,
+        "height": 201,
+        "left": 239,
+        "right": 1040,
+        "width": 801
+      },
+      "neighbors": {
+        "top": 1418,
+        "bottom": 1469,
+        "height": 51,
+        "left": 226,
+        "right": 1053,
+        "width": 827
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

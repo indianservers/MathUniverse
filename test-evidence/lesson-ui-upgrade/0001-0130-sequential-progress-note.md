@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **14 of 130 lessons completed; 116 pending.**
+Dedicated rebuild target: **15 of 130 lessons completed; 115 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -18,6 +18,7 @@ Dedicated rebuild target: **14 of 130 lessons completed; 116 pending.**
 | 0012   | 12 Hyperbolic Functions | Complete | Draggable x model with exact dual exponentials, continuous linked curves/probes, sinh difference construction, live trace, hyperbola context, views/reset, and rotating reveal practice at exact 1068x1472 target geometry |
 | 0013   | 13 Factorial, Permutation and Combination | Complete | Native draggable/clickable distinct-item slots with factorial, ordered permutation, unordered combination calculations, n/r inputs, mode-specific trace, comparison cards, and reveal practice at exact 1007x1562 target geometry |
 | 0014   | 14 Absolute Value | Complete | Dual draggable signed/mirrored point model with number-line distance arc, direction and nonnegative output trace, symmetry proof, mode switch, reset/views, and two-field graded practice at exact 1065x1477 target geometry |
+| 0015   | 15 Rounding and Precision | Complete | Editable exact fraction with denominator guard, real precision slider, decimal/report/next-digit/error pipeline, local number-line comparison, trace, reset/views, and rotating reveal practice at exact 1068x1473 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -214,3 +215,17 @@ Evidence:
 - `0014-reference.png`
 - `0014-desktop.png`
 - `0014-dedicated-target-validation.json`
+
+## Lesson 15 / Mockup 0015 - Rounding and Precision
+
+Reworked individually against the target mockup with a dedicated `editable-fraction-exact-decimal-precision-slider-next-digit-reported-error-practice-model`. Editable numerator and denominator drive the exact quotient, decimal representation, selected report, next digit, rounding decision, absolute error, local number-line markers, equation, and concept trace.
+
+The 1-4 decimal-place selector is a real range control and the denominator is guarded against zero. Reset, Share, Workspace, all lesson views, numerator/denominator editing, answer reveal/hide, and rotating practice problems all perform real state changes.
+
+Final 1068x1473 browser validation changes the fraction to 1/6, drags precision to 3 places and verifies exact `0.16667…`, reported `0.167`, next digit 6, and error 0.000333; verifies zero denominator becomes 1; resets to `10/3 → 3.33`; switches view; hides the answer; advances practice; and reveals the new result. The target frame matches at surface x=226-1053 and y=99-1470, header y=99-332, tabs y=342-395, lab y=404-1408, columns y=417-1190, exact card y=488-621, precision y=631-921, number line y=1016-1190, practice y=1207-1408, and navigation y=1418-1469. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0015-reference.png`
+- `0015-desktop.png`
+- `0015-dedicated-target-validation.json`

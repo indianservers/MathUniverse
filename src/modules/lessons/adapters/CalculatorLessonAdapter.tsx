@@ -38,6 +38,7 @@ import InverseTrigonometryTargetLesson11 from "./InverseTrigonometryTargetLesson
 import HyperbolicFunctionsTargetLesson12 from "./HyperbolicFunctionsTargetLesson12";
 import CountingChoicesTargetLesson13 from "./CountingChoicesTargetLesson13";
 import AbsoluteValueTargetLesson14 from "./AbsoluteValueTargetLesson14";
+import RoundingPrecisionTargetLesson15 from "./RoundingPrecisionTargetLesson15";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -174,7 +175,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 15) {
     return (
-      <RoundingPrecisionLessonSurface
+      <RoundingPrecisionTargetLesson15
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -227,6 +229,7 @@ void InverseTrigonometryLessonSurface;
 void HyperbolicFunctionsLessonSurface;
 void CountingChoicesLessonSurface;
 void AbsoluteValueLessonSurface;
+void RoundingPrecisionLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,

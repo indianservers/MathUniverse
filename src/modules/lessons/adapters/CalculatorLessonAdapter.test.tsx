@@ -246,6 +246,18 @@ describe("CalculatorLessonAdapter", () => {
     expect(html).toContain('aria-label="Absolute value point drag control"');
     expect(html).toContain('aria-label="Absolute value mirrored point drag control"');
   });
+  it("renders lesson 15 as a dedicated rounding and precision workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 15)!;
+    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="calculator-mockup-0015"');
+    expect(html).toContain('data-dedicated-lesson="15"');
+    expect(html).toContain('data-object-model="editable-fraction-exact-decimal-precision-slider-next-digit-reported-error-practice-model"');
+    expect(html).toContain('data-numerator="10"');
+    expect(html).toContain('data-denominator="3"');
+    expect(html).toContain('data-precision="2"');
+    expect(html).toContain('data-reported="3.33"');
+    expect(html).toContain('aria-label="Displayed precision drag control"');
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
@@ -262,7 +274,7 @@ describe("CalculatorLessonAdapter", () => {
       12: "Hyperbolic sine using exponentials",
       13: "Counting choices visually",
       14: "Absolute Value Distance Lab",
-      15: "Precision rule",
+      15: "Exact value vs displayed precision",
       16: "Constant rule",
       17: "History rule",
       18: "Exact mode",
@@ -301,7 +313,7 @@ describe("CalculatorLessonAdapter", () => {
       12: "Definition",
       13: "Counting choices trace",
       14: "DISTANCE",
-      15: "Exact value to rounded report",
+      15: "Exact → Displayed → Reported",
       16: "Constant insertion check",
       17: "History pairs input with output",
       18: "Exact versus decimal classification",
