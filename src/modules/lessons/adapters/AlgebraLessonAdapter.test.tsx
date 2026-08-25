@@ -14,7 +14,7 @@ describe("AlgebraLessonAdapter", () => {
       24: "Observe continuous mathematical change",
       25: "Teach construction hierarchy",
       26: "Create responsive interactive lessons",
-      27: "Dynamic label",
+      27: "Track changing mathematical information",
       28: "Input syntax",
       29: "Redefinition rule",
       30: "Equation input",
@@ -145,6 +145,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('data-visible="true"');
     expect(html).toContain('aria-label="Visibility number line drag control"');
     expect(html).toContain("TRUTH EVALUATION");
+  });
+
+  it("renders lesson 27 as a dedicated token-linked dynamic label workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 27)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0027"');
+    expect(html).toContain('data-dedicated-lesson="27"');
+    expect(html).toContain('data-object-model="draggable-point-token-template-coordinate-distance-projection-live-label-model"');
+    expect(html).toContain('data-x="3"');
+    expect(html).toContain('data-y="2"');
+    expect(html).toContain('data-distance="3.61"');
+    expect(html).toContain('aria-label="Draggable point P with dynamic label"');
+    expect(html).toContain("Labels should read linked values, not fixed text");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {

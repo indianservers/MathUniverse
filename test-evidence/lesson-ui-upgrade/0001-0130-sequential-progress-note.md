@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **26 of 130 lessons completed; 104 pending.**
+Dedicated rebuild target: **27 of 130 lessons completed; 103 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -30,6 +30,7 @@ Dedicated rebuild target: **26 of 130 lessons completed; 104 pending.**
 | 0024   | 24 Animation Controls | Complete | Timed six-frame affine parameter model with retained graph traces, real play/pause, speed and loop controls, timeline/table seeking, step controls, exact outputs, and exact 1388x1134 target geometry |
 | 0025   | 25 Dependent and Independent Objects | Complete | Two draggable/steppable parent points with derived segment, midpoint, Euclidean length, locked child fields, stacked midpoint formula, dependency hierarchy, and exact 1369x1132 target geometry |
 | 0026   | 26 Conditional Visibility | Complete | Editable Boolean condition with two synchronized x sliders, six operators, boundary inputs, number-line truth regions, visible/hidden object states, before/after proof, views/actions, and exact 1324x1188 target geometry |
+| 0027   | 27 Dynamic Labels | Complete | Draggable point with linked x/y fields, steppers and ranges, calculated distance, three token templates, coordinate/distance/projection toggles, live proof and preview, and exact 1227x1294 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -394,3 +395,17 @@ Evidence:
 - `0026-reference.png`
 - `0026-desktop.png`
 - `0026-dedicated-target-validation.json`
+
+## Lesson 27 / Mockup 0027 - Dynamic Labels
+
+Reworked individually against the target mockup with a dedicated `draggable-point-token-template-coordinate-distance-projection-live-label-model`. One point P drives the graph handle, coordinates, dashed projections, origin radius, Euclidean calculation, graph callout, selected token template, live-label proof, and fixed alternate-position preview.
+
+P supports direct graph dragging, editable x/y fields, four steppers, and two synchronized -10 to 10 ranges. Three template controls resolve `{x}`, `{y}`, and `{d}` from current state, while independent coordinate, distance, and projection switches alter the rendered label and graph layers. Share, Reset, all five views, and footer actions perform real state changes.
+
+Final 1227x1294 integrated browser validation changes P to `(4,1)` and verifies distance 4.12; edits x to -2 and verifies 2.24; reloads and physically drags P to `(-2,3)` with distance 3.61; switches template; disables coordinates, distance, and projections one by one; opens Know more; shares the live label; and resets to `(3,2)`. The final frame matches the target at surface x=258-1201 and y=107-1280, lesson card y=107-1148, header y=122-188, tabs y=188-241, graph/controls y=255-1076, graph x=276-721, callout y=731-794, lower proofs y=807-1071, navigation y=1093-1145, and footer y=1157-1280. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0027-reference.png`
+- `0027-desktop.png`
+- `0027-dedicated-target-validation.json`

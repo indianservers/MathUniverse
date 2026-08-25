@@ -1,0 +1,232 @@
+{
+  "mockup": "0027",
+  "lessonId": 27,
+  "route": "/lessons/core-workspaces/27-dynamic-labels",
+  "objectModel": "draggable-point-token-template-coordinate-distance-projection-live-label-model",
+  "checks": {
+    "initial": {
+      "x": "3",
+      "y": "2",
+      "distance": "3.61",
+      "template": "0",
+      "coordinates": "true",
+      "show-distance": "true",
+      "projections": "true",
+      "view": "0",
+      "actions": "0"
+    },
+    "sliders": {
+      "x": "4",
+      "y": "1",
+      "distance": "4.12",
+      "template": "0",
+      "coordinates": "true",
+      "show-distance": "true",
+      "projections": "true",
+      "view": "0",
+      "actions": "2"
+    },
+    "field": {
+      "x": "-2",
+      "y": "1",
+      "distance": "2.24",
+      "template": "0",
+      "coordinates": "true",
+      "show-distance": "true",
+      "projections": "true",
+      "view": "0",
+      "actions": "3"
+    },
+    "drag": {
+      "x": "-2",
+      "y": "3",
+      "distance": "3.61",
+      "template": "0",
+      "coordinates": "true",
+      "show-distance": "true",
+      "projections": "true",
+      "view": "0",
+      "actions": "8"
+    },
+    "template": {
+      "x": "-2",
+      "y": "3",
+      "distance": "3.61",
+      "template": "1",
+      "coordinates": "true",
+      "show-distance": "true",
+      "projections": "true",
+      "view": "0",
+      "actions": "9"
+    },
+    "noCoordinates": {
+      "x": "-2",
+      "y": "3",
+      "distance": "3.61",
+      "template": "1",
+      "coordinates": "false",
+      "show-distance": "true",
+      "projections": "true",
+      "view": "0",
+      "actions": "10"
+    },
+    "noDistance": {
+      "x": "-2",
+      "y": "3",
+      "distance": "3.61",
+      "template": "1",
+      "coordinates": "false",
+      "show-distance": "false",
+      "projections": "true",
+      "view": "0",
+      "actions": "11"
+    },
+    "noProjections": {
+      "x": "-2",
+      "y": "3",
+      "distance": "3.61",
+      "template": "1",
+      "coordinates": "false",
+      "show-distance": "false",
+      "projections": "false",
+      "view": "0",
+      "actions": "12"
+    },
+    "view": {
+      "x": "-2",
+      "y": "3",
+      "distance": "3.61",
+      "template": "1",
+      "coordinates": "false",
+      "show-distance": "false",
+      "projections": "false",
+      "view": "4",
+      "actions": "13"
+    },
+    "share": {
+      "x": "-2",
+      "y": "3",
+      "distance": "3.61",
+      "template": "1",
+      "coordinates": "false",
+      "show-distance": "false",
+      "projections": "false",
+      "view": "4",
+      "actions": "14"
+    },
+    "reset": {
+      "x": "3",
+      "y": "2",
+      "distance": "3.61",
+      "template": "0",
+      "coordinates": "true",
+      "show-distance": "true",
+      "projections": "true",
+      "view": "0",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1227,
+      "height": 1294
+    },
+    "document": {
+      "width": 1227,
+      "height": 1294
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 107,
+      "bottom": 1280,
+      "height": 1173,
+      "left": 258,
+      "right": 1201,
+      "width": 943
+    },
+    "regions": {
+      "card": {
+        "top": 107,
+        "bottom": 1148,
+        "height": 1041,
+        "left": 258,
+        "right": 1201,
+        "width": 943
+      },
+      "header": {
+        "top": 122,
+        "bottom": 188,
+        "height": 66,
+        "left": 276,
+        "right": 1183,
+        "width": 907
+      },
+      "tabs": {
+        "top": 188,
+        "bottom": 241,
+        "height": 53,
+        "left": 276,
+        "right": 1183,
+        "width": 907
+      },
+      "main": {
+        "top": 255,
+        "bottom": 1076,
+        "height": 821,
+        "left": 276,
+        "right": 1183,
+        "width": 907
+      },
+      "graph": {
+        "top": 255,
+        "bottom": 718,
+        "height": 463,
+        "left": 276,
+        "right": 721,
+        "width": 445
+      },
+      "callout": {
+        "top": 731,
+        "bottom": 794,
+        "height": 63,
+        "left": 276,
+        "right": 890,
+        "width": 614
+      },
+      "bottom": {
+        "top": 807,
+        "bottom": 1071,
+        "height": 264,
+        "left": 276,
+        "right": 890,
+        "width": 614
+      },
+      "controls": {
+        "top": 255,
+        "bottom": 1076,
+        "height": 821,
+        "left": 905,
+        "right": 1175,
+        "width": 270
+      },
+      "neighbors": {
+        "top": 1093,
+        "bottom": 1145,
+        "height": 52,
+        "left": 276,
+        "right": 1183,
+        "width": 907
+      },
+      "footer": {
+        "top": 1157,
+        "bottom": 1280,
+        "height": 123,
+        "left": 258,
+        "right": 1201,
+        "width": 943
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
