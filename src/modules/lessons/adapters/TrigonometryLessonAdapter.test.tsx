@@ -78,6 +78,32 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain('aria-label="Hypotenuse"');
   });
 
+  it("renders lesson 260 as a dedicated linked exact-value surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 260)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0317"');
+    expect(html).toContain('data-dedicated-lesson="260"');
+    expect(html).toContain(
+      'data-object-model="snapped-special-angle-linked-circle-triangle-exact-value-model"',
+    );
+    expect(html).toContain('data-angle="60"');
+    expect(html).toContain('data-sin="√3/2"');
+    expect(html).toContain('data-cos="1/2"');
+    expect(html).toContain('data-tan="√3"');
+    expect(html).toContain('data-testid="exact-unit-circle-handle"');
+    expect(html).toContain('aria-label="Special angle"');
+    expect(html).toContain("Exact trig values (derived from the model)");
+    expect(html).toContain("Quick Reference: Special Angles");
+    expect(html).toContain('aria-label="sin 45 degrees"');
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(

@@ -1,6 +1,6 @@
 # Transformations and Loci target batch 0293-0320
 
-Dedicated rebuild target: **54 of 130 lessons completed; 76 pending.**
+Dedicated rebuild target: **55 of 130 lessons completed; 75 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -28,6 +28,7 @@ Dedicated rebuild target: **54 of 130 lessons completed; 76 pending.**
 | 0314 | 257 Angle Measurement | `oriented-unit-circle-degree-radian-angle-measurement` | Reworked individually and browser-validated |
 | 0315 | 258 Unit Circle | `linked-unit-circle-point-projection-coordinate-identity` | Reworked individually and browser-validated |
 | 0316 | 259 Right-Triangle Ratios | `axis-aligned-right-triangle-dependent-vertex-ratio-model` | Reworked individually and browser-validated |
+| 0317 | 260 Exact Trig Values | `snapped-special-angle-linked-circle-triangle-exact-value-model` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -342,3 +343,16 @@ Evidence:
 
 - `0316-desktop.png`
 - `0316-dedicated-target-validation.json`
+
+## Lesson 260 / Mockup 0317 - Exact Trig Values
+
+Reworked individually against the target mockup with a dedicated `snapped-special-angle-linked-circle-triangle-exact-value-model`. One first-quadrant special angle drives the radian form, unit-circle point, horizontal and vertical coordinates, linked triangle side ratio, sine, cosine, tangent, cotangent, axis/quadrant note, all four derivation cards, and the quick-reference table. The circle point is physically draggable and snaps to 0, 30, 45, 60, or 90 degrees. The angle selector and Unit Circle / Linked Triangle tabs update that same model, including mathematically guarded undefined tangent and cotangent values at axis angles.
+
+The three-item practice carousel owns independent exact-form answers for 45, 30, and 60 degrees. Grading rejects rounded decimals and accepts equivalent symbolic input such as `sqrt(2)/2` and `√2/2`; incorrect, corrected, previous, next, and reset paths are functional. Language selection, reset, sharing, worked derivation, misconception treatment, and adjacent navigation are also implemented as real controls or model-derived content.
+
+Final 993x1584 browser validation verifies the initial 60-degree values `π/3`, `√3/2`, `1/2`, `√3`, and `√3/3`; physically drags the unit-circle handle to 45 degrees and proves every linked exact value changes; selects 30 degrees; switches both visualization tabs; rejects decimal practice answers; accepts equivalent surd syntax; advances the challenge carousel; and resets the complete state. The screenshot loop aligns the circle frame and linked-triangle footprint with mockup 0317, places the quick-reference section exactly at y=1393-1573, and reports no horizontal overflow or console messages.
+
+Evidence:
+
+- `0317-desktop.png`
+- `0317-dedicated-target-validation.json`

@@ -1,0 +1,114 @@
+{
+  "mockup": "0317",
+  "lessonId": 260,
+  "route": "/lessons/trigonometry/260-exact-trig-values",
+  "reference": "0317-interactive-intermediate-advanced-trigonometry-exact-trig-values-redesigned.png",
+  "objectModel": "snapped-special-angle-linked-circle-triangle-exact-value-model",
+  "checks": {
+    "initial": {
+      "angle": 60,
+      "radians": "π/3",
+      "sin": "√3/2",
+      "cos": "1/2",
+      "tan": "√3",
+      "cot": "√3/3",
+      "view": "circle",
+      "challenge": 1,
+      "practiceResult": "idle"
+    },
+    "drag45": {
+      "angle": 45,
+      "radians": "π/4",
+      "sin": "√2/2",
+      "cos": "√2/2",
+      "tan": "1",
+      "cot": "1",
+      "view": "circle",
+      "challenge": 1,
+      "practiceResult": "idle"
+    },
+    "select30": {
+      "angle": 30,
+      "radians": "π/6",
+      "sin": "1/2",
+      "cos": "√3/2",
+      "tan": "√3/3",
+      "cot": "√3",
+      "view": "circle",
+      "challenge": 1,
+      "practiceResult": "idle"
+    },
+    "triangleView": {
+      "angle": 30,
+      "radians": "π/6",
+      "sin": "1/2",
+      "cos": "√3/2",
+      "tan": "√3/3",
+      "cot": "√3",
+      "view": "triangle",
+      "challenge": 1,
+      "practiceResult": "idle"
+    },
+    "incorrect": {
+      "angle": 30,
+      "radians": "π/6",
+      "sin": "1/2",
+      "cos": "√3/2",
+      "tan": "√3/3",
+      "cot": "√3",
+      "view": "circle",
+      "challenge": 1,
+      "practiceResult": "incorrect"
+    },
+    "correct": {
+      "angle": 30,
+      "radians": "π/6",
+      "sin": "1/2",
+      "cos": "√3/2",
+      "tan": "√3/3",
+      "cot": "√3",
+      "view": "circle",
+      "challenge": 1,
+      "practiceResult": "correct"
+    },
+    "nextChallenge": {
+      "angle": 30,
+      "radians": "π/6",
+      "sin": "1/2",
+      "cos": "√3/2",
+      "tan": "√3/3",
+      "cot": "√3",
+      "view": "circle",
+      "challenge": 2,
+      "practiceResult": "idle"
+    },
+    "reset": {
+      "angle": 60,
+      "radians": "π/3",
+      "sin": "√3/2",
+      "cos": "1/2",
+      "tan": "√3",
+      "cot": "√3/3",
+      "view": "circle",
+      "challenge": 1,
+      "practiceResult": "idle"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 993,
+      "height": 1584
+    },
+    "document": {
+      "width": 993,
+      "height": 1800
+    },
+    "horizontalOverflow": false,
+    "surfaceTop": 100,
+    "surfaceBottom": 1645,
+    "referenceTop": 1393,
+    "referenceBottom": 1573
+  },
+  "consoleMessages": [],
+  "passed": true
+}
