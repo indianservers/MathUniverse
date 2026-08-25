@@ -1,0 +1,252 @@
+{
+  "mockup": "0038",
+  "lessonId": 38,
+  "route": "/lessons/core-workspaces/38-latex-formula-display",
+  "objectModel": "editable-katex-source-exponent-group-slider-validation-comparison-library-insertion-model",
+  "checks": {
+    "initial": {
+      "source": "x^{2}+3x+2",
+      "exponent": "2",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "true",
+      "plus-spaced": "true",
+      "workspace": "false",
+      "library-expanded": "false",
+      "actions": "0"
+    },
+    "slider": {
+      "source": "x^{5}+3x+2",
+      "exponent": "5",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "true",
+      "plus-spaced": "true",
+      "workspace": "false",
+      "library-expanded": "false",
+      "actions": "1"
+    },
+    "numeric": {
+      "source": "x^{10}+3x+2",
+      "exponent": "10",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "true",
+      "plus-spaced": "true",
+      "workspace": "false",
+      "library-expanded": "false",
+      "actions": "2"
+    },
+    "invalid": {
+      "source": "x^{10",
+      "exponent": "10",
+      "valid": "false",
+      "balanced": "false",
+      "exponent-detected": "false",
+      "plus-spaced": "true",
+      "workspace": "false",
+      "library-expanded": "false",
+      "actions": "3"
+    },
+    "invalidCopy": "Syntax needs attentionKaTeX parse error: Expected '}', got 'EOF' at end of input: x^{10",
+    "fraction": {
+      "source": "\\frac{1}{2}",
+      "exponent": "10",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "false",
+      "plus-spaced": "true",
+      "workspace": "false",
+      "library-expanded": "false",
+      "actions": "4"
+    },
+    "sqrtInsert": {
+      "source": "\\sqrt{x}",
+      "exponent": "10",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "false",
+      "plus-spaced": "true",
+      "workspace": "false",
+      "library-expanded": "false",
+      "actions": "6"
+    },
+    "integralInsert": {
+      "source": "\\int_{a}^{b} f(x)\\,dx",
+      "exponent": "10",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "false",
+      "plus-spaced": "true",
+      "workspace": "false",
+      "library-expanded": "false",
+      "actions": "8"
+    },
+    "library": {
+      "source": "\\int_{a}^{b} f(x)\\,dx",
+      "exponent": "10",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "false",
+      "plus-spaced": "true",
+      "workspace": "false",
+      "library-expanded": "true",
+      "actions": "9"
+    },
+    "copy": {
+      "source": "\\int_{a}^{b} f(x)\\,dx",
+      "exponent": "10",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "false",
+      "plus-spaced": "true",
+      "workspace": "false",
+      "library-expanded": "true",
+      "actions": "10"
+    },
+    "workspace": {
+      "source": "\\int_{a}^{b} f(x)\\,dx",
+      "exponent": "10",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "false",
+      "plus-spaced": "true",
+      "workspace": "true",
+      "library-expanded": "true",
+      "actions": "11"
+    },
+    "share": {
+      "source": "\\int_{a}^{b} f(x)\\,dx",
+      "exponent": "10",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "false",
+      "plus-spaced": "true",
+      "workspace": "true",
+      "library-expanded": "true",
+      "actions": "12"
+    },
+    "reset": {
+      "source": "x^{2}+3x+2",
+      "exponent": "2",
+      "valid": "true",
+      "balanced": "true",
+      "exponent-detected": "true",
+      "plus-spaced": "true",
+      "workspace": "false",
+      "library-expanded": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1217,
+      "height": 1292
+    },
+    "document": {
+      "width": 1217,
+      "height": 1292
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 115,
+      "bottom": 1286,
+      "height": 1171,
+      "left": 261,
+      "right": 1207,
+      "width": 946
+    },
+    "regions": {
+      "shell": {
+        "top": 115,
+        "bottom": 1141,
+        "height": 1026,
+        "left": 261,
+        "right": 1207,
+        "width": 946
+      },
+      "header": {
+        "top": 116,
+        "bottom": 280,
+        "height": 164,
+        "left": 280,
+        "right": 1193,
+        "width": 913
+      },
+      "layout": {
+        "top": 280,
+        "bottom": 1055,
+        "height": 775,
+        "left": 280,
+        "right": 1193,
+        "width": 913
+      },
+      "source": {
+        "top": 280,
+        "bottom": 596,
+        "height": 316,
+        "left": 280,
+        "right": 611,
+        "width": 331
+      },
+      "render": {
+        "top": 280,
+        "bottom": 596,
+        "height": 316,
+        "left": 625,
+        "right": 924,
+        "width": 299
+      },
+      "side": {
+        "top": 280,
+        "bottom": 876,
+        "height": 596,
+        "left": 934,
+        "right": 1183,
+        "width": 249
+      },
+      "grouping": {
+        "top": 612,
+        "bottom": 878,
+        "height": 266,
+        "left": 278,
+        "right": 638,
+        "width": 360
+      },
+      "checklist": {
+        "top": 612,
+        "bottom": 878,
+        "height": 266,
+        "left": 650,
+        "right": 924,
+        "width": 274
+      },
+      "library": {
+        "top": 895,
+        "bottom": 1055,
+        "height": 160,
+        "left": 278,
+        "right": 1183,
+        "width": 905
+      },
+      "navigation": {
+        "top": 1067,
+        "bottom": 1125,
+        "height": 58,
+        "left": 278,
+        "right": 1190,
+        "width": 912
+      },
+      "footer": {
+        "top": 1152,
+        "bottom": 1286,
+        "height": 134,
+        "left": 261,
+        "right": 1207,
+        "width": 946
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

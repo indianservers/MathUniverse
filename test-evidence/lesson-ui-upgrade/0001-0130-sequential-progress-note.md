@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **37 of 130 lessons completed; 93 pending.**
+Dedicated rebuild target: **38 of 130 lessons completed; 92 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -41,6 +41,7 @@ Dedicated rebuild target: **37 of 130 lessons completed; 93 pending.**
 | 0035   | 35 Piecewise Definitions | Complete | Two-branch condition model with draggable graph probe, live slider/steppers, calculated evaluation and active branch, open/closed endpoints, boundary checks, stateful branch selection, and exact 1217x1292 target geometry |
 | 0036   | 36 Boolean Variables | Complete | Dual Boolean switches with synchronized controls, calculated AND/OR/NOT gates, active truth-table row, focused operation view, conditional Object P visibility, share/navigation actions, and exact 1217x1292 target geometry |
 | 0037   | 37 Dynamic Text | Complete | Editable highlighted placeholder template with linked x/y/z dependencies, real slider/input, live and comparison previews, insertion/clear/add-variable actions, tabs/share/workspace/reset, and exact 1217x1292 target geometry |
+| 0038   | 38 LaTeX Formula Display | Complete | Editable strict-KaTeX source with exponent slider/input, rendered preview, brace/exponent/spacing validation, grouping proof, executable fraction/root/integral inserts, copy/share/workspace/reset, and exact 1217x1292 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -559,3 +560,17 @@ Evidence:
 - `0037-reference.png`
 - `0037-desktop.png`
 - `0037-dedicated-target-validation.json`
+
+## Lesson 38 / Mockup 0038 - LaTeX Formula Display
+
+Reworked individually against the target mockup with a dedicated `editable-katex-source-exponent-group-slider-validation-comparison-library-insertion-model`. The editable source, exponent, strict KaTeX preview, brace balance, exponent detection, spacing check, validation status, snippets, grouping comparison, checklist, and formula-library previews all derive from one explicit source model.
+
+The exponent range and numeric input rewrite the real source. Direct source editing is parsed by KaTeX with strict errors displayed instead of a fabricated preview. Fraction, square-root, and integral Insert controls write at the editor cursor and render through the same parser. Copy LaTeX, expanded library, Reset, Share, Workspace, adjacent navigation, and footer commands all perform state changes or navigation.
+
+Final 1217x1292 integrated browser validation changes the exponent to 5 and 10 and verifies source rewrites; enters malformed `x^{10` and verifies invalid/unbalanced state plus a visible KaTeX error; validates `\\frac{1}{2}`; inserts and validates `\\sqrt{x}` and `\\int_{a}^{b} f(x)\\,dx`; expands the library; copies; opens Workspace; shares; and resets. The final frame matches the target at surface x=261-1207 and y=115-1286, shell y=115-1141, source x=280-611 and y=280-596, preview x=625-924, right rail x=934-1183, grouping x=278-638 and y=612-878, checklist x=650-924, library x=278-1183 and y=895-1055, navigation y=1067-1125, and footer y=1152-1286. It reports exact document dimensions, no horizontal overflow, and zero console messages.
+
+Evidence:
+
+- `0038-reference.png`
+- `0038-desktop.png`
+- `0038-dedicated-target-validation.json`

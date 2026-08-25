@@ -292,6 +292,18 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain("Another preview state");
   });
 
+  it("renders lesson 38 as a dedicated validated LaTeX workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 38)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0038"');
+    expect(html).toContain('data-object-model="editable-katex-source-exponent-group-slider-validation-comparison-library-insertion-model"');
+    expect(html).toContain('data-source="x^{2}+3x+2"');
+    expect(html).toContain('data-exponent="2"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('aria-label="LaTeX source"');
+    expect(html).toContain("GROUPING COMPARISON");
+  });
+
   it("renders phase 4 algebra lessons 92 through 128 with lesson-specific structure labs", () => {
     const expectedFamilies: Record<number, string> = {
       92: "Tile/area model",
