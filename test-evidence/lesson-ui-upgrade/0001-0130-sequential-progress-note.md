@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **15 of 130 lessons completed; 115 pending.**
+Dedicated rebuild target: **16 of 130 lessons completed; 114 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -19,6 +19,7 @@ Dedicated rebuild target: **15 of 130 lessons completed; 115 pending.**
 | 0013   | 13 Factorial, Permutation and Combination | Complete | Native draggable/clickable distinct-item slots with factorial, ordered permutation, unordered combination calculations, n/r inputs, mode-specific trace, comparison cards, and reveal practice at exact 1007x1562 target geometry |
 | 0014   | 14 Absolute Value | Complete | Dual draggable signed/mirrored point model with number-line distance arc, direction and nonnegative output trace, symmetry proof, mode switch, reset/views, and two-field graded practice at exact 1065x1477 target geometry |
 | 0015   | 15 Rounding and Precision | Complete | Editable exact fraction with denominator guard, real precision slider, decimal/report/next-digit/error pipeline, local number-line comparison, trace, reset/views, and rotating reveal practice at exact 1068x1473 target geometry |
+| 0016   | 16 Constants Library | Complete | Selectable high-precision constants with dedicated circle/exponential/golden-ratio visual models, real precision slider, formula/output trace, early-rounding comparison, reset/views, and reveal practice at exact 1050x1498 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -229,3 +230,17 @@ Evidence:
 - `0015-reference.png`
 - `0015-desktop.png`
 - `0015-dedicated-target-validation.json`
+
+## Lesson 16 / Mockup 0016 - Constants Library
+
+Reworked individually against the target mockup with a dedicated `selectable-high-precision-constant-formula-visual-output-early-rounding-practice-model`. Selecting pi, e, tau, or phi updates the mathematical visual, stored high-precision value, defining formula, worked output, and concept trace from one explicit model. Pi and tau use the linked circle construction, e uses an exponential curve, and phi uses a golden-rectangle construction.
+
+The 10-50 digit precision selector is a real range control. Constant selection, Reset, Share, Workspace, every lesson view, and practice answer reveal/hide all perform real state changes. The comparison panel demonstrates the numerical difference between rounding pi early and calculating with its stored precision.
+
+Final 1050x1498 browser validation selects every constant and verifies pi `6.28319`, e `2.71828`, tau `6.28319`, and phi `1.61803`; changes stored precision to 20 digits; resets to pi at 40 digits; switches lesson view; and hides/reveals the practice answer. The final frame matches the target at surface x=231-1035 and y=99-1491, header y=99-337, tabs y=346-399, lab y=409-1308, model columns y=410-1185, visual y=543-948, precision y=968-1178, practice y=1198-1315, navigation y=1318-1371, and footer y=1385-1497. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0016-reference.png`
+- `0016-desktop.png`
+- `0016-dedicated-target-validation.json`

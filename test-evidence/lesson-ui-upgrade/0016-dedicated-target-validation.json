@@ -1,0 +1,202 @@
+{
+  "mockup": "0016",
+  "lessonId": 16,
+  "route": "/lessons/core-workspaces/16-constants-library",
+  "objectModel": "selectable-high-precision-constant-formula-visual-output-early-rounding-practice-model",
+  "checks": {
+    "initial": {
+      "constant": "pi",
+      "precision": "40",
+      "stored": "3.141592653589793238462643383279502884197",
+      "output": "6.28319",
+      "early-output": "6.28",
+      "difference": "0.00319",
+      "view": "0",
+      "actions": "0",
+      "revealed": "true"
+    },
+    "e": {
+      "constant": "e",
+      "precision": "40",
+      "stored": "2.718281828459045235360287471352662497757",
+      "output": "2.71828",
+      "early-output": "2.72",
+      "difference": "0.00172",
+      "view": "0",
+      "actions": "1",
+      "revealed": "true"
+    },
+    "tau": {
+      "constant": "tau",
+      "precision": "40",
+      "stored": "6.283185307179586476925286766559005768394",
+      "output": "6.28319",
+      "early-output": "6.28",
+      "difference": "0.00319",
+      "view": "0",
+      "actions": "2",
+      "revealed": "true"
+    },
+    "phi": {
+      "constant": "phi",
+      "precision": "40",
+      "stored": "1.618033988749894848204586834365638117720",
+      "output": "1.61803",
+      "early-output": "1.62",
+      "difference": "0.00197",
+      "view": "0",
+      "actions": "3",
+      "revealed": "true"
+    },
+    "precision": {
+      "constant": "phi",
+      "precision": "20",
+      "stored": "1.6180339887498948482",
+      "output": "1.61803",
+      "early-output": "1.62",
+      "difference": "0.00197",
+      "view": "0",
+      "actions": "4",
+      "revealed": "true"
+    },
+    "reset": {
+      "constant": "pi",
+      "precision": "40",
+      "stored": "3.141592653589793238462643383279502884197",
+      "output": "6.28319",
+      "early-output": "6.28",
+      "difference": "0.00319",
+      "view": "0",
+      "actions": "0",
+      "revealed": "true"
+    },
+    "view": {
+      "constant": "pi",
+      "precision": "40",
+      "stored": "3.141592653589793238462643383279502884197",
+      "output": "6.28319",
+      "early-output": "6.28",
+      "difference": "0.00319",
+      "view": "2",
+      "actions": "1",
+      "revealed": "true"
+    },
+    "hidden": {
+      "constant": "pi",
+      "precision": "40",
+      "stored": "3.141592653589793238462643383279502884197",
+      "output": "6.28319",
+      "early-output": "6.28",
+      "difference": "0.00319",
+      "view": "2",
+      "actions": "1",
+      "revealed": "false"
+    },
+    "revealed": {
+      "constant": "pi",
+      "precision": "40",
+      "stored": "3.141592653589793238462643383279502884197",
+      "output": "6.28319",
+      "early-output": "6.28",
+      "difference": "0.00319",
+      "view": "2",
+      "actions": "1",
+      "revealed": "true"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1050,
+      "height": 1498
+    },
+    "document": {
+      "width": 1050,
+      "height": 1498
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 99,
+      "bottom": 1491,
+      "height": 1392,
+      "left": 231,
+      "right": 1035,
+      "width": 804
+    },
+    "regions": {
+      "header": {
+        "top": 99,
+        "bottom": 337,
+        "height": 238,
+        "left": 231,
+        "right": 1035,
+        "width": 804
+      },
+      "tabs": {
+        "top": 346,
+        "bottom": 399,
+        "height": 53,
+        "left": 231,
+        "right": 1035,
+        "width": 804
+      },
+      "lab": {
+        "top": 409,
+        "bottom": 1308,
+        "height": 899,
+        "left": 231,
+        "right": 1035,
+        "width": 804
+      },
+      "columns": {
+        "top": 410,
+        "bottom": 1185,
+        "height": 775,
+        "left": 232,
+        "right": 1034,
+        "width": 802
+      },
+      "visual": {
+        "top": 543,
+        "bottom": 948,
+        "height": 405,
+        "left": 246,
+        "right": 769,
+        "width": 523
+      },
+      "precision": {
+        "top": 968,
+        "bottom": 1178,
+        "height": 210,
+        "left": 246,
+        "right": 769,
+        "width": 523
+      },
+      "practice": {
+        "top": 1198,
+        "bottom": 1315,
+        "height": 117,
+        "left": 232,
+        "right": 1034,
+        "width": 802
+      },
+      "neighbors": {
+        "top": 1318,
+        "bottom": 1371,
+        "height": 53,
+        "left": 231,
+        "right": 1035,
+        "width": 804
+      },
+      "footer": {
+        "top": 1385,
+        "bottom": 1497,
+        "height": 112,
+        "left": 231,
+        "right": 1035,
+        "width": 804
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

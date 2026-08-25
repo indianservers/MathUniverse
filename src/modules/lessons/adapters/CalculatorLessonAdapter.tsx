@@ -39,6 +39,7 @@ import HyperbolicFunctionsTargetLesson12 from "./HyperbolicFunctionsTargetLesson
 import CountingChoicesTargetLesson13 from "./CountingChoicesTargetLesson13";
 import AbsoluteValueTargetLesson14 from "./AbsoluteValueTargetLesson14";
 import RoundingPrecisionTargetLesson15 from "./RoundingPrecisionTargetLesson15";
+import ConstantsLibraryTargetLesson16 from "./ConstantsLibraryTargetLesson16";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -184,7 +185,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 16) {
     return (
-      <ConstantsLibraryLessonSurface
+      <ConstantsLibraryTargetLesson16
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -230,6 +232,7 @@ void HyperbolicFunctionsLessonSurface;
 void CountingChoicesLessonSurface;
 void AbsoluteValueLessonSurface;
 void RoundingPrecisionLessonSurface;
+void ConstantsLibraryLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,

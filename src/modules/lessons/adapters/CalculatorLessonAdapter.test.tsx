@@ -258,6 +258,18 @@ describe("CalculatorLessonAdapter", () => {
     expect(html).toContain('data-reported="3.33"');
     expect(html).toContain('aria-label="Displayed precision drag control"');
   });
+  it("renders lesson 16 as a dedicated constants library workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 16)!;
+    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="calculator-mockup-0016"');
+    expect(html).toContain('data-dedicated-lesson="16"');
+    expect(html).toContain('data-object-model="selectable-high-precision-constant-formula-visual-output-early-rounding-practice-model"');
+    expect(html).toContain('data-constant="pi"');
+    expect(html).toContain('data-precision="40"');
+    expect(html).toContain('data-output="6.28319"');
+    expect(html).toContain('aria-label="Stored constant precision drag control"');
+    expect(html).toContain("Why stored precision matters");
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
@@ -275,7 +287,7 @@ describe("CalculatorLessonAdapter", () => {
       13: "Counting choices visually",
       14: "Absolute Value Distance Lab",
       15: "Exact value vs displayed precision",
-      16: "Constant rule",
+      16: "Reliable constant insertion in action",
       17: "History rule",
       18: "Exact mode",
     };
@@ -314,7 +326,7 @@ describe("CalculatorLessonAdapter", () => {
       13: "Counting choices trace",
       14: "DISTANCE",
       15: "Exact → Displayed → Reported",
-      16: "Constant insertion check",
+      16: "Stored value",
       17: "History pairs input with output",
       18: "Exact versus decimal classification",
     };
