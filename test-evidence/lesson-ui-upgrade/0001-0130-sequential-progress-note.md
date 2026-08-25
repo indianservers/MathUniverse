@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **56 of 130 lessons completed; 74 pending.**
+Dedicated rebuild target: **57 of 130 lessons completed; 73 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -60,6 +60,7 @@ Dedicated rebuild target: **56 of 130 lessons completed; 74 pending.**
 | 0054   |                    72 Modular Arithmetic | Complete | Dedicated editable dividend/modulus remainder clock with native draggable cycle positions, calculated quotient/remainder, exact additive and multiplicative decomposition, grouped cycles, live practice, and exact 1072x1466 target geometry                    |
 | 0055   |                         73 Base Systems | Complete | Dedicated editable base/three-digit place-value board with native draggable digit ordering, allowed-digit palette, calculated powers/products/decimal sum, number-line marker, live practice, and exact 1068x1472 target geometry                                  |
 | 0056   |                  74 Continued Fractions | Complete | Dedicated editable three-term nested-fraction model with native draggable partial quotients, exact inside-out rational layers, calculated convergents/decimal/number-line marker, selectable stages, practice, and exact 1068x1473 target geometry                   |
+| 0057   |                       75 Fraction Models | Complete | Dedicated linked numerator/denominator drag model with clickable area, circle, and set representations, calculated number line/decimal/percent/equivalent set, live practice, and exact 1492x1054 target geometry                                             |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -844,3 +845,17 @@ Evidence:
 - `0056-reference.png`
 - `0056-desktop.png`
 - `0056-dedicated-target-validation.json`
+
+## Lesson 75 / Mockup 0057 - Fraction Models
+
+Reworked individually against the target mockup with a dedicated `linked-numerator-denominator-drag-ranges-clickable-area-circle-equivalent-set-number-line-decimal-percent-practice-model`. The numerator and denominator drive the equal-part statement, area model, circle sectors, equivalent set, number-line position, decimal, percent, and linked-model note from one lesson-owned calculation model.
+
+Both values have native drag ranges and preset controls. Individual area parts, circle sectors, and set objects are clickable and update the same fraction model immediately; denominator guards keep every representation valid. Language, Reset, Share, and the `2/5` practice prompt perform real state changes. The shared number adapter only dispatches Lesson 75 to this separate component.
+
+Final 1492x1054 integrated browser validation verifies `3/4 = 0.75 = 75%` and the equivalent set `9/12`; drags the denominator to 6 and numerator to 5; selects one area part; restores `3/4` with presets; switches to Hindi; verifies Share reaches Ready; loads practice `2/5 = 0.4 = 40%`; selects one set group to produce `1/5`; and resets to the target state. The final frame matches the target at surface x=296-1468 and y=123-1027, header y=137-251, summary x=325-1123 and y=276-415, models x=325-1123 and y=432-930, controls x=1145-1419 and y=276-867, practice y=886-948, and linked note y=964-1005. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0057-reference.png`
+- `0057-desktop.png`
+- `0057-dedicated-target-validation.json`

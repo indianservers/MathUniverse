@@ -254,6 +254,23 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Edit partial quotient 2"');
     expect(html).toContain("Evaluate nested fractions from inside outward");
   });
+  it("renders lesson 75 as a dedicated linked fraction-model laboratory", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 75)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0057"');
+    expect(html).toContain('data-dedicated-lesson="75"');
+    expect(html).toContain('data-object-model="linked-numerator-denominator-drag-ranges-clickable-area-circle-equivalent-set-number-line-decimal-percent-practice-model"');
+    expect(html).toContain('data-numerator="3"');
+    expect(html).toContain('data-denominator="4"');
+    expect(html).toContain('data-value="0.7500"');
+    expect(html).toContain('data-decimal="0.75"');
+    expect(html).toContain('data-percent="75%"');
+    expect(html).toContain('data-set-selected="9"');
+    expect(html).toContain('data-set-total="12"');
+    expect(html).toContain('aria-label="Drag to set denominator"');
+    expect(html).toContain('aria-label="Drag to set numerator"');
+    expect(html).toContain("All models are linked");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

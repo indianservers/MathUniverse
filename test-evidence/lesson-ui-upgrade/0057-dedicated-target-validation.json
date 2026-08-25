@@ -1,0 +1,255 @@
+{
+  "mockup": "0057",
+  "lessonId": 75,
+  "route": "/lessons/numbers-and-arithmetic/75-fraction-models",
+  "objectModel": "linked-numerator-denominator-drag-ranges-clickable-area-circle-equivalent-set-number-line-decimal-percent-practice-model",
+  "checks": {
+    "initial": {
+      "numerator": "3",
+      "denominator": "4",
+      "value": "0.7500",
+      "decimal": "0.75",
+      "percent": "75%",
+      "set-selected": "9",
+      "set-total": "12",
+      "language": "English (English)",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "actions": "0"
+    },
+    "denominatorSix": {
+      "numerator": "3",
+      "denominator": "6",
+      "value": "0.5000",
+      "decimal": "0.5",
+      "percent": "50%",
+      "set-selected": "9",
+      "set-total": "18",
+      "language": "English (English)",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "actions": "1"
+    },
+    "numeratorFive": {
+      "numerator": "5",
+      "denominator": "6",
+      "value": "0.8333",
+      "decimal": "0.833",
+      "percent": "83.3%",
+      "set-selected": "15",
+      "set-total": "18",
+      "language": "English (English)",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "actions": "2"
+    },
+    "areaSelection": {
+      "numerator": "1",
+      "denominator": "6",
+      "value": "0.1667",
+      "decimal": "0.167",
+      "percent": "16.7%",
+      "set-selected": "3",
+      "set-total": "18",
+      "language": "English (English)",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "actions": "3"
+    },
+    "denominatorFour": {
+      "numerator": "1",
+      "denominator": "4",
+      "value": "0.2500",
+      "decimal": "0.25",
+      "percent": "25%",
+      "set-selected": "3",
+      "set-total": "12",
+      "language": "English (English)",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "actions": "4"
+    },
+    "numeratorThree": {
+      "numerator": "3",
+      "denominator": "4",
+      "value": "0.7500",
+      "decimal": "0.75",
+      "percent": "75%",
+      "set-selected": "9",
+      "set-total": "12",
+      "language": "English (English)",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "actions": "5"
+    },
+    "language": {
+      "numerator": "3",
+      "denominator": "4",
+      "value": "0.7500",
+      "decimal": "0.75",
+      "percent": "75%",
+      "set-selected": "9",
+      "set-total": "12",
+      "language": "Hindi (हिन्दी)",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "actions": "6"
+    },
+    "shared": {
+      "numerator": "3",
+      "denominator": "4",
+      "value": "0.7500",
+      "decimal": "0.75",
+      "percent": "75%",
+      "set-selected": "9",
+      "set-total": "12",
+      "language": "Hindi (हिन्दी)",
+      "share-state": "Ready",
+      "practice-loaded": "false",
+      "actions": "7"
+    },
+    "practice": {
+      "numerator": "2",
+      "denominator": "5",
+      "value": "0.4000",
+      "decimal": "0.4",
+      "percent": "40%",
+      "set-selected": "6",
+      "set-total": "15",
+      "language": "Hindi (हिन्दी)",
+      "share-state": "Ready",
+      "practice-loaded": "true",
+      "actions": "8"
+    },
+    "setSelection": {
+      "numerator": "1",
+      "denominator": "5",
+      "value": "0.2000",
+      "decimal": "0.2",
+      "percent": "20%",
+      "set-selected": "3",
+      "set-total": "15",
+      "language": "Hindi (हिन्दी)",
+      "share-state": "Ready",
+      "practice-loaded": "false",
+      "actions": "9"
+    },
+    "restored": {
+      "numerator": "3",
+      "denominator": "4",
+      "value": "0.7500",
+      "decimal": "0.75",
+      "percent": "75%",
+      "set-selected": "9",
+      "set-total": "12",
+      "language": "English (English)",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1492,
+      "height": 1054
+    },
+    "document": {
+      "width": 1492,
+      "height": 1054
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 123,
+      "bottom": 1027,
+      "height": 904,
+      "left": 296,
+      "right": 1468,
+      "width": 1172
+    },
+    "regions": {
+      "header": {
+        "top": 137,
+        "bottom": 251,
+        "height": 114,
+        "left": 325,
+        "right": 1427,
+        "width": 1102
+      },
+      "summary": {
+        "top": 276,
+        "bottom": 415,
+        "height": 139,
+        "left": 325,
+        "right": 1123,
+        "width": 798
+      },
+      "models": {
+        "top": 432,
+        "bottom": 930,
+        "height": 498,
+        "left": 325,
+        "right": 1123,
+        "width": 798
+      },
+      "area": {
+        "top": 432,
+        "bottom": 670,
+        "height": 238,
+        "left": 325,
+        "right": 712,
+        "width": 387
+      },
+      "circle": {
+        "top": 432,
+        "bottom": 670,
+        "height": 238,
+        "left": 733,
+        "right": 1123,
+        "width": 390
+      },
+      "set": {
+        "top": 688,
+        "bottom": 930,
+        "height": 242,
+        "left": 325,
+        "right": 712,
+        "width": 387
+      },
+      "line": {
+        "top": 688,
+        "bottom": 930,
+        "height": 242,
+        "left": 733,
+        "right": 1123,
+        "width": 390
+      },
+      "controls": {
+        "top": 276,
+        "bottom": 867,
+        "height": 591,
+        "left": 1145,
+        "right": 1419,
+        "width": 274
+      },
+      "practice": {
+        "top": 886,
+        "bottom": 948,
+        "height": 62,
+        "left": 1144,
+        "right": 1430,
+        "width": 286
+      },
+      "linked": {
+        "top": 964,
+        "bottom": 1005,
+        "height": 41,
+        "left": 325,
+        "right": 1123,
+        "width": 798
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

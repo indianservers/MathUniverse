@@ -1,0 +1,105 @@
+.fraction75-models {
+  top: 308px;
+  height: 498px;
+  grid-template-columns: 387px 390px;
+  grid-template-rows: 238px 242px;
+  column-gap: 21px;
+  row-gap: 18px;
+}
+.fraction75-models > section {
+  min-height: 0;
+  overflow: hidden;
+}
+.fraction75-practice {
+  right: 37px;
+  bottom: 78px;
+  width: 286px;
+}
+.fraction75-linked { bottom: 21px; }
+.fraction75-breadcrumb {
+  position: absolute;
+  top: -44px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #536981;
+}
+.fraction75-breadcrumb a { color: inherit; text-decoration: none; }
+.fraction75-breadcrumb a:first-child {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+.fraction75-breadcrumb svg { width: 15px; }
+.fraction75-breadcrumb b { color: #08758d; }
+.fraction75-header { top: 13px; }
+.fraction75-summary { padding-top: 3px; }
+.fraction75-summary > div { margin-top: 1px; }
+.fraction75-summary > div > strong {
+  display: flex;
+  height: 52px;
+  padding: 0 24px;
+  align-items: center;
+}
+.fraction75-fraction b { line-height: 32px; }
+.fraction75-summary .fraction75-fraction { position: relative; top: 9px; }
+.fraction75-summary .fraction75-fraction > i { position: relative; top: 5px; }
+.fraction75-summary .fraction75-fraction > b:last-child { position: relative; top: 9px; }
+.fraction75-summary > div > i { position: relative; top: 7px; }
+.fraction75-summary > div > strong { transform: translateY(15px); }
+.fraction75-summary > div > em { transform: translateY(11px); }
+.fraction75-area > div { width: 323px; }
+.fraction75-area { position: relative; }
+.fraction75-area > div { margin-top: 25px; }
+.fraction75-area p {
+  position: absolute;
+  right: 0;
+  bottom: 33px;
+  left: 0;
+  margin: 0;
+}
+.fraction75-circle { position: relative; }
+.fraction75-circle svg {
+  position: absolute;
+  top: 15px;
+  left: 95px;
+  width: 187px;
+  height: 187px;
+  margin: 0;
+}
+.fraction75-circle p {
+  position: absolute;
+  right: 0;
+  bottom: 17px;
+  left: 0;
+  margin: 0;
+}
+.fraction75-set,
+.fraction75-line { position: relative; padding-top: 8px !important; }
+.fraction75-set > div { margin-top: 18px; }
+.fraction75-set p {
+  position: absolute;
+  right: 0;
+  bottom: 28px;
+  left: 0;
+  margin: 0;
+}
+.fraction75-line p {
+  position: absolute;
+  right: 0;
+  bottom: 28px;
+  left: 0;
+  margin: 0;
+}
+.fraction75-controls { padding-top: 20px; }
+.fraction75-controls > section { margin-top: 14px; }
+.fraction75-controls > section + section { margin-top: 10px; }
+.fraction75-controls > section { padding-top: 11px; }
+.fraction75-controls output { height: 47px; }
+.fraction75-controls hr { margin: 10px 0 18px; }
+.fraction75-tip { height: 84px; }
+.fraction75-linked { height: 41px; }
