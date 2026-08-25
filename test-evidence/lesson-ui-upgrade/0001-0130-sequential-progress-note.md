@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **43 of 130 lessons completed; 87 pending.**
+Dedicated rebuild target: **44 of 130 lessons completed; 86 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -47,6 +47,7 @@ Dedicated rebuild target: **43 of 130 lessons completed; 87 pending.**
 | 0041   | 59 Integers | Complete | Dedicated signed-integer model with real range and line selection, calculated opposite and ordering, editable comparator, linked thermometer and debit/credit ledger, stateful tabs/language/workspace/reset/share, and exact 1055x1479 target geometry |
 | 0042   | 60 Rational Numbers | Complete | Dedicated numerator/denominator model with zero guard, GCD reduction, mixed and decimal forms, linked fraction strip and number line, membership classification, stateful lesson controls, graded practice, and exact 1059x1481 target geometry |
 | 0043   | 61 Irrational Numbers | Complete | Dedicated radicand model with calculated square bounds and approximation, geometric diagonal, number-line placement, decimal zoom, comparison interval, native drag/drop rational sorting, stateful controls and practice, and exact 1044x1507 target geometry |
+| 0044   | 62 Real Numbers | Complete | Dedicated selected-value hierarchy and classification model with calculated set membership and comparison, native draggable card placement on a real number line, dynamic markers, stateful lesson controls, and exact 1060x1484 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -649,3 +650,17 @@ Evidence:
 - `0043-reference.png`
 - `0043-desktop.png`
 - `0043-dedicated-target-validation.json`
+
+## Lesson 62 / Mockup 0044 - Real Numbers
+
+Reworked individually against the target mockup with a dedicated `selected-real-number-hierarchy-classification-draggable-number-line-placement-comparison-model`. The selected card, nested natural/whole/integer/rational/irrational/real memberships, comparison against 11, number-line marker positions, placement validity, hierarchy emphasis, and right-side classification table all derive from one lesson-owned state model.
+
+All five sort cards are real draggable objects. Dropping a card on the number line converts the pointer coordinate to a value from -6 through 12, moves its marker, selects the card, and checks its mathematical placement; cards can be deliberately misplaced and repaired. Clicking -5, 11, √2, π, or 0.75 recalculates every classification row and the comparison relation, including `11 = 11`. Tabs, language, Workspace, Reset, and Share all change state. The shared number adapter only dispatches Lesson 62 to this separate component.
+
+Final 1060x1484 integrated browser validation selects √2 and verifies irrational/non-integer membership; selects 11 and verifies natural, whole, integer, rational, real, and equality classifications; physically drags -5 near 5 and verifies invalid placement; drags it back near -5 and verifies repair; changes tab and language; opens Workspace; and resets. The final frame matches the target at hero x=226-1044 and y=100-343, tabs y=353-406, layout y=416-1277, hierarchy y=488-918, number line y=918-1101, sorting y=1101-1275, side rail x=832-1044 and y=416-1277, navigation y=1287-1343, and footer y=1366-1467. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0044-reference.png`
+- `0044-desktop.png`
+- `0044-dedicated-target-validation.json`

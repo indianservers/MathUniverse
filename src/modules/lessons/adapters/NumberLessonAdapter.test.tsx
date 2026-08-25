@@ -60,6 +60,17 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Select radicand"');
     expect(html).toContain("Sort into Rational vs Irrational");
   });
+  it("renders lesson 62 as a dedicated real-number hierarchy workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 62)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0044"');
+    expect(html).toContain('data-dedicated-lesson="62"');
+    expect(html).toContain('data-object-model="selected-real-number-hierarchy-classification-draggable-number-line-placement-comparison-model"');
+    expect(html).toContain('data-selected="-5"');
+    expect(html).toContain('data-integer="true"');
+    expect(html).toContain("Sort these numbers on the real number line");
+    expect(html).toContain('draggable="true"');
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

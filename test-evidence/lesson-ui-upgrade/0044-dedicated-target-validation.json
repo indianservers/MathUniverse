@@ -1,0 +1,264 @@
+{
+  "mockup": "0044",
+  "lessonId": 62,
+  "route": "/lessons/numbers-and-arithmetic/62-real-numbers",
+  "objectModel": "selected-real-number-hierarchy-classification-draggable-number-line-placement-comparison-model",
+  "checks": {
+    "initial": {
+      "selected": "-5",
+      "selected-id": "negative-five",
+      "natural": "false",
+      "whole": "false",
+      "integer": "true",
+      "rational": "true",
+      "irrational": "false",
+      "real": "true",
+      "relation": "<",
+      "placement-correct": "true",
+      "placements": "negative-five:-5.00,eleven:11.00,root-two:1.41,pi:3.14,decimal:0.75",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "0"
+    },
+    "rootTwo": {
+      "selected": "√2",
+      "selected-id": "root-two",
+      "natural": "false",
+      "whole": "false",
+      "integer": "false",
+      "rational": "false",
+      "irrational": "true",
+      "real": "true",
+      "relation": "<",
+      "placement-correct": "true",
+      "placements": "negative-five:-5.00,eleven:11.00,root-two:1.41,pi:3.14,decimal:0.75",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "1"
+    },
+    "eleven": {
+      "selected": "11",
+      "selected-id": "eleven",
+      "natural": "true",
+      "whole": "true",
+      "integer": "true",
+      "rational": "true",
+      "irrational": "false",
+      "real": "true",
+      "relation": "=",
+      "placement-correct": "true",
+      "placements": "negative-five:-5.00,eleven:11.00,root-two:1.41,pi:3.14,decimal:0.75",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "2"
+    },
+    "negativeWrong": {
+      "selected": "-5",
+      "selected-id": "negative-five",
+      "natural": "false",
+      "whole": "false",
+      "integer": "true",
+      "rational": "true",
+      "irrational": "false",
+      "real": "true",
+      "relation": "<",
+      "placement-correct": "false",
+      "placements": "negative-five:5.13,eleven:11.00,root-two:1.41,pi:3.14,decimal:0.75",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "3"
+    },
+    "negativeFixed": {
+      "selected": "-5",
+      "selected-id": "negative-five",
+      "natural": "false",
+      "whole": "false",
+      "integer": "true",
+      "rational": "true",
+      "irrational": "false",
+      "real": "true",
+      "relation": "<",
+      "placement-correct": "true",
+      "placements": "negative-five:-5.01,eleven:11.00,root-two:1.41,pi:3.14,decimal:0.75",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "4"
+    },
+    "tab": {
+      "selected": "-5",
+      "selected-id": "negative-five",
+      "natural": "false",
+      "whole": "false",
+      "integer": "true",
+      "rational": "true",
+      "irrational": "false",
+      "real": "true",
+      "relation": "<",
+      "placement-correct": "true",
+      "placements": "negative-five:-5.01,eleven:11.00,root-two:1.41,pi:3.14,decimal:0.75",
+      "tab": "Examples",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "5"
+    },
+    "language": {
+      "selected": "-5",
+      "selected-id": "negative-five",
+      "natural": "false",
+      "whole": "false",
+      "integer": "true",
+      "rational": "true",
+      "irrational": "false",
+      "real": "true",
+      "relation": "<",
+      "placement-correct": "true",
+      "placements": "negative-five:-5.01,eleven:11.00,root-two:1.41,pi:3.14,decimal:0.75",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "false",
+      "actions": "6"
+    },
+    "workspace": {
+      "selected": "-5",
+      "selected-id": "negative-five",
+      "natural": "false",
+      "whole": "false",
+      "integer": "true",
+      "rational": "true",
+      "irrational": "false",
+      "real": "true",
+      "relation": "<",
+      "placement-correct": "true",
+      "placements": "negative-five:-5.01,eleven:11.00,root-two:1.41,pi:3.14,decimal:0.75",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "actions": "7"
+    },
+    "reset": {
+      "selected": "-5",
+      "selected-id": "negative-five",
+      "natural": "false",
+      "whole": "false",
+      "integer": "true",
+      "rational": "true",
+      "irrational": "false",
+      "real": "true",
+      "relation": "<",
+      "placement-correct": "true",
+      "placements": "negative-five:-5.00,eleven:11.00,root-two:1.41,pi:3.14,decimal:0.75",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1060,
+      "height": 1484
+    },
+    "document": {
+      "width": 1060,
+      "height": 1484
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 100,
+      "bottom": 1470,
+      "height": 1370,
+      "left": 226,
+      "right": 1044,
+      "width": 818
+    },
+    "regions": {
+      "hero": {
+        "top": 100,
+        "bottom": 343,
+        "height": 243,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "tabs": {
+        "top": 353,
+        "bottom": 406,
+        "height": 53,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "layout": {
+        "top": 416,
+        "bottom": 1277,
+        "height": 861,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "work": {
+        "top": 416,
+        "bottom": 1277,
+        "height": 861,
+        "left": 226,
+        "right": 820,
+        "width": 594
+      },
+      "hierarchy": {
+        "top": 488,
+        "bottom": 918,
+        "height": 430,
+        "left": 240,
+        "right": 806,
+        "width": 566
+      },
+      "line": {
+        "top": 918,
+        "bottom": 1101,
+        "height": 183,
+        "left": 240,
+        "right": 806,
+        "width": 566
+      },
+      "sort": {
+        "top": 1101,
+        "bottom": 1275,
+        "height": 174,
+        "left": 240,
+        "right": 806,
+        "width": 566
+      },
+      "side": {
+        "top": 416,
+        "bottom": 1277,
+        "height": 861,
+        "left": 832,
+        "right": 1044,
+        "width": 212
+      },
+      "navigation": {
+        "top": 1287,
+        "bottom": 1343,
+        "height": 56,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "footer": {
+        "top": 1366,
+        "bottom": 1467,
+        "height": 101,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -10,6 +10,7 @@ import IntegersTargetLesson59 from "./IntegersTargetLesson59";
 import WholeNumbersTargetLesson58 from "./WholeNumbersTargetLesson58";
 import RationalNumbersTargetLesson60 from "./RationalNumbersTargetLesson60";
 import IrrationalNumbersTargetLesson61 from "./IrrationalNumbersTargetLesson61";
+import RealNumbersTargetLesson62 from "./RealNumbersTargetLesson62";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -26,6 +27,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 61) {
     return <IrrationalNumbersTargetLesson61 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 62) {
+    return <RealNumbersTargetLesson62 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }
