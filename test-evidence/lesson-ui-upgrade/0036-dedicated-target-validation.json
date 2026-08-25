@@ -1,0 +1,237 @@
+{
+  "mockup": "0036",
+  "lessonId": 36,
+  "route": "/lessons/core-workspaces/36-boolean-variables",
+  "objectModel": "dual-boolean-switch-logic-gates-truth-table-operation-focus-conditional-visibility-model",
+  "checks": {
+    "initial": {
+      "a": "true",
+      "b": "false",
+      "and": "false",
+      "or": "true",
+      "not": "false",
+      "operation": "AND",
+      "focused-result": "false",
+      "visible": "false",
+      "actions": "0"
+    },
+    "bothTrue": {
+      "a": "true",
+      "b": "true",
+      "and": "true",
+      "or": "true",
+      "not": "false",
+      "operation": "AND",
+      "focused-result": "true",
+      "visible": "true",
+      "actions": "1"
+    },
+    "visibleCopy": "Object P is visible",
+    "activeRowBothTrue": "truetruetruetrue",
+    "aFalse": {
+      "a": "false",
+      "b": "true",
+      "and": "false",
+      "or": "true",
+      "not": "true",
+      "operation": "AND",
+      "focused-result": "false",
+      "visible": "false",
+      "actions": "2"
+    },
+    "activeRowAFalse": "falsetruefalsetrue",
+    "orFocus": {
+      "a": "false",
+      "b": "true",
+      "and": "false",
+      "or": "true",
+      "not": "true",
+      "operation": "OR",
+      "focused-result": "true",
+      "visible": "false",
+      "actions": "3"
+    },
+    "notFocus": {
+      "a": "false",
+      "b": "true",
+      "and": "false",
+      "or": "true",
+      "not": "true",
+      "operation": "NOT",
+      "focused-result": "true",
+      "visible": "false",
+      "actions": "4"
+    },
+    "bothFalse": {
+      "a": "false",
+      "b": "false",
+      "and": "false",
+      "or": "false",
+      "not": "true",
+      "operation": "NOT",
+      "focused-result": "true",
+      "visible": "false",
+      "actions": "5"
+    },
+    "initialLogicAgain": {
+      "a": "true",
+      "b": "false",
+      "and": "false",
+      "or": "true",
+      "not": "false",
+      "operation": "NOT",
+      "focused-result": "false",
+      "visible": "false",
+      "actions": "6"
+    },
+    "share": {
+      "a": "true",
+      "b": "false",
+      "and": "false",
+      "or": "true",
+      "not": "false",
+      "operation": "NOT",
+      "focused-result": "false",
+      "visible": "false",
+      "actions": "7"
+    },
+    "reload": {
+      "a": "true",
+      "b": "false",
+      "and": "false",
+      "or": "true",
+      "not": "false",
+      "operation": "AND",
+      "focused-result": "false",
+      "visible": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1217,
+      "height": 1292
+    },
+    "document": {
+      "width": 1217,
+      "height": 1292
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 119,
+      "bottom": 1256,
+      "height": 1137,
+      "left": 262,
+      "right": 1198,
+      "width": 936
+    },
+    "regions": {
+      "shell": {
+        "top": 119,
+        "bottom": 1256,
+        "height": 1137,
+        "left": 262,
+        "right": 1198,
+        "width": 936
+      },
+      "header": {
+        "top": 120,
+        "bottom": 218,
+        "height": 98,
+        "left": 280,
+        "right": 1184,
+        "width": 904
+      },
+      "main": {
+        "top": 218,
+        "bottom": 1149,
+        "height": 931,
+        "left": 280,
+        "right": 1184,
+        "width": 904
+      },
+      "states": {
+        "top": 218,
+        "bottom": 425,
+        "height": 207,
+        "left": 280,
+        "right": 880,
+        "width": 600
+      },
+      "logic": {
+        "top": 444,
+        "bottom": 686,
+        "height": 242,
+        "left": 280,
+        "right": 880,
+        "width": 600
+      },
+      "truth": {
+        "top": 704,
+        "bottom": 942,
+        "height": 238,
+        "left": 280,
+        "right": 880,
+        "width": 600
+      },
+      "visibility": {
+        "top": 956,
+        "bottom": 1149,
+        "height": 193,
+        "left": 280,
+        "right": 880,
+        "width": 600
+      },
+      "side": {
+        "top": 218,
+        "bottom": 1149,
+        "height": 931,
+        "left": 895,
+        "right": 1177,
+        "width": 282
+      },
+      "controls": {
+        "top": 218,
+        "bottom": 417,
+        "height": 199,
+        "left": 895,
+        "right": 1177,
+        "width": 282
+      },
+      "operation": {
+        "top": 437,
+        "bottom": 751,
+        "height": 314,
+        "left": 895,
+        "right": 1177,
+        "width": 282
+      },
+      "misconception": {
+        "top": 771,
+        "bottom": 922,
+        "height": 151,
+        "left": 895,
+        "right": 1177,
+        "width": 282
+      },
+      "key": {
+        "top": 942,
+        "bottom": 1072,
+        "height": 130,
+        "left": 895,
+        "right": 1177,
+        "width": 282
+      },
+      "navigation": {
+        "top": 1165,
+        "bottom": 1229,
+        "height": 64,
+        "left": 280,
+        "right": 1184,
+        "width": 904
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **35 of 130 lessons completed; 95 pending.**
+Dedicated rebuild target: **36 of 130 lessons completed; 94 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -39,6 +39,7 @@ Dedicated rebuild target: **35 of 130 lessons completed; 95 pending.**
 | 0033   | 33 Matrices | Complete | Editable/resizable matrix with selected-cell draft/apply cycle, row/column vectors, recursive determinant, trace, vector action, geometric unit-square transform, tabs/reset/share/workspace, and exact 1575x999 target geometry |
 | 0034   | 34 Sequences | Complete | Editable arithmetic-sequence model with calculated term cards, number-line jumps, explicit rule, selectable term table, steppers, presets, restart/reset/share/workspace controls, and exact 1217x1292 target geometry |
 | 0035   | 35 Piecewise Definitions | Complete | Two-branch condition model with draggable graph probe, live slider/steppers, calculated evaluation and active branch, open/closed endpoints, boundary checks, stateful branch selection, and exact 1217x1292 target geometry |
+| 0036   | 36 Boolean Variables | Complete | Dual Boolean switches with synchronized controls, calculated AND/OR/NOT gates, active truth-table row, focused operation view, conditional Object P visibility, share/navigation actions, and exact 1217x1292 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -529,3 +530,17 @@ Evidence:
 - `0035-reference.png`
 - `0035-desktop.png`
 - `0035-dedicated-target-validation.json`
+
+## Lesson 36 / Mockup 0036 - Boolean Variables
+
+Reworked individually against the target mockup with a dedicated `dual-boolean-switch-logic-gates-truth-table-operation-focus-conditional-visibility-model`. Boolean values A and B, AND, OR, NOT A, focused operation, focused result, active truth-table row, and Object P visibility all derive from one explicit logic state.
+
+Both large switches and the compact control-rail switches mutate the same model. AND, OR, and NOT selectors change the focused gate, result, and misconception guidance. The truth table highlights the current A/B combination, and Object P appears only when A AND B is true. Share and adjacent-lesson controls perform real actions or navigation; no visible switch or operation selector is decorative.
+
+Final 1217x1292 integrated browser validation toggles B to produce A=true, B=true, AND=true and visibly reveal Object P; toggles A false and verifies OR=true and NOT A=true; focuses OR and NOT and verifies their outputs; reaches both-false state; restores the initial logical values through the second control set; shares; and reloads to the target state. The final frame matches the target at surface x=262-1198 and y=119-1256, header y=120-218, state panel y=218-425, logic panel y=444-686, truth table y=704-942, visibility example y=956-1149, right rail x=895-1177, and navigation y=1165-1229. It reports exact document dimensions, no horizontal overflow, and zero console messages.
+
+Evidence:
+
+- `0036-reference.png`
+- `0036-desktop.png`
+- `0036-dedicated-target-validation.json`

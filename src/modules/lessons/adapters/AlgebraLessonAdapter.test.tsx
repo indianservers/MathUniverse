@@ -267,6 +267,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain("CHECK THE BOUNDARIES");
   });
 
+  it("renders lesson 36 as a dedicated Boolean logic workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 36)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0036"');
+    expect(html).toContain('data-object-model="dual-boolean-switch-logic-gates-truth-table-operation-focus-conditional-visibility-model"');
+    expect(html).toContain('data-a="true"');
+    expect(html).toContain('data-b="false"');
+    expect(html).toContain('data-and="false"');
+    expect(html).toContain('data-or="true"');
+    expect(html).toContain('aria-label="Toggle A"');
+    expect(html).toContain("TRUTH TABLE");
+  });
+
   it("renders phase 4 algebra lessons 92 through 128 with lesson-specific structure labs", () => {
     const expectedFamilies: Record<number, string> = {
       92: "Tile/area model",
