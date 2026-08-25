@@ -1,0 +1,200 @@
+{
+  "mockup": "0031",
+  "lessonId": 31,
+  "route": "/lessons/core-workspaces/31-inequality-input",
+  "objectModel": "parsed-affine-inequality-sign-reversal-open-closed-boundary-number-line-graph-region-test-point-model",
+  "checks": {
+    "initial": {
+      "valid": "true",
+      "input-operator": "<",
+      "solution-operator": "<",
+      "boundary": "4",
+      "inclusive": "false",
+      "flipped": "false",
+      "actions": "0"
+    },
+    "negative": {
+      "valid": "true",
+      "input-operator": "<",
+      "solution-operator": ">",
+      "boundary": "-3",
+      "inclusive": "false",
+      "flipped": "true",
+      "actions": "1"
+    },
+    "inclusiveNegative": {
+      "valid": "true",
+      "input-operator": "<=",
+      "solution-operator": ">=",
+      "boundary": "-3",
+      "inclusive": "true",
+      "flipped": "true",
+      "actions": "2"
+    },
+    "inclusivePositive": {
+      "valid": "true",
+      "input-operator": ">=",
+      "solution-operator": ">=",
+      "boundary": "3",
+      "inclusive": "true",
+      "flipped": "false",
+      "actions": "3"
+    },
+    "strictPositive": {
+      "valid": "true",
+      "input-operator": "<",
+      "solution-operator": "<",
+      "boundary": "3",
+      "inclusive": "false",
+      "flipped": "false",
+      "actions": "4"
+    },
+    "clear": {
+      "valid": "false",
+      "input-operator": "<",
+      "solution-operator": "<",
+      "boundary": "?",
+      "inclusive": "false",
+      "flipped": "false",
+      "actions": "5"
+    },
+    "example": {
+      "valid": "true",
+      "input-operator": "<",
+      "solution-operator": "<",
+      "boundary": "2",
+      "inclusive": "false",
+      "flipped": "false",
+      "actions": "6"
+    },
+    "shared": {
+      "valid": "true",
+      "input-operator": "<",
+      "solution-operator": "<",
+      "boundary": "2",
+      "inclusive": "false",
+      "flipped": "false",
+      "actions": "7"
+    },
+    "reset": {
+      "valid": "true",
+      "input-operator": "<",
+      "solution-operator": "<",
+      "boundary": "4",
+      "inclusive": "false",
+      "flipped": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1506,
+      "height": 1044
+    },
+    "document": {
+      "width": 1506,
+      "height": 1045
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 120,
+      "bottom": 1045,
+      "height": 925,
+      "left": 284,
+      "right": 1486,
+      "width": 1202
+    },
+    "regions": {
+      "layout": {
+        "top": 120,
+        "bottom": 964,
+        "height": 844,
+        "left": 284,
+        "right": 1486,
+        "width": 1202
+      },
+      "card": {
+        "top": 120,
+        "bottom": 964,
+        "height": 844,
+        "left": 284,
+        "right": 1263,
+        "width": 979
+      },
+      "header": {
+        "top": 137,
+        "bottom": 286,
+        "height": 149,
+        "left": 301,
+        "right": 1246,
+        "width": 945
+      },
+      "entry": {
+        "top": 286,
+        "bottom": 385,
+        "height": 99,
+        "left": 301,
+        "right": 1246,
+        "width": 945
+      },
+      "main": {
+        "top": 399,
+        "bottom": 792,
+        "height": 393,
+        "left": 301,
+        "right": 1246,
+        "width": 945
+      },
+      "solve": {
+        "top": 399,
+        "bottom": 792,
+        "height": 393,
+        "left": 301,
+        "right": 545,
+        "width": 244
+      },
+      "number": {
+        "top": 399,
+        "bottom": 792,
+        "height": 393,
+        "left": 555,
+        "right": 859,
+        "width": 304
+      },
+      "comparison": {
+        "top": 399,
+        "bottom": 792,
+        "height": 393,
+        "left": 869,
+        "right": 1248,
+        "width": 379
+      },
+      "tests": {
+        "top": 805,
+        "bottom": 955,
+        "height": 150,
+        "left": 301,
+        "right": 1246,
+        "width": 945
+      },
+      "side": {
+        "top": 120,
+        "bottom": 964,
+        "height": 844,
+        "left": 1273,
+        "right": 1486,
+        "width": 213
+      },
+      "neighbors": {
+        "top": 978,
+        "bottom": 1037,
+        "height": 59,
+        "left": 284,
+        "right": 1486,
+        "width": 1202
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -18,6 +18,7 @@ import DynamicLabelsTargetLesson27 from "./DynamicLabelsTargetLesson27";
 import AlgebraicInputTargetLesson28 from "./AlgebraicInputTargetLesson28";
 import ObjectRedefinitionTargetLesson29 from "./ObjectRedefinitionTargetLesson29";
 import EquationInputTargetLesson30 from "./EquationInputTargetLesson30";
+import InequalityInputTargetLesson31 from "./InequalityInputTargetLesson31";
 
 const viewport: GraphViewport = { xMin: -10, xMax: 10, yMin: -10, yMax: 10, width: 640, height: 360 };
 
@@ -57,6 +58,9 @@ export default function AlgebraLessonAdapter({ lesson, resetToken, onInteraction
   }
   if (lesson.id === 30) {
     return <EquationInputTargetLesson30 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 31) {
+    return <InequalityInputTargetLesson31 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.categorySlug === "core-workspaces" && lesson.id >= 19 && lesson.id <= 38) {
     return <RedesignedCoreAlgebraLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

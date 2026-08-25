@@ -18,7 +18,7 @@ describe("AlgebraLessonAdapter", () => {
       28: "Construct objects from notation",
       29: "Modify constructions without rebuilding",
       30: "Create multiple equation types",
-      31: "Inequality input",
+      31: "Explore solution regions",
       32: "List rule",
       33: "Matrix size",
       34: "Sequence rule",
@@ -196,6 +196,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('data-solved-y="11"');
     expect(html).toContain('aria-label="Equation input"');
     expect(html).toContain("SOLUTION CHECKER");
+  });
+
+  it("renders lesson 31 as a dedicated inequality solution workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 31)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0031"');
+    expect(html).toContain('data-dedicated-lesson="31"');
+    expect(html).toContain('data-object-model="parsed-affine-inequality-sign-reversal-open-closed-boundary-number-line-graph-region-test-point-model"');
+    expect(html).toContain('data-solution-operator="&lt;"');
+    expect(html).toContain('data-boundary="4"');
+    expect(html).toContain('data-inclusive="false"');
+    expect(html).toContain('aria-label="Inequality input"');
+    expect(html).toContain("TEST POINTS");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {

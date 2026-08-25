@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **30 of 130 lessons completed; 100 pending.**
+Dedicated rebuild target: **31 of 130 lessons completed; 99 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -34,6 +34,7 @@ Dedicated rebuild target: **30 of 130 lessons completed; 100 pending.**
 | 0028   | 28 Algebraic Input | Complete | Parsed function model with editable notation, immediate syntax validation, live Nerdamer evaluation, sampled graph, calculated roots/vertex/intercept/key points, real create/edit/clear/share/reset controls, and exact 1227x1294 target geometry |
 | 0029   | 29 Object Redefinition | Complete | Preserved object identity with executable old/new rules, real redefine transaction, dual evaluated graphs, recomputed dependent values/table/graph state, dependency tree, validation, and exact 1227x1294 target geometry |
 | 0030   | 30 Equation Input | Complete | Parsed two-sided linear equation with implicit multiplication, generated equal-operation steps, calculated balance weights, dual graph intersection, solution checklist/substitution proof, real examples/check/clear controls, and exact 1369x1149 target geometry |
+| 0031   | 31 Inequality Input | Complete | Parsed affine inequality with real operator selection, negative-coefficient sign reversal, open/closed boundary number line, graph region, calculated test points, examples/reset/share, and exact 1506x1044 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -454,3 +455,17 @@ Evidence:
 - `0030-reference.png`
 - `0030-desktop.png`
 - `0030-dedicated-target-validation.json`
+
+## Lesson 31 / Mockup 0031 - Inequality Input
+
+Reworked individually against the target mockup with a dedicated `parsed-affine-inequality-sign-reversal-open-closed-boundary-number-line-graph-region-test-point-model`. The typed comparison is parsed into executable left and right affine expressions, input operator, normalized solution operator, boundary, inclusion state, and sign-reversal state. Those outputs drive all solve steps, the number-line region and endpoint, both comparison lines, shaded graph region, solution summaries, and three calculated test-point cards.
+
+The five operator buttons edit the real expression. Negative coefficients reverse the relation only when mathematically required; strict operators render open boundaries and inclusive operators render closed boundaries. Syntax examples load into the parser, while input editing, Clear, Reset, and Share update explicit state. Invalid input retains stable preview geometry and emits no invalid SVG attributes.
+
+Final 1506x1044 integrated browser validation solves `-2x < 6` as `x > -3` with sign reversal; changes to `<=` and verifies `x >= -3` with an inclusive endpoint; solves `3x - 2 >= 7` as `x >= 3`; switches to strict `<`; clears to a guarded invalid state; loads `2x + 1 < 5` and verifies boundary 2; shares; and resets to `2x + 3 < 11`. The final frame matches the target at surface x=284-1486 and y=120-1045, lesson card x=284-1263 and y=120-964, header y=137-286, entry y=286-385, solve/number/graph y=399-792, test points y=805-955, side rail x=1273-1486, and navigation y=978-1037. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0031-reference.png`
+- `0031-desktop.png`
+- `0031-dedicated-target-validation.json`
