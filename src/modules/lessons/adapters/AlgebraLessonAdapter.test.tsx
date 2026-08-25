@@ -10,7 +10,7 @@ describe("AlgebraLessonAdapter", () => {
       20: "Changing x updates",
       21: "Linked outputs update live",
       22: "Discrete integer slider",
-      23: "Angle slider",
+      23: "Control rotations and periodic models",
       24: "Animation rule",
       25: "Dependency rule",
       26: "Visibility rule",
@@ -91,6 +91,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('aria-label="Integer slider x drag control"');
     expect(html).toContain("Iteration table");
     expect(html).toContain("Step plot");
+  });
+
+  it("renders lesson 23 as a dedicated linked angle slider lab", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 23)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0023"');
+    expect(html).toContain('data-dedicated-lesson="23"');
+    expect(html).toContain('data-object-model="draggable-unit-circle-linked-sine-wave-trig-values-degree-radian-common-angle-model"');
+    expect(html).toContain('data-angle="60"');
+    expect(html).toContain('data-sin="0.866"');
+    expect(html).toContain('aria-label="Draggable angle unit circle"');
+    expect(html).toContain('aria-label="Angle slider drag control"');
+    expect(html).toContain("Angle Conversion");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {

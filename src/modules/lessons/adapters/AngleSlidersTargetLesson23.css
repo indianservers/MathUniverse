@@ -1,0 +1,524 @@
+.angle-slider-page {
+  position: relative;
+  top: -29px;
+  left: 2px;
+  width: 946px;
+  height: 1181px;
+  margin-bottom: -29px;
+  color: #0a1738;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.angle-slider-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.angle-slider-page h1,
+.angle-slider-page h2,
+.angle-slider-page h3,
+.angle-slider-page p {
+  margin: 0;
+}
+.angle-slider-page button,
+.angle-slider-page input {
+  font: inherit;
+  color: inherit;
+}
+.angle-slider-page button {
+  cursor: pointer;
+}
+.angle-breadcrumb {
+  position: absolute;
+  top: -38px;
+  left: 1px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #566a84;
+  font-weight: 800;
+}
+.angle-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.angle-breadcrumb a:first-child {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border: 1px solid #dce5ed;
+  border-radius: 50%;
+  background: #fff;
+}
+.angle-breadcrumb b {
+  color: #007489;
+}
+.angle-header {
+  display: grid;
+  height: 169px;
+  padding: 12px 18px;
+  grid-template-columns: 1fr 220px;
+  border: 1px solid #dfe6ed;
+  border-radius: 17px;
+  background: #fff;
+}
+.angle-header > div > span {
+  display: flex;
+  gap: 8px;
+}
+.angle-header > div > span b {
+  padding: 5px 10px;
+  border-radius: 14px;
+  background: #eaf9fb;
+  color: #007d96;
+  font-size: 8px;
+}
+.angle-header > div > span b + b {
+  background: #f2f4f7;
+  color: #53627a;
+}
+.angle-header h1 {
+  margin-top: 3px;
+  font-size: 37px;
+  line-height: 45px;
+  font-weight: 900;
+}
+.angle-header p {
+  color: #566985;
+  font-size: 13px;
+}
+.angle-header > div > nav {
+  display: flex;
+  margin-top: 12px;
+  gap: 8px;
+}
+.angle-header > div > nav b {
+  padding: 7px 12px;
+  border: 1px solid #dce4ec;
+  border-radius: 15px;
+  font-size: 9px;
+}
+.angle-header > aside {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-content: start;
+}
+.angle-header > aside button {
+  display: flex;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #dce4ec;
+  border-radius: 11px;
+  background: #fff;
+  font-weight: 700;
+}
+.angle-header > aside button:last-child {
+  grid-column: 1/3;
+  width: 116px;
+  margin-left: auto;
+}
+.angle-header > aside button.active {
+  border-color: #079db7;
+  background: #effbfd;
+}
+.angle-header svg {
+  width: 15px;
+}
+.angle-workspace {
+  height: 763px;
+  margin-top: 9px;
+  padding: 10px;
+  border: 1px solid #dfe6ed;
+  border-radius: 17px;
+  background: #fff;
+}
+.angle-tabs {
+  display: grid;
+  height: 53px;
+  grid-template-columns: 220px repeat(4, 1fr);
+}
+.angle-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 800;
+}
+.angle-tabs button.active {
+  background: #079eb8;
+  color: #fff;
+}
+.angle-models {
+  display: grid;
+  height: 387px;
+  grid-template-columns: 365px 1fr;
+  border: 1px solid #dfe6ed;
+  border-radius: 14px 14px 0 0;
+}
+.angle-models > section {
+  position: relative;
+  padding: 14px;
+}
+.angle-models > section + section {
+  border-left: 1px solid #dfe6ed;
+}
+.angle-models h2 {
+  font-size: 15px;
+}
+.angle-models output {
+  position: absolute;
+  z-index: 3;
+  top: 15px;
+  right: 22px;
+  padding: 8px 21px;
+  border: 1px solid #d6c3fa;
+  border-radius: 8px;
+  background: #faf7ff;
+  color: #743ce1;
+  font-size: 14px;
+  font-weight: 800;
+}
+.angle-models svg {
+  width: 100%;
+  height: 320px;
+}
+.angle-models .axis {
+  stroke: #253149;
+  stroke-width: 1;
+}
+.angle-models .circle {
+  fill: #fff;
+  stroke: #88909a;
+  stroke-width: 1.5;
+}
+.angle-models .ray {
+  stroke: #078ba4;
+  stroke-width: 2;
+}
+.angle-models .projection {
+  stroke: #9299a4;
+  stroke-dasharray: 5 4;
+}
+.angle-models .arc {
+  fill: none;
+  stroke: #7446ed;
+  stroke-width: 2;
+}
+.angle-models .handle {
+  fill: #05879e;
+  cursor: grab;
+}
+.angle-models text {
+  font-size: 12px;
+}
+.angle-models .point {
+  fill: #0089a4;
+  font-weight: 800;
+}
+.angle-models .wave {
+  fill: none;
+  stroke: #763ee5;
+  stroke-width: 2.2;
+}
+.angle-models .guide {
+  stroke: #079cb5;
+  stroke-dasharray: 5 4;
+}
+.angle-models .probe {
+  fill: #089bb6;
+}
+.angle-models .label-box {
+  fill: #f6fcff;
+  stroke: #37b8cd;
+}
+.angle-models .label {
+  fill: #0089a4;
+  font-size: 10px;
+  font-weight: 800;
+}
+.angle-models .degree {
+  fill: #0089a4;
+  font-size: 12px;
+  font-weight: 800;
+}
+.angle-models .tick {
+  font-size: 9px;
+}
+.angle-values {
+  display: grid;
+  height: 185px;
+  padding: 13px 14px 8px;
+  grid-template-columns: 242px 273px 1fr;
+  grid-template-rows: minmax(0, 1fr);
+  gap: 22px;
+}
+.angle-values > section {
+  min-height: 0;
+  height: 174px;
+  overflow: hidden;
+  transform: translateY(6px);
+  padding: 15px 23px;
+  border: 1px solid #83cfe0;
+  border-radius: 9px;
+}
+.angle-values > section:nth-child(2) {
+  border-color: #cdb5fa;
+  background: #fcfaff;
+  text-align: center;
+}
+.angle-values > section:nth-child(3) {
+  padding: 11px 19px;
+  border-color: #dce4ec;
+}
+.angle-values h3 {
+  color: #395675;
+  font-size: 12px;
+  line-height: 16px;
+}
+.angle-values p {
+  display: grid;
+  margin-top: 14px;
+  grid-template-columns: 1fr 20px 65px;
+  font-size: 14px;
+}
+.angle-values p b {
+  color: #0087a3;
+}
+.angle-values p:nth-of-type(2) b,
+.angle-values p:nth-of-type(2) strong {
+  color: #7c37e4;
+}
+.angle-values p:nth-of-type(3) b,
+.angle-values p:nth-of-type(3) strong {
+  color: #ec6c00;
+}
+.angle-values p i {
+  font-style: normal;
+}
+.angle-values > section:nth-child(2) > strong {
+  display: block;
+  margin-top: 33px;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  font-weight: 500;
+}
+.angle-values > section:nth-child(2) > strong i {
+  font-size: 30px;
+}
+.angle-values > section:nth-child(3) > nav {
+  display: grid;
+  margin-top: 9px;
+  grid-template-columns: 1fr 1fr;
+}
+.angle-values > section:nth-child(3) > nav button {
+  height: 33px;
+  border: 1px solid #dce4ec;
+  background: #fff;
+}
+.angle-values > section:nth-child(3) > nav button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.angle-values > section:nth-child(3) > nav button:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.angle-values > section:nth-child(3) > nav button.active {
+  background: #079eb8;
+  color: #fff;
+  font-weight: 800;
+}
+.angle-values > section:nth-child(3) > h3:nth-of-type(2) {
+  margin-top: 13px;
+}
+.angle-values > section:nth-child(3) > div {
+  display: grid;
+  margin-top: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+.angle-values > section:nth-child(3) > div button {
+  height: 33px;
+  border: 1px solid #dce4ec;
+  border-radius: 7px;
+  background: #fff;
+}
+.angle-values > section:nth-child(3) > div button.active {
+  background: #079eb8;
+  color: #fff;
+  font-weight: 800;
+}
+.angle-drag {
+  position: relative;
+  height: 104px;
+  margin-top: 17px;
+  padding: 12px 28px;
+  border: 1px solid #dfe6ed;
+  border-radius: 11px;
+}
+.angle-drag h3 {
+  font-size: 13px;
+}
+.angle-drag output {
+  position: absolute;
+  top: 58px;
+  transform: translate(-50%, -100%);
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #7140d9;
+  color: #fff;
+  font-weight: 800;
+}
+.angle-drag input {
+  width: 100%;
+  height: 6px;
+  margin-top: 28px;
+  appearance: none;
+  border-radius: 4px;
+  background: #d3d8df;
+  accent-color: #7140d9;
+}
+.angle-drag input::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  appearance: none;
+  border: 4px solid #eee7ff;
+  border-radius: 50%;
+  background: #7040d8;
+}
+.angle-drag footer {
+  display: flex;
+  margin-top: 5px;
+  justify-content: space-between;
+}
+.angle-neighbors {
+  display: grid;
+  height: 58px;
+  margin-top: 9px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.angle-neighbors a {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 0 16px;
+  border: 1px solid #dfe6ed;
+  border-radius: 12px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+.angle-neighbors a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.angle-neighbors span {
+  display: grid;
+}
+.angle-neighbors small {
+  font-size: 8px;
+}
+.angle-footer {
+  position: relative;
+  height: 131px;
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid #dfe6ed;
+  border-radius: 12px;
+  background: #fff;
+}
+.angle-footer > b {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.angle-footer > b svg {
+  width: 15px;
+  color: #009cb7;
+}
+.angle-footer > p {
+  margin-top: 8px;
+  color: #596c86;
+  font-size: 8px;
+}
+.angle-footer nav {
+  position: absolute;
+  top: 16px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+}
+.angle-footer button {
+  height: 38px;
+  padding: 0 17px;
+  border: 1px solid #dfe6ed;
+  border-radius: 11px;
+  background: #fff;
+}
+.angle-footer:after {
+  display: block;
+  margin-top: 27px;
+  padding-top: 13px;
+  border-top: 1px solid #dce4ec;
+  color: #697a91;
+  font-size: 7px;
+  white-space: pre;
+  content: "© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.\A\A www.IndianServers.com  info@IndianServers.com";
+}
+body:has(.angle-slider-page)
+  #main-content
+  .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+  visibility: hidden;
+}
+@media (min-width: 1100px) and (max-width: 1279px) {
+  body:has(.angle-slider-page) [data-testid="desktop-sidebar"] {
+    width: 242px;
+  }
+  body:has(.angle-slider-page) .app-layout-rail > div > header {
+    height: 59px;
+  }
+  body:has(.angle-slider-page) #main-content {
+    padding: 47px 14px 0;
+    overflow: hidden;
+    background: #fff;
+  }
+  body:has(.angle-slider-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+}
+@media (max-width: 1099px) {
+  .angle-slider-page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .angle-breadcrumb {
+    display: none;
+  }
+  .angle-workspace {
+    height: auto;
+  }
+  .angle-models,
+  .angle-values {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .angle-tabs {
+    grid-template-columns: 1fr;
+  }
+  .angle-models > section + section {
+    border-left: 0;
+  }
+  .angle-footer {
+    height: auto;
+  }
+}

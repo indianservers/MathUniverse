@@ -1,0 +1,175 @@
+{
+  "mockup": "0023",
+  "lessonId": 23,
+  "route": "/lessons/core-workspaces/23-angle-sliders",
+  "objectModel": "draggable-unit-circle-linked-sine-wave-trig-values-degree-radian-common-angle-model",
+  "checks": {
+    "initial": {
+      "angle": "60",
+      "sin": "0.866",
+      "cos": "0.500",
+      "tan": "1.732",
+      "view": "0",
+      "mode": "degrees",
+      "workspace": "false",
+      "actions": "0"
+    },
+    "slider": {
+      "angle": "30",
+      "sin": "0.500",
+      "cos": "0.866",
+      "tan": "0.577",
+      "view": "0",
+      "mode": "degrees",
+      "workspace": "false",
+      "actions": "1"
+    },
+    "preset": {
+      "angle": "180",
+      "sin": "0.000",
+      "cos": "-1.000",
+      "tan": "0.000",
+      "view": "0",
+      "mode": "degrees",
+      "workspace": "false",
+      "actions": "2"
+    },
+    "radians": {
+      "angle": "180",
+      "sin": "0.000",
+      "cos": "-1.000",
+      "tan": "0.000",
+      "view": "0",
+      "mode": "radians",
+      "workspace": "false",
+      "actions": "3"
+    },
+    "circleDrag": {
+      "angle": "90",
+      "sin": "1.000",
+      "cos": "0.000",
+      "tan": "undefined",
+      "view": "0",
+      "mode": "radians",
+      "workspace": "false",
+      "actions": "11"
+    },
+    "view": {
+      "angle": "90",
+      "sin": "1.000",
+      "cos": "0.000",
+      "tan": "undefined",
+      "view": "4",
+      "mode": "radians",
+      "workspace": "false",
+      "actions": "12"
+    },
+    "workspace": {
+      "angle": "90",
+      "sin": "1.000",
+      "cos": "0.000",
+      "tan": "undefined",
+      "view": "4",
+      "mode": "radians",
+      "workspace": "true",
+      "actions": "13"
+    },
+    "reset": {
+      "angle": "60",
+      "sin": "0.866",
+      "cos": "0.500",
+      "tan": "1.732",
+      "view": "0",
+      "mode": "degrees",
+      "workspace": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1217,
+      "height": 1292
+    },
+    "document": {
+      "width": 1217,
+      "height": 1292
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 111,
+      "bottom": 1292,
+      "height": 1181,
+      "left": 258,
+      "right": 1204,
+      "width": 946
+    },
+    "regions": {
+      "header": {
+        "top": 111,
+        "bottom": 280,
+        "height": 169,
+        "left": 258,
+        "right": 1204,
+        "width": 946
+      },
+      "workspace": {
+        "top": 289,
+        "bottom": 1052,
+        "height": 763,
+        "left": 258,
+        "right": 1204,
+        "width": 946
+      },
+      "tabs": {
+        "top": 300,
+        "bottom": 353,
+        "height": 53,
+        "left": 269,
+        "right": 1193,
+        "width": 924
+      },
+      "models": {
+        "top": 353,
+        "bottom": 740,
+        "height": 387,
+        "left": 269,
+        "right": 1193,
+        "width": 924
+      },
+      "values": {
+        "top": 740,
+        "bottom": 925,
+        "height": 185,
+        "left": 269,
+        "right": 1193,
+        "width": 924
+      },
+      "drag": {
+        "top": 942,
+        "bottom": 1046,
+        "height": 104,
+        "left": 269,
+        "right": 1193,
+        "width": 924
+      },
+      "neighbors": {
+        "top": 1061,
+        "bottom": 1119,
+        "height": 58,
+        "left": 258,
+        "right": 1204,
+        "width": 946
+      },
+      "footer": {
+        "top": 1143,
+        "bottom": 1274,
+        "height": 131,
+        "left": 258,
+        "right": 1204,
+        "width": 946
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -10,6 +10,7 @@ import AlgebraWorkspaceTargetLesson19 from "./AlgebraWorkspaceTargetLesson19";
 import VariableExplorerTargetLesson20 from "./VariableExplorerTargetLesson20";
 import NumericSlidersTargetLesson21 from "./NumericSlidersTargetLesson21";
 import IntegerSlidersTargetLesson22 from "./IntegerSlidersTargetLesson22";
+import AngleSlidersTargetLesson23 from "./AngleSlidersTargetLesson23";
 
 const viewport: GraphViewport = { xMin: -10, xMax: 10, yMin: -10, yMax: 10, width: 640, height: 360 };
 
@@ -25,6 +26,9 @@ export default function AlgebraLessonAdapter({ lesson, resetToken, onInteraction
   }
   if (lesson.id === 22) {
     return <IntegerSlidersTargetLesson22 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 23) {
+    return <AngleSlidersTargetLesson23 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.categorySlug === "core-workspaces" && lesson.id >= 19 && lesson.id <= 38) {
     return <RedesignedCoreAlgebraLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

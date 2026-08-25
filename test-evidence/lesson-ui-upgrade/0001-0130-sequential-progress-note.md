@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **22 of 130 lessons completed; 108 pending.**
+Dedicated rebuild target: **23 of 130 lessons completed; 107 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -26,6 +26,7 @@ Dedicated rebuild target: **22 of 130 lessons completed; 108 pending.**
 | 0020   | 20 Variable Explorer | Complete | Single-source x dependency model with real -5..5 slider and presets, linked rule/substitution/output stages, symbolic/numeric trace, update graph, value table, verification, reset/views, and workspace/share state at exact 1217x1292 target geometry |
 | 0021   | 21 Numeric Sliders | Complete | Continuous bounded x model with real drag slider, editable range, selectable precision, steppers, presets, linked substitution/result chain, pattern row, graph point/guides, reset/share, and exact 1217x1292 target geometry |
 | 0022   | 22 Integer Sliders | Complete | Integer-snapping x model with real drag/tick/previous/next controls, linked substitution and result, iteration table, staircase plot and guides, five stateful views, and exact 1217x1292 target geometry |
+| 0023   | 23 Angle Sliders | Complete | Draggable unit-circle angle model linked to sine-wave probe, trig values, degree/radian conversion, common-angle controls, 0-360 range, reset/views/workspace/share, and exact 1217x1292 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -334,3 +335,17 @@ Evidence:
 - `0022-reference.png`
 - `0022-desktop.png`
 - `0022-dedicated-target-validation.json`
+
+## Lesson 23 / Mockup 0023 - Angle Sliders
+
+Reworked individually against the target mockup with a dedicated `draggable-unit-circle-linked-sine-wave-trig-values-degree-radian-common-angle-model`. One normalized angle drives point P and its ray, coordinate projections, the sine-wave probe and guides, sine/cosine/tangent values, conversion display, common-angle highlight, mode-specific labels, and the bottom drag control.
+
+The unit-circle point supports direct pointer dragging and the 0-360 range supports native dragging and keyboard input. Eight common-angle buttons, degree/radian mode, Reset, Share, Workspace, all five lesson views, and footer commands perform real state changes. Tangent becomes explicitly undefined where cosine is zero rather than emitting an unstable numeric approximation.
+
+Final 1217x1292 integrated browser validation drags the range to 30 degrees and verifies sine 0.500; selects 180 degrees and verifies sine 0 and cosine -1; switches to radians; physically drags point P to 90 degrees and verifies sine 1, cosine 0, and undefined tangent; opens Know more and Workspace; and resets to 60 degrees. The final frame matches the target at surface x=258-1204 and y=111-1292, header y=111-280, workspace y=289-1052, tabs y=300-353, linked diagrams y=353-740, value cards y=746-920, angle drag y=942-1046, navigation y=1061-1119, and footer y=1143-1274. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0023-reference.png`
+- `0023-desktop.png`
+- `0023-dedicated-target-validation.json`
