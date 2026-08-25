@@ -69,4 +69,29 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain('aria-label="Opposite"');
     expect(html).toContain('aria-label="Hypotenuse"');
   });
+
+  it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 257)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0314"');
+    expect(html).toContain('data-dedicated-lesson="257"');
+    expect(html).toContain(
+      'data-object-model="oriented-unit-circle-degree-radian-angle-measurement"',
+    );
+    expect(html).toContain('data-angle-degrees="60.0"');
+    expect(html).toContain('data-cos="0.500000"');
+    expect(html).toContain('data-sin="0.866025"');
+    expect(html).toContain('data-testid="angle-ray-handle"');
+    expect(html).toContain('data-testid="protractor-handle"');
+    expect(html).toContain('aria-label="Angle in degrees"');
+    expect(html).toContain("Degree-Radian Conversion");
+    expect(html).toContain("What is the radian measure of 45°?");
+  });
 });

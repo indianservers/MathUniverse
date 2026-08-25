@@ -1,0 +1,135 @@
+{
+  "mockup": "0314",
+  "lessonId": 257,
+  "route": "/lessons/trigonometry/257-angle-measurement",
+  "reference": "0314-interactive-intermediate-advanced-trigonometry-angle-measurement-redesigned.png",
+  "objectModel": "oriented-unit-circle-degree-radian-angle-measurement",
+  "checks": {
+    "initial": {
+      "angle": 60,
+      "normalized": 60,
+      "radians": 1.047198,
+      "cos": 0.5,
+      "sin": 0.866025,
+      "tan": 1.732051,
+      "quadrant": "I"
+    },
+    "rayDrag": {
+      "angle": 93.6,
+      "normalized": 93.6,
+      "radians": 1.633628,
+      "cos": -0.062791,
+      "sin": 0.998027,
+      "tan": -15.894545,
+      "quadrant": "II"
+    },
+    "degree135": {
+      "angle": 135,
+      "normalized": 135,
+      "radians": 2.356194,
+      "cos": -0.707107,
+      "sin": 0.707107,
+      "tan": -1,
+      "quadrant": "II"
+    },
+    "radianHalfPi": {
+      "angle": 90,
+      "normalized": 90,
+      "radians": 1.570796,
+      "cos": 0,
+      "sin": 1,
+      "tan": null,
+      "quadrant": "axis"
+    },
+    "protractorDrag": {
+      "angle": 135.4,
+      "normalized": 135.4,
+      "radians": 2.363176,
+      "cos": -0.712026,
+      "sin": 0.702153,
+      "tan": -0.986134,
+      "quadrant": "II"
+    },
+    "snap45": {
+      "angle": 45,
+      "normalized": 45,
+      "radians": 0.785398,
+      "cos": 0.707107,
+      "sin": 0.707107,
+      "tan": 1,
+      "quadrant": "I"
+    },
+    "keyboard": {
+      "angle": 46,
+      "normalized": 46,
+      "radians": 0.802851,
+      "cos": 0.694658,
+      "sin": 0.71934,
+      "tan": 1.03553,
+      "quadrant": "I"
+    },
+    "keyboardSnap": {
+      "angle": 45,
+      "normalized": 45,
+      "radians": 0.785398,
+      "cos": 0.707107,
+      "sin": 0.707107,
+      "tan": 1,
+      "quadrant": "I"
+    },
+    "incorrectFeedback": "Try again.\nMultiply 45° by π/180 and simplify.",
+    "correctFeedback": "Correct!\n45° × π/180 =\nπ/4\nrad.",
+    "reset": {
+      "angle": 60,
+      "normalized": 60,
+      "radians": 1.047198,
+      "cos": 0.5,
+      "sin": 0.866025,
+      "tan": 1.732051,
+      "quadrant": "I"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1005,
+      "height": 1565
+    },
+    "document": {
+      "width": 1005,
+      "height": 1566
+    },
+    "horizontalOverflow": false,
+    "contentFitsViewport": true,
+    "surfaceTop": 89,
+    "surfaceBottom": 1565,
+    "bottomElements": [
+      {
+        "tag": "NAV",
+        "className": "min-w-0 space-y-2",
+        "bottom": 1717
+      },
+      {
+        "tag": "DIV",
+        "className": "min-w-0 rounded-xl border border-white/10 bg-white/[0.045] p-1 shadow-sm shadow-black/10",
+        "bottom": 1717
+      },
+      {
+        "tag": "BUTTON",
+        "className": "tooltip-icon flex w-full min-w-0 items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-black transition  text-slate-300 hover:bg-white/10 hover:text-white",
+        "bottom": 1712
+      },
+      {
+        "tag": "SPAN",
+        "className": "min-w-0 flex-1 truncate",
+        "bottom": 1702
+      },
+      {
+        "tag": "svg",
+        "className": "",
+        "bottom": 1700
+      }
+    ]
+  },
+  "consoleMessages": [],
+  "passed": true
+}

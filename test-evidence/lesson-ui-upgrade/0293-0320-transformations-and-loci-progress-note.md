@@ -1,5 +1,7 @@
 # Transformations and Loci target batch 0293-0320
 
+Dedicated rebuild target: **52 of 130 lessons completed; 78 pending.**
+
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
 | 0293 | 236 Translation by Vector | `rigid-vector-translation-pair` | Reworked individually and browser-validated |
@@ -23,6 +25,7 @@
 | 0311 | 254 Collinearity Test | `three-point-synchronized-exact-collinearity-tests` | Reworked individually and browser-validated |
 | 0312 | 255 Concurrency Test | `triangle-cevians-exact-ceva-concurrency` | Reworked individually and browser-validated |
 | 0313 | 256 Concyclicity Test | `four-point-circumcircle-determinant-angle-residual` | Reworked individually and browser-validated |
+| 0314 | 257 Angle Measurement | `oriented-unit-circle-degree-radian-angle-measurement` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -298,3 +301,16 @@ Evidence:
 
 - `0313-desktop.png`
 - `0313-dedicated-target-validation.json`
+
+## Lesson 257 / Mockup 0314 - Angle Measurement
+
+Reworked individually against the target mockup with a dedicated `oriented-unit-circle-degree-radian-angle-measurement` object model. One signed angle in `[-360°, 360°]` drives its normalized angle, radian measure, unit-circle endpoint, cosine, sine, tangent, quadrant, sign table, ray, arc, protractor, current-value strip, and share text. The blue endpoint is physically draggable and recovers the nearest oriented angle rather than discarding the current revolution. The semicircular protractor is independently draggable and updates the same model. Degree and radian modes expose functional sliders and exact numeric inputs; the radian slider uses stable integer milliradian ticks so irrational bounds do not make standard values unrepresentable. All eight special-angle buttons, arrow-key fine adjustment, Shift fine adjustment, R reset, S nearest-special snap, workspace focus, reset, sharing, and wrong/correct practice paths are functional.
+
+The target's main ray is visually close to 30° while its control reads 60°, and its nearby coordinate box prints `(cos θ, sin θ) = (0.866, 0.500)`; the current-values strip correctly prints `(0.500, 0.866)`. The implementation keeps the visible 60° ray and both coordinate displays mathematically synchronized at `(0.500, 0.866)` instead of reproducing the swapped local label. At 90°, tangent is reported as undefined rather than a large floating-point artifact. Signed and multi-turn angles remain available, while the sign table uses the normalized terminal side.
+
+Final 1005x1565 browser validation starts at 60° and verifies `π/3`, cosine `0.5`, sine `sqrt(3)/2`, and tangent `sqrt(3)`; physically drags the unit-circle endpoint and proves all dependent values change; sets 135° and verifies Quadrant II with exact signs; switches to radians and reaches `π/2` with undefined tangent; physically drags the protractor; snaps to 45°; exercises arrow and S keyboard controls; follows incorrect and corrected practice paths; and resets the complete model. The screenshot loop replaces generic stage icons with the target's four mathematical mini-diagrams, aligns the full content stack and bottom lesson navigation, and reports no horizontal overflow, zero console errors, and a lesson surface ending at y=1565.
+
+Evidence:
+
+- `0314-desktop.png`
+- `0314-dedicated-target-validation.json`

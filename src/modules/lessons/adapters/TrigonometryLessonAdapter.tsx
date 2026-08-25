@@ -27,6 +27,7 @@ import {
   formatTrigNumber,
 } from "../../../trigonometry/utils/trigFormulaUtils";
 import type { LessonAdapterProps } from "../types";
+import AngleMeasurementTargetLesson257 from "./AngleMeasurementTargetLesson257";
 
 type TrigKind =
   "circle" | "graph" | "triangle" | "equation" | "application" | "polar";
@@ -476,6 +477,15 @@ export default function TrigonometryLessonAdapter({
   resetToken,
   onInteraction,
 }: LessonAdapterProps) {
+  if (lesson.id === 257) {
+    return (
+      <AngleMeasurementTargetLesson257
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
   if (lesson.id === 259) {
     return (
       <RightTriangleRatiosTargetLesson
@@ -485,6 +495,20 @@ export default function TrigonometryLessonAdapter({
       />
     );
   }
+  return (
+    <GenericTrigonometryLessonAdapter
+      lesson={lesson}
+      resetToken={resetToken}
+      onInteraction={onInteraction}
+    />
+  );
+}
+
+function GenericTrigonometryLessonAdapter({
+  lesson,
+  resetToken,
+  onInteraction,
+}: LessonAdapterProps) {
   const spec = trigSpecs.find((item) => item.id === lesson.id) ?? trigSpecs[0];
   const initialAngle = [30, 45, 60][lesson.id % 3];
   const [angle, setAngle] = useState(initialAngle);
