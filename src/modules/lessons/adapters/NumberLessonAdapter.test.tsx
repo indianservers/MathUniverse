@@ -71,6 +71,19 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain("Sort these numbers on the real number line");
     expect(html).toContain('draggable="true"');
   });
+  it("renders lesson 63 as a dedicated complex-plane workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 63)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0045"');
+    expect(html).toContain('data-dedicated-lesson="63"');
+    expect(html).toContain('data-object-model="complex-coefficients-draggable-plane-point-conjugate-vector-modulus-argument-projection-model"');
+    expect(html).toContain('data-real="3"');
+    expect(html).toContain('data-imaginary="2"');
+    expect(html).toContain('data-modulus="3.606"');
+    expect(html).toContain('aria-label="Drag complex number point"');
+    expect(html).toContain('aria-label="Real part"');
+    expect(html).toContain("Conjugate (reflection)");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

@@ -1,0 +1,229 @@
+{
+  "mockup": "0045",
+  "lessonId": 63,
+  "route": "/lessons/numbers-and-arithmetic/63-complex-numbers",
+  "objectModel": "complex-coefficients-draggable-plane-point-conjugate-vector-modulus-argument-projection-model",
+  "checks": {
+    "initial": {
+      "real": "3",
+      "imaginary": "2",
+      "complex": "3 + 2i",
+      "conjugate": "3 - 2i",
+      "modulus": "3.606",
+      "argument": "33.69",
+      "dragging": "false",
+      "tab": "Complex Plane Lab",
+      "language": "English (English)",
+      "workspace": "false",
+      "answer-visible": "false",
+      "actions": "0"
+    },
+    "realSlider": {
+      "real": "-2",
+      "imaginary": "2",
+      "complex": "-2 + 2i",
+      "conjugate": "-2 - 2i",
+      "modulus": "2.828",
+      "argument": "135.00",
+      "dragging": "false",
+      "tab": "Complex Plane Lab",
+      "language": "English (English)",
+      "workspace": "false",
+      "answer-visible": "false",
+      "actions": "1"
+    },
+    "imaginarySlider": {
+      "real": "-2",
+      "imaginary": "4",
+      "complex": "-2 + 4i",
+      "conjugate": "-2 - 4i",
+      "modulus": "4.472",
+      "argument": "116.57",
+      "dragging": "false",
+      "tab": "Complex Plane Lab",
+      "language": "English (English)",
+      "workspace": "false",
+      "answer-visible": "false",
+      "actions": "2"
+    },
+    "pointDrag": {
+      "real": "4",
+      "imaginary": "-1",
+      "complex": "4 - 1i",
+      "conjugate": "4 + 1i",
+      "modulus": "4.123",
+      "argument": "-14.04",
+      "dragging": "false",
+      "tab": "Complex Plane Lab",
+      "language": "English (English)",
+      "workspace": "false",
+      "answer-visible": "false",
+      "actions": "9"
+    },
+    "answer": {
+      "real": "4",
+      "imaginary": "-1",
+      "complex": "4 - 1i",
+      "conjugate": "4 + 1i",
+      "modulus": "4.123",
+      "argument": "-14.04",
+      "dragging": "false",
+      "tab": "Complex Plane Lab",
+      "language": "English (English)",
+      "workspace": "false",
+      "answer-visible": "true",
+      "actions": "10"
+    },
+    "tab": {
+      "real": "4",
+      "imaginary": "-1",
+      "complex": "4 - 1i",
+      "conjugate": "4 + 1i",
+      "modulus": "4.123",
+      "argument": "-14.04",
+      "dragging": "false",
+      "tab": "Properties",
+      "language": "English (English)",
+      "workspace": "false",
+      "answer-visible": "true",
+      "actions": "11"
+    },
+    "language": {
+      "real": "4",
+      "imaginary": "-1",
+      "complex": "4 - 1i",
+      "conjugate": "4 + 1i",
+      "modulus": "4.123",
+      "argument": "-14.04",
+      "dragging": "false",
+      "tab": "Properties",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "false",
+      "answer-visible": "true",
+      "actions": "12"
+    },
+    "workspace": {
+      "real": "4",
+      "imaginary": "-1",
+      "complex": "4 - 1i",
+      "conjugate": "4 + 1i",
+      "modulus": "4.123",
+      "argument": "-14.04",
+      "dragging": "false",
+      "tab": "Properties",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "answer-visible": "true",
+      "actions": "13"
+    },
+    "reset": {
+      "real": "3",
+      "imaginary": "2",
+      "complex": "3 + 2i",
+      "conjugate": "3 - 2i",
+      "modulus": "3.606",
+      "argument": "33.69",
+      "dragging": "false",
+      "tab": "Complex Plane Lab",
+      "language": "English (English)",
+      "workspace": "false",
+      "answer-visible": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1060,
+      "height": 1484
+    },
+    "document": {
+      "width": 1060,
+      "height": 1484
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 102,
+      "bottom": 1472,
+      "height": 1370,
+      "left": 226,
+      "right": 1044,
+      "width": 818
+    },
+    "regions": {
+      "hero": {
+        "top": 102,
+        "bottom": 332,
+        "height": 230,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "tabs": {
+        "top": 342,
+        "bottom": 397,
+        "height": 55,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "layout": {
+        "top": 407,
+        "bottom": 1296,
+        "height": 889,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "work": {
+        "top": 407,
+        "bottom": 1296,
+        "height": 889,
+        "left": 226,
+        "right": 760,
+        "width": 534
+      },
+      "plane": {
+        "top": 513,
+        "bottom": 1114,
+        "height": 601,
+        "left": 245,
+        "right": 743,
+        "width": 498
+      },
+      "legend": {
+        "top": 1133,
+        "bottom": 1200,
+        "height": 67,
+        "left": 244,
+        "right": 742,
+        "width": 498
+      },
+      "side": {
+        "top": 407,
+        "bottom": 1296,
+        "height": 889,
+        "left": 772,
+        "right": 1044,
+        "width": 272
+      },
+      "navigation": {
+        "top": 1306,
+        "bottom": 1360,
+        "height": 54,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "footer": {
+        "top": 1367,
+        "bottom": 1475,
+        "height": 108,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
