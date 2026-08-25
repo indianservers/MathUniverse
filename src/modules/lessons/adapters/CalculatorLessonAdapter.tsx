@@ -29,6 +29,7 @@ import FractionCalculatorTargetLesson2 from "./FractionCalculatorTargetLesson2";
 import MixedNumbersTargetLesson3 from "./MixedNumbersTargetLesson3";
 import PercentageCalculatorTargetLesson4 from "./PercentageCalculatorTargetLesson4";
 import RatioCalculatorTargetLesson5 from "./RatioCalculatorTargetLesson5";
+import PowersRootsTargetLesson6 from "./PowersRootsTargetLesson6";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -84,7 +85,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 6) {
     return (
-      <PowersAndRootsLessonSurface
+      <PowersRootsTargetLesson6
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -200,6 +202,7 @@ void FractionCalculatorLessonSurface;
 void MixedNumbersLessonSurface;
 void PercentageCalculatorLessonSurface;
 void RatioCalculatorLessonSurface;
+void PowersAndRootsLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,

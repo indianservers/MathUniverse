@@ -1,0 +1,175 @@
+{
+  "mockup": "0006",
+  "lessonId": 6,
+  "route": "/lessons/core-workspaces/6-powers-and-roots",
+  "objectModel": "linked-square-root-area-grid-repeated-power-cube-combined-expression-practice-model",
+  "checks": {
+    "initial": {
+      "radicand": "144",
+      "root": "12",
+      "base": "2",
+      "exponent": "3",
+      "power": "8",
+      "total": "20",
+      "view": "0",
+      "actions": "0",
+      "revealed": "true"
+    },
+    "radicand": {
+      "radicand": "145",
+      "root": "12.042",
+      "base": "2",
+      "exponent": "3",
+      "power": "8",
+      "total": "20.042",
+      "view": "0",
+      "actions": "1",
+      "revealed": "true"
+    },
+    "reset": {
+      "radicand": "144",
+      "root": "12",
+      "base": "2",
+      "exponent": "3",
+      "power": "8",
+      "total": "20",
+      "view": "0",
+      "actions": "2",
+      "revealed": "true"
+    },
+    "base": {
+      "radicand": "144",
+      "root": "12",
+      "base": "3",
+      "exponent": "3",
+      "power": "27",
+      "total": "39",
+      "view": "0",
+      "actions": "3",
+      "revealed": "true"
+    },
+    "exponent": {
+      "radicand": "144",
+      "root": "12",
+      "base": "3",
+      "exponent": "2",
+      "power": "9",
+      "total": "21",
+      "view": "0",
+      "actions": "4",
+      "revealed": "true"
+    },
+    "view": {
+      "radicand": "144",
+      "root": "12",
+      "base": "3",
+      "exponent": "2",
+      "power": "9",
+      "total": "21",
+      "view": "2",
+      "actions": "5",
+      "revealed": "true"
+    },
+    "hidden": {
+      "radicand": "144",
+      "root": "12",
+      "base": "3",
+      "exponent": "2",
+      "power": "9",
+      "total": "21",
+      "view": "2",
+      "actions": "5",
+      "revealed": "false"
+    },
+    "revealed": {
+      "radicand": "144",
+      "root": "12",
+      "base": "3",
+      "exponent": "2",
+      "power": "9",
+      "total": "21",
+      "view": "2",
+      "actions": "5",
+      "revealed": "true"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1068,
+      "height": 1472
+    },
+    "document": {
+      "width": 1068,
+      "height": 1612
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 102,
+      "bottom": 1457,
+      "height": 1355,
+      "left": 228,
+      "right": 1052,
+      "width": 824
+    },
+    "regions": {
+      "header": {
+        "top": 102,
+        "bottom": 338,
+        "height": 236,
+        "left": 228,
+        "right": 1052,
+        "width": 824
+      },
+      "tabs": {
+        "top": 348,
+        "bottom": 403,
+        "height": 55,
+        "left": 228,
+        "right": 1052,
+        "width": 824
+      },
+      "lab": {
+        "top": 414,
+        "bottom": 1286,
+        "height": 872,
+        "left": 228,
+        "right": 1052,
+        "width": 824
+      },
+      "models": {
+        "top": 500,
+        "bottom": 1026,
+        "height": 526,
+        "left": 241,
+        "right": 835,
+        "width": 594
+      },
+      "trace": {
+        "top": 500,
+        "bottom": 1170.5,
+        "height": 670.5,
+        "left": 849,
+        "right": 1039,
+        "width": 190
+      },
+      "practice": {
+        "top": 1159,
+        "bottom": 1270,
+        "height": 111,
+        "left": 241,
+        "right": 1039,
+        "width": 798
+      },
+      "navigation": {
+        "top": 1296,
+        "bottom": 1347,
+        "height": 51,
+        "left": 228,
+        "right": 1052,
+        "width": 824
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

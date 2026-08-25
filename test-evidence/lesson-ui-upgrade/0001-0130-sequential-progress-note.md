@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **5 of 130 lessons completed; 125 pending.**
+Dedicated rebuild target: **6 of 130 lessons completed; 124 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -9,6 +9,7 @@ Dedicated rebuild target: **5 of 130 lessons completed; 125 pending.**
 | 0003   |         3 Mixed Numbers | Complete | Dual mixed-number model with linked whole blocks/fraction strips, improper conversion, LCD expansion, exact/mixed/decimal results, active-field keypad modes, proof sidebar, practice reveal, and exact 1503x1047 target geometry  |
 | 0004   | 4 Percentage Calculator | Complete | Draggable percent/base model with live hundred grid, segmented percent scale, whole/part bars, equation, quick table, trace, direct inputs, result, and graded inverse-percent practice at exact 1506x1045 target geometry         |
 | 0005   |      5 Ratio Calculator | Complete | Dual draggable/steppable ratio model with live GCF grouping, simplification proof, grouped bars, tile arrays, double number line, trace, action count, examples, and graded comparison practice at exact 1536x1024 target geometry |
+| 0006   |      6 Powers and Roots | Complete | Linked radicand/root area grid and base/exponent repeated-power model with cube, combined expression, steppers, trace, action state, and practice reveal at exact 1068x1472 target geometry                                        |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -79,3 +80,17 @@ Evidence:
 - `0005-reference.png`
 - `0005-desktop.png`
 - `0005-dedicated-target-validation.json`
+
+## Lesson 6 / Mockup 0006 - Powers and Roots
+
+Reworked individually against the target mockup with a dedicated `linked-square-root-area-grid-repeated-power-cube-combined-expression-practice-model`. The radicand drives the square-root value, side length, area grid, trace, and combined expression; base and exponent drive repeated factors, the cube model, power trace, and final sum.
+
+All four target steppers are real controls with guarded ranges. Reset, Share, Workspace, all lesson tabs, action status, and practice reveal/hide also perform real actions. Irrational roots are calculated and formatted rather than being restricted to the initial perfect square.
+
+Final 1068x1472 browser validation increments 144 to 145 and verifies the irrational root/total, resets, changes base from 2 to 3 and verifies `3^3 = 27`, decreases the exponent and verifies `3^2 = 9`, switches lesson view, and hides/reveals the practice answer. The screenshot loop matches the tall target frame exactly: lesson/header x=228-1052 and y=102-338, tabs y=348-403, lab y=414-1286, models x=241-835, proof trace x=849-1039, practice y=1159-1270, and navigation y=1296-1347. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0006-reference.png`
+- `0006-desktop.png`
+- `0006-dedicated-target-validation.json`
