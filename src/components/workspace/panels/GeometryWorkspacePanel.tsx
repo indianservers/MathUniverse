@@ -323,7 +323,7 @@ export default function GeometryWorkspacePanel({
       <header className="geometry-studio-topbar">
         <div className="min-w-0">
           <div className="flex min-w-0 items-center gap-2">
-            <h1>Dynamic Geometry Studio</h1>
+            <h1>2D Geometry Workspace</h1>
             <button type="button" onClick={renameProject} className="geometry-icon-button" title="Rename project" aria-label="Rename project"><FileText className="h-4 w-4" /></button>
           </div>
           <p>{projectName}</p>
@@ -597,7 +597,7 @@ function GeometryStudioRail() {
   const items = [
     { label: "Home", href: "/", icon: Home },
     { label: "Workspace", href: "/workspace", icon: Box },
-    { label: "Geometry", href: "/workspace/geometry", icon: Pentagon, active: true },
+    { label: "2D Geometry", href: "/workspace/geometry", icon: Pentagon, active: true },
     { label: "2D Graphs", href: "/workspace/graph", icon: LineChart },
     { label: "3D Studio", href: "/workspace/3d", icon: Layers3 },
     { label: "CAS", href: "/workspace/data", icon: Calculator },

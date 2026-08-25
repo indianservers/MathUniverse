@@ -31,7 +31,11 @@ import {
 } from "lucide-react";
 import { compileFunctionExpression, compileTwoVariableExpression } from "../utils/functionParser";
 import CalculusIntegrationStudio from "./CalculusIntegrationStudio";
+import CalculusIntegrationTechniquesStudio from "./CalculusIntegrationTechniquesStudio";
 import CalculusDerivativeApplicationsStudio from "./CalculusDerivativeApplicationsStudio";
+import CalculusDerivativesStudio from "./CalculusDerivativesStudio";
+import CalculusLimitsStudio from "./CalculusLimitsStudio";
+import CalculusMultivariableStudio from "./CalculusMultivariableStudio";
 import CalculusConceptStudio, { type ConceptPage } from "./CalculusConceptStudio";
 import "./CalculusStudio.css";
 
@@ -268,8 +272,9 @@ function JourneyNode({ title, page }: { title: string; page: CalculusStudioPage 
 }
 
 function StudioLab({ page }: { page: Exclude<CalculusStudioPage, "home"> }) {
-  const meta = pageMeta[page];
   const [params, setParams] = useSearchParams();
+  if (page === "multivariable-vector") return <CalculusMultivariableStudio />;
+  const meta = pageMeta[page];
   const defaultMode = page === "integration" ? "definite" : meta.modes[0].id;
   const requestedMode = params.get("mode") ?? defaultMode;
   const mode = meta.modes.some((item) => item.id === requestedMode) ? requestedMode : defaultMode;
@@ -279,12 +284,18 @@ function StudioLab({ page }: { page: Exclude<CalculusStudioPage, "home"> }) {
     setParams(sp, { replace: true });
   };
   return (
-    <div className="cs-lab-page">
+    <div className={`cs-lab-page cs-lab-${page}`}>
       <nav className="cs-tabs" aria-label={`${meta.title} modes`}>
         {meta.modes.map((item) => <button key={item.id} type="button" className={mode === item.id ? "active" : ""} aria-selected={mode === item.id} onClick={() => chooseMode(item.id)}>{item.label}</button>)}
       </nav>
       {page === "integration"
         ? <CalculusIntegrationStudio mode={mode} />
+        : page === "limits"
+          ? <CalculusLimitsStudio mode={mode} />
+        : page === "derivatives"
+          ? <CalculusDerivativesStudio mode={mode} />
+        : page === "integration-techniques"
+          ? <CalculusIntegrationTechniquesStudio mode={mode} />
         : page === "derivative-applications"
           ? <CalculusDerivativeApplicationsStudio mode={mode} />
           : <InteractiveLab page={page} mode={mode} />}

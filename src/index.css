@@ -22518,12 +22518,17 @@ body {
 }
 .gu-tabs {
   display: grid;
-  grid-template-columns: minmax(150px, 200px) repeat(6, minmax(0, 1fr));
+  grid-template-columns: minmax(190px, 235px) minmax(150px, 190px) repeat(6, minmax(0, 1fr));
   gap: 6px;
   border: 1px solid #dbe7f3;
   border-radius: 13px;
   background: rgb(255 255 255 / 0.82);
   padding: 5px;
+}
+.gu-tabs .gu-workspace-module {
+  border-color: #9ce8f5;
+  background: linear-gradient(105deg, #ecfeff, #f5f3ff);
+  color: #087a99;
 }
 .gu-tabs button,
 .gu-tabs .gu-tab-link {
@@ -23293,7 +23298,7 @@ body {
     justify-content: start;
   }
   .gu-tabs {
-    grid-template-columns: repeat(7, minmax(145px, 1fr));
+    grid-template-columns: repeat(8, minmax(145px, 1fr));
     overflow-x: auto;
   }
   .gu-toolbar {

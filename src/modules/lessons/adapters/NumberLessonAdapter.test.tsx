@@ -112,6 +112,21 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Candidate divisor"');
     expect(html).toContain("Explore factors with the array model");
   });
+  it("renders lesson 66 as a dedicated skip-counting workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 66)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0048"');
+    expect(html).toContain('data-dedicated-lesson="66"');
+    expect(html).toContain('data-object-model="editable-base-candidate-exact-skip-count-number-line-draggable-product-repeated-addition-quotient-remainder-non-example-model"');
+    expect(html).toContain('data-base="9"');
+    expect(html).toContain('data-candidate="36"');
+    expect(html).toContain('data-quotient="4"');
+    expect(html).toContain('data-remainder="0"');
+    expect(html).toContain('data-products="9,18,27,36,45"');
+    expect(html).toContain('aria-label="Candidate multiple drag control"');
+    expect(html).toContain('aria-label="Base number"');
+    expect(html).toContain("Multiples on the number line");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

@@ -1,0 +1,155 @@
+{
+  "checks": {
+    "initial": {
+      "selected-row": "1",
+      "last-action": "inspect",
+      "copied-result": "",
+      "reused-expression": "",
+      "pinned-rows": "",
+      "practice-correct": "true",
+      "view": "0"
+    },
+    "inspect": {
+      "selected-row": "2",
+      "last-action": "inspect",
+      "copied-result": "",
+      "reused-expression": "",
+      "pinned-rows": "",
+      "practice-correct": "true",
+      "view": "0"
+    },
+    "reuse": {
+      "selected-row": "3",
+      "last-action": "reuse",
+      "copied-result": "",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "",
+      "practice-correct": "true",
+      "view": "0"
+    },
+    "copy": {
+      "selected-row": "4",
+      "last-action": "copy",
+      "copied-result": "68",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "",
+      "practice-correct": "true",
+      "view": "0"
+    },
+    "pin": {
+      "selected-row": "2",
+      "last-action": "pin",
+      "copied-result": "68",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "2",
+      "practice-correct": "true",
+      "view": "0"
+    },
+    "view": {
+      "selected-row": "2",
+      "last-action": "pin",
+      "copied-result": "68",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "2",
+      "practice-correct": "true",
+      "view": "2"
+    },
+    "incorrect": {
+      "selected-row": "2",
+      "last-action": "pin",
+      "copied-result": "68",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "2",
+      "practice-correct": "false",
+      "view": "2"
+    },
+    "correct": {
+      "selected-row": "2",
+      "last-action": "pin",
+      "copied-result": "68",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "2",
+      "practice-correct": "true",
+      "view": "2"
+    },
+    "reset": {
+      "selected-row": "1",
+      "last-action": "inspect",
+      "copied-result": "",
+      "reused-expression": "",
+      "pinned-rows": "",
+      "practice-correct": "true",
+      "view": "0"
+    }
+  },
+  "metrics": {
+    "surface": {
+      "top": 109,
+      "bottom": 1035,
+      "height": 926,
+      "left": 280,
+      "right": 1496,
+      "width": 1216
+    },
+    "header": {
+      "top": 109,
+      "bottom": 311,
+      "height": 202,
+      "left": 280,
+      "right": 1496,
+      "width": 1216
+    },
+    "tabs": {
+      "top": 320,
+      "bottom": 369,
+      "height": 49,
+      "left": 280,
+      "right": 1496,
+      "width": 1216
+    },
+    "main": {
+      "top": 379,
+      "bottom": 953,
+      "height": 574,
+      "left": 280,
+      "right": 1496,
+      "width": 1216
+    },
+    "lab": {
+      "top": 379,
+      "bottom": 808,
+      "height": 429,
+      "left": 280,
+      "right": 1156.6875,
+      "width": 876.6875
+    },
+    "table": {
+      "top": 546,
+      "bottom": 739,
+      "height": 193,
+      "left": 297,
+      "right": 1139.6875,
+      "width": 842.6875
+    },
+    "practice": {
+      "top": 821,
+      "bottom": 953,
+      "height": 132,
+      "left": 280,
+      "right": 1156.734375,
+      "width": 876.734375
+    },
+    "neighbors": {
+      "top": 965,
+      "bottom": 1026,
+      "height": 61,
+      "left": 280,
+      "right": 1496,
+      "width": 1216
+    },
+    "horizontalOverflow": false
+  },
+  "consoleMessages": [],
+  "passed": true,
+  "integratedRoute": false
+}

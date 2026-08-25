@@ -1,0 +1,768 @@
+.mvc-studio {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  color: #102747;
+}
+
+.cs-page:has(.mvc-studio) .cs-header {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.cs-page:has(.mvc-studio) .cs-search-wrap {
+  display: none;
+}
+.cs-page:has(.mvc-studio) .cs-title h1 {
+  font-size: 31px;
+  white-space: nowrap;
+}
+
+.mvc-major-tabs,
+.mvc-sub-tabs {
+  display: flex;
+  align-items: center;
+}
+.mvc-major-tabs {
+  gap: 22px;
+  min-height: 50px;
+  border-bottom: 1px solid #d8e6f2;
+  padding: 0 10px;
+}
+.mvc-sub-tabs {
+  gap: 10px;
+}
+.mvc-major-tabs button,
+.mvc-sub-tabs button {
+  position: relative;
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: #4b6484;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.mvc-major-tabs button.active {
+  color: #049fc5;
+}
+.mvc-major-tabs button.active::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 3px;
+  background: #0db6d6;
+  content: "";
+}
+.mvc-major-tabs .mvc-reset {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  margin-left: auto;
+  border-radius: 7px;
+  background: linear-gradient(100deg, #0bb9d9, #8448ee);
+  padding: 0 14px;
+  color: #fff;
+  text-transform: none;
+}
+.mvc-reset svg,
+.mvc-primary svg {
+  width: 16px;
+}
+.mvc-sub-tabs button {
+  min-height: 32px;
+  border-radius: 7px;
+  background: #f4f9fd;
+  padding: 0 22px;
+  font-size: 11px;
+}
+.mvc-sub-tabs button.active {
+  background: #e9fbf6;
+  color: #009abb;
+}
+
+.mvc-workspace {
+  display: grid;
+  grid-template-columns: minmax(230px, 250px) minmax(520px, 1fr) minmax(
+      250px,
+      285px
+    );
+  gap: 14px;
+  align-items: stretch;
+  min-width: 0;
+}
+.mvc-panel {
+  min-width: 0;
+  border: 1px solid #d5e4f0;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 0.94);
+  box-shadow: 0 8px 24px rgb(33 82 120 / 0.07);
+}
+.mvc-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px;
+}
+.mvc-controls > header,
+.mvc-scene-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mvc-controls h2,
+.mvc-scene-head h2,
+.mvc-analysis h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 950;
+}
+.mvc-controls > header button {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid #d5e3ef;
+  border-radius: 50%;
+  background: #fff;
+  color: #56708e;
+}
+.mvc-controls > header svg,
+.mvc-camera-tools svg,
+.mvc-learning svg {
+  width: 14px;
+}
+.mvc-expression,
+.mvc-range {
+  display: grid;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 900;
+}
+.mvc-expression > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 38px;
+}
+.mvc-expression input,
+.mvc-number-grid input {
+  min-width: 0;
+  height: 38px;
+  border: 1px solid #cbdbea;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0 9px;
+  color: #17345c;
+  font-family: Georgia, serif;
+  font-weight: 800;
+}
+.mvc-expression button {
+  border: 1px solid #cdbdf8;
+  border-radius: 0 6px 6px 0;
+  background: #f7f3ff;
+  color: #7140dc;
+  font-family: Georgia, serif;
+  font-weight: 900;
+}
+.mvc-expression small {
+  color: #dc2626;
+}
+.mvc-equations {
+  display: grid;
+  gap: 8px;
+}
+.mvc-equation-row {
+  display: grid;
+  grid-template-columns: 8px minmax(0, 1fr) repeat(3, 28px);
+  gap: 4px;
+  align-items: center;
+}
+.mvc-equation-row > i {
+  width: 8px;
+  height: 28px;
+  border-radius: 3px;
+}
+.mvc-equation-row input {
+  min-width: 0;
+  height: 32px;
+  border: 1px solid #cbdbea;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0 7px;
+  color: #17345c;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  font-weight: 800;
+}
+.mvc-equation-row button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid #d6e2ed;
+  border-radius: 6px;
+  background: #fff;
+  color: #47627d;
+}
+.mvc-equation-row button:hover:not(:disabled) {
+  border-color: #20b8d7;
+  color: #0796b6;
+}
+.mvc-equation-row button:disabled {
+  opacity: 0.38;
+}
+.mvc-equation-row button svg {
+  width: 13px;
+}
+.mvc-equation-row small {
+  grid-column: 2 / -1;
+  color: #dc2626;
+  font-size: 9px;
+}
+.mvc-add-equation {
+  display: flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 1px dashed #8ecfe0;
+  border-radius: 6px;
+  background: #f1fbfd;
+  color: #078fac;
+  font-size: 10px;
+  font-weight: 900;
+}
+.mvc-add-equation:disabled {
+  opacity: 0.45;
+}
+.mvc-add-equation svg {
+  width: 14px;
+}
+.mvc-fixed-model {
+  display: grid;
+  gap: 7px;
+}
+.mvc-fixed-model > span {
+  font-size: 11px;
+  font-weight: 900;
+}
+.mvc-fixed-model > :last-child {
+  min-height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #cbdbea;
+  border-radius: 6px;
+  background: #f8fbff;
+  color: #17345c;
+  font-family: Georgia, serif;
+  font-weight: 800;
+}
+.mvc-controls fieldset {
+  display: grid;
+  gap: 9px;
+  border: 0;
+  border-top: 1px solid #e4edf5;
+  margin: 0;
+  padding: 12px 0 0;
+}
+.mvc-controls legend {
+  padding: 0;
+  color: #19365d;
+  font-size: 11px;
+  font-weight: 900;
+}
+.mvc-number-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.mvc-number-grid label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 5px;
+  color: #425d7b;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.mvc-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #435d7a;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.mvc-switch span {
+  min-width: 0;
+  flex: 1;
+}
+.mvc-switch input {
+  position: absolute;
+  opacity: 0;
+}
+.mvc-switch i {
+  position: relative;
+  width: 29px;
+  height: 16px;
+  border-radius: 10px;
+  background: #cbd5e1;
+  transition: 0.18s;
+}
+.mvc-switch i::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 0.28);
+  content: "";
+  transition: 0.18s;
+}
+.mvc-switch input:checked + i {
+  background: #10add0;
+}
+.mvc-switch.orange input:checked + i {
+  background: #f59e0b;
+}
+.mvc-switch.violet input:checked + i {
+  background: #8b5cf6;
+}
+.mvc-switch input:checked + i::after {
+  transform: translateX(13px);
+}
+
+.mvc-range {
+  color: #405a78;
+  font-size: 10px;
+  font-weight: 800;
+}
+.mvc-range span {
+  display: flex;
+  justify-content: space-between;
+}
+.mvc-range b {
+  color: #17345b;
+}
+.mvc-range input {
+  width: 100%;
+  accent-color: #12acd0;
+}
+.mvc-primary {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 7px;
+  background: linear-gradient(100deg, #09b6d8, #8848ee);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.mvc-scene-panel {
+  display: grid;
+  grid-template-rows: auto minmax(520px, 1fr);
+  overflow: hidden;
+}
+.mvc-scene-head {
+  gap: 12px;
+  border-bottom: 1px solid #e1eaf2;
+  padding: 10px 12px;
+}
+.mvc-camera-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 5px;
+}
+.mvc-camera-tools button {
+  display: flex;
+  height: 32px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #cdddea;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 8px;
+  color: #2e4b6d;
+  font-size: 9px;
+  font-weight: 850;
+}
+.mvc-camera-tools button.active {
+  border-color: #17b6dc;
+  background: #ecfbff;
+  color: #038bb1;
+}
+.mvc-canvas-wrap {
+  position: relative;
+  min-height: 520px;
+  background: #f9fcff;
+}
+.mvc-canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 520px;
+}
+
+.mvc-legend,
+.mvc-contour,
+.mvc-point-readout {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid #cfdfec;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 0.9);
+  box-shadow: 0 7px 18px rgb(40 80 110 / 0.08);
+  backdrop-filter: blur(8px);
+}
+.mvc-legend {
+  top: 14px;
+  right: 14px;
+  display: grid;
+  gap: 5px;
+  padding: 8px;
+  color: #395674;
+  font-size: 9px;
+  font-weight: 800;
+}
+.mvc-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.mvc-legend i {
+  width: 17px;
+  height: 3px;
+  background: #23bce1;
+}
+.mvc-legend .point {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.mvc-legend .gradient {
+  background: #16a34a;
+}
+.mvc-legend .plane {
+  height: 8px;
+  background: #80d59a;
+  opacity: 0.65;
+}
+.mvc-contour {
+  right: 14px;
+  bottom: 14px;
+  width: 218px;
+  padding: 7px;
+}
+.mvc-contour strong {
+  display: block;
+  font-size: 9px;
+  text-align: center;
+}
+.mvc-contour strong span,
+.mvc-point-readout span {
+  font-family: Georgia, serif;
+  font-weight: 500;
+}
+.mvc-contour svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.mvc-point-readout {
+  bottom: 14px;
+  left: 14px;
+  display: grid;
+  gap: 3px;
+  padding: 8px 10px;
+  font-size: 10px;
+}
+.mvc-point-readout strong {
+  color: #079447;
+}
+
+.mvc-analysis {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  overflow: auto;
+}
+.mvc-analysis > section {
+  border-top: 1px solid #e1eaf2;
+  padding: 10px 0;
+}
+.mvc-analysis > section:first-of-type {
+  margin-top: 7px;
+}
+.mvc-analysis h3 {
+  margin: 0 0 7px;
+  color: #4438a6;
+  font-size: 10px;
+}
+.mvc-analysis p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 6px 0;
+  color: #435d78;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.mvc-analysis strong {
+  font-size: 12px;
+}
+.mvc-analysis .green {
+  color: #14913c;
+}
+.mvc-analysis .red {
+  color: #dc2626;
+}
+.mvc-formula-box,
+.mvc-success {
+  border-radius: 6px;
+  padding: 7px;
+  font-size: 10px;
+}
+.mvc-formula-box {
+  border: 1px solid #c5e3ed;
+  background: #eefbff;
+  color: #23436a;
+}
+.mvc-success {
+  margin-top: 7px;
+  border: 1px solid #bde6c8;
+  background: #edf9f0;
+  color: #16833a;
+  font-size: 9px;
+  font-weight: 850;
+  text-align: center;
+}
+
+.mvc-learning {
+  border: 1px solid #d5e4f0;
+  border-radius: 8px;
+  background: rgb(255 255 255 / 0.92);
+  overflow: hidden;
+}
+.mvc-learning nav {
+  display: flex;
+  border-bottom: 1px solid #dde8f1;
+}
+.mvc-learning nav button {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  padding: 0 20px;
+  color: #4c6582;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.mvc-learning nav button.active {
+  border-bottom-color: #0db5d6;
+  color: #0799bd;
+}
+.mvc-learning > div {
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 9px 16px;
+  color: #445f7b;
+  font-size: 10px;
+  line-height: 1.55;
+}
+.mvc-learning ul {
+  margin: 0;
+  padding-left: 16px;
+}
+.mvc-learning > div > button {
+  display: flex;
+  min-height: 34px;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #cbddea;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 12px;
+  color: #244a70;
+  font-size: 10px;
+  font-weight: 850;
+}
+.mvc-check {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-top: 1px solid #dce7ef;
+  margin: 0;
+  padding: 9px 16px;
+  color: #5941b2;
+  font-size: 10px;
+}
+.cs-dark .mvc-panel,
+.cs-dark .mvc-learning {
+  border-color: #29465f;
+  background: #0d253c;
+  color: #eef8ff;
+}
+.cs-dark .mvc-analysis p,
+.cs-dark .mvc-learning > div {
+  color: #c4d4e3;
+}
+
+@media (max-width: 1450px) {
+  .mvc-workspace {
+    grid-template-columns: 230px minmax(470px, 1fr);
+  }
+  .mvc-analysis {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 14px;
+  }
+  .mvc-analysis > h2 {
+    grid-column: 1 / -1;
+  }
+  .mvc-scene-panel {
+    grid-template-rows: auto minmax(470px, 1fr);
+  }
+  .mvc-canvas-wrap,
+  .mvc-canvas-wrap canvas {
+    min-height: 470px;
+  }
+}
+
+@media (max-width: 900px) {
+  .cs-page:has(.mvc-studio) .cs-header {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+  .cs-page:has(.mvc-studio) .cs-title h1 {
+    font-size: 25px;
+    white-space: normal;
+  }
+  .mvc-major-tabs {
+    gap: 10px;
+    overflow-x: auto;
+  }
+  .mvc-major-tabs,
+  .mvc-sub-tabs {
+    scrollbar-width: none;
+  }
+  .mvc-major-tabs::-webkit-scrollbar,
+  .mvc-sub-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .mvc-major-tabs button,
+  .mvc-learning nav button {
+    flex: 0 0 auto;
+  }
+  .mvc-workspace {
+    grid-template-columns: 1fr;
+  }
+  .mvc-controls,
+  .mvc-scene-panel,
+  .mvc-analysis {
+    grid-column: 1;
+  }
+  .mvc-analysis {
+    display: flex;
+  }
+  .mvc-scene-head,
+  .mvc-learning > div {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .mvc-camera-tools {
+    justify-content: flex-start;
+  }
+  .mvc-learning nav {
+    overflow-x: auto;
+  }
+  .mvc-contour {
+    width: 180px;
+  }
+}
+
+@media (max-width: 560px) {
+  .cs-page:has(.mvc-studio) .cs-header {
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    gap: 7px;
+  }
+  .cs-page:has(.mvc-studio) .cs-menu,
+  .cs-page:has(.mvc-studio) .cs-header-actions button {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+  }
+  .cs-page:has(.mvc-studio) .cs-header-actions {
+    gap: 4px;
+  }
+  .cs-page:has(.mvc-studio) .cs-title h1 {
+    font-size: 22px;
+  }
+  .mvc-major-tabs {
+    padding: 0;
+  }
+  .mvc-major-tabs .mvc-reset {
+    position: sticky;
+    right: 0;
+  }
+  .mvc-sub-tabs {
+    overflow-x: auto;
+  }
+  .mvc-sub-tabs button {
+    flex: 0 0 auto;
+    padding: 0 14px;
+  }
+  .mvc-controls {
+    padding: 12px;
+  }
+  .mvc-scene-panel {
+    grid-template-rows: auto minmax(400px, 1fr);
+  }
+  .mvc-canvas-wrap,
+  .mvc-canvas-wrap canvas {
+    min-height: 400px;
+  }
+  .mvc-legend {
+    display: none;
+  }
+  .mvc-contour {
+    right: 8px;
+    bottom: 8px;
+    width: 145px;
+  }
+  .mvc-point-readout {
+    bottom: 8px;
+    left: 8px;
+    max-width: 170px;
+  }
+  .mvc-learning nav button {
+    padding: 0 13px;
+  }
+  .mvc-learning nav button svg {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mvc-studio * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

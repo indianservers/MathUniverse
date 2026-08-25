@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **47 of 130 lessons completed; 83 pending.**
+Dedicated rebuild target: **48 of 130 lessons completed; 82 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -51,6 +51,7 @@ Dedicated rebuild target: **47 of 130 lessons completed; 83 pending.**
 | 0045   |                        63 Complex Numbers | Complete | Dedicated complex-coefficient model with linked draggable plane point, sliders, vector, projections, conjugate reflection, calculated modulus and argument, practice reveal, stateful lesson controls, and exact 1060x1484 target geometry                          |
 | 0046   |                             64 Place Value | Complete | Dedicated editable four-digit place model with selectable and draggable digit columns, exact-count base-ten blocks, calculated expanded form and selected value, rotating practice, stateful controls, and exact 1060x1484 target geometry                         |
 | 0047   |                                65 Factors | Complete | Dedicated editable divisibility model with exact counter arrays, quotient and remainder proof, calculated factor pairs, draggable pair arrangements, non-factor practice, stateful controls, and exact 1060x1484 target geometry                                  |
+| 0048   |                              66 Multiples | Complete | Dedicated editable skip-counting model with exact number-line jumps, calculated product cards, native draggable multiples, repeated addition, quotient/remainder proof, non-example practice, stateful controls, and exact 1060x1484 target geometry               |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -709,3 +710,17 @@ Evidence:
 - `0047-reference.png`
 - `0047-desktop.png`
 - `0047-dedicated-target-validation.json`
+
+## Lesson 66 / Mockup 0048 - Multiples
+
+Reworked individually against the target mockup with a dedicated `editable-base-candidate-exact-skip-count-number-line-draggable-product-repeated-addition-quotient-remainder-non-example-model`. The base and candidate drive the five equal number-line jumps, product cards, highlighted endpoint, repeated-addition expression, quotient, remainder, exact-multiple decision, and non-example explanation from one lesson-owned calculation model.
+
+Both base and candidate are directly editable with integer guards. The number-line range is a real drag control, and every calculated product card is a native draggable object that can be dropped onto the number line to select that multiple. Non-multiples immediately expose their remainder and warning state. The practice prompt applies 38 to the live model, while five lesson tabs, language, Workspace, Reset, Share, previous/next navigation, and footer navigation all perform real actions. The shared number adapter only dispatches Lesson 66 to this separate component.
+
+Final 1060x1484 integrated browser validation changes the base to 7 and verifies products 7, 14, 21, 28, and 35; changes the candidate to 38 and verifies quotient 5, remainder 3, and a non-multiple state; physically drags `7 × 5` onto the number line and verifies candidate 35 with remainder zero; moves the range to 21; applies the practice candidate; changes tab and language; opens Workspace; and resets. The final frame matches the target at page x=229-1044 and y=99-1467, hero y=99-345, tabs y=355-415, main y=425-1313, number line x=249-803 and y=504-646, products y=683.5-782.5, repeated addition y=800.5-884.5, side rail x=819-1036, navigation y=1242-1299, and footer y=1325-1467. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0048-reference.png`
+- `0048-desktop.png`
+- `0048-dedicated-target-validation.json`

@@ -23,18 +23,21 @@ import {
   Ruler,
   Search,
   Share2,
+  Shapes,
   Sparkles,
   Target,
   Triangle,
   Unlock,
 } from "lucide-react";
 import { ChangeEvent, ReactNode, forwardRef, useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import * as THREE from "three";
 import ThreeSceneWrapper from "../components/three/ThreeSceneWrapper";
 import { topics } from "../data/topics";
 import { useProgress } from "../hooks/useProgress";
 import { Point2D, clamp, distance2D, roundTo, triangleAreaFromPoints, trianglePerimeter } from "../utils/math";
 import { rightTriangleMetrics } from "../utils/coreAccuracyOracles";
+import { geometryWorkspaceModule } from "./geometryStudioModules";
 
 type GeometryTab = "triangles" | "pythagoras" | "theorems" | "circles" | "solids" | "accuracy";
 type InspectorTab = "vertices" | "measurements" | "construction";
@@ -144,6 +147,9 @@ export default function Geometry() {
         </div>
       </header>
       <nav className="gu-tabs" role="tablist" aria-label="Geometry Studio tabs">
+        <Link to={geometryWorkspaceModule.route} className="gu-tab-link gu-workspace-module">
+          <Shapes />{geometryWorkspaceModule.label}
+        </Link>
         <a href="/shapes" className="gu-tab-link"><Cuboid />2D/3D Shapes</a>
         {geometryTabs.map((item) => item.id === "solids" ? (
           <a key={item.id} href={solidWorkspaceHref()} role="tab" aria-selected={tab === item.id} className={tab === item.id ? "gu-tab-link active" : "gu-tab-link"}>

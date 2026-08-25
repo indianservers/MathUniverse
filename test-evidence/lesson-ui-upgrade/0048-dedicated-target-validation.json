@@ -1,0 +1,241 @@
+{
+  "mockup": "0048",
+  "lessonId": 66,
+  "route": "/lessons/numbers-and-arithmetic/66-multiples",
+  "objectModel": "editable-base-candidate-exact-skip-count-number-line-draggable-product-repeated-addition-quotient-remainder-non-example-model",
+  "checks": {
+    "initial": {
+      "base": "9",
+      "candidate": "36",
+      "quotient": "4",
+      "remainder": "0",
+      "is-multiple": "true",
+      "products": "9,18,27,36,45",
+      "drag-multiple": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "0"
+    },
+    "baseSeven": {
+      "base": "7",
+      "candidate": "36",
+      "quotient": "5",
+      "remainder": "1",
+      "is-multiple": "false",
+      "products": "7,14,21,28,35",
+      "drag-multiple": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "1"
+    },
+    "nonMultiple": {
+      "base": "7",
+      "candidate": "38",
+      "quotient": "5",
+      "remainder": "3",
+      "is-multiple": "false",
+      "products": "7,14,21,28,35",
+      "drag-multiple": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "2"
+    },
+    "draggedProduct": {
+      "base": "7",
+      "candidate": "35",
+      "quotient": "5",
+      "remainder": "0",
+      "is-multiple": "true",
+      "products": "7,14,21,28,35",
+      "drag-multiple": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "3"
+    },
+    "range": {
+      "base": "7",
+      "candidate": "21",
+      "quotient": "3",
+      "remainder": "0",
+      "is-multiple": "true",
+      "products": "7,14,21,28,35",
+      "drag-multiple": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "4"
+    },
+    "practice": {
+      "base": "7",
+      "candidate": "38",
+      "quotient": "5",
+      "remainder": "3",
+      "is-multiple": "false",
+      "products": "7,14,21,28,35",
+      "drag-multiple": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "5"
+    },
+    "tab": {
+      "base": "7",
+      "candidate": "38",
+      "quotient": "5",
+      "remainder": "3",
+      "is-multiple": "false",
+      "products": "7,14,21,28,35",
+      "drag-multiple": "",
+      "tab": "Examples",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "6"
+    },
+    "language": {
+      "base": "7",
+      "candidate": "38",
+      "quotient": "5",
+      "remainder": "3",
+      "is-multiple": "false",
+      "products": "7,14,21,28,35",
+      "drag-multiple": "",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "false",
+      "actions": "7"
+    },
+    "workspace": {
+      "base": "7",
+      "candidate": "38",
+      "quotient": "5",
+      "remainder": "3",
+      "is-multiple": "false",
+      "products": "7,14,21,28,35",
+      "drag-multiple": "",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "actions": "8"
+    },
+    "reset": {
+      "base": "9",
+      "candidate": "36",
+      "quotient": "4",
+      "remainder": "0",
+      "is-multiple": "true",
+      "products": "9,18,27,36,45",
+      "drag-multiple": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1060,
+      "height": 1484
+    },
+    "document": {
+      "width": 1060,
+      "height": 1484
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 99,
+      "bottom": 1467,
+      "height": 1368,
+      "left": 229,
+      "right": 1044,
+      "width": 815
+    },
+    "regions": {
+      "hero": {
+        "top": 99,
+        "bottom": 345,
+        "height": 246,
+        "left": 229,
+        "right": 1044,
+        "width": 815
+      },
+      "tabs": {
+        "top": 355,
+        "bottom": 415,
+        "height": 60,
+        "left": 229,
+        "right": 1044,
+        "width": 815
+      },
+      "main": {
+        "top": 425,
+        "bottom": 1313,
+        "height": 888,
+        "left": 229,
+        "right": 1044,
+        "width": 815
+      },
+      "work": {
+        "top": 436,
+        "bottom": 1237,
+        "height": 801,
+        "left": 241,
+        "right": 811,
+        "width": 570
+      },
+      "line": {
+        "top": 504,
+        "bottom": 646,
+        "height": 142,
+        "left": 249,
+        "right": 803,
+        "width": 554
+      },
+      "products": {
+        "top": 683.5,
+        "bottom": 782.5,
+        "height": 99,
+        "left": 249,
+        "right": 803,
+        "width": 554
+      },
+      "addition": {
+        "top": 800.5,
+        "bottom": 884.5,
+        "height": 84,
+        "left": 249,
+        "right": 803,
+        "width": 554
+      },
+      "side": {
+        "top": 436,
+        "bottom": 1237,
+        "height": 801,
+        "left": 819,
+        "right": 1036,
+        "width": 217
+      },
+      "navigation": {
+        "top": 1242,
+        "bottom": 1299,
+        "height": 57,
+        "left": 241,
+        "right": 1036,
+        "width": 795
+      },
+      "footer": {
+        "top": 1325,
+        "bottom": 1467,
+        "height": 142,
+        "left": 229,
+        "right": 1044,
+        "width": 815
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
