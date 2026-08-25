@@ -1,0 +1,292 @@
+{
+  "mockup": "0055",
+  "lessonId": 73,
+  "route": "/lessons/numbers-and-arithmetic/73-base-systems",
+  "objectModel": "editable-base-three-digit-place-value-board-draggable-digit-order-allowed-digit-palette-calculated-products-decimal-sum-number-line-practice-model",
+  "checks": {
+    "initial": {
+      "number": "110",
+      "digits": "1,1,0",
+      "base": "2",
+      "place-values": "4,2,1",
+      "products": "4,2,0",
+      "decimal": "6",
+      "selected-index": "0",
+      "drag-index": "",
+      "valid": "true",
+      "tab": "Interactive Lab",
+      "practice-loaded": "false",
+      "actions": "0"
+    },
+    "cycledDigit": {
+      "number": "111",
+      "digits": "1,1,1",
+      "base": "2",
+      "place-values": "4,2,1",
+      "products": "4,2,1",
+      "decimal": "7",
+      "selected-index": "2",
+      "drag-index": "",
+      "valid": "true",
+      "tab": "Interactive Lab",
+      "practice-loaded": "false",
+      "actions": "1"
+    },
+    "allowedDigit": {
+      "number": "110",
+      "digits": "1,1,0",
+      "base": "2",
+      "place-values": "4,2,1",
+      "products": "4,2,0",
+      "decimal": "6",
+      "selected-index": "2",
+      "drag-index": "",
+      "valid": "true",
+      "tab": "Interactive Lab",
+      "practice-loaded": "false",
+      "actions": "2"
+    },
+    "baseThree": {
+      "number": "110",
+      "digits": "1,1,0",
+      "base": "3",
+      "place-values": "9,3,1",
+      "products": "9,3,0",
+      "decimal": "12",
+      "selected-index": "2",
+      "drag-index": "",
+      "valid": "true",
+      "tab": "Interactive Lab",
+      "practice-loaded": "false",
+      "actions": "3"
+    },
+    "ternary212": {
+      "number": "212",
+      "digits": "2,1,2",
+      "base": "3",
+      "place-values": "9,3,1",
+      "products": "18,3,2",
+      "decimal": "23",
+      "selected-index": "2",
+      "drag-index": "",
+      "valid": "true",
+      "tab": "Interactive Lab",
+      "practice-loaded": "false",
+      "actions": "4"
+    },
+    "draggedDigits": {
+      "number": "122",
+      "digits": "1,2,2",
+      "base": "3",
+      "place-values": "9,3,1",
+      "products": "9,6,2",
+      "decimal": "17",
+      "selected-index": "1",
+      "drag-index": "",
+      "valid": "true",
+      "tab": "Interactive Lab",
+      "practice-loaded": "false",
+      "actions": "5"
+    },
+    "paletteApplied": {
+      "number": "102",
+      "digits": "1,0,2",
+      "base": "3",
+      "place-values": "9,3,1",
+      "products": "9,0,2",
+      "decimal": "11",
+      "selected-index": "1",
+      "drag-index": "",
+      "valid": "true",
+      "tab": "Interactive Lab",
+      "practice-loaded": "false",
+      "actions": "6"
+    },
+    "explain": {
+      "number": "102",
+      "digits": "1,0,2",
+      "base": "3",
+      "place-values": "9,3,1",
+      "products": "9,0,2",
+      "decimal": "11",
+      "selected-index": "1",
+      "drag-index": "",
+      "valid": "true",
+      "tab": "Explain",
+      "practice-loaded": "false",
+      "actions": "7"
+    },
+    "practice": {
+      "number": "101",
+      "digits": "1,0,1",
+      "base": "2",
+      "place-values": "4,2,1",
+      "products": "4,0,1",
+      "decimal": "5",
+      "selected-index": "0",
+      "drag-index": "",
+      "valid": "true",
+      "tab": "Explain",
+      "practice-loaded": "true",
+      "actions": "8"
+    },
+    "restored": {
+      "number": "110",
+      "digits": "1,1,0",
+      "base": "2",
+      "place-values": "4,2,1",
+      "products": "4,2,0",
+      "decimal": "6",
+      "selected-index": "0",
+      "drag-index": "",
+      "valid": "true",
+      "tab": "Interactive Lab",
+      "practice-loaded": "false",
+      "actions": "10"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1068,
+      "height": 1472
+    },
+    "document": {
+      "width": 1068,
+      "height": 1472
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 103,
+      "bottom": 1472,
+      "height": 1369,
+      "left": 229,
+      "right": 1051,
+      "width": 822
+    },
+    "regions": {
+      "hero": {
+        "top": 103,
+        "bottom": 351,
+        "height": 248,
+        "left": 229,
+        "right": 1051,
+        "width": 822
+      },
+      "heroTabs": {
+        "top": 287,
+        "bottom": 351,
+        "height": 64,
+        "left": 229,
+        "right": 1051,
+        "width": 822
+      },
+      "main": {
+        "top": 367,
+        "bottom": 1228,
+        "height": 861,
+        "left": 229,
+        "right": 1051,
+        "width": 822
+      },
+      "board": {
+        "top": 367,
+        "bottom": 1228,
+        "height": 861,
+        "left": 229,
+        "right": 674,
+        "width": 445
+      },
+      "placeGrid": {
+        "top": 488,
+        "bottom": 881,
+        "height": 393,
+        "left": 256,
+        "right": 647,
+        "width": 391
+      },
+      "sum": {
+        "top": 953,
+        "bottom": 1020,
+        "height": 67,
+        "left": 256,
+        "right": 647,
+        "width": 391
+      },
+      "verified": {
+        "top": 1060,
+        "bottom": 1165,
+        "height": 105,
+        "left": 317,
+        "right": 586,
+        "width": 269
+      },
+      "side": {
+        "top": 368,
+        "bottom": 1229,
+        "height": 861,
+        "left": 692,
+        "right": 1051,
+        "width": 359
+      },
+      "summary": {
+        "top": 368,
+        "bottom": 539,
+        "height": 171,
+        "left": 692,
+        "right": 1051,
+        "width": 359
+      },
+      "allowed": {
+        "top": 556,
+        "bottom": 766,
+        "height": 210,
+        "left": 692,
+        "right": 1051,
+        "width": 359
+      },
+      "why": {
+        "top": 783,
+        "bottom": 930,
+        "height": 147,
+        "left": 692,
+        "right": 1051,
+        "width": 359
+      },
+      "numberLine": {
+        "top": 947,
+        "bottom": 1064,
+        "height": 117,
+        "left": 692,
+        "right": 1051,
+        "width": 359
+      },
+      "practice": {
+        "top": 1081,
+        "bottom": 1229,
+        "height": 148,
+        "left": 692,
+        "right": 1051,
+        "width": 359
+      },
+      "navigation": {
+        "top": 1247,
+        "bottom": 1311,
+        "height": 64,
+        "left": 229,
+        "right": 1051,
+        "width": 822
+      },
+      "footer": {
+        "top": 1333,
+        "bottom": 1457,
+        "height": 124,
+        "left": 229,
+        "right": 1051,
+        "width": 822
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

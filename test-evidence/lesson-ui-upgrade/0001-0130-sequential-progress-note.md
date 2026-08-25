@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **54 of 130 lessons completed; 76 pending.**
+Dedicated rebuild target: **55 of 130 lessons completed; 75 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -58,6 +58,7 @@ Dedicated rebuild target: **54 of 130 lessons completed; 76 pending.**
 | 0052   |                                   70 LCM | Complete | Dedicated editable pair model with synchronized jump lines, generated multiple lists, native draggable landing candidates, prime-power ladder, least-shared proof, steppers, full controls/practice, and exact 1073x1466 target geometry                       |
 | 0053   |                    71 Divisibility Rules | Complete | Dedicated editable three-digit rule machine with five divisor modes, native draggable digit reordering, rule-specific evidence, exact quotient/remainder verification, working lever, misconception/practice states, and exact 1462x1076 target geometry          |
 | 0054   |                    72 Modular Arithmetic | Complete | Dedicated editable dividend/modulus remainder clock with native draggable cycle positions, calculated quotient/remainder, exact additive and multiplicative decomposition, grouped cycles, live practice, and exact 1072x1466 target geometry                    |
+| 0055   |                         73 Base Systems | Complete | Dedicated editable base/three-digit place-value board with native draggable digit ordering, allowed-digit palette, calculated powers/products/decimal sum, number-line marker, live practice, and exact 1068x1472 target geometry                                  |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -814,3 +815,17 @@ Evidence:
 - `0054-reference.png`
 - `0054-desktop.png`
 - `0054-dedicated-target-validation.json`
+
+## Lesson 73 / Mockup 0055 - Base Systems
+
+Reworked individually against the target mockup with a dedicated `editable-base-three-digit-place-value-board-draggable-digit-order-allowed-digit-palette-calculated-products-decimal-sum-number-line-practice-model`. The three digits and base drive each place power, place value, digit product, allowed-digit list, decimal sum, verified conversion statement, and decimal number-line marker from one lesson-owned calculation model.
+
+The number and base are directly editable with base and digit guards. Each place digit cycles on click and is a native draggable object: dropping one onto another place swaps the digits and immediately recalculates every product and total. The allowed-digit palette edits the selected place, and Start Practice loads the real `101` base-two model. All five lesson tabs change state, and navigation/footer controls use real routes. The shared number adapter only dispatches Lesson 73 to this separate component.
+
+Final 1068x1472 integrated browser validation verifies `110` base 2 has place values 4, 2, 1, products 4, 2, 0, and decimal value 6; cycles the last digit to produce 7; restores it through the palette; changes to base 3; converts `212` to 23; physically drags the first digit onto the second place to produce `122` and 17; applies palette digit 0 to produce `102` and 11; exercises Explain; loads `101` base 2 and verifies 5; then restores the target state and active tab. The final frame matches the target at page x=229-1051 and y=103-1472, hero y=103-351, conversion card y=367-1228, place grid x=256-647 and y=488-881, decimal sum y=953-1020, verification y=1060-1165, side rail x=692-1051 and y=368-1229, navigation y=1247-1311, and footer y=1333-1457. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0055-reference.png`
+- `0055-desktop.png`
+- `0055-dedicated-target-validation.json`

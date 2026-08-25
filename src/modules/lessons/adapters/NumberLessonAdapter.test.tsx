@@ -222,6 +222,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Modulus"');
     expect(html).toContain("Keep the remainder");
   });
+  it("renders lesson 73 as a dedicated base-place conversion board", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 73)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0055"');
+    expect(html).toContain('data-dedicated-lesson="73"');
+    expect(html).toContain('data-object-model="editable-base-three-digit-place-value-board-draggable-digit-order-allowed-digit-palette-calculated-products-decimal-sum-number-line-practice-model"');
+    expect(html).toContain('data-number="110"');
+    expect(html).toContain('data-digits="1,1,0"');
+    expect(html).toContain('data-base="2"');
+    expect(html).toContain('data-place-values="4,2,1"');
+    expect(html).toContain('data-products="4,2,0"');
+    expect(html).toContain('data-decimal="6"');
+    expect(html).toContain('aria-label="Digit 1: 1"');
+    expect(html).toContain('aria-label="Base-system number"');
+    expect(html).toContain("Every digit must be less than the base");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
