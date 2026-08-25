@@ -104,6 +104,32 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain('aria-label="sin 45 degrees"');
   });
 
+  it("renders lesson 261 as a dedicated linked sine-function workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 261)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0318"');
+    expect(html).toContain('data-dedicated-lesson="261"');
+    expect(html).toContain(
+      'data-object-model="linked-unit-circle-transformable-sine-function-model"',
+    );
+    expect(html).toContain('data-amplitude="1.000"');
+    expect(html).toContain('data-period="6.283185"');
+    expect(html).toContain('data-testid="sine-unit-circle-handle"');
+    expect(html).toContain('data-testid="sine-main-graph-handle"');
+    expect(html).toContain('aria-label="Amplitude A"');
+    expect(html).toContain('aria-label="Period factor B"');
+    expect(html).toContain("Everything is in sync");
+    expect(html).toContain("Practice Challenge");
+    expect(html).toContain('aria-label="Practice C"');
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(

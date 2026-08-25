@@ -1,6 +1,6 @@
 # Transformations and Loci target batch 0293-0320
 
-Dedicated rebuild target: **55 of 130 lessons completed; 75 pending.**
+Dedicated rebuild target: **56 of 130 lessons completed; 74 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -29,6 +29,7 @@ Dedicated rebuild target: **55 of 130 lessons completed; 75 pending.**
 | 0315 | 258 Unit Circle | `linked-unit-circle-point-projection-coordinate-identity` | Reworked individually and browser-validated |
 | 0316 | 259 Right-Triangle Ratios | `axis-aligned-right-triangle-dependent-vertex-ratio-model` | Reworked individually and browser-validated |
 | 0317 | 260 Exact Trig Values | `snapped-special-angle-linked-circle-triangle-exact-value-model` | Reworked individually and browser-validated |
+| 0318 | 261 Sine Graph | `linked-unit-circle-transformable-sine-function-model` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -356,3 +357,16 @@ Evidence:
 
 - `0317-desktop.png`
 - `0317-dedicated-target-validation.json`
+
+## Lesson 261 / Mockup 0318 - Sine Graph
+
+Reworked individually against the target mockup with a dedicated `linked-unit-circle-transformable-sine-function-model`. One angle state drives the draggable unit-circle endpoint, vertical sine projection, current-angle card, synchronized point on the sine graph, slider, degree/radian readout, and live sine value. Dragging either the circle point or graph point updates the same angle from SVG coordinates. Play, pause, restart, and reset operate on that state rather than decorative animation.
+
+The transformation model owns amplitude A, period factor B, phase shift C, and vertical shift D for `y = A sin(B(x − C)) + D`. Four real sliders regenerate the plotted curve and derive amplitude, period, phase shift, vertical shift, range, current value, and equation. Restore Defaults, language selection, sharing, workspace focus, fullscreen graph, worked transformation, sine/cosine comparison, and adjacent navigation are functional. The independent practice graph updates from editable A/B/C/D fields, accepts symbolic `−π/4` or `-pi/4`, and validates incorrect and corrected paths.
+
+Final 878x1792 browser validation physically drags the unit-circle point to π/2 and proves the linked sine value reaches 1; physically drags the sine-graph point and proves the circle angle follows; sets A=2, B=2, C=π/3, D=1 and verifies amplitude 2, period π, phase shift π/3, vertical shift 1, and the transformed current value; runs and pauses the animation; follows incorrect and corrected practice paths; and resets the complete surface. The screenshot loop preserves the target's 198px desktop sidebar at its 878px viewport, removes the conflicting mobile dock, aligns the circle and graph frames, and places the sync, transform, practice, and navigation bands exactly at y=241, 718, 1532, and 1731. It reports no overflow or console messages.
+
+Evidence:
+
+- `0318-desktop.png`
+- `0318-dedicated-target-validation.json`

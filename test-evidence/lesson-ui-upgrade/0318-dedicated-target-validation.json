@@ -1,0 +1,112 @@
+{
+  "mockup": "0318",
+  "lessonId": 261,
+  "route": "/lessons/trigonometry/261-sine-graph",
+  "reference": "0318-interactive-intermediate-advanced-trigonometry-sine-graph-redesigned.png",
+  "objectModel": "linked-unit-circle-transformable-sine-function-model",
+  "checks": {
+    "initial": {
+      "theta": 1.047198,
+      "currentY": 0.866025,
+      "amplitude": 1,
+      "period": 6.283185,
+      "phaseShift": 0,
+      "verticalShift": 0,
+      "playing": false,
+      "practiceResult": "correct"
+    },
+    "circleDrag": {
+      "theta": 1.566611,
+      "currentY": 0.999991,
+      "amplitude": 1,
+      "period": 6.283185,
+      "phaseShift": 0,
+      "verticalShift": 0,
+      "playing": false,
+      "practiceResult": "correct"
+    },
+    "graphDrag": {
+      "theta": 3.528867,
+      "currentY": -0.377666,
+      "amplitude": 1,
+      "period": 6.283185,
+      "phaseShift": 0,
+      "verticalShift": 0,
+      "playing": false,
+      "practiceResult": "correct"
+    },
+    "transformed": {
+      "theta": 3.528867,
+      "currentY": -0.937354,
+      "amplitude": 2,
+      "period": 3.141593,
+      "phaseShift": 1.047198,
+      "verticalShift": 1,
+      "playing": false,
+      "practiceResult": "correct"
+    },
+    "animation": {
+      "theta": 3.808867,
+      "currentY": -0.37762,
+      "amplitude": 2,
+      "period": 3.141593,
+      "phaseShift": 1.047198,
+      "verticalShift": 1,
+      "playing": false,
+      "practiceResult": "correct"
+    },
+    "incorrect": {
+      "theta": 3.808867,
+      "currentY": -0.37762,
+      "amplitude": 2,
+      "period": 3.141593,
+      "phaseShift": 1.047198,
+      "verticalShift": 1,
+      "playing": false,
+      "practiceResult": "incorrect"
+    },
+    "correct": {
+      "theta": 3.808867,
+      "currentY": -0.37762,
+      "amplitude": 2,
+      "period": 3.141593,
+      "phaseShift": 1.047198,
+      "verticalShift": 1,
+      "playing": false,
+      "practiceResult": "correct"
+    },
+    "reset": {
+      "theta": 1.047198,
+      "currentY": 0.866025,
+      "amplitude": 1,
+      "period": 6.283185,
+      "phaseShift": 0,
+      "verticalShift": 0,
+      "playing": false,
+      "practiceResult": "correct"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 878,
+      "height": 1792
+    },
+    "document": {
+      "width": 878,
+      "height": 1937
+    },
+    "horizontalOverflow": false,
+    "surfaceTop": 94,
+    "surfaceBottom": 1782,
+    "syncTop": 241,
+    "syncBottom": 708,
+    "transformTop": 718,
+    "transformBottom": 1033,
+    "practiceTop": 1532,
+    "practiceBottom": 1723,
+    "navTop": 1731,
+    "navBottom": 1783
+  },
+  "consoleMessages": [],
+  "passed": true
+}

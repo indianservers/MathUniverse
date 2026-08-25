@@ -31,6 +31,7 @@ import AngleMeasurementTargetLesson257 from "./AngleMeasurementTargetLesson257";
 import UnitCircleTargetLesson258 from "./UnitCircleTargetLesson258";
 import RightTriangleRatiosTargetLesson259 from "./RightTriangleRatiosTargetLesson259";
 import ExactTrigValuesTargetLesson260 from "./ExactTrigValuesTargetLesson260";
+import SineGraphTargetLesson261 from "./SineGraphTargetLesson261";
 
 type TrigKind =
   "circle" | "graph" | "triangle" | "equation" | "application" | "polar";
@@ -510,6 +511,15 @@ export default function TrigonometryLessonAdapter({
   if (lesson.id === 260) {
     return (
       <ExactTrigValuesTargetLesson260
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 261) {
+    return (
+      <SineGraphTargetLesson261
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
