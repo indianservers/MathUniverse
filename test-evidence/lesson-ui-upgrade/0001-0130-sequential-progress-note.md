@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **11 of 130 lessons completed; 119 pending.**
+Dedicated rebuild target: **12 of 130 lessons completed; 118 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -15,6 +15,7 @@ Dedicated rebuild target: **11 of 130 lessons completed; 119 pending.**
 | 0009   | 9 Exponential Calculations | Complete | Linked base/exponent factor-chain model with real steppers and drag control, animated doubling staircase, growth chart, live concept trace, reset/views, rotating graded practice, and exact 1472x1069 target geometry |
 | 0010   | 10 Trigonometric Calculator | Complete | Dual draggable unit-circle angle model with linked exact-value triangles, DEG/RAD calculations, live sum and trace, special-angle table, reset/views, and rotating graded practice at exact 1068x1472 target geometry |
 | 0011   | 11 Inverse Trigonometry | Complete | Draggable sine-ratio and unit-circle-ray model with calculated principal angle, right triangle, DEG/RAD values, verification, principal range, trace, and independent graded practice at exact 1068x1472 target geometry |
+| 0012   | 12 Hyperbolic Functions | Complete | Draggable x model with exact dual exponentials, continuous linked curves/probes, sinh difference construction, live trace, hyperbola context, views/reset, and rotating reveal practice at exact 1068x1472 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -169,3 +170,17 @@ Evidence:
 - `0011-reference.png`
 - `0011-desktop.png`
 - `0011-dedicated-target-validation.json`
+
+## Lesson 12 / Mockup 0012 - Hyperbolic Functions
+
+Reworked individually against the target mockup with a dedicated `draggable-x-dual-exponential-hyperbolic-sine-difference-trace-practice-model`. The input x drives `e^x`, `e^-x`, both continuous exponential curves and probes, their vertical difference, the defining fraction, `sinh(x)`, decomposition cards, average strip, and concept trace from one calculation model.
+
+The blue x handle is a real bounded range control. Reset, Share, Workspace, every lesson view, answer reveal/hide, and rotating practice problems perform real actions. Negative x values correctly exchange the growing and decaying exponential roles and produce negative hyperbolic sine values.
+
+Final 1068x1472 browser validation drags x to 1.5 and verifies `e^x = 4.482`, `e^-x = 0.223`, and `sinh(x) = 2.129`; drags to -1 and verifies -1.175; resets; switches view; hides the answer; advances practice; and reveals the new result. The final target frame matches at surface x=228-1052 and y=100-1472, header y=100-326, tabs y=336-392, lab y=398-1288, graph y=509-939, practice y=1133-1272, navigation y=1295-1345, and footer y=1355-1466. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0012-reference.png`
+- `0012-desktop.png`
+- `0012-dedicated-target-validation.json`

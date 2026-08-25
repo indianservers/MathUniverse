@@ -1,0 +1,175 @@
+{
+  "mockup": "0012",
+  "lessonId": 12,
+  "route": "/lessons/core-workspaces/12-hyperbolic-functions",
+  "objectModel": "draggable-x-dual-exponential-hyperbolic-sine-difference-trace-practice-model",
+  "checks": {
+    "initial": {
+      "x": "1",
+      "positive": "2.718",
+      "negative": "0.368",
+      "output": "1.175",
+      "actions": "0",
+      "view": "0",
+      "practice": "0",
+      "revealed": "true"
+    },
+    "drag": {
+      "x": "1.5",
+      "positive": "4.482",
+      "negative": "0.223",
+      "output": "2.129",
+      "actions": "1",
+      "view": "0",
+      "practice": "0",
+      "revealed": "true"
+    },
+    "negative": {
+      "x": "-1",
+      "positive": "0.368",
+      "negative": "2.718",
+      "output": "-1.175",
+      "actions": "2",
+      "view": "0",
+      "practice": "0",
+      "revealed": "true"
+    },
+    "reset": {
+      "x": "1",
+      "positive": "2.718",
+      "negative": "0.368",
+      "output": "1.175",
+      "actions": "0",
+      "view": "0",
+      "practice": "0",
+      "revealed": "true"
+    },
+    "view": {
+      "x": "1",
+      "positive": "2.718",
+      "negative": "0.368",
+      "output": "1.175",
+      "actions": "1",
+      "view": "2",
+      "practice": "0",
+      "revealed": "true"
+    },
+    "hidden": {
+      "x": "1",
+      "positive": "2.718",
+      "negative": "0.368",
+      "output": "1.175",
+      "actions": "1",
+      "view": "2",
+      "practice": "0",
+      "revealed": "false"
+    },
+    "problem": {
+      "x": "1",
+      "positive": "2.718",
+      "negative": "0.368",
+      "output": "1.175",
+      "actions": "2",
+      "view": "2",
+      "practice": "1",
+      "revealed": "false"
+    },
+    "revealed": {
+      "x": "1",
+      "positive": "2.718",
+      "negative": "0.368",
+      "output": "1.175",
+      "actions": "2",
+      "view": "2",
+      "practice": "1",
+      "revealed": "true"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1068,
+      "height": 1472
+    },
+    "document": {
+      "width": 1068,
+      "height": 1472
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 100,
+      "bottom": 1472,
+      "height": 1372,
+      "left": 228,
+      "right": 1052,
+      "width": 824
+    },
+    "regions": {
+      "header": {
+        "top": 100,
+        "bottom": 326,
+        "height": 226,
+        "left": 228,
+        "right": 1052,
+        "width": 824
+      },
+      "tabs": {
+        "top": 336,
+        "bottom": 392,
+        "height": 56,
+        "left": 228,
+        "right": 1052,
+        "width": 824
+      },
+      "lab": {
+        "top": 398,
+        "bottom": 1288,
+        "height": 890,
+        "left": 228,
+        "right": 1052,
+        "width": 824
+      },
+      "columns": {
+        "top": 466,
+        "bottom": 1123,
+        "height": 657,
+        "left": 239,
+        "right": 1041,
+        "width": 802
+      },
+      "graph": {
+        "top": 509,
+        "bottom": 939,
+        "height": 430,
+        "left": 248,
+        "right": 823,
+        "width": 575
+      },
+      "practice": {
+        "top": 1133,
+        "bottom": 1272,
+        "height": 139,
+        "left": 239,
+        "right": 1041,
+        "width": 802
+      },
+      "neighbors": {
+        "top": 1295,
+        "bottom": 1345,
+        "height": 50,
+        "left": 228,
+        "right": 1052,
+        "width": 824
+      },
+      "footer": {
+        "top": 1355,
+        "bottom": 1466,
+        "height": 111,
+        "left": 228,
+        "right": 1052,
+        "width": 824
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

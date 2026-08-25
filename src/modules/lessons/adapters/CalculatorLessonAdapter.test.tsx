@@ -209,6 +209,19 @@ describe("CalculatorLessonAdapter", () => {
     expect(html).toContain('aria-label="Draggable inverse sine unit circle"');
     expect(html).toContain('aria-label="Inverse trigonometry practice answer"');
   });
+  it("renders lesson 12 as a dedicated hyperbolic-functions workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 12)!;
+    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="calculator-mockup-0012"');
+    expect(html).toContain('data-dedicated-lesson="12"');
+    expect(html).toContain('data-object-model="draggable-x-dual-exponential-hyperbolic-sine-difference-trace-practice-model"');
+    expect(html).toContain('data-x="1"');
+    expect(html).toContain('data-positive="2.718"');
+    expect(html).toContain('data-negative="0.368"');
+    expect(html).toContain('data-output="1.175"');
+    expect(html).toContain('aria-label="Hyperbolic x drag control"');
+    expect(html).toContain("Average of the difference");
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
@@ -222,7 +235,7 @@ describe("CalculatorLessonAdapter", () => {
       9: "Exponential Growth Lab",
       10: "Special-angle lab",
       11: "Inverse sine lab",
-      12: "Hyperbolic rule",
+      12: "Hyperbolic sine using exponentials",
       13: "Counting rule",
       14: "Absolute value",
       15: "Precision rule",
@@ -261,7 +274,7 @@ describe("CalculatorLessonAdapter", () => {
       9: "Repeated multiplication",
       10: "Concept trace",
       11: "Inverse sine: ratio to principal angle",
-      12: "Hyperbolic exponential formula",
+      12: "Definition",
       13: "Counting choices trace",
       14: "Distance from zero",
       15: "Exact value to rounded report",

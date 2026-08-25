@@ -1,0 +1,598 @@
+.target-hyper-page {
+  position: relative;
+  top: -32px;
+  width: 824px;
+  height: 1372px;
+  margin-bottom: -34px;
+  color: #0a1740;
+  font-size: 9px;
+  letter-spacing: 0;
+}
+.target-hyper-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.target-hyper-page h1,
+.target-hyper-page h2,
+.target-hyper-page h3,
+.target-hyper-page h4,
+.target-hyper-page p {
+  margin: 0;
+}
+.target-hyper-page button,
+.target-hyper-page input {
+  font: inherit;
+  color: inherit;
+}
+.target-hyper-page button {
+  cursor: pointer;
+}
+.hyper-breadcrumb {
+  position: absolute;
+  top: -38px;
+  left: 0;
+  display: flex;
+  height: 28px;
+  align-items: center;
+  gap: 9px;
+  color: #526785;
+  font-weight: 800;
+}
+.hyper-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.hyper-breadcrumb a:first-child {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+.hyper-breadcrumb b {
+  color: #087e9a;
+}
+.hyper-header,
+.hyper-tabs,
+.hyper-lab,
+.hyper-neighbors a,
+.hyper-footer {
+  border: 1px solid #d8e3ed;
+  border-radius: 14px;
+  background: #fff;
+}
+.hyper-header {
+  height: 226px;
+  padding: 18px;
+}
+.hyper-header h1 {
+  font-size: 31px;
+  line-height: 36px;
+  font-weight: 900;
+}
+.hyper-header > p {
+  margin-top: 5px;
+  color: #536784;
+  font-size: 12px;
+}
+.hyper-header > section {
+  display: flex;
+  gap: 8px;
+  margin-top: 11px;
+}
+.hyper-header > section b {
+  border: 1px solid #d8e3ed;
+  border-radius: 14px;
+  padding: 6px 10px;
+}
+.hyper-header > nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 11px;
+}
+.hyper-header button {
+  height: 39px;
+  border: 1px solid #d8e3ed;
+  border-radius: 10px;
+  background: #fff;
+  padding: 0 14px;
+}
+.hyper-header nav button:first-child {
+  width: 212px;
+  text-align: left;
+}
+.hyper-header svg {
+  width: 13px;
+  vertical-align: middle;
+}
+.hyper-header > button {
+  margin-top: 7px;
+}
+.hyper-tabs {
+  display: grid;
+  height: 56px;
+  grid-template-columns: 1.35fr repeat(4, 1fr);
+  margin-top: 10px;
+  padding: 7px;
+}
+.hyper-tabs button {
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+}
+.hyper-tabs .active {
+  border-radius: 9px;
+  background: #079db8;
+  color: #fff;
+}
+.hyper-lab {
+  height: 890px;
+  margin-top: 6px;
+  padding: 10px;
+}
+.hyper-lab > header {
+  position: relative;
+  height: 57px;
+}
+.hyper-lab > header small {
+  color: #07839d;
+  font-weight: 900;
+}
+.hyper-lab > header h2 {
+  margin-top: 7px;
+  font-size: 18px;
+}
+.hyper-lab > header > div {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  gap: 8px;
+}
+.hyper-lab > header > div > * {
+  display: flex;
+  height: 32px;
+  align-items: center;
+  border: 1px solid #d8e3ed;
+  border-radius: 17px;
+  background: #fff;
+  padding: 0 12px;
+}
+.hyper-lab > header > div b {
+  gap: 7px;
+}
+.hyper-lab > header > div b i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #20a957;
+}
+.hyper-lab > header > div button {
+  width: 33px;
+  border-radius: 8px;
+  padding: 0;
+  justify-content: center;
+}
+.hyper-lab > header svg {
+  width: 13px;
+}
+.hyper-columns {
+  display: grid;
+  height: 657px;
+  grid-template-columns: 1fr 199px;
+  gap: 10px;
+}
+.hyper-columns > main {
+  border: 1px solid #d8e3ed;
+  border-radius: 9px;
+  padding: 8px;
+}
+.hyper-instruction {
+  height: 34px;
+  border-radius: 7px;
+  background: #f6f8fa;
+  padding: 10px;
+}
+.hyper-instruction > b {
+  color: #087eae;
+}
+.hyper-instruction span {
+  float: right;
+  border-radius: 10px;
+  background: #eee7fb;
+  padding: 3px 9px;
+  color: #502879;
+  font-weight: 900;
+}
+.hyper-graph {
+  position: relative;
+  height: 430px;
+}
+.hyper-graph svg {
+  width: 100%;
+  height: 350px;
+}
+.hyper-graph svg line {
+  stroke: #0a1740;
+  stroke-width: 1;
+}
+.hyper-graph svg .guide {
+  stroke: #92a5bb;
+  stroke-dasharray: 5 4;
+}
+.hyper-graph svg .graph-grid {
+  stroke: #b8c5d5;
+  stroke-dasharray: 5 4;
+}
+.hyper-graph svg .difference {
+  stroke: #0a1740;
+  stroke-width: 2;
+}
+.hyper-graph polyline {
+  fill: none;
+  stroke-width: 3;
+}
+.hyper-graph .positive {
+  stroke: #08a6c0;
+}
+.hyper-graph .negative {
+  stroke: #8c45e8;
+}
+.hyper-graph circle {
+  fill: #fff;
+  stroke-width: 3;
+}
+.positive-dot {
+  stroke: #08a6c0;
+}
+.negative-dot {
+  stroke: #8c45e8;
+}
+.hyper-graph text {
+  fill: #0793ad;
+  font-size: 14px;
+  font-weight: 900;
+}
+.hyper-graph text.violet {
+  fill: #8b3fe4;
+}
+.hyper-graph text.axis-label {
+  fill: #526784;
+  font-size: 9px;
+}
+.hyper-graph text.difference-label {
+  fill: #0a1740;
+  font-size: 19px;
+}
+.hyper-formula {
+  position: absolute;
+  left: 150px;
+  top: 18px;
+  border-radius: 9px;
+  background: #fff;
+  padding: 14px 18px;
+  box-shadow: 0 5px 18px rgb(15 23 42/0.12);
+  font-size: 19px;
+  font-weight: 900;
+}
+.hyper-formula span {
+  font-family: serif;
+}
+.hyper-formula b {
+  color: #f36b16;
+  font-size: 24px;
+}
+.hyper-graph input {
+  position: absolute;
+  left: 6%;
+  right: 4%;
+  bottom: 39px;
+  width: 90%;
+  opacity: 0.04;
+  accent-color: #168ee7;
+}
+.hyper-graph > label {
+  position: absolute;
+  bottom: 22px;
+  transform: translateX(-50%);
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #168ee7;
+  color: #fff;
+  font-size: 17px;
+  box-shadow: 0 0 0 1px #91bfee;
+}
+.hyper-graph > label small {
+  position: absolute;
+  top: 44px;
+  border: 1px solid #b9d7f6;
+  border-radius: 6px;
+  background: #f1f8ff;
+  padding: 7px 10px;
+  color: #116fd3;
+  white-space: nowrap;
+  font-size: 11px;
+}
+.hyper-values {
+  display: grid;
+  height: 99px;
+  grid-template-columns: 1fr 23px 1fr;
+  align-items: center;
+  gap: 8px;
+}
+.hyper-values article {
+  height: 99px;
+  border: 1px solid #bde1e8;
+  border-radius: 9px;
+  background: #f4fcfd;
+  padding: 12px;
+  text-align: center;
+  color: #078da8;
+}
+.hyper-values article:last-child {
+  border-color: #dfcff2;
+  background: #faf7ff;
+  color: #812ed5;
+}
+.hyper-values article > b {
+  font-size: 13px;
+}
+.hyper-values article strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 19px;
+}
+.hyper-values article p {
+  margin-top: 8px;
+  font-weight: 800;
+}
+.hyper-values > i {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  transform: translateX(-6px);
+  border: 1px solid #d8e3ed;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 16px;
+  font-style: normal;
+}
+.hyper-average {
+  height: 53px;
+  margin-top: 12px;
+  border: 1px solid #f3d7a0;
+  border-radius: 9px;
+  background: #fffaf0;
+  padding: 13px;
+  text-align: center;
+  font-size: 13px;
+}
+.hyper-average span {
+  margin: 0 10px;
+  font-family: serif;
+  font-size: 17px;
+}
+.hyper-average b {
+  color: #ef6917;
+  font-size: 17px;
+}
+.hyper-trace {
+  height: 657px;
+  border: 1px solid #d8e3ed;
+  border-radius: 9px;
+}
+.hyper-trace > h3 {
+  height: 36px;
+  border-bottom: 1px solid #d8e3ed;
+  padding: 13px 18px;
+  color: #087f9b;
+}
+.hyper-trace > section:not(.hyper-why) {
+  min-height: 71px;
+  border-bottom: 1px solid #d8e3ed;
+  padding: 12px 18px;
+}
+.hyper-trace > section h4 {
+  font-size: 10px;
+}
+.hyper-trace > section > b {
+  display: block;
+  margin-top: 10px;
+  font-family: serif;
+  font-size: 12px;
+}
+.hyper-trace > section p {
+  margin-top: 8px;
+  color: #536784;
+}
+.hyper-trace > section.orange b {
+  color: #ef6917;
+  font-size: 17px;
+}
+.hyper-why {
+  height: 251px;
+  padding: 15px;
+}
+.hyper-why h3 {
+  color: #087f9b;
+  font-size: 13px;
+}
+.hyper-why p {
+  margin-top: 8px;
+  line-height: 14px;
+}
+.hyper-why svg {
+  width: 100%;
+  height: 170px;
+}
+.hyper-why line {
+  stroke: #0a1740;
+}
+.hyper-why path {
+  fill: none;
+  stroke: #1689ed;
+  stroke-width: 1.5;
+}
+.hyper-why text {
+  font-size: 12px;
+  font-weight: 900;
+}
+.hyper-practice {
+  height: 139px;
+  margin-top: 10px;
+  border-top: 1px solid #d8e3ed;
+  padding-top: 13px;
+}
+.hyper-practice > header {
+  height: 34px;
+}
+.hyper-practice h3 {
+  font-size: 13px;
+}
+.hyper-practice > header button {
+  float: right;
+  margin-top: -21px;
+  height: 30px;
+  border: 1px solid #d8e3ed;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 12px;
+}
+.hyper-practice svg {
+  width: 13px;
+  vertical-align: middle;
+}
+.hyper-practice > div {
+  display: grid;
+  height: 97px;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 10px;
+}
+.hyper-practice article {
+  position: relative;
+  border: 1px solid #d8e3ed;
+  border-radius: 8px;
+  padding: 12px;
+}
+.hyper-practice article:last-child {
+  border-color: #bde6df;
+  background: #f4fcfb;
+}
+.hyper-practice small {
+  display: block;
+  color: #687b96;
+}
+.hyper-practice article > b {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+}
+.hyper-practice article > button {
+  margin-top: 12px;
+  height: 27px;
+  border: 1px solid #d8e3ed;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 10px;
+}
+.hyper-practice article:last-child > b {
+  color: #149244;
+  font-size: 17px;
+}
+.hyper-practice article:last-child p {
+  margin-top: 10px;
+}
+.hyper-practice article:last-child > svg {
+  position: absolute;
+  right: 12px;
+  top: 15px;
+  color: #149244;
+}
+.hyper-neighbors {
+  display: grid;
+  height: 50px;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 7px;
+}
+.hyper-neighbors a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  color: inherit;
+  text-decoration: none;
+}
+.hyper-neighbors a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.hyper-neighbors small {
+  display: block;
+  font-size: 7px;
+}
+.hyper-footer {
+  height: 111px;
+  margin-top: 10px;
+  padding: 17px 14px;
+}
+.hyper-footer b {
+  font-size: 12px;
+}
+.hyper-footer p {
+  margin-top: 9px;
+  color: #536784;
+}
+.hyper-footer:after {
+  content: "© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.";
+  display: block;
+  margin-top: 22px;
+  border-top: 1px solid #d8e3ed;
+  padding-top: 10px;
+  color: #687a95;
+  font-size: 7px;
+}
+@media (min-width: 900px) and (max-width: 1279px) {
+  body:has(.target-hyper-page) [data-testid="desktop-sidebar"] {
+    width: 211px;
+  }
+  body:has(.target-hyper-page) .app-layout-rail > div > header {
+    height: 53px;
+  }
+  body:has(.target-hyper-page) #main-content {
+    padding: 47px 15px 0 17px;
+    overflow: hidden;
+    background: #fff;
+  }
+  body:has(.target-hyper-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+}
+@media (max-width: 899px) {
+  .target-hyper-page {
+    top: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .hyper-header,
+  .hyper-lab {
+    height: auto;
+  }
+  .hyper-columns {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .hyper-trace {
+    height: auto;
+  }
+  .hyper-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+}
