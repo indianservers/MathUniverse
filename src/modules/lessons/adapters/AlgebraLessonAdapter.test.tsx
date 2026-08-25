@@ -15,7 +15,7 @@ describe("AlgebraLessonAdapter", () => {
       25: "Teach construction hierarchy",
       26: "Create responsive interactive lessons",
       27: "Track changing mathematical information",
-      28: "Input syntax",
+      28: "Construct objects from notation",
       29: "Redefinition rule",
       30: "Equation input",
       31: "Inequality input",
@@ -158,6 +158,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('data-distance="3.61"');
     expect(html).toContain('aria-label="Draggable point P with dynamic label"');
     expect(html).toContain("Labels should read linked values, not fixed text");
+  });
+
+  it("renders lesson 28 as a dedicated parsed algebraic input workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 28)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0028"');
+    expect(html).toContain('data-dedicated-lesson="28"');
+    expect(html).toContain('data-object-model="parsed-function-syntax-validation-sampled-graph-root-vertex-key-point-model"');
+    expect(html).toContain('data-valid="true"');
+    expect(html).toContain('data-name="f"');
+    expect(html).toContain('data-variable="x"');
+    expect(html).toContain('aria-label="Algebra function input"');
+    expect(html).toContain("Validation checklist");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {

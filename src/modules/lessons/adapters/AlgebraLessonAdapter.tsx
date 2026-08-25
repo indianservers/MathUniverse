@@ -15,6 +15,7 @@ import AnimationControlsTargetLesson24 from "./AnimationControlsTargetLesson24";
 import DependentObjectsTargetLesson25 from "./DependentObjectsTargetLesson25";
 import ConditionalVisibilityTargetLesson26 from "./ConditionalVisibilityTargetLesson26";
 import DynamicLabelsTargetLesson27 from "./DynamicLabelsTargetLesson27";
+import AlgebraicInputTargetLesson28 from "./AlgebraicInputTargetLesson28";
 
 const viewport: GraphViewport = { xMin: -10, xMax: 10, yMin: -10, yMax: 10, width: 640, height: 360 };
 
@@ -45,6 +46,9 @@ export default function AlgebraLessonAdapter({ lesson, resetToken, onInteraction
   }
   if (lesson.id === 27) {
     return <DynamicLabelsTargetLesson27 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 28) {
+    return <AlgebraicInputTargetLesson28 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.categorySlug === "core-workspaces" && lesson.id >= 19 && lesson.id <= 38) {
     return <RedesignedCoreAlgebraLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

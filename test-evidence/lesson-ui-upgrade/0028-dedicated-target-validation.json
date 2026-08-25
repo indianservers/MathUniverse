@@ -1,0 +1,176 @@
+{
+  "mockup": "0028",
+  "lessonId": 28,
+  "route": "/lessons/core-workspaces/28-algebraic-input",
+  "objectModel": "parsed-function-syntax-validation-sampled-graph-root-vertex-key-point-model",
+  "checks": {
+    "initial": {
+      "valid": "true",
+      "name": "f",
+      "variable": "x",
+      "expression": "x^2 - 4",
+      "graph-count": "0",
+      "editing": "false",
+      "actions": "0"
+    },
+    "linear": {
+      "valid": "true",
+      "name": "g",
+      "variable": "x",
+      "expression": "2*x + 1",
+      "graph-count": "0",
+      "editing": "true",
+      "actions": "1"
+    },
+    "invalid": {
+      "valid": "false",
+      "name": "g",
+      "variable": "x",
+      "expression": "2**",
+      "graph-count": "0",
+      "editing": "true",
+      "actions": "2"
+    },
+    "clear": {
+      "valid": "false",
+      "name": "",
+      "variable": "",
+      "expression": "",
+      "graph-count": "0",
+      "editing": "true",
+      "actions": "3"
+    },
+    "variable": {
+      "valid": "true",
+      "name": "h",
+      "variable": "t",
+      "expression": "t^2 + 1",
+      "graph-count": "0",
+      "editing": "true",
+      "actions": "4"
+    },
+    "created": {
+      "valid": "true",
+      "name": "h",
+      "variable": "t",
+      "expression": "t^2 + 1",
+      "graph-count": "1",
+      "editing": "false",
+      "actions": "5"
+    },
+    "editing": {
+      "valid": "true",
+      "name": "h",
+      "variable": "t",
+      "expression": "t^2 + 1",
+      "graph-count": "1",
+      "editing": "true",
+      "actions": "6"
+    },
+    "shared": {
+      "valid": "true",
+      "name": "h",
+      "variable": "t",
+      "expression": "t^2 + 1",
+      "graph-count": "1",
+      "editing": "true",
+      "actions": "7"
+    },
+    "reset": {
+      "valid": "true",
+      "name": "f",
+      "variable": "x",
+      "expression": "x^2 - 4",
+      "graph-count": "0",
+      "editing": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1227,
+      "height": 1294
+    },
+    "document": {
+      "width": 1227,
+      "height": 1294
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 120,
+      "bottom": 1280,
+      "height": 1160,
+      "left": 263,
+      "right": 1194,
+      "width": 931
+    },
+    "regions": {
+      "card": {
+        "top": 120,
+        "bottom": 1116,
+        "height": 996,
+        "left": 263,
+        "right": 1194,
+        "width": 931
+      },
+      "header": {
+        "top": 138,
+        "bottom": 256,
+        "height": 118,
+        "left": 281,
+        "right": 1176,
+        "width": 895
+      },
+      "entry": {
+        "top": 256,
+        "bottom": 413,
+        "height": 157,
+        "left": 281,
+        "right": 1176,
+        "width": 895
+      },
+      "main": {
+        "top": 428,
+        "bottom": 1034,
+        "height": 606,
+        "left": 281,
+        "right": 1176,
+        "width": 895
+      },
+      "graph": {
+        "top": 637.5,
+        "bottom": 917.5,
+        "height": 280,
+        "left": 298,
+        "right": 799,
+        "width": 501
+      },
+      "side": {
+        "top": 428,
+        "bottom": 1034,
+        "height": 606,
+        "left": 828,
+        "right": 1175,
+        "width": 347
+      },
+      "neighbors": {
+        "top": 1046,
+        "bottom": 1101,
+        "height": 55,
+        "left": 281,
+        "right": 1176,
+        "width": 895
+      },
+      "footer": {
+        "top": 1133,
+        "bottom": 1279,
+        "height": 146,
+        "left": 263,
+        "right": 1194,
+        "width": 931
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

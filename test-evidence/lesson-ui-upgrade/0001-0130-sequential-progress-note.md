@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **27 of 130 lessons completed; 103 pending.**
+Dedicated rebuild target: **28 of 130 lessons completed; 102 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -31,6 +31,7 @@ Dedicated rebuild target: **27 of 130 lessons completed; 103 pending.**
 | 0025   | 25 Dependent and Independent Objects | Complete | Two draggable/steppable parent points with derived segment, midpoint, Euclidean length, locked child fields, stacked midpoint formula, dependency hierarchy, and exact 1369x1132 target geometry |
 | 0026   | 26 Conditional Visibility | Complete | Editable Boolean condition with two synchronized x sliders, six operators, boundary inputs, number-line truth regions, visible/hidden object states, before/after proof, views/actions, and exact 1324x1188 target geometry |
 | 0027   | 27 Dynamic Labels | Complete | Draggable point with linked x/y fields, steppers and ranges, calculated distance, three token templates, coordinate/distance/projection toggles, live proof and preview, and exact 1227x1294 target geometry |
+| 0028   | 28 Algebraic Input | Complete | Parsed function model with editable notation, immediate syntax validation, live Nerdamer evaluation, sampled graph, calculated roots/vertex/intercept/key points, real create/edit/clear/share/reset controls, and exact 1227x1294 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -409,3 +410,17 @@ Evidence:
 - `0027-reference.png`
 - `0027-desktop.png`
 - `0027-dedicated-target-validation.json`
+
+## Lesson 28 / Mockup 0028 - Algebraic Input
+
+Reworked individually against the target mockup with a dedicated `parsed-function-syntax-validation-sampled-graph-root-vertex-key-point-model`. The editable function notation is parsed into name, variable, and operation; Nerdamer evaluates the expression; and one sampled mathematical model drives the preview curve, roots, vertex, y-intercept, key-point values, structure pills, and validation checklist.
+
+The input accepts real keyboard editing and reports malformed notation, unsupported symbols, unbalanced parentheses, inconsistent variables, and evaluation failures. Clear, Create graph, Edit input, Share, Reset, language, footer, and navigation controls all perform real actions or navigation. The initial display typesets powers to match the mockup while retaining an accessible editable input underneath; the mockup has no point-drag interaction, so no artificial drag control was added.
+
+Final 1227x1294 integrated browser validation replaces the quadratic with `g(x) = 2*x + 1`; rejects `g(x) = 2**`; clears the model; parses and evaluates `h(t) = t^2 + 1`; creates its graph; returns to editing; shares the current expression; and resets to `f(x) = x^2 - 4`. The final frame matches the target at surface x=263-1194 and y=120-1280, lesson card y=120-1116, header y=138-256, input y=256-413, main workspace y=428-1034, graph x=298-799 and y=637.5-917.5, side rail x=828-1175, navigation y=1046-1101, and footer y=1133-1279. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0028-reference.png`
+- `0028-desktop.png`
+- `0028-dedicated-target-validation.json`
