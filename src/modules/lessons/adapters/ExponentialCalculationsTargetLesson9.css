@@ -1,0 +1,636 @@
+.target-exponential-page {
+  position: relative;
+  top: -18px;
+  width: 1178px;
+  height: 938px;
+  margin-bottom: -18px;
+  color: #0a1740;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+.target-exponential-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.target-exponential-page h1,
+.target-exponential-page h2,
+.target-exponential-page h3,
+.target-exponential-page p {
+  margin: 0;
+}
+.target-exponential-page button,
+.target-exponential-page input {
+  font: inherit;
+  color: inherit;
+}
+.target-exponential-page button {
+  cursor: pointer;
+}
+.target-exponential-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 902px) 267px;
+  gap: 9px;
+  height: 938px;
+}
+.target-exponential-columns > main {
+  min-width: 0;
+}
+.target-exponential-header {
+  height: 120px;
+  border: 1px solid #d7e2ed;
+  border-radius: 13px;
+  background: #fff;
+  padding: 12px 15px;
+  position: relative;
+}
+.target-exponential-header h1 {
+  font-size: 35px;
+  line-height: 40px;
+  font-weight: 850;
+}
+.target-exponential-header > p {
+  color: #536887;
+  font-size: 14px;
+}
+.target-exponential-header > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 9px;
+}
+.target-exponential-header > div b {
+  padding: 5px 11px;
+  border: 1px solid #d7e2ed;
+  border-radius: 14px;
+}
+.target-exponential-header nav {
+  position: absolute;
+  right: 14px;
+  top: 40px;
+  display: flex;
+  gap: 8px;
+}
+.target-exponential-header nav button {
+  height: 36px;
+  border: 1px solid #d7e2ed;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+}
+.target-exponential-header svg {
+  width: 14px;
+}
+.target-exponential-tabs {
+  height: 36px;
+  margin-top: 8px;
+  border: 1px solid #d7e2ed;
+  border-radius: 11px;
+  background: #fff;
+  padding: 3px 12px;
+  display: grid;
+  grid-template-columns: 210px repeat(4, 1fr);
+}
+.target-exponential-tabs button {
+  border: 0;
+  background: transparent;
+  font-weight: 750;
+}
+.target-exponential-tabs button.active {
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(100deg, #07a6b9, #059cbb);
+}
+.exponential-lab {
+  height: 615px;
+  margin-top: 6px;
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  background: #fff;
+  padding: 12px 15px;
+}
+.exponential-lab > h2 {
+  height: 33px;
+  font-size: 18px;
+}
+.exponential-summary {
+  height: 98px;
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 9px;
+}
+.exponential-summary > section,
+.exponential-summary > aside {
+  border: 1px solid #d7e2ed;
+  border-radius: 8px;
+  padding: 11px 14px;
+}
+.exponential-summary h3 {
+  font-size: 12px;
+}
+.exponential-summary section > div {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.exponential-summary section span {
+  display: flex;
+  align-items: center;
+}
+.exponential-summary section span b {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #9d64e5;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #6b28ca;
+  font-size: 16px;
+}
+.exponential-summary section span i {
+  margin: 0 8px;
+  font-style: normal;
+}
+.exponential-summary section p {
+  text-align: center;
+  font-weight: 750;
+}
+.exponential-summary > aside {
+  display: grid;
+  place-items: center;
+}
+.exponential-summary aside b {
+  font-size: 35px;
+  color: #6025ca;
+}
+.exponential-summary aside strong {
+  margin-top: -15px;
+  color: #f01818;
+  font-size: 18px;
+}
+.exponential-controls {
+  height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.exponential-controls > section {
+  width: 180px;
+  height: 58px;
+  border: 1px solid #d7e2ed;
+  border-radius: 9px;
+  padding: 8px 12px;
+}
+.exponential-controls > section > b {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #078ca5;
+}
+.exponential-controls > section:nth-child(2) > b {
+  color: #722bd0;
+}
+.exponential-controls > section svg {
+  width: 12px;
+}
+.exponential-controls > section > div {
+  display: grid;
+  grid-template-columns: 35px 1fr 35px;
+  margin-top: 4px;
+}
+.exponential-controls > section button {
+  border: 0;
+  background: #f4f6f8;
+  font-size: 17px;
+}
+.exponential-controls > section strong {
+  text-align: center;
+  font-size: 14px;
+}
+.exponential-controls > button {
+  height: 36px;
+  border: 1px solid #b6d5f1;
+  border-radius: 8px;
+  background: #fff;
+  color: #087eae;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+}
+.exponential-controls > button svg {
+  width: 14px;
+}
+.stair-title,
+.growth-title {
+  height: 29px;
+  font-size: 13px;
+}
+.exponential-staircase {
+  height: 105px;
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid #6e2bd0;
+}
+.exponential-staircase > div {
+  flex: 1;
+  min-width: 0;
+  border: 2px solid #8133dc;
+  border-left: 0;
+  background: linear-gradient(180deg, #fff5ef, #f3eafa);
+  position: relative;
+  opacity: 0.22;
+  transition: opacity 0.2s;
+}
+.exponential-staircase > div.shown {
+  opacity: 1;
+}
+.exponential-staircase > div > b {
+  position: absolute;
+  top: -23px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.exponential-staircase > div > span {
+  position: absolute;
+  bottom: -29px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: serif;
+  font-size: 17px;
+  color: #2b166d;
+}
+.exponential-staircase > div > i {
+  position: absolute;
+  z-index: 1;
+  top: -45px;
+  right: -13px;
+  width: 74%;
+  height: 24px;
+  border-top: 1px dashed #9b3cdb;
+  border-radius: 50%;
+  color: #7626c8;
+  font-style: normal;
+  font-weight: 800;
+  text-align: center;
+}
+.exponential-staircase strong {
+  position: absolute;
+  right: 0;
+  top: -42px;
+  color: #f36a0a;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.exponential-staircase strong svg {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 50%;
+  color: #fff;
+  background: #f4a10a;
+}
+.exponential-drag {
+  height: 58px;
+  margin-top: 30px;
+  border: 1px dashed #9c4de1;
+  border-radius: 6px;
+  padding: 7px 13px;
+  position: relative;
+}
+.exponential-drag > b {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+.exponential-drag > input {
+  position: absolute;
+  left: 13px;
+  right: 13px;
+  top: 25px;
+  width: calc(100% - 26px);
+  opacity: 0;
+  z-index: 2;
+  cursor: ew-resize;
+}
+.exponential-drag > div {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+.exponential-drag button {
+  height: 27px;
+  border: 1px dashed #a25de0;
+  border-radius: 5px;
+  background: #fff;
+  color: #5421bb;
+}
+.exponential-drag button.active {
+  color: #fff;
+  background: #772ed3;
+}
+.growth-title {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.growth-title small {
+  font-weight: 500;
+}
+.exponential-chart {
+  height: 128px;
+  display: flex;
+  align-items: flex-end;
+  border-left: 1px solid #b8c5d5;
+  border-bottom: 1px solid #b8c5d5;
+  padding: 0 10px;
+}
+.exponential-chart > div {
+  height: 115px;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  opacity: 0.2;
+  transition: opacity 0.2s;
+}
+.exponential-chart > div.shown {
+  opacity: 1;
+}
+.exponential-chart i {
+  width: 58%;
+  min-height: 5px;
+  background: linear-gradient(180deg, #9b36e5, #5b28c9);
+}
+.exponential-chart > div:last-child i {
+  background: #ff7315;
+}
+.exponential-chart b {
+  position: absolute;
+  bottom: calc(var(--bar, 0px) + 2px);
+  top: auto;
+}
+.exponential-chart span {
+  position: absolute;
+  bottom: -25px;
+  font-family: serif;
+  font-size: 17px;
+  color: #26116e;
+}
+.exponential-practice {
+  height: 147px;
+  margin-top: 6px;
+  border: 1px solid #d7e2ed;
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px 14px;
+}
+.exponential-practice > header {
+  height: 42px;
+  position: relative;
+}
+.exponential-practice > header h2 {
+  font-size: 16px;
+}
+.exponential-practice > header p {
+  margin-top: 4px;
+  color: #536785;
+}
+.exponential-practice > header button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 35px;
+  border: 1px solid #d7e2ed;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+}
+.exponential-practice svg {
+  width: 14px;
+}
+.exponential-practice > div {
+  height: 85px;
+  display: grid;
+  grid-template-columns: 140px 190px 1fr 1fr 150px;
+  gap: 12px;
+  align-items: center;
+}
+.exponential-practice > div > strong {
+  height: 82px;
+  border: 1px solid #e1d8f3;
+  border-radius: 8px;
+  background: #faf7ff;
+  display: grid;
+  place-items: center;
+  color: #6729c9;
+  font-size: 31px;
+}
+.exponential-practice > div > span {
+  height: 82px;
+  border: 1px solid #d7e2ed;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 4px;
+}
+.exponential-practice span > b {
+  width: 100%;
+}
+.exponential-practice span i {
+  font-style: normal;
+  border: 1px solid #9ed1aa;
+  border-radius: 50%;
+  padding: 3px;
+}
+.exponential-practice span small {
+  width: 100%;
+  text-align: center;
+}
+.exponential-practice label {
+  display: grid;
+  gap: 7px;
+  color: #526785;
+}
+.exponential-practice input,
+.exponential-practice output {
+  height: 49px;
+  border: 1px solid #b8d7f3;
+  border-radius: 7px;
+  padding: 0 10px;
+  color: #17813d;
+  font-size: 22px;
+  font-weight: 800;
+}
+.exponential-practice output {
+  display: flex;
+  align-items: center;
+  background: #eff9f2;
+}
+.exponential-practice aside {
+  height: 82px;
+  display: grid;
+  grid-template-columns: 35px 1fr;
+  align-content: center;
+  color: #138039;
+  position: relative;
+}
+.exponential-practice aside button {
+  grid-row: 1/3;
+  width: 31px;
+  height: 31px;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: #198b30;
+}
+.exponential-practice aside p {
+  grid-column: 2;
+}
+.exponential-trace {
+  height: 938px;
+  border: 1px solid #d7e2ed;
+  border-radius: 13px;
+  background: #fff;
+  padding: 13px 15px;
+}
+.exponential-trace > h2 {
+  height: 35px;
+  font-size: 13px;
+}
+.trace-card {
+  min-height: 101px;
+  margin-bottom: 12px;
+  border: 1px solid #c3e4eb;
+  border-radius: 9px;
+  background: #f4fbfc;
+  padding: 14px;
+}
+.trace-card.violet {
+  border-color: #e1cff4;
+  background: #faf6ff;
+}
+.trace-card.orange {
+  border-color: #f0d1b5;
+  background: #fff9f4;
+}
+.trace-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #078ca6;
+}
+.trace-card.violet h3 {
+  color: #6f2bd0;
+}
+.trace-card.orange h3 {
+  color: #e7610b;
+}
+.trace-card h3 svg {
+  width: 13px;
+}
+.trace-card > b {
+  display: block;
+  margin-top: 9px;
+  color: #078ca6;
+  font-size: 20px;
+}
+.trace-card.violet > b {
+  color: #6d28cb;
+  font-size: 14px;
+}
+.trace-card.orange > b {
+  color: #e96109;
+}
+.trace-card p {
+  margin-top: 9px;
+  line-height: 17px;
+  color: #526785;
+}
+.misconception,
+.think {
+  height: 120px;
+  margin-top: 20px;
+  border: 1px solid #f1cbc2;
+  border-radius: 9px;
+  background: #fff7f5;
+  padding: 13px;
+}
+.think {
+  border-color: #bde2ec;
+  background: #f4fbfd;
+}
+.misconception svg,
+.think svg {
+  float: left;
+  width: 18px;
+  margin-right: 7px;
+  color: #ef4b20;
+}
+.think svg {
+  color: #078da7;
+}
+.misconception h3,
+.think h3 {
+  color: #d93e1b;
+}
+.think h3 {
+  color: #087d9b;
+}
+.misconception b {
+  display: block;
+  margin-top: 13px;
+}
+.misconception p,
+.think p {
+  margin-top: 9px;
+  line-height: 17px;
+}
+.think b {
+  display: block;
+  margin-top: 7px;
+}
+@media (min-width: 1280px) {
+  body:has(.target-exponential-page) [data-testid="desktop-sidebar"] {
+    width: 257px;
+  }
+  #main-content:has(.target-exponential-page) {
+    padding: 39px 22px 0 14px;
+    overflow: hidden;
+  }
+}
+@media (max-width: 1100px) {
+  .target-exponential-page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .target-exponential-breadcrumb {
+    display: none;
+  }
+  .target-exponential-columns {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .exponential-trace {
+    height: auto;
+  }
+  .exponential-practice > div {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}

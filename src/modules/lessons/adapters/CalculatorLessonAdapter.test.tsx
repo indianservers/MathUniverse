@@ -163,6 +163,25 @@ describe("CalculatorLessonAdapter", () => {
     expect(html).toContain('aria-label="Base drag control"');
     expect(html).toContain('aria-label="Target (power) drag control"');
   });
+  it("renders lesson 9 as a dedicated exponential growth workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 9)!;
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="calculator-mockup-0009"');
+    expect(html).toContain(
+      'data-object-model="base-exponent-factor-chain-draggable-staircase-growth-chart-animation-practice-model"',
+    );
+    expect(html).toContain('data-base="2"');
+    expect(html).toContain('data-exponent="8"');
+    expect(html).toContain('data-output="256"');
+    expect(html).toContain('aria-label="Exponent drag control"');
+    expect(html).toContain('aria-label="Exponential practice answer"');
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
@@ -173,7 +192,7 @@ describe("CalculatorLessonAdapter", () => {
       6: "Visual model for",
       7: "Scientific Notation Scale Lab",
       8: "A logarithm asks for an exponent",
-      9: "Exponential rule",
+      9: "Exponential Growth Lab",
       10: "Trig mode",
       11: "Inverse trig",
       12: "Hyperbolic rule",
@@ -212,7 +231,7 @@ describe("CalculatorLessonAdapter", () => {
       6: "Roots undo powers",
       7: "Powers of Ten Ladder",
       8: "log reverses exponentiation",
-      9: "Exponential repeated factors",
+      9: "Repeated multiplication",
       10: "Trig angle-mode check",
       11: "Ratio to principal angle",
       12: "Hyperbolic exponential formula",
@@ -235,7 +254,7 @@ describe("CalculatorLessonAdapter", () => {
         />,
       );
 
-      if (id > 8) expect(html, lesson.title).toContain("Concept trace");
+      if (id > 9) expect(html, lesson.title).toContain("Concept trace");
       expect(html, lesson.title).toContain(snippet);
       expect(html, lesson.title).not.toContain("Calculator concept trace");
     }

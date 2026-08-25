@@ -32,6 +32,7 @@ import RatioCalculatorTargetLesson5 from "./RatioCalculatorTargetLesson5";
 import PowersRootsTargetLesson6 from "./PowersRootsTargetLesson6";
 import ScientificNotationTargetLesson7 from "./ScientificNotationTargetLesson7";
 import LogarithmsTargetLesson8 from "./LogarithmsTargetLesson8";
+import ExponentialCalculationsTargetLesson9 from "./ExponentialCalculationsTargetLesson9";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -114,7 +115,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 9) {
     return (
-      <ExponentialCalculationsLessonSurface
+      <ExponentialCalculationsTargetLesson9
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -209,6 +211,7 @@ void RatioCalculatorLessonSurface;
 void PowersAndRootsLessonSurface;
 void ScientificNotationLessonSurface;
 void LogarithmsLessonSurface;
+void ExponentialCalculationsLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,

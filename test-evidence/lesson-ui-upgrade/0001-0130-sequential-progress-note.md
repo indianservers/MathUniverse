@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **8 of 130 lessons completed; 122 pending.**
+Dedicated rebuild target: **9 of 130 lessons completed; 121 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -12,6 +12,7 @@ Dedicated rebuild target: **8 of 130 lessons completed; 122 pending.**
 | 0006   |      6 Powers and Roots | Complete | Linked radicand/root area grid and base/exponent repeated-power model with cube, combined expression, steppers, trace, action state, and practice reveal at exact 1068x1472 target geometry                                        |
 | 0007   |   7 Scientific Notation | Complete | Linked coefficient/exponent model with real steppers, number-line marker, directional decimal-shift sequence, standard form, concept trace, powers ladder, instructions, and practice checking at exact 1508x1043 target geometry  |
 | 0008   |            8 Logarithms | Complete | Bidirectional base/exponent/power model with visible steppers, real drag ranges, power ladder, inverse-operation proof, dynamic trace, help, views, reset, and practice reveal at exact 1508x1043 target geometry                  |
+| 0009   | 9 Exponential Calculations | Complete | Linked base/exponent factor-chain model with real steppers and drag control, animated doubling staircase, growth chart, live concept trace, reset/views, rotating graded practice, and exact 1472x1069 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -124,3 +125,17 @@ Evidence:
 - `0008-reference.png`
 - `0008-desktop.png`
 - `0008-dedicated-target-validation.json`
+
+## Lesson 9 / Mockup 0009 - Exponential Calculations
+
+Reworked individually against the target mockup with a dedicated `base-exponent-factor-chain-draggable-staircase-growth-chart-animation-practice-model`. Base and exponent drive the repeated-factor chain, equation, output, staircase, transition multipliers, growth chart, draggable exponent row, and concept trace from one live calculation model.
+
+Both steppers and the exponent range perform real bounded changes. Animate growth reveals each staircase/chart stage in sequence; Reset, Share, all lesson views, nine exponent-step buttons, rotating practice problems, answer editing, and grading all perform real actions. Changing either input immediately recomputes every representation.
+
+Final 1472x1069 browser validation changes the base to 3, drags the exponent to 4 and verifies 81, selects exponent 2 and verifies 9, runs animation through the selected exponent, resets to `2^8 = 256`, switches view, rejects 80, accepts 81, and advances the practice problem. The screenshot loop matches the target frame exactly: surface x=271-1449 and y=112-1050, header x=271-1173 and y=112-232, tabs y=240-276, lab y=282-897, practice y=903-1050, and concept trace x=1182-1449. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0009-reference.png`
+- `0009-desktop.png`
+- `0009-dedicated-target-validation.json`

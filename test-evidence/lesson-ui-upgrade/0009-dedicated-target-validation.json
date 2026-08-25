@@ -1,0 +1,171 @@
+{
+  "mockup": "0009",
+  "lessonId": 9,
+  "route": "/lessons/core-workspaces/9-exponential-calculations",
+  "objectModel": "base-exponent-factor-chain-draggable-staircase-growth-chart-animation-practice-model",
+  "checks": {
+    "initial": {
+      "base": "2",
+      "exponent": "8",
+      "output": "256",
+      "view": "0",
+      "animation-step": "8",
+      "animating": "false",
+      "problem": "0",
+      "feedback": "correct"
+    },
+    "base": {
+      "base": "3",
+      "exponent": "8",
+      "output": "6561",
+      "view": "0",
+      "animation-step": "8",
+      "animating": "false",
+      "problem": "0",
+      "feedback": "correct"
+    },
+    "drag": {
+      "base": "3",
+      "exponent": "4",
+      "output": "81",
+      "view": "0",
+      "animation-step": "4",
+      "animating": "false",
+      "problem": "0",
+      "feedback": "correct"
+    },
+    "step": {
+      "base": "3",
+      "exponent": "2",
+      "output": "9",
+      "view": "0",
+      "animation-step": "2",
+      "animating": "false",
+      "problem": "0",
+      "feedback": "correct"
+    },
+    "animation": {
+      "base": "3",
+      "exponent": "2",
+      "output": "9",
+      "view": "0",
+      "animation-step": "2",
+      "animating": "false",
+      "problem": "0",
+      "feedback": "correct"
+    },
+    "reset": {
+      "base": "2",
+      "exponent": "8",
+      "output": "256",
+      "view": "0",
+      "animation-step": "8",
+      "animating": "false",
+      "problem": "0",
+      "feedback": "correct"
+    },
+    "view": {
+      "base": "2",
+      "exponent": "8",
+      "output": "256",
+      "view": "2",
+      "animation-step": "8",
+      "animating": "false",
+      "problem": "0",
+      "feedback": "correct"
+    },
+    "wrong": {
+      "base": "2",
+      "exponent": "8",
+      "output": "256",
+      "view": "2",
+      "animation-step": "8",
+      "animating": "false",
+      "problem": "0",
+      "feedback": "incorrect"
+    },
+    "correct": {
+      "base": "2",
+      "exponent": "8",
+      "output": "256",
+      "view": "2",
+      "animation-step": "8",
+      "animating": "false",
+      "problem": "0",
+      "feedback": "correct"
+    },
+    "problem": {
+      "base": "2",
+      "exponent": "8",
+      "output": "256",
+      "view": "2",
+      "animation-step": "8",
+      "animating": "false",
+      "problem": "1",
+      "feedback": "idle"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1472,
+      "height": 1069
+    },
+    "document": {
+      "width": 1472,
+      "height": 1205
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 112,
+      "bottom": 1050,
+      "height": 938,
+      "left": 271,
+      "right": 1449,
+      "width": 1178
+    },
+    "regions": {
+      "header": {
+        "top": 112,
+        "bottom": 232,
+        "height": 120,
+        "left": 271,
+        "right": 1173,
+        "width": 902
+      },
+      "tabs": {
+        "top": 240,
+        "bottom": 276,
+        "height": 36,
+        "left": 271,
+        "right": 1173,
+        "width": 902
+      },
+      "lab": {
+        "top": 282,
+        "bottom": 897,
+        "height": 615,
+        "left": 271,
+        "right": 1173,
+        "width": 902
+      },
+      "practice": {
+        "top": 903,
+        "bottom": 1050,
+        "height": 147,
+        "left": 271,
+        "right": 1173,
+        "width": 902
+      },
+      "trace": {
+        "top": 112,
+        "bottom": 1050,
+        "height": 938,
+        "left": 1182,
+        "right": 1449,
+        "width": 267
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
