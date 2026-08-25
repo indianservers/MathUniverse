@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **32 of 130 lessons completed; 98 pending.**
+Dedicated rebuild target: **33 of 130 lessons completed; 97 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -36,6 +36,7 @@ Dedicated rebuild target: **32 of 130 lessons completed; 98 pending.**
 | 0030   | 30 Equation Input | Complete | Parsed two-sided linear equation with implicit multiplication, generated equal-operation steps, calculated balance weights, dual graph intersection, solution checklist/substitution proof, real examples/check/clear controls, and exact 1369x1149 target geometry |
 | 0031   | 31 Inequality Input | Complete | Parsed affine inequality with real operator selection, negative-coefficient sign reversal, open/closed boundary number line, graph region, calculated test points, examples/reset/share, and exact 1506x1044 target geometry |
 | 0032   | 32 Lists | Complete | Editable and draggable ordered list with index selection, live summary statistics, calculated append/remove/sort/map pipeline, bar/dot views, real operations/reset/start-over controls, and exact 1487x1058 target geometry |
+| 0033   | 33 Matrices | Complete | Editable/resizable matrix with selected-cell draft/apply cycle, row/column vectors, recursive determinant, trace, vector action, geometric unit-square transform, tabs/reset/share/workspace, and exact 1575x999 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -484,3 +485,17 @@ Evidence:
 - `0032-reference.png`
 - `0032-desktop.png`
 - `0032-dedicated-target-validation.json`
+
+## Lesson 33 / Mockup 0033 - Matrices
+
+Reworked individually against the target mockup with a dedicated `editable-resizable-matrix-selected-cell-row-column-determinant-trace-vector-action-geometric-transform-model`. Matrix dimensions, entries, selected address, editor draft, selected row and column, determinant, trace, A[1,1] result, input/output vectors, and transformed unit-square parallelogram all derive from one explicit matrix state.
+
+Cell selection and editing use a real draft/Apply transaction. Row and column steppers resize from 1 to 3 while preserving existing entries and initializing new diagonal cells. Determinants are calculated recursively for square matrices, trace follows the available main diagonal, and non-square determinant state is explicit. Seven tabs, language, Reset, Share, and Workspace produce state changes.
+
+Final 1575x999 integrated browser validation changes a22 from 4 to 6 and verifies trace 7 and vector `[3,9]`; changes a12 to 5 and verifies determinant -9 and vector `[6,9]`; expands to 3×2 and verifies the determinant is undefined; expands to 3×3 and verifies determinant -9 and trace 8; changes a33 to 2 and verifies determinant -18 and trace 9; changes tabs; opens Workspace; shares; and resets to `[[1,2],[3,4]]`. The final frame matches the target at surface x=280-1558 and y=109-951, header y=109-268, matrix surface y=278-952, tabs y=291-335, editor y=345-676, facts y=696-925, matrix action y=345-518, transform y=538-925, and inspector rail x=1242-1547 and y=296-934. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0033-reference.png`
+- `0033-desktop.png`
+- `0033-dedicated-target-validation.json`

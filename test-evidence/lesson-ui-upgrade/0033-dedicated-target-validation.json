@@ -1,0 +1,268 @@
+{
+  "mockup": "0033",
+  "lessonId": 33,
+  "route": "/lessons/core-workspaces/33-matrices",
+  "objectModel": "editable-resizable-matrix-selected-cell-row-column-determinant-trace-vector-action-geometric-transform-model",
+  "checks": {
+    "initial": {
+      "matrix": "1,2,3,4",
+      "rows": "2",
+      "columns": "2",
+      "selected-row": "1",
+      "selected-column": "1",
+      "selected-value": "4",
+      "draft": "4",
+      "determinant": "-2",
+      "trace": "5",
+      "vector": "3,7",
+      "workspace": "false",
+      "tab": "0",
+      "actions": "0"
+    },
+    "draft": {
+      "matrix": "1,2,3,4",
+      "rows": "2",
+      "columns": "2",
+      "selected-row": "1",
+      "selected-column": "1",
+      "selected-value": "4",
+      "draft": "6",
+      "determinant": "-2",
+      "trace": "5",
+      "vector": "3,7",
+      "workspace": "false",
+      "tab": "0",
+      "actions": "1"
+    },
+    "apply": {
+      "matrix": "1,2,3,6",
+      "rows": "2",
+      "columns": "2",
+      "selected-row": "1",
+      "selected-column": "1",
+      "selected-value": "6",
+      "draft": "6",
+      "determinant": "0",
+      "trace": "7",
+      "vector": "3,9",
+      "workspace": "false",
+      "tab": "0",
+      "actions": "2"
+    },
+    "secondCell": {
+      "matrix": "1,5,3,6",
+      "rows": "2",
+      "columns": "2",
+      "selected-row": "0",
+      "selected-column": "1",
+      "selected-value": "5",
+      "draft": "5",
+      "determinant": "-9",
+      "trace": "7",
+      "vector": "6,9",
+      "workspace": "false",
+      "tab": "0",
+      "actions": "5"
+    },
+    "threeByTwo": {
+      "matrix": "1,5,3,6,0,0",
+      "rows": "3",
+      "columns": "2",
+      "selected-row": "0",
+      "selected-column": "1",
+      "selected-value": "5",
+      "draft": "5",
+      "determinant": "undefined",
+      "trace": "7",
+      "vector": "6,9",
+      "workspace": "false",
+      "tab": "0",
+      "actions": "6"
+    },
+    "threeByThree": {
+      "matrix": "1,5,0,3,6,0,0,0,1",
+      "rows": "3",
+      "columns": "3",
+      "selected-row": "0",
+      "selected-column": "1",
+      "selected-value": "5",
+      "draft": "5",
+      "determinant": "-9",
+      "trace": "8",
+      "vector": "6,9",
+      "workspace": "false",
+      "tab": "0",
+      "actions": "7"
+    },
+    "threeByThreeEdit": {
+      "matrix": "1,5,0,3,6,0,0,0,2",
+      "rows": "3",
+      "columns": "3",
+      "selected-row": "2",
+      "selected-column": "2",
+      "selected-value": "2",
+      "draft": "2",
+      "determinant": "-18",
+      "trace": "9",
+      "vector": "6,9",
+      "workspace": "false",
+      "tab": "0",
+      "actions": "10"
+    },
+    "tab": {
+      "matrix": "1,5,0,3,6,0,0,0,2",
+      "rows": "3",
+      "columns": "3",
+      "selected-row": "2",
+      "selected-column": "2",
+      "selected-value": "2",
+      "draft": "2",
+      "determinant": "-18",
+      "trace": "9",
+      "vector": "6,9",
+      "workspace": "false",
+      "tab": "3",
+      "actions": "11"
+    },
+    "workspace": {
+      "matrix": "1,5,0,3,6,0,0,0,2",
+      "rows": "3",
+      "columns": "3",
+      "selected-row": "2",
+      "selected-column": "2",
+      "selected-value": "2",
+      "draft": "2",
+      "determinant": "-18",
+      "trace": "9",
+      "vector": "6,9",
+      "workspace": "true",
+      "tab": "3",
+      "actions": "12"
+    },
+    "share": {
+      "matrix": "1,5,0,3,6,0,0,0,2",
+      "rows": "3",
+      "columns": "3",
+      "selected-row": "2",
+      "selected-column": "2",
+      "selected-value": "2",
+      "draft": "2",
+      "determinant": "-18",
+      "trace": "9",
+      "vector": "6,9",
+      "workspace": "true",
+      "tab": "3",
+      "actions": "13"
+    },
+    "reset": {
+      "matrix": "1,2,3,4",
+      "rows": "2",
+      "columns": "2",
+      "selected-row": "1",
+      "selected-column": "1",
+      "selected-value": "4",
+      "draft": "4",
+      "determinant": "-2",
+      "trace": "5",
+      "vector": "3,7",
+      "workspace": "false",
+      "tab": "0",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1575,
+      "height": 999
+    },
+    "document": {
+      "width": 1575,
+      "height": 999
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 109,
+      "bottom": 951,
+      "height": 842,
+      "left": 280,
+      "right": 1558,
+      "width": 1278
+    },
+    "regions": {
+      "header": {
+        "top": 109,
+        "bottom": 268,
+        "height": 159,
+        "left": 280,
+        "right": 1558,
+        "width": 1278
+      },
+      "surface": {
+        "top": 278,
+        "bottom": 952,
+        "height": 674,
+        "left": 280,
+        "right": 1558,
+        "width": 1278
+      },
+      "tabs": {
+        "top": 291,
+        "bottom": 335,
+        "height": 44,
+        "left": 297,
+        "right": 1541,
+        "width": 1244
+      },
+      "main": {
+        "top": 345,
+        "bottom": 931,
+        "height": 586,
+        "left": 297,
+        "right": 1541,
+        "width": 1244
+      },
+      "editor": {
+        "top": 345,
+        "bottom": 676,
+        "height": 331,
+        "left": 297,
+        "right": 727,
+        "width": 430
+      },
+      "facts": {
+        "top": 696,
+        "bottom": 925,
+        "height": 229,
+        "left": 297,
+        "right": 727,
+        "width": 430
+      },
+      "action": {
+        "top": 345,
+        "bottom": 518,
+        "height": 173,
+        "left": 747,
+        "right": 1222,
+        "width": 475
+      },
+      "transform": {
+        "top": 538,
+        "bottom": 925,
+        "height": 387,
+        "left": 747,
+        "right": 1222,
+        "width": 475
+      },
+      "side": {
+        "top": 296,
+        "bottom": 934,
+        "height": 638,
+        "left": 1242,
+        "right": 1547,
+        "width": 305
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

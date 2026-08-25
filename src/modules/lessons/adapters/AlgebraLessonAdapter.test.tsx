@@ -20,7 +20,7 @@ describe("AlgebraLessonAdapter", () => {
       30: "Create multiple equation types",
       31: "Explore solution regions",
       32: "Work with ordered collections",
-      33: "Matrix size",
+      33: "Support linear algebra calculations",
       34: "Sequence rule",
       35: "Piecewise rule",
       36: "Boolean rule",
@@ -226,6 +226,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('data-final-sum="52"');
     expect(html).toContain('aria-label="List value 3"');
     expect(html).toContain("Operation pipeline");
+  });
+
+  it("renders lesson 33 as a dedicated editable matrix workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 33)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0033"');
+    expect(html).toContain('data-dedicated-lesson="33"');
+    expect(html).toContain('data-object-model="editable-resizable-matrix-selected-cell-row-column-determinant-trace-vector-action-geometric-transform-model"');
+    expect(html).toContain('data-matrix="1,2,3,4"');
+    expect(html).toContain('data-determinant="-2"');
+    expect(html).toContain('data-trace="5"');
+    expect(html).toContain('data-vector="3,7"');
+    expect(html).toContain('aria-label="Selected matrix cell value"');
   });
 
   it("renders phase 4 algebra lessons 92 through 128 with lesson-specific structure labs", () => {
