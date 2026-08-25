@@ -1,0 +1,596 @@
+.rational-page {
+  position: relative;
+  top: -39px;
+  left: 3px;
+  width: 815px;
+  height: 1364px;
+  margin-bottom: -39px;
+  color: #102040;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.rational-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.rational-page h1,
+.rational-page h2,
+.rational-page h3,
+.rational-page h4,
+.rational-page p {
+  margin: 0;
+}
+.rational-page button,
+.rational-page input {
+  color: inherit;
+  font: inherit;
+}
+.rational-page button {
+  cursor: pointer;
+}
+.rational-breadcrumb {
+  position: absolute;
+  top: -39px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #52667f;
+}
+.rational-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.rational-breadcrumb a:first-child {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+.rational-breadcrumb svg {
+  width: 15px;
+}
+.rational-breadcrumb b {
+  color: #08758e;
+}
+.rational-hero {
+  height: 270px;
+  padding: 18px 20px;
+  border-radius: 14px 14px 0 0;
+  background: #fff;
+}
+.rational-hero > nav {
+  display: flex;
+  gap: 10px;
+}
+.rational-hero > nav b {
+  padding: 5px 10px;
+  border-radius: 13px;
+  background: #eafaff;
+  color: #08758e;
+  font-size: 9px;
+}
+.rational-hero > nav b + b {
+  background: #eef2f7;
+  color: #536174;
+}
+.rational-hero h1 {
+  margin-top: 7px;
+  font-size: 36px;
+  line-height: 43px;
+  font-weight: 900;
+}
+.rational-hero > p {
+  font-size: 15px;
+  color: #5e718d;
+}
+.rational-hero > div {
+  display: flex;
+  margin-top: 12px;
+  gap: 8px;
+}
+.rational-hero > div b {
+  padding: 9px 13px;
+  border: 1px solid #dbe5ee;
+  border-radius: 19px;
+  font-size: 11px;
+}
+.rational-hero aside {
+  display: flex;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.rational-hero aside button {
+  display: flex;
+  height: 42px;
+  padding: 0 15px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dbe5ee;
+  border-radius: 11px;
+  background: #fff;
+  font-weight: 700;
+}
+.rational-hero aside button:first-child {
+  width: 176px;
+  justify-content: space-between;
+}
+.rational-hero aside button:last-child {
+  flex-basis: 107px;
+  margin-right: 680px;
+}
+.rational-hero aside svg {
+  width: 17px;
+}
+.rational-hero aside .active {
+  border-color: #17a9c3;
+  background: #ebfbff;
+}
+.rational-tabs {
+  display: grid;
+  height: 51px;
+  padding: 8px 15px;
+  border-top: 1px solid #dce5ed;
+  border-radius: 0 0 13px 13px;
+  background: #fff;
+  grid-template-columns: 120px repeat(4, 1fr);
+  gap: 8px;
+}
+.rational-tabs button {
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  font-weight: 800;
+}
+.rational-tabs button.active {
+  background: linear-gradient(90deg, #08a8bd, #087892);
+  color: #fff;
+}
+.rational-layout {
+  display: grid;
+  margin-top: 11px;
+  grid-template-columns: 572px 234px;
+  gap: 9px;
+}
+.rational-work {
+  height: 842px;
+  padding: 27px 25px;
+  border-radius: 14px;
+  background: #fff;
+}
+.rational-work > h2 {
+  font-size: 17px;
+}
+.rational-work > h2 span {
+  color: #087be1;
+}
+.rational-work > h3 {
+  margin-top: 22px;
+  font-size: 13px;
+}
+.rational-work > h2 + h3 {
+  margin-top: 16px;
+}
+.fraction-strip {
+  height: 112px;
+  margin-top: 15px;
+}
+.fraction-strip > div {
+  display: flex;
+  height: 65px;
+  overflow: hidden;
+  border: 1px solid #102040;
+  border-radius: 11px;
+}
+.fraction-strip i {
+  flex: 1;
+  border-right: 1px solid #102040;
+  background: #fff;
+}
+.fraction-strip i.whole-fill {
+  background: #08aec1;
+}
+.fraction-strip i.part-fill {
+  background: #e3f4ff;
+}
+.fraction-strip footer {
+  display: flex;
+  height: 42px;
+  justify-content: space-around;
+}
+.fraction-strip footer span {
+  position: relative;
+  padding-top: 28px;
+}
+.fraction-strip footer span:before {
+  position: absolute;
+  top: 9px;
+  right: -75px;
+  left: -75px;
+  height: 12px;
+  border-bottom: 1px solid;
+  border-radius: 0 0 12px 12px;
+  content: "";
+}
+.fraction-strip footer span + span {
+  color: #087be1;
+}
+.fraction-strip footer span + span:before {
+  right: -35px;
+  left: -35px;
+  border-color: #087be1;
+}
+.parts-label {
+  text-align: center;
+  font-size: 16px;
+}
+.parts-label + h3 {
+  margin-top: 12px;
+}
+.parts-label .stacked-fraction {
+  margin-left: 8px;
+}
+.stacked-fraction {
+  display: inline-grid;
+  vertical-align: middle;
+}
+.stacked-fraction b {
+  min-width: 21px;
+  padding: 1px 4px;
+  text-align: center;
+}
+.stacked-fraction b:first-child {
+  border-bottom: 1px solid;
+}
+.rational-line {
+  position: relative;
+  height: 69px;
+  margin-top: 10px;
+}
+.rational-line + h3 {
+  margin-top: 10px;
+}
+.rational-line > div {
+  position: absolute;
+  top: 21px;
+  width: 515px;
+  height: 2px;
+  background: #102040;
+}
+.rational-line > div:after {
+  position: absolute;
+  right: -1px;
+  top: -5px;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 10px solid #102040;
+  content: "";
+}
+.rational-line nav {
+  position: absolute;
+  top: 5px;
+  display: flex;
+  width: 510px;
+  justify-content: space-between;
+}
+.rational-line button {
+  position: relative;
+  width: 32px;
+  height: 55px;
+  padding-top: 31px;
+  border: 0;
+  background: transparent;
+}
+.rational-line button:before {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 1px;
+  height: 12px;
+  background: #102040;
+  content: "";
+}
+.rational-line button.active {
+  color: #087be1;
+  font-weight: 800;
+}
+.rational-line button.active:after {
+  position: absolute;
+  top: 3px;
+  left: 9px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #087be1;
+  content: "";
+}
+.equivalent-forms {
+  display: grid;
+  height: 108px;
+  margin-top: 12px;
+  grid-template-columns: 160px 160px 1fr;
+  gap: 12px;
+}
+.equivalent-forms article {
+  display: flex;
+  padding: 14px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1px solid #b8d9f3;
+  border-radius: 10px;
+  background: #eff8ff;
+  color: #0871d0;
+  font-size: 15px;
+}
+.equivalent-forms article:nth-child(2) {
+  display: block;
+  border-color: #d2b2f5;
+  background: #fbf2ff;
+  color: #8424d2;
+}
+.equivalent-forms article:nth-child(2) strong {
+  display: block;
+  margin-top: 15px;
+  font-size: 22px;
+}
+.equivalent-forms article:nth-child(3) {
+  border-color: #aee0c0;
+  background: #f0fbf3;
+  color: #087d36;
+  text-align: center;
+  line-height: 25px;
+}
+.membership-included {
+  height: 130px;
+  margin-top: 13px;
+  padding: 15px 10px;
+  border: 1px solid #84d6a6;
+  border-radius: 12px;
+  background: #effbf4;
+}
+.membership-included h4 {
+  color: #087c39;
+  text-align: center;
+  font-size: 16px;
+}
+.membership-included nav {
+  display: flex;
+  margin-top: 15px;
+  gap: 6px;
+}
+.membership-included button {
+  position: relative;
+  width: 94px;
+  height: 64px;
+  border: 1px solid #d8e4ed;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 17px;
+}
+.membership-included svg,
+.membership-excluded svg {
+  position: absolute;
+  top: 3px;
+  left: 43%;
+  width: 18px;
+  fill: #079950;
+  color: #fff;
+}
+.membership-excluded {
+  height: 101px;
+  margin-top: 10px;
+  padding: 12px 10px;
+  border: 1px solid #f0bf77;
+  border-radius: 11px;
+  background: #fff8ef;
+}
+.membership-excluded h4 {
+  color: #dd6800;
+  font-size: 15px;
+}
+.membership-excluded button {
+  position: relative;
+  width: 96px;
+  height: 58px;
+  margin-top: 8px;
+  border: 1px solid #efd9c2;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 21px;
+}
+.membership-excluded svg {
+  fill: #f18b00;
+}
+.rational-side {
+  height: 720px;
+}
+.rational-side > section {
+  padding: 17px;
+  border-radius: 14px;
+  background: #fff;
+}
+.fraction-controls {
+  height: 362px;
+}
+.fraction-controls h2 {
+  font-size: 15px;
+}
+.fraction-controls label {
+  display: block;
+  margin-top: 22px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.fraction-controls > div {
+  display: grid;
+  height: 37px;
+  margin-top: 9px;
+  grid-template-columns: 40px 1fr 40px;
+}
+.fraction-controls > div button,
+.fraction-controls > div input {
+  border: 1px solid #d5e1ec;
+  background: #fff;
+  text-align: center;
+}
+.fraction-controls > div button:first-child {
+  border-radius: 9px 0 0 9px;
+}
+.fraction-controls > div button:last-child {
+  border-radius: 0 9px 9px 0;
+  color: #0871d0;
+  font-size: 20px;
+}
+.fraction-controls output {
+  display: grid;
+  height: 90px;
+  margin-top: 24px;
+  place-items: center;
+  border: 1px solid #bdddf5;
+  border-radius: 10px;
+  background: #eff8ff;
+  color: #0876d4;
+}
+.fraction-controls output strong {
+  font-size: 25px;
+}
+.about-rational {
+  height: 181px;
+  margin-top: 10px;
+}
+.about-rational h2,
+.rational-practice h2 {
+  font-size: 15px;
+}
+.about-rational p {
+  margin-top: 16px;
+  line-height: 26px;
+}
+.rational-practice {
+  height: 159px;
+  margin-top: 10px;
+}
+.rational-practice p {
+  margin-top: 20px;
+}
+.rational-practice > div {
+  display: flex;
+  margin-top: 17px;
+  gap: 14px;
+}
+.rational-practice button {
+  width: 86px;
+  height: 41px;
+  border: 1px solid #d6e0eb;
+  border-radius: 9px;
+  background: #fff;
+}
+.rational-practice button.active {
+  border-color: #56bc83;
+  background: #effbf4;
+  color: #087d3b;
+}
+.rational-practice button.wrong {
+  border-color: #e67d70;
+  background: #fff1f0;
+  color: #b42116;
+}
+.rational-practice output {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.rational-navigation {
+  display: grid;
+  height: 61px;
+  margin-top: 9px;
+  padding: 0 4px;
+  border-radius: 26px;
+  background: #fff;
+  grid-template-columns: 1fr 1fr;
+}
+.rational-navigation a {
+  display: flex;
+  padding: 10px 18px;
+  align-items: center;
+  gap: 12px;
+  color: #102040;
+  text-decoration: none;
+}
+.rational-navigation a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.rational-navigation svg {
+  width: 18px;
+}
+.rational-navigation span {
+  display: grid;
+  font-size: 11px;
+}
+.rational-navigation b {
+  font-size: 13px;
+}
+.rational-footer {
+  position: relative;
+  height: 101px;
+  margin-top: 17px;
+  padding: 13px;
+  border: 1px solid #dce5ed;
+  border-radius: 11px;
+  background: #fff;
+}
+.rational-footer h3 {
+  font-size: 12px;
+}
+.rational-footer p {
+  margin-top: 6px;
+  font-size: 9px;
+}
+.rational-footer nav {
+  position: absolute;
+  top: 12px;
+  right: 11px;
+  display: flex;
+  gap: 9px;
+}
+.rational-footer nav button {
+  height: 35px;
+  padding: 0 14px;
+  border: 1px solid #dce5ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.rational-footer hr {
+  margin-top: 13px;
+  border: 0;
+  border-top: 1px solid #dce5ed;
+}
+.rational-footer small {
+  display: block;
+  margin-top: 7px;
+  font-size: 8px;
+  color: #62758d;
+}
+body:has(.rational-page)
+  #main-content
+  .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+  visibility: hidden;
+}
+@media (min-width: 900px) {
+  body:has(.rational-page) [data-testid="desktop-sidebar"] {
+    width: 212px;
+  }
+  body:has(.rational-page) #main-content {
+    padding: 54px 15px 0;
+    overflow: hidden;
+    background: #f4fbff;
+  }
+  body:has(.rational-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+}

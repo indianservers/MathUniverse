@@ -38,6 +38,17 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Selected integer drag control"');
     expect(html).toContain("Real-life context: Bank ledger");
   });
+  it("renders lesson 60 as a dedicated rational-number equivalence workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 60)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0042"');
+    expect(html).toContain('data-dedicated-lesson="60"');
+    expect(html).toContain('data-object-model="numerator-denominator-reduction-mixed-decimal-strip-number-line-membership-practice-model"');
+    expect(html).toContain('data-numerator="4"');
+    expect(html).toContain('data-denominator="3"');
+    expect(html).toContain('aria-label="Denominator"');
+    expect(html).toContain("Membership in the rational numbers");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

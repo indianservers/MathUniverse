@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **41 of 130 lessons completed; 89 pending.**
+Dedicated rebuild target: **42 of 130 lessons completed; 88 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -45,6 +45,7 @@ Dedicated rebuild target: **41 of 130 lessons completed; 89 pending.**
 | 0039   | 57 Natural Numbers | Complete | Dedicated counting-number model with linked tray, real range/tick selection, calculated successor and comparison, native drag/drop membership classification with corrective feedback, reset/share, and exact 1487x1058 target geometry |
 | 0040   | 58 Whole Numbers | Complete | Dedicated zero-inclusive set model with direct selection, steppers, interactive number-line membership, calculated comparison, empty-count asset, counting staircase, stateful views, graded multi-select practice, and exact 1484x1059 target geometry |
 | 0041   | 59 Integers | Complete | Dedicated signed-integer model with real range and line selection, calculated opposite and ordering, editable comparator, linked thermometer and debit/credit ledger, stateful tabs/language/workspace/reset/share, and exact 1055x1479 target geometry |
+| 0042   | 60 Rational Numbers | Complete | Dedicated numerator/denominator model with zero guard, GCD reduction, mixed and decimal forms, linked fraction strip and number line, membership classification, stateful lesson controls, graded practice, and exact 1059x1481 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -619,3 +620,17 @@ Evidence:
 - `0041-reference.png`
 - `0041-desktop.png`
 - `0041-dedicated-target-validation.json`
+
+## Lesson 60 / Mockup 0042 - Rational Numbers
+
+Reworked individually against the target mockup with a dedicated `numerator-denominator-reduction-mixed-decimal-strip-number-line-membership-practice-model`. The numerator and nonzero denominator drive GCD reduction, improper and mixed forms, decimal expansion, fraction-strip fills, number-line selection, result card, membership examples, and practice state from one explicit lesson-owned model.
+
+Both numerator and denominator have real editable fields and steppers. The denominator model rejects zero and restores a valid signed unit. Number-line marks update the fraction, all equivalent forms recalculate for positive and negative values, and the Yes/No practice controls grade whether 7/5 is rational with distinct correct and corrective states. Explore, Explain, Examples, Formulas, Know more, language, Workspace, Reset, and Share all change state; the shared number adapter only dispatches Lesson 60 to this separate component.
+
+Final 1059x1481 integrated browser validation changes 4/3 to 6/4 and verifies reduction 3/2 and mixed form 1 1/2; enters denominator 0 and verifies the nonzero guard; changes to -5/2 and verifies decimal -2.5; switches views and language; opens Workspace; selects both incorrect and correct practice answers; and resets. The final frame matches the target at page x=230-1045, lesson layout y=438-1280, fraction strip x=255-777 and y=541, equivalent forms y=858-966, included membership y=1020.5-1150.5, excluded membership y=1160.5-1261.5, side rail x=811-1045, navigation y=1289-1350, and footer y=1367-1468. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0042-reference.png`
+- `0042-desktop.png`
+- `0042-dedicated-target-validation.json`

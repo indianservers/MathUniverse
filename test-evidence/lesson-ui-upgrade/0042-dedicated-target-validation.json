@@ -1,0 +1,267 @@
+{
+  "mockup": "0042",
+  "lessonId": 60,
+  "route": "/lessons/numbers-and-arithmetic/60-rational-numbers",
+  "objectModel": "numerator-denominator-reduction-mixed-decimal-strip-number-line-membership-practice-model",
+  "checks": {
+    "initial": {
+      "numerator": "4",
+      "denominator": "3",
+      "reduced": "4/3",
+      "whole": "1",
+      "remainder": "1",
+      "decimal": "1.3333333333333333",
+      "tab": "Explore",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "practice-correct": "false",
+      "actions": "0"
+    },
+    "reduced": {
+      "numerator": "6",
+      "denominator": "4",
+      "reduced": "3/2",
+      "whole": "1",
+      "remainder": "1",
+      "decimal": "1.5",
+      "tab": "Explore",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "practice-correct": "false",
+      "actions": "2"
+    },
+    "zeroGuard": {
+      "numerator": "6",
+      "denominator": "1",
+      "reduced": "6/1",
+      "whole": "6",
+      "remainder": "0",
+      "decimal": "6",
+      "tab": "Explore",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "practice-correct": "false",
+      "actions": "3"
+    },
+    "negative": {
+      "numerator": "-5",
+      "denominator": "2",
+      "reduced": "-5/2",
+      "whole": "-2",
+      "remainder": "1",
+      "decimal": "-2.5",
+      "tab": "Explore",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "practice-correct": "false",
+      "actions": "5"
+    },
+    "tab": {
+      "numerator": "-5",
+      "denominator": "2",
+      "reduced": "-5/2",
+      "whole": "-2",
+      "remainder": "1",
+      "decimal": "-2.5",
+      "tab": "Examples",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "practice-correct": "false",
+      "actions": "6"
+    },
+    "language": {
+      "numerator": "-5",
+      "denominator": "2",
+      "reduced": "-5/2",
+      "whole": "-2",
+      "remainder": "1",
+      "decimal": "-2.5",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "false",
+      "practice": "",
+      "practice-correct": "false",
+      "actions": "7"
+    },
+    "workspace": {
+      "numerator": "-5",
+      "denominator": "2",
+      "reduced": "-5/2",
+      "whole": "-2",
+      "remainder": "1",
+      "decimal": "-2.5",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "practice": "",
+      "practice-correct": "false",
+      "actions": "8"
+    },
+    "wrong": {
+      "numerator": "-5",
+      "denominator": "2",
+      "reduced": "-5/2",
+      "whole": "-2",
+      "remainder": "1",
+      "decimal": "-2.5",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "practice": "no",
+      "practice-correct": "false",
+      "actions": "9"
+    },
+    "correct": {
+      "numerator": "-5",
+      "denominator": "2",
+      "reduced": "-5/2",
+      "whole": "-2",
+      "remainder": "1",
+      "decimal": "-2.5",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "practice": "yes",
+      "practice-correct": "true",
+      "actions": "10"
+    },
+    "reset": {
+      "numerator": "4",
+      "denominator": "3",
+      "reduced": "4/3",
+      "whole": "1",
+      "remainder": "1",
+      "decimal": "1.3333333333333333",
+      "tab": "Explore",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "practice-correct": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1059,
+      "height": 1481
+    },
+    "document": {
+      "width": 1059,
+      "height": 1481
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 106,
+      "bottom": 1470,
+      "height": 1364,
+      "left": 230,
+      "right": 1045,
+      "width": 815
+    },
+    "regions": {
+      "hero": {
+        "top": 106,
+        "bottom": 376,
+        "height": 270,
+        "left": 230,
+        "right": 1045,
+        "width": 815
+      },
+      "tabs": {
+        "top": 376,
+        "bottom": 427,
+        "height": 51,
+        "left": 230,
+        "right": 1045,
+        "width": 815
+      },
+      "layout": {
+        "top": 438,
+        "bottom": 1280,
+        "height": 842,
+        "left": 230,
+        "right": 1045,
+        "width": 815
+      },
+      "work": {
+        "top": 438,
+        "bottom": 1280,
+        "height": 842,
+        "left": 230,
+        "right": 802,
+        "width": 572
+      },
+      "strip": {
+        "top": 541,
+        "bottom": 653,
+        "height": 112,
+        "left": 255,
+        "right": 777,
+        "width": 522
+      },
+      "line": {
+        "top": 747.5,
+        "bottom": 816.5,
+        "height": 69,
+        "left": 255,
+        "right": 777,
+        "width": 522
+      },
+      "forms": {
+        "top": 858,
+        "bottom": 966,
+        "height": 108,
+        "left": 255,
+        "right": 777,
+        "width": 522
+      },
+      "included": {
+        "top": 1020.5,
+        "bottom": 1150.5,
+        "height": 130,
+        "left": 255,
+        "right": 777,
+        "width": 522
+      },
+      "excluded": {
+        "top": 1160.5,
+        "bottom": 1261.5,
+        "height": 101,
+        "left": 255,
+        "right": 777,
+        "width": 522
+      },
+      "side": {
+        "top": 438,
+        "bottom": 1158,
+        "height": 720,
+        "left": 811,
+        "right": 1045,
+        "width": 234
+      },
+      "navigation": {
+        "top": 1289,
+        "bottom": 1350,
+        "height": 61,
+        "left": 230,
+        "right": 1045,
+        "width": 815
+      },
+      "footer": {
+        "top": 1367,
+        "bottom": 1468,
+        "height": 101,
+        "left": 230,
+        "right": 1045,
+        "width": 815
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
