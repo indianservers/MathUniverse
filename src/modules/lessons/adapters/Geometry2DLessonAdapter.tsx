@@ -59,6 +59,7 @@ import EnvelopeLinesTargetLesson250 from "./EnvelopeLinesTargetLesson250";
 import DynamicTraceTargetLesson251 from "./DynamicTraceTargetLesson251";
 import ConjectureTestingTargetLesson252 from "./ConjectureTestingTargetLesson252";
 import ExactProofTargetLesson253 from "./ExactProofTargetLesson253";
+import CollinearityTestTargetLesson254 from "./CollinearityTestTargetLesson254";
 import TranslationVectorTargetLesson236 from "./TranslationVectorTargetLesson236";
 
 type GeometryTool =
@@ -115,6 +116,9 @@ export default function Geometry2DLessonAdapter({
   }
   if (lesson.id === 253) {
     return <ExactProofTargetLesson253 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 254) {
+    return <CollinearityTestTargetLesson254 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.id === 249) {
     return <MovingLinkageLociTargetLesson249 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

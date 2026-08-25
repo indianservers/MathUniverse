@@ -20,6 +20,7 @@
 | 0308 | 251 Dynamic Trace | `dependent-dilation-image-with-temporal-trace` | Reworked individually and browser-validated |
 | 0309 | 252 Conjecture Testing | `measured-translation-conjecture-trial-engine` | Reworked individually and browser-validated |
 | 0310 | 253 Exact Proof | `exact-translation-isometry-proof-chain` | Reworked individually and browser-validated |
+| 0311 | 254 Collinearity Test | `three-point-synchronized-exact-collinearity-tests` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -250,3 +251,18 @@ Evidence:
 
 - `0310-desktop.png`
 - `0310-dedicated-target-validation.json`
+
+## Lesson 254 / Mockup 0311 - Collinearity Test
+
+Reworked individually against the target mockup with a dedicated `three-point-synchronized-exact-collinearity-tests` object model. Three independent draggable points feed one exact geometry calculation that derives AB, BC, AC, both consecutive slopes, the signed determinant, 2D cross product, triangle area, vertical-line state, line equation, and final classification. Six coordinate inputs update the same points. Snap, grid, zoom, reset, tabs, sharing, fullscreen, and adjacent navigation are functional, while the SVG line and non-collinear triangle region are derived from current geometry.
+
+The slope, determinant, and vector panels stay synchronized from the shared model. Vertical lines are handled explicitly: both slopes become undefined, but equal vertical direction together with zero determinant and zero cross product still gives a valid collinear result. Dragging a point off the line immediately creates nonzero determinant and area and changes the result card to “Not collinear.” The practice task grades the exact classification of A(-2,1), B(1,3), C(4,5).
+
+Mockup 0311’s worked card instead prints C(4,7), for which `m_AB=2/3` and `m_BC=4/3`, then marks determinant and cross product as zero and concludes collinear. The determinant is actually 6 and those points are not collinear. The implementation uses C(4,5), which gives both slopes `2/3` and exact determinant/cross product zero, preserving the target’s intended successful example without the contradiction.
+
+Final 1015x1549 browser validation starts from the target’s coherent A(-3,-1), B(1,0.5), C(5,2) state and verifies slopes `0.375` with all exact tests zero, physically drags B off the line and proves the determinant becomes nonzero, drags A and C independently, sets a vertical line through x=2 and verifies both slopes are undefined while determinant remains zero and classification remains collinear, exercises grid, snap, zoom, and reset controls, and checks incorrect and corrected practice paths. The screenshot loop also removed excess shell space and restored the target-height footer. Final validation reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1440.
+
+Evidence:
+
+- `0311-desktop.png`
+- `0311-dedicated-target-validation.json`

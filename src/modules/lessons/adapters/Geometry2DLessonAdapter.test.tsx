@@ -1293,9 +1293,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain("A′ = (2,1)");
   });
 
-  it("renders geometry lessons 254 through 256 with loci and proof guidance", () => {
+  it("renders Collinearity Test as synchronized exact geometric tests", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 254)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0311"');
+    expect(html).toContain('data-object-model="three-point-synchronized-exact-collinearity-tests"');
+    expect(html).toContain("Three draggable points with exact synchronized collinearity tests");
+    expect(html).toContain('data-testid="collinearity-point-a"');
+    expect(html).toContain('data-testid="collinearity-line"');
+    expect(html).toContain('aria-label="C y coordinate"');
+    expect(html).toContain("Zero-area test (determinant)");
+    expect(html).toContain("AB × AC");
+    expect(html).toContain('aria-label="Collinearity practice A"');
+  });
+
+  it("renders geometry lessons 255 through 256 with loci and proof guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      254: "Collinearity test",
       255: "Concurrency test",
       256: "Concyclicity test",
     };

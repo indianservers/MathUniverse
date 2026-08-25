@@ -1,0 +1,15 @@
+[
+  {
+    "id": 254,
+    "mockup": 311,
+    "route": "/lessons/geometry/254-collinearity-test",
+    "width": 1015,
+    "height": 1549,
+    "status": "Correct. All exact tests are zero, so the points are collinear.",
+    "consoleErrors": [],
+    "scrollHeight": 1549,
+    "surfaceBottom": 1440,
+    "objectModel": "three-point-synchronized-exact-collinearity-tests",
+    "overflowing": 0
+  }
+]

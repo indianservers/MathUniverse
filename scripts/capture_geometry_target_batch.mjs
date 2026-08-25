@@ -54,6 +54,7 @@ const allLessons = [
   [251, 308, "dynamic-trace", 1009, 1559],
   [252, 309, "conjecture-testing", 986, 1595],
   [253, 310, "exact-proof", 887, 1774],
+  [254, 311, "collinearity-test", 1015, 1549],
 ];
 const selectedIds = new Set(
   (process.env.LESSON_IDS ?? "").split(",").filter(Boolean).map(Number),
@@ -79,7 +80,15 @@ for (const [id, mockup, slug, width, height] of lessons) {
   const selector = `[data-testid="dynamic-geometry-mockup-${String(mockup).padStart(4, "0")}"]`;
   await page.locator(selector).waitFor({ state: "visible" });
   let status;
-  if (id === 253) {
+  if (id === 254) {
+    const surface=page.locator(selector),pointA=page.locator('[data-testid="collinearity-point-a"]'),pointB=page.locator('[data-testid="collinearity-point-b"]'),pointC=page.locator('[data-testid="collinearity-point-c"]');
+    if((await surface.getAttribute("data-object-model"))!=="three-point-synchronized-exact-collinearity-tests"||(await surface.getAttribute("data-determinant"))!=="0.0000"||(await surface.getAttribute("data-slope-ab"))!=="0.3750"||(await surface.getAttribute("data-collinear"))!=="true")throw new Error("Collinearity initial exact tests are invalid");
+    const bBox=await pointB.boundingBox();if(!bBox)throw new Error("Collinearity point B is not draggable");await page.mouse.move(bBox.x+bBox.width/2,bBox.y+bBox.height/2);await page.mouse.down();await page.mouse.move(bBox.x+18,bBox.y-42,{steps:6});await page.mouse.up();if((await surface.getAttribute("data-collinear"))!=="false"||Math.abs(Number(await surface.getAttribute("data-determinant")))<.01)throw new Error("Dragging B off the line did not produce a counterexample");
+    const aBox=await pointA.boundingBox();if(!aBox)throw new Error("Collinearity point A is not draggable");await page.mouse.move(aBox.x+aBox.width/2,aBox.y+aBox.height/2);await page.mouse.down();await page.mouse.move(aBox.x+20,aBox.y-16,{steps:5});await page.mouse.up();const cBox=await pointC.boundingBox();if(!cBox)throw new Error("Collinearity point C is not draggable");await page.mouse.move(cBox.x+cBox.width/2,cBox.y+cBox.height/2);await page.mouse.down();await page.mouse.move(cBox.x-22,cBox.y+18,{steps:5});await page.mouse.up();
+    for(const [name,value] of [["A x coordinate","2"],["A y coordinate","-2"],["B x coordinate","2"],["B y coordinate","0"],["C x coordinate","2"],["C y coordinate","3"]])await page.getByRole("spinbutton",{name}).fill(value);if((await surface.getAttribute("data-collinear"))!=="true"||(await surface.getAttribute("data-vertical"))!=="true"||(await surface.getAttribute("data-slope-ab"))!=="undefined"||(await surface.getAttribute("data-determinant"))!=="0.0000")throw new Error("Vertical-line degeneracy was not handled exactly");
+    await page.getByRole("button",{name:"Toggle collinearity grid"}).click();await page.getByRole("button",{name:"Toggle snap"}).click();if((await surface.getAttribute("data-grid"))!=="false"||(await surface.getAttribute("data-snap"))!=="true")throw new Error("Collinearity graph controls did not update");await page.getByRole("button",{name:"Zoom collinearity graph"}).click();await page.getByRole("button",{name:"Reset",exact:true}).first().click();
+    await page.getByRole("radio",{name:"Collinearity practice B"}).check();await page.getByRole("button",{name:"Quick check"}).click();await page.getByRole("status").filter({hasText:"Not yet"}).waitFor();await page.getByRole("radio",{name:"Collinearity practice A"}).check();await page.getByRole("button",{name:"Quick check"}).click();status=await page.getByRole("status").filter({hasText:"Correct. All exact tests"}).innerText();
+  } else if (id === 253) {
     const surface=page.locator(selector),pointA=page.locator('[data-testid="exact-proof-point-a"]'),pointB=page.locator('[data-testid="exact-proof-point-b"]'),vector=page.locator('[data-testid="exact-proof-vector-handle"]');
     if((await surface.getAttribute("data-object-model"))!=="exact-translation-isometry-proof-chain"||(await surface.getAttribute("data-original-length"))!=="2.2361"||(await surface.getAttribute("data-image-length"))!=="2.2361"||(await surface.getAttribute("data-proof-valid"))!=="true")throw new Error("Exact Proof initial symbolic model is invalid");
     for(const [handle,dx,dy,label] of [[pointA,30,-20,"A"],[pointB,-22,-32,"B"],[vector,38,24,"translation vector"]]){const box=await handle.boundingBox();if(!box)throw new Error(`Exact Proof ${label} is not draggable`);await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.mouse.move(box.x+Number(dx),box.y+Number(dy),{steps:6});await page.mouse.up();if(Math.abs(Number(await surface.getAttribute("data-original-length"))-Number(await surface.getAttribute("data-image-length")))>.001)throw new Error(`Dragging ${label} broke exact translation invariance`)}
