@@ -94,4 +94,29 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Degree-Radian Conversion");
     expect(html).toContain("What is the radian measure of 45°?");
   });
+
+  it("renders lesson 258 as a dedicated linked unit-circle construction", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 258)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0315"');
+    expect(html).toContain('data-dedicated-lesson="258"');
+    expect(html).toContain(
+      'data-object-model="linked-unit-circle-point-projection-coordinate-identity"',
+    );
+    expect(html).toContain('data-angle-degrees="30.0"');
+    expect(html).toContain('data-cos="0.866025"');
+    expect(html).toContain('data-sin="0.500000"');
+    expect(html).toContain('data-identity="1.000000"');
+    expect(html).toContain('data-testid="unit-circle-point"');
+    expect(html).toContain('aria-label="Unit circle angle"');
+    expect(html).toContain("Pythagorean Identity (Unit Circle Rule)");
+    expect(html).toContain("What are cos θ and sin θ?");
+  });
 });

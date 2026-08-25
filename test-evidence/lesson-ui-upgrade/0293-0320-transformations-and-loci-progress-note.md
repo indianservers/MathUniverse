@@ -1,6 +1,6 @@
 # Transformations and Loci target batch 0293-0320
 
-Dedicated rebuild target: **52 of 130 lessons completed; 78 pending.**
+Dedicated rebuild target: **53 of 130 lessons completed; 77 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -26,6 +26,7 @@ Dedicated rebuild target: **52 of 130 lessons completed; 78 pending.**
 | 0312 | 255 Concurrency Test | `triangle-cevians-exact-ceva-concurrency` | Reworked individually and browser-validated |
 | 0313 | 256 Concyclicity Test | `four-point-circumcircle-determinant-angle-residual` | Reworked individually and browser-validated |
 | 0314 | 257 Angle Measurement | `oriented-unit-circle-degree-radian-angle-measurement` | Reworked individually and browser-validated |
+| 0315 | 258 Unit Circle | `linked-unit-circle-point-projection-coordinate-identity` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -314,3 +315,16 @@ Evidence:
 
 - `0314-desktop.png`
 - `0314-dedicated-target-validation.json`
+
+## Lesson 258 / Mockup 0315 - Unit Circle
+
+Reworked individually against the target mockup with a dedicated `linked-unit-circle-point-projection-coordinate-identity` object model. One signed angle drives the normalized terminal angle, principal slider angle, radians, unit-circle point, horizontal and vertical projections, cosine, sine, quadrant, sign table, and Pythagorean-identity check. The point is physically draggable around the circle and recovers the nearest oriented representation of the new terminal side. The exact-angle input, principal `−180°..180°` slider, eight quick-angle controls including 270° and 360°, degree/radian mode, five lesson tabs, reset, share, workspace focus, and adjacent navigation all update real state.
+
+The coordinate cards, SVG point label, dashed projection segments, quadrant row, and identity expansion are generated from the same model, so they cannot drift into contradictory values. Axis angles are classified separately from open quadrants while retaining the correct sine and cosine values. The independent quick check asks for the point at `−60°`, moves the construction to that angle when graded, and validates `(1/2, −sqrt(3)/2)` through both incorrect and corrected paths rather than preselecting a decorative answer.
+
+Final 981x1603 browser validation verifies the initial 30° point `(sqrt(3)/2, 1/2)` and identity value 1; physically drags the point while proving the identity remains 1; enters 135° and verifies Quadrant II with both coordinates; drives the principal slider to −60° and verifies Quadrant IV; snaps to 270° and verifies `(0,−1)`; switches the dual-unit display to radians; exercises lesson tabs; follows incorrect and corrected practice paths; and resets the complete construction. The screenshot loop fixes the quadrant table structure, matches the target's linked-circle scale and center, constrains the lower bands and readout rail to their target widths, and reports exact 981x1603 document dimensions, no horizontal overflow, and zero console errors.
+
+Evidence:
+
+- `0315-desktop.png`
+- `0315-dedicated-target-validation.json`

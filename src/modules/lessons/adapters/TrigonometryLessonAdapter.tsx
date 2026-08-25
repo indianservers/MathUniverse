@@ -28,6 +28,7 @@ import {
 } from "../../../trigonometry/utils/trigFormulaUtils";
 import type { LessonAdapterProps } from "../types";
 import AngleMeasurementTargetLesson257 from "./AngleMeasurementTargetLesson257";
+import UnitCircleTargetLesson258 from "./UnitCircleTargetLesson258";
 
 type TrigKind =
   "circle" | "graph" | "triangle" | "equation" | "application" | "polar";
@@ -480,6 +481,15 @@ export default function TrigonometryLessonAdapter({
   if (lesson.id === 257) {
     return (
       <AngleMeasurementTargetLesson257
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 258) {
+    return (
+      <UnitCircleTargetLesson258
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}

@@ -1,0 +1,100 @@
+{
+  "mockup": "0315",
+  "lessonId": 258,
+  "route": "/lessons/trigonometry/258-unit-circle",
+  "reference": "0315-interactive-intermediate-advanced-trigonometry-unit-circle-redesigned.png",
+  "objectModel": "linked-unit-circle-point-projection-coordinate-identity",
+  "checks": {
+    "initial": {
+      "angle": 30,
+      "normalized": 30,
+      "cos": 0.866025,
+      "sin": 0.5,
+      "identity": 1,
+      "quadrant": "I",
+      "tab": "Interactive Lab"
+    },
+    "pointDrag": {
+      "angle": 73.8,
+      "normalized": 73.8,
+      "cos": 0.278991,
+      "sin": 0.960294,
+      "identity": 1,
+      "quadrant": "I",
+      "tab": "Interactive Lab"
+    },
+    "angle135": {
+      "angle": 135,
+      "normalized": 135,
+      "cos": -0.707107,
+      "sin": 0.707107,
+      "identity": 1,
+      "quadrant": "II",
+      "tab": "Interactive Lab"
+    },
+    "sliderMinus60": {
+      "angle": -60,
+      "normalized": 300,
+      "cos": 0.5,
+      "sin": -0.866025,
+      "identity": 1,
+      "quadrant": "IV",
+      "tab": "Interactive Lab"
+    },
+    "quick270": {
+      "angle": 270,
+      "normalized": 270,
+      "cos": 0,
+      "sin": -1,
+      "identity": 1,
+      "quadrant": "axis",
+      "tab": "Interactive Lab"
+    },
+    "radianDisplay": "θ = 270° = 3π/2",
+    "tabExplain": {
+      "angle": 270,
+      "normalized": 270,
+      "cos": 0,
+      "sin": -1,
+      "identity": 1,
+      "quadrant": "axis",
+      "tab": "Explain"
+    },
+    "incorrect": "Check the sign of the x-coordinate.",
+    "correct": "Correct. The point is in Quadrant IV.",
+    "practiceState": {
+      "angle": -60,
+      "normalized": 300,
+      "cos": 0.5,
+      "sin": -0.866025,
+      "identity": 1,
+      "quadrant": "IV",
+      "tab": "Interactive Lab"
+    },
+    "reset": {
+      "angle": 30,
+      "normalized": 30,
+      "cos": 0.866025,
+      "sin": 0.5,
+      "identity": 1,
+      "quadrant": "I",
+      "tab": "Interactive Lab"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 981,
+      "height": 1603
+    },
+    "document": {
+      "width": 981,
+      "height": 1603
+    },
+    "horizontalOverflow": false,
+    "contentFitsViewport": true,
+    "surfaceTop": 111,
+    "surfaceBottom": 1597
+  },
+  "consoleMessages": [],
+  "passed": true
+}
