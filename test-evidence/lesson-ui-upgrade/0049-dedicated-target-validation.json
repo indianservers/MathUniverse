@@ -1,0 +1,184 @@
+{
+  "mockup": "0049",
+  "lessonId": 67,
+  "route": "/lessons/numbers-and-arithmetic/67-prime-numbers",
+  "objectModel": "editable-number-divisor-scanner-exact-factor-count-draggable-counter-equal-group-quotient-remainder-prime-composite-practice-model",
+  "checks": {
+    "initial": {
+      "number": "17",
+      "selected-divisor": "17",
+      "factors": "1,17",
+      "factor-count": "2",
+      "is-prime": "true",
+      "selected-quotient": "1",
+      "selected-remainder": "0",
+      "drag-counter": "",
+      "saved": "false",
+      "actions": "0"
+    },
+    "divisorTwo": {
+      "number": "17",
+      "selected-divisor": "2",
+      "factors": "1,17",
+      "factor-count": "2",
+      "is-prime": "true",
+      "selected-quotient": "8",
+      "selected-remainder": "1",
+      "drag-counter": "",
+      "saved": "false",
+      "actions": "1"
+    },
+    "composite": {
+      "number": "12",
+      "selected-divisor": "12",
+      "factors": "1,2,3,4,6,12",
+      "factor-count": "6",
+      "is-prime": "false",
+      "selected-quotient": "1",
+      "selected-remainder": "0",
+      "drag-counter": "",
+      "saved": "false",
+      "actions": "2"
+    },
+    "dragged": {
+      "number": "12",
+      "selected-divisor": "3",
+      "factors": "1,2,3,4,6,12",
+      "factor-count": "6",
+      "is-prime": "false",
+      "selected-quotient": "4",
+      "selected-remainder": "0",
+      "drag-counter": "",
+      "saved": "false",
+      "actions": "3"
+    },
+    "practice": {
+      "number": "18",
+      "selected-divisor": "18",
+      "factors": "1,2,3,6,9,18",
+      "factor-count": "6",
+      "is-prime": "false",
+      "selected-quotient": "1",
+      "selected-remainder": "0",
+      "drag-counter": "",
+      "saved": "false",
+      "actions": "4"
+    },
+    "saved": {
+      "number": "18",
+      "selected-divisor": "18",
+      "factors": "1,2,3,6,9,18",
+      "factor-count": "6",
+      "is-prime": "false",
+      "selected-quotient": "1",
+      "selected-remainder": "0",
+      "drag-counter": "",
+      "saved": "true",
+      "actions": "5"
+    },
+    "shared": {
+      "number": "18",
+      "selected-divisor": "18",
+      "factors": "1,2,3,6,9,18",
+      "factor-count": "6",
+      "is-prime": "false",
+      "selected-quotient": "1",
+      "selected-remainder": "0",
+      "drag-counter": "",
+      "saved": "true",
+      "actions": "6"
+    },
+    "reset": {
+      "number": "17",
+      "selected-divisor": "17",
+      "factors": "1,17",
+      "factor-count": "2",
+      "is-prime": "true",
+      "selected-quotient": "1",
+      "selected-remainder": "0",
+      "drag-counter": "",
+      "saved": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "document": {
+      "width": 1536,
+      "height": 1024
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 106,
+      "bottom": 1024,
+      "height": 918,
+      "left": 279,
+      "right": 1487,
+      "width": 1208
+    },
+    "regions": {
+      "hero": {
+        "top": 106,
+        "bottom": 199,
+        "height": 93,
+        "left": 279,
+        "right": 1487,
+        "width": 1208
+      },
+      "layout": {
+        "top": 213,
+        "bottom": 947,
+        "height": 734,
+        "left": 279,
+        "right": 1487,
+        "width": 1208
+      },
+      "lab": {
+        "top": 213,
+        "bottom": 947,
+        "height": 734,
+        "left": 279,
+        "right": 1140,
+        "width": 861
+      },
+      "scanner": {
+        "top": 300.5,
+        "bottom": 358,
+        "height": 57.5,
+        "left": 295,
+        "right": 1124,
+        "width": 829
+      },
+      "groups": {
+        "top": 415,
+        "bottom": 869,
+        "height": 454,
+        "left": 295,
+        "right": 1124,
+        "width": 829
+      },
+      "side": {
+        "top": 213,
+        "bottom": 947,
+        "height": 734,
+        "left": 1154,
+        "right": 1487,
+        "width": 333
+      },
+      "navigation": {
+        "top": 963,
+        "bottom": 1014,
+        "height": 51,
+        "left": 279,
+        "right": 1487,
+        "width": 1208
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

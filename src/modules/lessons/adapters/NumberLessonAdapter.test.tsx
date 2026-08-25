@@ -127,6 +127,21 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Base number"');
     expect(html).toContain("Multiples on the number line");
   });
+  it("renders lesson 67 as a dedicated prime factor-count workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 67)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0049"');
+    expect(html).toContain('data-dedicated-lesson="67"');
+    expect(html).toContain('data-object-model="editable-number-divisor-scanner-exact-factor-count-draggable-counter-equal-group-quotient-remainder-prime-composite-practice-model"');
+    expect(html).toContain('data-number="17"');
+    expect(html).toContain('data-selected-divisor="17"');
+    expect(html).toContain('data-factors="1,17"');
+    expect(html).toContain('data-factor-count="2"');
+    expect(html).toContain('data-is-prime="true"');
+    expect(html).toContain('aria-label="Number to test"');
+    expect(html).toContain('aria-label="Group counters by divisor 3"');
+    expect(html).toContain("Test divisors by grouping counters");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

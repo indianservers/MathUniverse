@@ -15,6 +15,7 @@ import ComplexNumbersTargetLesson63 from "./ComplexNumbersTargetLesson63";
 import PlaceValueTargetLesson64 from "./PlaceValueTargetLesson64";
 import FactorsTargetLesson65 from "./FactorsTargetLesson65";
 import MultiplesTargetLesson66 from "./MultiplesTargetLesson66";
+import PrimeNumbersTargetLesson67 from "./PrimeNumbersTargetLesson67";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -46,6 +47,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 66) {
     return <MultiplesTargetLesson66 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 67) {
+    return <PrimeNumbersTargetLesson67 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

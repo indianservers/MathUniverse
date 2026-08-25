@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **48 of 130 lessons completed; 82 pending.**
+Dedicated rebuild target: **49 of 130 lessons completed; 81 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -52,6 +52,7 @@ Dedicated rebuild target: **48 of 130 lessons completed; 82 pending.**
 | 0046   |                             64 Place Value | Complete | Dedicated editable four-digit place model with selectable and draggable digit columns, exact-count base-ten blocks, calculated expanded form and selected value, rotating practice, stateful controls, and exact 1060x1484 target geometry                         |
 | 0047   |                                65 Factors | Complete | Dedicated editable divisibility model with exact counter arrays, quotient and remainder proof, calculated factor pairs, draggable pair arrangements, non-factor practice, stateful controls, and exact 1060x1484 target geometry                                  |
 | 0048   |                              66 Multiples | Complete | Dedicated editable skip-counting model with exact number-line jumps, calculated product cards, native draggable multiples, repeated addition, quotient/remainder proof, non-example practice, stateful controls, and exact 1060x1484 target geometry               |
+| 0049   |                          67 Prime Numbers | Complete | Dedicated editable divisor-scanner model with calculated factors/factor count, native draggable counters, equal grouping rows, quotient/remainder states, prime/composite proof, practice, save/share controls, and exact 1536x1024 target geometry               |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -724,3 +725,17 @@ Evidence:
 - `0048-reference.png`
 - `0048-desktop.png`
 - `0048-dedicated-target-validation.json`
+
+## Lesson 67 / Mockup 0049 - Prime Numbers
+
+Reworked individually against the target mockup with a dedicated `editable-number-divisor-scanner-exact-factor-count-draggable-counter-equal-group-quotient-remainder-prime-composite-practice-model`. The selected number drives every scanner state, exact factor list, factor count, grouping row, quotient, remainder, prime/composite verdict, and proof statement from one lesson-owned calculation model.
+
+The number is directly editable with an integer guard, and every scanner value selects its calculated divisor state. Each visible counter is a native draggable object that can be dropped onto the divisor-1, -2, -3, -4, or selected-number row to change the active grouping proof. Composite values regenerate their complete factors and classification. The 18 practice card loads its example into the live model, while Save progress, Share, Reset counters, and previous/next navigation all perform real actions. The shared number adapter only dispatches Lesson 67 to this separate component.
+
+Final 1536x1024 integrated browser validation verifies 17 has factors 1 and 17 and factor count 2; selects divisor 2 and verifies quotient 8 with remainder 1; edits the number to 12 and verifies factors 1, 2, 3, 4, 6, and 12 with composite classification; physically drags a counter onto the divisor-3 row and verifies quotient 4 with no remainder; loads practice 18; saves, shares, and resets. After two screenshot correction loops, the final frame matches the target at page x=279-1487 and y=106-1024, hero y=106-199, workspace y=213-947, lab x=279-1140, scanner y=300.5-358, grouping stack y=415-869, side rail x=1154-1487, and navigation y=963-1014. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0049-reference.png`
+- `0049-desktop.png`
+- `0049-dedicated-target-validation.json`
