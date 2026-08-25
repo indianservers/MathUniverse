@@ -172,7 +172,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
     lesson.id === 154 ||
     (lesson.id >= 156 && lesson.id <= 162) ||
     lesson.id === 164 ||
-    (lesson.id >= 1 && lesson.id <= 10) ||
+    (lesson.id >= 1 && lesson.id <= 11) ||
     lesson.id === 257 ||
     lesson.id === 258 ||
     lesson.id === 259 ||
@@ -217,7 +217,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
           onInteraction={recordInteraction}
         />
         {usesImmersiveDynamicGeometryWorkspace ||
-        (lesson.id >= 1 && lesson.id <= 10) ||
+        (lesson.id >= 1 && lesson.id <= 11) ||
         lesson.id === 257 ||
         lesson.id === 258 ||
         lesson.id === 259 ||

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **10 of 130 lessons completed; 120 pending.**
+Dedicated rebuild target: **11 of 130 lessons completed; 119 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -14,6 +14,7 @@ Dedicated rebuild target: **10 of 130 lessons completed; 120 pending.**
 | 0008   |            8 Logarithms | Complete | Bidirectional base/exponent/power model with visible steppers, real drag ranges, power ladder, inverse-operation proof, dynamic trace, help, views, reset, and practice reveal at exact 1508x1043 target geometry                  |
 | 0009   | 9 Exponential Calculations | Complete | Linked base/exponent factor-chain model with real steppers and drag control, animated doubling staircase, growth chart, live concept trace, reset/views, rotating graded practice, and exact 1472x1069 target geometry |
 | 0010   | 10 Trigonometric Calculator | Complete | Dual draggable unit-circle angle model with linked exact-value triangles, DEG/RAD calculations, live sum and trace, special-angle table, reset/views, and rotating graded practice at exact 1068x1472 target geometry |
+| 0011   | 11 Inverse Trigonometry | Complete | Draggable sine-ratio and unit-circle-ray model with calculated principal angle, right triangle, DEG/RAD values, verification, principal range, trace, and independent graded practice at exact 1068x1472 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -154,3 +155,17 @@ Evidence:
 - `0010-reference.png`
 - `0010-desktop.png`
 - `0010-dedicated-target-validation.json`
+
+## Lesson 11 / Mockup 0011 - Inverse Trigonometry
+
+Reworked individually against the target mockup with a dedicated `draggable-ratio-principal-angle-unit-circle-triangle-range-verification-practice-model`. The sine ratio drives the principal angle, unit-circle point and ray, horizontal guide, right-triangle side values, inverse result, forward-sine verification, principal-range marker, and concept trace from one calculation model.
+
+The main ratio range and purple unit-circle ray both support real drag interaction. DEG/RAD, Reset, Share, Workspace, all lesson views, the independent practice-ratio slider, answer editing, reveal, and grading all perform real state changes. Domain limits are enforced at `[-1, 1]`, and the output remains inside asin's principal range.
+
+Final 1068x1472 browser validation drags the ratio to 0.75 and verifies 48.59 degrees, switches to RAD and verifies 0.848 radians, physically drags the unit-circle ray to ratio -0.5 and verifies -30 degrees, resets, switches view, changes the practice ratio to 0.5, rejects 45, and accepts 30. The target frame is matched at surface x=227-1051 and y=100-1472, header y=100-332, tabs y=341-395, lab y=405-1281, three models y=492-891, result y=901-992, range y=1001-1137, practice y=1146-1279, navigation y=1291-1343, and footer y=1357-1468. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0011-reference.png`
+- `0011-desktop.png`
+- `0011-dedicated-target-validation.json`

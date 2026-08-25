@@ -34,6 +34,7 @@ import ScientificNotationTargetLesson7 from "./ScientificNotationTargetLesson7";
 import LogarithmsTargetLesson8 from "./LogarithmsTargetLesson8";
 import ExponentialCalculationsTargetLesson9 from "./ExponentialCalculationsTargetLesson9";
 import TrigonometricCalculatorTargetLesson10 from "./TrigonometricCalculatorTargetLesson10";
+import InverseTrigonometryTargetLesson11 from "./InverseTrigonometryTargetLesson11";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -134,7 +135,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 11) {
     return (
-      <InverseTrigonometryLessonSurface
+      <InverseTrigonometryTargetLesson11
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -214,6 +216,8 @@ void PowersAndRootsLessonSurface;
 void ScientificNotationLessonSurface;
 void LogarithmsLessonSurface;
 void ExponentialCalculationsLessonSurface;
+void TrigonometricCalculatorLessonSurface;
+void InverseTrigonometryLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,

@@ -1,0 +1,184 @@
+{
+  "mockup": "0011",
+  "lessonId": 11,
+  "route": "/lessons/core-workspaces/11-inverse-trigonometry",
+  "objectModel": "draggable-ratio-principal-angle-unit-circle-triangle-range-verification-practice-model",
+  "checks": {
+    "initial": {
+      "ratio": "0.5",
+      "mode": "DEG",
+      "angle": "30",
+      "degrees": "30",
+      "practice-ratio": "1",
+      "feedback": "correct",
+      "view": "0"
+    },
+    "ratio": {
+      "ratio": "0.75",
+      "mode": "DEG",
+      "angle": "48.59",
+      "degrees": "48.59",
+      "practice-ratio": "1",
+      "feedback": "correct",
+      "view": "0"
+    },
+    "radians": {
+      "ratio": "0.75",
+      "mode": "RAD",
+      "angle": "0.848",
+      "degrees": "48.59",
+      "practice-ratio": "1",
+      "feedback": "correct",
+      "view": "0"
+    },
+    "rayDrag": {
+      "ratio": "-0.5",
+      "mode": "DEG",
+      "angle": "-30",
+      "degrees": "-30",
+      "practice-ratio": "1",
+      "feedback": "correct",
+      "view": "0"
+    },
+    "reset": {
+      "ratio": "0.5",
+      "mode": "DEG",
+      "angle": "30",
+      "degrees": "30",
+      "practice-ratio": "1",
+      "feedback": "correct",
+      "view": "0"
+    },
+    "view": {
+      "ratio": "0.5",
+      "mode": "DEG",
+      "angle": "30",
+      "degrees": "30",
+      "practice-ratio": "1",
+      "feedback": "correct",
+      "view": "2"
+    },
+    "practice": {
+      "ratio": "0.5",
+      "mode": "DEG",
+      "angle": "30",
+      "degrees": "30",
+      "practice-ratio": "0.5",
+      "feedback": "idle",
+      "view": "2"
+    },
+    "wrong": {
+      "ratio": "0.5",
+      "mode": "DEG",
+      "angle": "30",
+      "degrees": "30",
+      "practice-ratio": "0.5",
+      "feedback": "incorrect",
+      "view": "2"
+    },
+    "correct": {
+      "ratio": "0.5",
+      "mode": "DEG",
+      "angle": "30",
+      "degrees": "30",
+      "practice-ratio": "0.5",
+      "feedback": "correct",
+      "view": "2"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1068,
+      "height": 1472
+    },
+    "document": {
+      "width": 1068,
+      "height": 1472
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 100,
+      "bottom": 1472,
+      "height": 1372,
+      "left": 227,
+      "right": 1051,
+      "width": 824
+    },
+    "regions": {
+      "header": {
+        "top": 100,
+        "bottom": 332,
+        "height": 232,
+        "left": 227,
+        "right": 1051,
+        "width": 824
+      },
+      "tabs": {
+        "top": 341,
+        "bottom": 395,
+        "height": 54,
+        "left": 227,
+        "right": 1051,
+        "width": 824
+      },
+      "lab": {
+        "top": 405,
+        "bottom": 1281,
+        "height": 876,
+        "left": 227,
+        "right": 1051,
+        "width": 824
+      },
+      "models": {
+        "top": 492,
+        "bottom": 891,
+        "height": 399,
+        "left": 238,
+        "right": 909,
+        "width": 671
+      },
+      "result": {
+        "top": 901,
+        "bottom": 992,
+        "height": 91,
+        "left": 238,
+        "right": 909,
+        "width": 671
+      },
+      "range": {
+        "top": 1001,
+        "bottom": 1137,
+        "height": 136,
+        "left": 238,
+        "right": 909,
+        "width": 671
+      },
+      "practice": {
+        "top": 1146,
+        "bottom": 1279,
+        "height": 133,
+        "left": 238,
+        "right": 909,
+        "width": 671
+      },
+      "neighbors": {
+        "top": 1291,
+        "bottom": 1343,
+        "height": 52,
+        "left": 227,
+        "right": 1051,
+        "width": 824
+      },
+      "footer": {
+        "top": 1357,
+        "bottom": 1468,
+        "height": 111,
+        "left": 227,
+        "right": 1051,
+        "width": 824
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

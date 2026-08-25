@@ -1,0 +1,754 @@
+.target-inverse-page {
+  position: relative;
+  top: -34px;
+  width: 824px;
+  height: 1372px;
+  margin-bottom: -34px;
+  color: #0a1740;
+  font-size: 9px;
+  letter-spacing: 0;
+}
+.target-inverse-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.target-inverse-page h1,
+.target-inverse-page h2,
+.target-inverse-page h3,
+.target-inverse-page h4,
+.target-inverse-page p {
+  margin: 0;
+}
+.target-inverse-page button,
+.target-inverse-page input {
+  font: inherit;
+  color: inherit;
+}
+.target-inverse-page button {
+  cursor: pointer;
+}
+.inverse-breadcrumb {
+  position: absolute;
+  top: -38px;
+  left: 0;
+  display: flex;
+  height: 28px;
+  align-items: center;
+  gap: 9px;
+  color: #526785;
+  font-weight: 800;
+}
+.inverse-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.inverse-breadcrumb a:first-child {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+.inverse-breadcrumb b {
+  color: #087e9a;
+}
+.inverse-header,
+.inverse-tabs,
+.inverse-lab,
+.inverse-neighbors a,
+.inverse-footer {
+  border: 1px solid #d8e3ed;
+  border-radius: 14px;
+  background: #fff;
+}
+.inverse-header {
+  height: 232px;
+  padding: 16px;
+}
+.inverse-header > span {
+  display: inline-block;
+  margin-right: 7px;
+  border-radius: 12px;
+  background: #e9f7fa;
+  padding: 5px 10px;
+  color: #087f99;
+  font-size: 8px;
+  font-weight: 900;
+}
+.inverse-header > span:nth-child(2) {
+  background: #f3f5f7;
+  color: #546782;
+}
+.inverse-header h1 {
+  margin-top: 8px;
+  font-size: 31px;
+  line-height: 34px;
+  font-weight: 900;
+}
+.inverse-header > p {
+  margin-top: 4px;
+  color: #536784;
+  font-size: 12px;
+}
+.inverse-header > section {
+  display: flex;
+  gap: 8px;
+  margin-top: 9px;
+}
+.inverse-header > section b {
+  border: 1px solid #d8e3ed;
+  border-radius: 14px;
+  padding: 6px 10px;
+}
+.inverse-header > nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 9px;
+}
+.inverse-header button {
+  height: 39px;
+  border: 1px solid #d8e3ed;
+  border-radius: 10px;
+  background: #fff;
+  padding: 0 14px;
+}
+.inverse-header nav button:first-child {
+  width: 205px;
+  text-align: left;
+}
+.inverse-header svg {
+  width: 13px;
+  vertical-align: middle;
+}
+.inverse-header > button {
+  margin-top: 7px;
+}
+.inverse-tabs {
+  display: grid;
+  height: 54px;
+  grid-template-columns: 1.35fr repeat(4, 1fr);
+  margin-top: 9px;
+  padding: 6px;
+}
+.inverse-tabs button {
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+}
+.inverse-tabs .active {
+  border-radius: 9px;
+  background: #079db8;
+  color: #fff;
+}
+.inverse-lab {
+  height: 876px;
+  margin-top: 10px;
+  padding: 10px;
+}
+.inverse-lab > header {
+  position: relative;
+  height: 76px;
+}
+.inverse-lab > header small {
+  color: #07839d;
+  font-weight: 900;
+}
+.inverse-lab > header h2 {
+  margin-top: 7px;
+  font-size: 17px;
+}
+.inverse-lab > header p {
+  margin-top: 7px;
+  color: #536784;
+}
+.inverse-lab > header nav {
+  position: absolute;
+  right: 137px;
+  top: 0;
+  display: grid;
+  width: 116px;
+  height: 31px;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 17px;
+  background: #f2f3f6;
+}
+.inverse-lab > header nav button {
+  border: 0;
+  background: transparent;
+  font-weight: 900;
+}
+.inverse-lab > header nav .active {
+  border-radius: 17px;
+  background: #e65e24;
+  color: #fff;
+}
+.inverse-lab > header > button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 31px;
+  border: 1px solid #d8e3ed;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 12px;
+}
+.inverse-lab > header > button svg {
+  width: 12px;
+  vertical-align: middle;
+}
+.inverse-columns {
+  display: grid;
+  height: 779px;
+  grid-template-columns: 1fr 121px;
+  gap: 10px;
+}
+.inverse-columns > main {
+  min-width: 0;
+}
+.inverse-models {
+  display: grid;
+  height: 399px;
+  grid-template-columns: 205px 283px 167px;
+  gap: 8px;
+}
+.inverse-models > section,
+.inverse-result,
+.inverse-range,
+.inverse-practice,
+.inverse-trace {
+  border: 1px solid #d8e3ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.inverse-models > section {
+  padding: 12px;
+}
+.inverse-models h3 {
+  font-size: 11px;
+}
+.inverse-models h3 i,
+.inverse-result h3 i,
+.inverse-range h3 i,
+.inverse-practice h3 i {
+  display: inline-grid;
+  width: 13px;
+  height: 13px;
+  margin-right: 6px;
+  place-items: center;
+  border-radius: 50%;
+  background: #0a1740;
+  color: #fff;
+  font-size: 7px;
+  font-style: normal;
+}
+.inverse-models > section > p {
+  margin-top: 9px;
+  color: #526784;
+}
+.ratio-slider {
+  position: relative;
+  height: 144px;
+  padding-top: 70px;
+}
+.ratio-slider output {
+  position: absolute;
+  top: 31px;
+  left: calc(75% - 18px);
+  min-width: 34px;
+  border-radius: 9px;
+  background: #09a7b8;
+  padding: 8px;
+  color: #fff;
+  text-align: center;
+  font-weight: 900;
+}
+.ratio-slider output:after {
+  content: "";
+  position: absolute;
+  left: 13px;
+  bottom: -7px;
+  border: 4px solid transparent;
+  border-top-color: #09a7b8;
+}
+.ratio-slider input,
+.inverse-practice input {
+  width: 100%;
+  accent-color: #08a8b9;
+}
+.ratio-slider span,
+.inverse-practice > div span {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.ratio-card article {
+  height: 70px;
+  border: 1px solid #d8e3ed;
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+}
+.ratio-card article b {
+  display: block;
+  margin-top: 9px;
+  color: #0597b2;
+  font-size: 19px;
+}
+.ratio-card footer {
+  margin-top: 29px;
+  border-radius: 8px;
+  background: #f6f9fb;
+  padding: 12px;
+  line-height: 16px;
+}
+.inverse-circle-card svg {
+  width: 100%;
+  height: 272px;
+  touch-action: none;
+}
+.inverse-circle-card svg > line {
+  stroke: #0a1740;
+  stroke-width: 1;
+}
+.inverse-circle-card svg > circle:first-of-type {
+  fill: none;
+  stroke: #0a1740;
+  stroke-width: 1.5;
+}
+.inverse-circle-card .ratio-guide {
+  stroke: #0ba9c1;
+  stroke-dasharray: 5 4;
+}
+.inverse-circle-card .angle-ray {
+  stroke: #7b2cdb;
+  stroke-width: 3;
+}
+.inverse-circle-card .projection {
+  stroke: #08a8c0;
+}
+.inverse-circle-card .ray-handle {
+  fill: #08a3b7;
+  stroke: #6f25ce;
+  stroke-width: 3;
+}
+.inverse-circle-card text {
+  fill: #088da7;
+  font-size: 10px;
+  font-weight: 800;
+}
+.inverse-circle-card footer {
+  height: 54px;
+  border-radius: 8px;
+  background: #f5f8fa;
+  padding: 8px;
+  text-align: center;
+  line-height: 17px;
+}
+.inverse-triangle-card svg {
+  width: 100%;
+  height: 242px;
+}
+.inverse-triangle-card path {
+  fill: none;
+  stroke: #0a1740;
+  stroke-width: 1.7;
+}
+.inverse-triangle-card circle {
+  fill: #08a3b7;
+}
+.inverse-triangle-card text {
+  font-size: 10px;
+  fill: #078ca7;
+}
+.triangle-equation {
+  border: 0 !important;
+  color: #0a1740 !important;
+  text-align: center;
+  line-height: 19px;
+}
+.triangle-equation b {
+  color: #078ca7;
+  text-decoration: underline;
+}
+.triangle-equation strong {
+  color: #078ca7;
+}
+.inverse-result {
+  display: grid;
+  height: 91px;
+  grid-template-columns: 1.2fr 1.3fr 1.4fr;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 11px;
+}
+.inverse-result article {
+  padding: 7px;
+}
+.inverse-result article > p {
+  margin-top: 12px;
+}
+.inverse-result > output {
+  display: grid;
+  place-items: center;
+  border: 1px solid #b17bf0;
+  border-radius: 9px;
+  background: #fbf8ff;
+  color: #722bd0;
+  font-size: 22px;
+  font-weight: 900;
+}
+.inverse-result article:last-child p {
+  border: 1px solid #d9c9f4;
+  border-radius: 7px;
+  background: #fbf8ff;
+  padding: 12px;
+  color: #722bd0;
+  font-size: 15px;
+  font-weight: 900;
+}
+.inverse-result svg {
+  float: right;
+  width: 18px;
+  color: #168bdd;
+}
+.inverse-range {
+  position: relative;
+  height: 136px;
+  margin-top: 9px;
+  padding: 12px;
+}
+.inverse-range > p {
+  margin-top: 9px;
+}
+.inverse-range > div {
+  position: relative;
+  width: 73%;
+  height: 71px;
+  margin-top: 18px;
+}
+.inverse-range > div > i {
+  position: absolute;
+  top: 17px;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: #0a4568;
+}
+.range-dot {
+  position: absolute;
+  z-index: 1;
+  top: 11px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #7c2bd2;
+}
+.range-dot b {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  background: #7c2bd2;
+  padding: 8px;
+  color: #fff;
+  white-space: nowrap;
+}
+.inverse-range label {
+  position: absolute;
+  top: 29px;
+  display: grid;
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+}
+.inverse-range label:nth-of-type(1) {
+  left: 0;
+}
+.inverse-range label:nth-of-type(2) {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.inverse-range label:nth-of-type(3) {
+  right: 0;
+}
+.inverse-range label small {
+  margin-top: 4px;
+  font-size: 8px;
+}
+.inverse-range aside {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  width: 145px;
+  height: 105px;
+  border-radius: 8px;
+  background: #fbf7ff;
+  padding: 12px;
+}
+.inverse-range aside > b {
+  color: #762bd0;
+}
+.inverse-range aside p {
+  margin-top: 9px;
+  line-height: 15px;
+}
+.inverse-practice {
+  position: relative;
+  height: 133px;
+  margin-top: 9px;
+  padding: 12px;
+}
+.inverse-practice > p {
+  margin-top: 8px;
+}
+.inverse-practice > div {
+  position: absolute;
+  left: 12px;
+  bottom: 15px;
+  width: 260px;
+}
+.inverse-practice > div output {
+  position: absolute;
+  right: 0;
+  top: -45px;
+  border-radius: 9px;
+  background: #09a5b8;
+  padding: 8px;
+  color: #fff;
+  font-weight: 900;
+}
+.inverse-practice > label {
+  position: absolute;
+  left: 300px;
+  top: 13px;
+  width: 150px;
+  display: grid;
+  gap: 8px;
+}
+.inverse-practice > label > span {
+  font-size: 12px;
+  font-weight: 800;
+}
+.inverse-practice > label input {
+  position: absolute;
+  right: 0;
+  top: 21px;
+  width: 60px;
+  height: 42px;
+  border: 1px solid #d8c7f3;
+  border-radius: 7px;
+  padding: 8px;
+  color: #752bd0;
+  font-size: 18px;
+  font-weight: 900;
+}
+.inverse-practice > label button {
+  width: 102px;
+  height: 28px;
+  border: 0;
+  border-radius: 7px;
+  background: #bcecf4;
+  color: #057e99;
+}
+.inverse-practice > aside {
+  position: absolute;
+  right: 12px;
+  top: 13px;
+  width: 180px;
+  border-left: 1px solid #d8e3ed;
+  padding-left: 15px;
+}
+.inverse-practice > aside button {
+  display: flex;
+  width: 100%;
+  height: 45px;
+  margin-top: 8px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #d8c7f3;
+  border-radius: 7px;
+  background: #fbf8ff;
+  padding: 8px;
+  color: #762bd0;
+  font-size: 14px;
+  font-weight: 900;
+}
+.inverse-practice > aside svg {
+  width: 18px;
+  color: #148bd7;
+}
+.inverse-practice > aside p {
+  margin-top: 8px;
+  font-weight: 900;
+}
+.inverse-practice > aside p.correct {
+  color: #148b42;
+}
+.inverse-practice > aside p.incorrect {
+  color: #d64232;
+}
+.inverse-practice > aside small {
+  display: block;
+  margin-top: 4px;
+}
+.inverse-trace {
+  height: 779px;
+  padding: 14px 10px;
+}
+.inverse-trace > h3 {
+  color: #07829b;
+  font-size: 8px;
+}
+.inverse-trace > h3 + b {
+  display: block;
+  margin: 9px 0 17px;
+  line-height: 14px;
+}
+.inverse-trace > section {
+  min-height: 81px;
+  margin-bottom: 10px;
+  border: 1px solid #cde8ed;
+  border-radius: 8px;
+  background: #f6fcfd;
+  padding: 12px;
+}
+.inverse-trace > section h4 {
+  font-size: 10px;
+}
+.inverse-trace > section > b {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+}
+.inverse-trace > section p {
+  margin-top: 9px;
+  line-height: 14px;
+  color: #536784;
+}
+.inverse-key {
+  height: 160px !important;
+  padding: 12px !important;
+}
+.inverse-key svg {
+  width: 14px;
+  color: #e6a20b;
+  vertical-align: middle;
+}
+.inverse-key > b {
+  display: inline !important;
+  margin-left: 5px !important;
+}
+.inverse-key h4 {
+  margin-top: 16px;
+  font-size: 11px !important;
+  line-height: 17px;
+}
+.inverse-domain {
+  height: 127px !important;
+}
+.inverse-domain > p {
+  display: flex !important;
+  justify-content: space-between;
+  color: #0a1740 !important;
+  font-weight: 900;
+}
+.inverse-domain > i {
+  display: block;
+  height: 2px;
+  margin-top: 10px;
+  background: #0a4568;
+}
+.inverse-domain > small {
+  display: block;
+  margin-top: 12px;
+  text-align: center;
+}
+.inverse-neighbors {
+  display: grid;
+  height: 52px;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 10px;
+}
+.inverse-neighbors a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  color: inherit;
+  text-decoration: none;
+}
+.inverse-neighbors a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.inverse-neighbors small {
+  display: block;
+  font-size: 7px;
+}
+.inverse-footer {
+  height: 111px;
+  margin-top: 14px;
+  padding: 17px 14px;
+}
+.inverse-footer b {
+  font-size: 12px;
+}
+.inverse-footer p {
+  margin-top: 9px;
+  color: #536784;
+}
+.inverse-footer:after {
+  content: "© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.";
+  display: block;
+  margin-top: 22px;
+  border-top: 1px solid #d8e3ed;
+  padding-top: 10px;
+  color: #687a95;
+  font-size: 7px;
+}
+@media (min-width: 900px) and (max-width: 1279px) {
+  body:has(.target-inverse-page) [data-testid="desktop-sidebar"] {
+    width: 211px;
+  }
+  body:has(.target-inverse-page) .app-layout-rail > div > header {
+    height: 53px;
+  }
+  body:has(.target-inverse-page) #main-content {
+    padding: 47px 16px 0;
+    overflow: hidden;
+    background: #fff;
+  }
+  body:has(.target-inverse-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+}
+@media (max-width: 899px) {
+  .target-inverse-page {
+    top: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .inverse-header,
+  .inverse-lab {
+    height: auto;
+  }
+  .inverse-columns,
+  .inverse-models {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .inverse-result {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .inverse-trace {
+    height: auto;
+  }
+  .inverse-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+}

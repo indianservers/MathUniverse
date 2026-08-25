@@ -197,6 +197,18 @@ describe("CalculatorLessonAdapter", () => {
     expect(html).toContain('aria-label="Sine angle drag control"');
     expect(html).toContain('aria-label="Trigonometric practice answer"');
   });
+  it("renders lesson 11 as a dedicated inverse-trigonometry workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 11)!;
+    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="calculator-mockup-0011"');
+    expect(html).toContain('data-dedicated-lesson="11"');
+    expect(html).toContain('data-object-model="draggable-ratio-principal-angle-unit-circle-triangle-range-verification-practice-model"');
+    expect(html).toContain('data-ratio="0.5"');
+    expect(html).toContain('data-angle="30"');
+    expect(html).toContain('aria-label="Inverse sine ratio drag control"');
+    expect(html).toContain('aria-label="Draggable inverse sine unit circle"');
+    expect(html).toContain('aria-label="Inverse trigonometry practice answer"');
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
@@ -209,7 +221,7 @@ describe("CalculatorLessonAdapter", () => {
       8: "A logarithm asks for an exponent",
       9: "Exponential Growth Lab",
       10: "Special-angle lab",
-      11: "Inverse trig",
+      11: "Inverse sine lab",
       12: "Hyperbolic rule",
       13: "Counting rule",
       14: "Absolute value",
@@ -248,7 +260,7 @@ describe("CalculatorLessonAdapter", () => {
       8: "log reverses exponentiation",
       9: "Repeated multiplication",
       10: "Concept trace",
-      11: "Ratio to principal angle",
+      11: "Inverse sine: ratio to principal angle",
       12: "Hyperbolic exponential formula",
       13: "Counting choices trace",
       14: "Distance from zero",
