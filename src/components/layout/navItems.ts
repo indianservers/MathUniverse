@@ -148,6 +148,14 @@ export const navSections: NavSection[] = [
     icon: "Sparkles",
     items: [
       { title: "Calculus", route: "/calculus", icon: "Sigma", description: "Open the unified interactive Calculus Studio.", searchTerms: ["calculus studio", "limits", "derivatives", "integrals", "differential equations", "series", "vector calculus"] },
+      { title: "Trigonometry", route: "/trigonometry", icon: "Waves", description: "Explore angles, unit-circle motion, identities, and waves.", searchTerms: ["trigonometry studio", "trig", "unit circle", "sine", "cosine", "identities"] },
+      { title: "Geometry", route: "/geometry", icon: "Shapes", description: "Construct and measure triangles, circles, theorems, and solids.", searchTerms: ["geometry studio", "shapes", "triangles", "circles", "pythagoras", "solids"] },
+      { title: "Algebra", route: "/algebra", icon: "FunctionSquare", description: "Manipulate expressions, equations, functions, and algebraic structures.", searchTerms: ["algebra studio", "equations", "expressions", "functions", "polynomials"] },
+      { title: "Statistics & Probability", route: "/probability-statistics", icon: "BarChart3", description: "Investigate data, distributions, inference, and uncertainty.", searchTerms: ["statistics probability studio", "data", "distribution", "inference", "regression", "chance"] },
+      { title: "Linear Algebra", route: "/linear-algebra", icon: "Grid3X3", description: "Visualize vectors, matrices, transformations, and eigenvectors.", searchTerms: ["linear algebra studio", "vectors", "matrices", "transformations", "eigenvectors"] },
+      { title: "Number & Discrete Mathematics", route: "/discrete-world", icon: "Binary", description: "Explore number theory, logic, combinatorics, graphs, and automata.", searchTerms: ["number discrete mathematics studio", "number systems", "number theory", "logic", "combinatorics", "graphs", "automata"] },
+      { title: "Complex Numbers", route: "/complex-numbers", icon: "Orbit", description: "Connect the complex plane with rotation, phase, and Euler's formula.", searchTerms: ["complex numbers studio", "complex plane", "imaginary", "euler", "rotation", "phase"] },
+      { title: "Mathematical Modelling", route: "/mathematical-modelling", icon: "Workflow", description: "Build, compare, and validate models for real systems.", searchTerms: ["mathematical modelling studio", "mathematical modeling", "simulation", "growth model", "data fit", "optimization"] },
     ],
   },
   {

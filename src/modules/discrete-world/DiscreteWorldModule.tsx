@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Binary, Braces, Cpu, GitBranch, Network, Play, Save, Sigma } from "lucide-react";
+import { ArrowRight, Binary, Braces, Cpu, GitBranch, Hash, Network, Play, Save, Sigma } from "lucide-react";
 import SectionCard from "../../components/ui/SectionCard";
 import TopicHeader from "../../components/ui/TopicHeader";
 import {
@@ -38,6 +38,13 @@ import { complexityClasses, haltingDiagonalDemo } from "./shared-engines/complex
 import { bellmanFord, eulerPath, floydWarshall, stronglyConnectedComponents } from "./shared-engines/graphExtensionsEngine";
 
 const canonicalLabs = [
+  {
+    title: "Number Systems Lab",
+    route: "/number-systems",
+    icon: Hash,
+    status: "Existing canonical module",
+    coverage: "Natural, integer, rational, irrational, real-number, and number-line models.",
+  },
   {
     title: "Logic Lab",
     route: "/mathematical-logic",
@@ -137,8 +144,8 @@ export default function DiscreteWorldModule() {
   return (
     <div className="space-y-4">
       <TopicHeader
-        title="Discrete Mathematics and Automata World"
-        subtitle="A browser-only computational lab that connects existing discrete math modules with new automata, grammar, and Turing simulations."
+        title="Number & Discrete Mathematics Studio"
+        subtitle="Explore number systems, number theory, logic, combinatorics, graphs, automata, grammars, and computation in one connected lab."
         difficulty="Advanced"
         estimatedMinutes={95}
         formula={{ title: "Execution model", formula: String.raw`\delta(q, a) = q'`, explanation: "All parsing, simulation, rendering, and saving run in the browser." }}

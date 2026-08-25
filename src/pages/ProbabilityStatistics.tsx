@@ -207,7 +207,7 @@ export default function ProbabilityStatistics() {
   return (
     <StudioPageShell
       className="stats-studio"
-      title="Probability & Statistics Studio"
+      title="Statistics & Probability Studio"
       subtitle="Open concept cards for distributions, inference, regression, Bayesian reasoning, stochastic processes, and data labs."
       breadcrumbs={["Home", "Probability & Statistics"]}
       difficulty="Concept Home"

@@ -107,6 +107,9 @@ export default function Geometry() {
 
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
   useEffect(() => {
+    document.title = "Geometry Studio | Math Universe";
+  }, []);
+  useEffect(() => {
     const onPop = () => setTab(readGeometryTab());
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
@@ -120,7 +123,7 @@ export default function Geometry() {
   const shareSetup = async () => {
     const url = window.location.href;
     if (navigator.share) {
-      await navigator.share({ title: "Geometry Universe", url });
+      await navigator.share({ title: "Geometry Studio", url });
       return;
     }
     await navigator.clipboard?.writeText(url);
@@ -130,7 +133,7 @@ export default function Geometry() {
     <main className="geometry-universe" onPointerDown={() => markTopicInteracted(topic.id)}>
       <header className="gu-header">
         <div>
-          <h1>Geometry Universe</h1>
+          <h1>Geometry Studio</h1>
           <p>Measure shapes, angles, areas, circles, and spatial relationships visually.</p>
         </div>
         <div className="gu-header-actions">
@@ -140,7 +143,7 @@ export default function Geometry() {
           <button type="button" onClick={() => void shareSetup()}><Share2 />Share this setup</button>
         </div>
       </header>
-      <nav className="gu-tabs" role="tablist" aria-label="Geometry Universe tabs">
+      <nav className="gu-tabs" role="tablist" aria-label="Geometry Studio tabs">
         <a href="/shapes" className="gu-tab-link"><Cuboid />2D/3D Shapes</a>
         {geometryTabs.map((item) => item.id === "solids" ? (
           <a key={item.id} href={solidWorkspaceHref()} role="tab" aria-selected={tab === item.id} className={tab === item.id ? "gu-tab-link active" : "gu-tab-link"}>

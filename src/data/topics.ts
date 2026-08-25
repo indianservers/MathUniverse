@@ -17,7 +17,7 @@ export type Topic = {
 export const topics: Topic[] = [
   {
     id: "algebra",
-    title: "Algebra Visualizations",
+    title: "Algebra Studio",
     route: "/algebra",
     iconName: "Calculator",
     description: "Explore equations, slopes, parabolas, roots, and transformations through live graphs.",
@@ -29,7 +29,7 @@ export const topics: Topic[] = [
   },
   {
     id: "geometry",
-    title: "Geometry Universe",
+    title: "Geometry Studio",
     route: "/geometry",
     iconName: "Shapes",
     description: "Measure shapes, angles, areas, circles, and spatial relationships visually.",
@@ -53,7 +53,7 @@ export const topics: Topic[] = [
   },
   {
     id: "trigonometry",
-    title: "Trigonometry & Waves",
+    title: "Trigonometry Studio",
     route: "/trigonometry",
     iconName: "Waves",
     description: "Connect unit circles, sine waves, phase, amplitude, and real signals.",
@@ -77,7 +77,7 @@ export const topics: Topic[] = [
   },
   {
     id: "complex",
-    title: "Complex Numbers & Euler's Formula",
+    title: "Complex Numbers Studio",
     route: "/complex-numbers",
     iconName: "Atom",
     description: "Move between rectangular and polar form and see Euler's identity on the plane.",
@@ -149,7 +149,7 @@ export const topics: Topic[] = [
   },
   {
     id: "discrete-world",
-    title: "Discrete Mathematics and Automata World",
+    title: "Number & Discrete Mathematics Studio",
     route: "/discrete-world",
     iconName: "Workflow",
     description: "Connect logic, sets, combinatorics, graph theory, automata, grammars, and Turing machines in one browser-only lab.",
@@ -161,7 +161,7 @@ export const topics: Topic[] = [
   },
   {
     id: "statistics",
-    title: "Statistics and Probability",
+    title: "Statistics & Probability Studio",
     route: "/probability-statistics",
     iconName: "BarChart3",
     description: "Explore native statistics, distributions, variation, regression, probability, and uncertainty labs.",
@@ -173,7 +173,7 @@ export const topics: Topic[] = [
   },
   {
     id: "linear-algebra",
-    title: "Linear Algebra Lab",
+    title: "Linear Algebra Studio",
     route: "/linear-algebra",
     iconName: "Grid3X3",
     description: "Visualize vectors, matrices, transformations, rotations, scaling, and shearing.",

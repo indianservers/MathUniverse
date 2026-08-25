@@ -96,6 +96,7 @@ const MathLabLinearAlgebra = lazyRoute(() => import("./pages/MathLabLinearAlgebr
 const MathLabProbability = lazyRoute(() => import("./pages/MathLabProbability"));
 const MathLabSmartQuery = lazyRoute(() => import("./pages/MathLabSmartQuery"));
 const MathLabToolPage = lazyRoute(() => import("./pages/MathLabToolPage"));
+const MathematicalModellingStudio = lazyRoute(() => import("./pages/MathematicalModellingStudio"));
 const MathVisualizationPage = lazyRoute(() => import("./pages/MathVisualizationPage"));
 const MathVisualDictionary = lazyRoute(() => import("./pages/MathVisualDictionary"));
 const WorkspaceHome = lazyRoute(() => import("./pages/WorkspaceHome"));
@@ -301,6 +302,7 @@ export default function App() {
             <Route path="matrices/:operationId" element={<MatrixOperationPage />} />
             <Route path="matrix-sandbox" element={<MatrixOperationsSandbox />} />
             <Route path="ai-applications" element={<AIApplications />} />
+            <Route path="mathematical-modelling" element={<MathematicalModellingStudio />} />
             <Route path="learn" element={<LessonsHomePage />} />
             <Route path="learn/:topicSlug" element={<LearnDiscoveryPage />} />
             <Route path="learn/:topicSlug/:subtopicSlug" element={<LearnDiscoveryPage />} />

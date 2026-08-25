@@ -30,11 +30,14 @@ export default function LinearAlgebra() {
   }, [progress]);
 
   useEffect(() => markTopicVisited(topic.id), [markTopicVisited, topic.id]);
+  useEffect(() => {
+    document.title = "Linear Algebra Studio | Math Universe";
+  }, []);
 
   const shareSetup = async () => {
     const url = window.location.href;
     if (navigator.share) {
-      await navigator.share({ title: "Linear Algebra Lab", url });
+      await navigator.share({ title: "Linear Algebra Studio", url });
       return;
     }
     await navigator.clipboard?.writeText(url);
@@ -47,7 +50,7 @@ export default function LinearAlgebra() {
           <nav aria-label="Breadcrumb" className="la-breadcrumb"><Link to="/"><Home />Home</Link><span>Vectors</span><span>Vector Visualizer</span></nav>
           <div>
             <span className="la-kicker"><Sparkles />Scientific workspace</span>
-            <h1>Linear Algebra Lab</h1>
+            <h1>Linear Algebra Studio</h1>
             <p>Visualize vectors, matrices, transformations, rotations, scaling, and shearing.</p>
           </div>
         </div>
