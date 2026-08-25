@@ -1,0 +1,145 @@
+{
+  "mockup": "0022",
+  "lessonId": 22,
+  "route": "/lessons/core-workspaces/22-integer-sliders",
+  "objectModel": "discrete-integer-snap-iteration-table-staircase-plot-linked-affine-calculation-model",
+  "checks": {
+    "initial": {
+      "x": "3",
+      "y": "9",
+      "view": "0",
+      "actions": "0"
+    },
+    "fractionalSnap": {
+      "x": "2",
+      "y": "7",
+      "view": "0",
+      "actions": "1"
+    },
+    "tick": {
+      "x": "-2",
+      "y": "-1",
+      "view": "0",
+      "actions": "2"
+    },
+    "next": {
+      "x": "-1",
+      "y": "1",
+      "view": "0",
+      "actions": "3"
+    },
+    "previous": {
+      "x": "-2",
+      "y": "-1",
+      "view": "0",
+      "actions": "4"
+    },
+    "view": {
+      "x": "-2",
+      "y": "-1",
+      "view": "4",
+      "actions": "5"
+    },
+    "reset": {
+      "x": "3",
+      "y": "9",
+      "view": "0",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1217,
+      "height": 1292
+    },
+    "document": {
+      "width": 1217,
+      "height": 1292
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 105,
+      "bottom": 1292,
+      "height": 1187,
+      "left": 255,
+      "right": 1200,
+      "width": 945
+    },
+    "regions": {
+      "header": {
+        "top": 105,
+        "bottom": 244,
+        "height": 139,
+        "left": 255,
+        "right": 1200,
+        "width": 945
+      },
+      "tabs": {
+        "top": 244,
+        "bottom": 308,
+        "height": 64,
+        "left": 255,
+        "right": 1200,
+        "width": 945
+      },
+      "main": {
+        "top": 321,
+        "bottom": 1044,
+        "height": 723,
+        "left": 255,
+        "right": 1200,
+        "width": 945
+      },
+      "lab": {
+        "top": 321,
+        "bottom": 1044,
+        "height": 723,
+        "left": 255,
+        "right": 953,
+        "width": 698
+      },
+      "side": {
+        "top": 321,
+        "bottom": 1044,
+        "height": 723,
+        "left": 961,
+        "right": 1196,
+        "width": 235
+      },
+      "calculation": {
+        "top": 562.5,
+        "bottom": 702.5,
+        "height": 140,
+        "left": 274,
+        "right": 934,
+        "width": 660
+      },
+      "lower": {
+        "top": 715.5,
+        "bottom": 1021.5,
+        "height": 306,
+        "left": 274,
+        "right": 934,
+        "width": 660
+      },
+      "neighbors": {
+        "top": 1055,
+        "bottom": 1117,
+        "height": 62,
+        "left": 255,
+        "right": 1200,
+        "width": 945
+      },
+      "footer": {
+        "top": 1128,
+        "bottom": 1272,
+        "height": 144,
+        "left": 255,
+        "right": 1200,
+        "width": 945
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

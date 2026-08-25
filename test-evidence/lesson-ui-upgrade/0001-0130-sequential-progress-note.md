@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **21 of 130 lessons completed; 109 pending.**
+Dedicated rebuild target: **22 of 130 lessons completed; 108 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -25,6 +25,7 @@ Dedicated rebuild target: **21 of 130 lessons completed; 109 pending.**
 | 0019   | 19 Algebra Workspace | Complete | Editable affine-rule dependency graph with draggable x, parsed rule validation, live substitution/output/equivalence trace, dynamic test table, Clear All, reset/views, and rotating calculated practice at exact 1024x1536 target geometry |
 | 0020   | 20 Variable Explorer | Complete | Single-source x dependency model with real -5..5 slider and presets, linked rule/substitution/output stages, symbolic/numeric trace, update graph, value table, verification, reset/views, and workspace/share state at exact 1217x1292 target geometry |
 | 0021   | 21 Numeric Sliders | Complete | Continuous bounded x model with real drag slider, editable range, selectable precision, steppers, presets, linked substitution/result chain, pattern row, graph point/guides, reset/share, and exact 1217x1292 target geometry |
+| 0022   | 22 Integer Sliders | Complete | Integer-snapping x model with real drag/tick/previous/next controls, linked substitution and result, iteration table, staircase plot and guides, five stateful views, and exact 1217x1292 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -319,3 +320,17 @@ Evidence:
 - `0021-reference.png`
 - `0021-desktop.png`
 - `0021-dedicated-target-validation.json`
+
+## Lesson 22 / Mockup 0022 - Integer Sliders
+
+Reworked individually against the target mockup with a dedicated `discrete-integer-snap-iteration-table-staircase-plot-linked-affine-calculation-model`. A single integer x drives the draggable value bubble, substitution, result, iteration-table highlight, staircase-plot point, orange coordinate guides, point label, current-value panel, and adjacent integer previews.
+
+The main -5 to 5 range is a real step-1 input, while all eleven tick labels are direct controls. Previous and Next move by exactly one integer and disable at the domain endpoints. Fractional input is rounded at the state boundary, and all five lesson-view tabs plus the footer commands produce visible state changes rather than acting as placeholders.
+
+Final 1217x1292 integrated browser validation injects x=1.6 and verifies integer snapping to x=2, y=7; selects x=-2 and verifies y=-1; moves Next to -1 and Previous to -2; opens Know more; and reloads to the target x=3, y=9 state. The final frame matches the target at surface x=255-1200 and y=105-1292, header y=105-244, tabs y=244-308, workspace y=321-1044, lab x=255-953, controls x=961-1196, calculation y=562.5-702.5, lower models y=715.5-1021.5, navigation y=1055-1117, and footer y=1128-1272. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0022-reference.png`
+- `0022-desktop.png`
+- `0022-dedicated-target-validation.json`

@@ -9,7 +9,7 @@ describe("AlgebraLessonAdapter", () => {
       19: "Build, link, substitute, and check",
       20: "Changing x updates",
       21: "Linked outputs update live",
-      22: "Integer slider",
+      22: "Discrete integer slider",
       23: "Angle slider",
       24: "Animation rule",
       25: "Dependency rule",
@@ -78,6 +78,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('aria-label="Numeric slider x drag control"');
     expect(html).toContain("See the pattern");
     expect(html).toContain("Visual on the graph");
+  });
+
+  it("renders lesson 22 as a dedicated discrete integer slider lab", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 22)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0022"');
+    expect(html).toContain('data-dedicated-lesson="22"');
+    expect(html).toContain('data-object-model="discrete-integer-snap-iteration-table-staircase-plot-linked-affine-calculation-model"');
+    expect(html).toContain('data-x="3"');
+    expect(html).toContain('data-y="9"');
+    expect(html).toContain('aria-label="Integer slider x drag control"');
+    expect(html).toContain("Iteration table");
+    expect(html).toContain("Step plot");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {
