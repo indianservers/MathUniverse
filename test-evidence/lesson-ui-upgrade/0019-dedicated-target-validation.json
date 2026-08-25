@@ -1,0 +1,248 @@
+{
+  "mockup": "0019",
+  "lessonId": 19,
+  "route": "/lessons/core-workspaces/19-algebra-workspace",
+  "objectModel": "editable-affine-rule-draggable-variable-substitution-output-dependency-equivalence-table-practice-model",
+  "checks": {
+    "initial": {
+      "x": "5",
+      "coefficient": "2",
+      "intercept": "3",
+      "output": "13",
+      "rule-valid": "true",
+      "actions": "0",
+      "view": "0",
+      "practice-index": "0",
+      "answer-visible": "true"
+    },
+    "variable": {
+      "x": "-2",
+      "coefficient": "2",
+      "intercept": "3",
+      "output": "-1",
+      "rule-valid": "true",
+      "actions": "1",
+      "view": "0",
+      "practice-index": "0",
+      "answer-visible": "true"
+    },
+    "validRule": {
+      "x": "-2",
+      "coefficient": "3",
+      "intercept": "-2",
+      "output": "-8",
+      "rule-valid": "true",
+      "actions": "2",
+      "view": "0",
+      "practice-index": "0",
+      "answer-visible": "true"
+    },
+    "invalidRule": {
+      "x": "-2",
+      "coefficient": "3",
+      "intercept": "-2",
+      "output": "-8",
+      "rule-valid": "false",
+      "actions": "3",
+      "view": "0",
+      "practice-index": "0",
+      "answer-visible": "true"
+    },
+    "resetAfterInvalid": {
+      "x": "5",
+      "coefficient": "2",
+      "intercept": "3",
+      "output": "13",
+      "rule-valid": "true",
+      "actions": "0",
+      "view": "0",
+      "practice-index": "0",
+      "answer-visible": "true"
+    },
+    "view": {
+      "x": "5",
+      "coefficient": "2",
+      "intercept": "3",
+      "output": "13",
+      "rule-valid": "true",
+      "actions": "1",
+      "view": "2",
+      "practice-index": "0",
+      "answer-visible": "true"
+    },
+    "hidden": {
+      "x": "5",
+      "coefficient": "2",
+      "intercept": "3",
+      "output": "13",
+      "rule-valid": "true",
+      "actions": "2",
+      "view": "2",
+      "practice-index": "0",
+      "answer-visible": "false"
+    },
+    "next": {
+      "x": "5",
+      "coefficient": "2",
+      "intercept": "3",
+      "output": "13",
+      "rule-valid": "true",
+      "actions": "3",
+      "view": "2",
+      "practice-index": "1",
+      "answer-visible": "false"
+    },
+    "shown": {
+      "x": "5",
+      "coefficient": "2",
+      "intercept": "3",
+      "output": "13",
+      "rule-valid": "true",
+      "actions": "4",
+      "view": "2",
+      "practice-index": "1",
+      "answer-visible": "true"
+    },
+    "cleared": {
+      "x": "0",
+      "coefficient": "1",
+      "intercept": "0",
+      "output": "0",
+      "rule-valid": "true",
+      "actions": "5",
+      "view": "2",
+      "practice-index": "0",
+      "answer-visible": "false"
+    },
+    "reset": {
+      "x": "5",
+      "coefficient": "2",
+      "intercept": "3",
+      "output": "13",
+      "rule-valid": "true",
+      "actions": "0",
+      "view": "0",
+      "practice-index": "0",
+      "answer-visible": "true"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1024,
+      "height": 1536
+    },
+    "document": {
+      "width": 1024,
+      "height": 1536
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 111,
+      "bottom": 1536,
+      "height": 1425,
+      "left": 217,
+      "right": 1007,
+      "width": 790
+    },
+    "regions": {
+      "header": {
+        "top": 111,
+        "bottom": 359,
+        "height": 248,
+        "left": 217,
+        "right": 1007,
+        "width": 790
+      },
+      "tabs": {
+        "top": 369,
+        "bottom": 427,
+        "height": 58,
+        "left": 217,
+        "right": 1007,
+        "width": 790
+      },
+      "main": {
+        "top": 437,
+        "bottom": 1384,
+        "height": 947,
+        "left": 217,
+        "right": 1007,
+        "width": 790
+      },
+      "workspace": {
+        "top": 437,
+        "bottom": 1384,
+        "height": 947,
+        "left": 217,
+        "right": 752,
+        "width": 535
+      },
+      "side": {
+        "top": 437,
+        "bottom": 1384,
+        "height": 947,
+        "left": 764,
+        "right": 1007,
+        "width": 243
+      },
+      "equation": {
+        "top": 516,
+        "bottom": 589,
+        "height": 73,
+        "left": 232,
+        "right": 737,
+        "width": 505
+      },
+      "flow": {
+        "top": 611,
+        "bottom": 884,
+        "height": 273,
+        "left": 232,
+        "right": 737,
+        "width": 505
+      },
+      "editors": {
+        "top": 894,
+        "bottom": 1021,
+        "height": 127,
+        "left": 232,
+        "right": 737,
+        "width": 505
+      },
+      "output": {
+        "top": 1053,
+        "bottom": 1140,
+        "height": 87,
+        "left": 232,
+        "right": 737,
+        "width": 505
+      },
+      "practice": {
+        "top": 1182,
+        "bottom": 1390,
+        "height": 208,
+        "left": 232,
+        "right": 737,
+        "width": 505
+      },
+      "neighbor": {
+        "top": 1371,
+        "bottom": 1420,
+        "height": 49,
+        "left": 624,
+        "right": 1007,
+        "width": 383
+      },
+      "footer": {
+        "top": 1427,
+        "bottom": 1536,
+        "height": 109,
+        "left": 217,
+        "right": 1007,
+        "width": 790
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

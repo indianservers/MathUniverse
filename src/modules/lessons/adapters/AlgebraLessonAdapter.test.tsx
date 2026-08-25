@@ -6,7 +6,7 @@ import AlgebraLessonAdapter from "./AlgebraLessonAdapter";
 describe("AlgebraLessonAdapter", () => {
   it("renders algebra workspace lessons 19 through 30 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      19: "Workspace rule",
+      19: "Build, link, substitute, and check",
       20: "Variable rule",
       21: "Numeric slider",
       22: "Integer slider",
@@ -39,6 +39,19 @@ describe("AlgebraLessonAdapter", () => {
       expect(html, lesson.title).toContain(snippet);
       expect(html, lesson.title).not.toContain("Algebra rule");
     }
+  });
+
+  it("renders lesson 19 as a dedicated linked algebra workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 19)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0019"');
+    expect(html).toContain('data-dedicated-lesson="19"');
+    expect(html).toContain('data-object-model="editable-affine-rule-draggable-variable-substitution-output-dependency-equivalence-table-practice-model"');
+    expect(html).toContain('data-x="5"');
+    expect(html).toContain('data-output="13"');
+    expect(html).toContain('aria-label="Variable x drag control"');
+    expect(html).toContain("Preserve equivalence");
+    expect(html).toContain("TEST VALUES TABLE");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {

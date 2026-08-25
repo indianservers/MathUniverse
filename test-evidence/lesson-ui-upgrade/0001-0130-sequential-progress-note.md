@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **18 of 130 lessons completed; 112 pending.**
+Dedicated rebuild target: **19 of 130 lessons completed; 111 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -22,6 +22,7 @@ Dedicated rebuild target: **18 of 130 lessons completed; 112 pending.**
 | 0016   | 16 Constants Library | Complete | Selectable high-precision constants with dedicated circle/exponential/golden-ratio visual models, real precision slider, formula/output trace, early-rounding comparison, reset/views, and reveal practice at exact 1050x1498 target geometry |
 | 0017   | 17 Calculation History | Complete | Selectable provenance-linked history rows with real reuse/copy/pin/inspect actions, live source/result trace, dependency-chain validation, reset/views, and immediate graded practice at exact 1536x1024 target geometry |
 | 0018   | 18 Exact and Decimal Modes | Complete | Linked unit-square radical and decimal number-line model with real exact/decimal modes, 2-16 place precision slider, live trace/table, expansion, reset/views, and rotating graded context practice at exact 1068x1472 target geometry |
+| 0019   | 19 Algebra Workspace | Complete | Editable affine-rule dependency graph with draggable x, parsed rule validation, live substitution/output/equivalence trace, dynamic test table, Clear All, reset/views, and rotating calculated practice at exact 1024x1536 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -274,3 +275,17 @@ Evidence:
 - `0018-reference.png`
 - `0018-desktop.png`
 - `0018-dedicated-target-validation.json`
+
+## Lesson 19 / Mockup 0019 - Algebra Workspace
+
+Reworked individually against the target mockup with a dedicated `editable-affine-rule-draggable-variable-substitution-output-dependency-equivalence-table-practice-model`. The variable, affine rule, substituted expression, output, object cards, dependency trace, equivalence check, test-value table, and practice result all derive from one explicit object graph.
+
+The x control is a real -10 to 10 range input. Edit Rule parses linear forms such as `3x - 2`, rejects invalid input such as `x^2` without corrupting the last valid model, and immediately recalculates every dependent object. Clear All creates the valid identity rule `f(x)=x`, while Reset restores `x=5`, `f(x)=2x+3`, and output 13. Share, Workspace, all views, answer reveal/hide, and rotating practice questions perform real state changes.
+
+Final 1024x1536 integrated browser validation drags x to -2 and verifies output -1; applies `3x - 2` and verifies output -8; rejects `x^2`; resets; switches to Examples; hides, rotates, and reveals practice; clears the object graph to `x=0`, `f(x)=x`, output 0; and resets again. The final frame matches the target at surface x=217-1007 and y=111-1536, header y=111-359, tabs y=369-427, main y=437-1384, equation y=516-589, dependency flow y=611-884, editors y=894-1021, output y=1053-1140, practice y=1182-1390, navigation y=1371-1420, and footer y=1427-1536. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0019-reference.png`
+- `0019-desktop.png`
+- `0019-dedicated-target-validation.json`
