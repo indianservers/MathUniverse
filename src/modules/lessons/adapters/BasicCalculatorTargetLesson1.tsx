@@ -4,8 +4,6 @@ import {
   ChevronRight,
   History,
   Lightbulb,
-  RotateCcw,
-  Share2,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { evaluateExpressionDetailed } from "../../../utils/calculator";
@@ -13,6 +11,8 @@ import type { LessonAdapterProps } from "../types";
 import "./BasicCalculatorTargetLesson1.css";
 
 type Grade = "idle" | "correct" | "incorrect";
+type KeyMode =
+  "numbers" | "functions" | "powers" | "algebra" | "calculus" | "symbols";
 const INITIAL = "(12+8)/4";
 const VIEWS = [
   ["interaction", "◉", "Interaction + visualization"],
@@ -25,6 +25,97 @@ const PRACTICE = [
   { expression: "(18-6)*2+4", display: "(18 − 6) × 2 + 4", answer: 28 },
   { expression: "36/(3+3)+5", display: "36 ÷ (3 + 3) + 5", answer: 11 },
   { expression: "7+4*6-3", display: "7 + 4 × 6 − 3", answer: 28 },
+];
+const KEY_MODES: Array<{ id: KeyMode; label: string; keys: string[] }> = [
+  {
+    id: "numbers",
+    label: "▣ 123",
+    keys: [
+      "7",
+      "8",
+      "9",
+      "/",
+      "(",
+      ")",
+      "4",
+      "5",
+      "6",
+      "*",
+      "⌫",
+      "AC",
+      "1",
+      "2",
+      "3",
+      "-",
+      "%",
+      "+/−",
+      "0",
+      ".",
+      "=",
+      "+",
+      "Evaluate",
+    ],
+  },
+  {
+    id: "functions",
+    label: "▧ Functions",
+    keys: [
+      "sin(",
+      "cos(",
+      "tan(",
+      "sqrt(",
+      "log(",
+      "ln(",
+      "(",
+      ")",
+      "AC",
+      "⌫",
+      "Evaluate",
+    ],
+  },
+  {
+    id: "powers",
+    label: "xʸ Powers",
+    keys: [
+      "^2",
+      "^3",
+      "^",
+      "sqrt(",
+      "cbrt(",
+      "10^",
+      "(",
+      ")",
+      "AC",
+      "⌫",
+      "Evaluate",
+    ],
+  },
+  {
+    id: "algebra",
+    label: "x² Algebra",
+    keys: ["x", "y", "(", ")", "+", "-", "*", "/", "AC", "⌫", "Evaluate"],
+  },
+  {
+    id: "calculus",
+    label: "∑ Calculus",
+    keys: [
+      "sum(",
+      "diff(",
+      "integral(",
+      "(",
+      ")",
+      "+",
+      "-",
+      "AC",
+      "⌫",
+      "Evaluate",
+    ],
+  },
+  {
+    id: "symbols",
+    label: "π Symbols",
+    keys: ["pi", "e", "(", ")", "+", "-", "*", "/", "AC", "⌫", "Evaluate"],
+  },
 ];
 
 export default function BasicCalculatorTargetLesson1({
@@ -43,6 +134,7 @@ export default function BasicCalculatorTargetLesson1({
   const [practiceAnswer, setPracticeAnswer] = useState("");
   const [grade, setGrade] = useState<Grade>("idle");
   const [solutionOpen, setSolutionOpen] = useState(false);
+  const [keyMode, setKeyMode] = useState<KeyMode>("numbers");
   const practice = PRACTICE[practiceIndex];
   const trace = useMemo(
     () => buildTrace(expression, result),
@@ -60,6 +152,7 @@ export default function BasicCalculatorTargetLesson1({
     setPracticeAnswer("");
     setGrade("idle");
     setSolutionOpen(false);
+    setKeyMode("numbers");
   };
   useEffect(restore, [resetToken]);
 
@@ -117,7 +210,24 @@ export default function BasicCalculatorTargetLesson1({
       data-auto-step={autoStep}
       data-active-view={activeView}
       data-practice-state={grade}
+      data-practice-index={practiceIndex}
+      data-solution-open={solutionOpen}
+      data-key-mode={keyMode}
     >
+      <nav
+        className="target-basic-breadcrumb"
+        aria-label="Basic calculator breadcrumb"
+      >
+        <a href="/">Home</a>
+        <span>›</span>
+        <a href="/lessons">Lessons</a>
+        <span>›</span>
+        <a href="/lessons/core-workspaces">Core Workspaces</a>
+        <span>›</span>
+        <a href="/lessons/core-workspaces">Scientific Calculator</a>
+        <span>›</span>
+        <b>Basic Calculator</b>
+      </nav>
       <header className="target-basic-header">
         <div className="target-basic-icon">
           <img
@@ -143,20 +253,6 @@ export default function BasicCalculatorTargetLesson1({
             <strong>Operation order</strong>
             <p>Evaluate expressions step by step.</p>
           </div>
-        </div>
-        <div className="target-basic-actions">
-          <button type="button" onClick={restore}>
-            <RotateCcw />
-            Reset
-          </button>
-          <button
-            type="button"
-            onClick={() => navigator.clipboard?.writeText(window.location.href)}
-          >
-            <Share2 />
-            Share
-          </button>
-          <a href="/workspace">↗ Workspace</a>
         </div>
       </header>
       <div className="target-basic-body">
@@ -230,43 +326,32 @@ export default function BasicCalculatorTargetLesson1({
                       ) : (
                         <p>No history yet.</p>
                       )}
+                      <button type="button" onClick={restore}>
+                        Reset preset
+                      </button>
                     </div>
                   )}
                 </div>
                 <div className="target-basic-modes">
-                  <button className="active">▣ 123</button>
-                  <button>▧ Functions</button>
-                  <button>xʸ Algebra</button>
-                  <button>x² Algebra</button>
-                  <button>∑ Calculus</button>
-                  <button>π Symbols</button>
+                  {KEY_MODES.map((mode) => (
+                    <button
+                      type="button"
+                      key={mode.id}
+                      className={keyMode === mode.id ? "active" : ""}
+                      aria-pressed={keyMode === mode.id}
+                      onClick={() => {
+                        setKeyMode(mode.id);
+                        onInteraction();
+                      }}
+                    >
+                      {mode.label}
+                    </button>
+                  ))}
                 </div>
                 <div className="target-basic-keys">
-                  {[
-                    "7",
-                    "8",
-                    "9",
-                    "/",
-                    "(",
-                    ")",
-                    "4",
-                    "5",
-                    "6",
-                    "*",
-                    "⌫",
-                    "AC",
-                    "1",
-                    "2",
-                    "3",
-                    "-",
-                    "%",
-                    "+/−",
-                    "0",
-                    ".",
-                    "=",
-                    "+",
-                    "Evaluate",
-                  ].map((label) => (
+                  {(
+                    KEY_MODES.find((mode) => mode.id === keyMode)?.keys ?? []
+                  ).map((label) => (
                     <button
                       type="button"
                       key={label}

@@ -529,6 +529,25 @@
 .target-basic-page img {
   display: block;
 }
+.target-basic-breadcrumb {
+  position: absolute;
+  top: -31px;
+  left: 8px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 20px;
+  font-weight: 700;
+  color: #526887;
+}
+.target-basic-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.target-basic-breadcrumb b {
+  color: #0759c6;
+}
 @media (min-width: 1280px) {
   body:has(.target-basic-page) [data-testid="desktop-sidebar"] {
     width: 268px;

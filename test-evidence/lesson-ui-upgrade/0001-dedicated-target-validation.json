@@ -1,0 +1,180 @@
+{
+  "mockup": "0001",
+  "lessonId": 1,
+  "route": "/lessons/core-workspaces/1-basic-calculator",
+  "objectModel": "editable-arithmetic-expression-bodmas-parse-trace-history-practice-model",
+  "checks": {
+    "initial": {
+      "expression": "(12+8)/4",
+      "result": "5",
+      "auto-step": "true",
+      "active-view": "interaction",
+      "practice-state": "idle",
+      "practice-index": "0",
+      "solution-open": "false",
+      "key-mode": "numbers"
+    },
+    "expression": {
+      "expression": "7+4*6-3",
+      "result": "28",
+      "auto-step": "true",
+      "active-view": "interaction",
+      "practice-state": "idle",
+      "practice-index": "0",
+      "solution-open": "false",
+      "key-mode": "numbers"
+    },
+    "autoOff": {
+      "expression": "7+4*6-3",
+      "result": "28",
+      "auto-step": "false",
+      "active-view": "interaction",
+      "practice-state": "idle",
+      "practice-index": "0",
+      "solution-open": "false",
+      "key-mode": "numbers"
+    },
+    "functionsMode": {
+      "expression": "7+4*6-3",
+      "result": "28",
+      "auto-step": "false",
+      "active-view": "interaction",
+      "practice-state": "idle",
+      "practice-index": "0",
+      "solution-open": "false",
+      "key-mode": "functions"
+    },
+    "keypad": {
+      "expression": "9+3",
+      "result": "12",
+      "auto-step": "false",
+      "active-view": "interaction",
+      "practice-state": "idle",
+      "practice-index": "0",
+      "solution-open": "false",
+      "key-mode": "numbers"
+    },
+    "historyRows": 3,
+    "practiceWrong": {
+      "expression": "9+3",
+      "result": "12",
+      "auto-step": "false",
+      "active-view": "interaction",
+      "practice-state": "incorrect",
+      "practice-index": "0",
+      "solution-open": "false",
+      "key-mode": "numbers"
+    },
+    "practiceCorrect": {
+      "expression": "9+3",
+      "result": "12",
+      "auto-step": "false",
+      "active-view": "interaction",
+      "practice-state": "correct",
+      "practice-index": "0",
+      "solution-open": "true",
+      "key-mode": "numbers"
+    },
+    "solutionClosed": {
+      "expression": "9+3",
+      "result": "12",
+      "auto-step": "false",
+      "active-view": "interaction",
+      "practice-state": "correct",
+      "practice-index": "0",
+      "solution-open": "false",
+      "key-mode": "numbers"
+    },
+    "nextPractice": {
+      "expression": "9+3",
+      "result": "12",
+      "auto-step": "false",
+      "active-view": "interaction",
+      "practice-state": "idle",
+      "practice-index": "1",
+      "solution-open": "false",
+      "key-mode": "numbers"
+    },
+    "reset": {
+      "expression": "(12+8)/4",
+      "result": "5",
+      "auto-step": "true",
+      "active-view": "interaction",
+      "practice-state": "idle",
+      "practice-index": "0",
+      "solution-open": "false",
+      "key-mode": "numbers"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1489,
+      "height": 1056
+    },
+    "document": {
+      "width": 1489,
+      "height": 1056
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 109,
+      "bottom": 1026,
+      "height": 917,
+      "left": 286,
+      "right": 1471,
+      "width": 1185
+    },
+    "regions": {
+      "header": {
+        "top": 109,
+        "bottom": 274,
+        "height": 165,
+        "left": 286,
+        "right": 1471,
+        "width": 1185
+      },
+      "tabs": {
+        "top": 292,
+        "bottom": 341,
+        "height": 49,
+        "left": 286,
+        "right": 1089,
+        "width": 803
+      },
+      "workspace": {
+        "top": 356,
+        "bottom": 930,
+        "height": 574,
+        "left": 286,
+        "right": 1089,
+        "width": 803
+      },
+      "success": {
+        "top": 946,
+        "bottom": 1025,
+        "height": 79,
+        "left": 286,
+        "right": 1089,
+        "width": 803
+      },
+      "rule": {
+        "top": 292,
+        "bottom": 597,
+        "height": 305,
+        "left": 1106,
+        "right": 1471,
+        "width": 365
+      },
+      "practice": {
+        "top": 613,
+        "bottom": 940,
+        "height": 327,
+        "left": 1106,
+        "right": 1471,
+        "width": 365
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
