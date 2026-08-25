@@ -1,0 +1,658 @@
+.divisibility71-page {
+  position: relative;
+  top: -29px;
+  left: 1px;
+  width: calc(100vw - 281px);
+  height: 937px;
+  margin-bottom: -29px;
+  color: #102040;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.divisibility71-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.divisibility71-page h1,
+.divisibility71-page h2,
+.divisibility71-page h3,
+.divisibility71-page p {
+  margin: 0;
+}
+.divisibility71-page button,
+.divisibility71-page input {
+  color: inherit;
+  font: inherit;
+}
+.divisibility71-page button {
+  cursor: pointer;
+}
+.divisibility71-breadcrumb {
+  position: absolute;
+  top: -38px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #536981;
+}
+.divisibility71-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.divisibility71-breadcrumb a:first-child {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+.divisibility71-breadcrumb svg {
+  width: 14px;
+}
+.divisibility71-breadcrumb b {
+  color: #08758d;
+}
+.divisibility71-surface {
+  position: relative;
+  height: 865px;
+  padding: 17px;
+  border-radius: 15px;
+  background: #fff;
+}
+.divisibility71-title {
+  display: flex;
+  height: 78px;
+  justify-content: space-between;
+}
+.divisibility71-title > div {
+  position: relative;
+  top: -7px;
+}
+.divisibility71-title h1 {
+  font-size: 37px;
+  line-height: 40px;
+  font-weight: 900;
+}
+.divisibility71-title p {
+  margin-top: 5px;
+  color: #536682;
+  font-size: 16px;
+}
+.divisibility71-title aside {
+  display: flex;
+  width: 332px;
+  height: 54px;
+  padding: 0 17px;
+  align-items: center;
+  gap: 13px;
+  border: 1px solid #dce5ed;
+  border-radius: 9px;
+}
+.divisibility71-title aside svg {
+  width: 22px;
+  color: #2878d0;
+}
+.divisibility71-left {
+  width: 719px;
+}
+.divisibility71-rules {
+  height: 117px;
+}
+.divisibility71-rules > h2 {
+  font-size: 13px;
+}
+.divisibility71-rules > nav {
+  display: grid;
+  height: 93px;
+  margin-top: 4px;
+  padding: 13px 16px;
+  border: 1px solid #dce5ed;
+  border-radius: 10px;
+  grid-template-columns: 110px 110px 112px 152px 153px;
+  gap: 9px;
+  justify-content: center;
+}
+.divisibility71-rules button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid #e0e7ef;
+  border-radius: 11px;
+  background: #fff;
+}
+.divisibility71-rules button strong {
+  font-size: 19px;
+}
+.divisibility71-rules button span {
+  font-size: 11px;
+}
+.divisibility71-rules button.active {
+  background: linear-gradient(135deg, #05a5ba, #0ba8b8);
+  color: #fff;
+}
+.divisibility71-rules button.active strong {
+  font-size: 42px;
+  line-height: 34px;
+}
+.divisibility71-rules button > svg {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 17px;
+  height: 17px;
+  padding: 2px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+.divisibility71-lab {
+  height: 623px;
+  margin-top: 15px;
+  border: 1px solid #dce5ed;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.divisibility71-lab > section {
+  padding: 13px 15px;
+}
+.divisibility71-lab section > header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.divisibility71-lab section > header > b {
+  display: grid;
+  width: 21px;
+  height: 21px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e4eaf1;
+  color: #53627b;
+  font-size: 11px;
+}
+.divisibility71-lab section > header h2 {
+  font-size: 14px;
+}
+.divisibility71-step-one {
+  height: 353px;
+}
+.divisibility71-digit-tray {
+  display: grid;
+  width: 400px;
+  height: 125px;
+  margin: 17px 0 0 108px;
+  grid-template-columns: repeat(3, 80px);
+  justify-content: space-between;
+}
+.divisibility71-digit-tray button {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  justify-self: center;
+  border: 1px solid #18b4c3;
+  border-radius: 10px;
+  background: #dff9f9;
+  font-size: 45px;
+  font-weight: 900;
+}
+.divisibility71-digit-tray button > i {
+  position: absolute;
+  top: 78px;
+  left: 39px;
+  width: 2px;
+  height: 48px;
+  border-left: 3px dashed #29b4bc;
+}
+.divisibility71-digit-tray button > i::after {
+  position: absolute;
+  right: -7px;
+  bottom: -2px;
+  border: 7px solid transparent;
+  border-top-color: #29b4bc;
+  content: "";
+}
+.divisibility71-machine {
+  position: relative;
+  width: 397px;
+  height: 150px;
+  margin: 10px auto 0;
+  padding: 19px 27px;
+  border: 1px solid #9eafb4;
+  border-radius: 18px;
+  background: linear-gradient(#edf2f2, #bfcaca);
+  box-shadow: 0 8px 12px #21354a30;
+  transform: translateX(-35px);
+}
+.divisibility71-machine h3 {
+  text-align: center;
+  color: #078f9c;
+  letter-spacing: 1px !important;
+}
+.divisibility71-machine > div {
+  display: flex;
+  height: 57px;
+  margin-top: 10px;
+  padding: 0 13px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border-radius: 9px;
+  background: #102431;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 900;
+}
+.divisibility71-machine > div svg {
+  width: 38px;
+  height: 38px;
+  padding: 7px;
+  border-radius: 50%;
+  background: #1fb650;
+  box-shadow: 0 0 14px #22db66;
+}
+.divisibility71-machine.fail > div svg {
+  background: #df5613;
+}
+.divisibility71-machine > button {
+  position: absolute;
+  top: 35px;
+  right: -39px;
+  width: 35px;
+  height: 75px;
+  border: 0;
+  background: transparent;
+}
+.divisibility71-machine > button i {
+  position: absolute;
+  right: 13px;
+  bottom: 0;
+  width: 17px;
+  height: 39px;
+  border-radius: 4px;
+  background: #078a96;
+}
+.divisibility71-machine > button b {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background: #0a929c;
+  box-shadow: inset 0 2px 7px #fff8;
+}
+.divisibility71-machine > nav {
+  display: flex;
+  margin-top: 11px;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.divisibility71-machine > nav i {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #23d75d;
+}
+.divisibility71-machine > nav i:nth-child(2) {
+  background: #ffca3a;
+}
+.divisibility71-machine > nav i:nth-child(3) {
+  background: #798991;
+}
+.divisibility71-step-two {
+  height: 112px;
+  border-top: 1px solid #dce5ed;
+}
+.divisibility71-step-two > p {
+  display: flex;
+  height: 49px;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  border: 1px solid #2ab3bd;
+  border-radius: 8px;
+  background: #f2ffff;
+  color: #078793;
+  font-size: 16px;
+}
+.divisibility71-step-two > p svg {
+  width: 25px;
+  fill: #1596a2;
+  color: #1596a2;
+}
+.divisibility71-step-three {
+  height: 158px;
+  border-top: 1px solid #dce5ed;
+}
+.divisibility71-step-three > div {
+  display: flex;
+  height: 103px;
+  margin-top: 12px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  border: 1px solid #4dbd63;
+  border-radius: 8px;
+  background: #f5fff5;
+}
+.divisibility71-step-three > div.fail {
+  border-color: #e58b40;
+  background: #fff9ef;
+}
+.divisibility71-step-three strong {
+  font-size: 22px;
+}
+.divisibility71-step-three small {
+  font-size: 12px;
+}
+.divisibility71-step-three p {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #218d39;
+  font-size: 15px;
+}
+.divisibility71-step-three .fail p {
+  color: #c4580a;
+}
+.divisibility71-step-three p svg {
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border-radius: 50%;
+  background: #23a841;
+  color: #fff;
+}
+.divisibility71-step-three .fail p svg {
+  background: #d85a0b;
+}
+.divisibility71-side {
+  position: absolute;
+  top: 119px;
+  right: 17px;
+  display: flex;
+  width: 404px;
+  height: 730px;
+  flex-direction: column;
+  gap: 17px;
+}
+.divisibility71-side > section {
+  border: 1px solid #cfdff2;
+  border-radius: 10px;
+  background: #fff;
+}
+.divisibility71-summary {
+  height: 351px;
+  padding: 18px 13px;
+  background: #f8fbff !important;
+}
+.divisibility71-summary > label {
+  font-size: 18px;
+  font-weight: 900;
+}
+.divisibility71-summary > input {
+  width: 90px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 900;
+}
+.divisibility71-summary > div {
+  display: flex;
+  min-height: 68px;
+  padding: 12px 8px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dce5ed;
+  color: #536580;
+}
+.divisibility71-summary > div:last-child {
+  border: 0;
+}
+.divisibility71-summary > div > p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.divisibility71-summary > div > p > b {
+  display: grid;
+  min-width: 47px;
+  height: 44px;
+  padding: 0 12px;
+  place-items: center;
+  border-radius: 8px;
+  background: #dff8f8;
+  color: #087d8d;
+  font-size: 20px;
+}
+.divisibility71-summary > div > p > em {
+  color: #08718a;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 900;
+}
+.divisibility71-summary > div > p.pass,
+.divisibility71-summary > div > p.fail {
+  height: 49px;
+  padding: 0 16px;
+  border: 1px solid #6dcc91;
+  border-radius: 8px;
+  background: #f2fff6;
+  color: #248c43;
+}
+.divisibility71-summary > div > p.fail {
+  border-color: #e8a96e;
+  background: #fff8ef;
+  color: #c35b0c;
+}
+.divisibility71-summary > div > p.pass svg,
+.divisibility71-summary > div > p.fail svg {
+  width: 31px;
+  height: 31px;
+  padding: 6px;
+  border-radius: 50%;
+  background: #27a948;
+  color: #fff;
+}
+.divisibility71-summary > div > p.fail svg {
+  background: #d85b0b;
+}
+.divisibility71-misconception {
+  height: 238px;
+  padding: 15px 18px;
+  border-color: #efc795 !important;
+  background: #fffaf2 !important;
+}
+.divisibility71-misconception > header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #c25a06;
+}
+.divisibility71-misconception > header svg {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 50%;
+  background: #ff9d14;
+  color: #fff;
+}
+.divisibility71-misconception > header h2 {
+  font-size: 14px;
+}
+.divisibility71-misconception > p {
+  margin-top: 17px;
+  font-size: 16px;
+  line-height: 26px;
+}
+.divisibility71-misconception > strong,
+.divisibility71-misconception > span {
+  display: block;
+  margin: 15px 0 0 23px;
+  font-size: 16px;
+}
+.divisibility71-misconception > em {
+  display: flex;
+  width: max-content;
+  margin-top: 16px;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #edc79b;
+  border-radius: 8px;
+  background: #fff4e7;
+  color: #c55b05;
+  font-style: normal;
+  font-weight: 900;
+}
+.divisibility71-misconception > em svg {
+  width: 27px;
+  height: 27px;
+  padding: 5px;
+  border-radius: 50%;
+  background: #db600b;
+  color: #fff;
+}
+.divisibility71-practice {
+  height: 104px;
+  padding: 13px 18px;
+  margin-top: 4px;
+}
+.divisibility71-practice > header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: #2b65bf;
+}
+.divisibility71-practice > header svg {
+  width: 27px;
+  height: 27px;
+  padding: 5px;
+  border-radius: 50%;
+  background: #609bea;
+  color: #fff;
+}
+.divisibility71-practice > header h2 {
+  font-size: 14px;
+}
+.divisibility71-practice > div {
+  display: flex;
+  margin-top: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+.divisibility71-practice button {
+  display: flex;
+  height: 38px;
+  padding: 0 12px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #4382e0;
+  border-radius: 8px;
+  background: #fff;
+  color: #2865c1;
+}
+.divisibility71-practice button svg {
+  width: 16px;
+}
+.divisibility71-navigation {
+  display: grid;
+  height: 56px;
+  margin-top: 16px;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.divisibility71-navigation a {
+  display: flex;
+  padding: 9px 16px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #dce5ed;
+  border-radius: 10px;
+  background: #fff;
+  color: #52627b;
+  text-decoration: none;
+}
+.divisibility71-navigation a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.divisibility71-navigation svg {
+  width: 16px;
+}
+.divisibility71-navigation span {
+  display: flex;
+  flex-direction: column;
+  font-size: 9px;
+}
+.divisibility71-navigation b {
+  margin-top: 4px;
+  color: #273851;
+  font-size: 12px;
+}
+body:has(.divisibility71-page)
+  #main-content
+  .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+  visibility: hidden;
+}
+@media (min-width: 900px) {
+  body:has(.divisibility71-page) [data-testid="desktop-sidebar"] {
+    width: 230px;
+  }
+  body:has(.divisibility71-page) #main-content {
+    padding: 53px 24px 0;
+    overflow: hidden;
+    background: #f4f8ff;
+  }
+  body:has(.divisibility71-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+}
+@media (max-width: 1100px) {
+  .divisibility71-page {
+    width: calc(100vw - 245px);
+    height: auto;
+  }
+  .divisibility71-surface {
+    height: auto;
+  }
+  .divisibility71-left {
+    width: 100%;
+  }
+  .divisibility71-side {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+  }
+  .divisibility71-rules > nav {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .divisibility71-navigation {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 900px) {
+  .divisibility71-page {
+    position: static;
+    width: 100%;
+    margin: 0;
+  }
+  .divisibility71-breadcrumb {
+    position: static;
+    margin-bottom: 8px;
+  }
+  .divisibility71-title aside {
+    display: none;
+  }
+  .divisibility71-digit-tray {
+    width: 100%;
+    gap: 10px;
+  }
+}

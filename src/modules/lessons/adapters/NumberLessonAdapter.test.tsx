@@ -189,6 +189,23 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="First number"');
     expect(html).toContain("Watch the multiples land together");
   });
+  it("renders lesson 71 as a dedicated divisibility-rule machine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 71)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0053"');
+    expect(html).toContain('data-dedicated-lesson="71"');
+    expect(html).toContain('data-object-model="editable-three-digit-number-rule-selector-draggable-digit-reorder-rule-specific-evidence-machine-exact-division-misconception-practice-model"');
+    expect(html).toContain('data-number="234"');
+    expect(html).toContain('data-digits="2,3,4"');
+    expect(html).toContain('data-divisor="9"');
+    expect(html).toContain('data-digit-sum="9"');
+    expect(html).toContain('data-divisible="true"');
+    expect(html).toContain('data-remainder="0"');
+    expect(html).toContain('aria-label="Run divisibility machine"');
+    expect(html).toContain('aria-label="Digit 1: 2"');
+    expect(html).toContain('aria-label="Number to test"');
+    expect(html).toContain("Use the rule for the chosen divisor only");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
