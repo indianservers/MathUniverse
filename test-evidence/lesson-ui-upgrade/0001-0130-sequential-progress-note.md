@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **42 of 130 lessons completed; 88 pending.**
+Dedicated rebuild target: **43 of 130 lessons completed; 87 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -46,6 +46,7 @@ Dedicated rebuild target: **42 of 130 lessons completed; 88 pending.**
 | 0040   | 58 Whole Numbers | Complete | Dedicated zero-inclusive set model with direct selection, steppers, interactive number-line membership, calculated comparison, empty-count asset, counting staircase, stateful views, graded multi-select practice, and exact 1484x1059 target geometry |
 | 0041   | 59 Integers | Complete | Dedicated signed-integer model with real range and line selection, calculated opposite and ordering, editable comparator, linked thermometer and debit/credit ledger, stateful tabs/language/workspace/reset/share, and exact 1055x1479 target geometry |
 | 0042   | 60 Rational Numbers | Complete | Dedicated numerator/denominator model with zero guard, GCD reduction, mixed and decimal forms, linked fraction strip and number line, membership classification, stateful lesson controls, graded practice, and exact 1059x1481 target geometry |
+| 0043   | 61 Irrational Numbers | Complete | Dedicated radicand model with calculated square bounds and approximation, geometric diagonal, number-line placement, decimal zoom, comparison interval, native drag/drop rational sorting, stateful controls and practice, and exact 1044x1507 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -634,3 +635,17 @@ Evidence:
 - `0042-reference.png`
 - `0042-desktop.png`
 - `0042-dedicated-target-validation.json`
+
+## Lesson 61 / Mockup 0043 - Irrational Numbers
+
+Reworked individually against the target mockup with a dedicated `radicand-perfect-square-bounds-geometric-diagonal-number-line-decimal-sort-comparison-model`. The selected radicand, square root, nearest integer roots, perfect-square bounds, geometric diagonal label, number-line marker, decimal digits, comparison interval, selected-root classification, and side explanations all derive from one lesson-owned calculation model.
+
+The radicand selector recalculates every proof for 2, 3, 5, 7, 8, 9, and 10. Perfect-square selection moves the selected root into the rational group; non-perfect squares return it to the irrational group. All six classification tiles are real draggable objects that can be misclassified and repaired. The decimal-zoom action changes the radicand, both practice answers are stateful, and tabs, language, Workspace, Reset, and Share all perform actions. The shared number adapter only dispatches Lesson 61 to this separate component.
+
+Final 1044x1507 integrated browser validation selects 5 and verifies bounds 4 and 9; selects 9 and verifies √9 moves into the rational group; selects 3 and verifies √3 returns to irrational; physically drags π into the rational group and back; changes tab and language; opens Workspace; tries both practice answers; and resets. The final frame matches the target at hero x=224-1029 and y=97-364, tabs y=374-428, shell y=438, work x=236-799 and y=495, right rail x=818-1004 and y=454-1216, comparison y=954-1046, sorting y=1054-1265, navigation y=1325-1376, and footer y=1393-1494. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0043-reference.png`
+- `0043-desktop.png`
+- `0043-dedicated-target-validation.json`

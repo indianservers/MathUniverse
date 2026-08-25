@@ -1,0 +1,319 @@
+{
+  "mockup": "0043",
+  "lessonId": 61,
+  "route": "/lessons/numbers-and-arithmetic/61-irrational-numbers",
+  "objectModel": "radicand-perfect-square-bounds-geometric-diagonal-number-line-decimal-sort-comparison-model",
+  "checks": {
+    "initial": {
+      "radicand": "2",
+      "root": "1.4142135623730951",
+      "lower": "1",
+      "upper": "2",
+      "lower-square": "1",
+      "upper-square": "4",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4",
+      "irrational": "√2,π,√5",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "actions": "0"
+    },
+    "five": {
+      "radicand": "5",
+      "root": "2.23606797749979",
+      "lower": "2",
+      "upper": "3",
+      "lower-square": "4",
+      "upper-square": "9",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4",
+      "irrational": "√5,π,√5",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "actions": "1"
+    },
+    "perfect": {
+      "radicand": "9",
+      "root": "3",
+      "lower": "3",
+      "upper": "3",
+      "lower-square": "9",
+      "upper-square": "9",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4,√9",
+      "irrational": "π,√5",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "actions": "2"
+    },
+    "three": {
+      "radicand": "3",
+      "root": "1.7320508075688772",
+      "lower": "1",
+      "upper": "2",
+      "lower-square": "1",
+      "upper-square": "4",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4",
+      "irrational": "√3,π,√5",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "actions": "3"
+    },
+    "piWrong": {
+      "radicand": "3",
+      "root": "1.7320508075688772",
+      "lower": "1",
+      "upper": "2",
+      "lower-square": "1",
+      "upper-square": "4",
+      "sort-correct": "false",
+      "rational": "3/2,0.75,-4,π",
+      "irrational": "√3,√5",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "actions": "4"
+    },
+    "piFixed": {
+      "radicand": "3",
+      "root": "1.7320508075688772",
+      "lower": "1",
+      "upper": "2",
+      "lower-square": "1",
+      "upper-square": "4",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4",
+      "irrational": "√3,π,√5",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "actions": "5"
+    },
+    "tab": {
+      "radicand": "3",
+      "root": "1.7320508075688772",
+      "lower": "1",
+      "upper": "2",
+      "lower-square": "1",
+      "upper-square": "4",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4",
+      "irrational": "√3,π,√5",
+      "tab": "Examples",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "actions": "6"
+    },
+    "language": {
+      "radicand": "3",
+      "root": "1.7320508075688772",
+      "lower": "1",
+      "upper": "2",
+      "lower-square": "1",
+      "upper-square": "4",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4",
+      "irrational": "√3,π,√5",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "false",
+      "practice": "",
+      "actions": "7"
+    },
+    "workspace": {
+      "radicand": "3",
+      "root": "1.7320508075688772",
+      "lower": "1",
+      "upper": "2",
+      "lower-square": "1",
+      "upper-square": "4",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4",
+      "irrational": "√3,π,√5",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "practice": "",
+      "actions": "8"
+    },
+    "practiceWrong": {
+      "radicand": "3",
+      "root": "1.7320508075688772",
+      "lower": "1",
+      "upper": "2",
+      "lower-square": "1",
+      "upper-square": "4",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4",
+      "irrational": "√3,π,√5",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "practice": "yes",
+      "actions": "9"
+    },
+    "practiceCorrect": {
+      "radicand": "3",
+      "root": "1.7320508075688772",
+      "lower": "1",
+      "upper": "2",
+      "lower-square": "1",
+      "upper-square": "4",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4",
+      "irrational": "√3,π,√5",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "practice": "no",
+      "actions": "10"
+    },
+    "reset": {
+      "radicand": "2",
+      "root": "1.4142135623730951",
+      "lower": "1",
+      "upper": "2",
+      "lower-square": "1",
+      "upper-square": "4",
+      "sort-correct": "true",
+      "rational": "3/2,0.75,-4",
+      "irrational": "√2,π,√5",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1044,
+      "height": 1507
+    },
+    "document": {
+      "width": 1044,
+      "height": 1507
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 97,
+      "bottom": 1488,
+      "height": 1391,
+      "left": 224,
+      "right": 1029,
+      "width": 805
+    },
+    "regions": {
+      "hero": {
+        "top": 97,
+        "bottom": 364,
+        "height": 267,
+        "left": 224,
+        "right": 1029,
+        "width": 805
+      },
+      "tabs": {
+        "top": 374,
+        "bottom": 428,
+        "height": 54,
+        "left": 224,
+        "right": 1029,
+        "width": 805
+      },
+      "shell": {
+        "top": 438,
+        "bottom": 1317,
+        "height": 879,
+        "left": 224,
+        "right": 1029,
+        "width": 805
+      },
+      "layout": {
+        "top": 495,
+        "bottom": 1269,
+        "height": 774,
+        "left": 236,
+        "right": 1017,
+        "width": 781
+      },
+      "work": {
+        "top": 495,
+        "bottom": 1269,
+        "height": 774,
+        "left": 236,
+        "right": 799,
+        "width": 563
+      },
+      "top": {
+        "top": 510,
+        "bottom": 785,
+        "height": 275,
+        "left": 251,
+        "right": 784,
+        "width": 533
+      },
+      "decimal": {
+        "top": 794,
+        "bottom": 947,
+        "height": 153,
+        "left": 251,
+        "right": 784,
+        "width": 533
+      },
+      "compare": {
+        "top": 954,
+        "bottom": 1046,
+        "height": 92,
+        "left": 251,
+        "right": 784,
+        "width": 533
+      },
+      "sort": {
+        "top": 1054,
+        "bottom": 1265,
+        "height": 211,
+        "left": 251,
+        "right": 784,
+        "width": 533
+      },
+      "side": {
+        "top": 454,
+        "bottom": 1216,
+        "height": 762,
+        "left": 818,
+        "right": 1004,
+        "width": 186
+      },
+      "navigation": {
+        "top": 1325,
+        "bottom": 1376,
+        "height": 51,
+        "left": 224,
+        "right": 1029,
+        "width": 805
+      },
+      "footer": {
+        "top": 1393,
+        "bottom": 1494,
+        "height": 101,
+        "left": 224,
+        "right": 1029,
+        "width": 805
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

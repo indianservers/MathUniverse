@@ -49,6 +49,17 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Denominator"');
     expect(html).toContain("Membership in the rational numbers");
   });
+  it("renders lesson 61 as a dedicated irrational-root workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 61)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0043"');
+    expect(html).toContain('data-dedicated-lesson="61"');
+    expect(html).toContain('data-object-model="radicand-perfect-square-bounds-geometric-diagonal-number-line-decimal-sort-comparison-model"');
+    expect(html).toContain('data-radicand="2"');
+    expect(html).toContain('data-lower-square="1"');
+    expect(html).toContain('aria-label="Select radicand"');
+    expect(html).toContain("Sort into Rational vs Irrational");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
