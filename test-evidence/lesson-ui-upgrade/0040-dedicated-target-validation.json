@@ -1,0 +1,211 @@
+{
+  "mockup": "0040",
+  "lessonId": 58,
+  "route": "/lessons/numbers-and-arithmetic/58-whole-numbers",
+  "objectModel": "zero-inclusive-whole-set-selector-number-line-exclusion-empty-count-staircase-comparison-practice-model",
+  "checks": {
+    "initial": {
+      "selected": "0",
+      "comparison": "<",
+      "view": "Explain",
+      "practice-selected": "",
+      "practice-correct": "false",
+      "practice-status": "Pick every whole number.",
+      "actions": "0"
+    },
+    "increment": {
+      "selected": "1",
+      "comparison": "<",
+      "view": "Explain",
+      "practice-selected": "",
+      "practice-correct": "false",
+      "practice-status": "Pick every whole number.",
+      "actions": "1"
+    },
+    "decrement": {
+      "selected": "0",
+      "comparison": "<",
+      "view": "Explain",
+      "practice-selected": "",
+      "practice-correct": "false",
+      "practice-status": "Pick every whole number.",
+      "actions": "2"
+    },
+    "setFive": {
+      "selected": "5",
+      "comparison": "<",
+      "view": "Explain",
+      "practice-selected": "",
+      "practice-correct": "false",
+      "practice-status": "Pick every whole number.",
+      "actions": "3"
+    },
+    "lineEight": {
+      "selected": "8",
+      "comparison": ">",
+      "view": "Explain",
+      "practice-selected": "",
+      "practice-correct": "false",
+      "practice-status": "Pick every whole number.",
+      "actions": "4"
+    },
+    "examples": {
+      "selected": "8",
+      "comparison": ">",
+      "view": "Examples",
+      "practice-selected": "",
+      "practice-correct": "false",
+      "practice-status": "Pick every whole number.",
+      "actions": "5"
+    },
+    "formulas": {
+      "selected": "8",
+      "comparison": ">",
+      "view": "Formulas",
+      "practice-selected": "",
+      "practice-correct": "false",
+      "practice-status": "Pick every whole number.",
+      "actions": "6"
+    },
+    "knowMore": {
+      "selected": "8",
+      "comparison": ">",
+      "view": "Know more",
+      "practice-selected": "",
+      "practice-correct": "false",
+      "practice-status": "Pick every whole number.",
+      "actions": "7"
+    },
+    "practiceSelection": {
+      "selected": "8",
+      "comparison": ">",
+      "view": "Explain",
+      "practice-selected": "0,2,3",
+      "practice-correct": "true",
+      "practice-status": "Selection changed. Check your answer.",
+      "actions": "11"
+    },
+    "practiceCheck": {
+      "selected": "8",
+      "comparison": ">",
+      "view": "Explain",
+      "practice-selected": "0,2,3",
+      "practice-correct": "true",
+      "practice-status": "Correct: 0, 2, and 3 are whole numbers.",
+      "actions": "12"
+    },
+    "reset": {
+      "selected": "0",
+      "comparison": "<",
+      "view": "Explain",
+      "practice-selected": "",
+      "practice-correct": "false",
+      "practice-status": "Pick every whole number.",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1484,
+      "height": 1059
+    },
+    "document": {
+      "width": 1484,
+      "height": 1059
+    },
+    "horizontalOverflow": false,
+    "assetLoaded": true,
+    "surface": {
+      "top": 116,
+      "bottom": 1038,
+      "height": 922,
+      "left": 279,
+      "right": 1460,
+      "width": 1181
+    },
+    "regions": {
+      "shell": {
+        "top": 116,
+        "bottom": 976,
+        "height": 860,
+        "left": 279,
+        "right": 1460,
+        "width": 1181
+      },
+      "header": {
+        "top": 117,
+        "bottom": 206,
+        "height": 89,
+        "left": 280,
+        "right": 1459,
+        "width": 1179
+      },
+      "layout": {
+        "top": 206,
+        "bottom": 976,
+        "height": 770,
+        "left": 280,
+        "right": 1459,
+        "width": 1179
+      },
+      "workspace": {
+        "top": 206,
+        "bottom": 954,
+        "height": 748,
+        "left": 295,
+        "right": 1136,
+        "width": 841
+      },
+      "set": {
+        "top": 217,
+        "bottom": 455,
+        "height": 238,
+        "left": 311,
+        "right": 1120,
+        "width": 809
+      },
+      "line": {
+        "top": 455,
+        "bottom": 630,
+        "height": 175,
+        "left": 311,
+        "right": 1120,
+        "width": 809
+      },
+      "examples": {
+        "top": 638,
+        "bottom": 840,
+        "height": 202,
+        "left": 311,
+        "right": 1120,
+        "width": 809
+      },
+      "summary": {
+        "top": 858,
+        "bottom": 938,
+        "height": 80,
+        "left": 311,
+        "right": 1120,
+        "width": 809
+      },
+      "side": {
+        "top": 206,
+        "bottom": 954,
+        "height": 748,
+        "left": 1161,
+        "right": 1437,
+        "width": 276
+      },
+      "navigation": {
+        "top": 982,
+        "bottom": 1044,
+        "height": 62,
+        "left": 279,
+        "right": 1460,
+        "width": 1181
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

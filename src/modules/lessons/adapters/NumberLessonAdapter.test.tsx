@@ -16,6 +16,17 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Selected natural number drag control"');
     expect(html).toContain("Membership: Natural numbers vs. not included");
   });
+  it("renders lesson 58 as a dedicated zero-inclusive whole-number workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 58)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0040"');
+    expect(html).toContain('data-dedicated-lesson="58"');
+    expect(html).toContain('data-object-model="zero-inclusive-whole-set-selector-number-line-exclusion-empty-count-staircase-comparison-practice-model"');
+    expect(html).toContain('data-selected="0"');
+    expect(html).toContain('data-comparison="&lt;"');
+    expect(html).toContain('aria-label="Increase selected number"');
+    expect(html).toContain("Zero means ‘no objects’ — still a count");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **39 of 130 lessons completed; 91 pending.**
+Dedicated rebuild target: **40 of 130 lessons completed; 90 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -43,6 +43,7 @@ Dedicated rebuild target: **39 of 130 lessons completed; 91 pending.**
 | 0037   | 37 Dynamic Text | Complete | Editable highlighted placeholder template with linked x/y/z dependencies, real slider/input, live and comparison previews, insertion/clear/add-variable actions, tabs/share/workspace/reset, and exact 1217x1292 target geometry |
 | 0038   | 38 LaTeX Formula Display | Complete | Editable strict-KaTeX source with exponent slider/input, rendered preview, brace/exponent/spacing validation, grouping proof, executable fraction/root/integral inserts, copy/share/workspace/reset, and exact 1217x1292 target geometry |
 | 0039   | 57 Natural Numbers | Complete | Dedicated counting-number model with linked tray, real range/tick selection, calculated successor and comparison, native drag/drop membership classification with corrective feedback, reset/share, and exact 1487x1058 target geometry |
+| 0040   | 58 Whole Numbers | Complete | Dedicated zero-inclusive set model with direct selection, steppers, interactive number-line membership, calculated comparison, empty-count asset, counting staircase, stateful views, graded multi-select practice, and exact 1484x1059 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -589,3 +590,17 @@ Evidence:
 - `0039-reference.png`
 - `0039-desktop.png`
 - `0039-dedicated-target-validation.json`
+
+## Lesson 58 / Mockup 0040 - Whole Numbers
+
+Reworked individually against the target mockup with a dedicated `zero-inclusive-whole-set-selector-number-line-exclusion-empty-count-staircase-comparison-practice-model`. The selected whole number, highlighted set member, zero-inclusive number line, comparison against 7, empty-object count, counting staircase, active lesson view, practice selections, grading result, and action history all belong to one lesson-owned state model.
+
+The number selector has guarded increment and decrement controls; each set member and every whole-number line mark updates the same selected value and comparison. Negative and fractional marks remain interactive non-examples without corrupting the selection. Explain, Examples, Formulas, and Know more maintain visible state; the five practice choices are real multi-select controls, and Check answer grades the exact set `{0, 2, 3}` with corrective feedback. The empty wicker basket is a project-local transparent raster asset generated specifically for the target's zero-object visual. The shared adapter only dispatches Lesson 58 to this separate component.
+
+Final 1484x1059 integrated browser validation increments and decrements the selector; selects 5 from the whole-number set; selects 8 from the number line and verifies `8 > 7`; activates all four lesson views; chooses and grades 0, 2, and 3; verifies the basket asset loads; and reloads to the initial state. The final frame matches the target at shell x=279-1460 and y=116-976, workspace x=295-1136 and y=206-954, examples x=311-1120 and y=638-840, summary y=858-938, side rail x=1161-1437 and y=206-954, and navigation y=982-1044. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0040-reference.png`
+- `0040-desktop.png`
+- `0040-dedicated-target-validation.json`
