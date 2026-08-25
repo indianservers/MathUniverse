@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import SliderControl, { SliderGroup } from "../../../components/ui/SliderControl";
 import { samplePlotLayer, type GraphViewport, type PlotItem } from "../../../components/workspace/panels/graphPanelUtils";
 import AdapterFrame from "../components/AdapterFrame";
+import AnimationControlsLessonAdapter from "./AnimationControlsLessonAdapter";
 import { createLessonInteractionEvent } from "../engine/lessonInteraction";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { StrengthenedLesson } from "../strengthening/strengthenedLessonSchema";
@@ -10,6 +11,9 @@ import type { LessonAdapterProps, LessonDefinition } from "../types";
 const viewport: GraphViewport = { xMin: -10, xMax: 10, yMin: -10, yMax: 10, width: 640, height: 360 };
 
 export default function AlgebraLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  if (lesson.categorySlug === "core-workspaces" && lesson.id === 24) {
+    return <AnimationControlsLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
   if (lesson.categorySlug === "core-workspaces" && lesson.id >= 19 && lesson.id <= 38) {
     return <RedesignedCoreAlgebraLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
