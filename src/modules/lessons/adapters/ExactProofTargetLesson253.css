@@ -1,0 +1,575 @@
+.target-proof-page {
+  height: 1608px;
+  color: #14234b;
+  font-size: 8px;
+  letter-spacing: 0;
+}
+.target-proof-page button,
+.target-proof-page input,
+.target-proof-page select {
+  letter-spacing: 0;
+  font-size: 8px;
+}
+.target-proof-header,
+.target-proof-tabs,
+.target-proof-work,
+.target-proof-stages > article,
+.target-proof-builder > article,
+.target-proof-builder > aside > section,
+.target-proof-practice,
+.target-proof-nav > a {
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  background: #fff;
+}
+.target-proof-header {
+  height: 174px;
+  padding: 14px;
+}
+.target-proof-header > span {
+  margin-right: 6px;
+  border-radius: 999px;
+  background: #eff6ff;
+  padding: 4px 8px;
+  color: #1769c8;
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.target-proof-header h1 {
+  margin-top: 12px;
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 1;
+}
+.target-proof-header > p {
+  margin-top: 7px;
+  color: #64748b;
+  font-size: 11px;
+}
+.target-proof-header > section {
+  display: flex;
+  gap: 7px;
+  margin-top: 11px;
+}
+.target-proof-header > section b {
+  border: 1px solid #dbe4ef;
+  border-radius: 999px;
+  padding: 6px 9px;
+}
+.target-proof-header footer {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  border-top: 1px solid #dbe4ef;
+  padding-top: 9px;
+}
+.target-proof-header footer button {
+  display: flex;
+  height: 32px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+  padding: 0 12px;
+}
+.target-proof-header footer button:first-child {
+  width: 180px;
+}
+.target-proof-header footer button:nth-last-child(2) {
+  margin-left: auto;
+}
+.target-proof-header footer button:last-child {
+  width: 32px;
+  padding: 0;
+}
+.target-proof-header footer svg {
+  width: 12px;
+}
+.target-proof-tabs {
+  display: grid;
+  height: 43px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 9px;
+  padding: 4px;
+}
+.target-proof-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+.target-proof-tabs button svg {
+  width: 14px;
+}
+.target-proof-tabs button.is-active {
+  border-radius: 7px;
+  background: #1769e0;
+  color: #fff;
+  font-weight: 900;
+}
+.target-proof-work {
+  height: 523px;
+  margin-top: 10px;
+  padding: 10px;
+}
+.target-proof-work > header {
+  display: flex;
+  height: 48px;
+  justify-content: space-between;
+}
+.target-proof-work > header > div > b {
+  color: #0891b2;
+}
+.target-proof-work > header h2 {
+  margin-top: 6px;
+  font-size: 16px;
+}
+.target-proof-work > header aside {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+}
+.target-proof-work > header aside span,
+.target-proof-work > header aside b {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  background: #ecfdf5;
+  padding: 7px 11px;
+  color: #047857;
+}
+.target-proof-work > header aside b {
+  background: #f8fafc;
+  color: #475569;
+}
+.target-proof-work > header aside svg {
+  width: 12px;
+}
+.target-proof-work > header aside button {
+  width: 29px;
+  height: 29px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+}
+.target-proof-model {
+  display: grid;
+  height: 447px;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 10px;
+}
+.target-proof-canvas,
+.target-proof-controls {
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+}
+.target-proof-canvas {
+  padding: 9px;
+}
+.target-proof-canvas h3 {
+  font-size: 11px;
+}
+.target-proof-canvas > nav {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+.target-proof-canvas > nav button {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+}
+.target-proof-canvas > nav button.is-active {
+  background: #eff6ff;
+  color: #1769c8;
+}
+.target-proof-canvas > nav svg {
+  width: 13px;
+}
+.target-proof-graph {
+  width: 100%;
+  height: 292px;
+  margin-top: 7px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  touch-action: none;
+}
+.target-proof-canvas > p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  color: #64748b;
+}
+.target-proof-canvas > p svg {
+  width: 12px;
+  color: #1769c8;
+}
+.target-proof-canvas > section {
+  margin-top: 7px;
+}
+.target-proof-canvas > section > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+.target-proof-canvas > section p {
+  display: grid;
+  gap: 3px;
+  border-radius: 5px;
+  background: #f8fafc;
+  padding: 5px;
+  text-align: center;
+}
+.target-proof-controls {
+  padding: 10px;
+}
+.target-proof-controls h2 {
+  color: #1769c8;
+  font-size: 12px;
+}
+.target-proof-controls h3 {
+  margin-top: 12px;
+}
+.target-proof-controls > nav {
+  display: flex;
+  gap: 13px;
+  margin-top: 7px;
+  border-bottom: 1px solid #dbe4ef;
+}
+.target-proof-controls > nav button {
+  padding: 5px;
+}
+.target-proof-controls > nav button.is-active {
+  border-bottom: 2px solid #1769c8;
+  color: #1769c8;
+  font-weight: 900;
+}
+.target-proof-control {
+  display: grid;
+  grid-template-columns: 57px 12px 1fr 12px 42px;
+  align-items: center;
+  gap: 3px;
+  margin-top: 9px;
+}
+.target-proof-control input[type="range"] {
+  min-width: 0;
+  width: 100%;
+  accent-color: #1769e0;
+}
+.target-proof-control input[type="number"] {
+  min-width: 0;
+  width: 42px;
+  height: 25px;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+  text-align: center;
+}
+.target-proof-controls > section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+}
+.target-proof-controls > section p {
+  display: grid;
+  gap: 3px;
+  border-radius: 6px;
+  background: #f8fafc;
+  padding: 6px;
+  text-align: center;
+}
+.target-proof-stages {
+  display: grid;
+  height: 125px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+.target-proof-stages > article {
+  position: relative;
+  display: flex;
+  align-items: start;
+  gap: 9px;
+  padding: 12px;
+}
+.target-proof-stages article > svg:first-child {
+  width: 18px;
+  color: #1769c8;
+}
+.target-proof-stages article > svg:last-child {
+  position: absolute;
+  right: -8px;
+  top: 47px;
+  width: 16px;
+  color: #94a3b8;
+}
+.target-proof-stages b {
+  color: #1769c8;
+  font-size: 10px;
+}
+.target-proof-stages p {
+  margin-top: 9px;
+  line-height: 1.45;
+}
+.target-proof-builder {
+  display: grid;
+  height: 395px;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 10px;
+  margin-top: 10px;
+}
+.target-proof-builder > article {
+  padding: 11px;
+}
+.target-proof-builder h2 {
+  color: #1769c8;
+  font-size: 11px;
+}
+.target-proof-builder > article > p {
+  margin-top: 6px;
+}
+.target-proof-table {
+  display: grid;
+  grid-template-columns: 26px 1fr 1.25fr;
+  gap: 5px;
+  margin-top: 10px;
+}
+.target-proof-table > b {
+  padding: 0 5px;
+}
+.target-proof-row {
+  display: contents;
+}
+.target-proof-row span {
+  display: grid;
+  place-items: center;
+}
+.target-proof-row input,
+.target-proof-row select {
+  min-width: 0;
+  height: 27px;
+  border: 1px solid #dbe4ef;
+  border-radius: 4px;
+  padding: 0 7px;
+}
+.target-proof-builder > article > footer {
+  display: flex;
+  height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 9px;
+  border-radius: 6px;
+  padding: 0 10px;
+}
+.target-proof-builder > article > footer.correct {
+  background: #ecfdf5;
+  color: #047857;
+}
+.target-proof-builder > article > footer.incorrect {
+  background: #fff1f2;
+  color: #dc2626;
+}
+.target-proof-builder > article > footer button {
+  height: 26px;
+  border: 1px solid #bfdbfe;
+  border-radius: 5px;
+  background: #fff;
+  padding: 0 9px;
+  color: #1769c8;
+}
+.target-proof-builder > aside {
+  display: grid;
+  grid-template-rows: 1.2fr 1fr 0.7fr;
+  gap: 8px;
+}
+.target-proof-builder > aside > section {
+  position: relative;
+  padding: 10px;
+}
+.target-proof-builder > aside p {
+  margin-top: 7px;
+  line-height: 1.4;
+}
+.target-proof-builder > aside strong {
+  display: block;
+  margin-top: 14px;
+  color: #6d28d9;
+  font-size: 13px;
+}
+.target-proof-builder > aside section:nth-child(2) > svg {
+  position: absolute;
+  right: 7px;
+  bottom: 30px;
+  width: 56%;
+  height: 70px;
+}
+.target-proof-builder > aside section:nth-child(2) > p svg {
+  display: inline;
+  width: 11px;
+  color: #059669;
+}
+.target-proof-builder > aside section:last-child {
+  border-color: #fecaca;
+  background: #fffafa;
+}
+.target-proof-builder > aside section:last-child h2 {
+  color: #dc2626;
+}
+.target-proof-practice {
+  height: 270px;
+  margin-top: 11px;
+  padding: 11px;
+}
+.target-proof-practice h2 {
+  color: #1769c8;
+  font-size: 11px;
+}
+.target-proof-practice h2 span {
+  margin-left: 8px;
+  border-radius: 999px;
+  background: #ede9fe;
+  padding: 4px 8px;
+  color: #7c3aed;
+}
+.target-proof-practice > p {
+  margin-top: 9px;
+}
+.target-proof-practice > div {
+  display: grid;
+  height: 176px;
+  grid-template-columns: 250px 1fr;
+  gap: 10px;
+  margin-top: 9px;
+}
+.target-proof-practice article {
+  position: relative;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 9px;
+}
+.target-proof-practice article:first-child > svg {
+  float: left;
+  width: 110px;
+  height: 100px;
+}
+.target-proof-practice article:first-child > label {
+  display: flex;
+  gap: 5px;
+  margin-top: 9px;
+}
+.target-proof-practice article:nth-child(2) > div {
+  display: grid;
+  grid-template-columns: 18px 1fr 170px;
+  gap: 5px;
+  margin-top: 7px;
+}
+.target-proof-practice article:nth-child(2) input,
+.target-proof-practice article:nth-child(2) select {
+  min-width: 0;
+  height: 27px;
+  border: 1px solid #dbe4ef;
+  border-radius: 4px;
+  padding: 0 6px;
+}
+.target-proof-practice > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+.target-proof-practice > footer p {
+  padding: 6px;
+}
+.target-proof-practice > footer p.correct {
+  color: #047857;
+}
+.target-proof-practice > footer p.incorrect {
+  color: #dc2626;
+}
+.target-proof-practice > footer button {
+  height: 29px;
+  border-radius: 5px;
+  background: #1769e0;
+  padding: 0 12px;
+  color: #fff;
+  font-weight: 900;
+}
+.target-proof-nav {
+  display: grid;
+  height: 48px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.target-proof-nav > a {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+}
+.target-proof-nav > a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.target-proof-nav b {
+  display: block;
+  margin-bottom: 3px;
+}
+.target-proof-nav svg {
+  width: 13px;
+}
+.target-proof-app footer[aria-label="Site footer"] {
+  height: 66px;
+}
+.target-proof-app footer[aria-label="Site footer"] > div {
+  height: 64px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+@media (min-width: 760px) and (max-width: 959px) {
+  .target-proof-app [data-testid="desktop-sidebar"] {
+    display: block;
+    position: sticky;
+    top: 0;
+    width: 179px;
+  }
+  .target-proof-app header button[aria-controls="mobile-navigation"],
+  .target-proof-app nav[aria-label="Mobile learning shortcuts"] {
+    display: none;
+  }
+  .target-proof-app > .app-layout-rail > div > header {
+    height: 47px;
+  }
+  .target-proof-app #main-content {
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 759px) {
+  .target-proof-page,
+  .target-proof-header,
+  .target-proof-work,
+  .target-proof-builder,
+  .target-proof-practice {
+    height: auto;
+  }
+  .target-proof-tabs,
+  .target-proof-model,
+  .target-proof-stages,
+  .target-proof-builder,
+  .target-proof-practice > div,
+  .target-proof-nav {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .target-proof-graph {
+    height: auto;
+  }
+}

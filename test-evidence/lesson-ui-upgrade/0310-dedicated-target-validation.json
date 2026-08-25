@@ -1,0 +1,15 @@
+[
+  {
+    "id": 253,
+    "mockup": 310,
+    "route": "/lessons/geometry/253-exact-proof",
+    "width": 887,
+    "height": 1774,
+    "status": "Correct. A′ = (2, 1), and every proof step is justified.",
+    "consoleErrors": [],
+    "scrollHeight": 1774,
+    "surfaceBottom": 1699,
+    "objectModel": "exact-translation-isometry-proof-chain",
+    "overflowing": 0
+  }
+]

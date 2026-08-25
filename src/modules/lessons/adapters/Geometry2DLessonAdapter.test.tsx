@@ -1279,9 +1279,22 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain('aria-label="Conjecture challenge C"');
   });
 
-  it("renders geometry lessons 253 through 256 with loci and proof guidance", () => {
+  it("renders Exact Proof as a dedicated symbolic proof-chain model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 253)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0310"');
+    expect(html).toContain('data-object-model="exact-translation-isometry-proof-chain"');
+    expect(html).toContain("Exact translation proof construction with draggable premises");
+    expect(html).toContain('data-testid="exact-proof-point-a"');
+    expect(html).toContain('data-testid="exact-proof-vector-handle"');
+    expect(html).toContain('aria-label="Proof reason 6"');
+    expect(html).toContain("Distance preserved under translation");
+    expect(html).toContain('aria-label="Exact proof practice A"');
+    expect(html).toContain("A′ = (2,1)");
+  });
+
+  it("renders geometry lessons 254 through 256 with loci and proof guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      253: "Exact proof",
       254: "Collinearity test",
       255: "Concurrency test",
       256: "Concyclicity test",

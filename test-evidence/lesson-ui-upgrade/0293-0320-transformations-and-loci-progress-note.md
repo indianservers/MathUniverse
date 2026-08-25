@@ -19,6 +19,7 @@
 | 0307 | 250 Envelope of Lines | `parameterized-tangent-family-parabola-envelope` | Reworked individually and browser-validated |
 | 0308 | 251 Dynamic Trace | `dependent-dilation-image-with-temporal-trace` | Reworked individually and browser-validated |
 | 0309 | 252 Conjecture Testing | `measured-translation-conjecture-trial-engine` | Reworked individually and browser-validated |
+| 0310 | 253 Exact Proof | `exact-translation-isometry-proof-chain` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -236,3 +237,16 @@ Evidence:
 
 - `0309-desktop.png`
 - `0309-dedicated-target-validation.json`
+
+## Lesson 253 / Mockup 0310 - Exact Proof
+
+Reworked individually against the target mockup with a dedicated `exact-translation-isometry-proof-chain` object model. The construction owns A, B, and translation vector T, then derives A′, B′, both segment lengths, midpoint M, translated midpoint M′, length difference, and the exact midpoint-map residual. A, B, and the translation-vector handle drag independently; six sliders and exact inputs update the same premises. Grid and label tools change real SVG layers, and reset restores the complete construction and proof state.
+
+The six-row proof editor validates each statement against its required logical reason: given image relation, translation distance invariance, midpoint construction, midpoint preservation, midpoint definition, and substitution conclusion. Replacing the isometry theorem with a diagram measurement invalidates the proof; restoring the theorem repairs it. This makes the workspace an actual proof checker rather than a list of pre-approved rows. The practice model independently grades both the image `A′=(2,1)` for `A=(-1,2)` translated by `(3,-1)` and all four reasons in the coordinate derivation.
+
+Final 887x1774 browser validation physically drags A, B, and the translation-vector handle while proving original and image lengths remain equal, toggles grid and labels off and back on, sets all six exact coordinates and verifies length `sqrt(32)` with image-midpoint x-coordinate 4, corrupts proof reason 2 and receives an invalid proof result, restores the exact translation theorem and receives a valid result, and exercises incorrect and corrected coordinate/practice-proof paths. The screenshot loop additionally caught the normal 960px responsive breakpoint hiding the sidebar at the target’s 887px width; the dedicated route now preserves the 179px desktop rail and suppresses the mobile dock to match mockup 0310. Final validation reports zero overflow, zero console errors, an exact one-viewport page height, and a lesson surface ending at y=1699 with the compact footer below it.
+
+Evidence:
+
+- `0310-desktop.png`
+- `0310-dedicated-target-validation.json`
