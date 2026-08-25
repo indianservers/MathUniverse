@@ -1,0 +1,238 @@
+{
+  "mockup": "0002",
+  "lessonId": 2,
+  "route": "/lessons/core-workspaces/2-fraction-calculator",
+  "objectModel": "linked-two-fraction-lcd-equivalent-bars-exact-mixed-decimal-model",
+  "checks": {
+    "initial": {
+      "a": "1/2",
+      "b": "3/4",
+      "lcd": "4",
+      "result": "5/4",
+      "mixed": "1 1/4",
+      "decimal": "1.250000",
+      "active-field": "aNumerator",
+      "key-mode": "fraction",
+      "active-view": "interaction",
+      "problem-index": "0",
+      "evaluations": "0"
+    },
+    "edited": {
+      "a": "2/3",
+      "b": "1/6",
+      "lcd": "6",
+      "result": "5/6",
+      "mixed": "5/6",
+      "decimal": "0.833333",
+      "active-field": "bDenominator",
+      "key-mode": "fraction",
+      "active-view": "interaction",
+      "problem-index": "0",
+      "evaluations": "0"
+    },
+    "evaluated": {
+      "a": "2/3",
+      "b": "1/6",
+      "lcd": "6",
+      "result": "5/6",
+      "mixed": "5/6",
+      "decimal": "0.833333",
+      "active-field": "bDenominator",
+      "key-mode": "fraction",
+      "active-view": "interaction",
+      "problem-index": "0",
+      "evaluations": "1"
+    },
+    "swapped": {
+      "a": "1/6",
+      "b": "2/3",
+      "lcd": "6",
+      "result": "5/6",
+      "mixed": "5/6",
+      "decimal": "0.833333",
+      "active-field": "bDenominator",
+      "key-mode": "fraction",
+      "active-view": "interaction",
+      "problem-index": "0",
+      "evaluations": "1"
+    },
+    "numberMode": {
+      "a": "1/6",
+      "b": "2/3",
+      "lcd": "6",
+      "result": "5/6",
+      "mixed": "5/6",
+      "decimal": "0.833333",
+      "active-field": "bNumerator",
+      "key-mode": "numbers",
+      "active-view": "interaction",
+      "problem-index": "0",
+      "evaluations": "1"
+    },
+    "slashNavigation": {
+      "a": "1/6",
+      "b": "2/3",
+      "lcd": "6",
+      "result": "5/6",
+      "mixed": "5/6",
+      "decimal": "0.833333",
+      "active-field": "bDenominator",
+      "key-mode": "numbers",
+      "active-view": "interaction",
+      "problem-index": "0",
+      "evaluations": "1"
+    },
+    "signMode": {
+      "a": "1/6",
+      "b": "2/-3",
+      "lcd": "6",
+      "result": "-1/2",
+      "mixed": "-1/2",
+      "decimal": "-0.500000",
+      "active-field": "bDenominator",
+      "key-mode": "sign",
+      "active-view": "interaction",
+      "problem-index": "0",
+      "evaluations": "1"
+    },
+    "examplesView": {
+      "a": "1/6",
+      "b": "2/-3",
+      "lcd": "6",
+      "result": "-1/2",
+      "mixed": "-1/2",
+      "decimal": "-0.500000",
+      "active-field": "bDenominator",
+      "key-mode": "sign",
+      "active-view": "examples",
+      "problem-index": "0",
+      "evaluations": "1"
+    },
+    "newProblem": {
+      "a": "2/3",
+      "b": "1/6",
+      "lcd": "6",
+      "result": "5/6",
+      "mixed": "5/6",
+      "decimal": "0.833333",
+      "active-field": "bDenominator",
+      "key-mode": "sign",
+      "active-view": "examples",
+      "problem-index": "1",
+      "evaluations": "1"
+    },
+    "practice": {
+      "a": "2/3",
+      "b": "1/6",
+      "lcd": "6",
+      "result": "5/6",
+      "mixed": "5/6",
+      "decimal": "0.833333",
+      "active-field": "bDenominator",
+      "key-mode": "sign",
+      "active-view": "examples",
+      "problem-index": "1",
+      "evaluations": "1"
+    },
+    "cleared": {
+      "a": "0/1",
+      "b": "0/1",
+      "lcd": "1",
+      "result": "0/1",
+      "mixed": "0",
+      "decimal": "0.000000",
+      "active-field": "bDenominator",
+      "key-mode": "sign",
+      "active-view": "examples",
+      "problem-index": "1",
+      "evaluations": "1"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "document": {
+      "width": 1536,
+      "height": 1149
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 102,
+      "bottom": 999,
+      "height": 897,
+      "left": 296,
+      "right": 1514,
+      "width": 1218
+    },
+    "regions": {
+      "header": {
+        "top": 102,
+        "bottom": 221,
+        "height": 119,
+        "left": 296,
+        "right": 1514,
+        "width": 1218
+      },
+      "tabs": {
+        "top": 231,
+        "bottom": 280,
+        "height": 49,
+        "left": 296,
+        "right": 1514,
+        "width": 1218
+      },
+      "workspace": {
+        "top": 289,
+        "bottom": 852,
+        "height": 563,
+        "left": 296,
+        "right": 1514,
+        "width": 1218
+      },
+      "entry": {
+        "top": 323,
+        "bottom": 842,
+        "height": 519,
+        "left": 309,
+        "right": 607,
+        "width": 298
+      },
+      "visual": {
+        "top": 323,
+        "bottom": 842,
+        "height": 519,
+        "left": 617,
+        "right": 1184,
+        "width": 567
+      },
+      "output": {
+        "top": 323,
+        "bottom": 842,
+        "height": 519,
+        "left": 1194,
+        "right": 1496,
+        "width": 302
+      },
+      "practice": {
+        "top": 863,
+        "bottom": 929,
+        "height": 66,
+        "left": 296,
+        "right": 1514,
+        "width": 1218
+      },
+      "navigation": {
+        "top": 939,
+        "bottom": 999,
+        "height": 60,
+        "left": 296,
+        "right": 1514,
+        "width": 1218
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

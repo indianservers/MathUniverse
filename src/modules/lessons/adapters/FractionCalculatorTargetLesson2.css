@@ -1,0 +1,610 @@
+.target-fraction-page {
+  position: relative;
+  top: -28px;
+  height: 897px;
+  margin-bottom: -33px;
+  color: #07143b;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.target-fraction-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.target-fraction-page h1,
+.target-fraction-page h2,
+.target-fraction-page h3,
+.target-fraction-page h4,
+.target-fraction-page p {
+  margin: 0;
+}
+.target-fraction-page button,
+.target-fraction-page input {
+  font: inherit;
+}
+.target-fraction-page button {
+  cursor: pointer;
+  color: inherit;
+}
+.target-fraction-breadcrumb {
+  position: absolute;
+  top: -31px;
+  left: 6px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #587091;
+  font-weight: 700;
+}
+.target-fraction-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.target-fraction-breadcrumb b {
+  color: #0086a7;
+}
+.target-fraction-header,
+.target-fraction-tabs,
+.target-fraction-workspace,
+.target-fraction-practice,
+.target-fraction-nav {
+  border: 1px solid #d7e2ee;
+  background: #fff;
+  border-radius: 10px;
+}
+.target-fraction-header {
+  height: 119px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 18px;
+}
+.target-fraction-header > div h1 {
+  font-size: 33px;
+  line-height: 38px;
+  font-weight: 850;
+}
+.target-fraction-header > div p {
+  color: #455979;
+  font-size: 15px;
+  line-height: 22px;
+}
+.target-fraction-header > div span {
+  display: inline-block;
+  margin: 9px 6px 0 0;
+  padding: 4px 11px;
+  border: 1px solid #dbe4ee;
+  border-radius: 14px;
+  font-weight: 750;
+}
+.target-fraction-header aside {
+  width: 348px;
+  height: 90px;
+  border: 1px solid #d8e2ed;
+  border-radius: 10px;
+  display: flex;
+  gap: 12px;
+  padding: 13px 16px;
+}
+.target-fraction-header aside svg {
+  width: 21px;
+  color: #6832ed;
+  flex: 0 0 auto;
+}
+.target-fraction-header aside h2 {
+  font-size: 14px;
+  line-height: 20px;
+}
+.target-fraction-header aside p {
+  margin-top: 4px;
+  color: #344666;
+}
+.target-fraction-header aside b {
+  display: block;
+  margin-top: 5px;
+  color: #6526dd;
+}
+.target-fraction-tabs {
+  height: 49px;
+  margin-top: 10px;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: 262px repeat(4, 1fr);
+  overflow: hidden;
+}
+.target-fraction-tabs button {
+  border: 0;
+  background: transparent;
+  font-weight: 750;
+}
+.target-fraction-tabs button.active {
+  border-radius: 9px;
+  color: #fff;
+  background: linear-gradient(100deg, #05a6ba, #08a6c7);
+  box-shadow: 0 5px 11px #069cb133;
+}
+.target-fraction-workspace {
+  height: 563px;
+  margin-top: 9px;
+  padding: 10px 12px 9px;
+}
+.target-fraction-workspace > h2 {
+  height: 23px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.target-fraction-workspace > h2 svg {
+  width: 13px;
+}
+.target-fraction-grid {
+  height: 519px;
+  display: grid;
+  grid-template-columns: 298px 567px 302px;
+  grid-template-rows: minmax(0, 1fr);
+  gap: 10px;
+}
+.target-fraction-entry,
+.target-fraction-visual,
+.target-fraction-output {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #d6e1ed;
+  border-radius: 8px;
+  background: #fff;
+}
+.target-fraction-entry {
+  padding: 10px 8px;
+}
+.target-fraction-entry h3,
+.target-fraction-visual h3,
+.target-fraction-output h3 {
+  font-size: 13px;
+  line-height: 18px;
+}
+.target-fraction-visual > h3,
+.target-fraction-visual > h4,
+.target-fraction-visual > .fraction-legend {
+  margin-left: 7px;
+}
+.target-fraction-inputs {
+  display: grid;
+  grid-template-columns: 77px 1fr 77px;
+  gap: 13px;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 26px 10px;
+}
+.target-fraction-inputs > b {
+  text-align: center;
+  font-size: 20px;
+}
+.target-fraction-inputs > div {
+  display: grid;
+  gap: 5px;
+}
+.target-fraction-inputs input {
+  width: 77px;
+  height: 34px;
+  border: 1px solid #d6e1ed;
+  border-radius: 7px;
+  text-align: center;
+  font-weight: 750;
+  outline: none;
+}
+.target-fraction-inputs input.active {
+  border-color: #129fba;
+  box-shadow: 0 0 0 2px #18b8c51c;
+}
+.fraction-entry-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 0 35px 13px;
+}
+.fraction-entry-actions button,
+.target-fraction-output > button {
+  height: 32px;
+  border: 1px solid #d7e2ee;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 650;
+}
+.fraction-key-modes {
+  height: 38px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 3px;
+  background: #f4f6fa;
+  border: 1px solid #dce4ed;
+  border-radius: 8px 8px 0 0;
+}
+.fraction-key-modes button {
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  font-weight: 800;
+}
+.fraction-key-modes button.active {
+  color: #fff;
+  background: #07a5b7;
+}
+.fraction-keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  padding-top: 4px;
+}
+.fraction-keypad button {
+  height: 39px;
+  border: 1px solid #e0e7ef;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 700;
+}
+.fraction-keypad button:nth-child(4n),
+.fraction-keypad button:nth-last-child(-n + 3) {
+  background: #f4f5f8;
+  font-size: 16px;
+}
+.fraction-equals {
+  width: 100%;
+  height: 31px;
+  margin-top: 4px;
+  border: 0;
+  border-radius: 7px;
+  color: #fff !important;
+  font-size: 17px !important;
+  background: linear-gradient(100deg, #08a9bb, #7936ef);
+}
+.fraction-tip {
+  min-height: 65px;
+  margin-top: 20px !important;
+  padding: 13px 13px 10px 34px;
+  border: 1px solid #d4e7f3;
+  border-radius: 8px;
+  color: #31537e;
+  line-height: 19px;
+  position: relative;
+}
+.fraction-tip::before {
+  content: "☼";
+  position: absolute;
+  left: 12px;
+  color: #0095d4;
+  font-size: 20px;
+}
+.target-fraction-visual {
+  padding: 10px;
+}
+.fraction-legend {
+  display: flex;
+  gap: 55px;
+  margin: 8px 0 10px;
+}
+.fraction-legend span:first-child {
+  color: #223354;
+}
+.fraction-legend span:first-child::first-letter {
+  color: #32ade1;
+}
+.fraction-legend span:last-child::first-letter {
+  color: #8562df;
+}
+.target-fraction-visual h4 {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.fraction-bar-row {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  align-items: center;
+  min-height: 54px;
+}
+.target-fraction-visual > .fraction-bar-row {
+  margin-left: 17px;
+}
+.fraction-bar-row > b {
+  display: grid;
+  width: 25px;
+  text-align: center;
+  font-size: 16px;
+}
+.fraction-bar-row > b i {
+  border-top: 2px solid;
+}
+.fraction-bar {
+  display: flex;
+  width: 369px;
+  height: 27px;
+  border: 1px solid #07143b;
+  border-radius: 2px;
+  overflow: visible;
+}
+.fraction-bar span {
+  flex: 1;
+  min-width: 0;
+  border-right: 1px solid #07143b;
+  text-align: center;
+  padding-top: 29px;
+  font-size: 11px;
+}
+.fraction-bar span:last-child {
+  border-right: 0;
+}
+.fraction-bar.cyan .fill {
+  background: #41b5e9;
+}
+.fraction-bar.violet .fill {
+  background: #865ce0;
+}
+.target-fraction-visual hr {
+  margin: 7px 0 10px;
+  border: 0;
+  border-top: 1px dashed #c7d5e4;
+}
+.fraction-common {
+  display: grid;
+  grid-template-columns: 95px 1fr;
+  gap: 8px;
+  min-height: 112px;
+}
+.fraction-common > div:first-child {
+  border: 1px solid #75c6ee;
+  border-radius: 7px;
+  padding: 12px 6px;
+}
+.fraction-common > div:first-child b {
+  font-size: 16px;
+}
+.fraction-common > div:first-child p {
+  margin-top: 11px;
+  font-size: 10px;
+  line-height: 15px;
+}
+.fraction-common .fraction-bar-row {
+  min-height: 54px;
+  grid-template-columns: 43px 1fr;
+}
+.fraction-common .fraction-bar {
+  width: 277px;
+}
+.fraction-common > div:last-child {
+  margin-left: 12px;
+}
+.fraction-add {
+  margin: 8px -10px 0;
+  padding: 10px 9px 0;
+  border-top: 1px solid #d6e1ed;
+}
+.fraction-add > b {
+  color: #087c37;
+  font-size: 12px;
+}
+.fraction-add p {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-left: 20px;
+  margin-top: 7px;
+  font-size: 17px;
+  font-weight: 750;
+}
+.fraction-add p > strong {
+  padding: 10px 18px;
+  border: 1px solid #b9e4ce;
+  border-radius: 7px;
+  background: #f0fbf5;
+}
+.fraction-add p > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 7px;
+  color: #087c37;
+  background: #edf9f2;
+}
+.fraction-add svg {
+  width: 26px;
+  height: 26px;
+  padding: 4px;
+  border: 1px solid #0a8c44;
+  border-radius: 50%;
+}
+.fraction-warning {
+  height: 47px;
+  margin-top: 7px;
+  border: 1px solid #f0bd67;
+  border-radius: 7px;
+  background: #fff9ed;
+  color: #bd4b08;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 6px 14px;
+  line-height: 17px;
+}
+.fraction-warning svg {
+  width: 25px;
+}
+.target-fraction-output {
+  padding: 10px;
+  position: relative;
+}
+.target-fraction-output > p {
+  height: 28px;
+  padding-top: 6px;
+  font-size: 13px;
+}
+.target-fraction-output > div {
+  min-height: 49px;
+  margin: 0 -1px;
+  padding: 7px 2px;
+  border-top: 1px solid #e0e7ef;
+}
+.target-fraction-output > div b {
+  font-size: 12px;
+}
+.target-fraction-output > div p {
+  white-space: pre-line;
+  margin-top: 5px;
+  line-height: 17px;
+}
+.target-fraction-output > div.success p {
+  display: block;
+  width: fit-content;
+  padding: 5px 10px;
+  border: 1px solid #92d9af;
+  border-radius: 6px;
+  color: #087a36;
+  background: #eefaf3;
+  font-size: 14px;
+  font-weight: 800;
+}
+.target-fraction-output > button {
+  position: absolute;
+  left: 10px;
+  width: calc(100% - 20px);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+.target-fraction-output > button:first-of-type {
+  bottom: 45px;
+  color: #fff;
+  border: 0;
+  background: linear-gradient(100deg, #08a7ba, #7937ef);
+}
+.target-fraction-output > button:last-of-type {
+  bottom: 5px;
+}
+.target-fraction-output button svg {
+  width: 14px;
+}
+.target-fraction-practice {
+  height: 66px;
+  margin-top: 11px;
+  display: grid;
+  grid-template-columns: 45px 1fr 450px 100px;
+  align-items: center;
+  padding: 7px 16px;
+}
+.target-fraction-practice > svg {
+  width: 35px;
+  height: 35px;
+  color: #7139ec;
+}
+.target-fraction-practice h3 {
+  font-size: 14px;
+}
+.target-fraction-practice p {
+  margin-top: 4px;
+  color: #53698a;
+}
+.target-fraction-practice > b {
+  text-align: center;
+  font-size: 17px;
+}
+.target-fraction-practice button {
+  height: 32px;
+  border: 1px solid #7636ef;
+  border-radius: 8px;
+  color: #6425df;
+  background: #fff;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+.target-fraction-practice button svg {
+  width: 14px;
+}
+.target-fraction-nav {
+  height: 60px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 240px 1fr 240px;
+  align-items: center;
+  padding: 8px 12px;
+}
+.target-fraction-nav a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.target-fraction-nav a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.target-fraction-nav a svg {
+  width: 17px;
+}
+.target-fraction-nav a span {
+  display: grid;
+  gap: 3px;
+}
+.target-fraction-nav > div {
+  justify-self: center;
+  width: 315px;
+  color: #415573;
+}
+.target-fraction-nav progress {
+  width: 210px;
+  height: 14px;
+  margin: 0 8px;
+  accent-color: #50a8e1;
+  vertical-align: middle;
+}
+.target-fraction-nav progress::-webkit-progress-bar {
+  border-radius: 8px;
+  background: #edf2f8;
+}
+.target-fraction-nav progress::-webkit-progress-value {
+  border-radius: 8px;
+  background: #55afe4;
+}
+@media (min-width: 1280px) {
+  #main-content:has(.target-fraction-page) {
+    padding: 39px 22px 0;
+    overflow: hidden;
+  }
+}
+@media (max-width: 1100px) {
+  .target-fraction-page {
+    top: 0;
+    height: auto;
+    margin: 0;
+  }
+  .target-fraction-breadcrumb {
+    display: none;
+  }
+  .target-fraction-header aside {
+    width: 42%;
+  }
+  .target-fraction-tabs {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .target-fraction-workspace {
+    height: auto;
+  }
+  .target-fraction-grid {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .target-fraction-practice {
+    grid-template-columns: 40px 1fr auto;
+  }
+  .target-fraction-practice > b {
+    display: none;
+  }
+}
