@@ -4,6 +4,27 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import CalculatorLessonAdapter from "./CalculatorLessonAdapter";
 
 describe("CalculatorLessonAdapter", () => {
+  it("renders lesson 1 as a dedicated BODMAS calculator workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 1)!;
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="calculator-mockup-0001"');
+    expect(html).toContain('data-dedicated-lesson="1"');
+    expect(html).toContain(
+      'data-object-model="editable-arithmetic-expression-bodmas-parse-trace-history-practice-model"',
+    );
+    expect(html).toContain('data-expression="(12+8)/4"');
+    expect(html).toContain('data-result="5"');
+    expect(html).toContain('aria-label="Calculator expression"');
+    expect(html).toContain('aria-label="Automatic expression trace"');
+    expect(html).toContain('aria-label="Basic calculator practice answer"');
+    expect(html).toContain("Order of operations (BODMAS)");
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
@@ -30,7 +51,11 @@ describe("CalculatorLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <CalculatorLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain(lesson.title);
@@ -65,7 +90,11 @@ describe("CalculatorLessonAdapter", () => {
       const id = Number(idText);
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
-        <CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+        <CalculatorLessonAdapter
+          lesson={lesson}
+          resetToken={0}
+          onInteraction={vi.fn()}
+        />,
       );
 
       expect(html, lesson.title).toContain("Concept trace");
