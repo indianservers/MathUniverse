@@ -1,0 +1,169 @@
+{
+  "mockup": "0039",
+  "lessonId": 57,
+  "route": "/lessons/numbers-and-arithmetic/57-natural-numbers",
+  "objectModel": "selected-natural-counting-tray-number-line-one-more-membership-drag-classification-comparison-model",
+  "checks": {
+    "initial": {
+      "selected": "5",
+      "next": "6",
+      "natural": "1,5,6",
+      "excluded": "0,1/2,-3",
+      "classification-correct": "true",
+      "status": "All numbers are classified correctly.",
+      "actions": "0"
+    },
+    "slider": {
+      "selected": "8",
+      "next": "9",
+      "natural": "1,5,6",
+      "excluded": "0,1/2,-3",
+      "classification-correct": "true",
+      "status": "All numbers are classified correctly.",
+      "actions": "1"
+    },
+    "trayCount": 8,
+    "tick": {
+      "selected": "3",
+      "next": "4",
+      "natural": "1,5,6",
+      "excluded": "0,1/2,-3",
+      "classification-correct": "true",
+      "status": "All numbers are classified correctly.",
+      "actions": "2"
+    },
+    "zeroWrong": {
+      "selected": "3",
+      "next": "4",
+      "natural": "0,1,5,6",
+      "excluded": "1/2,-3",
+      "classification-correct": "false",
+      "status": "Try again: 0 does not belong in Natural Numbers.",
+      "actions": "3"
+    },
+    "zeroFixed": {
+      "selected": "3",
+      "next": "4",
+      "natural": "1,5,6",
+      "excluded": "0,1/2,-3",
+      "classification-correct": "true",
+      "status": "0 is classified correctly.",
+      "actions": "4"
+    },
+    "oneWrong": {
+      "selected": "3",
+      "next": "4",
+      "natural": "5,6",
+      "excluded": "0,1,1/2,-3",
+      "classification-correct": "false",
+      "status": "Try again: 1 does not belong in Not Included.",
+      "actions": "5"
+    },
+    "oneFixed": {
+      "selected": "3",
+      "next": "4",
+      "natural": "1,5,6",
+      "excluded": "0,1/2,-3",
+      "classification-correct": "true",
+      "status": "1 is classified correctly.",
+      "actions": "6"
+    },
+    "share": {
+      "selected": "3",
+      "next": "4",
+      "natural": "1,5,6",
+      "excluded": "0,1/2,-3",
+      "classification-correct": "true",
+      "status": "1 is classified correctly.",
+      "actions": "7"
+    },
+    "reset": {
+      "selected": "5",
+      "next": "6",
+      "natural": "1,5,6",
+      "excluded": "0,1/2,-3",
+      "classification-correct": "true",
+      "status": "All numbers are classified correctly.",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1487,
+      "height": 1058
+    },
+    "document": {
+      "width": 1487,
+      "height": 1058
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 112,
+      "bottom": 1047,
+      "height": 935,
+      "left": 291,
+      "right": 1469,
+      "width": 1178
+    },
+    "regions": {
+      "shell": {
+        "top": 112,
+        "bottom": 1047,
+        "height": 935,
+        "left": 291,
+        "right": 1469,
+        "width": 1178
+      },
+      "header": {
+        "top": 113,
+        "bottom": 258,
+        "height": 145,
+        "left": 292,
+        "right": 1468,
+        "width": 1176
+      },
+      "layout": {
+        "top": 258,
+        "bottom": 1048,
+        "height": 790,
+        "left": 292,
+        "right": 1468,
+        "width": 1176
+      },
+      "count": {
+        "top": 275,
+        "bottom": 521,
+        "height": 246,
+        "left": 307,
+        "right": 1162,
+        "width": 855
+      },
+      "membership": {
+        "top": 543,
+        "bottom": 881,
+        "height": 338,
+        "left": 307,
+        "right": 1162,
+        "width": 855
+      },
+      "compare": {
+        "top": 908,
+        "bottom": 1028,
+        "height": 120,
+        "left": 307,
+        "right": 1162,
+        "width": 855
+      },
+      "side": {
+        "top": 275,
+        "bottom": 1031,
+        "height": 756,
+        "left": 1177,
+        "right": 1452,
+        "width": 275
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

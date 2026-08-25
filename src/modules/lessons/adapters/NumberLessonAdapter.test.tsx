@@ -4,6 +4,18 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import NumberLessonAdapter from "./NumberLessonAdapter";
 
 describe("NumberLessonAdapter", () => {
+  it("renders lesson 57 as a dedicated natural-number membership workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 57)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0039"');
+    expect(html).toContain('data-dedicated-lesson="57"');
+    expect(html).toContain('data-object-model="selected-natural-counting-tray-number-line-one-more-membership-drag-classification-comparison-model"');
+    expect(html).toContain('data-selected="5"');
+    expect(html).toContain('data-next="6"');
+    expect(html).toContain('data-classification-correct="true"');
+    expect(html).toContain('aria-label="Selected natural number drag control"');
+    expect(html).toContain("Membership: Natural numbers vs. not included");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **38 of 130 lessons completed; 92 pending.**
+Dedicated rebuild target: **39 of 130 lessons completed; 91 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -42,6 +42,7 @@ Dedicated rebuild target: **38 of 130 lessons completed; 92 pending.**
 | 0036   | 36 Boolean Variables | Complete | Dual Boolean switches with synchronized controls, calculated AND/OR/NOT gates, active truth-table row, focused operation view, conditional Object P visibility, share/navigation actions, and exact 1217x1292 target geometry |
 | 0037   | 37 Dynamic Text | Complete | Editable highlighted placeholder template with linked x/y/z dependencies, real slider/input, live and comparison previews, insertion/clear/add-variable actions, tabs/share/workspace/reset, and exact 1217x1292 target geometry |
 | 0038   | 38 LaTeX Formula Display | Complete | Editable strict-KaTeX source with exponent slider/input, rendered preview, brace/exponent/spacing validation, grouping proof, executable fraction/root/integral inserts, copy/share/workspace/reset, and exact 1217x1292 target geometry |
+| 0039   | 57 Natural Numbers | Complete | Dedicated counting-number model with linked tray, real range/tick selection, calculated successor and comparison, native drag/drop membership classification with corrective feedback, reset/share, and exact 1487x1058 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -574,3 +575,17 @@ Evidence:
 - `0038-reference.png`
 - `0038-desktop.png`
 - `0038-dedicated-target-validation.json`
+
+## Lesson 57 / Mockup 0039 - Natural Numbers
+
+Reworked individually against the target mockup with a dedicated `selected-natural-counting-tray-number-line-one-more-membership-drag-classification-comparison-model`. The selected number, counting tray, number-line marker, one-more successor, comparison equation, membership groups, classification status, selected-number rail, and summary all derive from one explicit lesson-owned state model.
+
+The native range and all ten number-line ticks update the same selection. Every tray object selects its count, and all six candidate numbers are real draggable objects that can move between Natural Numbers and Not Included repeatedly. Each drop recomputes mathematical correctness and produces corrective feedback; Reset restores both selection and membership, while Share exports the calculated statement. No visible control is decorative, and the shared number adapter only routes Lesson 57 to its separate component.
+
+Final 1487x1058 integrated browser validation changes the selection to 8 and verifies eight tray objects and successor 9; selects tick 3 and verifies successor 4; physically misclassifies and repairs 0; physically misclassifies and repairs 1; shares; and resets. The final frame matches the target at shell x=291-1469 and y=112-1047, header y=113-258, count card x=307-1162 and y=275-521, membership y=543-881, comparison y=908-1028, and right rail x=1177-1452 and y=275-1031. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0039-reference.png`
+- `0039-desktop.png`
+- `0039-dedicated-target-validation.json`

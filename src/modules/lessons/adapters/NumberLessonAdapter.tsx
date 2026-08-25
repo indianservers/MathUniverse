@@ -5,8 +5,16 @@ import { factorsOf, formatFactorization, primeFactorization } from "../../../vis
 import AdapterFrame from "../components/AdapterFrame";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { LessonAdapterProps } from "../types";
+import NaturalNumbersTargetLesson57 from "./NaturalNumbersTargetLesson57";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  if (lesson.id === 57) {
+    return <NaturalNumbersTargetLesson57 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+}
+
+function LegacyNumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   const strengthened = getStrengthenedFoundationLesson(lesson.id);
   const [n, setN] = useState(initialN(lesson.id));
   const [m, setM] = useState(initialM(lesson.id));
