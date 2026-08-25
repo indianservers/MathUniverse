@@ -17,6 +17,7 @@ import FactorsTargetLesson65 from "./FactorsTargetLesson65";
 import MultiplesTargetLesson66 from "./MultiplesTargetLesson66";
 import PrimeNumbersTargetLesson67 from "./PrimeNumbersTargetLesson67";
 import PrimeFactorisationTargetLesson68 from "./PrimeFactorisationTargetLesson68";
+import HcfGcdTargetLesson69 from "./HcfGcdTargetLesson69";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -54,6 +55,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 68) {
     return <PrimeFactorisationTargetLesson68 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 69) {
+    return <HcfGcdTargetLesson69 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

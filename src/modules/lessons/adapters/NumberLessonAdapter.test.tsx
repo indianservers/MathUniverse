@@ -157,6 +157,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Candidate prime divisor"');
     expect(html).toContain("Keep splitting until every factor is prime");
   });
+  it("renders lesson 69 as a dedicated shared-factor HCF workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 69)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0051"');
+    expect(html).toContain('data-dedicated-lesson="69"');
+    expect(html).toContain('data-object-model="editable-number-pair-factor-set-venn-intersection-prime-exponent-overlap-draggable-shared-candidate-equal-group-greatest-divisor-practice-model"');
+    expect(html).toContain('data-first="18"');
+    expect(html).toContain('data-second="24"');
+    expect(html).toContain('data-shared-factors="1,2,3,6"');
+    expect(html).toContain('data-hcf="6"');
+    expect(html).toContain('data-first-primes="2,3,3"');
+    expect(html).toContain('data-second-primes="2,2,2,3"');
+    expect(html).toContain('aria-label="HCF candidate drop zone"');
+    expect(html).toContain('aria-label="First number"');
+    expect(html).toContain("Equal groups (visual proof)");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

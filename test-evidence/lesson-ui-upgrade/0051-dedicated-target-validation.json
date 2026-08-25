@@ -1,0 +1,233 @@
+{
+  "mockup": "0051",
+  "lessonId": 69,
+  "route": "/lessons/numbers-and-arithmetic/69-hcf-gcd",
+  "objectModel": "editable-number-pair-factor-set-venn-intersection-prime-exponent-overlap-draggable-shared-candidate-equal-group-greatest-divisor-practice-model",
+  "checks": {
+    "initial": {
+      "first": "18",
+      "second": "24",
+      "first-factors": "1,2,3,6,9,18",
+      "second-factors": "1,2,3,4,6,8,12,24",
+      "shared-factors": "1,2,3,6",
+      "hcf": "6",
+      "first-primes": "2,3,3",
+      "second-primes": "2,2,2,3",
+      "overlap-primes": "2,3",
+      "candidate": "6",
+      "candidate-correct": "true",
+      "drag-factor": "",
+      "actions": "0"
+    },
+    "thirtyFortyFive": {
+      "first": "30",
+      "second": "45",
+      "first-factors": "1,2,3,5,6,10,15,30",
+      "second-factors": "1,3,5,9,15,45",
+      "shared-factors": "1,3,5,15",
+      "hcf": "15",
+      "first-primes": "2,3,5",
+      "second-primes": "3,3,5",
+      "overlap-primes": "3,5",
+      "candidate": "15",
+      "candidate-correct": "true",
+      "drag-factor": "",
+      "actions": "2"
+    },
+    "draggedNonGreatest": {
+      "first": "30",
+      "second": "45",
+      "first-factors": "1,2,3,5,6,10,15,30",
+      "second-factors": "1,3,5,9,15,45",
+      "shared-factors": "1,3,5,15",
+      "hcf": "15",
+      "first-primes": "2,3,5",
+      "second-primes": "3,3,5",
+      "overlap-primes": "3,5",
+      "candidate": "5",
+      "candidate-correct": "false",
+      "drag-factor": "",
+      "actions": "3"
+    },
+    "draggedGreatest": {
+      "first": "30",
+      "second": "45",
+      "first-factors": "1,2,3,5,6,10,15,30",
+      "second-factors": "1,3,5,9,15,45",
+      "shared-factors": "1,3,5,15",
+      "hcf": "15",
+      "first-primes": "2,3,5",
+      "second-primes": "3,3,5",
+      "overlap-primes": "3,5",
+      "candidate": "15",
+      "candidate-correct": "true",
+      "drag-factor": "",
+      "actions": "4"
+    },
+    "incremented": {
+      "first": "30",
+      "second": "46",
+      "first-factors": "1,2,3,5,6,10,15,30",
+      "second-factors": "1,2,23,46",
+      "shared-factors": "1,2",
+      "hcf": "2",
+      "first-primes": "2,3,5",
+      "second-primes": "2,23",
+      "overlap-primes": "2",
+      "candidate": "2",
+      "candidate-correct": "true",
+      "drag-factor": "",
+      "actions": "5"
+    },
+    "practice": {
+      "first": "12",
+      "second": "20",
+      "first-factors": "1,2,3,4,6,12",
+      "second-factors": "1,2,4,5,10,20",
+      "shared-factors": "1,2,4",
+      "hcf": "4",
+      "first-primes": "2,2,3",
+      "second-primes": "2,2,5",
+      "overlap-primes": "2,2",
+      "candidate": "4",
+      "candidate-correct": "true",
+      "drag-factor": "",
+      "actions": "6"
+    },
+    "restored": {
+      "first": "18",
+      "second": "24",
+      "first-factors": "1,2,3,6,9,18",
+      "second-factors": "1,2,3,4,6,8,12,24",
+      "shared-factors": "1,2,3,6",
+      "hcf": "6",
+      "first-primes": "2,3,3",
+      "second-primes": "2,2,2,3",
+      "overlap-primes": "2,3",
+      "candidate": "6",
+      "candidate-correct": "true",
+      "drag-factor": "",
+      "actions": "8"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1470,
+      "height": 1070
+    },
+    "document": {
+      "width": 1470,
+      "height": 1070
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 112,
+      "bottom": 1070,
+      "height": 958,
+      "left": 293,
+      "right": 1453,
+      "width": 1160
+    },
+    "regions": {
+      "hero": {
+        "top": 112,
+        "bottom": 252,
+        "height": 140,
+        "left": 293,
+        "right": 1453,
+        "width": 1160
+      },
+      "layout": {
+        "top": 269,
+        "bottom": 971,
+        "height": 702,
+        "left": 293,
+        "right": 1453,
+        "width": 1160
+      },
+      "venn": {
+        "top": 269,
+        "bottom": 722,
+        "height": 453,
+        "left": 293,
+        "right": 802,
+        "width": 509
+      },
+      "overlap": {
+        "top": 269,
+        "bottom": 722,
+        "height": 453,
+        "left": 816,
+        "right": 1151,
+        "width": 335
+      },
+      "groups": {
+        "top": 732,
+        "bottom": 971,
+        "height": 239,
+        "left": 293,
+        "right": 1151,
+        "width": 858
+      },
+      "side": {
+        "top": 269,
+        "bottom": 971,
+        "height": 702,
+        "left": 1165,
+        "right": 1451,
+        "width": 286
+      },
+      "inputs": {
+        "top": 269,
+        "bottom": 494,
+        "height": 225,
+        "left": 1165,
+        "right": 1451,
+        "width": 286
+      },
+      "summary": {
+        "top": 504,
+        "bottom": 632,
+        "height": 128,
+        "left": 1165,
+        "right": 1451,
+        "width": 286
+      },
+      "greatest": {
+        "top": 642,
+        "bottom": 777,
+        "height": 135,
+        "left": 1165,
+        "right": 1451,
+        "width": 286
+      },
+      "warning": {
+        "top": 787,
+        "bottom": 877,
+        "height": 90,
+        "left": 1165,
+        "right": 1451,
+        "width": 286
+      },
+      "practice": {
+        "top": 887,
+        "bottom": 960,
+        "height": 73,
+        "left": 1165,
+        "right": 1451,
+        "width": 286
+      },
+      "navigation": {
+        "top": 988,
+        "bottom": 1047,
+        "height": 59,
+        "left": 293,
+        "right": 1453,
+        "width": 1160
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

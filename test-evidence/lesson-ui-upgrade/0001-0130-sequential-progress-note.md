@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **50 of 130 lessons completed; 80 pending.**
+Dedicated rebuild target: **51 of 130 lessons completed; 79 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -54,6 +54,7 @@ Dedicated rebuild target: **50 of 130 lessons completed; 80 pending.**
 | 0048   |                              66 Multiples | Complete | Dedicated editable skip-counting model with exact number-line jumps, calculated product cards, native draggable multiples, repeated addition, quotient/remainder proof, non-example practice, stateful controls, and exact 1060x1484 target geometry               |
 | 0049   |                          67 Prime Numbers | Complete | Dedicated editable divisor-scanner model with calculated factors/factor count, native draggable counters, equal grouping rows, quotient/remainder states, prime/composite proof, practice, save/share controls, and exact 1536x1024 target geometry               |
 | 0050   |                    68 Prime Factorisation | Complete | Dedicated recursive binary factor-tree model with editable composite, calculated split steps/prime leaves, exponent compression, real rebuild slider, candidate frequency, dynamic practice, expand/reset controls, and exact 1536x1024 target geometry             |
+| 0051   |                               69 HCF/GCD | Complete | Dedicated editable pair model with calculated factor-set intersection, prime-exponent overlap, native draggable shared candidates, equal-group proof, steppers, misconception/practice states, and exact 1470x1070 target geometry                              |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -754,3 +755,17 @@ Evidence:
 - `0050-reference.png`
 - `0050-desktop.png`
 - `0050-dedicated-target-validation.json`
+
+## Lesson 69 / Mockup 0051 - HCF/GCD
+
+Reworked individually against the target mockup with a dedicated `editable-number-pair-factor-set-venn-intersection-prime-exponent-overlap-draggable-shared-candidate-equal-group-greatest-divisor-practice-model`. The two editable numbers drive both complete factor sets, their Venn intersection, prime exponent forms, lowest-exponent overlap, HCF, equal-group arrays, result rail, and misconception proof from one lesson-owned calculation model.
+
+Both inputs have direct fields and working decrement/increment controls. Every common-factor chip is a native draggable object that can be dropped onto the HCF medal: a smaller shared factor produces corrective feedback, while the greatest restores the completed proof. Changing either number regenerates every representation, and the practice control loads 12 and 20 into the live model. The shared number adapter only dispatches Lesson 69 to this separate component.
+
+Final 1470x1070 integrated browser validation verifies the initial shared factors 1, 2, 3, and 6, HCF 6, prime factors for 18 and 24, and overlap 2 × 3; edits the pair to 30 and 45 and verifies shared factors 1, 3, 5, and 15 with HCF 15; physically drags 5 to the medal and verifies the non-greatest state; drags 15 and verifies correction; increments 45 to 46 and verifies HCF 2; loads practice 12/20 and verifies HCF 4; then restores 18/24. After three screenshot passes, the final frame matches the target at page x=293-1453 and y=112-1070, hero y=112-252, factor sets x=293-802 and y=269-722, prime overlap x=816-1151, equal groups y=732-971, side rail x=1165-1451, and navigation y=988-1047. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0051-reference.png`
+- `0051-desktop.png`
+- `0051-dedicated-target-validation.json`
