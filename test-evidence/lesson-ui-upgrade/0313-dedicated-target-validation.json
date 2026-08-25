@@ -1,0 +1,15 @@
+[
+  {
+    "id": 256,
+    "mockup": 313,
+    "route": "/lessons/geometry/256-concyclicity-test",
+    "width": 1024,
+    "height": 1536,
+    "status": "Correct. The fourth point lies on the circle through the first three.",
+    "consoleErrors": [],
+    "scrollHeight": 1536,
+    "surfaceBottom": 1536,
+    "objectModel": "four-point-circumcircle-determinant-angle-residual",
+    "overflowing": 0
+  }
+]

@@ -1320,29 +1320,17 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain('aria-label="Practice Ceva F ratio"');
   });
 
-  it("renders geometry lesson 256 with loci and proof guidance", () => {
-    const expectedSnippets: Record<number, string> = {
-      256: "Concyclicity test",
-    };
-
-    for (const [idText, snippet] of Object.entries(expectedSnippets)) {
-      const id = Number(idText);
-      const lesson = lessonCatalog.find((item) => item.id === id)!;
-      const html = renderToStaticMarkup(
-        <Geometry2DLessonAdapter
-          lesson={lesson}
-          resetToken={0}
-          onInteraction={vi.fn()}
-        />,
-      );
-
-      expect(html, lesson.title).toContain(lesson.title);
-      expect(html, lesson.title).toContain(snippet);
-      expect(html, lesson.title).toContain('data-direct-interaction="true"');
-      expect(html, lesson.title).toContain("Drag points");
-      expect(html, lesson.title).toContain("Worked:");
-      expect(html, lesson.title).toContain("Avoid:");
-      expect(html, lesson.title).not.toContain("Coordinate rule");
-    }
+  it("renders Concyclicity Test as an exact four-point circle model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 256)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0313"');
+    expect(html).toContain('data-object-model="four-point-circumcircle-determinant-angle-residual"');
+    expect(html).toContain("Four draggable points with fitted circumcircle and exact concyclicity checks");
+    expect(html).toContain('data-testid="concyclicity-fitted-circle"');
+    expect(html).toContain('data-testid="concyclicity-point-d"');
+    expect(html).toContain('aria-label="D y coordinate"');
+    expect(html).toContain("Four-point determinant");
+    expect(html).toContain("Radial residual");
+    expect(html).toContain('aria-label="Practice D radial scale"');
   });
 });

@@ -1,0 +1,482 @@
+.target-concyclic-page {
+  height: 1438px;
+  color: #14234b;
+  font-size: 8px;
+  letter-spacing: 0;
+}
+.target-concyclic-page button,
+.target-concyclic-page input {
+  font-size: 8px;
+  letter-spacing: 0;
+}
+.target-concyclic-header,
+.target-concyclic-steps,
+.target-concyclic-tabs,
+.target-concyclic-work,
+.target-concyclic-learning > article,
+.target-concyclic-practice,
+.target-concyclic-nav > a,
+.target-concyclic-tags button {
+  border: 1px solid #dbe4ef;
+  border-radius: 8px;
+  background: #fff;
+}
+.target-concyclic-header {
+  height: 218px;
+  padding: 14px;
+}
+.target-concyclic-header > span {
+  margin-right: 6px;
+  border-radius: 999px;
+  background: #eff6ff;
+  padding: 4px 8px;
+  color: #1769c8;
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.target-concyclic-header h1 {
+  margin-top: 14px;
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 1;
+}
+.target-concyclic-header > p {
+  margin-top: 7px;
+  color: #64748b;
+  font-size: 11px;
+}
+.target-concyclic-header > section {
+  display: flex;
+  gap: 7px;
+  margin-top: 12px;
+}
+.target-concyclic-header > section b {
+  border: 1px solid #dbe4ef;
+  border-radius: 999px;
+  padding: 6px 9px;
+}
+.target-concyclic-header footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  border-top: 1px solid #dbe4ef;
+  padding-top: 10px;
+}
+.target-concyclic-header footer button {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+  padding: 0 12px;
+}
+.target-concyclic-header footer button:first-child {
+  width: 180px;
+}
+.target-concyclic-header footer button:nth-last-child(2) {
+  margin-left: 0;
+}
+.target-concyclic-header footer button:last-child {
+  flex-basis: 90px;
+}
+.target-concyclic-header footer svg {
+  width: 12px;
+}
+.target-concyclic-steps {
+  height: 132px;
+  margin-top: 10px;
+  padding: 10px;
+}
+.target-concyclic-steps > b {
+  color: #1769c8;
+}
+.target-concyclic-steps > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 12px;
+}
+.target-concyclic-steps article {
+  display: flex;
+  gap: 10px;
+  border-right: 1px solid #dbe4ef;
+  padding: 0 12px;
+}
+.target-concyclic-steps article:last-child {
+  border: 0;
+}
+.target-concyclic-steps article > svg {
+  width: 20px;
+  flex: none;
+  color: #1769e0;
+}
+.target-concyclic-steps article b {
+  color: #1769c8;
+  font-size: 10px;
+}
+.target-concyclic-steps article p {
+  margin-top: 8px;
+  line-height: 1.45;
+}
+.target-concyclic-tabs {
+  display: grid;
+  height: 44px;
+  grid-template-columns: 1.35fr repeat(5, 1fr);
+  margin-top: 10px;
+  padding: 4px;
+}
+.target-concyclic-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.target-concyclic-tabs button svg {
+  width: 13px;
+}
+.target-concyclic-tabs button.is-active {
+  border-radius: 7px;
+  background: #079ab7;
+  color: #fff;
+  font-weight: 900;
+}
+.target-concyclic-work {
+  height: 465px;
+  margin-top: 10px;
+  padding: 10px;
+}
+.target-concyclic-work > div {
+  display: grid;
+  height: 443px;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 10px;
+}
+.target-concyclic-canvas,
+.target-concyclic-controls {
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+}
+.target-concyclic-canvas {
+  padding: 9px;
+}
+.target-concyclic-canvas > b {
+  color: #0891b2;
+}
+.target-concyclic-canvas h3 {
+  margin-top: 7px;
+  font-size: 11px;
+}
+.target-concyclic-graph {
+  width: 100%;
+  height: 360px;
+  touch-action: none;
+}
+.target-concyclic-canvas > footer {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  gap: 17px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 0 10px;
+}
+.target-concyclic-canvas > footer span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.target-concyclic-canvas > footer span:first-child {
+  margin-right: auto;
+}
+.target-concyclic-canvas > footer i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.target-concyclic-controls {
+  padding: 10px;
+}
+.target-concyclic-controls h3 {
+  color: #1769c8;
+  font-size: 11px;
+}
+.target-concyclic-controls > div {
+  display: grid;
+  grid-template-columns: 63px 45px 45px 1fr;
+  align-items: center;
+  gap: 6px;
+  margin-top: 9px;
+}
+.target-concyclic-controls > div input[type="number"] {
+  min-width: 0;
+  width: 45px;
+  height: 27px;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+  text-align: center;
+}
+.target-concyclic-controls > div input[type="range"] {
+  min-width: 0;
+  width: 100%;
+  accent-color: #1769e0;
+}
+.target-concyclic-controls > div:nth-of-type(2) input[type="range"] {
+  accent-color: #8b5cf6;
+}
+.target-concyclic-controls > div:nth-of-type(3) input[type="range"] {
+  accent-color: #16a34a;
+}
+.target-concyclic-controls > div:nth-of-type(4) input[type="range"] {
+  accent-color: #f97316;
+}
+.target-concyclic-controls > section {
+  margin-top: 12px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 9px;
+}
+.target-concyclic-controls > section > p {
+  display: grid;
+  grid-template-columns: 1fr 1fr 15px;
+  align-items: center;
+  gap: 5px;
+  border-bottom: 1px solid #dbe4ef;
+  padding: 7px 0;
+}
+.target-concyclic-controls > section svg {
+  width: 14px;
+  color: #16a34a;
+}
+.target-concyclic-controls > footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  border: 1px solid #dbe4ef;
+  border-radius: 6px;
+  padding: 9px;
+}
+.target-concyclic-controls > footer.good {
+  background: #ecfdf5;
+  color: #047857;
+}
+.target-concyclic-controls > footer.bad {
+  background: #fff1f2;
+  color: #dc2626;
+}
+.target-concyclic-controls > footer > svg {
+  width: 27px;
+}
+.target-concyclic-controls > footer b {
+  font-size: 12px;
+}
+.target-concyclic-learning {
+  display: grid;
+  height: 199px;
+  grid-template-columns: 1.05fr 0.95fr 0.95fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.target-concyclic-learning > article {
+  padding: 11px;
+}
+.target-concyclic-learning article:nth-child(3) {
+  border-color: #fecaca;
+}
+.target-concyclic-learning h2 {
+  color: #1769c8;
+  font-size: 10px;
+}
+.target-concyclic-learning article:nth-child(3) h2 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #dc2626;
+}
+.target-concyclic-learning h2 svg {
+  width: 14px;
+}
+.target-concyclic-learning p {
+  margin-top: 8px;
+  line-height: 1.4;
+}
+.target-concyclic-learning ul {
+  margin: 8px 0 0 15px;
+}
+.target-concyclic-learning li {
+  margin-top: 4px;
+}
+.target-concyclic-learning article:first-child > strong {
+  display: block;
+  margin-top: 10px;
+  border-left: 1px solid #dbe4ef;
+  padding: 8px;
+  color: #1d4ed8;
+  text-align: center;
+}
+.target-concyclic-learning article:nth-child(2) > b {
+  display: block;
+  margin-top: 8px;
+}
+.target-concyclic-learning article:nth-child(2) > footer {
+  margin-top: 10px;
+  border: 1px solid #86efac;
+  border-radius: 5px;
+  background: #ecfdf5;
+  padding: 7px;
+  color: #047857;
+}
+.target-concyclic-practice {
+  height: 184px;
+  margin-top: 10px;
+  padding: 11px;
+}
+.target-concyclic-practice h2 {
+  color: #1769c8;
+  font-size: 10px;
+}
+.target-concyclic-practice > p {
+  margin-top: 7px;
+}
+.target-concyclic-practice > div {
+  display: grid;
+  height: 132px;
+  grid-template-columns: 1.05fr 220px 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.target-concyclic-practice article {
+  border-right: 1px solid #dbe4ef;
+  padding-right: 10px;
+}
+.target-concyclic-practice article > p {
+  margin-top: 8px;
+}
+.target-concyclic-practice article label {
+  display: grid;
+  grid-template-columns: 75px 1fr 35px;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+.target-concyclic-practice article input {
+  min-width: 0;
+  width: 100%;
+  accent-color: #f97316;
+}
+.target-concyclic-practice article button {
+  height: 27px;
+  margin-top: 10px;
+  border: 1px solid #dbe4ef;
+  border-radius: 5px;
+  padding: 0 9px;
+}
+.target-concyclic-practice > div > svg {
+  width: 210px;
+  height: 120px;
+}
+.target-concyclic-practice aside {
+  border-left: 1px solid #dbe4ef;
+  padding-left: 10px;
+}
+.target-concyclic-practice aside p {
+  margin-top: 7px;
+}
+.target-concyclic-practice aside p[role="status"] {
+  border-radius: 5px;
+  padding: 7px;
+}
+.target-concyclic-practice aside p.correct {
+  background: #ecfdf5;
+  color: #047857;
+}
+.target-concyclic-practice aside p.incorrect {
+  background: #fff1f2;
+  color: #dc2626;
+}
+.target-concyclic-nav {
+  display: grid;
+  height: 48px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 42px;
+}
+.target-concyclic-nav > a {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+}
+.target-concyclic-nav > a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.target-concyclic-nav b {
+  display: block;
+  margin-bottom: 3px;
+}
+.target-concyclic-nav svg {
+  width: 13px;
+}
+.target-concyclic-tags {
+  display: grid;
+  height: 44px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+.target-concyclic-tags button {
+  text-align: left;
+  padding: 0 12px;
+  color: #475569;
+}
+.target-concyclic-tags button.is-active {
+  border-color: #93c5fd;
+  color: #1769c8;
+}
+.target-concyclic-tags i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+}
+.target-concyclic-app footer[aria-label="Site footer"] {
+  display: none;
+}
+@media (min-width: 960px) and (max-width: 1279px) {
+  .target-concyclic-app [data-testid="desktop-sidebar"] {
+    width: 216px;
+  }
+  .target-concyclic-app > .app-layout-rail > div > header {
+    height: 53px;
+  }
+  .target-concyclic-app #main-content {
+    padding-top: 11px;
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 759px) {
+  .target-concyclic-page,
+  .target-concyclic-header,
+  .target-concyclic-work,
+  .target-concyclic-practice {
+    height: auto;
+  }
+  .target-concyclic-steps,
+  .target-concyclic-tabs,
+  .target-concyclic-work > div,
+  .target-concyclic-learning,
+  .target-concyclic-nav,
+  .target-concyclic-tags {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .target-concyclic-graph {
+    height: auto;
+  }
+}

@@ -22,6 +22,7 @@
 | 0310 | 253 Exact Proof | `exact-translation-isometry-proof-chain` | Reworked individually and browser-validated |
 | 0311 | 254 Collinearity Test | `three-point-synchronized-exact-collinearity-tests` | Reworked individually and browser-validated |
 | 0312 | 255 Concurrency Test | `triangle-cevians-exact-ceva-concurrency` | Reworked individually and browser-validated |
+| 0313 | 256 Concyclicity Test | `four-point-circumcircle-determinant-angle-residual` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -282,3 +283,18 @@ Evidence:
 
 - `0312-desktop.png`
 - `0312-dedicated-target-validation.json`
+
+## Lesson 256 / Mockup 0313 - Concyclicity Test
+
+Reworked individually against the target mockup with a dedicated `four-point-circumcircle-determinant-angle-residual` object model. Four independent draggable points feed an exact circumcircle fit through A, B, C and a fourth-point test. The model derives circumcenter, radius, D’s signed radial residual, the four-point determinant, all four interior angles, both opposite-angle sums, circle-fit validity, point distinctness, and final concyclicity. Eight coordinate inputs and four horizontal sliders update the same points. Tabs, reset, sharing, the two workspace modes, object-view strip, practice slider, and adjacent navigation are functional.
+
+Concyclicity requires agreement among the fitted-circle residual, determinant, opposite-angle sums, and validity guards. Duplicate points are rejected as a four-distinct-point set, and collinear A/B/C are rejected because they cannot define a finite circumcircle. The independent practice model moves D radially while keeping A/B/C fixed and grades only when residual and determinant return to zero.
+
+Mockup 0313 displays A(-5,1), B(3,4), C(5,-2), D(-2,-3), draws an origin-centered circle, and marks both angle sums and determinant as exact. Those four points have unequal distances from the origin, and the circle through A, B, C misses D substantially. The implementation preserves the target’s rotated-quadrilateral composition with coherent coordinates A(-5,1), B(1,5), C(5,-1), D(-1,-5). They share the circle `x²+y²=26`, have center (0,0), equal radius `sqrt(26)`, 90-degree interior angles, supplementary opposite pairs, and determinant zero.
+
+Final 1024x1536 browser validation verifies the coherent initial center, radius, determinant and classification, physically drags A, B, C, and D and proves the changed construction is no longer concyclic, restores all eight coordinates and the exact circle, duplicates D with A and verifies distinctness failure, makes A/B/C collinear and verifies no circumcircle is accepted, resets the model, switches object-view modes, moves practice D to radial scale 1.3 and receives an incorrect result, then restores scale 1 and receives the correct result. The screenshot loop trims the page to an exact viewport and aligns bottom navigation and object modes with mockup 0313. Final validation reports zero overflow, zero console errors, and a lesson surface ending at y=1536.
+
+Evidence:
+
+- `0313-desktop.png`
+- `0313-dedicated-target-validation.json`
