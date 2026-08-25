@@ -17,7 +17,7 @@ describe("AlgebraLessonAdapter", () => {
       27: "Track changing mathematical information",
       28: "Construct objects from notation",
       29: "Modify constructions without rebuilding",
-      30: "Equation input",
+      30: "Create multiple equation types",
       31: "Inequality input",
       32: "List rule",
       33: "Matrix size",
@@ -184,6 +184,18 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('data-a="3"');
     expect(html).toContain('aria-label="New object definition"');
     expect(html).toContain("Updated dependents");
+  });
+
+  it("renders lesson 30 as a dedicated solvable equation workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 30)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0030"');
+    expect(html).toContain('data-dedicated-lesson="30"');
+    expect(html).toContain('data-object-model="parsed-two-sided-linear-equation-balance-generated-steps-dual-line-intersection-substitution-proof-model"');
+    expect(html).toContain('data-solution="4"');
+    expect(html).toContain('data-solved-y="11"');
+    expect(html).toContain('aria-label="Equation input"');
+    expect(html).toContain("SOLUTION CHECKER");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {

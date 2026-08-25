@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **29 of 130 lessons completed; 101 pending.**
+Dedicated rebuild target: **30 of 130 lessons completed; 100 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -33,6 +33,7 @@ Dedicated rebuild target: **29 of 130 lessons completed; 101 pending.**
 | 0027   | 27 Dynamic Labels | Complete | Draggable point with linked x/y fields, steppers and ranges, calculated distance, three token templates, coordinate/distance/projection toggles, live proof and preview, and exact 1227x1294 target geometry |
 | 0028   | 28 Algebraic Input | Complete | Parsed function model with editable notation, immediate syntax validation, live Nerdamer evaluation, sampled graph, calculated roots/vertex/intercept/key points, real create/edit/clear/share/reset controls, and exact 1227x1294 target geometry |
 | 0029   | 29 Object Redefinition | Complete | Preserved object identity with executable old/new rules, real redefine transaction, dual evaluated graphs, recomputed dependent values/table/graph state, dependency tree, validation, and exact 1227x1294 target geometry |
+| 0030   | 30 Equation Input | Complete | Parsed two-sided linear equation with implicit multiplication, generated equal-operation steps, calculated balance weights, dual graph intersection, solution checklist/substitution proof, real examples/check/clear controls, and exact 1369x1149 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -439,3 +440,17 @@ Evidence:
 - `0029-reference.png`
 - `0029-desktop.png`
 - `0029-dedicated-target-validation.json`
+
+## Lesson 30 / Mockup 0030 - Equation Input
+
+Reworked individually against the target mockup with a dedicated `parsed-two-sided-linear-equation-balance-generated-steps-dual-line-intersection-substitution-proof-model`. One typed equation is parsed into left and right expressions, linear coefficients and constants, a unique solution, and intersection y-value. Those calculated values drive the balance blocks, generated equal-operation steps, both graph lines, intersection marker, syntax and solution checklists, summary, and substitution proof.
+
+The parser supports implicit multiplication such as `2x`, variables on both sides, and decimals; rejects missing or multiple equals signs, unsupported symbols, non-evaluable expressions, nonlinear rules, and equations without one unique solution; and never emits invalid SVG coordinates. Clear, Check Equation, and all three syntax examples are real controls, with the displayed solved state gated by Check Equation.
+
+Final 1369x1149 integrated browser validation solves `3x - 2 = 7`; checks x=3 and y=7; solves `x + 5 = 2x - 1` as x=6 and y=11; rejects `2x + 3` without an equals sign; verifies Check Equation is disabled; clears the input; loads the `4y = y + 12` example as its equivalent x equation; checks x=4 and y=16; and reloads `2x + 3 = 11`. The final frame matches the target at surface x=286-1348 and y=117-1143, header y=138-206, entry y=206-374, main workspace y=389-891, balance x=300-685, graph x=699-1086, right rail x=1100-1330 and y=389-1051, checker x=300-1086 and y=905-1048, and navigation y=1062-1122. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0030-reference.png`
+- `0030-desktop.png`
+- `0030-dedicated-target-validation.json`

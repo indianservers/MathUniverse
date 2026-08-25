@@ -1,0 +1,202 @@
+{
+  "mockup": "0030",
+  "lessonId": 30,
+  "route": "/lessons/core-workspaces/30-equation-input",
+  "objectModel": "parsed-two-sided-linear-equation-balance-generated-steps-dual-line-intersection-substitution-proof-model",
+  "checks": {
+    "initial": {
+      "valid": "true",
+      "checked": "true",
+      "left": "2x + 3",
+      "right": "11",
+      "solution": "4",
+      "solved-y": "11",
+      "checks": "1",
+      "actions": "0"
+    },
+    "edited": {
+      "valid": "true",
+      "checked": "false",
+      "left": "3x - 2",
+      "right": "7",
+      "solution": "3",
+      "solved-y": "7",
+      "checks": "1",
+      "actions": "1"
+    },
+    "checked": {
+      "valid": "true",
+      "checked": "true",
+      "left": "3x - 2",
+      "right": "7",
+      "solution": "3",
+      "solved-y": "7",
+      "checks": "2",
+      "actions": "2"
+    },
+    "bothSides": {
+      "valid": "true",
+      "checked": "true",
+      "left": "x + 5",
+      "right": "2x - 1",
+      "solution": "6",
+      "solved-y": "11",
+      "checks": "3",
+      "actions": "4"
+    },
+    "invalid": {
+      "valid": "false",
+      "checked": "false",
+      "left": "2x + 3",
+      "right": "",
+      "solution": "?",
+      "solved-y": "?",
+      "checks": "3",
+      "actions": "5"
+    },
+    "disabled": true,
+    "clear": {
+      "valid": "false",
+      "checked": "false",
+      "left": "",
+      "right": "",
+      "solution": "?",
+      "solved-y": "?",
+      "checks": "3",
+      "actions": "6"
+    },
+    "example": {
+      "valid": "true",
+      "checked": "false",
+      "left": "4x",
+      "right": "x + 12",
+      "solution": "4",
+      "solved-y": "16",
+      "checks": "3",
+      "actions": "7"
+    },
+    "exampleChecked": {
+      "valid": "true",
+      "checked": "true",
+      "left": "4x",
+      "right": "x + 12",
+      "solution": "4",
+      "solved-y": "16",
+      "checks": "4",
+      "actions": "8"
+    },
+    "resetByReload": {
+      "valid": "true",
+      "checked": "true",
+      "left": "2x + 3",
+      "right": "11",
+      "solution": "4",
+      "solved-y": "11",
+      "checks": "1",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1369,
+      "height": 1149
+    },
+    "document": {
+      "width": 1369,
+      "height": 1149
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 117,
+      "bottom": 1143,
+      "height": 1026,
+      "left": 286,
+      "right": 1348,
+      "width": 1062
+    },
+    "regions": {
+      "card": {
+        "top": 117,
+        "bottom": 1139,
+        "height": 1022,
+        "left": 286,
+        "right": 1348,
+        "width": 1062
+      },
+      "header": {
+        "top": 138,
+        "bottom": 206,
+        "height": 68,
+        "left": 300,
+        "right": 1334,
+        "width": 1034
+      },
+      "entry": {
+        "top": 206,
+        "bottom": 374,
+        "height": 168,
+        "left": 300,
+        "right": 1334,
+        "width": 1034
+      },
+      "main": {
+        "top": 389,
+        "bottom": 891,
+        "height": 502,
+        "left": 300,
+        "right": 1334,
+        "width": 1034
+      },
+      "balance": {
+        "top": 389,
+        "bottom": 622,
+        "height": 233,
+        "left": 300,
+        "right": 685,
+        "width": 385
+      },
+      "steps": {
+        "top": 633,
+        "bottom": 891,
+        "height": 258,
+        "left": 300,
+        "right": 685,
+        "width": 385
+      },
+      "graph": {
+        "top": 389,
+        "bottom": 891,
+        "height": 502,
+        "left": 699,
+        "right": 1086,
+        "width": 387
+      },
+      "side": {
+        "top": 389,
+        "bottom": 1051,
+        "height": 662,
+        "left": 1100,
+        "right": 1330,
+        "width": 230
+      },
+      "checker": {
+        "top": 905,
+        "bottom": 1048,
+        "height": 143,
+        "left": 300,
+        "right": 1086,
+        "width": 786
+      },
+      "neighbors": {
+        "top": 1062,
+        "bottom": 1122,
+        "height": 60,
+        "left": 300,
+        "right": 1334,
+        "width": 1034
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
