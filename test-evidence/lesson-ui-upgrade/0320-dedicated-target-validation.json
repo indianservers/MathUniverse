@@ -1,0 +1,124 @@
+{
+  "mockup": "0320",
+  "lessonId": 263,
+  "route": "/lessons/trigonometry/263-tangent-graph",
+  "reference": "0320-interactive-intermediate-advanced-trigonometry-tangent-graph-redesigned.png",
+  "objectModel": "unit-circle-tangent-line-discontinuous-branch-asymptote-model",
+  "checks": {
+    "initial": {
+      "theta": 1.047198,
+      "sin": 0.866025,
+      "cos": 0.5,
+      "tan": 1.732051,
+      "defined": true,
+      "quadrant": "In quadrant I",
+      "activeTab": "interaction",
+      "practiceResult": "correct"
+    },
+    "circleDrag": {
+      "theta": 0.791813,
+      "sin": 0.711628,
+      "cos": 0.702556,
+      "tan": 1.012913,
+      "defined": true,
+      "quadrant": "In quadrant I",
+      "activeTab": "interaction",
+      "practiceResult": "correct"
+    },
+    "graphDrag": {
+      "theta": -0.7293,
+      "sin": -0.666348,
+      "cos": 0.745641,
+      "tan": -0.893658,
+      "defined": true,
+      "quadrant": "In quadrant IV",
+      "activeTab": "interaction",
+      "practiceResult": "correct"
+    },
+    "undefined90": {
+      "theta": 1.570796,
+      "sin": 1,
+      "cos": 0,
+      "tan": null,
+      "defined": false,
+      "quadrant": "In quadrant II",
+      "activeTab": "interaction",
+      "practiceResult": "correct"
+    },
+    "restored60": {
+      "theta": 1.047198,
+      "sin": 0.866025,
+      "cos": 0.5,
+      "tan": 1.732051,
+      "defined": true,
+      "quadrant": "In quadrant I",
+      "activeTab": "interaction",
+      "practiceResult": "correct"
+    },
+    "explainTab": {
+      "theta": 1.047198,
+      "sin": 0.866025,
+      "cos": 0.5,
+      "tan": 1.732051,
+      "defined": true,
+      "quadrant": "In quadrant I",
+      "activeTab": "explain",
+      "practiceResult": "correct"
+    },
+    "incorrect": {
+      "theta": 1.047198,
+      "sin": 0.866025,
+      "cos": 0.5,
+      "tan": 1.732051,
+      "defined": true,
+      "quadrant": "In quadrant I",
+      "activeTab": "interaction",
+      "practiceResult": "incorrect"
+    },
+    "correct": {
+      "theta": 1.047198,
+      "sin": 0.866025,
+      "cos": 0.5,
+      "tan": 1.732051,
+      "defined": true,
+      "quadrant": "In quadrant I",
+      "activeTab": "interaction",
+      "practiceResult": "correct"
+    },
+    "reset": {
+      "theta": 1.047198,
+      "sin": 0.866025,
+      "cos": 0.5,
+      "tan": 1.732051,
+      "defined": true,
+      "quadrant": "In quadrant I",
+      "activeTab": "interaction",
+      "practiceResult": "correct"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 979,
+      "height": 1606
+    },
+    "document": {
+      "width": 979,
+      "height": 1750
+    },
+    "horizontalOverflow": false,
+    "surfaceTop": 104,
+    "surfaceBottom": 1595,
+    "stepsTop": 345,
+    "stepsBottom": 436,
+    "workspaceTop": 449,
+    "workspaceBottom": 914,
+    "factsTop": 928,
+    "factsBottom": 1003,
+    "practiceTop": 1287,
+    "practiceBottom": 1523,
+    "navTop": 1542,
+    "navBottom": 1595
+  },
+  "consoleMessages": [],
+  "passed": true
+}

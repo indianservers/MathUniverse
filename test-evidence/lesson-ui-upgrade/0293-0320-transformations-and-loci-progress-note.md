@@ -1,6 +1,6 @@
 # Transformations and Loci target batch 0293-0320
 
-Dedicated rebuild target: **57 of 130 lessons completed; 73 pending.**
+Dedicated rebuild target: **58 of 130 lessons completed; 72 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -31,6 +31,7 @@ Dedicated rebuild target: **57 of 130 lessons completed; 73 pending.**
 | 0317 | 260 Exact Trig Values | `snapped-special-angle-linked-circle-triangle-exact-value-model` | Reworked individually and browser-validated |
 | 0318 | 261 Sine Graph | `linked-unit-circle-transformable-sine-function-model` | Reworked individually and browser-validated |
 | 0319 | 262 Cosine Graph | `horizontal-unit-circle-projection-transformable-cosine-function-model` | Reworked individually and browser-validated |
+| 0320 | 263 Tangent Graph | `unit-circle-tangent-line-discontinuous-branch-asymptote-model` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -384,3 +385,16 @@ Evidence:
 
 - `0319-desktop.png`
 - `0319-dedicated-target-validation.json`
+
+## Lesson 263 / Mockup 0320 - Tangent Graph
+
+Reworked individually against the target mockup with a dedicated `unit-circle-tangent-line-discontinuous-branch-asymptote-model`. One angle drives the unit-circle point P, the tangent-line endpoint T, sine, cosine, tangent length, sign, quadrant, angle slider and numeric input, and the synchronized graph marker. Both P and the graph marker are physically draggable. The graph renderer creates separate tangent branches and never connects across vertical asymptotes; its visible clipping window is independent of the exact calculated value.
+
+The model treats tangent as undefined when cosine is zero rather than returning a floating-point artifact. Domain, range, period, asymptote positions, ratio formula, sign facts, worked `tan(π/3)` derivation, and quadrant-sign misconception graphic are coherent. Five lesson tabs, language selection, reset, sharing, workspace focus, and adjacent navigation are functional. The four-row practice table owns editable exact values, signs, and quadrants, accepts equivalent `sqrt3/3` input, and validates incorrect and corrected paths.
+
+Final 979x1606 browser validation verifies the initial 60-degree construction and `tan θ = √3`; physically drags P to approximately 45 degrees and proves tangent approaches 1; physically drags the graph marker into Quadrant IV and proves the shared angle, sign, and tangent update; sets exactly 90 degrees and verifies cosine zero with a genuine undefined tangent; restores 60 degrees; switches lesson tabs; follows incorrect and corrected exact-value practice paths; and resets the complete state. The screenshot loop aligns steps at y=345, workspace at y=449, facts at y=928, practice at y=1287, and navigation exactly at y=1542-1595, with no overflow or console messages.
+
+Evidence:
+
+- `0320-desktop.png`
+- `0320-dedicated-target-validation.json`

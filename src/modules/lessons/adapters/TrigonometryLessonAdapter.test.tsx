@@ -152,6 +152,28 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Which equation matches the graph?");
   });
 
+  it("renders lesson 263 as a dedicated asymptote-aware tangent workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 263)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0320"');
+    expect(html).toContain('data-dedicated-lesson="263"');
+    expect(html).toContain(
+      'data-object-model="unit-circle-tangent-line-discontinuous-branch-asymptote-model"',
+    );
+    expect(html).toContain('data-tan="1.732051"');
+    expect(html).toContain('data-defined="true"');
+    expect(html).toContain('data-testid="tangent-unit-circle-handle"');
+    expect(html).toContain('data-testid="tangent-graph-handle"');
+    expect(html).toContain('aria-label="Tangent angle"');
+    expect(html).toContain("UNIT CIRCLE TANGENT CONSTRUCTION");
+    expect(html).toContain("Asymptotes");
+    expect(html).toContain('aria-label="Tangent answer 4"');
+    expect(html).toContain("MISCONCEPTION WARNING");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(
