@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **9 of 130 lessons completed; 121 pending.**
+Dedicated rebuild target: **10 of 130 lessons completed; 120 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -13,6 +13,7 @@ Dedicated rebuild target: **9 of 130 lessons completed; 121 pending.**
 | 0007   |   7 Scientific Notation | Complete | Linked coefficient/exponent model with real steppers, number-line marker, directional decimal-shift sequence, standard form, concept trace, powers ladder, instructions, and practice checking at exact 1508x1043 target geometry  |
 | 0008   |            8 Logarithms | Complete | Bidirectional base/exponent/power model with visible steppers, real drag ranges, power ladder, inverse-operation proof, dynamic trace, help, views, reset, and practice reveal at exact 1508x1043 target geometry                  |
 | 0009   | 9 Exponential Calculations | Complete | Linked base/exponent factor-chain model with real steppers and drag control, animated doubling staircase, growth chart, live concept trace, reset/views, rotating graded practice, and exact 1472x1069 target geometry |
+| 0010   | 10 Trigonometric Calculator | Complete | Dual draggable unit-circle angle model with linked exact-value triangles, DEG/RAD calculations, live sum and trace, special-angle table, reset/views, and rotating graded practice at exact 1068x1472 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -139,3 +140,17 @@ Evidence:
 - `0009-reference.png`
 - `0009-desktop.png`
 - `0009-dedicated-target-validation.json`
+
+## Lesson 10 / Mockup 0010 - Trigonometric Calculator
+
+Reworked individually against the target mockup with a dedicated `dual-draggable-unit-circle-special-angle-triangle-mode-trace-practice-model`. The sine and cosine angles drive separate unit-circle rays and handles, their exact-value right triangles, decimal values, combined output, and concept trace. DEG and RAD perform genuinely different calculations, so the target mode warning reflects the current result.
+
+Both angle handles can be dragged directly on the unit circle and are backed by real range controls for keyboard and pointer accessibility. DEG/RAD, Reset, Share, Workspace, all lesson views, practice answer entry, grading, and rotating problems perform real state changes. The special-angle exact forms and decimal approximations update together.
+
+Final 1068x1472 browser validation drags sine to 45 degrees and cosine to 30 degrees, verifies the linked output, switches to RAD and verifies a different calculation, resets to `sin(30°) + cos(60°) = 1`, switches view, rejects 1, accepts 1.414, and advances the practice problem. The final frame matches the target: surface x=227-1046 and y=100-1460, header y=100-335, tabs y=344-400, lab y=410-1270, workspace x=238-1035 and y=476-1036, practice/table y=1046-1261, navigation y=1280-1333, and footer y=1355-1472. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0010-reference.png`
+- `0010-desktop.png`
+- `0010-dedicated-target-validation.json`

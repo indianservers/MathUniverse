@@ -182,6 +182,21 @@ describe("CalculatorLessonAdapter", () => {
     expect(html).toContain('aria-label="Exponent drag control"');
     expect(html).toContain('aria-label="Exponential practice answer"');
   });
+  it("renders lesson 10 as a dedicated trigonometric geometry workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 10)!;
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="calculator-mockup-0010"');
+    expect(html).toContain('data-dedicated-lesson="10"');
+    expect(html).toContain('data-object-model="dual-draggable-unit-circle-special-angle-triangle-mode-trace-practice-model"');
+    expect(html).toContain('data-sin-angle="30"');
+    expect(html).toContain('data-cos-angle="60"');
+    expect(html).toContain('data-mode="DEG"');
+    expect(html).toContain('data-output="1"');
+    expect(html).toContain('aria-label="Sine angle drag control"');
+    expect(html).toContain('aria-label="Trigonometric practice answer"');
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
@@ -193,7 +208,7 @@ describe("CalculatorLessonAdapter", () => {
       7: "Scientific Notation Scale Lab",
       8: "A logarithm asks for an exponent",
       9: "Exponential Growth Lab",
-      10: "Trig mode",
+      10: "Special-angle lab",
       11: "Inverse trig",
       12: "Hyperbolic rule",
       13: "Counting rule",
@@ -232,7 +247,7 @@ describe("CalculatorLessonAdapter", () => {
       7: "Powers of Ten Ladder",
       8: "log reverses exponentiation",
       9: "Repeated multiplication",
-      10: "Trig angle-mode check",
+      10: "Concept trace",
       11: "Ratio to principal angle",
       12: "Hyperbolic exponential formula",
       13: "Counting choices trace",

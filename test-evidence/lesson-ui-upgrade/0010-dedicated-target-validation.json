@@ -1,0 +1,168 @@
+{
+  "mockup": "0010",
+  "lessonId": 10,
+  "route": "/lessons/core-workspaces/10-trigonometric-calculator",
+  "objectModel": "dual-draggable-unit-circle-special-angle-triangle-mode-trace-practice-model",
+  "checks": {
+    "initial": {
+      "sin-angle": "30",
+      "cos-angle": "60",
+      "mode": "DEG",
+      "output": "1",
+      "actions": "0",
+      "view": "0",
+      "feedback": "correct"
+    },
+    "sinDrag": {
+      "sin-angle": "45",
+      "cos-angle": "60",
+      "mode": "DEG",
+      "output": "1.207",
+      "actions": "1",
+      "view": "0",
+      "feedback": "correct"
+    },
+    "cosDrag": {
+      "sin-angle": "45",
+      "cos-angle": "30",
+      "mode": "DEG",
+      "output": "1.573",
+      "actions": "2",
+      "view": "0",
+      "feedback": "correct"
+    },
+    "radians": {
+      "sin-angle": "45",
+      "cos-angle": "30",
+      "mode": "RAD",
+      "output": "1.005",
+      "actions": "3",
+      "view": "0",
+      "feedback": "correct"
+    },
+    "reset": {
+      "sin-angle": "30",
+      "cos-angle": "60",
+      "mode": "DEG",
+      "output": "1",
+      "actions": "0",
+      "view": "0",
+      "feedback": "correct"
+    },
+    "view": {
+      "sin-angle": "30",
+      "cos-angle": "60",
+      "mode": "DEG",
+      "output": "1",
+      "actions": "1",
+      "view": "2",
+      "feedback": "correct"
+    },
+    "wrong": {
+      "sin-angle": "30",
+      "cos-angle": "60",
+      "mode": "DEG",
+      "output": "1",
+      "actions": "3",
+      "view": "2",
+      "feedback": "incorrect"
+    },
+    "correct": {
+      "sin-angle": "30",
+      "cos-angle": "60",
+      "mode": "DEG",
+      "output": "1",
+      "actions": "5",
+      "view": "2",
+      "feedback": "correct"
+    },
+    "problem": {
+      "sin-angle": "30",
+      "cos-angle": "60",
+      "mode": "DEG",
+      "output": "1",
+      "actions": "6",
+      "view": "2",
+      "feedback": "idle"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1068,
+      "height": 1472
+    },
+    "document": {
+      "width": 1068,
+      "height": 1472
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 100,
+      "bottom": 1460,
+      "height": 1360,
+      "left": 227,
+      "right": 1046,
+      "width": 819
+    },
+    "regions": {
+      "header": {
+        "top": 100,
+        "bottom": 335,
+        "height": 235,
+        "left": 227,
+        "right": 1046,
+        "width": 819
+      },
+      "tabs": {
+        "top": 344,
+        "bottom": 400,
+        "height": 56,
+        "left": 227,
+        "right": 1046,
+        "width": 819
+      },
+      "lab": {
+        "top": 410,
+        "bottom": 1270,
+        "height": 860,
+        "left": 227,
+        "right": 1046,
+        "width": 819
+      },
+      "work": {
+        "top": 476,
+        "bottom": 1036,
+        "height": 560,
+        "left": 238,
+        "right": 1035,
+        "width": 797
+      },
+      "bottom": {
+        "top": 1046,
+        "bottom": 1261,
+        "height": 215,
+        "left": 238,
+        "right": 1035,
+        "width": 797
+      },
+      "neighbors": {
+        "top": 1280,
+        "bottom": 1333,
+        "height": 53,
+        "left": 227,
+        "right": 1046,
+        "width": 819
+      },
+      "footer": {
+        "top": 1355,
+        "bottom": 1472,
+        "height": 117,
+        "left": 227,
+        "right": 1046,
+        "width": 819
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

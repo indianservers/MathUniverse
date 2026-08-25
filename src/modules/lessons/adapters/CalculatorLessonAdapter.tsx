@@ -33,6 +33,7 @@ import PowersRootsTargetLesson6 from "./PowersRootsTargetLesson6";
 import ScientificNotationTargetLesson7 from "./ScientificNotationTargetLesson7";
 import LogarithmsTargetLesson8 from "./LogarithmsTargetLesson8";
 import ExponentialCalculationsTargetLesson9 from "./ExponentialCalculationsTargetLesson9";
+import TrigonometricCalculatorTargetLesson10 from "./TrigonometricCalculatorTargetLesson10";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -124,7 +125,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 10) {
     return (
-      <TrigonometricCalculatorLessonSurface
+      <TrigonometricCalculatorTargetLesson10
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
