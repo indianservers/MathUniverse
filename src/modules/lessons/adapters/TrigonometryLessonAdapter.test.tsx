@@ -174,6 +174,31 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("MISCONCEPTION WARNING");
   });
 
+  it("renders lesson 264 as a dedicated linked reciprocal-trig workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 264)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0321"');
+    expect(html).toContain('data-dedicated-lesson="264"');
+    expect(html).toContain(
+      'data-object-model="linked-base-reciprocal-trig-branch-domain-asymptote-model"',
+    );
+    expect(html).toContain('data-function="sec"');
+    expect(html).toContain('data-base-value="0.866025"');
+    expect(html).toContain('data-reciprocal-value="1.154701"');
+    expect(html).toContain('data-defined="true"');
+    expect(html).toContain('data-testid="reciprocal-base-handle"');
+    expect(html).toContain('data-testid="reciprocal-function-handle"');
+    expect(html).toContain('aria-label="Reciprocal angle"');
+    expect(html).toContain('aria-label="Graph view window"');
+    expect(html).toContain('aria-label="Secant answer d"');
+    expect(html).toContain("Reciprocal Trig Functions – Linked Graphs");
+    expect(html).toContain("RULES AT A GLANCE");
+    expect(html).toContain("MISCONCEPTION CHECK");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(
