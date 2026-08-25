@@ -1,0 +1,176 @@
+{
+  "mockup": "0017",
+  "lessonId": 17,
+  "route": "/lessons/core-workspaces/17-calculation-history",
+  "objectModel": "selectable-provenance-history-row-reuse-copy-pin-inspection-dependency-chain-graded-practice-model",
+  "checks": {
+    "initial": {
+      "selected-row": "1",
+      "last-action": "inspect",
+      "copied-result": "",
+      "reused-expression": "",
+      "pinned-rows": "",
+      "practice-correct": "true",
+      "view": "0"
+    },
+    "inspect": {
+      "selected-row": "2",
+      "last-action": "inspect",
+      "copied-result": "",
+      "reused-expression": "",
+      "pinned-rows": "",
+      "practice-correct": "true",
+      "view": "0"
+    },
+    "reuse": {
+      "selected-row": "3",
+      "last-action": "reuse",
+      "copied-result": "",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "",
+      "practice-correct": "true",
+      "view": "0"
+    },
+    "copy": {
+      "selected-row": "4",
+      "last-action": "copy",
+      "copied-result": "68",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "",
+      "practice-correct": "true",
+      "view": "0"
+    },
+    "pin": {
+      "selected-row": "2",
+      "last-action": "pin",
+      "copied-result": "68",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "2",
+      "practice-correct": "true",
+      "view": "0"
+    },
+    "view": {
+      "selected-row": "2",
+      "last-action": "pin",
+      "copied-result": "68",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "2",
+      "practice-correct": "true",
+      "view": "2"
+    },
+    "incorrect": {
+      "selected-row": "2",
+      "last-action": "pin",
+      "copied-result": "68",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "2",
+      "practice-correct": "false",
+      "view": "2"
+    },
+    "correct": {
+      "selected-row": "2",
+      "last-action": "pin",
+      "copied-result": "68",
+      "reused-expression": "12 + 5",
+      "pinned-rows": "2",
+      "practice-correct": "true",
+      "view": "2"
+    },
+    "reset": {
+      "selected-row": "1",
+      "last-action": "inspect",
+      "copied-result": "",
+      "reused-expression": "",
+      "pinned-rows": "",
+      "practice-correct": "true",
+      "view": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "document": {
+      "width": 1536,
+      "height": 1191
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 110,
+      "bottom": 1036,
+      "height": 926,
+      "left": 280,
+      "right": 1490,
+      "width": 1210
+    },
+    "regions": {
+      "header": {
+        "top": 110,
+        "bottom": 312,
+        "height": 202,
+        "left": 280,
+        "right": 1490,
+        "width": 1210
+      },
+      "tabs": {
+        "top": 321,
+        "bottom": 370,
+        "height": 49,
+        "left": 280,
+        "right": 1490,
+        "width": 1210
+      },
+      "main": {
+        "top": 380,
+        "bottom": 954,
+        "height": 574,
+        "left": 280,
+        "right": 1490,
+        "width": 1210
+      },
+      "lab": {
+        "top": 380,
+        "bottom": 809,
+        "height": 429,
+        "left": 280,
+        "right": 1152.328125,
+        "width": 872.328125
+      },
+      "table": {
+        "top": 547,
+        "bottom": 740,
+        "height": 193,
+        "left": 297,
+        "right": 1135.328125,
+        "width": 838.328125
+      },
+      "side": {
+        "top": 380,
+        "bottom": 954,
+        "height": 574,
+        "left": 1164.328125,
+        "right": 1490,
+        "width": 325.671875
+      },
+      "practice": {
+        "top": 822,
+        "bottom": 954,
+        "height": 132,
+        "left": 280,
+        "right": 1152.40625,
+        "width": 872.40625
+      },
+      "neighbors": {
+        "top": 966,
+        "bottom": 1027,
+        "height": 61,
+        "left": 280,
+        "right": 1490,
+        "width": 1210
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

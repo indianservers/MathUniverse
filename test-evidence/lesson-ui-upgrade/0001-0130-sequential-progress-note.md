@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **16 of 130 lessons completed; 114 pending.**
+Dedicated rebuild target: **17 of 130 lessons completed; 113 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -20,6 +20,7 @@ Dedicated rebuild target: **16 of 130 lessons completed; 114 pending.**
 | 0014   | 14 Absolute Value | Complete | Dual draggable signed/mirrored point model with number-line distance arc, direction and nonnegative output trace, symmetry proof, mode switch, reset/views, and two-field graded practice at exact 1065x1477 target geometry |
 | 0015   | 15 Rounding and Precision | Complete | Editable exact fraction with denominator guard, real precision slider, decimal/report/next-digit/error pipeline, local number-line comparison, trace, reset/views, and rotating reveal practice at exact 1068x1473 target geometry |
 | 0016   | 16 Constants Library | Complete | Selectable high-precision constants with dedicated circle/exponential/golden-ratio visual models, real precision slider, formula/output trace, early-rounding comparison, reset/views, and reveal practice at exact 1050x1498 target geometry |
+| 0017   | 17 Calculation History | Complete | Selectable provenance-linked history rows with real reuse/copy/pin/inspect actions, live source/result trace, dependency-chain validation, reset/views, and immediate graded practice at exact 1536x1024 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -244,3 +245,17 @@ Evidence:
 - `0016-reference.png`
 - `0016-desktop.png`
 - `0016-dedicated-target-validation.json`
+
+## Lesson 17 / Mockup 0017 - Calculation History
+
+Reworked individually against the target mockup with a dedicated `selectable-provenance-history-row-reuse-copy-pin-inspection-dependency-chain-graded-practice-model`. Selecting any history row updates the large expression/result display, latest-input and latest-result trace, source inspection, and action context from one explicit provenance model.
+
+Reuse input, Copy result, Pin note, and Inspect source are real actions on every row and in the action key. Copy uses the browser clipboard when permitted while preserving its visible source row; pin toggles persisted row state; reuse loads the exact originating expression. Reset, Share, Workspace, all lesson views, and four practice choices perform real state changes, and practice grades immediately to match the mockup.
+
+Final 1536x1024 integrated browser validation inspects row 2, reuses `12 + 5` from row 3, copies `68` from row 4, pins row 2, switches to Examples, rejects row 3, accepts row 1, and resets the full state. The final frame matches the target at surface x=280-1490 and y=110-1036, header y=110-312, tabs y=321-370, lab y=380-809, table y=547-740, sidebar y=380-954, practice y=822-954, and navigation y=966-1027. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0017-reference.png`
+- `0017-desktop.png`
+- `0017-dedicated-target-validation.json`

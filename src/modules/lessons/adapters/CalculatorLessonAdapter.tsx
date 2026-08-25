@@ -40,6 +40,7 @@ import CountingChoicesTargetLesson13 from "./CountingChoicesTargetLesson13";
 import AbsoluteValueTargetLesson14 from "./AbsoluteValueTargetLesson14";
 import RoundingPrecisionTargetLesson15 from "./RoundingPrecisionTargetLesson15";
 import ConstantsLibraryTargetLesson16 from "./ConstantsLibraryTargetLesson16";
+import CalculationHistoryTargetLesson17 from "./CalculationHistoryTargetLesson17";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -194,7 +195,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 17) {
     return (
-      <CalculationHistoryLessonSurface
+      <CalculationHistoryTargetLesson17
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -233,6 +235,7 @@ void CountingChoicesLessonSurface;
 void AbsoluteValueLessonSurface;
 void RoundingPrecisionLessonSurface;
 void ConstantsLibraryLessonSurface;
+void CalculationHistoryLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,
