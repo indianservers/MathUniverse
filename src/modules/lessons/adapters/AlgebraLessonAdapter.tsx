@@ -22,6 +22,7 @@ import InequalityInputTargetLesson31 from "./InequalityInputTargetLesson31";
 import ListsTargetLesson32 from "./ListsTargetLesson32";
 import MatricesTargetLesson33 from "./MatricesTargetLesson33";
 import SequencesTargetLesson34 from "./SequencesTargetLesson34";
+import PiecewiseDefinitionsTargetLesson35 from "./PiecewiseDefinitionsTargetLesson35";
 
 const viewport: GraphViewport = { xMin: -10, xMax: 10, yMin: -10, yMax: 10, width: 640, height: 360 };
 
@@ -73,6 +74,9 @@ export default function AlgebraLessonAdapter({ lesson, resetToken, onInteraction
   }
   if (lesson.id === 34) {
     return <SequencesTargetLesson34 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 35) {
+    return <PiecewiseDefinitionsTargetLesson35 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.categorySlug === "core-workspaces" && lesson.id >= 19 && lesson.id <= 38) {
     return <RedesignedCoreAlgebraLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;

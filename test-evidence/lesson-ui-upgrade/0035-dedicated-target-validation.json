@@ -1,0 +1,168 @@
+{
+  "mockup": "0035",
+  "lessonId": 35,
+  "route": "/lessons/core-workspaces/35-piecewise-definitions",
+  "objectModel": "two-branch-piecewise-condition-endpoint-inclusion-evaluation-draggable-graph-probe-boundary-check-model",
+  "checks": {
+    "initial": {
+      "x": "1",
+      "value": "2",
+      "branch": "right",
+      "left-active": "false",
+      "workspace": "false",
+      "actions": "0"
+    },
+    "negative": {
+      "x": "-2",
+      "value": "1",
+      "branch": "left",
+      "left-active": "true",
+      "workspace": "false",
+      "actions": "1"
+    },
+    "decreased": {
+      "x": "-3",
+      "value": "0",
+      "branch": "left",
+      "left-active": "true",
+      "workspace": "false",
+      "actions": "2"
+    },
+    "rightBranch": {
+      "x": "1",
+      "value": "2",
+      "branch": "right",
+      "left-active": "false",
+      "workspace": "false",
+      "actions": "3"
+    },
+    "boundary": {
+      "x": "0",
+      "value": "0",
+      "branch": "right",
+      "left-active": "false",
+      "workspace": "false",
+      "actions": "4"
+    },
+    "graphProbe": {
+      "x": "-4",
+      "value": "-1",
+      "branch": "left",
+      "left-active": "true",
+      "workspace": "false",
+      "actions": "5"
+    },
+    "language": "⌁ Hindi (हिन्दी)⌄",
+    "workspace": {
+      "x": "-4",
+      "value": "-1",
+      "branch": "left",
+      "left-active": "true",
+      "workspace": "true",
+      "actions": "7"
+    },
+    "share": {
+      "x": "-4",
+      "value": "-1",
+      "branch": "left",
+      "left-active": "true",
+      "workspace": "true",
+      "actions": "8"
+    },
+    "reset": {
+      "x": "1",
+      "value": "2",
+      "branch": "right",
+      "left-active": "false",
+      "workspace": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1217,
+      "height": 1292
+    },
+    "document": {
+      "width": 1217,
+      "height": 1292
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 119,
+      "bottom": 1291,
+      "height": 1172,
+      "left": 260,
+      "right": 1200,
+      "width": 940
+    },
+    "regions": {
+      "shell": {
+        "top": 119,
+        "bottom": 1149,
+        "height": 1030,
+        "left": 260,
+        "right": 1200,
+        "width": 940
+      },
+      "header": {
+        "top": 120,
+        "bottom": 243,
+        "height": 123,
+        "left": 275,
+        "right": 1185,
+        "width": 910
+      },
+      "layout": {
+        "top": 258,
+        "bottom": 1083,
+        "height": 825,
+        "left": 275,
+        "right": 1185,
+        "width": 910
+      },
+      "graph": {
+        "top": 258,
+        "bottom": 874,
+        "height": 616,
+        "left": 275,
+        "right": 841,
+        "width": 566
+      },
+      "boundaries": {
+        "top": 884,
+        "bottom": 1078,
+        "height": 194,
+        "left": 275,
+        "right": 841,
+        "width": 566
+      },
+      "side": {
+        "top": 258,
+        "bottom": 1083,
+        "height": 825,
+        "left": 851,
+        "right": 1181,
+        "width": 330
+      },
+      "navigation": {
+        "top": 1093,
+        "bottom": 1155,
+        "height": 62,
+        "left": 275,
+        "right": 1185,
+        "width": 910
+      },
+      "footer": {
+        "top": 1159,
+        "bottom": 1287,
+        "height": 128,
+        "left": 260,
+        "right": 1200,
+        "width": 940
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **34 of 130 lessons completed; 96 pending.**
+Dedicated rebuild target: **35 of 130 lessons completed; 95 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -38,6 +38,7 @@ Dedicated rebuild target: **34 of 130 lessons completed; 96 pending.**
 | 0032   | 32 Lists | Complete | Editable and draggable ordered list with index selection, live summary statistics, calculated append/remove/sort/map pipeline, bar/dot views, real operations/reset/start-over controls, and exact 1487x1058 target geometry |
 | 0033   | 33 Matrices | Complete | Editable/resizable matrix with selected-cell draft/apply cycle, row/column vectors, recursive determinant, trace, vector action, geometric unit-square transform, tabs/reset/share/workspace, and exact 1575x999 target geometry |
 | 0034   | 34 Sequences | Complete | Editable arithmetic-sequence model with calculated term cards, number-line jumps, explicit rule, selectable term table, steppers, presets, restart/reset/share/workspace controls, and exact 1217x1292 target geometry |
+| 0035   | 35 Piecewise Definitions | Complete | Two-branch condition model with draggable graph probe, live slider/steppers, calculated evaluation and active branch, open/closed endpoints, boundary checks, stateful branch selection, and exact 1217x1292 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -514,3 +515,17 @@ Evidence:
 - `0034-reference.png`
 - `0034-desktop.png`
 - `0034-dedicated-target-validation.json`
+
+## Lesson 35 / Mockup 0035 - Piecewise Definitions
+
+Reworked individually against the target mockup with a dedicated `two-branch-piecewise-condition-endpoint-inclusion-evaluation-draggable-graph-probe-boundary-check-model`. The input x, active condition, selected branch, calculated function value, graph probe, vertical guide, branch styling, endpoint inclusion, evaluation card, and boundary explanations all derive from one explicit two-branch piecewise state.
+
+The x range is a real drag control with working increment and decrement buttons. Clicking or dragging the graph changes x and recomputes the result; selecting either branch moves to a valid sample from that branch; x = 0 correctly activates the inclusive right branch. Language, Reset, Share, Workspace, previous/next navigation, and footer actions all perform real state changes or navigation. Open and closed endpoint symbols remain mathematically tied to x < 0 and x >= 0.
+
+Final 1217x1292 integrated browser validation changes x to -2 and verifies f(-2)=1 on the left branch; decrements to -3 and verifies 0; selects the right branch and verifies x=1 and f(1)=2; tests the boundary x=0 on the right branch; clicks the graph at x=-4 and verifies f(-4)=-1; switches language; opens Workspace; shares; and resets. The final frame matches the target at surface x=260-1200 and y=119-1291, shell y=119-1149, header y=120-243, lesson layout y=258-1083, graph y=258-874, boundary checks y=884-1078, side rail x=851-1181, navigation y=1093-1155, and footer y=1159-1287. It reports exact document dimensions, no horizontal overflow, and zero console messages.
+
+Evidence:
+
+- `0035-reference.png`
+- `0035-desktop.png`
+- `0035-dedicated-target-validation.json`

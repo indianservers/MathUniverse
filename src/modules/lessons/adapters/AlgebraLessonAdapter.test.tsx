@@ -254,6 +254,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain("Number-line jump model");
   });
 
+  it("renders lesson 35 as a dedicated piecewise-definition workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 35)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0035"');
+    expect(html).toContain('data-dedicated-lesson="35"');
+    expect(html).toContain('data-object-model="two-branch-piecewise-condition-endpoint-inclusion-evaluation-draggable-graph-probe-boundary-check-model"');
+    expect(html).toContain('data-x="1"');
+    expect(html).toContain('data-value="2"');
+    expect(html).toContain('data-branch="right"');
+    expect(html).toContain('aria-label="Piecewise x value"');
+    expect(html).toContain("CHECK THE BOUNDARIES");
+  });
+
   it("renders phase 4 algebra lessons 92 through 128 with lesson-specific structure labs", () => {
     const expectedFamilies: Record<number, string> = {
       92: "Tile/area model",
