@@ -1,0 +1,151 @@
+{
+  "mockup": "0005",
+  "lessonId": 5,
+  "route": "/lessons/core-workspaces/5-ratio-calculator",
+  "objectModel": "dual-draggable-ratio-gcf-equal-groups-tiles-double-number-line-practice-model",
+  "checks": {
+    "initial": {
+      "a": "24",
+      "b": "36",
+      "gcf": "12",
+      "simple": "2:3",
+      "view": "0",
+      "actions": "0",
+      "example": "0",
+      "feedback": "correct"
+    },
+    "dragged": {
+      "a": "30",
+      "b": "45",
+      "gcf": "15",
+      "simple": "2:3",
+      "view": "0",
+      "actions": "2",
+      "example": "0",
+      "feedback": "correct"
+    },
+    "stepped": {
+      "a": "31",
+      "b": "45",
+      "gcf": "1",
+      "simple": "31:45",
+      "view": "0",
+      "actions": "3",
+      "example": "0",
+      "feedback": "correct"
+    },
+    "reset": {
+      "a": "24",
+      "b": "36",
+      "gcf": "12",
+      "simple": "2:3",
+      "view": "0",
+      "actions": "4",
+      "example": "0",
+      "feedback": "correct"
+    },
+    "view": {
+      "a": "24",
+      "b": "36",
+      "gcf": "12",
+      "simple": "2:3",
+      "view": "2",
+      "actions": "5",
+      "example": "0",
+      "feedback": "correct"
+    },
+    "wrong": {
+      "a": "24",
+      "b": "36",
+      "gcf": "12",
+      "simple": "2:3",
+      "view": "2",
+      "actions": "6",
+      "example": "0",
+      "feedback": "incorrect"
+    },
+    "correct": {
+      "a": "24",
+      "b": "36",
+      "gcf": "12",
+      "simple": "2:3",
+      "view": "2",
+      "actions": "7",
+      "example": "0",
+      "feedback": "correct"
+    },
+    "example": {
+      "a": "18",
+      "b": "30",
+      "gcf": "6",
+      "simple": "3:5",
+      "view": "2",
+      "actions": "8",
+      "example": "1",
+      "feedback": "correct"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "document": {
+      "width": 1536,
+      "height": 1179
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 109,
+      "bottom": 1024,
+      "height": 915,
+      "left": 280,
+      "right": 1521,
+      "width": 1241
+    },
+    "regions": {
+      "header": {
+        "top": 109,
+        "bottom": 295,
+        "height": 186,
+        "left": 280,
+        "right": 1521,
+        "width": 1241
+      },
+      "tabs": {
+        "top": 301,
+        "bottom": 353,
+        "height": 52,
+        "left": 280,
+        "right": 1521,
+        "width": 1241
+      },
+      "lab": {
+        "top": 353,
+        "bottom": 826,
+        "height": 473,
+        "left": 280,
+        "right": 1521,
+        "width": 1241
+      },
+      "practice": {
+        "top": 835,
+        "bottom": 1016,
+        "height": 181,
+        "left": 280,
+        "right": 1521,
+        "width": 1241
+      },
+      "navigation": {
+        "top": 1025,
+        "bottom": 1075,
+        "height": 50,
+        "left": 280,
+        "right": 1521,
+        "width": 1241
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

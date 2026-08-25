@@ -86,13 +86,33 @@ describe("CalculatorLessonAdapter", () => {
     expect(html).toContain('aria-label="Base drag control"');
     expect(html).toContain('aria-label="Percentage practice answer"');
   });
+  it("renders lesson 5 as a dedicated ratio grouping workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 5)!;
+    const html = renderToStaticMarkup(
+      <CalculatorLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+    expect(html).toContain('data-testid="calculator-mockup-0005"');
+    expect(html).toContain(
+      'data-object-model="dual-draggable-ratio-gcf-equal-groups-tiles-double-number-line-practice-model"',
+    );
+    expect(html).toContain('data-a="24"');
+    expect(html).toContain('data-b="36"');
+    expect(html).toContain('data-gcf="12"');
+    expect(html).toContain('data-simple="2:3"');
+    expect(html).toContain('aria-label="Part A drag control"');
+    expect(html).toContain('aria-label="Ratio practice value 1"');
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
       2: "Never add denominators directly",
       3: "Convert before you calculate",
       4: "Visual model: 15% of 240",
-      5: "Ratio rule",
+      5: "Ratio Lab: Simplify and compare 24:36",
       6: "Power-root rule",
       7: "Scientific notation",
       8: "Log rule",
@@ -131,7 +151,7 @@ describe("CalculatorLessonAdapter", () => {
       2: "Add numerators (denominators stay the same)",
       3: "Convert to improper fractions",
       4: "Part = Percent × Base",
-      5: "Ratio simplification trace",
+      5: "COMMON FACTOR",
       6: "Power-root inverse pair",
       7: "Scientific notation scale",
       8: "Log as exponent question",
@@ -158,7 +178,7 @@ describe("CalculatorLessonAdapter", () => {
         />,
       );
 
-      if (id > 4) expect(html, lesson.title).toContain("Concept trace");
+      if (id > 5) expect(html, lesson.title).toContain("Concept trace");
       expect(html, lesson.title).toContain(snippet);
       expect(html, lesson.title).not.toContain("Calculator concept trace");
     }

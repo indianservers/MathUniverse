@@ -1,13 +1,14 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **4 of 130 lessons completed; 126 pending.**
+Dedicated rebuild target: **5 of 130 lessons completed; 125 pending.**
 
-| Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                    |
-| ------ | ----------------------: | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0001   |      1 Basic Calculator | Complete | Editable arithmetic expression and BODMAS parse-trace model; real keypad families, direct expression input, automatic trace, history recall/reset, practice rotation, grading, solution, and exact 1489x1056 target geometry      |
-| 0002   |   2 Fraction Calculator | Complete | Linked two-fraction model with live LCD, equivalent bars, numerator-only addition, exact/mixed/decimal outputs, editable fields, functional keypad/modes, problem rotation, practice loading, and exact 1536x1024 target geometry |
-| 0003   |         3 Mixed Numbers | Complete | Dual mixed-number model with linked whole blocks/fraction strips, improper conversion, LCD expansion, exact/mixed/decimal results, active-field keypad modes, proof sidebar, practice reveal, and exact 1503x1047 target geometry |
-| 0004   | 4 Percentage Calculator | Complete | Draggable percent/base model with live hundred grid, segmented percent scale, whole/part bars, equation, quick table, trace, direct inputs, result, and graded inverse-percent practice at exact 1506x1045 target geometry        |
+| Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
+| ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0001   |      1 Basic Calculator | Complete | Editable arithmetic expression and BODMAS parse-trace model; real keypad families, direct expression input, automatic trace, history recall/reset, practice rotation, grading, solution, and exact 1489x1056 target geometry       |
+| 0002   |   2 Fraction Calculator | Complete | Linked two-fraction model with live LCD, equivalent bars, numerator-only addition, exact/mixed/decimal outputs, editable fields, functional keypad/modes, problem rotation, practice loading, and exact 1536x1024 target geometry  |
+| 0003   |         3 Mixed Numbers | Complete | Dual mixed-number model with linked whole blocks/fraction strips, improper conversion, LCD expansion, exact/mixed/decimal results, active-field keypad modes, proof sidebar, practice reveal, and exact 1503x1047 target geometry  |
+| 0004   | 4 Percentage Calculator | Complete | Draggable percent/base model with live hundred grid, segmented percent scale, whole/part bars, equation, quick table, trace, direct inputs, result, and graded inverse-percent practice at exact 1506x1045 target geometry         |
+| 0005   |      5 Ratio Calculator | Complete | Dual draggable/steppable ratio model with live GCF grouping, simplification proof, grouped bars, tile arrays, double number line, trace, action count, examples, and graded comparison practice at exact 1536x1024 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -64,3 +65,17 @@ Evidence:
 - `0004-reference.png`
 - `0004-desktop.png`
 - `0004-dedicated-target-validation.json`
+
+## Lesson 5 / Mockup 0005 - Ratio Calculator
+
+Reworked individually against the target mockup with a dedicated `dual-draggable-ratio-gcf-equal-groups-tiles-double-number-line-practice-model`. The two ratio quantities drive their greatest common factor, grouped comparison bars, simplest form, tile arrays, double number lines, equation proof, concept trace, action counter, and comparison wording from one live model.
+
+Both target quantity handles are real range controls, and both quantities also have direct inputs and working increment/decrement steppers. Reset, Share, Workspace, view tabs, expand action, rotating examples, four-field practice entry, and grading all perform real actions. Every quantity change recomputes the factor and all representations immediately.
+
+Final 1536x1024 browser validation drags `24:36` to `30:45` and verifies GCF 15 with simplest form `2:3`, increments A to verify a `31:45` coprime result, resets, switches view, rejects an incorrect practice simplification, accepts `18:30 = 3:5`, and loads the next example. The target frame matches at x=280-1521: header y=109-295, tabs y=301-353, ratio lab y=353-826, and practice y=835-1016. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0005-reference.png`
+- `0005-desktop.png`
+- `0005-dedicated-target-validation.json`
