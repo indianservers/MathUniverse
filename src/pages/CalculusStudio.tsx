@@ -31,6 +31,8 @@ import {
 } from "lucide-react";
 import { compileFunctionExpression, compileTwoVariableExpression } from "../utils/functionParser";
 import CalculusIntegrationStudio from "./CalculusIntegrationStudio";
+import CalculusDerivativeApplicationsStudio from "./CalculusDerivativeApplicationsStudio";
+import CalculusConceptStudio, { type ConceptPage } from "./CalculusConceptStudio";
 import "./CalculusStudio.css";
 
 export type CalculusStudioPage =
@@ -269,14 +271,9 @@ function StudioLab({ page }: { page: Exclude<CalculusStudioPage, "home"> }) {
   const meta = pageMeta[page];
   const [params, setParams] = useSearchParams();
   const defaultMode = page === "integration" ? "definite" : meta.modes[0].id;
-  const initialMode = params.get("mode") ?? defaultMode;
-  const [mode, setMode] = useState(meta.modes.some((item) => item.id === initialMode) ? initialMode : defaultMode);
-  useEffect(() => {
-    const next = params.get("mode") ?? defaultMode;
-    if (meta.modes.some((item) => item.id === next) && next !== mode) setMode(next);
-  }, [defaultMode, meta.modes, mode, params]);
+  const requestedMode = params.get("mode") ?? defaultMode;
+  const mode = meta.modes.some((item) => item.id === requestedMode) ? requestedMode : defaultMode;
   const chooseMode = (next: string) => {
-    setMode(next);
     const sp = new URLSearchParams(params);
     sp.set("mode", next);
     setParams(sp, { replace: true });
@@ -286,7 +283,11 @@ function StudioLab({ page }: { page: Exclude<CalculusStudioPage, "home"> }) {
       <nav className="cs-tabs" aria-label={`${meta.title} modes`}>
         {meta.modes.map((item) => <button key={item.id} type="button" className={mode === item.id ? "active" : ""} aria-selected={mode === item.id} onClick={() => chooseMode(item.id)}>{item.label}</button>)}
       </nav>
-      {page === "integration" ? <CalculusIntegrationStudio mode={mode} /> : <InteractiveLab page={page} mode={mode} />}
+      {page === "integration"
+        ? <CalculusIntegrationStudio mode={mode} />
+        : page === "derivative-applications"
+          ? <CalculusDerivativeApplicationsStudio mode={mode} />
+          : <InteractiveLab page={page} mode={mode} />}
     </div>
   );
 }
@@ -326,6 +327,7 @@ function InteractiveLab({ page, mode }: { page: Exclude<CalculusStudioPage, "hom
   }, [page, playing, speed]);
 
   const stats = useMemo(() => calculateStats(page, mode, compiled.fn, a, b, delta, n), [page, mode, compiled.fn, a, b, delta, n]);
+  if (usesConceptStudio(page)) return <CalculusConceptStudio page={page as ConceptPage} mode={mode} />;
   const reset = () => {
     setA(page === "integration" || page === "integral-applications" ? -2 : page === "derivatives" ? 1 : 0);
     setB(page === "integration" || page === "integral-applications" ? 3 : 2);
@@ -385,6 +387,10 @@ function InteractiveLab({ page, mode }: { page: Exclude<CalculusStudioPage, "hom
       <LearningBar active={learning} onChange={setLearning} page={page} mode={mode} stats={stats} />
     </>
   );
+}
+
+function usesConceptStudio(page: CalculusStudioPage): boolean {
+  return page !== "home" && page !== "integration" && page !== "derivative-applications";
 }
 
 function ExampleChips({ page, mode, onPick }: { page: CalculusStudioPage; mode: string; onPick: (value: string) => void }) {

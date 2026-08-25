@@ -105,6 +105,7 @@ export default function CalculusIntegrationStudio({ mode }: Props) {
 
   useEffect(() => {
     const next = new URLSearchParams(params);
+    next.set("mode", mode);
     next.set("v_function", expression);
     next.set("v_lower_a", tidy(lower));
     next.set("v_upper_b", tidy(upper));
@@ -112,7 +113,7 @@ export default function CalculusIntegrationStudio({ mode }: Props) {
     next.set("v_method", method);
     next.set("v_probe_x", tidy(probe));
     if (next.toString() !== params.toString()) setParams(next, { replace: true });
-  }, [expression, lower, method, params, partitions, probe, setParams, upper]);
+  }, [expression, lower, method, mode, params, partitions, probe, setParams, upper]);
 
   useEffect(() => {
     if (!playing) return;

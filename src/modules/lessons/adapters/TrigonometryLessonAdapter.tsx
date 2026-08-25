@@ -44,6 +44,7 @@ import SineRuleTargetLesson270 from "./SineRuleTargetLesson270";
 import CosineRuleTargetLesson271 from "./CosineRuleTargetLesson271";
 import TriangleAreaTargetLesson272 from "./TriangleAreaTargetLesson272";
 import BearingsTargetLesson273 from "./BearingsTargetLesson273";
+import ElevationDepressionTargetLesson274 from "./ElevationDepressionTargetLesson274";
 
 type TrigKind =
   "circle" | "graph" | "triangle" | "equation" | "application" | "polar";
@@ -640,6 +641,15 @@ export default function TrigonometryLessonAdapter({
   if (lesson.id === 273) {
     return (
       <BearingsTargetLesson273
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 274) {
+    return (
+      <ElevationDepressionTargetLesson274
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}

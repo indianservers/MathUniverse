@@ -1,0 +1,220 @@
+{
+  "mockup": "0331",
+  "lessonId": 274,
+  "route": "/lessons/trigonometry/274-elevation-and-depression",
+  "reference": "0331-interactive-intermediate-advanced-trigonometry-elevation-and-depression-redesigned.png",
+  "objectModel": "draggable-observer-target-horizontal-sightline-elevation-depression-right-triangle-model",
+  "checks": {
+    "initial": {
+      "mode": "elevation",
+      "angle": 45,
+      "opposite": 90,
+      "adjacent": 90,
+      "hypotenuse": 127.279221,
+      "tangent": 1,
+      "difference": 0,
+      "activeView": "interaction",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "idle",
+      "solutionOpen": "true"
+    },
+    "dragTarget": {
+      "mode": "elevation",
+      "angle": 44.734285,
+      "opposite": 80.151982,
+      "adjacent": 80.898876,
+      "hypotenuse": 113.881379,
+      "tangent": 0.990768,
+      "difference": 0,
+      "activeView": "interaction",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "idle",
+      "solutionOpen": "true"
+    },
+    "dragObserver": {
+      "mode": "elevation",
+      "angle": 41.197402,
+      "opposite": 46.914992,
+      "adjacent": 53.595466,
+      "hypotenuse": 71.228438,
+      "tangent": 0.875354,
+      "difference": 0,
+      "activeView": "interaction",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "idle",
+      "solutionOpen": "true"
+    },
+    "depression": {
+      "mode": "depression",
+      "angle": 41.197402,
+      "opposite": 46.914992,
+      "adjacent": 53.595466,
+      "hypotenuse": 71.228438,
+      "tangent": 0.875354,
+      "difference": 0,
+      "activeView": "interaction",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "idle",
+      "solutionOpen": "true"
+    },
+    "angle30": {
+      "mode": "elevation",
+      "angle": 30,
+      "opposite": 30.943357,
+      "adjacent": 53.595466,
+      "hypotenuse": 61.886713,
+      "tangent": 0.57735,
+      "difference": 0,
+      "activeView": "interaction",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "idle",
+      "solutionOpen": "true"
+    },
+    "height100": {
+      "mode": "elevation",
+      "angle": 30,
+      "opposite": 100,
+      "adjacent": 173.205081,
+      "hypotenuse": 200,
+      "tangent": 0.57735,
+      "difference": 0,
+      "activeView": "interaction",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "idle",
+      "solutionOpen": "true"
+    },
+    "distance200": {
+      "mode": "elevation",
+      "angle": 30,
+      "opposite": 115.470054,
+      "adjacent": 200,
+      "hypotenuse": 230.940108,
+      "tangent": 0.57735,
+      "difference": 0,
+      "activeView": "interaction",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "idle",
+      "solutionOpen": "true"
+    },
+    "formulas": {
+      "mode": "elevation",
+      "angle": 30,
+      "opposite": 115.470054,
+      "adjacent": 200,
+      "hypotenuse": 230.940108,
+      "tangent": 0.57735,
+      "difference": 0,
+      "activeView": "formulas",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "idle",
+      "solutionOpen": "true"
+    },
+    "practiceWrong": {
+      "mode": "elevation",
+      "angle": 30,
+      "opposite": 115.470054,
+      "adjacent": 200,
+      "hypotenuse": 230.940108,
+      "tangent": 0.57735,
+      "difference": 0,
+      "activeView": "formulas",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "incorrect",
+      "solutionOpen": "true"
+    },
+    "practiceCorrect": {
+      "mode": "elevation",
+      "angle": 30,
+      "opposite": 115.470054,
+      "adjacent": 200,
+      "hypotenuse": 230.940108,
+      "tangent": 0.57735,
+      "difference": 0,
+      "activeView": "formulas",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "correct",
+      "solutionOpen": "true"
+    },
+    "solutionClosed": {
+      "mode": "elevation",
+      "angle": 30,
+      "opposite": 115.470054,
+      "adjacent": 200,
+      "hypotenuse": 230.940108,
+      "tangent": 0.57735,
+      "difference": 0,
+      "activeView": "formulas",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "correct",
+      "solutionOpen": "false"
+    },
+    "reset": {
+      "mode": "elevation",
+      "angle": 45,
+      "opposite": 90,
+      "adjacent": 90,
+      "hypotenuse": 127.279221,
+      "tangent": 1,
+      "difference": 0,
+      "activeView": "interaction",
+      "practiceAnswer": 71.435666,
+      "practiceResult": "idle",
+      "solutionOpen": "true"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1023,
+      "height": 1537
+    },
+    "document": {
+      "width": 1023,
+      "height": 1537
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 104,
+      "bottom": 1403,
+      "height": 1299
+    },
+    "regions": {
+      "header": {
+        "top": 104,
+        "bottom": 205,
+        "height": 101
+      },
+      "tabs": {
+        "top": 205,
+        "bottom": 250,
+        "height": 45
+      },
+      "flow": {
+        "top": 264,
+        "bottom": 375,
+        "height": 111
+      },
+      "lab": {
+        "top": 386,
+        "bottom": 910,
+        "height": 524
+      },
+      "learning": {
+        "top": 921,
+        "bottom": 1167,
+        "height": 246
+      },
+      "practice": {
+        "top": 1178,
+        "bottom": 1340,
+        "height": 162
+      },
+      "nav": {
+        "top": 1351,
+        "bottom": 1403,
+        "height": 52
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

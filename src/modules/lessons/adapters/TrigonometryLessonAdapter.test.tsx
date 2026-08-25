@@ -483,6 +483,39 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Practice challenge");
   });
 
+  it("renders lesson 274 as a dedicated draggable sight-line workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 274)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0331"');
+    expect(html).toContain('data-dedicated-lesson="274"');
+    expect(html).toContain(
+      'data-object-model="draggable-observer-target-horizontal-sightline-elevation-depression-right-triangle-model"',
+    );
+    expect(html).toContain('data-mode="elevation"');
+    expect(html).toContain('data-angle="45.000000"');
+    expect(html).toContain('data-opposite="90.000000"');
+    expect(html).toContain('data-adjacent="90.000000"');
+    expect(html).toContain('data-hypotenuse="127.279221"');
+    expect(html).toContain('data-tangent="1.000000"');
+    expect(html).toContain('data-identity-difference="0.000000"');
+    expect(html).toContain('data-testid="sight-observer-handle"');
+    expect(html).toContain('data-testid="sight-target-handle"');
+    expect(html).toContain('aria-label="Sight angle"');
+    expect(html).toContain('aria-label="Sight height"');
+    expect(html).toContain('aria-label="Sight distance"');
+    expect(html).toContain('aria-label="Elevation practice height"');
+    expect(html).toContain("Survey side view");
+    expect(html).toContain("Common Misconception");
+    expect(html).toContain("Practice Challenge");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(

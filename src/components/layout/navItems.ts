@@ -137,11 +137,17 @@ export const navSections: NavSection[] = [
       { title: "Math Workspace", route: "/workspace", icon: "Calculator", description: "Unified GeoGebra-style construction and computation hub.", searchTerms: ["workspace", "geogebra", "construction", "graph", "cas", "spreadsheet"] },
       { title: "Graph Studio 3D", route: "/math-lab/3d-graphing", icon: "Cuboid", description: "Multivariable surfaces, slices, axes, and analysis.", searchTerms: ["3d graph", "surface", "desmos 3d", "geogebra 3d"] },
       { title: "2D Graphing Calculator", route: "/math-lab/graphing-calculator", icon: "ChartSpline", description: "Desmos-style functions, tables, derivatives, and integrals.", searchTerms: ["2d graph", "graphing calculator", "desmos", "function"] },
-      { title: "Calculus Studio", route: "/calculus", icon: "Sigma", description: "Interactive limits, derivatives, integrals, differential equations, series, and vector calculus.", searchTerms: ["calculus", "limits", "derivatives", "integrals", "differential equations", "series", "vector calculus"] },
       { title: "Solver / CAS", route: "/problem-solver", icon: "Sigma", description: "Wolfram-style step-by-step symbolic solving.", searchTerms: ["solver", "cas", "wolfram", "algebra", "step by step"] },
       { title: "Lessons", route: "/lessons", icon: "BookOpen", description: "Guided interactive lessons and school remediation.", searchTerms: ["lessons", "learn", "guided", "practice"] },
       { title: "Formula & Proof Library", route: "/formulas", icon: "BookOpen", description: "Formulas, visual formulas, theorems, and visual proofs.", searchTerms: ["formula", "theorem", "proof", "reference"] },
       { title: "Syllabus", route: "/syllabus", icon: "ClipboardList", description: "Curriculum map, NCERT labs, and coverage planning.", searchTerms: ["syllabus", "ncert", "curriculum", "class"] },
+    ],
+  },
+  {
+    title: "Studio",
+    icon: "Sparkles",
+    items: [
+      { title: "Calculus", route: "/calculus", icon: "Sigma", description: "Open the unified interactive Calculus Studio.", searchTerms: ["calculus studio", "limits", "derivatives", "integrals", "differential equations", "series", "vector calculus"] },
     ],
   },
   {
