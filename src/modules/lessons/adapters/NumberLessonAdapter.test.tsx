@@ -142,6 +142,21 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Group counters by divisor 3"');
     expect(html).toContain("Test divisors by grouping counters");
   });
+  it("renders lesson 68 as a dedicated recursive factor-tree workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 68)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0050"');
+    expect(html).toContain('data-dedicated-lesson="68"');
+    expect(html).toContain('data-object-model="editable-composite-recursive-binary-factor-tree-prime-leaves-split-steps-exponent-compression-rebuild-slider-candidate-frequency-practice-model"');
+    expect(html).toContain('data-number="24"');
+    expect(html).toContain('data-prime-factors="2,2,2,3"');
+    expect(html).toContain('data-exponent-form="2^3 × 3"');
+    expect(html).toContain('data-split-steps="24x6x4,6x2x3,4x2x2"');
+    expect(html).toContain('data-rebuilt-product="24"');
+    expect(html).toContain('aria-label="Rebuild prime factors"');
+    expect(html).toContain('aria-label="Candidate prime divisor"');
+    expect(html).toContain("Keep splitting until every factor is prime");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

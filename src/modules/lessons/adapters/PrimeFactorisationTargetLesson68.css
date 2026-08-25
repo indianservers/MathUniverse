@@ -1,0 +1,510 @@
+.factorisation68-page {
+  position: relative;
+  top: -17px;
+  left: 1px;
+  width: calc(100vw - 356px);
+  height: 895px;
+  margin-bottom: -17px;
+  padding: 0 23px 22px;
+  border-radius: 16px;
+  background: #fff;
+  color: #0c2857;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+.factorisation68-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.factorisation68-page h1,
+.factorisation68-page h2,
+.factorisation68-page h3,
+.factorisation68-page p {
+  margin: 0;
+}
+.factorisation68-page button,
+.factorisation68-page input,
+.factorisation68-page select {
+  color: inherit;
+  font: inherit;
+}
+.factorisation68-page button {
+  cursor: pointer;
+}
+.factorisation68-breadcrumb {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: #566b8b;
+}
+.factorisation68-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.factorisation68-breadcrumb a:first-child {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+.factorisation68-breadcrumb svg {
+  width: 15px;
+}
+.factorisation68-breadcrumb b {
+  color: #087e9f;
+}
+.factorisation68-title {
+  height: 105px;
+  padding: 22px 11px;
+}
+.factorisation68-title h1 {
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 900;
+}
+.factorisation68-title p {
+  margin-top: 5px;
+  color: #425a7e;
+  font-size: 15px;
+}
+.factorisation68-grid {
+  display: grid;
+  height: 768px;
+  grid-template-columns: minmax(0, 698px) minmax(0, 411px);
+  gap: 23px;
+}
+.factorisation68-left {
+  display: grid;
+  height: 768px;
+  grid-template-rows: 699px 66px;
+  gap: 3px;
+}
+.factorisation68-tree-card {
+  height: 699px;
+  padding: 16px 22px;
+  border: 1px solid #dbe5ee;
+  border-radius: 14px;
+  background: #fff;
+}
+.factorisation68-tree-card > header {
+  position: relative;
+  display: flex;
+  height: 47px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 18px;
+  padding-left: 128px;
+}
+.factorisation68-tree-card > header > svg {
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border-radius: 50%;
+  background: #e7fafa;
+  color: #07879a;
+}
+.factorisation68-tree-card > header > b {
+  padding-top: 14px;
+}
+.factorisation68-tree-card > header button {
+  position: absolute;
+  right: 0;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  opacity: 0;
+}
+.factorisation68-tree-card > header button:focus {
+  opacity: 1;
+  background: #eef8fb;
+}
+.factorisation68-tree-card > header button svg {
+  width: 17px;
+}
+.factorisation68-tree-card > svg {
+  display: block;
+  width: 100%;
+  height: 327px;
+  margin-top: 0;
+}
+.factorisation68-tree-card .branches line {
+  stroke: #0aafb0;
+  stroke-width: 3;
+}
+.factorisation68-tree-card .operators text {
+  fill: #0a3063;
+  font-size: 23px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+.factorisation68-tree-card .nodes text {
+  fill: #0a2855;
+  font-size: 31px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+.factorisation68-tree-card .nodes .composite rect {
+  fill: #fff;
+  stroke: #0a447e;
+  stroke-width: 2;
+}
+.factorisation68-tree-card .nodes .prime circle {
+  fill: #f0fff0;
+  stroke: #6dd348;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 9px #63d64188);
+}
+.factorisation68-tree-card .nodes .prime text {
+  fill: #166a1e;
+  font-size: 25px;
+}
+.factorisation68-exponent {
+  height: 103px;
+  border: 1px solid #decdf5;
+  border-radius: 11px;
+  background: #fcf9ff;
+}
+.factorisation68-exponent h3 {
+  display: flex;
+  height: 51px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #e6d9f5;
+  color: #7136bc;
+  font-size: 14px;
+}
+.factorisation68-exponent h3 svg {
+  width: 20px;
+}
+.factorisation68-exponent p {
+  display: flex;
+  height: 51px;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  color: #6732b4;
+  font-size: 24px;
+  font-weight: 900;
+}
+.factorisation68-exponent strong {
+  font-size: 25px;
+}
+.factorisation68-exponent sup,
+.factorisation68-formula sup {
+  position: relative;
+  top: -0.35em;
+  font-size: 65%;
+}
+.factorisation68-rebuild {
+  position: relative;
+  height: 177px;
+  margin-top: 14px;
+  padding: 13px 18px;
+  border: 1px solid #6fdadb;
+  border-radius: 11px;
+  background: #f4ffff;
+}
+.factorisation68-rebuild > header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #087868;
+}
+.factorisation68-rebuild > header svg {
+  width: 43px;
+  height: 43px;
+  padding: 9px;
+  border-radius: 50%;
+  background: #d4f4eb;
+}
+.factorisation68-rebuild-equation {
+  display: flex;
+  height: 56px;
+  margin-top: 1px;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.factorisation68-rebuild-equation > div {
+  display: flex;
+  gap: 15px;
+}
+.factorisation68-rebuild-equation span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid #69d144;
+  border-radius: 50%;
+  background: #f4fff1;
+  color: #166722;
+  font-size: 20px;
+  font-weight: 900;
+}
+.factorisation68-rebuild-equation span.inactive {
+  opacity: 0.28;
+}
+.factorisation68-rebuild-equation > b {
+  font-size: 25px;
+}
+.factorisation68-rebuild-equation > strong {
+  display: grid;
+  width: 92px;
+  height: 55px;
+  place-items: center;
+  border: 2px solid #07839b;
+  border-radius: 9px;
+  background: #fff;
+  font-size: 28px;
+}
+.factorisation68-rebuild input {
+  display: block;
+  width: 61%;
+  height: 22px;
+  margin: -2px 0 0 66px;
+  accent-color: #8c979f;
+}
+.factorisation68-rebuild > p {
+  text-align: center;
+  color: #08747d;
+  font-weight: 900;
+}
+.factorisation68-practice {
+  display: flex;
+  width: 100%;
+  height: 66px;
+  padding: 0 18px;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #cbe5f5;
+  border-radius: 10px;
+  background: #eef8ff;
+  color: #0871ad;
+  text-align: left;
+}
+.factorisation68-practice svg {
+  width: 39px;
+  height: 39px;
+  padding: 8px;
+  border-radius: 50%;
+  background: #d7f1ff;
+}
+.factorisation68-practice span {
+  flex: 1;
+  font-weight: 700;
+}
+.factorisation68-practice > b {
+  font-size: 32px;
+}
+.factorisation68-side {
+  display: flex;
+  height: 768px;
+  flex-direction: column;
+  gap: 18px;
+}
+.factorisation68-side > section {
+  border: 1px solid #dce5ed;
+  border-radius: 14px;
+  background: #fff;
+}
+.factorisation68-steps {
+  position: relative;
+  height: 252px;
+  padding: 25px 22px;
+}
+.factorisation68-steps > label {
+  font-size: 18px;
+  font-weight: 900;
+}
+.factorisation68-steps > input {
+  position: absolute;
+  top: 16px;
+  left: 110px;
+  width: 115px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #078c9b;
+  font-size: 34px;
+  font-weight: 900;
+}
+.factorisation68-steps ol {
+  display: flex;
+  margin: 25px 0 0;
+  padding: 0;
+  flex-direction: column;
+  gap: 22px;
+  list-style: none;
+}
+.factorisation68-steps li {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 17px;
+}
+.factorisation68-steps li > b {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border-radius: 50%;
+  background: #0799dd;
+  color: #fff;
+  font-size: 13px;
+}
+.factorisation68-primes {
+  display: flex;
+  height: 83px;
+  padding: 0 22px;
+  align-items: center;
+  gap: 20px;
+}
+.factorisation68-primes h3 {
+  font-size: 18px;
+}
+.factorisation68-primes div {
+  display: flex;
+  gap: 9px;
+}
+.factorisation68-primes button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #3a9a38;
+  font-size: 24px;
+  font-weight: 900;
+}
+.factorisation68-primes button.selected {
+  color: #238b35;
+}
+.factorisation68-primes button:not(:last-child)::after {
+  content: ",";
+  margin-left: 3px;
+  text-decoration: none;
+}
+.factorisation68-formula {
+  display: flex;
+  height: 89px;
+  padding: 0 22px;
+  align-items: center;
+  border-color: #dcc8f0 !important;
+  background: #fcf9ff !important;
+  color: #733bc0;
+  margin-top: 4px;
+}
+.factorisation68-formula b {
+  font-size: 32px;
+}
+.factorisation68-insight {
+  height: 198px;
+  padding: 25px 22px;
+  margin-top: 2px;
+}
+.factorisation68-insight header {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  font-size: 18px;
+}
+.factorisation68-insight header svg {
+  width: 42px;
+  height: 42px;
+  padding: 9px;
+  border-radius: 50%;
+  background: #f0e8fc;
+  color: #6237a5;
+}
+.factorisation68-insight label {
+  display: inline-block;
+  margin: 17px 6px 0 66px;
+  color: #354b74;
+  font-size: 16px;
+}
+.factorisation68-insight select {
+  width: 48px;
+  border: 0;
+  background: transparent;
+  font-size: 16px;
+  outline: 0;
+}
+.factorisation68-insight p {
+  margin: 13px 0 0 66px;
+  max-width: 270px;
+  color: #354b74;
+  font-size: 16px;
+  line-height: 28px;
+}
+.factorisation68-insight p strong {
+  color: #7238bd;
+}
+.factorisation68-page.expanded .factorisation68-tree-card > svg {
+  transform: scale(1.04);
+}
+body:has(.factorisation68-page)
+  #main-content
+  .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+  visibility: hidden;
+}
+@media (min-width: 900px) {
+  body:has(.factorisation68-page) [data-testid="desktop-sidebar"] {
+    width: 285px;
+  }
+  body:has(.factorisation68-page) #main-content {
+    padding: 53px 21px 0;
+    overflow: hidden;
+    background: #f5f9ff;
+  }
+  body:has(.factorisation68-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+}
+@media (max-width: 1200px) {
+  .factorisation68-page {
+    width: calc(100vw - 245px);
+    height: auto;
+  }
+  .factorisation68-grid {
+    height: auto;
+    grid-template-columns: minmax(0, 1fr) 280px;
+  }
+  .factorisation68-side {
+    height: auto;
+  }
+  .factorisation68-primes {
+    flex-wrap: wrap;
+  }
+  .factorisation68-formula b {
+    font-size: 23px;
+  }
+}
+@media (max-width: 900px) {
+  .factorisation68-page {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .factorisation68-breadcrumb {
+    position: static;
+    margin-bottom: 8px;
+  }
+  .factorisation68-grid {
+    grid-template-columns: 1fr;
+  }
+  .factorisation68-left {
+    height: auto;
+  }
+  .factorisation68-side {
+    margin-top: 10px;
+  }
+}

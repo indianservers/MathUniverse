@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **49 of 130 lessons completed; 81 pending.**
+Dedicated rebuild target: **50 of 130 lessons completed; 80 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -53,6 +53,7 @@ Dedicated rebuild target: **49 of 130 lessons completed; 81 pending.**
 | 0047   |                                65 Factors | Complete | Dedicated editable divisibility model with exact counter arrays, quotient and remainder proof, calculated factor pairs, draggable pair arrangements, non-factor practice, stateful controls, and exact 1060x1484 target geometry                                  |
 | 0048   |                              66 Multiples | Complete | Dedicated editable skip-counting model with exact number-line jumps, calculated product cards, native draggable multiples, repeated addition, quotient/remainder proof, non-example practice, stateful controls, and exact 1060x1484 target geometry               |
 | 0049   |                          67 Prime Numbers | Complete | Dedicated editable divisor-scanner model with calculated factors/factor count, native draggable counters, equal grouping rows, quotient/remainder states, prime/composite proof, practice, save/share controls, and exact 1536x1024 target geometry               |
+| 0050   |                    68 Prime Factorisation | Complete | Dedicated recursive binary factor-tree model with editable composite, calculated split steps/prime leaves, exponent compression, real rebuild slider, candidate frequency, dynamic practice, expand/reset controls, and exact 1536x1024 target geometry             |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -739,3 +740,17 @@ Evidence:
 - `0049-reference.png`
 - `0049-desktop.png`
 - `0049-dedicated-target-validation.json`
+
+## Lesson 68 / Mockup 0050 - Prime Factorisation
+
+Reworked individually against the target mockup with a dedicated `editable-composite-recursive-binary-factor-tree-prime-leaves-split-steps-exponent-compression-rebuild-slider-candidate-frequency-practice-model`. The editable composite generates a recursive binary tree, ordered split equations, sorted prime leaves, exponent counts, compressed expression, rebuild product, and candidate-frequency insight from one lesson-owned calculation model. The initial tree preserves the target's `24 = 6 × 4`, `6 = 2 × 3`, and `4 = 2 × 2` structure.
+
+The rebuild range is a real drag control that progressively activates prime leaves and recalculates their product. Every prime-factor button changes the comparison candidate, and the candidate selector reports its exact frequency. Editing the number rebuilds the complete tree and all downstream representations; the practice prompt loads 18 into the live model, while tree expansion and reset perform real state changes. The shared number adapter only dispatches Lesson 68 to this separate component.
+
+Final 1536x1024 integrated browser validation verifies the initial factors `2,2,2,3`, exponent form `2^3 × 3`, all three split steps, and product 24; drags the rebuild control to two factors and verifies product 4; selects candidate 2 and verifies frequency 3; edits the number to 36 and verifies `2,2,3,3` and `2^2 × 3^2`; loads practice 18 and verifies `2,3,3`; expands and resets. After two screenshot correction loops, the final frame matches the target at page x=307-1487 and y=127-1022, title y=127-232, tree card x=330-1028 and y=232-931, factor tree y=296-623, exponent y=623-726, rebuild y=740-917, practice y=934-1000, side rail x=1051-1462, split steps y=232-484, prime factors y=502-585, formula y=607-696, and insight y=716-914. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0050-reference.png`
+- `0050-desktop.png`
+- `0050-dedicated-target-validation.json`
