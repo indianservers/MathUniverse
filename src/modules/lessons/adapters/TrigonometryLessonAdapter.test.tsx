@@ -133,7 +133,11 @@ describe("TrigonometryLessonAdapter", () => {
   it("renders lesson 262 as a dedicated horizontal-projection cosine workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 262)!;
     const html = renderToStaticMarkup(
-      <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
     );
 
     expect(html).toContain('data-testid="trigonometry-mockup-0319"');
@@ -155,7 +159,11 @@ describe("TrigonometryLessonAdapter", () => {
   it("renders lesson 263 as a dedicated asymptote-aware tangent workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 263)!;
     const html = renderToStaticMarkup(
-      <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
     );
 
     expect(html).toContain('data-testid="trigonometry-mockup-0320"');
@@ -177,7 +185,11 @@ describe("TrigonometryLessonAdapter", () => {
   it("renders lesson 264 as a dedicated linked reciprocal-trig workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 264)!;
     const html = renderToStaticMarkup(
-      <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
     );
 
     expect(html).toContain('data-testid="trigonometry-mockup-0321"');
@@ -202,7 +214,11 @@ describe("TrigonometryLessonAdapter", () => {
   it("renders lesson 265 as a dedicated restricted-branch inverse-trig workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 265)!;
     const html = renderToStaticMarkup(
-      <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
     );
 
     expect(html).toContain('data-testid="trigonometry-mockup-0322"');
@@ -229,7 +245,11 @@ describe("TrigonometryLessonAdapter", () => {
   it("renders lesson 266 as a dedicated symbolic and numerical identity workspace", () => {
     const lesson = lessonCatalog.find((item) => item.id === 266)!;
     const html = renderToStaticMarkup(
-      <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
     );
 
     expect(html).toContain('data-testid="trigonometry-mockup-0323"');
@@ -251,6 +271,37 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Numerical Verification");
     expect(html).toContain("Common Misconception");
     expect(html).toContain("Practice Challenge");
+  });
+
+  it("renders lesson 267 as a dedicated dual-rotation compound-angle workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 267)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0324"');
+    expect(html).toContain('data-dedicated-lesson="267"');
+    expect(html).toContain(
+      'data-object-model="dual-unit-circle-rotation-sum-difference-projection-formula-model"',
+    );
+    expect(html).toContain('data-alpha="40.000000"');
+    expect(html).toContain('data-beta="75.000000"');
+    expect(html).toContain('data-sum="115.000000"');
+    expect(html).toContain('data-difference="-35.000000"');
+    expect(html).toContain('data-cos-sum="-0.422618"');
+    expect(html).toContain('data-sin-sum="0.906308"');
+    expect(html).toContain('data-testid="compound-alpha-handle"');
+    expect(html).toContain('data-testid="compound-beta-handle"');
+    expect(html).toContain('aria-label="Alpha angle"');
+    expect(html).toContain('aria-label="Beta angle"');
+    expect(html).toContain("Explore on the unit circle");
+    expect(html).toContain("Sum Identities");
+    expect(html).toContain("Common Misconception");
+    expect(html).toContain("Quick Practice");
   });
 
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {

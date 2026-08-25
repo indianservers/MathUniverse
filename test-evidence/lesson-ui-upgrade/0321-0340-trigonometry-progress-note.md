@@ -1,12 +1,13 @@
 # Trigonometry target batch 0321-0340
 
-Dedicated rebuild target: **61 of 130 lessons completed; 69 pending.**
+Dedicated rebuild target: **62 of 130 lessons completed; 68 pending.**
 
-| Mockup | Lesson | Status | Dedicated model and validation |
-|---|---:|---|---|
-| 0321 | 264 Reciprocal Trig Functions | Complete | Linked base/reciprocal branch model; two physical graph drags; sec, cosec, cot, undefined-state, settings, stages, grading, solution, and reset checks; exact 1024x1536 target geometry |
-| 0322 | 265 Inverse Trig Functions | Complete | Restricted-branch reflection model; two physical construction drags plus independent practice drag; arcsine, arccosine, arctangent, stages, grading, hint, and reset checks; target-aligned 976x1612 composition |
-| 0323 | 266 Trig Identities | Complete | Unit-circle, symbolic-transformation, and numerical-verification model; physical point drag; domain exclusion, automatic verification, stages, practice, proof reveal, accordions, and reset checks; exact 1023x1537 target stack |
+| Mockup |                        Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                 |
+| ------ | ----------------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0321   | 264 Reciprocal Trig Functions | Complete | Linked base/reciprocal branch model; two physical graph drags; sec, cosec, cot, undefined-state, settings, stages, grading, solution, and reset checks; exact 1024x1536 target geometry                                                        |
+| 0322   |    265 Inverse Trig Functions | Complete | Restricted-branch reflection model; two physical construction drags plus independent practice drag; arcsine, arccosine, arctangent, stages, grading, hint, and reset checks; target-aligned 976x1612 composition                               |
+| 0323   |           266 Trig Identities | Complete | Unit-circle, symbolic-transformation, and numerical-verification model; physical point drag; domain exclusion, automatic verification, stages, practice, proof reveal, accordions, and reset checks; exact 1023x1537 target stack              |
+| 0324   |   267 Compound-Angle Formulae | Complete | Dual unit-circle rotation and sum/difference projection model; two independent physical angle drags; live components, four identities, display settings, worked construction, challenge grading, and reset checks; exact 985x1597 target stack |
 
 ## Lesson 264 / Mockup 0321 - Reciprocal Trig Functions
 
@@ -49,3 +50,17 @@ Evidence:
 - `0323-reference.png`
 - `0323-desktop.png`
 - `0323-dedicated-target-validation.json`
+
+## Lesson 267 / Mockup 0324 - Compound-Angle Formulae
+
+Reworked individually against the target mockup with a dedicated `dual-unit-circle-rotation-sum-difference-projection-formula-model`. Independent alpha and beta angles drive two genuinely draggable unit-circle vectors, Cartesian projections, coordinate labels, the sum and difference angles, all four compound-angle identities, and their evaluated results. Unlike the reference artwork's inconsistent quadrant-II beta drawing, the implementation plots beta from its real cosine and sine so the visual construction, coordinate table, and formula calculations always agree.
+
+The alpha and beta numeric controls, projection, coordinate, and grid settings, lesson stages, language, reset, share, workspace focus, worked exact-value construction, challenge selector, automatic grading, new challenge action, and adjacent navigation are functional. The practice model distinguishes wrong and correct exact values and cycles to a second independently graded compound-angle problem. The target-only sidebar groups and premium action are real navigation links rather than decorative controls.
+
+Final 985x1597 browser validation verifies the initial 40-degree and 75-degree model and all eight derived trigonometric values; physically drags alpha and beta independently; verifies the exact 45-degree and 30-degree sum/difference calculations; toggles projections, coordinates, and grid; follows wrong, corrected, next-challenge, and second-correct grading paths; and resets the complete model. The screenshot loop matches the target geometry exactly: header y=98-222, learning flow y=230-317, workspace y=334-854, formula strip y=867-976, worked learning section y=989-1284, practice y=1298-1532, navigation y=1544-1597, sidebar links starting y=864, and premium panel y=1427-1583. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0324-reference.png`
+- `0324-desktop.png`
+- `0324-dedicated-target-validation.json`

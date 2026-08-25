@@ -4,6 +4,12 @@ import {
   ChevronsLeft,
   ChevronsRight,
   Clock3,
+  Bookmark,
+  ChartNoAxesColumnIncreasing,
+  CircleHelp,
+  FlaskConical,
+  Gem,
+  GraduationCap,
   Menu,
   Orbit,
   Search,
@@ -281,15 +287,72 @@ export default function Sidebar() {
             );
           })}
         </nav>
-        <section className="hidden" data-testid="desktop-sidebar-progress" aria-label="Learning progress">
-          <div><strong>65%</strong><span><b>Learning Progress</b><small>Trig Identities</small></span></div>
-          <progress value="65" max="100">65%</progress>
+        <section
+          className="hidden"
+          data-testid="desktop-sidebar-progress"
+          aria-label="Learning progress"
+        >
+          <div>
+            <strong>65%</strong>
+            <span>
+              <b>Learning Progress</b>
+              <small>Trig Identities</small>
+            </span>
+          </div>
+          <progress value="65" max="100">
+            65%
+          </progress>
+        </section>
+        <section
+          className="hidden"
+          data-testid="desktop-sidebar-compound-links"
+          aria-label="Additional lesson navigation"
+        >
+          <NavLink to="/labs">
+            <FlaskConical />
+            Labs &amp; Tools
+          </NavLink>
+          <NavLink to="/practice">
+            <GraduationCap />
+            Exams &amp; Preparation
+          </NavLink>
+          <NavLink to="/learning-progress">
+            <ChartNoAxesColumnIncreasing />
+            Progress &amp; Reports
+          </NavLink>
+          <NavLink to="/bookmarks">
+            <Bookmark />
+            Bookmarks &amp; History
+          </NavLink>
+          <NavLink to="/community">
+            <CircleHelp />
+            Community &amp; Help
+          </NavLink>
+        </section>
+        <section className="hidden" data-testid="desktop-sidebar-premium">
+          <h2>
+            <Gem />
+            Go Premium
+          </h2>
+          <p>Unlock all labs, tools, solutions &amp; more.</p>
+          <NavLink to="/pricing">Upgrade Now</NavLink>
         </section>
         <footer className="hidden" data-testid="desktop-sidebar-footer">
           <h2>Math Universe</h2>
-          <p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p>
-          <nav aria-label="Sidebar footer links"><NavLink to="/sitemap">Sitemap</NavLink><NavLink to="/docs">Docs</NavLink><NavLink to="/about">About</NavLink></nav>
-          <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.<br />NO RIGHT TO REPRODUCE IT.</small>
+          <p>
+            Interactive math labs, visual proofs, NCERT explorations, graphing,
+            CAS-style tools, and classroom-ready activities.
+          </p>
+          <nav aria-label="Sidebar footer links">
+            <NavLink to="/sitemap">Sitemap</NavLink>
+            <NavLink to="/docs">Docs</NavLink>
+            <NavLink to="/about">About</NavLink>
+          </nav>
+          <small>
+            © 2026 INDIAN SERVERS PRIVATE LIMITED.
+            <br />
+            NO RIGHT TO REPRODUCE IT.
+          </small>
           <a href="https://www.indianservers.com">www.IndianServers.com</a>
           <a href="mailto:info@IndianServers.com">info@IndianServers.com</a>
         </footer>
