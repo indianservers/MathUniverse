@@ -364,6 +364,34 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Practice Challenge");
   });
 
+  it("renders lesson 270 as a dedicated draggable Sine Rule and SSA workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 270)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0327"');
+    expect(html).toContain('data-dedicated-lesson="270"');
+    expect(html).toContain(
+      'data-object-model="draggable-triangle-opposite-side-angle-sine-ratio-ssa-ambiguity-model"',
+    );
+    expect(html).toContain('data-side-a="7.840000"');
+    expect(html).toContain('data-ssa-case="two"');
+    expect(html).toContain('data-ssa-count="2"');
+    expect(html).toContain('data-testid="sine-rule-vertex-a"');
+    expect(html).toContain('data-testid="sine-rule-vertex-b"');
+    expect(html).toContain('data-testid="sine-rule-vertex-c"');
+    expect(html).toContain('aria-label="SSA side c slider"');
+    expect(html).toContain('aria-label="Practice angle B"');
+    expect(html).toContain("SSA Ambiguous Case Explorer");
+    expect(html).toContain("Common Misconception");
+    expect(html).toContain("Try It Yourself");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(

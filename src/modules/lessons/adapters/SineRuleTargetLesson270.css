@@ -1,0 +1,876 @@
+.target-sine-rule-page {
+  position: relative;
+  top: 7px;
+  height: 1432px;
+  color: #12234d;
+  font-size: 8px;
+  letter-spacing: 0;
+}
+.target-sine-rule-page *,
+.target-sine-rule-page button,
+.target-sine-rule-page input,
+.target-sine-rule-page select {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.target-sine-rule-page button,
+.target-sine-rule-page input,
+.target-sine-rule-page select {
+  font: inherit;
+}
+.target-sine-rule-page button {
+  cursor: pointer;
+}
+.target-sine-rule-page h1,
+.target-sine-rule-page h2,
+.target-sine-rule-page h3,
+.target-sine-rule-page p {
+  margin: 0;
+}
+.target-sine-rule-flow,
+.target-sine-rule-model,
+.target-sine-rule-concepts > *,
+.target-sine-rule-worked,
+.target-sine-rule-practice,
+.target-sine-rule-nav > a {
+  border: 1px solid #d9e3ef;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(15 23 42/4%);
+}
+.target-sine-rule-header {
+  position: relative;
+  height: 149px;
+  padding: 9px 12px;
+}
+.target-sine-rule-header > section {
+  position: absolute;
+  right: 8px;
+  top: -39px;
+  display: flex;
+  gap: 8px;
+}
+.target-sine-rule-header > section span {
+  border-radius: 999px;
+  background: #e8f8fd;
+  padding: 6px 12px;
+  color: #08789a;
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.target-sine-rule-header > section span:last-child {
+  background: #f5f6fa;
+  color: #44516d;
+}
+.target-sine-rule-header h1 {
+  font-size: 25px;
+  font-weight: 950;
+  line-height: 1;
+}
+.target-sine-rule-header > p {
+  margin-top: 3px;
+  font-size: 12px;
+}
+.target-sine-rule-header > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.target-sine-rule-header > div b {
+  border: 1px solid #d9e3ef;
+  border-radius: 999px;
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+.target-sine-rule-header > footer {
+  display: flex;
+  gap: 9px;
+  margin-top: 10px;
+  border: 1px solid #d9e3ef;
+  border-radius: 8px;
+  padding: 9px;
+}
+.target-sine-rule-header > footer label,
+.target-sine-rule-header > footer button,
+.target-sine-rule-header > footer a {
+  display: flex;
+  height: 33px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d9e3ef;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 12px;
+  color: #12234d;
+  font-weight: 800;
+  text-decoration: none;
+}
+.target-sine-rule-header > footer label {
+  width: 169px;
+}
+.target-sine-rule-header > footer a {
+  width: 97px;
+  justify-content: center;
+  margin-left: auto;
+}
+.target-sine-rule-header > footer svg {
+  width: 13px;
+}
+.target-sine-rule-header > footer select {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  outline: 0;
+  font-weight: 800;
+}
+.target-sine-rule-flow {
+  display: grid;
+  height: 75px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 11px;
+  padding: 10px;
+}
+.target-sine-rule-flow article {
+  position: relative;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 9px;
+  align-items: start;
+  padding: 0 9px;
+}
+.target-sine-rule-flow article > svg:first-child {
+  width: 35px;
+  color: #0aa7c7;
+}
+.target-sine-rule-flow article:nth-child(n + 3) > svg:first-child,
+.target-sine-rule-flow article:nth-child(n + 3) h2 {
+  color: #7c3aed;
+}
+.target-sine-rule-flow article > svg:last-child {
+  position: absolute;
+  right: -8px;
+  top: 16px;
+  width: 16px;
+  color: #8391a7;
+}
+.target-sine-rule-flow h2 {
+  color: #08789a;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.target-sine-rule-flow p {
+  margin-top: 8px;
+  font-size: 9px;
+  line-height: 1.45;
+}
+.target-sine-rule-model {
+  height: 322px;
+  margin-top: 10px;
+  padding: 12px;
+}
+.target-sine-rule-model > header {
+  height: 38px;
+}
+.target-sine-rule-model > header h2,
+.target-sine-rule-concepts h2,
+.target-sine-rule-worked h2,
+.target-sine-rule-practice h2 {
+  color: #08789a;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.target-sine-rule-model > header p {
+  margin-top: 7px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.target-sine-rule-model > div {
+  display: grid;
+  height: 240px;
+  grid-template-columns: 1fr 160px 172px;
+  gap: 14px;
+}
+.target-sine-rule-model > div > article {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid #eef2f7;
+}
+.target-sine-rule-model > div > article > button {
+  position: absolute;
+  z-index: 2;
+  top: 11px;
+  left: 5px;
+  display: flex;
+  height: 31px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d9e3ef;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 11px;
+  color: #42516c;
+}
+.target-sine-rule-model > div > article > button svg {
+  width: 13px;
+}
+.target-sine-rule-model > div > article > svg {
+  width: 100%;
+  height: 239px;
+}
+.target-sine-rule-model > div > article > svg polygon {
+  fill: #f8fbff;
+  stroke: #0ba8c5;
+  stroke-width: 2;
+}
+.target-sine-rule-model > div > article > svg circle {
+  fill: #0d8cf0;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: grab;
+}
+.target-sine-rule-model > div > article > svg text {
+  fill: #182442;
+  font:
+    13px Georgia,
+    serif;
+  font-weight: 700;
+}
+.target-sine-rule-model > div > article > svg .side {
+  font-size: 17px;
+  font-style: italic;
+}
+.target-sine-rule-model > div > article > svg .side.a {
+  fill: #087cf0;
+}
+.target-sine-rule-model > div > article > svg .side.b {
+  fill: #7c3aed;
+}
+.target-sine-rule-model > div > article > svg .side.c {
+  fill: #06a7bf;
+}
+.target-sine-rule-model > div > article > svg .angle {
+  font-size: 13px;
+}
+.target-sine-rule-model > div > section,
+.target-sine-rule-model > div > aside {
+  height: 234px;
+  border: 1px solid #d9e3ef;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.target-sine-rule-model > div > section h2,
+.target-sine-rule-model > div > aside h2 {
+  height: 30px;
+  border-bottom: 1px solid #d9e3ef;
+  padding: 10px 12px;
+}
+.target-sine-rule-model dl {
+  margin: 0;
+}
+.target-sine-rule-model dl > div {
+  display: grid;
+  height: 34px;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #e2e8f0;
+}
+.target-sine-rule-model dt,
+.target-sine-rule-model dd {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 12px;
+}
+.target-sine-rule-model dd {
+  border-left: 1px solid #e2e8f0;
+  font:
+    10px Georgia,
+    serif;
+}
+.target-sine-rule-model > div > aside h2 {
+  color: #158442;
+}
+.target-sine-rule-model > div > aside dl > div {
+  height: 43px;
+}
+.target-sine-rule-model > div > aside footer {
+  height: 72px;
+  margin: 4px 6px;
+  border: 1px solid #86d997;
+  border-radius: 7px;
+  background: #f4fff5;
+  padding: 8px;
+}
+.target-sine-rule-model > div > aside footer b {
+  display: block;
+}
+.target-sine-rule-model > div > aside footer strong {
+  display: block;
+  margin-top: 5px;
+  font:
+    16px Georgia,
+    serif;
+}
+.target-sine-rule-model > div > aside footer p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 7px;
+  color: #26743f;
+}
+.target-sine-rule-model > div > aside footer svg {
+  width: 14px;
+}
+.target-sine-rule-model > footer {
+  height: 27px;
+  padding: 7px 4px;
+  color: #64748b;
+}
+.target-sine-rule-fraction {
+  display: inline-flex;
+  min-width: 32px;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+}
+.target-sine-rule-fraction > span:first-child {
+  border-bottom: 1px solid currentColor;
+  padding: 0 4px 2px;
+}
+.target-sine-rule-fraction > span:last-child {
+  padding-top: 2px;
+}
+.target-sine-rule-concepts {
+  display: grid;
+  height: 364px;
+  grid-template-columns: 226px 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.target-sine-rule-concepts > aside {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.target-sine-rule-concepts > aside article {
+  border: 1px solid #d9e3ef;
+  border-radius: 8px;
+  background: #fff;
+  padding: 12px;
+}
+.target-sine-rule-concepts > aside article:first-child {
+  height: 140px;
+}
+.target-sine-rule-concepts > aside article:last-child {
+  height: 134px;
+  border-color: #fecdd3;
+  background: #fffafa;
+}
+.target-sine-rule-concepts > aside article p {
+  margin-top: 9px;
+  line-height: 1.5;
+}
+.target-sine-rule-concepts > aside article strong {
+  display: flex;
+  height: 66px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  border: 1px solid #9ad7e8;
+  border-radius: 7px;
+  font:
+    14px Georgia,
+    serif;
+}
+.target-sine-rule-concepts > aside article h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.target-sine-rule-concepts > aside article h2 svg {
+  width: 15px;
+}
+.target-sine-rule-concepts > aside article:last-child h2 {
+  color: #e11d48;
+}
+.target-sine-rule-concepts > aside article h3 {
+  margin-top: 11px;
+}
+.target-sine-rule-concepts > section {
+  padding: 12px;
+}
+.target-sine-rule-concepts > section > header {
+  height: 60px;
+}
+.target-sine-rule-concepts > section > header > div {
+  display: flex;
+  gap: 18px;
+  margin-top: 12px;
+}
+.target-sine-rule-concepts > section > header label {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  border: 1px solid #d9e3ef;
+  border-radius: 7px;
+  padding: 0 10px;
+}
+.target-sine-rule-concepts > section > header input {
+  width: 42px;
+  border: 0;
+  background: #f8fafc;
+  text-align: center;
+  outline: 0;
+}
+.target-sine-rule-cases {
+  display: grid;
+  height: 221px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+}
+.target-sine-rule-cases article {
+  position: relative;
+  border: 1px solid #d9e3ef;
+  border-radius: 8px;
+  padding: 11px;
+  text-align: center;
+}
+.target-sine-rule-cases article.active {
+  border-width: 2px;
+  box-shadow: 0 0 0 3px rgb(14 165 233/8%);
+}
+.target-sine-rule-cases h3 {
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.target-sine-rule-cases .none h3 {
+  color: #334155;
+}
+.target-sine-rule-cases .one h3 {
+  color: #168442;
+}
+.target-sine-rule-cases .two h3 {
+  color: #7c3aed;
+}
+.target-sine-rule-cases p {
+  margin-top: 13px;
+  font:
+    9px Georgia,
+    serif;
+}
+.target-sine-rule-cases strong {
+  display: block;
+  margin-top: 11px;
+}
+.target-sine-rule-cases svg {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  left: 7px;
+  width: calc(100% - 14px);
+  height: 105px;
+}
+.target-sine-rule-cases svg line {
+  stroke: #94a3b8;
+  stroke-width: 1.5;
+}
+.target-sine-rule-cases svg line.dashed {
+  stroke-dasharray: 4 3;
+}
+.target-sine-rule-cases svg circle {
+  fill: #0ba8c5;
+}
+.target-sine-rule-cases .two svg line {
+  stroke: #7c3aed;
+}
+.target-sine-rule-concepts > section > footer {
+  height: 54px;
+  padding: 9px 8px;
+}
+.target-sine-rule-concepts > section > footer label {
+  display: grid;
+  grid-template-columns: 70px 1fr 44px;
+  align-items: center;
+}
+.target-sine-rule-concepts > section > footer input {
+  width: 100%;
+  accent-color: #7c3aed;
+}
+.target-sine-rule-concepts > section > footer output {
+  border: 1px solid #d9e3ef;
+  border-radius: 6px;
+  padding: 5px;
+  text-align: center;
+}
+.target-sine-rule-concepts > section > footer p {
+  margin: 5px 0 0 70px;
+  color: #64748b;
+}
+.target-sine-rule-worked {
+  display: grid;
+  height: 276px;
+  grid-template-columns: 1fr 1.15fr;
+  margin-top: 8px;
+  padding: 12px;
+}
+.target-sine-rule-worked > article {
+  border-right: 1px solid #e2e8f0;
+  padding-right: 13px;
+}
+.target-sine-rule-worked > article > p {
+  margin-top: 8px;
+  font:
+    10px Georgia,
+    serif;
+}
+.target-sine-rule-worked ol {
+  margin: 11px 0 0;
+  padding-left: 18px;
+}
+.target-sine-rule-worked li {
+  margin-top: 8px;
+  line-height: 1.45;
+}
+.target-sine-rule-worked li strong {
+  display: block;
+  margin: 4px 0 0 17px;
+  font:
+    10px Georgia,
+    serif;
+  font-weight: 400;
+}
+.target-sine-rule-worked > article > footer {
+  height: 31px;
+  margin-top: 10px;
+  border: 1px solid #82d69a;
+  border-radius: 6px;
+  background: #f4fff5;
+  padding: 8px;
+  color: #25733f;
+  font:
+    10px Georgia,
+    serif;
+}
+.target-sine-rule-worked > aside {
+  position: relative;
+  padding: 0 8px;
+}
+.target-sine-rule-worked > aside > b {
+  position: absolute;
+  right: 6px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  background: #e9fbe9;
+  padding: 6px 10px;
+  color: #258143;
+}
+.target-sine-rule-worked > aside > b svg {
+  width: 12px;
+}
+.target-sine-rule-worked > aside > svg {
+  width: 100%;
+  height: 240px;
+  margin-top: 10px;
+}
+.target-sine-rule-worked > aside > svg polygon {
+  fill: #f8fbff;
+  stroke: #0ba8c5;
+  stroke-width: 2;
+}
+.target-sine-rule-worked > aside > svg circle {
+  fill: #087cf0;
+  stroke: #fff;
+  stroke-width: 2;
+}
+.target-sine-rule-worked > aside > svg text {
+  fill: #182442;
+  font:
+    11px Georgia,
+    serif;
+}
+.target-sine-rule-worked > aside > svg .cyan {
+  fill: #06a7bf;
+  font-size: 13px;
+}
+.target-sine-rule-worked > aside > svg .violet {
+  fill: #7c3aed;
+  font-size: 13px;
+}
+.target-sine-rule-practice {
+  position: relative;
+  height: 125px;
+  margin-top: 17px;
+  padding: 12px;
+}
+.target-sine-rule-practice > header {
+  height: 34px;
+  width: calc(100% - 260px);
+}
+.target-sine-rule-practice > header p {
+  margin-top: 6px;
+  font:
+    9px Georgia,
+    serif;
+}
+.target-sine-rule-practice > div {
+  display: flex;
+  width: calc(100% - 260px);
+  gap: 10px;
+}
+.target-sine-rule-practice > div label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 800;
+}
+.target-sine-rule-practice > div input {
+  width: 88px;
+  height: 31px;
+  border: 1px solid #d9e3ef;
+  border-radius: 6px;
+  text-align: center;
+}
+.target-sine-rule-practice > div button {
+  height: 31px;
+  border: 1px solid #c4b5fd;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0 11px;
+  color: #6d28d9;
+  font-weight: 800;
+}
+.target-sine-rule-practice > div button:last-child {
+  border: 0;
+  background: #7c3aed;
+  color: #fff;
+}
+.target-sine-rule-practice > footer {
+  height: 28px;
+  width: calc(100% - 260px);
+  margin-top: 8px;
+  border: 1px solid #dbeafe;
+  border-radius: 5px;
+  background: #eff6ff;
+  padding: 7px;
+  color: #64748b;
+}
+.target-sine-rule-practice > footer b {
+  margin-right: 16px;
+  color: #087cf0;
+}
+.target-sine-rule-practice > aside {
+  position: absolute;
+  right: 10px;
+  top: 13px;
+  width: 248px;
+  height: 96px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 7px;
+  padding: 33px 20px;
+  color: #64748b;
+}
+.target-sine-rule-practice > aside p {
+  margin-top: 8px;
+  color: #4f46e5;
+}
+.target-sine-rule-nav {
+  display: grid;
+  height: 56px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 9px;
+}
+.target-sine-rule-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  color: #12234d;
+  text-decoration: none;
+}
+.target-sine-rule-nav a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.target-sine-rule-nav a b {
+  display: block;
+  margin-bottom: 3px;
+  color: #64748b;
+  font-size: 7px;
+}
+.target-sine-rule-nav svg {
+  width: 14px;
+}
+@media (min-width: 960px) and (max-width: 1279px) {
+  body:has(.target-sine-rule-page) [data-testid="desktop-sidebar"] {
+    width: 220px;
+  }
+  body:has(.target-sine-rule-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 10px 14px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    min-height: 61px;
+    margin-bottom: 14px;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 6px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    > button:first-child {
+    border-radius: 8px;
+    padding: 7px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    > button:last-child {
+    width: 27px;
+    height: 27px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 14px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > label {
+    min-height: 36px;
+    height: 36px;
+    margin-bottom: 12px;
+    padding: 0 9px;
+    font-size: 10px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(n + 4),
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(3)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div
+    > button,
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div
+    > div
+    button {
+    padding: 7px 10px;
+    font-size: 10px;
+    line-height: 12px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    a {
+    gap: 8px;
+    padding: 5px 10px;
+    font-size: 10px;
+    line-height: 11px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div:first-child
+    a {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div:nth-child(3)
+    a {
+    padding-top: 6.7px;
+    padding-bottom: 6.7px;
+  }
+  body:has(.target-sine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    a
+    span
+    span:last-child:not(:first-child) {
+    margin-top: 1px;
+    font-size: 6px;
+    line-height: 8px;
+  }
+  body:has(.target-sine-rule-page) .app-layout-rail > div > header {
+    height: 55px;
+  }
+  body:has(.target-sine-rule-page) #main-content {
+    padding: 8px 13px 0;
+    background: #fff;
+  }
+  body:has(.target-sine-rule-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+}
+@media (max-width: 759px) {
+  .target-sine-rule-page,
+  .target-sine-rule-header,
+  .target-sine-rule-flow,
+  .target-sine-rule-model,
+  .target-sine-rule-concepts,
+  .target-sine-rule-worked,
+  .target-sine-rule-practice,
+  .target-sine-rule-nav {
+    height: auto;
+  }
+  .target-sine-rule-flow {
+    grid-template-columns: 1fr 1fr;
+  }
+  .target-sine-rule-model > div,
+  .target-sine-rule-concepts,
+  .target-sine-rule-worked {
+    grid-template-columns: 1fr;
+  }
+  .target-sine-rule-practice > aside {
+    position: static;
+    width: auto;
+    margin-top: 10px;
+  }
+  .target-sine-rule-nav {
+    grid-template-columns: 1fr;
+  }
+}

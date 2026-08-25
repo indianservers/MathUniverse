@@ -1,6 +1,6 @@
 # Trigonometry target batch 0321-0340
 
-Dedicated rebuild target: **64 of 130 lessons completed; 66 pending.**
+Dedicated rebuild target: **65 of 130 lessons completed; 65 pending.**
 
 | Mockup |                              Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                        |
 | ------ | ----------------------------------: | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -10,6 +10,7 @@ Dedicated rebuild target: **64 of 130 lessons completed; 66 pending.**
 | 0324   |         267 Compound-Angle Formulae | Complete | Dual unit-circle rotation and sum/difference projection model; two independent physical angle drags; live components, four identities, display settings, worked construction, challenge grading, and reset checks; exact 985x1597 target stack        |
 | 0325   | 268 Double- and Half-Angle Formulae | Complete | Linked theta, double-angle, and half-angle unit-circle model; three physical inverse-linked drags; Sin/Cos/Tan modes, sign/domain guards, exact-value grading, hint, challenge cycling, and reset checks; exact 991x1587 target stack                 |
 | 0326   |                  269 Trig Equations | Complete | Periodic cosine graph and movable level-line intersection model; physical line drag; independent interval endpoints, radian/degree modes, exact solution families, symbolic grading, hint, derivation, and reset checks; exact 1003x1568 target stack |
+| 0327   |                       270 Sine Rule | Complete | Draggable triangle and opposite side-angle sine-ratio model; three physical vertex drags; real SSA zero/one/two ambiguity classification, tangent-boundary handling, numerical grading, hint, and reset checks; exact 1024x1536 target stack          |
 
 ## Lesson 264 / Mockup 0321 - Reciprocal Trig Functions
 
@@ -94,3 +95,17 @@ Evidence:
 - `0326-reference.png`
 - `0326-desktop.png`
 - `0326-dedicated-target-validation.json`
+
+## Lesson 270 / Mockup 0327 - Sine Rule
+
+Reworked individually against the target mockup with a dedicated `draggable-triangle-opposite-side-angle-sine-ratio-ssa-ambiguity-model`. Three independent physical vertices drive all side lengths, opposite angles, angle sum, the three values `a/sin A`, `b/sin B`, and `c/sin C`, and their common value. The implementation keeps every side paired with its mathematically opposite angle even though the reference artwork permutes some displayed angle labels.
+
+The language, reset, share, workspace focus, three triangle handles, SSA sides and angle inputs, SSA side slider, live zero/one/two-solution cards, exact tangent case, numerical practice fields, grading, hint, and adjacent navigation are functional. The SSA solver uses the altitude test and validates both inverse-sine branches, rather than reproducing the reference's reversed ambiguity captions. Its equality boundary explicitly collapses floating-point duplicate 90-degree branches to one tangent triangle.
+
+Final 1024x1536 browser validation verifies the initial side lengths and equal sine ratios; physically drags A, B, and C separately while rechecking the 180-degree sum and all ratio equalities; verifies no triangle below the altitude, one tangent triangle at the altitude, two triangles in the ambiguous interval, and one triangle when the opposite side is at least the known side; rejects incorrect practice values; accepts B=25.4 degrees, C=114.6 degrees, and c=17.0; opens the hint; and resets the complete model. The screenshot loop matches the target stack exactly: lesson header y=104-253, flow y=264-339, draggable model y=349-671, rule and SSA explorer y=681-1045, worked example y=1053-1329, practice y=1346-1471, and navigation y=1480-1536. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0327-reference.png`
+- `0327-desktop.png`
+- `0327-dedicated-target-validation.json`
