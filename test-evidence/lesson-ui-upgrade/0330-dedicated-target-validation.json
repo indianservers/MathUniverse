@@ -1,0 +1,207 @@
+{
+  "mockup": "0330",
+  "lessonId": 273,
+  "route": "/lessons/trigonometry/273-bearings",
+  "reference": "0330-interactive-intermediate-advanced-trigonometry-bearings-redesigned.png",
+  "objectModel": "draggable-north-grid-route-clockwise-bearing-reverse-quadrant-distance-model",
+  "checks": {
+    "initial": {
+      "bearing": 56.309932,
+      "formatted": "056",
+      "reverse": 236.309932,
+      "distance": 7.211103,
+      "dx": 6,
+      "dy": 4,
+      "quadrant": "NE",
+      "unit": "grid",
+      "activeView": "interaction",
+      "practiceResult": "correct",
+      "practiceChoice": ""
+    },
+    "dragA": {
+      "bearing": 46.475938,
+      "formatted": "046",
+      "reverse": 226.475938,
+      "distance": 7.185192,
+      "dx": 5.209877,
+      "dy": 4.948148,
+      "quadrant": "NE",
+      "unit": "grid",
+      "activeView": "interaction",
+      "practiceResult": "correct",
+      "practiceChoice": ""
+    },
+    "dragB": {
+      "bearing": 34.677445,
+      "formatted": "035",
+      "reverse": 214.677445,
+      "distance": 7.07382,
+      "dx": 4.024691,
+      "dy": 5.817284,
+      "quadrant": "NE",
+      "unit": "grid",
+      "activeView": "interaction",
+      "practiceResult": "correct",
+      "practiceChoice": ""
+    },
+    "north": {
+      "bearing": 0,
+      "formatted": "000",
+      "reverse": 180,
+      "distance": 5,
+      "dx": 0,
+      "dy": 5,
+      "quadrant": "N",
+      "unit": "grid",
+      "activeView": "interaction",
+      "practiceResult": "correct",
+      "practiceChoice": ""
+    },
+    "southEast": {
+      "bearing": 123.690068,
+      "formatted": "124",
+      "reverse": 303.690068,
+      "distance": 7.211103,
+      "dx": 6,
+      "dy": -4,
+      "quadrant": "SE",
+      "unit": "grid",
+      "activeView": "interaction",
+      "practiceResult": "correct",
+      "practiceChoice": ""
+    },
+    "west": {
+      "bearing": 270,
+      "formatted": "270",
+      "reverse": 90,
+      "distance": 6,
+      "dx": -6,
+      "dy": 0,
+      "quadrant": "W",
+      "unit": "grid",
+      "activeView": "interaction",
+      "practiceResult": "correct",
+      "practiceChoice": ""
+    },
+    "km": {
+      "bearing": 270,
+      "formatted": "270",
+      "reverse": 90,
+      "distance": 6,
+      "dx": -6,
+      "dy": 0,
+      "quadrant": "W",
+      "unit": "km",
+      "activeView": "interaction",
+      "practiceResult": "correct",
+      "practiceChoice": ""
+    },
+    "examples": {
+      "bearing": 270,
+      "formatted": "270",
+      "reverse": 90,
+      "distance": 6,
+      "dx": -6,
+      "dy": 0,
+      "quadrant": "W",
+      "unit": "km",
+      "activeView": "examples",
+      "practiceResult": "correct",
+      "practiceChoice": ""
+    },
+    "practiceWrong": {
+      "bearing": 270,
+      "formatted": "270",
+      "reverse": 90,
+      "distance": 6,
+      "dx": -6,
+      "dy": 0,
+      "quadrant": "W",
+      "unit": "km",
+      "activeView": "examples",
+      "practiceResult": "incorrect",
+      "practiceChoice": "42"
+    },
+    "practiceCorrect": {
+      "bearing": 270,
+      "formatted": "270",
+      "reverse": 90,
+      "distance": 6,
+      "dx": -6,
+      "dy": 0,
+      "quadrant": "W",
+      "unit": "km",
+      "activeView": "examples",
+      "practiceResult": "correct",
+      "practiceChoice": "138"
+    },
+    "reset": {
+      "bearing": 56.309932,
+      "formatted": "056",
+      "reverse": 236.309932,
+      "distance": 7.211103,
+      "dx": 6,
+      "dy": 4,
+      "quadrant": "NE",
+      "unit": "grid",
+      "activeView": "interaction",
+      "practiceResult": "correct",
+      "practiceChoice": ""
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 990,
+      "height": 1589
+    },
+    "document": {
+      "width": 990,
+      "height": 1589
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 97,
+      "bottom": 1585,
+      "height": 1488
+    },
+    "regions": {
+      "header": {
+        "top": 97,
+        "bottom": 285,
+        "height": 188
+      },
+      "tabs": {
+        "top": 290,
+        "bottom": 327,
+        "height": 37
+      },
+      "map": {
+        "top": 340,
+        "bottom": 781,
+        "height": 441
+      },
+      "flow": {
+        "top": 792,
+        "bottom": 986,
+        "height": 194
+      },
+      "learning": {
+        "top": 997,
+        "bottom": 1361,
+        "height": 364
+      },
+      "practice": {
+        "top": 1371,
+        "bottom": 1529,
+        "height": 158
+      },
+      "nav": {
+        "top": 1538,
+        "bottom": 1585,
+        "height": 47
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

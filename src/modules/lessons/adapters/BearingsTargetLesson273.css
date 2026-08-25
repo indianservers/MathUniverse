@@ -1,0 +1,847 @@
+.target-bearings-page {
+  height: 1488px;
+  color: #12234d;
+  font-size: 8px;
+  letter-spacing: 0;
+}
+.target-bearings-page *,
+.target-bearings-page button,
+.target-bearings-page input,
+.target-bearings-page select {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.target-bearings-page button,
+.target-bearings-page input,
+.target-bearings-page select {
+  font: inherit;
+}
+.target-bearings-page button {
+  cursor: pointer;
+}
+.target-bearings-page h1,
+.target-bearings-page h2,
+.target-bearings-page h3,
+.target-bearings-page p {
+  margin: 0;
+}
+.target-bearings-tabs,
+.target-bearings-map,
+.target-bearings-flow > article,
+.target-bearings-learning > article,
+.target-bearings-practice,
+.target-bearings-nav > a {
+  border: 1px solid #d9e3ef;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(15 23 42/4%);
+}
+.target-bearings-header {
+  position: relative;
+  height: 188px;
+  padding: 10px 12px;
+}
+.target-bearings-header > div {
+  display: flex;
+  gap: 7px;
+}
+.target-bearings-header > div span {
+  border-radius: 999px;
+  background: #e7f8fc;
+  padding: 5px 10px;
+  color: #087c9d;
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.target-bearings-header > div span:last-child {
+  background: #f1f3f7;
+  color: #43516d;
+}
+.target-bearings-header h1 {
+  margin-top: 8px;
+  font-size: 31px;
+  font-weight: 950;
+  line-height: 1;
+}
+.target-bearings-header > p {
+  margin-top: 5px;
+  font-size: 12px;
+}
+.target-bearings-header > section {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.target-bearings-header > section b {
+  border: 1px solid #d9e3ef;
+  border-radius: 999px;
+  padding: 6px 11px;
+  white-space: nowrap;
+}
+.target-bearings-header > aside {
+  display: flex;
+  gap: 9px;
+  margin-top: 13px;
+}
+.target-bearings-header > aside label,
+.target-bearings-header > aside button,
+.target-bearings-header > aside a {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d9e3ef;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 12px;
+  color: #12234d;
+  font-weight: 800;
+  text-decoration: none;
+}
+.target-bearings-header > aside label {
+  width: 160px;
+}
+.target-bearings-header > aside a {
+  margin-left: auto;
+}
+.target-bearings-header > aside svg {
+  width: 13px;
+}
+.target-bearings-header > aside select {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  outline: 0;
+  font-weight: 800;
+}
+.target-bearings-tabs {
+  display: grid;
+  height: 37px;
+  grid-template-columns: 1.3fr repeat(4, 1fr);
+  gap: 4px;
+  margin-top: 5px;
+  padding: 3px;
+}
+.target-bearings-tabs button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #34405e;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: capitalize;
+}
+.target-bearings-tabs button.active {
+  background: #079abd;
+  color: #fff;
+}
+.target-bearings-tabs span {
+  font-size: 11px;
+}
+.target-bearings-map {
+  height: 441px;
+  margin-top: 13px;
+  padding: 10px;
+}
+.target-bearings-map > header {
+  height: 65px;
+}
+.target-bearings-map > header > b {
+  color: #079abd;
+  font-size: 8px;
+  text-transform: uppercase;
+}
+.target-bearings-map > header h2 {
+  margin-top: 7px;
+  font-size: 15px;
+}
+.target-bearings-map > header p {
+  margin-top: 6px;
+  font-size: 10px;
+}
+.target-bearings-map > div {
+  display: grid;
+  height: 330px;
+  grid-template-columns: 1fr 145px 165px;
+  gap: 10px;
+}
+.target-bearings-map > div > article > svg {
+  width: 100%;
+  height: 300px;
+}
+.target-bearings-map svg .grid,
+.target-bearings-learning svg .grid {
+  stroke: #e2e8f0;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.target-bearings-map svg .axis,
+.target-bearings-learning svg .axis {
+  stroke: #26344e;
+  stroke-width: 1.3;
+}
+.target-bearings-map svg .route,
+.target-bearings-learning svg .route {
+  stroke: #079fc2;
+  stroke-width: 2.5;
+}
+.target-bearings-map svg .bearing-arc,
+.target-bearings-learning svg .bearing-arc {
+  fill: none;
+  stroke: #7c3aed;
+  stroke-width: 2;
+}
+.target-bearings-map svg circle,
+.target-bearings-learning svg circle {
+  fill: #078cf0;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: grab;
+}
+.target-bearings-map svg circle:nth-of-type(2),
+.target-bearings-learning svg circle:nth-of-type(2) {
+  fill: #7c3aed;
+}
+.target-bearings-map svg text,
+.target-bearings-learning svg text {
+  fill: #152442;
+  font-size: 11px;
+  font-weight: 800;
+}
+.target-bearings-map svg .bearing-label,
+.target-bearings-learning svg .bearing-label {
+  fill: #7c3aed;
+  font-size: 15px;
+}
+.target-bearings-map > div > section,
+.target-bearings-map > div > aside {
+  overflow: hidden;
+  border: 1px solid #d9e3ef;
+  border-radius: 7px;
+}
+.target-bearings-map > div > section h2,
+.target-bearings-map > div > aside > h2 {
+  height: 38px;
+  padding: 11px;
+  border-bottom: 1px solid #d9e3ef;
+  color: #087fe5;
+  font-size: 13px;
+}
+.target-bearings-map > div > section p {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border-bottom: 1px solid #d9e3ef;
+}
+.target-bearings-map > div > section p strong {
+  color: #6d28d9;
+  font-size: 22px;
+}
+.target-bearings-map > div > section p:nth-of-type(2) strong {
+  color: #079abd;
+}
+.target-bearings-map > div > section p:nth-of-type(n + 3) strong {
+  font-size: 12px;
+  color: #12234d;
+}
+.target-bearings-map > div > aside {
+  padding-bottom: 8px;
+}
+.target-bearings-map > div > aside > h2 {
+  color: #12234d;
+}
+.target-bearings-map fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin: 0;
+  border: 0;
+  padding: 9px 10px;
+}
+.target-bearings-map legend {
+  font-weight: 900;
+}
+.target-bearings-map fieldset label {
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  align-items: center;
+  color: #64748b;
+}
+.target-bearings-map fieldset input {
+  width: 100%;
+  min-width: 0;
+  height: 29px;
+  border: 1px solid #d9e3ef;
+  border-radius: 6px;
+  padding: 0 6px;
+  color: #12234d;
+}
+.target-bearings-map > div > aside hr {
+  margin: 2px 10px;
+  border: 0;
+  border-top: 1px solid #d9e3ef;
+}
+.target-bearings-map > div > aside h3 {
+  padding: 8px 10px 4px;
+}
+.target-bearings-map > div > aside > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  padding: 0 10px;
+}
+.target-bearings-map > div > aside > div button {
+  height: 23px;
+  border: 1px solid #cfd9e6;
+  border-radius: 5px;
+  background: #fff;
+  font-weight: 800;
+}
+.target-bearings-map > div > aside > div button.active {
+  background: #132752;
+  color: #fff;
+}
+.target-bearings-map > footer {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #d9e3ef;
+  border-radius: 6px;
+  padding: 0 10px;
+  color: #526078;
+}
+.target-bearings-map > footer label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 800;
+}
+.target-bearings-map > footer select {
+  height: 25px;
+  border: 1px solid #d9e3ef;
+  border-radius: 5px;
+  background: #fff;
+  padding: 0 7px;
+}
+.target-bearings-flow {
+  display: grid;
+  height: 194px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 11px;
+}
+.target-bearings-flow > article {
+  position: relative;
+  padding: 12px;
+}
+.target-bearings-flow > article:not(:last-child)::after {
+  position: absolute;
+  top: 78px;
+  right: -9px;
+  z-index: 2;
+  color: #7c8aa1;
+  font-size: 20px;
+  content: "→";
+}
+.target-bearings-flow h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #087fe5;
+  font-size: 10px;
+}
+.target-bearings-flow h2 span {
+  display: grid;
+  width: 19px;
+  height: 19px;
+  place-items: center;
+  border-radius: 50%;
+  background: #078cf0;
+  color: #fff;
+}
+.target-bearings-flow article:nth-child(2) h2 {
+  color: #4f46e5;
+}
+.target-bearings-flow article:nth-child(2) h2 span {
+  background: #4f46e5;
+}
+.target-bearings-flow article:nth-child(3) h2 span {
+  background: #315fc4;
+}
+.target-bearings-flow article:nth-child(4) h2 {
+  color: #6d28d9;
+}
+.target-bearings-flow article:nth-child(4) h2 span {
+  background: #8b5cf6;
+}
+.target-bearings-flow p {
+  height: 48px;
+  margin-top: 9px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.target-bearings-flow svg {
+  width: 100%;
+  height: 95px;
+}
+.target-bearings-flow svg line,
+.target-bearings-flow svg path {
+  fill: none;
+  stroke: #0aa4c8;
+  stroke-width: 2;
+}
+.target-bearings-flow svg path:not(.dashed) {
+  stroke: #7c3aed;
+}
+.target-bearings-flow svg .dashed {
+  stroke-dasharray: 6 4;
+}
+.target-bearings-flow svg circle {
+  fill: #2858ba;
+}
+.target-bearings-flow svg text {
+  fill: #44516d;
+  font-size: 10px;
+}
+.target-bearings-three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 25px;
+  text-align: center;
+}
+.target-bearings-three b {
+  font-size: 12px;
+}
+.target-bearings-three span {
+  display: grid;
+  width: 19px;
+  height: 19px;
+  place-self: center;
+  place-items: center;
+  border: 2px solid #087fe5;
+  border-radius: 50%;
+  color: #087fe5;
+}
+.target-bearings-learning {
+  display: grid;
+  height: 364px;
+  grid-template-columns: 0.85fr 1.12fr 1.15fr;
+  gap: 10px;
+  margin-top: 11px;
+}
+.target-bearings-learning > article {
+  padding: 12px;
+  overflow: hidden;
+}
+.target-bearings-learning h2 {
+  font-size: 12px;
+}
+.target-bearings-learning p {
+  margin-top: 9px;
+  font-size: 9px;
+  line-height: 1.45;
+}
+.target-bearings-learning article:first-child > svg {
+  width: 100%;
+  height: 142px;
+}
+.target-bearings-learning article:first-child > svg line {
+  stroke: #26344e;
+  stroke-width: 1.5;
+}
+.target-bearings-learning article:first-child > svg path {
+  fill: none;
+  stroke: #7c3aed;
+  stroke-width: 2;
+}
+.target-bearings-learning article:first-child > svg text {
+  fill: #12234d;
+  font-size: 10px;
+  font-weight: 800;
+}
+.target-bearings-learning article:first-child > footer {
+  display: grid;
+  gap: 7px;
+  border: 1px solid #b9ddf8;
+  border-radius: 7px;
+  background: #f2f9fe;
+  padding: 10px;
+  color: #28578b;
+}
+.target-bearings-learning article:first-child > footer strong {
+  font:
+    italic bold 10px Georgia,
+    serif;
+}
+.target-bearings-learning article:nth-child(2) > svg {
+  width: 100%;
+  height: 155px;
+  margin-top: 2px;
+}
+.target-bearings-learning ol {
+  margin: 3px 0 0;
+  padding-left: 17px;
+  line-height: 1.65;
+}
+.target-bearings-learning article:nth-child(2) > footer {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  border: 1px solid #d9e3ef;
+  border-radius: 6px;
+  padding: 8px;
+  color: #6d28d9;
+}
+.target-bearings-learning article:nth-child(2) > footer i {
+  color: #94a3b8;
+}
+.target-bearings-learning article:nth-child(3) {
+  border-color: #ffd2da;
+  background: #fff6f7;
+}
+.target-bearings-learning article:nth-child(3) h2 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #dc3545;
+}
+.target-bearings-learning article:nth-child(3) h2 svg {
+  width: 19px;
+}
+.target-bearings-learning article:nth-child(3) > svg {
+  width: 100%;
+  height: 180px;
+}
+.target-bearings-learning article:nth-child(3) > svg line {
+  stroke: #26344e;
+  stroke-width: 1.5;
+}
+.target-bearings-learning article:nth-child(3) > svg .route {
+  stroke: #079fc2;
+}
+.target-bearings-learning article:nth-child(3) > svg path {
+  fill: none;
+  stroke: #ef4444;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+.target-bearings-learning article:nth-child(3) > svg text {
+  fill: #12234d;
+  font-size: 10px;
+}
+.target-bearings-learning article:nth-child(3) > footer {
+  border: 1px solid #ffcbd4;
+  border-radius: 7px;
+  padding: 13px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.target-bearings-practice {
+  height: 158px;
+  margin-top: 10px;
+  padding: 11px;
+}
+.target-bearings-practice > header {
+  height: 39px;
+}
+.target-bearings-practice > header h2 {
+  font-size: 13px;
+}
+.target-bearings-practice > header p {
+  margin-top: 5px;
+  color: #56627a;
+}
+.target-bearings-practice > div {
+  display: grid;
+  height: 98px;
+  grid-template-columns: 1.35fr 120px 0.75fr;
+  gap: 15px;
+}
+.target-bearings-practice-compass {
+  width: 115px;
+  height: 92px;
+  align-self: center;
+}
+.target-bearings-practice-compass rect,
+.target-bearings-practice-compass path,
+.target-bearings-practice-compass circle {
+  fill: #f7f9ff;
+  stroke: #b6c7f2;
+  stroke-width: 1.5;
+}
+.target-bearings-practice-compass line {
+  stroke: #315fc4;
+  stroke-width: 2;
+}
+.target-bearings-practice-compass text {
+  fill: #315fc4;
+  font-size: 8px;
+  font-weight: 900;
+}
+.target-bearings-practice > div > article > p {
+  line-height: 1.5;
+}
+.target-bearings-practice > div > article > div {
+  display: flex;
+  gap: 8px;
+  margin-top: 11px;
+}
+.target-bearings-practice > div > article button {
+  display: flex;
+  height: 31px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d9e3ef;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0 11px;
+  font-weight: 800;
+}
+.target-bearings-practice > div > article button b {
+  display: grid;
+  width: 19px;
+  height: 19px;
+  place-items: center;
+  border-radius: 5px;
+  background: #f1f4f8;
+}
+.target-bearings-practice > div > article button.correct {
+  border-color: #79d5aa;
+  background: #ecfdf5;
+  color: #087b4b;
+}
+.target-bearings-practice > div > article button.incorrect {
+  border-color: #f3a5b0;
+  background: #fff1f2;
+  color: #c92a3d;
+}
+.target-bearings-practice aside {
+  border: 1px solid #b9ddf8;
+  border-radius: 7px;
+  background: #f2f9fe;
+  padding: 10px;
+}
+.target-bearings-practice aside h2 {
+  color: #087c9d;
+  font-size: 10px;
+}
+.target-bearings-practice aside p {
+  margin-top: 8px;
+  line-height: 1.45;
+}
+.target-bearings-practice aside strong {
+  display: block;
+  margin-top: 7px;
+  color: #1769a9;
+}
+.target-bearings-practice aside.correct strong {
+  color: #11945b;
+}
+.target-bearings-practice aside.incorrect strong {
+  color: #dc3545;
+}
+.target-bearings-nav {
+  display: grid;
+  height: 47px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 9px;
+}
+.target-bearings-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 13px;
+  color: #12234d;
+  text-decoration: none;
+}
+.target-bearings-nav a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.target-bearings-nav span {
+  display: grid;
+}
+.target-bearings-nav b {
+  color: #64748b;
+  font-size: 7px;
+  text-transform: uppercase;
+}
+.target-bearings-nav svg {
+  width: 14px;
+  color: #087fe5;
+}
+@media (min-width: 960px) and (max-width: 1279px) {
+  body:has(.target-bearings-page) [data-testid="desktop-sidebar"] {
+    width: 210px;
+  }
+  body:has(.target-bearings-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 10px 14px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    min-height: 61px;
+    margin-bottom: 14px;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 6px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    > button:first-child {
+    border-radius: 8px;
+    padding: 7px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    > button:last-child {
+    width: 27px;
+    height: 27px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 14px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px;
+    line-height: 10px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > label {
+    min-height: 36px;
+    height: 36px;
+    margin-bottom: 12px;
+    padding: 0 9px;
+    font-size: 10px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(n + 4),
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(3)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div
+    > button,
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div
+    > div
+    button {
+    padding: 7px 10px;
+    font-size: 10px;
+    line-height: 12px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    a {
+    gap: 8px;
+    padding: 5px 10px;
+    font-size: 10px;
+    line-height: 11px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div:first-child
+    a {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div:nth-child(3)
+    a {
+    padding-top: 6.7px;
+    padding-bottom: 6.7px;
+  }
+  body:has(.target-bearings-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    a
+    span
+    span:last-child:not(:first-child) {
+    margin-top: 1px;
+    font-size: 6px;
+    line-height: 8px;
+  }
+  body:has(.target-bearings-page) .app-layout-rail > div > header {
+    height: 53px;
+  }
+  body:has(.target-bearings-page) #main-content {
+    padding: 10px 16px 0;
+    background: #fff;
+  }
+  body:has(.target-bearings-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+}
+@media (max-width: 759px) {
+  .target-bearings-page,
+  .target-bearings-header,
+  .target-bearings-tabs,
+  .target-bearings-map,
+  .target-bearings-map > div,
+  .target-bearings-flow,
+  .target-bearings-learning,
+  .target-bearings-practice,
+  .target-bearings-practice > div,
+  .target-bearings-nav {
+    height: auto;
+  }
+  .target-bearings-tabs,
+  .target-bearings-map > div,
+  .target-bearings-flow,
+  .target-bearings-learning,
+  .target-bearings-practice > div,
+  .target-bearings-nav {
+    grid-template-columns: 1fr;
+  }
+  .target-bearings-header > aside {
+    flex-wrap: wrap;
+  }
+  .target-bearings-map > div > article > svg {
+    height: auto;
+  }
+}

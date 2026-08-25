@@ -30,6 +30,7 @@ import {
   X,
 } from "lucide-react";
 import { compileFunctionExpression, compileTwoVariableExpression } from "../utils/functionParser";
+import CalculusIntegrationStudio from "./CalculusIntegrationStudio";
 import "./CalculusStudio.css";
 
 export type CalculusStudioPage =
@@ -267,8 +268,13 @@ function JourneyNode({ title, page }: { title: string; page: CalculusStudioPage 
 function StudioLab({ page }: { page: Exclude<CalculusStudioPage, "home"> }) {
   const meta = pageMeta[page];
   const [params, setParams] = useSearchParams();
-  const initialMode = params.get("mode") ?? meta.modes[0]?.id;
-  const [mode, setMode] = useState(meta.modes.some((item) => item.id === initialMode) ? initialMode : meta.modes[0].id);
+  const defaultMode = page === "integration" ? "definite" : meta.modes[0].id;
+  const initialMode = params.get("mode") ?? defaultMode;
+  const [mode, setMode] = useState(meta.modes.some((item) => item.id === initialMode) ? initialMode : defaultMode);
+  useEffect(() => {
+    const next = params.get("mode") ?? defaultMode;
+    if (meta.modes.some((item) => item.id === next) && next !== mode) setMode(next);
+  }, [defaultMode, meta.modes, mode, params]);
   const chooseMode = (next: string) => {
     setMode(next);
     const sp = new URLSearchParams(params);
@@ -280,7 +286,7 @@ function StudioLab({ page }: { page: Exclude<CalculusStudioPage, "home"> }) {
       <nav className="cs-tabs" aria-label={`${meta.title} modes`}>
         {meta.modes.map((item) => <button key={item.id} type="button" className={mode === item.id ? "active" : ""} aria-selected={mode === item.id} onClick={() => chooseMode(item.id)}>{item.label}</button>)}
       </nav>
-      <InteractiveLab page={page} mode={mode} />
+      {page === "integration" ? <CalculusIntegrationStudio mode={mode} /> : <InteractiveLab page={page} mode={mode} />}
     </div>
   );
 }

@@ -453,6 +453,36 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Quick Practice");
   });
 
+  it("renders lesson 273 as a dedicated draggable north-grid bearing workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 273)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0330"');
+    expect(html).toContain('data-dedicated-lesson="273"');
+    expect(html).toContain(
+      'data-object-model="draggable-north-grid-route-clockwise-bearing-reverse-quadrant-distance-model"',
+    );
+    expect(html).toContain('data-bearing="56.309932"');
+    expect(html).toContain('data-bearing-three-digit="056"');
+    expect(html).toContain('data-reverse-bearing="236.309932"');
+    expect(html).toContain('data-distance="7.211103"');
+    expect(html).toContain('data-quadrant="NE"');
+    expect(html).toContain('data-testid="bearing-vertex-a"');
+    expect(html).toContain('data-testid="bearing-vertex-b"');
+    expect(html).toContain('aria-label="Bearing point A x"');
+    expect(html).toContain('aria-label="Bearing distance units"');
+    expect(html).toContain('aria-label="Practice option A 138 degrees"');
+    expect(html).toContain("Route map: bearings on a north grid");
+    expect(html).toContain("Watch out! Common mistake");
+    expect(html).toContain("Practice challenge");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(

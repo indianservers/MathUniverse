@@ -1,6 +1,6 @@
 # Trigonometry target batch 0321-0340
 
-Dedicated rebuild target: **67 of 130 lessons completed; 63 pending.**
+Dedicated rebuild target: **68 of 130 lessons completed; 62 pending.**
 
 | Mockup |                              Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                        |
 | ------ | ----------------------------------: | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -13,6 +13,7 @@ Dedicated rebuild target: **67 of 130 lessons completed; 63 pending.**
 | 0327   |                       270 Sine Rule | Complete | Draggable triangle and opposite side-angle sine-ratio model; three physical vertex drags; real SSA zero/one/two ambiguity classification, tangent-boundary handling, numerical grading, hint, and reset checks; exact 1024x1536 target stack          |
 | 0328   |                     271 Cosine Rule | Complete | Draggable coordinate triangle and square-decomposition model; two physical vertex drags; live Cosine Rule identity, independent editable SAS solvers, practice checking, and reset checks; exact 1013x1553 target composition                        |
 | 0329   |           272 Triangle Area Formula | Complete | Draggable coordinate triangle with altitude, determinant, SAS, and base-height equivalence model; three physical vertex drags; real SAS sliders, coordinate editor, generated practice, grading, and reset checks; exact 1006x1563 target composition |
+| 0330   |                       273 Bearings | Complete | Draggable north-grid route with clockwise bearing, reverse bearing, quadrant, and distance model; two physical endpoint drags; coordinate fields, six direction presets, units, lesson views, practice grading, and reset checks; exact 990x1589 target composition |
 
 ## Lesson 264 / Mockup 0321 - Reciprocal Trig Functions
 
@@ -139,3 +140,17 @@ Evidence:
 - `0329-reference.png`
 - `0329-desktop.png`
 - `0329-dedicated-target-validation.json`
+
+## Lesson 273 / Mockup 0330 - Bearings
+
+Reworked individually against the target mockup with a dedicated `draggable-north-grid-route-clockwise-bearing-reverse-quadrant-distance-model`. Two physical route endpoints drive delta x, delta y, Euclidean distance, clockwise-from-north bearing, three-digit bearing formatting, reverse bearing, quadrant, route vector, compass arc, worked map, and common-mistake diagram. The implementation calculates A(0,0) to B(6,4) as `056.31 degrees` with reverse `236.31 degrees`, rather than reproducing the reference's inconsistent `064/244` labels.
+
+The five lesson-view controls, language, reset, share, workspace focus, two SVG endpoint handles, four coordinate fields, NE/SE/SW/NW/E/W presets, grid/kilometre units, four practice choices, grading feedback, and adjacent navigation are functional. Coordinate edits and presets update the same route object. Reverse bearings normalize modulo 360 degrees, cardinal directions use canonical three-digit values, coincident points are guarded, and the displayed quadrant comes from the actual signed route components.
+
+Final 990x1589 browser validation verifies the initial bearing, reverse bearing, distance, formatting, and NE quadrant; physically drags A and B separately while rechecking reverse and distance invariants; enters a due-north route and verifies `000/180`; verifies the SE preset at `123.69 degrees` and west at `270/090`; switches distance units to kilometres; activates the Examples view; rejects 042 degrees, accepts the correct 138-degree reverse of 318 degrees, and resets the complete lesson. The screenshot loop matches the target stack exactly: header y=97-285, tabs y=290-327, route map y=340-781, learning flow y=792-986, formula/example/mistake row y=997-1361, practice y=1371-1529, and navigation y=1538-1585. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0330-reference.png`
+- `0330-desktop.png`
+- `0330-dedicated-target-validation.json`
