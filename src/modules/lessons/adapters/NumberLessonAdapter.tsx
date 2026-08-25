@@ -6,6 +6,7 @@ import AdapterFrame from "../components/AdapterFrame";
 import { getStrengthenedFoundationLesson } from "../strengthening/foundationNumberContent";
 import type { LessonAdapterProps } from "../types";
 import NaturalNumbersTargetLesson57 from "./NaturalNumbersTargetLesson57";
+import IntegersTargetLesson59 from "./IntegersTargetLesson59";
 import WholeNumbersTargetLesson58 from "./WholeNumbersTargetLesson58";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
@@ -14,6 +15,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 58) {
     return <WholeNumbersTargetLesson58 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 59) {
+    return <IntegersTargetLesson59 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

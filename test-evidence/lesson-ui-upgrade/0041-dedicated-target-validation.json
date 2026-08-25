@@ -1,0 +1,191 @@
+{
+  "mockup": "0041",
+  "lessonId": 59,
+  "route": "/lessons/numbers-and-arithmetic/59-integers",
+  "objectModel": "signed-integer-number-line-opposite-temperature-ledger-order-comparison-model",
+  "checks": {
+    "initial": {
+      "selected": "-4",
+      "compare": "8",
+      "opposite": "4",
+      "relation": "<",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "0"
+    },
+    "slider": {
+      "selected": "-7",
+      "compare": "8",
+      "opposite": "7",
+      "relation": "<",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "1"
+    },
+    "line": {
+      "selected": "3",
+      "compare": "8",
+      "opposite": "-3",
+      "relation": "<",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "2"
+    },
+    "compare": {
+      "selected": "3",
+      "compare": "-5",
+      "opposite": "-3",
+      "relation": ">",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "3"
+    },
+    "tab": {
+      "selected": "3",
+      "compare": "-5",
+      "opposite": "-3",
+      "relation": ">",
+      "tab": "Examples",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "4"
+    },
+    "language": {
+      "selected": "3",
+      "compare": "-5",
+      "opposite": "-3",
+      "relation": ">",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "false",
+      "actions": "5"
+    },
+    "workspace": {
+      "selected": "3",
+      "compare": "-5",
+      "opposite": "-3",
+      "relation": ">",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "actions": "6"
+    },
+    "reset": {
+      "selected": "-4",
+      "compare": "8",
+      "opposite": "4",
+      "relation": "<",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1055,
+      "height": 1479
+    },
+    "document": {
+      "width": 1055,
+      "height": 1479
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 107,
+      "bottom": 1471,
+      "height": 1364,
+      "left": 225,
+      "right": 1040,
+      "width": 815
+    },
+    "regions": {
+      "hero": {
+        "top": 107,
+        "bottom": 385,
+        "height": 278,
+        "left": 225,
+        "right": 1040,
+        "width": 815
+      },
+      "tabs": {
+        "top": 398,
+        "bottom": 457,
+        "height": 59,
+        "left": 225,
+        "right": 1040,
+        "width": 815
+      },
+      "layout": {
+        "top": 470,
+        "bottom": 1257,
+        "height": 787,
+        "left": 225,
+        "right": 1040,
+        "width": 815
+      },
+      "work": {
+        "top": 470,
+        "bottom": 1257,
+        "height": 787,
+        "left": 225,
+        "right": 831,
+        "width": 606
+      },
+      "line": {
+        "top": 522.5,
+        "bottom": 757.5,
+        "height": 235,
+        "left": 239,
+        "right": 817,
+        "width": 578
+      },
+      "contexts": {
+        "top": 769.5,
+        "bottom": 1154.5,
+        "height": 385,
+        "left": 239,
+        "right": 817,
+        "width": 578
+      },
+      "warning": {
+        "top": 1166.5,
+        "bottom": 1241.5,
+        "height": 75,
+        "left": 239,
+        "right": 817,
+        "width": 578
+      },
+      "side": {
+        "top": 468,
+        "bottom": 1255,
+        "height": 787,
+        "left": 840,
+        "right": 1040,
+        "width": 200
+      },
+      "navigation": {
+        "top": 1269,
+        "bottom": 1326,
+        "height": 57,
+        "left": 225,
+        "right": 1040,
+        "width": 815
+      },
+      "footer": {
+        "top": 1348,
+        "bottom": 1474,
+        "height": 126,
+        "left": 225,
+        "right": 1040,
+        "width": 815
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

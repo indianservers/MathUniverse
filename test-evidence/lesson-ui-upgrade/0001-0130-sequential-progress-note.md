@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **40 of 130 lessons completed; 90 pending.**
+Dedicated rebuild target: **41 of 130 lessons completed; 89 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -44,6 +44,7 @@ Dedicated rebuild target: **40 of 130 lessons completed; 90 pending.**
 | 0038   | 38 LaTeX Formula Display | Complete | Editable strict-KaTeX source with exponent slider/input, rendered preview, brace/exponent/spacing validation, grouping proof, executable fraction/root/integral inserts, copy/share/workspace/reset, and exact 1217x1292 target geometry |
 | 0039   | 57 Natural Numbers | Complete | Dedicated counting-number model with linked tray, real range/tick selection, calculated successor and comparison, native drag/drop membership classification with corrective feedback, reset/share, and exact 1487x1058 target geometry |
 | 0040   | 58 Whole Numbers | Complete | Dedicated zero-inclusive set model with direct selection, steppers, interactive number-line membership, calculated comparison, empty-count asset, counting staircase, stateful views, graded multi-select practice, and exact 1484x1059 target geometry |
+| 0041   | 59 Integers | Complete | Dedicated signed-integer model with real range and line selection, calculated opposite and ordering, editable comparator, linked thermometer and debit/credit ledger, stateful tabs/language/workspace/reset/share, and exact 1055x1479 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -604,3 +605,17 @@ Evidence:
 - `0040-reference.png`
 - `0040-desktop.png`
 - `0040-dedicated-target-validation.json`
+
+## Lesson 59 / Mockup 0041 - Integers
+
+Reworked individually against the target mockup with a dedicated `signed-integer-number-line-opposite-temperature-ledger-order-comparison-model`. The selected integer, number-line marker, distance and direction from zero, opposite, editable comparison value, ordering relation, thermometer level, debit amount, credit amount, value rail, and order proof all derive from explicit lesson-owned state.
+
+The native range and all 21 integer marks select values from -10 through 10. The compare input and hidden step controls accept signed values and immediately reverse the relation when appropriate. The temperature instrument, bank ledger, opposite construction, and result cards recalculate together. Interaction, Explain, Examples, Formulas, Know more, language, Workspace, Reset, and Share all perform state changes; no visible lesson control is decorative. The shared number adapter only dispatches Lesson 59 to this separate component.
+
+Final 1055x1479 integrated browser validation drags the selected integer to -7 and verifies opposite +7; selects 3 on the number line and verifies opposite -3; changes the comparator to -5 and verifies `3 > -5`; switches to Examples; changes language; opens Workspace; and resets. The final frame matches the target at hero x=225-1040 and y=107-385, tabs y=398-457, lesson layout y=470-1257, number-line card x=239-817 and y=523-758, contexts y=770-1155, misconception y=1168-1243, navigation y=1269-1326, and footer y=1348-1474. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0041-reference.png`
+- `0041-desktop.png`
+- `0041-dedicated-target-validation.json`

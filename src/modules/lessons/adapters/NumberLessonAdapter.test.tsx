@@ -27,6 +27,17 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Increase selected number"');
     expect(html).toContain("Zero means ‘no objects’ — still a count");
   });
+  it("renders lesson 59 as a dedicated signed-integer workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 59)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0041"');
+    expect(html).toContain('data-dedicated-lesson="59"');
+    expect(html).toContain('data-object-model="signed-integer-number-line-opposite-temperature-ledger-order-comparison-model"');
+    expect(html).toContain('data-selected="-4"');
+    expect(html).toContain('data-opposite="4"');
+    expect(html).toContain('aria-label="Selected integer drag control"');
+    expect(html).toContain("Real-life context: Bank ledger");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
