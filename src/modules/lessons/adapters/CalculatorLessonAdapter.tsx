@@ -37,6 +37,7 @@ import TrigonometricCalculatorTargetLesson10 from "./TrigonometricCalculatorTarg
 import InverseTrigonometryTargetLesson11 from "./InverseTrigonometryTargetLesson11";
 import HyperbolicFunctionsTargetLesson12 from "./HyperbolicFunctionsTargetLesson12";
 import CountingChoicesTargetLesson13 from "./CountingChoicesTargetLesson13";
+import AbsoluteValueTargetLesson14 from "./AbsoluteValueTargetLesson14";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -164,7 +165,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 14) {
     return (
-      <AbsoluteValueLessonSurface
+      <AbsoluteValueTargetLesson14
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -224,6 +226,7 @@ void TrigonometricCalculatorLessonSurface;
 void InverseTrigonometryLessonSurface;
 void HyperbolicFunctionsLessonSurface;
 void CountingChoicesLessonSurface;
+void AbsoluteValueLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,

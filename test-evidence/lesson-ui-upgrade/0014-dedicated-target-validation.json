@@ -1,0 +1,213 @@
+{
+  "mockup": "0014",
+  "lessonId": 14,
+  "route": "/lessons/core-workspaces/14-absolute-value",
+  "objectModel": "dual-draggable-signed-point-mirror-distance-arc-direction-trace-symmetry-practice-model",
+  "checks": {
+    "initial": {
+      "value": "-12",
+      "distance": "12",
+      "direction": "Left of zero",
+      "mirror": "12",
+      "mode": "distance",
+      "view": "0",
+      "actions": "0",
+      "checked": "true",
+      "revealed": "true"
+    },
+    "primary": {
+      "value": "-7",
+      "distance": "7",
+      "direction": "Left of zero",
+      "mirror": "7",
+      "mode": "distance",
+      "view": "0",
+      "actions": "1",
+      "checked": "true",
+      "revealed": "true"
+    },
+    "mirror": {
+      "value": "5",
+      "distance": "5",
+      "direction": "Right of zero",
+      "mirror": "-5",
+      "mode": "distance",
+      "view": "0",
+      "actions": "2",
+      "checked": "true",
+      "revealed": "true"
+    },
+    "zero": {
+      "value": "0",
+      "distance": "0",
+      "direction": "At zero",
+      "mirror": "0",
+      "mode": "distance",
+      "view": "0",
+      "actions": "3",
+      "checked": "true",
+      "revealed": "true"
+    },
+    "mode": {
+      "value": "0",
+      "distance": "0",
+      "direction": "At zero",
+      "mirror": "0",
+      "mode": "direction",
+      "view": "0",
+      "actions": "3",
+      "checked": "true",
+      "revealed": "true"
+    },
+    "reset": {
+      "value": "-12",
+      "distance": "12",
+      "direction": "Left of zero",
+      "mirror": "12",
+      "mode": "distance",
+      "view": "0",
+      "actions": "0",
+      "checked": "true",
+      "revealed": "true"
+    },
+    "view": {
+      "value": "-12",
+      "distance": "12",
+      "direction": "Left of zero",
+      "mirror": "12",
+      "mode": "distance",
+      "view": "2",
+      "actions": "1",
+      "checked": "true",
+      "revealed": "true"
+    },
+    "wrong": {
+      "value": "-12",
+      "distance": "12",
+      "direction": "Left of zero",
+      "mirror": "12",
+      "mode": "distance",
+      "view": "2",
+      "actions": "1",
+      "checked": "false",
+      "revealed": "true"
+    },
+    "correct": {
+      "value": "-12",
+      "distance": "12",
+      "direction": "Left of zero",
+      "mirror": "12",
+      "mode": "distance",
+      "view": "2",
+      "actions": "1",
+      "checked": "true",
+      "revealed": "true"
+    },
+    "hidden": {
+      "value": "-12",
+      "distance": "12",
+      "direction": "Left of zero",
+      "mirror": "12",
+      "mode": "distance",
+      "view": "2",
+      "actions": "1",
+      "checked": "true",
+      "revealed": "false"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1065,
+      "height": 1477
+    },
+    "document": {
+      "width": 1065,
+      "height": 1477
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 99,
+      "bottom": 1469,
+      "height": 1370,
+      "left": 229,
+      "right": 1053,
+      "width": 824
+    },
+    "regions": {
+      "header": {
+        "top": 99,
+        "bottom": 336,
+        "height": 237,
+        "left": 229,
+        "right": 1053,
+        "width": 824
+      },
+      "tabs": {
+        "top": 345,
+        "bottom": 401,
+        "height": 56,
+        "left": 229,
+        "right": 1053,
+        "width": 824
+      },
+      "lab": {
+        "top": 411,
+        "bottom": 1269,
+        "height": 858,
+        "left": 229,
+        "right": 1053,
+        "width": 824
+      },
+      "columns": {
+        "top": 512,
+        "bottom": 1052,
+        "height": 540,
+        "left": 241,
+        "right": 1041,
+        "width": 800
+      },
+      "line": {
+        "top": 621,
+        "bottom": 826,
+        "height": 205,
+        "left": 257,
+        "right": 837,
+        "width": 580
+      },
+      "symmetry": {
+        "top": 903,
+        "bottom": 1008,
+        "height": 105,
+        "left": 257,
+        "right": 837,
+        "width": 580
+      },
+      "practice": {
+        "top": 1064,
+        "bottom": 1251,
+        "height": 187,
+        "left": 241,
+        "right": 1041,
+        "width": 800
+      },
+      "neighbors": {
+        "top": 1279,
+        "bottom": 1332,
+        "height": 53,
+        "left": 229,
+        "right": 1053,
+        "width": 824
+      },
+      "footer": {
+        "top": 1346,
+        "bottom": 1457,
+        "height": 111,
+        "left": 229,
+        "right": 1053,
+        "width": 824
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

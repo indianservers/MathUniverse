@@ -1,0 +1,601 @@
+.target-absolute-page {
+  position: relative;
+  top: -35px;
+  width: 824px;
+  height: 1370px;
+  margin-bottom: -35px;
+  color: #0a1740;
+  font-size: 9px;
+  letter-spacing: 0;
+}
+.target-absolute-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.target-absolute-page h1,
+.target-absolute-page h2,
+.target-absolute-page h3,
+.target-absolute-page p {
+  margin: 0;
+}
+.target-absolute-page button,
+.target-absolute-page input {
+  font: inherit;
+  color: inherit;
+}
+.target-absolute-page button {
+  cursor: pointer;
+}
+.absolute-breadcrumb {
+  position: absolute;
+  top: -38px;
+  left: 0;
+  display: flex;
+  height: 28px;
+  align-items: center;
+  gap: 9px;
+  color: #526785;
+  font-weight: 800;
+}
+.absolute-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.absolute-breadcrumb a:first-child {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+.absolute-breadcrumb b {
+  color: #087e9a;
+}
+.absolute-header,
+.absolute-tabs,
+.absolute-lab,
+.absolute-neighbors a,
+.absolute-footer {
+  border: 1px solid #d8e3ed;
+  border-radius: 14px;
+  background: #fff;
+}
+.absolute-header {
+  height: 237px;
+  padding: 16px;
+}
+.absolute-header > span {
+  display: inline-block;
+  margin-right: 7px;
+  border-radius: 12px;
+  background: #e9f7fa;
+  padding: 5px 10px;
+  color: #087f99;
+  font-size: 8px;
+  font-weight: 900;
+}
+.absolute-header > span:nth-child(2) {
+  background: #f3f5f7;
+  color: #546782;
+}
+.absolute-header h1 {
+  margin-top: 8px;
+  font-size: 31px;
+  line-height: 34px;
+  font-weight: 900;
+}
+.absolute-header > p {
+  margin-top: 4px;
+  color: #536784;
+  font-size: 12px;
+}
+.absolute-header > section {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.absolute-header > section b {
+  border: 1px solid #d8e3ed;
+  border-radius: 14px;
+  padding: 6px 10px;
+}
+.absolute-header > nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.absolute-header button {
+  height: 39px;
+  border: 1px solid #d8e3ed;
+  border-radius: 10px;
+  background: #fff;
+  padding: 0 14px;
+}
+.absolute-header nav button:first-child {
+  width: 205px;
+  text-align: left;
+}
+.absolute-header svg {
+  width: 13px;
+  vertical-align: middle;
+}
+.absolute-header > button {
+  margin-top: 7px;
+}
+.absolute-tabs {
+  display: grid;
+  height: 56px;
+  grid-template-columns: 1.35fr repeat(4, 1fr);
+  margin-top: 9px;
+  padding: 7px;
+}
+.absolute-tabs button {
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+}
+.absolute-tabs .active {
+  border-radius: 9px;
+  background: #079db8;
+  color: #fff;
+}
+.absolute-lab {
+  height: 858px;
+  margin-top: 10px;
+  padding: 11px;
+}
+.absolute-lab > header {
+  position: relative;
+  height: 89px;
+}
+.absolute-lab > header small {
+  color: #07839d;
+  font-weight: 900;
+}
+.absolute-lab > header h2 {
+  margin-top: 8px;
+  font-size: 18px;
+}
+.absolute-lab > header p {
+  margin-top: 7px;
+  color: #536784;
+}
+.absolute-lab > header nav {
+  position: absolute;
+  right: 48px;
+  top: 13px;
+  display: grid;
+  width: 220px;
+  height: 43px;
+  grid-template-columns: 55px 1fr 1fr;
+  align-items: center;
+  border: 1px solid #d8e3ed;
+  border-radius: 11px;
+  padding: 6px;
+}
+.absolute-lab > header nav span {
+  text-align: center;
+}
+.absolute-lab > header nav button {
+  height: 30px;
+  border: 0;
+  background: transparent;
+  font-weight: 900;
+}
+.absolute-lab > header nav .active {
+  border-radius: 8px;
+  background: #08a3b9;
+  color: #fff;
+}
+.absolute-lab > header > button {
+  position: absolute;
+  right: 0;
+  top: 16px;
+  width: 39px;
+  height: 39px;
+  border: 1px solid #d8e3ed;
+  border-radius: 9px;
+  background: #fff;
+}
+.absolute-lab > header svg {
+  width: 14px;
+}
+.absolute-columns {
+  display: grid;
+  height: 540px;
+  grid-template-columns: 1fr 178px;
+  gap: 10px;
+}
+.absolute-columns > main,
+.absolute-trace {
+  border: 1px solid #d8e3ed;
+  border-radius: 9px;
+}
+.absolute-columns > main {
+  padding: 15px;
+}
+.absolute-equation {
+  display: grid;
+  width: 342px;
+  height: 85px;
+  margin: auto;
+  place-items: center;
+  border: 1px solid #8bbbe2;
+  border-radius: 7px;
+  background: #f8fcff;
+  font-family: serif;
+  font-size: 27px;
+  font-weight: 900;
+}
+.absolute-equation b {
+  font-size: 18px;
+}
+.absolute-equation > div {
+  align-self: end;
+}
+.absolute-equation small {
+  font-family: sans-serif;
+  font-size: 16px;
+}
+.absolute-line {
+  position: relative;
+  height: 205px;
+  margin-top: 8px;
+}
+.absolute-line svg {
+  width: 100%;
+  height: 185px;
+}
+.absolute-line svg line {
+  stroke: #526784;
+  stroke-width: 1;
+}
+.absolute-line svg text {
+  fill: #0a1740;
+  font-size: 11px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+.absolute-line .distance-arc {
+  fill: none;
+  stroke: #08a7c1;
+  stroke-width: 2;
+}
+.absolute-line text.distance-label {
+  fill: #08a1bb;
+  font-size: 16px;
+}
+.absolute-line .zero {
+  fill: #0a1740;
+}
+.absolute-line .input-point {
+  fill: #168fe7;
+  stroke: #b7def8;
+  stroke-width: 5;
+}
+.absolute-line .mirror-point {
+  fill: #7d2ed5;
+  stroke: #decaf5;
+  stroke-width: 4;
+}
+.absolute-line text.zero-label {
+  fill: #0b4fbb;
+  font-size: 20px;
+}
+.absolute-line > input {
+  position: absolute;
+  left: 3%;
+  top: 94px;
+  width: 94%;
+  opacity: 0.02;
+}
+.absolute-line > input:nth-of-type(2) {
+  top: 99px;
+}
+.absolute-line > label {
+  position: absolute;
+  top: 143px;
+  transform: translateX(-50%);
+  display: grid;
+  text-align: center;
+}
+.absolute-line > label b {
+  border-radius: 8px;
+  background: #168fe7;
+  padding: 8px 13px;
+  color: #fff;
+  font-size: 16px;
+}
+.absolute-line > label small {
+  margin-top: 8px;
+  color: #1680d8;
+}
+.absolute-line > .mirror-tag b {
+  background: #7c2ed4;
+}
+.absolute-line > .mirror-tag small {
+  color: #7129c8;
+}
+.absolute-note {
+  width: 305px;
+  height: 52px;
+  margin: auto;
+  border: 1px solid #d8e3ed;
+  border-radius: 7px;
+  background: #f7f9fb;
+  padding: 10px;
+  text-align: center;
+  line-height: 16px;
+}
+.absolute-note b {
+  color: #0794ad;
+}
+.absolute-symmetry {
+  height: 105px;
+  margin-top: 25px;
+  border: 1px solid #d8e3ed;
+  border-radius: 9px;
+  padding: 13px;
+}
+.absolute-symmetry h3 {
+  text-align: center;
+}
+.absolute-symmetry > div {
+  display: grid;
+  grid-template-columns: 50px 30px 64px 1fr 50px 30px 64px;
+  align-items: center;
+  margin-top: 14px;
+  text-align: center;
+}
+.absolute-symmetry b {
+  color: #1687d9;
+  font-size: 20px;
+}
+.absolute-symmetry b:nth-of-type(2) {
+  color: #762bd0;
+}
+.absolute-symmetry span {
+  font-size: 22px;
+}
+.absolute-symmetry output {
+  border: 1px solid #f1cf7d;
+  border-radius: 7px;
+  background: #fff9e9;
+  padding: 9px;
+  color: #d66b0b;
+  font-size: 18px;
+  font-weight: 900;
+}
+.absolute-symmetry strong {
+  font-family: serif;
+  font-size: 17px;
+}
+.absolute-trace {
+  padding: 13px;
+}
+.absolute-trace > h3 {
+  height: 26px;
+  color: #087f9b;
+  font-size: 8px;
+}
+.absolute-trace > section {
+  min-height: 58px;
+  border: 1px solid #cfe5ef;
+  border-radius: 8px;
+  background: #f6fbfd;
+  padding: 10px;
+}
+.absolute-trace > section small {
+  color: #1263b5;
+  font-weight: 900;
+}
+.absolute-trace > section > b {
+  display: block;
+  margin-top: 9px;
+  color: #1263b5;
+  font-size: 16px;
+  text-align: center;
+}
+.absolute-trace > i {
+  display: block;
+  height: 25px;
+  text-align: center;
+  font-style: normal;
+}
+.absolute-trace > section.cyan b {
+  color: #078fa9;
+}
+.absolute-trace > section.orange {
+  border-color: #f1d29a;
+  background: #fffaf0;
+}
+.absolute-trace > section.orange b {
+  color: #d86b09;
+  font-size: 25px;
+}
+.absolute-trace > section.orange p {
+  margin-top: 7px;
+  text-align: center;
+  font-weight: 800;
+}
+.absolute-trace > section:last-child {
+  display: flex;
+  height: 68px;
+  margin-top: 28px;
+  align-items: start;
+  gap: 8px;
+  border-color: #bfe4ec;
+}
+.absolute-trace > section:last-child svg {
+  width: 15px;
+  color: #087f9b;
+}
+.absolute-trace > section:last-child p {
+  line-height: 15px;
+}
+.absolute-practice {
+  height: 187px;
+  margin-top: 12px;
+  border: 1px solid #d8e3ed;
+  border-radius: 9px;
+  padding: 15px;
+}
+.absolute-practice > header {
+  position: relative;
+  display: grid;
+  height: 85px;
+  grid-template-columns: 38px 1fr 145px 165px;
+}
+.absolute-practice > header > b {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: #efe5ff;
+  color: #792ed2;
+  font-size: 18px;
+}
+.absolute-practice > header > div h3 {
+  color: #6225bd;
+  font-size: 13px;
+}
+.absolute-practice > header > div p {
+  margin-top: 8px;
+  font-size: 11px;
+}
+.absolute-practice > header > div small {
+  display: block;
+  margin-top: 8px;
+}
+.absolute-practice label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: serif;
+  font-size: 17px;
+  white-space: nowrap;
+}
+.absolute-practice label input {
+  width: 72px;
+  height: 45px;
+  border: 1px dashed #64bb70;
+  border-radius: 8px;
+  background: #f0f9ef;
+  text-align: center;
+  color: #248341;
+  font-size: 16px;
+  font-weight: 900;
+}
+.absolute-practice label svg {
+  width: 20px;
+  border-radius: 50%;
+  background: #319b51;
+  color: #fff;
+}
+.absolute-practice > header > button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 48px;
+  height: 24px;
+  border: 0;
+  background: transparent;
+  opacity: 0.03;
+}
+.absolute-practice > footer {
+  height: 69px;
+  border: 1px solid #f2d69b;
+  border-radius: 8px;
+  background: #fffaf0;
+  padding: 13px;
+  color: #5422af;
+  cursor: pointer;
+}
+.absolute-practice > footer p {
+  margin-top: 11px;
+  color: #0a1740;
+}
+.absolute-neighbors {
+  display: grid;
+  height: 53px;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 10px;
+}
+.absolute-neighbors a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  color: inherit;
+  text-decoration: none;
+}
+.absolute-neighbors a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.absolute-neighbors small {
+  display: block;
+  font-size: 7px;
+}
+.absolute-footer {
+  height: 111px;
+  margin-top: 14px;
+  padding: 17px 14px;
+}
+.absolute-footer b {
+  font-size: 12px;
+}
+.absolute-footer p {
+  margin-top: 9px;
+  color: #536784;
+}
+.absolute-footer:after {
+  content: "© 2026 INDIAN SERVERS PRIVATE LIMITED. NO RIGHT TO REPRODUCE IT.";
+  display: block;
+  margin-top: 22px;
+  border-top: 1px solid #d8e3ed;
+  padding-top: 10px;
+  color: #687a95;
+  font-size: 7px;
+}
+@media (min-width: 900px) and (max-width: 1279px) {
+  body:has(.target-absolute-page) [data-testid="desktop-sidebar"] {
+    width: 211px;
+  }
+  body:has(.target-absolute-page) .app-layout-rail > div > header {
+    height: 53px;
+  }
+  body:has(.target-absolute-page) #main-content {
+    padding: 47px 12px 0 18px;
+    overflow: hidden;
+    background: #fff;
+  }
+  body:has(.target-absolute-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+}
+@media (max-width: 899px) {
+  .target-absolute-page {
+    top: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .absolute-header,
+  .absolute-lab {
+    height: auto;
+  }
+  .absolute-columns {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .absolute-trace {
+    height: auto;
+  }
+  .absolute-tabs {
+    grid-template-columns: 1fr 1fr;
+  }
+}

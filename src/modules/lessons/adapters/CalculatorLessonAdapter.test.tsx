@@ -234,6 +234,18 @@ describe("CalculatorLessonAdapter", () => {
     expect(html).toContain('aria-label="Counting items n"');
     expect(html).toContain("Available items to choose from");
   });
+  it("renders lesson 14 as a dedicated absolute-value distance workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 14)!;
+    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="calculator-mockup-0014"');
+    expect(html).toContain('data-dedicated-lesson="14"');
+    expect(html).toContain('data-object-model="dual-draggable-signed-point-mirror-distance-arc-direction-trace-symmetry-practice-model"');
+    expect(html).toContain('data-value="-12"');
+    expect(html).toContain('data-distance="12"');
+    expect(html).toContain('data-direction="Left of zero"');
+    expect(html).toContain('aria-label="Absolute value point drag control"');
+    expect(html).toContain('aria-label="Absolute value mirrored point drag control"');
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
@@ -249,7 +261,7 @@ describe("CalculatorLessonAdapter", () => {
       11: "Inverse sine lab",
       12: "Hyperbolic sine using exponentials",
       13: "Counting choices visually",
-      14: "Absolute value",
+      14: "Absolute Value Distance Lab",
       15: "Precision rule",
       16: "Constant rule",
       17: "History rule",
@@ -288,7 +300,7 @@ describe("CalculatorLessonAdapter", () => {
       11: "Inverse sine: ratio to principal angle",
       12: "Definition",
       13: "Counting choices trace",
-      14: "Distance from zero",
+      14: "DISTANCE",
       15: "Exact value to rounded report",
       16: "Constant insertion check",
       17: "History pairs input with output",

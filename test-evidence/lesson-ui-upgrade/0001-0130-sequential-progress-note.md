@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **13 of 130 lessons completed; 117 pending.**
+Dedicated rebuild target: **14 of 130 lessons completed; 116 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -17,6 +17,7 @@ Dedicated rebuild target: **13 of 130 lessons completed; 117 pending.**
 | 0011   | 11 Inverse Trigonometry | Complete | Draggable sine-ratio and unit-circle-ray model with calculated principal angle, right triangle, DEG/RAD values, verification, principal range, trace, and independent graded practice at exact 1068x1472 target geometry |
 | 0012   | 12 Hyperbolic Functions | Complete | Draggable x model with exact dual exponentials, continuous linked curves/probes, sinh difference construction, live trace, hyperbola context, views/reset, and rotating reveal practice at exact 1068x1472 target geometry |
 | 0013   | 13 Factorial, Permutation and Combination | Complete | Native draggable/clickable distinct-item slots with factorial, ordered permutation, unordered combination calculations, n/r inputs, mode-specific trace, comparison cards, and reveal practice at exact 1007x1562 target geometry |
+| 0014   | 14 Absolute Value | Complete | Dual draggable signed/mirrored point model with number-line distance arc, direction and nonnegative output trace, symmetry proof, mode switch, reset/views, and two-field graded practice at exact 1065x1477 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -199,3 +200,17 @@ Evidence:
 - `0013-reference.png`
 - `0013-desktop.png`
 - `0013-dedicated-target-validation.json`
+
+## Lesson 14 / Mockup 0014 - Absolute Value
+
+Reworked individually against the target mockup with a dedicated `dual-draggable-signed-point-mirror-distance-arc-direction-trace-symmetry-practice-model`. The signed input drives its reflected point, distance from zero, arc, equation, direction, nonnegative output, trace chain, and symmetry proof from one live model.
+
+Both the blue input point and purple mirrored point are real range controls. Dragging the mirrored point updates the signed source consistently. Distance/Direction modes, Reset, Share, Workspace, lesson views, two practice-answer fields, Check, and reveal/hide all perform real state changes.
+
+Final 1065x1477 browser validation drags the primary point to -7 and verifies distance 7, drags the mirrored control across zero and verifies source 5 with `Right of zero`, moves to zero and verifies `At zero`, switches direction mode, resets to `|-12| = 12`, switches view, rejects 6, accepts both 7 answers, and hides the explanation. The target frame matches at surface x=229-1053 and y=99-1469, header y=99-336, tabs y=345-401, lab y=411-1269, model columns y=512-1052, number line y=621-826, symmetry y=903-1008, practice y=1064-1251, navigation y=1279-1332, and footer y=1346-1457. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0014-reference.png`
+- `0014-desktop.png`
+- `0014-dedicated-target-validation.json`
