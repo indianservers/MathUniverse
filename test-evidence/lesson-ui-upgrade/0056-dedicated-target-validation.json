@@ -1,0 +1,294 @@
+{
+  "mockup": "0056",
+  "lessonId": 74,
+  "route": "/lessons/numbers-and-arithmetic/74-continued-fractions",
+  "objectModel": "editable-draggable-partial-quotients-exact-rational-inside-out-layers-convergents-decimal-number-line-practice-model",
+  "checks": {
+    "initial": {
+      "terms": "1,2,3",
+      "selected-index": "2",
+      "drag-index": "",
+      "inner": "1/3",
+      "middle": "7/3",
+      "convergents": "1,3/2,10/7",
+      "result": "10/7",
+      "decimal": "1.429",
+      "active-step": "1",
+      "tab": "Inside-Out Evaluation",
+      "practice-loaded": "false",
+      "actions": "0"
+    },
+    "lastTermFour": {
+      "terms": "1,2,4",
+      "selected-index": "2",
+      "drag-index": "",
+      "inner": "1/4",
+      "middle": "9/4",
+      "convergents": "1,3/2,13/9",
+      "result": "13/9",
+      "decimal": "1.444",
+      "active-step": "1",
+      "tab": "Inside-Out Evaluation",
+      "practice-loaded": "false",
+      "actions": "1"
+    },
+    "draggedTerms": {
+      "terms": "4,2,1",
+      "selected-index": "2",
+      "drag-index": "",
+      "inner": "1",
+      "middle": "3",
+      "convergents": "4,9/2,13/3",
+      "result": "13/3",
+      "decimal": "4.333",
+      "active-step": "1",
+      "tab": "Inside-Out Evaluation",
+      "practice-loaded": "false",
+      "actions": "2"
+    },
+    "editedDragged": {
+      "terms": "4,2,3",
+      "selected-index": "2",
+      "drag-index": "",
+      "inner": "1/3",
+      "middle": "7/3",
+      "convergents": "4,9/2,31/7",
+      "result": "31/7",
+      "decimal": "4.429",
+      "active-step": "1",
+      "tab": "Inside-Out Evaluation",
+      "practice-loaded": "false",
+      "actions": "3"
+    },
+    "middleStep": {
+      "terms": "4,2,3",
+      "selected-index": "2",
+      "drag-index": "",
+      "inner": "1/3",
+      "middle": "7/3",
+      "convergents": "4,9/2,31/7",
+      "result": "31/7",
+      "decimal": "4.429",
+      "active-step": "2",
+      "tab": "Inside-Out Evaluation",
+      "practice-loaded": "false",
+      "actions": "4"
+    },
+    "outerStep": {
+      "terms": "4,2,3",
+      "selected-index": "2",
+      "drag-index": "",
+      "inner": "1/3",
+      "middle": "7/3",
+      "convergents": "4,9/2,31/7",
+      "result": "31/7",
+      "decimal": "4.429",
+      "active-step": "3",
+      "tab": "Inside-Out Evaluation",
+      "practice-loaded": "false",
+      "actions": "5"
+    },
+    "numberLineTab": {
+      "terms": "4,2,3",
+      "selected-index": "2",
+      "drag-index": "",
+      "inner": "1/3",
+      "middle": "7/3",
+      "convergents": "4,9/2,31/7",
+      "result": "31/7",
+      "decimal": "4.429",
+      "active-step": "3",
+      "tab": "Number Line",
+      "practice-loaded": "false",
+      "actions": "6"
+    },
+    "practice": {
+      "terms": "2,1,4",
+      "selected-index": "2",
+      "drag-index": "",
+      "inner": "1/4",
+      "middle": "5/4",
+      "convergents": "2,3,14/5",
+      "result": "14/5",
+      "decimal": "2.800",
+      "active-step": "1",
+      "tab": "Number Line",
+      "practice-loaded": "true",
+      "actions": "7"
+    },
+    "restored": {
+      "terms": "1,2,3",
+      "selected-index": "2",
+      "drag-index": "",
+      "inner": "1/3",
+      "middle": "7/3",
+      "convergents": "1,3/2,10/7",
+      "result": "10/7",
+      "decimal": "1.429",
+      "active-step": "1",
+      "tab": "Inside-Out Evaluation",
+      "practice-loaded": "false",
+      "actions": "12"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1068,
+      "height": 1473
+    },
+    "document": {
+      "width": 1068,
+      "height": 1473
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 100,
+      "bottom": 1473,
+      "height": 1373,
+      "left": 229,
+      "right": 1052,
+      "width": 823
+    },
+    "regions": {
+      "hero": {
+        "top": 100,
+        "bottom": 300,
+        "height": 200,
+        "left": 229,
+        "right": 1052,
+        "width": 823
+      },
+      "tabs": {
+        "top": 310,
+        "bottom": 365,
+        "height": 55,
+        "left": 229,
+        "right": 1052,
+        "width": 823
+      },
+      "layout": {
+        "top": 376,
+        "bottom": 1096,
+        "height": 720,
+        "left": 229,
+        "right": 1052,
+        "width": 823
+      },
+      "proof": {
+        "top": 376,
+        "bottom": 1096,
+        "height": 720,
+        "left": 229,
+        "right": 791,
+        "width": 562
+      },
+      "nested": {
+        "top": 440,
+        "bottom": 730,
+        "height": 290,
+        "left": 366,
+        "right": 684,
+        "width": 318
+      },
+      "middle": {
+        "top": 733,
+        "bottom": 828,
+        "height": 95,
+        "left": 366,
+        "right": 684,
+        "width": 318
+      },
+      "outer": {
+        "top": 834,
+        "bottom": 936,
+        "height": 102,
+        "left": 366,
+        "right": 684,
+        "width": 318
+      },
+      "final": {
+        "top": 957,
+        "bottom": 1004,
+        "height": 47,
+        "left": 273,
+        "right": 748,
+        "width": 475
+      },
+      "side": {
+        "top": 376,
+        "bottom": 1096,
+        "height": 720,
+        "left": 801,
+        "right": 1052,
+        "width": 251
+      },
+      "partials": {
+        "top": 376,
+        "bottom": 531,
+        "height": 155,
+        "left": 801,
+        "right": 1052,
+        "width": 251
+      },
+      "convergents": {
+        "top": 541,
+        "bottom": 815,
+        "height": 274,
+        "left": 801,
+        "right": 1052,
+        "width": 251
+      },
+      "decimal": {
+        "top": 825,
+        "bottom": 905,
+        "height": 80,
+        "left": 801,
+        "right": 1052,
+        "width": 251
+      },
+      "warning": {
+        "top": 915,
+        "bottom": 1040,
+        "height": 125,
+        "left": 801,
+        "right": 1052,
+        "width": 251
+      },
+      "tryNext": {
+        "top": 1050,
+        "bottom": 1096,
+        "height": 46,
+        "left": 801,
+        "right": 1052,
+        "width": 251
+      },
+      "numberLine": {
+        "top": 1105,
+        "bottom": 1243,
+        "height": 138,
+        "left": 229,
+        "right": 1052,
+        "width": 823
+      },
+      "navigation": {
+        "top": 1252,
+        "bottom": 1326,
+        "height": 74,
+        "left": 229,
+        "right": 1052,
+        "width": 823
+      },
+      "footer": {
+        "top": 1338,
+        "bottom": 1455,
+        "height": 117,
+        "left": 229,
+        "right": 1052,
+        "width": 823
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **55 of 130 lessons completed; 75 pending.**
+Dedicated rebuild target: **56 of 130 lessons completed; 74 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -59,6 +59,7 @@ Dedicated rebuild target: **55 of 130 lessons completed; 75 pending.**
 | 0053   |                    71 Divisibility Rules | Complete | Dedicated editable three-digit rule machine with five divisor modes, native draggable digit reordering, rule-specific evidence, exact quotient/remainder verification, working lever, misconception/practice states, and exact 1462x1076 target geometry          |
 | 0054   |                    72 Modular Arithmetic | Complete | Dedicated editable dividend/modulus remainder clock with native draggable cycle positions, calculated quotient/remainder, exact additive and multiplicative decomposition, grouped cycles, live practice, and exact 1072x1466 target geometry                    |
 | 0055   |                         73 Base Systems | Complete | Dedicated editable base/three-digit place-value board with native draggable digit ordering, allowed-digit palette, calculated powers/products/decimal sum, number-line marker, live practice, and exact 1068x1472 target geometry                                  |
+| 0056   |                  74 Continued Fractions | Complete | Dedicated editable three-term nested-fraction model with native draggable partial quotients, exact inside-out rational layers, calculated convergents/decimal/number-line marker, selectable stages, practice, and exact 1068x1473 target geometry                   |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -829,3 +830,17 @@ Evidence:
 - `0055-reference.png`
 - `0055-desktop.png`
 - `0055-dedicated-target-validation.json`
+
+## Lesson 74 / Mockup 0056 - Continued Fractions
+
+Reworked individually against the target mockup with a dedicated `editable-draggable-partial-quotients-exact-rational-inside-out-layers-convergents-decimal-number-line-practice-model`. The three partial quotients drive the nested reciprocal layers, deepest fraction, middle rational, three exact convergents, final fraction, decimal approximation, misconception equation, and linked number-line marker from one lesson-owned calculation model.
+
+All three partial quotients are directly editable with positive-integer guards and are native draggable objects: dropping one term onto another swaps their positions and immediately recomputes every rational stage. The Deepest, Middle, and Outer proof stages are selectable, all four lesson tabs change state, and the practice control loads and solves `[2; 1, 4]` as `14/5`. The shared number adapter only dispatches Lesson 74 to this separate component.
+
+Final 1068x1473 integrated browser validation verifies `[1; 2, 3]`, inner `1/3`, middle `7/3`, convergents `1, 3/2, 10/7`, and decimal `1.429`; edits the last term to 4 and verifies `13/9`; physically drags the first term onto the last to produce `[4; 2, 1]` and `13/3`; edits it to `[4; 2, 3]` and verifies `31/7`; selects Middle and Outer; opens Number Line; loads `[2; 1, 4]` and verifies `14/5 = 2.800`; then restores the target terms, stage, and tab. The final frame matches the target at page x=229-1052 and y=100-1473, hero y=100-300, tabs y=310-365, proof/side layout y=376-1096, nested layer x=366-684 and y=440-730, middle y=733-828, outer y=834-936, final result y=957-1004, number line y=1105-1243, navigation y=1252-1326, and footer y=1338-1455. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0056-reference.png`
+- `0056-desktop.png`
+- `0056-dedicated-target-validation.json`

@@ -238,6 +238,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Base-system number"');
     expect(html).toContain("Every digit must be less than the base");
   });
+  it("renders lesson 74 as a dedicated inside-out continued-fraction evaluator", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 74)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0056"');
+    expect(html).toContain('data-dedicated-lesson="74"');
+    expect(html).toContain('data-object-model="editable-draggable-partial-quotients-exact-rational-inside-out-layers-convergents-decimal-number-line-practice-model"');
+    expect(html).toContain('data-terms="1,2,3"');
+    expect(html).toContain('data-inner="1/3"');
+    expect(html).toContain('data-middle="7/3"');
+    expect(html).toContain('data-convergents="1,3/2,10/7"');
+    expect(html).toContain('data-result="10/7"');
+    expect(html).toContain('data-decimal="1.429"');
+    expect(html).toContain('aria-label="Partial quotient 2: 3"');
+    expect(html).toContain('aria-label="Edit partial quotient 2"');
+    expect(html).toContain("Evaluate nested fractions from inside outward");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

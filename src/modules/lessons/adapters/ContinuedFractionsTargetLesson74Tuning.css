@@ -1,0 +1,43 @@
+.continued74-hero h1 { margin-top: 3px; }
+.continued74-hero > section { padding: 20px 0 0 13px; }
+.continued74-proof > h2 { transform: translateY(-3px); }
+.continued74-nested > .continued74-fraction { width: 205px; }
+.continued74-nested > .continued74-fraction > b:last-child { visibility: hidden; }
+.continued74-nested > div { height: 200px; }
+.continued74-nested > div::before {
+  position: absolute;
+  top: 25px;
+  left: 162px;
+  font-weight: 800;
+  content: "1";
+}
+.continued74-nested > div::after {
+  position: absolute;
+  top: 51px;
+  left: 80px;
+  width: 166px;
+  border-top: 2px solid #14213d;
+  content: "";
+}
+.continued74-nested > div > .continued74-fraction {
+  height: 97px;
+  padding: 10px 45px;
+}
+.continued74-inner-result { top: 220px; }
+.continued74-middle-result { top: 378px; }
+.continued74-outer-result { top: 488px; }
+.continued74-middle { top: 356px; }
+.continued74-outer { top: 457px; }
+.continued74-convergents > div { margin-top: 11px; }
+.continued74-convergents article { height: 60px; }
+.continued74-convergents article:not(:last-child) { margin-bottom: 10px; }
+.continued74-footer { margin-top: 12px; }
+.continued74-nested { padding-top: 21px; }
+.continued74-nested > span { flex: 0 0 auto; white-space: nowrap; }
+.continued74-nested > .continued74-fraction { position: relative; top: -21px; left: -9px; }
+.continued74-nested > div::before { top: 20px; }
+.continued74-nested > div::after { top: 46px; }
+.continued74-page .continued74-middle,
+.continued74-page .continued74-outer { font-size: 27px; line-height: normal; }
+.continued74-middle-result { top: 368px; }
+.continued74-outer-result { top: 475px; }
