@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **23 of 130 lessons completed; 107 pending.**
+Dedicated rebuild target: **24 of 130 lessons completed; 106 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -27,6 +27,7 @@ Dedicated rebuild target: **23 of 130 lessons completed; 107 pending.**
 | 0021   | 21 Numeric Sliders | Complete | Continuous bounded x model with real drag slider, editable range, selectable precision, steppers, presets, linked substitution/result chain, pattern row, graph point/guides, reset/share, and exact 1217x1292 target geometry |
 | 0022   | 22 Integer Sliders | Complete | Integer-snapping x model with real drag/tick/previous/next controls, linked substitution and result, iteration table, staircase plot and guides, five stateful views, and exact 1217x1292 target geometry |
 | 0023   | 23 Angle Sliders | Complete | Draggable unit-circle angle model linked to sine-wave probe, trig values, degree/radian conversion, common-angle controls, 0-360 range, reset/views/workspace/share, and exact 1217x1292 target geometry |
+| 0024   | 24 Animation Controls | Complete | Timed six-frame affine parameter model with retained graph traces, real play/pause, speed and loop controls, timeline/table seeking, step controls, exact outputs, and exact 1388x1134 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -349,3 +350,17 @@ Evidence:
 - `0023-reference.png`
 - `0023-desktop.png`
 - `0023-dedicated-target-validation.json`
+
+## Lesson 24 / Mockup 0024 - Animation Controls
+
+Reworked individually against the target mockup with a dedicated `timed-six-frame-affine-parameter-trace-playback-speed-loop-seek-output-model`. Six explicit frames animate parameter a through `[0, 0.5, 1, 1.5, 2, 2]`; each frame recalculates `y=ax+1`, `y(2)`, the active graph line, retained prior traces, graph labels, timeline state, current-frame card, and table highlight.
+
+Play/Pause uses a real timer, with functional 0.5x, 1x, and 2x speeds. Loop changes endpoint behavior, Step back and Step forward seek one frame, all six timeline points and frame-table rows seek directly, and the duplicated loop controls share one state. The playback model stops at the final frame when loop is disabled.
+
+Final 1388x1134 integrated browser validation pauses frame 3, seeks frame 0, steps to frame 1, switches to 2x, disables looping, verifies timed advancement, selects frame 4 through the table, and reloads to the playing frame-3 target state. The final frame matches the target at surface x=290-1368 and y=123-1112, header y=123-272, workspace y=272-1028, graph y=272-851, timeline y=859-1028, controls x=963-1368, frame table y=715-1012, and navigation y=1043-1112. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0024-reference.png`
+- `0024-desktop.png`
+- `0024-dedicated-target-validation.json`

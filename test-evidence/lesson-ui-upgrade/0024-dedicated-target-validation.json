@@ -1,0 +1,168 @@
+{
+  "mockup": "0024",
+  "lessonId": 24,
+  "route": "/lessons/core-workspaces/24-animation-controls",
+  "objectModel": "timed-six-frame-affine-parameter-trace-playback-speed-loop-seek-output-model",
+  "checks": {
+    "initial": {
+      "frame": "3",
+      "a": "1.5",
+      "output": "4",
+      "playing": "true",
+      "speed": "1x",
+      "loop": "true",
+      "actions": "0"
+    },
+    "paused": {
+      "frame": "3",
+      "a": "1.5",
+      "output": "4",
+      "playing": "false",
+      "speed": "1x",
+      "loop": "true",
+      "actions": "1"
+    },
+    "seek": {
+      "frame": "0",
+      "a": "0",
+      "output": "1",
+      "playing": "false",
+      "speed": "1x",
+      "loop": "true",
+      "actions": "2"
+    },
+    "step": {
+      "frame": "1",
+      "a": "0.5",
+      "output": "2",
+      "playing": "false",
+      "speed": "1x",
+      "loop": "true",
+      "actions": "3"
+    },
+    "speed": {
+      "frame": "1",
+      "a": "0.5",
+      "output": "2",
+      "playing": "false",
+      "speed": "2x",
+      "loop": "true",
+      "actions": "4"
+    },
+    "loopOff": {
+      "frame": "1",
+      "a": "0.5",
+      "output": "2",
+      "playing": "false",
+      "speed": "2x",
+      "loop": "false",
+      "actions": "5"
+    },
+    "timed": {
+      "frame": "2",
+      "a": "1",
+      "output": "3",
+      "playing": "false",
+      "speed": "2x",
+      "loop": "false",
+      "actions": "7"
+    },
+    "table": {
+      "frame": "4",
+      "a": "2",
+      "output": "5",
+      "playing": "false",
+      "speed": "2x",
+      "loop": "false",
+      "actions": "8"
+    },
+    "reset": {
+      "frame": "3",
+      "a": "1.5",
+      "output": "4",
+      "playing": "true",
+      "speed": "1x",
+      "loop": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1388,
+      "height": 1134
+    },
+    "document": {
+      "width": 1388,
+      "height": 1134
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 123,
+      "bottom": 1112,
+      "height": 989,
+      "left": 290,
+      "right": 1368,
+      "width": 1078
+    },
+    "regions": {
+      "header": {
+        "top": 123,
+        "bottom": 272,
+        "height": 149,
+        "left": 290,
+        "right": 1368,
+        "width": 1078
+      },
+      "main": {
+        "top": 272,
+        "bottom": 1028,
+        "height": 756,
+        "left": 290,
+        "right": 1368,
+        "width": 1078
+      },
+      "graph": {
+        "top": 272,
+        "bottom": 851,
+        "height": 579,
+        "left": 290,
+        "right": 948,
+        "width": 658
+      },
+      "timeline": {
+        "top": 859,
+        "bottom": 1028,
+        "height": 169,
+        "left": 290,
+        "right": 948,
+        "width": 658
+      },
+      "side": {
+        "top": 272,
+        "bottom": 1028,
+        "height": 756,
+        "left": 963,
+        "right": 1368,
+        "width": 405
+      },
+      "table": {
+        "top": 715,
+        "bottom": 1012,
+        "height": 297,
+        "left": 979,
+        "right": 1352,
+        "width": 373
+      },
+      "neighbors": {
+        "top": 1043,
+        "bottom": 1112,
+        "height": 69,
+        "left": 290,
+        "right": 1368,
+        "width": 1078
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

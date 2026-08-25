@@ -1,0 +1,479 @@
+.animation-page {
+  position: relative;
+  top: -22px;
+  width: 1078px;
+  height: 989px;
+  margin-bottom: -22px;
+  color: #0a1738;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.animation-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.animation-page h1,
+.animation-page h2,
+.animation-page p {
+  margin: 0;
+}
+.animation-page button,
+.animation-page select {
+  font: inherit;
+  color: inherit;
+}
+.animation-page button {
+  cursor: pointer;
+}
+.animation-breadcrumb {
+  position: absolute;
+  top: -42px;
+  left: 3px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #546a84;
+  font-weight: 800;
+}
+.animation-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.animation-breadcrumb a:first-child {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 1px solid #dce5ed;
+  border-radius: 50%;
+  background: #fff;
+}
+.animation-breadcrumb b {
+  color: #00748b;
+}
+.animation-header {
+  height: 149px;
+  padding: 14px 17px;
+  border-radius: 15px 15px 0 0;
+  background: #fff;
+}
+.animation-header h1 {
+  font-size: 37px;
+  line-height: 45px;
+  font-weight: 900;
+}
+.animation-header p {
+  color: #536983;
+  font-size: 14px;
+}
+.animation-header nav {
+  display: flex;
+  margin-top: 18px;
+  gap: 12px;
+}
+.animation-header nav b {
+  padding: 10px 15px;
+  border: 1px solid #dce4ec;
+  border-radius: 12px;
+  font-size: 10px;
+}
+.animation-main {
+  display: grid;
+  height: 756px;
+  grid-template-columns: 658px 405px;
+  gap: 15px;
+}
+.animation-left {
+  display: grid;
+  grid-template-rows: 579px 169px;
+  gap: 8px;
+}
+.animation-graph,
+.animation-timeline,
+.animation-side {
+  overflow: hidden;
+  border: 1px solid #dfe6ed;
+  border-radius: 13px;
+  background: #fff;
+}
+.animation-graph {
+  overflow: hidden;
+  padding: 14px;
+}
+.animation-graph svg {
+  width: 100%;
+  height: 550px;
+}
+.animation-graph .axis {
+  stroke: #1d2638;
+  stroke-width: 1.5;
+}
+.animation-graph .trace {
+  stroke: #087cf0;
+  stroke-width: 3;
+}
+.animation-graph .trace.t1 {
+  stroke: #8dc5fc;
+  stroke-width: 2.5;
+  stroke-dasharray: 8 5;
+}
+.animation-graph .trace.t2 {
+  stroke: #acd7ff;
+  stroke-width: 2.5;
+  stroke-dasharray: 3 4;
+}
+.animation-graph circle {
+  fill: #087cf0;
+}
+.animation-graph text {
+  font-size: 12px;
+}
+.animation-graph .tick {
+  font-size: 10px;
+}
+.animation-graph .point-label {
+  fill: #0876eb;
+  font-size: 16px;
+  font-weight: 800;
+}
+.animation-graph .equation rect,
+.animation-graph .legend rect {
+  fill: #fff;
+  stroke: #dce4ec;
+  stroke-width: 1.5;
+}
+.animation-graph .equation text {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+}
+.animation-graph .legend text {
+  font-size: 12px;
+  font-weight: 700;
+}
+.animation-timeline {
+  padding: 12px 16px;
+}
+.animation-timeline h2 {
+  font-size: 13px;
+}
+.animation-track {
+  display: grid;
+  height: 57px;
+  grid-template-columns: repeat(6, 1fr);
+  position: relative;
+}
+.animation-track:before {
+  position: absolute;
+  top: 39px;
+  right: 18px;
+  left: 18px;
+  height: 4px;
+  border-radius: 3px;
+  background: #cfd6de;
+  content: "";
+}
+.animation-track:after {
+  position: absolute;
+  top: 39px;
+  left: 18px;
+  width: calc((100% - 36px) * var(--progress, 0.6));
+  height: 4px;
+  background: #0872df;
+  content: "";
+}
+.animation-track button {
+  position: relative;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  font-weight: 800;
+}
+.animation-track button span {
+  display: block;
+}
+.animation-track button i {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 11px auto 0;
+  border-radius: 50%;
+  background: #0872df;
+}
+.animation-track button.active span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  margin: -4px auto -3px;
+  place-items: center;
+  border: 1px solid #f29a19;
+  border-radius: 50%;
+  background: #fff;
+  color: #e66f00;
+  font-size: 16px;
+}
+.animation-track button.active i {
+  background: #e97900;
+}
+.animation-timeline nav {
+  display: grid;
+  grid-template-columns: 109px 136px 156px 1fr;
+  gap: 15px;
+}
+.animation-timeline nav button {
+  display: flex;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #dce4ec;
+  border-radius: 9px;
+  background: #fff;
+  font-size: 14px;
+}
+.animation-timeline nav button.play {
+  background: #075ecb;
+  color: #fff;
+  font-weight: 800;
+}
+.animation-timeline nav button.active {
+  border-color: #87baf0;
+  background: #f7fbff;
+}
+.animation-timeline nav svg {
+  width: 18px;
+}
+.animation-side {
+  height: 756px;
+  min-height: 0;
+  padding: 15px;
+  display: grid;
+  grid-template-rows: 108px 97px 82px 84px minmax(0, 1fr);
+  gap: 14px;
+}
+.animation-side > section {
+  min-height: 0;
+  border: 1px solid #dfe6ed;
+  border-radius: 12px;
+}
+.animation-rule {
+  display: grid;
+  padding: 16px;
+  grid-template-columns: 44px 1fr;
+  gap: 10px;
+}
+.animation-rule > svg {
+  width: 39px;
+  height: 39px;
+  padding: 8px;
+  border: 1.5px solid #0879e9;
+  border-radius: 50%;
+  color: #0879e9;
+  fill: #0879e9;
+}
+.animation-rule span {
+  display: grid;
+  gap: 7px;
+}
+.animation-rule small {
+  font-weight: 800;
+}
+.animation-rule b {
+  font-size: 14px;
+}
+.animation-rule b i {
+  font-family: Georgia, serif;
+}
+.animation-rule em {
+  color: #536984;
+  font-size: 11px;
+  font-style: normal;
+}
+.animation-settings {
+  padding: 13px;
+}
+.animation-settings h2,
+.animation-output h2,
+.animation-table h2 {
+  font-size: 12px;
+}
+.animation-settings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.animation-settings h2 {
+  grid-column: 1/3;
+}
+.animation-settings label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.animation-settings select {
+  width: 92px;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid #dce4ec;
+  border-radius: 8px;
+  background: #fff;
+}
+.animation-settings label:last-child {
+  justify-content: flex-end;
+}
+.animation-settings label > button {
+  position: relative;
+  width: 47px;
+  height: 26px;
+  border: 0;
+  border-radius: 15px;
+  background: #cbd5e1;
+}
+.animation-settings label > button.active {
+  background: #0879e9;
+}
+.animation-settings label > button i {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+}
+.animation-settings label > button.active i {
+  left: 24px;
+}
+.animation-current {
+  padding: 14px 17px;
+  background: #f3fbff !important;
+  color: #0872e2;
+}
+.animation-current small {
+  font-weight: 800;
+}
+.animation-current b {
+  display: flex;
+  margin-top: 13px;
+  align-items: center;
+  gap: 25px;
+  font-size: 22px;
+}
+.animation-current b i {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #248be9;
+}
+.animation-output {
+  padding: 14px;
+}
+.animation-output b {
+  display: block;
+  margin-top: 14px;
+  color: #0872e2;
+  font-size: 21px;
+}
+.animation-table {
+  padding: 13px 8px;
+}
+.animation-table > div {
+  display: grid;
+  margin-top: 12px;
+  grid-template-columns: 64px 78px 1fr 64px;
+  border-top: 1px solid #dce4ec;
+  border-left: 1px solid #dce4ec;
+}
+.animation-table > div > b {
+  display: grid;
+  height: 29px;
+  place-items: center;
+  border-right: 1px solid #dce4ec;
+  border-bottom: 1px solid #dce4ec;
+}
+.animation-table > div > button {
+  display: contents;
+}
+.animation-table > div > button span {
+  display: grid;
+  height: 36px;
+  place-items: center;
+  border-right: 1px solid #dce4ec;
+  border-bottom: 1px solid #dce4ec;
+  font-family: Georgia, serif;
+}
+.animation-table > div > button.active span {
+  border-top: 1px solid #f08a13;
+  border-bottom: 1px solid #f08a13;
+  background: #fffaf3;
+  color: #d46c00;
+}
+.animation-table > div > button.active span:first-child {
+  border-left: 1px solid #f08a13;
+}
+.animation-table > div > button.active span:last-child {
+  border-right: 1px solid #f08a13;
+}
+.animation-neighbors {
+  display: grid;
+  height: 69px;
+  margin-top: 15px;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #dfe6ed;
+  border-radius: 13px;
+  background: #fff;
+}
+.animation-neighbors a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 18px;
+  color: inherit;
+  text-decoration: none;
+}
+.animation-neighbors a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.animation-neighbors span {
+  display: grid;
+}
+.animation-neighbors small {
+  color: #586b84;
+}
+@media (min-width: 1280px) and (max-width: 1439px) {
+  body:has(.animation-page) [data-testid="desktop-sidebar"] {
+    width: 274px;
+  }
+  body:has(.animation-page) #main-content {
+    padding: 54px 16px 0;
+    overflow: hidden;
+    background: #fff;
+  }
+  body:has(.animation-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+  body:has(.animation-page)
+    #main-content
+    .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+    visibility: hidden;
+  }
+}
+@media (max-width: 1099px) {
+  .animation-page {
+    width: 100%;
+    height: auto;
+  }
+  .animation-breadcrumb {
+    display: none;
+  }
+  .animation-main,
+  .animation-left,
+  .animation-side {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .animation-side {
+    margin-top: 12px;
+  }
+}

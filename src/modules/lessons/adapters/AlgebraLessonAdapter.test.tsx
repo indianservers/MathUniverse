@@ -11,7 +11,7 @@ describe("AlgebraLessonAdapter", () => {
       21: "Linked outputs update live",
       22: "Discrete integer slider",
       23: "Control rotations and periodic models",
-      24: "Animation rule",
+      24: "Observe continuous mathematical change",
       25: "Dependency rule",
       26: "Visibility rule",
       27: "Dynamic label",
@@ -104,6 +104,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('aria-label="Draggable angle unit circle"');
     expect(html).toContain('aria-label="Angle slider drag control"');
     expect(html).toContain("Angle Conversion");
+  });
+
+  it("renders lesson 24 as a dedicated timed animation workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 24)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0024"');
+    expect(html).toContain('data-dedicated-lesson="24"');
+    expect(html).toContain('data-object-model="timed-six-frame-affine-parameter-trace-playback-speed-loop-seek-output-model"');
+    expect(html).toContain('data-frame="3"');
+    expect(html).toContain('data-a="1.5"');
+    expect(html).toContain('data-output="4"');
+    expect(html).toContain('aria-label="Seek frame 3"');
+    expect(html).toContain("Frame table");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {
