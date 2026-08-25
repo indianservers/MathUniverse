@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **33 of 130 lessons completed; 97 pending.**
+Dedicated rebuild target: **34 of 130 lessons completed; 96 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -37,6 +37,7 @@ Dedicated rebuild target: **33 of 130 lessons completed; 97 pending.**
 | 0031   | 31 Inequality Input | Complete | Parsed affine inequality with real operator selection, negative-coefficient sign reversal, open/closed boundary number line, graph region, calculated test points, examples/reset/share, and exact 1506x1044 target geometry |
 | 0032   | 32 Lists | Complete | Editable and draggable ordered list with index selection, live summary statistics, calculated append/remove/sort/map pipeline, bar/dot views, real operations/reset/start-over controls, and exact 1487x1058 target geometry |
 | 0033   | 33 Matrices | Complete | Editable/resizable matrix with selected-cell draft/apply cycle, row/column vectors, recursive determinant, trace, vector action, geometric unit-square transform, tabs/reset/share/workspace, and exact 1575x999 target geometry |
+| 0034   | 34 Sequences | Complete | Editable arithmetic-sequence model with calculated term cards, number-line jumps, explicit rule, selectable term table, steppers, presets, restart/reset/share/workspace controls, and exact 1217x1292 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -499,3 +500,17 @@ Evidence:
 - `0033-reference.png`
 - `0033-desktop.png`
 - `0033-dedicated-target-validation.json`
+
+## Lesson 34 / Mockup 0034 - Sequences
+
+Reworked individually against the target mockup with a dedicated `arithmetic-sequence-first-term-common-difference-index-explicit-rule-jump-table-prediction-model`. The first term, common difference, selected index, six-term list, number-line jumps, explicit nth-term rule, value table, quick-check derivation, selected value, and next-term prediction all derive from one explicit arithmetic-sequence state.
+
+Both first-term and common-difference inputs are editable in the rule builder and control panel. Every term card, table row, and n selector changes the selected term; New values cycles calculated presets; Restart restores the initial model while preserving its action history; and tabs, Workspace, Share, and Reset produce visible state changes. The challenge answer and all displayed derivations update from the same model, with no decorative controls.
+
+Final 1217x1292 integrated browser validation changes the model to first term 5 and difference 4 and verifies `[5,9,13,17,21,25]`; selects n=3 and verifies 13; selects table row n=6 and verifies 25; cycles presets to `[3,7,11,15,19,23]` and `[-2,3,8,13,18,23]`; restarts; changes tabs; opens Workspace; shares; and resets. The final frame matches the target at surface x=258-1208 and y=115-1293, header y=115-407, tabs y=417-477, lesson layout y=488-1239, term cards y=537.5-625.5, jump model y=644.5-838.5, lower panels y=857.5-1184.5, challenge y=1201.5-1279.5, and side rail x=1044-1208. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0034-reference.png`
+- `0034-desktop.png`
+- `0034-dedicated-target-validation.json`

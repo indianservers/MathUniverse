@@ -1,0 +1,235 @@
+{
+  "mockup": "0034",
+  "lessonId": 34,
+  "route": "/lessons/core-workspaces/34-sequences",
+  "objectModel": "arithmetic-sequence-first-term-common-difference-index-explicit-rule-jump-table-prediction-model",
+  "checks": {
+    "initial": {
+      "first": "2",
+      "difference": "3",
+      "selected": "5",
+      "selected-value": "14",
+      "terms": "2,5,8,11,14,17",
+      "next": "17",
+      "tab": "0",
+      "workspace": "false",
+      "preset": "0",
+      "actions": "0"
+    },
+    "parameters": {
+      "first": "5",
+      "difference": "4",
+      "selected": "5",
+      "selected-value": "21",
+      "terms": "5,9,13,17,21,25",
+      "next": "25",
+      "tab": "0",
+      "workspace": "false",
+      "preset": "0",
+      "actions": "2"
+    },
+    "selectThree": {
+      "first": "5",
+      "difference": "4",
+      "selected": "3",
+      "selected-value": "13",
+      "terms": "5,9,13,17,21,25",
+      "next": "25",
+      "tab": "0",
+      "workspace": "false",
+      "preset": "0",
+      "actions": "3"
+    },
+    "tableSix": {
+      "first": "5",
+      "difference": "4",
+      "selected": "6",
+      "selected-value": "25",
+      "terms": "5,9,13,17,21,25",
+      "next": "25",
+      "tab": "0",
+      "workspace": "false",
+      "preset": "0",
+      "actions": "4"
+    },
+    "presetOne": {
+      "first": "3",
+      "difference": "4",
+      "selected": "5",
+      "selected-value": "19",
+      "terms": "3,7,11,15,19,23",
+      "next": "23",
+      "tab": "0",
+      "workspace": "false",
+      "preset": "1",
+      "actions": "5"
+    },
+    "presetTwo": {
+      "first": "-2",
+      "difference": "5",
+      "selected": "5",
+      "selected-value": "18",
+      "terms": "-2,3,8,13,18,23",
+      "next": "23",
+      "tab": "0",
+      "workspace": "false",
+      "preset": "2",
+      "actions": "6"
+    },
+    "restart": {
+      "first": "2",
+      "difference": "3",
+      "selected": "5",
+      "selected-value": "14",
+      "terms": "2,5,8,11,14,17",
+      "next": "17",
+      "tab": "0",
+      "workspace": "false",
+      "preset": "0",
+      "actions": "7"
+    },
+    "tab": {
+      "first": "2",
+      "difference": "3",
+      "selected": "5",
+      "selected-value": "14",
+      "terms": "2,5,8,11,14,17",
+      "next": "17",
+      "tab": "3",
+      "workspace": "false",
+      "preset": "0",
+      "actions": "8"
+    },
+    "workspace": {
+      "first": "2",
+      "difference": "3",
+      "selected": "5",
+      "selected-value": "14",
+      "terms": "2,5,8,11,14,17",
+      "next": "17",
+      "tab": "3",
+      "workspace": "true",
+      "preset": "0",
+      "actions": "9"
+    },
+    "share": {
+      "first": "2",
+      "difference": "3",
+      "selected": "5",
+      "selected-value": "14",
+      "terms": "2,5,8,11,14,17",
+      "next": "17",
+      "tab": "3",
+      "workspace": "true",
+      "preset": "0",
+      "actions": "10"
+    },
+    "reset": {
+      "first": "2",
+      "difference": "3",
+      "selected": "5",
+      "selected-value": "14",
+      "terms": "2,5,8,11,14,17",
+      "next": "17",
+      "tab": "0",
+      "workspace": "false",
+      "preset": "0",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1217,
+      "height": 1292
+    },
+    "document": {
+      "width": 1217,
+      "height": 1293
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 115,
+      "bottom": 1293,
+      "height": 1178,
+      "left": 258,
+      "right": 1208,
+      "width": 950
+    },
+    "regions": {
+      "header": {
+        "top": 115,
+        "bottom": 407,
+        "height": 292,
+        "left": 258,
+        "right": 1208,
+        "width": 950
+      },
+      "tabs": {
+        "top": 417,
+        "bottom": 477,
+        "height": 60,
+        "left": 258,
+        "right": 1208,
+        "width": 950
+      },
+      "layout": {
+        "top": 488,
+        "bottom": 1239,
+        "height": 751,
+        "left": 258,
+        "right": 1208,
+        "width": 950
+      },
+      "work": {
+        "top": 488,
+        "bottom": 1294.5,
+        "height": 806.5,
+        "left": 258,
+        "right": 1033,
+        "width": 775
+      },
+      "terms": {
+        "top": 537.5,
+        "bottom": 625.5,
+        "height": 88,
+        "left": 273,
+        "right": 1018,
+        "width": 745
+      },
+      "jumps": {
+        "top": 644.5,
+        "bottom": 838.5,
+        "height": 194,
+        "left": 273,
+        "right": 1018,
+        "width": 745
+      },
+      "bottom": {
+        "top": 857.5,
+        "bottom": 1184.5,
+        "height": 327,
+        "left": 273,
+        "right": 1018,
+        "width": 745
+      },
+      "challenge": {
+        "top": 1201.5,
+        "bottom": 1279.5,
+        "height": 78,
+        "left": 273,
+        "right": 1018,
+        "width": 745
+      },
+      "side": {
+        "top": 488,
+        "bottom": 1294.5,
+        "height": 806.5,
+        "left": 1044,
+        "right": 1208,
+        "width": 164
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

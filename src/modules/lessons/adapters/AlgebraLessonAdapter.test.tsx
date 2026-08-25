@@ -21,7 +21,7 @@ describe("AlgebraLessonAdapter", () => {
       31: "Explore solution regions",
       32: "Work with ordered collections",
       33: "Support linear algebra calculations",
-      34: "Sequence rule",
+      34: "Generate ordered mathematical patterns",
       35: "Piecewise rule",
       36: "Boolean rule",
       37: "Dynamic text",
@@ -239,6 +239,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('data-trace="5"');
     expect(html).toContain('data-vector="3,7"');
     expect(html).toContain('aria-label="Selected matrix cell value"');
+  });
+
+  it("renders lesson 34 as a dedicated arithmetic sequence workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 34)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0034"');
+    expect(html).toContain('data-dedicated-lesson="34"');
+    expect(html).toContain('data-object-model="arithmetic-sequence-first-term-common-difference-index-explicit-rule-jump-table-prediction-model"');
+    expect(html).toContain('data-terms="2,5,8,11,14,17"');
+    expect(html).toContain('data-selected="5"');
+    expect(html).toContain('data-selected-value="14"');
+    expect(html).toContain('aria-label="Common difference stepper"');
+    expect(html).toContain("Number-line jump model");
   });
 
   it("renders phase 4 algebra lessons 92 through 128 with lesson-specific structure labs", () => {
