@@ -1,0 +1,306 @@
+{
+  "mockup": "0054",
+  "lessonId": 72,
+  "route": "/lessons/numbers-and-arithmetic/72-modular-arithmetic",
+  "objectModel": "editable-dividend-modulus-remainder-clock-draggable-cycle-position-quotient-remainder-decomposition-grouped-cycles-misconception-practice-model",
+  "checks": {
+    "initial": {
+      "dividend": "23",
+      "modulus": "7",
+      "quotient": "3",
+      "remainder": "2",
+      "equation": "23=3x7+2",
+      "drag-remainder": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "expanded": "false",
+      "practice-loaded": "false",
+      "actions": "0"
+    },
+    "dividend31": {
+      "dividend": "31",
+      "modulus": "7",
+      "quotient": "4",
+      "remainder": "3",
+      "equation": "31=4x7+3",
+      "drag-remainder": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "expanded": "false",
+      "practice-loaded": "false",
+      "actions": "1"
+    },
+    "modulus5": {
+      "dividend": "31",
+      "modulus": "5",
+      "quotient": "6",
+      "remainder": "1",
+      "equation": "31=6x5+1",
+      "drag-remainder": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "expanded": "false",
+      "practice-loaded": "false",
+      "actions": "2"
+    },
+    "clickedRemainder": {
+      "dividend": "34",
+      "modulus": "5",
+      "quotient": "6",
+      "remainder": "4",
+      "equation": "34=6x5+4",
+      "drag-remainder": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "expanded": "false",
+      "practice-loaded": "false",
+      "actions": "3"
+    },
+    "draggedRemainder": {
+      "dividend": "32",
+      "modulus": "5",
+      "quotient": "6",
+      "remainder": "2",
+      "equation": "32=6x5+2",
+      "drag-remainder": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "expanded": "false",
+      "practice-loaded": "false",
+      "actions": "4"
+    },
+    "explainTab": {
+      "dividend": "32",
+      "modulus": "5",
+      "quotient": "6",
+      "remainder": "2",
+      "equation": "32=6x5+2",
+      "drag-remainder": "",
+      "tab": "Explain",
+      "language": "English (English)",
+      "workspace": "false",
+      "expanded": "false",
+      "practice-loaded": "false",
+      "actions": "5"
+    },
+    "workspace": {
+      "dividend": "32",
+      "modulus": "5",
+      "quotient": "6",
+      "remainder": "2",
+      "equation": "32=6x5+2",
+      "drag-remainder": "",
+      "tab": "Explain",
+      "language": "English (English)",
+      "workspace": "true",
+      "expanded": "false",
+      "practice-loaded": "false",
+      "actions": "6"
+    },
+    "expanded": {
+      "dividend": "32",
+      "modulus": "5",
+      "quotient": "6",
+      "remainder": "2",
+      "equation": "32=6x5+2",
+      "drag-remainder": "",
+      "tab": "Explain",
+      "language": "English (English)",
+      "workspace": "true",
+      "expanded": "true",
+      "practice-loaded": "false",
+      "actions": "7"
+    },
+    "reset": {
+      "dividend": "23",
+      "modulus": "7",
+      "quotient": "3",
+      "remainder": "2",
+      "equation": "23=3x7+2",
+      "drag-remainder": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "expanded": "false",
+      "practice-loaded": "false",
+      "actions": "0"
+    },
+    "practice": {
+      "dividend": "31",
+      "modulus": "5",
+      "quotient": "6",
+      "remainder": "1",
+      "equation": "31=6x5+1",
+      "drag-remainder": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "expanded": "false",
+      "practice-loaded": "true",
+      "actions": "1"
+    },
+    "restored": {
+      "dividend": "23",
+      "modulus": "7",
+      "quotient": "3",
+      "remainder": "2",
+      "equation": "23=3x7+2",
+      "drag-remainder": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "expanded": "false",
+      "practice-loaded": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1072,
+      "height": 1466
+    },
+    "document": {
+      "width": 1072,
+      "height": 1466
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 100,
+      "bottom": 1466,
+      "height": 1366,
+      "left": 230,
+      "right": 1060,
+      "width": 830
+    },
+    "regions": {
+      "hero": {
+        "top": 100,
+        "bottom": 333,
+        "height": 233,
+        "left": 230,
+        "right": 1060,
+        "width": 830
+      },
+      "tabs": {
+        "top": 344,
+        "bottom": 401,
+        "height": 57,
+        "left": 230,
+        "right": 1060,
+        "width": 830
+      },
+      "main": {
+        "top": 411,
+        "bottom": 1234,
+        "height": 823,
+        "left": 230,
+        "right": 1060,
+        "width": 830
+      },
+      "work": {
+        "top": 433,
+        "bottom": 1209,
+        "height": 776,
+        "left": 253,
+        "right": 763,
+        "width": 510
+      },
+      "clock": {
+        "top": 495,
+        "bottom": 877,
+        "height": 382,
+        "left": 298,
+        "right": 718,
+        "width": 420
+      },
+      "equations": {
+        "top": 879,
+        "bottom": 996,
+        "height": 117,
+        "left": 253,
+        "right": 733,
+        "width": 480
+      },
+      "grouping": {
+        "top": 1011,
+        "bottom": 1206,
+        "height": 195,
+        "left": 253,
+        "right": 763,
+        "width": 510
+      },
+      "side": {
+        "top": 435,
+        "bottom": 1211,
+        "height": 776,
+        "left": 777,
+        "right": 1028,
+        "width": 251
+      },
+      "inputs": {
+        "top": 435,
+        "bottom": 578,
+        "height": 143,
+        "left": 777,
+        "right": 1028,
+        "width": 251
+      },
+      "results": {
+        "top": 590,
+        "bottom": 839,
+        "height": 249,
+        "left": 777,
+        "right": 1028,
+        "width": 251
+      },
+      "tip": {
+        "top": 866,
+        "bottom": 947,
+        "height": 81,
+        "left": 777,
+        "right": 1028,
+        "width": 251
+      },
+      "misconception": {
+        "top": 965,
+        "bottom": 1118,
+        "height": 153,
+        "left": 777,
+        "right": 1028,
+        "width": 251
+      },
+      "practice": {
+        "top": 1147,
+        "bottom": 1211,
+        "height": 64,
+        "left": 777,
+        "right": 1028,
+        "width": 251
+      },
+      "navigation": {
+        "top": 1244,
+        "bottom": 1308,
+        "height": 64,
+        "left": 230,
+        "right": 1060,
+        "width": 830
+      },
+      "footer": {
+        "top": 1326,
+        "bottom": 1454,
+        "height": 128,
+        "left": 230,
+        "right": 1060,
+        "width": 830
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

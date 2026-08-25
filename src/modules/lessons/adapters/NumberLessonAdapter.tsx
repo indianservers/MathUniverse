@@ -20,6 +20,7 @@ import PrimeFactorisationTargetLesson68 from "./PrimeFactorisationTargetLesson68
 import HcfGcdTargetLesson69 from "./HcfGcdTargetLesson69";
 import LcmTargetLesson70 from "./LcmTargetLesson70";
 import DivisibilityRulesTargetLesson71 from "./DivisibilityRulesTargetLesson71";
+import ModularArithmeticTargetLesson72 from "./ModularArithmeticTargetLesson72";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -66,6 +67,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 71) {
     return <DivisibilityRulesTargetLesson71 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 72) {
+    return <ModularArithmeticTargetLesson72 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

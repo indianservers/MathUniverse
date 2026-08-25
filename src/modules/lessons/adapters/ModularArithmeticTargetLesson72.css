@@ -1,0 +1,132 @@
+.modular72-page {
+  position: relative;
+  top: -44px;
+  left: 2px;
+  width: calc(100vw - 242px);
+  height: 1366px;
+  margin-bottom: -45px;
+  color: #102040;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.modular72-page * { box-sizing: border-box; letter-spacing: 0; }
+.modular72-page h1, .modular72-page h2, .modular72-page h3, .modular72-page p { margin: 0; }
+.modular72-page button, .modular72-page input { color: inherit; font: inherit; }
+.modular72-page button { cursor: pointer; }
+.modular72-breadcrumb { position: absolute; top: -38px; display: flex; align-items: center; gap: 10px; color: #536981; }
+.modular72-breadcrumb a { color: inherit; text-decoration: none; }
+.modular72-breadcrumb a:first-child { display: grid; width: 27px; height: 27px; place-items: center; border-radius: 50%; background: #fff; }
+.modular72-breadcrumb svg { width: 15px; }
+.modular72-breadcrumb b { color: #08758d; }
+.modular72-hero { position: relative; height: 233px; padding: 20px; border-radius: 14px; background: #fff; }
+.modular72-hero h1 { transform: translateY(-8px); font-size: 36px; line-height: 42px; font-weight: 900; }
+.modular72-hero > p { transform: translateY(-8px); color: #5e718d; font-size: 15px; }
+.modular72-badges { display: flex; margin-top: 4px; gap: 7px; }
+.modular72-badges b { padding: 7px 10px; border: 1px solid #dce5ed; border-radius: 18px; font-size: 9px; }
+.modular72-hero aside { display: flex; margin-top: 4px; flex-wrap: wrap; gap: 8px; }
+.modular72-hero aside button { display: flex; height: 43px; padding: 0 14px; align-items: center; gap: 8px; border: 1px solid #dce5ed; border-radius: 10px; background: #fff; font-weight: 700; }
+.modular72-hero aside button:first-child { width: 205px; }
+.modular72-hero aside button:first-child span { flex: 1; text-align: left; }
+.modular72-hero aside button:first-child i { font-style: normal; }
+.modular72-hero aside button:last-child { flex-basis: 107px; margin-right: 680px; }
+.modular72-hero aside svg { width: 16px; }
+.modular72-hero aside .active { border-color: #16a8c2; background: #ecfbff; }
+.modular72-status { position: absolute; right: 68px; bottom: 19px; display: flex; align-items: center; gap: 7px; padding: 8px 12px; border: 1px solid #e2e7ed; border-radius: 18px; font-size: 10px; font-weight: 800; }
+.modular72-status i { width: 8px; height: 8px; border-radius: 50%; background: #2bc34c; }
+.modular72-expand { position: absolute; right: 20px; bottom: 16px; display: grid; width: 39px; height: 39px; place-items: center; border: 1px solid #e2e7ed; border-radius: 50%; background: #fff; }
+.modular72-expand svg { width: 15px; }
+.modular72-tabs { display: grid; height: 57px; margin-top: 11px; padding: 7px; border-radius: 12px; background: #fff; grid-template-columns: 210px repeat(4, 1fr); gap: 4px; }
+.modular72-tabs button { display: flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 9px; background: transparent; font-weight: 800; }
+.modular72-tabs button.active { background: linear-gradient(90deg, #08a8bd, #087892); color: #fff; box-shadow: 0 7px 14px #0793a73d; }
+.modular72-main { position: relative; display: grid; height: 823px; margin-top: 10px; padding: 22px 17px 75px 23px; border-radius: 13px; background: #fff; grid-template-columns: 510px 251px; gap: 14px; }
+.modular72-work > header small, .modular72-side small, .modular72-grouping small { color: #07869d; font-size: 9px; font-weight: 900; }
+.modular72-work > header h2 { margin-top: 9px; font-size: 25px; line-height: 30px; }
+.modular72-work > header h2 b { color: #d79c00; }
+.modular72-clock { position: relative; width: 420px; height: 382px; margin: 5px auto 0; }
+.modular72-clock > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.modular72-clock-center { position: absolute; top: 50%; left: 48%; display: flex; width: 140px; transform: translate(-50%, -46%); flex-direction: column; align-items: center; text-align: center; }
+.modular72-clock-center b { font-size: 34px; line-height: 36px; }
+.modular72-clock-center strong { color: #079ab5; font-size: 18px; }
+.modular72-clock-center span { margin-top: 12px; line-height: 19px; }
+.modular72-clock > button { position: absolute; z-index: 2; width: 42px; height: 42px; padding: 0; transform: translate(-50%, -50%); border: 0; background: transparent; }
+.modular72-clock > button i { position: absolute; top: 8px; left: 8px; width: 25px; height: 25px; border: 4px solid #fff; border-radius: 50%; background: #7846ce; box-shadow: 0 2px 6px #21324788; }
+.modular72-clock > button:nth-of-type(-n+4) i { background: #0aa9c0; }
+.modular72-clock > button.active i { width: 31px; height: 31px; top: 5px; left: 5px; border-color: #fff; background: #e2a400; box-shadow: 0 0 0 3px #e2a400, 0 3px 7px #21324788; }
+.modular72-clock > button.dragging i { opacity: .55; }
+.modular72-clock > button span { position: absolute; color: #162548; font-size: 18px; font-weight: 900; }
+.modular72-clock > button:nth-of-type(1) span { top: -20px; left: 14px; }
+.modular72-clock > button:nth-of-type(2) span, .modular72-clock > button:nth-of-type(3) span { top: 7px; left: 42px; }
+.modular72-clock > button:nth-last-of-type(1) span, .modular72-clock > button:nth-last-of-type(2) span { top: 7px; right: 42px; }
+.modular72-clock > button:nth-of-type(n+4):nth-of-type(-n+6) span { top: 35px; left: 14px; }
+.modular72-clock > button.active span { color: #d49500; }
+.modular72-equations { display: flex; width: 480px; flex-direction: column; gap: 11px; margin-top: 2px; }
+.modular72-equations p { display: flex; height: 53px; padding: 0 24px; align-items: center; justify-content: center; gap: 18px; border: 1px solid #d8e2ea; border-radius: 10px; font-size: 26px; font-weight: 900; }
+.modular72-equations p > b { margin-right: 2px; }
+.modular72-equations p > span { font-weight: 500; }
+.modular72-equations p strong { color: #7d45d1; }
+.modular72-equations p em { color: #db9d00; font-style: normal; }
+.modular72-equations p i { color: #162548; font-style: normal; }
+.modular72-grouping { margin-top: 15px; }
+.modular72-grouping > svg { width: 100%; height: 145px; margin-top: 4px; overflow: visible; }
+.modular72-grouping .axis, .modular72-grouping .tick { stroke: #263955; stroke-width: 2; }
+.modular72-grouping .axis-arrow { fill: #263955; }
+.modular72-grouping text { fill: #142440; font-size: 12px; font-weight: 800; text-anchor: middle; }
+.modular72-grouping .brace { fill: none; stroke: #7e44d3; stroke-width: 2; }
+.modular72-grouping .brace.remainder { stroke: #d79c00; }
+.modular72-grouping .cycle-number { fill: #7840ce; font-size: 14px; }
+.modular72-grouping .cycle-number.remainder { fill: #d49300; }
+.modular72-grouping .cycle-label { font-size: 11px; }
+.modular72-grouping > p { display: flex; width: 360px; height: 36px; margin: -8px auto 0; align-items: center; justify-content: center; gap: 13px; border: 1px solid #d8e2ea; border-radius: 8px; background: #f6f9fb; }
+.modular72-grouping > p svg { width: 19px; color: #31527d; }
+.modular72-side { position: relative; top: 2px; display: flex; flex-direction: column; gap: 12px; }
+.modular72-side > section, .modular72-side > button { border: 1px solid #dce5ed; border-radius: 10px; background: #fff; }
+.modular72-inputs { height: 143px; padding: 15px; }
+.modular72-inputs label { display: flex; height: 54px; align-items: center; justify-content: space-between; border-bottom: 1px solid #e0e7ed; font-size: 14px; }
+.modular72-inputs label:last-child { border-bottom: 0; }
+.modular72-inputs input { width: 83px; border: 0; outline: 0; background: transparent; color: #1755bd; font-size: 21px; font-weight: 900; text-align: right; }
+.modular72-results { height: 249px; padding: 15px; }
+.modular72-results p { display: flex; height: 107px; padding: 20px 0 8px; flex-direction: column; gap: 9px; border-bottom: 1px solid #e0e7ed; font-size: 16px; }
+.modular72-results p b { color: #7840ce; font-size: 42px; line-height: 42px; }
+.modular72-results p:last-child { height: 104px; margin: 0 -8px; padding: 12px 8px 8px; border: 1px solid #efbb32; border-radius: 9px; background: #fff8df; }
+.modular72-results p:last-child b { color: #db9c00; }
+.modular72-tip { display: flex; height: 81px; padding: 13px; align-items: center; gap: 18px; background: #edf8ff !important; color: #1353aa; font-size: 15px; line-height: 22px; }
+.modular72-tip { margin-top: 15px; }
+.modular72-tip svg { width: 27px; color: #1b88df; }
+.modular72-misconception { display: flex; height: 153px; padding: 15px; gap: 15px; background: #fbf8ff !important; }
+.modular72-misconception { margin-top: 6px; }
+.modular72-misconception > svg { width: 27px; flex: 0 0 auto; color: #9b50e4; }
+.modular72-misconception small { color: #4c397a; }
+.modular72-misconception p { margin-top: 19px; font-size: 14px; line-height: 23px; }
+.modular72-practice { display: flex; height: 64px; padding: 0 14px; align-items: center; gap: 16px; background: #f9f5ff !important; color: #7533bc; text-align: left; }
+.modular72-practice { margin-top: 17px; }
+.modular72-practice svg { width: 24px; }
+.modular72-navigation { position: absolute; right: 0; bottom: -74px; left: 0; display: grid; height: 64px; grid-template-columns: 1fr 1fr; gap: 344px; }
+.modular72-navigation a { display: flex; padding: 8px 18px; align-items: center; gap: 12px; border: 1px solid #dce5ed; border-radius: 9px; color: #52627a; text-decoration: none; background: #fff; }
+.modular72-navigation a:last-child { justify-content: flex-end; text-align: right; }
+.modular72-navigation svg { width: 15px; }
+.modular72-navigation span { display: flex; flex-direction: column; font-size: 9px; }
+.modular72-navigation b { margin-top: 4px; color: #24364f; font-size: 11px; }
+.modular72-footer { position: relative; height: 128px; margin-top: 92px; padding: 14px; border: 1px solid #dfe8ee; border-radius: 11px; background: #fff; color: #5d6f84; font-size: 7px; }
+.modular72-footer h3 { display: flex; align-items: center; gap: 7px; color: #17243a; font-size: 10px; }
+.modular72-footer h3 svg { width: 13px; color: #06a4bf; }
+.modular72-footer > p { margin-top: 6px; }
+.modular72-footer nav { position: absolute; top: 14px; right: 12px; display: flex; gap: 6px; }
+.modular72-footer nav a { display: flex; height: 38px; padding: 0 13px; align-items: center; gap: 6px; border: 1px solid #cceaf0; border-radius: 10px; color: inherit; font-weight: 700; text-decoration: none; }
+.modular72-footer nav svg { width: 13px; }
+.modular72-footer hr { margin: 18px 0 9px; border: 0; border-top: 1px solid #dfe7ed; }
+.modular72-footer small { display: block; margin-top: 6px; font-size: 6px; }
+body:has(.modular72-page) #main-content .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) { visibility: hidden; }
+@media (min-width: 900px) {
+  body:has(.modular72-page) [data-testid="desktop-sidebar"] { width: 214px; }
+  body:has(.modular72-page) #main-content { padding: 53px 14px 0; overflow: hidden; background: #f4fbff; }
+  body:has(.modular72-page) footer[aria-label="Site footer"] { display: none; }
+}
+@media (max-width: 900px) {
+  .modular72-page { position: static; width: 100%; height: auto; margin: 0; }
+  .modular72-breadcrumb { position: static; margin-bottom: 8px; }
+  .modular72-hero { height: auto; }
+  .modular72-tabs { grid-template-columns: repeat(5, minmax(95px, 1fr)); overflow-x: auto; }
+  .modular72-main { height: auto; grid-template-columns: 1fr; }
+  .modular72-side { margin-top: 12px; }
+  .modular72-navigation { position: static; margin-top: 14px; gap: 8px; }
+}

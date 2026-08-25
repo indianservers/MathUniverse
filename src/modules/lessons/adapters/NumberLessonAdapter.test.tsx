@@ -206,6 +206,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Number to test"');
     expect(html).toContain("Use the rule for the chosen divisor only");
   });
+  it("renders lesson 72 as a dedicated modular-arithmetic remainder clock", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 72)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0054"');
+    expect(html).toContain('data-dedicated-lesson="72"');
+    expect(html).toContain('data-object-model="editable-dividend-modulus-remainder-clock-draggable-cycle-position-quotient-remainder-decomposition-grouped-cycles-misconception-practice-model"');
+    expect(html).toContain('data-dividend="23"');
+    expect(html).toContain('data-modulus="7"');
+    expect(html).toContain('data-quotient="3"');
+    expect(html).toContain('data-remainder="2"');
+    expect(html).toContain('data-equation="23=3x7+2"');
+    expect(html).toContain('aria-label="Remainder position 2"');
+    expect(html).toContain('aria-label="Dividend"');
+    expect(html).toContain('aria-label="Modulus"');
+    expect(html).toContain("Keep the remainder");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **52 of 130 lessons completed; 78 pending.**
+Dedicated rebuild target: **54 of 130 lessons completed; 76 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -56,6 +56,8 @@ Dedicated rebuild target: **52 of 130 lessons completed; 78 pending.**
 | 0050   |                    68 Prime Factorisation | Complete | Dedicated recursive binary factor-tree model with editable composite, calculated split steps/prime leaves, exponent compression, real rebuild slider, candidate frequency, dynamic practice, expand/reset controls, and exact 1536x1024 target geometry             |
 | 0051   |                               69 HCF/GCD | Complete | Dedicated editable pair model with calculated factor-set intersection, prime-exponent overlap, native draggable shared candidates, equal-group proof, steppers, misconception/practice states, and exact 1470x1070 target geometry                              |
 | 0052   |                                   70 LCM | Complete | Dedicated editable pair model with synchronized jump lines, generated multiple lists, native draggable landing candidates, prime-power ladder, least-shared proof, steppers, full controls/practice, and exact 1073x1466 target geometry                       |
+| 0053   |                    71 Divisibility Rules | Complete | Dedicated editable three-digit rule machine with five divisor modes, native draggable digit reordering, rule-specific evidence, exact quotient/remainder verification, working lever, misconception/practice states, and exact 1462x1076 target geometry          |
+| 0054   |                    72 Modular Arithmetic | Complete | Dedicated editable dividend/modulus remainder clock with native draggable cycle positions, calculated quotient/remainder, exact additive and multiplicative decomposition, grouped cycles, live practice, and exact 1072x1466 target geometry                    |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -784,3 +786,31 @@ Evidence:
 - `0052-reference.png`
 - `0052-desktop.png`
 - `0052-dedicated-target-validation.json`
+
+## Lesson 71 / Mockup 0053 - Divisibility Rules
+
+Reworked individually against the target mockup with a dedicated `editable-three-digit-number-rule-selector-draggable-digit-reorder-rule-specific-evidence-machine-exact-division-misconception-practice-model`. The editable three-digit number and selected divisor drive the digit tray, digit sum, last-digit evidence, rule instruction, divisibility verdict, quotient, remainder, misconception example, and practice result from one lesson-owned calculation model.
+
+All five rule selectors are live. Each digit is a native draggable object and dropping one onto another position swaps the number and immediately recalculates every representation. The divisibility-machine lever records real runs, the direct number input is guarded to three digits, and the practice check grades its calculated result. The shared number adapter only dispatches Lesson 71 to this separate component.
+
+Final 1462x1076 integrated browser validation verifies 234 under rules 9, 2, and 5; edits to 235; physically reorders the digits to 532; verifies rule 3 produces digit sum 10 and remainder 1; runs the machine; checks practice; and restores 234 under rule 9. The final frame matches the target at surface x=255-1436 and y=115-1052, panel y=115-980, title y=132-210, rules y=210-327, lab y=342-965, machine x=398-795 and y=529-679, side rail x=1015-1419 and y=234-964, and navigation y=996-1052. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0053-reference.png`
+- `0053-desktop.png`
+- `0053-dedicated-target-validation.json`
+
+## Lesson 72 / Mockup 0054 - Modular Arithmetic
+
+Reworked individually against the target mockup with a dedicated `editable-dividend-modulus-remainder-clock-draggable-cycle-position-quotient-remainder-decomposition-grouped-cycles-misconception-practice-model`. The dividend and modulus produce the quotient, remainder, highlighted clock landing, repeated-cycle sum, division-algorithm equation, cycle brackets, misconception statement, and practice result from one lesson-owned calculation model.
+
+Both numeric inputs are directly editable with guards. Every clock position is clickable and a native draggable/drop target: moving the landing preserves the current quotient while changing the remainder and dividend consistently. The `31 mod 5` practice control loads a real new model, while lesson tabs, language, Workspace, expand, Reset, Share, navigation, and footer links all change or navigate real state. The shared number adapter only dispatches Lesson 72 to this separate component.
+
+Final 1072x1466 integrated browser validation verifies `23 mod 7 = 2` and `23 = 3 x 7 + 2`; edits the dividend to 31 and modulus to 5; clicks remainder 4 to produce 34; physically drags the landing to remainder 2 to produce 32; exercises Explain, Workspace, and expand; resets; loads the `31 mod 5 = 1` practice; and restores the target state. The final frame matches the target at page x=230-1060 and y=100-1466, hero y=100-333, tabs y=344-401, main y=411-1234, equations x=253-733 and y=879-996, grouping y=1011-1206, side cards x=777-1028 and y=435-1211, navigation y=1244-1308, and footer y=1326-1454. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0054-reference.png`
+- `0054-desktop.png`
+- `0054-dedicated-target-validation.json`
