@@ -1,0 +1,191 @@
+{
+  "mockup": "0020",
+  "lessonId": 20,
+  "route": "/lessons/core-workspaces/20-variable-explorer",
+  "objectModel": "single-source-variable-linked-rule-substitution-output-dependency-graph-table-verification-model",
+  "checks": {
+    "initial": {
+      "x": "1",
+      "y": "5",
+      "view": "0",
+      "symbolic": "true",
+      "workspace-open": "false",
+      "actions": "0"
+    },
+    "slider": {
+      "x": "-4",
+      "y": "-5",
+      "view": "0",
+      "symbolic": "true",
+      "workspace-open": "false",
+      "actions": "1"
+    },
+    "preset": {
+      "x": "3",
+      "y": "9",
+      "view": "0",
+      "symbolic": "true",
+      "workspace-open": "false",
+      "actions": "2"
+    },
+    "numeric": {
+      "x": "3",
+      "y": "9",
+      "view": "0",
+      "symbolic": "false",
+      "workspace-open": "false",
+      "actions": "3"
+    },
+    "view": {
+      "x": "3",
+      "y": "9",
+      "view": "5",
+      "symbolic": "false",
+      "workspace-open": "false",
+      "actions": "4"
+    },
+    "workspace": {
+      "x": "3",
+      "y": "9",
+      "view": "5",
+      "symbolic": "false",
+      "workspace-open": "true",
+      "actions": "5"
+    },
+    "shared": {
+      "x": "3",
+      "y": "9",
+      "view": "5",
+      "symbolic": "false",
+      "workspace-open": "true",
+      "actions": "6"
+    },
+    "reset": {
+      "x": "1",
+      "y": "5",
+      "view": "0",
+      "symbolic": "true",
+      "workspace-open": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1217,
+      "height": 1292
+    },
+    "document": {
+      "width": 1217,
+      "height": 1292
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 110,
+      "bottom": 1290,
+      "height": 1180,
+      "left": 257,
+      "right": 1204,
+      "width": 947
+    },
+    "regions": {
+      "header": {
+        "top": 110,
+        "bottom": 306,
+        "height": 196,
+        "left": 257,
+        "right": 1204,
+        "width": 947
+      },
+      "tabs": {
+        "top": 319,
+        "bottom": 372,
+        "height": 53,
+        "left": 257,
+        "right": 1204,
+        "width": 947
+      },
+      "main": {
+        "top": 384,
+        "bottom": 1066,
+        "height": 682,
+        "left": 257,
+        "right": 1204,
+        "width": 947
+      },
+      "flow": {
+        "top": 384,
+        "bottom": 1066,
+        "height": 682,
+        "left": 257,
+        "right": 787,
+        "width": 530
+      },
+      "side": {
+        "top": 384,
+        "bottom": 1066,
+        "height": 682,
+        "left": 804,
+        "right": 1199,
+        "width": 395
+      },
+      "control": {
+        "top": 384,
+        "bottom": 591,
+        "height": 207,
+        "left": 804,
+        "right": 1199,
+        "width": 395
+      },
+      "callout": {
+        "top": 603,
+        "bottom": 687,
+        "height": 84,
+        "left": 804,
+        "right": 1199,
+        "width": 395
+      },
+      "table": {
+        "top": 699,
+        "bottom": 844,
+        "height": 145,
+        "left": 804,
+        "right": 1199,
+        "width": 395
+      },
+      "verify": {
+        "top": 856,
+        "bottom": 1034,
+        "height": 178,
+        "left": 804,
+        "right": 1199,
+        "width": 395
+      },
+      "graph": {
+        "top": 899,
+        "bottom": 1052,
+        "height": 153,
+        "left": 284,
+        "right": 760,
+        "width": 476
+      },
+      "neighbors": {
+        "top": 1078,
+        "bottom": 1137,
+        "height": 59,
+        "left": 257,
+        "right": 1204,
+        "width": 947
+      },
+      "footer": {
+        "top": 1154,
+        "bottom": 1291,
+        "height": 137,
+        "left": 257,
+        "right": 1204,
+        "width": 947
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

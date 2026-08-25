@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **19 of 130 lessons completed; 111 pending.**
+Dedicated rebuild target: **20 of 130 lessons completed; 110 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -23,6 +23,7 @@ Dedicated rebuild target: **19 of 130 lessons completed; 111 pending.**
 | 0017   | 17 Calculation History | Complete | Selectable provenance-linked history rows with real reuse/copy/pin/inspect actions, live source/result trace, dependency-chain validation, reset/views, and immediate graded practice at exact 1536x1024 target geometry |
 | 0018   | 18 Exact and Decimal Modes | Complete | Linked unit-square radical and decimal number-line model with real exact/decimal modes, 2-16 place precision slider, live trace/table, expansion, reset/views, and rotating graded context practice at exact 1068x1472 target geometry |
 | 0019   | 19 Algebra Workspace | Complete | Editable affine-rule dependency graph with draggable x, parsed rule validation, live substitution/output/equivalence trace, dynamic test table, Clear All, reset/views, and rotating calculated practice at exact 1024x1536 target geometry |
+| 0020   | 20 Variable Explorer | Complete | Single-source x dependency model with real -5..5 slider and presets, linked rule/substitution/output stages, symbolic/numeric trace, update graph, value table, verification, reset/views, and workspace/share state at exact 1217x1292 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -289,3 +290,17 @@ Evidence:
 - `0019-reference.png`
 - `0019-desktop.png`
 - `0019-dedicated-target-validation.json`
+
+## Lesson 20 / Mockup 0020 - Variable Explorer
+
+Reworked individually against the target mockup with a dedicated `single-source-variable-linked-rule-substitution-output-dependency-graph-table-verification-model`. One shared x value drives the input, stored rule `y=2x+3`, substituted expression, output, dependency graph, active-variable display, value-table highlight, and all verification rows.
+
+The -5 to 5 x slider and five preset buttons are real controls and stay synchronized. Symbolic Trace switches the rule-stage representation to live numeric substitution. Reset, Share, Workspace, and all six lesson views perform real state changes, while every displayed output is calculated from the same source variable rather than copied labels.
+
+Final 1217x1292 integrated browser validation drags x to -4 and verifies y=-5; selects preset 3 and verifies y=9; switches to Numeric Values; opens Know more and Workspace; shares the live state; and resets to x=1, y=5, symbolic mode. The final frame matches the target at surface x=257-1204 and y=110-1290, header y=110-306, tabs y=319-372, dependency workspace y=384-1066, active control y=384-591, callout y=603-687, value table y=699-844, verification y=856-1034, dependency graph y=899-1052, navigation y=1078-1137, and footer y=1154-1291. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0020-reference.png`
+- `0020-desktop.png`
+- `0020-dedicated-target-validation.json`

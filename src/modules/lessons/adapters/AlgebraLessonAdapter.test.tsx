@@ -7,7 +7,7 @@ describe("AlgebraLessonAdapter", () => {
   it("renders algebra workspace lessons 19 through 30 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       19: "Build, link, substitute, and check",
-      20: "Variable rule",
+      20: "Changing x updates",
       21: "Numeric slider",
       22: "Integer slider",
       23: "Angle slider",
@@ -52,6 +52,19 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('aria-label="Variable x drag control"');
     expect(html).toContain("Preserve equivalence");
     expect(html).toContain("TEST VALUES TABLE");
+  });
+
+  it("renders lesson 20 as a dedicated variable dependency explorer", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 20)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0020"');
+    expect(html).toContain('data-dedicated-lesson="20"');
+    expect(html).toContain('data-object-model="single-source-variable-linked-rule-substitution-output-dependency-graph-table-verification-model"');
+    expect(html).toContain('data-x="1"');
+    expect(html).toContain('data-y="5"');
+    expect(html).toContain('aria-label="Active variable x drag control"');
+    expect(html).toContain("Dependency Graph");
+    expect(html).toContain("Verify dependency");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {
