@@ -1,11 +1,12 @@
 # Trigonometry target batch 0321-0340
 
-Dedicated rebuild target: **60 of 130 lessons completed; 70 pending.**
+Dedicated rebuild target: **61 of 130 lessons completed; 69 pending.**
 
 | Mockup | Lesson | Status | Dedicated model and validation |
 |---|---:|---|---|
 | 0321 | 264 Reciprocal Trig Functions | Complete | Linked base/reciprocal branch model; two physical graph drags; sec, cosec, cot, undefined-state, settings, stages, grading, solution, and reset checks; exact 1024x1536 target geometry |
 | 0322 | 265 Inverse Trig Functions | Complete | Restricted-branch reflection model; two physical construction drags plus independent practice drag; arcsine, arccosine, arctangent, stages, grading, hint, and reset checks; target-aligned 976x1612 composition |
+| 0323 | 266 Trig Identities | Complete | Unit-circle, symbolic-transformation, and numerical-verification model; physical point drag; domain exclusion, automatic verification, stages, practice, proof reveal, accordions, and reset checks; exact 1023x1537 target stack |
 
 ## Lesson 264 / Mockup 0321 - Reciprocal Trig Functions
 
@@ -34,3 +35,17 @@ Evidence:
 - `0322-reference.png`
 - `0322-desktop.png`
 - `0322-dedicated-target-validation.json`
+
+## Lesson 266 / Mockup 0323 - Trig Identities
+
+Reworked individually against the target mockup with a dedicated `unit-circle-symbolic-transformation-numerical-identity-verification-model`. One angle drives the unit-circle point, sine, cosine, tangent, exact-value labels, quadrant, signs, the left side `tanθ`, the right side `sinθ/cosθ`, their numerical difference, and domain validity. The point is physically draggable and recovers the nearest signed turn. At denominator zeros, both sides become genuinely undefined rather than displaying a large floating-point artifact.
+
+The symbolic transformation provides justified steps from tangent to the sine/cosine quotient, while the numerical cards independently calculate both sides from the same state. The angle slider, automatic-verification toggle, six lesson tabs, language, reset, share, workspace focus, editable practice identity, grading, step-by-step proof, two expandable follow-up identities, and adjacent navigation are functional. The sidebar learning-progress card uses real progress semantics, and the compact global footer retains functional Sitemap, Docs, and About links.
+
+Final 1023x1537 browser validation verifies the initial 60-degree exact values and equality at `√3`; physically drags the unit-circle point and proves both sides remain equal; verifies both sides equal 1 at 45 degrees; verifies the domain guard at 90 degrees; toggles automatic verification; switches lesson stages; follows incorrect and equivalent `cosec θ` practice paths; reveals the complete algebraic proof; opens both follow-up challenges; and resets the full model. The screenshot loop aligns the header at y=101-246, tabs at y=253-295, lab at y=306-779, identity notice at y=789-836, learning grid at y=847-1375, navigation at y=1386-1438, site footer at y=1449-1537, and sidebar progress at y=891-971. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0323-reference.png`
+- `0323-desktop.png`
+- `0323-dedicated-target-validation.json`

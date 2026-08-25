@@ -281,6 +281,10 @@ export default function Sidebar() {
             );
           })}
         </nav>
+        <section className="hidden" data-testid="desktop-sidebar-progress" aria-label="Learning progress">
+          <div><strong>65%</strong><span><b>Learning Progress</b><small>Trig Identities</small></span></div>
+          <progress value="65" max="100">65%</progress>
+        </section>
         <footer className="hidden" data-testid="desktop-sidebar-footer">
           <h2>Math Universe</h2>
           <p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p>

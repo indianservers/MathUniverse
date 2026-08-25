@@ -226,6 +226,33 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("QUICK PRACTICE CHALLENGE");
   });
 
+  it("renders lesson 266 as a dedicated symbolic and numerical identity workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 266)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0323"');
+    expect(html).toContain('data-dedicated-lesson="266"');
+    expect(html).toContain(
+      'data-object-model="unit-circle-symbolic-transformation-numerical-identity-verification-model"',
+    );
+    expect(html).toContain('data-angle="60.000000"');
+    expect(html).toContain('data-sin="0.866025"');
+    expect(html).toContain('data-cos="0.500000"');
+    expect(html).toContain('data-lhs="1.732051"');
+    expect(html).toContain('data-rhs="1.732051"');
+    expect(html).toContain('data-defined="true"');
+    expect(html).toContain('data-testid="identity-circle-handle"');
+    expect(html).toContain('aria-label="Identity angle"');
+    expect(html).toContain('aria-label="Automatic verification"');
+    expect(html).toContain('aria-label="Identity practice answer"');
+    expect(html).toContain("Justified Identity Transformation");
+    expect(html).toContain("Numerical Verification");
+    expect(html).toContain("Common Misconception");
+    expect(html).toContain("Practice Challenge");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(

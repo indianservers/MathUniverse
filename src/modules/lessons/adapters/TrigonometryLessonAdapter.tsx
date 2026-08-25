@@ -36,6 +36,7 @@ import CosineGraphTargetLesson262 from "./CosineGraphTargetLesson262";
 import TangentGraphTargetLesson263 from "./TangentGraphTargetLesson263";
 import ReciprocalTrigTargetLesson264 from "./ReciprocalTrigTargetLesson264";
 import InverseTrigTargetLesson265 from "./InverseTrigTargetLesson265";
+import TrigIdentitiesTargetLesson266 from "./TrigIdentitiesTargetLesson266";
 
 type TrigKind =
   "circle" | "graph" | "triangle" | "equation" | "application" | "polar";
@@ -560,6 +561,15 @@ export default function TrigonometryLessonAdapter({
   if (lesson.id === 265) {
     return (
       <InverseTrigTargetLesson265
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 266) {
+    return (
+      <TrigIdentitiesTargetLesson266
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
