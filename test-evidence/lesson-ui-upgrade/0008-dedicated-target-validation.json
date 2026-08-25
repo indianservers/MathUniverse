@@ -1,0 +1,151 @@
+{
+  "mockup": "0008",
+  "lessonId": 8,
+  "route": "/lessons/core-workspaces/8-logarithms",
+  "objectModel": "bidirectional-base-exponent-power-logarithm-ladder-drag-practice-model",
+  "checks": {
+    "initial": {
+      "base": "10",
+      "exponent": "3",
+      "target": "1000",
+      "view": "0",
+      "help": "false",
+      "revealed": "true"
+    },
+    "base": {
+      "base": "2",
+      "exponent": "3",
+      "target": "8",
+      "view": "0",
+      "help": "false",
+      "revealed": "true"
+    },
+    "target": {
+      "base": "2",
+      "exponent": "4",
+      "target": "16",
+      "view": "0",
+      "help": "false",
+      "revealed": "true"
+    },
+    "exponent": {
+      "base": "2",
+      "exponent": "5",
+      "target": "32",
+      "view": "0",
+      "help": "false",
+      "revealed": "true"
+    },
+    "reset": {
+      "base": "10",
+      "exponent": "3",
+      "target": "1000",
+      "view": "0",
+      "help": "false",
+      "revealed": "true"
+    },
+    "help": {
+      "base": "10",
+      "exponent": "3",
+      "target": "1000",
+      "view": "0",
+      "help": "true",
+      "revealed": "true"
+    },
+    "view": {
+      "base": "10",
+      "exponent": "3",
+      "target": "1000",
+      "view": "2",
+      "help": "true",
+      "revealed": "true"
+    },
+    "hidden": {
+      "base": "10",
+      "exponent": "3",
+      "target": "1000",
+      "view": "2",
+      "help": "true",
+      "revealed": "false"
+    },
+    "revealed": {
+      "base": "10",
+      "exponent": "3",
+      "target": "1000",
+      "view": "2",
+      "help": "true",
+      "revealed": "true"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1508,
+      "height": 1043
+    },
+    "document": {
+      "width": 1508,
+      "height": 1179
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 79,
+      "bottom": 1024,
+      "height": 945,
+      "left": 331,
+      "right": 1474,
+      "width": 1143
+    },
+    "regions": {
+      "header": {
+        "top": 79,
+        "bottom": 286,
+        "height": 207,
+        "left": 331,
+        "right": 1474,
+        "width": 1143
+      },
+      "tabs": {
+        "top": 295,
+        "bottom": 354,
+        "height": 59,
+        "left": 331,
+        "right": 1474,
+        "width": 1143
+      },
+      "lab": {
+        "top": 367,
+        "bottom": 915,
+        "height": 548,
+        "left": 331,
+        "right": 1474,
+        "width": 1143
+      },
+      "main": {
+        "top": 380,
+        "bottom": 923,
+        "height": 543,
+        "left": 344,
+        "right": 1237,
+        "width": 893
+      },
+      "trace": {
+        "top": 380,
+        "bottom": 923,
+        "height": 543,
+        "left": 1249,
+        "right": 1461,
+        "width": 212
+      },
+      "practice": {
+        "top": 927,
+        "bottom": 1024,
+        "height": 97,
+        "left": 331,
+        "right": 1474,
+        "width": 1143
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **7 of 130 lessons completed; 123 pending.**
+Dedicated rebuild target: **8 of 130 lessons completed; 122 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -11,6 +11,7 @@ Dedicated rebuild target: **7 of 130 lessons completed; 123 pending.**
 | 0005   |      5 Ratio Calculator | Complete | Dual draggable/steppable ratio model with live GCF grouping, simplification proof, grouped bars, tile arrays, double number line, trace, action count, examples, and graded comparison practice at exact 1536x1024 target geometry |
 | 0006   |      6 Powers and Roots | Complete | Linked radicand/root area grid and base/exponent repeated-power model with cube, combined expression, steppers, trace, action state, and practice reveal at exact 1068x1472 target geometry                                        |
 | 0007   |   7 Scientific Notation | Complete | Linked coefficient/exponent model with real steppers, number-line marker, directional decimal-shift sequence, standard form, concept trace, powers ladder, instructions, and practice checking at exact 1508x1043 target geometry  |
+| 0008   |            8 Logarithms | Complete | Bidirectional base/exponent/power model with visible steppers, real drag ranges, power ladder, inverse-operation proof, dynamic trace, help, views, reset, and practice reveal at exact 1508x1043 target geometry                  |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -109,3 +110,17 @@ Evidence:
 - `0007-reference.png`
 - `0007-desktop.png`
 - `0007-dedicated-target-validation.json`
+
+## Lesson 8 / Mockup 0008 - Logarithms
+
+Reworked individually against the target mockup with a dedicated `bidirectional-base-exponent-power-logarithm-ladder-drag-practice-model`. Base and exponent determine the target power; moving the target control steps through valid powers and recovers the corresponding exponent. The ladder, logarithm question, power check, output, inverse-operation proof, and concept trace all share that state.
+
+The Base, Target, and Exponent cards each provide visible steppers plus real range-based drag interaction behind the card value. Reset, Share, language/view tabs, How to interact, expand/action state, and practice reveal also perform real actions. Values remain exact and bounded throughout the inverse relationship.
+
+Final 1508x1043 browser validation drags base 10 to 2 and verifies target 8, drags target to the fourth power and verifies 16/exponent 4, increments exponent and verifies 32, resets, opens interaction help, switches lesson view, and hides/reveals the practice answer. The screenshot loop matches the target frame: lesson x=331-1474 and y=79-1024, header y=79-286, tabs y=295-354, inverse lab y=367-915, and practice y=927-1024. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0008-reference.png`
+- `0008-desktop.png`
+- `0008-dedicated-target-validation.json`
