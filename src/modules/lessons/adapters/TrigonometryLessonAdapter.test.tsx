@@ -335,6 +335,35 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Practice Challenge");
   });
 
+  it("renders lesson 269 as a dedicated periodic trig-equation solver", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 269)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0326"');
+    expect(html).toContain('data-dedicated-lesson="269"');
+    expect(html).toContain(
+      'data-object-model="cosine-horizontal-level-periodic-interval-intersection-solution-family-model"',
+    );
+    expect(html).toContain('data-k="0.500000"');
+    expect(html).toContain('data-interval-min="-6.283185"');
+    expect(html).toContain('data-interval-max="6.283185"');
+    expect(html).toContain('data-solution-count="4"');
+    expect(html).toContain('data-testid="trig-equation-level-handle"');
+    expect(html).toContain('data-testid="trig-equation-intersection"');
+    expect(html).toContain('aria-label="Interval minimum"');
+    expect(html).toContain('aria-label="Interval maximum"');
+    expect(html).toContain('aria-label="Trig equation solutions"');
+    expect(html).toContain("How inputs connect to outputs");
+    expect(html).toContain("Common Pitfall");
+    expect(html).toContain("Practice Challenge");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(

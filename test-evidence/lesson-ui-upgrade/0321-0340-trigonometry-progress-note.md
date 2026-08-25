@@ -1,14 +1,15 @@
 # Trigonometry target batch 0321-0340
 
-Dedicated rebuild target: **63 of 130 lessons completed; 67 pending.**
+Dedicated rebuild target: **64 of 130 lessons completed; 66 pending.**
 
-| Mockup |                              Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                 |
-| ------ | ----------------------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0321   |       264 Reciprocal Trig Functions | Complete | Linked base/reciprocal branch model; two physical graph drags; sec, cosec, cot, undefined-state, settings, stages, grading, solution, and reset checks; exact 1024x1536 target geometry                                                        |
-| 0322   |          265 Inverse Trig Functions | Complete | Restricted-branch reflection model; two physical construction drags plus independent practice drag; arcsine, arccosine, arctangent, stages, grading, hint, and reset checks; target-aligned 976x1612 composition                               |
-| 0323   |                 266 Trig Identities | Complete | Unit-circle, symbolic-transformation, and numerical-verification model; physical point drag; domain exclusion, automatic verification, stages, practice, proof reveal, accordions, and reset checks; exact 1023x1537 target stack              |
-| 0324   |         267 Compound-Angle Formulae | Complete | Dual unit-circle rotation and sum/difference projection model; two independent physical angle drags; live components, four identities, display settings, worked construction, challenge grading, and reset checks; exact 985x1597 target stack |
-| 0325   | 268 Double- and Half-Angle Formulae | Complete | Linked theta, double-angle, and half-angle unit-circle model; three physical inverse-linked drags; Sin/Cos/Tan modes, sign/domain guards, exact-value grading, hint, challenge cycling, and reset checks; exact 991x1587 target stack          |
+| Mockup |                              Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                        |
+| ------ | ----------------------------------: | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0321   |       264 Reciprocal Trig Functions | Complete | Linked base/reciprocal branch model; two physical graph drags; sec, cosec, cot, undefined-state, settings, stages, grading, solution, and reset checks; exact 1024x1536 target geometry                                                               |
+| 0322   |          265 Inverse Trig Functions | Complete | Restricted-branch reflection model; two physical construction drags plus independent practice drag; arcsine, arccosine, arctangent, stages, grading, hint, and reset checks; target-aligned 976x1612 composition                                      |
+| 0323   |                 266 Trig Identities | Complete | Unit-circle, symbolic-transformation, and numerical-verification model; physical point drag; domain exclusion, automatic verification, stages, practice, proof reveal, accordions, and reset checks; exact 1023x1537 target stack                     |
+| 0324   |         267 Compound-Angle Formulae | Complete | Dual unit-circle rotation and sum/difference projection model; two independent physical angle drags; live components, four identities, display settings, worked construction, challenge grading, and reset checks; exact 985x1597 target stack        |
+| 0325   | 268 Double- and Half-Angle Formulae | Complete | Linked theta, double-angle, and half-angle unit-circle model; three physical inverse-linked drags; Sin/Cos/Tan modes, sign/domain guards, exact-value grading, hint, challenge cycling, and reset checks; exact 991x1587 target stack                 |
+| 0326   |                  269 Trig Equations | Complete | Periodic cosine graph and movable level-line intersection model; physical line drag; independent interval endpoints, radian/degree modes, exact solution families, symbolic grading, hint, derivation, and reset checks; exact 1003x1568 target stack |
 
 ## Lesson 264 / Mockup 0321 - Reciprocal Trig Functions
 
@@ -79,3 +80,17 @@ Evidence:
 - `0325-reference.png`
 - `0325-desktop.png`
 - `0325-dedicated-target-validation.json`
+
+## Lesson 269 / Mockup 0326 - Trig Equations
+
+Reworked individually against the target mockup with a dedicated `cosine-horizontal-level-periodic-interval-intersection-solution-family-model`. The horizontal level k and two interval endpoints drive the sampled cosine graph, exact intersection points, sorted interval solutions, decimal approximations, principal arccos value, and general periodic family. The horizontal level has a physical graph handle, and both interval endpoints are independent range controls. Coincident endpoint solutions at k = 1 or k = -1 are deduplicated mathematically.
+
+The k slider and numeric field, minimum and maximum interval controls, radian/degree modes, five lesson views, language, reset, share, workspace focus, live graph, exact and decimal result panels, free-response parser, grading, hint, solution derivation, challenge cycling, and adjacent navigation are functional. The answer parser accepts π or `pi` fractions and compares complete numerical solution sets, so a plausible but incomplete principal-angle answer is rejected.
+
+Final 1003x1568 browser validation verifies the initial four solutions of cos(x) = 1/2 on [-2π, 2π]; physically drags the graph level; verifies the three boundary solutions at k = 1 and two at k = -1; restricts the interval to [-π, π] and verifies only two solutions remain; switches to degrees and the Examples view; rejects an incomplete periodic answer; accepts the full symbolic π-family; opens the hint and derivation; grades the second challenge; and resets the entire model. The screenshot loop matches the target geometry exactly: header y=100-279, tabs y=287-329, flow y=337-435, graph solver y=441-806, input/output map y=814-899, learning panels y=911-1216, practice y=1232-1392, navigation y=1405-1454, and site footer y=1464-1568. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0326-reference.png`
+- `0326-desktop.png`
+- `0326-dedicated-target-validation.json`

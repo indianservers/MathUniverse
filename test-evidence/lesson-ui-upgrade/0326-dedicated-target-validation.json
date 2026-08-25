@@ -1,0 +1,217 @@
+{
+  "mockup": "0326",
+  "lessonId": 269,
+  "route": "/lessons/trigonometry/269-trig-equations",
+  "reference": "0326-interactive-intermediate-advanced-trigonometry-trig-equations-redesigned.png",
+  "objectModel": "cosine-horizontal-level-periodic-interval-intersection-solution-family-model",
+  "checks": {
+    "initial": {
+      "k": 0.5,
+      "intervalMin": -6.283185,
+      "intervalMax": 6.283185,
+      "solutionCount": 4,
+      "solutions": [
+        -5.235988,
+        -1.047198,
+        1.047198,
+        5.235988
+      ],
+      "unit": "radian",
+      "stage": "interaction",
+      "challengeIndex": 0,
+      "practiceResult": "idle"
+    },
+    "levelDrag": {
+      "k": -0.040299,
+      "intervalMin": -6.283185,
+      "intervalMax": 6.283185,
+      "solutionCount": 4,
+      "solutions": [
+        -4.672079,
+        -1.611107,
+        1.611107,
+        4.672079
+      ],
+      "unit": "radian",
+      "stage": "interaction",
+      "challengeIndex": 0,
+      "practiceResult": "idle"
+    },
+    "kOne": {
+      "k": 1,
+      "intervalMin": -6.283185,
+      "intervalMax": 6.283185,
+      "solutionCount": 3,
+      "solutions": [
+        -6.283185,
+        0,
+        6.283185
+      ],
+      "unit": "radian",
+      "stage": "interaction",
+      "challengeIndex": 0,
+      "practiceResult": "idle"
+    },
+    "kNegativeOne": {
+      "k": -1,
+      "intervalMin": -6.283185,
+      "intervalMax": 6.283185,
+      "solutionCount": 2,
+      "solutions": [
+        -3.141593,
+        3.141593
+      ],
+      "unit": "radian",
+      "stage": "interaction",
+      "challengeIndex": 0,
+      "practiceResult": "idle"
+    },
+    "restrictedInterval": {
+      "k": 0.5,
+      "intervalMin": -3.141593,
+      "intervalMax": 3.141593,
+      "solutionCount": 2,
+      "solutions": [
+        -1.047198,
+        1.047198
+      ],
+      "unit": "radian",
+      "stage": "interaction",
+      "challengeIndex": 0,
+      "practiceResult": "idle"
+    },
+    "degreeMode": {
+      "k": 0.5,
+      "intervalMin": -3.141593,
+      "intervalMax": 3.141593,
+      "solutionCount": 2,
+      "solutions": [
+        -1.047198,
+        1.047198
+      ],
+      "unit": "degree",
+      "stage": "interaction",
+      "challengeIndex": 0,
+      "practiceResult": "idle"
+    },
+    "examplesStage": {
+      "k": 0.5,
+      "intervalMin": -3.141593,
+      "intervalMax": 3.141593,
+      "solutionCount": 2,
+      "solutions": [
+        -1.047198,
+        1.047198
+      ],
+      "unit": "degree",
+      "stage": "examples",
+      "challengeIndex": 0,
+      "practiceResult": "idle"
+    },
+    "practiceWrong": {
+      "k": 0.5,
+      "intervalMin": -3.141593,
+      "intervalMax": 3.141593,
+      "solutionCount": 2,
+      "solutions": [
+        -1.047198,
+        1.047198
+      ],
+      "unit": "degree",
+      "stage": "examples",
+      "challengeIndex": 0,
+      "practiceResult": "incorrect"
+    },
+    "practiceCorrect": {
+      "k": 0.5,
+      "intervalMin": -3.141593,
+      "intervalMax": 3.141593,
+      "solutionCount": 2,
+      "solutions": [
+        -1.047198,
+        1.047198
+      ],
+      "unit": "degree",
+      "stage": "examples",
+      "challengeIndex": 0,
+      "practiceResult": "correct"
+    },
+    "newChallenge": {
+      "k": 0.5,
+      "intervalMin": -3.141593,
+      "intervalMax": 3.141593,
+      "solutionCount": 2,
+      "solutions": [
+        -1.047198,
+        1.047198
+      ],
+      "unit": "degree",
+      "stage": "examples",
+      "challengeIndex": 1,
+      "practiceResult": "idle"
+    },
+    "secondCorrect": {
+      "k": 0.5,
+      "intervalMin": -3.141593,
+      "intervalMax": 3.141593,
+      "solutionCount": 2,
+      "solutions": [
+        -1.047198,
+        1.047198
+      ],
+      "unit": "degree",
+      "stage": "examples",
+      "challengeIndex": 1,
+      "practiceResult": "correct"
+    },
+    "reset": {
+      "k": 0.5,
+      "intervalMin": -6.283185,
+      "intervalMax": 6.283185,
+      "solutionCount": 4,
+      "solutions": [
+        -5.235988,
+        -1.047198,
+        1.047198,
+        5.235988
+      ],
+      "unit": "radian",
+      "stage": "interaction",
+      "challengeIndex": 0,
+      "practiceResult": "idle"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1003,
+      "height": 1568
+    },
+    "document": {
+      "width": 1003,
+      "height": 1568
+    },
+    "horizontalOverflow": false,
+    "surfaceTop": 100,
+    "surfaceBottom": 1454,
+    "headerTop": 100,
+    "headerBottom": 279,
+    "tabsTop": 287,
+    "tabsBottom": 329,
+    "flowTop": 337,
+    "flowBottom": 435,
+    "solverTop": 441,
+    "solverBottom": 806,
+    "connectTop": 814,
+    "connectBottom": 899,
+    "learningTop": 911,
+    "learningBottom": 1216,
+    "practiceTop": 1232,
+    "practiceBottom": 1392,
+    "navTop": 1405,
+    "navBottom": 1454,
+    "footerTop": 1464,
+    "footerBottom": 1568
+  },
+  "consoleMessages": [],
+  "passed": true
+}

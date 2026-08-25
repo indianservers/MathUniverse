@@ -39,6 +39,7 @@ import InverseTrigTargetLesson265 from "./InverseTrigTargetLesson265";
 import TrigIdentitiesTargetLesson266 from "./TrigIdentitiesTargetLesson266";
 import CompoundAngleTargetLesson267 from "./CompoundAngleTargetLesson267";
 import DoubleHalfAngleTargetLesson268 from "./DoubleHalfAngleTargetLesson268";
+import TrigEquationsTargetLesson269 from "./TrigEquationsTargetLesson269";
 
 type TrigKind =
   "circle" | "graph" | "triangle" | "equation" | "application" | "polar";
@@ -590,6 +591,15 @@ export default function TrigonometryLessonAdapter({
   if (lesson.id === 268) {
     return (
       <DoubleHalfAngleTargetLesson268
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 269) {
+    return (
+      <TrigEquationsTargetLesson269
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
