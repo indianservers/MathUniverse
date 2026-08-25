@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **45 of 130 lessons completed; 85 pending.**
+Dedicated rebuild target: **46 of 130 lessons completed; 84 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -49,6 +49,7 @@ Dedicated rebuild target: **45 of 130 lessons completed; 85 pending.**
 | 0043   |                     61 Irrational Numbers | Complete | Dedicated radicand model with calculated square bounds and approximation, geometric diagonal, number-line placement, decimal zoom, comparison interval, native drag/drop rational sorting, stateful controls and practice, and exact 1044x1507 target geometry      |
 | 0044   |                           62 Real Numbers | Complete | Dedicated selected-value hierarchy and classification model with calculated set membership and comparison, native draggable card placement on a real number line, dynamic markers, stateful lesson controls, and exact 1060x1484 target geometry                    |
 | 0045   |                        63 Complex Numbers | Complete | Dedicated complex-coefficient model with linked draggable plane point, sliders, vector, projections, conjugate reflection, calculated modulus and argument, practice reveal, stateful lesson controls, and exact 1060x1484 target geometry                          |
+| 0046   |                             64 Place Value | Complete | Dedicated editable four-digit place model with selectable and draggable digit columns, exact-count base-ten blocks, calculated expanded form and selected value, rotating practice, stateful controls, and exact 1060x1484 target geometry                         |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -679,3 +680,17 @@ Evidence:
 - `0045-reference.png`
 - `0045-desktop.png`
 - `0045-dedicated-target-validation.json`
+
+## Lesson 64 / Mockup 0046 - Place Value
+
+Reworked individually against the target mockup with a dedicated `editable-four-digit-place-columns-draggable-digit-swap-exact-base-ten-block-expanded-form-practice-model`. The four-digit number drives the thousands cubes, hundreds flats, tens rods, ones cubes, place labels, chosen-digit explanation, expanded form, and rotating practice calculation from one lesson-owned state model.
+
+The number field is directly editable with a four-digit normalization guard. Each digit tile and column selects its place, and all four digit tiles are native draggable objects: dropping one onto another column swaps the digits and immediately regenerates every block count, place value, expansion, and practice value. Five lesson tabs, language, Workspace, Reset, Share, previous/next navigation, footer navigation, and the cycling practice card all perform real actions. The shared number adapter only dispatches Lesson 64 to this separate component.
+
+Final 1060x1484 integrated browser validation selects 8 and verifies tens value 80; edits the number to 9074 and verifies exact block counts 9, 0, 7, and 4 plus expansion `9000 + 0 + 70 + 4`; physically drags 9 from thousands to ones and verifies number 4079, exact block counts 4, 0, 7, and 9, selected ones value 9, and expansion `4000 + 0 + 70 + 9`; rotates the practice prompt and verifies 300; changes tab and language; opens Workspace; and resets. The final frame matches the target at hero x=226-1044 and y=112-385, tabs y=397-452, workspace y=464-1198, place columns y=578-1170, navigation y=1208-1280, and footer y=1304-1436. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0046-reference.png`
+- `0046-desktop.png`
+- `0046-dedicated-target-validation.json`

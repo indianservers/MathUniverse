@@ -1,0 +1,257 @@
+{
+  "mockup": "0046",
+  "lessonId": 64,
+  "route": "/lessons/numbers-and-arithmetic/64-place-value",
+  "objectModel": "editable-four-digit-place-columns-draggable-digit-swap-exact-base-ten-block-expanded-form-practice-model",
+  "checks": {
+    "initial": {
+      "number": "5381",
+      "selected-index": "0",
+      "selected-digit": "5",
+      "selected-place": "thousands",
+      "selected-value": "5000",
+      "expanded": "5000+300+80+1",
+      "block-counts": "5,3,8,1",
+      "drag-index": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice-index": "0",
+      "practice-value": "80",
+      "actions": "0"
+    },
+    "initialBlocks": {
+      "thousands": 5,
+      "hundreds": 3,
+      "tens": 8,
+      "ones": 1
+    },
+    "selectedTens": {
+      "number": "5381",
+      "selected-index": "2",
+      "selected-digit": "8",
+      "selected-place": "tens",
+      "selected-value": "80",
+      "expanded": "5000+300+80+1",
+      "block-counts": "5,3,8,1",
+      "drag-index": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice-index": "0",
+      "practice-value": "80",
+      "actions": "1"
+    },
+    "edited": {
+      "number": "9074",
+      "selected-index": "2",
+      "selected-digit": "7",
+      "selected-place": "tens",
+      "selected-value": "70",
+      "expanded": "9000+0+70+4",
+      "block-counts": "9,0,7,4",
+      "drag-index": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice-index": "0",
+      "practice-value": "70",
+      "actions": "2"
+    },
+    "editedBlocks": {
+      "thousands": 9,
+      "hundreds": 0,
+      "tens": 7,
+      "ones": 4
+    },
+    "dragged": {
+      "number": "4079",
+      "selected-index": "3",
+      "selected-digit": "9",
+      "selected-place": "ones",
+      "selected-value": "9",
+      "expanded": "4000+0+70+9",
+      "block-counts": "4,0,7,9",
+      "drag-index": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice-index": "0",
+      "practice-value": "70",
+      "actions": "3"
+    },
+    "draggedBlocks": {
+      "thousands": 4,
+      "hundreds": 0,
+      "tens": 7,
+      "ones": 9
+    },
+    "practice": {
+      "number": "5381",
+      "selected-index": "0",
+      "selected-digit": "5",
+      "selected-place": "thousands",
+      "selected-value": "5000",
+      "expanded": "5000+300+80+1",
+      "block-counts": "5,3,8,1",
+      "drag-index": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice-index": "1",
+      "practice-value": "300",
+      "actions": "1"
+    },
+    "tab": {
+      "number": "5381",
+      "selected-index": "0",
+      "selected-digit": "5",
+      "selected-place": "thousands",
+      "selected-value": "5000",
+      "expanded": "5000+300+80+1",
+      "block-counts": "5,3,8,1",
+      "drag-index": "",
+      "tab": "Examples",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice-index": "1",
+      "practice-value": "300",
+      "actions": "2"
+    },
+    "language": {
+      "number": "5381",
+      "selected-index": "0",
+      "selected-digit": "5",
+      "selected-place": "thousands",
+      "selected-value": "5000",
+      "expanded": "5000+300+80+1",
+      "block-counts": "5,3,8,1",
+      "drag-index": "",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "false",
+      "practice-index": "1",
+      "practice-value": "300",
+      "actions": "3"
+    },
+    "workspace": {
+      "number": "5381",
+      "selected-index": "0",
+      "selected-digit": "5",
+      "selected-place": "thousands",
+      "selected-value": "5000",
+      "expanded": "5000+300+80+1",
+      "block-counts": "5,3,8,1",
+      "drag-index": "",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "practice-index": "1",
+      "practice-value": "300",
+      "actions": "4"
+    },
+    "reset": {
+      "number": "5381",
+      "selected-index": "0",
+      "selected-digit": "5",
+      "selected-place": "thousands",
+      "selected-value": "5000",
+      "expanded": "5000+300+80+1",
+      "block-counts": "5,3,8,1",
+      "drag-index": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "practice-index": "0",
+      "practice-value": "80",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1060,
+      "height": 1484
+    },
+    "document": {
+      "width": 1060,
+      "height": 1484
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 112,
+      "bottom": 1448,
+      "height": 1336,
+      "left": 226,
+      "right": 1044,
+      "width": 818
+    },
+    "regions": {
+      "hero": {
+        "top": 112,
+        "bottom": 385,
+        "height": 273,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "tabs": {
+        "top": 397,
+        "bottom": 452,
+        "height": 55,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "layout": {
+        "top": 464,
+        "bottom": 1198,
+        "height": 734,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "work": {
+        "top": 484,
+        "bottom": 1178,
+        "height": 694,
+        "left": 246,
+        "right": 784,
+        "width": 538
+      },
+      "columns": {
+        "top": 578,
+        "bottom": 1170,
+        "height": 592,
+        "left": 246,
+        "right": 784,
+        "width": 538
+      },
+      "side": {
+        "top": 484,
+        "bottom": 1178,
+        "height": 694,
+        "left": 802,
+        "right": 1024,
+        "width": 222
+      },
+      "navigation": {
+        "top": 1208,
+        "bottom": 1280,
+        "height": 72,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      },
+      "footer": {
+        "top": 1304,
+        "bottom": 1436,
+        "height": 132,
+        "left": 226,
+        "right": 1044,
+        "width": 818
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

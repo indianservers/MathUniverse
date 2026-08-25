@@ -84,6 +84,20 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Real part"');
     expect(html).toContain("Conjugate (reflection)");
   });
+  it("renders lesson 64 as a dedicated exact place-value workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 64)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0046"');
+    expect(html).toContain('data-dedicated-lesson="64"');
+    expect(html).toContain('data-object-model="editable-four-digit-place-columns-draggable-digit-swap-exact-base-ten-block-expanded-form-practice-model"');
+    expect(html).toContain('data-number="5381"');
+    expect(html).toContain('data-selected-place="thousands"');
+    expect(html).toContain('data-selected-value="5000"');
+    expect(html).toContain('data-block-counts="5,3,8,1"');
+    expect(html).toContain('aria-label="Four digit number"');
+    expect(html).toContain('draggable="true"');
+    expect(html).toContain("Explore place value with exact base-ten blocks");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
