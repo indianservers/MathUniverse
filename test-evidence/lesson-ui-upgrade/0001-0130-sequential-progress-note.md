@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **36 of 130 lessons completed; 94 pending.**
+Dedicated rebuild target: **37 of 130 lessons completed; 93 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -40,6 +40,7 @@ Dedicated rebuild target: **36 of 130 lessons completed; 94 pending.**
 | 0034   | 34 Sequences | Complete | Editable arithmetic-sequence model with calculated term cards, number-line jumps, explicit rule, selectable term table, steppers, presets, restart/reset/share/workspace controls, and exact 1217x1292 target geometry |
 | 0035   | 35 Piecewise Definitions | Complete | Two-branch condition model with draggable graph probe, live slider/steppers, calculated evaluation and active branch, open/closed endpoints, boundary checks, stateful branch selection, and exact 1217x1292 target geometry |
 | 0036   | 36 Boolean Variables | Complete | Dual Boolean switches with synchronized controls, calculated AND/OR/NOT gates, active truth-table row, focused operation view, conditional Object P visibility, share/navigation actions, and exact 1217x1292 target geometry |
+| 0037   | 37 Dynamic Text | Complete | Editable highlighted placeholder template with linked x/y/z dependencies, real slider/input, live and comparison previews, insertion/clear/add-variable actions, tabs/share/workspace/reset, and exact 1217x1292 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -544,3 +545,17 @@ Evidence:
 - `0036-reference.png`
 - `0036-desktop.png`
 - `0036-dedicated-target-validation.json`
+
+## Lesson 37 / Mockup 0037 - Dynamic Text
+
+Reworked individually against the target mockup with a dedicated `editable-placeholder-template-linked-affine-variable-live-preview-comparison-state-model`. The source template, placeholder inventory, x input, calculated y=2x+3, optional z=x+y, rendered current sentence, comparison state at x=4, live calculation, and linked-value controls all derive from one explicit dependency model.
+
+The highlighted source remains a real textarea through a non-intercepting syntax overlay. Slider and numeric input stay synchronized; x, y, and optional z cards insert placeholders at the current cursor; Add variable creates the z dependency; Clear empties the actual template; and placeholder chips reinsert tokens. Five tabs, Reset, Share, Workspace, adjacent navigation, and footer commands all perform state changes or navigation.
+
+Final 1217x1292 integrated browser validation moves x to 5 and verifies y=13 and the rendered sentence; enters x=-3 and verifies y=-3; replaces the source with `x={x}; y={y}; z={z}` and verifies z=-6; adds/inserts z; clears and rebuilds the source from x/y controls; changes tabs; opens Workspace; shares; and resets. The final frame matches the target at surface x=264-1189 and y=126-1278, header y=126-281, tabs y=293-354, workspace y=375-1042, columns x=264/615.5/949, editor y=375-786, live preview y=375-795, comparison y=807-1042, navigation y=1055-1120, and footer y=1145-1277. It reports exact document dimensions, no horizontal overflow, and zero console messages.
+
+Evidence:
+
+- `0037-reference.png`
+- `0037-desktop.png`
+- `0037-dedicated-target-validation.json`

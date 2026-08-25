@@ -280,6 +280,18 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain("TRUTH TABLE");
   });
 
+  it("renders lesson 37 as a dedicated linked dynamic-text workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 37)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0037"');
+    expect(html).toContain('data-object-model="editable-placeholder-template-linked-affine-variable-live-preview-comparison-state-model"');
+    expect(html).toContain('data-x="2"');
+    expect(html).toContain('data-y="7"');
+    expect(html).toContain('data-placeholders="{x},{y}"');
+    expect(html).toContain('aria-label="Dynamic text template"');
+    expect(html).toContain("Another preview state");
+  });
+
   it("renders phase 4 algebra lessons 92 through 128 with lesson-specific structure labs", () => {
     const expectedFamilies: Record<number, string> = {
       92: "Tile/area model",

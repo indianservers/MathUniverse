@@ -1,0 +1,265 @@
+{
+  "mockup": "0037",
+  "lessonId": 37,
+  "route": "/lessons/core-workspaces/37-dynamic-text",
+  "objectModel": "editable-placeholder-template-linked-affine-variable-live-preview-comparison-state-model",
+  "checks": {
+    "initial": {
+      "template": "When x = {x}, the output 2x + 3 is {y}.",
+      "x": "2",
+      "y": "7",
+      "z": "9",
+      "rendered": "When x = 2, the output 2x + 3 is 7.",
+      "placeholders": "{x},{y}",
+      "tab": "0",
+      "workspace": "false",
+      "extra-variable": "false",
+      "actions": "0"
+    },
+    "slider": {
+      "template": "When x = {x}, the output 2x + 3 is {y}.",
+      "x": "5",
+      "y": "13",
+      "z": "18",
+      "rendered": "When x = 5, the output 2x + 3 is 13.",
+      "placeholders": "{x},{y}",
+      "tab": "0",
+      "workspace": "false",
+      "extra-variable": "false",
+      "actions": "1"
+    },
+    "sliderPreview": "When x = 5, the output 2x + 3 is 13.",
+    "negative": {
+      "template": "When x = {x}, the output 2x + 3 is {y}.",
+      "x": "-3",
+      "y": "-3",
+      "z": "-6",
+      "rendered": "When x = -3, the output 2x + 3 is -3.",
+      "placeholders": "{x},{y}",
+      "tab": "0",
+      "workspace": "false",
+      "extra-variable": "false",
+      "actions": "2"
+    },
+    "customTemplate": {
+      "template": "x={x}; y={y}; z={z}",
+      "x": "-3",
+      "y": "-3",
+      "z": "-6",
+      "rendered": "x=-3; y=-3; z=-6",
+      "placeholders": "{x},{y},{z}",
+      "tab": "0",
+      "workspace": "false",
+      "extra-variable": "false",
+      "actions": "3"
+    },
+    "customPreview": "x=-3; y=-3; z=-6",
+    "addVariable": {
+      "template": "x={x}; y={y}; z={z}",
+      "x": "-3",
+      "y": "-3",
+      "z": "-6",
+      "rendered": "x=-3; y=-3; z=-6",
+      "placeholders": "{x},{y},{z}",
+      "tab": "0",
+      "workspace": "false",
+      "extra-variable": "true",
+      "actions": "4"
+    },
+    "insertZ": {
+      "template": "x={x}; y={y}; z={z}{z}",
+      "x": "-3",
+      "y": "-3",
+      "z": "-6",
+      "rendered": "x=-3; y=-3; z=-6-6",
+      "placeholders": "{x},{y},{z}",
+      "tab": "0",
+      "workspace": "false",
+      "extra-variable": "true",
+      "actions": "5"
+    },
+    "clear": {
+      "template": "",
+      "x": "-3",
+      "y": "-3",
+      "z": "-6",
+      "rendered": "",
+      "placeholders": "",
+      "tab": "0",
+      "workspace": "false",
+      "extra-variable": "true",
+      "actions": "6"
+    },
+    "rebuilt": {
+      "template": "{x}{y}",
+      "x": "-3",
+      "y": "-3",
+      "z": "-6",
+      "rendered": "-3-3",
+      "placeholders": "{x},{y}",
+      "tab": "0",
+      "workspace": "false",
+      "extra-variable": "true",
+      "actions": "8"
+    },
+    "tab": {
+      "template": "{x}{y}",
+      "x": "-3",
+      "y": "-3",
+      "z": "-6",
+      "rendered": "-3-3",
+      "placeholders": "{x},{y}",
+      "tab": "3",
+      "workspace": "false",
+      "extra-variable": "true",
+      "actions": "9"
+    },
+    "workspace": {
+      "template": "{x}{y}",
+      "x": "-3",
+      "y": "-3",
+      "z": "-6",
+      "rendered": "-3-3",
+      "placeholders": "{x},{y}",
+      "tab": "3",
+      "workspace": "true",
+      "extra-variable": "true",
+      "actions": "10"
+    },
+    "share": {
+      "template": "{x}{y}",
+      "x": "-3",
+      "y": "-3",
+      "z": "-6",
+      "rendered": "-3-3",
+      "placeholders": "{x},{y}",
+      "tab": "3",
+      "workspace": "true",
+      "extra-variable": "true",
+      "actions": "11"
+    },
+    "reset": {
+      "template": "When x = {x}, the output 2x + 3 is {y}.",
+      "x": "2",
+      "y": "7",
+      "z": "9",
+      "rendered": "When x = 2, the output 2x + 3 is 7.",
+      "placeholders": "{x},{y}",
+      "tab": "0",
+      "workspace": "false",
+      "extra-variable": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1217,
+      "height": 1292
+    },
+    "document": {
+      "width": 1217,
+      "height": 1292
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 126,
+      "bottom": 1278,
+      "height": 1152,
+      "left": 264,
+      "right": 1189,
+      "width": 925
+    },
+    "regions": {
+      "header": {
+        "top": 126,
+        "bottom": 281,
+        "height": 155,
+        "left": 264,
+        "right": 1189,
+        "width": 925
+      },
+      "tabs": {
+        "top": 293,
+        "bottom": 354,
+        "height": 61,
+        "left": 264,
+        "right": 1189,
+        "width": 925
+      },
+      "layout": {
+        "top": 375,
+        "bottom": 1042,
+        "height": 667,
+        "left": 264,
+        "right": 1189,
+        "width": 925
+      },
+      "template": {
+        "top": 375,
+        "bottom": 1042,
+        "height": 667,
+        "left": 264,
+        "right": 606,
+        "width": 342
+      },
+      "preview": {
+        "top": 375,
+        "bottom": 1042,
+        "height": 667,
+        "left": 615.5,
+        "right": 939.5,
+        "width": 324
+      },
+      "values": {
+        "top": 375,
+        "bottom": 1042,
+        "height": 667,
+        "left": 949,
+        "right": 1189,
+        "width": 240
+      },
+      "editor": {
+        "top": 375,
+        "bottom": 786,
+        "height": 411,
+        "left": 264,
+        "right": 606,
+        "width": 342
+      },
+      "live": {
+        "top": 375,
+        "bottom": 795,
+        "height": 420,
+        "left": 615.5,
+        "right": 939.5,
+        "width": 324
+      },
+      "another": {
+        "top": 807,
+        "bottom": 1042,
+        "height": 235,
+        "left": 615.5,
+        "right": 939.5,
+        "width": 324
+      },
+      "navigation": {
+        "top": 1055,
+        "bottom": 1120,
+        "height": 65,
+        "left": 264,
+        "right": 1189,
+        "width": 925
+      },
+      "footer": {
+        "top": 1145,
+        "bottom": 1277,
+        "height": 132,
+        "left": 264,
+        "right": 1189,
+        "width": 925
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

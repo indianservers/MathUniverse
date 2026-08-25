@@ -24,6 +24,7 @@ import MatricesTargetLesson33 from "./MatricesTargetLesson33";
 import SequencesTargetLesson34 from "./SequencesTargetLesson34";
 import PiecewiseDefinitionsTargetLesson35 from "./PiecewiseDefinitionsTargetLesson35";
 import BooleanVariablesTargetLesson36 from "./BooleanVariablesTargetLesson36";
+import DynamicTextTargetLesson37 from "./DynamicTextTargetLesson37";
 
 const viewport: GraphViewport = { xMin: -10, xMax: 10, yMin: -10, yMax: 10, width: 640, height: 360 };
 
@@ -81,6 +82,9 @@ export default function AlgebraLessonAdapter({ lesson, resetToken, onInteraction
   }
   if (lesson.id === 36) {
     return <BooleanVariablesTargetLesson36 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 37) {
+    return <DynamicTextTargetLesson37 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   if (lesson.categorySlug === "core-workspaces" && lesson.id >= 19 && lesson.id <= 38) {
     return <RedesignedCoreAlgebraLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
