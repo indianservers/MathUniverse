@@ -1,0 +1,855 @@
+.target-cosine-rule-page {
+  position: relative;
+  top: 0;
+  height: 1361px;
+  color: #12234d;
+  font-size: 8px;
+  letter-spacing: 0;
+}
+
+.target-cosine-rule-page *,
+.target-cosine-rule-page button,
+.target-cosine-rule-page input,
+.target-cosine-rule-page select {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+
+.target-cosine-rule-page button,
+.target-cosine-rule-page input,
+.target-cosine-rule-page select {
+  font: inherit;
+}
+
+.target-cosine-rule-page h1,
+.target-cosine-rule-page h2,
+.target-cosine-rule-page h3,
+.target-cosine-rule-page p {
+  margin: 0;
+}
+
+.target-cosine-rule-page button {
+  cursor: pointer;
+}
+.target-cosine-rule-flow,
+.target-cosine-rule-lab,
+.target-cosine-rule-rule,
+.target-cosine-rule-worked,
+.target-cosine-rule-misconception,
+.target-cosine-rule-practice,
+.target-cosine-rule-nav a {
+  border: 1px solid #d9e3ef;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(15 23 42 / 4%);
+}
+
+.target-cosine-rule-header {
+  position: relative;
+  height: 113px;
+  padding: 8px 12px;
+}
+
+.target-cosine-rule-header > section {
+  position: absolute;
+  top: -35px;
+  right: 8px;
+}
+
+.target-cosine-rule-header > section span {
+  border-radius: 999px;
+  background: #e8f8fd;
+  padding: 6px 12px;
+  color: #08789a;
+  font-size: 7px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.target-cosine-rule-header h1 {
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 950;
+}
+.target-cosine-rule-header > p {
+  margin-top: 4px;
+  font-size: 11px;
+}
+.target-cosine-rule-header > div {
+  display: flex;
+  gap: 7px;
+  margin-top: 9px;
+}
+.target-cosine-rule-header > div b {
+  border: 1px solid #d9e3ef;
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.target-cosine-rule-header > aside {
+  display: flex;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.target-cosine-rule-header > aside label,
+.target-cosine-rule-header > aside button,
+.target-cosine-rule-header > aside a {
+  display: flex;
+  height: 29px;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #d9e3ef;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0 10px;
+  color: #12234d;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.target-cosine-rule-header > aside label {
+  width: 164px;
+}
+.target-cosine-rule-header > aside a {
+  margin-left: auto;
+}
+.target-cosine-rule-header > aside svg {
+  width: 12px;
+}
+.target-cosine-rule-header > aside select {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  outline: 0;
+}
+
+.target-cosine-rule-flow {
+  display: grid;
+  height: 99px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 10px;
+  padding: 12px 8px;
+}
+
+.target-cosine-rule-flow article {
+  position: relative;
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 7px;
+  padding: 4px 10px;
+}
+
+.target-cosine-rule-flow article > svg:first-child {
+  width: 32px;
+  color: #09a7c4;
+}
+.target-cosine-rule-flow article:nth-child(n + 3) > svg:first-child,
+.target-cosine-rule-flow article:nth-child(n + 3) h2 {
+  color: #7c3aed;
+}
+.target-cosine-rule-flow article > svg:last-child {
+  position: absolute;
+  top: 21px;
+  right: -7px;
+  width: 14px;
+  color: #7f8ca3;
+}
+.target-cosine-rule-flow h2 {
+  color: #08789a;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.target-cosine-rule-flow p {
+  margin-top: 8px;
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.target-cosine-rule-lab {
+  display: grid;
+  height: 411px;
+  grid-template-columns: 1fr 230px 190px;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 11px;
+}
+
+.target-cosine-rule-lab h2,
+.target-cosine-rule-worked h2,
+.target-cosine-rule-practice h2 {
+  color: #08789a;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.target-cosine-rule-lab > article {
+  min-width: 0;
+  border-right: 1px solid #e5ebf3;
+}
+.target-cosine-rule-lab > article > svg {
+  display: block;
+  width: 100%;
+  height: 342px;
+}
+.target-cosine-rule-lab > article > footer {
+  color: #56627a;
+  font-size: 8px;
+  line-height: 1.5;
+  text-align: center;
+}
+.target-cosine-rule-lab > article svg .grid {
+  stroke: #edf2f7;
+  stroke-width: 1;
+}
+.target-cosine-rule-lab > article svg .axis {
+  stroke: #a8b4c4;
+  stroke-width: 1.25;
+}
+.target-cosine-rule-lab > article svg polygon {
+  fill: #eefafe;
+  stroke: #0aa5c3;
+  stroke-width: 2;
+}
+.target-cosine-rule-lab > article svg circle {
+  fill: #078cf0;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: grab;
+}
+.target-cosine-rule-lab > article svg .angle {
+  fill: none;
+  stroke: #ec3e75;
+  stroke-width: 2;
+}
+.target-cosine-rule-lab > article svg text {
+  fill: #182442;
+  font-size: 10px;
+  font-weight: 700;
+}
+.target-cosine-rule-lab > article svg .side {
+  font:
+    italic 13px Georgia,
+    serif;
+}
+.target-cosine-rule-lab > article svg .side.a {
+  fill: #078cf0;
+}
+.target-cosine-rule-lab > article svg .side.b {
+  fill: #7c3aed;
+}
+.target-cosine-rule-lab > article svg .side.c {
+  fill: #e22d69;
+}
+
+.target-cosine-rule-lab > section {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.target-cosine-rule-lab > section > svg {
+  width: 100%;
+  height: 307px;
+}
+.target-cosine-rule-lab > section rect {
+  stroke-width: 1.5;
+}
+.target-cosine-rule-lab > section rect.a {
+  fill: #dcf6fb;
+  stroke: #09a7c4;
+}
+.target-cosine-rule-lab > section rect.b {
+  fill: #efe9ff;
+  stroke: #7c3aed;
+}
+.target-cosine-rule-lab > section rect.c {
+  fill: #ffe6ef;
+  stroke: #e22d69;
+}
+.target-cosine-rule-lab > section polygon.correction {
+  fill: #ffedc9;
+  stroke: #e49a15;
+}
+.target-cosine-rule-lab > section text {
+  fill: #12234d;
+  font-size: 10px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+.target-cosine-rule-lab > section > footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.target-cosine-rule-lab > section > footer span {
+  border-radius: 4px;
+  background: #f4f7fa;
+  padding: 5px;
+  text-align: center;
+}
+
+.target-cosine-rule-lab > aside {
+  overflow: hidden;
+  border: 1px solid #d9e3ef;
+  border-radius: 7px;
+}
+.target-cosine-rule-lab > aside > h2 {
+  padding: 8px 10px;
+  border-bottom: 1px solid #d9e3ef;
+  background: #f7fafc;
+}
+.target-cosine-rule-lab dl {
+  margin: 0;
+  padding: 4px 10px;
+}
+.target-cosine-rule-lab dl div {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #edf1f6;
+}
+.target-cosine-rule-lab dt {
+  color: #526078;
+}
+.target-cosine-rule-lab dd {
+  margin: 0;
+  color: #08789a;
+  font-weight: 900;
+}
+.target-cosine-rule-lab > aside hr {
+  margin: 2px 10px;
+  border: 0;
+  border-top: 1px solid #d9e3ef;
+}
+.target-cosine-rule-lab > aside > strong {
+  display: block;
+  padding: 8px 10px;
+  color: #7c3aed;
+  font:
+    bold 10px Georgia,
+    serif;
+  text-align: center;
+}
+.target-cosine-rule-lab > aside > p {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 5px 10px;
+}
+.target-cosine-rule-lab > aside output {
+  font-weight: 900;
+}
+.target-cosine-rule-lab > aside > footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 5px 10px;
+  border-radius: 5px;
+  background: #e7faf0;
+  padding: 6px;
+  color: #138452;
+  font-weight: 900;
+}
+.target-cosine-rule-lab > aside > footer svg {
+  width: 12px;
+}
+
+.target-cosine-rule-rule {
+  position: relative;
+  display: grid;
+  height: 148px;
+  grid-template-columns: 1fr 320px 180px;
+  gap: 16px;
+  margin-top: 9px;
+  padding: 13px 16px;
+  background: #f8f5ff;
+}
+.target-cosine-rule-rule h2 {
+  color: #7c3aed;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.target-cosine-rule-rule h3 {
+  margin-top: 8px;
+  font-size: 10px;
+}
+.target-cosine-rule-rule article > strong {
+  display: block;
+  margin: 8px 0;
+  color: #5e24c5;
+  font:
+    bold 17px Georgia,
+    serif;
+}
+.target-cosine-rule-rule article > b {
+  font:
+    bold 10px/1.65 Georgia,
+    serif;
+}
+.target-cosine-rule-rule > aside {
+  align-self: center;
+  border: 1px solid #bfaff3;
+  border-radius: 6px;
+  background: #fff;
+  padding: 14px;
+  color: #5633a4;
+  font-size: 9px;
+  line-height: 1.55;
+}
+.target-cosine-rule-rule > svg {
+  width: 100%;
+  height: 116px;
+}
+.target-cosine-rule-rule > svg polygon {
+  fill: #fff;
+  stroke: #7c3aed;
+  stroke-width: 2;
+}
+.target-cosine-rule-rule > svg path {
+  fill: none;
+  stroke: #e22d69;
+  stroke-width: 2;
+}
+.target-cosine-rule-rule > svg text {
+  fill: #12234d;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.target-cosine-rule-worked {
+  display: grid;
+  height: 181px;
+  grid-template-columns: 1fr 330px;
+  gap: 20px;
+  margin-top: 10px;
+  padding: 13px 16px;
+}
+.target-cosine-rule-worked h3 {
+  margin-top: 8px;
+  font-size: 10px;
+}
+.target-cosine-rule-worked article p {
+  margin-top: 8px;
+}
+.target-cosine-rule-worked article strong {
+  display: block;
+  margin-top: 7px;
+  color: #0b728b;
+  font:
+    bold 13px/1.5 Georgia,
+    serif;
+}
+.target-cosine-rule-worked > aside {
+  border-left: 1px solid #e2e8f0;
+  padding-left: 18px;
+}
+.target-cosine-rule-worked > aside > div,
+.target-cosine-rule-practice > section > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 9px;
+}
+.target-cosine-rule-worked label,
+.target-cosine-rule-practice label {
+  color: #56627a;
+  font-weight: 700;
+}
+.target-cosine-rule-worked input,
+.target-cosine-rule-practice input {
+  width: 100%;
+  height: 27px;
+  margin-top: 4px;
+  border: 1px solid #cfd9e6;
+  border-radius: 5px;
+  padding: 0 7px;
+  color: #12234d;
+}
+.target-cosine-rule-worked > aside > label {
+  display: grid;
+  grid-template-columns: 1fr 95px 70px;
+  align-items: center;
+  gap: 7px;
+  margin-top: 14px;
+}
+.target-cosine-rule-worked output {
+  border-radius: 5px;
+  background: #eff8fb;
+  padding: 7px;
+  color: #08789a;
+  font-weight: 900;
+  text-align: center;
+}
+.target-cosine-rule-worked > aside > label b {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #168153;
+}
+.target-cosine-rule-worked > aside > label svg {
+  width: 12px;
+}
+
+.target-cosine-rule-misconception {
+  display: grid;
+  height: 157px;
+  grid-template-columns: 280px 1fr;
+  margin-top: 12px;
+  overflow: hidden;
+}
+.target-cosine-rule-misconception > article {
+  display: flex;
+  gap: 12px;
+  padding: 18px;
+  background: #fff6e7;
+}
+.target-cosine-rule-misconception > article > svg {
+  width: 28px;
+  color: #e49317;
+}
+.target-cosine-rule-misconception h2 {
+  color: #b66800;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.target-cosine-rule-misconception h3 {
+  margin-top: 9px;
+  font-size: 11px;
+}
+.target-cosine-rule-misconception p {
+  margin-top: 9px;
+  line-height: 1.45;
+}
+.target-cosine-rule-misconception > aside {
+  padding: 15px 18px;
+}
+.target-cosine-rule-misconception > aside h2 {
+  color: #12234d;
+}
+.target-cosine-rule-misconception > aside section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.target-cosine-rule-misconception > aside section div {
+  border: 1px solid #d9e3ef;
+  border-radius: 6px;
+  padding: 9px;
+}
+.target-cosine-rule-misconception > aside section div:first-child {
+  border-color: #94d8b6;
+  background: #f2fcf7;
+}
+.target-cosine-rule-misconception > aside section div:last-child {
+  border-color: #f0aab5;
+  background: #fff5f6;
+}
+.target-cosine-rule-misconception > aside p {
+  font:
+    bold 9px/1.5 Georgia,
+    serif;
+}
+
+.target-cosine-rule-practice {
+  display: grid;
+  height: 129px;
+  grid-template-columns: 250px 1fr 210px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+.target-cosine-rule-practice > header {
+  padding: 16px;
+  background: #f0fbfd;
+}
+.target-cosine-rule-practice > header h3 {
+  margin-top: 7px;
+  font-size: 11px;
+}
+.target-cosine-rule-practice > header p {
+  margin-top: 9px;
+  line-height: 1.45;
+}
+.target-cosine-rule-practice > section {
+  padding: 13px 16px;
+}
+.target-cosine-rule-practice > section > div {
+  margin-top: 6px;
+}
+.target-cosine-rule-practice > section footer {
+  display: flex;
+  gap: 7px;
+  margin-top: 7px;
+}
+.target-cosine-rule-practice button {
+  display: flex;
+  height: 25px;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #0aa5c3;
+  border-radius: 5px;
+  background: #0aa5c3;
+  padding: 0 12px;
+  color: #fff;
+  font-weight: 800;
+}
+.target-cosine-rule-practice button:last-child {
+  border-color: #cfd9e6;
+  background: #fff;
+  color: #526078;
+}
+.target-cosine-rule-practice button svg {
+  width: 11px;
+}
+.target-cosine-rule-practice > aside {
+  padding: 14px 16px;
+  border-left: 1px solid #d9e3ef;
+}
+.target-cosine-rule-practice > aside p {
+  margin-top: 10px;
+}
+.target-cosine-rule-practice > aside p strong {
+  font-size: 15px;
+  color: #08789a;
+}
+.target-cosine-rule-practice > aside footer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 9px;
+  border-radius: 5px;
+  background: #f1f4f7;
+  padding: 7px;
+  color: #68758b;
+  font-weight: 900;
+}
+.target-cosine-rule-practice > aside footer.correct {
+  background: #e8faf0;
+  color: #168153;
+}
+.target-cosine-rule-practice > aside footer svg {
+  width: 12px;
+}
+.target-cosine-rule-practice > aside footer small {
+  margin-left: auto;
+}
+
+.target-cosine-rule-nav {
+  display: grid;
+  height: 40px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 11px;
+}
+.target-cosine-rule-nav a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 12px;
+  color: #12234d;
+  text-decoration: none;
+}
+.target-cosine-rule-nav a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.target-cosine-rule-nav svg {
+  width: 14px;
+  color: #08789a;
+}
+.target-cosine-rule-nav span {
+  display: grid;
+}
+.target-cosine-rule-nav b {
+  color: #68758b;
+  font-size: 7px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 760px) {
+  .target-cosine-rule-page {
+    height: auto;
+    min-height: 1361px;
+  }
+  .target-cosine-rule-lab {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .target-cosine-rule-lab > article {
+    border-right: 0;
+  }
+  .target-cosine-rule-rule,
+  .target-cosine-rule-worked,
+  .target-cosine-rule-misconception,
+  .target-cosine-rule-practice {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}
+
+@media (min-width: 960px) and (max-width: 1279px) {
+  body:has(.target-cosine-rule-page) [data-testid="desktop-sidebar"] {
+    width: 203px;
+  }
+
+  body:has(.target-cosine-rule-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px 10px 14px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    min-height: 61px;
+    margin-bottom: 14px;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 6px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    > button:first-child {
+    border-radius: 8px;
+    padding: 7px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    > button:last-child {
+    width: 27px;
+    height: 27px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 14px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:last-child {
+    font-size: 8px;
+    line-height: 10px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > label {
+    min-height: 36px;
+    height: 36px;
+    margin-bottom: 12px;
+    padding: 0 9px;
+    font-size: 10px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(n + 4),
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(3)
+    > div
+    > :nth-child(n + 2) {
+    display: none;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div
+    > button,
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div
+    > div
+    button {
+    padding: 7px 10px;
+    font-size: 10px;
+    line-height: 12px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    a {
+    gap: 8px;
+    padding: 5px 10px;
+    font-size: 10px;
+    line-height: 11px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div:first-child
+    a {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    > div:nth-child(3)
+    a {
+    padding-top: 6.7px;
+    padding-bottom: 6.7px;
+  }
+
+  body:has(.target-cosine-rule-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > nav
+    a
+    span
+    span:last-child:not(:first-child) {
+    margin-top: 1px;
+    font-size: 6px;
+    line-height: 8px;
+  }
+
+  body:has(.target-cosine-rule-page) .app-layout-rail > div > header {
+    height: 50px;
+  }
+
+  body:has(.target-cosine-rule-page) #main-content {
+    padding: 5px 15px 0;
+    background: #fff;
+  }
+
+  body:has(.target-cosine-rule-page) footer[aria-label="Site footer"] {
+    height: 91px;
+    min-height: 91px;
+    margin-top: 12px;
+  }
+
+  body:has(.target-cosine-rule-page) footer[aria-label="Site footer"] > div {
+    height: 91px;
+    min-height: 91px;
+    padding-top: 8px;
+    padding-bottom: 7px;
+  }
+}

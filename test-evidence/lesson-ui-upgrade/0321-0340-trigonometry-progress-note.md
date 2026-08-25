@@ -1,6 +1,6 @@
 # Trigonometry target batch 0321-0340
 
-Dedicated rebuild target: **65 of 130 lessons completed; 65 pending.**
+Dedicated rebuild target: **66 of 130 lessons completed; 64 pending.**
 
 | Mockup |                              Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                        |
 | ------ | ----------------------------------: | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -11,6 +11,7 @@ Dedicated rebuild target: **65 of 130 lessons completed; 65 pending.**
 | 0325   | 268 Double- and Half-Angle Formulae | Complete | Linked theta, double-angle, and half-angle unit-circle model; three physical inverse-linked drags; Sin/Cos/Tan modes, sign/domain guards, exact-value grading, hint, challenge cycling, and reset checks; exact 991x1587 target stack                 |
 | 0326   |                  269 Trig Equations | Complete | Periodic cosine graph and movable level-line intersection model; physical line drag; independent interval endpoints, radian/degree modes, exact solution families, symbolic grading, hint, derivation, and reset checks; exact 1003x1568 target stack |
 | 0327   |                       270 Sine Rule | Complete | Draggable triangle and opposite side-angle sine-ratio model; three physical vertex drags; real SSA zero/one/two ambiguity classification, tangent-boundary handling, numerical grading, hint, and reset checks; exact 1024x1536 target stack          |
+| 0328   |                     271 Cosine Rule | Complete | Draggable coordinate triangle and square-decomposition model; two physical vertex drags; live Cosine Rule identity, independent editable SAS solvers, practice checking, and reset checks; exact 1013x1553 target composition                        |
 
 ## Lesson 264 / Mockup 0321 - Reciprocal Trig Functions
 
@@ -109,3 +110,17 @@ Evidence:
 - `0327-reference.png`
 - `0327-desktop.png`
 - `0327-dedicated-target-validation.json`
+
+## Lesson 271 / Mockup 0328 - Cosine Rule
+
+Reworked individually against the target mockup with a dedicated `draggable-coordinate-triangle-cosine-square-decomposition-sas-solver-model`. The two physical vertices A and B drive all three side lengths, the included angle C, the three square areas, the signed `-2ab cos C` correction, and both sides of `c² = a² + b² - 2ab cos C`. The implementation keeps the coordinate triangle and every numerical label mathematically coherent even though the reference image combines incompatible coordinates, side lengths, and angle values.
+
+The language, lesson reset, share, workspace focus, both SVG vertex handles, editable worked-example sides and angle, editable practice sides and angle, practice checking, practice reset, and adjacent navigation are functional. The square decomposition resizes from the actual model areas. The misconception comparison retains the target presentation while correcting its plus-sign calculation: with two sides 5 and angle 120 degrees, the incorrect plus version gives 25 and side 5, not 75 and side 8.660.
+
+Final 1013x1553 browser validation verifies the initial `a=sqrt(29)`, `b=4`, `c=sqrt(61)`, and 61=61 identity; physically drags A and B independently while rechecking the identity after each drag; changes the worked solver to sides 5 and 5 with included angle 120 degrees and verifies `sqrt(75)`; changes practice to the 3-4-5 right-triangle case, verifies its live answer and checked state; and resets the complete lesson. The screenshot loop matches the target composition exactly: header y=89-202, flow y=212-311, lab y=327-738, rule y=747-895, worked example y=905-1086, misconception y=1098-1255, practice y=1270-1399, navigation y=1410-1450, and footer through y=1553. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0328-reference.png`
+- `0328-desktop.png`
+- `0328-dedicated-target-validation.json`

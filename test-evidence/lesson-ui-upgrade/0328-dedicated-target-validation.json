@@ -1,0 +1,153 @@
+{
+  "mockup": "0328",
+  "lessonId": 271,
+  "route": "/lessons/trigonometry/271-cosine-rule",
+  "reference": "0328-interactive-intermediate-advanced-trigonometry-cosine-rule-redesigned.png",
+  "objectModel": "draggable-coordinate-triangle-cosine-square-decomposition-sas-solver-model",
+  "checks": {
+    "initial": {
+      "a": 5.385165,
+      "b": 4,
+      "c": 7.81025,
+      "C": 111.801409,
+      "lhs": 61,
+      "rhs": 61,
+      "difference": 0,
+      "workedAnswer": 7.211103,
+      "practiceAnswer": 9.868576,
+      "practiceResult": "correct"
+    },
+    "dragA": {
+      "a": 5.385165,
+      "b": 2.866707,
+      "c": 6.237878,
+      "C": 93.143495,
+      "lhs": 38.91112,
+      "rhs": 38.91112,
+      "difference": 0,
+      "workedAnswer": 7.211103,
+      "practiceAnswer": 9.868576,
+      "practiceResult": "correct"
+    },
+    "dragB": {
+      "a": 4.270406,
+      "b": 2.866707,
+      "c": 4.866544,
+      "C": 83.501284,
+      "lhs": 23.683254,
+      "rhs": 23.683254,
+      "difference": 0,
+      "workedAnswer": 7.211103,
+      "practiceAnswer": 9.868576,
+      "practiceResult": "correct"
+    },
+    "worked": {
+      "a": 4.270406,
+      "b": 2.866707,
+      "c": 4.866544,
+      "C": 83.501284,
+      "lhs": 23.683254,
+      "rhs": 23.683254,
+      "difference": 0,
+      "workedAnswer": 8.660254,
+      "practiceAnswer": 9.868576,
+      "practiceResult": "correct"
+    },
+    "practiceEdited": {
+      "a": 4.270406,
+      "b": 2.866707,
+      "c": 4.866544,
+      "C": 83.501284,
+      "lhs": 23.683254,
+      "rhs": 23.683254,
+      "difference": 0,
+      "workedAnswer": 8.660254,
+      "practiceAnswer": 5,
+      "practiceResult": "idle"
+    },
+    "practiceChecked": {
+      "a": 4.270406,
+      "b": 2.866707,
+      "c": 4.866544,
+      "C": 83.501284,
+      "lhs": 23.683254,
+      "rhs": 23.683254,
+      "difference": 0,
+      "workedAnswer": 8.660254,
+      "practiceAnswer": 5,
+      "practiceResult": "correct"
+    },
+    "reset": {
+      "a": 5.385165,
+      "b": 4,
+      "c": 7.81025,
+      "C": 111.801409,
+      "lhs": 61,
+      "rhs": 61,
+      "difference": 0,
+      "workedAnswer": 7.211103,
+      "practiceAnswer": 9.868576,
+      "practiceResult": "correct"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1013,
+      "height": 1553
+    },
+    "document": {
+      "width": 1013,
+      "height": 1553
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 89,
+      "bottom": 1450,
+      "height": 1361
+    },
+    "regions": {
+      "header": {
+        "top": 89,
+        "bottom": 202,
+        "height": 113
+      },
+      "flow": {
+        "top": 212,
+        "bottom": 311,
+        "height": 99
+      },
+      "lab": {
+        "top": 327,
+        "bottom": 738,
+        "height": 411
+      },
+      "rule": {
+        "top": 747,
+        "bottom": 895,
+        "height": 148
+      },
+      "worked": {
+        "top": 905,
+        "bottom": 1086,
+        "height": 181
+      },
+      "misconception": {
+        "top": 1098,
+        "bottom": 1255,
+        "height": 157
+      },
+      "practice": {
+        "top": 1270,
+        "bottom": 1399,
+        "height": 129
+      },
+      "nav": {
+        "top": 1410,
+        "bottom": 1450,
+        "height": 40
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

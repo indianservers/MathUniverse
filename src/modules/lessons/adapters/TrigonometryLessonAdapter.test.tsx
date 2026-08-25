@@ -392,6 +392,34 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Try It Yourself");
   });
 
+  it("renders lesson 271 as a dedicated draggable Cosine Rule workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 271)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0328"');
+    expect(html).toContain('data-dedicated-lesson="271"');
+    expect(html).toContain(
+      'data-object-model="draggable-coordinate-triangle-cosine-square-decomposition-sas-solver-model"',
+    );
+    expect(html).toContain('data-side-a="5.385165"');
+    expect(html).toContain('data-side-b="4.000000"');
+    expect(html).toContain('data-side-c="7.810250"');
+    expect(html).toContain('data-difference="0.000000"');
+    expect(html).toContain('data-testid="cosine-rule-vertex-a"');
+    expect(html).toContain('data-testid="cosine-rule-vertex-b"');
+    expect(html).toContain('aria-label="Worked side 1"');
+    expect(html).toContain('aria-label="Practice included angle"');
+    expect(html).toContain("Square Decomposition");
+    expect(html).toContain("Common Misconception");
+    expect(html).toContain("Practice Challenge");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(
