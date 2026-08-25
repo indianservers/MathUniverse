@@ -1,6 +1,6 @@
 # Transformations and Loci target batch 0293-0320
 
-Dedicated rebuild target: **53 of 130 lessons completed; 77 pending.**
+Dedicated rebuild target: **54 of 130 lessons completed; 76 pending.**
 
 | Mockup | Lesson | Dedicated object model | Status |
 |---|---|---|---|
@@ -27,6 +27,7 @@ Dedicated rebuild target: **53 of 130 lessons completed; 77 pending.**
 | 0313 | 256 Concyclicity Test | `four-point-circumcircle-determinant-angle-residual` | Reworked individually and browser-validated |
 | 0314 | 257 Angle Measurement | `oriented-unit-circle-degree-radian-angle-measurement` | Reworked individually and browser-validated |
 | 0315 | 258 Unit Circle | `linked-unit-circle-point-projection-coordinate-identity` | Reworked individually and browser-validated |
+| 0316 | 259 Right-Triangle Ratios | `axis-aligned-right-triangle-dependent-vertex-ratio-model` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -328,3 +329,16 @@ Evidence:
 
 - `0315-desktop.png`
 - `0315-dedicated-target-validation.json`
+
+## Lesson 259 / Mockup 0316 - Right-Triangle Ratios
+
+Reworked individually against the target mockup with a dedicated `axis-aligned-right-triangle-dependent-vertex-ratio-model` object model. Origin O, adjacent length, and opposite length own the construction; dependent points B and C are derived so OB remains horizontal, BC remains vertical, and the right angle remains exact. Dragging O translates the complete triangle without changing its side lengths, dragging B changes only the adjacent leg, and dragging C changes both legs. Snap mode projects C to the nearest special angle, while disabling snap preserves arbitrary angles. The angle slider rotates the hypotenuse at constant length, including an exact reachable 60-degree state.
+
+The graph, coordinates, side labels, hypotenuse, angle arc, ratio cards, domain notes, ASTC sign table, SOH-CAH-TOA rule, worked example, and misconception diagrams all derive from coherent geometry. The five-field practice challenge grades opposite, hypotenuse, sine, cosine, and tangent against its stated 60-degree triangle; incorrect, corrected, and Show Solution paths are functional. Language selection, reset, share, workspace focus, snap control, and adjacent navigation also have real behavior.
+
+Final 997x1578 browser validation verifies the initial 45-degree triangle and all three ratios; physically drags C, B, and O and proves each handle's constraints; reaches 60 degrees through the slider and verifies tangent `sqrt(3)`; disables snapping and preserves 37 degrees; follows incorrect and corrected practice paths; shows the complete solution; and resets the model. The screenshot loop replaces the former responsive shared-template collapse with the target's fixed composition, aligns the graph and ratio rail, prevents practice controls from overlapping navigation, and reports exact viewport/document dimensions, no horizontal overflow, and zero console errors.
+
+Evidence:
+
+- `0316-desktop.png`
+- `0316-dedicated-target-validation.json`

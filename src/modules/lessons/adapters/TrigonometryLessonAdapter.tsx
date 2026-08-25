@@ -29,6 +29,7 @@ import {
 import type { LessonAdapterProps } from "../types";
 import AngleMeasurementTargetLesson257 from "./AngleMeasurementTargetLesson257";
 import UnitCircleTargetLesson258 from "./UnitCircleTargetLesson258";
+import RightTriangleRatiosTargetLesson259 from "./RightTriangleRatiosTargetLesson259";
 
 type TrigKind =
   "circle" | "graph" | "triangle" | "equation" | "application" | "polar";
@@ -498,7 +499,7 @@ export default function TrigonometryLessonAdapter({
   }
   if (lesson.id === 259) {
     return (
-      <RightTriangleRatiosTargetLesson
+      <RightTriangleRatiosTargetLesson259
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
@@ -880,7 +881,7 @@ function GenericTrigonometryLessonAdapter({
   );
 }
 
-function RightTriangleRatiosTargetLesson({
+export function LegacyRightTriangleRatiosTargetLesson({
   lesson,
   resetToken,
   onInteraction,

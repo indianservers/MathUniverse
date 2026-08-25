@@ -1,0 +1,132 @@
+{
+  "mockup": "0316",
+  "lessonId": 259,
+  "route": "/lessons/trigonometry/259-right-triangle-ratios",
+  "reference": "0316-interactive-intermediate-advanced-trigonometry-right-triangle-ratios-redesigned.png",
+  "objectModel": "axis-aligned-right-triangle-dependent-vertex-ratio-model",
+  "checks": {
+    "initial": {
+      "originX": 0,
+      "originY": 0,
+      "adjacent": 3,
+      "opposite": 3,
+      "hypotenuse": 4.242641,
+      "angle": 45,
+      "sin": 0.707107,
+      "cos": 0.707107,
+      "tan": 1,
+      "rightAngle": true,
+      "solutionShown": false
+    },
+    "dragC": {
+      "originX": 0,
+      "originY": 0,
+      "adjacent": 2.559,
+      "opposite": 4.432,
+      "hypotenuse": 5.117725,
+      "angle": 59.99822,
+      "sin": 0.86601,
+      "cos": 0.500027,
+      "tan": 1.731927,
+      "rightAngle": true,
+      "solutionShown": false
+    },
+    "dragB": {
+      "originX": 0,
+      "originY": 0,
+      "adjacent": 3.497,
+      "opposite": 4.432,
+      "hypotenuse": 5.645497,
+      "angle": 51.725349,
+      "sin": 0.78505,
+      "cos": 0.619432,
+      "tan": 1.267372,
+      "rightAngle": true,
+      "solutionShown": false
+    },
+    "dragO": {
+      "originX": 0.57,
+      "originY": 0.38,
+      "adjacent": 3.497,
+      "opposite": 4.432,
+      "hypotenuse": 5.645497,
+      "angle": 51.725349,
+      "sin": 0.78505,
+      "cos": 0.619432,
+      "tan": 1.267372,
+      "rightAngle": true,
+      "solutionShown": false
+    },
+    "slider60": {
+      "originX": 0.57,
+      "originY": 0.38,
+      "adjacent": 2.823,
+      "opposite": 4.889,
+      "hypotenuse": 5.645498,
+      "angle": 59.99706,
+      "sin": 0.866,
+      "cos": 0.500044,
+      "tan": 1.731846,
+      "rightAngle": true,
+      "solutionShown": false
+    },
+    "unsnapped37": {
+      "originX": 0.57,
+      "originY": 0.38,
+      "adjacent": 4.509,
+      "opposite": 3.398,
+      "hypotenuse": 5.646015,
+      "angle": 37.001822,
+      "sin": 0.60184,
+      "cos": 0.798616,
+      "tan": 0.753604,
+      "rightAngle": true,
+      "solutionShown": false
+    },
+    "incorrect": "Check each value and round to four decimal places.",
+    "correct": "Correct. Every side and ratio matches.",
+    "solution": {
+      "originX": 0.57,
+      "originY": 0.38,
+      "adjacent": 4.509,
+      "opposite": 3.398,
+      "hypotenuse": 5.646015,
+      "angle": 37.001822,
+      "sin": 0.60184,
+      "cos": 0.798616,
+      "tan": 0.753604,
+      "rightAngle": true,
+      "solutionShown": true
+    },
+    "reset": {
+      "originX": 0,
+      "originY": 0,
+      "adjacent": 3,
+      "opposite": 3,
+      "hypotenuse": 4.242641,
+      "angle": 45,
+      "sin": 0.707107,
+      "cos": 0.707107,
+      "tan": 1,
+      "rightAngle": true,
+      "solutionShown": false
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 997,
+      "height": 1578
+    },
+    "document": {
+      "width": 997,
+      "height": 1578
+    },
+    "horizontalOverflow": false,
+    "surfaceTop": 99,
+    "surfaceBottom": 1466,
+    "footerTop": 1477,
+    "footerBottom": 1578
+  },
+  "consoleMessages": [],
+  "passed": true
+}

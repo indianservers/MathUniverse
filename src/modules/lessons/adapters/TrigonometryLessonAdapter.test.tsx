@@ -60,8 +60,16 @@ describe("TrigonometryLessonAdapter", () => {
 
     expect(html).toContain('data-testid="trigonometry-mockup-0316"');
     expect(html).toContain(
-      "Coordinate-grid right triangle OBC with right angle at B",
+      "Coordinate-grid right triangle OBC with independently draggable O, B and C and right angle at B",
     );
+    expect(html).toContain('data-dedicated-lesson="259"');
+    expect(html).toContain(
+      'data-object-model="axis-aligned-right-triangle-dependent-vertex-ratio-model"',
+    );
+    expect(html).toContain('data-right-angle="true"');
+    expect(html).toContain('data-testid="right-triangle-point-o"');
+    expect(html).toContain('data-testid="right-triangle-point-b"');
+    expect(html).toContain('data-testid="right-triangle-point-c"');
     expect(html).toContain("Right angle at B is fixed");
     expect(html).toContain("Signs by Quadrant (ASTC)");
     expect(html).toContain("SOH-CAH-TOA");
