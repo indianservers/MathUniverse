@@ -516,6 +516,35 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Practice Challenge");
   });
 
+  it("renders lesson 275 as a dedicated linked harmonic-motion workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 275)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0332"');
+    expect(html).toContain('data-dedicated-lesson="275"');
+    expect(html).toContain(
+      'data-object-model="draggable-unit-circle-horizontal-projection-displacement-velocity-shm-model"',
+    );
+    expect(html).toContain('data-angle="60.000000"');
+    expect(html).toContain('data-displacement="0.500000"');
+    expect(html).toContain('data-velocity="-0.866025"');
+    expect(html).toContain('data-radius-identity="1.000000"');
+    expect(html).toContain('data-testid="harmonic-circle-handle"');
+    expect(html).toContain('data-testid="harmonic-displacement-marker"');
+    expect(html).toContain('data-testid="harmonic-velocity-marker"');
+    expect(html).toContain('aria-label="Harmonic angle"');
+    expect(html).toContain('aria-label="Toggle harmonic animation"');
+    expect(html).toContain('aria-label="Harmonic practice displacement"');
+    expect(html).toContain("Linked angle");
+    expect(html).toContain("Common misconception");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(

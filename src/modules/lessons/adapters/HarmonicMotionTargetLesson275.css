@@ -1,0 +1,645 @@
+.target-harmonic-page {
+  position: relative;
+  top: -17px;
+  height: 1433px;
+  margin-bottom: -17px;
+  color: #102552;
+  font-size: 8px;
+  letter-spacing: 0;
+}
+.target-harmonic-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.target-harmonic-page button,
+.target-harmonic-page input,
+.target-harmonic-page select {
+  font: inherit;
+}
+.target-harmonic-page button {
+  cursor: pointer;
+}
+.target-harmonic-page h1,
+.target-harmonic-page h2,
+.target-harmonic-page h3,
+.target-harmonic-page h4,
+.target-harmonic-page p {
+  margin: 0;
+}
+.target-harmonic-header,
+.target-harmonic-tabs,
+.target-harmonic-flow,
+.target-harmonic-lab,
+.target-harmonic-learning > article,
+.target-harmonic-examples > article,
+.target-harmonic-practice,
+.target-harmonic-nav > a {
+  border: 1px solid #d9e5f3;
+  background: #fff;
+  border-radius: 8px;
+}
+.target-harmonic-header {
+  height: 144px;
+  padding: 15px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.target-harmonic-header > div:first-child > span {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 4px 9px;
+  border-radius: 12px;
+  background: #e7f9fc;
+  color: #00859e;
+  font-weight: 800;
+}
+.target-harmonic-header > div:first-child > span:nth-child(2) {
+  background: #f2f4f8;
+  color: #44516a;
+}
+.target-harmonic-header h1 {
+  font-size: 27px;
+  line-height: 32px;
+  margin-top: 6px;
+}
+.target-harmonic-header p {
+  font-size: 11px;
+}
+.target-harmonic-meta {
+  display: flex;
+  gap: 7px;
+  margin-top: 12px;
+}
+.target-harmonic-meta b {
+  padding: 6px 10px;
+  border: 1px solid #dce5f0;
+  border-radius: 15px;
+  background: #fff;
+}
+.target-harmonic-actions {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding-top: 16px;
+}
+.target-harmonic-actions button,
+.target-harmonic-actions a,
+.target-harmonic-actions select {
+  height: 31px;
+  border: 1px solid #d8e3ef;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #102552;
+  text-decoration: none;
+}
+.target-harmonic-actions svg {
+  width: 12px;
+}
+.target-harmonic-tabs {
+  height: 40px;
+  margin-top: 9px;
+  display: grid;
+  grid-template-columns: 1.25fr repeat(4, 1fr);
+  overflow: hidden;
+}
+.target-harmonic-tabs button {
+  border: 0;
+  background: #fff;
+  color: #26385e;
+  font-weight: 700;
+}
+.target-harmonic-tabs button.active {
+  background: #059db7;
+  color: #fff;
+}
+.target-harmonic-tabs i {
+  font-style: normal;
+  margin-right: 8px;
+}
+.target-harmonic-flow {
+  height: 88px;
+  margin-top: 10px;
+  padding: 9px 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.target-harmonic-flow article {
+  position: relative;
+  padding: 5px 24px 5px 18px;
+  border-right: 1px solid #dce4ef;
+}
+.target-harmonic-flow article:last-child {
+  border: 0;
+}
+.target-harmonic-flow b {
+  color: #1580a0;
+  font-size: 9px;
+}
+.target-harmonic-flow article:nth-child(n + 2) b {
+  color: #6552c7;
+}
+.target-harmonic-flow em {
+  font-style: normal;
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #079ab5;
+  color: #fff;
+}
+.target-harmonic-flow p {
+  margin: 6px 0 0 27px;
+  line-height: 14px;
+}
+.target-harmonic-flow strong {
+  position: absolute;
+  right: -12px;
+  top: 31px;
+  font-size: 25px;
+  color: #91a1b9;
+  z-index: 2;
+}
+.target-harmonic-lab {
+  height: 479px;
+  margin-top: 8px;
+  padding: 11px;
+}
+.target-harmonic-lab-title {
+  height: 49px;
+  display: flex;
+  justify-content: space-between;
+}
+.target-harmonic-lab-title h2 {
+  font-size: 13px;
+}
+.target-harmonic-lab-title p {
+  margin-top: 4px;
+}
+.target-harmonic-lab-title button {
+  height: 29px;
+  border: 1px solid #dce6ef;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 9px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.target-harmonic-lab-title svg {
+  width: 14px;
+  height: 14px;
+  color: #059db7;
+}
+.target-harmonic-models {
+  height: 303px;
+  display: grid;
+  grid-template-columns: 1.35fr 0.94fr 1.66fr;
+  gap: 7px;
+}
+.target-harmonic-models > article {
+  border: 1px solid #dce7f2;
+  border-radius: 8px;
+  padding: 9px;
+  overflow: hidden;
+}
+.target-harmonic-models h3 {
+  font-size: 8px;
+  color: #007e9e;
+}
+.target-harmonic-models h3 b {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #d9f6fa;
+  margin-right: 6px;
+}
+.target-harmonic-circle-card svg {
+  width: 100%;
+  height: 250px;
+}
+.target-harmonic-circle-card svg line,
+.target-harmonic-projection-card svg line,
+.hm-wave svg line {
+  stroke: #8290a7;
+  stroke-width: 1;
+}
+.target-harmonic-circle-card svg text,
+.target-harmonic-projection-card svg text,
+.hm-wave svg text {
+  font-size: 10px;
+  fill: #18294c;
+}
+.target-harmonic-circle-card .hm-ring {
+  fill: none;
+  stroke: #829fc3;
+}
+.target-harmonic-circle-card .hm-radius {
+  stroke: #00a6bd;
+  stroke-width: 3;
+}
+.target-harmonic-circle-card .hm-projection-line {
+  stroke: #ff8a00;
+  stroke-dasharray: 5;
+}
+.target-harmonic-circle-card .hm-angle-arc {
+  fill: none;
+  stroke: #7c3aed;
+  stroke-width: 2;
+}
+.hm-handle {
+  fill: #08a6bd;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: grab;
+}
+.target-harmonic-circle-card .hm-theta {
+  fill: #7c3aed;
+  font-size: 13px;
+}
+.target-harmonic-circle-card .hm-cos {
+  fill: #f27b00;
+  font-weight: 700;
+}
+.target-harmonic-projection-card > p {
+  margin: 17px 0 8px;
+}
+.target-harmonic-projection-card svg {
+  width: 100%;
+  height: 73px;
+}
+.hm-projection {
+  stroke: #06b6d4 !important;
+  stroke-width: 4 !important;
+}
+.target-harmonic-readout {
+  height: 88px;
+  border: 1px solid #d6edf3;
+  border-radius: 8px;
+  background: #f3fbfd;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+}
+.target-harmonic-readout b,
+.target-harmonic-readout strong {
+  font-family: Georgia, serif;
+  font-size: 16px;
+}
+.target-harmonic-graphs {
+  padding: 10px 12px !important;
+}
+.hm-wave {
+  height: 130px;
+}
+.hm-wave h4 {
+  font-family: Georgia, serif;
+  font-size: 12px;
+  margin: 11px 0 0;
+}
+.hm-wave svg {
+  width: 100%;
+  height: 102px;
+}
+.hm-wave-x,
+.hm-wave-v {
+  fill: none;
+  stroke-width: 2;
+}
+.hm-wave-x {
+  stroke: #06a8bd;
+}
+.hm-wave-v {
+  stroke: #8b35db;
+}
+.hm-wave-x-fill {
+  fill: #f39a00;
+}
+.hm-wave-v-fill {
+  fill: #8b35db;
+}
+.hm-marker-line {
+  stroke: #f39a00 !important;
+  stroke-dasharray: 3;
+}
+.target-harmonic-controls {
+  height: 91px;
+  margin-top: 9px;
+  border: 1px solid #dce7f2;
+  border-radius: 8px;
+  padding: 9px;
+  display: grid;
+  grid-template-columns: 1fr 85px 30px 50px 50px;
+  gap: 5px;
+  align-items: center;
+}
+.target-harmonic-controls label {
+  display: grid;
+  grid-template-columns: 65px 1fr;
+  align-items: center;
+  font-weight: 700;
+}
+.target-harmonic-controls input[type="range"] {
+  accent-color: #0aa8bd;
+}
+.target-harmonic-controls > input {
+  height: 26px;
+  border: 1px solid #dce5ef;
+  border-radius: 6px;
+  text-align: center;
+}
+.target-harmonic-controls button {
+  height: 23px;
+  border: 1px solid #dce5ef;
+  border-radius: 6px;
+  background: #fff;
+}
+.target-harmonic-controls > b {
+  grid-column: 1/6;
+  text-align: center;
+  font-family: monospace;
+}
+.target-harmonic-controls > p {
+  grid-column: 1/6;
+  font-family: monospace;
+}
+.target-harmonic-learning {
+  height: 240px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 0.85fr 1.23fr;
+  gap: 8px;
+}
+.target-harmonic-learning > article {
+  padding: 14px;
+}
+.target-harmonic-learning h2,
+.target-harmonic-examples h2,
+.target-harmonic-practice h2 {
+  font-size: 12px;
+  color: #0645a0;
+  margin-bottom: 8px;
+}
+.target-harmonic-learning p {
+  line-height: 14px;
+}
+.target-harmonic-mini {
+  height: 120px;
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  place-items: center;
+  text-align: center;
+}
+.target-harmonic-mini svg {
+  width: 55px;
+  height: 55px;
+  color: #2689bb;
+}
+.target-harmonic-mini strong {
+  font-size: 35px;
+  color: #aab4c2;
+}
+.target-harmonic-mini span {
+  font-size: 50px;
+  color: #0aa8bd;
+}
+.hm-formula {
+  height: 53px;
+  margin-bottom: 7px;
+  border: 1px solid #dce5ef;
+  border-radius: 6px;
+  display: grid;
+  grid-template-columns: 90px 1fr 1.15fr;
+  align-items: center;
+}
+.hm-formula > * {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  border-right: 1px solid #dce5ef;
+}
+.hm-formula strong {
+  justify-content: center;
+  font-family: Georgia, serif;
+  font-size: 16px;
+}
+.target-harmonic-examples {
+  height: 192px;
+  margin-top: 7px;
+  display: grid;
+  grid-template-columns: 0.88fr 1.22fr;
+  gap: 8px;
+}
+.target-harmonic-examples > article {
+  padding: 13px;
+}
+.target-harmonic-examples p {
+  line-height: 14px;
+}
+.hm-math {
+  font-family: Georgia, serif;
+  font-size: 13px;
+  line-height: 31px;
+  margin-top: 7px;
+}
+.target-harmonic-examples article > strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+  padding: 8px;
+  border-radius: 6px;
+  background: #edf9f3;
+  color: #17643b;
+}
+.target-harmonic-examples svg {
+  width: 16px;
+}
+.hm-warning h2,
+.hm-warning > b {
+  color: #d61e39;
+}
+.hm-warning table {
+  width: 100%;
+  margin-top: 9px;
+  border-collapse: collapse;
+  text-align: center;
+}
+.hm-warning th,
+.hm-warning td {
+  border: 1px solid #dce5ef;
+  padding: 5px;
+}
+.target-harmonic-practice {
+  height: 145px;
+  margin-top: 9px;
+  padding: 11px;
+  display: grid;
+  grid-template-columns: 1.45fr 0.78fr 0.62fr;
+  gap: 10px;
+}
+.target-harmonic-practice > div {
+  padding: 2px 3px;
+}
+.target-harmonic-practice label {
+  font-weight: 700;
+}
+.target-harmonic-practice select,
+.target-harmonic-practice input {
+  height: 28px;
+  border: 1px solid #d7e2ee;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0 8px;
+}
+.target-harmonic-practice select {
+  margin-left: 12px;
+}
+.target-harmonic-practice > div > p {
+  margin: 7px 0;
+}
+.hm-answer {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.hm-answer input {
+  width: 92px;
+}
+.hm-answer button {
+  height: 31px;
+  border: 0;
+  border-radius: 7px;
+  background: #079dce;
+  color: #fff;
+  font-weight: 700;
+  padding: 0 24px;
+}
+.hm-solution {
+  border-left: 1px solid #e0e7f0;
+}
+.hm-solution h3 {
+  color: #0583a3;
+  margin-bottom: 13px;
+}
+.hm-solution p {
+  font-family: Georgia, serif;
+  font-size: 12px;
+  line-height: 25px;
+}
+.hm-result {
+  border: 1px solid #dce5ef;
+  border-radius: 8px;
+  background: #f5f8fb;
+  text-align: center;
+}
+.hm-result svg {
+  width: 20px;
+  color: #2da366;
+}
+.hm-result.correct {
+  background: #f0fbf5;
+  color: #17663c;
+}
+.hm-result.incorrect {
+  background: #fff2f2;
+  color: #b42332;
+}
+.target-harmonic-nav {
+  height: 46px;
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.target-harmonic-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 15px;
+  color: #102552;
+  text-decoration: none;
+}
+.target-harmonic-nav a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.target-harmonic-nav svg {
+  width: 15px;
+  color: #0588c2;
+}
+.target-harmonic-nav span {
+  display: grid;
+}
+.target-harmonic-nav b {
+  text-transform: uppercase;
+  font-size: 6px;
+}
+@media (min-width: 960px) and (max-width: 1279px) {
+  body:has(.target-harmonic-page) [data-testid="desktop-sidebar"] {
+    width: 209px;
+  }
+  body:has(.target-harmonic-page) .app-layout-rail > div > header {
+    height: 55px;
+  }
+  body:has(.target-harmonic-page) #main-content {
+    padding: 20px 13px 0;
+    background: #fff;
+  }
+  body:has(.target-harmonic-page) footer[aria-label="Site footer"] {
+    height: 54px;
+    min-height: 54px;
+    margin-top: 5px;
+  }
+  body:has(.target-harmonic-page) footer[aria-label="Site footer"] > div {
+    height: 54px;
+    min-height: 54px;
+    padding: 5px 10px;
+  }
+}
+@media (max-width: 759px) {
+  .target-harmonic-page {
+    height: auto;
+  }
+  .target-harmonic-header {
+    height: auto;
+    display: block;
+  }
+  .target-harmonic-actions {
+    flex-wrap: wrap;
+  }
+  .target-harmonic-tabs {
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+  }
+  .target-harmonic-flow,
+  .target-harmonic-models,
+  .target-harmonic-learning,
+  .target-harmonic-examples,
+  .target-harmonic-practice {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .target-harmonic-lab {
+    height: auto;
+  }
+  .target-harmonic-controls {
+    grid-template-columns: 1fr;
+  }
+  .target-harmonic-controls > * {
+    grid-column: auto !important;
+  }
+  .target-harmonic-nav {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}

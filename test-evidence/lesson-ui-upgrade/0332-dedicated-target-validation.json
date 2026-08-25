@@ -1,0 +1,140 @@
+{
+  "mockup": "0332",
+  "lessonId": 275,
+  "route": "/lessons/trigonometry/275-harmonic-motion",
+  "objectModel": "draggable-unit-circle-horizontal-projection-displacement-velocity-shm-model",
+  "checks": {
+    "initial": {
+      "angle": "60.000000",
+      "displacement": "0.500000",
+      "velocity": "-0.866025",
+      "radius-identity": "1.000000",
+      "active-view": "interaction",
+      "animating": "false",
+      "practice-state": "correct"
+    },
+    "drag": {
+      "angle": "92.471082",
+      "displacement": "-0.043115",
+      "velocity": "-0.999070",
+      "radius-identity": "1.000000",
+      "active-view": "interaction",
+      "animating": "false",
+      "practice-state": "correct"
+    },
+    "angle180": {
+      "angle": "180.000000",
+      "displacement": "-1.000000",
+      "velocity": "-0.000000",
+      "radius-identity": "1.000000",
+      "active-view": "interaction",
+      "animating": "false",
+      "practice-state": "correct"
+    },
+    "animation": {
+      "angle": "188.660000",
+      "displacement": "-0.988599",
+      "velocity": "0.150571",
+      "radius-identity": "1.000000",
+      "active-view": "interaction",
+      "animating": "true",
+      "practice-state": "correct"
+    },
+    "formulas": {
+      "angle": "189.992000",
+      "displacement": "-0.984832",
+      "velocity": "0.173511",
+      "radius-identity": "1.000000",
+      "active-view": "formulas",
+      "animating": "false",
+      "practice-state": "correct"
+    },
+    "practiceWrong": {
+      "angle": "189.992000",
+      "displacement": "-0.984832",
+      "velocity": "0.173511",
+      "radius-identity": "1.000000",
+      "active-view": "formulas",
+      "animating": "false",
+      "practice-state": "incorrect"
+    },
+    "practiceCorrect": {
+      "angle": "189.992000",
+      "displacement": "-0.984832",
+      "velocity": "0.173511",
+      "radius-identity": "1.000000",
+      "active-view": "formulas",
+      "animating": "false",
+      "practice-state": "correct"
+    },
+    "reset": {
+      "angle": "60.000000",
+      "displacement": "0.500000",
+      "velocity": "-0.866025",
+      "radius-identity": "1.000000",
+      "active-view": "interaction",
+      "animating": "false",
+      "practice-state": "correct"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 991,
+      "height": 1587
+    },
+    "document": {
+      "width": 991,
+      "height": 1587
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 92,
+      "bottom": 1525,
+      "height": 1433
+    },
+    "regions": {
+      "header": {
+        "top": 92,
+        "bottom": 236,
+        "height": 144
+      },
+      "tabs": {
+        "top": 245,
+        "bottom": 285,
+        "height": 40
+      },
+      "flow": {
+        "top": 295,
+        "bottom": 383,
+        "height": 88
+      },
+      "lab": {
+        "top": 391,
+        "bottom": 870,
+        "height": 479
+      },
+      "learning": {
+        "top": 878,
+        "bottom": 1118,
+        "height": 240
+      },
+      "examples": {
+        "top": 1125,
+        "bottom": 1317,
+        "height": 192
+      },
+      "practice": {
+        "top": 1326,
+        "bottom": 1471,
+        "height": 145
+      },
+      "nav": {
+        "top": 1479,
+        "bottom": 1525,
+        "height": 46
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

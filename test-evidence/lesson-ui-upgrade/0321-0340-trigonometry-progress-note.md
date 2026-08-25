@@ -1,6 +1,6 @@
 # Trigonometry target batch 0321-0340
 
-Dedicated rebuild target: **69 of 130 lessons completed; 61 pending.**
+Expanded dedicated rebuild target: **70 of 730 lessons completed; 660 pending.**
 
 | Mockup |                              Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                                        |
 | ------ | ----------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -15,6 +15,7 @@ Dedicated rebuild target: **69 of 130 lessons completed; 61 pending.**
 | 0329   |           272 Triangle Area Formula | Complete | Draggable coordinate triangle with altitude, determinant, SAS, and base-height equivalence model; three physical vertex drags; real SAS sliders, coordinate editor, generated practice, grading, and reset checks; exact 1006x1563 target composition                                 |
 | 0330   |                        273 Bearings | Complete | Draggable north-grid route with clockwise bearing, reverse bearing, quadrant, and distance model; two physical endpoint drags; coordinate fields, six direction presets, units, lesson views, practice grading, and reset checks; exact 990x1589 target composition                   |
 | 0331   |        274 Elevation and Depression | Complete | Draggable observer-target sightline and right-triangle model; two physical endpoint drags; elevation/depression modes, linked angle/height/distance controls, live identities, lesson views, numerical grading, solution toggle, and reset checks; exact 1023x1537 target composition |
+| 0332   |                 275 Harmonic Motion | Complete | Draggable unit-circle projection, displacement, and velocity model; physical point drag; linked wave markers, angle controls, animation, lesson views, independent challenge grading, and reset checks; exact 991x1587 target composition                                             |
 
 ## Lesson 264 / Mockup 0321 - Reciprocal Trig Functions
 
@@ -169,3 +170,17 @@ Evidence:
 - `0331-reference.png`
 - `0331-desktop.png`
 - `0331-dedicated-target-validation.json`
+
+## Lesson 275 / Mockup 0332 - Harmonic Motion
+
+Reworked individually against the target mockup with a dedicated `draggable-unit-circle-horizontal-projection-displacement-velocity-shm-model`. One shared angle drives the physical unit-circle point, horizontal projection, displacement `x(theta) = cos(theta)`, velocity `v(theta) = -sin(theta)`, both graph markers, exact radian label, and the invariant `x^2 + v^2 = 1`. The circle point is physically draggable, and animation advances the same model continuously rather than playing a decorative loop.
+
+The five lesson views, language, reset, share, workspace focus, circle handle, angle slider and numeric field, -10/+10 steppers, animation play/pause, three independent challenge angles, two numerical answer fields, grading feedback, and adjacent navigation are functional. The challenge recalculates displacement and velocity for its selected angle and requires both signed values within the stated three-decimal tolerance.
+
+Final 991x1587 browser validation verifies the initial 60-degree state, `x = 0.5`, `v = -sqrt(3)/2`, and unit identity; physically drags the rotating point while rechecking the identity; sets 180 degrees and verifies `x = -1`, `v = 0`; proves animation changes the angle; activates the Formulas view; rejects two incorrect challenge values at 225 degrees; accepts `-0.707` and `0.707`; and resets the complete lesson. The screenshot loop matches the target stack exactly: header y=92-236, tabs y=245-285, learning flow y=295-383, linked lab y=391-870, model cards y=878-1118, worked/misconception row y=1125-1317, practice y=1326-1471, and navigation y=1479-1525. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0332-reference.png`
+- `0332-desktop.png`
+- `0332-dedicated-target-validation.json`
