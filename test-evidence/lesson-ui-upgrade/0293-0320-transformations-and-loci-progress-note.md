@@ -21,6 +21,7 @@
 | 0309 | 252 Conjecture Testing | `measured-translation-conjecture-trial-engine` | Reworked individually and browser-validated |
 | 0310 | 253 Exact Proof | `exact-translation-isometry-proof-chain` | Reworked individually and browser-validated |
 | 0311 | 254 Collinearity Test | `three-point-synchronized-exact-collinearity-tests` | Reworked individually and browser-validated |
+| 0312 | 255 Concurrency Test | `triangle-cevians-exact-ceva-concurrency` | Reworked individually and browser-validated |
 
 ## Lesson 236 / Mockup 0293 - Translation by Vector
 
@@ -266,3 +267,18 @@ Evidence:
 
 - `0311-desktop.png`
 - `0311-dedicated-target-validation.json`
+
+## Lesson 255 / Mockup 0312 - Concurrency Test
+
+Reworked individually against the target mockup with a dedicated `triangle-cevians-exact-ceva-concurrency` object model. The construction owns draggable triangle vertices A, B, C and side parameters for F on AB, D on BC, and E on CA. It derives all three side points, cevians AD, BE, CF, their three pairwise intersections, a common-point residual, triangle validity, the three Ceva ratios, and their product. Dragging F, D, or E projects the pointer back onto its owning side, while dragging a vertex reconstructs all dependent geometry without changing the side parameters. Exact ratio inputs, sliders, zoom, reset, tabs, sharing, fullscreen, object-view modes, and adjacent navigation are functional.
+
+Concurrency requires two independent conditions from the same model: Ceva product approximately 1 and all three line intersections agreeing within tolerance. A collapsed triangle is explicitly invalid even if a ratio expression happens to remain finite. The independent practice model uses three live side-ratio sliders and grades its own product rather than reusing the worked construction’s result.
+
+The implementation uses the standard Ceva assignment `F∈AB`, `D∈BC`, `E∈CA` and product `(AF/FB)(BD/DC)(CE/EA)=1`. Mockup 0312 draws that geometry but labels D as being on AC and E as being on BC in the control panel, then mixes `CD/DB` and `BE/EA` with the standard theorem card. The dedicated surface keeps side ownership, numerator order, graph labels, sliders, and theorem formula consistent.
+
+Final 1004x1566 browser validation begins with exact ratios 1.25, 1.2, and 2/3 and verifies product 1 with a common intersection, physically drags F to break both product and concurrency, drags D and E independently along their sides, restores all three exact ratios and concurrency, drags A, B, and C while proving affine concurrency is preserved, exercises zoom controls, collapses C onto B and verifies the triangle is rejected, resets the model, switches object-view modes, and follows incorrect and corrected practice-product paths. The screenshot loop added the target’s missing three-item object strip and moved lesson navigation to the viewport bottom. Final validation reports zero overflow, zero console errors, exact one-viewport height, and a lesson surface ending at y=1566.
+
+Evidence:
+
+- `0312-desktop.png`
+- `0312-dedicated-target-validation.json`

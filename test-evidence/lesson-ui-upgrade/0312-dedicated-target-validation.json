@@ -1,0 +1,15 @@
+[
+  {
+    "id": 255,
+    "mockup": 312,
+    "route": "/lessons/geometry/255-concurrency-test",
+    "width": 1004,
+    "height": 1566,
+    "status": "Great! Correct: your cevians are concurrent.",
+    "consoleErrors": [],
+    "scrollHeight": 1566,
+    "surfaceBottom": 1566,
+    "objectModel": "triangle-cevians-exact-ceva-concurrency",
+    "overflowing": 0
+  }
+]

@@ -1307,9 +1307,21 @@ describe("Geometry2DLessonAdapter", () => {
     expect(html).toContain('aria-label="Collinearity practice A"');
   });
 
-  it("renders geometry lessons 255 through 256 with loci and proof guidance", () => {
+  it("renders Concurrency Test as an exact Ceva theorem model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 255)!;
+    const html = renderToStaticMarkup(<Geometry2DLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="dynamic-geometry-mockup-0312"');
+    expect(html).toContain('data-object-model="triangle-cevians-exact-ceva-concurrency"');
+    expect(html).toContain("Draggable triangle side points with exact Ceva concurrency test");
+    expect(html).toContain('data-testid="concurrency-point-f"');
+    expect(html).toContain('data-testid="concurrency-common-point"');
+    expect(html).toContain('aria-label="AF over FB"');
+    expect(html).toContain("AF/FB × BD/DC × CE/EA = 1");
+    expect(html).toContain('aria-label="Practice Ceva F ratio"');
+  });
+
+  it("renders geometry lesson 256 with loci and proof guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      255: "Concurrency test",
       256: "Concyclicity test",
     };
 
