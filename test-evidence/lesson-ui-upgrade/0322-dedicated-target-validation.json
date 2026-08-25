@@ -1,0 +1,185 @@
+{
+  "mockup": "0322",
+  "lessonId": 265,
+  "route": "/lessons/trigonometry/265-inverse-trig-functions",
+  "reference": "0322-interactive-intermediate-advanced-trigonometry-inverse-trig-functions-redesigned.png",
+  "objectModel": "restricted-branch-reflection-principal-inverse-trigonometry-model",
+  "checks": {
+    "initial": {
+      "functionKey": "asin",
+      "angle": 45,
+      "inputValue": 0.707107,
+      "inverseValue": 45,
+      "stage": "explore",
+      "practiceRatio": 0.75,
+      "practiceExpected": 48.590378,
+      "practiceResult": "correct",
+      "hintShown": false
+    },
+    "inputDrag": {
+      "functionKey": "asin",
+      "angle": 52.146579,
+      "inputValue": 0.789583,
+      "inverseValue": 52.146579,
+      "stage": "explore",
+      "practiceRatio": 0.75,
+      "practiceExpected": 48.590378,
+      "practiceResult": "correct",
+      "hintShown": false
+    },
+    "outputDrag": {
+      "functionKey": "asin",
+      "angle": 46.99391,
+      "inputValue": 0.731281,
+      "inverseValue": 46.99391,
+      "stage": "explore",
+      "practiceRatio": 0.75,
+      "practiceExpected": 48.590378,
+      "practiceResult": "correct",
+      "hintShown": false
+    },
+    "acos120": {
+      "functionKey": "acos",
+      "angle": 120,
+      "inputValue": -0.5,
+      "inverseValue": 120,
+      "stage": "explore",
+      "practiceRatio": 0.75,
+      "practiceExpected": 48.590378,
+      "practiceResult": "correct",
+      "hintShown": false
+    },
+    "atan45": {
+      "functionKey": "atan",
+      "angle": 45,
+      "inputValue": 1,
+      "inverseValue": 45,
+      "stage": "explore",
+      "practiceRatio": 0.75,
+      "practiceExpected": 48.590378,
+      "practiceResult": "correct",
+      "hintShown": false
+    },
+    "asinMinus30": {
+      "functionKey": "asin",
+      "angle": -30,
+      "inputValue": -0.5,
+      "inverseValue": -30,
+      "stage": "explore",
+      "practiceRatio": 0.75,
+      "practiceExpected": 48.590378,
+      "practiceResult": "correct",
+      "hintShown": false
+    },
+    "explainStage": {
+      "functionKey": "asin",
+      "angle": -30,
+      "inputValue": -0.5,
+      "inverseValue": -30,
+      "stage": "explain",
+      "practiceRatio": 0.75,
+      "practiceExpected": 48.590378,
+      "practiceResult": "correct",
+      "hintShown": false
+    },
+    "practiceDrag": {
+      "functionKey": "asin",
+      "angle": -30,
+      "inputValue": -0.5,
+      "inverseValue": -30,
+      "stage": "explore",
+      "practiceRatio": 0.992604,
+      "practiceExpected": 83.027215,
+      "practiceResult": "idle",
+      "hintShown": false
+    },
+    "practiceWrong": {
+      "functionKey": "asin",
+      "angle": -30,
+      "inputValue": -0.5,
+      "inverseValue": -30,
+      "stage": "explore",
+      "practiceRatio": 0.992604,
+      "practiceExpected": 83.027215,
+      "practiceResult": "incorrect",
+      "hintShown": false
+    },
+    "hint": {
+      "functionKey": "asin",
+      "angle": -30,
+      "inputValue": -0.5,
+      "inverseValue": -30,
+      "stage": "explore",
+      "practiceRatio": 0.992604,
+      "practiceExpected": 83.027215,
+      "practiceResult": "incorrect",
+      "hintShown": true
+    },
+    "practiceCorrect": {
+      "functionKey": "asin",
+      "angle": -30,
+      "inputValue": -0.5,
+      "inverseValue": -30,
+      "stage": "explore",
+      "practiceRatio": 0.992604,
+      "practiceExpected": 83.027215,
+      "practiceResult": "correct",
+      "hintShown": false
+    },
+    "practiceReset": {
+      "functionKey": "asin",
+      "angle": -30,
+      "inputValue": -0.5,
+      "inverseValue": -30,
+      "stage": "explore",
+      "practiceRatio": 0.75,
+      "practiceExpected": 48.590378,
+      "practiceResult": "idle",
+      "hintShown": false
+    },
+    "reset": {
+      "functionKey": "asin",
+      "angle": 45,
+      "inputValue": 0.707107,
+      "inverseValue": 45,
+      "stage": "explore",
+      "practiceRatio": 0.75,
+      "practiceExpected": 48.590378,
+      "practiceResult": "correct",
+      "hintShown": false
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 976,
+      "height": 1612
+    },
+    "document": {
+      "width": 976,
+      "height": 1653
+    },
+    "horizontalOverflow": false,
+    "surfaceTop": 94,
+    "surfaceBottom": 1653,
+    "headerTop": 94,
+    "headerBottom": 257,
+    "tabsTop": 257,
+    "tabsBottom": 308,
+    "flowTop": 316,
+    "flowBottom": 381,
+    "workspaceTop": 389,
+    "workspaceBottom": 889,
+    "ruleTop": 901,
+    "ruleBottom": 1058,
+    "exampleTop": 1077,
+    "exampleBottom": 1264,
+    "misconceptionTop": 1279,
+    "misconceptionBottom": 1355,
+    "practiceTop": 1373,
+    "practiceBottom": 1601,
+    "navTop": 1617,
+    "navBottom": 1659
+  },
+  "consoleMessages": [],
+  "passed": true
+}

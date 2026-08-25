@@ -281,6 +281,14 @@ export default function Sidebar() {
             );
           })}
         </nav>
+        <footer className="hidden" data-testid="desktop-sidebar-footer">
+          <h2>Math Universe</h2>
+          <p>Interactive math labs, visual proofs, NCERT explorations, graphing, CAS-style tools, and classroom-ready activities.</p>
+          <nav aria-label="Sidebar footer links"><NavLink to="/sitemap">Sitemap</NavLink><NavLink to="/docs">Docs</NavLink><NavLink to="/about">About</NavLink></nav>
+          <small>© 2026 INDIAN SERVERS PRIVATE LIMITED.<br />NO RIGHT TO REPRODUCE IT.</small>
+          <a href="https://www.indianservers.com">www.IndianServers.com</a>
+          <a href="mailto:info@IndianServers.com">info@IndianServers.com</a>
+        </footer>
       </div>
     </aside>
   );

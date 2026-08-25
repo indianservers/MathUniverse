@@ -199,6 +199,33 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("MISCONCEPTION CHECK");
   });
 
+  it("renders lesson 265 as a dedicated restricted-branch inverse-trig workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 265)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0322"');
+    expect(html).toContain('data-dedicated-lesson="265"');
+    expect(html).toContain(
+      'data-object-model="restricted-branch-reflection-principal-inverse-trigonometry-model"',
+    );
+    expect(html).toContain('data-function="asin"');
+    expect(html).toContain('data-angle="45.000000"');
+    expect(html).toContain('data-input-value="0.707107"');
+    expect(html).toContain('data-inverse-value="45.000000"');
+    expect(html).toContain('data-testid="inverse-input-handle"');
+    expect(html).toContain('data-testid="inverse-output-handle"');
+    expect(html).toContain('data-testid="inverse-practice-handle"');
+    expect(html).toContain('aria-label="Restricted branch angle"');
+    expect(html).toContain('aria-label="Inverse output angle"');
+    expect(html).toContain('aria-label="Practice inverse answer"');
+    expect(html).toContain("Restricted branches reflected across");
+    expect(html).toContain("PRINCIPAL RANGES");
+    expect(html).toContain("COMMON MISCONCEPTION");
+    expect(html).toContain("QUICK PRACTICE CHALLENGE");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(
