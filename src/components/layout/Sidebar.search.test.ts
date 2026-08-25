@@ -67,4 +67,12 @@ describe("Sidebar menu search", () => {
     expect(searchableTitles("combinatorics")).toContain("Combinatorics");
     expect(searchableTitles("statistics probability")).toContain("Statistics and Probability");
   });
+
+  it("exposes Calculus Studio from the home navigation", () => {
+    const startHere = navSections.find((section) => section.title === "Start Here");
+    expect(startHere?.items).toEqual(expect.arrayContaining([
+      expect.objectContaining({ title: "Calculus Studio", route: "/calculus" }),
+    ]));
+    expect(searchableTitlesInAllSections("calculus studio")).toContain("Calculus Studio");
+  });
 });

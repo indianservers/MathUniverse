@@ -56,14 +56,13 @@ const AIApplications = lazyRoute(() => import("./pages/AIApplications"));
 const ARMathLab = lazyRoute(() => import("./pages/ARMathLab"));
 const BoardSyllabusVisualizer = lazyRoute(() => import("./pages/BoardSyllabusVisualizer"));
 const BoardPage = lazyRoute(() => import("./modules/board/BoardPage"));
-const Calculus = lazyRoute(() => import("./pages/Calculus"));
+const CalculusStudio = lazyRoute(() => import("./pages/CalculusStudio"));
 const CircleToTriangleVisualization = lazyRoute(() => import("./pages/CircleToTriangleVisualization"));
 const Combinatorics = lazyRoute(() => import("./pages/Combinatorics"));
 const ComplexNumbers = lazyRoute(() => import("./pages/ComplexNumbers"));
 const ConceptDependencyGraph = lazyRoute(() => import("./pages/ConceptDependencyGraph"));
 const ConceptMapPage = lazyRoute(() => import("./concept-map/ConceptMapPage"));
 const DailyChallenge = lazyRoute(() => import("./pages/DailyChallenge"));
-const DerivativesTangentVisualizer = lazyRoute(() => import("./pages/DerivativesTangentVisualizer"));
 const DiscreteWorld = lazyRoute(() => import("./pages/DiscreteWorld"));
 const Documentation = lazyRoute(() => import("./pages/Documentation"));
 const EigenvectorsVisualizerPage = lazyRoute(() => import("./pages/EigenvectorsVisualizerPage"));
@@ -77,7 +76,6 @@ const GeometryConceptPage = lazyRoute(() => import("./pages/GeometryConceptPage"
 const GraphComparisonMode = lazyRoute(() => import("./pages/GraphComparisonMode"));
 const GraphTheory = lazyRoute(() => import("./pages/GraphTheory"));
 const Home = lazyRoute(() => import("./pages/Home"));
-const IntegrationAreaVisualizerPage = lazyRoute(() => import("./pages/IntegrationAreaVisualizerPage"));
 const LessonsHomePage = lazyRoute(() => import("./modules/lessons/pages/LessonsHomePage"));
 const LearnDiscoveryPage = lazyRoute(() => import("./modules/lessons/pages/LearnDiscoveryPage"));
 const LessonsCategoryPage = lazyRoute(() => import("./modules/lessons/pages/LessonsCategoryPage"));
@@ -89,7 +87,6 @@ const SchoolLessonPage = lazyRoute(() => import("./modules/lessons/pages/SchoolL
 const Phase4ComputationalLabPage = lazyRoute(() => import("./pages/Phase4ComputationalLabPage"));
 const Phase5MathEnvironmentPage = lazyRoute(() => import("./pages/Phase5MathEnvironmentPage"));
 const LinearAlgebra = lazyRoute(() => import("./pages/LinearAlgebra"));
-const LimitsContinuityVisualizer = lazyRoute(() => import("./pages/LimitsContinuityVisualizer"));
 const MathLab = lazyRoute(() => import("./pages/MathLab"));
 const MathLab3DGraphing = lazyRoute(() => import("./pages/MathLab3DGraphing"));
 const MathLabConicSolver = lazyRoute(() => import("./pages/MathLabConicSolver"));
@@ -128,7 +125,6 @@ const ScientificCalculator = lazyRoute(() => import("./pages/ScientificCalculato
 const SetTheory = lazyRoute(() => import("./pages/SetTheory"));
 const ShapesExplorer = lazyRoute(() => import("./pages/ShapesExplorer"));
 const Sitemap = lazyRoute(() => import("./pages/Sitemap"));
-const SlopeFieldsVisualizerPage = lazyRoute(() => import("./pages/SlopeFieldsVisualizerPage"));
 const SpacedRepetitionQuiz = lazyRoute(() => import("./pages/SpacedRepetitionQuiz"));
 const StepByStepProblemSolver = lazyRoute(() => import("./pages/StepByStepProblemSolver"));
 const SurfacePlotter3D = lazyRoute(() => import("./pages/SurfacePlotter3D"));
@@ -277,17 +273,24 @@ export default function App() {
             <Route path="trigonometry" element={<Trigonometry />} />
             <Route path="trigonometry/formula-visualizer" element={<TrigFormulaVisualizerPage />} />
             <Route path="trigonometry/:conceptId" element={<TrigonometryConceptPage />} />
-            <Route path="calculus" element={<Calculus />} />
-            <Route path="calculus/limits" element={<Calculus page="limits" />} />
-            <Route path="calculus/derivatives" element={<Calculus page="derivatives" />} />
-            <Route path="calculus/integrals" element={<Calculus page="integrals" />} />
-            <Route path="calculus/motion" element={<Calculus page="motion" />} />
-            <Route path="calculus/practice" element={<Calculus page="practice" />} />
-            <Route path="calculus/proof-problems" element={<Calculus page="proof-problems" />} />
-            <Route path="calculus/series-blocks" element={<Calculus page="series-blocks" />} />
-            <Route path="calculus/atlas" element={<Calculus page="atlas" />} />
-            <Route path="calculus/formulas" element={<Calculus page="formulas" />} />
-            <Route path="calculus/applications" element={<Calculus page="applications" />} />
+            <Route path="calculus" element={<CalculusStudio page="home" />} />
+            <Route path="calculus/limits" element={<CalculusStudio page="limits" />} />
+            <Route path="calculus/derivatives" element={<CalculusStudio page="derivatives" />} />
+            <Route path="calculus/derivative-applications" element={<CalculusStudio page="derivative-applications" />} />
+            <Route path="calculus/integration" element={<CalculusStudio page="integration" />} />
+            <Route path="calculus/integration-techniques" element={<CalculusStudio page="integration-techniques" />} />
+            <Route path="calculus/integral-applications" element={<CalculusStudio page="integral-applications" />} />
+            <Route path="calculus/differential-equations" element={<CalculusStudio page="differential-equations" />} />
+            <Route path="calculus/series-parametric-polar" element={<CalculusStudio page="series-parametric-polar" />} />
+            <Route path="calculus/multivariable-vector" element={<CalculusStudio page="multivariable-vector" />} />
+            <Route path="calculus/integrals" element={<Navigate to="/calculus/integration" replace />} />
+            <Route path="calculus/motion" element={<Navigate to="/calculus/derivative-applications?mode=motion" replace />} />
+            <Route path="calculus/practice" element={<Navigate to="/calculus" replace />} />
+            <Route path="calculus/proof-problems" element={<Navigate to="/calculus/integration?mode=ftc" replace />} />
+            <Route path="calculus/series-blocks" element={<Navigate to="/calculus/series-parametric-polar" replace />} />
+            <Route path="calculus/atlas" element={<Navigate to="/calculus" replace />} />
+            <Route path="calculus/formulas" element={<Navigate to="/calculus/integration-techniques" replace />} />
+            <Route path="calculus/applications" element={<Navigate to="/calculus/derivative-applications" replace />} />
             <Route path="combinatorics" element={<Combinatorics />} />
             <Route path="complex-numbers" element={<ComplexNumbers />} />
             <Route path="set-theory" element={<SetTheory />} />
@@ -352,12 +355,12 @@ export default function App() {
             <Route path="mathematical-logic" element={<TruthTableGenerator />} />
             <Route path="truth-table" element={<TruthTableGenerator />} />
             <Route path="math/functions-graphs" element={<Navigate to="/workspace/graph" replace />} />
-            <Route path="math/limits-continuity" element={<LimitsContinuityVisualizer />} />
-            <Route path="math/derivatives" element={<DerivativesTangentVisualizer />} />
-            <Route path="math/integration" element={<IntegrationAreaVisualizerPage />} />
+            <Route path="math/limits-continuity" element={<CalculusStudio page="limits" />} />
+            <Route path="math/derivatives" element={<CalculusStudio page="derivatives" />} />
+            <Route path="math/integration" element={<CalculusStudio page="integration" />} />
             <Route path="math/matrix-transformations" element={<MatrixTransformationsVisualizerPage />} />
             <Route path="math/eigenvectors" element={<EigenvectorsVisualizerPage />} />
-            <Route path="math/slope-fields" element={<SlopeFieldsVisualizerPage />} />
+            <Route path="math/slope-fields" element={<CalculusStudio page="differential-equations" />} />
             <Route path="math/fourier-series" element={<FourierSeriesVisualizerPage />} />
             <Route path="math/permutations-combinations" element={<PermutationsCombinationsVisualizer />} />
             <Route path="math/:visualizationId" element={<MathVisualizationPage />} />

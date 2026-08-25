@@ -420,6 +420,39 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Practice Challenge");
   });
 
+  it("renders lesson 272 as a dedicated equivalent-area triangle workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 272)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0329"');
+    expect(html).toContain('data-dedicated-lesson="272"');
+    expect(html).toContain(
+      'data-object-model="draggable-coordinate-triangle-sas-determinant-altitude-area-equivalence-model"',
+    );
+    expect(html).toContain('data-side-a="3.605551"');
+    expect(html).toContain('data-side-b="3.605551"');
+    expect(html).toContain('data-base="4.000000"');
+    expect(html).toContain('data-height="3.000000"');
+    expect(html).toContain('data-formula-area="6.000000"');
+    expect(html).toContain('data-base-height-area="6.000000"');
+    expect(html).toContain('data-determinant-area="6.000000"');
+    expect(html).toContain('data-difference="0.000000"');
+    expect(html).toContain('data-testid="triangle-area-vertex-a"');
+    expect(html).toContain('data-testid="triangle-area-vertex-b"');
+    expect(html).toContain('data-testid="triangle-area-vertex-c"');
+    expect(html).toContain('aria-label="Triangle area included angle"');
+    expect(html).toContain('aria-label="Triangle area practice answer"');
+    expect(html).toContain("Area by base–height");
+    expect(html).toContain("Common Misconception");
+    expect(html).toContain("Quick Practice");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(

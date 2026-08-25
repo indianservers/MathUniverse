@@ -42,6 +42,7 @@ import DoubleHalfAngleTargetLesson268 from "./DoubleHalfAngleTargetLesson268";
 import TrigEquationsTargetLesson269 from "./TrigEquationsTargetLesson269";
 import SineRuleTargetLesson270 from "./SineRuleTargetLesson270";
 import CosineRuleTargetLesson271 from "./CosineRuleTargetLesson271";
+import TriangleAreaTargetLesson272 from "./TriangleAreaTargetLesson272";
 
 type TrigKind =
   "circle" | "graph" | "triangle" | "equation" | "application" | "polar";
@@ -620,6 +621,15 @@ export default function TrigonometryLessonAdapter({
   if (lesson.id === 271) {
     return (
       <CosineRuleTargetLesson271
+        lesson={lesson}
+        resetToken={resetToken}
+        onInteraction={onInteraction}
+      />
+    );
+  }
+  if (lesson.id === 272) {
+    return (
+      <TriangleAreaTargetLesson272
         lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}

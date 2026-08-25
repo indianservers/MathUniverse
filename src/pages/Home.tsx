@@ -689,7 +689,7 @@ function HomeUnderstandingSection() {
     { title: "Algebra", text: "Master expressions, equations, and patterns visually.", route: "/math/algebra", className: "algebra" },
     { title: "Geometry", text: "Explore shapes, theorems, and spatial reasoning.", route: "/math/geometry", className: "geometry" },
     { title: "Trigonometry", text: "Understand angles, identities, and wave functions.", route: "/math/trigonometry", className: "trig" },
-    { title: "Calculus", text: "Visualize change, limits, and area under curves.", route: "/math/calculus", className: "calculus" },
+    { title: "Calculus Studio", text: "Visualize change, limits, and area under curves.", route: "/calculus", className: "calculus" },
   ];
 
   return (

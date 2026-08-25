@@ -1,6 +1,6 @@
 # Trigonometry target batch 0321-0340
 
-Dedicated rebuild target: **66 of 130 lessons completed; 64 pending.**
+Dedicated rebuild target: **67 of 130 lessons completed; 63 pending.**
 
 | Mockup |                              Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                        |
 | ------ | ----------------------------------: | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -12,6 +12,7 @@ Dedicated rebuild target: **66 of 130 lessons completed; 64 pending.**
 | 0326   |                  269 Trig Equations | Complete | Periodic cosine graph and movable level-line intersection model; physical line drag; independent interval endpoints, radian/degree modes, exact solution families, symbolic grading, hint, derivation, and reset checks; exact 1003x1568 target stack |
 | 0327   |                       270 Sine Rule | Complete | Draggable triangle and opposite side-angle sine-ratio model; three physical vertex drags; real SSA zero/one/two ambiguity classification, tangent-boundary handling, numerical grading, hint, and reset checks; exact 1024x1536 target stack          |
 | 0328   |                     271 Cosine Rule | Complete | Draggable coordinate triangle and square-decomposition model; two physical vertex drags; live Cosine Rule identity, independent editable SAS solvers, practice checking, and reset checks; exact 1013x1553 target composition                        |
+| 0329   |           272 Triangle Area Formula | Complete | Draggable coordinate triangle with altitude, determinant, SAS, and base-height equivalence model; three physical vertex drags; real SAS sliders, coordinate editor, generated practice, grading, and reset checks; exact 1006x1563 target composition |
 
 ## Lesson 264 / Mockup 0321 - Reciprocal Trig Functions
 
@@ -124,3 +125,17 @@ Evidence:
 - `0328-reference.png`
 - `0328-desktop.png`
 - `0328-dedicated-target-validation.json`
+
+## Lesson 272 / Mockup 0329 - Triangle Area Formula
+
+Reworked individually against the target mockup with a dedicated `draggable-coordinate-triangle-sas-determinant-altitude-area-equivalence-model`. Three independent physical vertices drive the adjacent sides a and b, base AB, included angle C, perpendicular foot D, altitude CD, sine-formula area, base-height area, and determinant area. All three methods remain numerically equal after arbitrary coordinate changes. This replaces the reference image's contradictory initial claim that `1/2(4)(3)sin(53.13 degrees) = 4.789` and simultaneously equals `1/2(4)(3) = 6` with one coherent geometric model.
+
+The five lesson-view controls, workspace focus, reset, share, Sides & Angle and Coordinates tabs, three SAS sliders and number fields, six coordinate fields, three SVG vertex handles, answer input, grading, generated-question cycling, and adjacent navigation are functional. SAS edits reconstruct the coordinate triangle from the requested sides and included angle; coordinate edits update the same model directly. Practice questions own independent expected values and reject incorrect numerical answers before accepting answers within the stated rounding tolerance.
+
+Final 1006x1563 browser validation verifies the initial isosceles coordinate triangle and exact area 6; physically drags A, B, and C separately while rechecking all three area methods after every drag; reconstructs a 5-by-6 triangle with included angle 90 degrees and verifies area 15; opens the coordinate editor, creates A(0,0), B(5,0), C(2,4), and verifies area 10; activates the Practice lesson view; rejects 10, accepts 16.97, advances to a new generated question, and resets the full lesson. The screenshot loop matches the target stack exactly: header y=97-191, tabs y=199-241, flow y=256-333, explorer y=348-1027, learning cards y=1038-1291, practice y=1302-1499, and navigation y=1508-1558. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0329-reference.png`
+- `0329-desktop.png`
+- `0329-dedicated-target-validation.json`

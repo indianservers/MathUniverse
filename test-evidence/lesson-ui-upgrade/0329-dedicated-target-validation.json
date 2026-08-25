@@ -1,0 +1,244 @@
+{
+  "mockup": "0329",
+  "lessonId": 272,
+  "route": "/lessons/trigonometry/272-triangle-area-formula",
+  "reference": "0329-interactive-intermediate-advanced-trigonometry-triangle-area-formula-redesigned.png",
+  "objectModel": "draggable-coordinate-triangle-sas-determinant-altitude-area-equivalence-model",
+  "checks": {
+    "initial": {
+      "a": 3.605551,
+      "b": 3.605551,
+      "base": 4,
+      "height": 3,
+      "C": 67.380135,
+      "formulaArea": 6,
+      "baseHeightArea": 6,
+      "determinantArea": 6,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "idle",
+      "activeTab": "interaction",
+      "controlMode": "sides"
+    },
+    "dragA": {
+      "a": 3.605551,
+      "b": 4.21017,
+      "base": 4.577271,
+      "height": 3.139818,
+      "C": 71.219652,
+      "formulaArea": 7.185898,
+      "baseHeightArea": 7.185898,
+      "determinantArea": 7.185898,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "idle",
+      "activeTab": "interaction",
+      "controlMode": "sides"
+    },
+    "dragB": {
+      "a": 3.855587,
+      "b": 4.21017,
+      "base": 5.272696,
+      "height": 3.044939,
+      "C": 81.515929,
+      "formulaArea": 8.027519,
+      "baseHeightArea": 8.027519,
+      "determinantArea": 8.027519,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "idle",
+      "activeTab": "interaction",
+      "controlMode": "sides"
+    },
+    "dragC": {
+      "a": 3.981724,
+      "b": 4.967966,
+      "base": 5.272696,
+      "height": 3.551971,
+      "C": 71.224521,
+      "formulaArea": 9.36423,
+      "baseHeightArea": 9.36423,
+      "determinantArea": 9.36423,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "idle",
+      "activeTab": "interaction",
+      "controlMode": "sides"
+    },
+    "sas": {
+      "a": 5,
+      "b": 6,
+      "base": 7.81025,
+      "height": 3.841106,
+      "C": 90,
+      "formulaArea": 15,
+      "baseHeightArea": 15,
+      "determinantArea": 15,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "idle",
+      "activeTab": "interaction",
+      "controlMode": "sides"
+    },
+    "coordinateMode": {
+      "a": 5,
+      "b": 6,
+      "base": 7.81025,
+      "height": 3.841106,
+      "C": 90,
+      "formulaArea": 15,
+      "baseHeightArea": 15,
+      "determinantArea": 15,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "idle",
+      "activeTab": "interaction",
+      "controlMode": "coordinates"
+    },
+    "coordinates": {
+      "a": 5,
+      "b": 4.472136,
+      "base": 5,
+      "height": 4,
+      "C": 63.434949,
+      "formulaArea": 10,
+      "baseHeightArea": 10,
+      "determinantArea": 10,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "idle",
+      "activeTab": "interaction",
+      "controlMode": "coordinates"
+    },
+    "practiceTab": {
+      "a": 5,
+      "b": 4.472136,
+      "base": 5,
+      "height": 4,
+      "C": 63.434949,
+      "formulaArea": 10,
+      "baseHeightArea": 10,
+      "determinantArea": 10,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "idle",
+      "activeTab": "practice",
+      "controlMode": "coordinates"
+    },
+    "practiceWrong": {
+      "a": 5,
+      "b": 4.472136,
+      "base": 5,
+      "height": 4,
+      "C": 63.434949,
+      "formulaArea": 10,
+      "baseHeightArea": 10,
+      "determinantArea": 10,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "incorrect",
+      "activeTab": "practice",
+      "controlMode": "coordinates"
+    },
+    "practiceCorrect": {
+      "a": 5,
+      "b": 4.472136,
+      "base": 5,
+      "height": 4,
+      "C": 63.434949,
+      "formulaArea": 10,
+      "baseHeightArea": 10,
+      "determinantArea": 10,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "correct",
+      "activeTab": "practice",
+      "controlMode": "coordinates"
+    },
+    "nextQuestion": {
+      "a": 5,
+      "b": 4.472136,
+      "base": 5,
+      "height": 4,
+      "C": 63.434949,
+      "formulaArea": 10,
+      "baseHeightArea": 10,
+      "determinantArea": 10,
+      "difference": 0,
+      "practiceAnswer": 27.2798,
+      "practiceResult": "idle",
+      "activeTab": "practice",
+      "controlMode": "coordinates"
+    },
+    "reset": {
+      "a": 3.605551,
+      "b": 3.605551,
+      "base": 4,
+      "height": 3,
+      "C": 67.380135,
+      "formulaArea": 6,
+      "baseHeightArea": 6,
+      "determinantArea": 6,
+      "difference": 0,
+      "practiceAnswer": 16.970563,
+      "practiceResult": "idle",
+      "activeTab": "interaction",
+      "controlMode": "sides"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1006,
+      "height": 1563
+    },
+    "document": {
+      "width": 1006,
+      "height": 1563
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 97,
+      "bottom": 1557,
+      "height": 1460
+    },
+    "regions": {
+      "header": {
+        "top": 97,
+        "bottom": 191,
+        "height": 94
+      },
+      "tabs": {
+        "top": 199,
+        "bottom": 241,
+        "height": 42
+      },
+      "flow": {
+        "top": 256,
+        "bottom": 333,
+        "height": 77
+      },
+      "lab": {
+        "top": 348,
+        "bottom": 1027,
+        "height": 679
+      },
+      "learning": {
+        "top": 1038,
+        "bottom": 1291,
+        "height": 253
+      },
+      "practice": {
+        "top": 1302,
+        "bottom": 1499,
+        "height": 197
+      },
+      "nav": {
+        "top": 1508,
+        "bottom": 1558,
+        "height": 50
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

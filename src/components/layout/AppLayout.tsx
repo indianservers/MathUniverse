@@ -370,6 +370,8 @@ export default function AppLayout() {
     location.pathname.startsWith("/workspace/data") ||
     location.pathname === "/shapes";
   const isCalculusLabRoute =
+    location.pathname === "/calculus" ||
+    location.pathname.startsWith("/calculus/") ||
     location.pathname === "/math/limits-continuity" ||
     location.pathname === "/math/derivatives" ||
     location.pathname === "/math/derivatives/formula-visualizer" ||
