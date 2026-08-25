@@ -1,13 +1,14 @@
 # Trigonometry target batch 0321-0340
 
-Dedicated rebuild target: **62 of 130 lessons completed; 68 pending.**
+Dedicated rebuild target: **63 of 130 lessons completed; 67 pending.**
 
-| Mockup |                        Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                 |
-| ------ | ----------------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0321   | 264 Reciprocal Trig Functions | Complete | Linked base/reciprocal branch model; two physical graph drags; sec, cosec, cot, undefined-state, settings, stages, grading, solution, and reset checks; exact 1024x1536 target geometry                                                        |
-| 0322   |    265 Inverse Trig Functions | Complete | Restricted-branch reflection model; two physical construction drags plus independent practice drag; arcsine, arccosine, arctangent, stages, grading, hint, and reset checks; target-aligned 976x1612 composition                               |
-| 0323   |           266 Trig Identities | Complete | Unit-circle, symbolic-transformation, and numerical-verification model; physical point drag; domain exclusion, automatic verification, stages, practice, proof reveal, accordions, and reset checks; exact 1023x1537 target stack              |
-| 0324   |   267 Compound-Angle Formulae | Complete | Dual unit-circle rotation and sum/difference projection model; two independent physical angle drags; live components, four identities, display settings, worked construction, challenge grading, and reset checks; exact 985x1597 target stack |
+| Mockup |                              Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                 |
+| ------ | ----------------------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0321   |       264 Reciprocal Trig Functions | Complete | Linked base/reciprocal branch model; two physical graph drags; sec, cosec, cot, undefined-state, settings, stages, grading, solution, and reset checks; exact 1024x1536 target geometry                                                        |
+| 0322   |          265 Inverse Trig Functions | Complete | Restricted-branch reflection model; two physical construction drags plus independent practice drag; arcsine, arccosine, arctangent, stages, grading, hint, and reset checks; target-aligned 976x1612 composition                               |
+| 0323   |                 266 Trig Identities | Complete | Unit-circle, symbolic-transformation, and numerical-verification model; physical point drag; domain exclusion, automatic verification, stages, practice, proof reveal, accordions, and reset checks; exact 1023x1537 target stack              |
+| 0324   |         267 Compound-Angle Formulae | Complete | Dual unit-circle rotation and sum/difference projection model; two independent physical angle drags; live components, four identities, display settings, worked construction, challenge grading, and reset checks; exact 985x1597 target stack |
+| 0325   | 268 Double- and Half-Angle Formulae | Complete | Linked theta, double-angle, and half-angle unit-circle model; three physical inverse-linked drags; Sin/Cos/Tan modes, sign/domain guards, exact-value grading, hint, challenge cycling, and reset checks; exact 991x1587 target stack          |
 
 ## Lesson 264 / Mockup 0321 - Reciprocal Trig Functions
 
@@ -64,3 +65,17 @@ Evidence:
 - `0324-reference.png`
 - `0324-desktop.png`
 - `0324-dedicated-target-validation.json`
+
+## Lesson 268 / Mockup 0325 - Double- and Half-Angle Formulae
+
+Reworked individually against the target mockup with a dedicated `linked-theta-double-half-unit-circle-sign-aware-identity-model`. One theta state drives three unit-circle objects at theta, twice theta, and half theta, their degree and radian values, Cartesian coordinates, direct identity values, expanded identity values, and the correct half-angle sign. All three points are physical handles: dragging theta updates the family directly, dragging the double-angle point solves back for theta, and dragging the half-angle point doubles back into the same state.
+
+The angle slider and numeric field, Sin/Cos/Tan formula modes, six lesson stages, language, reset, share, workspace focus, automatic direct-versus-expanded checks, sign guidance, exact worked solution, four-option practice, grading, hint, and three-question cycle are functional. Tangent calculations guard both double-angle and half-angle denominator singularities instead of displaying floating-point artifacts. The half-angle radical selects its sign from the actual half-angle quadrant.
+
+Final 991x1587 browser validation verifies the initial 45-degree, 90-degree, and 22.5-degree linked construction; physically drags all three handles and proves each inverse relationship; verifies sine and cosine identities at 60 degrees; guards tan(90 degrees); verifies the negative sine half-angle root at theta = -150 degrees; guards the tangent half-angle domain at theta = 180 degrees; changes lesson stages; follows wrong, corrected, hint, next-question, and second-correct practice paths; and resets the entire lesson. The screenshot loop matches the target stack exactly: header y=102-295, tabs y=307-351, linked-angle lab y=359-749, formulas y=757-990, learning flow y=997-1118, worked learning section y=1125-1373, and practice y=1381-1578, inside an exact 991x1587 document. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0325-reference.png`
+- `0325-desktop.png`
+- `0325-dedicated-target-validation.json`

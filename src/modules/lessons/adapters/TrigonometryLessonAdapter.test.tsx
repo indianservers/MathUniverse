@@ -304,6 +304,37 @@ describe("TrigonometryLessonAdapter", () => {
     expect(html).toContain("Quick Practice");
   });
 
+  it("renders lesson 268 as a dedicated linked double- and half-angle workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 268)!;
+    const html = renderToStaticMarkup(
+      <TrigonometryLessonAdapter
+        lesson={lesson}
+        resetToken={0}
+        onInteraction={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('data-testid="trigonometry-mockup-0325"');
+    expect(html).toContain('data-dedicated-lesson="268"');
+    expect(html).toContain(
+      'data-object-model="linked-theta-double-half-unit-circle-sign-aware-identity-model"',
+    );
+    expect(html).toContain('data-theta="45.000000"');
+    expect(html).toContain('data-double-angle="90.000000"');
+    expect(html).toContain('data-half-angle="22.500000"');
+    expect(html).toContain('data-double-direct="1.000000"');
+    expect(html).toContain('data-double-expanded="1.000000"');
+    expect(html).toContain('data-half-sign="+"');
+    expect(html).toContain('data-testid="double-half-theta-handle"');
+    expect(html).toContain('data-testid="double-half-double-handle"');
+    expect(html).toContain('data-testid="double-half-half-handle"');
+    expect(html).toContain('aria-label="Theta angle"');
+    expect(html).toContain("Linked angles on the unit circle");
+    expect(html).toContain("Half-angle domain &amp; sign");
+    expect(html).toContain("Common Misconception");
+    expect(html).toContain("Practice Challenge");
+  });
+
   it("renders lesson 257 as a dedicated, shared-state angle measurement surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 257)!;
     const html = renderToStaticMarkup(
