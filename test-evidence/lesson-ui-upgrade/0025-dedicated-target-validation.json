@@ -1,0 +1,137 @@
+{
+  "mockup": "0025",
+  "lessonId": 25,
+  "route": "/lessons/core-workspaces/25-dependent-and-independent-objects",
+  "objectModel": "two-draggable-parent-points-derived-segment-midpoint-length-label-hierarchy-model",
+  "checks": {
+    "initial": {
+      "ax": "1",
+      "ay": "2",
+      "bx": "5",
+      "by": "2",
+      "mx": "3",
+      "my": "2",
+      "length": "4",
+      "actions": "0"
+    },
+    "stepX": {
+      "ax": "2",
+      "ay": "2",
+      "bx": "5",
+      "by": "2",
+      "mx": "3.5",
+      "my": "2",
+      "length": "3",
+      "actions": "1"
+    },
+    "stepY": {
+      "ax": "2",
+      "ay": "3",
+      "bx": "5",
+      "by": "2",
+      "mx": "3.5",
+      "my": "2.5",
+      "length": "3.2",
+      "actions": "2"
+    },
+    "dragB": {
+      "ax": "1",
+      "ay": "2",
+      "bx": "7",
+      "by": "4",
+      "mx": "4",
+      "my": "3",
+      "length": "6.3",
+      "actions": "8"
+    },
+    "reset": {
+      "ax": "1",
+      "ay": "2",
+      "bx": "5",
+      "by": "2",
+      "mx": "3",
+      "my": "2",
+      "length": "4",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1369,
+      "height": 1132
+    },
+    "document": {
+      "width": 1369,
+      "height": 1132
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 135,
+      "bottom": 1122,
+      "height": 987,
+      "left": 304,
+      "right": 1350,
+      "width": 1046
+    },
+    "regions": {
+      "header": {
+        "top": 135,
+        "bottom": 307,
+        "height": 172,
+        "left": 304,
+        "right": 1350,
+        "width": 1046
+      },
+      "main": {
+        "top": 321,
+        "bottom": 1034,
+        "height": 713,
+        "left": 304,
+        "right": 1350,
+        "width": 1046
+      },
+      "lab": {
+        "top": 321,
+        "bottom": 1034,
+        "height": 713,
+        "left": 304,
+        "right": 1040,
+        "width": 736
+      },
+      "lower": {
+        "top": 686,
+        "bottom": 1019,
+        "height": 333,
+        "left": 315,
+        "right": 1029,
+        "width": 714
+      },
+      "hierarchy": {
+        "top": 686,
+        "bottom": 1019,
+        "height": 333,
+        "left": 777,
+        "right": 1029,
+        "width": 252
+      },
+      "side": {
+        "top": 321,
+        "bottom": 1034,
+        "height": 713,
+        "left": 1047,
+        "right": 1350,
+        "width": 303
+      },
+      "neighbors": {
+        "top": 1048,
+        "bottom": 1121,
+        "height": 73,
+        "left": 304,
+        "right": 1350,
+        "width": 1046
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

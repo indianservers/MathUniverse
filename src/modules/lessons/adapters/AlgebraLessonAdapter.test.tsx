@@ -12,7 +12,7 @@ describe("AlgebraLessonAdapter", () => {
       22: "Discrete integer slider",
       23: "Control rotations and periodic models",
       24: "Observe continuous mathematical change",
-      25: "Dependency rule",
+      25: "Teach construction hierarchy",
       26: "Visibility rule",
       27: "Dynamic label",
       28: "Input syntax",
@@ -117,6 +117,20 @@ describe("AlgebraLessonAdapter", () => {
     expect(html).toContain('data-output="4"');
     expect(html).toContain('aria-label="Seek frame 3"');
     expect(html).toContain("Frame table");
+  });
+
+  it("renders lesson 25 as a dedicated parent-child dependency workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 25)!;
+    const html = renderToStaticMarkup(<AlgebraLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="algebra-mockup-0025"');
+    expect(html).toContain('data-dedicated-lesson="25"');
+    expect(html).toContain('data-object-model="two-draggable-parent-points-derived-segment-midpoint-length-label-hierarchy-model"');
+    expect(html).toContain('data-ax="1"');
+    expect(html).toContain('data-bx="5"');
+    expect(html).toContain('data-mx="3"');
+    expect(html).toContain('data-length="4"');
+    expect(html).toContain('aria-label="Draggable independent points A and B with dependent midpoint"');
+    expect(html).toContain("Dependency hierarchy");
   });
 
   it("renders Lists as an ordered table workspace instead of a generic line graph", () => {

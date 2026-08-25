@@ -1,0 +1,537 @@
+.dependency-page {
+  position: relative;
+  top: -11px;
+  left: 14px;
+  width: 1046px;
+  height: 987px;
+  margin-bottom: -11px;
+  color: #0a1738;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+.dependency-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.dependency-page h1,
+.dependency-page h2,
+.dependency-page p {
+  margin: 0;
+}
+.dependency-page button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.dependency-breadcrumb {
+  position: absolute;
+  top: -44px;
+  left: 1px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #586b84;
+  font-weight: 800;
+}
+.dependency-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+.dependency-breadcrumb a:first-child {
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border: 1px solid #dce5ed;
+  border-radius: 50%;
+  background: #fff;
+}
+.dependency-breadcrumb b {
+  color: #00768b;
+}
+.dependency-header {
+  display: grid;
+  height: 172px;
+  padding: 27px 28px;
+  grid-template-columns: 1fr 260px;
+  border: 1px solid #dfe6ed;
+  border-radius: 17px;
+  background: #fff;
+}
+.dependency-header h1 {
+  font-size: 36px;
+  line-height: 43px;
+  font-weight: 900;
+}
+.dependency-header p {
+  color: #536983;
+  font-size: 14px;
+}
+.dependency-header > div nav {
+  display: flex;
+  margin-top: 14px;
+  gap: 8px;
+}
+.dependency-header > div nav b {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 14px;
+  border: 1px solid #9ecbfa;
+  border-radius: 18px;
+  background: #f8fcff;
+  color: #066bd8;
+  font-size: 11px;
+}
+.dependency-header > div nav b + b {
+  border-color: #a9dfa9;
+  background: #f4fff3;
+  color: #16832c;
+}
+.dependency-header i,
+.dependency-side i,
+.parent-cards i,
+.dependency-hierarchy i,
+.formula-flow > b i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #0875df;
+  box-shadow: inset 0 0 0 1px #0655aa;
+}
+.dependency-header nav b + b i,
+.dependency-side h2 + section + section + h2 ~ section i,
+.formula-flow > b i,
+.dependency-hierarchy strong i {
+  background: #0aa43e;
+}
+.dependency-header > aside {
+  display: flex;
+  height: 66px;
+  margin-top: 22px;
+  align-items: center;
+  gap: 16px;
+  padding: 0 17px;
+  border: 1px solid #add3fc;
+  border-radius: 9px;
+  background: #f8fcff;
+  color: #274d7c;
+}
+.dependency-header > aside svg {
+  width: 29px;
+  color: #0878e8;
+}
+.dependency-main {
+  display: grid;
+  height: 713px;
+  margin-top: 14px;
+  grid-template-columns: 736px 303px;
+  gap: 7px;
+}
+.dependency-lab,
+.dependency-side {
+  border: 1px solid #dfe6ed;
+  border-radius: 16px;
+  background: #fff;
+}
+.dependency-lab {
+  overflow: hidden;
+  padding: 10px;
+}
+.dependency-lab > svg {
+  width: 100%;
+  height: 354px;
+}
+.dependency-lab .axis {
+  stroke: #202a3b;
+  stroke-width: 1.2;
+}
+.dependency-lab .tick {
+  font-size: 10px;
+}
+.dependency-lab .segment {
+  stroke: #195fe4;
+  stroke-width: 3;
+}
+.dependency-lab circle {
+  filter: url(#point-shadow);
+  cursor: grab;
+}
+.dependency-lab circle.parent {
+  fill: #0872dd;
+  stroke: #054eaa;
+}
+.dependency-lab circle.child {
+  fill: #13a43e;
+  stroke: #087326;
+}
+.dependency-lab .parent-label {
+  fill: #075cd1;
+  font-size: 18px;
+  font-weight: 800;
+}
+.dependency-lab .child-label {
+  fill: #078b33;
+  font-size: 15px;
+  font-weight: 800;
+}
+.dependency-lower {
+  display: grid;
+  height: 333px;
+  grid-template-columns: 445px 1fr;
+  gap: 17px;
+}
+.dependency-formula,
+.dependency-hierarchy {
+  border: 1px solid #dce5ed;
+  border-radius: 13px;
+}
+.dependency-formula {
+  padding: 15px;
+}
+.parent-cards {
+  display: flex;
+  justify-content: space-between;
+}
+.parent-cards > b {
+  display: flex;
+  width: 128px;
+  height: 55px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #9bcaf9;
+  border-radius: 9px;
+  color: #0868d2;
+  font-size: 16px;
+}
+.formula-flow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+.formula-flow > span {
+  color: #0870df;
+  font-size: 31px;
+  line-height: 43px;
+}
+.formula-flow > strong {
+  grid-column: 1/3;
+  display: flex;
+  width: 268px;
+  height: 78px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #9bcaf9;
+  border-radius: 10px;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.formula-flow > strong i {
+  color: #075ed2;
+  font-style: normal;
+}
+.formula-flow .fraction {
+  display: grid;
+  min-width: 74px;
+  grid-template-rows: 23px 21px;
+  place-items: center;
+}
+.formula-flow .fraction span {
+  width: 100%;
+  border-bottom: 1px solid #0a1738;
+  text-align: center;
+}
+.formula-flow .fraction small {
+  color: #0a1738;
+  font-size: 16px;
+}
+.formula-flow > em {
+  grid-column: 1/3;
+  color: #179b34;
+  font-size: 40px;
+  font-style: normal;
+  line-height: 48px;
+}
+.formula-flow > b {
+  grid-column: 1/3;
+  display: flex;
+  width: 136px;
+  height: 57px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border: 1px solid #a6dba8;
+  border-radius: 9px;
+  background: #f7fff5;
+  color: #078b33;
+  font-size: 17px;
+}
+.dependency-hierarchy {
+  height: 333px;
+  min-height: 0;
+  overflow: hidden;
+  padding: 15px;
+}
+.dependency-hierarchy h2 {
+  font-size: 12px;
+}
+.dependency-hierarchy > div {
+  display: flex;
+  margin-top: 14px;
+  justify-content: center;
+  gap: 25px;
+}
+.dependency-hierarchy > div b {
+  display: flex;
+  width: 88px;
+  height: 43px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #add1f8;
+  border-radius: 8px;
+  color: #0869d2;
+}
+.dependency-hierarchy > span {
+  display: block;
+  height: 30px;
+  text-align: center;
+  color: #3f5c83;
+  font-size: 25px;
+}
+.dependency-hierarchy > strong {
+  display: flex;
+  width: 154px;
+  height: 58px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #a9dca9;
+  border-radius: 9px;
+  background: #f5fff4;
+  color: #168631;
+}
+.dependency-hierarchy > strong:nth-of-type(1) {
+  display: grid;
+  border-color: #add1f8;
+  background: #fff;
+  color: #1c3458;
+}
+.dependency-hierarchy > strong:nth-of-type(1) i {
+  display: flex;
+  width: 110px;
+  height: 3px;
+  justify-content: space-between;
+  border-radius: 0;
+  background: #1461dd;
+}
+.dependency-hierarchy > strong:nth-of-type(1) u {
+  width: 8px;
+  height: 8px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: #1461dd;
+}
+.dependency-hierarchy > em {
+  display: block;
+  height: 22px;
+  text-align: center;
+  color: #36577f;
+  font-size: 25px;
+  font-style: normal;
+  line-height: 22px;
+}
+.dependency-side {
+  padding: 17px;
+}
+.dependency-side h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #086ad5;
+  font-size: 13px;
+}
+.dependency-side h2 svg {
+  width: 16px;
+}
+.dependency-side h2 small {
+  color: #158934;
+}
+.parent-control {
+  height: 134px;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid #b9d7f8;
+  border-radius: 10px;
+}
+.parent-control + .parent-control {
+  margin-top: 11px;
+}
+.parent-control header,
+.dependent-card header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.parent-control header svg,
+.dependent-card header svg {
+  width: 17px;
+  margin-left: auto;
+  color: #0872dc;
+}
+.parent-control label {
+  display: grid;
+  height: 39px;
+  margin-top: 7px;
+  grid-template-columns: 1fr 32px 80px 32px;
+  align-items: center;
+  gap: 9px;
+}
+.parent-control label button {
+  height: 31px;
+  border: 1px solid #dce4ec;
+  border-radius: 7px;
+  background: #f8fafc;
+  font-size: 18px;
+}
+.parent-control label output {
+  display: grid;
+  height: 31px;
+  place-items: center;
+  border: 1px solid #dce4ec;
+  border-radius: 7px;
+  font-weight: 800;
+}
+.dependency-side > h2:nth-of-type(2) {
+  margin-top: 20px;
+  color: #168934;
+}
+.dependent-card {
+  height: 128px;
+  margin-top: 11px;
+  padding: 13px;
+  border: 1px solid #b9d7f8;
+  border-radius: 10px;
+}
+.dependent-card header span {
+  color: #5b6d85;
+  font-size: 10px;
+}
+.dependent-card label {
+  display: grid;
+  height: 38px;
+  margin-top: 6px;
+  grid-template-columns: 1fr 112px;
+  align-items: center;
+}
+.dependent-card output {
+  display: grid;
+  height: 32px;
+  place-items: center;
+  border-radius: 7px;
+  background: #f0f2f5;
+  color: #58677c;
+  font-weight: 800;
+}
+.dependent-card.length {
+  height: 94px;
+}
+.dependent-card.length header u {
+  width: 20px;
+  border-top: 3px solid #11a33e;
+  text-decoration: none;
+}
+.dependent-card.length label {
+  grid-template-columns: 1fr 112px;
+}
+.dependency-note {
+  display: flex;
+  height: 63px;
+  margin-top: 12px !important;
+  align-items: center;
+  gap: 12px;
+  padding: 0 15px;
+  border: 1px solid #a9dca9;
+  border-radius: 9px;
+  background: #f4fff2;
+  color: #207d2f;
+  font-weight: 800;
+  line-height: 18px;
+}
+.dependency-note svg {
+  width: 18px;
+}
+.dependency-neighbors {
+  display: grid;
+  height: 73px;
+  margin-top: 14px;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.dependency-neighbors a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 20px;
+  border: 1px solid #dfe6ed;
+  border-radius: 13px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+.dependency-neighbors a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.dependency-neighbors span {
+  display: grid;
+}
+.dependency-neighbors small {
+  color: #596d87;
+}
+@media (min-width: 1280px) and (max-width: 1439px) {
+  body:has(.dependency-page) [data-testid="desktop-sidebar"] {
+    width: 284px;
+  }
+  body:has(.dependency-page) #main-content {
+    padding: 55px 6px 0;
+    overflow: hidden;
+    background: #fff;
+  }
+  body:has(.dependency-page) footer[aria-label="Site footer"] {
+    display: none;
+  }
+  body:has(.dependency-page)
+    #main-content
+    .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+    visibility: hidden;
+  }
+}
+@media (max-width: 1099px) {
+  .dependency-page {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .dependency-breadcrumb {
+    display: none;
+  }
+  .dependency-main {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .dependency-lab,
+  .dependency-side {
+    height: auto;
+  }
+  .dependency-side {
+    margin-top: 12px;
+  }
+}

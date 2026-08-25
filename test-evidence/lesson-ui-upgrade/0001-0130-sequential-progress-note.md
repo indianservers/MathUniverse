@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **24 of 130 lessons completed; 106 pending.**
+Dedicated rebuild target: **25 of 130 lessons completed; 105 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -28,6 +28,7 @@ Dedicated rebuild target: **24 of 130 lessons completed; 106 pending.**
 | 0022   | 22 Integer Sliders | Complete | Integer-snapping x model with real drag/tick/previous/next controls, linked substitution and result, iteration table, staircase plot and guides, five stateful views, and exact 1217x1292 target geometry |
 | 0023   | 23 Angle Sliders | Complete | Draggable unit-circle angle model linked to sine-wave probe, trig values, degree/radian conversion, common-angle controls, 0-360 range, reset/views/workspace/share, and exact 1217x1292 target geometry |
 | 0024   | 24 Animation Controls | Complete | Timed six-frame affine parameter model with retained graph traces, real play/pause, speed and loop controls, timeline/table seeking, step controls, exact outputs, and exact 1388x1134 target geometry |
+| 0025   | 25 Dependent and Independent Objects | Complete | Two draggable/steppable parent points with derived segment, midpoint, Euclidean length, locked child fields, stacked midpoint formula, dependency hierarchy, and exact 1369x1132 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -364,3 +365,17 @@ Evidence:
 - `0024-reference.png`
 - `0024-desktop.png`
 - `0024-dedicated-target-validation.json`
+
+## Lesson 25 / Mockup 0025 - Dependent and Independent Objects
+
+Reworked individually against the target mockup with a dedicated `two-draggable-parent-points-derived-segment-midpoint-length-label-hierarchy-model`. A and B are the only mutable parent objects; segment AB, midpoint M, Euclidean length, graph labels, midpoint formula output, dependent inspector fields, and hierarchy nodes are recalculated children.
+
+Both graph points support direct pointer dragging with integer coordinate snapping. Eight coordinate steppers update A/B independently while the midpoint and segment remain visibly locked. The lower construction flow uses a true stacked midpoint formula, and the hierarchy diagram distinguishes freely chosen parent points from the auto-updated segment, midpoint, and label.
+
+Final 1369x1132 integrated browser validation increments A.x and verifies M.x=3.5 and AB=3; increments A.y and verifies M.y=2.5 and AB=3.2; reloads; physically drags B to `(7,4)` and verifies `M=(4,3)` and AB=6.3; then reloads to the target `(1,2)` and `(5,2)` state. The final frame matches the target at surface x=304-1350 and y=135-1122, header y=135-307, workspace y=321-1034, graph/lower lab x=304-1040, lower models y=686-1019, hierarchy x=777-1029, inspector x=1047-1350, and navigation y=1048-1121. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0025-reference.png`
+- `0025-desktop.png`
+- `0025-dedicated-target-validation.json`
