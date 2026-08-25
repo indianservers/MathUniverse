@@ -41,6 +41,7 @@ import AbsoluteValueTargetLesson14 from "./AbsoluteValueTargetLesson14";
 import RoundingPrecisionTargetLesson15 from "./RoundingPrecisionTargetLesson15";
 import ConstantsLibraryTargetLesson16 from "./ConstantsLibraryTargetLesson16";
 import CalculationHistoryTargetLesson17 from "./CalculationHistoryTargetLesson17";
+import ExactDecimalModesTargetLesson18 from "./ExactDecimalModesTargetLesson18";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -204,7 +205,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 18) {
     return (
-      <ExactAndDecimalModesLessonSurface
+      <ExactDecimalModesTargetLesson18
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -236,6 +238,7 @@ void AbsoluteValueLessonSurface;
 void RoundingPrecisionLessonSurface;
 void ConstantsLibraryLessonSurface;
 void CalculationHistoryLessonSurface;
+void ExactAndDecimalModesLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,

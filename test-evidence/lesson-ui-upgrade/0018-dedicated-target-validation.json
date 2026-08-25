@@ -1,0 +1,235 @@
+{
+  "mockup": "0018",
+  "lessonId": 18,
+  "route": "/lessons/core-workspaces/18-exact-and-decimal-modes",
+  "objectModel": "linked-unit-square-radical-decimal-number-line-precision-mode-comparison-graded-context-practice-model",
+  "checks": {
+    "initial": {
+      "mode": "exact",
+      "precision": "8",
+      "decimal": "1.41421356",
+      "actions": "0",
+      "view": "0",
+      "practice-index": "0",
+      "practice-choice": "exact",
+      "practice-correct": "true",
+      "expanded": "false"
+    },
+    "decimalMode": {
+      "mode": "decimal",
+      "precision": "8",
+      "decimal": "1.41421356",
+      "actions": "1",
+      "view": "0",
+      "practice-index": "0",
+      "practice-choice": "exact",
+      "practice-correct": "true",
+      "expanded": "false"
+    },
+    "precision": {
+      "mode": "decimal",
+      "precision": "14",
+      "decimal": "1.41421356237310",
+      "actions": "2",
+      "view": "0",
+      "practice-index": "0",
+      "practice-choice": "exact",
+      "practice-correct": "true",
+      "expanded": "false"
+    },
+    "expanded": {
+      "mode": "decimal",
+      "precision": "14",
+      "decimal": "1.41421356237310",
+      "actions": "3",
+      "view": "0",
+      "practice-index": "0",
+      "practice-choice": "exact",
+      "practice-correct": "true",
+      "expanded": "true"
+    },
+    "view": {
+      "mode": "decimal",
+      "precision": "14",
+      "decimal": "1.41421356237310",
+      "actions": "4",
+      "view": "2",
+      "practice-index": "0",
+      "practice-choice": "exact",
+      "practice-correct": "true",
+      "expanded": "true"
+    },
+    "incorrect": {
+      "mode": "decimal",
+      "precision": "14",
+      "decimal": "1.41421356237310",
+      "actions": "5",
+      "view": "2",
+      "practice-index": "0",
+      "practice-choice": "decimal",
+      "practice-correct": "false",
+      "expanded": "true"
+    },
+    "correct": {
+      "mode": "decimal",
+      "precision": "14",
+      "decimal": "1.41421356237310",
+      "actions": "6",
+      "view": "2",
+      "practice-index": "0",
+      "practice-choice": "exact",
+      "practice-correct": "true",
+      "expanded": "true"
+    },
+    "next": {
+      "mode": "decimal",
+      "precision": "14",
+      "decimal": "1.41421356237310",
+      "actions": "7",
+      "view": "2",
+      "practice-index": "1",
+      "practice-choice": "decimal",
+      "practice-correct": "true",
+      "expanded": "true"
+    },
+    "explanationVisible": true,
+    "reset": {
+      "mode": "exact",
+      "precision": "8",
+      "decimal": "1.41421356",
+      "actions": "0",
+      "view": "0",
+      "practice-index": "0",
+      "practice-choice": "exact",
+      "practice-correct": "true",
+      "expanded": "false"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1068,
+      "height": 1472
+    },
+    "document": {
+      "width": 1068,
+      "height": 1472
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 100,
+      "bottom": 1471,
+      "height": 1371,
+      "left": 229,
+      "right": 1056,
+      "width": 827
+    },
+    "regions": {
+      "header": {
+        "top": 100,
+        "bottom": 318,
+        "height": 218,
+        "left": 229,
+        "right": 1056,
+        "width": 827
+      },
+      "tabs": {
+        "top": 328,
+        "bottom": 380,
+        "height": 52,
+        "left": 229,
+        "right": 1056,
+        "width": 827
+      },
+      "lab": {
+        "top": 390,
+        "bottom": 1325,
+        "height": 935,
+        "left": 229,
+        "right": 1056,
+        "width": 827
+      },
+      "equation": {
+        "top": 445,
+        "bottom": 531,
+        "height": 86,
+        "left": 241,
+        "right": 1044,
+        "width": 803
+      },
+      "columns": {
+        "top": 539,
+        "bottom": 1119,
+        "height": 580,
+        "left": 241,
+        "right": 1044,
+        "width": 803
+      },
+      "square": {
+        "top": 539,
+        "bottom": 898,
+        "height": 359,
+        "left": 241,
+        "right": 547.421875,
+        "width": 306.421875
+      },
+      "decimal": {
+        "top": 539,
+        "bottom": 898,
+        "height": 359,
+        "left": 557.421875,
+        "right": 869.984375,
+        "width": 312.5625
+      },
+      "trace": {
+        "top": 539,
+        "bottom": 1119,
+        "height": 580,
+        "left": 879.984375,
+        "right": 1043.984375,
+        "width": 164
+      },
+      "controls": {
+        "top": 909,
+        "bottom": 987,
+        "height": 78,
+        "left": 241,
+        "right": 870,
+        "width": 629
+      },
+      "comparison": {
+        "top": 997,
+        "bottom": 1165,
+        "height": 168,
+        "left": 241,
+        "right": 870,
+        "width": 629
+      },
+      "practice": {
+        "top": 1175,
+        "bottom": 1326,
+        "height": 151,
+        "left": 241,
+        "right": 1044,
+        "width": 803
+      },
+      "neighbors": {
+        "top": 1335,
+        "bottom": 1385,
+        "height": 50,
+        "left": 229,
+        "right": 1056,
+        "width": 827
+      },
+      "footer": {
+        "top": 1393,
+        "bottom": 1473,
+        "height": 80,
+        "left": 229,
+        "right": 1056,
+        "width": 827
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

@@ -281,6 +281,18 @@ describe("CalculatorLessonAdapter", () => {
     expect(html).toContain('aria-label="Reuse input from row 1"');
     expect(html).toContain("Reuse only with the source");
   });
+  it("renders lesson 18 as a dedicated exact and decimal modes workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 18)!;
+    const html = renderToStaticMarkup(<CalculatorLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="calculator-mockup-0018"');
+    expect(html).toContain('data-dedicated-lesson="18"');
+    expect(html).toContain('data-object-model="linked-unit-square-radical-decimal-number-line-precision-mode-comparison-graded-context-practice-model"');
+    expect(html).toContain('data-mode="exact"');
+    expect(html).toContain('data-precision="8"');
+    expect(html).toContain('data-decimal="1.41421356"');
+    expect(html).toContain('aria-label="Decimal precision drag control"');
+    expect(html).toContain("Both represent the same number");
+  });
   it("renders calculator lessons 1 through 18 with lesson-specific guidance", () => {
     const expectedSnippets: Record<number, string> = {
       1: "Order rule",
@@ -300,7 +312,7 @@ describe("CalculatorLessonAdapter", () => {
       15: "Exact value vs displayed precision",
       16: "Reliable constant insertion in action",
       17: "Every result has a source",
-      18: "Exact mode",
+      18: "Exact vs. Decimal: Explore the difference",
     };
 
     for (const [idText, snippet] of Object.entries(expectedSnippets)) {
@@ -339,7 +351,7 @@ describe("CalculatorLessonAdapter", () => {
       15: "Exact → Displayed → Reported",
       16: "Stored value",
       17: "LATEST INPUT",
-      18: "Exact versus decimal classification",
+      18: "Concept trace",
     };
 
     for (const [idText, snippet] of Object.entries(expectedTraces)) {

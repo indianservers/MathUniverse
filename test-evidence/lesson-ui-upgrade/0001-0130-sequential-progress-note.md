@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **17 of 130 lessons completed; 113 pending.**
+Dedicated rebuild target: **18 of 130 lessons completed; 112 pending.**
 
 | Mockup |                  Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                     |
 | ------ | ----------------------: | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -21,6 +21,7 @@ Dedicated rebuild target: **17 of 130 lessons completed; 113 pending.**
 | 0015   | 15 Rounding and Precision | Complete | Editable exact fraction with denominator guard, real precision slider, decimal/report/next-digit/error pipeline, local number-line comparison, trace, reset/views, and rotating reveal practice at exact 1068x1473 target geometry |
 | 0016   | 16 Constants Library | Complete | Selectable high-precision constants with dedicated circle/exponential/golden-ratio visual models, real precision slider, formula/output trace, early-rounding comparison, reset/views, and reveal practice at exact 1050x1498 target geometry |
 | 0017   | 17 Calculation History | Complete | Selectable provenance-linked history rows with real reuse/copy/pin/inspect actions, live source/result trace, dependency-chain validation, reset/views, and immediate graded practice at exact 1536x1024 target geometry |
+| 0018   | 18 Exact and Decimal Modes | Complete | Linked unit-square radical and decimal number-line model with real exact/decimal modes, 2-16 place precision slider, live trace/table, expansion, reset/views, and rotating graded context practice at exact 1068x1472 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -259,3 +260,17 @@ Evidence:
 - `0017-reference.png`
 - `0017-desktop.png`
 - `0017-dedicated-target-validation.json`
+
+## Lesson 18 / Mockup 0018 - Exact and Decimal Modes
+
+Reworked individually against the target mockup with a dedicated `linked-unit-square-radical-decimal-number-line-precision-mode-comparison-graded-context-practice-model`. The exact unit-square diagonal, radical form, non-terminating decimal, zoomed number line, precision output, mode trace, comparison table, and practice result are linked through explicit lesson state.
+
+Exact/Decimal mode switching and the 2-16 place precision slider perform real calculations; the initial 8-place output is `1.41421356`, while 14 places produces `1.41421356237310`. Reset, Share, Workspace, expanded-workspace mode, all lesson views, rotating context questions, both graded answer choices, and explanation reveal/hide all perform real state changes.
+
+Final 1068x1472 integrated browser validation switches to Decimal Preview, drags precision to 14 places, expands the workspace, switches to Examples, rejects decimal for a symbolic diagonal, accepts exact, rotates to a measurement question whose correct answer is decimal, reveals the explanation, and resets. The final frame matches the target at surface x=229-1056 and y=100-1471, header y=100-318, tabs y=328-380, lab y=390-1325, equation y=445-531, model cards y=539-898, trace y=539-1119, controls y=909-987, comparison y=997-1165, practice y=1175-1326, navigation y=1335-1385, and footer y=1393-1473. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0018-reference.png`
+- `0018-desktop.png`
+- `0018-dedicated-target-validation.json`
