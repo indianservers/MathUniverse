@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **46 of 130 lessons completed; 84 pending.**
+Dedicated rebuild target: **47 of 130 lessons completed; 83 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -50,6 +50,7 @@ Dedicated rebuild target: **46 of 130 lessons completed; 84 pending.**
 | 0044   |                           62 Real Numbers | Complete | Dedicated selected-value hierarchy and classification model with calculated set membership and comparison, native draggable card placement on a real number line, dynamic markers, stateful lesson controls, and exact 1060x1484 target geometry                    |
 | 0045   |                        63 Complex Numbers | Complete | Dedicated complex-coefficient model with linked draggable plane point, sliders, vector, projections, conjugate reflection, calculated modulus and argument, practice reveal, stateful lesson controls, and exact 1060x1484 target geometry                          |
 | 0046   |                             64 Place Value | Complete | Dedicated editable four-digit place model with selectable and draggable digit columns, exact-count base-ten blocks, calculated expanded form and selected value, rotating practice, stateful controls, and exact 1060x1484 target geometry                         |
+| 0047   |                                65 Factors | Complete | Dedicated editable divisibility model with exact counter arrays, quotient and remainder proof, calculated factor pairs, draggable pair arrangements, non-factor practice, stateful controls, and exact 1060x1484 target geometry                                  |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -694,3 +695,17 @@ Evidence:
 - `0046-reference.png`
 - `0046-desktop.png`
 - `0046-dedicated-target-validation.json`
+
+## Lesson 65 / Mockup 0047 - Factors
+
+Reworked individually against the target mockup with a dedicated `editable-number-candidate-exact-divisibility-counter-array-factor-pairs-draggable-arrangement-remainder-practice-model`. The target number and candidate divisor drive the quotient, remainder, factor decision, rows, columns, grouped counter count, leftover counters, exact factor-pair list, array proof, and practice explanation from one lesson-owned calculation model.
+
+Both number and candidate are directly editable with integer guards. Each calculated factor-pair card selects a valid arrangement and is a native draggable object that can be dropped onto the array to rebuild its rows and columns. Non-factors show all grouped counters plus distinct orange leftovers. The practice card applies candidate 5 to the live model, while five lesson tabs, language, Workspace, Reset, Share, previous/next navigation, and footer navigation all perform real actions. The shared number adapter only dispatches Lesson 65 to this separate component.
+
+Final 1060x1484 integrated browser validation verifies the initial 6 by 7 array and all 42 counters; changes the candidate to 5 and verifies quotient 8, remainder 2, 40 grouped counters, and two leftovers; changes the number to 36 and verifies all five factor pairs; physically drags `4 × 9` onto the array and verifies a 4 by 9 exact arrangement; applies the practice candidate and verifies remainder 1; changes tab and language; opens Workspace; and resets. The final frame matches the target at page x=229-1044 and y=99-1467, hero y=99-345, tabs y=355-415, main y=425-1313, array x=252-700 and y=503-977, factor pairs y=989-1223, side rail x=716-1036, navigation y=1242-1299, and footer y=1325-1467. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0047-reference.png`
+- `0047-desktop.png`
+- `0047-dedicated-target-validation.json`

@@ -1,0 +1,259 @@
+{
+  "mockup": "0047",
+  "lessonId": 65,
+  "route": "/lessons/numbers-and-arithmetic/65-factors",
+  "objectModel": "editable-number-candidate-exact-divisibility-counter-array-factor-pairs-draggable-arrangement-remainder-practice-model",
+  "checks": {
+    "initial": {
+      "number": "42",
+      "candidate": "6",
+      "quotient": "7",
+      "remainder": "0",
+      "is-factor": "true",
+      "rows": "6",
+      "columns": "7",
+      "grouped-count": "42",
+      "factor-pairs": "1x42,2x21,3x14,6x7",
+      "drag-pair": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "0"
+    },
+    "initialCounters": {
+      "grouped": 42,
+      "leftovers": 0
+    },
+    "nonFactor": {
+      "number": "42",
+      "candidate": "5",
+      "quotient": "8",
+      "remainder": "2",
+      "is-factor": "false",
+      "rows": "5",
+      "columns": "8",
+      "grouped-count": "40",
+      "factor-pairs": "1x42,2x21,3x14,6x7",
+      "drag-pair": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "1"
+    },
+    "nonFactorCounters": {
+      "grouped": 40,
+      "leftovers": 2
+    },
+    "thirtySix": {
+      "number": "36",
+      "candidate": "6",
+      "quotient": "6",
+      "remainder": "0",
+      "is-factor": "true",
+      "rows": "6",
+      "columns": "6",
+      "grouped-count": "36",
+      "factor-pairs": "1x36,2x18,3x12,4x9,6x6",
+      "drag-pair": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "3"
+    },
+    "draggedPair": {
+      "number": "36",
+      "candidate": "4",
+      "quotient": "9",
+      "remainder": "0",
+      "is-factor": "true",
+      "rows": "4",
+      "columns": "9",
+      "grouped-count": "36",
+      "factor-pairs": "1x36,2x18,3x12,4x9,6x6",
+      "drag-pair": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "4"
+    },
+    "draggedCounters": {
+      "grouped": 36,
+      "leftovers": 0
+    },
+    "practiceApplied": {
+      "number": "36",
+      "candidate": "5",
+      "quotient": "7",
+      "remainder": "1",
+      "is-factor": "false",
+      "rows": "5",
+      "columns": "7",
+      "grouped-count": "35",
+      "factor-pairs": "1x36,2x18,3x12,4x9,6x6",
+      "drag-pair": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "5"
+    },
+    "tab": {
+      "number": "36",
+      "candidate": "5",
+      "quotient": "7",
+      "remainder": "1",
+      "is-factor": "false",
+      "rows": "5",
+      "columns": "7",
+      "grouped-count": "35",
+      "factor-pairs": "1x36,2x18,3x12,4x9,6x6",
+      "drag-pair": "",
+      "tab": "Examples",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "6"
+    },
+    "language": {
+      "number": "36",
+      "candidate": "5",
+      "quotient": "7",
+      "remainder": "1",
+      "is-factor": "false",
+      "rows": "5",
+      "columns": "7",
+      "grouped-count": "35",
+      "factor-pairs": "1x36,2x18,3x12,4x9,6x6",
+      "drag-pair": "",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "false",
+      "actions": "7"
+    },
+    "workspace": {
+      "number": "36",
+      "candidate": "5",
+      "quotient": "7",
+      "remainder": "1",
+      "is-factor": "false",
+      "rows": "5",
+      "columns": "7",
+      "grouped-count": "35",
+      "factor-pairs": "1x36,2x18,3x12,4x9,6x6",
+      "drag-pair": "",
+      "tab": "Examples",
+      "language": "Hindi (हिन्दी)",
+      "workspace": "true",
+      "actions": "8"
+    },
+    "reset": {
+      "number": "42",
+      "candidate": "6",
+      "quotient": "7",
+      "remainder": "0",
+      "is-factor": "true",
+      "rows": "6",
+      "columns": "7",
+      "grouped-count": "42",
+      "factor-pairs": "1x42,2x21,3x14,6x7",
+      "drag-pair": "",
+      "tab": "Interaction + visualization",
+      "language": "English (English)",
+      "workspace": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1060,
+      "height": 1484
+    },
+    "document": {
+      "width": 1060,
+      "height": 1484
+    },
+    "horizontalOverflow": false,
+    "surface": {
+      "top": 99,
+      "bottom": 1467,
+      "height": 1368,
+      "left": 229,
+      "right": 1044,
+      "width": 815
+    },
+    "regions": {
+      "hero": {
+        "top": 99,
+        "bottom": 345,
+        "height": 246,
+        "left": 229,
+        "right": 1044,
+        "width": 815
+      },
+      "tabs": {
+        "top": 355,
+        "bottom": 415,
+        "height": 60,
+        "left": 229,
+        "right": 1044,
+        "width": 815
+      },
+      "main": {
+        "top": 425,
+        "bottom": 1313,
+        "height": 888,
+        "left": 229,
+        "right": 1044,
+        "width": 815
+      },
+      "grid": {
+        "top": 503,
+        "bottom": 1223,
+        "height": 720,
+        "left": 252,
+        "right": 1036,
+        "width": 784
+      },
+      "array": {
+        "top": 503,
+        "bottom": 977,
+        "height": 474,
+        "left": 252,
+        "right": 700,
+        "width": 448
+      },
+      "pairs": {
+        "top": 989,
+        "bottom": 1223,
+        "height": 234,
+        "left": 252,
+        "right": 700,
+        "width": 448
+      },
+      "side": {
+        "top": 503,
+        "bottom": 1223,
+        "height": 720,
+        "left": 716,
+        "right": 1036,
+        "width": 320
+      },
+      "navigation": {
+        "top": 1242,
+        "bottom": 1299,
+        "height": 57,
+        "left": 252,
+        "right": 1036,
+        "width": 784
+      },
+      "footer": {
+        "top": 1325,
+        "bottom": 1467,
+        "height": 142,
+        "left": 229,
+        "right": 1044,
+        "width": 815
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

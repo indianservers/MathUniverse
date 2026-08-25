@@ -98,6 +98,20 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('draggable="true"');
     expect(html).toContain("Explore place value with exact base-ten blocks");
   });
+  it("renders lesson 65 as a dedicated factor-pair array workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 65)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0047"');
+    expect(html).toContain('data-dedicated-lesson="65"');
+    expect(html).toContain('data-object-model="editable-number-candidate-exact-divisibility-counter-array-factor-pairs-draggable-arrangement-remainder-practice-model"');
+    expect(html).toContain('data-number="42"');
+    expect(html).toContain('data-candidate="6"');
+    expect(html).toContain('data-remainder="0"');
+    expect(html).toContain('data-factor-pairs="1x42,2x21,3x14,6x7"');
+    expect(html).toContain('aria-label="Factor pair array drop zone"');
+    expect(html).toContain('aria-label="Candidate divisor"');
+    expect(html).toContain("Explore factors with the array model");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
