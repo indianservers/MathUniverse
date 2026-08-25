@@ -26,6 +26,7 @@ import {
 } from "../../../components/ncert/grade7/grade7MathUtils";
 import BasicCalculatorTargetLesson1 from "./BasicCalculatorTargetLesson1";
 import FractionCalculatorTargetLesson2 from "./FractionCalculatorTargetLesson2";
+import MixedNumbersTargetLesson3 from "./MixedNumbersTargetLesson3";
 
 type HistoryRow = { expression: string; result: string };
 
@@ -54,7 +55,8 @@ export default function CalculatorLessonAdapter({
   }
   if (lesson.id === 3) {
     return (
-      <MixedNumbersLessonSurface
+      <MixedNumbersTargetLesson3
+        lesson={lesson}
         resetToken={resetToken}
         onInteraction={onInteraction}
       />
@@ -191,6 +193,7 @@ export default function CalculatorLessonAdapter({
 
 void BasicCalculatorLessonSurface;
 void FractionCalculatorLessonSurface;
+void MixedNumbersLessonSurface;
 
 function DefaultCalculatorLessonSurface({
   lesson,

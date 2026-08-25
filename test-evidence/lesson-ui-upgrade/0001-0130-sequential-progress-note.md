@@ -1,11 +1,12 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **2 of 130 lessons completed; 128 pending.**
+Dedicated rebuild target: **3 of 130 lessons completed; 127 pending.**
 
 | Mockup |                Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                    |
 | ------ | --------------------: | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 0001   |    1 Basic Calculator | Complete | Editable arithmetic expression and BODMAS parse-trace model; real keypad families, direct expression input, automatic trace, history recall/reset, practice rotation, grading, solution, and exact 1489x1056 target geometry      |
 | 0002   | 2 Fraction Calculator | Complete | Linked two-fraction model with live LCD, equivalent bars, numerator-only addition, exact/mixed/decimal outputs, editable fields, functional keypad/modes, problem rotation, practice loading, and exact 1536x1024 target geometry |
+| 0003   |       3 Mixed Numbers | Complete | Dual mixed-number model with linked whole blocks/fraction strips, improper conversion, LCD expansion, exact/mixed/decimal results, active-field keypad modes, proof sidebar, practice reveal, and exact 1503x1047 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -34,3 +35,17 @@ Evidence:
 - `0002-reference.png`
 - `0002-desktop.png`
 - `0002-dedicated-target-validation.json`
+
+## Lesson 3 / Mockup 0003 - Mixed Numbers
+
+Reworked individually against the target mockup with a dedicated `dual-mixed-number-whole-block-fraction-strip-improper-lcd-exact-decimal-model`. Six editable whole/numerator/denominator fields drive the whole blocks, fractional strips, improper forms, least common denominator, expanded numerators, unsimplified sum, simplified exact fraction, mixed number, decimal check, and right-side proof cards from one calculation model.
+
+All visible controls perform real actions: direct field editing; calculator, fraction, and symbol keypad families with distinct keysets; digit entry; sign change; active-part and operand navigation; focused clearing; evaluation counting; five visibly stateful lesson views; and practice solution reveal. Denominators are guarded against zero and all visual and textual representations update immediately.
+
+Final 1503x1047 browser validation changes the model to `1 1/2 + 2 1/4 = 15/4 = 3 3/4`, evaluates it, switches to the fraction keypad, navigates to a denominator, switches lesson view, reveals the practice answer, and clears the active denominator safely. The screenshot loop matches the target geometry: lesson x=284-1481, header y=102-196, tabs y=200-244, workspace y=257-904, proof sidebar x=1221-1480 and y=102-975, practice y=915-971, and navigation y=994-1037. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0003-reference.png`
+- `0003-desktop.png`
+- `0003-dedicated-target-validation.json`
