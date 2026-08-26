@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **78 of 130 lessons completed; 52 pending.**
+Dedicated rebuild target: **79 of 130 lessons completed; 51 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1174,3 +1174,17 @@ Evidence:
 - `0152-reference.png`
 - `0152-desktop.png`
 - `0152-dedicated-target-validation.json`
+
+## Lesson 96 / Mockup 0153 - Double Brackets
+
+Reworked individually against the mathematics target mockup with a dedicated `draggable-four-product-binomial-area-middle-term-combination-substitution-proof-graded-challenge-model`. The variable, both bracket constants, and substitution value drive the four area products, generated unit-cell grid, middle-term combination, expanded expression, multiplication stages, original and expanded substitution paths, equivalence proof, worked example, and graded challenge from one lesson-owned calculation model.
+
+Both middle-product regions are native draggable objects and the combine surface is a real drop target. Variable and constant fields, substitution input, four-product visibility, middle-term combination, substitution checking, Reset, all five tabs, editable Enter-graded practice, area-solution reveal, and New challenge all update visible state. The constant region is a true `first constant by second constant` unit grid, and lesson/footer destinations are real links. The algebra/CAS adapter dispatches Lesson 96 only to this dedicated component.
+
+Final 984x1598 integrated browser validation verifies `(x + 2)(x + 3) = x² + 5x + 6` and both substitution paths equal 12 at x=1; edits the constants to 4 and 5 and verifies `a² + 9a + 20` and value 42 at a=2; resets and physically drags both middle products into the combine surface; exercises all three switches; grades incorrect and correct answers with Enter; reveals the area solution; rotates to `a² + 7a + 10`; exercises Practice; then reloads the exact target state. The final visual loop matches surface x=220-967 and y=96-1598, header y=96-265, tabs y=278-327, area model x=230-657 and y=338-937, grid x=300-630 and y=432-724, combine panel y=743-925, continuous builder/result rail x=669-954 and y=338-958, steps y=968-1118, learning cards y=1135-1288, practice y=1302-1441, navigation y=1451-1504, and footer y=1513-1598. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0153-reference.png`
+- `0153-desktop.png`
+- `0153-dedicated-target-validation.json`

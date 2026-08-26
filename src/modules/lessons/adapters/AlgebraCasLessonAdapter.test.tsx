@@ -52,8 +52,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Distributive area model");
   });
 
-  it("delegates phase 4 algebra lessons 96 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 96; id <= 128; id += 1) {
+  it("routes lesson 96 to its dedicated double-brackets object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 96)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0153"');
+    expect(html).toContain('data-dedicated-lesson="96"');
+    expect(html).toContain("draggable-four-product-binomial-area-middle-term-combination-substitution-proof-graded-challenge-model");
+    expect(html).toContain('aria-label="Drag first middle product"');
+    expect(html).toContain("Area Tiles Model");
+  });
+
+  it("delegates phase 4 algebra lessons 97 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 97; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
