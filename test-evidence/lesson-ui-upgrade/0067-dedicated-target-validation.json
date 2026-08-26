@@ -1,0 +1,236 @@
+{
+  "mockup": "0067",
+  "lessonId": 85,
+  "route": "/lessons/numbers-and-arithmetic/85-direct-proportion",
+  "objectModel": "editable-constant-multiplier-linked-table-draggable-coordinate-points-origin-line-unit-rate-equation-practice-model",
+  "checks": {
+    "initial": {
+      "quantity": "3",
+      "rate": "30",
+      "cost": "90",
+      "ratio": "30",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    },
+    "quantityEdited": {
+      "quantity": "4",
+      "rate": "30",
+      "cost": "120",
+      "ratio": "30",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "rateEdited": {
+      "quantity": "4",
+      "rate": "20",
+      "cost": "80",
+      "ratio": "20",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "dragged": {
+      "quantity": "2",
+      "rate": "30",
+      "cost": "60",
+      "ratio": "30",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "dragRecorded": true,
+    "tableSelected": {
+      "quantity": "1",
+      "rate": "30",
+      "cost": "30",
+      "ratio": "30",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "explain": {
+      "quantity": "1",
+      "rate": "30",
+      "cost": "30",
+      "ratio": "30",
+      "tab": "Explain",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "3"
+    },
+    "shared": {
+      "quantity": "1",
+      "rate": "30",
+      "cost": "30",
+      "ratio": "30",
+      "tab": "Explain",
+      "share-state": "Ready",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "4"
+    },
+    "practice": {
+      "quantity": "5",
+      "rate": "12",
+      "cost": "60",
+      "ratio": "12",
+      "tab": "Explain",
+      "share-state": "Ready",
+      "practice-loaded": "true",
+      "dragging": "",
+      "actions": "5"
+    },
+    "restored": {
+      "quantity": "3",
+      "rate": "30",
+      "cost": "90",
+      "ratio": "30",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1068,
+      "height": 1472
+    },
+    "document": {
+      "width": 1068,
+      "height": 1472
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 104,
+      "bottom": 1452,
+      "height": 1348,
+      "left": 228,
+      "right": 1051,
+      "width": 823
+    },
+    "regions": {
+      "header": {
+        "top": 104,
+        "bottom": 380,
+        "height": 276,
+        "left": 228,
+        "right": 1051,
+        "width": 823
+      },
+      "tabs": {
+        "top": 393,
+        "bottom": 452,
+        "height": 59,
+        "left": 228,
+        "right": 1051,
+        "width": 823
+      },
+      "workspace": {
+        "top": 460,
+        "bottom": 1375,
+        "height": 915,
+        "left": 228,
+        "right": 1051,
+        "width": 823
+      },
+      "lab": {
+        "top": 460,
+        "bottom": 1375,
+        "height": 915,
+        "left": 228,
+        "right": 767,
+        "width": 539
+      },
+      "table": {
+        "top": 579,
+        "bottom": 911,
+        "height": 332,
+        "left": 246,
+        "right": 749,
+        "width": 503
+      },
+      "graph": {
+        "top": 918,
+        "bottom": 1357,
+        "height": 439,
+        "left": 246,
+        "right": 749,
+        "width": 503
+      },
+      "side": {
+        "top": 460,
+        "bottom": 1375,
+        "height": 915,
+        "left": 779,
+        "right": 1051,
+        "width": 272
+      },
+      "values": {
+        "top": 465,
+        "bottom": 642,
+        "height": 177,
+        "left": 779,
+        "right": 1051,
+        "width": 272
+      },
+      "unit": {
+        "top": 650,
+        "bottom": 818,
+        "height": 168,
+        "left": 779,
+        "right": 1051,
+        "width": 272
+      },
+      "equation": {
+        "top": 826,
+        "bottom": 988,
+        "height": 162,
+        "left": 779,
+        "right": 1051,
+        "width": 272
+      },
+      "ideas": {
+        "top": 996,
+        "bottom": 1224,
+        "height": 228,
+        "left": 779,
+        "right": 1051,
+        "width": 272
+      },
+      "practice": {
+        "top": 1232,
+        "bottom": 1375,
+        "height": 143,
+        "left": 779,
+        "right": 1051,
+        "width": 272
+      },
+      "navigation": {
+        "top": 1394,
+        "bottom": 1453,
+        "height": 59,
+        "left": 228,
+        "right": 1051,
+        "width": 823
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

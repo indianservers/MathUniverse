@@ -33,6 +33,7 @@ import FractionDecimalConversionTargetLesson81 from "./FractionDecimalConversion
 import RecurringDecimalsTargetLesson82 from "./RecurringDecimalsTargetLesson82";
 import RatioModelsTargetLesson83 from "./RatioModelsTargetLesson83";
 import ProportionTargetLesson84 from "./ProportionTargetLesson84";
+import DirectProportionTargetLesson85 from "./DirectProportionTargetLesson85";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -118,6 +119,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 84) {
     return <ProportionTargetLesson84 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 85) {
+    return <DirectProportionTargetLesson85 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

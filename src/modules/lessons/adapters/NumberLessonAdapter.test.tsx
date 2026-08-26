@@ -422,6 +422,20 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Copy proportion"');
     expect(html).toContain("Both ratios must scale by the same factor");
   });
+  it("renders lesson 85 as a dedicated direct-proportion model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 85)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0067"');
+    expect(html).toContain('data-dedicated-lesson="85"');
+    expect(html).toContain('data-object-model="editable-constant-multiplier-linked-table-draggable-coordinate-points-origin-line-unit-rate-equation-practice-model"');
+    expect(html).toContain('data-quantity="3"');
+    expect(html).toContain('data-rate="30"');
+    expect(html).toContain('data-cost="90"');
+    expect(html).toContain('aria-label="Current quantity x"');
+    expect(html).toContain('aria-label="Constant of proportion k"');
+    expect(html).toContain('aria-label="Graph point 4"');
+    expect(html).toContain("The graph passes through the origin");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

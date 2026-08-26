@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **66 of 130 lessons completed; 64 pending.**
+Dedicated rebuild target: **67 of 130 lessons completed; 63 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -70,6 +70,7 @@ Dedicated rebuild target: **66 of 130 lessons completed; 64 pending.**
 | 0064   |                  82 Recurring Decimals | Complete | Dedicated editable fraction long-division engine with repeated-remainder cycle detection, draggable repeat tiles, calculated exact overbar form, remainder loop, terminating contrast, practice, and exact 1500x1049 target geometry             |
 | 0065   |                        83 Ratio Models | Complete | Dedicated dual editable part-count model with draggable tokens, calculated total/tape/scaled batch, live scale factor, linked double number lines, relationship proof, practice, and exact 1054x1492 target geometry                              |
 | 0066   |                          84 Proportion | Complete | Dedicated editable known/target ratio model with calculated shared scale factor, target-matched tape construction, draggable units, cross-product proof, solved value, summary, and practice at exact 1496x1051 target geometry |
+| 0067   |                  85 Direct Proportion | Complete | Dedicated editable constant-multiplier model with linked ratio table, draggable coordinate points, origin graph, unit rate, equation, current values, and calculated practice at exact 1068x1472 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -994,3 +995,17 @@ Evidence:
 - `0066-reference.png`
 - `0066-desktop.png`
 - `0066-dedicated-target-validation.json`
+
+## Lesson 85 / Mockup 0067 - Direct Proportion
+
+Reworked individually against the target mockup with a dedicated `editable-constant-multiplier-linked-table-draggable-coordinate-points-origin-line-unit-rate-equation-practice-model`. One current quantity and one editable constant multiplier drive the current cost, four-row proportion table, constant-ratio audit, equation, unit-rate statements, plotted points, line through the origin, and practice result from one lesson-owned model.
+
+The quantity and constant are real numeric inputs. Every table quantity and graph point is clickable and a native draggable/drop target linked to the same current-value model. Reset, tabs, Share, and the `y = 12x, x = 5` practice check update real state. The shared number adapter only dispatches Lesson 85 to this separate component.
+
+Final 1068x1472 integrated browser validation verifies `x = 3`, `k = 30`, `y = 90`, all four constant table ratios, and the origin graph; edits quantity to 4 and verifies `y = 120`; edits `k = 20` and verifies `y = 80`; physically drags graph point 4 onto point 2 and verifies `x = 2, y = 60`; selects table quantity 1; exercises Explain and Share; loads and verifies practice `y = 12(5) = 60`; then restores the exact target state. The final visual loop matches the target at surface x=228-1051 and y=104-1452, header y=104-380, tabs y=393-452, workspace y=460-1375, lab x=228-767, proportion table x=246-749 and y=579-911 with its data grid beginning at y=617, graph x=246-749 and y=918-1357, compact target sidebar x=0-216, right rail x=779-1051 with cards beginning at y=465/650/826/996/1232, and navigation y=1394-1453. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0067-reference.png`
+- `0067-desktop.png`
+- `0067-dedicated-target-validation.json`
