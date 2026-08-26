@@ -1,0 +1,254 @@
+{
+  "mockup": "0073",
+  "lessonId": 91,
+  "route": "/lessons/numbers-and-arithmetic/91-scale-drawings",
+  "objectModel": "editable-map-length-scale-draggable-route-endpoints-ruler-calculation-real-distance-key-information-model",
+  "asset": "public/assets/lessons/scale-drawings-city-map.png",
+  "checks": {
+    "initial": {
+      "map-length": "4",
+      "scale": "5",
+      "real-length": "20",
+      "point-a": "80,12",
+      "point-b": "14,71",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "0"
+    },
+    "scaleEdited": {
+      "map-length": "4",
+      "scale": "10",
+      "real-length": "40",
+      "point-a": "80,12",
+      "point-b": "14,71",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "1"
+    },
+    "ruler": {
+      "map-length": "2",
+      "scale": "10",
+      "real-length": "20",
+      "point-a": "80,12",
+      "point-b": "14,71",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "2"
+    },
+    "dragged": {
+      "map-length": "1.5",
+      "scale": "5",
+      "real-length": "7.5",
+      "point-a": "38,47",
+      "point-b": "14,71",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "1"
+    },
+    "dragRecorded": true,
+    "distance": {
+      "map-length": "2",
+      "scale": "5",
+      "real-length": "10",
+      "point-a": "80,12",
+      "point-b": "14,71",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "1"
+    },
+    "explain": {
+      "map-length": "2",
+      "scale": "5",
+      "real-length": "10",
+      "point-a": "80,12",
+      "point-b": "14,71",
+      "tab": "Explain",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "2"
+    },
+    "share": {
+      "map-length": "2",
+      "scale": "5",
+      "real-length": "10",
+      "point-a": "80,12",
+      "point-b": "14,71",
+      "tab": "Explain",
+      "share-state": "Copied",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "3"
+    },
+    "workspace": {
+      "map-length": "2",
+      "scale": "5",
+      "real-length": "10",
+      "point-a": "80,12",
+      "point-b": "14,71",
+      "tab": "Explain",
+      "share-state": "Copied",
+      "workspace-state": "open",
+      "dragging": "",
+      "actions": "4"
+    },
+    "restored": {
+      "map-length": "4",
+      "scale": "5",
+      "real-length": "20",
+      "point-a": "80,12",
+      "point-b": "14,71",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1074,
+      "height": 1464
+    },
+    "document": {
+      "width": 1074,
+      "height": 1464
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 104,
+      "bottom": 1441,
+      "height": 1337,
+      "left": 230,
+      "right": 1057,
+      "width": 827
+    },
+    "regions": {
+      "header": {
+        "top": 104,
+        "bottom": 351,
+        "height": 247,
+        "left": 230,
+        "right": 1057,
+        "width": 827
+      },
+      "tabs": {
+        "top": 362,
+        "bottom": 418,
+        "height": 56,
+        "left": 230,
+        "right": 1057,
+        "width": 827
+      },
+      "workspace": {
+        "top": 429,
+        "bottom": 1170,
+        "height": 741,
+        "left": 230,
+        "right": 1057,
+        "width": 827
+      },
+      "info": {
+        "top": 444,
+        "bottom": 502,
+        "height": 58,
+        "left": 242,
+        "right": 841,
+        "width": 599
+      },
+      "map": {
+        "top": 521,
+        "bottom": 1111,
+        "height": 590,
+        "left": 242,
+        "right": 579,
+        "width": 337
+      },
+      "center": {
+        "top": 521,
+        "bottom": 1111,
+        "height": 590,
+        "left": 598,
+        "right": 841,
+        "width": 243
+      },
+      "ruler": {
+        "top": 557,
+        "bottom": 699,
+        "height": 142,
+        "left": 598,
+        "right": 841,
+        "width": 243
+      },
+      "calculation": {
+        "top": 714,
+        "bottom": 898,
+        "height": 184,
+        "left": 598,
+        "right": 841,
+        "width": 243
+      },
+      "distance": {
+        "top": 913,
+        "bottom": 1109,
+        "height": 196,
+        "left": 598,
+        "right": 841,
+        "width": 243
+      },
+      "key": {
+        "top": 444,
+        "bottom": 1114,
+        "height": 670,
+        "left": 860,
+        "right": 1038,
+        "width": 178
+      },
+      "caption": {
+        "top": 1131,
+        "bottom": 1169,
+        "height": 38,
+        "left": 231,
+        "right": 1056,
+        "width": 825
+      },
+      "tags": {
+        "top": 1179,
+        "bottom": 1218,
+        "height": 39,
+        "left": 230,
+        "right": 1057,
+        "width": 827
+      },
+      "navigation": {
+        "top": 1229,
+        "bottom": 1284,
+        "height": 55,
+        "left": 230,
+        "right": 640,
+        "width": 410
+      },
+      "footer": {
+        "top": 1314,
+        "bottom": 1440,
+        "height": 126,
+        "left": 230,
+        "right": 1057,
+        "width": 827
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

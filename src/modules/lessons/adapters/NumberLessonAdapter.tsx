@@ -39,6 +39,7 @@ import UnitRatesTargetLesson87 from "./UnitRatesTargetLesson87";
 import PercentagesTargetLesson88 from "./PercentagesTargetLesson88";
 import PercentageChangeTargetLesson89 from "./PercentageChangeTargetLesson89";
 import CompoundChangeTargetLesson90 from "./CompoundChangeTargetLesson90";
+import ScaleDrawingsTargetLesson91 from "./ScaleDrawingsTargetLesson91";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -142,6 +143,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 90) {
     return <CompoundChangeTargetLesson90 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 91) {
+    return <ScaleDrawingsTargetLesson91 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

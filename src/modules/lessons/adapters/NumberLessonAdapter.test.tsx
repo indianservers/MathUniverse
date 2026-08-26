@@ -512,6 +512,21 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Compound stage 1 amount bar"');
     expect(html).toContain("Apply each percent change to the latest amount");
   });
+  it("renders lesson 91 as a dedicated draggable scale-drawing map model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 91)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0073"');
+    expect(html).toContain('data-dedicated-lesson="91"');
+    expect(html).toContain('data-object-model="editable-map-length-scale-draggable-route-endpoints-ruler-calculation-real-distance-key-information-model"');
+    expect(html).toContain('data-map-length="4"');
+    expect(html).toContain('data-scale="5"');
+    expect(html).toContain('data-real-length="20"');
+    expect(html).toContain('aria-label="Route point A"');
+    expect(html).toContain('aria-label="Scale kilometers per centimeter"');
+    expect(html).toContain('aria-label="Scale ruler 2 cm"');
+    expect(html).toContain('scale-drawings-city-map.png');
+    expect(html).toContain("Scale every length by the same factor");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

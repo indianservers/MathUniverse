@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **72 of 130 lessons completed; 58 pending.**
+Dedicated rebuild target: **73 of 130 lessons completed; 57 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -76,6 +76,7 @@ Dedicated rebuild target: **72 of 130 lessons completed; 58 pending.**
 | 0070   |                         88 Percentages | Complete | Dedicated editable percentage model with a draggable/clickable hundred grid, calculated fraction/decimal forms, interactive percent slider and number line, linked quantity groups, functional controls/practice, and exact 1090x1443 target geometry |
 | 0071   |                  89 Percentage Change | Complete | Dedicated dual editable original/new amount model with draggable before/after bars and number-line points, calculated change/percentage/direction, three-step proof, baseline warning, functional controls/practice, and exact 1495x1052 target geometry |
 | 0072   |                    90 Compound Change | Complete | Dedicated editable start/rate/stage-count model with draggable sequential amount bars, latest-base connectors, calculated multipliers/formulas/result/compound total, misconception proof, functional controls, and exact 1501x1048 target geometry |
+| 0073   |                     91 Scale Drawings | Complete | Dedicated editable map-length/scale model with a generated city-map asset, draggable route endpoints, clickable ruler and real-distance points, calculated conversion proof, functional controls, and exact 1074x1464 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1084,3 +1085,17 @@ Evidence:
 - `0072-reference.png`
 - `0072-desktop.png`
 - `0072-dedicated-target-validation.json`
+
+## Lesson 91 / Mockup 0073 - Scale Drawings
+
+Reworked individually against the target mockup with a dedicated `editable-map-length-scale-draggable-route-endpoints-ruler-calculation-real-distance-key-information-model`. Map length and scale drive the real-world distance, ruler fill, route label, calculation equation, distance line, and all three key-information cards from one lesson-owned calculation model.
+
+The scale is a real numeric input. Both route endpoints are native draggable objects and drop targets, every ruler length and real-distance point is a live control, and Reset, tabs, Share, and Workspace perform real state changes. A project-local label-free city-map illustration was generated with the built-in image tool and saved as `public/assets/lessons/scale-drawings-city-map.png`; it follows the target's pastel top-down map treatment while remaining an original asset. The shared number adapter only dispatches Lesson 91 to this separate component.
+
+Final 1074x1464 integrated browser validation verifies `4 cm x 5 km/cm = 20 km`; edits the scale to 10 and verifies 40 km; selects 2 cm on the ruler and verifies 20 km; physically drags endpoint A toward endpoint B and verifies 1.5 cm gives 7.5 km; selects 10 km on the distance line and verifies 2 cm; exercises Explain, Share, and Workspace; then reloads the exact target state. The final visual loop matches the target's geometry at surface x=230-1057 and y=104-1441, header y=104-351, tabs y=362-418, workspace y=429-1170, map x=242-579 and y=521-1111, ruler x=598-841 and y=557-699, calculation y=714-898, distance y=913-1109, key rail x=860-1038 and y=444-1114, navigation y=1229-1284, and footer y=1314-1440. It reports no horizontal or vertical overflow and zero console messages. Direct screenshot review confirms the target composition and controls; the original generated map artwork is intentionally not a pixel copy of the mockup's embedded map image.
+
+Evidence:
+
+- `0073-reference.png`
+- `0073-desktop.png`
+- `0073-dedicated-target-validation.json`
