@@ -112,8 +112,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Square factor extraction drop target");
   });
 
-  it("delegates phase 4 algebra lessons 101 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 101; id <= 128; id += 1) {
+  it("routes lesson 101 to its dedicated rationalisation object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 101)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0158"');
+    expect(html).toContain('data-dedicated-lesson="101"');
+    expect(html).toContain("selectable-radical-and-conjugate-denominator-draggable-unity-multiplier-rational-result-decimal-equivalence-graded-practice-model");
+    expect(html).toContain('aria-label="Use matching multiplier"');
+    expect(html).toContain("Denominator-cleaning workspace");
+  });
+
+  it("delegates phase 4 algebra lessons 102 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 102; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

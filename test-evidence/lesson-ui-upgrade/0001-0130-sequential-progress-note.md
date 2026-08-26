@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **83 of 130 lessons completed; 47 pending.**
+Dedicated rebuild target: **84 of 130 lessons completed; 46 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1244,3 +1244,17 @@ Evidence:
 - `0157-reference.png`
 - `0157-desktop.png`
 - `0157-dedicated-target-validation.json`
+
+## Lesson 101 / Mockup 0158 - Rationalisation
+
+Reworked individually against the mathematics target mockup with a dedicated `selectable-radical-and-conjugate-denominator-draggable-unity-multiplier-rational-result-decimal-equivalence-graded-practice-model`. The selected expression and multiplier derive the denominator product, rationality test, numerator transformation, simplified exact result, original decimal, rationalised decimal, equality proof, balance model, guided steps, and progress state from one lesson-owned calculation model.
+
+Matching-radical and alternate-radical multipliers are calculated from the active denominator, while a true binomial expression uses its calculated conjugate and difference-of-squares denominator. All multiplier cards are clickable and natively draggable into the multiplier stage. Invalid choices leave an irrational denominator and disable later stages instead of pretending to complete. The expression selector, three proof stages, decimal switch, six tabs, Share, Bookmark, practice-step reveal, editable numerator/denominator answer fields, Enter grading, and Try another control all update visible state. Lesson, workspace, upgrade, legal, notebook, report, and navigation destinations are real links. The algebra/CAS adapter dispatches Lesson 101 only to this dedicated component, and the shared algebra fallback now begins at Lesson 102.
+
+Final 919x1711 integrated browser validation verifies `1/√2 = √2/2` and both decimal paths equal 0.7071; toggles decimal checking; selects `2/√3`; rejects multiplier `√2/√2` because the denominator remains `√6`; physically drags `√3/√3`; completes multiplication and simplification to `2√3/3`; selects `1/(2 + √3)`; rejects the non-conjugate choice; physically drags `2 − √3`; proves the denominator is 1 and the result is `2 − √3`; rejects and accepts the first fraction-form practice answer; reveals its steps; rotates and correctly grades `2√7/7`; exercises Formula & Rules, Share, and Bookmark; then reloads the exact target state. The visual loop matches surface x=225-906 and y=101-1711, tabs y=218-259, workspace y=279-921, pipeline y=342-562, balance y=578-704, chooser y=725-852, proof row y=936-1208, guided/practice row y=1221-1597, navigation y=1610-1663, and tags y=1673-1711. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0158-reference.png`
+- `0158-desktop.png`
+- `0158-dedicated-target-validation.json`
