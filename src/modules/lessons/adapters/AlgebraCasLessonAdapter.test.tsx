@@ -136,8 +136,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Polynomial table workspace");
   });
 
-  it("delegates phase 4 algebra lessons 103 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 103; id <= 128; id += 1) {
+  it("routes lesson 103 to its dedicated synthetic-division object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 103)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0160"');
+    expect(html).toContain('data-dedicated-lesson="103"');
+    expect(html).toContain("editable-polynomial-coefficient-horner-synthetic-number-draggable-table-quotient-remainder-expansion-graded-practice-model");
+    expect(html).toContain('aria-label="Drag synthetic number"');
+    expect(html).toContain("Synthetic division steps");
+  });
+
+  it("delegates phase 4 algebra lessons 104 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 104; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

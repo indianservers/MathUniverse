@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **85 of 130 lessons completed; 45 pending.**
+Dedicated rebuild target: **86 of 130 lessons completed; 44 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1272,3 +1272,17 @@ Evidence:
 - `0159-reference.png`
 - `0159-desktop.png`
 - `0159-dedicated-target-validation.json`
+
+## Lesson 103 / Mockup 0160 - Synthetic Division
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-polynomial-coefficient-horner-synthetic-number-draggable-table-quotient-remainder-expansion-graded-practice-model`. The lesson parser accepts polynomial terms through degree five, inserts zero coefficients for missing powers, validates a monic linear divisor of the form `x − a`, derives the sign-correct synthetic number, and calculates every bring-down, multiply, add, quotient, remainder, and expansion-reconstruction value from one lesson-owned Horner model.
+
+The synthetic-number tile is a native draggable object and the table's synthetic-number lane is a real drop target. Polynomial and divisor fields recalculate the complete table; malformed divisors are rejected instead of producing a false verification. Coefficient-row visibility, multiply/add arrows, expansion checking, five lesson tabs, staged animation, Reset, editable practice products/sums/quotient/remainder, Check answer, New problem, and Show solution all update visible state. Practice starts blank rather than being prefilled, and its answer is checked against independently calculated rows. Lesson and footer destinations are real links. The algebra/CAS adapter dispatches Lesson 103 only to this dedicated component, and the shared algebra fallback now begins at Lesson 104.
+
+Final 989x1591 integrated browser validation verifies `(x² + 5x + 6)/(x + 2) = x + 3`, synthetic number `−2`, products `−2, −6`, sums `1, 3, 0`, remainder 0, and expansion equivalence. It then parses the missing-power cubic `x³ − 4x + 3`, inserts coefficient 0, divides by `x − 1` to get `x² + x − 3`, rejects a quadratic divisor, exercises all three display switches and the five-stage animation, physically drags `−2` into the synthetic lane, rejects and accepts the complete first practice table, rotates to a cubic practice problem, reveals its calculated solution, exercises Formulas, Reset, and reload. The visual loop matches surface x=226-973 and y=99-1591, intro y=99-283, tabs y=291-345, controls y=354-511, workspace y=518-1438, synthetic table x=396-821 and y=576-852, proof y=941-1106, practice y=1121-1438, navigation y=1441-1491, and footer y=1497-1591. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0160-reference.png`
+- `0160-desktop.png`
+- `0160-dedicated-target-validation.json`
