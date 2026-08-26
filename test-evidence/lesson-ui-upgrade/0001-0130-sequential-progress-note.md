@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **61 of 130 lessons completed; 69 pending.**
+Dedicated rebuild target: **62 of 130 lessons completed; 68 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -65,6 +65,7 @@ Dedicated rebuild target: **61 of 130 lessons completed; 69 pending.**
 | 0059   |                  77 Comparing Fractions | Complete | Dedicated dual editable-fraction comparison with draggable unit bars, calculated LCM/common-unit conversions, exact ordering proof, linked number-line markers, functional controls/practice, and exact 1072x1467 target geometry                         |
 | 0060   |                   78 Fraction Operations | Complete | Dedicated dual editable/draggable fraction bars with four-operation engine, calculated LCM conversions, reciprocal division, exact reduction/result proof, live practice, and exact 1049x1500 target geometry                                             |
 | 0061   |                  79 Decimal Place Value | Complete | Dedicated dual editable exact-hundredths model with draggable 100-cell grids, calculated place chart/deciding digit/difference, interactive number line, trailing-zero proof, live practice, and exact 1065x1477 target geometry                    |
+| 0062   |                   80 Decimal Operations | Complete | Dedicated dual editable hundredths operation model with aligned draggable digits, live addition/subtraction, calculated place-value result, exact base-ten blocks, misconception proof, practice, and exact 1060x1484 target geometry              |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -919,3 +920,17 @@ Evidence:
 - `0061-reference.png`
 - `0061-desktop.png`
 - `0061-dedicated-target-validation.json`
+
+## Lesson 80 / Mockup 0062 - Decimal Operations
+
+Reworked individually against the target mockup with a dedicated `dual-editable-hundredths-aligned-place-columns-draggable-digits-base-ten-blocks-calculated-sum-misalignment-practice-model`. Two integer-hundredths operands and the selected operation drive the aligned ones/decimal-point/tenths/hundredths columns, exact sum or difference, place-value wording, three base-ten block rows, result summary, and calculated misalignment counterexample from one lesson-owned model.
+
+Both decimal values are directly editable with hundredths guards. Every operand digit is a native draggable/drop target that swaps places and recalculates every representation. The operation heading switches between real addition and subtraction, all base-ten objects are native draggable objects, and the `2.75 + 0.6` practice prompt loads a real model. The shared number adapter only dispatches Lesson 80 to this separate component.
+
+Final 1060x1484 integrated browser validation verifies `3.40 + 1.25 = 4.65`, aligned digits `3,4,0` and `1,2,5`, result digits `4,6,5`, and the calculated `3.65` misconception; edits the operands to `4.10 + 0.75 = 4.85`; physically drags the first ones digit onto the hundredths place to produce `0.14`; switches to subtraction; verifies `5.50 - 1.25 = 4.25`; loads and verifies `2.75 + 0.60 = 3.35`; then restores the target state. The final visual loop matches the target at surface x=227-1043 and y=97-1484, lesson panel y=97-1268, workspace x=240-1030 and y=216-1266, algorithm x=259-765 and y=279-767, base-ten proof y=785-1163 with inset trays x=326-748, practice y=1187-1242, right rail x=797-1020, misconception y=859-1228, navigation y=1284-1335, and footer y=1352-1464. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0062-reference.png`
+- `0062-desktop.png`
+- `0062-dedicated-target-validation.json`

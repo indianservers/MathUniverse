@@ -338,6 +338,23 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Second hundred grid cell 47"');
     expect(html).toContain("Compare the first unequal place");
   });
+  it("renders lesson 80 as a dedicated aligned decimal-operation proof", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 80)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0062"');
+    expect(html).toContain('data-dedicated-lesson="80"');
+    expect(html).toContain('data-object-model="dual-editable-hundredths-aligned-place-columns-draggable-digits-base-ten-blocks-calculated-sum-misalignment-practice-model"');
+    expect(html).toContain('data-first="3.40"');
+    expect(html).toContain('data-second="1.25"');
+    expect(html).toContain('data-operation="Add"');
+    expect(html).toContain('data-result="4.65"');
+    expect(html).toContain('data-first-digits="3,4,0"');
+    expect(html).toContain('data-result-digits="4,6,5"');
+    expect(html).toContain('data-misaligned="3.65"');
+    expect(html).toContain('aria-label="First decimal value"');
+    expect(html).toContain('aria-label="Second decimal hundredths digit 5"');
+    expect(html).toContain("Line up decimal points for addition and subtraction");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
