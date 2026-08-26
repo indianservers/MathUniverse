@@ -355,6 +355,23 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Second decimal hundredths digit 5"');
     expect(html).toContain("Line up decimal points for addition and subtraction");
   });
+  it("renders lesson 81 as a dedicated fraction-decimal-percent bridge", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 81)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0063"');
+    expect(html).toContain('data-dedicated-lesson="81"');
+    expect(html).toContain('data-object-model="editable-reduced-fraction-division-trace-clickable-draggable-strip-hundred-grid-decimal-percent-number-line-terminating-practice-model"');
+    expect(html).toContain('data-numerator="3"');
+    expect(html).toContain('data-denominator="4"');
+    expect(html).toContain('data-reduced="3/4"');
+    expect(html).toContain('data-decimal="0.75"');
+    expect(html).toContain('data-percent="75%"');
+    expect(html).toContain('data-selected-cells="75"');
+    expect(html).toContain('data-terminating="true"');
+    expect(html).toContain('aria-label="Fraction numerator"');
+    expect(html).toContain('aria-label="Fraction strip part 4"');
+    expect(html).toContain("The value stays the same across forms");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

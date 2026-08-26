@@ -29,6 +29,7 @@ import ComparingFractionsTargetLesson77 from "./ComparingFractionsTargetLesson77
 import FractionOperationsTargetLesson78 from "./FractionOperationsTargetLesson78";
 import DecimalPlaceValueTargetLesson79 from "./DecimalPlaceValueTargetLesson79";
 import DecimalOperationsTargetLesson80 from "./DecimalOperationsTargetLesson80";
+import FractionDecimalConversionTargetLesson81 from "./FractionDecimalConversionTargetLesson81";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -102,6 +103,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 80) {
     return <DecimalOperationsTargetLesson80 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 81) {
+    return <FractionDecimalConversionTargetLesson81 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **62 of 130 lessons completed; 68 pending.**
+Dedicated rebuild target: **63 of 130 lessons completed; 67 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -66,6 +66,7 @@ Dedicated rebuild target: **62 of 130 lessons completed; 68 pending.**
 | 0060   |                   78 Fraction Operations | Complete | Dedicated dual editable/draggable fraction bars with four-operation engine, calculated LCM conversions, reciprocal division, exact reduction/result proof, live practice, and exact 1049x1500 target geometry                                             |
 | 0061   |                  79 Decimal Place Value | Complete | Dedicated dual editable exact-hundredths model with draggable 100-cell grids, calculated place chart/deciding digit/difference, interactive number line, trailing-zero proof, live practice, and exact 1065x1477 target geometry                    |
 | 0062   |                   80 Decimal Operations | Complete | Dedicated dual editable hundredths operation model with aligned draggable digits, live addition/subtraction, calculated place-value result, exact base-ten blocks, misconception proof, practice, and exact 1060x1484 target geometry              |
+| 0063   |         81 Fraction-Decimal Conversion | Complete | Dedicated editable fraction bridge with draggable segmented strip, calculated long division/decimal/percent, interactive hundred grid and number line, terminating audit, practice, and exact 1508x1043 target geometry                           |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -934,3 +935,17 @@ Evidence:
 - `0062-reference.png`
 - `0062-desktop.png`
 - `0062-dedicated-target-validation.json`
+
+## Lesson 81 / Mockup 0063 - Fraction-Decimal Conversion
+
+Reworked individually against the target mockup with a dedicated `editable-reduced-fraction-division-trace-clickable-draggable-strip-hundred-grid-decimal-percent-number-line-terminating-practice-model`. One numerator/denominator pair drives the reduced fraction, segmented strip, long-division trace, exact decimal or recurring approximation, percent, selected hundred-grid count, equivalent-form cards, shared number-line marker, and terminating audit from one lesson-owned model.
+
+Both fraction terms are directly editable with denominator and proper-fraction guards. Every fraction-strip part is clickable and a native draggable/drop target, all 100 percentage cells are live controls, and every number-line tick updates the same fraction model. The `7/8` practice prompt loads and solves a real conversion. The shared number adapter only dispatches Lesson 81 to this separate component.
+
+Final 1508x1043 integrated browser validation verifies `3/4 = 0.75 = 75%`, 75 selected cells, and terminating status; edits to `1/4` and then `7/8 = 0.875 = 87.5%`; physically drags the third strip part onto the second to produce `2/4 = 1/2 = 0.5`; selects 25% from the grid and 75% from the number line; changes to `1/3` and verifies recurring status with `0.333...`; loads and verifies the `7/8` practice; then restores the target state. The final visual loop matches the target at page x=289-1489 and y=116-1015, lesson panel y=116-940, workspace x=312-1466 and y=264-922, proof x=312-1154, fraction strip x=331 and y=390, division x=614-842 and y=331-621, hundred grid x=895 and y=373, equivalence band y=649-744, number-line band y=745-921 with axis y=814, side rail x=1169-1466, and navigation y=959-1015. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0063-reference.png`
+- `0063-desktop.png`
+- `0063-dedicated-target-validation.json`
