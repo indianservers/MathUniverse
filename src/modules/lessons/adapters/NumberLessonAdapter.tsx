@@ -34,6 +34,7 @@ import RecurringDecimalsTargetLesson82 from "./RecurringDecimalsTargetLesson82";
 import RatioModelsTargetLesson83 from "./RatioModelsTargetLesson83";
 import ProportionTargetLesson84 from "./ProportionTargetLesson84";
 import DirectProportionTargetLesson85 from "./DirectProportionTargetLesson85";
+import InverseProportionTargetLesson86 from "./InverseProportionTargetLesson86";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -122,6 +123,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 85) {
     return <DirectProportionTargetLesson85 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 86) {
+    return <InverseProportionTargetLesson86 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

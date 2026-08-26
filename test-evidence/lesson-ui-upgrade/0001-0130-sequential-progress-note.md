@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **67 of 130 lessons completed; 63 pending.**
+Dedicated rebuild target: **68 of 130 lessons completed; 62 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -71,6 +71,7 @@ Dedicated rebuild target: **67 of 130 lessons completed; 63 pending.**
 | 0065   |                        83 Ratio Models | Complete | Dedicated dual editable part-count model with draggable tokens, calculated total/tape/scaled batch, live scale factor, linked double number lines, relationship proof, practice, and exact 1054x1492 target geometry                              |
 | 0066   |                          84 Proportion | Complete | Dedicated editable known/target ratio model with calculated shared scale factor, target-matched tape construction, draggable units, cross-product proof, solved value, summary, and practice at exact 1496x1051 target geometry |
 | 0067   |                  85 Direct Proportion | Complete | Dedicated editable constant-multiplier model with linked ratio table, draggable coordinate points, origin graph, unit rate, equation, current values, and calculated practice at exact 1068x1472 target geometry |
+| 0068   |                 86 Inverse Proportion | Complete | Dedicated editable constant-product model with reciprocal table and curve, draggable graph points and task arrays, work-sharing comparison, quick check, formula, and calculated practice at exact 1509x1042 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1009,3 +1010,17 @@ Evidence:
 - `0067-reference.png`
 - `0067-desktop.png`
 - `0067-dedicated-target-validation.json`
+
+## Lesson 86 / Mockup 0068 - Inverse Proportion
+
+Reworked individually against the target mockup with a dedicated `editable-constant-product-reciprocal-table-draggable-curve-points-work-sharing-task-arrays-formula-quick-check-practice-model`. One constant product and one current worker count drive the reciprocal day value, six-row pair table, reciprocal curve, labelled points, formula fraction, quick-check cards, constant-product explanations, and both 24-task work-sharing models from one lesson-owned calculation engine.
+
+Product, workers, and days are real numeric controls with linked reciprocal calculations. Every table worker value, graph point, and task cell is clickable and a native draggable/drop target. Share and Workspace maintain real state, while both practice entry points load and solve `xy = 36, x = 9`. The shared number adapter only dispatches Lesson 86 to this separate component.
+
+Final 1509x1042 integrated browser validation verifies `xy = 24`, `x = 8`, `y = 3`, all six constant products, and the reciprocal curve; edits workers to 6 and verifies 4 days; edits days to 6 and verifies 4 workers; edits the product to 36 and verifies 9 days; physically drags graph point 2 onto point 4 to produce `x = 4, y = 6`; drags a three-worker task onto the eight-worker model and verifies `x = 8, y = 3`; exercises Share and Workspace; loads and verifies practice `36/9 = 4`; then reloads the exact target state. The final visual loop matches the target at surface x=292-1488 and y=109-1021, banner x=390-688 and y=240-281, workspace x=312-1468 and y=262-928, table x=328-709 and y=283-659, graph x=721-1149 and y=283-667, work-sharing panel x=328-1149 and y=681-913, side rail x=1166-1443, practice y=780-879, and navigation x=315-1465 and y=942-999. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0068-reference.png`
+- `0068-desktop.png`
+- `0068-dedicated-target-validation.json`

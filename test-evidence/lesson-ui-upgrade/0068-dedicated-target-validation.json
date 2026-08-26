@@ -1,0 +1,222 @@
+{
+  "mockup": "0068",
+  "lessonId": 86,
+  "route": "/lessons/numbers-and-arithmetic/86-inverse-proportion",
+  "objectModel": "editable-constant-product-reciprocal-table-draggable-curve-points-work-sharing-task-arrays-formula-quick-check-practice-model",
+  "checks": {
+    "initial": {
+      "product": "24",
+      "workers": "8",
+      "days": "3",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    },
+    "workersEdited": {
+      "product": "24",
+      "workers": "6",
+      "days": "4",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "daysEdited": {
+      "product": "24",
+      "workers": "4",
+      "days": "6",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "productEdited": {
+      "product": "36",
+      "workers": "4",
+      "days": "9",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "3"
+    },
+    "graphDragged": {
+      "product": "24",
+      "workers": "4",
+      "days": "6",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "graphDragRecorded": true,
+    "taskDragged": {
+      "product": "24",
+      "workers": "8",
+      "days": "3",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "taskDragRecorded": true,
+    "shared": {
+      "product": "24",
+      "workers": "8",
+      "days": "3",
+      "share-state": "Ready",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "3"
+    },
+    "workspace": {
+      "product": "24",
+      "workers": "8",
+      "days": "3",
+      "share-state": "Ready",
+      "workspace-state": "open",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "4"
+    },
+    "practice": {
+      "product": "36",
+      "workers": "9",
+      "days": "4",
+      "share-state": "Ready",
+      "workspace-state": "open",
+      "practice-loaded": "true",
+      "dragging": "",
+      "actions": "5"
+    },
+    "restored": {
+      "product": "24",
+      "workers": "8",
+      "days": "3",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1509,
+      "height": 1042
+    },
+    "document": {
+      "width": 1509,
+      "height": 1042
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 109,
+      "bottom": 1021,
+      "height": 912,
+      "left": 292,
+      "right": 1488,
+      "width": 1196
+    },
+    "regions": {
+      "header": {
+        "top": 110,
+        "bottom": 262,
+        "height": 152,
+        "left": 293,
+        "right": 1487,
+        "width": 1194
+      },
+      "banner": {
+        "top": 240,
+        "bottom": 281,
+        "height": 41,
+        "left": 390,
+        "right": 688,
+        "width": 298
+      },
+      "workspace": {
+        "top": 262,
+        "bottom": 928,
+        "height": 666,
+        "left": 312,
+        "right": 1468,
+        "width": 1156
+      },
+      "table": {
+        "top": 283,
+        "bottom": 659,
+        "height": 376,
+        "left": 328,
+        "right": 709,
+        "width": 381
+      },
+      "graph": {
+        "top": 283,
+        "bottom": 667,
+        "height": 384,
+        "left": 721,
+        "right": 1149,
+        "width": 428
+      },
+      "visual": {
+        "top": 681,
+        "bottom": 913,
+        "height": 232,
+        "left": 328,
+        "right": 1149,
+        "width": 821
+      },
+      "side": {
+        "top": 283,
+        "bottom": 883,
+        "height": 600,
+        "left": 1166,
+        "right": 1443,
+        "width": 277
+      },
+      "quick": {
+        "top": 283,
+        "bottom": 480,
+        "height": 197,
+        "left": 1166,
+        "right": 1443,
+        "width": 277
+      },
+      "formula": {
+        "top": 495,
+        "bottom": 586,
+        "height": 91,
+        "left": 1166,
+        "right": 1443,
+        "width": 277
+      },
+      "practice": {
+        "top": 780,
+        "bottom": 879,
+        "height": 99,
+        "left": 1166,
+        "right": 1443,
+        "width": 277
+      },
+      "navigation": {
+        "top": 942,
+        "bottom": 999,
+        "height": 57,
+        "left": 315,
+        "right": 1465,
+        "width": 1150
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

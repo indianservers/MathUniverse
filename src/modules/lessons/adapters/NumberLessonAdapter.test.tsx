@@ -436,6 +436,20 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Graph point 4"');
     expect(html).toContain("The graph passes through the origin");
   });
+  it("renders lesson 86 as a dedicated inverse-proportion model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 86)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0068"');
+    expect(html).toContain('data-dedicated-lesson="86"');
+    expect(html).toContain('data-object-model="editable-constant-product-reciprocal-table-draggable-curve-points-work-sharing-task-arrays-formula-quick-check-practice-model"');
+    expect(html).toContain('data-product="24"');
+    expect(html).toContain('data-workers="8"');
+    expect(html).toContain('data-days="3"');
+    expect(html).toContain('aria-label="Current workers x"');
+    expect(html).toContain('aria-label="Inverse graph point 8"');
+    expect(html).toContain('aria-label="3-worker task 24"');
+    expect(html).toContain("keeps xy constant");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

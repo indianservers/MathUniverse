@@ -173,7 +173,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
     (lesson.id >= 156 && lesson.id <= 162) ||
     lesson.id === 164 ||
     (lesson.id >= 1 && lesson.id <= 38) ||
-    (lesson.id >= 57 && lesson.id <= 85) ||
+    (lesson.id >= 57 && lesson.id <= 86) ||
     lesson.id === 257 ||
     lesson.id === 258 ||
     lesson.id === 259 ||
@@ -219,7 +219,7 @@ export default function LessonShell({ lesson }: { lesson: LessonDefinition }) {
         />
         {usesImmersiveDynamicGeometryWorkspace ||
         (lesson.id >= 1 && lesson.id <= 38) ||
-        (lesson.id >= 57 && lesson.id <= 85) ||
+        (lesson.id >= 57 && lesson.id <= 86) ||
         lesson.id === 257 ||
         lesson.id === 258 ||
         lesson.id === 259 ||
