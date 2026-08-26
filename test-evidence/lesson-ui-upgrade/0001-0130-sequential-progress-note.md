@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **82 of 130 lessons completed; 48 pending.**
+Dedicated rebuild target: **83 of 130 lessons completed; 47 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1230,3 +1230,17 @@ Evidence:
 - `0156-reference.png`
 - `0156-desktop.png`
 - `0156-dedicated-target-validation.json`
+
+## Lesson 100 / Mockup 0157 - Surds
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-radicand-perfect-square-divisor-search-draggable-factor-extraction-exact-decimal-equivalence-graded-practice-model`. The editable radicand drives its divisors, largest perfect-square factor, remaining factor, generated square grid, extraction coefficient, exact simplified surd, original decimal, simplified decimal, equality result, guided steps, and result cards from one lesson-owned calculation model.
+
+Every candidate is calculated from the current radicand and is both clickable and natively draggable into the square-factor extractor. Non-square candidates are rejected as extraction factors; Find square factor computes the largest valid square divisor; Pull root outside exposes the calculated coefficient only after a valid choice; Decimal check independently evaluates both exact forms. The language selector, Reset, Share, five lesson tabs, practice radio choices, and grading all update state. Lesson, workspace, and footer destinations are real links. The algebra/CAS adapter dispatches Lesson 100 only to this dedicated component, and the shared algebra fallback now begins at Lesson 101.
+
+Final 862x1824 integrated browser validation verifies `√50 = 5√2` and both decimal paths equal 7.071; edits the radicand to 72; finds square factor 36; extracts `6√2`; verifies both decimal paths equal 8.485; selects square factor 4 and derives the equivalent intermediate form `2√18`; rejects non-square factor 2; physically drags factor 36 into the extractor; rejects practice choice B; accepts choice C; exercises Formulas, Hindi, Share, and Reset; then reloads the exact target state. The final visual loop matches surface x=197-848 and y=90-1818, intro y=90-281, tabs y=290-339, extractor and controls y=349-1154, notes y=1163-1382, worked/practice row y=1389-1628, navigation y=1638-1690, and footer y=1710-1818. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0157-reference.png`
+- `0157-desktop.png`
+- `0157-dedicated-target-validation.json`

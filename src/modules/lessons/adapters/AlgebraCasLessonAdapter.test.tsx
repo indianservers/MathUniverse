@@ -100,8 +100,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Visualize the law with repeated multiplication");
   });
 
-  it("delegates phase 4 algebra lessons 100 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 100; id <= 128; id += 1) {
+  it("routes lesson 100 to its dedicated surds object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 100)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0157"');
+    expect(html).toContain('data-dedicated-lesson="100"');
+    expect(html).toContain("editable-radicand-perfect-square-divisor-search-draggable-factor-extraction-exact-decimal-equivalence-graded-practice-model");
+    expect(html).toContain('aria-label="Use factor 25"');
+    expect(html).toContain("Square factor extraction drop target");
+  });
+
+  it("delegates phase 4 algebra lessons 101 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 101; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
