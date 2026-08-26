@@ -14,6 +14,12 @@ const precedence: Record<string, number> = { "+": 1, "-": 1, "*": 2, "/": 2, "^"
 const rightAssociative = new Set(["^", "u-"]);
 
 export function compileFunctionExpression(input: string) {
+  const extended = compileExtendedFunction(input);
+  if (extended) return extended;
+  return compilePlainFunction(input);
+}
+
+function compilePlainFunction(input: string) {
   const rpn = toRpn(tokenize(input));
   return (x: number) => evaluateRpn(rpn, x);
 }
@@ -26,6 +32,63 @@ export function compileTwoVariableExpression(input: string) {
 export function compileThreeVariableExpression(input: string) {
   const rpn = toRpn(tokenize(input, true, true));
   return (x: number, y: number, z: number) => evaluateRpn(rpn, x, y, z);
+}
+
+function compileExtendedFunction(input: string): ((x: number) => number) | null {
+  const expression = input.trim().replace(/^y\s*=\s*/i, "");
+  const piecewise = expression.match(/^\{([\s\S]+)\}$/);
+  if (piecewise) {
+    const branches = splitTopLevel(piecewise[1]).map((branch) => {
+      const separator = branch.indexOf(":");
+      if (separator < 1) throw new Error("Piecewise branches need a condition followed by : and an expression");
+      return {
+        condition: compileCondition(branch.slice(0, separator)),
+        evaluate: compileFunctionExpression(branch.slice(separator + 1)),
+      };
+    });
+    return (x: number) => branches.find((branch) => branch.condition(x))?.evaluate(x) ?? Number.NaN;
+  }
+
+  const restriction = expression.match(/^([\s\S]+?)\s*\{([\s\S]+)\}$/);
+  if (restriction) {
+    const evaluate = compilePlainFunction(restriction[1]);
+    const conditions = splitTopLevel(restriction[2]).map(compileCondition);
+    return (x: number) => conditions.every((condition) => condition(x)) ? evaluate(x) : Number.NaN;
+  }
+  return null;
+}
+
+function compileCondition(input: string) {
+  const condition = input.trim().replace(/\u2264/g, "<=").replace(/\u2265/g, ">=");
+  const match = condition.match(/^(.+?)(<=|>=|<|>)(.+?)(?:(<=|>=|<|>)(.+))?$/);
+  if (!match) throw new Error(`Unsupported condition: ${input.trim()}`);
+  const left = compilePlainFunction(match[1]);
+  const middle = compilePlainFunction(match[3]);
+  const right = match[5] ? compilePlainFunction(match[5]) : null;
+  return (x: number) => compare(left(x), match[2], middle(x)) && (!right || compare(middle(x), match[4], right(x)));
+}
+
+function compare(left: number, operator: string, right: number) {
+  if (operator === "<") return left < right;
+  if (operator === "<=") return left <= right;
+  if (operator === ">") return left > right;
+  return left >= right;
+}
+
+function splitTopLevel(input: string) {
+  const values: string[] = [];
+  let depth = 0;
+  let start = 0;
+  for (let index = 0; index < input.length; index += 1) {
+    if (input[index] === "(") depth += 1;
+    if (input[index] === ")") depth -= 1;
+    if (input[index] === "," && depth === 0) {
+      values.push(input.slice(start, index).trim());
+      start = index + 1;
+    }
+  }
+  values.push(input.slice(start).trim());
+  return values.filter(Boolean);
 }
 
 function normalize(input: string, allowZ = false) {

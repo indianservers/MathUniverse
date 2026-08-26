@@ -3,12 +3,13 @@ import type { GraphStudioVariable } from "./types";
 const BUILT_INS = new Set([
   "x", "y", "z", "theta", "pi", "e", "sin", "cos", "tan", "asin", "acos", "atan", "sinh", "cosh", "tanh",
   "sqrt", "cbrt", "abs", "ln", "log", "exp", "floor", "ceil", "round", "min", "max", "sum", "product",
+  "n", "prev", "seq", "recur", "contour", "vector", "slope",
 ]);
 
 export function detectGraphVariables(expressions: string[]) {
   const names = new Set<string>();
   expressions.forEach((expression) => {
-    const rightSide = expression.includes("=") ? expression.slice(expression.indexOf("=") + 1) : expression;
+    const rightSide = expression.replace(/^\s*[xyzr]\s*=\s*/i, "");
     rightSide.match(/[A-Za-z][A-Za-z0-9_]*/g)?.forEach((token) => {
       const normalized = token.toLowerCase();
       if (!BUILT_INS.has(normalized)) names.add(token);

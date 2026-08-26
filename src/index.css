@@ -11336,6 +11336,36 @@ body {
   width: 100%;
   accent-color: #22d3ee;
 }
+.gs2d-variable-actions {
+  display: flex !important;
+  grid-template-columns: none !important;
+  gap: 5px !important;
+  margin-top: 5px;
+}
+.gs2d-variable-actions button,
+.gs2d-variable-actions label {
+  display: flex;
+  min-height: 28px;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--gs-border);
+  border-radius: 4px;
+  padding: 3px 6px;
+  color: #9fb4c7;
+  font-size: 8px;
+  font-weight: 800;
+}
+.gs2d-variable-actions button:first-child {
+  color: #67e8f9;
+}
+.gs2d-variable-actions svg {
+  width: 13px;
+}
+.gs2d-variable-actions select {
+  border: 0;
+  background: #050e19;
+  color: white;
+}
 .gs3d-toggle-row {
   display: flex;
   min-height: 38px;
@@ -12008,6 +12038,50 @@ body {
 .gs2d-expression .expression-main input:focus {
   color: #67e8f9;
 }
+.gs2d-expression.has-error {
+  border-color: rgba(251, 113, 133, 0.78);
+  background: rgba(127, 29, 29, 0.12);
+}
+.gs2d-expression .expression-main input[aria-invalid="true"] {
+  color: #fecdd3;
+}
+.gs2d-expression-error {
+  display: grid;
+  gap: 2px;
+  margin: 5px 0 0;
+  color: #fecdd3;
+  font-size: 9px;
+  line-height: 1.35;
+}
+.gs2d-expression-error strong {
+  color: #fb7185;
+  font-weight: 900;
+}
+.gs2d-expression-error span {
+  color: #fda4af !important;
+  font-size: 9px !important;
+  font-weight: 600 !important;
+}
+.gs2d-expression-assist {
+  display: flex;
+  grid-column: 2 / -1;
+  gap: 4px;
+  overflow-x: auto;
+  padding-top: 5px;
+}
+.gs2d-expression-assist button {
+  flex: 0 0 auto;
+  min-height: 25px;
+  border: 1px solid var(--gs-border);
+  border-radius: 4px;
+  padding: 3px 7px;
+  color: #9deafa;
+  font: 800 9px ui-monospace, monospace;
+}
+.gs2d-expression-assist button:hover {
+  border-color: #67e8f9;
+  background: rgba(34, 211, 238, 0.08);
+}
 .gs2d-expression-menu {
   right: -4px;
   width: 150px;
@@ -12184,6 +12258,65 @@ body {
   backdrop-filter: blur(12px);
   pointer-events: none;
 }
+.gs2d-scene-host > svg:focus-visible {
+  outline: 3px solid #67e8f9;
+  outline-offset: -3px;
+}
+.gs3d-metric {
+  position: relative;
+  padding-right: 38px !important;
+}
+.gs2d-copy-value {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  transform: translateY(-50%);
+  place-items: center;
+  border: 1px solid var(--gs-border);
+  border-radius: 4px;
+  color: #8fdbea;
+}
+.gs2d-copy-value:hover,
+.gs2d-copy-value:focus-visible {
+  border-color: #67e8f9;
+  color: white;
+}
+.gs2d-copy-value svg {
+  width: 13px;
+}
+.gs2d-exact-results {
+  display: grid;
+  gap: 6px;
+}
+.gs2d-exact-result {
+  position: relative;
+  display: grid;
+  min-height: 48px;
+  gap: 4px;
+  align-content: center;
+  border: 1px solid var(--gs-border);
+  border-radius: 5px;
+  background: #030914;
+  padding: 7px 40px 7px 8px;
+}
+.gs2d-exact-result > span {
+  color: #8fa7bc;
+  font-size: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.gs2d-exact-result > strong {
+  overflow-wrap: anywhere;
+  color: #a7f3d0;
+  font: 700 10px ui-monospace, monospace;
+}
+.gs2d-method-note {
+  margin-top: 8px;
+  font-size: 9px !important;
+}
 .gs2d-intersection-result {
   margin-top: 6px;
   padding: 9px;
@@ -12255,6 +12388,181 @@ body {
 .gs2d-table-wrap td {
   border-top: 1px solid var(--gs-border);
 }
+.gs2d-data-dock {
+  display: grid;
+  height: 100%;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(320px, 1.2fr);
+  gap: 10px;
+}
+.gs2d-data-controls {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+}
+.gs2d-data-toggles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+.gs2d-data-toggles .gs3d-toggle-row {
+  min-height: 32px;
+  border: 1px solid var(--gs-border);
+  border-radius: 4px;
+  padding: 0 7px;
+  font-size: 9px;
+}
+.gs2d-data-controls textarea {
+  min-height: 58px;
+  resize: vertical;
+  border: 1px solid var(--gs-border);
+  border-radius: 4px;
+  background: #030914;
+  padding: 7px;
+  color: white;
+  font: 700 10px ui-monospace, monospace;
+}
+.gs2d-data-controls > button,
+.gs2d-add-data-row {
+  min-height: 30px;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  border-radius: 4px;
+  color: #67e8f9;
+  font-size: 9px;
+  font-weight: 900;
+}
+.gs2d-regression-summary {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  border: 1px solid rgba(167, 243, 208, 0.3);
+  border-radius: 5px;
+  background: rgba(6, 78, 59, 0.15);
+  padding: 8px 42px 8px 9px;
+  color: #a7f3d0;
+  font: 700 10px ui-monospace, monospace;
+}
+.gs2d-data-grid {
+  overflow: auto;
+  border: 1px solid var(--gs-border);
+  border-radius: 5px;
+}
+.gs2d-data-grid table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gs2d-advanced-layers > div,
+.gs2d-construction-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.gs2d-advanced-layers button,
+.gs2d-construction-grid button {
+  min-height: 2.15rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 0.65rem;
+  background: rgba(15, 23, 42, 0.45);
+  color: inherit;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.gs2d-advanced-layers button:hover,
+.gs2d-construction-grid button:hover {
+  border-color: #22d3ee;
+  color: #67e8f9;
+}
+
+.gs2d-expression .expression-main > span small {
+  display: block;
+  margin-top: 0.1rem;
+  color: #94a3b8;
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+
+.gs2d-expression input[readonly] {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.gs2d-opacity-field {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  color: #cbd5e1;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.gs2d-opacity-field input {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.gs2d-linked-measurement {
+  margin-top: 0.65rem;
+  border-radius: 0.7rem;
+  background: rgba(34, 211, 238, 0.1);
+  padding: 0.65rem;
+  color: #a5f3fc;
+  font-size: 0.75rem;
+}
+
+.gs2d-image-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+
+.gs2d-drag-handle {
+  cursor: grab;
+  filter: drop-shadow(0 2px 5px rgba(15, 23, 42, 0.35));
+}
+
+.gs2d-drag-handle:active {
+  cursor: grabbing;
+}
+.gs2d-data-grid th,
+.gs2d-data-grid td {
+  border-bottom: 1px solid var(--gs-border);
+  padding: 4px 6px;
+  color: #9fb4c7;
+  font-size: 9px;
+  text-align: left;
+}
+.gs2d-data-grid input {
+  width: 100%;
+  border: 1px solid var(--gs-border);
+  border-radius: 3px;
+  background: #030914;
+  padding: 4px 6px;
+  color: white;
+  font: 700 10px ui-monospace, monospace;
+}
+.gs2d-data-grid td:last-child,
+.gs2d-data-grid th:last-child {
+  width: 36px;
+}
+.gs2d-data-grid td button {
+  color: #fb7185;
+}
+.gs2d-data-grid td svg,
+.gs2d-add-data-row svg {
+  width: 13px;
+}
+.gs2d-add-data-row {
+  display: flex;
+  width: calc(100% - 12px);
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 6px;
+}
 .gs2d-empty-dock {
   display: flex;
   height: 100%;
@@ -12270,7 +12578,8 @@ body {
 }
 
 @media (max-width: 1100px) {
-  .gs2d-table-dock {
+  .gs2d-table-dock,
+  .gs2d-data-dock {
     grid-template-columns: 1fr;
     overflow: auto;
   }
@@ -12517,8 +12826,35 @@ body {
     grid-template-columns: auto minmax(0, 1fr) auto;
   }
   .gs3d-canvas-tools button {
-    width: 44px;
-    min-height: 46px;
+    width: 38px;
+    min-height: 38px;
+  }
+  .gs3d-canvas-tools button span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .gs3d-canvas-actions {
+    top: 52px;
+    flex-direction: column;
+  }
+  .gs3d-canvas-actions button {
+    width: 34px;
+    height: 34px;
+  }
+  .graph-studio-2d-shell .gs2d-mode-hint {
+    display: none;
+  }
+  .graph-studio-2d-shell .gs3d-view-menu {
+    max-width: calc(100% - 16px);
+  }
+  .graph-studio-2d-shell .gs2d-coordinate-label {
+    height: 34px;
+    padding: 0 8px;
+    font-size: 10px;
   }
   .gs3d-panel-reveal {
     display: none;
