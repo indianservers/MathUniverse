@@ -28,8 +28,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Substitution check");
   });
 
-  it("delegates phase 4 algebra lessons 94 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 94; id <= 128; id += 1) {
+  it("routes lesson 94 to its dedicated substitution object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 94)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0151"');
+    expect(html).toContain('data-dedicated-lesson="94"');
+    expect(html).toContain("draggable-substitution-slot-expression-value-step-evaluation-negative-brackets-equivalence-practice-model");
+    expect(html).toContain('aria-label="Drag chosen value"');
+    expect(html).toContain("Why brackets matter");
+  });
+
+  it("delegates phase 4 algebra lessons 95 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 95; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

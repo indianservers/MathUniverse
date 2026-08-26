@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **76 of 130 lessons completed; 54 pending.**
+Dedicated rebuild target: **77 of 130 lessons completed; 53 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -80,6 +80,7 @@ Dedicated rebuild target: **76 of 130 lessons completed; 54 pending.**
 | 0074   |                 618 Slider Component | Complete | Dedicated editable slider-schema model with real min/max/step/default controls, a physically draggable range input, live coefficient/equation/parabola updates, linked authoring preview, checklist validation, and exact 1504x1045 target geometry |
 | 0149   |                    92 Algebra Tiles | Complete | Dedicated positive/negative algebra-tile model with a draggable tile bank and expression tiles, zero pairs, calculated simplification/counts/checklist/trace, linked area model, functional controls, and exact 1110x1417 target geometry |
 | 0150   |                       93 Like Terms | Complete | Dedicated draggable like-term model with coefficient grouping, cancellation pairs, live simplification, substitution equivalence proof, staged controls, expression presets, graded practice, and exact 1013x1553 target geometry |
+| 0151   |                     94 Substitution | Complete | Dedicated draggable substitution-slot model with live expression/value controls, stepwise evaluation, negative-bracket behavior, result checking, rotating practice, functional tabs/toggles, and exact 992x1586 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1144,3 +1145,17 @@ Evidence:
 - `0150-reference.png`
 - `0150-desktop.png`
 - `0150-dedicated-target-validation.json`
+
+## Lesson 94 / Mockup 0151 - Substitution
+
+Reworked individually against the mathematics target mockup with a dedicated `draggable-substitution-slot-expression-value-step-evaluation-negative-brackets-equivalence-practice-model`. The selected expression and chosen value drive the substitution slot, replacement form, multiplication or exponent stage, constant operation, final result, controls summary, worked example, and correctness state from one lesson-owned calculation model.
+
+The chosen-value chip is a native draggable object and the expression is a real drop target. The expression selector, numeric input, steppers, and range slider all update the same bounded value; substitution-slot visibility and negative-number brackets are functional switches; Check value changes the verification state; five tabs change the active view state; Try another rotates calculated practice; Reset restores the target; and lesson/footer destinations are real links. The algebra/CAS adapter dispatches Lesson 94 only to this dedicated component.
+
+Final 992x1586 integrated browser validation verifies `3(5) + 2 = 17`; increments to 6 and verifies 20; drags the slider to -2 and verifies `3(−2) + 2 = -4`; disables brackets and verifies the display change; resets and physically drags the value chip into the substitution slot; selects `x² + 3` at -2 and verifies 7; checks the result; hides substitution slots; rotates practice from answer 11 to answer 13; exercises Practice; then reloads the exact target state. The final visual loop matches surface x=223-977 and y=105-1586, header y=105-306, machine x=223-737 and y=321-830, controls x=749-977, rule/bracket proof y=845-1090, worked/practice row y=1102-1307, tips y=1318-1429, navigation y=1438-1486, and footer y=1494-1576. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0151-reference.png`
+- `0151-desktop.png`
+- `0151-dedicated-target-validation.json`

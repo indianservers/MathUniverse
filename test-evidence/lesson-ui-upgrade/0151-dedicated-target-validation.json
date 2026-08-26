@@ -1,0 +1,312 @@
+{
+  "mockup": "0151",
+  "lessonId": 94,
+  "route": "/lessons/algebra/94-substitution",
+  "objectModel": "draggable-substitution-slot-expression-value-step-evaluation-negative-brackets-equivalence-practice-model",
+  "checks": {
+    "initial": {
+      "expression": "3x + 2",
+      "variable": "x",
+      "value": "5",
+      "result": "17",
+      "substituted": "3(5) + 2",
+      "show-slots": "true",
+      "use-brackets": "true",
+      "checked": "true",
+      "tab": "Interact",
+      "dragging": "false",
+      "drops": "0",
+      "practice": "0",
+      "practice-answer": "11",
+      "actions": "0"
+    },
+    "increased": {
+      "expression": "3x + 2",
+      "variable": "x",
+      "value": "6",
+      "result": "20",
+      "substituted": "3(6) + 2",
+      "show-slots": "true",
+      "use-brackets": "true",
+      "checked": "false",
+      "tab": "Interact",
+      "dragging": "false",
+      "drops": "0",
+      "practice": "0",
+      "practice-answer": "11",
+      "actions": "1"
+    },
+    "negative": {
+      "expression": "3x + 2",
+      "variable": "x",
+      "value": "-2",
+      "result": "-4",
+      "substituted": "3(−2) + 2",
+      "show-slots": "true",
+      "use-brackets": "true",
+      "checked": "false",
+      "tab": "Interact",
+      "dragging": "false",
+      "drops": "0",
+      "practice": "0",
+      "practice-answer": "11",
+      "actions": "2"
+    },
+    "withoutBrackets": {
+      "expression": "3x + 2",
+      "variable": "x",
+      "value": "-2",
+      "result": "-4",
+      "substituted": "3-2 + 2",
+      "show-slots": "true",
+      "use-brackets": "false",
+      "checked": "false",
+      "tab": "Interact",
+      "dragging": "false",
+      "drops": "0",
+      "practice": "0",
+      "practice-answer": "11",
+      "actions": "3"
+    },
+    "dragged": {
+      "expression": "3x + 2",
+      "variable": "x",
+      "value": "5",
+      "result": "17",
+      "substituted": "3(5) + 2",
+      "show-slots": "true",
+      "use-brackets": "true",
+      "checked": "true",
+      "tab": "Interact",
+      "dragging": "false",
+      "drops": "1",
+      "practice": "0",
+      "practice-answer": "11",
+      "actions": "1"
+    },
+    "quadratic": {
+      "expression": "x² + 3",
+      "variable": "x",
+      "value": "-2",
+      "result": "7",
+      "substituted": "(−2)² + 3",
+      "show-slots": "true",
+      "use-brackets": "true",
+      "checked": "false",
+      "tab": "Interact",
+      "dragging": "false",
+      "drops": "1",
+      "practice": "0",
+      "practice-answer": "11",
+      "actions": "2"
+    },
+    "quadraticChecked": {
+      "expression": "x² + 3",
+      "variable": "x",
+      "value": "-2",
+      "result": "7",
+      "substituted": "(−2)² + 3",
+      "show-slots": "true",
+      "use-brackets": "true",
+      "checked": "true",
+      "tab": "Interact",
+      "dragging": "false",
+      "drops": "1",
+      "practice": "0",
+      "practice-answer": "11",
+      "actions": "3"
+    },
+    "slotsHidden": {
+      "expression": "x² + 3",
+      "variable": "x",
+      "value": "-2",
+      "result": "7",
+      "substituted": "(−2)² + 3",
+      "show-slots": "false",
+      "use-brackets": "true",
+      "checked": "true",
+      "tab": "Interact",
+      "dragging": "false",
+      "drops": "1",
+      "practice": "0",
+      "practice-answer": "11",
+      "actions": "4"
+    },
+    "nextPractice": {
+      "expression": "x² + 3",
+      "variable": "x",
+      "value": "-2",
+      "result": "7",
+      "substituted": "(−2)² + 3",
+      "show-slots": "false",
+      "use-brackets": "true",
+      "checked": "true",
+      "tab": "Interact",
+      "dragging": "false",
+      "drops": "1",
+      "practice": "1",
+      "practice-answer": "13",
+      "actions": "5"
+    },
+    "practiceTab": {
+      "expression": "x² + 3",
+      "variable": "x",
+      "value": "-2",
+      "result": "7",
+      "substituted": "(−2)² + 3",
+      "show-slots": "false",
+      "use-brackets": "true",
+      "checked": "true",
+      "tab": "Practice",
+      "dragging": "false",
+      "drops": "1",
+      "practice": "1",
+      "practice-answer": "13",
+      "actions": "6"
+    },
+    "restored": {
+      "expression": "3x + 2",
+      "variable": "x",
+      "value": "5",
+      "result": "17",
+      "substituted": "3(5) + 2",
+      "show-slots": "true",
+      "use-brackets": "true",
+      "checked": "true",
+      "tab": "Interact",
+      "dragging": "false",
+      "drops": "0",
+      "practice": "0",
+      "practice-answer": "11",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 992,
+      "height": 1586
+    },
+    "document": {
+      "width": 992,
+      "height": 1586
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 105,
+      "bottom": 1586,
+      "height": 1481,
+      "left": 223,
+      "right": 977,
+      "width": 754
+    },
+    "regions": {
+      "header": {
+        "top": 105,
+        "bottom": 306,
+        "height": 201,
+        "left": 223,
+        "right": 977,
+        "width": 754
+      },
+      "layout": {
+        "top": 321,
+        "bottom": 1586,
+        "height": 1265,
+        "left": 223,
+        "right": 977,
+        "width": 754
+      },
+      "machine": {
+        "top": 321,
+        "bottom": 830,
+        "height": 509,
+        "left": 223,
+        "right": 737,
+        "width": 514
+      },
+      "controls": {
+        "top": 321,
+        "bottom": 830,
+        "height": 509,
+        "left": 749,
+        "right": 977,
+        "width": 228
+      },
+      "expression": {
+        "top": 399,
+        "bottom": 485,
+        "height": 86,
+        "left": 240,
+        "right": 720,
+        "width": 480
+      },
+      "steps": {
+        "top": 617,
+        "bottom": 727,
+        "height": 110,
+        "left": 240,
+        "right": 720,
+        "width": 480
+      },
+      "rule": {
+        "top": 845,
+        "bottom": 1090,
+        "height": 245,
+        "left": 223,
+        "right": 532,
+        "width": 309
+      },
+      "brackets": {
+        "top": 845,
+        "bottom": 1090,
+        "height": 245,
+        "left": 545,
+        "right": 977,
+        "width": 432
+      },
+      "worked": {
+        "top": 1102,
+        "bottom": 1307,
+        "height": 205,
+        "left": 223,
+        "right": 557,
+        "width": 334
+      },
+      "practice": {
+        "top": 1102,
+        "bottom": 1307,
+        "height": 205,
+        "left": 569,
+        "right": 977,
+        "width": 408
+      },
+      "tips": {
+        "top": 1318,
+        "bottom": 1429,
+        "height": 111,
+        "left": 223,
+        "right": 977,
+        "width": 754
+      },
+      "navigation": {
+        "top": 1438,
+        "bottom": 1486,
+        "height": 48,
+        "left": 223,
+        "right": 977,
+        "width": 754
+      },
+      "footer": {
+        "top": 1494,
+        "bottom": 1576,
+        "height": 82,
+        "left": 223,
+        "right": 977,
+        "width": 754
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

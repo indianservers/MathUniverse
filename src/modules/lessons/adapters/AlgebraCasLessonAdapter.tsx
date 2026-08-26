@@ -6,6 +6,7 @@ import type { LessonAdapterProps } from "../types";
 import { AlgebraConceptWorkspace } from "./AlgebraLessonAdapter";
 import AlgebraTilesTargetLesson92 from "./AlgebraTilesTargetLesson92";
 import LikeTermsTargetLesson93 from "./LikeTermsTargetLesson93";
+import SubstitutionTargetLesson94 from "./SubstitutionTargetLesson94";
 
 function run(title: string, coefficient: number): { input: string; output: SymbolicResult } {
   const name = title.toLowerCase();
@@ -91,7 +92,10 @@ export default function AlgebraCasLessonAdapter({ lesson, resetToken, onInteract
   if (lesson.id === 93) {
     return <LikeTermsTargetLesson93 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
-  if (lesson.categorySlug === "algebra" && lesson.id >= 94 && lesson.id <= 128) {
+  if (lesson.id === 94) {
+    return <SubstitutionTargetLesson94 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.categorySlug === "algebra" && lesson.id >= 95 && lesson.id <= 128) {
     return <AlgebraConceptWorkspace lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
