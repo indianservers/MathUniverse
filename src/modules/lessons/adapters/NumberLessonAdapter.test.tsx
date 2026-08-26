@@ -303,6 +303,23 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Fraction B bar part 4"');
     expect(html).toContain("The LCM creates equal-sized parts");
   });
+  it("renders lesson 78 as a dedicated fraction-operation proof", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 78)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0060"');
+    expect(html).toContain('data-dedicated-lesson="78"');
+    expect(html).toContain('data-object-model="dual-editable-draggable-fraction-bars-four-operation-engine-lcm-conversion-reciprocal-reduction-result-practice-model"');
+    expect(html).toContain('data-first="1/2"');
+    expect(html).toContain('data-second="1/3"');
+    expect(html).toContain('data-operation="Add"');
+    expect(html).toContain('data-common-denominator="6"');
+    expect(html).toContain('data-converted-first="3"');
+    expect(html).toContain('data-converted-second="2"');
+    expect(html).toContain('data-result="5/6"');
+    expect(html).toContain('aria-label="First fraction numerator"');
+    expect(html).toContain('aria-label="Second bar part 1"');
+    expect(html).toContain("Multiplication works across; division uses the reciprocal");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

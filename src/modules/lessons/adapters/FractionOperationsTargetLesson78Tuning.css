@@ -1,0 +1,17 @@
+.operations78-hero h1{position:relative;top:-7px}
+.operations78-hero h2{position:relative;top:-7px}
+.operations78-proof>section{padding-left:15px}
+.operations78-bar-row{grid-template-columns:76px 1fr}
+.operations78-start>.operations78-bar-row:first-of-type{transform:translateY(-8px)}
+.operations78-start>hr{position:relative;top:-3px}
+.operations78-convert>strong{position:relative;top:-3px}
+.operations78-convert>.operations78-converted-row:first-of-type{transform:translateY(-10px)}
+.operations78-convert>.operations78-converted-row:nth-of-type(2){transform:translateY(10px)}
+.operations78-result{padding-top:15px!important}
+.operations78-result .operations78-step-heading{margin-bottom:9px}
+.operations78-side{padding-top:23px}
+.operations78-side>h2{margin-bottom:22px}
+.operations78-side>label{margin-bottom:8px}
+.operations78-editor{margin-bottom:22px}
+.operations78-side>output{margin-bottom:23px}
+.operations78-navigation{position:relative;left:-2px;width:773px}

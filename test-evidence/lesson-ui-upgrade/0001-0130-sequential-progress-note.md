@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **59 of 130 lessons completed; 71 pending.**
+Dedicated rebuild target: **60 of 130 lessons completed; 70 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -63,6 +63,7 @@ Dedicated rebuild target: **59 of 130 lessons completed; 71 pending.**
 | 0057   |                       75 Fraction Models | Complete | Dedicated linked numerator/denominator drag model with clickable area, circle, and set representations, calculated number line/decimal/percent/equivalent set, live practice, and exact 1492x1054 target geometry                                             |
 | 0058   |                 76 Equivalent Fractions | Complete | Dedicated editable original fraction and shared draggable scale-factor model with linked segmented bars, number lines, exact numerator/denominator products, equivalent-value proof, live practice, and exact 1054x1492 target geometry                     |
 | 0059   |                  77 Comparing Fractions | Complete | Dedicated dual editable-fraction comparison with draggable unit bars, calculated LCM/common-unit conversions, exact ordering proof, linked number-line markers, functional controls/practice, and exact 1072x1467 target geometry                         |
+| 0060   |                   78 Fraction Operations | Complete | Dedicated dual editable/draggable fraction bars with four-operation engine, calculated LCM conversions, reciprocal division, exact reduction/result proof, live practice, and exact 1049x1500 target geometry                                             |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -889,3 +890,17 @@ Evidence:
 - `0059-reference.png`
 - `0059-desktop.png`
 - `0059-dedicated-target-validation.json`
+
+## Lesson 78 / Mockup 0060 - Fraction Operations
+
+Reworked individually against the target mockup with a dedicated `dual-editable-draggable-fraction-bars-four-operation-engine-lcm-conversion-reciprocal-reduction-result-practice-model`. Two independently editable fractions and the selected operation drive the original bars, LCM/common-unit conversions, multiplication or reciprocal rule, raw result, reduced exact result, result bar, warning, and practice proof from one lesson-owned calculation model.
+
+Both numerator/denominator pairs are directly editable with valid-denominator and numerator guards. Every original bar piece is clickable and a native draggable/drop target. The operation heading cycles through addition, subtraction, multiplication, and division, recalculating each procedure and result rather than presenting inactive labels. The `2/5 + 1/10` practice prompt loads a real model and Reset restores the target state. The shared number adapter only dispatches Lesson 78 to this separate component.
+
+Final 1049x1500 integrated browser validation verifies `1/2 + 1/3 = 3/6 + 2/6 = 5/6`; edits the operands to `3/4 + 1/4 = 1`; physically drags the first bar to produce `2/4 + 1/4 = 3/4`; verifies subtraction gives `1/4`, multiplication reduces `2/16` to `1/8`, and division reduces `8/4` to `2/1`; loads practice and verifies `2/5 + 1/10 = 5/10 = 1/2`; then resets. The final frame matches the target at surface x=222-1035 and y=105-1484, lesson card y=105-1357, hero y=106-307, proof/side layout y=307-1259, source stage y=308-635, conversion y=635-988, result y=988-1260, navigation x=238-1011 and y=1279-1336, and footer y=1374-1484. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0060-reference.png`
+- `0060-desktop.png`
+- `0060-dedicated-target-validation.json`
