@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **84 of 130 lessons completed; 46 pending.**
+Dedicated rebuild target: **85 of 130 lessons completed; 45 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1258,3 +1258,17 @@ Evidence:
 - `0158-reference.png`
 - `0158-desktop.png`
 - `0158-dedicated-target-validation.json`
+
+## Lesson 102 / Mockup 0159 - Polynomial Operations
+
+Reworked individually against the mathematics target mockup with a dedicated `coefficient-map-polynomial-add-subtract-convolution-draggable-degree-columns-substitution-equivalence-graded-practice-model`. Polynomial A and B are coefficient maps that calculate aligned addition, signed subtraction, full term-by-term convolution multiplication, standard-form output, degree, worked-example tiles, and independent substitution values from one lesson-owned model.
+
+The six source terms are native draggable objects and every matching row-and-degree table cell is a real drop target. Correct drops are retained while row or degree mismatches are explicitly rejected. Add, Subtract, Multiply, power alignment, column combination, substitution checking, bounded check value, guided-step visibility, six lesson tabs, language, Share, Reset, editable coefficient practice, answer grading, and practice rotation all update visible state. Multiplication expands `(x² + 3x + 2)(2x + 3)` through coefficient convolution to `2x³ + 9x² + 13x + 6`; substitution independently confirms both expressions equal 84 at x=2. Lesson, workspace, footer, and navigation destinations are real links. The algebra/CAS adapter dispatches Lesson 102 only to this dedicated component, and the shared algebra fallback now begins at Lesson 103.
+
+Final 985x1597 integrated browser validation verifies `x² + 5x + 5` and equality 19 at x=2; subtracts to `x² + x − 1` and equality 5; multiplies to `2x³ + 9x² + 13x + 6` and equality 84; exercises all three switches; physically drags a valid x² tile and rejects its invalid row/degree drop; rejects and accepts the first practice answer; rotates and correctly grades `3y² + 2y + 4`; exercises Rules, Hindi, Share, Reset, and reload. The visual loop matches surface x=220-969 and y=95-1597, intro y=95-271, tabs y=280-323, dashboard y=332-1162, table x=232-696 and y=383-1003, rail x=708-958 and y=383-1162, practice y=1172-1428, navigation y=1439-1479, and footer y=1493-1597. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0159-reference.png`
+- `0159-desktop.png`
+- `0159-dedicated-target-validation.json`

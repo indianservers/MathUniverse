@@ -124,8 +124,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Denominator-cleaning workspace");
   });
 
-  it("delegates phase 4 algebra lessons 102 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 102; id <= 128; id += 1) {
+  it("routes lesson 102 to its dedicated polynomial-operations object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 102)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0159"');
+    expect(html).toContain('data-dedicated-lesson="102"');
+    expect(html).toContain("coefficient-map-polynomial-add-subtract-convolution-draggable-degree-columns-substitution-equivalence-graded-practice-model");
+    expect(html).toContain('aria-label="Drag A degree 2 term"');
+    expect(html).toContain("Polynomial table workspace");
+  });
+
+  it("delegates phase 4 algebra lessons 103 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 103; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
