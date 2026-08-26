@@ -1,0 +1,13 @@
+.compare77-original-row{height:66px;grid-template-columns:90px 1fr;gap:21px}
+.compare77-original-row+.compare77-original-row{margin-top:26px}
+.compare77-common-row{grid-template-columns:76px 148px 1fr}
+.common-bar .brace{top:-27px;height:20px;border-top:0;border-bottom:1px solid currentColor}
+.compare77-compare>div{position:relative;display:block;width:460px;margin-left:47px}
+.compare77-compare>div article,.compare77-compare>div>strong{position:absolute;top:0}
+.compare77-compare>div article:first-child{left:0;width:168px}
+.compare77-compare>div article:last-child{left:292px;width:168px}
+.compare77-compare>div>strong{left:206px;width:48px}
+.compare77-compare>p{margin-left:149px}
+.compare77-line{width:550px;margin-left:5px}
+.compare77-line{top:-10px}
+.compare77-line>i{width:542px}

@@ -25,6 +25,7 @@ import BaseSystemsTargetLesson73 from "./BaseSystemsTargetLesson73";
 import ContinuedFractionsTargetLesson74 from "./ContinuedFractionsTargetLesson74";
 import FractionModelsTargetLesson75 from "./FractionModelsTargetLesson75";
 import EquivalentFractionsTargetLesson76 from "./EquivalentFractionsTargetLesson76";
+import ComparingFractionsTargetLesson77 from "./ComparingFractionsTargetLesson77";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -86,6 +87,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 76) {
     return <EquivalentFractionsTargetLesson76 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 77) {
+    return <ComparingFractionsTargetLesson77 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

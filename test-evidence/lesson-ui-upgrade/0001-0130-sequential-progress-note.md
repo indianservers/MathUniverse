@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **58 of 130 lessons completed; 72 pending.**
+Dedicated rebuild target: **59 of 130 lessons completed; 71 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -62,6 +62,7 @@ Dedicated rebuild target: **58 of 130 lessons completed; 72 pending.**
 | 0056   |                  74 Continued Fractions | Complete | Dedicated editable three-term nested-fraction model with native draggable partial quotients, exact inside-out rational layers, calculated convergents/decimal/number-line marker, selectable stages, practice, and exact 1068x1473 target geometry                   |
 | 0057   |                       75 Fraction Models | Complete | Dedicated linked numerator/denominator drag model with clickable area, circle, and set representations, calculated number line/decimal/percent/equivalent set, live practice, and exact 1492x1054 target geometry                                             |
 | 0058   |                 76 Equivalent Fractions | Complete | Dedicated editable original fraction and shared draggable scale-factor model with linked segmented bars, number lines, exact numerator/denominator products, equivalent-value proof, live practice, and exact 1054x1492 target geometry                     |
+| 0059   |                  77 Comparing Fractions | Complete | Dedicated dual editable-fraction comparison with draggable unit bars, calculated LCM/common-unit conversions, exact ordering proof, linked number-line markers, functional controls/practice, and exact 1072x1467 target geometry                         |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -874,3 +875,17 @@ Evidence:
 - `0058-reference.png`
 - `0058-desktop.png`
 - `0058-dedicated-target-validation.json`
+
+## Lesson 77 / Mockup 0059 - Comparing Fractions
+
+Reworked individually against the target mockup with a dedicated `dual-editable-fractions-draggable-unit-bars-lcm-common-units-cross-product-ordering-shared-number-line-practice-model`. Two independently editable fractions drive their original-unit bars, LCM, scale factors, common-unit bars, exact converted numerators, decimal approximations, comparison symbol, conclusion, and shared number-line positions from one lesson-owned calculation model.
+
+Both numerator/denominator pairs are directly editable with valid-denominator and numerator guards. Every original bar piece is clickable and a native draggable/drop target, so a physical drop changes the represented numerator and recalculates the entire proof. All five proof-stage tabs, language, Share, Workspace, Reset, and the `3/4` versus `7/9` practice prompt perform real state changes. The shared number adapter only dispatches Lesson 77 to this separate component.
+
+Final 1072x1467 integrated browser validation verifies `3/4 = 21/28`, `4/7 = 16/28`, and `3/4 > 4/7`; edits B to `6/8` and verifies equality at `6/8`; edits A to `2/4` and verifies the less-than result; physically drags an A bar piece to restore `3/4`; changes B to `3/8` and verifies greater-than; exercises Number line, Hindi, Share, and Workspace states; loads practice and verifies `27/36 < 28/36`; then resets to the target pair. The final frame matches the target at surface x=230-1056 and y=101-1467, hero y=101-332, tabs y=343-391, proof/side layout y=400-1316, understand y=400-638, conversion y=642-935, comparison y=935-1119, number line y=1119-1255, practice y=1259-1316, navigation y=1325-1374, and footer y=1382-1467. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0059-reference.png`
+- `0059-desktop.png`
+- `0059-dedicated-target-validation.json`

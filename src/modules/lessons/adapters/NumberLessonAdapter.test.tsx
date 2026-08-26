@@ -287,6 +287,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Scale factor 2; click to cycle or drag"');
     expect(html).toContain("Both fractions occupy the same number-line point");
   });
+  it("renders lesson 77 as a dedicated common-unit fraction comparison", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 77)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0059"');
+    expect(html).toContain('data-dedicated-lesson="77"');
+    expect(html).toContain('data-object-model="dual-editable-fractions-draggable-unit-bars-lcm-common-units-cross-product-ordering-shared-number-line-practice-model"');
+    expect(html).toContain('data-fraction-a="3/4"');
+    expect(html).toContain('data-fraction-b="4/7"');
+    expect(html).toContain('data-common-denominator="28"');
+    expect(html).toContain('data-common-a="21"');
+    expect(html).toContain('data-common-b="16"');
+    expect(html).toContain('data-comparison="&gt;"');
+    expect(html).toContain('aria-label="Fraction A numerator"');
+    expect(html).toContain('aria-label="Fraction B bar part 4"');
+    expect(html).toContain("The LCM creates equal-sized parts");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
