@@ -1,0 +1,222 @@
+{
+  "mockup": "0074",
+  "lessonId": 618,
+  "route": "/lessons/authoring-and-learning-system/618-slider-component",
+  "objectModel": "editable-slider-schema-draggable-range-live-parabola-equation-linked-preview-authoring-checklist-model",
+  "checks": {
+    "initial": {
+      "label": "a",
+      "minimum": "0",
+      "maximum": "2",
+      "step": "0.1",
+      "default": "1.2",
+      "value": "1.2",
+      "show-value": "true",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "actions": "0"
+    },
+    "dragged": {
+      "label": "a",
+      "minimum": "0",
+      "maximum": "2",
+      "step": "0.1",
+      "default": "1.2",
+      "value": "1.6",
+      "show-value": "true",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "actions": "4"
+    },
+    "schemaEdited": {
+      "label": "k",
+      "minimum": "0",
+      "maximum": "4",
+      "step": "0.5",
+      "default": "2",
+      "value": "2",
+      "show-value": "true",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "actions": "8"
+    },
+    "hiddenValue": {
+      "label": "k",
+      "minimum": "0",
+      "maximum": "4",
+      "step": "0.5",
+      "default": "2",
+      "value": "2",
+      "show-value": "false",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "actions": "9"
+    },
+    "advancedVisible": true,
+    "explain": {
+      "label": "k",
+      "minimum": "0",
+      "maximum": "4",
+      "step": "0.5",
+      "default": "2",
+      "value": "2",
+      "show-value": "false",
+      "tab": "Explain",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "actions": "11"
+    },
+    "share": {
+      "label": "k",
+      "minimum": "0",
+      "maximum": "4",
+      "step": "0.5",
+      "default": "2",
+      "value": "2",
+      "show-value": "false",
+      "tab": "Explain",
+      "share-state": "Copied",
+      "workspace-state": "closed",
+      "actions": "12"
+    },
+    "workspace": {
+      "label": "k",
+      "minimum": "0",
+      "maximum": "4",
+      "step": "0.5",
+      "default": "2",
+      "value": "2",
+      "show-value": "false",
+      "tab": "Explain",
+      "share-state": "Copied",
+      "workspace-state": "open",
+      "actions": "13"
+    },
+    "reset": {
+      "label": "a",
+      "minimum": "0",
+      "maximum": "2",
+      "step": "0.1",
+      "default": "1.2",
+      "value": "1.2",
+      "show-value": "true",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "actions": "0"
+    },
+    "restored": {
+      "label": "a",
+      "minimum": "0",
+      "maximum": "2",
+      "step": "0.1",
+      "default": "1.2",
+      "value": "1.2",
+      "show-value": "true",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1504,
+      "height": 1045
+    },
+    "document": {
+      "width": 1504,
+      "height": 1045
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 126,
+      "bottom": 1045,
+      "height": 919,
+      "left": 287,
+      "right": 1485,
+      "width": 1198
+    },
+    "regions": {
+      "header": {
+        "top": 126,
+        "bottom": 391,
+        "height": 265,
+        "left": 287,
+        "right": 1485,
+        "width": 1198
+      },
+      "tabs": {
+        "top": 402,
+        "bottom": 457,
+        "height": 55,
+        "left": 287,
+        "right": 1485,
+        "width": 1198
+      },
+      "workspace": {
+        "top": 463,
+        "bottom": 984,
+        "height": 521,
+        "left": 287,
+        "right": 1485,
+        "width": 1198
+      },
+      "settings": {
+        "top": 464,
+        "bottom": 983,
+        "height": 519,
+        "left": 288,
+        "right": 574,
+        "width": 286
+      },
+      "live": {
+        "top": 464,
+        "bottom": 983,
+        "height": 519,
+        "left": 585,
+        "right": 1105,
+        "width": 520
+      },
+      "graph": {
+        "top": 492.5,
+        "bottom": 792.5,
+        "height": 300,
+        "left": 598,
+        "right": 1092,
+        "width": 494
+      },
+      "range": {
+        "top": 846,
+        "bottom": 907.5,
+        "height": 61.5,
+        "left": 601,
+        "right": 1089,
+        "width": 488
+      },
+      "linked": {
+        "top": 464,
+        "bottom": 983,
+        "height": 519,
+        "left": 1116,
+        "right": 1484,
+        "width": 368
+      },
+      "checklist": {
+        "top": 737,
+        "bottom": 975,
+        "height": 238,
+        "left": 1116,
+        "right": 1484,
+        "width": 368
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

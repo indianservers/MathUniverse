@@ -4,6 +4,19 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import AuthoringLessonAdapter from "./AuthoringLessonAdapter";
 
 describe("AuthoringLessonAdapter", () => {
+  it("routes lesson 618 to its dedicated slider-component object model", () => {
+    const lesson = lessonCatalog.find((entry) => entry.id === 618);
+    expect(lesson).toBeDefined();
+    const html = renderToStaticMarkup(
+      <AuthoringLessonAdapter lesson={lesson!} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="authoring-mockup-0074"');
+    expect(html).toContain('data-dedicated-lesson="618"');
+    expect(html).toContain("editable-slider-schema-draggable-range-live-parabola-equation-linked-preview-authoring-checklist-model");
+    expect(html).toContain('aria-label="Parameter slider a"');
+    expect(html).toContain("LIVE GRAPH PREVIEW");
+  });
+
   it("renders lessons 618 through 656 with lesson-specific authoring guidance", () => {
     const expected = new Map([
       [618, "Slider Component"],

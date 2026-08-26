@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **73 of 130 lessons completed; 57 pending.**
+Dedicated rebuild target: **74 of 130 lessons completed; 56 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -77,6 +77,7 @@ Dedicated rebuild target: **73 of 130 lessons completed; 57 pending.**
 | 0071   |                  89 Percentage Change | Complete | Dedicated dual editable original/new amount model with draggable before/after bars and number-line points, calculated change/percentage/direction, three-step proof, baseline warning, functional controls/practice, and exact 1495x1052 target geometry |
 | 0072   |                    90 Compound Change | Complete | Dedicated editable start/rate/stage-count model with draggable sequential amount bars, latest-base connectors, calculated multipliers/formulas/result/compound total, misconception proof, functional controls, and exact 1501x1048 target geometry |
 | 0073   |                     91 Scale Drawings | Complete | Dedicated editable map-length/scale model with a generated city-map asset, draggable route endpoints, clickable ruler and real-distance points, calculated conversion proof, functional controls, and exact 1074x1464 target geometry |
+| 0074   |                 618 Slider Component | Complete | Dedicated editable slider-schema model with real min/max/step/default controls, a physically draggable range input, live coefficient/equation/parabola updates, linked authoring preview, checklist validation, and exact 1504x1045 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1099,3 +1100,17 @@ Evidence:
 - `0073-reference.png`
 - `0073-desktop.png`
 - `0073-dedicated-target-validation.json`
+
+## Lesson 618 / Mockup 0074 - Slider Component
+
+Mockup 0074 maps to catalog Lesson 618, `Slider Component`; it does not map to catalog Lesson 92, `Algebra Tiles`. Reworked the correct route individually with a dedicated `editable-slider-schema-draggable-range-live-parabola-equation-linked-preview-authoring-checklist-model`. Editable label, minimum, maximum, step, and default settings drive one bounded slider schema, its current coefficient, the equation `y = ax²`, four overlaid parabola traces, the linked preview flow, range summaries, and authoring checklist.
+
+The coefficient is a real native range input with mouse and keyboard dragging. All five schema fields are real inputs with bound normalization, changing the default updates the live coefficient, Show value controls the visible value label, Advanced reveals the actual keyboard increment, and Reset, tabs, Share, and Workspace all update lesson state. The authoring adapter dispatches Lesson 618 only to this separate component; the existing family renderer remains unchanged for other authoring lessons.
+
+Final 1504x1045 integrated browser validation verifies `a = 1.2`, range 0 to 2, step 0.1, and the matching active parabola; physically drags the slider to 1.6; edits the schema to label `k`, maximum 4, step 0.5, and default/current value 2; hides the value; opens Advanced and verifies the 0.5 keyboard increment; exercises Explain, Share, and Workspace; then resets and reloads the exact target state. The final screenshot loop matches the target at surface x=287-1485 and y=126-1045, header y=126-391, tabs y=402-457, workspace y=463-984, settings x=288-574, live graph panel x=585-1105, graph y=493-793, range y=846-908, linked preview x=1116-1484, and checklist y=737-975. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0074-reference.png`
+- `0074-desktop.png`
+- `0074-dedicated-target-validation.json`

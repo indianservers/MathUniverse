@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import SliderControl from "../../../components/ui/SliderControl";
 import AdapterFrame from "../components/AdapterFrame";
 import type { LessonAdapterProps } from "../types";
+import SliderComponentTargetLesson618 from "./SliderComponentTargetLesson618";
 
 function authoringGuidanceFor(title: string) {
   const name = title.toLowerCase();
@@ -49,6 +50,9 @@ function authoringGuidanceFor(title: string) {
 }
 
 export default function AuthoringLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  if (lesson.id === 618) {
+    return <SliderComponentTargetLesson618 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
   if (isRedesignedAuthoringLesson(lesson.id)) {
     return <RedesignedAuthoringLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
