@@ -88,8 +88,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Simplify the rational expression");
   });
 
-  it("delegates phase 4 algebra lessons 99 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 99; id <= 128; id += 1) {
+  it("routes lesson 99 to its dedicated indices object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 99)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0156"');
+    expect(html).toContain('data-dedicated-lesson="99"');
+    expect(html).toContain("editable-same-base-repeated-factor-draggable-product-of-powers-numeric-equality-graded-practice-model");
+    expect(html).toContain('aria-label="Drag first power factor 1"');
+    expect(html).toContain("Visualize the law with repeated multiplication");
+  });
+
+  it("delegates phase 4 algebra lessons 100 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 100; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

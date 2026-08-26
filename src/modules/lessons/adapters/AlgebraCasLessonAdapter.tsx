@@ -11,6 +11,7 @@ import ExpandingBracketsTargetLesson95 from "./ExpandingBracketsTargetLesson95";
 import DoubleBracketsTargetLesson96 from "./DoubleBracketsTargetLesson96";
 import FactorisationTargetLesson97 from "./FactorisationTargetLesson97";
 import AlgebraicFractionsTargetLesson98 from "./AlgebraicFractionsTargetLesson98";
+import IndicesTargetLesson99 from "./IndicesTargetLesson99";
 
 function run(title: string, coefficient: number): { input: string; output: SymbolicResult } {
   const name = title.toLowerCase();
@@ -111,7 +112,10 @@ export default function AlgebraCasLessonAdapter({ lesson, resetToken, onInteract
   if (lesson.id === 98) {
     return <AlgebraicFractionsTargetLesson98 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
-  if (lesson.categorySlug === "algebra" && lesson.id >= 99 && lesson.id <= 128) {
+  if (lesson.id === 99) {
+    return <IndicesTargetLesson99 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.categorySlug === "algebra" && lesson.id >= 100 && lesson.id <= 128) {
     return <AlgebraConceptWorkspace lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 

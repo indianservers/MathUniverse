@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **81 of 130 lessons completed; 49 pending.**
+Dedicated rebuild target: **82 of 130 lessons completed; 48 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1216,3 +1216,17 @@ Evidence:
 - `0155-reference.png`
 - `0155-desktop.png`
 - `0155-dedicated-target-validation.json`
+
+## Lesson 99 / Mockup 0156 - Indices
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-same-base-repeated-factor-draggable-product-of-powers-numeric-equality-graded-practice-model`. The selected base, two exponents, and check value drive both powers, repeated-factor groups, combined factor chain, exponent sum, symbolic law, numerical equality proof, result panel, and graded practice from one lesson-owned calculation model.
+
+Each repeated factor is a native draggable object and the combined-power panel is a real drop target. Base selection, exponent steppers and direct inputs, repeated-factor visibility, exponent addition, check-value controls, numerical checking, Reset, Share, all six lesson tabs, and Enter-graded practice update visible state. The equality calculation independently evaluates the product and combined power; disabling exponent addition visibly preserves the first exponent instead of presenting a decorative toggle. Lesson and workspace destinations are real links. The algebra/CAS adapter dispatches Lesson 99 only to this dedicated component.
+
+Final 1023x1537 integrated browser validation verifies `x^3 x x^2 = x^5` and both numerical paths equal 1024 at x=4; changes the exponents to 4 and 3 and verifies `x^7` and 16384; changes the base to y and the check value to 2 and verifies both paths equal 128; exercises repeated-factor visibility and exponent combination; resets and physically drags one factor from each power group into the combined panel; rejects `y^6`; accepts `y^7` with Enter; exercises Practice and Share; then reloads the exact target state. The final visual loop matches surface x=230-1001 and y=104-1537, intro y=104-221, tabs y=221-270, main lab and controls y=283-965, notes y=978-1211, practice y=1224-1452, and navigation y=1464-1521. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0156-reference.png`
+- `0156-desktop.png`
+- `0156-dedicated-target-validation.json`
