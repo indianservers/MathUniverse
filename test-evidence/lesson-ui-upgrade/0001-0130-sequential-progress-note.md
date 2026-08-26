@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **79 of 130 lessons completed; 51 pending.**
+Dedicated rebuild target: **80 of 130 lessons completed; 50 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1188,3 +1188,17 @@ Evidence:
 - `0153-reference.png`
 - `0153-desktop.png`
 - `0153-dedicated-target-validation.json`
+
+## Lesson 97 / Mockup 0154 - Factorisation
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-quadratic-factor-pair-search-draggable-reverse-area-expansion-substitution-graded-practice-model`. Editable product and sum targets drive an integer factor-pair search, selectable candidate pairs, middle-term split, four-region reverse area model, side lengths, factor form, expansion-back proof, substitution comparison, and guided-practice result from one lesson-owned calculation model.
+
+The squared term, both split middle terms, and constant term are native draggable objects, and each rectangle region is a real drop target. Pair candidates are calculated from the active quadratic rather than hard-coded display choices; wrong pairs visibly fail the product/sum and equivalence checks. Product, sum, substitution value, workflow stages, five lesson tabs, practice pair, and Enter-graded factor form all update visible state. Lesson and footer destinations are real links. The algebra/CAS adapter dispatches Lesson 97 only to this dedicated component.
+
+Final 1001x1570 integrated browser validation verifies `x² + 5x + 6 = (x + 2)(x + 3)` and both substitution paths equal 20 at x=2; selects the wrong pair `(1, 6)` and verifies the failed factor value 24; restores `(2, 3)`; edits the quadratic to `x² + 7x + 12`, finds `(3, 4)`, and verifies both paths equal 42 at x=3; exercises the fourth workflow stage; reloads and physically drags all four terms into their matching rectangle regions; exercises Formula and Practice; rejects a wrong practice pair and wrong factor form; accepts `(y + 5)(y + 2)` with Enter; then reloads the exact target state. The final visual loop matches surface x=220-982 and y=99-1570, header y=99-279, tabs y=279-332, workspace y=347-1474, stages y=421-462, model x=232-638 and y=474-929, pair chooser x=648-958 and y=474-929, rectangle x=277-473 and y=746-840, proof y=939-1254, practice y=1264-1407, navigation y=1417-1475, and footer y=1484-1569. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0154-reference.png`
+- `0154-desktop.png`
+- `0154-dedicated-target-validation.json`

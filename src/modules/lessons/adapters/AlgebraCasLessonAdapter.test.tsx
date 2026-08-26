@@ -64,8 +64,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Area Tiles Model");
   });
 
-  it("delegates phase 4 algebra lessons 97 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 97; id <= 128; id += 1) {
+  it("routes lesson 97 to its dedicated factorisation object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 97)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0154"');
+    expect(html).toContain('data-dedicated-lesson="97"');
+    expect(html).toContain("editable-quadratic-factor-pair-search-draggable-reverse-area-expansion-substitution-graded-practice-model");
+    expect(html).toContain('aria-label="Drag first split term"');
+    expect(html).toContain("Find factor pair");
+  });
+
+  it("delegates phase 4 algebra lessons 98 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 98; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
