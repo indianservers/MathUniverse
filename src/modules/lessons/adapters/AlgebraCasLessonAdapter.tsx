@@ -18,6 +18,7 @@ import PolynomialOperationsTargetLesson102 from "./PolynomialOperationsTargetLes
 import SyntheticDivisionTargetLesson103 from "./SyntheticDivisionTargetLesson103";
 import RemainderTheoremTargetLesson104 from "./RemainderTheoremTargetLesson104";
 import FactorTheoremTargetLesson105 from "./FactorTheoremTargetLesson105";
+import IdentitiesTargetLesson106 from "./IdentitiesTargetLesson106";
 
 function run(title: string, coefficient: number): { input: string; output: SymbolicResult } {
   const name = title.toLowerCase();
@@ -139,7 +140,10 @@ export default function AlgebraCasLessonAdapter({ lesson, resetToken, onInteract
   if (lesson.id === 105) {
     return <FactorTheoremTargetLesson105 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
-  if (lesson.categorySlug === "algebra" && lesson.id >= 106 && lesson.id <= 128) {
+  if (lesson.id === 106) {
+    return <IdentitiesTargetLesson106 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.categorySlug === "algebra" && lesson.id >= 107 && lesson.id <= 128) {
     return <AlgebraConceptWorkspace lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 

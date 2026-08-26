@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **88 of 130 lessons completed; 42 pending.**
+Dedicated rebuild target: **89 of 130 lessons completed; 41 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1314,3 +1314,17 @@ Evidence:
 - `0162-reference.png`
 - `0162-desktop.png`
 - `0162-dedicated-target-validation.json`
+
+## Lesson 106 / Mockup 0163 - Identities
+
+Reworked individually against the mathematics target mockup with a dedicated `dynamic-square-area-partition-draggable-region-symbolic-combination-sample-equivalence-graded-practice-model`. The surface owns the side-length state, computes all four region areas and total square area, combines the two `2x` regions symbolically, and independently evaluates both sides at three sample values. The area partition uses a true dynamically proportioned two-dimensional grid with the mockup's `x` and `2` dimension guides.
+
+All four area tokens are native draggable objects and the symbolic split stage is a real drop target. The range and numeric inputs recalculate side length, region areas, total area, and the sample table. Show area parts, Combine like terms, Test sample values, five lesson tabs, language, Share, Reset, proof explanation, two independently graded practice identities, practice navigation, and the optional practice area model all update visible state. Incorrect middle terms fail visibly. Lesson and footer destinations are real links. The algebra/CAS adapter dispatches Lesson 106 only to this dedicated component, and the shared algebra fallback now begins at Lesson 107.
+
+Final 992x1586 integrated browser validation verifies `(x + 2)^2 = x^2 + 4x + 4` at `x = 5`, including side 7, areas 25, 10, 10, and 4, total 49, and matching sample values 0, 3, and 5. It changes `x` to 7 and verifies side 9 and total 81; exercises all switches; physically drops all four area regions; opens the proof explanation; changes language, Share, and Formulas; rejects and accepts the first practice expression; solves a second generated identity and reveals its area model; then verifies Reset and reload. The visual loop matches surface x=226-976 and y=99-1586, intro y=99-352, tabs y=364-418, lab y=429-1082, three proof cards y=503-1080, practice y=1093-1348, navigation y=1360-1438, and footer y=1456-1586. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0163-reference.png`
+- `0163-desktop.png`
+- `0163-dedicated-target-validation.json`
