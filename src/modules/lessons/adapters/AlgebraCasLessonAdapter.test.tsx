@@ -16,8 +16,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Area model: (x+2)(x+3)");
   });
 
-  it("delegates phase 4 algebra lessons 93 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 93; id <= 128; id += 1) {
+  it("routes lesson 93 to its dedicated like-terms object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 93)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0150"');
+    expect(html).toContain('data-dedicated-lesson="93"');
+    expect(html).toContain("draggable-like-term-coefficient-grouping-simplification-substitution-equivalence-graded-practice-model");
+    expect(html).toContain('aria-label="Add positive variable tile"');
+    expect(html).toContain("Substitution check");
+  });
+
+  it("delegates phase 4 algebra lessons 94 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 94; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

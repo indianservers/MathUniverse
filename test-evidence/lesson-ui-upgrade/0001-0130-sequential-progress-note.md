@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **75 of 130 lessons completed; 55 pending.**
+Dedicated rebuild target: **76 of 130 lessons completed; 54 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -79,6 +79,7 @@ Dedicated rebuild target: **75 of 130 lessons completed; 55 pending.**
 | 0073   |                     91 Scale Drawings | Complete | Dedicated editable map-length/scale model with a generated city-map asset, draggable route endpoints, clickable ruler and real-distance points, calculated conversion proof, functional controls, and exact 1074x1464 target geometry |
 | 0074   |                 618 Slider Component | Complete | Dedicated editable slider-schema model with real min/max/step/default controls, a physically draggable range input, live coefficient/equation/parabola updates, linked authoring preview, checklist validation, and exact 1504x1045 target geometry |
 | 0149   |                    92 Algebra Tiles | Complete | Dedicated positive/negative algebra-tile model with a draggable tile bank and expression tiles, zero pairs, calculated simplification/counts/checklist/trace, linked area model, functional controls, and exact 1110x1417 target geometry |
+| 0150   |                       93 Like Terms | Complete | Dedicated draggable like-term model with coefficient grouping, cancellation pairs, live simplification, substitution equivalence proof, staged controls, expression presets, graded practice, and exact 1013x1553 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1129,3 +1130,17 @@ Evidence:
 - `0149-reference.png`
 - `0149-desktop.png`
 - `0149-dedicated-target-validation.json`
+
+## Lesson 93 / Mockup 0150 - Like Terms
+
+Reworked individually against the mathematics target mockup with a dedicated `draggable-like-term-coefficient-grouping-simplification-substitution-equivalence-graded-practice-model`. Positive-variable, negative-variable, and constant tiles drive the original expression, cancellation groups, combined coefficient, simplified result, substitution calculation, equivalence result, worked example, and control summary from one lesson-owned model.
+
+The tile bank supports both click-to-add and native drag into the workspace. Expression presets and the check value are real controls; all three stage controls update the active proof stage; substitution evaluates both original and simplified forms independently; Reset and the five lesson tabs update state; the practice answer is genuinely graded and Reveal restores the calculated solution. Explanatory tiles are non-control objects, while the previous/next and footer destinations are real links. The algebra/CAS adapter dispatches Lesson 93 only to this dedicated component.
+
+Final 1013x1553 integrated browser validation verifies `7x - 2x + 4 = 5x + 4` and both substitution paths equal 24 at x=4; adds a positive tile and recalculates to `6x + 4`; physically drags a negative tile and recalculates to `4x + 4`; selects `4y - y - 3`, changes the check value to 3, and verifies both paths equal 6; exercises the coefficient stage and Practice tab; grades an incorrect answer; reveals `2a + 6`; then reloads the exact target state. The final visual loop matches surface x=221-997 and y=104-1553, header y=104-312, lab x=221-732 and y=327-1020, controls x=744-997, notes y=1037-1198, worked/practice row y=1212-1417, navigation y=1420-1467, and footer y=1479-1541. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0150-reference.png`
+- `0150-desktop.png`
+- `0150-dedicated-target-validation.json`
