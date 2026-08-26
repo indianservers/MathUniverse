@@ -20,6 +20,7 @@ import RemainderTheoremTargetLesson104 from "./RemainderTheoremTargetLesson104";
 import FactorTheoremTargetLesson105 from "./FactorTheoremTargetLesson105";
 import IdentitiesTargetLesson106 from "./IdentitiesTargetLesson106";
 import OneStepEquationsTargetLesson107 from "./OneStepEquationsTargetLesson107";
+import MultiStepEquationsTargetLesson108 from "./MultiStepEquationsTargetLesson108";
 
 function run(title: string, coefficient: number): { input: string; output: SymbolicResult } {
   const name = title.toLowerCase();
@@ -147,7 +148,10 @@ export default function AlgebraCasLessonAdapter({ lesson, resetToken, onInteract
   if (lesson.id === 107) {
     return <OneStepEquationsTargetLesson107 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
-  if (lesson.categorySlug === "algebra" && lesson.id >= 108 && lesson.id <= 128) {
+  if (lesson.id === 108) {
+    return <MultiStepEquationsTargetLesson108 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.categorySlug === "algebra" && lesson.id >= 109 && lesson.id <= 128) {
     return <AlgebraConceptWorkspace lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 

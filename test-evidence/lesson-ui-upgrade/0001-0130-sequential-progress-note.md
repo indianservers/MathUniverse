@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **90 of 200 lessons completed; 110 pending.**
+Dedicated rebuild target: **91 of 200 lessons completed; 109 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1342,3 +1342,17 @@ Evidence:
 - `0164-reference.png`
 - `0164-desktop.png`
 - `0164-dedicated-target-validation.json`
+
+## Lesson 108 / Mockup 0165 - Multi-Step Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `selectable-linear-expression-balance-sequence-draggable-constant-removal-equal-group-division-ordered-inverse-operations-substitution-check-graded-practice-model`. Four equation families (`2x + 3 = 11`, `3x + 2 = 14`, `4x - 5 = 15`, and `5x + 4 = 29`) derive their inverse operation, intermediate equation, equal groups, exact solution, and substitution check from lesson-owned coefficients and constants. Both the initial scale and divided groups are generated from the selected expression.
+
+Remove constant and Split into equal groups are native draggable action objects with separate real drop targets. Problem selection, five stage controls, Check answer, Reset, step guide, nudge visibility, editable practice grading, and practice navigation all update visible state. The negative-constant equation correctly changes the first inverse operation to Add 5, and both practice equations are independently calculated. The algebra/CAS adapter dispatches Lesson 108 only to this dedicated component, and the shared algebra fallback now begins at Lesson 109.
+
+Final 1029x1529 integrated browser validation solves and checks all four equation families, exercises Start through Result, physically completes both ordered drag operations, verifies substitution, rejects and accepts the first practice answer, solves the second practice equation, toggles the guide and nudge, and verifies Reset and reload. The visual loop exactly matches surface x=230-1013 and y=110-1514, intro y=110-285, workspace y=305-1092, model/right rail split x=231-739-1012, practice y=1105-1454, and navigation y=1467-1514. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0165-reference.png`
+- `0165-desktop.png`
+- `0165-dedicated-target-validation.json`

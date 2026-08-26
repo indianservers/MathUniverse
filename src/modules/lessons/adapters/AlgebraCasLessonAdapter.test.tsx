@@ -196,8 +196,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Solve using the balance model");
   });
 
-  it("delegates phase 4 algebra lessons 108 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 108; id <= 128; id += 1) {
+  it("routes lesson 108 to its dedicated multi-step-equation object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 108)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0165"');
+    expect(html).toContain('data-dedicated-lesson="108"');
+    expect(html).toContain("selectable-linear-expression-balance-sequence-draggable-constant-removal-equal-group-division-ordered-inverse-operations-substitution-check-graded-practice-model");
+    expect(html).toContain('aria-label="Drag remove constant Subtract 3"');
+    expect(html).toContain("EXPLORE WITH THE BALANCE MODEL");
+  });
+
+  it("delegates phase 4 algebra lessons 109 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 109; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
