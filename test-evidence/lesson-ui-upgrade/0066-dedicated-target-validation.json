@@ -1,0 +1,271 @@
+{
+  "mockup": "0066",
+  "lessonId": 84,
+  "route": "/lessons/numbers-and-arithmetic/84-proportion",
+  "objectModel": "editable-known-target-ratio-shared-scale-factor-draggable-tape-units-cross-product-step-summary-solved-value-practice-model",
+  "checks": {
+    "initial": {
+      "known-first": "2",
+      "known-second": "9",
+      "target-first": "6",
+      "target-second": "27",
+      "scale": "3",
+      "cross-left": "54",
+      "cross-right": "54",
+      "tab": "Interaction + visualization",
+      "copy-state": "Copy",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    },
+    "firstEdited": {
+      "known-first": "3",
+      "known-second": "9",
+      "target-first": "6",
+      "target-second": "18",
+      "scale": "2",
+      "cross-left": "54",
+      "cross-right": "54",
+      "tab": "Interaction + visualization",
+      "copy-state": "Copy",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "secondEdited": {
+      "known-first": "3",
+      "known-second": "5",
+      "target-first": "6",
+      "target-second": "10",
+      "scale": "2",
+      "cross-left": "30",
+      "cross-right": "30",
+      "tab": "Interaction + visualization",
+      "copy-state": "Copy",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "targetEdited": {
+      "known-first": "3",
+      "known-second": "5",
+      "target-first": "9",
+      "target-second": "15",
+      "scale": "3",
+      "cross-left": "45",
+      "cross-right": "45",
+      "tab": "Interaction + visualization",
+      "copy-state": "Copy",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "3"
+    },
+    "dragged": {
+      "known-first": "3",
+      "known-second": "5",
+      "target-first": "3",
+      "target-second": "5",
+      "scale": "1",
+      "cross-left": "15",
+      "cross-right": "15",
+      "tab": "Interaction + visualization",
+      "copy-state": "Copy",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "4"
+    },
+    "dragRecorded": true,
+    "explain": {
+      "known-first": "3",
+      "known-second": "5",
+      "target-first": "3",
+      "target-second": "5",
+      "scale": "1",
+      "cross-left": "15",
+      "cross-right": "15",
+      "tab": "Explain",
+      "copy-state": "Copy",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "5"
+    },
+    "copied": {
+      "known-first": "3",
+      "known-second": "5",
+      "target-first": "3",
+      "target-second": "5",
+      "scale": "1",
+      "cross-left": "15",
+      "cross-right": "15",
+      "tab": "Explain",
+      "copy-state": "Ready",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "6"
+    },
+    "practice": {
+      "known-first": "4",
+      "known-second": "7",
+      "target-first": "12",
+      "target-second": "21",
+      "scale": "3",
+      "cross-left": "84",
+      "cross-right": "84",
+      "tab": "Explain",
+      "copy-state": "Ready",
+      "practice-loaded": "true",
+      "dragging": "",
+      "actions": "7"
+    },
+    "restored": {
+      "known-first": "2",
+      "known-second": "9",
+      "target-first": "6",
+      "target-second": "27",
+      "scale": "3",
+      "cross-left": "54",
+      "cross-right": "54",
+      "tab": "Interaction + visualization",
+      "copy-state": "Copy",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1496,
+      "height": 1051
+    },
+    "document": {
+      "width": 1496,
+      "height": 1051
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 105,
+      "bottom": 1028,
+      "height": 923,
+      "left": 288,
+      "right": 1478,
+      "width": 1190
+    },
+    "regions": {
+      "header": {
+        "top": 105,
+        "bottom": 231,
+        "height": 126,
+        "left": 288,
+        "right": 1478,
+        "width": 1190
+      },
+      "tabs": {
+        "top": 241,
+        "bottom": 292,
+        "height": 51,
+        "left": 288,
+        "right": 1478,
+        "width": 1190
+      },
+      "workspace": {
+        "top": 303,
+        "bottom": 958,
+        "height": 655,
+        "left": 288,
+        "right": 1478,
+        "width": 1190
+      },
+      "lab": {
+        "top": 303,
+        "bottom": 958,
+        "height": 655,
+        "left": 288,
+        "right": 1123,
+        "width": 835
+      },
+      "scale": {
+        "top": 399,
+        "bottom": 598,
+        "height": 199,
+        "left": 308,
+        "right": 1104,
+        "width": 796
+      },
+      "tapes": {
+        "top": 598,
+        "bottom": 788,
+        "height": 190,
+        "left": 308,
+        "right": 1104,
+        "width": 796
+      },
+      "cross": {
+        "top": 788,
+        "bottom": 942,
+        "height": 154,
+        "left": 308,
+        "right": 1104,
+        "width": 796
+      },
+      "side": {
+        "top": 303,
+        "bottom": 958,
+        "height": 655,
+        "left": 1145,
+        "right": 1465,
+        "width": 320
+      },
+      "summary": {
+        "top": 303,
+        "bottom": 443,
+        "height": 140,
+        "left": 1145,
+        "right": 1465,
+        "width": 320
+      },
+      "steps": {
+        "top": 451,
+        "bottom": 639,
+        "height": 188,
+        "left": 1145,
+        "right": 1465,
+        "width": 320
+      },
+      "answer": {
+        "top": 647,
+        "bottom": 726,
+        "height": 79,
+        "left": 1145,
+        "right": 1465,
+        "width": 320
+      },
+      "misconception": {
+        "top": 734,
+        "bottom": 861,
+        "height": 127,
+        "left": 1145,
+        "right": 1465,
+        "width": 320
+      },
+      "practice": {
+        "top": 869,
+        "bottom": 935,
+        "height": 66,
+        "left": 1145,
+        "right": 1465,
+        "width": 320
+      },
+      "navigation": {
+        "top": 969,
+        "bottom": 1028,
+        "height": 59,
+        "left": 288,
+        "right": 1478,
+        "width": 1190
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

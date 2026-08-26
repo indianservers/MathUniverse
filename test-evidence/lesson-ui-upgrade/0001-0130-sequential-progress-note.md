@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **65 of 130 lessons completed; 65 pending.**
+Dedicated rebuild target: **66 of 130 lessons completed; 64 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -69,6 +69,7 @@ Dedicated rebuild target: **65 of 130 lessons completed; 65 pending.**
 | 0063   |         81 Fraction-Decimal Conversion | Complete | Dedicated editable fraction bridge with draggable segmented strip, calculated long division/decimal/percent, interactive hundred grid and number line, terminating audit, practice, and exact 1508x1043 target geometry                           |
 | 0064   |                  82 Recurring Decimals | Complete | Dedicated editable fraction long-division engine with repeated-remainder cycle detection, draggable repeat tiles, calculated exact overbar form, remainder loop, terminating contrast, practice, and exact 1500x1049 target geometry             |
 | 0065   |                        83 Ratio Models | Complete | Dedicated dual editable part-count model with draggable tokens, calculated total/tape/scaled batch, live scale factor, linked double number lines, relationship proof, practice, and exact 1054x1492 target geometry                              |
+| 0066   |                          84 Proportion | Complete | Dedicated editable known/target ratio model with calculated shared scale factor, target-matched tape construction, draggable units, cross-product proof, solved value, summary, and practice at exact 1496x1051 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -979,3 +980,17 @@ Evidence:
 - `0065-reference.png`
 - `0065-desktop.png`
 - `0065-dedicated-target-validation.json`
+
+## Lesson 84 / Mockup 0066 - Proportion
+
+Reworked individually against the target mockup with a dedicated `editable-known-target-ratio-shared-scale-factor-draggable-tape-units-cross-product-step-summary-solved-value-practice-model`. Three editable ratio terms drive the common scale factor, unknown value, ratio table, target-specific tape construction, multiplication checks, cross-products, answer, and step summary from one lesson-owned model.
+
+All visible terms are real inputs. Every filled tape unit is clickable and a native draggable/drop target; the first tape preserves the target mockup's two filled plus two outlined continuation cells. Explain, copy, and the `4/7 = 12/x` practice prompt all update real state. The shared number adapter only dispatches Lesson 84 to this separate component.
+
+Final 1496x1051 integrated browser validation verifies `2:9 = 6:27`, scale factor 3, and equal cross-products `54 = 54`; edits the ratios through `3:9 = 6:18`, `3:5 = 6:10`, and `3:5 = 9:15`; physically drags target tape unit 9 onto unit 3 to produce `3:5 = 3:5`; exercises Explain and Copy; loads and verifies practice `4:7 = 12:21`; then reloads the exact target state. The final visual loop matches the target at surface x=288-1478 and y=105-1028, header y=105-231, tabs y=241-292, workspace y=303-958, lab x=288-1123, scale proof x=308-1104 and y=399-598, tape proof y=598-788, cross-product proof y=788-942, side rail x=1145-1465, and navigation y=969-1028. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0066-reference.png`
+- `0066-desktop.png`
+- `0066-dedicated-target-validation.json`

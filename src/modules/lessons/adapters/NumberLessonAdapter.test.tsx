@@ -405,6 +405,23 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="red ratio token 3"');
     expect(html).toContain("both parts must scale together");
   });
+  it("renders lesson 84 as a dedicated equivalent-ratio solver", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 84)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0066"');
+    expect(html).toContain('data-dedicated-lesson="84"');
+    expect(html).toContain('data-object-model="editable-known-target-ratio-shared-scale-factor-draggable-tape-units-cross-product-step-summary-solved-value-practice-model"');
+    expect(html).toContain('data-known-first="2"');
+    expect(html).toContain('data-known-second="9"');
+    expect(html).toContain('data-target-first="6"');
+    expect(html).toContain('data-target-second="27"');
+    expect(html).toContain('data-scale="3"');
+    expect(html).toContain('data-cross-left="54"');
+    expect(html).toContain('data-cross-right="54"');
+    expect(html).toContain('aria-label="knownFirst tape unit 2"');
+    expect(html).toContain('aria-label="Copy proportion"');
+    expect(html).toContain("Both ratios must scale by the same factor");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
