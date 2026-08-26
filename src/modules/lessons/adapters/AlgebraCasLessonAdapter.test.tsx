@@ -184,8 +184,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Prove the identity with an area model");
   });
 
-  it("delegates phase 4 algebra lessons 107 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 107; id <= 128; id += 1) {
+  it("routes lesson 107 to its dedicated one-step-equation object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 107)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0164"');
+    expect(html).toContain('data-dedicated-lesson="107"');
+    expect(html).toContain("selectable-one-step-equation-dynamic-balance-draggable-inverse-operation-both-sides-substitution-check-graded-practice-model");
+    expect(html).toContain('aria-label="Drag inverse operation Subtract 5"');
+    expect(html).toContain("Solve using the balance model");
+  });
+
+  it("delegates phase 4 algebra lessons 108 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 108; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

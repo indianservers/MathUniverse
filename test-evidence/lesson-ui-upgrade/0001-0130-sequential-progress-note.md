@@ -1,6 +1,6 @@
-# Sequential lesson rebuild 0001-0130
+# Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **89 of 130 lessons completed; 41 pending.**
+Dedicated rebuild target: **90 of 200 lessons completed; 110 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1328,3 +1328,17 @@ Evidence:
 - `0163-reference.png`
 - `0163-desktop.png`
 - `0163-dedicated-target-validation.json`
+
+## Lesson 107 / Mockup 0164 - One-Step Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `selectable-one-step-equation-dynamic-balance-draggable-inverse-operation-both-sides-substitution-check-graded-practice-model`. Four equation families (`x + 5 = 12`, `x - 4 = 9`, `3x = 18`, and `x / 4 = 5`) own their inverse operation, balance objects, exact solution, and substitution calculation. The upper and lower scales are generated from the selected equation rather than reused decorative blocks.
+
+The selected inverse-operation token is a native draggable object and both scale pans are independent real drop targets. Equation and inverse selectors stay synchronized; the check-value field independently evaluates the selected equation; incorrect values fail visibly. Show balance, Apply to both sides, six lesson tabs, Guided Practice, Notes, both-side drag completion, practice equation selection, editable answer grading, Reset, and reload all update visible state. The second practice equation is independently calculated rather than prefilled. The algebra/CAS adapter dispatches Lesson 107 only to this dedicated component, and the shared algebra fallback now begins at Lesson 108.
+
+Final 994x1582 integrated browser validation solves and checks all four equation families, rejects x=12 and accepts x=13 for `x - 4 = 9`, toggles both balance controls, physically drops the selected inverse operation on the left and right pans, opens Guided Practice and Notes without either blocking the other, exercises Formulas, rejects and accepts the first practice, solves the second practice, and verifies reload state. The visual loop matches surface x=224-979 and y=100-1582, intro y=100-253, tabs y=265-319, balance workspace y=332-863, controls y=879-969, rule cards y=986-1183, practice y=1198-1412, navigation y=1428-1484, and footer y=1498-1582. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0164-reference.png`
+- `0164-desktop.png`
+- `0164-dedicated-target-validation.json`
