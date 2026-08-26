@@ -1,0 +1,275 @@
+{
+  "mockup": "0072",
+  "lessonId": 90,
+  "route": "/lessons/numbers-and-arithmetic/90-compound-change",
+  "objectModel": "editable-start-rate-stage-count-draggable-compound-bars-sequential-latest-base-formula-result-misconception-model",
+  "checks": {
+    "initial": {
+      "start": "100",
+      "rate": "10",
+      "stages": "2",
+      "multiplier": "1.1",
+      "final": "121",
+      "compound": "21",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "0"
+    },
+    "startEdited": {
+      "start": "200",
+      "rate": "10",
+      "stages": "2",
+      "multiplier": "1.1",
+      "final": "242",
+      "compound": "21",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "1"
+    },
+    "rateEdited": {
+      "start": "200",
+      "rate": "20",
+      "stages": "2",
+      "multiplier": "1.2",
+      "final": "288",
+      "compound": "44",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "2"
+    },
+    "threeStages": {
+      "start": "200",
+      "rate": "20",
+      "stages": "3",
+      "multiplier": "1.2",
+      "final": "345.6",
+      "compound": "72.8",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "3"
+    },
+    "decrease": {
+      "start": "100",
+      "rate": "-10",
+      "stages": "2",
+      "multiplier": "0.9",
+      "final": "81",
+      "compound": "-19",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "6"
+    },
+    "dragged": {
+      "start": "100",
+      "rate": "10",
+      "stages": "1",
+      "multiplier": "1.1",
+      "final": "110",
+      "compound": "10",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "1"
+    },
+    "dragRecorded": true,
+    "explain": {
+      "start": "100",
+      "rate": "10",
+      "stages": "2",
+      "multiplier": "1.1",
+      "final": "121",
+      "compound": "21",
+      "tab": "Explain",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "1"
+    },
+    "share": {
+      "start": "100",
+      "rate": "10",
+      "stages": "2",
+      "multiplier": "1.1",
+      "final": "121",
+      "compound": "21",
+      "tab": "Explain",
+      "share-state": "Copied",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "2"
+    },
+    "workspace": {
+      "start": "100",
+      "rate": "10",
+      "stages": "2",
+      "multiplier": "1.1",
+      "final": "121",
+      "compound": "21",
+      "tab": "Explain",
+      "share-state": "Copied",
+      "workspace-state": "open",
+      "dragging": "",
+      "actions": "3"
+    },
+    "restored": {
+      "start": "100",
+      "rate": "10",
+      "stages": "2",
+      "multiplier": "1.1",
+      "final": "121",
+      "compound": "21",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "dragging": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1501,
+      "height": 1048
+    },
+    "document": {
+      "width": 1501,
+      "height": 1048
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 125,
+      "bottom": 1048,
+      "height": 923,
+      "left": 287,
+      "right": 1486,
+      "width": 1199
+    },
+    "regions": {
+      "header": {
+        "top": 125,
+        "bottom": 354,
+        "height": 229,
+        "left": 287,
+        "right": 1486,
+        "width": 1199
+      },
+      "tabs": {
+        "top": 364,
+        "bottom": 418,
+        "height": 54,
+        "left": 287,
+        "right": 1486,
+        "width": 1199
+      },
+      "workspace": {
+        "top": 428,
+        "bottom": 1022,
+        "height": 594,
+        "left": 287,
+        "right": 1486,
+        "width": 1199
+      },
+      "lab": {
+        "top": 428,
+        "bottom": 1022,
+        "height": 594,
+        "left": 287,
+        "right": 1191,
+        "width": 904
+      },
+      "stages": {
+        "top": 517,
+        "bottom": 893,
+        "height": 376,
+        "left": 306,
+        "right": 1179,
+        "width": 873
+      },
+      "stage1": {
+        "top": 517,
+        "bottom": 631,
+        "height": 114,
+        "left": 306,
+        "right": 1047,
+        "width": 741
+      },
+      "stage2": {
+        "top": 646,
+        "bottom": 760,
+        "height": 114,
+        "left": 306,
+        "right": 1047,
+        "width": 741
+      },
+      "stage3": {
+        "top": 777,
+        "bottom": 891,
+        "height": 114,
+        "left": 306,
+        "right": 1047,
+        "width": 741
+      },
+      "insight": {
+        "top": 910,
+        "bottom": 1000,
+        "height": 90,
+        "left": 309,
+        "right": 1043,
+        "width": 734
+      },
+      "side": {
+        "top": 428,
+        "bottom": 1022,
+        "height": 594,
+        "left": 1205,
+        "right": 1486,
+        "width": 281
+      },
+      "setup": {
+        "top": 429,
+        "bottom": 607,
+        "height": 178,
+        "left": 1211,
+        "right": 1480,
+        "width": 269
+      },
+      "result": {
+        "top": 619,
+        "bottom": 730,
+        "height": 111,
+        "left": 1211,
+        "right": 1480,
+        "width": 269
+      },
+      "total": {
+        "top": 742,
+        "bottom": 834,
+        "height": 92,
+        "left": 1211,
+        "right": 1480,
+        "width": 269
+      },
+      "warning": {
+        "top": 847,
+        "bottom": 989,
+        "height": 142,
+        "left": 1211,
+        "right": 1480,
+        "width": 269
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

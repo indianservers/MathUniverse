@@ -496,6 +496,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="New number line point"');
     expect(html).toContain("Use the original amount as the base");
   });
+  it("renders lesson 90 as a dedicated sequential compound-change model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 90)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0072"');
+    expect(html).toContain('data-dedicated-lesson="90"');
+    expect(html).toContain('data-object-model="editable-start-rate-stage-count-draggable-compound-bars-sequential-latest-base-formula-result-misconception-model"');
+    expect(html).toContain('data-start="100"');
+    expect(html).toContain('data-rate="10"');
+    expect(html).toContain('data-stages="2"');
+    expect(html).toContain('data-multiplier="1.1"');
+    expect(html).toContain('data-final="121"');
+    expect(html).toContain('data-compound="21"');
+    expect(html).toContain('aria-label="Compound starting amount"');
+    expect(html).toContain('aria-label="Compound stage 1 amount bar"');
+    expect(html).toContain("Apply each percent change to the latest amount");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

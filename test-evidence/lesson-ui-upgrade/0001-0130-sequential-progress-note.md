@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **71 of 130 lessons completed; 59 pending.**
+Dedicated rebuild target: **72 of 130 lessons completed; 58 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -75,6 +75,7 @@ Dedicated rebuild target: **71 of 130 lessons completed; 59 pending.**
 | 0069   |                          87 Unit Rates | Complete | Dedicated editable total/divisor model with generated transparent rice-bag objects, drag controls, equal-sharing branches and cards, unit-rate equation, comparison table, double number line, and practice at exact 1068x1473 target geometry |
 | 0070   |                         88 Percentages | Complete | Dedicated editable percentage model with a draggable/clickable hundred grid, calculated fraction/decimal forms, interactive percent slider and number line, linked quantity groups, functional controls/practice, and exact 1090x1443 target geometry |
 | 0071   |                  89 Percentage Change | Complete | Dedicated dual editable original/new amount model with draggable before/after bars and number-line points, calculated change/percentage/direction, three-step proof, baseline warning, functional controls/practice, and exact 1495x1052 target geometry |
+| 0072   |                    90 Compound Change | Complete | Dedicated editable start/rate/stage-count model with draggable sequential amount bars, latest-base connectors, calculated multipliers/formulas/result/compound total, misconception proof, functional controls, and exact 1501x1048 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1069,3 +1070,17 @@ Evidence:
 - `0071-reference.png`
 - `0071-desktop.png`
 - `0071-dedicated-target-validation.json`
+
+## Lesson 90 / Mockup 0072 - Compound Change
+
+Reworked individually against the target mockup with a dedicated `editable-start-rate-stage-count-draggable-compound-bars-sequential-latest-base-formula-result-misconception-model`. The starting amount, signed rate, and stage count generate every intermediate amount, stage delta, latest base, multiplier equation, equivalent exponent form, final result, compound percentage, insight text, and misconception comparison from one lesson-owned calculation model.
+
+Start, rate, and number of stages are real setup controls. Every amount bar and increment segment is a native draggable object and every stage amount bar is a drop target that changes the active stage count. All five tabs, language, Reset, Share, and Workspace perform real state changes. The shared number adapter only dispatches Lesson 90 to this separate component.
+
+Final 1501x1048 integrated browser validation verifies `100 x 1.10 = 110`, `110 x 1.10 = 121`, equivalent `100 x (1.10)^2 = 121`, and a 21% compound total; edits the start to 200 and verifies 242; changes the rate to 20% and verifies 288 with a 44% total; changes to three stages and verifies 345.6 with a 72.8% total; verifies two -10% stages produce 81 and -19%; physically drags stage three onto stage one and verifies one stage gives 110 and 10%; exercises Explain, Share, and Workspace; then reloads the exact target state. The final visual loop matches the target at surface x=287-1486 and y=125-1048, header y=125-354, tabs y=364-418, workspace y=428-1022, lab x=287-1191, sequential cards x=306-1047 and y=517-891, insight x=309-1043 and y=910-1000, setup rail x=1211-1480 and y=429-607, result y=619-730, compound total y=742-834, and warning y=847-989. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0072-reference.png`
+- `0072-desktop.png`
+- `0072-dedicated-target-validation.json`
