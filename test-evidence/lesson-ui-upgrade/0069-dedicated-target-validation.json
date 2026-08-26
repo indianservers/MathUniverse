@@ -1,0 +1,201 @@
+{
+  "mockup": "0069",
+  "lessonId": 87,
+  "route": "/lessons/numbers-and-arithmetic/87-unit-rates",
+  "objectModel": "editable-total-unit-count-draggable-rice-bags-equal-sharing-cards-unit-rate-table-double-number-line-practice-model",
+  "asset": "public/assets/lessons/unit-rates-rice-bag.png",
+  "checks": {
+    "initial": {
+      "total": "300",
+      "units": "5",
+      "unit-rate": "60",
+      "tab": "Interaction + visualization",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    },
+    "totalEdited": {
+      "total": "360",
+      "units": "5",
+      "unit-rate": "72",
+      "tab": "Interaction + visualization",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "unitsEdited": {
+      "total": "360",
+      "units": "6",
+      "unit-rate": "60",
+      "tab": "Interaction + visualization",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "dragged": {
+      "total": "360",
+      "units": "3",
+      "unit-rate": "120",
+      "tab": "Interaction + visualization",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "3"
+    },
+    "dragRecorded": true,
+    "explain": {
+      "total": "360",
+      "units": "3",
+      "unit-rate": "120",
+      "tab": "Explain",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "4"
+    },
+    "practice": {
+      "total": "450",
+      "units": "9",
+      "unit-rate": "50",
+      "tab": "Explain",
+      "practice-loaded": "true",
+      "dragging": "",
+      "actions": "5"
+    },
+    "restored": {
+      "total": "300",
+      "units": "5",
+      "unit-rate": "60",
+      "tab": "Interaction + visualization",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1068,
+      "height": 1473
+    },
+    "document": {
+      "width": 1068,
+      "height": 1473
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 98,
+      "bottom": 1460,
+      "height": 1362,
+      "left": 228,
+      "right": 1051,
+      "width": 823
+    },
+    "regions": {
+      "header": {
+        "top": 98,
+        "bottom": 219,
+        "height": 121,
+        "left": 228,
+        "right": 1051,
+        "width": 823
+      },
+      "tabs": {
+        "top": 230,
+        "bottom": 283,
+        "height": 53,
+        "left": 228,
+        "right": 1051,
+        "width": 823
+      },
+      "workspace": {
+        "top": 293,
+        "bottom": 1264,
+        "height": 971,
+        "left": 228,
+        "right": 1051,
+        "width": 823
+      },
+      "lab": {
+        "top": 294,
+        "bottom": 1263,
+        "height": 969,
+        "left": 229,
+        "right": 793,
+        "width": 564
+      },
+      "bags": {
+        "top": 377,
+        "bottom": 500,
+        "height": 123,
+        "left": 249,
+        "right": 773,
+        "width": 524
+      },
+      "shares": {
+        "top": 624,
+        "bottom": 719,
+        "height": 95,
+        "left": 251,
+        "right": 771,
+        "width": 520
+      },
+      "equation": {
+        "top": 737,
+        "bottom": 791,
+        "height": 54,
+        "left": 249,
+        "right": 769,
+        "width": 520
+      },
+      "result": {
+        "top": 801,
+        "bottom": 843,
+        "height": 42,
+        "left": 378,
+        "right": 643,
+        "width": 265
+      },
+      "table": {
+        "top": 911,
+        "bottom": 1066,
+        "height": 155,
+        "left": 244,
+        "right": 749,
+        "width": 505
+      },
+      "line": {
+        "top": 1081,
+        "bottom": 1249,
+        "height": 168,
+        "left": 244,
+        "right": 764,
+        "width": 520
+      },
+      "side": {
+        "top": 294,
+        "bottom": 1263,
+        "height": 969,
+        "left": 801,
+        "right": 1036,
+        "width": 235
+      },
+      "navigation": {
+        "top": 1272,
+        "bottom": 1329,
+        "height": 57,
+        "left": 228,
+        "right": 1051,
+        "width": 823
+      },
+      "footer": {
+        "top": 1344,
+        "bottom": 1460,
+        "height": 116,
+        "left": 228,
+        "right": 1051,
+        "width": 823
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

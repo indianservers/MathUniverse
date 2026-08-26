@@ -450,6 +450,20 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="3-worker task 24"');
     expect(html).toContain("keeps xy constant");
   });
+  it("renders lesson 87 as a dedicated unit-rate equal-sharing model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 87)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0069"');
+    expect(html).toContain('data-dedicated-lesson="87"');
+    expect(html).toContain('data-object-model="editable-total-unit-count-draggable-rice-bags-equal-sharing-cards-unit-rate-table-double-number-line-practice-model"');
+    expect(html).toContain('data-total="300"');
+    expect(html).toContain('data-units="5"');
+    expect(html).toContain('data-unit-rate="60"');
+    expect(html).toContain('aria-label="Total cost rupees"');
+    expect(html).toContain('aria-label="Rice bag 5"');
+    expect(html).toContain('unit-rates-rice-bag.png');
+    expect(html).toContain("Divide by the number of units");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

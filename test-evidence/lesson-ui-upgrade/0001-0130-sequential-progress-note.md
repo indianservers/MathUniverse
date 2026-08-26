@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **68 of 130 lessons completed; 62 pending.**
+Dedicated rebuild target: **69 of 130 lessons completed; 61 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -72,6 +72,7 @@ Dedicated rebuild target: **68 of 130 lessons completed; 62 pending.**
 | 0066   |                          84 Proportion | Complete | Dedicated editable known/target ratio model with calculated shared scale factor, target-matched tape construction, draggable units, cross-product proof, solved value, summary, and practice at exact 1496x1051 target geometry |
 | 0067   |                  85 Direct Proportion | Complete | Dedicated editable constant-multiplier model with linked ratio table, draggable coordinate points, origin graph, unit rate, equation, current values, and calculated practice at exact 1068x1472 target geometry |
 | 0068   |                 86 Inverse Proportion | Complete | Dedicated editable constant-product model with reciprocal table and curve, draggable graph points and task arrays, work-sharing comparison, quick check, formula, and calculated practice at exact 1509x1042 target geometry |
+| 0069   |                          87 Unit Rates | Complete | Dedicated editable total/divisor model with generated transparent rice-bag objects, drag controls, equal-sharing branches and cards, unit-rate equation, comparison table, double number line, and practice at exact 1068x1473 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1024,3 +1025,17 @@ Evidence:
 - `0068-reference.png`
 - `0068-desktop.png`
 - `0068-dedicated-target-validation.json`
+
+## Lesson 87 / Mockup 0069 - Unit Rates
+
+Reworked individually against the target mockup with a dedicated `editable-total-unit-count-draggable-rice-bags-equal-sharing-cards-unit-rate-table-double-number-line-practice-model`. One total cost and one kilogram count drive the per-one value, draggable bag count, equal-distribution branches, share cards, division equation, unit-rate result, comparison table, double number line, and right-rail summaries from one lesson-owned calculation engine.
+
+The total and number of units are real numeric inputs. Every generated rice-bag object is clickable and a native draggable/drop target, while every equal-share card is a live control. All lesson tabs change state, and the target `450 rupees for 9 kg` practice loads and calculates `50 per kg`. A project-local transparent bag asset was generated with the built-in image tool and saved as `public/assets/lessons/unit-rates-rice-bag.png`. The shared number adapter only dispatches Lesson 87 to this separate component.
+
+Final 1068x1473 integrated browser validation verifies `300 / 5 = 60`, five loaded bag assets, five equal shares, table values through `5 kg = 300`, and the linked number lines; edits total to 360 and verifies 72 per kg; edits units to 6 and verifies 60 per kg; physically drags bag 6 onto bag 3 and verifies divisor 3 and rate 120; exercises Explain; loads and verifies practice `450 / 9 = 50`; then reloads the exact target state. The final visual loop matches the target at surface x=228-1051 and y=98-1460, header y=98-219, tabs y=230-283, workspace y=293-1264, bag model x=249-773 and y=377-500, equal shares x=251-771 and y=624-719, equation x=249-769 and y=737-791, result y=801-843, comparison table x=244-749 and y=911-1066, double number line x=244-764 and y=1081-1249, side rail x=801-1036, navigation y=1272-1329, and footer y=1344-1460. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0069-reference.png`
+- `0069-desktop.png`
+- `0069-dedicated-target-validation.json`
