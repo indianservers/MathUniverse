@@ -160,8 +160,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Check reconstruction");
   });
 
-  it("delegates phase 4 algebra lessons 105 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 105; id <= 128; id += 1) {
+  it("routes lesson 105 to its dedicated factor-theorem object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 105)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0162"');
+    expect(html).toContain('data-dedicated-lesson="105"');
+    expect(html).toContain("editable-polynomial-candidate-factor-root-extraction-draggable-substitution-zero-meter-synthetic-remainder-factor-pair-practice-model");
+    expect(html).toContain('aria-label="Drag candidate factor"');
+    expect(html).toContain("Factor Test Station");
+  });
+
+  it("delegates phase 4 algebra lessons 106 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 106; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

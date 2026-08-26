@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **87 of 130 lessons completed; 43 pending.**
+Dedicated rebuild target: **88 of 130 lessons completed; 42 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1300,3 +1300,17 @@ Evidence:
 - `0161-reference.png`
 - `0161-desktop.png`
 - `0161-dedicated-target-validation.json`
+
+## Lesson 105 / Mockup 0162 - Factor Theorem
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-polynomial-candidate-factor-root-extraction-draggable-substitution-zero-meter-synthetic-remainder-factor-pair-practice-model`. The lesson parses the polynomial and monic candidate factor independently, extracts the candidate root, evaluates `f(a)`, calculates a bounded substitution meter, tests the zero condition, performs synthetic division, and derives the quotient and second root for quadratic factorization from one lesson-owned model. A factor verdict requires the candidate syntax, extracted root, selected test value, evaluation, and synthetic remainder all to agree.
+
+The candidate factor and extracted `a` are native draggable objects with separate factor-extraction and substitution drop targets. Polynomial, factor, and test-value fields recalculate every stage. Mismatched values and invalid non-linear candidates visibly fail instead of inheriting a zero remainder from another control. Substitute, Check zero, Reveal factor pair, five lesson tabs, Reset, New problem, and both practice candidate controls update visible state. The green and red practice cases are calculated from `g(x) = x² − 5x + 6`, including their evaluations and remainder-based verdicts. Lesson and footer destinations are real links. The algebra/CAS adapter dispatches Lesson 105 only to this dedicated component, and the shared algebra fallback now begins at Lesson 106.
+
+Final 1024x1536 integrated browser validation verifies `x − 1` and `x − 2` as factors of `x² − 3x + 2`, including roots, zero evaluations, synthetic rows, quotients, and complementary roots. It proves that a mismatched test value fails despite a zero synthetic remainder; rejects `x² − 1` as an invalid candidate form; physically completes both drag stages; parses `x³ − 4x` with missing coefficients and divides by `x − 2`; exercises all three controls; rotates to `x² − 5x + 6` and `x² + x − 6`; calculates the non-factor and factor practice choices; exercises Formulas, Reset, and reload. The visual loop matches surface x=225-1009 and y=101-1536, intro y=101-269, tabs y=278-335, station y=344-1364, inputs y=411-523, pipeline y=537-609, test y=624-783, controls y=797-875, synthetic verification y=890-1082, practice y=1098-1306, warning y=1319-1363, navigation y=1372-1420, and footer y=1434-1534. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0162-reference.png`
+- `0162-desktop.png`
+- `0162-dedicated-target-validation.json`
