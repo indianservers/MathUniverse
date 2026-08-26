@@ -36,6 +36,7 @@ import ProportionTargetLesson84 from "./ProportionTargetLesson84";
 import DirectProportionTargetLesson85 from "./DirectProportionTargetLesson85";
 import InverseProportionTargetLesson86 from "./InverseProportionTargetLesson86";
 import UnitRatesTargetLesson87 from "./UnitRatesTargetLesson87";
+import PercentagesTargetLesson88 from "./PercentagesTargetLesson88";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -130,6 +131,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 87) {
     return <UnitRatesTargetLesson87 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 88) {
+    return <PercentagesTargetLesson88 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

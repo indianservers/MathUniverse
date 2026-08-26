@@ -1,0 +1,319 @@
+{
+  "mockup": "0070",
+  "lessonId": 88,
+  "route": "/lessons/numbers-and-arithmetic/88-percentages",
+  "objectModel": "editable-percent-draggable-hundred-grid-equivalent-fraction-decimal-slider-number-line-part-of-quantity-practice-model",
+  "checks": {
+    "initial": {
+      "percent": "25",
+      "decimal": "0.25",
+      "numerator": "1",
+      "denominator": "4",
+      "whole": "80",
+      "part": "20",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    },
+    "initialCounts": {
+      "cells": 100,
+      "selectedCells": 25,
+      "dots": 80,
+      "selectedDots": 20
+    },
+    "slider": {
+      "percent": "40",
+      "decimal": "0.4",
+      "numerator": "2",
+      "denominator": "5",
+      "whole": "80",
+      "part": "32",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "reset": {
+      "percent": "25",
+      "decimal": "0.25",
+      "numerator": "1",
+      "denominator": "4",
+      "whole": "80",
+      "part": "20",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    },
+    "dragged": {
+      "percent": "40",
+      "decimal": "0.4",
+      "numerator": "2",
+      "denominator": "5",
+      "whole": "80",
+      "part": "32",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "draggedCounts": {
+      "cells": 100,
+      "selectedCells": 40,
+      "dots": 80,
+      "selectedDots": 32
+    },
+    "dragRecorded": true,
+    "numberLine": {
+      "percent": "50",
+      "decimal": "0.5",
+      "numerator": "1",
+      "denominator": "2",
+      "whole": "80",
+      "part": "40",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "quantityDot": {
+      "percent": "25",
+      "decimal": "0.25",
+      "numerator": "1",
+      "denominator": "4",
+      "whole": "80",
+      "part": "20",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "3"
+    },
+    "explain": {
+      "percent": "25",
+      "decimal": "0.25",
+      "numerator": "1",
+      "denominator": "4",
+      "whole": "80",
+      "part": "20",
+      "tab": "Explain",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "share": {
+      "percent": "25",
+      "decimal": "0.25",
+      "numerator": "1",
+      "denominator": "4",
+      "whole": "80",
+      "part": "20",
+      "tab": "Explain",
+      "share-state": "Copied",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "workspace": {
+      "percent": "25",
+      "decimal": "0.25",
+      "numerator": "1",
+      "denominator": "4",
+      "whole": "80",
+      "part": "20",
+      "tab": "Explain",
+      "share-state": "Copied",
+      "workspace-state": "open",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "3"
+    },
+    "practice": {
+      "percent": "40",
+      "decimal": "0.4",
+      "numerator": "2",
+      "denominator": "5",
+      "whole": "60",
+      "part": "24",
+      "tab": "Explain",
+      "share-state": "Copied",
+      "workspace-state": "open",
+      "practice-loaded": "true",
+      "dragging": "",
+      "actions": "4"
+    },
+    "restored": {
+      "percent": "25",
+      "decimal": "0.25",
+      "numerator": "1",
+      "denominator": "4",
+      "whole": "80",
+      "part": "20",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "workspace-state": "closed",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1090,
+      "height": 1443
+    },
+    "document": {
+      "width": 1090,
+      "height": 1443
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 101,
+      "bottom": 1442,
+      "height": 1341,
+      "left": 234,
+      "right": 1075,
+      "width": 841
+    },
+    "regions": {
+      "header": {
+        "top": 101,
+        "bottom": 338,
+        "height": 237,
+        "left": 234,
+        "right": 1075,
+        "width": 841
+      },
+      "tabs": {
+        "top": 347,
+        "bottom": 403,
+        "height": 56,
+        "left": 234,
+        "right": 1075,
+        "width": 841
+      },
+      "workspace": {
+        "top": 407,
+        "bottom": 1255,
+        "height": 848,
+        "left": 234,
+        "right": 1075,
+        "width": 841
+      },
+      "left": {
+        "top": 427,
+        "bottom": 1255,
+        "height": 828,
+        "left": 242,
+        "right": 778,
+        "width": 536
+      },
+      "model": {
+        "top": 427,
+        "bottom": 875,
+        "height": 448,
+        "left": 242,
+        "right": 778,
+        "width": 536
+      },
+      "grid": {
+        "top": 489,
+        "bottom": 826,
+        "height": 337,
+        "left": 260,
+        "right": 597,
+        "width": 337
+      },
+      "equivalents": {
+        "top": 464,
+        "bottom": 846,
+        "height": 382,
+        "left": 627,
+        "right": 757,
+        "width": 130
+      },
+      "line": {
+        "top": 888,
+        "bottom": 991,
+        "height": 103,
+        "left": 242,
+        "right": 778,
+        "width": 536
+      },
+      "quantity": {
+        "top": 1004,
+        "bottom": 1246,
+        "height": 242,
+        "left": 242,
+        "right": 778,
+        "width": 536
+      },
+      "side": {
+        "top": 427,
+        "bottom": 1254,
+        "height": 827,
+        "left": 798,
+        "right": 1061,
+        "width": 263
+      },
+      "control": {
+        "top": 427,
+        "bottom": 582,
+        "height": 155,
+        "left": 798,
+        "right": 1061,
+        "width": 263
+      },
+      "facts": {
+        "top": 898,
+        "bottom": 997,
+        "height": 99,
+        "left": 798,
+        "right": 1061,
+        "width": 263
+      },
+      "practice": {
+        "top": 1004,
+        "bottom": 1065,
+        "height": 61,
+        "left": 798,
+        "right": 1061,
+        "width": 263
+      },
+      "navigation": {
+        "top": 1255,
+        "bottom": 1311,
+        "height": 56,
+        "left": 234,
+        "right": 1075,
+        "width": 841
+      },
+      "footer": {
+        "top": 1329,
+        "bottom": 1442,
+        "height": 113,
+        "left": 234,
+        "right": 1075,
+        "width": 841
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

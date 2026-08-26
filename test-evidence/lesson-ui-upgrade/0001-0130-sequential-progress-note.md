@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **69 of 130 lessons completed; 61 pending.**
+Dedicated rebuild target: **70 of 130 lessons completed; 60 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -73,6 +73,7 @@ Dedicated rebuild target: **69 of 130 lessons completed; 61 pending.**
 | 0067   |                  85 Direct Proportion | Complete | Dedicated editable constant-multiplier model with linked ratio table, draggable coordinate points, origin graph, unit rate, equation, current values, and calculated practice at exact 1068x1472 target geometry |
 | 0068   |                 86 Inverse Proportion | Complete | Dedicated editable constant-product model with reciprocal table and curve, draggable graph points and task arrays, work-sharing comparison, quick check, formula, and calculated practice at exact 1509x1042 target geometry |
 | 0069   |                          87 Unit Rates | Complete | Dedicated editable total/divisor model with generated transparent rice-bag objects, drag controls, equal-sharing branches and cards, unit-rate equation, comparison table, double number line, and practice at exact 1068x1473 target geometry |
+| 0070   |                         88 Percentages | Complete | Dedicated editable percentage model with a draggable/clickable hundred grid, calculated fraction/decimal forms, interactive percent slider and number line, linked quantity groups, functional controls/practice, and exact 1090x1443 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1039,3 +1040,17 @@ Evidence:
 - `0069-reference.png`
 - `0069-desktop.png`
 - `0069-dedicated-target-validation.json`
+
+## Lesson 88 / Mockup 0070 - Percentages
+
+Reworked individually against the target mockup with a dedicated `editable-percent-draggable-hundred-grid-equivalent-fraction-decimal-slider-number-line-part-of-quantity-practice-model`. One percentage and whole quantity drive the selected hundred-grid cells, out-of-100 fraction, reduced fraction, decimal, number-line marker, selected quantity dots, four equal groups, and part-of-a-quantity result from one lesson-owned calculation model.
+
+The percentage slider is a real input. All 100 grid cells are clickable native draggable/drop targets, the labelled number-line values and all 80 quantity dots update the same model, and Reset, tabs, Share, Workspace, and the `40% of 60` practice prompt perform real state changes. The shared number adapter only dispatches Lesson 88 to this separate component.
+
+Final 1090x1443 integrated browser validation verifies `25% = 25/100 = 1/4 = 0.25`, 25 selected grid cells, and `25% of 80 = 20`; moves the slider to 40 and verifies `2/5`, `0.4`, and 32; physically drags grid cell 25 onto cell 40 and verifies 40 selected cells; selects 50% from the number line and 25% from quantity dot 20; exercises Explain, Share, and Workspace; loads and verifies practice `40% of 60 = 24`; then reloads the exact target state. The final visual loop matches the target at surface x=234-1075 and y=101-1442, header y=101-338, tabs y=347-403, workspace y=407-1255, hundred-grid model x=242-778 and y=427-875, grid x=260-597 and y=489-826, number line y=888-991, quantity model y=1004-1246, side rail x=798-1061, navigation y=1255-1311, and footer y=1329-1442. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0070-reference.png`
+- `0070-desktop.png`
+- `0070-dedicated-target-validation.json`

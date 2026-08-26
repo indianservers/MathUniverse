@@ -464,6 +464,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('unit-rates-rice-bag.png');
     expect(html).toContain("Divide by the number of units");
   });
+  it("renders lesson 88 as a dedicated percentage hundred-grid model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 88)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0070"');
+    expect(html).toContain('data-dedicated-lesson="88"');
+    expect(html).toContain('data-object-model="editable-percent-draggable-hundred-grid-equivalent-fraction-decimal-slider-number-line-part-of-quantity-practice-model"');
+    expect(html).toContain('data-percent="25"');
+    expect(html).toContain('data-decimal="0.25"');
+    expect(html).toContain('data-numerator="1"');
+    expect(html).toContain('data-denominator="4"');
+    expect(html).toContain('data-part="20"');
+    expect(html).toContain('aria-label="Percentage value"');
+    expect(html).toContain('aria-label="Hundred grid cell 100"');
+    expect(html).toContain('aria-label="Quantity dot 80"');
+    expect(html).toContain("Percent means parts per hundred");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
