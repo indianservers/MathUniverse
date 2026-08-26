@@ -1,0 +1,263 @@
+{
+  "mockup": "0058",
+  "lessonId": 76,
+  "route": "/lessons/numbers-and-arithmetic/76-equivalent-fractions",
+  "objectModel": "editable-original-fraction-shared-draggable-scale-factor-linked-segmented-bars-number-lines-products-equivalence-practice-model",
+  "checks": {
+    "initial": {
+      "numerator": "3",
+      "denominator": "4",
+      "factor": "2",
+      "scaled-numerator": "6",
+      "scaled-denominator": "8",
+      "value": "0.7500",
+      "decimal": "0.75",
+      "simplified": "3/4",
+      "tab": "Interaction + visualization",
+      "dragging": "",
+      "practice-loaded": "false",
+      "actions": "0"
+    },
+    "factorThree": {
+      "numerator": "3",
+      "denominator": "4",
+      "factor": "3",
+      "scaled-numerator": "9",
+      "scaled-denominator": "12",
+      "value": "0.7500",
+      "decimal": "0.75",
+      "simplified": "3/4",
+      "tab": "Interaction + visualization",
+      "dragging": "",
+      "practice-loaded": "false",
+      "actions": "1"
+    },
+    "twoFifths": {
+      "numerator": "2",
+      "denominator": "5",
+      "factor": "3",
+      "scaled-numerator": "6",
+      "scaled-denominator": "15",
+      "value": "0.4000",
+      "decimal": "0.4",
+      "simplified": "2/5",
+      "tab": "Interaction + visualization",
+      "dragging": "",
+      "practice-loaded": "false",
+      "actions": "3"
+    },
+    "barSelection": {
+      "numerator": "4",
+      "denominator": "5",
+      "factor": "3",
+      "scaled-numerator": "12",
+      "scaled-denominator": "15",
+      "value": "0.8000",
+      "decimal": "0.8",
+      "simplified": "4/5",
+      "tab": "Interaction + visualization",
+      "dragging": "",
+      "practice-loaded": "false",
+      "actions": "4"
+    },
+    "scaledBarSelection": {
+      "numerator": "2",
+      "denominator": "5",
+      "factor": "3",
+      "scaled-numerator": "6",
+      "scaled-denominator": "15",
+      "value": "0.4000",
+      "decimal": "0.4",
+      "simplified": "2/5",
+      "tab": "Interaction + visualization",
+      "dragging": "",
+      "practice-loaded": "false",
+      "actions": "5"
+    },
+    "factorDrop": {
+      "numerator": "2",
+      "denominator": "5",
+      "factor": "3",
+      "scaled-numerator": "6",
+      "scaled-denominator": "15",
+      "value": "0.4000",
+      "decimal": "0.4",
+      "simplified": "2/5",
+      "tab": "Interaction + visualization",
+      "dragging": "",
+      "practice-loaded": "false",
+      "actions": "6"
+    },
+    "factorDropRecorded": true,
+    "explain": {
+      "numerator": "2",
+      "denominator": "5",
+      "factor": "3",
+      "scaled-numerator": "6",
+      "scaled-denominator": "15",
+      "value": "0.4000",
+      "decimal": "0.4",
+      "simplified": "2/5",
+      "tab": "Explain",
+      "dragging": "",
+      "practice-loaded": "false",
+      "actions": "7"
+    },
+    "practice": {
+      "numerator": "2",
+      "denominator": "5",
+      "factor": "2",
+      "scaled-numerator": "4",
+      "scaled-denominator": "10",
+      "value": "0.4000",
+      "decimal": "0.4",
+      "simplified": "2/5",
+      "tab": "Explain",
+      "dragging": "",
+      "practice-loaded": "true",
+      "actions": "8"
+    },
+    "restored": {
+      "numerator": "3",
+      "denominator": "4",
+      "factor": "2",
+      "scaled-numerator": "6",
+      "scaled-denominator": "8",
+      "value": "0.7500",
+      "decimal": "0.75",
+      "simplified": "3/4",
+      "tab": "Interaction + visualization",
+      "dragging": "",
+      "practice-loaded": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1054,
+      "height": 1492
+    },
+    "document": {
+      "width": 1054,
+      "height": 1492
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 95,
+      "bottom": 1492,
+      "height": 1397,
+      "left": 213,
+      "right": 1037,
+      "width": 824
+    },
+    "regions": {
+      "hero": {
+        "top": 95,
+        "bottom": 276,
+        "height": 181,
+        "left": 213,
+        "right": 1037,
+        "width": 824
+      },
+      "tabs": {
+        "top": 284,
+        "bottom": 345,
+        "height": 61,
+        "left": 213,
+        "right": 1037,
+        "width": 824
+      },
+      "layout": {
+        "top": 358,
+        "bottom": 1308,
+        "height": 950,
+        "left": 213,
+        "right": 1037,
+        "width": 824
+      },
+      "proof": {
+        "top": 358,
+        "bottom": 1308,
+        "height": 950,
+        "left": 213,
+        "right": 822,
+        "width": 609
+      },
+      "side": {
+        "top": 358,
+        "bottom": 1308,
+        "height": 950,
+        "left": 830,
+        "right": 1037,
+        "width": 207
+      },
+      "originalBar": {
+        "top": 577,
+        "bottom": 650,
+        "height": 73,
+        "left": 254,
+        "right": 779,
+        "width": 525
+      },
+      "originalLine": {
+        "top": 663,
+        "bottom": 755,
+        "height": 92,
+        "left": 253,
+        "right": 783,
+        "width": 530
+      },
+      "arithmetic": {
+        "top": 773,
+        "bottom": 884,
+        "height": 111,
+        "left": 384,
+        "right": 684,
+        "width": 300
+      },
+      "equivalentBar": {
+        "top": 993,
+        "bottom": 1066,
+        "height": 73,
+        "left": 254,
+        "right": 779,
+        "width": 525
+      },
+      "equivalentLine": {
+        "top": 1079,
+        "bottom": 1171,
+        "height": 92,
+        "left": 253,
+        "right": 783,
+        "width": 530
+      },
+      "result": {
+        "top": 1183,
+        "bottom": 1275,
+        "height": 92,
+        "left": 350,
+        "right": 685,
+        "width": 335
+      },
+      "navigation": {
+        "top": 1316,
+        "bottom": 1380,
+        "height": 64,
+        "left": 213,
+        "right": 1037,
+        "width": 824
+      },
+      "footer": {
+        "top": 1388,
+        "bottom": 1492,
+        "height": 104,
+        "left": 213,
+        "right": 1037,
+        "width": 824
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

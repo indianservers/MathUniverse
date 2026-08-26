@@ -1,0 +1,23 @@
+.equivalent76-page{top:-49px;margin-bottom:-49px}
+.equivalent76-model{margin-top:15px}
+.equivalent76-proof>h2,.equivalent76-proof>p{position:relative;top:-4px}
+.equivalent76-bar-label{display:grid;height:41px;padding:0;place-items:center;font-weight:900}
+.equivalent76-bar-label.original{width:124px}
+.equivalent76-bar-label.equivalent{width:139px}
+.equivalent76-bar:after{position:absolute;top:-56px;right:0;font-weight:700;content:"1"}
+.equivalent76-bar:before{position:absolute;top:-31px;right:0;height:25px;border-left:1px dashed #f3c846;content:""}
+.equivalent76-bar button.boundary>span{color:#ef9c00;font-weight:900}
+.equivalent76-line>div button.active span{color:transparent}
+.equivalent76-line.cyan>button.marker:after,.equivalent76-line.purple>button.marker:after{content:attr(data-label)}
+.equivalent76-arithmetic{top:310px}
+.equivalent76-arithmetic span{width:109px;height:37px}
+.equivalent76-arithmetic span:first-child,.equivalent76-arithmetic span:nth-child(2){left:80px}
+.equivalent76-arithmetic span:nth-child(2){top:45px}
+.equivalent76-arithmetic:before,.equivalent76-arithmetic:after{display:none}
+.equivalent76-arithmetic span:before,.equivalent76-arithmetic span:after{position:absolute;top:18px;width:72px;border-top:1px solid currentColor;content:""}
+.equivalent76-arithmetic span:before{right:calc(100% + 8px)}
+.equivalent76-arithmetic span:after{left:calc(100% + 8px)}
+.equivalent76-result>span{display:inline-flex;width:auto;height:auto;border-radius:0;background:transparent;color:inherit;font-family:inherit;font-size:inherit}
+.equivalent76-result>.check{display:grid;width:40px;height:40px;place-items:center;border-radius:50%;background:#25a936;color:#fff;font-family:sans-serif;font-size:28px}
+.equivalent76-original>.equivalent76-fraction{top:43px}
+.equivalent76-equivalent>.equivalent76-fraction{top:44px}

@@ -271,6 +271,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Drag to set numerator"');
     expect(html).toContain("All models are linked");
   });
+  it("renders lesson 76 as a dedicated equivalent-fraction scaling proof", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 76)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0058"');
+    expect(html).toContain('data-dedicated-lesson="76"');
+    expect(html).toContain('data-object-model="editable-original-fraction-shared-draggable-scale-factor-linked-segmented-bars-number-lines-products-equivalence-practice-model"');
+    expect(html).toContain('data-numerator="3"');
+    expect(html).toContain('data-denominator="4"');
+    expect(html).toContain('data-factor="2"');
+    expect(html).toContain('data-scaled-numerator="6"');
+    expect(html).toContain('data-scaled-denominator="8"');
+    expect(html).toContain('data-value="0.7500"');
+    expect(html).toContain('aria-label="Original numerator"');
+    expect(html).toContain('aria-label="Scale factor 2; click to cycle or drag"');
+    expect(html).toContain("Both fractions occupy the same number-line point");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],
