@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **80 of 130 lessons completed; 50 pending.**
+Dedicated rebuild target: **81 of 130 lessons completed; 49 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1202,3 +1202,17 @@ Evidence:
 - `0154-reference.png`
 - `0154-desktop.png`
 - `0154-dedicated-target-validation.json`
+
+## Lesson 98 / Mockup 0155 - Algebraic Fractions
+
+Reworked individually against the mathematics target mockup with a dedicated `selectable-rational-expression-draggable-common-factor-cancellation-domain-restriction-substitution-graded-practice-model`. Each preset is represented by a cancelled denominator root and retained numerator root, which derive the quadratic numerator, denominator, factorisation, common factor, simplified expression, excluded value, number-line marker, original evaluation, simplified evaluation, and equivalence result from one lesson-owned calculation model.
+
+The matching numerator and denominator factors are native draggable objects and the cancellation stage is a real drop target. The expression selector recalculates all symbolic and numeric output; excluded substitution values produce an undefined original expression instead of a false equality. Factor, cancel, restriction, and substitution switches, check-value input, Reset, all five tabs, editable Enter-graded practice, and New practice all update visible state. The misconception panel now proves `(x + 2)/x = 1 + 2/x` rather than performing invalid term cancellation. Lesson and footer destinations are real links. The algebra/CAS adapter dispatches Lesson 98 only to this dedicated component.
+
+Final 1024x1536 integrated browser validation verifies `(x² − 1)/(x − 1) = x + 1`, restriction `x ≠ 1`, and both substitution paths equal 4 at x=3; selects `(x² − 4)/(x − 2)` and verifies value 5; selects `(x² + 5x + 6)/(x + 2)`, verifies `x + 3`, restriction `x ≠ −2`, and value 7 at x=4; enters the excluded value −2 and verifies the original is undefined; exercises and resets all four guided switches; physically drags both common-factor objects into the cancellation stage; exercises Practice; rejects an incorrect answer; accepts `y + 3, y ≠ 3` with Enter; rotates to `a + 2, a ≠ 2`; then reloads the exact target state. The final visual loop matches surface x=230-1010 and y=104-1535, intro y=104-252, tabs y=252-299, workspace y=317-1406, expression y=366-538, steps y=549-1030, proof y=1041-1241, warning y=1248-1390, controls x=761-1010 and y=317-836, result y=850-1041, practice y=1051-1363, navigation y=1409-1454, and footer y=1469-1536. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0155-reference.png`
+- `0155-desktop.png`
+- `0155-dedicated-target-validation.json`

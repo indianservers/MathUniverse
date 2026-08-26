@@ -76,8 +76,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Find factor pair");
   });
 
-  it("delegates phase 4 algebra lessons 98 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 98; id <= 128; id += 1) {
+  it("routes lesson 98 to its dedicated algebraic-fractions object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 98)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0155"');
+    expect(html).toContain('data-dedicated-lesson="98"');
+    expect(html).toContain("selectable-rational-expression-draggable-common-factor-cancellation-domain-restriction-substitution-graded-practice-model");
+    expect(html).toContain('aria-label="Drag numerator common factor"');
+    expect(html).toContain("Simplify the rational expression");
+  });
+
+  it("delegates phase 4 algebra lessons 99 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 99; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter
@@ -96,7 +108,7 @@ describe("AlgebraCasLessonAdapter", () => {
     }
   });
 
-  it("keeps Algebraic Fractions lesson-specific cancellation rules inside the delegated workspace", () => {
+  it("keeps Algebraic Fractions cancellation, restriction, and substitution rules in its dedicated surface", () => {
     const lesson = lessonCatalog.find((item) => item.id === 98)!;
     const html = renderToStaticMarkup(
       <AlgebraCasLessonAdapter
@@ -106,11 +118,11 @@ describe("AlgebraCasLessonAdapter", () => {
       />,
     );
 
-    expect(html).toContain("Algebraic Fractions structure lab");
-    expect(html).toContain("Algebraic Fractions concept trace");
-    expect(html).toContain("denominator != 0");
-    expect(html).toContain("Keep restriction x != 1");
-    expect(html).toContain("Only common multiplied factors can be cancelled");
-    expect(html).toContain("This algebra page uses a lesson-specific symbolic workspace instead of a default line graph.");
+    expect(html).toContain("Cancel the common factor");
+    expect(html).toContain("Keep the restriction");
+    expect(html).toContain("Check by substitution");
+    expect(html).toContain("Restriction: x ≠ 1");
+    expect(html).toContain('aria-label="Drag denominator factor"');
+    expect(html).not.toContain("Algebraic Fractions structure lab");
   });
 });
