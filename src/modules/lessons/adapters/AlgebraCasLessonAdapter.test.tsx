@@ -148,8 +148,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Synthetic division steps");
   });
 
-  it("delegates phase 4 algebra lessons 104 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 104; id <= 128; id += 1) {
+  it("routes lesson 104 to its dedicated remainder-theorem object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 104)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0161"');
+    expect(html).toContain('data-dedicated-lesson="104"');
+    expect(html).toContain("editable-polynomial-independent-evaluation-synthetic-division-draggable-a-remainder-agreement-reconstruction-graded-practice-model");
+    expect(html).toContain('aria-label="Drag value a"');
+    expect(html).toContain("Check reconstruction");
+  });
+
+  it("delegates phase 4 algebra lessons 105 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 105; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

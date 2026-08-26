@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **86 of 130 lessons completed; 44 pending.**
+Dedicated rebuild target: **87 of 130 lessons completed; 43 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1286,3 +1286,17 @@ Evidence:
 - `0160-reference.png`
 - `0160-desktop.png`
 - `0160-dedicated-target-validation.json`
+
+## Lesson 104 / Mockup 0161 - Remainder Theorem
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-polynomial-independent-evaluation-synthetic-division-draggable-a-remainder-agreement-reconstruction-graded-practice-model`. The polynomial parser accepts terms through degree five and inserts missing-power zeros. The divisor parser independently validates `x − a`; one calculation path evaluates `f(a)`, a second performs complete synthetic division, and a third reconstructs `(x − a)q(x) + r`. Agreement is shown only when the user-selected `a`, divisor root, evaluated value, and division remainder genuinely coincide.
+
+The active `a` token is a native draggable object and the evaluation method is a real drop target. Polynomial, divisor, and `a` fields recalculate all proof paths. Incorrect `a` values visibly break agreement; non-linear divisors invalidate the theorem and reconstruction instead of showing a false success. Substitution visibility, division-row visibility, reconstruction checking, five lesson tabs, Reset, editable practice polynomial/divisor/value/remainder, Check my work, and New problem all update visible state. The practice result is independently graded against both evaluation and synthetic division. Lesson and footer destinations are real links. The algebra/CAS adapter dispatches Lesson 104 only to this dedicated component, and the shared algebra fallback now begins at Lesson 105.
+
+Final 995x1580 integrated browser validation verifies `f(1) = 6` for `f(x) = x² + 3x + 2`, synthetic products `1, 4`, quotient `x + 4`, remainder 6, method agreement, and reconstruction. It changes `a` to −1 and proves the methods disagree; restores and physically drags `a = 1`; parses `x³ − 4x + 3` with a missing x² coefficient and proves quotient `x² + x − 3`, remainder 0; rejects divisor `x² + 1`; exercises all three switches; rejects and accepts remainder −3 for the first practice; rejects a mismatched practice value; rotates to a cubic and correctly grades remainder 0; exercises Practice, Reset, and reload. The visual loop matches surface x=229-975 and y=99-1580, intro y=99-273, tabs y=282-335, workspace y=344-1384, paired methods y=424-736, agreement y=736-893, reconstruction y=893-1022, warning y=1031-1081, practice y=1099-1385, navigation y=1394-1446, and footer y=1469-1580. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0161-reference.png`
+- `0161-desktop.png`
+- `0161-dedicated-target-validation.json`
