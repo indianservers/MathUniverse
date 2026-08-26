@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **64 of 130 lessons completed; 66 pending.**
+Dedicated rebuild target: **65 of 130 lessons completed; 65 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -68,6 +68,7 @@ Dedicated rebuild target: **64 of 130 lessons completed; 66 pending.**
 | 0062   |                   80 Decimal Operations | Complete | Dedicated dual editable hundredths operation model with aligned draggable digits, live addition/subtraction, calculated place-value result, exact base-ten blocks, misconception proof, practice, and exact 1060x1484 target geometry              |
 | 0063   |         81 Fraction-Decimal Conversion | Complete | Dedicated editable fraction bridge with draggable segmented strip, calculated long division/decimal/percent, interactive hundred grid and number line, terminating audit, practice, and exact 1508x1043 target geometry                           |
 | 0064   |                  82 Recurring Decimals | Complete | Dedicated editable fraction long-division engine with repeated-remainder cycle detection, draggable repeat tiles, calculated exact overbar form, remainder loop, terminating contrast, practice, and exact 1500x1049 target geometry             |
+| 0065   |                        83 Ratio Models | Complete | Dedicated dual editable part-count model with draggable tokens, calculated total/tape/scaled batch, live scale factor, linked double number lines, relationship proof, practice, and exact 1054x1492 target geometry                              |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -964,3 +965,17 @@ Evidence:
 - `0064-reference.png`
 - `0064-desktop.png`
 - `0064-dedicated-target-validation.json`
+
+## Lesson 83 / Mockup 0065 - Ratio Models
+
+Reworked individually against the target mockup with a dedicated `dual-editable-part-count-draggable-token-tape-diagram-scaled-batch-double-number-line-preserved-relationship-practice-model`. The blue and red part counts plus one shared scale factor drive the part tokens, total, equal-unit tape, grouped braces, scaled token batch, scaled ratio equation, paired double number lines, and relationship-preservation statements from one lesson-owned model.
+
+Both part counts are directly editable with positive-count guards. Every source token is clickable and a native draggable/drop target; edited states compact safely without overlapping the other group. Every tape segment is live, the scale-factor control cycles real factors, all lesson tabs change state, Share produces a real share value, and the `3:5` practice prompt loads a complete model. The shared number adapter only dispatches Lesson 83 to this separate component.
+
+Final 1054x1492 integrated browser validation verifies `2:3`, total 5, scale factor 2, scaled ratio `4:6`, tape units, and both number lines; edits to `3:4` and verifies total 7 and `6:8`; physically drags blue token 3 onto token 1 and verifies `1:4`; resets and changes the scale to 3 to verify `6:9`; exercises Explain and Share; loads practice and verifies `3:5`, total 8, and `6:10`; then resets. The final visual loop matches the target at page x=232-1035 and y=104-1478, lesson panel y=104-1284, tabs y=236-303, lab x=239-772 and y=303-1284, source tokens y=421, tape y=603-795, scaled model y=795-999, double number lines y=999-1168, preservation proof y=1168-1208, practice x=344-649 and y=1226-1269, side rail x=786-1016, navigation y=1290-1349, and footer y=1360-1478. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0065-reference.png`
+- `0065-desktop.png`
+- `0065-dedicated-target-validation.json`

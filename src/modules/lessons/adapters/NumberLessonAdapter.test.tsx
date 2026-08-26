@@ -389,6 +389,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Repeating digit tile 4"');
     expect(html).toContain("A repeated remainder creates a recurring decimal");
   });
+  it("renders lesson 83 as a dedicated linked ratio-model workspace", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 83)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0065"');
+    expect(html).toContain('data-dedicated-lesson="83"');
+    expect(html).toContain('data-object-model="dual-editable-part-count-draggable-token-tape-diagram-scaled-batch-double-number-line-preserved-relationship-practice-model"');
+    expect(html).toContain('data-blue="2"');
+    expect(html).toContain('data-red="3"');
+    expect(html).toContain('data-total="5"');
+    expect(html).toContain('data-scale="2"');
+    expect(html).toContain('data-scaled-blue="4"');
+    expect(html).toContain('data-scaled-red="6"');
+    expect(html).toContain('aria-label="First blue ratio part"');
+    expect(html).toContain('aria-label="red ratio token 3"');
+    expect(html).toContain("both parts must scale together");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

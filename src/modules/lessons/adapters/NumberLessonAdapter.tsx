@@ -31,6 +31,7 @@ import DecimalPlaceValueTargetLesson79 from "./DecimalPlaceValueTargetLesson79";
 import DecimalOperationsTargetLesson80 from "./DecimalOperationsTargetLesson80";
 import FractionDecimalConversionTargetLesson81 from "./FractionDecimalConversionTargetLesson81";
 import RecurringDecimalsTargetLesson82 from "./RecurringDecimalsTargetLesson82";
+import RatioModelsTargetLesson83 from "./RatioModelsTargetLesson83";
 
 export default function NumberLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 57) {
@@ -110,6 +111,9 @@ export default function NumberLessonAdapter({ lesson, resetToken, onInteraction 
   }
   if (lesson.id === 82) {
     return <RecurringDecimalsTargetLesson82 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 83) {
+    return <RatioModelsTargetLesson83 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
   return <LegacyNumberLessonAdapter lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
 }

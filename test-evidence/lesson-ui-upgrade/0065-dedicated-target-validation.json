@@ -1,0 +1,262 @@
+{
+  "mockup": "0065",
+  "lessonId": 83,
+  "route": "/lessons/numbers-and-arithmetic/83-ratio-models",
+  "objectModel": "dual-editable-part-count-draggable-token-tape-diagram-scaled-batch-double-number-line-preserved-relationship-practice-model",
+  "checks": {
+    "initial": {
+      "blue": "2",
+      "red": "3",
+      "total": "5",
+      "scale": "2",
+      "scaled-blue": "4",
+      "scaled-red": "6",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    },
+    "blueEdited": {
+      "blue": "3",
+      "red": "3",
+      "total": "6",
+      "scale": "2",
+      "scaled-blue": "6",
+      "scaled-red": "6",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "redEdited": {
+      "blue": "3",
+      "red": "4",
+      "total": "7",
+      "scale": "2",
+      "scaled-blue": "6",
+      "scaled-red": "8",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "dragged": {
+      "blue": "1",
+      "red": "4",
+      "total": "5",
+      "scale": "2",
+      "scaled-blue": "2",
+      "scaled-red": "8",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "3"
+    },
+    "dragRecorded": true,
+    "scaled": {
+      "blue": "2",
+      "red": "3",
+      "total": "5",
+      "scale": "3",
+      "scaled-blue": "6",
+      "scaled-red": "9",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "explain": {
+      "blue": "2",
+      "red": "3",
+      "total": "5",
+      "scale": "3",
+      "scaled-blue": "6",
+      "scaled-red": "9",
+      "tab": "Explain",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "shared": {
+      "blue": "2",
+      "red": "3",
+      "total": "5",
+      "scale": "3",
+      "scaled-blue": "6",
+      "scaled-red": "9",
+      "tab": "Explain",
+      "share-state": "Ready",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "3"
+    },
+    "practice": {
+      "blue": "3",
+      "red": "5",
+      "total": "8",
+      "scale": "2",
+      "scaled-blue": "6",
+      "scaled-red": "10",
+      "tab": "Explain",
+      "share-state": "Ready",
+      "practice-loaded": "true",
+      "dragging": "",
+      "actions": "4"
+    },
+    "restored": {
+      "blue": "2",
+      "red": "3",
+      "total": "5",
+      "scale": "2",
+      "scaled-blue": "4",
+      "scaled-red": "6",
+      "tab": "Interaction + visualization",
+      "share-state": "Share",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1054,
+      "height": 1492
+    },
+    "document": {
+      "width": 1054,
+      "height": 1492
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 104,
+      "bottom": 1478,
+      "height": 1374,
+      "left": 232,
+      "right": 1035,
+      "width": 803
+    },
+    "regions": {
+      "lesson": {
+        "top": 104,
+        "bottom": 1284,
+        "height": 1180,
+        "left": 232,
+        "right": 1035,
+        "width": 803
+      },
+      "header": {
+        "top": 105,
+        "bottom": 236,
+        "height": 131,
+        "left": 233,
+        "right": 1034,
+        "width": 801
+      },
+      "tabs": {
+        "top": 236,
+        "bottom": 303,
+        "height": 67,
+        "left": 233,
+        "right": 1034,
+        "width": 801
+      },
+      "workspace": {
+        "top": 303,
+        "bottom": 1284,
+        "height": 981,
+        "left": 233,
+        "right": 1034,
+        "width": 801
+      },
+      "lab": {
+        "top": 303,
+        "bottom": 1284,
+        "height": 981,
+        "left": 239,
+        "right": 772,
+        "width": 533
+      },
+      "tokens": {
+        "top": 420.5,
+        "bottom": 573.5,
+        "height": 153,
+        "left": 264,
+        "right": 747,
+        "width": 483
+      },
+      "tape": {
+        "top": 603,
+        "bottom": 795,
+        "height": 192,
+        "left": 260,
+        "right": 753,
+        "width": 493
+      },
+      "scaled": {
+        "top": 795,
+        "bottom": 999,
+        "height": 204,
+        "left": 260,
+        "right": 753,
+        "width": 493
+      },
+      "lines": {
+        "top": 999,
+        "bottom": 1168,
+        "height": 169,
+        "left": 260,
+        "right": 753,
+        "width": 493
+      },
+      "preserved": {
+        "top": 1168,
+        "bottom": 1208,
+        "height": 40,
+        "left": 254,
+        "right": 757,
+        "width": 503
+      },
+      "practice": {
+        "top": 1226,
+        "bottom": 1269,
+        "height": 43,
+        "left": 344,
+        "right": 649,
+        "width": 305
+      },
+      "side": {
+        "top": 303,
+        "bottom": 1219,
+        "height": 916,
+        "left": 786,
+        "right": 1016,
+        "width": 230
+      },
+      "navigation": {
+        "top": 1290,
+        "bottom": 1349,
+        "height": 59,
+        "left": 232,
+        "right": 1035,
+        "width": 803
+      },
+      "footer": {
+        "top": 1360,
+        "bottom": 1478,
+        "height": 118,
+        "left": 232,
+        "right": 1035,
+        "width": 803
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
