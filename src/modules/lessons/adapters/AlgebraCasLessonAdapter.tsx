@@ -4,6 +4,7 @@ import { symbolicCompleteSquare, symbolicExpand, symbolicFactor, symbolicSimplif
 import AdapterFrame from "../components/AdapterFrame";
 import type { LessonAdapterProps } from "../types";
 import { AlgebraConceptWorkspace } from "./AlgebraLessonAdapter";
+import AlgebraTilesTargetLesson92 from "./AlgebraTilesTargetLesson92";
 
 function run(title: string, coefficient: number): { input: string; output: SymbolicResult } {
   const name = title.toLowerCase();
@@ -83,6 +84,9 @@ function runStrengthenedAlgebra(name: string, coefficient: number): { input: str
 }
 
 export default function AlgebraCasLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  if (lesson.id === 92) {
+    return <AlgebraTilesTargetLesson92 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
   if (lesson.categorySlug === "algebra" && lesson.id >= 92 && lesson.id <= 128) {
     return <AlgebraConceptWorkspace lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }

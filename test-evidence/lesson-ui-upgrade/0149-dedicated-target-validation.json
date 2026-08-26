@@ -1,0 +1,298 @@
+{
+  "mockup": "0149",
+  "lessonId": 92,
+  "route": "/lessons/algebra/92-algebra-tiles",
+  "objectModel": "editable-positive-negative-algebra-tiles-draggable-bank-zero-pairs-linked-area-model-symbolic-trace-model",
+  "checks": {
+    "initial": {
+      "expression": "5x − 1",
+      "x-coefficient": "5",
+      "constant": "-1",
+      "x-squared": "0",
+      "zero-x": "0",
+      "zero-units": "0",
+      "combined": "true",
+      "area-calculation": "false",
+      "tab": "Workspace",
+      "dragging": "",
+      "problem": "0",
+      "actions": "0"
+    },
+    "addedX": {
+      "expression": "6x − 1",
+      "x-coefficient": "6",
+      "constant": "-1",
+      "x-squared": "0",
+      "zero-x": "0",
+      "zero-units": "0",
+      "combined": "false",
+      "area-calculation": "false",
+      "tab": "Workspace",
+      "dragging": "",
+      "problem": "0",
+      "actions": "1"
+    },
+    "addedUnit": {
+      "expression": "6x",
+      "x-coefficient": "6",
+      "constant": "0",
+      "x-squared": "0",
+      "zero-x": "0",
+      "zero-units": "0",
+      "combined": "false",
+      "area-calculation": "false",
+      "tab": "Workspace",
+      "dragging": "",
+      "problem": "0",
+      "actions": "2"
+    },
+    "bankDrag": {
+      "expression": "6x − 1",
+      "x-coefficient": "6",
+      "constant": "-1",
+      "x-squared": "0",
+      "zero-x": "0",
+      "zero-units": "0",
+      "combined": "false",
+      "area-calculation": "false",
+      "tab": "Workspace",
+      "dragging": "",
+      "problem": "0",
+      "actions": "1"
+    },
+    "expressionDrag": {
+      "expression": "6x − 1",
+      "x-coefficient": "6",
+      "constant": "-1",
+      "x-squared": "0",
+      "zero-x": "0",
+      "zero-units": "0",
+      "combined": "true",
+      "area-calculation": "false",
+      "tab": "Workspace",
+      "dragging": "",
+      "problem": "0",
+      "actions": "2"
+    },
+    "zeroPairs": {
+      "expression": "5x − 1",
+      "x-coefficient": "5",
+      "constant": "-1",
+      "x-squared": "0",
+      "zero-x": "1",
+      "zero-units": "1",
+      "combined": "true",
+      "area-calculation": "false",
+      "tab": "Workspace",
+      "dragging": "",
+      "problem": "0",
+      "actions": "2"
+    },
+    "zeroPairsCleared": {
+      "expression": "5x − 1",
+      "x-coefficient": "5",
+      "constant": "-1",
+      "x-squared": "0",
+      "zero-x": "0",
+      "zero-units": "0",
+      "combined": "true",
+      "area-calculation": "false",
+      "tab": "Workspace",
+      "dragging": "",
+      "problem": "0",
+      "actions": "3"
+    },
+    "areaCalculation": {
+      "expression": "5x − 1",
+      "x-coefficient": "5",
+      "constant": "-1",
+      "x-squared": "0",
+      "zero-x": "0",
+      "zero-units": "0",
+      "combined": "true",
+      "area-calculation": "true",
+      "tab": "Workspace",
+      "dragging": "",
+      "problem": "0",
+      "actions": "4"
+    },
+    "newProblem": {
+      "expression": "5x + 1",
+      "x-coefficient": "5",
+      "constant": "1",
+      "x-squared": "0",
+      "zero-x": "0",
+      "zero-units": "0",
+      "combined": "true",
+      "area-calculation": "true",
+      "tab": "Workspace",
+      "dragging": "",
+      "problem": "1",
+      "actions": "5"
+    },
+    "explain": {
+      "expression": "5x + 1",
+      "x-coefficient": "5",
+      "constant": "1",
+      "x-squared": "0",
+      "zero-x": "0",
+      "zero-units": "0",
+      "combined": "true",
+      "area-calculation": "true",
+      "tab": "Explain",
+      "dragging": "",
+      "problem": "1",
+      "actions": "6"
+    },
+    "restored": {
+      "expression": "5x − 1",
+      "x-coefficient": "5",
+      "constant": "-1",
+      "x-squared": "0",
+      "zero-x": "0",
+      "zero-units": "0",
+      "combined": "true",
+      "area-calculation": "false",
+      "tab": "Workspace",
+      "dragging": "",
+      "problem": "0",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1110,
+      "height": 1417
+    },
+    "document": {
+      "width": 1110,
+      "height": 1422
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": true,
+    "surface": {
+      "top": 104,
+      "bottom": 1417,
+      "height": 1313,
+      "left": 247,
+      "right": 1090,
+      "width": 843
+    },
+    "regions": {
+      "header": {
+        "top": 104,
+        "bottom": 215,
+        "height": 111,
+        "left": 247,
+        "right": 1090,
+        "width": 843
+      },
+      "tabs": {
+        "top": 216,
+        "bottom": 273,
+        "height": 57,
+        "left": 247,
+        "right": 1090,
+        "width": 843
+      },
+      "layout": {
+        "top": 287,
+        "bottom": 1382,
+        "height": 1095,
+        "left": 247,
+        "right": 1090,
+        "width": 843
+      },
+      "builder": {
+        "top": 287,
+        "bottom": 928,
+        "height": 641,
+        "left": 247,
+        "right": 848,
+        "width": 601
+      },
+      "before": {
+        "top": 362,
+        "bottom": 540,
+        "height": 178,
+        "left": 259,
+        "right": 836,
+        "width": 577
+      },
+      "after": {
+        "top": 580,
+        "bottom": 749,
+        "height": 169,
+        "left": 259,
+        "right": 836,
+        "width": 577
+      },
+      "zeroPairs": {
+        "top": 769,
+        "bottom": 914,
+        "height": 145,
+        "left": 259,
+        "right": 836,
+        "width": 577
+      },
+      "rail": {
+        "top": 291,
+        "bottom": 1258,
+        "height": 967,
+        "left": 859,
+        "right": 1090,
+        "width": 231
+      },
+      "bank": {
+        "top": 291,
+        "bottom": 581,
+        "height": 290,
+        "left": 859,
+        "right": 1090,
+        "width": 231
+      },
+      "count": {
+        "top": 590,
+        "bottom": 807,
+        "height": 217,
+        "left": 859,
+        "right": 1090,
+        "width": 231
+      },
+      "checklist": {
+        "top": 818,
+        "bottom": 1078,
+        "height": 260,
+        "left": 859,
+        "right": 1090,
+        "width": 231
+      },
+      "valid": {
+        "top": 1095,
+        "bottom": 1258,
+        "height": 163,
+        "left": 859,
+        "right": 1090,
+        "width": 231
+      },
+      "area": {
+        "top": 940,
+        "bottom": 1197,
+        "height": 257,
+        "left": 247,
+        "right": 848,
+        "width": 601
+      },
+      "trace": {
+        "top": 1211,
+        "bottom": 1367,
+        "height": 156,
+        "left": 247,
+        "right": 848,
+        "width": 601
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

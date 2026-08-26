@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **74 of 130 lessons completed; 56 pending.**
+Dedicated rebuild target: **75 of 130 lessons completed; 55 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -78,6 +78,7 @@ Dedicated rebuild target: **74 of 130 lessons completed; 56 pending.**
 | 0072   |                    90 Compound Change | Complete | Dedicated editable start/rate/stage-count model with draggable sequential amount bars, latest-base connectors, calculated multipliers/formulas/result/compound total, misconception proof, functional controls, and exact 1501x1048 target geometry |
 | 0073   |                     91 Scale Drawings | Complete | Dedicated editable map-length/scale model with a generated city-map asset, draggable route endpoints, clickable ruler and real-distance points, calculated conversion proof, functional controls, and exact 1074x1464 target geometry |
 | 0074   |                 618 Slider Component | Complete | Dedicated editable slider-schema model with real min/max/step/default controls, a physically draggable range input, live coefficient/equation/parabola updates, linked authoring preview, checklist validation, and exact 1504x1045 target geometry |
+| 0149   |                    92 Algebra Tiles | Complete | Dedicated positive/negative algebra-tile model with a draggable tile bank and expression tiles, zero pairs, calculated simplification/counts/checklist/trace, linked area model, functional controls, and exact 1110x1417 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1114,3 +1115,17 @@ Evidence:
 - `0074-reference.png`
 - `0074-desktop.png`
 - `0074-dedicated-target-validation.json`
+
+## Lesson 92 / Mockup 0149 - Algebra Tiles
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-positive-negative-algebra-tiles-draggable-bank-zero-pairs-linked-area-model-symbolic-trace-model`. Positive x, negative x, positive unit, negative unit, and x-squared tiles drive the expression, combined result, tile counts, checklist, validity result, and symbolic trace from one lesson-owned calculation model.
+
+Every tile-bank object and expression tile is natively draggable. Bank labels add real tiles; expression tiles can be dropped into the result surface; x and unit zero-pair controls preserve the expression while updating their visual models; Clear, Reset, New Problem, the area calculation toggle, and all tabs perform real state changes. The algebra/CAS adapter dispatches Lesson 92 only to this dedicated component.
+
+Final 1110x1417 integrated browser validation verifies the initial `2x + 3x - 1 = 5x - 1`; adds x and unit tiles and recalculates to `6x - 1` and `6x`; physically drags a bank tile into Before and an expression tile into After; adds and clears both zero-pair types without changing the value; toggles the linked area calculation; rotates to a new `5x + 1` problem; exercises Explain; then reloads the exact target state. The final visual loop aligns the target at surface x=247-1090 and y=104-1417, tabs y=216-273, builder x=247-848 and y=287-928, right rail x=859-1090, area model y=940-1197, and symbolic trace y=1211-1367. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0149-reference.png`
+- `0149-desktop.png`
+- `0149-dedicated-target-validation.json`
