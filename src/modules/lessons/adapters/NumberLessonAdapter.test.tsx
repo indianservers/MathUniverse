@@ -480,6 +480,22 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Quantity dot 80"');
     expect(html).toContain("Percent means parts per hundred");
   });
+  it("renders lesson 89 as a dedicated percentage-change baseline model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 89)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0071"');
+    expect(html).toContain('data-dedicated-lesson="89"');
+    expect(html).toContain('data-object-model="dual-editable-original-new-draggable-before-after-bars-percentage-change-breakdown-number-line-baseline-warning-practice-model"');
+    expect(html).toContain('data-original="80"');
+    expect(html).toContain('data-new="100"');
+    expect(html).toContain('data-change="20"');
+    expect(html).toContain('data-percent="25"');
+    expect(html).toContain('data-direction="increase"');
+    expect(html).toContain('aria-label="Original amount"');
+    expect(html).toContain('aria-label="New amount bar"');
+    expect(html).toContain('aria-label="New number line point"');
+    expect(html).toContain("Use the original amount as the base");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

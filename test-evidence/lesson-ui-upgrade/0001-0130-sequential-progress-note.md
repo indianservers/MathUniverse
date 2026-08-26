@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **70 of 130 lessons completed; 60 pending.**
+Dedicated rebuild target: **71 of 130 lessons completed; 59 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -74,6 +74,7 @@ Dedicated rebuild target: **70 of 130 lessons completed; 60 pending.**
 | 0068   |                 86 Inverse Proportion | Complete | Dedicated editable constant-product model with reciprocal table and curve, draggable graph points and task arrays, work-sharing comparison, quick check, formula, and calculated practice at exact 1509x1042 target geometry |
 | 0069   |                          87 Unit Rates | Complete | Dedicated editable total/divisor model with generated transparent rice-bag objects, drag controls, equal-sharing branches and cards, unit-rate equation, comparison table, double number line, and practice at exact 1068x1473 target geometry |
 | 0070   |                         88 Percentages | Complete | Dedicated editable percentage model with a draggable/clickable hundred grid, calculated fraction/decimal forms, interactive percent slider and number line, linked quantity groups, functional controls/practice, and exact 1090x1443 target geometry |
+| 0071   |                  89 Percentage Change | Complete | Dedicated dual editable original/new amount model with draggable before/after bars and number-line points, calculated change/percentage/direction, three-step proof, baseline warning, functional controls/practice, and exact 1495x1052 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1054,3 +1055,17 @@ Evidence:
 - `0070-reference.png`
 - `0070-desktop.png`
 - `0070-dedicated-target-validation.json`
+
+## Lesson 89 / Mockup 0071 - Percentage Change
+
+Reworked individually against the target mockup with a dedicated `dual-editable-original-new-draggable-before-after-bars-percentage-change-breakdown-number-line-baseline-warning-practice-model`. Original and new amounts drive the signed and absolute change, increase/decrease direction, percentage based on the original value, before/after bar lengths, segmented change bracket, three calculation stages, number-line points and arc, side-rail summaries, baseline warning, and practice result from one lesson-owned calculation model.
+
+Both amounts are real numeric inputs. The original bar, new bar, change segment, and both number-line points are native draggable/drop objects; every number-line tick is a live new-value control. All five tabs, language, Reset, Share, Workspace, and the `50 to 65` practice prompt perform real state changes. The shared number adapter only dispatches Lesson 89 to this separate component.
+
+Final 1495x1052 integrated browser validation verifies `80 to 100`, change 20, and `20/80 x 100 = 25% increase`; edits the new value to 120 and verifies 50%; edits the original to 100 and verifies 20%; creates and verifies a `100 to 75 = 25% decrease`; physically drags the new bar onto the original bar and verifies equality; selects 60 from the number line and verifies a 25% decrease; exercises Explain, Share, and Workspace; loads and verifies practice `50 to 65 = 30% increase`; then reloads the exact target state. The final visual loop matches the target at surface x=272-1477 and y=115-1032, header y=115-330, tabs y=339-381, workspace y=391-964, visual model x=286-1067 and y=446-632, calculation breakdown y=644-770, number line y=776-951 with target-specific anchors at x=765/893, side rail x=1093-1477, formula y=603-715, warning y=725-789, practice y=807-930, and navigation y=972-1032. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0071-reference.png`
+- `0071-desktop.png`
+- `0071-dedicated-target-validation.json`
