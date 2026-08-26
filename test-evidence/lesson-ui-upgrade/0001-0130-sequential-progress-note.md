@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **63 of 130 lessons completed; 67 pending.**
+Dedicated rebuild target: **64 of 130 lessons completed; 66 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -67,6 +67,7 @@ Dedicated rebuild target: **63 of 130 lessons completed; 67 pending.**
 | 0061   |                  79 Decimal Place Value | Complete | Dedicated dual editable exact-hundredths model with draggable 100-cell grids, calculated place chart/deciding digit/difference, interactive number line, trailing-zero proof, live practice, and exact 1065x1477 target geometry                    |
 | 0062   |                   80 Decimal Operations | Complete | Dedicated dual editable hundredths operation model with aligned draggable digits, live addition/subtraction, calculated place-value result, exact base-ten blocks, misconception proof, practice, and exact 1060x1484 target geometry              |
 | 0063   |         81 Fraction-Decimal Conversion | Complete | Dedicated editable fraction bridge with draggable segmented strip, calculated long division/decimal/percent, interactive hundred grid and number line, terminating audit, practice, and exact 1508x1043 target geometry                           |
+| 0064   |                  82 Recurring Decimals | Complete | Dedicated editable fraction long-division engine with repeated-remainder cycle detection, draggable repeat tiles, calculated exact overbar form, remainder loop, terminating contrast, practice, and exact 1500x1049 target geometry             |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -949,3 +950,17 @@ Evidence:
 - `0063-reference.png`
 - `0063-desktop.png`
 - `0063-dedicated-target-validation.json`
+
+## Lesson 82 / Mockup 0064 - Recurring Decimals
+
+Reworked individually against the target mockup with a dedicated `editable-fraction-long-division-remainder-cycle-detection-draggable-repeat-tiles-exact-overbar-rounded-warning-practice-model`. The numerator and denominator generate the quotient digits, ordered remainder sequence, first cycle index, minimal repeating block, repeated display, long-division columns, remainder loop, exact overbar form, rounded-value warning, and terminating/recurring classification from one lesson-owned calculation engine.
+
+Both fraction terms are directly editable with proper-fraction guards. Each displayed repeating digit is a clickable native draggable/drop target that changes the visible cycle length while preserving the mathematical value. The `2/3` practice prompt loads and calculates a real model, and Reset integration restores `1/3`. The shared number adapter only dispatches Lesson 82 to this separate component.
+
+Final 1500x1049 integrated browser validation verifies `1/3 = 0.333...`, repeating block `3`, remainder sequence `1`, cycle start 0, and recurring status; physically drags repeat tile 4 onto tile 2 and verifies the visible cycle length; edits to `2/3 = 0.666...`; verifies the non-immediate cycle `1/6 = 0.1666...` with remainders `1,4` and cycle start 1; checks terminating `1/2 = 0.5`; loads and verifies the `2/3` practice; then restores the target state. The final visual loop matches the target at page x=295-1482 and y=132-1032, lesson panel y=132-954, workspace y=319-936, main proof x=313-1110, long division x=314-824, repeat tiles centered at the target columns, remainder loop x=823-1109 with cards y=391/500/609/718, side rail x=1143-1462, and inset navigation x=300-1478 and y=966-1032. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0064-reference.png`
+- `0064-desktop.png`
+- `0064-dedicated-target-validation.json`

@@ -372,6 +372,23 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Fraction strip part 4"');
     expect(html).toContain("The value stays the same across forms");
   });
+  it("renders lesson 82 as a dedicated recurring-remainder machine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 82)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0064"');
+    expect(html).toContain('data-dedicated-lesson="82"');
+    expect(html).toContain('data-object-model="editable-fraction-long-division-remainder-cycle-detection-draggable-repeat-tiles-exact-overbar-rounded-warning-practice-model"');
+    expect(html).toContain('data-numerator="1"');
+    expect(html).toContain('data-denominator="3"');
+    expect(html).toContain('data-decimal="0.333…"');
+    expect(html).toContain('data-cycle="3"');
+    expect(html).toContain('data-remainders="1"');
+    expect(html).toContain('data-recurring="true"');
+    expect(html).toContain('data-visible-repeats="4"');
+    expect(html).toContain('aria-label="Recurring decimal numerator"');
+    expect(html).toContain('aria-label="Repeating digit tile 4"');
+    expect(html).toContain("A repeated remainder creates a recurring decimal");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

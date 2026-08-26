@@ -1,0 +1,228 @@
+{
+  "mockup": "0064",
+  "lessonId": 82,
+  "route": "/lessons/numbers-and-arithmetic/82-recurring-decimals",
+  "objectModel": "editable-fraction-long-division-remainder-cycle-detection-draggable-repeat-tiles-exact-overbar-rounded-warning-practice-model",
+  "checks": {
+    "initial": {
+      "numerator": "1",
+      "denominator": "3",
+      "decimal": "0.333…",
+      "cycle": "3",
+      "repeat-start": "0",
+      "remainders": "1",
+      "recurring": "true",
+      "visible-repeats": "4",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    },
+    "dragged": {
+      "numerator": "1",
+      "denominator": "3",
+      "decimal": "0.333…",
+      "cycle": "3",
+      "repeat-start": "0",
+      "remainders": "1",
+      "recurring": "true",
+      "visible-repeats": "2",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "1"
+    },
+    "dragRecorded": true,
+    "twoThirds": {
+      "numerator": "2",
+      "denominator": "3",
+      "decimal": "0.666…",
+      "cycle": "6",
+      "repeat-start": "0",
+      "remainders": "2",
+      "recurring": "true",
+      "visible-repeats": "2",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "2"
+    },
+    "oneSixth": {
+      "numerator": "1",
+      "denominator": "6",
+      "decimal": "0.1666…",
+      "cycle": "6",
+      "repeat-start": "1",
+      "remainders": "1,4",
+      "recurring": "true",
+      "visible-repeats": "2",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "4"
+    },
+    "terminating": {
+      "numerator": "1",
+      "denominator": "2",
+      "decimal": "0.5",
+      "cycle": "",
+      "repeat-start": "-1",
+      "remainders": "1",
+      "recurring": "false",
+      "visible-repeats": "2",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "5"
+    },
+    "practice": {
+      "numerator": "2",
+      "denominator": "3",
+      "decimal": "0.666…",
+      "cycle": "6",
+      "repeat-start": "0",
+      "remainders": "2",
+      "recurring": "true",
+      "visible-repeats": "4",
+      "practice-loaded": "true",
+      "dragging": "",
+      "actions": "7"
+    },
+    "restored": {
+      "numerator": "1",
+      "denominator": "3",
+      "decimal": "0.333…",
+      "cycle": "3",
+      "repeat-start": "0",
+      "remainders": "1",
+      "recurring": "true",
+      "visible-repeats": "4",
+      "practice-loaded": "false",
+      "dragging": "",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1500,
+      "height": 1049
+    },
+    "document": {
+      "width": 1500,
+      "height": 1049
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "surface": {
+      "top": 132,
+      "bottom": 1032,
+      "height": 900,
+      "left": 295,
+      "right": 1482,
+      "width": 1187
+    },
+    "regions": {
+      "lesson": {
+        "top": 132,
+        "bottom": 954,
+        "height": 822,
+        "left": 295,
+        "right": 1482,
+        "width": 1187
+      },
+      "workspace": {
+        "top": 319,
+        "bottom": 936,
+        "height": 617,
+        "left": 313,
+        "right": 1464,
+        "width": 1151
+      },
+      "main": {
+        "top": 319,
+        "bottom": 936,
+        "height": 617,
+        "left": 313,
+        "right": 1110,
+        "width": 797
+      },
+      "division": {
+        "top": 320,
+        "bottom": 936,
+        "height": 616,
+        "left": 314,
+        "right": 824,
+        "width": 510
+      },
+      "loop": {
+        "top": 320,
+        "bottom": 936,
+        "height": 616,
+        "left": 823,
+        "right": 1109,
+        "width": 286
+      },
+      "side": {
+        "top": 319,
+        "bottom": 936,
+        "height": 617,
+        "left": 1143,
+        "right": 1462,
+        "width": 319
+      },
+      "fraction": {
+        "top": 319,
+        "bottom": 462.53125,
+        "height": 143.53125,
+        "left": 1143,
+        "right": 1462,
+        "width": 319
+      },
+      "facts": {
+        "top": 473.53125,
+        "bottom": 623.53125,
+        "height": 150,
+        "left": 1143,
+        "right": 1462,
+        "width": 319
+      },
+      "exact": {
+        "top": 634.53125,
+        "bottom": 718.53125,
+        "height": 84,
+        "left": 1143,
+        "right": 1462,
+        "width": 319
+      },
+      "warning": {
+        "top": 729.53125,
+        "bottom": 796.53125,
+        "height": 67,
+        "left": 1143,
+        "right": 1462,
+        "width": 319
+      },
+      "info": {
+        "top": 807.53125,
+        "bottom": 872.53125,
+        "height": 65,
+        "left": 1143,
+        "right": 1462,
+        "width": 319
+      },
+      "practice": {
+        "top": 883.53125,
+        "bottom": 936,
+        "height": 52.46875,
+        "left": 1143,
+        "right": 1462,
+        "width": 319
+      },
+      "navigation": {
+        "top": 966,
+        "bottom": 1032,
+        "height": 66,
+        "left": 300,
+        "right": 1478,
+        "width": 1178
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
