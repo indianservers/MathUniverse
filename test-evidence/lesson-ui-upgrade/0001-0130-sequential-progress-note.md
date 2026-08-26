@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **77 of 130 lessons completed; 53 pending.**
+Dedicated rebuild target: **78 of 130 lessons completed; 52 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -81,6 +81,7 @@ Dedicated rebuild target: **77 of 130 lessons completed; 53 pending.**
 | 0149   |                    92 Algebra Tiles | Complete | Dedicated positive/negative algebra-tile model with a draggable tile bank and expression tiles, zero pairs, calculated simplification/counts/checklist/trace, linked area model, functional controls, and exact 1110x1417 target geometry |
 | 0150   |                       93 Like Terms | Complete | Dedicated draggable like-term model with coefficient grouping, cancellation pairs, live simplification, substitution equivalence proof, staged controls, expression presets, graded practice, and exact 1013x1553 target geometry |
 | 0151   |                     94 Substitution | Complete | Dedicated draggable substitution-slot model with live expression/value controls, stepwise evaluation, negative-bracket behavior, result checking, rotating practice, functional tabs/toggles, and exact 992x1586 target geometry |
+| 0152   |              95 Expanding Brackets | Complete | Dedicated draggable distributive-factor model with a dynamic two-region area partition, generated unit grid, symbolic expansion, substitution proof, visual switches, guided steps, graded practice, and exact 996x1579 target geometry |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1159,3 +1160,17 @@ Evidence:
 - `0151-reference.png`
 - `0151-desktop.png`
 - `0151-dedicated-target-validation.json`
+
+## Lesson 95 / Mockup 0152 - Expanding Brackets
+
+Reworked individually against the mathematics target mockup with a dedicated `draggable-distributive-factor-dynamic-area-partition-symbolic-expansion-substitution-proof-graded-practice-model`. The outside factor, variable term, constant term, and check value drive the two-region rectangle, nested unit-cell grid, distribution arrows, partial products, expanded expression, guided steps, substitution values, worked example, result proof, and misconception comparison from one lesson-owned model.
+
+The outside factor is a native draggable object and the area is a real drop target. Factor and check-value steppers, direct numeric fields, variable/constant inputs, area and arrow switches, substitution checking, Reset, all five tabs, editable keyboard-graded practice, and Try another all update visible lesson state. Unit tiles are generated as a true `constant by factor` nested grid instead of decorative cells, and lesson/footer destinations are real links. The algebra/CAS adapter dispatches Lesson 95 only to this dedicated component.
+
+Final 996x1579 integrated browser validation verifies `4(x + 3) = 4x + 12` and both substitution paths equal 36 at x=6; raises the factor to 5 and verifies `5x + 15`, value 45, and 15 unit cells; changes the constant to 4 and verifies `5x + 20`, value 50, and 20 unit cells; changes the variable to a and check value to 7 and verifies both paths equal 55; resets and physically drags the factor onto the area; toggles arrows and area visibility; grades incorrect and correct practice answers with Enter; rotates to `2(a + 4) = 2a + 8`; exercises Practice; then reloads the exact target state. The final visual loop matches surface x=223-977 and y=106-1579, header y=106-302, tabs y=312-371, primary lab y=382-886, controls/result x=700-977, guided steps y=896-1034, rule/example/warning row y=1044-1254, practice y=1264-1413, navigation y=1423-1474, and footer y=1481-1579. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0152-reference.png`
+- `0152-desktop.png`
+- `0152-dedicated-target-validation.json`

@@ -40,8 +40,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Why brackets matter");
   });
 
-  it("delegates phase 4 algebra lessons 95 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 95; id <= 128; id += 1) {
+  it("routes lesson 95 to its dedicated expanding-brackets object model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 95)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0152"');
+    expect(html).toContain('data-dedicated-lesson="95"');
+    expect(html).toContain("draggable-distributive-factor-dynamic-area-partition-symbolic-expansion-substitution-proof-graded-practice-model");
+    expect(html).toContain('aria-label="Drag outside factor"');
+    expect(html).toContain("Distributive area model");
+  });
+
+  it("delegates phase 4 algebra lessons 96 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 96; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

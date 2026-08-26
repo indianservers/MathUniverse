@@ -1,0 +1,64 @@
+import { ArrowLeft, ArrowRight, Check, Mountain, RefreshCw, RotateCcw, Target, TriangleAlert } from "lucide-react";
+import { useEffect, useState, type DragEvent, type KeyboardEvent } from "react";
+import type { LessonAdapterProps } from "../types";
+import "./ExpandingBracketsTargetLesson95.css";
+
+type Practice = { factor: number; variable: string; constant: number };
+const practices: Practice[] = [
+  { factor: 3, variable: "y", constant: 5 },
+  { factor: 2, variable: "a", constant: 4 },
+  { factor: 5, variable: "m", constant: 2 },
+];
+const sign = (value: number) => value < 0 ? `− ${Math.abs(value)}` : `+ ${value}`;
+const bracket = (variable: string, constant: number) => `(${variable} ${sign(constant)})`;
+const expanded = (factor: number, variable: string, constant: number) => `${factor}${variable} ${sign(factor * constant)}`;
+
+export default function ExpandingBracketsTargetLesson95({ resetToken, onInteraction }: LessonAdapterProps) {
+  const [factor, setFactor] = useState(4);
+  const [variable, setVariable] = useState("x");
+  const [constant, setConstant] = useState(3);
+  const [checkValue, setCheckValue] = useState(6);
+  const [showArrows, setShowArrows] = useState(true);
+  const [showArea, setShowArea] = useState(true);
+  const [checked, setChecked] = useState(true);
+  const [tab, setTab] = useState("Interact");
+  const [dragging, setDragging] = useState("");
+  const [drops, setDrops] = useState(0);
+  const [practiceIndex, setPracticeIndex] = useState(0);
+  const [practiceAnswer, setPracticeAnswer] = useState("3y + 15");
+  const [practiceChecked, setPracticeChecked] = useState(true);
+  const [actions, setActions] = useState(0);
+  const expression = `${factor}${bracket(variable, constant)}`;
+  const result = expanded(factor, variable, constant);
+  const constantProduct = factor * constant;
+  const originalValue = factor * (checkValue + constant);
+  const expandedValue = factor * checkValue + constantProduct;
+  const practice = practices[practiceIndex];
+  const practiceExpected = expanded(practice.factor, practice.variable, practice.constant);
+  const practiceCorrect = practiceAnswer.replace(/\s/g, "").toLowerCase() === practiceExpected.replace(/\s/g, "").toLowerCase();
+  const act = () => { setActions((count) => count + 1); onInteraction(); };
+  const reset = () => { setFactor(4); setVariable("x"); setConstant(3); setCheckValue(6); setShowArrows(true); setShowArea(true); setChecked(true); setTab("Interact"); setDragging(""); setDrops(0); setPracticeIndex(0); setPracticeAnswer("3y + 15"); setPracticeChecked(true); setActions(0); onInteraction(); };
+  useEffect(() => { reset(); }, [resetToken]); // eslint-disable-line react-hooks/exhaustive-deps
+  const updateFactor = (next: number) => { setFactor(Math.max(1, Math.min(8, next))); setChecked(false); act(); };
+  const updateConstant = (next: number) => { setConstant(Math.max(1, Math.min(6, next))); setChecked(false); act(); };
+  const startDrag = (event: DragEvent<HTMLButtonElement>, source: string) => { event.dataTransfer.setData("text/distribution-source", source); setDragging(source); };
+  const dropOnArea = (event: DragEvent<HTMLElement>) => { event.preventDefault(); const source = event.dataTransfer.getData("text/distribution-source"); if (!source) return; setShowArrows(true); setShowArea(true); setChecked(true); setDrops((count) => count + 1); setDragging(""); act(); };
+  const nextPractice = () => { const next = (practiceIndex + 1) % practices.length; setPracticeIndex(next); setPracticeAnswer(expanded(practices[next].factor, practices[next].variable, practices[next].constant)); setPracticeChecked(true); act(); };
+  const checkPractice = (event: KeyboardEvent<HTMLInputElement>) => { if (event.key === "Enter") { setPracticeChecked(true); act(); } };
+
+  return <div className="expand95-page" data-testid="algebra-mockup-0152" data-dedicated-lesson="95" data-object-model="draggable-distributive-factor-dynamic-area-partition-symbolic-expansion-substitution-proof-graded-practice-model" data-factor={factor} data-variable={variable} data-constant={constant} data-unit-cells={factor * constant} data-check-value={checkValue} data-expression={expression} data-expanded={result} data-original-value={originalValue} data-expanded-value={expandedValue} data-equivalent={originalValue === expandedValue} data-show-arrows={showArrows} data-show-area={showArea} data-checked={checked} data-tab={tab} data-dragging={dragging} data-drops={drops} data-practice={practiceIndex} data-practice-answer={practiceExpected} data-practice-correct={practiceChecked && practiceCorrect} data-actions={actions}>
+    <nav className="expand95-breadcrumb"><a href="/">⌂</a><a href="/">Home</a><span>&gt;</span><a href="/lessons">Lessons</a><span>&gt;</span><a href="/lessons/algebra">Algebra</a><span>&gt;</span><a href="/lessons/algebra">Expressions and Manipulation</a><span>&gt;</span><b>Expanding Brackets</b></nav>
+    <header className="expand95-header"><div className="expand95-eyebrows"><b>ALGEBRA</b><strong>EXPRESSIONS AND MANIPULATION</strong></div><h1>Expanding Brackets</h1><p>Use the distributive law to multiply the outside factor by every term inside the bracket.</p><div className="expand95-badges"><b>Intermediate</b><b>Algebra</b><b>6-10 min</b><b>Area model</b></div><aside><Target /><span><b>Learning objective</b><p>Expand expressions such as<br />4(x + 3) and verify the result<br />by substitution.</p></span></aside></header>
+    <nav className="expand95-tabs">{["Interact", "Learn", "Examples", "Formula", "Practice"].map((name) => <button type="button" className={tab === name ? "active" : ""} key={name} onClick={() => { setTab(name); act(); }}>{name}</button>)}</nav>
+    <main className="expand95-layout"><section className="expand95-area"><header><div><h2>Distributive area model</h2><p>Multiply {factor} by each term inside the bracket ({variable} and {constant}).</p></div><aside><Toggle label="Show distribution arrows" value={showArrows} onToggle={() => { setShowArrows((current) => !current); act(); }} /><Toggle label="Show area model" value={showArea} onToggle={() => { setShowArea((current) => !current); act(); }} /></aside></header><section className={`expand95-visual ${showArea ? "visible" : "hidden"}`} onDragOver={(event) => event.preventDefault()} onDrop={dropOnArea}><button type="button" draggable aria-label="Drag outside factor" onDragStart={(event) => startDrag(event, "factor")} onDragEnd={() => setDragging("")}>{factor}</button>{showArrows && <svg viewBox="0 0 430 85" aria-hidden="true"><defs><marker id="expand-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#7d32ee" /></marker></defs><path d="M38 46 Q90 8 151 48" /><path d="M42 42 Q202 -14 330 47" /></svg>}<h3><span>{variable}</span><span>+ {constant}</span></h3><div className="expand95-grid"><strong>{factor}{variable}</strong><div className="expand95-units" style={{ gridTemplateColumns: `repeat(${constant}, 1fr)`, gridTemplateRows: `repeat(${factor}, 1fr)` }}>{Array.from({ length: factor * constant }, (_, index) => <i key={index}>1</i>)}</div></div><b className="expand95-side">{factor}</b><footer><span>{factor}{variable}</span><i>+</i><span>{constantProduct}</span></footer></section></section>
+      <aside className="expand95-controls"><h2>Controls</h2><label>Outside factor<div><input aria-label="Outside factor" type="number" value={factor} onChange={(event) => updateFactor(Number(event.target.value))} /><button type="button" aria-label="Decrease outside factor" onClick={() => updateFactor(factor - 1)}>−</button><button type="button" aria-label="Increase outside factor" onClick={() => updateFactor(factor + 1)}>+</button></div></label><label>Bracket terms<div className="expand95-terms"><input aria-label="Variable term" value={variable} maxLength={1} onChange={(event) => { setVariable(event.target.value.replace(/[^a-z]/gi, "").slice(0, 1) || "x"); setChecked(false); act(); }} /><span>+</span><input aria-label="Constant term" type="number" value={constant} onChange={(event) => updateConstant(Number(event.target.value))} /></div></label><label>x check value<div><input aria-label="x check value" type="number" value={checkValue} onChange={(event) => { setCheckValue(Number(event.target.value)); setChecked(false); act(); }} /><button type="button" aria-label="Decrease check value" onClick={() => { setCheckValue((current) => current - 1); setChecked(false); act(); }}>−</button><button type="button" aria-label="Increase check value" onClick={() => { setCheckValue((current) => current + 1); setChecked(false); act(); }}>+</button></div></label><footer><button type="button" onClick={() => { setChecked(true); act(); }}><Check />Check by substitution</button><button type="button" onClick={reset}><RotateCcw />Reset</button></footer></aside>
+      <section className="expand95-result"><h2>Result</h2><p>Expanded expression</p><strong>{result}</strong><h3>Same value when {variable} = {checkValue}</h3><p>Original: &nbsp;&nbsp;&nbsp;&nbsp; {factor}({checkValue} {sign(constant)}) &nbsp;= &nbsp;{originalValue}</p><p>Expanded: &nbsp; {factor}({checkValue}) {sign(constantProduct)} &nbsp;= &nbsp;{expandedValue}</p><footer><Check />{checked ? "Both expressions have the same value." : "Values updated. Check by substitution."}</footer></section>
+      <section className="expand95-guided"><h2>Guided steps</h2><div><article><i>1</i><span><b>Multiply {factor} by {variable}</b><strong>{factor} × {variable} = {factor}{variable}</strong><p>Area = {factor}{variable}</p></span></article><em>→</em><article><i>2</i><span><b>Multiply {factor} by {constant}</b><strong>{factor} × {constant} = {constantProduct}</strong><p>Area = {constantProduct}</p></span></article><em>→</em><article><i>3</i><span><b>Write the sum</b><strong>{result}</strong><p>Answer</p></span></article></div></section>
+      <section className="expand95-cards"><article><h2><Mountain />Rule: Distributive law</h2><p>Multiply the outside factor by<br />every term inside the bracket.</p><strong>a(b + c) = ab + ac</strong><p>Here: &nbsp; {expression} = {result}</p></article><article><h2>Worked example</h2><p>Expand {expression} and check with {variable} = {checkValue}.</p><strong>{expression} = {result}</strong><p>At {variable} = {checkValue}:</p><span>Original: &nbsp;&nbsp;&nbsp;&nbsp; {factor}({checkValue} + {constant}) = {factor} × {checkValue + constant} = {originalValue}<br /><br />Expanded: &nbsp; {factor}({checkValue}) + {constantProduct} = {factor * checkValue} + {constantProduct} = {expandedValue}</span><footer><Check />Both give {expandedValue} — same value.</footer></article><article><h2><TriangleAlert />Common misconception</h2><p>Do not multiply only the first term.</p><strong>{expression} is not {factor}{variable} + {constant}.</strong><p>You must multiply {factor} by both {variable}<br />and {constant}.</p></article></section>
+      <section className="expand95-practice"><h2>Practice challenge</h2><p>Expand the expression using the distributive law.</p><label>Expand {practice.factor}{bracket(practice.variable, practice.constant)}<input aria-label="Practice answer" value={practiceAnswer} onChange={(event) => { setPracticeAnswer(event.target.value); setPracticeChecked(false); act(); }} onKeyDown={checkPractice} />{practiceChecked && practiceCorrect && <Check />}</label><aside className={practiceChecked && practiceCorrect ? "correct" : ""}><b>{practiceChecked ? practiceCorrect ? "Correct!" : "Try again" : "Press Enter to check"}</b><span>{practice.factor} × {practice.variable} = {practice.factor}{practice.variable} and {practice.factor} × {practice.constant} = {practice.factor * practice.constant}<br />So, {practice.factor}{bracket(practice.variable, practice.constant)} = {practiceExpected}.</span></aside><button type="button" onClick={nextPractice}><RefreshCw />Try another</button></section>
+      <nav className="expand95-navigation"><a href="/lessons/algebra/94-substitution"><ArrowLeft /><span>Previous<b>Substitution</b></span></a><a href="/lessons/algebra/96-double-brackets"><span>Next<b>Double Brackets</b></span><ArrowRight /></a></nav><footer className="expand95-footer"><div><b>Math Universe</b><p>Interactive math labs, visual proofs, graphing,<br />CAS-style tools, and classroom-ready activities.</p></div><small>© 2026 INDIAN SERVERS PRIVATE LIMITED.<br />NO RIGHT TO REPRODUCE IT.<br />www.IndianServers.com &nbsp; info@IndianServers.com</small><nav><a href="/sitemap">Sitemap</a><a href="/docs">Docs</a><a href="/about">About</a></nav></footer>
+    </main>
+  </div>;
+}
+
+function Toggle({ label, value, onToggle }: { label: string; value: boolean; onToggle: () => void }) { return <button type="button" role="switch" aria-checked={value} onClick={onToggle}><i className={value ? "on" : ""}><b /></i>{label}</button>; }
