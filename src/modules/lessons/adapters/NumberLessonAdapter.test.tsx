@@ -320,6 +320,24 @@ describe("NumberLessonAdapter", () => {
     expect(html).toContain('aria-label="Second bar part 1"');
     expect(html).toContain("Multiplication works across; division uses the reciprocal");
   });
+  it("renders lesson 79 as a dedicated decimal place-value comparison", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 79)!;
+    const html = renderToStaticMarkup(<NumberLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="number-mockup-0061"');
+    expect(html).toContain('data-dedicated-lesson="79"');
+    expect(html).toContain('data-object-model="exact-hundredths-dual-editable-decimals-place-chart-draggable-hundred-grids-deciding-digit-number-line-trailing-zero-practice-model"');
+    expect(html).toContain('data-first="0.50"');
+    expect(html).toContain('data-second="0.47"');
+    expect(html).toContain('data-first-count="50"');
+    expect(html).toContain('data-second-count="47"');
+    expect(html).toContain('data-first-digits="0,5,0"');
+    expect(html).toContain('data-second-digits="0,4,7"');
+    expect(html).toContain('data-deciding-place="Tenths"');
+    expect(html).toContain('data-comparison="&gt;"');
+    expect(html).toContain('aria-label="First decimal"');
+    expect(html).toContain('aria-label="Second hundred grid cell 47"');
+    expect(html).toContain("Compare the first unequal place");
+  });
   const lessonSpecificCases = [
     [57, "Natural Numbers", "Natural numbers start at 1"],
     [58, "Whole Numbers", "Whole numbers include zero"],

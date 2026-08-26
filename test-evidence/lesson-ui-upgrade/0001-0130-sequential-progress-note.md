@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0130
 
-Dedicated rebuild target: **60 of 130 lessons completed; 70 pending.**
+Dedicated rebuild target: **61 of 130 lessons completed; 69 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -64,6 +64,7 @@ Dedicated rebuild target: **60 of 130 lessons completed; 70 pending.**
 | 0058   |                 76 Equivalent Fractions | Complete | Dedicated editable original fraction and shared draggable scale-factor model with linked segmented bars, number lines, exact numerator/denominator products, equivalent-value proof, live practice, and exact 1054x1492 target geometry                     |
 | 0059   |                  77 Comparing Fractions | Complete | Dedicated dual editable-fraction comparison with draggable unit bars, calculated LCM/common-unit conversions, exact ordering proof, linked number-line markers, functional controls/practice, and exact 1072x1467 target geometry                         |
 | 0060   |                   78 Fraction Operations | Complete | Dedicated dual editable/draggable fraction bars with four-operation engine, calculated LCM conversions, reciprocal division, exact reduction/result proof, live practice, and exact 1049x1500 target geometry                                             |
+| 0061   |                  79 Decimal Place Value | Complete | Dedicated dual editable exact-hundredths model with draggable 100-cell grids, calculated place chart/deciding digit/difference, interactive number line, trailing-zero proof, live practice, and exact 1065x1477 target geometry                    |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -904,3 +905,17 @@ Evidence:
 - `0060-reference.png`
 - `0060-desktop.png`
 - `0060-dedicated-target-validation.json`
+
+## Lesson 79 / Mockup 0061 - Decimal Place Value
+
+Reworked individually against the target mockup with a dedicated `exact-hundredths-dual-editable-decimals-place-chart-draggable-hundred-grids-deciding-digit-number-line-trailing-zero-practice-model`. Two integer-hundredths values drive the aligned ones/tenths/hundredths chart, first unequal place, comparison statement, exact difference, filled hundred grids, dynamic number-line interval, trailing-zero explanation, and practice result from one lesson-owned calculation model.
+
+Both decimal values are directly editable with hundredths guards. Every hundred-grid cell is clickable and a native draggable/drop target, and every number-line tick is an interactive value control. Lesson tabs, language, Share, Workspace, practice, and Reset all change real state. The shared number adapter only dispatches Lesson 79 to this separate component.
+
+Final 1065x1477 integrated browser validation verifies `0.50 > 0.47`, exact 50/47 cell counts, aligned digits, tenths as the deciding place, and a difference of 3 hundredths; changes the second value to `0.55` and verifies a hundredths decision; verifies equality at `0.55`; physically drags the first grid to `0.48`; selects `0.60` from the grid and `0.55` from the number line; exercises Explain, Hindi, Share, and Workspace states; loads and verifies `0.60 > 0.58`; then resets. The final visual loop matches the target at surface x=229-1054 and y=105-1477, hero y=105-340, tabs y=348-397, main y=405-1309, chart y=504-667, decision y=681-751, hundred grids x=280-740 and y=822-1062, number line y=1182-1257, navigation y=1317-1367, and footer y=1380-1477. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0061-reference.png`
+- `0061-desktop.png`
+- `0061-dedicated-target-validation.json`

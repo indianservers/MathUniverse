@@ -1,0 +1,34 @@
+.decimal79-line>.marker{position:absolute;top:25px;width:14px;height:14px;transform:translateX(-50%);border-radius:50%;background:#09a6b8;pointer-events:none}
+.decimal79-line>.marker.second{background:#8844d5}
+.decimal79-hero h1{margin-top:0}
+.decimal79-hero>section{margin-top:7px}
+.decimal79-lab>h2:not(.decimal79-grid-title):not(.decimal79-line-title){top:14px;font-weight:900}
+.decimal79-lab>p:not([class]){top:50px}
+.decimal79-grid-title,.decimal79-line-title{font-weight:900}
+.decimal79-grids{top:401px;left:35px;width:460px;grid-template-columns:200px 200px;gap:60px}
+.decimal79-line{top:761px}
+.decimal79-values{padding-top:16px}
+.decimal79-values input{padding-top:2px}
+.decimal79-tabs button{font-size:11px}
+.decimal79-lab>small{font-size:9px}
+.decimal79-lab>h2:not(.decimal79-grid-title):not(.decimal79-line-title){font-size:20px}
+.decimal79-lab>p:not([class]){font-size:13px}
+.decimal79-chart>header{font-size:13px}
+.decimal79-chart>section>h3{font-size:13px}
+.decimal79-chart>section>h3 b{font-size:17px}
+.decimal79-decision-callout b{font-size:13px}
+.decimal79-decision-callout p{font-size:11px}
+.decimal79-grid-title,.decimal79-line-title{font-size:16px}
+.decimal79-grid-subtitle,.decimal79-line-subtitle{font-size:12px}
+.decimal79-grid>h3,.decimal79-grid>b{font-size:12px}
+.decimal79-zero-note{font-size:11px}
+.decimal79-values label{font-size:13px}
+.decimal79-values input{font-size:30px}
+.decimal79-align h3{font-size:14px}
+.decimal79-align p,.decimal79-tenths p,.decimal79-side-decision p,.decimal79-why p{font-size:12px}
+.decimal79-align small{font-size:10px}
+.decimal79-tenths h3{font-size:15px}
+.decimal79-side-decision h3{font-size:12px}
+.decimal79-side-decision b{font-size:23px}
+.decimal79-why h3,.decimal79-practice b{font-size:13px}
+.decimal79-practice small{font-size:11px}
