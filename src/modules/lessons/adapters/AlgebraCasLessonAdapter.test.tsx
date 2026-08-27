@@ -364,8 +364,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Distance solver on the number line");
   });
 
-  it("delegates phase 4 algebra lessons 122 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 122; id <= 128; id += 1) {
+  it("routes lesson 122 to its dedicated sign-aware draggable inequality model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 122)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0179"');
+    expect(html).toContain('data-dedicated-lesson="122"');
+    expect(html).toContain("editable-linear-inequality-coefficients-sign-aware-comparator-flip-pointer-keyboard-draggable-boundary-linked-open-closed-number-line-interval-notation-test-points-practice-model");
+    expect(html).toContain('aria-label="Drag linear inequality boundary"');
+    expect(html).toContain("Solve on the number line");
+  });
+
+  it("delegates phase 4 algebra lessons 123 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 123; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

@@ -1,0 +1,199 @@
+{
+  "mockup": "0179",
+  "lessonId": 122,
+  "route": "/lessons/algebra/122-linear-inequalities",
+  "checks": {
+    "initial": {
+      "problem": "2,3,>,9",
+      "boundary": "3",
+      "solved-relation": ">",
+      "flipped": "false",
+      "interval": "(3, ∞)",
+      "actions": "0"
+    },
+    "draggedBoundary": {
+      "problem": "2,3,>,11",
+      "boundary": "4",
+      "solved-relation": ">",
+      "flipped": "false",
+      "interval": "(4, ∞)",
+      "actions": "6"
+    },
+    "negativeCoefficient": {
+      "problem": "-2,3,>,11",
+      "boundary": "-4",
+      "solved-relation": "<",
+      "flipped": "true",
+      "interval": "(-∞, -4)",
+      "actions": "7"
+    },
+    "closedFlipped": {
+      "problem": "-2,3,>=,11",
+      "boundary": "-4",
+      "solved-relation": "<=",
+      "flipped": "true",
+      "interval": "(-∞, -4]",
+      "actions": "8"
+    },
+    "example": {
+      "problem": "-2,0,<,6",
+      "boundary": "-3",
+      "solved-relation": ">",
+      "flipped": "true",
+      "interval": "(-3, ∞)",
+      "actions": "1"
+    },
+    "practice": {
+      "problem": "5,-4,<=,11",
+      "boundary": "3",
+      "solved-relation": "<=",
+      "flipped": "false",
+      "interval": "(-∞, 3]",
+      "actions": "2"
+    },
+    "reset": {
+      "problem": "2,3,>,9",
+      "boundary": "3",
+      "solved-relation": ">",
+      "flipped": "false",
+      "interval": "(3, ∞)",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 930,
+      "height": 1691
+    },
+    "document": {
+      "width": 930,
+      "height": 1691
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 108,
+        "bottom": 1691,
+        "height": 1583,
+        "left": 230,
+        "right": 912,
+        "width": 682
+      },
+      "intro": {
+        "top": 108,
+        "bottom": 355,
+        "height": 247,
+        "left": 230,
+        "right": 912,
+        "width": 682
+      },
+      "tabs": {
+        "top": 369,
+        "bottom": 425,
+        "height": 56,
+        "left": 230,
+        "right": 912,
+        "width": 682
+      },
+      "lab": {
+        "top": 439,
+        "bottom": 1474,
+        "height": 1035,
+        "left": 230,
+        "right": 912,
+        "width": 682
+      },
+      "body": {
+        "top": 538,
+        "bottom": 1462,
+        "height": 924,
+        "left": 250,
+        "right": 898,
+        "width": 648
+      },
+      "equation": {
+        "top": 538,
+        "bottom": 628,
+        "height": 90,
+        "left": 250,
+        "right": 650,
+        "width": 400
+      },
+      "algebra": {
+        "top": 639,
+        "bottom": 953,
+        "height": 314,
+        "left": 250,
+        "right": 650,
+        "width": 400
+      },
+      "graph": {
+        "top": 964,
+        "bottom": 1173,
+        "height": 209,
+        "left": 250,
+        "right": 650,
+        "width": 400
+      },
+      "checks": {
+        "top": 1184,
+        "bottom": 1462,
+        "height": 278,
+        "left": 250,
+        "right": 650,
+        "width": 400
+      },
+      "summary": {
+        "top": 443,
+        "bottom": 653,
+        "height": 210,
+        "left": 678,
+        "right": 898,
+        "width": 220
+      },
+      "warning": {
+        "top": 668,
+        "bottom": 901,
+        "height": 233,
+        "left": 678,
+        "right": 898,
+        "width": 220
+      },
+      "practice": {
+        "top": 916,
+        "bottom": 1286,
+        "height": 370,
+        "left": 678,
+        "right": 898,
+        "width": 220
+      },
+      "tip": {
+        "top": 1301,
+        "bottom": 1454,
+        "height": 153,
+        "left": 678,
+        "right": 898,
+        "width": 220
+      },
+      "navigation": {
+        "top": 1484,
+        "bottom": 1541,
+        "height": 57,
+        "left": 230,
+        "right": 912,
+        "width": 682
+      },
+      "footer": {
+        "top": 1560,
+        "bottom": 1691,
+        "height": 131,
+        "left": 0,
+        "right": 930,
+        "width": 930
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

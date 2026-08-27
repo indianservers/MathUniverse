@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **104 of 200 lessons completed; 96 pending.**
+Dedicated rebuild target: **105 of 200 lessons completed; 95 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -90,6 +90,7 @@ Dedicated rebuild target: **104 of 200 lessons completed; 96 pending.**
 | 0176   |          119 Logarithmic Equations | Complete | Dedicated logarithm-candidate model with native range drag, domain rejection, exponential rewrite, generated ladder and value checks, quick practice, and exact 1024x1536 target framing |
 | 0177   |       120 Trigonometric Equations | Complete | Dedicated linked unit-circle/wave model with pointer-draggable reference angle, generated quadrant solutions and periodic families, degree/radian modes, practice, and exact 864x1821 target framing |
 | 0178   |       121 Absolute-Value Equations | Complete | Dedicated center/distance model with pointer-draggable linked number-line points, generated two-branch solves and checks, negative-distance rejection, practice, and exact 1003x1568 target framing |
+| 0179   |             122 Linear Inequalities | Complete | Dedicated sign-aware coefficient model with pointer-draggable boundary, comparator reversal, linked endpoint/shading/interval notation, test points, practice, and exact 930x1691 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1546,3 +1547,17 @@ Evidence:
 - `0178-reference.png`
 - `0178-desktop.png`
 - `0178-dedicated-target-validation.json`
+
+## Lesson 122 / Mockup 0179 - Linear Inequalities
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-linear-inequality-coefficients-sign-aware-comparator-flip-pointer-keyboard-draggable-boundary-linked-open-closed-number-line-interval-notation-test-points-practice-model`. The lesson-owned coefficient, constant, comparator, and right side generate the isolation steps, boundary, sign-flip decision, solved comparator, endpoint type, shading direction, interval notation, solution summary, and test-point truth values. The target `2x + 3 > 9` derives `x > 3`, an open endpoint, rightward shading, and interval `(3, infinity)`.
+
+The number-line boundary is a real pointer- and keyboard-draggable control; moving it updates the original right side so the displayed algebra remains mathematically linked. Coefficient, constant, relation, and right side are editable controls. A negative coefficient reverses the comparator and immediately changes the endpoint/shading/interval model, while inclusive comparators produce closed endpoints. Tabs, negative-coefficient examples, language, Share, Workspace, Reset, generated test points, quick-practice loading, and all visible summaries update real state.
+
+Final 930x1691 integrated browser validation physically drags the boundary from `3` to `4` and verifies `2x + 3 > 11`, changes the coefficient to `-2` and verifies the solved relation flips to `<` with boundary `-4`, changes to `>=` and verifies closed `x <= -4` with interval `(-infinity, -4]`, generates `-2x < 6` and verifies `x > -3`, loads `5x - 4 <= 11` and verifies `x <= 3`, and verifies Reset. Exact framing passes surface x=230-912 and y=108-1691, intro y=108-355, tabs y=369-425, lab y=439-1474, left workspace x=250-650, solution summary x=678-898 and y=443-653, warning y=668-901, practice y=916-1286, tip y=1301-1454, navigation y=1484-1541, and full-width footer x=0-930 and y=1560-1691. It reports no horizontal or vertical overflow, an exact 930x1691 document, and zero console messages.
+
+Evidence:
+
+- `0179-reference.png`
+- `0179-desktop.png`
+- `0179-dedicated-target-validation.json`
