@@ -1,0 +1,1004 @@
+.sim112-page {
+  position: relative;
+  top: -47px;
+  width: 750px;
+  height: 1507px;
+  margin-bottom: -47px;
+  color: #17213e;
+  font-size: 9px;
+  letter-spacing: 0;
+}
+.sim112-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.sim112-page h1,
+.sim112-page h2,
+.sim112-page h3,
+.sim112-page p {
+  margin: 0;
+}
+.sim112-page button,
+.sim112-page input,
+.sim112-page select {
+  color: inherit;
+  font: inherit;
+}
+.sim112-page button {
+  cursor: pointer;
+}
+.sim112-page a {
+  color: inherit;
+  text-decoration: none;
+}
+.sim112-page button:focus-visible,
+.sim112-page input:focus-visible,
+.sim112-page select:focus-visible,
+.sim112-page a:focus-visible {
+  outline: 2px solid #079fb9;
+  outline-offset: 2px;
+}
+.sim112-breadcrumb {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  display: flex;
+  height: 28px;
+  align-items: center;
+  gap: 8px;
+  color: #526178;
+}
+.sim112-breadcrumb a:first-child::before {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  margin-right: 7px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  content: "←";
+}
+.sim112-breadcrumb b {
+  color: #087f9c;
+}
+.sim112-intro {
+  display: grid;
+  height: 204px;
+  padding: 14px 16px;
+  border: 1px solid #dce5eb;
+  border-radius: 15px;
+  background: #fff;
+  grid-template-columns: 1fr 205px;
+  gap: 16px;
+  box-shadow: 0 6px 18px rgba(41, 75, 105, 0.07);
+}
+.sim112-intro section > small {
+  display: flex;
+  gap: 6px;
+}
+.sim112-intro section > small b {
+  padding: 5px 9px;
+  border-radius: 12px;
+  background: #e8f8fa;
+  color: #057e98;
+  font-size: 7px;
+}
+.sim112-intro section > small b + b {
+  background: #f1f3f6;
+  color: #536174;
+}
+.sim112-intro h1 {
+  margin-top: 7px;
+  font-size: 27px;
+  line-height: 30px;
+  font-weight: 900;
+}
+.sim112-intro section > p {
+  margin-top: 3px;
+  color: #5f6f86;
+  font-size: 10px;
+}
+.sim112-intro section > nav {
+  display: flex;
+  margin-top: 11px;
+  gap: 6px;
+}
+.sim112-intro section > nav b,
+.sim112-intro section > nav button {
+  display: flex;
+  height: 25px;
+  padding: 0 8px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #dce5ec;
+  border-radius: 13px;
+  background: #fff;
+  font-size: 7px;
+  font-weight: 800;
+}
+.sim112-intro section > nav svg {
+  width: 10px;
+  height: 10px;
+}
+.sim112-intro section > nav button {
+  color: #435069;
+}
+.sim112-methods {
+  display: flex;
+  height: 38px;
+  margin-top: 10px;
+  align-items: center;
+  gap: 5px;
+}
+.sim112-methods > b {
+  padding: 0 4px;
+}
+.sim112-methods > button {
+  display: flex;
+  height: 31px;
+  padding: 0 10px;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  font-weight: 800;
+}
+.sim112-methods > button.active {
+  background: #079fb9;
+  color: #fff;
+}
+.sim112-methods > i {
+  width: 1px;
+  height: 24px;
+  margin: 0 4px;
+  background: #e0e7ec;
+}
+.sim112-methods select {
+  width: 82px;
+  height: 31px;
+  padding: 0 7px;
+  border: 1px solid #dce5ec;
+  border-radius: 6px;
+  background: #fff;
+  font-weight: 700;
+}
+.sim112-methods select option {
+  font-size: 10px;
+}
+.sim112-methods button:last-child {
+  border: 1px solid #dce5ec;
+}
+.sim112-methods button:last-child svg {
+  width: 11px;
+}
+.sim112-intro > aside {
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #e1e7ec;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(37, 65, 95, 0.08);
+}
+.sim112-intro > aside > b {
+  align-self: flex-start;
+  font-size: 11px;
+}
+.sim112-intro > aside strong {
+  margin-top: 16px;
+  color: #088d69;
+  font-size: 25px;
+  font-weight: 900;
+}
+.sim112-intro > aside p {
+  margin-top: 7px;
+  color: #5a687f;
+  font-size: 10px;
+}
+.sim112-intro > aside span {
+  display: flex;
+  margin-top: 16px;
+  align-items: center;
+  gap: 5px;
+  color: #087d61;
+}
+.sim112-intro > aside svg {
+  width: 12px;
+}
+.sim112-tabs {
+  display: grid;
+  height: 45px;
+  margin-top: 11px;
+  padding: 4px;
+  border: 1px solid #dce5ec;
+  border-radius: 13px;
+  background: #fff;
+  grid-template-columns: 1.35fr repeat(4, 1fr);
+}
+.sim112-tabs button {
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  font-weight: 900;
+}
+.sim112-tabs button.active {
+  background: #079fb9;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 147, 173, 0.25);
+}
+.sim112-callouts {
+  display: grid;
+  height: 86px;
+  margin-top: 11px;
+  padding: 12px;
+  border: 1px solid #d9e4eb;
+  border-radius: 12px;
+  background: #fff;
+  grid-template-columns: 1fr 225px;
+  gap: 12px;
+}
+.sim112-callouts article {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.sim112-callouts article > svg {
+  width: 24px;
+  height: 24px;
+  color: #05a4bc;
+}
+.sim112-callouts article:first-child {
+  padding: 11px 8px;
+}
+.sim112-callouts article:first-child b {
+  padding-top: 3px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.sim112-callouts article:first-child p {
+  padding-top: 3px;
+  font-size: 10px;
+  line-height: 15px;
+}
+.sim112-callouts article:last-child {
+  padding: 10px 13px;
+  border: 1px solid #f0dfaa;
+  border-radius: 10px;
+  background: #fffdf5;
+  color: #26304a;
+}
+.sim112-callouts article:last-child svg {
+  width: 17px;
+  color: #ecb126;
+}
+.sim112-callouts article:last-child b {
+  display: block;
+  margin-bottom: 6px;
+}
+.sim112-callouts article:last-child p {
+  font-weight: 700;
+  line-height: 14px;
+}
+.sim112-workspace {
+  display: grid;
+  height: 669px;
+  margin-top: 13px;
+  grid-template-columns: 306px 1fr;
+  gap: 8px;
+}
+.sim112-elimination,
+.sim112-graph {
+  padding: 12px;
+  border: 1px solid #dce5ec;
+  border-radius: 12px;
+  background: #fff;
+}
+.sim112-elimination > header,
+.sim112-graph > header {
+  display: flex;
+  height: 24px;
+  align-items: center;
+  gap: 7px;
+}
+.sim112-elimination > header > b,
+.sim112-graph > header > b {
+  display: inline-grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border: 1px solid #7cb3fc;
+  border-radius: 50%;
+  color: #2878df;
+}
+.sim112-elimination h2,
+.sim112-graph h2 {
+  font-size: 10px;
+}
+.sim112-elimination > header > span {
+  margin-left: auto;
+  padding: 3px 6px;
+  border-radius: 7px;
+  background: #f0e5ff;
+  color: #7637d3;
+  font-weight: 800;
+}
+.sim112-elimination > p {
+  height: 35px;
+  padding: 8px 7px 0;
+  font-size: 10px;
+}
+.sim112-operation {
+  display: flex;
+  height: 35px;
+  align-items: center;
+  justify-content: space-between;
+}
+.sim112-operation > button {
+  max-width: 150px;
+  padding: 5px 8px;
+  border: 1px dashed #079fb9;
+  border-radius: 5px;
+  background: #edfafd;
+  color: #087f96;
+  font-weight: 900;
+}
+.sim112-operation label,
+.sim112-graph header label,
+.sim112-checks header label,
+.sim112-view-controls > label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 700;
+}
+.sim112-page label input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.sim112-page label input[type="checkbox"] + span {
+  position: relative;
+  display: inline-block;
+  width: 27px;
+  height: 16px;
+  border-radius: 9px;
+  background: #d1dbe3;
+}
+.sim112-page label input[type="checkbox"] + span::after {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+  transition: left 120ms;
+}
+.sim112-page label input[type="checkbox"]:checked + span {
+  background: #079fb9;
+}
+.sim112-page label input[type="checkbox"]:checked + span::after {
+  left: 14px;
+}
+.sim112-steps {
+  display: flex;
+  min-height: 232px;
+  padding: 10px 12px;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px dashed #8ccad7;
+  border-radius: 8px;
+  background: #fbfeff;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  text-align: center;
+}
+.sim112-steps.complete {
+  border-style: solid;
+  border-color: #e0e8ed;
+  background: #fff;
+}
+.sim112-steps p {
+  display: grid;
+  padding: 4px 28px;
+  grid-template-columns: 22px 1fr;
+  font-size: 16px;
+}
+.sim112-steps hr {
+  width: 100%;
+  margin: 4px 0 10px;
+  border: 0;
+  border-top: 1px solid #7a8596;
+}
+.sim112-steps > strong {
+  display: block;
+  min-height: 29px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.sim112-steps > strong i {
+  padding: 3px 8px;
+  border: 1px solid #33b7a9;
+  color: #079a85;
+  font-style: normal;
+}
+.sim112-steps > small {
+  font-family: inherit;
+  font-size: 11px;
+  color: #6c7788;
+}
+.sim112-elimination > em {
+  display: block;
+  padding: 4px;
+  color: #d64a4a;
+  font-size: 8px;
+}
+.sim112-find-y {
+  height: 140px;
+  margin-top: 8px;
+  padding: 9px;
+  border: 1px solid #e2e9ee;
+  border-radius: 7px;
+}
+.sim112-find-y > b {
+  font-size: 10px;
+}
+.sim112-find-y p {
+  margin-top: 5px;
+  color: #58677f;
+}
+.sim112-find-y strong {
+  display: block;
+  margin-top: 9px;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  text-align: center;
+}
+.sim112-find-y strong i {
+  padding: 2px 8px;
+  border: 1px solid #40bbae;
+  color: #079a85;
+  font-style: normal;
+}
+.sim112-checks {
+  height: 109px;
+  margin-top: 8px;
+  padding: 8px;
+  border: 1px solid #e2e9ee;
+  border-radius: 7px;
+}
+.sim112-checks header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sim112-checks p {
+  display: grid;
+  margin-top: 10px;
+  grid-template-columns: 85px 1fr 43px;
+  align-items: center;
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+.sim112-checks p > b {
+  text-align: center;
+}
+.sim112-checks p > span {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: #078b64;
+  font-family: Arial, sans-serif;
+  font-size: 8px;
+}
+.sim112-checks svg {
+  width: 10px;
+}
+.sim112-elimination > footer {
+  height: 30px;
+  margin-top: 8px;
+  padding: 7px 10px;
+  border: 1px solid #b7e5dc;
+  border-radius: 6px;
+  background: #eefaf7;
+  color: #078a71;
+  font-size: 12px;
+  font-weight: 800;
+}
+.sim112-elimination > footer b {
+  margin-left: 12px;
+}
+.sim112-graph {
+  display: flex;
+  flex-direction: column;
+}
+.sim112-graph header label {
+  margin-left: auto;
+}
+.sim112-plot {
+  width: 100%;
+  height: 510px;
+  margin-top: 3px;
+  touch-action: none;
+}
+.sim112-plot .grid line {
+  stroke: #e7edf1;
+  stroke-width: 1;
+}
+.sim112-plot .axis {
+  stroke: #182238;
+  stroke-width: 1.2;
+}
+.sim112-plot .labels text {
+  fill: #26324a;
+  font-size: 8px;
+  text-anchor: middle;
+}
+.sim112-plot .line-one {
+  stroke: #2f87ff;
+  stroke-width: 2;
+}
+.sim112-plot .line-two {
+  stroke: #ff752f;
+  stroke-width: 2;
+}
+.sim112-plot.blue .line-one {
+  stroke: #176fe5;
+}
+.sim112-plot.purple .line-one {
+  stroke: #7e3ee8;
+}
+.sim112-plot.violet .line-one {
+  stroke: #3d8eff;
+}
+.sim112-plot.green .line-one {
+  stroke: #0aa57c;
+}
+.sim112-plot.orange .line-one {
+  stroke: #e85e23;
+}
+.sim112-plot .line-label rect {
+  fill: #fff;
+  stroke-width: 1.3;
+}
+.sim112-plot .line-label text {
+  font-size: 9px;
+  font-weight: 800;
+}
+.sim112-plot .line-label.one rect {
+  stroke: #2f87ff;
+}
+.sim112-plot .line-label.one text {
+  fill: #2f87ff;
+}
+.sim112-plot .line-label.two rect {
+  stroke: #ff752f;
+}
+.sim112-plot .line-label.two text {
+  fill: #ff752f;
+}
+.sim112-plot .intersection circle {
+  fill: #17213e;
+  stroke: #fff;
+  stroke-width: 2;
+}
+.sim112-plot .intersection path {
+  fill: #fff;
+  stroke: #26324a;
+}
+.sim112-plot .intersection text {
+  fill: #17213e;
+  font-size: 10px;
+  font-weight: 900;
+}
+.sim112-plot .axis-name {
+  fill: #17213e;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-weight: 900;
+}
+.sim112-graph > footer {
+  height: 75px;
+  margin-top: auto;
+  padding: 11px;
+  border: 1px solid #dde5eb;
+  border-radius: 7px;
+  background: #fbfcfd;
+}
+.sim112-graph > footer p {
+  margin-top: 7px;
+  color: #58677f;
+  line-height: 14px;
+}
+.sim112-view-controls {
+  display: grid;
+  height: 42px;
+  margin-top: 10px;
+  padding: 4px 12px;
+  align-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 10px;
+  background: #fff;
+  grid-template-columns: 1.25fr 1fr 0.75fr 1fr;
+}
+.sim112-view-controls select {
+  width: 87px;
+  height: 29px;
+  padding: 0 8px;
+  border: 1px solid #dce5ec;
+  border-radius: 15px;
+  background: #fff;
+}
+.sim112-view-controls > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.sim112-view-controls > div button {
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #dce5ec;
+}
+.sim112-view-controls > div button.active {
+  box-shadow: 0 0 0 2px #7d5de0;
+}
+.sim112-view-controls .blue {
+  background: #2685ed;
+}
+.sim112-view-controls .purple {
+  background: #7f36df;
+}
+.sim112-view-controls .violet {
+  background: #7956d9;
+}
+.sim112-view-controls .green {
+  background: #20a68c;
+}
+.sim112-view-controls .orange {
+  background: #ff702d;
+}
+.sim112-view-controls > button {
+  display: flex;
+  margin-left: auto;
+  padding: 7px 10px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #dce5ec;
+  border-radius: 15px;
+  background: #fff;
+}
+.sim112-view-controls > button svg {
+  width: 11px;
+}
+.sim112-practice {
+  height: 215px;
+  margin-top: 10px;
+  padding: 13px;
+  border: 1px solid #dce5ec;
+  border-radius: 12px;
+  background: #fff;
+}
+.sim112-practice header h2 {
+  font-size: 17px;
+}
+.sim112-practice header p {
+  margin-top: 3px;
+  color: #627188;
+}
+.sim112-practice > div {
+  display: grid;
+  height: 76px;
+  margin-top: 9px;
+  grid-template-columns: 180px 1fr;
+}
+.sim112-practice > div > article:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+.sim112-practice > div > article:last-child {
+  display: grid;
+  align-items: end;
+  grid-template-columns: 180px 1fr 1fr;
+  gap: 9px;
+}
+.sim112-practice label {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+  color: #56657d;
+  font-weight: 700;
+}
+.sim112-practice label span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.sim112-practice input {
+  width: 72px;
+  height: 31px;
+  padding: 0 9px;
+  border: 1px solid #dce5ec;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 11px;
+  font-weight: 800;
+}
+.sim112-practice article > button {
+  height: 31px;
+  border: 1px solid #079fb9;
+  border-radius: 5px;
+  background: #079fb9;
+  color: #fff;
+  font-weight: 800;
+}
+.sim112-practice article > button:last-child {
+  background: #fff;
+  color: #087f9b;
+}
+.sim112-practice > footer {
+  display: flex;
+  height: 59px;
+  margin-top: 9px;
+  padding: 9px 14px;
+  align-items: flex-start;
+  gap: 9px;
+  border: 1px solid #b9e5dc;
+  border-radius: 7px;
+  background: #eefaf7;
+  color: #087a64;
+}
+.sim112-practice > footer.wrong {
+  border-color: #f0b8b8;
+  background: #fff4f4;
+  color: #bd3e3e;
+}
+.sim112-practice > footer > svg {
+  width: 14px;
+}
+.sim112-practice > footer p span {
+  display: block;
+  margin-top: 5px;
+  color: #40516a;
+}
+.sim112-practice > footer button {
+  display: flex;
+  height: 30px;
+  margin-left: auto;
+  padding: 0 11px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #d3dde5;
+  border-radius: 6px;
+  background: #fff;
+  color: #25314b;
+  white-space: nowrap;
+}
+.sim112-practice > footer button svg {
+  width: 11px;
+}
+.sim112-navigation {
+  display: grid;
+  height: 55px;
+  margin-top: 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.sim112-navigation a {
+  display: flex;
+  padding: 0 14px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #dce5ec;
+  border-radius: 11px;
+  background: #fff;
+}
+.sim112-navigation a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.sim112-navigation svg {
+  width: 14px;
+}
+.sim112-navigation span {
+  display: flex;
+  color: #718096;
+  font-size: 6px;
+  flex-direction: column;
+}
+.sim112-navigation b {
+  margin-top: 3px;
+  color: #25314a;
+  font-size: 8px;
+}
+.sim112-footer {
+  position: relative;
+  height: 113px;
+  margin-top: 13px;
+  padding: 14px;
+  border: 1px solid #dce5ec;
+  border-radius: 11px 11px 0 0;
+  background: #fff;
+}
+.sim112-footer > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.sim112-footer > div svg {
+  width: 14px;
+  color: #04a5bc;
+}
+.sim112-footer > div span {
+  display: flex;
+  flex-direction: column;
+}
+.sim112-footer > div small {
+  margin-top: 5px;
+  color: #738197;
+  font-size: 6px;
+}
+.sim112-footer nav {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  display: flex;
+  gap: 8px;
+}
+.sim112-footer nav a {
+  padding: 8px 13px;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+}
+.sim112-footer > p {
+  margin-top: 13px;
+  padding-top: 9px;
+  border-top: 1px solid #edf1f4;
+  color: #8a96a6;
+  font-size: 5px;
+}
+.sim112-footer > small {
+  display: block;
+  margin-top: 8px;
+  color: #718096;
+  font-size: 5px;
+}
+body:has(.sim112-page)
+  #main-content
+  .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+  visibility: hidden;
+}
+body:has(.sim112-page) nav[aria-label="Adjacent lessons"],
+body:has(.sim112-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  body:has(.sim112-page) [data-testid="desktop-sidebar"] {
+    display: block !important;
+    position: sticky !important;
+    top: 0;
+    width: 205px;
+  }
+  body:has(.sim112-page) #main-content {
+    padding: 55px 15px 0 12px;
+    overflow: hidden;
+    background: linear-gradient(120deg, #f2fbfc, #faf7ff);
+  }
+  body:has(.sim112-page) header.sticky {
+    height: 52px;
+    padding: 5px 11px;
+  }
+  body:has(.sim112-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.sim112-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.sim112-page) [data-testid="desktop-sidebar"] > div {
+    padding: 11px;
+  }
+  body:has(.sim112-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 59px;
+    min-height: 59px;
+    margin-bottom: 13px;
+    padding: 7px;
+  }
+  body:has(.sim112-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 13px;
+  }
+  body:has(.sim112-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 35px;
+    min-height: 35px;
+    margin-bottom: 10px;
+  }
+  body:has(.sim112-page) [data-testid="desktop-sidebar"] nav > div > button {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+  body:has(.sim112-page) [data-testid="desktop-sidebar"] nav > div > div a {
+    padding: 5px 8px;
+    font-size: 8px;
+  }
+  body:has(.sim112-page) [data-testid="desktop-sidebar"] nav > div:nth-child(2),
+  body:has(.sim112-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(n + 5) {
+    display: none;
+  }
+  body:has(.sim112-page) [data-testid="desktop-sidebar-progress"],
+  body:has(.sim112-page) [data-testid="desktop-sidebar-compound-links"],
+  body:has(.sim112-page) [data-testid="desktop-sidebar-premium"],
+  body:has(.sim112-page) [data-testid="desktop-sidebar-footer"] {
+    display: none !important;
+  }
+}
+
+@media (max-width: 799px) {
+  .sim112-page {
+    top: 0;
+    width: 100%;
+    height: auto;
+    margin-bottom: 0;
+  }
+  .sim112-breadcrumb {
+    position: static;
+  }
+  .sim112-intro {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .sim112-methods {
+    height: auto;
+    flex-wrap: wrap;
+  }
+  .sim112-tabs {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .sim112-tabs button {
+    min-height: 36px;
+  }
+  .sim112-callouts,
+  .sim112-workspace {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .sim112-workspace > section {
+    min-height: 650px;
+  }
+  .sim112-view-controls {
+    height: auto;
+    min-height: 90px;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .sim112-practice {
+    height: auto;
+  }
+  .sim112-practice > div {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .sim112-practice > div > article:last-child {
+    grid-template-columns: 1fr;
+  }
+}

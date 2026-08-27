@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **94 of 200 lessons completed; 106 pending.**
+Dedicated rebuild target: **95 of 200 lessons completed; 105 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1398,3 +1398,17 @@ Evidence:
 - `0168-reference.png`
 - `0168-desktop.png`
 - `0168-dedicated-target-validation.json`
+
+## Lesson 112 / Mockup 0169 - Simultaneous Linear Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `selectable-two-equation-coefficient-system-determinant-solver-native-elimination-drag-generated-symbolic-steps-dynamic-dual-line-intersection-both-equation-verification-ordered-pair-practice-model`. Four coefficient systems derive their determinant, exact ordered pair, scaled elimination rows, combined equation, back-substitution, two original-equation checks, graph lines, and intersection directly from lesson-owned standard-form coefficients. The initial system reproduces `x + y = 7`, `x - y = 1`, and `(4, 3)` from the target.
+
+The elimination/substitution operation is a native draggable object with a real derivation drop target. Elimination and substitution generate different visible symbolic work; All steps, Key steps, and Result only alter the rendered derivation. Both target-style equation selectors, intersection and grid toggles, both-equation verification, five graph themes, favorites, five lesson tabs, reset, editable ordered-pair practice, Show solution, and Try another all update visible state. The SVG plots both calculated lines and the common point rather than using a static graph. The algebra/CAS adapter dispatches Lesson 112 only to this dedicated component, and the shared algebra fallback now begins at Lesson 113.
+
+Final 982x1601 integrated browser validation solves all four systems (`(4,3)`, `(4,1)`, `(2,5)`, and `(4,2)`), physically drops Add equations, switches to generated substitution work, removes and restores graph intersection/grid nodes, collapses to result-only work, changes the graph theme, checks both equations, rejects and accepts the first practice pair, solves the second pair `(5,3)`, exercises every tab, and verifies Reset and reload. Exact geometry passes surface x=217-967 and y=94-1601, intro y=94-298, tabs y=309-354, callouts y=365-451, workspace y=464-1133, controls y=1143-1185, practice y=1195-1410, navigation y=1420-1475, and footer y=1488-1601. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0169-reference.png`
+- `0169-desktop.png`
+- `0169-dedicated-target-validation.json`
