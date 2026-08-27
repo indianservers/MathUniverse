@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **103 of 200 lessons completed; 97 pending.**
+Dedicated rebuild target: **104 of 200 lessons completed; 96 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -89,6 +89,7 @@ Dedicated rebuild target: **103 of 200 lessons completed; 97 pending.**
 | 0175   |          118 Exponential Equations | Complete | Dedicated base/target power-ladder model with generated powers, native rung drag/drop, pointer-draggable graph exponent, common-base/log fallback, substitution checks, graded practice, and exact 941x1672 target framing |
 | 0176   |          119 Logarithmic Equations | Complete | Dedicated logarithm-candidate model with native range drag, domain rejection, exponential rewrite, generated ladder and value checks, quick practice, and exact 1024x1536 target framing |
 | 0177   |       120 Trigonometric Equations | Complete | Dedicated linked unit-circle/wave model with pointer-draggable reference angle, generated quadrant solutions and periodic families, degree/radian modes, practice, and exact 864x1821 target framing |
+| 0178   |       121 Absolute-Value Equations | Complete | Dedicated center/distance model with pointer-draggable linked number-line points, generated two-branch solves and checks, negative-distance rejection, practice, and exact 1003x1568 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1531,3 +1532,17 @@ Evidence:
 - `0177-reference.png`
 - `0177-desktop.png`
 - `0177-dedicated-target-validation.json`
+
+## Lesson 121 / Mockup 0178 - Absolute-Value Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-absolute-value-center-distance-pointer-keyboard-draggable-number-line-solutions-linked-two-branch-linear-equations-distance-verification-negative-distance-no-solution-practice-model`. The lesson-owned center and distance generate the absolute-value equation, symmetric solution points, equal-distance arcs, both linear branches, final answer, substitution checks, reasoning rail, and pitfall warning. The target `|x - 3| = 2` derives `x = 1` and `x = 5`, with both points exactly two units from center `3`.
+
+The center and both endpoint markers are real pointer- and keyboard-draggable controls. Each drag freezes its coordinate domain for stable pointer physics, then recalculates the linked endpoints, branch equations, checks, labels, and final result. The equation center and distance are also editable numeric controls; a negative right side produces a genuine no-solution state because absolute value cannot equal a negative distance. Tabs, generated examples, language, Share, Workspace, Reset, fullscreen, action status, practice, and workspace opening all update visible state.
+
+Final 1003x1568 integrated browser validation physically drags the center from `3` to `4` and verifies solutions `2,6`, physically drags the right endpoint to make distance `3` and verifies `1,7`, enters distance `-2` and verifies no solution, generates `|y + 4| = 3` with solutions `-7,-1`, checks practice, and verifies Reset. Exact framing passes surface x=226-987 and y=118-1568, intro y=118-392, tabs y=402-457, lab y=468-1400, number-line card y=544-912, branch workspace y=923-1350, reasoning y=544-1039, pitfall y=1048-1176, practice y=1185-1351, tags y=1359-1398, navigation y=1410-1456, and footer y=1466-1568. It reports no horizontal or vertical overflow, an exact 1003x1568 document, and zero console messages.
+
+Evidence:
+
+- `0178-reference.png`
+- `0178-desktop.png`
+- `0178-dedicated-target-validation.json`

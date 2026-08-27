@@ -352,8 +352,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Solve using the unit circle");
   });
 
-  it("delegates phase 4 algebra lessons 121 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 121; id <= 128; id += 1) {
+  it("routes lesson 121 to its dedicated draggable absolute-distance branch model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 121)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0178"');
+    expect(html).toContain('data-dedicated-lesson="121"');
+    expect(html).toContain("editable-absolute-value-center-distance-pointer-keyboard-draggable-number-line-solutions-linked-two-branch-linear-equations-distance-verification-negative-distance-no-solution-practice-model");
+    expect(html).toContain('aria-label="Drag absolute value center"');
+    expect(html).toContain("Distance solver on the number line");
+  });
+
+  it("delegates phase 4 algebra lessons 122 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 122; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

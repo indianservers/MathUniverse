@@ -1,0 +1,176 @@
+{
+  "mockup": "0178",
+  "lessonId": 121,
+  "route": "/lessons/algebra/121-absolute-value-equations",
+  "checks": {
+    "initial": {
+      "problem": "3,2",
+      "solutions": "1,5",
+      "solvable": "true",
+      "practice-checked": "false",
+      "actions": "0"
+    },
+    "draggedCenter": {
+      "problem": "4,2",
+      "solutions": "2,6",
+      "solvable": "true",
+      "practice-checked": "false",
+      "actions": "7"
+    },
+    "draggedDistance": {
+      "problem": "4,3",
+      "solutions": "1,7",
+      "solvable": "true",
+      "practice-checked": "false",
+      "actions": "14"
+    },
+    "negativeDistance": {
+      "problem": "4,-2",
+      "solutions": "none",
+      "solvable": "false",
+      "practice-checked": "false",
+      "actions": "15"
+    },
+    "example": {
+      "problem": "-4,3",
+      "solutions": "-7,-1",
+      "solvable": "true",
+      "practice-checked": "false",
+      "actions": "1"
+    },
+    "practice": {
+      "problem": "-4,3",
+      "solutions": "-7,-1",
+      "solvable": "true",
+      "practice-checked": "true",
+      "actions": "2"
+    },
+    "reset": {
+      "problem": "3,2",
+      "solutions": "1,5",
+      "solvable": "true",
+      "practice-checked": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1003,
+      "height": 1568
+    },
+    "document": {
+      "width": 1003,
+      "height": 1568
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 118,
+        "bottom": 1568,
+        "height": 1450,
+        "left": 226,
+        "right": 987,
+        "width": 761
+      },
+      "intro": {
+        "top": 118,
+        "bottom": 392,
+        "height": 274,
+        "left": 226,
+        "right": 987,
+        "width": 761
+      },
+      "tabs": {
+        "top": 402,
+        "bottom": 457,
+        "height": 55,
+        "left": 226,
+        "right": 987,
+        "width": 761
+      },
+      "lab": {
+        "top": 468,
+        "bottom": 1400,
+        "height": 932,
+        "left": 226,
+        "right": 987,
+        "width": 761
+      },
+      "body": {
+        "top": 544,
+        "bottom": 1350,
+        "height": 806,
+        "left": 239,
+        "right": 974,
+        "width": 735
+      },
+      "numberLine": {
+        "top": 544,
+        "bottom": 912,
+        "height": 368,
+        "left": 239,
+        "right": 712.6875,
+        "width": 473.6875
+      },
+      "branches": {
+        "top": 923,
+        "bottom": 1350,
+        "height": 427,
+        "left": 239,
+        "right": 712.6875,
+        "width": 473.6875
+      },
+      "reasoning": {
+        "top": 544,
+        "bottom": 1039,
+        "height": 495,
+        "left": 724.6875,
+        "right": 973.984375,
+        "width": 249.296875
+      },
+      "pitfall": {
+        "top": 1048,
+        "bottom": 1176,
+        "height": 128,
+        "left": 724.6875,
+        "right": 973.984375,
+        "width": 249.296875
+      },
+      "practice": {
+        "top": 1185,
+        "bottom": 1351,
+        "height": 166,
+        "left": 724.6875,
+        "right": 973.984375,
+        "width": 249.296875
+      },
+      "tags": {
+        "top": 1359,
+        "bottom": 1398,
+        "height": 39,
+        "left": 239,
+        "right": 974,
+        "width": 735
+      },
+      "navigation": {
+        "top": 1410,
+        "bottom": 1456,
+        "height": 46,
+        "left": 226,
+        "right": 987,
+        "width": 761
+      },
+      "footer": {
+        "top": 1466,
+        "bottom": 1568,
+        "height": 102,
+        "left": 226,
+        "right": 987,
+        "width": 761
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
