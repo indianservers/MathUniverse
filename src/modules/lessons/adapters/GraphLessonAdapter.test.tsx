@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 135 to its dedicated cubic inflection model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 135)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0192"');
+    expect(html).toContain('data-dedicated-lesson="135"');
+    expect(html).toContain("editable-cubic-inflection-form-signed-bend-pointer-keyboard-draggable-inflection-and-shape-points-generated-s-curve-opposite-end-behavior-point-symmetry-linked-value-table-reasoning-practice-model");
+    expect(html).toContain('aria-label="Drag cubic inflection point"');
+    expect(html).toContain("Cubic Shape Explorer");
+  });
+
   it("routes lesson 134 to its dedicated quadratic vertex model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 134)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -106,7 +116,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      135: "origin symmetry",
       136: "degree limits roots",
       137: "x=0 is excluded",
       138: "denominator zeros are excluded",

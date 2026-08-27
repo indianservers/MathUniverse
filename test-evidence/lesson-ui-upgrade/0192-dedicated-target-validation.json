@@ -1,0 +1,213 @@
+{
+  "mockup": "0192",
+  "lessonId": 135,
+  "route": "/lessons/graphs-and-functions/135-cubic-functions",
+  "checks": {
+    "initial": {
+      "a": "1",
+      "h": "0",
+      "k": "0",
+      "inflection": "0,0",
+      "formula": "f(x) = x³",
+      "direction": "down-left,up-right",
+      "symmetry": "origin",
+      "samples": "-2,-8;-1,-1;0,0;1,1;2,8",
+      "actions": "0"
+    },
+    "aSlider": {
+      "a": "2.25",
+      "h": "0",
+      "k": "0",
+      "inflection": "0,0",
+      "formula": "f(x) = 2.25x³",
+      "direction": "down-left,up-right",
+      "symmetry": "origin",
+      "samples": "-2,-18;-1,-2.25;0,0;1,2.25;2,18",
+      "actions": "5"
+    },
+    "hSlider": {
+      "a": "2.25",
+      "h": "1",
+      "k": "0",
+      "inflection": "1,0",
+      "formula": "f(x) = 2.25(x − 1)³",
+      "direction": "down-left,up-right",
+      "symmetry": "1,0",
+      "samples": "-1,-18;0,-2.25;1,0;2,2.25;3,18",
+      "actions": "6"
+    },
+    "kSlider": {
+      "a": "2.25",
+      "h": "1",
+      "k": "1",
+      "inflection": "1,1",
+      "formula": "f(x) = 2.25(x − 1)³ + 1",
+      "direction": "down-left,up-right",
+      "symmetry": "1,1",
+      "samples": "-1,-17;0,-1.25;1,1;2,3.25;3,19",
+      "actions": "7"
+    },
+    "inflectionDrag": {
+      "a": "1",
+      "h": "1",
+      "k": "1",
+      "inflection": "1,1",
+      "formula": "f(x) = (x − 1)³ + 1",
+      "direction": "down-left,up-right",
+      "symmetry": "1,1",
+      "samples": "-1,-7;0,0;1,1;2,2;3,9",
+      "actions": "8"
+    },
+    "inflectionKeyboard": {
+      "a": "1",
+      "h": "0",
+      "k": "0",
+      "inflection": "0,0",
+      "formula": "f(x) = x³",
+      "direction": "down-left,up-right",
+      "symmetry": "origin",
+      "samples": "-2,-8;-1,-1;0,0;1,1;2,8",
+      "actions": "10"
+    },
+    "bendDrag": {
+      "a": "2",
+      "h": "0",
+      "k": "0",
+      "inflection": "0,0",
+      "formula": "f(x) = 2x³",
+      "direction": "down-left,up-right",
+      "symmetry": "origin",
+      "samples": "-2,-16;-1,-2;0,0;1,2;2,16",
+      "actions": "18"
+    },
+    "bendKeyboard": {
+      "a": "1.75",
+      "h": "0",
+      "k": "0",
+      "inflection": "0,0",
+      "formula": "f(x) = 1.75x³",
+      "direction": "down-left,up-right",
+      "symmetry": "origin",
+      "samples": "-2,-14;-1,-1.75;0,0;1,1.75;2,14",
+      "actions": "19"
+    },
+    "example": {
+      "a": "-1",
+      "h": "1",
+      "k": "2",
+      "inflection": "1,2",
+      "formula": "f(x) = −(x − 1)³ + 2",
+      "direction": "up-left,down-right",
+      "symmetry": "1,2",
+      "samples": "-1,10;0,3;1,2;2,1;3,-6",
+      "actions": "20"
+    },
+    "reset": {
+      "a": "1",
+      "h": "0",
+      "k": "0",
+      "inflection": "0,0",
+      "formula": "f(x) = x³",
+      "direction": "down-left,up-right",
+      "symmetry": "origin",
+      "samples": "-2,-8;-1,-1;0,0;1,1;2,8",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 969,
+      "height": 1623
+    },
+    "document": {
+      "width": 969,
+      "height": 1623
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 106,
+        "bottom": 1623,
+        "height": 1517,
+        "left": 214,
+        "right": 949,
+        "width": 735
+      },
+      "intro": {
+        "top": 106,
+        "bottom": 345,
+        "height": 239,
+        "left": 214,
+        "right": 949,
+        "width": 735
+      },
+      "tabs": {
+        "top": 356,
+        "bottom": 414,
+        "height": 58,
+        "left": 214,
+        "right": 949,
+        "width": 735
+      },
+      "lab": {
+        "top": 428,
+        "bottom": 1416,
+        "height": 988,
+        "left": 214,
+        "right": 949,
+        "width": 735
+      },
+      "layout": {
+        "top": 496,
+        "bottom": 1090,
+        "height": 594,
+        "left": 224,
+        "right": 939,
+        "width": 715
+      },
+      "graph": {
+        "top": 496,
+        "bottom": 1090,
+        "height": 594,
+        "left": 224,
+        "right": 702,
+        "width": 478
+      },
+      "rail": {
+        "top": 496,
+        "bottom": 1090,
+        "height": 594,
+        "left": 709,
+        "right": 939,
+        "width": 230
+      },
+      "lower": {
+        "top": 1102,
+        "bottom": 1407,
+        "height": 305,
+        "left": 224,
+        "right": 939,
+        "width": 715
+      },
+      "navigation": {
+        "top": 1426,
+        "bottom": 1483,
+        "height": 57,
+        "left": 214,
+        "right": 949,
+        "width": 735
+      },
+      "footer": {
+        "top": 1496,
+        "bottom": 1614,
+        "height": 118,
+        "left": 214,
+        "right": 949,
+        "width": 735
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

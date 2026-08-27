@@ -7,6 +7,7 @@ import FunctionNotationTargetLesson131 from "./FunctionNotationTargetLesson131";
 import VerticalLineTestTargetLesson132 from "./VerticalLineTestTargetLesson132";
 import LinearFunctionsTargetLesson133 from "./LinearFunctionsTargetLesson133";
 import QuadraticFunctionsTargetLesson134 from "./QuadraticFunctionsTargetLesson134";
+import CubicFunctionsTargetLesson135 from "./CubicFunctionsTargetLesson135";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -59,6 +60,9 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   }
   if (lesson.id === 134) {
     return <QuadraticFunctionsTargetLesson134 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 135) {
+    return <CubicFunctionsTargetLesson135 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {

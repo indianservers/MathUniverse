@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **117 of 200 lessons completed; 83 pending.**
+Dedicated rebuild target: **118 of 200 lessons completed; 82 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -103,6 +103,7 @@ Dedicated rebuild target: **117 of 200 lessons completed; 83 pending.**
 | 0189   |         132 Vertical-Line Test | Complete | Dedicated circle/parabola relation scanner with pointer/keyboard-draggable vertical line, generated intersections and hit counts, tangent/zero-hit states, global function classification, real comparison controls, and exact 984x1598 target framing |
 | 0190   |            133 Linear Functions | Complete | Dedicated linked slope-intercept model with real m/b sliders, pointer/keyboard-draggable intercept and slope handles, synchronized hero/full graphs, rise-run triangle, generated table/rate proof, practice, and exact 937x1678 target framing |
 | 0191   |         134 Quadratic Functions | Complete | Dedicated vertex-form model with real a/h/k sliders, pointer/keyboard-draggable vertex and opening handle, linked parabola/symmetry/mirrored points/table/reasoning/practice, and exact 948x1659 target framing |
+| 0192   |             135 Cubic Functions | Complete | Dedicated inflection-form model with real signed bend/center/shift controls, pointer/keyboard-draggable inflection and bend handles, linked S-curve/end behavior/symmetry/table/reasoning/practice, and exact 969x1623 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1741,3 +1742,17 @@ Evidence:
 - `0191-reference.png`
 - `0191-desktop.png`
 - `0191-dedicated-target-validation.json`
+
+## Lesson 135 / Mockup 0192 - Cubic Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-cubic-inflection-form-signed-bend-pointer-keyboard-draggable-inflection-and-shape-points-generated-s-curve-opposite-end-behavior-point-symmetry-linked-value-table-reasoning-practice-model`. The lesson-owned `a`, `h`, and `k` parameters generate the inflection-form equation, S-curve, inflection point, signed opposite-end behavior, point symmetry, five-row ordered-pair table, reasoning guide, misconception warning, and practice result. The target parent `f(x)=x³` produces `(-2,-8)`, `(-1,-1)`, `(0,0)`, `(1,1)`, `(2,8)`, origin symmetry, and down-left/up-right end behavior.
+
+All three parameters are real range controls. The inflection point is a genuine two-axis pointer- and keyboard-draggable object, while a second pointer/keyboard handle changes the signed bend strength directly on the graph. Every move recalculates the equation, curve, table, center, symmetry statement, end arrows, infinity callouts, and reasoning from one model. The Examples tab loads `g(x)=-(x-1)³+2`, with inflection `(1,2)` and up-left/down-right behavior; language, Share, Workspace, Reset, fullscreen, tabs, and interaction status all update visible state.
+
+Final 969x1623 integrated browser validation physically drags every parameter slider, resets, drags the inflection from `(0,0)` to `(1,1)`, keyboard-moves it back to `(0,0)`, drags bend strength from `1` to `2`, keyboard-reduces it to `1.75`, verifies every regenerated table value and signed end state, loads the negative example, and verifies Reset. Exact framing passes surface x=214-949 and y=106-1623, intro y=106-345, tabs y=356-414, lab y=428-1416, graph x=224-702 and y=496-1090, rail x=709-939, lower reasoning/practice y=1102-1407, navigation y=1426-1483, and footer y=1496-1614. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0192-reference.png`
+- `0192-desktop.png`
+- `0192-dedicated-target-validation.json`
