@@ -304,8 +304,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("State denominator restrictions");
   });
 
-  it("delegates phase 4 algebra lessons 117 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 117; id <= 128; id += 1) {
+  it("routes lesson 117 to its dedicated radical squaring and candidate-check model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 117)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0174"');
+    expect(html).toContain('data-dedicated-lesson="117"');
+    expect(html).toContain("editable-radical-equation-domain-boundary-pointer-drag-native-square-both-sides-drag-balance-isolation-generated-linear-solve-original-equation-check-extraneous-rejection-graded-practice-model");
+    expect(html).toContain('aria-label="Drag square both sides for x + 1"');
+    expect(html).toContain("Radical Unwrapper Lab");
+  });
+
+  it("delegates phase 4 algebra lessons 118 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 118; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

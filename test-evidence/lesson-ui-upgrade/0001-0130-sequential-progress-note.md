@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **99 of 200 lessons completed; 101 pending.**
+Dedicated rebuild target: **100 of 200 lessons completed; 100 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -85,6 +85,7 @@ Dedicated rebuild target: **99 of 200 lessons completed; 101 pending.**
 | 0171   |            114 Quadratic Equations | Complete | Dedicated editable coefficient/discriminant/factor-pair model with zero-product flow, pointer-draggable graph roots, synchronized verification, graded practice, functional controls, and exact 862x1824 target framing |
 | 0172   |           115 Polynomial Equations | Complete | Dedicated three-root cubic factor-stack model with Vieta expansion, pointer-draggable roots, factor-loss switches, SVG graph, substitution checks, graded practice, and exact 1003x1569 target framing |
 | 0173   |             116 Rational Equations | Complete | Dedicated restriction-first rational model with exact fractions, draggable forbidden point, native LCD drag/drop, generated solve/check stages, extraneous-value guardrail, practice, and exact 995x1581 target framing |
+| 0174   |              117 Radical Equations | Complete | Dedicated radical-unwrapper model with draggable domain boundary, native square-both-sides drop, generated isolation/solve/check stages, extraneous-root warning, graded practice, and exact 911x1726 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1471,3 +1472,17 @@ Evidence:
 - `0173-reference.png`
 - `0173-desktop.png`
 - `0173-dedicated-target-validation.json`
+
+## Lesson 117 / Mockup 0174 - Radical Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-radical-equation-domain-boundary-pointer-drag-native-square-both-sides-drag-balance-isolation-generated-linear-solve-original-equation-check-extraneous-rejection-graded-practice-model`. The radical offset and right side generate the original equation, radicand domain, squared equation, linear candidate, original-equation substitution, truth decision, solution set, and practice proof. The target `sqrt(x + 1) = 4` derives domain `x >= -1`, candidate `x = 15`, and the exact `sqrt(16) = 4` verification.
+
+The domain boundary is a real pointer- and keyboard-draggable control, and the current square-both-sides operation is a native draggable object with an actual transformation drop target. Editing either equation parameter or selecting New Example recalculates every proof stage. Four lesson modes, equation editing, Reset, candidate checking, editable practice grading, and New Practice update visible state. The sidebar keeps the domain and extraneous-root warning tied to the original equation rather than accepting a squared-equation candidate automatically.
+
+Final 911x1726 integrated browser validation changes the offset to `4` and verifies domain `x >= -4` and solution `12`, physically drags the domain boundary from `-1` to `0` and verifies solution `16`, generates `sqrt(x + 4) = 5`, physically drops the square operation, checks candidate `21`, rejects practice `26`, accepts `27`, generates another practice, and verifies Reset. Exact framing passes surface x=212-903 and y=92-1726, intro y=92-231, main/lab/rail y=246-1218, square stage y=578-796, solve y=798-967, check y=967-1215, practice y=1238-1509, navigation y=1524-1578, and footer y=1593-1726. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0174-reference.png`
+- `0174-desktop.png`
+- `0174-dedicated-target-validation.json`

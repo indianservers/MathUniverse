@@ -1,0 +1,249 @@
+{
+  "mockup": "0174",
+  "lessonId": 117,
+  "route": "/lessons/algebra/117-radical-equations",
+  "checks": {
+    "initial": {
+      "problem": "1,4",
+      "domain": "-1",
+      "solution": "15",
+      "squared": "true",
+      "candidate-checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "27",
+      "practice-correct": "true",
+      "actions": "0"
+    },
+    "editedOffset": {
+      "problem": "4,4",
+      "domain": "-4",
+      "solution": "12",
+      "squared": "false",
+      "candidate-checked": "false",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "27",
+      "practice-correct": "true",
+      "actions": "2"
+    },
+    "draggedDomain": {
+      "problem": "0,4",
+      "domain": "0",
+      "solution": "16",
+      "squared": "false",
+      "candidate-checked": "false",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "27",
+      "practice-correct": "true",
+      "actions": "6"
+    },
+    "newExample": {
+      "problem": "4,5",
+      "domain": "-4",
+      "solution": "21",
+      "squared": "false",
+      "candidate-checked": "false",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "27",
+      "practice-correct": "true",
+      "actions": "1"
+    },
+    "squareDropped": {
+      "problem": "4,5",
+      "domain": "-4",
+      "solution": "21",
+      "squared": "true",
+      "candidate-checked": "false",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "27",
+      "practice-correct": "true",
+      "actions": "3"
+    },
+    "candidateChecked": {
+      "problem": "4,5",
+      "domain": "-4",
+      "solution": "21",
+      "squared": "true",
+      "candidate-checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "27",
+      "practice-correct": "true",
+      "actions": "4"
+    },
+    "practiceWrong": {
+      "problem": "4,5",
+      "domain": "-4",
+      "solution": "21",
+      "squared": "true",
+      "candidate-checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "26",
+      "practice-correct": "false",
+      "actions": "6"
+    },
+    "practiceCorrect": {
+      "problem": "4,5",
+      "domain": "-4",
+      "solution": "21",
+      "squared": "true",
+      "candidate-checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "27",
+      "practice-correct": "true",
+      "actions": "8"
+    },
+    "newPractice": {
+      "problem": "4,5",
+      "domain": "-4",
+      "solution": "21",
+      "squared": "true",
+      "candidate-checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "1",
+      "practice-answer": "",
+      "practice-correct": "false",
+      "actions": "9"
+    },
+    "reset": {
+      "problem": "1,4",
+      "domain": "-1",
+      "solution": "15",
+      "squared": "true",
+      "candidate-checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "27",
+      "practice-correct": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 911,
+      "height": 1726
+    },
+    "document": {
+      "width": 911,
+      "height": 1726
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 92,
+        "bottom": 1726,
+        "height": 1634,
+        "left": 212,
+        "right": 903,
+        "width": 691
+      },
+      "intro": {
+        "top": 92,
+        "bottom": 231,
+        "height": 139,
+        "left": 212,
+        "right": 903,
+        "width": 691
+      },
+      "main": {
+        "top": 246,
+        "bottom": 1218,
+        "height": 972,
+        "left": 212,
+        "right": 903,
+        "width": 691
+      },
+      "lab": {
+        "top": 246,
+        "bottom": 1218,
+        "height": 972,
+        "left": 212,
+        "right": 638.890625,
+        "width": 426.890625
+      },
+      "rail": {
+        "top": 246,
+        "bottom": 1218,
+        "height": 972,
+        "left": 648.890625,
+        "right": 903,
+        "width": 254.109375
+      },
+      "isolate": {
+        "top": 377,
+        "bottom": 568,
+        "height": 191,
+        "left": 226,
+        "right": 624.890625,
+        "width": 398.890625
+      },
+      "square": {
+        "top": 578,
+        "bottom": 796,
+        "height": 218,
+        "left": 226,
+        "right": 624.890625,
+        "width": 398.890625
+      },
+      "solve": {
+        "top": 798,
+        "bottom": 967,
+        "height": 169,
+        "left": 226,
+        "right": 624.890625,
+        "width": 398.890625
+      },
+      "check": {
+        "top": 967,
+        "bottom": 1215,
+        "height": 248,
+        "left": 226,
+        "right": 624.890625,
+        "width": 398.890625
+      },
+      "practice": {
+        "top": 1238,
+        "bottom": 1509,
+        "height": 271,
+        "left": 212,
+        "right": 903,
+        "width": 691
+      },
+      "navigation": {
+        "top": 1524,
+        "bottom": 1578,
+        "height": 54,
+        "left": 212,
+        "right": 903,
+        "width": 691
+      },
+      "footer": {
+        "top": 1593,
+        "bottom": 1726,
+        "height": 133,
+        "left": 212,
+        "right": 903,
+        "width": 691
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
