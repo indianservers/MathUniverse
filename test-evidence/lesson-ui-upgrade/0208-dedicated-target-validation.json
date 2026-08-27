@@ -1,0 +1,179 @@
+{
+  "mockup": "0208",
+  "lessonId": 151,
+  "route": "/lessons/graphs-and-functions/151-inverse-functions",
+  "checks": {
+    "initial": {
+      "slope": "2",
+      "intercept": "1",
+      "probe": "2",
+      "output": "5",
+      "inverse-output": "2",
+      "domain": "all",
+      "domain-label": "(-infinity, infinity)",
+      "shared": "false"
+    },
+    "slopeRange": {
+      "slope": "2.5",
+      "intercept": "1",
+      "probe": "2",
+      "output": "6",
+      "inverse-output": "2",
+      "domain": "all",
+      "domain-label": "(-infinity, infinity)",
+      "shared": "false"
+    },
+    "interceptRange": {
+      "slope": "2.5",
+      "intercept": "-4.5",
+      "probe": "2",
+      "output": "0.5",
+      "inverse-output": "2",
+      "domain": "all",
+      "domain-label": "(-infinity, infinity)",
+      "shared": "false"
+    },
+    "positiveDomain": {
+      "slope": "2.5",
+      "intercept": "-4.5",
+      "probe": "2",
+      "output": "0.5",
+      "inverse-output": "2",
+      "domain": "positive",
+      "domain-label": "[0, infinity)",
+      "shared": "false"
+    },
+    "intervalDomain": {
+      "slope": "2.5",
+      "intercept": "-4.5",
+      "probe": "2",
+      "output": "0.5",
+      "inverse-output": "2",
+      "domain": "interval",
+      "domain-label": "[-3, 3]",
+      "shared": "false"
+    },
+    "probeDrag": {
+      "slope": "2",
+      "intercept": "1",
+      "probe": "-0.30000000000000004",
+      "output": "0.3999999999999999",
+      "inverse-output": "-0.30000000000000004",
+      "domain": "all",
+      "domain-label": "(-infinity, infinity)",
+      "shared": "false"
+    },
+    "probeKeyboard": {
+      "slope": "2",
+      "intercept": "1",
+      "probe": "-0.2",
+      "output": "0.6",
+      "inverse-output": "-0.2",
+      "domain": "all",
+      "domain-label": "(-infinity, infinity)",
+      "shared": "false"
+    },
+    "mappingSelection": {
+      "slope": "2",
+      "intercept": "1",
+      "probe": "-1",
+      "output": "-1",
+      "inverse-output": "-1",
+      "domain": "all",
+      "domain-label": "(-infinity, infinity)",
+      "shared": "false"
+    },
+    "shareNotice": true,
+    "shareClosed": true,
+    "reset": {
+      "slope": "2",
+      "intercept": "1",
+      "probe": "2",
+      "output": "5",
+      "inverse-output": "2",
+      "domain": "all",
+      "domain-label": "(-infinity, infinity)",
+      "shared": "false"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1195,
+      "height": 1316
+    },
+    "document": {
+      "width": 1195,
+      "height": 1595
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1358,
+        "left": 236,
+        "right": 1175,
+        "width": 939,
+        "height": 1251
+      },
+      "breadcrumb": null,
+      "surface": {
+        "top": 111,
+        "bottom": 1191,
+        "left": 254,
+        "right": 1175,
+        "width": 921,
+        "height": 1080
+      },
+      "header": {
+        "top": 129,
+        "bottom": 273,
+        "left": 269,
+        "right": 1160,
+        "width": 891,
+        "height": 144
+      },
+      "graphCard": {
+        "top": 273,
+        "bottom": 876,
+        "left": 269,
+        "right": 825.546875,
+        "width": 556.546875,
+        "height": 603
+      },
+      "graph": {
+        "top": 380,
+        "bottom": 820,
+        "left": 297,
+        "right": 807.546875,
+        "width": 510.546875,
+        "height": 440
+      },
+      "mapping": {
+        "top": 888,
+        "bottom": 1171,
+        "left": 269,
+        "right": 825.546875,
+        "width": 556.546875,
+        "height": 283
+      },
+      "rail": {
+        "top": 273,
+        "bottom": 1177,
+        "left": 839.546875,
+        "right": 1160,
+        "width": 320.453125,
+        "height": 904
+      },
+      "neighbors": {
+        "top": 1203,
+        "bottom": 1271,
+        "left": 254,
+        "right": 1175,
+        "width": 921,
+        "height": 68
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

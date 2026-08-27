@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 151 to its dedicated inverse reflection engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 151)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0208"');
+    expect(html).toContain('data-dedicated-lesson="151"');
+    expect(html).toContain("editable-linear-function-slope-intercept-domain-restriction-pointer-keyboard-draggable-source-point-generated-reflected-inverse-swapped-coordinate-mapping-table-live-composition-horizontal-line-test");
+    expect(html).toContain('aria-label="Drag original function point"');
+    expect(html).toContain("Composition returns the start");
+  });
+
   it("routes lesson 150 to its dedicated composition-order engine", () => {
     const lesson = lessonCatalog.find((item) => item.id === 150)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -270,7 +280,6 @@ describe("GraphLessonAdapter", () => {
       140: "negative real inputs are allowed",
       141: "distance makes a V-shape",
       142: "equal x-steps multiply outputs",
-      151: "inputs and outputs reverse",
       152: "f(-x)=f(x)",
     };
 

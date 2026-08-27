@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **133 of 200 lessons completed; 67 pending.**
+Dedicated rebuild target: **134 of 200 lessons completed; 66 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -119,6 +119,7 @@ Dedicated rebuild target: **133 of 200 lessons completed; 67 pending.**
 | 0205   |                  148 Sign Function | Complete | Dedicated three-region sign classifier with real graph-scale/threshold controls, pointer/keyboard input and threshold drags, generated negative/zero/positive rays, selectable cases/shortcuts, live classifier, piecewise definition, magnitude/direction proofs, and exact 1334x1179 framing |
 | 0206   |             149 Piecewise Functions | Complete | Dedicated three-rule engine with editable switches/vertical shift, pointer/keyboard probe and boundary drags, generated branches/regions/open-closed endpoints, exact boundary ownership, branch visibility, condition-first trace, working tabs/shell actions, and exact 1205x1306 framing |
 | 0207   |             150 Composite Functions | Complete | Dedicated composition-order engine with editable input/inner shift/outer scale, pointer/keyboard graph probe, generated function machine/three curves/live trace, true f o g/g o f calculations, order comparison, working shell actions, and exact 1205x1306 framing |
+| 0208   |               151 Inverse Functions | Complete | Dedicated linear-inverse engine with editable slope/intercept/domain, pointer/keyboard source-point drag, generated reflected inverse/swapped mappings/live compositions, horizontal-line proof, working share/reset/navigation, and exact 1195x1316 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1982,3 +1983,17 @@ Evidence:
 - `0207-reference.png`
 - `0207-desktop.png`
 - `0207-dedicated-target-validation.json`
+
+## Lesson 151 / Mockup 0208 - Inverse Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-linear-function-slope-intercept-domain-restriction-pointer-keyboard-draggable-source-point-generated-reflected-inverse-swapped-coordinate-mapping-table-live-composition-horizontal-line-test` model. The lesson-owned slope `m`, intercept `b`, source input `x`, and domain restriction generate `f(x)=mx+b`, `f⁻¹(x)=(x-b)/m`, both graph lines, reflection across `y=x`, the source and swapped points, mapping rows, live composition checks, domain/range clipping, and one-to-one proof from one state. At the target `m=2`, `b=1`, `x=2`, the model produces `f(2)=5`, the reflected point `(5,2)`, and `f⁻¹(5)=2`.
+
+Both parameter ranges and the four-option domain restriction are real controls. The source point is a genuine pointer- and keyboard-draggable SVG object; every movement regenerates its reflected inverse point, swap arc, labels, and both composition checks. Mapping rows are working selectors that move the same source point. Zero slope is excluded because a constant linear rule is not invertible; all retained slopes pass the horizontal-line test. Share, Reset, and previous/next navigation all have observable working behavior.
+
+Final 1195x1316 browser validation physically changes slope and intercept, selects nonnegative and closed-interval domains, drags and keyboard-moves the source point, selects the `(-1,-1)` mapping row, verifies every inverse composition numerically, exercises Share, closes its notice, and resets. The final comparison loop places the surface at y=111-1191, header y=129-273, graph card y=273-876, graph x=297-808 and y=380-820, mapping y=888-1171, rail y=273-1177, and navigation y=1203-1271. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0208-reference.png`
+- `0208-desktop.png`
+- `0208-dedicated-target-validation.json`
