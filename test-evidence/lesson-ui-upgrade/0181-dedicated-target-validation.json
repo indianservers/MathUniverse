@@ -1,0 +1,173 @@
+{
+  "mockup": "0181",
+  "lessonId": 124,
+  "route": "/lessons/algebra/124-quadratic-inequalities",
+  "checks": {
+    "initial": {
+      "roots": "2,3",
+      "relation": "1,>",
+      "solution": "(−∞, 2) ∪ (3, ∞)",
+      "actions": "0"
+    },
+    "draggedFirst": {
+      "roots": "1,3",
+      "relation": "1,>",
+      "solution": "(−∞, 1) ∪ (3, ∞)",
+      "actions": "7"
+    },
+    "draggedSecond": {
+      "roots": "1,4",
+      "relation": "1,>",
+      "solution": "(−∞, 1) ∪ (4, ∞)",
+      "actions": "14"
+    },
+    "inclusive": {
+      "roots": "1,4",
+      "relation": "1,>=",
+      "solution": "(−∞, 1] ∪ [4, ∞)",
+      "actions": "15"
+    },
+    "downward": {
+      "roots": "1,4",
+      "relation": "-1,>=",
+      "solution": "[1, 4]",
+      "actions": "16"
+    },
+    "example": {
+      "roots": "-2,4",
+      "relation": "-1,>=",
+      "solution": "[-2, 4]",
+      "actions": "17"
+    },
+    "keyboardRoot": {
+      "roots": "-1,4",
+      "relation": "-1,>=",
+      "solution": "[-1, 4]",
+      "actions": "18"
+    },
+    "practice": {
+      "roots": "-1,4",
+      "relation": "-1,>=",
+      "solution": "[-1, 4]",
+      "actions": "19"
+    },
+    "reset": {
+      "roots": "2,3",
+      "relation": "1,>",
+      "solution": "(−∞, 2) ∪ (3, ∞)",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 972,
+      "height": 1617
+    },
+    "document": {
+      "width": 972,
+      "height": 1617
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 107,
+        "bottom": 1617,
+        "height": 1510,
+        "left": 224,
+        "right": 958,
+        "width": 734
+      },
+      "intro": {
+        "top": 107,
+        "bottom": 311,
+        "height": 204,
+        "left": 224,
+        "right": 958,
+        "width": 734
+      },
+      "tabs": {
+        "top": 321,
+        "bottom": 381,
+        "height": 60,
+        "left": 224,
+        "right": 958,
+        "width": 734
+      },
+      "lab": {
+        "top": 391,
+        "bottom": 1437,
+        "height": 1046,
+        "left": 224,
+        "right": 958,
+        "width": 734
+      },
+      "summary": {
+        "top": 457,
+        "bottom": 517,
+        "height": 60,
+        "left": 238,
+        "right": 944,
+        "width": 706
+      },
+      "chart": {
+        "top": 528,
+        "bottom": 907,
+        "height": 379,
+        "left": 238,
+        "right": 944,
+        "width": 706
+      },
+      "middle": {
+        "top": 918,
+        "bottom": 1188,
+        "height": 270,
+        "left": 238,
+        "right": 944,
+        "width": 706
+      },
+      "lower": {
+        "top": 1199,
+        "bottom": 1350,
+        "height": 151,
+        "left": 238,
+        "right": 944,
+        "width": 706
+      },
+      "note": {
+        "top": 1361,
+        "bottom": 1398,
+        "height": 37,
+        "left": 225,
+        "right": 957,
+        "width": 732
+      },
+      "tags": {
+        "top": 1406,
+        "bottom": 1437,
+        "height": 31,
+        "left": 238,
+        "right": 944,
+        "width": 706
+      },
+      "navigation": {
+        "top": 1447,
+        "bottom": 1505,
+        "height": 58,
+        "left": 224,
+        "right": 958,
+        "width": 734
+      },
+      "footer": {
+        "top": 1515,
+        "bottom": 1617,
+        "height": 102,
+        "left": 224,
+        "right": 958,
+        "width": 734
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

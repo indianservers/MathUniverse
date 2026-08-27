@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **106 of 200 lessons completed; 94 pending.**
+Dedicated rebuild target: **107 of 200 lessons completed; 93 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -92,6 +92,7 @@ Dedicated rebuild target: **106 of 200 lessons completed; 94 pending.**
 | 0178   |       121 Absolute-Value Equations | Complete | Dedicated center/distance model with pointer-draggable linked number-line points, generated two-branch solves and checks, negative-distance rejection, practice, and exact 1003x1568 target framing |
 | 0179   |             122 Linear Inequalities | Complete | Dedicated sign-aware coefficient model with pointer-draggable boundary, comparator reversal, linked endpoint/shading/interval notation, test points, practice, and exact 930x1691 target framing |
 | 0180   |             123 Compound Inequalities | Complete | Dedicated AND/intersection and OR/union interval model with two pointer-draggable boundaries, endpoint inclusion toggles, linked number lines, test points, empty-set handling, practice, and exact 911x1726 target framing |
+| 0181   |             124 Quadratic Inequalities | Complete | Dedicated quadratic sign-interval model with two pointer-draggable roots, leading-sign/comparator controls, linked factorization, substitutions, parabola regions, interval solution, practice, and exact 972x1617 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1576,3 +1577,17 @@ Evidence:
 - `0180-reference.png`
 - `0180-desktop.png`
 - `0180-dedicated-target-validation.json`
+
+## Lesson 124 / Mockup 0181 - Quadratic Inequalities
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-quadratic-inequality-two-pointer-keyboard-draggable-roots-linked-factorization-sign-chart-substitution-values-parabola-regions-interval-solution-inclusive-endpoints-practice-model`. The lesson-owned roots, leading coefficient sign, and comparator generate the expanded quadratic, factorization, critical points, five substitution values, sign conclusions, selected intervals, interval notation, and shaded parabola regions. The target `x^2 - 5x + 6 > 0` derives roots `2,3`, signs `+,-,+`, and solution `(-infinity,2) union (3,infinity)`.
+
+Both sign-line roots are real pointer- and keyboard-draggable controls with a coordinate domain frozen for each gesture. Every move recalculates coefficients, factors, substitutions, graph roots, region fills, warning text, and the final interval. The factorization card flips the leading sign, the inequality card cycles strict/inclusive positive/negative relations, and the examples tab loads a downward parabola with roots `-2,4`. Language, Share, Workspace, Reset, fullscreen, action status, roots-only warning, and practice checking all update visible state.
+
+Final 972x1617 integrated browser validation physically drags the roots from `2,3` to `1,4`, changes `>` to `>=` and verifies `(-infinity,1] union [4,infinity)`, flips the parabola downward and verifies `[1,4]`, loads the example `-2,4`, keyboard-adjusts its first root to `-1`, checks practice, and verifies Reset. Exact framing passes surface x=224-958 and y=107-1617, intro y=107-311, tabs y=321-381, lab y=391-1437, summary y=457-517, sign chart y=528-907, graph/reasoning y=918-1188, warning/practice y=1199-1350, navigation y=1447-1505, and footer y=1515-1617. It reports no horizontal or vertical overflow, an exact 972x1617 document, and zero console messages.
+
+Evidence:
+
+- `0181-reference.png`
+- `0181-desktop.png`
+- `0181-dedicated-target-validation.json`

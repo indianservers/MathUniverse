@@ -388,8 +388,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Build the intersection on a number line");
   });
 
-  it("delegates phase 4 algebra lessons 124 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 124; id <= 128; id += 1) {
+  it("routes lesson 124 to its dedicated draggable quadratic sign-interval model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 124)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0181"');
+    expect(html).toContain('data-dedicated-lesson="124"');
+    expect(html).toContain("editable-quadratic-inequality-two-pointer-keyboard-draggable-roots-linked-factorization-sign-chart-substitution-values-parabola-regions-interval-solution-inclusive-endpoints-practice-model");
+    expect(html).toContain('aria-label="Drag quadratic first root"');
+    expect(html).toContain("SIGN CHART (NUMBER LINE)");
+  });
+
+  it("delegates phase 4 algebra lessons 125 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 125; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

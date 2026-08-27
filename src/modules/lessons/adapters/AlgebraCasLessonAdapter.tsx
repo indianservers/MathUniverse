@@ -36,6 +36,7 @@ import TrigonometricEquationsTargetLesson120 from "./TrigonometricEquationsTarge
 import AbsoluteValueEquationsTargetLesson121 from "./AbsoluteValueEquationsTargetLesson121";
 import LinearInequalitiesTargetLesson122 from "./LinearInequalitiesTargetLesson122";
 import CompoundInequalitiesTargetLesson123 from "./CompoundInequalitiesTargetLesson123";
+import QuadraticInequalitiesTargetLesson124 from "./QuadraticInequalitiesTargetLesson124";
 
 function run(title: string, coefficient: number): { input: string; output: SymbolicResult } {
   const name = title.toLowerCase();
@@ -211,7 +212,10 @@ export default function AlgebraCasLessonAdapter({ lesson, resetToken, onInteract
   if (lesson.id === 123) {
     return <CompoundInequalitiesTargetLesson123 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
-  if (lesson.categorySlug === "algebra" && lesson.id >= 124 && lesson.id <= 128) {
+  if (lesson.id === 124) {
+    return <QuadraticInequalitiesTargetLesson124 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.categorySlug === "algebra" && lesson.id >= 125 && lesson.id <= 128) {
     return <AlgebraConceptWorkspace lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
