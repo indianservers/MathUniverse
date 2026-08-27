@@ -20,6 +20,7 @@ import TrigonometricFunctionsTargetLesson144 from "./TrigonometricFunctionsTarge
 import HyperbolicFunctionsTargetLesson145 from "./HyperbolicFunctionsTargetLesson145";
 import FloorFunctionTargetLesson146 from "./FloorFunctionTargetLesson146";
 import CeilingFunctionTargetLesson147 from "./CeilingFunctionTargetLesson147";
+import SignFunctionTargetLesson148 from "./SignFunctionTargetLesson148";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -111,6 +112,9 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   }
   if (lesson.id === 147) {
     return <CeilingFunctionTargetLesson147 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 148) {
+    return <SignFunctionTargetLesson148 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {

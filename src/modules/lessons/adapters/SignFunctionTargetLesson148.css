@@ -1,0 +1,458 @@
+.sign148-page {
+  position: relative;
+  top: -42px;
+  width: 100%;
+  height: 1114px;
+  margin-bottom: -42px;
+  overflow: hidden;
+  background: #f5f9fc;
+  color: #111d48;
+  font:
+    12px Arial,
+    sans-serif;
+  letter-spacing: 0;
+}
+.sign148-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.sign148-page h1,
+.sign148-page h2,
+.sign148-page p {
+  margin: 0;
+}
+.sign148-page button,
+.sign148-page input {
+  font: inherit;
+}
+.sign148-page button {
+  cursor: pointer;
+}
+.sign148-breadcrumb {
+  height: 62px;
+  padding: 21px 20px;
+  color: #63718a;
+  font-weight: 700;
+}
+.sign148-breadcrumb b {
+  color: #078ca6;
+}
+.sign148-header {
+  height: 218px;
+  padding: 20px;
+  border-radius: 22px 22px 0 0;
+  background: #fff;
+  display: grid;
+  grid-template-columns: 1fr 490px;
+}
+.sign148-header small {
+  display: flex;
+  gap: 10px;
+}
+.sign148-header small b {
+  padding: 6px 11px;
+  border-radius: 15px;
+  background: #e6f8fb;
+  color: #078ba2;
+  font-size: 10px;
+}
+.sign148-header small b + b {
+  background: #f2f4f7;
+  color: #68748b;
+}
+.sign148-header h1 {
+  margin-top: 12px;
+  font-size: 35px;
+  line-height: 42px;
+}
+.sign148-header > div > p {
+  font-size: 15px;
+  color: #6a748b;
+  font-weight: 700;
+}
+.sign148-header aside {
+  display: flex;
+  align-content: start;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.sign148-header aside button {
+  display: flex;
+  height: 42px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dbe3ec;
+  border-radius: 9px;
+  background: #fff;
+  font-weight: 700;
+}
+.sign148-header aside button:first-child {
+  width: 195px;
+  justify-content: space-between;
+}
+.sign148-header svg {
+  width: 16px;
+}
+.sign148-header footer {
+  display: flex;
+  grid-column: 1/-1;
+  align-items: end;
+  gap: 15px;
+}
+.sign148-header footer button {
+  width: 174px;
+  height: 44px;
+  border: 1px solid #e9b9c3;
+  border-radius: 8px;
+  background: #fff8f9;
+  color: #dd2849;
+  font: 700 15px monospace;
+}
+.sign148-header footer button:nth-child(2) {
+  border-color: #d5dbe4;
+  background: #fafbfc;
+  color: #33425e;
+}
+.sign148-header footer button:nth-child(3) {
+  border-color: #a9dce1;
+  background: #f4fcfd;
+  color: #087f92;
+}
+.sign148-layout {
+  display: grid;
+  height: 720px;
+  padding: 0 18px;
+  background: #fff;
+  grid-template-columns: minmax(0, 1fr) 325px;
+  gap: 18px;
+}
+.sign148-layout main {
+  min-width: 0;
+}
+.sign148-plot {
+  height: 665px;
+  padding: 16px;
+  border: 1px solid #dbe3ec;
+  border-radius: 13px;
+  background: #fff;
+}
+.sign148-plot h2 {
+  height: 30px;
+  font-size: 18px;
+}
+.sign148-graph {
+  display: block;
+  width: 100%;
+  height: 390px;
+  touch-action: none;
+}
+.sign148-graph text {
+  fill: #36445e;
+  font-size: 12px;
+}
+.sign148-graph .axis {
+  stroke: #56667d;
+  stroke-width: 1.4;
+}
+.sign148-graph .negative-ray {
+  stroke: #f12f52;
+  stroke-width: 3;
+}
+.sign148-graph .positive-ray {
+  stroke: #078b83;
+  stroke-width: 3;
+}
+.sign148-graph .negative-open {
+  fill: #fff;
+  stroke: #f12f52;
+  stroke-width: 2;
+}
+.sign148-graph .positive-open {
+  fill: #fff;
+  stroke: #078b83;
+  stroke-width: 2;
+}
+.sign148-graph .zero-point {
+  fill: #eaa010;
+}
+.sign148-graph .cursor-line {
+  stroke: #72839a;
+  stroke-width: 1.5;
+  stroke-dasharray: 7 5;
+}
+.sign148-graph .cursor-tag {
+  fill: #078d82;
+}
+.sign148-graph .cursor-text {
+  fill: #fff;
+  font-weight: 700;
+}
+.sign148-graph .input-handle {
+  fill: #087b8b;
+  stroke: #fff;
+  stroke-width: 2;
+  cursor: grab;
+}
+.sign148-graph .input-handle.out-0 {
+  fill: #eaa010;
+}
+.sign148-graph .input-handle.out-1 {
+  fill: #078b83;
+}
+.sign148-graph .threshold-handle {
+  fill: #eaa010;
+  opacity: 0.01;
+  stroke: #eaa010;
+  cursor: ew-resize;
+}
+.sign148-cases {
+  display: grid;
+  height: 142px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+.sign148-cases button {
+  display: flex;
+  padding: 12px;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #dbe3ec;
+  border-radius: 9px;
+  background: #fbfcfd;
+  color: #263553;
+}
+.sign148-cases button:first-child {
+  border-color: #f2d1d8;
+  background: #fff8f9;
+  color: #b72643;
+}
+.sign148-cases button:last-child {
+  border-color: #c8e7e9;
+  background: #f4fbfc;
+  color: #076f7d;
+}
+.sign148-cases button.active {
+  box-shadow: 0 0 0 2px currentColor inset;
+}
+.sign148-cases i {
+  width: 85px;
+  height: 3px;
+  margin: 8px;
+  background: currentColor;
+  position: relative;
+}
+.sign148-cases i:after {
+  position: absolute;
+  left: 40px;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: currentColor;
+  content: "";
+}
+.sign148-cases b,
+.sign148-cases strong {
+  font:
+    italic 15px Georgia,
+    serif;
+}
+.sign148-cases span {
+  margin-top: 7px;
+  font-size: 11px;
+}
+.sign148-plot > footer {
+  display: grid;
+  height: 70px;
+  margin-top: 14px;
+  padding: 10px 15px;
+  align-items: center;
+  grid-template-columns: 1fr 135px 145px;
+  border: 1px solid #dbe3ec;
+  border-radius: 9px;
+}
+.sign148-plot > footer div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.sign148-plot > footer output {
+  display: flex;
+  height: 50px;
+  padding: 7px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid #c8e7e9;
+  border-radius: 8px;
+  background: #f3fbfc;
+  color: #087f91;
+}
+.sign148-plot > footer output.negative {
+  border-color: #f2d1d8;
+  background: #fff8f9;
+  color: #dc294a;
+}
+.sign148-plot > footer output.zero {
+  color: #d78e00;
+}
+.sign148-insights {
+  display: grid;
+  height: 100px;
+  margin-top: 12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.sign148-insights article {
+  display: flex;
+  padding: 14px;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #dbe3ec;
+  border-radius: 10px;
+}
+.sign148-insights i {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 2px solid #9eafc4;
+  border-radius: 50%;
+  font:
+    italic 28px Georgia,
+    serif;
+}
+.sign148-insights p {
+  margin-top: 8px !important;
+  color: #62708a;
+  line-height: 18px;
+}
+.sign148-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.sign148-rail section {
+  border: 1px solid #dbe3ec;
+  border-radius: 13px;
+  background: #fff;
+  padding: 20px;
+}
+.sign148-rail h2 {
+  font-size: 15px;
+}
+.sign148-rail section:first-child {
+  height: 267px;
+}
+.sign148-rail section:first-child label {
+  display: grid;
+  height: 83px;
+  margin-top: 10px;
+  grid-template-columns: 1fr 58px;
+  align-items: center;
+  font-weight: 700;
+}
+.sign148-rail section:first-child input {
+  grid-column: 1;
+  width: 100%;
+  accent-color: #0b9eaa;
+}
+.sign148-rail section:first-child output {
+  grid-column: 2;
+  grid-row: 1/3;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #dbe3ec;
+  border-radius: 7px;
+}
+.sign148-rail section:first-child small {
+  display: flex;
+  grid-column: 1;
+  justify-content: space-between;
+  color: #7f8ca1;
+  font-weight: 400;
+}
+.sign148-rail section:first-child > p {
+  color: #6c7890;
+  line-height: 18px;
+}
+.sign148-classifier {
+  height: 278px;
+}
+.sign148-classifier > div {
+  margin-top: 12px;
+  border: 1px solid #dbe3ec;
+  border-radius: 9px;
+  overflow: hidden;
+}
+.sign148-classifier label {
+  display: flex;
+  height: 49px;
+  padding: 12px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dbe3ec;
+}
+.sign148-classifier label b {
+  font-size: 20px;
+}
+.sign148-classifier label:nth-child(2) {
+  height: 83px;
+  align-items: center;
+}
+.sign148-classifier strong {
+  font-size: 38px;
+}
+.sign148-classifier > div > p {
+  padding: 15px;
+  text-align: center;
+  line-height: 22px;
+}
+.sign148-classifier .negative {
+  color: #eb2b50;
+}
+.sign148-classifier .positive {
+  color: #078b83;
+}
+.sign148-classifier .zero {
+  color: #df9700;
+}
+.sign148-definition {
+  flex: 1;
+}
+.sign148-definition > p {
+  margin-top: 18px !important;
+  color: #64718a;
+  line-height: 18px;
+}
+.sign148-definition > strong {
+  display: flex;
+  margin: 25px 10px;
+  font:
+    italic 17px Georgia,
+    serif;
+  gap: 10px;
+}
+.sign148-definition span {
+  line-height: 31px;
+}
+.sign148-workspace,
+.sign148-notice {
+  position: absolute;
+  z-index: 4;
+  padding: 10px 14px;
+  border: 1px solid #0b9eaa;
+  border-radius: 7px;
+  background: #fff;
+  color: #087b8b;
+}
+.sign148-workspace {
+  right: 355px;
+  top: 155px;
+}
+.sign148-notice {
+  right: 25px;
+  top: 155px;
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **130 of 200 lessons completed; 70 pending.**
+Dedicated rebuild target: **131 of 200 lessons completed; 69 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -116,6 +116,7 @@ Dedicated rebuild target: **130 of 200 lessons completed; 70 pending.**
 | 0202   |          145 Hyperbolic Functions | Complete | Dedicated linked unit-hyperbola/exponential-decomposition model with real main/challenge parameters, pointer/keyboard hyperbola-point and graph-probe drags, five generated curves, values table, identity residual, curve toggles, zoom/fullscreen, and exact 1536x1024 framing |
 | 0203   |                 146 Floor Function | Complete | Dedicated transformed floor-function model with real input/shift ranges, pointer/keyboard probe drag, generated staircase and number line, exact closed-left/open-right endpoints, interval table, negative-input correctness, challenge grading, discontinuity diagnostics, and exact 1536x1024 framing |
 | 0204   |               147 Ceiling Function | Complete | Dedicated transformed ceiling-function model with real input/shift ranges, snap mode, pointer/keyboard probe drag, generated upward staircase, open-left/closed-right endpoints, clickable evaluation table, negative/integer boundary correctness, floor comparison, jump diagram, and exact 1392x1130 framing |
+| 0205   |                  148 Sign Function | Complete | Dedicated three-region sign classifier with real graph-scale/threshold controls, pointer/keyboard input and threshold drags, generated negative/zero/positive rays, selectable cases/shortcuts, live classifier, piecewise definition, magnitude/direction proofs, and exact 1334x1179 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1937,3 +1938,17 @@ Evidence:
 - `0204-reference.png`
 - `0204-desktop.png`
 - `0204-dedicated-target-validation.json`
+
+## Lesson 148 / Mockup 0205 - Sign Function
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-sign-input-threshold-and-domain-scale-pointer-keyboard-draggable-input-and-threshold-generated-negative-zero-positive-rays-live-classifier-selectable-cases-piecewise-definition-magnitude-ignored-direction-model`. The lesson-owned input `x`, zero threshold `h`, and graph scale generate `sgn(x-h)`, the negative and positive rays, open boundary endpoints, single zero point, cursor line, case classification, live classifier, and shifted piecewise definition from one state. The target `x=-2.4`, `h=0` produces `sgn(-2.4)=-1` and the negative classifier state.
+
+The scale and threshold ranges are real controls. The input cursor and zero threshold are independent genuine pointer- and keyboard-draggable SVG objects. Moving the threshold regenerates all three graph regions, endpoints, zero point, labels, shortcut values, case inputs, and piecewise conditions. The three headline examples and three case cards are working selectors. Magnitude never enters the classification calculation: only whether `x-h` is negative, zero, or positive matters. Language, Workspace, Share, and Reset all own observable state.
+
+Final 1334x1179 browser validation physically changes graph scale and threshold; drags and keyboard-moves both SVG handles; verifies every generated state against the exact sign calculation; selects transformed zero/negative/positive shortcuts and the threshold case; changes language; opens/closes Workspace; exercises Share; and resets. Exact framing passes surface y=65-1179, breadcrumb y=65-127, header y=127-345, plot y=345-1010, graph y=392-782, rail y=345-1174, and insight cards y=1022-1122. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0205-reference.png`
+- `0205-desktop.png`
+- `0205-dedicated-target-validation.json`

@@ -1,0 +1,178 @@
+{
+  "mockup": "0205",
+  "lessonId": 148,
+  "route": "/lessons/graphs-and-functions/148-sign-function",
+  "checks": {
+    "initial": {
+      "x": "-2.4",
+      "threshold": "0",
+      "scale": "10",
+      "result": "-1",
+      "region": "negative",
+      "workspace": "false"
+    },
+    "scaleRange": {
+      "x": "-2.4",
+      "threshold": "0",
+      "scale": "12",
+      "result": "-1",
+      "region": "negative",
+      "workspace": "false"
+    },
+    "thresholdRange": {
+      "x": "-2.4",
+      "threshold": "1.1",
+      "scale": "12",
+      "result": "-1",
+      "region": "negative",
+      "workspace": "false"
+    },
+    "inputDrag": {
+      "x": "4.4",
+      "threshold": "0",
+      "scale": "10",
+      "result": "1",
+      "region": "positive",
+      "workspace": "false"
+    },
+    "inputKeyboard": {
+      "x": "4.5",
+      "threshold": "0",
+      "scale": "10",
+      "result": "1",
+      "region": "positive",
+      "workspace": "false"
+    },
+    "thresholdDrag": {
+      "x": "-2.4",
+      "threshold": "2",
+      "scale": "10",
+      "result": "-1",
+      "region": "negative",
+      "workspace": "false"
+    },
+    "thresholdKeyboard": {
+      "x": "-2.4",
+      "threshold": "1.9000000000000001",
+      "scale": "10",
+      "result": "-1",
+      "region": "negative",
+      "workspace": "false"
+    },
+    "zeroShortcut": {
+      "x": "1.9000000000000001",
+      "threshold": "1.9000000000000001",
+      "scale": "10",
+      "result": "0",
+      "region": "zero",
+      "workspace": "false"
+    },
+    "negativeShortcut": {
+      "x": "-0.4999999999999998",
+      "threshold": "1.9000000000000001",
+      "scale": "10",
+      "result": "-1",
+      "region": "negative",
+      "workspace": "false"
+    },
+    "positiveShortcut": {
+      "x": "5",
+      "threshold": "1.9000000000000001",
+      "scale": "10",
+      "result": "1",
+      "region": "positive",
+      "workspace": "false"
+    },
+    "zeroCase": {
+      "x": "1.9000000000000001",
+      "threshold": "1.9000000000000001",
+      "scale": "10",
+      "result": "0",
+      "region": "zero",
+      "workspace": "false"
+    },
+    "languageChanged": true,
+    "workspaceOpen": true,
+    "workspaceClosed": true,
+    "shareNotice": true,
+    "reset": {
+      "x": "-2.4",
+      "threshold": "0",
+      "scale": "10",
+      "result": "-1",
+      "region": "negative",
+      "workspace": "false"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1334,
+      "height": 1179
+    },
+    "document": {
+      "width": 1334,
+      "height": 1416
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 65,
+        "bottom": 1179,
+        "left": 294,
+        "right": 1314,
+        "width": 1020,
+        "height": 1114
+      },
+      "breadcrumb": {
+        "top": 65,
+        "bottom": 127,
+        "left": 294,
+        "right": 1314,
+        "width": 1020,
+        "height": 62
+      },
+      "header": {
+        "top": 127,
+        "bottom": 345,
+        "left": 294,
+        "right": 1314,
+        "width": 1020,
+        "height": 218
+      },
+      "plot": {
+        "top": 345,
+        "bottom": 1010,
+        "left": 312,
+        "right": 953,
+        "width": 641,
+        "height": 665
+      },
+      "graph": {
+        "top": 392,
+        "bottom": 782,
+        "left": 329,
+        "right": 936,
+        "width": 607,
+        "height": 390
+      },
+      "rail": {
+        "top": 345,
+        "bottom": 1174,
+        "left": 971,
+        "right": 1296,
+        "width": 325,
+        "height": 829
+      },
+      "insights": {
+        "top": 1022,
+        "bottom": 1122,
+        "left": 312,
+        "right": 953,
+        "width": 641,
+        "height": 100
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
