@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 143 to its dedicated logarithmic inverse model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 143)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0200"');
+    expect(html).toContain('data-dedicated-lesson="143"');
+    expect(html).toContain("editable-logarithmic-scale-base-horizontal-shift-vertical-shift-pointer-keyboard-draggable-asymptote-anchor-and-scale-point-generated-domain-curve-inverse-exponential-reflection-value-table-diagnostics-real-parameter-challenge");
+    expect(html).toContain('aria-label="Drag logarithmic vertical asymptote"');
+    expect(html).toContain("CONCEPTUAL DIAGNOSTICS");
+  });
+
   it("routes lesson 142 to its dedicated exponential ratio model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 142)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -190,7 +200,6 @@ describe("GraphLessonAdapter", () => {
       140: "negative real inputs are allowed",
       141: "distance makes a V-shape",
       142: "equal x-steps multiply outputs",
-      143: "inputs must be positive",
       144: "repeats with a period",
       145: "not periodic like cosine",
       146: "outputs step down to integers",

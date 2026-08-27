@@ -1,0 +1,371 @@
+.log143-page {
+  top: -91px;
+  height: 958px;
+  margin-bottom: -91px;
+  width: 100%;
+  color: #e8edf8;
+  background: #070f1c;
+  border: 1px solid #26344a;
+  overflow: hidden;
+}
+.log143-page button,
+.log143-page input {
+  color: inherit;
+}
+.log143-titlebar {
+  display: grid;
+  height: 105px;
+  padding: 18px 20px 10px;
+  grid-template-columns: 1fr 260px 410px;
+  align-items: start;
+  gap: 18px;
+  background: linear-gradient(90deg, #0a1320, #090f1a);
+}
+.log143-titlebar h1 {
+  color: #f5f7fb;
+  font-size: 32px;
+  line-height: 38px;
+}
+.log143-titlebar p {
+  color: #bb72ff;
+  font-family: Georgia, serif;
+  font-size: 24px;
+}
+.log143-titlebar p em {
+  color: #d579ff;
+}
+.log143-titlebar p span {
+  color: #51d8d6;
+}
+.log143-titlebar button {
+  height: 43px;
+  margin-top: 20px;
+  border: 1px solid #367ce9;
+  border-radius: 8px;
+  background: #101b2d;
+  box-shadow: 0 0 14px #245fc455;
+}
+.log143-titlebar button svg {
+  width: 18px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.log143-titlebar > strong {
+  height: 65px;
+  padding: 18px 28px;
+  border: 1px solid #2c384a;
+  border-radius: 11px;
+  background: #101824;
+  color: #fff;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  text-align: center;
+}
+.log143-tabs {
+  display: grid;
+  height: 42px;
+  margin: 0 399px 8px 16px;
+  border: 1px solid #2c394c;
+  border-radius: 8px;
+  grid-template-columns: repeat(5, 1fr);
+  overflow: hidden;
+}
+.log143-tabs button {
+  border: 0;
+  border-right: 1px solid #29364a;
+  background: #0e1725;
+}
+.log143-tabs button.active {
+  background: #2a1853;
+  box-shadow: inset 0 -2px #8f4fff;
+}
+.log143-workspace {
+  position: relative;
+  display: grid;
+  height: 803px;
+  padding: 0 16px 10px;
+  grid-template-columns: minmax(0, 1fr) 365px;
+  gap: 16px;
+}
+.log143-workspace > main {
+  min-width: 0;
+}
+.log143-graph {
+  width: 100%;
+  height: 488px;
+  border: 1px solid #2b3b52;
+  border-radius: 12px;
+  touch-action: none;
+}
+.log143-graph text {
+  fill: #dce6f5;
+  font-size: 13px;
+}
+.log143-graph .axis {
+  stroke: #d5deeb;
+  stroke-width: 1.3;
+}
+.log143-graph .forbidden {
+  fill: #281f4a;
+  opacity: 0.24;
+}
+.log143-graph .asymptote {
+  stroke: #ff9a17;
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+.log143-graph .reflection {
+  stroke: #9aa8b8;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+.log143-graph .log-curve {
+  fill: none;
+  stroke: #9858ff;
+  stroke-width: 4;
+}
+.log143-graph .inverse-curve {
+  fill: none;
+  stroke: #76cb3d;
+  stroke-width: 4;
+}
+.log143-graph .log-point circle {
+  fill: #8b5cf6;
+  stroke: #d8c7ff;
+}
+.log143-graph .handle {
+  fill: #9b61ff;
+  stroke: #fff;
+  stroke-width: 1.5;
+  cursor: grab;
+}
+.log143-graph .asymptote-handle {
+  fill: #f59e0b;
+}
+.log143-graph .domain-label {
+  fill: #c56cff;
+  font-size: 18px;
+  font-weight: 800;
+}
+.log143-graph .asymptote-label rect {
+  fill: #191929;
+  stroke: #f59e0b;
+}
+.log143-graph .asymptote-label text {
+  fill: #ffb02b;
+}
+.log143-graph .reflection-label rect {
+  fill: #13211b;
+  stroke: #6fca35;
+}
+.log143-graph .reflection-label text {
+  fill: #91e258;
+}
+.log143-inverse-mask {
+  position: absolute;
+  top: 52px;
+  left: 16px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #152034;
+}
+.log143-table {
+  height: 262px;
+  margin-top: 10px;
+  border: 1px solid #2b3a4f;
+  border-radius: 9px;
+  overflow: hidden;
+  background: #0d1724;
+}
+.log143-table header {
+  display: flex;
+  height: 41px;
+  padding: 10px 14px;
+  justify-content: space-between;
+  border-bottom: 1px solid #2c3b50;
+}
+.log143-table header span {
+  padding: 3px 16px;
+  border: 1px solid #314056;
+  border-radius: 6px;
+}
+.log143-table table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+.log143-table th,
+.log143-table td {
+  height: 35px;
+  border-right: 1px solid #2a394e;
+  border-bottom: 1px solid #2a394e;
+}
+.log143-table th:nth-child(2),
+.log143-table td:nth-child(2) {
+  color: #c77dff;
+}
+.log143-table th:nth-child(3),
+.log143-table td:nth-child(3) {
+  color: #83db4b;
+}
+.log143-rail {
+  display: grid;
+  grid-template-rows: 294px 231px 173px;
+  gap: 12px;
+}
+.log143-rail > section {
+  padding: 14px;
+  border: 1px solid #2b394d;
+  border-radius: 10px;
+  background: #101925;
+}
+.log143-parameters header {
+  display: flex;
+  justify-content: space-between;
+}
+.log143-parameters header button {
+  border: 0;
+  background: transparent;
+}
+.log143-parameters header svg {
+  width: 13px;
+  vertical-align: middle;
+}
+.log143-parameters label {
+  position: relative;
+  display: grid;
+  height: 59px;
+  grid-template-columns: 96px 1fr 45px;
+  align-items: center;
+  gap: 10px;
+}
+.log143-parameters input {
+  width: 100%;
+  accent-color: #9d5cff;
+}
+.log143-parameters output {
+  padding: 8px;
+  border: 1px solid #29374a;
+  border-radius: 6px;
+  text-align: center;
+}
+.log143-diagnostics h3,
+.log143-check h3 {
+  margin-bottom: 10px;
+  font-size: 11px;
+}
+.log143-diagnostics p {
+  display: grid;
+  height: 47px;
+  margin: 0;
+  border-bottom: 1px solid #27364a;
+  grid-template-columns: 31px 125px 1fr 25px;
+  align-items: center;
+}
+.log143-diagnostics p i {
+  color: #c16fff;
+  font-size: 20px;
+}
+.log143-diagnostics p span {
+  color: #aab6c8;
+  font-size: 10px;
+}
+.log143-diagnostics p strong {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #61ad2f;
+  border-radius: 50%;
+  color: #75cf3c;
+  place-items: center;
+}
+.log143-check p {
+  margin: 18px 0;
+}
+.log143-check > strong {
+  display: flex;
+  height: 46px;
+  padding: 13px;
+  justify-content: space-between;
+  border: 1px solid #72c938;
+  border-radius: 7px;
+  font-family: Georgia, serif;
+  font-size: 17px;
+}
+.log143-check em {
+  display: block;
+  margin-top: 10px;
+  color: #84d947;
+}
+.log143-challenge {
+  position: absolute;
+  bottom: 42px;
+  left: calc(100% - 690px);
+  width: 330px;
+  height: 262px;
+  padding: 14px;
+  border: 1px solid #914cf2;
+  border-radius: 10px;
+  background: #111628;
+  box-shadow: 0 0 16px #6f31c833;
+}
+.log143-challenge header {
+  color: #c6a1ff;
+}
+.log143-challenge > p {
+  margin: 12px 0 9px;
+}
+.log143-challenge > strong {
+  display: block;
+  padding: 13px;
+  border: 1px solid #a863ff;
+  border-radius: 7px;
+  background: #28203d;
+  font-family: Georgia, serif;
+  font-size: 16px;
+}
+.log143-challenge small {
+  display: block;
+  min-height: 37px;
+  color: #b9c2d1;
+}
+.log143-challenge output,
+.log143-challenge > em {
+  display: block;
+  color: #89dc4d;
+}
+.log143-challenge footer {
+  position: absolute;
+  bottom: 12px;
+  display: flex;
+  gap: 10px;
+}
+.log143-challenge footer button {
+  height: 35px;
+  padding: 0 14px;
+  border: 1px solid #344259;
+  border-radius: 7px;
+  background: #111a29;
+}
+.log143-challenge footer button:first-child {
+  border-color: #9956ef;
+  background: #7133be;
+}
+@media (max-width: 1100px) {
+  .log143-titlebar {
+    grid-template-columns: 1fr 220px;
+  }
+  .log143-titlebar > strong {
+    display: none;
+  }
+  .log143-workspace {
+    grid-template-columns: minmax(0, 1fr) 300px;
+  }
+  .log143-tabs {
+    margin-right: 316px;
+  }
+  .log143-challenge {
+    left: auto;
+    right: 316px;
+  }
+}

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **125 of 200 lessons completed; 75 pending.**
+Dedicated rebuild target: **126 of 200 lessons completed; 74 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -111,6 +111,7 @@ Dedicated rebuild target: **125 of 200 lessons completed; 75 pending.**
 | 0197   |        140 Cube-Root Functions | Complete | Dedicated shifted cube-root model with real vertical-scale/center controls, pointer/keyboard center and scale-point drags, all-real S-curve, generated symmetric samples/table/inverse reasoning/practice, and exact 955x1647 target framing |
 | 0198   |    141 Absolute-Value Functions | Complete | Dedicated distance/reflection model with real scale/vertex/shift controls, pointer/keyboard vertex, opening, and number-line probe drags, generated V-graph/piecewise branches/range, and exact 1205x1305 target framing |
 | 0199   |       142 Exponential Functions | Complete | Dedicated growth/decay ratio model with real base/initial/asymptote controls, pointer/keyboard initial, base-point, and asymptote drags, generated dual curves/samples/ratio proof/concepts, and exact 1387x1134 target framing |
+| 0200   |         143 Logarithmic Functions | Complete | Dedicated four-parameter logarithm/inverse model with real base/stretch/shift controls, pointer/keyboard asymptote/anchor/scale-point drags, generated domain/curves/table/diagnostics, exact parameter challenge, and exact 1536x1024 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1861,3 +1862,17 @@ Evidence:
 - `0199-reference.png`
 - `0199-desktop.png`
 - `0199-dedicated-target-validation.json`
+
+## Lesson 143 / Mockup 0200 - Logarithmic Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-logarithmic-scale-base-horizontal-shift-vertical-shift-pointer-keyboard-draggable-asymptote-anchor-and-scale-point-generated-domain-curve-inverse-exponential-reflection-value-table-diagnostics-real-parameter-challenge`. The lesson-owned scale `a`, base `b`, horizontal shift `h`, and vertical shift `k` generate `a log_b(x-h)+k`, the restricted domain, vertical asymptote, inverse exponential, reflection line, smart power samples, transformed curve points, diagnostics, and quick check from one state model. The target `2log_2(x-1)+1` produces domain `x>1`, asymptote `x=1`, and logarithmic points `(1.25,-3)`, `(1.5,-1)`, `(2,1)`, `(3,3)`, and `(5,5)`.
+
+All four visible parameters are real range controls, with a nonzero scale guard and valid logarithm-base range. The vertical asymptote, anchor `(h+1,k)`, and scale point `(h+b,k+a)` are genuine pointer- and keyboard-draggable graph objects. Every edit regenerates the equation, curve, inverse, shaded excluded region, domain, asymptote, points, table, diagnostics, and quick-check answer. Inverse visibility removes the computed inverse curve. Show Solution loads the actual challenge model `-log_2(x+2)-1`, and Check Answer grades all four parameters.
+
+Final 1536x1024 integrated browser validation changes all four range controls; physically drags the asymptote from `1` to `2` and keyboard-returns it to `1.75`; drags the anchor from `k=1` to `1.75` and keyboard-reduces it to `1.5`; drags scale from `2` to `2.75` and keyboard-reduces it to `2.5`; hides the inverse; loads and verifies the exact challenge; and resets. Exact framing passes surface y=65-1023, title y=66-171, tabs y=171-213, graph y=221-709, table y=719-981, rail y=221-1014, and challenge y=720-982. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0200-reference.png`
+- `0200-desktop.png`
+- `0200-dedicated-target-validation.json`
