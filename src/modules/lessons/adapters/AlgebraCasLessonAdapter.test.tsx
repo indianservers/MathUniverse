@@ -424,8 +424,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Coordinate-region model");
   });
 
-  it("delegates phase 4 algebra lessons 127 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 127; id <= 128; id += 1) {
+  it("routes lesson 127 to its dedicated draggable feasible-overlap model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 127)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0184"');
+    expect(html).toContain('data-dedicated-lesson="127"');
+    expect(html).toContain("editable-system-of-two-inequalities-pointer-keyboard-draggable-diagonal-intercept-slope-horizontal-limit-and-probe-clipped-overlap-feasible-region-live-two-constraint-checks-practice-model");
+    expect(html).toContain('aria-label="Drag system sample point"');
+    expect(html).toContain("Coordinate overlap model");
+  });
+
+  it("delegates phase 4 algebra lesson 128 to its lesson-specific structure workspace", () => {
+    for (let id = 128; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

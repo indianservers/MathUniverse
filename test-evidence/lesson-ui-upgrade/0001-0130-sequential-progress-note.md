@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **109 of 200 lessons completed; 91 pending.**
+Dedicated rebuild target: **110 of 200 lessons completed; 90 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -95,6 +95,7 @@ Dedicated rebuild target: **109 of 200 lessons completed; 91 pending.**
 | 0181   |             124 Quadratic Inequalities | Complete | Dedicated quadratic sign-interval model with two pointer-draggable roots, leading-sign/comparator controls, linked factorization, substitutions, parabola regions, interval solution, practice, and exact 972x1617 target framing |
 | 0182   |             125 Polynomial Inequalities | Complete | Dedicated multiplicity-aware polynomial sign analyzer with three pointer-draggable roots, leading-sign/relation controls, linked graph, four interval tests, endpoint union logic, repeated-root practice, and exact 969x1623 target framing |
 | 0183   |             126 Two-Variable Inequalities | Complete | Dedicated coordinate half-plane model with pointer-draggable intercept, slope, and test point, clipped true-region shading, dashed/solid and above/below controls, live substitution, practice, and exact 995x1581 target framing |
+| 0184   |             127 Systems of Inequalities | Complete | Dedicated two-half-plane overlap model with pointer-draggable diagonal intercept/slope, horizontal limit and probe, clipped feasible-region intersection, boundary inclusion toggles, live dual checks, practice, and exact 994x1583 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1621,3 +1622,17 @@ Evidence:
 - `0183-reference.png`
 - `0183-desktop.png`
 - `0183-dedicated-target-validation.json`
+
+## Lesson 127 / Mockup 0184 - Systems of Inequalities
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-system-of-two-inequalities-pointer-keyboard-draggable-diagonal-intercept-slope-horizontal-limit-and-probe-clipped-overlap-feasible-region-live-two-constraint-checks-practice-model`. The lesson-owned diagonal slope/intercept, horizontal cap, boundary inclusion, and probe generate both individual half-plane polygons, their darker clipped intersection, boundary styles, three two-constraint checks, and explanatory result text. The target `y > x` and `y <= 4` produces the region above the dashed diagonal and at or below the solid horizontal line; `(0,2)` passes both constraints.
+
+The diagonal intercept, diagonal slope point, horizontal boundary, and sample probe are all real pointer- and keyboard-draggable controls. Every move recomputes the two shaded regions, feasible intersection, line labels, sample table, and result states. Legend buttons toggle real strict/inclusive boundary behavior, the Examples tab changes the probe, and the triangular `x >= 0, y >= 0, x + y <= 5` practice opens its workspace state. Language, Share, Workspace, Reset, fullscreen, tabs, action status, warning, and navigation all update visible state.
+
+Final 994x1583 integrated browser validation physically changes the diagonal from `y > x` to `y > 2x - 1`, lowers the horizontal cap from `4` to `3`, drags the probe to `(3,5)` and verifies both constraints fail, includes the diagonal boundary and verifies the first condition now passes, makes the horizontal boundary strict, keyboard-moves the probe to `(3,2)` and verifies only the horizontal constraint passes, opens practice, and verifies Reset. Exact framing passes surface x=224-978 and y=107-1583, intro y=107-363, tabs y=374-432, lab y=444-1372, linked layout y=509-1299, graph x=252-719 and y=577-1037, rail x=744-964, navigation y=1383-1436, and footer y=1447-1565. It reports no horizontal or vertical overflow, an exact 994x1583 document, and zero console messages.
+
+Evidence:
+
+- `0184-reference.png`
+- `0184-desktop.png`
+- `0184-dedicated-target-validation.json`
