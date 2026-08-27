@@ -256,8 +256,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Graph (Intersection of lines)");
   });
 
-  it("delegates phase 4 algebra lessons 113 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 113; id <= 128; id += 1) {
+  it("routes lesson 113 to its dedicated three-variable elimination and plane-intersection model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 113)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0170"');
+    expect(html).toContain('data-dedicated-lesson="113"');
+    expect(html).toContain("editable-three-equation-coefficient-matrix-cramers-rule-solver-native-variable-elimination-drag-generated-row-reduction-threejs-plane-intersection-all-equation-verification-ordered-triple-practice-model");
+    expect(html).toContain('aria-label="Drag eliminate y operation"');
+    expect(html).toContain("Three planes intersect at one point");
+  });
+
+  it("delegates phase 4 algebra lessons 114 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 114; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

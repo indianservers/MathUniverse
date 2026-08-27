@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **95 of 200 lessons completed; 105 pending.**
+Dedicated rebuild target: **96 of 200 lessons completed; 104 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1412,3 +1412,17 @@ Evidence:
 - `0169-reference.png`
 - `0169-desktop.png`
 - `0169-dedicated-target-validation.json`
+
+## Lesson 113 / Mockup 0170 - Three-Variable Systems
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-three-equation-coefficient-matrix-cramers-rule-solver-native-variable-elimination-drag-generated-row-reduction-threejs-plane-intersection-all-equation-verification-ordered-triple-practice-model`. The lesson owns three independent 3x3 coefficient systems, determinant and Cramer's-rule calculations, editable right sides, generated pairwise reductions for eliminating x, y, or z, exact ordered triples, three original-equation checks, and two independent practice systems. The initial target system derives `(2, 1, 3)` and reproduces the full seven-row `E1 + E2`, divide, `E1 - E3`, solve, substitute sequence.
+
+Eliminate x/y/z is both a native draggable operation with a real table drop target and a quick-action control. Editing any right side recalculates the determinant solution, reductions, verification table, plane positions, and displayed triple. Solve pair, Check triple, Reset steps, five modes, language, Share, Workspace, practice grading, Show Steps, and next practice all update visible state. The 3D intersection is a real React Three Fiber scene containing three equation-derived plane meshes, three coordinate grids, the calculated common point, button rotation, and pointer orbit controls; it is not a PNG substitute.
+
+Final 983x1600 integrated browser validation edits the target system and verifies the changed `(2, 1.5, 3.5)` result, restores it, calculates elimination of all three variables, physically drops Eliminate y, exercises every quick action, checks the ordered triple, rejects and accepts practice `(4,2,3)`, solves practice `(2,3,1)`, changes examples and validates `(2,1,4)`, exercises all tabs and shell controls, and verifies Reset and reload. The canvas check reads 369x280 rendered WebGL output with more than 50,000 nontransparent and 10,000 colored pixels, then verifies button rotation and pointer orbit. Exact geometry passes surface x=220-967 and y=97-1600, intro y=97-321, tabs y=330-383, workspace y=392-1097, canvas x=609-956 and y=445-725, quick actions y=1097-1152, insights y=1161-1259, practice y=1269-1443, navigation y=1449-1498, and footer y=1507-1600. It reports no overflow and zero application console messages.
+
+Evidence:
+
+- `0170-reference.png`
+- `0170-desktop.png`
+- `0170-dedicated-target-validation.json`
