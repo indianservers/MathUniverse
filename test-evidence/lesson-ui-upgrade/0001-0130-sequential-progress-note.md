@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **129 of 200 lessons completed; 71 pending.**
+Dedicated rebuild target: **130 of 200 lessons completed; 70 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -115,6 +115,7 @@ Dedicated rebuild target: **129 of 200 lessons completed; 71 pending.**
 | 0201   |       144 Trigonometric Functions | Complete | Dedicated linked unit-circle/sine/cosine model with real amplitude/period/phase/midline controls, pointer/keyboard circle/trace/amplitude/period drags, generated curves/table/period/identities/challenge, animation, CSV export, custom galaxy asset, and exact 1536x1024 framing |
 | 0202   |          145 Hyperbolic Functions | Complete | Dedicated linked unit-hyperbola/exponential-decomposition model with real main/challenge parameters, pointer/keyboard hyperbola-point and graph-probe drags, five generated curves, values table, identity residual, curve toggles, zoom/fullscreen, and exact 1536x1024 framing |
 | 0203   |                 146 Floor Function | Complete | Dedicated transformed floor-function model with real input/shift ranges, pointer/keyboard probe drag, generated staircase and number line, exact closed-left/open-right endpoints, interval table, negative-input correctness, challenge grading, discontinuity diagnostics, and exact 1536x1024 framing |
+| 0204   |               147 Ceiling Function | Complete | Dedicated transformed ceiling-function model with real input/shift ranges, snap mode, pointer/keyboard probe drag, generated upward staircase, open-left/closed-right endpoints, clickable evaluation table, negative/integer boundary correctness, floor comparison, jump diagram, and exact 1392x1130 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1922,3 +1923,17 @@ Evidence:
 - `0203-reference.png`
 - `0203-desktop.png`
 - `0203-dedicated-target-validation.json`
+
+## Lesson 147 / Mockup 0204 - Ceiling Function
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-ceiling-input-horizontal-and-vertical-shifts-snap-mode-pointer-keyboard-draggable-probe-clickable-generated-evaluation-table-upward-staircase-open-left-closed-right-endpoints-negative-input-correctness-floor-comparison-jump-model`. The lesson-owned input `x`, horizontal shift `a`, vertical shift `b`, and snap mode generate `ceil(x+a)+b`, every upward staircase segment, the highlighted interval, open-left/closed-right endpoints, vertical jump arrow, result callout, evaluation table, and comparison cards from one state. At the target `x=2.3`, the model produces `ceil(2.3)=3` and highlights `2<x<=3`.
+
+Both shift ranges and snap switch are real controls. The graph probe is a genuine pointer- and keyboard-draggable SVG object; snap mode changes its keyboard resolution from `0.1` to `0.01`. Evaluation rows are clickable and keyboard-operable controls that move the same probe. Every edit regenerates the graph geometry, active interval, endpoint placement, output, table values, and selected row. The exact-integer boundary correctly keeps `ceil(3)=3`, while the negative example correctly gives `ceil(-1.2)=-1`. Controls/table collapse, language, share, and reset all have observable working states.
+
+Final 1392x1130 browser validation physically changes both shift ranges; drags and keyboard-moves the graph probe in snapped and fine modes; verifies transformed interval mathematics after every edit; selects negative and exact-integer table rows; collapses and restores both panels; changes language; exercises Share; and resets. Exact framing passes surface y=65-1130, header y=66-261, plot y=261-823, graph y=307-772, rail y=261-871, and comparison y=871-1116. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0204-reference.png`
+- `0204-desktop.png`
+- `0204-dedicated-target-validation.json`

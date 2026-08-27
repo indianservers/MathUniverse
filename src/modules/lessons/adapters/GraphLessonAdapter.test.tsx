@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 147 to its dedicated ceiling staircase model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 147)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0204"');
+    expect(html).toContain('data-dedicated-lesson="147"');
+    expect(html).toContain("editable-ceiling-input-horizontal-and-vertical-shifts-snap-mode-pointer-keyboard-draggable-probe-clickable-generated-evaluation-table-upward-staircase-open-left-closed-right-endpoints-negative-input-correctness-floor-comparison-jump-model");
+    expect(html).toContain('aria-label="Drag ceiling input probe"');
+    expect(html).toContain("Open left, closed right");
+  });
+
   it("routes lesson 146 to its dedicated floor staircase model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 146)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -230,7 +240,6 @@ describe("GraphLessonAdapter", () => {
       140: "negative real inputs are allowed",
       141: "distance makes a V-shape",
       142: "equal x-steps multiply outputs",
-      147: "outputs step up to integers",
       148: "outputs are -1, 0, or 1",
       149: "choose only the rule",
       150: "inner output becomes the outer input",

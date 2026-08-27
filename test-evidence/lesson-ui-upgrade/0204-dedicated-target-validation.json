@@ -1,0 +1,146 @@
+{
+  "mockup": "0204",
+  "lessonId": 147,
+  "route": "/lessons/graphs-and-functions/147-ceiling-function",
+  "checks": {
+    "initial": {
+      "x": "2.3",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "3",
+      "interval": "2,3",
+      "snap": "true"
+    },
+    "inputShift": {
+      "x": "2.3",
+      "input-shift": "2.25",
+      "output-shift": "0",
+      "result": "5",
+      "interval": "1.75,2.75",
+      "snap": "true"
+    },
+    "outputShift": {
+      "x": "2.3",
+      "input-shift": "2.25",
+      "output-shift": "-2",
+      "result": "3",
+      "interval": "1.75,2.75",
+      "snap": "true"
+    },
+    "probeDrag": {
+      "x": "0.2",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "1",
+      "interval": "0,1",
+      "snap": "true"
+    },
+    "probeKeyboardSnapped": {
+      "x": "0.30000000000000004",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "1",
+      "interval": "0,1",
+      "snap": "true"
+    },
+    "probeKeyboardFine": {
+      "x": "0.31",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "1",
+      "interval": "0,1",
+      "snap": "false"
+    },
+    "negativeRow": {
+      "x": "-1.2",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "-1",
+      "interval": "-2,-1",
+      "snap": "true"
+    },
+    "integerRow": {
+      "x": "3",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "3",
+      "interval": "2,3",
+      "snap": "true"
+    },
+    "controlsCollapsed": true,
+    "tableCollapsed": true,
+    "languageChanged": true,
+    "shareNotice": true,
+    "reset": {
+      "x": "2.3",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "3",
+      "interval": "2,3",
+      "snap": "true"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1392,
+      "height": 1130
+    },
+    "document": {
+      "width": 1392,
+      "height": 1367
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 65,
+        "bottom": 1130,
+        "left": 294,
+        "right": 1372,
+        "width": 1078,
+        "height": 1065
+      },
+      "header": {
+        "top": 66,
+        "bottom": 261,
+        "left": 295,
+        "right": 1371,
+        "width": 1076,
+        "height": 195
+      },
+      "plot": {
+        "top": 261,
+        "bottom": 823,
+        "left": 312,
+        "right": 1011,
+        "width": 699,
+        "height": 562
+      },
+      "graph": {
+        "top": 307,
+        "bottom": 772,
+        "left": 328,
+        "right": 995,
+        "width": 667,
+        "height": 465
+      },
+      "rail": {
+        "top": 261,
+        "bottom": 871,
+        "left": 1024,
+        "right": 1354,
+        "width": 330,
+        "height": 610
+      },
+      "comparison": {
+        "top": 871,
+        "bottom": 1116,
+        "left": 295,
+        "right": 1371,
+        "width": 1076,
+        "height": 245
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
