@@ -1,0 +1,15 @@
+.dom130-page { top: -43px; }
+.dom130-intro { height: 215px; }
+.dom130-tabs { margin-top: 10px; }
+.dom130-layout > main { position: relative; top: 13px; }
+.dom130-graph { height: 621px; }
+.dom130-rail { position: relative; top: -71px; grid-template-rows: 250px 345px 128px 210px; }
+.dom130-footer { height: 126px; }
+.dom130-layout > main > footer { margin-top: 18px; }
+.dom130-lab > header { position: relative; }
+.dom130-lab > header nav { position: absolute; right: 225px; z-index: 2; }
+
+@media (max-width: 799px) {
+  .dom130-layout > main,
+  .dom130-rail { position: static; }
+}

@@ -1,0 +1,211 @@
+{
+  "mockup": "0187",
+  "lessonId": 130,
+  "route": "/lessons/graphs-and-functions/130-domain-and-range",
+  "checks": {
+    "initial": {
+      "domain-shift": "2",
+      "range-shift": "0",
+      "start": "-2,0",
+      "domain": "[-2, ∞)",
+      "range": "[0, ∞)",
+      "grid": "true",
+      "answer": "false",
+      "actions": "0"
+    },
+    "domainSlider": {
+      "domain-shift": "5",
+      "range-shift": "0",
+      "start": "-5,0",
+      "domain": "[-5, ∞)",
+      "range": "[0, ∞)",
+      "grid": "true",
+      "answer": "false",
+      "actions": "2"
+    },
+    "rangeSlider": {
+      "domain-shift": "5",
+      "range-shift": "3",
+      "start": "-5,3",
+      "domain": "[-5, ∞)",
+      "range": "[3, ∞)",
+      "grid": "true",
+      "answer": "false",
+      "actions": "5"
+    },
+    "pointBaseline": {
+      "domain-shift": "2",
+      "range-shift": "0",
+      "start": "-2,0",
+      "domain": "[-2, ∞)",
+      "range": "[0, ∞)",
+      "grid": "true",
+      "answer": "false",
+      "actions": "0"
+    },
+    "pointDrag": {
+      "domain-shift": "1",
+      "range-shift": "1",
+      "start": "-1,1",
+      "domain": "[-1, ∞)",
+      "range": "[1, ∞)",
+      "grid": "true",
+      "answer": "false",
+      "actions": "8"
+    },
+    "pointKeyboard": {
+      "domain-shift": "0",
+      "range-shift": "1",
+      "start": "0,1",
+      "domain": "[0, ∞)",
+      "range": "[1, ∞)",
+      "grid": "true",
+      "answer": "false",
+      "actions": "9"
+    },
+    "gridOff": {
+      "domain-shift": "0",
+      "range-shift": "1",
+      "start": "0,1",
+      "domain": "[0, ∞)",
+      "range": "[1, ∞)",
+      "grid": "false",
+      "answer": "false",
+      "actions": "10"
+    },
+    "answer": {
+      "domain-shift": "0",
+      "range-shift": "1",
+      "start": "0,1",
+      "domain": "[0, ∞)",
+      "range": "[1, ∞)",
+      "grid": "false",
+      "answer": "true",
+      "actions": "11"
+    },
+    "example": {
+      "domain-shift": "-3",
+      "range-shift": "1",
+      "start": "3,1",
+      "domain": "[3, ∞)",
+      "range": "[1, ∞)",
+      "grid": "false",
+      "answer": "true",
+      "actions": "12"
+    },
+    "reset": {
+      "domain-shift": "2",
+      "range-shift": "0",
+      "start": "-2,0",
+      "domain": "[-2, ∞)",
+      "range": "[0, ∞)",
+      "grid": "true",
+      "answer": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 985,
+      "height": 1597
+    },
+    "document": {
+      "width": 985,
+      "height": 1597
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 111,
+        "bottom": 1597,
+        "height": 1486,
+        "left": 217,
+        "right": 971,
+        "width": 754
+      },
+      "intro": {
+        "top": 111,
+        "bottom": 326,
+        "height": 215,
+        "left": 217,
+        "right": 971,
+        "width": 754
+      },
+      "tabs": {
+        "top": 336,
+        "bottom": 386,
+        "height": 50,
+        "left": 217,
+        "right": 971,
+        "width": 754
+      },
+      "lab": {
+        "top": 394,
+        "bottom": 1392,
+        "height": 998,
+        "left": 217,
+        "right": 971,
+        "width": 754
+      },
+      "layout": {
+        "top": 485,
+        "bottom": 1378,
+        "height": 893,
+        "left": 230,
+        "right": 958,
+        "width": 728
+      },
+      "rule": {
+        "top": 498,
+        "bottom": 576,
+        "height": 78,
+        "left": 230,
+        "right": 500,
+        "width": 270
+      },
+      "graph": {
+        "top": 576,
+        "bottom": 1197,
+        "height": 621,
+        "left": 230,
+        "right": 735.125,
+        "width": 505.125
+      },
+      "samples": {
+        "top": 1197,
+        "bottom": 1312,
+        "height": 115,
+        "left": 230,
+        "right": 735.125,
+        "width": 505.125
+      },
+      "rail": {
+        "top": 414,
+        "bottom": 1307,
+        "height": 893,
+        "left": 746.125,
+        "right": 957.984375,
+        "width": 211.859375
+      },
+      "navigation": {
+        "top": 1408,
+        "bottom": 1456,
+        "height": 48,
+        "left": 217,
+        "right": 971,
+        "width": 754
+      },
+      "footer": {
+        "top": 1471,
+        "bottom": 1597,
+        "height": 126,
+        "left": 217,
+        "right": 971,
+        "width": 754
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

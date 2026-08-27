@@ -2,6 +2,7 @@ import AdapterFrame from "../components/AdapterFrame";
 import ReusableLessonEngine, { reusableEngineParamsFor } from "../components/ReusableLessonEngine";
 import FunctionMockupLesson from "./graph/FunctionMockupLesson";
 import FunctionConceptTargetLesson129 from "./FunctionConceptTargetLesson129";
+import DomainRangeTargetLesson130 from "./DomainRangeTargetLesson130";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -39,6 +40,9 @@ type TwoDGraphSpec = GraphSpec & {
 export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
   if (lesson.id === 129) {
     return <FunctionConceptTargetLesson129 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 130) {
+    return <DomainRangeTargetLesson130 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {

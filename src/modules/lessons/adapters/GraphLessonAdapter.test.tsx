@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 130 to its dedicated domain-range projector model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 130)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0187"');
+    expect(html).toContain('data-dedicated-lesson="130"');
+    expect(html).toContain("editable-shifted-square-root-domain-range-projector-pointer-keyboard-draggable-closed-start-point-linked-axis-projections-generated-interval-notation-sample-evaluations-grid-practice-model");
+    expect(html).toContain('aria-label="Drag square root start point"');
+    expect(html).toContain("Domain–Range Projector");
+  });
+
   it("routes lesson 129 to its dedicated linked function-machine model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 129)!;
     const html = renderToStaticMarkup(
@@ -56,7 +66,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      130: "square-root inputs start",
       131: "f(2) means use input 2",
       132: "Vertical-line test",
       133: "equal x-steps make equal y-changes",

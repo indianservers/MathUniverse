@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **112 of 200 lessons completed; 88 pending.**
+Dedicated rebuild target: **113 of 200 lessons completed; 87 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -98,6 +98,7 @@ Dedicated rebuild target: **112 of 200 lessons completed; 88 pending.**
 | 0184   |             127 Systems of Inequalities | Complete | Dedicated two-half-plane overlap model with pointer-draggable diagonal intercept/slope, horizontal limit and probe, clipped feasible-region intersection, boundary inclusion toggles, live dual checks, practice, and exact 994x1583 target framing |
 | 0185   |             128 Numerical Solver | Complete | Dedicated bisection root finder with pointer-draggable coarse/zoom brackets, live trial table, sign-change checks, rounded approximation, exact residual, CSV download, cosine practice, and exact 941x1672 target framing |
 | 0186   |             129 Function Concept | Complete | Dedicated linked function-machine model with real a/b sliders, pointer/keyboard-draggable sample inputs, generated mappings/table/graph/vertical slices, multiple-output counterexample, live practice, and exact 925x1701 target framing |
+| 0187   |            130 Domain and Range | Complete | Dedicated shifted-square-root projector with real domain/range sliders, pointer/keyboard-draggable closed start, linked axis projections, generated interval notation/evaluations, grid, practice, and exact 985x1597 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1666,3 +1667,17 @@ Evidence:
 - `0186-reference.png`
 - `0186-desktop.png`
 - `0186-dedicated-target-validation.json`
+
+## Lesson 130 / Mockup 0187 - Domain and Range
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-shifted-square-root-domain-range-projector-pointer-keyboard-draggable-closed-start-point-linked-axis-projections-generated-interval-notation-sample-evaluations-grid-practice-model`. The lesson-owned domain shift and range shift define `f(x)=sqrt(x+d)+r`, its closed start `(-d,r)`, allowed x-values, possible y-values, horizontal and vertical projections, interval notation, rule card, curve, and sample evaluations. The target `f(x)=sqrt(x+2)` starts at `(-2,0)` and derives domain `[-2,infinity)` and range `[0,infinity)`.
+
+Both shifts are real range controls, and the closed graph start is a genuine two-axis pointer- and keyboard-draggable object. Every move recalculates the rule, curve, projection rays, endpoint, domain, range, reasoning, interval notation, and evaluations from one model. Grid, language, Share, Workspace, Reset, fullscreen, tabs, the shifted `sqrt(x-3)+1` example, and the practice derivation all update visible state.
+
+Final 985x1597 integrated browser validation physically drags both shift sliders, resets the model, drags the closed start from `(-2,0)` to `(-1,1)`, keyboard-moves it to `(0,1)`, hides the grid, reveals the practice derivation, loads the example with start `(3,1)`, and verifies Reset. Exact framing passes surface x=217-971 and y=111-1597, intro y=111-326, tabs y=336-386, lab y=394-1392, rule y=498-576, graph y=576-1197, samples y=1197-1312, rail x=746-958 and y=414-1307, navigation y=1408-1456, and footer y=1471-1597. It reports no horizontal or vertical overflow, an exact 985x1597 document, and zero console messages.
+
+Evidence:
+
+- `0187-reference.png`
+- `0187-desktop.png`
+- `0187-dedicated-target-validation.json`
