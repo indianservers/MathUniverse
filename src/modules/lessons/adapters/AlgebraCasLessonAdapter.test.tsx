@@ -292,8 +292,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Factor-stack roots lab");
   });
 
-  it("delegates phase 4 algebra lessons 116 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 116; id <= 128; id += 1) {
+  it("routes lesson 116 to its dedicated rational restriction and clearing model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 116)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0173"');
+    expect(html).toContain('data-dedicated-lesson="116"');
+    expect(html).toContain("editable-rational-equation-denominator-restriction-pointer-draggable-forbidden-value-native-lcd-drag-clearing-exact-fraction-linear-solve-original-substitution-extraneous-rejection-graded-practice-model");
+    expect(html).toContain('aria-label="Drag multiplier x − 2"');
+    expect(html).toContain("State denominator restrictions");
+  });
+
+  it("delegates phase 4 algebra lessons 117 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 117; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

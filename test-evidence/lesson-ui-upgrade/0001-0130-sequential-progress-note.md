@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **98 of 200 lessons completed; 102 pending.**
+Dedicated rebuild target: **99 of 200 lessons completed; 101 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -84,6 +84,7 @@ Dedicated rebuild target: **98 of 200 lessons completed; 102 pending.**
 | 0152   |              95 Expanding Brackets | Complete | Dedicated draggable distributive-factor model with a dynamic two-region area partition, generated unit grid, symbolic expansion, substitution proof, visual switches, guided steps, graded practice, and exact 996x1579 target geometry |
 | 0171   |            114 Quadratic Equations | Complete | Dedicated editable coefficient/discriminant/factor-pair model with zero-product flow, pointer-draggable graph roots, synchronized verification, graded practice, functional controls, and exact 862x1824 target framing |
 | 0172   |           115 Polynomial Equations | Complete | Dedicated three-root cubic factor-stack model with Vieta expansion, pointer-draggable roots, factor-loss switches, SVG graph, substitution checks, graded practice, and exact 1003x1569 target framing |
+| 0173   |             116 Rational Equations | Complete | Dedicated restriction-first rational model with exact fractions, draggable forbidden point, native LCD drag/drop, generated solve/check stages, extraneous-value guardrail, practice, and exact 995x1581 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1456,3 +1457,17 @@ Evidence:
 - `0172-reference.png`
 - `0172-desktop.png`
 - `0172-dedicated-target-validation.json`
+
+## Lesson 116 / Mockup 0173 - Rational Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-rational-equation-denominator-restriction-pointer-draggable-forbidden-value-native-lcd-drag-clearing-exact-fraction-linear-solve-original-substitution-extraneous-rejection-graded-practice-model`. Numerator, forbidden denominator value, right side, and variable generate the denominator restriction, number-line danger point, least common denominator, cleared equation, linear solve, exact candidate fraction, original-equation substitution, restriction decision, and final result. The target `1/(x - 2) = 3` derives `x != 2` and exact answer `7/3` without decimal leakage.
+
+The forbidden number-line point is a real pointer- and keyboard-draggable control, and the current denominator multiplier is a native draggable object with an actual Apply to both sides drop target. Editing the three equation parameters or choosing New Problem recalculates every stage. Interaction modes, Auto-check, Show steps, Hint, Share, Reset, candidate checking, editable exact-fraction practice, Check All, and New Practice all update visible state. The original substitution retains nested exact fractions, and forbidden candidates cannot be accepted.
+
+Final 995x1581 integrated browser validation changes the restriction from `2` to `3` and verifies `10/3`, physically drags the forbidden point from `2` to `1` and verifies `4/3`, generates `2/(x - 1) = 4`, physically drops multiplier `x - 1`, checks candidate `3/2`, rejects practice answer `0`, accepts `-1/2`, generates another practice, and verifies Reset. Exact framing passes surface x=216-987 and y=92-1581, intro y=92-238, toolbar y=248-348, workspace y=358-1232, restriction y=358-629, clearing y=639-777, solving y=787-952, checking y=962-1167, practice y=1242-1408, navigation y=1418-1464, and footer y=1474-1575. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0173-reference.png`
+- `0173-desktop.png`
+- `0173-dedicated-target-validation.json`
