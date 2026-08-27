@@ -316,8 +316,20 @@ describe("AlgebraCasLessonAdapter", () => {
     expect(html).toContain("Radical Unwrapper Lab");
   });
 
-  it("delegates phase 4 algebra lessons 118 through 128 to lesson-specific structure workspaces", () => {
-    for (let id = 118; id <= 128; id += 1) {
+  it("routes lesson 118 to its dedicated power-ladder and exponential graph model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 118)!;
+    const html = renderToStaticMarkup(
+      <AlgebraCasLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+    expect(html).toContain('data-testid="algebra-mockup-0175"');
+    expect(html).toContain('data-dedicated-lesson="118"');
+    expect(html).toContain("editable-exponential-base-target-generated-power-ladder-native-matching-rung-drag-pointer-draggable-graph-exponent-common-base-logarithm-fallback-substitution-check-graded-practice-model");
+    expect(html).toContain('aria-label="Drag matching power 2 to 5"');
+    expect(html).toContain("Power ladder matcher");
+  });
+
+  it("delegates phase 4 algebra lessons 119 through 128 to lesson-specific structure workspaces", () => {
+    for (let id = 119; id <= 128; id += 1) {
       const lesson = lessonCatalog.find((item) => item.id === id)!;
       const html = renderToStaticMarkup(
         <AlgebraCasLessonAdapter

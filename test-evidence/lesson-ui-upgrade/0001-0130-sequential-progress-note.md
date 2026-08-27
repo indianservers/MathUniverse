@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **100 of 200 lessons completed; 100 pending.**
+Dedicated rebuild target: **101 of 200 lessons completed; 99 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -86,6 +86,7 @@ Dedicated rebuild target: **100 of 200 lessons completed; 100 pending.**
 | 0172   |           115 Polynomial Equations | Complete | Dedicated three-root cubic factor-stack model with Vieta expansion, pointer-draggable roots, factor-loss switches, SVG graph, substitution checks, graded practice, and exact 1003x1569 target framing |
 | 0173   |             116 Rational Equations | Complete | Dedicated restriction-first rational model with exact fractions, draggable forbidden point, native LCD drag/drop, generated solve/check stages, extraneous-value guardrail, practice, and exact 995x1581 target framing |
 | 0174   |              117 Radical Equations | Complete | Dedicated radical-unwrapper model with draggable domain boundary, native square-both-sides drop, generated isolation/solve/check stages, extraneous-root warning, graded practice, and exact 911x1726 target framing |
+| 0175   |          118 Exponential Equations | Complete | Dedicated base/target power-ladder model with generated powers, native rung drag/drop, pointer-draggable graph exponent, common-base/log fallback, substitution checks, graded practice, and exact 941x1672 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1486,3 +1487,17 @@ Evidence:
 - `0174-reference.png`
 - `0174-desktop.png`
 - `0174-dedicated-target-validation.json`
+
+## Lesson 118 / Mockup 0175 - Exponential Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-exponential-base-target-generated-power-ladder-native-matching-rung-drag-pointer-draggable-graph-exponent-common-base-logarithm-fallback-substitution-check-graded-practice-model`. The editable base and target generate the power ladder, exact or logarithmic exponent, common-base rewrite, graph intersection, and substitution check. The target `2^x = 32` derives the matching rung `2^5 = 32`, solution `x = 5`, and graph intersection `(5, 32)`.
+
+The matching ladder rung is a native draggable object with a real right-side exponent drop target. The graph intersection marker is a pointer- and keyboard-draggable control; moving it changes the exponent and recalculates the target, ladder, rewrite, and check. Editing the base or target also recomputes every stage, including a logarithm fallback when the target is not an exact integer power. Build ladder, Match exponents, Check value, sound, hints, full screen, tabs, language, Share, Workspace, Reset, editable practice grading, and New practice all update visible state.
+
+Final 941x1672 integrated browser validation changes the base to `3` with target `32` and verifies logarithmic fallback, changes the target to `27` and verifies exponent `3`, physically drags the graph marker to exponent `4` and verifies `2^4 = 16`, loads the `3^x = 27` example, physically drops the matching ladder rung, verifies the substitution check, rejects practice answer `3`, accepts `4`, generates another practice, and verifies Reset. Exact framing passes surface x=226-930 and y=97-1672, intro y=97-328, tabs y=338-391, lab y=401-1163, workspace y=585-1051, graph y=585-1014, warning y=1053-1144, practice y=1171-1457, navigation y=1467-1521, and footer y=1533-1667. It reports no horizontal or vertical overflow, an exact 941x1672 document, and zero console messages.
+
+Evidence:
+
+- `0175-reference.png`
+- `0175-desktop.png`
+- `0175-dedicated-target-validation.json`

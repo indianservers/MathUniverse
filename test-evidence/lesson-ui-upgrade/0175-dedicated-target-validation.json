@@ -1,0 +1,257 @@
+{
+  "mockup": "0175",
+  "lessonId": 118,
+  "route": "/lessons/algebra/118-exponential-equations",
+  "checks": {
+    "initial": {
+      "problem": "2,32",
+      "exponent": "5",
+      "matchable": "true",
+      "ladder-built": "true",
+      "matched": "true",
+      "checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "4",
+      "practice-correct": "true",
+      "actions": "0"
+    },
+    "unmatchedBase": {
+      "problem": "3,32",
+      "exponent": "3.1546487678572874",
+      "matchable": "false",
+      "ladder-built": "false",
+      "matched": "false",
+      "checked": "false",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "4",
+      "practice-correct": "true",
+      "actions": "1"
+    },
+    "matchedTarget": {
+      "problem": "3,27",
+      "exponent": "3",
+      "matchable": "true",
+      "ladder-built": "false",
+      "matched": "false",
+      "checked": "false",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "4",
+      "practice-correct": "true",
+      "actions": "2"
+    },
+    "draggedExponent": {
+      "problem": "2,16",
+      "exponent": "4",
+      "matchable": "true",
+      "ladder-built": "true",
+      "matched": "false",
+      "checked": "false",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "4",
+      "practice-correct": "true",
+      "actions": "6"
+    },
+    "example": {
+      "problem": "3,27",
+      "exponent": "3",
+      "matchable": "true",
+      "ladder-built": "false",
+      "matched": "false",
+      "checked": "false",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "4",
+      "practice-correct": "true",
+      "actions": "1"
+    },
+    "rungDropped": {
+      "problem": "3,27",
+      "exponent": "3",
+      "matchable": "true",
+      "ladder-built": "true",
+      "matched": "true",
+      "checked": "false",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "4",
+      "practice-correct": "true",
+      "actions": "4"
+    },
+    "valueChecked": {
+      "problem": "3,27",
+      "exponent": "3",
+      "matchable": "true",
+      "ladder-built": "true",
+      "matched": "true",
+      "checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "4",
+      "practice-correct": "true",
+      "actions": "5"
+    },
+    "practiceWrong": {
+      "problem": "3,27",
+      "exponent": "3",
+      "matchable": "true",
+      "ladder-built": "true",
+      "matched": "true",
+      "checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "3",
+      "practice-correct": "false",
+      "actions": "7"
+    },
+    "practiceCorrect": {
+      "problem": "3,27",
+      "exponent": "3",
+      "matchable": "true",
+      "ladder-built": "true",
+      "matched": "true",
+      "checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "4",
+      "practice-correct": "true",
+      "actions": "9"
+    },
+    "newPractice": {
+      "problem": "3,27",
+      "exponent": "3",
+      "matchable": "true",
+      "ladder-built": "true",
+      "matched": "true",
+      "checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "1",
+      "practice-answer": "",
+      "practice-correct": "false",
+      "actions": "10"
+    },
+    "reset": {
+      "problem": "2,32",
+      "exponent": "5",
+      "matchable": "true",
+      "ladder-built": "true",
+      "matched": "true",
+      "checked": "true",
+      "dragging": "false",
+      "invalid-drop": "false",
+      "practice-index": "0",
+      "practice-answer": "4",
+      "practice-correct": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 941,
+      "height": 1672
+    },
+    "document": {
+      "width": 941,
+      "height": 1672
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 97,
+        "bottom": 1672,
+        "height": 1575,
+        "left": 226,
+        "right": 930,
+        "width": 704
+      },
+      "intro": {
+        "top": 97,
+        "bottom": 328,
+        "height": 231,
+        "left": 226,
+        "right": 930,
+        "width": 704
+      },
+      "tabs": {
+        "top": 338,
+        "bottom": 391,
+        "height": 53,
+        "left": 226,
+        "right": 930,
+        "width": 704
+      },
+      "lab": {
+        "top": 401,
+        "bottom": 1163,
+        "height": 762,
+        "left": 226,
+        "right": 930,
+        "width": 704
+      },
+      "work": {
+        "top": 585,
+        "bottom": 1051,
+        "height": 466,
+        "left": 239,
+        "right": 917,
+        "width": 678
+      },
+      "graph": {
+        "top": 585,
+        "bottom": 1014,
+        "height": 429,
+        "left": 640,
+        "right": 917,
+        "width": 277
+      },
+      "warning": {
+        "top": 1053,
+        "bottom": 1144,
+        "height": 91,
+        "left": 239,
+        "right": 917,
+        "width": 678
+      },
+      "practice": {
+        "top": 1171,
+        "bottom": 1457,
+        "height": 286,
+        "left": 226,
+        "right": 930,
+        "width": 704
+      },
+      "navigation": {
+        "top": 1467,
+        "bottom": 1521,
+        "height": 54,
+        "left": 226,
+        "right": 930,
+        "width": 704
+      },
+      "footer": {
+        "top": 1533,
+        "bottom": 1667,
+        "height": 134,
+        "left": 226,
+        "right": 930,
+        "width": 704
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
