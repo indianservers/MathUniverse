@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **97 of 200 lessons completed; 103 pending.**
+Dedicated rebuild target: **98 of 200 lessons completed; 102 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -83,6 +83,7 @@ Dedicated rebuild target: **97 of 200 lessons completed; 103 pending.**
 | 0151   |                     94 Substitution | Complete | Dedicated draggable substitution-slot model with live expression/value controls, stepwise evaluation, negative-bracket behavior, result checking, rotating practice, functional tabs/toggles, and exact 992x1586 target geometry |
 | 0152   |              95 Expanding Brackets | Complete | Dedicated draggable distributive-factor model with a dynamic two-region area partition, generated unit grid, symbolic expansion, substitution proof, visual switches, guided steps, graded practice, and exact 996x1579 target geometry |
 | 0171   |            114 Quadratic Equations | Complete | Dedicated editable coefficient/discriminant/factor-pair model with zero-product flow, pointer-draggable graph roots, synchronized verification, graded practice, functional controls, and exact 862x1824 target framing |
+| 0172   |           115 Polynomial Equations | Complete | Dedicated three-root cubic factor-stack model with Vieta expansion, pointer-draggable roots, factor-loss switches, SVG graph, substitution checks, graded practice, and exact 1003x1569 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1441,3 +1442,17 @@ Evidence:
 - `0171-reference.png`
 - `0171-desktop.png`
 - `0171-dedicated-target-validation.json`
+
+## Lesson 115 / Mockup 0172 - Polynomial Equations
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-three-root-cubic-factor-stack-vieta-expansion-pointer-draggable-roots-zero-product-switches-svg-graph-substitution-check-lost-factor-warning-three-root-graded-practice-model`. Three lesson-owned roots generate the factored equation, cubic coefficients through Vieta's relationships, expanded equation, color-linked graph intercepts, solution set, substitution result, and result count. The initial roots `1, 2, 3` derive both `(x - 1)(x - 2)(x - 3) = 0` and `x^3 - 6x^2 + 11x - 6 = 0`.
+
+Each graph root is a real pointer- and keyboard-draggable control; moving a marker recomputes the factors, coefficients, curve, test result, and displayed solutions. Each Set factor to zero switch independently includes or drops its root, so Check all exposes the exact lost-factor failure shown by the target warning. Factored/expanded forms, graph/factor switches, editable factor roots, substitution test, six modes, language, Share, Workspace, Reset, generated examples, three editable practice answers, grading, New practice, and Show steps all update visible state.
+
+Final 1003x1569 integrated browser validation expands the cubic, changes root 2 to `4` and verifies coefficients `1,-8,19,-12`, drops and restores the middle factor, checks the incomplete and complete root sets, physically drags root 1 from `1` to `0` and verifies `x^3 - 5x^2 + 6x`, rejects test value `4` and accepts root `3`, rejects and accepts practice, generates a second practice, switches examples to roots `-2,1,3`, and verifies Reset. Exact framing passes surface x=218-986 and y=98-1569, intro y=98-316, tabs y=326-375, lab y=384-1188, graph x=593-971 and y=496-886, practice y=1198-1392, navigation y=1402-1450, and footer y=1460-1568. It reports no horizontal or vertical overflow, an exact 1003x1569 document, and zero console messages.
+
+Evidence:
+
+- `0172-reference.png`
+- `0172-desktop.png`
+- `0172-dedicated-target-validation.json`

@@ -1,0 +1,241 @@
+{
+  "mockup": "0172",
+  "lessonId": 115,
+  "route": "/lessons/algebra/115-polynomial-equations",
+  "checks": {
+    "initial": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,true,true",
+      "test-value": "2",
+      "test-result": "0",
+      "all-checked": "true",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "0"
+    },
+    "expanded": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,true,true",
+      "test-value": "2",
+      "test-result": "0",
+      "all-checked": "true",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "1"
+    },
+    "editedRoot": {
+      "roots": "1,4,3",
+      "coefficients": "1,-8,19,-12",
+      "factor-enabled": "true,true,true",
+      "test-value": "2",
+      "test-result": "2",
+      "all-checked": "false",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "2"
+    },
+    "factorDropped": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,false,true",
+      "test-value": "2",
+      "test-result": "0",
+      "all-checked": "false",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "1"
+    },
+    "checkedMissing": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,false,true",
+      "test-value": "2",
+      "test-result": "0",
+      "all-checked": "false",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "2"
+    },
+    "checkedAll": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,true,true",
+      "test-value": "2",
+      "test-result": "0",
+      "all-checked": "true",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "4"
+    },
+    "draggedRoot": {
+      "roots": "0,2,3",
+      "coefficients": "1,-5,6,0",
+      "factor-enabled": "true,true,true",
+      "test-value": "2",
+      "test-result": "0",
+      "all-checked": "false",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "10"
+    },
+    "testWrong": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,true,true",
+      "test-value": "4",
+      "test-result": "6",
+      "all-checked": "false",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "1"
+    },
+    "testRoot": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,true,true",
+      "test-value": "3",
+      "test-result": "0",
+      "all-checked": "false",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "2"
+    },
+    "practiceWrong": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,true,true",
+      "test-value": "3",
+      "test-result": "0",
+      "all-checked": "false",
+      "practice-index": "0",
+      "practice-correct": "false",
+      "actions": "4"
+    },
+    "practiceCorrect": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,true,true",
+      "test-value": "3",
+      "test-result": "0",
+      "all-checked": "false",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "6"
+    },
+    "newPractice": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,true,true",
+      "test-value": "3",
+      "test-result": "0",
+      "all-checked": "false",
+      "practice-index": "1",
+      "practice-correct": "false",
+      "actions": "7"
+    },
+    "example": {
+      "roots": "-2,1,3",
+      "coefficients": "1,-2,-5,6",
+      "factor-enabled": "true,true,true",
+      "test-value": "3",
+      "test-result": "0",
+      "all-checked": "false",
+      "practice-index": "1",
+      "practice-correct": "false",
+      "actions": "8"
+    },
+    "reset": {
+      "roots": "1,2,3",
+      "coefficients": "1,-6,11,-6",
+      "factor-enabled": "true,true,true",
+      "test-value": "2",
+      "test-result": "0",
+      "all-checked": "true",
+      "practice-index": "0",
+      "practice-correct": "true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1003,
+      "height": 1569
+    },
+    "document": {
+      "width": 1003,
+      "height": 1569
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 98,
+        "bottom": 1569,
+        "height": 1471,
+        "left": 218,
+        "right": 986,
+        "width": 768
+      },
+      "intro": {
+        "top": 98,
+        "bottom": 316,
+        "height": 218,
+        "left": 218,
+        "right": 986,
+        "width": 768
+      },
+      "tabs": {
+        "top": 326,
+        "bottom": 375,
+        "height": 49,
+        "left": 218,
+        "right": 986,
+        "width": 768
+      },
+      "lab": {
+        "top": 384,
+        "bottom": 1188,
+        "height": 804,
+        "left": 218,
+        "right": 986,
+        "width": 768
+      },
+      "graph": {
+        "top": 496,
+        "bottom": 886,
+        "height": 390,
+        "left": 593,
+        "right": 971,
+        "width": 378
+      },
+      "practice": {
+        "top": 1198,
+        "bottom": 1392,
+        "height": 194,
+        "left": 218,
+        "right": 986,
+        "width": 768
+      },
+      "navigation": {
+        "top": 1402,
+        "bottom": 1450,
+        "height": 48,
+        "left": 218,
+        "right": 986,
+        "width": 768
+      },
+      "footer": {
+        "top": 1460,
+        "bottom": 1568,
+        "height": 108,
+        "left": 218,
+        "right": 986,
+        "width": 768
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

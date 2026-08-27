@@ -27,6 +27,7 @@ import LinearEquationsTargetLesson111 from "./LinearEquationsTargetLesson111";
 import SimultaneousLinearEquationsTargetLesson112 from "./SimultaneousLinearEquationsTargetLesson112";
 import ThreeVariableSystemsTargetLesson113 from "./ThreeVariableSystemsTargetLesson113";
 import QuadraticEquationsTargetLesson114 from "./QuadraticEquationsTargetLesson114";
+import PolynomialEquationsTargetLesson115 from "./PolynomialEquationsTargetLesson115";
 
 function run(title: string, coefficient: number): { input: string; output: SymbolicResult } {
   const name = title.toLowerCase();
@@ -175,7 +176,10 @@ export default function AlgebraCasLessonAdapter({ lesson, resetToken, onInteract
   if (lesson.id === 114) {
     return <QuadraticEquationsTargetLesson114 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
-  if (lesson.categorySlug === "algebra" && lesson.id >= 115 && lesson.id <= 128) {
+  if (lesson.id === 115) {
+    return <PolynomialEquationsTargetLesson115 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.categorySlug === "algebra" && lesson.id >= 116 && lesson.id <= 128) {
     return <AlgebraConceptWorkspace lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
