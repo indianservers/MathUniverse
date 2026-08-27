@@ -1,0 +1,183 @@
+{
+  "mockup": "0213",
+  "lessonId": 156,
+  "route": "/lessons/graphs-and-functions/156-vertical-translation",
+  "checks": {
+    "initial": {
+      "k": "2",
+      "selected-x": "2",
+      "parent-visible": "true",
+      "transformed-visible": "true",
+      "selected-parent": "4",
+      "selected-output": "6"
+    },
+    "range": {
+      "k": "-2",
+      "selected-x": "2",
+      "parent-visible": "true",
+      "transformed-visible": "true",
+      "selected-parent": "4",
+      "selected-output": "2"
+    },
+    "shiftDrag": {
+      "k": "0",
+      "selected-x": "2",
+      "parent-visible": "true",
+      "transformed-visible": "true",
+      "selected-parent": "4",
+      "selected-output": "4"
+    },
+    "shiftKeyboard": {
+      "k": "1",
+      "selected-x": "2",
+      "parent-visible": "true",
+      "transformed-visible": "true",
+      "selected-parent": "4",
+      "selected-output": "5"
+    },
+    "sampleDrag": {
+      "k": "2",
+      "selected-x": "-1",
+      "parent-visible": "true",
+      "transformed-visible": "true",
+      "selected-parent": "1",
+      "selected-output": "3"
+    },
+    "sampleKeyboard": {
+      "k": "2",
+      "selected-x": "0",
+      "parent-visible": "true",
+      "transformed-visible": "true",
+      "selected-parent": "0",
+      "selected-output": "2"
+    },
+    "sampleButton": {
+      "k": "2",
+      "selected-x": "-1",
+      "parent-visible": "true",
+      "transformed-visible": "true",
+      "selected-parent": "1",
+      "selected-output": "3"
+    },
+    "tableRow": {
+      "k": "2",
+      "selected-x": "0",
+      "parent-visible": "true",
+      "transformed-visible": "true",
+      "selected-parent": "0",
+      "selected-output": "2"
+    },
+    "parentToggle": {
+      "k": "2",
+      "selected-x": "0",
+      "parent-visible": "false",
+      "transformed-visible": "true",
+      "selected-parent": "0",
+      "selected-output": "2"
+    },
+    "transformedToggle": {
+      "k": "2",
+      "selected-x": "0",
+      "parent-visible": "false",
+      "transformed-visible": "false",
+      "selected-parent": "0",
+      "selected-output": "2"
+    },
+    "shareStatus": "Translation state copied",
+    "reset": {
+      "k": "2",
+      "selected-x": "2",
+      "parent-visible": "true",
+      "transformed-visible": "true",
+      "selected-parent": "4",
+      "selected-output": "6"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1205,
+      "height": 1305
+    },
+    "document": {
+      "width": 1205,
+      "height": 1542
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1305,
+        "left": 236,
+        "right": 1188,
+        "width": 952,
+        "height": 1198
+      },
+      "surface": {
+        "top": 112,
+        "bottom": 1285,
+        "left": 257,
+        "right": 1188,
+        "width": 931,
+        "height": 1173
+      },
+      "header": {
+        "top": 129,
+        "bottom": 275,
+        "left": 274,
+        "right": 1171,
+        "width": 897,
+        "height": 146
+      },
+      "command": {
+        "top": 275,
+        "bottom": 339,
+        "left": 274,
+        "right": 1171,
+        "width": 897,
+        "height": 64
+      },
+      "workspace": {
+        "top": 339,
+        "bottom": 1010,
+        "left": 272,
+        "right": 1169,
+        "width": 897,
+        "height": 671
+      },
+      "graph": {
+        "top": 339,
+        "bottom": 1010,
+        "left": 272,
+        "right": 816,
+        "width": 544,
+        "height": 671
+      },
+      "controls": {
+        "top": 339,
+        "bottom": 673,
+        "left": 828,
+        "right": 1169,
+        "width": 341,
+        "height": 334
+      },
+      "values": {
+        "top": 681,
+        "bottom": 1010,
+        "left": 828,
+        "right": 1169,
+        "width": 341,
+        "height": 329
+      },
+      "explain": {
+        "top": 1021,
+        "bottom": 1256,
+        "left": 272,
+        "right": 1169,
+        "width": 897,
+        "height": 235
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

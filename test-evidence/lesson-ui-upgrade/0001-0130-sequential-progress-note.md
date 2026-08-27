@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **138 of 200 lessons completed; 62 pending.**
+Dedicated rebuild target: **139 of 200 lessons completed; 61 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -124,6 +124,7 @@ Dedicated rebuild target: **138 of 200 lessons completed; 62 pending.**
 | 0210   |       153 Increasing and Decreasing | Complete | Dedicated derivative-defined cubic with real strength/shift/x controls, pointer/keyboard cursor drag, generated extrema/regions/sign strips/intervals, exact live slope classification, reset, and exact 1334x1179 framing |
 | 0211   |              154 Periodic Functions | Complete | Dedicated sine-period engine with real amplitude/frequency/midline controls, pointer/keyboard phase drag, generated period ruler/cycle/matching points/live identity, functional tabs/actions/language/list, and exact 1315x1197 framing |
 | 0212   |             155 Recursive Functions | Complete | Dedicated affine-recurrence engine with real growth/seed/add-on/step controls, pointer/keyboard term probe, generated sequence table/graph/next preview/cobweb/fixed point, exact calculations, reset, and exact 1477x1065 framing |
+| 0213   |           156 Vertical Translation | Complete | Dedicated vertical-shift engine with real k range, parent/transformed visibility, pointer/keyboard curve and sample drags, generated parabolas/arrows/vertex/table/output proof, share/reset, and exact 1205x1305 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2057,3 +2058,17 @@ Evidence:
 - `0212-reference.png`
 - `0212-desktop.png`
 - `0212-dedicated-target-validation.json`
+
+## Lesson 156 / Mockup 0213 - Vertical Translation
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-vertical-shift-parent-and-transformed-visibility-pointer-keyboard-draggable-parabola-and-sample-probe-generated-curves-arrows-vertex-table-and-output-invariance` model. The lesson-owned vertical shift `k`, selected sample x-value, and parent/transformed visibility generate `f(x)=x^2`, `g(x)=x^2+k`, both graph curves, vertical shift arrows, vertex mapping, selected-point values, all table rows, and the constant output-change proof from one state.
+
+The `-5..5` integer shift range, both visibility switches, five sample buttons, and all table rows are real controls. The translated vertex is genuinely pointer- and keyboard-draggable vertically to change `k`; the selected transformed point is pointer- and keyboard-draggable horizontally to change x. Every interaction preserves the exact invariants `g(x)-f(x)=k`, unchanged x-coordinates, and vertex movement `(0,0)` to `(0,k)`. Share writes the current equation and sample state, while Reset restores `k=2`, `x=2`, and both curves.
+
+Final 1205x1305 browser validation physically changes the k range, pointer-drags and keyboard-moves the translated parabola, pointer-drags and keyboard-moves the sample point, uses a sample button and table row, hides both curves independently, exercises Share, and resets. The final comparison loop places the surface at x=257-1188 and y=112-1285, graph card x=272-816 and y=339-1010, controls x=828-1169 and y=339-673, values y=681-1010, and explanation band y=1021-1256. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0213-reference.png`
+- `0213-desktop.png`
+- `0213-dedicated-target-validation.json`
