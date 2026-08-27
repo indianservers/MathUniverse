@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 154 to its dedicated periodic-wave engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 154)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0211"');
+    expect(html).toContain('data-dedicated-lesson="154"');
+    expect(html).toContain("editable-sine-amplitude-frequency-midline-pointer-keyboard-draggable-phase-probe-generated-period-ruler-cycle-shading-matching-points-live-periodic-identity-real-tabs-language-bookmark-share-save");
+    expect(html).toContain('aria-label="Drag periodic matching point"');
+    expect(html).toContain("Match confirmed");
+  });
+
   it("routes lesson 153 to its dedicated monotonicity engine", () => {
     const lesson = lessonCatalog.find((item) => item.id === 153)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -319,7 +329,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function transformation lessons 153 through 166 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      154: "repeats after a fixed period",
       155: "depends on an earlier value",
       156: "outside addition moves",
       157: "inside subtraction moves",

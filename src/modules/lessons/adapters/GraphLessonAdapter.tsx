@@ -26,6 +26,7 @@ import CompositeFunctionsTargetLesson150 from "./CompositeFunctionsTargetLesson1
 import InverseFunctionsTargetLesson151 from "./InverseFunctionsTargetLesson151";
 import EvenOddFunctionsTargetLesson152 from "./EvenOddFunctionsTargetLesson152";
 import IncreasingDecreasingTargetLesson153 from "./IncreasingDecreasingTargetLesson153";
+import PeriodicFunctionsTargetLesson154 from "./PeriodicFunctionsTargetLesson154";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -135,6 +136,9 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   }
   if (lesson.id === 153) {
     return <IncreasingDecreasingTargetLesson153 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 154) {
+    return <PeriodicFunctionsTargetLesson154 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {

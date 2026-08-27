@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **136 of 200 lessons completed; 64 pending.**
+Dedicated rebuild target: **137 of 200 lessons completed; 63 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -122,6 +122,7 @@ Dedicated rebuild target: **136 of 200 lessons completed; 64 pending.**
 | 0208   |               151 Inverse Functions | Complete | Dedicated linear-inverse engine with editable slope/intercept/domain, pointer/keyboard source-point drag, generated reflected inverse/swapped mappings/live compositions, horizontal-line proof, working share/reset/navigation, and exact 1195x1316 framing |
 | 0209   |          152 Even and Odd Functions | Complete | Dedicated three-family symmetry engine with real function/x/overlay controls, pointer/keyboard x-probe drag, generated x/-x points and values, mirror/rotation tests, algebraic verdicts, interactive concept cards, and exact 1205x1306 framing |
 | 0210   |       153 Increasing and Decreasing | Complete | Dedicated derivative-defined cubic with real strength/shift/x controls, pointer/keyboard cursor drag, generated extrema/regions/sign strips/intervals, exact live slope classification, reset, and exact 1334x1179 framing |
+| 0211   |              154 Periodic Functions | Complete | Dedicated sine-period engine with real amplitude/frequency/midline controls, pointer/keyboard phase drag, generated period ruler/cycle/matching points/live identity, functional tabs/actions/language/list, and exact 1315x1197 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2027,3 +2028,17 @@ Evidence:
 - `0210-reference.png`
 - `0210-desktop.png`
 - `0210-dedicated-target-validation.json`
+
+## Lesson 154 / Mockup 0211 - Periodic Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-sine-amplitude-frequency-midline-pointer-keyboard-draggable-phase-probe-generated-period-ruler-cycle-shading-matching-points-live-periodic-identity-real-tabs-language-bookmark-share-save` model. The lesson-owned amplitude `A`, frequency `b`, midline `d`, phase probe `x`, and period-finder state generate `f(x)=A sin(bx)+d`, `T=2π/b`, the wave, dynamic axes, midline, one-cycle shading, period ruler, matching points at `x` and `x+T`, live equality, and concept cards from one state. At the target `A=1.5`, `b=2`, `d=0.5`, `x=π/4`, the mathematically exact model gives `T=π` and `f(π/4)=f(5π/4)=2`.
+
+All three function ranges and the period-finder switch are real controls. The phase point is a genuine pointer- and keyboard-draggable SVG object, and the matching point remains exactly one generated period away. Every frequency edit regenerates the domain, labels, ruler, shading, matching point, and both values. Explore, Understand, Examples, Practice, and Summary tabs own observable state; English/Spanish, Bookmark, Share, more-actions, period toggle, Add to My List, Reset, and adjacent-lesson links all perform real actions.
+
+Final 1315x1197 browser validation physically changes amplitude, frequency, and midline; drags and keyboard-moves the phase point; removes/restores cycle shading; exercises lesson tabs, Spanish, Bookmark, Share and notice dismissal, more-actions, list add/remove, and Reset; and verifies `f(x+T)=f(x)` after every mathematical edit. The final comparison loop places the intro at y=120-319, tabs y=335-391, workspace y=407-960, graph x=296-975 and y=494-884, controls x=1004-1284, concept cards y=968-1109, and navigation y=1117-1182. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0211-reference.png`
+- `0211-desktop.png`
+- `0211-dedicated-target-validation.json`
