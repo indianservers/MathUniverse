@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 137 to its dedicated reciprocal asymptote model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 137)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0194"');
+    expect(html).toContain('data-dedicated-lesson="137"');
+    expect(html).toContain("editable-reciprocal-scale-and-excluded-input-pointer-keyboard-draggable-asymptote-and-scale-point-generated-two-branch-graph-working-pan-zoom-linked-samples-domain-range-reasoning-warning-practice-model");
+    expect(html).toContain('aria-label="Drag excluded reciprocal input"');
+    expect(html).toContain("Asymptote explorer");
+  });
+
   it("routes lesson 136 to its dedicated higher-degree polynomial model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 136)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -126,7 +136,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      137: "x=0 is excluded",
       138: "denominator zeros are excluded",
       139: "real inputs need x &gt;= 0",
       140: "negative real inputs are allowed",

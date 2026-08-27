@@ -9,6 +9,7 @@ import LinearFunctionsTargetLesson133 from "./LinearFunctionsTargetLesson133";
 import QuadraticFunctionsTargetLesson134 from "./QuadraticFunctionsTargetLesson134";
 import CubicFunctionsTargetLesson135 from "./CubicFunctionsTargetLesson135";
 import HigherDegreePolynomialsTargetLesson136 from "./HigherDegreePolynomialsTargetLesson136";
+import ReciprocalFunctionsTargetLesson137 from "./ReciprocalFunctionsTargetLesson137";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -67,6 +68,9 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   }
   if (lesson.id === 136) {
     return <HigherDegreePolynomialsTargetLesson136 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 137) {
+    return <ReciprocalFunctionsTargetLesson137 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {

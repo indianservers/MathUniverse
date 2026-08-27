@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **119 of 200 lessons completed; 81 pending.**
+Dedicated rebuild target: **120 of 200 lessons completed; 80 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -105,6 +105,7 @@ Dedicated rebuild target: **119 of 200 lessons completed; 81 pending.**
 | 0191   |         134 Quadratic Functions | Complete | Dedicated vertex-form model with real a/h/k sliders, pointer/keyboard-draggable vertex and opening handle, linked parabola/symmetry/mirrored points/table/reasoning/practice, and exact 948x1659 target framing |
 | 0192   |             135 Cubic Functions | Complete | Dedicated inflection-form model with real signed bend/center/shift controls, pointer/keyboard-draggable inflection and bend handles, linked S-curve/end behavior/symmetry/table/reasoning/practice, and exact 969x1623 target framing |
 | 0193   | 136 Higher-Degree Polynomials | Complete | Dedicated factored quartic model with real moving-root/shift controls, pointer/keyboard root drag, numerical intercepts/turning points, multiplicity-aware sign chart, samples/practice, and exact 966x1629 target framing |
+| 0194   |       137 Reciprocal Functions | Complete | Dedicated reciprocal model with real scale/excluded-input controls, pointer/keyboard asymptote and scale-point drags, working pan/zoom, linked branches/samples/domain/range/reasoning/practice, and exact 955x1647 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1771,3 +1772,17 @@ Evidence:
 - `0193-reference.png`
 - `0193-desktop.png`
 - `0193-dedicated-target-validation.json`
+
+## Lesson 137 / Mockup 0194 - Reciprocal Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-reciprocal-scale-and-excluded-input-pointer-keyboard-draggable-asymptote-and-scale-point-generated-two-branch-graph-working-pan-zoom-linked-samples-domain-range-reasoning-warning-practice-model`. The lesson-owned scale `a` and excluded input `h` generate `f(x)=a/(x-h)`, both reciprocal branches, vertical asymptote `x=h`, horizontal asymptote `y=0`, domain `x!=h`, range `y!=0`, four symmetric sample points, the value table, reasoning sequence, legend, no-crossing warning, and practice state. The target `3/(x-1)` produces `(-2,-1)`, `(0,-3)`, `(2,3)`, and `(4,1)`.
+
+The scale is a real range control and the excluded input has working decrement/increment controls. The vertical asymptote and scale point are genuine pointer- and keyboard-draggable graph objects. Pointer mode edits those objects; Pan physically moves the viewport center; Zoom In and Zoom Out change its span without changing the function. Every model edit recalculates the formula, branches, asymptote, excluded marker, samples, table, domain, and reasoning. Open Practice loads `2/(x+3)` with vertical asymptote `x=-3` and regenerated points.
+
+Final 955x1647 integrated browser validation changes scale from `3` to `4`, increments the excluded input to `2`, resets, physically drags the asymptote to `x=2`, keyboard-returns it to `1`, physically drags scale to `4`, keyboard-reduces it to `3.75`, pans the viewport from center `0` to `-2`, zooms span `7→6→7`, loads and validates practice, and resets. Exact framing passes surface x=214-938 and y=102-1641, intro y=102-349, tabs y=361-409, body/rail y=419-1471, lab x=220-708 and y=419-1357, graph y=587-1105, navigation y=1376-1438, and footer y=1494-1641. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0194-reference.png`
+- `0194-desktop.png`
+- `0194-dedicated-target-validation.json`
