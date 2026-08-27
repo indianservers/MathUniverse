@@ -4,6 +4,19 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 129 to its dedicated linked function-machine model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 129)!;
+    const html = renderToStaticMarkup(
+      <GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />,
+    );
+
+    expect(html).toContain('data-testid="graph-mockup-0186"');
+    expect(html).toContain('data-dedicated-lesson="129"');
+    expect(html).toContain("editable-linear-function-machine-linked-input-output-mappings-parameter-sliders-pointer-keyboard-draggable-sample-inputs-generated-value-table-synchronized-cartesian-graph-vertical-slice-function-test-multiple-output-counterexample-live-practice-model");
+    expect(html).toContain('aria-label="Drag function input 1"');
+    expect(html).toContain("Function machine + graph cross-check");
+  });
+
   it("renders graphing calculator lessons 39 through 56 with tool-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
       39: "x first and y second",
@@ -43,7 +56,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      129: "each input has exactly one output",
       130: "square-root inputs start",
       131: "f(2) means use input 2",
       132: "Vertical-line test",

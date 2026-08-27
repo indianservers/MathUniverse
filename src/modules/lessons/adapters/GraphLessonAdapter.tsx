@@ -1,6 +1,7 @@
 import AdapterFrame from "../components/AdapterFrame";
 import ReusableLessonEngine, { reusableEngineParamsFor } from "../components/ReusableLessonEngine";
 import FunctionMockupLesson from "./graph/FunctionMockupLesson";
+import FunctionConceptTargetLesson129 from "./FunctionConceptTargetLesson129";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -36,6 +37,10 @@ type TwoDGraphSpec = GraphSpec & {
 };
 
 export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  if (lesson.id === 129) {
+    return <FunctionConceptTargetLesson129 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+
   if (usesFunctionMockupWorkspace(lesson.id)) {
     return <FunctionMockupLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
@@ -57,14 +62,15 @@ function usesFunctionMockupWorkspace(lessonId: number) {
 }
 
 function RedesignedGraphingLesson({ lesson, resetToken, onInteraction }: LessonAdapterProps) {
+  const [probe, setProbe] = useState(50);
+  const [showHelper, setShowHelper] = useState(true);
+  useEffect(() => { setProbe(50); setShowHelper(true); }, [lesson.id, resetToken]);
+
   if (lesson.id >= 39 && lesson.id <= 56) {
     return <TwoDGraphingMockupLesson lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   const spec = graphSpecFor(lesson.id);
-  const [probe, setProbe] = useState(50);
-  const [showHelper, setShowHelper] = useState(true);
-  useEffect(() => { setProbe(50); setShowHelper(true); }, [lesson.id, resetToken]);
 
   return (
     <AdapterFrame title={`${lesson.title} graphing studio`} value={spec.value} footer={`${spec.title}: ${spec.warning}`}>

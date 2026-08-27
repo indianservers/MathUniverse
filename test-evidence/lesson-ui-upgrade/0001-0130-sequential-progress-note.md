@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **111 of 200 lessons completed; 89 pending.**
+Dedicated rebuild target: **112 of 200 lessons completed; 88 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -97,6 +97,7 @@ Dedicated rebuild target: **111 of 200 lessons completed; 89 pending.**
 | 0183   |             126 Two-Variable Inequalities | Complete | Dedicated coordinate half-plane model with pointer-draggable intercept, slope, and test point, clipped true-region shading, dashed/solid and above/below controls, live substitution, practice, and exact 995x1581 target framing |
 | 0184   |             127 Systems of Inequalities | Complete | Dedicated two-half-plane overlap model with pointer-draggable diagonal intercept/slope, horizontal limit and probe, clipped feasible-region intersection, boundary inclusion toggles, live dual checks, practice, and exact 994x1583 target framing |
 | 0185   |             128 Numerical Solver | Complete | Dedicated bisection root finder with pointer-draggable coarse/zoom brackets, live trial table, sign-change checks, rounded approximation, exact residual, CSV download, cosine practice, and exact 941x1672 target framing |
+| 0186   |             129 Function Concept | Complete | Dedicated linked function-machine model with real a/b sliders, pointer/keyboard-draggable sample inputs, generated mappings/table/graph/vertical slices, multiple-output counterexample, live practice, and exact 925x1701 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1651,3 +1652,17 @@ Evidence:
 - `0185-reference.png`
 - `0185-desktop.png`
 - `0185-dedicated-target-validation.json`
+
+## Lesson 129 / Mockup 0186 - Function Concept
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-linear-function-machine-linked-input-output-mappings-parameter-sliders-pointer-keyboard-draggable-sample-inputs-generated-value-table-synchronized-cartesian-graph-vertical-slice-function-test-multiple-output-counterexample-live-practice-model`. The lesson-owned rate, start value, and three sample inputs generate every machine output, mapping arrow, value-table row, plotted point, vertical slice, line equation, legend, and function-test result. The target `f(x)=1.25x+1` maps `-2,0,2` to `-1.5,1,3.5` and passes the vertical-line test.
+
+Both parameters are real range drags, and all three plotted sample inputs are pointer- and keyboard-draggable controls. Every move recomputes the machine, table, graph, labels, and output data from one object model. The Examples tab loads `f(x)=2x-3`, the multiple-output table remains a mathematically genuine counterexample, and the editable practice input computes and checks `g(x)=2x-3`. Language, Share, Workspace, Reset, fullscreen, tabs, and action status all update visible state.
+
+Final 925x1701 integrated browser validation physically drags both function parameters, drags the first graph input from `-2` to `-3`, keyboard-moves the second input from `0` to `1`, verifies every recalculated output, checks `g(5)=7`, loads the `2x-3` example, and verifies Reset. Exact framing passes surface x=219-912 and y=101-1698, intro y=101-360, tabs y=371-428, lab y=439-1477, machine y=531-833, graph y=843-1366, navigation y=1488-1550, and footer y=1561-1685. It reports no horizontal or vertical overflow, an exact 925x1701 document, and zero console messages.
+
+Evidence:
+
+- `0186-reference.png`
+- `0186-desktop.png`
+- `0186-dedicated-target-validation.json`

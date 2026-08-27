@@ -1,0 +1,175 @@
+{
+  "mockup": "0186",
+  "lessonId": 129,
+  "route": "/lessons/graphs-and-functions/129-function-concept",
+  "checks": {
+    "initial": {
+      "a": "1.25",
+      "b": "1",
+      "samples": "-2,0,2",
+      "outputs": "-1.5,1,3.5",
+      "practice": "4,5,true",
+      "actions": "0"
+    },
+    "rate": {
+      "a": "3",
+      "b": "1",
+      "samples": "-2,0,2",
+      "outputs": "-5,1,7",
+      "practice": "4,5,true",
+      "actions": "5"
+    },
+    "start": {
+      "a": "3",
+      "b": "-1.5",
+      "samples": "-2,0,2",
+      "outputs": "-7.5,-1.5,4.5",
+      "practice": "4,5,true",
+      "actions": "10"
+    },
+    "pointDrag": {
+      "a": "3",
+      "b": "-1.5",
+      "samples": "-3,0,2",
+      "outputs": "-10.5,-1.5,4.5",
+      "practice": "4,5,true",
+      "actions": "18"
+    },
+    "pointKeyboard": {
+      "a": "3",
+      "b": "-1.5",
+      "samples": "-3,1,2",
+      "outputs": "-10.5,1.5,4.5",
+      "practice": "4,5,true",
+      "actions": "19"
+    },
+    "practice": {
+      "a": "3",
+      "b": "-1.5",
+      "samples": "-3,1,2",
+      "outputs": "-10.5,1.5,4.5",
+      "practice": "5,7,true",
+      "actions": "21"
+    },
+    "example": {
+      "a": "2",
+      "b": "-3",
+      "samples": "-1,1,3",
+      "outputs": "-5,-1,3",
+      "practice": "5,7,true",
+      "actions": "22"
+    },
+    "reset": {
+      "a": "1.25",
+      "b": "1",
+      "samples": "-2,0,2",
+      "outputs": "-1.5,1,3.5",
+      "practice": "4,5,true",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 925,
+      "height": 1701
+    },
+    "document": {
+      "width": 925,
+      "height": 1701
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 101,
+        "bottom": 1698,
+        "height": 1597,
+        "left": 219,
+        "right": 912,
+        "width": 693
+      },
+      "intro": {
+        "top": 101,
+        "bottom": 360,
+        "height": 259,
+        "left": 219,
+        "right": 912,
+        "width": 693
+      },
+      "tabs": {
+        "top": 371,
+        "bottom": 428,
+        "height": 57,
+        "left": 219,
+        "right": 912,
+        "width": 693
+      },
+      "lab": {
+        "top": 439,
+        "bottom": 1477,
+        "height": 1038,
+        "left": 219,
+        "right": 912,
+        "width": 693
+      },
+      "layout": {
+        "top": 531,
+        "bottom": 1427,
+        "height": 896,
+        "left": 233,
+        "right": 898,
+        "width": 665
+      },
+      "machine": {
+        "top": 531,
+        "bottom": 833,
+        "height": 302,
+        "left": 233,
+        "right": 675.328125,
+        "width": 442.328125
+      },
+      "graph": {
+        "top": 843,
+        "bottom": 1366,
+        "height": 523,
+        "left": 233,
+        "right": 675.328125,
+        "width": 442.328125
+      },
+      "rail": {
+        "top": 531,
+        "bottom": 1427,
+        "height": 896,
+        "left": 685.328125,
+        "right": 897.984375,
+        "width": 212.65625
+      },
+      "tags": {
+        "top": 1436,
+        "bottom": 1472,
+        "height": 36,
+        "left": 233,
+        "right": 898,
+        "width": 665
+      },
+      "navigation": {
+        "top": 1488,
+        "bottom": 1550,
+        "height": 62,
+        "left": 219,
+        "right": 912,
+        "width": 693
+      },
+      "footer": {
+        "top": 1561,
+        "bottom": 1685,
+        "height": 124,
+        "left": 219,
+        "right": 912,
+        "width": 693
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
