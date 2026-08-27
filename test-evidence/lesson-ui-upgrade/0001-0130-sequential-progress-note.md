@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **114 of 200 lessons completed; 86 pending.**
+Dedicated rebuild target: **115 of 200 lessons completed; 85 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -100,6 +100,7 @@ Dedicated rebuild target: **114 of 200 lessons completed; 86 pending.**
 | 0186   |             129 Function Concept | Complete | Dedicated linked function-machine model with real a/b sliders, pointer/keyboard-draggable sample inputs, generated mappings/table/graph/vertical slices, multiple-output counterexample, live practice, and exact 925x1701 target framing |
 | 0187   |            130 Domain and Range | Complete | Dedicated shifted-square-root projector with real domain/range sliders, pointer/keyboard-draggable closed start, linked axis projections, generated interval notation/evaluations, grid, practice, and exact 985x1597 target framing |
 | 0188   |           131 Function Notation | Complete | Dedicated linked quadratic-notation decoder with coefficient/shift sliders, pointer/keyboard-draggable chosen input, synchronized substitution/output/graph/table, calculated practice, and exact 1024x1536 target framing |
+| 0189   |         132 Vertical-Line Test | Complete | Dedicated circle/parabola relation scanner with pointer/keyboard-draggable vertical line, generated intersections and hit counts, tangent/zero-hit states, global function classification, real comparison controls, and exact 984x1598 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1696,3 +1697,17 @@ Evidence:
 - `0188-reference.png`
 - `0188-desktop.png`
 - `0188-dedicated-target-validation.json`
+
+## Lesson 132 / Mockup 0189 - Vertical-Line Test
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-vertical-line-scanner-circle-parabola-sideways-relation-pointer-keyboard-draggable-test-line-generated-intersections-hit-count-global-function-classification-linked-reasoning-comparison-model`. The lesson-owned relation and scanner position generate the plotted curve, vertical test line, exact intersections, coordinate labels, hit count, current-line explanation, and global function classification. The target circle `x²+y²=9` at `x=0` produces `(0,3)` and `(0,-3)`, two hits, and correctly fails the vertical-line test.
+
+The vertical line is a real pointer- and keyboard-draggable graph object synchronized with the range control. Every move recalculates circle intersections, tangency, outside/no-hit states, status chips, linked steps, and explanation cards. The passing `y=x²` and failing `x=y²` comparison diagrams are functional relation selectors rather than static decoration; Try it cycles genuine x-values, Examples loads the parabola, and language, Share, Workspace, Reset, fullscreen, tabs, and action status all update visible state.
+
+Final 984x1598 integrated browser validation physically drags the range from `x=0` to `x=2`, drags the graph line to the tangent `x=3`, keyboard-moves it outside to `x=3.5`, independently verifies the one-hit tangent, selects the passing parabola and verifies one output, selects the sideways parabola and verifies `x=4` gives `y=2,-2`, exercises Try it, loads the example, and verifies Reset. Exact framing passes surface x=218-970 and y=101-1598, intro y=101-321, tabs y=332-384, lab y=395-1404, layout y=483-1388, graph panel x=231-674, rail x=690-952, result y=1154-1236, navigation y=1414-1465, and footer y=1480-1594. It reports no horizontal or vertical overflow, an exact 984x1598 document, and zero console messages.
+
+Evidence:
+
+- `0189-reference.png`
+- `0189-desktop.png`
+- `0189-dedicated-target-validation.json`

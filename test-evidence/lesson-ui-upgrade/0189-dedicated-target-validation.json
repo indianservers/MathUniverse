@@ -1,0 +1,226 @@
+{
+  "mockup": "0189",
+  "lessonId": 132,
+  "route": "/lessons/graphs-and-functions/132-vertical-line-test",
+  "checks": {
+    "initial": {
+      "relation": "circle",
+      "radius": "3",
+      "test-x": "0",
+      "hits": "2",
+      "hit-values": "3,-3",
+      "passes": "false",
+      "actions": "0"
+    },
+    "rangeDrag": {
+      "relation": "circle",
+      "radius": "3",
+      "test-x": "2",
+      "hits": "2",
+      "hit-values": "2.24,-2.24",
+      "passes": "false",
+      "actions": "4"
+    },
+    "graphDrag": {
+      "relation": "circle",
+      "radius": "3",
+      "test-x": "3",
+      "hits": "1",
+      "hit-values": "0",
+      "passes": "false",
+      "actions": "12"
+    },
+    "keyboard": {
+      "relation": "circle",
+      "radius": "3",
+      "test-x": "3.5",
+      "hits": "0",
+      "hit-values": "",
+      "passes": "false",
+      "actions": "13"
+    },
+    "tangentBaseline": {
+      "relation": "circle",
+      "radius": "3",
+      "test-x": "0",
+      "hits": "2",
+      "hit-values": "3,-3",
+      "passes": "false",
+      "actions": "0"
+    },
+    "tangent": {
+      "relation": "circle",
+      "radius": "3",
+      "test-x": "3",
+      "hits": "1",
+      "hit-values": "0",
+      "passes": "false",
+      "actions": "6"
+    },
+    "parabola": {
+      "relation": "parabola",
+      "radius": "3",
+      "test-x": "0",
+      "hits": "1",
+      "hit-values": "0",
+      "passes": "true",
+      "actions": "7"
+    },
+    "sideways": {
+      "relation": "sideways",
+      "radius": "3",
+      "test-x": "4",
+      "hits": "2",
+      "hit-values": "2,-2",
+      "passes": "false",
+      "actions": "8"
+    },
+    "tryIt": {
+      "relation": "sideways",
+      "radius": "3",
+      "test-x": "2",
+      "hits": "2",
+      "hit-values": "1.41,-1.41",
+      "passes": "false",
+      "actions": "9"
+    },
+    "example": {
+      "relation": "parabola",
+      "radius": "3",
+      "test-x": "2",
+      "hits": "1",
+      "hit-values": "4",
+      "passes": "true",
+      "actions": "10"
+    },
+    "reset": {
+      "relation": "circle",
+      "radius": "3",
+      "test-x": "0",
+      "hits": "2",
+      "hit-values": "3,-3",
+      "passes": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 984,
+      "height": 1598
+    },
+    "document": {
+      "width": 984,
+      "height": 1598
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 101,
+        "bottom": 1598,
+        "height": 1497,
+        "left": 218,
+        "right": 970,
+        "width": 752
+      },
+      "intro": {
+        "top": 101,
+        "bottom": 321,
+        "height": 220,
+        "left": 218,
+        "right": 970,
+        "width": 752
+      },
+      "tabs": {
+        "top": 332,
+        "bottom": 384,
+        "height": 52,
+        "left": 218,
+        "right": 970,
+        "width": 752
+      },
+      "lab": {
+        "top": 395,
+        "bottom": 1404,
+        "height": 1009,
+        "left": 218,
+        "right": 970,
+        "width": 752
+      },
+      "layout": {
+        "top": 483,
+        "bottom": 1388,
+        "height": 905,
+        "left": 231,
+        "right": 957,
+        "width": 726
+      },
+      "main": {
+        "top": 483,
+        "bottom": 1388,
+        "height": 905,
+        "left": 231,
+        "right": 674,
+        "width": 443
+      },
+      "plot": {
+        "top": 494,
+        "bottom": 1146,
+        "height": 652,
+        "left": 242,
+        "right": 663,
+        "width": 421
+      },
+      "rail": {
+        "top": 483,
+        "bottom": 1388,
+        "height": 905,
+        "left": 690,
+        "right": 952,
+        "width": 262
+      },
+      "steps": {
+        "top": 483,
+        "bottom": 857,
+        "height": 374,
+        "left": 690,
+        "right": 952,
+        "width": 262
+      },
+      "compare": {
+        "top": 867,
+        "bottom": 1287,
+        "height": 420,
+        "left": 690,
+        "right": 952,
+        "width": 262
+      },
+      "lower": {
+        "top": 1154,
+        "bottom": 1236,
+        "height": 82,
+        "left": 242,
+        "right": 663,
+        "width": 421
+      },
+      "navigation": {
+        "top": 1414,
+        "bottom": 1465,
+        "height": 51,
+        "left": 218,
+        "right": 970,
+        "width": 752
+      },
+      "footer": {
+        "top": 1480,
+        "bottom": 1594,
+        "height": 114,
+        "left": 218,
+        "right": 970,
+        "width": 752
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

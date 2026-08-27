@@ -1,0 +1,39 @@
+.vlt132-page {
+  top: -50px;
+}
+
+.vlt132-tabs {
+  margin-top: 11px;
+}
+
+.vlt132-lab > header {
+  height: 75px;
+}
+
+.vlt132-layout,
+.vlt132-main,
+.vlt132-rail {
+  height: 905px;
+}
+
+.vlt132-graph {
+  overflow: visible;
+}
+
+.vlt132-plot > section {
+  position: relative;
+  top: 19px;
+}
+
+.vlt132-steps > p small {
+  font-size: 11px;
+}
+
+.vlt132-compare {
+  height: 420px;
+}
+
+.vlt132-try {
+  min-height: 79px;
+  height: 79px;
+}

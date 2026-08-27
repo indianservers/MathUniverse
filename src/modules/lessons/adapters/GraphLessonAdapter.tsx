@@ -4,6 +4,7 @@ import FunctionMockupLesson from "./graph/FunctionMockupLesson";
 import FunctionConceptTargetLesson129 from "./FunctionConceptTargetLesson129";
 import DomainRangeTargetLesson130 from "./DomainRangeTargetLesson130";
 import FunctionNotationTargetLesson131 from "./FunctionNotationTargetLesson131";
+import VerticalLineTestTargetLesson132 from "./VerticalLineTestTargetLesson132";
 import { graphVisualPresetForLesson } from "../presets/graphVisualPresets";
 import type { LessonAdapterProps } from "../types";
 import { Eye, Grid3X3, Minus, Move, Plus, RotateCcw, Share2, ZoomIn } from "lucide-react";
@@ -47,6 +48,9 @@ export default function GraphLessonAdapter({ lesson, resetToken, onInteraction }
   }
   if (lesson.id === 131) {
     return <FunctionNotationTargetLesson131 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
+  }
+  if (lesson.id === 132) {
+    return <VerticalLineTestTargetLesson132 lesson={lesson} resetToken={resetToken} onInteraction={onInteraction} />;
   }
 
   if (usesFunctionMockupWorkspace(lesson.id)) {
