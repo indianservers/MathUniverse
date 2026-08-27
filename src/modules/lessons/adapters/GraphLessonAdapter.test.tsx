@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 139 to its dedicated square-root endpoint model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 139)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0196"');
+    expect(html).toContain('data-dedicated-lesson="139"');
+    expect(html).toContain("editable-square-root-vertical-scale-and-domain-start-pointer-keyboard-draggable-endpoint-and-scale-point-generated-restricted-domain-curve-samples-table-range-reasoning-warning-practice-model");
+    expect(html).toContain('aria-label="Drag square-root endpoint"');
+    expect(html).toContain("Square-Root Endpoint Explorer");
+  });
+
   it("routes lesson 138 to its dedicated rational analyzer model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 138)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);

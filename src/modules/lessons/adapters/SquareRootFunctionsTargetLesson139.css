@@ -1,0 +1,816 @@
+.root139-page {
+  position: relative;
+  top: -51px;
+  width: 100%;
+  height: 1621px;
+  margin-bottom: -47px;
+  color: #14203d;
+  font-size: 10px;
+  letter-spacing: 0;
+}
+.root139-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.root139-page h1,
+.root139-page h2,
+.root139-page h3,
+.root139-page p {
+  margin: 0;
+}
+.root139-page button,
+.root139-page select,
+.root139-page input {
+  color: inherit;
+  font: inherit;
+}
+.root139-page button {
+  cursor: pointer;
+}
+.root139-page a {
+  color: inherit;
+  text-decoration: none;
+}
+.root139-breadcrumb {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  display: flex;
+  height: 27px;
+  align-items: center;
+  gap: 8px;
+  color: #58677d;
+}
+.root139-breadcrumb a:first-child {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+.root139-breadcrumb b {
+  color: #07849d;
+}
+.root139-intro {
+  height: 214px;
+  padding: 16px;
+  border: 1px solid #dce5ec;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 5px 17px rgba(41, 75, 105, 0.07);
+}
+.root139-intro > small {
+  display: flex;
+  gap: 8px;
+}
+.root139-intro > small b {
+  padding: 5px 10px;
+  border-radius: 12px;
+  background: #e6f7fa;
+  color: #087f98;
+  font-size: 8px;
+}
+.root139-intro > small b + b {
+  background: #f1f3f7;
+  color: #536176;
+}
+.root139-intro h1 {
+  margin-top: 9px;
+  font-size: 31px;
+  line-height: 35px;
+  font-weight: 900;
+}
+.root139-intro > p {
+  margin-top: 4px;
+  color: #66758a;
+  font-size: 13px;
+}
+.root139-intro > nav {
+  display: flex;
+  margin-top: 13px;
+  gap: 7px;
+}
+.root139-intro > nav b {
+  padding: 7px 9px;
+  border: 1px solid #dce5ec;
+  border-radius: 15px;
+  font-size: 8px;
+  white-space: nowrap;
+}
+.root139-intro > section {
+  display: flex;
+  margin-top: 13px;
+  gap: 8px;
+}
+.root139-intro > section label,
+.root139-intro > section button {
+  display: flex;
+  height: 38px;
+  padding: 0 12px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 800;
+}
+.root139-intro > section label {
+  width: 166px;
+}
+.root139-intro select {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  background: transparent;
+}
+.root139-intro > section svg {
+  width: 14px;
+}
+.root139-tabs {
+  display: grid;
+  height: 53px;
+  margin-top: 11px;
+  padding: 6px;
+  border: 1px solid #dce5ec;
+  border-radius: 11px;
+  background: #fff;
+  grid-template-columns: 1.35fr repeat(4, 1fr);
+}
+.root139-tabs button {
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-weight: 800;
+}
+.root139-tabs button.active {
+  background: #078fa9;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 147, 173, 0.25);
+}
+.root139-lab {
+  height: 1128px;
+  margin-top: 13px;
+  padding: 13px;
+  border: 1px solid #dce5ec;
+  border-radius: 11px;
+  background: #fff;
+}
+.root139-lab > header {
+  display: flex;
+  height: 55px;
+}
+.root139-lab > header > div {
+  flex: 1;
+}
+.root139-lab > header small {
+  color: #078ba5;
+  font-size: 8px;
+  font-weight: 900;
+}
+.root139-lab > header h2 {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 900;
+}
+.root139-lab > header nav {
+  display: flex;
+  gap: 8px;
+}
+.root139-lab > header nav > * {
+  display: flex;
+  height: 34px;
+  padding: 0 11px;
+  align-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 17px;
+  background: #fff;
+  font-weight: 800;
+}
+.root139-lab > header nav b {
+  border-color: #efd89b;
+  background: #fffdf4;
+  color: #a66a08;
+}
+.root139-lab > header nav button {
+  width: 34px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 8px;
+  color: #176acf;
+}
+.root139-lab > header nav svg {
+  width: 15px;
+}
+.root139-explorer {
+  position: relative;
+  height: 628px;
+  padding: 11px;
+  border: 1px solid #dce5ec;
+  border-radius: 10px;
+}
+.root139-explorer > p {
+  color: #66758a;
+}
+.root139-explorer > strong {
+  display: inline-block;
+  margin: 8px 0 11px;
+  padding: 7px 11px;
+  border: 1px solid #b8e5ee;
+  border-radius: 7px;
+  background: #f2fcfe;
+  font-family: Georgia, serif;
+  font-size: 15px;
+}
+.root139-formula b {
+  padding: 0 2px;
+  border-top: 1px solid currentColor;
+  font-weight: 400;
+}
+.root139-workspace {
+  display: block;
+  height: 526px;
+}
+.root139-workspace > main {
+  position: relative;
+  height: 526px;
+  width: calc(100% - 188px);
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  overflow: hidden;
+}
+.root139-autoscale {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  left: 12px;
+  height: 31px;
+  padding: 0 11px;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+  background: #fff;
+  font-weight: 800;
+}
+.root139-graph {
+  display: block;
+  width: 100%;
+  height: 455px;
+  touch-action: none;
+}
+.root139-graph .axis {
+  stroke: #29394e;
+  stroke-width: 1.2;
+}
+.root139-graph text {
+  fill: #24334b;
+  font-size: 10px;
+  text-anchor: middle;
+}
+.root139-graph .curve {
+  fill: none;
+  stroke: #079db6;
+  stroke-width: 2.7;
+}
+.root139-graph .forbidden {
+  stroke: #889aae;
+  stroke-width: 1.5;
+  stroke-dasharray: 6 5;
+}
+.root139-graph .not-allowed {
+  fill: #fff5f5;
+  stroke: #f2b8bb;
+}
+.root139-graph .math-label,
+.root139-graph .warning-label {
+  text-anchor: start;
+  font-family: Georgia, serif;
+  font-size: 11px;
+}
+.root139-graph .warning-label {
+  fill: #a32830;
+  font-family: inherit;
+  font-size: 9px;
+}
+.root139-graph .endpoint circle {
+  fill: #079db6;
+  stroke: #fff;
+  stroke-width: 2;
+}
+.root139-graph .sample circle {
+  fill: #08a4ba;
+  stroke: #fff;
+  stroke-width: 2;
+}
+.root139-graph .endpoint text,
+.root139-graph .sample text {
+  font-size: 12px;
+  font-weight: 700;
+}
+.root139-graph .handle {
+  fill: transparent;
+  stroke: transparent;
+  cursor: move;
+}
+.root139-graph .handle:focus-visible {
+  fill: rgba(245, 158, 11, 0.2);
+  stroke: #e38e0d;
+  stroke-width: 3;
+  outline: none;
+}
+.root139-graph .domain-tag {
+  fill: #f2faff;
+  stroke: #a8daee;
+}
+.root139-graph .domain-text {
+  fill: #245373;
+  font-family: Georgia, serif;
+  font-size: 11px;
+}
+.root139-workspace > main > footer {
+  display: flex;
+  height: 70px;
+  padding: 14px 8px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-top: 1px solid #dce5ec;
+  font-size: 7px;
+}
+.root139-workspace > main > footer span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.root139-workspace > main > footer i {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #11b9c3;
+}
+.root139-workspace > main > footer span:nth-child(2) i {
+  background: #fff;
+  border: 2px solid #079db6;
+}
+.root139-workspace > main > footer span:nth-child(3) i {
+  width: 22px;
+  height: 0;
+  border-radius: 0;
+  border-top: 3px solid #079db6;
+}
+.root139-workspace > main > footer span:nth-child(4) i {
+  width: 22px;
+  height: 0;
+  border-radius: 0;
+  border-top: 2px dashed #7c8da3;
+}
+.root139-workspace > aside {
+  position: absolute;
+  top: 12px;
+  right: 11px;
+  display: grid;
+  width: 177px;
+  height: 602px;
+  grid-template-rows: 354px 237px;
+  gap: 11px;
+}
+.root139-controls,
+.root139-values {
+  padding: 11px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+}
+.root139-controls h3,
+.root139-values h3 {
+  font-size: 12px;
+}
+.root139-controls > p {
+  margin-top: 9px;
+  line-height: 15px;
+  color: #66758a;
+}
+.root139-controls label {
+  position: relative;
+  display: block;
+  height: 90px;
+  padding-top: 18px;
+  font-weight: 800;
+}
+.root139-controls input {
+  width: calc(100% - 44px);
+  margin-top: 15px;
+  accent-color: #079db6;
+}
+.root139-controls output {
+  position: absolute;
+  top: 11px;
+  right: 0;
+  display: grid;
+  width: 38px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 12px;
+}
+.root139-controls label small {
+  display: flex;
+  width: calc(100% - 44px);
+  justify-content: space-between;
+  color: #66758a;
+  font-weight: 400;
+}
+.root139-controls > strong {
+  display: block;
+  padding: 14px 5px;
+  border: 1px solid #b8e5ee;
+  border-radius: 7px;
+  background: #f2fcfe;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+.root139-values table {
+  width: 100%;
+  height: 167px;
+  margin-top: 10px;
+  border-collapse: collapse;
+  text-align: center;
+  font-family: Georgia, serif;
+}
+.root139-values th,
+.root139-values td {
+  border: 1px solid #dce5ec;
+}
+.root139-values th {
+  height: 34px;
+  background: #f8fafb;
+}
+.root139-values th:first-child {
+  width: 44px;
+}
+.root139-values .root139-formula {
+  font-size: 9px;
+}
+.root139-values > p {
+  margin-top: 7px;
+  color: #66758a;
+  font-size: 8px;
+}
+.root139-why {
+  height: 237px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #dce5ec;
+  border-radius: 10px;
+}
+.root139-why h3 {
+  font-size: 11px;
+}
+.root139-why > div {
+  display: grid;
+  margin-top: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 11px;
+}
+.root139-why article {
+  position: relative;
+  display: grid;
+  height: 183px;
+  padding: 50px 10px 10px;
+  align-content: start;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  text-align: center;
+}
+.root139-why article > span {
+  position: absolute;
+  top: 11px;
+  left: 10px;
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border-radius: 50%;
+  background: #0797ad;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+}
+.root139-why article > i {
+  position: absolute;
+  top: 10px;
+  left: 65px;
+  color: #08a3b9;
+  font-style: normal;
+  font-size: 27px;
+}
+.root139-why article > b {
+  font-size: 10px;
+}
+.root139-why article > p {
+  margin-top: 13px;
+  color: #66758a;
+  line-height: 15px;
+}
+.root139-why article > strong {
+  display: block;
+  margin-top: 10px;
+  padding: 7px 4px;
+  border: 1px solid #c5e8f0;
+  border-radius: 6px;
+  background: #f1fbfd;
+  color: #31536b;
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+.root139-bottom {
+  display: grid;
+  height: 161px;
+  margin-top: 12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+.root139-bottom > article {
+  border: 1px solid;
+  border-radius: 9px;
+}
+.root139-warning {
+  display: flex;
+  padding: 11px;
+  gap: 8px;
+  border-color: #efc9c9 !important;
+  background: #fff5f5;
+}
+.root139-warning > svg {
+  width: 18px;
+  flex: none;
+  color: #ed573c;
+}
+.root139-warning h3 {
+  color: #d52b2f;
+  font-size: 10px;
+}
+.root139-warning b {
+  display: block;
+  margin-top: 10px;
+  color: #c73540;
+  font-size: 8px;
+}
+.root139-warning p {
+  margin-top: 7px;
+  line-height: 14px;
+}
+.root139-warning strong {
+  display: block;
+  margin-top: 10px;
+  padding: 9px;
+  border: 1px solid #f0d1d1;
+  border-radius: 6px;
+  background: #fffafa;
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+.root139-practice {
+  padding: 12px;
+  border-color: #b9e6dc !important;
+  background: #f4fffd;
+  cursor: pointer;
+}
+.root139-practice:focus-visible {
+  outline: 3px solid #079db6;
+}
+.root139-practice h3 {
+  color: #15856f;
+  font-size: 10px;
+}
+.root139-practice p {
+  margin-top: 10px;
+  line-height: 14px;
+}
+.root139-practice > .root139-formula {
+  display: block;
+  margin-top: 8px;
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+.root139-practice > strong {
+  display: inline-block;
+  margin-top: 9px;
+  padding: 7px 11px;
+  border: 1px solid #b9e6dc;
+  border-radius: 6px;
+  background: #effbf9;
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+.root139-adjacent {
+  display: grid;
+  height: 53px;
+  margin-top: 13px;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.root139-adjacent a {
+  display: flex;
+  padding: 8px 12px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  background: #fff;
+}
+.root139-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.root139-adjacent svg {
+  width: 17px;
+}
+.root139-adjacent span {
+  display: grid;
+  gap: 2px;
+  font-weight: 800;
+}
+.root139-adjacent small {
+  font-size: 7px;
+  color: #66758a;
+}
+.root139-footer {
+  position: relative;
+  height: 116px;
+  margin-top: 14px;
+  padding: 13px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  background: #fff;
+}
+.root139-footer > b {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.root139-footer > b svg {
+  width: 15px;
+  color: #08a0b9;
+}
+.root139-footer > span {
+  display: block;
+  width: 430px;
+  margin-top: 5px;
+  color: #66758a;
+  line-height: 14px;
+}
+.root139-footer > nav {
+  position: absolute;
+  top: 17px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+}
+.root139-footer > nav a {
+  display: flex;
+  height: 32px;
+  padding: 0 13px;
+  align-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+  font-weight: 700;
+}
+.root139-footer hr {
+  margin: 15px 0 8px;
+  border: 0;
+  border-top: 1px solid #e1e7ec;
+}
+.root139-footer > small {
+  display: inline-block;
+  margin-right: 14px;
+  color: #66758a;
+  font-size: 7px;
+}
+.root139-page.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  height: 100vh;
+  margin: 0;
+  padding: 15px;
+  overflow: auto;
+  background: #f4fafc;
+}
+.root139-page.fullscreen .root139-breadcrumb {
+  display: none;
+}
+body:has(.root139-page)
+  #main-content
+  .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+  visibility: hidden;
+}
+body:has(.root139-page) nav[aria-label="Adjacent lessons"],
+body:has(.root139-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+@media (min-width: 800px) {
+  body:has(.root139-page) [data-testid="desktop-sidebar"] {
+    display: block !important;
+    position: sticky !important;
+    top: 0;
+    width: 195px;
+    min-width: 195px;
+    flex: 0 0 195px;
+  }
+  body:has(.root139-page) #main-content {
+    padding: 59px 15px 0 15px;
+    overflow: hidden;
+    background: linear-gradient(120deg, #f2fbfc, #faf7ff);
+  }
+  body:has(.root139-page) header.sticky {
+    height: 57px;
+    padding: 6px 12px;
+  }
+  body:has(.root139-page) header.sticky button[aria-label="Open navigation"],
+  body:has(.root139-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.root139-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px;
+  }
+  body:has(.root139-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 62px;
+    min-height: 62px;
+    margin-bottom: 14px;
+    padding: 7px;
+  }
+  body:has(.root139-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 13px;
+  }
+  body:has(.root139-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 37px;
+    min-height: 37px;
+    margin-bottom: 10px;
+  }
+  body:has(.root139-page) [data-testid="desktop-sidebar"] nav > div > button {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+  body:has(.root139-page) [data-testid="desktop-sidebar"] nav > div > div a {
+    padding: 5px 8px;
+    font-size: 8px;
+  }
+  body:has(.root139-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(n + 7),
+  body:has(.root139-page) [data-testid="desktop-sidebar-progress"],
+  body:has(.root139-page) [data-testid="desktop-sidebar-compound-links"],
+  body:has(.root139-page) [data-testid="desktop-sidebar-premium"],
+  body:has(.root139-page) [data-testid="desktop-sidebar-footer"] {
+    display: none !important;
+  }
+}
+@media (max-width: 799px) {
+  .root139-page {
+    position: static;
+    height: auto;
+    margin: 0;
+  }
+  .root139-breadcrumb {
+    position: static;
+    margin-bottom: 8px;
+  }
+  .root139-intro,
+  .root139-tabs,
+  .root139-lab,
+  .root139-explorer,
+  .root139-workspace,
+  .root139-workspace > main,
+  .root139-workspace > aside,
+  .root139-why,
+  .root139-bottom,
+  .root139-footer {
+    height: auto;
+  }
+  .root139-tabs,
+  .root139-workspace,
+  .root139-why > div,
+  .root139-bottom {
+    grid-template-columns: 1fr;
+  }
+  .root139-workspace > aside {
+    margin-top: 12px;
+  }
+  .root139-adjacent {
+    height: auto;
+  }
+}

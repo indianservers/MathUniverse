@@ -1,0 +1,202 @@
+{
+  "mockup": "0196",
+  "lessonId": 139,
+  "route": "/lessons/graphs-and-functions/139-square-root-functions",
+  "checks": {
+    "initial": {
+      "a": "1.5",
+      "h": "1",
+      "formula": "f(x) = 1.5√(x − 1)",
+      "endpoint": "1,0",
+      "domain": "x>=1",
+      "range": "y>=0",
+      "samples": "1,0;2,1.5;5,3",
+      "practice": "false",
+      "actions": "0"
+    },
+    "scaleSlider": {
+      "a": "1",
+      "h": "1",
+      "formula": "f(x) = √(x − 1)",
+      "endpoint": "1,0",
+      "domain": "x>=1",
+      "range": "y>=0",
+      "samples": "1,0;2,1;5,2",
+      "practice": "false",
+      "actions": "4"
+    },
+    "domainSlider": {
+      "a": "1",
+      "h": "2",
+      "formula": "f(x) = √(x − 2)",
+      "endpoint": "2,0",
+      "domain": "x>=2",
+      "range": "y>=0",
+      "samples": "2,0;3,1;6,2",
+      "practice": "false",
+      "actions": "8"
+    },
+    "endpointDrag": {
+      "a": "1.5",
+      "h": "2",
+      "formula": "f(x) = 1.5√(x − 2)",
+      "endpoint": "2,0",
+      "domain": "x>=2",
+      "range": "y>=0",
+      "samples": "2,0;3,1.5;6,3",
+      "practice": "false",
+      "actions": "8"
+    },
+    "endpointKeyboard": {
+      "a": "1.5",
+      "h": "1.75",
+      "formula": "f(x) = 1.5√(x − 1.75)",
+      "endpoint": "1.75,0",
+      "domain": "x>=1.75",
+      "range": "y>=0",
+      "samples": "1.75,0;2.75,1.5;5.75,3",
+      "practice": "false",
+      "actions": "9"
+    },
+    "scaleDrag": {
+      "a": "1.75",
+      "h": "1.75",
+      "formula": "f(x) = 1.75√(x − 1.75)",
+      "endpoint": "1.75,0",
+      "domain": "x>=1.75",
+      "range": "y>=0",
+      "samples": "1.75,0;2.75,1.75;5.75,3.5",
+      "practice": "false",
+      "actions": "17"
+    },
+    "scaleKeyboard": {
+      "a": "1.5",
+      "h": "1.75",
+      "formula": "f(x) = 1.5√(x − 1.75)",
+      "endpoint": "1.75,0",
+      "domain": "x>=1.75",
+      "range": "y>=0",
+      "samples": "1.75,0;2.75,1.5;5.75,3",
+      "practice": "false",
+      "actions": "18"
+    },
+    "practice": {
+      "a": "2",
+      "h": "-3",
+      "formula": "f(x) = 2√(x + 3)",
+      "endpoint": "-3,0",
+      "domain": "x>=-3",
+      "range": "y>=0",
+      "samples": "-3,0;-2,2;1,4",
+      "practice": "true",
+      "actions": "19"
+    },
+    "reset": {
+      "a": "1.5",
+      "h": "1",
+      "formula": "f(x) = 1.5√(x − 1)",
+      "endpoint": "1,0",
+      "domain": "x>=1",
+      "range": "y>=0",
+      "samples": "1,0;2,1.5;5,3",
+      "practice": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 910,
+      "height": 1728
+    },
+    "document": {
+      "width": 910,
+      "height": 1728
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 99,
+        "bottom": 1720,
+        "height": 1621,
+        "left": 210,
+        "right": 895,
+        "width": 685
+      },
+      "intro": {
+        "top": 99,
+        "bottom": 313,
+        "height": 214,
+        "left": 210,
+        "right": 895,
+        "width": 685
+      },
+      "tabs": {
+        "top": 324,
+        "bottom": 377,
+        "height": 53,
+        "left": 210,
+        "right": 895,
+        "width": 685
+      },
+      "lab": {
+        "top": 390,
+        "bottom": 1518,
+        "height": 1128,
+        "left": 210,
+        "right": 895,
+        "width": 685
+      },
+      "explorer": {
+        "top": 459,
+        "bottom": 1087,
+        "height": 628,
+        "left": 224,
+        "right": 881,
+        "width": 657
+      },
+      "graph": {
+        "top": 544.5,
+        "bottom": 999.5,
+        "height": 455,
+        "left": 237,
+        "right": 680,
+        "width": 443
+      },
+      "why": {
+        "top": 1099,
+        "bottom": 1336,
+        "height": 237,
+        "left": 224,
+        "right": 881,
+        "width": 657
+      },
+      "bottom": {
+        "top": 1348,
+        "bottom": 1509,
+        "height": 161,
+        "left": 224,
+        "right": 881,
+        "width": 657
+      },
+      "navigation": {
+        "top": 1531,
+        "bottom": 1584,
+        "height": 53,
+        "left": 210,
+        "right": 895,
+        "width": 685
+      },
+      "footer": {
+        "top": 1598,
+        "bottom": 1714,
+        "height": 116,
+        "left": 210,
+        "right": 895,
+        "width": 685
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

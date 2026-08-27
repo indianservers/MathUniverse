@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **121 of 200 lessons completed; 79 pending.**
+Dedicated rebuild target: **122 of 200 lessons completed; 78 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -107,6 +107,7 @@ Dedicated rebuild target: **121 of 200 lessons completed; 79 pending.**
 | 0193   | 136 Higher-Degree Polynomials | Complete | Dedicated factored quartic model with real moving-root/shift controls, pointer/keyboard root drag, numerical intercepts/turning points, multiplicity-aware sign chart, samples/practice, and exact 966x1629 target framing |
 | 0194   |       137 Reciprocal Functions | Complete | Dedicated reciprocal model with real scale/excluded-input controls, pointer/keyboard asymptote and scale-point drags, working pan/zoom, linked branches/samples/domain/range/reasoning/practice, and exact 955x1647 target framing |
 | 0195   |         138 Rational Functions | Complete | Dedicated equal-degree rational model with real numerator-scale/restriction controls, pointer/keyboard restriction and scale-point drags, asymptote-to-hole transition, linked samples/LRV/reasoning/practice, and exact 925x1700 target framing |
+| 0196   |      139 Square-Root Functions | Complete | Dedicated endpoint model with real vertical-scale/domain-start controls, pointer/keyboard endpoint and scale-point drags, restricted-domain graph, generated samples/table/range/reasoning/practice, and exact 910x1728 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1801,3 +1802,17 @@ Evidence:
 - `0195-reference.png`
 - `0195-desktop.png`
 - `0195-dedicated-target-validation.json`
+
+## Lesson 139 / Mockup 0196 - Square-Root Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-square-root-vertical-scale-and-domain-start-pointer-keyboard-draggable-endpoint-and-scale-point-generated-restricted-domain-curve-samples-table-range-reasoning-warning-practice-model`. The lesson-owned vertical scale `a` and domain start `h` generate `f(x)=a√(x-h)`, the endpoint `(h,0)`, allowed curve, forbidden-input ray, domain, sign-aware range, sample points and value table, four-step radicand reasoning, warning, and practice. The target `1.5√(x-1)` produces endpoint `(1,0)`, domain `x>=1`, range `y>=0`, and samples `(1,0)`, `(2,1.5)`, and `(5,3)`.
+
+Both visible parameters are real range controls. The endpoint and scale point are genuine pointer- and keyboard-draggable graph objects; every edit recalculates the formula, endpoint, curve, forbidden region, domain/range statements, labels, table, cards, and warning. Negative scale values render the reflected branch and change the range to `y<=0`. The clickable and keyboard-operable practice panel loads `g(x)=2√(x+3)`, endpoint `(-3,0)`, domain `x>=-3`, and regenerated samples.
+
+Final 910x1728 integrated browser validation changes both range controls, resets, physically drags the endpoint from `h=1` to `h=2`, keyboard-moves it to `1.75`, physically drags the scale from `1.5` to `1.75`, keyboard-returns it to `1.5`, loads and verifies practice, and resets. Exact framing passes surface x=210-895 and y=99-1720, intro y=99-313, tabs y=324-377, lab y=390-1518, explorer y=459-1087, graph x=237-680 and y=545-1000, reasoning y=1099-1336, diagnostics y=1348-1509, navigation y=1531-1584, and footer y=1598-1714. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0196-reference.png`
+- `0196-desktop.png`
+- `0196-dedicated-target-validation.json`
