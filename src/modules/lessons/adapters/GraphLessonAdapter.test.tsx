@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 146 to its dedicated floor staircase model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 146)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0203"');
+    expect(html).toContain('data-dedicated-lesson="146"');
+    expect(html).toContain("editable-floor-input-horizontal-and-vertical-shifts-pointer-keyboard-draggable-probe-generated-staircase-number-line-interval-table-closed-left-open-right-endpoints-negative-input-correctness-real-challenge-discontinuity-diagnostics");
+    expect(html).toContain('aria-label="Drag floor input probe"');
+    expect(html).toContain("STEP_ENDPOINTS_REQUIRED");
+  });
+
   it("routes lesson 145 to its dedicated unit-hyperbola decomposition model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 145)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -220,7 +230,6 @@ describe("GraphLessonAdapter", () => {
       140: "negative real inputs are allowed",
       141: "distance makes a V-shape",
       142: "equal x-steps multiply outputs",
-      146: "outputs step down to integers",
       147: "outputs step up to integers",
       148: "outputs are -1, 0, or 1",
       149: "choose only the rule",

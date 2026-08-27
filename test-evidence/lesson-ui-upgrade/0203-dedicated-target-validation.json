@@ -1,0 +1,153 @@
+{
+  "mockup": "0203",
+  "lessonId": 146,
+  "route": "/lessons/graphs-and-functions/146-floor-function",
+  "checks": {
+    "initial": {
+      "x": "2.73",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "2",
+      "interval": "2,3",
+      "active-tab": "LAB"
+    },
+    "inputRange": {
+      "x": "-2.39",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "-3",
+      "interval": "-3,-2",
+      "active-tab": "LAB"
+    },
+    "inputShift": {
+      "x": "-2.39",
+      "input-shift": "2",
+      "output-shift": "0",
+      "result": "-1",
+      "interval": "-3,-2",
+      "active-tab": "LAB"
+    },
+    "outputShift": {
+      "x": "-2.39",
+      "input-shift": "2",
+      "output-shift": "2",
+      "result": "1",
+      "interval": "-3,-2",
+      "active-tab": "LAB"
+    },
+    "probeDrag": {
+      "x": "-0.64",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "-1",
+      "interval": "-1,0",
+      "active-tab": "LAB"
+    },
+    "probeKeyboard": {
+      "x": "-0.63",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "-1",
+      "interval": "-1,0",
+      "active-tab": "LAB"
+    },
+    "negativeInput": {
+      "x": "-3.01",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "-4",
+      "interval": "-4,-3",
+      "active-tab": "LAB"
+    },
+    "negativeChallengeVisible": true,
+    "newChallenge": {
+      "x": "-0.8",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "-1",
+      "interval": "-1,0",
+      "active-tab": "LAB"
+    },
+    "checkedMarkCount": 1,
+    "definitionTab": {
+      "x": "-0.8",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "-1",
+      "interval": "-1,0",
+      "active-tab": "DEFINITION"
+    },
+    "helpVisible": true,
+    "reset": {
+      "x": "2.73",
+      "input-shift": "0",
+      "output-shift": "0",
+      "result": "2",
+      "interval": "2,3",
+      "active-tab": "LAB"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1536,
+      "height": 1024
+    },
+    "document": {
+      "width": 1536,
+      "height": 1260
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 65,
+        "bottom": 1023,
+        "left": 294,
+        "right": 1516,
+        "width": 1222,
+        "height": 958
+      },
+      "header": {
+        "top": 66,
+        "bottom": 253,
+        "left": 295,
+        "right": 1515,
+        "width": 1220,
+        "height": 187
+      },
+      "graph": {
+        "top": 254,
+        "bottom": 561,
+        "left": 306,
+        "right": 1134,
+        "width": 828,
+        "height": 307
+      },
+      "numberLine": {
+        "top": 571,
+        "bottom": 683,
+        "left": 305,
+        "right": 1135,
+        "width": 830,
+        "height": 112
+      },
+      "lower": {
+        "top": 692,
+        "bottom": 1022,
+        "left": 305,
+        "right": 1135,
+        "width": 830,
+        "height": 330
+      },
+      "rail": {
+        "top": 253,
+        "bottom": 1022,
+        "left": 1145,
+        "right": 1505,
+        "width": 360,
+        "height": 769
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

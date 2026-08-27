@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **128 of 200 lessons completed; 72 pending.**
+Dedicated rebuild target: **129 of 200 lessons completed; 71 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -114,6 +114,7 @@ Dedicated rebuild target: **128 of 200 lessons completed; 72 pending.**
 | 0200   |         143 Logarithmic Functions | Complete | Dedicated four-parameter logarithm/inverse model with real base/stretch/shift controls, pointer/keyboard asymptote/anchor/scale-point drags, generated domain/curves/table/diagnostics, exact parameter challenge, and exact 1536x1024 target framing |
 | 0201   |       144 Trigonometric Functions | Complete | Dedicated linked unit-circle/sine/cosine model with real amplitude/period/phase/midline controls, pointer/keyboard circle/trace/amplitude/period drags, generated curves/table/period/identities/challenge, animation, CSV export, custom galaxy asset, and exact 1536x1024 framing |
 | 0202   |          145 Hyperbolic Functions | Complete | Dedicated linked unit-hyperbola/exponential-decomposition model with real main/challenge parameters, pointer/keyboard hyperbola-point and graph-probe drags, five generated curves, values table, identity residual, curve toggles, zoom/fullscreen, and exact 1536x1024 framing |
+| 0203   |                 146 Floor Function | Complete | Dedicated transformed floor-function model with real input/shift ranges, pointer/keyboard probe drag, generated staircase and number line, exact closed-left/open-right endpoints, interval table, negative-input correctness, challenge grading, discontinuity diagnostics, and exact 1536x1024 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1907,3 +1908,17 @@ Evidence:
 - `0202-reference.png`
 - `0202-desktop.png`
 - `0202-dedicated-target-validation.json`
+
+## Lesson 146 / Mockup 0203 - Floor Function
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-floor-input-horizontal-and-vertical-shifts-pointer-keyboard-draggable-probe-generated-staircase-number-line-interval-table-closed-left-open-right-endpoints-negative-input-correctness-real-challenge-discontinuity-diagnostics`. The lesson-owned input `x`, input shift, and output shift generate `floor(x + shift) + output`, every visible staircase segment, the synchronized number-line probe, active interval, output, interval table, endpoint convention, limit values, and challenge answers from one state. The target state `x=2.73` produces `floor(2.73)=2` and highlights `[2,3)` with a closed left endpoint and open right endpoint.
+
+All three visible ranges are real controls. The yellow graph probe is a genuine pointer- and keyboard-draggable SVG object. Every edit regenerates the step geometry, endpoint locations, selected interval, table highlight, number-line marker, result, and discontinuity diagnostics. Negative inputs use mathematical floor rather than truncation: the physical validation drives the input to `-3.01` and verifies output `-4` on `[-4,-3)`. Tabs, reset, help, share, challenge rotation, and challenge checks all own visible state and actions.
+
+Final 1536x1024 browser validation physically changes the input, horizontal shift, and vertical shift ranges; drags and keyboard-moves the graph probe; verifies the exact model after every edit; checks the negative-input boundary case; rotates and grades the challenge; selects Definition; opens contextual help; and resets. Exact framing passes surface y=65-1023, header y=66-253, graph y=254-561, number line y=571-683, lower workspaces y=692-1022, and rail y=253-1022. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0203-reference.png`
+- `0203-desktop.png`
+- `0203-dedicated-target-validation.json`
