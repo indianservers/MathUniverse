@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 138 to its dedicated rational analyzer model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 138)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0195"');
+    expect(html).toContain('data-dedicated-lesson="138"');
+    expect(html).toContain("editable-equal-degree-rational-numerator-scale-and-restricted-input-pointer-keyboard-draggable-restriction-and-scale-point-generated-branches-vertical-or-removable-hole-long-run-value-samples-reasoning-warning-practice-model");
+    expect(html).toContain('aria-label="Drag rational restricted input"');
+    expect(html).toContain("Rational function analyzer");
+  });
+
   it("routes lesson 137 to its dedicated reciprocal asymptote model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 137)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -136,7 +146,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function lessons 129 through 152 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      138: "denominator zeros are excluded",
       139: "real inputs need x &gt;= 0",
       140: "negative real inputs are allowed",
       141: "distance makes a V-shape",

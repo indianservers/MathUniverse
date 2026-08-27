@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **120 of 200 lessons completed; 80 pending.**
+Dedicated rebuild target: **121 of 200 lessons completed; 79 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -106,6 +106,7 @@ Dedicated rebuild target: **120 of 200 lessons completed; 80 pending.**
 | 0192   |             135 Cubic Functions | Complete | Dedicated inflection-form model with real signed bend/center/shift controls, pointer/keyboard-draggable inflection and bend handles, linked S-curve/end behavior/symmetry/table/reasoning/practice, and exact 969x1623 target framing |
 | 0193   | 136 Higher-Degree Polynomials | Complete | Dedicated factored quartic model with real moving-root/shift controls, pointer/keyboard root drag, numerical intercepts/turning points, multiplicity-aware sign chart, samples/practice, and exact 966x1629 target framing |
 | 0194   |       137 Reciprocal Functions | Complete | Dedicated reciprocal model with real scale/excluded-input controls, pointer/keyboard asymptote and scale-point drags, working pan/zoom, linked branches/samples/domain/range/reasoning/practice, and exact 955x1647 target framing |
+| 0195   |         138 Rational Functions | Complete | Dedicated equal-degree rational model with real numerator-scale/restriction controls, pointer/keyboard restriction and scale-point drags, asymptote-to-hole transition, linked samples/LRV/reasoning/practice, and exact 925x1700 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1786,3 +1787,17 @@ Evidence:
 - `0194-reference.png`
 - `0194-desktop.png`
 - `0194-dedicated-target-validation.json`
+
+## Lesson 138 / Mockup 0195 - Rational Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-equal-degree-rational-numerator-scale-and-restricted-input-pointer-keyboard-draggable-restriction-and-scale-point-generated-branches-vertical-or-removable-hole-long-run-value-samples-reasoning-warning-practice-model`. The lesson-owned numerator scale `a`, numerator root `r`, and denominator restriction `h` generate `a(x-r)/(x-h)`, the graph branches, vertical asymptote or removable hole, horizontal long-run value `y=a`, restriction, sample table, diagnostics, quick reasoning, warning, and practice. The target `(x+2)/(x-1)` produces x-intercept `-2`, vertical asymptote `x=1`, long-run value `y=1`, and samples `(-2,0)`, `(0,-2)`, `(2,4)`.
+
+Both visible parameters are real range controls. The restricted input and numerator-scale point are genuine pointer- and keyboard-draggable graph objects; every change recalculates the formula, graph, discontinuity type, samples, cards, table, and long-run reasoning. Moving the restriction onto the numerator root `-2` creates the mathematically correct canceled-factor state `(x+2)/(x+2)`, removes the vertical asymptote, and displays a hole at `(-2,1)`. The clickable/keyboard practice panel loads `(x-3)/(x+2)`, restriction `x=-2`, and long-run value `y=1`.
+
+Final 925x1700 integrated browser validation changes the numerator scale, changes the restricted input, resets, physically drags the restriction to `2`, keyboard-returns it to `1`, physically drags scale to `1.25`, keyboard-returns it to `1`, moves the restriction to `-2` to verify the removable hole, loads and verifies practice, and resets. Exact framing passes surface x=200-912 and y=95-1687, intro y=95-342, tabs y=353-406, lab y=419-1500, linked layout x=215-897 and y=514-1481, graph panel x=215-582 and y=514-1223, navigation y=1513-1556, and footer y=1570-1686. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0195-reference.png`
+- `0195-desktop.png`
+- `0195-dedicated-target-validation.json`

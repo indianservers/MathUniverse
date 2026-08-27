@@ -1,0 +1,803 @@
+.rational138-page {
+  position: relative;
+  top: -55px;
+  width: 100%;
+  height: 1592px;
+  margin-bottom: -47px;
+  color: #14203d;
+  font-size: 10px;
+  letter-spacing: 0;
+}
+.rational138-page * {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+.rational138-page h1,
+.rational138-page h2,
+.rational138-page h3,
+.rational138-page p {
+  margin: 0;
+}
+.rational138-page button,
+.rational138-page select,
+.rational138-page input {
+  color: inherit;
+  font: inherit;
+}
+.rational138-page button {
+  cursor: pointer;
+}
+.rational138-page a {
+  color: inherit;
+  text-decoration: none;
+}
+.rational138-breadcrumb {
+  position: absolute;
+  top: -35px;
+  left: 0;
+  display: flex;
+  height: 27px;
+  align-items: center;
+  gap: 8px;
+  color: #58677d;
+}
+.rational138-breadcrumb a:first-child {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+}
+.rational138-breadcrumb b {
+  color: #07849d;
+}
+.rational138-intro {
+  display: grid;
+  height: 247px;
+  padding: 14px 16px;
+  border: 1px solid #dce5ec;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 5px 17px rgba(41, 75, 105, 0.07);
+  grid-template-columns: 1fr 305px;
+  gap: 18px;
+}
+.rational138-intro > div > small {
+  display: flex;
+  gap: 8px;
+}
+.rational138-intro > div > small b {
+  padding: 5px 10px;
+  border-radius: 12px;
+  background: #e6f7fa;
+  color: #087f98;
+  font-size: 8px;
+}
+.rational138-intro > div > small b + b {
+  background: #f1f3f7;
+  color: #536176;
+}
+.rational138-intro h1 {
+  margin-top: 9px;
+  font-size: 31px;
+  line-height: 35px;
+  font-weight: 900;
+}
+.rational138-intro > div > p {
+  margin-top: 4px;
+  color: #66758a;
+  font-size: 13px;
+}
+.rational138-intro > div > nav {
+  display: flex;
+  margin-top: 13px;
+  gap: 7px;
+}
+.rational138-intro > div > nav b {
+  flex: none;
+  padding: 7px 8px;
+  border: 1px solid #dce5ec;
+  border-radius: 15px;
+  font-size: 7px;
+  white-space: nowrap;
+}
+.rational138-intro > div > section {
+  display: flex;
+  margin-top: 13px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.rational138-intro > div > section label,
+.rational138-intro > div > section button {
+  display: flex;
+  height: 38px;
+  padding: 0 12px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 800;
+}
+.rational138-intro > div > section label {
+  width: 176px;
+}
+.rational138-intro select {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  background: transparent;
+}
+.rational138-intro > div > section svg {
+  width: 14px;
+}
+.rational138-hero {
+  width: 305px;
+  height: 219px;
+  border-radius: 9px;
+  background: linear-gradient(145deg, #f8fdff, #e9f7fc);
+}
+.rational138-hero line {
+  stroke: #8295a8;
+  stroke-width: 1.2;
+}
+.rational138-hero .dash {
+  stroke-dasharray: 6 5;
+}
+.rational138-hero path {
+  fill: none;
+  stroke: #079db6;
+  stroke-width: 2.5;
+}
+.rational138-tabs {
+  display: grid;
+  height: 53px;
+  margin-top: 11px;
+  padding: 6px;
+  border: 1px solid #dce5ec;
+  border-radius: 11px;
+  background: #fff;
+  grid-template-columns: 1.35fr repeat(4, 1fr);
+}
+.rational138-tabs button {
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-size: 10px;
+  font-weight: 800;
+}
+.rational138-tabs button.active {
+  background: #078fa9;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 147, 173, 0.25);
+}
+.rational138-lab {
+  height: 1081px;
+  margin-top: 13px;
+  padding: 14px;
+  border: 1px solid #dce5ec;
+  border-radius: 11px;
+  background: #fff;
+}
+.rational138-lab > header {
+  display: flex;
+  height: 80px;
+}
+.rational138-lab > header > div {
+  flex: 1;
+}
+.rational138-lab > header small {
+  color: #078ba5;
+  font-size: 8px;
+  font-weight: 900;
+}
+.rational138-lab > header h2 {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 900;
+}
+.rational138-lab > header p {
+  margin-top: 6px !important;
+  color: #66758a;
+}
+.rational138-lab > header nav {
+  display: flex;
+  gap: 8px;
+}
+.rational138-lab > header nav > * {
+  display: flex;
+  height: 34px;
+  padding: 0 11px;
+  align-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 17px;
+  background: #fff;
+  font-weight: 800;
+}
+.rational138-lab > header nav b {
+  border-color: #efd89b;
+  background: #fffdf4;
+  color: #a66a08;
+}
+.rational138-lab > header nav b.updated {
+  border-color: #b7e1c6;
+  background: #f4fff7;
+  color: #168544;
+}
+.rational138-lab > header nav button {
+  width: 34px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 8px;
+  color: #176acf;
+}
+.rational138-lab > header nav svg {
+  width: 15px;
+}
+.rational138-layout {
+  display: grid;
+  height: 967px;
+  grid-template-columns: 367px 305px;
+  gap: 13px;
+}
+.rational138-layout > main {
+  display: grid;
+  height: 967px;
+  grid-template-rows: 709px 142px 57px;
+  gap: 13px;
+}
+.rational138-graph-panel,
+.rational138-values,
+.rational138-insight,
+.rational138-layout > aside > section {
+  border: 1px solid #dce5ec;
+  border-radius: 10px;
+  background: #fff;
+}
+.rational138-graph-panel {
+  height: 709px;
+  overflow: hidden;
+}
+.rational138-graph-panel > header {
+  height: 104px;
+  padding: 11px;
+}
+.rational138-graph-panel > header > small {
+  color: #66758a;
+}
+.rational138-graph-panel > header > strong {
+  display: block;
+  margin-top: 5px;
+  font-family: Georgia, serif;
+  font-size: 17px;
+}
+.rational138-frac {
+  display: inline-grid;
+  min-width: 45px;
+  vertical-align: middle;
+  text-align: center;
+  font-family: Georgia, serif;
+  line-height: 14px;
+}
+.rational138-frac b {
+  padding: 0 4px;
+  font-weight: 700;
+}
+.rational138-frac b:first-child {
+  border-bottom: 1px solid currentColor;
+}
+.rational138-graph-panel > header nav {
+  display: flex;
+  margin-top: 12px;
+  gap: 14px;
+  font-size: 8px;
+}
+.rational138-graph-panel > header nav span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.rational138-graph-panel > header nav i {
+  display: inline-block;
+  width: 20px;
+  border-top: 2px solid #079db6;
+}
+.rational138-graph-panel > header nav span:nth-child(2) i {
+  border-top-style: dashed;
+}
+.rational138-graph-panel > header nav span:nth-child(3) i {
+  border-color: #53677b;
+  border-top-style: dashed;
+}
+.rational138-graph {
+  display: block;
+  width: 100%;
+  height: 540px;
+  touch-action: none;
+}
+.rational138-graph .axis {
+  stroke: #26354b;
+  stroke-width: 1.2;
+}
+.rational138-graph text {
+  fill: #24334b;
+  font-size: 10px;
+  text-anchor: middle;
+}
+.rational138-graph .vertical {
+  stroke: #079db6;
+  stroke-width: 1.7;
+  stroke-dasharray: 7 5;
+}
+.rational138-graph .long-run {
+  stroke: #53677b;
+  stroke-width: 1.5;
+  stroke-dasharray: 7 5;
+}
+.rational138-graph .curve {
+  fill: none;
+  stroke: #079db6;
+  stroke-width: 2.4;
+}
+.rational138-graph .point circle {
+  fill: #079db6;
+}
+.rational138-graph .point text {
+  font-size: 11px;
+  font-weight: 700;
+}
+.rational138-graph .hole {
+  fill: #fff;
+  stroke: #e5363d;
+  stroke-width: 2;
+}
+.rational138-graph .handle {
+  fill: transparent;
+  stroke: transparent;
+  cursor: move;
+}
+.rational138-graph .handle:focus-visible {
+  fill: rgba(245, 158, 11, 0.23);
+  stroke: #e38e0d;
+  stroke-width: 3;
+  outline: none;
+}
+.rational138-graph-panel > footer {
+  display: grid;
+  height: 65px;
+  padding: 7px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.rational138-graph-panel > footer article {
+  display: grid;
+  padding: 7px;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+  text-align: center;
+}
+.rational138-graph-panel > footer small {
+  line-height: 12px;
+}
+.rational138-graph-panel > footer b {
+  font-family: Georgia, serif;
+  font-size: 14px;
+}
+.rational138-values {
+  padding: 10px;
+}
+.rational138-values h3 {
+  color: #078ba5;
+  font-size: 10px;
+}
+.rational138-values table {
+  width: 100%;
+  height: 82px;
+  margin-top: 9px;
+  border-collapse: collapse;
+  text-align: center;
+  font-family: Georgia, serif;
+}
+.rational138-values th,
+.rational138-values td {
+  border: 1px solid #dce5ec;
+}
+.rational138-values th {
+  width: 95px;
+  background: #f6f9fa;
+  font-weight: 400;
+}
+.rational138-values .rational138-frac {
+  min-width: 32px;
+  font-size: 8px;
+  line-height: 9px;
+}
+.rational138-insight {
+  display: flex;
+  padding: 10px;
+  gap: 8px;
+  border-color: #85c7ff !important;
+  background: #f3faff !important;
+  color: #1864a0;
+}
+.rational138-insight svg {
+  width: 17px;
+  flex: none;
+  fill: #187dc2;
+  color: #187dc2;
+}
+.rational138-insight p {
+  font-size: 8px;
+  line-height: 13px;
+}
+.rational138-layout > aside {
+  display: grid;
+  height: 967px;
+  grid-template-rows: 416px 306px 84px 128px;
+  gap: 13px;
+}
+.rational138-controls {
+  padding: 12px;
+}
+.rational138-controls > h3 {
+  height: 35px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dce5ec;
+  font-size: 12px;
+}
+.rational138-controls > label {
+  position: relative;
+  display: block;
+  height: 92px;
+  padding-top: 18px;
+  font-weight: 800;
+}
+.rational138-controls input {
+  width: calc(100% - 48px);
+  margin-top: 16px;
+  accent-color: #079db6;
+}
+.rational138-controls output {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  display: grid;
+  width: 42px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 7px;
+}
+.rational138-controls label small {
+  display: flex;
+  width: calc(100% - 48px);
+  justify-content: space-between;
+  color: #66758a;
+  font-weight: 400;
+}
+.rational138-controls > article {
+  height: 157px;
+  margin-top: 6px;
+  padding: 13px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+}
+.rational138-controls > article > strong {
+  display: block;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dce5ec;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 15px;
+}
+.rational138-controls > article p {
+  display: flex;
+  margin-top: 12px !important;
+  justify-content: space-between;
+}
+.rational138-reason {
+  padding: 12px;
+}
+.rational138-reason h3 {
+  color: #078ba5;
+  font-size: 10px;
+}
+.rational138-reason article {
+  display: grid;
+  height: 60px;
+  margin-top: 7px;
+  padding: 9px;
+  grid-template-columns: 28px 1fr;
+  gap: 8px;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+}
+.rational138-reason article > span {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e3f6fb;
+  color: #078ca6;
+  font-weight: 900;
+}
+.rational138-reason article:nth-of-type(2) > span {
+  background: #ffe8ec;
+  color: #e04457;
+}
+.rational138-reason article:nth-of-type(3) > span {
+  background: #e4f6ec;
+  color: #239b66;
+}
+.rational138-reason article:nth-of-type(4) > span {
+  background: #f0e8fb;
+  color: #8056bf;
+}
+.rational138-reason article b {
+  font-size: 9px;
+}
+.rational138-reason article p {
+  margin-top: 4px !important;
+  color: #607084;
+  line-height: 13px;
+}
+.rational138-warning {
+  display: flex;
+  padding: 12px;
+  gap: 8px;
+  border-color: #efc9c9 !important;
+  background: #fff5f5 !important;
+}
+.rational138-warning > svg {
+  width: 18px;
+  flex: none;
+  color: #e2262e;
+}
+.rational138-warning b {
+  color: #d91f28;
+}
+.rational138-warning p {
+  margin-top: 7px !important;
+  line-height: 14px;
+}
+.rational138-practice {
+  padding: 11px;
+  border-color: #b9e6c9 !important;
+  background: #f4fff7 !important;
+  cursor: pointer;
+}
+.rational138-practice:focus-visible {
+  outline: 3px solid #079db6;
+}
+.rational138-practice h3 {
+  color: #14864e;
+  font-size: 11px;
+}
+.rational138-practice p {
+  margin-top: 6px !important;
+}
+.rational138-practice > strong {
+  display: block;
+  margin: 7px 0;
+  font-family: Georgia, serif;
+  font-size: 13px;
+}
+.rational138-adjacent {
+  display: grid;
+  height: 43px;
+  margin-top: 13px;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.rational138-adjacent a {
+  display: flex;
+  padding: 7px 12px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  background: #fff;
+}
+.rational138-adjacent a:last-child {
+  justify-content: flex-end;
+  text-align: right;
+}
+.rational138-adjacent svg {
+  width: 14px;
+}
+.rational138-adjacent span {
+  display: grid;
+  gap: 2px;
+  font-weight: 800;
+}
+.rational138-adjacent small {
+  font-size: 7px;
+  color: #66758a;
+}
+.rational138-footer {
+  position: relative;
+  height: 116px;
+  margin-top: 14px;
+  padding: 13px;
+  border: 1px solid #dce5ec;
+  border-radius: 9px;
+  background: #fff;
+}
+.rational138-footer > b {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.rational138-footer > b svg {
+  width: 15px;
+  color: #08a0b9;
+}
+.rational138-footer > span {
+  display: block;
+  width: 430px;
+  margin-top: 5px;
+  color: #66758a;
+  line-height: 14px;
+}
+.rational138-footer > nav {
+  position: absolute;
+  top: 17px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+}
+.rational138-footer > nav a {
+  display: flex;
+  height: 32px;
+  padding: 0 13px;
+  align-items: center;
+  border: 1px solid #dce5ec;
+  border-radius: 8px;
+  font-weight: 700;
+}
+.rational138-footer hr {
+  margin: 15px 0 8px;
+  border: 0;
+  border-top: 1px solid #e1e7ec;
+}
+.rational138-footer > small {
+  display: inline-block;
+  margin-right: 14px;
+  color: #66758a;
+  font-size: 7px;
+}
+.rational138-page.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  height: 100vh;
+  margin: 0;
+  padding: 15px;
+  overflow: auto;
+  background: #f4fafc;
+}
+.rational138-page.fullscreen .rational138-breadcrumb {
+  display: none;
+}
+body:has(.rational138-page)
+  #main-content
+  .flex.items-center.gap-2:has(> nav[aria-label="Breadcrumb"]) {
+  visibility: hidden;
+}
+body:has(.rational138-page) nav[aria-label="Adjacent lessons"],
+body:has(.rational138-page) footer[aria-label="Site footer"] {
+  display: none;
+}
+@media (min-width: 800px) {
+  body:has(.rational138-page) [data-testid="desktop-sidebar"] {
+    display: block !important;
+    position: sticky !important;
+    top: 0;
+    width: 185px;
+    min-width: 185px;
+    flex: 0 0 185px;
+  }
+  body:has(.rational138-page) #main-content {
+    padding: 59px 13px 0 15px;
+    overflow: hidden;
+    background: linear-gradient(120deg, #f2fbfc, #faf7ff);
+  }
+  body:has(.rational138-page) header.sticky {
+    height: 57px;
+    padding: 6px 12px;
+  }
+  body:has(.rational138-page)
+    header.sticky
+    button[aria-label="Open navigation"],
+  body:has(.rational138-page) nav[class*="bottom-0"][class*="fixed"] {
+    display: none !important;
+  }
+  body:has(.rational138-page) [data-testid="desktop-sidebar"] > div {
+    padding: 10px;
+  }
+  body:has(.rational138-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type {
+    height: 62px;
+    min-height: 62px;
+    margin-bottom: 14px;
+    padding: 7px;
+  }
+  body:has(.rational138-page)
+    [data-testid="desktop-sidebar"]
+    > div
+    > div:first-of-type
+    p:first-child {
+    white-space: nowrap;
+    font-size: 13px;
+  }
+  body:has(.rational138-page) [data-testid="desktop-sidebar"] > div > label {
+    height: 37px;
+    min-height: 37px;
+    margin-bottom: 10px;
+  }
+  body:has(.rational138-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div
+    > button {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+  body:has(.rational138-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div
+    > div
+    a {
+    padding: 5px 8px;
+    font-size: 8px;
+  }
+  body:has(.rational138-page)
+    [data-testid="desktop-sidebar"]
+    nav
+    > div:nth-child(n + 7),
+  body:has(.rational138-page) [data-testid="desktop-sidebar-progress"],
+  body:has(.rational138-page) [data-testid="desktop-sidebar-compound-links"],
+  body:has(.rational138-page) [data-testid="desktop-sidebar-premium"],
+  body:has(.rational138-page) [data-testid="desktop-sidebar-footer"] {
+    display: none !important;
+  }
+}
+@media (max-width: 799px) {
+  .rational138-page {
+    position: static;
+    height: auto;
+    margin: 0;
+  }
+  .rational138-breadcrumb {
+    position: static;
+    margin-bottom: 8px;
+  }
+  .rational138-intro {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  .rational138-hero {
+    display: none;
+  }
+  .rational138-tabs,
+  .rational138-lab,
+  .rational138-layout,
+  .rational138-layout > main,
+  .rational138-layout > aside,
+  .rational138-footer {
+    height: auto;
+  }
+  .rational138-tabs,
+  .rational138-layout {
+    grid-template-columns: 1fr;
+  }
+  .rational138-adjacent {
+    height: auto;
+  }
+}

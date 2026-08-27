@@ -1,0 +1,243 @@
+{
+  "mockup": "0195",
+  "lessonId": 138,
+  "route": "/lessons/graphs-and-functions/138-rational-functions",
+  "checks": {
+    "initial": {
+      "a": "1",
+      "h": "1",
+      "root": "-2",
+      "formula": "f(x) = (x + 2)/(x − 1)",
+      "feature": "vertical-asymptote",
+      "restriction": "x!=1",
+      "vertical-asymptote": "x=1",
+      "hole": "none",
+      "long-run": "y=1",
+      "samples": "-2,0;0,-2;2,4",
+      "practice": "false",
+      "actions": "0"
+    },
+    "scaleSlider": {
+      "a": "2.25",
+      "h": "1",
+      "root": "-2",
+      "formula": "f(x) = 2.25(x + 2)/(x − 1)",
+      "feature": "vertical-asymptote",
+      "restriction": "x!=1",
+      "vertical-asymptote": "x=1",
+      "hole": "none",
+      "long-run": "y=2.25",
+      "samples": "-2,0;0,-4.5;2,9",
+      "practice": "false",
+      "actions": "5"
+    },
+    "restrictionSlider": {
+      "a": "2.25",
+      "h": "3",
+      "root": "-2",
+      "formula": "f(x) = 2.25(x + 2)/(x − 3)",
+      "feature": "vertical-asymptote",
+      "restriction": "x!=3",
+      "vertical-asymptote": "x=3",
+      "hole": "none",
+      "long-run": "y=2.25",
+      "samples": "-2,0;0,-1.5;2,-9",
+      "practice": "false",
+      "actions": "7"
+    },
+    "restrictionDrag": {
+      "a": "1",
+      "h": "2",
+      "root": "-2",
+      "formula": "f(x) = (x + 2)/(x − 2)",
+      "feature": "vertical-asymptote",
+      "restriction": "x!=2",
+      "vertical-asymptote": "x=2",
+      "hole": "none",
+      "long-run": "y=1",
+      "samples": "-2,0;0,-1;2,undefined",
+      "practice": "false",
+      "actions": "8"
+    },
+    "restrictionKeyboard": {
+      "a": "1",
+      "h": "1",
+      "root": "-2",
+      "formula": "f(x) = (x + 2)/(x − 1)",
+      "feature": "vertical-asymptote",
+      "restriction": "x!=1",
+      "vertical-asymptote": "x=1",
+      "hole": "none",
+      "long-run": "y=1",
+      "samples": "-2,0;0,-2;2,4",
+      "practice": "false",
+      "actions": "9"
+    },
+    "scaleDrag": {
+      "a": "1.25",
+      "h": "1",
+      "root": "-2",
+      "formula": "f(x) = 1.25(x + 2)/(x − 1)",
+      "feature": "vertical-asymptote",
+      "restriction": "x!=1",
+      "vertical-asymptote": "x=1",
+      "hole": "none",
+      "long-run": "y=1.25",
+      "samples": "-2,0;0,-2.5;2,5",
+      "practice": "false",
+      "actions": "17"
+    },
+    "scaleKeyboard": {
+      "a": "1",
+      "h": "1",
+      "root": "-2",
+      "formula": "f(x) = (x + 2)/(x − 1)",
+      "feature": "vertical-asymptote",
+      "restriction": "x!=1",
+      "vertical-asymptote": "x=1",
+      "hole": "none",
+      "long-run": "y=1",
+      "samples": "-2,0;0,-2;2,4",
+      "practice": "false",
+      "actions": "18"
+    },
+    "hole": {
+      "a": "1",
+      "h": "-2",
+      "root": "-2",
+      "formula": "f(x) = (x + 2)/(x + 2)",
+      "feature": "hole",
+      "restriction": "x!=-2",
+      "vertical-asymptote": "none",
+      "hole": "-2,1",
+      "long-run": "y=1",
+      "samples": "-2,undefined;0,1;2,1",
+      "practice": "false",
+      "actions": "21"
+    },
+    "practice": {
+      "a": "1",
+      "h": "-2",
+      "root": "3",
+      "formula": "f(x) = (x − 3)/(x + 2)",
+      "feature": "vertical-asymptote",
+      "restriction": "x!=-2",
+      "vertical-asymptote": "x=-2",
+      "hole": "none",
+      "long-run": "y=1",
+      "samples": "-2,undefined;0,-1.5;2,-0.25",
+      "practice": "true",
+      "actions": "22"
+    },
+    "reset": {
+      "a": "1",
+      "h": "1",
+      "root": "-2",
+      "formula": "f(x) = (x + 2)/(x − 1)",
+      "feature": "vertical-asymptote",
+      "restriction": "x!=1",
+      "vertical-asymptote": "x=1",
+      "hole": "none",
+      "long-run": "y=1",
+      "samples": "-2,0;0,-2;2,4",
+      "practice": "false",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 925,
+      "height": 1700
+    },
+    "document": {
+      "width": 925,
+      "height": 1700
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "surface": {
+        "top": 95,
+        "bottom": 1687,
+        "height": 1592,
+        "left": 200,
+        "right": 912,
+        "width": 712
+      },
+      "intro": {
+        "top": 95,
+        "bottom": 342,
+        "height": 247,
+        "left": 200,
+        "right": 912,
+        "width": 712
+      },
+      "tabs": {
+        "top": 353,
+        "bottom": 406,
+        "height": 53,
+        "left": 200,
+        "right": 912,
+        "width": 712
+      },
+      "lab": {
+        "top": 419,
+        "bottom": 1500,
+        "height": 1081,
+        "left": 200,
+        "right": 912,
+        "width": 712
+      },
+      "layout": {
+        "top": 514,
+        "bottom": 1481,
+        "height": 967,
+        "left": 215,
+        "right": 897,
+        "width": 682
+      },
+      "graphPanel": {
+        "top": 514,
+        "bottom": 1223,
+        "height": 709,
+        "left": 215,
+        "right": 582,
+        "width": 367
+      },
+      "graph": {
+        "top": 619,
+        "bottom": 1159,
+        "height": 540,
+        "left": 216,
+        "right": 581,
+        "width": 365
+      },
+      "rail": {
+        "top": 514,
+        "bottom": 1481,
+        "height": 967,
+        "left": 595,
+        "right": 900,
+        "width": 305
+      },
+      "navigation": {
+        "top": 1513,
+        "bottom": 1556,
+        "height": 43,
+        "left": 200,
+        "right": 912,
+        "width": 712
+      },
+      "footer": {
+        "top": 1570,
+        "bottom": 1686,
+        "height": 116,
+        "left": 200,
+        "right": 912,
+        "width": 712
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
