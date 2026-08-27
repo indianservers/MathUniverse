@@ -1,0 +1,186 @@
+{
+  "mockup": "0210",
+  "lessonId": 153,
+  "route": "/lessons/graphs-and-functions/153-increasing-and-decreasing",
+  "checks": {
+    "initial": {
+      "strength": "3",
+      "shift": "0",
+      "x": "-0.5",
+      "value": "1.0125",
+      "derivative": "-0.46875",
+      "motion": "decreasing",
+      "maximum": "1.1375",
+      "minimum": "-0.55"
+    },
+    "strengthRange": {
+      "strength": "3.5",
+      "shift": "0",
+      "x": "-0.5",
+      "value": "1.2729166666666667",
+      "derivative": "-0.546875",
+      "motion": "decreasing",
+      "maximum": "1.41875",
+      "minimum": "-0.55"
+    },
+    "shiftRange": {
+      "strength": "3.5",
+      "shift": "-2.25",
+      "x": "-0.5",
+      "value": "-0.9770833333333333",
+      "derivative": "-0.546875",
+      "motion": "decreasing",
+      "maximum": "-0.83125",
+      "minimum": "-2.8"
+    },
+    "xRange": {
+      "strength": "3.5",
+      "shift": "-2.25",
+      "x": "2.1",
+      "value": "-2.7932916666666667",
+      "derivative": "0.1356250000000001",
+      "motion": "increasing",
+      "maximum": "-0.83125",
+      "minimum": "-2.8"
+    },
+    "probeDrag": {
+      "strength": "3",
+      "shift": "0",
+      "x": "-2",
+      "value": "0.4500000000000002",
+      "derivative": "1.5",
+      "motion": "increasing",
+      "maximum": "1.1375",
+      "minimum": "-0.55"
+    },
+    "probeKeyboard": {
+      "strength": "3",
+      "shift": "0",
+      "x": "-1.9000000000000001",
+      "value": "0.5907499999999999",
+      "derivative": "1.3162500000000001",
+      "motion": "increasing",
+      "maximum": "1.1375",
+      "minimum": "-0.55"
+    },
+    "leftInterval": {
+      "strength": "3",
+      "shift": "0",
+      "x": "-2",
+      "value": "0.4500000000000002",
+      "derivative": "1.5",
+      "motion": "increasing",
+      "maximum": "1.1375",
+      "minimum": "-0.55"
+    },
+    "middleInterval": {
+      "strength": "3",
+      "shift": "0",
+      "x": "0.5",
+      "value": "0.29374999999999996",
+      "derivative": "-0.84375",
+      "motion": "decreasing",
+      "maximum": "1.1375",
+      "minimum": "-0.55"
+    },
+    "rightInterval": {
+      "strength": "3",
+      "shift": "0",
+      "x": "3",
+      "value": "0.13749999999999996",
+      "derivative": "1.5",
+      "motion": "increasing",
+      "maximum": "1.1375",
+      "minimum": "-0.55"
+    },
+    "reset": {
+      "strength": "3",
+      "shift": "0",
+      "x": "-0.5",
+      "value": "1.0125",
+      "derivative": "-0.46875",
+      "motion": "decreasing",
+      "maximum": "1.1375",
+      "minimum": "-0.55"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1334,
+      "height": 1179
+    },
+    "document": {
+      "width": 1334,
+      "height": 1417
+    },
+    "horizontalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 107,
+        "bottom": 1180,
+        "left": 270,
+        "right": 1330,
+        "width": 1060,
+        "height": 1073
+      },
+      "surface": {
+        "top": 126,
+        "bottom": 1160,
+        "left": 286,
+        "right": 1324,
+        "width": 1038,
+        "height": 1034
+      },
+      "header": {
+        "top": 146,
+        "bottom": 233,
+        "left": 303,
+        "right": 1307,
+        "width": 1004,
+        "height": 87
+      },
+      "top": {
+        "top": 233,
+        "bottom": 936,
+        "left": 303,
+        "right": 1307,
+        "width": 1004,
+        "height": 703
+      },
+      "explorer": {
+        "top": 233,
+        "bottom": 936,
+        "left": 303,
+        "right": 950.296875,
+        "width": 647.296875,
+        "height": 703
+      },
+      "graph": {
+        "top": 308,
+        "bottom": 697,
+        "left": 318,
+        "right": 935.296875,
+        "width": 617.296875,
+        "height": 389
+      },
+      "controls": {
+        "top": 233,
+        "bottom": 826,
+        "left": 966.296875,
+        "right": 1306.984375,
+        "width": 340.6875,
+        "height": 593
+      },
+      "bottom": {
+        "top": 951,
+        "bottom": 1143,
+        "left": 303,
+        "right": 1307,
+        "width": 1004,
+        "height": 192
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}

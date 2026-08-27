@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 153 to its dedicated monotonicity engine", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 153)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0210"');
+    expect(html).toContain('data-dedicated-lesson="153"');
+    expect(html).toContain("editable-cubic-turning-strength-vertical-shift-pointer-keyboard-draggable-x-cursor-generated-extrema-monotonic-regions-derivative-sign-strip-interval-summary-live-slope-classification");
+    expect(html).toContain('aria-label="Drag monotonicity x cursor"');
+    expect(html).toContain("Derivative sign summary");
+  });
+
   it("routes lesson 152 to its dedicated symmetry-test engine", () => {
     const lesson = lessonCatalog.find((item) => item.id === 152)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
@@ -309,7 +319,6 @@ describe("GraphLessonAdapter", () => {
 
   it("renders function transformation lessons 153 through 166 with lesson-specific graph guidance", () => {
     const expectedSnippets: Record<number, string> = {
-      153: "read increasing or decreasing",
       154: "repeats after a fixed period",
       155: "depends on an earlier value",
       156: "outside addition moves",

@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **135 of 200 lessons completed; 65 pending.**
+Dedicated rebuild target: **136 of 200 lessons completed; 64 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -121,6 +121,7 @@ Dedicated rebuild target: **135 of 200 lessons completed; 65 pending.**
 | 0207   |             150 Composite Functions | Complete | Dedicated composition-order engine with editable input/inner shift/outer scale, pointer/keyboard graph probe, generated function machine/three curves/live trace, true f o g/g o f calculations, order comparison, working shell actions, and exact 1205x1306 framing |
 | 0208   |               151 Inverse Functions | Complete | Dedicated linear-inverse engine with editable slope/intercept/domain, pointer/keyboard source-point drag, generated reflected inverse/swapped mappings/live compositions, horizontal-line proof, working share/reset/navigation, and exact 1195x1316 framing |
 | 0209   |          152 Even and Odd Functions | Complete | Dedicated three-family symmetry engine with real function/x/overlay controls, pointer/keyboard x-probe drag, generated x/-x points and values, mirror/rotation tests, algebraic verdicts, interactive concept cards, and exact 1205x1306 framing |
+| 0210   |       153 Increasing and Decreasing | Complete | Dedicated derivative-defined cubic with real strength/shift/x controls, pointer/keyboard cursor drag, generated extrema/regions/sign strips/intervals, exact live slope classification, reset, and exact 1334x1179 framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -2012,3 +2013,17 @@ Evidence:
 - `0209-reference.png`
 - `0209-desktop.png`
 - `0209-dedicated-target-validation.json`
+
+## Lesson 153 / Mockup 0210 - Increasing and Decreasing
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-cubic-turning-strength-vertical-shift-pointer-keyboard-draggable-x-cursor-generated-extrema-monotonic-regions-derivative-sign-strip-interval-summary-live-slope-classification` model. The lesson-owned turning strength `s`, vertical shift `v`, and x cursor generate the cubic by integrating `f′(x)=(s/8)(x+1)(x-2)`, its values and derivative, local maximum at `x=-1`, local minimum at `x=2`, colored monotonic regions, sign strips, interval cards, and live slope verdict from one state. At the target `s=3`, `v=0`, the extrema are `1.1375` and `-0.55`; at `x=-0.5`, the exact derivative is `-0.46875`, so the mathematically correct verdict is decreasing.
+
+All three parameter ranges are real controls. The graph cursor is a genuine pointer- and keyboard-draggable SVG object connected to the same x state. The three interval cards move that cursor into their own domains and prove increasing on `(-∞,-1)`, decreasing on `(-1,2)`, and increasing on `(2,∞)`. Turning strength regenerates values, slopes, extrema, and the full curve; vertical shift moves every generated y-value without changing derivative signs. Reset view restores the exact initial state.
+
+Final 1334x1179 browser validation physically changes strength, vertical shift, and x; drags and keyboard-moves the graph cursor; selects all three interval cards; verifies every value, derivative, extrema, and motion against the derivative-defined cubic; and resets. The final comparison loop places the surface at y=126-1160, header y=146-233, workspace y=233-936, graph x=318-935 and y=308-697, controls y=233-826, and lower summaries y=951-1143. It reports no horizontal overflow and zero console messages.
+
+Evidence:
+
+- `0210-reference.png`
+- `0210-desktop.png`
+- `0210-dedicated-target-validation.json`
