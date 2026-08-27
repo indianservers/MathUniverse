@@ -1,6 +1,6 @@
 # Sequential lesson rebuild 0001-0200
 
-Dedicated rebuild target: **124 of 200 lessons completed; 76 pending.**
+Dedicated rebuild target: **125 of 200 lessons completed; 75 pending.**
 
 | Mockup |                                    Lesson | Status   | Dedicated model and validation                                                                                                                                                                                                                                      |
 | ------ | ----------------------------------------: | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -110,6 +110,7 @@ Dedicated rebuild target: **124 of 200 lessons completed; 76 pending.**
 | 0196   |      139 Square-Root Functions | Complete | Dedicated endpoint model with real vertical-scale/domain-start controls, pointer/keyboard endpoint and scale-point drags, restricted-domain graph, generated samples/table/range/reasoning/practice, and exact 910x1728 target framing |
 | 0197   |        140 Cube-Root Functions | Complete | Dedicated shifted cube-root model with real vertical-scale/center controls, pointer/keyboard center and scale-point drags, all-real S-curve, generated symmetric samples/table/inverse reasoning/practice, and exact 955x1647 target framing |
 | 0198   |    141 Absolute-Value Functions | Complete | Dedicated distance/reflection model with real scale/vertex/shift controls, pointer/keyboard vertex, opening, and number-line probe drags, generated V-graph/piecewise branches/range, and exact 1205x1305 target framing |
+| 0199   |       142 Exponential Functions | Complete | Dedicated growth/decay ratio model with real base/initial/asymptote controls, pointer/keyboard initial, base-point, and asymptote drags, generated dual curves/samples/ratio proof/concepts, and exact 1387x1134 target framing |
 
 ## Lesson 1 / Mockup 0001 - Basic Calculator
 
@@ -1846,3 +1847,17 @@ Evidence:
 - `0198-reference.png`
 - `0198-desktop.png`
 - `0198-dedicated-target-validation.json`
+
+## Lesson 142 / Mockup 0199 - Exponential Functions
+
+Reworked individually against the mathematics target mockup with a dedicated `editable-exponential-initial-base-asymptote-growth-decay-mode-pointer-keyboard-draggable-initial-base-point-and-horizontal-asymptote-generated-dual-curves-samples-ratio-table-repeated-multiplication-concepts-example-model`. The lesson-owned initial value `a`, base `b`, asymptote `k`, and growth/decay mode generate `a·b^x+k` and `a·(1/b)^x+k`, both curves, ten linked points, the active output strip, horizontal asymptote, equal-step ratio table, repeated-multiplication rule, and concept cards. The target `1.5·2^x` produces growth values `0.375,0.75,1.5,3,6`, decay values `6,3,1.5,0.75,0.375`, and ratio `2` or `0.5` by mode.
+
+All three visible parameters are real range controls. The initial-value point, one-step base point, and horizontal asymptote are genuine pointer- and keyboard-draggable graph objects. Every edit regenerates both formulas, curves, point labels, active samples, table, ratio proof, and concept statements. Ratios are calculated from outputs after subtracting `k`, so a shifted asymptote does not create a false proof. Growth and Decay are working modes that switch the active table and ratio while keeping both comparison curves visible. Examples loads the actual model `3^x+1`.
+
+Final 1387x1134 integrated browser validation changes all three range controls, resets, physically drags initial value `1.5→2.5`, keyboard-reduces it to `2.25`, physically drags base `2→2.7`, keyboard-reduces it to `2.6`, physically drags asymptote `0→1`, keyboard-reduces it to `0.75`, validates decay mode and ratio `0.5`, loads the shifted example, and resets. Exact framing passes surface x=291-1374 and y=120-1115, intro y=120-301, tabs y=311-370, lab y=382-1114, graph y=471-851, output ratio strip y=826-912, rail y=400-948, and concepts y=965-1094. It reports no horizontal or vertical overflow and zero console messages.
+
+Evidence:
+
+- `0199-reference.png`
+- `0199-desktop.png`
+- `0199-dedicated-target-validation.json`

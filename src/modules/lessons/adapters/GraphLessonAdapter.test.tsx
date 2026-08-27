@@ -4,6 +4,16 @@ import { lessonCatalog } from "../catalog/lessonCatalog";
 import GraphLessonAdapter from "./GraphLessonAdapter";
 
 describe("GraphLessonAdapter", () => {
+  it("routes lesson 142 to its dedicated exponential ratio model", () => {
+    const lesson = lessonCatalog.find((item) => item.id === 142)!;
+    const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);
+    expect(html).toContain('data-testid="graph-mockup-0199"');
+    expect(html).toContain('data-dedicated-lesson="142"');
+    expect(html).toContain("editable-exponential-initial-base-asymptote-growth-decay-mode-pointer-keyboard-draggable-initial-base-point-and-horizontal-asymptote-generated-dual-curves-samples-ratio-table-repeated-multiplication-concepts-example-model");
+    expect(html).toContain('aria-label="Drag exponential base point"');
+    expect(html).toContain("Equal x-steps multiply outputs");
+  });
+
   it("routes lesson 141 to its dedicated absolute-value distance model", () => {
     const lesson = lessonCatalog.find((item) => item.id === 141)!;
     const html = renderToStaticMarkup(<GraphLessonAdapter lesson={lesson} resetToken={0} onInteraction={vi.fn()} />);

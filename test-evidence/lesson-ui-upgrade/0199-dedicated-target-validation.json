@@ -1,0 +1,298 @@
+{
+  "mockup": "0199",
+  "lessonId": 142,
+  "route": "/lessons/graphs-and-functions/142-exponential-functions",
+  "checks": {
+    "initial": {
+      "a": "1.5",
+      "b": "2",
+      "k": "0",
+      "mode": "growth",
+      "formula": "f(x) = 1.5·2^x",
+      "growth-formula": "f(x) = 1.5·2^x",
+      "decay-formula": "g(x) = 1.5·(1/2)^x",
+      "asymptote": "y=0",
+      "ratio": "2",
+      "growth-samples": "-2,0.375;-1,0.75;0,1.5;1,3;2,6",
+      "decay-samples": "-2,6;-1,3;0,1.5;1,0.75;2,0.375",
+      "active-samples": "-2,0.375;-1,0.75;0,1.5;1,3;2,6",
+      "actions": "0"
+    },
+    "baseSlider": {
+      "a": "1.5",
+      "b": "2.4",
+      "k": "0",
+      "mode": "growth",
+      "formula": "f(x) = 1.5·2.4^x",
+      "growth-formula": "f(x) = 1.5·2.4^x",
+      "decay-formula": "g(x) = 1.5·(1/2.4)^x",
+      "asymptote": "y=0",
+      "ratio": "2.4",
+      "growth-samples": "-2,0.26;-1,0.625;0,1.5;1,3.6;2,8.64",
+      "decay-samples": "-2,8.64;-1,3.6;0,1.5;1,0.625;2,0.26",
+      "active-samples": "-2,0.26;-1,0.625;0,1.5;1,3.6;2,8.64",
+      "actions": "4"
+    },
+    "initialSlider": {
+      "a": "2.25",
+      "b": "2.4",
+      "k": "0",
+      "mode": "growth",
+      "formula": "f(x) = 2.25·2.4^x",
+      "growth-formula": "f(x) = 2.25·2.4^x",
+      "decay-formula": "g(x) = 2.25·(1/2.4)^x",
+      "asymptote": "y=0",
+      "ratio": "2.4",
+      "growth-samples": "-2,0.391;-1,0.938;0,2.25;1,5.4;2,12.96",
+      "decay-samples": "-2,12.96;-1,5.4;0,2.25;1,0.938;2,0.391",
+      "active-samples": "-2,0.391;-1,0.938;0,2.25;1,5.4;2,12.96",
+      "actions": "7"
+    },
+    "asymptoteSlider": {
+      "a": "2.25",
+      "b": "2.4",
+      "k": "0.75",
+      "mode": "growth",
+      "formula": "f(x) = 2.25·2.4^x + 0.75",
+      "growth-formula": "f(x) = 2.25·2.4^x + 0.75",
+      "decay-formula": "g(x) = 2.25·(1/2.4)^x + 0.75",
+      "asymptote": "y=0.75",
+      "ratio": "2.4",
+      "growth-samples": "-2,1.141;-1,1.688;0,3;1,6.15;2,13.71",
+      "decay-samples": "-2,13.71;-1,6.15;0,3;1,1.688;2,1.141",
+      "active-samples": "-2,1.141;-1,1.688;0,3;1,6.15;2,13.71",
+      "actions": "10"
+    },
+    "initialDrag": {
+      "a": "2.5",
+      "b": "2",
+      "k": "0",
+      "mode": "growth",
+      "formula": "f(x) = 2.5·2^x",
+      "growth-formula": "f(x) = 2.5·2^x",
+      "decay-formula": "g(x) = 2.5·(1/2)^x",
+      "asymptote": "y=0",
+      "ratio": "2",
+      "growth-samples": "-2,0.625;-1,1.25;0,2.5;1,5;2,10",
+      "decay-samples": "-2,10;-1,5;0,2.5;1,1.25;2,0.625",
+      "active-samples": "-2,0.625;-1,1.25;0,2.5;1,5;2,10",
+      "actions": "8"
+    },
+    "initialKeyboard": {
+      "a": "2.25",
+      "b": "2",
+      "k": "0",
+      "mode": "growth",
+      "formula": "f(x) = 2.25·2^x",
+      "growth-formula": "f(x) = 2.25·2^x",
+      "decay-formula": "g(x) = 2.25·(1/2)^x",
+      "asymptote": "y=0",
+      "ratio": "2",
+      "growth-samples": "-2,0.563;-1,1.125;0,2.25;1,4.5;2,9",
+      "decay-samples": "-2,9;-1,4.5;0,2.25;1,1.125;2,0.563",
+      "active-samples": "-2,0.563;-1,1.125;0,2.25;1,4.5;2,9",
+      "actions": "9"
+    },
+    "baseDrag": {
+      "a": "1.5",
+      "b": "2.7",
+      "k": "0",
+      "mode": "growth",
+      "formula": "f(x) = 1.5·2.7^x",
+      "growth-formula": "f(x) = 1.5·2.7^x",
+      "decay-formula": "g(x) = 1.5·(1/2.7)^x",
+      "asymptote": "y=0",
+      "ratio": "2.7",
+      "growth-samples": "-2,0.206;-1,0.556;0,1.5;1,4.05;2,10.935",
+      "decay-samples": "-2,10.935;-1,4.05;0,1.5;1,0.556;2,0.206",
+      "active-samples": "-2,0.206;-1,0.556;0,1.5;1,4.05;2,10.935",
+      "actions": "8"
+    },
+    "baseKeyboard": {
+      "a": "1.5",
+      "b": "2.6",
+      "k": "0",
+      "mode": "growth",
+      "formula": "f(x) = 1.5·2.6^x",
+      "growth-formula": "f(x) = 1.5·2.6^x",
+      "decay-formula": "g(x) = 1.5·(1/2.6)^x",
+      "asymptote": "y=0",
+      "ratio": "2.6",
+      "growth-samples": "-2,0.222;-1,0.577;0,1.5;1,3.9;2,10.14",
+      "decay-samples": "-2,10.14;-1,3.9;0,1.5;1,0.577;2,0.222",
+      "active-samples": "-2,0.222;-1,0.577;0,1.5;1,3.9;2,10.14",
+      "actions": "9"
+    },
+    "asymptoteDrag": {
+      "a": "1.5",
+      "b": "2",
+      "k": "1",
+      "mode": "growth",
+      "formula": "f(x) = 1.5·2^x + 1",
+      "growth-formula": "f(x) = 1.5·2^x + 1",
+      "decay-formula": "g(x) = 1.5·(1/2)^x + 1",
+      "asymptote": "y=1",
+      "ratio": "2",
+      "growth-samples": "-2,1.375;-1,1.75;0,2.5;1,4;2,7",
+      "decay-samples": "-2,7;-1,4;0,2.5;1,1.75;2,1.375",
+      "active-samples": "-2,1.375;-1,1.75;0,2.5;1,4;2,7",
+      "actions": "8"
+    },
+    "asymptoteKeyboard": {
+      "a": "1.5",
+      "b": "2",
+      "k": "0.75",
+      "mode": "growth",
+      "formula": "f(x) = 1.5·2^x + 0.75",
+      "growth-formula": "f(x) = 1.5·2^x + 0.75",
+      "decay-formula": "g(x) = 1.5·(1/2)^x + 0.75",
+      "asymptote": "y=0.75",
+      "ratio": "2",
+      "growth-samples": "-2,1.125;-1,1.5;0,2.25;1,3.75;2,6.75",
+      "decay-samples": "-2,6.75;-1,3.75;0,2.25;1,1.5;2,1.125",
+      "active-samples": "-2,1.125;-1,1.5;0,2.25;1,3.75;2,6.75",
+      "actions": "9"
+    },
+    "decayMode": {
+      "a": "1.5",
+      "b": "2",
+      "k": "0.75",
+      "mode": "decay",
+      "formula": "g(x) = 1.5·(1/2)^x + 0.75",
+      "growth-formula": "f(x) = 1.5·2^x + 0.75",
+      "decay-formula": "g(x) = 1.5·(1/2)^x + 0.75",
+      "asymptote": "y=0.75",
+      "ratio": "0.5",
+      "growth-samples": "-2,1.125;-1,1.5;0,2.25;1,3.75;2,6.75",
+      "decay-samples": "-2,6.75;-1,3.75;0,2.25;1,1.5;2,1.125",
+      "active-samples": "-2,6.75;-1,3.75;0,2.25;1,1.5;2,1.125",
+      "actions": "10"
+    },
+    "example": {
+      "a": "1",
+      "b": "3",
+      "k": "1",
+      "mode": "growth",
+      "formula": "f(x) = 1·3^x + 1",
+      "growth-formula": "f(x) = 1·3^x + 1",
+      "decay-formula": "g(x) = 1·(1/3)^x + 1",
+      "asymptote": "y=1",
+      "ratio": "3",
+      "growth-samples": "-2,1.111;-1,1.333;0,2;1,4;2,10",
+      "decay-samples": "-2,10;-1,4;0,2;1,1.333;2,1.111",
+      "active-samples": "-2,1.111;-1,1.333;0,2;1,4;2,10",
+      "actions": "11"
+    },
+    "reset": {
+      "a": "1.5",
+      "b": "2",
+      "k": "0",
+      "mode": "growth",
+      "formula": "f(x) = 1.5·2^x",
+      "growth-formula": "f(x) = 1.5·2^x",
+      "decay-formula": "g(x) = 1.5·(1/2)^x",
+      "asymptote": "y=0",
+      "ratio": "2",
+      "growth-samples": "-2,0.375;-1,0.75;0,1.5;1,3;2,6",
+      "decay-samples": "-2,6;-1,3;0,1.5;1,0.75;2,0.375",
+      "active-samples": "-2,0.375;-1,0.75;0,1.5;1,3;2,6",
+      "actions": "0"
+    }
+  },
+  "metrics": {
+    "viewport": {
+      "width": 1387,
+      "height": 1134
+    },
+    "document": {
+      "width": 1387,
+      "height": 1134
+    },
+    "horizontalOverflow": false,
+    "verticalOverflow": false,
+    "regions": {
+      "page": {
+        "top": 120,
+        "bottom": 1115,
+        "height": 995,
+        "left": 291,
+        "right": 1374,
+        "width": 1083
+      },
+      "intro": {
+        "top": 120,
+        "bottom": 301,
+        "height": 181,
+        "left": 291,
+        "right": 1374,
+        "width": 1083
+      },
+      "tabs": {
+        "top": 311,
+        "bottom": 370,
+        "height": 59,
+        "left": 291,
+        "right": 1374,
+        "width": 1083
+      },
+      "lab": {
+        "top": 382,
+        "bottom": 1114,
+        "height": 732,
+        "left": 291,
+        "right": 1374,
+        "width": 1083
+      },
+      "main": {
+        "top": 400,
+        "bottom": 948,
+        "height": 548,
+        "left": 308,
+        "right": 986,
+        "width": 678
+      },
+      "graph": {
+        "top": 471,
+        "bottom": 851,
+        "height": 380,
+        "left": 313,
+        "right": 973,
+        "width": 660
+      },
+      "outputTable": {
+        "top": 826,
+        "bottom": 912,
+        "height": 86,
+        "left": 342,
+        "right": 897,
+        "width": 555
+      },
+      "rail": {
+        "top": 400,
+        "bottom": 948,
+        "height": 548,
+        "left": 1001,
+        "right": 1355,
+        "width": 354
+      },
+      "controls": {
+        "top": 400,
+        "bottom": 948,
+        "height": 548,
+        "left": 1001,
+        "right": 1355,
+        "width": 354
+      },
+      "concepts": {
+        "top": 965,
+        "bottom": 1094,
+        "height": 129,
+        "left": 308,
+        "right": 1355,
+        "width": 1047
+      }
+    }
+  },
+  "consoleMessages": [],
+  "passed": true
+}
